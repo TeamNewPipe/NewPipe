@@ -419,13 +419,15 @@ public final class PopupVideoPlayer extends Service {
         }
 
         @Override
-        public void onThumbnailReceived(Bitmap thumbnail) {
-            super.onThumbnailReceived(thumbnail);
-            if (thumbnail != null) {
+        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+            super.onLoadingComplete(imageUri, view, loadedImage);
+            if (loadedImage != null) {
                 // rebuild notification here since remote view does not release bitmaps, causing memory leaks
                 notBuilder = createNotification();
 
-                if (notRemoteView != null) notRemoteView.setImageViewBitmap(R.id.notificationCover, thumbnail);
+                if (notRemoteView != null) {
+                    notRemoteView.setImageViewBitmap(R.id.notificationCover, loadedImage);
+                }
 
                 updateNotification(-1);
             }

@@ -33,6 +33,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.view.View;
 import android.widget.RemoteViews;
 
 import com.google.android.exoplayer2.PlaybackParameters;
@@ -292,15 +293,15 @@ public final class BackgroundPlayer extends Service {
         }
 
         @Override
-        public void onThumbnailReceived(Bitmap thumbnail) {
-            super.onThumbnailReceived(thumbnail);
+        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+            super.onLoadingComplete(imageUri, view, loadedImage);
 
-            if (thumbnail != null) {
+            if (loadedImage != null) {
                 // rebuild notification here since remote view does not release bitmaps, causing memory leaks
                 resetNotification();
 
-                if (notRemoteView != null) notRemoteView.setImageViewBitmap(R.id.notificationCover, thumbnail);
-                if (bigNotRemoteView != null) bigNotRemoteView.setImageViewBitmap(R.id.notificationCover, thumbnail);
+                if (notRemoteView != null) notRemoteView.setImageViewBitmap(R.id.notificationCover, loadedImage);
+                if (bigNotRemoteView != null) bigNotRemoteView.setImageViewBitmap(R.id.notificationCover, loadedImage);
 
                 updateNotification(-1);
             }

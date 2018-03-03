@@ -160,7 +160,6 @@ public abstract class VideoPlayer extends BasePlayer
     public VideoPlayer(String debugTag, Context context) {
         super(context);
         this.TAG = debugTag;
-        this.context = context;
     }
 
     public void setup(View rootView) {
@@ -617,9 +616,9 @@ public abstract class VideoPlayer extends BasePlayer
     }
 
     @Override
-    public void onThumbnailReceived(Bitmap thumbnail) {
-        super.onThumbnailReceived(thumbnail);
-        if (thumbnail != null) endScreen.setImageBitmap(thumbnail);
+    public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+        super.onLoadingComplete(imageUri, view, loadedImage);
+        if (loadedImage != null) endScreen.setImageBitmap(loadedImage);
     }
 
     protected void onFullScreenButtonClicked() {

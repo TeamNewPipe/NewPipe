@@ -172,7 +172,7 @@ public final class ExtractorHelper {
                                                          String url,
                                                          Single<I> loadFromNetwork) {
         checkServiceId(serviceId);
-        loadFromNetwork = loadFromNetwork.doOnSuccess((@NonNull I i) -> cache.putInfo(i));
+        loadFromNetwork = loadFromNetwork.doOnSuccess(info -> cache.putInfo(serviceId, url, info));
 
         Single<I> load;
         if (forceLoad) {

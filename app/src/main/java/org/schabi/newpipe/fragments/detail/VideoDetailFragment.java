@@ -322,7 +322,7 @@ public class VideoDetailFragment
         if (serializable instanceof StreamInfo) {
             //noinspection unchecked
             currentInfo = (StreamInfo) serializable;
-            InfoCache.getInstance().putInfo(currentInfo);
+            InfoCache.getInstance().putInfo(serviceId, url, currentInfo);
         }
 
         serializable = savedState.getSerializable(STACK_KEY);

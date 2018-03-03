@@ -26,6 +26,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -33,6 +34,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.disposables.SerialDisposable;
 import io.reactivex.functions.Consumer;
+import io.reactivex.internal.subscriptions.EmptySubscription;
 import io.reactivex.subjects.PublishSubject;
 
 import static org.schabi.newpipe.playlist.PlayQueue.DEBUG;
@@ -40,66 +42,105 @@ import static org.schabi.newpipe.playlist.PlayQueue.DEBUG;
 public class MediaSourceManager {
     @NonNull private final static String TAG = "MediaSourceManager";
 
-    // WINDOW_SIZE determines how many streams AFTER the current stream should be loaded.
-    // The default value (1) ensures seamless playback under typical network settings.
+    /**
+     * Determines how many streams before and after the current stream should be loaded.
+     * The default value (1) ensures seamless playback under typical network settings.
+     * <br><br>
+     * The streams after the current will be loaded into the playlist timeline while the
+     * streams before will only be cached for future usage.
+     *
+     * @see #onMediaSourceReceived(PlayQueueItem, ManagedMediaSource)
+     * @see #update(int, MediaSource)
+     * */
     private final static int WINDOW_SIZE = 1;
 
     @NonNull private final PlaybackListener playbackListener;
     @NonNull private final PlayQueue playQueue;
 
-    // Once a MediaSource item has been detected to be expired, the manager will immediately
-    // trigger a reload on the associated PlayQueueItem, which may disrupt playback,
-    // if the item is being played
-    private final long expirationTimeMillis;
+    /**
+     * Determines how long NEIGHBOURING {@link LoadedMediaSource} window of a currently playing
+     * {@link MediaSource} is allowed to stay in the playlist timeline. This is to ensure
+     * the {@link StreamInfo} used in subsequent playback is up-to-date.
+     * <br><br>
+     * Once a {@link LoadedMediaSource} has expired, a new source will be reloaded to
+     * replace the expired one on whereupon {@link #loadImmediate()} is called.
+     *
+     * @see #loadImmediate()
+     * @see #isCorrectionNeeded(PlayQueueItem)
+     * */
+    private final long windowRefreshTimeMillis;
 
-    // Process only the last load order when receiving a stream of load orders (lessens I/O)
-    // The higher it is, the less loading occurs during rapid noncritical timeline changes
-    // Not recommended to go below 100ms
+    /**
+     * Process only the last load order when receiving a stream of load orders (lessens I/O).
+     * <br><br>
+     * The higher it is, the less loading occurs during rapid noncritical timeline changes.
+     * <br><br>
+     * Not recommended to go below 100ms.
+     *
+     * @see #loadDebounced()
+     * */
     private final long loadDebounceMillis;
     @NonNull private final Disposable debouncedLoader;
     @NonNull private final PublishSubject<Long> debouncedSignal;
 
-    private DynamicConcatenatingMediaSource sources;
+    @NonNull private Subscription playQueueReactor;
 
-    private Subscription playQueueReactor;
-    private CompositeDisposable loaderReactor;
+    /**
+     * Determines the maximum number of disposables allowed in the {@link #loaderReactor}.
+     * Once exceeded, new calls to {@link #loadImmediate()} will evict all disposables in the
+     * {@link #loaderReactor} in order to load a new set of items.
+     *
+     * @see #loadImmediate()
+     * @see #maybeLoadItem(PlayQueueItem)
+     * */
+    private final static int MAXIMUM_LOADER_SIZE = WINDOW_SIZE * 2 + 1;
+    @NonNull private final CompositeDisposable loaderReactor;
+    @NonNull private Set<PlayQueueItem> loadingItems;
+    @NonNull private final SerialDisposable syncReactor;
 
-    private boolean isBlocked;
+    @NonNull private final AtomicBoolean isBlocked;
 
-    private SerialDisposable syncReactor;
-    private PlayQueueItem syncedItem;
-    private Set<PlayQueueItem> loadingItems;
+    @NonNull private DynamicConcatenatingMediaSource sources;
+
+    @Nullable private PlayQueueItem syncedItem;
 
     public MediaSourceManager(@NonNull final PlaybackListener listener,
                               @NonNull final PlayQueue playQueue) {
         this(listener, playQueue,
                 /*loadDebounceMillis=*/400L,
-                /*expirationTimeMillis=*/TimeUnit.MILLISECONDS.convert(30, TimeUnit.MINUTES));
+                /*windowRefreshTimeMillis=*/TimeUnit.MILLISECONDS.convert(10, TimeUnit.MINUTES));
     }
 
     private MediaSourceManager(@NonNull final PlaybackListener listener,
                                @NonNull final PlayQueue playQueue,
                                final long loadDebounceMillis,
-                               final long expirationTimeMillis) {
+                               final long windowRefreshTimeMillis) {
+        if (playQueue.getBroadcastReceiver() == null) {
+            throw new IllegalArgumentException("Play Queue has not been initialized.");
+        }
+
         this.playbackListener = listener;
         this.playQueue = playQueue;
-        this.loadDebounceMillis = loadDebounceMillis;
-        this.expirationTimeMillis = expirationTimeMillis;
 
-        this.loaderReactor = new CompositeDisposable();
+        this.windowRefreshTimeMillis = windowRefreshTimeMillis;
+
+        this.loadDebounceMillis = loadDebounceMillis;
         this.debouncedSignal = PublishSubject.create();
         this.debouncedLoader = getDebouncedLoader();
 
+        this.playQueueReactor = EmptySubscription.INSTANCE;
+        this.loaderReactor = new CompositeDisposable();
+        this.syncReactor = new SerialDisposable();
+
+        this.isBlocked = new AtomicBoolean(false);
+
         this.sources = new DynamicConcatenatingMediaSource();
 
-        this.syncReactor = new SerialDisposable();
         this.loadingItems = Collections.synchronizedSet(new HashSet<>());
 
-        if (playQueue.getBroadcastReceiver() != null) {
-            playQueue.getBroadcastReceiver()
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(getReactor());
-        }
+        playQueue.getBroadcastReceiver()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getReactor());
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -114,16 +155,12 @@ public class MediaSourceManager {
         debouncedSignal.onComplete();
         debouncedLoader.dispose();
 
-        if (playQueueReactor != null) playQueueReactor.cancel();
-        if (loaderReactor != null) loaderReactor.dispose();
-        if (syncReactor != null) syncReactor.dispose();
-        if (sources != null) sources.releaseSource();
+        playQueueReactor.cancel();
+        loaderReactor.dispose();
+        syncReactor.dispose();
+        sources.releaseSource();
 
-        playQueueReactor = null;
-        loaderReactor = null;
-        syncReactor = null;
         syncedItem = null;
-        sources = null;
     }
 
     /**
@@ -158,14 +195,14 @@ public class MediaSourceManager {
         return new Subscriber<PlayQueueEvent>() {
             @Override
             public void onSubscribe(@NonNull Subscription d) {
-                if (playQueueReactor != null) playQueueReactor.cancel();
+                playQueueReactor.cancel();
                 playQueueReactor = d;
                 playQueueReactor.request(1);
             }
 
             @Override
             public void onNext(@NonNull PlayQueueEvent playQueueMessage) {
-                if (playQueueReactor != null) onPlayQueueChanged(playQueueMessage);
+                onPlayQueueChanged(playQueueMessage);
             }
 
             @Override
@@ -227,7 +264,7 @@ public class MediaSourceManager {
             tryBlock();
             playQueue.fetch();
         }
-        if (playQueueReactor != null) playQueueReactor.request(1);
+        playQueueReactor.request(1);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -240,7 +277,7 @@ public class MediaSourceManager {
     }
 
     private boolean isPlaybackReady() {
-        if (sources == null || sources.getSize() != playQueue.size()) return false;
+        if (sources.getSize() != playQueue.size()) return false;
 
         final MediaSource mediaSource = sources.getMediaSource(playQueue.getIndex());
         final PlayQueueItem playQueueItem = playQueue.getItem();
@@ -256,19 +293,19 @@ public class MediaSourceManager {
     private void tryBlock() {
         if (DEBUG) Log.d(TAG, "tryBlock() called.");
 
-        if (isBlocked) return;
+        if (isBlocked.get()) return;
 
         playbackListener.block();
         resetSources();
 
-        isBlocked = true;
+        isBlocked.set(true);
     }
 
     private void tryUnblock() {
         if (DEBUG) Log.d(TAG, "tryUnblock() called.");
 
-        if (isPlayQueueReady() && isPlaybackReady() && isBlocked && sources != null) {
-            isBlocked = false;
+        if (isPlayQueueReady() && isPlaybackReady() && isBlocked.get()) {
+            isBlocked.set(false);
             playbackListener.unblock(sources);
         }
     }
@@ -281,7 +318,7 @@ public class MediaSourceManager {
         if (DEBUG) Log.d(TAG, "sync() called.");
 
         final PlayQueueItem currentItem = playQueue.getItem();
-        if (isBlocked || currentItem == null) return;
+        if (isBlocked.get() || currentItem == null) return;
 
         final Consumer<StreamInfo> onSuccess = info -> syncInternal(currentItem, info);
         final Consumer<Throwable> onError = throwable -> syncInternal(currentItem, null);
@@ -295,11 +332,11 @@ public class MediaSourceManager {
         }
     }
 
-    private void syncInternal(@android.support.annotation.NonNull final PlayQueueItem item,
+    private void syncInternal(@NonNull final PlayQueueItem item,
                               @Nullable final StreamInfo info) {
         // Ensure the current item is up to date with the play queue
         if (playQueue.getItem() == item && playQueue.getItem() == syncedItem) {
-            playbackListener.sync(syncedItem, info);
+            playbackListener.sync(item, info);
         }
     }
 
@@ -323,6 +360,12 @@ public class MediaSourceManager {
         final int currentIndex = playQueue.getIndex();
         final PlayQueueItem currentItem = playQueue.getItem(currentIndex);
         if (currentItem == null) return;
+
+        // Evict the items being loaded to free up memory
+        if (!loadingItems.contains(currentItem) && loaderReactor.size() > MAXIMUM_LOADER_SIZE) {
+            loaderReactor.clear();
+            loadingItems.clear();
+        }
         maybeLoadItem(currentItem);
 
         // The rest are just for seamless playback
@@ -347,34 +390,17 @@ public class MediaSourceManager {
 
     private void maybeLoadItem(@NonNull final PlayQueueItem item) {
         if (DEBUG) Log.d(TAG, "maybeLoadItem() called.");
-        if (sources == null) return;
-
-        final int index = playQueue.indexOf(item);
-        if (index > sources.getSize() - 1) return;
-
-        final Consumer<ManagedMediaSource> onDone = mediaSource -> {
-            if (DEBUG) Log.d(TAG, " Loaded: [" + item.getTitle() +
-                    "] with url: " + item.getUrl());
-
-            final int itemIndex = playQueue.indexOf(item);
-            // Only update the playlist timeline for items at the current index or after.
-            if (itemIndex >= playQueue.getIndex() && isCorrectionNeeded(item)) {
-                update(itemIndex, mediaSource);
-            }
-
-            loadingItems.remove(item);
-            tryUnblock();
-            sync();
-        };
+        if (playQueue.indexOf(item) >= sources.getSize()) return;
 
         if (!loadingItems.contains(item) && isCorrectionNeeded(item)) {
-            if (DEBUG) Log.d(TAG, "Loading: [" + item.getTitle() +
+            if (DEBUG) Log.d(TAG, "MediaSource - Loading: [" + item.getTitle() +
                     "] with url: " + item.getUrl());
 
             loadingItems.add(item);
             final Disposable loader = getLoadedMediaSource(item)
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(onDone);
+                    /* No exception handling since getLoadedMediaSource guarantees nonnull return */
+                    .subscribe(mediaSource -> onMediaSourceReceived(item, mediaSource));
             loaderReactor.add(loader);
         }
 
@@ -392,12 +418,30 @@ public class MediaSourceManager {
                                 ", audio count: " + streamInfo.audio_streams.size() +
                                 ", video count: " + streamInfo.video_only_streams.size() +
                                 streamInfo.video_streams.size());
-                return new FailedMediaSource(stream, new IllegalStateException(exception));
+                return new FailedMediaSource(stream, exception);
             }
 
-            final long expiration = System.currentTimeMillis() + expirationTimeMillis;
+            final long expiration = System.currentTimeMillis() + windowRefreshTimeMillis;
             return new LoadedMediaSource(source, stream, expiration);
         }).onErrorReturn(throwable -> new FailedMediaSource(stream, throwable));
+    }
+
+    private void onMediaSourceReceived(@NonNull final PlayQueueItem item,
+                                       @NonNull final ManagedMediaSource mediaSource) {
+        if (DEBUG) Log.d(TAG, "MediaSource - Loaded: [" + item.getTitle() +
+                "] with url: " + item.getUrl());
+
+        final int itemIndex = playQueue.indexOf(item);
+        // Only update the playlist timeline for items at the current index or after.
+        if (itemIndex >= playQueue.getIndex() && isCorrectionNeeded(item)) {
+            if (DEBUG) Log.d(TAG, "MediaSource - Updating: [" + item.getTitle() +
+                    "] with url: " + item.getUrl());
+            update(itemIndex, mediaSource);
+        }
+
+        loadingItems.remove(item);
+        tryUnblock();
+        sync();
     }
 
     /**
@@ -411,8 +455,6 @@ public class MediaSourceManager {
      * {@link ManagedMediaSource}.
      * */
     private boolean isCorrectionNeeded(@NonNull final PlayQueueItem item) {
-        if (sources == null) return false;
-
         final int index = playQueue.indexOf(item);
         if (index == -1 || index >= sources.getSize()) return false;
 
@@ -432,13 +474,13 @@ public class MediaSourceManager {
     private void resetSources() {
         if (DEBUG) Log.d(TAG, "resetSources() called.");
 
-        if (this.sources != null) this.sources.releaseSource();
+        this.sources.releaseSource();
         this.sources = new DynamicConcatenatingMediaSource();
     }
 
     private void populateSources() {
         if (DEBUG) Log.d(TAG, "populateSources() called.");
-        if (sources == null || sources.getSize() >= playQueue.size()) return;
+        if (sources.getSize() >= playQueue.size()) return;
 
         for (int index = sources.getSize() - 1; index < playQueue.size(); index++) {
             emplace(index, new PlaceholderMediaSource());
@@ -451,12 +493,11 @@ public class MediaSourceManager {
 
     /**
      * Places a {@link MediaSource} into the {@link DynamicConcatenatingMediaSource}
-     * with position * in respect to the play queue only if no {@link MediaSource}
+     * with position in respect to the play queue only if no {@link MediaSource}
      * already exists at the given index.
      * */
-    private void emplace(final int index, @NonNull final MediaSource source) {
-        if (sources == null) return;
-        if (index < 0 || index < sources.getSize()) return;
+    private synchronized void emplace(final int index, @NonNull final MediaSource source) {
+        if (index < sources.getSize()) return;
 
         sources.addMediaSource(index, source);
     }
@@ -465,8 +506,7 @@ public class MediaSourceManager {
      * Removes a {@link MediaSource} from {@link DynamicConcatenatingMediaSource}
      * at the given index. If this index is out of bound, then the removal is ignored.
      * */
-    private void remove(final int index) {
-        if (sources == null) return;
+    private synchronized void remove(final int index) {
         if (index < 0 || index > sources.getSize()) return;
 
         sources.removeMediaSource(index);
@@ -477,8 +517,7 @@ public class MediaSourceManager {
      * from the given source index to the target index. If either index is out of bound,
      * then the call is ignored.
      * */
-    private void move(final int source, final int target) {
-        if (sources == null) return;
+    private synchronized void move(final int source, final int target) {
         if (source < 0 || target < 0) return;
         if (source >= sources.getSize() || target >= sources.getSize()) return;
 
@@ -491,15 +530,13 @@ public class MediaSourceManager {
      * then the replacement is ignored.
      * <br><br>
      * Not recommended to use on indices LESS THAN the currently playing index, since
-     * this will modify the playback timeline prior to the index and cause desynchronization
+     * this will modify the playback timeline prior to the index and may cause desynchronization
      * on the playing item between {@link PlayQueue} and {@link DynamicConcatenatingMediaSource}.
      * */
     private synchronized void update(final int index, @NonNull final MediaSource source) {
-        if (sources == null) return;
         if (index < 0 || index >= sources.getSize()) return;
 
-        sources.addMediaSource(index + 1, source, () -> {
-            if (sources != null) sources.removeMediaSource(index);
-        });
+        sources.addMediaSource(index + 1, source, () ->
+                sources.removeMediaSource(index));
     }
 }
