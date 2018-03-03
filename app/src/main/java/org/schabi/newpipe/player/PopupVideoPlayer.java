@@ -535,7 +535,8 @@ public final class PopupVideoPlayer extends Service {
 
         private void updatePlayback() {
             if (activityListener != null && simpleExoPlayer != null && playQueue != null) {
-                activityListener.onPlaybackUpdate(currentState, getRepeatMode(), playQueue.isShuffled(), simpleExoPlayer.getPlaybackParameters());
+                activityListener.onPlaybackUpdate(currentState, getRepeatMode(),
+                        playQueue.isShuffled(), simpleExoPlayer.getPlaybackParameters());
             }
         }
 
@@ -574,16 +575,17 @@ public final class PopupVideoPlayer extends Service {
         // Playback Listener
         //////////////////////////////////////////////////////////////////////////*/
 
-        @Override
-        public void sync(@NonNull PlayQueueItem item, @Nullable StreamInfo info) {
-            if (currentItem == item && currentInfo == info) return;
-            super.sync(item, info);
+        protected void onMetadataChanged(@NonNull final PlayQueueItem item,
+                                         @Nullable final StreamInfo info,
+                                         final int newPlayQueueIndex,
+                                         final boolean hasPlayQueueItemChanged) {
+            super.onMetadataChanged(item, info, newPlayQueueIndex, false);
             updateMetadata();
         }
 
         @Override
-        public void shutdown() {
-            super.shutdown();
+        public void onPlaybackShutdown() {
+            super.onPlaybackShutdown();
             onClose();
         }
 

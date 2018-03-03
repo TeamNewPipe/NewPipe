@@ -391,29 +391,30 @@ public final class MainVideoPlayer extends Activity {
             updatePlaybackButtons();
         }
 
-        /*//////////////////////////////////////////////////////////////////////////
-        // Playback Listener
-        //////////////////////////////////////////////////////////////////////////*/
-
-        @Override
-        public void shutdown() {
-            super.shutdown();
-            finish();
-        }
-
-        @Override
-        public void sync(@NonNull final PlayQueueItem item, @Nullable final StreamInfo info) {
-            super.sync(item, info);
-            titleTextView.setText(getVideoTitle());
-            channelTextView.setText(getUploaderName());
-
-            //playPauseButton.setImageResource(R.drawable.ic_pause_white);
-        }
-
         @Override
         public void onShuffleClicked() {
             super.onShuffleClicked();
             updatePlaybackButtons();
+        }
+
+        /*//////////////////////////////////////////////////////////////////////////
+        // Playback Listener
+        //////////////////////////////////////////////////////////////////////////*/
+
+        protected void onMetadataChanged(@NonNull final PlayQueueItem item,
+                                         @Nullable final StreamInfo info,
+                                         final int newPlayQueueIndex,
+                                         final boolean hasPlayQueueItemChanged) {
+            super.onMetadataChanged(item, info, newPlayQueueIndex, false);
+
+            titleTextView.setText(getVideoTitle());
+            channelTextView.setText(getUploaderName());
+        }
+
+        @Override
+        public void onPlaybackShutdown() {
+            super.onPlaybackShutdown();
+            finish();
         }
 
         /*//////////////////////////////////////////////////////////////////////////

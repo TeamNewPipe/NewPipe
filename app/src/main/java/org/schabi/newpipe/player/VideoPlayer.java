@@ -324,9 +324,10 @@ public abstract class VideoPlayer extends BasePlayer
 
     protected abstract int getOverrideResolutionIndex(final List<VideoStream> sortedVideos, final String playbackQuality);
 
-    @Override
-    public void sync(@NonNull final PlayQueueItem item, @Nullable final StreamInfo info) {
-        super.sync(item, info);
+    protected void onMetadataChanged(@NonNull final PlayQueueItem item,
+                                     @Nullable final StreamInfo info,
+                                     final int newPlayQueueIndex,
+                                     final boolean hasPlayQueueItemChanged) {
         qualityTextView.setVisibility(View.GONE);
         playbackSpeedTextView.setVisibility(View.GONE);
 

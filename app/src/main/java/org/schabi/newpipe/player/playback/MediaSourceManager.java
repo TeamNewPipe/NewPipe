@@ -50,7 +50,7 @@ public class MediaSourceManager {
      * streams before will only be cached for future usage.
      *
      * @see #onMediaSourceReceived(PlayQueueItem, ManagedMediaSource)
-     * @see #update(int, MediaSource)
+     * @see #update(int, MediaSource, Runnable)
      * */
     private final static int WINDOW_SIZE = 1;
 
@@ -95,14 +95,12 @@ public class MediaSourceManager {
      * */
     private final static int MAXIMUM_LOADER_SIZE = WINDOW_SIZE * 2 + 1;
     @NonNull private final CompositeDisposable loaderReactor;
-    @NonNull private Set<PlayQueueItem> loadingItems;
+    @NonNull private final Set<PlayQueueItem> loadingItems;
     @NonNull private final SerialDisposable syncReactor;
 
     @NonNull private final AtomicBoolean isBlocked;
 
     @NonNull private DynamicConcatenatingMediaSource sources;
-
-    @Nullable private PlayQueueItem syncedItem;
 
     public MediaSourceManager(@NonNull final PlaybackListener listener,
                               @NonNull final PlayQueue playQueue) {
@@ -159,8 +157,6 @@ public class MediaSourceManager {
         loaderReactor.dispose();
         syncReactor.dispose();
         sources.releaseSource();
-
-        syncedItem = null;
     }
 
     /**
@@ -182,9 +178,7 @@ public class MediaSourceManager {
     public void reset() {
         if (DEBUG) Log.d(TAG, "reset() called.");
 
-        tryBlock();
-
-        syncedItem = null;
+        maybeBlock();
         populateSources();
     }
     /*//////////////////////////////////////////////////////////////////////////
@@ -215,7 +209,7 @@ public class MediaSourceManager {
 
     private void onPlayQueueChanged(final PlayQueueEvent event) {
         if (playQueue.isEmpty() && playQueue.isComplete()) {
-            playbackListener.shutdown();
+            playbackListener.onPlaybackShutdown();
             return;
         }
 
@@ -261,7 +255,7 @@ public class MediaSourceManager {
         }
 
         if (!isPlayQueueReady()) {
-            tryBlock();
+            maybeBlock();
             playQueue.fetch();
         }
         playQueueReactor.request(1);
@@ -290,23 +284,23 @@ public class MediaSourceManager {
         return false;
     }
 
-    private void tryBlock() {
-        if (DEBUG) Log.d(TAG, "tryBlock() called.");
+    private void maybeBlock() {
+        if (DEBUG) Log.d(TAG, "maybeBlock() called.");
 
         if (isBlocked.get()) return;
 
-        playbackListener.block();
+        playbackListener.onPlaybackBlock();
         resetSources();
 
         isBlocked.set(true);
     }
 
-    private void tryUnblock() {
-        if (DEBUG) Log.d(TAG, "tryUnblock() called.");
+    private void maybeUnblock() {
+        if (DEBUG) Log.d(TAG, "maybeUnblock() called.");
 
         if (isPlayQueueReady() && isPlaybackReady() && isBlocked.get()) {
             isBlocked.set(false);
-            playbackListener.unblock(sources);
+            playbackListener.onPlaybackUnblock(sources);
         }
     }
 
@@ -314,8 +308,8 @@ public class MediaSourceManager {
     // Metadata Synchronization TODO: maybe this should be a separate manager
     //////////////////////////////////////////////////////////////////////////*/
 
-    private void sync() {
-        if (DEBUG) Log.d(TAG, "sync() called.");
+    private void maybeSync() {
+        if (DEBUG) Log.d(TAG, "onPlaybackSynchronize() called.");
 
         final PlayQueueItem currentItem = playQueue.getItem();
         if (isBlocked.get() || currentItem == null) return;
@@ -323,21 +317,23 @@ public class MediaSourceManager {
         final Consumer<StreamInfo> onSuccess = info -> syncInternal(currentItem, info);
         final Consumer<Throwable> onError = throwable -> syncInternal(currentItem, null);
 
-        if (syncedItem != currentItem) {
-            syncedItem = currentItem;
-            final Disposable sync = currentItem.getStream()
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(onSuccess, onError);
-            syncReactor.set(sync);
-        }
+        final Disposable sync = currentItem.getStream()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(onSuccess, onError);
+        syncReactor.set(sync);
     }
 
     private void syncInternal(@NonNull final PlayQueueItem item,
                               @Nullable final StreamInfo info) {
         // Ensure the current item is up to date with the play queue
-        if (playQueue.getItem() == item && playQueue.getItem() == syncedItem) {
-            playbackListener.sync(item, info);
+        if (playQueue.getItem() == item) {
+            playbackListener.onPlaybackSynchronize(item, info);
         }
+    }
+
+    private void maybeSynchronizePlayer() {
+        maybeUnblock();
+        maybeSync();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -404,8 +400,7 @@ public class MediaSourceManager {
             loaderReactor.add(loader);
         }
 
-        tryUnblock();
-        sync();
+        maybeSynchronizePlayer();
     }
 
     private Single<ManagedMediaSource> getLoadedMediaSource(@NonNull final PlayQueueItem stream) {
@@ -431,17 +426,15 @@ public class MediaSourceManager {
         if (DEBUG) Log.d(TAG, "MediaSource - Loaded: [" + item.getTitle() +
                 "] with url: " + item.getUrl());
 
+        loadingItems.remove(item);
+
         final int itemIndex = playQueue.indexOf(item);
         // Only update the playlist timeline for items at the current index or after.
         if (itemIndex >= playQueue.getIndex() && isCorrectionNeeded(item)) {
             if (DEBUG) Log.d(TAG, "MediaSource - Updating: [" + item.getTitle() +
                     "] with url: " + item.getUrl());
-            update(itemIndex, mediaSource);
+            update(itemIndex, mediaSource, this::maybeSynchronizePlayer);
         }
-
-        loadingItems.remove(item);
-        tryUnblock();
-        sync();
     }
 
     /**
@@ -533,10 +526,11 @@ public class MediaSourceManager {
      * this will modify the playback timeline prior to the index and may cause desynchronization
      * on the playing item between {@link PlayQueue} and {@link DynamicConcatenatingMediaSource}.
      * */
-    private synchronized void update(final int index, @NonNull final MediaSource source) {
+    private synchronized void update(final int index, @NonNull final MediaSource source,
+                                     @Nullable final Runnable finalizingAction) {
         if (index < 0 || index >= sources.getSize()) return;
 
         sources.addMediaSource(index + 1, source, () ->
-                sources.removeMediaSource(index));
+                sources.removeMediaSource(index, finalizingAction));
     }
 }

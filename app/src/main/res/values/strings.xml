@@ -72,6 +72,8 @@
     <string name="black_theme_title">Black</string>
     <string name="popup_remember_size_pos_title">Remember popup size and position</string>
     <string name="popup_remember_size_pos_summary">Remember last size and position of popup</string>
+    <string name="use_inexact_seek_title">Use fast inexact seek</string>
+    <string name="use_inexact_seek_summary">Inexact seek allows the player to seek to positions faster with reduced precision</string>
     <string name="player_gesture_controls_title">Player gesture controls</string>
     <string name="player_gesture_controls_summary">Use gestures to control the brightness and volume of the player</string>
     <string name="show_search_suggestions_title">Search suggestions</string>

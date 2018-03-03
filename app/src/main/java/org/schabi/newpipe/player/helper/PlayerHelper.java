@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 
+import com.google.android.exoplayer2.SeekParameters;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.util.MimeTypes;
 
@@ -109,6 +110,12 @@ public class PlayerHelper {
         return isRememberingPopupDimensions(context, true);
     }
 
+    @NonNull
+    public static SeekParameters getSeekParameters(@NonNull final Context context) {
+        return isUsingInexactSeek(context, false) ?
+                SeekParameters.CLOSEST_SYNC : SeekParameters.EXACT;
+    }
+
     public static long getPreferredCacheSize(@NonNull final Context context) {
         return 64 * 1024 * 1024L;
     }
@@ -175,5 +182,9 @@ public class PlayerHelper {
 
     private static boolean isRememberingPopupDimensions(@Nonnull final Context context, final boolean b) {
         return getPreferences(context).getBoolean(context.getString(R.string.popup_remember_size_pos_key), b);
+    }
+
+    private static boolean isUsingInexactSeek(@NonNull final Context context, final boolean b) {
+        return getPreferences(context).getBoolean(context.getString(R.string.use_inexact_seek_key), b);
     }
 }

@@ -380,11 +380,10 @@ public final class BackgroundPlayer extends Service {
         // Playback Listener
         //////////////////////////////////////////////////////////////////////////*/
 
-        @Override
-        public void sync(@NonNull final PlayQueueItem item, @Nullable final StreamInfo info) {
-            if (currentItem == item && currentInfo == info) return;
-            super.sync(item, info);
-
+        protected void onMetadataChanged(@NonNull final PlayQueueItem item,
+                                         @Nullable final StreamInfo info,
+                                         final int newPlayQueueIndex,
+                                         final boolean hasPlayQueueItemChanged) {
             resetNotification();
             updateNotification(-1);
             updateMetadata();
@@ -405,8 +404,8 @@ public final class BackgroundPlayer extends Service {
         }
 
         @Override
-        public void shutdown() {
-            super.shutdown();
+        public void onPlaybackShutdown() {
+            super.onPlaybackShutdown();
             onClose();
         }
 

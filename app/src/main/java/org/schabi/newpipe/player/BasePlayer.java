@@ -61,6 +61,7 @@ import org.schabi.newpipe.history.HistoryRecordManager;
 import org.schabi.newpipe.player.helper.AudioReactor;
 import org.schabi.newpipe.player.helper.LoadController;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
+import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.playback.CustomTrackSelector;
 import org.schabi.newpipe.player.playback.MediaSourceManager;
 import org.schabi.newpipe.player.playback.PlaybackListener;
@@ -196,6 +197,7 @@ public abstract class BasePlayer implements
 
         simpleExoPlayer.addListener(this);
         simpleExoPlayer.setPlayWhenReady(true);
+        simpleExoPlayer.setSeekParameters(PlayerHelper.getSeekParameters(context));
     }
 
     public void initListeners() {}
@@ -688,7 +690,7 @@ public abstract class BasePlayer implements
                 break;
             default:
                 showUnrecoverableError(error);
-                shutdown();
+                onPlaybackShutdown();
                 break;
         }
     }
@@ -774,9 +776,9 @@ public abstract class BasePlayer implements
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void block() {
+    public void onPlaybackBlock() {
         if (simpleExoPlayer == null) return;
-        if (DEBUG) Log.d(TAG, "Playback - block() called");
+        if (DEBUG) Log.d(TAG, "Playback - onPlaybackBlock() called");
 
         currentItem = null;
         currentInfo = null;
@@ -787,9 +789,9 @@ public abstract class BasePlayer implements
     }
 
     @Override
-    public void unblock(final MediaSource mediaSource) {
+    public void onPlaybackUnblock(final MediaSource mediaSource) {
         if (simpleExoPlayer == null) return;
-        if (DEBUG) Log.d(TAG, "Playback - unblock() called");
+        if (DEBUG) Log.d(TAG, "Playback - onPlaybackUnblock() called");
 
         if (getCurrentState() == STATE_BLOCKED) changeState(STATE_BUFFERING);
 
@@ -798,33 +800,49 @@ public abstract class BasePlayer implements
     }
 
     @Override
-    public void sync(@NonNull final PlayQueueItem item,
-                     @Nullable final StreamInfo info) {
-        if (currentItem == item && currentInfo == info) return;
-        currentItem = item;
-        currentInfo = info;
-
-        if (DEBUG) Log.d(TAG, "Playback - sync() called with " +
+    public void onPlaybackSynchronize(@NonNull final PlayQueueItem item,
+                                      @Nullable final StreamInfo info) {
+        if (DEBUG) Log.d(TAG, "Playback - onPlaybackSynchronize() called with " +
                 (info == null ? "available" : "null") + " info, " +
                 "item=[" + item.getTitle() + "], url=[" + item.getUrl() + "]");
-        if (simpleExoPlayer == null) return;
+
+        final boolean hasPlayQueueItemChanged = currentItem != item;
+        final boolean hasStreamInfoChanged = currentInfo != info;
+        if (!hasPlayQueueItemChanged && !hasStreamInfoChanged) {
+            return; // Nothing to synchronize
+        }
+
+        currentItem = item;
+        currentInfo = info;
+        if (hasPlayQueueItemChanged) {
+            // updates only to the stream info should not trigger another view count
+            registerView();
+            initThumbnail(info == null ? item.getThumbnailUrl() : info.getThumbnailUrl());
+        }
+
+        final int currentSourceIndex = playQueue.indexOf(item);
+        onMetadataChanged(item, info, currentSourceIndex, hasPlayQueueItemChanged);
 
         // Check if on wrong window
-        final int currentSourceIndex = playQueue.indexOf(item);
+        if (simpleExoPlayer == null) return;
         if (currentSourceIndex != playQueue.getIndex()) {
             Log.e(TAG, "Play Queue may be desynchronized: item index=[" + currentSourceIndex +
                     "], queue index=[" + playQueue.getIndex() + "]");
-        } else if (simpleExoPlayer.getCurrentPeriodIndex() != currentSourceIndex || !isPlaying()) {
+
+            // on metadata changed
+        } else if (simpleExoPlayer.getCurrentWindowIndex() != currentSourceIndex || !isPlaying()) {
             final long startPos = info != null ? info.start_position : 0;
             if (DEBUG) Log.d(TAG, "Rewinding to correct window=[" + currentSourceIndex + "]," +
                     " at=[" + getTimeString((int)startPos) + "]," +
-                    " from=[" + simpleExoPlayer.getCurrentPeriodIndex() + "].");
+                    " from=[" + simpleExoPlayer.getCurrentWindowIndex() + "].");
             simpleExoPlayer.seekTo(currentSourceIndex, startPos);
         }
-
-        registerView();
-        initThumbnail(info == null ? item.getThumbnailUrl() : info.thumbnail_url);
     }
+
+    abstract protected void onMetadataChanged(@NonNull final PlayQueueItem item,
+                                              @Nullable final StreamInfo info,
+                                              final int newPlayQueueIndex,
+                                              final boolean hasPlayQueueItemChanged);
 
     @Nullable
     @Override
@@ -839,7 +857,7 @@ public abstract class BasePlayer implements
     }
 
     @Override
-    public void shutdown() {
+    public void onPlaybackShutdown() {
         if (DEBUG) Log.d(TAG, "Shutting down...");
         destroy();
     }
