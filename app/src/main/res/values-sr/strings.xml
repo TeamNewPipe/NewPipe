@@ -316,4 +316,7 @@
     <string name="unknown_content">[непознато]</string>
 
     <string name="show_hold_to_append_title">Прикажи поруку \"задржи ради стављања у ред\"</string>
+    <string name="donation_title">Донирај</string>
+    <string name="donation_encouragement">ЊуПајп развијају волонтери у своје слободно време како би вама пружили најбоље искуство. Сада је време да им узвратите како би они могли да наставе са побољшавањем ЊуПајпа док уживају пијући кафу!</string>
+    <string name="give_back">Узврати</string>
     </resources>
