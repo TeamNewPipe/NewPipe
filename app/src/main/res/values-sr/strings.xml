@@ -313,4 +313,6 @@
     <string name="always">Увек</string>
     <string name="just_once">Само једном</string>
 
+    <string name="unknown_content">[Непознато]</string>
+
     </resources>
