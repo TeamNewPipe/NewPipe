@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.google.android.exoplayer2.source.DynamicConcatenatingMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.source.ShuffleOrder;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -19,6 +20,7 @@ import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.events.MoveEvent;
 import org.schabi.newpipe.playlist.events.PlayQueueEvent;
 import org.schabi.newpipe.playlist.events.RemoveEvent;
+import org.schabi.newpipe.playlist.events.ReorderEvent;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -216,7 +218,6 @@ public class MediaSourceManager {
         // Event specific action
         switch (event.type()) {
             case INIT:
-            case REORDER:
             case ERROR:
                 reset();
                 break;
@@ -230,6 +231,12 @@ public class MediaSourceManager {
             case MOVE:
                 final MoveEvent moveEvent = (MoveEvent) event;
                 move(moveEvent.getFromIndex(), moveEvent.getToIndex());
+                break;
+            case REORDER:
+                // Need to move to ensure the playing index from play queue matches that of
+                // the source timeline, and then window correction can take care of the rest
+                final ReorderEvent reorderEvent = (ReorderEvent) event;
+                move(reorderEvent.getFromSelectedIndex(), reorderEvent.getToSelectedIndex());
                 break;
             case SELECT:
             case RECOVERY:
@@ -305,7 +312,7 @@ public class MediaSourceManager {
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Metadata Synchronization TODO: maybe this should be a separate manager
+    // Metadata Synchronization
     //////////////////////////////////////////////////////////////////////////*/
 
     private void maybeSync() {
@@ -389,8 +396,8 @@ public class MediaSourceManager {
         if (playQueue.indexOf(item) >= sources.getSize()) return;
 
         if (!loadingItems.contains(item) && isCorrectionNeeded(item)) {
-            if (DEBUG) Log.d(TAG, "MediaSource - Loading: [" + item.getTitle() +
-                    "] with url: " + item.getUrl());
+            if (DEBUG) Log.d(TAG, "MediaSource - Loading=[" + item.getTitle() +
+                    "] with url=[" + item.getUrl() + "]");
 
             loadingItems.add(item);
             final Disposable loader = getLoadedMediaSource(item)
@@ -423,16 +430,16 @@ public class MediaSourceManager {
 
     private void onMediaSourceReceived(@NonNull final PlayQueueItem item,
                                        @NonNull final ManagedMediaSource mediaSource) {
-        if (DEBUG) Log.d(TAG, "MediaSource - Loaded: [" + item.getTitle() +
-                "] with url: " + item.getUrl());
+        if (DEBUG) Log.d(TAG, "MediaSource - Loaded=[" + item.getTitle() +
+                "] with url=[" + item.getUrl() + "]");
 
         loadingItems.remove(item);
 
         final int itemIndex = playQueue.indexOf(item);
         // Only update the playlist timeline for items at the current index or after.
         if (itemIndex >= playQueue.getIndex() && isCorrectionNeeded(item)) {
-            if (DEBUG) Log.d(TAG, "MediaSource - Updating: [" + item.getTitle() +
-                    "] with url: " + item.getUrl());
+            if (DEBUG) Log.d(TAG, "MediaSource - Updating index=[" + itemIndex + "] with " +
+                    "title=[" + item.getTitle() + "] at url=[" + item.getUrl() + "]");
             update(itemIndex, mediaSource, this::maybeSynchronizePlayer);
         }
     }
@@ -468,7 +475,8 @@ public class MediaSourceManager {
         if (DEBUG) Log.d(TAG, "resetSources() called.");
 
         this.sources.releaseSource();
-        this.sources = new DynamicConcatenatingMediaSource();
+        this.sources = new DynamicConcatenatingMediaSource(false,
+                new ShuffleOrder.UnshuffledShuffleOrder(0));
     }
 
     private void populateSources() {

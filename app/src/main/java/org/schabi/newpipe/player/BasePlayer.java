@@ -494,14 +494,8 @@ public abstract class BasePlayer implements
     public void onShuffleClicked() {
         if (DEBUG) Log.d(TAG, "onShuffleClicked() called");
 
-        if (playQueue == null) return;
-
-        setRecovery();
-        if (playQueue.isShuffled()) {
-            playQueue.unshuffle();
-        } else {
-            playQueue.shuffle();
-        }
+        if (simpleExoPlayer == null) return;
+        simpleExoPlayer.setShuffleModeEnabled(!simpleExoPlayer.getShuffleModeEnabled());
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -765,6 +759,12 @@ public abstract class BasePlayer implements
     public void onShuffleModeEnabledChanged(final boolean shuffleModeEnabled) {
         if (DEBUG) Log.d(TAG, "ExoPlayer - onShuffleModeEnabledChanged() called with: " +
                 "mode = [" + shuffleModeEnabled + "]");
+        if (playQueue == null) return;
+        if (shuffleModeEnabled) {
+            playQueue.shuffle();
+        } else {
+            playQueue.unshuffle();
+        }
     }
 
     @Override
@@ -803,7 +803,7 @@ public abstract class BasePlayer implements
     public void onPlaybackSynchronize(@NonNull final PlayQueueItem item,
                                       @Nullable final StreamInfo info) {
         if (DEBUG) Log.d(TAG, "Playback - onPlaybackSynchronize() called with " +
-                (info == null ? "available" : "null") + " info, " +
+                (info != null ? "available" : "null") + " info, " +
                 "item=[" + item.getTitle() + "], url=[" + item.getUrl() + "]");
 
         final boolean hasPlayQueueItemChanged = currentItem != item;

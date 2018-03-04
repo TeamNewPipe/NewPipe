@@ -384,9 +384,11 @@ public final class BackgroundPlayer extends Service {
                                          @Nullable final StreamInfo info,
                                          final int newPlayQueueIndex,
                                          final boolean hasPlayQueueItemChanged) {
-            resetNotification();
-            updateNotification(-1);
-            updateMetadata();
+            if (shouldUpdateOnProgress || hasPlayQueueItemChanged) {
+                resetNotification();
+                updateNotification(-1);
+                updateMetadata();
+            }
         }
 
         @Override
@@ -434,7 +436,8 @@ public final class BackgroundPlayer extends Service {
 
         private void updatePlayback() {
             if (activityListener != null && simpleExoPlayer != null && playQueue != null) {
-                activityListener.onPlaybackUpdate(currentState, getRepeatMode(), playQueue.isShuffled(), getPlaybackParameters());
+                activityListener.onPlaybackUpdate(currentState, getRepeatMode(),
+                        playQueue.isShuffled(), getPlaybackParameters());
             }
         }
 

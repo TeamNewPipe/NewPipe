@@ -351,6 +351,7 @@ public abstract class PlayQueue implements Serializable {
         if (backup == null) {
             backup = new ArrayList<>(streams);
         }
+        final int originIndex = getIndex();
         final PlayQueueItem current = getItem();
         Collections.shuffle(streams);
 
@@ -360,7 +361,7 @@ public abstract class PlayQueue implements Serializable {
         }
         queueIndex.set(0);
 
-        broadcast(new ReorderEvent());
+        broadcast(new ReorderEvent(originIndex, queueIndex.get()));
     }
 
     /**
@@ -373,6 +374,7 @@ public abstract class PlayQueue implements Serializable {
      * */
     public synchronized void unshuffle() {
         if (backup == null) return;
+        final int originIndex = getIndex();
         final PlayQueueItem current = getItem();
 
         streams.clear();
@@ -386,7 +388,7 @@ public abstract class PlayQueue implements Serializable {
             queueIndex.set(0);
         }
 
-        broadcast(new ReorderEvent());
+        broadcast(new ReorderEvent(originIndex, queueIndex.get()));
     }
 
     /*//////////////////////////////////////////////////////////////////////////
