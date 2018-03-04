@@ -70,6 +70,9 @@ import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.List;
 
+import static org.schabi.newpipe.player.BasePlayer.STATE_PLAYING;
+import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_DURATION;
+import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME;
 import static org.schabi.newpipe.player.helper.PlayerHelper.isUsingOldPlayer;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
@@ -650,6 +653,8 @@ public final class PopupVideoPlayer extends Service {
             super.onPlaying();
             updateNotification(R.drawable.ic_pause_white);
             lockManager.acquireWifiAndCpu();
+
+            hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
         }
 
         @Override
@@ -782,8 +787,8 @@ public final class PopupVideoPlayer extends Service {
         private void onScrollEnd() {
             if (DEBUG) Log.d(TAG, "onScrollEnd() called");
             if (playerImpl == null) return;
-            if (playerImpl.isControlsVisible() && playerImpl.getCurrentState() == BasePlayer.STATE_PLAYING) {
-                playerImpl.hideControls(300, VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME);
+            if (playerImpl.isControlsVisible() && playerImpl.getCurrentState() == STATE_PLAYING) {
+                playerImpl.hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
             }
         }
 

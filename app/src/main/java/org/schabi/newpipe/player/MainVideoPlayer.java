@@ -69,6 +69,9 @@ import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.List;
 
+import static org.schabi.newpipe.player.BasePlayer.STATE_PLAYING;
+import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_DURATION;
+import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 /**
@@ -114,7 +117,7 @@ public final class MainVideoPlayer extends Activity {
             return;
         }
 
-        showSystemUi();
+        changeSystemUi();
         setContentView(R.layout.activity_main_player);
         playerImpl = new VideoPlayerImpl(this);
         playerImpl.setup(findViewById(android.R.id.content));
@@ -206,31 +209,53 @@ public final class MainVideoPlayer extends Activity {
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
+    /**
+     * Prior to Kitkat, hiding system ui causes the player view to be overlaid and require two
+     * clicks to get rid of that invisible overlay. By showing the system UI on actions/events,
+     * that overlay is removed and the player view is put to the foreground.
+     *
+     * Post Kitkat, navbar and status bar can be pulled out by swiping the edge of
+     * screen, therefore, we can do nothing or hide the UI on actions/events.
+     * */
+    private void changeSystemUi() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            showSystemUi();
+        } else {
+            hideSystemUi();
+        }
+    }
+
     private void showSystemUi() {
         if (DEBUG) Log.d(TAG, "showSystemUi() called");
         if (playerImpl != null && playerImpl.queueVisible) return;
+
+        final int visibility;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            getWindow().getDecorView().setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-            );
-        } else getWindow().getDecorView().setSystemUiVisibility(0);
+            visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
+        } else {
+            visibility = View.STATUS_BAR_VISIBLE;
+        }
+        getWindow().getDecorView().setSystemUiVisibility(visibility);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     private void hideSystemUi() {
         if (DEBUG) Log.d(TAG, "hideSystemUi() called");
-        if (android.os.Build.VERSION.SDK_INT >= 16) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    | View.SYSTEM_UI_FLAG_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) visibility |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+                    | View.SYSTEM_UI_FLAG_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                visibility |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+            }
             getWindow().getDecorView().setSystemUiVisibility(visibility);
         }
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     private void toggleOrientation() {
@@ -307,6 +332,7 @@ public final class MainVideoPlayer extends Activity {
         private ImageButton switchPopupButton;
         private ImageButton switchBackgroundButton;
 
+        private RelativeLayout windowRootLayout;
         private View secondaryControls;
 
         VideoPlayerImpl(final Context context) {
@@ -333,6 +359,19 @@ public final class MainVideoPlayer extends Activity {
             this.toggleOrientationButton = rootView.findViewById(R.id.toggleOrientation);
             this.switchBackgroundButton = rootView.findViewById(R.id.switchBackground);
             this.switchPopupButton = rootView.findViewById(R.id.switchPopup);
+
+            this.queueLayout = findViewById(R.id.playQueuePanel);
+            this.itemsListCloseButton = findViewById(R.id.playQueueClose);
+            this.itemsList = findViewById(R.id.playQueue);
+
+            this.windowRootLayout = rootView.findViewById(R.id.playbackWindowRoot);
+            // Prior to Kitkat, there is no way of setting translucent navbar programmatically.
+            // Thus, fit system windows is opted instead.
+            // See https://stackoverflow.com/questions/29069070/completely-transparent-status-bar-and-navigation-bar-on-lollipop
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                windowRootLayout.setFitsSystemWindows(false);
+                windowRootLayout.invalidate();
+            }
 
             titleTextView.setSelected(true);
             channelTextView.setSelected(true);
@@ -509,9 +548,9 @@ public final class MainVideoPlayer extends Activity {
 
             if (getCurrentState() != STATE_COMPLETED) {
                 getControlsVisibilityHandler().removeCallbacksAndMessages(null);
-                animateView(getControlsRoot(), true, 300, 0, () -> {
+                animateView(getControlsRoot(), true, DEFAULT_CONTROLS_DURATION, 0, () -> {
                     if (getCurrentState() == STATE_PLAYING && !isSomePopupMenuVisible()) {
-                        hideControls(300, DEFAULT_CONTROLS_HIDE_TIME);
+                        hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
                     }
                 });
             }
@@ -547,7 +586,7 @@ public final class MainVideoPlayer extends Activity {
                         R.drawable.ic_expand_less_white_24dp));
                 animateView(secondaryControls, true, 200);
             }
-            showControls(300);
+            showControls(DEFAULT_CONTROLS_DURATION);
         }
 
         private void onScreenRotationClicked() {
@@ -559,15 +598,13 @@ public final class MainVideoPlayer extends Activity {
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
             super.onStopTrackingTouch(seekBar);
-            if (wasPlaying()) {
-                hideControls(100, 0);
-            }
+            if (wasPlaying()) showControlsThenHide();
         }
 
         @Override
         public void onDismiss(PopupMenu menu) {
             super.onDismiss(menu);
-            if (isPlaying()) hideControls(300, 0);
+            if (isPlaying()) hideControls(DEFAULT_CONTROLS_DURATION, 0);
         }
 
         @Override
@@ -625,7 +662,8 @@ public final class MainVideoPlayer extends Activity {
                 playPauseButton.setImageResource(R.drawable.ic_pause_white);
                 animatePlayButtons(true, 200);
             });
-            showSystemUi();
+
+            changeSystemUi();
             getRootView().setKeepScreenOn(true);
         }
 
@@ -637,7 +675,7 @@ public final class MainVideoPlayer extends Activity {
                 animatePlayButtons(true, 200);
             });
 
-            showSystemUi();
+            changeSystemUi();
             getRootView().setKeepScreenOn(false);
         }
 
@@ -651,10 +689,9 @@ public final class MainVideoPlayer extends Activity {
 
         @Override
         public void onCompleted() {
-            showSystemUi();
             animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 0, 0, () -> {
                 playPauseButton.setImageResource(R.drawable.ic_replay_white);
-                animatePlayButtons(true, 300);
+                animatePlayButtons(true, DEFAULT_CONTROLS_DURATION);
             });
 
             getRootView().setKeepScreenOn(false);
@@ -684,8 +721,9 @@ public final class MainVideoPlayer extends Activity {
             if (DEBUG) Log.d(TAG, "hideControls() called with: delay = [" + delay + "]");
             getControlsVisibilityHandler().removeCallbacksAndMessages(null);
             getControlsVisibilityHandler().postDelayed(() ->
-                    animateView(getControlsRoot(), false, duration, 0, MainVideoPlayer.this::hideSystemUi),
-                    delay
+                    animateView(getControlsRoot(), false, duration, 0,
+                            MainVideoPlayer.this::hideSystemUi),
+                    /*delayMillis=*/delay
             );
         }
 
@@ -698,11 +736,6 @@ public final class MainVideoPlayer extends Activity {
         }
 
         private void buildQueue() {
-            queueLayout = findViewById(R.id.playQueuePanel);
-
-            itemsListCloseButton = findViewById(R.id.playQueueClose);
-
-            itemsList = findViewById(R.id.playQueue);
             itemsList.setAdapter(playQueueAdapter);
             itemsList.setClickable(true);
             itemsList.setLongClickable(true);
@@ -831,10 +864,11 @@ public final class MainVideoPlayer extends Activity {
             if (DEBUG) Log.d(TAG, "onSingleTapConfirmed() called with: e = [" + e + "]");
             if (playerImpl.getCurrentState() == BasePlayer.STATE_BLOCKED) return true;
 
-            if (playerImpl.isControlsVisible()) playerImpl.hideControls(150, 0);
-            else {
+            if (playerImpl.isControlsVisible()) {
+                playerImpl.hideControls(150, 0);
+            } else {
                 playerImpl.showControlsThenHide();
-                showSystemUi();
+                changeSystemUi();
             }
             return true;
         }
@@ -917,11 +951,15 @@ public final class MainVideoPlayer extends Activity {
             eventsNum = 0;
             /* if (playerImpl.getVolumeTextView().getVisibility() == View.VISIBLE) playerImpl.getVolumeTextView().setVisibility(View.GONE);
             if (playerImpl.getBrightnessTextView().getVisibility() == View.VISIBLE) playerImpl.getBrightnessTextView().setVisibility(View.GONE);*/
-            if (playerImpl.getVolumeTextView().getVisibility() == View.VISIBLE) animateView(playerImpl.getVolumeTextView(), false, 200, 200);
-            if (playerImpl.getBrightnessTextView().getVisibility() == View.VISIBLE) animateView(playerImpl.getBrightnessTextView(), false, 200, 200);
+            if (playerImpl.getVolumeTextView().getVisibility() == View.VISIBLE) {
+                animateView(playerImpl.getVolumeTextView(), false, 200, 200);
+            }
+            if (playerImpl.getBrightnessTextView().getVisibility() == View.VISIBLE) {
+                animateView(playerImpl.getBrightnessTextView(), false, 200, 200);
+            }
 
-            if (playerImpl.isControlsVisible() && playerImpl.getCurrentState() == BasePlayer.STATE_PLAYING) {
-                playerImpl.hideControls(300, VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME);
+            if (playerImpl.isControlsVisible() && playerImpl.getCurrentState() == STATE_PLAYING) {
+                playerImpl.hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
             }
         }
 

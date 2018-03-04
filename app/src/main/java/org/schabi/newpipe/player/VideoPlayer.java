@@ -101,6 +101,7 @@ public abstract class VideoPlayer extends BasePlayer
     //////////////////////////////////////////////////////////////////////////*/
 
     protected static final int RENDERER_UNAVAILABLE = -1;
+    public static final int DEFAULT_CONTROLS_DURATION = 300; // 300 millis
     public static final int DEFAULT_CONTROLS_HIDE_TIME = 2000;  // 2 Seconds
 
     private ArrayList<VideoStream> availableStreams;
@@ -450,7 +451,7 @@ public abstract class VideoPlayer extends BasePlayer
         super.onBlocked();
 
         controlsVisibilityHandler.removeCallbacksAndMessages(null);
-        animateView(controlsRoot, false, 300);
+        animateView(controlsRoot, false, DEFAULT_CONTROLS_DURATION);
 
         playbackSeekBar.setEnabled(false);
         // Bug on lower api, disabling and enabling the seekBar resets the thumb color -.-, so sets the color again
@@ -475,7 +476,7 @@ public abstract class VideoPlayer extends BasePlayer
             playbackSeekBar.getThumb().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
 
         loadingPanel.setVisibility(View.GONE);
-        showControlsThenHide();
+
         animateView(currentDisplaySeek, AnimationUtils.Type.SCALE_AND_ALPHA, false, 200);
         animateView(endScreen, false, 0);
     }
@@ -707,7 +708,7 @@ public abstract class VideoPlayer extends BasePlayer
         if (DEBUG) Log.d(TAG, "onQualitySelectorClicked() called");
         qualityPopupMenu.show();
         isSomePopupMenuVisible = true;
-        showControls(300);
+        showControls(DEFAULT_CONTROLS_DURATION);
 
         final VideoStream videoStream = getSelectedVideoStream();
         if (videoStream != null) {
@@ -723,14 +724,14 @@ public abstract class VideoPlayer extends BasePlayer
         if (DEBUG) Log.d(TAG, "onPlaybackSpeedClicked() called");
         playbackSpeedPopupMenu.show();
         isSomePopupMenuVisible = true;
-        showControls(300);
+        showControls(DEFAULT_CONTROLS_DURATION);
     }
 
     private void onCaptionClicked() {
         if (DEBUG) Log.d(TAG, "onCaptionClicked() called");
         captionPopupMenu.show();
         isSomePopupMenuVisible = true;
-        showControls(300);
+        showControls(DEFAULT_CONTROLS_DURATION);
     }
 
     private void onResizeClicked() {
@@ -763,7 +764,8 @@ public abstract class VideoPlayer extends BasePlayer
         if (isPlaying()) simpleExoPlayer.setPlayWhenReady(false);
 
         showControls(0);
-        animateView(currentDisplaySeek, AnimationUtils.Type.SCALE_AND_ALPHA, true, 300);
+        animateView(currentDisplaySeek, AnimationUtils.Type.SCALE_AND_ALPHA, true,
+                DEFAULT_CONTROLS_DURATION);
     }
 
     @Override
@@ -819,7 +821,7 @@ public abstract class VideoPlayer extends BasePlayer
                         PropertyValuesHolder.ofFloat(View.ALPHA, 1f, 0f),
                         PropertyValuesHolder.ofFloat(View.SCALE_X, 1.4f, 1f),
                         PropertyValuesHolder.ofFloat(View.SCALE_Y, 1.4f, 1f)
-                ).setDuration(300);
+                ).setDuration(DEFAULT_CONTROLS_DURATION);
                 controlViewAnimator.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animation) {
@@ -861,12 +863,8 @@ public abstract class VideoPlayer extends BasePlayer
 
     public void showControlsThenHide() {
         if (DEBUG) Log.d(TAG, "showControlsThenHide() called");
-        animateView(controlsRoot, true, 300, 0, new Runnable() {
-            @Override
-            public void run() {
-                hideControls(300, DEFAULT_CONTROLS_HIDE_TIME);
-            }
-        });
+        animateView(controlsRoot, true, DEFAULT_CONTROLS_DURATION, 0,
+                () -> hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME));
     }
 
     public void showControls(long duration) {
@@ -878,12 +876,8 @@ public abstract class VideoPlayer extends BasePlayer
     public void hideControls(final long duration, long delay) {
         if (DEBUG) Log.d(TAG, "hideControls() called with: delay = [" + delay + "]");
         controlsVisibilityHandler.removeCallbacksAndMessages(null);
-        controlsVisibilityHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                animateView(controlsRoot, false, duration);
-            }
-        }, delay);
+        controlsVisibilityHandler.postDelayed(
+                () -> animateView(controlsRoot, false, duration), delay);
     }
 
     /*//////////////////////////////////////////////////////////////////////////

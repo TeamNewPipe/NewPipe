@@ -134,6 +134,7 @@
         tools:visibility="visible">
 
         <RelativeLayout
+            android:id="@+id/playbackWindowRoot"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true">

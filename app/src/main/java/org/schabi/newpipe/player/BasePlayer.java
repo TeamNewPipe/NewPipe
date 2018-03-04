@@ -449,15 +449,13 @@ public abstract class BasePlayer implements
         if (!isCurrentWindowValid()) seekToDefault();
     }
 
-    public void onBuffering() {
-    }
+    public void onBuffering() {}
 
     public void onPaused() {
         if (isProgressLoopRunning()) stopProgressLoop();
     }
 
-    public void onPausedSeek() {
-    }
+    public void onPausedSeek() {}
 
     public void onCompleted() {
         if (DEBUG) Log.d(TAG, "onCompleted() called");
