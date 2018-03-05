@@ -68,6 +68,7 @@ import org.schabi.newpipe.player.playback.PlaybackListener;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueAdapter;
 import org.schabi.newpipe.playlist.PlayQueueItem;
+import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.util.SerializedCache;
 
 import java.io.IOException;
@@ -818,22 +819,32 @@ public abstract class BasePlayer implements
             initThumbnail(info == null ? item.getThumbnailUrl() : info.getThumbnailUrl());
         }
 
-        final int currentSourceIndex = playQueue.indexOf(item);
-        onMetadataChanged(item, info, currentSourceIndex, hasPlayQueueItemChanged);
+        final int currentPlayQueueIndex = playQueue.indexOf(item);
+        onMetadataChanged(item, info, currentPlayQueueIndex, hasPlayQueueItemChanged);
 
-        // Check if on wrong window
         if (simpleExoPlayer == null) return;
-        if (currentSourceIndex != playQueue.getIndex()) {
-            Log.e(TAG, "Play Queue may be desynchronized: item index=[" + currentSourceIndex +
-                    "], queue index=[" + playQueue.getIndex() + "]");
+        final int currentPlaylistIndex = simpleExoPlayer.getCurrentWindowIndex();
+        // Check if on wrong window
+        if (currentPlayQueueIndex != playQueue.getIndex()) {
+            Log.e(TAG, "Play Queue may be desynchronized: item " +
+                    "index=[" + currentPlayQueueIndex + "], " +
+                    "queue index=[" + playQueue.getIndex() + "]");
 
             // on metadata changed
-        } else if (simpleExoPlayer.getCurrentWindowIndex() != currentSourceIndex || !isPlaying()) {
-            final long startPos = info != null ? info.start_position : 0;
-            if (DEBUG) Log.d(TAG, "Rewinding to correct window=[" + currentSourceIndex + "]," +
+        } else if (currentPlaylistIndex != currentPlayQueueIndex || !isPlaying()) {
+            final long startPos = info != null ? info.start_position : C.TIME_UNSET;
+            if (DEBUG) Log.d(TAG, "Rewinding to correct" +
+                    " window=[" + currentPlayQueueIndex + "]," +
                     " at=[" + getTimeString((int)startPos) + "]," +
                     " from=[" + simpleExoPlayer.getCurrentWindowIndex() + "].");
-            simpleExoPlayer.seekTo(currentSourceIndex, startPos);
+            simpleExoPlayer.seekTo(currentPlayQueueIndex, startPos);
+        }
+
+        // when starting playback on the last item, maybe auto queue
+        if (info != null && currentPlayQueueIndex == playQueue.size() - 1 &&
+                PlayerHelper.isAutoQueueEnabled(context)) {
+            final PlayQueue autoQueue = PlayerHelper.autoQueueOf(info, playQueue.getStreams());
+            if (autoQueue != null) playQueue.append(autoQueue.getStreams());
         }
     }
 

@@ -129,6 +129,7 @@ public final class MainVideoPlayer extends Activity {
         super.onSaveInstanceState(outState);
         if (this.playerImpl == null) return;
 
+        playerImpl.setRecovery();
         final Intent intent = NavigationHelper.getPlayerIntent(
                 getApplicationContext(),
                 this.getClass(),
@@ -156,31 +157,27 @@ public final class MainVideoPlayer extends Activity {
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-        if (DEBUG) Log.d(TAG, "onStop() called");
-        activityPaused = true;
+    protected void onPause() {
+        super.onPause();
+        if (DEBUG) Log.d(TAG, "onPause() called");
 
-        if (playerImpl.getPlayer() != null) {
-            playerImpl.wasPlaying = playerImpl.getPlayer().getPlayWhenReady();
-            playerImpl.setRecovery();
-            playerImpl.destroyPlayer();
+        if (playerImpl.getPlayer() != null && playerImpl.isPlaying() && !activityPaused) {
+            playerImpl.wasPlaying = true;
+            playerImpl.onVideoPlayPause();
         }
+        activityPaused = true;
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         if (DEBUG) Log.d(TAG, "onResume() called");
-        if (activityPaused) {
-            playerImpl.initPlayer();
-            playerImpl.getPlayPauseButton().setImageResource(R.drawable.ic_play_arrow_white);
-
-            playerImpl.getPlayer().setPlayWhenReady(playerImpl.wasPlaying);
-            playerImpl.initPlayback(playerImpl.playQueue);
-
-            activityPaused = false;
+        if (playerImpl.getPlayer() != null && playerImpl.wasPlaying()
+                && !playerImpl.isPlaying() && activityPaused) {
+            playerImpl.onVideoPlayPause();
         }
+        activityPaused = false;
+
         if(globalScreenOrientationLocked()) {
             boolean lastOrientationWasLandscape
                     = defaultPreferences.getBoolean(getString(R.string.last_orientation_landscape_key), false);
@@ -871,6 +868,13 @@ public final class MainVideoPlayer extends Activity {
                 changeSystemUi();
             }
             return true;
+        }
+
+        @Override
+        public boolean onDown(MotionEvent e) {
+            if (DEBUG) Log.d(TAG, "onDown() called with: e = [" + e + "]");
+
+            return super.onDown(e);
         }
 
         private final boolean isPlayerGestureEnabled = PlayerHelper.isPlayerGestureEnabled(getApplicationContext());
