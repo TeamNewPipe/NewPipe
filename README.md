@@ -59,17 +59,16 @@ NewPipe does not use any Google framework libraries, or the YouTube API. It only
 * Search/Watch Playlists
 * Watch as queues Playlists
 * Queuing videos
+* Local playlists
+* Subtitles
+* Multi-service support (eg. SoundCloud in NewPipe Beta)
 
 ### Coming Features
 
-* Multiservice support (eg. SoundCloud)
-* Bookmarks
-* Subtitles support
-* livestream support
+* Livestream support
+* Cast to UPnP and Cast
+* Show comments
 * ... and many more
-
-### Multiservice support
-Although NewPipe only supports YouTube at the moment, it's designed to support many more streaming services. The plan is, that NewPipe will get such support by the version 2.0.
 
 ## Contribution
 Whether you have ideas, translations, design changes, code cleaning, or real heavy code changes, help is always welcome.
