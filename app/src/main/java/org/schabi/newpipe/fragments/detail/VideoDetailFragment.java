@@ -16,6 +16,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -139,6 +140,7 @@ public class VideoDetailFragment
     //////////////////////////////////////////////////////////////////////////*/
     private Menu menu;
 
+    private Toolbar toolbar;
     private Spinner spinnerToolbar;
 
     private ParallaxScrollView parallaxScrollRootView;
@@ -460,7 +462,8 @@ public class VideoDetailFragment
     protected void initViews(View rootView, Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
 
-        spinnerToolbar = activity.findViewById(R.id.toolbar).findViewById(R.id.toolbar_spinner);
+        toolbar = activity.findViewById(R.id.toolbar);
+        spinnerToolbar = toolbar.findViewById(R.id.toolbar_spinner);
 
         parallaxScrollRootView = rootView.findViewById(R.id.detail_main_content);
 
@@ -1198,6 +1201,7 @@ public class VideoDetailFragment
             case AUDIO_LIVE_STREAM:
                 detailControlsDownload.setVisibility(View.GONE);
                 spinnerToolbar.setVisibility(View.GONE);
+                toolbar.setTitle(R.string.live);
                 break;
             default:
                 if (!info.video_streams.isEmpty() || !info.video_only_streams.isEmpty()) break;
