@@ -139,12 +139,12 @@ public class NavigationHelper {
         }
 
         Toast.makeText(context, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
-        context.startService(getPlayerIntent(context, PopupVideoPlayer.class, queue));
+        startService(context, getPlayerIntent(context, PopupVideoPlayer.class, queue));
     }
 
     public static void playOnBackgroundPlayer(final Context context, final PlayQueue queue) {
         Toast.makeText(context, R.string.background_player_playing_toast, Toast.LENGTH_SHORT).show();
-        context.startService(getPlayerIntent(context, BackgroundPlayer.class, queue));
+        startService(context, getPlayerIntent(context, BackgroundPlayer.class, queue));
     }
 
     public static void enqueueOnPopupPlayer(final Context context, final PlayQueue queue) {
@@ -158,7 +158,8 @@ public class NavigationHelper {
         }
 
         Toast.makeText(context, R.string.popup_playing_append, Toast.LENGTH_SHORT).show();
-        context.startService(getPlayerEnqueueIntent(context, PopupVideoPlayer.class, queue, selectOnAppend));
+        startService(context,
+                getPlayerEnqueueIntent(context, PopupVideoPlayer.class, queue, selectOnAppend));
     }
 
     public static void enqueueOnBackgroundPlayer(final Context context, final PlayQueue queue) {
@@ -167,7 +168,16 @@ public class NavigationHelper {
 
     public static void enqueueOnBackgroundPlayer(final Context context, final PlayQueue queue, boolean selectOnAppend) {
         Toast.makeText(context, R.string.background_player_append, Toast.LENGTH_SHORT).show();
-        context.startService(getPlayerEnqueueIntent(context, BackgroundPlayer.class, queue, selectOnAppend));
+        startService(context,
+                getPlayerEnqueueIntent(context, BackgroundPlayer.class, queue, selectOnAppend));
+    }
+
+    public static void startService(@NonNull final Context context, @NonNull final Intent intent) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            context.startForegroundService(intent);
+        } else {
+            context.startService(intent);
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////

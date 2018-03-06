@@ -68,7 +68,6 @@ import org.schabi.newpipe.player.playback.PlaybackListener;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueAdapter;
 import org.schabi.newpipe.playlist.PlayQueueItem;
-import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.util.SerializedCache;
 
 import java.io.IOException;
@@ -230,17 +229,19 @@ public abstract class BasePlayer implements
         final float playbackSpeed = intent.getFloatExtra(PLAYBACK_SPEED, getPlaybackSpeed());
         final float playbackPitch = intent.getFloatExtra(PLAYBACK_PITCH, getPlaybackPitch());
 
-        // Re-initialization
+        // Good to go...
+        initPlayback(queue, repeatMode, playbackSpeed, playbackPitch);
+    }
+
+    protected void initPlayback(@NonNull final PlayQueue queue,
+                                @Player.RepeatMode final int repeatMode,
+                                final float playbackSpeed,
+                                final float playbackPitch) {
         destroyPlayer();
         initPlayer();
         setRepeatMode(repeatMode);
         setPlaybackParameters(playbackSpeed, playbackPitch);
 
-        // Good to go...
-        initPlayback(queue);
-    }
-
-    protected void initPlayback(final PlayQueue queue) {
         playQueue = queue;
         playQueue.init();
         playbackManager = new MediaSourceManager(this, playQueue);
@@ -840,8 +841,9 @@ public abstract class BasePlayer implements
             simpleExoPlayer.seekTo(currentPlayQueueIndex, startPos);
         }
 
-        // when starting playback on the last item, maybe auto queue
+        // when starting playback on the last item when not repeating, maybe auto queue
         if (info != null && currentPlayQueueIndex == playQueue.size() - 1 &&
+                getRepeatMode() == Player.REPEAT_MODE_OFF &&
                 PlayerHelper.isAutoQueueEnabled(context)) {
             final PlayQueue autoQueue = PlayerHelper.autoQueueOf(info, playQueue.getStreams());
             if (autoQueue != null) playQueue.append(autoQueue.getStreams());
@@ -1077,11 +1079,12 @@ public abstract class BasePlayer implements
                 && simpleExoPlayer.getPlayWhenReady();
     }
 
+    @Player.RepeatMode
     public int getRepeatMode() {
         return simpleExoPlayer.getRepeatMode();
     }
 
-    public void setRepeatMode(final int repeatMode) {
+    public void setRepeatMode(@Player.RepeatMode final int repeatMode) {
         simpleExoPlayer.setRepeatMode(repeatMode);
     }
 

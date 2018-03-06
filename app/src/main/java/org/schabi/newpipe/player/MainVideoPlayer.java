@@ -58,6 +58,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.player.helper.PlayerHelper;
+import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.PlayQueueItemBuilder;
 import org.schabi.newpipe.playlist.PlayQueueItemHolder;
@@ -65,24 +66,27 @@ import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
+import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.List;
+import java.util.Queue;
+import java.util.UUID;
 
 import static org.schabi.newpipe.player.BasePlayer.STATE_PLAYING;
 import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_DURATION;
 import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
+import static org.schabi.newpipe.util.StateSaver.KEY_SAVED_STATE;
 
 /**
  * Activity Player implementing VideoPlayer
  *
  * @author mauriciocolli
  */
-public final class MainVideoPlayer extends Activity {
+public final class MainVideoPlayer extends Activity implements StateSaver.WriteRead {
     private static final String TAG = ".MainVideoPlayer";
     private static final boolean DEBUG = BasePlayer.DEBUG;
-    private static final String PLAYER_STATE_INTENT = "player_state_intent";
 
     private GestureDetector gestureDetector;
 
@@ -90,6 +94,8 @@ public final class MainVideoPlayer extends Activity {
     private VideoPlayerImpl playerImpl;
 
     private SharedPreferences defaultPreferences;
+
+    @Nullable private StateSaver.SavedState savedState;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Activity LifeCycle
@@ -104,42 +110,28 @@ public final class MainVideoPlayer extends Activity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) getWindow().setStatusBarColor(Color.BLACK);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
-        final Intent intent;
-        if (savedInstanceState != null && savedInstanceState.getParcelable(PLAYER_STATE_INTENT) != null) {
-            intent = savedInstanceState.getParcelable(PLAYER_STATE_INTENT);
-        } else {
-            intent = getIntent();
-        }
-
-        if (intent == null) {
-            Toast.makeText(this, R.string.general_error, Toast.LENGTH_SHORT).show();
-            finish();
-            return;
-        }
-
         changeSystemUi();
         setContentView(R.layout.activity_main_player);
         playerImpl = new VideoPlayerImpl(this);
         playerImpl.setup(findViewById(android.R.id.content));
-        playerImpl.handleIntent(intent);
+
+        if (savedInstanceState != null && savedInstanceState.get(KEY_SAVED_STATE) != null) {
+            return; // We have saved states, stop here to restore it
+        }
+
+        final Intent intent = getIntent();
+        if (intent != null) {
+            playerImpl.handleIntent(intent);
+        } else {
+            Toast.makeText(this, R.string.general_error, Toast.LENGTH_SHORT).show();
+            finish();
+        }
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        if (this.playerImpl == null) return;
-
-        playerImpl.setRecovery();
-        final Intent intent = NavigationHelper.getPlayerIntent(
-                getApplicationContext(),
-                this.getClass(),
-                this.playerImpl.getPlayQueue(),
-                this.playerImpl.getRepeatMode(),
-                this.playerImpl.getPlaybackSpeed(),
-                this.playerImpl.getPlaybackPitch(),
-                this.playerImpl.getPlaybackQuality()
-        );
-        outState.putParcelable(PLAYER_STATE_INTENT, intent);
+    protected void onRestoreInstanceState(@NonNull Bundle bundle) {
+        super.onRestoreInstanceState(bundle);
+        savedState = StateSaver.tryToRestore(bundle, this);
     }
 
     @Override
@@ -150,30 +142,11 @@ public final class MainVideoPlayer extends Activity {
     }
 
     @Override
-    public void onBackPressed() {
-        if (DEBUG) Log.d(TAG, "onBackPressed() called");
-        super.onBackPressed();
-        if (playerImpl.isPlaying()) playerImpl.getPlayer().setPlayWhenReady(false);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (DEBUG) Log.d(TAG, "onPause() called");
-
-        if (playerImpl.getPlayer() != null && playerImpl.isPlaying() && !activityPaused) {
-            playerImpl.wasPlaying = true;
-            playerImpl.onVideoPlayPause();
-        }
-        activityPaused = true;
-    }
-
-    @Override
     protected void onResume() {
         super.onResume();
         if (DEBUG) Log.d(TAG, "onResume() called");
-        if (playerImpl.getPlayer() != null && playerImpl.wasPlaying()
-                && !playerImpl.isPlaying() && activityPaused) {
+        if (playerImpl.getPlayer() != null && activityPaused && playerImpl.wasPlaying()
+                && !playerImpl.isPlaying()) {
             playerImpl.onVideoPlayPause();
         }
         activityPaused = false;
@@ -181,15 +154,15 @@ public final class MainVideoPlayer extends Activity {
         if(globalScreenOrientationLocked()) {
             boolean lastOrientationWasLandscape
                     = defaultPreferences.getBoolean(getString(R.string.last_orientation_landscape_key), false);
-            setLandScape(lastOrientationWasLandscape);
+            setLandscape(lastOrientationWasLandscape);
         }
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (DEBUG) Log.d(TAG, "onDestroy() called");
-        if (playerImpl != null) playerImpl.destroy();
+    public void onBackPressed() {
+        if (DEBUG) Log.d(TAG, "onBackPressed() called");
+        super.onBackPressed();
+        if (playerImpl.isPlaying()) playerImpl.getPlayer().setPlayWhenReady(false);
     }
 
     @Override
@@ -202,8 +175,71 @@ public final class MainVideoPlayer extends Activity {
         }
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (DEBUG) Log.d(TAG, "onPause() called");
+
+        if (playerImpl != null && playerImpl.getPlayer() != null && !activityPaused) {
+            playerImpl.wasPlaying = playerImpl.isPlaying();
+            if (playerImpl.isPlaying()) playerImpl.onVideoPlayPause();
+        }
+        activityPaused = true;
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (playerImpl == null) return;
+
+        playerImpl.setRecovery();
+        savedState = StateSaver.tryToSave(isChangingConfigurations(), savedState,
+                outState, this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (DEBUG) Log.d(TAG, "onDestroy() called");
+        if (playerImpl != null) playerImpl.destroy();
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
-    // Utils
+    // State Saving
+    //////////////////////////////////////////////////////////////////////////*/
+
+    @Override
+    public String generateSuffix() {
+        return "." + UUID.randomUUID().toString() + ".player";
+    }
+
+    @Override
+    public void writeTo(Queue<Object> objectsToSave) {
+        if (objectsToSave == null) return;
+        objectsToSave.add(playerImpl.getPlayQueue());
+        objectsToSave.add(playerImpl.getRepeatMode());
+        objectsToSave.add(playerImpl.getPlaybackSpeed());
+        objectsToSave.add(playerImpl.getPlaybackPitch());
+        objectsToSave.add(playerImpl.getPlaybackQuality());
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public void readFrom(@NonNull Queue<Object> savedObjects) throws Exception {
+        @NonNull final PlayQueue queue = (PlayQueue) savedObjects.poll();
+        final int repeatMode = (int) savedObjects.poll();
+        final float playbackSpeed = (float) savedObjects.poll();
+        final float playbackPitch = (float) savedObjects.poll();
+        @NonNull final String playbackQuality = (String) savedObjects.poll();
+
+        playerImpl.setPlaybackQuality(playbackQuality);
+        playerImpl.initPlayback(queue, repeatMode, playbackSpeed, playbackPitch);
+
+        StateSaver.onDestroy(savedState);
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // View
     //////////////////////////////////////////////////////////////////////////*/
 
     /**
@@ -256,17 +292,17 @@ public final class MainVideoPlayer extends Activity {
     }
 
     private void toggleOrientation() {
-        setLandScape(!isLandScape());
+        setLandscape(!isLandscape());
         defaultPreferences.edit()
-                .putBoolean(getString(R.string.last_orientation_landscape_key), !isLandScape())
+                .putBoolean(getString(R.string.last_orientation_landscape_key), !isLandscape())
                 .apply();
     }
 
-    private boolean isLandScape() {
+    private boolean isLandscape() {
         return getResources().getDisplayMetrics().heightPixels < getResources().getDisplayMetrics().widthPixels;
     }
 
-    private void setLandScape(boolean v) {
+    private void setLandscape(boolean v) {
         setRequestedOrientation(v
                 ? ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
                 : ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
