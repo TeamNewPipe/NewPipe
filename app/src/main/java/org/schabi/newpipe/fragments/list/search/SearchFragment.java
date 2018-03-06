@@ -527,23 +527,26 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
     }
 
     private void showDeleteSuggestionDialog(final SuggestionItem item) {
-        final Disposable onDelete = historyRecordManager.deleteSearchHistory(item.query)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        howManyDeleted -> suggestionPublisher
-                                .onNext(searchEditText.getText().toString()),
-
-                        throwable -> showSnackBarError(throwable,
-                                UserAction.SOMETHING_ELSE, "none",
-                                "Deleting item failed", R.string.general_error)
-                );
-
+        if (activity == null || historyRecordManager == null || suggestionPublisher == null ||
+                searchEditText == null || disposables == null) return;
+        final String query = item.query;
         new AlertDialog.Builder(activity)
-                .setTitle(item.query)
+                .setTitle(query)
                 .setMessage(R.string.delete_item_search_history)
                 .setCancelable(true)
                 .setNegativeButton(R.string.cancel, null)
-                .setPositiveButton(R.string.delete, (dialog, which) -> disposables.add(onDelete))
+                .setPositiveButton(R.string.delete, (dialog, which) -> {
+                    final Disposable onDelete = historyRecordManager.deleteSearchHistory(query)
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(
+                                    howManyDeleted -> suggestionPublisher
+                                            .onNext(searchEditText.getText().toString()),
+                                    throwable -> showSnackBarError(throwable,
+                                            UserAction.SOMETHING_ELSE, "none",
+                                            "Deleting item failed", R.string.general_error)
+                            );
+                    disposables.add(onDelete);
+                })
                 .show();
     }
 
@@ -701,19 +704,8 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
         searchDisposable = ExtractorHelper.searchFor(serviceId, searchQuery, currentPage, contentCountry, filter)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<SearchResult>() {
-                    @Override
-                    public void accept(@NonNull SearchResult result) throws Exception {
-                        isLoading.set(false);
-                        handleResult(result);
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(@NonNull Throwable throwable) throws Exception {
-                        isLoading.set(false);
-                        onError(throwable);
-                    }
-                });
+                .doOnEvent((searchResult, throwable) -> isLoading.set(false))
+                .subscribe(this::handleResult, this::onError);
     }
 
     @Override
@@ -725,19 +717,8 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
         searchDisposable = ExtractorHelper.getMoreSearchItems(serviceId, searchQuery, currentNextPage, contentCountry, filter)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<ListExtractor.InfoItemPage>() {
-                    @Override
-                    public void accept(@NonNull ListExtractor.InfoItemPage result) throws Exception {
-                        isLoading.set(false);
-                        handleNextItems(result);
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(@NonNull Throwable throwable) throws Exception {
-                        isLoading.set(false);
-                        onError(throwable);
-                    }
-                });
+                .doOnEvent((nextItemsResult, throwable) -> isLoading.set(false))
+                .subscribe(this::handleNextItems, this::onError);
     }
 
     @Override

@@ -20,6 +20,8 @@
     <string name="player_gesture_controls_key" translatable="false">player_gesture_controls</string>
     <string name="resume_on_audio_focus_gain_key" translatable="false">resume_on_audio_focus_gain</string>
     <string name="popup_remember_size_pos_key" translatable="false">popup_remember_size_pos_key</string>
+    <string name="use_inexact_seek_key" translatable="false">use_inexact_seek_key</string>
+    <string name="auto_queue_key" translatable="false">auto_queue_key</string>
 
     <string name="default_resolution_key" translatable="false">default_resolution</string>
     <string name="default_resolution_value" translatable="false">360p</string>

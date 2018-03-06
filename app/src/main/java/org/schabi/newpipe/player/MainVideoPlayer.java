@@ -58,6 +58,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.player.helper.PlayerHelper;
+import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.PlayQueueItemBuilder;
 import org.schabi.newpipe.playlist.PlayQueueItemHolder;
@@ -65,21 +66,27 @@ import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
+import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.List;
+import java.util.Queue;
+import java.util.UUID;
 
+import static org.schabi.newpipe.player.BasePlayer.STATE_PLAYING;
+import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_DURATION;
+import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
+import static org.schabi.newpipe.util.StateSaver.KEY_SAVED_STATE;
 
 /**
  * Activity Player implementing VideoPlayer
  *
  * @author mauriciocolli
  */
-public final class MainVideoPlayer extends Activity {
+public final class MainVideoPlayer extends Activity implements StateSaver.WriteRead {
     private static final String TAG = ".MainVideoPlayer";
     private static final boolean DEBUG = BasePlayer.DEBUG;
-    private static final String PLAYER_STATE_INTENT = "player_state_intent";
 
     private GestureDetector gestureDetector;
 
@@ -87,6 +94,8 @@ public final class MainVideoPlayer extends Activity {
     private VideoPlayerImpl playerImpl;
 
     private SharedPreferences defaultPreferences;
+
+    @Nullable private StateSaver.SavedState savedState;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Activity LifeCycle
@@ -101,41 +110,28 @@ public final class MainVideoPlayer extends Activity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) getWindow().setStatusBarColor(Color.BLACK);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
-        final Intent intent;
-        if (savedInstanceState != null && savedInstanceState.getParcelable(PLAYER_STATE_INTENT) != null) {
-            intent = savedInstanceState.getParcelable(PLAYER_STATE_INTENT);
-        } else {
-            intent = getIntent();
-        }
-
-        if (intent == null) {
-            Toast.makeText(this, R.string.general_error, Toast.LENGTH_SHORT).show();
-            finish();
-            return;
-        }
-
-        showSystemUi();
+        changeSystemUi();
         setContentView(R.layout.activity_main_player);
         playerImpl = new VideoPlayerImpl(this);
         playerImpl.setup(findViewById(android.R.id.content));
-        playerImpl.handleIntent(intent);
+
+        if (savedInstanceState != null && savedInstanceState.get(KEY_SAVED_STATE) != null) {
+            return; // We have saved states, stop here to restore it
+        }
+
+        final Intent intent = getIntent();
+        if (intent != null) {
+            playerImpl.handleIntent(intent);
+        } else {
+            Toast.makeText(this, R.string.general_error, Toast.LENGTH_SHORT).show();
+            finish();
+        }
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        if (this.playerImpl == null) return;
-
-        final Intent intent = NavigationHelper.getPlayerIntent(
-                getApplicationContext(),
-                this.getClass(),
-                this.playerImpl.getPlayQueue(),
-                this.playerImpl.getRepeatMode(),
-                this.playerImpl.getPlaybackSpeed(),
-                this.playerImpl.getPlaybackPitch(),
-                this.playerImpl.getPlaybackQuality()
-        );
-        outState.putParcelable(PLAYER_STATE_INTENT, intent);
+    protected void onRestoreInstanceState(@NonNull Bundle bundle) {
+        super.onRestoreInstanceState(bundle);
+        savedState = StateSaver.tryToRestore(bundle, this);
     }
 
     @Override
@@ -146,50 +142,27 @@ public final class MainVideoPlayer extends Activity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        if (DEBUG) Log.d(TAG, "onResume() called");
+        if (playerImpl.getPlayer() != null && activityPaused && playerImpl.wasPlaying()
+                && !playerImpl.isPlaying()) {
+            playerImpl.onVideoPlayPause();
+        }
+        activityPaused = false;
+
+        if(globalScreenOrientationLocked()) {
+            boolean lastOrientationWasLandscape
+                    = defaultPreferences.getBoolean(getString(R.string.last_orientation_landscape_key), false);
+            setLandscape(lastOrientationWasLandscape);
+        }
+    }
+
+    @Override
     public void onBackPressed() {
         if (DEBUG) Log.d(TAG, "onBackPressed() called");
         super.onBackPressed();
         if (playerImpl.isPlaying()) playerImpl.getPlayer().setPlayWhenReady(false);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if (DEBUG) Log.d(TAG, "onStop() called");
-        activityPaused = true;
-
-        if (playerImpl.getPlayer() != null) {
-            playerImpl.wasPlaying = playerImpl.getPlayer().getPlayWhenReady();
-            playerImpl.setRecovery();
-            playerImpl.destroyPlayer();
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (DEBUG) Log.d(TAG, "onResume() called");
-        if (activityPaused) {
-            playerImpl.initPlayer();
-            playerImpl.getPlayPauseButton().setImageResource(R.drawable.ic_play_arrow_white);
-
-            playerImpl.getPlayer().setPlayWhenReady(playerImpl.wasPlaying);
-            playerImpl.initPlayback(playerImpl.playQueue);
-
-            activityPaused = false;
-        }
-        if(globalScreenOrientationLocked()) {
-            boolean lastOrientationWasLandscape
-                    = defaultPreferences.getBoolean(getString(R.string.last_orientation_landscape_key), false);
-            setLandScape(lastOrientationWasLandscape);
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (DEBUG) Log.d(TAG, "onDestroy() called");
-        if (playerImpl != null) playerImpl.destroy();
     }
 
     @Override
@@ -202,49 +175,134 @@ public final class MainVideoPlayer extends Activity {
         }
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (DEBUG) Log.d(TAG, "onPause() called");
+
+        if (playerImpl != null && playerImpl.getPlayer() != null && !activityPaused) {
+            playerImpl.wasPlaying = playerImpl.isPlaying();
+            if (playerImpl.isPlaying()) playerImpl.onVideoPlayPause();
+        }
+        activityPaused = true;
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (playerImpl == null) return;
+
+        playerImpl.setRecovery();
+        savedState = StateSaver.tryToSave(isChangingConfigurations(), savedState,
+                outState, this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (DEBUG) Log.d(TAG, "onDestroy() called");
+        if (playerImpl != null) playerImpl.destroy();
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
-    // Utils
+    // State Saving
     //////////////////////////////////////////////////////////////////////////*/
+
+    @Override
+    public String generateSuffix() {
+        return "." + UUID.randomUUID().toString() + ".player";
+    }
+
+    @Override
+    public void writeTo(Queue<Object> objectsToSave) {
+        if (objectsToSave == null) return;
+        objectsToSave.add(playerImpl.getPlayQueue());
+        objectsToSave.add(playerImpl.getRepeatMode());
+        objectsToSave.add(playerImpl.getPlaybackSpeed());
+        objectsToSave.add(playerImpl.getPlaybackPitch());
+        objectsToSave.add(playerImpl.getPlaybackQuality());
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public void readFrom(@NonNull Queue<Object> savedObjects) throws Exception {
+        @NonNull final PlayQueue queue = (PlayQueue) savedObjects.poll();
+        final int repeatMode = (int) savedObjects.poll();
+        final float playbackSpeed = (float) savedObjects.poll();
+        final float playbackPitch = (float) savedObjects.poll();
+        @NonNull final String playbackQuality = (String) savedObjects.poll();
+
+        playerImpl.setPlaybackQuality(playbackQuality);
+        playerImpl.initPlayback(queue, repeatMode, playbackSpeed, playbackPitch);
+
+        StateSaver.onDestroy(savedState);
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // View
+    //////////////////////////////////////////////////////////////////////////*/
+
+    /**
+     * Prior to Kitkat, hiding system ui causes the player view to be overlaid and require two
+     * clicks to get rid of that invisible overlay. By showing the system UI on actions/events,
+     * that overlay is removed and the player view is put to the foreground.
+     *
+     * Post Kitkat, navbar and status bar can be pulled out by swiping the edge of
+     * screen, therefore, we can do nothing or hide the UI on actions/events.
+     * */
+    private void changeSystemUi() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            showSystemUi();
+        } else {
+            hideSystemUi();
+        }
+    }
 
     private void showSystemUi() {
         if (DEBUG) Log.d(TAG, "showSystemUi() called");
         if (playerImpl != null && playerImpl.queueVisible) return;
+
+        final int visibility;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            getWindow().getDecorView().setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-            );
-        } else getWindow().getDecorView().setSystemUiVisibility(0);
+            visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
+        } else {
+            visibility = View.STATUS_BAR_VISIBLE;
+        }
+        getWindow().getDecorView().setSystemUiVisibility(visibility);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     private void hideSystemUi() {
         if (DEBUG) Log.d(TAG, "hideSystemUi() called");
-        if (android.os.Build.VERSION.SDK_INT >= 16) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    | View.SYSTEM_UI_FLAG_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) visibility |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+                    | View.SYSTEM_UI_FLAG_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                visibility |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+            }
             getWindow().getDecorView().setSystemUiVisibility(visibility);
         }
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     private void toggleOrientation() {
-        setLandScape(!isLandScape());
+        setLandscape(!isLandscape());
         defaultPreferences.edit()
-                .putBoolean(getString(R.string.last_orientation_landscape_key), !isLandScape())
+                .putBoolean(getString(R.string.last_orientation_landscape_key), !isLandscape())
                 .apply();
     }
 
-    private boolean isLandScape() {
+    private boolean isLandscape() {
         return getResources().getDisplayMetrics().heightPixels < getResources().getDisplayMetrics().widthPixels;
     }
 
-    private void setLandScape(boolean v) {
+    private void setLandscape(boolean v) {
         setRequestedOrientation(v
                 ? ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
                 : ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
@@ -307,6 +365,7 @@ public final class MainVideoPlayer extends Activity {
         private ImageButton switchPopupButton;
         private ImageButton switchBackgroundButton;
 
+        private RelativeLayout windowRootLayout;
         private View secondaryControls;
 
         VideoPlayerImpl(final Context context) {
@@ -333,6 +392,19 @@ public final class MainVideoPlayer extends Activity {
             this.toggleOrientationButton = rootView.findViewById(R.id.toggleOrientation);
             this.switchBackgroundButton = rootView.findViewById(R.id.switchBackground);
             this.switchPopupButton = rootView.findViewById(R.id.switchPopup);
+
+            this.queueLayout = findViewById(R.id.playQueuePanel);
+            this.itemsListCloseButton = findViewById(R.id.playQueueClose);
+            this.itemsList = findViewById(R.id.playQueue);
+
+            this.windowRootLayout = rootView.findViewById(R.id.playbackWindowRoot);
+            // Prior to Kitkat, there is no way of setting translucent navbar programmatically.
+            // Thus, fit system windows is opted instead.
+            // See https://stackoverflow.com/questions/29069070/completely-transparent-status-bar-and-navigation-bar-on-lollipop
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                windowRootLayout.setFitsSystemWindows(false);
+                windowRootLayout.invalidate();
+            }
 
             titleTextView.setSelected(true);
             channelTextView.setSelected(true);
@@ -391,29 +463,30 @@ public final class MainVideoPlayer extends Activity {
             updatePlaybackButtons();
         }
 
-        /*//////////////////////////////////////////////////////////////////////////
-        // Playback Listener
-        //////////////////////////////////////////////////////////////////////////*/
-
-        @Override
-        public void shutdown() {
-            super.shutdown();
-            finish();
-        }
-
-        @Override
-        public void sync(@NonNull final PlayQueueItem item, @Nullable final StreamInfo info) {
-            super.sync(item, info);
-            titleTextView.setText(getVideoTitle());
-            channelTextView.setText(getUploaderName());
-
-            //playPauseButton.setImageResource(R.drawable.ic_pause_white);
-        }
-
         @Override
         public void onShuffleClicked() {
             super.onShuffleClicked();
             updatePlaybackButtons();
+        }
+
+        /*//////////////////////////////////////////////////////////////////////////
+        // Playback Listener
+        //////////////////////////////////////////////////////////////////////////*/
+
+        protected void onMetadataChanged(@NonNull final PlayQueueItem item,
+                                         @Nullable final StreamInfo info,
+                                         final int newPlayQueueIndex,
+                                         final boolean hasPlayQueueItemChanged) {
+            super.onMetadataChanged(item, info, newPlayQueueIndex, false);
+
+            titleTextView.setText(getVideoTitle());
+            channelTextView.setText(getUploaderName());
+        }
+
+        @Override
+        public void onPlaybackShutdown() {
+            super.onPlaybackShutdown();
+            finish();
         }
 
         /*//////////////////////////////////////////////////////////////////////////
@@ -508,9 +581,9 @@ public final class MainVideoPlayer extends Activity {
 
             if (getCurrentState() != STATE_COMPLETED) {
                 getControlsVisibilityHandler().removeCallbacksAndMessages(null);
-                animateView(getControlsRoot(), true, 300, 0, () -> {
+                animateView(getControlsRoot(), true, DEFAULT_CONTROLS_DURATION, 0, () -> {
                     if (getCurrentState() == STATE_PLAYING && !isSomePopupMenuVisible()) {
-                        hideControls(300, DEFAULT_CONTROLS_HIDE_TIME);
+                        hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
                     }
                 });
             }
@@ -546,7 +619,7 @@ public final class MainVideoPlayer extends Activity {
                         R.drawable.ic_expand_less_white_24dp));
                 animateView(secondaryControls, true, 200);
             }
-            showControls(300);
+            showControls(DEFAULT_CONTROLS_DURATION);
         }
 
         private void onScreenRotationClicked() {
@@ -558,15 +631,13 @@ public final class MainVideoPlayer extends Activity {
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
             super.onStopTrackingTouch(seekBar);
-            if (wasPlaying()) {
-                hideControls(100, 0);
-            }
+            if (wasPlaying()) showControlsThenHide();
         }
 
         @Override
         public void onDismiss(PopupMenu menu) {
             super.onDismiss(menu);
-            if (isPlaying()) hideControls(300, 0);
+            if (isPlaying()) hideControls(DEFAULT_CONTROLS_DURATION, 0);
         }
 
         @Override
@@ -624,7 +695,8 @@ public final class MainVideoPlayer extends Activity {
                 playPauseButton.setImageResource(R.drawable.ic_pause_white);
                 animatePlayButtons(true, 200);
             });
-            showSystemUi();
+
+            changeSystemUi();
             getRootView().setKeepScreenOn(true);
         }
 
@@ -636,7 +708,7 @@ public final class MainVideoPlayer extends Activity {
                 animatePlayButtons(true, 200);
             });
 
-            showSystemUi();
+            changeSystemUi();
             getRootView().setKeepScreenOn(false);
         }
 
@@ -650,10 +722,9 @@ public final class MainVideoPlayer extends Activity {
 
         @Override
         public void onCompleted() {
-            showSystemUi();
             animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 0, 0, () -> {
                 playPauseButton.setImageResource(R.drawable.ic_replay_white);
-                animatePlayButtons(true, 300);
+                animatePlayButtons(true, DEFAULT_CONTROLS_DURATION);
             });
 
             getRootView().setKeepScreenOn(false);
@@ -683,8 +754,9 @@ public final class MainVideoPlayer extends Activity {
             if (DEBUG) Log.d(TAG, "hideControls() called with: delay = [" + delay + "]");
             getControlsVisibilityHandler().removeCallbacksAndMessages(null);
             getControlsVisibilityHandler().postDelayed(() ->
-                    animateView(getControlsRoot(), false, duration, 0, MainVideoPlayer.this::hideSystemUi),
-                    delay
+                    animateView(getControlsRoot(), false, duration, 0,
+                            MainVideoPlayer.this::hideSystemUi),
+                    /*delayMillis=*/delay
             );
         }
 
@@ -697,11 +769,6 @@ public final class MainVideoPlayer extends Activity {
         }
 
         private void buildQueue() {
-            queueLayout = findViewById(R.id.playQueuePanel);
-
-            itemsListCloseButton = findViewById(R.id.playQueueClose);
-
-            itemsList = findViewById(R.id.playQueue);
             itemsList.setAdapter(playQueueAdapter);
             itemsList.setClickable(true);
             itemsList.setLongClickable(true);
@@ -830,12 +897,20 @@ public final class MainVideoPlayer extends Activity {
             if (DEBUG) Log.d(TAG, "onSingleTapConfirmed() called with: e = [" + e + "]");
             if (playerImpl.getCurrentState() == BasePlayer.STATE_BLOCKED) return true;
 
-            if (playerImpl.isControlsVisible()) playerImpl.hideControls(150, 0);
-            else {
+            if (playerImpl.isControlsVisible()) {
+                playerImpl.hideControls(150, 0);
+            } else {
                 playerImpl.showControlsThenHide();
-                showSystemUi();
+                changeSystemUi();
             }
             return true;
+        }
+
+        @Override
+        public boolean onDown(MotionEvent e) {
+            if (DEBUG) Log.d(TAG, "onDown() called with: e = [" + e + "]");
+
+            return super.onDown(e);
         }
 
         private final boolean isPlayerGestureEnabled = PlayerHelper.isPlayerGestureEnabled(getApplicationContext());
@@ -916,11 +991,15 @@ public final class MainVideoPlayer extends Activity {
             eventsNum = 0;
             /* if (playerImpl.getVolumeTextView().getVisibility() == View.VISIBLE) playerImpl.getVolumeTextView().setVisibility(View.GONE);
             if (playerImpl.getBrightnessTextView().getVisibility() == View.VISIBLE) playerImpl.getBrightnessTextView().setVisibility(View.GONE);*/
-            if (playerImpl.getVolumeTextView().getVisibility() == View.VISIBLE) animateView(playerImpl.getVolumeTextView(), false, 200, 200);
-            if (playerImpl.getBrightnessTextView().getVisibility() == View.VISIBLE) animateView(playerImpl.getBrightnessTextView(), false, 200, 200);
+            if (playerImpl.getVolumeTextView().getVisibility() == View.VISIBLE) {
+                animateView(playerImpl.getVolumeTextView(), false, 200, 200);
+            }
+            if (playerImpl.getBrightnessTextView().getVisibility() == View.VISIBLE) {
+                animateView(playerImpl.getBrightnessTextView(), false, 200, 200);
+            }
 
-            if (playerImpl.isControlsVisible() && playerImpl.getCurrentState() == BasePlayer.STATE_PLAYING) {
-                playerImpl.hideControls(300, VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME);
+            if (playerImpl.isControlsVisible() && playerImpl.getCurrentState() == STATE_PLAYING) {
+                playerImpl.hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
             }
         }
 

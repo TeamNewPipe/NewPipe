@@ -76,6 +76,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private SeekBar progressSeekBar;
     private TextView progressCurrentTime;
     private TextView progressEndTime;
+    private TextView progressLiveSync;
     private TextView seekDisplay;
 
     private ImageButton repeatButton;
@@ -294,9 +295,11 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         progressCurrentTime = rootView.findViewById(R.id.current_time);
         progressSeekBar = rootView.findViewById(R.id.seek_bar);
         progressEndTime = rootView.findViewById(R.id.end_time);
+        progressLiveSync = rootView.findViewById(R.id.live_sync);
         seekDisplay = rootView.findViewById(R.id.seek_display);
 
         progressSeekBar.setOnSeekBarChangeListener(this);
+        progressLiveSync.setOnClickListener(this);
     }
 
     private void buildControls() {
@@ -513,6 +516,9 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         } else if (view.getId() == metadata.getId()) {
             scrollToSelected();
 
+        } else if (view.getId() == progressLiveSync.getId()) {
+            player.seekToDefault();
+
         }
     }
 
@@ -574,6 +580,19 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         if (info != null) {
             metadataTitle.setText(info.getName());
             metadataArtist.setText(info.uploader_name);
+
+            progressEndTime.setVisibility(View.GONE);
+            progressLiveSync.setVisibility(View.GONE);
+            switch (info.getStreamType()) {
+                case LIVE_STREAM:
+                case AUDIO_LIVE_STREAM:
+                    progressLiveSync.setVisibility(View.VISIBLE);
+                    break;
+                default:
+                    progressEndTime.setVisibility(View.VISIBLE);
+                    break;
+            }
+
             scrollToSelected();
         }
     }

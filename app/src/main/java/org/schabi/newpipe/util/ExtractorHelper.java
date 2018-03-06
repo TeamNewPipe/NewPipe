@@ -172,7 +172,7 @@ public final class ExtractorHelper {
                                                          String url,
                                                          Single<I> loadFromNetwork) {
         checkServiceId(serviceId);
-        loadFromNetwork = loadFromNetwork.doOnSuccess((@NonNull I i) -> cache.putInfo(i));
+        loadFromNetwork = loadFromNetwork.doOnSuccess(info -> cache.putInfo(serviceId, url, info));
 
         Single<I> load;
         if (forceLoad) {
@@ -224,8 +224,6 @@ public final class ExtractorHelper {
                 Toast.makeText(context, R.string.network_error, Toast.LENGTH_LONG).show();
             } else if (exception instanceof YoutubeStreamExtractor.GemaException) {
                 Toast.makeText(context, R.string.blocked_by_gema, Toast.LENGTH_LONG).show();
-            } else if (exception instanceof YoutubeStreamExtractor.LiveStreamException) {
-                Toast.makeText(context, R.string.live_streams_not_supported, Toast.LENGTH_LONG).show();
             } else if (exception instanceof ContentNotAvailableException) {
                 Toast.makeText(context, R.string.content_not_available, Toast.LENGTH_LONG).show();
             } else {

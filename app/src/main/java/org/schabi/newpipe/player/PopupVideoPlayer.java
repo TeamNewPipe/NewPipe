@@ -70,6 +70,9 @@ import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.List;
 
+import static org.schabi.newpipe.player.BasePlayer.STATE_PLAYING;
+import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_DURATION;
+import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME;
 import static org.schabi.newpipe.player.helper.PlayerHelper.isUsingOldPlayer;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
@@ -419,13 +422,15 @@ public final class PopupVideoPlayer extends Service {
         }
 
         @Override
-        public void onThumbnailReceived(Bitmap thumbnail) {
-            super.onThumbnailReceived(thumbnail);
-            if (thumbnail != null) {
+        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+            super.onLoadingComplete(imageUri, view, loadedImage);
+            if (loadedImage != null) {
                 // rebuild notification here since remote view does not release bitmaps, causing memory leaks
                 notBuilder = createNotification();
 
-                if (notRemoteView != null) notRemoteView.setImageViewBitmap(R.id.notificationCover, thumbnail);
+                if (notRemoteView != null) {
+                    notRemoteView.setImageViewBitmap(R.id.notificationCover, loadedImage);
+                }
 
                 updateNotification(-1);
             }
@@ -533,7 +538,8 @@ public final class PopupVideoPlayer extends Service {
 
         private void updatePlayback() {
             if (activityListener != null && simpleExoPlayer != null && playQueue != null) {
-                activityListener.onPlaybackUpdate(currentState, getRepeatMode(), playQueue.isShuffled(), simpleExoPlayer.getPlaybackParameters());
+                activityListener.onPlaybackUpdate(currentState, getRepeatMode(),
+                        playQueue.isShuffled(), simpleExoPlayer.getPlaybackParameters());
             }
         }
 
@@ -572,16 +578,17 @@ public final class PopupVideoPlayer extends Service {
         // Playback Listener
         //////////////////////////////////////////////////////////////////////////*/
 
-        @Override
-        public void sync(@NonNull PlayQueueItem item, @Nullable StreamInfo info) {
-            if (currentItem == item && currentInfo == info) return;
-            super.sync(item, info);
+        protected void onMetadataChanged(@NonNull final PlayQueueItem item,
+                                         @Nullable final StreamInfo info,
+                                         final int newPlayQueueIndex,
+                                         final boolean hasPlayQueueItemChanged) {
+            super.onMetadataChanged(item, info, newPlayQueueIndex, false);
             updateMetadata();
         }
 
         @Override
-        public void shutdown() {
-            super.shutdown();
+        public void onPlaybackShutdown() {
+            super.onPlaybackShutdown();
             onClose();
         }
 
@@ -646,6 +653,8 @@ public final class PopupVideoPlayer extends Service {
             super.onPlaying();
             updateNotification(R.drawable.ic_pause_white);
             lockManager.acquireWifiAndCpu();
+
+            hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
         }
 
         @Override
@@ -778,8 +787,8 @@ public final class PopupVideoPlayer extends Service {
         private void onScrollEnd() {
             if (DEBUG) Log.d(TAG, "onScrollEnd() called");
             if (playerImpl == null) return;
-            if (playerImpl.isControlsVisible() && playerImpl.getCurrentState() == BasePlayer.STATE_PLAYING) {
-                playerImpl.hideControls(300, VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME);
+            if (playerImpl.isControlsVisible() && playerImpl.getCurrentState() == STATE_PLAYING) {
+                playerImpl.hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
             }
         }
 

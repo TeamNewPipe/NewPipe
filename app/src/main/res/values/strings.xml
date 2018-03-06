@@ -72,6 +72,10 @@
     <string name="black_theme_title">Black</string>
     <string name="popup_remember_size_pos_title">Remember popup size and position</string>
     <string name="popup_remember_size_pos_summary">Remember last size and position of popup</string>
+    <string name="use_inexact_seek_title">Use fast inexact seek</string>
+    <string name="use_inexact_seek_summary">Inexact seek allows the player to seek to positions faster with reduced precision</string>
+    <string name="auto_queue_title">Auto-queue next stream</string>
+    <string name="auto_queue_summary">Automatically append a related stream when playback starts on the last stream in a non-repeating play queue.</string>
     <string name="player_gesture_controls_title">Player gesture controls</string>
     <string name="player_gesture_controls_summary">Use gestures to control the brightness and volume of the player</string>
     <string name="show_search_suggestions_title">Search suggestions</string>
@@ -412,6 +416,8 @@
     <string name="smaller_caption_font_size">Smaller Font</string>
     <string name="normal_caption_font_size">Normal Font</string>
     <string name="larger_caption_font_size">Larger Font</string>
+
+    <string name="live_sync">SYNC</string>
 
     <!-- Debug Settings -->
     <string name="enable_leak_canary_title">Enable LeakCanary</string>

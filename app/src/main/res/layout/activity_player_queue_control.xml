@@ -146,6 +146,16 @@
             android:textColor="?attr/colorAccent"
             tools:ignore="HardcodedText"
             tools:text="1:23:49"/>
+
+        <TextView
+            android:id="@+id/live_sync"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/live_sync"
+            android:textColor="?attr/colorAccent"
+            android:background="?attr/selectableItemBackground"
+            android:visibility="gone"/>
     </LinearLayout>
 
     <RelativeLayout
