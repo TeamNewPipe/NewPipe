@@ -26,7 +26,7 @@
     <string name="download_path_audio_title">Шлях для завантаження аудіо</string>
     <string name="download_path_audio_summary">Шлях де будуть зберігатись завантажені аудіо файли</string>
     <string name="autoplay_by_calling_app_title">Автоматично відтворювати</string>
-    <string name="autoplay_by_calling_app_summary">Автоматично відтворювати відео коли NewPipe викликано з іншого додатку.</string>
+    <string name="autoplay_by_calling_app_summary">Автоматично відтворювати відео коли NewPipe викликано з іншого застосунку</string>
     <string name="default_resolution_title">Типова роздільна здатність</string>
     <string name="play_with_kodi_title">Відтворювати за допомогою Kodi</string>
     <string name="kore_not_found">Застосунок Kore не знайдено. Встановити?</string>
@@ -59,7 +59,7 @@
     <string name="general_error">Помилка</string>
     <string name="network_error">Помилка мережі</string>
     <string name="could_not_load_thumbnails">Не вдалося завантажити всі ескізи</string>
-    <string name="youtube_signature_decryption_error">Не вдалося розшифрувати підпис URL відео.</string>
+    <string name="youtube_signature_decryption_error">Не вдалося розшифрувати підпис URL відео</string>
     <string name="parsing_error">Не вдалося проаналізувати веб-сайт</string>
     <string name="light_parsing_error">Не вдалося повністю проаналізувати веб-сайт</string>
     <string name="content_not_available">Контент не доступний</string>
