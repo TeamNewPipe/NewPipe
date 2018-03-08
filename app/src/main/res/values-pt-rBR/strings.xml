@@ -379,4 +379,11 @@ abrir em modo popup</string>
     <string name="enable_disposed_exceptions_title">Reportar Erros fora do ciclo de vida</string>
     <string name="enable_disposed_exceptions_summary">Forçar o report de exceções Rx não entregáveis ocorrendo fora do fragmento ou ciclo de vida da atividade após o dispose</string>
 
-</resources>
+<string name="use_inexact_seek_title">Usar índice de indexação rápido porém não preciso</string>
+    <string name="use_inexact_seek_summary">Usar índice de indexação inexato</string>
+    <string name="auto_queue_title">Adicionar a próxima stream à fila automaticamente</string>
+    <string name="auto_queue_summary">Anexar automaticamente uma stream relacionada quando a reprodução iniciar na última stream em uma fila não repetitiva</string>
+    <string name="live">Ao Vivo</string>
+    <string name="live_sync">Sincronizar</string>
+
+    </resources>
