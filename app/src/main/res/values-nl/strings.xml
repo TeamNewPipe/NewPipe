@@ -400,4 +400,11 @@ te openen in pop-upmodus</string>
     <string name="enable_disposed_exceptions_title">Ouf-of-Lifecycle-fouten melden</string>
     <string name="enable_disposed_exceptions_summary">Forceer het melden van niet-bezorgbare Rx-uitzonderingen die gebeuren buten fragment of activiteitscyclus</string>
 
-</resources>
+<string name="use_inexact_seek_title">Snelle, minder exact spoelen gebruiken</string>
+    <string name="use_inexact_seek_summary">Minder exact spoelen laat de speler sneller posities zoeken met verminderde precisie</string>
+    <string name="auto_queue_title">Volgende stream automatisch in wachtrij plaatsen</string>
+    <string name="auto_queue_summary">Automatisch een gerealteerde stream toekennen als het afspelen van de laatste stream strat in een niet-herhalende afspeelwachtlijst.</string>
+    <string name="live">LIVE</string>
+    <string name="live_sync">SYNCHRONISEREN</string>
+
+    </resources>
