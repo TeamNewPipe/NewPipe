@@ -141,8 +141,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
             @Override
             public void selected(StreamInfoItem selectedItem) {
                 onItemSelected(selectedItem);
-                NavigationHelper.openVideoDetailFragment(
-                        useAsFrontPage?getParentFragment().getFragmentManager():getFragmentManager(),
+                NavigationHelper.openVideoDetailFragment(useAsFrontPage ? getParentFragment().getFragmentManager() : getFragmentManager(),
                         selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName());
             }
 
@@ -156,8 +155,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
             @Override
             public void selected(ChannelInfoItem selectedItem) {
                 onItemSelected(selectedItem);
-                NavigationHelper.openChannelFragment(
-                        useAsFrontPage?getParentFragment().getFragmentManager():getFragmentManager(),
+                NavigationHelper.openChannelFragment(useAsFrontPage ? getParentFragment().getFragmentManager() : getFragmentManager(),
                         selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName());
             }
         });
@@ -166,8 +164,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
             @Override
             public void selected(PlaylistInfoItem selectedItem) {
                 onItemSelected(selectedItem);
-                NavigationHelper.openPlaylistFragment(
-                        useAsFrontPage?getParentFragment().getFragmentManager():getFragmentManager(),
+                NavigationHelper.openPlaylistFragment(useAsFrontPage ? getParentFragment().getFragmentManager() : getFragmentManager(),
                         selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName());
             }
         });
@@ -230,7 +227,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
         ActionBar supportActionBar = activity.getSupportActionBar();
         if (supportActionBar != null) {
             supportActionBar.setDisplayShowTitleEnabled(true);
-            if(useAsFrontPage) {
+            if (useAsFrontPage) {
                 supportActionBar.setDisplayHomeAsUpEnabled(false);
             } else {
                 supportActionBar.setDisplayHomeAsUpEnabled(true);
@@ -277,9 +274,8 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
 
     @Override
     public void showListFooter(final boolean show) {
-        itemsList.post(new Runnable() {
-            @Override
-            public void run() {
+        itemsList.post(() -> {
+            if (infoListAdapter != null && itemsList != null) {
                 infoListAdapter.showFooter(show);
             }
         });

@@ -3,6 +3,7 @@ package org.schabi.newpipe.util;
 import android.content.Context;
 import android.preference.PreferenceManager;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.StringRes;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
@@ -23,6 +24,39 @@ public class ServiceHelper {
                 return R.drawable.place_holder_circle;
             default:
                 return R.drawable.service;
+        }
+    }
+
+    /**
+     * Get a resource string with instructions for importing subscriptions for each service.
+     *
+     * @return the string resource containing the instructions or -1 if the service don't support it
+     */
+    @StringRes
+    public static int getImportInstructions(int serviceId) {
+        switch (serviceId) {
+            case 0:
+                return R.string.import_youtube_instructions;
+            case 1:
+                return R.string.import_soundcloud_instructions;
+            default:
+                return -1;
+        }
+    }
+
+    /**
+     * For services that support importing from a channel url, return a hint that will
+     * be used in the EditText that the user will type in his channel url.
+     *
+     * @return the hint's string resource or -1 if the service don't support it
+     */
+    @StringRes
+    public static int getImportInstructionsHint(int serviceId) {
+        switch (serviceId) {
+            case 1:
+                return R.string.import_soundcloud_instructions_hint;
+            default:
+                return -1;
         }
     }
 

@@ -246,13 +246,6 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
-    public void setTitle(String title) {
-        if (DEBUG) Log.d(TAG, "setTitle() called with: title = [" + title + "]");
-        if (activity != null && activity.getSupportActionBar() != null) {
-            activity.getSupportActionBar().setTitle(title);
-        }
-    }
-
     protected void openUrlInBrowser(String url) {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         startActivity(Intent.createChooser(intent, activity.getString(R.string.share_dialog_title)));
