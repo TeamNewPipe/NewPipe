@@ -1,0 +1,46 @@
+{
+  "app_version": "0.11.6",
+  "app_version_int": 47,
+  "subscriptions": [
+    {
+      "service_id": 0,
+      "url": "https://www.youtube.com/channel/UCsXVk37bltHxD1rDPwtNM8Q",
+      "name": "Kurzgesagt \u2013 In a Nutshell"
+    },
+    {
+      "service_id": 0,
+      "url": "https://www.youtube.com/channel/UCEOXxzW2vU0P-0THehuIIeg",
+      "name": "CaptainDisillusion"
+    },
+    {
+      "service_id": 0,
+      "url": "https://www.youtube.com/channel/UCAuUUnT6oDeKwE6v1NGQxug",
+      "name": "TED"
+    },
+    {
+      "service_id": 0,
+      "url": "https://www.youtube.com/channel/UCfIXdjDQH9Fau7y99_Orpjw",
+      "name": "Gorillaz"
+    },
+    {
+      "service_id": 0,
+      "url": "https://www.youtube.com/channel/UCJ0-OtVpF0wOKEqT2Z1HEtA",
+      "name": "ElectroBOOM"
+    },
+    {
+      "service_id": 0,
+      "url": "https://www.youtube.com/channel/UCsXVk37bltHxD1rDPwtNM8Q",
+      "name": "ⓤⓝⓘⓒⓞⓓⓔ"
+    },
+    {
+      "service_id": 0,
+      "url": "https://www.youtube.com/channel/UCsXVk37bltHxD1rDPwtNM8Q",
+      "name": "中文"
+    },
+    {
+      "service_id": 0,
+      "url": "https://www.youtube.com/channel/UCsXVk37bltHxD1rDPwtNM8Q",
+      "name": "हिंदी"
+    }
+  ]
+}

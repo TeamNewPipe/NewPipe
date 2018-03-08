@@ -32,12 +32,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
-import javax.annotation.Nonnull;
-
 import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_FILL;
 import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_FIT;
-import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_FIXED_HEIGHT;
-import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_FIXED_WIDTH;
 import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_ZOOM;
 
 public class PlayerHelper {
@@ -162,7 +158,7 @@ public class PlayerHelper {
         return isUsingOldPlayer(context, false);
     }
 
-    public static boolean isRememberingPopupDimensions(@Nonnull final Context context) {
+    public static boolean isRememberingPopupDimensions(@NonNull final Context context) {
         return isRememberingPopupDimensions(context, true);
     }
 
@@ -211,11 +207,11 @@ public class PlayerHelper {
         return true;
     }
 
-    public static int getShutdownFlingVelocity(@Nonnull final Context context) {
+    public static int getShutdownFlingVelocity(@NonNull final Context context) {
         return 10000;
     }
 
-    public static int getTossFlingVelocity(@Nonnull final Context context) {
+    public static int getTossFlingVelocity(@NonNull final Context context) {
         return 2500;
     }
 
@@ -240,7 +236,7 @@ public class PlayerHelper {
         return getPreferences(context).getBoolean(context.getString(R.string.use_old_player_key), b);
     }
 
-    private static boolean isRememberingPopupDimensions(@Nonnull final Context context, final boolean b) {
+    private static boolean isRememberingPopupDimensions(@NonNull final Context context, final boolean b) {
         return getPreferences(context).getBoolean(context.getString(R.string.popup_remember_size_pos_key), b);
     }
 

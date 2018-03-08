@@ -27,8 +27,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.annotation.Nonnull;
-
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 
@@ -147,7 +145,7 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
 
     private void onPlaylistSelected(@NonNull LocalPlaylistManager manager,
                                     @NonNull PlaylistMetadataEntry playlist,
-                                    @Nonnull List<StreamEntity> streams) {
+                                    @NonNull List<StreamEntity> streams) {
         if (getStreams() == null) return;
 
         @SuppressLint("ShowToast")
