@@ -386,4 +386,11 @@
     <string name="enable_disposed_exceptions_title">Зазвітувати Out-of-Lifecycle хиби</string>
     <string name="enable_disposed_exceptions_summary">Примусове звітування про неможливість доставлення Rx винятків, яку відбуваються за межами фраґменту, або діяльності життєвого циклу після усунення</string>
 
-</resources>
+<string name="use_inexact_seek_title">Використовувати неточне шукання</string>
+    <string name="use_inexact_seek_summary">Неточне шукання дозволяє програвачеві рухатися позиціями швидше, проте з меншою точністю</string>
+    <string name="auto_queue_title">Автоматично додати до черги наступний стрим</string>
+    <string name="auto_queue_summary">Автоматично додавати пов\'язаний стрим, під час початку програвання останнього стриму.</string>
+    <string name="live">НАЖИВО</string>
+    <string name="live_sync">СИНХРОНІЗАЦІЯ</string>
+
+    </resources>
