@@ -16,6 +16,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -56,6 +57,7 @@ import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
@@ -138,6 +140,7 @@ public class VideoDetailFragment
     //////////////////////////////////////////////////////////////////////////*/
     private Menu menu;
 
+    private Toolbar toolbar;
     private Spinner spinnerToolbar;
 
     private ParallaxScrollView parallaxScrollRootView;
@@ -321,7 +324,7 @@ public class VideoDetailFragment
         if (serializable instanceof StreamInfo) {
             //noinspection unchecked
             currentInfo = (StreamInfo) serializable;
-            InfoCache.getInstance().putInfo(currentInfo);
+            InfoCache.getInstance().putInfo(serviceId, url, currentInfo);
         }
 
         serializable = savedState.getSerializable(STACK_KEY);
@@ -459,7 +462,8 @@ public class VideoDetailFragment
     protected void initViews(View rootView, Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
 
-        spinnerToolbar = activity.findViewById(R.id.toolbar).findViewById(R.id.toolbar_spinner);
+        toolbar = activity.findViewById(R.id.toolbar);
+        spinnerToolbar = toolbar.findViewById(R.id.toolbar_spinner);
 
         parallaxScrollRootView = rootView.findViewById(R.id.detail_main_content);
 
@@ -1192,11 +1196,21 @@ public class VideoDetailFragment
                     0);
         }
 
-        if (info.video_streams.isEmpty() && info.video_only_streams.isEmpty()) {
-            detailControlsBackground.setVisibility(View.GONE);
-            detailControlsPopup.setVisibility(View.GONE);
-            spinnerToolbar.setVisibility(View.GONE);
-            thumbnailPlayButton.setImageResource(R.drawable.ic_headset_white_24dp);
+        switch (info.getStreamType()) {
+            case LIVE_STREAM:
+            case AUDIO_LIVE_STREAM:
+                detailControlsDownload.setVisibility(View.GONE);
+                spinnerToolbar.setVisibility(View.GONE);
+                toolbar.setTitle(R.string.live);
+                break;
+            default:
+                if (!info.video_streams.isEmpty() || !info.video_only_streams.isEmpty()) break;
+
+                detailControlsBackground.setVisibility(View.GONE);
+                detailControlsPopup.setVisibility(View.GONE);
+                spinnerToolbar.setVisibility(View.GONE);
+                thumbnailPlayButton.setImageResource(R.drawable.ic_headset_white_24dp);
+                break;
         }
 
         if (autoPlayEnabled) {
@@ -1216,8 +1230,6 @@ public class VideoDetailFragment
 
         if (exception instanceof YoutubeStreamExtractor.GemaException) {
             onBlockedByGemaError();
-        } else if (exception instanceof YoutubeStreamExtractor.LiveStreamException) {
-            showError(getString(R.string.live_streams_not_supported), false);
         } else if (exception instanceof ContentNotAvailableException) {
             showError(getString(R.string.content_not_available), false);
         } else {

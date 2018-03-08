@@ -18,7 +18,7 @@ public interface PlaybackListener {
      *
      * May be called at any time.
      * */
-    void block();
+    void onPlaybackBlock();
 
     /**
      * Called when the stream at the current queue index is ready.
@@ -26,18 +26,16 @@ public interface PlaybackListener {
      *
      * May be called only when the player is blocked.
      * */
-    void unblock(final MediaSource mediaSource);
+    void onPlaybackUnblock(final MediaSource mediaSource);
 
     /**
      * Called when the queue index is refreshed.
      * Signals to the listener to synchronize the player's window to the manager's
      * window.
      *
-     * Occurs once only per play queue item change.
-     *
-     * May be called only after unblock is called.
+     * May be called anytime at any amount once unblock is called.
      * */
-    void sync(@NonNull final PlayQueueItem item, @Nullable final StreamInfo info);
+    void onPlaybackSynchronize(@NonNull final PlayQueueItem item, @Nullable final StreamInfo info);
 
     /**
      * Requests the listener to resolve a stream info into a media source
@@ -55,5 +53,5 @@ public interface PlaybackListener {
      *
      * May be called at any time.
      * */
-    void shutdown();
+    void onPlaybackShutdown();
 }

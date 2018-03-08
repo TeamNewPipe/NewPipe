@@ -118,6 +118,7 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo, U extends InfoItem> ext
     public void dispose() {
         super.dispose();
         if (fetchReactor != null) fetchReactor.dispose();
+        fetchReactor = null;
     }
 
     private static List<PlayQueueItem> extractListItems(final List<InfoItem> infos) {
