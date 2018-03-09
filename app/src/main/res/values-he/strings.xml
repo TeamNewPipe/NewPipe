@@ -306,4 +306,6 @@
 
     <string name="import_data_title">יבוא מסד נתונים</string>
     <string name="export_data_title">יצוא מסד נתונים</string>
+    <string name="external_player_unsupported_link_type">נגנים חיצוניים לא תומכים בסוגי קישורים אלה</string>
+    <string name="invalid_url_toast">כתובת לא תקינה</string>
     </resources>
