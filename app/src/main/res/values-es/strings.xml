@@ -404,4 +404,6 @@ abrir en modo popup</string>
     <string name="enable_disposed_exceptions_title">Reportar errores fuera del ciclo de duración</string>
     <string name="enable_disposed_exceptions_summary">Forzar la notificación de excepciones no entregables de RX que ocurren fuera del fragmento o del ciclo de actividad después de disponer</string>
 
-</resources>
+<string name="use_inexact_seek_title">Usar búsqueda rápida inexacta</string>
+    <string name="use_inexact_seek_summary">La búsqueda inexacta permite al reproductor buscar posiciones más rápido con menor precisión</string>
+    </resources>
