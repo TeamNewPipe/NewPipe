@@ -299,4 +299,9 @@
     <string name="controls_add_to_playlist_title">הוספה אל</string>
 
     <string name="default_content_country_title">מדינת תוכן כבררת מחדל</string>
+    <string name="service_title">שירות</string>
+    <string name="settings_category_debug_title">ניפוי שגיאות</string>
+    <string name="always">תמיד</string>
+    <string name="just_once">חד פעמי</string>
+
     </resources>
