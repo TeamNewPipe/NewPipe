@@ -381,4 +381,11 @@
     <string name="enable_disposed_exceptions_title">報告週期不足錯誤</string>
     <string name="enable_disposed_exceptions_summary">強制報告在處理完片段或活動週期外發生的無法傳遞的 Rx 異常</string>
 
-</resources>
+<string name="use_inexact_seek_title">使用快速不精確的尋找</string>
+    <string name="use_inexact_seek_summary">不精確的尋找，允許玩家以更低的精確更快找到位置</string>
+    <string name="auto_queue_title">自動佇列下一個串流</string>
+    <string name="auto_queue_summary">在非重複播放佇列中的最後一個串流上開始播放時，自動附上相關串流。</string>
+    <string name="live">直播</string>
+    <string name="live_sync">同步</string>
+
+    </resources>
