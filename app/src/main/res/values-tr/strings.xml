@@ -395,4 +395,11 @@
     <string name="enable_disposed_exceptions_title">Out-of-Lifecycle Hatalarını Bildir</string>
     <string name="enable_disposed_exceptions_summary">Parçanın dışında veya atımdan sonraki etkinlik yaşam döngüsünde meydana gelen ve teslim edilemeyen Rx beklentilerinin bildirimini zorla</string>
 
-</resources>
+<string name="use_inexact_seek_title">Hızlı isabetsiz konumlama kullan</string>
+    <string name="use_inexact_seek_summary">İsabetsiz konumlama, oynatıcının konumları düşürülmüş duyarlıkla saptamasını sağlar</string>
+    <string name="auto_queue_title">Sonraki akışı kendiliğinden kuyrukla</string>
+    <string name="auto_queue_summary">Yinelemeyen oynatma kuyruğundaki son akış başladığında ilişkili akışı kuyruğun sonuna kendiliğinden ekle.</string>
+    <string name="live">CANLI</string>
+    <string name="live_sync">EŞZAMANLA</string>
+
+    </resources>
