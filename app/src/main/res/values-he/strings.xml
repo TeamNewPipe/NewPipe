@@ -304,4 +304,6 @@
     <string name="always">תמיד</string>
     <string name="just_once">חד פעמי</string>
 
+    <string name="import_data_title">יבוא מסד נתונים</string>
+    <string name="export_data_title">יצוא מסד נתונים</string>
     </resources>
