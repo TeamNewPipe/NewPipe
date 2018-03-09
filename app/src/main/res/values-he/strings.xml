@@ -291,4 +291,5 @@
     <string name="start_here_on_main">התחל לנגן כאן</string>
     <string name="start_here_on_background">התחל כאן בנגן הרקע</string>
     <string name="start_here_on_popup">התחל כאן בנגן הצץ</string>
-</resources>
+<string name="controls_download_desc">הורד קובץ.</string>
+    </resources>
