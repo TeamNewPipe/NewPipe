@@ -383,7 +383,6 @@ abrir em modo popup</string>
     <string name="use_inexact_seek_summary">Usar índice de indexação inexato</string>
     <string name="auto_queue_title">Adicionar a próxima stream à fila automaticamente</string>
     <string name="auto_queue_summary">Anexar automaticamente uma stream relacionada quando a reprodução iniciar na última stream em uma fila não repetitiva</string>
-    <string name="live">Ao Vivo</string>
     <string name="live_sync">Sincronizar</string>
 
     </resources>
