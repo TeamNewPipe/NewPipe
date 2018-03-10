@@ -1,5 +1,7 @@
-package org.schabi.newpipe.fragments.subscription;
+package org.schabi.newpipe.subscription;
 
+import android.content.Context;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.schabi.newpipe.MainActivity;
@@ -10,6 +12,7 @@ import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.util.ExtractorHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -20,7 +23,6 @@ import io.reactivex.CompletableSource;
 import io.reactivex.Flowable;
 import io.reactivex.Maybe;
 import io.reactivex.Scheduler;
-import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
@@ -32,10 +34,20 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class SubscriptionService {
 
-    private static final SubscriptionService sInstance = new SubscriptionService();
+    private static volatile SubscriptionService instance;
 
-    public static SubscriptionService getInstance() {
-        return sInstance;
+    public static SubscriptionService getInstance(@NonNull Context context) {
+        SubscriptionService result = instance;
+        if (result == null) {
+            synchronized (SubscriptionService.class) {
+                result = instance;
+                if (result == null) {
+                    instance = (result = new SubscriptionService(context));
+                }
+            }
+        }
+
+        return result;
     }
 
     protected final String TAG = "SubscriptionService@" + Integer.toHexString(hashCode());
@@ -48,8 +60,8 @@ public class SubscriptionService {
 
     private Scheduler subscriptionScheduler;
 
-    private SubscriptionService() {
-        db = NewPipeDatabase.getInstance();
+    private SubscriptionService(Context context) {
+        db = NewPipeDatabase.getInstance(context.getApplicationContext());
         subscription = getSubscriptionInfos();
 
         final Executor subscriptionExecutor = Executors.newFixedThreadPool(SUBSCRIPTION_THREAD_POOL_SIZE);
@@ -114,7 +126,7 @@ public class SubscriptionService {
                     if (!isSubscriptionUpToDate(info, subscription)) {
                         subscription.setData(info.getName(), info.getAvatarUrl(), info.getDescription(), info.getSubscriberCount());
 
-                        return update(subscription);
+                        return Completable.fromRunnable(() -> subscriptionTable().update(subscription));
                     }
                 }
 
@@ -127,13 +139,11 @@ public class SubscriptionService {
                 .flatMapCompletable(update);
     }
 
-    private Completable update(final SubscriptionEntity updatedSubscription) {
-        return Completable.fromRunnable(new Runnable() {
-            @Override
-            public void run() {
-                subscriptionTable().update(updatedSubscription);
-            }
-        });
+    public List<SubscriptionEntity> upsertAll(final List<ChannelInfo> infoList) {
+        final List<SubscriptionEntity> entityList = new ArrayList<>();
+        for (ChannelInfo info : infoList) entityList.add(SubscriptionEntity.from(info));
+
+        return subscriptionTable().upsertAll(entityList);
     }
 
     private boolean isSubscriptionUpToDate(final ChannelInfo info, final SubscriptionEntity entity) {

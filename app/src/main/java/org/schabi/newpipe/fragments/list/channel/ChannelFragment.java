@@ -33,12 +33,12 @@ import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
-import org.schabi.newpipe.fragments.subscription.SubscriptionService;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.playlist.ChannelPlayQueue;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.subscription.SubscriptionService;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.Localization;
@@ -108,11 +108,11 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        subscriptionService = SubscriptionService.getInstance();
+        subscriptionService = SubscriptionService.getInstance(activity);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_channel, container, false);
     }
 

@@ -1,5 +1,6 @@
 package org.schabi.newpipe.util;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -11,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.widget.Toast;
@@ -38,6 +40,7 @@ import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.fragments.local.bookmark.LastPlayedFragment;
 import org.schabi.newpipe.fragments.local.bookmark.LocalPlaylistFragment;
 import org.schabi.newpipe.fragments.local.bookmark.MostPlayedFragment;
+import org.schabi.newpipe.fragments.subscription.SubscriptionsImportFragment;
 import org.schabi.newpipe.history.HistoryActivity;
 import org.schabi.newpipe.player.BackgroundPlayer;
 import org.schabi.newpipe.player.BackgroundPlayerActivity;
@@ -247,6 +250,12 @@ public class NavigationHelper {
     // Through FragmentManager
     //////////////////////////////////////////////////////////////////////////*/
 
+    @SuppressLint("CommitTransaction")
+    private static FragmentTransaction defaultTransaction(FragmentManager fragmentManager) {
+        return fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out);
+    }
+
     public static void gotoMainFragment(FragmentManager fragmentManager) {
         ImageLoader.getInstance().clearMemoryCache();
 
@@ -258,8 +267,7 @@ public class NavigationHelper {
         InfoCache.getInstance().trimCache();
 
         fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
+        defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, new MainFragment())
                 .addToBackStack(MAIN_FRAGMENT_TAG)
                 .commit();
@@ -276,8 +284,7 @@ public class NavigationHelper {
     }
 
     public static void openSearchFragment(FragmentManager fragmentManager, int serviceId, String query) {
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
+        defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, SearchFragment.getInstance(serviceId, query))
                 .addToBackStack(SEARCH_FRAGMENT_TAG)
                 .commit();
@@ -301,8 +308,7 @@ public class NavigationHelper {
         VideoDetailFragment instance = VideoDetailFragment.getInstance(serviceId, url, title);
         instance.setAutoplay(autoPlay);
 
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
+        defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, instance)
                 .addToBackStack(null)
                 .commit();
@@ -310,8 +316,7 @@ public class NavigationHelper {
 
     public static void openChannelFragment(FragmentManager fragmentManager, int serviceId, String url, String name) {
         if (name == null) name = "";
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
+        defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, ChannelFragment.getInstance(serviceId, url, name))
                 .addToBackStack(null)
                 .commit();
@@ -319,25 +324,21 @@ public class NavigationHelper {
 
     public static void openPlaylistFragment(FragmentManager fragmentManager, int serviceId, String url, String name) {
         if (name == null) name = "";
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
+        defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, PlaylistFragment.getInstance(serviceId, url, name))
                 .addToBackStack(null)
                 .commit();
     }
 
     public static void openWhatsNewFragment(FragmentManager fragmentManager) {
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
+        defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, new FeedFragment())
                 .addToBackStack(null)
                 .commit();
     }
 
-    public static void openKioskFragment(FragmentManager fragmentManager, int serviceId, String kioskId)
-        throws ExtractionException {
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
+    public static void openKioskFragment(FragmentManager fragmentManager, int serviceId, String kioskId) throws ExtractionException {
+        defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, KioskFragment.getInstance(serviceId, kioskId))
                 .addToBackStack(null)
                 .commit();
@@ -345,28 +346,33 @@ public class NavigationHelper {
 
     public static void openLocalPlaylistFragment(FragmentManager fragmentManager, long playlistId, String name) {
         if (name == null) name = "";
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
+        defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, LocalPlaylistFragment.getInstance(playlistId, name))
                 .addToBackStack(null)
                 .commit();
     }
 
     public static void openLastPlayedFragment(FragmentManager fragmentManager) {
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
+        defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, new LastPlayedFragment())
                 .addToBackStack(null)
                 .commit();
     }
 
     public static void openMostPlayedFragment(FragmentManager fragmentManager) {
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
+        defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, new MostPlayedFragment())
                 .addToBackStack(null)
                 .commit();
     }
+
+    public static void openSubscriptionsImportFragment(FragmentManager fragmentManager, int serviceId) {
+        defaultTransaction(fragmentManager)
+                .replace(R.id.fragment_holder, SubscriptionsImportFragment.getInstance(serviceId))
+                .addToBackStack(null)
+                .commit();
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Through Intents
     //////////////////////////////////////////////////////////////////////////*/

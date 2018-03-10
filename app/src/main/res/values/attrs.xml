@@ -32,6 +32,9 @@
     <attr name="ic_bookmark" format="reference"/>
     <attr name="ic_playlist_add" format="reference"/>
     <attr name="ic_playlist_check" format="reference"/>
+    <attr name="ic_import_export" format="reference"/>
+    <attr name="ic_save" format="reference"/>
+    <attr name="ic_backup" format="reference"/>
 
     <!-- Can't refer to colors directly into drawable's xml-->
     <attr name="toolbar_shadow_drawable" format="reference"/>

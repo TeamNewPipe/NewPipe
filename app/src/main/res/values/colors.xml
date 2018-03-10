@@ -4,6 +4,7 @@
 
     <!-- Light Theme -->
     <color name="light_background_color">#EEEEEE</color>
+    <color name="light_dialog_background_color">#EEEEEE</color>
     <color name="light_settings_accent_color">#e53935</color>
     <color name="light_separator_color">#32000000</color>
     <color name="light_ripple_color">#48868686</color>
@@ -16,6 +17,7 @@
 
     <!-- Dark Theme -->
     <color name="dark_background_color">#222222</color>
+    <color name="dark_dialog_background_color">#424242</color>
     <color name="dark_settings_accent_color">#ff5252</color>
     <color name="dark_separator_color">#0affffff</color>
     <color name="dark_ripple_color">#48ffffff</color>

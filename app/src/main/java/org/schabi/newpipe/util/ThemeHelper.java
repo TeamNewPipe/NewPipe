@@ -1,3 +1,22 @@
+/*
+ * Copyright 2018 Mauricio Colli <mauriciocolli@outlook.com>
+ * ThemeHelper.java is part of NewPipe
+ *
+ * License: GPL-3.0+
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package org.schabi.newpipe.util;
 
 import android.content.Context;
@@ -5,6 +24,9 @@ import android.content.res.TypedArray;
 import android.preference.PreferenceManager;
 import android.support.annotation.AttrRes;
 import android.support.annotation.StyleRes;
+import android.support.v4.content.ContextCompat;
+import android.util.TypedValue;
+import android.view.ContextThemeWrapper;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -41,16 +63,57 @@ public class ThemeHelper {
      * @param context context to get the preference
      */
     public static boolean isLightThemeSelected(Context context) {
-        return getSelectedTheme(context).equals(context.getResources().getString(R.string.light_theme_key));
+        return getSelectedThemeString(context).equals(context.getResources().getString(R.string.light_theme_key));
     }
 
+
+    /**
+     * Create and return a wrapped context with the default selected theme set.
+     *
+     * @param baseContext the base context for the wrapper
+     * @return a wrapped-styled context
+     */
+    public static Context getThemedContext(Context baseContext) {
+        return new ContextThemeWrapper(baseContext, getThemeForService(baseContext, -1));
+    }
+
+    /**
+     * Return the selected theme without being styled to any service (see {@link #getThemeForService(Context, int)}).
+     *
+     * @param context context to get the selected theme
+     * @return the selected style (the default one)
+     */
+    @StyleRes
+    public static int getDefaultTheme(Context context) {
+        return getThemeForService(context, -1);
+    }
+
+    /**
+     * Return a dialog theme styled according to the (default) selected theme.
+     *
+     * @param context context to get the selected theme
+     * @return the dialog style (the default one)
+     */
+    @StyleRes
+    public static int getDialogTheme(Context context) {
+        return isLightThemeSelected(context) ? R.style.LightDialogTheme : R.style.DarkDialogTheme;
+    }
+
+    /**
+     * Return the selected theme styled according to the serviceId.
+     *
+     * @param context   context to get the selected theme
+     * @param serviceId return a theme styled to this service,
+     *                  -1 to get the default
+     * @return the selected style (styled)
+     */
     @StyleRes
     public static int getThemeForService(Context context, int serviceId) {
         String lightTheme = context.getResources().getString(R.string.light_theme_key);
         String darkTheme = context.getResources().getString(R.string.dark_theme_key);
         String blackTheme = context.getResources().getString(R.string.black_theme_key);
 
-        String selectedTheme = getSelectedTheme(context);
+        String selectedTheme = getSelectedThemeString(context);
 
         int defaultTheme = R.style.DarkTheme;
         if (selectedTheme.equals(lightTheme)) defaultTheme = R.style.LightTheme;
@@ -83,19 +146,13 @@ public class ThemeHelper {
         return defaultTheme;
     }
 
-    public static String getSelectedTheme(Context context) {
-        String themeKey = context.getString(R.string.theme_key);
-        String defaultTheme = context.getResources().getString(R.string.default_theme_value);
-        return PreferenceManager.getDefaultSharedPreferences(context).getString(themeKey, defaultTheme);
-    }
-
     @StyleRes
     public static int getSettingsThemeStyle(Context context) {
         String lightTheme = context.getResources().getString(R.string.light_theme_key);
         String darkTheme = context.getResources().getString(R.string.dark_theme_key);
         String blackTheme = context.getResources().getString(R.string.black_theme_key);
 
-        String selectedTheme = getSelectedTheme(context);
+        String selectedTheme = getSelectedThemeString(context);
 
         if (selectedTheme.equals(lightTheme)) return R.style.LightSettingsTheme;
         else if (selectedTheme.equals(blackTheme)) return R.style.BlackSettingsTheme;
@@ -112,5 +169,25 @@ public class ThemeHelper {
         int attributeResourceId = a.getResourceId(0, 0);
         a.recycle();
         return attributeResourceId;
+    }
+
+    /**
+     * Get a color from an attr styled according to the the context's theme.
+     */
+    public static int resolveColorFromAttr(Context context, @AttrRes int attrColor) {
+        final TypedValue value = new TypedValue();
+        context.getTheme().resolveAttribute(attrColor, value, true);
+
+        if (value.resourceId != 0) {
+            return ContextCompat.getColor(context, value.resourceId);
+        }
+
+        return value.data;
+    }
+
+    private static String getSelectedThemeString(Context context) {
+        String themeKey = context.getString(R.string.theme_key);
+        String defaultTheme = context.getResources().getString(R.string.default_theme_value);
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(themeKey, defaultTheme);
     }
 }

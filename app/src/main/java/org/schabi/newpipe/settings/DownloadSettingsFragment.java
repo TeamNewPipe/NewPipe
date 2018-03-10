@@ -7,6 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.preference.Preference;
 import android.util.Log;
 
+import com.nononsenseapps.filepicker.Utils;
+
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 
@@ -69,9 +71,11 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
             Log.d(TAG, "onActivityResult() called with: requestCode = [" + requestCode + "], resultCode = [" + resultCode + "], data = [" + data + "]");
         }
 
-        if ((requestCode == REQUEST_DOWNLOAD_PATH || requestCode == REQUEST_DOWNLOAD_AUDIO_PATH) && resultCode == Activity.RESULT_OK) {
+        if ((requestCode == REQUEST_DOWNLOAD_PATH || requestCode == REQUEST_DOWNLOAD_AUDIO_PATH)
+                && resultCode == Activity.RESULT_OK && data.getData() != null) {
             String key = getString(requestCode == REQUEST_DOWNLOAD_PATH ? R.string.download_path_key : R.string.download_path_audio_key);
-            String path = data.getData().getPath();
+            String path = Utils.getFileForUri(data.getData()).getAbsolutePath();
+
             defaultPreferences.edit().putString(key, path).apply();
             updatePreferencesSummary();
         }
