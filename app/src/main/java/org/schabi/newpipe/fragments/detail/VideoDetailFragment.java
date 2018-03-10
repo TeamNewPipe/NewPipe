@@ -1007,9 +1007,6 @@ public class VideoDetailFragment
         int height = isPortrait
                 ? (int) (metrics.widthPixels / (16.0f / 9.0f))
                 : (int) (metrics.heightPixels / 2f);
-        thumbnailImageView.setScaleType(isPortrait
-                ? ImageView.ScaleType.CENTER_CROP
-                : ImageView.ScaleType.FIT_CENTER);
         thumbnailImageView.setLayoutParams(
                 new FrameLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, height));
         thumbnailImageView.setMinimumHeight(height);
