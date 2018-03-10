@@ -311,7 +311,7 @@ abrir en modo popup</string>
     <string name="service_title">Servicio</string>
     <string name="drawer_open">Abrir cajón</string>
     <string name="drawer_close">Cerrar cajón</string>
-    <string name="no_player_found_toast">No se ha encontrado ningún reproductor de streaming (puede instalar VLC para reproducirlo)</string>
+    <string name="no_player_found_toast">No se ha encontrado ningún reproductor de vídeo (puede instalar VLC para reproducirlo)</string>
     <string name="always">Siempre</string>
     <string name="just_once">Sólo una vez</string>
 
@@ -406,4 +406,9 @@ abrir en modo popup</string>
 
 <string name="use_inexact_seek_title">Usar búsqueda rápida inexacta</string>
     <string name="use_inexact_seek_summary">La búsqueda inexacta permite al reproductor buscar posiciones más rápido con menor precisión</string>
+    <string name="auto_queue_title">Auto-encolar la siguiente transmisión</string>
+    <string name="auto_queue_summary">"Automáticamente añadir un vídeo relacionado cuando el reproductor llegue al último vídeo en una lista de reproducción no repetible. "</string>
+    <string name="live">DIRECTO</string>
+    <string name="live_sync">SINCRONIZAR</string>
+
     </resources>
