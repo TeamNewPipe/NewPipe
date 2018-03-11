@@ -28,7 +28,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
-import android.media.AudioManager;
 import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.IntRange;
@@ -82,7 +81,6 @@ public final class BackgroundPlayer extends Service {
     private BasePlayerImpl basePlayerImpl;
     private LockManager lockManager;
 
-    private AudioManager mAudioManager;
     private ComponentName mReceiverComponent;
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -122,9 +120,8 @@ public final class BackgroundPlayer extends Service {
         mBinder = new PlayerServiceBinder(basePlayerImpl);
         shouldUpdateOnProgress = true;
 
-        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         mReceiverComponent = new ComponentName(this, MediaButtonReceiver.class);
-        mAudioManager.registerMediaButtonEventReceiver(mReceiverComponent);
+        basePlayerImpl.audioReactor.registerMediaButtonEventReceiver(mReceiverComponent);
     }
 
     @Override
@@ -163,7 +160,7 @@ public final class BackgroundPlayer extends Service {
         basePlayerImpl = null;
         lockManager = null;
 
-        mAudioManager.unregisterMediaButtonEventReceiver(mReceiverComponent);
+        basePlayerImpl.audioReactor.unregisterMediaButtonEventReceiver(mReceiverComponent);
 
         stopForeground(true);
         stopSelf();
