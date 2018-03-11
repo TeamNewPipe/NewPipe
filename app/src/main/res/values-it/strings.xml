@@ -15,7 +15,7 @@
     <string name="choose_browser">Scegli il browser</string>
     <string name="screen_rotation">rotazione</string>
     <string name="download_path_title">Percorso dei video scaricati</string>
-    <string name="download_path_summary">Percorso in cui memorizzare i video scaricati</string>
+    <string name="download_path_summary">Cartella in cui memorizzare i video scaricati</string>
     <string name="download_path_dialog_title">Inserisci il percorso per i download</string>
     <string name="default_resolution_title">Risoluzione predefinita</string>
     <string name="play_with_kodi_title">Riproduci con Kodi</string>
@@ -45,7 +45,7 @@
 
     <string name="download_path_audio_title">Percorso degli audio scaricati</string>
     <string name="download_path_audio_summary">Percorso dove salvare gli audio scaricati</string>
-    <string name="download_path_audio_dialog_title">Inserisci il percorso per i file audio</string>
+    <string name="download_path_audio_dialog_title">Inserisci la cartella per i file audio</string>
 
     <string name="theme_title">Tema</string>
     <string name="dark_theme_title">Scuro</string>
@@ -76,7 +76,7 @@
     <string name="show_age_restricted_content_title">Mostra contenuti vincolati all\'età</string>
     <string name="video_is_age_restricted">Questo video è riservato ad un pubblico maggiorenne. Per accedervi, abilita \"Mostra video vincolati all\'età\" nelle impostazioni.</string>
 
-    <string name="main_bg_subtitle">Tocca \"cerca\" per iniziare</string>
+    <string name="main_bg_subtitle">Tocca cerca per iniziare</string>
     <string name="autoplay_by_calling_app_title">Riproduzione automatica</string>
     <string name="autoplay_by_calling_app_summary">Riproduci i video automaticamente quando NewPipe viene aperto da un\'altra app</string>
     <string name="duration_live">in diretta</string>
@@ -161,7 +161,7 @@
 
     <string name="default_popup_resolution_title">Risoluzione predefinita per la modalità popup</string>
     <string name="show_higher_resolutions_title">Mostra risoluzioni più alte</string>
-    <string name="show_higher_resolutions_summary">Solo alcuni dispositivi supportano la riproduzione di video in 2K e 4K</string>
+    <string name="show_higher_resolutions_summary">Solo alcuni dispositivi supportano la riproduzione video in 2K e 4K</string>
     <string name="default_video_format_title">Formato video predefinito</string>
     <string name="popup_remember_size_pos_title">Ricorda grandezza e posizione del popup</string>
     <string name="popup_remember_size_pos_summary">Ricorda l\'ultima grandezza e posizione del popup</string>
@@ -191,7 +191,7 @@
     <string name="tab_about">Informazioni</string>
     <string name="tab_contributors">Contributori</string>
     <string name="tab_licenses">Licenze</string>
-    <string name="app_description">Un\'interfaccia leggera e gratuita per accedere a YouTube su Android.</string>
+    <string name="app_description">Un\'interfaccia leggera e libera per accedere a YouTube su Android.</string>
     <string name="view_on_github">Mostra su GitHub</string>
     <string name="app_license_title">Licenza di NewPipe</string>
     <string name="contribution_encouragement">Un aiuto è sempre il benvenuto: nuove idee, design o traduzioni, piccoli cambi o modifiche radicali del codice rendono l\'applicazione sempre migliore!</string>
@@ -405,7 +405,7 @@
     <string name="enable_disposed_exceptions_title">Riporta gli errori \"fuori dal ciclo di vita\"</string>
     <string name="enable_disposed_exceptions_summary">Forza il riporto delle eccezioni Rx non consegnabili verificate fuori dal frammento o dall\'attività del \"ciclo di vita\"</string>
 
-<string name="use_inexact_seek_title">Usa una ricerca veloce ma poco precisa</string>
+<string name="use_inexact_seek_title">Usa una ricerca rapida ma imprecisa</string>
     <string name="use_inexact_seek_summary">La ricerca imprecisa permette al riproduttore di spostarti nelle posizioni più velocemente con una precisione ridotta</string>
     <string name="auto_queue_title">Metti in coda automaticamente il prossimo flusso</string>
     <string name="auto_queue_summary">Aggiungi automaticamente un flusso correlato mentre il playback parte dall\'ultimo flusso in una cosa non ripetitiva.</string>
