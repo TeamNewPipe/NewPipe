@@ -88,10 +88,18 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, Au
     }
 
     public void registerMediaButtonEventReceiver(ComponentName componentName) {
+        if (android.os.Build.VERSION.SDK_INT > 27) {
+            Log.e(TAG, "registerMediaButtonEventReceiver has been deprecated and maybe not supported anymore.");
+            return;
+        }
         audioManager.registerMediaButtonEventReceiver(componentName);
     }
 
     public void unregisterMediaButtonEventReceiver(ComponentName componentName) {
+        if (android.os.Build.VERSION.SDK_INT > 27) {
+            Log.e(TAG, "unregisterMediaButtonEventReceiver has been deprecated and maybe not supported anymore.");
+            return;
+        }
         audioManager.unregisterMediaButtonEventReceiver(componentName);
     }
 

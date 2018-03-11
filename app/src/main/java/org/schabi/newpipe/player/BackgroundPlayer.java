@@ -152,6 +152,7 @@ public final class BackgroundPlayer extends Service {
             lockManager.releaseWifiAndCpu();
         }
         if (basePlayerImpl != null) {
+            basePlayerImpl.audioReactor.unregisterMediaButtonEventReceiver(mReceiverComponent);
             basePlayerImpl.stopActivityBinding();
             basePlayerImpl.destroy();
         }
@@ -159,8 +160,6 @@ public final class BackgroundPlayer extends Service {
         mBinder = null;
         basePlayerImpl = null;
         lockManager = null;
-
-        basePlayerImpl.audioReactor.unregisterMediaButtonEventReceiver(mReceiverComponent);
 
         stopForeground(true);
         stopSelf();
@@ -594,6 +593,10 @@ public final class BackgroundPlayer extends Service {
                         pendingIntent = PendingIntent.getBroadcast(context, NOTIFICATION_ID, new Intent(ACTION_PLAY_PREVIOUS), PendingIntent.FLAG_UPDATE_CURRENT);
                     } else if (keycode == KeyEvent.KEYCODE_HEADSETHOOK) {
                         pendingIntent = PendingIntent.getBroadcast(context, NOTIFICATION_ID, new Intent(ACTION_PLAY_PAUSE), PendingIntent.FLAG_UPDATE_CURRENT);
+                    } else if (keycode == KeyEvent.KEYCODE_MEDIA_FAST_FORWARD) {
+                        pendingIntent = PendingIntent.getBroadcast(context, NOTIFICATION_ID, new Intent(ACTION_FAST_FORWARD), PendingIntent.FLAG_UPDATE_CURRENT);
+                    } else if (keycode == KeyEvent.KEYCODE_MEDIA_REWIND) {
+                        pendingIntent = PendingIntent.getBroadcast(context, NOTIFICATION_ID, new Intent(ACTION_FAST_REWIND), PendingIntent.FLAG_UPDATE_CURRENT);
                     }
                     if (pendingIntent != null) {
                         try {
