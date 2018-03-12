@@ -176,9 +176,11 @@ public class MainActivity extends AppCompatActivity {
         // when the user returns to MainActivity
         drawer.closeDrawer(Gravity.START, false);
         try {
-            String selectedServiceName = NewPipe.getService(
-                    ServiceHelper.getSelectedServiceId(this)).getServiceInfo().getName();
-            headerServiceView.setText(selectedServiceName);
+            if(BuildConfig.BUILD_TYPE != "release" ) {
+                String selectedServiceName = NewPipe.getService(
+                        ServiceHelper.getSelectedServiceId(this)).getServiceInfo().getName();
+                headerServiceView.setText(selectedServiceName);
+            }
         } catch (Exception e) {
             ErrorActivity.reportUiError(this, e);
         }
