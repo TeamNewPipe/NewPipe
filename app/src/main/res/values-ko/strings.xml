@@ -284,4 +284,109 @@
     <string name="start_here_on_main">여기서부터 재생</string>
     <string name="start_here_on_background">여기서부터 백그라운드에서 재생</string>
     <string name="start_here_on_popup">여기서부터 팝업에 재생</string>
+<string name="no_player_found_toast">스트리밍 플레이어를 찾을 수 없습니다. VLC를 설치하면 플레이하실 수 있습니다</string>
+    <string name="controls_download_desc">스트리밍 파일 다운로드하기.</string>
+    <string name="show_info">정보 보기</string>
+
+    <string name="tab_bookmarks">북마크</string>
+
+    <string name="controls_add_to_playlist_title">이곳에 추가</string>
+
+    <string name="use_inexact_seek_title">정확하지는 않지만 빠른 탐색</string>
+    <string name="use_inexact_seek_summary">정확하지 않은 탐색은 빠르게 위치로 탐색할 수 있지만 정확도는 떨어집니다</string>
+    <string name="auto_queue_title">다음 스트림을 자동으로 재생열에 추가하기</string>
+    <string name="auto_queue_summary">전 스트림이 무한 반복 재생 큐가 아닐 때 관련된 스트림 자동 재생하기.</string>
+    <string name="default_content_country_title">기본 콘텐츠 국가</string>
+    <string name="service_title">서비스</string>
+    <string name="settings_category_debug_title">디버그</string>
+    <string name="live">라이브 (LIVE)</string>
+    <string name="always">항상</string>
+    <string name="just_once">한번만</string>
+
+    <string name="toggle_orientation">디바이스 방향 토글</string>
+    <string name="switch_to_background">백그라운드로 전환</string>
+    <string name="switch_to_popup">팝업으로 전환</string>
+    <string name="switch_to_main">기본으로 전환</string>
+
+    <string name="import_data_title">데이터베이스 가져오기</string>
+    <string name="export_data_title">데이터베이스 내보내기</string>
+    <string name="import_data_summary">현재 시청 기록 및 구독 목록을 덮어쓰기 됩니다</string>
+    <string name="export_data_summary">시청 기록, 구독 목록, 재생목록 내보내기.</string>
+    <string name="external_player_unsupported_link_type">외부 플레이어는 이러한 종류의 링크를 지원하지 않습니다</string>
+    <string name="invalid_url_toast">잘못된 URL</string>
+    <string name="video_streams_empty">발견된 비디오 스트림 없음</string>
+    <string name="audio_streams_empty">발견된 오디오 스트림 없음</string>
+
+    <string name="detail_drag_description">드래그하여 재배열</string>
+
+    <string name="create">만들기</string>
+    <string name="delete_one">1개 삭제하기</string>
+    <string name="delete_all">모두 삭제하기</string>
+    <string name="dismiss">취소</string>
+    <string name="rename">이름 바꾸기</string>
+
+    <string name="reCaptcha_title">로봇인지 확인합니다</string>
+    <string name="delete_stream_history_prompt">이 항목을 시청 기록에서 삭제하시겠습니까?</string>
+    <string name="delete_all_history_prompt">모든 항목을 시청 기록에서 삭제하시겠습니까?</string>
+    <string name="title_last_played">마지막으로 재생</string>
+    <string name="title_most_played">가장 많이 재생</string>
+
+    <string name="export_complete_toast">내보내기 완료</string>
+    <string name="import_complete_toast">가져오기 완료</string>
+    <string name="no_valid_zip_file">유효한 ZIP 파일 없음</string>
+    <string name="could_not_import_all_files">경고: 모든 파일 가져오기를 실패했습니다.</string>
+    <string name="override_current_data">이것은 현재 설정을 덮어쓸 것입니다.</string>
+
+    <string name="drawer_open">드로어 열기</string>
+    <string name="drawer_close">드로어 닫기</string>
+    <string name="drawer_header_action_paceholder_text">여기에 무언가가 추가될 거에요~ :D</string>
+
+
+    <string name="preferred_player_share_menu_dialog_title">선호하는 플레이어로 열기</string>
+    <string name="preferred_player_settings_title">선호하는 플레이어</string>
+
+    <string name="video_player">비디오 플레이어</string>
+    <string name="background_player">백그라운드 플레이어</string>
+    <string name="popup_player">팝업 플레이어</string>
+    <string name="always_ask_open_action">항상 묻기</string>
+    
+    <string name="preferred_player_fetcher_notification_title">정보 가져오는 중…</string>
+    <string name="preferred_player_fetcher_notification_message">요청한 콘텐츠를 로딩 중입니다</string>
+
+    <string name="create_playlist">새로운 재생목록 만들기</string>
+    <string name="delete_playlist">재생목록 삭제</string>
+    <string name="rename_playlist">재생목록 이름 바꾸기</string>
+    <string name="playlist_name_input">이름</string>
+    <string name="append_playlist">재생목록에 추가</string>
+    <string name="set_as_playlist_thumbnail">재생목록 썸네일로 설정</string>
+
+    <string name="bookmark_playlist">재생목록 북마크하기</string>
+    <string name="unbookmark_playlist">북마크 제거하기</string>
+
+    <string name="delete_playlist_prompt">이 재생목록을 삭제하시겠습니까?</string>
+    <string name="playlist_creation_success">재생목록 생성 성공</string>
+    <string name="playlist_add_stream_success">재생목록에 추가됨</string>
+    <string name="playlist_thumbnail_change_success">재생목록 썸내일이 바뀜</string>
+    <string name="playlist_delete_failure">재생목록 삭제 실패</string>
+
+    <string name="caption_none">자막 없음</string>
+
+    <string name="resize_fit">꼭 맞게 하기</string>
+    <string name="resize_fill">채우기</string>
+    <string name="resize_zoom">확대</string>
+
+    <string name="caption_auto_generated">자동 생성됨</string>
+    <string name="caption_font_size_settings_title">자막 폰트 크기</string>
+    <string name="smaller_caption_font_size">작은 폰트</string>
+    <string name="normal_caption_font_size">보통 폰트</string>
+    <string name="larger_caption_font_size">큰 폰트</string>
+
+    <string name="live_sync">동기화</string>
+
+    <string name="enable_leak_canary_title">LeakCanary 할성화</string>
+    <string name="enable_leak_canary_summary">메모리 누수 모니터링은 힙 덤핑시 앱이 불안정할 수 있습니다</string>
+
+    <string name="enable_disposed_exceptions_title">Out-of-Lifecycle 에러 보고</string>
+    <string name="enable_disposed_exceptions_summary">프래그먼트 또는 버려진 액티비티 주기 밖에서 일어나는 전달할 수 없는 Rx 예외를 강제적으로 보고하기</string>
+
 </resources>
