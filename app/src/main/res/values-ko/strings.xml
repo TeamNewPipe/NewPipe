@@ -78,7 +78,7 @@
     <string name="could_not_setup_download_menu">다운로드 메뉴를 설정할 수 없습니다</string>
     <string name="live_streams_not_supported">실시간 스트리밍 비디오는 아직 지원되지 않습니다.</string>
     <string name="could_not_get_stream">어떠한 스트림도 가져올 수 없습니다</string>
-    <string name="sorry_string">죄송합니다</string>
+    <string name="sorry_string">죄송합니다. 오류가 발생했습니다.</string>
     <string name="error_report_button_text">이메일을 통해 오류 보고</string>
     <string name="error_snackbar_message">죄송합니다. 오류가 발생했습니다.</string>
     <string name="error_snackbar_action">보고</string>
@@ -389,4 +389,8 @@
     <string name="enable_disposed_exceptions_title">Out-of-Lifecycle 에러 보고</string>
     <string name="enable_disposed_exceptions_summary">프래그먼트 또는 버려진 액티비티 주기 밖에서 일어나는 전달할 수 없는 Rx 예외를 강제적으로 보고하기</string>
 
-</resources>
+<string name="file">파일</string>
+
+    <string name="invalid_directory">잘못된 디렉토리</string>
+    <string name="invalid_source">잘못된 파일/콘덴츠 소스</string>
+    </resources>
