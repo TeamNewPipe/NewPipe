@@ -35,7 +35,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -48,6 +50,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.exoplayer2.Player;
+import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
+import com.google.android.exoplayer2.ui.SubtitleView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
@@ -61,7 +65,6 @@ import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
-import org.schabi.newpipe.util.PopupMenuIconHacker;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.List;
@@ -194,7 +197,6 @@ public final class MainVideoPlayer extends Activity {
         super.onConfigurationChanged(newConfig);
 
         if (playerImpl.isSomePopupMenuVisible()) {
-            playerImpl.moreOptionsPopupMenu.dismiss();
             playerImpl.getQualityPopupMenu().dismiss();
             playerImpl.getPlaybackSpeedPopupMenu().dismiss();
         }
@@ -301,8 +303,11 @@ public final class MainVideoPlayer extends Activity {
         private boolean queueVisible;
 
         private ImageButton moreOptionsButton;
-        public int moreOptionsPopupMenuGroupId = 89;
-        public PopupMenu moreOptionsPopupMenu;
+        private ImageButton toggleOrientationButton;
+        private ImageButton switchPopupButton;
+        private ImageButton switchBackgroundButton;
+
+        private View secondaryControls;
 
         VideoPlayerImpl(final Context context) {
             super("VideoPlayerImpl" + MainVideoPlayer.TAG, context);
@@ -322,14 +327,35 @@ public final class MainVideoPlayer extends Activity {
             this.playPauseButton = rootView.findViewById(R.id.playPauseButton);
             this.playPreviousButton = rootView.findViewById(R.id.playPreviousButton);
             this.playNextButton = rootView.findViewById(R.id.playNextButton);
+
             this.moreOptionsButton = rootView.findViewById(R.id.moreOptionsButton);
-            this.moreOptionsPopupMenu = new PopupMenu(context, moreOptionsButton);
-            buildMoreOptionsMenu();
+            this.secondaryControls = rootView.findViewById(R.id.secondaryControls);
+            this.toggleOrientationButton = rootView.findViewById(R.id.toggleOrientation);
+            this.switchBackgroundButton = rootView.findViewById(R.id.switchBackground);
+            this.switchPopupButton = rootView.findViewById(R.id.switchPopup);
 
             titleTextView.setSelected(true);
             channelTextView.setSelected(true);
 
             getRootView().setKeepScreenOn(true);
+        }
+
+        @Override
+        protected void setupSubtitleView(@NonNull SubtitleView view,
+                                         @NonNull String captionSizeKey) {
+            final float captionRatioInverse;
+            if (captionSizeKey.equals(getString(R.string.smaller_caption_size_key))) {
+                captionRatioInverse = 22f;
+            } else if (captionSizeKey.equals(getString(R.string.larger_caption_size_key))) {
+                captionRatioInverse = 18f;
+            } else {
+                captionRatioInverse = 20f;
+            }
+
+            final DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+            final int minimumLength = Math.min(metrics.heightPixels, metrics.widthPixels);
+            view.setFixedTextSize(TypedValue.COMPLEX_UNIT_PX,
+                    (float) minimumLength / captionRatioInverse);
         }
 
         @Override
@@ -348,7 +374,11 @@ public final class MainVideoPlayer extends Activity {
             playPauseButton.setOnClickListener(this);
             playPreviousButton.setOnClickListener(this);
             playNextButton.setOnClickListener(this);
+
             moreOptionsButton.setOnClickListener(this);
+            toggleOrientationButton.setOnClickListener(this);
+            switchBackgroundButton.setOnClickListener(this);
+            switchPopupButton.setOnClickListener(this);
         }
 
         /*//////////////////////////////////////////////////////////////////////////
@@ -464,6 +494,16 @@ public final class MainVideoPlayer extends Activity {
                 return;
             } else if (v.getId() == moreOptionsButton.getId()) {
                 onMoreOptionsClicked();
+
+            } else if (v.getId() == toggleOrientationButton.getId()) {
+                onScreenRotationClicked();
+
+            } else if (v.getId() == switchPopupButton.getId()) {
+                onFullScreenButtonClicked();
+
+            } else if (v.getId() == switchBackgroundButton.getId()) {
+                onPlayBackgroundButtonClicked();
+
             }
 
             if (getCurrentState() != STATE_COMPLETED) {
@@ -497,8 +537,15 @@ public final class MainVideoPlayer extends Activity {
         private void onMoreOptionsClicked() {
             if (DEBUG) Log.d(TAG, "onMoreOptionsClicked() called");
 
-            moreOptionsPopupMenu.show();
-            isSomePopupMenuVisible = true;
+            if (secondaryControls.getVisibility() == View.VISIBLE) {
+                moreOptionsButton.setImageDrawable(getResources().getDrawable(
+                        R.drawable.ic_expand_more_white_24dp));
+                animateView(secondaryControls, false, 200);
+            } else {
+                moreOptionsButton.setImageDrawable(getResources().getDrawable(
+                        R.drawable.ic_expand_less_white_24dp));
+                animateView(secondaryControls, true, 200);
+            }
             showControls(300);
         }
 
@@ -520,6 +567,18 @@ public final class MainVideoPlayer extends Activity {
         public void onDismiss(PopupMenu menu) {
             super.onDismiss(menu);
             if (isPlaying()) hideControls(300, 0);
+        }
+
+        @Override
+        protected int nextResizeMode(int currentResizeMode) {
+            switch (currentResizeMode) {
+                case AspectRatioFrameLayout.RESIZE_MODE_FIT:
+                    return AspectRatioFrameLayout.RESIZE_MODE_FILL;
+                case AspectRatioFrameLayout.RESIZE_MODE_FILL:
+                    return AspectRatioFrameLayout.RESIZE_MODE_ZOOM;
+                default:
+                    return AspectRatioFrameLayout.RESIZE_MODE_FIT;
+            }
         }
 
         @Override
@@ -635,42 +694,6 @@ public final class MainVideoPlayer extends Activity {
 
             setRepeatModeButton(repeatButton, getRepeatMode());
             setShuffleButton(shuffleButton, playQueue.isShuffled());
-        }
-
-        private void buildMoreOptionsMenu() {
-            this.moreOptionsPopupMenu.getMenuInflater().inflate(R.menu.menu_videooptions,
-                    moreOptionsPopupMenu.getMenu());
-
-            moreOptionsPopupMenu.setOnMenuItemClickListener(menuItem -> {
-                switch (menuItem.getItemId()) {
-                    case R.id.toggleOrientation:
-                        onScreenRotationClicked();
-                        break;
-                    case R.id.switchPopup:
-                        onFullScreenButtonClicked();
-                        break;
-                    case R.id.switchBackground:
-                        onPlayBackgroundButtonClicked();
-                        break;
-                }
-                return false;
-            });
-
-            try {
-                PopupMenuIconHacker.setShowPopupIcon(moreOptionsPopupMenu);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            // fix icon theme
-            if(ThemeHelper.isLightThemeSelected(MainVideoPlayer.this)) {
-                moreOptionsPopupMenu.getMenu()
-                        .findItem(R.id.toggleOrientation)
-                        .setIcon(R.drawable.ic_screen_rotation_black_24dp);
-                moreOptionsPopupMenu.getMenu()
-                        .findItem(R.id.switchPopup)
-                        .setIcon(R.drawable.ic_fullscreen_exit_black_24dp);
-            }
         }
 
         private void buildQueue() {

@@ -12,7 +12,7 @@ import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 
 public class ServiceHelper {
-    private static final StreamingService DEFAULT_FALLBACK_SERVICE = ServiceList.YouTube.getService();
+    private static final StreamingService DEFAULT_FALLBACK_SERVICE = ServiceList.YouTube;
 
     @DrawableRes
     public static int getIcon(int serviceId) {
@@ -45,9 +45,9 @@ public class ServiceHelper {
     public static void setSelectedServiceId(Context context, int serviceId) {
         String serviceName;
         try {
-            serviceName = NewPipe.getService(serviceId).getServiceInfo().name;
+            serviceName = NewPipe.getService(serviceId).getServiceInfo().getName();
         } catch (ExtractionException e) {
-            serviceName = DEFAULT_FALLBACK_SERVICE.getServiceInfo().name;
+            serviceName = DEFAULT_FALLBACK_SERVICE.getServiceInfo().getName();
         }
 
         setSelectedServicePreferences(context, serviceName);
@@ -55,7 +55,7 @@ public class ServiceHelper {
 
     public static void setSelectedServiceId(Context context, String serviceName) {
         int serviceId = NewPipe.getIdOfService(serviceName);
-        if (serviceId == -1) serviceName = DEFAULT_FALLBACK_SERVICE.getServiceInfo().name;
+        if (serviceId == -1) serviceName = DEFAULT_FALLBACK_SERVICE.getServiceInfo().getName();
 
         setSelectedServicePreferences(context, serviceName);
     }

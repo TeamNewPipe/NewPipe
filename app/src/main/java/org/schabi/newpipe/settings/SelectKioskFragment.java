@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.ServiceList;
@@ -44,6 +45,8 @@ import java.util.Vector;
  */
 
 public class SelectKioskFragment extends DialogFragment {
+
+    private static final boolean DEBUG = MainActivity.DEBUG;
 
     RecyclerView recyclerView = null;
     SelectKioskAdapter selectKioskAdapter = null;
@@ -122,11 +125,11 @@ public class SelectKioskFragment extends DialogFragment {
 
             for(StreamingService service : NewPipe.getServices()) {
                 //TODO: Multi-service support
-                if (service.getServiceId() != ServiceList.YouTube.getId()) continue;
+                if (service.getServiceId() != ServiceList.YouTube.getServiceId() && !DEBUG) continue;
 
                 for(String kioskId : service.getKioskList().getAvailableKiosks()) {
                     String name = String.format(getString(R.string.service_kiosk_string),
-                            service.getServiceInfo().name,
+                            service.getServiceInfo().getName(),
                             KioskTranslator.getTranslatedKioskName(kioskId, getContext()));
                     kioskList.add(new Entry(
                             ServiceHelper.getIcon(service.getServiceId()),

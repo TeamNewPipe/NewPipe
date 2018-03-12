@@ -181,7 +181,9 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, Au
     public void onAudioInputFormatChanged(Format format) {}
 
     @Override
-    public void onAudioTrackUnderrun(int i, long l, long l1) {}
+    public void onAudioSinkUnderrun(int bufferSize,
+                                    long bufferSizeMs,
+                                    long elapsedSinceLastFeedMs) {}
 
     @Override
     public void onAudioDisabled(DecoderCounters decoderCounters) {}

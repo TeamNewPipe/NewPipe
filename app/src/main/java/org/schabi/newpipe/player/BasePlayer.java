@@ -63,6 +63,7 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.history.HistoryRecordManager;
 import org.schabi.newpipe.player.helper.AudioReactor;
 import org.schabi.newpipe.player.helper.CacheFactory;
 import org.schabi.newpipe.player.helper.LoadController;
@@ -77,10 +78,13 @@ import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Predicate;
 
+import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_INTERNAL;
+import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_PERIOD_TRANSITION;
+import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SEEK;
+import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SEEK_ADJUSTMENT;
 import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
 
 /**
@@ -147,6 +151,9 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     protected DefaultExtractorsFactory extractorsFactory;
 
     protected Disposable progressUpdateReactor;
+    protected CompositeDisposable databaseUpdateReactor;
+
+    protected HistoryRecordManager recordManager;
 
     //////////////////////////////////////////////////////////////////////////*/
 
@@ -172,6 +179,10 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     public void initPlayer() {
         if (DEBUG) Log.d(TAG, "initPlayer() called with: context = [" + context + "]");
 
+        if (recordManager == null) recordManager = new HistoryRecordManager(context);
+        if (databaseUpdateReactor != null) databaseUpdateReactor.dispose();
+        databaseUpdateReactor = new CompositeDisposable();
+
         final DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
         final AdaptiveTrackSelection.Factory trackSelectionFactory = new AdaptiveTrackSelection.Factory(bandwidthMeter);
         final LoadControl loadControl = new LoadController(context);
@@ -193,18 +204,8 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     private Disposable getProgressReactor() {
         return Observable.interval(PROGRESS_LOOP_INTERVAL, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
-                .filter(new Predicate<Long>() {
-                    @Override
-                    public boolean test(Long aLong) throws Exception {
-                        return isProgressLoopRunning();
-                    }
-                })
-                .subscribe(new Consumer<Long>() {
-                    @Override
-                    public void accept(Long aLong) throws Exception {
-                        triggerProgressUpdate();
-                    }
-                });
+                .filter(ignored -> isProgressLoopRunning())
+                .subscribe(ignored -> triggerProgressUpdate());
     }
 
     public void handleIntent(Intent intent) {
@@ -281,6 +282,12 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         if (playQueue != null) playQueue.dispose();
         if (playbackManager != null) playbackManager.dispose();
         if (audioReactor != null) audioReactor.abandonAudioFocus();
+        if (databaseUpdateReactor != null) databaseUpdateReactor.dispose();
+
+        if (playQueueAdapter != null) {
+            playQueueAdapter.unsetSelectedListener();
+            playQueueAdapter.dispose();
+        }
     }
 
     public void destroy() {
@@ -291,6 +298,7 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
 
         trackSelector = null;
         simpleExoPlayer = null;
+        recordManager = null;
     }
 
     public MediaSource buildMediaSource(String url, String overrideExtension) {
@@ -461,11 +469,11 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         final PlayQueueItem currentSourceItem = playQueue.getItem();
 
         // Check if already playing correct window
-        final boolean isCurrentWindowCorrect =
-                simpleExoPlayer.getCurrentWindowIndex() == currentSourceIndex;
+        final boolean isCurrentPeriodCorrect =
+                simpleExoPlayer.getCurrentPeriodIndex() == currentSourceIndex;
 
         // Check if recovering
-        if (isCurrentWindowCorrect && currentSourceItem != null) {
+        if (isCurrentPeriodCorrect && currentSourceItem != null) {
             /* Recovering with sub-second position may cause a long buffer delay in ExoPlayer,
              * rounding this position to the nearest second will help alleviate this.*/
             final long position = currentSourceItem.getRecoveryPosition();
@@ -582,6 +590,8 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
             errorToast = null;
         }
 
+        savePlaybackState();
+
         switch (error.type) {
             case ExoPlaybackException.TYPE_SOURCE:
                 if (simpleExoPlayer.getCurrentPosition() <
@@ -604,16 +614,25 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     }
 
     @Override
-    public void onPositionDiscontinuity() {
+    public void onPositionDiscontinuity(int reason) {
+        if (DEBUG) Log.d(TAG, "onPositionDiscontinuity() called with reason = [" + reason + "]");
         // Refresh the playback if there is a transition to the next video
-        final int newWindowIndex = simpleExoPlayer.getCurrentWindowIndex();
-        if (DEBUG) Log.d(TAG, "onPositionDiscontinuity() called with window index = [" + newWindowIndex + "]");
+        final int newPeriodIndex = simpleExoPlayer.getCurrentPeriodIndex();
 
-        // If the user selects a new track, then the discontinuity occurs after the index is changed.
-        // Therefore, the only source that causes a discrepancy would be gapless transition,
-        // which can only offset the current track by +1.
-        if (newWindowIndex == playQueue.getIndex() + 1) {
-            playQueue.offsetIndex(+1);
+        /* Discontinuity reasons!! Thank you ExoPlayer lords */
+        switch (reason) {
+            case DISCONTINUITY_REASON_PERIOD_TRANSITION:
+                if (newPeriodIndex == playQueue.getIndex()) {
+                    registerView();
+                } else {
+                    playQueue.offsetIndex(+1);
+                }
+                break;
+            case DISCONTINUITY_REASON_SEEK:
+            case DISCONTINUITY_REASON_SEEK_ADJUSTMENT:
+            case DISCONTINUITY_REASON_INTERNAL:
+            default:
+                break;
         }
         playbackManager.load();
     }
@@ -623,6 +642,16 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         if (DEBUG) Log.d(TAG, "onRepeatModeChanged() called with: mode = [" + i + "]");
     }
 
+    @Override
+    public void onShuffleModeEnabledChanged(boolean shuffleModeEnabled) {
+        if (DEBUG) Log.d(TAG, "onShuffleModeEnabledChanged() called with: " +
+                "mode = [" + shuffleModeEnabled + "]");
+    }
+
+    @Override
+    public void onSeekProcessed() {
+        if (DEBUG) Log.d(TAG, "onSeekProcessed() called");
+    }
     /*//////////////////////////////////////////////////////////////////////////
     // Playback Listener
     //////////////////////////////////////////////////////////////////////////*/
@@ -666,12 +695,14 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         if (currentSourceIndex != playQueue.getIndex()) {
             Log.e(TAG, "Play Queue may be desynchronized: item index=[" + currentSourceIndex +
                     "], queue index=[" + playQueue.getIndex() + "]");
-        } else if (simpleExoPlayer.getCurrentWindowIndex() != currentSourceIndex || !isPlaying()) {
+        } else if (simpleExoPlayer.getCurrentPeriodIndex() != currentSourceIndex || !isPlaying()) {
             final long startPos = info != null ? info.start_position : 0;
-            if (DEBUG) Log.d(TAG, "Rewinding to correct window: " + currentSourceIndex + " at: " + getTimeString((int)startPos));
+            if (DEBUG) Log.d(TAG, "Rewinding to correct window: " + currentSourceIndex +
+                    " at: " + getTimeString((int)startPos));
             simpleExoPlayer.seekTo(currentSourceIndex, startPos);
         }
 
+        registerView();
         initThumbnail(info == null ? item.getThumbnailUrl() : info.thumbnail_url);
     }
 
@@ -755,6 +786,8 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         if (simpleExoPlayer == null || playQueue == null) return;
         if (DEBUG) Log.d(TAG, "onPlayPrevious() called");
 
+        savePlaybackState();
+
         /* If current playback has run for PLAY_PREV_ACTIVATION_LIMIT milliseconds, restart current track.
         * Also restart the track if the current track is the first in a queue.*/
         if (simpleExoPlayer.getCurrentPosition() > PLAY_PREV_ACTIVATION_LIMIT || playQueue.getIndex() == 0) {
@@ -768,6 +801,8 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     public void onPlayNext() {
         if (playQueue == null) return;
         if (DEBUG) Log.d(TAG, "onPlayNext() called");
+
+        savePlaybackState();
 
         playQueue.offsetIndex(+1);
     }
@@ -801,6 +836,15 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
+    private void registerView() {
+        if (databaseUpdateReactor == null || recordManager == null || currentInfo == null) return;
+        databaseUpdateReactor.add(recordManager.onViewed(currentInfo).onErrorComplete()
+                .subscribe(
+                        ignored -> {/* successful */},
+                        error -> Log.e(TAG, "Player onViewed() failure: ", error)
+                ));
+    }
+
     protected void reload() {
         if (playbackManager != null) {
             playbackManager.reset();
@@ -830,6 +874,27 @@ public abstract class BasePlayer implements Player.EventListener, PlaybackListen
         );
     }
 
+    protected void savePlaybackState(final StreamInfo info, final long progress) {
+        if (context == null || info == null || databaseUpdateReactor == null) return;
+        final Disposable stateSaver = recordManager.saveStreamState(info, progress)
+                .observeOn(AndroidSchedulers.mainThread())
+                .onErrorComplete()
+                .subscribe(
+                        ignored -> {/* successful */},
+                        error -> Log.e(TAG, "savePlaybackState() failure: ", error)
+                );
+        databaseUpdateReactor.add(stateSaver);
+    }
+
+    private void savePlaybackState() {
+        if (simpleExoPlayer == null || currentInfo == null) return;
+
+        if (simpleExoPlayer.getCurrentPosition() > RECOVERY_SKIP_THRESHOLD &&
+                simpleExoPlayer.getCurrentPosition() <
+                        simpleExoPlayer.getDuration() - RECOVERY_SKIP_THRESHOLD) {
+            savePlaybackState(currentInfo, simpleExoPlayer.getCurrentPosition());
+        }
+    }
     /*//////////////////////////////////////////////////////////////////////////
     // Getters and Setters
     //////////////////////////////////////////////////////////////////////////*/

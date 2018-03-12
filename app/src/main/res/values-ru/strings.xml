@@ -293,4 +293,38 @@
     <string name="start_here_on_main">Воспроизвести</string>
     <string name="start_here_on_background">Воспроизвести в фоне</string>
     <string name="start_here_on_popup">Воспроизвести в окне</string>
+<string name="no_player_found_toast">Ни одного потокового проигрывателя не было найдено (вы можете установить VLC)</string>
+    <string name="default_content_country_title">Страна контента по умолчанию</string>
+    <string name="service_title">Сервис</string>
+    <string name="always">Всегда</string>
+    <string name="just_once">Только один раз</string>
+
+    <string name="toggle_orientation">Переключить ориентацию</string>
+    <string name="switch_to_background">Перейти в фон</string>
+    <string name="switch_to_popup">Перейти в окно</string>
+    <string name="switch_to_main">Перейти в главное окно</string>
+
+    <string name="player_unrecoverable_failure">Ошибка проигрывателя без возможности восстановления</string>
+    <string name="external_player_unsupported_link_type">Внешние проигрыватели не поддерживают ссылки этих типов</string>
+    <string name="invalid_url_toast">Неверная ссылка</string>
+    <string name="video_streams_empty">Потоки видео не найдены</string>
+    <string name="audio_streams_empty">Потоки аудио не найдены</string>
+
+    <string name="donation_title">Пожертвовать</string>
+    <string name="donation_encouragement">NewPipe разрабатывается добровольцами в свободное время ради вашего удобства использования программы. Пора воздать должное, разработчики могут сделать NewPipe еще лучше с чашечкой кофе!</string>
+    <string name="give_back">Воздать должное</string>
+    <string name="website_title">Веб-сайт</string>
+    <string name="website_encouragement">Для получения более подробной информации и последних новостей о NewPipe посетите наш веб-сайт.</string>
+    <string name="drawer_open">Открыть лоток</string>
+    <string name="drawer_close">Закрыть лоток</string>
+    <string name="preferred_player_share_menu_dialog_title">Открыть с помощью предпочитаемого проигрывателя</string>
+    <string name="preferred_player_settings_title">Предпочитаемый проигрыватель</string>
+
+    <string name="video_player">Проигрыватель видео</string>
+    <string name="background_player">Фоновый проигрыватель</string>
+    <string name="popup_player">Проигрыватель в окне</string>
+    <string name="always_ask_player">Всегда спрашивать</string>
+    
+    <string name="preferred_player_fetcher_notification_title">Получение информации…</string>
+    <string name="preferred_player_fetcher_notification_message">Загрузка запрашиваемого контента</string>
 </resources>

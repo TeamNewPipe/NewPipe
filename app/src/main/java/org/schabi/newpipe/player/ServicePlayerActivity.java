@@ -29,6 +29,7 @@ import com.google.android.exoplayer2.Player;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
+import org.schabi.newpipe.fragments.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.PlayQueueItemBuilder;
@@ -59,6 +60,9 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private static final int PLAYBACK_PITCH_POPUP_MENU_GROUP_ID = 97;
 
     private static final int SMOOTH_SCROLL_MAXIMUM_DISTANCE = 80;
+
+    private static final int MINIMUM_INITIAL_DRAG_VELOCITY = 10;
+    private static final int MAXIMUM_INITIAL_DRAG_VELOCITY = 25;
 
     private View rootView;
 
@@ -149,8 +153,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             case android.R.id.home:
                 finish();
                 return true;
-            case R.id.action_history:
-                NavigationHelper.openHistory(this);
+            case R.id.action_append_playlist:
+                appendToPlaylist();
                 return true;
             case R.id.action_settings:
                 NavigationHelper.openSettings(this);
@@ -185,6 +189,14 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                 null
         ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     }
+
+    private void appendToPlaylist() {
+        if (this.player != null && this.player.getPlayQueue() != null) {
+            PlaylistAppendDialog.fromPlayQueueItems(this.player.getPlayQueue().getStreams())
+                    .show(getSupportFragmentManager(), getTag());
+        }
+    }
+
     ////////////////////////////////////////////////////////////////////////////
     // Service Connection
     ////////////////////////////////////////////////////////////////////////////
@@ -202,6 +214,15 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             unbindService(serviceConnection);
             serviceBound = false;
             stopPlayerListener();
+
+            if (player != null && player.getPlayQueueAdapter() != null) {
+                player.getPlayQueueAdapter().unsetSelectedListener();
+            }
+            if (itemsList != null) itemsList.setAdapter(null);
+            if (itemTouchHelper != null) itemTouchHelper.attachToRecyclerView(null);
+
+            itemsList = null;
+            itemTouchHelper = null;
             player = null;
         }
     }
@@ -376,7 +397,19 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private ItemTouchHelper.SimpleCallback getItemTouchCallback() {
         return new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN, 0) {
             @Override
-            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder source, RecyclerView.ViewHolder target) {
+            public int interpolateOutOfBoundsScroll(RecyclerView recyclerView, int viewSize,
+                                                    int viewSizeOutOfBounds, int totalSize,
+                                                    long msSinceStartScroll) {
+                final int standardSpeed = super.interpolateOutOfBoundsScroll(recyclerView, viewSize,
+                        viewSizeOutOfBounds, totalSize, msSinceStartScroll);
+                final int clampedAbsVelocity = Math.max(MINIMUM_INITIAL_DRAG_VELOCITY,
+                        Math.min(Math.abs(standardSpeed), MAXIMUM_INITIAL_DRAG_VELOCITY));
+                return clampedAbsVelocity * (int) Math.signum(viewSizeOutOfBounds);
+            }
+
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder source,
+                                  RecyclerView.ViewHolder target) {
                 if (source.getItemViewType() != target.getItemViewType()) {
                     return false;
                 }

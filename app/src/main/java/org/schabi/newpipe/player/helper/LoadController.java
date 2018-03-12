@@ -2,6 +2,7 @@ package org.schabi.newpipe.player.helper;
 
 import android.content.Context;
 
+import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.LoadControl;
 import com.google.android.exoplayer2.Renderer;
@@ -9,6 +10,8 @@ import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.upstream.Allocator;
 import com.google.android.exoplayer2.upstream.DefaultAllocator;
+
+import static com.google.android.exoplayer2.DefaultLoadControl.DEFAULT_BUFFER_FOR_PLAYBACK_AFTER_REBUFFER_MS;
 
 public class LoadController implements LoadControl {
 
@@ -23,16 +26,17 @@ public class LoadController implements LoadControl {
     public LoadController(final Context context) {
         this(PlayerHelper.getMinBufferMs(context),
                 PlayerHelper.getMaxBufferMs(context),
-                PlayerHelper.getBufferForPlaybackMs(context),
-                PlayerHelper.getBufferForPlaybackAfterRebufferMs(context));
+                PlayerHelper.getBufferForPlaybackMs(context));
     }
 
     public LoadController(final int minBufferMs,
                           final int maxBufferMs,
-                          final long bufferForPlaybackMs,
-                          final long bufferForPlaybackAfterRebufferMs) {
-        final DefaultAllocator allocator = new DefaultAllocator(true, 65536);
-        internalLoadControl = new DefaultLoadControl(allocator, minBufferMs, maxBufferMs, bufferForPlaybackMs, bufferForPlaybackAfterRebufferMs);
+                          final int bufferForPlaybackMs) {
+        final DefaultAllocator allocator = new DefaultAllocator(true,
+                C.DEFAULT_BUFFER_SEGMENT_SIZE);
+
+        internalLoadControl = new DefaultLoadControl(allocator, minBufferMs, maxBufferMs,
+                bufferForPlaybackMs, DEFAULT_BUFFER_FOR_PLAYBACK_AFTER_REBUFFER_MS);
     }
 
     /*//////////////////////////////////////////////////////////////////////////

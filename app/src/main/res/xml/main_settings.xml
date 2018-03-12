@@ -28,4 +28,10 @@
         android:fragment="org.schabi.newpipe.settings.ContentSettingsFragment"
         android:icon="?attr/language"
         android:title="@string/content"/>
+
+    <PreferenceScreen
+        android:fragment="org.schabi.newpipe.settings.DebugSettingsFragment"
+        android:icon="?attr/bug"
+        android:title="@string/settings_category_debug_title"
+        android:key="@string/debug_pref_screen_key"/>
 </PreferenceScreen>

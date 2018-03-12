@@ -306,4 +306,9 @@
 
     <string name="invalid_url_toast">العنوان خاطئ</string>
     <string name="preferred_player_share_menu_title">\@string/preferred_player_settings_title</string>
+    <string name="no_player_found_toast">لم يتم العثور على مشغل بث (يمكنك تثبيت VLC لتشغيله)</string>
+    <string name="import_data_title">استيراد قاعدة البيانات</string>
+    <string name="export_data_title">تصدير قاعدة البيانات</string>
+    <string name="import_data_summary">"سيتجاوز سجل التاريخ  والاشتراكات الحالية "</string>
+    <string name="export_data_summary">تصدير سجل, الاشتراكات وقوائم التشغيل.</string>
     </resources>

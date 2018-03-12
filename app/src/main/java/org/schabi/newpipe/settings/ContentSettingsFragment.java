@@ -73,7 +73,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                             .putString(getString(R.string.main_page_selectd_kiosk_id), kioskId).apply();
                     String serviceName = "";
                     try {
-                        serviceName = NewPipe.getService(service_id).getServiceInfo().name;
+                        serviceName = NewPipe.getService(service_id).getServiceInfo().getName();
                     } catch (ExtractionException e) {
                         onError(e);
                     }
@@ -245,7 +245,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
                 String summary =
                         String.format(getString(R.string.service_kiosk_string),
-                                service.getServiceInfo().name,
+                                service.getServiceInfo().getName(),
                                 kioskName);
 
                 mainPagePref.setSummary(summary);

@@ -13,6 +13,7 @@ import android.view.View;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
+import com.squareup.leakcanary.RefWatcher;
 
 import icepick.Icepick;
 
@@ -65,6 +66,14 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        RefWatcher refWatcher = App.getRefWatcher(getActivity());
+        if (refWatcher != null) refWatcher.watch(this);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
