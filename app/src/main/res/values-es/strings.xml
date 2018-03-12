@@ -410,4 +410,44 @@ abrir en modo popup</string>
     <string name="auto_queue_summary">Automáticamente añadir un vídeo relacionado cuando el reproductor llegue al último vídeo en una lista de reproducción no repetible.</string>
     <string name="live">DIRECTO</string>
     <string name="live_sync">SINCRONIZAR</string>
+<string name="file">Archivo</string>
+
+    <string name="invalid_directory">Directorio invalido</string>
+    <string name="invalid_source">Fuente del archivo/contenido inválida</string>
+    <string name="invalid_file">El archivo no existe o el permiso es insuficiente para leerlo o escribir en él</string>
+    <string name="file_name_empty_error">El nombre del archivo no puede estar vacío</string>
+    <string name="error_occurred_detail">Ocurrió un error: %1$s</string>
+
+    <string name="import_export_title">Importar/Exportar</string>
+    <string name="import_title">Importar</string>
+    <string name="import_from">Importar desde</string>
+    <string name="export_to">Exportar a</string>
+
+    <string name="import_ongoing">Importando…</string>
+    <string name="export_ongoing">Exportando…</string>
+
+    <string name="import_file_title">Importar archivo</string>
+    <string name="previous_export">Exportación anterior</string>
+
+    <string name="subscriptions_import_unsuccessful">Importación de suscripciones fallida</string>
+    <string name="subscriptions_export_unsuccessful">Exportación de suscripciones fallida</string>
+
+    <string name="import_youtube_instructions">Para importar sus suscripciones de YouTube, necesitará el archivo de exportación, el cual puede ser descargado siguiendo estas instrucciones:
+\n
+\n1. Vaya a esta URL: %1$s
+\n2. Ingrese a su cuenta cuando se le pida
+\n3. Una descarga debería comenzar (ese es el archivo de exportación)</string>
+    <string name="import_soundcloud_instructions">Para importar sus seguimientos de SoundCloud, debe conocer la URL o el ID de su perfil. Si es así, simplemente escriba cualquiera de ellos en la entrada de abajo y ya está listo para comenzar.
+\n
+\nSi no es así, puede seguir estos pasos:
+\n
+\n1. Active el \"modo escritorio\" en algún navegador (el sitio no está disponible para dispositivos móviles)
+\n2. Vaya a esta URL: %1$s
+\n3. Ingrese a su cuenta cuando se le pida
+\n4. Copie la URL a la que fue redireccionado (esa es la URL de su perfil)</string>
+    <string name="import_soundcloud_instructions_hint">suID, soundcloud.com/suID</string>
+
+    <string name="import_network_expensive_warning">Tenga en cuenta que esta operación puede ser costosa para la red.
+\n
+\n¿Desea continuar?</string>
 </resources>
