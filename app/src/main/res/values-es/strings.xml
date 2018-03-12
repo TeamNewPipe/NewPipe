@@ -410,5 +410,4 @@ abrir en modo popup</string>
     <string name="auto_queue_summary">Automáticamente añadir un vídeo relacionado cuando el reproductor llegue al último vídeo en una lista de reproducción no repetible.</string>
     <string name="live">DIRECTO</string>
     <string name="live_sync">SINCRONIZAR</string>
-
-    </resources>
+</resources>

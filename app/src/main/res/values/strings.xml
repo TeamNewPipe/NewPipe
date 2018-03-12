@@ -113,7 +113,6 @@
     <string name="show_age_restricted_content_title">Show age restricted content</string>
     <string name="video_is_age_restricted">Age Restricted Video. Allowing such material is possible from Settings.</string>
     <string name="duration_live">live</string>
-    <string name="live">LIVE</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
     <string name="error_report_title">Error report</string>
@@ -132,6 +131,7 @@
     <string name="play_all">Play All</string>
     <string name="always">Always</string>
     <string name="just_once">Just Once</string>
+    <string name="file">File</string>
 
     <string name="notification_channel_id" translatable="false">newpipe</string>
     <string name="notification_channel_name">NewPipe Notification</string>
@@ -169,6 +169,11 @@
     <string name="invalid_url_toast">Invalid URL</string>
     <string name="video_streams_empty">No video streams found</string>
     <string name="audio_streams_empty">No audio streams found</string>
+    <string name="invalid_directory">Invalid directory</string>
+    <string name="invalid_source">Invalid file/content source</string>
+    <string name="invalid_file">File doesn\'t exist or insufficient permission to read or write to it</string>
+    <string name="file_name_empty_error">File name cannot be empty</string>
+    <string name="error_occurred_detail">An error occurred: %1$s</string>
 
     <!-- error activity -->
     <string name="sorry_string">Sorry, that should not have happened.</string>
@@ -427,4 +432,24 @@
     <string name="enable_disposed_exceptions_title">Report Out-of-Lifecycle Errors</string>
     <string name="enable_disposed_exceptions_summary">Force reporting of undeliverable Rx exceptions occurring outside of fragment or activity lifecycle after dispose</string>
 
+    <!-- Subscriptions import/export -->
+    <string name="import_export_title">Import/Export</string>
+    <string name="import_title">Import</string>
+    <string name="import_from">Import from</string>
+    <string name="export_to">Export to</string>
+
+    <string name="import_ongoing">Importing…</string>
+    <string name="export_ongoing">Exporting…</string>
+
+    <string name="import_file_title">Import file</string>
+    <string name="previous_export">Previous export</string>
+
+    <string name="subscriptions_import_unsuccessful">Subscriptions import failed</string>
+    <string name="subscriptions_export_unsuccessful">Subscriptions export failed</string>
+
+    <string name="import_youtube_instructions">To import your YouTube subscriptions you will need the export file, which can be downloaded following these instructions:\n\n1. Go to this url: %1$s\n2. Log in to your account when asked\n3. A download should start (that\'s the export file) </string>
+    <string name="import_soundcloud_instructions">To import your SoundCloud followings you have to know your profile url or id. If you do, just type either of them in the input below and you\'re ready to go.\n\nIf you don\'t, you can follow these steps:\n\n1. Enable \"desktop mode\" in some browser (the site is not available for mobile devices)\n2. Go to this url: %1$s\n3. Log in to your account when asked\n4. Copy the url that you were redirected to (that\'s your profile url)</string>
+    <string name="import_soundcloud_instructions_hint">yourid, soundcloud.com/yourid</string>
+
+    <string name="import_network_expensive_warning">Keep in mind that this operation can be network expensive.\n\nDo you want to continue?</string>
 </resources>

@@ -37,7 +37,7 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/detail_thumbnail_view_description"
-                    android:scaleType="centerCrop"
+                    android:scaleType="fitCenter"
                     tools:ignore="RtlHardcoded"
                     tools:layout_height="200dp"
                     tools:src="@drawable/dummy_thumbnail"/>
@@ -69,6 +69,31 @@
                     android:text="@string/hold_to_append"
                     android:visibility="gone"
                     tools:ignore="RtlHardcoded"
+                    tools:visibility="visible"/>
+
+                <TextView
+                    android:id="@+id/detail_duration_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|right"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginTop="8dp"
+                    android:alpha=".6"
+                    android:background="#23000000"
+                    android:gravity="center"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="6dp"
+                    android:paddingRight="6dp"
+                    android:paddingTop="2dp"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    tools:ignore="RtlHardcoded"
+                    tools:text="12:38"
                     tools:visibility="visible"/>
             </FrameLayout>
 

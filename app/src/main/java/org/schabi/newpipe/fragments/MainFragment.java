@@ -106,7 +106,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         super.onCreateOptionsMenu(menu, inflater);
         if (DEBUG) Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu + "], inflater = [" + inflater + "]");
         inflater.inflate(R.menu.main_fragment_menu, menu);
-        SubMenu kioskMenu = menu.addSubMenu(getString(R.string.kiosk));
+        SubMenu kioskMenu = menu.addSubMenu(Menu.NONE, Menu.NONE, 200, getString(R.string.kiosk));
         try {
             createKioskMenu(kioskMenu, inflater);
         } catch (Exception e) {

@@ -46,4 +46,6 @@
     <!-- Elements Size -->
     <dimen name="playlist_item_thumbnail_stream_count_width">70dp</dimen>
 
+    <!-- File picker dimensions -->
+    <dimen name="file_picker_items_text_size">16sp</dimen>
 </resources>

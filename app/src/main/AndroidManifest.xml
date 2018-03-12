@@ -70,6 +70,9 @@
             android:name=".history.HistoryActivity"
             android:label="@string/title_activity_history"/>
 
+        <service android:name=".subscription.services.SubscriptionsImportService"/>
+        <service android:name=".subscription.services.SubscriptionsExportService"/>
+
         <activity
             android:name=".PanicResponderActivity"
             android:launchMode="singleInstance"
@@ -117,7 +120,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/nnf_provider_paths"/>
         </provider>
 
         <activity

@@ -399,7 +399,6 @@
     <string name="use_inexact_seek_summary">İsabetsiz konumlama, oynatıcının konumları düşürülmüş duyarlıkla saptamasını sağlar</string>
     <string name="auto_queue_title">Sonraki akışı kendiliğinden kuyrukla</string>
     <string name="auto_queue_summary">Yinelemeyen oynatma kuyruğundaki son akış başladığında ilişkili akışı kuyruğun sonuna kendiliğinden ekle.</string>
-    <string name="live">CANLI</string>
     <string name="live_sync">EŞZAMANLA</string>
 
     </resources>

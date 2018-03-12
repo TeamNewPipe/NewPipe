@@ -21,8 +21,8 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.fragments.list.BaseListFragment;
-import org.schabi.newpipe.fragments.subscription.SubscriptionService;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.subscription.SubscriptionService;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -64,7 +64,7 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        subscriptionService = SubscriptionService.getInstance();
+        subscriptionService = SubscriptionService.getInstance(activity);
 
         FEED_LOAD_COUNT = howManyItemsToLoad();
     }

@@ -308,5 +308,4 @@
     <string name="export_data_title">יצוא מסד נתונים</string>
     <string name="external_player_unsupported_link_type">נגנים חיצוניים לא תומכים בסוגי קישורים אלה</string>
     <string name="invalid_url_toast">כתובת שגויה</string>
-    <string name="live">חי</string>
     </resources>

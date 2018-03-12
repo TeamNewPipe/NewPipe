@@ -16,7 +16,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -92,8 +91,6 @@ import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
@@ -138,9 +135,9 @@ public class VideoDetailFragment
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
+
     private Menu menu;
 
-    private Toolbar toolbar;
     private Spinner spinnerToolbar;
 
     private ParallaxScrollView parallaxScrollRootView;
@@ -160,6 +157,7 @@ public class VideoDetailFragment
     private TextView detailControlsAddToPlaylist;
     private TextView detailControlsDownload;
     private TextView appendControlsDetail;
+    private TextView detailDurationView;
 
     private LinearLayout videoDescriptionRootLayout;
     private TextView videoUploadDateView;
@@ -461,9 +459,7 @@ public class VideoDetailFragment
     @Override
     protected void initViews(View rootView, Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
-
-        toolbar = activity.findViewById(R.id.toolbar);
-        spinnerToolbar = toolbar.findViewById(R.id.toolbar_spinner);
+        spinnerToolbar = activity.findViewById(R.id.toolbar).findViewById(R.id.toolbar_spinner);
 
         parallaxScrollRootView = rootView.findViewById(R.id.detail_main_content);
 
@@ -483,6 +479,7 @@ public class VideoDetailFragment
         detailControlsAddToPlaylist = rootView.findViewById(R.id.detail_controls_playlist_append);
         detailControlsDownload = rootView.findViewById(R.id.detail_controls_download);
         appendControlsDetail = rootView.findViewById(R.id.touch_append_detail);
+        detailDurationView = rootView.findViewById(R.id.detail_duration_view);
 
         videoDescriptionRootLayout = rootView.findViewById(R.id.detail_description_root_layout);
         videoUploadDateView = rootView.findViewById(R.id.detail_upload_date_view);
@@ -1010,9 +1007,6 @@ public class VideoDetailFragment
         int height = isPortrait
                 ? (int) (metrics.widthPixels / (16.0f / 9.0f))
                 : (int) (metrics.heightPixels / 2f);
-        thumbnailImageView.setScaleType(isPortrait
-                ? ImageView.ScaleType.CENTER_CROP
-                : ImageView.ScaleType.FIT_CENTER);
         thumbnailImageView.setLayoutParams(
                 new FrameLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, height));
         thumbnailImageView.setMinimumHeight(height);
@@ -1098,6 +1092,7 @@ public class VideoDetailFragment
         animateView(contentRootLayoutHiding, false, 200);
         animateView(spinnerToolbar, false, 200);
         animateView(thumbnailPlayButton, false, 50);
+        animateView(detailDurationView, false, 100);
 
         videoTitleTextView.setText(name != null ? name : "");
         videoTitleTextView.setMaxLines(1);
@@ -1168,6 +1163,18 @@ public class VideoDetailFragment
             thumbsDisabledTextView.setVisibility(View.GONE);
         }
 
+        if (info.getDuration() > 0) {
+            detailDurationView.setText(Localization.getDurationString(info.getDuration()));
+            detailDurationView.setBackgroundColor(ContextCompat.getColor(activity, R.color.duration_background_color));
+            animateView(detailDurationView, true, 100);
+        } else if (info.getStreamType() == StreamType.LIVE_STREAM) {
+            detailDurationView.setText(R.string.duration_live);
+            detailDurationView.setBackgroundColor(ContextCompat.getColor(activity, R.color.live_duration_background_color));
+            animateView(detailDurationView, true, 100);
+        } else {
+            detailDurationView.setVisibility(View.GONE);
+        }
+
         videoTitleRoot.setClickable(true);
         videoTitleToggleArrow.setVisibility(View.VISIBLE);
         videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
@@ -1201,7 +1208,6 @@ public class VideoDetailFragment
             case AUDIO_LIVE_STREAM:
                 detailControlsDownload.setVisibility(View.GONE);
                 spinnerToolbar.setVisibility(View.GONE);
-                toolbar.setTitle(R.string.live);
                 break;
             default:
                 if (!info.video_streams.isEmpty() || !info.video_only_streams.isEmpty()) break;

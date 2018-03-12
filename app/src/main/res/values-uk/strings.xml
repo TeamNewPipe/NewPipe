@@ -390,7 +390,6 @@
     <string name="use_inexact_seek_summary">Неточне шукання дозволяє програвачеві рухатися позиціями швидше, проте з меншою точністю</string>
     <string name="auto_queue_title">Автоматично додати до черги наступний стрим</string>
     <string name="auto_queue_summary">Автоматично додавати пов\'язаний стрим, під час початку програвання останнього стриму.</string>
-    <string name="live">НАЖИВО</string>
     <string name="live_sync">СИНХРОНІЗАЦІЯ</string>
 
     </resources>
