@@ -241,7 +241,7 @@
     <string name="contribution_encouragement">번역, 디자인, 코딩 등 다양한 기여를 언제나 환영합니다. 향상에 참여해주세요!</string>
     <string name="view_on_github">GitHub에서 보기</string>
     <string name="donation_title">기부</string>
-    <string name="donation_encouragement">뉴파이프는 자원봉사자들이 자발적으로 여가 시간을 활용해 개발하고 있습니다. 이제 이러한 노력에 보답할 시간입니다.</string>
+    <string name="donation_encouragement">뉴파이프는 자원봉사자들이 자발적으로 여가 시간을 활용해 개발하고 있습니다. 이제 이러한 노력에 보답할 시간입니다!</string>
     <string name="give_back">보답하기</string>
     <string name="website_title">웹사이트</string>
     <string name="website_encouragement">뉴파이프에 관한 최신 및 상세 정보를 얻으려면 웹사이트를 방문하세요.</string>
@@ -393,4 +393,39 @@
 
     <string name="invalid_directory">잘못된 디렉토리</string>
     <string name="invalid_source">잘못된 파일/콘덴츠 소스</string>
-    </resources>
+    <string name="invalid_file">파일이 존재하지 않거나 읽기/쓰기 권환이 없습니다</string>
+    <string name="file_name_empty_error">파일 이름이 비어 있으면 안됩니다</string>
+    <string name="error_occurred_detail">오류 발생: %1$s</string>
+
+    <string name="import_export_title">가져오기/내보내기</string>
+    <string name="import_title">가져오기</string>
+    <string name="import_from">이곳으로부터 가져오기</string>
+    <string name="export_to">이곳으로 내보내기</string>
+
+    <string name="import_ongoing">가져오는 중.…</string>
+    <string name="export_ongoing">내보내는 중…</string>
+
+    <string name="import_file_title">파일 가져오기</string>
+    <string name="previous_export">이전 내보내기</string>
+
+    <string name="subscriptions_import_unsuccessful">구독 목록 가져오기 실패</string>
+    <string name="subscriptions_export_unsuccessful">구독 목록 내보내기 실패</string>
+
+    <string name="import_youtube_instructions">YouTube 구독 목록을 가져오려면 내보내기 파일이 필요합니다. 다운로드 하려면
+\n1. 이곳으로 가세요: $1$s
+\n2. 로그인이 필요하면 하세요
+\n3. 다운로드가 곧 시작 됩니다 (이 파일이 내보내기 파일 입니다)</string>
+    <string name="import_soundcloud_instructions">SoundCloud 팔로잉 목록을 가져오려면 당신의 프로필 URL 및 ID를 알아야 합니다. 알고 있다면 아래에 있는 빈칸에 입력해 주세요.
+\n
+\n만약 모르신다면, 다음을 참고하세요:
+\n
+\n1. 모바일 환경이시면 브라우저 설정에서 데스크탑 모드를 활성화해주세요. Chrome 모바일에서는 오른쪽 ... 클릭시 아래쪽에 있습니다.
+\n2. 이 주소로 가세요: %1$s 
+\n3. 로그인이 필요하면 하세요.
+\n4. 리디렉트된 곳의 URL을 복사하세요. (이 URL이 당신의 프로필 URL 입니다)</string>
+    <string name="import_soundcloud_instructions_hint">프로필ID, soundcloud.com/프로필ID</string>
+
+    <string name="import_network_expensive_warning">경고: 데이터 소모량이 늘어날 수 있습니다.
+\n
+\n진행하시겠습니까?</string>
+</resources>
