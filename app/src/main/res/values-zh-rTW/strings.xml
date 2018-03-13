@@ -387,4 +387,23 @@
     <string name="auto_queue_summary">在非重複播放佇列中的最後一個串流上開始播放時，自動附上相關串流。</string>
     <string name="live_sync">同步</string>
 
+    <string name="file">檔案</string>
+
+    <string name="invalid_directory">無效的目錄</string>
+    <string name="invalid_source">無效的檔案/內容來源</string>
+    <string name="file_name_empty_error">檔案名稱不能留空</string>
+    <string name="error_occurred_detail">發生錯誤：%1$s</string>
+
+    <string name="import_export_title">匯入/匯出</string>
+    <string name="import_title">匯入</string>
+    <string name="import_from">匯入來自</string>
+    <string name="export_to">匯出到</string>
+
+    <string name="import_ongoing">正在匯入…</string>
+    <string name="export_ongoing">正在匯出…</string>
+
+    <string name="import_file_title">匯入檔案</string>
+    <string name="subscriptions_import_unsuccessful">訂閱匯入失敗</string>
+    <string name="subscriptions_export_unsuccessful">訂閱匯出失敗</string>
+
     </resources>
