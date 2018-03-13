@@ -215,7 +215,7 @@
     <string name="msg_popup_permission">이 권한은 팝업 모드에서
 \n열기 위해 필요합니다</string>
 
-    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="reCaptchaActivity">로봇인지 확인 (reCAPTCHA)</string>
     <string name="recaptcha_request_toast">reCAPTCHA Challenge 요청됨</string>
 
     <string name="settings_category_downloads_title">다운로드</string>
