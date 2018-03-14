@@ -34,6 +34,7 @@ import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.PlayQueueItemBuilder;
 import org.schabi.newpipe.playlist.PlayQueueItemHolder;
+import org.schabi.newpipe.playlist.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -60,9 +61,6 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private static final int PLAYBACK_PITCH_POPUP_MENU_GROUP_ID = 97;
 
     private static final int SMOOTH_SCROLL_MAXIMUM_DISTANCE = 80;
-
-    private static final int MINIMUM_INITIAL_DRAG_VELOCITY = 10;
-    private static final int MAXIMUM_INITIAL_DRAG_VELOCITY = 25;
 
     private View rootView;
 
@@ -398,43 +396,11 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     }
 
     private ItemTouchHelper.SimpleCallback getItemTouchCallback() {
-        return new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN, 0) {
+        return new PlayQueueItemTouchCallback() {
             @Override
-            public int interpolateOutOfBoundsScroll(RecyclerView recyclerView, int viewSize,
-                                                    int viewSizeOutOfBounds, int totalSize,
-                                                    long msSinceStartScroll) {
-                final int standardSpeed = super.interpolateOutOfBoundsScroll(recyclerView, viewSize,
-                        viewSizeOutOfBounds, totalSize, msSinceStartScroll);
-                final int clampedAbsVelocity = Math.max(MINIMUM_INITIAL_DRAG_VELOCITY,
-                        Math.min(Math.abs(standardSpeed), MAXIMUM_INITIAL_DRAG_VELOCITY));
-                return clampedAbsVelocity * (int) Math.signum(viewSizeOutOfBounds);
-            }
-
-            @Override
-            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder source,
-                                  RecyclerView.ViewHolder target) {
-                if (source.getItemViewType() != target.getItemViewType()) {
-                    return false;
-                }
-
-                final int sourceIndex = source.getLayoutPosition();
-                final int targetIndex = target.getLayoutPosition();
+            public void onMove(int sourceIndex, int targetIndex) {
                 if (player != null) player.getPlayQueue().move(sourceIndex, targetIndex);
-                return true;
             }
-
-            @Override
-            public boolean isLongPressDragEnabled() {
-                return false;
-            }
-
-            @Override
-            public boolean isItemViewSwipeEnabled() {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {}
         };
     }
 

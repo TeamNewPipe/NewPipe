@@ -160,6 +160,10 @@
     <string name="import_data">import_data</string>
     <string name="export_data">export_data</string>
 
+    <string name="download_thumbnail_key" translatable="false">download_thumbnail_key</string>
+
+    <string name="metadata_cache_wipe_key" translatable="false">cache_wipe_key</string>
+
     <!-- FileName Downloads  -->
     <string name="settings_file_charset_key" translatable="false">file_rename</string>
     <string name="settings_file_replacement_character_key" translatable="false">file_replacement_character</string>

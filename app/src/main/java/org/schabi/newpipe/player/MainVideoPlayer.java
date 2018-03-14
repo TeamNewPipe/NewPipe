@@ -62,6 +62,7 @@ import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.PlayQueueItemBuilder;
 import org.schabi.newpipe.playlist.PlayQueueItemHolder;
+import org.schabi.newpipe.playlist.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -76,6 +77,8 @@ import java.util.UUID;
 import static org.schabi.newpipe.player.BasePlayer.STATE_PLAYING;
 import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_DURATION;
 import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME;
+import static org.schabi.newpipe.util.AnimationUtils.Type.SLIDE_AND_ALPHA;
+import static org.schabi.newpipe.util.AnimationUtils.animateRotation;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 import static org.schabi.newpipe.util.StateSaver.KEY_SAVED_STATE;
 
@@ -110,7 +113,7 @@ public final class MainVideoPlayer extends Activity implements StateSaver.WriteR
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) getWindow().setStatusBarColor(Color.BLACK);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
-        changeSystemUi();
+        hideSystemUi();
         setContentView(R.layout.activity_main_player);
         playerImpl = new VideoPlayerImpl(this);
         playerImpl.setup(findViewById(android.R.id.content));
@@ -597,28 +600,27 @@ public final class MainVideoPlayer extends Activity implements StateSaver.WriteR
             updatePlaybackButtons();
 
             getControlsRoot().setVisibility(View.INVISIBLE);
-            queueLayout.setVisibility(View.VISIBLE);
+            animateView(queueLayout, SLIDE_AND_ALPHA, /*visible=*/true,
+                    DEFAULT_CONTROLS_DURATION);
 
             itemsList.scrollToPosition(playQueue.getIndex());
         }
 
         private void onQueueClosed() {
-            queueLayout.setVisibility(View.GONE);
+            animateView(queueLayout, SLIDE_AND_ALPHA, /*visible=*/false,
+                    DEFAULT_CONTROLS_DURATION);
             queueVisible = false;
         }
 
         private void onMoreOptionsClicked() {
             if (DEBUG) Log.d(TAG, "onMoreOptionsClicked() called");
 
-            if (secondaryControls.getVisibility() == View.VISIBLE) {
-                moreOptionsButton.setImageDrawable(getResources().getDrawable(
-                        R.drawable.ic_expand_more_white_24dp));
-                animateView(secondaryControls, false, 200);
-            } else {
-                moreOptionsButton.setImageDrawable(getResources().getDrawable(
-                        R.drawable.ic_expand_less_white_24dp));
-                animateView(secondaryControls, true, 200);
-            }
+            final boolean isMoreControlsVisible = secondaryControls.getVisibility() == View.VISIBLE;
+
+            animateRotation(moreOptionsButton, DEFAULT_CONTROLS_DURATION,
+                    isMoreControlsVisible ? 0 : 180);
+            animateView(secondaryControls, SLIDE_AND_ALPHA, !isMoreControlsVisible,
+                    DEFAULT_CONTROLS_DURATION);
             showControls(DEFAULT_CONTROLS_DURATION);
         }
 
@@ -696,7 +698,6 @@ public final class MainVideoPlayer extends Activity implements StateSaver.WriteR
                 animatePlayButtons(true, 200);
             });
 
-            changeSystemUi();
             getRootView().setKeepScreenOn(true);
         }
 
@@ -798,31 +799,11 @@ public final class MainVideoPlayer extends Activity implements StateSaver.WriteR
         }
 
         private ItemTouchHelper.SimpleCallback getItemTouchCallback() {
-            return new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN, 0) {
+            return new PlayQueueItemTouchCallback() {
                 @Override
-                public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder source, RecyclerView.ViewHolder target) {
-                    if (source.getItemViewType() != target.getItemViewType()) {
-                        return false;
-                    }
-
-                    final int sourceIndex = source.getLayoutPosition();
-                    final int targetIndex = target.getLayoutPosition();
-                    playQueue.move(sourceIndex, targetIndex);
-                    return true;
+                public void onMove(int sourceIndex, int targetIndex) {
+                    if (playQueue != null) playQueue.move(sourceIndex, targetIndex);
                 }
-
-                @Override
-                public boolean isLongPressDragEnabled() {
-                    return false;
-                }
-
-                @Override
-                public boolean isItemViewSwipeEnabled() {
-                    return false;
-                }
-
-                @Override
-                public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {}
             };
         }
 

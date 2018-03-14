@@ -57,6 +57,7 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.history.HistoryRecordManager;
 import org.schabi.newpipe.player.helper.AudioReactor;
 import org.schabi.newpipe.player.helper.LoadController;
@@ -244,6 +245,7 @@ public abstract class BasePlayer implements
 
         playQueue = queue;
         playQueue.init();
+        if (playbackManager != null) playbackManager.dispose();
         playbackManager = new MediaSourceManager(this, playQueue);
 
         if (playQueueAdapter != null) playQueueAdapter.dispose();
@@ -272,7 +274,6 @@ public abstract class BasePlayer implements
     public void destroy() {
         if (DEBUG) Log.d(TAG, "destroy() called");
         destroyPlayer();
-        clearThumbnailCache();
         unregisterBroadcastReceiver();
 
         trackSelector = null;
@@ -314,11 +315,6 @@ public abstract class BasePlayer implements
         if (DEBUG) Log.d(TAG, "Thumbnail - onLoadingCancelled() called with: " +
                 "imageUri = [" + imageUri + "], view = [" + view + "]");
     }
-
-    protected void clearThumbnailCache() {
-        ImageLoader.getInstance().clearMemoryCache();
-    }
-
     /*//////////////////////////////////////////////////////////////////////////
     // MediaSource Building
     //////////////////////////////////////////////////////////////////////////*/
@@ -448,7 +444,6 @@ public abstract class BasePlayer implements
     public void onPlaying() {
         if (DEBUG) Log.d(TAG, "onPlaying() called");
         if (!isProgressLoopRunning()) startProgressLoop();
-        if (!isCurrentWindowValid()) seekToDefault();
     }
 
     public void onBuffering() {}
@@ -522,11 +517,9 @@ public abstract class BasePlayer implements
         );
     }
 
-
     private Disposable getProgressReactor() {
         return Observable.interval(PROGRESS_LOOP_INTERVAL, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
-                .filter(ignored -> isProgressLoopRunning())
                 .subscribe(ignored -> triggerProgressUpdate());
     }
 
@@ -541,16 +534,19 @@ public abstract class BasePlayer implements
                 (manifest == null ? "no manifest" : "available manifest") + ", " +
                 "timeline size = [" + timeline.getWindowCount() + "], " +
                 "reason = [" + reason + "]");
+        if (playQueue == null) return;
 
         switch (reason) {
             case Player.TIMELINE_CHANGE_REASON_RESET: // called after #block
             case Player.TIMELINE_CHANGE_REASON_PREPARED: // called after #unblock
             case Player.TIMELINE_CHANGE_REASON_DYNAMIC: // called after playlist changes
-                if (playQueue != null && playbackManager != null &&
-                        // ensures MediaSourceManager#update is complete
-                        timeline.getWindowCount() == playQueue.size()) {
-                    playbackManager.load();
+                // ensures MediaSourceManager#update is complete
+                final boolean isPlaylistStable = timeline.getWindowCount() == playQueue.size();
+                // Ensure dynamic/livestream timeline changes does not cause negative position
+                if (isPlaylistStable && !isCurrentWindowValid()) {
+                    simpleExoPlayer.seekTo(/*clampToMillis=*/0);
                 }
+                break;
         }
     }
 
@@ -776,6 +772,16 @@ public abstract class BasePlayer implements
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
+    public boolean isNearPlaybackEdge(final long timeToEndMillis) {
+        // If live, then not near playback edge
+        if (simpleExoPlayer == null || simpleExoPlayer.isCurrentWindowDynamic()) return false;
+
+        final long currentPositionMillis = simpleExoPlayer.getCurrentPosition();
+        final long currentDurationMillis = simpleExoPlayer.getDuration();
+        return currentDurationMillis - currentPositionMillis < timeToEndMillis;
+    }
+
+    @Override
     public void onPlaybackBlock() {
         if (simpleExoPlayer == null) return;
         if (DEBUG) Log.d(TAG, "Playback - onPlaybackBlock() called");
@@ -796,7 +802,6 @@ public abstract class BasePlayer implements
         if (getCurrentState() == STATE_BLOCKED) changeState(STATE_BUFFERING);
 
         simpleExoPlayer.prepare(mediaSource);
-        seekToDefault();
     }
 
     @Override
@@ -825,16 +830,24 @@ public abstract class BasePlayer implements
 
         if (simpleExoPlayer == null) return;
         final int currentPlaylistIndex = simpleExoPlayer.getCurrentWindowIndex();
+        final int currentPlaylistSize = simpleExoPlayer.getCurrentTimeline().getWindowCount();
         // Check if on wrong window
         if (currentPlayQueueIndex != playQueue.getIndex()) {
-            Log.e(TAG, "Play Queue may be desynchronized: item " +
+            Log.e(TAG, "Playback - Play Queue may be desynchronized: item " +
                     "index=[" + currentPlayQueueIndex + "], " +
                     "queue index=[" + playQueue.getIndex() + "]");
 
-            // on metadata changed
+            // Check if bad seek position
+        } else if ((currentPlaylistSize > 0 && currentPlayQueueIndex > currentPlaylistSize) ||
+                currentPlaylistIndex < 0) {
+            Log.e(TAG, "Playback - Trying to seek to " +
+                    "index=[" + currentPlayQueueIndex + "] with " +
+                    "playlist length=[" + currentPlaylistSize + "]");
+
+            // If not playing correct stream, change window position
         } else if (currentPlaylistIndex != currentPlayQueueIndex || !isPlaying()) {
             final long startPos = info != null ? info.getStartPosition() : C.TIME_UNSET;
-            if (DEBUG) Log.d(TAG, "Rewinding to correct" +
+            if (DEBUG) Log.d(TAG, "Playback - Rewinding to correct" +
                     " window=[" + currentPlayQueueIndex + "]," +
                     " at=[" + getTimeString((int)startPos) + "]," +
                     " from=[" + simpleExoPlayer.getCurrentWindowIndex() + "].");
@@ -858,6 +871,11 @@ public abstract class BasePlayer implements
     @Nullable
     @Override
     public MediaSource sourceOf(PlayQueueItem item, StreamInfo info) {
+        final StreamType streamType = info.getStreamType();
+        if (!(streamType == StreamType.AUDIO_LIVE_STREAM || streamType == StreamType.LIVE_STREAM)) {
+            return null;
+        }
+
         if (!info.getHlsUrl().isEmpty()) {
             return buildLiveMediaSource(info.getHlsUrl(), C.TYPE_HLS);
         } else if (!info.getDashMpdUrl().isEmpty()) {
@@ -909,6 +927,9 @@ public abstract class BasePlayer implements
         if (DEBUG) Log.d(TAG, "onPrepared() called with: playWhenReady = [" + playWhenReady + "]");
         if (playWhenReady) audioReactor.requestAudioFocus();
         changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
+
+        // On live prepared
+        if (simpleExoPlayer.isCurrentWindowDynamic()) seekToDefault();
     }
 
     public void onVideoPlayPause() {
@@ -945,14 +966,15 @@ public abstract class BasePlayer implements
         if (simpleExoPlayer == null || playQueue == null) return;
         if (DEBUG) Log.d(TAG, "onPlayPrevious() called");
 
-        savePlaybackState();
-
-        /* If current playback has run for PLAY_PREV_ACTIVATION_LIMIT milliseconds, restart current track.
-        * Also restart the track if the current track is the first in a queue.*/
-        if (simpleExoPlayer.getCurrentPosition() > PLAY_PREV_ACTIVATION_LIMIT || playQueue.getIndex() == 0) {
-            final long startPos = currentInfo == null ? 0 : currentInfo.getStartPosition();
-            simpleExoPlayer.seekTo(startPos);
+        /* If current playback has run for PLAY_PREV_ACTIVATION_LIMIT milliseconds,
+        * restart current track. Also restart the track if the current track
+        * is the first in a queue.*/
+        if (simpleExoPlayer.getCurrentPosition() > PLAY_PREV_ACTIVATION_LIMIT ||
+                playQueue.getIndex() == 0) {
+            seekToDefault();
+            playQueue.offsetIndex(0);
         } else {
+            savePlaybackState();
             playQueue.offsetIndex(-1);
         }
     }
@@ -962,7 +984,6 @@ public abstract class BasePlayer implements
         if (DEBUG) Log.d(TAG, "onPlayNext() called");
 
         savePlaybackState();
-
         playQueue.offsetIndex(+1);
     }
 
@@ -975,8 +996,9 @@ public abstract class BasePlayer implements
         if (playQueue.getIndex() == index && simpleExoPlayer.getCurrentWindowIndex() == index) {
             seekToDefault();
         } else {
-            playQueue.setIndex(index);
+            savePlaybackState();
         }
+        playQueue.setIndex(index);
     }
 
     public void seekBy(int milliSeconds) {
@@ -1015,8 +1037,11 @@ public abstract class BasePlayer implements
 
     protected void reload() {
         if (playbackManager != null) {
-            playbackManager.reset();
-            playbackManager.load();
+            playbackManager.dispose();
+        }
+
+        if (playQueue != null) {
+            playbackManager = new MediaSourceManager(this, playQueue);
         }
     }
 

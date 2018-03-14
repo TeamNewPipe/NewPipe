@@ -12,6 +12,10 @@ import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 
+import java.util.concurrent.TimeUnit;
+
+import static org.schabi.newpipe.extractor.ServiceList.SoundCloud;
+
 public class ServiceHelper {
     private static final StreamingService DEFAULT_FALLBACK_SERVICE = ServiceList.YouTube;
 
@@ -97,5 +101,13 @@ public class ServiceHelper {
     private static void setSelectedServicePreferences(Context context, String serviceName) {
         PreferenceManager.getDefaultSharedPreferences(context).edit().
                 putString(context.getString(R.string.current_service_key), serviceName).apply();
+    }
+
+    public static long getCacheExpirationMillis(final int serviceId) {
+        if (serviceId == SoundCloud.getServiceId()) {
+            return TimeUnit.MILLISECONDS.convert(5, TimeUnit.MINUTES);
+        } else {
+            return TimeUnit.MILLISECONDS.convert(1, TimeUnit.HOURS);
+        }
     }
 }
