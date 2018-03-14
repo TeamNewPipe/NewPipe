@@ -58,7 +58,7 @@
     <string name="main_bg_subtitle">Нажмите поиск, чтобы начать</string>
     <string name="msg_wait">Подождите…</string>
     <string name="msg_exists">Файл уже существует</string>
-    <string name="msg_threads">Потоки</string>
+    <string name="msg_threads">Темы</string>
     <string name="finish">OK</string>
     <string name="start">Начать</string>
     <string name="pause">Пауза</string>
@@ -69,7 +69,7 @@
     <string name="msg_error">Ошибка</string>
     <string name="msg_server_unsupported">Сервер не поддерживается</string>
     <string name="msg_running">NewPipe скачивает</string>
-    <string name="msg_url_malform">Неправильный URL или Интернет не доступен</string>
+    <string name="msg_url_malform">Неправильный URL или нет доступа к интернету</string>
     <string name="msg_running_detail">Нажмите для деталей</string>
     <string name="msg_copied">Скопировано в буфер обмена</string>
     <string name="no_available_dir">Выберите доступную папку для загрузки</string>
@@ -137,19 +137,19 @@
     <string name="refresh">Обновить</string>
     <string name="clear">Очистить</string>
     <string name="use_old_player_title">Использовать старый плеер</string>
-    <string name="player_gesture_controls_title">Жесты</string>
+    <string name="player_gesture_controls_title">Контроль жестов</string>
     <string name="all">Всё</string>
     <string name="filter">Фильтр</string>
 
 
-    <string name="add">Новая миссия</string>
+    <string name="add">Новая цель</string>
     <string name="info_labels">Что:\\nЗапрос:\\nЯзык контента:\\nСервис:\\nВремя по Гринвичу:\\nПакет:\\nВерсия:\\nВерсия ОС:\\nГлобальный диапазон IP:</string>
     <string name="msg_popup_permission">Это разрешение нужно для 
-\nвоспроизведения видео в отдельном окне</string>
+\nвоспроизведения в окне</string>
 
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="open_in_popup_mode">Открыть в отдельном окне</string>
-    <string name="show_search_suggestions_summary">Показывать подсказки во время поиска</string>
+    <string name="show_search_suggestions_summary">Показывать подсказки в поиске</string>
 
     <string name="later">Позже</string>
     <string name="disabled">Отключено</string>
@@ -162,7 +162,7 @@
     <string name="short_thousand"> тыс.</string>
     <string name="default_popup_resolution_title">Разрешение в режиме всплывающего окна</string>
     <string name="popup_remember_size_pos_summary">Запоминать последний размер и положение всплывающего окна</string>
-    <string name="show_search_suggestions_title">Живой поиск</string>
+    <string name="show_search_suggestions_title">Поисковые подсказки</string>
 <string name="best_resolution">Лучшее разрешение</string>
 
     <string name="use_old_player_summary">Старый встроенный плеер на Mediaframework</string>
@@ -265,7 +265,7 @@
     <string name="select_a_kiosk">Выберите киоск</string>
 
     <string name="kiosk">Киоск</string>
-    <string name="trending">В тренде</string>
+    <string name="trending">Тренды</string>
     <string name="top_50">Топ 50</string>
     <string name="new_and_hot">Новое и горячее</string>
     <string name="background_player_append">Добавлено в очередь в фоне</string>
@@ -275,22 +275,22 @@
     <string name="player_stream_failure">Не удалось воспроизвести этот поток</string>
     <string name="play_queue_stream_detail">Подробности</string>
     <string name="play_queue_audio_settings">Настройки аудио</string>
-    <string name="no_channel_subscribed_yet">Пока нет подписок</string>
+    <string name="no_channel_subscribed_yet">Пока нет подписок на каналы</string>
     <string name="play_queue_remove">Удалить</string>
     <string name="subscribed_button_title">Отписаться</string>
     <string name="channel_unsubscribed">Подписка отменена</string>
-    <string name="show_hold_to_append_title">Подсказка о длинном нажатии</string>
-    <string name="show_hold_to_append_summary">Отображать подсказку о длинном нажатии на кнопки \"В фоне\" и \"В окне\" для добавления в очередь</string>
+    <string name="show_hold_to_append_title">Показывать напоминание о длинном нажатии</string>
+    <string name="show_hold_to_append_summary">Показывать подсказку при нажатии на иконку «В окне» или «В фоне» на странице сведений о видео</string>
     <string name="unknown_content">[Неизвестно]</string>
 
     <string name="player_recoverable_failure">Восстановление после ошибки проигрывателя</string>
 
-    <string name="title_activity_background_player">Воспроизведение в фоне</string>
-    <string name="title_activity_popup_player">Воспроизведение в окне</string>
-    <string name="hold_to_append">Зажмите чтобы добавить в очередь</string>
-    <string name="enqueue_on_background">Добавить в очередь в фоне</string>
-    <string name="enqueue_on_popup">Добавить в очередь в окне</string>
-    <string name="start_here_on_main">Воспроизвести</string>
+    <string name="title_activity_background_player">В фоне</string>
+    <string name="title_activity_popup_player">В окне</string>
+    <string name="hold_to_append">Зажмите, чтобы добавить в очередь</string>
+    <string name="enqueue_on_background">Добавить в очередь «В фоне»</string>
+    <string name="enqueue_on_popup">Добавить в очередь «В окне»</string>
+    <string name="start_here_on_main">Воспроизвести тут</string>
     <string name="start_here_on_background">Воспроизвести в фоне</string>
     <string name="start_here_on_popup">Воспроизвести в окне</string>
 <string name="no_player_found_toast">Ни одного потокового проигрывателя не было найдено (вы можете установить VLC)</string>
@@ -326,5 +326,123 @@
     <string name="always_ask_player">Всегда спрашивать</string>
     
     <string name="preferred_player_fetcher_notification_title">Получение информации…</string>
-    <string name="preferred_player_fetcher_notification_message">Загрузка запрашиваемого контента</string>
+    <string name="preferred_player_fetcher_notification_message">Загрузка запрошенного контента</string>
+<string name="controls_download_desc">Загрузка файла прямой трансляции.</string>
+    <string name="show_info">Показать информацию</string>
+
+    <string name="tab_bookmarks">Закладки</string>
+
+    <string name="controls_add_to_playlist_title">Добавить к</string>
+
+    <string name="use_inexact_seek_title">Использовать быстрый, но неточный поиск</string>
+    <string name="use_inexact_seek_summary">Неточный поиск позволяет плееру искать позицию быстрее, но с пониженной точностью</string>
+    <string name="auto_queue_title">Автоматическая очередь следующего стрима</string>
+    <string name="auto_queue_summary">Автоматически добавлять связанные потоки, когда воспроизведение начинается с последнего потока в неповторяющейся очереди воспроизведения.</string>
+    <string name="settings_category_debug_title">Отладка</string>
+    <string name="file">Файл</string>
+
+    <string name="import_data_title">Импорт данных</string>
+    <string name="export_data_title">Экспорт данных</string>
+    <string name="import_data_summary">Ваша текущая история и подписки будут перезаписаны</string>
+    <string name="export_data_summary">Экспорт истории, подписок и плейлистов.</string>
+    <string name="invalid_directory">Неправильная директория</string>
+    <string name="invalid_source">Неправильный файл/контент источника</string>
+    <string name="invalid_file">Файл не существует или нет разрешения на его прочтение или запись</string>
+    <string name="file_name_empty_error">Имя файла не может быть пустым</string>
+    <string name="error_occurred_detail">Произошла ошибка: %1$s</string>
+
+    <string name="detail_drag_description">Перетащите, чтобы изменить порядок</string>
+
+    <string name="create">Создать</string>
+    <string name="delete_one">Удалить одно</string>
+    <string name="delete_all">Удалить всё</string>
+    <string name="dismiss">Отклонить</string>
+    <string name="rename">Переименовать</string>
+
+    <string name="delete_stream_history_prompt">Вы хотите удалить этот элемент из истории поиска?</string>
+    <string name="delete_all_history_prompt">Вы уверены, что хотите удалить все элементы из истории?</string>
+    <string name="title_last_played">Последнее проигрывание</string>
+    <string name="title_most_played">Наиболее проигрываемые</string>
+
+    <string name="export_complete_toast">Экспорт завершён</string>
+    <string name="import_complete_toast">Импорт завершён</string>
+    <string name="no_valid_zip_file">Нет верного Zip файла</string>
+    <string name="could_not_import_all_files">Предупреждение: нет возможности импорта всех файлов.</string>
+    <string name="override_current_data">Это перезапишет вашу текущую установку.</string>
+
+    <string name="drawer_header_action_paceholder_text">Что-то будет тут, скоро ;D</string>
+
+
+    <string name="always_ask_open_action">Всегда спрашивать</string>
+    
+    <string name="create_playlist">Создать новый плейлист</string>
+    <string name="delete_playlist">Удалить плейлист</string>
+    <string name="rename_playlist">Переименовать плейлист</string>
+    <string name="playlist_name_input">Имя</string>
+    <string name="append_playlist">Добавить в плейлист</string>
+    <string name="set_as_playlist_thumbnail">Установить как иконку плейлиста</string>
+
+    <string name="bookmark_playlist">Пометить плейлист</string>
+    <string name="unbookmark_playlist">Удалить пометку</string>
+
+    <string name="delete_playlist_prompt">Вы хотите удалить этот плейлист?</string>
+    <string name="playlist_creation_success">Плейлист успешно создан</string>
+    <string name="playlist_add_stream_success">Добавлено в плейлист</string>
+    <string name="playlist_thumbnail_change_success">Иконка плейлиста изменена</string>
+    <string name="playlist_delete_failure">Ошибка при удалении плейлиста</string>
+
+    <string name="caption_none">Без подписи</string>
+
+    <string name="resize_fit">Уместить</string>
+    <string name="resize_fill">Заполнить</string>
+    <string name="resize_zoom">Приближение</string>
+
+    <string name="caption_auto_generated">Автоматически созданный</string>
+    <string name="caption_font_size_settings_title">Размер шрифта подписи</string>
+    <string name="smaller_caption_font_size">Маленький шрифт</string>
+    <string name="normal_caption_font_size">Обычный шрифт</string>
+    <string name="larger_caption_font_size">Большой шрифт</string>
+
+    <string name="live_sync">Синхронизировать</string>
+
+    <string name="enable_leak_canary_title">Включить LeakCanary</string>
+    <string name="enable_leak_canary_summary">Мониторинг утечки памяти может привести к зависанию приложения</string>
+
+    <string name="enable_disposed_exceptions_title">Ошибки отчёта вне очереди</string>
+    <string name="enable_disposed_exceptions_summary">Форсировать отчетность о недопустимых исключениях Rx, возникающих за пределами фрагмента или цикла деятельности, после размещения</string>
+
+    <string name="import_export_title">Импорт/Экспорт</string>
+    <string name="import_title">Импорт</string>
+    <string name="import_from">Импорт из</string>
+    <string name="export_to">Экспорт в</string>
+
+    <string name="import_ongoing">Импорт…</string>
+    <string name="export_ongoing">Экспорт…</string>
+
+    <string name="import_file_title">Импорт файла</string>
+    <string name="previous_export">Предыдущий экспорт</string>
+
+    <string name="subscriptions_import_unsuccessful">Импорт подписок провален</string>
+    <string name="subscriptions_export_unsuccessful">Экспорт подписок провален</string>
+
+    <string name="import_youtube_instructions">Для импорта подписок из YouTube вам необходимо файл экспорта, которые можно загрузить в соответствии с этими инструкциями:
+\n
+\n1. Перейдите на: %1$s
+\n2. Войдите в ваш аккаунт, если необходимо
+\n3. Загрузка должна начаться (это файл экспорта)</string>
+    <string name="import_soundcloud_instructions">"Для импорта ваших подписок из SoundCloud вы должны знать ссылку на ваш профиль или id. Если вы знаете, просто напишите это в поле ниже и будьте готовы начинать.
+\n
+\nЕсли вы не знаете, то проследуйте следующей инструкции:
+\n
+\n1. Включите \"режим рабочего стола\" в браузере (сайт недоступен на телефоне)
+\n2. Пройдите на:  %1$s
+\n3. Войдите в аккаунт, если надо
+\n4. Скопируйте адрес из адресной строки (это адрес вашего профиля)
+\n
+\n"</string>
+    <string name="import_soundcloud_instructions_hint">вашid, soundcloud.com/вашid</string>
+
+    <string name="import_network_expensive_warning">Помните, что за выход в интернет может взиматься плата.
+\n
+\nВы хотите продолжить?</string>
 </resources>
