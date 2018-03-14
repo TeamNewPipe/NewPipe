@@ -406,4 +406,6 @@
     <string name="subscriptions_import_unsuccessful">訂閱匯入失敗</string>
     <string name="subscriptions_export_unsuccessful">訂閱匯出失敗</string>
 
+    <string name="previous_export">之前的匯出</string>
+
     </resources>
