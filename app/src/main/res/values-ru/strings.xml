@@ -169,7 +169,7 @@
     <string name="reCaptcha_title">Запрос reCAPTCHA</string>
     <string name="recaptcha_request_toast">Запрошен ввод reCAPTCHA</string>
 
-    <string name="show_higher_resolutions_title">Показывать более высокие разрешения</string>
+    <string name="show_higher_resolutions_title">Показывать более высокое разрешение</string>
     <string name="popup_mode_share_menu_title">NewPipe в окне</string>
     <string name="title_activity_about">О NewPipe</string>
     <string name="action_settings">Настройки</string>
