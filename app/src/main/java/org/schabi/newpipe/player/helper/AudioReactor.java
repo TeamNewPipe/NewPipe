@@ -3,6 +3,7 @@ package org.schabi.newpipe.player.helper;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioFocusRequest;
@@ -84,6 +85,22 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, Au
 
     private boolean shouldBuildFocusRequest() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.O;
+    }
+
+    public void registerMediaButtonEventReceiver(ComponentName componentName) {
+        if (android.os.Build.VERSION.SDK_INT > 27) {
+            Log.e(TAG, "registerMediaButtonEventReceiver has been deprecated and maybe not supported anymore.");
+            return;
+        }
+        audioManager.registerMediaButtonEventReceiver(componentName);
+    }
+
+    public void unregisterMediaButtonEventReceiver(ComponentName componentName) {
+        if (android.os.Build.VERSION.SDK_INT > 27) {
+            Log.e(TAG, "unregisterMediaButtonEventReceiver has been deprecated and maybe not supported anymore.");
+            return;
+        }
+        audioManager.unregisterMediaButtonEventReceiver(componentName);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
