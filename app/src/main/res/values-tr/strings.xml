@@ -438,7 +438,7 @@
 \n4. Yönlendirildiğiniz adresi kopyalayın (bu sizin profil adresinizdir)</string>
     <string name="import_soundcloud_instructions_hint">kimliginiz, soundcloud.com/kimliginiz</string>
 
-    <string name="import_network_expensive_warning">Bu sürecin ağ masrafına nedenn olabileceğini unutmayın.
+    <string name="import_network_expensive_warning">Bu sürecin ağ masrafına neden olabileceğini unutmayın.
 \n
 \nDevam etmek istiyor musunuz?</string>
 </resources>
