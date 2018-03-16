@@ -3,7 +3,6 @@ package org.schabi.newpipe.player.helper;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioFocusRequest;
@@ -18,17 +17,13 @@ import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.audio.AudioRendererEventListener;
 import com.google.android.exoplayer2.decoder.DecoderCounters;
 
-public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, AudioRendererEventListener {
+public class AudioReactor implements AudioManager.OnAudioFocusChangeListener,
+        AudioRendererEventListener {
 
     private static final String TAG = "AudioFocusReactor";
 
     private static final boolean SHOULD_BUILD_FOCUS_REQUEST =
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.O;
-
-    private static final boolean CAN_USE_MEDIA_BUTTONS =
-            Build.VERSION.SDK_INT <= Build.VERSION_CODES.O_MR1;
-    private static final String MEDIA_BUTTON_DEPRECATED_ERROR =
-            "registerMediaButtonEventReceiver has been deprecated and maybe not supported anymore.";
 
     private static final int DUCK_DURATION = 1500;
     private static final float DUCK_AUDIO_TO = .2f;
@@ -42,7 +37,8 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, Au
 
     private final AudioFocusRequest request;
 
-    public AudioReactor(@NonNull final Context context, @NonNull final SimpleExoPlayer player) {
+    public AudioReactor(@NonNull final Context context,
+                        @NonNull final SimpleExoPlayer player) {
         this.player = player;
         this.context = context;
         this.audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
@@ -57,6 +53,11 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, Au
         } else {
             request = null;
         }
+    }
+
+    public void dispose() {
+        abandonAudioFocus();
+        player.removeAudioDebugListener(this);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -89,22 +90,6 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, Au
 
     public void setVolume(final int volume) {
         audioManager.setStreamVolume(STREAM_TYPE, volume, 0);
-    }
-
-    public void registerMediaButtonEventReceiver(ComponentName componentName) {
-        if (CAN_USE_MEDIA_BUTTONS) {
-            audioManager.registerMediaButtonEventReceiver(componentName);
-        } else {
-            Log.e(TAG, MEDIA_BUTTON_DEPRECATED_ERROR);
-        }
-    }
-
-    public void unregisterMediaButtonEventReceiver(ComponentName componentName) {
-        if (CAN_USE_MEDIA_BUTTONS) {
-            audioManager.unregisterMediaButtonEventReceiver(componentName);
-        } else {
-            Log.e(TAG, MEDIA_BUTTON_DEPRECATED_ERROR);
-        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////

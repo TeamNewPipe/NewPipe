@@ -22,8 +22,6 @@ package org.schabi.newpipe.player;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -35,7 +33,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -81,8 +78,6 @@ public final class BackgroundPlayer extends Service {
     private BasePlayerImpl basePlayerImpl;
     private LockManager lockManager;
 
-    private ComponentName mReceiverComponent;
-
     /*//////////////////////////////////////////////////////////////////////////
     // Service-Activity Binder
     //////////////////////////////////////////////////////////////////////////*/
@@ -119,9 +114,6 @@ public final class BackgroundPlayer extends Service {
 
         mBinder = new PlayerServiceBinder(basePlayerImpl);
         shouldUpdateOnProgress = true;
-
-        mReceiverComponent = new ComponentName(this, MediaButtonReceiver.class);
-        basePlayerImpl.getAudioReactor().registerMediaButtonEventReceiver(mReceiverComponent);
     }
 
     @Override
@@ -152,7 +144,6 @@ public final class BackgroundPlayer extends Service {
             lockManager.releaseWifiAndCpu();
         }
         if (basePlayerImpl != null) {
-            basePlayerImpl.getAudioReactor().unregisterMediaButtonEventReceiver(mReceiverComponent);
             basePlayerImpl.stopActivityBinding();
             basePlayerImpl.destroy();
         }
@@ -571,51 +562,6 @@ public final class BackgroundPlayer extends Service {
             updateNotification(R.drawable.ic_replay_white);
 
             lockManager.releaseWifiAndCpu();
-        }
-    }
-
-    public static class MediaButtonReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (!Intent.ACTION_MEDIA_BUTTON.equals(intent.getAction())) return;
-            final KeyEvent event = intent.getParcelableExtra(Intent.EXTRA_KEY_EVENT);
-            if (event.getAction() != KeyEvent.ACTION_UP) return;
-            final int keycode = event.getKeyCode();
-
-            final PendingIntent pendingIntent;
-            switch (keycode) {
-                case KeyEvent.KEYCODE_MEDIA_NEXT:
-                    pendingIntent = PendingIntent.getBroadcast(context, NOTIFICATION_ID,
-                            new Intent(ACTION_PLAY_NEXT), PendingIntent.FLAG_UPDATE_CURRENT);
-                    break;
-                case KeyEvent.KEYCODE_MEDIA_PREVIOUS:
-                    pendingIntent = PendingIntent.getBroadcast(context, NOTIFICATION_ID,
-                            new Intent(ACTION_PLAY_PREVIOUS), PendingIntent.FLAG_UPDATE_CURRENT);
-                    break;
-                case KeyEvent.KEYCODE_HEADSETHOOK:
-                case KeyEvent.KEYCODE_MEDIA_PAUSE:
-                case KeyEvent.KEYCODE_MEDIA_PLAY:
-                    pendingIntent = PendingIntent.getBroadcast(context, NOTIFICATION_ID,
-                            new Intent(ACTION_PLAY_PAUSE), PendingIntent.FLAG_UPDATE_CURRENT);
-                    break;
-                case KeyEvent.KEYCODE_MEDIA_FAST_FORWARD:
-                    pendingIntent = PendingIntent.getBroadcast(context, NOTIFICATION_ID,
-                            new Intent(ACTION_FAST_FORWARD), PendingIntent.FLAG_UPDATE_CURRENT);
-                    break;
-                case KeyEvent.KEYCODE_MEDIA_REWIND:
-                    pendingIntent = PendingIntent.getBroadcast(context, NOTIFICATION_ID,
-                            new Intent(ACTION_FAST_REWIND), PendingIntent.FLAG_UPDATE_CURRENT);
-                    break;
-                default:
-                    pendingIntent = null;
-            }
-
-            if (pendingIntent == null) return;
-            try {
-                pendingIntent.send();
-            } catch (Exception e) {
-                Log.e(TAG, "Error Sending intent MediaButtonReceiver", e);
-            }
         }
     }
 }

@@ -61,8 +61,10 @@ import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.history.HistoryRecordManager;
 import org.schabi.newpipe.player.helper.AudioReactor;
 import org.schabi.newpipe.player.helper.LoadController;
+import org.schabi.newpipe.player.helper.MediaSessionManager;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.helper.PlayerHelper;
+import org.schabi.newpipe.player.playback.BasePlayerMediaSession;
 import org.schabi.newpipe.player.playback.CustomTrackSelector;
 import org.schabi.newpipe.player.playback.MediaSourceManager;
 import org.schabi.newpipe.player.playback.PlaybackListener;
@@ -148,6 +150,7 @@ public abstract class BasePlayer implements
 
     protected SimpleExoPlayer simpleExoPlayer;
     protected AudioReactor audioReactor;
+    protected MediaSessionManager mediaSessionManager;
 
     private boolean isPrepared = false;
     private boolean isSynchronizing = false;
@@ -195,11 +198,13 @@ public abstract class BasePlayer implements
         final LoadControl loadControl = new LoadController(context);
         final RenderersFactory renderFactory = new DefaultRenderersFactory(context);
         simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(renderFactory, trackSelector, loadControl);
-        audioReactor = new AudioReactor(context, simpleExoPlayer);
-
         simpleExoPlayer.addListener(this);
         simpleExoPlayer.setPlayWhenReady(true);
         simpleExoPlayer.setSeekParameters(PlayerHelper.getSeekParameters(context));
+
+        audioReactor = new AudioReactor(context, simpleExoPlayer);
+        mediaSessionManager = new MediaSessionManager(context, simpleExoPlayer,
+                new BasePlayerMediaSession(this));
     }
 
     public void initListeners() {}
@@ -262,8 +267,8 @@ public abstract class BasePlayer implements
         }
         if (isProgressLoopRunning()) stopProgressLoop();
         if (playQueue != null) playQueue.dispose();
+        if (audioReactor != null) audioReactor.dispose();
         if (playbackManager != null) playbackManager.dispose();
-        if (audioReactor != null) audioReactor.abandonAudioFocus();
         if (databaseUpdateReactor != null) databaseUpdateReactor.dispose();
 
         if (playQueueAdapter != null) {
@@ -279,6 +284,7 @@ public abstract class BasePlayer implements
 
         trackSelector = null;
         simpleExoPlayer = null;
+        mediaSessionManager = null;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
