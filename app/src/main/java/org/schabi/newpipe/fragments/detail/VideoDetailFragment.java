@@ -73,6 +73,7 @@ import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.InfoCache;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
@@ -587,7 +588,8 @@ public class VideoDetailFragment
             imageLoader.displayImage(
                     info.getThumbnailUrl(),
                     thumbnailImageView,
-                    DISPLAY_THUMBNAIL_OPTIONS, new SimpleImageLoadingListener() {
+                    ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS,
+                    new SimpleImageLoadingListener() {
                 @Override
                 public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
                     ErrorActivity.reportError(
@@ -604,7 +606,8 @@ public class VideoDetailFragment
         }
 
         if (!TextUtils.isEmpty(info.getUploaderAvatarUrl())) {
-            imageLoader.displayImage(info.getUploaderAvatarUrl(), uploaderThumb, DISPLAY_AVATAR_OPTIONS);
+            imageLoader.displayImage(info.getUploaderAvatarUrl(), uploaderThumb,
+                    ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
         }
     }
 

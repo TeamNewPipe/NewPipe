@@ -4,8 +4,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.fragments.local.LocalItemBuilder;
@@ -48,15 +46,4 @@ public abstract class PlaylistItemHolder extends LocalItemHolder {
             return true;
         });
     }
-
-    /**
-     * Display options for playlist thumbnails
-     */
-    public static final DisplayImageOptions DISPLAY_THUMBNAIL_OPTIONS =
-            new DisplayImageOptions.Builder()
-                    .cloneFrom(BASE_DISPLAY_IMAGE_OPTIONS)
-                    .showImageOnLoading(R.drawable.dummy_thumbnail_playlist)
-                    .showImageForEmptyUri(R.drawable.dummy_thumbnail_playlist)
-                    .showImageOnFail(R.drawable.dummy_thumbnail_playlist)
-                    .build();
 }

@@ -1,15 +1,13 @@
 package org.schabi.newpipe.info_list.holder;
 
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -42,7 +40,7 @@ public class ChannelMiniInfoItemHolder extends InfoItemHolder {
         itemBuilder.getImageLoader()
                 .displayImage(item.getThumbnailUrl(),
                         itemThumbnailView,
-                        ChannelInfoItemHolder.DISPLAY_THUMBNAIL_OPTIONS);
+                        ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
 
         itemView.setOnClickListener(view -> {
             if (itemBuilder.getOnChannelSelectedListener() != null) {
@@ -59,15 +57,4 @@ public class ChannelMiniInfoItemHolder extends InfoItemHolder {
         }
         return details;
     }
-
-    /**
-     * Display options for channel thumbnails
-     */
-    public static final DisplayImageOptions DISPLAY_THUMBNAIL_OPTIONS =
-            new DisplayImageOptions.Builder()
-                    .cloneFrom(BASE_DISPLAY_IMAGE_OPTIONS)
-                    .showImageOnLoading(R.drawable.buddy_channel_item)
-                    .showImageForEmptyUri(R.drawable.buddy_channel_item)
-                    .showImageOnFail(R.drawable.buddy_channel_item)
-                    .build();
 }

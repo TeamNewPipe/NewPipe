@@ -1,14 +1,8 @@
 package org.schabi.newpipe.fragments.local.holder;
 
-import android.graphics.Bitmap;
-import android.support.annotation.DimenRes;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.process.BitmapProcessor;
 
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.fragments.local.LocalItemBuilder;
@@ -45,19 +39,4 @@ public abstract class LocalItemHolder extends RecyclerView.ViewHolder {
     }
 
     public abstract void updateFromItem(final LocalItem item, final DateFormat dateFormat);
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // ImageLoaderOptions
-    //////////////////////////////////////////////////////////////////////////*/
-
-    /**
-     * Base display options
-     */
-    public static final DisplayImageOptions BASE_DISPLAY_IMAGE_OPTIONS =
-            new DisplayImageOptions.Builder()
-                    .cacheInMemory(true)
-                    .cacheOnDisk(true)
-                    .bitmapConfig(Bitmap.Config.RGB_565)
-                    .resetViewBeforeLoading(false)
-                    .build();
 }

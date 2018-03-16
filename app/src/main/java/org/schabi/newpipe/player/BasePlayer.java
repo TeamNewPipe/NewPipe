@@ -838,9 +838,9 @@ public abstract class BasePlayer implements
                     "queue index=[" + playQueue.getIndex() + "]");
 
             // Check if bad seek position
-        } else if ((currentPlaylistSize > 0 && currentPlayQueueIndex > currentPlaylistSize) ||
-                currentPlaylistIndex < 0) {
-            Log.e(TAG, "Playback - Trying to seek to " +
+        } else if ((currentPlaylistSize > 0 && currentPlayQueueIndex >= currentPlaylistSize) ||
+                currentPlayQueueIndex < 0) {
+            Log.e(TAG, "Playback - Trying to seek to invalid " +
                     "index=[" + currentPlayQueueIndex + "] with " +
                     "playlist length=[" + currentPlaylistSize + "]");
 
@@ -848,9 +848,9 @@ public abstract class BasePlayer implements
         } else if (currentPlaylistIndex != currentPlayQueueIndex || !isPlaying()) {
             final long startPos = info != null ? info.getStartPosition() : C.TIME_UNSET;
             if (DEBUG) Log.d(TAG, "Playback - Rewinding to correct" +
-                    " window=[" + currentPlayQueueIndex + "]," +
+                    " index=[" + currentPlayQueueIndex + "]," +
                     " at=[" + getTimeString((int)startPos) + "]," +
-                    " from=[" + simpleExoPlayer.getCurrentWindowIndex() + "].");
+                    " from=[" + currentPlaylistIndex + "], size=[" + currentPlaylistSize + "].");
             simpleExoPlayer.seekTo(currentPlayQueueIndex, startPos);
         }
 

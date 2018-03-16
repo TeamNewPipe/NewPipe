@@ -121,7 +121,7 @@ public final class BackgroundPlayer extends Service {
         shouldUpdateOnProgress = true;
 
         mReceiverComponent = new ComponentName(this, MediaButtonReceiver.class);
-        basePlayerImpl.audioReactor.registerMediaButtonEventReceiver(mReceiverComponent);
+        basePlayerImpl.getAudioReactor().registerMediaButtonEventReceiver(mReceiverComponent);
     }
 
     @Override
@@ -152,7 +152,7 @@ public final class BackgroundPlayer extends Service {
             lockManager.releaseWifiAndCpu();
         }
         if (basePlayerImpl != null) {
-            basePlayerImpl.audioReactor.unregisterMediaButtonEventReceiver(mReceiverComponent);
+            basePlayerImpl.getAudioReactor().unregisterMediaButtonEventReceiver(mReceiverComponent);
             basePlayerImpl.stopActivityBinding();
             basePlayerImpl.destroy();
         }
@@ -575,38 +575,46 @@ public final class BackgroundPlayer extends Service {
     }
 
     public static class MediaButtonReceiver extends BroadcastReceiver {
-
-        public MediaButtonReceiver() {
-            super();
-        }
-
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (Intent.ACTION_MEDIA_BUTTON.equals(intent.getAction())) {
-                KeyEvent event = (KeyEvent) intent.getParcelableExtra(Intent.EXTRA_KEY_EVENT);
-                if (event.getAction() == KeyEvent.ACTION_UP) {
-                    int keycode = event.getKeyCode();
-                    PendingIntent pendingIntent = null;
-                    if (keycode == KeyEvent.KEYCODE_MEDIA_NEXT) {
-                        pendingIntent = PendingIntent.getBroadcast(context, NOTIFICATION_ID, new Intent(ACTION_PLAY_NEXT), PendingIntent.FLAG_UPDATE_CURRENT);
-                    } else if (keycode == KeyEvent.KEYCODE_MEDIA_PREVIOUS) {
-                        pendingIntent = PendingIntent.getBroadcast(context, NOTIFICATION_ID, new Intent(ACTION_PLAY_PREVIOUS), PendingIntent.FLAG_UPDATE_CURRENT);
-                    } else if (keycode == KeyEvent.KEYCODE_HEADSETHOOK || keycode == KeyEvent.KEYCODE_MEDIA_PAUSE || keycode == KeyEvent.KEYCODE_MEDIA_PLAY) {
-                        pendingIntent = PendingIntent.getBroadcast(context, NOTIFICATION_ID, new Intent(ACTION_PLAY_PAUSE), PendingIntent.FLAG_UPDATE_CURRENT);
-                    } else if (keycode == KeyEvent.KEYCODE_MEDIA_FAST_FORWARD) {
-                        pendingIntent = PendingIntent.getBroadcast(context, NOTIFICATION_ID, new Intent(ACTION_FAST_FORWARD), PendingIntent.FLAG_UPDATE_CURRENT);
-                    } else if (keycode == KeyEvent.KEYCODE_MEDIA_REWIND) {
-                        pendingIntent = PendingIntent.getBroadcast(context, NOTIFICATION_ID, new Intent(ACTION_FAST_REWIND), PendingIntent.FLAG_UPDATE_CURRENT);
-                    }
-                    if (pendingIntent != null) {
-                        try {
-                            pendingIntent.send();
-                        } catch (Exception e) {
-                            Log.e(TAG, "Error Sending intent MediaButtonReceiver", e);
-                        }
-                    }
+            if (!Intent.ACTION_MEDIA_BUTTON.equals(intent.getAction())) return;
+            final KeyEvent event = intent.getParcelableExtra(Intent.EXTRA_KEY_EVENT);
+            if (event.getAction() != KeyEvent.ACTION_UP) return;
+            final int keycode = event.getKeyCode();
 
-                }
+            final PendingIntent pendingIntent;
+            switch (keycode) {
+                case KeyEvent.KEYCODE_MEDIA_NEXT:
+                    pendingIntent = PendingIntent.getBroadcast(context, NOTIFICATION_ID,
+                            new Intent(ACTION_PLAY_NEXT), PendingIntent.FLAG_UPDATE_CURRENT);
+                    break;
+                case KeyEvent.KEYCODE_MEDIA_PREVIOUS:
+                    pendingIntent = PendingIntent.getBroadcast(context, NOTIFICATION_ID,
+                            new Intent(ACTION_PLAY_PREVIOUS), PendingIntent.FLAG_UPDATE_CURRENT);
+                    break;
+                case KeyEvent.KEYCODE_HEADSETHOOK:
+                case KeyEvent.KEYCODE_MEDIA_PAUSE:
+                case KeyEvent.KEYCODE_MEDIA_PLAY:
+                    pendingIntent = PendingIntent.getBroadcast(context, NOTIFICATION_ID,
+                            new Intent(ACTION_PLAY_PAUSE), PendingIntent.FLAG_UPDATE_CURRENT);
+                    break;
+                case KeyEvent.KEYCODE_MEDIA_FAST_FORWARD:
+                    pendingIntent = PendingIntent.getBroadcast(context, NOTIFICATION_ID,
+                            new Intent(ACTION_FAST_FORWARD), PendingIntent.FLAG_UPDATE_CURRENT);
+                    break;
+                case KeyEvent.KEYCODE_MEDIA_REWIND:
+                    pendingIntent = PendingIntent.getBroadcast(context, NOTIFICATION_ID,
+                            new Intent(ACTION_FAST_REWIND), PendingIntent.FLAG_UPDATE_CURRENT);
+                    break;
+                default:
+                    pendingIntent = null;
+            }
+
+            if (pendingIntent == null) return;
+            try {
+                pendingIntent.send();
+            } catch (Exception e) {
+                Log.e(TAG, "Error Sending intent MediaButtonReceiver", e);
             }
         }
     }

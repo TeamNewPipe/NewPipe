@@ -22,6 +22,14 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, Au
 
     private static final String TAG = "AudioFocusReactor";
 
+    private static final boolean SHOULD_BUILD_FOCUS_REQUEST =
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.O;
+
+    private static final boolean CAN_USE_MEDIA_BUTTONS =
+            Build.VERSION.SDK_INT <= Build.VERSION_CODES.O_MR1;
+    private static final String MEDIA_BUTTON_DEPRECATED_ERROR =
+            "registerMediaButtonEventReceiver has been deprecated and maybe not supported anymore.";
+
     private static final int DUCK_DURATION = 1500;
     private static final float DUCK_AUDIO_TO = .2f;
 
@@ -38,9 +46,9 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, Au
         this.player = player;
         this.context = context;
         this.audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-        player.setAudioDebugListener(this);
+        player.addAudioDebugListener(this);
 
-        if (shouldBuildFocusRequest()) {
+        if (SHOULD_BUILD_FOCUS_REQUEST) {
             request = new AudioFocusRequest.Builder(FOCUS_GAIN_TYPE)
                     .setAcceptsDelayedFocusGain(true)
                     .setWillPauseWhenDucked(true)
@@ -56,7 +64,7 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, Au
     //////////////////////////////////////////////////////////////////////////*/
 
     public void requestAudioFocus() {
-        if (shouldBuildFocusRequest()) {
+        if (SHOULD_BUILD_FOCUS_REQUEST) {
             audioManager.requestAudioFocus(request);
         } else {
             audioManager.requestAudioFocus(this, STREAM_TYPE, FOCUS_GAIN_TYPE);
@@ -64,7 +72,7 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, Au
     }
 
     public void abandonAudioFocus() {
-        if (shouldBuildFocusRequest()) {
+        if (SHOULD_BUILD_FOCUS_REQUEST) {
             audioManager.abandonAudioFocusRequest(request);
         } else {
             audioManager.abandonAudioFocus(this);
@@ -83,24 +91,20 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, Au
         audioManager.setStreamVolume(STREAM_TYPE, volume, 0);
     }
 
-    private boolean shouldBuildFocusRequest() {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.O;
-    }
-
     public void registerMediaButtonEventReceiver(ComponentName componentName) {
-        if (android.os.Build.VERSION.SDK_INT > 27) {
-            Log.e(TAG, "registerMediaButtonEventReceiver has been deprecated and maybe not supported anymore.");
-            return;
+        if (CAN_USE_MEDIA_BUTTONS) {
+            audioManager.registerMediaButtonEventReceiver(componentName);
+        } else {
+            Log.e(TAG, MEDIA_BUTTON_DEPRECATED_ERROR);
         }
-        audioManager.registerMediaButtonEventReceiver(componentName);
     }
 
     public void unregisterMediaButtonEventReceiver(ComponentName componentName) {
-        if (android.os.Build.VERSION.SDK_INT > 27) {
-            Log.e(TAG, "unregisterMediaButtonEventReceiver has been deprecated and maybe not supported anymore.");
-            return;
+        if (CAN_USE_MEDIA_BUTTONS) {
+            audioManager.unregisterMediaButtonEventReceiver(componentName);
+        } else {
+            Log.e(TAG, MEDIA_BUTTON_DEPRECATED_ERROR);
         }
-        audioManager.unregisterMediaButtonEventReceiver(componentName);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -165,12 +169,8 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, Au
                 player.setVolume(to);
             }
         });
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                player.setVolume(((float) animation.getAnimatedValue()));
-            }
-        });
+        valueAnimator.addUpdateListener(animation ->
+                player.setVolume(((float) animation.getAnimatedValue())));
         valueAnimator.start();
     }
 

@@ -1,26 +1,26 @@
 package org.schabi.newpipe;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.preference.PreferenceManager;
 
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 
 import org.schabi.newpipe.extractor.NewPipe;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
 public class ImageDownloader extends BaseImageDownloader {
-    private static final ByteArrayInputStream DUMMY_INPUT_STREAM =
-            new ByteArrayInputStream(new byte[]{});
-
+    private final Resources resources;
     private final SharedPreferences preferences;
     private final String downloadThumbnailKey;
 
     public ImageDownloader(Context context) {
         super(context);
+        this.resources = context.getResources();
         this.preferences = PreferenceManager.getDefaultSharedPreferences(context);
         this.downloadThumbnailKey = context.getString(R.string.download_thumbnail_key);
     }
@@ -29,12 +29,18 @@ public class ImageDownloader extends BaseImageDownloader {
         return preferences.getBoolean(downloadThumbnailKey, true);
     }
 
-    protected InputStream getStreamFromNetwork(String imageUri, Object extra) throws IOException {
+    @SuppressLint("ResourceType")
+    @Override
+    public InputStream getStream(String imageUri, Object extra) throws IOException {
         if (isDownloadingThumbnail()) {
-            final Downloader downloader = (Downloader) NewPipe.getDownloader();
-            return downloader.stream(imageUri);
+            return super.getStream(imageUri, extra);
         } else {
-            return DUMMY_INPUT_STREAM;
+            return resources.openRawResource(R.drawable.dummy_thumbnail_dark);
         }
+    }
+
+    protected InputStream getStreamFromNetwork(String imageUri, Object extra) throws IOException {
+        final Downloader downloader = (Downloader) NewPipe.getDownloader();
+        return downloader.stream(imageUri);
     }
 }
