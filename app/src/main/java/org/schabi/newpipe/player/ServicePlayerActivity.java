@@ -509,7 +509,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        if (player != null) player.simpleExoPlayer.seekTo(seekBar.getProgress());
+        if (player != null) player.seekTo(seekBar.getProgress());
         seekDisplay.setVisibility(View.GONE);
         seeking = false;
     }

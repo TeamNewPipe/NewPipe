@@ -640,6 +640,7 @@ public final class MainVideoPlayer extends Activity implements StateSaver.WriteR
         public void onDismiss(PopupMenu menu) {
             super.onDismiss(menu);
             if (isPlaying()) hideControls(DEFAULT_CONTROLS_DURATION, 0);
+            hideSystemUi();
         }
 
         @Override

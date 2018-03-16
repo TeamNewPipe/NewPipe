@@ -149,7 +149,8 @@ public abstract class BasePlayer implements
     protected SimpleExoPlayer simpleExoPlayer;
     protected AudioReactor audioReactor;
 
-    protected boolean isPrepared = false;
+    private boolean isPrepared = false;
+    private boolean isSynchronizing = false;
 
     protected Disposable progressUpdateReactor;
     protected CompositeDisposable databaseUpdateReactor;
@@ -402,6 +403,7 @@ public abstract class BasePlayer implements
     // States Implementation
     //////////////////////////////////////////////////////////////////////////*/
 
+    public static final int STATE_PREFLIGHT = -1;
     public static final int STATE_BLOCKED = 123;
     public static final int STATE_PLAYING = 124;
     public static final int STATE_BUFFERING = 125;
@@ -409,7 +411,7 @@ public abstract class BasePlayer implements
     public static final int STATE_PAUSED_SEEK = 127;
     public static final int STATE_COMPLETED = 128;
 
-    protected int currentState = -1;
+    protected int currentState = STATE_PREFLIGHT;
 
     public void changeState(int state) {
         if (DEBUG) Log.d(TAG, "changeState() called with: state = [" + state + "]");
@@ -540,11 +542,13 @@ public abstract class BasePlayer implements
             case Player.TIMELINE_CHANGE_REASON_RESET: // called after #block
             case Player.TIMELINE_CHANGE_REASON_PREPARED: // called after #unblock
             case Player.TIMELINE_CHANGE_REASON_DYNAMIC: // called after playlist changes
-                // ensures MediaSourceManager#update is complete
+                // Ensures MediaSourceManager#update is complete
                 final boolean isPlaylistStable = timeline.getWindowCount() == playQueue.size();
                 // Ensure dynamic/livestream timeline changes does not cause negative position
-                if (isPlaylistStable && !isCurrentWindowValid()) {
-                    simpleExoPlayer.seekTo(/*clampToMillis=*/0);
+                if (isPlaylistStable && !isCurrentWindowValid() && !isSynchronizing) {
+                    if (DEBUG) Log.d(TAG, "Playback - negative time position reached, " +
+                            "clamping position to default time.");
+                    seekTo(/*clampToTime=*/0);
                 }
                 break;
         }
@@ -596,49 +600,55 @@ public abstract class BasePlayer implements
                 }
                 break;
             case Player.STATE_READY: //3
-                maybeRecover();
+                maybeCorrectSeekPosition();
                 if (!isPrepared) {
                     isPrepared = true;
                     onPrepared(playWhenReady);
                     break;
                 }
-                if (currentState == STATE_PAUSED_SEEK) break;
                 changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
                 break;
             case Player.STATE_ENDED: // 4
-                // Ensure the current window has actually ended
-                // since single windows that are still loading may produce an ended state
-                if (isCurrentWindowValid() &&
-                        simpleExoPlayer.getCurrentPosition() >= simpleExoPlayer.getDuration()) {
-                    changeState(STATE_COMPLETED);
-                    isPrepared = false;
-                }
+                changeState(STATE_COMPLETED);
+                isPrepared = false;
                 break;
         }
     }
 
-    private void maybeRecover() {
+    private void maybeCorrectSeekPosition() {
+        if (playQueue == null || simpleExoPlayer == null || currentInfo == null) return;
+
         final int currentSourceIndex = playQueue.getIndex();
         final PlayQueueItem currentSourceItem = playQueue.getItem();
+        if (currentSourceItem == null) return;
 
-        // Check if already playing correct window
-        final boolean isCurrentPeriodCorrect =
+        final long recoveryPositionMillis = currentSourceItem.getRecoveryPosition();
+        final boolean isCurrentWindowCorrect =
                 simpleExoPlayer.getCurrentPeriodIndex() == currentSourceIndex;
+        final long presetStartPositionMillis = currentInfo.getStartPosition() * 1000;
 
-        // Check if recovering
-        if (isCurrentPeriodCorrect && currentSourceItem != null) {
-            /* Recovering with sub-second position may cause a long buffer delay in ExoPlayer,
-             * rounding this position to the nearest second will help alleviate this.*/
-            final long position = currentSourceItem.getRecoveryPosition();
-
-            /* Skip recovering if the recovery position is not set.*/
-            if (position == PlayQueueItem.RECOVERY_UNSET) return;
-
-            if (DEBUG) Log.d(TAG, "Rewinding to recovery window: " + currentSourceIndex +
-                    " at: " + getTimeString((int)position));
-            simpleExoPlayer.seekTo(currentSourceItem.getRecoveryPosition());
+        if (recoveryPositionMillis != PlayQueueItem.RECOVERY_UNSET && isCurrentWindowCorrect) {
+            // Is recovering previous playback?
+            if (DEBUG) Log.d(TAG, "Playback - Rewinding to recovery time=" +
+                    "[" + getTimeString((int)recoveryPositionMillis) + "]");
+            seekTo(recoveryPositionMillis);
             playQueue.unsetRecovery(currentSourceIndex);
+            isSynchronizing = false;
+
+        } else if (isSynchronizing && simpleExoPlayer.isCurrentWindowDynamic()) {
+            if (DEBUG) Log.d(TAG, "Playback - Synchronizing livestream to default time");
+            // Is still synchronizing?
+            seekToDefault();
+
+        } else if (isSynchronizing && presetStartPositionMillis != 0L) {
+            if (DEBUG) Log.d(TAG, "Playback - Seeking to preset start " +
+                    "position=[" + presetStartPositionMillis + "]");
+            // Has another start position?
+            seekTo(presetStartPositionMillis);
+            currentInfo.setStartPosition(0);
         }
+
+        isSynchronizing = false;
     }
 
     /**
@@ -810,11 +820,26 @@ public abstract class BasePlayer implements
         if (DEBUG) Log.d(TAG, "Playback - onPlaybackSynchronize() called with " +
                 (info != null ? "available" : "null") + " info, " +
                 "item=[" + item.getTitle() + "], url=[" + item.getUrl() + "]");
+        if (simpleExoPlayer == null || playQueue == null) return;
 
+        final boolean onPlaybackInitial = currentItem == null;
         final boolean hasPlayQueueItemChanged = currentItem != item;
         final boolean hasStreamInfoChanged = currentInfo != info;
+
+        final int currentPlayQueueIndex = playQueue.indexOf(item);
+        final int currentPlaylistIndex = simpleExoPlayer.getCurrentWindowIndex();
+        final int currentPlaylistSize = simpleExoPlayer.getCurrentTimeline().getWindowCount();
+
+        // when starting playback on the last item when not repeating, maybe auto queue
+        if (info != null && currentPlayQueueIndex == playQueue.size() - 1 &&
+                getRepeatMode() == Player.REPEAT_MODE_OFF &&
+                PlayerHelper.isAutoQueueEnabled(context)) {
+            final PlayQueue autoQueue = PlayerHelper.autoQueueOf(info, playQueue.getStreams());
+            if (autoQueue != null) playQueue.append(autoQueue.getStreams());
+        }
+        // If nothing to synchronize
         if (!hasPlayQueueItemChanged && !hasStreamInfoChanged) {
-            return; // Nothing to synchronize
+            return;
         }
 
         currentItem = item;
@@ -824,13 +849,8 @@ public abstract class BasePlayer implements
             registerView();
             initThumbnail(info == null ? item.getThumbnailUrl() : info.getThumbnailUrl());
         }
-
-        final int currentPlayQueueIndex = playQueue.indexOf(item);
         onMetadataChanged(item, info, currentPlayQueueIndex, hasPlayQueueItemChanged);
 
-        if (simpleExoPlayer == null) return;
-        final int currentPlaylistIndex = simpleExoPlayer.getCurrentWindowIndex();
-        final int currentPlaylistSize = simpleExoPlayer.getCurrentTimeline().getWindowCount();
         // Check if on wrong window
         if (currentPlayQueueIndex != playQueue.getIndex()) {
             Log.e(TAG, "Playback - Play Queue may be desynchronized: item " +
@@ -844,22 +864,16 @@ public abstract class BasePlayer implements
                     "index=[" + currentPlayQueueIndex + "] with " +
                     "playlist length=[" + currentPlaylistSize + "]");
 
-            // If not playing correct stream, change window position
-        } else if (currentPlaylistIndex != currentPlayQueueIndex || !isPlaying()) {
-            final long startPos = info != null ? info.getStartPosition() : C.TIME_UNSET;
+            // If not playing correct stream, change window position and sets flag
+            // for synchronizing once window position is corrected
+            // @see maybeCorrectSeekPosition()
+        } else if (currentPlaylistIndex != currentPlayQueueIndex || onPlaybackInitial ||
+                !isPlaying()) {
             if (DEBUG) Log.d(TAG, "Playback - Rewinding to correct" +
                     " index=[" + currentPlayQueueIndex + "]," +
-                    " at=[" + getTimeString((int)startPos) + "]," +
                     " from=[" + currentPlaylistIndex + "], size=[" + currentPlaylistSize + "].");
-            simpleExoPlayer.seekTo(currentPlayQueueIndex, startPos);
-        }
-
-        // when starting playback on the last item when not repeating, maybe auto queue
-        if (info != null && currentPlayQueueIndex == playQueue.size() - 1 &&
-                getRepeatMode() == Player.REPEAT_MODE_OFF &&
-                PlayerHelper.isAutoQueueEnabled(context)) {
-            final PlayQueue autoQueue = PlayerHelper.autoQueueOf(info, playQueue.getStreams());
-            if (autoQueue != null) playQueue.append(autoQueue.getStreams());
+            isSynchronizing = true;
+            simpleExoPlayer.seekToDefaultPosition(currentPlayQueueIndex);
         }
     }
 
@@ -927,9 +941,6 @@ public abstract class BasePlayer implements
         if (DEBUG) Log.d(TAG, "onPrepared() called with: playWhenReady = [" + playWhenReady + "]");
         if (playWhenReady) audioReactor.requestAudioFocus();
         changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
-
-        // On live prepared
-        if (simpleExoPlayer.isCurrentWindowDynamic()) seekToDefault();
     }
 
     public void onVideoPlayPause() {
@@ -1001,16 +1012,16 @@ public abstract class BasePlayer implements
         playQueue.setIndex(index);
     }
 
-    public void seekBy(int milliSeconds) {
-        if (DEBUG) Log.d(TAG, "seekBy() called with: milliSeconds = [" + milliSeconds + "]");
-        if (simpleExoPlayer == null || (isCompleted() && milliSeconds > 0) ||
-                ((milliSeconds < 0 && simpleExoPlayer.getCurrentPosition() == 0))) {
-            return;
-        }
+    public void seekTo(long positionMillis) {
+        if (DEBUG) Log.d(TAG, "seekBy() called with: position = [" + positionMillis + "]");
+        if (simpleExoPlayer == null || positionMillis < 0 ||
+                positionMillis > simpleExoPlayer.getDuration()) return;
+        simpleExoPlayer.seekTo(positionMillis);
+    }
 
-        int progress = (int) (simpleExoPlayer.getCurrentPosition() + milliSeconds);
-        if (progress < 0) progress = 0;
-        simpleExoPlayer.seekTo(progress);
+    public void seekBy(long offsetMillis) {
+        if (DEBUG) Log.d(TAG, "seekBy() called with: offsetMillis = [" + offsetMillis + "]");
+        seekTo(simpleExoPlayer.getCurrentPosition() + offsetMillis);
     }
 
     public boolean isCurrentWindowValid() {
@@ -1094,10 +1105,6 @@ public abstract class BasePlayer implements
         return currentItem == null ? context.getString(R.string.unknown_content) : currentItem.getUploader();
     }
 
-    public boolean isCompleted() {
-        return simpleExoPlayer != null && simpleExoPlayer.getPlaybackState() == Player.STATE_ENDED;
-    }
-
     public boolean isPlaying() {
         final int state = simpleExoPlayer.getPlaybackState();
         return (state == Player.STATE_READY || state == Player.STATE_BUFFERING)
@@ -1148,8 +1155,8 @@ public abstract class BasePlayer implements
         return playQueueAdapter;
     }
 
-    public boolean isPlayerReady() {
-        return currentState == STATE_PLAYING || currentState == STATE_COMPLETED || currentState == STATE_PAUSED;
+    public boolean isPrepared() {
+        return isPrepared;
     }
 
     public boolean isProgressLoopRunning() {

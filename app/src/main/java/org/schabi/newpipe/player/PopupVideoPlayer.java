@@ -716,7 +716,7 @@ public final class PopupVideoPlayer extends Service {
         public boolean onDoubleTap(MotionEvent e) {
             if (DEBUG)
                 Log.d(TAG, "onDoubleTap() called with: e = [" + e + "]" + "rawXy = " + e.getRawX() + ", " + e.getRawY() + ", xy = " + e.getX() + ", " + e.getY());
-            if (playerImpl == null || !playerImpl.isPlaying() || !playerImpl.isPlayerReady()) return false;
+            if (playerImpl == null || !playerImpl.isPlaying()) return false;
 
             if (e.getX() > popupWidth / 2) {
                 playerImpl.onFastForward();

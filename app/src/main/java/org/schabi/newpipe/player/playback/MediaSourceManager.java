@@ -307,7 +307,7 @@ public class MediaSourceManager {
         if (DEBUG) Log.d(TAG, "onPlaybackSynchronize() called.");
 
         final PlayQueueItem currentItem = playQueue.getItem();
-        if (isBlocked.get() || currentItem == null) return;
+        if (isBlocked.get() || !isPlaybackReady() || currentItem == null) return;
 
         final Consumer<StreamInfo> onSuccess = info -> syncInternal(currentItem, info);
         final Consumer<Throwable> onError = throwable -> syncInternal(currentItem, null);
@@ -400,8 +400,6 @@ public class MediaSourceManager {
                     /* No exception handling since getLoadedMediaSource guarantees nonnull return */
                     .subscribe(mediaSource -> onMediaSourceReceived(item, mediaSource));
             loaderReactor.add(loader);
-        } else {
-            maybeSynchronizePlayer();
         }
     }
 
@@ -467,6 +465,12 @@ public class MediaSourceManager {
      * Checks if the current playing index contains an expired {@link ManagedMediaSource}.
      * If so, the expired source is replaced by a {@link PlaceholderMediaSource} and
      * {@link #loadImmediate()} is called to reload the current item.
+     * <br><br>
+     * If not, then the media source at the current index is ready for playback, and
+     * {@link #maybeSynchronizePlayer()} is called.
+     * <br><br>
+     * Under both cases, {@link #maybeSync()} will be called to ensure the listener
+     * is up-to-date.
      * */
     private void maybeRenewCurrentIndex() {
         final int currentIndex = playQueue.getIndex();
@@ -475,7 +479,10 @@ public class MediaSourceManager {
         final ManagedMediaSource currentSource =
                 (ManagedMediaSource) sources.getMediaSource(currentIndex);
         final PlayQueueItem currentItem = playQueue.getItem();
-        if (!currentSource.canReplace(currentItem)) return;
+        if (!currentSource.canReplace(currentItem)) {
+            maybeSynchronizePlayer();
+            return;
+        }
 
         if (DEBUG) Log.d(TAG, "MediaSource - Reloading currently playing, " +
                 "index=[" + currentIndex + "], item=[" + currentItem.getTitle() + "]");

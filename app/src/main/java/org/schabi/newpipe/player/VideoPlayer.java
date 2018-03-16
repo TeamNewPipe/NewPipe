@@ -425,7 +425,7 @@ public abstract class VideoPlayer extends BasePlayer
         // Create subtitle sources
         for (final Subtitles subtitle : info.getSubtitles()) {
             final String mimeType = PlayerHelper.mimeTypesOf(subtitle.getFileType());
-            if (mimeType == null || context == null) continue;
+            if (mimeType == null) continue;
 
             final Format textFormat = Format.createTextSampleFormat(null, mimeType,
                     SELECTION_FLAG_AUTOSELECT, PlayerHelper.captionLanguageOf(context, subtitle));
@@ -599,7 +599,7 @@ public abstract class VideoPlayer extends BasePlayer
 
     @Override
     public void onUpdateProgress(int currentProgress, int duration, int bufferPercent) {
-        if (!isPrepared) return;
+        if (!isPrepared()) return;
 
         if (duration != playbackSeekBar.getMax()) {
             playbackEndTime.setText(getTimeString(duration));
@@ -624,8 +624,6 @@ public abstract class VideoPlayer extends BasePlayer
     }
 
     protected void onFullScreenButtonClicked() {
-        if (!isPlayerReady()) return;
-
         changeState(STATE_BLOCKED);
     }
 
@@ -735,7 +733,7 @@ public abstract class VideoPlayer extends BasePlayer
     }
 
     private void onResizeClicked() {
-        if (getAspectRatioFrameLayout() != null && context != null) {
+        if (getAspectRatioFrameLayout() != null) {
             final int currentResizeMode = getAspectRatioFrameLayout().getResizeMode();
             final int newResizeMode = nextResizeMode(currentResizeMode);
             getAspectRatioFrameLayout().setResizeMode(newResizeMode);
@@ -772,7 +770,7 @@ public abstract class VideoPlayer extends BasePlayer
     public void onStopTrackingTouch(SeekBar seekBar) {
         if (DEBUG) Log.d(TAG, "onStopTrackingTouch() called with: seekBar = [" + seekBar + "]");
 
-        simpleExoPlayer.seekTo(seekBar.getProgress());
+        seekTo(seekBar.getProgress());
         if (wasPlaying || simpleExoPlayer.getDuration() == seekBar.getProgress()) simpleExoPlayer.setPlayWhenReady(true);
 
         playbackCurrentTime.setText(getTimeString(seekBar.getProgress()));
