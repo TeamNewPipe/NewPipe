@@ -384,7 +384,7 @@
     <string name="enable_leak_canary_summary">Під час роботи LeakCanary застосунок може стати несприйнятливим під час гіп-дампінґу</string>
 
     <string name="enable_disposed_exceptions_title">Зазвітувати Out-of-Lifecycle хиби</string>
-    <string name="enable_disposed_exceptions_summary">Примусове звітування про неможливість доставлення Rx винятків, яку відбуваються за межами фраґменту, або діяльності життєвого циклу після усунення</string>
+    <string name="enable_disposed_exceptions_summary">Примусове звітування про неможливість доставлення Rx винятків, які відбуваються за межами фраґменту або діяльності життєвого циклу після усунення</string>
 
 <string name="use_inexact_seek_title">Використовувати неточне шукання</string>
     <string name="use_inexact_seek_summary">Неточне шукання дозволяє програвачеві рухатися позиціями швидше, проте з меншою точністю</string>
@@ -400,18 +400,37 @@
     <string name="file_name_empty_error">Ім\'я файлу не повинно бути порожнім</string>
     <string name="error_occurred_detail">Трапилась помилка: %1$s</string>
 
-    <string name="import_export_title">Імпорт/Експорт</string>
-    <string name="import_title">Імпорт</string>
-    <string name="import_from">Імпорт з</string>
-    <string name="export_to">Експорт до</string>
+    <string name="import_export_title">Імпортування/Експортування</string>
+    <string name="import_title">Імпортування</string>
+    <string name="import_from">Імпортувати з</string>
+    <string name="export_to">Експортувати до</string>
 
     <string name="import_ongoing">Імпортування…</string>
     <string name="export_ongoing">Експортування…</string>
 
-    <string name="import_file_title">Імпорт файлу</string>
-    <string name="previous_export">Попередній експорт</string>
+    <string name="import_file_title">Імпортування файлу</string>
+    <string name="previous_export">Попереднє експортування</string>
 
     <string name="subscriptions_import_unsuccessful">Не вдалось імпортувати підписки</string>
     <string name="subscriptions_export_unsuccessful">Не вдалося експортувати підписки</string>
 
-    </resources>
+    <string name="import_youtube_instructions">Аби імпортувати ваші підписання Ютюб, вам буде потрібно експортувати файл, який можна буде завантажити наступним чином:
+\n
+\n1. Перейдіть за цією ланкою: %1$s
+\n2. За запитом увійдіть до вашої обліківки
+\n3. Завантаження має початися (експортований файл)</string>
+    <string name="import_soundcloud_instructions">Для імпортування ваших підписок з SoundCloud, ви маєте знати url вашого профайлу або ID. Якщо ви знаєте їх, упишіть їх нижче та можна працювати.
+\n
+\nЯкщо ви не маєте їх, зробіть наступним чином:
+\n
+\n1. Увімкніть режимі \"desktop\" у будь-якому з переглядачів (сайт не має підтримки мобільних ґаджетів)
+\n
+\n2. Перейдіть за цією ланкою: %1$s
+\n3. За запитом увійдіть до вашої обліківки
+\n4. Скопіюйте url, до якого вас відішле (це й є url вашого профайлу)</string>
+    <string name="import_soundcloud_instructions_hint">yourid, soundcloud.com/yourid</string>
+
+    <string name="import_network_expensive_warning">Майте на увазі: ця операція може потребувати багато трафіку.
+\n
+\nПродовжуватимете?</string>
+</resources>
