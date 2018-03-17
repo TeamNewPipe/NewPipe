@@ -268,15 +268,10 @@ public class MediaSourceManager {
     private boolean isPlaybackReady() {
         if (sources.getSize() != playQueue.size()) return false;
 
-        final MediaSource mediaSource = sources.getMediaSource(playQueue.getIndex());
+        final ManagedMediaSource mediaSource =
+                (ManagedMediaSource) sources.getMediaSource(playQueue.getIndex());
         final PlayQueueItem playQueueItem = playQueue.getItem();
-
-        if (mediaSource instanceof LoadedMediaSource) {
-            return playQueueItem == ((LoadedMediaSource) mediaSource).getStream();
-        } else if (mediaSource instanceof FailedMediaSource) {
-            return playQueueItem == ((FailedMediaSource) mediaSource).getStream();
-        }
-        return false;
+        return mediaSource.isStreamEqual(playQueueItem);
     }
 
     private void maybeBlock() {
@@ -453,12 +448,8 @@ public class MediaSourceManager {
         if (index == -1 || index >= sources.getSize()) return false;
 
         final ManagedMediaSource mediaSource = (ManagedMediaSource) sources.getMediaSource(index);
-
-        if (index == playQueue.getIndex() && mediaSource instanceof LoadedMediaSource) {
-            return item != ((LoadedMediaSource) mediaSource).getStream();
-        } else {
-            return mediaSource.canReplace(item);
-        }
+        return mediaSource.shouldBeReplacedWith(item,
+                /*mightBeInProgress=*/index != playQueue.getIndex());
     }
 
     /**
@@ -479,7 +470,7 @@ public class MediaSourceManager {
         final ManagedMediaSource currentSource =
                 (ManagedMediaSource) sources.getMediaSource(currentIndex);
         final PlayQueueItem currentItem = playQueue.getItem();
-        if (!currentSource.canReplace(currentItem)) {
+        if (!currentSource.shouldBeReplacedWith(currentItem, /*canInterruptOnRenew=*/true)) {
             maybeSynchronizePlayer();
             return;
         }

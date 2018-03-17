@@ -59,7 +59,13 @@ public class LoadedMediaSource implements ManagedMediaSource {
     }
 
     @Override
-    public boolean canReplace(@NonNull final PlayQueueItem newIdentity) {
-        return newIdentity != stream || isExpired();
+    public boolean shouldBeReplacedWith(@NonNull PlayQueueItem newIdentity,
+                                        final boolean isInterruptable) {
+        return newIdentity != stream || (isInterruptable && isExpired());
+    }
+
+    @Override
+    public boolean isStreamEqual(@NonNull PlayQueueItem stream) {
+        return this.stream == stream;
     }
 }
