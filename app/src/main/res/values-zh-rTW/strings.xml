@@ -408,4 +408,15 @@
 
     <string name="previous_export">之前的匯出</string>
 
-    </resources>
+    <string name="invalid_file">檔案不存在或沒有足夠的權限讀取或寫入</string>
+    <string name="import_youtube_instructions">要匯入您的 YouTube 訂閱，您必須匯出檔案，可以按照以下說明進行下載：
+\n
+\n1. 轉到此網址：%1$s
+\n2. 當被詢問時登入您的帳戶
+\n3. 下載應該開始 ( 這就是匯出的檔案 )</string>
+    <string name="import_soundcloud_instructions_hint">yourid, soundcloud.com/yourid</string>
+
+    <string name="import_network_expensive_warning">請記住，此操作可能會造成網路昂貴花費。
+\n
+\n您想繼續嗎？</string>
+</resources>
