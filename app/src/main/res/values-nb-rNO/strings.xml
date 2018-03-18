@@ -382,4 +382,26 @@
     <string name="smaller_caption_font_size">Mindre skrift</string>
     <string name="normal_caption_font_size">Normal skrift</string>
     <string name="larger_caption_font_size">Større skrift</string>
-</resources>
+<string name="use_inexact_seek_title">Bruk raskt unøyaktig søk</string>
+    <string name="settings_category_debug_title">Feilretting</string>
+    <string name="file">Fil</string>
+
+    <string name="invalid_directory">Ugyldig mappe</string>
+    <string name="invalid_source">Ugyldig fil/innholdskilde</string>
+    <string name="invalid_file">Filen finnes ikke eller så har du ikke tilgang til å lese eller skrive til den</string>
+    <string name="file_name_empty_error">Filnavn kan ikke være tomt</string>
+    <string name="error_occurred_detail">En feil inntraff: %1$s</string>
+
+    <string name="caption_auto_generated">Auto-generert</string>
+    <string name="enable_leak_canary_title">Skru på LeakCanary</string>
+    <string name="import_title">Importer</string>
+    <string name="import_from">Importer fra</string>
+    <string name="export_to">Eksporter til</string>
+
+    <string name="import_ongoing">Importerer…</string>
+    <string name="export_ongoing">Eksporterer…</string>
+
+    <string name="import_file_title">Importer fil</string>
+    <string name="previous_export">Forrige eksport</string>
+
+    </resources>
