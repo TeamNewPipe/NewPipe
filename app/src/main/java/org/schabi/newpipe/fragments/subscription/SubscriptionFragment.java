@@ -401,12 +401,8 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
         List<InfoItem> items = new ArrayList<>();
         for (final SubscriptionEntity subscription : subscriptions) items.add(subscription.toChannelInfoItem());
 
-        Collections.sort(items, new Comparator<InfoItem>() {
-            @Override
-            public int compare(InfoItem o1, InfoItem o2) {
-                return o1.name.compareToIgnoreCase(o2.name);
-            }
-        });
+        Collections.sort(items,
+                (InfoItem o1, InfoItem o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
         return items;
     }
 

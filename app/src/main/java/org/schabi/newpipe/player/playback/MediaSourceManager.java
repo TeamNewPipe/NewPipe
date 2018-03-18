@@ -417,9 +417,9 @@ public class MediaSourceManager {
                 final Exception exception = new IllegalStateException(
                         "Unable to resolve source from stream info." +
                                 " URL: " + stream.getUrl() +
-                                ", audio count: " + streamInfo.audio_streams.size() +
-                                ", video count: " + streamInfo.video_only_streams.size() +
-                                streamInfo.video_streams.size());
+                                ", audio count: " + streamInfo.getAudioStreams().size() +
+                                ", video count: " + streamInfo.getVideoOnlyStreams().size() +
+                                streamInfo.getVideoStreams().size());
                 return new FailedMediaSource(stream, exception);
             }
 

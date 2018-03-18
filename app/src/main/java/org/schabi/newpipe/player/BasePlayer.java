@@ -833,7 +833,7 @@ public abstract class BasePlayer implements
 
             // on metadata changed
         } else if (currentPlaylistIndex != currentPlayQueueIndex || !isPlaying()) {
-            final long startPos = info != null ? info.start_position : C.TIME_UNSET;
+            final long startPos = info != null ? info.getStartPosition() : C.TIME_UNSET;
             if (DEBUG) Log.d(TAG, "Rewinding to correct" +
                     " window=[" + currentPlayQueueIndex + "]," +
                     " at=[" + getTimeString((int)startPos) + "]," +
@@ -950,7 +950,7 @@ public abstract class BasePlayer implements
         /* If current playback has run for PLAY_PREV_ACTIVATION_LIMIT milliseconds, restart current track.
         * Also restart the track if the current track is the first in a queue.*/
         if (simpleExoPlayer.getCurrentPosition() > PLAY_PREV_ACTIVATION_LIMIT || playQueue.getIndex() == 0) {
-            final long startPos = currentInfo == null ? 0 : currentInfo.start_position;
+            final long startPos = currentInfo == null ? 0 : currentInfo.getStartPosition();
             simpleExoPlayer.seekTo(startPos);
         } else {
             playQueue.offsetIndex(-1);

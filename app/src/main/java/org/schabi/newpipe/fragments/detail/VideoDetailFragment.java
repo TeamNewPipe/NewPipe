@@ -383,7 +383,8 @@ public class VideoDetailFragment
                 }
                 break;
             case R.id.detail_thumbnail_root_layout:
-                if (currentInfo.video_streams.isEmpty() && currentInfo.video_only_streams.isEmpty()) {
+                if (currentInfo.getVideoStreams().isEmpty()
+                        && currentInfo.getVideoOnlyStreams().isEmpty()) {
                     openBackgroundPlayer(false);
                 } else {
                     openVideoPlayer();
@@ -618,7 +619,8 @@ public class VideoDetailFragment
             relatedStreamRootLayout.setVisibility(View.VISIBLE);
         } else nextStreamTitle.setVisibility(View.GONE);
 
-        if (info.related_streams != null && !info.related_streams.isEmpty() && showRelatedStreams) {
+        if (info.getRelatedStreams() != null
+                && !info.getRelatedStreams().isEmpty() && showRelatedStreams) {
             //long first = System.nanoTime(), each;
             int to = info.getRelatedStreams().size() >= INITIAL_RELATED_VIDEOS
                     ? INITIAL_RELATED_VIDEOS
@@ -683,7 +685,7 @@ public class VideoDetailFragment
         switch (id) {
             case R.id.menu_item_share: {
                 if(currentInfo != null) {
-                    shareUrl(currentInfo.name, url);
+                    shareUrl(currentInfo.getName(), url);
                 } else {
                     shareUrl(url, url);
                 }
@@ -1210,7 +1212,8 @@ public class VideoDetailFragment
                 spinnerToolbar.setVisibility(View.GONE);
                 break;
             default:
-                if (!info.video_streams.isEmpty() || !info.video_only_streams.isEmpty()) break;
+                if (!info.getVideoStreams().isEmpty()
+                        || !info.getVideoOnlyStreams().isEmpty()) break;
 
                 detailControlsBackground.setVisibility(View.GONE);
                 detailControlsPopup.setVisibility(View.GONE);
