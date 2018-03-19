@@ -376,4 +376,30 @@
     <string name="dismiss">Abbrechen</string>
     <string name="normal_caption_font_size">Normale Schriftgröße</string>
     <string name="controls_download_desc">Stream-Datei herunterladen</string>
-    </resources>
+    <string name="use_inexact_seek_title">Benutze schnelle ungenaue Suche</string>
+    <string name="use_inexact_seek_summary">Ungenaues Suchen erlaubt dem Player die Positionen schneller mit geringerer Genauigkeit zu suchen</string>
+    <string name="file">Datei</string>
+
+    <string name="invalid_directory">Ungültiges Verzeichnis</string>
+    <string name="invalid_file">Datei existiert nicht oder nicht ausreichende Rechte um sie zu lesen oder zu beschreiben</string>
+    <string name="file_name_empty_error">Dateiname darf nicht leer sein</string>
+    <string name="error_occurred_detail">Ein Fehler ist aufgetreten: %1$s</string>
+
+    <string name="caption_auto_generated">Automatisch erzeugt</string>
+    <string name="smaller_caption_font_size">Kleinere Schriftgröße</string>
+    <string name="larger_caption_font_size">Größere Schriftgröße</string>
+
+    <string name="enable_leak_canary_title">LeakCanary aktivieren</string>
+    <string name="import_from">Import von</string>
+    <string name="export_to">Export nach</string>
+
+    <string name="import_ongoing">Importiere…</string>
+    <string name="export_ongoing">Exportiere…</string>
+
+    <string name="import_file_title">Datei importieren</string>
+    <string name="previous_export">Vorheriger Export</string>
+
+    <string name="import_network_expensive_warning">Beachte, dass diese Aktion sehr Netzwerk intensiv sein kann.
+\n
+\nMöchtest du fortfahren?</string>
+</resources>
