@@ -20,7 +20,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public abstract class BaseListInfoFragment<I extends ListInfo>
-        extends BaseListFragment<I, ListExtractor.InfoItemPage> {
+        extends BaseListFragment<I, ListExtractor.InfoItemsPage> {
 
     @State
     protected int serviceId = Constants.NO_SERVICE_ID;
@@ -117,7 +117,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
                 .subscribe((@NonNull I result) -> {
                     isLoading.set(false);
                     currentInfo = result;
-                    currentNextPageUrl = result.next_streams_url;
+                    currentNextPageUrl = result.getNextPageUrl();
                     handleResult(result);
                 }, (@NonNull Throwable throwable) -> onError(throwable));
     }
@@ -126,7 +126,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
      * Implement the logic to load more items<br/>
      * You can use the default implementations from {@link org.schabi.newpipe.util.ExtractorHelper}
      */
-    protected abstract Single<ListExtractor.InfoItemPage> loadMoreItemsLogic();
+    protected abstract Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic();
 
     protected void loadMoreItems() {
         isLoading.set(true);
@@ -135,9 +135,9 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
         currentWorker = loadMoreItemsLogic()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((@io.reactivex.annotations.NonNull ListExtractor.InfoItemPage InfoItemPage) -> {
+                .subscribe((@io.reactivex.annotations.NonNull ListExtractor.InfoItemsPage InfoItemsPage) -> {
                     isLoading.set(false);
-                    handleNextItems(InfoItemPage);
+                    handleNextItems(InfoItemsPage);
                 }, (@io.reactivex.annotations.NonNull Throwable throwable) -> {
                     isLoading.set(false);
                     onError(throwable);
@@ -145,10 +145,10 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
     }
 
     @Override
-    public void handleNextItems(ListExtractor.InfoItemPage result) {
+    public void handleNextItems(ListExtractor.InfoItemsPage result) {
         super.handleNextItems(result);
-        currentNextPageUrl = result.nextPageUrl;
-        infoListAdapter.addInfoItemList(result.infoItemList);
+        currentNextPageUrl = result.getNextPageUrl();
+        infoListAdapter.addInfoItemList(result.getItems());
 
         showListFooter(hasMoreItems());
     }
@@ -171,8 +171,8 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
         setTitle(name);
 
         if (infoListAdapter.getItemsList().size() == 0) {
-            if (result.related_streams.size() > 0) {
-                infoListAdapter.addInfoItemList(result.related_streams);
+            if (result.getRelatedItems().size() > 0) {
+                infoListAdapter.addInfoItemList(result.getRelatedItems());
                 showListFooter(hasMoreItems());
             } else {
                 infoListAdapter.clearStreamItemList();

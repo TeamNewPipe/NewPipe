@@ -354,10 +354,10 @@ public abstract class VideoPlayer extends BasePlayer
                 break;
 
             case VIDEO_STREAM:
-                if (info.video_streams.size() + info.video_only_streams.size() == 0) break;
+                if (info.getVideoStreams().size() + info.getVideoOnlyStreams().size() == 0) break;
 
                 final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context,
-                        info.video_streams, info.video_only_streams, false);
+                        info.getVideoStreams(), info.getVideoOnlyStreams(), false);
                 availableStreams = new ArrayList<>(videos);
                 if (playbackQuality == null) {
                     selectedStreamIndex = getDefaultResolutionIndex(videos);
@@ -388,7 +388,7 @@ public abstract class VideoPlayer extends BasePlayer
 
         // Create video stream source
         final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context,
-                info.video_streams, info.video_only_streams, false);
+                info.getVideoStreams(), info.getVideoOnlyStreams(), false);
         final int index;
         if (videos.isEmpty()) {
             index = -1;

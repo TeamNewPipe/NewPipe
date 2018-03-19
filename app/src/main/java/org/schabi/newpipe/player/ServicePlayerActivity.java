@@ -579,7 +579,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     public void onMetadataUpdate(StreamInfo info) {
         if (info != null) {
             metadataTitle.setText(info.getName());
-            metadataArtist.setText(info.uploader_name);
+            metadataArtist.setText(info.getUploaderName());
 
             progressEndTime.setVisibility(View.GONE);
             progressLiveSync.setVisibility(View.GONE);

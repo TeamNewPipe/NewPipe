@@ -203,7 +203,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             return FOOTER_TYPE;
         }
         final InfoItem item = infoItemList.get(position);
-        switch (item.info_type) {
+        switch (item.getInfoType()) {
             case STREAM:
                 return useMiniVariant ? MINI_STREAM_HOLDER_TYPE : STREAM_HOLDER_TYPE;
             case CHANNEL:

@@ -41,15 +41,17 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
         final StreamInfoItem item = (StreamInfoItem) infoItem;
 
         itemVideoTitleView.setText(item.getName());
-        itemUploaderView.setText(item.uploader_name);
+        itemUploaderView.setText(item.getUploaderName());
 
-        if (item.duration > 0) {
-            itemDurationView.setText(Localization.getDurationString(item.duration));
-            itemDurationView.setBackgroundColor(ContextCompat.getColor(itemBuilder.getContext(), R.color.duration_background_color));
+        if (item.getDuration() > 0) {
+            itemDurationView.setText(Localization.getDurationString(item.getDuration()));
+            itemDurationView.setBackgroundColor(ContextCompat.getColor(itemBuilder.getContext(),
+                    R.color.duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
-        } else if (item.stream_type == StreamType.LIVE_STREAM) {
+        } else if (item.getStreamType() == StreamType.LIVE_STREAM) {
             itemDurationView.setText(R.string.duration_live);
-            itemDurationView.setBackgroundColor(ContextCompat.getColor(itemBuilder.getContext(), R.color.live_duration_background_color));
+            itemDurationView.setBackgroundColor(ContextCompat.getColor(itemBuilder.getContext(),
+                    R.color.live_duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
         } else {
             itemDurationView.setVisibility(View.GONE);
@@ -57,7 +59,9 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
 
         // Default thumbnail is shown on error, while loading and if the url is empty
         itemBuilder.getImageLoader()
-                .displayImage(item.thumbnail_url, itemThumbnailView, StreamInfoItemHolder.DISPLAY_THUMBNAIL_OPTIONS);
+                .displayImage(item.getThumbnailUrl(),
+                        itemThumbnailView,
+                        StreamInfoItemHolder.DISPLAY_THUMBNAIL_OPTIONS);
 
         itemView.setOnClickListener(view -> {
             if (itemBuilder.getOnStreamSelectedListener() != null) {
@@ -65,7 +69,7 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
             }
         });
 
-        switch (item.stream_type) {
+        switch (item.getStreamType()) {
             case AUDIO_STREAM:
             case VIDEO_STREAM:
             case LIVE_STREAM:

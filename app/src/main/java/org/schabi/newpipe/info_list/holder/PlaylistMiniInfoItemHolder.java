@@ -40,7 +40,7 @@ public class PlaylistMiniInfoItemHolder extends InfoItemHolder {
         itemUploaderView.setText(item.getUploaderName());
 
         itemBuilder.getImageLoader()
-                .displayImage(item.thumbnail_url, itemThumbnailView, DISPLAY_THUMBNAIL_OPTIONS);
+                .displayImage(item.getThumbnailUrl(), itemThumbnailView, DISPLAY_THUMBNAIL_OPTIONS);
 
         itemView.setOnClickListener(view -> {
             if (itemBuilder.getOnPlaylistSelectedListener() != null) {

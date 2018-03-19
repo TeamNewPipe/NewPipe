@@ -40,22 +40,22 @@ public class ChannelMiniInfoItemHolder extends InfoItemHolder {
         itemAdditionalDetailView.setText(getDetailLine(item));
 
         itemBuilder.getImageLoader()
-                .displayImage(item.thumbnail_url, itemThumbnailView, ChannelInfoItemHolder.DISPLAY_THUMBNAIL_OPTIONS);
+                .displayImage(item.getThumbnailUrl(),
+                        itemThumbnailView,
+                        ChannelInfoItemHolder.DISPLAY_THUMBNAIL_OPTIONS);
 
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (itemBuilder.getOnChannelSelectedListener() != null) {
-                    itemBuilder.getOnChannelSelectedListener().selected(item);
-                }
+        itemView.setOnClickListener(view -> {
+            if (itemBuilder.getOnChannelSelectedListener() != null) {
+                itemBuilder.getOnChannelSelectedListener().selected(item);
             }
         });
     }
 
     protected String getDetailLine(final ChannelInfoItem item) {
         String details = "";
-        if (item.subscriber_count >= 0) {
-            details += Localization.shortSubscriberCount(itemBuilder.getContext(), item.subscriber_count);
+        if (item.getSubscriberCount() >= 0) {
+            details += Localization.shortSubscriberCount(itemBuilder.getContext(),
+                    item.getSubscriberCount());
         }
         return details;
     }
