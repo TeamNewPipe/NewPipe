@@ -419,4 +419,11 @@
     <string name="import_network_expensive_warning">請記住，此操作可能會造成網路昂貴花費。
 \n
 \n您想繼續嗎？</string>
-</resources>
+<string name="import_soundcloud_instructions">要匯入您的 SoundCloud，您必須知道您的個人資料網址或 ID。 如果您這樣做，只需在下方的輸入中鍵入其中的任意一個，然後就可以開始了。
+\n
+\n如果您不這樣做，您可以按照以下步驟操作：
+\n1. 在一些瀏覽器中啟用「桌面模式」(該網站不適用於行動裝置)
+\n2. 移至此網址：%1$s
+\n3. 詢問時登入到您的帳號
+\n4. 複製網址您會被重新導向(這是您的個人資料網址)</string>
+    </resources>
