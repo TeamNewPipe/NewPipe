@@ -309,7 +309,7 @@
     <string name="toggle_orientation">Ausrichtung umschalten</string>
     <string name="switch_to_background">In den Hintergrund wechseln</string>
     <string name="switch_to_popup">Zu Popup wechseln</string>
-    <string name="switch_to_main">Zur Hauptseite wechseln</string>
+    <string name="switch_to_main">Zum normalen Player wechseln</string>
 
     <string name="external_player_unsupported_link_type">Externe Player unterstützen diese Art von Links nicht</string>
     <string name="invalid_url_toast">Ungültige URL</string>
