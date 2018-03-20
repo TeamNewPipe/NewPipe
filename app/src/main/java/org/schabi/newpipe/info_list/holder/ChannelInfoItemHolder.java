@@ -44,15 +44,16 @@ public class ChannelInfoItemHolder extends ChannelMiniInfoItemHolder {
         if (!(infoItem instanceof ChannelInfoItem)) return;
         final ChannelInfoItem item = (ChannelInfoItem) infoItem;
 
-        itemChannelDescriptionView.setText(item.description);
+        itemChannelDescriptionView.setText(item.getDescription());
     }
 
     @Override
     protected String getDetailLine(final ChannelInfoItem item) {
         String details = super.getDetailLine(item);
 
-        if (item.stream_count >= 0) {
-            String formattedVideoAmount = Localization.localizeStreamCount(itemBuilder.getContext(), item.stream_count);
+        if (item.getStreamCount() >= 0) {
+            String formattedVideoAmount = Localization.localizeStreamCount(itemBuilder.getContext(),
+                    item.getStreamCount());
 
             if (!details.isEmpty()) {
                 details += " • " + formattedVideoAmount;

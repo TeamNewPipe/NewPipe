@@ -141,7 +141,7 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     }
 
     @Override
-    public Single<ListExtractor.InfoItemPage> loadMoreItemsLogic() {
+    public Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic() {
         String contentCountry = PreferenceManager
                 .getDefaultSharedPreferences(activity)
                 .getString(getString(R.string.content_country_key),
@@ -174,7 +174,7 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     }
 
     @Override
-    public void handleNextItems(ListExtractor.InfoItemPage result) {
+    public void handleNextItems(ListExtractor.InfoItemsPage result) {
         super.handleNextItems(result);
 
         if (!result.getErrors().isEmpty()) {

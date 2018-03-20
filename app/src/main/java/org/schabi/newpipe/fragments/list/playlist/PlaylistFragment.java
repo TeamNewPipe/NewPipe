@@ -22,10 +22,12 @@ import org.reactivestreams.Subscription;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
+import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
+import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.fragments.local.RemotePlaylistManager;
@@ -38,6 +40,7 @@ import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -206,7 +209,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    protected Single<ListExtractor.InfoItemPage> loadMoreItemsLogic() {
+    protected Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic() {
         return ExtractorHelper.getMorePlaylistItems(serviceId, url, currentNextPageUrl);
     }
 
@@ -269,7 +272,8 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         playlistCtrl.setVisibility(View.VISIBLE);
 
         imageLoader.displayImage(result.getUploaderAvatarUrl(), headerUploaderAvatar, DISPLAY_AVATAR_OPTIONS);
-        headerStreamCount.setText(getResources().getQuantityString(R.plurals.videos, (int) result.stream_count, (int) result.stream_count));
+        headerStreamCount.setText(getResources().getQuantityString(R.plurals.videos,
+                (int) result.getStreamCount(), (int) result.getStreamCount()));
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(), UserAction.REQUESTED_PLAYLIST, NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);
@@ -297,17 +301,23 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     }
 
     private PlayQueue getPlayQueue(final int index) {
+        final List<StreamInfoItem> infoItems = new ArrayList<>();
+        for(InfoItem i : infoListAdapter.getItemsList()) {
+            if(i instanceof StreamInfoItem) {
+                infoItems.add((StreamInfoItem) i);
+            }
+        }
         return new PlaylistPlayQueue(
                 currentInfo.getServiceId(),
                 currentInfo.getUrl(),
                 currentInfo.getNextPageUrl(),
-                infoListAdapter.getItemsList(),
+                infoItems,
                 index
         );
     }
 
     @Override
-    public void handleNextItems(ListExtractor.InfoItemPage result) {
+    public void handleNextItems(ListExtractor.InfoItemsPage result) {
         super.handleNextItems(result);
 
         if (!result.getErrors().isEmpty()) {

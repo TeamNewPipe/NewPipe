@@ -3,6 +3,7 @@ package org.schabi.newpipe.playlist;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
+import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.util.ExtractorHelper;
 
 import java.util.List;
@@ -16,13 +17,13 @@ public final class ChannelPlayQueue extends AbstractInfoPlayQueue<ChannelInfo, C
     }
 
     public ChannelPlayQueue(final ChannelInfo info) {
-        this(info.getServiceId(), info.getUrl(), info.getNextPageUrl(), info.getRelatedStreams(), 0);
+        this(info.getServiceId(), info.getUrl(), info.getNextPageUrl(), info.getRelatedItems(), 0);
     }
 
     public ChannelPlayQueue(final int serviceId,
                             final String url,
                             final String nextPageUrl,
-                            final List<InfoItem> streams,
+                            final List<StreamInfoItem> streams,
                             final int index) {
         super(serviceId, url, nextPageUrl, streams, index);
     }
