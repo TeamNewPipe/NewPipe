@@ -19,7 +19,6 @@
 
 package org.schabi.newpipe.player;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -33,6 +32,7 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.DisplayMetrics;
@@ -49,6 +49,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.SubtitleView;
@@ -57,6 +58,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
+import org.schabi.newpipe.player.helper.PlaybackParameterDialog;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueItem;
@@ -87,7 +89,8 @@ import static org.schabi.newpipe.util.StateSaver.KEY_SAVED_STATE;
  *
  * @author mauriciocolli
  */
-public final class MainVideoPlayer extends Activity implements StateSaver.WriteRead {
+public final class MainVideoPlayer extends AppCompatActivity
+        implements StateSaver.WriteRead, PlaybackParameterDialog.Callback {
     private static final String TAG = ".MainVideoPlayer";
     private static final boolean DEBUG = BasePlayer.DEBUG;
 
@@ -338,6 +341,15 @@ public final class MainVideoPlayer extends Activity implements StateSaver.WriteR
         } else {
             shuffleButton.setAlpha(shuffleAlpha);
         }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Playback Parameters Listener
+    ////////////////////////////////////////////////////////////////////////////
+
+    @Override
+    public void onPlaybackParameterChanged(float playbackTempo, float playbackPitch) {
+        if (playerImpl != null) playerImpl.setPlaybackParameters(playbackTempo, playbackPitch);
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -628,6 +640,12 @@ public final class MainVideoPlayer extends Activity implements StateSaver.WriteR
             if (DEBUG) Log.d(TAG, "onScreenRotationClicked() called");
             toggleOrientation();
             showControlsThenHide();
+        }
+
+        @Override
+        public void onPlaybackSpeedClicked() {
+            PlaybackParameterDialog.newInstance(getPlaybackSpeed(), getPlaybackPitch())
+                    .show(getSupportFragmentManager(), TAG);
         }
 
         @Override

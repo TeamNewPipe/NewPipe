@@ -51,9 +51,10 @@ ext {
     supportLibVersion = '27.1.0'
     exoPlayerLibVersion = '2.7.1'
     roomDbLibVersion = '1.0.0'
-    leakCanaryVersion = '1.5.4'
-    okHttpVersion = '1.5.0'
-    icepickVersion = '3.2.0'
+    leakCanaryLibVersion = '1.5.4'
+    okHttpLibVersion = '1.5.0'
+    icepickLibVersion = '3.2.0'
+    stethoLibVersion = '1.5.0'
 }
 dependencies {
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2') {
@@ -81,8 +82,8 @@ dependencies {
     implementation "com.google.android.exoplayer:exoplayer:$exoPlayerLibVersion"
     implementation "com.google.android.exoplayer:extension-mediasession:$exoPlayerLibVersion"
 
-    debugImplementation "com.facebook.stetho:stetho:$okHttpVersion"
-    debugImplementation "com.facebook.stetho:stetho-urlconnection:$okHttpVersion"
+    debugImplementation "com.facebook.stetho:stetho:$stethoLibVersion"
+    debugImplementation "com.facebook.stetho:stetho-urlconnection:$stethoLibVersion"
     debugImplementation 'com.android.support:multidex:1.0.3'
 
     implementation 'io.reactivex.rxjava2:rxjava:2.1.10'
@@ -93,13 +94,13 @@ dependencies {
     implementation "android.arch.persistence.room:rxjava2:$roomDbLibVersion"
     annotationProcessor "android.arch.persistence.room:compiler:$roomDbLibVersion"
 
-    implementation "frankiesardo:icepick:$icepickVersion"
-    annotationProcessor "frankiesardo:icepick-processor:$icepickVersion"
+    implementation "frankiesardo:icepick:$icepickLibVersion"
+    annotationProcessor "frankiesardo:icepick-processor:$icepickLibVersion"
 
-    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
-    betaImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
-    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanaryLibVersion"
+    betaImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryLibVersion"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryLibVersion"
 
     implementation 'com.squareup.okhttp3:okhttp:3.9.1'
-    debugImplementation "com.facebook.stetho:stetho-okhttp3:$okHttpVersion"
+    debugImplementation "com.facebook.stetho:stetho-okhttp3:$okHttpLibVersion"
 }

@@ -553,7 +553,7 @@ public abstract class BasePlayer implements
                 // Ensure dynamic/livestream timeline changes does not cause negative position
                 if (isPlaylistStable && !isCurrentWindowValid() && !isSynchronizing) {
                     if (DEBUG) Log.d(TAG, "Playback - negative time position reached, " +
-                            "clamping position to default time.");
+                            "clamping position to 0ms.");
                     seekTo(/*clampToTime=*/0);
                 }
                 break;
@@ -639,7 +639,6 @@ public abstract class BasePlayer implements
                     "[" + getTimeString((int)recoveryPositionMillis) + "]");
             seekTo(recoveryPositionMillis);
             playQueue.unsetRecovery(currentSourceIndex);
-            isSynchronizing = false;
 
         } else if (isSynchronizing && simpleExoPlayer.isCurrentWindowDynamic()) {
             if (DEBUG) Log.d(TAG, "Playback - Synchronizing livestream to default time");
@@ -1109,6 +1108,24 @@ public abstract class BasePlayer implements
 
     public String getUploaderName() {
         return currentItem == null ? context.getString(R.string.unknown_content) : currentItem.getUploader();
+    }
+
+    /** Checks if the current playback is a livestream AND is playing at or beyond the live edge */
+    public boolean isLiveEdge() {
+        if (simpleExoPlayer == null) return false;
+        final boolean isLive = simpleExoPlayer.isCurrentWindowDynamic();
+        if (!isLive) return false;
+
+        final Timeline currentTimeline = simpleExoPlayer.getCurrentTimeline();
+        final int currentWindowIndex = simpleExoPlayer.getCurrentWindowIndex();
+        if (currentTimeline.isEmpty() || currentWindowIndex < 0 ||
+                currentWindowIndex >= currentTimeline.getWindowCount()) {
+            return false;
+        }
+
+        Timeline.Window timelineWindow = new Timeline.Window();
+        currentTimeline.getWindow(currentWindowIndex, timelineWindow);
+        return timelineWindow.getDefaultPositionMs() <= simpleExoPlayer.getCurrentPosition();
     }
 
     public boolean isPlaying() {

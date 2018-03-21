@@ -49,6 +49,7 @@ import android.widget.TextView;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.Format;
+import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.MergingMediaSource;
@@ -524,6 +525,12 @@ public abstract class VideoPlayer extends BasePlayer
     }
 
     @Override
+    public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {
+        super.onPlaybackParametersChanged(playbackParameters);
+        playbackSpeedTextView.setText(formatSpeed(playbackParameters.speed));
+    }
+
+    @Override
     public void onVideoSizeChanged(int width, int height, int unappliedRotationDegrees, float pixelWidthHeightRatio) {
         if (DEBUG) {
             Log.d(TAG, "onVideoSizeChanged() called with: width / height = [" + width + " / " + height + " = " + (((float) width) / height) + "], unappliedRotationDegrees = [" + unappliedRotationDegrees + "], pixelWidthHeightRatio = [" + pixelWidthHeightRatio + "]");
@@ -615,6 +622,7 @@ public abstract class VideoPlayer extends BasePlayer
         if (DEBUG && bufferPercent % 20 == 0) { //Limit log
             Log.d(TAG, "updateProgress() called with: isVisible = " + isControlsVisible() + ", currentProgress = [" + currentProgress + "], duration = [" + duration + "], bufferPercent = [" + bufferPercent + "]");
         }
+        playbackLiveSync.setClickable(!isLiveEdge());
     }
 
     @Override
@@ -718,7 +726,7 @@ public abstract class VideoPlayer extends BasePlayer
         wasPlaying = simpleExoPlayer.getPlayWhenReady();
     }
 
-    private void onPlaybackSpeedClicked() {
+    public void onPlaybackSpeedClicked() {
         if (DEBUG) Log.d(TAG, "onPlaybackSpeedClicked() called");
         playbackSpeedPopupMenu.show();
         isSomePopupMenuVisible = true;

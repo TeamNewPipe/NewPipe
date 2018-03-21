@@ -31,6 +31,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.fragments.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.player.event.PlayerEventListener;
+import org.schabi.newpipe.player.helper.PlaybackParameterDialog;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.PlayQueueItemBuilder;
 import org.schabi.newpipe.playlist.PlayQueueItemHolder;
@@ -43,7 +44,8 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.formatPitch;
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
 
 public abstract class ServicePlayerActivity extends AppCompatActivity
-        implements PlayerEventListener, SeekBar.OnSeekBarChangeListener, View.OnClickListener {
+        implements PlayerEventListener, SeekBar.OnSeekBarChangeListener,
+        View.OnClickListener, PlaybackParameterDialog.Callback {
 
     private boolean serviceBound;
     private ServiceConnection serviceConnection;
@@ -57,8 +59,6 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     ////////////////////////////////////////////////////////////////////////////
 
     private static final int RECYCLER_ITEM_POPUP_MENU_GROUP_ID = 47;
-    private static final int PLAYBACK_SPEED_POPUP_MENU_GROUP_ID = 61;
-    private static final int PLAYBACK_PITCH_POPUP_MENU_GROUP_ID = 97;
 
     private static final int SMOOTH_SCROLL_MAXIMUM_DISTANCE = 80;
 
@@ -85,9 +85,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private ProgressBar progressBar;
 
     private TextView playbackSpeedButton;
-    private PopupMenu playbackSpeedPopupMenu;
     private TextView playbackPitchButton;
-    private PopupMenu playbackPitchPopupMenu;
 
     ////////////////////////////////////////////////////////////////////////////
     // Abstracts
@@ -317,45 +315,6 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         shuffleButton.setOnClickListener(this);
         playbackSpeedButton.setOnClickListener(this);
         playbackPitchButton.setOnClickListener(this);
-
-        playbackSpeedPopupMenu = new PopupMenu(this, playbackSpeedButton);
-        playbackPitchPopupMenu = new PopupMenu(this, playbackPitchButton);
-        buildPlaybackSpeedMenu();
-        buildPlaybackPitchMenu();
-    }
-
-    private void buildPlaybackSpeedMenu() {
-        if (playbackSpeedPopupMenu == null) return;
-
-        playbackSpeedPopupMenu.getMenu().removeGroup(PLAYBACK_SPEED_POPUP_MENU_GROUP_ID);
-        for (int i = 0; i < BasePlayer.PLAYBACK_SPEEDS.length; i++) {
-            final float playbackSpeed = BasePlayer.PLAYBACK_SPEEDS[i];
-            final String formattedSpeed = formatSpeed(playbackSpeed);
-            final MenuItem item = playbackSpeedPopupMenu.getMenu().add(PLAYBACK_SPEED_POPUP_MENU_GROUP_ID, i, Menu.NONE, formattedSpeed);
-            item.setOnMenuItemClickListener(menuItem -> {
-                if (player == null) return false;
-
-                player.setPlaybackSpeed(playbackSpeed);
-                return true;
-            });
-        }
-    }
-
-    private void buildPlaybackPitchMenu() {
-        if (playbackPitchPopupMenu == null) return;
-
-        playbackPitchPopupMenu.getMenu().removeGroup(PLAYBACK_PITCH_POPUP_MENU_GROUP_ID);
-        for (int i = 0; i < BasePlayer.PLAYBACK_PITCHES.length; i++) {
-            final float playbackPitch = BasePlayer.PLAYBACK_PITCHES[i];
-            final String formattedPitch = formatPitch(playbackPitch);
-            final MenuItem item = playbackPitchPopupMenu.getMenu().add(PLAYBACK_PITCH_POPUP_MENU_GROUP_ID, i, Menu.NONE, formattedPitch);
-            item.setOnMenuItemClickListener(menuItem -> {
-                if (player == null) return false;
-
-                player.setPlaybackPitch(playbackPitch);
-                return true;
-            });
-        }
     }
 
     private void buildItemPopupMenu(final PlayQueueItem item, final View view) {
@@ -474,10 +433,12 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             player.onShuffleClicked();
 
         } else if (view.getId() == playbackSpeedButton.getId()) {
-            playbackSpeedPopupMenu.show();
+            PlaybackParameterDialog.newInstance(player.getPlaybackSpeed(),
+                    player.getPlaybackPitch()).show(getSupportFragmentManager(), getTag());
 
         } else if (view.getId() == playbackPitchButton.getId()) {
-            playbackPitchPopupMenu.show();
+            PlaybackParameterDialog.newInstance(player.getPlaybackSpeed(),
+                    player.getPlaybackPitch()).show(getSupportFragmentManager(), getTag());
 
         } else if (view.getId() == metadata.getId()) {
             scrollToSelected();
@@ -486,6 +447,15 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             player.seekToDefault();
 
         }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Playback Parameters Listener
+    ////////////////////////////////////////////////////////////////////////////
+
+    @Override
+    public void onPlaybackParameterChanged(float playbackTempo, float playbackPitch) {
+        if (player != null) player.setPlaybackParameters(playbackTempo, playbackPitch);
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -538,6 +508,10 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         if (!seeking) {
             progressSeekBar.setProgress(currentProgress);
             progressCurrentTime.setText(Localization.getDurationString(currentProgress / 1000));
+        }
+
+        if (player != null) {
+            progressLiveSync.setClickable(!player.isLiveEdge());
         }
     }
 
