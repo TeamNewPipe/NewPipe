@@ -60,11 +60,11 @@ public class PlayerHelper {
                 : stringFormatter.format("%02d:%02d", minutes, seconds).toString();
     }
 
-    public static String formatSpeed(float speed) {
+    public static String formatSpeed(double speed) {
         return speedFormatter.format(speed);
     }
 
-    public static String formatPitch(float pitch) {
+    public static String formatPitch(double pitch) {
         return pitchFormatter.format(pitch);
     }
 

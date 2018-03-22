@@ -14,59 +14,64 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.util.SliderStrategy;
 
 import static org.schabi.newpipe.player.BasePlayer.DEBUG;
 
 public class PlaybackParameterDialog extends DialogFragment {
-    private static final String TAG = "PlaybackParameterDialog";
+    @NonNull private static final String TAG = "PlaybackParameterDialog";
 
-    public static final float MINIMUM_PLAYBACK_VALUE = 0.25f;
-    public static final float MAXIMUM_PLAYBACK_VALUE = 3.00f;
+    public static final double MINIMUM_PLAYBACK_VALUE = 0.25f;
+    public static final double MAXIMUM_PLAYBACK_VALUE = 3.00f;
 
-    public static final String STEP_UP_SIGN = "+";
-    public static final String STEP_DOWN_SIGN = "-";
-    public static final float PLAYBACK_STEP_VALUE = 0.05f;
+    public static final char STEP_UP_SIGN = '+';
+    public static final char STEP_DOWN_SIGN = '-';
+    public static final double PLAYBACK_STEP_VALUE = 0.05f;
 
-    public static final float NIGHTCORE_TEMPO = 1.20f;
-    public static final float NIGHTCORE_PITCH_LOWER = 1.15f;
-    public static final float NIGHTCORE_PITCH_UPPER = 1.25f;
+    public static final double NIGHTCORE_TEMPO = 1.20f;
+    public static final double NIGHTCORE_PITCH_LOWER = 1.15f;
+    public static final double NIGHTCORE_PITCH_UPPER = 1.25f;
 
-    public static final float DEFAULT_TEMPO = 1.00f;
-    public static final float DEFAULT_PITCH = 1.00f;
+    public static final double DEFAULT_TEMPO = 1.00f;
+    public static final double DEFAULT_PITCH = 1.00f;
 
-    private static final String INITIAL_TEMPO_KEY = "initial_tempo_key";
-    private static final String INITIAL_PITCH_KEY = "initial_pitch_key";
+    @NonNull private static final String INITIAL_TEMPO_KEY = "initial_tempo_key";
+    @NonNull private static final String INITIAL_PITCH_KEY = "initial_pitch_key";
 
     public interface Callback {
         void onPlaybackParameterChanged(final float playbackTempo, final float playbackPitch);
     }
 
-    private Callback callback;
+    @Nullable private Callback callback;
 
-    private float initialTempo = DEFAULT_TEMPO;
-    private float initialPitch = DEFAULT_PITCH;
+    @NonNull private final SliderStrategy strategy = new SliderStrategy.Quadratic(
+            MINIMUM_PLAYBACK_VALUE, MAXIMUM_PLAYBACK_VALUE,
+            /*centerAt=*/1.00f, /*sliderGranularity=*/10000);
 
-    private SeekBar tempoSlider;
-    private TextView tempoMinimumText;
-    private TextView tempoMaximumText;
-    private TextView tempoCurrentText;
-    private TextView tempoStepDownText;
-    private TextView tempoStepUpText;
+    private double initialTempo = DEFAULT_TEMPO;
+    private double initialPitch = DEFAULT_PITCH;
 
-    private SeekBar pitchSlider;
-    private TextView pitchMinimumText;
-    private TextView pitchMaximumText;
-    private TextView pitchCurrentText;
-    private TextView pitchStepDownText;
-    private TextView pitchStepUpText;
+    @Nullable private SeekBar tempoSlider;
+    @Nullable private TextView tempoMinimumText;
+    @Nullable private TextView tempoMaximumText;
+    @Nullable private TextView tempoCurrentText;
+    @Nullable private TextView tempoStepDownText;
+    @Nullable private TextView tempoStepUpText;
 
-    private CheckBox unhookingCheckbox;
+    @Nullable private SeekBar pitchSlider;
+    @Nullable private TextView pitchMinimumText;
+    @Nullable private TextView pitchMaximumText;
+    @Nullable private TextView pitchCurrentText;
+    @Nullable private TextView pitchStepDownText;
+    @Nullable private TextView pitchStepUpText;
 
-    private TextView nightCorePresetText;
-    private TextView resetPresetText;
+    @Nullable private CheckBox unhookingCheckbox;
 
-    public static PlaybackParameterDialog newInstance(final float playbackTempo,
-                                                      final float playbackPitch) {
+    @Nullable private TextView nightCorePresetText;
+    @Nullable private TextView resetPresetText;
+
+    public static PlaybackParameterDialog newInstance(final double playbackTempo,
+                                                      final double playbackPitch) {
         PlaybackParameterDialog dialog = new PlaybackParameterDialog();
         dialog.initialTempo = playbackTempo;
         dialog.initialPitch = playbackPitch;
@@ -91,16 +96,16 @@ public class PlaybackParameterDialog extends DialogFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState != null) {
-            initialTempo = savedInstanceState.getFloat(INITIAL_TEMPO_KEY, DEFAULT_TEMPO);
-            initialPitch = savedInstanceState.getFloat(INITIAL_PITCH_KEY, DEFAULT_PITCH);
+            initialTempo = savedInstanceState.getDouble(INITIAL_TEMPO_KEY, DEFAULT_TEMPO);
+            initialPitch = savedInstanceState.getDouble(INITIAL_PITCH_KEY, DEFAULT_PITCH);
         }
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putFloat(INITIAL_TEMPO_KEY, initialTempo);
-        outState.putFloat(INITIAL_PITCH_KEY, initialPitch);
+        outState.putDouble(INITIAL_TEMPO_KEY, initialTempo);
+        outState.putDouble(INITIAL_PITCH_KEY, initialPitch);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -111,7 +116,7 @@ public class PlaybackParameterDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         final View view = View.inflate(getContext(), R.layout.dialog_playback_parameter, null);
-        setupView(view);
+        setupControlViews(view);
 
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(requireActivity())
                 .setTitle(R.string.playback_speed_control)
@@ -120,16 +125,16 @@ public class PlaybackParameterDialog extends DialogFragment {
                 .setNegativeButton(R.string.cancel, (dialogInterface, i) ->
                         setPlaybackParameters(initialTempo, initialPitch))
                 .setPositiveButton(R.string.finish, (dialogInterface, i) ->
-                        setPlaybackParameters(getCurrentTempo(), getCurrentPitch()));
+                        setCurrentPlaybackParameters());
 
         return dialogBuilder.create();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Dialog Builder
+    // Control Views
     //////////////////////////////////////////////////////////////////////////*/
 
-    private void setupView(@NonNull View rootView) {
+    private void setupControlViews(@NonNull View rootView) {
         setupHookingControl(rootView);
         setupTempoControl(rootView);
         setupPitchControl(rootView);
@@ -144,45 +149,34 @@ public class PlaybackParameterDialog extends DialogFragment {
         tempoStepUpText = rootView.findViewById(R.id.tempoStepUp);
         tempoStepDownText = rootView.findViewById(R.id.tempoStepDown);
 
-        tempoCurrentText.setText(PlayerHelper.formatSpeed(initialTempo));
-        tempoMaximumText.setText(PlayerHelper.formatSpeed(MAXIMUM_PLAYBACK_VALUE));
-        tempoMinimumText.setText(PlayerHelper.formatSpeed(MINIMUM_PLAYBACK_VALUE));
+        if (tempoCurrentText != null)
+            tempoCurrentText.setText(PlayerHelper.formatSpeed(initialTempo));
+        if (tempoMaximumText != null)
+            tempoMaximumText.setText(PlayerHelper.formatSpeed(MAXIMUM_PLAYBACK_VALUE));
+        if (tempoMinimumText != null)
+            tempoMinimumText.setText(PlayerHelper.formatSpeed(MINIMUM_PLAYBACK_VALUE));
 
-        tempoStepUpText.setText(getStepUpPercentString(PLAYBACK_STEP_VALUE));
-        tempoStepUpText.setOnClickListener(view ->
-                setTempo(getCurrentTempo() + PLAYBACK_STEP_VALUE));
+        if (tempoStepUpText != null) {
+            tempoStepUpText.setText(getStepUpPercentString(PLAYBACK_STEP_VALUE));
+            tempoStepUpText.setOnClickListener(view -> {
+                onTempoSliderUpdated(getCurrentTempo() + PLAYBACK_STEP_VALUE);
+                setCurrentPlaybackParameters();
+            });
+        }
 
-        tempoStepDownText.setText(getStepDownPercentString(PLAYBACK_STEP_VALUE));
-        tempoStepDownText.setOnClickListener(view ->
-                setTempo(getCurrentTempo() - PLAYBACK_STEP_VALUE));
+        if (tempoStepDownText != null) {
+            tempoStepDownText.setText(getStepDownPercentString(PLAYBACK_STEP_VALUE));
+            tempoStepDownText.setOnClickListener(view -> {
+                onTempoSliderUpdated(getCurrentTempo() - PLAYBACK_STEP_VALUE);
+                setCurrentPlaybackParameters();
+            });
+        }
 
-        tempoSlider.setMax(getSliderEquivalent(MINIMUM_PLAYBACK_VALUE, MAXIMUM_PLAYBACK_VALUE));
-        tempoSlider.setProgress(getSliderEquivalent(MINIMUM_PLAYBACK_VALUE, initialTempo));
-        tempoSlider.setOnSeekBarChangeListener(getOnTempoChangedListener());
-    }
-    
-    private SeekBar.OnSeekBarChangeListener getOnTempoChangedListener() {
-        return new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                final float currentTempo = getSliderEquivalent(MINIMUM_PLAYBACK_VALUE, progress);
-                if (fromUser) { // this change is first in chain
-                    setTempo(currentTempo);
-                } else {
-                    setPlaybackParameters(currentTempo, getCurrentPitch());
-                }
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                // Do Nothing.
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                // Do Nothing.
-            }
-        };
+        if (tempoSlider != null) {
+            tempoSlider.setMax(strategy.progressOf(MAXIMUM_PLAYBACK_VALUE));
+            tempoSlider.setProgress(strategy.progressOf(initialTempo));
+            tempoSlider.setOnSeekBarChangeListener(getOnTempoChangedListener());
+        }
     }
 
     private void setupPitchControl(@NonNull View rootView) {
@@ -193,32 +187,85 @@ public class PlaybackParameterDialog extends DialogFragment {
         pitchStepDownText = rootView.findViewById(R.id.pitchStepDown);
         pitchStepUpText = rootView.findViewById(R.id.pitchStepUp);
 
-        pitchCurrentText.setText(PlayerHelper.formatPitch(initialPitch));
-        pitchMaximumText.setText(PlayerHelper.formatPitch(MAXIMUM_PLAYBACK_VALUE));
-        pitchMinimumText.setText(PlayerHelper.formatPitch(MINIMUM_PLAYBACK_VALUE));
+        if (pitchCurrentText != null)
+            pitchCurrentText.setText(PlayerHelper.formatPitch(initialPitch));
+        if (pitchMaximumText != null)
+            pitchMaximumText.setText(PlayerHelper.formatPitch(MAXIMUM_PLAYBACK_VALUE));
+        if (pitchMinimumText != null)
+            pitchMinimumText.setText(PlayerHelper.formatPitch(MINIMUM_PLAYBACK_VALUE));
 
-        pitchStepUpText.setText(getStepUpPercentString(PLAYBACK_STEP_VALUE));
-        pitchStepUpText.setOnClickListener(view ->
-                setPitch(getCurrentPitch() + PLAYBACK_STEP_VALUE));
+        if (pitchStepUpText != null) {
+            pitchStepUpText.setText(getStepUpPercentString(PLAYBACK_STEP_VALUE));
+            pitchStepUpText.setOnClickListener(view -> {
+                onPitchSliderUpdated(getCurrentPitch() + PLAYBACK_STEP_VALUE);
+                setCurrentPlaybackParameters();
+            });
+        }
 
-        pitchStepDownText.setText(getStepDownPercentString(PLAYBACK_STEP_VALUE));
-        pitchStepDownText.setOnClickListener(view ->
-                setPitch(getCurrentPitch() - PLAYBACK_STEP_VALUE));
+        if (pitchStepDownText != null) {
+            pitchStepDownText.setText(getStepDownPercentString(PLAYBACK_STEP_VALUE));
+            pitchStepDownText.setOnClickListener(view -> {
+                onPitchSliderUpdated(getCurrentPitch() - PLAYBACK_STEP_VALUE);
+                setCurrentPlaybackParameters();
+            });
+        }
 
-        pitchSlider.setMax(getSliderEquivalent(MINIMUM_PLAYBACK_VALUE, MAXIMUM_PLAYBACK_VALUE));
-        pitchSlider.setProgress(getSliderEquivalent(MINIMUM_PLAYBACK_VALUE, initialPitch));
-        pitchSlider.setOnSeekBarChangeListener(getOnPitchChangedListener());
+        if (pitchSlider != null) {
+            pitchSlider.setMax(strategy.progressOf(MAXIMUM_PLAYBACK_VALUE));
+            pitchSlider.setProgress(strategy.progressOf(initialPitch));
+            pitchSlider.setOnSeekBarChangeListener(getOnPitchChangedListener());
+        }
     }
 
-    private SeekBar.OnSeekBarChangeListener getOnPitchChangedListener() {
+    private void setupHookingControl(@NonNull View rootView) {
+        unhookingCheckbox = rootView.findViewById(R.id.unhookCheckbox);
+        if (unhookingCheckbox != null) {
+            unhookingCheckbox.setChecked(initialPitch != initialTempo);
+            unhookingCheckbox.setOnCheckedChangeListener((compoundButton, isChecked) -> {
+                if (isChecked) return;
+                // When unchecked, slide back to the minimum of current tempo or pitch
+                final double minimum = Math.min(getCurrentPitch(), getCurrentTempo());
+                setSliders(minimum);
+                setCurrentPlaybackParameters();
+            });
+        }
+    }
+
+    private void setupPresetControl(@NonNull View rootView) {
+        nightCorePresetText = rootView.findViewById(R.id.presetNightcore);
+        if (nightCorePresetText != null) {
+            nightCorePresetText.setOnClickListener(view -> {
+                final double randomPitch = NIGHTCORE_PITCH_LOWER +
+                        Math.random() * (NIGHTCORE_PITCH_UPPER - NIGHTCORE_PITCH_LOWER);
+
+                setTempoSlider(NIGHTCORE_TEMPO);
+                setPitchSlider(randomPitch);
+                setCurrentPlaybackParameters();
+            });
+        }
+
+        resetPresetText = rootView.findViewById(R.id.presetReset);
+        if (resetPresetText != null) {
+            resetPresetText.setOnClickListener(view -> {
+                setTempoSlider(DEFAULT_TEMPO);
+                setPitchSlider(DEFAULT_PITCH);
+                setCurrentPlaybackParameters();
+            });
+        }
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Sliders
+    //////////////////////////////////////////////////////////////////////////*/
+
+    private SeekBar.OnSeekBarChangeListener getOnTempoChangedListener() {
         return new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                final float currentPitch = getSliderEquivalent(MINIMUM_PLAYBACK_VALUE, progress);
-                if (fromUser) { // this change is first in chain
-                    setPitch(currentPitch);
-                } else {
-                    setPlaybackParameters(getCurrentTempo(), currentPitch);
+                final double currentTempo = strategy.valueOf(progress);
+                if (fromUser) {
+                    onTempoSliderUpdated(currentTempo);
+                    setCurrentPlaybackParameters();
                 }
             }
 
@@ -234,38 +281,30 @@ public class PlaybackParameterDialog extends DialogFragment {
         };
     }
 
-    private void setupHookingControl(@NonNull View rootView) {
-        unhookingCheckbox = rootView.findViewById(R.id.unhookCheckbox);
-        unhookingCheckbox.setOnCheckedChangeListener((compoundButton, isChecked) -> {
-            if (isChecked) return;
-            // When unchecked, slide back to the minimum of current tempo or pitch
-            final float minimum = Math.min(getCurrentPitch(), getCurrentTempo());
-            setSliders(minimum);
-        });
+    private SeekBar.OnSeekBarChangeListener getOnPitchChangedListener() {
+        return new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                final double currentPitch = strategy.valueOf(progress);
+                if (fromUser) { // this change is first in chain
+                    onPitchSliderUpdated(currentPitch);
+                    setCurrentPlaybackParameters();
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // Do Nothing.
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // Do Nothing.
+            }
+        };
     }
 
-    private void setupPresetControl(@NonNull View rootView) {
-        nightCorePresetText = rootView.findViewById(R.id.presetNightcore);
-        nightCorePresetText.setOnClickListener(view -> {
-            final float randomPitch = NIGHTCORE_PITCH_LOWER +
-                    (float) Math.random() * (NIGHTCORE_PITCH_UPPER - NIGHTCORE_PITCH_LOWER);
-
-            setTempoSlider(NIGHTCORE_TEMPO);
-            setPitchSlider(randomPitch);
-        });
-
-        resetPresetText = rootView.findViewById(R.id.presetReset);
-        resetPresetText.setOnClickListener(view -> {
-            setTempoSlider(DEFAULT_TEMPO);
-            setPitchSlider(DEFAULT_PITCH);
-        });
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Helper
-    //////////////////////////////////////////////////////////////////////////*/
-
-    private void setTempo(final float newTempo) {
+    private void onTempoSliderUpdated(final double newTempo) {
         if (unhookingCheckbox == null) return;
         if (!unhookingCheckbox.isChecked()) {
             setSliders(newTempo);
@@ -274,7 +313,7 @@ public class PlaybackParameterDialog extends DialogFragment {
         }
     }
 
-    private void setPitch(final float newPitch) {
+    private void onPitchSliderUpdated(final double newPitch) {
         if (unhookingCheckbox == null) return;
         if (!unhookingCheckbox.isChecked()) {
             setSliders(newPitch);
@@ -283,25 +322,30 @@ public class PlaybackParameterDialog extends DialogFragment {
         }
     }
 
-    private void setSliders(final float newValue) {
+    private void setSliders(final double newValue) {
         setTempoSlider(newValue);
         setPitchSlider(newValue);
     }
 
-    private void setTempoSlider(final float newTempo) {
+    private void setTempoSlider(final double newTempo) {
         if (tempoSlider == null) return;
-        // seekbar doesn't register progress if it is the same as the existing progress
-        tempoSlider.setProgress(Integer.MAX_VALUE);
-        tempoSlider.setProgress(getSliderEquivalent(MINIMUM_PLAYBACK_VALUE, newTempo));
+        tempoSlider.setProgress(strategy.progressOf(newTempo));
     }
 
-    private void setPitchSlider(final float newPitch) {
+    private void setPitchSlider(final double newPitch) {
         if (pitchSlider == null) return;
-        pitchSlider.setProgress(Integer.MAX_VALUE);
-        pitchSlider.setProgress(getSliderEquivalent(MINIMUM_PLAYBACK_VALUE, newPitch));
+        pitchSlider.setProgress(strategy.progressOf(newPitch));
     }
 
-    private void setPlaybackParameters(final float tempo, final float pitch) {
+    /*//////////////////////////////////////////////////////////////////////////
+    // Helper
+    //////////////////////////////////////////////////////////////////////////*/
+
+    private void setCurrentPlaybackParameters() {
+        setPlaybackParameters(getCurrentTempo(), getCurrentPitch());
+    }
+
+    private void setPlaybackParameters(final double tempo, final double pitch) {
         if (callback != null && tempoCurrentText != null && pitchCurrentText != null) {
             if (DEBUG) Log.d(TAG, "Setting playback parameters to " +
                     "tempo=[" + tempo + "], " +
@@ -309,40 +353,27 @@ public class PlaybackParameterDialog extends DialogFragment {
 
             tempoCurrentText.setText(PlayerHelper.formatSpeed(tempo));
             pitchCurrentText.setText(PlayerHelper.formatPitch(pitch));
-            callback.onPlaybackParameterChanged(tempo, pitch);
+            callback.onPlaybackParameterChanged((float) tempo, (float) pitch);
         }
     }
 
-    private float getCurrentTempo() {
-        return tempoSlider == null ? initialTempo : getSliderEquivalent(MINIMUM_PLAYBACK_VALUE,
+    private double getCurrentTempo() {
+        return tempoSlider == null ? initialTempo : strategy.valueOf(
                 tempoSlider.getProgress());
     }
 
-    private float getCurrentPitch() {
-        return pitchSlider == null ? initialPitch : getSliderEquivalent(MINIMUM_PLAYBACK_VALUE,
+    private double getCurrentPitch() {
+        return pitchSlider == null ? initialPitch : strategy.valueOf(
                 pitchSlider.getProgress());
     }
 
-    /**
-     * Converts from zeroed float with a minimum offset to the nearest rounded slider
-     * equivalent integer
-     * */
-    private static int getSliderEquivalent(final float minimumValue, final float floatValue) {
-        return Math.round((floatValue - minimumValue) * 100f);
-    }
-
-    /**
-     * Converts from slider integer value to an equivalent float value with a given minimum offset
-     * */
-    private static float getSliderEquivalent(final float minimumValue, final int intValue) {
-        return ((float) intValue) / 100f + minimumValue;
-    }
-
-    private static String getStepUpPercentString(final float percent) {
+    @NonNull
+    private static String getStepUpPercentString(final double percent) {
         return STEP_UP_SIGN + PlayerHelper.formatPitch(percent);
     }
 
-    private static String getStepDownPercentString(final float percent) {
+    @NonNull
+    private static String getStepDownPercentString(final double percent) {
         return STEP_DOWN_SIGN + PlayerHelper.formatPitch(percent);
     }
 }
