@@ -22,6 +22,8 @@
     <string name="continue_in_background_key" translatable="false">continue_in_background</string>
     <string name="popup_remember_size_pos_key" translatable="false">popup_remember_size_pos_key</string>
     <string name="brightness_level_key" translatable="false">brightness_level_key</string>
+    <string name="use_inexact_seek_key" translatable="false">use_inexact_seek_key</string>
+    <string name="auto_queue_key" translatable="false">auto_queue_key</string>
 
     <string name="default_resolution_key" translatable="false">default_resolution</string>
     <string name="default_resolution_value" translatable="false">360p</string>
@@ -86,7 +88,10 @@
     <string name="last_orientation_landscape_key" translatable="false">last_orientation_landscape_key</string>
 
     <!-- DEBUG ONLY -->
+    <string name="debug_pref_screen_key" translatable="false">debug_pref_screen_key</string>
     <string name="allow_heap_dumping_key" translatable="false">allow_heap_dumping_key</string>
+
+    <string name="allow_disposed_exceptions_key" translatable="false">allow_disposed_exceptions_key</string>
 
     <!-- THEMES -->
     <string name="theme_key" translatable="false">theme</string>

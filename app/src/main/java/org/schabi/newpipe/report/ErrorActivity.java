@@ -77,12 +77,10 @@ public class ErrorActivity extends AppCompatActivity {
 
     public static final String ERROR_EMAIL_ADDRESS = "crashreport@newpipe.schabi.org";
     public static final String ERROR_EMAIL_SUBJECT = "Exception in NewPipe " + BuildConfig.VERSION_NAME;
-    Thread globIpRangeThread;
     private String[] errorList;
     private ErrorInfo errorInfo;
     private Class returnActivity;
     private String currentTimeStamp;
-    private String globIpRange;
     // views
     private TextView errorView;
     private EditText userCommentBox;
@@ -224,9 +222,6 @@ public class ErrorActivity extends AppCompatActivity {
         });
         reportButton.setEnabled(false);
 
-        globIpRangeThread = new Thread(new IpRangeRequester());
-        globIpRangeThread.start();
-
         // normal bugreport
         buildInfo(errorInfo);
         if (errorInfo.message != 0) {
@@ -342,8 +337,7 @@ public class ErrorActivity extends AppCompatActivity {
                     .put("package", getPackageName())
                     .put("version", BuildConfig.VERSION_NAME)
                     .put("os", getOsString())
-                    .put("time", currentTimeStamp)
-                    .put("ip_range", globIpRange);
+                    .put("time", currentTimeStamp);
 
             JSONArray exceptionArray = new JSONArray();
             if (errorList != null) {
@@ -452,43 +446,6 @@ public class ErrorActivity extends AppCompatActivity {
             dest.writeString(this.request);
             dest.writeString(this.serviceName);
             dest.writeInt(this.message);
-        }
-    }
-
-    private class IpRangeRequester implements Runnable {
-        Handler h = new Handler();
-
-        public void run() {
-            String ipRange = "none";
-            try {
-                Downloader dl = Downloader.getInstance();
-                String ip = dl.download("https://ipv4.icanhazip.com");
-
-                ipRange = Parser.matchGroup1("([0-9]*\\.[0-9]*\\.)[0-9]*\\.[0-9]*", ip)
-                        + "0.0";
-            } catch (Throwable e) {
-                Log.w(TAG, "Error while error: could not get iprange", e);
-            } finally {
-                h.post(new IpRangeReturnRunnable(ipRange));
-            }
-        }
-    }
-
-    private class IpRangeReturnRunnable implements Runnable {
-        String ipRange;
-
-        public IpRangeReturnRunnable(String ipRange) {
-            this.ipRange = ipRange;
-        }
-
-        public void run() {
-            globIpRange = ipRange;
-            if (infoView != null) {
-                String text = infoView.getText().toString();
-                text += "\n" + globIpRange;
-                infoView.setText(text);
-                reportButton.setEnabled(true);
-            }
         }
     }
 }

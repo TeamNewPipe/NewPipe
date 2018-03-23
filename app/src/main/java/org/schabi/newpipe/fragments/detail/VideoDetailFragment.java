@@ -42,6 +42,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -68,6 +69,7 @@ import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
@@ -108,16 +110,25 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
+import static org.schabi.newpipe.player.BasePlayer.STATE_PLAYING;
+import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_DURATION;
+import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
-public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implements BackPressable, SharedPreferences.OnSharedPreferenceChangeListener, View.OnClickListener, View.OnLongClickListener, PlayerEventListener, PlayerServiceEventListener, SettingsContentObserver.OnChangeListener {
+public class VideoDetailFragment
+        extends BaseStateFragment<StreamInfo>
+        implements BackPressable,
+        SharedPreferences.OnSharedPreferenceChangeListener,
+        View.OnClickListener, View.OnLongClickListener,
+        PlayerEventListener, PlayerServiceEventListener,
+        SettingsContentObserver.OnChangeListener {
     private static final String TAG = ".VideoDetailFragment";
     private static final boolean DEBUG = BasePlayer.DEBUG;
+    public static final String AUTO_PLAY = "auto_play";
 
     // Amount of videos to show on start
     private static final int INITIAL_RELATED_VIDEOS = 8;
 
-    private ActionBarHandler actionBarHandler;
     private ArrayList<VideoStream> sortedStreamVideosList;
 
     private InfoItemBuilder infoItemBuilder = null;
@@ -151,9 +162,13 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     BroadcastReceiver broadcastReceiver;
     public static final String ACTION_HIDE_MAIN_PLAYER = "org.schabi.newpipe.fragments.detail.VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER";
 
+    private int selectedVideoStream = -1;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
+
+    private Menu menu;
 
     private Spinner spinnerToolbar;
 
@@ -174,6 +189,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     private TextView detailControlsAddToPlaylist;
     private TextView detailControlsDownload;
     private TextView appendControlsDetail;
+    private TextView detailDurationView;
 
     private LinearLayout videoDescriptionRootLayout;
     private TextView videoUploadDateView;
@@ -321,8 +337,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         if (isAutoplayPreferred())
             setAutoplay(true);
 
-        showRelatedStreams = PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(getString(R.string.show_next_video_key), true);
-        PreferenceManager.getDefaultSharedPreferences(activity).registerOnSharedPreferenceChangeListener(this);
+        showRelatedStreams = PreferenceManager.getDefaultSharedPreferences(activity)
+                .getBoolean(getString(R.string.show_next_video_key), true);
+        PreferenceManager.getDefaultSharedPreferences(activity)
+                .registerOnSharedPreferenceChangeListener(this);
 
         startService();
         setupBroadcastReceiver();
@@ -360,11 +378,11 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                 if ((updateFlags & RELATED_STREAMS_UPDATE_FLAG) != 0)
                     initRelatedVideos(currentInfo);
                 if ((updateFlags & RESOLUTIONS_MENU_UPDATE_FLAG) != 0)
-                    setupActionBarHandler(currentInfo);
+                    setupActionBar(currentInfo);
             }
 
-            if ((updateFlags & TOOLBAR_ITEMS_UPDATE_FLAG) != 0 && actionBarHandler != null)
-                actionBarHandler.updateItemsVisibility();
+            if ((updateFlags & TOOLBAR_ITEMS_UPDATE_FLAG) != 0 && menu != null)
+                updateMenuItemVisibility();
 
             updateFlags = 0;
         }
@@ -391,7 +409,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         currentWorker = null;
         disposables = null;
         infoItemBuilder = null;
-        actionBarHandler = null;
         currentInfo = null;
         sortedStreamVideosList = null;
         spinnerToolbar = null;
@@ -457,7 +474,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         // Check if the next video label and video is visible,
         // if it is, include the two elements in the next check
         int nextCount = currentInfo != null && currentInfo.getNextVideo() != null ? 2 : 0;
-        if (relatedStreamsView != null && relatedStreamsView.getChildCount() > INITIAL_RELATED_VIDEOS + nextCount) {
+        if (relatedStreamsView != null
+                && relatedStreamsView.getChildCount() > INITIAL_RELATED_VIDEOS + nextCount) {
             outState.putSerializable(WAS_RELATED_EXPANDED_KEY, true);
         }
 
@@ -482,7 +500,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         if (serializable instanceof StreamInfo) {
             //noinspection unchecked
             currentInfo = (StreamInfo) serializable;
-            InfoCache.getInstance().putInfo(currentInfo);
+            InfoCache.getInstance().putInfo(serviceId, url, currentInfo);
         }
 
         serializable = savedState.getSerializable(STACK_KEY);
@@ -525,7 +543,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                     DownloadDialog downloadDialog =
                             DownloadDialog.newInstance(currentInfo,
                                     sortedStreamVideosList,
-                                    actionBarHandler.getSelectedVideoStream());
+                                    selectedVideoStream);
                     downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
                 } catch (Exception e) {
                     Toast.makeText(activity,
@@ -547,7 +565,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                 }
                 break;
             case R.id.detail_thumbnail_root_layout:
-                if (currentInfo.video_streams.isEmpty() && currentInfo.video_only_streams.isEmpty()) {
+                if (currentInfo.getVideoStreams().isEmpty()
+                        && currentInfo.getVideoOnlyStreams().isEmpty()) {
                     openBackgroundPlayer(false);
                 } else {
                     openVideoPlayer();
@@ -602,8 +621,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         int initialCount = INITIAL_RELATED_VIDEOS + nextCount;
 
         if (relatedStreamsView.getChildCount() > initialCount) {
-            relatedStreamsView.removeViews(initialCount, relatedStreamsView.getChildCount() - (initialCount));
-            relatedStreamExpandButton.setImageDrawable(ContextCompat.getDrawable(activity, ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.expand)));
+            relatedStreamsView.removeViews(initialCount,
+                    relatedStreamsView.getChildCount() - (initialCount));
+            relatedStreamExpandButton.setImageDrawable(ContextCompat.getDrawable(
+                    activity, ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.expand)));
             return;
         }
 
@@ -613,7 +634,9 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             //Log.d(TAG, "i = " + i);
             relatedStreamsView.addView(infoItemBuilder.buildView(relatedStreamsView, item));
         }
-        relatedStreamExpandButton.setImageDrawable(ContextCompat.getDrawable(activity, ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.collapse)));
+        relatedStreamExpandButton.setImageDrawable(
+                ContextCompat.getDrawable(activity,
+                        ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.collapse)));
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -623,7 +646,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     @Override
     protected void initViews(View rootView, Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
-
         spinnerToolbar = activity.findViewById(R.id.toolbar).findViewById(R.id.toolbar_spinner);
 
         parallaxScrollRootView = rootView.findViewById(R.id.detail_main_content);
@@ -644,6 +666,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         detailControlsAddToPlaylist = rootView.findViewById(R.id.detail_controls_playlist_append);
         detailControlsDownload = rootView.findViewById(R.id.detail_controls_download);
         appendControlsDetail = rootView.findViewById(R.id.touch_append_detail);
+        detailDurationView = rootView.findViewById(R.id.detail_duration_view);
 
         videoDescriptionRootLayout = rootView.findViewById(R.id.detail_description_root_layout);
         videoUploadDateView = rootView.findViewById(R.id.detail_upload_date_view);
@@ -668,7 +691,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
         relatedStreamExpandButton = rootView.findViewById(R.id.detail_related_streams_expand);
 
-        actionBarHandler = new ActionBarHandler(activity);
         infoItemBuilder = new InfoItemBuilder(activity);
         setHeightThumbnail();
     }
@@ -736,7 +758,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     private View.OnTouchListener getOnControlsTouchListener() {
         return (View view, MotionEvent motionEvent) -> {
-            if (!PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(getString(R.string.show_hold_to_append_key), true)) return false;
+            if (!PreferenceManager.getDefaultSharedPreferences(activity)
+                    .getBoolean(getString(R.string.show_hold_to_append_key), true)) {
+                return false;
+            }
 
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                     animateView(appendControlsDetail, true, 250, 0, () ->
@@ -749,10 +774,21 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     private void initThumbnailViews(StreamInfo info) {
         thumbnailImageView.setImageResource(R.drawable.dummy_thumbnail_dark);
         if (!TextUtils.isEmpty(info.getThumbnailUrl())) {
-            imageLoader.displayImage(info.getThumbnailUrl(), thumbnailImageView, DISPLAY_THUMBNAIL_OPTIONS, new SimpleImageLoadingListener() {
+            imageLoader.displayImage(
+                    info.getThumbnailUrl(),
+                    thumbnailImageView,
+                    DISPLAY_THUMBNAIL_OPTIONS, new SimpleImageLoadingListener() {
                 @Override
                 public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                    ErrorActivity.reportError(activity, failReason.getCause(), null, activity.findViewById(android.R.id.content), ErrorActivity.ErrorInfo.make(UserAction.LOAD_IMAGE, NewPipe.getNameOfService(currentInfo.getServiceId()), imageUri, R.string.could_not_load_thumbnails));
+                    ErrorActivity.reportError(
+                            activity,
+                            failReason.getCause(),
+                            null,
+                            activity.findViewById(android.R.id.content),
+                            ErrorActivity.ErrorInfo.make(UserAction.LOAD_IMAGE,
+                                    NewPipe.getNameOfService(currentInfo.getServiceId()),
+                                    imageUri,
+                                    R.string.could_not_load_thumbnails));
                 }
             });
         }
@@ -768,15 +804,19 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
         if (info.getNextVideo() != null && showRelatedStreams) {
             nextStreamTitle.setVisibility(View.VISIBLE);
-            relatedStreamsView.addView(infoItemBuilder.buildView(relatedStreamsView, info.getNextVideo()));
+            relatedStreamsView.addView(
+                    infoItemBuilder.buildView(relatedStreamsView, info.getNextVideo()));
             relatedStreamsView.addView(getSeparatorView());
             relatedStreamRootLayout.setVisibility(View.VISIBLE);
         } else
             nextStreamTitle.setVisibility(View.GONE);
 
-        if (info.related_streams != null && !info.related_streams.isEmpty() && showRelatedStreams) {
+        if (info.getRelatedStreams() != null
+                && !info.getRelatedStreams().isEmpty() && showRelatedStreams) {
             //long first = System.nanoTime(), each;
-            int to = info.getRelatedStreams().size() >= INITIAL_RELATED_VIDEOS ? INITIAL_RELATED_VIDEOS : info.getRelatedStreams().size();
+            int to = info.getRelatedStreams().size() >= INITIAL_RELATED_VIDEOS
+                    ? INITIAL_RELATED_VIDEOS
+                    : info.getRelatedStreams().size();
             for (int i = 0; i < to; i++) {
                 InfoItem item = info.getRelatedStreams().get(i);
                 //each = System.nanoTime();
@@ -788,7 +828,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             relatedStreamRootLayout.setVisibility(View.VISIBLE);
             relatedStreamExpandButton.setVisibility(View.VISIBLE);
 
-            relatedStreamExpandButton.setImageDrawable(ContextCompat.getDrawable(activity, ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.expand)));
+            relatedStreamExpandButton.setImageDrawable(ContextCompat.getDrawable(
+                    activity, ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.expand)));
         } else {
             if (info.getNextVideo() == null)
                 relatedStreamRootLayout.setVisibility(View.GONE);
@@ -803,7 +844,15 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        actionBarHandler.setupMenu(menu, inflater);
+        this.menu = menu;
+
+        // CAUTION set item properties programmatically otherwise it would not be accepted by
+        // appcompat itemsinflater.inflate(R.menu.videoitem_detail, menu);
+
+        inflater.inflate(R.menu.video_detail_menu, menu);
+
+        updateMenuItemVisibility();
+
         ActionBar supportActionBar = activity.getSupportActionBar();
         if (supportActionBar != null) {
             supportActionBar.setDisplayHomeAsUpEnabled(true);
@@ -811,9 +860,49 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         }
     }
 
+    private void updateMenuItemVisibility() {
+
+        // show kodi if set in settings
+        menu.findItem(R.id.action_play_with_kodi).setVisible(
+                PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(
+                        activity.getString(R.string.show_play_with_kodi_key), false));
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return (!isLoading.get() && actionBarHandler.onItemSelected(item)) || super.onOptionsItemSelected(item);
+        if(isLoading.get()) {
+            // if is still loading block menu
+            return true;
+        }
+
+        hideMainPlayer();
+
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.menu_item_share: {
+                if(currentInfo != null) {
+                    shareUrl(currentInfo.getName(), url);
+                } else {
+                    shareUrl(url, url);
+                }
+                return true;
+            }
+            case R.id.menu_item_openInBrowser: {
+                openUrlInBrowser(url);
+                return true;
+            }
+            case R.id.action_play_with_kodi:
+                try {
+                    NavigationHelper.playWithKore(activity, Uri.parse(
+                            url.replace("https", "http")));
+                } catch (Exception e) {
+                    if(DEBUG) Log.i(TAG, "Failed to start kore", e);
+                    showInstallKoreDialog(activity);
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private static void showInstallKoreDialog(final Context context) {
@@ -825,46 +914,54 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         builder.create().show();
     }
 
-    private void setupActionBarHandler(final StreamInfo info) {
-        if (DEBUG)
-            Log.d(TAG, "setupActionBarHandler() called with: info = [" + info + "]");
+    private void setupActionBarOnError(final String url) {
+        if (DEBUG) Log.d(TAG, "setupActionBarHandlerOnError() called with: url = [" + url + "]");
+        Log.e("-----", "missing code");
+    }
 
-        sortedStreamVideosList = new ArrayList<>(ListHelper.getSortedStreamVideosList(activity, info.getVideoStreams(), info.getVideoOnlyStreams(), false));
-        actionBarHandler.setStreamResolution(oldSelectedStreamResolution);
-        actionBarHandler.setupStreamList(sortedStreamVideosList, spinnerToolbar);
-        actionBarHandler.setOnStreamSelectedListener(new ActionBarHandler.OnStreamChangesListener() {
+
+    private void setupActionBar(final StreamInfo info) {
+        if (DEBUG) Log.d(TAG, "setupActionBarHandler() called with: info = [" + info + "]");
+        sortedStreamVideosList = new ArrayList<>(ListHelper.getSortedStreamVideosList(
+                activity, info.getVideoStreams(), info.getVideoOnlyStreams(), false));
+
+            if (oldSelectedStreamResolution == null) {
+                selectedVideoStream = ListHelper.getDefaultResolutionIndex(activity, sortedStreamVideosList);
+            } else {
+                selectedVideoStream = ListHelper.getDefaultResolutionIndex(activity, sortedStreamVideosList, oldSelectedStreamResolution);
+            }
+
+        boolean isExternalPlayerEnabled = PreferenceManager.getDefaultSharedPreferences(activity)
+                .getBoolean(activity.getString(R.string.use_external_video_player_key), false);
+        spinnerToolbar.setAdapter(new SpinnerToolbarAdapter(activity, sortedStreamVideosList,
+                isExternalPlayerEnabled));
+
+        final int defaultSelection = selectedVideoStream >= sortedStreamVideosList.size() ? sortedStreamVideosList.size() - 1 : selectedVideoStream;
+        selectedVideoStream = defaultSelection;
+
+        spinnerToolbar.setSelection(defaultSelection);
+        spinnerToolbar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onStreamResolutionSelected(String selectedResolution) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // Don't call methods twice with identical selection
+                if (selectedVideoStream == position) {
+                    return;
+                } else {
+                    selectedVideoStream = position;
+                }
+
+                VideoStream preferredVideoStream = sortedStreamVideosList.get(selectedVideoStream);
+
                 if (playerService != null && player.getParentActivity() != null) {
                     openVideoPlayer();
                 }
-                oldSelectedStreamResolution = selectedResolution;
+                oldSelectedStreamResolution = preferredVideoStream.resolution;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-
-        actionBarHandler.setOnShareListener(selectedStreamId -> {
-            hideMainPlayer();
-            shareUrl(info.name, info.url);
-        });
-
-        actionBarHandler.setOnOpenInBrowserListener((int selectedStreamId)-> {
-            hideMainPlayer();
-            openUrlInBrowser(info.getUrl());
-        });
-
-        actionBarHandler.setOnPlayWithKodiListener((int selectedStreamId) -> {
-            hideMainPlayer();
-            try {
-                NavigationHelper.playWithKore(activity, Uri.parse(
-                        info.getUrl().replace("https", "http")));
-            } catch (Exception e) {
-                if (DEBUG)
-                    Log.i(TAG, "Failed to start kore", e);
-
-                showInstallKoreDialog(activity);
-            }
-        });
-
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -894,8 +991,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     private void setTitleToUrl(int serviceId, String videoUrl, String name) {
         if (name != null && !name.isEmpty()) {
             for (StackItem stackItem : stack) {
-                if (stack.peek().getServiceId() == serviceId && stackItem.getUrl().equals(videoUrl))
+                if (stack.peek().getServiceId() == serviceId
+                        && stackItem.getUrl().equals(videoUrl)) {
                     stackItem.setTitle(name);
+                }
             }
         }
     }
@@ -967,20 +1066,17 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         pushToStack(serviceId, url, name, playQueue);
         showLoading();
 
-        if (DEBUG)
-            Log.d(TAG, "prepareAndHandleInfo() called parallaxScrollRootView.getScrollY(): " + parallaxScrollRootView.getScrollY());
+        Log.d(TAG, "prepareAndHandleInfo() called parallaxScrollRootView.getScrollY(): "
+                + parallaxScrollRootView.getScrollY());
         final boolean greaterThanThreshold = parallaxScrollRootView.getScrollY() > (int)
                 (getResources().getDisplayMetrics().heightPixels * .1f);
 
-        if (scrollToTop)
-            parallaxScrollRootView.smoothScrollTo(0, 0);
-
-        animateView(contentRootLayoutHiding, false, greaterThanThreshold ? 250 : 0, 0, new Runnable() {
-            @Override
-            public void run() {
+        if (scrollToTop) parallaxScrollRootView.smoothScrollTo(0, 0);
+        animateView(contentRootLayoutHiding,
+                false,
+                greaterThanThreshold ? 250 : 0, 0, () -> {
                 handleResult(info);
                 showContentWithAnimation(120, 0, .01f);
-            }
         });
     }
 
@@ -1013,7 +1109,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     //////////////////////////////////////////////////////////////////////////*/
 
     private void openBackgroundPlayer(final boolean append) {
-        AudioStream audioStream = currentInfo.getAudioStreams().get(ListHelper.getDefaultAudioFormat(activity, currentInfo.getAudioStreams()));
+        AudioStream audioStream = currentInfo.getAudioStreams()
+                .get(ListHelper.getDefaultAudioFormat(activity, currentInfo.getAudioStreams()));
 
         boolean useExternalAudioPlayer = PreferenceManager.getDefaultSharedPreferences(activity)
                 .getBoolean(activity.getString(R.string.use_external_audio_player_key), false);
@@ -1021,7 +1118,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         if (!useExternalAudioPlayer && android.os.Build.VERSION.SDK_INT >= 16) {
             openNormalBackgroundPlayer(append);
         } else {
-            NavigationHelper.playOnExternalPlayer(activity, currentInfo.getName(), currentInfo.getUploaderName(), audioStream);
+            NavigationHelper.playOnExternalPlayer(activity,
+                    currentInfo.getName(),
+                    currentInfo.getUploaderName(),
+                    audioStream);
         }
     }
 
@@ -1043,8 +1143,12 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     private void openVideoPlayer() {
         VideoStream selectedVideoStream = getSelectedVideoStream();
 
-        if (PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(this.getString(R.string.use_external_video_player_key), false)) {
-            NavigationHelper.playOnExternalPlayer(activity, currentInfo.getName(), currentInfo.getUploaderName(), selectedVideoStream);
+        if (PreferenceManager.getDefaultSharedPreferences(activity)
+                .getBoolean(this.getString(R.string.use_external_video_player_key), false)) {
+            NavigationHelper.playOnExternalPlayer(activity,
+                    currentInfo.getName(),
+                    currentInfo.getUploaderName(),
+                    selectedVideoStream);
         } else {
             setupMainPlayer();
         }
@@ -1082,7 +1186,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
             Intent playerIntent = NavigationHelper.getPlayerIntent(getContext(), MainPlayerService.class, queue, getSelectedVideoStream().getResolution());
             activity.startService(playerIntent);
-
         } else {
             // Internal Player
             Intent mIntent = new Intent(activity, PlayVideoActivity.class)
@@ -1147,6 +1250,21 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
+    /**
+     * Prior to Kitkat, hiding system ui causes the player view to be overlaid and require two
+     * clicks to get rid of that invisible overlay. By showing the system UI on actions/events,
+     * that overlay is removed and the player view is put to the foreground.
+     *
+     * Post Kitkat, navbar and status bar can be pulled out by swiping the edge of
+     * screen, therefore, we can do nothing or hide the UI on actions/events.
+     * */
+    private void changeSystemUi() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            showSystemUi();
+        } else {
+            hideSystemUi();
+        }
+    }
 
     public void setAutoplay(boolean autoplay) {
         autoPlayEnabled = autoplay;
@@ -1185,7 +1303,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     }
 
     private VideoStream getSelectedVideoStream() {
-        return sortedStreamVideosList.get(actionBarHandler.getSelectedVideoStream());
+        return sortedStreamVideosList.get(selectedVideoStream);
     }
 
     private void prepareDescription(final String descriptionHtml) {
@@ -1214,9 +1332,12 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     private View getSeparatorView() {
         View separator = new View(activity);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1);
-        int m8 = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics());
-        int m5 = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics());
+        LinearLayout.LayoutParams params =
+                new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1);
+        int m8 = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics());
+        int m5 = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics());
         params.setMargins(m8, m5, m8, m5);
         separator.setLayoutParams(params);
 
@@ -1230,13 +1351,17 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     private void setHeightThumbnail() {
         final DisplayMetrics metrics = getResources().getDisplayMetrics();
         boolean isPortrait = metrics.heightPixels > metrics.widthPixels;
-        int height = isPortrait ? (int) (metrics.widthPixels / (16.0f / 9.0f)) : (int) (metrics.heightPixels / 2f);
-        thumbnailImageView.setScaleType(isPortrait ? ImageView.ScaleType.CENTER_CROP : ImageView.ScaleType.FIT_CENTER);
-        thumbnailImageView.setLayoutParams(new FrameLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, height));
+        int height = isPortrait
+                ? (int) (metrics.widthPixels / (16.0f / 9.0f))
+                : (int) (metrics.heightPixels / 2f);
+        thumbnailImageView.setLayoutParams(
+                new FrameLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, height));
         thumbnailImageView.setMinimumHeight(height);
     }
 
-    private void showContentWithAnimation(long duration, long delay, @FloatRange(from = 0.0f, to = 1.0f) float translationPercent) {
+    private void showContentWithAnimation(long duration,
+                                          long delay,
+                                          @FloatRange(from = 0.0f, to = 1.0f) float translationPercent) {
         int translationY = (int) (getResources().getDisplayMetrics().heightPixels *
                 (translationPercent > 0.0f ? translationPercent : .06f));
 
@@ -1244,23 +1369,38 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         contentRootLayoutHiding.setAlpha(0f);
         contentRootLayoutHiding.setTranslationY(translationY);
         contentRootLayoutHiding.setVisibility(View.VISIBLE);
-        contentRootLayoutHiding.animate().alpha(1f).translationY(0)
-                .setStartDelay(delay).setDuration(duration).setInterpolator(new FastOutSlowInInterpolator()).start();
+        contentRootLayoutHiding.animate()
+                .alpha(1f)
+                .translationY(0)
+                .setStartDelay(delay)
+                .setDuration(duration)
+                .setInterpolator(new FastOutSlowInInterpolator())
+                .start();
 
         uploaderRootLayout.animate().setListener(null).cancel();
         uploaderRootLayout.setAlpha(0f);
         uploaderRootLayout.setTranslationY(translationY);
         uploaderRootLayout.setVisibility(View.VISIBLE);
-        uploaderRootLayout.animate().alpha(1f).translationY(0)
-                .setStartDelay((long) (duration * .5f) + delay).setDuration(duration).setInterpolator(new FastOutSlowInInterpolator()).start();
+        uploaderRootLayout.animate()
+                .alpha(1f)
+                .translationY(0)
+                .setStartDelay((long) (duration * .5f) + delay)
+                .setDuration(duration)
+                .setInterpolator(new FastOutSlowInInterpolator())
+                .start();
 
         if (showRelatedStreams) {
             relatedStreamRootLayout.animate().setListener(null).cancel();
             relatedStreamRootLayout.setAlpha(0f);
             relatedStreamRootLayout.setTranslationY(translationY);
             relatedStreamRootLayout.setVisibility(View.VISIBLE);
-            relatedStreamRootLayout.animate().alpha(1f).translationY(0)
-                    .setStartDelay((long) (duration * .8f) + delay).setDuration(duration).setInterpolator(new FastOutSlowInInterpolator()).start();
+            relatedStreamRootLayout.animate()
+                    .alpha(1f)
+                    .translationY(0)
+                    .setStartDelay((long) (duration * .8f) + delay)
+                    .setDuration(duration)
+                    .setInterpolator(new FastOutSlowInInterpolator())
+                    .start();
         }
     }
 
@@ -1276,12 +1416,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             return;
 
         thumbnailImageView.setImageDrawable(ContextCompat.getDrawable(activity, imageResource));
-        animateView(thumbnailImageView, false, 0, 0, new Runnable() {
-            @Override
-            public void run() {
-                animateView(thumbnailImageView, true, 500);
-            }
-        });
+        animateView(thumbnailImageView, false, 0, 0,
+                () -> animateView(thumbnailImageView, true, 500));
     }
 
     @Override
@@ -1354,6 +1490,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         animateView(contentRootLayoutHiding, false, 200);
         animateView(spinnerToolbar, false, 200);
         animateView(thumbnailPlayButton, false, 50);
+        animateView(detailDurationView, false, 100);
 
         videoTitleTextView.setText(name != null ? name : "");
         videoTitleTextView.setMaxLines(1);
@@ -1425,6 +1562,18 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             thumbsDisabledTextView.setVisibility(View.GONE);
         }
 
+        if (info.getDuration() > 0) {
+            detailDurationView.setText(Localization.getDurationString(info.getDuration()));
+            detailDurationView.setBackgroundColor(ContextCompat.getColor(activity, R.color.duration_background_color));
+            animateView(detailDurationView, true, 100);
+        } else if (info.getStreamType() == StreamType.LIVE_STREAM) {
+            detailDurationView.setText(R.string.duration_live);
+            detailDurationView.setBackgroundColor(ContextCompat.getColor(activity, R.color.live_duration_background_color));
+            animateView(detailDurationView, true, 100);
+        } else {
+            detailDurationView.setVisibility(View.GONE);
+        }
+
         videoTitleRoot.setClickable(true);
         videoTitleToggleArrow.setVisibility(View.VISIBLE);
         videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
@@ -1436,7 +1585,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         prepareDescription(info.getDescription());
 
         animateView(spinnerToolbar, true, 500);
-        setupActionBarHandler(info);
+        setupActionBar(info);
         initThumbnailViews(info);
         initRelatedVideos(info);
         if (wasRelatedStreamsExpanded) {
@@ -1446,14 +1595,28 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         setTitleToUrl(info.getServiceId(), info.getUrl(), info.getName());
 
         if (!info.getErrors().isEmpty()) {
-            showSnackBarError(info.getErrors(), UserAction.REQUESTED_STREAM, NewPipe.getNameOfService(info.getServiceId()), info.getUrl(), 0);
+            showSnackBarError(info.getErrors(),
+                    UserAction.REQUESTED_STREAM,
+                    NewPipe.getNameOfService(info.getServiceId()),
+                    info.getUrl(),
+                    0);
         }
 
-        if (info.video_streams.isEmpty() && info.video_only_streams.isEmpty()) {
+        switch (info.getStreamType()) {
+            case LIVE_STREAM:
+            case AUDIO_LIVE_STREAM:
+                detailControlsDownload.setVisibility(View.GONE);
+                spinnerToolbar.setVisibility(View.GONE);
+                break;
+            default:
+                if (!info.getVideoStreams().isEmpty()
+                        || !info.getVideoOnlyStreams().isEmpty()) break;
+
             detailControlsBackground.setVisibility(View.GONE);
             detailControlsPopup.setVisibility(View.GONE);
             spinnerToolbar.setVisibility(View.GONE);
             thumbnailPlayButton.setImageResource(R.drawable.ic_headset_white_24dp);
+                break;
         }
     }
 
@@ -1468,16 +1631,21 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
         if (exception instanceof YoutubeStreamExtractor.GemaException) {
             onBlockedByGemaError();
-        } else if (exception instanceof YoutubeStreamExtractor.LiveStreamException) {
-            showError(getString(R.string.live_streams_not_supported), false);
         } else if (exception instanceof ContentNotAvailableException) {
             showError(getString(R.string.content_not_available), false);
 
             playNextStream();
         } else {
-            int errorId = exception instanceof YoutubeStreamExtractor.DecryptException ? R.string.youtube_signature_decryption_error :
-                    exception instanceof ParsingException ? R.string.parsing_error : R.string.general_error;
-            onUnrecoverableError(exception, UserAction.REQUESTED_STREAM, NewPipe.getNameOfService(serviceId), url, errorId);
+            int errorId = exception instanceof YoutubeStreamExtractor.DecryptException
+                    ? R.string.youtube_signature_decryption_error
+                    : exception instanceof ParsingException
+                    ? R.string.parsing_error
+                    : R.string.general_error;
+            onUnrecoverableError(exception,
+                    UserAction.REQUESTED_STREAM,
+                    NewPipe.getNameOfService(serviceId),
+                    url,
+                    errorId);
         }
 
         return true;
@@ -1530,7 +1698,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     @Override
     public void onMetadataUpdate(StreamInfo info) {
         // We don't want to update interface twice
-        if (playQueue == null || playQueue instanceof SinglePlayQueue || currentInfo == null || currentInfo.id.equals(info.id) || player.getParentActivity() == null)
+        if (playQueue == null || playQueue instanceof SinglePlayQueue || currentInfo == null || currentInfo.getId().equals(info.getId()) || player.getParentActivity() == null)
             return;
 
         currentInfo = info;
@@ -1594,7 +1762,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
         getActivity().getWindow().getDecorView().setSystemUiVisibility(0);
         getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-    }
+}
 
     private void showActionBar() {
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
@@ -1614,17 +1782,20 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         if (DEBUG)
             Log.d(TAG, "hideSystemUi() called");
 
-        if (android.os.Build.VERSION.SDK_INT >= 16) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                     | View.SYSTEM_UI_FLAG_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT)
+                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 visibility |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+            }
             getActivity().getWindow().getDecorView().setSystemUiVisibility(visibility);
         }
-        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
     }
 
     private void hideActionBar() {

@@ -176,20 +176,26 @@
 
     <string name="no_subscribers">אין עוקבים</string>
     <plurals name="subscribers">
-	<item quantity="one">%s עוקב</item>
-	<item quantity="two">%s עוקבים</item>
+	<item quantity="one">מנוי אחד</item>
+	<item quantity="two">שני מנויים</item>
+	<item quantity="many">%s מנויים</item>
+	<item quantity="other">%s מנויים</item>
 </plurals>
 
     <string name="no_views">אין תצוגות</string>
     <plurals name="views">
-	<item quantity="one">תצוגה %s</item>
-	<item quantity="two">%s תצוגות</item>
+	<item quantity="one">צפייה אחת</item>
+	<item quantity="two">שתי צפיות</item>
+	<item quantity="many">%s צפיות</item>
+	<item quantity="other">%s צפיות</item>
 </plurals>
 
     <string name="no_videos">אין סרטונים</string>
     <plurals name="videos">
-	<item quantity="one">סרטון %s</item>
-	<item quantity="two">%s סרטונים</item>
+	<item quantity="one">סרטון אחד</item>
+	<item quantity="two">שני סרטונים</item>
+	<item quantity="many">%s סרטונים</item>
+	<item quantity="other">%s סרטונים</item>
 </plurals>
 
     <string name="start">התחל</string>
@@ -285,4 +291,25 @@
     <string name="start_here_on_main">התחל לנגן כאן</string>
     <string name="start_here_on_background">התחל כאן בנגן הרקע</string>
     <string name="start_here_on_popup">התחל כאן בנגן הצץ</string>
-</resources>
+<string name="controls_download_desc">הורדת קובץ הזרמה.</string>
+    <string name="show_info">הצגת מידע</string>
+
+    <string name="tab_bookmarks">סימניות</string>
+
+    <string name="controls_add_to_playlist_title">הוספה אל</string>
+
+    <string name="default_content_country_title">מדינת תוכן כבררת מחדל</string>
+    <string name="service_title">שירות</string>
+    <string name="settings_category_debug_title">ניפוי שגיאות</string>
+    <string name="always">תמיד</string>
+    <string name="just_once">חד פעמי</string>
+
+    <string name="import_data_title">יבוא מסד נתונים</string>
+    <string name="export_data_title">יצוא מסד נתונים</string>
+    <string name="external_player_unsupported_link_type">נגנים חיצוניים לא תומכים בסוגי קישורים אלה</string>
+    <string name="invalid_url_toast">כתובת שגויה</string>
+    <string name="file">קובץ</string>
+
+    <string name="switch_to_background">העברה לרקע</string>
+    <string name="switch_to_popup">העברה לחלון צץ</string>
+    </resources>

@@ -283,4 +283,34 @@ o modo “popup“</string>
     <string name="start_here_on_main">Começar a reproduzir aqui</string>
     <string name="start_here_on_background">Começar aqui em Segundo Plano</string>
     <string name="start_here_on_popup">Começar aqui em Popup</string>
-</resources>
+<string name="show_info">Mostrar informação</string>
+
+    <string name="tab_bookmarks">Favoritos</string>
+
+    <string name="service_title">Serviço</string>
+    <string name="always">Sempre</string>
+    <string name="just_once">Apenas uma vez</string>
+
+    <string name="toggle_orientation">Mudar orientação</string>
+    <string name="import_data_title">Importar base de dados</string>
+    <string name="export_data_title">Exportar base de dados</string>
+    <string name="import_data_summary">Irá sobrepor o seu histórico atual e subscrições</string>
+    <string name="export_data_summary">Exportar histórico, subscrições e listas de reprodução.</string>
+    <string name="background_player_append">Em lista de espera no reprodutor em segundo plano</string>
+    <string name="popup_playing_append">Em lista de espera no reprodutor popup</string>
+    <string name="switch_to_background">Mudar para segundo plano</string>
+    <string name="switch_to_popup">Mudar para popup</string>
+    <string name="switch_to_main">Mudar para primeiro plano</string>
+
+    <string name="player_stream_failure">Incapaz de reproduzir este vídeo</string>
+    <string name="external_player_unsupported_link_type">Reprodutores externos não suportam este tipo de hiperligações</string>
+    <string name="invalid_url_toast">Endereço inválido</string>
+    <string name="detail_drag_description">Arraste para reordenar</string>
+
+    <string name="create">Criar</string>
+    <string name="delete_one">Eliminar um</string>
+    <string name="delete_all">Eliminar todos</string>
+    <string name="rename">Alterar nome</string>
+
+    <string name="donation_title">Doar</string>
+    </resources>

@@ -30,7 +30,6 @@ import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.RemoteViews;
 import android.widget.SeekBar;
-import android.widget.Space;
 import android.widget.TextView;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.PlaybackParameters;
@@ -84,6 +83,8 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
     private ImageButton playNextButton;
 
     private RelativeLayout queueLayout;
+    private RelativeLayout windowRootLayout;
+    private ImageButton itemsListCloseButton;
     private RecyclerView itemsList;
     private ItemTouchHelper itemTouchHelper;
 
@@ -120,7 +121,7 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
 
     @Override
     public void handleIntent(Intent intent) {
-        if (intent.getSerializableExtra(BasePlayer.PLAY_QUEUE) == null)
+        if (intent.getStringExtra(BasePlayer.PLAY_QUEUE) == null)
             return;
 
         PlayerType oldPlayerType = playerType;
@@ -176,6 +177,18 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
         this.playNextButton = rootView.findViewById(R.id.playNextButton);
         this.moreOptionsButton = rootView.findViewById(R.id.moreOptionsButton);
         this.resizingIndicator = rootView.findViewById(R.id.resizing_indicator);
+        this.queueLayout = rootView.findViewById(R.id.playQueuePanel);
+        this.itemsListCloseButton = rootView.findViewById(R.id.playQueueClose);
+        this.itemsList = rootView.findViewById(R.id.playQueue);
+
+        this.windowRootLayout = rootView.findViewById(R.id.playbackWindowRoot);
+        // Prior to Kitkat, there is no way of setting translucent navbar programmatically.
+        // Thus, fit system windows is opted instead.
+        // See https://stackoverflow.com/questions/29069070/completely-transparent-status-bar-and-navigation-bar-on-lollipop
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            this.windowRootLayout.setFitsSystemWindows(false);
+            this.windowRootLayout.invalidate();
+        }
 
         getRootView().setKeepScreenOn(true);
     }
@@ -186,7 +199,7 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
             getFullScreenButton().setVisibility(View.VISIBLE);
             screenRotationButton.setVisibility(View.GONE);
             getRootView().findViewById(R.id.metadataView).setVisibility(View.GONE);
-            getQualityTextView().setVisibility(View.VISIBLE);
+            getQualityTextView().setVisibility(isLiveStream(currentInfo) || !isYoutube(currentInfo) ? View.GONE : View.VISIBLE);
             queueButton.setVisibility(View.GONE);
             moreOptionsButton.setVisibility(View.GONE);
             getTopControls().setOrientation(LinearLayout.HORIZONTAL);
@@ -194,9 +207,9 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
             getSecondaryControls().setVisibility(View.VISIBLE);
         } else {
             getFullScreenButton().setVisibility(View.GONE);
-            screenRotationButton.setVisibility(globalOrientationLocked? View.VISIBLE : View.GONE);
+            screenRotationButton.setVisibility(globalOrientationLocked ? View.VISIBLE : View.GONE);
             getRootView().findViewById(R.id.metadataView).setVisibility(View.VISIBLE);
-            getQualityTextView().setVisibility(isInFullscreen() ? View.VISIBLE : View.INVISIBLE);
+            getQualityTextView().setVisibility(isInFullscreen() && !isLiveStream(currentInfo) && isYoutube(currentInfo) ? View.VISIBLE : View.INVISIBLE);
             moreOptionsButton.setVisibility(View.VISIBLE);
             getTopControls().setOrientation(LinearLayout.VERTICAL);
             getPrimaryControls().getLayoutParams().width = LinearLayout.LayoutParams.MATCH_PARENT;
@@ -235,6 +248,14 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
         return (Activity) parent.getContext();
     }
 
+    private boolean isLiveStream(StreamInfo info) {
+        return info != null && (!info.getHlsUrl().isEmpty() || !info.getDashMpdUrl().isEmpty());
+    }
+
+    private boolean isYoutube(StreamInfo info) {
+        return info != null && info.getServiceId() == 0;
+    }
+
     @Override
     protected void setupSubtitleView(@NonNull SubtitleView view,
                                      @NonNull String captionSizeKey) {
@@ -250,18 +271,16 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
             final float captionRatioInverse;
             if (captionSizeKey.equals(service.getString(R.string.smaller_caption_size_key))) {
                 captionRatioInverse = 22f;
-            }
-            else if (captionSizeKey.equals(service.getString(R.string.larger_caption_size_key))) {
+            } else if (captionSizeKey.equals(service.getString(R.string.larger_caption_size_key))) {
                 captionRatioInverse = 18f;
-            }
-            else {
+            } else {
                 captionRatioInverse = 20f;
             }
 
             final DisplayMetrics metrics = context.getResources().getDisplayMetrics();
             final int minimumLength = Math.min(metrics.heightPixels, metrics.widthPixels);
             view.setFixedTextSize(TypedValue.COMPLEX_UNIT_PX,
-                                  (float) minimumLength / captionRatioInverse);
+                    (float) minimumLength / captionRatioInverse);
         }
     }
 
@@ -272,8 +291,7 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
             float widthDp = Math.abs(right - left) / service.getResources().getDisplayMetrics().density;
             final int visibility = widthDp > MINIMUM_SHOW_EXTRA_WIDTH_DP ? View.VISIBLE : View.GONE;
             getSecondaryControls().setVisibility(visibility);
-        }
-        else if (videoPlayerSelected()
+        } else if (videoPlayerSelected()
                 && !isInFullscreen()
                 && getAspectRatioFrameLayout().getMeasuredHeight() > service.getResources().getDisplayMetrics().heightPixels * 0.8) {
             // Resize mode is ZOOM probably. In this mode video will grow down and it will be weird. So let's open it in fullscreen
@@ -287,7 +305,7 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
             case AspectRatioFrameLayout.RESIZE_MODE_FIT:
                 return AspectRatioFrameLayout.RESIZE_MODE_FILL;
             case AspectRatioFrameLayout.RESIZE_MODE_FILL:
-                return videoPlayerSelected()? AspectRatioFrameLayout.RESIZE_MODE_ZOOM : AspectRatioFrameLayout.RESIZE_MODE_FIT;
+                return videoPlayerSelected() ? AspectRatioFrameLayout.RESIZE_MODE_ZOOM : AspectRatioFrameLayout.RESIZE_MODE_FIT;
             default:
                 return AspectRatioFrameLayout.RESIZE_MODE_FIT;
         }
@@ -312,6 +330,13 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
         updatePlayback();
     }
 
+    @Override
+    public void onShuffleClicked() {
+        super.onShuffleClicked();
+        updatePlaybackButtons();
+        updatePlayback();
+    }
+
         /*//////////////////////////////////////////////////////////////////////////
         // Playback Listener
         //////////////////////////////////////////////////////////////////////////*/
@@ -325,18 +350,16 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
     }
 
     @Override
-    public void sync(@NonNull final PlayQueueItem item, @Nullable final StreamInfo info) {
-        super.sync(item, info);
+    protected void onMetadataChanged(@NonNull final PlayQueueItem item,
+                                     @Nullable final StreamInfo info,
+                                     final int newPlayQueueIndex,
+                                     final boolean hasPlayQueueItemChanged) {
+        super.onMetadataChanged(item, info, newPlayQueueIndex, hasPlayQueueItemChanged);
         titleTextView.setText(getVideoTitle());
         channelTextView.setText(getUploaderName());
-        updateMetadata();
-    }
-
-    @Override
-    public void onShuffleClicked() {
-        super.onShuffleClicked();
-        updatePlaybackButtons();
-        updatePlayback();
+        if (shouldUpdateOnProgress || hasPlayQueueItemChanged) {
+            updateMetadata();
+        }
     }
 
     @Override
@@ -361,15 +384,16 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
     @Override
     @Nullable
     public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
-        if (!audioOnly)
+        if (!audioOnly || isLiveStream(info))
             return super.sourceOf(item, info);
         else {
-            final int index = ListHelper.getDefaultAudioFormat(context, info.audio_streams);
-            if (index < 0 || index >= info.audio_streams.size())
+            final int index = ListHelper.getDefaultAudioFormat(context, info.getAudioStreams());
+            if (index < 0 || index >= info.getAudioStreams().size())
                 return null;
 
-            final AudioStream audio = info.audio_streams.get(index);
-            return buildMediaSource(audio.getUrl(), MediaFormat.getSuffixById(audio.format));
+            final AudioStream audio = info.getAudioStreams().get(index);
+            return buildMediaSource(audio.getUrl(), PlayerHelper.cacheKeyOf(info, audio),
+                    MediaFormat.getSuffixById(audio.getFormatId()));
         }
     }
 
@@ -397,6 +421,7 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
                         this.getPlaybackQuality()
                 );
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra(Constants.KEY_SERVICE_ID, currentInfo.getServiceId());
                 intent.putExtra(Constants.KEY_LINK_TYPE, StreamingService.LinkType.STREAM);
                 intent.putExtra(Constants.KEY_URL, getVideoUrl());
                 intent.putExtra(Constants.KEY_TITLE, getVideoTitle());
@@ -414,11 +439,11 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
                 return;
 
             playerInFullscreenNow(!isInFullscreen());
-            getQualityTextView().setVisibility(isInFullscreen() ? View.VISIBLE : View.GONE);
+            getQualityTextView().setVisibility(isInFullscreen() && !isLiveStream(currentInfo) && isYoutube(currentInfo) ? View.VISIBLE : View.GONE);
             fragmentListener.onFullScreenButtonClicked(isInFullscreen());
 
             // When user presses back button in landscape mode and in fullscreen and uses ZOOM mode a video can be larger than screen. Prevent it like this
-            if (getAspectRatioFrameLayout().getResizeMode() == AspectRatioFrameLayout.RESIZE_MODE_ZOOM && !isInFullscreen() && service.isLandScape())
+            if (getAspectRatioFrameLayout().getResizeMode() == AspectRatioFrameLayout.RESIZE_MODE_ZOOM && !isInFullscreen() && service.isLandscape())
                 onResizeClicked();
         }
 
@@ -482,9 +507,9 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
 
         if (getCurrentState() != STATE_COMPLETED) {
             getControlsVisibilityHandler().removeCallbacksAndMessages(null);
-            animateView(getControlsRoot(), true, 300, 0, () -> {
+            animateView(getControlsRoot(), true, DEFAULT_CONTROLS_DURATION, 0, () -> {
                 if (getCurrentState() == STATE_PLAYING && !isSomePopupMenuVisible()) {
-                    hideControls(300, DEFAULT_CONTROLS_HIDE_TIME);
+                    hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
                 }
             });
         }
@@ -527,7 +552,7 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
                     R.drawable.ic_expand_less_white_24dp));
             getSecondaryControls().setVisibility(View.VISIBLE);
         }
-        showControls(300);
+        showControls(DEFAULT_CONTROLS_DURATION);
     }
 
     private void onScreenRotationClicked() {
@@ -542,21 +567,20 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
         super.onStopTrackingTouch(seekBar);
-        if (wasPlaying()) {
-            hideControls(100, 0);
-        }
+        if (wasPlaying())
+            showControlsThenHide();
     }
 
     @Override
     public void onDismiss(PopupMenu menu) {
         super.onDismiss(menu);
         if (isPlaying())
-            hideControls(300, 0);
+            hideControls(DEFAULT_CONTROLS_DURATION, 0);
     }
 
     @Override
     protected int getDefaultResolutionIndex(final List<VideoStream> sortedVideos) {
-        return videoPlayerSelected()?
+        return videoPlayerSelected() ?
                 ListHelper.getDefaultResolutionIndex(context, sortedVideos) :
                 ListHelper.getPopupDefaultResolutionIndex(context, sortedVideos);
     }
@@ -652,7 +676,7 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
     public void onCompleted() {
         animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 0, 0, () -> {
             playPauseButton.setImageResource(R.drawable.ic_replay_white);
-            animatePlayButtons(true, 300);
+            animatePlayButtons(true, DEFAULT_CONTROLS_DURATION);
         });
 
         getRootView().setKeepScreenOn(false);
@@ -669,7 +693,7 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
     }
 
     @Override
-    public void shutdown() {
+    public void onPlaybackShutdown() {
         if (DEBUG)
             Log.d(TAG, "Shutting down...");
         // Override it because we don't want playerImpl destroyed
@@ -697,17 +721,17 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
     }
 
     @Override
-    public void onThumbnailReceived(Bitmap thumbnail) {
-        super.onThumbnailReceived(thumbnail);
-        if (thumbnail != null) {
-            cachedImage = thumbnail;
+    public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+        super.onLoadingComplete(imageUri, view, loadedImage);
+        if (loadedImage != null) {
+            cachedImage = loadedImage;
             // rebuild notification here since remote view does not release bitmaps, causing memory leaks
             service.resetNotification();
 
             if (service.getNotRemoteView() != null)
-                service.getNotRemoteView().setImageViewBitmap(R.id.notificationCover, thumbnail);
+                service.getNotRemoteView().setImageViewBitmap(R.id.notificationCover, loadedImage);
             if (service.getBigNotRemoteView() != null)
-                service.getBigNotRemoteView().setImageViewBitmap(R.id.notificationCover, thumbnail);
+                service.getBigNotRemoteView().setImageViewBitmap(R.id.notificationCover, loadedImage);
 
             service.updateNotification(-1);
         }
@@ -902,7 +926,7 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
 
     @Override
     public void hideSystemUIIfNeeded() {
-        if(fragmentListener != null)
+        if (fragmentListener != null)
             fragmentListener.hideSystemUIIfNeeded();
     }
 
@@ -917,23 +941,18 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
 
     public void checkLandscape() {
         Activity parent = getParentActivity();
-        if (parent != null && service.isLandScape() && !isInFullscreen() && getCurrentState() != STATE_COMPLETED && videoPlayerSelected())
+        if (parent != null && service.isLandscape() && !isInFullscreen() && getCurrentState() != STATE_COMPLETED && videoPlayerSelected())
             onFullScreenButtonClicked();
     }
 
     public void setupScreenRotationButton(boolean visible) {
-        if(!videoPlayerSelected())
+        if (!videoPlayerSelected())
             return;
 
         screenRotationButton.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
     private void buildQueue() {
-        queueLayout = getRootView().findViewById(R.id.playQueuePanel);
-
-        ImageButton itemsListCloseButton = getRootView().findViewById(R.id.playQueueClose);
-
-        itemsList = getRootView().findViewById(R.id.playQueue);
         itemsList.setAdapter(playQueueAdapter);
         itemsList.setClickable(true);
         itemsList.setLongClickable(true);
@@ -946,9 +965,7 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
 
         playQueueAdapter.setSelectedListener(getOnSelectedListener());
 
-        itemsListCloseButton.setOnClickListener(view ->
-                onQueueClosed()
-        );
+        itemsListCloseButton.setOnClickListener(view -> onQueueClosed());
     }
 
     public void useVideoSource(boolean video) {
@@ -967,7 +984,7 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
         audioOnly = !video;
         setRecovery();
         // Here we are restarting playback. This method will be called with audioOnly setting - sourceOf(final PlayQueueItem item, final StreamInfo info)
-        initPlayback(playQueue);
+        initPlayback(playQueue, getRepeatMode(), getPlaybackSpeed(), getPlaybackPitch());
         getPlayer().setPlayWhenReady(shouldStartPlaying);
     }
 
@@ -1021,7 +1038,7 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
         // Re-initialization
         destroyPlayer();
         initPlayer();
-        initPlayback(oldQueue);
+        initPlayback(oldQueue, getRepeatMode(), getPlaybackSpeed(), getPlaybackPitch());
         getPlayer().setPlayWhenReady(true);
     }
 
@@ -1229,10 +1246,12 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
 
     private void updatePlayback() {
         if (fragmentListener != null && simpleExoPlayer != null && playQueue != null && !popupPlayerSelected()) {
-            fragmentListener.onPlaybackUpdate(currentState, getRepeatMode(), playQueue.isShuffled(), simpleExoPlayer.getPlaybackParameters());
+            fragmentListener.onPlaybackUpdate(currentState, getRepeatMode(),
+                    playQueue.isShuffled(), simpleExoPlayer.getPlaybackParameters());
         }
         if (activityListener != null && simpleExoPlayer != null && playQueue != null) {
-            activityListener.onPlaybackUpdate(currentState, getRepeatMode(), playQueue.isShuffled(), getPlaybackParameters());
+            activityListener.onPlaybackUpdate(currentState, getRepeatMode(),
+                    playQueue.isShuffled(), getPlaybackParameters());
         }
     }
 

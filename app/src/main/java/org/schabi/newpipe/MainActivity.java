@@ -20,14 +20,13 @@
 
 package org.schabi.newpipe;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -37,32 +36,34 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.player.BasePlayer;
-import org.schabi.newpipe.player.VideoPlayer;
 import org.schabi.newpipe.playlist.PlayQueue;
-import org.schabi.newpipe.util.Constants;
-import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.ServiceHelper;
-import org.schabi.newpipe.util.StateSaver;
-import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.util.*;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
 
-    private SharedPreferences sharedPreferences;
     private ActionBarDrawerToggle toggle = null;
+    private DrawerLayout drawer = null;
+    private NavigationView drawerItems = null;
+    private TextView headerServiceView = null;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Activity's LifeCycle
@@ -73,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
         if (DEBUG)
             Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
 
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
 
         super.onCreate(savedInstanceState);
@@ -89,8 +89,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupDrawer() {
         final Toolbar toolbar = findViewById(R.id.toolbar);
-        final DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        final NavigationView drawerItems = findViewById(R.id.navigation);
+        drawer = findViewById(R.id.drawer_layout);
+        drawerItems = findViewById(R.id.navigation);
 
         //drawerItems.setItemIconTintList(null); // Set null to use the original icon
         drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
@@ -115,18 +115,47 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-            drawerItems.setNavigationItemSelectedListener(item -> {
+            drawerItems.setNavigationItemSelectedListener(this::changeService);
+
+            setupDrawerFooter();
+            setupDrawerHeader();
+        } else {
+            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        }
+    }
+
+    private boolean changeService(MenuItem item) {
                 if (item.getGroupId() == R.id.menu_services_group) {
                     drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(false);
                     ServiceHelper.setSelectedServiceId(this, item.getTitle().toString());
                     drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
+            headerServiceView.setText("gurken");
+        } else {
+            return false;
                 }
                 drawer.closeDrawers();
                 return true;
-            });
-        } else {
-            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         }
+
+    private void setupDrawerFooter() {
+        ImageButton settings = findViewById(R.id.drawer_settings);
+        ImageButton downloads = findViewById(R.id.drawer_downloads);
+        ImageButton history = findViewById(R.id.drawer_history);
+
+        settings.setOnClickListener(view -> NavigationHelper.openSettings(this));
+        downloads.setOnClickListener(view ->NavigationHelper.openDownloads(this));
+        history.setOnClickListener(view -> NavigationHelper.openHistory(this));
+    }
+
+    private void setupDrawerHeader() {
+        headerServiceView = findViewById(R.id.drawer_header_service_view);
+        Button action = findViewById(R.id.drawer_header_action_button);
+        action.setOnClickListener(view -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("https://newpipe.schabi.org/blog/"));
+            startActivity(intent);
+            drawer.closeDrawers();
+        });
     }
 
     @Override
@@ -140,6 +169,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        // close drawer on return, and don't show animation, so its looks like the drawer isn't open
+        // when the user returns to MainActivity
+        drawer.closeDrawer(Gravity.START, false);
+        try {
+            if(BuildConfig.BUILD_TYPE != "release" ) {
+                String selectedServiceName = NewPipe.getService(
+                        ServiceHelper.getSelectedServiceId(this)).getServiceInfo().getName();
+                headerServiceView.setText(selectedServiceName);
+            }
+        } catch (Exception e) {
+            ErrorActivity.reportUiError(this, e);
+        }
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         if (sharedPreferences.getBoolean(Constants.KEY_THEME_CHANGE, false)) {
@@ -236,22 +278,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @SuppressLint("ShowToast")
-    private void onHeapDumpToggled(@NonNull MenuItem item) {
-        final boolean isHeapDumpEnabled = !item.isChecked();
-
-        PreferenceManager.getDefaultSharedPreferences(this).edit()
-                .putBoolean(getString(R.string.allow_heap_dumping_key), isHeapDumpEnabled).apply();
-        item.setChecked(isHeapDumpEnabled);
-
-        final String heapDumpNotice;
-        if (isHeapDumpEnabled) {
-            heapDumpNotice = getString(R.string.enable_leak_canary_notice);
-        } else {
-            heapDumpNotice = getString(R.string.disable_leak_canary_notice);
-        }
-        Toast.makeText(getApplicationContext(), heapDumpNotice, Toast.LENGTH_SHORT).show();
-    }
     /*//////////////////////////////////////////////////////////////////////////
     // Menu
     //////////////////////////////////////////////////////////////////////////*/
@@ -275,10 +301,6 @@ public class MainActivity extends AppCompatActivity {
             inflater.inflate(R.menu.main_menu, menu);
         }
 
-        if (DEBUG) {
-            getMenuInflater().inflate(R.menu.debug_menu, menu);
-        }
-
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(false);
@@ -287,17 +309,6 @@ public class MainActivity extends AppCompatActivity {
         updateDrawerNavigation();
 
         return true;
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem heapDumpToggle = menu.findItem(R.id.action_toggle_heap_dump);
-        if (heapDumpToggle != null) {
-            final boolean isToggled = PreferenceManager.getDefaultSharedPreferences(this)
-                    .getBoolean(getString(R.string.allow_heap_dumping_key), false);
-            heapDumpToggle.setChecked(isToggled);
-        }
-        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -327,9 +338,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_history:
                 NavigationHelper.openHistory(this);
                 sendBroadcast(hideMainPlayerIntent);
-                return true;
-            case R.id.action_toggle_heap_dump:
-                onHeapDumpToggled(item);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -388,7 +396,8 @@ public class MainActivity extends AppCompatActivity {
             switch (((StreamingService.LinkType) intent.getSerializableExtra(Constants.KEY_LINK_TYPE))) {
                 case STREAM:
                     boolean autoPlay = intent.getBooleanExtra(BasePlayer.AUTO_PLAY, false);
-                    PlayQueue playQueue = (PlayQueue) intent.getSerializableExtra(VideoPlayer.PLAY_QUEUE);
+                    final String intentCacheKey = intent.getStringExtra(BasePlayer.PLAY_QUEUE);
+                    final PlayQueue playQueue = intentCacheKey != null ? SerializedCache.getInstance().take(intentCacheKey, PlayQueue.class) : null;
                     NavigationHelper.openVideoDetailFragment(getSupportFragmentManager(), serviceId, url, title, autoPlay, playQueue);
                     break;
                 case CHANNEL:

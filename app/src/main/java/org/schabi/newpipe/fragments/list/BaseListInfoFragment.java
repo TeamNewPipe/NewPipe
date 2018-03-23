@@ -19,7 +19,8 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-public abstract class BaseListInfoFragment<I extends ListInfo> extends BaseListFragment<I, ListExtractor.NextItemsResult> {
+public abstract class BaseListInfoFragment<I extends ListInfo>
+        extends BaseListFragment<I, ListExtractor.InfoItemsPage> {
 
     @State
     protected int serviceId = Constants.NO_SERVICE_ID;
@@ -29,7 +30,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo> extends BaseListF
     protected String url;
 
     protected I currentInfo;
-    protected String currentNextItemsUrl;
+    protected String currentNextPageUrl;
     protected Disposable currentWorker;
 
     @Override
@@ -73,7 +74,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo> extends BaseListF
     public void writeTo(Queue<Object> objectsToSave) {
         super.writeTo(objectsToSave);
         objectsToSave.add(currentInfo);
-        objectsToSave.add(currentNextItemsUrl);
+        objectsToSave.add(currentNextPageUrl);
     }
 
     @Override
@@ -81,7 +82,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo> extends BaseListF
     public void readFrom(@NonNull Queue<Object> savedObjects) throws Exception {
         super.readFrom(savedObjects);
         currentInfo = (I) savedObjects.poll();
-        currentNextItemsUrl = (String) savedObjects.poll();
+        currentNextPageUrl = (String) savedObjects.poll();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -116,7 +117,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo> extends BaseListF
                 .subscribe((@NonNull I result) -> {
                     isLoading.set(false);
                     currentInfo = result;
-                    currentNextItemsUrl = result.next_streams_url;
+                    currentNextPageUrl = result.getNextPageUrl();
                     handleResult(result);
                 }, (@NonNull Throwable throwable) -> onError(throwable));
     }
@@ -125,7 +126,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo> extends BaseListF
      * Implement the logic to load more items<br/>
      * You can use the default implementations from {@link org.schabi.newpipe.util.ExtractorHelper}
      */
-    protected abstract Single<ListExtractor.NextItemsResult> loadMoreItemsLogic();
+    protected abstract Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic();
 
     protected void loadMoreItems() {
         isLoading.set(true);
@@ -134,9 +135,9 @@ public abstract class BaseListInfoFragment<I extends ListInfo> extends BaseListF
         currentWorker = loadMoreItemsLogic()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((@io.reactivex.annotations.NonNull ListExtractor.NextItemsResult nextItemsResult) -> {
+                .subscribe((@io.reactivex.annotations.NonNull ListExtractor.InfoItemsPage InfoItemsPage) -> {
                     isLoading.set(false);
-                    handleNextItems(nextItemsResult);
+                    handleNextItems(InfoItemsPage);
                 }, (@io.reactivex.annotations.NonNull Throwable throwable) -> {
                     isLoading.set(false);
                     onError(throwable);
@@ -144,17 +145,17 @@ public abstract class BaseListInfoFragment<I extends ListInfo> extends BaseListF
     }
 
     @Override
-    public void handleNextItems(ListExtractor.NextItemsResult result) {
+    public void handleNextItems(ListExtractor.InfoItemsPage result) {
         super.handleNextItems(result);
-        currentNextItemsUrl = result.nextItemsUrl;
-        infoListAdapter.addInfoItemList(result.nextItemsList);
+        currentNextPageUrl = result.getNextPageUrl();
+        infoListAdapter.addInfoItemList(result.getItems());
 
         showListFooter(hasMoreItems());
     }
 
     @Override
     protected boolean hasMoreItems() {
-        return !TextUtils.isEmpty(currentNextItemsUrl);
+        return !TextUtils.isEmpty(currentNextPageUrl);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -170,8 +171,8 @@ public abstract class BaseListInfoFragment<I extends ListInfo> extends BaseListF
         setTitle(name);
 
         if (infoListAdapter.getItemsList().size() == 0) {
-            if (result.related_streams.size() > 0) {
-                infoListAdapter.addInfoItemList(result.related_streams);
+            if (result.getRelatedItems().size() > 0) {
+                infoListAdapter.addInfoItemList(result.getRelatedItems());
                 showListFooter(hasMoreItems());
             } else {
                 infoListAdapter.clearStreamItemList();

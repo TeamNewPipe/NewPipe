@@ -141,12 +141,12 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     }
 
     @Override
-    public Single<ListExtractor.NextItemsResult> loadMoreItemsLogic() {
+    public Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic() {
         String contentCountry = PreferenceManager
                 .getDefaultSharedPreferences(activity)
                 .getString(getString(R.string.content_country_key),
                         getString(R.string.default_country_value));
-        return ExtractorHelper.getMoreKioskItems(serviceId, url, currentNextItemsUrl, contentCountry);
+        return ExtractorHelper.getMoreKioskItems(serviceId, url, currentNextPageUrl, contentCountry);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -174,7 +174,7 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     }
 
     @Override
-    public void handleNextItems(ListExtractor.NextItemsResult result) {
+    public void handleNextItems(ListExtractor.InfoItemsPage result) {
         super.handleNextItems(result);
 
         if (!result.getErrors().isEmpty()) {

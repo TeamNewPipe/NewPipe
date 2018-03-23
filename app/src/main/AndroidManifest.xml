@@ -44,6 +44,12 @@
             android:launchMode="singleTask"
             android:label="@string/title_activity_background_player"/>
 
+        <receiver android:name="org.schabi.newpipe.player.BackgroundPlayer$MediaButtonReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+        </receiver>
+
         <activity
             android:name=".settings.SettingsActivity"
             android:label="@string/settings"/>
@@ -55,6 +61,9 @@
         <activity
             android:name=".history.HistoryActivity"
             android:label="@string/title_activity_history"/>
+
+        <service android:name=".subscription.services.SubscriptionsImportService"/>
+        <service android:name=".subscription.services.SubscriptionsExportService"/>
 
         <activity
             android:name=".PanicResponderActivity"
@@ -103,7 +112,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/nnf_provider_paths"/>
         </provider>
 
         <activity

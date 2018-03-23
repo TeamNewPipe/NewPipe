@@ -1,9 +1,7 @@
 package org.schabi.newpipe;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -84,6 +82,17 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected void initListeners() {
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Utils
+    //////////////////////////////////////////////////////////////////////////*/
+
+    public void setTitle(String title) {
+        if (DEBUG) Log.d(TAG, "setTitle() called with: title = [" + title + "]");
+        if (activity != null && activity.getSupportActionBar() != null) {
+            activity.getSupportActionBar().setTitle(title);
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////

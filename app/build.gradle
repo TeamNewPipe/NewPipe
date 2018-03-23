@@ -8,8 +8,8 @@ android {
         applicationId "org.schabi.newpipe"
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 47
-        versionName "0.11.6"
+        versionCode 48
+        versionName "0.12.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -55,7 +55,7 @@ dependencies {
         exclude module: 'support-annotations'
     }
 
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:e51bc58a856dcf3'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:f787b375e5fb6d'
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:1.10.19'
@@ -72,8 +72,8 @@ dependencies {
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.github.nirhart:ParallaxScroll:dd53d1f9d1'
-    implementation 'com.nononsenseapps:filepicker:3.0.1'
-    implementation 'com.google.android.exoplayer:exoplayer:r2.5.4'
+    implementation 'com.nononsenseapps:filepicker:4.2.1'
+    implementation 'com.google.android.exoplayer:exoplayer:2.7.0'
 
     debugImplementation 'com.facebook.stetho:stetho:1.5.0'
     debugImplementation 'com.facebook.stetho:stetho-urlconnection:1.5.0'
@@ -93,4 +93,7 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
     betaImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+
+    implementation 'com.squareup.okhttp3:okhttp:3.9.1'
+    debugImplementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
 }

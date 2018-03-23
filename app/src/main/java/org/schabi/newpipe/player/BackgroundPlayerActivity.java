@@ -7,8 +7,6 @@ import android.view.MenuItem;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.PermissionHelper;
 
-import static org.schabi.newpipe.player.MainPlayerService.ACTION_CLOSE;
-
 public final class BackgroundPlayerActivity extends ServicePlayerActivity {
 
     private static final String TAG = "BackgroundPlayerActivity";

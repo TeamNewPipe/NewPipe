@@ -21,8 +21,8 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.fragments.list.BaseListFragment;
-import org.schabi.newpipe.fragments.subscription.SubscriptionService;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.subscription.SubscriptionService;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -64,7 +64,7 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        subscriptionService = SubscriptionService.getInstance();
+        subscriptionService = SubscriptionService.getInstance(activity);
 
         FEED_LOAD_COUNT = howManyItemsToLoad();
     }
@@ -297,12 +297,12 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
             // Called only when response is non-empty
             @Override
             public void onSuccess(final ChannelInfo channelInfo) {
-                if (infoListAdapter == null || channelInfo.getRelatedStreams().isEmpty()) {
+                if (infoListAdapter == null || channelInfo.getRelatedItems().isEmpty()) {
                     onDone();
                     return;
                 }
 
-                final InfoItem item = channelInfo.getRelatedStreams().get(0);
+                final InfoItem item = channelInfo.getRelatedItems().get(0);
                 // Keep requesting new items if the current one already exists
                 boolean itemExists = doesItemExist(infoListAdapter.getItemsList(), item);
                 if (!itemExists) {
@@ -411,7 +411,7 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
 
     private boolean doesItemExist(final List<InfoItem> items, final InfoItem item) {
         for (final InfoItem existingItem : items) {
-            if (existingItem.info_type == item.info_type &&
+            if (existingItem.getInfoType() == item.getInfoType() &&
                     existingItem.getServiceId() == item.getServiceId() &&
                     existingItem.getName().equals(item.getName()) &&
                     existingItem.getUrl().equals(item.getUrl())) return true;

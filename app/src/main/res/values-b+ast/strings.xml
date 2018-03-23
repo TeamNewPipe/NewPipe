@@ -333,4 +333,57 @@
     
     <string name="preferred_player_fetcher_notification_title">Consiguiendo información…</string>
     <string name="preferred_player_fetcher_notification_message">Ta cargando\'l conteníu solicitáu</string>
-</resources>
+<string name="controls_download_desc">Baxa\'l ficheru del fluxu.</string>
+    <string name="show_info">Amosar información</string>
+
+    <string name="tab_bookmarks">Marcadores</string>
+
+    <string name="controls_add_to_playlist_title">Amestar a</string>
+
+    <string name="settings_category_debug_title">Depuración</string>
+    <string name="detail_drag_description">Arrastra pa reordenar</string>
+
+    <string name="create">Crear</string>
+    <string name="delete_one">Desaniciar unu</string>
+    <string name="delete_all">Desaniciar too</string>
+    <string name="dismiss">Escartar</string>
+    <string name="rename">Renomar</string>
+
+    <string name="delete_stream_history_prompt">¿Quies desaniciar esti elementu del historial de visualizaciones?</string>
+    <string name="delete_all_history_prompt">¿De xuru que quies desaniciar tolos elementos del historial de visualizaciones?</string>
+    <string name="title_most_played">Lo más reproducío</string>
+
+    <string name="drawer_header_action_paceholder_text">Equí va haber daqué ceo ;D</string>
+
+
+    <string name="always_ask_open_action">Entrugar siempres</string>
+    
+    <string name="create_playlist">Crear llistáu de reproducción</string>
+    <string name="delete_playlist">Desaniciar llistáu de reproducción</string>
+    <string name="rename_playlist">Renomar llistáu de reproducción</string>
+    <string name="playlist_name_input">Nome</string>
+    <string name="append_playlist">Amestar al llistáu de reproducción</string>
+    <string name="set_as_playlist_thumbnail">Afitar como miniatura del llistáu de reproducción</string>
+
+    <string name="bookmark_playlist">Amestar llistáu de reproducción a Marcadores</string>
+    <string name="unbookmark_playlist">Desaniciar marcador</string>
+
+    <string name="delete_playlist_prompt">¿Quies desaniciar esti llistáu de reproducción?</string>
+    <string name="playlist_delete_failure">Fallu al desaniciar el llistáu de reproducción</string>
+
+    <string name="caption_none">Ensin sotítulos</string>
+
+    <string name="resize_fit">AXUSTAR</string>
+    <string name="resize_fill">RELLENAR</string>
+    <string name="resize_zoom">ZOOM</string>
+
+    <string name="caption_font_size_settings_title">Tamañu de fonte de sotítulos</string>
+    <string name="smaller_caption_font_size">Fonte más pequeña</string>
+    <string name="normal_caption_font_size">Fonte media</string>
+    <string name="larger_caption_font_size">Fonte más grande</string>
+
+    <string name="enable_leak_canary_title">Activar LeakCanary</string>
+    <string name="enable_leak_canary_summary">La supervisión d\'escapes de memoria podría facer que l\'aplicación nun respuenda al volquiar la pila</string>
+
+    <string name="enable_disposed_exceptions_title">Informar de fallos fuera de ciclos</string>
+    </resources>

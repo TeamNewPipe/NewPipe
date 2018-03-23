@@ -74,6 +74,10 @@
     <string name="black_theme_title">Black</string>
     <string name="popup_remember_size_pos_title">Remember popup size and position</string>
     <string name="popup_remember_size_pos_summary">Remember last size and position of popup</string>
+    <string name="use_inexact_seek_title">Use fast inexact seek</string>
+    <string name="use_inexact_seek_summary">Inexact seek allows the player to seek to positions faster with reduced precision</string>
+    <string name="auto_queue_title">Auto-queue next stream</string>
+    <string name="auto_queue_summary">Automatically append a related stream when playback starts on the last stream in a non-repeating play queue.</string>
     <string name="player_gesture_controls_title">Player gesture controls</string>
     <string name="player_gesture_controls_summary">Use gestures to control the brightness and volume of the player</string>
     <string name="show_search_suggestions_title">Search suggestions</string>
@@ -102,6 +106,7 @@
     <string name="settings_category_popup_title">Popup</string>
     <string name="settings_category_appearance_title">Appearance</string>
     <string name="settings_category_other_title">Other</string>
+    <string name="settings_category_debug_title">Debug</string>
     <string name="background_player_playing_toast">Playing in background</string>
     <string name="popup_playing_toast">Playing in popup mode</string>
     <string name="background_player_append">Queued on background player</string>
@@ -130,6 +135,7 @@
     <string name="play_all">Play All</string>
     <string name="always">Always</string>
     <string name="just_once">Just Once</string>
+    <string name="file">File</string>
 
     <string name="notification_channel_id" translatable="false">newpipe</string>
     <string name="notification_channel_name">NewPipe Notification</string>
@@ -167,6 +173,11 @@
     <string name="invalid_url_toast">Invalid URL</string>
     <string name="video_streams_empty">No video streams found</string>
     <string name="audio_streams_empty">No audio streams found</string>
+    <string name="invalid_directory">Invalid directory</string>
+    <string name="invalid_source">Invalid file/content source</string>
+    <string name="invalid_file">File doesn\'t exist or insufficient permission to read or write to it</string>
+    <string name="file_name_empty_error">File name cannot be empty</string>
+    <string name="error_occurred_detail">An error occurred: %1$s</string>
 
     <!-- error activity -->
     <string name="sorry_string">Sorry, that should not have happened.</string>
@@ -370,6 +381,7 @@
     <string name="drawer_close">Close Drawer</string>
     <string name="youtube" translatable="false">YouTube</string>
     <string name="soundcloud" translatable="false">SoundCloud</string>
+    <string name="drawer_header_action_paceholder_text">Something will come here soon ;D</string>
 
 
     <!-- Preferred player -->
@@ -409,13 +421,39 @@
     <string name="resize_fill">FILL</string>
     <string name="resize_zoom">ZOOM</string>
 
+    <string name="caption_auto_generated">Auto-generated</string>
     <string name="caption_font_size_settings_title">Caption Font Size</string>
     <string name="smaller_caption_font_size">Smaller Font</string>
     <string name="normal_caption_font_size">Normal Font</string>
     <string name="larger_caption_font_size">Larger Font</string>
 
-    <!-- Debug Only -->
-    <string name="toggle_leak_canary">Monitor Leaks</string>
-    <string name="enable_leak_canary_notice">Memory leak monitoring enabled, app may become unresponsive when heap dumping</string>
-    <string name="disable_leak_canary_notice">Memory leak monitoring disabled</string>
+    <string name="live_sync">SYNC</string>
+
+    <!-- Debug Settings -->
+    <string name="enable_leak_canary_title">Enable LeakCanary</string>
+    <string name="enable_leak_canary_summary">Memory leak monitoring may cause app to become unresponsive when heap dumping</string>
+
+    <string name="enable_disposed_exceptions_title">Report Out-of-Lifecycle Errors</string>
+    <string name="enable_disposed_exceptions_summary">Force reporting of undeliverable Rx exceptions occurring outside of fragment or activity lifecycle after dispose</string>
+
+    <!-- Subscriptions import/export -->
+    <string name="import_export_title">Import/Export</string>
+    <string name="import_title">Import</string>
+    <string name="import_from">Import from</string>
+    <string name="export_to">Export to</string>
+
+    <string name="import_ongoing">Importing…</string>
+    <string name="export_ongoing">Exporting…</string>
+
+    <string name="import_file_title">Import file</string>
+    <string name="previous_export">Previous export</string>
+
+    <string name="subscriptions_import_unsuccessful">Subscriptions import failed</string>
+    <string name="subscriptions_export_unsuccessful">Subscriptions export failed</string>
+
+    <string name="import_youtube_instructions">To import your YouTube subscriptions you will need the export file, which can be downloaded following these instructions:\n\n1. Go to this url: %1$s\n2. Log in to your account when asked\n3. A download should start (that\'s the export file) </string>
+    <string name="import_soundcloud_instructions">To import your SoundCloud followings you have to know your profile url or id. If you do, just type either of them in the input below and you\'re ready to go.\n\nIf you don\'t, you can follow these steps:\n\n1. Enable \"desktop mode\" in some browser (the site is not available for mobile devices)\n2. Go to this url: %1$s\n3. Log in to your account when asked\n4. Copy the url that you were redirected to (that\'s your profile url)</string>
+    <string name="import_soundcloud_instructions_hint">yourid, soundcloud.com/yourid</string>
+
+    <string name="import_network_expensive_warning">Keep in mind that this operation can be network expensive.\n\nDo you want to continue?</string>
 </resources>

@@ -5,10 +5,13 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.nononsenseapps.filepicker.Utils;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -33,8 +36,6 @@ import java.util.Locale;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
-
-import javax.annotation.Nonnull;
 
 public class ContentSettingsFragment extends BasePreferenceFragment {
 
@@ -140,15 +141,15 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nonnull Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @NonNull Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (DEBUG) {
             Log.d(TAG, "onActivityResult() called with: requestCode = [" + requestCode + "], resultCode = [" + resultCode + "], data = [" + data + "]");
         }
 
         if ((requestCode == REQUEST_IMPORT_PATH || requestCode == REQUEST_EXPORT_PATH)
-                && resultCode == Activity.RESULT_OK) {
-                String path = data.getData().getPath();
+                && resultCode == Activity.RESULT_OK && data.getData() != null) {
+                String path = Utils.getFileForUri(data.getData()).getAbsolutePath();
                 if (requestCode == REQUEST_EXPORT_PATH) {
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
                     exportDatabase(path + "/NewPipeData-" + sdf.format(new Date()) + ".zip");

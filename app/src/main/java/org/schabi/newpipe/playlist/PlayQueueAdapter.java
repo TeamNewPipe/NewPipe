@@ -63,18 +63,18 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     public PlayQueueAdapter(final Context context, final PlayQueue playQueue) {
+        if (playQueue.getBroadcastReceiver() == null) {
+            throw new IllegalStateException("Play Queue has not been initialized.");
+        }
+
         this.playQueueItemBuilder = new PlayQueueItemBuilder(context);
         this.playQueue = playQueue;
 
-        startReactor();
+        playQueue.getBroadcastReceiver().toObservable().subscribe(getReactor());
     }
 
-    public void setSelectedListener(final PlayQueueItemBuilder.OnSelectedListener listener) {
-        playQueueItemBuilder.setOnSelectedListener(listener);
-    }
-
-    private void startReactor() {
-        final Observer<PlayQueueEvent> observer = new Observer<PlayQueueEvent>() {
+    private Observer<PlayQueueEvent> getReactor() {
+        return new Observer<PlayQueueEvent>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
                 if (playQueueReactor != null) playQueueReactor.dispose();
@@ -95,7 +95,6 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             }
         };
 
-        playQueue.getBroadcastReceiver().toObservable().subscribe(observer);
     }
 
     private void onPlayQueueChanged(final PlayQueueEvent message) {
@@ -140,6 +139,14 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public void dispose() {
         if (playQueueReactor != null) playQueueReactor.dispose();
         playQueueReactor = null;
+    }
+
+    public void setSelectedListener(final PlayQueueItemBuilder.OnSelectedListener listener) {
+        playQueueItemBuilder.setOnSelectedListener(listener);
+    }
+
+    public void unsetSelectedListener() {
+        playQueueItemBuilder.setOnSelectedListener(null);
     }
 
     public void setFooter(View footer) {

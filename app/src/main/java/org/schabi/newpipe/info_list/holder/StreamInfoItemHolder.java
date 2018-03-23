@@ -51,14 +51,14 @@ public class StreamInfoItemHolder extends StreamMiniInfoItemHolder {
 
     private String getStreamInfoDetailLine(final StreamInfoItem infoItem) {
         String viewsAndDate = "";
-        if (infoItem.view_count >= 0) {
-            viewsAndDate = Localization.shortViewCount(itemBuilder.getContext(), infoItem.view_count);
+        if (infoItem.getViewCount() >= 0) {
+            viewsAndDate = Localization.shortViewCount(itemBuilder.getContext(), infoItem.getViewCount());
         }
-        if (!TextUtils.isEmpty(infoItem.upload_date)) {
+        if (!TextUtils.isEmpty(infoItem.getUploadDate())) {
             if (viewsAndDate.isEmpty()) {
-                viewsAndDate = infoItem.upload_date;
+                viewsAndDate = infoItem.getUploadDate();
             } else {
-                viewsAndDate += " • " + infoItem.upload_date;
+                viewsAndDate += " • " + infoItem.getUploadDate();
             }
         }
         return viewsAndDate;

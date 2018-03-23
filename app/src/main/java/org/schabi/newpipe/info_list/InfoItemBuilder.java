@@ -60,7 +60,7 @@ public class InfoItemBuilder {
     }
 
     public View buildView(@NonNull ViewGroup parent, @NonNull final InfoItem infoItem, boolean useMiniVariant) {
-        InfoItemHolder holder = holderFromInfoType(parent, infoItem.info_type, useMiniVariant);
+        InfoItemHolder holder = holderFromInfoType(parent, infoItem.getInfoType(), useMiniVariant);
         holder.updateFromItem(infoItem);
         return holder.itemView;
     }

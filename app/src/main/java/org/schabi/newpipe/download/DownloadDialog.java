@@ -205,7 +205,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         if (DEBUG) Log.d(TAG, "onCheckedChanged() called with: group = [" + group + "], checkedId = [" + checkedId + "]");
         switch (checkedId) {
             case R.id.audio_button:
-                setupAudioSpinner(currentInfo.audio_streams, streamsSpinner);
+                setupAudioSpinner(currentInfo.getAudioStreams(), streamsSpinner);
                 break;
             case R.id.video_button:
                 setupVideoSpinner(sortedStreamVideosList, streamsSpinner);

@@ -64,6 +64,9 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     private static final int SMOOTH_SCROLL_MAXIMUM_DISTANCE = 80;
 
+    private static final int MINIMUM_INITIAL_DRAG_VELOCITY = 10;
+    private static final int MAXIMUM_INITIAL_DRAG_VELOCITY = 25;
+
     private View rootView;
 
     private RecyclerView itemsList;
@@ -76,6 +79,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private SeekBar progressSeekBar;
     private TextView progressCurrentTime;
     private TextView progressEndTime;
+    private TextView progressLiveSync;
     private TextView seekDisplay;
 
     private ImageButton repeatButton;
@@ -200,6 +204,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         intent.putExtra(Constants.KEY_TITLE, this.player.getVideoTitle());
         intent.putExtra(BasePlayer.AUTO_PLAY, true);
         intent.putExtra(BasePlayer.AUDIO_ONLY, audioOnly);
+        intent.putExtra(Constants.KEY_SERVICE_ID, this.player.currentInfo.getServiceId());
         return intent;
     }
 
@@ -227,6 +232,15 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             unbindService(serviceConnection);
             serviceBound = false;
             stopPlayerListener();
+
+            if (player != null && player.getPlayQueueAdapter() != null) {
+                player.getPlayQueueAdapter().unsetSelectedListener();
+            }
+            if (itemsList != null) itemsList.setAdapter(null);
+            if (itemTouchHelper != null) itemTouchHelper.attachToRecyclerView(null);
+
+            itemsList = null;
+            itemTouchHelper = null;
             player = null;
         }
     }
@@ -300,9 +314,11 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         progressCurrentTime = rootView.findViewById(R.id.current_time);
         progressSeekBar = rootView.findViewById(R.id.seek_bar);
         progressEndTime = rootView.findViewById(R.id.end_time);
+        progressLiveSync = rootView.findViewById(R.id.live_sync);
         seekDisplay = rootView.findViewById(R.id.seek_display);
 
         progressSeekBar.setOnSeekBarChangeListener(this);
+        progressLiveSync.setOnClickListener(this);
     }
 
     private void buildControls() {
@@ -410,7 +426,19 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private ItemTouchHelper.SimpleCallback getItemTouchCallback() {
         return new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN, 0) {
             @Override
-            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder source, RecyclerView.ViewHolder target) {
+            public int interpolateOutOfBoundsScroll(RecyclerView recyclerView, int viewSize,
+                                                    int viewSizeOutOfBounds, int totalSize,
+                                                    long msSinceStartScroll) {
+                final int standardSpeed = super.interpolateOutOfBoundsScroll(recyclerView, viewSize,
+                        viewSizeOutOfBounds, totalSize, msSinceStartScroll);
+                final int clampedAbsVelocity = Math.max(MINIMUM_INITIAL_DRAG_VELOCITY,
+                        Math.min(Math.abs(standardSpeed), MAXIMUM_INITIAL_DRAG_VELOCITY));
+                return clampedAbsVelocity * (int) Math.signum(viewSizeOutOfBounds);
+            }
+
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder source,
+                                  RecyclerView.ViewHolder target) {
                 if (source.getItemViewType() != target.getItemViewType()) {
                     return false;
                 }
@@ -523,6 +551,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         } else if (view.getId() == metadata.getId()) {
             scrollToSelected();
 
+        } else if (view.getId() == progressLiveSync.getId()) {
+            player.seekToDefault();
         }
     }
 
@@ -585,7 +615,20 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     public void onMetadataUpdate(StreamInfo info) {
         if (info != null) {
             metadataTitle.setText(info.getName());
-            metadataArtist.setText(info.uploader_name);
+            metadataArtist.setText(info.getUploaderName());
+
+            progressEndTime.setVisibility(View.GONE);
+            progressLiveSync.setVisibility(View.GONE);
+            switch (info.getStreamType()) {
+                case LIVE_STREAM:
+                case AUDIO_LIVE_STREAM:
+                    progressLiveSync.setVisibility(View.VISIBLE);
+                    break;
+                default:
+                    progressEndTime.setVisibility(View.VISIBLE);
+                    break;
+            }
+
             scrollToSelected();
         }
     }

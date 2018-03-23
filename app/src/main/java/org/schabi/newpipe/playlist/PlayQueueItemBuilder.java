@@ -53,24 +53,18 @@ public class PlayQueueItemBuilder {
 
         ImageLoader.getInstance().displayImage(item.getThumbnailUrl(), holder.itemThumbnailView, imageOptions);
 
-        holder.itemRoot.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (onItemClickListener != null) {
-                    onItemClickListener.selected(item, view);
-                }
+        holder.itemRoot.setOnClickListener(view -> {
+            if (onItemClickListener != null) {
+                onItemClickListener.selected(item, view);
             }
         });
 
-        holder.itemRoot.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                if (onItemClickListener != null) {
-                    onItemClickListener.held(item, view);
-                    return true;
-                }
-                return false;
+        holder.itemRoot.setOnLongClickListener(view -> {
+            if (onItemClickListener != null) {
+                onItemClickListener.held(item, view);
+                return true;
             }
+            return false;
         });
 
         holder.itemThumbnailView.setOnTouchListener(getOnTouchListener(holder));
@@ -78,26 +72,21 @@ public class PlayQueueItemBuilder {
     }
 
     private View.OnTouchListener getOnTouchListener(final PlayQueueItemHolder holder) {
-        return new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                view.performClick();
-                if (motionEvent.getActionMasked() == MotionEvent.ACTION_DOWN) {
-                    onItemClickListener.onStartDrag(holder);
-                }
-                return false;
+        return (view, motionEvent) -> {
+            view.performClick();
+            if (motionEvent.getActionMasked() == MotionEvent.ACTION_DOWN
+                    && onItemClickListener != null) {
+                onItemClickListener.onStartDrag(holder);
             }
+            return false;
         };
     }
 
     private DisplayImageOptions buildImageOptions(final int widthPx, final int heightPx) {
-        final BitmapProcessor bitmapProcessor = new BitmapProcessor() {
-            @Override
-            public Bitmap process(Bitmap bitmap) {
-                final Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, widthPx, heightPx, false);
-                bitmap.recycle();
-                return resizedBitmap;
-            }
+        final BitmapProcessor bitmapProcessor = bitmap -> {
+            final Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, widthPx, heightPx, false);
+            bitmap.recycle();
+            return resizedBitmap;
         };
 
         return new DisplayImageOptions.Builder()

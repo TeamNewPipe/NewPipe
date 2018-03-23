@@ -1,5 +1,6 @@
 package org.schabi.newpipe.util;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -7,8 +8,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.widget.Toast;
@@ -33,9 +37,10 @@ import org.schabi.newpipe.fragments.list.feed.FeedFragment;
 import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
+import org.schabi.newpipe.fragments.local.bookmark.LastPlayedFragment;
 import org.schabi.newpipe.fragments.local.bookmark.LocalPlaylistFragment;
 import org.schabi.newpipe.fragments.local.bookmark.MostPlayedFragment;
-import org.schabi.newpipe.fragments.local.bookmark.LastPlayedFragment;
+import org.schabi.newpipe.fragments.subscription.SubscriptionsImportFragment;
 import org.schabi.newpipe.history.HistoryActivity;
 import org.schabi.newpipe.player.*;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
@@ -54,40 +59,45 @@ public class NavigationHelper {
     // Players
     //////////////////////////////////////////////////////////////////////////*/
 
-    public static Intent getPlayerIntent(final Context context,
-                                         final Class targetClazz,
-                                         final PlayQueue playQueue,
-                                         final String quality) {
-        Intent intent = new Intent(context, targetClazz)
-                .putExtra(VideoPlayer.PLAY_QUEUE, playQueue);
-        if (quality != null)
-            intent.putExtra(VideoPlayer.PLAYBACK_QUALITY, quality);
+    @NonNull
+    public static Intent getPlayerIntent(@NonNull final Context context,
+                                         @NonNull final Class targetClazz,
+                                         @NonNull final PlayQueue playQueue,
+                                         @Nullable final String quality) {
+        Intent intent = new Intent(context, targetClazz);
+
+        final String cacheKey = SerializedCache.getInstance().put(playQueue, PlayQueue.class);
+        if (cacheKey != null) intent.putExtra(VideoPlayer.PLAY_QUEUE, cacheKey);
+        if (quality != null) intent.putExtra(VideoPlayer.PLAYBACK_QUALITY, quality);
 
         return intent;
     }
 
-    public static Intent getPlayerIntent(final Context context,
-                                         final Class targetClazz,
-                                         final PlayQueue playQueue) {
+    @NonNull
+    public static Intent getPlayerIntent(@NonNull final Context context,
+                                         @NonNull final Class targetClazz,
+                                         @NonNull final PlayQueue playQueue) {
         return getPlayerIntent(context, targetClazz, playQueue, null);
     }
 
-    public static Intent getPlayerEnqueueIntent(final Context context,
-                                                final Class targetClazz,
-                                                final PlayQueue playQueue,
+    @NonNull
+    public static Intent getPlayerEnqueueIntent(@NonNull final Context context,
+                                                @NonNull final Class targetClazz,
+                                                @NonNull final PlayQueue playQueue,
                                                 final boolean selectOnAppend) {
         return getPlayerIntent(context, targetClazz, playQueue)
                 .putExtra(BasePlayer.APPEND_ONLY, true)
                 .putExtra(BasePlayer.SELECT_ON_APPEND, selectOnAppend);
     }
 
-    public static Intent getPlayerIntent(final Context context,
-                                         final Class targetClazz,
-                                         final PlayQueue playQueue,
+    @NonNull
+    public static Intent getPlayerIntent(@NonNull final Context context,
+                                         @NonNull final Class targetClazz,
+                                         @NonNull final PlayQueue playQueue,
                                          final int repeatMode,
                                          final float playbackSpeed,
                                          final float playbackPitch,
-                                         final String playbackQuality) {
+                                         @Nullable final String playbackQuality) {
         return getPlayerIntent(context, targetClazz, playQueue, playbackQuality)
                 .putExtra(BasePlayer.REPEAT_MODE, repeatMode)
                 .putExtra(BasePlayer.PLAYBACK_SPEED, playbackSpeed)
@@ -127,14 +137,14 @@ public class NavigationHelper {
         Toast.makeText(context, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
         Intent intent = getPlayerIntent(context, MainPlayerService.class, queue);
         intent.putExtra(Constants.POPUP_ONLY, true);
-        context.startService(intent);
+        startService(context, intent);
     }
 
     public static void playOnBackgroundPlayer(final Context context, final PlayQueue queue) {
         Toast.makeText(context, R.string.background_player_playing_toast, Toast.LENGTH_SHORT).show();
         Intent intent = getPlayerIntent(context, MainPlayerService.class, queue);
         intent.putExtra(BasePlayer.AUDIO_ONLY, true);
-        context.startService(intent);
+        startService(context, intent);
     }
 
     public static void enqueueOnPopupPlayer(final Context context, final PlayQueue queue) {
@@ -149,7 +159,7 @@ public class NavigationHelper {
         Toast.makeText(context, R.string.popup_playing_append, Toast.LENGTH_SHORT).show();
         Intent intent = getPlayerEnqueueIntent(context, MainPlayerService.class, queue, selectOnAppend);
         intent.putExtra(Constants.POPUP_ONLY, true);
-        context.startService(intent);
+        startService(context, intent);
     }
 
     public static void enqueueOnBackgroundPlayer(final Context context, final PlayQueue queue) {
@@ -160,7 +170,15 @@ public class NavigationHelper {
         Toast.makeText(context, R.string.background_player_append, Toast.LENGTH_SHORT).show();
         Intent intent = getPlayerEnqueueIntent(context, MainPlayerService.class, queue, selectOnAppend);
         intent.putExtra(BasePlayer.AUDIO_ONLY, true);
-        context.startService(intent);
+        startService(context, intent);
+    }
+
+    public static void startService(@NonNull final Context context, @NonNull final Intent intent) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            context.startForegroundService(intent);
+        } else {
+            context.startService(intent);
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -230,6 +248,12 @@ public class NavigationHelper {
     // Through FragmentManager
     //////////////////////////////////////////////////////////////////////////*/
 
+    @SuppressLint("CommitTransaction")
+    private static FragmentTransaction defaultTransaction(FragmentManager fragmentManager) {
+        return fragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out);
+    }
+
     public static void gotoMainFragment(FragmentManager fragmentManager) {
         ImageLoader.getInstance().clearMemoryCache();
 
@@ -242,8 +266,7 @@ public class NavigationHelper {
         InfoCache.getInstance().trimCache();
 
         fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
+        defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, new MainFragment())
                 .addToBackStack(MAIN_FRAGMENT_TAG)
                 .commit();
@@ -260,8 +283,7 @@ public class NavigationHelper {
     }
 
     public static void openSearchFragment(FragmentManager fragmentManager, int serviceId, String query) {
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
+        defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, SearchFragment.getInstance(serviceId, query))
                 .addToBackStack(SEARCH_FRAGMENT_TAG)
                 .commit();
@@ -286,8 +308,9 @@ public class NavigationHelper {
         }
 
         VideoDetailFragment instance = VideoDetailFragment.getInstance(serviceId, url, title, playQueue);
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
+        instance.setAutoplay(autoPlay);
+
+        defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, instance)
                 .addToBackStack(null)
                 .commit();
@@ -296,37 +319,30 @@ public class NavigationHelper {
     }
 
     public static void openChannelFragment(FragmentManager fragmentManager, int serviceId, String url, String name) {
-        if (name == null)
-            name = "";
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
+        if (name == null) name = "";
+        defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, ChannelFragment.getInstance(serviceId, url, name))
                 .addToBackStack(null)
                 .commit();
     }
 
     public static void openPlaylistFragment(FragmentManager fragmentManager, int serviceId, String url, String name) {
-        if (name == null)
-            name = "";
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
+        if (name == null) name = "";
+        defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, PlaylistFragment.getInstance(serviceId, url, name))
                 .addToBackStack(null)
                 .commit();
     }
 
     public static void openWhatsNewFragment(FragmentManager fragmentManager) {
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
+        defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, new FeedFragment())
                 .addToBackStack(null)
                 .commit();
     }
 
-    public static void openKioskFragment(FragmentManager fragmentManager, int serviceId, String kioskId)
-            throws ExtractionException {
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
+    public static void openKioskFragment(FragmentManager fragmentManager, int serviceId, String kioskId) throws ExtractionException {
+        defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, KioskFragment.getInstance(serviceId, kioskId))
                 .addToBackStack(null)
                 .commit();
@@ -334,28 +350,33 @@ public class NavigationHelper {
 
     public static void openLocalPlaylistFragment(FragmentManager fragmentManager, long playlistId, String name) {
         if (name == null) name = "";
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
+        defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, LocalPlaylistFragment.getInstance(playlistId, name))
                 .addToBackStack(null)
                 .commit();
     }
 
     public static void openLastPlayedFragment(FragmentManager fragmentManager) {
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
+        defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, new LastPlayedFragment())
                 .addToBackStack(null)
                 .commit();
     }
 
     public static void openMostPlayedFragment(FragmentManager fragmentManager) {
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(R.animator.custom_fade_in, R.animator.custom_fade_out, R.animator.custom_fade_in, R.animator.custom_fade_out)
+        defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, new MostPlayedFragment())
                 .addToBackStack(null)
                 .commit();
     }
+
+    public static void openSubscriptionsImportFragment(FragmentManager fragmentManager, int serviceId) {
+        defaultTransaction(fragmentManager)
+                .replace(R.id.fragment_holder, SubscriptionsImportFragment.getInstance(serviceId))
+                .addToBackStack(null)
+                .commit();
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Through Intents
     //////////////////////////////////////////////////////////////////////////*/
