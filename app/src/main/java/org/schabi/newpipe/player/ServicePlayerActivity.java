@@ -433,12 +433,10 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             player.onShuffleClicked();
 
         } else if (view.getId() == playbackSpeedButton.getId()) {
-            PlaybackParameterDialog.newInstance(player.getPlaybackSpeed(),
-                    player.getPlaybackPitch()).show(getSupportFragmentManager(), getTag());
+            openPlaybackParameterDialog();
 
         } else if (view.getId() == playbackPitchButton.getId()) {
-            PlaybackParameterDialog.newInstance(player.getPlaybackSpeed(),
-                    player.getPlaybackPitch()).show(getSupportFragmentManager(), getTag());
+            openPlaybackParameterDialog();
 
         } else if (view.getId() == metadata.getId()) {
             scrollToSelected();
@@ -450,8 +448,14 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     }
 
     ////////////////////////////////////////////////////////////////////////////
-    // Playback Parameters Listener
+    // Playback Parameters
     ////////////////////////////////////////////////////////////////////////////
+
+    private void openPlaybackParameterDialog() {
+        if (player == null) return;
+        PlaybackParameterDialog.newInstance(player.getPlaybackSpeed(),
+                player.getPlaybackPitch()).show(getSupportFragmentManager(), getTag());
+    }
 
     @Override
     public void onPlaybackParameterChanged(float playbackTempo, float playbackPitch) {
