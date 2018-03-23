@@ -49,7 +49,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.SubtitleView;
@@ -153,7 +152,7 @@ public final class MainVideoPlayer extends AppCompatActivity
         if (DEBUG) Log.d(TAG, "onResume() called");
         if (playerImpl.getPlayer() != null && activityPaused && playerImpl.wasPlaying()
                 && !playerImpl.isPlaying()) {
-            playerImpl.onVideoPlayPause();
+            playerImpl.onPlay();
         }
         activityPaused = false;
 
@@ -188,7 +187,7 @@ public final class MainVideoPlayer extends AppCompatActivity
 
         if (playerImpl != null && playerImpl.getPlayer() != null && !activityPaused) {
             playerImpl.wasPlaying = playerImpl.isPlaying();
-            if (playerImpl.isPlaying()) playerImpl.onVideoPlayPause();
+            playerImpl.onPause();
         }
         activityPaused = true;
     }
@@ -563,7 +562,7 @@ public final class MainVideoPlayer extends AppCompatActivity
         public void onClick(View v) {
             super.onClick(v);
             if (v.getId() == playPauseButton.getId()) {
-                onVideoPlayPause();
+                onPlayPause();
 
             } else if (v.getId() == playPreviousButton.getId()) {
                 onPlayPrevious();

@@ -618,7 +618,7 @@ public final class PopupVideoPlayer extends Service {
                     onClose();
                     break;
                 case ACTION_PLAY_PAUSE:
-                    onVideoPlayPause();
+                    onPlayPause();
                     break;
                 case ACTION_REPEAT:
                     onRepeatClicked();
@@ -731,7 +731,7 @@ public final class PopupVideoPlayer extends Service {
         public boolean onSingleTapConfirmed(MotionEvent e) {
             if (DEBUG) Log.d(TAG, "onSingleTapConfirmed() called with: e = [" + e + "]");
             if (playerImpl == null || playerImpl.getPlayer() == null) return false;
-            playerImpl.onVideoPlayPause();
+            playerImpl.onPlayPause();
             return true;
         }
 

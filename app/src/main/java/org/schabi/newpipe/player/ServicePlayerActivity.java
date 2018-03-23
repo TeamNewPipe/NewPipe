@@ -424,7 +424,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             player.onPlayPrevious();
 
         } else if (view.getId() == playPauseButton.getId()) {
-            player.onVideoPlayPause();
+            player.onPlayPause();
 
         } else if (view.getId() == forwardButton.getId()) {
             player.onPlayNext();

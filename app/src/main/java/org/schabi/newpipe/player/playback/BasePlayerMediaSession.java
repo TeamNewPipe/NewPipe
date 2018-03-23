@@ -62,12 +62,12 @@ public class BasePlayerMediaSession implements MediaSessionCallback {
 
     @Override
     public void onPlay() {
-        if (!player.isPlaying()) player.onVideoPlayPause();
+        player.onPlay();
     }
 
     @Override
     public void onPause() {
-        if (player.isPlaying()) player.onVideoPlayPause();
+        player.onPause();
     }
 
     @Override

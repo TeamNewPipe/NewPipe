@@ -486,7 +486,7 @@ public final class BackgroundPlayer extends Service {
                     onClose();
                     break;
                 case ACTION_PLAY_PAUSE:
-                    onVideoPlayPause();
+                    onPlayPause();
                     break;
                 case ACTION_REPEAT:
                     onRepeatClicked();

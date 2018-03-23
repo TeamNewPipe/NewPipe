@@ -392,7 +392,7 @@ public abstract class BasePlayer implements
         if (intent == null || intent.getAction() == null) return;
         switch (intent.getAction()) {
             case AudioManager.ACTION_AUDIO_BECOMING_NOISY:
-                if (isPlaying()) onVideoPlayPause();
+                onPause();
                 break;
         }
     }
@@ -948,14 +948,11 @@ public abstract class BasePlayer implements
         changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
     }
 
-    public void onVideoPlayPause() {
-        if (DEBUG) Log.d(TAG, "onVideoPlayPause() called");
+    public void onPlay() {
+        if (DEBUG) Log.d(TAG, "onPlay() called");
+        if (audioReactor == null || playQueue == null || simpleExoPlayer == null) return;
 
-        if (!isPlaying()) {
-            audioReactor.requestAudioFocus();
-        } else {
-            audioReactor.abandonAudioFocus();
-        }
+        audioReactor.requestAudioFocus();
 
         if (getCurrentState() == STATE_COMPLETED) {
             if (playQueue.getIndex() == 0) {
@@ -965,7 +962,25 @@ public abstract class BasePlayer implements
             }
         }
 
-        simpleExoPlayer.setPlayWhenReady(!isPlaying());
+        simpleExoPlayer.setPlayWhenReady(true);
+    }
+
+    public void onPause() {
+        if (DEBUG) Log.d(TAG, "onPause() called");
+        if (audioReactor == null || simpleExoPlayer == null) return;
+
+        audioReactor.abandonAudioFocus();
+        simpleExoPlayer.setPlayWhenReady(false);
+    }
+
+    public void onPlayPause() {
+        if (DEBUG) Log.d(TAG, "onPlayPause() called");
+
+        if (!isPlaying()) {
+            onPlay();
+        } else {
+            onPause();
+        }
     }
 
     public void onFastRewind() {
