@@ -618,7 +618,7 @@ public final class PopupVideoPlayer extends Service {
                     onClose();
                     break;
                 case ACTION_PLAY_PAUSE:
-                    onVideoPlayPause();
+                    onPlayPause();
                     break;
                 case ACTION_REPEAT:
                     onRepeatClicked();
@@ -716,7 +716,7 @@ public final class PopupVideoPlayer extends Service {
         public boolean onDoubleTap(MotionEvent e) {
             if (DEBUG)
                 Log.d(TAG, "onDoubleTap() called with: e = [" + e + "]" + "rawXy = " + e.getRawX() + ", " + e.getRawY() + ", xy = " + e.getX() + ", " + e.getY());
-            if (playerImpl == null || !playerImpl.isPlaying() || !playerImpl.isPlayerReady()) return false;
+            if (playerImpl == null || !playerImpl.isPlaying()) return false;
 
             if (e.getX() > popupWidth / 2) {
                 playerImpl.onFastForward();
@@ -731,7 +731,7 @@ public final class PopupVideoPlayer extends Service {
         public boolean onSingleTapConfirmed(MotionEvent e) {
             if (DEBUG) Log.d(TAG, "onSingleTapConfirmed() called with: e = [" + e + "]");
             if (playerImpl == null || playerImpl.getPlayer() == null) return false;
-            playerImpl.onVideoPlayPause();
+            playerImpl.onPlayPause();
             return true;
         }
 

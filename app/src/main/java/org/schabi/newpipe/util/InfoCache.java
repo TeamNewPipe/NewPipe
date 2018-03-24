@@ -43,7 +43,6 @@ public final class InfoCache {
      * Trim the cache to this size
      */
     private static final int TRIM_CACHE_TO = 30;
-    private static final int DEFAULT_TIMEOUT_HOURS = 4;
 
     private static final LruCache<String, CacheData> lruCache = new LruCache<>(MAX_ITEMS_ON_CACHE);
 
@@ -66,13 +65,7 @@ public final class InfoCache {
     public void putInfo(int serviceId, @NonNull String url, @NonNull Info info) {
         if (DEBUG) Log.d(TAG, "putInfo() called with: info = [" + info + "]");
 
-        final long expirationMillis;
-        if (info.getServiceId() == SoundCloud.getServiceId()) {
-            expirationMillis = TimeUnit.MILLISECONDS.convert(15, TimeUnit.MINUTES);
-        } else {
-            expirationMillis = TimeUnit.MILLISECONDS.convert(DEFAULT_TIMEOUT_HOURS, TimeUnit.HOURS);
-        }
-
+        final long expirationMillis = ServiceHelper.getCacheExpirationMillis(info.getServiceId());
         synchronized (lruCache) {
             final CacheData data = new CacheData(info, expirationMillis);
             lruCache.put(keyOf(serviceId, url), data);
