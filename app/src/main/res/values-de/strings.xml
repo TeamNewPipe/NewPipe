@@ -402,4 +402,5 @@
     <string name="import_network_expensive_warning">Beachte, dass diese Aktion sehr Netzwerk intensiv sein kann.
 \n
 \nMöchtest du fortfahren?</string>
-</resources>
+<string name="download_thumbnail_title">Thumbnails laden</string>
+    </resources>
