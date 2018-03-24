@@ -2,11 +2,12 @@ package org.schabi.newpipe.player.helper;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.SliderStrategy;
+import org.schabi.newpipe.util.ThemeHelper;
 
 import static org.schabi.newpipe.player.BasePlayer.DEBUG;
 
@@ -68,6 +70,7 @@ public class PlaybackParameterDialog extends DialogFragment {
     @Nullable private CheckBox unhookingCheckbox;
 
     @Nullable private TextView nightCorePresetText;
+    @Nullable private TextView defaultPresetText;
     @Nullable private TextView resetPresetText;
 
     public static PlaybackParameterDialog newInstance(final double playbackTempo,
@@ -115,19 +118,23 @@ public class PlaybackParameterDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        final Context context = requireContext();
+
         final View view = View.inflate(getContext(), R.layout.dialog_playback_parameter, null);
         setupControlViews(view);
 
-        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(requireActivity())
-                .setTitle(R.string.playback_speed_control)
-                .setView(view)
-                .setCancelable(true)
-                .setNegativeButton(R.string.cancel, (dialogInterface, i) ->
-                        setPlaybackParameters(initialTempo, initialPitch))
-                .setPositiveButton(R.string.finish, (dialogInterface, i) ->
-                        setCurrentPlaybackParameters());
+        Dialog dialog = new Dialog(context);
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setTitle(R.string.playback_speed_control);
+        dialog.setContentView(view);
+        if (dialog.getWindow() != null) {
+            @ColorInt final int backgroundColor = ThemeHelper.resolveColorFromAttr(context,
+                    R.attr.queue_background_color);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(backgroundColor));
+        }
 
-        return dialogBuilder.create();
+        return dialog;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -244,11 +251,20 @@ public class PlaybackParameterDialog extends DialogFragment {
             });
         }
 
+        defaultPresetText = rootView.findViewById(R.id.presetDefault);
+        if (defaultPresetText != null) {
+            defaultPresetText.setOnClickListener(view -> {
+                setTempoSlider(DEFAULT_TEMPO);
+                setPitchSlider(DEFAULT_PITCH);
+                setCurrentPlaybackParameters();
+            });
+        }
+
         resetPresetText = rootView.findViewById(R.id.presetReset);
         if (resetPresetText != null) {
             resetPresetText.setOnClickListener(view -> {
-                setTempoSlider(DEFAULT_TEMPO);
-                setPitchSlider(DEFAULT_PITCH);
+                setTempoSlider(initialTempo);
+                setPitchSlider(initialPitch);
                 setCurrentPlaybackParameters();
             });
         }

@@ -453,8 +453,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     private void openPlaybackParameterDialog() {
         if (player == null) return;
-        PlaybackParameterDialog.newInstance(player.getPlaybackSpeed(),
-                player.getPlaybackPitch()).show(getSupportFragmentManager(), getTag());
+        PlaybackParameterDialog.newInstance(player.getPlaybackSpeed(), player.getPlaybackPitch())
+                .show(getSupportFragmentManager(), getTag());
     }
 
     @Override
