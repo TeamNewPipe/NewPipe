@@ -405,5 +405,5 @@
 <string name="download_thumbnail_title">Thumbnails laden</string>
     <string name="thumbnail_cache_wipe_complete_notice">Bildercache gelöscht</string>
     <string name="metadata_cache_wipe_title">Leere die gecachten Metadaten</string>
-    <string name="metadata_cache_wipe_summary">Entferte all die gecachten Website Daten</string>
+    <string name="metadata_cache_wipe_summary">Entfene alle gecachten Website-Daten</string>
     </resources>
