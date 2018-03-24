@@ -1,6 +1,7 @@
 package org.schabi.newpipe.playlist;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.reactivestreams.Subscriber;
@@ -44,7 +45,7 @@ public abstract class PlayQueue implements Serializable {
 
     private ArrayList<PlayQueueItem> backup;
     private ArrayList<PlayQueueItem> streams;
-    private final AtomicInteger queueIndex;
+    @NonNull private final AtomicInteger queueIndex;
 
     private transient BehaviorSubject<PlayQueueEvent> eventBroadcast;
     private transient Flowable<PlayQueueEvent> broadcastReceiver;
@@ -83,6 +84,7 @@ public abstract class PlayQueue implements Serializable {
         if (eventBroadcast != null) eventBroadcast.onComplete();
         if (reportingReactor != null) reportingReactor.cancel();
 
+        eventBroadcast = null;
         broadcastReceiver = null;
         reportingReactor = null;
     }
@@ -131,7 +133,7 @@ public abstract class PlayQueue implements Serializable {
      * Returns the index of the given item using referential equality.
      * May be null despite play queue contains identical item.
      * */
-    public int indexOf(final PlayQueueItem item) {
+    public int indexOf(@NonNull final PlayQueueItem item) {
         // referential equality, can't think of a better way to do this
         // todo: better than this
         return streams.indexOf(item);
@@ -170,7 +172,7 @@ public abstract class PlayQueue implements Serializable {
      * Returns the play queue's update broadcast.
      * May be null if the play queue message bus is not initialized.
      * */
-    @NonNull
+    @Nullable
     public Flowable<PlayQueueEvent> getBroadcastReceiver() {
         return broadcastReceiver;
     }
@@ -211,7 +213,7 @@ public abstract class PlayQueue implements Serializable {
      *
      * @see #append(List items)
      * */
-    public synchronized void append(final PlayQueueItem... items) {
+    public synchronized void append(@NonNull final PlayQueueItem... items) {
         append(Arrays.asList(items));
     }
 
@@ -223,7 +225,7 @@ public abstract class PlayQueue implements Serializable {
      *
      * Will emit a {@link AppendEvent} on any given context.
      * */
-    public synchronized void append(final List<PlayQueueItem> items) {
+    public synchronized void append(@NonNull final List<PlayQueueItem> items) {
         List<PlayQueueItem> itemList = new ArrayList<>(items);
 
         if (isShuffled()) {
@@ -349,6 +351,7 @@ public abstract class PlayQueue implements Serializable {
         if (backup == null) {
             backup = new ArrayList<>(streams);
         }
+        final int originIndex = getIndex();
         final PlayQueueItem current = getItem();
         Collections.shuffle(streams);
 
@@ -358,7 +361,7 @@ public abstract class PlayQueue implements Serializable {
         }
         queueIndex.set(0);
 
-        broadcast(new ReorderEvent());
+        broadcast(new ReorderEvent(originIndex, queueIndex.get()));
     }
 
     /**
@@ -371,6 +374,7 @@ public abstract class PlayQueue implements Serializable {
      * */
     public synchronized void unshuffle() {
         if (backup == null) return;
+        final int originIndex = getIndex();
         final PlayQueueItem current = getItem();
 
         streams.clear();
@@ -384,14 +388,14 @@ public abstract class PlayQueue implements Serializable {
             queueIndex.set(0);
         }
 
-        broadcast(new ReorderEvent());
+        broadcast(new ReorderEvent(originIndex, queueIndex.get()));
     }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Rx Broadcast
     //////////////////////////////////////////////////////////////////////////*/
 
-    private void broadcast(final PlayQueueEvent event) {
+    private void broadcast(@NonNull final PlayQueueEvent event) {
         if (eventBroadcast != null) {
             eventBroadcast.onNext(event);
         }

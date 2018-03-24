@@ -328,4 +328,52 @@
     
     <string name="preferred_player_fetcher_notification_title">Informationen werden abgerufen…</string>
     <string name="preferred_player_fetcher_notification_message">Der angeforderte Inhalt wird geladen</string>
-</resources>
+<string name="import_data_title">Datenbank importieren</string>
+    <string name="export_data_title">Datenbank exportieren</string>
+    <string name="import_data_summary">Wird deinen Verlauf und deine Abos überschreiben</string>
+    <string name="export_data_summary">Verlauf, Abos und Playlists exportieren.</string>
+    <string name="no_valid_zip_file">Keine gültige ZIP-Datei</string>
+    <string name="could_not_import_all_files">Warnung: Nicht alle Dateien konnten importiert werden.</string>
+    <string name="override_current_data">Dies wird deine aktuellen Einstellungen überschreiben.</string>
+
+    <string name="show_info">Info anzeigen</string>
+
+    <string name="tab_bookmarks">Lesezeichen</string>
+
+    <string name="controls_add_to_playlist_title">Hinzufügen zu</string>
+
+    <string name="detail_drag_description">Zum Neuordnen ziehen</string>
+
+    <string name="create">Erstellen</string>
+    <string name="delete_one">Einen löschen</string>
+    <string name="delete_all">Alle löschen</string>
+    <string name="rename">Umbenennen</string>
+
+    <string name="delete_stream_history_prompt">Möchtest du dieses Element aus dem Wiedergabeverlauf löschen?</string>
+    <string name="delete_all_history_prompt">Bist du sicher, dass du alle Elemente aus dem Verlauf löschen möchtest?</string>
+    <string name="title_last_played">Zuletzt Wiedergegeben</string>
+    <string name="title_most_played">Am Meisten Wiedergegeben</string>
+
+    <string name="always_ask_open_action">Immer fragen</string>
+    
+    <string name="create_playlist">Neue Playlist Erstellen</string>
+    <string name="delete_playlist">Playlist Löschen</string>
+    <string name="rename_playlist">Playlist umbenennen</string>
+    <string name="append_playlist">Zu Playlist Hinzufügen</string>
+    <string name="set_as_playlist_thumbnail">Als Thumbnail der Playlist festlegen</string>
+
+    <string name="unbookmark_playlist">Lesezeichen entfernen</string>
+
+    <string name="delete_playlist_prompt">Möchtest du diese Playlist löschen?</string>
+    <string name="playlist_creation_success">Playlist erfolgreich erstellt</string>
+    <string name="playlist_add_stream_success">Zur Playlist hinzugefügt</string>
+    <string name="playlist_thumbnail_change_success">Thumbnail der Playlist geändert</string>
+    <string name="playlist_delete_failure">Löschen der Playlist fehlgeschlagen</string>
+
+    <string name="caption_none">Keine Untertitel</string>
+
+    <string name="caption_font_size_settings_title">Schriftgröße der Untertitel</string>
+    <string name="dismiss">Abbrechen</string>
+    <string name="normal_caption_font_size">Normale Schriftgröße</string>
+    <string name="controls_download_desc">Stream-Datei herunterladen</string>
+    </resources>

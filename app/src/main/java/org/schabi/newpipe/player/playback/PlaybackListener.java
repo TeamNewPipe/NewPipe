@@ -11,6 +11,16 @@ import org.schabi.newpipe.playlist.PlayQueueItem;
 import java.util.List;
 
 public interface PlaybackListener {
+
+    /**
+     * Called to check if the currently playing stream is close to the end of its playback.
+     * Implementation should return true when the current playback position is within
+     * timeToEndMillis or less until its playback completes or transitions.
+     *
+     * May be called at any time.
+     * */
+    boolean isNearPlaybackEdge(final long timeToEndMillis);
+
     /**
      * Called when the stream at the current queue index is not ready yet.
      * Signals to the listener to block the player from playing anything and notify the source
@@ -18,7 +28,7 @@ public interface PlaybackListener {
      *
      * May be called at any time.
      * */
-    void block();
+    void onPlaybackBlock();
 
     /**
      * Called when the stream at the current queue index is ready.
@@ -26,16 +36,16 @@ public interface PlaybackListener {
      *
      * May be called only when the player is blocked.
      * */
-    void unblock(final MediaSource mediaSource);
+    void onPlaybackUnblock(final MediaSource mediaSource);
 
     /**
      * Called when the queue index is refreshed.
      * Signals to the listener to synchronize the player's window to the manager's
      * window.
      *
-     * May be called only after unblock is called.
+     * May be called anytime at any amount once unblock is called.
      * */
-    void sync(@NonNull final PlayQueueItem item, @Nullable final StreamInfo info);
+    void onPlaybackSynchronize(@NonNull final PlayQueueItem item, @Nullable final StreamInfo info);
 
     /**
      * Requests the listener to resolve a stream info into a media source
@@ -53,5 +63,5 @@ public interface PlaybackListener {
      *
      * May be called at any time.
      * */
-    void shutdown();
+    void onPlaybackShutdown();
 }

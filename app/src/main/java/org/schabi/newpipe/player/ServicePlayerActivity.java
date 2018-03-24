@@ -29,10 +29,13 @@ import com.google.android.exoplayer2.Player;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
+import org.schabi.newpipe.fragments.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.player.event.PlayerEventListener;
+import org.schabi.newpipe.player.helper.PlaybackParameterDialog;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.PlayQueueItemBuilder;
 import org.schabi.newpipe.playlist.PlayQueueItemHolder;
+import org.schabi.newpipe.playlist.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -41,7 +44,8 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.formatPitch;
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
 
 public abstract class ServicePlayerActivity extends AppCompatActivity
-        implements PlayerEventListener, SeekBar.OnSeekBarChangeListener, View.OnClickListener {
+        implements PlayerEventListener, SeekBar.OnSeekBarChangeListener,
+        View.OnClickListener, PlaybackParameterDialog.Callback {
 
     private boolean serviceBound;
     private ServiceConnection serviceConnection;
@@ -55,8 +59,6 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     ////////////////////////////////////////////////////////////////////////////
 
     private static final int RECYCLER_ITEM_POPUP_MENU_GROUP_ID = 47;
-    private static final int PLAYBACK_SPEED_POPUP_MENU_GROUP_ID = 61;
-    private static final int PLAYBACK_PITCH_POPUP_MENU_GROUP_ID = 97;
 
     private static final int SMOOTH_SCROLL_MAXIMUM_DISTANCE = 80;
 
@@ -72,6 +74,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private SeekBar progressSeekBar;
     private TextView progressCurrentTime;
     private TextView progressEndTime;
+    private TextView progressLiveSync;
     private TextView seekDisplay;
 
     private ImageButton repeatButton;
@@ -82,9 +85,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private ProgressBar progressBar;
 
     private TextView playbackSpeedButton;
-    private PopupMenu playbackSpeedPopupMenu;
     private TextView playbackPitchButton;
-    private PopupMenu playbackPitchPopupMenu;
 
     ////////////////////////////////////////////////////////////////////////////
     // Abstracts
@@ -149,8 +150,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             case android.R.id.home:
                 finish();
                 return true;
-            case R.id.action_history:
-                NavigationHelper.openHistory(this);
+            case R.id.action_append_playlist:
+                appendToPlaylist();
                 return true;
             case R.id.action_settings:
                 NavigationHelper.openSettings(this);
@@ -185,6 +186,14 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                 null
         ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     }
+
+    private void appendToPlaylist() {
+        if (this.player != null && this.player.getPlayQueue() != null) {
+            PlaylistAppendDialog.fromPlayQueueItems(this.player.getPlayQueue().getStreams())
+                    .show(getSupportFragmentManager(), getTag());
+        }
+    }
+
     ////////////////////////////////////////////////////////////////////////////
     // Service Connection
     ////////////////////////////////////////////////////////////////////////////
@@ -202,6 +211,15 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             unbindService(serviceConnection);
             serviceBound = false;
             stopPlayerListener();
+
+            if (player != null && player.getPlayQueueAdapter() != null) {
+                player.getPlayQueueAdapter().unsetSelectedListener();
+            }
+            if (itemsList != null) itemsList.setAdapter(null);
+            if (itemTouchHelper != null) itemTouchHelper.attachToRecyclerView(null);
+
+            itemsList = null;
+            itemTouchHelper = null;
             player = null;
         }
     }
@@ -273,9 +291,11 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         progressCurrentTime = rootView.findViewById(R.id.current_time);
         progressSeekBar = rootView.findViewById(R.id.seek_bar);
         progressEndTime = rootView.findViewById(R.id.end_time);
+        progressLiveSync = rootView.findViewById(R.id.live_sync);
         seekDisplay = rootView.findViewById(R.id.seek_display);
 
         progressSeekBar.setOnSeekBarChangeListener(this);
+        progressLiveSync.setOnClickListener(this);
     }
 
     private void buildControls() {
@@ -295,45 +315,6 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         shuffleButton.setOnClickListener(this);
         playbackSpeedButton.setOnClickListener(this);
         playbackPitchButton.setOnClickListener(this);
-
-        playbackSpeedPopupMenu = new PopupMenu(this, playbackSpeedButton);
-        playbackPitchPopupMenu = new PopupMenu(this, playbackPitchButton);
-        buildPlaybackSpeedMenu();
-        buildPlaybackPitchMenu();
-    }
-
-    private void buildPlaybackSpeedMenu() {
-        if (playbackSpeedPopupMenu == null) return;
-
-        playbackSpeedPopupMenu.getMenu().removeGroup(PLAYBACK_SPEED_POPUP_MENU_GROUP_ID);
-        for (int i = 0; i < BasePlayer.PLAYBACK_SPEEDS.length; i++) {
-            final float playbackSpeed = BasePlayer.PLAYBACK_SPEEDS[i];
-            final String formattedSpeed = formatSpeed(playbackSpeed);
-            final MenuItem item = playbackSpeedPopupMenu.getMenu().add(PLAYBACK_SPEED_POPUP_MENU_GROUP_ID, i, Menu.NONE, formattedSpeed);
-            item.setOnMenuItemClickListener(menuItem -> {
-                if (player == null) return false;
-
-                player.setPlaybackSpeed(playbackSpeed);
-                return true;
-            });
-        }
-    }
-
-    private void buildPlaybackPitchMenu() {
-        if (playbackPitchPopupMenu == null) return;
-
-        playbackPitchPopupMenu.getMenu().removeGroup(PLAYBACK_PITCH_POPUP_MENU_GROUP_ID);
-        for (int i = 0; i < BasePlayer.PLAYBACK_PITCHES.length; i++) {
-            final float playbackPitch = BasePlayer.PLAYBACK_PITCHES[i];
-            final String formattedPitch = formatPitch(playbackPitch);
-            final MenuItem item = playbackPitchPopupMenu.getMenu().add(PLAYBACK_PITCH_POPUP_MENU_GROUP_ID, i, Menu.NONE, formattedPitch);
-            item.setOnMenuItemClickListener(menuItem -> {
-                if (player == null) return false;
-
-                player.setPlaybackPitch(playbackPitch);
-                return true;
-            });
-        }
     }
 
     private void buildItemPopupMenu(final PlayQueueItem item, final View view) {
@@ -374,31 +355,11 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     }
 
     private ItemTouchHelper.SimpleCallback getItemTouchCallback() {
-        return new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN, 0) {
+        return new PlayQueueItemTouchCallback() {
             @Override
-            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder source, RecyclerView.ViewHolder target) {
-                if (source.getItemViewType() != target.getItemViewType()) {
-                    return false;
-                }
-
-                final int sourceIndex = source.getLayoutPosition();
-                final int targetIndex = target.getLayoutPosition();
+            public void onMove(int sourceIndex, int targetIndex) {
                 if (player != null) player.getPlayQueue().move(sourceIndex, targetIndex);
-                return true;
             }
-
-            @Override
-            public boolean isLongPressDragEnabled() {
-                return false;
-            }
-
-            @Override
-            public boolean isItemViewSwipeEnabled() {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {}
         };
     }
 
@@ -463,7 +424,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             player.onPlayPrevious();
 
         } else if (view.getId() == playPauseButton.getId()) {
-            player.onVideoPlayPause();
+            player.onPlayPause();
 
         } else if (view.getId() == forwardButton.getId()) {
             player.onPlayNext();
@@ -472,15 +433,33 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             player.onShuffleClicked();
 
         } else if (view.getId() == playbackSpeedButton.getId()) {
-            playbackSpeedPopupMenu.show();
+            openPlaybackParameterDialog();
 
         } else if (view.getId() == playbackPitchButton.getId()) {
-            playbackPitchPopupMenu.show();
+            openPlaybackParameterDialog();
 
         } else if (view.getId() == metadata.getId()) {
             scrollToSelected();
 
+        } else if (view.getId() == progressLiveSync.getId()) {
+            player.seekToDefault();
+
         }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Playback Parameters
+    ////////////////////////////////////////////////////////////////////////////
+
+    private void openPlaybackParameterDialog() {
+        if (player == null) return;
+        PlaybackParameterDialog.newInstance(player.getPlaybackSpeed(),
+                player.getPlaybackPitch()).show(getSupportFragmentManager(), getTag());
+    }
+
+    @Override
+    public void onPlaybackParameterChanged(float playbackTempo, float playbackPitch) {
+        if (player != null) player.setPlaybackParameters(playbackTempo, playbackPitch);
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -504,7 +483,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        if (player != null) player.simpleExoPlayer.seekTo(seekBar.getProgress());
+        if (player != null) player.seekTo(seekBar.getProgress());
         seekDisplay.setVisibility(View.GONE);
         seeking = false;
     }
@@ -534,13 +513,30 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             progressSeekBar.setProgress(currentProgress);
             progressCurrentTime.setText(Localization.getDurationString(currentProgress / 1000));
         }
+
+        if (player != null) {
+            progressLiveSync.setClickable(!player.isLiveEdge());
+        }
     }
 
     @Override
     public void onMetadataUpdate(StreamInfo info) {
         if (info != null) {
             metadataTitle.setText(info.getName());
-            metadataArtist.setText(info.uploader_name);
+            metadataArtist.setText(info.getUploaderName());
+
+            progressEndTime.setVisibility(View.GONE);
+            progressLiveSync.setVisibility(View.GONE);
+            switch (info.getStreamType()) {
+                case LIVE_STREAM:
+                case AUDIO_LIVE_STREAM:
+                    progressLiveSync.setVisibility(View.VISIBLE);
+                    break;
+                default:
+                    progressEndTime.setVisibility(View.VISIBLE);
+                    break;
+            }
+
             scrollToSelected();
         }
     }

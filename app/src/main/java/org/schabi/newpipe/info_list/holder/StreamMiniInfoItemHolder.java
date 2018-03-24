@@ -6,13 +6,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
 
 public class StreamMiniInfoItemHolder extends InfoItemHolder {
@@ -41,15 +40,17 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
         final StreamInfoItem item = (StreamInfoItem) infoItem;
 
         itemVideoTitleView.setText(item.getName());
-        itemUploaderView.setText(item.uploader_name);
+        itemUploaderView.setText(item.getUploaderName());
 
-        if (item.duration > 0) {
-            itemDurationView.setText(Localization.getDurationString(item.duration));
-            itemDurationView.setBackgroundColor(ContextCompat.getColor(itemBuilder.getContext(), R.color.duration_background_color));
+        if (item.getDuration() > 0) {
+            itemDurationView.setText(Localization.getDurationString(item.getDuration()));
+            itemDurationView.setBackgroundColor(ContextCompat.getColor(itemBuilder.getContext(),
+                    R.color.duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
-        } else if (item.stream_type == StreamType.LIVE_STREAM) {
+        } else if (item.getStreamType() == StreamType.LIVE_STREAM) {
             itemDurationView.setText(R.string.duration_live);
-            itemDurationView.setBackgroundColor(ContextCompat.getColor(itemBuilder.getContext(), R.color.live_duration_background_color));
+            itemDurationView.setBackgroundColor(ContextCompat.getColor(itemBuilder.getContext(),
+                    R.color.live_duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
         } else {
             itemDurationView.setVisibility(View.GONE);
@@ -57,25 +58,24 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
 
         // Default thumbnail is shown on error, while loading and if the url is empty
         itemBuilder.getImageLoader()
-                .displayImage(item.thumbnail_url, itemThumbnailView, StreamInfoItemHolder.DISPLAY_THUMBNAIL_OPTIONS);
+                .displayImage(item.getThumbnailUrl(),
+                        itemThumbnailView,
+                        ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
 
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (itemBuilder.getOnStreamSelectedListener() != null) {
-                    itemBuilder.getOnStreamSelectedListener().selected(item);
-                }
+        itemView.setOnClickListener(view -> {
+            if (itemBuilder.getOnStreamSelectedListener() != null) {
+                itemBuilder.getOnStreamSelectedListener().selected(item);
             }
         });
 
-        switch (item.stream_type) {
+        switch (item.getStreamType()) {
             case AUDIO_STREAM:
             case VIDEO_STREAM:
-            case FILE:
-                enableLongClick(item);
-                break;
             case LIVE_STREAM:
             case AUDIO_LIVE_STREAM:
+                enableLongClick(item);
+                break;
+            case FILE:
             case NONE:
             default:
                 disableLongClick();
@@ -85,14 +85,11 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
 
     private void enableLongClick(final StreamInfoItem item) {
         itemView.setLongClickable(true);
-        itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                if (itemBuilder.getOnStreamSelectedListener() != null) {
-                    itemBuilder.getOnStreamSelectedListener().held(item);
-                }
-                return true;
+        itemView.setOnLongClickListener(view -> {
+            if (itemBuilder.getOnStreamSelectedListener() != null) {
+                itemBuilder.getOnStreamSelectedListener().held(item);
             }
+            return true;
         });
     }
 
@@ -100,15 +97,4 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
         itemView.setLongClickable(false);
         itemView.setOnLongClickListener(null);
     }
-
-    /**
-     * Display options for stream thumbnails
-     */
-    public static final DisplayImageOptions DISPLAY_THUMBNAIL_OPTIONS =
-            new DisplayImageOptions.Builder()
-                    .cloneFrom(BASE_DISPLAY_IMAGE_OPTIONS)
-                    .showImageOnFail(R.drawable.dummy_thumbnail)
-                    .showImageForEmptyUri(R.drawable.dummy_thumbnail)
-                    .showImageOnLoading(R.drawable.dummy_thumbnail)
-                    .build();
 }

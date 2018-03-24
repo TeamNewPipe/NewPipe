@@ -5,10 +5,15 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.nononsenseapps.filepicker.Utils;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -34,8 +39,6 @@ import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
-import javax.annotation.Nonnull;
-
 public class ContentSettingsFragment extends BasePreferenceFragment {
 
     private static final int REQUEST_IMPORT_PATH = 8945;
@@ -45,6 +48,29 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     private File databasesDir;
     private File newpipe_db;
     private File newpipe_db_journal;
+
+    private String thumbnailLoadToggleKey;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        thumbnailLoadToggleKey = getString(R.string.download_thumbnail_key);
+    }
+
+    @Override
+    public boolean onPreferenceTreeClick(Preference preference) {
+        if (preference.getKey().equals(thumbnailLoadToggleKey)) {
+            final ImageLoader imageLoader = ImageLoader.getInstance();
+            imageLoader.stop();
+            imageLoader.clearDiskCache();
+            imageLoader.clearMemoryCache();
+            imageLoader.resume();
+            Toast.makeText(preference.getContext(), R.string.thumbnail_cache_wipe_complete_notice,
+                    Toast.LENGTH_SHORT).show();
+        }
+
+        return super.onPreferenceTreeClick(preference);
+    }
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -73,7 +99,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                             .putString(getString(R.string.main_page_selectd_kiosk_id), kioskId).apply();
                     String serviceName = "";
                     try {
-                        serviceName = NewPipe.getService(service_id).getServiceInfo().name;
+                        serviceName = NewPipe.getService(service_id).getServiceInfo().getName();
                     } catch (ExtractionException e) {
                         onError(e);
                     }
@@ -140,15 +166,15 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nonnull Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @NonNull Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (DEBUG) {
             Log.d(TAG, "onActivityResult() called with: requestCode = [" + requestCode + "], resultCode = [" + resultCode + "], data = [" + data + "]");
         }
 
         if ((requestCode == REQUEST_IMPORT_PATH || requestCode == REQUEST_EXPORT_PATH)
-                && resultCode == Activity.RESULT_OK) {
-                String path = data.getData().getPath();
+                && resultCode == Activity.RESULT_OK && data.getData() != null) {
+                String path = Utils.getFileForUri(data.getData()).getAbsolutePath();
                 if (requestCode == REQUEST_EXPORT_PATH) {
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
                     exportDatabase(path + "/NewPipeData-" + sdf.format(new Date()) + ".zip");
@@ -245,7 +271,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
                 String summary =
                         String.format(getString(R.string.service_kiosk_string),
-                                service.getServiceInfo().name,
+                                service.getServiceInfo().getName(),
                                 kioskName);
 
                 mainPagePref.setSummary(summary);

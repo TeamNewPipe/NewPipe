@@ -1,3 +1,22 @@
+/*
+ * Copyright 2018 Mauricio Colli <mauriciocolli@outlook.com>
+ * AnimationUtils.java is part of NewPipe
+ *
+ * License: GPL-3.0+
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package org.schabi.newpipe.util;
 
 import android.animation.Animator;
@@ -19,7 +38,9 @@ public class AnimationUtils {
     private static final boolean DEBUG = MainActivity.DEBUG;
 
     public enum Type {
-        ALPHA, SCALE_AND_ALPHA, LIGHT_SCALE_AND_ALPHA, SLIDE_AND_ALPHA, LIGHT_SLIDE_AND_ALPHA
+        ALPHA,
+        SCALE_AND_ALPHA, LIGHT_SCALE_AND_ALPHA,
+        SLIDE_AND_ALPHA, LIGHT_SLIDE_AND_ALPHA
     }
 
     public static void animateView(View view, boolean enterOrExit, long duration) {
@@ -166,6 +187,58 @@ public class AnimationUtils {
             }
         });
         viewPropertyAnimator.start();
+    }
+
+    public static ValueAnimator animateHeight(final View view, long duration, int targetHeight) {
+        final int height = view.getHeight();
+        if (DEBUG) {
+            Log.d(TAG, "animateHeight: duration = [" + duration + "], from " + height + " to → " + targetHeight + " in: " + view);
+        }
+
+        ValueAnimator animator = ValueAnimator.ofFloat(height, targetHeight);
+        animator.setInterpolator(new FastOutSlowInInterpolator());
+        animator.setDuration(duration);
+        animator.addUpdateListener(animation -> {
+            final float value = (float) animation.getAnimatedValue();
+            view.getLayoutParams().height = (int) value;
+            view.requestLayout();
+        });
+        animator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                view.getLayoutParams().height = targetHeight;
+                view.requestLayout();
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+                view.getLayoutParams().height = targetHeight;
+                view.requestLayout();
+            }
+        });
+        animator.start();
+
+        return animator;
+    }
+
+    public static void animateRotation(final View view, long duration, int targetRotation) {
+        if (DEBUG) {
+            Log.d(TAG, "animateRotation: duration = [" + duration + "], from " + view.getRotation() + " to → " + targetRotation + " in: " + view);
+        }
+        view.animate().setListener(null).cancel();
+
+        view.animate().rotation(targetRotation).setDuration(duration).setInterpolator(new FastOutSlowInInterpolator())
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+                        view.setRotation(targetRotation);
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        view.setRotation(targetRotation);
+                    }
+                }).start();
     }
 
     /*//////////////////////////////////////////////////////////////////////////

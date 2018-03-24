@@ -5,24 +5,25 @@ import android.support.annotation.Nullable;
 
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.util.ExtractorHelper;
 
 import java.io.Serializable;
 
 import io.reactivex.Single;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class PlayQueueItem implements Serializable {
-    final public static long RECOVERY_UNSET = Long.MIN_VALUE;
+    public final static long RECOVERY_UNSET = Long.MIN_VALUE;
+    private final static String EMPTY_STRING = "";
 
-    final private String title;
-    final private String url;
+    @NonNull final private String title;
+    @NonNull final private String url;
     final private int serviceId;
     final private long duration;
-    final private String thumbnailUrl;
-    final private String uploader;
+    @NonNull final private String thumbnailUrl;
+    @NonNull final private String uploader;
+    @NonNull final private StreamType streamType;
 
     private long recoveryPosition;
     private Throwable error;
@@ -30,22 +31,27 @@ public class PlayQueueItem implements Serializable {
     private transient Single<StreamInfo> stream;
 
     PlayQueueItem(@NonNull final StreamInfo info) {
-        this(info.getName(), info.getUrl(), info.getServiceId(), info.duration, info.thumbnail_url, info.uploader_name);
+        this(info.getName(), info.getUrl(), info.getServiceId(), info.getDuration(),
+                info.getThumbnailUrl(), info.getUploaderName(), info.getStreamType());
         this.stream = Single.just(info);
     }
 
     PlayQueueItem(@NonNull final StreamInfoItem item) {
-        this(item.getName(), item.getUrl(), item.getServiceId(), item.duration, item.thumbnail_url, item.uploader_name);
+        this(item.getName(), item.getUrl(), item.getServiceId(), item.getDuration(),
+                item.getThumbnailUrl(), item.getUploaderName(), item.getStreamType());
     }
 
-    private PlayQueueItem(final String name, final String url, final int serviceId,
-                          final long duration, final String thumbnailUrl, final String uploader) {
-        this.title = name;
-        this.url = url;
+    private PlayQueueItem(@Nullable final String name, @Nullable final String url,
+                          final int serviceId, final long duration,
+                          @Nullable final String thumbnailUrl, @Nullable final String uploader,
+                          @NonNull final StreamType streamType) {
+        this.title = name != null ? name : EMPTY_STRING;
+        this.url = url != null ? url : EMPTY_STRING;
         this.serviceId = serviceId;
         this.duration = duration;
-        this.thumbnailUrl = thumbnailUrl;
-        this.uploader = uploader;
+        this.thumbnailUrl = thumbnailUrl != null ? thumbnailUrl : EMPTY_STRING;
+        this.uploader = uploader != null ? uploader : EMPTY_STRING;
+        this.streamType = streamType;
 
         this.recoveryPosition = RECOVERY_UNSET;
     }
@@ -78,6 +84,11 @@ public class PlayQueueItem implements Serializable {
         return uploader;
     }
 
+    @NonNull
+    public StreamType getStreamType() {
+        return streamType;
+    }
+
     public long getRecoveryPosition() {
         return recoveryPosition;
     }
@@ -94,17 +105,9 @@ public class PlayQueueItem implements Serializable {
 
     @NonNull
     private Single<StreamInfo> getInfo() {
-        final Consumer<Throwable> onError = new Consumer<Throwable>() {
-            @Override
-            public void accept(Throwable throwable) throws Exception {
-                error = throwable;
-            }
-        };
-
         return ExtractorHelper.getStreamInfo(this.serviceId, this.url, false)
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnError(onError);
+                .doOnError(throwable -> error = throwable);
     }
 
     ////////////////////////////////////////////////////////////////////////////

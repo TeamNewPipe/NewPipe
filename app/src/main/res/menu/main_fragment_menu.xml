@@ -5,6 +5,7 @@
     <item
         android:id="@+id/action_search"
         android:icon="?attr/search"
+        android:orderInCategory="1"
         android:title="@string/search"
         app:showAsAction="always"/>
 </menu>

@@ -29,8 +29,10 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -46,17 +48,26 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.google.android.exoplayer2.C;
+import com.google.android.exoplayer2.Format;
+import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
-import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.MergingMediaSource;
+import com.google.android.exoplayer2.source.TrackGroup;
+import com.google.android.exoplayer2.source.TrackGroupArray;
+import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
+import com.google.android.exoplayer2.ui.SubtitleView;
+import com.google.android.exoplayer2.video.VideoListener;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
+import org.schabi.newpipe.extractor.Subtitles;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
+import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ListHelper;
@@ -64,6 +75,8 @@ import org.schabi.newpipe.util.ListHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.google.android.exoplayer2.C.SELECTION_FLAG_AUTOSELECT;
+import static com.google.android.exoplayer2.C.TIME_UNSET;
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
 import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
@@ -75,7 +88,7 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
  */
 @SuppressWarnings({"WeakerAccess", "unused"})
 public abstract class VideoPlayer extends BasePlayer
-        implements SimpleExoPlayer.VideoListener,
+        implements VideoListener,
         SeekBar.OnSeekBarChangeListener,
         View.OnClickListener,
         Player.EventListener,
@@ -88,6 +101,8 @@ public abstract class VideoPlayer extends BasePlayer
     // Player
     //////////////////////////////////////////////////////////////////////////*/
 
+    protected static final int RENDERER_UNAVAILABLE = -1;
+    public static final int DEFAULT_CONTROLS_DURATION = 300; // 300 millis
     public static final int DEFAULT_CONTROLS_HIDE_TIME = 2000;  // 2 Seconds
 
     private ArrayList<VideoStream> availableStreams;
@@ -118,10 +133,16 @@ public abstract class VideoPlayer extends BasePlayer
     private SeekBar playbackSeekBar;
     private TextView playbackCurrentTime;
     private TextView playbackEndTime;
+    private TextView playbackLiveSync;
     private TextView playbackSpeedTextView;
 
     private View topControlsRoot;
     private TextView qualityTextView;
+
+    private SubtitleView subtitleView;
+
+    private TextView resizeView;
+    private TextView captionTextView;
 
     private ValueAnimator controlViewAnimator;
     private Handler controlsVisibilityHandler = new Handler();
@@ -133,12 +154,14 @@ public abstract class VideoPlayer extends BasePlayer
     private int playbackSpeedPopupMenuGroupId = 79;
     private PopupMenu playbackSpeedPopupMenu;
 
+    private int captionPopupMenuGroupId = 89;
+    private PopupMenu captionPopupMenu;
+
     ///////////////////////////////////////////////////////////////////////////
 
     public VideoPlayer(String debugTag, Context context) {
         super(context);
         this.TAG = debugTag;
-        this.context = context;
     }
 
     public void setup(View rootView) {
@@ -159,10 +182,22 @@ public abstract class VideoPlayer extends BasePlayer
         this.playbackSeekBar = rootView.findViewById(R.id.playbackSeekBar);
         this.playbackCurrentTime = rootView.findViewById(R.id.playbackCurrentTime);
         this.playbackEndTime = rootView.findViewById(R.id.playbackEndTime);
+        this.playbackLiveSync = rootView.findViewById(R.id.playbackLiveSync);
         this.playbackSpeedTextView = rootView.findViewById(R.id.playbackSpeed);
         this.bottomControlsRoot = rootView.findViewById(R.id.bottomControls);
         this.topControlsRoot = rootView.findViewById(R.id.topControls);
         this.qualityTextView = rootView.findViewById(R.id.qualityTextView);
+
+        this.subtitleView = rootView.findViewById(R.id.subtitleView);
+        final String captionSizeKey = PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(context.getString(R.string.caption_size_key),
+                        context.getString(R.string.caption_size_default));
+        setupSubtitleView(subtitleView, captionSizeKey);
+
+        this.resizeView =  rootView.findViewById(R.id.resizeTextView);
+        resizeView.setText(PlayerHelper.resizeTypeOf(context, aspectRatioFrameLayout.getResizeMode()));
+
+        this.captionTextView = rootView.findViewById(R.id.captionTextView);
 
         //this.aspectRatioFrameLayout.setAspectRatio(16.0f / 9.0f);
 
@@ -172,10 +207,14 @@ public abstract class VideoPlayer extends BasePlayer
 
         this.qualityPopupMenu = new PopupMenu(context, qualityTextView);
         this.playbackSpeedPopupMenu = new PopupMenu(context, playbackSpeedTextView);
+        this.captionPopupMenu = new PopupMenu(context, captionTextView);
 
-        ((ProgressBar) this.loadingPanel.findViewById(R.id.progressBarLoadingPanel)).getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
-
+        ((ProgressBar) this.loadingPanel.findViewById(R.id.progressBarLoadingPanel))
+                .getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
     }
+
+    protected abstract void setupSubtitleView(@NonNull SubtitleView view,
+                                              @NonNull String captionSizeKey);
 
     @Override
     public void initListeners() {
@@ -183,14 +222,23 @@ public abstract class VideoPlayer extends BasePlayer
         playbackSeekBar.setOnSeekBarChangeListener(this);
         playbackSpeedTextView.setOnClickListener(this);
         qualityTextView.setOnClickListener(this);
+        captionTextView.setOnClickListener(this);
+        resizeView.setOnClickListener(this);
+        playbackLiveSync.setOnClickListener(this);
     }
 
     @Override
     public void initPlayer() {
         super.initPlayer();
+
+        // Setup video view
         simpleExoPlayer.setVideoSurfaceView(surfaceView);
         simpleExoPlayer.addVideoListener(this);
 
+        // Setup subtitle view
+        simpleExoPlayer.addTextOutput(cues -> subtitleView.onCues(cues));
+
+        // Setup audio session with onboard equalizer
         if (Build.VERSION.SDK_INT >= 21) {
             trackSelector.setTunnelingAudioSessionId(C.generateAudioSessionIdV21(context));
         }
@@ -217,9 +265,12 @@ public abstract class VideoPlayer extends BasePlayer
         qualityPopupMenu.getMenu().removeGroup(qualityPopupMenuGroupId);
         for (int i = 0; i < availableStreams.size(); i++) {
             VideoStream videoStream = availableStreams.get(i);
-            qualityPopupMenu.getMenu().add(qualityPopupMenuGroupId, i, Menu.NONE, MediaFormat.getNameById(videoStream.format) + " " + videoStream.resolution);
+            qualityPopupMenu.getMenu().add(qualityPopupMenuGroupId, i, Menu.NONE,
+                    MediaFormat.getNameById(videoStream.getFormatId()) + " " + videoStream.resolution);
         }
-        qualityTextView.setText(getSelectedVideoStream().resolution);
+        if (getSelectedVideoStream() != null) {
+            qualityTextView.setText(getSelectedVideoStream().resolution);
+        }
         qualityPopupMenu.setOnMenuItemClickListener(this);
         qualityPopupMenu.setOnDismissListener(this);
     }
@@ -236,6 +287,37 @@ public abstract class VideoPlayer extends BasePlayer
         playbackSpeedPopupMenu.setOnDismissListener(this);
     }
 
+    private void buildCaptionMenu(final List<String> availableLanguages) {
+        if (captionPopupMenu == null) return;
+        captionPopupMenu.getMenu().removeGroup(captionPopupMenuGroupId);
+
+        // Add option for turning off caption
+        MenuItem captionOffItem = captionPopupMenu.getMenu().add(captionPopupMenuGroupId,
+                0, Menu.NONE, R.string.caption_none);
+        captionOffItem.setOnMenuItemClickListener(menuItem -> {
+            final int textRendererIndex = getRendererIndex(C.TRACK_TYPE_TEXT);
+            if (trackSelector != null && textRendererIndex != RENDERER_UNAVAILABLE) {
+                trackSelector.setRendererDisabled(textRendererIndex, true);
+            }
+            return true;
+        });
+
+        // Add all available captions
+        for (int i = 0; i < availableLanguages.size(); i++) {
+            final String captionLanguage = availableLanguages.get(i);
+            MenuItem captionItem = captionPopupMenu.getMenu().add(captionPopupMenuGroupId,
+                    i + 1, Menu.NONE, captionLanguage);
+            captionItem.setOnMenuItemClickListener(menuItem -> {
+                final int textRendererIndex = getRendererIndex(C.TRACK_TYPE_TEXT);
+                if (trackSelector != null && textRendererIndex != RENDERER_UNAVAILABLE) {
+                    trackSelector.setPreferredTextLanguage(captionLanguage);
+                    trackSelector.setRendererDisabled(textRendererIndex, false);
+                }
+                return true;
+            });
+        }
+        captionPopupMenu.setOnDismissListener(this);
+    }
     /*//////////////////////////////////////////////////////////////////////////
     // Playback Listener
     //////////////////////////////////////////////////////////////////////////*/
@@ -244,49 +326,121 @@ public abstract class VideoPlayer extends BasePlayer
 
     protected abstract int getOverrideResolutionIndex(final List<VideoStream> sortedVideos, final String playbackQuality);
 
-    @Override
-    public void sync(@NonNull final PlayQueueItem item, @Nullable final StreamInfo info) {
-        super.sync(item, info);
+    protected void onMetadataChanged(@NonNull final PlayQueueItem item,
+                                     @Nullable final StreamInfo info,
+                                     final int newPlayQueueIndex,
+                                     final boolean hasPlayQueueItemChanged) {
         qualityTextView.setVisibility(View.GONE);
         playbackSpeedTextView.setVisibility(View.GONE);
 
-        if (info != null) {
-            final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context, info.video_streams, info.video_only_streams, false);
-            availableStreams = new ArrayList<>(videos);
-            if (playbackQuality == null) {
-                selectedStreamIndex = getDefaultResolutionIndex(videos);
-            } else {
-                selectedStreamIndex = getOverrideResolutionIndex(videos, getPlaybackQuality());
-            }
+        playbackEndTime.setVisibility(View.GONE);
+        playbackLiveSync.setVisibility(View.GONE);
 
-            buildQualityMenu();
-            buildPlaybackSpeedMenu();
-            qualityTextView.setVisibility(View.VISIBLE);
-            playbackSpeedTextView.setVisibility(View.VISIBLE);
+        final StreamType streamType = info == null ? StreamType.NONE : info.getStreamType();
+
+        switch (streamType) {
+            case AUDIO_STREAM:
+                surfaceView.setVisibility(View.GONE);
+                playbackEndTime.setVisibility(View.VISIBLE);
+                break;
+
+            case AUDIO_LIVE_STREAM:
+                surfaceView.setVisibility(View.GONE);
+                playbackLiveSync.setVisibility(View.VISIBLE);
+                break;
+
+            case LIVE_STREAM:
+                surfaceView.setVisibility(View.VISIBLE);
+                playbackLiveSync.setVisibility(View.VISIBLE);
+                break;
+
+            case VIDEO_STREAM:
+                if (info.getVideoStreams().size() + info.getVideoOnlyStreams().size() == 0) break;
+
+                final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context,
+                        info.getVideoStreams(), info.getVideoOnlyStreams(), false);
+                availableStreams = new ArrayList<>(videos);
+                if (playbackQuality == null) {
+                    selectedStreamIndex = getDefaultResolutionIndex(videos);
+                } else {
+                    selectedStreamIndex = getOverrideResolutionIndex(videos, getPlaybackQuality());
+                }
+
+                buildQualityMenu();
+                qualityTextView.setVisibility(View.VISIBLE);
+
+                surfaceView.setVisibility(View.VISIBLE);
+            default:
+                playbackEndTime.setVisibility(View.VISIBLE);
+                break;
         }
+
+        buildPlaybackSpeedMenu();
+        playbackSpeedTextView.setVisibility(View.VISIBLE);
     }
 
     @Override
     @Nullable
     public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
-        final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context, info.video_streams, info.video_only_streams, false);
+        final MediaSource liveSource = super.sourceOf(item, info);
+        if (liveSource != null) return liveSource;
 
+        List<MediaSource> mediaSources = new ArrayList<>();
+
+        // Create video stream source
+        final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context,
+                info.getVideoStreams(), info.getVideoOnlyStreams(), false);
         final int index;
-        if (playbackQuality == null) {
+        if (videos.isEmpty()) {
+            index = -1;
+        } else if (playbackQuality == null) {
             index = getDefaultResolutionIndex(videos);
         } else {
             index = getOverrideResolutionIndex(videos, getPlaybackQuality());
         }
-        if (index < 0 || index >= videos.size()) return null;
-        final VideoStream video = videos.get(index);
+        final VideoStream video = index >= 0 && index < videos.size() ? videos.get(index) : null;
+        if (video != null) {
+            final MediaSource streamSource = buildMediaSource(video.getUrl(),
+                    PlayerHelper.cacheKeyOf(info, video),
+                    MediaFormat.getSuffixById(video.getFormatId()));
+            mediaSources.add(streamSource);
+        }
 
-        final MediaSource streamSource = buildMediaSource(video.getUrl(), MediaFormat.getSuffixById(video.format));
-        final AudioStream audio = ListHelper.getHighestQualityAudio(info.audio_streams);
-        if (!video.isVideoOnly || audio == null) return streamSource;
-
+        // Create optional audio stream source
+        final List<AudioStream> audioStreams = info.getAudioStreams();
+        final AudioStream audio = audioStreams.isEmpty() ? null : audioStreams.get(
+                ListHelper.getDefaultAudioFormat(context, audioStreams));
+        // Use the audio stream if there is no video stream, or
         // Merge with audio stream in case if video does not contain audio
-        final MediaSource audioSource = buildMediaSource(audio.getUrl(), MediaFormat.getSuffixById(audio.format));
-        return new MergingMediaSource(streamSource, audioSource);
+        if (audio != null && ((video != null && video.isVideoOnly) || video == null)) {
+            final MediaSource audioSource = buildMediaSource(audio.getUrl(),
+                    PlayerHelper.cacheKeyOf(info, audio),
+                    MediaFormat.getSuffixById(audio.getFormatId()));
+            mediaSources.add(audioSource);
+        }
+
+        // If there is no audio or video sources, then this media source cannot be played back
+        if (mediaSources.isEmpty()) return null;
+        // Below are auxiliary media sources
+
+        // Create subtitle sources
+        for (final Subtitles subtitle : info.getSubtitles()) {
+            final String mimeType = PlayerHelper.mimeTypesOf(subtitle.getFileType());
+            if (mimeType == null) continue;
+
+            final Format textFormat = Format.createTextSampleFormat(null, mimeType,
+                    SELECTION_FLAG_AUTOSELECT, PlayerHelper.captionLanguageOf(context, subtitle));
+            final MediaSource textSource = dataSource.getSampleMediaSourceFactory()
+                    .createMediaSource(Uri.parse(subtitle.getURL()), textFormat, TIME_UNSET);
+            mediaSources.add(textSource);
+        }
+
+        if (mediaSources.size() == 1) {
+            return mediaSources.get(0);
+        } else {
+            return new MergingMediaSource(mediaSources.toArray(
+                    new MediaSource[mediaSources.size()]));
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -298,7 +452,7 @@ public abstract class VideoPlayer extends BasePlayer
         super.onBlocked();
 
         controlsVisibilityHandler.removeCallbacksAndMessages(null);
-        animateView(controlsRoot, false, 300);
+        animateView(controlsRoot, false, DEFAULT_CONTROLS_DURATION);
 
         playbackSeekBar.setEnabled(false);
         // Bug on lower api, disabling and enabling the seekBar resets the thumb color -.-, so sets the color again
@@ -323,7 +477,7 @@ public abstract class VideoPlayer extends BasePlayer
             playbackSeekBar.getThumb().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
 
         loadingPanel.setVisibility(View.GONE);
-        showControlsThenHide();
+
         animateView(currentDisplaySeek, AnimationUtils.Type.SCALE_AND_ALPHA, false, 200);
         animateView(endScreen, false, 0);
     }
@@ -365,6 +519,18 @@ public abstract class VideoPlayer extends BasePlayer
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
+    public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
+        super.onTracksChanged(trackGroups, trackSelections);
+        onTextTrackUpdate();
+    }
+
+    @Override
+    public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {
+        super.onPlaybackParametersChanged(playbackParameters);
+        playbackSpeedTextView.setText(formatSpeed(playbackParameters.speed));
+    }
+
+    @Override
     public void onVideoSizeChanged(int width, int height, int unappliedRotationDegrees, float pixelWidthHeightRatio) {
         if (DEBUG) {
             Log.d(TAG, "onVideoSizeChanged() called with: width / height = [" + width + " / " + height + " = " + (((float) width) / height) + "], unappliedRotationDegrees = [" + unappliedRotationDegrees + "], pixelWidthHeightRatio = [" + pixelWidthHeightRatio + "]");
@@ -375,6 +541,46 @@ public abstract class VideoPlayer extends BasePlayer
     @Override
     public void onRenderedFirstFrame() {
         animateView(surfaceForeground, false, 100);
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // ExoPlayer Track Updates
+    //////////////////////////////////////////////////////////////////////////*/
+
+    private void onTextTrackUpdate() {
+        final int textRenderer = getRendererIndex(C.TRACK_TYPE_TEXT);
+
+        if (captionTextView == null) return;
+        if (trackSelector == null || trackSelector.getCurrentMappedTrackInfo() == null ||
+                textRenderer == RENDERER_UNAVAILABLE) {
+            captionTextView.setVisibility(View.GONE);
+            return;
+        }
+
+        final TrackGroupArray textTracks = trackSelector.getCurrentMappedTrackInfo()
+                .getTrackGroups(textRenderer);
+
+        // Extract all loaded languages
+        List<String> availableLanguages = new ArrayList<>(textTracks.length);
+        for (int i = 0; i < textTracks.length; i++) {
+            final TrackGroup textTrack = textTracks.get(i);
+            if (textTrack.length > 0 && textTrack.getFormat(0) != null) {
+                availableLanguages.add(textTrack.getFormat(0).language);
+            }
+        }
+
+        // Normalize mismatching language strings
+        final String preferredLanguage = trackSelector.getPreferredTextLanguage();
+
+        // Build UI
+        buildCaptionMenu(availableLanguages);
+        if (trackSelector.getRendererDisabled(textRenderer) || preferredLanguage == null ||
+                !availableLanguages.contains(preferredLanguage)) {
+            captionTextView.setText(R.string.caption_none);
+        } else {
+            captionTextView.setText(preferredLanguage);
+        }
+        captionTextView.setVisibility(availableLanguages.isEmpty() ? View.GONE : View.VISIBLE);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -400,7 +606,7 @@ public abstract class VideoPlayer extends BasePlayer
 
     @Override
     public void onUpdateProgress(int currentProgress, int duration, int bufferPercent) {
-        if (!isPrepared) return;
+        if (!isPrepared()) return;
 
         if (duration != playbackSeekBar.getMax()) {
             playbackEndTime.setText(getTimeString(duration));
@@ -416,17 +622,16 @@ public abstract class VideoPlayer extends BasePlayer
         if (DEBUG && bufferPercent % 20 == 0) { //Limit log
             Log.d(TAG, "updateProgress() called with: isVisible = " + isControlsVisible() + ", currentProgress = [" + currentProgress + "], duration = [" + duration + "], bufferPercent = [" + bufferPercent + "]");
         }
+        playbackLiveSync.setClickable(!isLiveEdge());
     }
 
     @Override
-    public void onThumbnailReceived(Bitmap thumbnail) {
-        super.onThumbnailReceived(thumbnail);
-        if (thumbnail != null) endScreen.setImageBitmap(thumbnail);
+    public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+        super.onLoadingComplete(imageUri, view, loadedImage);
+        if (loadedImage != null) endScreen.setImageBitmap(loadedImage);
     }
 
     protected void onFullScreenButtonClicked() {
-        if (!isPlayerReady()) return;
-
         changeState(STATE_BLOCKED);
     }
 
@@ -453,6 +658,12 @@ public abstract class VideoPlayer extends BasePlayer
             onQualitySelectorClicked();
         } else if (v.getId() == playbackSpeedTextView.getId()) {
             onPlaybackSpeedClicked();
+        } else if (v.getId() == resizeView.getId()) {
+            onResizeClicked();
+        } else if (v.getId() == captionTextView.getId()) {
+            onCaptionClicked();
+        } else if (v.getId() == playbackLiveSync.getId()) {
+            seekToDefault();
         }
     }
 
@@ -494,28 +705,51 @@ public abstract class VideoPlayer extends BasePlayer
     public void onDismiss(PopupMenu menu) {
         if (DEBUG) Log.d(TAG, "onDismiss() called with: menu = [" + menu + "]");
         isSomePopupMenuVisible = false;
-        qualityTextView.setText(getSelectedVideoStream().resolution);
+        if (getSelectedVideoStream() != null) {
+            qualityTextView.setText(getSelectedVideoStream().resolution);
+        }
     }
 
     public void onQualitySelectorClicked() {
         if (DEBUG) Log.d(TAG, "onQualitySelectorClicked() called");
         qualityPopupMenu.show();
         isSomePopupMenuVisible = true;
-        showControls(300);
+        showControls(DEFAULT_CONTROLS_DURATION);
 
         final VideoStream videoStream = getSelectedVideoStream();
-        final String qualityText = MediaFormat.getNameById(videoStream.format) + " " + videoStream.resolution;
-        qualityTextView.setText(qualityText);
+        if (videoStream != null) {
+            final String qualityText = MediaFormat.getNameById(videoStream.getFormatId()) + " "
+                    + videoStream.resolution;
+            qualityTextView.setText(qualityText);
+        }
+
         wasPlaying = simpleExoPlayer.getPlayWhenReady();
     }
 
-    private void onPlaybackSpeedClicked() {
+    public void onPlaybackSpeedClicked() {
         if (DEBUG) Log.d(TAG, "onPlaybackSpeedClicked() called");
         playbackSpeedPopupMenu.show();
         isSomePopupMenuVisible = true;
-        showControls(300);
+        showControls(DEFAULT_CONTROLS_DURATION);
     }
 
+    private void onCaptionClicked() {
+        if (DEBUG) Log.d(TAG, "onCaptionClicked() called");
+        captionPopupMenu.show();
+        isSomePopupMenuVisible = true;
+        showControls(DEFAULT_CONTROLS_DURATION);
+    }
+
+    private void onResizeClicked() {
+        if (getAspectRatioFrameLayout() != null) {
+            final int currentResizeMode = getAspectRatioFrameLayout().getResizeMode();
+            final int newResizeMode = nextResizeMode(currentResizeMode);
+            getAspectRatioFrameLayout().setResizeMode(newResizeMode);
+            getResizeView().setText(PlayerHelper.resizeTypeOf(context, newResizeMode));
+        }
+    }
+
+    protected abstract int nextResizeMode(@AspectRatioFrameLayout.ResizeMode final int resizeMode);
     /*//////////////////////////////////////////////////////////////////////////
     // SeekBar Listener
     //////////////////////////////////////////////////////////////////////////*/
@@ -536,14 +770,15 @@ public abstract class VideoPlayer extends BasePlayer
         if (isPlaying()) simpleExoPlayer.setPlayWhenReady(false);
 
         showControls(0);
-        animateView(currentDisplaySeek, AnimationUtils.Type.SCALE_AND_ALPHA, true, 300);
+        animateView(currentDisplaySeek, AnimationUtils.Type.SCALE_AND_ALPHA, true,
+                DEFAULT_CONTROLS_DURATION);
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
         if (DEBUG) Log.d(TAG, "onStopTrackingTouch() called with: seekBar = [" + seekBar + "]");
 
-        simpleExoPlayer.seekTo(seekBar.getProgress());
+        seekTo(seekBar.getProgress());
         if (wasPlaying || simpleExoPlayer.getDuration() == seekBar.getProgress()) simpleExoPlayer.setPlayWhenReady(true);
 
         playbackCurrentTime.setText(getTimeString(seekBar.getProgress()));
@@ -557,16 +792,16 @@ public abstract class VideoPlayer extends BasePlayer
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
-    public int getVideoRendererIndex() {
-        if (simpleExoPlayer == null) return -1;
+    public int getRendererIndex(final int trackIndex) {
+        if (simpleExoPlayer == null) return RENDERER_UNAVAILABLE;
 
         for (int t = 0; t < simpleExoPlayer.getRendererCount(); t++) {
-            if (simpleExoPlayer.getRendererType(t) == C.TRACK_TYPE_VIDEO) {
+            if (simpleExoPlayer.getRendererType(t) == trackIndex) {
                 return t;
             }
         }
 
-        return -1;
+        return RENDERER_UNAVAILABLE;
     }
 
     public boolean isControlsVisible() {
@@ -592,7 +827,7 @@ public abstract class VideoPlayer extends BasePlayer
                         PropertyValuesHolder.ofFloat(View.ALPHA, 1f, 0f),
                         PropertyValuesHolder.ofFloat(View.SCALE_X, 1.4f, 1f),
                         PropertyValuesHolder.ofFloat(View.SCALE_Y, 1.4f, 1f)
-                ).setDuration(300);
+                ).setDuration(DEFAULT_CONTROLS_DURATION);
                 controlViewAnimator.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animation) {
@@ -634,12 +869,8 @@ public abstract class VideoPlayer extends BasePlayer
 
     public void showControlsThenHide() {
         if (DEBUG) Log.d(TAG, "showControlsThenHide() called");
-        animateView(controlsRoot, true, 300, 0, new Runnable() {
-            @Override
-            public void run() {
-                hideControls(300, DEFAULT_CONTROLS_HIDE_TIME);
-            }
-        });
+        animateView(controlsRoot, true, DEFAULT_CONTROLS_DURATION, 0,
+                () -> hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME));
     }
 
     public void showControls(long duration) {
@@ -651,12 +882,8 @@ public abstract class VideoPlayer extends BasePlayer
     public void hideControls(final long duration, long delay) {
         if (DEBUG) Log.d(TAG, "hideControls() called with: delay = [" + delay + "]");
         controlsVisibilityHandler.removeCallbacksAndMessages(null);
-        controlsVisibilityHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                animateView(controlsRoot, false, duration);
-            }
-        }, delay);
+        controlsVisibilityHandler.postDelayed(
+                () -> animateView(controlsRoot, false, duration), delay);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -683,8 +910,11 @@ public abstract class VideoPlayer extends BasePlayer
         return wasPlaying;
     }
 
+    @Nullable
     public VideoStream getSelectedVideoStream() {
-        return availableStreams.get(selectedStreamIndex);
+        return (selectedStreamIndex >= 0 && availableStreams != null &&
+                availableStreams.size() > selectedStreamIndex) ?
+                availableStreams.get(selectedStreamIndex) : null;
     }
 
     public Handler getControlsVisibilityHandler() {
@@ -755,4 +985,15 @@ public abstract class VideoPlayer extends BasePlayer
         return currentDisplaySeek;
     }
 
+    public SubtitleView getSubtitleView() {
+        return subtitleView;
+    }
+
+    public TextView getResizeView() {
+        return resizeView;
+    }
+
+    public TextView getCaptionTextView() {
+        return captionTextView;
+    }
 }

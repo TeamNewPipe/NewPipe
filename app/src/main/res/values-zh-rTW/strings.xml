@@ -260,4 +260,170 @@
     <string name="player_stream_failure">無法播放此串流</string>
     <string name="player_unrecoverable_failure">發生無法復原的播放器錯誤</string>
     <string name="player_recoverable_failure">從播放器錯誤中恢復</string>
+    <string name="show_hold_to_append_summary">在背景或是影片詳細資訊頁面上按下浮模按鈕時顯示提示</string>
+    <string name="external_player_unsupported_link_type">外部播放器不支援這類型的連結</string>
+    <string name="invalid_url_toast">無效的 URL</string>
+    <string name="video_streams_empty">找不到影片串流</string>
+    <string name="audio_streams_empty">找不到音訊串流</string>
+
+    <string name="donation_title">贊助</string>
+    <string name="website_title">網站</string>
+    <string name="import_data_title">匯入資料庫</string>
+    <string name="export_data_title">匯出資料庫</string>
+    <string name="import_data_summary">將覆蓋您目前的歷史記錄和訂閱</string>
+    <string name="export_data_summary">匯出歷史記錄、訂閱和播放清單。</string>
+    <string name="give_back">返回</string>
+    <string name="website_encouragement">欲了解更多關於 NewPipe 的資訊和最新近況，請造訪我們的網站。</string>
+    <string name="main_page_content">首頁內容</string>
+    <string name="blank_page_summary">空白頁面</string>
+    <string name="kiosk_page_summary">互動導覽頁面</string>
+    <string name="subscription_page_summary">訂閱頁面</string>
+    <string name="feed_page_summary">提要頁面</string>
+    <string name="channel_page_summary">頻道頁面</string>
+    <string name="select_a_channel">選擇頻道</string>
+    <string name="no_channel_subscribed_yet">尚未訂閱頻道</string>
+    <string name="select_a_kiosk">選擇互動導覽</string>
+    <string name="export_complete_toast">匯出完成</string>
+    <string name="import_complete_toast">匯入完成</string>
+    <string name="no_valid_zip_file">無有效的 ZIP 檔案</string>
+    <string name="could_not_import_all_files">警告：無法匯入所有檔案。</string>
+    <string name="override_current_data">這將覆蓋您目前的設定。</string>
+
+    <string name="kiosk">互動導覽</string>
+    <string name="trending">動向</string>
+    <string name="top_50">前 50</string>
+    <string name="new_and_hot">最新和熱門</string>
+    <string name="title_activity_background_player">背景播放</string>
+    <string name="title_activity_popup_player">懸浮視窗播放</string>
+    <string name="play_queue_remove">移除</string>
+    <string name="play_queue_stream_detail">詳細資訊</string>
+    <string name="play_queue_audio_settings">音訊設定</string>
+    <string name="enqueue_on_background">在背景佇列</string>
+    <string name="enqueue_on_popup">在懸浮視窗佇列</string>
+    <string name="start_here_on_main">在此開始播放</string>
+    <string name="start_here_on_background">在背景這裡開始</string>
+    <string name="start_here_on_popup">在懸浮視窗這裡開始</string>
+
+    <string name="hold_to_append">維持在佇列</string>
+    <string name="donation_encouragement">NewPipe 由志願者所開發，他們花費了空閒時間將獲得的最佳體驗帶給您。現在是時候回過頭來，讓我們的開發人員可以能夠在享受一杯 java 的同時，使 NewPipe 更加的美好！</string>
+    <string name="drawer_open">打開抽屜</string>
+    <string name="drawer_close">關閉抽屜</string>
+    <string name="preferred_player_share_menu_dialog_title">開啟優先的播放器</string>
+    <string name="preferred_player_settings_title">優先播放機</string>
+
+    <string name="video_player">影片播放</string>
+    <string name="background_player">背景播放</string>
+    <string name="popup_player">懸浮視窗播放</string>
+    <string name="always_ask_player">總是詢問</string>
+    
+    <string name="preferred_player_fetcher_notification_title">正在取得資訊…</string>
+    <string name="preferred_player_fetcher_notification_message">正在載入要求的內容</string>
+<string name="controls_download_desc">下載串流檔案。</string>
+    <string name="show_info">顯示資訊</string>
+
+    <string name="tab_bookmarks">書籤</string>
+
+    <string name="controls_add_to_playlist_title">新增到</string>
+
+    <string name="detail_drag_description">拖曳重新排序</string>
+
+    <string name="create">建立</string>
+    <string name="delete_one">刪除一個</string>
+    <string name="delete_all">全部刪除</string>
+    <string name="dismiss">退出</string>
+    <string name="rename">更改名稱</string>
+
+    <string name="delete_stream_history_prompt">您是否要從觀看記錄中刪除這個項目嗎？</string>
+    <string name="delete_all_history_prompt">您確實要刪除歷史記錄中的所有項目嗎？</string>
+    <string name="title_last_played">上一次播放</string>
+    <string name="title_most_played">最常播放</string>
+
+    <string name="always_ask_open_action">總是詢問</string>
+    
+    <string name="create_playlist">建立新的播放清單</string>
+    <string name="delete_playlist">刪除播放清單</string>
+    <string name="rename_playlist">重命名播放清單</string>
+    <string name="playlist_name_input">名稱</string>
+    <string name="append_playlist">增加至播放清單</string>
+    <string name="set_as_playlist_thumbnail">設為播放清單縮圖</string>
+
+    <string name="bookmark_playlist">書簽播放清單</string>
+    <string name="unbookmark_playlist">移除書簽</string>
+
+    <string name="delete_playlist_prompt">您是否要刪除此播放清單？</string>
+    <string name="playlist_creation_success">已成功建立播放清單</string>
+    <string name="playlist_add_stream_success">加入到播放清單</string>
+    <string name="playlist_thumbnail_change_success">播放清單縮圖已更改</string>
+    <string name="playlist_delete_failure">刪除播放清單失败</string>
+
+    <string name="caption_none">無標題</string>
+
+    <string name="resize_fit">適合的</string>
+    <string name="resize_fill">填滿</string>
+    <string name="resize_zoom">縮放</string>
+
+    <string name="caption_font_size_settings_title">標題字體大小</string>
+    <string name="smaller_caption_font_size">縮小字體</string>
+    <string name="normal_caption_font_size">正常字體</string>
+    <string name="larger_caption_font_size">加大字體</string>
+
+    <string name="drawer_header_action_paceholder_text">某些東西很快就會到來 ;D</string>
+
+
+    <string name="toggle_leak_canary">監測流失</string>
+    <string name="enable_leak_canary_notice">啟用記憶體流失監測技術，當 heap dump 時，應用程式可能會反應遲鈍</string>
+    <string name="disable_leak_canary_notice">已停用記憶體流失監測</string>
+<string name="settings_category_debug_title">除錯</string>
+    <string name="caption_auto_generated">自動產生</string>
+    <string name="enable_leak_canary_title">啟用 LeakCanary</string>
+    <string name="enable_leak_canary_summary">記憶體洩漏監測，在 heap dumping 時可能導致應用程式無法回應</string>
+
+    <string name="enable_disposed_exceptions_title">報告週期不足錯誤</string>
+    <string name="enable_disposed_exceptions_summary">強制報告在處理完片段或活動週期外發生的無法傳遞的 Rx 異常</string>
+
+<string name="use_inexact_seek_title">使用快速不精確的尋找</string>
+    <string name="use_inexact_seek_summary">不精確的尋找，允許玩家以更低的精確更快找到位置</string>
+    <string name="auto_queue_title">自動佇列下一個串流</string>
+    <string name="auto_queue_summary">在非重複播放佇列中的最後一個串流上開始播放時，自動附上相關串流。</string>
+    <string name="live_sync">同步</string>
+
+    <string name="file">檔案</string>
+
+    <string name="invalid_directory">無效的目錄</string>
+    <string name="invalid_source">無效的檔案/內容來源</string>
+    <string name="file_name_empty_error">檔案名稱不能留空</string>
+    <string name="error_occurred_detail">發生錯誤：%1$s</string>
+
+    <string name="import_export_title">匯入/匯出</string>
+    <string name="import_title">匯入</string>
+    <string name="import_from">匯入來自</string>
+    <string name="export_to">匯出到</string>
+
+    <string name="import_ongoing">正在匯入…</string>
+    <string name="export_ongoing">正在匯出…</string>
+
+    <string name="import_file_title">匯入檔案</string>
+    <string name="subscriptions_import_unsuccessful">訂閱匯入失敗</string>
+    <string name="subscriptions_export_unsuccessful">訂閱匯出失敗</string>
+
+    <string name="previous_export">之前的匯出</string>
+
+    <string name="invalid_file">檔案不存在或沒有足夠的權限讀取或寫入</string>
+    <string name="import_youtube_instructions">要匯入您的 YouTube 訂閱，您必須匯出檔案，可以按照以下說明進行下載：
+\n
+\n1. 轉到此網址：%1$s
+\n2. 當被詢問時登入您的帳戶
+\n3. 下載應該開始 ( 這就是匯出的檔案 )</string>
+    <string name="import_soundcloud_instructions_hint">yourid, soundcloud.com/yourid</string>
+
+    <string name="import_network_expensive_warning">請記住，此操作可能會造成網路昂貴花費。
+\n
+\n您想繼續嗎？</string>
+<string name="import_soundcloud_instructions">要匯入您的 SoundCloud，您必須知道您的個人資料網址或 ID。 如果您這樣做，只需在下方的輸入中鍵入其中的任意一個，然後就可以開始了。
+\n
+\n如果您不這樣做，您可以按照以下步驟操作：
+\n1. 在一些瀏覽器中啟用「桌面模式」(該網站不適用於行動裝置)
+\n2. 移至此網址：%1$s
+\n3. 詢問時登入到您的帳號
+\n4. 複製網址您會被重新導向(這是您的個人資料網址)</string>
     </resources>

@@ -15,7 +15,7 @@
     <string name="choose_browser">Scegli il browser</string>
     <string name="screen_rotation">rotazione</string>
     <string name="download_path_title">Percorso dei video scaricati</string>
-    <string name="download_path_summary">Percorso in cui memorizzare i video scaricati</string>
+    <string name="download_path_summary">Cartella in cui memorizzare i video scaricati</string>
     <string name="download_path_dialog_title">Inserisci il percorso per i download</string>
     <string name="default_resolution_title">Risoluzione predefinita</string>
     <string name="play_with_kodi_title">Riproduci con Kodi</string>
@@ -45,7 +45,7 @@
 
     <string name="download_path_audio_title">Percorso degli audio scaricati</string>
     <string name="download_path_audio_summary">Percorso dove salvare gli audio scaricati</string>
-    <string name="download_path_audio_dialog_title">Inserisci il percorso per i file audio</string>
+    <string name="download_path_audio_dialog_title">Inserisci la cartella per i file audio</string>
 
     <string name="theme_title">Tema</string>
     <string name="dark_theme_title">Scuro</string>
@@ -76,7 +76,7 @@
     <string name="show_age_restricted_content_title">Mostra contenuti vincolati all\'età</string>
     <string name="video_is_age_restricted">Questo video è riservato ad un pubblico maggiorenne. Per accedervi, abilita \"Mostra video vincolati all\'età\" nelle impostazioni.</string>
 
-    <string name="main_bg_subtitle">Tocca \"cerca\" per iniziare</string>
+    <string name="main_bg_subtitle">Tocca cerca per iniziare</string>
     <string name="autoplay_by_calling_app_title">Riproduzione automatica</string>
     <string name="autoplay_by_calling_app_summary">Riproduci i video automaticamente quando NewPipe viene aperto da un\'altra app</string>
     <string name="duration_live">in diretta</string>
@@ -161,7 +161,7 @@
 
     <string name="default_popup_resolution_title">Risoluzione predefinita per la modalità popup</string>
     <string name="show_higher_resolutions_title">Mostra risoluzioni più alte</string>
-    <string name="show_higher_resolutions_summary">Solo alcuni dispositivi supportano la riproduzione di video in 2K e 4K</string>
+    <string name="show_higher_resolutions_summary">Solo alcuni dispositivi supportano la riproduzione video in 2K e 4K</string>
     <string name="default_video_format_title">Formato video predefinito</string>
     <string name="popup_remember_size_pos_title">Ricorda grandezza e posizione del popup</string>
     <string name="popup_remember_size_pos_summary">Ricorda l\'ultima grandezza e posizione del popup</string>
@@ -191,7 +191,7 @@
     <string name="tab_about">Informazioni</string>
     <string name="tab_contributors">Contributori</string>
     <string name="tab_licenses">Licenze</string>
-    <string name="app_description">Un\'interfaccia leggera e gratuita per accedere a YouTube su Android.</string>
+    <string name="app_description">Un\'interfaccia leggera e libera per accedere a YouTube su Android.</string>
     <string name="view_on_github">Mostra su GitHub</string>
     <string name="app_license_title">Licenza di NewPipe</string>
     <string name="contribution_encouragement">Un aiuto è sempre il benvenuto: nuove idee, design o traduzioni, piccoli cambi o modifiche radicali del codice rendono l\'applicazione sempre migliore!</string>
@@ -336,4 +336,119 @@
     
     <string name="preferred_player_fetcher_notification_title">Raccogliendo informazioni…</string>
     <string name="preferred_player_fetcher_notification_message">Il contenuto richiesto sta caricando</string>
+<string name="import_data_title">Importa database</string>
+    <string name="export_data_title">Esporta database</string>
+    <string name="import_data_summary">sovrascriverà la cronologia corrente e le iscrizioni</string>
+    <string name="export_data_summary">Esporta la cronologia, le iscrizioni e le playlist.</string>
+    <string name="export_complete_toast">Esportazione completa</string>
+    <string name="import_complete_toast">Importazione completa</string>
+    <string name="no_valid_zip_file">Nessun file ZIP valido</string>
+    <string name="could_not_import_all_files">Attenzione: Non posso importare tutti i file.</string>
+    <string name="override_current_data">Questo sovrascriverà le tue impostazioni attuali.</string>
+
+    <string name="controls_download_desc">Download file del flusso.</string>
+    <string name="show_info">Mostra informazioni</string>
+
+    <string name="tab_bookmarks">Segnalibri</string>
+
+    <string name="controls_add_to_playlist_title">Aggiungi a</string>
+
+    <string name="detail_drag_description">Trascina per riordinare</string>
+
+    <string name="create">Crea</string>
+    <string name="delete_one">Elimina uno</string>
+    <string name="delete_all">Elimina tutti</string>
+    <string name="dismiss">Ignora</string>
+    <string name="rename">Rinomina</string>
+
+    <string name="delete_stream_history_prompt">Vuoi eliminare questo oggetto dalla cronologia delle visualizzazioni?</string>
+    <string name="delete_all_history_prompt">Sei sicuro di voler eliminare tutti gli elementi dalla cronologia?</string>
+    <string name="title_last_played">L\'ultimo riprodotto</string>
+    <string name="title_most_played">I più riprodotti</string>
+
+    <string name="always_ask_open_action">Chiedi sempre</string>
+    
+    <string name="create_playlist">Crea una nuova scaletta</string>
+    <string name="delete_playlist">Elimina scaletta</string>
+    <string name="rename_playlist">Rinomina scaletta</string>
+    <string name="playlist_name_input">Nome</string>
+    <string name="append_playlist">Aggiunti alla scaletta</string>
+    <string name="set_as_playlist_thumbnail">Imposta come miniatura della scaletta</string>
+
+    <string name="bookmark_playlist">Segna scaletta</string>
+    <string name="unbookmark_playlist">Rimuovi segnalibro</string>
+
+    <string name="delete_playlist_prompt">Vuoi eliminarlo dalla scaletta?</string>
+    <string name="playlist_creation_success">Scaletta correttamente creata</string>
+    <string name="playlist_add_stream_success">Aggiunti alla scaletta</string>
+    <string name="playlist_thumbnail_change_success">Miniatura della scaletta cambiata</string>
+    <string name="playlist_delete_failure">L\'eliminazione della scaletta non è andata a buon fine</string>
+
+    <string name="caption_none">No sottotitoli</string>
+
+    <string name="resize_fit">Rientrato</string>
+    <string name="resize_fill">Pieno</string>
+    <string name="resize_zoom">Ingrandito</string>
+
+    <string name="caption_font_size_settings_title">Dimensione dei caratteri dei sottotitoli</string>
+    <string name="smaller_caption_font_size">Carattere più piccolo</string>
+    <string name="normal_caption_font_size">Carattere normale</string>
+    <string name="larger_caption_font_size">Carattere più grande</string>
+
+	<string name="drawer_header_action_paceholder_text">A breve qualcosa si troverà qui ;D</string>
+
+<string name="settings_category_debug_title">Debug</string>
+    <string name="caption_auto_generated">Generato automaticamente</string>
+    <string name="enable_leak_canary_title">Abilita LeakCanary</string>
+    <string name="enable_leak_canary_summary">Il controllo dei buchi di memoria potrebbe causare l\'applicazione a diventare non reattiva mentre effettua lo scarico dell\'heap</string>
+
+    <string name="enable_disposed_exceptions_title">Riporta gli errori \"fuori dal ciclo di vita\"</string>
+    <string name="enable_disposed_exceptions_summary">Forza il riporto delle eccezioni Rx non consegnabili verificate fuori dal frammento o dall\'attività del \"ciclo di vita\"</string>
+
+<string name="use_inexact_seek_title">Usa una ricerca rapida ma imprecisa</string>
+    <string name="use_inexact_seek_summary">La ricerca imprecisa permette al riproduttore di spostarti nelle posizioni più velocemente con una precisione ridotta</string>
+    <string name="auto_queue_title">Metti in coda automaticamente il prossimo flusso</string>
+    <string name="auto_queue_summary">Aggiungi automaticamente un flusso correlato mentre il playback parte dall\'ultimo flusso in una cosa non ripetitiva.</string>
+    <string name="live_sync">SINCRONIZZAZIONE</string>
+
+    <string name="file">File</string>
+
+    <string name="invalid_directory">Cartella invalida</string>
+    <string name="invalid_source">Fonte del contenuto o file invalido</string>
+    <string name="invalid_file">Il file non esiste o non si hanno i permessi sufficenti per leggerlo o scriverci</string>
+    <string name="file_name_empty_error">Il nome del file non può essere vuoto</string>
+    <string name="error_occurred_detail">Si è verificato un errore: %1$s</string>
+
+    <string name="import_export_title">Importa/Esporta</string>
+    <string name="import_title">Importa</string>
+    <string name="import_from">Importa da</string>
+    <string name="export_to">Esporta a</string>
+
+    <string name="import_ongoing">Importando…</string>
+    <string name="export_ongoing">Esportando…</string>
+
+    <string name="import_file_title">Importa file</string>
+    <string name="previous_export">Esportazione precedente</string>
+
+    <string name="subscriptions_import_unsuccessful">L\'importazione delle iscrizioni è fallita</string>
+    <string name="subscriptions_export_unsuccessful">L\'esportazione delle iscrizioni è fallita</string>
+
+    <string name="import_youtube_instructions">Per importare le tue iscrizioni YouTube devi procurarti il file d\'esportazione, il quale può essere scaricato seguendo le seguenti istruzioni:
+\n
+\n1. Vai a questo URL: %2$s
+\n2. Accedi al tuo account quando è richiedto
+\n3. Un download dovrebbe essere partito (è il file d\'esportazione)</string>
+    <string name="import_soundcloud_instructions">Per importare i tuoi seguiti di SoundCloud devi conoscere l\'URL del tuo profilo od il tuo ID. Se lo sai, ti basta scrivere uno dei due nell\'immisione in basso ed hai fatto.
+\n
+\nSe non lo sai, puoi seguire le seguenti istruzioni:
+\n
+\n1. Abilita la \"modalità desktop\" nel browser che usi (il sito non funziona nella modalità mobile)
+\n2. Vai a questo URL: %2$s
+\n3. Accedi al tuo account quando richiesto
+\n4. Copia l\'URL a cui vieni indirizzato (è l\'URL del tuo profilo)</string>
+    <string name="import_soundcloud_instructions_hint">iltuoid, soundcloud.com/iltuoid</string>
+
+    <string name="import_network_expensive_warning">Tieni in mente che questa operazione può richiedere un costo di connessione dati.
+\n
+\nVuoi continuare?</string>
 </resources>

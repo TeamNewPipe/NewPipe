@@ -310,4 +310,119 @@ abrir em modo popup</string>
     
     <string name="preferred_player_fetcher_notification_title">Obtendo informações…</string>
     <string name="preferred_player_fetcher_notification_message">O conteúdo solicitado está carregando</string>
+<string name="import_data_title">Importar base de dados</string>
+    <string name="export_data_title">Exportar base de dados</string>
+    <string name="import_data_summary">Isso irá sobrescrever seu histórico e inscrições</string>
+    <string name="export_data_summary">Exportar histórico, inscrições e listas de reprodução.</string>
+    <string name="export_complete_toast">Exportação completa</string>
+    <string name="import_complete_toast">Importação completa</string>
+    <string name="no_valid_zip_file">Não há nenhum arquivo ZIP válido</string>
+    <string name="could_not_import_all_files">Aviso: Não foi possível importar todos arquivos.</string>
+    <string name="override_current_data">Isso irá sobrescrever suas configurações atuais.</string>
+
+    <string name="controls_download_desc">Baixar arquivo de stream.</string>
+    <string name="show_info">Mostrar informações</string>
+
+    <string name="tab_bookmarks">Favoritos</string>
+
+    <string name="controls_add_to_playlist_title">Adicionar a</string>
+
+    <string name="detail_drag_description">Arraste para ordenar</string>
+
+    <string name="create">Criar</string>
+    <string name="delete_one">Deletar um</string>
+    <string name="delete_all">Deletar todos</string>
+    <string name="dismiss">Dispensar</string>
+    <string name="rename">Renomear</string>
+
+    <string name="delete_stream_history_prompt">Deseja apagar este item do seu histórico de visualizações?</string>
+    <string name="delete_all_history_prompt">Tem certeza que deseja apagar todos itens do histórico?</string>
+    <string name="title_last_played">Reproduzido anteriormente</string>
+    <string name="title_most_played">Mais vezes reproduzido</string>
+
+    <string name="always_ask_open_action">Sempre perguntar</string>
+    
+    <string name="create_playlist">Criar nova Lista de Reprodução</string>
+    <string name="delete_playlist">Apagar Lista de Reprodução</string>
+    <string name="rename_playlist">Renomear Lista de Reprodução</string>
+    <string name="playlist_name_input">Nome</string>
+    <string name="append_playlist">Adicionar a Lista de Reprodução</string>
+    <string name="set_as_playlist_thumbnail">Definir como Miniatura da Lista de Reprodução</string>
+
+    <string name="bookmark_playlist">Favoritar Lista de Reprodução</string>
+    <string name="unbookmark_playlist">Remover Favorito</string>
+
+    <string name="delete_playlist_prompt">Deseja remover esta lista de reprodução?</string>
+    <string name="playlist_creation_success">Lista de Reprodução Criada</string>
+    <string name="playlist_add_stream_success">Adicionado a lista de reprodução</string>
+    <string name="playlist_thumbnail_change_success">Miniatura para a lista de reprodução alterada</string>
+    <string name="playlist_delete_failure">Falha ao apagar lista de reprodução</string>
+
+    <string name="caption_none">Sem Legenda</string>
+
+    <string name="resize_fit">FIT</string>
+    <string name="resize_fill">Preencher</string>
+    <string name="resize_zoom">Zoom</string>
+
+    <string name="caption_font_size_settings_title">Tamanho da fonte da legenda</string>
+    <string name="smaller_caption_font_size">Fonte menor</string>
+    <string name="normal_caption_font_size">Fonte normal</string>
+    <string name="larger_caption_font_size">Maior fonte</string>
+<string name="settings_category_debug_title">Depurar</string>
+    <string name="drawer_header_action_paceholder_text">Algo irá aparecer aqui em breve ;D</string>
+
+
+    <string name="caption_auto_generated">Gerado automaticamente</string>
+    <string name="enable_leak_canary_title">Habilitar LeakCanary</string>
+    <string name="enable_leak_canary_summary">Monitoramento de vazamento de memória pode fazer com que o app fique sem responder quando estiver despejando a pilha</string>
+
+    <string name="enable_disposed_exceptions_title">Reportar Erros fora do ciclo de vida</string>
+    <string name="enable_disposed_exceptions_summary">Forçar o report de exceções Rx não entregáveis ocorrendo fora do fragmento ou ciclo de vida da atividade após o dispose</string>
+
+<string name="use_inexact_seek_title">Usar índice de indexação rápido porém não preciso</string>
+    <string name="use_inexact_seek_summary">Usar índice de indexação inexato</string>
+    <string name="auto_queue_title">Adicionar a próxima stream à fila automaticamente</string>
+    <string name="auto_queue_summary">Anexar automaticamente uma stream relacionada quando a reprodução iniciar na última stream em uma fila não repetitiva</string>
+    <string name="live_sync">Sincronizar</string>
+
+    <string name="file">Arquivo</string>
+
+    <string name="invalid_directory">Diretório inválido</string>
+    <string name="invalid_source">Origem do arquivo/conteúdo inválido</string>
+    <string name="invalid_file">Arquivo não existe ou não há permissão para ler ou escrever nele</string>
+    <string name="file_name_empty_error">Nome do arquivo não pode ser vazio</string>
+    <string name="error_occurred_detail">Um erro ocorreu: %1$s</string>
+
+    <string name="import_export_title">Importar/Exportar</string>
+    <string name="import_title">Importar</string>
+    <string name="import_from">Importar de</string>
+    <string name="export_to">Exportar para</string>
+
+    <string name="import_ongoing">Importando…</string>
+    <string name="export_ongoing">Exportando…</string>
+
+    <string name="import_file_title">Importar arquivo</string>
+    <string name="previous_export">Exportação anteriore</string>
+
+    <string name="subscriptions_import_unsuccessful">Importação de inscrições falhou</string>
+    <string name="subscriptions_export_unsuccessful">Exportação de inscrições falhou</string>
+
+    <string name="import_youtube_instructions">"Para importar inscrições do YouTube você vai precisar exportar o arquivo, o que pode ser baixado seguindo estas informações:
+\n
+\n1. Vá para este link:  %1$s
+\n2. Faça login na sua conta quando solicitado
+\n3. O download deverá começar (isto é exportar arquivo)"</string>
+    <string name="import_soundcloud_instructions">Para importar as contas que você segue no SoundCloud, você terá que saber o link ou id do seu perfil. Se você souber, basta escrever um deles no campo abaixo e estará tudo pronto.
+\n
+\nSe você não souber, você pode seguir estas etapas:
+\n
+\n1. Habilite \"modo desktop\" em algum navegador da internet ( o site não está disponível para dispositivos móveis)
+\n2. Vá para esta url: %1$s
+\n3. Faça login na sua conta quando solicitado
+\n4. Copie o link no qual que você foi redirecionado (este é o link do seu perfil)</string>
+    <string name="import_soundcloud_instructions_hint">seuid, soundcloud.com/seuid</string>
+
+    <string name="import_network_expensive_warning">Tenha em mente que esta operação poderá usar bastante a conexão com a internet.
+\n
+\nVocê deseja continuar?</string>
 </resources>

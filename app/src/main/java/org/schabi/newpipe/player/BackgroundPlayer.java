@@ -33,6 +33,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.view.View;
 import android.widget.RemoteViews;
 
 import com.google.android.exoplayer2.PlaybackParameters;
@@ -46,6 +47,7 @@ import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.helper.LockManager;
+import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -75,6 +77,7 @@ public final class BackgroundPlayer extends Service {
 
     private BasePlayerImpl basePlayerImpl;
     private LockManager lockManager;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Service-Activity Binder
     //////////////////////////////////////////////////////////////////////////*/
@@ -291,15 +294,15 @@ public final class BackgroundPlayer extends Service {
         }
 
         @Override
-        public void onThumbnailReceived(Bitmap thumbnail) {
-            super.onThumbnailReceived(thumbnail);
+        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+            super.onLoadingComplete(imageUri, view, loadedImage);
 
-            if (thumbnail != null) {
+            if (loadedImage != null) {
                 // rebuild notification here since remote view does not release bitmaps, causing memory leaks
                 resetNotification();
 
-                if (notRemoteView != null) notRemoteView.setImageViewBitmap(R.id.notificationCover, thumbnail);
-                if (bigNotRemoteView != null) bigNotRemoteView.setImageViewBitmap(R.id.notificationCover, thumbnail);
+                if (notRemoteView != null) notRemoteView.setImageViewBitmap(R.id.notificationCover, loadedImage);
+                if (bigNotRemoteView != null) bigNotRemoteView.setImageViewBitmap(R.id.notificationCover, loadedImage);
 
                 updateNotification(-1);
             }
@@ -378,29 +381,34 @@ public final class BackgroundPlayer extends Service {
         // Playback Listener
         //////////////////////////////////////////////////////////////////////////*/
 
-        @Override
-        public void sync(@NonNull final PlayQueueItem item, @Nullable final StreamInfo info) {
-            if (currentItem == item && currentInfo == info) return;
-            super.sync(item, info);
-
-            resetNotification();
-            updateNotification(-1);
-            updateMetadata();
+        protected void onMetadataChanged(@NonNull final PlayQueueItem item,
+                                         @Nullable final StreamInfo info,
+                                         final int newPlayQueueIndex,
+                                         final boolean hasPlayQueueItemChanged) {
+            if (shouldUpdateOnProgress || hasPlayQueueItemChanged) {
+                resetNotification();
+                updateNotification(-1);
+                updateMetadata();
+            }
         }
 
         @Override
         @Nullable
         public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
-            final int index = ListHelper.getDefaultAudioFormat(context, info.audio_streams);
-            if (index < 0 || index >= info.audio_streams.size()) return null;
+            final MediaSource liveSource = super.sourceOf(item, info);
+            if (liveSource != null) return liveSource;
 
-            final AudioStream audio = info.audio_streams.get(index);
-            return buildMediaSource(audio.getUrl(), MediaFormat.getSuffixById(audio.getFormatId()));
+            final int index = ListHelper.getDefaultAudioFormat(context, info.getAudioStreams());
+            if (index < 0 || index >= info.getAudioStreams().size()) return null;
+
+            final AudioStream audio = info.getAudioStreams().get(index);
+            return buildMediaSource(audio.getUrl(), PlayerHelper.cacheKeyOf(info, audio),
+                    MediaFormat.getSuffixById(audio.getFormatId()));
         }
 
         @Override
-        public void shutdown() {
-            super.shutdown();
+        public void onPlaybackShutdown() {
+            super.onPlaybackShutdown();
             onClose();
         }
 
@@ -429,7 +437,8 @@ public final class BackgroundPlayer extends Service {
 
         private void updatePlayback() {
             if (activityListener != null && simpleExoPlayer != null && playQueue != null) {
-                activityListener.onPlaybackUpdate(currentState, getRepeatMode(), playQueue.isShuffled(), getPlaybackParameters());
+                activityListener.onPlaybackUpdate(currentState, getRepeatMode(),
+                        playQueue.isShuffled(), getPlaybackParameters());
             }
         }
 
@@ -477,7 +486,7 @@ public final class BackgroundPlayer extends Service {
                     onClose();
                     break;
                 case ACTION_PLAY_PAUSE:
-                    onVideoPlayPause();
+                    onPlayPause();
                     break;
                 case ACTION_REPEAT:
                     onRepeatClicked();

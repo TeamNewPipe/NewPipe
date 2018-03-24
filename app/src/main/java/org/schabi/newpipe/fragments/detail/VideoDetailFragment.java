@@ -31,6 +31,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -42,6 +43,7 @@ import android.widget.Toast;
 
 import com.nirhart.parallaxscroll.views.ParallaxScrollView;
 import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import org.schabi.newpipe.R;
@@ -55,10 +57,11 @@ import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
-import org.schabi.newpipe.history.HistoryListener;
+import org.schabi.newpipe.fragments.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.player.MainVideoPlayer;
@@ -71,10 +74,12 @@ import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.InfoCache;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
@@ -88,19 +93,21 @@ import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
-public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implements BackPressable, SharedPreferences.OnSharedPreferenceChangeListener, View.OnClickListener, View.OnLongClickListener {
+public class VideoDetailFragment
+        extends BaseStateFragment<StreamInfo>
+        implements BackPressable,
+        SharedPreferences.OnSharedPreferenceChangeListener,
+        View.OnClickListener,
+        View.OnLongClickListener {
     public static final String AUTO_PLAY = "auto_play";
 
     // Amount of videos to show on start
     private static final int INITIAL_RELATED_VIDEOS = 8;
 
-    private ActionBarHandler actionBarHandler;
     private ArrayList<VideoStream> sortedStreamVideosList;
 
     private InfoItemBuilder infoItemBuilder = null;
@@ -125,9 +132,13 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     private Disposable currentWorker;
     private CompositeDisposable disposables = new CompositeDisposable();
 
+    private int selectedVideoStream = -1;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
+
+    private Menu menu;
 
     private Spinner spinnerToolbar;
 
@@ -145,7 +156,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     private TextView detailControlsBackground;
     private TextView detailControlsPopup;
+    private TextView detailControlsAddToPlaylist;
+    private TextView detailControlsDownload;
     private TextView appendControlsDetail;
+    private TextView detailDurationView;
 
     private LinearLayout videoDescriptionRootLayout;
     private TextView videoUploadDateView;
@@ -166,6 +180,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     private LinearLayout relatedStreamsView;
     private ImageButton relatedStreamExpandButton;
 
+
     /*////////////////////////////////////////////////////////////////////////*/
 
     public static VideoDetailFragment getInstance(int serviceId, String videoUrl, String name) {
@@ -183,8 +198,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
 
-        showRelatedStreams = PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(getString(R.string.show_next_video_key), true);
-        PreferenceManager.getDefaultSharedPreferences(activity).registerOnSharedPreferenceChangeListener(this);
+        showRelatedStreams = PreferenceManager.getDefaultSharedPreferences(activity)
+                .getBoolean(getString(R.string.show_next_video_key), true);
+        PreferenceManager.getDefaultSharedPreferences(activity)
+                .registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
@@ -205,10 +222,13 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         if (updateFlags != 0) {
             if (!isLoading.get() && currentInfo != null) {
                 if ((updateFlags & RELATED_STREAMS_UPDATE_FLAG) != 0) initRelatedVideos(currentInfo);
-                if ((updateFlags & RESOLUTIONS_MENU_UPDATE_FLAG) != 0) setupActionBarHandler(currentInfo);
+                if ((updateFlags & RESOLUTIONS_MENU_UPDATE_FLAG) != 0) setupActionBar(currentInfo);
             }
 
-            if ((updateFlags & TOOLBAR_ITEMS_UPDATE_FLAG) != 0 && actionBarHandler != null) actionBarHandler.updateItemsVisibility();
+            if ((updateFlags & TOOLBAR_ITEMS_UPDATE_FLAG) != 0
+                    && menu != null) {
+                updateMenuItemVisibility();
+            }
             updateFlags = 0;
         }
 
@@ -221,7 +241,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     @Override
     public void onDestroy() {
         super.onDestroy();
-        PreferenceManager.getDefaultSharedPreferences(activity).unregisterOnSharedPreferenceChangeListener(this);
+        PreferenceManager.getDefaultSharedPreferences(activity)
+                .unregisterOnSharedPreferenceChangeListener(this);
 
         if (currentWorker != null) currentWorker.dispose();
         if (disposables != null) disposables.clear();
@@ -282,7 +303,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         // Check if the next video label and video is visible,
         // if it is, include the two elements in the next check
         int nextCount = currentInfo != null && currentInfo.getNextVideo() != null ? 2 : 0;
-        if (relatedStreamsView != null && relatedStreamsView.getChildCount() > INITIAL_RELATED_VIDEOS + nextCount) {
+        if (relatedStreamsView != null
+                && relatedStreamsView.getChildCount() > INITIAL_RELATED_VIDEOS + nextCount) {
             outState.putSerializable(WAS_RELATED_EXPANDED_KEY, true);
         }
 
@@ -302,7 +324,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         if (serializable instanceof StreamInfo) {
             //noinspection unchecked
             currentInfo = (StreamInfo) serializable;
-            InfoCache.getInstance().putInfo(currentInfo);
+            InfoCache.getInstance().putInfo(serviceId, url, currentInfo);
         }
 
         serializable = savedState.getSerializable(STACK_KEY);
@@ -327,6 +349,30 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             case R.id.detail_controls_popup:
                 openPopupPlayer(false);
                 break;
+            case R.id.detail_controls_playlist_append:
+                if (getFragmentManager() != null && currentInfo != null) {
+                    PlaylistAppendDialog.fromStreamInfo(currentInfo)
+                            .show(getFragmentManager(), TAG);
+                }
+                break;
+            case R.id.detail_controls_download:
+                if (!PermissionHelper.checkStoragePermissions(activity)) {
+                    return;
+                }
+
+                try {
+                    DownloadDialog downloadDialog =
+                            DownloadDialog.newInstance(currentInfo,
+                                    sortedStreamVideosList,
+                                    selectedVideoStream);
+                    downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
+                } catch (Exception e) {
+                    Toast.makeText(activity,
+                            R.string.could_not_setup_download_menu,
+                            Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+                break;
             case R.id.detail_uploader_root_layout:
                 if (TextUtils.isEmpty(currentInfo.getUploaderUrl())) {
                     Log.w(TAG, "Can't open channel because we got no channel URL");
@@ -339,7 +385,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                 }
                 break;
             case R.id.detail_thumbnail_root_layout:
-                if (currentInfo.video_streams.isEmpty() && currentInfo.video_only_streams.isEmpty()) {
+                if (currentInfo.getVideoStreams().isEmpty()
+                        && currentInfo.getVideoOnlyStreams().isEmpty()) {
                     openBackgroundPlayer(false);
                 } else {
                     openVideoPlayer();
@@ -390,8 +437,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         int initialCount = INITIAL_RELATED_VIDEOS + nextCount;
 
         if (relatedStreamsView.getChildCount() > initialCount) {
-            relatedStreamsView.removeViews(initialCount, relatedStreamsView.getChildCount() - (initialCount));
-            relatedStreamExpandButton.setImageDrawable(ContextCompat.getDrawable(activity, ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.expand)));
+            relatedStreamsView.removeViews(initialCount,
+                    relatedStreamsView.getChildCount() - (initialCount));
+            relatedStreamExpandButton.setImageDrawable(ContextCompat.getDrawable(
+                    activity, ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.expand)));
             return;
         }
 
@@ -401,7 +450,9 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             //Log.d(TAG, "i = " + i);
             relatedStreamsView.addView(infoItemBuilder.buildView(relatedStreamsView, item));
         }
-        relatedStreamExpandButton.setImageDrawable(ContextCompat.getDrawable(activity, ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.collapse)));
+        relatedStreamExpandButton.setImageDrawable(
+                ContextCompat.getDrawable(activity,
+                        ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.collapse)));
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -411,7 +462,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     @Override
     protected void initViews(View rootView, Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
-
         spinnerToolbar = activity.findViewById(R.id.toolbar).findViewById(R.id.toolbar_spinner);
 
         parallaxScrollRootView = rootView.findViewById(R.id.detail_main_content);
@@ -429,7 +479,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
         detailControlsBackground = rootView.findViewById(R.id.detail_controls_background);
         detailControlsPopup = rootView.findViewById(R.id.detail_controls_popup);
+        detailControlsAddToPlaylist = rootView.findViewById(R.id.detail_controls_playlist_append);
+        detailControlsDownload = rootView.findViewById(R.id.detail_controls_download);
         appendControlsDetail = rootView.findViewById(R.id.touch_append_detail);
+        detailDurationView = rootView.findViewById(R.id.detail_duration_view);
 
         videoDescriptionRootLayout = rootView.findViewById(R.id.detail_description_root_layout);
         videoUploadDateView = rootView.findViewById(R.id.detail_upload_date_view);
@@ -454,7 +507,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
         relatedStreamExpandButton = rootView.findViewById(R.id.detail_related_streams_expand);
 
-        actionBarHandler = new ActionBarHandler(activity);
         infoItemBuilder = new InfoItemBuilder(activity);
         setHeightThumbnail();
     }
@@ -462,7 +514,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     @Override
     protected void initListeners() {
         super.initListeners();
-        infoItemBuilder.setOnStreamSelectedListener(new InfoItemBuilder.OnInfoItemSelectedListener<StreamInfoItem>() {
+        infoItemBuilder.setOnStreamSelectedListener(new OnClickGesture<StreamInfoItem>() {
             @Override
             public void selected(StreamInfoItem selectedItem) {
                 selectAndLoadVideo(selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName());
@@ -479,6 +531,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         thumbnailBackgroundButton.setOnClickListener(this);
         detailControlsBackground.setOnClickListener(this);
         detailControlsPopup.setOnClickListener(this);
+        detailControlsAddToPlaylist.setOnClickListener(this);
+        detailControlsDownload.setOnClickListener(this);
         relatedStreamExpandButton.setOnClickListener(this);
 
         detailControlsBackground.setLongClickable(true);
@@ -498,19 +552,16 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
                 context.getResources().getString(R.string.enqueue_on_popup)
         };
 
-        final DialogInterface.OnClickListener actions = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                switch (i) {
-                    case 0:
-                        NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
-                        break;
-                    case 1:
-                        NavigationHelper.enqueueOnPopupPlayer(getActivity(), new SinglePlayQueue(item));
-                        break;
-                    default:
-                        break;
-                }
+        final DialogInterface.OnClickListener actions = (DialogInterface dialogInterface, int i) -> {
+            switch (i) {
+                case 0:
+                    NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
+                    break;
+                case 1:
+                    NavigationHelper.enqueueOnPopupPlayer(getActivity(), new SinglePlayQueue(item));
+                    break;
+                default:
+                    break;
             }
         };
 
@@ -518,37 +569,39 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     }
 
     private View.OnTouchListener getOnControlsTouchListener() {
-        return new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (!PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(getString(R.string.show_hold_to_append_key), true)) return false;
-
-                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                    animateView(appendControlsDetail, true, 250, 0, new Runnable() {
-                        @Override
-                        public void run() {
-                            animateView(appendControlsDetail, false, 1500, 1000);
-                        }
-                    });
-                }
+        return (View view, MotionEvent motionEvent) -> {
+            if (!PreferenceManager.getDefaultSharedPreferences(activity)
+                    .getBoolean(getString(R.string.show_hold_to_append_key), true)) {
                 return false;
             }
+
+            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                animateView(appendControlsDetail, true, 250, 0, () ->
+                        animateView(appendControlsDetail, false, 1500, 1000));
+            }
+            return false;
         };
     }
 
-    private void initThumbnailViews(StreamInfo info) {
+    private void initThumbnailViews(@NonNull StreamInfo info) {
         thumbnailImageView.setImageResource(R.drawable.dummy_thumbnail_dark);
         if (!TextUtils.isEmpty(info.getThumbnailUrl())) {
-            imageLoader.displayImage(info.getThumbnailUrl(), thumbnailImageView, DISPLAY_THUMBNAIL_OPTIONS, new SimpleImageLoadingListener() {
+            final String infoServiceName = NewPipe.getNameOfService(info.getServiceId());
+            final ImageLoadingListener onFailListener = new SimpleImageLoadingListener() {
                 @Override
                 public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                    ErrorActivity.reportError(activity, failReason.getCause(), null, activity.findViewById(android.R.id.content), ErrorActivity.ErrorInfo.make(UserAction.LOAD_IMAGE, NewPipe.getNameOfService(currentInfo.getServiceId()), imageUri, R.string.could_not_load_thumbnails));
+                    showSnackBarError(failReason.getCause(), UserAction.LOAD_IMAGE,
+                            infoServiceName, imageUri, R.string.could_not_load_thumbnails);
                 }
-            });
+            };
+
+            imageLoader.displayImage(info.getThumbnailUrl(), thumbnailImageView,
+                    ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS, onFailListener);
         }
-        
+
         if (!TextUtils.isEmpty(info.getUploaderAvatarUrl())) {
-            imageLoader.displayImage(info.getUploaderAvatarUrl(), uploaderThumb, DISPLAY_AVATAR_OPTIONS);
+            imageLoader.displayImage(info.getUploaderAvatarUrl(), uploaderThumb,
+                    ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
         }
     }
 
@@ -557,14 +610,18 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
         if (info.getNextVideo() != null && showRelatedStreams) {
             nextStreamTitle.setVisibility(View.VISIBLE);
-            relatedStreamsView.addView(infoItemBuilder.buildView(relatedStreamsView, info.getNextVideo()));
+            relatedStreamsView.addView(
+                    infoItemBuilder.buildView(relatedStreamsView, info.getNextVideo()));
             relatedStreamsView.addView(getSeparatorView());
             relatedStreamRootLayout.setVisibility(View.VISIBLE);
         } else nextStreamTitle.setVisibility(View.GONE);
 
-        if (info.related_streams != null && !info.related_streams.isEmpty() && showRelatedStreams) {
+        if (info.getRelatedStreams() != null
+                && !info.getRelatedStreams().isEmpty() && showRelatedStreams) {
             //long first = System.nanoTime(), each;
-            int to = info.getRelatedStreams().size() >= INITIAL_RELATED_VIDEOS ? INITIAL_RELATED_VIDEOS : info.getRelatedStreams().size();
+            int to = info.getRelatedStreams().size() >= INITIAL_RELATED_VIDEOS
+                    ? INITIAL_RELATED_VIDEOS
+                    : info.getRelatedStreams().size();
             for (int i = 0; i < to; i++) {
                 InfoItem item = info.getRelatedStreams().get(i);
                 //each = System.nanoTime();
@@ -576,7 +633,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             relatedStreamRootLayout.setVisibility(View.VISIBLE);
             relatedStreamExpandButton.setVisibility(View.VISIBLE);
 
-            relatedStreamExpandButton.setImageDrawable(ContextCompat.getDrawable(activity, ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.expand)));
+            relatedStreamExpandButton.setImageDrawable(ContextCompat.getDrawable(
+                    activity, ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.expand)));
         } else {
             if (info.getNextVideo() == null) relatedStreamRootLayout.setVisibility(View.GONE);
             relatedStreamExpandButton.setVisibility(View.GONE);
@@ -589,7 +647,15 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        actionBarHandler.setupMenu(menu, inflater);
+        this.menu = menu;
+
+        // CAUTION set item properties programmatically otherwise it would not be accepted by
+        // appcompat itemsinflater.inflate(R.menu.videoitem_detail, menu);
+
+        inflater.inflate(R.menu.video_detail_menu, menu);
+
+        updateMenuItemVisibility();
+
         ActionBar supportActionBar = activity.getSupportActionBar();
         if (supportActionBar != null) {
             supportActionBar.setDisplayHomeAsUpEnabled(true);
@@ -597,73 +663,86 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         }
     }
 
+    private void updateMenuItemVisibility() {
+
+        // show kodi if set in settings
+        menu.findItem(R.id.action_play_with_kodi).setVisible(
+                PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(
+                        activity.getString(R.string.show_play_with_kodi_key), false));
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return (!isLoading.get() && actionBarHandler.onItemSelected(item)) || super.onOptionsItemSelected(item);
+        if(isLoading.get()) {
+            // if is still loading block menu
+            return true;
+        }
+
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.menu_item_share: {
+                if(currentInfo != null) {
+                    shareUrl(currentInfo.getName(), url);
+                } else {
+                    shareUrl(url, url);
+                }
+                return true;
+            }
+            case R.id.menu_item_openInBrowser: {
+                openUrlInBrowser(url);
+                return true;
+            }
+            case R.id.action_play_with_kodi:
+                try {
+                    NavigationHelper.playWithKore(activity, Uri.parse(
+                            url.replace("https", "http")));
+                } catch (Exception e) {
+                    if(DEBUG) Log.i(TAG, "Failed to start kore", e);
+                    showInstallKoreDialog(activity);
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private static void showInstallKoreDialog(final Context context) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage(R.string.kore_not_found)
-                .setPositiveButton(R.string.install, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        NavigationHelper.installKore(context);
-                    }
-                })
-                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
+                .setPositiveButton(R.string.install, (DialogInterface dialog, int which) ->
+                        NavigationHelper.installKore(context))
+                .setNegativeButton(R.string.cancel, (DialogInterface dialog, int which) -> {});
         builder.create().show();
     }
 
-    private void setupActionBarHandler(final StreamInfo info) {
+    private void setupActionBarOnError(final String url) {
+        if (DEBUG) Log.d(TAG, "setupActionBarHandlerOnError() called with: url = [" + url + "]");
+        Log.e("-----", "missing code");
+    }
+
+    private void setupActionBar(final StreamInfo info) {
         if (DEBUG) Log.d(TAG, "setupActionBarHandler() called with: info = [" + info + "]");
-        sortedStreamVideosList = new ArrayList<>(ListHelper.getSortedStreamVideosList(activity, info.getVideoStreams(), info.getVideoOnlyStreams(), false));
-        actionBarHandler.setupStreamList(sortedStreamVideosList, spinnerToolbar);
-        actionBarHandler.setOnShareListener(selectedStreamId -> shareUrl(info.name, info.url));
+        sortedStreamVideosList = new ArrayList<>(ListHelper.getSortedStreamVideosList(
+                activity, info.getVideoStreams(), info.getVideoOnlyStreams(), false));
 
-        actionBarHandler.setOnOpenInBrowserListener(new ActionBarHandler.OnActionListener() {
+        selectedVideoStream = ListHelper.getDefaultResolutionIndex(activity, sortedStreamVideosList);
+
+        boolean isExternalPlayerEnabled = PreferenceManager.getDefaultSharedPreferences(activity)
+                .getBoolean(activity.getString(R.string.use_external_video_player_key), false);
+        spinnerToolbar.setAdapter(new SpinnerToolbarAdapter(activity, sortedStreamVideosList,
+                isExternalPlayerEnabled));
+        spinnerToolbar.setSelection(selectedVideoStream);
+        spinnerToolbar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onActionSelected(int selectedStreamId) {
-                openUrlInBrowser(info.getUrl());
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedVideoStream = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
             }
         });
 
-        actionBarHandler.setOnPlayWithKodiListener(new ActionBarHandler.OnActionListener() {
-            @Override
-            public void onActionSelected(int selectedStreamId) {
-                try {
-                    NavigationHelper.playWithKore(activity, Uri.parse(info.getUrl().replace("https", "http")));
-                    if(activity instanceof HistoryListener) {
-                        ((HistoryListener) activity).onVideoPlayed(info, null);
-                    }
-                } catch (Exception e) {
-                    if(DEBUG) Log.i(TAG, "Failed to start kore", e);
-                    showInstallKoreDialog(activity);
-                }
-            }
-        });
-
-        actionBarHandler.setOnDownloadListener(new ActionBarHandler.OnActionListener() {
-            @Override
-            public void onActionSelected(int selectedStreamId) {
-                if (!PermissionHelper.checkStoragePermissions(activity)) {
-                    return;
-                }
-
-                try {
-                    DownloadDialog downloadDialog = DownloadDialog.newInstance(info, sortedStreamVideosList, selectedStreamId);
-                    downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
-                } catch (Exception e) {
-                    Toast.makeText(activity, R.string.could_not_setup_download_menu, Toast.LENGTH_LONG).show();
-                    e.printStackTrace();
-                }
-            }
-        });
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -698,7 +777,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     public void setTitleToUrl(int serviceId, String videoUrl, String name) {
         if (name != null && !name.isEmpty()) {
             for (StackItem stackItem : stack) {
-                if (stack.peek().getServiceId() == serviceId && stackItem.getUrl().equals(videoUrl)) stackItem.setTitle(name);
+                if (stack.peek().getServiceId() == serviceId
+                        && stackItem.getUrl().equals(videoUrl)) {
+                    stackItem.setTitle(name);
+                }
             }
         }
     }
@@ -740,18 +822,18 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         pushToStack(serviceId, url, name);
         showLoading();
 
-        Log.d(TAG, "prepareAndHandleInfo() called parallaxScrollRootView.getScrollY(): " + parallaxScrollRootView.getScrollY());
+        Log.d(TAG, "prepareAndHandleInfo() called parallaxScrollRootView.getScrollY(): "
+                + parallaxScrollRootView.getScrollY());
         final boolean greaterThanThreshold = parallaxScrollRootView.getScrollY() > (int)
                 (getResources().getDisplayMetrics().heightPixels * .1f);
 
         if (scrollToTop) parallaxScrollRootView.smoothScrollTo(0, 0);
-        animateView(contentRootLayoutHiding, false, greaterThanThreshold ? 250 : 0, 0, new Runnable() {
-            @Override
-            public void run() {
-                handleResult(info);
-                showContentWithAnimation(120, 0, .01f);
-            }
-        });
+        animateView(contentRootLayoutHiding,
+                false,
+                greaterThanThreshold ? 250 : 0, 0, () -> {
+                    handleResult(info);
+                    showContentWithAnimation(120, 0, .01f);
+                });
     }
 
     protected void prepareAndLoadInfo() {
@@ -770,20 +852,14 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         currentWorker = ExtractorHelper.getStreamInfo(serviceId, url, forceLoad)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<StreamInfo>() {
-                    @Override
-                    public void accept(@NonNull StreamInfo result) throws Exception {
-                        isLoading.set(false);
-                        currentInfo = result;
-                        showContentWithAnimation(120, 0, 0);
-                        handleResult(result);
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(@NonNull Throwable throwable) throws Exception {
-                        isLoading.set(false);
-                        onError(throwable);
-                    }
+                .subscribe((@NonNull StreamInfo result) -> {
+                    isLoading.set(false);
+                    currentInfo = result;
+                    showContentWithAnimation(120, 0, 0);
+                    handleResult(result);
+                }, (@NonNull Throwable throwable) -> {
+                    isLoading.set(false);
+                    onError(throwable);
                 });
     }
 
@@ -792,11 +868,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     //////////////////////////////////////////////////////////////////////////*/
 
     private void openBackgroundPlayer(final boolean append) {
-        AudioStream audioStream = currentInfo.getAudioStreams().get(ListHelper.getDefaultAudioFormat(activity, currentInfo.getAudioStreams()));
-
-        if (activity instanceof HistoryListener) {
-            ((HistoryListener) activity).onAudioPlayed(currentInfo, audioStream);
-        }
+        AudioStream audioStream = currentInfo.getAudioStreams()
+                .get(ListHelper.getDefaultAudioFormat(activity, currentInfo.getAudioStreams()));
 
         boolean useExternalAudioPlayer = PreferenceManager.getDefaultSharedPreferences(activity)
                 .getBoolean(activity.getString(R.string.use_external_audio_player_key), false);
@@ -804,7 +877,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         if (!useExternalAudioPlayer && android.os.Build.VERSION.SDK_INT >= 16) {
             openNormalBackgroundPlayer(append);
         } else {
-            NavigationHelper.playOnExternalPlayer(activity, currentInfo.getName(), currentInfo.getUploaderName(), audioStream);
+            NavigationHelper.playOnExternalPlayer(activity,
+                    currentInfo.getName(),
+                    currentInfo.getUploaderName(),
+                    audioStream);
         }
     }
 
@@ -812,10 +888,6 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         if (!PermissionHelper.isPopupEnabled(activity)) {
             PermissionHelper.showPopupEnablementToast(activity);
             return;
-        }
-
-        if (activity instanceof HistoryListener) {
-            ((HistoryListener) activity).onVideoPlayed(currentInfo, getSelectedVideoStream());
         }
 
         final PlayQueue itemQueue = new SinglePlayQueue(currentInfo);
@@ -833,12 +905,12 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     private void openVideoPlayer() {
         VideoStream selectedVideoStream = getSelectedVideoStream();
 
-        if (activity instanceof HistoryListener) {
-            ((HistoryListener) activity).onVideoPlayed(currentInfo, selectedVideoStream);
-        }
-
-        if (PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(this.getString(R.string.use_external_video_player_key), false)) {
-            NavigationHelper.playOnExternalPlayer(activity, currentInfo.getName(), currentInfo.getUploaderName(), selectedVideoStream);
+        if (PreferenceManager.getDefaultSharedPreferences(activity)
+                .getBoolean(this.getString(R.string.use_external_video_player_key), false)) {
+            NavigationHelper.playOnExternalPlayer(activity,
+                    currentInfo.getName(),
+                    currentInfo.getUploaderName(),
+                    selectedVideoStream);
         } else {
             openNormalPlayer(selectedVideoStream);
         }
@@ -859,7 +931,10 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         if (!useOldPlayer) {
             // ExoPlayer
             final PlayQueue playQueue = new SinglePlayQueue(currentInfo);
-            mIntent = NavigationHelper.getPlayerIntent(activity, MainVideoPlayer.class, playQueue, getSelectedVideoStream().getResolution());
+            mIntent = NavigationHelper.getPlayerIntent(activity,
+                    MainVideoPlayer.class,
+                    playQueue,
+                    getSelectedVideoStream().getResolution());
         } else {
             // Internal Player
             mIntent = new Intent(activity, PlayVideoActivity.class)
@@ -880,7 +955,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     }
 
     private VideoStream getSelectedVideoStream() {
-        return sortedStreamVideosList.get(actionBarHandler.getSelectedVideoStream());
+        return sortedStreamVideosList.get(selectedVideoStream);
     }
 
     private void prepareDescription(final String descriptionHtml) {
@@ -889,35 +964,32 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         }
 
         disposables.add(Single.just(descriptionHtml)
-                .map(new Function<String, Spanned>() {
-                    @Override
-                    public Spanned apply(@io.reactivex.annotations.NonNull String description) throws Exception {
-                        Spanned parsedDescription;
-                        if (Build.VERSION.SDK_INT >= 24) {
-                            parsedDescription = Html.fromHtml(description, 0);
-                        } else {
-                            //noinspection deprecation
-                            parsedDescription = Html.fromHtml(description);
-                        }
-                        return parsedDescription;
+                .map((@io.reactivex.annotations.NonNull String description) -> {
+                    Spanned parsedDescription;
+                    if (Build.VERSION.SDK_INT >= 24) {
+                        parsedDescription = Html.fromHtml(description, 0);
+                    } else {
+                        //noinspection deprecation
+                        parsedDescription = Html.fromHtml(description);
                     }
+                    return parsedDescription;
                 })
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Spanned>() {
-                    @Override
-                    public void accept(@io.reactivex.annotations.NonNull Spanned spanned) throws Exception {
-                        videoDescriptionView.setText(spanned);
-                        videoDescriptionView.setVisibility(View.VISIBLE);
-                    }
+                .subscribe((@io.reactivex.annotations.NonNull Spanned spanned) -> {
+                    videoDescriptionView.setText(spanned);
+                    videoDescriptionView.setVisibility(View.VISIBLE);
                 }));
     }
 
     private View getSeparatorView() {
         View separator = new View(activity);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1);
-        int m8 = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics());
-        int m5 = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics());
+        LinearLayout.LayoutParams params =
+                new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1);
+        int m8 = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics());
+        int m5 = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics());
         params.setMargins(m8, m5, m8, m5);
         separator.setLayoutParams(params);
 
@@ -931,13 +1003,17 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
     private void setHeightThumbnail() {
         final DisplayMetrics metrics = getResources().getDisplayMetrics();
         boolean isPortrait = metrics.heightPixels > metrics.widthPixels;
-        int height = isPortrait ? (int) (metrics.widthPixels / (16.0f / 9.0f)) : (int) (metrics.heightPixels / 2f);
-        thumbnailImageView.setScaleType(isPortrait ? ImageView.ScaleType.CENTER_CROP : ImageView.ScaleType.FIT_CENTER);
-        thumbnailImageView.setLayoutParams(new FrameLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, height));
+        int height = isPortrait
+                ? (int) (metrics.widthPixels / (16.0f / 9.0f))
+                : (int) (metrics.heightPixels / 2f);
+        thumbnailImageView.setLayoutParams(
+                new FrameLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, height));
         thumbnailImageView.setMinimumHeight(height);
     }
 
-    private void showContentWithAnimation(long duration, long delay, @FloatRange(from = 0.0f, to = 1.0f) float translationPercent) {
+    private void showContentWithAnimation(long duration,
+                                          long delay,
+                                          @FloatRange(from = 0.0f, to = 1.0f) float translationPercent) {
         int translationY = (int) (getResources().getDisplayMetrics().heightPixels *
                 (translationPercent > 0.0f ? translationPercent : .06f));
 
@@ -945,23 +1021,38 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         contentRootLayoutHiding.setAlpha(0f);
         contentRootLayoutHiding.setTranslationY(translationY);
         contentRootLayoutHiding.setVisibility(View.VISIBLE);
-        contentRootLayoutHiding.animate().alpha(1f).translationY(0)
-                .setStartDelay(delay).setDuration(duration).setInterpolator(new FastOutSlowInInterpolator()).start();
+        contentRootLayoutHiding.animate()
+                .alpha(1f)
+                .translationY(0)
+                .setStartDelay(delay)
+                .setDuration(duration)
+                .setInterpolator(new FastOutSlowInInterpolator())
+                .start();
 
         uploaderRootLayout.animate().setListener(null).cancel();
         uploaderRootLayout.setAlpha(0f);
         uploaderRootLayout.setTranslationY(translationY);
         uploaderRootLayout.setVisibility(View.VISIBLE);
-        uploaderRootLayout.animate().alpha(1f).translationY(0)
-                .setStartDelay((long) (duration * .5f) + delay).setDuration(duration).setInterpolator(new FastOutSlowInInterpolator()).start();
+        uploaderRootLayout.animate()
+                .alpha(1f)
+                .translationY(0)
+                .setStartDelay((long) (duration * .5f) + delay)
+                .setDuration(duration)
+                .setInterpolator(new FastOutSlowInInterpolator())
+                .start();
 
         if (showRelatedStreams) {
             relatedStreamRootLayout.animate().setListener(null).cancel();
             relatedStreamRootLayout.setAlpha(0f);
             relatedStreamRootLayout.setTranslationY(translationY);
             relatedStreamRootLayout.setVisibility(View.VISIBLE);
-            relatedStreamRootLayout.animate().alpha(1f).translationY(0)
-                    .setStartDelay((long) (duration * .8f) + delay).setDuration(duration).setInterpolator(new FastOutSlowInInterpolator()).start();
+            relatedStreamRootLayout.animate()
+                    .alpha(1f)
+                    .translationY(0)
+                    .setStartDelay((long) (duration * .8f) + delay)
+                    .setDuration(duration)
+                    .setInterpolator(new FastOutSlowInInterpolator())
+                    .start();
         }
     }
 
@@ -975,12 +1066,8 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         if (thumbnailImageView == null || activity == null) return;
 
         thumbnailImageView.setImageDrawable(ContextCompat.getDrawable(activity, imageResource));
-        animateView(thumbnailImageView, false, 0, 0, new Runnable() {
-            @Override
-            public void run() {
-                animateView(thumbnailImageView, true, 500);
-            }
-        });
+        animateView(thumbnailImageView, false, 0, 0,
+                () -> animateView(thumbnailImageView, true, 500));
     }
 
     @Override
@@ -1004,6 +1091,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         animateView(contentRootLayoutHiding, false, 200);
         animateView(spinnerToolbar, false, 200);
         animateView(thumbnailPlayButton, false, 50);
+        animateView(detailDurationView, false, 100);
 
         videoTitleTextView.setText(name != null ? name : "");
         videoTitleTextView.setMaxLines(1);
@@ -1033,6 +1121,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         if (!TextUtils.isEmpty(info.getUploaderName())) {
             uploaderTextView.setText(info.getUploaderName());
             uploaderTextView.setVisibility(View.VISIBLE);
+            uploaderTextView.setSelected(true);
         } else {
             uploaderTextView.setVisibility(View.GONE);
         }
@@ -1073,6 +1162,18 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
             thumbsDisabledTextView.setVisibility(View.GONE);
         }
 
+        if (info.getDuration() > 0) {
+            detailDurationView.setText(Localization.getDurationString(info.getDuration()));
+            detailDurationView.setBackgroundColor(ContextCompat.getColor(activity, R.color.duration_background_color));
+            animateView(detailDurationView, true, 100);
+        } else if (info.getStreamType() == StreamType.LIVE_STREAM) {
+            detailDurationView.setText(R.string.duration_live);
+            detailDurationView.setBackgroundColor(ContextCompat.getColor(activity, R.color.live_duration_background_color));
+            animateView(detailDurationView, true, 100);
+        } else {
+            detailDurationView.setVisibility(View.GONE);
+        }
+
         videoTitleRoot.setClickable(true);
         videoTitleToggleArrow.setVisibility(View.VISIBLE);
         videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
@@ -1084,7 +1185,7 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         prepareDescription(info.getDescription());
 
         animateView(spinnerToolbar, true, 500);
-        setupActionBarHandler(info);
+        setupActionBar(info);
         initThumbnailViews(info);
         initRelatedVideos(info);
         if (wasRelatedStreamsExpanded) {
@@ -1094,14 +1195,28 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
         setTitleToUrl(info.getServiceId(), info.getUrl(), info.getName());
 
         if (!info.getErrors().isEmpty()) {
-            showSnackBarError(info.getErrors(), UserAction.REQUESTED_STREAM, NewPipe.getNameOfService(info.getServiceId()), info.getUrl(), 0);
+            showSnackBarError(info.getErrors(),
+                    UserAction.REQUESTED_STREAM,
+                    NewPipe.getNameOfService(info.getServiceId()),
+                    info.getUrl(),
+                    0);
         }
 
-        if (info.video_streams.isEmpty() && info.video_only_streams.isEmpty()) {
-            detailControlsBackground.setVisibility(View.GONE);
-            detailControlsPopup.setVisibility(View.GONE);
-            spinnerToolbar.setVisibility(View.GONE);
-            thumbnailPlayButton.setImageResource(R.drawable.ic_headset_white_24dp);
+        switch (info.getStreamType()) {
+            case LIVE_STREAM:
+            case AUDIO_LIVE_STREAM:
+                detailControlsDownload.setVisibility(View.GONE);
+                spinnerToolbar.setVisibility(View.GONE);
+                break;
+            default:
+                if (!info.getVideoStreams().isEmpty()
+                        || !info.getVideoOnlyStreams().isEmpty()) break;
+
+                detailControlsBackground.setVisibility(View.GONE);
+                detailControlsPopup.setVisibility(View.GONE);
+                spinnerToolbar.setVisibility(View.GONE);
+                thumbnailPlayButton.setImageResource(R.drawable.ic_headset_white_24dp);
+                break;
         }
 
         if (autoPlayEnabled) {
@@ -1121,28 +1236,30 @@ public class VideoDetailFragment extends BaseStateFragment<StreamInfo> implement
 
         if (exception instanceof YoutubeStreamExtractor.GemaException) {
             onBlockedByGemaError();
-        } else if (exception instanceof YoutubeStreamExtractor.LiveStreamException) {
-            showError(getString(R.string.live_streams_not_supported), false);
         } else if (exception instanceof ContentNotAvailableException) {
             showError(getString(R.string.content_not_available), false);
         } else {
-            int errorId = exception instanceof YoutubeStreamExtractor.DecryptException ? R.string.youtube_signature_decryption_error :
-                    exception instanceof ParsingException ? R.string.parsing_error : R.string.general_error;
-            onUnrecoverableError(exception, UserAction.REQUESTED_STREAM, NewPipe.getNameOfService(serviceId), url, errorId);
+            int errorId = exception instanceof YoutubeStreamExtractor.DecryptException
+                    ? R.string.youtube_signature_decryption_error
+                    : exception instanceof ParsingException
+                    ? R.string.parsing_error
+                    : R.string.general_error;
+            onUnrecoverableError(exception,
+                    UserAction.REQUESTED_STREAM,
+                    NewPipe.getNameOfService(serviceId),
+                    url,
+                    errorId);
         }
 
         return true;
     }
 
     public void onBlockedByGemaError() {
-        thumbnailBackgroundButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(getString(R.string.c3s_url)));
-                startActivity(intent);
-            }
+        thumbnailBackgroundButton.setOnClickListener((View v) -> {
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(getString(R.string.c3s_url)));
+            startActivity(intent);
         });
 
         showError(getString(R.string.blocked_by_gema), false, R.drawable.gruese_die_gema);

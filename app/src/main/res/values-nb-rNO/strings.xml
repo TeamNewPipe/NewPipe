@@ -324,4 +324,84 @@
     
     <string name="preferred_player_fetcher_notification_title">Henter informasjon…</string>
     <string name="preferred_player_fetcher_notification_message">Forespurt innhold innlastes</string>
-</resources>
+<string name="import_data_title">Importer database</string>
+    <string name="export_data_title">Eksporter database</string>
+    <string name="import_data_summary">Vil overstyre din nåværende historikk og abonnementsliste</string>
+    <string name="export_data_summary">Eksporter historikk, abonnementer og spillelister.</string>
+    <string name="export_complete_toast">Eksport fullført</string>
+    <string name="import_complete_toast">Import fullført</string>
+    <string name="no_valid_zip_file">Ingen gyldig ZIP-fil</string>
+    <string name="could_not_import_all_files">ADVARSEL: Kunne ikke importere alle filer.</string>
+    <string name="override_current_data">Dette vil overskrive ditt nåværende oppsett.</string>
+
+    <string name="controls_download_desc">Last ned strøm-fil.</string>
+    <string name="show_info">Vis info</string>
+
+    <string name="tab_bookmarks">Bokmerker</string>
+
+    <string name="controls_add_to_playlist_title">Legg til i</string>
+
+    <string name="detail_drag_description">Dra for å omorganisere</string>
+
+    <string name="create">Opprett</string>
+    <string name="delete_one">Slett én</string>
+    <string name="delete_all">Slett alle</string>
+    <string name="dismiss">Forkast</string>
+    <string name="rename">Gi nytt navn</string>
+
+    <string name="delete_stream_history_prompt">Ønsker du å slette dette elementet fra oppsynshistorikken?</string>
+    <string name="delete_all_history_prompt">Er du sikker på at du ønsker å slette alle elementene fra historikken?</string>
+    <string name="title_last_played">Sist spilt</string>
+    <string name="title_most_played">Mest spilt</string>
+
+    <string name="always_ask_open_action">Alltid spør</string>
+    
+    <string name="create_playlist">Opprett ny spilleliste</string>
+    <string name="delete_playlist">Slett spilleliste</string>
+    <string name="rename_playlist">Gi spilleliste nytt navn</string>
+    <string name="playlist_name_input">Navn</string>
+    <string name="append_playlist">Legg til i spilleliste</string>
+    <string name="set_as_playlist_thumbnail">Sett som miniatyrbilde for spilleliste</string>
+
+    <string name="bookmark_playlist">Bokmerk spilleliste</string>
+    <string name="unbookmark_playlist">Fjern bokmerke</string>
+
+    <string name="delete_playlist_prompt">Ønsker du å slette denne spillelisten?</string>
+    <string name="playlist_creation_success">Spilleliste opprettet</string>
+    <string name="playlist_add_stream_success">Lagt til i spilleliste</string>
+    <string name="playlist_thumbnail_change_success">Miniatyrbilde for spilleliste endret</string>
+    <string name="playlist_delete_failure">Klarte ikke å slette spilleliste</string>
+
+    <string name="caption_none">Ingen bildetekst</string>
+
+    <string name="resize_fit">Tilpass</string>
+    <string name="resize_fill">Fyll</string>
+    <string name="resize_zoom">Forstørr</string>
+
+    <string name="caption_font_size_settings_title">Bildetekstens størrelse</string>
+    <string name="smaller_caption_font_size">Mindre skrift</string>
+    <string name="normal_caption_font_size">Normal skrift</string>
+    <string name="larger_caption_font_size">Større skrift</string>
+<string name="use_inexact_seek_title">Bruk raskt unøyaktig søk</string>
+    <string name="settings_category_debug_title">Feilretting</string>
+    <string name="file">Fil</string>
+
+    <string name="invalid_directory">Ugyldig mappe</string>
+    <string name="invalid_source">Ugyldig fil/innholdskilde</string>
+    <string name="invalid_file">Filen finnes ikke eller så har du ikke tilgang til å lese eller skrive til den</string>
+    <string name="file_name_empty_error">Filnavn kan ikke være tomt</string>
+    <string name="error_occurred_detail">En feil inntraff: %1$s</string>
+
+    <string name="caption_auto_generated">Auto-generert</string>
+    <string name="enable_leak_canary_title">Skru på LeakCanary</string>
+    <string name="import_title">Importer</string>
+    <string name="import_from">Importer fra</string>
+    <string name="export_to">Eksporter til</string>
+
+    <string name="import_ongoing">Importerer…</string>
+    <string name="export_ongoing">Eksporterer…</string>
+
+    <string name="import_file_title">Importer fil</string>
+    <string name="previous_export">Forrige eksport</string>
+
+    </resources>

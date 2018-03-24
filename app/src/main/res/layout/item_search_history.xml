@@ -13,7 +13,7 @@
     android:paddingTop="8dp">
 
     <TextView
-        android:id="@+id/time"
+        android:id="@+id/info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="10/11/2017 11:32"/>

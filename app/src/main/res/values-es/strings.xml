@@ -311,7 +311,7 @@ abrir en modo popup</string>
     <string name="service_title">Servicio</string>
     <string name="drawer_open">Abrir cajón</string>
     <string name="drawer_close">Cerrar cajón</string>
-    <string name="no_player_found_toast">No se ha encontrado ningún reproductor de streaming (puede instalar VLC para reproducirlo)</string>
+    <string name="no_player_found_toast">No se ha encontrado ningún reproductor de vídeo (puede instalar VLC para reproducirlo)</string>
     <string name="always">Siempre</string>
     <string name="just_once">Sólo una vez</string>
 
@@ -331,4 +331,123 @@ abrir en modo popup</string>
     
     <string name="preferred_player_fetcher_notification_title">Obteniendo información…</string>
     <string name="preferred_player_fetcher_notification_message">El contenido solicitado se está cargando</string>
+<string name="import_data_title">Importar base de datos</string>
+    <string name="export_data_title">Exportar base de datos</string>
+    <string name="import_data_summary">Reemplazará su historial actual y sus suscripciones</string>
+    <string name="export_data_summary">Exportar historial, suscripciones y listas de reproducción.</string>
+    <string name="export_complete_toast">Exportación completa</string>
+    <string name="import_complete_toast">Importación completa</string>
+    <string name="no_valid_zip_file">Archivo ZIP no válido</string>
+    <string name="could_not_import_all_files">ADVERTENCIA: no se pudieron importar todos los archivos.</string>
+    <string name="override_current_data">Esto reemplazará su configuración actual.</string>
+
+    <string name="controls_download_desc">Descargar archivo stream.</string>
+    <string name="show_info">Mostrar info</string>
+
+    <string name="tab_bookmarks">Marcadores</string>
+
+    <string name="controls_add_to_playlist_title">Añadir a</string>
+
+    <string name="detail_drag_description">Arrastrar para reordenar</string>
+
+    <string name="create">Crear</string>
+    <string name="delete_one">Eliminar uno</string>
+    <string name="delete_all">Eliminar todos</string>
+    <string name="dismiss">Descartar</string>
+    <string name="rename">Renombrar</string>
+
+    <string name="delete_stream_history_prompt">¿Desea eliminar este elemento del historial de reproducciones?</string>
+    <string name="delete_all_history_prompt">¿Seguro que desea eliminar todos los elementos del historial?</string>
+    <string name="title_last_played">Última reproducción</string>
+    <string name="title_most_played">Más reproducido</string>
+
+    <string name="always_ask_open_action">Preguntar siempre</string>
+    
+    <string name="create_playlist">Crear nueva lista de reproducción</string>
+    <string name="delete_playlist">Eliminar lista de reproducción</string>
+    <string name="rename_playlist">Renombrar lista de reproducción</string>
+    <string name="playlist_name_input">Nombre</string>
+    <string name="append_playlist">Añadir a la lista de reproducción</string>
+    <string name="set_as_playlist_thumbnail">Definir como miniatura de lista de reproducción</string>
+
+    <string name="bookmark_playlist">Marcar lista de reproducción</string>
+    <string name="unbookmark_playlist">Remover marcador</string>
+
+    <string name="delete_playlist_prompt">¿Desea eliminar esta lista de reproducción?</string>
+    <string name="playlist_creation_success">Lista de reproducción creada exitosamente</string>
+    <string name="playlist_add_stream_success">Añadido a la lista de reproducción</string>
+    <string name="playlist_thumbnail_change_success">Miniatura de lista de reproducción cambiada</string>
+    <string name="playlist_delete_failure">Error al eliminar la lista de reproducción</string>
+
+    <string name="smaller_caption_font_size">Fuente más pequeña</string>
+    <string name="normal_caption_font_size">Fuente normal</string>
+    <string name="larger_caption_font_size">Fuente más grande</string>
+
+    <string name="drawer_header_action_paceholder_text">Algo vendrá aquí pronto ;D</string>
+
+
+    <string name="caption_none">Sin subtítulos</string>
+
+    <string name="resize_fit">AJUSTAR</string>
+    <string name="resize_fill">RELLENAR</string>
+    <string name="resize_zoom">ZOOM</string>
+
+    <string name="caption_font_size_settings_title">Tamaño de fuente de subtítulos</string>
+    <string name="toggle_leak_canary">Monitoreo de fugas</string>
+    <string name="enable_leak_canary_notice">Monitorización de fugas de memoria activada, la app puede dejar de responder cuando hay volcado de almacenamiento</string>
+    <string name="disable_leak_canary_notice">Monitorización de fugas de memoria desactivada</string>
+<string name="settings_category_debug_title">Depuración</string>
+    <string name="caption_auto_generated">Auto generados</string>
+    <string name="enable_leak_canary_title">Activar LeakCanary</string>
+    <string name="enable_leak_canary_summary">La monitorización de fugas de memoria puede causar que la app no responda cuando hay volcado de almacenamiento</string>
+
+    <string name="enable_disposed_exceptions_title">Reportar errores fuera del ciclo de duración</string>
+    <string name="enable_disposed_exceptions_summary">Forzar la notificación de excepciones no entregables de RX que ocurren fuera del fragmento o del ciclo de actividad después de disponer</string>
+
+<string name="use_inexact_seek_title">Usar búsqueda rápida inexacta</string>
+    <string name="use_inexact_seek_summary">La búsqueda inexacta permite al reproductor buscar posiciones más rápido con menor precisión</string>
+    <string name="auto_queue_title">Auto-encolar la siguiente transmisión</string>
+    <string name="auto_queue_summary">Automáticamente añadir un vídeo relacionado cuando el reproductor llegue al último vídeo en una lista de reproducción no repetible.</string>
+    <string name="live">DIRECTO</string>
+    <string name="live_sync">SINCRONIZAR</string>
+<string name="file">Archivo</string>
+
+    <string name="invalid_directory">Directorio invalido</string>
+    <string name="invalid_source">Fuente del archivo/contenido inválida</string>
+    <string name="invalid_file">El archivo no existe o el permiso es insuficiente para leerlo o escribir en él</string>
+    <string name="file_name_empty_error">El nombre del archivo no puede estar vacío</string>
+    <string name="error_occurred_detail">Ocurrió un error: %1$s</string>
+
+    <string name="import_export_title">Importar/Exportar</string>
+    <string name="import_title">Importar</string>
+    <string name="import_from">Importar desde</string>
+    <string name="export_to">Exportar a</string>
+
+    <string name="import_ongoing">Importando…</string>
+    <string name="export_ongoing">Exportando…</string>
+
+    <string name="import_file_title">Importar archivo</string>
+    <string name="previous_export">Exportación anterior</string>
+
+    <string name="subscriptions_import_unsuccessful">Importación de suscripciones fallida</string>
+    <string name="subscriptions_export_unsuccessful">Exportación de suscripciones fallida</string>
+
+    <string name="import_youtube_instructions">Para importar sus suscripciones de YouTube, necesitará el archivo de exportación, el cual puede ser descargado siguiendo estas instrucciones:
+\n
+\n1. Vaya a esta URL: %1$s
+\n2. Ingrese a su cuenta cuando se le pida
+\n3. Una descarga debería comenzar (ese es el archivo de exportación)</string>
+    <string name="import_soundcloud_instructions">Para importar sus seguimientos de SoundCloud, debe conocer la URL o el ID de su perfil. Si es así, simplemente escriba cualquiera de ellos en la entrada de abajo y ya está listo para comenzar.
+\n
+\nSi no es así, puede seguir estos pasos:
+\n
+\n1. Active el \"modo escritorio\" en algún navegador (el sitio no está disponible para dispositivos móviles)
+\n2. Vaya a esta URL: %1$s
+\n3. Ingrese a su cuenta cuando se le pida
+\n4. Copie la URL a la que fue redireccionado (esa es la URL de su perfil)</string>
+    <string name="import_soundcloud_instructions_hint">suID, soundcloud.com/suID</string>
+
+    <string name="import_network_expensive_warning">Tenga en cuenta que esta operación puede ser costosa para la red.
+\n
+\n¿Desea continuar?</string>
 </resources>

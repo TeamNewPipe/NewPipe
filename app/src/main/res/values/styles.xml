@@ -15,9 +15,12 @@
         <item name="colorPrimaryDark">@color/light_youtube_dark_color</item>
         <item name="colorAccent">@color/light_youtube_accent_color</item>
         <item name="android:windowBackground">@color/light_background_color</item>
+        <item name="windowBackground">@color/light_background_color</item>
 
         <item name="thumbs_up">@drawable/ic_thumb_up_black_24dp</item>
         <item name="thumbs_down">@drawable/ic_thumb_down_black_24dp</item>
+        <item name="info">@drawable/ic_info_outline_black_24dp</item>
+        <item name="bug">@drawable/ic_bug_report_black_24dp</item>
         <item name="audio">@drawable/ic_headset_black_24dp</item>
         <item name="clear_history">@drawable/ic_delete_sweep_white_24dp</item>
         <item name="download">@drawable/ic_file_download_black_24dp</item>
@@ -39,8 +42,15 @@
         <item name="search_add">@drawable/ic_arrow_top_left_black_24dp</item>
         <item name="options">@drawable/ic_more_vert_black_24dp</item>
         <item name="play">@drawable/ic_play_arrow_black_24dp</item>
+        <item name="settings">@drawable/ic_settings_black_24dp</item>
         <item name="ic_hot">@drawable/ic_whatshot_black_24dp</item>
         <item name="ic_channel">@drawable/ic_channel_black_24dp</item>
+        <item name="ic_bookmark">@drawable/ic_bookmark_black_24dp</item>
+        <item name="ic_playlist_add">@drawable/ic_playlist_add_black_24dp</item>
+        <item name="ic_playlist_check">@drawable/ic_playlist_add_check_black_24dp</item>
+        <item name="ic_import_export">@drawable/ic_import_export_black_24dp</item>
+        <item name="ic_save">@drawable/ic_save_black_24dp</item>
+        <item name="ic_backup">@drawable/ic_backup_black_24dp</item>
 
         <item name="separator_color">@color/light_separator_color</item>
         <item name="contrast_background_color">@color/light_contrast_background_color</item>
@@ -62,10 +72,13 @@
         <item name="colorPrimaryDark">@color/dark_youtube_dark_color</item>
         <item name="colorAccent">@color/dark_youtube_accent_color</item>
         <item name="android:windowBackground">@color/dark_background_color</item>
+        <item name="windowBackground">@color/dark_background_color</item>
 
         <item name="thumbs_up">@drawable/ic_thumb_up_white_24dp</item>
         <item name="thumbs_down">@drawable/ic_thumb_down_white_24dp</item>
         <item name="audio">@drawable/ic_headset_white_24dp</item>
+        <item name="info">@drawable/ic_info_outline_white_24dp</item>
+        <item name="bug">@drawable/ic_bug_report_white_24dp</item>
         <item name="clear_history">@drawable/ic_delete_sweep_black_24dp</item>
         <item name="download">@drawable/ic_file_download_white_24dp</item>
         <item name="share">@drawable/ic_share_white_24dp</item>
@@ -86,8 +99,15 @@
         <item name="search_add">@drawable/ic_arrow_top_left_white_24dp</item>
         <item name="options">@drawable/ic_more_vert_white_24dp</item>
         <item name="play">@drawable/ic_play_arrow_white_24dp</item>
+        <item name="settings">@drawable/ic_settings_white_24dp</item>
         <item name="ic_hot">@drawable/ic_whatshot_white_24dp</item>
         <item name="ic_channel">@drawable/ic_channel_white_24dp</item>
+        <item name="ic_bookmark">@drawable/ic_bookmark_white_24dp</item>
+        <item name="ic_playlist_add">@drawable/ic_playlist_add_white_24dp</item>
+        <item name="ic_playlist_check">@drawable/ic_playlist_add_check_white_24dp</item>
+        <item name="ic_import_export">@drawable/ic_import_export_white_24dp</item>
+        <item name="ic_save">@drawable/ic_save_white_24dp</item>
+        <item name="ic_backup">@drawable/ic_backup_white_24dp</item>
 
         <item name="separator_color">@color/dark_separator_color</item>
         <item name="contrast_background_color">@color/dark_contrast_background_color</item>
@@ -106,6 +126,7 @@
 
     <style name="BlackTheme" parent="DarkTheme">
         <item name="android:windowBackground">@color/black_background_color</item>
+        <item name="windowBackground">@color/black_background_color</item>
 
         <item name="separator_color">@color/black_separator_color</item>
         <item name="contrast_background_color">@color/black_contrast_background_color</item>
@@ -113,6 +134,23 @@
 
     <style name="BlackTheme.Switchable">
         <item name="android:windowAnimationStyle">@style/SwitchAnimation</item>
+    </style>
+
+    <!-- Dialogs -->
+    <style name="LightDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/light_youtube_primary_color</item>
+        <item name="colorPrimaryDark">@color/light_youtube_dark_color</item>
+        <item name="colorAccent">@color/light_youtube_accent_color</item>
+        <item name="android:windowBackground">@color/light_dialog_background_color</item>
+        <item name="windowBackground">@color/light_dialog_background_color</item>
+    </style>
+
+    <style name="DarkDialogTheme" parent="Theme.AppCompat.Dialog">
+        <item name="colorPrimary">@color/dark_youtube_primary_color</item>
+        <item name="colorPrimaryDark">@color/dark_youtube_dark_color</item>
+        <item name="colorAccent">@color/dark_youtube_accent_color</item>
+        <item name="android:windowBackground">@color/dark_dialog_background_color</item>
+        <item name="windowBackground">@color/dark_dialog_background_color</item>
     </style>
 
     <!-- Settings -->

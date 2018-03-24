@@ -10,13 +10,14 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
-import org.schabi.newpipe.info_list.InfoItemBuilder.OnInfoItemSelectedListener;
 import org.schabi.newpipe.info_list.holder.ChannelInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelMiniInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.InfoItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistInfoItemHolder;
+import org.schabi.newpipe.info_list.holder.PlaylistMiniInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.StreamInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.StreamMiniInfoItemHolder;
+import org.schabi.newpipe.util.OnClickGesture;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +53,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static final int STREAM_HOLDER_TYPE = 0x101;
     private static final int MINI_CHANNEL_HOLDER_TYPE = 0x200;
     private static final int CHANNEL_HOLDER_TYPE = 0x201;
+    private static final int MINI_PLAYLIST_HOLDER_TYPE = 0x300;
     private static final int PLAYLIST_HOLDER_TYPE = 0x301;
 
     private final InfoItemBuilder infoItemBuilder;
@@ -75,15 +77,15 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         infoItemList = new ArrayList<>();
     }
 
-    public void setOnStreamSelectedListener(OnInfoItemSelectedListener<StreamInfoItem> listener) {
+    public void setOnStreamSelectedListener(OnClickGesture<StreamInfoItem> listener) {
         infoItemBuilder.setOnStreamSelectedListener(listener);
     }
 
-    public void setOnChannelSelectedListener(OnInfoItemSelectedListener<ChannelInfoItem> listener) {
+    public void setOnChannelSelectedListener(OnClickGesture<ChannelInfoItem> listener) {
         infoItemBuilder.setOnChannelSelectedListener(listener);
     }
 
-    public void setOnPlaylistSelectedListener(OnInfoItemSelectedListener<PlaylistInfoItem> listener) {
+    public void setOnPlaylistSelectedListener(OnClickGesture<PlaylistInfoItem> listener) {
         infoItemBuilder.setOnPlaylistSelectedListener(listener);
     }
 
@@ -200,14 +202,14 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (footer != null && position == infoItemList.size() && showFooter) {
             return FOOTER_TYPE;
         }
-        InfoItem item = infoItemList.get(position);
-        switch (item.info_type) {
+        final InfoItem item = infoItemList.get(position);
+        switch (item.getInfoType()) {
             case STREAM:
                 return useMiniVariant ? MINI_STREAM_HOLDER_TYPE : STREAM_HOLDER_TYPE;
             case CHANNEL:
                 return useMiniVariant ? MINI_CHANNEL_HOLDER_TYPE : CHANNEL_HOLDER_TYPE;
             case PLAYLIST:
-                return PLAYLIST_HOLDER_TYPE;
+                return useMiniVariant ? MINI_PLAYLIST_HOLDER_TYPE : PLAYLIST_HOLDER_TYPE;
             default:
                 Log.e(TAG, "Trollolo");
                 return -1;
@@ -230,6 +232,8 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 return new ChannelMiniInfoItemHolder(infoItemBuilder, parent);
             case CHANNEL_HOLDER_TYPE:
                 return new ChannelInfoItemHolder(infoItemBuilder, parent);
+            case MINI_PLAYLIST_HOLDER_TYPE:
+                return new PlaylistMiniInfoItemHolder(infoItemBuilder, parent);
             case PLAYLIST_HOLDER_TYPE:
                 return new PlaylistInfoItemHolder(infoItemBuilder, parent);
             default:

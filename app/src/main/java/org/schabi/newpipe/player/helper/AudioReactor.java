@@ -17,9 +17,13 @@ import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.audio.AudioRendererEventListener;
 import com.google.android.exoplayer2.decoder.DecoderCounters;
 
-public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, AudioRendererEventListener {
+public class AudioReactor implements AudioManager.OnAudioFocusChangeListener,
+        AudioRendererEventListener {
 
     private static final String TAG = "AudioFocusReactor";
+
+    private static final boolean SHOULD_BUILD_FOCUS_REQUEST =
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.O;
 
     private static final int DUCK_DURATION = 1500;
     private static final float DUCK_AUDIO_TO = .2f;
@@ -33,13 +37,14 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, Au
 
     private final AudioFocusRequest request;
 
-    public AudioReactor(@NonNull final Context context, @NonNull final SimpleExoPlayer player) {
+    public AudioReactor(@NonNull final Context context,
+                        @NonNull final SimpleExoPlayer player) {
         this.player = player;
         this.context = context;
         this.audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-        player.setAudioDebugListener(this);
+        player.addAudioDebugListener(this);
 
-        if (shouldBuildFocusRequest()) {
+        if (SHOULD_BUILD_FOCUS_REQUEST) {
             request = new AudioFocusRequest.Builder(FOCUS_GAIN_TYPE)
                     .setAcceptsDelayedFocusGain(true)
                     .setWillPauseWhenDucked(true)
@@ -50,12 +55,17 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, Au
         }
     }
 
+    public void dispose() {
+        abandonAudioFocus();
+        player.removeAudioDebugListener(this);
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Audio Manager
     //////////////////////////////////////////////////////////////////////////*/
 
     public void requestAudioFocus() {
-        if (shouldBuildFocusRequest()) {
+        if (SHOULD_BUILD_FOCUS_REQUEST) {
             audioManager.requestAudioFocus(request);
         } else {
             audioManager.requestAudioFocus(this, STREAM_TYPE, FOCUS_GAIN_TYPE);
@@ -63,7 +73,7 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, Au
     }
 
     public void abandonAudioFocus() {
-        if (shouldBuildFocusRequest()) {
+        if (SHOULD_BUILD_FOCUS_REQUEST) {
             audioManager.abandonAudioFocusRequest(request);
         } else {
             audioManager.abandonAudioFocus(this);
@@ -80,10 +90,6 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, Au
 
     public void setVolume(final int volume) {
         audioManager.setStreamVolume(STREAM_TYPE, volume, 0);
-    }
-
-    private boolean shouldBuildFocusRequest() {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.O;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -148,12 +154,8 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, Au
                 player.setVolume(to);
             }
         });
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                player.setVolume(((float) animation.getAnimatedValue()));
-            }
-        });
+        valueAnimator.addUpdateListener(animation ->
+                player.setVolume(((float) animation.getAnimatedValue())));
         valueAnimator.start();
     }
 
@@ -181,7 +183,9 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener, Au
     public void onAudioInputFormatChanged(Format format) {}
 
     @Override
-    public void onAudioTrackUnderrun(int i, long l, long l1) {}
+    public void onAudioSinkUnderrun(int bufferSize,
+                                    long bufferSizeMs,
+                                    long elapsedSinceLastFeedMs) {}
 
     @Override
     public void onAudioDisabled(DecoderCounters decoderCounters) {}

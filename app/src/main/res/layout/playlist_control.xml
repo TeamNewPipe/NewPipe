@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_width="match_parent"
-    android:layout_height="@dimen/playlist_ctrl_height"
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/playlist_control"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:visibility="invisible">
+    android:visibility="invisible"
+    tools:visibility="visible">
 
     <LinearLayout
         android:id="@+id/playlist_ctrl_play_bg_button"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/playlist_ctrl_height"
         android:layout_weight="1"
         android:gravity="center"
         android:clickable="true"

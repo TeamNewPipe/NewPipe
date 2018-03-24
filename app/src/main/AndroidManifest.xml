@@ -28,6 +28,12 @@
             </intent-filter>
         </activity>
 
+        <receiver android:name="android.support.v4.media.session.MediaButtonReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+        </receiver>
+
         <activity
             android:name=".player.old.PlayVideoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -69,6 +75,9 @@
         <activity
             android:name=".history.HistoryActivity"
             android:label="@string/title_activity_history"/>
+
+        <service android:name=".subscription.services.SubscriptionsImportService"/>
+        <service android:name=".subscription.services.SubscriptionsExportService"/>
 
         <activity
             android:name=".PanicResponderActivity"
@@ -117,13 +126,17 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/nnf_provider_paths"/>
         </provider>
 
         <activity
             android:name=".RouterActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/preferred_player_share_menu_title"
             android:taskAffinity=""
             android:theme="@style/RouterActivityThemeDark">
+
+            <!-- Youtube filter -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
@@ -172,6 +185,47 @@
                 <data android:scheme="vnd.youtube"/>
                 <data android:scheme="vnd.youtube.launch"/>
             </intent-filter>
+
+            <!-- Hooktube filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data android:scheme="http"/>
+                <data android:scheme="https"/>
+                <data android:host="hooktube.com"/>
+                <data android:host="*.hooktube.com"/>
+                <!-- video prefix -->
+                <data android:pathPrefix="/v/"/>
+                <data android:pathPrefix="/embed/"/>
+                <data android:pathPrefix="/watch"/>
+                <!-- channel prefix -->
+                <data android:pathPrefix="/channel/"/>
+                <data android:pathPrefix="/user/"/>
+            </intent-filter>
+
+            <!-- Soundcloud filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data android:scheme="http"/>
+                <data android:scheme="https"/>
+                <data android:host="soundcloud.com"/>
+                <data android:host="m.soundcloud.com"/>
+                <data android:host="www.soundcloud.com"/>
+                <data android:pathPrefix="/"/>
+            </intent-filter>
+
+            <!-- Share filter -->
             <intent-filter>
                 <action android:name="android.intent.action.SEND"/>
                 <category android:name="android.intent.category.DEFAULT"/>
@@ -180,68 +234,7 @@
         </activity>
 
         <service
-            android:name=".RouterPlayerActivity$FetcherService"
+            android:name=".RouterActivity$FetcherService"
             android:exported="false"/>
-
-        <activity
-            android:name=".RouterPlayerActivity"
-            android:excludeFromRecents="true"
-            android:label="@string/preferred_player_share_menu_title"
-            android:taskAffinity=""
-            android:theme="@style/RouterActivityThemeDark">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
-                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-
-                <data android:scheme="http"/>
-                <data android:scheme="https"/>
-                <data android:host="youtube.com"/>
-                <data android:host="m.youtube.com"/>
-                <data android:host="www.youtube.com"/>
-                <!-- video prefix -->
-                <data android:pathPrefix="/v/"/>
-                <data android:pathPrefix="/embed/"/>
-                <data android:pathPrefix="/watch"/>
-                <data android:pathPrefix="/attribution_link"/>
-                <!-- channel prefix -->
-                <data android:pathPrefix="/channel/"/>
-                <data android:pathPrefix="/user/"/>
-                <!-- playlist prefix -->
-                <data android:pathPrefix="/playlist"/>
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
-                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-
-                <data android:scheme="http"/>
-                <data android:scheme="https"/>
-                <data android:host="youtu.be"/>
-                <data android:pathPrefix="/"/>
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
-                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-
-                <data android:scheme="vnd.youtube"/>
-                <data android:scheme="vnd.youtube.launch"/>
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEND"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="text/plain"/>
-            </intent-filter>
-        </activity>
     </application>
 </manifest>

@@ -307,4 +307,96 @@ otevření ve vyskakovacím okně</string>
 
     <string name="drawer_open">Otevřít Drawer</string>
     <string name="drawer_close">Zavřít Drawer</string>
-    </resources>
+    <string name="no_player_found_toast">Nenalezen přehrávač streamu (pro přehrání můžete nainstalovat např. VLC)</string>
+    <string name="always">Vždy</string>
+    <string name="just_once">Pouze jednou</string>
+
+    <string name="import_data_title">Importovat databázi</string>
+    <string name="export_data_title">Exportovat databázi</string>
+    <string name="import_data_summary">Přepíše vaši dosavadní historii a odběry</string>
+    <string name="export_data_summary">Exportuje historii, odběry a playlisty.</string>
+    <string name="external_player_unsupported_link_type">Externí přehrávače nepodporují tyto druhy odkazů</string>
+    <string name="invalid_url_toast">Neplatná URL</string>
+    <string name="video_streams_empty">Nenalezeny žádné video streamy</string>
+    <string name="audio_streams_empty">Nenalezeny žádné audio streamy</string>
+
+    <string name="export_complete_toast">Export dokončen</string>
+    <string name="import_complete_toast">Import dokončen</string>
+    <string name="no_valid_zip_file">Žádný platný soubor ZIP</string>
+    <string name="could_not_import_all_files">Upozornění: Nelze importovat všechny soubory.</string>
+    <string name="override_current_data">Tímto se anuluje vaše aktuální nastavení.</string>
+
+    <string name="preferred_player_share_menu_dialog_title">Otevřít preferovaným přehrávačem</string>
+    <string name="preferred_player_settings_title">Preferovaný přehrávač</string>
+
+    <string name="video_player">Video přehrávač</string>
+    <string name="background_player">Přehrávač na pozadí</string>
+    <string name="popup_player">Přehrávač v okně</string>
+    <string name="always_ask_player">Vždy se ptát</string>
+    
+    <string name="preferred_player_fetcher_notification_title">Získávám informace…</string>
+    <string name="preferred_player_fetcher_notification_message">Požadovaný obsah se načítá</string>
+<string name="controls_download_desc">Stáhnout soubor streamu.</string>
+    <string name="show_info">Ukázat informace</string>
+
+    <string name="tab_bookmarks">Záložky</string>
+
+    <string name="controls_add_to_playlist_title">Přidat do</string>
+
+    <string name="detail_drag_description">Táhnout pro přeskupení</string>
+
+    <string name="create">Vytvořit</string>
+    <string name="delete_one">Smazat jeden</string>
+    <string name="delete_all">Smazat vše</string>
+    <string name="dismiss">Zahodit</string>
+    <string name="rename">Přejmenovat</string>
+
+    <string name="delete_stream_history_prompt">Přejete si smazat tuto položku z historie shlédnutí?</string>
+    <string name="delete_all_history_prompt">Jste si jisti, že chcete odstranit všechny položky z historie?</string>
+    <string name="title_last_played">Poslední přehráno</string>
+    <string name="title_most_played">Nejvíce přehráno</string>
+
+    <string name="drawer_header_action_paceholder_text">Zde něco brzy bude ;D</string>
+
+
+    <string name="always_ask_open_action">Vždy se zeptat</string>
+    
+    <string name="create_playlist">Vytvořit nový playlist</string>
+    <string name="delete_playlist">Vymazat playlist</string>
+    <string name="rename_playlist">Přejmenovat playlist</string>
+    <string name="playlist_name_input">Jméno</string>
+    <string name="append_playlist">Přidat do playlistu</string>
+    <string name="set_as_playlist_thumbnail">Nastavit jako náhled playlistu</string>
+
+    <string name="bookmark_playlist">Založit playlist</string>
+    <string name="unbookmark_playlist">Smazat záložku</string>
+
+    <string name="delete_playlist_prompt">Přejete si smazat tento playlist?</string>
+    <string name="playlist_creation_success">Playlist úspěšně vytvořen</string>
+    <string name="playlist_add_stream_success">Přidáno do playlistu</string>
+    <string name="playlist_thumbnail_change_success">Náhled playlistu změněn</string>
+    <string name="playlist_delete_failure">Nezdařilo se smazat playlist</string>
+
+    <string name="caption_none">Žádný popis</string>
+
+    <string name="resize_fit">PŘIZPŮSOBIT</string>
+    <string name="resize_fill">VYPLNIT</string>
+    <string name="resize_zoom">ZVĚTŠIT</string>
+
+    <string name="caption_font_size_settings_title">Velikost písma titulků</string>
+    <string name="smaller_caption_font_size">Menší písmo</string>
+    <string name="normal_caption_font_size">Normální písmo</string>
+    <string name="larger_caption_font_size">Větší písmo</string>
+
+    <string name="toggle_leak_canary">Sledovat únik paměti</string>
+    <string name="disable_leak_canary_notice">Sledování úniku paměti vypnuto</string>
+<string name="enable_leak_canary_notice">Sledování úniku paměti povoleno, aplikace může při zátěži přestat reagovat</string>
+    <string name="settings_category_debug_title">Ladění</string>
+    <string name="caption_auto_generated">"Automaticky generováno "</string>
+    <string name="enable_leak_canary_title">Povolit službu LeakCanary</string>
+    <string name="enable_leak_canary_summary">Monitoring úniku paměti může vést k nereagování aplikace při zátěži</string>
+
+    <string name="enable_disposed_exceptions_title">Nahlásit mimocyklické chyby</string>
+    <string name="enable_disposed_exceptions_summary">Vynutit vykazování výjimek Rx, které se vyskytnou mimo fragment nebo životnost cyklu po odstranění</string>
+
+</resources>

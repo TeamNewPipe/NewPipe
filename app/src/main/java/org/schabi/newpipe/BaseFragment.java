@@ -1,18 +1,15 @@
 package org.schabi.newpipe;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
+import com.squareup.leakcanary.RefWatcher;
 
 import icepick.Icepick;
 
@@ -67,6 +64,14 @@ public abstract class BaseFragment extends Fragment {
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        RefWatcher refWatcher = App.getRefWatcher(getActivity());
+        if (refWatcher != null) refWatcher.watch(this);
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Init
     //////////////////////////////////////////////////////////////////////////*/
@@ -78,33 +83,13 @@ public abstract class BaseFragment extends Fragment {
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // DisplayImageOptions default configurations
+    // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
-    public static final DisplayImageOptions BASE_OPTIONS =
-            new DisplayImageOptions.Builder().cacheInMemory(true).build();
-
-    public static final DisplayImageOptions DISPLAY_AVATAR_OPTIONS =
-            new DisplayImageOptions.Builder()
-                    .cloneFrom(BASE_OPTIONS)
-                    .showImageOnLoading(R.drawable.buddy)
-                    .showImageForEmptyUri(R.drawable.buddy)
-                    .showImageOnFail(R.drawable.buddy)
-                    .build();
-
-    public static final DisplayImageOptions DISPLAY_THUMBNAIL_OPTIONS =
-            new DisplayImageOptions.Builder()
-                    .cloneFrom(BASE_OPTIONS)
-                    .displayer(new FadeInBitmapDisplayer(250))
-                    .showImageForEmptyUri(R.drawable.dummy_thumbnail)
-                    .showImageOnFail(R.drawable.dummy_thumbnail)
-                    .build();
-
-    public static final DisplayImageOptions DISPLAY_BANNER_OPTIONS =
-            new DisplayImageOptions.Builder()
-                    .cloneFrom(BASE_OPTIONS)
-                    .showImageOnLoading(R.drawable.channel_banner)
-                    .showImageForEmptyUri(R.drawable.channel_banner)
-                    .showImageOnFail(R.drawable.channel_banner)
-                    .build();
+    public void setTitle(String title) {
+        if (DEBUG) Log.d(TAG, "setTitle() called with: title = [" + title + "]");
+        if (activity != null && activity.getSupportActionBar() != null) {
+            activity.getSupportActionBar().setTitle(title);
+        }
+    }
 }

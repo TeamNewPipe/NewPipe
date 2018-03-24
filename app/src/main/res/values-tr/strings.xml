@@ -326,4 +326,119 @@
     
     <string name="preferred_player_fetcher_notification_title">Bilgi alınıyor…</string>
     <string name="preferred_player_fetcher_notification_message">İstenen içerik yükleniyor</string>
+<string name="import_data_title">Veri tabanını içe aktar</string>
+    <string name="export_data_title">Veri tabanını dışa aktar</string>
+    <string name="import_data_summary">Şimdiki geçmişinizi ve aboneliklerinizi geçersiz kılacak</string>
+    <string name="export_data_summary">Geçmişi, abonelikleri ve oynatma listelerini dışa aktar.</string>
+    <string name="export_complete_toast">Dışa aktarım bitti</string>
+    <string name="import_complete_toast">İçe aktarım bitti</string>
+    <string name="no_valid_zip_file">Geçerli ZIP dosyası yok</string>
+    <string name="could_not_import_all_files">Uyarı: Tüm dosyalar içe aktarılamadı.</string>
+    <string name="override_current_data">Bu şimdiki kurulumunuzu geçersiz kılacak.</string>
+
+    <string name="controls_download_desc">Akış dosyasını indir.</string>
+    <string name="show_info">Bilgiyi göster</string>
+
+    <string name="tab_bookmarks">Yer imleri</string>
+
+    <string name="controls_add_to_playlist_title">Şuna Ekle</string>
+
+    <string name="detail_drag_description">Yeniden sıralamak için sürükle</string>
+
+    <string name="create">Oluştur</string>
+    <string name="delete_one">Tekini Sil</string>
+    <string name="delete_all">Tümünü Sil</string>
+    <string name="dismiss">Görmezden gel</string>
+    <string name="rename">Yeniden adlandır</string>
+
+    <string name="delete_stream_history_prompt">Bu ögeyi izleme geçmişinden silmek ister misiniz?</string>
+    <string name="delete_all_history_prompt">Tüm ögeleri geçmişten silmek istediğinize emin misiniz?</string>
+    <string name="title_last_played">Son Oynatılan</string>
+    <string name="title_most_played">Çok Oynatılan</string>
+
+    <string name="always_ask_open_action">Her zaman sor</string>
+    
+    <string name="create_playlist">Yeni Oynatma Listesi Oluştur</string>
+    <string name="delete_playlist">Oynatma Listesini Sil</string>
+    <string name="rename_playlist">Oynatma Listesini Yeniden Adlandır</string>
+    <string name="playlist_name_input">Ad</string>
+    <string name="append_playlist">Oynatma Listesine Ekle</string>
+    <string name="set_as_playlist_thumbnail">Oynatma Listesi Küçük Resmi Olarak Belirle</string>
+
+    <string name="bookmark_playlist">Oynatma Listesini İmle</string>
+    <string name="unbookmark_playlist">Yer İmini Kaldır</string>
+
+    <string name="delete_playlist_prompt">Bu oynatma listesini silmek istiyor musunuz?</string>
+    <string name="playlist_creation_success">Oynatma listesi başarıyla oluşturuldu</string>
+    <string name="playlist_add_stream_success">Oynatma listesine eklendi</string>
+    <string name="playlist_thumbnail_change_success">Oynatma listesi küçük resmi değiştirildi</string>
+    <string name="playlist_delete_failure">Oynatma listesi silinemedi</string>
+
+    <string name="caption_none">Alt Yazı Yok</string>
+
+    <string name="resize_fit">SIĞDIR</string>
+    <string name="resize_fill">DOLDUR</string>
+    <string name="resize_zoom">YAKLAŞTIR</string>
+
+    <string name="caption_font_size_settings_title">Alt Yazı Boyutu</string>
+    <string name="smaller_caption_font_size">Küçük Yazı Tipi</string>
+    <string name="normal_caption_font_size">Olağan Yazı Tipi</string>
+    <string name="larger_caption_font_size">Büyük Yazı Tipi</string>
+<string name="settings_category_debug_title">Hata Ayıklama</string>
+    <string name="drawer_header_action_paceholder_text">Buraya yakında bir şeyler gelecek ;D</string>
+
+
+    <string name="caption_auto_generated">Kendiliğinden Oluşturulmuş</string>
+    <string name="enable_leak_canary_title">LeakCanary\'i Etkinleştir</string>
+    <string name="enable_leak_canary_summary">Bellek sızıntı gözlemlemesi, yığın boşaltımı sırasında uygulamanın tepkisiz kalmasına neden olabilir</string>
+
+    <string name="enable_disposed_exceptions_title">Out-of-Lifecycle Hatalarını Bildir</string>
+    <string name="enable_disposed_exceptions_summary">Parçanın dışında veya atımdan sonraki etkinlik yaşam döngüsünde meydana gelen ve teslim edilemeyen Rx beklentilerinin bildirimini zorla</string>
+
+<string name="use_inexact_seek_title">Hızlı isabetsiz konumlama kullan</string>
+    <string name="use_inexact_seek_summary">İsabetsiz konumlama, oynatıcının konumları düşürülmüş duyarlıkla saptamasını sağlar</string>
+    <string name="auto_queue_title">Sonraki akışı kendiliğinden kuyrukla</string>
+    <string name="auto_queue_summary">Yinelemeyen oynatma kuyruğundaki son akış başladığında ilişkili akışı kuyruğun sonuna kendiliğinden ekle.</string>
+    <string name="live_sync">EŞZAMANLA</string>
+
+    <string name="file">Dosya</string>
+
+    <string name="invalid_directory">Geçersiz dizin</string>
+    <string name="invalid_source">Geçersiz dosya/içerik kaynağı</string>
+    <string name="invalid_file">Dosya yok ya da okuma veya yazma izni yetersiz</string>
+    <string name="file_name_empty_error">Dosya adı boş olamaz</string>
+    <string name="error_occurred_detail">Hata oluştu: %1$s</string>
+
+    <string name="import_export_title">İçe/Dışa Aktar</string>
+    <string name="import_title">İçe Aktar</string>
+    <string name="import_from">Şuradan içe aktar</string>
+    <string name="export_to">Şuna dışa aktar</string>
+
+    <string name="import_ongoing">İçe aktarılıyor…</string>
+    <string name="export_ongoing">Dışa aktarılıyor…</string>
+
+    <string name="import_file_title">Dosyayı içe aktar</string>
+    <string name="previous_export">Önceki dışa aktarım</string>
+
+    <string name="subscriptions_import_unsuccessful">Aboneliklerin içe aktarımı başarısız</string>
+    <string name="subscriptions_export_unsuccessful">Aboneliklerin dışa aktarımı başarısız</string>
+
+    <string name="import_youtube_instructions">YouTube aboneliklerinizi içe aktarmak için dışa aktarılmış dosya gerekiyor, dosya şu yönergeler izlenerek indirilebilir:
+\n
+\n1. Şu adrese gidin: %1$s
+\n2. Sorulduğunda hesabınıza giriş yapın
+\n3. İndirme başlamalı (bu dışa aktarılmış dosyadır)</string>
+    <string name="import_soundcloud_instructions">SoundCloud takiplerinizi içe aktarmak için profil adresinizi veya kimliğinizi bilmelisiniz. Eğer biliyorsanız, ikisinden birini aşağıdaki giriye yazın ve işte hazırsınız.
+\n
+\nEğer bilmiyorsanız şu adımları izleyebilirsiniz:
+\n
+\n1. Herhangi bir tarayıcıda \"masaüstü kipi\"ni açın (site, mobil aygıtlar için uygun değildir)
+\n2. Şu adrese gidin: %1$s
+\n3. Sorulduğunda hesabınıza giriş yapın
+\n4. Yönlendirildiğiniz adresi kopyalayın (bu sizin profil adresinizdir)</string>
+    <string name="import_soundcloud_instructions_hint">kimliginiz, soundcloud.com/kimliginiz</string>
+
+    <string name="import_network_expensive_warning">Bu sürecin ağ masrafına neden olabileceğini unutmayın.
+\n
+\nDevam etmek istiyor musunuz?</string>
 </resources>

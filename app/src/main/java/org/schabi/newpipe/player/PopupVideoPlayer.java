@@ -49,8 +49,11 @@ import android.widget.RemoteViews;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
+import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
+import com.google.android.exoplayer2.ui.SubtitleView;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
@@ -67,6 +70,9 @@ import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.List;
 
+import static org.schabi.newpipe.player.BasePlayer.STATE_PLAYING;
+import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_DURATION;
+import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME;
 import static org.schabi.newpipe.player.helper.PlayerHelper.isUsingOldPlayer;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
@@ -87,6 +93,8 @@ public final class PopupVideoPlayer extends Service {
     private static final String POPUP_SAVED_WIDTH = "popup_saved_width";
     private static final String POPUP_SAVED_X = "popup_saved_x";
     private static final String POPUP_SAVED_Y = "popup_saved_y";
+
+    private static final int MINIMUM_SHOW_EXTRA_WIDTH_DP = 300;
 
     private WindowManager windowManager;
     private WindowManager.LayoutParams windowLayoutParams;
@@ -358,9 +366,11 @@ public final class PopupVideoPlayer extends Service {
 
     ///////////////////////////////////////////////////////////////////////////
 
-    protected class VideoPlayerImpl extends VideoPlayer {
+    protected class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeListener {
         private TextView resizingIndicator;
         private ImageButton fullScreenButton;
+
+        private View extraOptionsView;
 
         @Override
         public void handleIntent(Intent intent) {
@@ -380,6 +390,29 @@ public final class PopupVideoPlayer extends Service {
             resizingIndicator = rootView.findViewById(R.id.resizing_indicator);
             fullScreenButton = rootView.findViewById(R.id.fullScreenButton);
             fullScreenButton.setOnClickListener(v -> onFullScreenButtonClicked());
+
+            extraOptionsView = rootView.findViewById(R.id.extraOptionsView);
+            rootView.addOnLayoutChangeListener(this);
+        }
+
+        @Override
+        protected void setupSubtitleView(@NonNull SubtitleView view,
+                                         @NonNull String captionSizeKey) {
+            float captionRatio = SubtitleView.DEFAULT_TEXT_SIZE_FRACTION;
+            if (captionSizeKey.equals(getString(R.string.smaller_caption_size_key))) {
+                captionRatio *= 0.9;
+            } else if (captionSizeKey.equals(getString(R.string.larger_caption_size_key))) {
+                captionRatio *= 1.1;
+            }
+            view.setFractionalTextSize(captionRatio);
+        }
+
+        @Override
+        public void onLayoutChange(final View view, int left, int top, int right, int bottom,
+                                   int oldLeft, int oldTop, int oldRight, int oldBottom) {
+            float widthDp = Math.abs(right - left) / getResources().getDisplayMetrics().density;
+            final int visibility = widthDp > MINIMUM_SHOW_EXTRA_WIDTH_DP ? View.VISIBLE : View.GONE;
+            extraOptionsView.setVisibility(visibility);
         }
 
         @Override
@@ -389,13 +422,15 @@ public final class PopupVideoPlayer extends Service {
         }
 
         @Override
-        public void onThumbnailReceived(Bitmap thumbnail) {
-            super.onThumbnailReceived(thumbnail);
-            if (thumbnail != null) {
+        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+            super.onLoadingComplete(imageUri, view, loadedImage);
+            if (loadedImage != null) {
                 // rebuild notification here since remote view does not release bitmaps, causing memory leaks
                 notBuilder = createNotification();
 
-                if (notRemoteView != null) notRemoteView.setImageViewBitmap(R.id.notificationCover, thumbnail);
+                if (notRemoteView != null) {
+                    notRemoteView.setImageViewBitmap(R.id.notificationCover, loadedImage);
+                }
 
                 updateNotification(-1);
             }
@@ -436,6 +471,15 @@ public final class PopupVideoPlayer extends Service {
         public void onDismiss(PopupMenu menu) {
             super.onDismiss(menu);
             if (isPlaying()) hideControls(500, 0);
+        }
+
+        @Override
+        protected int nextResizeMode(int resizeMode) {
+            if (resizeMode == AspectRatioFrameLayout.RESIZE_MODE_FILL) {
+                return AspectRatioFrameLayout.RESIZE_MODE_FIT;
+            } else {
+                return AspectRatioFrameLayout.RESIZE_MODE_FILL;
+            }
         }
 
         @Override
@@ -494,7 +538,8 @@ public final class PopupVideoPlayer extends Service {
 
         private void updatePlayback() {
             if (activityListener != null && simpleExoPlayer != null && playQueue != null) {
-                activityListener.onPlaybackUpdate(currentState, getRepeatMode(), playQueue.isShuffled(), simpleExoPlayer.getPlaybackParameters());
+                activityListener.onPlaybackUpdate(currentState, getRepeatMode(),
+                        playQueue.isShuffled(), simpleExoPlayer.getPlaybackParameters());
             }
         }
 
@@ -533,16 +578,17 @@ public final class PopupVideoPlayer extends Service {
         // Playback Listener
         //////////////////////////////////////////////////////////////////////////*/
 
-        @Override
-        public void sync(@NonNull PlayQueueItem item, @Nullable StreamInfo info) {
-            if (currentItem == item && currentInfo == info) return;
-            super.sync(item, info);
+        protected void onMetadataChanged(@NonNull final PlayQueueItem item,
+                                         @Nullable final StreamInfo info,
+                                         final int newPlayQueueIndex,
+                                         final boolean hasPlayQueueItemChanged) {
+            super.onMetadataChanged(item, info, newPlayQueueIndex, false);
             updateMetadata();
         }
 
         @Override
-        public void shutdown() {
-            super.shutdown();
+        public void onPlaybackShutdown() {
+            super.onPlaybackShutdown();
             onClose();
         }
 
@@ -572,7 +618,7 @@ public final class PopupVideoPlayer extends Service {
                     onClose();
                     break;
                 case ACTION_PLAY_PAUSE:
-                    onVideoPlayPause();
+                    onPlayPause();
                     break;
                 case ACTION_REPEAT:
                     onRepeatClicked();
@@ -607,6 +653,8 @@ public final class PopupVideoPlayer extends Service {
             super.onPlaying();
             updateNotification(R.drawable.ic_pause_white);
             lockManager.acquireWifiAndCpu();
+
+            hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
         }
 
         @Override
@@ -642,8 +690,8 @@ public final class PopupVideoPlayer extends Service {
         //////////////////////////////////////////////////////////////////////////*/
 
         /*package-private*/ void enableVideoRenderer(final boolean enable) {
-            final int videoRendererIndex = getVideoRendererIndex();
-            if (trackSelector != null && videoRendererIndex != -1) {
+            final int videoRendererIndex = getRendererIndex(C.TRACK_TYPE_VIDEO);
+            if (trackSelector != null && videoRendererIndex != RENDERER_UNAVAILABLE) {
                 trackSelector.setRendererDisabled(videoRendererIndex, !enable);
             }
         }
@@ -668,7 +716,7 @@ public final class PopupVideoPlayer extends Service {
         public boolean onDoubleTap(MotionEvent e) {
             if (DEBUG)
                 Log.d(TAG, "onDoubleTap() called with: e = [" + e + "]" + "rawXy = " + e.getRawX() + ", " + e.getRawY() + ", xy = " + e.getX() + ", " + e.getY());
-            if (playerImpl == null || !playerImpl.isPlaying() || !playerImpl.isPlayerReady()) return false;
+            if (playerImpl == null || !playerImpl.isPlaying()) return false;
 
             if (e.getX() > popupWidth / 2) {
                 playerImpl.onFastForward();
@@ -683,7 +731,7 @@ public final class PopupVideoPlayer extends Service {
         public boolean onSingleTapConfirmed(MotionEvent e) {
             if (DEBUG) Log.d(TAG, "onSingleTapConfirmed() called with: e = [" + e + "]");
             if (playerImpl == null || playerImpl.getPlayer() == null) return false;
-            playerImpl.onVideoPlayPause();
+            playerImpl.onPlayPause();
             return true;
         }
 
@@ -739,8 +787,8 @@ public final class PopupVideoPlayer extends Service {
         private void onScrollEnd() {
             if (DEBUG) Log.d(TAG, "onScrollEnd() called");
             if (playerImpl == null) return;
-            if (playerImpl.isControlsVisible() && playerImpl.getCurrentState() == BasePlayer.STATE_PLAYING) {
-                playerImpl.hideControls(300, VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME);
+            if (playerImpl.isControlsVisible() && playerImpl.getCurrentState() == STATE_PLAYING) {
+                playerImpl.hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
             }
         }
 

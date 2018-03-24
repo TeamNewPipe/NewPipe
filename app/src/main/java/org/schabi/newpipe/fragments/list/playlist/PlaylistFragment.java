@@ -17,27 +17,50 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
+import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
+import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
+import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
+import org.schabi.newpipe.fragments.local.RemotePlaylistManager;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlaylistPlayQueue;
 import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.ThemeHelper;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import io.reactivex.Single;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.disposables.Disposables;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
+    private CompositeDisposable disposables;
+    private Subscription bookmarkReactor;
+    private AtomicBoolean isBookmarkButtonReady;
+
+    private RemotePlaylistManager remotePlaylistManager;
+    private PlaylistRemoteEntity playlistEntity;
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
@@ -54,6 +77,8 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     private View headerPopupButton;
     private View headerBackgroundButton;
 
+    private MenuItem playlistBookmarkButton;
+
     public static PlaylistFragment getInstance(int serviceId, String url, String name) {
         PlaylistFragment instance = new PlaylistFragment();
         instance.setInitialData(serviceId, url, name);
@@ -65,7 +90,16 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        disposables = new CompositeDisposable();
+        isBookmarkButtonReady = new AtomicBoolean(false);
+        remotePlaylistManager = new RemotePlaylistManager(NewPipeDatabase.getInstance(getContext()));
+    }
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_playlist, container, false);
     }
 
@@ -85,6 +119,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         headerPlayAllButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_all_button);
         headerPopupButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_popup_button);
         headerBackgroundButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_bg_button);
+
 
         return headerRootLayout;
     }
@@ -110,29 +145,26 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                 context.getResources().getString(R.string.start_here_on_popup),
         };
 
-        final DialogInterface.OnClickListener actions = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                final int index = Math.max(infoListAdapter.getItemsList().indexOf(item), 0);
-                switch (i) {
-                    case 0:
-                        NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
-                        break;
-                    case 1:
-                        NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(item));
-                        break;
-                    case 2:
-                        NavigationHelper.playOnMainPlayer(context, getPlayQueue(index));
-                        break;
-                    case 3:
-                        NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index));
-                        break;
-                    case 4:
-                        NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index));
-                        break;
-                    default:
-                        break;
-                }
+        final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
+            final int index = Math.max(infoListAdapter.getItemsList().indexOf(item), 0);
+            switch (i) {
+                case 0:
+                    NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
+                    break;
+                case 1:
+                    NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(item));
+                    break;
+                case 2:
+                    NavigationHelper.playOnMainPlayer(context, getPlayQueue(index));
+                    break;
+                case 3:
+                    NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index));
+                    break;
+                case 4:
+                    NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index));
+                    break;
+                default:
+                    break;
             }
         };
 
@@ -141,9 +173,36 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        if (DEBUG) Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu + "], inflater = [" + inflater + "]");
+        if (DEBUG) Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu +
+                "], inflater = [" + inflater + "]");
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_playlist, menu);
+
+        playlistBookmarkButton = menu.findItem(R.id.menu_item_bookmark);
+        updateBookmarkButtons();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (isBookmarkButtonReady != null) isBookmarkButtonReady.set(false);
+
+        if (disposables != null) disposables.clear();
+        if (bookmarkReactor != null) bookmarkReactor.cancel();
+
+        bookmarkReactor = null;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        if (disposables != null) disposables.dispose();
+
+        disposables = null;
+        remotePlaylistManager = null;
+        playlistEntity = null;
+        isBookmarkButtonReady = null;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -151,8 +210,8 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    protected Single<ListExtractor.NextItemsResult> loadMoreItemsLogic() {
-        return ExtractorHelper.getMorePlaylistItems(serviceId, url, currentNextItemsUrl);
+    protected Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic() {
+        return ExtractorHelper.getMorePlaylistItems(serviceId, url, currentNextPageUrl);
     }
 
     @Override
@@ -166,10 +225,12 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
             case R.id.menu_item_openInBrowser:
                 openUrlInBrowser(url);
                 break;
-            case R.id.menu_item_share: {
+            case R.id.menu_item_share:
                 shareUrl(name, url);
                 break;
-            }
+            case R.id.menu_item_bookmark:
+                onBookmarkClicked();
+                break;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -201,42 +262,40 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         if (!TextUtils.isEmpty(result.getUploaderName())) {
             headerUploaderName.setText(result.getUploaderName());
             if (!TextUtils.isEmpty(result.getUploaderUrl())) {
-                headerUploaderLayout.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        NavigationHelper.openChannelFragment(getFragmentManager(), result.getServiceId(), result.getUploaderUrl(), result.getUploaderName());
-                    }
-                });
+                headerUploaderLayout.setOnClickListener(v ->
+                        NavigationHelper.openChannelFragment(getFragmentManager(),
+                                result.getServiceId(), result.getUploaderUrl(),
+                                result.getUploaderName())
+                );
             }
         }
 
         playlistCtrl.setVisibility(View.VISIBLE);
 
-        imageLoader.displayImage(result.getUploaderAvatarUrl(), headerUploaderAvatar, DISPLAY_AVATAR_OPTIONS);
-        headerStreamCount.setText(getResources().getQuantityString(R.plurals.videos, (int) result.stream_count, (int) result.stream_count));
+        imageLoader.displayImage(result.getUploaderAvatarUrl(), headerUploaderAvatar,
+                ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
+        headerStreamCount.setText(getResources().getQuantityString(R.plurals.videos,
+                (int) result.getStreamCount(), (int) result.getStreamCount()));
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(), UserAction.REQUESTED_PLAYLIST, NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);
         }
 
-        headerPlayAllButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavigationHelper.playOnMainPlayer(activity, getPlayQueue());
-            }
-        });
-        headerPopupButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavigationHelper.playOnPopupPlayer(activity, getPlayQueue());
-            }
-        });
-        headerBackgroundButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue());
-            }
-        });
+        remotePlaylistManager.getPlaylist(result)
+                .onBackpressureLatest()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getPlaylistBookmarkSubscriber());
+
+        remotePlaylistManager.onUpdate(result)
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribe(integer -> {/* Do nothing*/}, this::onError);
+
+        headerPlayAllButton.setOnClickListener(view ->
+                NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));
+        headerPopupButton.setOnClickListener(view ->
+                NavigationHelper.playOnPopupPlayer(activity, getPlayQueue()));
+        headerBackgroundButton.setOnClickListener(view ->
+                NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue()));
     }
 
     private PlayQueue getPlayQueue() {
@@ -244,17 +303,23 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     }
 
     private PlayQueue getPlayQueue(final int index) {
+        final List<StreamInfoItem> infoItems = new ArrayList<>();
+        for(InfoItem i : infoListAdapter.getItemsList()) {
+            if(i instanceof StreamInfoItem) {
+                infoItems.add((StreamInfoItem) i);
+            }
+        }
         return new PlaylistPlayQueue(
                 currentInfo.getServiceId(),
                 currentInfo.getUrl(),
-                currentInfo.getNextStreamsUrl(),
-                infoListAdapter.getItemsList(),
+                currentInfo.getNextPageUrl(),
+                infoItems,
                 index
         );
     }
 
     @Override
-    public void handleNextItems(ListExtractor.NextItemsResult result) {
+    public void handleNextItems(ListExtractor.InfoItemsPage result) {
         super.handleNextItems(result);
 
         if (!result.getErrors().isEmpty()) {
@@ -280,9 +345,76 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
+    private Subscriber<List<PlaylistRemoteEntity>> getPlaylistBookmarkSubscriber() {
+        return new Subscriber<List<PlaylistRemoteEntity>>() {
+            @Override
+            public void onSubscribe(Subscription s) {
+                if (bookmarkReactor != null) bookmarkReactor.cancel();
+                bookmarkReactor = s;
+                bookmarkReactor.request(1);
+            }
+
+            @Override
+            public void onNext(List<PlaylistRemoteEntity> playlist) {
+                playlistEntity = playlist.isEmpty() ? null : playlist.get(0);
+
+                updateBookmarkButtons();
+                isBookmarkButtonReady.set(true);
+
+                if (bookmarkReactor != null) bookmarkReactor.request(1);
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                PlaylistFragment.this.onError(t);
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+    }
+
     @Override
     public void setTitle(String title) {
         super.setTitle(title);
         headerTitleView.setText(title);
+    }
+
+    private void onBookmarkClicked() {
+        if (isBookmarkButtonReady == null || !isBookmarkButtonReady.get() ||
+                remotePlaylistManager == null)
+            return;
+
+        final Disposable action;
+
+        if (currentInfo != null && playlistEntity == null) {
+            action = remotePlaylistManager.onBookmark(currentInfo)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(ignored -> {/* Do nothing */}, this::onError);
+        } else if (playlistEntity != null) {
+            action = remotePlaylistManager.deletePlaylist(playlistEntity.getUid())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doFinally(() -> playlistEntity = null)
+                    .subscribe(ignored -> {/* Do nothing */}, this::onError);
+        } else {
+            action = Disposables.empty();
+        }
+
+        disposables.add(action);
+    }
+
+    private void updateBookmarkButtons() {
+        if (playlistBookmarkButton == null || activity == null) return;
+
+        final int iconAttr = playlistEntity == null ?
+                R.attr.ic_playlist_add : R.attr.ic_playlist_check;
+
+        final int titleRes = playlistEntity == null ?
+                R.string.bookmark_playlist : R.string.unbookmark_playlist;
+
+        playlistBookmarkButton.setIcon(ThemeHelper.resolveResourceIdFromAttr(activity, iconAttr));
+        playlistBookmarkButton.setTitle(titleRes);
     }
 }

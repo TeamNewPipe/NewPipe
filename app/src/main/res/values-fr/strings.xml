@@ -328,4 +328,60 @@
     
     <string name="preferred_player_fetcher_notification_title">Obtention des infos…</string>
     <string name="preferred_player_fetcher_notification_message">Le contenu demandé est en chargement</string>
+    <string name="import_data_title">Importer les données</string>
+    <string name="export_data_title">Exporter les données</string>
+    <string name="import_data_summary">Cela effacera vos données actuelles</string>
+    <string name="export_data_summary">Exporter votre historique, vos abonnements et vos listes de lecture</string>
+    <string name="export_complete_toast">Exportation terminée</string>
+    <string name="import_complete_toast">Importation terminée</string>
+    <string name="no_valid_zip_file">Aucun fichier ZIP valide</string>
+    <string name="could_not_import_all_files">Avertissement: Impossible d\'importer tous les fichiers.</string>
+    <string name="override_current_data">Cela effacera vos paramètres actuels</string>
+
+    <string name="show_info">Afficher les infos</string>
+
+    <string name="tab_bookmarks">Marque-pages</string>
+
+    <string name="controls_add_to_playlist_title">Ajouter à</string>
+
+    <string name="detail_drag_description">Faites glisser pour réorganiser</string>
+
+    <string name="create">Créer</string>
+    <string name="dismiss">Ignorer</string>
+    <string name="rename">Renommer</string>
+
+    <string name="title_last_played">Dernière lecture</string>
+    <string name="delete_all">Tout supprimer</string>
+    <string name="delete_stream_history_prompt">Voulez vous supprimer cet élément de votre historique ?</string>
+    <string name="delete_all_history_prompt">Êtes vous sûr de supprimer tout votre historique ?</string>
+    <string name="title_most_played">Titres les plus joués</string>
+
+    <string name="always_ask_open_action">Toujours demander</string>
+    
+    <string name="create_playlist">Créer une nouvelle playlist</string>
+    <string name="delete_playlist">Supprimer la playlist</string>
+    <string name="rename_playlist">Renommer la playlist</string>
+    <string name="playlist_name_input">Nom</string>
+    <string name="append_playlist">Ajouter à la playlist</string>
+    <string name="set_as_playlist_thumbnail">Enregistrer la playlist en local</string>
+
+    <string name="bookmark_playlist">Marquer cette playlist</string>
+    <string name="unbookmark_playlist">Retirer la marque</string>
+
+    <string name="delete_playlist_prompt">Voulez-vous supprimer cette playlist ?</string>
+    <string name="playlist_creation_success">Playlist créée avec succès</string>
+    <string name="playlist_add_stream_success">Ajoutée à la playlist</string>
+    <string name="playlist_thumbnail_change_success">La playlist à été modifiée avec succès</string>
+    <string name="playlist_delete_failure">Échec de la suppression de la playlist</string>
+
+    <string name="caption_none">Aucun sous-titre</string>
+
+    <string name="resize_fit">Redimensionner</string>
+    <string name="resize_zoom">Zoom</string>
+
+    <string name="caption_font_size_settings_title">Taille de police des sous-titres</string>
+    <string name="smaller_caption_font_size">Police plus petite</string>
+    <string name="normal_caption_font_size">Police normale</string>
+    <string name="larger_caption_font_size">Police plus grande</string>
+
     </resources>

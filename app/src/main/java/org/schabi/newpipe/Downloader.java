@@ -1,20 +1,21 @@
 package org.schabi.newpipe;
 
-import android.util.Log;
+import android.support.annotation.Nullable;
+import android.text.TextUtils;
 
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
-import org.schabi.newpipe.util.ExtractorHelper;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.InterruptedIOException;
-import java.net.URL;
+import java.io.InputStream;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
-import javax.net.ssl.HttpsURLConnection;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 
 /*
@@ -38,32 +39,38 @@ import javax.net.ssl.HttpsURLConnection;
  */
 
 public class Downloader implements org.schabi.newpipe.extractor.Downloader {
-
     public static final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0";
-    private static String mCookies = "";
 
-    private static Downloader instance = null;
+    private static Downloader instance;
+    private String mCookies;
+    private OkHttpClient client;
 
-    private Downloader() {
+    private Downloader(OkHttpClient.Builder builder) {
+        this.client = builder
+                .readTimeout(30, TimeUnit.SECONDS)
+                //.cache(new Cache(new File(context.getExternalCacheDir(), "okhttp"), 16 * 1024 * 1024))
+                .build();
+    }
+
+    /**
+     * It's recommended to call exactly once in the entire lifetime of the application.
+     *
+     * @param builder if null, default builder will be used
+     */
+    public static Downloader init(@Nullable OkHttpClient.Builder builder) {
+        return instance = new Downloader(builder != null ? builder : new OkHttpClient.Builder());
     }
 
     public static Downloader getInstance() {
-        if (instance == null) {
-            synchronized (Downloader.class) {
-                if (instance == null) {
-                    instance = new Downloader();
-                }
-            }
-        }
         return instance;
     }
 
-    public static synchronized void setCookies(String cookies) {
-        Downloader.mCookies = cookies;
+    public String getCookies() {
+        return mCookies;
     }
 
-    public static synchronized String getCookies() {
-        return Downloader.mCookies;
+    public void setCookies(String cookies) {
+        mCookies = cookies;
     }
 
     /**
@@ -92,14 +99,44 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
      */
     @Override
     public String download(String siteUrl, Map<String, String> customProperties) throws IOException, ReCaptchaException {
-        URL url = new URL(siteUrl);
-        HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
-        Iterator it = customProperties.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry) it.next();
-            con.setRequestProperty((String) pair.getKey(), (String) pair.getValue());
+        return getBody(siteUrl, customProperties).string();
+    }
+
+    public InputStream stream(String siteUrl) throws IOException {
+        try {
+            return getBody(siteUrl, Collections.emptyMap()).byteStream();
+        } catch (ReCaptchaException e) {
+            throw new IOException(e.getMessage(), e.getCause());
         }
-        return dl(con);
+    }
+
+    private ResponseBody getBody(String siteUrl, Map<String, String> customProperties) throws IOException, ReCaptchaException {
+        final Request.Builder requestBuilder = new Request.Builder()
+                .method("GET", null).url(siteUrl)
+                .addHeader("User-Agent", USER_AGENT);
+
+        for (Map.Entry<String, String> header : customProperties.entrySet()) {
+            requestBuilder.addHeader(header.getKey(), header.getValue());
+        }
+
+        if (!TextUtils.isEmpty(mCookies)) {
+            requestBuilder.addHeader("Cookie", mCookies);
+        }
+
+        final Request request = requestBuilder.build();
+        final Response response = client.newCall(request).execute();
+        final ResponseBody body = response.body();
+
+        if (response.code() == 429) {
+            throw new ReCaptchaException("reCaptcha Challenge requested");
+        }
+
+        if (body == null) {
+            response.close();
+            return null;
+        }
+
+        return body;
     }
 
     /**
@@ -111,57 +148,6 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
      */
     @Override
     public String download(String siteUrl) throws IOException, ReCaptchaException {
-        URL url = new URL(siteUrl);
-        HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
-        //HttpsURLConnection con = NetCipher.getHttpsURLConnection(url);
-        return dl(con);
-    }
-
-    /**
-     * Common functionality between download(String url) and download(String url, String language)
-     */
-    private static String dl(HttpsURLConnection con) throws IOException, ReCaptchaException {
-        StringBuilder response = new StringBuilder();
-        BufferedReader in = null;
-
-        try {
-            con.setReadTimeout(30 * 1000);// 30s
-            con.setRequestMethod("GET");
-            con.setRequestProperty("User-Agent", USER_AGENT);
-
-            if (getCookies().length() > 0) {
-                con.setRequestProperty("Cookie", getCookies());
-            }
-
-            in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-            String inputLine;
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-        } catch (Exception e) {
-            Log.e("Downloader", "dl() ----- Exception thrown → " + e.getClass().getName());
-
-            if (ExtractorHelper.isInterruptedCaused(e)) {
-                throw new InterruptedIOException(e.getMessage());
-            }
-
-            /*
-             * HTTP 429 == Too Many Request
-             * Receive from Youtube.com = ReCaptcha challenge request
-             * See : https://github.com/rg3/youtube-dl/issues/5138
-             */
-            if (con.getResponseCode() == 429) {
-                throw new ReCaptchaException("reCaptcha Challenge requested");
-            }
-
-            throw new IOException(con.getResponseCode() + " " + con.getResponseMessage(), e);
-        } finally {
-            if (in != null) {
-                in.close();
-            }
-        }
-
-        return response.toString();
+        return download(siteUrl, Collections.emptyMap());
     }
 }

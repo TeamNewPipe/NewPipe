@@ -175,4 +175,30 @@
     <!-- End of GigaGet's Strings -->
 
     <string name="info_labels">কি:\\nঅনুরোধ:\\nকন্টেন্ট ভাষা:\\nসার্ভিস:\\nসময়(GMT এ):\\nপ্যাকেজ:\\nসংস্করণ:\\nওএস সংস্করণ:\\nআইপি পরিসর:</string>
-</resources>
+<string name="controls_download_desc">Stream file ডাউনলোড করুন।</string>
+    <string name="show_info">তথ্য দেখান</string>
+
+    <string name="fragment_whats_new">কি নতুন</string>
+
+    <string name="controls_add_to_playlist_title">যুক্ত করুন</string>
+
+    <string name="enable_search_history_title">খোজ ইতিহাস</string>
+    <string name="enable_watch_history_title">ইতিহাস</string>
+    <string name="service_title">সেবা</string>
+    <string name="settings_category_player_title">প্লেয়ার</string>
+    <string name="settings_category_player_behavior_title">ব্যাবহার</string>
+    <string name="settings_category_history_title">ইতিহাস</string>
+    <string name="settings_category_debug_title">ডিবাগ</string>
+    <string name="playlist">প্লেলিস্ট</string>
+    <string name="always">সবসময়</string>
+    <string name="just_once">একবার মাত্র</string>
+
+    <string name="unknown_content">[অজানা]</string>
+
+    <string name="no_views">কোন ভিউ নেই</string>
+    <string name="rename">নাম পরিবর্তন করুন</string>
+
+    <string name="action_settings">সেটিংস</string>
+    <string name="action_open_website">ওয়েব সাইট খুলুন</string>
+    <string name="website_title">ওয়েব সাইট</string>
+    </resources>

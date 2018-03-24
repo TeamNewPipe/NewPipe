@@ -9,10 +9,12 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/items_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:scrollbars="vertical"
         app:layoutManager="LinearLayoutManager"
-        tools:listitem="@layout/list_channel_item"/>
+        android:visibility="gone"
+        tools:listitem="@layout/list_channel_item"
+        tools:visibility="visible"/>
 
     <!--ERROR PANEL-->
     <include
@@ -21,16 +23,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_below="@id/items_list"
         android:layout_marginTop="50dp"
         android:visibility="gone"
         tools:visibility="visible"/>
 
     <include
         android:id="@+id/empty_state_view"
-        layout="@layout/subscription_feed_empty_view"
+        layout="@layout/list_empty_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:layout_below="@id/items_list"
         android:layout_marginTop="50dp"
         android:visibility="gone"
         tools:visibility="visible"/>

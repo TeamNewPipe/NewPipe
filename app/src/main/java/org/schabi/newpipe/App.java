@@ -1,23 +1,25 @@
 package org.schabi.newpipe;
 
-import android.app.AlarmManager;
 import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
 
 import org.acra.ACRA;
 import org.acra.config.ACRAConfiguration;
 import org.acra.config.ACRAConfigurationException;
 import org.acra.config.ConfigurationBuilder;
 import org.acra.sender.ReportSenderFactory;
+import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.report.AcraReportSenderFactory;
 import org.schabi.newpipe.report.ErrorActivity;
@@ -29,9 +31,13 @@ import org.schabi.newpipe.util.StateSaver;
 import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.net.SocketException;
+import java.util.Collections;
+import java.util.List;
 
 import io.reactivex.annotations.NonNull;
 import io.reactivex.exceptions.CompositeException;
+import io.reactivex.exceptions.MissingBackpressureException;
+import io.reactivex.exceptions.OnErrorNotImplementedException;
 import io.reactivex.exceptions.UndeliverableException;
 import io.reactivex.functions.Consumer;
 import io.reactivex.plugins.RxJavaPlugins;
@@ -56,6 +62,7 @@ import io.reactivex.plugins.RxJavaPlugins;
 
 public class App extends Application {
     protected static final String TAG = App.class.toString();
+    private RefWatcher refWatcher;
 
     @SuppressWarnings("unchecked")
     private static final Class<? extends ReportSenderFactory>[] reportSenderFactoryClasses = new Class[]{AcraReportSenderFactory.class};
@@ -71,19 +78,28 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
 
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
+        refWatcher = installLeakCanary();
+
         // Initialize settings first because others inits can use its values
         SettingsActivity.initSettings(this);
 
-        NewPipe.init(Downloader.getInstance());
-        NewPipeDatabase.init(this);
+        NewPipe.init(getDownloader());
         StateSaver.init(this);
         initNotificationChannel();
 
         // Initialize image loader
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
-        ImageLoader.getInstance().init(config);
+        ImageLoader.getInstance().init(getImageLoaderConfigurations(10, 50));
 
         configureRxJavaErrorHandler();
+    }
+
+    protected Downloader getDownloader() {
+        return org.schabi.newpipe.Downloader.init(null);
     }
 
     private void configureRxJavaErrorHandler() {
@@ -91,32 +107,68 @@ public class App extends Application {
         RxJavaPlugins.setErrorHandler(new Consumer<Throwable>() {
             @Override
             public void accept(@NonNull Throwable throwable) throws Exception {
-                Log.e(TAG, "RxJavaPlugins.ErrorHandler called with -> : throwable = [" + throwable.getClass().getName() + "]");
+                Log.e(TAG, "RxJavaPlugins.ErrorHandler called with -> : " +
+                        "throwable = [" + throwable.getClass().getName() + "]");
 
                 if (throwable instanceof UndeliverableException) {
                     // As UndeliverableException is a wrapper, get the cause of it to get the "real" exception
                     throwable = throwable.getCause();
                 }
 
+                final List<Throwable> errors;
                 if (throwable instanceof CompositeException) {
-                    for (Throwable element : ((CompositeException) throwable).getExceptions()) {
-                        if (checkThrowable(element)) return;
+                    errors = ((CompositeException) throwable).getExceptions();
+                } else {
+                    errors = Collections.singletonList(throwable);
+                }
+
+                for (final Throwable error : errors) {
+                    if (isThrowableIgnored(error)) return;
+                    if (isThrowableCritical(error)) {
+                        reportException(error);
+                        return;
                     }
                 }
 
-                if (checkThrowable(throwable)) return;
+                // Out-of-lifecycle exceptions should only be reported if a debug user wishes so,
+                // When exception is not reported, log it
+                if (isDisposedRxExceptionsReported()) {
+                    reportException(throwable);
+                } else {
+                    Log.e(TAG, "RxJavaPlugin: Undeliverable Exception received: ", throwable);
+                }
+            }
 
+            private boolean isThrowableIgnored(@NonNull final Throwable throwable) {
+                // Don't crash the application over a simple network problem
+                return ExtractorHelper.hasAssignableCauseThrowable(throwable,
+                        IOException.class, SocketException.class, // network api cancellation
+                        InterruptedException.class, InterruptedIOException.class); // blocking code disposed
+            }
+
+            private boolean isThrowableCritical(@NonNull final Throwable throwable) {
+                // Though these exceptions cannot be ignored
+                return ExtractorHelper.hasAssignableCauseThrowable(throwable,
+                        NullPointerException.class, IllegalArgumentException.class, // bug in app
+                        OnErrorNotImplementedException.class, MissingBackpressureException.class,
+                        IllegalStateException.class); // bug in operator
+            }
+
+            private void reportException(@NonNull final Throwable throwable) {
                 // Throw uncaught exception that will trigger the report system
                 Thread.currentThread().getUncaughtExceptionHandler()
                         .uncaughtException(Thread.currentThread(), throwable);
             }
-
-            private boolean checkThrowable(@NonNull Throwable throwable) {
-                // Don't crash the application over a simple network problem
-                return ExtractorHelper.hasAssignableCauseThrowable(throwable,
-                        IOException.class, SocketException.class, InterruptedException.class, InterruptedIOException.class);
-            }
         });
+    }
+
+    private ImageLoaderConfiguration getImageLoaderConfigurations(final int memoryCacheSizeMb,
+                                                                  final int diskCacheSizeMb) {
+        return new ImageLoaderConfiguration.Builder(this)
+                .memoryCache(new LRULimitedMemoryCache(memoryCacheSizeMb * 1024 * 1024))
+                .diskCacheSize(diskCacheSizeMb * 1024 * 1024)
+                .imageDownloader(new ImageDownloader(getApplicationContext()))
+                .build();
     }
 
     private void initACRA() {
@@ -152,4 +204,17 @@ public class App extends Application {
         mNotificationManager.createNotificationChannel(mChannel);
     }
 
+    @Nullable
+    public static RefWatcher getRefWatcher(Context context) {
+        final App application = (App) context.getApplicationContext();
+        return application.refWatcher;
+    }
+
+    protected RefWatcher installLeakCanary() {
+        return RefWatcher.DISABLED;
+    }
+
+    protected boolean isDisposedRxExceptionsReported() {
+        return false;
+    }
 }

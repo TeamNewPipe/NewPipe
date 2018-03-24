@@ -7,25 +7,36 @@ import android.support.annotation.NonNull;
 import org.schabi.newpipe.database.AppDatabase;
 
 import static org.schabi.newpipe.database.AppDatabase.DATABASE_NAME;
+import static org.schabi.newpipe.database.Migrations.MIGRATION_11_12;
 
 public final class NewPipeDatabase {
 
-    private static AppDatabase databaseInstance;
+    private static volatile AppDatabase databaseInstance;
 
     private NewPipeDatabase() {
         //no instance
     }
 
-    public static void init(Context context) {
-        databaseInstance = Room.databaseBuilder(context.getApplicationContext(),
-                AppDatabase.class, DATABASE_NAME
-        ).build();
+    private static AppDatabase getDatabase(Context context) {
+        return Room
+                .databaseBuilder(context.getApplicationContext(), AppDatabase.class, DATABASE_NAME)
+                .addMigrations(MIGRATION_11_12)
+                .fallbackToDestructiveMigration()
+                .build();
     }
 
     @NonNull
-    public static AppDatabase getInstance() {
-        if (databaseInstance == null) throw new RuntimeException("Database not initialized");
+    public static AppDatabase getInstance(@NonNull Context context) {
+        AppDatabase result = databaseInstance;
+        if (result == null) {
+            synchronized (NewPipeDatabase.class) {
+                result = databaseInstance;
+                if (result == null) {
+                    databaseInstance = (result = getDatabase(context));
+                }
+            }
+        }
 
-        return databaseInstance;
+        return result;
     }
 }

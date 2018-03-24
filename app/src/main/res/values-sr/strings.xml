@@ -299,4 +299,28 @@
     <string name="play_queue_remove">Уклони</string>
     <string name="play_queue_stream_detail">Детаљи</string>
     <string name="play_queue_audio_settings">Поставке звука</string>
+    <string name="no_player_found_toast">Нема плејера тока (можете инсталирати ВЛЦ)</string>
+    <string name="controls_download_desc">Преузимање фајла тока.</string>
+    <string name="show_info">Прикажи податке</string>
+
+    <string name="tab_bookmarks">Обележивачи</string>
+
+    <string name="controls_add_to_playlist_title">Додај у</string>
+
+    <string name="default_content_country_title">Подразумевана држава за садржај</string>
+    <string name="service_title">Услуга</string>
+    <string name="settings_category_debug_title">Исправљање грешака</string>
+    <string name="always">Увек</string>
+    <string name="just_once">Само једном</string>
+
+    <string name="unknown_content">[непознато]</string>
+
+    <string name="show_hold_to_append_title">Прикажи поруку \"задржи ради стављања у ред\"</string>
+    <string name="donation_title">Донирај</string>
+    <string name="donation_encouragement">ЊуПајп развијају волонтери у своје слободно време како би вама пружили најбоље искуство. Сада је време да им узвратите како би они могли да наставе са побољшавањем ЊуПајпа док уживају пијући кафу!</string>
+    <string name="give_back">Узврати</string>
+    <string name="website_title">Вебсајт</string>
+    <string name="website_encouragement">Да бисте добили више информација и најновије вести о ЊуПајпу посетите наш вебсајт.</string>
+    <string name="hold_to_append">Задржи за стављање у ред</string>
+    <string name="start_here_on_main">Пусти одавде</string>
     </resources>

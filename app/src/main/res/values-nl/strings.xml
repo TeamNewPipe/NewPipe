@@ -165,7 +165,7 @@ te openen in pop-upmodus</string>
     <string name="clear">Wissen</string>
 
     <string name="popup_remember_size_pos_title">Onthoud grootte en positie van pop-up</string>
-    <string name="popup_remember_size_pos_summary">Onthou laatste grootte en positie van pop-up</string>
+    <string name="popup_remember_size_pos_summary">Onthoud laatste grootte en positie van pop-up</string>
 
     <string name="settings_category_popup_title">Pop-up</string>
     <string name="popup_resizing_indicator_title">Bezig met schalen</string>
@@ -260,7 +260,7 @@ te openen in pop-upmodus</string>
 </plurals>
 
     <string name="item_deleted">Item verwijderd</string>
-<string name="delete_item_search_history">Wil je dit item uit je geschiedenis verwijderen?</string>
+<string name="delete_item_search_history">Wil je dit item uit je zoekgeschiedenis verwijderen?</string>
 <string name="show_hold_to_append_title">Toon tip voor ingedrukt houden om toe te voegen</string>
     <string name="show_hold_to_append_summary">Toon tip wanneer achtergrond- of pop-upknop is ingedrukt op de video-detailpagina</string>
     <string name="background_player_append">Toegevoegd aan wachtrij voor achtergrondspeler</string>
@@ -332,4 +332,118 @@ te openen in pop-upmodus</string>
     
     <string name="preferred_player_fetcher_notification_title">Info ophalen…</string>
     <string name="preferred_player_fetcher_notification_message">De gevraagde inhoud is aan het laden</string>
+<string name="import_data_title">Database importeren</string>
+    <string name="export_data_title">Database exporteren</string>
+    <string name="import_data_summary">Dit zal je huidige geschiedenis en abonnementen overschrijven</string>
+    <string name="export_data_summary">Exporteer geschiedenis, abonnementen en speellijsten.</string>
+    <string name="export_complete_toast">Export voltooid</string>
+    <string name="import_complete_toast">Import voltooid</string>
+    <string name="no_valid_zip_file">Geen geldig ZIP-bestand</string>
+    <string name="could_not_import_all_files">Opgelet: kon niet alle bestanden importeren.</string>
+    <string name="override_current_data">Dit zal je huidige configuratie overschrijven.</string>
+
+    <string name="controls_download_desc">Streambestand downloaden.</string>
+    <string name="show_info">Info tonen</string>
+
+    <string name="tab_bookmarks">Bladwijzers</string>
+
+    <string name="controls_add_to_playlist_title">Toevoegen aan</string>
+
+    <string name="detail_drag_description">Versleep om de volgorde te wijzigen</string>
+
+    <string name="create">Aanmaken</string>
+    <string name="delete_one">Één verwijderen</string>
+    <string name="delete_all">Alles verwijderen</string>
+    <string name="dismiss">Sluiten</string>
+    <string name="rename">Hernoemen</string>
+
+    <string name="delete_stream_history_prompt">Wil je dit item uit je kijkgeschiedenis verwijderen?</string>
+    <string name="delete_all_history_prompt">Wil je alle items uit je geschiedenis verwijderen?</string>
+    <string name="title_last_played">Laatst afgespeeld</string>
+    <string name="title_most_played">Meest afgespeeld</string>
+
+    <string name="always_ask_open_action">Altijd vragen</string>
+    
+    <string name="create_playlist">Nieuwe afspeellijst aanmaken</string>
+    <string name="delete_playlist">Afspeellijst verwijderen</string>
+    <string name="rename_playlist">Afspeellijst hernoemen</string>
+    <string name="playlist_name_input">Naam</string>
+    <string name="append_playlist">Toevoegen aan afspeellijst</string>
+    <string name="set_as_playlist_thumbnail">Instellen als miniatuur voor afspeellijst</string>
+
+    <string name="bookmark_playlist">Afspeellijst toevoegen aan bladwijzers</string>
+    <string name="unbookmark_playlist">Bladwijzer verwijderen</string>
+
+    <string name="delete_playlist_prompt">Wil je deze afspeellijst verwijderen?</string>
+    <string name="playlist_creation_success">Afspeellijst aangemaakt</string>
+    <string name="playlist_add_stream_success">Toegevoegd aan afspeellijst</string>
+    <string name="playlist_thumbnail_change_success">Miniatuur voor afspeellijst gewijzigd</string>
+    <string name="playlist_delete_failure">Verwijderen van afspeellijst mislukt</string>
+
+    <string name="caption_none">Geen bijschrift</string>
+
+    <string name="resize_fit">PASSEN</string>
+    <string name="resize_fill">OPVULLEN</string>
+    <string name="resize_zoom">INZOOMEN</string>
+
+    <string name="caption_font_size_settings_title">Lettergrootte van bijschrift</string>
+    <string name="smaller_caption_font_size">Kleiner lettertype</string>
+    <string name="normal_caption_font_size">Normaal lettertype</string>
+    <string name="larger_caption_font_size">Groter lettertype</string>
+
+	<string name="drawer_header_action_paceholder_text">Hier zal binnenkort iets verschijnen ;D</string>
+<string name="settings_category_debug_title">Foutopsporing</string>
+    <string name="caption_auto_generated">Automatisch gegenereerd</string>
+    <string name="enable_leak_canary_title">LeakCanary inschakelen</string>
+    <string name="enable_leak_canary_summary">Het monitoren van geheugenlekken kan ervoor zorgen dat de app niet goed meer reageert</string>
+
+    <string name="enable_disposed_exceptions_title">Ouf-of-Lifecycle-fouten melden</string>
+    <string name="enable_disposed_exceptions_summary">Forceer het melden van niet-bezorgbare Rx-uitzonderingen die gebeuren buten fragment of activiteitscyclus</string>
+
+<string name="use_inexact_seek_title">Snelle, minder exact spoelen gebruiken</string>
+    <string name="use_inexact_seek_summary">Minder exact spoelen laat de speler sneller posities zoeken met verminderde precisie</string>
+    <string name="auto_queue_title">Volgende stream automatisch in wachtrij plaatsen</string>
+    <string name="auto_queue_summary">Automatisch een gerealteerde stream toekennen als het afspelen van de laatste stream strat in een niet-herhalende afspeelwachtlijst.</string>
+    <string name="live_sync">SYNCHRONISEREN</string>
+
+    <string name="file">Bestand</string>
+
+    <string name="invalid_directory">Ongeldige map</string>
+    <string name="invalid_source">Ongeldig bestand/Ongeldige inhoudsbron</string>
+    <string name="invalid_file">Het bestand bestaat niet of u beschikt niet over voldoende machtiging om het te lezen/er naar te schrijven</string>
+    <string name="file_name_empty_error">De bestandsnaam mag niet leeg zijn</string>
+    <string name="error_occurred_detail">Er is een fout opgetreden: %1$s</string>
+
+    <string name="import_export_title">Importeren/Exporteren</string>
+    <string name="import_title">Importeren</string>
+    <string name="import_from">Importeren uit</string>
+    <string name="export_to">Exporteren naar</string>
+
+    <string name="import_ongoing">Bezig met importeren…</string>
+    <string name="export_ongoing">Bezig met exporteren…</string>
+
+    <string name="import_file_title">Bestand importeren</string>
+    <string name="previous_export">Vorige exportering</string>
+
+    <string name="subscriptions_import_unsuccessful">Importeren van abonnementen is mislukt</string>
+    <string name="subscriptions_export_unsuccessful">Exporteren van abonnementen is mislukt</string>
+
+    <string name="import_youtube_instructions">Als u uw YouTube-abonnementen wilt importeren, dan heeft u het exportbestand nodig. Dit kan worden gedownload door het volgen van onderstaande stappen:
+\n
+\n1. Ga naar dit adres: %1$s
+\n2. Log, indien nodig, in op uw account
+\n3. De download met het exportbestand zou nu moeten starten</string>
+    <string name="import_soundcloud_instructions">Als u uw SoundCloud-abonnementen wilt importeren, dan moet u uw profiel-URL of ID kennen. Als u hem kent, typ hem dan hieronder in.
+\n
+\nAls u hem niet kent, volg dan onderstaande stappen:
+\n
+\n1. Kies een webbrowser en schakel bureaubladmodus in (de website is niet beschikbaar voor mobiele apparaten)
+\n2. Volg deze link: %1$s
+\n3. Log, indien nodig, in op uw account
+\n4. Kopieer de link van de pagina waar u op terechtkomt (dat is uw profiel-URL)</string>
+    <string name="import_soundcloud_instructions_hint">uwid, soundcloud.com/uwid</string>
+
+    <string name="import_network_expensive_warning">Let op: deze actie kan veel MB\'s van uw netwerk gebruiken.
+\n
+\nWilt u doorgaan?</string>
 </resources>

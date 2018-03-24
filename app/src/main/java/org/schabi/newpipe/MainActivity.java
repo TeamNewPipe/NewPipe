@@ -22,12 +22,11 @@ package org.schabi.newpipe;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -37,46 +36,37 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import org.schabi.newpipe.database.AppDatabase;
-import org.schabi.newpipe.database.history.dao.HistoryDAO;
-import org.schabi.newpipe.database.history.dao.SearchHistoryDAO;
-import org.schabi.newpipe.database.history.dao.WatchHistoryDAO;
-import org.schabi.newpipe.database.history.model.HistoryEntry;
-import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
-import org.schabi.newpipe.database.history.model.WatchHistoryEntry;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
-import org.schabi.newpipe.extractor.stream.AudioStream;
-import org.schabi.newpipe.extractor.stream.StreamInfo;
-import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
-import org.schabi.newpipe.history.HistoryListener;
+import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.ThemeHelper;
 
-import java.util.Date;
-
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
-import io.reactivex.subjects.PublishSubject;
-
-public class MainActivity extends AppCompatActivity implements HistoryListener {
+public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
 
-    private SharedPreferences sharedPreferences;
     private ActionBarDrawerToggle toggle = null;
+    private DrawerLayout drawer = null;
+    private NavigationView drawerItems = null;
+    private TextView headerServiceView = null;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Activity's LifeCycle
@@ -86,7 +76,6 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
     protected void onCreate(Bundle savedInstanceState) {
         if (DEBUG) Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
 
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
 
         super.onCreate(savedInstanceState);
@@ -98,13 +87,12 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
 
         setSupportActionBar(findViewById(R.id.toolbar));
         setupDrawer();
-        initHistory();
     }
 
     private void setupDrawer() {
         final Toolbar toolbar = findViewById(R.id.toolbar);
-        final DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        final NavigationView drawerItems = findViewById(R.id.navigation);
+        drawer = findViewById(R.id.drawer_layout);
+        drawerItems = findViewById(R.id.navigation);
 
         //drawerItems.setItemIconTintList(null); // Set null to use the original icon
         drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
@@ -129,18 +117,47 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
                 }
             });
 
-            drawerItems.setNavigationItemSelectedListener(item -> {
-                if (item.getGroupId() == R.id.menu_services_group) {
-                    drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(false);
-                    ServiceHelper.setSelectedServiceId(this, item.getTitle().toString());
-                    drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
-                }
-                drawer.closeDrawers();
-                return true;
-            });
+            drawerItems.setNavigationItemSelectedListener(this::changeService);
+
+            setupDrawerFooter();
+            setupDrawerHeader();
         } else {
             drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         }
+    }
+
+    private boolean changeService(MenuItem item) {
+        if (item.getGroupId() == R.id.menu_services_group) {
+            drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(false);
+            ServiceHelper.setSelectedServiceId(this, item.getTitle().toString());
+            drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
+            headerServiceView.setText("gurken");
+        } else {
+            return false;
+        }
+        drawer.closeDrawers();
+        return true;
+    }
+
+    private void setupDrawerFooter() {
+        ImageButton settings = findViewById(R.id.drawer_settings);
+        ImageButton downloads = findViewById(R.id.drawer_downloads);
+        ImageButton history = findViewById(R.id.drawer_history);
+
+        settings.setOnClickListener(view -> NavigationHelper.openSettings(this));
+        downloads.setOnClickListener(view ->NavigationHelper.openDownloads(this));
+        history.setOnClickListener(view -> NavigationHelper.openHistory(this));
+    }
+
+    private void setupDrawerHeader() {
+        headerServiceView = findViewById(R.id.drawer_header_service_view);
+        Button action = findViewById(R.id.drawer_header_action_button);
+        action.setOnClickListener(view -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("https://newpipe.schabi.org/blog/"));
+            startActivity(intent);
+            drawer.closeDrawers();
+        });
     }
 
     @Override
@@ -149,13 +166,24 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
         if (!isChangingConfigurations()) {
             StateSaver.clearStateFiles();
         }
-
-        disposeHistory();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
+        // close drawer on return, and don't show animation, so its looks like the drawer isn't open
+        // when the user returns to MainActivity
+        drawer.closeDrawer(Gravity.START, false);
+        try {
+            if(BuildConfig.BUILD_TYPE != "release" ) {
+                String selectedServiceName = NewPipe.getService(
+                        ServiceHelper.getSelectedServiceId(this)).getServiceInfo().getName();
+                headerServiceView.setText(selectedServiceName);
+            }
+        } catch (Exception e) {
+            ErrorActivity.reportUiError(this, e);
+        }
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         if (sharedPreferences.getBoolean(Constants.KEY_THEME_CHANGE, false)) {
@@ -355,77 +383,6 @@ public class MainActivity extends AppCompatActivity implements HistoryListener {
             NavigationHelper.openSearchFragment(getSupportFragmentManager(), serviceId, searchQuery);
         } else {
             NavigationHelper.gotoMainFragment(getSupportFragmentManager());
-        }
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // History
-    //////////////////////////////////////////////////////////////////////////*/
-
-    private WatchHistoryDAO watchHistoryDAO;
-    private SearchHistoryDAO searchHistoryDAO;
-    private PublishSubject<HistoryEntry> historyEntrySubject;
-    private Disposable disposable;
-
-    private void initHistory() {
-        final AppDatabase database = NewPipeDatabase.getInstance();
-        watchHistoryDAO = database.watchHistoryDAO();
-        searchHistoryDAO = database.searchHistoryDAO();
-        historyEntrySubject = PublishSubject.create();
-        disposable = historyEntrySubject
-                .observeOn(Schedulers.io())
-                .subscribe(getHistoryEntryConsumer());
-    }
-
-    private void disposeHistory() {
-        if (disposable != null) disposable.dispose();
-        watchHistoryDAO = null;
-        searchHistoryDAO = null;
-    }
-
-    @NonNull
-    private Consumer<HistoryEntry> getHistoryEntryConsumer() {
-        return new Consumer<HistoryEntry>() {
-            @Override
-            public void accept(HistoryEntry historyEntry) throws Exception {
-                //noinspection unchecked
-                HistoryDAO<HistoryEntry> historyDAO = (HistoryDAO<HistoryEntry>)
-                        (historyEntry instanceof SearchHistoryEntry ? searchHistoryDAO : watchHistoryDAO);
-
-                HistoryEntry latestEntry = historyDAO.getLatestEntry();
-                if (historyEntry.hasEqualValues(latestEntry)) {
-                    latestEntry.setCreationDate(historyEntry.getCreationDate());
-                    historyDAO.update(latestEntry);
-                } else {
-                    historyDAO.insert(historyEntry);
-                }
-            }
-        };
-    }
-
-    private void addWatchHistoryEntry(StreamInfo streamInfo) {
-        if (sharedPreferences.getBoolean(getString(R.string.enable_watch_history_key), true)) {
-            WatchHistoryEntry entry = new WatchHistoryEntry(streamInfo);
-            historyEntrySubject.onNext(entry);
-        }
-    }
-
-    @Override
-    public void onVideoPlayed(StreamInfo streamInfo, @Nullable VideoStream videoStream) {
-        addWatchHistoryEntry(streamInfo);
-    }
-
-    @Override
-    public void onAudioPlayed(StreamInfo streamInfo, AudioStream audioStream) {
-        addWatchHistoryEntry(streamInfo);
-    }
-
-    @Override
-    public void onSearch(int serviceId, String query) {
-        // Add search history entry
-        if (sharedPreferences.getBoolean(getString(R.string.enable_search_history_key), true)) {
-            SearchHistoryEntry searchHistoryEntry = new SearchHistoryEntry(new Date(), serviceId, query);
-            historyEntrySubject.onNext(searchHistoryEntry);
         }
     }
 }

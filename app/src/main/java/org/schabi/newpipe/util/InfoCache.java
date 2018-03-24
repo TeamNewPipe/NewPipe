@@ -20,6 +20,7 @@
 package org.schabi.newpipe.util;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.util.LruCache;
 import android.util.Log;
 
@@ -28,6 +29,8 @@ import org.schabi.newpipe.extractor.Info;
 
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import static org.schabi.newpipe.extractor.ServiceList.SoundCloud;
 
 
 public final class InfoCache {
@@ -40,7 +43,6 @@ public final class InfoCache {
      * Trim the cache to this size
      */
     private static final int TRIM_CACHE_TO = 30;
-    private static final int DEFAULT_TIMEOUT_HOURS = 4;
 
     private static final LruCache<String, CacheData> lruCache = new LruCache<>(MAX_ITEMS_ON_CACHE);
 
@@ -52,6 +54,7 @@ public final class InfoCache {
         return instance;
     }
 
+    @Nullable
     public Info getFromKey(int serviceId, @NonNull String url) {
         if (DEBUG) Log.d(TAG, "getFromKey() called with: serviceId = [" + serviceId + "], url = [" + url + "]");
         synchronized (lruCache) {
@@ -59,18 +62,13 @@ public final class InfoCache {
         }
     }
 
-    public void putInfo(@NonNull Info info) {
+    public void putInfo(int serviceId, @NonNull String url, @NonNull Info info) {
         if (DEBUG) Log.d(TAG, "putInfo() called with: info = [" + info + "]");
-        synchronized (lruCache) {
-            final CacheData data = new CacheData(info, DEFAULT_TIMEOUT_HOURS, TimeUnit.HOURS);
-            lruCache.put(keyOf(info), data);
-        }
-    }
 
-    public void removeInfo(@NonNull Info info) {
-        if (DEBUG) Log.d(TAG, "removeInfo() called with: info = [" + info + "]");
+        final long expirationMillis = ServiceHelper.getCacheExpirationMillis(info.getServiceId());
         synchronized (lruCache) {
-            lruCache.remove(keyOf(info));
+            final CacheData data = new CacheData(info, expirationMillis);
+            lruCache.put(keyOf(serviceId, url), data);
         }
     }
 
@@ -102,10 +100,7 @@ public final class InfoCache {
         }
     }
 
-    private static String keyOf(@NonNull final Info info) {
-        return keyOf(info.getServiceId(), info.getUrl());
-    }
-
+    @NonNull
     private static String keyOf(final int serviceId, @NonNull final String url) {
         return serviceId + url;
     }
@@ -119,6 +114,7 @@ public final class InfoCache {
         }
     }
 
+    @Nullable
     private static Info getInfo(@NonNull final LruCache<String, CacheData> cache,
                                 @NonNull final String key) {
         final CacheData data = cache.get(key);
@@ -136,12 +132,8 @@ public final class InfoCache {
         final private long expireTimestamp;
         final private Info info;
 
-        private CacheData(@NonNull final Info info,
-                          final long timeout,
-                          @NonNull final TimeUnit timeUnit) {
-            this.expireTimestamp = System.currentTimeMillis() +
-                    TimeUnit.MILLISECONDS.convert(timeout, timeUnit);
-
+        private CacheData(@NonNull final Info info, final long timeoutMillis) {
+            this.expireTimestamp = System.currentTimeMillis() + timeoutMillis;
             this.info = info;
         }
 
