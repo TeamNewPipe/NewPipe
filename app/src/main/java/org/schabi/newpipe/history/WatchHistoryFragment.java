@@ -20,6 +20,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.history.model.StreamHistoryEntry;
 import org.schabi.newpipe.info_list.holder.StreamInfoItemHolder;
+import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 
@@ -147,7 +148,7 @@ public class WatchHistoryFragment extends HistoryFragment<StreamHistoryEntry> {
             holder.uploader.setText(entry.uploader);
             holder.duration.setText(Localization.getDurationString(entry.duration));
             ImageLoader.getInstance().displayImage(entry.thumbnailUrl, holder.thumbnailView,
-                    StreamInfoItemHolder.DISPLAY_THUMBNAIL_OPTIONS);
+                    ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
         }
     }
 

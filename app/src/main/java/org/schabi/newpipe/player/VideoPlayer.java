@@ -49,6 +49,7 @@ import android.widget.TextView;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.Format;
+import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.MergingMediaSource;
@@ -425,7 +426,7 @@ public abstract class VideoPlayer extends BasePlayer
         // Create subtitle sources
         for (final Subtitles subtitle : info.getSubtitles()) {
             final String mimeType = PlayerHelper.mimeTypesOf(subtitle.getFileType());
-            if (mimeType == null || context == null) continue;
+            if (mimeType == null) continue;
 
             final Format textFormat = Format.createTextSampleFormat(null, mimeType,
                     SELECTION_FLAG_AUTOSELECT, PlayerHelper.captionLanguageOf(context, subtitle));
@@ -524,6 +525,12 @@ public abstract class VideoPlayer extends BasePlayer
     }
 
     @Override
+    public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {
+        super.onPlaybackParametersChanged(playbackParameters);
+        playbackSpeedTextView.setText(formatSpeed(playbackParameters.speed));
+    }
+
+    @Override
     public void onVideoSizeChanged(int width, int height, int unappliedRotationDegrees, float pixelWidthHeightRatio) {
         if (DEBUG) {
             Log.d(TAG, "onVideoSizeChanged() called with: width / height = [" + width + " / " + height + " = " + (((float) width) / height) + "], unappliedRotationDegrees = [" + unappliedRotationDegrees + "], pixelWidthHeightRatio = [" + pixelWidthHeightRatio + "]");
@@ -599,7 +606,7 @@ public abstract class VideoPlayer extends BasePlayer
 
     @Override
     public void onUpdateProgress(int currentProgress, int duration, int bufferPercent) {
-        if (!isPrepared) return;
+        if (!isPrepared()) return;
 
         if (duration != playbackSeekBar.getMax()) {
             playbackEndTime.setText(getTimeString(duration));
@@ -615,6 +622,7 @@ public abstract class VideoPlayer extends BasePlayer
         if (DEBUG && bufferPercent % 20 == 0) { //Limit log
             Log.d(TAG, "updateProgress() called with: isVisible = " + isControlsVisible() + ", currentProgress = [" + currentProgress + "], duration = [" + duration + "], bufferPercent = [" + bufferPercent + "]");
         }
+        playbackLiveSync.setClickable(!isLiveEdge());
     }
 
     @Override
@@ -624,8 +632,6 @@ public abstract class VideoPlayer extends BasePlayer
     }
 
     protected void onFullScreenButtonClicked() {
-        if (!isPlayerReady()) return;
-
         changeState(STATE_BLOCKED);
     }
 
@@ -720,7 +726,7 @@ public abstract class VideoPlayer extends BasePlayer
         wasPlaying = simpleExoPlayer.getPlayWhenReady();
     }
 
-    private void onPlaybackSpeedClicked() {
+    public void onPlaybackSpeedClicked() {
         if (DEBUG) Log.d(TAG, "onPlaybackSpeedClicked() called");
         playbackSpeedPopupMenu.show();
         isSomePopupMenuVisible = true;
@@ -735,7 +741,7 @@ public abstract class VideoPlayer extends BasePlayer
     }
 
     private void onResizeClicked() {
-        if (getAspectRatioFrameLayout() != null && context != null) {
+        if (getAspectRatioFrameLayout() != null) {
             final int currentResizeMode = getAspectRatioFrameLayout().getResizeMode();
             final int newResizeMode = nextResizeMode(currentResizeMode);
             getAspectRatioFrameLayout().setResizeMode(newResizeMode);
@@ -772,7 +778,7 @@ public abstract class VideoPlayer extends BasePlayer
     public void onStopTrackingTouch(SeekBar seekBar) {
         if (DEBUG) Log.d(TAG, "onStopTrackingTouch() called with: seekBar = [" + seekBar + "]");
 
-        simpleExoPlayer.seekTo(seekBar.getProgress());
+        seekTo(seekBar.getProgress());
         if (wasPlaying || simpleExoPlayer.getDuration() == seekBar.getProgress()) simpleExoPlayer.setPlayWhenReady(true);
 
         playbackCurrentTime.setText(getTimeString(seekBar.getProgress()));

@@ -72,7 +72,13 @@ public class FailedMediaSource implements ManagedMediaSource {
     public void releaseSource() {}
 
     @Override
-    public boolean canReplace(@NonNull final PlayQueueItem newIdentity) {
+    public boolean shouldBeReplacedWith(@NonNull final PlayQueueItem newIdentity,
+                                        final boolean isInterruptable) {
         return newIdentity != playQueueItem || canRetry();
+    }
+
+    @Override
+    public boolean isStreamEqual(@NonNull PlayQueueItem stream) {
+        return playQueueItem == stream;
     }
 }

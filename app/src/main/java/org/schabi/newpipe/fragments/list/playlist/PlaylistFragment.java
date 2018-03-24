@@ -37,6 +37,7 @@ import org.schabi.newpipe.playlist.PlaylistPlayQueue;
 import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
@@ -271,7 +272,8 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
         playlistCtrl.setVisibility(View.VISIBLE);
 
-        imageLoader.displayImage(result.getUploaderAvatarUrl(), headerUploaderAvatar, DISPLAY_AVATAR_OPTIONS);
+        imageLoader.displayImage(result.getUploaderAvatarUrl(), headerUploaderAvatar,
+                ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
         headerStreamCount.setText(getResources().getQuantityString(R.plurals.videos,
                 (int) result.getStreamCount(), (int) result.getStreamCount()));
 

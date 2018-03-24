@@ -44,6 +44,7 @@ import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.subscription.SubscriptionService;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 
@@ -419,8 +420,10 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         super.handleResult(result);
 
         headerRootLayout.setVisibility(View.VISIBLE);
-        imageLoader.displayImage(result.getBannerUrl(), headerChannelBanner, DISPLAY_BANNER_OPTIONS);
-        imageLoader.displayImage(result.getAvatarUrl(), headerAvatarView, DISPLAY_AVATAR_OPTIONS);
+        imageLoader.displayImage(result.getBannerUrl(), headerChannelBanner,
+        		ImageDisplayConstants.DISPLAY_BANNER_OPTIONS);
+        imageLoader.displayImage(result.getAvatarUrl(), headerAvatarView,
+        		ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
 
         if (result.getSubscriberCount() != -1) {
             headerSubscribersTextView.setText(Localization.localizeSubscribersCount(activity, result.getSubscriberCount()));

@@ -74,6 +74,12 @@
     <string name="popup_remember_size_pos_summary">Remember last size and position of popup</string>
     <string name="use_inexact_seek_title">Use fast inexact seek</string>
     <string name="use_inexact_seek_summary">Inexact seek allows the player to seek to positions faster with reduced precision</string>
+    <string name="download_thumbnail_title">Load thumbnails</string>
+    <string name="download_thumbnail_summary">Disable to stop all thumbnails from loading and save on data and memory usage. Changing this will clear both in-memory and on-disk image cache.</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Image cache wiped</string>
+    <string name="metadata_cache_wipe_title">Wipe cached metadata</string>
+    <string name="metadata_cache_wipe_summary">Remove all cached webpage data</string>
+    <string name="metadata_cache_wipe_complete_notice">Metadata cache wiped</string>
     <string name="auto_queue_title">Auto-queue next stream</string>
     <string name="auto_queue_summary">Automatically append a related stream when playback starts on the last stream in a non-repeating play queue.</string>
     <string name="player_gesture_controls_title">Player gesture controls</string>
@@ -89,7 +95,7 @@
     <string name="download_dialog_title">Download</string>
     <string name="next_video_title">Next video</string>
     <string name="show_next_and_similar_title">Show next and similar videos</string>
-    <string name="show_hold_to_append_title">Show Hold to Append Tip</string>
+    <string name="show_hold_to_append_title">Show hold to append tip</string>
     <string name="show_hold_to_append_summary">Show tip when background or popup button is pressed on video details page</string>
     <string name="url_not_supported_toast">URL not supported</string>
     <string name="default_content_country_title">Default content country</string>
@@ -98,7 +104,7 @@
     <string name="settings_category_player_title">Player</string>
     <string name="settings_category_player_behavior_title">Behavior</string>
     <string name="settings_category_video_audio_title">Video &amp; Audio</string>
-    <string name="settings_category_history_title">History</string>
+    <string name="settings_category_history_title">History &amp; Cache</string>
     <string name="settings_category_popup_title">Popup</string>
     <string name="settings_category_appearance_title">Appearance</string>
     <string name="settings_category_other_title">Other</string>
@@ -418,18 +424,16 @@
     <string name="resize_zoom">ZOOM</string>
 
     <string name="caption_auto_generated">Auto-generated</string>
-    <string name="caption_font_size_settings_title">Caption Font Size</string>
-    <string name="smaller_caption_font_size">Smaller Font</string>
-    <string name="normal_caption_font_size">Normal Font</string>
-    <string name="larger_caption_font_size">Larger Font</string>
-
-    <string name="live_sync">SYNC</string>
+    <string name="caption_font_size_settings_title">Caption font size</string>
+    <string name="smaller_caption_font_size">Smaller font</string>
+    <string name="normal_caption_font_size">Normal font</string>
+    <string name="larger_caption_font_size">Larger font</string>
 
     <!-- Debug Settings -->
     <string name="enable_leak_canary_title">Enable LeakCanary</string>
     <string name="enable_leak_canary_summary">Memory leak monitoring may cause app to become unresponsive when heap dumping</string>
 
-    <string name="enable_disposed_exceptions_title">Report Out-of-Lifecycle Errors</string>
+    <string name="enable_disposed_exceptions_title">Report Out-of-lifecycle errors</string>
     <string name="enable_disposed_exceptions_summary">Force reporting of undeliverable Rx exceptions occurring outside of fragment or activity lifecycle after dispose</string>
 
     <!-- Subscriptions import/export -->
@@ -452,4 +456,12 @@
     <string name="import_soundcloud_instructions_hint">yourid, soundcloud.com/yourid</string>
 
     <string name="import_network_expensive_warning">Keep in mind that this operation can be network expensive.\n\nDo you want to continue?</string>
+
+    <!-- Playback Parameters -->
+    <string name="playback_speed_control">Playback Speed Control</string>
+    <string name="playback_tempo">Tempo</string>
+    <string name="playback_pitch">Pitch</string>
+    <string name="unhook_checkbox">Unhook (may cause distortion)</string>
+    <string name="playback_nightcore">Nightcore</string>
+    <string name="playback_default">Default</string>
 </resources>
