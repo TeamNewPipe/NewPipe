@@ -77,7 +77,7 @@ The more is done the better it gets!
 If you'd like to get involved, check our [contribution notes](.github/CONTRIBUTING.md).
 
 ## Donate
-If you like NewPipe we'd be happy about a donation. You can either donate via Bitcoin, Bountysource or Liberapay. For further information about donating to NewPipe, please visit our [website](https://newpipe.schabi.org/donate/).
+If you like NewPipe we'd be happy about a donation. You can either donate via Bitcoin, Bountysource or Liberapay. For further information about donating to NewPipe, please visit our [website](https://newpipe.schabi.org/donate).
 
 <table>
   <tr>
