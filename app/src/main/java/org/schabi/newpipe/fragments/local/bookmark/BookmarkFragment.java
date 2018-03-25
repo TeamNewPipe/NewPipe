@@ -79,7 +79,9 @@ public final class BookmarkFragment
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser) setTitle(getString(R.string.tab_bookmarks));
+        if (activity != null && isVisibleToUser) {
+            setTitle(activity.getString(R.string.tab_bookmarks));
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////
