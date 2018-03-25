@@ -150,6 +150,7 @@ public final class MainVideoPlayer extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         if (DEBUG) Log.d(TAG, "onResume() called");
+        if (isInMultiWindow()) return;
         if (playerImpl.getPlayer() != null && activityPaused && playerImpl.wasPlaying()
                 && !playerImpl.isPlaying()) {
             playerImpl.onPlay();
@@ -184,7 +185,7 @@ public final class MainVideoPlayer extends AppCompatActivity
     protected void onPause() {
         super.onPause();
         if (DEBUG) Log.d(TAG, "onPause() called");
-
+        if (isInMultiWindow()) return;
         if (playerImpl != null && playerImpl.getPlayer() != null && !activityPaused) {
             playerImpl.wasPlaying = playerImpl.isPlaying();
             playerImpl.onPause();
@@ -340,6 +341,10 @@ public final class MainVideoPlayer extends AppCompatActivity
         } else {
             shuffleButton.setAlpha(shuffleAlpha);
         }
+    }
+
+    private boolean isInMultiWindow() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && isInMultiWindowMode();
     }
 
     ////////////////////////////////////////////////////////////////////////////
