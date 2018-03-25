@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="false"
+    android:paddingLeft="@dimen/video_item_search_padding"
+    android:paddingRight="@dimen/video_item_search_padding"
+    android:paddingTop="@dimen/video_item_search_padding">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:scrollbarAlwaysDrawVerticalTrack="true">
+
+        <!-- START HERE -->
+        <TextView
+            android:id="@+id/tempoControlText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:text="@string/playback_tempo"
+            android:textStyle="bold"
+            android:textColor="?attr/colorAccent"
+            android:layout_alignParentTop="true"/>
+
+        <RelativeLayout
+            android:id="@+id/tempoControl"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp"
+            android:layout_below="@id/tempoControlText">
+
+            <TextView
+                android:id="@+id/tempoStepDown"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="--%"
+                android:textStyle="bold"
+                android:textColor="?attr/colorAccent"
+                android:background="?attr/selectableItemBackground"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                tools:ignore="HardcodedText"
+                tools:text="-5%"/>
+
+            <RelativeLayout
+                android:id="@+id/tempoDisplay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_toRightOf="@id/tempoStepDown"
+                android:layout_toEndOf="@id/tempoStepDown"
+                android:layout_toLeftOf="@id/tempoStepUp"
+                android:layout_toStartOf="@id/tempoStepUp">
+
+                <TextView
+                    android:id="@+id/tempoMinimumText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="-.--x"
+                    android:textColor="?attr/colorAccent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginStart="4dp"
+                    tools:ignore="HardcodedText"
+                    tools:text="1.00x"/>
+
+                <TextView
+                    android:id="@+id/tempoCurrentText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="---%"
+                    android:textColor="?attr/colorAccent"
+                    android:layout_centerHorizontal="true"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText"
+                    tools:text="100%"/>
+
+                <TextView
+                    android:id="@+id/tempoMaximumText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="---%"
+                    android:textColor="?attr/colorAccent"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginEnd="4dp"
+                    tools:ignore="HardcodedText"
+                    tools:text="300%"/>
+
+                <android.support.v7.widget.AppCompatSeekBar
+                    android:id="@+id/tempoSeekbar"
+                    style="@style/Widget.AppCompat.SeekBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tempoCurrentText"
+                    android:paddingBottom="4dp"
+                    tools:progress="50"/>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tempoStepUp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="+-%"
+                android:textStyle="bold"
+                android:textColor="?attr/colorAccent"
+                android:background="?attr/selectableItemBackground"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="4dp"
+                android:layout_marginEnd="4dp"
+                tools:ignore="HardcodedText"
+                tools:text="+5%"/>
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/separatorPitch"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/tempoControl"
+            android:layout_margin="@dimen/video_item_search_padding"
+            android:background="?attr/separator_color"/>
+
+        <TextView
+            android:id="@+id/pitchControlText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:text="@string/playback_pitch"
+            android:textStyle="bold"
+            android:textColor="?attr/colorAccent"
+            android:layout_below="@id/separatorPitch"/>
+
+        <RelativeLayout
+            android:id="@+id/pitchControl"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp"
+            android:layout_below="@id/pitchControlText">
+
+            <TextView
+                android:id="@+id/pitchStepDown"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="--%"
+                android:textStyle="bold"
+                android:textColor="?attr/colorAccent"
+                android:background="?attr/selectableItemBackground"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                tools:ignore="HardcodedText"
+                tools:text="-5%"/>
+
+            <RelativeLayout
+                android:id="@+id/pitchDisplay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_toRightOf="@+id/pitchStepDown"
+                android:layout_toEndOf="@+id/pitchStepDown"
+                android:layout_toLeftOf="@+id/pitchStepUp"
+                android:layout_toStartOf="@+id/pitchStepUp">
+
+                <TextView
+                    android:id="@+id/pitchMinimumText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="---%"
+                    android:textColor="?attr/colorAccent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginStart="4dp"
+                    tools:ignore="HardcodedText"
+                    tools:text="25%"/>
+
+                <TextView
+                    android:id="@+id/pitchCurrentText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="---%"
+                    android:textColor="?attr/colorAccent"
+                    android:layout_centerHorizontal="true"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText"
+                    tools:text="100%"/>
+
+                <TextView
+                    android:id="@+id/pitchMaximumText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="---%"
+                    android:textColor="?attr/colorAccent"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginEnd="4dp"
+                    tools:ignore="HardcodedText"
+                    tools:text="300%"/>
+
+                <android.support.v7.widget.AppCompatSeekBar
+                    android:id="@+id/pitchSeekbar"
+                    style="@style/Widget.AppCompat.SeekBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/pitchCurrentText"
+                    android:paddingBottom="4dp"
+                    tools:progress="50"/>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/pitchStepUp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="+-%"
+                android:textStyle="bold"
+                android:textColor="?attr/colorAccent"
+                android:background="?attr/selectableItemBackground"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="4dp"
+                android:layout_marginEnd="4dp"
+                tools:ignore="HardcodedText"
+                tools:text="+5%"/>
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/separatorCheckbox"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/pitchControl"
+            android:layout_margin="@dimen/video_item_search_padding"
+            android:background="?attr/separator_color"/>
+
+        <CheckBox
+            android:id="@+id/unhookCheckbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/unhook_checkbox"
+            android:maxLines="1"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/separatorCheckbox"/>
+
+        <LinearLayout
+            android:id="@+id/presetSelector"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:layout_below="@id/unhookCheckbox">
+
+            <TextView
+                android:id="@+id/presetNightcore"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/playback_nightcore"
+                android:background="?attr/selectableItemBackground"
+                android:textColor="?attr/colorAccent"/>
+
+            <TextView
+                android:id="@+id/presetReset"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/playback_default"
+                android:background="?attr/selectableItemBackground"
+                android:textColor="?attr/colorAccent"/>
+        </LinearLayout>
+
+        <!-- END HERE -->
+
+    </RelativeLayout>
+</ScrollView>

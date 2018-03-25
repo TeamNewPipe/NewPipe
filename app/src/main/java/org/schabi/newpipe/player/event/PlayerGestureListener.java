@@ -45,7 +45,7 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
         if (DEBUG)
             Log.d(TAG, "onDoubleTap() called with: e = [" + e + "]" + "rawXy = " + e.getRawX() + ", " + e.getRawY() + ", xy = " + e.getX() + ", " + e.getY());
 
-        if (playerImpl.getPlayer() == null || !playerImpl.isPlaying() || !playerImpl.isPlayerReady())
+        if (playerImpl.getPlayer() == null || !playerImpl.isPlaying())
             return false;
 
         float widthToCheck = playerImpl.popupPlayerSelected() ? playerImpl.getPopupWidth() / 2 : playerImpl.getRootView().getWidth() / 2;
@@ -65,7 +65,7 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
             Log.d(TAG, "onSingleTapConfirmed() called with: e = [" + e + "]");
 
         if (playerImpl.popupPlayerSelected()) {
-            playerImpl.onVideoPlayPause();
+            playerImpl.onPlayPause();
             return true;
         }
 

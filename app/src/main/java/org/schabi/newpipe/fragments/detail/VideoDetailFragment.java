@@ -56,6 +56,7 @@ import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.nirhart.parallaxscroll.views.ParallaxScrollView;
 import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import org.schabi.newpipe.R;
@@ -85,11 +86,11 @@ import org.schabi.newpipe.player.event.PlayerServiceEventListener;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
 import org.schabi.newpipe.playlist.*;
-import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.settings.SettingsContentObserver;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.InfoCache;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
@@ -110,9 +111,6 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-import static org.schabi.newpipe.player.BasePlayer.STATE_PLAYING;
-import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_DURATION;
-import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 public class VideoDetailFragment
@@ -771,30 +769,25 @@ public class VideoDetailFragment
         };
     }
 
-    private void initThumbnailViews(StreamInfo info) {
+    private void initThumbnailViews(@NonNull StreamInfo info) {
         thumbnailImageView.setImageResource(R.drawable.dummy_thumbnail_dark);
         if (!TextUtils.isEmpty(info.getThumbnailUrl())) {
-            imageLoader.displayImage(
-                    info.getThumbnailUrl(),
-                    thumbnailImageView,
-                    DISPLAY_THUMBNAIL_OPTIONS, new SimpleImageLoadingListener() {
+            final String infoServiceName = NewPipe.getNameOfService(info.getServiceId());
+            final ImageLoadingListener onFailListener = new SimpleImageLoadingListener() {
                 @Override
                 public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                    ErrorActivity.reportError(
-                            activity,
-                            failReason.getCause(),
-                            null,
-                            activity.findViewById(android.R.id.content),
-                            ErrorActivity.ErrorInfo.make(UserAction.LOAD_IMAGE,
-                                    NewPipe.getNameOfService(currentInfo.getServiceId()),
-                                    imageUri,
-                                    R.string.could_not_load_thumbnails));
+                    showSnackBarError(failReason.getCause(), UserAction.LOAD_IMAGE,
+                            infoServiceName, imageUri, R.string.could_not_load_thumbnails);
                 }
-            });
+            };
+
+            imageLoader.displayImage(info.getThumbnailUrl(), thumbnailImageView,
+                    ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS, onFailListener);
         }
 
         if (!TextUtils.isEmpty(info.getUploaderAvatarUrl())) {
-            imageLoader.displayImage(info.getUploaderAvatarUrl(), uploaderThumb, DISPLAY_AVATAR_OPTIONS);
+            imageLoader.displayImage(info.getUploaderAvatarUrl(), uploaderThumb,
+                    ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
         }
     }
 

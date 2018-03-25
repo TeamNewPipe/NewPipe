@@ -33,7 +33,6 @@ import android.preference.PreferenceManager;
 import android.support.annotation.IntRange;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -82,7 +81,6 @@ public class MainPlayerService extends Service {
     private final String setAlphaMethodName = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) ? "setImageAlpha" : "setAlpha";
 
     private LockManager lockManager;
-    private ComponentName mReceiverComponent;
 
     private SharedPreferences defaultPreferences;
 
@@ -144,9 +142,7 @@ public class MainPlayerService extends Service {
         lockManager = new LockManager(this);
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         defaultPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mReceiverComponent = new ComponentName(this, MediaButtonReceiver.class);
         createView();
-        playerImpl.audioReactor.registerMediaButtonEventReceiver(mReceiverComponent);
     }
 
     private void createView() {
@@ -181,7 +177,6 @@ public class MainPlayerService extends Service {
         if (playerImpl != null) {
             removeViewFromParent();
 
-            playerImpl.audioReactor.unregisterMediaButtonEventReceiver(mReceiverComponent);
             playerImpl.destroy();
             playerImpl = null;
         }
@@ -432,44 +427,5 @@ public class MainPlayerService extends Service {
 
     public RemoteViews getNotRemoteView() {
         return notRemoteView;
-    }
-
-
-    public static class MediaButtonReceiver extends BroadcastReceiver {
-
-        public MediaButtonReceiver() {
-            super();
-        }
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (Intent.ACTION_MEDIA_BUTTON.equals(intent.getAction())) {
-                KeyEvent event = (KeyEvent) intent.getParcelableExtra(Intent.EXTRA_KEY_EVENT);
-                if (event.getAction() == KeyEvent.ACTION_UP) {
-                    int keycode = event.getKeyCode();
-                    PendingIntent pendingIntent = null;
-                    if (keycode == KeyEvent.KEYCODE_MEDIA_NEXT) {
-                        pendingIntent = PendingIntent.getBroadcast(context, NOTIFICATION_ID, new Intent(ACTION_PLAY_NEXT), PendingIntent.FLAG_UPDATE_CURRENT);
-                    } else if (keycode == KeyEvent.KEYCODE_MEDIA_PREVIOUS) {
-                        pendingIntent = PendingIntent.getBroadcast(context, NOTIFICATION_ID, new Intent(ACTION_PLAY_PREVIOUS), PendingIntent.FLAG_UPDATE_CURRENT);
-                    } else if (keycode == KeyEvent.KEYCODE_HEADSETHOOK || keycode == KeyEvent.KEYCODE_MEDIA_PAUSE || keycode == KeyEvent.KEYCODE_MEDIA_PLAY) {
-                        pendingIntent = PendingIntent.getBroadcast(context, NOTIFICATION_ID, new Intent(ACTION_PLAY_PAUSE), PendingIntent.FLAG_UPDATE_CURRENT);
-                    } else if (keycode == KeyEvent.KEYCODE_MEDIA_FAST_FORWARD) {
-                        pendingIntent = PendingIntent.getBroadcast(context, NOTIFICATION_ID, new Intent(ACTION_FAST_FORWARD), PendingIntent.FLAG_UPDATE_CURRENT);
-                    } else if (keycode == KeyEvent.KEYCODE_MEDIA_REWIND) {
-                        pendingIntent = PendingIntent.getBroadcast(context, NOTIFICATION_ID, new Intent(ACTION_FAST_REWIND), PendingIntent.FLAG_UPDATE_CURRENT);
-
-                        if (pendingIntent != null) {
-                            try {
-                                pendingIntent.send();
-                            } catch (Exception e) {
-                                Log.e(TAG, "Error Sending intent MediaButtonReceiver", e);
-                            }
-                        }
-
-                    }
-                }
-            }
-        }
     }
 }

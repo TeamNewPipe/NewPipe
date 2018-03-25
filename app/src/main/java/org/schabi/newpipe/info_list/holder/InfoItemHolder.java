@@ -4,8 +4,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 
@@ -38,16 +36,4 @@ public abstract class InfoItemHolder extends RecyclerView.ViewHolder {
     }
 
     public abstract void updateFromItem(final InfoItem infoItem);
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // ImageLoaderOptions
-    //////////////////////////////////////////////////////////////////////////*/
-
-    /**
-     * Base display options
-     */
-    public static final DisplayImageOptions BASE_DISPLAY_IMAGE_OPTIONS =
-            new DisplayImageOptions.Builder()
-                    .cacheInMemory(true)
-                    .build();
 }

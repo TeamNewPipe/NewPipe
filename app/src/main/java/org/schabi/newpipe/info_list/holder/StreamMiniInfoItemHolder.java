@@ -6,13 +6,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
 
 public class StreamMiniInfoItemHolder extends InfoItemHolder {
@@ -61,7 +60,7 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
         itemBuilder.getImageLoader()
                 .displayImage(item.getThumbnailUrl(),
                         itemThumbnailView,
-                        StreamInfoItemHolder.DISPLAY_THUMBNAIL_OPTIONS);
+                        ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
 
         itemView.setOnClickListener(view -> {
             if (itemBuilder.getOnStreamSelectedListener() != null) {
@@ -98,15 +97,4 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
         itemView.setLongClickable(false);
         itemView.setOnLongClickListener(null);
     }
-
-    /**
-     * Display options for stream thumbnails
-     */
-    public static final DisplayImageOptions DISPLAY_THUMBNAIL_OPTIONS =
-            new DisplayImageOptions.Builder()
-                    .cloneFrom(BASE_DISPLAY_IMAGE_OPTIONS)
-                    .showImageOnFail(R.drawable.dummy_thumbnail)
-                    .showImageForEmptyUri(R.drawable.dummy_thumbnail)
-                    .showImageOnLoading(R.drawable.dummy_thumbnail)
-                    .build();
 }

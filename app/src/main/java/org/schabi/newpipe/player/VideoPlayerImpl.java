@@ -12,6 +12,7 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.DisplayMetrics;
@@ -48,12 +49,10 @@ import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.event.PlayerGestureListener;
 import org.schabi.newpipe.player.event.PlayerServiceEventListener;
+import org.schabi.newpipe.player.helper.PlaybackParameterDialog;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
-import org.schabi.newpipe.playlist.PlayQueue;
-import org.schabi.newpipe.playlist.PlayQueueItem;
-import org.schabi.newpipe.playlist.PlayQueueItemBuilder;
-import org.schabi.newpipe.playlist.PlayQueueItemHolder;
+import org.schabi.newpipe.playlist.*;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ListHelper;
@@ -64,10 +63,19 @@ import java.util.List;
 import static org.schabi.newpipe.player.MainPlayerService.*;
 import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
 import static org.schabi.newpipe.player.helper.PlayerHelper.isUsingOldPlayer;
+import static org.schabi.newpipe.util.AnimationUtils.Type.SLIDE_AND_ALPHA;
+import static org.schabi.newpipe.util.AnimationUtils.animateRotation;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
+/**
+ * Implementation of VideoPlayer.
+ * Contains universal interface elements for player attached to fragment
+ * and for player in popup window. Audio-only mode is supported for both players.
+ *
+ * @authors mauriciocolli and avently
+ */
 @SuppressWarnings({"unused", "WeakerAccess"})
-public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeListener {
+public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeListener, PlaybackParameterDialog.Callback{
     private TextView titleTextView;
     private TextView channelTextView;
     private TextView volumeTextView;
@@ -217,6 +225,7 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
             moreOptionsButton.setImageDrawable(service.getResources().getDrawable(
                     R.drawable.ic_expand_more_white_24dp));
         }
+        animateRotation(moreOptionsButton, DEFAULT_CONTROLS_DURATION, 0);
     }
 
     @Override
@@ -239,13 +248,13 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
         moreOptionsButton.setOnClickListener(this);
     }
 
-    public Activity getParentActivity() {
+    public AppCompatActivity getParentActivity() {
         // ! instanceof ViewGroup means that view was added via windowManager for Popup
         if (getRootView().getParent() == null || !(getRootView().getParent() instanceof ViewGroup))
             return null;
 
         ViewGroup parent = (ViewGroup) getRootView().getParent();
-        return (Activity) parent.getContext();
+        return (AppCompatActivity) parent.getContext();
     }
 
     private boolean isLiveStream(StreamInfo info) {
@@ -309,6 +318,15 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
             default:
                 return AspectRatioFrameLayout.RESIZE_MODE_FIT;
         }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Playback Parameters Listener
+    ////////////////////////////////////////////////////////////////////////////
+
+    @Override
+    public void onPlaybackParameterChanged(float playbackTempo, float playbackPitch) {
+        setPlaybackParameters(playbackTempo, playbackPitch);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -384,6 +402,8 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
     @Override
     @Nullable
     public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
+        // For LiveStream or video/popup player we can use super() method
+        // but not for audio player
         if (!audioOnly || isLiveStream(info))
             return super.sourceOf(item, info);
         else {
@@ -478,7 +498,7 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
         super.onClick(v);
         if (v.getId() == playPauseButton.getId()) {
             useVideoSource(true);
-            onVideoPlayPause();
+            onPlayPause();
 
         } else if (v.getId() == playPreviousButton.getId()) {
             onPlayPrevious();
@@ -525,7 +545,8 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
         updatePlaybackButtons();
 
         getControlsRoot().setVisibility(View.INVISIBLE);
-        queueLayout.setVisibility(View.VISIBLE);
+        animateView(queueLayout, SLIDE_AND_ALPHA, /*visible=*/true,
+                DEFAULT_CONTROLS_DURATION);
 
         itemsList.scrollToPosition(playQueue.getIndex());
 
@@ -534,7 +555,8 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
     }
 
     private void onQueueClosed() {
-        queueLayout.setVisibility(View.GONE);
+        animateView(queueLayout, SLIDE_AND_ALPHA, /*visible=*/false,
+                DEFAULT_CONTROLS_DURATION);
         queueVisible = false;
     }
 
@@ -542,16 +564,13 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
         if (DEBUG)
             Log.d(TAG, "onMoreOptionsClicked() called");
 
-        // Don't use animateView. It gives unexpected result when switching from main to popup
-        if (getSecondaryControls().getVisibility() == View.VISIBLE) {
-            moreOptionsButton.setImageDrawable(service.getResources().getDrawable(
-                    R.drawable.ic_expand_more_white_24dp));
-            getSecondaryControls().setVisibility(View.GONE);
-        } else {
-            moreOptionsButton.setImageDrawable(service.getResources().getDrawable(
-                    R.drawable.ic_expand_less_white_24dp));
-            getSecondaryControls().setVisibility(View.VISIBLE);
-        }
+        final boolean isMoreControlsVisible = getSecondaryControls().getVisibility() == View.VISIBLE;
+
+        animateRotation(moreOptionsButton, DEFAULT_CONTROLS_DURATION,
+                isMoreControlsVisible ? 0 : 180);
+        animateView(getSecondaryControls(), SLIDE_AND_ALPHA, !isMoreControlsVisible,
+                DEFAULT_CONTROLS_DURATION);
+
         showControls(DEFAULT_CONTROLS_DURATION);
     }
 
@@ -562,6 +581,20 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
         service.toggleOrientation();
         onMoreOptionsClicked();
         showControlsThenHide();
+    }
+
+    @Override
+    public void onPlaybackSpeedClicked() {
+        // It is null in popup
+        if (getParentActivity() == null) {
+            super.onPlaybackSpeedClicked();
+            return;
+        }
+        // It hides status bar in fullscreen mode
+        hideSystemUIIfNeeded();
+
+        PlaybackParameterDialog.newInstance(getPlaybackSpeed(), getPlaybackPitch(), this)
+                .show(getParentActivity().getSupportFragmentManager(), TAG);
     }
 
     @Override
@@ -786,7 +819,7 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
                 onFastRewind();
                 break;
             case ACTION_PLAY_PAUSE:
-                onVideoPlayPause();
+                onPlayPause();
                 break;
             case ACTION_REPEAT:
                 onRepeatClicked();
@@ -883,7 +916,7 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
                             if (getRootView() == null || getRootView().getContext() == null || !isInFullscreen())
                                 return;
 
-                            Activity parent = getParentActivity();
+                            AppCompatActivity parent = getParentActivity();
                             if (parent == null)
                                 return;
 
@@ -940,7 +973,7 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
     }
 
     public void checkLandscape() {
-        Activity parent = getParentActivity();
+        AppCompatActivity parent = getParentActivity();
         if (parent != null && service.isLandscape() && !isInFullscreen() && getCurrentState() != STATE_COMPLETED && videoPlayerSelected())
             onFullScreenButtonClicked();
     }
@@ -1002,31 +1035,10 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
     }
 
     private ItemTouchHelper.SimpleCallback getItemTouchCallback() {
-        return new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN, 0) {
+        return new PlayQueueItemTouchCallback() {
             @Override
-            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder source, RecyclerView.ViewHolder target) {
-                if (source.getItemViewType() != target.getItemViewType()) {
-                    return false;
-                }
-
-                final int sourceIndex = source.getLayoutPosition();
-                final int targetIndex = target.getLayoutPosition();
-                playQueue.move(sourceIndex, targetIndex);
-                return true;
-            }
-
-            @Override
-            public boolean isLongPressDragEnabled() {
-                return false;
-            }
-
-            @Override
-            public boolean isItemViewSwipeEnabled() {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+            public void onMove(int sourceIndex, int targetIndex) {
+                if (playQueue != null) playQueue.move(sourceIndex, targetIndex);
             }
         };
     }

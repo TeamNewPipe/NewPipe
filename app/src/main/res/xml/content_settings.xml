@@ -37,6 +37,12 @@
         android:summary="@string/auto_queue_summary"
         android:title="@string/auto_queue_title"/>
 
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="@string/download_thumbnail_key"
+        android:title="@string/download_thumbnail_title"
+        android:summary="@string/download_thumbnail_summary"/>
+
     <ListPreference
         android:defaultValue="@string/kiosk_page_key"
         android:entries="@array/main_page_content_names"

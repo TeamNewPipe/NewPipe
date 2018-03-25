@@ -151,7 +151,10 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
 
     @Override
     public void showListFooter(final boolean show) {
-        itemsList.post(() -> itemListAdapter.showFooter(show));
+        if (itemsList == null) return;
+        itemsList.post(() -> {
+            if (itemListAdapter != null) itemListAdapter.showFooter(show);
+        });
     }
 
     @Override
