@@ -104,8 +104,8 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser) {
-            setTitle(getString(R.string.tab_subscriptions));
+        if (activity != null && isVisibleToUser) {
+            setTitle(activity.getString(R.string.tab_subscriptions));
         }
     }
 
