@@ -159,12 +159,12 @@
     <string name="enable_watch_history_summary">Вести облік перегляду відео</string>
     <string name="resume_on_audio_focus_gain_title">Відновити фокус</string>
     <string name="resume_on_audio_focus_gain_summary">Продовжувати відтворення опісля переривання (наприклад телефонний дзвінок)</string>
-    <string name="show_hold_to_append_title">Відображати вказівку Утримуйте для додачі</string>
+    <string name="show_hold_to_append_title">Показувати стримання для підказки</string>
     <string name="default_content_country_title">Усталена країна контенту</string>
     <string name="service_title">Сервіс</string>
     <string name="settings_category_player_title">Програвач</string>
     <string name="settings_category_player_behavior_title">Поведінка</string>
-    <string name="settings_category_history_title">Історія</string>
+    <string name="settings_category_history_title">Історія та кеш</string>
     <string name="settings_category_popup_title">Вікно</string>
     <string name="popup_playing_toast">Відворення у вікні</string>
     <string name="background_player_append">Додано до фонового програвання</string>
@@ -383,7 +383,7 @@
     <string name="enable_leak_canary_title">Увімкнути LeakCanary</string>
     <string name="enable_leak_canary_summary">Під час роботи LeakCanary застосунок може стати несприйнятливим під час гіп-дампінґу</string>
 
-    <string name="enable_disposed_exceptions_title">Зазвітувати Out-of-Lifecycle хиби</string>
+    <string name="enable_disposed_exceptions_title">Зазвітувати Out-of-lifecycle хиби</string>
     <string name="enable_disposed_exceptions_summary">Примусове звітування про неможливість доставлення Rx винятків, які відбуваються за межами фраґменту або діяльності життєвого циклу після усунення</string>
 
 <string name="use_inexact_seek_title">Використовувати неточне шукання</string>
@@ -433,4 +433,16 @@
     <string name="import_network_expensive_warning">Майте на увазі: ця операція може потребувати багато трафіку.
 \n
 \nПродовжуватимете?</string>
+<string name="download_thumbnail_title">Завантажити ескізи</string>
+    <string name="download_thumbnail_summary">Відключити аби зупинити завантаження ескізів та заощадити використання ресурсів та пам\'яті. Увімкнення функції призведе до повного вичищення кешу зображень.</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Кеш зображень стерто</string>
+    <string name="metadata_cache_wipe_title">Стерти кеш метаданих</string>
+    <string name="metadata_cache_wipe_summary">"Усунути всі кешовані дані веб-сторінки "</string>
+    <string name="metadata_cache_wipe_complete_notice">Кеш метаданих стерто</string>
+    <string name="playback_speed_control">Керування швидкістю програвання</string>
+    <string name="playback_tempo">Темп</string>
+    <string name="playback_pitch">Тон</string>
+    <string name="unhook_checkbox">Від\'єднати (може спричинити спотворення)</string>
+    <string name="playback_nightcore">Nightcore</string>
+    <string name="playback_default">Усталено</string>
 </resources>
