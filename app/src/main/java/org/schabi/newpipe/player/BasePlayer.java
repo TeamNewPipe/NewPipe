@@ -640,7 +640,7 @@ public abstract class BasePlayer implements
             seekTo(recoveryPositionMillis);
             playQueue.unsetRecovery(currentSourceIndex);
 
-        } else if (isSynchronizing && simpleExoPlayer.isCurrentWindowDynamic()) {
+        } else if (isSynchronizing && isLive()) {
             if (DEBUG) Log.d(TAG, "Playback - Synchronizing livestream to default time");
             // Is still synchronizing?
             seekToDefault();
@@ -789,7 +789,7 @@ public abstract class BasePlayer implements
     @Override
     public boolean isNearPlaybackEdge(final long timeToEndMillis) {
         // If live, then not near playback edge
-        if (simpleExoPlayer == null || simpleExoPlayer.isCurrentWindowDynamic()) return false;
+        if (simpleExoPlayer == null || isLive()) return false;
 
         final long currentPositionMillis = simpleExoPlayer.getCurrentPosition();
         final long currentDurationMillis = simpleExoPlayer.getDuration();
@@ -1127,9 +1127,7 @@ public abstract class BasePlayer implements
 
     /** Checks if the current playback is a livestream AND is playing at or beyond the live edge */
     public boolean isLiveEdge() {
-        if (simpleExoPlayer == null) return false;
-        final boolean isLive = simpleExoPlayer.isCurrentWindowDynamic();
-        if (!isLive) return false;
+        if (simpleExoPlayer == null || !isLive()) return false;
 
         final Timeline currentTimeline = simpleExoPlayer.getCurrentTimeline();
         final int currentWindowIndex = simpleExoPlayer.getCurrentWindowIndex();
@@ -1141,6 +1139,16 @@ public abstract class BasePlayer implements
         Timeline.Window timelineWindow = new Timeline.Window();
         currentTimeline.getWindow(currentWindowIndex, timelineWindow);
         return timelineWindow.getDefaultPositionMs() <= simpleExoPlayer.getCurrentPosition();
+    }
+
+    public boolean isLive() {
+        if (simpleExoPlayer == null) return false;
+        try {
+            return simpleExoPlayer.isCurrentWindowDynamic();
+        } catch (@NonNull IndexOutOfBoundsException ignored) {
+            // Why would this even happen =(
+            return false;
+        }
     }
 
     public boolean isPlaying() {

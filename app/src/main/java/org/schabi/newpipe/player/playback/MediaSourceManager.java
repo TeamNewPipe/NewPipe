@@ -6,7 +6,6 @@ import android.util.Log;
 
 import com.google.android.exoplayer2.source.DynamicConcatenatingMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.source.ShuffleOrder;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -14,6 +13,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.mediasource.FailedMediaSource;
 import org.schabi.newpipe.player.mediasource.LoadedMediaSource;
 import org.schabi.newpipe.player.mediasource.ManagedMediaSource;
+import org.schabi.newpipe.player.mediasource.ManagedMediaSourcePlaylist;
 import org.schabi.newpipe.player.mediasource.PlaceholderMediaSource;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueItem;
@@ -52,7 +52,6 @@ public class MediaSourceManager {
      * streams before will only be cached for future usage.
      *
      * @see #onMediaSourceReceived(PlayQueueItem, ManagedMediaSource)
-     * @see #update(int, MediaSource, Runnable)
      * */
     private final static int WINDOW_SIZE = 1;
 
@@ -103,7 +102,7 @@ public class MediaSourceManager {
 
     @NonNull private final AtomicBoolean isBlocked;
 
-    @NonNull private DynamicConcatenatingMediaSource sources;
+    @NonNull private ManagedMediaSourcePlaylist playlist;
 
     public MediaSourceManager(@NonNull final PlaybackListener listener,
                               @NonNull final PlayQueue playQueue) {
@@ -143,7 +142,7 @@ public class MediaSourceManager {
 
         this.isBlocked = new AtomicBoolean(false);
 
-        this.sources = new DynamicConcatenatingMediaSource();
+        this.playlist = new ManagedMediaSourcePlaylist();
 
         this.loadingItems = Collections.synchronizedSet(new HashSet<>());
 
@@ -167,7 +166,7 @@ public class MediaSourceManager {
         playQueueReactor.cancel();
         loaderReactor.dispose();
         syncReactor.dispose();
-        sources.releaseSource();
+        playlist.dispose();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -215,17 +214,18 @@ public class MediaSourceManager {
                 break;
             case REMOVE:
                 final RemoveEvent removeEvent = (RemoveEvent) event;
-                remove(removeEvent.getRemoveIndex());
+                playlist.remove(removeEvent.getRemoveIndex());
                 break;
             case MOVE:
                 final MoveEvent moveEvent = (MoveEvent) event;
-                move(moveEvent.getFromIndex(), moveEvent.getToIndex());
+                playlist.move(moveEvent.getFromIndex(), moveEvent.getToIndex());
                 break;
             case REORDER:
                 // Need to move to ensure the playing index from play queue matches that of
                 // the source timeline, and then window correction can take care of the rest
                 final ReorderEvent reorderEvent = (ReorderEvent) event;
-                move(reorderEvent.getFromSelectedIndex(), reorderEvent.getToSelectedIndex());
+                playlist.move(reorderEvent.getFromSelectedIndex(),
+                        reorderEvent.getToSelectedIndex());
                 break;
             case RECOVERY:
             default:
@@ -266,10 +266,9 @@ public class MediaSourceManager {
     }
 
     private boolean isPlaybackReady() {
-        if (sources.getSize() != playQueue.size()) return false;
+        final ManagedMediaSource mediaSource = playlist.get(playQueue.getIndex());
+        if (mediaSource == null) return false;
 
-        final ManagedMediaSource mediaSource =
-                (ManagedMediaSource) sources.getMediaSource(playQueue.getIndex());
         final PlayQueueItem playQueueItem = playQueue.getItem();
         return mediaSource.isStreamEqual(playQueueItem);
     }
@@ -290,7 +289,7 @@ public class MediaSourceManager {
 
         if (isPlayQueueReady() && isPlaybackReady() && isBlocked.get()) {
             isBlocked.set(false);
-            playbackListener.onPlaybackUnblock(sources);
+            playbackListener.onPlaybackUnblock(playlist.getParentMediaSource());
         }
     }
 
@@ -322,6 +321,7 @@ public class MediaSourceManager {
     }
 
     private void maybeSynchronizePlayer() {
+        cleanSweep();
         maybeUnblock();
         maybeSync();
     }
@@ -383,7 +383,7 @@ public class MediaSourceManager {
 
     private void maybeLoadItem(@NonNull final PlayQueueItem item) {
         if (DEBUG) Log.d(TAG, "maybeLoadItem() called.");
-        if (playQueue.indexOf(item) >= sources.getSize()) return;
+        if (playQueue.indexOf(item) >= playlist.size()) return;
 
         if (!loadingItems.contains(item) && isCorrectionNeeded(item)) {
             if (DEBUG) Log.d(TAG, "MediaSource - Loading=[" + item.getTitle() +
@@ -429,7 +429,7 @@ public class MediaSourceManager {
         if (itemIndex >= playQueue.getIndex() && isCorrectionNeeded(item)) {
             if (DEBUG) Log.d(TAG, "MediaSource - Updating index=[" + itemIndex + "] with " +
                     "title=[" + item.getTitle() + "] at url=[" + item.getUrl() + "]");
-            update(itemIndex, mediaSource, this::maybeSynchronizePlayer);
+            playlist.update(itemIndex, mediaSource, this::maybeSynchronizePlayer);
         }
     }
 
@@ -445,10 +445,8 @@ public class MediaSourceManager {
      * */
     private boolean isCorrectionNeeded(@NonNull final PlayQueueItem item) {
         final int index = playQueue.indexOf(item);
-        if (index == -1 || index >= sources.getSize()) return false;
-
-        final ManagedMediaSource mediaSource = (ManagedMediaSource) sources.getMediaSource(index);
-        return mediaSource.shouldBeReplacedWith(item,
+        final ManagedMediaSource mediaSource = playlist.get(index);
+        return mediaSource != null && mediaSource.shouldBeReplacedWith(item,
                 /*mightBeInProgress=*/index != playQueue.getIndex());
     }
 
@@ -465,10 +463,9 @@ public class MediaSourceManager {
      * */
     private void maybeRenewCurrentIndex() {
         final int currentIndex = playQueue.getIndex();
-        if (sources.getSize() <= currentIndex) return;
+        final ManagedMediaSource currentSource = playlist.get(currentIndex);
+        if (currentSource == null) return;
 
-        final ManagedMediaSource currentSource =
-                (ManagedMediaSource) sources.getMediaSource(currentIndex);
         final PlayQueueItem currentItem = playQueue.getItem();
         if (!currentSource.shouldBeReplacedWith(currentItem, /*canInterruptOnRenew=*/true)) {
             maybeSynchronizePlayer();
@@ -477,7 +474,19 @@ public class MediaSourceManager {
 
         if (DEBUG) Log.d(TAG, "MediaSource - Reloading currently playing, " +
                 "index=[" + currentIndex + "], item=[" + currentItem.getTitle() + "]");
-        update(currentIndex, new PlaceholderMediaSource(), this::loadImmediate);
+        playlist.invalidate(currentIndex, this::loadImmediate);
+    }
+
+    /**
+     * Scans the entire playlist for {@link MediaSource}s that requires correction,
+     * and replace these sources with a {@link PlaceholderMediaSource}.
+     * */
+    private void cleanSweep() {
+        for (int index = 0; index < playlist.size(); index++) {
+            if (isCorrectionNeeded(playQueue.getItem(index))) {
+                playlist.invalidate(index);
+            }
+        }
     }
     /*//////////////////////////////////////////////////////////////////////////
     // MediaSource Playlist Helpers
@@ -486,72 +495,14 @@ public class MediaSourceManager {
     private void resetSources() {
         if (DEBUG) Log.d(TAG, "resetSources() called.");
 
-        this.sources.releaseSource();
-        this.sources = new DynamicConcatenatingMediaSource(false,
-                // Shuffling is done on PlayQueue, thus no need to use ExoPlayer's shuffle order
-                new ShuffleOrder.UnshuffledShuffleOrder(0));
+        playlist.dispose();
+        playlist = new ManagedMediaSourcePlaylist();
     }
 
     private void populateSources() {
         if (DEBUG) Log.d(TAG, "populateSources() called.");
-        if (sources.getSize() >= playQueue.size()) return;
-
-        for (int index = sources.getSize() - 1; index < playQueue.size(); index++) {
-            emplace(index, new PlaceholderMediaSource());
+        while (playlist.size() < playQueue.size()) {
+            playlist.expand();
         }
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // MediaSource Playlist Manipulation
-    //////////////////////////////////////////////////////////////////////////*/
-
-    /**
-     * Places a {@link MediaSource} into the {@link DynamicConcatenatingMediaSource}
-     * with position in respect to the play queue only if no {@link MediaSource}
-     * already exists at the given index.
-     * */
-    private synchronized void emplace(final int index, @NonNull final MediaSource source) {
-        if (index < sources.getSize()) return;
-
-        sources.addMediaSource(index, source);
-    }
-
-    /**
-     * Removes a {@link MediaSource} from {@link DynamicConcatenatingMediaSource}
-     * at the given index. If this index is out of bound, then the removal is ignored.
-     * */
-    private synchronized void remove(final int index) {
-        if (index < 0 || index > sources.getSize()) return;
-
-        sources.removeMediaSource(index);
-    }
-
-    /**
-     * Moves a {@link MediaSource} in {@link DynamicConcatenatingMediaSource}
-     * from the given source index to the target index. If either index is out of bound,
-     * then the call is ignored.
-     * */
-    private synchronized void move(final int source, final int target) {
-        if (source < 0 || target < 0) return;
-        if (source >= sources.getSize() || target >= sources.getSize()) return;
-
-        sources.moveMediaSource(source, target);
-    }
-
-    /**
-     * Updates the {@link MediaSource} in {@link DynamicConcatenatingMediaSource}
-     * at the given index with a given {@link MediaSource}. If the index is out of bound,
-     * then the replacement is ignored.
-     * <br><br>
-     * Not recommended to use on indices LESS THAN the currently playing index, since
-     * this will modify the playback timeline prior to the index and may cause desynchronization
-     * on the playing item between {@link PlayQueue} and {@link DynamicConcatenatingMediaSource}.
-     * */
-    private synchronized void update(final int index, @NonNull final MediaSource source,
-                                     @Nullable final Runnable finalizingAction) {
-        if (index < 0 || index >= sources.getSize()) return;
-
-        sources.addMediaSource(index + 1, source, () ->
-                sources.removeMediaSource(index, finalizingAction));
     }
 }
