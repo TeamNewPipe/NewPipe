@@ -181,7 +181,7 @@
     <string name="resume_on_audio_focus_gain_summary">在干擾結束後繼續播放（例如有來電）</string>
     <string name="settings_category_player_title">播放器</string>
     <string name="settings_category_player_behavior_title">行為</string>
-    <string name="settings_category_history_title">歷史紀錄</string>
+    <string name="settings_category_history_title">歷史記錄和快取</string>
     <string name="playlist">播放清單</string>
     <string name="undo">復原</string>
 
@@ -241,7 +241,7 @@
     <string name="item_deleted">項目已刪除</string>
     <string name="delete_item_search_history">確定要刪除此項搜尋紀錄嗎？</string>
 <string name="no_player_found_toast">沒有找到串流播放器(你可以安裝 VLC播放器 來播放)</string>
-    <string name="show_hold_to_append_title">顯示鎖定到附加指引上</string>
+    <string name="show_hold_to_append_title">顯示鎖定到附加提示</string>
     <string name="default_content_country_title">預設內容國家</string>
     <string name="service_title">服務</string>
     <string name="background_player_append">在背景播放器上等候</string>
@@ -426,4 +426,16 @@
 \n2. 移至此網址：%1$s
 \n3. 詢問時登入到您的帳號
 \n4. 複製網址您會被重新導向(這是您的個人資料網址)</string>
-    </resources>
+    <string name="download_thumbnail_title">載入縮圖</string>
+    <string name="download_thumbnail_summary">停用可以停止載入所有的縮圖和儲存資料與使用的記憶體。更改此動作將清除在記憶體和磁碟上的影像快取。</string>
+    <string name="thumbnail_cache_wipe_complete_notice">圖片快取被抹除</string>
+    <string name="metadata_cache_wipe_title">抹除快取中介資料</string>
+    <string name="metadata_cache_wipe_summary">移除所有快取網頁的資料</string>
+    <string name="metadata_cache_wipe_complete_notice">中介資料快取已抹除</string>
+    <string name="playback_speed_control">重播速度控制</string>
+    <string name="playback_tempo">節拍</string>
+    <string name="playback_pitch">間距</string>
+    <string name="unhook_checkbox">解除 (可能導致失真)</string>
+    <string name="playback_nightcore">Nightcore</string>
+    <string name="playback_default">預設</string>
+</resources>
