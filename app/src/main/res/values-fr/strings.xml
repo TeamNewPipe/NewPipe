@@ -279,7 +279,7 @@
     <string name="play_queue_remove">Retirer</string>
     <string name="play_queue_stream_detail">Détails</string>
     <string name="play_queue_audio_settings">Paramètres audio</string>
-    <string name="show_hold_to_append_title">Afficher l\'aide \"Appui long pour mettre en file d\'attente\"</string>
+    <string name="show_hold_to_append_title">Afficher pop-up d\'aide</string>
     <string name="show_hold_to_append_summary">Afficher l\'aide en appuyant sur les boutons \"Arrière-plan\" et \"Fenêtre\" sur la page de détails d\'une vidéo</string>
     <string name="unknown_content">[Inconnu]</string>
 
@@ -383,5 +383,21 @@
     <string name="smaller_caption_font_size">Police plus petite</string>
     <string name="normal_caption_font_size">Police normale</string>
     <string name="larger_caption_font_size">Police plus grande</string>
+
+    <string name="use_inexact_seek_title">Recherche rapide approximative</string>
+    <string name="use_inexact_seek_summary">Permettre au lecteur d\'accéder plus rapidement à une position au détriment de la précision</string>
+    <string name="download_thumbnail_title">Charger imagettes</string>
+    <string name="download_thumbnail_summary">Si désactivé, le chargement des imagettes sera stoppé et elles seont supprimées de votre mémoire cache et de votre stockage. Permet de réduire l\'utilisation de mémoire et de données</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Le cache des images a été nettoyé</string>
+    <string name="metadata_cache_wipe_title">Supprimer les données en cache</string>
+    <string name="metadata_cache_wipe_summary">Supprimer toutes les pages web mises en cache</string>
+    <string name="metadata_cache_wipe_complete_notice">Données en cache supprimées</string>
+    <string name="file">Fichier</string>
+
+    <string name="invalid_directory">Dossier non valide</string>
+    <string name="invalid_source">Fichier/source du contenu non valide</string>
+    <string name="invalid_file">Le fichier n\'existe pas ou il n\'est pas permis de le lire</string>
+    <string name="file_name_empty_error">Le nom du fichier ne peut être vide</string>
+    <string name="error_occurred_detail">Une erreur s\'est produite: %1$s</string>
 
     </resources>
