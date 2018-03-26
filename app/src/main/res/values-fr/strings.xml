@@ -354,7 +354,7 @@
     <string name="delete_all">Tout supprimer</string>
     <string name="delete_stream_history_prompt">Voulez vous supprimer cet élément de votre historique ?</string>
     <string name="delete_all_history_prompt">Êtes vous sûr de supprimer tout votre historique ?</string>
-    <string name="title_most_played">Titres les plus joués</string>
+    <string name="title_most_played">Vidéos les plus regardées</string>
 
     <string name="always_ask_open_action">Toujours demander</string>
     
