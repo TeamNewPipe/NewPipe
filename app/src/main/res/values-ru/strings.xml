@@ -445,4 +445,5 @@
     <string name="import_network_expensive_warning">Помните, что за выход в интернет может взиматься плата.
 \n
 \nВы хотите продолжить?</string>
-</resources>
+<string name="download_thumbnail_title">Загрузить превью</string>
+    </resources>
