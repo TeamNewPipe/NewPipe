@@ -401,4 +401,7 @@
     <string name="error_occurred_detail">Une erreur s\'est produite: %1$s</string>
 
     <string name="delete_one">Supprimer un seul média</string>
+    <string name="drawer_header_action_paceholder_text">En cours de développement ;D</string>
+
+
     </resources>
