@@ -400,4 +400,5 @@
     <string name="file_name_empty_error">Le nom du fichier ne peut être vide</string>
     <string name="error_occurred_detail">Une erreur s\'est produite: %1$s</string>
 
+    <string name="delete_one">Supprimer un seul média</string>
     </resources>
