@@ -129,15 +129,16 @@ public class ManagedMediaSourcePlaylist {
         if (index < 0 || index >= internalSource.getSize()) return;
 
         // Add and remove are sequential on the same thread, therefore here, the exoplayer
-        // message queue must receive and process add before remove.
+        // message queue must receive and process add before remove, effectively treating them
+        // as atomic.
 
-        // However, finalizing action occurs strictly after the timeline has completed
-        // all its changes on the playback thread, so it is possible, in the meantime, other calls
-        // that modifies the playlist media source may occur in between. Therefore,
-        // it is not safe to call remove as the finalizing action of add.
+        // Since the finalizing action occurs strictly after the timeline has completed
+        // all its changes on the playback thread, thus, it is possible, in the meantime,
+        // other calls that modifies the playlist media source occur in between. This makes
+        // it unsafe to call remove as the finalizing action of add.
         internalSource.addMediaSource(index + 1, source);
 
-        // Also, because of the above, it is thus only safe to synchronize the player
+        // Because of the above race condition, it is thus only safe to synchronize the player
         // in the finalizing action AFTER the removal is complete and the timeline has changed.
         internalSource.removeMediaSource(index, finalizingAction);
     }

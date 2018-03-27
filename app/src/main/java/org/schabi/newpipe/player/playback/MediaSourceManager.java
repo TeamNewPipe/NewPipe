@@ -2,6 +2,7 @@ package org.schabi.newpipe.player.playback;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.util.ArraySet;
 import android.util.Log;
 
 import com.google.android.exoplayer2.source.DynamicConcatenatingMediaSource;
@@ -24,7 +25,6 @@ import org.schabi.newpipe.playlist.events.ReorderEvent;
 import org.schabi.newpipe.util.ServiceHelper;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -39,6 +39,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.internal.subscriptions.EmptySubscription;
 import io.reactivex.subjects.PublishSubject;
 
+import static org.schabi.newpipe.player.mediasource.FailedMediaSource.*;
 import static org.schabi.newpipe.playlist.PlayQueue.DEBUG;
 
 public class MediaSourceManager {
@@ -144,7 +145,7 @@ public class MediaSourceManager {
 
         this.playlist = new ManagedMediaSourcePlaylist();
 
-        this.loadingItems = Collections.synchronizedSet(new HashSet<>());
+        this.loadingItems = Collections.synchronizedSet(new ArraySet<>());
 
         playQueue.getBroadcastReceiver()
                 .observeOn(AndroidSchedulers.mainThread())
@@ -321,9 +322,9 @@ public class MediaSourceManager {
     }
 
     private void maybeSynchronizePlayer() {
-        cleanSweep();
         maybeUnblock();
         maybeSync();
+        cleanPlaylist();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -366,7 +367,7 @@ public class MediaSourceManager {
         final int leftBound = Math.max(0, currentIndex - WINDOW_SIZE);
         final int rightLimit = currentIndex + WINDOW_SIZE + 1;
         final int rightBound = Math.min(playQueue.size(), rightLimit);
-        final Set<PlayQueueItem> items = new HashSet<>(
+        final Set<PlayQueueItem> items = new ArraySet<>(
                 playQueue.getStreams().subList(leftBound,rightBound));
 
         // Do a round robin
@@ -402,19 +403,19 @@ public class MediaSourceManager {
         return stream.getStream().map(streamInfo -> {
             final MediaSource source = playbackListener.sourceOf(stream, streamInfo);
             if (source == null) {
-                final Exception exception = new IllegalStateException(
-                        "Unable to resolve source from stream info." +
-                                " URL: " + stream.getUrl() +
-                                ", audio count: " + streamInfo.getAudioStreams().size() +
-                                ", video count: " + streamInfo.getVideoOnlyStreams().size() +
-                                streamInfo.getVideoStreams().size());
-                return new FailedMediaSource(stream, exception);
+                final String message = "Unable to resolve source from stream info." +
+                        " URL: " + stream.getUrl() +
+                        ", audio count: " + streamInfo.getAudioStreams().size() +
+                        ", video count: " + streamInfo.getVideoOnlyStreams().size() +
+                        streamInfo.getVideoStreams().size();
+                return new FailedMediaSource(stream, new MediaSourceResolutionException(message));
             }
 
             final long expiration = System.currentTimeMillis() +
                     ServiceHelper.getCacheExpirationMillis(streamInfo.getServiceId());
             return new LoadedMediaSource(source, stream, expiration);
-        }).onErrorReturn(throwable -> new FailedMediaSource(stream, throwable));
+        }).onErrorReturn(throwable -> new FailedMediaSource(stream,
+                new StreamInfoLoadException(throwable)));
     }
 
     private void onMediaSourceReceived(@NonNull final PlayQueueItem item,
@@ -478,13 +479,15 @@ public class MediaSourceManager {
     }
 
     /**
-     * Scans the entire playlist for {@link MediaSource}s that requires correction,
-     * and replace these sources with a {@link PlaceholderMediaSource}.
+     * Scans the entire playlist for {@link ManagedMediaSource}s that requires correction,
+     * and replaces these sources with a {@link PlaceholderMediaSource} if they are not part
+     * of the excluded items.
      * */
-    private void cleanSweep() {
-        for (int index = 0; index < playlist.size(); index++) {
-            if (isCorrectionNeeded(playQueue.getItem(index))) {
-                playlist.invalidate(index);
+    private void cleanPlaylist() {
+        if (DEBUG) Log.d(TAG, "cleanPlaylist() called.");
+        for (final PlayQueueItem item : playQueue.getStreams()) {
+            if (isCorrectionNeeded(item)) {
+                playlist.invalidate(playQueue.indexOf(item));
             }
         }
     }

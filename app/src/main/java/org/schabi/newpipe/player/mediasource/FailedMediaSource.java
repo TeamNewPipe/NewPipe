@@ -14,13 +14,35 @@ import java.io.IOException;
 public class FailedMediaSource implements ManagedMediaSource {
     private final String TAG = "FailedMediaSource@" + Integer.toHexString(hashCode());
 
+    public static class FailedMediaSourceException extends IOException {
+        FailedMediaSourceException(String message) {
+            super(message);
+        }
+
+        FailedMediaSourceException(Throwable cause) {
+            super(cause);
+        }
+    }
+
+    public static final class MediaSourceResolutionException extends FailedMediaSourceException {
+        public MediaSourceResolutionException(String message) {
+            super(message);
+        }
+    }
+
+    public static final class StreamInfoLoadException extends FailedMediaSourceException {
+        public StreamInfoLoadException(Throwable cause) {
+            super(cause);
+        }
+    }
+
     private final PlayQueueItem playQueueItem;
-    private final Throwable error;
+    private final FailedMediaSourceException error;
 
     private final long retryTimestamp;
 
     public FailedMediaSource(@NonNull final PlayQueueItem playQueueItem,
-                             @NonNull final Throwable error,
+                             @NonNull final FailedMediaSourceException error,
                              final long retryTimestamp) {
         this.playQueueItem = playQueueItem;
         this.error = error;
@@ -32,7 +54,7 @@ public class FailedMediaSource implements ManagedMediaSource {
      * The error will always be propagated to ExoPlayer.
      * */
     public FailedMediaSource(@NonNull final PlayQueueItem playQueueItem,
-                             @NonNull final Throwable error) {
+                             @NonNull final FailedMediaSourceException error) {
         this.playQueueItem = playQueueItem;
         this.error = error;
         this.retryTimestamp = Long.MAX_VALUE;
@@ -42,7 +64,7 @@ public class FailedMediaSource implements ManagedMediaSource {
         return playQueueItem;
     }
 
-    public Throwable getError() {
+    public FailedMediaSourceException getError() {
         return error;
     }
 
@@ -57,7 +79,7 @@ public class FailedMediaSource implements ManagedMediaSource {
 
     @Override
     public void maybeThrowSourceInfoRefreshError() throws IOException {
-        throw new IOException(error);
+        throw error;
     }
 
     @Override

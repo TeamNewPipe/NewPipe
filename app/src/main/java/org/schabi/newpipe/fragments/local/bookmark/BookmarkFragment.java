@@ -56,7 +56,8 @@ public final class BookmarkFragment
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final AppDatabase database = NewPipeDatabase.getInstance(getContext());
+        if (activity == null) return;
+        final AppDatabase database = NewPipeDatabase.getInstance(activity);
         localPlaylistManager = new LocalPlaylistManager(database);
         remotePlaylistManager = new RemotePlaylistManager(database);
         disposables = new CompositeDisposable();

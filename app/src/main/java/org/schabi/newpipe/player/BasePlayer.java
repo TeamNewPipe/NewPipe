@@ -64,6 +64,7 @@ import org.schabi.newpipe.player.helper.LoadController;
 import org.schabi.newpipe.player.helper.MediaSessionManager;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.helper.PlayerHelper;
+import org.schabi.newpipe.player.mediasource.FailedMediaSource;
 import org.schabi.newpipe.player.playback.BasePlayerMediaSession;
 import org.schabi.newpipe.player.playback.CustomTrackSelector;
 import org.schabi.newpipe.player.playback.MediaSourceManager;
@@ -700,26 +701,6 @@ public abstract class BasePlayer implements
         }
     }
 
-    /**
-     * Processes {@link ExoPlaybackException} tagged with {@link ExoPlaybackException#TYPE_SOURCE}.
-     * <br><br>
-     * If the current {@link com.google.android.exoplayer2.Timeline.Window window} is valid,
-     * then we know the error is produced by transitioning into a bad window, therefore we report
-     * an error to the play queue based on if the current error can be skipped.
-     * <br><br>
-     * This is done because ExoPlayer reports the source exceptions before window is
-     * transitioned on seamless playback. Because player error causes ExoPlayer to go
-     * back to {@link Player#STATE_IDLE STATE_IDLE}, we reset and prepare the media source
-     * again to resume playback.
-     * <br><br>
-     * In the event that this error is produced during a valid stream playback, we save the
-     * current position so the playback may be recovered and resumed manually by the user. This
-     * happens only if the playback is {@link #RECOVERY_SKIP_THRESHOLD} milliseconds until complete.
-     * <br><br>
-     * In the event of livestreaming being lagged behind for any reason, most notably pausing for
-     * too long, a {@link BehindLiveWindowException} will be produced. This will trigger a reload
-     * instead of skipping or removal.
-     * */
     private void processSourceError(final IOException error) {
         if (simpleExoPlayer == null || playQueue == null) return;
 
@@ -733,8 +714,14 @@ public abstract class BasePlayer implements
             reload();
         } else if (cause instanceof UnknownHostException) {
             playQueue.error(/*isNetworkProblem=*/true);
+        } else if (isCurrentWindowValid()) {
+            playQueue.error(/*isTransitioningToBadStream=*/true);
+        } else if (error instanceof FailedMediaSource.MediaSourceResolutionException) {
+            playQueue.error(/*recoverableWithNoAvailableStream=*/false);
+        } else if (error instanceof FailedMediaSource.StreamInfoLoadException) {
+            playQueue.error(/*recoverableIfLoadFailsWhenNetworkIsFine=*/false);
         } else {
-            playQueue.error(isCurrentWindowValid());
+            playQueue.error(/*noIdeaWhatHappenedAndLetUserChooseWhatToDo=*/true);
         }
     }
 
