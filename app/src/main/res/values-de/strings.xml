@@ -227,7 +227,7 @@
 
     <string name="tab_main">Main</string>
     <string name="settings_category_player_behavior_title">Verhalten</string>
-    <string name="settings_category_history_title">Verlauf</string>
+    <string name="settings_category_history_title">Verlauf &amp; Cache</string>
     <string name="playlist">Playlist</string>
     <string name="undo">Rückgängig machen</string>
 
@@ -359,7 +359,7 @@
     <string name="create_playlist">Neue Playlist Erstellen</string>
     <string name="delete_playlist">Playlist Löschen</string>
     <string name="rename_playlist">Playlist umbenennen</string>
-    <string name="append_playlist">Zu Playlist Hinzufügen</string>
+    <string name="append_playlist">Zu Playlist hinzufügen</string>
     <string name="set_as_playlist_thumbnail">Als Thumbnail der Playlist festlegen</string>
 
     <string name="unbookmark_playlist">Lesezeichen entfernen</string>
@@ -406,4 +406,21 @@
     <string name="thumbnail_cache_wipe_complete_notice">Bildercache gelöscht</string>
     <string name="metadata_cache_wipe_title">Leere die gecachten Metadaten</string>
     <string name="metadata_cache_wipe_summary">Entfene alle gecachten Website-Daten</string>
-    </resources>
+    <string name="metadata_cache_wipe_complete_notice">Metadatencache gelöscht</string>
+    <string name="settings_category_debug_title">Fehlersuche</string>
+    <string name="invalid_source">Ungültige Datei-/Inhaltsquelle</string>
+    <string name="export_complete_toast">Export abgeschlossen</string>
+    <string name="import_complete_toast">Import abgeschlossen</string>
+    <string name="playlist_name_input">Name</string>
+    <string name="import_export_title">Import/Export</string>
+    <string name="import_title">Import</string>
+    <string name="subscriptions_import_unsuccessful">Import der Abonnements fehlgeschlagen</string>
+    <string name="subscriptions_export_unsuccessful">Export der Abonnements fehlgeschlagen</string>
+
+    <string name="playback_speed_control">Wiedergabegeschwindigkeit</string>
+    <string name="playback_tempo">Tempo</string>
+    <string name="playback_pitch">Tonhöhe</string>
+    <string name="unhook_checkbox">Aushaken (kann zu Verzerrungen führen)</string>
+    <string name="playback_nightcore">Nightcore</string>
+    <string name="playback_default">Standard</string>
+</resources>
