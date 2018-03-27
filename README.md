@@ -88,7 +88,7 @@ If you like NewPipe we'd be happy about a donation. You can either donate via Bi
   <tr>
     <td><a href="https://liberapay.com/TeamNewPipe/"><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Liberapay_logo_v2_white-on-yellow.svg" alt="Liberapay" width="80px" /></a></td>
     <td><a href="https://liberapay.com/TeamNewPipe/"><img src="assets/liberapay_qr_code.png" alt="Visit NewPipe at liberapay.com" width="100px"/></a></td>
-    <td><a href="https://liberapay.com/TeamNewPipe/donate/"><img src="assets/liberapay_donate_button.svg" alt="Donate via Liberapay" height="35px" /></a></td>
+    <td><a href="https://liberapay.com/TeamNewPipe/donate"><img src="assets/liberapay_donate_button.svg" alt="Donate via Liberapay" height="35px" /></a></td>
   </tr>
   <tr>
     <td><a href="https://www.bountysource.com/teams/newpipe"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Bountysource.png/320px-Bountysource.png" alt="Bountysource" width="190px" /></a></td>
