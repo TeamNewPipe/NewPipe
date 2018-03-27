@@ -371,7 +371,7 @@
     <string name="delete_playlist_prompt">Voulez-vous supprimer cette playlist ?</string>
     <string name="playlist_creation_success">Playlist créée avec succès</string>
     <string name="playlist_add_stream_success">Ajoutée à la playlist</string>
-    <string name="playlist_thumbnail_change_success">La playlist à été modifiée avec succès</string>
+    <string name="playlist_thumbnail_change_success">Modification de la playlist réussie</string>
     <string name="playlist_delete_failure">Échec de la suppression de la playlist</string>
 
     <string name="caption_none">Aucun sous-titre</string>
@@ -379,15 +379,15 @@
     <string name="resize_fit">Redimensionner</string>
     <string name="resize_zoom">Zoom</string>
 
-    <string name="caption_font_size_settings_title">Taille de police des sous-titres</string>
-    <string name="smaller_caption_font_size">Police plus petite</string>
-    <string name="normal_caption_font_size">Police normale</string>
-    <string name="larger_caption_font_size">Police plus grande</string>
+    <string name="caption_font_size_settings_title">Taille des sous-titres</string>
+    <string name="smaller_caption_font_size">Petite</string>
+    <string name="normal_caption_font_size">Normale</string>
+    <string name="larger_caption_font_size">Grande</string>
 
     <string name="use_inexact_seek_title">Recherche rapide approximative</string>
     <string name="use_inexact_seek_summary">Permettre au lecteur d\'accéder plus rapidement à une position au détriment de la précision</string>
     <string name="download_thumbnail_title">Charger imagettes</string>
-    <string name="download_thumbnail_summary">Si désactivé, le chargement des imagettes sera stoppé et elles seont supprimées de votre mémoire cache et de votre stockage. Permet de réduire l\'utilisation de mémoire et de données</string>
+    <string name="download_thumbnail_summary">Si désactivé, le chargement des imagettes sera stoppé et elles seont supprimées de votre mémoire cache et de votre stockage. Permet de réduire l\'utilisation de mémoire et de données.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Le cache des images a été nettoyé</string>
     <string name="metadata_cache_wipe_title">Supprimer les données en cache</string>
     <string name="metadata_cache_wipe_summary">Supprimer toutes les pages web mises en cache</string>
@@ -404,4 +404,53 @@
     <string name="drawer_header_action_paceholder_text">En cours de développement ;D</string>
 
 
-    </resources>
+    <string name="controls_download_desc">Télécharger le fichier de flux</string>
+    <string name="auto_queue_title">Vidéo suivante en file d\'attente</string>
+    <string name="auto_queue_summary">Mettre automatiquement en file d\'attente la vidéo suivante liée à la vidéo en cours de lecture (si vous n\'êtes pas en mode répétition)</string>
+    <string name="settings_category_debug_title">Débogage</string>
+    <string name="resize_fill">Remplir</string>
+    <string name="caption_auto_generated">Affichage automatique</string>
+    <string name="enable_leak_canary_title">Activer LeakCanary</string>
+    <string name="enable_leak_canary_summary">Surveiller la baisse de mémoire. L\'application pourrait ne plus répondre correctement</string>
+
+    <string name="enable_disposed_exceptions_title">Signaler erreurs Out-of-lifecycle</string>
+    <string name="enable_disposed_exceptions_summary">Forcer le signalement des exceptions Rx qui surviennent hors activité</string>
+
+    <string name="import_export_title">Importer/Exporter</string>
+    <string name="import_title">Importer</string>
+    <string name="import_from">Importer de</string>
+    <string name="export_to">Exporter vers</string>
+
+    <string name="import_ongoing">Importation en cours…</string>
+    <string name="export_ongoing">Exporation en cours…</string>
+
+    <string name="import_file_title">Importer fichier</string>
+    <string name="previous_export">Export précédent</string>
+
+    <string name="subscriptions_import_unsuccessful">Import des abonnements échoué</string>
+    <string name="subscriptions_export_unsuccessful">Export des abonnements échoué</string>
+
+    <string name="import_youtube_instructions">\"Pour importer vos abonnements YouTube vous devez d\'abord télécharger un fichier export de YouTube, selon les modalités suivantes:
+\n
+\n1. Allez à ce lien: %1$s
+\n2. Connectez-vous à votre compte
+\n3. Le téléchargement devrait démarrer (votre fichier export YouTube)\"</string>
+    <string name="import_soundcloud_instructions">Pour importer vos abonnements SoundCloud vous devez connaitre l\'URL de votre profil ou votre identifiant (id). Si vous le savez, tapez-le ci-dessous.
+\n
+\nSi vous ne le connaissez pas, veuillez suivre les étapes suivantes:
+\n
+\n1. Activer le \\\"mode bureau\\\" dans votre navigateur (le site n\'est pas accesible en mode mobile)
+\n2. Aller à ce lien: %1$s
+\n3. Connectez-vous à votre compte
+\n4. Copier l\'URL vers lequel vous venez d\'être redirigé (qui est l\'URL de votre profil)</string>
+    <string name="import_soundcloud_instructions_hint">votreid, soundcloud.com/votreid</string>
+
+    <string name="import_network_expensive_warning">N\'oubliez pas que cette opération peut consommer beaucoup de données mobiles.
+\n
+\nSouhaitez-vous continuer ?</string>
+
+    <string name="playback_speed_control">Vitesse de lecture</string>
+    <string name="playback_tempo"></string>
+    <string name="unhook_checkbox">Unhook (déformations possibles)</string>
+    <string name="playback_default">Défaut</string>
+</resources>
