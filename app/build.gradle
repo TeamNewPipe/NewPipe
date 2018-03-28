@@ -34,7 +34,17 @@ android {
             applicationIdSuffix ".beta"
         }
     }
-
+    flavorDimensions "platform"
+    productFlavors {
+        normal {
+            dimension "platform"
+        }
+        tv {
+            dimension "platform"
+            minSdkVersion 21
+            versionNameSuffix "-tv"
+        }
+    }
     lintOptions {
         checkReleaseBuilds false
         // Or, if you prefer, you can continue to check for errors in release builds,
@@ -71,6 +81,10 @@ dependencies {
     implementation "com.android.support:design:$supportLibVersion"
     implementation "com.android.support:recyclerview-v7:$supportLibVersion"
     implementation "com.android.support:preference-v14:$supportLibVersion"
+
+    tvImplementation "com.android.support:leanback-v17:$supportLibVersion"
+    tvImplementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    tvImplementation 'com.github.bumptech.glide:glide:3.8.0'
 
     implementation 'com.google.code.gson:gson:2.8.2'
     implementation 'ch.acra:acra:4.9.2'
