@@ -233,7 +233,7 @@ abrir en modo popup</string>
 
     <string name="settings_category_player_title">Reproductor</string>
     <string name="settings_category_player_behavior_title">Funcionamiento</string>
-    <string name="settings_category_history_title">Historial</string>
+    <string name="settings_category_history_title">Historial y Caché</string>
     <string name="playlist">Lista de reproducción</string>
     <string name="undo">Deshacer</string>
 
@@ -450,4 +450,16 @@ abrir en modo popup</string>
     <string name="import_network_expensive_warning">Tenga en cuenta que esta operación puede ser costosa para la red.
 \n
 \n¿Desea continuar?</string>
+<string name="download_thumbnail_title">Cargar Miniaturas</string>
+    <string name="download_thumbnail_summary">Descativar todas las miniaturas para evitar que se carguen, guarden datos y usen memoria. Al cambiar esto se borrarán tanto la caché de imágenes en la memoria como en el disco.</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Caché de imagen limpiado</string>
+    <string name="metadata_cache_wipe_title">Metadatos eliminados del caché</string>
+    <string name="metadata_cache_wipe_summary">Eliminar todos los datos de la página web en caché</string>
+    <string name="metadata_cache_wipe_complete_notice">Metadatos del caché limpiados</string>
+    <string name="playback_speed_control">Control de velocidad de la reproducción</string>
+    <string name="playback_tempo">Tiempo</string>
+    <string name="playback_pitch">Tono</string>
+    <string name="unhook_checkbox">Desenganchar (puede casusar distorsión)</string>
+    <string name="playback_nightcore">Nightcore (tipo de música)</string>
+    <string name="playback_default">Reproducción por defecto</string>
 </resources>
