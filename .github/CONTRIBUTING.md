@@ -11,6 +11,7 @@ Do not report crashes in the GitHub issue tracker. NewPipe has an automated cras
 
 * Search the [existing issues](https://github.com/TeamNewPipe/NewPipe/issues) first to make sure your issue/feature hasn't been reported/requested before
 * Check whether your issue/feature is already fixed/implemented
+* Check if the issue still exists in the latest release/beta version
 * If you are an Android/Java developer, you are always welcome to fix/implement an issue/a feature yourself. PRs welcome!
 * We use English for development. Issues in other languages will be closed and ignored.
 * Please only add *one* issue at a time. Do not put multiple issues into one thread.
