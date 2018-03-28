@@ -235,7 +235,7 @@
 <string name="tab_main">Principale</string>
     <string name="settings_category_player_title">Riproduttore</string>
     <string name="settings_category_player_behavior_title">Comportamento</string>
-    <string name="settings_category_history_title">Cronologia</string>
+    <string name="settings_category_history_title">Cronologia e cache</string>
     <string name="playlist">Scaletta</string>
     <string name="undo">Annulla</string>
 
@@ -411,4 +411,56 @@
     <string name="auto_queue_summary">Aggiungi automaticamente un flusso correlato mentre il playback parte dall\'ultimo flusso in una cosa non ripetitiva.</string>
     <string name="live_sync">SINCRONIZZAZIONE</string>
 
-    </resources>
+    <string name="file">File</string>
+
+    <string name="invalid_directory">Cartella invalida</string>
+    <string name="invalid_source">Fonte del contenuto o file invalido</string>
+    <string name="invalid_file">Il file non esiste o non si hanno i permessi sufficenti per leggerlo o scriverci</string>
+    <string name="file_name_empty_error">Il nome del file non può essere vuoto</string>
+    <string name="error_occurred_detail">Si è verificato un errore: %1$s</string>
+
+    <string name="import_export_title">Importa/Esporta</string>
+    <string name="import_title">Importa</string>
+    <string name="import_from">Importa da</string>
+    <string name="export_to">Esporta a</string>
+
+    <string name="import_ongoing">Importando…</string>
+    <string name="export_ongoing">Esportando…</string>
+
+    <string name="import_file_title">Importa file</string>
+    <string name="previous_export">Esportazione precedente</string>
+
+    <string name="subscriptions_import_unsuccessful">L\'importazione delle iscrizioni è fallita</string>
+    <string name="subscriptions_export_unsuccessful">L\'esportazione delle iscrizioni è fallita</string>
+
+    <string name="import_youtube_instructions">Per importare le tue iscrizioni YouTube devi procurarti il file d\'esportazione, il quale può essere scaricato seguendo le seguenti istruzioni:
+\n
+\n1. Vai a questo URL: %2$s
+\n2. Accedi al tuo account quando è richiedto
+\n3. Un download dovrebbe essere partito (è il file d\'esportazione)</string>
+    <string name="import_soundcloud_instructions">Per importare i tuoi seguiti di SoundCloud devi conoscere l\'URL del tuo profilo od il tuo ID. Se lo sai, ti basta scrivere uno dei due nell\'immisione in basso ed hai fatto.
+\n
+\nSe non lo sai, puoi seguire le seguenti istruzioni:
+\n
+\n1. Abilita la \"modalità desktop\" nel browser che usi (il sito non funziona nella modalità mobile)
+\n2. Vai a questo URL: %2$s
+\n3. Accedi al tuo account quando richiesto
+\n4. Copia l\'URL a cui vieni indirizzato (è l\'URL del tuo profilo)</string>
+    <string name="import_soundcloud_instructions_hint">iltuoid, soundcloud.com/iltuoid</string>
+
+    <string name="import_network_expensive_warning">Tieni in mente che questa operazione può richiedere un costo di connessione dati.
+\n
+\nVuoi continuare?</string>
+<string name="download_thumbnail_title">Carica miniature</string>
+    <string name="download_thumbnail_summary">Disabilita per fermare il caricamento delle miniature, la loro archiviazione nella memoria e l\'uso della memoria aggiuntiva. Cambiare questa opzione comporta alla cancellazione della cache sia in memoria che sul disco.</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Pulizia della cache delle immagini completata</string>
+    <string name="metadata_cache_wipe_title">Pulisci la cache dei metadati</string>
+    <string name="metadata_cache_wipe_summary">Rimuovi tutti i dati delle pagine web salvate</string>
+    <string name="metadata_cache_wipe_complete_notice">Pulizia della cache dei metadati completata</string>
+    <string name="playback_speed_control">Controllo della velocità del playback</string>
+    <string name="playback_tempo">Tempo</string>
+    <string name="playback_pitch">Tono</string>
+    <string name="unhook_checkbox">Slega (può causare distorsione)</string>
+    <string name="playback_nightcore">Nightcore</string>
+    <string name="playback_default">Valore predefinito</string>
+</resources>

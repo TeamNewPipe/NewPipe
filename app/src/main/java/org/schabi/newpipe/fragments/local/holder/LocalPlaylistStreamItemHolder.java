@@ -1,6 +1,5 @@
 package org.schabi.newpipe.fragments.local.holder;
 
-import android.graphics.Bitmap;
 import android.support.v4.content.ContextCompat;
 import android.view.MotionEvent;
 import android.view.View;
@@ -8,14 +7,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.assist.ImageScaleType;
-
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.fragments.local.LocalItemBuilder;
+import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
 
 import java.text.DateFormat;
@@ -61,7 +58,8 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
         }
 
         // Default thumbnail is shown on error, while loading and if the url is empty
-        itemBuilder.displayImage(item.thumbnailUrl, itemThumbnailView, DISPLAY_THUMBNAIL_OPTIONS);
+        itemBuilder.displayImage(item.thumbnailUrl, itemThumbnailView,
+                ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
 
         itemView.setOnClickListener(view -> {
             if (itemBuilder.getOnItemSelectedListener() != null) {
@@ -92,15 +90,4 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
             return false;
         };
     }
-
-    /**
-     * Display options for stream thumbnails
-     */
-    private static final DisplayImageOptions DISPLAY_THUMBNAIL_OPTIONS =
-            new DisplayImageOptions.Builder()
-                    .cloneFrom(BASE_DISPLAY_IMAGE_OPTIONS)
-                    .showImageOnFail(R.drawable.dummy_thumbnail)
-                    .showImageForEmptyUri(R.drawable.dummy_thumbnail)
-                    .showImageOnLoading(R.drawable.dummy_thumbnail)
-                    .build();
 }

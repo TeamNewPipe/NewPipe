@@ -126,9 +126,9 @@
     <string name="no_available_dir">Будь ласка, оберіть теку для завантаження</string>
 
 <string name="no_player_found_toast">Потоковий програвач не знайдено (ви можете встановити VLC для відтворення)</string>
-    <string name="open_in_popup_mode">Відкрити у виринальному режимі</string>
+    <string name="open_in_popup_mode">Відкрити у віконному режимі</string>
     <string name="use_external_video_player_summary">Певні роздільності НЕ МАТИМУТЬ звуку якщо цей параметр увімкнено</string>
-    <string name="popup_mode_share_menu_title">NewPipe у виринальному вікні</string>
+    <string name="popup_mode_share_menu_title">NewPipe у віконному режимі</string>
     <string name="subscribe_button_title">Підписатися</string>
     <string name="subscribed_button_title">Ви підписалися</string>
     <string name="channel_unsubscribed">Ви відписалися від каналу</string>
@@ -141,14 +141,14 @@
     <string name="fragment_whats_new">Новинки</string>
 
     <string name="controls_background_title">Тло</string>
-    <string name="controls_popup_title">Виринальне вікно</string>
+    <string name="controls_popup_title">У вікні</string>
 
-    <string name="default_popup_resolution_title">Типова роздільна здатність виринального вікна</string>
+    <string name="default_popup_resolution_title">Типова роздільна здатність вікна</string>
     <string name="show_higher_resolutions_summary">Не всі пристрої підтримують програвання 2K/4K відео</string>
     <string name="show_higher_resolutions_title">Показувати більші роздільні здатності</string>
     <string name="default_video_format_title">Типовий відео формат</string>
-    <string name="popup_remember_size_pos_title">Пам\'ятати розмір виринального вікна та положення</string>
-    <string name="popup_remember_size_pos_summary">Пам\'ятати останній розмір та позицію виринального вікна</string>
+    <string name="popup_remember_size_pos_title">Пам\'ятати розмір та положення вікна</string>
+    <string name="popup_remember_size_pos_summary">Пам\'ятати останній розмір та позицію вікна</string>
     <string name="player_gesture_controls_title">Керування жестами</string>
     <string name="player_gesture_controls_summary">Використовувати жести для контролю яскравості та гучності програвача</string>
     <string name="show_search_suggestions_title">Шукати схожі</string>
@@ -159,16 +159,16 @@
     <string name="enable_watch_history_summary">Вести облік перегляду відео</string>
     <string name="resume_on_audio_focus_gain_title">Відновити фокус</string>
     <string name="resume_on_audio_focus_gain_summary">Продовжувати відтворення опісля переривання (наприклад телефонний дзвінок)</string>
-    <string name="show_hold_to_append_title">Відображати вказівку Утримуйте для додачі</string>
+    <string name="show_hold_to_append_title">Показувати стримання для підказки</string>
     <string name="default_content_country_title">Усталена країна контенту</string>
     <string name="service_title">Сервіс</string>
     <string name="settings_category_player_title">Програвач</string>
     <string name="settings_category_player_behavior_title">Поведінка</string>
-    <string name="settings_category_history_title">Історія</string>
-    <string name="settings_category_popup_title">Виринальне вікно</string>
-    <string name="popup_playing_toast">Відворення у виринальному вікні</string>
+    <string name="settings_category_history_title">Історія та кеш</string>
+    <string name="settings_category_popup_title">Вікно</string>
+    <string name="popup_playing_toast">Відворення у вікні</string>
     <string name="background_player_append">Додано до фонового програвання</string>
-    <string name="popup_playing_append">Додано до чергу у виринальному вікні</string>
+    <string name="popup_playing_append">Додано до чергу у вікно</string>
     <string name="playlist">Плейлист</string>
     <string name="filter">Фільтрувати</string>
     <string name="refresh">Оновити</string>
@@ -181,12 +181,12 @@
     <string name="just_once">Тільки тепер</string>
 
     <string name="notification_channel_name">NewPipe сповіщення</string>
-    <string name="notification_channel_description">Сповіщення для фонового та виринального програвача NewPipe</string>
+    <string name="notification_channel_description">Сповіщення для фонового та віконного програвачів NewPipe</string>
 
     <string name="unknown_content">[Невідомо]</string>
 
     <string name="switch_to_background">Перемкнутися до Тла</string>
-    <string name="switch_to_popup">Перемкнутися до Виринального вікна</string>
+    <string name="switch_to_popup">Перемкнутися до вікна</string>
     <string name="switch_to_main">Перемкнутися до Головної</string>
 
     <string name="import_data_title">Імпортувати базу</string>
@@ -204,7 +204,7 @@
     <string name="no_videos">Без відео</string>
     <string name="msg_url_malform">Помилкова ланка URL або інтернет не є доступним</string>
     <string name="msg_popup_permission">Цей дозвіл має бути відкритим 
-\nу виринальному вікні</string>
+\nу вікні</string>
 
     <string name="reCaptchaActivity">«reCAPTCHA»</string>
     <string name="settings_category_downloads_title">Завантажити</string>
@@ -248,7 +248,7 @@
 
     <string name="controls_add_to_playlist_title">Додати до</string>
 
-    <string name="show_hold_to_append_summary">Показувати підказку коли фонова чи виринальна кнопка натиснута на сторінці відео деталей</string>
+    <string name="show_hold_to_append_summary">Показувати підказку коли натиснута кнопка фону або вікна, на сторінці інформації відео</string>
     <string name="toggle_orientation">Перемкнути орієнтацію</string>
     <string name="player_unrecoverable_failure">Фатальна помилка програвача</string>
     <string name="external_player_unsupported_link_type">Зовнішні програвачі не підтримують такі види ланок</string>
@@ -335,14 +335,14 @@
     <string name="kiosk">Ятка</string>
     <string name="trending">Набуває популярності</string>
     <string name="title_activity_background_player">Фоновий програвач</string>
-    <string name="title_activity_popup_player">Виринальний програвач</string>
+    <string name="title_activity_popup_player">Віконний програвач</string>
     <string name="play_queue_remove">Усунути</string>
     <string name="hold_to_append">Затиснути, аби зняти з черги</string>
     <string name="enqueue_on_background">Зняти з черги у фоновому програвачеві</string>
-    <string name="enqueue_on_popup">Зняти з черги у виринальному програвачеві</string>
+    <string name="enqueue_on_popup">Зняти з черги у віконному програвачеві</string>
     <string name="start_here_on_main">Розпочати програвання звідси</string>
     <string name="start_here_on_background">Розпочати програвання звідси у фоновому програвачеві</string>
-    <string name="start_here_on_popup">Розпочати програвання звідси у виринальному програвачеві</string>
+    <string name="start_here_on_popup">Розпочати програвання у вікні звідси</string>
 
     <string name="drawer_open">Відчинити шухляду</string>
     <string name="drawer_close">Зачинити шухляду</string>
@@ -383,8 +383,8 @@
     <string name="enable_leak_canary_title">Увімкнути LeakCanary</string>
     <string name="enable_leak_canary_summary">Під час роботи LeakCanary застосунок може стати несприйнятливим під час гіп-дампінґу</string>
 
-    <string name="enable_disposed_exceptions_title">Зазвітувати Out-of-Lifecycle хиби</string>
-    <string name="enable_disposed_exceptions_summary">Примусове звітування про неможливість доставлення Rx винятків, яку відбуваються за межами фраґменту, або діяльності життєвого циклу після усунення</string>
+    <string name="enable_disposed_exceptions_title">Зазвітувати Out-of-lifecycle хиби</string>
+    <string name="enable_disposed_exceptions_summary">Примусове звітування про неможливість доставлення Rx винятків, які відбуваються за межами фраґменту або діяльності життєвого циклу після усунення</string>
 
 <string name="use_inexact_seek_title">Використовувати неточне шукання</string>
     <string name="use_inexact_seek_summary">Неточне шукання дозволяє програвачеві рухатися позиціями швидше, проте з меншою точністю</string>
@@ -392,4 +392,57 @@
     <string name="auto_queue_summary">Автоматично додавати пов\'язаний стрим, під час початку програвання останнього стриму.</string>
     <string name="live_sync">СИНХРОНІЗАЦІЯ</string>
 
-    </resources>
+    <string name="file">Файл</string>
+
+    <string name="invalid_directory">Неправильна тека</string>
+    <string name="invalid_source">Неправильний файл/контент джерела</string>
+    <string name="invalid_file">Файл не існує, або немає дозволу на його запис чи читання</string>
+    <string name="file_name_empty_error">Ім\'я файлу не повинно бути порожнім</string>
+    <string name="error_occurred_detail">Трапилась помилка: %1$s</string>
+
+    <string name="import_export_title">Імпортування/Експортування</string>
+    <string name="import_title">Імпортування</string>
+    <string name="import_from">Імпортувати з</string>
+    <string name="export_to">Експортувати до</string>
+
+    <string name="import_ongoing">Імпортування…</string>
+    <string name="export_ongoing">Експортування…</string>
+
+    <string name="import_file_title">Імпортування файлу</string>
+    <string name="previous_export">Попереднє експортування</string>
+
+    <string name="subscriptions_import_unsuccessful">Не вдалось імпортувати підписки</string>
+    <string name="subscriptions_export_unsuccessful">Не вдалося експортувати підписки</string>
+
+    <string name="import_youtube_instructions">Аби імпортувати ваші підписання Ютюб, вам буде потрібно експортувати файл, який можна буде завантажити наступним чином:
+\n
+\n1. Перейдіть за цією ланкою: %1$s
+\n2. За запитом увійдіть до вашої обліківки
+\n3. Завантаження має початися (експортований файл)</string>
+    <string name="import_soundcloud_instructions">Для імпортування ваших підписок з SoundCloud, ви маєте знати url вашого профайлу або ID. Якщо ви знаєте їх, упишіть їх нижче та можна працювати.
+\n
+\nЯкщо ви не маєте їх, зробіть наступним чином:
+\n
+\n1. Увімкніть режимі \"desktop\" у будь-якому з переглядачів (сайт не має підтримки мобільних ґаджетів)
+\n
+\n2. Перейдіть за цією ланкою: %1$s
+\n3. За запитом увійдіть до вашої обліківки
+\n4. Скопіюйте url, до якого вас відішле (це й є url вашого профайлу)</string>
+    <string name="import_soundcloud_instructions_hint">yourid, soundcloud.com/yourid</string>
+
+    <string name="import_network_expensive_warning">Майте на увазі: ця операція може потребувати багато трафіку.
+\n
+\nПродовжуватимете?</string>
+<string name="download_thumbnail_title">Завантажити ескізи</string>
+    <string name="download_thumbnail_summary">Відключити аби зупинити завантаження ескізів та заощадити використання ресурсів та пам\'яті. Увімкнення функції призведе до повного вичищення кешу зображень.</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Кеш зображень стерто</string>
+    <string name="metadata_cache_wipe_title">Стерти кеш метаданих</string>
+    <string name="metadata_cache_wipe_summary">"Усунути всі кешовані дані веб-сторінки "</string>
+    <string name="metadata_cache_wipe_complete_notice">Кеш метаданих стерто</string>
+    <string name="playback_speed_control">Керування швидкістю програвання</string>
+    <string name="playback_tempo">Темп</string>
+    <string name="playback_pitch">Тон</string>
+    <string name="unhook_checkbox">Від\'єднати (може спричинити спотворення)</string>
+    <string name="playback_nightcore">Nightcore</string>
+    <string name="playback_default">Усталено</string>
+</resources>

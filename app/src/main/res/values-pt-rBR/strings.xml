@@ -385,4 +385,44 @@ abrir em modo popup</string>
     <string name="auto_queue_summary">Anexar automaticamente uma stream relacionada quando a reprodução iniciar na última stream em uma fila não repetitiva</string>
     <string name="live_sync">Sincronizar</string>
 
-    </resources>
+    <string name="file">Arquivo</string>
+
+    <string name="invalid_directory">Diretório inválido</string>
+    <string name="invalid_source">Origem do arquivo/conteúdo inválido</string>
+    <string name="invalid_file">Arquivo não existe ou não há permissão para ler ou escrever nele</string>
+    <string name="file_name_empty_error">Nome do arquivo não pode ser vazio</string>
+    <string name="error_occurred_detail">Um erro ocorreu: %1$s</string>
+
+    <string name="import_export_title">Importar/Exportar</string>
+    <string name="import_title">Importar</string>
+    <string name="import_from">Importar de</string>
+    <string name="export_to">Exportar para</string>
+
+    <string name="import_ongoing">Importando…</string>
+    <string name="export_ongoing">Exportando…</string>
+
+    <string name="import_file_title">Importar arquivo</string>
+    <string name="previous_export">Exportação anteriore</string>
+
+    <string name="subscriptions_import_unsuccessful">Importação de inscrições falhou</string>
+    <string name="subscriptions_export_unsuccessful">Exportação de inscrições falhou</string>
+
+    <string name="import_youtube_instructions">"Para importar inscrições do YouTube você vai precisar exportar o arquivo, o que pode ser baixado seguindo estas informações:
+\n
+\n1. Vá para este link:  %1$s
+\n2. Faça login na sua conta quando solicitado
+\n3. O download deverá começar (isto é exportar arquivo)"</string>
+    <string name="import_soundcloud_instructions">Para importar as contas que você segue no SoundCloud, você terá que saber o link ou id do seu perfil. Se você souber, basta escrever um deles no campo abaixo e estará tudo pronto.
+\n
+\nSe você não souber, você pode seguir estas etapas:
+\n
+\n1. Habilite \"modo desktop\" em algum navegador da internet ( o site não está disponível para dispositivos móveis)
+\n2. Vá para esta url: %1$s
+\n3. Faça login na sua conta quando solicitado
+\n4. Copie o link no qual que você foi redirecionado (este é o link do seu perfil)</string>
+    <string name="import_soundcloud_instructions_hint">seuid, soundcloud.com/seuid</string>
+
+    <string name="import_network_expensive_warning">Tenha em mente que esta operação poderá usar bastante a conexão com a internet.
+\n
+\nVocê deseja continuar?</string>
+</resources>

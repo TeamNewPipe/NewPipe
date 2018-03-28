@@ -77,6 +77,7 @@ public final class BackgroundPlayer extends Service {
 
     private BasePlayerImpl basePlayerImpl;
     private LockManager lockManager;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Service-Activity Binder
     //////////////////////////////////////////////////////////////////////////*/
@@ -397,10 +398,10 @@ public final class BackgroundPlayer extends Service {
             final MediaSource liveSource = super.sourceOf(item, info);
             if (liveSource != null) return liveSource;
 
-            final int index = ListHelper.getDefaultAudioFormat(context, info.audio_streams);
-            if (index < 0 || index >= info.audio_streams.size()) return null;
+            final int index = ListHelper.getDefaultAudioFormat(context, info.getAudioStreams());
+            if (index < 0 || index >= info.getAudioStreams().size()) return null;
 
-            final AudioStream audio = info.audio_streams.get(index);
+            final AudioStream audio = info.getAudioStreams().get(index);
             return buildMediaSource(audio.getUrl(), PlayerHelper.cacheKeyOf(info, audio),
                     MediaFormat.getSuffixById(audio.getFormatId()));
         }
@@ -485,7 +486,7 @@ public final class BackgroundPlayer extends Service {
                     onClose();
                     break;
                 case ACTION_PLAY_PAUSE:
-                    onVideoPlayPause();
+                    onPlayPause();
                     break;
                 case ACTION_REPEAT:
                     onRepeatClicked();

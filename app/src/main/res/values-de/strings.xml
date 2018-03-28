@@ -227,7 +227,7 @@
 
     <string name="tab_main">Main</string>
     <string name="settings_category_player_behavior_title">Verhalten</string>
-    <string name="settings_category_history_title">Verlauf</string>
+    <string name="settings_category_history_title">Verlauf &amp; Cache</string>
     <string name="playlist">Playlist</string>
     <string name="undo">Rückgängig machen</string>
 
@@ -309,7 +309,7 @@
     <string name="toggle_orientation">Ausrichtung umschalten</string>
     <string name="switch_to_background">In den Hintergrund wechseln</string>
     <string name="switch_to_popup">Zu Popup wechseln</string>
-    <string name="switch_to_main">Zur Hauptseite wechseln</string>
+    <string name="switch_to_main">Zum normalen Player wechseln</string>
 
     <string name="external_player_unsupported_link_type">Externe Player unterstützen diese Art von Links nicht</string>
     <string name="invalid_url_toast">Ungültige URL</string>
@@ -359,7 +359,7 @@
     <string name="create_playlist">Neue Playlist Erstellen</string>
     <string name="delete_playlist">Playlist Löschen</string>
     <string name="rename_playlist">Playlist umbenennen</string>
-    <string name="append_playlist">Zu Playlist Hinzufügen</string>
+    <string name="append_playlist">Zu Playlist hinzufügen</string>
     <string name="set_as_playlist_thumbnail">Als Thumbnail der Playlist festlegen</string>
 
     <string name="unbookmark_playlist">Lesezeichen entfernen</string>
@@ -376,4 +376,51 @@
     <string name="dismiss">Abbrechen</string>
     <string name="normal_caption_font_size">Normale Schriftgröße</string>
     <string name="controls_download_desc">Stream-Datei herunterladen</string>
-    </resources>
+    <string name="use_inexact_seek_title">Benutze schnelle ungenaue Suche</string>
+    <string name="use_inexact_seek_summary">Ungenaues Suchen erlaubt dem Player die Positionen schneller mit geringerer Genauigkeit zu suchen</string>
+    <string name="file">Datei</string>
+
+    <string name="invalid_directory">Ungültiges Verzeichnis</string>
+    <string name="invalid_file">Datei existiert nicht oder nicht ausreichende Rechte um sie zu lesen oder zu beschreiben</string>
+    <string name="file_name_empty_error">Dateiname darf nicht leer sein</string>
+    <string name="error_occurred_detail">Ein Fehler ist aufgetreten: %1$s</string>
+
+    <string name="caption_auto_generated">Automatisch erzeugt</string>
+    <string name="smaller_caption_font_size">Kleinere Schriftgröße</string>
+    <string name="larger_caption_font_size">Größere Schriftgröße</string>
+
+    <string name="enable_leak_canary_title">LeakCanary aktivieren</string>
+    <string name="import_from">Import von</string>
+    <string name="export_to">Export nach</string>
+
+    <string name="import_ongoing">Importiere…</string>
+    <string name="export_ongoing">Exportiere…</string>
+
+    <string name="import_file_title">Datei importieren</string>
+    <string name="previous_export">Vorheriger Export</string>
+
+    <string name="import_network_expensive_warning">Beachte, dass diese Aktion sehr Netzwerk intensiv sein kann.
+\n
+\nMöchtest du fortfahren?</string>
+<string name="download_thumbnail_title">Thumbnails laden</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Bildercache gelöscht</string>
+    <string name="metadata_cache_wipe_title">Leere die gecachten Metadaten</string>
+    <string name="metadata_cache_wipe_summary">Entfene alle gecachten Website-Daten</string>
+    <string name="metadata_cache_wipe_complete_notice">Metadatencache gelöscht</string>
+    <string name="settings_category_debug_title">Fehlersuche</string>
+    <string name="invalid_source">Ungültige Datei-/Inhaltsquelle</string>
+    <string name="export_complete_toast">Export abgeschlossen</string>
+    <string name="import_complete_toast">Import abgeschlossen</string>
+    <string name="playlist_name_input">Name</string>
+    <string name="import_export_title">Import/Export</string>
+    <string name="import_title">Import</string>
+    <string name="subscriptions_import_unsuccessful">Import der Abonnements fehlgeschlagen</string>
+    <string name="subscriptions_export_unsuccessful">Export der Abonnements fehlgeschlagen</string>
+
+    <string name="playback_speed_control">Wiedergabegeschwindigkeit</string>
+    <string name="playback_tempo">Tempo</string>
+    <string name="playback_pitch">Tonhöhe</string>
+    <string name="unhook_checkbox">Aushaken (kann zu Verzerrungen führen)</string>
+    <string name="playback_nightcore">Nightcore</string>
+    <string name="playback_default">Standard</string>
+</resources>

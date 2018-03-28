@@ -43,6 +43,7 @@ import android.widget.Toast;
 
 import com.nirhart.parallaxscroll.views.ParallaxScrollView;
 import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import org.schabi.newpipe.R;
@@ -73,6 +74,7 @@ import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.InfoCache;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
@@ -383,7 +385,8 @@ public class VideoDetailFragment
                 }
                 break;
             case R.id.detail_thumbnail_root_layout:
-                if (currentInfo.video_streams.isEmpty() && currentInfo.video_only_streams.isEmpty()) {
+                if (currentInfo.getVideoStreams().isEmpty()
+                        && currentInfo.getVideoOnlyStreams().isEmpty()) {
                     openBackgroundPlayer(false);
                 } else {
                     openVideoPlayer();
@@ -580,30 +583,25 @@ public class VideoDetailFragment
         };
     }
 
-    private void initThumbnailViews(StreamInfo info) {
+    private void initThumbnailViews(@NonNull StreamInfo info) {
         thumbnailImageView.setImageResource(R.drawable.dummy_thumbnail_dark);
         if (!TextUtils.isEmpty(info.getThumbnailUrl())) {
-            imageLoader.displayImage(
-                    info.getThumbnailUrl(),
-                    thumbnailImageView,
-                    DISPLAY_THUMBNAIL_OPTIONS, new SimpleImageLoadingListener() {
+            final String infoServiceName = NewPipe.getNameOfService(info.getServiceId());
+            final ImageLoadingListener onFailListener = new SimpleImageLoadingListener() {
                 @Override
                 public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                    ErrorActivity.reportError(
-                            activity,
-                            failReason.getCause(),
-                            null,
-                            activity.findViewById(android.R.id.content),
-                            ErrorActivity.ErrorInfo.make(UserAction.LOAD_IMAGE,
-                                    NewPipe.getNameOfService(currentInfo.getServiceId()),
-                                    imageUri,
-                                    R.string.could_not_load_thumbnails));
+                    showSnackBarError(failReason.getCause(), UserAction.LOAD_IMAGE,
+                            infoServiceName, imageUri, R.string.could_not_load_thumbnails);
                 }
-            });
+            };
+
+            imageLoader.displayImage(info.getThumbnailUrl(), thumbnailImageView,
+                    ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS, onFailListener);
         }
 
         if (!TextUtils.isEmpty(info.getUploaderAvatarUrl())) {
-            imageLoader.displayImage(info.getUploaderAvatarUrl(), uploaderThumb, DISPLAY_AVATAR_OPTIONS);
+            imageLoader.displayImage(info.getUploaderAvatarUrl(), uploaderThumb,
+                    ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
         }
     }
 
@@ -618,7 +616,8 @@ public class VideoDetailFragment
             relatedStreamRootLayout.setVisibility(View.VISIBLE);
         } else nextStreamTitle.setVisibility(View.GONE);
 
-        if (info.related_streams != null && !info.related_streams.isEmpty() && showRelatedStreams) {
+        if (info.getRelatedStreams() != null
+                && !info.getRelatedStreams().isEmpty() && showRelatedStreams) {
             //long first = System.nanoTime(), each;
             int to = info.getRelatedStreams().size() >= INITIAL_RELATED_VIDEOS
                     ? INITIAL_RELATED_VIDEOS
@@ -683,7 +682,7 @@ public class VideoDetailFragment
         switch (id) {
             case R.id.menu_item_share: {
                 if(currentInfo != null) {
-                    shareUrl(currentInfo.name, url);
+                    shareUrl(currentInfo.getName(), url);
                 } else {
                     shareUrl(url, url);
                 }
@@ -1210,7 +1209,8 @@ public class VideoDetailFragment
                 spinnerToolbar.setVisibility(View.GONE);
                 break;
             default:
-                if (!info.video_streams.isEmpty() || !info.video_only_streams.isEmpty()) break;
+                if (!info.getVideoStreams().isEmpty()
+                        || !info.getVideoOnlyStreams().isEmpty()) break;
 
                 detailControlsBackground.setVisibility(View.GONE);
                 detailControlsPopup.setVisibility(View.GONE);

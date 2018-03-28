@@ -26,13 +26,13 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo, U extends InfoItem> ext
     transient Disposable fetchReactor;
 
     AbstractInfoPlayQueue(final U item) {
-        this(item.getServiceId(), item.getUrl(), null, Collections.<InfoItem>emptyList(), 0);
+        this(item.getServiceId(), item.getUrl(), null, Collections.<StreamInfoItem>emptyList(), 0);
     }
 
     AbstractInfoPlayQueue(final int serviceId,
                           final String url,
                           final String nextPageUrl,
-                          final List<InfoItem> streams,
+                          final List<StreamInfoItem> streams,
                           final int index) {
         super(index, extractListItems(streams));
 
@@ -65,10 +65,10 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo, U extends InfoItem> ext
             @Override
             public void onSuccess(@NonNull T result) {
                 isInitial = false;
-                if (!result.has_more_streams) isComplete = true;
-                nextUrl = result.next_streams_url;
+                if (!result.hasNextPage()) isComplete = true;
+                nextUrl = result.getNextPageUrl();
 
-                append(extractListItems(result.related_streams));
+                append(extractListItems(result.getRelatedItems()));
 
                 fetchReactor.dispose();
                 fetchReactor = null;
@@ -83,8 +83,8 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo, U extends InfoItem> ext
         };
     }
 
-    SingleObserver<ListExtractor.InfoItemPage> getNextPageObserver() {
-        return new SingleObserver<ListExtractor.InfoItemPage>() {
+    SingleObserver<ListExtractor.InfoItemsPage> getNextPageObserver() {
+        return new SingleObserver<ListExtractor.InfoItemsPage>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
                 if (isComplete || isInitial || (fetchReactor != null && !fetchReactor.isDisposed())) {
@@ -95,11 +95,11 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo, U extends InfoItem> ext
             }
 
             @Override
-            public void onSuccess(@NonNull ListExtractor.InfoItemPage result) {
+            public void onSuccess(@NonNull ListExtractor.InfoItemsPage result) {
                 if (!result.hasNextPage()) isComplete = true;
-                nextUrl = result.nextPageUrl;
+                nextUrl = result.getNextPageUrl();
 
-                append(extractListItems(result.infoItemList));
+                append(extractListItems(result.getItems()));
 
                 fetchReactor.dispose();
                 fetchReactor = null;
@@ -121,7 +121,7 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo, U extends InfoItem> ext
         fetchReactor = null;
     }
 
-    private static List<PlayQueueItem> extractListItems(final List<InfoItem> infos) {
+    private static List<PlayQueueItem> extractListItems(final List<StreamInfoItem> infos) {
         List<PlayQueueItem> result = new ArrayList<>();
         for (final InfoItem stream : infos) {
             if (stream instanceof StreamInfoItem) {

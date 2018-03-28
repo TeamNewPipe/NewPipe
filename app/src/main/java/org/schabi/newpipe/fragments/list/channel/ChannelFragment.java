@@ -27,10 +27,13 @@ import com.jakewharton.rxbinding2.view.RxView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
+import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.stream.Stream;
+import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.info_list.InfoItemDialog;
@@ -41,9 +44,11 @@ import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.subscription.SubscriptionService;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -388,7 +393,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    protected Single<ListExtractor.InfoItemPage> loadMoreItemsLogic() {
+    protected Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic() {
         return ExtractorHelper.getMoreChannelItems(serviceId, url, currentNextPageUrl);
     }
 
@@ -415,8 +420,10 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         super.handleResult(result);
 
         headerRootLayout.setVisibility(View.VISIBLE);
-        imageLoader.displayImage(result.banner_url, headerChannelBanner, DISPLAY_BANNER_OPTIONS);
-        imageLoader.displayImage(result.avatar_url, headerAvatarView, DISPLAY_AVATAR_OPTIONS);
+        imageLoader.displayImage(result.getBannerUrl(), headerChannelBanner,
+        		ImageDisplayConstants.DISPLAY_BANNER_OPTIONS);
+        imageLoader.displayImage(result.getAvatarUrl(), headerAvatarView,
+        		ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
 
         if (result.getSubscriberCount() != -1) {
             headerSubscribersTextView.setText(Localization.localizeSubscribersCount(activity, result.getSubscriberCount()));
@@ -427,8 +434,8 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
 
         playlistCtrl.setVisibility(View.VISIBLE);
 
-        if (!result.errors.isEmpty()) {
-            showSnackBarError(result.errors, UserAction.REQUESTED_CHANNEL, NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);
+        if (!result.getErrors().isEmpty()) {
+            showSnackBarError(result.getErrors(), UserAction.REQUESTED_CHANNEL, NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);
         }
 
         if (disposables != null) disposables.clear();
@@ -436,24 +443,12 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         updateSubscription(result);
         monitorSubscription(result);
 
-        headerPlayAllButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavigationHelper.playOnMainPlayer(activity, getPlayQueue());
-            }
-        });
-        headerPopupButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavigationHelper.playOnPopupPlayer(activity, getPlayQueue());
-            }
-        });
-        headerBackgroundButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue());
-            }
-        });
+        headerPlayAllButton.setOnClickListener(
+                view -> NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));
+        headerPopupButton.setOnClickListener(
+                view -> NavigationHelper.playOnPopupPlayer(activity, getPlayQueue()));
+        headerBackgroundButton.setOnClickListener(
+                view -> NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue()));
     }
 
     private PlayQueue getPlayQueue() {
@@ -461,17 +456,23 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     }
 
     private PlayQueue getPlayQueue(final int index) {
+        final List<StreamInfoItem> streamItems = new ArrayList<>();
+        for(InfoItem i : infoListAdapter.getItemsList()) {
+            if(i instanceof StreamInfoItem) {
+                streamItems.add((StreamInfoItem) i);
+            }
+        }
         return new ChannelPlayQueue(
                 currentInfo.getServiceId(),
                 currentInfo.getUrl(),
                 currentInfo.getNextPageUrl(),
-                infoListAdapter.getItemsList(),
+                streamItems,
                 index
         );
     }
 
     @Override
-    public void handleNextItems(ListExtractor.InfoItemPage result) {
+    public void handleNextItems(ListExtractor.InfoItemsPage result) {
         super.handleNextItems(result);
 
         if (!result.getErrors().isEmpty()) {

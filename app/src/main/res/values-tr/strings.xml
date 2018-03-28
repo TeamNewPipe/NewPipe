@@ -401,4 +401,44 @@
     <string name="auto_queue_summary">Yinelemeyen oynatma kuyruğundaki son akış başladığında ilişkili akışı kuyruğun sonuna kendiliğinden ekle.</string>
     <string name="live_sync">EŞZAMANLA</string>
 
-    </resources>
+    <string name="file">Dosya</string>
+
+    <string name="invalid_directory">Geçersiz dizin</string>
+    <string name="invalid_source">Geçersiz dosya/içerik kaynağı</string>
+    <string name="invalid_file">Dosya yok ya da okuma veya yazma izni yetersiz</string>
+    <string name="file_name_empty_error">Dosya adı boş olamaz</string>
+    <string name="error_occurred_detail">Hata oluştu: %1$s</string>
+
+    <string name="import_export_title">İçe/Dışa Aktar</string>
+    <string name="import_title">İçe Aktar</string>
+    <string name="import_from">Şuradan içe aktar</string>
+    <string name="export_to">Şuna dışa aktar</string>
+
+    <string name="import_ongoing">İçe aktarılıyor…</string>
+    <string name="export_ongoing">Dışa aktarılıyor…</string>
+
+    <string name="import_file_title">Dosyayı içe aktar</string>
+    <string name="previous_export">Önceki dışa aktarım</string>
+
+    <string name="subscriptions_import_unsuccessful">Aboneliklerin içe aktarımı başarısız</string>
+    <string name="subscriptions_export_unsuccessful">Aboneliklerin dışa aktarımı başarısız</string>
+
+    <string name="import_youtube_instructions">YouTube aboneliklerinizi içe aktarmak için dışa aktarılmış dosya gerekiyor, dosya şu yönergeler izlenerek indirilebilir:
+\n
+\n1. Şu adrese gidin: %1$s
+\n2. Sorulduğunda hesabınıza giriş yapın
+\n3. İndirme başlamalı (bu dışa aktarılmış dosyadır)</string>
+    <string name="import_soundcloud_instructions">SoundCloud takiplerinizi içe aktarmak için profil adresinizi veya kimliğinizi bilmelisiniz. Eğer biliyorsanız, ikisinden birini aşağıdaki giriye yazın ve işte hazırsınız.
+\n
+\nEğer bilmiyorsanız şu adımları izleyebilirsiniz:
+\n
+\n1. Herhangi bir tarayıcıda \"masaüstü kipi\"ni açın (site, mobil aygıtlar için uygun değildir)
+\n2. Şu adrese gidin: %1$s
+\n3. Sorulduğunda hesabınıza giriş yapın
+\n4. Yönlendirildiğiniz adresi kopyalayın (bu sizin profil adresinizdir)</string>
+    <string name="import_soundcloud_instructions_hint">kimliginiz, soundcloud.com/kimliginiz</string>
+
+    <string name="import_network_expensive_warning">Bu sürecin ağ masrafına neden olabileceğini unutmayın.
+\n
+\nDevam etmek istiyor musunuz?</string>
+</resources>

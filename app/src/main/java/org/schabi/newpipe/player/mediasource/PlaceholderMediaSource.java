@@ -19,7 +19,13 @@ public class PlaceholderMediaSource implements ManagedMediaSource {
     @Override public void releaseSource() {}
 
     @Override
-    public boolean canReplace(@NonNull final PlayQueueItem newIdentity) {
+    public boolean shouldBeReplacedWith(@NonNull PlayQueueItem newIdentity,
+                                        final boolean isInterruptable) {
         return true;
+    }
+
+    @Override
+    public boolean isStreamEqual(@NonNull PlayQueueItem stream) {
+        return false;
     }
 }

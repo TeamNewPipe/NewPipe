@@ -6,12 +6,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.nononsenseapps.filepicker.Utils;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -46,6 +48,29 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     private File databasesDir;
     private File newpipe_db;
     private File newpipe_db_journal;
+
+    private String thumbnailLoadToggleKey;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        thumbnailLoadToggleKey = getString(R.string.download_thumbnail_key);
+    }
+
+    @Override
+    public boolean onPreferenceTreeClick(Preference preference) {
+        if (preference.getKey().equals(thumbnailLoadToggleKey)) {
+            final ImageLoader imageLoader = ImageLoader.getInstance();
+            imageLoader.stop();
+            imageLoader.clearDiskCache();
+            imageLoader.clearMemoryCache();
+            imageLoader.resume();
+            Toast.makeText(preference.getContext(), R.string.thumbnail_cache_wipe_complete_notice,
+                    Toast.LENGTH_SHORT).show();
+        }
+
+        return super.onPreferenceTreeClick(preference);
+    }
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {

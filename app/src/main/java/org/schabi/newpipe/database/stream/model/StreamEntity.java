@@ -71,14 +71,14 @@ public class StreamEntity implements Serializable {
 
     @Ignore
     public StreamEntity(final StreamInfoItem item) {
-        this(item.service_id, item.name, item.url, item.stream_type, item.thumbnail_url,
-                item.uploader_name, item.duration);
+        this(item.getServiceId(), item.getName(), item.getUrl(), item.getStreamType(), item.getThumbnailUrl(),
+                item.getUploaderName(), item.getDuration());
     }
 
     @Ignore
     public StreamEntity(final StreamInfo info) {
-        this(info.service_id, info.name, info.url, info.stream_type, info.thumbnail_url,
-                info.uploader_name, info.duration);
+        this(info.getServiceId(), info.getName(), info.getUrl(), info.getStreamType(), info.getThumbnailUrl(),
+                info.getUploaderName(), info.getDuration());
     }
 
     @Ignore

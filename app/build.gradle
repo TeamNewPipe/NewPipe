@@ -8,8 +8,8 @@ android {
         applicationId "org.schabi.newpipe"
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 48
-        versionName "0.12.0"
+        versionCode 49
+        versionName "0.13.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -48,14 +48,20 @@ android {
 }
 
 ext {
-    supportLibVersion = '27.0.2'
+    supportLibVersion = '27.1.0'
+    exoPlayerLibVersion = '2.7.1'
+    roomDbLibVersion = '1.0.0'
+    leakCanaryLibVersion = '1.5.4'
+    okHttpLibVersion = '1.5.0'
+    icepickLibVersion = '3.2.0'
+    stethoLibVersion = '1.5.0'
 }
 dependencies {
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2') {
         exclude module: 'support-annotations'
     }
 
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:b1130629bb'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:f787b375e5fb6d'
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:1.10.19'
@@ -73,27 +79,28 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.github.nirhart:ParallaxScroll:dd53d1f9d1'
     implementation 'com.nononsenseapps:filepicker:4.2.1'
-    implementation 'com.google.android.exoplayer:exoplayer:2.7.0'
+    implementation "com.google.android.exoplayer:exoplayer:$exoPlayerLibVersion"
+    implementation "com.google.android.exoplayer:extension-mediasession:$exoPlayerLibVersion"
 
-    debugImplementation 'com.facebook.stetho:stetho:1.5.0'
-    debugImplementation 'com.facebook.stetho:stetho-urlconnection:1.5.0'
-    debugImplementation 'com.android.support:multidex:1.0.2'
+    debugImplementation "com.facebook.stetho:stetho:$stethoLibVersion"
+    debugImplementation "com.facebook.stetho:stetho-urlconnection:$stethoLibVersion"
+    debugImplementation 'com.android.support:multidex:1.0.3'
 
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.7'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.10'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
 
-    implementation 'android.arch.persistence.room:runtime:1.0.0'
-    implementation 'android.arch.persistence.room:rxjava2:1.0.0'
-    annotationProcessor 'android.arch.persistence.room:compiler:1.0.0'
+    implementation "android.arch.persistence.room:runtime:$roomDbLibVersion"
+    implementation "android.arch.persistence.room:rxjava2:$roomDbLibVersion"
+    annotationProcessor "android.arch.persistence.room:compiler:$roomDbLibVersion"
 
-    implementation 'frankiesardo:icepick:3.2.0'
-    annotationProcessor 'frankiesardo:icepick-processor:3.2.0'
+    implementation "frankiesardo:icepick:$icepickLibVersion"
+    annotationProcessor "frankiesardo:icepick-processor:$icepickLibVersion"
 
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
-    betaImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
-    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanaryLibVersion"
+    betaImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryLibVersion"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryLibVersion"
 
     implementation 'com.squareup.okhttp3:okhttp:3.9.1'
-    debugImplementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
+    debugImplementation "com.facebook.stetho:stetho-okhttp3:$okHttpLibVersion"
 }

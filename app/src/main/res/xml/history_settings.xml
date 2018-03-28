@@ -16,4 +16,9 @@
         android:summary="@string/enable_search_history_summary"
         android:title="@string/enable_search_history_title"/>
 
+    <Preference
+        android:key="@string/metadata_cache_wipe_key"
+        android:summary="@string/metadata_cache_wipe_summary"
+        android:title="@string/metadata_cache_wipe_title"/>
+
 </PreferenceScreen>

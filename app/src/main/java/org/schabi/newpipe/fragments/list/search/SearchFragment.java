@@ -71,7 +71,9 @@ import io.reactivex.subjects.PublishSubject;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
-public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor.InfoItemPage> implements BackPressable {
+public class SearchFragment
+        extends BaseListFragment<SearchResult, ListExtractor.InfoItemsPage>
+        implements BackPressable {
 
     /*//////////////////////////////////////////////////////////////////////////
     // Search
@@ -759,12 +761,7 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
     public void handleSuggestions(@NonNull final List<SuggestionItem> suggestions) {
         if (DEBUG) Log.d(TAG, "handleSuggestions() called with: suggestions = [" + suggestions + "]");
         suggestionsRecyclerView.smoothScrollToPosition(0);
-        suggestionsRecyclerView.post(new Runnable() {
-            @Override
-            public void run() {
-                suggestionListAdapter.setItems(suggestions);
-            }
-        });
+        suggestionsRecyclerView.post(() -> suggestionListAdapter.setItems(suggestions));
 
         if (errorPanelRoot.getVisibility() == View.VISIBLE) {
             hideLoading();
@@ -822,10 +819,10 @@ public class SearchFragment extends BaseListFragment<SearchResult, ListExtractor
     }
 
     @Override
-    public void handleNextItems(ListExtractor.InfoItemPage result) {
+    public void handleNextItems(ListExtractor.InfoItemsPage result) {
         showListFooter(false);
         currentPage = Integer.parseInt(result.getNextPageUrl());
-        infoListAdapter.addInfoItemList(result.getNextItemsList());
+        infoListAdapter.addInfoItemList(result.getItems());
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(), UserAction.SEARCHED, NewPipe.getNameOfService(serviceId)

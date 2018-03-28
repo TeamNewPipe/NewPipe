@@ -6,13 +6,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.fragments.local.LocalItemBuilder;
+import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
 
 import java.text.DateFormat;
@@ -84,7 +83,8 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
         itemAdditionalDetails.setText(getStreamInfoDetailLine(item, dateFormat));
 
         // Default thumbnail is shown on error, while loading and if the url is empty
-        itemBuilder.displayImage(item.thumbnailUrl, itemThumbnailView, DISPLAY_THUMBNAIL_OPTIONS);
+        itemBuilder.displayImage(item.thumbnailUrl, itemThumbnailView,
+                ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
 
         itemView.setOnClickListener(view -> {
             if (itemBuilder.getOnItemSelectedListener() != null) {
@@ -100,15 +100,4 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
             return true;
         });
     }
-
-    /**
-     * Display options for stream thumbnails
-     */
-    public static final DisplayImageOptions DISPLAY_THUMBNAIL_OPTIONS =
-            new DisplayImageOptions.Builder()
-                    .cloneFrom(BASE_DISPLAY_IMAGE_OPTIONS)
-                    .showImageOnFail(R.drawable.dummy_thumbnail)
-                    .showImageForEmptyUri(R.drawable.dummy_thumbnail)
-                    .showImageOnLoading(R.drawable.dummy_thumbnail)
-                    .build();
 }

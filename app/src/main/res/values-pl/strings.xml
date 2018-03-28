@@ -397,4 +397,5 @@
     <string name="enable_disposed_exceptions_title">Raportuj błędy Out-of-Lifecycle</string>
     <string name="enable_disposed_exceptions_summary">Wymusza raportowanie niedostarczonych wyjątków Rx poza cyklem życia fragmentu lub aktywności</string>
 
-</resources>
+<string name="use_inexact_seek_title">Użyj szybkiego niedokładnego wyszukiwania</string>
+    </resources>

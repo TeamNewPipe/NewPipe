@@ -52,7 +52,7 @@
         android:id="@+id/playQueuePanel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
+        android:visibility="invisible"
         android:background="?attr/queue_background_color"
         tools:visibility="visible">
 
@@ -254,7 +254,7 @@
                     android:focusable="true"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_expand_more_white_24dp"
-                    android:background="?attr/selectableItemBackground"
+                    android:background="?attr/selectableItemBackgroundBorderless"
                     tools:ignore="ContentDescription,RtlHardcoded"/>
             </RelativeLayout>
 
@@ -266,7 +266,7 @@
                 android:gravity="top"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
-                android:visibility="gone"
+                android:visibility="invisible"
                 tools:ignore="RtlHardcoded"
                 tools:visibility="visible">
 
@@ -308,7 +308,7 @@
                     android:id="@+id/toggleOrientation"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_marginLeft="2dp"
+                    android:layout_marginLeft="4dp"
                     android:layout_marginRight="2dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
@@ -325,8 +325,8 @@
                     android:id="@+id/switchPopup"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
                     android:layout_toLeftOf="@id/toggleOrientation"
                     android:layout_centerVertical="true"
                     android:clickable="true"
@@ -341,8 +341,8 @@
                     android:id="@+id/switchBackground"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
                     android:layout_toLeftOf="@id/switchPopup"
                     android:layout_centerVertical="true"
                     android:clickable="true"
@@ -403,9 +403,13 @@
                     android:id="@+id/playbackLiveSync"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
                     android:gravity="center"
-                    android:text="@string/live_sync"
+                    android:text="@string/duration_live"
+                    android:textAllCaps="true"
                     android:textColor="@android:color/white"
+                    android:maxLength="4"
                     android:visibility="gone"
                     android:background="?attr/selectableItemBackground"
                     tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />

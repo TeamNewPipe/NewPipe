@@ -234,7 +234,7 @@ te openen in pop-upmodus</string>
 
 <string name="settings_category_player_title">Speler</string>
     <string name="settings_category_player_behavior_title">Gedrag</string>
-    <string name="settings_category_history_title">Geschiedenis</string>
+    <string name="settings_category_history_title">Geschiedenis &amp; Cache</string>
     <string name="playlist">Afspeellijst</string>
     <string name="undo">Ongedaan maken</string>
 
@@ -406,4 +406,56 @@ te openen in pop-upmodus</string>
     <string name="auto_queue_summary">Automatisch een gerealteerde stream toekennen als het afspelen van de laatste stream strat in een niet-herhalende afspeelwachtlijst.</string>
     <string name="live_sync">SYNCHRONISEREN</string>
 
-    </resources>
+    <string name="file">Bestand</string>
+
+    <string name="invalid_directory">Ongeldige map</string>
+    <string name="invalid_source">Ongeldig bestand/Ongeldige inhoudsbron</string>
+    <string name="invalid_file">Het bestand bestaat niet of u beschikt niet over voldoende machtiging om het te lezen/er naar te schrijven</string>
+    <string name="file_name_empty_error">De bestandsnaam mag niet leeg zijn</string>
+    <string name="error_occurred_detail">Er is een fout opgetreden: %1$s</string>
+
+    <string name="import_export_title">Importeren/Exporteren</string>
+    <string name="import_title">Importeren</string>
+    <string name="import_from">Importeren uit</string>
+    <string name="export_to">Exporteren naar</string>
+
+    <string name="import_ongoing">Bezig met importeren…</string>
+    <string name="export_ongoing">Bezig met exporteren…</string>
+
+    <string name="import_file_title">Bestand importeren</string>
+    <string name="previous_export">Vorige exportering</string>
+
+    <string name="subscriptions_import_unsuccessful">Importeren van abonnementen is mislukt</string>
+    <string name="subscriptions_export_unsuccessful">Exporteren van abonnementen is mislukt</string>
+
+    <string name="import_youtube_instructions">Als u uw YouTube-abonnementen wilt importeren, dan heeft u het exportbestand nodig. Dit kan worden gedownload door het volgen van onderstaande stappen:
+\n
+\n1. Ga naar dit adres: %1$s
+\n2. Log, indien nodig, in op uw account
+\n3. De download met het exportbestand zou nu moeten starten</string>
+    <string name="import_soundcloud_instructions">Als u uw SoundCloud-abonnementen wilt importeren, dan moet u uw profiel-URL of ID kennen. Als u hem kent, typ hem dan hieronder in.
+\n
+\nAls u hem niet kent, volg dan onderstaande stappen:
+\n
+\n1. Kies een webbrowser en schakel bureaubladmodus in (de website is niet beschikbaar voor mobiele apparaten)
+\n2. Volg deze link: %1$s
+\n3. Log, indien nodig, in op uw account
+\n4. Kopieer de link van de pagina waar u op terechtkomt (dat is uw profiel-URL)</string>
+    <string name="import_soundcloud_instructions_hint">uwid, soundcloud.com/uwid</string>
+
+    <string name="import_network_expensive_warning">Let op: deze actie kan veel MB\'s van uw netwerk gebruiken.
+\n
+\nWilt u doorgaan?</string>
+<string name="download_thumbnail_title">Miniatuurvoorbeelden laden</string>
+    <string name="download_thumbnail_summary">Schakel dit uit om alle miniatuurvoorbeelden niet meer te laden; dit bespaart gegevens en geheugen. Het wijzigen van deze instelling wist het geheugen en de afbeeldingscache.</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Afbeeldingscache gewist</string>
+    <string name="metadata_cache_wipe_title">Gecachete metagegevens wissen</string>
+    <string name="metadata_cache_wipe_summary">Alle gecachete webpagina-gegevens wissen</string>
+    <string name="metadata_cache_wipe_complete_notice">Metagegevens-cache gewist</string>
+    <string name="playback_speed_control">Afspeelsnelheid</string>
+    <string name="playback_tempo">Tempo</string>
+    <string name="playback_pitch">Toon</string>
+    <string name="unhook_checkbox">Ontkoppelen (kan ruis veroorzaken)</string>
+    <string name="playback_nightcore">Nightcore</string>
+    <string name="playback_default">Standaard</string>
+</resources>

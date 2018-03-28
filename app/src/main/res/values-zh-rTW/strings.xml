@@ -181,7 +181,7 @@
     <string name="resume_on_audio_focus_gain_summary">在干擾結束後繼續播放（例如有來電）</string>
     <string name="settings_category_player_title">播放器</string>
     <string name="settings_category_player_behavior_title">行為</string>
-    <string name="settings_category_history_title">歷史紀錄</string>
+    <string name="settings_category_history_title">歷史記錄和快取</string>
     <string name="playlist">播放清單</string>
     <string name="undo">復原</string>
 
@@ -241,7 +241,7 @@
     <string name="item_deleted">項目已刪除</string>
     <string name="delete_item_search_history">確定要刪除此項搜尋紀錄嗎？</string>
 <string name="no_player_found_toast">沒有找到串流播放器(你可以安裝 VLC播放器 來播放)</string>
-    <string name="show_hold_to_append_title">顯示鎖定到附加指引上</string>
+    <string name="show_hold_to_append_title">顯示鎖定到附加提示</string>
     <string name="default_content_country_title">預設內容國家</string>
     <string name="service_title">服務</string>
     <string name="background_player_append">在背景播放器上等候</string>
@@ -387,4 +387,55 @@
     <string name="auto_queue_summary">在非重複播放佇列中的最後一個串流上開始播放時，自動附上相關串流。</string>
     <string name="live_sync">同步</string>
 
-    </resources>
+    <string name="file">檔案</string>
+
+    <string name="invalid_directory">無效的目錄</string>
+    <string name="invalid_source">無效的檔案/內容來源</string>
+    <string name="file_name_empty_error">檔案名稱不能留空</string>
+    <string name="error_occurred_detail">發生錯誤：%1$s</string>
+
+    <string name="import_export_title">匯入/匯出</string>
+    <string name="import_title">匯入</string>
+    <string name="import_from">匯入來自</string>
+    <string name="export_to">匯出到</string>
+
+    <string name="import_ongoing">正在匯入…</string>
+    <string name="export_ongoing">正在匯出…</string>
+
+    <string name="import_file_title">匯入檔案</string>
+    <string name="subscriptions_import_unsuccessful">訂閱匯入失敗</string>
+    <string name="subscriptions_export_unsuccessful">訂閱匯出失敗</string>
+
+    <string name="previous_export">之前的匯出</string>
+
+    <string name="invalid_file">檔案不存在或沒有足夠的權限讀取或寫入</string>
+    <string name="import_youtube_instructions">要匯入您的 YouTube 訂閱，您必須匯出檔案，可以按照以下說明進行下載：
+\n
+\n1. 轉到此網址：%1$s
+\n2. 當被詢問時登入您的帳戶
+\n3. 下載應該開始 ( 這就是匯出的檔案 )</string>
+    <string name="import_soundcloud_instructions_hint">yourid, soundcloud.com/yourid</string>
+
+    <string name="import_network_expensive_warning">請記住，此操作可能會造成網路昂貴花費。
+\n
+\n您想繼續嗎？</string>
+<string name="import_soundcloud_instructions">要匯入您的 SoundCloud，您必須知道您的個人資料網址或 ID。 如果您這樣做，只需在下方的輸入中鍵入其中的任意一個，然後就可以開始了。
+\n
+\n如果您不這樣做，您可以按照以下步驟操作：
+\n1. 在一些瀏覽器中啟用「桌面模式」(該網站不適用於行動裝置)
+\n2. 移至此網址：%1$s
+\n3. 詢問時登入到您的帳號
+\n4. 複製網址您會被重新導向(這是您的個人資料網址)</string>
+    <string name="download_thumbnail_title">載入縮圖</string>
+    <string name="download_thumbnail_summary">停用可以停止載入所有的縮圖和儲存資料與使用的記憶體。更改此動作將清除在記憶體和磁碟上的影像快取。</string>
+    <string name="thumbnail_cache_wipe_complete_notice">圖片快取被抹除</string>
+    <string name="metadata_cache_wipe_title">抹除快取中介資料</string>
+    <string name="metadata_cache_wipe_summary">移除所有快取網頁的資料</string>
+    <string name="metadata_cache_wipe_complete_notice">中介資料快取已抹除</string>
+    <string name="playback_speed_control">重播速度控制</string>
+    <string name="playback_tempo">節拍</string>
+    <string name="playback_pitch">間距</string>
+    <string name="unhook_checkbox">解除 (可能導致失真)</string>
+    <string name="playback_nightcore">Nightcore</string>
+    <string name="playback_default">預設</string>
+</resources>
