@@ -716,9 +716,9 @@ public abstract class BasePlayer implements
             playQueue.error(/*isNetworkProblem=*/true);
         } else if (isCurrentWindowValid()) {
             playQueue.error(/*isTransitioningToBadStream=*/true);
-        } else if (error instanceof FailedMediaSource.MediaSourceResolutionException) {
+        } else if (cause instanceof FailedMediaSource.MediaSourceResolutionException) {
             playQueue.error(/*recoverableWithNoAvailableStream=*/false);
-        } else if (error instanceof FailedMediaSource.StreamInfoLoadException) {
+        } else if (cause instanceof FailedMediaSource.StreamInfoLoadException) {
             playQueue.error(/*recoverableIfLoadFailsWhenNetworkIsFine=*/false);
         } else {
             playQueue.error(/*noIdeaWhatHappenedAndLetUserChooseWhatToDo=*/true);

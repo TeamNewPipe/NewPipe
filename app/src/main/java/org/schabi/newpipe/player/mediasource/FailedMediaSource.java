@@ -14,7 +14,7 @@ import java.io.IOException;
 public class FailedMediaSource implements ManagedMediaSource {
     private final String TAG = "FailedMediaSource@" + Integer.toHexString(hashCode());
 
-    public static class FailedMediaSourceException extends IOException {
+    public static class FailedMediaSourceException extends Exception {
         FailedMediaSourceException(String message) {
             super(message);
         }
@@ -79,7 +79,7 @@ public class FailedMediaSource implements ManagedMediaSource {
 
     @Override
     public void maybeThrowSourceInfoRefreshError() throws IOException {
-        throw error;
+        throw new IOException(error);
     }
 
     @Override
