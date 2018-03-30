@@ -44,7 +44,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
@@ -94,7 +93,15 @@ public class MainActivity extends AppCompatActivity {
         drawer = findViewById(R.id.drawer_layout);
         drawerItems = findViewById(R.id.navigation);
 
-        //drawerItems.setItemIconTintList(null); // Set null to use the original icon
+        for(StreamingService s : NewPipe.getServices()) {
+            String title =
+                    s.getServiceInfo().getName() +
+                            (ServiceHelper.isBeta(s) ? " (beta)" : "");
+            MenuItem item = drawerItems.getMenu()
+                    .add(R.id.menu_services_group, s.getServiceId(), 0, title);
+            item.setIcon(ServiceHelper.getIcon(s.getServiceId()));
+        }
+
         drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
 
         toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.drawer_open, R.string.drawer_close);
@@ -126,9 +133,8 @@ public class MainActivity extends AppCompatActivity {
     private boolean changeService(MenuItem item) {
         if (item.getGroupId() == R.id.menu_services_group) {
             drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(false);
-            ServiceHelper.setSelectedServiceId(this, item.getTitle().toString());
+            ServiceHelper.setSelectedServiceId(this, item.getItemId());
             drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
-            headerServiceView.setText("gurken");
         } else {
             return false;
         }
