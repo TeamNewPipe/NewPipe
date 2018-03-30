@@ -65,7 +65,6 @@ public class ServiceHelper {
     }
 
     public static int getSelectedServiceId(Context context) {
-        if (BuildConfig.BUILD_TYPE.equals("release")) return DEFAULT_FALLBACK_SERVICE.getServiceId();
 
         final String serviceName = PreferenceManager.getDefaultSharedPreferences(context)
                 .getString(context.getString(R.string.current_service_key), context.getString(R.string.default_service_value));

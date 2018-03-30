@@ -97,34 +97,31 @@ public class MainActivity extends AppCompatActivity {
         //drawerItems.setItemIconTintList(null); // Set null to use the original icon
         drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
 
-        if (!BuildConfig.BUILD_TYPE.equals("release")) {
-            toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.drawer_open, R.string.drawer_close);
-            toggle.syncState();
-            drawer.addDrawerListener(toggle);
-            drawer.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
-                private int lastService;
+        toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.drawer_open, R.string.drawer_close);
+        toggle.syncState();
+        drawer.addDrawerListener(toggle);
+        drawer.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
+            private int lastService;
 
-                @Override
-                public void onDrawerOpened(View drawerView) {
-                    lastService = ServiceHelper.getSelectedServiceId(MainActivity.this);
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                lastService = ServiceHelper.getSelectedServiceId(MainActivity.this);
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                if (lastService != ServiceHelper.getSelectedServiceId(MainActivity.this)) {
+                    new Handler(Looper.getMainLooper()).post(MainActivity.this::recreate);
                 }
+            }
+        });
 
-                @Override
-                public void onDrawerClosed(View drawerView) {
-                    if (lastService != ServiceHelper.getSelectedServiceId(MainActivity.this)) {
-                        new Handler(Looper.getMainLooper()).post(MainActivity.this::recreate);
-                    }
-                }
-            });
+        drawerItems.setNavigationItemSelectedListener(this::changeService);
 
-            drawerItems.setNavigationItemSelectedListener(this::changeService);
-
-            setupDrawerFooter();
-            setupDrawerHeader();
-        } else {
-            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-        }
+        setupDrawerFooter();
+        setupDrawerHeader();
     }
+
 
     private boolean changeService(MenuItem item) {
         if (item.getGroupId() == R.id.menu_services_group) {
@@ -176,11 +173,9 @@ public class MainActivity extends AppCompatActivity {
         // when the user returns to MainActivity
         drawer.closeDrawer(Gravity.START, false);
         try {
-            if(BuildConfig.BUILD_TYPE != "release" ) {
-                String selectedServiceName = NewPipe.getService(
-                        ServiceHelper.getSelectedServiceId(this)).getServiceInfo().getName();
-                headerServiceView.setText(selectedServiceName);
-            }
+            String selectedServiceName = NewPipe.getService(
+                    ServiceHelper.getSelectedServiceId(this)).getServiceInfo().getName();
+            headerServiceView.setText(selectedServiceName);
         } catch (Exception e) {
             ErrorActivity.reportUiError(this, e);
         }
