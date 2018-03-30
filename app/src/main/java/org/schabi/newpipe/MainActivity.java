@@ -307,9 +307,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_about:
                 NavigationHelper.openAbout(this);
                 return true;
-            case R.id.action_history:
-                NavigationHelper.openHistory(this);
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
