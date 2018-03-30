@@ -128,7 +128,7 @@
     <string name="could_not_load_image">画像を読み込みできません</string>
 
     <string name="app_ui_crash">アプリ/UI がクラッシュしました</string>
-    <string name="info_labels">何:\\n提案:\\nｺﾝﾃﾝﾂ言語:\\nｻｰﾋﾞｽ:\\nGMT 時間:\\nﾊﾟｯｹｰｼﾞ:\\nﾊﾞｰｼﾞｮﾝ:\\nOS ﾊﾞｰｼﾞｮﾝ:\\nｸﾞﾛｰﾊﾞﾙ IP 範囲:</string>
+    <string name="info_labels">何:\\n提案:\\nｺﾝﾃﾝﾂ言語:\\nｻｰﾋﾞｽ:\\nGMT 時間:\\nﾊﾟｯｹｰｼﾞ:\\nﾊﾞｰｼﾞｮﾝ:\\nOS ﾊﾞｰｼﾞｮﾝ:</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">reCAPTCHA の要求</string>
 

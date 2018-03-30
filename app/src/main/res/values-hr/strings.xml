@@ -124,7 +124,7 @@
     <string name="error_snackbar_action">PRIJAVI</string>
     <string name="what_device_headline">Informacije:</string>
     <string name="what_happened_headline">Što se dogodilo:</string>
-    <string name="info_labels">Što:\\nRequest:\\nContent Jezik:\\nService:\\nGMT Vrijeme:\\nPackage:\\nVersion:\\nOS version:\\nGlob. IP range:</string>
+    <string name="info_labels">Što:\\nRequest:\\nContent Jezik:\\nService:\\nGMT Vrijeme:\\nPackage:\\nVersion:\\nOS version:</string>
     <string name="your_comment">Vaš komentar (na engleskom):</string>
     <string name="error_details_headline">Detalji:</string>
 

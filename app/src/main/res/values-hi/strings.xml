@@ -165,7 +165,7 @@
     <string name="error_snackbar_action">रिपोर्ट</string>
     <string name="what_device_headline">जानकारी:</string>
     <string name="what_happened_headline">क्या हुआ:</string>
-    <string name="info_labels">क्या:\\nमांग:\\nविषयवस्तु की भाषा:\\nसेवा:\\nजीएमटी समय:\\nपैकेज:\\nसंस्करण:\\nOS संस्करण:\\nGLOB. IP रेंज:</string>
+    <string name="info_labels">क्या:\\nमांग:\\nविषयवस्तु की भाषा:\\nसेवा:\\nजीएमटी समय:\\nपैकेज:\\nसंस्करण:\\nOS संस्करण:</string>
     <string name="your_comment">आपकी टिप्पणी:</string>
     <string name="error_details_headline">विवरण:</string>
 

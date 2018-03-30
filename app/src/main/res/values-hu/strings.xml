@@ -191,7 +191,7 @@
     <string name="video_streams_empty">Nem található videó formátum</string>
     <string name="audio_streams_empty">Nem található hang csatorna</string>
 
-    <string name="info_labels">Mi:\\nKérés:\\nTartalom nyelve:\\nSzolgáltatás:\\nGMT Idő:\\nCsomag:\\nVerzió:\\nOperációs Rendszer verzió:\\nGlobális IP tartomány:</string>
+    <string name="info_labels">Mi:\\nKérés:\\nTartalom nyelve:\\nSzolgáltatás:\\nGMT Idő:\\nCsomag:\\nVerzió:\\nOperációs Rendszer verzió:</string>
     <string name="search_no_results">Nincs találat</string>
     <string name="use_old_player_title">Régi lejátszó használata</string>
     </resources>
