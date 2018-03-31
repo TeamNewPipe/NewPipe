@@ -247,5 +247,12 @@ membuka di mode popup</string>
 
     <string name="unknown_content">[Tidak diketahui]</string>
 
-    <string name="toggle_orientation">"Orientasi "</string>
+    <string name="toggle_orientation">Ubah Orientasi</string>
+    <string name="switch_to_background">Kembali ke Layar Belakang</string>
+    <string name="switch_to_popup">Kembali ke Sembulan</string>
+    <string name="switch_to_main">Kembali ke Utama</string>
+
+    <string name="import_data_title">Impor basis data</string>
+    <string name="export_data_title">Ekspor basis data</string>
+    <string name="import_data_summary">"Akan "</string>
     </resources>
