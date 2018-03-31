@@ -324,7 +324,6 @@ public class MediaSourceManager {
     private void maybeSynchronizePlayer() {
         maybeUnblock();
         maybeSync();
-        cleanPlaylist();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -476,20 +475,6 @@ public class MediaSourceManager {
         if (DEBUG) Log.d(TAG, "MediaSource - Reloading currently playing, " +
                 "index=[" + currentIndex + "], item=[" + currentItem.getTitle() + "]");
         playlist.invalidate(currentIndex, this::loadImmediate);
-    }
-
-    /**
-     * Scans the entire playlist for {@link ManagedMediaSource}s that requires correction,
-     * and replaces these sources with a {@link PlaceholderMediaSource} if they are not part
-     * of the excluded items.
-     * */
-    private void cleanPlaylist() {
-        if (DEBUG) Log.d(TAG, "cleanPlaylist() called.");
-        for (final PlayQueueItem item : playQueue.getStreams()) {
-            if (isCorrectionNeeded(item)) {
-                playlist.invalidate(playQueue.indexOf(item));
-            }
-        }
     }
     /*//////////////////////////////////////////////////////////////////////////
     // MediaSource Playlist Helpers
