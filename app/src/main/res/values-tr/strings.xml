@@ -219,7 +219,7 @@
     <string name="resume_on_audio_focus_gain_summary">Kesilmelerden sonra (örn. telefon çağrıları) oynatmayı sürdür</string>
     <string name="settings_category_player_title">Oynatıcı</string>
     <string name="settings_category_player_behavior_title">Davranış</string>
-    <string name="settings_category_history_title">Geçmiş</string>
+    <string name="settings_category_history_title">Geçmiş ve Önbellek</string>
     <string name="playlist">Oynatma listesi</string>
     <string name="undo">Geri al</string>
 
@@ -380,7 +380,7 @@
     <string name="resize_fill">DOLDUR</string>
     <string name="resize_zoom">YAKLAŞTIR</string>
 
-    <string name="caption_font_size_settings_title">Alt Yazı Boyutu</string>
+    <string name="caption_font_size_settings_title">Altyazı boyutu</string>
     <string name="smaller_caption_font_size">Küçük Yazı Tipi</string>
     <string name="normal_caption_font_size">Olağan Yazı Tipi</string>
     <string name="larger_caption_font_size">Büyük Yazı Tipi</string>
@@ -441,4 +441,10 @@
     <string name="import_network_expensive_warning">Bu sürecin ağ masrafına neden olabileceğini unutmayın.
 \n
 \nDevam etmek istiyor musunuz?</string>
-</resources>
+<string name="download_thumbnail_title">Önizlemeleri yükle</string>
+    <string name="download_thumbnail_summary">Bellek ve veri kullanımını azaltmak için önizleme yüklemelerini devre dışı bırakın. Bunu değiştirmek, hem bellek hem de disk üzerindeki önbelleği temizleyecek.</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Resim önbelleği temizlendi</string>
+    <string name="metadata_cache_wipe_title">Önbellek verisini temizle</string>
+    <string name="metadata_cache_wipe_summary">Önbelleklenmiş tüm web içeriği verisini kaldır</string>
+    <string name="metadata_cache_wipe_complete_notice">Veri önbelleği temizlendi</string>
+    </resources>
