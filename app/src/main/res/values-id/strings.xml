@@ -319,5 +319,30 @@ membuka di mode popup</string>
     <string name="select_a_kiosk">Pilih sebuah kiosk</string>
     <string name="export_complete_toast">Ekspor berhasil</string>
     <string name="import_complete_toast">Impor berhasil</string>
-    <string name="no_valid_zip_file">Berkasi ZIP tidak valid</string>
+    <string name="no_valid_zip_file">Berkas ZIP tidak valid</string>
+    <string name="could_not_import_all_files">Perhatian: Tidak dapat mengimpor semua berkas.</string>
+    <string name="override_current_data">Ini akan menimpa pengaturan kamu saat ini.</string>
+
+    <string name="kiosk">Kiosk</string>
+    <string name="trending">Tren</string>
+    <string name="top_50">Top 50</string>
+    <string name="new_and_hot">Baru &amp; Panas</string>
+    <string name="title_activity_background_player">Pemutar Layar Belakang</string>
+    <string name="title_activity_popup_player">Pemutar Sembulan</string>
+    <string name="play_queue_remove">Hapus</string>
+    <string name="play_queue_stream_detail">Rincian</string>
+    <string name="play_queue_audio_settings">Pengaturan Audio</string>
+    <string name="hold_to_append">Tahan Untuk Mengantri</string>
+    <string name="enqueue_on_background">Antri di Layar Belakang</string>
+    <string name="enqueue_on_popup">Antri di Sembulan</string>
+    <string name="start_here_on_main">Mulai Putar Disini</string>
+    <string name="start_here_on_background">Mulai Disini di Layar Belakang</string>
+    <string name="start_here_on_popup">Mulai Disini di Sembulan</string>
+
+    <string name="drawer_open">Bukan Menu</string>
+    <string name="drawer_close">Tutup Menu</string>
+    <string name="drawer_header_action_paceholder_text">Sesuatu akan hadir disini nanti ;D</string>
+
+
+    <string name="preferred_player_share_menu_dialog_title">Bukan dengan pemutar yg diinginkan</string>
     </resources>
