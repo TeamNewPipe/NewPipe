@@ -295,5 +295,9 @@ membuka di mode popup</string>
     <string name="rename">Ubah nama</string>
 
     <string name="donation_title">Donasi</string>
-    <string name="donation_encouragement">"NewPipe dikembangkan oleh relawan yg menghabiskan waktu luangnya untuk pengalaman terbaik kamu. Kini saatnya "</string>
+    <string name="donation_encouragement">NewPipe dikembangkan oleh relawan yg menghabiskan waktu luangnya untuk pengalaman terbaik kamu. Kini saatnya memberikan kembali untuk memastikan pengembang kita dapat membuat NewPipe lebih baik lagi sambil menikmati secangkir kopi jawa!</string>
+    <string name="give_back">Beri balik</string>
+    <string name="website_title">Situs</string>
+    <string name="website_encouragement">Untuk mendapatkan informasi lebih jauh dan berita terbaru tentang NewPipe kunjungi situs kami.</string>
+    <string name="title_history_search">Tercari</string>
     </resources>
