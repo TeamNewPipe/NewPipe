@@ -42,7 +42,7 @@
     <string name="next_video_title">Video berikutnya</string>
     <string name="show_next_and_similar_title">Tampilkan video berikutnya dan terkait</string>
     <string name="url_not_supported_toast">URL tidak didukung</string>
-    <string name="search_language_title">Bahasa konten</string>
+    <string name="search_language_title">Bahasa konten bawaan</string>
     <string name="settings_category_video_audio_title">Video &amp; Audio</string>
     <string name="settings_category_appearance_title">Tampilan</string>
     <string name="settings_category_other_title">Lainnya</string>
@@ -50,7 +50,7 @@
     <string name="play_btn_text">Putar</string>
     <string name="content">Konten</string>
     <string name="show_age_restricted_content_title">Tampilkan konten batasan usia</string>
-    <string name="video_is_age_restricted">Video Dibatasi Usia. Aktifkan video batasan usia di pengaturan terlebih dahulu.</string>
+    <string name="video_is_age_restricted">Video Dibatasi Usia. Aktifkan video batasan usia bisa lewat Pengaturan.</string>
     <string name="network_error">Galat jaringan</string>
     <string name="could_not_load_thumbnails">Tidak bisa memuat semua Thumbnail</string>
     <string name="did_you_mean">Mungkin maksud Anda: %1$s ?</string>
@@ -227,5 +227,25 @@ membuka di mode popup</string>
     <string name="auto_queue_summary">Otomatis menambahkan stream yg terkait ketika playback mulai saat stream terakhir di antri memutar tidak-mengulang</string>
     <string name="enable_watch_history_summary">Simpan daftar video yg telah ditonton</string>
     <string name="show_hold_to_append_title">Tampilkan tahan untuk menambahkan tip</string>
-    <string name="show_hold_to_append_summary">"Tampilkan tip ketika belakang layar atau "</string>
+    <string name="show_hold_to_append_summary">Tampilkan tip ketika belakang layar atau tombol sembul ditekan pada laman rinci video</string>
+    <string name="default_content_country_title">Konten negara bawaan</string>
+    <string name="service_title">Layanan</string>
+    <string name="settings_category_player_title">Pemutar</string>
+    <string name="settings_category_player_behavior_title">Kebiasaan</string>
+    <string name="settings_category_history_title">Riwayat &amp; Tembolok</string>
+    <string name="settings_category_debug_title">Debug</string>
+    <string name="background_player_append">Mengantri di belakang pemutar</string>
+    <string name="popup_playing_append">Mengantri di pemutar sembulan</string>
+    <string name="playlist">Daftar putar</string>
+    <string name="undo">Tidak jadi</string>
+    <string name="play_all">Putar Semua</string>
+    <string name="always">Selalu</string>
+    <string name="just_once">Hanya Sekali</string>
+    <string name="file">Berkas</string>
+
+    <string name="notification_channel_description">Notifikasi untuk Layar Belakang NewPipe dan Pemutar Sembulan</string>
+
+    <string name="unknown_content">[Tidak diketahui]</string>
+
+    <string name="toggle_orientation">"Orientasi "</string>
     </resources>
