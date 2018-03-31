@@ -218,4 +218,5 @@ membuka di mode popup</string>
     <string name="history_disabled">Riwayat dinonaktifkan</string>
     <string name="action_history">Riwayat</string>
     <string name="history_empty">Riwayat kosong.</string>
+    <string name="download_thumbnail_title">"Muat "</string>
     </resources>
