@@ -373,8 +373,17 @@ membuka di mode popup</string>
 
     <string name="caption_none">Tidak ada deskripsi</string>
 
-    <string name="resize_fit">FIT</string>
+    <string name="resize_fit">PAS</string>
     <string name="resize_fill">ISI</string>
     <string name="resize_zoom">PERBESAR</string>
 
-    </resources>
+    <string name="caption_auto_generated">Dihasilkan-otomatis</string>
+    <string name="caption_font_size_settings_title">Ukuran fon deskripsi</string>
+    <string name="smaller_caption_font_size">Fon lebih kecil</string>
+    <string name="normal_caption_font_size">Fon normal</string>
+    <string name="larger_caption_font_size">Fon lebih besar</string>
+
+    <string name="enable_leak_canary_title">Aktifkan LeakCanary</string>
+    <string name="playback_nightcore">Nightcore</string>
+    <string name="playback_default">Bawaan</string>
+</resources>
