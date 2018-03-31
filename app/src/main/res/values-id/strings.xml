@@ -384,6 +384,6 @@ membuka di mode popup</string>
     <string name="larger_caption_font_size">Fon lebih besar</string>
 
     <string name="enable_leak_canary_title">Aktifkan LeakCanary</string>
-    <string name="playback_nightcore">Nightcore</string>
+    <string name="playback_nightcore"></string>
     <string name="playback_default">Bawaan</string>
 </resources>
