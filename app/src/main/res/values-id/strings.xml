@@ -221,4 +221,10 @@ membuka di mode popup</string>
     <string name="download_thumbnail_title">"Muat "</string>
     <string name="download_thumbnail_summary">Matikan untuk memberhentikan semua thumbnail dari pemuatan untuk menghemat data dan penggunaan memoti. Mengubah ini akan membersihkan tembolok didalam-memori dan gambar didalam-diska.</string>
     <string name="thumbnail_cache_wipe_complete_notice">"Tembolok gambar "</string>
+    <string name="metadata_cache_wipe_title">Bersihkan metadata tembolok</string>
+    <string name="metadata_cache_wipe_summary">Hapus semua data tembolok laman web</string>
+    <string name="metadata_cache_wipe_complete_notice">Tembolok metadata dibersihkan</string>
+    <string name="auto_queue_summary">Otomatis menambahkan stream yg terkait ketika playback mulai saat stream terakhir di antri memutar tidak-mengulang</string>
+    <string name="enable_watch_history_summary">Simpan daftar video yg telah ditonton</string>
+    <string name="show_hold_to_append_title">"Tampilkan tahan untuk "</string>
     </resources>
