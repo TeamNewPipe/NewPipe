@@ -226,5 +226,6 @@ membuka di mode popup</string>
     <string name="metadata_cache_wipe_complete_notice">Tembolok metadata dibersihkan</string>
     <string name="auto_queue_summary">Otomatis menambahkan stream yg terkait ketika playback mulai saat stream terakhir di antri memutar tidak-mengulang</string>
     <string name="enable_watch_history_summary">Simpan daftar video yg telah ditonton</string>
-    <string name="show_hold_to_append_title">"Tampilkan tahan untuk "</string>
+    <string name="show_hold_to_append_title">Tampilkan tahan untuk menambahkan tip</string>
+    <string name="show_hold_to_append_summary">"Tampilkan tip ketika belakang layar atau "</string>
     </resources>
