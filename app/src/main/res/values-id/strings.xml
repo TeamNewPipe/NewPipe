@@ -219,4 +219,6 @@ membuka di mode popup</string>
     <string name="action_history">Riwayat</string>
     <string name="history_empty">Riwayat kosong.</string>
     <string name="download_thumbnail_title">"Muat "</string>
+    <string name="download_thumbnail_summary">Matikan untuk memberhentikan semua thumbnail dari pemuatan untuk menghemat data dan penggunaan memoti. Mengubah ini akan membersihkan tembolok didalam-memori dan gambar didalam-diska.</string>
+    <string name="thumbnail_cache_wipe_complete_notice">"Tembolok gambar "</string>
     </resources>
