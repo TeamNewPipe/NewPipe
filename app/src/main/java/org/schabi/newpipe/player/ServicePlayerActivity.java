@@ -438,9 +438,6 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         } else if (view.getId() == playbackPitchButton.getId()) {
             openPlaybackParameterDialog();
 
-        } else if (view.getId() == metadata.getId()) {
-            scrollToSelected();
-
         } else if (view.getId() == progressLiveSync.getId()) {
             player.seekToDefault();
 
@@ -520,10 +517,12 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     }
 
     @Override
-    public void onMetadataUpdate(StreamInfo info) {
+    public void onMetadataUpdate(final StreamInfo info) {
         if (info != null) {
             metadataTitle.setText(info.getName());
             metadataArtist.setText(info.getUploaderName());
+            metadata.setOnClickListener(view ->
+                    onOpenDetail(info.getServiceId(), info.getUrl(), info.getName()));
 
             progressEndTime.setVisibility(View.GONE);
             progressLiveSync.setVisibility(View.GONE);
