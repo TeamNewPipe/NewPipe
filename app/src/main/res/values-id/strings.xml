@@ -217,7 +217,7 @@ membuka di mode popup</string>
     <string name="title_activity_history">Riwayat</string>
     <string name="history_disabled">Riwayat dinonaktifkan</string>
     <string name="action_history">Riwayat</string>
-    <string name="history_empty">Riwayat kosong.</string>
+    <string name="history_empty">Riwayat kosong</string>
     <string name="download_thumbnail_title">"Muat "</string>
     <string name="download_thumbnail_summary">Matikan untuk memberhentikan semua thumbnail dari pemuatan untuk menghemat data dan penggunaan memoti. Mengubah ini akan membersihkan tembolok didalam-memori dan gambar didalam-diska.</string>
     <string name="thumbnail_cache_wipe_complete_notice">"Tembolok gambar "</string>
@@ -299,5 +299,25 @@ membuka di mode popup</string>
     <string name="give_back">Beri balik</string>
     <string name="website_title">Situs</string>
     <string name="website_encouragement">Untuk mendapatkan informasi lebih jauh dan berita terbaru tentang NewPipe kunjungi situs kami.</string>
-    <string name="title_history_search">Tercari</string>
+    <string name="title_history_search">Sudah dicari</string>
+    <string name="history_cleared">Riwayat terhapus</string>
+    <string name="item_deleted">Item terhapus</string>
+    <string name="delete_item_search_history">Kamu ingin menghapus item ini dari riwayat pencarian?</string>
+    <string name="delete_stream_history_prompt">Kamu ingin menghapus item ini dari riwayat tontonan?</string>
+    <string name="delete_all_history_prompt">Kamu yakin ingin menghapus semua item dari riwayat?</string>
+    <string name="title_last_played">Diputar Terakhir</string>
+    <string name="title_most_played">Paling sering Diputar</string>
+
+    <string name="main_page_content">Konten laman utama</string>
+    <string name="blank_page_summary">Laman Kosong</string>
+    <string name="kiosk_page_summary">Laman Kiosk</string>
+    <string name="subscription_page_summary">Laman Langganan</string>
+    <string name="feed_page_summary">Laman Umpan</string>
+    <string name="channel_page_summary">Laman Kanal</string>
+    <string name="select_a_channel">Pilih sebuah kanal</string>
+    <string name="no_channel_subscribed_yet">Tidak ada kanal yg dilanggani</string>
+    <string name="select_a_kiosk">Pilih sebuah kiosk</string>
+    <string name="export_complete_toast">Ekspor berhasil</string>
+    <string name="import_complete_toast">Impor berhasil</string>
+    <string name="no_valid_zip_file">Berkasi ZIP tidak valid</string>
     </resources>
