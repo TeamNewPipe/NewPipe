@@ -374,7 +374,7 @@ membuka di mode popup</string>
     <string name="caption_none">Tidak ada deskripsi</string>
 
     <string name="resize_fit">FIT</string>
-    <string name="resize_fill">FILL</string>
+    <string name="resize_fill">ISI</string>
     <string name="resize_zoom">PERBESAR</string>
 
     </resources>
