@@ -256,7 +256,7 @@
     <string name="history_cleared">Geçmiş temizlendi</string>
     <string name="item_deleted">Öge silindi</string>
 <string name="delete_item_search_history">Bu içeriği arama geçmişinden silmek istiyor musunuz?</string>
-<string name="show_hold_to_append_title">Eklemek İçin Bas İpucunu Göster</string>
+<string name="show_hold_to_append_title">Sardırmak için tutun ipucu\'nu göster</string>
     <string name="show_hold_to_append_summary">Video ayrıntıları sayfasında arka plan veya açılır pencere düğmesine basıldığında ipucu göster</string>
     <string name="background_player_append">Arka plan oynatıcıda kuyruğa eklendi</string>
     <string name="popup_playing_append">Açılır pencere oynatıcıda kuyruğa eklendi</string>
@@ -381,9 +381,9 @@
     <string name="resize_zoom">YAKLAŞTIR</string>
 
     <string name="caption_font_size_settings_title">Altyazı boyutu</string>
-    <string name="smaller_caption_font_size">Küçük Yazı Tipi</string>
-    <string name="normal_caption_font_size">Olağan Yazı Tipi</string>
-    <string name="larger_caption_font_size">Büyük Yazı Tipi</string>
+    <string name="smaller_caption_font_size">Daha küçük yazı tipi</string>
+    <string name="normal_caption_font_size">Normal yazı tipi</string>
+    <string name="larger_caption_font_size">Daha büyük yazı tipi</string>
 <string name="settings_category_debug_title">Hata Ayıklama</string>
     <string name="drawer_header_action_paceholder_text">Buraya yakında bir şeyler gelecek ;D</string>
 
@@ -392,7 +392,7 @@
     <string name="enable_leak_canary_title">LeakCanary\'i Etkinleştir</string>
     <string name="enable_leak_canary_summary">Bellek sızıntı gözlemlemesi, yığın boşaltımı sırasında uygulamanın tepkisiz kalmasına neden olabilir</string>
 
-    <string name="enable_disposed_exceptions_title">Out-of-Lifecycle Hatalarını Bildir</string>
+    <string name="enable_disposed_exceptions_title">Olağan dışı işleyiş hatalarını bildir</string>
     <string name="enable_disposed_exceptions_summary">Parçanın dışında veya atımdan sonraki etkinlik yaşam döngüsünde meydana gelen ve teslim edilemeyen Rx beklentilerinin bildirimini zorla</string>
 
 <string name="use_inexact_seek_title">Hızlı isabetsiz konumlama kullan</string>
@@ -447,4 +447,7 @@
     <string name="metadata_cache_wipe_title">Önbellek verisini temizle</string>
     <string name="metadata_cache_wipe_summary">Önbelleklenmiş tüm web içeriği verisini kaldır</string>
     <string name="metadata_cache_wipe_complete_notice">Veri önbelleği temizlendi</string>
-    </resources>
+    <string name="playback_speed_control">Oynatım Değişkenleri</string>
+    <string name="playback_tempo">Tempo</string>
+    <string name="playback_default">Varsayılan</string>
+</resources>
