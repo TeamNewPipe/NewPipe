@@ -344,5 +344,37 @@ membuka di mode popup</string>
     <string name="drawer_header_action_paceholder_text">Sesuatu akan hadir disini nanti ;D</string>
 
 
-    <string name="preferred_player_share_menu_dialog_title">Bukan dengan pemutar yg diinginkan</string>
+    <string name="preferred_player_share_menu_dialog_title">Buka dengan pemutar yg diinginkan</string>
+    <string name="preferred_player_settings_title">Pemutar yg diinginkan</string>
+
+    <string name="video_player">Pemutar video</string>
+    <string name="background_player">Pemutar Layar Belakang</string>
+    <string name="popup_player">Pemutar sembulan</string>
+    <string name="always_ask_open_action">Selalu tanya</string>
+    
+    <string name="preferred_player_fetcher_notification_title">Mendapatkan info…</string>
+    <string name="preferred_player_fetcher_notification_message">Konten yg diminta sedang dimuat</string>
+
+    <string name="create_playlist">Buat Daftar Putar Baru</string>
+    <string name="delete_playlist">Hapus Daftar Putar</string>
+    <string name="rename_playlist">Ubah Nama Daftar Putar</string>
+    <string name="playlist_name_input">Nama</string>
+    <string name="append_playlist">Tambah Ke Daftar Putar</string>
+    <string name="set_as_playlist_thumbnail">Atur sebagai Thumbnail Daftar Putar</string>
+
+    <string name="bookmark_playlist">Markah Daftar Putar</string>
+    <string name="unbookmark_playlist">Hapus Markah</string>
+
+    <string name="delete_playlist_prompt">Kamu ingin menghapus daftar putar ini?</string>
+    <string name="playlist_creation_success">Daftar putar berhasil dibuat</string>
+    <string name="playlist_add_stream_success">Ditambahkan ke daftar putar</string>
+    <string name="playlist_thumbnail_change_success">Thumbnail daftar putar diubah</string>
+    <string name="playlist_delete_failure">Gagal untuk menghapus daftar putar</string>
+
+    <string name="caption_none">Tidak ada deskripsi</string>
+
+    <string name="resize_fit">FIT</string>
+    <string name="resize_fill">FILL</string>
+    <string name="resize_zoom">PERBESAR</string>
+
     </resources>
