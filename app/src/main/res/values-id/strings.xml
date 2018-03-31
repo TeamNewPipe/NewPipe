@@ -101,7 +101,7 @@
     <string name="checksum">Ceksum</string>
 
     <string name="add">Misi baru</string>
-    <string name="finish">Oke</string>
+    <string name="finish">OK</string>
 
     <string name="msg_name">Nama berkas</string>
     <string name="msg_error">Galat</string>
@@ -111,8 +111,8 @@
     <string name="msg_running">NewPipe sedang Mengunduh</string>
     <string name="msg_running_detail">Sentuh untuk detail</string>
     <string name="msg_wait">Mohon tunggu…</string>
-    <string name="msg_copied">Disalin ke papan klip.</string>
-    <string name="no_available_dir">Silakan pilih direktori unduhan yang tersedia.</string>
+    <string name="msg_copied">Disalin ke papan klip</string>
+    <string name="no_available_dir">Silakan pilih direktori unduhan yang tersedia</string>
 
     <string name="no_player_found">Tidak ditemukan pemutar stream. Apakah anda ingin memasang VLC?</string>
     <string name="youtube_signature_decryption_error">Tidak bisa mendekrip tanda tangan URL video</string>
@@ -294,4 +294,6 @@ membuka di mode popup</string>
     <string name="dismiss">Diamkan</string>
     <string name="rename">Ubah nama</string>
 
+    <string name="donation_title">Donasi</string>
+    <string name="donation_encouragement">"NewPipe dikembangkan oleh relawan yg menghabiskan waktu luangnya untuk pengalaman terbaik kamu. Kini saatnya "</string>
     </resources>
