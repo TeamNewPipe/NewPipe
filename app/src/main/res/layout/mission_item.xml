@@ -1,7 +1,8 @@
 <RelativeLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_height="wrap_content"
-	android:layout_width="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 	
 	<RelativeLayout
 		android:id="@+id/item_bkg"
@@ -37,7 +38,7 @@
 				android:layout_alignParentRight="true"
 				android:layout_centerVertical="true"
 				android:layout_marginRight="1dp"
-				android:src="@drawable/ic_menu_more"
+				app:srcCompat="@drawable/ic_menu_more"
 				android:scaleType="centerInside"/>
 			
 		</RelativeLayout>

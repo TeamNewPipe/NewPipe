@@ -11,6 +11,7 @@ android {
         versionCode 49
         versionName "0.13.0"
 
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
@@ -70,7 +71,7 @@ dependencies {
     implementation "com.android.support:support-v4:$supportLibVersion"
     implementation "com.android.support:design:$supportLibVersion"
     implementation "com.android.support:recyclerview-v7:$supportLibVersion"
-    implementation "com.android.support:preference-v14:$supportLibVersion"
+    implementation "com.android.support:preference-v7:$supportLibVersion"
 
     implementation 'com.google.code.gson:gson:2.8.2'
     implementation 'ch.acra:acra:4.9.2'

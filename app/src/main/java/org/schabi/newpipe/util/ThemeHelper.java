@@ -21,10 +21,12 @@ package org.schabi.newpipe.util;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.preference.PreferenceManager;
+import android.graphics.drawable.Drawable;
+import android.support.v7.preference.PreferenceManager;
 import android.support.annotation.AttrRes;
 import android.support.annotation.StyleRes;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.content.res.AppCompatResources;
 import android.util.TypedValue;
 import android.view.ContextThemeWrapper;
 
@@ -169,6 +171,14 @@ public class ThemeHelper {
         int attributeResourceId = a.getResourceId(0, 0);
         a.recycle();
         return attributeResourceId;
+    }
+
+    public static Drawable resolveDrawableFromAtt(Context context,@AttrRes int att){
+        return AppCompatResources.getDrawable(context, resolveResourceIdFromAttr(context,att));
+    }
+
+    public static Drawable getDrawableFromRes(Context context,int res){
+        return AppCompatResources.getDrawable(context,res);
     }
 
     /**

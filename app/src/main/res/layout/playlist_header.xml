@@ -48,7 +48,7 @@
                 android:layout_height="@dimen/playlist_detail_uploader_image_size"
                 android:layout_alignParentLeft="true"
                 android:layout_margin="1dp"
-                android:src="@drawable/buddy"
+                app:srcCompat="@drawable/buddy"
                 app:civ_border_color="#ffffff"
                 app:civ_border_width="1dp"/>
 

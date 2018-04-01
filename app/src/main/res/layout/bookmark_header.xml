@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginBottom="12dp"
     android:background="?attr/selectableItemBackground">
 
@@ -22,7 +23,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
-            android:src="?attr/history"
+            app:srcCompat="?attr/history"
             tools:ignore="ContentDescription,RtlHardcoded"/>
 
         <TextView
@@ -54,7 +55,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
-            android:src="?attr/filter"
+            app:srcCompat="?attr/filter"
             tools:ignore="ContentDescription,RtlHardcoded"/>
 
         <TextView

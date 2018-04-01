@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.preference.PreferenceManager;
+import android.support.v7.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;

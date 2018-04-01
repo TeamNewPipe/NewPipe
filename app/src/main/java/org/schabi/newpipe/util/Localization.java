@@ -3,7 +3,7 @@ package org.schabi.newpipe.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.preference.PreferenceManager;
+import android.support.v7.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.PluralsRes;
 import android.support.annotation.StringRes;

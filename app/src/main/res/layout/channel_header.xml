@@ -20,7 +20,7 @@
             android:background="@android:color/black"
             android:fitsSystemWindows="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/channel_banner"
+            app:srcCompat="@drawable/channel_banner"
             tools:ignore="ContentDescription"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -30,7 +30,7 @@
             android:layout_alignTop="@id/channel_banner_image"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="50dp"
-            android:src="@drawable/buddy"
+            app:srcCompat="@drawable/buddy"
             app:civ_border_color="#ffffff"
             app:civ_border_width="2dp"
             tools:ignore="RtlHardcoded"/>

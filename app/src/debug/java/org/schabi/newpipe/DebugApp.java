@@ -2,7 +2,7 @@ package org.schabi.newpipe;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+import android.support.v7.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.multidex.MultiDex;
 
