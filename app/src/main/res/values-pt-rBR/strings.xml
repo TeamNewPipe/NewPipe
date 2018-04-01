@@ -113,7 +113,7 @@
     <string name="use_tor_title">Usar Tor</string>
     <string name="user_report">Relatório do usuário</string>
     <string name="show_play_with_kodi_title">Exibir opção \"Reproduzir com Kodi\"</string>
-    <string name="info_labels">O que:\\nRequisição:\\nIdioma do conteúdo:\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nVersão SO:\\nFaixa de IP:</string>
+    <string name="info_labels">O que:\\nRequisição:\\nIdioma do conteúdo:\\nServiço:\\nHora GMT:\\nPacote:\\nVersão:\\nVersão SO:</string>
 
     <string name="open_in_popup_mode">Abrir em modo popup</string>
     <string name="default_popup_resolution_title">Resolução padrão de popup</string>

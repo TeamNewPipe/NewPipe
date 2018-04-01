@@ -131,7 +131,7 @@
     <string name="reCaptcha_title">Izziv reCAPTCHA</string>
     <string name="recaptcha_request_toast">Zahteva izziva reCAPTCHA</string>
 
-    <string name="info_labels">Predmet:\\nZahteva:\\nJezik vsebine:\\nStoritev:\\nČas v GMT:\\nPaket:\\nRazličica:\\nRazličica OS:\\nObseg IP:</string>
+    <string name="info_labels">Predmet:\\nZahteva:\\nJezik vsebine:\\nStoritev:\\nČas v GMT:\\nPaket:\\nRazličica:\\nRazličica OS:</string>
     <string name="black_theme_title">Črna</string>
 
     <string name="all">Vse</string>

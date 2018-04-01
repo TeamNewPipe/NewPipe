@@ -151,7 +151,7 @@
     <string name="player_recoverable_failure">Återhämtar sig från spelarfel</string>
 
     <string name="error_report_button_text">Rapportera fel via e-post</string>
-    <string name="info_labels">Vad:\\nBegäran:\\nInnehålls Språk:\\nTjänst:\\nGMT Tid:\\nPaket:\\nVersion:\\nOS-version:\\nGlob. IP-intervall:</string>
+    <string name="info_labels">Vad:\\nBegäran:\\nInnehålls Språk:\\nTjänst:\\nGMT Tid:\\nPaket:\\nVersion:\\nOS-version:</string>
     <string name="list_thumbnail_view_description">Videons miniatyrbild</string>
     <string name="detail_thumbnail_view_description">Videons miniatyrbild</string>
     <string name="detail_uploader_thumbnail_view_description">Uppladdarens avatar miniatyrbild</string>

@@ -76,7 +76,7 @@
     <string name="error_snackbar_action">ZGŁOŚ</string>
     <string name="what_device_headline">Informacje:</string>
     <string name="what_happened_headline">Co się stało:</string>
-    <string name="info_labels">Co:\\nRequest:\\nJęzyk treści:\\nUsługa:\\nCzas GMT:\\nPakiet:\\nWersja:\\nWersja systemu:\\nGlob. zakres IP:</string>
+    <string name="info_labels">Co:\\nRequest:\\nJęzyk treści:\\nUsługa:\\nCzas GMT:\\nPakiet:\\nWersja:\\nWersja systemu:</string>
     <string name="your_comment">Twój komentarz (po angielsku):</string>
     <string name="error_details_headline">Szczegóły:</string>
 
