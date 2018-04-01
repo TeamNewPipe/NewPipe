@@ -250,7 +250,7 @@ public class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeL
 
     public AppCompatActivity getParentActivity() {
         // ! instanceof ViewGroup means that view was added via windowManager for Popup
-        if (getRootView().getParent() == null || !(getRootView().getParent() instanceof ViewGroup))
+        if (getRootView() == null || getRootView().getParent() == null || !(getRootView().getParent() instanceof ViewGroup))
             return null;
 
         ViewGroup parent = (ViewGroup) getRootView().getParent();

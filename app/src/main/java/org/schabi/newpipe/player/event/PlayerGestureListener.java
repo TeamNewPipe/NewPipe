@@ -323,7 +323,7 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
             position = position >= duration ? duration - 5000 : position;
             position = position <= 0 ? 0 : position;
             if (!playerImpl.isControlsVisible())
-                playerImpl.showControls(0);
+                playerImpl.showControlsThenHide();
 
             playerImpl.getPlayer().seekTo((long) position);
         } else {
