@@ -168,7 +168,7 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(),
-                    UserAction.REQUESTED_PLAYLIST,
+                    UserAction.REQUESTED_KIOSK,
                     NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);
         }
     }

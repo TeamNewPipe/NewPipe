@@ -89,7 +89,8 @@ public class ErrorActivity extends AppCompatActivity {
     private TextView errorMessageView;
 
     public static void reportUiError(final AppCompatActivity activity, final Throwable el) {
-        reportError(activity, el, activity.getClass(), null, ErrorInfo.make(UserAction.UI_ERROR, "none", "", R.string.app_ui_crash));
+        reportError(activity, el, activity.getClass(), null,
+                ErrorInfo.make(UserAction.UI_ERROR, "none", "", R.string.app_ui_crash));
     }
 
     public static void reportError(final Context context, final List<Throwable> el,
@@ -97,12 +98,8 @@ public class ErrorActivity extends AppCompatActivity {
         if (rootView != null) {
             Snackbar.make(rootView, R.string.error_snackbar_message, 15 * 1000)
                     .setActionTextColor(Color.YELLOW)
-                    .setAction(R.string.error_snackbar_action, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            startErrorActivity(returnActivity, context, errorInfo, el);
-                        }
-                    }).show();
+                    .setAction(R.string.error_snackbar_action, v ->
+                            startErrorActivity(returnActivity, context, errorInfo, el)).show();
         } else {
             startErrorActivity(returnActivity, context, errorInfo, el);
         }
