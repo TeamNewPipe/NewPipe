@@ -429,7 +429,7 @@
     <string name="subscriptions_import_unsuccessful">Import subskrypcji nie powiódł się</string>
     <string name="subscriptions_export_unsuccessful">Eksport subskrypcji nie powiódł się</string>
 
-    <string name="import_youtube_instructions">Aby zaimportować subskrypcje, potrzebny jest plik eksportu subskrypcji. Można go wygenerować w następujący sposób:
+    <string name="import_youtube_instructions">Aby zaimportować subskrypcje YouTube, potrzebny jest plik eksportu subskrypcji. Możesz go wygenerować w następujący sposób:
 \n
 \n1. Odwiedź stronę: %1$s
 \n2. Zaloguj się na swoje konto
@@ -446,4 +446,12 @@
 
     <string name="unhook_checkbox">Odczep (może powodować zniekształcenia)</string>
     <string name="playback_nightcore">Nightcore</string>
+    <string name="import_soundcloud_instructions">Aby zaimportować obserwowane z SoundCloud, musisz znać identyfikator oraz link do swojego profilu. Jeśli znasz którykolwiek z nich, po prostu wpisz go w polu poniżej.
+\n
+\nW przeciwnym wypadku spróbuj poniższych kroków:
+\n
+\n1. Włącz \"tryb stacjonarny\" w przeglądarce (strona z której zaraz skorzystasz nie jest dostępna w trybie mobilnym)
+\n2. Odwiedź stronę: %1$s
+\n3. Zaloguj się na swoje konto
+\n4. Skopiuj adres, na kóry przeglądarka przekieruje cię po zalogowaniu (to jest adres twojego profilu)</string>
     </resources>
