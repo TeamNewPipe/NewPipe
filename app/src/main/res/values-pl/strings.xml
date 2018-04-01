@@ -131,7 +131,7 @@
     <string name="default_popup_resolution_title">Domyślna rozdzielczość dla trybu okienkowego</string>
     <string name="show_higher_resolutions_title">Pokaż wyższe rozdzielczości</string>
     <string name="show_higher_resolutions_summary">Tylko niektóre urządzenia wspierają odtwarzanie wideo 2K/4K</string>
-    <string name="default_video_format_title">Preferowany format wideo</string>
+    <string name="default_video_format_title">Domyślny format wideo</string>
     <string name="black_theme_title">Czarny</string>
     <string name="popup_remember_size_pos_title">Zapamiętaj rozmiar i pozycję trybu okienkowego</string>
     <string name="popup_remember_size_pos_summary">Zapamiętaj ostatni rozmiar i pozycję trybu okienkowego</string>
@@ -164,7 +164,7 @@
 \notworzyć w trybie okienkowym</string>
 
     <string name="open_in_popup_mode">Odtwórz w trybie okienkowym</string>
-    <string name="popup_mode_share_menu_title">NewPipe tryb okienkowy</string>
+    <string name="popup_mode_share_menu_title">Tryb okienkowy NewPipe</string>
     <string name="controls_popup_title">Tryb okienkowy</string>
 
 <string name="best_resolution">Najlepsza rozdzielczość</string>
@@ -398,11 +398,11 @@
     <string name="enable_disposed_exceptions_summary">Wymusza raportowanie niedostarczonych wyjątków Rx poza cyklem życia fragmentu lub aktywności</string>
 
 <string name="use_inexact_seek_title">Użyj szybkiego niedokładnego wyszukiwania</string>
-    <string name="use_inexact_seek_summary">Szybkie wyszukiwanie pozwala przeskoczyć do wybranej pozycji szybciej, lecz ze zmniejszoną precyzją</string>
+    <string name="use_inexact_seek_summary">Szybkie wyszukiwanie pozwala przeskoczyć do wybranej pozycji szybciej, lecz jest mniej precyzyjne</string>
     <string name="download_thumbnail_title">Załaduj miniatury</string>
     <string name="download_thumbnail_summary">Wyłącz, by aplikacja nie ściągała miniatur. Oszczędza transfer i pamięć. Zmiana tej opcji spowoduje wyczyszczenie pamięci podręcznej miniatur.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Wyczyszczono pamięć podręczną miniatur</string>
-    <string name="metadata_cache_wipe_title">Wyczyszczono pamięć tymczasową metadanych</string>
+    <string name="metadata_cache_wipe_title">Wyczyszczono pamięć podręczną metadanych</string>
     <string name="metadata_cache_wipe_summary">Wyczyść pamięć podręczną stron</string>
     <string name="metadata_cache_wipe_complete_notice">Wyczyszczono pamięć podręczną metadanych</string>
     <string name="auto_queue_title">Automatycznie dołącz kolejny stream</string>
@@ -446,12 +446,12 @@
 
     <string name="unhook_checkbox">Odczep (może powodować zniekształcenia)</string>
     <string name="playback_nightcore">Nightcore</string>
-    <string name="import_soundcloud_instructions">Aby zaimportować obserwowane z SoundCloud, musisz znać identyfikator oraz link do swojego profilu. Jeśli znasz którykolwiek z nich, po prostu wpisz go w polu poniżej.
+    <string name="import_soundcloud_instructions">"Aby zaimportować obserwowane z SoundCloud, musisz znać identyfikator lub  link do swojego profilu. Jeśli znasz którykolwiek z nich, po prostu wpisz go w polu poniżej.
 \n
 \nW przeciwnym wypadku spróbuj poniższych kroków:
 \n
 \n1. Włącz \"tryb stacjonarny\" w przeglądarce (strona z której zaraz skorzystasz nie jest dostępna w trybie mobilnym)
 \n2. Odwiedź stronę: %1$s
 \n3. Zaloguj się na swoje konto
-\n4. Skopiuj adres, na kóry przeglądarka przekieruje cię po zalogowaniu (to jest adres twojego profilu)</string>
+\n4. Skopiuj adres, na który przeglądarka przekieruje cię po zalogowaniu (to jest adres twojego profilu)"</string>
     </resources>
