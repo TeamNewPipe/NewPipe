@@ -236,7 +236,7 @@
     <string name="delete_item_search_history">Haluatko poistaa tämän hakuhistoriasta?</string>
 <string name="resume_on_audio_focus_gain_title">Jatka toistoa</string>
     <string name="what_device_headline">Info:</string>
-    <string name="info_labels">Mikä:\\nPyyntö:\\nSisällön kieli:\\nPalvelu:\\nGMT Aika:\\nPaketti:\\nVersio:\\nOS versio:\\nGlob. IP väli:</string>
+    <string name="info_labels">Mikä:\\nPyyntö:\\nSisällön kieli:\\nPalvelu:\\nGMT Aika:\\nPaketti:\\nVersio:\\nOS versio:</string>
     <string name="copyright" formatted="true">© %1$s %2$s %3$s alla</string>
     <string name="main_page_content">Pääsivun sisältö</string>
     <string name="blank_page_summary">Tyhjä sivu</string>

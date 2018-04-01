@@ -108,7 +108,6 @@
     <string name="error_snackbar_action">প্রতিবেদন</string>
     <string name="what_device_headline">তথ্য:</string>
     <string name="what_happened_headline">কি হয়েছিল:</string>
-    <!--     <string name="info_labels">What:\\nRequest:\\nContent Lang:\\nService:\\nGMT Time:\\nPackage:\\nVersion:\\nOS version:\\nGlob. IP range:</string> -->
     <string name="your_comment">তোমার মন্তব্য (ইংরেজিতে):</string>
     <string name="error_details_headline">বর্ণনা:</string>
 
