@@ -45,8 +45,8 @@
     <string name="next_video_title">Następny film</string>
     <string name="show_next_and_similar_title">Pokaż następne i podobne filmy</string>
     <string name="url_not_supported_toast">URL nieobsługiwany</string>
-    <string name="search_language_title">Domyslny język zawartości</string>
-    <string name="settings_category_video_audio_title">Odtwarzanie</string>
+    <string name="search_language_title">Domyślny język zawartości</string>
+    <string name="settings_category_video_audio_title">Wideo i audio</string>
     <string name="settings_category_appearance_title">Wygląd</string>
     <string name="settings_category_other_title">Inne</string>
     <string name="background_player_playing_toast">Odtwarzanie w tle</string>
@@ -64,7 +64,7 @@
     <string name="could_not_load_thumbnails">Nie można załadować wszystkich miniatur</string>
     <string name="youtube_signature_decryption_error">Nie można odszyfrować sygnatury URL filmu</string>
     <string name="parsing_error">Nie można przetworzyć strony</string>
-    <string name="light_parsing_error">Całkowicie nie można przetworzyć strony</string>
+    <string name="light_parsing_error">Nie można przetworzyć całości strony</string>
     <string name="content_not_available">Zawartość niedostępna</string>
     <string name="blocked_by_gema">Zablokowane przez GEMA</string>
     <string name="could_not_setup_download_menu">Nie można ustawić menu pobierania</string>
@@ -85,7 +85,7 @@
     <string name="detail_thumbnail_view_description">Miniatura filmu</string>
     <string name="detail_uploader_thumbnail_view_description">Miniatura zdjęcia wysyłającego</string>
     <string name="detail_likes_img_view_description">Polubienia</string>
-    <string name="detail_dislikes_img_view_description">To mi się nie podoba</string>
+    <string name="detail_dislikes_img_view_description">Łapki w dół</string>
     <string name="use_tor_title">Użyj Tora</string>
     <string name="report_error">Zgłoś błąd</string>
     <string name="user_report">Raport użytkownika</string>
@@ -175,7 +175,7 @@
     <string name="title_activity_about">O NewPipe</string>
     <string name="action_settings">Ustawienia</string>
     <string name="action_about">O programie</string>
-    <string name="title_licenses">Licencje osób trzecich</string>
+    <string name="title_licenses">Licencje stron trzecich</string>
     <string name="error_unable_to_load_license">Nie można załadować licencji</string>
     <string name="action_open_website">Otwórz stronę</string>
     <string name="tab_about">O programie</string>
@@ -209,7 +209,7 @@
     <string name="resume_on_audio_focus_gain_summary">Kontynuuj odtwarzanie po przerwaniu (np. po rozmowie telefonicznej)</string>
 
 
-    <string name="notification_channel_name">Powiadomienie NewPipe</string>
+    <string name="notification_channel_name">Powiadomienia NewPipe</string>
     <string name="notification_channel_description">Powiadomienia dla odtwarzacza NewPipe w tle i w okienku</string>
 
     <string name="tab_contributors">Współautorzy</string>
@@ -266,7 +266,7 @@
     <string name="charset_most_special_characters">Większość znaków specjalnych</string>
 
     <string name="donation_title">Dotacja</string>
-    <string name="donation_encouragement">NewPipe rozwijane jest przez wolontariuszy, którzy poświęcają swój wolny czas, by zapewnić Ci jak najlepsze wrażenia podczas korzystania z aplikacji. To dobry moment, aby wesprzeć programistów i sprawić, aby program był jeszcze lepszy, nie przerywając przy tym popijania kawy!</string>
+    <string name="donation_encouragement">NewPipe rozwijane jest przez wolontariuszy, którzy poświęcają swój wolny czas, by zapewnić ci jak najlepsze wrażenia podczas korzystania z aplikacji. To dobry moment aby wesprzeć programistów i sprawić, aby program był jeszcze lepszy, nie przerywając przy tym popijania kawy!</string>
     <string name="give_back">Daj od siebie</string>
     <string name="website_title">Witryna</string>
     <string name="website_encouragement">By otrzymać więcej informacji oraz najnowsze wiadomości o NewPipe, odwiedź naszą stronę.</string>
