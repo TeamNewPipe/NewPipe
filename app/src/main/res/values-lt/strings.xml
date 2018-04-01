@@ -102,7 +102,7 @@
     <string name="error_snackbar_action">ATASKAITA</string>
     <string name="what_device_headline">Informacija:</string>
     <string name="what_happened_headline">Kas nutiko:</string>
-    <string name="info_labels">Kas:\\nUžklausa:\\nTurinys Kalba:\\nPaslauga:\\nGMT Time:\\nPaketas:\\nVersija:\\nOperacinė Sistema versija:\\nGlob. IP diapazonas:</string>
+    <string name="info_labels">Kas:\\nUžklausa:\\nTurinys Kalba:\\nPaslauga:\\nGMT Time:\\nPaketas:\\nVersija:\\nOperacinė Sistema versija:</string>
     <string name="your_comment">Jūsų komentaras (anglų kalba):</string>
     <string name="error_details_headline">Detalės:</string>
 

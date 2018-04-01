@@ -75,8 +75,8 @@
         android:layout_below="@id/drawer_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:menu="@menu/drawer_items"
         app:elevation="0dp"/>
+        <!-- app:menu="@menu/drawer_items" -->
 
     <LinearLayout
         android:id="@+id/navigation_drawer_footer"

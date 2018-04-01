@@ -102,7 +102,7 @@
     <string name="error_snackbar_action">BÁo CÁO</string>
     <string name="what_device_headline">Thông tin:</string>
     <string name="what_happened_headline">Chuyện gì đã xảy ra:</string>
-    <string name="info_labels">Gì: \\nRequest:\\nContent Lang:\\nService:\\nGMT Time:\\nPackage:\\nVersion:\\nOS version:\\nGlob. IP range:</string>
+    <string name="info_labels">Gì: \\nRequest:\\nContent Lang:\\nService:\\nGMT Time:\\nPackage:\\nVersion:\\nOS version:</string>
     <string name="your_comment">Nhận xét của bạn (bằng tiếng Anh):</string>
     <string name="error_details_headline">Chi tiết:</string>
 

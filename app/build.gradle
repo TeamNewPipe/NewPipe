@@ -8,8 +8,8 @@ android {
         applicationId "org.schabi.newpipe"
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 49
-        versionName "0.13.0"
+        versionCode 60
+        versionName "0.13.1"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -25,13 +25,6 @@ android {
 
             debuggable true
             applicationIdSuffix ".debug"
-        }
-        beta {
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-
-            applicationIdSuffix ".beta"
         }
     }
 
@@ -98,7 +91,6 @@ dependencies {
     annotationProcessor "frankiesardo:icepick-processor:$icepickLibVersion"
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanaryLibVersion"
-    betaImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryLibVersion"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryLibVersion"
 
     implementation 'com.squareup.okhttp3:okhttp:3.9.1'

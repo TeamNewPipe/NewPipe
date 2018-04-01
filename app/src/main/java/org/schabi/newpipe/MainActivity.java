@@ -44,7 +44,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
@@ -94,44 +93,48 @@ public class MainActivity extends AppCompatActivity {
         drawer = findViewById(R.id.drawer_layout);
         drawerItems = findViewById(R.id.navigation);
 
-        //drawerItems.setItemIconTintList(null); // Set null to use the original icon
+        for(StreamingService s : NewPipe.getServices()) {
+            String title =
+                    s.getServiceInfo().getName() +
+                            (ServiceHelper.isBeta(s) ? " (beta)" : "");
+            MenuItem item = drawerItems.getMenu()
+                    .add(R.id.menu_services_group, s.getServiceId(), 0, title);
+            item.setIcon(ServiceHelper.getIcon(s.getServiceId()));
+        }
+
         drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
 
-        if (!BuildConfig.BUILD_TYPE.equals("release")) {
-            toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.drawer_open, R.string.drawer_close);
-            toggle.syncState();
-            drawer.addDrawerListener(toggle);
-            drawer.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
-                private int lastService;
+        toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.drawer_open, R.string.drawer_close);
+        toggle.syncState();
+        drawer.addDrawerListener(toggle);
+        drawer.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
+            private int lastService;
 
-                @Override
-                public void onDrawerOpened(View drawerView) {
-                    lastService = ServiceHelper.getSelectedServiceId(MainActivity.this);
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                lastService = ServiceHelper.getSelectedServiceId(MainActivity.this);
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                if (lastService != ServiceHelper.getSelectedServiceId(MainActivity.this)) {
+                    new Handler(Looper.getMainLooper()).post(MainActivity.this::recreate);
                 }
+            }
+        });
 
-                @Override
-                public void onDrawerClosed(View drawerView) {
-                    if (lastService != ServiceHelper.getSelectedServiceId(MainActivity.this)) {
-                        new Handler(Looper.getMainLooper()).post(MainActivity.this::recreate);
-                    }
-                }
-            });
+        drawerItems.setNavigationItemSelectedListener(this::changeService);
 
-            drawerItems.setNavigationItemSelectedListener(this::changeService);
-
-            setupDrawerFooter();
-            setupDrawerHeader();
-        } else {
-            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-        }
+        setupDrawerFooter();
+        setupDrawerHeader();
     }
+
 
     private boolean changeService(MenuItem item) {
         if (item.getGroupId() == R.id.menu_services_group) {
             drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(false);
-            ServiceHelper.setSelectedServiceId(this, item.getTitle().toString());
+            ServiceHelper.setSelectedServiceId(this, item.getItemId());
             drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
-            headerServiceView.setText("gurken");
         } else {
             return false;
         }
@@ -176,11 +179,9 @@ public class MainActivity extends AppCompatActivity {
         // when the user returns to MainActivity
         drawer.closeDrawer(Gravity.START, false);
         try {
-            if(BuildConfig.BUILD_TYPE != "release" ) {
-                String selectedServiceName = NewPipe.getService(
-                        ServiceHelper.getSelectedServiceId(this)).getServiceInfo().getName();
-                headerServiceView.setText(selectedServiceName);
-            }
+            String selectedServiceName = NewPipe.getService(
+                    ServiceHelper.getSelectedServiceId(this)).getServiceInfo().getName();
+            headerServiceView.setText(selectedServiceName);
         } catch (Exception e) {
             ErrorActivity.reportUiError(this, e);
         }
@@ -311,9 +312,6 @@ public class MainActivity extends AppCompatActivity {
                 return NavigationHelper.openDownloads(this);
             case R.id.action_about:
                 NavigationHelper.openAbout(this);
-                return true;
-            case R.id.action_history:
-                NavigationHelper.openHistory(this);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

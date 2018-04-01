@@ -252,7 +252,7 @@
     <string name="toggle_orientation">Перемкнути орієнтацію</string>
     <string name="player_unrecoverable_failure">Фатальна помилка програвача</string>
     <string name="external_player_unsupported_link_type">Зовнішні програвачі не підтримують такі види ланок</string>
-    <string name="info_labels">Що:\\nЗапит:\\nМова змісту:\\nСервіс:\\nЧас GMT:\\nПакунок:\\nВерсія:\\nВерсія ОС:\\nГлоб. діапазон IP :</string>
+    <string name="info_labels">Що:\\nЗапит:\\nМова змісту:\\nСервіс:\\nЧас GMT:\\nПакунок:\\nВерсія:\\nВерсія ОС:</string>
     <string name="detail_uploader_thumbnail_view_description">Ескіз аватару користувача</string>
     <string name="detail_likes_img_view_description">Сподобалося</string>
     <string name="detail_dislikes_img_view_description">Не сподобалося</string>

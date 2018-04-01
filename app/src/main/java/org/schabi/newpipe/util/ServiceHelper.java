@@ -65,7 +65,6 @@ public class ServiceHelper {
     }
 
     public static int getSelectedServiceId(Context context) {
-        if (BuildConfig.BUILD_TYPE.equals("release")) return DEFAULT_FALLBACK_SERVICE.getServiceId();
 
         final String serviceName = PreferenceManager.getDefaultSharedPreferences(context)
                 .getString(context.getString(R.string.current_service_key), context.getString(R.string.default_service_value));
@@ -108,6 +107,13 @@ public class ServiceHelper {
             return TimeUnit.MILLISECONDS.convert(5, TimeUnit.MINUTES);
         } else {
             return TimeUnit.MILLISECONDS.convert(1, TimeUnit.HOURS);
+        }
+    }
+
+    public static boolean isBeta(final StreamingService s) {
+        switch(s.getServiceInfo().getName()) {
+            case "YouTube": return false;
+            default: return true;
         }
     }
 }

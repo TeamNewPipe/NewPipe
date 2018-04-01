@@ -123,7 +123,7 @@
 
     <string name="could_not_load_image">Nemožno načítať obrázok</string>
     <string name="app_ui_crash">Aplikácia/UP zlyhalo</string>
-    <string name="info_labels">Čo:\\nPožiadavka:\\nJazyk obsahu:\\nSlužba:\\nČas v GMT:\\nBalík:\\nVerzia:\\nVerzia OS:\\nGlob. IP rozsah:</string>
+    <string name="info_labels">Čo:\\nPožiadavka:\\nJazyk obsahu:\\nSlužba:\\nČas v GMT:\\nBalík:\\nVerzia:\\nVerzia OS:</string>
 
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">Výzva reCAPTCHA</string>

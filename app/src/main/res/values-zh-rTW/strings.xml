@@ -113,7 +113,7 @@
     <string name="error_snackbar_action">回報</string>
     <string name="what_device_headline">資訊：</string>
     <string name="what_happened_headline">發生了什麼事：</string>
-    <string name="info_labels">發生了什麼：\\n請求：\\n內容語言：\\n服務：\\nGMT 時間：\\n套件：\\n版本：\\n系統版本：\\nGlob. IP 範圍：</string>
+    <string name="info_labels">發生了什麼：\\n請求：\\n內容語言：\\n服務：\\nGMT 時間：\\n套件：\\n版本：\\n系統版本：</string>
     <string name="your_comment">您的留言(請用英文)：</string>
     <string name="error_details_headline">詳細資訊：</string>
 

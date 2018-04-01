@@ -129,7 +129,7 @@
 
     <string name="user_report">Hlášení uživatele</string>
 
-    <string name="info_labels">Co:\\nŽádost:\\nJazyk obsahu:\\nSlužba:\\nČas GMT:\\nBalíček:\\nVerze:\\nVerze OS:\\nGlobální rozsah IP:</string>
+    <string name="info_labels">Co:\\nŽádost:\\nJazyk obsahu:\\nSlužba:\\nČas GMT:\\nBalíček:\\nVerze:\\nVerze OS:</string>
     <string name="all">Vše</string>
     <string name="channel">Kanál</string>
     <string name="yes">Ano</string>
