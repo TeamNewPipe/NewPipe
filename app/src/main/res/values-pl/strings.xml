@@ -76,7 +76,7 @@
     <string name="error_snackbar_action">ZGŁOŚ</string>
     <string name="what_device_headline">Informacje:</string>
     <string name="what_happened_headline">Co się stało:</string>
-    <string name="info_labels">Co:\\nRequest:\\nJęzyk treści:\\nUsługa:\\nCzas GMT:\\nPakiet:\\nWersja:\\nWersja systemu:\\nGlob. zakres IP:</string>
+    <string name="info_labels">Co:\\nRequest:\\nJęzyk treści:\\nUsługa:\\nCzas GMT:\\nPakiet:\\nWersja:\\nWersja systemu:</string>
     <string name="your_comment">Twój komentarz (po angielsku):</string>
     <string name="error_details_headline">Szczegóły:</string>
 
@@ -223,7 +223,7 @@
 
 <string name="settings_category_player_title">Odtwarzacz</string>
     <string name="settings_category_player_behavior_title">Zachowanie</string>
-    <string name="settings_category_history_title">Historia</string>
+    <string name="settings_category_history_title">Historia i pamięć podręczna</string>
     <string name="playlist">Playlista</string>
     <string name="undo">Cofnij</string>
 
@@ -386,7 +386,7 @@
     <string name="resize_zoom">POWIĘKSZ</string>
 
     <string name="caption_auto_generated">Wygenerowane automatycznie</string>
-    <string name="caption_font_size_settings_title">Rozmiar etykiet</string>
+    <string name="caption_font_size_settings_title">Rozmiar czcionki etykiet</string>
     <string name="smaller_caption_font_size">Mniejszy rozmiar</string>
     <string name="normal_caption_font_size">Normalny rozmiar</string>
     <string name="larger_caption_font_size">Większy rozmiar</string>
@@ -394,8 +394,52 @@
     <string name="enable_leak_canary_title">Włącz LeakCanary</string>
     <string name="enable_leak_canary_summary">Monitorowanie wycieków pamięci może powodować niestabilność aplikacji podczas zrzutu pamięci</string>
 
-    <string name="enable_disposed_exceptions_title">Raportuj błędy Out-of-Lifecycle</string>
+    <string name="enable_disposed_exceptions_title">Raportuj błędy Out-of-lifecycle</string>
     <string name="enable_disposed_exceptions_summary">Wymusza raportowanie niedostarczonych wyjątków Rx poza cyklem życia fragmentu lub aktywności</string>
 
 <string name="use_inexact_seek_title">Użyj szybkiego niedokładnego wyszukiwania</string>
-    </resources>
+    <string name="use_inexact_seek_summary">Szybkie wyszukiwanie pozwala przeskoczyć do wybranej pozycji szybciej, lecz ze zmniejszoną precyzją</string>
+    <string name="download_thumbnail_title">Załaduj miniatury</string>
+    <string name="download_thumbnail_summary">Wyłącz, by aplikacja nie ściągała miniatur. Oszczędza transfer i pamięć. Zmiana tej opcji spowoduje wyczyszczenie pamięci podręcznej miniatur.</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Wyczyszczono pamięć podręczną miniatur</string>
+    <string name="metadata_cache_wipe_title">Wyczyszczono pamięć tymczasową metadanych</string>
+    <string name="metadata_cache_wipe_summary">Wyczyść pamięć podręczną stron</string>
+    <string name="metadata_cache_wipe_complete_notice">Wyczyszczono pamięć podręczną metadanych</string>
+    <string name="auto_queue_title">Automatycznie dołącz kolejny stream</string>
+    <string name="auto_queue_summary">Automatycznie dodaj kolejny powiązany stream w momencie rozpoczęcia odtwarzania ostatniego elementu w niezapętlonej kolejce.</string>
+    <string name="file">Plik</string>
+
+    <string name="invalid_directory">Nieprawidłowy katalog</string>
+    <string name="invalid_source">Nieprawidłowy plik/źródło treści</string>
+    <string name="invalid_file">Plik nie istnieje lub brak wystarczających uprawnień do zapisu/odczytu</string>
+    <string name="file_name_empty_error">Nazwa pliku nie może być pusta</string>
+    <string name="error_occurred_detail">Wystąpił błąd: %1$s</string>
+
+    <string name="import_export_title">Import/Eksport</string>
+    <string name="import_title">Import</string>
+    <string name="import_from">Importuj z</string>
+    <string name="export_to">Eksportuj do</string>
+
+    <string name="import_ongoing">Importowanie…</string>
+    <string name="export_ongoing">Eksportowanie…</string>
+
+    <string name="import_file_title">Importuj z pliku</string>
+    <string name="previous_export">Poprzedni eksport</string>
+
+    <string name="subscriptions_import_unsuccessful">Import subskrypcji nie powiódł się</string>
+    <string name="subscriptions_export_unsuccessful">Eksport subskrypcji nie powiódł się</string>
+
+    <string name="import_youtube_instructions">Aby zaimportować subskrypcje, potrzebny jest plik eksportu subskrypcji. Można go wygenerować w następujący sposób:
+\n
+\n1. Odwiedź stronę: %1$s
+\n2. Zaloguj się na swoje konto
+\n3. Powinno rozpocząć się pobieranie (to jest twój plik eksportu)</string>
+    <string name="import_network_expensive_warning">Ta operacja może wygenerować duże użycie danych.
+\n
+\nCzy chcesz kontynuować?</string>
+
+    <string name="playback_speed_control">Kontrola prędkości odtwarzania</string>
+    <string name="playback_tempo">Tempo</string>
+    <string name="playback_pitch">Wysokość dźwięku</string>
+    <string name="playback_default">Domyślna</string>
+</resources>
