@@ -86,6 +86,7 @@ import org.schabi.newpipe.util.ThemeHelper;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedList;
 
 import icepick.State;
@@ -549,7 +550,8 @@ public class VideoDetailFragment
 
         final String[] commands = new String[]{
                 context.getResources().getString(R.string.enqueue_on_background),
-                context.getResources().getString(R.string.enqueue_on_popup)
+                context.getResources().getString(R.string.enqueue_on_popup),
+                context.getResources().getString(R.string.append_playlist)
         };
 
         final DialogInterface.OnClickListener actions = (DialogInterface dialogInterface, int i) -> {
@@ -559,6 +561,12 @@ public class VideoDetailFragment
                     break;
                 case 1:
                     NavigationHelper.enqueueOnPopupPlayer(getActivity(), new SinglePlayQueue(item));
+                    break;
+                case 2:
+                    if (getFragmentManager() != null) {
+                        PlaylistAppendDialog.fromStreamInfoItems(Collections.singletonList(item))
+                                .show(getFragmentManager(), TAG);
+                    }
                     break;
                 default:
                     break;
