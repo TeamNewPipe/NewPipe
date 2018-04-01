@@ -118,7 +118,7 @@
     <string name="youtube_signature_decryption_error">Tidak bisa mendekrip tanda tangan URL video</string>
     <string name="app_ui_crash">App/UI rusak</string>
     <string name="could_not_get_stream">Tidak bisa mendapatkan stream apapun</string>
-    <string name="info_labels">Apa:\\nPermintaan:\\nBahasa Konten:\\nLayanan:\\nWaktu GMT:\\nPaket:\\nVersi:\\nVersi OS:\\nIP:</string>
+    <string name="info_labels">Apa:\\nPermintaan:\\nBahasa Konten:\\nLayanan:\\nWaktu GMT:\\nPaket:\\nVersi:\\nVersi OS:</string>
     <string name="user_report">Laporan pengguna</string>
 
     <string name="msg_threads">Thread</string>

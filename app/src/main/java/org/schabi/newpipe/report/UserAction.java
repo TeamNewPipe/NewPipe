@@ -13,7 +13,8 @@ public enum UserAction {
     GET_SUGGESTIONS("get suggestions"),
     REQUESTED_STREAM("requested stream"),
     REQUESTED_CHANNEL("requested channel"),
-    REQUESTED_PLAYLIST("requested playlist");
+    REQUESTED_PLAYLIST("requested playlist"),
+    REQUESTED_KIOSK("requested kiosk");
 
 
     private final String message;

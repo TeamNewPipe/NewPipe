@@ -122,7 +122,7 @@
     <string name="msg_running">NewPipe baxando</string>
     <string name="could_not_load_image">Nun pudo cargase la imaxe</string>
     <string name="app_ui_crash">Cascó l\'aplicación/IU</string>
-    <string name="info_labels">Lo qu\'asocedió:\\nSolicitú:\\nLlingua del conteníu:\\nServiciu:\\nHora GMT:\\nPaquete:\\nVersión:\\nVersión del SO:\\nRangu global d\'IP:</string>
+    <string name="info_labels">Lo qu\'asocedió:\\nSolicitú:\\nLlingua del conteníu:\\nServiciu:\\nHora GMT:\\nPaquete:\\nVersión:\\nVersión del SO:</string>
     <string name="open_in_popup_mode">Abrir en ventanu emerxente</string>
     <string name="popup_mode_share_menu_title">Mou de ventanu emerxente de NewPipe</string>
 
