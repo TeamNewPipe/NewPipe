@@ -74,6 +74,12 @@
         android:layout="@layout/settings_category_header_layout"
         android:title="@string/settings_category_player_behavior_title">
 
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/autoplay_always_key"
+            android:summary="@string/autoplay_always_summary"
+            android:title="@string/autoplay_always_title"/>
+
         <ListPreference
             android:defaultValue="@string/preferred_open_action_default"
             android:entries="@array/preferred_open_action_description_list"
@@ -87,6 +93,12 @@
             android:key="@string/resume_on_audio_focus_gain_key"
             android:summary="@string/resume_on_audio_focus_gain_summary"
             android:title="@string/resume_on_audio_focus_gain_title"/>
+
+        <SwitchPreference
+                android:defaultValue="false"
+                android:key="@string/continue_in_background_key"
+                android:summary="@string/continue_in_background_summary"
+                android:title="@string/continue_in_background_title"/>
 
         <SwitchPreference
             android:defaultValue="true"

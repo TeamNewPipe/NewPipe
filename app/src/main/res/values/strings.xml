@@ -50,6 +50,8 @@
     <string name="download_path_audio_summary">Path to store downloaded audio in</string>
     <string name="download_path_audio_dialog_title">Enter download path for audio files</string>
 
+    <string name="autoplay_always_title">Autoplay always</string>
+    <string name="autoplay_always_summary">Video will be always played automatically</string>
     <string name="autoplay_by_calling_app_title">Autoplay</string>
     <string name="autoplay_by_calling_app_summary">Automatically plays a video when NewPipe is called from another app</string>
     <string name="default_resolution_title">Default resolution</string>
@@ -92,6 +94,8 @@
     <string name="enable_watch_history_summary">Keep track of watched videos</string>
     <string name="resume_on_audio_focus_gain_title">Resume on focus gain</string>
     <string name="resume_on_audio_focus_gain_summary">Continue playing after interruptions (e.g. phone calls)</string>
+    <string name="continue_in_background_title">Play in background</string>
+    <string name="continue_in_background_summary">Continue playing when you switched the app or turned off the screen</string>
     <string name="download_dialog_title">Download</string>
     <string name="next_video_title">Next video</string>
     <string name="show_next_and_similar_title">Show next and similar videos</string>

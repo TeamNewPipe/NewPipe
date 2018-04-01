@@ -1,12 +1,12 @@
 package org.schabi.newpipe.fragments.local.bookmark;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -207,7 +207,7 @@ public abstract class StatisticsPlaylistFragment
         }
 
         headerPlayAllButton.setOnClickListener(view ->
-                NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));
+                NavigationHelper.playOnMainPlayer(activity.getSupportFragmentManager(), getPlayQueue(), true));
         headerPopupButton.setOnClickListener(view ->
                 NavigationHelper.playOnPopupPlayer(activity, getPlayQueue()));
         headerBackgroundButton.setOnClickListener(view ->
@@ -240,7 +240,7 @@ public abstract class StatisticsPlaylistFragment
 
     private void showStreamDialog(final StreamStatisticsEntry item) {
         final Context context = getContext();
-        final Activity activity = getActivity();
+        final FragmentActivity activity = getActivity();
         if (context == null || context.getResources() == null || getActivity() == null) return;
         final StreamInfoItem infoItem = item.toStreamInfoItem();
 
@@ -262,7 +262,7 @@ public abstract class StatisticsPlaylistFragment
                     NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(infoItem));
                     break;
                 case 2:
-                    NavigationHelper.playOnMainPlayer(context, getPlayQueue(index));
+                    NavigationHelper.playOnMainPlayer(activity.getSupportFragmentManager(), getPlayQueue(index), false);
                     break;
                 case 3:
                     NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index));

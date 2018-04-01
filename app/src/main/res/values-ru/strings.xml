@@ -79,8 +79,10 @@
     <string name="general_error">Ошибка</string>
     <string name="your_comment">Ваш комментарий (на английском):</string>
     <string name="err_dir_create">Невозможно создать папку для загрузки \'%1$s\'</string>
-    <string name="autoplay_by_calling_app_title">Воспроизводить автоматически</string>
-    <string name="autoplay_by_calling_app_summary">Автоматически воспроизводить видео при вызове NewPipe из другого приложения</string>
+    <string name="autoplay_always_title">Автовоспроизведение</string>
+    <string name="autoplay_always_summary">Всегда автоматически воспроизводить видео</string>
+    <string name="autoplay_by_calling_app_title">Воспроизводить при переходе в NewPipe</string>
+    <string name="autoplay_by_calling_app_summary">Автоматически воспроизводить видео только при вызове NewPipe из другого приложения</string>
     <string name="content">Контент</string>
     <string name="video_is_age_restricted">Видео с возрастными ограничениями. Разрешить подобный контент можно в настройках.</string>
     <string name="duration_live">вживую</string>
@@ -202,6 +204,8 @@
     <string name="enable_watch_history_summary">Запоминать просмотренные видео</string>
     <string name="resume_on_audio_focus_gain_title">Возобновлять при возврате фокуса</string>
     <string name="resume_on_audio_focus_gain_summary">Возобновлять воспроизведение после перерывов (например, телефонных звонков)</string>
+    <string name="continue_in_background_title">Играть аудио в фоне</string>
+    <string name="continue_in_background_summary">Автоматически продолжить играть аудио дорожку при выключении экрана и при скрытии приложения</string>
 
 
     <string name="notification_channel_name">Уведомление NewPipe</string>

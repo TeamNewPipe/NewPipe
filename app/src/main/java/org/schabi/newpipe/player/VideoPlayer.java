@@ -41,7 +41,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
@@ -136,8 +138,11 @@ public abstract class VideoPlayer extends BasePlayer
     private TextView playbackLiveSync;
     private TextView playbackSpeedTextView;
 
-    private View topControlsRoot;
+    private LinearLayout topControlsRoot;
+    private LinearLayout primaryControlsRoot;
+    private LinearLayout secondaryControlsRoot;
     private TextView qualityTextView;
+    private ImageButton fullScreenButton;
 
     private SubtitleView subtitleView;
 
@@ -186,7 +191,10 @@ public abstract class VideoPlayer extends BasePlayer
         this.playbackSpeedTextView = rootView.findViewById(R.id.playbackSpeed);
         this.bottomControlsRoot = rootView.findViewById(R.id.bottomControls);
         this.topControlsRoot = rootView.findViewById(R.id.topControls);
+        this.primaryControlsRoot = rootView.findViewById(R.id.primaryControls);
+        this.secondaryControlsRoot = rootView.findViewById(R.id.secondaryControls);
         this.qualityTextView = rootView.findViewById(R.id.qualityTextView);
+        this.fullScreenButton = rootView.findViewById(R.id.fullScreenButton);
 
         this.subtitleView = rootView.findViewById(R.id.subtitleView);
         final String captionSizeKey = PreferenceManager.getDefaultSharedPreferences(context)
@@ -222,6 +230,7 @@ public abstract class VideoPlayer extends BasePlayer
         playbackSeekBar.setOnSeekBarChangeListener(this);
         playbackSpeedTextView.setOnClickListener(this);
         qualityTextView.setOnClickListener(this);
+        fullScreenButton.setOnClickListener(this);
         captionTextView.setOnClickListener(this);
         resizeView.setOnClickListener(this);
         playbackLiveSync.setOnClickListener(this);
@@ -250,6 +259,9 @@ public abstract class VideoPlayer extends BasePlayer
 
         if (intent.hasExtra(PLAYBACK_QUALITY)) {
             setPlaybackQuality(intent.getStringExtra(PLAYBACK_QUALITY));
+        }
+        else {
+            setPlaybackQuality(null);
         }
 
         super.handleIntent(intent);
@@ -330,9 +342,7 @@ public abstract class VideoPlayer extends BasePlayer
                                      @Nullable final StreamInfo info,
                                      final int newPlayQueueIndex,
                                      final boolean hasPlayQueueItemChanged) {
-        qualityTextView.setVisibility(View.GONE);
         playbackSpeedTextView.setVisibility(View.GONE);
-
         playbackEndTime.setVisibility(View.GONE);
         playbackLiveSync.setVisibility(View.GONE);
 
@@ -367,8 +377,6 @@ public abstract class VideoPlayer extends BasePlayer
                 }
 
                 buildQualityMenu();
-                qualityTextView.setVisibility(View.VISIBLE);
-
                 surfaceView.setVisibility(View.VISIBLE);
             default:
                 playbackEndTime.setVisibility(View.VISIBLE);
@@ -400,10 +408,10 @@ public abstract class VideoPlayer extends BasePlayer
         }
         final VideoStream video = index >= 0 && index < videos.size() ? videos.get(index) : null;
         if (video != null) {
-            final MediaSource streamSource = buildMediaSource(video.getUrl(),
+        final MediaSource streamSource = buildMediaSource(video.getUrl(),
                     PlayerHelper.cacheKeyOf(info, video),
-                    MediaFormat.getSuffixById(video.getFormatId()));
-            mediaSources.add(streamSource);
+                MediaFormat.getSuffixById(video.getFormatId()));
+        mediaSources.add(streamSource);
         }
 
         // Create optional audio stream source
@@ -411,7 +419,7 @@ public abstract class VideoPlayer extends BasePlayer
         final AudioStream audio = audioStreams.isEmpty() ? null : audioStreams.get(
                 ListHelper.getDefaultAudioFormat(context, audioStreams));
         // Use the audio stream if there is no video stream, or
-        // Merge with audio stream in case if video does not contain audio
+            // Merge with audio stream in case if video does not contain audio
         if (audio != null && ((video != null && video.isVideoOnly) || video == null)) {
             final MediaSource audioSource = buildMediaSource(audio.getUrl(),
                     PlayerHelper.cacheKeyOf(info, audio),
@@ -654,7 +662,9 @@ public abstract class VideoPlayer extends BasePlayer
     @Override
     public void onClick(View v) {
         if (DEBUG) Log.d(TAG, "onClick() called with: v = [" + v + "]");
-        if (v.getId() == qualityTextView.getId()) {
+        if (v.getId() == fullScreenButton.getId()) {
+            onFullScreenButtonClicked();
+        } else if (v.getId() == qualityTextView.getId()) {
             onQualitySelectorClicked();
         } else if (v.getId() == playbackSpeedTextView.getId()) {
             onPlaybackSpeedClicked();
@@ -712,6 +722,7 @@ public abstract class VideoPlayer extends BasePlayer
 
     public void onQualitySelectorClicked() {
         if (DEBUG) Log.d(TAG, "onQualitySelectorClicked() called");
+        hideSystemUIIfNeeded();
         qualityPopupMenu.show();
         isSomePopupMenuVisible = true;
         showControls(DEFAULT_CONTROLS_DURATION);
@@ -728,6 +739,7 @@ public abstract class VideoPlayer extends BasePlayer
 
     public void onPlaybackSpeedClicked() {
         if (DEBUG) Log.d(TAG, "onPlaybackSpeedClicked() called");
+        hideSystemUIIfNeeded();
         playbackSpeedPopupMenu.show();
         isSomePopupMenuVisible = true;
         showControls(DEFAULT_CONTROLS_DURATION);
@@ -740,8 +752,8 @@ public abstract class VideoPlayer extends BasePlayer
         showControls(DEFAULT_CONTROLS_DURATION);
     }
 
-    private void onResizeClicked() {
-        if (getAspectRatioFrameLayout() != null) {
+    protected void onResizeClicked() {
+        if (getAspectRatioFrameLayout() != null && context != null) {
             final int currentResizeMode = getAspectRatioFrameLayout().getResizeMode();
             final int newResizeMode = nextResizeMode(currentResizeMode);
             getAspectRatioFrameLayout().setResizeMode(newResizeMode);
@@ -886,6 +898,8 @@ public abstract class VideoPlayer extends BasePlayer
                 () -> animateView(controlsRoot, false, duration), delay);
     }
 
+    public abstract void hideSystemUIIfNeeded();
+
     /*//////////////////////////////////////////////////////////////////////////
     // Getters and Setters
     //////////////////////////////////////////////////////////////////////////*/
@@ -961,13 +975,23 @@ public abstract class VideoPlayer extends BasePlayer
         return playbackEndTime;
     }
 
-    public View getTopControlsRoot() {
+    public LinearLayout getTopControls() {
         return topControlsRoot;
+    }
+
+    public LinearLayout getPrimaryControls() {
+        return primaryControlsRoot;
+    }
+
+    public LinearLayout getSecondaryControls() {
+        return secondaryControlsRoot;
     }
 
     public TextView getQualityTextView() {
         return qualityTextView;
     }
+
+    public ImageButton getFullScreenButton() { return fullScreenButton; }
 
     public PopupMenu getQualityPopupMenu() {
         return qualityPopupMenu;

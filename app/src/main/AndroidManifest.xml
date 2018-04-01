@@ -40,29 +40,15 @@
             android:theme="@style/OldVideoPlayerTheme"
             tools:ignore="UnusedAttribute"/>
 
+
         <service
-            android:name=".player.BackgroundPlayer"
+            android:name=".player.MainPlayerService"
             android:exported="false"/>
 
         <activity
             android:name=".player.BackgroundPlayerActivity"
             android:launchMode="singleTask"
             android:label="@string/title_activity_background_player"/>
-
-        <activity
-            android:name=".player.PopupVideoPlayerActivity"
-            android:launchMode="singleTask"
-            android:label="@string/title_activity_popup_player"/>
-
-        <service
-            android:name=".player.PopupVideoPlayer"
-            android:exported="false"/>
-
-        <activity
-            android:name=".player.MainVideoPlayer"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-            android:label="@string/app_name"
-            android:launchMode="singleTask"/>
 
         <activity
             android:name=".settings.SettingsActivity"

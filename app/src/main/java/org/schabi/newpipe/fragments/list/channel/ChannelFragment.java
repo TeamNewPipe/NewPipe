@@ -175,7 +175,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                         NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(item));
                         break;
                     case 2:
-                        NavigationHelper.playOnMainPlayer(context, getPlayQueue(index));
+                        NavigationHelper.playOnMainPlayer(getFragmentManager(), getPlayQueue(index), true);
                         break;
                     case 3:
                         NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index));
@@ -444,7 +444,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         monitorSubscription(result);
 
         headerPlayAllButton.setOnClickListener(
-                view -> NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));
+                view -> NavigationHelper.playOnMainPlayer(getFragmentManager(), getPlayQueue(), true));
         headerPopupButton.setOnClickListener(
                 view -> NavigationHelper.playOnPopupPlayer(activity, getPlayQueue()));
         headerBackgroundButton.setOnClickListener(

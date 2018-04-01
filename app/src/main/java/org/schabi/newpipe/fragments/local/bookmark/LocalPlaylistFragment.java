@@ -1,12 +1,12 @@
 package org.schabi.newpipe.fragments.local.bookmark;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -318,7 +318,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         setVideoCount(itemListAdapter.getItemsList().size());
 
         headerPlayAllButton.setOnClickListener(view ->
-                NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));
+                NavigationHelper.playOnMainPlayer(activity.getSupportFragmentManager(), getPlayQueue(), true));
         headerPopupButton.setOnClickListener(view ->
                 NavigationHelper.playOnPopupPlayer(activity, getPlayQueue()));
         headerBackgroundButton.setOnClickListener(view ->
@@ -508,7 +508,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
     protected void showStreamDialog(final PlaylistStreamEntry item) {
         final Context context = getContext();
-        final Activity activity = getActivity();
+        final FragmentActivity activity = getActivity();
         if (context == null || context.getResources() == null || getActivity() == null) return;
 
         final StreamInfoItem infoItem = item.toStreamInfoItem();
@@ -535,7 +535,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                             SinglePlayQueue(infoItem));
                     break;
                 case 2:
-                    NavigationHelper.playOnMainPlayer(context, getPlayQueue(index));
+                    NavigationHelper.playOnMainPlayer(activity.getSupportFragmentManager(), getPlayQueue(index), false);
                     break;
                 case 3:
                     NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index));

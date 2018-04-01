@@ -71,8 +71,10 @@ public class PlaybackParameterDialog extends DialogFragment {
     @Nullable private TextView resetPresetText;
 
     public static PlaybackParameterDialog newInstance(final double playbackTempo,
-                                                      final double playbackPitch) {
+                                                      final double playbackPitch,
+                                                      Callback callback) {
         PlaybackParameterDialog dialog = new PlaybackParameterDialog();
+        dialog.callback = callback;
         dialog.initialTempo = playbackTempo;
         dialog.initialPitch = playbackPitch;
         return dialog;
@@ -85,11 +87,8 @@ public class PlaybackParameterDialog extends DialogFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context != null && context instanceof Callback) {
-            callback = (Callback) context;
-        } else {
+        if (callback == null)
             dismiss();
-        }
     }
 
     @Override

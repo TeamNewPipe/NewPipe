@@ -31,12 +31,14 @@ import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.player.BasePlayer;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.playlist.ChannelPlayQueue;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlaylistPlayQueue;
 import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
@@ -453,7 +455,7 @@ public class RouterActivity extends AppCompatActivity {
                         playQueue = new SinglePlayQueue((StreamInfo) info);
 
                         if (playerChoice.equals(videoPlayerKey)) {
-                            NavigationHelper.playOnMainPlayer(this, playQueue);
+                            openMainPlayer(playQueue, choice);
                         } else if (playerChoice.equals(backgroundPlayerKey)) {
                             NavigationHelper.enqueueOnBackgroundPlayer(this, playQueue, true);
                         } else if (playerChoice.equals(popupPlayerKey)) {
@@ -466,7 +468,7 @@ public class RouterActivity extends AppCompatActivity {
                     playQueue = info instanceof ChannelInfo ? new ChannelPlayQueue((ChannelInfo) info) : new PlaylistPlayQueue((PlaylistInfo) info);
 
                     if (playerChoice.equals(videoPlayerKey)) {
-                        NavigationHelper.playOnMainPlayer(this, playQueue);
+                        openMainPlayer(playQueue, choice);
                     } else if (playerChoice.equals(backgroundPlayerKey)) {
                         NavigationHelper.playOnBackgroundPlayer(this, playQueue);
                     } else if (playerChoice.equals(popupPlayerKey)) {
@@ -474,6 +476,16 @@ public class RouterActivity extends AppCompatActivity {
                     }
                 }
             };
+        }
+
+        private void openMainPlayer(PlayQueue playQueue, Choice choice) {
+            Intent intent = NavigationHelper.getPlayerIntent(this, MainActivity.class, playQueue);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra(Constants.KEY_LINK_TYPE, choice.linkType);
+            intent.putExtra(Constants.KEY_URL, choice.url);
+            intent.putExtra(Constants.KEY_TITLE, "");
+            intent.putExtra(BasePlayer.AUTO_PLAY, true);
+            this.startActivity(intent);
         }
 
         @Override

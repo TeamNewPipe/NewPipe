@@ -14,12 +14,14 @@
 
     <string name="use_external_video_player_key" translatable="false">use_external_video_player</string>
     <string name="use_external_audio_player_key" translatable="false">use_external_audio_player</string>
-    <string name="autoplay_through_intent_key" translatable="false">autoplay_through_intent</string>
+    <string name="autoplay_always_key" translatable="false">autoplay_always</string>
     <string name="use_old_player_key" translatable="false">use_oldplayer</string>
 
     <string name="player_gesture_controls_key" translatable="false">player_gesture_controls</string>
     <string name="resume_on_audio_focus_gain_key" translatable="false">resume_on_audio_focus_gain</string>
+    <string name="continue_in_background_key" translatable="false">continue_in_background</string>
     <string name="popup_remember_size_pos_key" translatable="false">popup_remember_size_pos_key</string>
+    <string name="brightness_level_key" translatable="false">brightness_level_key</string>
     <string name="use_inexact_seek_key" translatable="false">use_inexact_seek_key</string>
     <string name="auto_queue_key" translatable="false">auto_queue_key</string>
 

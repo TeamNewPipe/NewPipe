@@ -146,26 +146,26 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         };
 
         final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
-            final int index = Math.max(infoListAdapter.getItemsList().indexOf(item), 0);
-            switch (i) {
-                case 0:
-                    NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
-                    break;
-                case 1:
-                    NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(item));
-                    break;
-                case 2:
-                    NavigationHelper.playOnMainPlayer(context, getPlayQueue(index));
-                    break;
-                case 3:
-                    NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index));
-                    break;
-                case 4:
-                    NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index));
-                    break;
-                default:
-                    break;
-            }
+                final int index = Math.max(infoListAdapter.getItemsList().indexOf(item), 0);
+                switch (i) {
+                    case 0:
+                        NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
+                        break;
+                    case 1:
+                        NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(item));
+                        break;
+                    case 2:
+                        NavigationHelper.playOnMainPlayer(getFragmentManager(), getPlayQueue(index), true);
+                        break;
+                    case 3:
+                        NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index));
+                        break;
+                    case 4:
+                        NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index));
+                        break;
+                    default:
+                        break;
+                }
         };
 
         new InfoItemDialog(getActivity(), item, commands, actions).show();
@@ -291,7 +291,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                 .subscribe(integer -> {/* Do nothing*/}, this::onError);
 
         headerPlayAllButton.setOnClickListener(view ->
-                NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));
+                NavigationHelper.playOnMainPlayer(activity.getSupportFragmentManager(), getPlayQueue(), true));
         headerPopupButton.setOnClickListener(view ->
                 NavigationHelper.playOnPopupPlayer(activity, getPlayQueue()));
         headerBackgroundButton.setOnClickListener(view ->

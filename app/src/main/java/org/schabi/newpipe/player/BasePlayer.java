@@ -115,8 +115,10 @@ public abstract class BasePlayer implements
     public static final String PLAYBACK_PITCH = "playback_pitch";
     public static final String PLAYBACK_SPEED = "playback_speed";
     public static final String PLAYBACK_QUALITY = "playback_quality";
-    public static final String PLAY_QUEUE_KEY = "play_queue_key";
+    public static final String PLAY_QUEUE = "play_queue";
+    public static final String AUTO_PLAY = "auto_play";
     public static final String APPEND_ONLY = "append_only";
+    public static final String AUDIO_ONLY = "audio_only";
     public static final String SELECT_ON_APPEND = "select_on_append";
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -214,8 +216,8 @@ public abstract class BasePlayer implements
         if (intent == null) return;
 
         // Resolve play queue
-        if (!intent.hasExtra(PLAY_QUEUE_KEY)) return;
-        final String intentCacheKey = intent.getStringExtra(PLAY_QUEUE_KEY);
+        if (!intent.hasExtra(PLAY_QUEUE)) return;
+        final String intentCacheKey = intent.getStringExtra(PLAY_QUEUE);
         final PlayQueue queue = SerializedCache.getInstance().take(intentCacheKey, PlayQueue.class);
         if (queue == null) return;
 
@@ -344,8 +346,8 @@ public abstract class BasePlayer implements
                 return dataSource.getLiveHlsMediaSourceFactory().createMediaSource(uri);
             default:
                 throw new IllegalStateException("Unsupported type: " + type);
+            }
         }
-    }
 
     public MediaSource buildMediaSource(@NonNull final String sourceUrl,
                                         @NonNull final String cacheKey,
@@ -523,7 +525,7 @@ public abstract class BasePlayer implements
                 (int) simpleExoPlayer.getDuration(),
                 simpleExoPlayer.getBufferedPercentage()
         );
-    }
+        }
 
     private Disposable getProgressReactor() {
         return Observable.interval(PROGRESS_LOOP_INTERVAL, TimeUnit.MILLISECONDS)
@@ -555,9 +557,9 @@ public abstract class BasePlayer implements
                     if (DEBUG) Log.d(TAG, "Playback - negative time position reached, " +
                             "clamping position to 0ms.");
                     seekTo(/*clampToTime=*/0);
-                }
-                break;
         }
+                break;
+    }
     }
 
     @Override
@@ -615,8 +617,8 @@ public abstract class BasePlayer implements
                 changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
                 break;
             case Player.STATE_ENDED: // 4
-                changeState(STATE_COMPLETED);
-                isPrepared = false;
+                    changeState(STATE_COMPLETED);
+                    isPrepared = false;
                 break;
         }
     }
@@ -751,8 +753,8 @@ public abstract class BasePlayer implements
                 if (newPeriodIndex == playQueue.getIndex()) {
                     registerView();
                 } else {
-                    playQueue.offsetIndex(+1);
-                }
+            playQueue.offsetIndex(+1);
+        }
             case DISCONTINUITY_REASON_SEEK:
             case DISCONTINUITY_REASON_SEEK_ADJUSTMENT:
             case DISCONTINUITY_REASON_INTERNAL:
@@ -821,7 +823,7 @@ public abstract class BasePlayer implements
 
     @Override
     public void onPlaybackSynchronize(@NonNull final PlayQueueItem item,
-                                      @Nullable final StreamInfo info) {
+                     @Nullable final StreamInfo info) {
         if (DEBUG) Log.d(TAG, "Playback - onPlaybackSynchronize() called with " +
                 (info != null ? "available" : "null") + " info, " +
                 "item=[" + item.getTitle() + "], url=[" + item.getUrl() + "]");
@@ -952,7 +954,7 @@ public abstract class BasePlayer implements
         if (DEBUG) Log.d(TAG, "onPlay() called");
         if (audioReactor == null || playQueue == null || simpleExoPlayer == null) return;
 
-        audioReactor.requestAudioFocus();
+            audioReactor.requestAudioFocus();
 
         if (getCurrentState() == STATE_COMPLETED) {
             if (playQueue.getIndex() == 0) {
@@ -1037,7 +1039,7 @@ public abstract class BasePlayer implements
         if (simpleExoPlayer == null || positionMillis < 0 ||
                 positionMillis > simpleExoPlayer.getDuration()) return;
         simpleExoPlayer.seekTo(positionMillis);
-    }
+        }
 
     public void seekBy(long offsetMillis) {
         if (DEBUG) Log.d(TAG, "seekBy() called with: offsetMillis = [" + offsetMillis + "]");

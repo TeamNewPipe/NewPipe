@@ -2,15 +2,16 @@ package org.schabi.newpipe.player;
 
 import android.os.Binder;
 import android.support.annotation.NonNull;
+import org.mozilla.javascript.tools.jsc.Main;
 
 class PlayerServiceBinder extends Binder {
-    private final BasePlayer basePlayer;
+    private final VideoPlayerImpl mainPlayer;
 
-    PlayerServiceBinder(@NonNull final BasePlayer basePlayer) {
-        this.basePlayer = basePlayer;
+    PlayerServiceBinder(@NonNull final VideoPlayerImpl mainPlayer) {
+        this.mainPlayer = mainPlayer;
     }
 
-    BasePlayer getPlayerInstance() {
-        return basePlayer;
+    VideoPlayerImpl getPlayerInstance() {
+        return mainPlayer;
     }
 }

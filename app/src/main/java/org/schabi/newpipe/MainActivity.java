@@ -44,7 +44,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
@@ -52,12 +51,10 @@ import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
+import org.schabi.newpipe.player.BasePlayer;
+import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.util.Constants;
-import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.ServiceHelper;
-import org.schabi.newpipe.util.StateSaver;
-import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.util.*;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -74,7 +71,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if (DEBUG) Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
+        if (DEBUG)
+            Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
 
         ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
 
@@ -127,17 +125,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean changeService(MenuItem item) {
-        if (item.getGroupId() == R.id.menu_services_group) {
-            drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(false);
-            ServiceHelper.setSelectedServiceId(this, item.getTitle().toString());
-            drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
+                if (item.getGroupId() == R.id.menu_services_group) {
+                    drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(false);
+                    ServiceHelper.setSelectedServiceId(this, item.getTitle().toString());
+                    drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
             headerServiceView.setText("gurken");
         } else {
             return false;
+                }
+                drawer.closeDrawers();
+                return true;
         }
-        drawer.closeDrawers();
-        return true;
-    }
 
     private void setupDrawerFooter() {
         ImageButton settings = findViewById(R.id.drawer_settings);
@@ -187,7 +185,9 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         if (sharedPreferences.getBoolean(Constants.KEY_THEME_CHANGE, false)) {
-            if (DEBUG) Log.d(TAG, "Theme has changed, recreating activity...");
+            if (DEBUG)
+                Log.d(TAG, "Theme has changed, recreating activity...");
+
             sharedPreferences.edit().putBoolean(Constants.KEY_THEME_CHANGE, false).apply();
             // https://stackoverflow.com/questions/10844112/runtimeexception-performing-pause-of-activity-that-is-not-resumed
             // Briefly, let the activity resume properly posting the recreate call to end of the message queue
@@ -195,7 +195,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (sharedPreferences.getBoolean(Constants.KEY_MAIN_PAGE_CHANGE, false)) {
-            if (DEBUG) Log.d(TAG, "main page has changed, recreating main fragment...");
+            if (DEBUG)
+                Log.d(TAG, "main page has changed, recreating main fragment...");
+
             sharedPreferences.edit().putBoolean(Constants.KEY_MAIN_PAGE_CHANGE, false).apply();
             NavigationHelper.openMainActivity(this);
         }
@@ -203,12 +205,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onNewIntent(Intent intent) {
-        if (DEBUG) Log.d(TAG, "onNewIntent() called with: intent = [" + intent + "]");
+        if (DEBUG)
+            Log.d(TAG, "onNewIntent() called with: intent = [" + intent + "]");
+
         if (intent != null) {
             // Return if launched from a launcher (e.g. Nova Launcher, Pixel Launcher ...)
             // to not destroy the already created backstack
             String action = intent.getAction();
-            if ((action != null && action.equals(Intent.ACTION_MAIN)) && intent.hasCategory(Intent.CATEGORY_LAUNCHER)) return;
+            if ((action != null && action.equals(Intent.ACTION_MAIN)) && intent.hasCategory(Intent.CATEGORY_LAUNCHER))
+                return;
         }
 
         super.onNewIntent(intent);
@@ -218,18 +223,27 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (DEBUG) Log.d(TAG, "onBackPressed() called");
+        if (DEBUG)
+            Log.d(TAG, "onBackPressed() called");
 
-        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
-        // If current fragment implements BackPressable (i.e. can/wanna handle back press) delegate the back press to it
-        if (fragment instanceof BackPressable) {
-            if (((BackPressable) fragment).onBackPressed()) return;
-        }
-
+        if (sendBackPressedEvent())
+            return;
 
         if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
             finish();
-        } else super.onBackPressed();
+        } else
+            super.onBackPressed();
+    }
+
+    // If current fragment implements BackPressable (i.e. can/wanna handle back press) delegate the back press to it
+    private boolean sendBackPressedEvent() {
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
+        // If current fragment implements BackPressable (i.e. can/wanna handle back press) delegate the back press to it
+        if (fragment instanceof BackPressable) {
+            if (((BackPressable) fragment).onBackPressed())
+                return true;
+        }
+        return false;
     }
 
     /**
@@ -270,7 +284,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (DEBUG) Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu + "]");
+        if (DEBUG)
+            Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu + "]");
+
         super.onCreateOptionsMenu(menu);
 
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
@@ -297,23 +313,31 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (DEBUG) Log.d(TAG, "onOptionsItemSelected() called with: item = [" + item + "]");
+        if (DEBUG)
+            Log.d(TAG, "onOptionsItemSelected() called with: item = [" + item + "]");
+
         int id = item.getItemId();
+        Intent hideMainPlayerIntent = new Intent(VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER);
 
         switch (id) {
             case android.R.id.home:
+                sendBackPressedEvent();
                 onHomeButtonPressed();
                 return true;
             case R.id.action_settings:
                 NavigationHelper.openSettings(this);
+                sendBroadcast(hideMainPlayerIntent);
                 return true;
             case R.id.action_show_downloads:
+                sendBroadcast(hideMainPlayerIntent);
                 return NavigationHelper.openDownloads(this);
             case R.id.action_about:
                 NavigationHelper.openAbout(this);
+                sendBroadcast(hideMainPlayerIntent);
                 return true;
             case R.id.action_history:
                 NavigationHelper.openHistory(this);
+                sendBroadcast(hideMainPlayerIntent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -325,11 +349,14 @@ public class MainActivity extends AppCompatActivity {
     //////////////////////////////////////////////////////////////////////////*/
 
     private void initFragments() {
-        if (DEBUG) Log.d(TAG, "initFragments() called");
+        if (DEBUG)
+            Log.d(TAG, "initFragments() called");
+
         StateSaver.clearStateFiles();
         if (getIntent() != null && getIntent().hasExtra(Constants.KEY_LINK_TYPE)) {
             handleIntent(getIntent());
-        } else NavigationHelper.gotoMainFragment(getSupportFragmentManager());
+        } else
+            NavigationHelper.gotoMainFragment(getSupportFragmentManager());
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -337,7 +364,8 @@ public class MainActivity extends AppCompatActivity {
     //////////////////////////////////////////////////////////////////////////*/
 
     private void updateDrawerNavigation() {
-        if (getSupportActionBar() == null) return;
+        if (getSupportActionBar() == null)
+            return;
 
         final Toolbar toolbar = findViewById(R.id.toolbar);
         final DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -358,7 +386,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void handleIntent(Intent intent) {
-        if (DEBUG) Log.d(TAG, "handleIntent() called with: intent = [" + intent + "]");
+        if (DEBUG)
+            Log.d(TAG, "handleIntent() called with: intent = [" + intent + "]");
 
         if (intent.hasExtra(Constants.KEY_LINK_TYPE)) {
             String url = intent.getStringExtra(Constants.KEY_URL);
@@ -366,8 +395,10 @@ public class MainActivity extends AppCompatActivity {
             String title = intent.getStringExtra(Constants.KEY_TITLE);
             switch (((StreamingService.LinkType) intent.getSerializableExtra(Constants.KEY_LINK_TYPE))) {
                 case STREAM:
-                    boolean autoPlay = intent.getBooleanExtra(VideoDetailFragment.AUTO_PLAY, false);
-                    NavigationHelper.openVideoDetailFragment(getSupportFragmentManager(), serviceId, url, title, autoPlay);
+                    boolean autoPlay = intent.getBooleanExtra(BasePlayer.AUTO_PLAY, false);
+                    final String intentCacheKey = intent.getStringExtra(BasePlayer.PLAY_QUEUE);
+                    final PlayQueue playQueue = intentCacheKey != null ? SerializedCache.getInstance().take(intentCacheKey, PlayQueue.class) : null;
+                    NavigationHelper.openVideoDetailFragment(getSupportFragmentManager(), serviceId, url, title, autoPlay, playQueue);
                     break;
                 case CHANNEL:
                     NavigationHelper.openChannelFragment(getSupportFragmentManager(), serviceId, url, title);
@@ -378,7 +409,8 @@ public class MainActivity extends AppCompatActivity {
             }
         } else if (intent.hasExtra(Constants.KEY_OPEN_SEARCH)) {
             String searchQuery = intent.getStringExtra(Constants.KEY_QUERY);
-            if (searchQuery == null) searchQuery = "";
+            if (searchQuery == null)
+                searchQuery = "";
             int serviceId = intent.getIntExtra(Constants.KEY_SERVICE_ID, 0);
             NavigationHelper.openSearchFragment(getSupportFragmentManager(), serviceId, searchQuery);
         } else {
