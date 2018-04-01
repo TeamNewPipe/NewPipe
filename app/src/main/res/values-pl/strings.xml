@@ -45,7 +45,7 @@
     <string name="next_video_title">Następny film</string>
     <string name="show_next_and_similar_title">Pokaż następne i podobne filmy</string>
     <string name="url_not_supported_toast">URL nieobsługiwany</string>
-    <string name="search_language_title">Preferowany język zawartości</string>
+    <string name="search_language_title">Domyslny język zawartości</string>
     <string name="settings_category_video_audio_title">Odtwarzanie</string>
     <string name="settings_category_appearance_title">Wygląd</string>
     <string name="settings_category_other_title">Inne</string>
@@ -137,7 +137,7 @@
     <string name="popup_remember_size_pos_summary">Zapamiętaj ostatni rozmiar i pozycję trybu okienkowego</string>
     <string name="player_gesture_controls_title">Sterowanie odtwarzaczem za pomocą gestów</string>
     <string name="player_gesture_controls_summary">Użyj gestów, aby sterować jasnością i głośnością odtwarzacza</string>
-    <string name="show_search_suggestions_title">Wyszukaj sugestie</string>
+    <string name="show_search_suggestions_title">Podpowiedzi wyszukiwania</string>
     <string name="show_search_suggestions_summary">Pokazuj sugestie podczas wyszukiwania</string>
 
     <string name="settings_category_popup_title">Tryb okienkowy</string>
@@ -402,7 +402,7 @@
     <string name="download_thumbnail_title">Załaduj miniatury</string>
     <string name="download_thumbnail_summary">Wyłącz, by aplikacja nie ściągała miniatur. Oszczędza transfer i pamięć. Zmiana tej opcji spowoduje wyczyszczenie pamięci podręcznej miniatur.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Wyczyszczono pamięć podręczną miniatur</string>
-    <string name="metadata_cache_wipe_title">Wyczyszczono pamięć podręczną metadanych</string>
+    <string name="metadata_cache_wipe_title">Wyczyść pamięć podręczną metadanych</string>
     <string name="metadata_cache_wipe_summary">Wyczyść pamięć podręczną stron</string>
     <string name="metadata_cache_wipe_complete_notice">Wyczyszczono pamięć podręczną metadanych</string>
     <string name="auto_queue_title">Automatycznie dołącz kolejny stream</string>
