@@ -428,7 +428,15 @@ otevření ve vyskakovacím okně</string>
     <string name="import_ongoing">Importuji…</string>
     <string name="export_ongoing">Exportuji…</string>
 
-    <string name="import_file_title">Importovat soubor</string>
+    <string name="import_file_title">Import souboru</string>
     <string name="previous_export">Předchozí export</string>
 
+    <string name="subscriptions_import_unsuccessful">Import odběrů selhal</string>
+    <string name="subscriptions_export_unsuccessful">Export odběrů selhal</string>
+
+    <string name="import_youtube_instructions">K importu vašich YouTube odběrů potřebujete exportní soubor, který lze stáhnout následujícím způsobem:
+\n
+\n1. Přejděte na tuto adresu: %1$s
+\n2. Na vyžádání se přihlašte ke svému účtu
+\n3. Stahování by mělo začít (to je onen exportní soubor)</string>
     </resources>
