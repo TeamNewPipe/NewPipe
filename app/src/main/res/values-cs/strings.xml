@@ -419,11 +419,16 @@ otevření ve vyskakovacím okně</string>
 
     <string name="import_export_title">Import/Export
 \n</string>
-    <string name="import_title">Import
+    <string name="import_title">Importovat
 \n</string>
     <string name="import_from">Importovat z
 \n</string>
     <string name="export_to">Exportovat do</string>
 
-    <string name="import_ongoing">Importuji..</string>
+    <string name="import_ongoing">Importuji…</string>
+    <string name="export_ongoing">Exportuji…</string>
+
+    <string name="import_file_title">Importovat soubor</string>
+    <string name="previous_export">Předchozí export</string>
+
     </resources>
