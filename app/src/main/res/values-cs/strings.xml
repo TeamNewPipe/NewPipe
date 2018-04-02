@@ -458,4 +458,5 @@ otevření ve vyskakovacím okně</string>
     <string name="playback_pitch">Stupeň tónu</string>
     <string name="unhook_checkbox">Zvolnit (může způsobit zkreslení)</string>
     <string name="playback_nightcore">Nightcore</string>
-    </resources>
+    <string name="playback_default">Výchozí nastavení</string>
+</resources>
