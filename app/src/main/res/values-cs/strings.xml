@@ -399,4 +399,8 @@ otevření ve vyskakovacím okně</string>
     <string name="enable_disposed_exceptions_title">Nahlásit mimocyklické chyby</string>
     <string name="enable_disposed_exceptions_summary">Vynutit vykazování výjimek Rx, které se vyskytnou mimo fragment nebo životnost cyklu po odstranění</string>
 
-</resources>
+<string name="use_inexact_seek_title">Použít rychlé nepřesné hledání</string>
+    <string name="use_inexact_seek_summary">Nepřesné hledání umožní přehrávači posouvat se rychleji, ale se sníženou přesností</string>
+    <string name="download_thumbnail_title">Nahrát náhledy</string>
+    <string name="download_thumbnail_summary">Zakažte, chcete-li zabránit načítání všech náhledů a tím šetřit data a využití paměti. Změnou tohoto nastavení dojde k vyčištění mezipaměti obrázků.</string>
+    </resources>
