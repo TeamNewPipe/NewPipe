@@ -449,4 +449,10 @@ otevření ve vyskakovacím okně</string>
 \n4. Zkopírujte URL adresu, na kterou jste byli přesměrováni (to je URL adresa vašeho profilu)</string>
     <string name="import_soundcloud_instructions_hint">yourid, soundcloud.com/yourid</string>
 
+    <string name="import_network_expensive_warning">Mějte na paměti, že tato operace může být náročná na data.
+\n
+\nChcete pokračovat?</string>
+
+    <string name="playback_speed_control">Ovládání rychlosti přehrávání</string>
+    <string name="playback_tempo">Tempo</string>
     </resources>
