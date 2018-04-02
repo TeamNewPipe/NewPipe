@@ -438,5 +438,15 @@ otevření ve vyskakovacím okně</string>
 \n
 \n1. Přejděte na tuto adresu: %1$s
 \n2. Na vyžádání se přihlašte ke svému účtu
-\n3. Stahování by mělo začít (to je onen exportní soubor)</string>
+\n3. Mělo by začít stahování (onoho exportního souboru)</string>
+    <string name="import_soundcloud_instructions">K importu vašich SoundCloud sledovaných musíte znát URL adresu nebo ID vašeho profilu. Pokud jednu z těchto věcí znáte, zadejte ji níže a to je celé.
+\n
+\nPokud ne, můžete postupovat dle následujících kroků:
+\n
+\n1. Ve svém prohlížeči povolte \"režim pro PC\" (pro mobilní zařízení není stránka dostupná)
+\n2. Přejděte na tuto adresu: %1$s
+\n3. Na vyžádání se přihlašte ke svému účtu
+\n4. Zkopírujte URL adresu, na kterou jste byli přesměrováni (to je URL adresa vašeho profilu)</string>
+    <string name="import_soundcloud_instructions_hint">yourid, soundcloud.com/yourid</string>
+
     </resources>
