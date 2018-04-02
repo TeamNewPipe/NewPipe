@@ -217,7 +217,6 @@ public class ErrorActivity extends AppCompatActivity {
 
             startActivity(Intent.createChooser(i, "Send Email"));
         });
-        reportButton.setEnabled(false);
 
         // normal bugreport
         buildInfo(errorInfo);
