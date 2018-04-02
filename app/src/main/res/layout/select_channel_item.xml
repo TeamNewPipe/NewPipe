@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackground"
-    android:clickable="true"
-    android:padding="5dp">
+                xmlns:tools="http://schemas.android.com/tools"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:padding="5dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/itemThumbnailView"
@@ -17,7 +18,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginRight="5dp"
         android:contentDescription="@string/list_thumbnail_view_description"
-        android:src="@drawable/buddy"
+        app:srcCompat="@drawable/buddy"
         tools:ignore="RtlHardcoded"/>
 
     <TextView

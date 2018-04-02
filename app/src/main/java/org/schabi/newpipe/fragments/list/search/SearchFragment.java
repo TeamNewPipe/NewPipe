@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.support.v7.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
@@ -48,6 +48,7 @@ import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.LayoutManagerSmoothScroller;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.IOException;
 import java.io.InterruptedIOException;
@@ -273,6 +274,12 @@ public class SearchFragment
         searchToolbarContainer = activity.findViewById(R.id.toolbar_search_container);
         searchEditText = searchToolbarContainer.findViewById(R.id.toolbar_search_edit_text);
         searchClear = searchToolbarContainer.findViewById(R.id.toolbar_search_clear);
+        initDrawable();
+    }
+
+    private void initDrawable(){
+        searchEditText.setCompoundDrawables(ThemeHelper
+                .resolveDrawableFromAtt(getContext(),R.attr.search),null,null,null);
     }
 
     /*//////////////////////////////////////////////////////////////////////////

@@ -48,12 +48,12 @@
                     android:layout_height="64dp"
                     android:layout_gravity="center"
                     android:background="@android:color/transparent"
-                    android:src="@drawable/new_play_arrow"
+                    app:srcCompat="@drawable/new_play_arrow"
                     android:visibility="invisible"
                     tools:ignore="ContentDescription"
                     tools:visibility="visible"/>
 
-                <TextView
+                <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/touch_append_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
                     tools:ignore="RtlHardcoded"
                     tools:visibility="visible"/>
 
-                <TextView
+                <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/detail_duration_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -115,7 +115,7 @@
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp">
 
-                    <TextView
+                    <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/detail_video_title_view"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -135,7 +135,7 @@
                         android:layout_height="15dp"
                         android:layout_gravity="center_vertical|right"
                         android:layout_marginLeft="5dp"
-                        android:src="@drawable/arrow_down"
+                        app:srcCompat="@drawable/arrow_down"
                         tools:ignore="ContentDescription,RtlHardcoded"/>
 
                 </FrameLayout>
@@ -201,10 +201,10 @@
                                 android:layout_width="@dimen/video_item_detail_uploader_image_size"
                                 android:layout_height="@dimen/video_item_detail_uploader_image_size"
                                 android:contentDescription="@string/detail_uploader_thumbnail_view_description"
-                                android:src="@drawable/buddy"
+                                app:srcCompat="@drawable/buddy"
                                 tools:ignore="RtlHardcoded"/>
 
-                            <TextView
+                            <android.support.v7.widget.AppCompatTextView
                                 android:id="@+id/detail_uploader_text_view"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -243,7 +243,7 @@
                             android:layout_alignParentEnd="true"
                             android:paddingLeft="6dp"
                             android:paddingRight="6dp">
-                            <TextView
+                            <android.support.v7.widget.AppCompatTextView
                                 android:id="@+id/detail_view_count_view"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -262,9 +262,9 @@
                                 android:layout_height="@dimen/video_item_detail_like_image_height"
                                 android:layout_below="@id/detail_view_count_view"
                                 android:contentDescription="@string/detail_likes_img_view_description"
-                                android:src="?attr/thumbs_up"/>
+                                app:srcCompat="?attr/thumbs_up"/>
 
-                            <TextView
+                            <android.support.v7.widget.AppCompatTextView
                                 android:id="@+id/detail_thumbs_up_count_view"
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/video_item_detail_like_image_height"
@@ -286,10 +286,10 @@
                                 android:layout_marginLeft="12dp"
                                 android:layout_toRightOf="@id/detail_thumbs_up_count_view"
                                 android:contentDescription="@string/detail_dislikes_img_view_description"
-                                android:src="?attr/thumbs_down"
+                                app:srcCompat="?attr/thumbs_down"
                                 tools:ignore="RtlHardcoded"/>
 
-                            <TextView
+                            <android.support.v7.widget.AppCompatTextView
                                 android:id="@+id/detail_thumbs_down_count_view"
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/video_item_detail_like_image_height"
@@ -303,7 +303,7 @@
                                 tools:ignore="RtlHardcoded"
                                 tools:text="10K"/>
 
-                            <TextView
+                            <android.support.v7.widget.AppCompatTextView
                                 android:id="@+id/detail_thumbs_disabled_view"
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/video_item_detail_like_image_height"
@@ -329,7 +329,7 @@
                         android:padding="6dp">
 
                         <!-- CONTROLS -->
-                        <TextView
+                        <android.support.v7.widget.AppCompatTextView
                             android:id="@+id/detail_controls_playlist_append"
                             android:layout_width="80dp"
                             android:layout_height="55dp"
@@ -339,14 +339,13 @@
                             android:clickable="true"
                             android:focusable="true"
                             android:contentDescription="@string/append_playlist"
-                            android:drawableTop="?attr/ic_playlist_add"
                             android:gravity="center"
                             android:paddingBottom="6dp"
                             android:paddingTop="6dp"
                             android:text="@string/controls_add_to_playlist_title"
                             android:textSize="12sp"/>
 
-                        <TextView
+                        <android.support.v7.widget.AppCompatTextView
                             android:id="@+id/detail_controls_background"
                             android:layout_width="80dp"
                             android:layout_height="55dp"
@@ -356,14 +355,13 @@
                             android:clickable="true"
                             android:focusable="true"
                             android:contentDescription="@string/play_audio"
-                            android:drawableTop="?attr/audio"
                             android:gravity="center"
                             android:paddingBottom="6dp"
                             android:paddingTop="6dp"
                             android:text="@string/controls_background_title"
                             android:textSize="12sp"/>
 
-                        <TextView
+                        <android.support.v7.widget.AppCompatTextView
                             android:id="@+id/detail_controls_popup"
                             android:layout_width="80dp"
                             android:layout_height="55dp"
@@ -373,14 +371,13 @@
                             android:clickable="true"
                             android:focusable="true"
                             android:contentDescription="@string/open_in_popup_mode"
-                            android:drawableTop="?attr/popup"
                             android:gravity="center"
                             android:paddingBottom="6dp"
                             android:paddingTop="6dp"
                             android:text="@string/controls_popup_title"
                             android:textSize="12sp"/>
 
-                        <TextView
+                        <android.support.v7.widget.AppCompatTextView
                             android:id="@+id/detail_controls_download"
                             android:layout_width="80dp"
                             android:layout_height="55dp"
@@ -390,7 +387,6 @@
                             android:clickable="true"
                             android:focusable="true"
                             android:contentDescription="@string/controls_download_desc"
-                            android:drawableTop="?attr/download"
                             android:gravity="center"
                             android:paddingBottom="6dp"
                             android:paddingTop="6dp"
@@ -416,7 +412,7 @@
                         android:visibility="gone"
                         tools:visibility="visible">
 
-                        <TextView
+                        <android.support.v7.widget.AppCompatTextView
                             android:id="@+id/detail_upload_date_view"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -427,7 +423,7 @@
                             android:textStyle="bold"
                             tools:text="Published on Oct 2, 2009"/>
 
-                        <TextView
+                        <android.support.v7.widget.AppCompatTextView
                             android:id="@+id/detail_description_view"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -458,7 +454,7 @@
                         android:layout_marginTop="14dp"
                         android:orientation="vertical">
 
-                        <TextView
+                        <android.support.v7.widget.AppCompatTextView
                             android:id="@+id/detail_next_stream_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -484,7 +480,7 @@
                             android:background="?attr/selectableItemBackground"
                             android:paddingBottom="10dp"
                             android:paddingTop="4dp"
-                            android:src="?attr/expand"
+                            app:srcCompat="?attr/expand"
                             android:textAlignment="center"
                             android:textAllCaps="true"
                             tools:ignore="ContentDescription"/>

@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/notificationContent"
     android:layout_width="match_parent"
     android:layout_height="64dp"
@@ -16,7 +17,7 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/dummy_thumbnail"
+        app:srcCompat="@drawable/dummy_thumbnail"
         tools:ignore="ContentDescription"/>
 
     <LinearLayout
@@ -58,7 +59,7 @@
         android:focusable="true"
         android:padding="5dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_repeat_white"
+        app:srcCompat="@drawable/ic_repeat_white"
         tools:ignore="ContentDescription"/>
 
     <ImageButton
@@ -68,7 +69,7 @@
         android:background="#00000000"
         android:clickable="true"
         android:focusable="true"
-        android:src="@drawable/ic_pause_white"
+        app:srcCompat="@drawable/ic_pause_white"
         tools:ignore="ContentDescription"/>
 
     <ImageButton
@@ -81,6 +82,6 @@
         android:focusable="true"
         android:padding="5dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_close_white_24dp"
+        app:srcCompat="@drawable/ic_close_white_24dp"
         tools:ignore="ContentDescription,RtlHardcoded"/>
 </LinearLayout>

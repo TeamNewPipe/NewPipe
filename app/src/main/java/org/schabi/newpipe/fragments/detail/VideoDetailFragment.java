@@ -8,7 +8,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.support.v7.preference.PreferenceManager;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
 import android.support.annotation.NonNull;
@@ -16,6 +16,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.AppCompatTextView;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -38,7 +39,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
+
+
 import android.widget.Toast;
 
 import com.nirhart.parallaxscroll.views.ParallaxScrollView;
@@ -150,32 +152,32 @@ public class VideoDetailFragment
     private ImageView thumbnailPlayButton;
 
     private View videoTitleRoot;
-    private TextView videoTitleTextView;
+    private AppCompatTextView videoTitleTextView;
     private ImageView videoTitleToggleArrow;
-    private TextView videoCountView;
+    private AppCompatTextView videoCountView;
 
-    private TextView detailControlsBackground;
-    private TextView detailControlsPopup;
-    private TextView detailControlsAddToPlaylist;
-    private TextView detailControlsDownload;
-    private TextView appendControlsDetail;
-    private TextView detailDurationView;
+    private AppCompatTextView detailControlsBackground;
+    private AppCompatTextView detailControlsPopup;
+    private AppCompatTextView detailControlsAddToPlaylist;
+    private AppCompatTextView detailControlsDownload;
+    private AppCompatTextView appendControlsDetail;
+    private AppCompatTextView detailDurationView;
 
     private LinearLayout videoDescriptionRootLayout;
-    private TextView videoUploadDateView;
-    private TextView videoDescriptionView;
+    private AppCompatTextView videoUploadDateView;
+    private AppCompatTextView videoDescriptionView;
 
     private View uploaderRootLayout;
-    private TextView uploaderTextView;
+    private AppCompatTextView uploaderTextView;
     private ImageView uploaderThumb;
 
-    private TextView thumbsUpTextView;
+    private AppCompatTextView thumbsUpTextView;
     private ImageView thumbsUpImageView;
-    private TextView thumbsDownTextView;
+    private AppCompatTextView thumbsDownTextView;
     private ImageView thumbsDownImageView;
-    private TextView thumbsDisabledTextView;
+    private AppCompatTextView thumbsDisabledTextView;
 
-    private TextView nextStreamTitle;
+    private AppCompatTextView nextStreamTitle;
     private LinearLayout relatedStreamRootLayout;
     private LinearLayout relatedStreamsView;
     private ImageButton relatedStreamExpandButton;
@@ -439,8 +441,7 @@ public class VideoDetailFragment
         if (relatedStreamsView.getChildCount() > initialCount) {
             relatedStreamsView.removeViews(initialCount,
                     relatedStreamsView.getChildCount() - (initialCount));
-            relatedStreamExpandButton.setImageDrawable(ContextCompat.getDrawable(
-                    activity, ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.expand)));
+            relatedStreamExpandButton.setImageResource(ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.expand));
             return;
         }
 
@@ -450,9 +451,7 @@ public class VideoDetailFragment
             //Log.d(TAG, "i = " + i);
             relatedStreamsView.addView(infoItemBuilder.buildView(relatedStreamsView, item));
         }
-        relatedStreamExpandButton.setImageDrawable(
-                ContextCompat.getDrawable(activity,
-                        ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.collapse)));
+        relatedStreamExpandButton.setImageResource(ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.collapse));
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -509,6 +508,19 @@ public class VideoDetailFragment
 
         infoItemBuilder = new InfoItemBuilder(activity);
         setHeightThumbnail();
+        initDrawables();
+    }
+
+
+    private void initDrawables(){
+        detailControlsBackground.setCompoundDrawablesRelativeWithIntrinsicBounds(null,ThemeHelper
+                .resolveDrawableFromAtt(getContext(),R.attr.audio),null,null);
+        detailControlsPopup.setCompoundDrawablesRelativeWithIntrinsicBounds(null,ThemeHelper
+                .resolveDrawableFromAtt(getContext(),R.attr.popup),null,null);
+        detailControlsAddToPlaylist.setCompoundDrawablesRelativeWithIntrinsicBounds(null,ThemeHelper
+                .resolveDrawableFromAtt(getContext(),R.attr.ic_playlist_add),null, null);
+        detailControlsDownload.setCompoundDrawablesRelativeWithIntrinsicBounds(null,ThemeHelper
+                .resolveDrawableFromAtt(getContext(),R.attr.download),null,null);
     }
 
     @Override
@@ -633,8 +645,7 @@ public class VideoDetailFragment
             relatedStreamRootLayout.setVisibility(View.VISIBLE);
             relatedStreamExpandButton.setVisibility(View.VISIBLE);
 
-            relatedStreamExpandButton.setImageDrawable(ContextCompat.getDrawable(
-                    activity, ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.expand)));
+            relatedStreamExpandButton.setImageResource(ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.expand));
         } else {
             if (info.getNextVideo() == null) relatedStreamRootLayout.setVisibility(View.GONE);
             relatedStreamExpandButton.setVisibility(View.GONE);

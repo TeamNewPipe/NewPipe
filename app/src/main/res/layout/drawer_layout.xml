@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?attr/colorPrimary"
-            android:src="@drawable/background_header"
+            app:srcCompat="@drawable/background_header"
             android:scaleType="centerCrop"/>
 
         <ImageView
@@ -42,7 +42,7 @@
 
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:src="@drawable/np_logo_nude_shadow"/>
+            app:srcCompat="@drawable/np_logo_nude_shadow"/>
 
         <TextView
             android:id="@+id/drawer_header_np_text_view"
@@ -95,7 +95,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="?attr/settings"/>
+            app:srcCompat="?attr/settings"/>
 
         <ImageButton
             android:id="@+id/drawer_downloads"
@@ -103,7 +103,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="?attr/download" />
+            app:srcCompat="?attr/download" />
 
         <ImageButton
             android:id="@+id/drawer_history"
@@ -111,7 +111,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="?attr/history"/>
+            app:srcCompat="?attr/history"/>
     </LinearLayout>
 
 </RelativeLayout>

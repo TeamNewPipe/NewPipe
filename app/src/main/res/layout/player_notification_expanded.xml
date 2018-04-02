@@ -2,6 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/notificationContent"
     android:layout_width="match_parent"
     android:layout_height="128dp"
@@ -15,7 +16,7 @@
         android:layout_height="128dp"
         android:layout_alignParentLeft="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/dummy_thumbnail"
+        app:srcCompat="@drawable/dummy_thumbnail"
         tools:ignore="ContentDescription,RtlHardcoded"/>
 
     <ImageButton
@@ -28,7 +29,7 @@
         android:focusable="true"
         android:padding="8dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_close_white_24dp"
+        app:srcCompat="@drawable/ic_close_white_24dp"
         tools:ignore="ContentDescription,RtlHardcoded"/>
 
 
@@ -113,7 +114,7 @@
             android:clickable="true"
             android:focusable="true"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_repeat_white"
+            app:srcCompat="@drawable/ic_repeat_white"
             tools:ignore="ContentDescription"/>
 
         <ImageButton
@@ -128,7 +129,7 @@
             android:focusable="true"
             android:padding="2dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/exo_controls_previous"
+            app:srcCompat="@drawable/exo_controls_previous"
             tools:ignore="ContentDescription"/>
 
         <ImageButton
@@ -143,7 +144,7 @@
             android:clickable="true"
             android:focusable="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_pause_white"
+            app:srcCompat="@drawable/ic_pause_white"
             tools:ignore="ContentDescription"/>
 
         <ImageButton
@@ -158,7 +159,7 @@
             android:focusable="true"
             android:padding="2dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/exo_controls_next"
+            app:srcCompat="@drawable/exo_controls_next"
             tools:ignore="ContentDescription"/>
     </RelativeLayout>
 </RelativeLayout>

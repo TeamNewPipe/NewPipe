@@ -199,7 +199,7 @@
             android:focusable="true"
             android:scaleType="fitXY"
             android:tint="?attr/colorAccent"
-            android:src="@drawable/ic_repeat_white"
+            app:srcCompat="@drawable/ic_repeat_white"
             tools:ignore="ContentDescription"/>
 
         <ImageButton
@@ -214,7 +214,7 @@
             android:focusable="true"
             android:scaleType="fitCenter"
             android:tint="?attr/colorAccent"
-            android:src="@drawable/exo_controls_previous"
+            app:srcCompat="@drawable/exo_controls_previous"
             tools:ignore="ContentDescription"/>
 
         <ImageButton
@@ -230,7 +230,7 @@
             android:focusable="true"
             android:scaleType="fitCenter"
             android:tint="?attr/colorAccent"
-            android:src="@drawable/ic_pause_white"
+            app:srcCompat="@drawable/ic_pause_white"
             tools:ignore="ContentDescription"/>
 
         <ProgressBar
@@ -264,7 +264,7 @@
             android:focusable="true"
             android:scaleType="fitCenter"
             android:tint="?attr/colorAccent"
-            android:src="@drawable/exo_controls_next"
+            app:srcCompat="@drawable/exo_controls_next"
             tools:ignore="ContentDescription"/>
 
         <ImageButton
@@ -280,7 +280,7 @@
             android:focusable="true"
             android:scaleType="fitXY"
             android:tint="?attr/colorAccent"
-            android:src="@drawable/ic_shuffle_white_24dp"
+            app:srcCompat="@drawable/ic_shuffle_white_24dp"
             tools:ignore="ContentDescription"/>
 
         <TextView

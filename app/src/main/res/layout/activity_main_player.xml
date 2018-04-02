@@ -75,7 +75,7 @@
                 android:focusable="true"
                 android:scaleType="fitXY"
                 android:tint="?attr/colorAccent"
-                android:src="@drawable/ic_close_white_24dp"
+                app:srcCompat="@drawable/ic_close_white_24dp"
                 android:background="?android:selectableItemBackground"
                 tools:ignore="ContentDescription"/>
 
@@ -93,7 +93,7 @@
                 android:focusable="true"
                 android:scaleType="fitXY"
                 android:tint="?attr/colorAccent"
-                android:src="@drawable/exo_controls_repeat_off"
+                app:srcCompat="@drawable/exo_controls_repeat_off"
                 android:background="?android:selectableItemBackground"
                 tools:ignore="ContentDescription,RtlHardcoded"/>
 
@@ -108,7 +108,7 @@
                 android:focusable="true"
                 android:scaleType="fitXY"
                 android:tint="?attr/colorAccent"
-                android:src="@drawable/ic_shuffle_white_24dp"
+                app:srcCompat="@drawable/ic_shuffle_white_24dp"
                 android:background="?android:selectableItemBackground"
                 tools:ignore="ContentDescription,RtlHardcoded"/>
         </RelativeLayout>
@@ -239,7 +239,7 @@
                     android:focusable="true"
                     android:padding="5dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/list"
+                    app:srcCompat="@drawable/list"
                     android:background="?attr/selectableItemBackground"
                     tools:ignore="ContentDescription,RtlHardcoded"/>
 
@@ -253,7 +253,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:scaleType="fitXY"
-                    android:src="@drawable/ic_expand_more_white_24dp"
+                    app:srcCompat="@drawable/ic_expand_more_white_24dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     tools:ignore="ContentDescription,RtlHardcoded"/>
             </RelativeLayout>
@@ -316,7 +316,7 @@
                     android:focusable="true"
                     android:padding="5dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/ic_screen_rotation_white"
+                    app:srcCompat="@drawable/ic_screen_rotation_white"
                     android:background="?attr/selectableItemBackground"
                     android:contentDescription="@string/toggle_orientation"
                     tools:ignore="RtlHardcoded"/>
@@ -332,7 +332,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:scaleType="fitXY"
-                    android:src="@drawable/ic_fullscreen_exit_white"
+                    app:srcCompat="@drawable/ic_fullscreen_exit_white"
                     android:background="?attr/selectableItemBackground"
                     android:contentDescription="@string/switch_to_popup"
                     tools:ignore="RtlHardcoded"/>
@@ -349,7 +349,7 @@
                     android:focusable="true"
                     android:padding="5dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/ic_headset_white_24dp"
+                    app:srcCompat="@drawable/ic_headset_white_24dp"
                     android:background="?attr/selectableItemBackground"
                     android:contentDescription="@string/switch_to_background"
                     tools:ignore="RtlHardcoded"/>
@@ -425,7 +425,7 @@
             android:focusable="true"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_pause_white"
+            app:srcCompat="@drawable/ic_pause_white"
             tools:ignore="ContentDescription"/>
 
         <ImageButton
@@ -441,7 +441,7 @@
             android:focusable="true"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="fitXY"
-            android:src="@drawable/exo_controls_previous"
+            app:srcCompat="@drawable/exo_controls_previous"
             tools:ignore="ContentDescription"/>
 
         <ImageButton
@@ -457,7 +457,7 @@
             android:focusable="true"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="fitXY"
-            android:src="@drawable/exo_controls_next"
+            app:srcCompat="@drawable/exo_controls_next"
             tools:ignore="ContentDescription"/>
 
     </RelativeLayout>
@@ -473,7 +473,7 @@
             android:id="@+id/controlAnimationView"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/ic_action_av_fast_rewind"
+            app:srcCompat="@drawable/ic_action_av_fast_rewind"
             android:visibility="gone"
             tools:ignore="ContentDescription"
             tools:visibility="visible"/>
