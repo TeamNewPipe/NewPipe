@@ -229,5 +229,89 @@
 	<item quantity="other">%s видеа</item>
 </plurals>
 
-    <string name="start">Почни</string>
+    <string name="start">Започни</string>
+    <string name="pause">Пауза</string>
+    <string name="view">Пушти</string>
+    <string name="create">Создади</string>
+    <string name="delete">Избриши</string>
+    <string name="delete_one">Избриши едно</string>
+    <string name="delete_all">Избриши се</string>
+    <string name="checksum">Чексума</string>
+    <string name="dismiss">Отфрли</string>
+    <string name="rename">Прекрсти</string>
+
+    <string name="add">Нова мисија</string>
+    <string name="finish">Готово</string>
+
+    <string name="msg_name">Име на датотека</string>
+    <string name="msg_threads">Нишки</string>
+    <string name="msg_error">Грешка</string>
+    <string name="msg_server_unsupported">Неподдржан сервер</string>
+    <string name="msg_exists">Датотеката веќе постои</string>
+    <string name="msg_url_malform">Неправилно URL или нема интернет</string>
+    <string name="msg_running">NewPipe Превземање</string>
+    <string name="msg_running_detail">Притисни за детали</string>
+    <string name="msg_wait">Почекајте…</string>
+    <string name="msg_copied">Копирано во привремена меморија</string>
+    <string name="no_available_dir">Одберете достапна локација за превземања</string>
+    <string name="msg_popup_permission">Оваа привилегија е потребна за
+\nотворање во подпрозорче</string>
+
+    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="reCaptcha_title">reCAPTCHA Предизвик</string>
+    <string name="recaptcha_request_toast">Потребен е reCAPTCHA предизвик</string>
+
+    <string name="settings_category_downloads_title">Превземања</string>
+    <string name="settings_file_charset_title">Дозволени знаци во имињата на датотеките</string>
+    <string name="settings_file_replacement_character_summary">Невалидните знаци се менуваат со оваа вредност</string>
+    <string name="settings_file_replacement_character_title">Знак за замена</string>
+
+    <string name="charset_letters_and_digits">Букви и броеви</string>
+    <string name="charset_most_special_characters">Повеќето посебни знаци</string>
+
+    <string name="title_activity_about">За NewPipe</string>
+    <string name="action_settings">Поставки</string>
+    <string name="action_about">За апликацијата</string>
+    <string name="title_licenses">Лиценци од трети страни</string>
+    <string name="copyright" formatted="true">© %1$s од %2$s под %3$s</string>
+    <string name="error_unable_to_load_license">Не може да се вчита лиценцата</string>
+    <string name="action_open_website">Отвори вебсајт</string>
+    <string name="tab_about">За апликацијата</string>
+    <string name="tab_contributors">Соработници</string>
+    <string name="tab_licenses">Лиценци</string>
+    <string name="app_description">Слободна, лесна YouTube апликација за Андроид.</string>
+    <string name="contribution_title">Допринеси</string>
+    <string name="contribution_encouragement">Ако имаш идеи за; превод, дизајн, чистење или големи промени во кодот - помошта е секогаш добредојдена. Што повеќе се работи, подобра е апликацијата!</string>
+    <string name="view_on_github">Види на GitHub</string>
+    <string name="donation_title">Донирај</string>
+    <string name="donation_encouragement">NewPipe се гради од волонтери кои го вложуваат слободното време за важето задоволство. Време е да им возвратиме за тие да можат да ја подобрат апликацијата, уживајќи во топло кафе!</string>
+    <string name="give_back">Возврати</string>
+    <string name="website_title">Вебсајт</string>
+    <string name="website_encouragement">За повеќе информации и најновите новости за NewPipe посети ја вебстраната.</string>
+    <string name="app_license_title">"Лиценцата на NewPipe "</string>
+    <string name="read_full_license">Прочитај лиценца</string>
+
+
+    <string name="title_activity_history">Историја</string>
+    <string name="title_history_search">Пребарано</string>
+    <string name="title_history_view">Гледано</string>
+    <string name="history_disabled">Историјата е оневозможена</string>
+    <string name="action_history">Историја</string>
+    <string name="history_empty">Историјата е празна</string>
+    <string name="history_cleared">Историјата е избришана</string>
+    <string name="item_deleted">Предметот е избришан</string>
+    <string name="delete_item_search_history">Сакаш да го избришеш предметот од историјата?</string>
+    <string name="delete_stream_history_prompt">Сакаш да го избришеш предметот од историјата на прегледи?</string>
+    <string name="delete_all_history_prompt">Сигурно сакаш да ја избришеш целата историја?</string>
+    <string name="title_last_played">Последно пуштено</string>
+    <string name="title_most_played">Најгледани</string>
+
+    <string name="main_page_content">Содржина</string>
+    <string name="blank_page_summary">Празна страна</string>
+    <string name="kiosk_page_summary">Киоск страна</string>
+    <string name="subscription_page_summary">Членства</string>
+    <string name="feed_page_summary">Новости</string>
+    <string name="channel_page_summary">Канали</string>
+    <string name="select_a_channel">Одбери канал</string>
+    <string name="no_channel_subscribed_yet">Не сте член на канал</string>
     </resources>
