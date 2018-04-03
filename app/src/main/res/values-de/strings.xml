@@ -78,7 +78,7 @@
     <string name="error_snackbar_action">MELDEN</string>
     <string name="what_device_headline">Info:</string>
     <string name="what_happened_headline">Dies ist passiert:</string>
-    <string name="info_labels">Was:\\nAnfrage:\\nSprache des Inhalts:\\nDienst:\\nZeit (GMT):\\nPacket:\\nVersion:\\nOS-Version:</string>
+    <string name="info_labels">Was:\\nAnfrage:\\nSprache des Inhalts:\\nDienst:\\nZeit (GMT):\\nPaket:\\nVersion:\\nOS-Version:</string>
     <string name="error_details_headline">Details:</string>
 
     <string name="video">Video</string>
@@ -423,4 +423,17 @@
     <string name="unhook_checkbox">Aushaken (kann zu Verzerrungen führen)</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Standard</string>
-</resources>
+<string name="download_thumbnail_summary">Deaktivieren Sie diese Option, um das Laden aller Miniaturansichten zu stoppen und Daten und Speicherverbrauch zu sparen. Wenn Sie dies ändern, wird sowohl der In-Memory- als auch der On-Disk-Image-Cache gelöscht.</string>
+    <string name="auto_queue_title">Nächsten Stream automatisch einreihen</string>
+    <string name="auto_queue_summary">Fügen Sie automatisch einen zugehörigen Stream hinzu, wenn die Wiedergabe auf dem letzten Stream in einer sich nicht wiederholenden Wiedergabewarteschlange beginnt.</string>
+    <string name="drawer_header_action_paceholder_text">Hier wird bald etwas stehen ;D</string>
+
+
+    <string name="bookmark_playlist">Lesezeichen Wiedergabeliste</string>
+    <string name="resize_fit">ANPASSEN</string>
+    <string name="resize_fill">FÜLLEN</string>
+    <string name="resize_zoom">VERGRÖßERN</string>
+
+    <string name="enable_leak_canary_summary">Speicherlecküberwachung kann dazu führen, dass die App beim Heap-Dumping nicht mehr reagiert.</string>
+
+    </resources>
