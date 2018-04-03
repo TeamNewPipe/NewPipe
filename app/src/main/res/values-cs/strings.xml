@@ -447,7 +447,7 @@ otevření ve vyskakovacím okně</string>
 \n2. Přejděte na tuto adresu: %1$s
 \n3. Na vyžádání se přihlašte ke svému účtu
 \n4. Zkopírujte URL adresu, na kterou jste byli přesměrováni (to je URL adresa vašeho profilu)</string>
-    <string name="import_soundcloud_instructions_hint">yourid, soundcloud.com/yourid</string>
+    <string name="import_soundcloud_instructions_hint">tvojeid, soundcloud.com/tvojeid</string>
 
     <string name="import_network_expensive_warning">Mějte na paměti, že tato operace může být náročná na data.
 \n
