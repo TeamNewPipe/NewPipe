@@ -286,7 +286,7 @@
     <string name="show_hold_to_append_summary">Tipp anzeigen, wenn der Hintergrundwiedergabe- oder Pop-up-Button auf der Videodetailseite gedrückt gehalten wird</string>
     <string name="background_player_append">In der Warteschlange der Hintergrundwiedergabe</string>
     <string name="new_and_hot">Neu &amp; Heiß</string>
-    <string name="hold_to_append">Halten zum Hinzufügen zur Warteschleife</string>
+    <string name="hold_to_append">Halten, um der Playlist hinzuzufügen</string>
 <string name="show_hold_to_append_title">\"Gedrückt halten, um Tipp hinzuzufügen\" anzeigen</string>
     <string name="unknown_content">[Unbekannt]</string>
 
