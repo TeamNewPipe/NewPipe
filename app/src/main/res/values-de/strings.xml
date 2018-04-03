@@ -299,7 +299,7 @@
     <string name="give_back">Zurückgeben</string>
     <string name="website_title">Website</string>
     <string name="website_encouragement">Um mehr Informationen und die aktuellsten Nachrichten über NewPipe zu bekommen, besuche unsere Website.</string>
-    <string name="donation_encouragement">NewPipe wird von Freiwilligen entwickelt, die ihre Freizeit damit verbringen, dir das beste Erlebnis zu bieten. Jetzt ist es an der Zeit, etwas zurückzugeben, um sicherzustellen, dass unsere Entwickler NewPipe noch besser machen können, während sie eine Tasse Java genießen!</string>
+    <string name="donation_encouragement">NewPipe wird von Freiwilligen entwickelt die ihre Freizeit darauf verwenden dir die beste Nutzererfahrung zu bieten. Hilf jetzt den Entwicklern NewPipe noch besser zu machen und spendier Ihnen eine Tasse Java-Kaffee!</string>
     <string name="service_title">Service</string>
     <string name="no_player_found_toast">Kein Streamplayer gefunden (Du kannst VLC installieren, um ihn abzuspielen)</string>
     <string name="default_content_country_title">Standard-Land des Inhalts</string>
@@ -409,8 +409,8 @@
     <string name="metadata_cache_wipe_complete_notice">Metadatencache gelöscht</string>
     <string name="settings_category_debug_title">Debug</string>
     <string name="invalid_source">Ungültige Datei-/Inhaltsquelle</string>
-    <string name="export_complete_toast">Export abgeschlossen</string>
-    <string name="import_complete_toast">Import abgeschlossen</string>
+    <string name="export_complete_toast">Export vollständig</string>
+    <string name="import_complete_toast">"Import vollständig "</string>
     <string name="playlist_name_input">Name</string>
     <string name="import_export_title">Import/Export</string>
     <string name="import_title">Import</string>
