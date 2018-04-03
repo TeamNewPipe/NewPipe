@@ -118,8 +118,12 @@ public final class BackgroundPlayer extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (DEBUG) Log.d(TAG, "onStartCommand() called with: intent = [" + intent + "], flags = [" + flags + "], startId = [" + startId + "]");
+        if (DEBUG) Log.d(TAG, "onStartCommand() called with: intent = [" + intent +
+                "], flags = [" + flags + "], startId = [" + startId + "]");
         basePlayerImpl.handleIntent(intent);
+        if (basePlayerImpl.mediaSessionManager != null) {
+            basePlayerImpl.mediaSessionManager.handleMediaButtonIntent(intent);
+        }
         return START_NOT_STICKY;
     }
 
