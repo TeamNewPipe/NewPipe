@@ -308,10 +308,122 @@
 
     <string name="main_page_content">Содржина</string>
     <string name="blank_page_summary">Празна страна</string>
-    <string name="kiosk_page_summary">Киоск страна</string>
+    <string name="kiosk_page_summary">Киоск</string>
     <string name="subscription_page_summary">Членства</string>
     <string name="feed_page_summary">Новости</string>
     <string name="channel_page_summary">Канали</string>
     <string name="select_a_channel">Одбери канал</string>
     <string name="no_channel_subscribed_yet">Не сте член на канал</string>
-    </resources>
+    <string name="select_a_kiosk">Одбери киоск</string>
+    <string name="export_complete_toast">Успешно извезување</string>
+    <string name="import_complete_toast">Успешно внесување</string>
+    <string name="no_valid_zip_file">Нема валиден ZIP фајл</string>
+    <string name="could_not_import_all_files">Предупредување: Не се внесени сите датотеки.</string>
+    <string name="override_current_data">Ова ќе ги избрише моменталните поставки.</string>
+
+    <string name="kiosk">Киоск</string>
+    <string name="trending">Популарни</string>
+    <string name="top_50">Топ 50</string>
+    <string name="new_and_hot">Нови и жешки</string>
+    <string name="title_activity_background_player">Заднински плеер</string>
+    <string name="title_activity_popup_player">Подпрозорче</string>
+    <string name="play_queue_remove">Одстрани</string>
+    <string name="play_queue_stream_detail">Детали</string>
+    <string name="play_queue_audio_settings">Звучни поставки</string>
+    <string name="hold_to_append">Задржи за ставање во листа</string>
+    <string name="enqueue_on_background">Додај во листата за позадинско пуштање</string>
+    <string name="enqueue_on_popup">Додај во листата за пуштање во прозорче</string>
+    <string name="start_here_on_main">Пушти тука</string>
+    <string name="start_here_on_background">Пушти тука во заднина</string>
+    <string name="start_here_on_popup">Пушти тука во прозорче</string>
+
+    <string name="drawer_open">Отвори картон</string>
+    <string name="drawer_close">Затвори картон</string>
+    <string name="drawer_header_action_paceholder_text">Нешто спремаме за тука ;D</string>
+
+
+    <string name="preferred_player_share_menu_dialog_title">Отвори со претпочитаниот плеер</string>
+    <string name="preferred_player_settings_title">Претпочитан плеер</string>
+
+    <string name="video_player">Видео плеер</string>
+    <string name="background_player">Заднинско пуштање</string>
+    <string name="popup_player">Пушти во прозорче</string>
+    <string name="always_ask_open_action">Секогаш прашај</string>
+    
+    <string name="preferred_player_fetcher_notification_title">Чекање информации…</string>
+    <string name="preferred_player_fetcher_notification_message">Одбраната содржина се чита</string>
+
+    <string name="create_playlist">Создај нова плејлиста</string>
+    <string name="delete_playlist">Избриши плејлиста</string>
+    <string name="rename_playlist">Прекрсти плејлиста</string>
+    <string name="playlist_name_input">Име</string>
+    <string name="append_playlist">Додај во плејлиста</string>
+    <string name="set_as_playlist_thumbnail">Постави како икона на плејлистата</string>
+
+    <string name="bookmark_playlist">Обележи ја плејлистата</string>
+    <string name="unbookmark_playlist">Избриши ја белешката</string>
+
+    <string name="delete_playlist_prompt">Сакаш да ја избришеш плејлистата?</string>
+    <string name="playlist_creation_success">Успешно создадена плејлиста</string>
+    <string name="playlist_add_stream_success">Додадено во плејлиста</string>
+    <string name="playlist_thumbnail_change_success">Се смени иконата на плејлистата</string>
+    <string name="playlist_delete_failure">Неуспешно бришење на плејлистата</string>
+
+    <string name="caption_none">Без превод</string>
+
+    <string name="resize_fit">ВКЛОПИ</string>
+    <string name="resize_fill">ИСПОЛНИ</string>
+    <string name="resize_zoom">ЗУМИРАЈ</string>
+
+    <string name="caption_auto_generated">Автоматски создадено</string>
+    <string name="caption_font_size_settings_title">Големина на преводот</string>
+    <string name="smaller_caption_font_size">Помал фонт</string>
+    <string name="normal_caption_font_size">Нормален фонт</string>
+    <string name="larger_caption_font_size">Поголем фонт</string>
+
+    <string name="enable_leak_canary_title">Вклучи LeakCanary</string>
+    <string name="enable_leak_canary_summary">Следењето на мемориските грешки може да ја прикочува апликацијата</string>
+
+    <string name="enable_disposed_exceptions_title">Пријави Out-of-lifecycle грешки</string>
+    <string name="enable_disposed_exceptions_summary">Секогаш пријавувај неуспешни Rx исклучоци кои настануваат надвор од fragment или activity циклусот по отстранување</string>
+
+    <string name="import_export_title">Внеси/Изнеси</string>
+    <string name="import_title">Внеси</string>
+    <string name="import_from">Внеси од</string>
+    <string name="export_to">Изнеси до</string>
+
+    <string name="import_ongoing">Внесување…</string>
+    <string name="export_ongoing">Изнесување…</string>
+
+    <string name="import_file_title">Внеси датотека</string>
+    <string name="previous_export">Претходно изнесување</string>
+
+    <string name="subscriptions_import_unsuccessful">Неуспешно внесување членства</string>
+    <string name="subscriptions_export_unsuccessful">Неуспешно изнесување членства</string>
+
+    <string name="import_youtube_instructions">За да ги внесеш твоите YouTube членства, ти треба фајл кој можеш да го добиеш на следниот начин:
+\n
+\n1. Оди на оваа врска: %1$s
+\n2. Пријави се на твојот профил
+\n3. Ќе започне превземање (тој фајл ти треба)</string>
+    <string name="import_soundcloud_instructions">За да ги внесете вашите SoundCloud членства, ви треба URL или ID на профилот. Ако ги знаете, само внесете едно од нив во полето, и готови сте.
+\n
+\nАко не ги знаете, одете по следните чекори:
+\n
+\n1. Вклучете „десктоп режим“ во вашиот пребарувач (страната не е достапна за мобилни уреди)
+\n2. Одете на оваа врска: %1$s
+\n3. Пријавете се на вашиот профил
+\n4. Копирајте го URL-то на кое бевте пренасочени (тоа е URL-то на вашиот профил)</string>
+    <string name="import_soundcloud_instructions_hint">korisnickoime, soundcloud.com/korisnickoime</string>
+
+    <string name="import_network_expensive_warning">Треба да знаеш дека оваа операција троши многу интернет.
+\n
+\nСакаш да продолжиш?</string>
+
+    <string name="playback_speed_control">Контрола на брзина на траката</string>
+    <string name="playback_tempo">Темпо</string>
+    <string name="playback_pitch">Тон</string>
+    <string name="unhook_checkbox">Откачи (може да создаде мутации)</string>
+    <string name="playback_nightcore">Nightcore</string>
+    <string name="playback_default">Стандардно</string>
+</resources>
