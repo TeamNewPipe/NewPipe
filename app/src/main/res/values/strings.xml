@@ -8,6 +8,7 @@
     <string name="no_player_found_toast">No stream player found (you can install VLC to play it)</string>
     <string name="install">Install</string>
     <string name="cancel">Cancel</string>
+    <string name="accept">Accept</string>
     <string name="fdroid_vlc_url" translatable="false">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string>
     <string name="open_in_browser">Open in browser</string>
     <string name="open_in_popup_mode">Open in popup mode</string>
@@ -31,6 +32,9 @@
     <string name="subscription_change_failed">Unable to change subscription</string>
     <string name="subscription_update_failed">Unable to update subscription</string>
     <string name="show_info">Show info</string>
+    <string name="sdcard_permission_title">Write Access Required</string>
+    <string name="sdcard_permission_details">Please access your external storage, and select it.</string>
+
 
     <string name="tab_main">Main</string>
     <string name="tab_subscriptions">Subscriptions</string>
@@ -180,6 +184,7 @@
     <string name="invalid_file">File doesn\'t exist or insufficient permission to read or write to it</string>
     <string name="file_name_empty_error">File name cannot be empty</string>
     <string name="error_occurred_detail">An error occurred: %1$s</string>
+    <string name="get_write_permission_for_sd_failed">Getting write permission for sd card failed.</string>
 
     <!-- error activity -->
     <string name="sorry_string">Sorry, that should not have happened.</string>

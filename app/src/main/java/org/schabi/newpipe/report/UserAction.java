@@ -14,7 +14,8 @@ public enum UserAction {
     REQUESTED_STREAM("requested stream"),
     REQUESTED_CHANNEL("requested channel"),
     REQUESTED_PLAYLIST("requested playlist"),
-    REQUESTED_KIOSK("requested kiosk");
+    REQUESTED_KIOSK("requested kiosk"),
+    REQUIRE_SDCARD_PERMISSION("require sdcard permission");
 
 
     private final String message;
