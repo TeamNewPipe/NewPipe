@@ -185,7 +185,7 @@
     <string name="error_unable_to_load_license">Lizenz konnte nicht geladen werden</string>
     <string name="copyright" formatted="true">© %1$s von %2$s unter %3$s</string>
     <string name="tab_about">Über</string>
-    <string name="app_description">Eine offene, leichtgewichtige YouTube App für Android.</string>
+    <string name="app_description">Eine offene, schlanke YouTube App für Android.</string>
     <string name="app_license_title">NewPipes Lizenz</string>
     <string name="contribution_encouragement">Ob Ideen, Übersetzung, Design-Änderungen, Code-Aufräumung oder richtig große Code-Änderungen - Hilfe ist immer willkommen. Je mehr geholfen wird, desto besser wird NewPipe!</string>
     <string name="title_licenses">Drittanbieter Lizenzen</string>
