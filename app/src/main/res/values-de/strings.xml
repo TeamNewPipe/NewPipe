@@ -434,6 +434,9 @@
     <string name="resize_fill">FÜLLEN</string>
     <string name="resize_zoom">VERGRÖßERN</string>
 
-    <string name="enable_leak_canary_summary">Speicherlecküberwachung kann dazu führen, dass die App beim Heap-Dumping nicht mehr reagiert.</string>
+    <string name="enable_leak_canary_summary">Speicherlecküberwachung kann dazu führen, dass die App beim Heap-Dumping nicht mehr reagiert</string>
+
+    <string name="enable_disposed_exceptions_title">Fehler außerhalb des Lebenszyklus melden</string>
+    <string name="enable_disposed_exceptions_summary">Erzwingen der Meldung unzustellbarer Rx-Ausnahmen, die außerhalb des Lebenszyklus von Fragmenten oder Aktivitäten nach der Entsorgung auftreten.</string>
 
     </resources>
