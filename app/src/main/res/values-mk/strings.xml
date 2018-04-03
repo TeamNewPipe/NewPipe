@@ -157,5 +157,77 @@
     <string name="blocked_by_gema">Блокирано од GEMA</string>
     <string name="could_not_setup_download_menu">Неуспешно поставување на менито за превземања</string>
     <string name="live_streams_not_supported">Ова е пренос ВО ЖИВО, што сеуште не е поддржано.</string>
-    <string name="could_not_get_stream">Не е пронајден поток на податоци.</string>
+    <string name="could_not_get_stream">Не е пронајден поток на податоци</string>
+    <string name="could_not_load_image">Сликата не се прочита</string>
+    <string name="app_ui_crash">Се сруши Апп./Интерфејс</string>
+    <string name="player_stream_failure">Неуспех при пуштање на видеото</string>
+    <string name="player_unrecoverable_failure">Се случи критичен проблем</string>
+    <string name="player_recoverable_failure">Опоравување од проблемот</string>
+    <string name="external_player_unsupported_link_type">Надворешните плеери не поддржуваат вакви врски</string>
+    <string name="invalid_url_toast">Невалидно URL</string>
+    <string name="video_streams_empty">Нема видео стримови</string>
+    <string name="audio_streams_empty">Нема аудио стримови</string>
+    <string name="invalid_directory">Невалидна локација</string>
+    <string name="invalid_source">Невалиден извор на датотека/содржина</string>
+    <string name="invalid_file">Датотеката не постои или се потребни привилегии за достапност</string>
+    <string name="file_name_empty_error">Датотеката не може да биде празна</string>
+    <string name="error_occurred_detail">Настана проблем: %1$s</string>
+
+    <string name="sorry_string">Извинете, не требаше да се случи тоа.</string>
+    <string name="error_report_button_text">Извести за грешката по е-пошта</string>
+    <string name="error_snackbar_message">Извинете, настана проблем.</string>
+    <string name="error_snackbar_action">ИЗВЕШТАЈ</string>
+    <string name="what_device_headline">Инфо:</string>
+    <string name="what_happened_headline">Што се случи:</string>
+    <string name="info_labels">Што:\\nБарање:\\nЈазик на Содрж.:\\nУслуга:\\nGMT Час:\\nПакет:\\nВерзија:\\nВерз. на ОС:</string>
+    <string name="your_comment">Ваш коментар (на Англиски):</string>
+    <string name="error_details_headline">Детали:</string>
+
+
+    <string name="list_thumbnail_view_description">Сликичка за преглед на видеото</string>
+    <string name="detail_thumbnail_view_description">Сликичка за преглед на видеото</string>
+    <string name="detail_uploader_thumbnail_view_description">Икона од аватарот на објавителот</string>
+    <string name="detail_likes_img_view_description">Допаѓања</string>
+    <string name="detail_dislikes_img_view_description">Недопаѓања</string>
+    <string name="use_tor_title">Користи Tor</string>
+    <string name="use_tor_summary">(Експериментално) Пренасочувај го мрежниот сообраќај преку Tor за зголемена приватност (не е можно стримање сеуште).</string>
+    <string name="report_error">Пријави грешка</string>
+    <string name="user_report">Корисничка пријава</string>
+    <string name="search_no_results">Нема резултати</string>
+    <string name="empty_subscription_feed_subtitle">Тука Е Празно :(</string>
+    <string name="detail_drag_description">Влечи за да разместиш</string>
+
+    <string name="err_dir_create">Не може да се создаде локација \'%1$s\'</string>
+    <string name="info_dir_created">Создадена локација \'%1$s\'</string>
+
+    <string name="video">Видео</string>
+    <string name="audio">Звук</string>
+    <string name="retry">Пробај повторно</string>
+    <string name="storage_permission_denied">Нема привилегии за пристап</string>
+    <string name="use_old_player_title">Користи го стариот плеер</string>
+    <string name="use_old_player_summary">Користи го стариот Mediaframework плеер</string>
+
+    <string name="short_thousand">K</string>
+    <string name="short_million">M</string>
+    <string name="short_billion">B</string>
+
+    <string name="no_subscribers">Нема зачленети</string>
+    <plurals name="subscribers">
+	<item quantity="one">%s зачленет</item>
+	<item quantity="other">%s зачленети</item>
+</plurals>
+
+    <string name="no_views">Нула прегледи</string>
+    <plurals name="views">
+	<item quantity="one">%s преглед</item>
+	<item quantity="other">%s прегледи</item>
+</plurals>
+
+    <string name="no_videos">Нема видеа</string>
+    <plurals name="videos">
+	<item quantity="one">%s видео</item>
+	<item quantity="other">%s видеа</item>
+</plurals>
+
+    <string name="start">Почни</string>
     </resources>
