@@ -437,6 +437,19 @@
     <string name="enable_leak_canary_summary">Speicherlecküberwachung kann dazu führen, dass die App beim Heap-Dumping nicht mehr reagiert</string>
 
     <string name="enable_disposed_exceptions_title">Fehler außerhalb des Lebenszyklus melden</string>
-    <string name="enable_disposed_exceptions_summary">Erzwingen der Meldung unzustellbarer Rx-Ausnahmen, die außerhalb des Lebenszyklus von Fragmenten oder Aktivitäten nach der Entsorgung auftreten.</string>
+    <string name="enable_disposed_exceptions_summary">Erzwingen der Meldung unzustellbarer Rx-Ausnahmen, die außerhalb des Lebenszyklus von Fragmenten oder Aktivitäten nach der Entsorgung auftreten</string>
 
+    <string name="import_youtube_instructions">Um Ihre YouTube-Abonnements zu importieren, benötigen Sie die Exportdatei, die Sie mit dieser Anleitung herunterladen können:
+\n
+\n1. Gehen Sie zu dieser URL: %1$s
+\n2. Melden Sie sich bei Ihrem Konto an, wenn Sie dazu aufgefordert werden.
+\n3. Ein Download sollte starten (das ist die Exportdatei)</string>
+    <string name="import_soundcloud_instructions">Um Ihre SoundCloud-Folgen zu importieren, müssen Sie Ihre Profil-URL oder -ID kennen. Wenn ja, geben Sie einfach einen der beiden in die untenstehende Eingabe ein und Sie können loslegen.
+\n
+\nWenn nicht, können Sie diesen Schritten folgen:
+\n
+\n1. Aktivieren Sie den \"Desktop-Modus\" in einigen Browsern (die Seite ist für mobile Geräte nicht verfügbar).
+\n2. Gehen Sie zu dieser URL: %1$s
+\n3. Melden Sie sich bei Ihrem Konto an, wenn Sie dazu aufgefordert werden.
+\n4. Kopieren Sie die URL, zu der Sie umgeleitet wurden (das ist Ihre Profil-URL).</string>
     </resources>
