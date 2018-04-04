@@ -280,7 +280,7 @@
     <string name="play_queue_stream_detail">Détails</string>
     <string name="play_queue_audio_settings">Paramètres audio</string>
     <string name="show_hold_to_append_title">Afficher les fenêtres d\'aide</string>
-    <string name="show_hold_to_append_summary">Afficher l\'aide\\\"Appui long pour mettre en file d\'attente\\\" en appuyant sur les boutons \\\"Arrière-plan\\\" et \\\"Fenêtre\\\" sur la page de détails d\'une vidéo</string>
+    <string name="show_hold_to_append_summary">Afficher l\'aide \"Appui long pour mettre en file d\'attente\" en appuyant sur les boutons \"Arrière-plan\" et \"Fenêtre\" sur la page de détails d\'une vidéo</string>
     <string name="unknown_content">[Inconnu]</string>
 
     <string name="player_recoverable_failure">Récupération de l\'erreur du lecteur</string>
