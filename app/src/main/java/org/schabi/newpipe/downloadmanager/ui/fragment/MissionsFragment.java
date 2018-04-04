@@ -1,4 +1,4 @@
-package us.shandian.giga.ui.fragment;
+package org.schabi.newpipe.downloadmanager.ui.fragment;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -20,9 +20,27 @@ import android.view.ViewGroup;
 
 import org.schabi.newpipe.R;
 
-import us.shandian.giga.get.DownloadManager;
-import us.shandian.giga.service.DownloadManagerService;
-import us.shandian.giga.ui.adapter.MissionAdapter;
+import org.schabi.newpipe.downloadmanager.get.DownloadManager;
+import org.schabi.newpipe.downloadmanager.service.DownloadManagerService;
+import org.schabi.newpipe.downloadmanager.ui.adapter.MissionAdapter;
+
+/**
+ * Copyright (C) 2014 Peter Cai
+ * Changes by Christian Schabesberger (C) 2018
+ *
+ * org.schabi.newpipe.downloadmanager is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * org.schabi.newpipe.downloadmanager is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with org.schabi.newpipe.downloadmanager.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 public abstract class MissionsFragment extends Fragment {
     private DownloadManager mManager;

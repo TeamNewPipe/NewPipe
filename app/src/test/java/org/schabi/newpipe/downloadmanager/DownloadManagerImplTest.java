@@ -1,4 +1,4 @@
-package us.shandian.giga.get;
+package org.schabi.newpipe.downloadmanager;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -8,9 +8,9 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 
-import us.shandian.giga.get.DownloadDataSource;
-import us.shandian.giga.get.DownloadManagerImpl;
-import us.shandian.giga.get.DownloadMission;
+import org.schabi.newpipe.downloadmanager.get.DownloadDataSource;
+import org.schabi.newpipe.downloadmanager.get.DownloadManagerImpl;
+import org.schabi.newpipe.downloadmanager.get.DownloadMission;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;

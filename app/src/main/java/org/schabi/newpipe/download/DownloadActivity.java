@@ -15,9 +15,9 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.ThemeHelper;
 
-import us.shandian.giga.service.DownloadManagerService;
-import us.shandian.giga.ui.fragment.AllMissionsFragment;
-import us.shandian.giga.ui.fragment.MissionsFragment;
+import org.schabi.newpipe.downloadmanager.service.DownloadManagerService;
+import org.schabi.newpipe.downloadmanager.ui.fragment.AllMissionsFragment;
+import org.schabi.newpipe.downloadmanager.ui.fragment.MissionsFragment;
 
 public class DownloadActivity extends AppCompatActivity {
 

@@ -103,7 +103,7 @@
             android:label="@string/app_name"
             android:launchMode="singleTask"/>
 
-        <service android:name="us.shandian.giga.service.DownloadManagerService"/>
+        <service android:name=".downloadmanager.service.DownloadManagerService"/>
 
         <activity
             android:name=".util.FilePickerActivityHelper"

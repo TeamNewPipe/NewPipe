@@ -1,4 +1,4 @@
-package us.shandian.giga.ui.adapter;
+package org.schabi.newpipe.downloadmanager.ui.adapter;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -27,14 +27,32 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import us.shandian.giga.get.DownloadManager;
-import us.shandian.giga.get.DownloadMission;
-import us.shandian.giga.service.DownloadManagerService;
-import us.shandian.giga.ui.common.ProgressDrawable;
-import us.shandian.giga.util.Utility;
+import org.schabi.newpipe.downloadmanager.get.DownloadManager;
+import org.schabi.newpipe.downloadmanager.get.DownloadMission;
+import org.schabi.newpipe.downloadmanager.service.DownloadManagerService;
+import org.schabi.newpipe.downloadmanager.ui.common.ProgressDrawable;
+import org.schabi.newpipe.downloadmanager.util.Utility;
 
 import static android.content.Intent.FLAG_GRANT_PREFIX_URI_PERMISSION;
 import static android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION;
+
+/**
+ * Copyright (C) 2014 Peter Cai
+ * Changes by Christian Schabesberger (C) 2018
+ *
+ * org.schabi.newpipe.downloadmanager is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * org.schabi.newpipe.downloadmanager is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with org.schabi.newpipe.downloadmanager.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHolder> {
     private static final Map<Integer, String> ALGORITHMS = new HashMap<>();

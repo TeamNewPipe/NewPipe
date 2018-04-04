@@ -1,4 +1,4 @@
-package us.shandian.giga.service;
+package org.schabi.newpipe.downloadmanager.service;
 
 import android.Manifest;
 import android.app.Notification;
@@ -25,13 +25,31 @@ import org.schabi.newpipe.settings.NewPipeSettings;
 
 import java.util.ArrayList;
 
-import us.shandian.giga.get.DownloadDataSource;
-import us.shandian.giga.get.DownloadManager;
-import us.shandian.giga.get.DownloadManagerImpl;
-import us.shandian.giga.get.DownloadMission;
-import us.shandian.giga.get.sqlite.SQLiteDownloadDataSource;
+import org.schabi.newpipe.downloadmanager.get.DownloadDataSource;
+import org.schabi.newpipe.downloadmanager.get.DownloadManager;
+import org.schabi.newpipe.downloadmanager.get.DownloadManagerImpl;
+import org.schabi.newpipe.downloadmanager.get.DownloadMission;
+import org.schabi.newpipe.downloadmanager.get.sqlite.SQLiteDownloadDataSource;
 
 import static org.schabi.newpipe.BuildConfig.DEBUG;
+
+/**
+ * Copyright (C) 2014 Peter Cai
+ * Changes by Christian Schabesberger (C) 2018
+ *
+ * org.schabi.newpipe.downloadmanager is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * org.schabi.newpipe.downloadmanager is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with org.schabi.newpipe.downloadmanager.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 public class DownloadManagerService extends Service {
 
