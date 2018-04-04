@@ -214,7 +214,7 @@ abrir em modo popup</string>
     <string name="notification_channel_description">Notificações em plano de fundo para o NewPipe e players em popup</string>
 
     <string name="settings_category_player_behavior_title">Comportamento</string>
-    <string name="settings_category_history_title">História</string>
+    <string name="settings_category_history_title">Histórico e Cache</string>
     <string name="playlist">Playlist</string>
     <string name="undo">Desfazer</string>
 
@@ -256,7 +256,7 @@ abrir em modo popup</string>
     <string name="trending">Em Alta</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Novos e tendências</string>
-<string name="show_hold_to_append_title">Mostrar dica para Mantenha pressionado para colocar na fila</string>
+<string name="show_hold_to_append_title">Mostrar dica para mantenha pressionado para pendurar</string>
     <string name="show_hold_to_append_summary">Mostrar dica quando o botão de plano de fundo ou de popup for pressionado na página de detalhes do vídeo</string>
     <string name="background_player_append">Adicionado a fila do reprodutor em plano de fundo</string>
     <string name="popup_playing_append">Adicionado a fila no reprodutor popup</string>
@@ -425,4 +425,11 @@ abrir em modo popup</string>
     <string name="import_network_expensive_warning">Tenha em mente que esta operação poderá usar bastante a conexão com a internet.
 \n
 \nVocê deseja continuar?</string>
-</resources>
+<string name="download_thumbnail_title">Carregar miniaturas</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Cache de imagem foi limpo</string>
+    <string name="metadata_cache_wipe_title">Limpar o cache de metadados</string>
+    <string name="metadata_cache_wipe_summary">Remover todos os dados de páginas em cache</string>
+    <string name="metadata_cache_wipe_complete_notice">Cache de metadados foi limpo</string>
+    <string name="playback_speed_control">Controle de Velocidade de reprodução</string>
+    <string name="playback_tempo">Tempo</string>
+    </resources>
