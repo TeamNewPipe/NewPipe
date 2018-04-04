@@ -10,5 +10,8 @@
     <string name="open_in_popup_mode">كردنه‌وه‌ له‌ په‌نجه‌ره‌ی بچووك</string>
     <string name="share">هاوبه‌شپێكردن</string>
     <string name="download">داگرتن</string>
-    <string name="controls_download_desc">داگرتنی په‌ڕگه‌</string>
+    <string name="controls_download_desc">.داگرتنی په‌ڕگه‌</string>
+    <string name="search">گه‌ڕان</string>
+    <string name="settings">ڕێكخستنه‌كان</string>
+    <string name="did_you_mean">مه‌به‌ستت ئه‌مه‌یه‌؟ %1$s</string>
     </resources>
