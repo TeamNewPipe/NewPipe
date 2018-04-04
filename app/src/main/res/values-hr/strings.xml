@@ -332,4 +332,10 @@
     <string name="caption_font_size_settings_title">Veličina fonta naslova</string>
     <string name="smaller_caption_font_size">Manji font</string>
     <string name="normal_caption_font_size">Normalni font</string>
+    <string name="larger_caption_font_size">Veći font</string>
+
+    <string name="enable_leak_canary_title">Omogući \"LeakCanary\"</string>
+    <string name="enable_leak_canary_summary">Monitoring curenja memorije može uzrokovati greške u radu aplikacije prilikom odlaganje gomile</string>
+
+    <string name="enable_disposed_exceptions_title">Izvijestite o pogreškama izvan životnog ciklusa</string>
     </resources>
