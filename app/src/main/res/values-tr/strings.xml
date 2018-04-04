@@ -26,9 +26,9 @@
     <string name="download_path_audio_summary">İndirilmiş seslerin saklanacağı konum</string>
     <string name="download_path_audio_dialog_title">Ses dosyaları için indirme konumu girin</string>
 
-    <string name="autoplay_by_calling_app_title">Kendiliğinden oynat</string>
-    <string name="autoplay_by_calling_app_summary">NewPipe başka bir uygulamadan çağırıldığında videoyu kendiliğinden oynatır</string>
-    <string name="default_resolution_title">Öntanımlı çözünürlük</string>
+    <string name="autoplay_by_calling_app_title">Otomatik Oynat</string>
+    <string name="autoplay_by_calling_app_summary">NewPipe başka bir uygulamadan çağırıldığında videoyu otomatik oynatır</string>
+    <string name="default_resolution_title">Varsayılan çözünürlük</string>
     <string name="play_with_kodi_title">Kodi ile oynat</string>
     <string name="kore_not_found">Kore uygulaması bulunamadı. Kur?</string>
     <string name="show_play_with_kodi_title">\"Kodi ile Oynat\" seçeneğini göster</string>
@@ -155,8 +155,8 @@
     <string name="reCaptcha_title">reCAPTCHA Formu</string>
     <string name="recaptcha_request_toast">reCAPTCHA Formu istendi</string>
 
-    <string name="controls_background_title">Arka plan</string>
-    <string name="controls_popup_title">Açılır pencere</string>
+    <string name="controls_background_title">Arka Plan</string>
+    <string name="controls_popup_title">Açılır Pencere</string>
 
     <string name="filter">Süzgeç</string>
     <string name="refresh">Yenile</string>
@@ -209,7 +209,7 @@
     <string name="tab_main">Temel</string>
     <string name="tab_subscriptions">Abonelikler</string>
 
-    <string name="fragment_whats_new">Neler Yeni?</string>
+    <string name="fragment_whats_new">Neler Yeni</string>
 
     <string name="enable_search_history_title">Arama geçmişi</string>
     <string name="enable_search_history_summary">Arama sorgularını yerel olarak biriktir</string>
