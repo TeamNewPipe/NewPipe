@@ -1,2 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="main_bg_subtitle">گرته‌ له‌ گه‌ڕان بكه‌ بۆ ده‌ستپێكردن</string>
+    <string name="view_count_text">%1$s بینراو</string>
+    <string name="upload_date_text">بڵاوكراوه‌ته‌وه‌ له‌ %1$s</string>
+    <string name="no_player_found">هیچ كارپێكه‌رێكی ڤیدیۆیی نه‌دۆزرایه‌وه‌، ده‌ته‌وێت VLC داگریت؟</string>
+    <string name="no_player_found_toast">هیچ كارپێكه‌رێكی ڤیدیۆییت نییه‌ ده‌توانیت VLC داگریت بۆ لێدان</string>
+    <string name="install">داگرتن</string>
+    <string name="cancel">پاشگه‌زبوونه‌وه‌</string>
+    <string name="open_in_browser">كردنه‌وه‌ له‌ وێبگه‌ر</string>
+    <string name="open_in_popup_mode">كردنه‌وه‌ له‌ په‌نجه‌ره‌ی بچووك</string>
+    <string name="share">هاوبه‌شپێكردن</string>
+    <string name="download">داگرتن</string>
+    <string name="controls_download_desc">داگرتنی په‌ڕگه‌</string>
+    </resources>
