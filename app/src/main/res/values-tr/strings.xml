@@ -119,8 +119,8 @@
 
 
     <string name="could_not_setup_download_menu">İndirme menüsü ayarlanamadı</string>
-    <string name="open_in_popup_mode">Açılır pencere kipinde aç</string>
-    <string name="popup_mode_share_menu_title">NewPipe açılır pencere kipi</string>
+    <string name="open_in_popup_mode">Açılır pencere modunda aç</string>
+    <string name="popup_mode_share_menu_title">NewPipe açılır pencere modu</string>
 
     <string name="default_popup_resolution_title">Öntanımlı açılır pencere çözünürlüğü</string>
     <string name="show_higher_resolutions_title">Daha yüksek çözünürlükleri göster</string>
@@ -168,7 +168,7 @@
     <string name="settings_category_popup_title">Açılır Pencere</string>
     <string name="popup_resizing_indicator_title">Boyutlandırılıyor</string>
 
-    <string name="use_external_video_player_summary">Bu seçenek etkinken bazı çözünürlüklerin sesi olmayacak</string>
+    <string name="use_external_video_player_summary">Bu seçenek etkinken bazı çözünürlüklerin sesi olmayacaktır</string>
     <string name="player_gesture_controls_summary">Oynatıcının parlaklığını ve sesini yönetmek için el hareketlerini kullan</string>
     <string name="player_gesture_controls_title">Oynatıcı el hareketi denetimleri</string>
     <string name="show_search_suggestions_title">Arama önerileri</string>
@@ -209,7 +209,7 @@
     <string name="tab_main">Temel</string>
     <string name="tab_subscriptions">Abonelikler</string>
 
-    <string name="fragment_whats_new">Yenilikler Ne</string>
+    <string name="fragment_whats_new">Neler Yeni?</string>
 
     <string name="enable_search_history_title">Arama geçmişi</string>
     <string name="enable_search_history_summary">Arama sorgularını yerel olarak biriktir</string>
@@ -279,7 +279,7 @@
     <string name="select_a_kiosk">Köşk seç</string>
 
     <string name="kiosk">Köşk</string>
-    <string name="trending">Eğilimler</string>
+    <string name="trending">Trendler</string>
     <string name="top_50">En Üst 50</string>
     <string name="new_and_hot">Yeni ve sıcak</string>
     <string name="title_activity_background_player">Arka Plan Oynatıcı</string>
@@ -337,7 +337,7 @@
     <string name="override_current_data">Bu şimdiki kurulumunuzu geçersiz kılacak.</string>
 
     <string name="controls_download_desc">Akış dosyasını indir.</string>
-    <string name="show_info">Bilgiyi göster</string>
+    <string name="show_info">Bilgileri göster</string>
 
     <string name="tab_bookmarks">Yer imleri</string>
 
