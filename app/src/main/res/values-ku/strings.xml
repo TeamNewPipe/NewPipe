@@ -13,5 +13,61 @@
     <string name="controls_download_desc">.داگرتنی په‌ڕگه‌</string>
     <string name="search">گه‌ڕان</string>
     <string name="settings">ڕێكخستنه‌كان</string>
-    <string name="did_you_mean">مه‌به‌ستت ئه‌مه‌یه‌؟ %1$s</string>
+    <string name="did_you_mean">مه‌به‌ستت ئه‌مه‌یه‌: %1$s</string>
+    <string name="share_dialog_title">"هاوبه‌شپێكردن له‌گه‌ڵ "</string>
+    <string name="choose_browser">هه‌ڵبژاردنی وێبگه‌ر</string>
+    <string name="screen_rotation">سوڕان</string>
+    <string name="use_external_video_player_title">به‌كارهێنانی كارپێكه‌ری ڤیدیۆی ده‌ره‌كی</string>
+    <string name="use_external_video_player_summary">هه‌نێ له‌ قه‌باره‌كان ده‌نگیان تێدا نابێت له‌حاڵه‌تی كارا كردنی ئه‌م بژارده‌یه‌</string>
+    <string name="use_external_audio_player_title">به‌كارهێنانی كارپێكه‌ری ده‌نگی ده‌ره‌كی</string>
+    <string name="popup_mode_share_menu_title">په‌نجه‌ره‌ی بچووك</string>
+    <string name="subscribe_button_title">به‌شداربوون</string>
+    <string name="subscribed_button_title">به‌شداربوویت</string>
+    <string name="channel_unsubscribed">به‌شدارنابیت له‌ كه‌ناڵ</string>
+    <string name="subscription_change_failed">ناتوانیت گۆڕانكاری له‌م به‌شدارییه‌دا بكه‌یت</string>
+    <string name="subscription_update_failed">ناتوانرێت به‌شداریكردنه‌كه‌ نوێبكرێته‌وه‌</string>
+    <string name="show_info">پیشاندانی زانیاری</string>
+
+    <string name="tab_main">سه‌ره‌كی</string>
+    <string name="tab_subscriptions">به‌شدارییه‌كان</string>
+    <string name="tab_bookmarks">نیشانكردنه‌كان</string>
+
+    <string name="fragment_whats_new">چی نوێ هه‌یه‌</string>
+
+    <string name="controls_background_title">له‌پشته‌وه‌</string>
+    <string name="controls_popup_title">په‌نجه‌ره‌</string>
+    <string name="controls_add_to_playlist_title">ناردن بۆ</string>
+
+    <string name="download_path_title">شوێنی داگرتنی ڤیدیۆ</string>
+    <string name="download_path_summary">شوێنی ڤیدیۆ داگیراوه‌كان</string>
+    <string name="download_path_dialog_title">نوسینی شوێنی داگرتنی ڤیدیۆكان</string>
+
+    <string name="download_path_audio_title">شوێنی داگرتنی ده‌نگ</string>
+    <string name="download_path_audio_summary">شوێنی ده‌نگه‌ داگیراوه‌كان</string>
+    <string name="download_path_audio_dialog_title">نوسینی شوێنی داگرتنی ده‌نگه‌كان</string>
+
+    <string name="autoplay_by_calling_app_title">كاركردنی خۆكارانه‌</string>
+    <string name="default_resolution_title">قه‌باره‌ی سه‌ره‌كی</string>
+    <string name="default_popup_resolution_title">قه‌باره‌ی سه‌ره‌كی په‌نجه‌ره‌</string>
+    <string name="show_higher_resolutions_title">پیشاندانی قه‌باره‌ی به‌رزتر</string>
+    <string name="show_higher_resolutions_summary">چه‌ند مۆبایلێك پشتگیری له‌ قه‌باره‌ی 2K/4K ده‌كه‌ن</string>
+    <string name="play_with_kodi_title">كاركردن به‌ Kodi</string>
+    <string name="kore_not_found">نه‌رمه‌واڵا نه‌دۆزرایه‌وه‌. دابمه‌زرێت؟</string>
+    <string name="show_play_with_kodi_title">پیشاندانی بژارده‌ی “كاركردن به‌ Kodi”</string>
+    <string name="show_play_with_kodi_summary">پیشاندانی بژارده‌ی كارپێكردنی ڤیدیۆ به‌ Kodi</string>
+    <string name="play_audio">ده‌نگ</string>
+    <string name="default_audio_format_title">جۆری سه‌ره‌كی ده‌نگ</string>
+    <string name="default_video_format_title">جۆری سه‌ره‌كی ڤیدیۆ</string>
+    <string name="webm_description">WebM — جۆری ئاسایی</string>
+    <string name="m4a_description">M4A — كوالێتی به‌رزتر</string>
+    <string name="theme_title">ڕووكار</string>
+    <string name="light_theme_title">ڕووناك</string>
+    <string name="dark_theme_title">تاریك</string>
+    <string name="black_theme_title">ڕه‌ش</string>
+    <string name="popup_remember_size_pos_title">بیرهاتنه‌وه‌ی شوێن و قه‌باره‌ی په‌نجه‌ره‌</string>
+    <string name="popup_remember_size_pos_summary">بیرهاتنه‌وه‌ی كۆتا قه‌باره‌ و شوێنی په‌نجه‌ره‌ی بچووك</string>
+    <string name="download_thumbnail_title">باركردنی وێنۆچكه‌كان</string>
+    <string name="download_thumbnail_summary">ناچالاكی بكه‌ بۆ ڕاگرتنی وێنۆچكه‌كان له‌ باركردن و پاشه‌كه‌وتبوون له‌سه‌ر بیرگه‌ی ئامێره‌كه‌ت.
+\nگۆڕینی ئه‌مه‌ ده‌بێته‌ هۆی سڕینه‌وه‌یان له‌سه‌ر بیرگه‌ی مۆبایله‌كه‌ت.</string>
+    <string name="thumbnail_cache_wipe_complete_notice">پاشماوه‌ی وێنۆچكه‌كان سڕایه‌وه‌</string>
     </resources>
