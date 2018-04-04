@@ -272,10 +272,10 @@
 
     <string name="kiosk">Nazivi kioska</string>
     <string name="trending">U trendu</string>
-    <string name="top_50">Top 50</string>
+    <string name="top_50">Vrh 50</string>
     <string name="new_and_hot">Novo i popularno</string>
-    <string name="title_activity_background_player">Red čekanja</string>
-    <string name="title_activity_popup_player">Skočni reproduktor</string>
+    <string name="title_activity_background_player">Lista čekanja</string>
+    <string name="title_activity_popup_player">Skočni reproduktcija</string>
     <string name="play_queue_remove">Ukloni</string>
     <string name="play_queue_stream_detail">Detalji</string>
     <string name="play_queue_audio_settings">Postavke zvuka</string>
@@ -286,4 +286,35 @@
     <string name="website_title">Web stranica</string>
     <string name="start_here_on_main">Ovdje započni reprodukciju</string>
     <string name="start_here_on_background">Ovdje započni repr. u pozadini</string>
+    <string name="enqueue_on_background">Dadaj na red čekanja u pozadini</string>
+    <string name="enqueue_on_popup">Dodaj na red u skočnom prozoru</string>
+    <string name="start_here_on_popup">Započni ovdje u Skočnom prozoru</string>
+
+    <string name="drawer_open">Otvori ladicu</string>
+    <string name="drawer_close">Zatvori ladicu</string>
+    <string name="drawer_header_action_paceholder_text">Nešto će zasigurno doći ovdje :D</string>
+
+
+    <string name="preferred_player_share_menu_dialog_title">Otvoriti sa Vašim reproduktorom</string>
+    <string name="preferred_player_settings_title">Odabrani reproduktor</string>
+
+    <string name="video_player">Video reprodukcija</string>
+    <string name="background_player">Pozadinska reprodukcija</string>
+    <string name="popup_player">Skočna reprodukcija</string>
+    <string name="always_ask_open_action">Uvjek pitaj</string>
+    
+    <string name="preferred_player_fetcher_notification_title">Dohvaćam informacije…</string>
+    <string name="preferred_player_fetcher_notification_message">Odabrani sadržaj se učitava</string>
+
+    <string name="create_playlist">Napravi novu reprodukcijsku listu</string>
+    <string name="delete_playlist">Izbriši reprodukcijsku listu</string>
+    <string name="rename_playlist">Preimenuj reprodukcijsku listu</string>
+    <string name="playlist_name_input">Ime liste</string>
+    <string name="append_playlist">Dodaj na reprodukcijsku listu</string>
+    <string name="set_as_playlist_thumbnail">Postavi kao sliku na listu</string>
+
+    <string name="bookmark_playlist">Markirajte reprodukcijsku listu</string>
+    <string name="unbookmark_playlist">"Odmarkirajte "</string>
+
+    <string name="delete_playlist_prompt">Želite li izbrisati listu</string>
     </resources>
