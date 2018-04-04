@@ -28,15 +28,15 @@
 
     <string name="autoplay_by_calling_app_title">Otomatik Oynat</string>
     <string name="autoplay_by_calling_app_summary">NewPipe başka bir uygulamadan çağırıldığında videoyu otomatik oynatır</string>
-    <string name="default_resolution_title">Varsayılan çözünürlük</string>
+    <string name="default_resolution_title">Öntanımlı çözünürlük</string>
     <string name="play_with_kodi_title">Kodi ile oynat</string>
-    <string name="kore_not_found">Kore uygulaması bulunamadı. Kur?</string>
+    <string name="kore_not_found">Kore uygulaması bulunamadı. Kurulsun mu?</string>
     <string name="show_play_with_kodi_title">\"Kodi ile Oynat\" seçeneğini göster</string>
     <string name="show_play_with_kodi_summary">Kodi ortam merkezi aracılığıyla video oynatmak için bir seçenek görüntüler</string>
     <string name="default_audio_format_title">Öntanımlı ses biçimi</string>
     <string name="webm_description">WebM — özgür biçim</string>
-    <string name="m4a_description">M4A — daha iyi nitelik</string>
-    <string name="theme_title">Gövde</string>
+    <string name="m4a_description">M4A — daha iyi kalite</string>
+    <string name="theme_title">Tema</string>
     <string name="dark_theme_title">Koyu</string>
     <string name="light_theme_title">Açık</string>
 
@@ -52,8 +52,8 @@
     <string name="background_player_playing_toast">Arka planda oynatıyor</string>
     <string name="play_btn_text">Oynat</string>
     <string name="content">İçerik</string>
-    <string name="show_age_restricted_content_title">Yaş sınırlı içeriği göster</string>
-    <string name="video_is_age_restricted">Yaş Sınırlı Video. Bu gibi materyallere Ayarlar\'dan izin verilebilir.</string>
+    <string name="show_age_restricted_content_title">Yaş kısıtlamalı içerik göster</string>
+    <string name="video_is_age_restricted">Yaş Kısıtlamalı Video. Bu gibi materyallere Ayarlar\'dan izin verilebilir.</string>
     <string name="duration_live">canlı</string>
     <string name="downloads">İndirilenler</string>
     <string name="downloads_title">İndirilenler</string>
@@ -67,7 +67,7 @@
     <string name="light_parsing_error">Web sitesi tümüyle ayrıştırılamadı</string>
     <string name="content_not_available">İçerik kullanılabilir değil</string>
     <string name="blocked_by_gema">GEMA tarafından engellendi</string>
-    <string name="live_streams_not_supported">Bu bir CANLI AKIŞ, henüz desteklenmiyor.</string>
+    <string name="live_streams_not_supported">Bu bir CANLI YAYIN ve henüz desteklenmiyor.</string>
     <string name="could_not_get_stream">Herhangi bir akış alınamadı</string>
     <string name="could_not_load_image">Resim yüklenemedi</string>
     <string name="app_ui_crash">Uygulama/Kullanıcı arayüzü çöktü</string>
@@ -125,10 +125,10 @@
     <string name="default_popup_resolution_title">Öntanımlı açılır pencere çözünürlüğü</string>
     <string name="show_higher_resolutions_title">Daha yüksek çözünürlükleri göster</string>
     <string name="show_higher_resolutions_summary">Yalnızca bazı aygıtlar 2K/4K video oynatmayı destekler</string>
-    <string name="default_video_format_title">Yeğlenen video biçimi</string>
+    <string name="default_video_format_title">Öntanımlı video biçimi</string>
     <string name="black_theme_title">Siyah</string>
 
-    <string name="popup_playing_toast">Açılır pencere kipinde oynatılıyor</string>
+    <string name="popup_playing_toast">Açılır pencere modunda oynatılıyor</string>
     <string name="all">Tümü</string>
     <string name="channel">Kanal</string>
     <string name="yes">Evet</string>
@@ -158,7 +158,7 @@
     <string name="controls_background_title">Arka Plan</string>
     <string name="controls_popup_title">Açılır Pencere</string>
 
-    <string name="filter">Süzgeç</string>
+    <string name="filter">Filtrele</string>
     <string name="refresh">Yenile</string>
     <string name="clear">Temizle</string>
 
@@ -172,14 +172,14 @@
     <string name="player_gesture_controls_summary">Oynatıcının parlaklığını ve sesini yönetmek için el hareketlerini kullan</string>
     <string name="player_gesture_controls_title">Oynatıcı el hareketi denetimleri</string>
     <string name="show_search_suggestions_title">Arama önerileri</string>
-    <string name="show_search_suggestions_summary">Ararken önerileri göster</string>
+    <string name="show_search_suggestions_summary">Arama yaparken önerileri göster</string>
 
 <string name="best_resolution">En iyi çözünürlük</string>
 
     <string name="title_activity_about">NewPipe Hakkında</string>
     <string name="action_settings">Ayarlar</string>
     <string name="action_about">Hakkında</string>
-    <string name="title_licenses">Üçüncü-taraf Lisanslar</string>
+    <string name="title_licenses">Üçüncü taraf Lisanslar</string>
     <string name="copyright" formatted="true">© %1$s, %2$s tarafından %3$s altında</string>
     <string name="error_unable_to_load_license">Lisans yüklenemedi</string>
     <string name="action_open_website">Web sitesini aç</string>
@@ -189,7 +189,7 @@
     <string name="app_description">Android için özgür hafif bir YouTube arayüzü.</string>
     <string name="view_on_github">GitHub\'da gör</string>
     <string name="app_license_title">NewPipe\'ın Lisansı</string>
-    <string name="contribution_encouragement">Fikirleriniz; çeviri, tasarım değişiklikleri, kod temizliği, ya da gerçek köklü kod değişikleri olsun—yardımınıza her zaman açığız. Daha çok yapıldıkça daha iyiye gider!</string>
+    <string name="contribution_encouragement">Fikirleriniz; çeviri, tasarım değişiklikleri, kod temizliğ ya da gerçek köklü kod değişikleri olsun yardımınıza her zaman açığız. Ne kadar çok yapılırsa o kadar iyi olur!</string>
     <string name="read_full_license">Lisansı oku</string>
     <string name="contribution_title">Katkıda bulun</string>
 <string name="settings_category_downloads_title">İndirme</string>
@@ -216,15 +216,15 @@
     <string name="enable_watch_history_title">Geçmiş</string>
     <string name="enable_watch_history_summary">İzlenen videoların kaydını tut</string>
     <string name="resume_on_audio_focus_gain_title">Odaklanıldığında sürdür</string>
-    <string name="resume_on_audio_focus_gain_summary">Kesilmelerden sonra (örn. telefon çağrıları) oynatmayı sürdür</string>
+    <string name="resume_on_audio_focus_gain_summary">Kesilmelerden (ör: Telefon çağrıları) sonra oynatmayı sürdür</string>
     <string name="settings_category_player_title">Oynatıcı</string>
     <string name="settings_category_player_behavior_title">Davranış</string>
     <string name="settings_category_history_title">Geçmiş ve Önbellek</string>
-    <string name="playlist">Oynatma listesi</string>
+    <string name="playlist">Oynatma Listesi</string>
     <string name="undo">Geri al</string>
 
     <string name="notification_channel_name">NewPipe Bildirimi</string>
-    <string name="notification_channel_description">New Pipe Arka Plan ve Açılır Pencere Oynatıcıları için bildirimler</string>
+    <string name="notification_channel_description">NewPipe Arka Plan ve Açılır Pencere Oynatıcıları için Bildirimler</string>
 
     <string name="search_no_results">Sonuç yok</string>
     <string name="empty_subscription_feed_subtitle">Burada Cırcır Böceklerinden Başka Şey Yok</string>
@@ -280,7 +280,7 @@
 
     <string name="kiosk">Köşk</string>
     <string name="trending">Trendler</string>
-    <string name="top_50">En Üst 50</string>
+    <string name="top_50">En İyi 50</string>
     <string name="new_and_hot">Yeni ve sıcak</string>
     <string name="title_activity_background_player">Arka Plan Oynatıcı</string>
     <string name="title_activity_popup_player">Açılır Pencere Oynatıcı</string>
@@ -316,8 +316,8 @@
     <string name="video_streams_empty">Video akışı bulunamadı</string>
     <string name="audio_streams_empty">Ses akışı bulunamadı</string>
 
-    <string name="preferred_player_share_menu_dialog_title">Yeğlenen oynatıcıyla aç</string>
-    <string name="preferred_player_settings_title">Yeğlenen oynatıcı</string>
+    <string name="preferred_player_share_menu_dialog_title">Öntanımlı oynatıcıyla aç</string>
+    <string name="preferred_player_settings_title">Öntanımlı oynatıcı</string>
 
     <string name="video_player">Video oynatıcı</string>
     <string name="background_player">Arka plan oynatıcı</string>
@@ -346,7 +346,7 @@
     <string name="detail_drag_description">Yeniden sıralamak için sürükle</string>
 
     <string name="create">Oluştur</string>
-    <string name="delete_one">Tekini Sil</string>
+    <string name="delete_one">Birini Sil</string>
     <string name="delete_all">Tümünü Sil</string>
     <string name="dismiss">Görmezden gel</string>
     <string name="rename">Yeniden adlandır</string>
@@ -354,7 +354,7 @@
     <string name="delete_stream_history_prompt">Bu ögeyi izleme geçmişinden silmek ister misiniz?</string>
     <string name="delete_all_history_prompt">Tüm ögeleri geçmişten silmek istediğinize emin misiniz?</string>
     <string name="title_last_played">Son Oynatılan</string>
-    <string name="title_most_played">Çok Oynatılan</string>
+    <string name="title_most_played">En Çok Oynatılan</string>
 
     <string name="always_ask_open_action">Her zaman sor</string>
     
@@ -380,12 +380,12 @@
     <string name="resize_fill">DOLDUR</string>
     <string name="resize_zoom">YAKLAŞTIR</string>
 
-    <string name="caption_font_size_settings_title">Altyazı boyutu</string>
+    <string name="caption_font_size_settings_title">Alt yazı boyutu</string>
     <string name="smaller_caption_font_size">Daha küçük yazı tipi</string>
     <string name="normal_caption_font_size">Normal yazı tipi</string>
     <string name="larger_caption_font_size">Daha büyük yazı tipi</string>
 <string name="settings_category_debug_title">Hata Ayıklama</string>
-    <string name="drawer_header_action_paceholder_text">Buraya yakında bir şeyler gelecek ;D</string>
+    <string name="drawer_header_action_paceholder_text">Buraya yakında bir şeyler gelecek :)</string>
 
 
     <string name="caption_auto_generated">Kendiliğinden Oluşturulmuş</string>
@@ -397,8 +397,8 @@
 
 <string name="use_inexact_seek_title">Hızlı isabetsiz konumlama kullan</string>
     <string name="use_inexact_seek_summary">İsabetsiz konumlama, oynatıcının konumları düşürülmüş duyarlıkla saptamasını sağlar</string>
-    <string name="auto_queue_title">Sonraki akışı kendiliğinden kuyrukla</string>
-    <string name="auto_queue_summary">Yinelemeyen oynatma kuyruğundaki son akış başladığında ilişkili akışı kuyruğun sonuna kendiliğinden ekle.</string>
+    <string name="auto_queue_title">Sonraki akışı otomatik olarak kuyruğa ekle</string>
+    <string name="auto_queue_summary">Yinelemeyen oynatma kuyruğundaki son akış başladığında ilişkili akışı kuyruğun sonuna otomatik olarak ekle.</string>
     <string name="live_sync">EŞZAMANLA</string>
 
     <string name="file">Dosya</string>
@@ -423,18 +423,18 @@
     <string name="subscriptions_import_unsuccessful">Aboneliklerin içe aktarımı başarısız</string>
     <string name="subscriptions_export_unsuccessful">Aboneliklerin dışa aktarımı başarısız</string>
 
-    <string name="import_youtube_instructions">YouTube aboneliklerinizi içe aktarmak için dışa aktarılmış dosya gerekiyor, dosya şu yönergeler izlenerek indirilebilir:
-\n
-\n1. Şu adrese gidin: %1$s
-\n2. Sorulduğunda hesabınıza giriş yapın
+    <string name="import_youtube_instructions">YouTube aboneliklerinizi içe aktarmak için aşağıdaki yönergelerle indirilebilecek dışa aktarılmış dosya gerekiyor: 
+\n 
+\n1. Şu adrese gidin: %1$s 
+\n2. Sorulduğunda hesabınıza giriş yapın 
 \n3. İndirme başlamalı (bu dışa aktarılmış dosyadır)</string>
-    <string name="import_soundcloud_instructions">SoundCloud takiplerinizi içe aktarmak için profil adresinizi veya kimliğinizi bilmelisiniz. Eğer biliyorsanız, ikisinden birini aşağıdaki giriye yazın ve işte hazırsınız.
-\n
-\nEğer bilmiyorsanız şu adımları izleyebilirsiniz:
-\n
-\n1. Herhangi bir tarayıcıda \"masaüstü kipi\"ni açın (site, mobil aygıtlar için uygun değildir)
-\n2. Şu adrese gidin: %1$s
-\n3. Sorulduğunda hesabınıza giriş yapın
+    <string name="import_soundcloud_instructions">SoundCloud takiplerinizi içe aktarmak için profil adresinizi veya kimliğinizi bilmelisiniz. Eğer biliyorsanız, ikisinden birini aşağıdaki alana yazın ve işte hazırsınız. 
+\n 
+\nEğer bilmiyorsanız şu adımları izleyebilirsiniz: 
+\n 
+\n1. Herhangi bir tarayıcıda \"masaüstü modu\"nu açın (site, mobil aygıtlar için uygun değildir) 
+\n2. Şu adrese gidin: %1$s 
+\n3. Sorulduğunda hesabınıza giriş yapın 
 \n4. Yönlendirildiğiniz adresi kopyalayın (bu sizin profil adresinizdir)</string>
     <string name="import_soundcloud_instructions_hint">kimliginiz, soundcloud.com/kimliginiz</string>
 
@@ -442,13 +442,15 @@
 \n
 \nDevam etmek istiyor musunuz?</string>
 <string name="download_thumbnail_title">Önizlemeleri yükle</string>
-    <string name="download_thumbnail_summary">Bellek ve veri kullanımını azaltmak için önizleme yüklemelerini devre dışı bırakın. Bunu değiştirmek, hem bellek hem de disk üzerindeki önbelleği temizleyecek.</string>
-    <string name="thumbnail_cache_wipe_complete_notice">Resim önbelleği temizlendi</string>
+    <string name="download_thumbnail_summary">Bellek ve veri kullanımını azaltmak için önizleme yüklemelerini devre dışı bırakın. Bunu değiştirmek, hem bellek hem de disk üzerindeki önbelleği temizleyecektir.</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Görsel önbelleği temizlendi</string>
     <string name="metadata_cache_wipe_title">Önbellek verisini temizle</string>
     <string name="metadata_cache_wipe_summary">Önbelleklenmiş tüm web içeriği verisini kaldır</string>
     <string name="metadata_cache_wipe_complete_notice">Veri önbelleği temizlendi</string>
-    <string name="playback_speed_control">Oynatım Değişkenleri</string>
+    <string name="playback_speed_control">Oynatma Hızı Kontrolü</string>
     <string name="playback_tempo">Hız</string>
     <string name="playback_default">Varsayılan</string>
 <string name="playback_pitch">Ses titreşimi</string>
+    <string name="unhook_checkbox">Çengelini Çıkar (bozukluğa neden olabilir)</string>
+    <string name="playback_nightcore">Nightcore</string>
     </resources>
