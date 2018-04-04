@@ -45,9 +45,9 @@ public class SdCardPermissionHelper {
 
     public static final int REQUEST_SD_CARD_PERMISSION = 33431;
 
-    public static String requreSdCardAccessToken(final Activity activity) {
+    public static String requreSdCardUri(final Activity activity) {
         String key = PreferenceManager.getDefaultSharedPreferences(activity)
-                .getString(activity.getString(R.string.sdcard_access_key), "");
+                .getString(activity.getString(R.string.sdcard_access_uri), "");
         if(key.isEmpty()) {
             getSdCardPermission(activity);
             return "";
@@ -87,7 +87,7 @@ public class SdCardPermissionHelper {
                 try {
                     PreferenceManager.getDefaultSharedPreferences(activity)
                             .edit()
-                            .putString(activity.getString(R.string.sdcard_access_key),
+                            .putString(activity.getString(R.string.sdcard_access_uri),
                                     data.getData().toString())
                             .apply();
                 } catch (Exception e) {
