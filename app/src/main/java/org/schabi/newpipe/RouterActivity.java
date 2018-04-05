@@ -307,8 +307,7 @@ public class RouterActivity extends AppCompatActivity {
         // StreamDetailFragment can fetch data itself
         if(playerChoiceKey.equals(getString(R.string.show_info_key))) {
             disposables.add(Observable
-                    .fromCallable(() -> NavigationHelper.getIntentByLink(this,
-                            NavigationHelper.getCleanUrl(currentService, currentUrl, currentLinkType)))
+                    .fromCallable(() -> NavigationHelper.getIntentByLink(this, currentUrl))
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(intent -> {
