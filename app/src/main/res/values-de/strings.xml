@@ -356,19 +356,19 @@
 
     <string name="always_ask_open_action">Immer fragen</string>
     
-    <string name="create_playlist">Neue Playlist Erstellen</string>
-    <string name="delete_playlist">Playlist Löschen</string>
-    <string name="rename_playlist">Playlist umbenennen</string>
-    <string name="append_playlist">Zu Playlist hinzufügen</string>
+    <string name="create_playlist">Wiedergabeliste erstellen</string>
+    <string name="delete_playlist">Wiedergabeliste löschen</string>
+    <string name="rename_playlist">Wiedergabeliste umbenennen</string>
+    <string name="append_playlist">Zur Wiedergabeliste hinzufügen</string>
     <string name="set_as_playlist_thumbnail">Als Vorschaubild der Wiedergabeliste festlegen</string>
 
     <string name="unbookmark_playlist">Lesezeichen entfernen</string>
 
-    <string name="delete_playlist_prompt">Möchtest du diese Playlist löschen?</string>
-    <string name="playlist_creation_success">Playlist erfolgreich erstellt</string>
+    <string name="delete_playlist_prompt">Diese Wiedergabeliste löschen?</string>
+    <string name="playlist_creation_success">Wiedergabeliste erstellt</string>
     <string name="playlist_add_stream_success">Zur Wiedergabeliste hinzugefügt</string>
     <string name="playlist_thumbnail_change_success">Vorschaubild der Wiedergabeliste geändert</string>
-    <string name="playlist_delete_failure">Löschen der Playlist fehlgeschlagen</string>
+    <string name="playlist_delete_failure">Löschen der Wiedergabeliste fehlgeschlagen</string>
 
     <string name="caption_none">Keine Untertitel</string>
 
@@ -386,8 +386,8 @@
     <string name="error_occurred_detail">Ein Fehler ist aufgetreten: %1$s</string>
 
     <string name="caption_auto_generated">Automatisch erzeugt</string>
-    <string name="smaller_caption_font_size">Kleinere Schriftgröße</string>
-    <string name="larger_caption_font_size">Größere Schriftgröße</string>
+    <string name="smaller_caption_font_size">Kleinere Schrift</string>
+    <string name="larger_caption_font_size">Größere Schrift</string>
 
     <string name="enable_leak_canary_title">LeakCanary aktivieren</string>
     <string name="import_from">Import von</string>
@@ -399,8 +399,8 @@
     <string name="import_file_title">Datei importieren</string>
     <string name="previous_export">Vorheriger Export</string>
 
-    <string name="import_network_expensive_warning">Beachte, dass diese Aktion sehr Netzwerk intensiv sein kann.
-\n
+    <string name="import_network_expensive_warning">Beachte, dass diese Aktion das Netzwerk stark belasten kann. 
+\n 
 \nMöchtest du fortfahren?</string>
 <string name="download_thumbnail_title">Vorschaubilder laden</string>
     <string name="thumbnail_cache_wipe_complete_notice">Bildercache gelöscht</string>
@@ -443,7 +443,7 @@
 \n
 \n1. Gehen Sie zu dieser URL: %1$s
 \n2. Melden Sie sich bei Ihrem Konto an, wenn Sie dazu aufgefordert werden.
-\n3. Ein Download sollte starten (das ist die Exportdatei)</string>
+\n3. Der Ladevorgang sollte beginnen (das ist die Exportdatei)</string>
     <string name="import_soundcloud_instructions">Um Ihre SoundCloud-Folgen zu importieren, müssen Sie Ihre Profil-URL oder -ID kennen. Wenn ja, geben Sie einfach einen der beiden in die untenstehende Eingabe ein und Sie können loslegen.
 \n
 \nWenn nicht, können Sie diesen Schritten folgen:
