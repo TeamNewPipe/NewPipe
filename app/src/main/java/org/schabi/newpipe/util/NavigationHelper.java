@@ -475,7 +475,6 @@ public class NavigationHelper {
             throw new ExtractionException("Url not known to service. service=" + service + " url=" + url);
         }
 
-        url = getCleanUrl(service, url, linkType);
         Intent rIntent = getOpenIntent(context, url, service.getServiceId(), linkType);
 
         switch (linkType) {
@@ -486,20 +485,6 @@ public class NavigationHelper {
         }
 
         return rIntent;
-    }
-
-    public static String getCleanUrl(StreamingService service, String dirtyUrl, StreamingService.LinkType linkType) throws ExtractionException {
-        switch (linkType) {
-            case STREAM:
-                return service.getStreamUrlIdHandler().cleanUrl(dirtyUrl);
-            case CHANNEL:
-                return service.getChannelUrlIdHandler().cleanUrl(dirtyUrl);
-            case PLAYLIST:
-                return service.getPlaylistUrlIdHandler().cleanUrl(dirtyUrl);
-            case NONE:
-                break;
-        }
-        return null;
     }
 
     private static Uri openMarketUrl(String packageName) {
