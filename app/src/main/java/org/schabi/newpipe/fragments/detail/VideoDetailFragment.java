@@ -70,7 +70,6 @@ import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.SinglePlayQueue;
-import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -205,7 +204,7 @@ public class VideoDetailFragment
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_video_detail, container, false);
     }
 
@@ -681,15 +680,15 @@ public class VideoDetailFragment
         int id = item.getItemId();
         switch (id) {
             case R.id.menu_item_share: {
-                if(currentInfo != null) {
-                    shareUrl(currentInfo.getName(), url);
-                } else {
-                    shareUrl(url, url);
+                if (currentInfo != null) {
+                    shareUrl(currentInfo.getName(), currentInfo.getUrl());
                 }
                 return true;
             }
             case R.id.menu_item_openInBrowser: {
-                openUrlInBrowser(url);
+                if (currentInfo != null) {
+                    openUrlInBrowser(currentInfo.getUrl());
+                }
                 return true;
             }
             case R.id.action_play_with_kodi:
@@ -818,7 +817,7 @@ public class VideoDetailFragment
     public void prepareAndHandleInfo(final StreamInfo info, boolean scrollToTop) {
         if (DEBUG) Log.d(TAG, "prepareAndHandleInfo() called with: info = [" + info + "], scrollToTop = [" + scrollToTop + "]");
 
-        setInitialData(info.getServiceId(), info.getUrl(), info.getName());
+        setInitialData(info.getServiceId(), info.getOriginalUrl(), info.getName());
         pushToStack(serviceId, url, name);
         showLoading();
 
@@ -1112,7 +1111,7 @@ public class VideoDetailFragment
     public void handleResult(@NonNull StreamInfo info) {
         super.handleResult(info);
 
-        setInitialData(info.getServiceId(), info.getUrl(), info.getName());
+        setInitialData(info.getServiceId(), info.getOriginalUrl(), info.getName());
         pushToStack(serviceId, url, name);
 
         animateView(thumbnailPlayButton, true, 200);
@@ -1192,7 +1191,9 @@ public class VideoDetailFragment
             toggleExpandRelatedVideos(currentInfo);
             wasRelatedStreamsExpanded = false;
         }
+
         setTitleToUrl(info.getServiceId(), info.getUrl(), info.getName());
+        setTitleToUrl(info.getServiceId(), info.getOriginalUrl(), info.getName());
 
         if (!info.getErrors().isEmpty()) {
             showSnackBarError(info.getErrors(),

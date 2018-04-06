@@ -122,7 +122,7 @@ public class RouterActivity extends AppCompatActivity {
                         currentService = NewPipe.getServiceByUrl(url);
                         currentServiceId = currentService.getServiceId();
                         currentLinkType = currentService.getLinkTypeByUrl(url);
-                        currentUrl = NavigationHelper.getCleanUrl(currentService, url, currentLinkType);
+                        currentUrl = url;
                     } else {
                         currentService = NewPipe.getService(currentServiceId);
                     }
