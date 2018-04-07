@@ -285,5 +285,5 @@ pentru a deschide în mod pop-up</string>
     <string name="controls_add_to_playlist_title">Adaugă La</string>
 
     <string name="use_inexact_seek_title">Folosește parcurgerea inexactă</string>
-    <string name="use_inexact_seek_summary">"Parcurgerea inexactă permite player-ului să parcurgă "</string>
+    <string name="use_inexact_seek_summary">Parcurgerea inexactă permite player-ului să traverseze videoclipul mai rapid, cu o precizie redusă.</string>
     </resources>
