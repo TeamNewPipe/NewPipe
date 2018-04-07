@@ -51,7 +51,7 @@
     <string name="play_btn_text">Redați</string>
     <string name="content">Conținut</string>
     <string name="show_age_restricted_content_title">Arată conținutul restricționat în funcție de vârstă</string>
-    <string name="video_is_age_restricted">Videoclipul este restricționat în funcție de vârstă. Permiterea vizualizării este posibilă din setări.</string>
+    <string name="video_is_age_restricted">Videoclipul este restricționat în funcție de vârstă. Permiterea vizionării este posibilă din Setări.</string>
 
     <string name="general_error">Eroare</string>
     <string name="network_error">Eroare de rețea</string>
@@ -169,11 +169,11 @@ pentru a deschide în mod pop-up</string>
     <string name="show_search_suggestions_summary">Arată sugestii în timpul căutării</string>
 
     <string name="settings_category_popup_title">Popup</string>
-    <string name="filter">Filtrează</string>
-    <string name="refresh">Reîmprospătare</string>
-    <string name="clear">Șterge</string>
+    <string name="filter">Filtru</string>
+    <string name="refresh">Reîmprospătează</string>
+    <string name="clear">Curăță</string>
     <string name="popup_resizing_indicator_title">Redimensionare</string>
-    <string name="best_resolution">Rezoluția optimă</string>
+    <string name="best_resolution">Rezoluție maximă</string>
 
     <string name="subscribe_button_title">Abonează-te</string>
     <string name="subscribed_button_title">Abonat(ă)</string>
@@ -199,7 +199,7 @@ pentru a deschide în mod pop-up</string>
     <string name="undo">Anulează</string>
 
     <string name="notification_channel_name">Notificare NewPipe</string>
-    <string name="notification_channel_description">Notificări pentru NewPipe Background și Popup Players</string>
+    <string name="notification_channel_description">Notificări pentru NewPipe Players</string>
 
     <string name="search_no_results">Fără rezultate</string>
     <string name="empty_subscription_feed_subtitle">Nimic aici în afară de sunetul greierilor</string>
@@ -274,8 +274,8 @@ pentru a deschide în mod pop-up</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Tendințe</string>
 <string name="service_title">Serviciu</string>
-    <string name="background_player_append">Adăugaţi în player de fundal</string>
-    <string name="popup_playing_append">Adăugaţi în playlist pop-up</string>
+    <string name="background_player_append">Adăugat în player de fundal</string>
+    <string name="popup_playing_append">Adăugat în player pop-up</string>
     <string name="no_player_found_toast">Niciun player pentru streaming găsit. (Totuși, puteți instala VLC)</string>
     <string name="controls_download_desc">Descărcați fișierul de streaming.</string>
     <string name="show_info">Arată informații</string>
@@ -298,4 +298,9 @@ pentru a deschide în mod pop-up</string>
     <string name="show_hold_to_append_summary">Arată sfatul când butonul de background sau de popup este apăsat în pagina de informații a videoclipului</string>
     <string name="default_content_country_title">Țara implicită pentru conținut</string>
     <string name="settings_category_debug_title">Debug</string>
+    <string name="play_all">Redă Tot</string>
+    <string name="always">Întotdeauna</string>
+    <string name="just_once">Doar Odată</string>
+    <string name="file">Fișier</string>
+
     </resources>
