@@ -41,7 +41,7 @@
 
     <string name="download_dialog_title">Descărcați</string>
     <string name="next_video_title">Următorul videoclip</string>
-    <string name="show_next_and_similar_title">Arată videoclipurile următoare</string>
+    <string name="show_next_and_similar_title">Arată videoclipurile care urmează</string>
     <string name="url_not_supported_toast">URL nesuportat</string>
     <string name="search_language_title">Limba dorită a conținutului</string>
     <string name="settings_category_video_audio_title">Video &amp; Audio</string>
@@ -294,5 +294,6 @@ pentru a deschide în mod pop-up</string>
     <string name="metadata_cache_wipe_complete_notice">Cache pentru metadata șters</string>
     <string name="auto_queue_title">Adaugă următorul stream în coadă automat</string>
     <string name="auto_queue_summary">Adaugă automat un stream asociat când redarea începe pe ultimul stream într-o coadă non-repetitivă.</string>
-    <string name="show_hold_to_append_title">"Arată sfatul "</string>
+    <string name="show_hold_to_append_title">Arată sfatul Țineți apăsat pentru a alipi</string>
+    <string name="show_hold_to_append_summary">Arată sfatul când butonul de background sau de popup este apăsat în pagina de informații a videoclipului</string>
     </resources>
