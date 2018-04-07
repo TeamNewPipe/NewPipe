@@ -6,7 +6,7 @@
     <string name="install">Instalare</string>
     <string name="cancel">Anulare</string>
     <string name="open_in_browser">Deschidere în browser</string>
-    <string name="share">Partajează</string>
+    <string name="share">Partajare</string>
     <string name="download">Descărcare</string>
     <string name="search">Căutare</string>
     <string name="settings">Setări</string>
@@ -29,7 +29,7 @@
     <string name="play_with_kodi_title">Redați folosind Kodi</string>
     <string name="kore_not_found">Aplicația Kore nu a fost găsită. Doriți să o instalați?</string>
     <string name="show_play_with_kodi_title">Arată opțiunea \"Redați folosind Kodi\"</string>
-    <string name="show_play_with_kodi_summary">Arătați o opțiune de redare a videoclipurilor via centrului media Kodi</string>
+    <string name="show_play_with_kodi_summary">Afișează opțiunea de redare a videoclipurilor via centrului media Kodi</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Format audio de bază</string>
     <string name="info_dir_created">Directorul de descărcare \'%1$s\' a fost creat</string>
@@ -74,7 +74,7 @@
 
     <string name="err_dir_create">Nu s-a putut crea directorul de descărcare \'%1$s\'</string>
     <string name="main_bg_subtitle">Apăsați căutare pentru a începe</string>
-    <string name="autoplay_by_calling_app_title">Redă automat</string>
+    <string name="autoplay_by_calling_app_title">Redare automată</string>
     <string name="autoplay_by_calling_app_summary">Redă automat un videoclip atunci când NewPipe este deschis din altă aplicație</string>
     <string name="duration_live">În direct</string>
     <string name="downloads">Descărcări</string>
@@ -133,7 +133,7 @@ pentru a deschide în mod pop-up</string>
 
     <string name="popup_mode_share_menu_title">NewPipe mod pop-up</string>
 
-    <string name="default_popup_resolution_title">Rezoluție inițială pop-up</string>
+    <string name="default_popup_resolution_title">"Rezoluție pop-up inițială "</string>
     <string name="show_higher_resolutions_title">Afișează rezoluții mai mari</string>
     <string name="show_higher_resolutions_summary">Doar anumite dispozitive suportă redarea videoclipurilor 2K/4K</string>
     <string name="default_video_format_title">Format video preferat</string>
@@ -177,7 +177,7 @@ pentru a deschide în mod pop-up</string>
 
     <string name="subscribe_button_title">Abonează-te</string>
     <string name="subscribed_button_title">Abonat(ă)</string>
-    <string name="channel_unsubscribed">Canal deabonat</string>
+    <string name="channel_unsubscribed">Canal dezabonat</string>
     <string name="subscription_change_failed">Nu s-a putut modifica abonamentul</string>
     <string name="subscription_update_failed">Nu s-a putut actualiza abonamentul</string>
 
@@ -277,5 +277,11 @@ pentru a deschide în mod pop-up</string>
     <string name="background_player_append">Adăugaţi în playlist fundal</string>
     <string name="popup_playing_append">Adăugaţi în playlist pop-up</string>
     <string name="no_player_found_toast">Niciun player pentru streaming găsit. (Totuși, puteți instala VLC)</string>
-    <string name="controls_download_desc">Descărcați fișierul de streaming</string>
+    <string name="controls_download_desc">Descărcați fișierul de streaming.</string>
+    <string name="show_info">Arată informații</string>
+
+    <string name="tab_bookmarks">Marcaje</string>
+
+    <string name="controls_add_to_playlist_title">Adaugă La</string>
+
     </resources>
