@@ -192,9 +192,9 @@ pentru a deschide în mod pop-up</string>
     <string name="enable_watch_history_summary">Reține videoclipurile vizionate</string>
     <string name="resume_on_audio_focus_gain_title">Reluați la refocalizare</string>
     <string name="resume_on_audio_focus_gain_summary">Continuă redarea după întreruperi (ex. după apeluri)</string>
-    <string name="settings_category_player_title">"Player "</string>
+    <string name="settings_category_player_title">Player</string>
     <string name="settings_category_player_behavior_title">Comportament</string>
-    <string name="settings_category_history_title">Istoric</string>
+    <string name="settings_category_history_title">Istoric &amp; Cache</string>
     <string name="playlist">Playlist</string>
     <string name="undo">Anulează</string>
 
@@ -274,7 +274,7 @@ pentru a deschide în mod pop-up</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Tendințe</string>
 <string name="service_title">Serviciu</string>
-    <string name="background_player_append">Adăugaţi în playlist fundal</string>
+    <string name="background_player_append">Adăugaţi în player de fundal</string>
     <string name="popup_playing_append">Adăugaţi în playlist pop-up</string>
     <string name="no_player_found_toast">Niciun player pentru streaming găsit. (Totuși, puteți instala VLC)</string>
     <string name="controls_download_desc">Descărcați fișierul de streaming.</string>
@@ -294,6 +294,8 @@ pentru a deschide în mod pop-up</string>
     <string name="metadata_cache_wipe_complete_notice">Cache pentru metadata șters</string>
     <string name="auto_queue_title">Adaugă următorul stream în coadă automat</string>
     <string name="auto_queue_summary">Adaugă automat un stream asociat când redarea începe pe ultimul stream într-o coadă non-repetitivă.</string>
-    <string name="show_hold_to_append_title">Arată sfatul Țineți apăsat pentru a alipi</string>
+    <string name="show_hold_to_append_title">Arată sfatul Țineți apăsat pentru a adăuga</string>
     <string name="show_hold_to_append_summary">Arată sfatul când butonul de background sau de popup este apăsat în pagina de informații a videoclipului</string>
+    <string name="default_content_country_title">Țara implicită pentru conținut</string>
+    <string name="settings_category_debug_title">Debug</string>
     </resources>
