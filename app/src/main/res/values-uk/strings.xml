@@ -232,7 +232,6 @@
     <string name="new_and_hot">Новинки</string>
     <string name="play_queue_stream_detail">Деталі</string>
     <string name="play_queue_audio_settings">Налаштування аудіо</string>
-    <string name="preferred_player_settings_title">Улюблений програвач</string>
 
     <string name="video_player">Відео програвач</string>
     <string name="background_player">Фоновий програвач</string>
@@ -349,7 +348,6 @@
     <string name="drawer_header_action_paceholder_text">Ми тут матимемо щось незабаром ;D</string>
 
 
-    <string name="preferred_player_share_menu_dialog_title">Відкрити в улюбленому програвачеві</string>
     <string name="always_ask_open_action">Завжди питати</string>
     
     <string name="create_playlist">Створити новий плейлист</string>

@@ -325,10 +325,6 @@
     <string name="video_streams_empty">Nessun flusso video trovato</string>
     <string name="audio_streams_empty">Nessun flusso audio trovato</string>
 
-    <string name="preferred_player_share_menu_title">Riproduttore preferito</string>
-    <string name="preferred_player_share_menu_dialog_title">Apri con il riproduttore preferito</string>
-    <string name="preferred_player_settings_title">Riproduttore preferito</string>
-
     <string name="video_player">Riproduttore video</string>
     <string name="background_player">Riproduttore di fondo</string>
     <string name="popup_player">Riproduttore a comparsa</string>

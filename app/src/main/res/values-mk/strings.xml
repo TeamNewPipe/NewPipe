@@ -342,9 +342,6 @@
     <string name="drawer_header_action_paceholder_text">Нешто спремаме за тука ;D</string>
 
 
-    <string name="preferred_player_share_menu_dialog_title">Отвори со претпочитаниот плеер</string>
-    <string name="preferred_player_settings_title">Претпочитан плеер</string>
-
     <string name="video_player">Видео плеер</string>
     <string name="background_player">Позадински плеер</string>
     <string name="popup_player">Пушти во прозорче</string>

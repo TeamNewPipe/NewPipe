@@ -318,9 +318,6 @@
     <string name="video_streams_empty">Aucun flux vidéo trouvé</string>
     <string name="audio_streams_empty">Aucun flux audio trouvé</string>
 
-    <string name="preferred_player_share_menu_dialog_title">Ouvrir avec le lecteur préféré</string>
-    <string name="preferred_player_settings_title">Lecteur préféré</string>
-
     <string name="video_player">Lecteur vidéo</string>
     <string name="background_player">Lecteur en arrière-plan</string>
     <string name="popup_player">Lecteur en fenêtré</string>

@@ -311,10 +311,6 @@
     <string name="video_streams_empty">Nie znaleziono strumieni wideo</string>
     <string name="audio_streams_empty">Nie znaleziono strumieni audio</string>
 
-    <string name="preferred_player_share_menu_title">Preferowany odtwarzacz</string>
-    <string name="preferred_player_share_menu_dialog_title">Otwórz za pomocą preferowanego odtwarzacza</string>
-    <string name="preferred_player_settings_title">Preferowany odtwarzacz</string>
-
     <string name="video_player">Odtwarzacz wideo</string>
     <string name="background_player">Odtwarzacz w tle</string>
     <string name="always_ask_player">Pytaj za każdym razem</string>

@@ -79,8 +79,8 @@
             android:entries="@array/preferred_open_action_description_list"
             android:entryValues="@array/preferred_open_action_values_list"
             android:key="@string/preferred_open_action_key"
-            android:summary="%s"
-            android:title="@string/preferred_player_settings_title"/>
+            android:summary="@string/preferred_open_action_settings_summary"
+            android:title="@string/preferred_open_action_settings_title"/>
 
         <SwitchPreference
             android:defaultValue="false"

@@ -354,8 +354,6 @@ otvorenie okna na popredí</string>
 
     <string name="drawer_open">Otvoriť zásuvku</string>
     <string name="drawer_close">Zavrieť zásuvku</string>
-    <string name="preferred_player_share_menu_dialog_title">Otvoriť v preferovanom prehrávači</string>
-    <string name="preferred_player_settings_title">Preferovaný prehrávač</string>
 
     <string name="video_player">Prehrávač videa</string>
     <string name="background_player">Prehrávač na pozadí</string>

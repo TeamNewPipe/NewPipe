@@ -300,9 +300,6 @@ abrir em modo popup</string>
     <string name="video_streams_empty">Nenhum stream de vídeo encontrado</string>
     <string name="audio_streams_empty">Nenhum stream de áudio encontrado</string>
 
-    <string name="preferred_player_share_menu_dialog_title">Abrir com reprodutor padrão</string>
-    <string name="preferred_player_settings_title">Reprodutor padrão</string>
-
     <string name="video_player">Reprodutor de vídeo</string>
     <string name="background_player">Reprodutor em plano de fundo</string>
     <string name="popup_player">Reprodutor popup</string>

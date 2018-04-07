@@ -305,7 +305,6 @@
     <string name="just_once">مرة واحدة فقط</string>
 
     <string name="invalid_url_toast">العنوان خاطئ</string>
-    <string name="preferred_player_share_menu_title">\@string/preferred_player_settings_title</string>
     <string name="no_player_found_toast">لم يتم العثور على مشغل بث (يمكنك تثبيت VLC لتشغيله)</string>
     <string name="import_data_title">استيراد قاعدة البيانات</string>
     <string name="export_data_title">تصدير قاعدة البيانات</string>
@@ -333,8 +332,6 @@
     <string name="could_not_import_all_files">تنبيه : تعذرت عملية استيراد كافة الملفات.</string>
     <string name="drawer_header_action_paceholder_text">سوف نقوم بإدماج شيء جديد هنا قريبا ;D</string>
 
-
-    <string name="preferred_player_settings_title">قارئ الوسائط المُفضّل</string>
 
     <string name="video_player">قارئ الفيديوهات</string>
     <string name="always_ask_open_action">أُطلُب دائمًا</string>

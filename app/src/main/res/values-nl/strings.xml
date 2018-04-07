@@ -321,10 +321,6 @@ te openen in pop-upmodus</string>
     <string name="video_streams_empty">Geen videostreams gevonden</string>
     <string name="audio_streams_empty">Geen audiostreams gevonden</string>
 
-    <string name="preferred_player_share_menu_title">Voorkeursspeler</string>
-    <string name="preferred_player_share_menu_dialog_title">Openen met voorkeursspeler</string>
-    <string name="preferred_player_settings_title">Voorkeursspeler</string>
-
     <string name="video_player">Videospeler</string>
     <string name="background_player">Achtergrondspeler</string>
     <string name="popup_player">Pop-upspeler</string>
