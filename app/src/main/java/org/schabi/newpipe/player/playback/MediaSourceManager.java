@@ -24,6 +24,7 @@ import org.schabi.newpipe.playlist.events.RemoveEvent;
 import org.schabi.newpipe.playlist.events.ReorderEvent;
 import org.schabi.newpipe.util.ServiceHelper;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -39,7 +40,8 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.internal.subscriptions.EmptySubscription;
 import io.reactivex.subjects.PublishSubject;
 
-import static org.schabi.newpipe.player.mediasource.FailedMediaSource.*;
+import static org.schabi.newpipe.player.mediasource.FailedMediaSource.MediaSourceResolutionException;
+import static org.schabi.newpipe.player.mediasource.FailedMediaSource.StreamInfoLoadException;
 import static org.schabi.newpipe.playlist.PlayQueue.DEBUG;
 
 public class MediaSourceManager {
@@ -267,6 +269,8 @@ public class MediaSourceManager {
     }
 
     private boolean isPlaybackReady() {
+        if (playlist.size() != playQueue.size()) return false;
+
         final ManagedMediaSource mediaSource = playlist.get(playQueue.getIndex());
         if (mediaSource == null) return false;
 
@@ -288,7 +292,7 @@ public class MediaSourceManager {
     private void maybeUnblock() {
         if (DEBUG) Log.d(TAG, "maybeUnblock() called.");
 
-        if (isPlayQueueReady() && isPlaybackReady() && isBlocked.get()) {
+        if (isBlocked.get()) {
             isBlocked.set(false);
             playbackListener.onPlaybackUnblock(playlist.getParentMediaSource());
         }
@@ -299,10 +303,10 @@ public class MediaSourceManager {
     //////////////////////////////////////////////////////////////////////////*/
 
     private void maybeSync() {
-        if (DEBUG) Log.d(TAG, "onPlaybackSynchronize() called.");
+        if (DEBUG) Log.d(TAG, "maybeSync() called.");
 
         final PlayQueueItem currentItem = playQueue.getItem();
-        if (isBlocked.get() || !isPlaybackReady() || currentItem == null) return;
+        if (isBlocked.get() || currentItem == null) return;
 
         final Consumer<StreamInfo> onSuccess = info -> syncInternal(currentItem, info);
         final Consumer<Throwable> onError = throwable -> syncInternal(currentItem, null);
@@ -321,9 +325,11 @@ public class MediaSourceManager {
         }
     }
 
-    private void maybeSynchronizePlayer() {
-        maybeUnblock();
-        maybeSync();
+    private synchronized void maybeSynchronizePlayer() {
+        if (isPlayQueueReady() && isPlaybackReady()) {
+            maybeUnblock();
+            maybeSync();
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -346,37 +352,16 @@ public class MediaSourceManager {
         debouncedSignal.onNext(System.currentTimeMillis());
     }
 
-    private void loadImmediate() {
+    private synchronized void loadImmediate() {
         if (DEBUG) Log.d(TAG, "MediaSource - loadImmediate() called");
-        // The current item has higher priority
-        final int currentIndex = playQueue.getIndex();
-        final PlayQueueItem currentItem = playQueue.getItem(currentIndex);
-        if (currentItem == null) return;
+        final ItemsToLoad itemsToLoad = getItemsToLoad(playQueue, WINDOW_SIZE);
+        if (itemsToLoad == null) return;
 
-        // Evict the items being loaded to free up memory
-        if (loaderReactor.size() > MAXIMUM_LOADER_SIZE) {
-            loaderReactor.clear();
-            loadingItems.clear();
-        }
-        maybeLoadItem(currentItem);
+        // Evict the previous items being loaded to free up memory, before start loading new ones
+        maybeClearLoaders();
 
-        // The rest are just for seamless playback
-        // Although timeline is not updated prior to the current index, these sources are still
-        // loaded into the cache for faster retrieval at a potentially later time.
-        final int leftBound = Math.max(0, currentIndex - WINDOW_SIZE);
-        final int rightLimit = currentIndex + WINDOW_SIZE + 1;
-        final int rightBound = Math.min(playQueue.size(), rightLimit);
-        final Set<PlayQueueItem> items = new ArraySet<>(
-                playQueue.getStreams().subList(leftBound,rightBound));
-
-        // Do a round robin
-        final int excess = rightLimit - playQueue.size();
-        if (excess >= 0) {
-            items.addAll(playQueue.getStreams().subList(0, Math.min(playQueue.size(), excess)));
-        }
-        items.remove(currentItem);
-
-        for (final PlayQueueItem item : items) {
+        maybeLoadItem(itemsToLoad.center);
+        for (final PlayQueueItem item : itemsToLoad.neighbors) {
             maybeLoadItem(item);
         }
     }
@@ -476,6 +461,15 @@ public class MediaSourceManager {
                 "index=[" + currentIndex + "], item=[" + currentItem.getTitle() + "]");
         playlist.invalidate(currentIndex, this::loadImmediate);
     }
+
+    private void maybeClearLoaders() {
+        if (DEBUG) Log.d(TAG, "MediaSource - maybeClearLoaders() called.");
+        if (!loadingItems.contains(playQueue.getItem()) &&
+                loaderReactor.size() > MAXIMUM_LOADER_SIZE) {
+            loaderReactor.clear();
+            loadingItems.clear();
+        }
+    }
     /*//////////////////////////////////////////////////////////////////////////
     // MediaSource Playlist Helpers
     //////////////////////////////////////////////////////////////////////////*/
@@ -491,6 +485,47 @@ public class MediaSourceManager {
         if (DEBUG) Log.d(TAG, "populateSources() called.");
         while (playlist.size() < playQueue.size()) {
             playlist.expand();
+        }
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Manager Helpers
+    //////////////////////////////////////////////////////////////////////////*/
+    @Nullable
+    private static ItemsToLoad getItemsToLoad(@NonNull final PlayQueue playQueue,
+                                              final int windowSize) {
+        // The current item has higher priority
+        final int currentIndex = playQueue.getIndex();
+        final PlayQueueItem currentItem = playQueue.getItem(currentIndex);
+        if (currentItem == null) return null;
+
+        // The rest are just for seamless playback
+        // Although timeline is not updated prior to the current index, these sources are still
+        // loaded into the cache for faster retrieval at a potentially later time.
+        final int leftBound = Math.max(0, currentIndex - windowSize);
+        final int rightLimit = currentIndex + windowSize + 1;
+        final int rightBound = Math.min(playQueue.size(), rightLimit);
+        final Set<PlayQueueItem> neighbors = new ArraySet<>(
+                playQueue.getStreams().subList(leftBound,rightBound));
+
+        // Do a round robin
+        final int excess = rightLimit - playQueue.size();
+        if (excess >= 0) {
+            neighbors.addAll(playQueue.getStreams().subList(0, Math.min(playQueue.size(), excess)));
+        }
+        neighbors.remove(currentItem);
+
+        return new ItemsToLoad(currentItem, neighbors);
+    }
+
+    private static class ItemsToLoad {
+        @NonNull final private PlayQueueItem center;
+        @NonNull final private Collection<PlayQueueItem> neighbors;
+
+        ItemsToLoad(@NonNull final PlayQueueItem center,
+                    @NonNull final Collection<PlayQueueItem> neighbors) {
+            this.center = center;
+            this.neighbors = neighbors;
         }
     }
 }

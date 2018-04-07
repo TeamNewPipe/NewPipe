@@ -144,7 +144,6 @@ public abstract class BasePlayer implements
     protected final static int PLAY_PREV_ACTIVATION_LIMIT_MILLIS = 5000; // 5 seconds
     protected final static int PROGRESS_LOOP_INTERVAL_MILLIS = 500;
     protected final static int RECOVERY_SKIP_THRESHOLD_MILLIS = 3000; // 3 seconds
-    protected final static int SHORT_LIVESTREAM_CHUNK_LENGTH_MILLIS = 60000; // 1 minute
 
     protected CustomTrackSelector trackSelector;
     protected PlayerDataSource dataSource;
@@ -647,7 +646,7 @@ public abstract class BasePlayer implements
             // Is still synchronizing?
             seekToDefault();
 
-        } else if (isSynchronizing && presetStartPositionMillis != 0L) {
+        } else if (isSynchronizing && presetStartPositionMillis > 0L) {
             if (DEBUG) Log.d(TAG, "Playback - Seeking to preset start " +
                     "position=[" + presetStartPositionMillis + "]");
             // Has another start position?
@@ -1033,25 +1032,8 @@ public abstract class BasePlayer implements
                 && simpleExoPlayer.getCurrentPosition() >= 0;
     }
 
-    /**
-     * Seeks to the default position of the currently playing
-     * {@link com.google.android.exoplayer2.Timeline.Window}. Does nothing if the
-     * {@link #simpleExoPlayer} is not initialized.
-     * <br><br>
-     * If the current window is non-live, then this will seek to the start of the window.
-     * If the window is live but has a buffer length greater than
-     * {@link #SHORT_LIVESTREAM_CHUNK_LENGTH_MILLIS}, then this will seek to the default
-     * live edge position through {@link SimpleExoPlayer#seekToDefaultPosition}.
-     * Otherwise, this will seek to the maximum position possible for the current buffer
-     * given by {@link SimpleExoPlayer#getDuration}.
-     *
-     * @see SimpleExoPlayer#seekToDefaultPosition
-     * */
     public void seekToDefault() {
-        if (simpleExoPlayer == null) return;
-        if (isLive() && simpleExoPlayer.getDuration() < SHORT_LIVESTREAM_CHUNK_LENGTH_MILLIS) {
-            simpleExoPlayer.seekTo(simpleExoPlayer.getDuration());
-        } else {
+        if (simpleExoPlayer != null) {
             simpleExoPlayer.seekToDefaultPosition();
         }
     }
