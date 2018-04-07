@@ -29,9 +29,9 @@
     <string name="play_with_kodi_title">Redați folosind Kodi</string>
     <string name="kore_not_found">Aplicația Kore nu a fost găsită. Doriți să o instalați?</string>
     <string name="show_play_with_kodi_title">Arată opțiunea \"Redați folosind Kodi\"</string>
-    <string name="show_play_with_kodi_summary">Afișează opțiunea de redare a videoclipurilor via centrului media Kodi</string>
+    <string name="show_play_with_kodi_summary">Arată opțiunea de redare a videoclipurilor via centrului media Kodi</string>
     <string name="play_audio">Audio</string>
-    <string name="default_audio_format_title">Format audio de bază</string>
+    <string name="default_audio_format_title">Format audio implicit</string>
     <string name="info_dir_created">Directorul de descărcare \'%1$s\' a fost creat</string>
     <string name="webm_description">WebM — format liber</string>
     <string name="m4a_description">M4A — calitate superioară</string>
@@ -136,7 +136,7 @@ pentru a deschide în mod pop-up</string>
     <string name="default_popup_resolution_title">"Rezoluție pop-up inițială "</string>
     <string name="show_higher_resolutions_title">Afișează rezoluții mai mari</string>
     <string name="show_higher_resolutions_summary">Doar anumite dispozitive suportă redarea videoclipurilor 2K/4K</string>
-    <string name="default_video_format_title">Format video preferat</string>
+    <string name="default_video_format_title">Format video implicit</string>
     <string name="black_theme_title">Negru</string>
 
     <string name="popup_playing_toast">Redare în mod pop-up</string>
@@ -161,7 +161,7 @@ pentru a deschide în mod pop-up</string>
     <string name="controls_background_title">Fundal</string>
     <string name="controls_popup_title">Pop-up</string>
 
-    <string name="popup_remember_size_pos_title">Ține minte mărimea și poziția pop-up-ului</string>
+    <string name="popup_remember_size_pos_title">Reține mărimea și poziția pop-up-ului</string>
     <string name="popup_remember_size_pos_summary">Memorează ultima dimensiune și poziție pentru popup</string>
     <string name="player_gesture_controls_title">Controale gesturi player</string>
     <string name="player_gesture_controls_summary">Folosește gesturi pentru a controla luminozitatea și volumul player-ului</string>
