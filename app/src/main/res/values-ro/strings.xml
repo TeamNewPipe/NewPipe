@@ -3,11 +3,11 @@
     <string name="view_count_text">%1$s vizionări</string>
     <string name="upload_date_text">Încărcat pe %1$s</string>
     <string name="no_player_found">Niciun player pentru streaming găsit. Doriți să instalați VLC?</string>
-    <string name="install">Instalați</string>
+    <string name="install">Instalare</string>
     <string name="cancel">Anulare</string>
     <string name="open_in_browser">Deschidere în browser</string>
     <string name="share">Partajează</string>
-    <string name="download">Descărcare</string>
+    <string name="download">Descărcați</string>
     <string name="search">Căutare</string>
     <string name="settings">Setări</string>
     <string name="did_you_mean">V-ați referit la: %1$s ?</string>
@@ -277,4 +277,5 @@ pentru a deschide în mod pop-up</string>
     <string name="background_player_append">Adăugaţi în playlist fundal</string>
     <string name="popup_playing_append">Adăugaţi în playlist pop-up</string>
     <string name="no_player_found_toast">Niciun player pentru streaming găsit. (Totuși, puteți instala VLC)</string>
+    <string name="controls_download_desc">Descărcați fișierul de streaming</string>
     </resources>
