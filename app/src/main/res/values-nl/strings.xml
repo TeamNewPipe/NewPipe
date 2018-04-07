@@ -454,4 +454,7 @@ te openen in pop-upmodus</string>
     <string name="unhook_checkbox">Ontkoppelen (kan ruis veroorzaken)</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Standaard</string>
-</resources>
+<string name="preferred_open_action_settings_title">Voorkeursactie voor openen</string>
+    <string name="preferred_open_action_settings_summary">Standaardactie bij openen van inhoud — %s</string>
+
+    </resources>
