@@ -307,5 +307,7 @@ pentru a deschide în mod pop-up</string>
 
     <string name="toggle_orientation">Activează Orientarea</string>
     <string name="switch_to_background">Schimbă pe Modul fundal</string>
-    <string name="switch_to_popup">Schimbă pe Modul de popup</string>
+    <string name="switch_to_popup">Schimbă pe Modul popup</string>
+    <string name="switch_to_main">Schimbă pe modul principal</string>
+
     </resources>
