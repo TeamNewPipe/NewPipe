@@ -317,8 +317,6 @@
     <string name="website_encouragement">Для получения более подробной информации и последних новостей о NewPipe посетите наш веб-сайт.</string>
     <string name="drawer_open">Открыть лоток</string>
     <string name="drawer_close">Закрыть лоток</string>
-    <string name="preferred_player_share_menu_dialog_title">Открыть с помощью предпочитаемого проигрывателя</string>
-    <string name="preferred_player_settings_title">Предпочитаемый проигрыватель</string>
 
     <string name="video_player">Проигрыватель видео</string>
     <string name="background_player">Фоновый проигрыватель</string>

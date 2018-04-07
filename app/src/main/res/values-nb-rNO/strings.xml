@@ -314,9 +314,6 @@
     <string name="video_streams_empty">Fant ingen videostrømmer</string>
     <string name="audio_streams_empty">Fant ingen lydstrømmer</string>
 
-    <string name="preferred_player_share_menu_dialog_title">Åpne med foretrukket avspiller</string>
-    <string name="preferred_player_settings_title">Foretrukket avpsiller</string>
-
     <string name="video_player">Videoavspiller</string>
     <string name="background_player">Bakgrunnsavspiller</string>
     <string name="popup_player">Oppsprettsavspiller</string>

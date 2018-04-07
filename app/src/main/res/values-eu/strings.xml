@@ -307,9 +307,6 @@
     <string name="video_streams_empty">Ez da bideo jariorik aurkitu</string>
     <string name="audio_streams_empty">Ez da audio jariorik aurkitu</string>
 
-    <string name="preferred_player_share_menu_dialog_title">Ireki gogoko erreproduzigailuarekin</string>
-    <string name="preferred_player_settings_title">Gogoko erreproduzigailua</string>
-
     <string name="video_player">Bideo erreproduzigailua</string>
     <string name="background_player">Bigarren planoko erreproduzigailua</string>
     <string name="popup_player">Laster-leiho erreproduzigailua</string>

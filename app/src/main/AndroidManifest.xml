@@ -132,7 +132,7 @@
         <activity
             android:name=".RouterActivity"
             android:excludeFromRecents="true"
-            android:label="@string/preferred_player_share_menu_title"
+            android:label="@string/preferred_open_action_share_menu_title"
             android:taskAffinity=""
             android:theme="@style/RouterActivityThemeDark">
 

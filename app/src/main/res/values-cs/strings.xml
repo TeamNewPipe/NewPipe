@@ -326,9 +326,6 @@ otevření ve vyskakovacím okně</string>
     <string name="could_not_import_all_files">Upozornění: Nelze importovat všechny soubory.</string>
     <string name="override_current_data">Tímto se anuluje vaše aktuální nastavení.</string>
 
-    <string name="preferred_player_share_menu_dialog_title">Otevřít preferovaným přehrávačem</string>
-    <string name="preferred_player_settings_title">Preferovaný přehrávač</string>
-
     <string name="video_player">Video přehrávač</string>
     <string name="background_player">Přehrávač na pozadí</string>
     <string name="popup_player">Přehrávač v okně</string>

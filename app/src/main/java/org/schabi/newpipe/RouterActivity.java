@@ -218,7 +218,7 @@ public class RouterActivity extends AppCompatActivity {
         };
 
         final AlertDialog alertDialog = new AlertDialog.Builder(themeWrapperContext)
-                .setTitle(R.string.preferred_player_share_menu_title)
+                .setTitle(R.string.preferred_open_action_share_menu_title)
                 .setView(radioGroup)
                 .setCancelable(true)
                 .setNegativeButton(R.string.just_once, dialogButtonsClickListener)

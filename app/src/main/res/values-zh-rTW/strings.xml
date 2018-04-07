@@ -308,8 +308,6 @@
     <string name="donation_encouragement">NewPipe 由志願者所開發，他們花費了空閒時間將獲得的最佳體驗帶給您。現在是時候回過頭來，讓我們的開發人員可以能夠在享受一杯 java 的同時，使 NewPipe 更加的美好！</string>
     <string name="drawer_open">打開抽屜</string>
     <string name="drawer_close">關閉抽屜</string>
-    <string name="preferred_player_share_menu_dialog_title">開啟優先的播放器</string>
-    <string name="preferred_player_settings_title">優先播放機</string>
 
     <string name="video_player">影片播放</string>
     <string name="background_player">背景播放</string>

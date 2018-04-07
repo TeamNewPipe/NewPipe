@@ -320,10 +320,6 @@ abrir en modo popup</string>
     <string name="video_streams_empty">No se encontraron transmisiones de vídeo</string>
     <string name="audio_streams_empty">No se encontraron transmisiones de audio</string>
 
-    <string name="preferred_player_share_menu_title">\@string/preferred_player_settings_title</string>
-    <string name="preferred_player_share_menu_dialog_title">Abrir con el reproductor preferido</string>
-    <string name="preferred_player_settings_title">Reproductor preferido</string>
-
     <string name="video_player">Reproductor de vídeo</string>
     <string name="background_player">Reproductor de fondo</string>
     <string name="popup_player">Reproductor de popup</string>

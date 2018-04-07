@@ -323,8 +323,6 @@
 
     <string name="drawer_open">Abrir caxón</string>
     <string name="drawer_close">Zarrar caxón</string>
-    <string name="preferred_player_share_menu_dialog_title">Abrir col reproductor preferíu</string>
-    <string name="preferred_player_settings_title">Reproductor preferíu</string>
 
     <string name="video_player">Reproductor de videu</string>
     <string name="background_player">Reproductor en segundu planu</string>

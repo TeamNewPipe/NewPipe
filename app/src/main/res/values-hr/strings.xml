@@ -295,9 +295,6 @@
     <string name="drawer_header_action_paceholder_text">Nešto će zasigurno doći ovdje :D</string>
 
 
-    <string name="preferred_player_share_menu_dialog_title">Otvoriti sa Vašim reproduktorom</string>
-    <string name="preferred_player_settings_title">Odabrani reproduktor</string>
-
     <string name="video_player">Video reprodukcija</string>
     <string name="background_player">Pozadinska reprodukcija</string>
     <string name="popup_player">Skočna reprodukcija</string>

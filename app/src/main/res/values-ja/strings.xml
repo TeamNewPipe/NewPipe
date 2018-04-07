@@ -302,8 +302,6 @@
     <string name="start_here_on_background">ここからバックグランド再生を開始</string>
     <string name="drawer_open">ドロワーを開く</string>
     <string name="drawer_close">ドロワーを閉じる</string>
-    <string name="preferred_player_share_menu_dialog_title">優先プレーヤーで開く</string>
-    <string name="preferred_player_settings_title">優先プレーヤー</string>
 
     <string name="video_player">動画プレーヤー</string>
     <string name="background_player">バックグラウンドプレーヤー</string>

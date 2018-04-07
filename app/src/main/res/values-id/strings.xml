@@ -344,9 +344,6 @@ membuka di mode popup</string>
     <string name="drawer_header_action_paceholder_text">Sesuatu akan hadir disini nanti ;D</string>
 
 
-    <string name="preferred_player_share_menu_dialog_title">Buka dengan pemutar yg diinginkan</string>
-    <string name="preferred_player_settings_title">Pemutar yg diinginkan</string>
-
     <string name="video_player">Pemutar video</string>
     <string name="background_player">Pemutar Layar Belakang</string>
     <string name="popup_player">Pemutar sembulan</string>

@@ -332,9 +332,6 @@
     <string name="drawer_header_action_paceholder_text">जल्द ही यहां पर कुछ आएगा ;D</string>
 
 
-    <string name="preferred_player_share_menu_dialog_title">पसंदीदा प्लेयर से खोलें</string>
-    <string name="preferred_player_settings_title">पसंदीदा प्लेयर</string>
-
     <string name="video_player">वीडियो प्लेयर</string>
     <string name="background_player">बैकग्राउंड प्लेयर</string>
     <string name="popup_player">पॉपअप प्लेयर</string>

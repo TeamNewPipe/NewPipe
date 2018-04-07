@@ -336,9 +336,6 @@
     <string name="drawer_header_action_paceholder_text">Kai kas čia greit atsiras ;D</string>
 
 
-    <string name="preferred_player_share_menu_dialog_title">Atidaryti su numatytu grotuvu</string>
-    <string name="preferred_player_settings_title">Numatytas grotuvas</string>
-
     <string name="video_player">Video grotuvas</string>
     <string name="background_player">Foninis grotuvas</string>
     <string name="popup_player">Iššokantis grotuvas</string>

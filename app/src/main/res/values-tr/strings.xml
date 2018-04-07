@@ -316,9 +316,6 @@
     <string name="video_streams_empty">Video akışı bulunamadı</string>
     <string name="audio_streams_empty">Ses akışı bulunamadı</string>
 
-    <string name="preferred_player_share_menu_dialog_title">Öntanımlı oynatıcıyla aç</string>
-    <string name="preferred_player_settings_title">Öntanımlı oynatıcı</string>
-
     <string name="video_player">Video oynatıcı</string>
     <string name="background_player">Arka plan oynatıcı</string>
     <string name="popup_player">Açılır pencere oynatıcı</string>

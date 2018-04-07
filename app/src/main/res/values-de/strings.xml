@@ -318,8 +318,6 @@
 
     <string name="drawer_open">Navigationsleiste öffnen</string>
     <string name="drawer_close">Navigationsleiste schließen</string>
-    <string name="preferred_player_share_menu_dialog_title">Mit bevorzugtem Player öffnen</string>
-    <string name="preferred_player_settings_title">Bevorzugter Player</string>
 
     <string name="video_player">Video-Player</string>
     <string name="background_player">Hintergrund-Player</string>
