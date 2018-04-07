@@ -199,7 +199,7 @@ pentru a deschide în mod pop-up</string>
     <string name="undo">Anulează</string>
 
     <string name="notification_channel_name">Notificare NewPipe</string>
-    <string name="notification_channel_description">Notificări pentru NewPipe Players</string>
+    <string name="notification_channel_description">Notificări pentru Playere de fundal</string>
 
     <string name="search_no_results">Fără rezultate</string>
     <string name="empty_subscription_feed_subtitle">Nimic aici în afară de sunetul greierilor</string>
