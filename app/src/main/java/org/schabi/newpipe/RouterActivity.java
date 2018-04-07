@@ -1,6 +1,7 @@
 package org.schabi.newpipe;
 
 import android.app.IntentService;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,7 +25,6 @@ import android.widget.Toast;
 
 import org.schabi.newpipe.extractor.Info;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.StreamingService.LinkType;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
@@ -43,9 +43,11 @@ import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 
 import icepick.Icepick;
 import icepick.State;
@@ -57,6 +59,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
+import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability.*;
 import static org.schabi.newpipe.util.ThemeHelper.resolveResourceIdFromAttr;
 
 /**
@@ -122,7 +125,7 @@ public class RouterActivity extends AppCompatActivity {
                         currentService = NewPipe.getServiceByUrl(url);
                         currentServiceId = currentService.getServiceId();
                         currentLinkType = currentService.getLinkTypeByUrl(url);
-                        currentUrl = NavigationHelper.getCleanUrl(currentService, url, currentLinkType);
+                        currentUrl = url;
                     } else {
                         currentService = NewPipe.getService(currentServiceId);
                     }
@@ -168,18 +171,23 @@ public class RouterActivity extends AppCompatActivity {
             return;
         }
 
-        // TODO: Add some sort of "capabilities" field to services (audio only, video and audio, etc.)
-        if (currentService == ServiceList.SoundCloud) {
-            handleChoice(getString(R.string.background_player_key));
-            return;
-        }
+        final String playerChoiceKey = preferences.getString(getString(R.string.preferred_open_action_key), getString(R.string.preferred_open_action_default));
 
-        final String playerChoiceKey = preferences.getString(
-                getString(R.string.preferred_open_action_key),
-                getString(R.string.preferred_open_action_default));
+        final String videoPlayerKey = getString(R.string.video_player_key);
+        final String backgroundPlayerKey = getString(R.string.background_player_key);
+        final String popupPlayerKey = getString(R.string.popup_player_key);
         final String alwaysAskKey = getString(R.string.always_ask_open_action_key);
 
-        if (playerChoiceKey.equals(alwaysAskKey)) {
+        final List<StreamingService.ServiceInfo.MediaCapability> capabilities = currentService.getServiceInfo().getMediaCapabilities();
+
+        boolean serviceSupportsPlayer = false;
+        if (playerChoiceKey.equals(videoPlayerKey) || playerChoiceKey.equals(popupPlayerKey)) {
+            serviceSupportsPlayer = capabilities.contains(VIDEO);
+        } else if (playerChoiceKey.equals(backgroundPlayerKey)) {
+            serviceSupportsPlayer = capabilities.contains(AUDIO);
+        }
+
+        if (playerChoiceKey.equals(alwaysAskKey) || !serviceSupportsPlayer) {
             showDialog();
         } else {
             handleChoice(playerChoiceKey);
@@ -187,29 +195,20 @@ public class RouterActivity extends AppCompatActivity {
     }
 
     private void showDialog() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        final ContextThemeWrapper themeWrapper = new ContextThemeWrapper(this,
+        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        final ContextThemeWrapper themeWrapperContext = new ContextThemeWrapper(this,
                 ThemeHelper.isLightThemeSelected(this) ? R.style.LightTheme : R.style.DarkTheme);
 
-        LayoutInflater inflater = LayoutInflater.from(themeWrapper);
+        final LayoutInflater inflater = LayoutInflater.from(themeWrapperContext);
         final LinearLayout rootLayout = (LinearLayout) inflater.inflate(R.layout.preferred_player_dialog_view, null, false);
         final RadioGroup radioGroup = rootLayout.findViewById(android.R.id.list);
 
-        final AdapterChoiceItem[] choices = {
-                new AdapterChoiceItem(getString(R.string.show_info_key), getString(R.string.show_info),
-                        resolveResourceIdFromAttr(themeWrapper, R.attr.info)),
-                new AdapterChoiceItem(getString(R.string.video_player_key), getString(R.string.video_player),
-                        resolveResourceIdFromAttr(themeWrapper, R.attr.play)),
-                new AdapterChoiceItem(getString(R.string.background_player_key), getString(R.string.background_player),
-                        resolveResourceIdFromAttr(themeWrapper, R.attr.audio)),
-                new AdapterChoiceItem(getString(R.string.popup_player_key), getString(R.string.popup_player),
-                        resolveResourceIdFromAttr(themeWrapper, R.attr.popup))
-        };
+        final List<AdapterChoiceItem> choices = getChoicesForService(themeWrapperContext, currentService);
 
         final DialogInterface.OnClickListener dialogButtonsClickListener = (dialog, which) -> {
             final int indexOfChild = radioGroup.indexOfChild(
                     radioGroup.findViewById(radioGroup.getCheckedRadioButtonId()));
-            final AdapterChoiceItem choice = choices[indexOfChild];
+            final AdapterChoiceItem choice = choices.get(indexOfChild);
 
             handleChoice(choice.key);
 
@@ -218,7 +217,7 @@ public class RouterActivity extends AppCompatActivity {
             }
         };
 
-        final AlertDialog alertDialog = new AlertDialog.Builder(themeWrapper)
+        final AlertDialog alertDialog = new AlertDialog.Builder(themeWrapperContext)
                 .setTitle(R.string.preferred_player_share_menu_title)
                 .setView(radioGroup)
                 .setCancelable(true)
@@ -227,6 +226,7 @@ public class RouterActivity extends AppCompatActivity {
                 .setOnDismissListener((dialog) -> finish())
                 .create();
 
+        //noinspection CodeBlock2Expr
         alertDialog.setOnShowListener(dialog -> {
             setDialogButtonsState(alertDialog, radioGroup.getCheckedRadioButtonId() != -1);
         });
@@ -240,7 +240,7 @@ public class RouterActivity extends AppCompatActivity {
             selectedRadioPosition = indexOfChild;
 
             if (selectedPreviously == selectedRadioPosition) {
-                handleChoice(choices[selectedRadioPosition].key);
+                handleChoice(choices.get(selectedRadioPosition).key);
             }
         };
 
@@ -259,8 +259,8 @@ public class RouterActivity extends AppCompatActivity {
         if (selectedRadioPosition == -1) {
             final String lastSelectedPlayer = preferences.getString(getString(R.string.preferred_open_action_last_selected_key), null);
             if (!TextUtils.isEmpty(lastSelectedPlayer)) {
-                for (int i = 0; i < choices.length; i++) {
-                    AdapterChoiceItem c = choices[i];
+                for (int i = 0; i < choices.size(); i++) {
+                    AdapterChoiceItem c = choices.get(i);
                     if (lastSelectedPlayer.equals(c.key)) {
                         selectedRadioPosition = i;
                         break;
@@ -269,13 +269,35 @@ public class RouterActivity extends AppCompatActivity {
             }
         }
 
-        selectedRadioPosition = Math.min(Math.max(-1, selectedRadioPosition), choices.length - 1);
+        selectedRadioPosition = Math.min(Math.max(-1, selectedRadioPosition), choices.size() - 1);
         if (selectedRadioPosition != -1) {
             ((RadioButton) radioGroup.getChildAt(selectedRadioPosition)).setChecked(true);
         }
         selectedPreviously = selectedRadioPosition;
 
         alertDialog.show();
+    }
+
+    private List<AdapterChoiceItem> getChoicesForService(Context context, StreamingService service) {
+        final List<AdapterChoiceItem> returnList = new ArrayList<>();
+        final List<StreamingService.ServiceInfo.MediaCapability> capabilities = service.getServiceInfo().getMediaCapabilities();
+
+        returnList.add(new AdapterChoiceItem(getString(R.string.show_info_key), getString(R.string.show_info),
+                resolveResourceIdFromAttr(context, R.attr.info)));
+
+        if (capabilities.contains(VIDEO)) {
+            returnList.add(new AdapterChoiceItem(getString(R.string.video_player_key), getString(R.string.video_player),
+                    resolveResourceIdFromAttr(context, R.attr.play)));
+            returnList.add(new AdapterChoiceItem(getString(R.string.popup_player_key), getString(R.string.popup_player),
+                    resolveResourceIdFromAttr(context, R.attr.popup)));
+        }
+
+        if (capabilities.contains(AUDIO)) {
+            returnList.add(new AdapterChoiceItem(getString(R.string.background_player_key), getString(R.string.background_player),
+                    resolveResourceIdFromAttr(context, R.attr.audio)));
+        }
+
+        return returnList;
     }
 
     private void setDialogButtonsState(AlertDialog dialog, boolean state) {
@@ -288,16 +310,14 @@ public class RouterActivity extends AppCompatActivity {
     }
 
     private void handleChoice(final String playerChoiceKey) {
-        if (Arrays.asList(getResources()
-                .getStringArray(R.array.preferred_open_action_values_list))
-                .contains(playerChoiceKey)) {
+        final List<String> validChoicesList = Arrays.asList(getResources().getStringArray(R.array.preferred_open_action_values_list));
+        if (validChoicesList.contains(playerChoiceKey)) {
             PreferenceManager.getDefaultSharedPreferences(this).edit()
-                    .putString(getString(R.string.preferred_open_action_last_selected_key),
-                            playerChoiceKey).apply();
+                    .putString(getString(R.string.preferred_open_action_last_selected_key), playerChoiceKey)
+                    .apply();
         }
 
-        if (playerChoiceKey.equals(getString(R.string.popup_player_key))
-                && !PermissionHelper.isPopupEnabled(this)) {
+        if (playerChoiceKey.equals(getString(R.string.popup_player_key)) && !PermissionHelper.isPopupEnabled(this)) {
             PermissionHelper.showPopupEnablementToast(this);
             finish();
             return;
@@ -305,7 +325,7 @@ public class RouterActivity extends AppCompatActivity {
 
         // stop and bypass FetcherService if InfoScreen was selected since
         // StreamDetailFragment can fetch data itself
-        if(playerChoiceKey.equals(getString(R.string.show_info_key))) {
+        if (playerChoiceKey.equals(getString(R.string.show_info_key))) {
             disposables.add(Observable
                     .fromCallable(() -> NavigationHelper.getIntentByLink(this, currentUrl))
                     .subscribeOn(Schedulers.io())
@@ -322,11 +342,8 @@ public class RouterActivity extends AppCompatActivity {
         }
 
         final Intent intent = new Intent(this, FetcherService.class);
-        intent.putExtra(FetcherService.KEY_CHOICE,
-                new Choice(currentService.getServiceId(),
-                        currentLinkType,
-                        currentUrl,
-                        playerChoiceKey));
+        final Choice choice = new Choice(currentService.getServiceId(), currentLinkType, currentUrl, playerChoiceKey);
+        intent.putExtra(FetcherService.KEY_CHOICE, choice);
         startService(intent);
 
         finish();
@@ -334,8 +351,7 @@ public class RouterActivity extends AppCompatActivity {
 
     private static class AdapterChoiceItem {
         final String description, key;
-        @DrawableRes
-        final int icon;
+        @DrawableRes final int icon;
 
         AdapterChoiceItem(String key, String description, int icon) {
             this.description = description;
@@ -554,7 +570,7 @@ public class RouterActivity extends AppCompatActivity {
      * @param sharedText text to scan for URLs.
      * @return potential URLs
      */
-    protected String[] getUris(final String sharedText)  {
+    protected String[] getUris(final String sharedText) {
         final Collection<String> result = new HashSet<>();
         if (sharedText != null) {
             final String[] array = sharedText.split("\\p{Space}");

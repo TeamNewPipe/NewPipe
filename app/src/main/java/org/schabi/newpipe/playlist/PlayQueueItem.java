@@ -28,12 +28,12 @@ public class PlayQueueItem implements Serializable {
     private long recoveryPosition;
     private Throwable error;
 
-    private transient Single<StreamInfo> stream;
-
     PlayQueueItem(@NonNull final StreamInfo info) {
         this(info.getName(), info.getUrl(), info.getServiceId(), info.getDuration(),
                 info.getThumbnailUrl(), info.getUploaderName(), info.getStreamType());
-        this.stream = Single.just(info);
+
+        if (info.getStartPosition() > 0)
+            setRecoveryPosition(info.getStartPosition() * 1000);
     }
 
     PlayQueueItem(@NonNull final StreamInfoItem item) {
@@ -100,11 +100,6 @@ public class PlayQueueItem implements Serializable {
 
     @NonNull
     public Single<StreamInfo> getStream() {
-        return stream == null ? stream = getInfo() : stream;
-    }
-
-    @NonNull
-    private Single<StreamInfo> getInfo() {
         return ExtractorHelper.getStreamInfo(this.serviceId, this.url, false)
                 .subscribeOn(Schedulers.io())
                 .doOnError(throwable -> error = throwable);
