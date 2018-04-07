@@ -306,5 +306,6 @@ pentru a deschide în mod pop-up</string>
     <string name="unknown_content">[Necunoscut]</string>
 
     <string name="toggle_orientation">Activează Orientarea</string>
-    <string name="switch_to_background">"Schimbă "</string>
+    <string name="switch_to_background">Schimbă pe Modul de fundal</string>
+    <string name="switch_to_popup">Schimbă pe Modul de popup</string>
     </resources>
