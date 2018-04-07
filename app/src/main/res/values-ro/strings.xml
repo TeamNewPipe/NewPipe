@@ -286,7 +286,7 @@ pentru a deschide în mod pop-up</string>
 
     <string name="use_inexact_seek_title">Folosește parcurgerea inexactă</string>
     <string name="use_inexact_seek_summary">Parcurgerea inexactă permite player-ului să traverseze videoclipul mai rapid, dar cu o precizie redusă.</string>
-    <string name="download_thumbnail_title">încarcă pictogramele</string>
-    <string name="download_thumbnail_summary">Dezactivează pentru a opri încărcarea și salvarea tuturor pictogramelor, pentru a economisi consumul de date și de memorie. Schimbarea acestei opțiuni va curăța tot cache-ul din memorie și de pe disc.</string>
+    <string name="download_thumbnail_title">încarcă thumbnail-urile</string>
+    <string name="download_thumbnail_summary">Dezactivează pentru a opri încărcarea și salvarea tuturor thumbnail-urilor, pentru a economisi consumul de date și de memorie. Schimbarea acestei opțiuni va curăța tot cache-ul din memorie și de pe disc.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache pentru imagini înlăturat</string>
     </resources>
