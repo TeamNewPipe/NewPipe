@@ -7,7 +7,7 @@
     <string name="cancel">Anulare</string>
     <string name="open_in_browser">Deschidere în browser</string>
     <string name="share">Partajează</string>
-    <string name="download">Descărcați</string>
+    <string name="download">Descărcare</string>
     <string name="search">Căutare</string>
     <string name="settings">Setări</string>
     <string name="did_you_mean">V-ați referit la: %1$s ?</string>
@@ -176,8 +176,8 @@ pentru a deschide în mod pop-up</string>
     <string name="best_resolution">Rezoluția optimă</string>
 
     <string name="subscribe_button_title">Abonează-te</string>
-    <string name="subscribed_button_title">Abonat</string>
-    <string name="channel_unsubscribed">Canal dezabonat</string>
+    <string name="subscribed_button_title">Abonat(ă)</string>
+    <string name="channel_unsubscribed">Canal deabonat</string>
     <string name="subscription_change_failed">Nu s-a putut modifica abonamentul</string>
     <string name="subscription_update_failed">Nu s-a putut actualiza abonamentul</string>
 
