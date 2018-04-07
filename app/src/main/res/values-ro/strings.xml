@@ -291,5 +291,7 @@ pentru a deschide în mod pop-up</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache pentru imagini șters</string>
     <string name="metadata_cache_wipe_title">Șterge cache-ul pentru metadata</string>
     <string name="metadata_cache_wipe_summary">Șterge cache-ul pentru datele de pagini web</string>
-    <string name="metadata_cache_wipe_complete_notice">"Cache pentru "</string>
+    <string name="metadata_cache_wipe_complete_notice">Cache pentru metadata șters</string>
+    <string name="auto_queue_title">Adaugă următorul stream în coadă automat</string>
+    <string name="auto_queue_summary">"Adaugă automat un stream "</string>
     </resources>
