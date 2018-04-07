@@ -55,7 +55,7 @@
 
     <string name="general_error">Eroare</string>
     <string name="network_error">Eroare de rețea</string>
-    <string name="could_not_load_thumbnails">Nu s-au putut încărca toate Thumbnail-urile</string>
+    <string name="could_not_load_thumbnails">Nu s-au putut încărca toate thumbnail-urile</string>
     <string name="youtube_signature_decryption_error">Nu s-a putut decripta semnătura URL a videoclipului</string>
     <string name="parsing_error">Nu s-a putut analiza website-ul</string>
     <string name="content_not_available">Conținut indisponibil</string>
@@ -307,7 +307,21 @@ pentru a deschide în mod pop-up</string>
 
     <string name="toggle_orientation">Activează Orientarea</string>
     <string name="switch_to_background">Schimbă pe Modul fundal</string>
-    <string name="switch_to_popup">Schimbă pe Modul popup</string>
+    <string name="switch_to_popup">Schimbă pe modul popup</string>
     <string name="switch_to_main">Schimbă pe modul principal</string>
 
+    <string name="import_data_title">Importează baza de date</string>
+    <string name="export_data_title">Exportează baza de date</string>
+    <string name="import_data_summary">Va înlocui istoricul și abonamentele curente</string>
+    <string name="export_data_summary">Exportează istoricul, abonamentele și playlist-urile.</string>
+    <string name="player_stream_failure">Nu s-a putut reda acest stream</string>
+    <string name="player_unrecoverable_failure">A apărut o eroare de player irecuperabilă</string>
+    <string name="player_recoverable_failure">Recuperare după eroare player</string>
+    <string name="external_player_unsupported_link_type">Playerele externe nu suportă acest tip de link-uri</string>
+    <string name="invalid_url_toast">URL Invalid</string>
+    <string name="video_streams_empty">Niciun stream video găsit</string>
+    <string name="audio_streams_empty">Niciun stream audio găsit</string>
+    <string name="invalid_directory">Director Invalid</string>
+    <string name="invalid_source">Sursă de conținut sau fișier invalidă</string>
+    <string name="invalid_file">Fișierul nu există, sau nu are suficiente permisiuni pentru a fi citit sau scris</string>
     </resources>
