@@ -285,5 +285,7 @@ pentru a deschide în mod pop-up</string>
     <string name="controls_add_to_playlist_title">Adaugă La</string>
 
     <string name="use_inexact_seek_title">Folosește parcurgerea inexactă</string>
-    <string name="use_inexact_seek_summary">Parcurgerea inexactă permite player-ului să traverseze videoclipul mai rapid, cu o precizie redusă.</string>
+    <string name="use_inexact_seek_summary">Parcurgerea inexactă permite player-ului să traverseze videoclipul mai rapid, dar cu o precizie redusă.</string>
+    <string name="download_thumbnail_title">încarcă Thumbnail-urile</string>
+    <string name="download_thumbnail_summary">"Dezactivează pentru a opri încărcarea și salvearea tuturor Thumbnail-urilor, pentru a economisi consumul de date și de memorie. "</string>
     </resources>
