@@ -199,7 +199,7 @@ pentru a deschide în mod pop-up</string>
     <string name="undo">Anulează</string>
 
     <string name="notification_channel_name">Notificare NewPipe</string>
-    <string name="notification_channel_description">Notificări pentru Playere de fundal</string>
+    <string name="notification_channel_description">Notificări pentru Playere de fundal și pop-up</string>
 
     <string name="search_no_results">Fără rezultate</string>
     <string name="empty_subscription_feed_subtitle">Nimic aici în afară de sunetul greierilor</string>
@@ -303,4 +303,8 @@ pentru a deschide în mod pop-up</string>
     <string name="just_once">Doar Odată</string>
     <string name="file">Fișier</string>
 
+    <string name="unknown_content">[Necunoscut]</string>
+
+    <string name="toggle_orientation">Activează Orientarea</string>
+    <string name="switch_to_background">"Schimbă "</string>
     </resources>
