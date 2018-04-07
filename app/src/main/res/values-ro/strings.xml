@@ -64,9 +64,9 @@
     <string name="live_streams_not_supported">Acesta este un LIVE STREAM, care încă nu este suportat.</string>
 
 
-    <string name="list_thumbnail_view_description">Thumbnail de previzualizare al videoclipului</string>
-    <string name="detail_thumbnail_view_description">Thumbnail de previzualizare al videoclipului</string>
-    <string name="detail_uploader_thumbnail_view_description">Thumbnail-ul autorului</string>
+    <string name="list_thumbnail_view_description">Thumbnail-ul videoclipului</string>
+    <string name="detail_thumbnail_view_description">Thumbnail-ul videoclipului</string>
+    <string name="detail_uploader_thumbnail_view_description">Thumbnail-ul avatarului autorului</string>
     <string name="detail_likes_img_view_description">Au apreciat</string>
     <string name="detail_dislikes_img_view_description">Nu au apreciat</string>
     <string name="use_tor_title">Folosiți Tor</string>
@@ -85,7 +85,7 @@
     <string name="could_not_get_stream">Nu s-a putut prelua niciun stream</string>
     <string name="sorry_string">Scuze, asta n-ar fi trebui să se întâmple.</string>
     <string name="error_report_button_text">Raportează eroarea prin e-mail</string>
-    <string name="error_snackbar_message">Ne scuzați, au apărut câteva erori.</string>
+    <string name="error_snackbar_message">Scuze, au apărut câteva erori.</string>
     <string name="error_snackbar_action">RAPORTAȚI</string>
     <string name="what_device_headline">Informații:</string>
     <string name="what_happened_headline">Ce s-a întâmplat:</string>
@@ -148,7 +148,7 @@ pentru a deschide în mod pop-up</string>
 
     <string name="could_not_load_image">Nu s-a putut încărca imaginea</string>
     <string name="app_ui_crash">App/UI eroare</string>
-    <string name="info_labels">What:\\nRequest:\\nContent Lang:\\nService:\\nGMT Time:\\nPackage:\\nVersion:\\nOS version:</string>
+    <string name="info_labels">Ce:\\nCerere:\\nLimba Conținutului:\\nServiciu:\\nTimp GMT:\\nPachet:\\nVersiune:\\nVersiune OS:</string>
     <string name="use_old_player_title">Folosește player vechi</string>
     <string name="use_old_player_summary">Player Mediaframework implicit</string>
 
@@ -323,5 +323,8 @@ pentru a deschide în mod pop-up</string>
     <string name="audio_streams_empty">Niciun stream audio găsit</string>
     <string name="invalid_directory">Director Invalid</string>
     <string name="invalid_source">Sursă de conținut sau fișier invalidă</string>
-    <string name="invalid_file">Fișierul nu există, sau nu dețineți suficiente permisiuni pentru a îl citi sau a-l scrie</string>
+    <string name="invalid_file">Fișierul nu există, sau nu dețineți suficiente permisiuni pentru a îl citi sau scrie</string>
+    <string name="file_name_empty_error">Numele fișierului nu poate fi gol</string>
+    <string name="error_occurred_detail">O eroare a apărut: %1$s</string>
+
     </resources>
