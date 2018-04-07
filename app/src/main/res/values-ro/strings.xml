@@ -323,5 +323,5 @@ pentru a deschide în mod pop-up</string>
     <string name="audio_streams_empty">Niciun stream audio găsit</string>
     <string name="invalid_directory">Director Invalid</string>
     <string name="invalid_source">Sursă de conținut sau fișier invalidă</string>
-    <string name="invalid_file">Fișierul nu există, sau nu are suficiente permisiuni pentru a fi citit sau scris</string>
+    <string name="invalid_file">Fișierul nu există, sau nu dețineți suficiente permisiuni pentru a îl citi sau scrie</string>
     </resources>
