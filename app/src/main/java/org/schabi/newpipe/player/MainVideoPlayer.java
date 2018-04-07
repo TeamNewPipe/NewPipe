@@ -30,8 +30,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -248,22 +250,6 @@ public final class MainVideoPlayer extends AppCompatActivity
     // View
     //////////////////////////////////////////////////////////////////////////*/
 
-    /**
-     * Prior to Kitkat, hiding system ui causes the player view to be overlaid and require two
-     * clicks to get rid of that invisible overlay. By showing the system UI on actions/events,
-     * that overlay is removed and the player view is put to the foreground.
-     *
-     * Post Kitkat, navbar and status bar can be pulled out by swiping the edge of
-     * screen, therefore, we can do nothing or hide the UI on actions/events.
-     * */
-    private void changeSystemUi() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-            showSystemUi();
-        } else {
-            hideSystemUi();
-        }
-    }
-
     private void showSystemUi() {
         if (DEBUG) Log.d(TAG, "showSystemUi() called");
         if (playerImpl != null && playerImpl.queueVisible) return;
@@ -276,6 +262,14 @@ public final class MainVideoPlayer extends AppCompatActivity
         } else {
             visibility = View.STATUS_BAR_VISIBLE;
         }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            @ColorInt final int systenUiColor =
+                    ActivityCompat.getColor(getApplicationContext(), R.color.video_overlay_color);
+            getWindow().setStatusBarColor(systenUiColor);
+            getWindow().setNavigationBarColor(systenUiColor);
+        }
+
         getWindow().getDecorView().setSystemUiVisibility(visibility);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
@@ -415,15 +409,6 @@ public final class MainVideoPlayer extends AppCompatActivity
             this.queueLayout = findViewById(R.id.playQueuePanel);
             this.itemsListCloseButton = findViewById(R.id.playQueueClose);
             this.itemsList = findViewById(R.id.playQueue);
-
-            this.windowRootLayout = rootView.findViewById(R.id.playbackWindowRoot);
-            // Prior to Kitkat, there is no way of setting translucent navbar programmatically.
-            // Thus, fit system windows is opted instead.
-            // See https://stackoverflow.com/questions/29069070/completely-transparent-status-bar-and-navigation-bar-on-lollipop
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                windowRootLayout.setFitsSystemWindows(false);
-                windowRootLayout.invalidate();
-            }
 
             titleTextView.setSelected(true);
             channelTextView.setSelected(true);
@@ -732,7 +717,7 @@ public final class MainVideoPlayer extends AppCompatActivity
                 animatePlayButtons(true, 200);
             });
 
-            changeSystemUi();
+            showSystemUi();
             getRootView().setKeepScreenOn(false);
         }
 
@@ -905,7 +890,7 @@ public final class MainVideoPlayer extends AppCompatActivity
                 playerImpl.hideControls(150, 0);
             } else {
                 playerImpl.showControlsThenHide();
-                changeSystemUi();
+                showSystemUi();
             }
             return true;
         }
