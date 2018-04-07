@@ -18,26 +18,26 @@ import android.widget.Toast;
 import org.schabi.newpipe.R;
 
 public class PermissionHelper {
-    public static final int PERMISSION_WRITE_STORAGE = 778;
-    public static final int PERMISSION_READ_STORAGE = 777;
+    public static final int DOWNLOAD_DIALOG_REQUEST_CODE = 778;
+    public static final int DOWNLOADS_REQUEST_CODE = 777;
 
 
-    public static boolean checkStoragePermissions(Activity activity) {
+    public static boolean checkStoragePermissions(Activity activity, int requestCode) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            if(!checkReadStoragePermissions(activity)) return false;
+            if(!checkReadStoragePermissions(activity, requestCode)) return false;
         }
-        return checkWriteStoragePermissions(activity);
+        return checkWriteStoragePermissions(activity, requestCode);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean checkReadStoragePermissions(Activity activity) {
+    public static boolean checkReadStoragePermissions(Activity activity, int requestCode) {
         if (ContextCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(activity,
                     new String[]{
                             Manifest.permission.READ_EXTERNAL_STORAGE,
                             Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                    PERMISSION_READ_STORAGE);
+                    requestCode);
 
             return false;
         }
@@ -45,7 +45,7 @@ public class PermissionHelper {
     }
 
 
-    public static boolean checkWriteStoragePermissions(Activity activity) {
+    public static boolean checkWriteStoragePermissions(Activity activity, int requestCode) {
         // Here, thisActivity is the current activity
         if (ContextCompat.checkSelfPermission(activity,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -63,7 +63,7 @@ public class PermissionHelper {
             // No explanation needed, we can request the permission.
             ActivityCompat.requestPermissions(activity,
                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                    PERMISSION_WRITE_STORAGE);
+                    requestCode);
 
             // PERMISSION_WRITE_STORAGE is an
             // app-defined int constant. The callback method gets the

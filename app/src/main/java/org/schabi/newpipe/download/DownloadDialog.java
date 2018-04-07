@@ -79,7 +79,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (DEBUG) Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
-        if (!PermissionHelper.checkStoragePermissions(getActivity())) {
+        if (!PermissionHelper.checkStoragePermissions(getActivity(), PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE)) {
             getDialog().dismiss();
             return;
         }

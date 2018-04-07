@@ -238,14 +238,21 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == PermissionHelper.PERMISSION_READ_STORAGE ||
-                requestCode == PermissionHelper.PERMISSION_WRITE_STORAGE){
-            for (int i: grantResults){
-                if (i == PackageManager.PERMISSION_DENIED){
-                    return;
-                }
+        for (int i: grantResults){
+            if (i == PackageManager.PERMISSION_DENIED){
+                return;
             }
-            NavigationHelper.openDownloads(this);
+        }
+        switch (requestCode) {
+            case PermissionHelper.DOWNLOADS_REQUEST_CODE:
+                NavigationHelper.openDownloads(this);
+                break;
+            case PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE:
+                Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
+                if (fragment instanceof VideoDetailFragment) {
+                    ((VideoDetailFragment) fragment).openDownloadDialog();
+                }
+                break;
         }
     }
 
