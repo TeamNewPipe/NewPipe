@@ -180,6 +180,7 @@
     <string name="invalid_file">File doesn\'t exist or insufficient permission to read or write to it</string>
     <string name="file_name_empty_error">File name cannot be empty</string>
     <string name="error_occurred_detail">An error occurred: %1$s</string>
+    <string name="no_streams_available_download">No streams available to download</string>
 
     <!-- error activity -->
     <string name="sorry_string">Sorry, that should not have happened.</string>
