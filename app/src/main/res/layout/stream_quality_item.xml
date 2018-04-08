@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="48dp">
+
+    <ImageView
+        android:id="@+id/wo_sound_icon"
+        android:layout_width="20dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="6dp"
+        android:scaleType="fitCenter"
+        android:src="?attr/volume_off"
+        tools:ignore="ContentDescription,RtlHardcoded"/>
+
+    <TextView
+        android:id="@+id/stream_format_name"
+        android:layout_width="wrap_content"
+        android:layout_height="22dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/wo_sound_icon"
+        android:ellipsize="end"
+        android:gravity="left|bottom"
+        android:maxLines="1"
+        android:paddingLeft="12dp"
+        android:paddingRight="18dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:textSize="12sp"
+        tools:ignore="RtlHardcoded"
+        tools:text="MPEG-4"/>
+
+    <TextView
+        android:id="@+id/stream_quality"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/wo_sound_icon"
+        android:ellipsize="end"
+        android:gravity="left|top"
+        android:maxLines="1"
+        android:paddingLeft="12dp"
+        android:paddingRight="18dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="14sp"
+        tools:ignore="RtlHardcoded"
+        tools:text="1080p60"/>
+
+    <TextView
+        android:id="@+id/stream_size"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_alignParentRight="true"
+        android:gravity="right|center_vertical"
+        android:maxLines="1"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:textSize="12sp"
+        android:visibility="gone"
+        tools:ignore="RtlHardcoded"
+        tools:text="123.4 MB"
+        tools:visibility="visible"/>
+</RelativeLayout>

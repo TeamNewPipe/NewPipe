@@ -12,6 +12,7 @@ import android.preference.PreferenceManager;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.ActionBar;
@@ -61,6 +62,8 @@ import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
+import org.schabi.newpipe.util.StreamItemAdapter;
+import org.schabi.newpipe.util.StreamItemAdapter.StreamSizeWrapper;
 import org.schabi.newpipe.fragments.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoItemDialog;
@@ -83,9 +86,9 @@ import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 import icepick.State;
 import io.reactivex.Single;
@@ -107,8 +110,6 @@ public class VideoDetailFragment
     // Amount of videos to show on start
     private static final int INITIAL_RELATED_VIDEOS = 8;
 
-    private ArrayList<VideoStream> sortedStreamVideosList;
-
     private InfoItemBuilder infoItemBuilder = null;
 
     private int updateFlags = 0;
@@ -120,18 +121,16 @@ public class VideoDetailFragment
     private boolean showRelatedStreams;
     private boolean wasRelatedStreamsExpanded = false;
 
-    @State
-    protected int serviceId = Constants.NO_SERVICE_ID;
-    @State
-    protected String name;
-    @State
-    protected String url;
+    @State protected int serviceId = Constants.NO_SERVICE_ID;
+    @State protected String name;
+    @State protected String url;
 
     private StreamInfo currentInfo;
     private Disposable currentWorker;
     private CompositeDisposable disposables = new CompositeDisposable();
 
-    private int selectedVideoStream = -1;
+    private List<VideoStream> sortedVideoStreams;
+    private int selectedVideoStreamIndex = -1;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -360,10 +359,11 @@ public class VideoDetailFragment
                 }
 
                 try {
-                    DownloadDialog downloadDialog =
-                            DownloadDialog.newInstance(currentInfo,
-                                    sortedStreamVideosList,
-                                    selectedVideoStream);
+                    DownloadDialog downloadDialog = DownloadDialog.newInstance(currentInfo);
+                    downloadDialog.setVideoStreams(sortedVideoStreams);
+                    downloadDialog.setAudioStreams(currentInfo.getAudioStreams());
+                    downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex);
+
                     downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
                 } catch (Exception e) {
                     Toast.makeText(activity,
@@ -721,27 +721,25 @@ public class VideoDetailFragment
 
     private void setupActionBar(final StreamInfo info) {
         if (DEBUG) Log.d(TAG, "setupActionBarHandler() called with: info = [" + info + "]");
-        sortedStreamVideosList = new ArrayList<>(ListHelper.getSortedStreamVideosList(
-                activity, info.getVideoStreams(), info.getVideoOnlyStreams(), false));
-
-        selectedVideoStream = ListHelper.getDefaultResolutionIndex(activity, sortedStreamVideosList);
-
         boolean isExternalPlayerEnabled = PreferenceManager.getDefaultSharedPreferences(activity)
                 .getBoolean(activity.getString(R.string.use_external_video_player_key), false);
-        spinnerToolbar.setAdapter(new SpinnerToolbarAdapter(activity, sortedStreamVideosList,
-                isExternalPlayerEnabled));
-        spinnerToolbar.setSelection(selectedVideoStream);
+
+        sortedVideoStreams = ListHelper.getSortedStreamVideosList(activity, info.getVideoStreams(), info.getVideoOnlyStreams(), false);
+        selectedVideoStreamIndex = ListHelper.getDefaultResolutionIndex(activity, sortedVideoStreams);
+
+        final StreamItemAdapter<VideoStream> streamsAdapter = new StreamItemAdapter<>(activity, new StreamSizeWrapper<>(sortedVideoStreams), isExternalPlayerEnabled);
+        spinnerToolbar.setAdapter(streamsAdapter);
+        spinnerToolbar.setSelection(selectedVideoStreamIndex);
         spinnerToolbar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedVideoStream = position;
+                selectedVideoStreamIndex = position;
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -953,8 +951,9 @@ public class VideoDetailFragment
         this.autoPlayEnabled = autoplay;
     }
 
+    @Nullable
     private VideoStream getSelectedVideoStream() {
-        return sortedStreamVideosList.get(selectedVideoStream);
+        return sortedVideoStreams != null ? sortedVideoStreams.get(selectedVideoStreamIndex) : null;
     }
 
     private void prepareDescription(final String descriptionHtml) {
