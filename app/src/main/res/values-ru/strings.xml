@@ -225,7 +225,7 @@
 
 <string name="settings_category_player_title">Плеер</string>
     <string name="settings_category_player_behavior_title">Поведение</string>
-    <string name="settings_category_history_title">История</string>
+    <string name="settings_category_history_title">История и кеш</string>
     <string name="playlist">Плейлист</string>
     <string name="undo">Отменить</string>
 
@@ -389,14 +389,14 @@
     <string name="playlist_thumbnail_change_success">Иконка плейлиста изменена</string>
     <string name="playlist_delete_failure">Ошибка при удалении плейлиста</string>
 
-    <string name="caption_none">Без подписи</string>
+    <string name="caption_none">Без субтитров</string>
 
     <string name="resize_fit">Уместить</string>
     <string name="resize_fill">Заполнить</string>
     <string name="resize_zoom">Приближение</string>
 
-    <string name="caption_auto_generated">Автоматически созданный</string>
-    <string name="caption_font_size_settings_title">Размер шрифта подписи</string>
+    <string name="caption_auto_generated">Созданы автоматически</string>
+    <string name="caption_font_size_settings_title">Размер шрифта субтитров</string>
     <string name="smaller_caption_font_size">Маленький шрифт</string>
     <string name="normal_caption_font_size">Обычный шрифт</string>
     <string name="larger_caption_font_size">Большой шрифт</string>
@@ -420,8 +420,8 @@
     <string name="import_file_title">Импорт файла</string>
     <string name="previous_export">Предыдущий экспорт</string>
 
-    <string name="subscriptions_import_unsuccessful">Импорт подписок провален</string>
-    <string name="subscriptions_export_unsuccessful">Экспорт подписок провален</string>
+    <string name="subscriptions_import_unsuccessful">Ошибка при импорте подписок</string>
+    <string name="subscriptions_export_unsuccessful">Ошибка при экспорте подписок</string>
 
     <string name="import_youtube_instructions">Для импорта подписок из YouTube вам необходимо файл экспорта, которые можно загрузить в соответствии с этими инструкциями:
 \n
@@ -443,5 +443,15 @@
     <string name="import_network_expensive_warning">Помните, что за выход в интернет может взиматься плата.
 \n
 \nВы хотите продолжить?</string>
-<string name="download_thumbnail_title">Загрузить превью</string>
-    </resources>
+<string name="download_thumbnail_title">Загружать миниатюры</string>
+    <string name="download_thumbnail_summary">Отключите, чтобы перестать загружать миниатюры и начать экономить трафик и память. Изменение настройки очистит кеш изображений в памяти и на диске.</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Кеш изображений очищен</string>
+    <string name="metadata_cache_wipe_title">Очистить кеш метаданных</string>
+    <string name="metadata_cache_wipe_complete_notice">Кеш метаданных очищен</string>
+    <string name="playback_speed_control">Скорость воспроизведения</string>
+    <string name="playback_tempo">Темп</string>
+    <string name="playback_pitch">Тон</string>
+    <string name="unhook_checkbox">Независимо (может вызвать искажение)</string>
+    <string name="playback_nightcore">Nightcore</string>
+    <string name="playback_default">По умолчанию</string>
+</resources>
