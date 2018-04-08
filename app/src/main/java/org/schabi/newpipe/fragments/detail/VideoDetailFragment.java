@@ -355,21 +355,8 @@ public class VideoDetailFragment
                 }
                 break;
             case R.id.detail_controls_download:
-                if (!PermissionHelper.checkStoragePermissions(activity)) {
-                    return;
-                }
-
-                try {
-                    DownloadDialog downloadDialog =
-                            DownloadDialog.newInstance(currentInfo,
-                                    sortedStreamVideosList,
-                                    selectedVideoStream);
-                    downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
-                } catch (Exception e) {
-                    Toast.makeText(activity,
-                            R.string.could_not_setup_download_menu,
-                            Toast.LENGTH_LONG).show();
-                    e.printStackTrace();
+                if (PermissionHelper.checkStoragePermissions(activity, PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE)) {
+                    this.openDownloadDialog();
                 }
                 break;
             case R.id.detail_uploader_root_layout:
@@ -1224,6 +1211,22 @@ public class VideoDetailFragment
             openVideoPlayer();
             // Only auto play in the first open
             autoPlayEnabled = false;
+        }
+    }
+
+
+    public void openDownloadDialog() {
+        try {
+            DownloadDialog downloadDialog =
+                    DownloadDialog.newInstance(currentInfo,
+                            sortedStreamVideosList,
+                            selectedVideoStream);
+            downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
+        } catch (Exception e) {
+            Toast.makeText(activity,
+                    R.string.could_not_setup_download_menu,
+                    Toast.LENGTH_LONG).show();
+            e.printStackTrace();
         }
     }
 
