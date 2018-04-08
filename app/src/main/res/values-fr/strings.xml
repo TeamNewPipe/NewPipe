@@ -225,7 +225,7 @@
 <string name="notification_channel_name">Notification NewPipe</string>
     <string name="undo">Annuler</string>
 
-    <string name="enable_watch_history_summary">Conserver les vidéos vues</string>
+    <string name="enable_watch_history_summary">Conserver les vidéos regardées</string>
     <string name="resume_on_audio_focus_gain_title">Reprendre si au premier plan</string>
     <string name="settings_category_player_title">Lecteur</string>
     <string name="settings_category_player_behavior_title">Comportement</string>
@@ -384,7 +384,7 @@
     <string name="use_inexact_seek_title">Recherche rapide approximative</string>
     <string name="use_inexact_seek_summary">Permettre au lecteur d\'accéder plus rapidement à une position au détriment de la précision</string>
     <string name="download_thumbnail_title">Charger miniatures</string>
-    <string name="download_thumbnail_summary">Si désactivé, le chargement des miniatures sera stoppé et elles seront supprimées de votre mémoire cache et de votre stockage. Permet de réduire l\'utilisation de mémoire et de données.</string>
+    <string name="download_thumbnail_summary">Désactiver pour arrêter le chargement de toutes les vignettes et sauvegarder les données et l\'utilisation de la mémoire. Modifier cela effacera à la fois le cache d\'image en mémoire et le cache d\'image sur disque.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Le cache des images a été nettoyé</string>
     <string name="metadata_cache_wipe_title">Supprimer les données en cache</string>
     <string name="metadata_cache_wipe_summary">Supprimer toutes les pages web mises en cache</string>
