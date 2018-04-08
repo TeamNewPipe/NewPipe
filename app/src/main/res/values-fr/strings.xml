@@ -383,8 +383,8 @@
 
     <string name="use_inexact_seek_title">Recherche rapide approximative</string>
     <string name="use_inexact_seek_summary">Permettre au lecteur d\'accéder plus rapidement à une position au détriment de la précision</string>
-    <string name="download_thumbnail_title">Charger imagettes</string>
-    <string name="download_thumbnail_summary">Si désactivé, le chargement des imagettes sera stoppé et elles seont supprimées de votre mémoire cache et de votre stockage. Permet de réduire l\'utilisation de mémoire et de données.</string>
+    <string name="download_thumbnail_title">Charger miniatures</string>
+    <string name="download_thumbnail_summary">Si désactivé, le chargement des miniatures sera stoppé et elles seront supprimées de votre mémoire cache et de votre stockage. Permet de réduire l\'utilisation de mémoire et de données.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Le cache des images a été nettoyé</string>
     <string name="metadata_cache_wipe_title">Supprimer les données en cache</string>
     <string name="metadata_cache_wipe_summary">Supprimer toutes les pages web mises en cache</string>
