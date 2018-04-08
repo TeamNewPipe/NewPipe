@@ -436,4 +436,7 @@
     <string name="unhook_checkbox">解除 (可能導致失真)</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">預設</string>
-</resources>
+<string name="preferred_open_action_settings_title">偏好的開啟動作</string>
+    <string name="preferred_open_action_settings_summary">開起內容時的預設動作 — %s</string>
+
+    </resources>
