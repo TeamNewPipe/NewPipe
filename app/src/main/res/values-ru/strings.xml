@@ -58,7 +58,7 @@
     <string name="main_bg_subtitle">Нажмите поиск, чтобы начать</string>
     <string name="msg_wait">Подождите…</string>
     <string name="msg_exists">Файл уже существует</string>
-    <string name="msg_threads">Темы</string>
+    <string name="msg_threads">Потоки</string>
     <string name="finish">OK</string>
     <string name="start">Начать</string>
     <string name="pause">Пауза</string>
@@ -311,7 +311,7 @@
     <string name="audio_streams_empty">Потоки аудио не найдены</string>
 
     <string name="donation_title">Пожертвовать</string>
-    <string name="donation_encouragement">NewPipe разрабатывается добровольцами в свободное время ради вашего удобства использования программы. Пора воздать должное, разработчики могут сделать NewPipe еще лучше с чашечкой кофе!</string>
+    <string name="donation_encouragement">NewPipe разрабатывается добровольцами в свободное время ради вашего удобства использования программы. Пора воздать должное, разработчики могут сделать NewPipe ещё лучше с чашечкой кофе!</string>
     <string name="give_back">Воздать должное</string>
     <string name="website_title">Веб-сайт</string>
     <string name="website_encouragement">Для получения более подробной информации и последних новостей о NewPipe посетите наш веб-сайт.</string>
@@ -345,7 +345,7 @@
     <string name="export_data_summary">Экспорт истории, подписок и плейлистов.</string>
     <string name="invalid_directory">Неправильная директория</string>
     <string name="invalid_source">Неправильный файл/контент источника</string>
-    <string name="invalid_file">Файл не существует или нет разрешения на его прочтение или запись</string>
+    <string name="invalid_file">Файл не существует или нет разрешения на его чтение или запись</string>
     <string name="file_name_empty_error">Имя файла не может быть пустым</string>
     <string name="error_occurred_detail">Произошла ошибка: %1$s</string>
 
@@ -368,7 +368,7 @@
     <string name="could_not_import_all_files">Предупреждение: нет возможности импорта всех файлов.</string>
     <string name="override_current_data">Это перезапишет вашу текущую установку.</string>
 
-    <string name="drawer_header_action_paceholder_text">Что-то будет тут, скоро ;D</string>
+    <string name="drawer_header_action_paceholder_text">Скоро тут что-то будет ;D</string>
 
 
     <string name="always_ask_open_action">Всегда спрашивать</string>
@@ -380,8 +380,8 @@
     <string name="append_playlist">Добавить в плейлист</string>
     <string name="set_as_playlist_thumbnail">Установить как иконку плейлиста</string>
 
-    <string name="bookmark_playlist">Пометить плейлист</string>
-    <string name="unbookmark_playlist">Удалить пометку</string>
+    <string name="bookmark_playlist">Добавить плейлист в закладки</string>
+    <string name="unbookmark_playlist">Удалить закладку</string>
 
     <string name="delete_playlist_prompt">Вы хотите удалить этот плейлист?</string>
     <string name="playlist_creation_success">Плейлист успешно создан</string>
@@ -423,11 +423,11 @@
     <string name="subscriptions_import_unsuccessful">Ошибка при импорте подписок</string>
     <string name="subscriptions_export_unsuccessful">Ошибка при экспорте подписок</string>
 
-    <string name="import_youtube_instructions">Для импорта подписок из YouTube вам необходимо файл экспорта, которые можно загрузить в соответствии с этими инструкциями:
+    <string name="import_youtube_instructions">Для импорта подписок из YouTube вам необходим файл экспорта, который можно получить следующим образом:
 \n
 \n1. Перейдите на: %1$s
-\n2. Войдите в ваш аккаунт, если необходимо
-\n3. Загрузка должна начаться (это файл экспорта)</string>
+\n2. Войдите в аккаунт, если необходимо
+\n3. Должна начаться загрузка (это будет файл экспорта)</string>
     <string name="import_soundcloud_instructions">"Для импорта ваших подписок из SoundCloud вы должны знать ссылку на ваш профиль или id. Если вы знаете, просто напишите это в поле ниже и будьте готовы начинать.
 \n
 \nЕсли вы не знаете, то проследуйте следующей инструкции:
@@ -454,4 +454,7 @@
     <string name="unhook_checkbox">Независимо (может вызвать искажение)</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">По умолчанию</string>
-</resources>
+<string name="metadata_cache_wipe_summary">Удалить все загруженные данные веб-страниц</string>
+    <string name="preferred_open_action_settings_summary">Действие по умолчанию при открытии контента — %s</string>
+
+    </resources>
