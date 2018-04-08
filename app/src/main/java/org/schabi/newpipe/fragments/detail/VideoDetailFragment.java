@@ -356,10 +356,9 @@ public class VideoDetailFragment
                 }
                 break;
             case R.id.detail_controls_download:
-                if (!PermissionHelper.checkStoragePermissions(activity, PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE)) {
-                    return;
+                if (PermissionHelper.checkStoragePermissions(activity, PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE)) {
+                    this.openDownloadDialog();
                 }
-                this.openDownloadDialog();
                 break;
             case R.id.detail_uploader_root_layout:
                 if (TextUtils.isEmpty(currentInfo.getUploaderUrl())) {
