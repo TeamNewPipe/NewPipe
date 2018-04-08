@@ -229,7 +229,7 @@
     <string name="resume_on_audio_focus_gain_title">Reprendre si au premier plan</string>
     <string name="settings_category_player_title">Lecteur</string>
     <string name="settings_category_player_behavior_title">Comportement</string>
-    <string name="settings_category_history_title">Historique</string>
+    <string name="settings_category_history_title">Historique et cache</string>
     <string name="playlist">Liste de lecture</string>
     <string name="notification_channel_description">Notifications pour les lecteurs \"Arrière-plan\" et \"Fenêtre\" de NewPipe</string>
 
@@ -373,7 +373,7 @@
 
     <string name="caption_none">Aucun sous-titre</string>
 
-    <string name="resize_fit">Redimensionner</string>
+    <string name="resize_fit">Ajuster</string>
     <string name="resize_zoom">Zoom</string>
 
     <string name="caption_font_size_settings_title">Taille des sous-titres</string>
@@ -406,7 +406,7 @@
     <string name="auto_queue_summary">Mettre automatiquement en file d\'attente la vidéo suivante liée à la vidéo en cours de lecture (si vous n\'êtes pas en mode répétition)</string>
     <string name="settings_category_debug_title">Débogage</string>
     <string name="resize_fill">Remplir</string>
-    <string name="caption_auto_generated">Affichage automatique</string>
+    <string name="caption_auto_generated">Générés automatiquement</string>
     <string name="enable_leak_canary_title">Activer LeakCanary</string>
     <string name="enable_leak_canary_summary">Surveiller la baisse de mémoire. L\'application pourrait ne plus répondre correctement</string>
 
@@ -450,4 +450,7 @@
     <string name="playback_tempo"/>
     <string name="unhook_checkbox">Unhook (déformations possibles)</string>
     <string name="playback_default">Défaut</string>
-</resources>
+<string name="preferred_open_action_settings_title">Ouverture préférée</string>
+    <string name="preferred_open_action_settings_summary">Action par défaut lors de l\'ouverture de contenu - %s</string>
+
+    </resources>
