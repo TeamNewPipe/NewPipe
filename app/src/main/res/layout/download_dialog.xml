@@ -35,8 +35,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/file_name"
-        android:layout_marginLeft="20dp"
         android:layout_marginBottom="6dp"
+        android:layout_marginLeft="20dp"
         android:gravity="left"
         android:orientation="horizontal"
         tools:ignore="RtlHardcoded">
@@ -59,12 +59,12 @@
         android:id="@+id/quality_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minWidth="150dp"
         android:layout_below="@+id/video_audio_group"
         android:layout_marginBottom="12dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        tools:listitem="@layout/resolutions_spinner_item"/>
+        android:minWidth="150dp"
+        tools:listitem="@layout/stream_quality_item"/>
 
     <TextView
         android:id="@+id/threads_text_view"
@@ -82,8 +82,8 @@
         android:layout_below="@+id/threads_text_view"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
-        android:paddingBottom="12dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingBottom="12dp">
 
         <TextView
             android:id="@+id/threads_count"

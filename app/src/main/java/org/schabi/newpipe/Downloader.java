@@ -74,6 +74,31 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
     }
 
     /**
+     * Get the size of the content that the url is pointing by firing a HEAD request.
+     *
+     * @param url an url pointing to the content
+     * @return the size of the content, in bytes
+     */
+    public long getContentLength(String url) throws IOException {
+        Response response = null;
+        try {
+            final Request request = new Request.Builder()
+                    .head().url(url)
+                    .addHeader("User-Agent", USER_AGENT)
+                    .build();
+            response = client.newCall(request).execute();
+
+            return Long.parseLong(response.header("Content-Length"));
+        } catch (NumberFormatException e) {
+            throw new IOException("Invalid content length", e);
+        } finally {
+            if (response != null) {
+                response.close();
+            }
+        }
+    }
+
+    /**
      * Download the text file at the supplied URL as in download(String),
      * but set the HTTP header field "Accept-Language" to the supplied string.
      *

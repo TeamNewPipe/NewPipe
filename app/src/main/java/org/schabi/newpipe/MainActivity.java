@@ -22,11 +22,13 @@ package org.schabi.newpipe;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -54,6 +56,7 @@ import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -94,10 +97,9 @@ public class MainActivity extends AppCompatActivity {
         drawerItems = findViewById(R.id.navigation);
 
         for(StreamingService s : NewPipe.getServices()) {
-            String title =
-                    s.getServiceInfo().getName() +
-                            (ServiceHelper.isBeta(s) ? " (beta)" : "");
-            MenuItem item = drawerItems.getMenu()
+            final String title = s.getServiceInfo().getName() +
+                    (ServiceHelper.isBeta(s) ? " (beta)" : "");
+            final MenuItem item = drawerItems.getMenu()
                     .add(R.id.menu_services_group, s.getServiceId(), 0, title);
             item.setIcon(ServiceHelper.getIcon(s.getServiceId()));
         }
@@ -233,6 +235,26 @@ public class MainActivity extends AppCompatActivity {
         } else super.onBackPressed();
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        for (int i: grantResults){
+            if (i == PackageManager.PERMISSION_DENIED){
+                return;
+            }
+        }
+        switch (requestCode) {
+            case PermissionHelper.DOWNLOADS_REQUEST_CODE:
+                NavigationHelper.openDownloads(this);
+                break;
+            case PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE:
+                Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
+                if (fragment instanceof VideoDetailFragment) {
+                    ((VideoDetailFragment) fragment).openDownloadDialog();
+                }
+                break;
+        }
+    }
+
     /**
      * Implement the following diagram behavior for the up button:
      * <pre>
@@ -312,6 +334,9 @@ public class MainActivity extends AppCompatActivity {
                 return NavigationHelper.openDownloads(this);
             case R.id.action_about:
                 NavigationHelper.openAbout(this);
+                return true;
+            case R.id.action_history:
+                NavigationHelper.openHistory(this);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

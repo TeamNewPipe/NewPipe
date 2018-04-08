@@ -1,56 +1,61 @@
 package org.schabi.newpipe.download;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.AudioStream;
+import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
-import org.schabi.newpipe.fragments.detail.SpinnerToolbarAdapter;
 import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.util.FilenameUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.PermissionHelper;
+import org.schabi.newpipe.util.StreamItemAdapter;
+import org.schabi.newpipe.util.StreamItemAdapter.StreamSizeWrapper;
 import org.schabi.newpipe.util.ThemeHelper;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import icepick.Icepick;
+import icepick.State;
+import io.reactivex.disposables.CompositeDisposable;
 import us.shandian.giga.service.DownloadManagerService;
 
 public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheckedChangeListener, AdapterView.OnItemSelectedListener {
     private static final String TAG = "DialogFragment";
     private static final boolean DEBUG = MainActivity.DEBUG;
 
-    private static final String INFO_KEY = "info_key";
-    private static final String SORTED_VIDEOS_LIST_KEY = "sorted_videos_list_key";
-    private static final String SELECTED_VIDEO_KEY = "selected_video_key";
-    private static final String SELECTED_AUDIO_KEY = "selected_audio_key";
+    @State protected StreamInfo currentInfo;
+    @State protected StreamSizeWrapper<AudioStream> wrappedAudioStreams = StreamSizeWrapper.empty();
+    @State protected StreamSizeWrapper<VideoStream> wrappedVideoStreams = StreamSizeWrapper.empty();
+    @State protected int selectedVideoIndex = 0;
+    @State protected int selectedAudioIndex = 0;
 
-    private StreamInfo currentInfo;
-    private ArrayList<VideoStream> sortedStreamVideosList;
-    private int selectedVideoIndex;
-    private int selectedAudioIndex;
+    private StreamItemAdapter<AudioStream> audioStreamsAdapter;
+    private StreamItemAdapter<VideoStream> videoStreamsAdapter;
+
+    private CompositeDisposable disposables = new CompositeDisposable();
 
     private EditText nameEditText;
     private Spinner streamsSpinner;
@@ -58,17 +63,50 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     private TextView threadsCountTextView;
     private SeekBar threadsSeekBar;
 
-    public static DownloadDialog newInstance(StreamInfo info, ArrayList<VideoStream> sortedStreamVideosList, int selectedVideoIndex) {
+    public static DownloadDialog newInstance(StreamInfo info) {
         DownloadDialog dialog = new DownloadDialog();
-        dialog.setInfo(info, sortedStreamVideosList, selectedVideoIndex);
-        dialog.setStyle(DialogFragment.STYLE_NO_TITLE, 0);
+        dialog.setInfo(info);
         return dialog;
     }
 
-    private void setInfo(StreamInfo info, ArrayList<VideoStream> sortedStreamVideosList, int selectedVideoIndex) {
+    public static DownloadDialog newInstance(Context context, StreamInfo info) {
+        final ArrayList<VideoStream> streamsList = new ArrayList<>(ListHelper.getSortedStreamVideosList(context,
+                info.getVideoStreams(), info.getVideoOnlyStreams(), false));
+        final int selectedStreamIndex = ListHelper.getDefaultResolutionIndex(context, streamsList);
+
+        final DownloadDialog instance = newInstance(info);
+        instance.setVideoStreams(streamsList);
+        instance.setSelectedVideoStream(selectedStreamIndex);
+        instance.setAudioStreams(info.getAudioStreams());
+        return instance;
+    }
+
+    private void setInfo(StreamInfo info) {
         this.currentInfo = info;
+    }
+
+    public void setAudioStreams(List<AudioStream> audioStreams) {
+        setAudioStreams(new StreamSizeWrapper<>(audioStreams));
+    }
+
+    public void setAudioStreams(StreamSizeWrapper<AudioStream> wrappedAudioStreams) {
+        this.wrappedAudioStreams = wrappedAudioStreams;
+    }
+
+    public void setVideoStreams(List<VideoStream> videoStreams) {
+        setVideoStreams(new StreamSizeWrapper<>(videoStreams));
+    }
+
+    public void setVideoStreams(StreamSizeWrapper<VideoStream> wrappedVideoStreams) {
+        this.wrappedVideoStreams = wrappedVideoStreams;
+    }
+
+    public void setSelectedVideoStream(int selectedVideoIndex) {
         this.selectedVideoIndex = selectedVideoIndex;
-        this.sortedStreamVideosList = sortedStreamVideosList;
+    }
+
+    public void setSelectedAudioStream(int selectedAudioIndex) {
+        this.selectedAudioIndex = selectedAudioIndex;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -79,33 +117,26 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (DEBUG) Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
-        if (!PermissionHelper.checkStoragePermissions(getActivity())) {
+        if (!PermissionHelper.checkStoragePermissions(getActivity(), PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE)) {
             getDialog().dismiss();
             return;
         }
 
-        if (savedInstanceState != null) {
-            Serializable serial = savedInstanceState.getSerializable(INFO_KEY);
-            if (serial instanceof StreamInfo) currentInfo = (StreamInfo) serial;
+        setStyle(STYLE_NO_TITLE, ThemeHelper.getDialogTheme(getContext()));
+        Icepick.restoreInstanceState(this, savedInstanceState);
 
-            serial = savedInstanceState.getSerializable(SORTED_VIDEOS_LIST_KEY);
-            if (serial instanceof ArrayList) { //noinspection unchecked
-                sortedStreamVideosList = (ArrayList<VideoStream>) serial;
-            }
-
-            selectedVideoIndex = savedInstanceState.getInt(SELECTED_VIDEO_KEY, 0);
-            selectedAudioIndex = savedInstanceState.getInt(SELECTED_AUDIO_KEY, 0);
-        }
+        this.videoStreamsAdapter = new StreamItemAdapter<>(getContext(), wrappedVideoStreams, true);
+        this.audioStreamsAdapter = new StreamItemAdapter<>(getContext(), wrappedAudioStreams);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (DEBUG) Log.d(TAG, "onCreateView() called with: inflater = [" + inflater + "], container = [" + container + "], savedInstanceState = [" + savedInstanceState + "]");
-        return inflater.inflate(R.layout.dialog_url, container);
+        return inflater.inflate(R.layout.download_dialog, container);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         nameEditText = view.findViewById(R.id.file_name);
         nameEditText.setText(FilenameUtils.createFilename(getContext(), currentInfo.getName()));
@@ -116,12 +147,12 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
 
         threadsCountTextView = view.findViewById(R.id.threads_count);
         threadsSeekBar = view.findViewById(R.id.threads);
+
         radioVideoAudioGroup = view.findViewById(R.id.video_audio_group);
         radioVideoAudioGroup.setOnCheckedChangeListener(this);
 
-        initToolbar(view.<Toolbar>findViewById(R.id.toolbar));
-        checkDownloadOptions(view);
-        setupVideoSpinner(sortedStreamVideosList, streamsSpinner);
+        initToolbar(view.findViewById(R.id.toolbar));
+        setupDownloadOptions();
 
         int def = 3;
         threadsCountTextView.setText(String.valueOf(def));
@@ -141,15 +172,35 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
             public void onStopTrackingTouch(SeekBar p1) {
             }
         });
+
+        fetchStreamsSize();
+    }
+
+    private void fetchStreamsSize() {
+        disposables.clear();
+
+        disposables.add(StreamSizeWrapper.fetchSizeForWrapper(wrappedVideoStreams).subscribe(result -> {
+            if (radioVideoAudioGroup.getCheckedRadioButtonId() == R.id.video_button) {
+                setupVideoSpinner();
+            }
+        }));
+        disposables.add(StreamSizeWrapper.fetchSizeForWrapper(wrappedAudioStreams).subscribe(result -> {
+            if (radioVideoAudioGroup.getCheckedRadioButtonId() == R.id.audio_button) {
+                setupAudioSpinner();
+            }
+        }));
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        disposables.clear();
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putSerializable(INFO_KEY, currentInfo);
-        outState.putSerializable(SORTED_VIDEOS_LIST_KEY, sortedStreamVideosList);
-        outState.putInt(SELECTED_VIDEO_KEY, selectedVideoIndex);
-        outState.putInt(SELECTED_AUDIO_KEY, selectedAudioIndex);
+        Icepick.saveInstanceState(this, outState);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -161,39 +212,31 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         toolbar.setTitle(R.string.download_dialog_title);
         toolbar.setNavigationIcon(ThemeHelper.isLightThemeSelected(getActivity()) ? R.drawable.ic_arrow_back_black_24dp : R.drawable.ic_arrow_back_white_24dp);
         toolbar.inflateMenu(R.menu.dialog_url);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getDialog().dismiss();
-            }
-        });
+        toolbar.setNavigationOnClickListener(v -> getDialog().dismiss());
 
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == R.id.okay) {
-                    downloadSelected();
-                    return true;
-                } else return false;
+        toolbar.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == R.id.okay) {
+                downloadSelected();
+                return true;
             }
+            return false;
         });
     }
 
-    public void setupAudioSpinner(final List<AudioStream> audioStreams, Spinner spinner) {
-        String[] items = new String[audioStreams.size()];
-        for (int i = 0; i < audioStreams.size(); i++) {
-            AudioStream audioStream = audioStreams.get(i);
-            items[i] = audioStream.getFormat().getName() + " " + audioStream.getAverageBitrate() + "kbps";
-        }
+    private void setupAudioSpinner() {
+        if (getContext() == null) return;
 
-        ArrayAdapter<String> itemAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, items);
-        spinner.setAdapter(itemAdapter);
-        spinner.setSelection(selectedAudioIndex);
+        streamsSpinner.setAdapter(audioStreamsAdapter);
+        streamsSpinner.setSelection(selectedAudioIndex);
+        setRadioButtonsState(true);
     }
 
-    public void setupVideoSpinner(final List<VideoStream> videoStreams, Spinner spinner) {
-        spinner.setAdapter(new SpinnerToolbarAdapter(getContext(), videoStreams, true));
-        spinner.setSelection(selectedVideoIndex);
+    private void setupVideoSpinner() {
+        if (getContext() == null) return;
+
+        streamsSpinner.setAdapter(videoStreamsAdapter);
+        streamsSpinner.setSelection(selectedVideoIndex);
+        setRadioButtonsState(true);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -205,10 +248,10 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         if (DEBUG) Log.d(TAG, "onCheckedChanged() called with: group = [" + group + "], checkedId = [" + checkedId + "]");
         switch (checkedId) {
             case R.id.audio_button:
-                setupAudioSpinner(currentInfo.getAudioStreams(), streamsSpinner);
+                setupAudioSpinner();
                 break;
             case R.id.video_button:
-                setupVideoSpinner(sortedStreamVideosList, streamsSpinner);
+                setupVideoSpinner();
                 break;
         }
     }
@@ -238,36 +281,52 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected void checkDownloadOptions(View view) {
-        RadioButton audioButton = view.findViewById(R.id.audio_button);
-        RadioButton videoButton = view.findViewById(R.id.video_button);
+    protected void setupDownloadOptions() {
+        setRadioButtonsState(false);
 
-        if (currentInfo.getAudioStreams() == null || currentInfo.getAudioStreams().size() == 0) {
-            audioButton.setVisibility(View.GONE);
+        final RadioButton audioButton = radioVideoAudioGroup.findViewById(R.id.audio_button);
+        final RadioButton videoButton = radioVideoAudioGroup.findViewById(R.id.video_button);
+        final boolean isVideoStreamsAvailable = videoStreamsAdapter.getCount() > 0;
+        final boolean isAudioStreamsAvailable = audioStreamsAdapter.getCount() > 0;
+
+        audioButton.setVisibility(isAudioStreamsAvailable ? View.VISIBLE : View.GONE);
+        videoButton.setVisibility(isVideoStreamsAvailable ? View.VISIBLE : View.GONE);
+
+        if (isVideoStreamsAvailable) {
             videoButton.setChecked(true);
-        } else if (sortedStreamVideosList == null || sortedStreamVideosList.size() == 0) {
-            videoButton.setVisibility(View.GONE);
+            setupVideoSpinner();
+        } else if (isAudioStreamsAvailable) {
             audioButton.setChecked(true);
+            setupAudioSpinner();
+        } else {
+            Toast.makeText(getContext(), R.string.no_streams_available_download, Toast.LENGTH_SHORT).show();
+            getDialog().dismiss();
         }
     }
 
+    private void setRadioButtonsState(boolean enabled) {
+        radioVideoAudioGroup.findViewById(R.id.audio_button).setEnabled(enabled);
+        radioVideoAudioGroup.findViewById(R.id.video_button).setEnabled(enabled);
+    }
 
     private void downloadSelected() {
-        String url, location;
+        Stream stream;
+        String location;
 
         String fileName = nameEditText.getText().toString().trim();
         if (fileName.isEmpty()) fileName = FilenameUtils.createFilename(getContext(), currentInfo.getName());
 
         boolean isAudio = radioVideoAudioGroup.getCheckedRadioButtonId() == R.id.audio_button;
         if (isAudio) {
-            url = currentInfo.getAudioStreams().get(selectedAudioIndex).getUrl();
+            stream = audioStreamsAdapter.getItem(selectedAudioIndex);
             location = NewPipeSettings.getAudioDownloadPath(getContext());
-            fileName += "." + currentInfo.getAudioStreams().get(selectedAudioIndex).getFormat().getSuffix();
         } else {
-            url = sortedStreamVideosList.get(selectedVideoIndex).getUrl();
+            stream = videoStreamsAdapter.getItem(selectedVideoIndex);
             location = NewPipeSettings.getVideoDownloadPath(getContext());
-            fileName += "." + sortedStreamVideosList.get(selectedVideoIndex).getFormat().getSuffix();
         }
+
+        String url = stream.getUrl();
+        fileName += "." + stream.getFormat().getSuffix();
 
         DownloadManagerService.startMission(getContext(), url, location, fileName, isAudio, threadsSeekBar.getProgress() + 1);
         getDialog().dismiss();
