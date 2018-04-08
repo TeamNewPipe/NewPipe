@@ -97,10 +97,9 @@ public class MainActivity extends AppCompatActivity {
         drawerItems = findViewById(R.id.navigation);
 
         for(StreamingService s : NewPipe.getServices()) {
-            String title =
-                    s.getServiceInfo().getName() +
-                            (ServiceHelper.isBeta(s) ? " (beta)" : "");
-            MenuItem item = drawerItems.getMenu()
+            final String title = s.getServiceInfo().getName() +
+                    (ServiceHelper.isBeta(s) ? " (beta)" : "");
+            final MenuItem item = drawerItems.getMenu()
                     .add(R.id.menu_services_group, s.getServiceId(), 0, title);
             item.setIcon(ServiceHelper.getIcon(s.getServiceId()));
         }
@@ -335,6 +334,9 @@ public class MainActivity extends AppCompatActivity {
                 return NavigationHelper.openDownloads(this);
             case R.id.action_about:
                 NavigationHelper.openAbout(this);
+                return true;
+            case R.id.action_history:
+                NavigationHelper.openHistory(this);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
