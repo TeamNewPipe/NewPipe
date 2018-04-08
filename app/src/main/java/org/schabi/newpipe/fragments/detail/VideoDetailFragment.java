@@ -397,6 +397,9 @@ public class VideoDetailFragment
             case R.id.detail_controls_popup:
                 openPopupPlayer(true);
                 break;
+            case R.id.detail_controls_download:
+                NavigationHelper.openDownloads(getActivity());
+                break;
         }
 
         return true;
@@ -518,6 +521,7 @@ public class VideoDetailFragment
         detailControlsPopup.setOnClickListener(this);
         detailControlsAddToPlaylist.setOnClickListener(this);
         detailControlsDownload.setOnClickListener(this);
+        detailControlsDownload.setOnLongClickListener(this);
         relatedStreamExpandButton.setOnClickListener(this);
 
         detailControlsBackground.setLongClickable(true);
