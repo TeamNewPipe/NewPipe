@@ -379,7 +379,7 @@ abrir em modo popup</string>
 <string name="use_inexact_seek_title">Usar índice de indexação rápido porém não preciso</string>
     <string name="use_inexact_seek_summary">Usar índice de indexação inexato</string>
     <string name="auto_queue_title">Adicionar a próxima stream à fila automaticamente</string>
-    <string name="auto_queue_summary">Anexar automaticamente uma stream relacionada quando a reprodução iniciar na última stream em uma fila não repetitiva</string>
+    <string name="auto_queue_summary">Anexar automaticamente uma stream relacionada quando a reprodução iniciar na última stream em uma fila não repetitiva.</string>
     <string name="live_sync">Sincronizar</string>
 
     <string name="file">Arquivo</string>
@@ -433,4 +433,7 @@ abrir em modo popup</string>
     <string name="playback_pitch">Passo</string>
     <string name="unhook_checkbox">Desenganchar</string>
     <string name="playback_default">Padrão</string>
-</resources>
+<string name="preferred_open_action_settings_title">Ação de abrir preferida</string>
+    <string name="preferred_open_action_settings_summary">Ação padrão quando abrir conteúdo — %s</string>
+
+    </resources>
