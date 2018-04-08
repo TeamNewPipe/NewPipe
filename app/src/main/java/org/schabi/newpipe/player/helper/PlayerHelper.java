@@ -2,11 +2,14 @@ package org.schabi.newpipe.player.helper;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.view.accessibility.CaptioningManager;
 
 import com.google.android.exoplayer2.SeekParameters;
+import com.google.android.exoplayer2.text.CaptionStyleCompat;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.util.MimeTypes;
 
@@ -215,6 +218,35 @@ public class PlayerHelper {
         return 2500;
     }
 
+    @NonNull
+    public static CaptionStyleCompat getCaptionStyle(@NonNull final Context context) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return CaptionStyleCompat.DEFAULT;
+
+        final CaptioningManager captioningManager = (CaptioningManager)
+                context.getSystemService(Context.CAPTIONING_SERVICE);
+        if (captioningManager == null || !captioningManager.isEnabled()) {
+            return CaptionStyleCompat.DEFAULT;
+        }
+
+        return CaptionStyleCompat.createFromCaptionStyle(captioningManager.getUserStyle());
+    }
+
+    /**
+     * System font scaling:
+     * Very small - 0.25f, Small - 0.5f, Normal - 1.0f, Large - 1.5f, Very Large - 2.0f
+     * */
+    @NonNull
+    public static float getCaptionScale(@NonNull final Context context) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return 1f;
+
+        final CaptioningManager captioningManager = (CaptioningManager)
+                context.getSystemService(Context.CAPTIONING_SERVICE);
+        if (captioningManager == null || !captioningManager.isEnabled()) {
+            return 1f;
+        }
+
+        return captioningManager.getFontScale();
+    }
     ////////////////////////////////////////////////////////////////////////////
     // Private helpers
     ////////////////////////////////////////////////////////////////////////////

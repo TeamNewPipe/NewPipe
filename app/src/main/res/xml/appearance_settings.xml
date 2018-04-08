@@ -22,11 +22,8 @@
         android:title="@string/show_hold_to_append_title"
         android:summary="@string/show_hold_to_append_summary"/>
 
-    <ListPreference
-        android:defaultValue="@string/caption_size_default"
-        android:entries="@array/caption_size_descriptions_list"
-        android:entryValues="@array/caption_size_values_list"
-        android:key="@string/caption_size_key"
-        android:summary="%s"
-        android:title="@string/caption_font_size_settings_title"/>
+    <Preference
+        android:key="@string/caption_settings_key"
+        android:title="@string/caption_setting_title"
+        android:summary="@string/caption_setting_description"/>
 </PreferenceScreen>

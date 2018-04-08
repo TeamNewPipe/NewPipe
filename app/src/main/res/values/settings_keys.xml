@@ -109,23 +109,7 @@
     </string-array>
 
     <!-- Caption Size -->
-    <string name="caption_size_key" translatable="false">caption_size_key</string>
-    <string name="caption_size_default" translatable="false">@string/normal_caption_size_key</string>
-
-    <string name="smaller_caption_size_key" translatable="false">smaller_caption_size</string>
-    <string name="normal_caption_size_key" translatable="false">normal_caption_size</string>
-    <string name="larger_caption_size_key" translatable="false">larger_caption_size</string>
-
-    <string-array name="caption_size_descriptions_list" translatable="false">
-        <item>@string/smaller_caption_font_size</item>
-        <item>@string/normal_caption_font_size</item>
-        <item>@string/larger_caption_font_size</item>
-    </string-array>
-    <string-array name="caption_size_values_list" translatable="false">
-        <item>@string/smaller_caption_size_key</item>
-        <item>@string/normal_caption_size_key</item>
-        <item>@string/larger_caption_size_key</item>
-    </string-array>
+    <string name="caption_settings_key" translatable="false">caption_settings_key</string>
 
     <!-- Content & History -->
     <string name="show_search_suggestions_key" translatable="false">show_search_suggestions</string>
