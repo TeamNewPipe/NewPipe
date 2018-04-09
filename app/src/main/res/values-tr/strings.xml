@@ -450,4 +450,9 @@
 <string name="playback_pitch">Ses titreşimi</string>
     <string name="unhook_checkbox">Çengelini Çıkar (bozukluğa neden olabilir)</string>
     <string name="playback_nightcore">Nightcore</string>
+    <string name="no_streams_available_download">İndirmeye uygun akış yok</string>
+
+    <string name="preferred_open_action_settings_title">Yeğlenen açma eylemi</string>
+    <string name="preferred_open_action_settings_summary">İçerik açılırken öntanımlı eylem — %s</string>
+
     </resources>
