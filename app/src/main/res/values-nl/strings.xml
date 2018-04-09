@@ -457,4 +457,6 @@ te openen in pop-upmodus</string>
 <string name="preferred_open_action_settings_title">Voorkeursactie voor openen</string>
     <string name="preferred_open_action_settings_summary">Standaardactie bij openen van inhoud — %s</string>
 
+    <string name="no_streams_available_download">Geen streams beschikbaar voor downloaden</string>
+
     </resources>
