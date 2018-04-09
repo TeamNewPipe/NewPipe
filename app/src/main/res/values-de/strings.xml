@@ -94,7 +94,7 @@
     <string name="report_error">Einen Fehler melden</string>
     <string name="user_report">Anwenderbericht</string>
 
-    <string name="duration_live">live</string>
+    <string name="duration_live">Live</string>
 
     <string name="main_bg_subtitle">„Suchen“ antippen und loslegen</string>
     <string name="downloads">Downloads</string>
@@ -298,7 +298,7 @@
 <string name="donation_title">Spenden</string>
     <string name="give_back">Zurückgeben</string>
     <string name="website_title">Website</string>
-    <string name="website_encouragement">Um mehr Informationen und die neuesten Nachrichten über NewPipe zu erhalten, besuche unsere Website!</string>
+    <string name="website_encouragement">Um mehr Informationen und die neuesten Nachrichten über NewPipe zu erhalten, besuche unsere Website.</string>
     <string name="donation_encouragement">NewPipe wird von Freiwilligen entwickelt, die ihre Freizeit darauf verwenden, dir die beste Nutzererfahrung zu bieten. Hilf jetzt den Entwicklern, NewPipe noch besser zu machen, und spendiere Ihnen eine Tasse Java-Kaffee!</string>
     <string name="service_title">Service</string>
     <string name="no_player_found_toast">Kein Streamplayer gefunden (Du kannst VLC installieren, um ihn abzuspielen)</string>
@@ -451,5 +451,10 @@
 \n3. Melden Sie sich bei Ihrem Konto an, wenn Sie dazu aufgefordert werden.
 \n4. Kopieren Sie die URL, zu der Sie umgeleitet wurden (das ist Ihre Profil-URL)</string>
     <string name="import_soundcloud_instructions_hint">yourid, soundcloud.com/yourid</string>
+
+    <string name="no_streams_available_download">Keine Streams zum Download verfügbar</string>
+
+    <string name="preferred_open_action_settings_title">Bevorzugte öffnen Aktion</string>
+    <string name="preferred_open_action_settings_summary">Standardaktion beim Öffnen von Inhalten - %s</string>
 
     </resources>
