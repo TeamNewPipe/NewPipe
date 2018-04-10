@@ -125,7 +125,7 @@
 
     <string name="could_not_load_image">No se pudo cargar la imagen</string>
     <string name="app_ui_crash">La interfaz de la app dejó de funcionar</string>
-    <string name="info_labels">Lo sucedido:\\nSolicitud:\\nIdioma del contenido:\\nServicio:\\nHora GMT:\\nPaquete:\\nVersión:\\nVersión del S.O:</string>
+    <string name="info_labels">Lo sucedido:\\nPetición:\\nIdioma del contenido:\\nServicio:\\nHora GMT:\\nPaquete:\\nVersión:\\nVersión del SO:</string>
 
     <string name="black_theme_title">Negro</string>
 
@@ -458,4 +458,9 @@ abrir en modo popup</string>
     <string name="unhook_checkbox">Desenganchar (puede casusar distorsión)</string>
     <string name="playback_nightcore">Nightcore (tipo de música)</string>
     <string name="playback_default">Reproducción por defecto</string>
-</resources>
+<string name="no_streams_available_download">No hay streams disponibles para descargar</string>
+
+    <string name="preferred_open_action_settings_title">Acción de abrir preferida</string>
+    <string name="preferred_open_action_settings_summary">Acción por defecto al abrir contenido — %s</string>
+
+    </resources>
