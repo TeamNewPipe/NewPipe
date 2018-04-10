@@ -61,7 +61,7 @@
 
     <string name="import_data_title">Importa una base de dades</string>
     <string name="export_data_title">Exporta una base de dades</string>
-    <string name="export_data_summary">Exporta l\'historial, les subscripcions i les llistes de reproducció.</string>
+    <string name="export_data_summary">Exporta l\'historial, les subscripcions i les llistes de reproducció</string>
     <string name="general_error">Error</string>
     <string name="network_error">Error de xarxa</string>
     <string name="video">Vídeo</string>
@@ -85,7 +85,7 @@
     <string name="tab_about">Quant a</string>
     <string name="tab_contributors">Col·laboradors</string>
     <string name="tab_licenses">Llicències</string>
-    <string name="contribution_title">Contribueix-hi</string>
+    <string name="contribution_title">Col·labora-hi</string>
     <string name="website_title">Lloc web</string>
     <string name="app_license_title">Llicència del NewPipe</string>
     <string name="read_full_license">Llegeix la llicència</string>
@@ -105,7 +105,7 @@
     <string name="subscription_page_summary">Pàgina de subscripcions</string>
     <string name="select_a_channel">Tria un canal</string>
     <string name="export_complete_toast">S\'ha completat l\'exportació</string>
-    <string name="import_complete_toast">S\'ha completat l\'importació</string>
+    <string name="import_complete_toast">S\'ha completat la importació</string>
     <string name="play_queue_remove">Elimina</string>
     <string name="play_queue_stream_detail">Detalls</string>
     <string name="play_queue_audio_settings">Configuració d\'àudio</string>
@@ -123,9 +123,188 @@
     <string name="import_from">Importa des de</string>
     <string name="export_to">Exporta a</string>
 
-    <string name="import_ongoing">S\'està important…</string>
-    <string name="export_ongoing">S\'està exportant…</string>
+    <string name="import_ongoing">S\'està important...</string>
+    <string name="export_ongoing">S\'està exportant...</string>
 
     <string name="import_file_title">Importa un fitxer</string>
     <string name="playback_default">Per defecte</string>
-</resources>
+<string name="view_count_text">%1$s visualitzacions</string>
+    <string name="upload_date_text">Publicat el %1$s</string>
+    <string name="no_player_found">No s\'ha trobat un reproductor de fluxos. Voleu instal·lar el VLC?</string>
+    <string name="no_player_found_toast">No s\'ha trobat cap reproductor de fluxos (podeu instal·lar el VLC per reproduir-lo)</string>
+    <string name="open_in_popup_mode">Obre en mode emergent</string>
+    <string name="controls_download_desc">Baixa el fitxer del flux.</string>
+    <string name="did_you_mean">Volíeu dir: %1$s?</string>
+    <string name="share_dialog_title">Comparteix-ho amb</string>
+    <string name="screen_rotation">rotació</string>
+    <string name="use_external_video_player_title">Fes servir un reproductor de vídeo extern</string>
+    <string name="popup_mode_share_menu_title">Mode emergent del NewPipe</string>
+    <string name="channel_unsubscribed">Heu eliminat la subscripció d\'aquest canal</string>
+    <string name="subscription_change_failed">No s\'ha pogut modificar la subscripció</string>
+    <string name="subscription_update_failed">No s\'ha pogut actualitzar la subscripció</string>
+    <string name="tab_main">Principal</string>
+    <string name="controls_background_title">Segon pla</string>
+    <string name="controls_popup_title">Emergent</string>
+    <string name="controls_add_to_playlist_title">Afegeix a</string>
+
+    <string name="download_path_summary">Ruta d\'emmagatzematge dels vídeos baixats</string>
+    <string name="download_path_dialog_title">Introduïu una ruta de baixada per als vídeos</string>
+
+    <string name="download_path_audio_summary">Ruta d\'emmagatzematge dels fitxers d\'àudio baixats</string>
+    <string name="download_path_audio_dialog_title">Introduïu una ruta de baixada per als fitxers d\'àudio</string>
+
+    <string name="autoplay_by_calling_app_summary">Reprodueix automàtica un vídeo quan el NewPipe s\'executa des d\'una altra aplicació</string>
+    <string name="default_popup_resolution_title">Resolució per defecte del reproductor emergent</string>
+    <string name="show_higher_resolutions_title">Mostra resolucions superiors</string>
+    <string name="show_higher_resolutions_summary">Només alguns dispositius són compatibles amb la reproducció de vídeos en 2K/4K</string>
+    <string name="play_with_kodi_title">Reprodueix amb Kodi</string>
+    <string name="kore_not_found">No s\'ha trobat l\'aplicació Kodi. Voleu instal·lar-la?</string>
+    <string name="show_play_with_kodi_title">Mostra l\'opció «Reprodueix amb Kodi»</string>
+    <string name="show_play_with_kodi_summary">Mostra una opció per reproduir un vídeo amb el centre multimèdia Kodi</string>
+    <string name="popup_remember_size_pos_title">Recorda la mida i la posició del reproductor emergent</string>
+    <string name="popup_remember_size_pos_summary">Recorda la darrera mida i posició del reproductor emergent</string>
+    <string name="use_inexact_seek_title">Fes servir la cerca ràpida poc precisa</string>
+    <string name="use_inexact_seek_summary">La cerca poc precisa permet que el reproductor cerqui una posició més ràpidament amb menys precisió</string>
+    <string name="download_thumbnail_title">Carrega les miniatures</string>
+    <string name="thumbnail_cache_wipe_complete_notice">S\'ha esborrat la memòria cau d\'imatges</string>
+    <string name="metadata_cache_wipe_title">Esborra les metadades de la memòria cau</string>
+    <string name="metadata_cache_wipe_complete_notice">S\'ha esborrat la memòria cau de metadades</string>
+    <string name="auto_queue_title">Afegeix automàticament a la cua el següent flux</string>
+    <string name="player_gesture_controls_title">Control per gestos del reproductor</string>
+    <string name="player_gesture_controls_summary">Feu servir gestos per regular la brillantor i el volum del reproductor</string>
+    <string name="show_search_suggestions_title">Suggeriments de cerca</string>
+    <string name="show_search_suggestions_summary">Mostra suggeriments durant la cerca</string>
+    <string name="enable_search_history_title">Historial de cerca</string>
+    <string name="resume_on_audio_focus_gain_summary">Reprèn la reproducció després d\'una interrupció (per exemple, una trucada)</string>
+    <string name="next_video_title">Vídeo següent</string>
+    <string name="show_next_and_similar_title">Mostra el següent vídeo i vídeos similars</string>
+    <string name="default_content_country_title">País per defecte dels continguts</string>
+    <string name="search_language_title">Llengua per defecte dels continguts</string>
+    <string name="settings_category_popup_title">Emergent</string>
+    <string name="background_player_playing_toast">S\'està reproduint en segon pla</string>
+    <string name="popup_playing_toast">S\'està reproduint en mode emergent</string>
+    <string name="background_player_append">Afegit a la cua del reproductor en segon pla</string>
+    <string name="popup_playing_append">Afegit a la cua del reproductor emergent</string>
+    <string name="play_btn_text">Reprodueix</string>
+    <string name="notification_channel_name">Notificació del NewPipe</string>
+    <string name="notification_channel_description">Notificacions dels reproductors en segon pla o emergents del NewPipe</string>
+
+    <string name="could_not_load_thumbnails">No s\'han pogut carregar totes les miniatures</string>
+    <string name="youtube_signature_decryption_error">No s\'ha pogut desencriptar la signatura de l\'URL del vídeo</string>
+    <string name="parsing_error">No s\'ha pogut processar el lloc web</string>
+    <string name="light_parsing_error">No s\'ha pogut processar del tot el lloc web</string>
+    <string name="content_not_available">Contingut no disponible</string>
+    <string name="blocked_by_gema">Blocat per la GEMA</string>
+    <string name="could_not_setup_download_menu">No s\'ha pogut configurar el menú de baixades</string>
+    <string name="live_streams_not_supported">Això és una emissió en directe, que encara no es pot reproduir</string>
+    <string name="could_not_get_stream">No s\'ha pogut obtenir cap flux</string>
+    <string name="could_not_load_image">No s\'ha pogut carregar la imatge</string>
+    <string name="app_ui_crash">Ha fallat l\'aplicació o la interfície d\'usuari</string>
+    <string name="player_stream_failure">No s\'ha pogut reproduir aquest flux.</string>
+    <string name="player_unrecoverable_failure">S\'ha produït un error irrecuperable al reproductor</string>
+    <string name="external_player_unsupported_link_type">Els reproductors externs no són compatibles amb aquesta mena d\'enllaços</string>
+    <string name="invalid_url_toast">L\'URL no és vàlid</string>
+    <string name="video_streams_empty">No s\'ha trobat cap flux de vídeo</string>
+    <string name="audio_streams_empty">No s\'ha trobat cap flux d\'àudio</string>
+    <string name="invalid_directory">Directori no vàlid</string>
+    <string name="invalid_source">Fitxer o font de contingut no vàlid</string>
+    <string name="invalid_file">El fitxer no existeix o no teniu permisos suficients per llegir-lo o escriure-hi</string>
+    <string name="file_name_empty_error">El nom del fitxer no pot estar en blanc</string>
+    <string name="error_occurred_detail">S\'ha produït un error: %1$s</string>
+    <string name="error_report_button_text">Informa de l\'error per correu electrònic</string>
+    <string name="error_snackbar_message">S\'han produït alguns errors.</string>
+    <string name="error_snackbar_action">INFORME</string>
+    <string name="what_device_headline">Informació:</string>
+    <string name="what_happened_headline">Què ha passat:</string>
+    <string name="your_comment">Comentari (en anglès):</string>
+    <string name="error_details_headline">Detalls:</string>
+
+
+    <string name="list_thumbnail_view_description">Miniatura de previsualització del vídeo</string>
+    <string name="detail_thumbnail_view_description">Miniatura de previsualització del vídeo</string>
+    <string name="detail_uploader_thumbnail_view_description">Miniatura de l\'avatar del propietari</string>
+    <string name="detail_likes_img_view_description">M\'agrada</string>
+    <string name="detail_dislikes_img_view_description">No m\'agrada</string>
+    <string name="use_tor_title">Fes servir el Tor</string>
+    <string name="use_tor_summary">(En proves) Força el trànsit de baixada a través del Tot per a més privadesa (no compatible encara amb les emissions de vídeo).</string>
+    <string name="report_error">Informa sobre un error</string>
+    <string name="user_report">Informe de l\'usuari</string>
+    <string name="search_no_results">Cap resultat</string>
+    <string name="empty_subscription_feed_subtitle">No hi ha res aquí</string>
+    <string name="err_dir_create">No s\'ha pogut crear el directori de baixades «%1$s»</string>
+    <string name="info_dir_created">S\'ha creat el directori de baixades «%1$s»</string>
+
+    <string name="retry">Torna a intentar-ho</string>
+    <string name="storage_permission_denied">S\'ha denegat el permís d\'accés a l\'emmagatzematge</string>
+    <string name="use_old_player_title">Fes servir el reproductor antic</string>
+    <string name="use_old_player_summary">Antic reproductor integrat de Mediaframework</string>
+
+    <string name="no_subscribers">Sense subscriptors</string>
+    <string name="no_views">Sense visualitzacions</string>
+    <plurals name="views">
+	<item quantity="one">%s visualització</item>
+	<item quantity="other">%s visualitzacions</item>
+</plurals>
+
+    <string name="no_videos">Sense vídeos</string>
+    <plurals name="videos">
+	<item quantity="one">%s vídeo</item>
+	<item quantity="other">%s vídeos</item>
+</plurals>
+
+    <string name="pause">Pausa</string>
+    <string name="view">Reprodueix</string>
+    <string name="create">Crea</string>
+    <string name="delete">Elimina</string>
+    <string name="delete_one">Elimina\'n un</string>
+    <string name="delete_all">Elimina\'ls tots</string>
+    <string name="checksum">Suma de verificació</string>
+    <string name="dismiss">Tanca</string>
+    <string name="rename">Canvia el nom</string>
+
+    <string name="msg_threads">Fils</string>
+    <string name="msg_server_unsupported">Servidor incompatible</string>
+    <string name="msg_exists">El fitxer ja existeix</string>
+    <string name="msg_running">Baixada del NewPipe activa</string>
+    <string name="msg_wait">Espereu…</string>
+    <string name="msg_copied">S\'ha copiat al porta-retalls</string>
+    <string name="settings_file_charset_title">Caràcters permesos als noms de fitxer</string>
+    <string name="charset_letters_and_digits">Lletres i dígits</string>
+    <string name="title_activity_about">Quant al NewPipe</string>
+    <string name="copyright" formatted="true">© %1$s per %2$s sota %3$s</string>
+    <string name="app_description">Aplicació lliure i lleugera de YouTube per a Android.</string>
+    <string name="view_on_github">Visualitza a GitHub</string>
+    <string name="donation_title">Fes una donació</string>
+    <string name="website_encouragement">Si voleu conèixer més informació i veure les últimes notícies del NewPipe visiteu el nostre lloc web.</string>
+    <string name="title_last_played">Última reproducció</string>
+    <string name="title_most_played">Més reproduïts</string>
+
+    <string name="kiosk_page_summary">Pàgina d\'un quiosc</string>
+    <string name="feed_page_summary">Pàgina de novetats</string>
+    <string name="channel_page_summary">Pàgina d\'un canal</string>
+    <string name="select_a_kiosk">Tria un quiosc</string>
+    <string name="no_valid_zip_file">El fitxer no té un format ZIP vàlid</string>
+    <string name="could_not_import_all_files">Avís: No s\'han pogut importar tots els fitxers</string>
+    <string name="override_current_data">Això sobreescriurà la configuració actual</string>
+
+    <string name="kiosk">Quiosc</string>
+    <string name="trending">Tendències</string>
+    <string name="top_50">Els millors 50</string>
+    <string name="title_activity_background_player">Reproductor en segon pla</string>
+    <string name="title_activity_popup_player">Reproductor emergent</string>
+    <string name="enqueue_on_background">Afegeix a la cua de reproducció en segon pla</string>
+    <string name="enqueue_on_popup">Afegeix a la cua de reproducció emergent</string>
+    <string name="start_here_on_main">Comença la reproducció aquí</string>
+    <string name="drawer_open">Obre el calaix</string>
+    <string name="drawer_close">Tanca el calaix</string>
+    <string name="preferred_player_fetcher_notification_title">S\'està obtenint la informació</string>
+    <string name="preferred_player_fetcher_notification_message">S\'està carregant el contingut seleccionat</string>
+
+    <string name="delete_playlist_prompt">Voleu eliminar aquesta llista de reproducció?</string>
+    <string name="playlist_delete_failure">No s\'ha pogut eliminar la llista de reproducció</string>
+
+    <string name="import_export_title">Importació i exportació</string>
+    <string name="playback_speed_control">Control de la velocitat de reproducció</string>
+    <string name="playback_tempo">Tempo</string>
+    <string name="playback_pitch">To</string>
+    </resources>
