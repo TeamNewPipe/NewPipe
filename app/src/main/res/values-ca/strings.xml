@@ -61,7 +61,7 @@
 
     <string name="import_data_title">Importa una base de dades</string>
     <string name="export_data_title">Exporta una base de dades</string>
-    <string name="export_data_summary">Exporta l\'historial, les subscripcions i les llistes de reproducció</string>
+    <string name="export_data_summary">Exporta l\'historial, les subscripcions i les llistes de reproducció.</string>
     <string name="general_error">Error</string>
     <string name="network_error">Error de xarxa</string>
     <string name="video">Vídeo</string>
@@ -123,8 +123,8 @@
     <string name="import_from">Importa des de</string>
     <string name="export_to">Exporta a</string>
 
-    <string name="import_ongoing">S\'està important...</string>
-    <string name="export_ongoing">S\'està exportant...</string>
+    <string name="import_ongoing">S\'està important…</string>
+    <string name="export_ongoing">S\'està exportant…</string>
 
     <string name="import_file_title">Importa un fitxer</string>
     <string name="playback_default">Per defecte</string>
