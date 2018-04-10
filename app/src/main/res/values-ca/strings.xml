@@ -1,2 +1,131 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="install">Instal·la</string>
+    <string name="cancel">Cancel·la</string>
+    <string name="open_in_browser">Obre al navegador</string>
+    <string name="share">Comparteix</string>
+    <string name="download">Baixa</string>
+    <string name="search">Cerca</string>
+    <string name="settings">Configuració</string>
+    <string name="choose_browser">Tria un navegador</string>
+    <string name="subscribe_button_title">Subscriu-t\'hi</string>
+    <string name="subscribed_button_title">Subscrit</string>
+    <string name="show_info">Mostra la informació</string>
+
+    <string name="tab_subscriptions">Subscripcions</string>
+    <string name="tab_bookmarks">Adreces d\'interès</string>
+
+    <string name="fragment_whats_new">Novetats</string>
+
+    <string name="download_path_title">Ruta de baixada del vídeo</string>
+    <string name="download_path_audio_title">Ruta de baixada de l\'àudio</string>
+    <string name="autoplay_by_calling_app_title">Reproducció automàtica</string>
+    <string name="default_resolution_title">Resolució per defecte</string>
+    <string name="play_audio">Àudio</string>
+    <string name="default_audio_format_title">Format d\'àudio per defecte</string>
+    <string name="default_video_format_title">Format de vídeo per defecte</string>
+    <string name="webm_description">WebM — format lliure</string>
+    <string name="m4a_description">M4A — millor qualitat</string>
+    <string name="theme_title">Tema</string>
+    <string name="light_theme_title">Clar</string>
+    <string name="dark_theme_title">Fosc</string>
+    <string name="black_theme_title">Negre</string>
+    <string name="enable_watch_history_title">Historial</string>
+    <string name="download_dialog_title">Baixa</string>
+    <string name="service_title">Servei</string>
+    <string name="settings_category_player_title">Reproductor</string>
+    <string name="settings_category_player_behavior_title">Comportament</string>
+    <string name="settings_category_video_audio_title">Vídeo i àudio</string>
+    <string name="settings_category_history_title">Historial i memòria cau</string>
+    <string name="settings_category_appearance_title">Aparença</string>
+    <string name="settings_category_other_title">Altres</string>
+    <string name="settings_category_debug_title">Depuració</string>
+    <string name="content">Contingut</string>
+    <string name="show_age_restricted_content_title">Mostra el contingut restringit per edat</string>
+    <string name="video_is_age_restricted">Vídeo restringit per edat. Podeu permetre aquesta mena de continguts des de la configuració.</string>
+    <string name="duration_live">en directe</string>
+    <string name="downloads">Baixades</string>
+    <string name="downloads_title">Baixades</string>
+    <string name="all">Tot</string>
+    <string name="channel">Canal</string>
+    <string name="playlist">Llista de reproducció</string>
+    <string name="yes">Sí</string>
+    <string name="disabled">Desactivat</string>
+    <string name="clear">Esborra</string>
+    <string name="best_resolution">Millor resolució</string>
+    <string name="undo">Desfés</string>
+    <string name="always">Sempre</string>
+    <string name="just_once">Només una vegada</string>
+    <string name="file">Fitxer</string>
+
+    <string name="unknown_content">[Desconegut]</string>
+
+    <string name="import_data_title">Importa una base de dades</string>
+    <string name="export_data_title">Exporta una base de dades</string>
+    <string name="export_data_summary">Exporta l\'historial, les subscripcions i les llistes de reproducció</string>
+    <string name="general_error">Error</string>
+    <string name="network_error">Error de xarxa</string>
+    <string name="video">Vídeo</string>
+    <string name="audio">Àudio</string>
+    <plurals name="subscribers">
+	<item quantity="one">%s subscriptor</item>
+	<item quantity="other">%s subscriptors</item>
+</plurals>
+
+    <string name="finish">D\'acord</string>
+
+    <string name="msg_name">Nom de fitxer</string>
+    <string name="msg_error">Error</string>
+    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="settings_category_downloads_title">Baixa</string>
+    <string name="action_settings">Configuració</string>
+    <string name="action_about">Quant a</string>
+    <string name="title_licenses">Llicències de tercers</string>
+    <string name="error_unable_to_load_license">No s\'ha pogut carregar la llicència</string>
+    <string name="action_open_website">Obre el lloc web</string>
+    <string name="tab_about">Quant a</string>
+    <string name="tab_contributors">Col·laboradors</string>
+    <string name="tab_licenses">Llicències</string>
+    <string name="contribution_title">Contribueix-hi</string>
+    <string name="website_title">Lloc web</string>
+    <string name="app_license_title">Llicència del NewPipe</string>
+    <string name="read_full_license">Llegeix la llicència</string>
+
+
+    <string name="title_activity_history">Historial</string>
+    <string name="history_disabled">L\'historial està desactivat</string>
+    <string name="action_history">Historial</string>
+    <string name="history_empty">L\'historial és buit</string>
+    <string name="history_cleared">S\'ha esborrat l\'historial</string>
+    <string name="item_deleted">S\'ha eliminat l\'element</string>
+    <string name="delete_item_search_history">Voleu eliminar aquest element de l\'historial de cerca?</string>
+    <string name="delete_stream_history_prompt">Voleu eliminar aquest element de l\'historial de reproduccions?</string>
+    <string name="delete_all_history_prompt">Segur que voleu eliminar tots els elements de l\'historial?</string>
+    <string name="main_page_content">Contingut de la pàgina principal</string>
+    <string name="blank_page_summary">Pàgina en blanc</string>
+    <string name="subscription_page_summary">Pàgina de subscripcions</string>
+    <string name="select_a_channel">Tria un canal</string>
+    <string name="export_complete_toast">S\'ha completat l\'exportació</string>
+    <string name="import_complete_toast">S\'ha completat l\'importació</string>
+    <string name="play_queue_remove">Elimina</string>
+    <string name="play_queue_stream_detail">Detalls</string>
+    <string name="play_queue_audio_settings">Configuració d\'àudio</string>
+    <string name="video_player">Reproductor de vídeo</string>
+    <string name="background_player">Reproductor en segon pla</string>
+    <string name="popup_player">Reproductor emergent</string>
+    <string name="always_ask_open_action">Demana-ho sempre</string>
+
+    <string name="create_playlist">Crea una nova llista de reproducció</string>
+    <string name="delete_playlist">Elimina la llista de reproducció</string>
+    <string name="rename_playlist">Canvia el nom de la llista de reproducció</string>
+    <string name="playlist_name_input">Nom</string>
+    <string name="append_playlist">Afegeix a la llista de reproducció</string>
+    <string name="import_title">Importa</string>
+    <string name="import_from">Importa des de</string>
+    <string name="export_to">Exporta a</string>
+
+    <string name="import_ongoing">S\'està important...</string>
+    <string name="export_ongoing">S\'està exportant...</string>
+
+    <string name="import_file_title">Importa un fitxer</string>
+    <string name="playback_default">Per defecte</string>
+</resources>
