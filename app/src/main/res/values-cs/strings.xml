@@ -456,4 +456,9 @@ otevření ve vyskakovacím okně</string>
     <string name="unhook_checkbox">Zvolnit (může způsobit zkreslení)</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Výchozí nastavení</string>
-</resources>
+<string name="no_streams_available_download">Ke stažení nejsou dostupné žádné streamy</string>
+
+    <string name="preferred_open_action_settings_title">Preferovaná akce při otevření</string>
+    <string name="preferred_open_action_settings_summary">Výchozí chování při otevírání obsahu — %s</string>
+
+    </resources>
