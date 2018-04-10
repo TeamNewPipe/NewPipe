@@ -2,7 +2,7 @@
 <resources>
     <string name="view_count_text">%1$s 次观看</string>
     <string name="upload_date_text">于 %1$s 发布</string>
-    <string name="no_player_found">找不到任何串流播放器。您是否要安装 VLC？</string>
+    <string name="no_player_found">找不到播放器。您是否要安装 VLC？</string>
     <string name="install">安装</string>
     <string name="cancel">取消</string>
     <string name="open_in_browser">在浏览器打开</string>
@@ -17,11 +17,11 @@
     <string name="use_external_video_player_title">使用外置视频播放器</string>
     <string name="use_external_audio_player_title">使用外置音频播放器</string>
     <string name="download_path_title">视频下载路径</string>
-    <string name="download_path_summary">下载视频存储路径</string>
+    <string name="download_path_summary">下载视频存储的路径</string>
     <string name="download_path_dialog_title">输入视频存储路径</string>
     <string name="default_resolution_title">默认分辨率</string>
     <string name="play_with_kodi_title">用 Kodi 播放</string>
-    <string name="kore_not_found">找不到 Kore 应用程式，安装它吗？</string>
+    <string name="kore_not_found">找不到 Kore 应用，要安装吗？</string>
     <string name="show_play_with_kodi_title">显示 “用 Kodi 播放” 的选项</string>
     <string name="show_play_with_kodi_summary">显示以 Kodi 媒体中心播放视频的选项</string>
     <string name="play_audio">音频</string>
@@ -29,8 +29,8 @@
     <string name="webm_description">WebM — 开放格式</string>
     <string name="m4a_description">M4A — 更佳品质</string>
     <string name="theme_title">主题</string>
-    <string name="dark_theme_title">暗色系</string>
-    <string name="light_theme_title">明亮色系</string>
+    <string name="dark_theme_title">暗色</string>
+    <string name="light_theme_title">明亮色</string>
 
     <string name="download_dialog_title">下载</string>
     <string name="next_video_title">即将播放</string>
@@ -52,11 +52,11 @@
     <string name="use_tor_title">使用 Tor</string>
     <string name="use_tor_summary">（实验性）强制下载流量使用 Tor 加强隐私（暂不支援流媒体视频）。</string>
     <string name="download_path_audio_title">音频存储路径</string>
-    <string name="download_path_audio_summary">存放已下载音频的路径</string>
+    <string name="download_path_audio_summary">下载音频存储的路径</string>
     <string name="download_path_audio_dialog_title">输入音频文件存储路径</string>
 
     <string name="err_dir_create">未能建立下载路径 “%1$s”</string>
-    <string name="info_dir_created">已建立下载路径 “%1$s”</string>
+    <string name="info_dir_created">已创建下载目录 “%1$s”</string>
     <string name="content">内容</string>
     <string name="show_age_restricted_content_title">显示年龄限制内容</string>
     <string name="video_is_age_restricted">视频有年龄限制。请先在设置中启用\"显示年龄限制内容\"。</string>
@@ -91,7 +91,7 @@
     <string name="autoplay_by_calling_app_summary">当 NewPipe 被其他应用调用时自动播放视频</string>
     <string name="duration_live">直播</string>
 
-    <string name="main_bg_subtitle">点按搜索开始使用</string>
+    <string name="main_bg_subtitle">点击搜索以开始</string>
     <string name="start">开始</string>
     <string name="pause">暂停</string>
     <string name="view">播放</string>
@@ -125,9 +125,9 @@
 
     <string name="recaptcha_request_toast">需要 reCAPTCHA 验证</string>
 
-<string name="open_in_popup_mode">以窗口模式打开</string>
-    <string name="use_external_video_player_summary">当启用该选项时某些分辨率的视频将没有声音</string>
-    <string name="popup_mode_share_menu_title">NewPipe 窗口模式</string>
+<string name="open_in_popup_mode">以悬浮窗模式打开</string>
+    <string name="use_external_video_player_summary">启用该选项时某些分辨率的视频将没有声音</string>
+    <string name="popup_mode_share_menu_title">NewPipe 悬浮窗模式</string>
     <string name="subscribe_button_title">订阅</string>
     <string name="subscribed_button_title">已订阅</string>
     <string name="channel_unsubscribed">已取消订阅频道</string>
@@ -140,15 +140,15 @@
     <string name="fragment_whats_new">有何更新</string>
 
     <string name="controls_background_title">后台播放</string>
-    <string name="controls_popup_title">窗口播放</string>
+    <string name="controls_popup_title">悬浮窗</string>
 
     <string name="default_popup_resolution_title">窗口模式默认分辨率</string>
     <string name="show_higher_resolutions_title">显示更高分辨率</string>
     <string name="show_higher_resolutions_summary">2K/4K 视频播放仅在某些设备上支持</string>
     <string name="default_video_format_title">首选视频格式</string>
-    <string name="black_theme_title">黑色系</string>
-    <string name="popup_remember_size_pos_title">记住窗口模式大小和位置</string>
-    <string name="popup_remember_size_pos_summary">记住上一次设置窗口模式的大小和位置</string>
+    <string name="black_theme_title">纯黑</string>
+    <string name="popup_remember_size_pos_title">记住悬浮窗的大小和位置</string>
+    <string name="popup_remember_size_pos_summary">记住上一次设置悬浮窗的大小和位置</string>
     <string name="player_gesture_controls_title">播放手势控制</string>
     <string name="player_gesture_controls_summary">使用手势操作控制播放器的亮度和音量</string>
     <string name="show_search_suggestions_title">搜索建议</string>
@@ -204,7 +204,7 @@
     <string name="tab_about">关于</string>
     <string name="tab_contributors">贡献者</string>
     <string name="tab_licenses">许可</string>
-    <string name="app_description">一款轻量级的安卓 YouTube 客户端。</string>
+    <string name="app_description">一款开源、轻量级的安卓 YouTube 客户端。</string>
     <string name="view_on_github">在 GitHub 上查看</string>
     <string name="app_license_title">NewPipe 许可</string>
     <string name="contribution_encouragement">无论你有什么想法：翻译程序，改进设计，优化代码或是想做出大量修改——我们都随时欢迎。做得越多它将变得越好！</string>
