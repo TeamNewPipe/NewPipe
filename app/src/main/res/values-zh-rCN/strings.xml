@@ -119,7 +119,7 @@
 
     <string name="could_not_load_image">无法加载图像</string>
     <string name="app_ui_crash">应用/界面已崩溃</string>
-    <string name="info_labels">原因：\\n请求：\\n内容语言：\\n服务：\\nGMT时间：\\n包：\\n版本：\\n操作系统版本：\\nIP地理范围：</string>
+    <string name="info_labels">原因：\\n请求：\\n内容语言：\\n服务：\\nGMT时间：\\n包：\\n版本：\\n操作系统版本：</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">reCAPTCHA 验证</string>
 
@@ -207,7 +207,7 @@
     <string name="app_description">一款轻量级的安卓 YouTube 客户端。</string>
     <string name="view_on_github">在 GitHub 上查看</string>
     <string name="app_license_title">NewPipe 许可</string>
-    <string name="contribution_encouragement">无论你想提供点子，翻译程序，改进设计，优化代码或是想做出大量修改，我们都随时欢迎你的加入。贡献有越多程序亦将越加好用！</string>
+    <string name="contribution_encouragement">无论你有什么想法：翻译程序，改进设计，优化代码或是想做出大量修改——我们都随时欢迎。做得越多它将变得越好！</string>
     <string name="read_full_license">阅读许可</string>
     <string name="contribution_title">贡献</string>
 
@@ -221,7 +221,7 @@
 
 <string name="settings_category_player_title">播放器</string>
     <string name="settings_category_player_behavior_title">行为</string>
-    <string name="settings_category_history_title">历史记录</string>
+    <string name="settings_category_history_title">历史记录 &amp; 缓存</string>
     <string name="background_player_append">在后台播放器上排队</string>
     <string name="popup_playing_append">在弹出播放器上排队</string>
     <string name="playlist">播放列表</string>
@@ -251,4 +251,186 @@
 </plurals>
 
     <string name="item_deleted">项目已删除</string>
-    </resources>
+    <string name="no_player_found_toast">找不到播放器（你可以安装 VLC 来播放）</string>
+    <string name="controls_download_desc">下载媒体文件</string>
+    <string name="show_info">显示详情</string>
+
+    <string name="tab_bookmarks">书签</string>
+
+    <string name="controls_add_to_playlist_title">添加至</string>
+
+    <string name="use_inexact_seek_title">使用不精确但快速的进度</string>
+    <string name="use_inexact_seek_summary">不精确进度可以让播放器更快地定位到进度条的大致位置</string>
+    <string name="download_thumbnail_title">加载缩略图</string>
+    <string name="download_thumbnail_summary">禁用以停止加载所有缓存数据。更改此选项会清除内存和内存卡上的图像缓存。</string>
+    <string name="thumbnail_cache_wipe_complete_notice">图像缓存已清除</string>
+    <string name="metadata_cache_wipe_title">清除缓存元数据</string>
+    <string name="metadata_cache_wipe_summary">移除所有缓存的网页数据</string>
+    <string name="metadata_cache_wipe_complete_notice">元数据缓存已清除</string>
+    <string name="auto_queue_title">自动播放下一个视频</string>
+    <string name="auto_queue_summary">如果播放到非循环列表中的最后一个视频，则自动加入一个相关视频到列表中。</string>
+    <string name="show_hold_to_append_title">显示长按以扩展的提示</string>
+    <string name="show_hold_to_append_summary">当视频详情页中的背景或悬浮按钮被按下的时候显示提示</string>
+    <string name="default_content_country_title">默认内容国家</string>
+    <string name="service_title">服务</string>
+    <string name="settings_category_debug_title">调试</string>
+    <string name="always">总是</string>
+    <string name="just_once">仅一次</string>
+    <string name="file">文件</string>
+
+    <string name="toggle_orientation">切换方向</string>
+    <string name="switch_to_background">切换到后台</string>
+    <string name="switch_to_popup">切换到悬浮窗</string>
+    <string name="switch_to_main">切换到主页</string>
+
+    <string name="import_data_title">导入数据库</string>
+    <string name="export_data_title">导出数据库</string>
+    <string name="import_data_summary">将覆盖你现有历史记录和订阅</string>
+    <string name="export_data_summary">导出历史记录，订阅和播放列表。</string>
+    <string name="player_recoverable_failure">从播放器错误中恢复</string>
+    <string name="external_player_unsupported_link_type">外部播放器不支持这些链接类型</string>
+    <string name="invalid_url_toast">无效的链接</string>
+    <string name="video_streams_empty">未找到视频</string>
+    <string name="audio_streams_empty">未找到音频</string>
+    <string name="invalid_directory">无效的目录</string>
+    <string name="invalid_source">无效的文件/内容来源</string>
+    <string name="invalid_file">文件不存在或无读写权限</string>
+    <string name="file_name_empty_error">文件名不能为空</string>
+    <string name="error_occurred_detail">发生了一个错误：%1$s</string>
+    <string name="no_streams_available_download">无视频媒体可以下载</string>
+
+    <string name="detail_drag_description">拖拽以重新排列</string>
+
+    <string name="create">创建</string>
+    <string name="delete_one">删除一个</string>
+    <string name="delete_all">删除全部</string>
+    <string name="dismiss">解除</string>
+    <string name="rename">重命名</string>
+
+    <string name="donation_title">捐赠</string>
+    <string name="donation_encouragement">NewPipe 是一群志愿者花费业余时间开发的，目的是给你们带来最佳体验。你的一点心意，可以让开发者们可以享受一杯 Java 的咖啡的同时让 NewPipe 变得更好用！</string>
+    <string name="give_back">捐赠</string>
+    <string name="website_title">网页</string>
+    <string name="website_encouragement">为了获得 NewPipe 的更多信息和最新消息请访问我们的网站。</string>
+    <string name="delete_item_search_history">你想从搜索历史中删除此项吗？</string>
+    <string name="delete_stream_history_prompt">你想从观看历史中删除此项吗？</string>
+    <string name="delete_all_history_prompt">确实要删除历史记录的所有项目吗？</string>
+    <string name="title_last_played">上一次播放</string>
+    <string name="title_most_played">最多播放</string>
+
+    <string name="main_page_content">主页内容</string>
+    <string name="blank_page_summary">空白页</string>
+    <string name="kiosk_page_summary">Kiosk 页</string>
+    <string name="subscription_page_summary">订阅页</string>
+    <string name="feed_page_summary">Feed 页</string>
+    <string name="channel_page_summary">频道页</string>
+    <string name="select_a_channel">选择频道</string>
+    <string name="no_channel_subscribed_yet">还没有订阅的频道</string>
+    <string name="select_a_kiosk">选择 kiosk</string>
+    <string name="export_complete_toast">导出完成</string>
+    <string name="import_complete_toast">导入完成</string>
+    <string name="no_valid_zip_file">无有效的 ZIP 文件</string>
+    <string name="could_not_import_all_files">警告：无法导入所有文件。</string>
+    <string name="override_current_data">将覆盖你现有设置。</string>
+
+    <string name="kiosk">Kiosk</string>
+    <string name="trending">流行的</string>
+    <string name="top_50">Top 50</string>
+    <string name="new_and_hot">最新 &amp; 最热</string>
+    <string name="title_activity_background_player">后台播放器</string>
+    <string name="title_activity_popup_player">悬浮窗播放器</string>
+    <string name="play_queue_remove">移除</string>
+    <string name="play_queue_stream_detail">详情</string>
+    <string name="play_queue_audio_settings">音频设置</string>
+    <string name="hold_to_append">按住以队列</string>
+    <string name="enqueue_on_background">在后台队列</string>
+    <string name="enqueue_on_popup">在悬浮窗队列</string>
+    <string name="start_here_on_main">从这里播放</string>
+    <string name="start_here_on_background">从这里在后台播放</string>
+    <string name="start_here_on_popup">从这里在悬浮窗播放</string>
+
+    <string name="drawer_open">打开侧栏菜单</string>
+    <string name="drawer_close">关闭侧栏菜单</string>
+    <string name="drawer_header_action_paceholder_text">马上就好 ;D</string>
+
+
+    <string name="preferred_open_action_settings_title">偏好的打开动作</string>
+    <string name="preferred_open_action_settings_summary">打开内容的默认动作 — %s</string>
+
+    <string name="video_player">视频播放器</string>
+    <string name="background_player">后台播放器</string>
+    <string name="popup_player">悬浮窗播放器</string>
+    <string name="always_ask_open_action">总是询问</string>
+
+    <string name="preferred_player_fetcher_notification_title">获取信息中…</string>
+    <string name="preferred_player_fetcher_notification_message">正在加载请求的内容</string>
+
+    <string name="create_playlist">创建新播放列表</string>
+    <string name="delete_playlist">删除播放列表</string>
+    <string name="rename_playlist">重命名播放列表</string>
+    <string name="playlist_name_input">名称</string>
+    <string name="append_playlist">加入播放列表</string>
+    <string name="set_as_playlist_thumbnail">设置为播放列表缩略图</string>
+
+    <string name="bookmark_playlist">书签播放列表</string>
+    <string name="unbookmark_playlist">移除书签</string>
+
+    <string name="delete_playlist_prompt">你想删除此播放列表吗？</string>
+    <string name="playlist_creation_success">播放列表已创建</string>
+    <string name="playlist_add_stream_success">加入播放列表</string>
+    <string name="playlist_thumbnail_change_success">播放列表缩略图已更改</string>
+    <string name="playlist_delete_failure">删除播放列表失败</string>
+
+    <string name="caption_none">无字幕</string>
+
+    <string name="resize_fit">适应屏幕</string>
+    <string name="resize_fill">填充屏幕</string>
+    <string name="resize_zoom">放大填充</string>
+
+    <string name="caption_auto_generated">自动生成</string>
+    <string name="caption_font_size_settings_title">字幕字体大小</string>
+    <string name="smaller_caption_font_size">小字体</string>
+    <string name="normal_caption_font_size">中等字体</string>
+    <string name="larger_caption_font_size">大字体</string>
+
+    <string name="enable_leak_canary_title">启用 LeakCanary</string>
+    <string name="enable_leak_canary_summary">heap dumping 的时候，内存泄露监测可能会导致应用未响应</string>
+
+    <string name="enable_disposed_exceptions_title">报告生命周期外的错误</string>
+    <string name="enable_disposed_exceptions_summary">处理之后，强制报告无法送达的、发生在Fragment或activity生命周期之外的Rx异常</string>
+
+    <string name="import_export_title">导入/导出</string>
+    <string name="import_title">导入</string>
+    <string name="import_from">从导入</string>
+    <string name="export_to">导出至</string>
+
+    <string name="import_ongoing">导入中…</string>
+    <string name="export_ongoing">导出中…</string>
+
+    <string name="import_file_title">导入文件</string>
+    <string name="previous_export">之前的导出</string>
+
+    <string name="subscriptions_import_unsuccessful">订阅导入失败</string>
+    <string name="subscriptions_export_unsuccessful">订阅导出失败</string>
+
+    <string name="import_youtube_instructions">为了导入你的 YouTube 订阅，你需要一个导出文件，按照下面的步骤来下载此文件：
+\n1. 浏览器打开链接：%1$s
+\n2. 登录你的账户
+\n3. 下载应该马上开始（这个就是你的导出文件）</string>
+    <string name="import_soundcloud_instructions">为了导入你的 SoundCloud，你需要知道你的个人页链接或者id，如果你知道，只要在下面的输入框中输入任意一种就OK了。
+\n如果你不知道，你需要这么做：
+\n1. 浏览器打开链接：%1$s
+\n2. 在某些手机浏览器中你得开启桌面模式（desktop mode）
+\n3. 复制你跳转到的链接（这个就是你的个人页链接）</string>
+    <string name="import_soundcloud_instructions_hint">你的ID 或 soundcloud.com/你的ID</string>
+
+    <string name="import_network_expensive_warning">请注意这个操作可能耗费大量流量。
+\n你想继续吗？</string>
+
+    <string name="playback_speed_control">播放速度控制</string>
+    <string name="playback_tempo">速度</string>
+    <string name="playback_pitch">音调</string>
+    <string name="unhook_checkbox">Unhook（可能导致失真）</string>
+    <string name="playback_nightcore">Nightcore</string>
+    <string name="playback_default">默认</string>
+</resources>
