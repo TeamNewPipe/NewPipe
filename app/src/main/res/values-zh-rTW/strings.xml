@@ -439,4 +439,6 @@
 <string name="preferred_open_action_settings_title">偏好的開啟動作</string>
     <string name="preferred_open_action_settings_summary">開起內容時的預設動作 — %s</string>
 
+    <string name="no_streams_available_download">沒有可供下載的串流</string>
+
     </resources>
