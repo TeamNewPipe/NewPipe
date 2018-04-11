@@ -27,7 +27,7 @@
     <string name="m4a_description">m4a形式</string>
     <string name="download_dialog_title">保存</string>
     <string name="next_video_title">次の動画</string>
-    <string name="show_next_and_similar_title">次の同様の動画を表示します</string>
+    <string name="show_next_and_similar_title">\"次の動画\"と\"関連動画\"を表示します</string>
     <string name="url_not_supported_toast">URLは使用できません</string>
     <string name="search_language_title">優先言語</string>
     <string name="settings_category_video_audio_title">動画と音楽</string>
@@ -74,7 +74,7 @@
 
     <string name="content">内容</string>
     <string name="show_age_restricted_content_title">年齢制限のあるコンテンツを表示する</string>
-    <string name="video_is_age_restricted">この動画には､年齢制限があります｡設定から制限を解除して下さい｡</string>
+    <string name="video_is_age_restricted">この動画には年齢制限があります｡視聴するには設定から制限を解除して下さい｡</string>
 
     <string name="light_parsing_error">Webｻｲﾄを完全には解析できませんでした</string>
     <string name="could_not_get_stream">動画を取得できませんでした</string>
@@ -310,4 +310,74 @@
     
     <string name="preferred_player_fetcher_notification_title">情報を取得しています…</string>
     <string name="preferred_player_fetcher_notification_message">要求したコンテンツを読み込んでいます</string>
+<string name="controls_download_desc">動画ファイルをダウンロード</string>
+    <string name="show_info">情報を表示</string>
+
+    <string name="tab_bookmarks">ブックマーク</string>
+
+    <string name="download_thumbnail_title">サムネイルを読み込む</string>
+    <string name="thumbnail_cache_wipe_complete_notice">画像キャッシュを消去しました</string>
+    <string name="metadata_cache_wipe_title">メタデータのキャッシュを消去</string>
+    <string name="metadata_cache_wipe_summary">ウェブページのキャッシュデータをすべて削除します</string>
+    <string name="metadata_cache_wipe_complete_notice">メタデータのキャッシュを消去しました</string>
+    <string name="auto_queue_title">次の動画を自動でキューに追加</string>
+    <string name="settings_category_debug_title">デバッグ</string>
+    <string name="file">ファイル</string>
+
+    <string name="video_streams_empty">動画が見つかりません</string>
+    <string name="audio_streams_empty">音声が見つかりません</string>
+    <string name="invalid_directory">無効なディレクトリ</string>
+    <string name="invalid_file">ファイルが存在しないか、ファイルへの読み書きができません</string>
+    <string name="file_name_empty_error">ファイル名は空白にできません</string>
+    <string name="error_occurred_detail">エラーが発生しました: %1$s</string>
+    <string name="no_streams_available_download">ダウンロードできる動画はありません</string>
+
+    <string name="detail_drag_description">ドラッグして並べ替え</string>
+
+    <string name="create">作成</string>
+    <string name="delete_one">削除</string>
+    <string name="delete_all">すべて削除</string>
+    <string name="dismiss">破棄</string>
+    <string name="rename">名前を変更</string>
+
+    <string name="delete_stream_history_prompt">このアイテムを再生履歴から削除しますか？</string>
+    <string name="delete_all_history_prompt">すべてのアイテムを再生履歴から削除しますか？</string>
+    <string name="always_ask_open_action">常に確認</string>
+
+    <string name="create_playlist">新規プレイリストを作成</string>
+    <string name="delete_playlist">プレイリストを削除</string>
+    <string name="rename_playlist">プレイリストの名前を変更</string>
+    <string name="playlist_name_input">プレイリスト名</string>
+    <string name="append_playlist">プレイリストに追加</string>
+    <string name="set_as_playlist_thumbnail">プレイリストのサムネイルとして設定</string>
+
+    <string name="bookmark_playlist">プレイリストをブックマーク</string>
+    <string name="unbookmark_playlist">ブックマークを削除</string>
+
+    <string name="delete_playlist_prompt">このプレイリストを削除しますか？</string>
+    <string name="playlist_creation_success">プレイリストが正常に作成されました</string>
+    <string name="playlist_add_stream_success">プレイリストに追加しました</string>
+    <string name="playlist_thumbnail_change_success">プレイリストのサムネイルを変更しました</string>
+    <string name="playlist_delete_failure">プレイリストの削除に失敗しました</string>
+
+    <string name="caption_none">字幕なし</string>
+
+    <string name="caption_font_size_settings_title">字幕の文字サイズ</string>
+    <string name="import_export_title">インポート/エクスポート</string>
+    <string name="import_title">インポート</string>
+    <string name="import_from">インポート元</string>
+    <string name="export_to">エクスポート先</string>
+
+    <string name="import_ongoing">インポートしています…</string>
+    <string name="export_ongoing">エクスポートしています…</string>
+
+    <string name="import_file_title">ファイルからインポート</string>
+    <string name="previous_export">前回のエクスポート</string>
+
+    <string name="subscriptions_import_unsuccessful">購読リストのインポートに失敗しました</string>
+    <string name="subscriptions_export_unsuccessful">購読リストのエクスポートに失敗しました</string>
+
+    <string name="playback_tempo">テンポ</string>
+    <string name="playback_pitch">音程</string>
+    <string name="playback_default">デフォルト</string>
 </resources>
