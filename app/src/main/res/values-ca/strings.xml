@@ -61,7 +61,7 @@
 
     <string name="import_data_title">Importa una base de dades</string>
     <string name="export_data_title">Exporta una base de dades</string>
-    <string name="export_data_summary">Exporta l\'historial, les subscripcions i les llistes de reproducció.</string>
+    <string name="export_data_summary">Exporta l\'historial, les subscripcions i les llistes de reproducció</string>
     <string name="general_error">Error</string>
     <string name="network_error">Error de xarxa</string>
     <string name="video">Vídeo</string>
@@ -123,8 +123,8 @@
     <string name="import_from">Importa des de</string>
     <string name="export_to">Exporta a</string>
 
-    <string name="import_ongoing">S\'està important…</string>
-    <string name="export_ongoing">S\'està exportant…</string>
+    <string name="import_ongoing">S\'està important...</string>
+    <string name="export_ongoing">S\'està exportant...</string>
 
     <string name="import_file_title">Importa un fitxer</string>
     <string name="playback_default">Per defecte</string>
@@ -196,11 +196,11 @@
     <string name="content_not_available">Contingut no disponible</string>
     <string name="blocked_by_gema">Blocat per la GEMA</string>
     <string name="could_not_setup_download_menu">No s\'ha pogut configurar el menú de baixades</string>
-    <string name="live_streams_not_supported">Això és una emissió en directe, que encara no es pot reproduir.</string>
+    <string name="live_streams_not_supported">Això és una emissió en directe, que encara no es pot reproduir</string>
     <string name="could_not_get_stream">No s\'ha pogut obtenir cap flux</string>
     <string name="could_not_load_image">No s\'ha pogut carregar la imatge</string>
     <string name="app_ui_crash">Ha fallat l\'aplicació o la interfície d\'usuari</string>
-    <string name="player_stream_failure">No s\'ha pogut reproduir aquest flux</string>
+    <string name="player_stream_failure">No s\'ha pogut reproduir aquest flux.</string>
     <string name="player_unrecoverable_failure">S\'ha produït un error irrecuperable al reproductor</string>
     <string name="external_player_unsupported_link_type">Els reproductors externs no són compatibles amb aquesta mena d\'enllaços</string>
     <string name="invalid_url_toast">L\'URL no és vàlid</string>
@@ -284,8 +284,8 @@
     <string name="channel_page_summary">Pàgina d\'un canal</string>
     <string name="select_a_kiosk">Tria un quiosc</string>
     <string name="no_valid_zip_file">El fitxer no té un format ZIP vàlid</string>
-    <string name="could_not_import_all_files">Avís: No s\'han pogut importar tots els fitxers.</string>
-    <string name="override_current_data">Això sobreescriurà la configuració actual.</string>
+    <string name="could_not_import_all_files">Avís: No s\'han pogut importar tots els fitxers</string>
+    <string name="override_current_data">Això sobreescriurà la configuració actual</string>
 
     <string name="kiosk">Quiosc</string>
     <string name="trending">Tendències</string>
@@ -297,7 +297,7 @@
     <string name="start_here_on_main">Comença la reproducció aquí</string>
     <string name="drawer_open">Obre el calaix</string>
     <string name="drawer_close">Tanca el calaix</string>
-    <string name="preferred_player_fetcher_notification_title">S\'està obtenint la informació…</string>
+    <string name="preferred_player_fetcher_notification_title">S\'està obtenint la informació</string>
     <string name="preferred_player_fetcher_notification_message">S\'està carregant el contingut seleccionat</string>
 
     <string name="delete_playlist_prompt">Voleu eliminar aquesta llista de reproducció?</string>
@@ -307,4 +307,86 @@
     <string name="playback_speed_control">Control de la velocitat de reproducció</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">To</string>
+    <string name="main_bg_subtitle">Toqueu el botó de cerca per començar</string>
+    <string name="use_external_video_player_summary">En algunes resolucions NO hi haurà àudio quan aquesta opció estigui activada</string>
+    <string name="use_external_audio_player_title">Fes servir un reproductor d\'àudio extern</string>
+    <string name="download_thumbnail_summary">Desactiveu-ho per evitar que es carreguin les miniatures i estalviar dades i memòria. Si canvieu aquesta opció, s\'esborrarà la memòria cau d\'imatges tant de la memòria com de l\'emmagatzematge.</string>
+    <string name="enable_search_history_summary">Emmagatzema les cerques localment</string>
+    <string name="enable_watch_history_summary">Registra els vídeos visualitzats</string>
+    <string name="resume_on_audio_focus_gain_title">Reprèn la reproducció en passar a primer pla</string>
+    <string name="url_not_supported_toast">Aquesta URL no és compatible</string>
+    <string name="error_report_title">Informe d\'error</string>
+    <string name="later">Més tard</string>
+    <string name="filter">Filtra</string>
+    <string name="refresh">Actualitza</string>
+    <string name="popup_resizing_indicator_title">S\'està redimensionant</string>
+    <string name="play_all">Reprodueix-ho tot</string>
+    <string name="toggle_orientation">Canvia l\'orientació</string>
+    <string name="switch_to_background">Canvia al mode en segon pla</string>
+    <string name="switch_to_popup">Canvia al mode emergent</string>
+    <string name="switch_to_main">Canvia al mode principal</string>
+
+    <string name="import_data_summary">Això sobreescriurà l\'historial i les subscripcions actuals</string>
+    <string name="player_recoverable_failure">S\'està recuperant el reproductor després de l\'error</string>
+    <string name="sorry_string">Ho sentim, això no hauria d\'haver ocorregut.</string>
+    <string name="detail_drag_description">Arrossegueu per a reordenar la llista</string>
+
+    <string name="short_thousand">mil</string>
+    <string name="short_million">milions</string>
+    <string name="short_billion">mil milions</string>
+
+    <string name="start">Inicia</string>
+    <string name="add">Nova missió</string>
+    <string name="msg_url_malform">L\'URL té un format incorrecte o no hi ha connexió a internet</string>
+    <string name="msg_running_detail">Toqueu aquí per a més detalls</string>
+    <string name="no_available_dir">Trieu una carpeta de baixades disponible</string>
+    <string name="msg_popup_permission">Es necessita aquest permís per a obrir el mode emergent</string>
+
+    <string name="reCaptcha_title">Camp reCAPTCHA</string>
+    <string name="recaptcha_request_toast">S\'ha sol·licitat l\'emplenament d\'un camp reCAPTCHA</string>
+
+    <string name="settings_file_replacement_character_summary">Se substituiran els caràcters no vàlids amb aquest valor</string>
+    <string name="settings_file_replacement_character_title">Caràcter de substitució</string>
+
+    <string name="charset_most_special_characters">Principals caràcters especials</string>
+
+    <string name="contribution_encouragement">Ja siguin idees, traduccions, canvis en el disseny, una neteja del codi o canvis importants de programació, la vostra ajuda sempre és benvinguda. Com més feina feta hi hagi, millor!</string>
+    <string name="donation_encouragement">"El NewPipe està desenvolupat per voluntaris que fan servir el seu temps lliure per a oferir-vos la millor experiència possible. Ara és el moment de fer una aportació per assegurar que els nostres desenvolupadors puguin millorar encara més el NewPipe mentre fan un cafè. "</string>
+    <string name="give_back">Fes la teva aportació</string>
+    <string name="title_history_search">Cerques</string>
+    <string name="title_history_view">Visualitzacions</string>
+    <string name="no_channel_subscribed_yet">Encara no us heu subscrit a cap canal</string>
+    <string name="new_and_hot">Novetats</string>
+    <string name="hold_to_append">Manteniu premut per afegir a la cua</string>
+    <string name="start_here_on_background">Inicia en segon pla</string>
+    <string name="start_here_on_popup">Inicia en mode emergent</string>
+
+    <string name="set_as_playlist_thumbnail">Defineix com a miniatura de la llista de reproducció</string>
+
+    <string name="bookmark_playlist">Afegeix la llista de reproducció a les adreces d\'interès</string>
+    <string name="unbookmark_playlist">Elimina l\'adreça d\'interès</string>
+
+    <string name="playlist_creation_success">S\'ha creat correctament la llista de reproducció</string>
+    <string name="playlist_add_stream_success">Afegeix a la llista de reproducció</string>
+    <string name="playlist_thumbnail_change_success">S\'ha canviat la miniatura de la llista de reproducció</string>
+    <string name="caption_none">Sense subtítols</string>
+
+    <string name="resize_fit">AJUSTA</string>
+    <string name="resize_fill">OMPLE</string>
+    <string name="resize_zoom">ESCALA</string>
+
+    <string name="caption_auto_generated">Generats automàticament</string>
+    <string name="caption_font_size_settings_title">Mida dels subtítols</string>
+    <string name="smaller_caption_font_size">Mida més petita</string>
+    <string name="normal_caption_font_size">Mida normal</string>
+    <string name="larger_caption_font_size">Mida més gran</string>
+
+    <string name="enable_leak_canary_title">Habilita el LeakCanary</string>
+    <string name="previous_export">Darrera exportació</string>
+
+    <string name="subscriptions_import_unsuccessful">Ha fallat la importació de les subscripcions</string>
+    <string name="subscriptions_export_unsuccessful">Ha fallat l\'exportació de les subscripcions</string>
+
+    <string name="unhook_checkbox">Desvincula (pot provocar distorsió)</string>
+    <string name="playback_nightcore">Nightcore</string>
     </resources>
