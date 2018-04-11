@@ -61,7 +61,7 @@
 
     <string name="import_data_title">Importa una base de dades</string>
     <string name="export_data_title">Exporta una base de dades</string>
-    <string name="export_data_summary">Exporta l\'historial, les subscripcions i les llistes de reproducció</string>
+    <string name="export_data_summary">Exporta l\'historial, les subscripcions i les llistes de reproducció.</string>
     <string name="general_error">Error</string>
     <string name="network_error">Error de xarxa</string>
     <string name="video">Vídeo</string>
@@ -123,8 +123,8 @@
     <string name="import_from">Importa des de</string>
     <string name="export_to">Exporta a</string>
 
-    <string name="import_ongoing">S\'està important...</string>
-    <string name="export_ongoing">S\'està exportant...</string>
+    <string name="import_ongoing">S\'està important…</string>
+    <string name="export_ongoing">S\'està exportant…</string>
 
     <string name="import_file_title">Importa un fitxer</string>
     <string name="playback_default">Per defecte</string>
@@ -133,7 +133,7 @@
     <string name="no_player_found">No s\'ha trobat un reproductor de fluxos. Voleu instal·lar el VLC?</string>
     <string name="no_player_found_toast">No s\'ha trobat cap reproductor de fluxos (podeu instal·lar el VLC per reproduir-lo)</string>
     <string name="open_in_popup_mode">Obre en mode emergent</string>
-    <string name="controls_download_desc">Baixa el fitxer del flux.</string>
+    <string name="controls_download_desc">Baixa el fitxer de vídeo.</string>
     <string name="did_you_mean">Volíeu dir: %1$s?</string>
     <string name="share_dialog_title">Comparteix-ho amb</string>
     <string name="screen_rotation">rotació</string>
@@ -169,7 +169,7 @@
     <string name="thumbnail_cache_wipe_complete_notice">S\'ha esborrat la memòria cau d\'imatges</string>
     <string name="metadata_cache_wipe_title">Esborra les metadades de la memòria cau</string>
     <string name="metadata_cache_wipe_complete_notice">S\'ha esborrat la memòria cau de metadades</string>
-    <string name="auto_queue_title">Afegeix automàticament a la cua el següent flux</string>
+    <string name="auto_queue_title">Afegeix automàticament a la cua el següent vídeo</string>
     <string name="player_gesture_controls_title">Control per gestos del reproductor</string>
     <string name="player_gesture_controls_summary">Feu servir gestos per regular la brillantor i el volum del reproductor</string>
     <string name="show_search_suggestions_title">Suggeriments de cerca</string>
@@ -196,11 +196,11 @@
     <string name="content_not_available">Contingut no disponible</string>
     <string name="blocked_by_gema">Blocat per la GEMA</string>
     <string name="could_not_setup_download_menu">No s\'ha pogut configurar el menú de baixades</string>
-    <string name="live_streams_not_supported">Això és una emissió en directe, que encara no es pot reproduir</string>
-    <string name="could_not_get_stream">No s\'ha pogut obtenir cap flux</string>
+    <string name="live_streams_not_supported">Això és una emissió en directe, que encara no és compatible.</string>
+    <string name="could_not_get_stream">No s\'ha pogut obtenir cap vídeo</string>
     <string name="could_not_load_image">No s\'ha pogut carregar la imatge</string>
     <string name="app_ui_crash">Ha fallat l\'aplicació o la interfície d\'usuari</string>
-    <string name="player_stream_failure">No s\'ha pogut reproduir aquest flux.</string>
+    <string name="player_stream_failure">No s\'ha pogut reproduir aquest vídeo</string>
     <string name="player_unrecoverable_failure">S\'ha produït un error irrecuperable al reproductor</string>
     <string name="external_player_unsupported_link_type">Els reproductors externs no són compatibles amb aquesta mena d\'enllaços</string>
     <string name="invalid_url_toast">L\'URL no és vàlid</string>
@@ -284,8 +284,8 @@
     <string name="channel_page_summary">Pàgina d\'un canal</string>
     <string name="select_a_kiosk">Tria un quiosc</string>
     <string name="no_valid_zip_file">El fitxer no té un format ZIP vàlid</string>
-    <string name="could_not_import_all_files">Avís: No s\'han pogut importar tots els fitxers</string>
-    <string name="override_current_data">Això sobreescriurà la configuració actual</string>
+    <string name="could_not_import_all_files">Avís: No s\'han pogut importar tots els fitxers.</string>
+    <string name="override_current_data">Això sobreescriurà la configuració actual.</string>
 
     <string name="kiosk">Quiosc</string>
     <string name="trending">Tendències</string>
@@ -297,7 +297,7 @@
     <string name="start_here_on_main">Comença la reproducció aquí</string>
     <string name="drawer_open">Obre el calaix</string>
     <string name="drawer_close">Tanca el calaix</string>
-    <string name="preferred_player_fetcher_notification_title">S\'està obtenint la informació</string>
+    <string name="preferred_player_fetcher_notification_title">S\'està obtenint la informació…</string>
     <string name="preferred_player_fetcher_notification_message">S\'està carregant el contingut seleccionat</string>
 
     <string name="delete_playlist_prompt">Voleu eliminar aquesta llista de reproducció?</string>
@@ -351,7 +351,7 @@
     <string name="charset_most_special_characters">Principals caràcters especials</string>
 
     <string name="contribution_encouragement">Ja siguin idees, traduccions, canvis en el disseny, una neteja del codi o canvis importants de programació, la vostra ajuda sempre és benvinguda. Com més feina feta hi hagi, millor!</string>
-    <string name="donation_encouragement">"El NewPipe està desenvolupat per voluntaris que fan servir el seu temps lliure per a oferir-vos la millor experiència possible. Ara és el moment de fer una aportació per assegurar que els nostres desenvolupadors puguin millorar encara més el NewPipe mentre fan un cafè. "</string>
+    <string name="donation_encouragement">El NewPipe està desenvolupat per voluntaris que fan servir el seu temps lliure per a oferir-vos la millor experiència possible. Ara és el moment de fer una aportació per assegurar que els nostres desenvolupadors puguin millorar encara més el NewPipe mentre fan un cafè!</string>
     <string name="give_back">Fes la teva aportació</string>
     <string name="title_history_search">Cerques</string>
     <string name="title_history_view">Visualitzacions</string>
@@ -389,4 +389,39 @@
 
     <string name="unhook_checkbox">Desvincula (pot provocar distorsió)</string>
     <string name="playback_nightcore">Nightcore</string>
+    <string name="metadata_cache_wipe_summary">Elimina totes les dades de llocs web de la memòria cau</string>
+    <string name="auto_queue_summary">Afegeix automàticament a la cua un vídeo relacionat quan s\'inicia la reproducció de l\'últim vídeo en una cua de reproducció sense repetició.</string>
+    <string name="show_hold_to_append_title">Mostra el consell «Mantingueu premut per afegir a la cua»</string>
+    <string name="show_hold_to_append_summary">Mostra el consell quan el botó de mode en segon pla o emergent està premut a la pàgina de detalls del vídeo</string>
+    <string name="info_labels">Què:\\nPetició:\\nIdioma del contingut:\\nServei:\\nHora GMT:\\nPaquet:\\nVersió:\\nVersió del SO:</string>
+    <string name="drawer_header_action_paceholder_text">Aviat hi haurà novetats aquí ;D</string>
+
+
+    <string name="preferred_open_action_settings_title">Acció d\'obertura preferida</string>
+    <string name="preferred_open_action_settings_summary">Acció per defecte en obrir continguts — %s</string>
+
+    <string name="enable_leak_canary_summary">"La supervisió de fugues de memòria pot fer que l\'aplicació deixi de respondre mentre es bolca la memòria "</string>
+
+    <string name="enable_disposed_exceptions_title">Informa d\'errors fora del cicle de vida</string>
+    <string name="enable_disposed_exceptions_summary">Força l\'informe d\'excepcions Rx que no es puguin transmetre que tinguin lloc fora del cicle de vida d\'un fragment o activitat després de disposar-los</string>
+
+    <string name="import_youtube_instructions">Per importar les vostres subscripcions de YouTube necessitareu el fitxer d\'exportació. El podeu aconseguir seguint aquestes instruccions:
+\n
+\n1. Aneu a aquesta URL: %1$s
+\n2. Inicieu sessió quan se us demani
+\n3. S\'hauria d\'iniciar una baixada (el fitxer d\'exportació)</string>
+    <string name="import_soundcloud_instructions">Per a importar les vostres subscripcions de SoundCloud heu de conèixer l\'URL o l\'identificador del vostre perfil. Si el sabeu, escriviu-lo a sota i no caldrà fer res més.
+\n
+\nSi no els sabeu, seguiu aquestes instruccions:
+\n
+\n1. Activeu el «Mode d\'ordinador» en un navegador (el lloc web no està disponible per a dispositius mòbils)
+\n2. Aneu a aquesta URL: %1$s
+\n3. Inicieu sessió al vostre compte quan se us demani
+\n4. Copieu l\'URL de la pàgina on se us redireccionarà (l\'URL del vostre perfil)</string>
+    <string name="import_soundcloud_instructions_hint">identificador, soundcloud.com/identificador</string>
+
+    <string name="import_network_expensive_warning">Tingueu en compte que això pot comportar un ús intensiu de la xarxa.
+\n
+\nVoleu continuar?</string>
+
     </resources>
