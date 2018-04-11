@@ -380,4 +380,6 @@
     <string name="playback_tempo">テンポ</string>
     <string name="playback_pitch">音程</string>
     <string name="playback_default">デフォルト</string>
-</resources>
+<string name="background_player_append">バックグラウンド再生リストに追加されました</string>
+    <string name="popup_playing_append">ポップアップ再生リストに追加されました</string>
+    </resources>
