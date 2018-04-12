@@ -1,4 +1,4 @@
-package org.schabi.newpipe.fragments.local.bookmark;
+package org.schabi.newpipe.fragments.local;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

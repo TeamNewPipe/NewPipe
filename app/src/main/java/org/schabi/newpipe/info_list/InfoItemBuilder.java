@@ -12,6 +12,7 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.local.history.HistoryInfoItem;
 import org.schabi.newpipe.info_list.holder.ChannelInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelMiniInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.InfoItemHolder;
@@ -50,6 +51,7 @@ public class InfoItemBuilder {
     private OnClickGesture<StreamInfoItem> onStreamSelectedListener;
     private OnClickGesture<ChannelInfoItem> onChannelSelectedListener;
     private OnClickGesture<PlaylistInfoItem> onPlaylistSelectedListener;
+    private OnClickGesture<HistoryInfoItem> onHistoryItemSelectedListener;
 
     public InfoItemBuilder(Context context) {
         this.context = context;
@@ -111,4 +113,11 @@ public class InfoItemBuilder {
         this.onPlaylistSelectedListener = listener;
     }
 
+    public OnClickGesture<HistoryInfoItem> getOnHistoryItemSelectedListener() {
+        return onHistoryItemSelectedListener;
+    }
+
+    public void setOnHistoryItemSelectedListener(OnClickGesture<HistoryInfoItem> onHistoryItemSelectedListener) {
+        this.onHistoryItemSelectedListener = onHistoryItemSelectedListener;
+    }
 }

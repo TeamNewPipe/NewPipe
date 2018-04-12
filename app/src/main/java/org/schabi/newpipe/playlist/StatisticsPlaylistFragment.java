@@ -1,4 +1,4 @@
-package org.schabi.newpipe.fragments.local.bookmark;
+package org.schabi.newpipe.playlist;
 
 import android.app.Activity;
 import android.content.Context;
@@ -17,10 +17,9 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
-import org.schabi.newpipe.history.HistoryRecordManager;
+import org.schabi.newpipe.fragments.local.BaseLocalListFragment;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.info_list.InfoItemDialog;
-import org.schabi.newpipe.playlist.PlayQueue;
-import org.schabi.newpipe.playlist.SinglePlayQueue;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;

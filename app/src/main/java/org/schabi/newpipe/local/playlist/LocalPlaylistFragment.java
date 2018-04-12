@@ -1,4 +1,4 @@
-package org.schabi.newpipe.fragments.local.bookmark;
+package org.schabi.newpipe.local.playlist;
 
 import android.app.Activity;
 import android.content.Context;
@@ -26,7 +26,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
-import org.schabi.newpipe.fragments.local.LocalPlaylistManager;
+import org.schabi.newpipe.fragments.local.BaseLocalListFragment;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.SinglePlayQueue;
@@ -173,7 +173,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             @Override
             public void held(LocalItem selectedItem) {
                 if (selectedItem instanceof PlaylistStreamEntry) {
-                    showStreamDialog((PlaylistStreamEntry) selectedItem);
+                    showStreamItemDialog((PlaylistStreamEntry) selectedItem);
                 }
             }
 
@@ -506,7 +506,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected void showStreamDialog(final PlaylistStreamEntry item) {
+    protected void showStreamItemDialog(final PlaylistStreamEntry item) {
         final Context context = getContext();
         final Activity activity = getActivity();
         if (context == null || context.getResources() == null || getActivity() == null) return;

@@ -21,6 +21,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.fragments.local.dialog.PlaylistAppendDialog;
+import org.schabi.newpipe.local.history.HistoryInfoItem;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.playlist.SinglePlayQueue;
@@ -140,14 +141,24 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
         infoListAdapter.setOnStreamSelectedListener(new OnClickGesture<StreamInfoItem>() {
             @Override
             public void selected(StreamInfoItem selectedItem) {
-                onItemSelected(selectedItem);
-                NavigationHelper.openVideoDetailFragment(useAsFrontPage ? getParentFragment().getFragmentManager() : getFragmentManager(),
-                        selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName());
+                onStreamSelected(selectedItem);
             }
 
             @Override
             public void held(StreamInfoItem selectedItem) {
                 showStreamDialog(selectedItem);
+            }
+        });
+
+        infoListAdapter.setOnHistoryItemSelectedListener(new OnClickGesture<HistoryInfoItem>() {
+            @Override
+            public void selected(HistoryInfoItem selectedItem) {
+                onStreamSelected(selectedItem);
+            }
+
+            @Override
+            public void held(HistoryInfoItem selectedItem) {
+                showHistoryItemDialog(selectedItem);
             }
         });
 
@@ -176,6 +187,12 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
                 onScrollToBottom();
             }
         });
+    }
+
+    private void onStreamSelected(StreamInfoItem selectedItem) {
+        onItemSelected(selectedItem);
+        NavigationHelper.openVideoDetailFragment(useAsFrontPage ? getParentFragment().getFragmentManager() : getFragmentManager(),
+                selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName());
     }
 
     protected void onScrollToBottom() {
@@ -209,6 +226,42 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
                                 .show(getFragmentManager(), TAG);
                     }
                     break;
+                default:
+                    break;
+            }
+        };
+
+        new InfoItemDialog(getActivity(), item, commands, actions).show();
+    }
+
+    protected void showHistoryItemDialog(final HistoryInfoItem item) {
+        final Context context = getContext();
+        final Activity activity = getActivity();
+        if (context == null || context.getResources() == null || getActivity() == null) return;
+
+        final String[] commands = new String[]{
+                context.getResources().getString(R.string.enqueue_on_background),
+                context.getResources().getString(R.string.enqueue_on_popup),
+                context.getResources().getString(R.string.append_playlist),
+                context.getResources().getString(R.string.delete)
+        };
+
+        final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
+            switch (i) {
+                case 0:
+                    NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
+                    break;
+                case 1:
+                    NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(item));
+                    break;
+                case 2:
+                    if (getFragmentManager() != null) {
+                        PlaylistAppendDialog.fromStreamInfoItems(Collections.singletonList(item))
+                                .show(getFragmentManager(), TAG);
+                    }
+                    break;
+                case 3:
+
                 default:
                     break;
             }

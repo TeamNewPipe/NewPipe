@@ -37,11 +37,10 @@ import org.schabi.newpipe.fragments.list.feed.FeedFragment;
 import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
-import org.schabi.newpipe.fragments.local.bookmark.LastPlayedFragment;
-import org.schabi.newpipe.fragments.local.bookmark.LocalPlaylistFragment;
-import org.schabi.newpipe.fragments.local.bookmark.MostPlayedFragment;
+import org.schabi.newpipe.fragments.local.history.LastPlayedFragment;
+import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
+import org.schabi.newpipe.fragments.local.history.MostPlayedFragment;
 import org.schabi.newpipe.fragments.subscription.SubscriptionsImportFragment;
-import org.schabi.newpipe.history.HistoryActivity;
 import org.schabi.newpipe.player.BackgroundPlayer;
 import org.schabi.newpipe.player.BackgroundPlayerActivity;
 import org.schabi.newpipe.player.BasePlayer;
@@ -414,11 +413,6 @@ public class NavigationHelper {
 
     public static void openAbout(Context context) {
         Intent intent = new Intent(context, AboutActivity.class);
-        context.startActivity(intent);
-    }
-
-    public static void openHistory(Context context) {
-        Intent intent = new Intent(context, HistoryActivity.class);
         context.startActivity(intent);
     }
 

@@ -12,7 +12,7 @@ import android.widget.Toast;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
-import org.schabi.newpipe.fragments.local.LocalPlaylistManager;
+import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 
 import java.util.List;
 

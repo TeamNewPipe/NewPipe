@@ -19,8 +19,9 @@ import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistLocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
-import org.schabi.newpipe.fragments.local.LocalPlaylistManager;
-import org.schabi.newpipe.fragments.local.RemotePlaylistManager;
+import org.schabi.newpipe.fragments.local.BaseLocalListFragment;
+import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
+import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
@@ -38,7 +39,6 @@ import io.reactivex.disposables.CompositeDisposable;
 public final class BookmarkFragment
         extends BaseLocalListFragment<List<PlaylistLocalItem>, Void> {
 
-    private View lastPlayedButton;
     private View mostPlayedButton;
 
     @State
@@ -98,7 +98,6 @@ public final class BookmarkFragment
     protected View getListHeader() {
         final View headerRootLayout = activity.getLayoutInflater()
                 .inflate(R.layout.bookmark_header, itemsList, false);
-        lastPlayedButton = headerRootLayout.findViewById(R.id.lastPlayed);
         mostPlayedButton = headerRootLayout.findViewById(R.id.mostPlayed);
         return headerRootLayout;
     }
@@ -134,12 +133,6 @@ public final class BookmarkFragment
                 } else if (selectedItem instanceof PlaylistRemoteEntity) {
                     showRemoteDeleteDialog((PlaylistRemoteEntity) selectedItem);
                 }
-            }
-        });
-
-        lastPlayedButton.setOnClickListener(view -> {
-            if (getParentFragment() != null) {
-                NavigationHelper.openLastPlayedFragment(getParentFragment().getFragmentManager());
             }
         });
 
@@ -181,7 +174,6 @@ public final class BookmarkFragment
     public void onDestroyView() {
         super.onDestroyView();
         if (mostPlayedButton != null) mostPlayedButton.setOnClickListener(null);
-        if (lastPlayedButton != null) lastPlayedButton.setOnClickListener(null);
 
         if (disposables != null) disposables.clear();
         if (databaseSubscription != null) databaseSubscription.cancel();

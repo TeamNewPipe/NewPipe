@@ -1,4 +1,4 @@
-package org.schabi.newpipe.history;
+package org.schabi.newpipe.local.history;
 
 import android.support.annotation.Nullable;
 

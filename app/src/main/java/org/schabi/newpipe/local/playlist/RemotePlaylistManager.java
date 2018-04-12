@@ -1,4 +1,4 @@
-package org.schabi.newpipe.fragments.local;
+package org.schabi.newpipe.local.playlist;
 
 import org.schabi.newpipe.database.AppDatabase;
 import org.schabi.newpipe.database.playlist.dao.PlaylistRemoteDAO;
@@ -13,11 +13,9 @@ import io.reactivex.schedulers.Schedulers;
 
 public class RemotePlaylistManager {
 
-    private final AppDatabase database;
     private final PlaylistRemoteDAO playlistRemoteTable;
 
     public RemotePlaylistManager(final AppDatabase db) {
-        database = db;
         playlistRemoteTable = db.playlistRemoteDAO();
     }
 

@@ -19,7 +19,7 @@ import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.local.LocalItemListAdapter;
-import org.schabi.newpipe.fragments.local.LocalPlaylistManager;
+import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.util.OnClickGesture;
 

@@ -41,7 +41,7 @@ import org.schabi.newpipe.extractor.search.SearchEngine;
 import org.schabi.newpipe.extractor.search.SearchResult;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.list.BaseListFragment;
-import org.schabi.newpipe.history.HistoryRecordManager;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.AnimationUtils;

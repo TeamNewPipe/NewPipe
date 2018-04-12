@@ -1,4 +1,4 @@
-package org.schabi.newpipe.fragments.local;
+package org.schabi.newpipe.local.playlist;
 
 import android.support.annotation.Nullable;
 
