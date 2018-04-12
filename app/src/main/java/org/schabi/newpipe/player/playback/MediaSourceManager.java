@@ -24,8 +24,10 @@ import org.schabi.newpipe.playlist.events.RemoveEvent;
 import org.schabi.newpipe.playlist.events.ReorderEvent;
 import org.schabi.newpipe.util.ServiceHelper;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -38,6 +40,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.disposables.SerialDisposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.internal.subscriptions.EmptySubscription;
+import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
 
 import static org.schabi.newpipe.player.mediasource.FailedMediaSource.MediaSourceResolutionException;
@@ -338,12 +341,14 @@ public class MediaSourceManager {
 
     private Observable<Long> getEdgeIntervalSignal() {
         return Observable.interval(progressUpdateIntervalMillis, TimeUnit.MILLISECONDS)
-                .filter(ignored -> playbackListener.isNearPlaybackEdge(playbackNearEndGapMillis));
+                .filter(ignored ->
+                        playbackListener.isApproachingPlaybackEdge(playbackNearEndGapMillis));
     }
 
     private Disposable getDebouncedLoader() {
         return debouncedSignal.mergeWith(nearEndIntervalSignal)
                 .debounce(loadDebounceMillis, TimeUnit.MILLISECONDS)
+                .subscribeOn(Schedulers.single())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(timestamp -> loadImmediate());
     }
@@ -352,7 +357,7 @@ public class MediaSourceManager {
         debouncedSignal.onNext(System.currentTimeMillis());
     }
 
-    private synchronized void loadImmediate() {
+    private void loadImmediate() {
         if (DEBUG) Log.d(TAG, "MediaSource - loadImmediate() called");
         final ItemsToLoad itemsToLoad = getItemsToLoad(playQueue, WINDOW_SIZE);
         if (itemsToLoad == null) return;
@@ -411,7 +416,7 @@ public class MediaSourceManager {
 
         final int itemIndex = playQueue.indexOf(item);
         // Only update the playlist timeline for items at the current index or after.
-        if (itemIndex >= playQueue.getIndex() && isCorrectionNeeded(item)) {
+        if (isCorrectionNeeded(item)) {
             if (DEBUG) Log.d(TAG, "MediaSource - Updating index=[" + itemIndex + "] with " +
                     "title=[" + item.getTitle() + "] at url=[" + item.getUrl() + "]");
             playlist.update(itemIndex, mediaSource, this::maybeSynchronizePlayer);

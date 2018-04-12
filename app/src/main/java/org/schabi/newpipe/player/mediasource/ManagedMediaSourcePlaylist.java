@@ -90,16 +90,6 @@ public class ManagedMediaSourcePlaylist {
     /**
      * Invalidates the {@link ManagedMediaSource} at the given index by replacing it
      * with a {@link PlaceholderMediaSource}.
-     * @see #invalidate(int, Runnable)
-     * @see #update(int, ManagedMediaSource, Runnable)
-     * */
-    public synchronized void invalidate(final int index) {
-        invalidate(index, /*doNothing=*/null);
-    }
-
-    /**
-     * Invalidates the {@link ManagedMediaSource} at the given index by replacing it
-     * with a {@link PlaceholderMediaSource}.
      * @see #update(int, ManagedMediaSource, Runnable)
      * */
     public synchronized void invalidate(final int index,

@@ -13,13 +13,13 @@ import java.util.List;
 public interface PlaybackListener {
 
     /**
-     * Called to check if the currently playing stream is close to the end of its playback.
-     * Implementation should return true when the current playback position is within
-     * timeToEndMillis or less until its playback completes or transitions.
+     * Called to check if the currently playing stream is approaching the end of its playback.
+     * Implementation should return true when the current playback position is progressing within
+     * timeToEndMillis or less to its playback during.
      *
      * May be called at any time.
      * */
-    boolean isNearPlaybackEdge(final long timeToEndMillis);
+    boolean isApproachingPlaybackEdge(final long timeToEndMillis);
 
     /**
      * Called when the stream at the current queue index is not ready yet.

@@ -164,6 +164,11 @@ public final class BackgroundPlayer extends Service {
         if (DEBUG) Log.d(TAG, "onScreenOnOff() called with: on = [" + on + "]");
         shouldUpdateOnProgress = on;
         basePlayerImpl.triggerProgressUpdate();
+        if (on) {
+            basePlayerImpl.startProgressLoop();
+        } else {
+            basePlayerImpl.stopProgressLoop();
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -549,7 +554,6 @@ public final class BackgroundPlayer extends Service {
             super.onPaused();
 
             updateNotification(R.drawable.ic_play_arrow_white);
-            if (isProgressLoopRunning()) stopProgressLoop();
 
             lockManager.releaseWifiAndCpu();
         }

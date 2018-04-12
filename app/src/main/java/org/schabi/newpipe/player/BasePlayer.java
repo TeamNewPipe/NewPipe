@@ -177,11 +177,11 @@ public abstract class BasePlayer implements
     }
 
     public void setup() {
-        if (simpleExoPlayer == null) initPlayer();
+        if (simpleExoPlayer == null) initPlayer(/*playOnInit=*/true);
         initListeners();
     }
 
-    public void initPlayer() {
+    public void initPlayer(final boolean playOnReady) {
         if (DEBUG) Log.d(TAG, "initPlayer() called with: context = [" + context + "]");
 
         if (databaseUpdateReactor != null) databaseUpdateReactor.dispose();
@@ -199,7 +199,7 @@ public abstract class BasePlayer implements
         final RenderersFactory renderFactory = new DefaultRenderersFactory(context);
         simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(renderFactory, trackSelector, loadControl);
         simpleExoPlayer.addListener(this);
-        simpleExoPlayer.setPlayWhenReady(true);
+        simpleExoPlayer.setPlayWhenReady(playOnReady);
         simpleExoPlayer.setSeekParameters(PlayerHelper.getSeekParameters(context));
 
         audioReactor = new AudioReactor(context, simpleExoPlayer);
@@ -237,15 +237,16 @@ public abstract class BasePlayer implements
         final float playbackPitch = intent.getFloatExtra(PLAYBACK_PITCH, getPlaybackPitch());
 
         // Good to go...
-        initPlayback(queue, repeatMode, playbackSpeed, playbackPitch);
+        initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, /*playOnInit=*/true);
     }
 
     protected void initPlayback(@NonNull final PlayQueue queue,
                                 @Player.RepeatMode final int repeatMode,
                                 final float playbackSpeed,
-                                final float playbackPitch) {
+                                final float playbackPitch,
+                                final boolean playOnReady) {
         destroyPlayer();
-        initPlayer();
+        initPlayer(playOnReady);
         setRepeatMode(repeatMode);
         setPlaybackParameters(playbackSpeed, playbackPitch);
 
@@ -770,9 +771,10 @@ public abstract class BasePlayer implements
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public boolean isNearPlaybackEdge(final long timeToEndMillis) {
+    public boolean isApproachingPlaybackEdge(final long timeToEndMillis) {
         // If live, then not near playback edge
-        if (simpleExoPlayer == null || isLive()) return false;
+        // If not playing, then not approaching playback edge
+        if (simpleExoPlayer == null || isLive() || !isPlaying()) return false;
 
         final long currentPositionMillis = simpleExoPlayer.getCurrentPosition();
         final long currentDurationMillis = simpleExoPlayer.getDuration();
