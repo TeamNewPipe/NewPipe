@@ -66,7 +66,7 @@
     <string name="use_tor_summary">(Sperimentale) Forza il download tramite Tor per una maggiore riservatezza (lo streaming dei video non è ancora supportato).</string>
 
     <string name="parsing_error">Impossibile analizzare il sito web</string>
-    <string name="could_not_setup_download_menu">Impossibile impostare il menù di download</string>
+    <string name="could_not_setup_download_menu">Impossibile impostare il menu di download</string>
 
 
     <string name="live_streams_not_supported">Questo è uno stream in diretta, il quale non è ancora supportato.</string>
@@ -314,8 +314,8 @@
     <string name="switch_to_main">Passa alla produzione predefinita</string>
 
     <string name="service_title">Servizio</string>
-    <string name="drawer_open">"Apri il menù "</string>
-    <string name="drawer_close">Chiudi il menù</string>
+    <string name="drawer_open">Apri il menu</string>
+    <string name="drawer_close">Chiudi il menu</string>
     <string name="no_player_found_toast">Nessun lettore multimediale trovato (puoi installare VLC per riprodurlo)</string>
     <string name="always">Sempre</string>
     <string name="just_once">Solo una volta</string>
