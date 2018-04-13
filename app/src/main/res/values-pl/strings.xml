@@ -450,4 +450,9 @@
 \n2. Odwiedź stronę: %1$s
 \n3. Zaloguj się na swoje konto
 \n4. Skopiuj adres, na który przeglądarka przekieruje cię po zalogowaniu (to jest adres twojego profilu)"</string>
+    <string name="no_streams_available_download">Brak źródeł dostępnych do pobrania</string>
+
+    <string name="preferred_open_action_settings_title">Preferowane otwieranie</string>
+    <string name="preferred_open_action_settings_summary">Domyślna akcja podczas otwierania treści - %s</string>
+
     </resources>
