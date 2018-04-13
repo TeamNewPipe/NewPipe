@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-    <string name="view_count_text">觀看次數：%1$s</string>
-    <string name="upload_date_text">發佈日期：%1$s</string>
-    <string name="no_player_found">找不到任何串流播放器，您是否要安裝 VLC？</string>
+    <string name="view_count_text">點播%1$s次</string>
+    <string name="upload_date_text">%1$s發布</string>
+    <string name="no_player_found">找不到串流播放器，您要安裝VLC吗？</string>
     <string name="install">安裝</string>
     <string name="cancel">取消</string>
-    <string name="open_in_browser">在瀏覽器中開啟</string>
+    <string name="open_in_browser">用瀏覽器開啟</string>
     <string name="share">分享</string>
     <string name="download">下載</string>
     <string name="search">搜尋</string>
@@ -17,20 +17,20 @@
     <string name="use_external_video_player_title">使用外部影片播放器</string>
     <string name="use_external_audio_player_title">使用外部音訊播放器</string>
     <string name="download_path_title">影片下載路徑</string>
-    <string name="download_path_summary">存放已下載影片的路徑</string>
-    <string name="download_path_dialog_title">輸入影片的下載路徑</string>
+    <string name="download_path_summary">已下載影片的存放路徑</string>
+    <string name="download_path_dialog_title">輸入影片下載路徑</string>
     <string name="default_resolution_title">預設解析度</string>
-    <string name="play_with_kodi_title">用 Kodi 播放</string>
-    <string name="show_play_with_kodi_summary">顯示以 Kodi 媒體中心播放影片的選項</string>
+    <string name="play_with_kodi_title">用Kodi播放</string>
+    <string name="show_play_with_kodi_summary">顯示用Kodi媒體中心播放影片的選項</string>
     <string name="play_audio">聲音</string>
-    <string name="kore_not_found">找不到 Kore，您要安裝 Kore 嗎？</string>
-    <string name="show_play_with_kodi_title">顯示「用 Kodi 播放」的選項</string>
+    <string name="kore_not_found">找不到Kore，您要安裝Kore嗎？</string>
+    <string name="show_play_with_kodi_title">顯示「用Kodi播放」的選項</string>
     <string name="default_audio_format_title">預設音訊格式</string>
     <string name="webm_description">WebM — 開放格式</string>
-    <string name="m4a_description">M4A — 更佳畫質</string>
+    <string name="m4a_description">M4A — 畫質更佳</string>
     <string name="theme_title">主題</string>
-    <string name="dark_theme_title">暗色系</string>
-    <string name="light_theme_title">明亮色系</string>
+    <string name="dark_theme_title">灰暗</string>
+    <string name="light_theme_title">明亮</string>
 
     <string name="download_dialog_title">下載</string>
     <string name="next_video_title">下一部影片</string>
@@ -52,25 +52,25 @@
     <string name="use_tor_title">使用 Tor</string>
     <string name="use_tor_summary">(實驗性功能)強制使用 Tor 下載(暫時不支援串流影片)。</string>
     <string name="download_path_audio_title">音訊下載路徑</string>
-    <string name="download_path_audio_summary">存放已下載音訊的路徑</string>
+    <string name="download_path_audio_summary">已下載音訊的存放路徑</string>
     <string name="download_path_audio_dialog_title">輸入音訊檔案的下載路徑</string>
 
     <string name="err_dir_create">無法建立下載目錄「%1$s」</string>
     <string name="info_dir_created">已建立下載目錄「%1$s」</string>
-<string name="main_bg_subtitle">輕觸搜尋按鈕以開始</string>
-    <string name="open_in_popup_mode">在懸浮視窗中開啟</string>
-    <string name="use_external_video_player_summary">勾選後，部分解析度可能不會有音訊</string>
-    <string name="popup_mode_share_menu_title">NewPipe 懸浮視窗模式</string>
-    <string name="controls_background_title">背景</string>
+<string name="main_bg_subtitle">輕觸搜尋按鈕開始使用NewPipe</string>
+    <string name="open_in_popup_mode">以懸浮視窗開啟</string>
+    <string name="use_external_video_player_summary">勾選後，部分解析度的影片將沒有聲音</string>
+    <string name="popup_mode_share_menu_title">NewPipe懸浮視窗模式</string>
+    <string name="controls_background_title">背景播放</string>
     <string name="autoplay_by_calling_app_title">自動播放</string>
-    <string name="autoplay_by_calling_app_summary">當 NewPipe 被其他應用程式呼叫時自動播放影片</string>
+    <string name="autoplay_by_calling_app_summary">NewPipe被其他應用程式調用時，自動播放影片</string>
     <string name="default_popup_resolution_title">懸浮視窗預設解析度</string>
     <string name="show_higher_resolutions_title">顯示更高的解析度</string>
-    <string name="show_higher_resolutions_summary">僅部分裝置支援播放 2K/4K 解析度的影片</string>
+    <string name="show_higher_resolutions_summary">只有部分裝置能播2K及4K影片</string>
     <string name="default_video_format_title">預設影片格式</string>
-    <string name="black_theme_title">黑色系</string>
-    <string name="popup_remember_size_pos_title">記住懸浮視窗的大小與位置</string>
-    <string name="popup_remember_size_pos_summary">記住上一次的懸浮視窗大小與位置</string>
+    <string name="black_theme_title">純黑</string>
+    <string name="popup_remember_size_pos_title">記住懸浮視窗大小和位置</string>
+    <string name="popup_remember_size_pos_summary">記住上次懸浮視窗的大小和位置</string>
     <string name="player_gesture_controls_title">播放器手勢控制</string>
     <string name="player_gesture_controls_summary">使用手勢來控制亮度及播放器的音量</string>
     <string name="show_search_suggestions_title">搜尋建議</string>
@@ -165,13 +165,13 @@
     <string name="subscribe_button_title">訂閱</string>
     <string name="subscribed_button_title">已訂閱</string>
     <string name="channel_unsubscribed">已取消訂閱頻道</string>
-    <string name="subscription_change_failed">無法切換訂閱</string>
+    <string name="subscription_change_failed">無法更改訂閱</string>
     <string name="subscription_update_failed">無法更新訂閱</string>
 
-    <string name="tab_main">主選單</string>
-    <string name="tab_subscriptions">訂閱項目</string>
+    <string name="tab_main">主頁</string>
+    <string name="tab_subscriptions">訂閱</string>
 
-    <string name="fragment_whats_new">有什麼新鮮事</string>
+    <string name="fragment_whats_new">新鮮事</string>
 
     <string name="enable_search_history_title">搜尋紀錄</string>
     <string name="enable_search_history_summary">在本機儲存搜尋紀錄</string>
@@ -240,7 +240,7 @@
     <string name="history_cleared">已清除歷史紀錄</string>
     <string name="item_deleted">項目已刪除</string>
     <string name="delete_item_search_history">確定要刪除此項搜尋紀錄嗎？</string>
-<string name="no_player_found_toast">沒有找到串流播放器(你可以安裝 VLC播放器 來播放)</string>
+<string name="no_player_found_toast">找不到串流播放器（您可以安裝 VLC播放）</string>
     <string name="show_hold_to_append_title">顯示鎖定到附加提示</string>
     <string name="default_content_country_title">預設內容國家</string>
     <string name="service_title">服務</string>
@@ -321,7 +321,7 @@
 
     <string name="tab_bookmarks">書籤</string>
 
-    <string name="controls_add_to_playlist_title">新增到</string>
+    <string name="controls_add_to_playlist_title">新增至</string>
 
     <string name="detail_drag_description">拖曳重新排序</string>
 
@@ -379,9 +379,9 @@
     <string name="enable_disposed_exceptions_title">報告週期不足錯誤</string>
     <string name="enable_disposed_exceptions_summary">強制報告在處理完片段或活動週期外發生的無法傳遞的 Rx 異常</string>
 
-<string name="use_inexact_seek_title">使用快速不精確的尋找</string>
-    <string name="use_inexact_seek_summary">不精確的尋找，允許玩家以更低的精確更快找到位置</string>
-    <string name="auto_queue_title">自動佇列下一個串流</string>
+<string name="use_inexact_seek_title">使用粗略但快速的尋找</string>
+    <string name="use_inexact_seek_summary">粗略尋找讓播放器更快找到影片的進度位置</string>
+    <string name="auto_queue_title">自動播放隊列中下一部影片</string>
     <string name="auto_queue_summary">在非重複播放佇列中的最後一個串流上開始播放時，自動附上相關串流。</string>
     <string name="live_sync">同步</string>
 
@@ -425,11 +425,11 @@
 \n3. 詢問時登入到您的帳號
 \n4. 複製網址您會被重新導向(這是您的個人資料網址)</string>
     <string name="download_thumbnail_title">載入縮圖</string>
-    <string name="download_thumbnail_summary">停用可以停止載入所有的縮圖和儲存資料與使用的記憶體。更改此動作將清除在記憶體和磁碟上的影像快取。</string>
-    <string name="thumbnail_cache_wipe_complete_notice">圖片快取被抹除</string>
+    <string name="download_thumbnail_summary">停用後，NewPipe將不再載入縮圖，減少數據使用與騰空儲存空間，亦會清除記憶體和磁碟上的縮圖快取。</string>
+    <string name="thumbnail_cache_wipe_complete_notice">已清除圖片快取</string>
     <string name="metadata_cache_wipe_title">抹除快取中介資料</string>
-    <string name="metadata_cache_wipe_summary">移除所有快取網頁的資料</string>
-    <string name="metadata_cache_wipe_complete_notice">中介資料快取已抹除</string>
+    <string name="metadata_cache_wipe_summary">移除所有網頁的快取資料</string>
+    <string name="metadata_cache_wipe_complete_notice">已清除中介資料快取</string>
     <string name="playback_speed_control">重播速度控制</string>
     <string name="playback_tempo">節拍</string>
     <string name="playback_pitch">間距</string>
