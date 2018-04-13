@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-    <string name="view_count_text">%1$s 次观看</string>
-    <string name="upload_date_text">于 %1$s 发布</string>
-    <string name="no_player_found">找不到播放器。您是否要安装 VLC？</string>
+    <string name="view_count_text">点播%1$s次</string>
+    <string name="upload_date_text">%1$s发布</string>
+    <string name="no_player_found">找不到播放器，您要安装VLC吗？</string>
     <string name="install">安装</string>
     <string name="cancel">取消</string>
-    <string name="open_in_browser">在浏览器打开</string>
+    <string name="open_in_browser">用浏览器打开</string>
     <string name="share">分享</string>
     <string name="download">下载</string>
     <string name="search">搜索</string>
@@ -17,20 +17,20 @@
     <string name="use_external_video_player_title">使用外置视频播放器</string>
     <string name="use_external_audio_player_title">使用外置音频播放器</string>
     <string name="download_path_title">视频下载路径</string>
-    <string name="download_path_summary">下载视频存储的路径</string>
+    <string name="download_path_summary">已下载视频的存储路径</string>
     <string name="download_path_dialog_title">输入视频存储路径</string>
     <string name="default_resolution_title">默认分辨率</string>
-    <string name="play_with_kodi_title">用 Kodi 播放</string>
-    <string name="kore_not_found">找不到 Kore 应用，要安装吗？</string>
-    <string name="show_play_with_kodi_title">显示 “用 Kodi 播放” 的选项</string>
-    <string name="show_play_with_kodi_summary">显示以 Kodi 媒体中心播放视频的选项</string>
+    <string name="play_with_kodi_title">用Kodi播放</string>
+    <string name="kore_not_found">找不到Kore，您要安装Kore吗？</string>
+    <string name="show_play_with_kodi_title">显示“用Kodi播放”的选项</string>
+    <string name="show_play_with_kodi_summary">显示用Kodi媒体中心播放视频的选项</string>
     <string name="play_audio">音频</string>
     <string name="default_audio_format_title">默认音频格式</string>
     <string name="webm_description">WebM — 开放格式</string>
-    <string name="m4a_description">M4A — 更佳品质</string>
+    <string name="m4a_description">M4A — 品质更佳</string>
     <string name="theme_title">主题</string>
-    <string name="dark_theme_title">暗色</string>
-    <string name="light_theme_title">明亮色</string>
+    <string name="dark_theme_title">灰暗</string>
+    <string name="light_theme_title">明亮</string>
 
     <string name="download_dialog_title">下载</string>
     <string name="next_video_title">即将播放</string>
@@ -52,7 +52,7 @@
     <string name="use_tor_title">使用 Tor</string>
     <string name="use_tor_summary">（实验性）强制下载流量使用 Tor 加强隐私（暂不支援流媒体视频）。</string>
     <string name="download_path_audio_title">音频存储路径</string>
-    <string name="download_path_audio_summary">下载音频存储的路径</string>
+    <string name="download_path_audio_summary">下载音频的存储路径</string>
     <string name="download_path_audio_dialog_title">输入音频文件存储路径</string>
 
     <string name="err_dir_create">未能建立下载路径 “%1$s”</string>
@@ -88,10 +88,10 @@
     <string name="retry">重试</string>
     <string name="storage_permission_denied">无权访问存储空间</string>
     <string name="autoplay_by_calling_app_title">自动播放</string>
-    <string name="autoplay_by_calling_app_summary">当 NewPipe 被其他应用调用时自动播放视频</string>
+    <string name="autoplay_by_calling_app_summary">NewPipe被其他应用调用时，自动播放视频</string>
     <string name="duration_live">直播</string>
 
-    <string name="main_bg_subtitle">点击搜索以开始</string>
+    <string name="main_bg_subtitle">点击搜索开始NewPipe</string>
     <string name="start">开始</string>
     <string name="pause">暂停</string>
     <string name="view">播放</string>
@@ -125,30 +125,30 @@
 
     <string name="recaptcha_request_toast">需要 reCAPTCHA 验证</string>
 
-<string name="open_in_popup_mode">以悬浮窗模式打开</string>
-    <string name="use_external_video_player_summary">启用该选项时某些分辨率的视频将没有声音</string>
-    <string name="popup_mode_share_menu_title">NewPipe 悬浮窗模式</string>
+<string name="open_in_popup_mode">以悬浮窗打开</string>
+    <string name="use_external_video_player_summary">选项启用时，某分辨率的视频将没有声音</string>
+    <string name="popup_mode_share_menu_title">NewPipe悬浮窗模式</string>
     <string name="subscribe_button_title">订阅</string>
     <string name="subscribed_button_title">已订阅</string>
     <string name="channel_unsubscribed">已取消订阅频道</string>
-    <string name="subscription_change_failed">无法更改订阅状态</string>
-    <string name="subscription_update_failed">无法更新订阅状态</string>
+    <string name="subscription_change_failed">无法更改订阅</string>
+    <string name="subscription_update_failed">无法更新订阅</string>
 
     <string name="tab_main">首页</string>
-    <string name="tab_subscriptions">订阅内容</string>
+    <string name="tab_subscriptions">订阅</string>
 
-    <string name="fragment_whats_new">有何更新</string>
+    <string name="fragment_whats_new">新鲜事</string>
 
     <string name="controls_background_title">后台播放</string>
     <string name="controls_popup_title">悬浮窗</string>
 
     <string name="default_popup_resolution_title">窗口模式默认分辨率</string>
-    <string name="show_higher_resolutions_title">显示更高分辨率</string>
-    <string name="show_higher_resolutions_summary">2K/4K 视频播放仅在某些设备上支持</string>
+    <string name="show_higher_resolutions_title">显示更高的分辨率</string>
+    <string name="show_higher_resolutions_summary">只有部分设备能播2K及4K视频</string>
     <string name="default_video_format_title">首选视频格式</string>
     <string name="black_theme_title">纯黑</string>
-    <string name="popup_remember_size_pos_title">记住悬浮窗的大小和位置</string>
-    <string name="popup_remember_size_pos_summary">记住上一次设置悬浮窗的大小和位置</string>
+    <string name="popup_remember_size_pos_title">记住悬浮窗大小和位置</string>
+    <string name="popup_remember_size_pos_summary">记住上次悬浮窗的大小和位置</string>
     <string name="player_gesture_controls_title">播放手势控制</string>
     <string name="player_gesture_controls_summary">使用手势操作控制播放器的亮度和音量</string>
     <string name="show_search_suggestions_title">搜索建议</string>
@@ -251,23 +251,23 @@
 </plurals>
 
     <string name="item_deleted">项目已删除</string>
-    <string name="no_player_found_toast">找不到播放器（你可以安装 VLC 来播放）</string>
-    <string name="controls_download_desc">下载媒体文件</string>
+    <string name="no_player_found_toast">找不到播放器（您可以安装VLC播放）</string>
+    <string name="controls_download_desc">下载串流文件。</string>
     <string name="show_info">显示详情</string>
 
     <string name="tab_bookmarks">书签</string>
 
-    <string name="controls_add_to_playlist_title">添加至</string>
+    <string name="controls_add_to_playlist_title">添入</string>
 
-    <string name="use_inexact_seek_title">使用不精确但快速的进度</string>
-    <string name="use_inexact_seek_summary">不精确进度可以让播放器更快地定位到进度条的大致位置</string>
+    <string name="use_inexact_seek_title">使用粗略但快速的寻找</string>
+    <string name="use_inexact_seek_summary">粗略寻找让播放器更快找到视频的进度位置</string>
     <string name="download_thumbnail_title">加载缩略图</string>
-    <string name="download_thumbnail_summary">禁用以停止加载所有缓存数据。更改此选项会清除内存和内存卡上的图像缓存。</string>
-    <string name="thumbnail_cache_wipe_complete_notice">图像缓存已清除</string>
+    <string name="download_thumbnail_summary">停用后，NewPipe將不再加载缩略图，减少数据使用和腾空存储空间，亦会清除内存和内存卡上的缩略图缓存。</string>
+    <string name="thumbnail_cache_wipe_complete_notice">已清除图像缓存</string>
     <string name="metadata_cache_wipe_title">清除缓存元数据</string>
-    <string name="metadata_cache_wipe_summary">移除所有缓存的网页数据</string>
-    <string name="metadata_cache_wipe_complete_notice">元数据缓存已清除</string>
-    <string name="auto_queue_title">自动播放下一个视频</string>
+    <string name="metadata_cache_wipe_summary">移除所有网页的缓存数据</string>
+    <string name="metadata_cache_wipe_complete_notice">已清除元数据缓存</string>
+    <string name="auto_queue_title">自动播放队列中下一个视频</string>
     <string name="auto_queue_summary">如果播放到非循环列表中的最后一个视频，则自动加入一个相关视频到列表中。</string>
     <string name="show_hold_to_append_title">显示长按以扩展的提示</string>
     <string name="show_hold_to_append_summary">当视频详情页中的背景或悬浮按钮被按下的时候显示提示</string>
