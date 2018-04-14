@@ -9,8 +9,8 @@
     <string name="download_path_dialog_title">Entrez le chemin de téléchargement des vidéos</string>
     <string name="download_path_summary">Chemin de stockage des vidéos téléchargées</string>
     <string name="install">Installer</string>
-    <string name="kore_not_found">L’application Kore est introuvable. L\'installer ?</string>
-    <string name="no_player_found">Aucun lecteur de flux réseau trouvé. Installer VLC ?</string>
+    <string name="kore_not_found">Application Kore introuvable. L\'installer ?</string>
+    <string name="no_player_found">Aucun lecteur de flux trouvé. Voulez-vous installer VLC ?</string>
     <string name="open_in_browser">Ouvrir dans le navigateur</string>
     <string name="play_with_kodi_title">Lire avec Kodi</string>
     <string name="screen_rotation">rotation</string>
@@ -384,9 +384,9 @@
     <string name="use_inexact_seek_title">Recherche rapide approximative</string>
     <string name="use_inexact_seek_summary">Permettre au lecteur d\'accéder plus rapidement à une position au détriment de la précision</string>
     <string name="download_thumbnail_title">Charger miniatures</string>
-    <string name="download_thumbnail_summary">Désactiver pour arrêter le chargement de toutes les vignettes et sauvegarder les données et l\'utilisation de la mémoire. Modifier cela effacera à la fois le cache d\'image en mémoire et le cache d\'image sur disque.</string>
-    <string name="thumbnail_cache_wipe_complete_notice">Le cache des images a été nettoyé</string>
-    <string name="metadata_cache_wipe_title">Supprimer les données en cache</string>
+    <string name="download_thumbnail_summary">Désactiver pour arrêter le chargement de toutes les miniatures et sauvegarder les données et l\'utilisation de la mémoire. Modifier cela effacera à la fois le cache d\'image en mémoire et sur disque.</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Cache d\'image effacé</string>
+    <string name="metadata_cache_wipe_title">Effacer les données en cache</string>
     <string name="metadata_cache_wipe_summary">Supprimer toutes les pages web mises en cache</string>
     <string name="metadata_cache_wipe_complete_notice">Données en cache supprimées</string>
     <string name="file">Fichier</string>
