@@ -459,4 +459,7 @@ te openen in pop-upmodus</string>
 
     <string name="no_streams_available_download">Geen streams beschikbaar voor downloaden</string>
 
+    <string name="caption_setting_title">Kop</string>
+    <string name="caption_setting_description">Koptekstgrootte en achtergrondstijlen wijzigen. Vereist een herstart van de speler.</string>
+
     </resources>
