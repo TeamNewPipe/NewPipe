@@ -464,4 +464,7 @@
     <string name="preferred_open_action_settings_title">Apri preferibilmente con</string>
     <string name="preferred_open_action_settings_summary">Azione predefinita all\'apertura del contenuto — %s</string>
 
+    <string name="caption_setting_title">Sottotitoli</string>
+    <string name="caption_setting_description">Modifica la dimensione e gli stili di sfondo dei sottotitoli. Richiede il riavvio del lettore multimediale per rendere effettive le modifiche.</string>
+
     </resources>
