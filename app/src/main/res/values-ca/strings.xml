@@ -76,7 +76,7 @@
     <string name="msg_name">Nom de fitxer</string>
     <string name="msg_error">Error</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="settings_category_downloads_title">Baixa</string>
+    <string name="settings_category_downloads_title">Baixades</string>
     <string name="action_settings">Configuració</string>
     <string name="action_about">Quant a</string>
     <string name="title_licenses">Llicències de tercers</string>
@@ -423,5 +423,10 @@
     <string name="import_network_expensive_warning">Tingueu en compte que això pot comportar un ús intensiu de la xarxa.
 \n
 \nVoleu continuar?</string>
+
+    <string name="no_streams_available_download">No hi ha vídeos que es puguin baixar</string>
+
+    <string name="caption_setting_title">Subtítols</string>
+    <string name="caption_setting_description">Modifica la mida del text i el fons dels subtítols. Cal reiniciar l\'aplicació per aplicar els canvis.</string>
 
     </resources>
