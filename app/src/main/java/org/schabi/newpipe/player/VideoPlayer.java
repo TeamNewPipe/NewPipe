@@ -228,8 +228,8 @@ public abstract class VideoPlayer extends BasePlayer
     }
 
     @Override
-    public void initPlayer() {
-        super.initPlayer();
+    public void initPlayer(final boolean playOnReady) {
+        super.initPlayer(playOnReady);
 
         // Setup video view
         simpleExoPlayer.setVideoSurfaceView(surfaceView);

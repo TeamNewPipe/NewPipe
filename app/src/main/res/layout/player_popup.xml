@@ -198,7 +198,7 @@
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
                 android:gravity="center_vertical"
-                android:text="@string/duration_live"
+                android:text="@string/duration_live_button"
                 android:textAllCaps="true"
                 android:textColor="@android:color/white"
                 android:maxLength="4"

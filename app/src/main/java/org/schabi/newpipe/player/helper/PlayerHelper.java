@@ -7,7 +7,11 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.google.android.exoplayer2.SeekParameters;
+import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
+import com.google.android.exoplayer2.trackselection.TrackSelection;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
+import com.google.android.exoplayer2.upstream.BandwidthMeter;
+import com.google.android.exoplayer2.util.Clock;
 import com.google.android.exoplayer2.util.MimeTypes;
 
 import org.schabi.newpipe.R;
@@ -201,6 +205,16 @@ public class PlayerHelper {
      * */
     public static int getPlaybackOptimalBufferMs(@NonNull final Context context) {
         return 60000;
+    }
+
+    public static TrackSelection.Factory getQualitySelector(@NonNull final Context context,
+                                                            @NonNull final BandwidthMeter meter) {
+        return new AdaptiveTrackSelection.Factory(meter,
+                AdaptiveTrackSelection.DEFAULT_MAX_INITIAL_BITRATE,
+                /*bufferDurationRequiredForQualityIncrease=*/1000,
+                AdaptiveTrackSelection.DEFAULT_MAX_DURATION_FOR_QUALITY_DECREASE_MS,
+                AdaptiveTrackSelection.DEFAULT_MIN_DURATION_TO_RETAIN_AFTER_DISCARD_MS,
+                AdaptiveTrackSelection.DEFAULT_BANDWIDTH_FRACTION);
     }
 
     public static boolean isUsingDSP(@NonNull final Context context) {
