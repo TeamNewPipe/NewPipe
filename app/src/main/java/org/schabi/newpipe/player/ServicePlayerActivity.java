@@ -32,6 +32,7 @@ import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.fragments.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.helper.PlaybackParameterDialog;
+import org.schabi.newpipe.playlist.PlayQueueAdapter;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.PlayQueueItemBuilder;
 import org.schabi.newpipe.playlist.PlayQueueItemHolder;
@@ -39,6 +40,9 @@ import org.schabi.newpipe.playlist.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
+
+import java.util.Collections;
+import java.util.List;
 
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatPitch;
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
@@ -151,7 +155,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                 finish();
                 return true;
             case R.id.action_append_playlist:
-                appendToPlaylist();
+                appendAllToPlaylist();
                 return true;
             case R.id.action_settings:
                 NavigationHelper.openSettings(this);
@@ -185,13 +189,6 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                 this.player.getPlaybackPitch(),
                 null
         ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-    }
-
-    private void appendToPlaylist() {
-        if (this.player != null && this.player.getPlayQueue() != null) {
-            PlaylistAppendDialog.fromPlayQueueItems(this.player.getPlayQueue().getStreams())
-                    .show(getSupportFragmentManager(), getTag());
-        }
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -319,7 +316,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     private void buildItemPopupMenu(final PlayQueueItem item, final View view) {
         final PopupMenu menu = new PopupMenu(this, view);
-        final MenuItem remove = menu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, 0, Menu.NONE, R.string.play_queue_remove);
+        final MenuItem remove = menu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, /*pos=*/0,
+                Menu.NONE, R.string.play_queue_remove);
         remove.setOnMenuItemClickListener(menuItem -> {
             if (player == null) return false;
 
@@ -328,9 +326,17 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             return true;
         });
 
-        final MenuItem detail = menu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, 1, Menu.NONE, R.string.play_queue_stream_detail);
+        final MenuItem detail = menu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, /*pos=*/1,
+                Menu.NONE, R.string.play_queue_stream_detail);
         detail.setOnMenuItemClickListener(menuItem -> {
             onOpenDetail(item.getServiceId(), item.getUrl(), item.getTitle());
+            return true;
+        });
+
+        final MenuItem append = menu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, /*pos=*/2,
+                Menu.NONE, R.string.append_playlist);
+        append.setOnMenuItemClickListener(menuItem -> {
+            openPlaylistAppendDialog(Collections.singletonList(item));
             return true;
         });
 
@@ -489,6 +495,21 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     }
 
     ////////////////////////////////////////////////////////////////////////////
+    // Playlist append
+    ////////////////////////////////////////////////////////////////////////////
+
+    private void appendAllToPlaylist() {
+        if (player != null && player.getPlayQueue() != null) {
+            openPlaylistAppendDialog(player.getPlayQueue().getStreams());
+        }
+    }
+
+    private void openPlaylistAppendDialog(final List<PlayQueueItem> playlist) {
+        PlaylistAppendDialog.fromPlayQueueItems(playlist)
+                .show(getSupportFragmentManager(), getTag());
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
     // Binding Service Listener
     ////////////////////////////////////////////////////////////////////////////
 
@@ -497,6 +518,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         onStateChanged(state);
         onPlayModeChanged(repeatMode, shuffled);
         onPlaybackParameterChanged(parameters);
+        onMaybePlaybackAdapterChanged();
     }
 
     @Override
@@ -607,6 +629,14 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         if (parameters != null) {
             playbackSpeedButton.setText(formatSpeed(parameters.speed));
             playbackPitchButton.setText(formatPitch(parameters.pitch));
+        }
+    }
+
+    private void onMaybePlaybackAdapterChanged() {
+        if (itemsList == null || player == null) return;
+        final PlayQueueAdapter maybeNewAdapter = player.getPlayQueueAdapter();
+        if (maybeNewAdapter != null && itemsList.getAdapter() != maybeNewAdapter) {
+            itemsList.setAdapter(maybeNewAdapter);
         }
     }
 }

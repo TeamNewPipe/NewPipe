@@ -8,8 +8,8 @@ android {
         applicationId "org.schabi.newpipe"
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 60
-        versionName "0.13.1"
+        versionCode 61
+        versionName "0.13.2"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -42,7 +42,7 @@ android {
 
 ext {
     supportLibVersion = '27.1.0'
-    exoPlayerLibVersion = '2.7.1'
+    exoPlayerLibVersion = '2.7.3'
     roomDbLibVersion = '1.0.0'
     leakCanaryLibVersion = '1.5.4'
     okHttpLibVersion = '1.5.0'
@@ -73,6 +73,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.github.nirhart:ParallaxScroll:dd53d1f9d1'
     implementation 'com.nononsenseapps:filepicker:4.2.1'
+
     implementation "com.google.android.exoplayer:exoplayer:$exoPlayerLibVersion"
     implementation "com.google.android.exoplayer:extension-mediasession:$exoPlayerLibVersion"
 

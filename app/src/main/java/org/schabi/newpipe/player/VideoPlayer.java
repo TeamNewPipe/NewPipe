@@ -32,7 +32,6 @@ import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -55,6 +54,7 @@ import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.MergingMediaSource;
 import com.google.android.exoplayer2.source.TrackGroup;
 import com.google.android.exoplayer2.source.TrackGroupArray;
+import com.google.android.exoplayer2.text.CaptionStyleCompat;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.SubtitleView;
@@ -189,10 +189,10 @@ public abstract class VideoPlayer extends BasePlayer
         this.qualityTextView = rootView.findViewById(R.id.qualityTextView);
 
         this.subtitleView = rootView.findViewById(R.id.subtitleView);
-        final String captionSizeKey = PreferenceManager.getDefaultSharedPreferences(context)
-                .getString(context.getString(R.string.caption_size_key),
-                        context.getString(R.string.caption_size_default));
-        setupSubtitleView(subtitleView, captionSizeKey);
+
+        final float captionScale = PlayerHelper.getCaptionScale(context);
+        final CaptionStyleCompat captionStyle = PlayerHelper.getCaptionStyle(context);
+        setupSubtitleView(subtitleView, captionScale, captionStyle);
 
         this.resizeView =  rootView.findViewById(R.id.resizeTextView);
         resizeView.setText(PlayerHelper.resizeTypeOf(context, aspectRatioFrameLayout.getResizeMode()));
@@ -214,7 +214,8 @@ public abstract class VideoPlayer extends BasePlayer
     }
 
     protected abstract void setupSubtitleView(@NonNull SubtitleView view,
-                                              @NonNull String captionSizeKey);
+                                              final float captionScale,
+                                              @NonNull final CaptionStyleCompat captionStyle);
 
     @Override
     public void initListeners() {
@@ -228,8 +229,8 @@ public abstract class VideoPlayer extends BasePlayer
     }
 
     @Override
-    public void initPlayer() {
-        super.initPlayer();
+    public void initPlayer(final boolean playOnReady) {
+        super.initPlayer(playOnReady);
 
         // Setup video view
         simpleExoPlayer.setVideoSurfaceView(surfaceView);

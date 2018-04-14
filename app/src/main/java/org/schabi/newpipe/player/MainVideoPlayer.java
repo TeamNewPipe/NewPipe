@@ -30,8 +30,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -50,6 +52,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.exoplayer2.Player;
+import com.google.android.exoplayer2.text.CaptionStyleCompat;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.SubtitleView;
 
@@ -59,7 +62,6 @@ import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.player.helper.PlaybackParameterDialog;
 import org.schabi.newpipe.player.helper.PlayerHelper;
-import org.schabi.newpipe.playlist.PlayQueue;
 import org.schabi.newpipe.playlist.PlayQueueItem;
 import org.schabi.newpipe.playlist.PlayQueueItemBuilder;
 import org.schabi.newpipe.playlist.PlayQueueItemHolder;
@@ -95,12 +97,12 @@ public final class MainVideoPlayer extends AppCompatActivity
 
     private GestureDetector gestureDetector;
 
-    private boolean activityPaused;
     private VideoPlayerImpl playerImpl;
 
     private SharedPreferences defaultPreferences;
 
-    @Nullable private StateSaver.SavedState savedState;
+    @Nullable private PlayerState playerState;
+    private boolean isInMultiWindow;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Activity LifeCycle
@@ -135,8 +137,9 @@ public final class MainVideoPlayer extends AppCompatActivity
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle bundle) {
+        if (DEBUG) Log.d(TAG, "onRestoreInstanceState() called");
         super.onRestoreInstanceState(bundle);
-        savedState = StateSaver.tryToRestore(bundle, this);
+        StateSaver.tryToRestore(bundle, this);
     }
 
     @Override
@@ -148,26 +151,28 @@ public final class MainVideoPlayer extends AppCompatActivity
 
     @Override
     protected void onResume() {
-        super.onResume();
         if (DEBUG) Log.d(TAG, "onResume() called");
-        if (playerImpl.getPlayer() != null && activityPaused && playerImpl.wasPlaying()
-                && !playerImpl.isPlaying()) {
-            playerImpl.onPlay();
-        }
-        activityPaused = false;
+        super.onResume();
 
-        if(globalScreenOrientationLocked()) {
-            boolean lastOrientationWasLandscape
-                    = defaultPreferences.getBoolean(getString(R.string.last_orientation_landscape_key), false);
+        if (globalScreenOrientationLocked()) {
+            boolean lastOrientationWasLandscape = defaultPreferences.getBoolean(
+                    getString(R.string.last_orientation_landscape_key), false);
             setLandscape(lastOrientationWasLandscape);
         }
-    }
 
-    @Override
-    public void onBackPressed() {
-        if (DEBUG) Log.d(TAG, "onBackPressed() called");
-        super.onBackPressed();
-        if (playerImpl.isPlaying()) playerImpl.getPlayer().setPlayWhenReady(false);
+        // Upon going in or out of multiwindow mode, isInMultiWindow will always be false,
+        // since the first onResume needs to restore the player.
+        // Subsequent onResume calls while multiwindow mode remains the same and the player is
+        // prepared should be ignored.
+        if (isInMultiWindow) return;
+        isInMultiWindow = isInMultiWindow();
+
+        if (playerState != null) {
+            playerImpl.setPlaybackQuality(playerState.getPlaybackQuality());
+            playerImpl.initPlayback(playerState.getPlayQueue(), playerState.getRepeatMode(),
+                    playerState.getPlaybackSpeed(), playerState.getPlaybackPitch(),
+                    playerState.wasPlaying());
+        }
     }
 
     @Override
@@ -181,32 +186,23 @@ public final class MainVideoPlayer extends AppCompatActivity
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        if (DEBUG) Log.d(TAG, "onPause() called");
-
-        if (playerImpl != null && playerImpl.getPlayer() != null && !activityPaused) {
-            playerImpl.wasPlaying = playerImpl.isPlaying();
-            playerImpl.onPause();
-        }
-        activityPaused = true;
-    }
-
-    @Override
     protected void onSaveInstanceState(Bundle outState) {
+        if (DEBUG) Log.d(TAG, "onSaveInstanceState() called");
         super.onSaveInstanceState(outState);
         if (playerImpl == null) return;
 
         playerImpl.setRecovery();
-        savedState = StateSaver.tryToSave(isChangingConfigurations(), savedState,
-                outState, this);
+        playerState = new PlayerState(playerImpl.getPlayQueue(), playerImpl.getRepeatMode(),
+                playerImpl.getPlaybackSpeed(), playerImpl.getPlaybackPitch(),
+                playerImpl.getPlaybackQuality(), playerImpl.isPlaying());
+        StateSaver.tryToSave(isChangingConfigurations(), null, outState, this);
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (DEBUG) Log.d(TAG, "onDestroy() called");
-        if (playerImpl != null) playerImpl.destroy();
+    protected void onStop() {
+        if (DEBUG) Log.d(TAG, "onStop() called");
+        super.onStop();
+        playerImpl.destroy();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -221,47 +217,18 @@ public final class MainVideoPlayer extends AppCompatActivity
     @Override
     public void writeTo(Queue<Object> objectsToSave) {
         if (objectsToSave == null) return;
-        objectsToSave.add(playerImpl.getPlayQueue());
-        objectsToSave.add(playerImpl.getRepeatMode());
-        objectsToSave.add(playerImpl.getPlaybackSpeed());
-        objectsToSave.add(playerImpl.getPlaybackPitch());
-        objectsToSave.add(playerImpl.getPlaybackQuality());
+        objectsToSave.add(playerState);
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public void readFrom(@NonNull Queue<Object> savedObjects) throws Exception {
-        @NonNull final PlayQueue queue = (PlayQueue) savedObjects.poll();
-        final int repeatMode = (int) savedObjects.poll();
-        final float playbackSpeed = (float) savedObjects.poll();
-        final float playbackPitch = (float) savedObjects.poll();
-        @NonNull final String playbackQuality = (String) savedObjects.poll();
-
-        playerImpl.setPlaybackQuality(playbackQuality);
-        playerImpl.initPlayback(queue, repeatMode, playbackSpeed, playbackPitch);
-
-        StateSaver.onDestroy(savedState);
+    public void readFrom(@NonNull Queue<Object> savedObjects) {
+        playerState = (PlayerState) savedObjects.poll();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
     // View
     //////////////////////////////////////////////////////////////////////////*/
-
-    /**
-     * Prior to Kitkat, hiding system ui causes the player view to be overlaid and require two
-     * clicks to get rid of that invisible overlay. By showing the system UI on actions/events,
-     * that overlay is removed and the player view is put to the foreground.
-     *
-     * Post Kitkat, navbar and status bar can be pulled out by swiping the edge of
-     * screen, therefore, we can do nothing or hide the UI on actions/events.
-     * */
-    private void changeSystemUi() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-            showSystemUi();
-        } else {
-            hideSystemUi();
-        }
-    }
 
     private void showSystemUi() {
         if (DEBUG) Log.d(TAG, "showSystemUi() called");
@@ -275,6 +242,14 @@ public final class MainVideoPlayer extends AppCompatActivity
         } else {
             visibility = View.STATUS_BAR_VISIBLE;
         }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            @ColorInt final int systenUiColor =
+                    ActivityCompat.getColor(getApplicationContext(), R.color.video_overlay_color);
+            getWindow().setStatusBarColor(systenUiColor);
+            getWindow().setNavigationBarColor(systenUiColor);
+        }
+
         getWindow().getDecorView().setSystemUiVisibility(visibility);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
@@ -340,6 +315,10 @@ public final class MainVideoPlayer extends AppCompatActivity
         } else {
             shuffleButton.setAlpha(shuffleAlpha);
         }
+    }
+
+    private boolean isInMultiWindow() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && isInMultiWindowMode();
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -411,15 +390,6 @@ public final class MainVideoPlayer extends AppCompatActivity
             this.itemsListCloseButton = findViewById(R.id.playQueueClose);
             this.itemsList = findViewById(R.id.playQueue);
 
-            this.windowRootLayout = rootView.findViewById(R.id.playbackWindowRoot);
-            // Prior to Kitkat, there is no way of setting translucent navbar programmatically.
-            // Thus, fit system windows is opted instead.
-            // See https://stackoverflow.com/questions/29069070/completely-transparent-status-bar-and-navigation-bar-on-lollipop
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                windowRootLayout.setFitsSystemWindows(false);
-                windowRootLayout.invalidate();
-            }
-
             titleTextView.setSelected(true);
             channelTextView.setSelected(true);
 
@@ -428,20 +398,15 @@ public final class MainVideoPlayer extends AppCompatActivity
 
         @Override
         protected void setupSubtitleView(@NonNull SubtitleView view,
-                                         @NonNull String captionSizeKey) {
-            final float captionRatioInverse;
-            if (captionSizeKey.equals(getString(R.string.smaller_caption_size_key))) {
-                captionRatioInverse = 22f;
-            } else if (captionSizeKey.equals(getString(R.string.larger_caption_size_key))) {
-                captionRatioInverse = 18f;
-            } else {
-                captionRatioInverse = 20f;
-            }
-
+                                         final float captionScale,
+                                         @NonNull final CaptionStyleCompat captionStyle) {
             final DisplayMetrics metrics = context.getResources().getDisplayMetrics();
             final int minimumLength = Math.min(metrics.heightPixels, metrics.widthPixels);
+            final float captionRatioInverse = 20f + 4f * (1f - captionScale);
             view.setFixedTextSize(TypedValue.COMPLEX_UNIT_PX,
                     (float) minimumLength / captionRatioInverse);
+            view.setApplyEmbeddedStyles(captionStyle.equals(CaptionStyleCompat.DEFAULT));
+            view.setStyle(captionStyle);
         }
 
         @Override
@@ -727,7 +692,7 @@ public final class MainVideoPlayer extends AppCompatActivity
                 animatePlayButtons(true, 200);
             });
 
-            changeSystemUi();
+            showSystemUi();
             getRootView().setKeepScreenOn(false);
         }
 
@@ -900,7 +865,7 @@ public final class MainVideoPlayer extends AppCompatActivity
                 playerImpl.hideControls(150, 0);
             } else {
                 playerImpl.showControlsThenHide();
-                changeSystemUi();
+                showSystemUi();
             }
             return true;
         }

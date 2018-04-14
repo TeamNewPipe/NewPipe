@@ -46,7 +46,7 @@ import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.source.BehindLiveWindowException;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.TrackGroupArray;
-import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
+import com.google.android.exoplayer2.trackselection.TrackSelection;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.util.Util;
@@ -64,6 +64,7 @@ import org.schabi.newpipe.player.helper.LoadController;
 import org.schabi.newpipe.player.helper.MediaSessionManager;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.helper.PlayerHelper;
+import org.schabi.newpipe.player.mediasource.FailedMediaSource;
 import org.schabi.newpipe.player.playback.BasePlayerMediaSession;
 import org.schabi.newpipe.player.playback.CustomTrackSelector;
 import org.schabi.newpipe.player.playback.MediaSourceManager;
@@ -124,7 +125,6 @@ public abstract class BasePlayer implements
     //////////////////////////////////////////////////////////////////////////*/
 
     protected static final float[] PLAYBACK_SPEEDS = {0.5f, 0.75f, 1f, 1.25f, 1.5f, 1.75f, 2f};
-    protected static final float[] PLAYBACK_PITCHES = {0.8f, 0.9f, 0.95f, 1f, 1.05f, 1.1f, 1.2f};
 
     protected PlayQueue playQueue;
     protected PlayQueueAdapter playQueueAdapter;
@@ -140,10 +140,10 @@ public abstract class BasePlayer implements
     // Player
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected final static int FAST_FORWARD_REWIND_AMOUNT = 10000; // 10 Seconds
-    protected final static int PLAY_PREV_ACTIVATION_LIMIT = 5000; // 5 seconds
-    protected final static int PROGRESS_LOOP_INTERVAL = 500;
-    protected final static int RECOVERY_SKIP_THRESHOLD = 3000; // 3 seconds
+    protected final static int FAST_FORWARD_REWIND_AMOUNT_MILLIS = 10000; // 10 Seconds
+    protected final static int PLAY_PREV_ACTIVATION_LIMIT_MILLIS = 5000; // 5 seconds
+    protected final static int PROGRESS_LOOP_INTERVAL_MILLIS = 500;
+    protected final static int RECOVERY_SKIP_THRESHOLD_MILLIS = 3000; // 3 seconds
 
     protected CustomTrackSelector trackSelector;
     protected PlayerDataSource dataSource;
@@ -177,11 +177,11 @@ public abstract class BasePlayer implements
     }
 
     public void setup() {
-        if (simpleExoPlayer == null) initPlayer();
+        if (simpleExoPlayer == null) initPlayer(/*playOnInit=*/true);
         initListeners();
     }
 
-    public void initPlayer() {
+    public void initPlayer(final boolean playOnReady) {
         if (DEBUG) Log.d(TAG, "initPlayer() called with: context = [" + context + "]");
 
         if (databaseUpdateReactor != null) databaseUpdateReactor.dispose();
@@ -191,15 +191,15 @@ public abstract class BasePlayer implements
         final DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
         dataSource = new PlayerDataSource(context, userAgent, bandwidthMeter);
 
-        final AdaptiveTrackSelection.Factory trackSelectionFactory =
-                new AdaptiveTrackSelection.Factory(bandwidthMeter);
+        final TrackSelection.Factory trackSelectionFactory =
+                PlayerHelper.getQualitySelector(context, bandwidthMeter);
         trackSelector = new CustomTrackSelector(trackSelectionFactory);
 
         final LoadControl loadControl = new LoadController(context);
         final RenderersFactory renderFactory = new DefaultRenderersFactory(context);
         simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(renderFactory, trackSelector, loadControl);
         simpleExoPlayer.addListener(this);
-        simpleExoPlayer.setPlayWhenReady(true);
+        simpleExoPlayer.setPlayWhenReady(playOnReady);
         simpleExoPlayer.setSeekParameters(PlayerHelper.getSeekParameters(context));
 
         audioReactor = new AudioReactor(context, simpleExoPlayer);
@@ -237,15 +237,16 @@ public abstract class BasePlayer implements
         final float playbackPitch = intent.getFloatExtra(PLAYBACK_PITCH, getPlaybackPitch());
 
         // Good to go...
-        initPlayback(queue, repeatMode, playbackSpeed, playbackPitch);
+        initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, /*playOnInit=*/true);
     }
 
     protected void initPlayback(@NonNull final PlayQueue queue,
                                 @Player.RepeatMode final int repeatMode,
                                 final float playbackSpeed,
-                                final float playbackPitch) {
+                                final float playbackPitch,
+                                final boolean playOnReady) {
         destroyPlayer();
-        initPlayer();
+        initPlayer(playOnReady);
         setRepeatMode(repeatMode);
         setPlaybackParameters(playbackSpeed, playbackPitch);
 
@@ -518,15 +519,16 @@ public abstract class BasePlayer implements
     }
 
     public void triggerProgressUpdate() {
+        if (simpleExoPlayer == null) return;
         onUpdateProgress(
-                (int) simpleExoPlayer.getCurrentPosition(),
+                Math.max((int) simpleExoPlayer.getCurrentPosition(), 0),
                 (int) simpleExoPlayer.getDuration(),
                 simpleExoPlayer.getBufferedPercentage()
         );
     }
 
     private Disposable getProgressReactor() {
-        return Observable.interval(PROGRESS_LOOP_INTERVAL, TimeUnit.MILLISECONDS)
+        return Observable.interval(PROGRESS_LOOP_INTERVAL_MILLIS, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(ignored -> triggerProgressUpdate());
     }
@@ -553,8 +555,8 @@ public abstract class BasePlayer implements
                 // Ensure dynamic/livestream timeline changes does not cause negative position
                 if (isPlaylistStable && !isCurrentWindowValid() && !isSynchronizing) {
                     if (DEBUG) Log.d(TAG, "Playback - negative time position reached, " +
-                            "clamping position to 0ms.");
-                    seekTo(/*clampToTime=*/0);
+                            "clamping to default position.");
+                    seekToDefault();
                 }
                 break;
         }
@@ -640,12 +642,12 @@ public abstract class BasePlayer implements
             seekTo(recoveryPositionMillis);
             playQueue.unsetRecovery(currentSourceIndex);
 
-        } else if (isSynchronizing && simpleExoPlayer.isCurrentWindowDynamic()) {
+        } else if (isSynchronizing && isLive()) {
             if (DEBUG) Log.d(TAG, "Playback - Synchronizing livestream to default time");
             // Is still synchronizing?
             seekToDefault();
 
-        } else if (isSynchronizing && presetStartPositionMillis != 0L) {
+        } else if (isSynchronizing && presetStartPositionMillis > 0L) {
             if (DEBUG) Log.d(TAG, "Playback - Seeking to preset start " +
                     "position=[" + presetStartPositionMillis + "]");
             // Has another start position?
@@ -700,41 +702,23 @@ public abstract class BasePlayer implements
         }
     }
 
-    /**
-     * Processes {@link ExoPlaybackException} tagged with {@link ExoPlaybackException#TYPE_SOURCE}.
-     * <br><br>
-     * If the current {@link com.google.android.exoplayer2.Timeline.Window window} is valid,
-     * then we know the error is produced by transitioning into a bad window, therefore we report
-     * an error to the play queue based on if the current error can be skipped.
-     * <br><br>
-     * This is done because ExoPlayer reports the source exceptions before window is
-     * transitioned on seamless playback. Because player error causes ExoPlayer to go
-     * back to {@link Player#STATE_IDLE STATE_IDLE}, we reset and prepare the media source
-     * again to resume playback.
-     * <br><br>
-     * In the event that this error is produced during a valid stream playback, we save the
-     * current position so the playback may be recovered and resumed manually by the user. This
-     * happens only if the playback is {@link #RECOVERY_SKIP_THRESHOLD} milliseconds until complete.
-     * <br><br>
-     * In the event of livestreaming being lagged behind for any reason, most notably pausing for
-     * too long, a {@link BehindLiveWindowException} will be produced. This will trigger a reload
-     * instead of skipping or removal.
-     * */
     private void processSourceError(final IOException error) {
         if (simpleExoPlayer == null || playQueue == null) return;
-
-        if (simpleExoPlayer.getCurrentPosition() <
-                simpleExoPlayer.getDuration() - RECOVERY_SKIP_THRESHOLD) {
-            setRecovery();
-        }
+        setRecovery();
 
         final Throwable cause = error.getCause();
         if (cause instanceof BehindLiveWindowException) {
             reload();
         } else if (cause instanceof UnknownHostException) {
             playQueue.error(/*isNetworkProblem=*/true);
+        } else if (isCurrentWindowValid()) {
+            playQueue.error(/*isTransitioningToBadStream=*/true);
+        } else if (cause instanceof FailedMediaSource.MediaSourceResolutionException) {
+            playQueue.error(/*recoverableWithNoAvailableStream=*/false);
+        } else if (cause instanceof FailedMediaSource.StreamInfoLoadException) {
+            playQueue.error(/*recoverableIfLoadFailsWhenNetworkIsFine=*/false);
         } else {
-            playQueue.error(isCurrentWindowValid());
+            playQueue.error(/*noIdeaWhatHappenedAndLetUserChooseWhatToDo=*/true);
         }
     }
 
@@ -787,9 +771,10 @@ public abstract class BasePlayer implements
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public boolean isNearPlaybackEdge(final long timeToEndMillis) {
+    public boolean isApproachingPlaybackEdge(final long timeToEndMillis) {
         // If live, then not near playback edge
-        if (simpleExoPlayer == null || simpleExoPlayer.isCurrentWindowDynamic()) return false;
+        // If not playing, then not approaching playback edge
+        if (simpleExoPlayer == null || isLive() || !isPlaying()) return false;
 
         final long currentPositionMillis = simpleExoPlayer.getCurrentPosition();
         final long currentDurationMillis = simpleExoPlayer.getDuration();
@@ -985,22 +970,22 @@ public abstract class BasePlayer implements
 
     public void onFastRewind() {
         if (DEBUG) Log.d(TAG, "onFastRewind() called");
-        seekBy(-FAST_FORWARD_REWIND_AMOUNT);
+        seekBy(-FAST_FORWARD_REWIND_AMOUNT_MILLIS);
     }
 
     public void onFastForward() {
         if (DEBUG) Log.d(TAG, "onFastForward() called");
-        seekBy(FAST_FORWARD_REWIND_AMOUNT);
+        seekBy(FAST_FORWARD_REWIND_AMOUNT_MILLIS);
     }
 
     public void onPlayPrevious() {
         if (simpleExoPlayer == null || playQueue == null) return;
         if (DEBUG) Log.d(TAG, "onPlayPrevious() called");
 
-        /* If current playback has run for PLAY_PREV_ACTIVATION_LIMIT milliseconds,
+        /* If current playback has run for PLAY_PREV_ACTIVATION_LIMIT_MILLIS milliseconds,
         * restart current track. Also restart the track if the current track
         * is the first in a queue.*/
-        if (simpleExoPlayer.getCurrentPosition() > PLAY_PREV_ACTIVATION_LIMIT ||
+        if (simpleExoPlayer.getCurrentPosition() > PLAY_PREV_ACTIVATION_LIMIT_MILLIS ||
                 playQueue.getIndex() == 0) {
             seekToDefault();
             playQueue.offsetIndex(0);
@@ -1050,7 +1035,9 @@ public abstract class BasePlayer implements
     }
 
     public void seekToDefault() {
-        if (simpleExoPlayer != null) simpleExoPlayer.seekToDefaultPosition();
+        if (simpleExoPlayer != null) {
+            simpleExoPlayer.seekToDefaultPosition();
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1091,9 +1078,9 @@ public abstract class BasePlayer implements
     private void savePlaybackState() {
         if (simpleExoPlayer == null || currentInfo == null) return;
 
-        if (simpleExoPlayer.getCurrentPosition() > RECOVERY_SKIP_THRESHOLD &&
+        if (simpleExoPlayer.getCurrentPosition() > RECOVERY_SKIP_THRESHOLD_MILLIS &&
                 simpleExoPlayer.getCurrentPosition() <
-                        simpleExoPlayer.getDuration() - RECOVERY_SKIP_THRESHOLD) {
+                        simpleExoPlayer.getDuration() - RECOVERY_SKIP_THRESHOLD_MILLIS) {
             savePlaybackState(currentInfo, simpleExoPlayer.getCurrentPosition());
         }
     }
@@ -1127,9 +1114,7 @@ public abstract class BasePlayer implements
 
     /** Checks if the current playback is a livestream AND is playing at or beyond the live edge */
     public boolean isLiveEdge() {
-        if (simpleExoPlayer == null) return false;
-        final boolean isLive = simpleExoPlayer.isCurrentWindowDynamic();
-        if (!isLive) return false;
+        if (simpleExoPlayer == null || !isLive()) return false;
 
         final Timeline currentTimeline = simpleExoPlayer.getCurrentTimeline();
         final int currentWindowIndex = simpleExoPlayer.getCurrentWindowIndex();
@@ -1141,6 +1126,16 @@ public abstract class BasePlayer implements
         Timeline.Window timelineWindow = new Timeline.Window();
         currentTimeline.getWindow(currentWindowIndex, timelineWindow);
         return timelineWindow.getDefaultPositionMs() <= simpleExoPlayer.getCurrentPosition();
+    }
+
+    public boolean isLive() {
+        if (simpleExoPlayer == null) return false;
+        try {
+            return simpleExoPlayer.isCurrentWindowDynamic();
+        } catch (@NonNull IndexOutOfBoundsException ignored) {
+            // Why would this even happen =(
+            return false;
+        }
     }
 
     public boolean isPlaying() {
@@ -1168,10 +1163,6 @@ public abstract class BasePlayer implements
 
     public void setPlaybackSpeed(float speed) {
         setPlaybackParameters(speed, getPlaybackPitch());
-    }
-
-    public void setPlaybackPitch(float pitch) {
-        setPlaybackParameters(getPlaybackSpeed(), pitch);
     }
 
     public PlaybackParameters getPlaybackParameters() {
