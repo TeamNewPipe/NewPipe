@@ -374,7 +374,7 @@ otevření ve vyskakovacím okně</string>
     <string name="playlist_thumbnail_change_success">Náhled playlistu změněn</string>
     <string name="playlist_delete_failure">Nezdařilo se smazat playlist</string>
 
-    <string name="caption_none">Žádný popis</string>
+    <string name="caption_none">Bez poznámek</string>
 
     <string name="resize_fit">PŘIZPŮSOBIT</string>
     <string name="resize_fill">VYPLNIT</string>
@@ -460,5 +460,8 @@ otevření ve vyskakovacím okně</string>
 
     <string name="preferred_open_action_settings_title">Preferovaná akce při otevření</string>
     <string name="preferred_open_action_settings_summary">Výchozí chování při otevírání obsahu — %s</string>
+
+    <string name="caption_setting_title">Nastavení poznámek</string>
+    <string name="caption_setting_description">Upravuje velikost textu poznámek a styly pozadí. Změny se projeví po restartu přehrávače</string>
 
     </resources>
