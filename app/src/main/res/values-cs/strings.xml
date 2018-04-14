@@ -462,6 +462,6 @@ otevření ve vyskakovacím okně</string>
     <string name="preferred_open_action_settings_summary">Výchozí chování při otevírání obsahu — %s</string>
 
     <string name="caption_setting_title">Nastavení poznámek</string>
-    <string name="caption_setting_description">Upravuje velikost textu poznámek a styly pozadí. Změny se projeví po restartu přehrávače</string>
+    <string name="caption_setting_description">Upravuje velikost textu poznámek a styly pozadí. Změny se projeví po restartu přehrávače.</string>
 
     </resources>
