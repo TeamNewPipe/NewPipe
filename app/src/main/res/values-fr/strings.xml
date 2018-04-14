@@ -28,7 +28,7 @@
     <string name="m4a_description">M4A — meilleure qualité</string>
     <string name="download_dialog_title">Télécharger</string>
     <string name="next_video_title">Vidéo suivante</string>
-    <string name="show_next_and_similar_title">Afficher vidéos suivantes/liées</string>
+    <string name="show_next_and_similar_title">Afficher vidéos suivantes et liées</string>
     <string name="url_not_supported_toast">Lien non pris en charge</string>
     <string name="settings_category_video_audio_title">Vidéo et audio</string>
     <string name="settings_category_other_title">Autre</string>
@@ -66,7 +66,7 @@
 
     <string name="error_snackbar_message">Désolé, des erreurs se sont produites.</string>
     <string name="content">Contenu</string>
-    <string name="show_age_restricted_content_title">Afficher le contenu pour adultes</string>
+    <string name="show_age_restricted_content_title">Afficher contenu avec limite d\'âge</string>
     <string name="duration_live">Direct</string>
 
     <string name="could_not_load_thumbnails">Impossible de charger toutes les miniatures</string>
@@ -89,7 +89,7 @@
     <string name="storage_permission_denied">Autorisation d\'accès au stockage refusée</string>
     <string name="main_bg_subtitle">Faites une recherche pour commencer</string>
     <string name="autoplay_by_calling_app_title">Lecture automatique</string>
-    <string name="video_is_age_restricted">Vidéo soumise à une restriction d\'âge. Il est possible d\'autoriser ce type de contenu depuis les paramètres.</string>
+    <string name="video_is_age_restricted">Vidéo soumise à une limite d\'âge. Autoriser ce type de contenu est possible depuis les paramètres.</string>
     <string name="user_report">Rapport utilisateur</string>
 
     <string name="error_snackbar_action">SIGNALER</string>
@@ -226,7 +226,7 @@
     <string name="undo">Annuler</string>
 
     <string name="enable_watch_history_summary">Conserver les vidéos regardées</string>
-    <string name="resume_on_audio_focus_gain_title">Reprendre si au premier plan</string>
+    <string name="resume_on_audio_focus_gain_title">Reprendre sur le gain de focus</string>
     <string name="settings_category_player_title">Lecteur</string>
     <string name="settings_category_player_behavior_title">Comportement</string>
     <string name="settings_category_history_title">Historique et cache</string>
@@ -267,8 +267,8 @@
     <string name="trending">Populaires</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Nouveau &amp; populaire</string>
-<string name="background_player_append">Mis en file d\'attente du lecteur en arrière-plan</string>
-    <string name="popup_playing_append">Mis en file d\'attente du lecteur en fenêtré</string>
+<string name="background_player_append">En file d\'attente sur le lecteur en arrière-plan</string>
+    <string name="popup_playing_append">En file d\'attente sur le lecteur en fenêtré</string>
     <string name="play_all">Tout lire</string>
 
     <string name="player_stream_failure">Échec de la lecture de ce flux</string>
@@ -302,9 +302,9 @@
     <string name="give_back">Donner en retour</string>
     <string name="default_content_country_title">Pays du contenu par défaut</string>
     <string name="toggle_orientation">Rotation</string>
-    <string name="switch_to_background">Basculer en arrière-plan</string>
-    <string name="switch_to_popup">Basculer en fenêtré</string>
-    <string name="switch_to_main">Basculer en normal</string>
+    <string name="switch_to_background">Arrière-plan</string>
+    <string name="switch_to_popup">Fenêtré</string>
+    <string name="switch_to_main">Normal</string>
 
     <string name="service_title">Service</string>
     <string name="drawer_open">Ouvrir le menu</string>
@@ -385,10 +385,10 @@
     <string name="use_inexact_seek_summary">Permettre au lecteur d\'accéder plus rapidement à une position au détriment de la précision</string>
     <string name="download_thumbnail_title">Charger miniatures</string>
     <string name="download_thumbnail_summary">Désactiver pour arrêter le chargement de toutes les miniatures et sauvegarder les données et l\'utilisation de la mémoire. Modifier cela effacera à la fois le cache d\'image en mémoire et sur disque.</string>
-    <string name="thumbnail_cache_wipe_complete_notice">Cache d\'image effacé</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Images en cache effacées</string>
     <string name="metadata_cache_wipe_title">Effacer les données en cache</string>
-    <string name="metadata_cache_wipe_summary">Supprimer toutes les pages web mises en cache</string>
-    <string name="metadata_cache_wipe_complete_notice">Données en cache supprimées</string>
+    <string name="metadata_cache_wipe_summary">Effacer toutes les pages web mises en cache</string>
+    <string name="metadata_cache_wipe_complete_notice">Données en cache effacées</string>
     <string name="file">Fichier</string>
 
     <string name="invalid_directory">Dossier non valide</string>
@@ -403,7 +403,7 @@
 
     <string name="controls_download_desc">Télécharger le fichier de flux</string>
     <string name="auto_queue_title">Vidéo suivante en file d\'attente</string>
-    <string name="auto_queue_summary">Mettre automatiquement en file d\'attente la vidéo suivante liée à la vidéo en cours de lecture (si vous n\'êtes pas en mode répétition)</string>
+    <string name="auto_queue_summary">Mettre automatiquement en file d\'attente la vidéo suivante liée à la vidéo en cours de lecture dans une file de lecture non répétitive</string>
     <string name="settings_category_debug_title">Débogage</string>
     <string name="resize_fill">Remplir</string>
     <string name="caption_auto_generated">Générés automatiquement</string>
@@ -447,10 +447,17 @@
 \nSouhaitez-vous continuer ?</string>
 
     <string name="playback_speed_control">Vitesse de lecture</string>
-    <string name="playback_tempo"/>
+    <string name="playback_tempo">Cadence</string>
     <string name="unhook_checkbox">Unhook (déformations possibles)</string>
     <string name="playback_default">Défaut</string>
 <string name="preferred_open_action_settings_title">Ouverture préférée</string>
     <string name="preferred_open_action_settings_summary">Action par défaut lors de l\'ouverture de contenu - %s</string>
 
+    <string name="no_streams_available_download">Aucun flux disponible au téléchargement</string>
+
+    <string name="caption_setting_title">Sous-titre</string>
+    <string name="caption_setting_description">Modifier la taille du texte et les styles d\'arrière-plan du lecteur. Redémarrage requis pour prendre effet.</string>
+
+    <string name="playback_pitch">Ton</string>
+    <string name="playback_nightcore">Nightcore</string>
     </resources>
