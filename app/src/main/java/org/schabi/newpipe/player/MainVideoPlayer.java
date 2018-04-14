@@ -52,6 +52,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.exoplayer2.Player;
+import com.google.android.exoplayer2.text.CaptionStyleCompat;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.SubtitleView;
 
@@ -397,20 +398,15 @@ public final class MainVideoPlayer extends AppCompatActivity
 
         @Override
         protected void setupSubtitleView(@NonNull SubtitleView view,
-                                         @NonNull String captionSizeKey) {
-            final float captionRatioInverse;
-            if (captionSizeKey.equals(getString(R.string.smaller_caption_size_key))) {
-                captionRatioInverse = 22f;
-            } else if (captionSizeKey.equals(getString(R.string.larger_caption_size_key))) {
-                captionRatioInverse = 18f;
-            } else {
-                captionRatioInverse = 20f;
-            }
-
+                                         final float captionScale,
+                                         @NonNull final CaptionStyleCompat captionStyle) {
             final DisplayMetrics metrics = context.getResources().getDisplayMetrics();
             final int minimumLength = Math.min(metrics.heightPixels, metrics.widthPixels);
+            final float captionRatioInverse = 20f + 4f * (1f - captionScale);
             view.setFixedTextSize(TypedValue.COMPLEX_UNIT_PX,
                     (float) minimumLength / captionRatioInverse);
+            view.setApplyEmbeddedStyles(captionStyle.equals(CaptionStyleCompat.DEFAULT));
+            view.setStyle(captionStyle);
         }
 
         @Override

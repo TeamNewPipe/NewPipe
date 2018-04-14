@@ -52,6 +52,7 @@ import android.widget.TextView;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
+import com.google.android.exoplayer2.text.CaptionStyleCompat;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.SubtitleView;
 
@@ -397,14 +398,12 @@ public final class PopupVideoPlayer extends Service {
 
         @Override
         protected void setupSubtitleView(@NonNull SubtitleView view,
-                                         @NonNull String captionSizeKey) {
-            float captionRatio = SubtitleView.DEFAULT_TEXT_SIZE_FRACTION;
-            if (captionSizeKey.equals(getString(R.string.smaller_caption_size_key))) {
-                captionRatio *= 0.9;
-            } else if (captionSizeKey.equals(getString(R.string.larger_caption_size_key))) {
-                captionRatio *= 1.1;
-            }
-            view.setFractionalTextSize(captionRatio);
+                                         final float captionScale,
+                                         @NonNull final CaptionStyleCompat captionStyle) {
+            float captionRatio = (captionScale - 1f) / 5f + 1f;
+            view.setFractionalTextSize(SubtitleView.DEFAULT_TEXT_SIZE_FRACTION * captionRatio);
+            view.setApplyEmbeddedStyles(captionStyle.equals(CaptionStyleCompat.DEFAULT));
+            view.setStyle(captionStyle);
         }
 
         @Override

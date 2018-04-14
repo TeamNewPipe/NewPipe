@@ -426,10 +426,10 @@
     <string name="resize_zoom">ZOOM</string>
 
     <string name="caption_auto_generated">Auto-generated</string>
-    <string name="caption_font_size_settings_title">Caption font size</string>
-    <string name="smaller_caption_font_size">Smaller font</string>
-    <string name="normal_caption_font_size">Normal font</string>
-    <string name="larger_caption_font_size">Larger font</string>
+
+    <!-- Caption Settings -->
+    <string name="caption_setting_title">Caption</string>
+    <string name="caption_setting_description">Modify player caption text scale and background styles. Require player restart to take effect.</string>
 
     <!-- Debug Settings -->
     <string name="enable_leak_canary_title">Enable LeakCanary</string>
