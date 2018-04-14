@@ -36,6 +36,7 @@ import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
+import org.schabi.newpipe.fragments.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.playlist.ChannelPlayQueue;
 import org.schabi.newpipe.playlist.PlayQueue;
@@ -49,6 +50,7 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -161,6 +163,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                 context.getResources().getString(R.string.start_here_on_main),
                 context.getResources().getString(R.string.start_here_on_background),
                 context.getResources().getString(R.string.start_here_on_popup),
+                context.getResources().getString(R.string.append_playlist)
         };
 
         final DialogInterface.OnClickListener actions = new DialogInterface.OnClickListener() {
@@ -182,6 +185,12 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                         break;
                     case 4:
                         NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index));
+                        break;
+                    case 5:
+                        if (getFragmentManager() != null) {
+                            PlaylistAppendDialog.fromStreamInfoItems(Collections.singletonList(item))
+                                    .show(getFragmentManager(), TAG);
+                        }
                         break;
                     default:
                         break;
