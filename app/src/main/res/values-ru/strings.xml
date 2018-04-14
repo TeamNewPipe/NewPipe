@@ -457,4 +457,7 @@
 <string name="metadata_cache_wipe_summary">Удалить все загруженные данные веб-страниц</string>
     <string name="preferred_open_action_settings_summary">Действие по умолчанию при открытии контента — %s</string>
 
+    <string name="no_streams_available_download">Нет потоков, доступных для загрузки</string>
+
+    <string name="caption_setting_title">Субтитры</string>
     </resources>
