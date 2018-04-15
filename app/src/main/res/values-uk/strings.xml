@@ -147,7 +147,7 @@
     <string name="show_higher_resolutions_summary">Не всі пристрої підтримують програвання 2K/4K відео</string>
     <string name="show_higher_resolutions_title">Показувати більші роздільні здатності</string>
     <string name="default_video_format_title">Типовий відео формат</string>
-    <string name="popup_remember_size_pos_title">Пам\'ятати розмір та положення вікна</string>
+    <string name="popup_remember_size_pos_title">Пам\'ятати розмір та позицію вікна</string>
     <string name="popup_remember_size_pos_summary">Пам\'ятати останній розмір та позицію вікна</string>
     <string name="player_gesture_controls_title">Керування жестами</string>
     <string name="player_gesture_controls_summary">Використовувати жести для контролю яскравості та гучності програвача</string>
