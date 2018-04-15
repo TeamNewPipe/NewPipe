@@ -2,7 +2,7 @@
 <resources>
     <string name="view_count_text">%1$s переглядів</string>
     <string name="upload_date_text">Опубліковано %1$s</string>
-    <string name="no_player_found">Потоковий програвач не знайдено. Чи ви хочете встановити VLC?</string>
+    <string name="no_player_found">Струмового програвача не знайдено. Чи ви хочете встановити VLC?</string>
     <string name="install">Установити</string>
     <string name="cancel">Скасувати</string>
     <string name="open_in_browser">Відкрити у переглядачі</string>
@@ -65,8 +65,8 @@
     <string name="content_not_available">Контент не доступний</string>
     <string name="blocked_by_gema">Заблоковано GEMA</string>
     <string name="could_not_setup_download_menu">Не вдалося налаштувати меню завантаження</string>
-    <string name="live_streams_not_supported">Трансляції наживо ще не мають підтримування.</string>
-    <string name="could_not_get_stream">Не вдалося отримати жодний потік</string>
+    <string name="live_streams_not_supported">Трансляції наживо ще не підтримуються.</string>
+    <string name="could_not_get_stream">Не вдалося отримати жодного струму</string>
     <string name="sorry_string">Шкода, цього не мало статися.</string>
     <string name="error_report_button_text">Зазвітувати помилку за допомогою пошти</string>
     <string name="error_snackbar_message">На жаль, сталася помилка.</string>
@@ -125,7 +125,7 @@
     <string name="msg_copied">Скопійовано до сховку</string>
     <string name="no_available_dir">Будь ласка, оберіть теку для завантаження</string>
 
-<string name="no_player_found_toast">Потоковий програвач не знайдено (ви можете встановити VLC для відтворення)</string>
+<string name="no_player_found_toast">Струмового програвача не знайдено (ви можете встановити VLC для відтворення)</string>
     <string name="open_in_popup_mode">Відкрити у віконному режимі</string>
     <string name="use_external_video_player_summary">Певні роздільності НЕ МАТИМУТЬ звуку якщо цей параметр увімкнено</string>
     <string name="popup_mode_share_menu_title">NewPipe у віконному режимі</string>
@@ -193,11 +193,11 @@
     <string name="export_data_title">Експортувати базу</string>
     <string name="import_data_summary">Це перепише наявну історію та підписання</string>
     <string name="export_data_summary">Експортувати історію, підписання та плейлисти.</string>
-    <string name="player_stream_failure">Помилка при відворенні потоку</string>
+    <string name="player_stream_failure">Трапилася помилка під час відворення струму</string>
     <string name="player_recoverable_failure">Відновлююсь після помилки програвача</string>
     <string name="invalid_url_toast">Помилкова ланка URL</string>
-    <string name="video_streams_empty">Не знайдено відео потоків</string>
-    <string name="audio_streams_empty">Не знайдено аудіо потоків</string>
+    <string name="video_streams_empty">Відео-струмів не було знайдено</string>
+    <string name="audio_streams_empty">Не знайдено жодних аудіо-струмів</string>
 
     <string name="user_report">Звіт користувача</string>
     <string name="no_subscribers">Без підписників</string>
@@ -386,8 +386,8 @@
 
 <string name="use_inexact_seek_title">Використовувати неточне шукання</string>
     <string name="use_inexact_seek_summary">Неточне шукання дозволяє програвачеві рухатися позиціями швидше, проте з меншою точністю</string>
-    <string name="auto_queue_title">Автоматично додати до черги наступний стрим</string>
-    <string name="auto_queue_summary">Автоматично додавати пов\'язаний стрим, під час початку програвання останнього стриму.</string>
+    <string name="auto_queue_title">Автоматично додати до черги наступний струм</string>
+    <string name="auto_queue_summary">Автоматично додавати пов\'язаний струм, під час початку програвання останнього струму.</string>
     <string name="live_sync">СИНХРОНІЗАЦІЯ</string>
 
     <string name="file">Файл</string>
@@ -443,4 +443,12 @@
     <string name="unhook_checkbox">Від\'єднати (може спричинити спотворення)</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Усталено</string>
-</resources>
+<string name="no_streams_available_download">Струми недоступні для завантаження</string>
+
+    <string name="preferred_open_action_settings_title">Переважний спосіб відкриття</string>
+    <string name="preferred_open_action_settings_summary">Типова дія під час відкриття вмісту — %s</string>
+
+    <string name="caption_setting_title">Субтитри</string>
+    <string name="caption_setting_description">Змінення маштабу тексту субтитрів та фонових стилів. Дія потребує перезавантаження програвача.</string>
+
+    </resources>
