@@ -1,4 +1,4 @@
-package org.schabi.newpipe.playlist;
+package org.schabi.newpipe.playqueue;
 
 import android.app.Activity;
 import android.content.Context;

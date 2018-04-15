@@ -1,4 +1,4 @@
-package org.schabi.newpipe.playlist;
+package org.schabi.newpipe.playqueue;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -6,15 +6,15 @@ import android.util.Log;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
-import org.schabi.newpipe.playlist.events.AppendEvent;
-import org.schabi.newpipe.playlist.events.ErrorEvent;
-import org.schabi.newpipe.playlist.events.InitEvent;
-import org.schabi.newpipe.playlist.events.MoveEvent;
-import org.schabi.newpipe.playlist.events.PlayQueueEvent;
-import org.schabi.newpipe.playlist.events.RecoveryEvent;
-import org.schabi.newpipe.playlist.events.RemoveEvent;
-import org.schabi.newpipe.playlist.events.ReorderEvent;
-import org.schabi.newpipe.playlist.events.SelectEvent;
+import org.schabi.newpipe.playqueue.events.AppendEvent;
+import org.schabi.newpipe.playqueue.events.ErrorEvent;
+import org.schabi.newpipe.playqueue.events.InitEvent;
+import org.schabi.newpipe.playqueue.events.MoveEvent;
+import org.schabi.newpipe.playqueue.events.PlayQueueEvent;
+import org.schabi.newpipe.playqueue.events.RecoveryEvent;
+import org.schabi.newpipe.playqueue.events.RemoveEvent;
+import org.schabi.newpipe.playqueue.events.ReorderEvent;
+import org.schabi.newpipe.playqueue.events.SelectEvent;
 
 import java.io.Serializable;
 import java.util.ArrayList;

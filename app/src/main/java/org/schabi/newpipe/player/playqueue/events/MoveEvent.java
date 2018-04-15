@@ -1,4 +1,4 @@
-package org.schabi.newpipe.playlist.events;
+package org.schabi.newpipe.playqueue.events;
 
 public class MoveEvent implements PlayQueueEvent {
     final private int fromIndex;

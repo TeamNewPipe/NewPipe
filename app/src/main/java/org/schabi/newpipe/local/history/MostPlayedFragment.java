@@ -2,7 +2,7 @@ package org.schabi.newpipe.fragments.local.history;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
-import org.schabi.newpipe.playlist.StatisticsPlaylistFragment;
+import org.schabi.newpipe.playqueue.StatisticsPlaylistFragment;
 
 import java.util.Collections;
 import java.util.List;

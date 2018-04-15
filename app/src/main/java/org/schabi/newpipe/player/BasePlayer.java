@@ -69,9 +69,9 @@ import org.schabi.newpipe.player.playback.BasePlayerMediaSession;
 import org.schabi.newpipe.player.playback.CustomTrackSelector;
 import org.schabi.newpipe.player.playback.MediaSourceManager;
 import org.schabi.newpipe.player.playback.PlaybackListener;
-import org.schabi.newpipe.playlist.PlayQueue;
-import org.schabi.newpipe.playlist.PlayQueueAdapter;
-import org.schabi.newpipe.playlist.PlayQueueItem;
+import org.schabi.newpipe.playqueue.PlayQueue;
+import org.schabi.newpipe.playqueue.PlayQueueAdapter;
+import org.schabi.newpipe.playqueue.PlayQueueItem;
 import org.schabi.newpipe.util.SerializedCache;
 
 import java.io.IOException;

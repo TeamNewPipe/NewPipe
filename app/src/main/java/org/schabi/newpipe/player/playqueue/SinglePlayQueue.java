@@ -1,4 +1,4 @@
-package org.schabi.newpipe.playlist;
+package org.schabi.newpipe.playqueue;
 
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;

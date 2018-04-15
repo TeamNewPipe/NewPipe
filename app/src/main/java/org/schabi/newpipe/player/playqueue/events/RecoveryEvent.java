@@ -1,4 +1,4 @@
-package org.schabi.newpipe.playlist.events;
+package org.schabi.newpipe.playqueue.events;
 
 
 public class RecoveryEvent implements PlayQueueEvent {

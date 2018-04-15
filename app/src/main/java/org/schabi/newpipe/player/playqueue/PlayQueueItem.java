@@ -1,4 +1,4 @@
-package org.schabi.newpipe.playlist;
+package org.schabi.newpipe.playqueue;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;

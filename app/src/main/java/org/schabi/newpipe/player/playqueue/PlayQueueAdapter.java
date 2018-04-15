@@ -1,4 +1,4 @@
-package org.schabi.newpipe.playlist;
+package org.schabi.newpipe.playqueue;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,12 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.playlist.events.AppendEvent;
-import org.schabi.newpipe.playlist.events.ErrorEvent;
-import org.schabi.newpipe.playlist.events.MoveEvent;
-import org.schabi.newpipe.playlist.events.PlayQueueEvent;
-import org.schabi.newpipe.playlist.events.RemoveEvent;
-import org.schabi.newpipe.playlist.events.SelectEvent;
+import org.schabi.newpipe.playqueue.events.AppendEvent;
+import org.schabi.newpipe.playqueue.events.ErrorEvent;
+import org.schabi.newpipe.playqueue.events.MoveEvent;
+import org.schabi.newpipe.playqueue.events.PlayQueueEvent;
+import org.schabi.newpipe.playqueue.events.RemoveEvent;
+import org.schabi.newpipe.playqueue.events.SelectEvent;
 
 import java.util.List;
 

@@ -49,7 +49,7 @@ import org.schabi.newpipe.player.PopupVideoPlayer;
 import org.schabi.newpipe.player.PopupVideoPlayerActivity;
 import org.schabi.newpipe.player.VideoPlayer;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
-import org.schabi.newpipe.playlist.PlayQueue;
+import org.schabi.newpipe.playqueue.PlayQueue;
 import org.schabi.newpipe.settings.SettingsActivity;
 
 import java.util.ArrayList;
