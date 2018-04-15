@@ -455,4 +455,7 @@
     <string name="preferred_open_action_settings_title">Yeğlenen açma eylemi</string>
     <string name="preferred_open_action_settings_summary">İçerik açılırken öntanımlı eylem — %s</string>
 
+    <string name="caption_setting_title">Ek Açıklama</string>
+    <string name="caption_setting_description">Oynatıcıdaki ek açıklamalar metninin ölçeğini ve arka plan biçimlerini düzenle. Etki için yeniden başlatma gerekir.</string>
+
     </resources>
