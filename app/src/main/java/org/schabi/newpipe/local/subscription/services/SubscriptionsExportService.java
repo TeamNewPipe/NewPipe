@@ -17,7 +17,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.schabi.newpipe.subscription.services;
+package org.schabi.newpipe.local.subscription.services;
 
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
@@ -29,7 +29,7 @@ import org.reactivestreams.Subscription;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.subscription.SubscriptionItem;
-import org.schabi.newpipe.subscription.ImportExportJsonHelper;
+import org.schabi.newpipe.local.subscription.ImportExportJsonHelper;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -49,7 +49,7 @@ public class SubscriptionsExportService extends BaseImportExportService {
     /**
      * A {@link LocalBroadcastManager local broadcast} will be made with this action when the export is successfully completed.
      */
-    public static final String EXPORT_COMPLETE_ACTION = "org.schabi.newpipe.subscription.services.SubscriptionsExportService.EXPORT_COMPLETE";
+    public static final String EXPORT_COMPLETE_ACTION = "org.schabi.newpipe.local.subscription.services.SubscriptionsExportService.EXPORT_COMPLETE";
 
     private Subscription subscription;
     private File outFile;

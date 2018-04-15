@@ -17,7 +17,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.schabi.newpipe.subscription.services;
+package org.schabi.newpipe.local.subscription.services;
 
 import android.app.Service;
 import android.content.Intent;
@@ -36,8 +36,8 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.subscription.ImportExportEventListener;
-import org.schabi.newpipe.subscription.SubscriptionService;
+import org.schabi.newpipe.local.subscription.ImportExportEventListener;
+import org.schabi.newpipe.local.subscription.SubscriptionService;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

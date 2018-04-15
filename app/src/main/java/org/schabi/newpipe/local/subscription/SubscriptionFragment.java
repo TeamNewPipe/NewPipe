@@ -1,4 +1,4 @@
-package org.schabi.newpipe.fragments.subscription;
+package org.schabi.newpipe.local.subscription;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -39,9 +39,8 @@ import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.subscription.SubscriptionService;
-import org.schabi.newpipe.subscription.services.SubscriptionsExportService;
-import org.schabi.newpipe.subscription.services.SubscriptionsImportService;
+import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService;
+import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
@@ -53,7 +52,6 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -65,9 +63,9 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-import static org.schabi.newpipe.subscription.services.SubscriptionsImportService.KEY_MODE;
-import static org.schabi.newpipe.subscription.services.SubscriptionsImportService.KEY_VALUE;
-import static org.schabi.newpipe.subscription.services.SubscriptionsImportService.PREVIOUS_EXPORT_MODE;
+import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_MODE;
+import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_VALUE;
+import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.PREVIOUS_EXPORT_MODE;
 import static org.schabi.newpipe.util.AnimationUtils.animateRotation;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 

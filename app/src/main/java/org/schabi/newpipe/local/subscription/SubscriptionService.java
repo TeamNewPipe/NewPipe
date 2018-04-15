@@ -1,4 +1,4 @@
-package org.schabi.newpipe.subscription;
+package org.schabi.newpipe.local.subscription;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

@@ -80,8 +80,8 @@
             android:name=".history.HistoryActivity"
             android:label="@string/title_activity_history"/>
 
-        <service android:name=".subscription.services.SubscriptionsImportService"/>
-        <service android:name=".subscription.services.SubscriptionsExportService"/>
+        <service android:name=".local.subscription.services.SubscriptionsImportService"/>
+        <service android:name=".local.subscription.services.SubscriptionsExportService"/>
 
         <activity
             android:name=".PanicResponderActivity"

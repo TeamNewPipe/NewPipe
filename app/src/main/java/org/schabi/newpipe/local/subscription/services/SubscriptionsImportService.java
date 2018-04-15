@@ -17,7 +17,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.schabi.newpipe.subscription.services;
+package org.schabi.newpipe.local.subscription.services;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -33,7 +33,7 @@ import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.subscription.SubscriptionItem;
-import org.schabi.newpipe.subscription.ImportExportJsonHelper;
+import org.schabi.newpipe.local.subscription.ImportExportJsonHelper;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
 
@@ -64,7 +64,7 @@ public class SubscriptionsImportService extends BaseImportExportService {
     /**
      * A {@link LocalBroadcastManager local broadcast} will be made with this action when the import is successfully completed.
      */
-    public static final String IMPORT_COMPLETE_ACTION = "org.schabi.newpipe.subscription.services.SubscriptionsImportService.IMPORT_COMPLETE";
+    public static final String IMPORT_COMPLETE_ACTION = "org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.IMPORT_COMPLETE";
 
     private Subscription subscription;
     private int currentMode;

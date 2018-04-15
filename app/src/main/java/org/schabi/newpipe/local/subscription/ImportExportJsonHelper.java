@@ -17,7 +17,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.schabi.newpipe.subscription;
+package org.schabi.newpipe.local.subscription;
 
 import android.support.annotation.Nullable;
 

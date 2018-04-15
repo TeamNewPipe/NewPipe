@@ -1,9 +1,9 @@
-package org.schabi.newpipe.subscription.services;
+package org.schabi.newpipe.local.subscription.services;
 
 import org.junit.Test;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
 import org.schabi.newpipe.extractor.subscription.SubscriptionItem;
-import org.schabi.newpipe.subscription.ImportExportJsonHelper;
+import org.schabi.newpipe.local.subscription.ImportExportJsonHelper;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

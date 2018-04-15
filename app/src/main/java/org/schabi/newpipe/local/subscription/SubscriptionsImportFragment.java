@@ -1,4 +1,4 @@
-package org.schabi.newpipe.fragments.subscription;
+package org.schabi.newpipe.local.subscription;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -26,7 +26,7 @@ import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.subscription.services.SubscriptionsImportService;
+import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.ServiceHelper;
@@ -37,10 +37,10 @@ import java.util.List;
 import icepick.State;
 
 import static org.schabi.newpipe.extractor.subscription.SubscriptionExtractor.ContentSource.CHANNEL_URL;
-import static org.schabi.newpipe.subscription.services.SubscriptionsImportService.CHANNEL_URL_MODE;
-import static org.schabi.newpipe.subscription.services.SubscriptionsImportService.INPUT_STREAM_MODE;
-import static org.schabi.newpipe.subscription.services.SubscriptionsImportService.KEY_MODE;
-import static org.schabi.newpipe.subscription.services.SubscriptionsImportService.KEY_VALUE;
+import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.CHANNEL_URL_MODE;
+import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.INPUT_STREAM_MODE;
+import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_MODE;
+import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_VALUE;
 
 public class SubscriptionsImportFragment extends BaseFragment {
     private static final int REQUEST_IMPORT_FILE_CODE = 666;

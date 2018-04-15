@@ -1,4 +1,4 @@
-package org.schabi.newpipe.subscription;
+package org.schabi.newpipe.local.subscription;
 
 public interface ImportExportEventListener {
     /**

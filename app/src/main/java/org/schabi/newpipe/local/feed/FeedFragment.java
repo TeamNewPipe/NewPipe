@@ -1,4 +1,4 @@
-package org.schabi.newpipe.fragments.list.feed;
+package org.schabi.newpipe.local.feed;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,7 +22,7 @@ import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.fragments.list.BaseListFragment;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.subscription.SubscriptionService;
+import org.schabi.newpipe.local.subscription.SubscriptionService;
 
 import java.util.Collections;
 import java.util.HashSet;
