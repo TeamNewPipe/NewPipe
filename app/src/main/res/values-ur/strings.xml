@@ -1,2 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="main_bg_subtitle">شروع کرنے کیلئے تلاش کو ٹپ کریں</string>
+    <string name="view_count_text">ملاحظات</string>
+    <string name="upload_date_text">کوشائع ہوا</string>
+    <string name="install">انسٹال</string>
+    <string name="cancel">منسوخ کریں</string>
+    <string name="share">اشتراک کریں</string>
+    <string name="download">ڈاؤن لوڈکریں</string>
+    <string name="search">تلاش کریں</string>
+    <string name="did_you_mean">نتائج دکھارہاہےبرائے</string>
+    </resources>
