@@ -457,4 +457,7 @@
     <string name="preferred_open_action_settings_title">Bevorzugte öffnen Aktion</string>
     <string name="preferred_open_action_settings_summary">Standardaktion beim Öffnen von Inhalten - %s</string>
 
+    <string name="caption_setting_title">Untertitel</string>
+    <string name="caption_setting_description">Ändere Textgröße und Hintergrundstil des Untertitels im Player. Wird erst nach Neustart des Players wirksam.</string>
+
     </resources>
