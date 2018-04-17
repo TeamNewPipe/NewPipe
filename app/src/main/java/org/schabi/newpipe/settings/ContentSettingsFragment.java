@@ -197,7 +197,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                             new FileOutputStream(path)));
             ZipHelper.addFileToZip(outZip, newpipe_db.getPath(), "newpipe.db");
             ZipHelper.addFileToZip(outZip, newpipe_db_journal.getPath(), "newpipe.db-journal");
-
+            //add settings
             outZip.close();
 
             Toast.makeText(getContext(), R.string.export_complete_toast, Toast.LENGTH_SHORT)
