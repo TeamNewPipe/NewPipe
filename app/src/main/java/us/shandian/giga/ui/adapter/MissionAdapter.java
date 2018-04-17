@@ -19,6 +19,7 @@ import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.schabi.newpipe.R;
 
@@ -282,7 +283,12 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
         }
         //mContext.grantUriPermission(packageName, uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
         Log.v(TAG, "Starting intent: " + intent);
-        mContext.startActivity(intent);
+        if (intent.resolveActivity(mContext.getPackageManager()) != null) {
+            mContext.startActivity(intent);
+        } else {
+            Toast noPlayerToast = Toast.makeText(mContext, R.string.toast_no_player, Toast.LENGTH_LONG);
+            noPlayerToast.show();
+        }
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
