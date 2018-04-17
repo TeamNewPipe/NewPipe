@@ -375,7 +375,7 @@
     <string name="playlist_thumbnail_change_success">Miniaturka playlisty zmieniona</string>
     <string name="playlist_delete_failure">Błąd podczas usuwania playlisty</string>
 
-    <string name="caption_none">Brak etykiety</string>
+    <string name="caption_none">Bez napisów</string>
 
     <string name="resize_fit">DOPASUJ</string>
     <string name="resize_fill">WYPEŁNIJ</string>
@@ -454,5 +454,8 @@
 
     <string name="preferred_open_action_settings_title">Preferowane otwieranie</string>
     <string name="preferred_open_action_settings_summary">Domyślna akcja podczas otwierania treści - %s</string>
+
+    <string name="caption_setting_title">Napisy</string>
+    <string name="caption_setting_description">Zmień kolor tekstu i tła napisów. Wymaga restartu odtwarzacza.</string>
 
     </resources>
