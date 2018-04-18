@@ -299,7 +299,7 @@
     <string name="give_back">Zurückgeben</string>
     <string name="website_title">Website</string>
     <string name="website_encouragement">Um mehr Informationen und die neuesten Nachrichten über NewPipe zu erhalten, besuche unsere Website.</string>
-    <string name="donation_encouragement">NewPipe wird von Freiwilligen entwickelt, die ihre Freizeit darauf verwenden, dir die beste Nutzererfahrung zu bieten. Hilf jetzt den Entwicklern, NewPipe noch besser zu machen, und spendiere Ihnen eine Tasse Java-Kaffee!</string>
+    <string name="donation_encouragement">NewPipe wird von Freiwilligen entwickelt, die ihre Freizeit dazu aufbringen, das beste Nutzererlebnis zu Dir zu bringen. Jetzt ist es an Dir, ein wenig zurückzugeben und sicherzustellen, dass unsere Entwickler NewPipe noch besser machen können, während sie sich an einer warmen Tasse Kaffee erfreuen.</string>
     <string name="service_title">Service</string>
     <string name="no_player_found_toast">Kein Streamplayer gefunden (Du kannst VLC installieren, um ihn abzuspielen)</string>
     <string name="default_content_country_title">Standard-Land des Inhalts</string>
