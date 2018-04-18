@@ -62,7 +62,12 @@ public class ZipHelper {
      * @return will return true if the file was found within the zip file
      * @throws Exception
      */
-    public static boolean extractFileFromZip(ZipInputStream inZip, String file, String name) throws Exception {
+    public static boolean extractFileFromZip(String filePath, String file, String name) throws Exception {
+
+        ZipInputStream inZip = new ZipInputStream(
+                new BufferedInputStream(
+                        new FileInputStream(filePath)));
+
         byte data[] = new byte[BUFFER_SIZE];
 
         boolean found = false;
@@ -89,6 +94,6 @@ public class ZipHelper {
                 inZip.closeEntry();
             }
         }
-        return true;
+        return found;
     }
 }
