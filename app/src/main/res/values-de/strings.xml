@@ -460,4 +460,6 @@
     <string name="caption_setting_title">Untertitel</string>
     <string name="caption_setting_description">Ändere Textgröße und Hintergrundstil des Untertitels im Player. Wird erst nach Neustart des Players wirksam.</string>
 
+    <string name="toast_no_player">Für diese Datei wurde kein Player gefunden</string>
+
     </resources>
