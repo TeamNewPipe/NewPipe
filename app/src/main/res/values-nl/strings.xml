@@ -462,4 +462,6 @@ te openen in pop-upmodus</string>
     <string name="caption_setting_title">Kop</string>
     <string name="caption_setting_description">Koptekstgrootte en achtergrondstijlen wijzigen. Vereist een herstart van de speler.</string>
 
+    <string name="toast_no_player">Geen speler gevonden voor dit bestand</string>
+
     </resources>
