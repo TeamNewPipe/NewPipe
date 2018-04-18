@@ -444,4 +444,6 @@
     <string name="caption_setting_title">字幕</string>
     <string name="caption_setting_description">調整播放器字幕大小與背景樣式。必須重新啟動播放器才會生效。</string>
 
+    <string name="toast_no_player">此檔案找不到播放器</string>
+
     </resources>
