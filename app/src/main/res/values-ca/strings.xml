@@ -429,4 +429,6 @@
     <string name="caption_setting_title">Subtítols</string>
     <string name="caption_setting_description">Modifica la mida del text i el fons dels subtítols. Cal reiniciar l\'aplicació per aplicar els canvis.</string>
 
+    <string name="toast_no_player">No s\'ha trobat cap reproductor per a aquest fitxer</string>
+
     </resources>
