@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -30,6 +32,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.OrientationEventListener;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -179,6 +182,9 @@ public class VideoDetailFragment
     private LinearLayout relatedStreamsView;
     private ImageButton relatedStreamExpandButton;
 
+    private OrientationEventListener mOrientationListener;
+    private int lastOrientation;
+
 
     /*////////////////////////////////////////////////////////////////////////*/
 
@@ -212,11 +218,19 @@ public class VideoDetailFragment
     public void onPause() {
         super.onPause();
         if (currentWorker != null) currentWorker.dispose();
+        mOrientationListener.disable();
     }
 
     @Override
     public void onResume() {
         super.onResume();
+
+        if (mOrientationListener.canDetectOrientation()) {
+            mOrientationListener.enable();
+        }
+        else {
+            mOrientationListener.disable();
+        }
 
         if (updateFlags != 0) {
             if (!isLoading.get() && currentInfo != null) {
@@ -247,6 +261,8 @@ public class VideoDetailFragment
         if (disposables != null) disposables.clear();
         currentWorker = null;
         disposables = null;
+
+        mOrientationListener.disable();
     }
 
     @Override
@@ -294,6 +310,7 @@ public class VideoDetailFragment
     private static final String INFO_KEY = "info_key";
     private static final String STACK_KEY = "stack_key";
     private static final String WAS_RELATED_EXPANDED_KEY = "was_related_expanded_key";
+    private static final String LAST_ORIENTATION_KEY = "last_orientation_key";
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -312,6 +329,7 @@ public class VideoDetailFragment
         }
 
         outState.putSerializable(STACK_KEY, stack);
+        outState.putInt(LAST_ORIENTATION_KEY, lastOrientation);
     }
 
     @Override
@@ -331,6 +349,7 @@ public class VideoDetailFragment
             //noinspection unchecked
             stack.addAll((Collection<? extends StackItem>) serializable);
         }
+        lastOrientation = savedState.getInt(LAST_ORIENTATION_KEY);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -498,6 +517,8 @@ public class VideoDetailFragment
 
         infoItemBuilder = new InfoItemBuilder(activity);
         setHeightThumbnail();
+
+        lastOrientation =  getResources().getConfiguration().orientation;
     }
 
     @Override
@@ -531,6 +552,27 @@ public class VideoDetailFragment
         detailControlsPopup.setOnLongClickListener(this);
         detailControlsBackground.setOnTouchListener(getOnControlsTouchListener());
         detailControlsPopup.setOnTouchListener(getOnControlsTouchListener());
+
+        mOrientationListener = new OrientationEventListener(this.activity, 500) {
+            @Override
+            public void onOrientationChanged(int orientation) {
+                int currentOrientation;
+
+                if ((orientation > 75 && orientation < 105) ||
+                    (orientation > 255 && orientation < 285)) {
+                    currentOrientation = Configuration.ORIENTATION_LANDSCAPE;
+                }
+                else currentOrientation = Configuration.ORIENTATION_PORTRAIT;
+
+                if (currentOrientation != lastOrientation) {
+                    if (currentOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+                        if (currentInfo != null) openVideoPlayer();
+                    }
+
+                    lastOrientation = currentOrientation;
+                }
+            }
+        };
     }
 
     private void showStreamDialog(final StreamInfoItem item) {
