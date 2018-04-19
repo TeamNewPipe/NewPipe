@@ -458,4 +458,6 @@
     <string name="caption_setting_title">Ek Açıklama</string>
     <string name="caption_setting_description">Oynatıcıdaki ek açıklamalar metninin ölçeğini ve arka plan biçimlerini düzenle. Etki için yeniden başlatma gerekir.</string>
 
+    <string name="toast_no_player">Bu dosya için oynatıcı bulunamadı</string>
+
     </resources>
