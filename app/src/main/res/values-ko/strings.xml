@@ -171,7 +171,7 @@
     <string name="player_unrecoverable_failure">복구할 수 없는 플레이어 오류가 발생했습니다</string>
     <string name="player_recoverable_failure">플레이어 오류로부터 복구 중</string>
 
-    <string name="info_labels">무엇을:\\n요청:\\n컨텐츠 언어:\\n서비스:\\nGMT 기준 시간:\\n패키지:\\n버전:\\n안드로이드 버전:\\nIP주소 범위:</string>
+    <string name="info_labels">무엇을:\\n요청:\\n컨텐츠 언어:\\n서비스:\\nGMT 기준 시간:\\n패키지:\\n버전:\\n안드로이드 버전:</string>
     <string name="search_no_results">결과 없음</string>
     <string name="empty_subscription_feed_subtitle">구독할 항목을 추가하세요</string>
 
@@ -437,4 +437,14 @@
     <string name="unhook_checkbox">후크 취소 (소리가 깨질수 있음)</string>
     <string name="playback_nightcore">나이트코어</string>
     <string name="playback_default">기본</string>
-</resources>
+<string name="no_streams_available_download">다운로드 가능한 스트림이 없습니다</string>
+
+    <string name="toast_no_player">이 파일을 위한 플레이어가 발견되지 않았습니다</string>
+
+    <string name="preferred_open_action_settings_title">선호하는 열기 동작</string>
+    <string name="preferred_open_action_settings_summary">컨텐츠를 열 때 사용할 기본 동작 — %s</string>
+
+    <string name="caption_setting_title">자막</string>
+    <string name="caption_setting_description">플레이어 자막 텍스트 크기와 배경 스타일을 변경합니다. 효과를 적용하려면 앱을 재시작 해야합니다.</string>
+
+    </resources>
