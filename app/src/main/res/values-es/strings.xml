@@ -463,4 +463,9 @@ abrir en modo popup</string>
     <string name="preferred_open_action_settings_title">Acción de abrir preferida</string>
     <string name="preferred_open_action_settings_summary">Acción por defecto al abrir contenido — %s</string>
 
+    <string name="toast_no_player">Ningún reproductor ha sido encontrado para este archivo</string>
+
+    <string name="caption_setting_title">Subtítulos</string>
+    <string name="caption_setting_description">Modificar la escala de texto de los subtítulos del reproductor y los estilos de fondo. Requiere un reinicio del reproductor para que surta efecto.</string>
+
     </resources>
