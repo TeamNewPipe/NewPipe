@@ -433,4 +433,9 @@
     <string name="unhook_checkbox">Unhook（可能导致失真）</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">默认</string>
-</resources>
+<string name="toast_no_player">找不到能播放此文件的播放器</string>
+
+    <string name="caption_setting_title">字幕</string>
+    <string name="caption_setting_description">修改播放器的字幕文本大小和背景样式。需要重启播放器以生效。</string>
+
+    </resources>
