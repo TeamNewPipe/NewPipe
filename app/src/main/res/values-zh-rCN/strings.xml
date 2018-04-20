@@ -2,7 +2,7 @@
 <resources>
     <string name="view_count_text">点播%1$s次</string>
     <string name="upload_date_text">%1$s发布</string>
-    <string name="no_player_found">找不到播放器，您要安装VLC吗？</string>
+    <string name="no_player_found">找不到播放器。您是否要安装 VLC？</string>
     <string name="install">安装</string>
     <string name="cancel">取消</string>
     <string name="open_in_browser">用浏览器打开</string>
@@ -251,7 +251,7 @@
 </plurals>
 
     <string name="item_deleted">项目已删除</string>
-    <string name="no_player_found_toast">找不到播放器（您可以安装VLC播放）</string>
+    <string name="no_player_found_toast">找不到播放器（你可以安装 VLC 来播放）</string>
     <string name="controls_download_desc">下载串流文件。</string>
     <string name="show_info">显示详情</string>
 
