@@ -347,4 +347,76 @@
     <string name="drawer_open">Abrir menu</string>
     <string name="drawer_close">Fechar menu</string>
     <string name="playlist_name_input">Nome</string>
-    </resources>
+    <string name="metadata_cache_wipe_title">Apagar metadados em cache</string>
+    <string name="metadata_cache_wipe_summary">Remover todos os dados da página em cache</string>
+    <string name="metadata_cache_wipe_complete_notice">Metadados em cache apagados</string>
+    <string name="file">Ficheiro</string>
+
+    <string name="delete_stream_history_prompt">Pretende apagar este item do histórico de visualizações?</string>
+    <string name="delete_all_history_prompt">Tem a certeza que quer apagar todos os itens do histórico?</string>
+    <string name="title_last_played">Última reprodução</string>
+    <string name="title_most_played">Mais reproduzido</string>
+
+    <string name="drawer_header_action_paceholder_text">Algo vai surgir aqui em breve ;D</string>
+
+
+    <string name="video_player">Reprodutor de vídeo</string>
+    <string name="background_player">Reprodutor em segundo plano</string>
+    <string name="popup_player">Reprodutor em popup</string>
+    <string name="always_ask_open_action">Perguntar sempre</string>
+
+    <string name="preferred_player_fetcher_notification_title">A obter informação…</string>
+    <string name="preferred_player_fetcher_notification_message">O conteúdo requisitado está a carregar</string>
+
+    <string name="create_playlist">Criar Nova Lista de Reprodução</string>
+    <string name="delete_playlist">Apagar Lista de Reprodução</string>
+    <string name="rename_playlist">Renomear Lista de Reprodução</string>
+    <string name="append_playlist">Adicionar a Lista de Reprodução</string>
+    <string name="bookmark_playlist">Guardar Lista de Reprodução nos Marcadores</string>
+    <string name="unbookmark_playlist">Remover Marcador</string>
+
+    <string name="delete_playlist_prompt">Deseja apagar esta lista de reprodução?</string>
+    <string name="playlist_creation_success">Lista de Reprodução criada com sucesso</string>
+    <string name="playlist_add_stream_success">Adicionado à lista de reprodução</string>
+    <string name="playlist_thumbnail_change_success">Thumbnail da Lista de Reprodução modificada</string>
+    <string name="caption_none">Sem Legenda</string>
+
+    <string name="resize_zoom">ZOOM</string>
+
+    <string name="caption_auto_generated">Gerado automaticamente</string>
+
+    <string name="caption_setting_title">Legenda</string>
+    <string name="import_export_title">Importar/Exportar</string>
+    <string name="import_title">Importar</string>
+    <string name="import_from">Importar a partir de</string>
+    <string name="export_to">Exportar para</string>
+
+    <string name="import_ongoing">A importar…</string>
+    <string name="export_ongoing">A exportar…</string>
+
+    <string name="import_file_title">Importar ficheiro</string>
+    <string name="previous_export">Exportação anterior</string>
+
+    <string name="subscriptions_import_unsuccessful">Importação de subscrições falhou</string>
+    <string name="subscriptions_export_unsuccessful">Exportação de subscrições falhou</string>
+
+    <string name="import_youtube_instructions">Para importar as tuas subscrições do Google vais precisar do ficheiro de exportação, que pode ser descarregado com auxílio destas instruções:
+\n
+\n1. Vai a esta hiperligação: %1$s
+\n2. Inicia a tua sessão quando requisitado
+\n3. O descarregamento deve começar (esse é o ficheiro de exportação)</string>
+    <string name="import_soundcloud_instructions">Para importar as contas que segue no SoundCloud, terá que saber o link ou id do seu perfil. Se souber, basta escrever um deles no campo abaixo e estará tudo pronto. 
+\n 
+\nSe não souber, pode seguir estas etapas: 
+\n 
+\n1. Ative \"modo desktop\" num navegador da internet (o site não está disponível para dispositivos móveis) 
+\n2. Vá a este url: %1$s 
+\n3. Inicie sessão na sua conta quando solicitado 
+\n4. Copie o link para o qual foi redirecionado (este é o link do seu perfil)</string>
+    <string name="import_soundcloud_instructions_hint">seuid, soundcloud.com/seuid</string>
+
+    <string name="playback_speed_control">Controlo de velocidade de reprodução</string>
+    <string name="playback_tempo">Tempo</string>
+    <string name="playback_nightcore">Nightcore</string>
+    <string name="playback_default">Predefinido</string>
+</resources>
