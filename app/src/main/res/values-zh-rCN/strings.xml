@@ -17,13 +17,13 @@
     <string name="use_external_video_player_title">使用外置视频播放器</string>
     <string name="use_external_audio_player_title">使用外置音频播放器</string>
     <string name="download_path_title">视频下载路径</string>
-    <string name="download_path_summary">已下载视频的存储路径</string>
+    <string name="download_path_summary">下载视频的存储路径</string>
     <string name="download_path_dialog_title">输入视频存储路径</string>
     <string name="default_resolution_title">默认分辨率</string>
     <string name="play_with_kodi_title">用Kodi播放</string>
     <string name="kore_not_found">找不到Kore，您要安装Kore吗？</string>
     <string name="show_play_with_kodi_title">显示“用Kodi播放”的选项</string>
-    <string name="show_play_with_kodi_summary">显示用Kodi媒体中心播放视频的选项</string>
+    <string name="show_play_with_kodi_summary">显示 Kodi 媒体中心播放视频的选项</string>
     <string name="play_audio">音频</string>
     <string name="default_audio_format_title">默认音频格式</string>
     <string name="webm_description">WebM — 开放格式</string>
@@ -144,7 +144,7 @@
 
     <string name="default_popup_resolution_title">窗口模式默认分辨率</string>
     <string name="show_higher_resolutions_title">显示更高的分辨率</string>
-    <string name="show_higher_resolutions_summary">只有部分设备能播2K及4K视频</string>
+    <string name="show_higher_resolutions_summary">只有部分设备支持 2K/4K 视频</string>
     <string name="default_video_format_title">首选视频格式</string>
     <string name="black_theme_title">纯黑</string>
     <string name="popup_remember_size_pos_title">记住悬浮窗大小和位置</string>
