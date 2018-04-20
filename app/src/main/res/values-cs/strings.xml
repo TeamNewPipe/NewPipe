@@ -464,4 +464,6 @@ otevření ve vyskakovacím okně</string>
     <string name="caption_setting_title">Nastavení poznámek</string>
     <string name="caption_setting_description">Upravuje velikost textu poznámek a styly pozadí. Změny se projeví po restartu přehrávače.</string>
 
+    <string name="toast_no_player">Pro tento soubor nebyl nalezen žádný přehrávač</string>
+
     </resources>
