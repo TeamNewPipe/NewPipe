@@ -460,4 +460,6 @@
 
     <string name="playback_pitch">Ton</string>
     <string name="playback_nightcore">Nightcore</string>
+    <string name="toast_no_player">Aucun lecteur n\'a été trouvé pour ce fichier</string>
+
     </resources>
