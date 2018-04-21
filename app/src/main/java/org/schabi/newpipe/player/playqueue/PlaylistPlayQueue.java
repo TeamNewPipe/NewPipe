@@ -1,6 +1,5 @@
-package org.schabi.newpipe.playqueue;
+package org.schabi.newpipe.player.playqueue;
 
-import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;

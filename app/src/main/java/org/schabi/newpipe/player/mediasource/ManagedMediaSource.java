@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.google.android.exoplayer2.source.MediaSource;
 
-import org.schabi.newpipe.playqueue.PlayQueueItem;
+import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 
 public interface ManagedMediaSource extends MediaSource {
     /**

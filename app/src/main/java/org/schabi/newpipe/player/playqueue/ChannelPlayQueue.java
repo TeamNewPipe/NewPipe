@@ -1,6 +1,6 @@
-package org.schabi.newpipe.playqueue;
+package org.schabi.newpipe.player.playqueue;
 
-import org.schabi.newpipe.extractor.InfoItem;
+
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;

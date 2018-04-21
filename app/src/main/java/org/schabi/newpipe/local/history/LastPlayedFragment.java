@@ -1,8 +1,8 @@
-package org.schabi.newpipe.fragments.local.history;
+package org.schabi.newpipe.local.history;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
-import org.schabi.newpipe.playqueue.StatisticsPlaylistFragment;
+import org.schabi.newpipe.local.history.StatisticsPlaylistFragment;
 
 import java.util.Collections;
 import java.util.List;

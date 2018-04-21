@@ -68,7 +68,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.player.helper.PlayerHelper;
-import org.schabi.newpipe.playqueue.PlayQueueItem;
+import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ListHelper;
 

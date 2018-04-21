@@ -7,7 +7,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
-import org.schabi.newpipe.playqueue.PlayQueue;
+import org.schabi.newpipe.player.playqueue.PlayQueue;
 
 import java.io.Serializable;
 

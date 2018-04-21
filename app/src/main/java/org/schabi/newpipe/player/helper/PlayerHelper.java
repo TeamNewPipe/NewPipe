@@ -24,9 +24,9 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.SubtitlesFormat;
 import org.schabi.newpipe.extractor.stream.VideoStream;
-import org.schabi.newpipe.playqueue.PlayQueue;
-import org.schabi.newpipe.playqueue.PlayQueueItem;
-import org.schabi.newpipe.playqueue.SinglePlayQueue;
+import org.schabi.newpipe.player.playqueue.PlayQueue;
+import org.schabi.newpipe.player.playqueue.PlayQueueItem;
+import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;

@@ -5,7 +5,7 @@ import android.support.v4.media.MediaDescriptionCompat;
 
 import org.schabi.newpipe.player.BasePlayer;
 import org.schabi.newpipe.player.mediasession.MediaSessionCallback;
-import org.schabi.newpipe.playqueue.PlayQueueItem;
+import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 
 public class BasePlayerMediaSession implements MediaSessionCallback {
     private BasePlayer player;

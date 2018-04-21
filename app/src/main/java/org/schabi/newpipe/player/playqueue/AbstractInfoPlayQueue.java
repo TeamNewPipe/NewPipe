@@ -1,4 +1,4 @@
-package org.schabi.newpipe.playqueue;
+package org.schabi.newpipe.player.playqueue;
 
 import android.util.Log;
 

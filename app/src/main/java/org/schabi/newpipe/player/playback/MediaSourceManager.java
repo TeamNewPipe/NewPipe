@@ -16,12 +16,12 @@ import org.schabi.newpipe.player.mediasource.LoadedMediaSource;
 import org.schabi.newpipe.player.mediasource.ManagedMediaSource;
 import org.schabi.newpipe.player.mediasource.ManagedMediaSourcePlaylist;
 import org.schabi.newpipe.player.mediasource.PlaceholderMediaSource;
-import org.schabi.newpipe.playqueue.PlayQueue;
-import org.schabi.newpipe.playqueue.PlayQueueItem;
-import org.schabi.newpipe.playqueue.events.MoveEvent;
-import org.schabi.newpipe.playqueue.events.PlayQueueEvent;
-import org.schabi.newpipe.playqueue.events.RemoveEvent;
-import org.schabi.newpipe.playqueue.events.ReorderEvent;
+import org.schabi.newpipe.player.playqueue.PlayQueue;
+import org.schabi.newpipe.player.playqueue.PlayQueueItem;
+import org.schabi.newpipe.player.playqueue.events.MoveEvent;
+import org.schabi.newpipe.player.playqueue.events.PlayQueueEvent;
+import org.schabi.newpipe.player.playqueue.events.RemoveEvent;
+import org.schabi.newpipe.player.playqueue.events.ReorderEvent;
 import org.schabi.newpipe.util.ServiceHelper;
 
 import java.util.ArrayList;
@@ -45,7 +45,7 @@ import io.reactivex.subjects.PublishSubject;
 
 import static org.schabi.newpipe.player.mediasource.FailedMediaSource.MediaSourceResolutionException;
 import static org.schabi.newpipe.player.mediasource.FailedMediaSource.StreamInfoLoadException;
-import static org.schabi.newpipe.playqueue.PlayQueue.DEBUG;
+import static org.schabi.newpipe.player.playqueue.PlayQueue.DEBUG;
 
 public class MediaSourceManager {
     @NonNull private final String TAG = "MediaSourceManager@" + hashCode();

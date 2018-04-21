@@ -1,4 +1,4 @@
-package org.schabi.newpipe.playqueue.events;
+package org.schabi.newpipe.player.playqueue.events;
 
 
 public class SelectEvent implements PlayQueueEvent {
