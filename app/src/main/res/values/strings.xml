@@ -66,6 +66,8 @@
     <string name="default_video_format_title">Default video format</string>
     <string name="webm_description">WebM — free format</string>
     <string name="m4a_description">M4A — better quality</string>
+    <string name="limit_data_usage_none_description">No limit</string>
+    <string name="limit_mobile_data_usage_title">Limit resolution when using mobile data</string>
     <string name="theme_title">Theme</string>
     <string name="light_theme_title">Light</string>
     <string name="dark_theme_title">Dark</string>
