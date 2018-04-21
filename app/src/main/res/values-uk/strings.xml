@@ -451,4 +451,6 @@
     <string name="caption_setting_title">Субтитри</string>
     <string name="caption_setting_description">Змінення маштабу тексту субтитрів та фонових стилів. Дія потребує перезавантаження програвача.</string>
 
+    <string name="toast_no_player">Для цього файлу не було знайдено програвача</string>
+
     </resources>
