@@ -460,4 +460,8 @@
     <string name="no_streams_available_download">Нет потоков, доступных для загрузки</string>
 
     <string name="caption_setting_title">Субтитры</string>
+    <string name="toast_no_player">Не найдено проигрывателя для воспроизведения этого файла</string>
+
+    <string name="caption_setting_description">Изменить размер заголовка и фоновые стили. Требуется перезапуск проигрывателя для вступления изменений в силу.</string>
+
     </resources>
