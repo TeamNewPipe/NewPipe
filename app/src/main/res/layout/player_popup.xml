@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -218,21 +217,6 @@
         android:weightSum="5.5">
         <!--tools:visibility="gone">-->
 
-        <ImageButton
-            android:id="@+id/videoPlayPause"
-            android:layout_width="30dp"
-            android:layout_height="60dp"
-            android:layout_alignParentRight="true"
-            android:layout_weight="1"
-            android:background="@drawable/ic_pause_white"
-            android:clickable="true"
-            android:focusable="true"
-            android:scaleType="centerInside"
-            android:scaleX="1"
-            android:scaleY="1"
-            android:visibility="invisible"
-            tools:ignore="ContentDescription,RtlHardcoded" />
-
         <ImageView
             android:id="@+id/controlAnimationView"
             android:layout_width="0dp"
@@ -242,6 +226,26 @@
             android:visibility="gone"
             tools:ignore="ContentDescription"
             tools:visibility="visible"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="5.5">
+        <!--tools:visibility="gone">-->
+
+        <ImageView
+            android:id="@+id/videoPlayPause"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:visibility="gone"
+            tools:ignore="ContentDescription"
+            tools:visibility="visible" />
+
     </LinearLayout>
 
     <TextView
