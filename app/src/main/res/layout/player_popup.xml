@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -101,17 +102,17 @@
 
                 <TextView
                     android:id="@+id/resizeTextView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="5dp"
                     android:layout_alignParentLeft="true"
+                    android:background="?attr/selectableItemBackground"
                     android:gravity="center"
                     android:minWidth="50dp"
+                    android:padding="5dp"
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
-                    android:background="?attr/selectableItemBackground"
                     tools:ignore="HardcodedText,RtlHardcoded"
-                    tools:text="FIT"/>
+                    tools:text="FIT" />
 
                 <TextView
                     android:id="@+id/captionTextView"
@@ -133,12 +134,13 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentRight="true"
+                android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
                 android:scaleType="fitCenter"
-                android:background="?attr/selectableItemBackground"
                 android:src="@drawable/ic_fullscreen_white"
-                tools:ignore="ContentDescription,RtlHardcoded"/>
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
         </RelativeLayout>
 
         <!--Shadow Bottom Control-->
@@ -215,6 +217,21 @@
         android:orientation="horizontal"
         android:weightSum="5.5">
         <!--tools:visibility="gone">-->
+
+        <ImageButton
+            android:id="@+id/videoPlayPause"
+            android:layout_width="30dp"
+            android:layout_height="60dp"
+            android:layout_alignParentRight="true"
+            android:layout_weight="1"
+            android:background="@drawable/ic_pause_white"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="centerInside"
+            android:scaleX="1"
+            android:scaleY="1"
+            android:visibility="invisible"
+            tools:ignore="ContentDescription,RtlHardcoded" />
 
         <ImageView
             android:id="@+id/controlAnimationView"

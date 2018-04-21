@@ -44,6 +44,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.RemoteViews;
 import android.widget.SeekBar;
@@ -174,10 +175,12 @@ public final class PopupVideoPlayer extends Service {
     // Init
     //////////////////////////////////////////////////////////////////////////*/
 
+    View rootView;
+
     @SuppressLint("RtlHardcoded")
     private void initPopup() {
         if (DEBUG) Log.d(TAG, "initPopup() called");
-        View rootView = View.inflate(this, R.layout.player_popup, null);
+        rootView = View.inflate(this, R.layout.player_popup, null);
         playerImpl.setup(rootView);
 
         shutdownFlingVelocity = PlayerHelper.getShutdownFlingVelocity(this);
@@ -666,7 +669,6 @@ public final class PopupVideoPlayer extends Service {
         public void onPaused() {
             super.onPaused();
             updateNotification(R.drawable.ic_play_arrow_white);
-            showAndAnimateControl(R.drawable.ic_play_arrow_white, false);
             lockManager.releaseWifiAndCpu();
         }
 
@@ -730,7 +732,12 @@ public final class PopupVideoPlayer extends Service {
         public boolean onSingleTapConfirmed(MotionEvent e) {
             if (DEBUG) Log.d(TAG, "onSingleTapConfirmed() called with: e = [" + e + "]");
             if (playerImpl == null || playerImpl.getPlayer() == null) return false;
-            playerImpl.onPlayPause();
+            if (playerImpl.isControlsVisible()) {
+                playerImpl.hideControls(100, 100);
+            } else {
+                playerImpl.showControlsThenHide();
+
+            }
             return true;
         }
 

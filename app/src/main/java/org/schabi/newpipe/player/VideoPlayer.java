@@ -40,6 +40,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
@@ -157,6 +158,8 @@ public abstract class VideoPlayer extends BasePlayer
     private int captionPopupMenuGroupId = 89;
     private PopupMenu captionPopupMenu;
 
+    private ImageButton buttonPlayPause;
+
     ///////////////////////////////////////////////////////////////////////////
 
     public VideoPlayer(String debugTag, Context context) {
@@ -211,6 +214,9 @@ public abstract class VideoPlayer extends BasePlayer
 
         ((ProgressBar) this.loadingPanel.findViewById(R.id.progressBarLoadingPanel))
                 .getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
+
+        buttonPlayPause = rootView.findViewById(R.id.videoPlayPause);
+        buttonPlayPause.setTag(1);
     }
 
     protected abstract void setupSubtitleView(@NonNull SubtitleView view,
@@ -226,6 +232,22 @@ public abstract class VideoPlayer extends BasePlayer
         captionTextView.setOnClickListener(this);
         resizeView.setOnClickListener(this);
         playbackLiveSync.setOnClickListener(this);
+
+        buttonPlayPause.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View ib) {
+                if((int)ib.getTag()==2) {
+                    onPlay();
+                    ib.setBackgroundResource(R.drawable.ic_pause_white);
+                    ib.setTag(1);
+                } else {
+                    ib.setBackgroundResource(R.drawable.ic_play_arrow_white);
+                    onPause();
+                    ib.setTag(2);
+                }
+
+            }
+        });
     }
 
     @Override
@@ -864,18 +886,68 @@ public abstract class VideoPlayer extends BasePlayer
         controlViewAnimator.start();
     }
 
+    public void showPlayPause(final int drawableId) {
+        if (DEBUG) Log.d(TAG, "showAndAnimateControl() called with: drawableId = [" + drawableId + "], goneOnEnd = [" + false + "]");
+        if (controlViewAnimator != null && controlViewAnimator.isRunning()) {
+            if (DEBUG) Log.d(TAG, "showAndAnimateControl: controlViewAnimator.isRunning");
+            controlViewAnimator.end();
+        }
+
+        if (drawableId == -1) {
+            if (controlAnimationView.getVisibility() == View.VISIBLE) {
+                controlViewAnimator = ObjectAnimator.ofPropertyValuesHolder(controlAnimationView,
+                        PropertyValuesHolder.ofFloat(View.ALPHA, 1f, 0f),
+                        PropertyValuesHolder.ofFloat(View.SCALE_X, 1.4f, 1f),
+                        PropertyValuesHolder.ofFloat(View.SCALE_Y, 1.4f, 1f)
+                ).setDuration(DEFAULT_CONTROLS_DURATION);
+                controlViewAnimator.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        controlAnimationView.setVisibility(View.GONE);
+                    }
+                });
+                controlViewAnimator.start();
+            }
+            return;
+        }
+
+        float scaleFrom = 1f, scaleTo = 1.4f;
+        float alphaFrom = 0f, alphaTo = 1f;
+
+
+        controlViewAnimator = ObjectAnimator.ofPropertyValuesHolder(controlAnimationView,
+                PropertyValuesHolder.ofFloat(View.ALPHA, alphaFrom, alphaTo),
+                PropertyValuesHolder.ofFloat(View.SCALE_X, scaleFrom, scaleTo),
+                PropertyValuesHolder.ofFloat(View.SCALE_Y, scaleFrom, scaleTo)
+        );
+        controlViewAnimator.setDuration(500);
+        controlViewAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                controlAnimationView.setVisibility(View.VISIBLE);
+            }
+        });
+
+
+        controlAnimationView.setVisibility(View.VISIBLE);
+        controlAnimationView.setImageDrawable(ContextCompat.getDrawable(context, drawableId));
+        controlViewAnimator.start();
+    }
+
     public boolean isSomePopupMenuVisible() {
         return isSomePopupMenuVisible;
     }
 
     public void showControlsThenHide() {
         if (DEBUG) Log.d(TAG, "showControlsThenHide() called");
+        buttonPlayPause.setVisibility(View.VISIBLE);
         animateView(controlsRoot, true, DEFAULT_CONTROLS_DURATION, 0,
                 () -> hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME));
     }
 
     public void showControls(long duration) {
         if (DEBUG) Log.d(TAG, "showControls() called");
+        buttonPlayPause.setVisibility(View.VISIBLE);
         controlsVisibilityHandler.removeCallbacksAndMessages(null);
         animateView(controlsRoot, true, duration);
     }
@@ -883,8 +955,15 @@ public abstract class VideoPlayer extends BasePlayer
     public void hideControls(final long duration, long delay) {
         if (DEBUG) Log.d(TAG, "hideControls() called with: delay = [" + delay + "]");
         controlsVisibilityHandler.removeCallbacksAndMessages(null);
-        controlsVisibilityHandler.postDelayed(
-                () -> animateView(controlsRoot, false, duration), delay);
+        controlsVisibilityHandler.postDelayed(hideControlsHandler(duration), delay);
+    }
+
+    private Runnable hideControlsHandler(long duration)
+    {
+        return () -> {
+            buttonPlayPause.setVisibility(View.INVISIBLE);
+            animateView(controlsRoot, false,duration);
+        };
     }
 
     /*//////////////////////////////////////////////////////////////////////////
