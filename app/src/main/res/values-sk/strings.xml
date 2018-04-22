@@ -67,7 +67,7 @@
     <string name="err_dir_create">Nemožno vytvoriť adresár na preberanie \'%1$s\'</string>
     <string name="info_dir_created">Adresár na preberanie bol vytvorený \'%1$s\'</string>
     <string name="main_bg_subtitle">Začnite vyhľadaním obsahu</string>
-    <string name="autoplay_by_calling_app_title">Autoplay</string>
+    <string name="autoplay_by_calling_app_title">Automatické prehrávanie</string>
     <string name="autoplay_by_calling_app_summary">Video bude automaticky prehrané pri zavolaní NewPipe inou aplikáciou</string>
     <string name="content">Obsah</string>
     <string name="show_age_restricted_content_title">Zobraziť vekovo obmedzený obsah</string>
@@ -236,7 +236,7 @@ otvorenie okna na popredí</string>
 
 <string name="settings_category_player_title">Prehrávač</string>
     <string name="settings_category_player_behavior_title">Správanie</string>
-    <string name="settings_category_history_title">História</string>
+    <string name="settings_category_history_title">História a vyrovnávacia pamäť</string>
     <string name="playlist">Zoznam</string>
     <string name="undo">Vrátiť</string>
 
@@ -273,7 +273,7 @@ otvorenie okna na popredí</string>
 
     <string name="controls_add_to_playlist_title">Pridať k</string>
 
-    <string name="show_hold_to_append_title">Zobrazovať nápovedu \"Pridať podržaním\"</string>
+    <string name="show_hold_to_append_title">Zobrazovať tip \"Pridať podržaním\"</string>
     <string name="show_hold_to_append_summary">Zobraziť nápovedu pri stlačení tlačidiel \"Pozadie\" alebo \"V okne\" na stránke videa</string>
     <string name="default_content_country_title">Predvolený obsah pre krajinu</string>
     <string name="service_title">Služba</string>
@@ -389,4 +389,84 @@ otvorenie okna na popredí</string>
     <string name="smaller_caption_font_size">Menšie Písmo</string>
     <string name="normal_caption_font_size">Normálne Písmo</string>
     <string name="larger_caption_font_size">Väčšie Písmo</string>
+<string name="use_inexact_seek_title">Používať rýchle vyhľadávanie</string>
+    <string name="use_inexact_seek_summary">Rýchle vyhľadávanie umožňuje preskakovanie na novú pozíciu rýchlejšie, ale menej presne</string>
+    <string name="download_thumbnail_title">Načítanie miniatúr</string>
+    <string name="download_thumbnail_summary">Vypnutím tejto funkcie sa nebudú vytvárať miniatúry a tým sa ušetrí miesto a pamäť. Zmena nastavení vyčistí súčasne cache v pamäti aj na disku.</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Vyrovnávacia pamäť obrázkov vymazaná</string>
+    <string name="metadata_cache_wipe_title">Vymazať metadáta uložené vo vyrovnávacej pamäti</string>
+    <string name="metadata_cache_wipe_summary">Odstrániť všetky údaje webových stránok v cache</string>
+    <string name="metadata_cache_wipe_complete_notice">Cache metadát bola vymazaná</string>
+    <string name="auto_queue_title">Automaticky zaradiť daľší stream</string>
+    <string name="auto_queue_summary">Automaticky zaradí súvisiaci stream, keď prehrávanie začne na poslednom streame v neopakujúcich zoznamoch prehrávania.</string>
+    <string name="settings_category_debug_title">Ladenie</string>
+    <string name="file">Súbor</string>
+
+    <string name="invalid_directory">Neplatný adresár</string>
+    <string name="invalid_source">Neplatný zdroj súboru/obsahu</string>
+    <string name="invalid_file">Súbor buď neexistuje alebo nemáte dostatočné práva na je čítanie či zápis</string>
+    <string name="file_name_empty_error">Názov súboru nesme byť prázdny</string>
+    <string name="error_occurred_detail">Nastala chyba: %1$s</string>
+    <string name="no_streams_available_download">Žiadne streamy nie sú k dispozícii na prevzatie</string>
+
+    <string name="toast_no_player">Prehrávač pre daný typ súboru nebol nájdený</string>
+
+    <string name="drawer_header_action_paceholder_text">Čoskoro tu niečo pribudne ;D</string>
+
+
+    <string name="preferred_open_action_settings_title">Preferovaná akcia pri otvorení</string>
+    <string name="preferred_open_action_settings_summary">Predvolená akcia pri otváraní obsahu — %s</string>
+
+    <string name="caption_auto_generated">Automaticky vygenerované</string>
+
+    <string name="caption_setting_title">Nastavenie titulkov</string>
+    <string name="caption_setting_description">Upravte mierku textu titulkov a štýly pozadia. Vyžaduje reštartovanie prehrávača.</string>
+
+    <string name="enable_leak_canary_title">Povoliť službu LeakCanary</string>
+    <string name="enable_leak_canary_summary">Monitorovanie pretečenia pamäte môže spôsobiť, že aplikácia nebude reagovať</string>
+
+    <string name="enable_disposed_exceptions_title">Nahlásiť Out-of-lifecycle chyby</string>
+    <string name="enable_disposed_exceptions_summary">Vynútenie hlásenia nedodržateľných výnimiek Rx, ktoré sa vyskytnú mimo časového cyklu fragmentu alebo aktivity po zlikvidovaní</string>
+
+    <string name="import_export_title">Import/Export</string>
+    <string name="import_title">Import</string>
+    <string name="import_from">Importovať z</string>
+    <string name="export_to">Exportovať do</string>
+
+    <string name="import_ongoing">Importovanie…</string>
+    <string name="export_ongoing">Exportovanie…</string>
+
+    <string name="import_file_title">Import súboru</string>
+    <string name="previous_export">Predchádzajúci export</string>
+
+    <string name="subscriptions_import_unsuccessful">Import odberov zlyhal</string>
+    <string name="subscriptions_export_unsuccessful">Export odberov zlyhal</string>
+
+    <string name="import_youtube_instructions">Ak chcete importovať odbery služby YouTube, budete potrebovať súbor exportu, ktorý si môžete stiahnuť podľa týchto pokynov:
+\n
+\n1. Prejdite na túto adresu URL: %1$s
+\n2. Po výzve sa prihláste do svojho účtu
+\n3. Sťahovanie by malo začať (to je súbor exportu)
+\n</string>
+    <string name="import_soundcloud_instructions">"Pre importovanie vašich SoundCloud dát, musíte poznať adresu URL alebo ID vašeho profilu. Ak poznáte jedno alebo druhé, zadajte ho do nižšie uvedeného vstupu a ste pripravení ísť.
+\n
+\nAk nepoznáte ani URL ani ID vašeho profilu, môžete postupovať nasledovne:
+\n
+\n1. V niektorom prehliadači povoľte režim \"desktop\" (web nie je dostupný pre mobilné zariadenia)
+\n2. Prejdite na túto adresu URL:  %1$s
+\n3. Po výzve sa prihláste do svojho účtu
+\n4. Skopírujte adresu URL, na ktorú ste boli presmerovaní (to je adresa vášho profilu)
+\n"</string>
+    <string name="import_soundcloud_instructions_hint">ID,soundcloud.com/ID</string>
+
+    <string name="import_network_expensive_warning">Operácia môže byť náročná na počet prenesených dát.
+\n
+\nChcete pokračovať?</string>
+
+    <string name="playback_speed_control">Ovládanie rýchlosti prehrávania</string>
+    <string name="playback_tempo">Rýchlosť</string>
+    <string name="playback_pitch">Výška</string>
+    <string name="unhook_checkbox">"Uvoľnenie  (môže spôsobovať skreslenie)"</string>
+    <string name="playback_nightcore">Nightcore režim</string>
+    <string name="playback_default">Predvolené</string>
 </resources>
