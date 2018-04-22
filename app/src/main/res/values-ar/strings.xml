@@ -72,7 +72,7 @@
     <string name="autoplay_by_calling_app_title">التشغيل التلقائي</string>
     <string name="black_theme_title">أسوَد</string>
     <string name="enable_watch_history_title">التاريخ</string>
-    <string name="settings_category_history_title">التاريخ</string>
+    <string name="settings_category_history_title">التأريخ و ذاكرة التخزين المؤقتة</string>
     <string name="content">المحتوى</string>
     <string name="downloads">التنزيلات</string>
     <string name="downloads_title">التنزيلات</string>
@@ -364,4 +364,9 @@
 
     <string name="use_inexact_seek_title">استعمال التقديم السريع الغير دقيق</string>
     <string name="use_inexact_seek_summary">"التقديم الغير دقيق يسمح للمشغل بالإطلاع الى الأماكن بشكل اسرع مع دقة اقل "</string>
+    <string name="download_thumbnail_title">تحميل الصور الصغيرة</string>
+    <string name="thumbnail_cache_wipe_complete_notice">تم إفراغ مساحة ذاكرة التخزين المؤقتة الخاصة بالصور</string>
+    <string name="file">الملف</string>
+
+    <string name="invalid_directory">مجلد غير صالح</string>
     </resources>
