@@ -71,15 +71,11 @@ public final class ListHelper {
 
         // If the user has chosen to limit resolution to conserve mobile data
         // usage then we should also limit our audio usage.
-        int result;
         if (isLimitingDataUsage(context)) {
-            result = getMostCompactAudioIndex(defaultFormat, audioStreams);
+            return getMostCompactAudioIndex(defaultFormat, audioStreams);
+        } else {
+            return getHighestQualityAudioIndex(defaultFormat, audioStreams);
         }
-        else {
-            result = getHighestQualityAudioIndex(defaultFormat, audioStreams);
-        }
-
-        return result;
     }
 
     /**
@@ -109,8 +105,9 @@ public final class ListHelper {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         // Load the prefered resolution otherwise the best available
-        String resolution = preferences != null ? preferences.getString(context.getString(key),
-                context.getString(value)) : context.getString(R.string.best_resolution_key);
+        String resolution = preferences != null
+                ? preferences.getString(context.getString(key), context.getString(value))
+                : context.getString(R.string.best_resolution_key);
 
         String maxResolution = getResolutionLimit(context);
         if (maxResolution != null && compareVideoStreamResolution(maxResolution, resolution) < 1){
