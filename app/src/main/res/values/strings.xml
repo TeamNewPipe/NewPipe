@@ -51,7 +51,7 @@
     <string name="download_path_audio_dialog_title">Enter download path for audio files</string>
 
     <string name="autoplay_by_calling_app_title">Autoplay</string>
-    <string name="autoplay_by_calling_app_summary">Automatically plays a video when NewPipe is called from another app</string>
+    <string name="autoplay_by_calling_app_summary">Plays a video when NewPipe is called from another app</string>
     <string name="default_resolution_title">Default resolution</string>
     <string name="default_popup_resolution_title">Default popup resolution</string>
     <string name="show_higher_resolutions_title">Show higher resolutions</string>
@@ -64,7 +64,7 @@
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Default audio format</string>
     <string name="default_video_format_title">Default video format</string>
-    <string name="webm_description">WebM — free format</string>
+    <string name="webm_description">WebM — libre format</string>
     <string name="m4a_description">M4A — better quality</string>
     <string name="theme_title">Theme</string>
     <string name="light_theme_title">Light</string>
@@ -81,7 +81,7 @@
     <string name="metadata_cache_wipe_summary">Remove all cached webpage data</string>
     <string name="metadata_cache_wipe_complete_notice">Metadata cache wiped</string>
     <string name="auto_queue_title">Auto-queue next stream</string>
-    <string name="auto_queue_summary">Automatically append a related stream when playback starts on the last stream in a non-repeating play queue.</string>
+    <string name="auto_queue_summary">Auto-append a related stream when playing the last stream in a non-repeating queue.</string>
     <string name="player_gesture_controls_title">Player gesture controls</string>
     <string name="player_gesture_controls_summary">Use gestures to control the brightness and volume of the player</string>
     <string name="show_search_suggestions_title">Search suggestions</string>
@@ -94,8 +94,8 @@
     <string name="resume_on_audio_focus_gain_summary">Continue playing after interruptions (e.g. phone calls)</string>
     <string name="download_dialog_title">Download</string>
     <string name="next_video_title">Next video</string>
-    <string name="show_next_and_similar_title">Show next and similar videos</string>
-    <string name="show_hold_to_append_title">Show hold to append tip</string>
+    <string name="show_next_and_similar_title">Show \'next\' and \'similar\' videos</string>
+    <string name="show_hold_to_append_title">Show \"hold to append\" tip</string>
     <string name="show_hold_to_append_summary">Show tip when background or popup button is pressed on video details page</string>
     <string name="url_not_supported_toast">URL not supported</string>
     <string name="default_content_country_title">Default content country</string>
@@ -104,7 +104,7 @@
     <string name="settings_category_player_title">Player</string>
     <string name="settings_category_player_behavior_title">Behavior</string>
     <string name="settings_category_video_audio_title">Video &amp; Audio</string>
-    <string name="settings_category_history_title">History &amp; Cache</string>
+    <string name="settings_category_history_title">History</string>
     <string name="settings_category_popup_title">Popup</string>
     <string name="settings_category_appearance_title">Appearance</string>
     <string name="settings_category_other_title">Other</string>
@@ -169,7 +169,7 @@
     <string name="could_not_get_stream">Could not get any stream</string>
     <string name="could_not_load_image">Could not load image</string>
     <string name="app_ui_crash">App/UI crashed</string>
-    <string name="player_stream_failure">Failed to play this stream</string>
+    <string name="player_stream_failure">Could not play this stream</string>
     <string name="player_unrecoverable_failure">Unrecoverable player error occurred</string>
     <string name="player_recoverable_failure">Recovering from player error</string>
     <string name="external_player_unsupported_link_type">External players don\'t support these types of links</string>
@@ -294,7 +294,7 @@
     <string name="charset_letters_and_digits">Letters and digits</string>
     <string name="charset_most_special_characters">Most special characters</string>
 
-    <string name="toast_no_player">No player has been found for this file</string>
+    <string name="toast_no_player">No app installed to play this file</string>
 
     <!-- About -->
     <string name="title_activity_about">About NewPipe</string>
@@ -307,20 +307,20 @@
     <string name="tab_about">About</string>
     <string name="tab_contributors">Contributors</string>
     <string name="tab_licenses">Licenses</string>
-    <string name="app_description">A free lightweight YouTube frontend for Android.</string>
+    <string name="app_description">A libre lightweight YouTube frontend for Android.</string>
     <string name="contribution_title">Contribute</string>
     <string name="contribution_encouragement">Whether you have ideas of; translation, design changes, code cleaning, or real heavy code changes—help is always welcome. The more is done the better it gets!</string>
     <string name="github_url" translatable="false">https://github.com/TeamNewPipe/NewPipe</string>
     <string name="view_on_github">View on GitHub</string>
     <string name="donation_title">Donate</string>
-    <string name="donation_encouragement">NewPipe gets developed by volunteers which spend their free time to bring the best experience to you. Now it is time to give back to make sure our developers can make NewPipe even more better while enjoying a cup of java!</string>
+    <string name="donation_encouragement">NewPipe is developed by volunteers spending time bringing you the best experience. Give back to help developers make NewPipe even better while enjoying a cup of coffee.</string>
     <string name="donation_url" translatable="false">https://newpipe.schabi.org/donate</string>
     <string name="give_back">Give back</string>
     <string name="website_title">Website</string>
-    <string name="website_encouragement">To get more information and the latest news about NewPipe visit our website.</string>
+    <string name="website_encouragement">Visit the NewPipe Website for more info and news.</string>
     <string name="website_url" translatable="false">https://newpipe.schabi.org/</string>
     <string name="app_license_title">NewPipe\'s License</string>
-    <string name="app_license" translatable="false">NewPipe is Free Software: You can use, study share and improve it at your will. Specifically you can redistribute and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</string>
+    <string name="app_license">NewPipe is copyleft libre software: You can use, study share and improve it at your will. Specifically you can redistribute and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</string>
     <string name="read_full_license">Read license</string>
 
 
@@ -387,12 +387,12 @@
     <string name="drawer_close">Close Drawer</string>
     <string name="youtube" translatable="false">YouTube</string>
     <string name="soundcloud" translatable="false">SoundCloud</string>
-    <string name="drawer_header_action_paceholder_text">Something will come here soon ;D</string>
+    <string name="drawer_header_action_paceholder_text">Something will appear here soon ;D</string>
 
 
     <!-- Preferred player -->
     <string name="preferred_open_action_share_menu_title" translatable="false">NewPipe</string>
-    <string name="preferred_open_action_settings_title">Preferred open action</string>
+    <string name="preferred_open_action_settings_title">Preferred \'open\' action</string>
     <string name="preferred_open_action_settings_summary">Default action when opening content — %s</string>
 
     <string name="video_player">Video player</string>
@@ -401,7 +401,7 @@
     <string name="always_ask_open_action">Always ask</string>
 
     <string name="preferred_player_fetcher_notification_title">Getting info…</string>
-    <string name="preferred_player_fetcher_notification_message">"The requested content is loading"</string>
+    <string name="preferred_player_fetcher_notification_message">"Loading requested content"</string>
 
     <!-- Local Playlist -->
     <string name="create_playlist">Create New Playlist</string>
@@ -415,30 +415,30 @@
     <string name="unbookmark_playlist">Remove Bookmark</string>
 
     <string name="delete_playlist_prompt">Do you want to delete this playlist?</string>
-    <string name="playlist_creation_success">Playlist successfully created</string>
+    <string name="playlist_creation_success">Playlist created</string>
     <string name="playlist_add_stream_success">Added to playlist</string>
     <string name="playlist_thumbnail_change_success">Playlist thumbnail changed</string>
-    <string name="playlist_delete_failure">Failed to delete playlist</string>
+    <string name="playlist_delete_failure">Could not delete playlist</string>
 
     <!-- Players -->
-    <string name="caption_none">No Caption</string>
+    <string name="caption_none">No Captions</string>
 
-    <string name="resize_fit">FIT</string>
-    <string name="resize_fill">FILL</string>
-    <string name="resize_zoom">ZOOM</string>
+    <string name="resize_fit">Fit</string>
+    <string name="resize_fill">Fill</string>
+    <string name="resize_zoom">Zoom</string>
 
     <string name="caption_auto_generated">Auto-generated</string>
 
     <!-- Caption Settings -->
-    <string name="caption_setting_title">Caption</string>
-    <string name="caption_setting_description">Modify player caption text scale and background styles. Require player restart to take effect.</string>
+    <string name="caption_setting_title">Captions</string>
+    <string name="caption_setting_description">Modify player caption text scale and background styles. Requires app restart to take effect.</string>
 
     <!-- Debug Settings -->
     <string name="enable_leak_canary_title">Enable LeakCanary</string>
-    <string name="enable_leak_canary_summary">Memory leak monitoring may cause app to become unresponsive when heap dumping</string>
+    <string name="enable_leak_canary_summary">Memory leak monitoring may cause the app to become unresponsive when heap dumping</string>
 
-    <string name="enable_disposed_exceptions_title">Report Out-of-lifecycle errors</string>
-    <string name="enable_disposed_exceptions_summary">Force reporting of undeliverable Rx exceptions occurring outside of fragment or activity lifecycle after dispose</string>
+    <string name="enable_disposed_exceptions_title">Report Out-of-lifecycle Errors</string>
+    <string name="enable_disposed_exceptions_summary">Force reporting of undeliverable Rx exceptions outside of fragment or activity lifecycle after disposal</string>
 
     <!-- Subscriptions import/export -->
     <string name="import_export_title">Import/Export</string>
@@ -452,17 +452,17 @@
     <string name="import_file_title">Import file</string>
     <string name="previous_export">Previous export</string>
 
-    <string name="subscriptions_import_unsuccessful">Subscriptions import failed</string>
-    <string name="subscriptions_export_unsuccessful">Subscriptions export failed</string>
+    <string name="subscriptions_import_unsuccessful">Could not import subscriptions</string>
+    <string name="subscriptions_export_unsuccessful">Could not export subscriptions</string>
 
-    <string name="import_youtube_instructions">To import your YouTube subscriptions you will need the export file, which can be downloaded following these instructions:\n\n1. Go to this url: %1$s\n2. Log in to your account when asked\n3. A download should start (that\'s the export file) </string>
-    <string name="import_soundcloud_instructions">To import your SoundCloud followings you have to know your profile url or id. If you do, just type either of them in the input below and you\'re ready to go.\n\nIf you don\'t, you can follow these steps:\n\n1. Enable \"desktop mode\" in some browser (the site is not available for mobile devices)\n2. Go to this url: %1$s\n3. Log in to your account when asked\n4. Copy the url that you were redirected to (that\'s your profile url)</string>
-    <string name="import_soundcloud_instructions_hint">yourid, soundcloud.com/yourid</string>
+    <string name="import_youtube_instructions">Import YouTube subscriptions by downloading the export file:\n\n1. Go to this URL: %1$s\n2. Log in when asked\n3. A download should start (that\'s the export file) </string>
+    <string name="import_soundcloud_instructions">Import a SoundCloud profile by typing either the URL or your ID:\n\n1. Enable \"desktop mode\" in a web-browser (the site is not available for mobile devices)\n2. Go to this URL: %1$s\n3. Log in when asked\n4. Copy the profile URL you were redirected to.</string>
+    <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/yourid</string>
 
-    <string name="import_network_expensive_warning">Keep in mind that this operation can be network expensive.\n\nDo you want to continue?</string>
+    <string name="import_network_expensive_warning">Keep in mind this operation can be network expensive.\n\nDo you want to continue?</string>
 
     <!-- Playback Parameters -->
-    <string name="playback_speed_control">Playback Speed Control</string>
+    <string name="playback_speed_control">Playback Speed Controls</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Pitch</string>
     <string name="unhook_checkbox">Unhook (may cause distortion)</string>
