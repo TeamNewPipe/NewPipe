@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
 import android.support.annotation.NonNull;
@@ -225,11 +226,14 @@ public class VideoDetailFragment
     public void onResume() {
         super.onResume();
 
-        if (mOrientationListener.canDetectOrientation()) {
-            mOrientationListener.enable();
-        }
-        else {
-            mOrientationListener.disable();
+        if (android.provider.Settings.System.getInt(this.activity.getContentResolver(),
+                Settings.System.ACCELEROMETER_ROTATION, 0) == 1) {
+            if (mOrientationListener.canDetectOrientation()) {
+                mOrientationListener.enable();
+            }
+            else {
+                mOrientationListener.disable();
+            }
         }
 
         if (updateFlags != 0) {
