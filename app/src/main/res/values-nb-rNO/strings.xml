@@ -401,4 +401,29 @@
     <string name="import_file_title">Importer fil</string>
     <string name="previous_export">Forrige eksport</string>
 
-    </resources>
+    <string name="download_thumbnail_title">Last miniatyrbilder</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Bildehurtiglager tømt</string>
+    <string name="metadata_cache_wipe_title">Tøm hurtiglagret metadata</string>
+    <string name="metadata_cache_wipe_summary">Fjern all hurtiglagret nettsidedata</string>
+    <string name="metadata_cache_wipe_complete_notice">Metadatahurtiglager tømt</string>
+    <string name="auto_queue_title">Sett neste strøm i kø automatisk</string>
+    <string name="no_streams_available_download">Ingen strømmer tilgjengelige for nedlasting</string>
+
+    <string name="drawer_header_action_paceholder_text">Noe vil bli presentert her snart ;D</string>
+
+
+    <string name="preferred_open_action_settings_title">Foretrukket åpningshandling</string>
+    <string name="preferred_open_action_settings_summary">Forvalgt handling ved åpning av innhold — %s</string>
+
+    <string name="import_export_title">Importer/eksporter</string>
+    <string name="import_soundcloud_instructions_hint">din-ID, soundcloud.com/yourID</string>
+
+    <string name="import_network_expensive_warning">Husk at denne handlingen kan belaste nettverket tungt.
+\n
+\nØnsker du å fortsette?</string>
+
+    <string name="playback_speed_control">Fartskontroll for avspilling</string>
+    <string name="playback_tempo">Tempo</string>
+    <string name="playback_pitch">Tonehøyde</string>
+    <string name="playback_default">Forvalg</string>
+</resources>
