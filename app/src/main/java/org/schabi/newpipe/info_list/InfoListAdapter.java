@@ -10,7 +10,6 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
-import org.schabi.newpipe.local.history.HistoryInfoItem;
 import org.schabi.newpipe.info_list.holder.ChannelInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelMiniInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.InfoItemHolder;
@@ -88,10 +87,6 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public void setOnPlaylistSelectedListener(OnClickGesture<PlaylistInfoItem> listener) {
         infoItemBuilder.setOnPlaylistSelectedListener(listener);
-    }
-
-    public void setOnHistoryItemSelectedListener(OnClickGesture<HistoryInfoItem> listener) {
-        infoItemBuilder.setOnHistoryItemSelectedListener(listener);
     }
 
     public void useMiniItemVariants(boolean useMiniVariant) {

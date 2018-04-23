@@ -150,18 +150,6 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
             }
         });
 
-        infoListAdapter.setOnHistoryItemSelectedListener(new OnClickGesture<HistoryInfoItem>() {
-            @Override
-            public void selected(HistoryInfoItem selectedItem) {
-                onStreamSelected(selectedItem);
-            }
-
-            @Override
-            public void held(HistoryInfoItem selectedItem) {
-                showHistoryItemDialog(selectedItem);
-            }
-        });
-
         infoListAdapter.setOnChannelSelectedListener(new OnClickGesture<ChannelInfoItem>() {
             @Override
             public void selected(ChannelInfoItem selectedItem) {
