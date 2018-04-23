@@ -1,4 +1,4 @@
-package org.schabi.newpipe.fragments.local.bookmark;
+package org.schabi.newpipe.local.bookmark;
 
 import android.app.AlertDialog;
 import android.os.Bundle;

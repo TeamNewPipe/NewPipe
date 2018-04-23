@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -250,6 +251,7 @@ public abstract class StatisticsPlaylistFragment
                 context.getResources().getString(R.string.start_here_on_main),
                 context.getResources().getString(R.string.start_here_on_background),
                 context.getResources().getString(R.string.start_here_on_popup),
+                context.getResources().getString(R.string.delete),
         };
 
         final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
@@ -270,12 +272,28 @@ public abstract class StatisticsPlaylistFragment
                 case 4:
                     NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index));
                     break;
+                case 5:
+                    deleteEntry(index);
+                    break;
                 default:
                     break;
             }
         };
 
         new InfoItemDialog(getActivity(), infoItem, commands, actions).show();
+    }
+
+    private void deleteEntry(final int index) {
+        final LocalItem infoItem = itemListAdapter.getItemsList()
+                .get(index);
+        if(infoItem instanceof StreamStatisticsEntry) {
+            final StreamStatisticsEntry entry = (StreamStatisticsEntry) infoItem;
+            recordManager.deleteStreamHistory(entry.streamId);
+
+            Snackbar.make(getView(), R.string.one_item_deleted, Snackbar.LENGTH_SHORT)
+                    .show();
+            startLoading(true);
+        }
     }
 
     private PlayQueue getPlayQueue() {

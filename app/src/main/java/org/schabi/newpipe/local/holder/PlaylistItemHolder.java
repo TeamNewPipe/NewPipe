@@ -1,4 +1,4 @@
-package org.schabi.newpipe.fragments.local.holder;
+package org.schabi.newpipe.local.holder;
 
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
-import org.schabi.newpipe.fragments.local.LocalItemBuilder;
+import org.schabi.newpipe.local.LocalItemBuilder;
 
 import java.text.DateFormat;
 

@@ -1,4 +1,4 @@
-package org.schabi.newpipe.fragments.local.holder;
+package org.schabi.newpipe.local.holder;
 
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -10,7 +10,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.fragments.local.LocalItemBuilder;
+import org.schabi.newpipe.local.LocalItemBuilder;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
 

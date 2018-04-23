@@ -1,4 +1,4 @@
-package org.schabi.newpipe.fragments.local.dialog;
+package org.schabi.newpipe.local.dialog;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

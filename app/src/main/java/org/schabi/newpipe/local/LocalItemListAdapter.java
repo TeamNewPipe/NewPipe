@@ -1,4 +1,4 @@
-package org.schabi.newpipe.fragments.local;
+package org.schabi.newpipe.local;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
@@ -7,11 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.schabi.newpipe.database.LocalItem;
-import org.schabi.newpipe.fragments.local.holder.LocalItemHolder;
-import org.schabi.newpipe.fragments.local.holder.LocalPlaylistItemHolder;
-import org.schabi.newpipe.fragments.local.holder.LocalPlaylistStreamItemHolder;
-import org.schabi.newpipe.fragments.local.holder.LocalStatisticStreamItemHolder;
-import org.schabi.newpipe.fragments.local.holder.RemotePlaylistItemHolder;
+import org.schabi.newpipe.local.HeaderFooterHolder;
+import org.schabi.newpipe.local.LocalItemBuilder;
+import org.schabi.newpipe.local.holder.LocalItemHolder;
+import org.schabi.newpipe.local.holder.LocalPlaylistItemHolder;
+import org.schabi.newpipe.local.holder.LocalPlaylistStreamItemHolder;
+import org.schabi.newpipe.local.holder.LocalStatisticStreamItemHolder;
+import org.schabi.newpipe.local.holder.RemotePlaylistItemHolder;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.OnClickGesture;
 

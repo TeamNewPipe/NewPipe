@@ -1,4 +1,4 @@
-package org.schabi.newpipe.fragments.local.dialog;
+package org.schabi.newpipe.local.dialog;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
