@@ -100,7 +100,7 @@
     <string name="msg_threads">Threads</string>
     <string name="msg_url_malform">URL inválida ou internet indisponível</string>
     <string name="no_available_dir">Selecione uma pasta para download</string>
-    <string name="no_player_found">Nenhum player de stream encontrado. Deseja Instalar VLC?</string>
+    <string name="no_player_found">Nenhum player de stream encontrado. Deseja Instalar o VLC?</string>
     <string name="parsing_error">Não foi possível interpretar o site</string>
     <string name="play_audio">Áudio</string>
     <string name="play_btn_text">Reproduzir</string>
@@ -284,7 +284,7 @@ abrir em modo popup</string>
     <string name="give_back">Retribuir</string>
     <string name="website_title">Site oficial</string>
     <string name="website_encouragement">Para obter mais informações e as últimas notícias sobre o NewPipe visite nosso Site.</string>
-    <string name="no_player_found_toast">Nenhum reprodudor de stream encontrado (você pode instalar VLC para reproduzir isto)</string>
+    <string name="no_player_found_toast">Nenhum reprodutor de stream encontrado (você pode instalar o VLC para reproduzir isto)</string>
     <string name="default_content_country_title">País do conteúdo padrão</string>
     <string name="service_title">Serviço</string>
     <string name="always">Sempre</string>
@@ -436,4 +436,12 @@ abrir em modo popup</string>
 <string name="preferred_open_action_settings_title">Ação de abrir preferida</string>
     <string name="preferred_open_action_settings_summary">Ação padrão quando abrir conteúdo — %s</string>
 
+    <string name="no_streams_available_download">Sem fontes disponíveis para download</string>
+
+    <string name="drawer_open">Abrir gaveta</string>
+    <string name="drawer_close">Fechar gaveta</string>
+    <string name="caption_setting_title">Legenda</string>
+    <string name="caption_setting_description">Modifique o tamanho da legenda e o estilo do plano de fundo. Necessário reiniciar o player para ter efeito.</string>
+
+    <string name="playback_nightcore">Nightcore</string>
     </resources>
