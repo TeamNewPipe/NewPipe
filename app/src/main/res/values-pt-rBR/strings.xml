@@ -444,4 +444,6 @@ abrir em modo popup</string>
     <string name="caption_setting_description">Modifique o tamanho da legenda e o estilo do plano de fundo. Necessário reiniciar o player para ter efeito.</string>
 
     <string name="playback_nightcore">Nightcore</string>
+    <string name="toast_no_player">Nenhum player foi encontrado para este arquivo</string>
+
     </resources>
