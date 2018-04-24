@@ -443,7 +443,7 @@ abrir em modo popup</string>
     <string name="caption_setting_title">Legenda</string>
     <string name="caption_setting_description">Modifique o tamanho da legenda e o estilo da tela de fundo. Necessário reiniciar o aplicativo para ter efeito.</string>
 
-    <string name="playback_nightcore">Nightcore</string>
+    <string name="playback_nightcore">Night-core</string>
     <string name="toast_no_player">Nenhum player foi encontrado para este arquivo</string>
 
     </resources>
