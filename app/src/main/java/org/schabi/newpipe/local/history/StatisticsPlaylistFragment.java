@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +33,8 @@ import java.util.List;
 
 import icepick.State;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 public abstract class StatisticsPlaylistFragment
         extends BaseLocalListFragment<List<StreamStatisticsEntry>, Void> {
@@ -46,6 +49,8 @@ public abstract class StatisticsPlaylistFragment
     /* Used for independent events */
     private Subscription databaseSubscription;
     private HistoryRecordManager recordManager;
+    private CompositeDisposable disposables = new CompositeDisposable();
+
 
     ///////////////////////////////////////////////////////////////////////////
     // Abstracts
@@ -288,11 +293,16 @@ public abstract class StatisticsPlaylistFragment
                 .get(index);
         if(infoItem instanceof StreamStatisticsEntry) {
             final StreamStatisticsEntry entry = (StreamStatisticsEntry) infoItem;
-            recordManager.deleteStreamHistory(entry.streamId);
-
-            Snackbar.make(getView(), R.string.one_item_deleted, Snackbar.LENGTH_SHORT)
-                    .show();
-            startLoading(true);
+            final Disposable onDelte = recordManager.deleteStreamHistory(entry.streamId)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                            howManyDelted -> Snackbar.make(getView(), R.string.one_item_deleted,
+                                    Snackbar.LENGTH_SHORT).show(),
+                            throwable -> showSnackBarError(throwable,
+                                    UserAction.SOMETHING_ELSE, "none",
+                                    "Deleting item failed", R.string.general_error));
+            
+            disposables.add(onDelte);
         }
     }
 
