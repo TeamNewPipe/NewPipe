@@ -441,7 +441,7 @@ abrir em modo popup</string>
     <string name="drawer_open">Abrir gaveta</string>
     <string name="drawer_close">Fechar gaveta</string>
     <string name="caption_setting_title">Legenda</string>
-    <string name="caption_setting_description">Modifique o tamanho da legenda e o estilo do plano de fundo. Necessário reiniciar o player para ter efeito.</string>
+    <string name="caption_setting_description">Modifique o tamanho da legenda e o estilo da tela de fundo. Necessário reiniciar o aplicativo para ter efeito.</string>
 
     <string name="playback_nightcore">Nightcore</string>
     <string name="toast_no_player">Nenhum player foi encontrado para este arquivo</string>
