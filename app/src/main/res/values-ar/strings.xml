@@ -369,4 +369,24 @@
     <string name="file">الملف</string>
 
     <string name="invalid_directory">مجلد غير صالح</string>
-    </resources>
+    <string name="file_name_empty_error">لا يمكن ترك إسم الملف فارغا</string>
+    <string name="error_occurred_detail">طرأ هناك خطأ : %1$s</string>
+    <string name="no_valid_zip_file">ملف مضغوط غير صالح</string>
+    <string name="unbookmark_playlist">حذف الفاصلة المرجعية</string>
+
+    <string name="resize_fit">ملئ الشاشة</string>
+    <string name="caption_auto_generated">توليد تلقائي</string>
+
+    <string name="import_export_title">إستيراد و تصدير</string>
+    <string name="import_title">إستيراد</string>
+    <string name="import_from">إستعادة مِن</string>
+    <string name="export_to">تصدير إلى</string>
+
+    <string name="import_ongoing">عملية الإستعادة جارية …</string>
+    <string name="export_ongoing">عملية التصدير جارية …</string>
+
+    <string name="import_file_title">إستيراد ملف</string>
+    <string name="import_soundcloud_instructions_hint">yourid, soundcloud.com/yourid</string>
+
+    <string name="playback_default">إفتراضي</string>
+</resources>
