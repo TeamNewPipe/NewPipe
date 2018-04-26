@@ -23,13 +23,13 @@
 
     <string name="download_path_audio_title">Locația audio-ului descărcat</string>
     <string name="download_path_audio_summary">Locul în care se va descărca audio-ul</string>
-    <string name="download_path_audio_dialog_title">Introduceți locația în care se va descărca audio-ul</string>
+    <string name="download_path_audio_dialog_title">Introduceți locația în care se va descărca fişierele audio</string>
 
     <string name="default_resolution_title">Rezoluție implicită</string>
     <string name="play_with_kodi_title">Redați folosind Kodi</string>
     <string name="kore_not_found">Aplicația Kore nu a fost găsită. Doriți să o instalați?</string>
     <string name="show_play_with_kodi_title">Arată opțiunea \"Redați folosind Kodi\"</string>
-    <string name="show_play_with_kodi_summary">Arată opțiunea de redare a videoclipurilor via centrului media Kodi</string>
+    <string name="show_play_with_kodi_summary">Arată opțiunea de redare a videoclipurilor via player-ului media Kodi</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Format audio implicit</string>
     <string name="info_dir_created">Directorul de descărcare \'%1$s\' a fost creat</string>
@@ -150,7 +150,7 @@ pentru a deschide în mod pop-up</string>
     <string name="app_ui_crash">App/UI eroare</string>
     <string name="info_labels">Ce:\\nCerere:\\nLimba Conținutului:\\nServiciu:\\nTimp GMT:\\nPachet:\\nVersiune:\\nVersiune OS:</string>
     <string name="use_old_player_title">Folosește player vechi</string>
-    <string name="use_old_player_summary">Player Mediaframework implicit</string>
+    <string name="use_old_player_summary">Player-ul implicit învechit Mediaframework</string>
 
 
     <string name="short_thousand">K</string>
@@ -168,7 +168,7 @@ pentru a deschide în mod pop-up</string>
     <string name="show_search_suggestions_title">Arată sugestii</string>
     <string name="show_search_suggestions_summary">Arată sugestii în timpul căutării</string>
 
-    <string name="settings_category_popup_title">Popup</string>
+    <string name="settings_category_popup_title">Pop-up</string>
     <string name="filter">Filtru</string>
     <string name="refresh">Reîmprospătează</string>
     <string name="clear">Curăță</string>
@@ -243,12 +243,12 @@ pentru a deschide în mod pop-up</string>
     <string name="tab_about">Despre</string>
     <string name="tab_contributors">Contributori</string>
     <string name="tab_licenses">Licențe</string>
-    <string name="app_description">Un player Youtube lightweight gratuit, pentru Android.</string>
+    <string name="app_description">Un player Youtube \"uşor\" gratuit, pentru Android.</string>
     <string name="view_on_github">Vedeți pe GitHub</string>
     <string name="app_license_title">Licența NewPipe</string>
     <string name="contribution_encouragement">Dacă aveți idei, doriți să traduceți, să schimbați design-ul, să curățați codul sau să schimbați codul, ajutorul este mereu bine primit. Cu cât mai mult, cu atât mai bine!</string>
     <string name="read_full_license">Citiți licența</string>
-    <string name="contribution_title">Contribuție</string>
+    <string name="contribution_title">Contribuie</string>
 
     <string name="title_activity_history">Istoric</string>
     <string name="title_history_search">Căutat</string>
@@ -285,10 +285,10 @@ pentru a deschide în mod pop-up</string>
     <string name="controls_add_to_playlist_title">Adaugă La</string>
 
     <string name="use_inexact_seek_title">Folosește parcurgerea inexactă</string>
-    <string name="use_inexact_seek_summary">Parcurgerea inexactă permite player-ului să traverseze videoclipul mai rapid, dar cu o precizie redusă.</string>
-    <string name="download_thumbnail_title">încarcă thumbnail-urile</string>
+    <string name="use_inexact_seek_summary">Derularea inexactă permite player-ului să îl poziţionezi mai rapid dar cu o precizie mai redusă.</string>
+    <string name="download_thumbnail_title">Încarcă thumbnail-urile</string>
     <string name="download_thumbnail_summary">Dezactivați pentru a opri încărcarea și salvarea tuturor thumbnail-urilor, pentru a economisi consumul de date și de memorie. Schimbarea acestei opțiuni va curăța tot cache-ul din memorie și de pe disc.</string>
-    <string name="thumbnail_cache_wipe_complete_notice">Cache pentru imagini șters</string>
+    <string name="thumbnail_cache_wipe_complete_notice"></string>
     <string name="metadata_cache_wipe_title">Șterge cache-ul pentru metadata</string>
     <string name="metadata_cache_wipe_summary">Șterge cache-ul pentru datele de pagini web</string>
     <string name="metadata_cache_wipe_complete_notice">Cache pentru metadata șters</string>
@@ -364,5 +364,21 @@ pentru a deschide în mod pop-up</string>
 \n</string>
     <string name="popup_player">Player Popup</string>
     <string name="always_ask_open_action">Întotdeauna întrebaţi</string>
+
+    <string name="no_streams_available_download">Niciun stream disponbil pentru descărcare</string>
+
+    <string name="detail_drag_description">Trageţi pentru a reordona</string>
+
+    <string name="create">Crează</string>
+    <string name="delete_one">Ştergeţi un element</string>
+    <string name="delete_all">Ştergeţi toate elementele</string>
+    <string name="dismiss">Ignoraţi</string>
+    <string name="rename">"Redenumiţi "</string>
+
+    <string name="toast_no_player">Niciun player a fost găsit pentru acest fişier</string>
+
+    <string name="donation_title">Donaţi</string>
+    <string name="drawer_header_action_paceholder_text">Ceva va apărea aici în curând ;D</string>
+
 
     </resources>
