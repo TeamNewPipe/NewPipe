@@ -453,7 +453,7 @@ otevření ve vyskakovacím okně</string>
     <string name="playback_speed_control">Ovládání rychlosti přehrávání</string>
     <string name="playback_tempo">Rychlost</string>
     <string name="playback_pitch">Stupeň tónu</string>
-    <string name="unhook_checkbox">Zvolnit (může způsobit zkreslení)</string>
+    <string name="unhook_checkbox">Rozpojit (může způsobit zkreslení)</string>
     <string name="playback_nightcore">Nightcore mód</string>
     <string name="playback_default">Výchozí nastavení</string>
 <string name="no_streams_available_download">Ke stažení nejsou dostupné žádné streamy</string>
