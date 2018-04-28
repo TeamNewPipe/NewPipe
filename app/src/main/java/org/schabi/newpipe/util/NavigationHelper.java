@@ -37,9 +37,8 @@ import org.schabi.newpipe.local.feed.FeedFragment;
 import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
-import org.schabi.newpipe.local.history.LastPlayedFragment;
+import org.schabi.newpipe.local.history.StatisticsPlaylistFragment;
 import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
-import org.schabi.newpipe.local.history.MostPlayedFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionsImportFragment;
 import org.schabi.newpipe.player.BackgroundPlayer;
 import org.schabi.newpipe.player.BackgroundPlayerActivity;
@@ -351,16 +350,9 @@ public class NavigationHelper {
                 .commit();
     }
 
-    public static void openLastPlayedFragment(FragmentManager fragmentManager) {
+    public static void openStatisticFragment(FragmentManager fragmentManager) {
         defaultTransaction(fragmentManager)
-                .replace(R.id.fragment_holder, new LastPlayedFragment())
-                .addToBackStack(null)
-                .commit();
-    }
-
-    public static void openMostPlayedFragment(FragmentManager fragmentManager) {
-        defaultTransaction(fragmentManager)
-                .replace(R.id.fragment_holder, new MostPlayedFragment())
+                .replace(R.id.fragment_holder, new StatisticsPlaylistFragment())
                 .addToBackStack(null)
                 .commit();
     }

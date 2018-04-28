@@ -39,8 +39,6 @@ import io.reactivex.disposables.CompositeDisposable;
 public final class BookmarkFragment
         extends BaseLocalListFragment<List<PlaylistLocalItem>, Void> {
 
-    private View mostPlayedButton;
-
     @State
     protected Parcelable itemsListState;
 
@@ -95,14 +93,6 @@ public final class BookmarkFragment
     }
 
     @Override
-    protected View getListHeader() {
-        final View headerRootLayout = activity.getLayoutInflater()
-                .inflate(R.layout.bookmark_header, itemsList, false);
-        mostPlayedButton = headerRootLayout.findViewById(R.id.mostPlayed);
-        return headerRootLayout;
-    }
-
-    @Override
     protected void initListeners() {
         super.initListeners();
 
@@ -133,12 +123,6 @@ public final class BookmarkFragment
                 } else if (selectedItem instanceof PlaylistRemoteEntity) {
                     showRemoteDeleteDialog((PlaylistRemoteEntity) selectedItem);
                 }
-            }
-        });
-
-        mostPlayedButton.setOnClickListener(view -> {
-            if (getParentFragment() != null) {
-                NavigationHelper.openMostPlayedFragment(getParentFragment().getFragmentManager());
             }
         });
     }
@@ -173,7 +157,6 @@ public final class BookmarkFragment
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (mostPlayedButton != null) mostPlayedButton.setOnClickListener(null);
 
         if (disposables != null) disposables.clear();
         if (databaseSubscription != null) databaseSubscription.cancel();

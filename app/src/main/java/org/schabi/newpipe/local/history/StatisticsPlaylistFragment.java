@@ -7,11 +7,12 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -36,12 +37,16 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
-public abstract class StatisticsPlaylistFragment
+public class StatisticsPlaylistFragment
         extends BaseLocalListFragment<List<StreamStatisticsEntry>, Void> {
 
     private View headerPlayAllButton;
     private View headerPopupButton;
     private View headerBackgroundButton;
+    private View playlistCtrl;
+    private View sortButton;
+    private ImageView sortButtonIcon;
+    private TextView sortButtonText;
 
     @State
     protected Parcelable itemsListState;
@@ -51,14 +56,26 @@ public abstract class StatisticsPlaylistFragment
     private HistoryRecordManager recordManager;
     private CompositeDisposable disposables = new CompositeDisposable();
 
+    private enum StatisticSortMode {
+        LAST_PLAYED,
+        MOST_PLAYED,
+    }
 
-    ///////////////////////////////////////////////////////////////////////////
-    // Abstracts
-    ///////////////////////////////////////////////////////////////////////////
+    StatisticSortMode sortMode = StatisticSortMode.LAST_PLAYED;
 
-    protected abstract String getName();
-
-    protected abstract List<StreamStatisticsEntry> processResult(final List<StreamStatisticsEntry> results);
+    protected List<StreamStatisticsEntry> processResult(final List<StreamStatisticsEntry> results) {
+        switch (sortMode) {
+            case LAST_PLAYED:
+                Collections.sort(results, (left, right) ->
+                    right.latestAccessDate.compareTo(left.latestAccessDate));
+                return results;
+            case MOST_PLAYED:
+                Collections.sort(results, (left, right) ->
+                        ((Long) right.watchCount).compareTo(left.watchCount));
+                return results;
+            default: return null;
+        }
+    }
 
     ///////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle - Creation
@@ -84,16 +101,20 @@ public abstract class StatisticsPlaylistFragment
     @Override
     protected void initViews(View rootView, Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
-        setTitle(getName());
+        setTitle(getString(R.string.title_last_played));
     }
 
     @Override
     protected View getListHeader() {
-        final View headerRootLayout = activity.getLayoutInflater().inflate(R.layout.playlist_control,
+        final View headerRootLayout = activity.getLayoutInflater().inflate(R.layout.statistic_playlist_control,
                 itemsList, false);
+        playlistCtrl = headerRootLayout.findViewById(R.id.playlist_control);
         headerPlayAllButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_all_button);
         headerPopupButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_popup_button);
         headerBackgroundButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_bg_button);
+        sortButton = headerRootLayout.findViewById(R.id.sortButton);
+        sortButtonIcon = headerRootLayout.findViewById(R.id.sortButtonIcon);
+        sortButtonText = headerRootLayout.findViewById(R.id.sortButtonText);
         return headerRootLayout;
     }
 
@@ -199,6 +220,8 @@ public abstract class StatisticsPlaylistFragment
         super.handleResult(result);
         if (itemListAdapter == null) return;
 
+        playlistCtrl.setVisibility(View.VISIBLE);
+
         itemListAdapter.clearStreamItemList();
 
         if (result.isEmpty()) {
@@ -218,6 +241,7 @@ public abstract class StatisticsPlaylistFragment
                 NavigationHelper.playOnPopupPlayer(activity, getPlayQueue()));
         headerBackgroundButton.setOnClickListener(view ->
                 NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue()));
+        sortButton.setOnClickListener(view -> toogleSortMode());
 
         hideLoading();
     }
@@ -243,6 +267,21 @@ public abstract class StatisticsPlaylistFragment
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
+
+    private void toogleSortMode() {
+        if(sortMode == StatisticSortMode.LAST_PLAYED) {
+            sortMode = StatisticSortMode.MOST_PLAYED;
+            setTitle(getString(R.string.title_most_played));
+            sortButtonIcon.setImageResource(getIconByAttr(R.attr.history));
+            sortButtonText.setText(R.string.title_last_played);
+        } else {
+            sortMode = StatisticSortMode.LAST_PLAYED;
+            setTitle(getString(R.string.title_last_played));
+            sortButtonIcon.setImageResource(getIconByAttr(R.attr.filter));
+            sortButtonText.setText(R.string.title_most_played);
+        }
+        startLoading(true);
+    }
 
     private void showStreamDialog(final StreamStatisticsEntry item) {
         final Context context = getContext();
@@ -301,7 +340,7 @@ public abstract class StatisticsPlaylistFragment
                             throwable -> showSnackBarError(throwable,
                                     UserAction.SOMETHING_ELSE, "none",
                                     "Deleting item failed", R.string.general_error));
-            
+
             disposables.add(onDelte);
         }
     }
@@ -323,6 +362,11 @@ public abstract class StatisticsPlaylistFragment
             }
         }
         return new SinglePlayQueue(streamInfoItems, index);
+    }
+
+    private int getIconByAttr(final int attr) {
+        return getContext().obtainStyledAttributes(new int[] {attr})
+                .getResourceId(0, -1);
     }
 }
 

@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
         settings.setOnClickListener(view -> NavigationHelper.openSettings(this));
         downloads.setOnClickListener(view ->NavigationHelper.openDownloads(this));
         history.setOnClickListener(view ->
-                NavigationHelper.openLastPlayedFragment(getSupportFragmentManager()));
+                NavigationHelper.openStatisticFragment(getSupportFragmentManager()));
     }
 
     private void setupDrawerHeader() {
