@@ -45,6 +45,7 @@ import java.util.List;
 
 import io.reactivex.Flowable;
 import io.reactivex.Maybe;
+import io.reactivex.Scheduler;
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 
@@ -98,6 +99,11 @@ public class HistoryRecordManager {
                 .subscribeOn(Schedulers.io());
     }
 
+    public Single<Integer> deleteWholeStreamHistory() {
+        return Single.fromCallable(() -> streamHistoryTable.deleteAll())
+                .subscribeOn(Schedulers.io());
+    }
+
     public Flowable<List<StreamHistoryEntry>> getStreamHistory() {
         return streamHistoryTable.getHistory().subscribeOn(Schedulers.io());
     }
@@ -132,20 +138,6 @@ public class HistoryRecordManager {
     // Search History
     ///////////////////////////////////////////////////////
 
-    public Single<List<Long>> insertSearches(final Collection<SearchHistoryEntry> entries) {
-        return Single.fromCallable(() -> searchHistoryTable.insertAll(entries))
-                .subscribeOn(Schedulers.io());
-    }
-
-    public Single<Integer> deleteSearches(final Collection<SearchHistoryEntry> entries) {
-        return Single.fromCallable(() -> searchHistoryTable.delete(entries))
-                .subscribeOn(Schedulers.io());
-    }
-
-    public Flowable<List<SearchHistoryEntry>> getSearchHistory() {
-        return searchHistoryTable.getAll();
-    }
-
     public Maybe<Long> onSearched(final int serviceId, final String search) {
         if (!isSearchHistoryEnabled()) return Maybe.empty();
 
@@ -165,6 +157,11 @@ public class HistoryRecordManager {
 
     public Single<Integer> deleteSearchHistory(final String search) {
         return Single.fromCallable(() -> searchHistoryTable.deleteAllWhereQuery(search))
+                .subscribeOn(Schedulers.io());
+    }
+
+    public Single<Integer> deleteWholeSearchHistory() {
+        return Single.fromCallable(() -> searchHistoryTable.deleteAll())
                 .subscribeOn(Schedulers.io());
     }
 

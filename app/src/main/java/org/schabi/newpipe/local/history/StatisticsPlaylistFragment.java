@@ -338,7 +338,7 @@ public class StatisticsPlaylistFragment
                             howManyDelted -> Snackbar.make(getView(), R.string.one_item_deleted,
                                     Snackbar.LENGTH_SHORT).show(),
                             throwable -> showSnackBarError(throwable,
-                                    UserAction.SOMETHING_ELSE, "none",
+                                    UserAction.DELETE_FROM_HISTORY, "none",
                                     "Deleting item failed", R.string.general_error));
 
             disposables.add(onDelte);

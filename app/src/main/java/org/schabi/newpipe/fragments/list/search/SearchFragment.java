@@ -544,7 +544,7 @@ public class SearchFragment
                                     howManyDeleted -> suggestionPublisher
                                             .onNext(searchEditText.getText().toString()),
                                     throwable -> showSnackBarError(throwable,
-                                            UserAction.SOMETHING_ELSE, "none",
+                                            UserAction.DELETE_FROM_HISTORY, "none",
                                             "Deleting item failed", R.string.general_error)
                             );
                     disposables.add(onDelete);

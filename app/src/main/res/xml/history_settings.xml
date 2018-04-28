@@ -21,4 +21,14 @@
         android:summary="@string/metadata_cache_wipe_summary"
         android:title="@string/metadata_cache_wipe_title"/>
 
+    <Preference
+        android:key="@string/clear_views_history_key"
+        android:title="@string/clear_views_history_title"
+        android:summary="@string/clear_views_history_summary"/>
+
+    <Preference
+        android:key="@string/clear_search_history_key"
+        android:title="@string/clear_search_history_title"
+        android:summary="@string/clear_search_history_summary"/>
+
 </PreferenceScreen>

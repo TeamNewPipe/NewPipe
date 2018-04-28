@@ -147,6 +147,8 @@
     <string name="download_thumbnail_key" translatable="false">download_thumbnail_key</string>
 
     <string name="metadata_cache_wipe_key" translatable="false">cache_wipe_key</string>
+    <string name="clear_views_history_key" translatable="false">clear_play_history</string>
+    <string name="clear_search_history_key" translatable="false">clear_search_history</string>
 
     <!-- FileName Downloads  -->
     <string name="settings_file_charset_key" translatable="false">file_rename</string>
