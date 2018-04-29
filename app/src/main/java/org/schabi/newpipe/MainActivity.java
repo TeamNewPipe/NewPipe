@@ -328,8 +328,17 @@ public class MainActivity extends AppCompatActivity {
             case android.R.id.home:
                 onHomeButtonPressed();
                 return true;
+            case R.id.action_show_downloads:
+                return NavigationHelper.openDownloads(this);
+            case R.id.action_history:
+                NavigationHelper.openStatisticFragment(getSupportFragmentManager());
+                return true;
             case R.id.action_about:
                 NavigationHelper.openAbout(this);
+                return true;
+            case R.id.action_settings:
+                NavigationHelper.openSettings(this);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
