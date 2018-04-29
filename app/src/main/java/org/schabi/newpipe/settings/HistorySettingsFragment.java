@@ -59,10 +59,10 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
                     .setTitle(R.string.delete_view_history_alert)
                     .setNegativeButton(R.string.cancel, ((dialog, which) -> dialog.dismiss()))
                     .setPositiveButton(R.string.delete, ((dialog, which) -> {
-                        final Disposable onDelte = recordManager.deleteWholeStreamHistory()
+                        final Disposable onDelete = recordManager.deleteWholeStreamHistory()
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(
-                                        howManyDelted -> Toast.makeText(getActivity(),
+                                        howManyDeleted -> Toast.makeText(getActivity(),
                                                 R.string.view_history_deleted,
                                                 Toast.LENGTH_SHORT).show(),
                                         throwable -> ErrorActivity.reportError(getContext(),
@@ -74,7 +74,7 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
                                                         "Delete view history",
                                                         R.string.general_error)));
 
-                        disposables.add(onDelte);
+                        disposables.add(onDelete);
                     }))
                     .create()
                     .show();
@@ -85,10 +85,10 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
                     .setTitle(R.string.delete_search_history_alert)
                     .setNegativeButton(R.string.cancel, ((dialog, which) -> dialog.dismiss()))
                     .setPositiveButton(R.string.delete, ((dialog, which) -> {
-                        final Disposable onDelte = recordManager.deleteWholeSearchHistory()
+                        final Disposable onDelete = recordManager.deleteWholeSearchHistory()
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(
-                                        howManyDelted -> Toast.makeText(getActivity(),
+                                        howManyDeleted -> Toast.makeText(getActivity(),
                                                 R.string.search_history_deleted,
                                                 Toast.LENGTH_SHORT).show(),
                                         throwable -> ErrorActivity.reportError(getContext(),
@@ -100,7 +100,7 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
                                                         "Delete search history",
                                                         R.string.general_error)));
 
-                        disposables.add(onDelte);
+                        disposables.add(onDelete);
                     }))
                     .create()
                     .show();

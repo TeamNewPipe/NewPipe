@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -27,6 +28,7 @@ import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
+import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -241,7 +243,7 @@ public class StatisticsPlaylistFragment
                 NavigationHelper.playOnPopupPlayer(activity, getPlayQueue()));
         headerBackgroundButton.setOnClickListener(view ->
                 NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue()));
-        sortButton.setOnClickListener(view -> toogleSortMode());
+        sortButton.setOnClickListener(view -> toggleSortMode());
 
         hideLoading();
     }
@@ -268,16 +270,16 @@ public class StatisticsPlaylistFragment
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
-    private void toogleSortMode() {
+    private void toggleSortMode() {
         if(sortMode == StatisticSortMode.LAST_PLAYED) {
             sortMode = StatisticSortMode.MOST_PLAYED;
             setTitle(getString(R.string.title_most_played));
-            sortButtonIcon.setImageResource(getIconByAttr(R.attr.history));
+            sortButtonIcon.setImageResource(ThemeHelper.getIconByAttr(R.attr.history, getContext()));
             sortButtonText.setText(R.string.title_last_played);
         } else {
             sortMode = StatisticSortMode.LAST_PLAYED;
             setTitle(getString(R.string.title_last_played));
-            sortButtonIcon.setImageResource(getIconByAttr(R.attr.filter));
+            sortButtonIcon.setImageResource(ThemeHelper.getIconByAttr(R.attr.filter, getContext()));
             sortButtonText.setText(R.string.title_most_played);
         }
         startLoading(true);
@@ -332,16 +334,24 @@ public class StatisticsPlaylistFragment
                 .get(index);
         if(infoItem instanceof StreamStatisticsEntry) {
             final StreamStatisticsEntry entry = (StreamStatisticsEntry) infoItem;
-            final Disposable onDelte = recordManager.deleteStreamHistory(entry.streamId)
+            final Disposable onDelete = recordManager.deleteStreamHistory(entry.streamId)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
-                            howManyDelted -> Snackbar.make(getView(), R.string.one_item_deleted,
-                                    Snackbar.LENGTH_SHORT).show(),
+                            howManyDelted -> {
+                                if(getView() != null) {
+                                    Snackbar.make(getView(), R.string.one_item_deleted,
+                                            Snackbar.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(getContext(),
+                                            R.string.one_item_deleted,
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            },
                             throwable -> showSnackBarError(throwable,
                                     UserAction.DELETE_FROM_HISTORY, "none",
                                     "Deleting item failed", R.string.general_error));
 
-            disposables.add(onDelte);
+            disposables.add(onDelete);
         }
     }
 
@@ -362,11 +372,6 @@ public class StatisticsPlaylistFragment
             }
         }
         return new SinglePlayQueue(streamInfoItems, index);
-    }
-
-    private int getIconByAttr(final int attr) {
-        return getContext().obtainStyledAttributes(new int[] {attr})
-                .getResourceId(0, -1);
     }
 }
 
