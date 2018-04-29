@@ -847,10 +847,12 @@ public final class MainVideoPlayer extends AppCompatActivity
             if (DEBUG) Log.d(TAG, "onDoubleTap() called with: e = [" + e + "]" + "rawXy = " + e.getRawX() + ", " + e.getRawY() + ", xy = " + e.getX() + ", " + e.getY());
             if (!playerImpl.isPlaying()) return false;
 
-            if (e.getX() > playerImpl.getRootView().getWidth() / 2) {
+            if (e.getX() > playerImpl.getRootView().getWidth() * 2 / 3) {
                 playerImpl.onFastForward();
-            } else {
+            } else if (e.getX() < playerImpl.getRootView().getWidth() / 3) {
                 playerImpl.onFastRewind();
+            } else {
+                playerImpl.getPlayPauseButton().performClick();
             }
 
             return true;
