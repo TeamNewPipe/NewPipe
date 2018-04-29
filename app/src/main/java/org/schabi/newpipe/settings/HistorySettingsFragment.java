@@ -19,6 +19,7 @@ import org.schabi.newpipe.util.InfoCache;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -74,6 +75,19 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
                                                         "Delete view history",
                                                         R.string.general_error)));
 
+                        final Disposable onClearOrphans = recordManager.removeOrphanedRecords()
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(
+                                        howManyDeleted -> {},
+                                        throwable -> ErrorActivity.reportError(getContext(),
+                                                throwable,
+                                                SettingsActivity.class, null,
+                                                ErrorActivity.ErrorInfo.make(
+                                                        UserAction.DELETE_FROM_HISTORY,
+                                                        "none",
+                                                        "Delete search history",
+                                                        R.string.general_error)));
+                        disposables.add(onClearOrphans);
                         disposables.add(onDelete);
                     }))
                     .create()
@@ -99,7 +113,6 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
                                                         "none",
                                                         "Delete search history",
                                                         R.string.general_error)));
-
                         disposables.add(onDelete);
                     }))
                     .create()
