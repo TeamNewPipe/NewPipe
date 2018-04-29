@@ -2,10 +2,10 @@
 <resources>
     <string name="view_count_text">%1$s переглядів</string>
     <string name="upload_date_text">Опубліковано %1$s</string>
-    <string name="no_player_found">Струмового програвача не знайдено. Чи ви хочете встановити VLC?</string>
+    <string name="no_player_found">Стримінґового програвача не знайдено. Чи встановити VLC?</string>
     <string name="install">Установити</string>
     <string name="cancel">Скасувати</string>
-    <string name="open_in_browser">Відкрити у переглядачі</string>
+    <string name="open_in_browser">Відкрити у переглядачеві</string>
     <string name="share">Поширити</string>
     <string name="download">Завантажити</string>
     <string name="search">Шукати</string>
@@ -70,10 +70,10 @@
     <string name="sorry_string">Шкода, цього не мало статися.</string>
     <string name="error_report_button_text">Зазвітувати помилку за допомогою пошти</string>
     <string name="error_snackbar_message">На жаль, сталася помилка.</string>
-    <string name="error_snackbar_action">ЗВІТУВАТИ</string>
+    <string name="error_snackbar_action">ЗАЗВІТУВАТИ</string>
     <string name="what_device_headline">Інформація:</string>
     <string name="what_happened_headline">Що сталося:</string>
-    <string name="main_bg_subtitle">Аби почати натисніть на \"шукати\"</string>
+    <string name="main_bg_subtitle">Натисніть на пошук аби почати</string>
     <string name="black_theme_title">Чорна</string>
 
     <string name="downloads">Завантаження</string>
@@ -95,7 +95,7 @@
     <string name="detail_thumbnail_view_description">Ескіз попереднього перегляду відео</string>
     <string name="use_tor_title">Використовувати Tor</string>
     <string name="use_tor_summary">(Експериментально) Перенаправляти трафік через Tor для підвищення конфіденційності (трансляція відео ще не підтримується).</string>
-    <string name="report_error">Звітувати про помилку</string>
+    <string name="report_error">Зазвітувати про помилку</string>
     <string name="err_dir_create">Не вдалося створити теку для завантаження \'%1$s\'</string>
     <string name="info_dir_created">Створити теку для завантаження \'%1$s\'</string>
 
@@ -125,7 +125,7 @@
     <string name="msg_copied">Скопійовано до сховку</string>
     <string name="no_available_dir">Будь ласка, оберіть теку для завантаження</string>
 
-<string name="no_player_found_toast">Струмового програвача не знайдено (ви можете встановити VLC для відтворення)</string>
+<string name="no_player_found_toast">Стримінґового програвача не знайдено (ви можете встановити VLC для відтворення)</string>
     <string name="open_in_popup_mode">Відкрити у віконному режимі</string>
     <string name="use_external_video_player_summary">Певні роздільності НЕ МАТИМУТЬ звуку якщо цей параметр увімкнено</string>
     <string name="popup_mode_share_menu_title">NewPipe у віконному режимі</string>
@@ -217,7 +217,7 @@
 
     <string name="title_activity_about">Щодо NewPipe</string>
     <string name="action_settings">Налаштування</string>
-    <string name="action_about">Про</string>
+    <string name="action_about">Візитівка</string>
     <string name="error_unable_to_load_license">Неможливо завантажити ліцензію</string>
     <string name="tab_licenses">Ліцензії</string>
     <string name="contribution_title">Допомогти</string>
@@ -278,7 +278,7 @@
 
     <string name="title_licenses">Сторонні ліцензії</string>
     <string name="action_open_website">Перейти до сайту</string>
-    <string name="tab_about">Про</string>
+    <string name="tab_about">Візитівка</string>
     <string name="app_description">Легкий YouTube фронт-енд застосунок для Android.</string>
     <string name="contribution_encouragement">Які б не були Ваші ідеї: переклад, дизайн, легкий чи глобальний рефакторинґ - будь яка допомога вітається. Що більше зроблено, то ліпшим NewPipe стає!</string>
     <string name="disable_leak_canary_notice">Моніторинг витоку памяті вимкнено</string>
@@ -289,7 +289,7 @@
     <string name="no_views">Перегляди відсутні</string>
     <plurals name="views">
 	<item quantity="one">%s перегляд</item>
-	<item quantity="few">%s перегляди</item>
+	<item quantity="few">%s переглядів</item>
 	<item quantity="many">%s переглядів</item>
 </plurals>
 
@@ -390,7 +390,7 @@
     <string name="auto_queue_summary">Автоматично додавати пов\'язаний струм, під час початку програвання останнього струму.</string>
     <string name="live_sync">СИНХРОНІЗАЦІЯ</string>
 
-    <string name="file">Файл</string>
+    <string name="file">Теки</string>
 
     <string name="invalid_directory">Неправильна тека</string>
     <string name="invalid_source">Неправильний файл/контент джерела</string>
@@ -407,7 +407,7 @@
     <string name="export_ongoing">Експортування…</string>
 
     <string name="import_file_title">Імпортування файлу</string>
-    <string name="previous_export">Попереднє експортування</string>
+    <string name="previous_export">Попереднього експортування</string>
 
     <string name="subscriptions_import_unsuccessful">Не вдалось імпортувати підписки</string>
     <string name="subscriptions_export_unsuccessful">Не вдалося експортувати підписки</string>
