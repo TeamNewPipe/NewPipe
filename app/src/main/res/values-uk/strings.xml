@@ -14,8 +14,8 @@
     <string name="share_dialog_title">Поділитись з</string>
     <string name="choose_browser">Оберіть переглядач</string>
     <string name="screen_rotation">обертання</string>
-    <string name="use_external_video_player_title">Використовувати зовнішній відео програвач</string>
-    <string name="use_external_audio_player_title">Використовувати зовнішній аудіо програвач</string>
+    <string name="use_external_video_player_title">Зовнішній відео-програвач</string>
+    <string name="use_external_audio_player_title">Зовнішній аудіо-програвач</string>
 
     <string name="download_path_title">Шлях для завантаження відео</string>
     <string name="download_path_dialog_title">Вкажіть шлях для завантаження відео</string>
@@ -30,7 +30,7 @@
     <string name="default_resolution_title">Типова роздільна здатність</string>
     <string name="play_with_kodi_title">Відтворювати за допомогою Kodi</string>
     <string name="kore_not_found">Застосунок Kore не знайдено. Встановити?</string>
-    <string name="show_play_with_kodi_title">Показувати опцію \"Програвати за допомогою Kodi\"</string>
+    <string name="show_play_with_kodi_title">Відтворювти у Kodi</string>
     <string name="show_play_with_kodi_summary">Показувати опцію відтворення відео за допомогою Kodi media center</string>
     <string name="play_audio">Аудіо</string>
     <string name="default_audio_format_title">Типовий аудіо формат</string>
@@ -56,8 +56,8 @@
     <string name="video_is_age_restricted">Це відео має вікові обмеження. Спершу активуйте опцію для відображення таких відео у налаштуваннях.</string>
     <string name="duration_live">наживо</string>
 
-    <string name="general_error">Помилка</string>
-    <string name="network_error">Помилка мережі</string>
+    <string name="general_error">Хиба</string>
+    <string name="network_error">Хиба мережі</string>
     <string name="could_not_load_thumbnails">Не вдалося завантажити всі ескізи</string>
     <string name="youtube_signature_decryption_error">Не вдалося розшифрувати підпис URL відео</string>
     <string name="parsing_error">Не вдалося проаналізувати веб-сайт</string>
@@ -65,11 +65,11 @@
     <string name="content_not_available">Контент не доступний</string>
     <string name="blocked_by_gema">Заблоковано GEMA</string>
     <string name="could_not_setup_download_menu">Не вдалося налаштувати меню завантаження</string>
-    <string name="live_streams_not_supported">Трансляції наживо ще не підтримуються.</string>
-    <string name="could_not_get_stream">Не вдалося отримати жодного струму</string>
+    <string name="live_streams_not_supported">Трансляції НАЖИВО ще не підтримуються.</string>
+    <string name="could_not_get_stream">Не вдалося отримати жодного стриму</string>
     <string name="sorry_string">Шкода, цього не мало статися.</string>
     <string name="error_report_button_text">Зазвітувати помилку за допомогою пошти</string>
-    <string name="error_snackbar_message">На жаль, сталася помилка.</string>
+    <string name="error_snackbar_message">На жаль, трапилась помилка.</string>
     <string name="error_snackbar_action">ЗАЗВІТУВАТИ</string>
     <string name="what_device_headline">Інформація:</string>
     <string name="what_happened_headline">Що сталося:</string>
@@ -115,8 +115,8 @@
 
     <string name="finish">ОК</string>
     <string name="msg_name">Назва файлу</string>
-    <string name="msg_threads">Потоки</string>
-    <string name="msg_error">Помилка</string>
+    <string name="msg_threads">Нитки</string>
+    <string name="msg_error">Хиба</string>
     <string name="msg_server_unsupported">Сервер не підтримується</string>
     <string name="msg_exists">Файл уже існує</string>
     <string name="msg_running">NewPipe завантажує</string>
@@ -144,11 +144,11 @@
     <string name="controls_popup_title">У вікні</string>
 
     <string name="default_popup_resolution_title">Типова роздільна здатність вікна</string>
-    <string name="show_higher_resolutions_summary">Не всі пристрої підтримують програвання 2K/4K відео</string>
+    <string name="show_higher_resolutions_summary">Не всі пристрої підтримують відтворення 2K/4K відео</string>
     <string name="show_higher_resolutions_title">Показувати більші роздільні здатності</string>
     <string name="default_video_format_title">Типовий відео формат</string>
     <string name="popup_remember_size_pos_title">Пам\'ятати розмір та позицію вікна</string>
-    <string name="popup_remember_size_pos_summary">Пам\'ятати останній розмір та позицію вікна</string>
+    <string name="popup_remember_size_pos_summary">Пам\'ятати останній розмір вікна</string>
     <string name="player_gesture_controls_title">Керування жестами</string>
     <string name="player_gesture_controls_summary">Використовувати жести для контролю яскравості та гучності програвача</string>
     <string name="show_search_suggestions_title">Шукати схожі</string>
@@ -157,9 +157,9 @@
     <string name="enable_search_history_summary">Зберігати пошукові запити локально</string>
     <string name="enable_watch_history_title">Історія</string>
     <string name="enable_watch_history_summary">Вести облік перегляду відео</string>
-    <string name="resume_on_audio_focus_gain_title">Відновити фокус</string>
-    <string name="resume_on_audio_focus_gain_summary">Продовжувати відтворення опісля переривання (наприклад телефонний дзвінок)</string>
-    <string name="show_hold_to_append_title">Показувати стримання для підказки</string>
+    <string name="resume_on_audio_focus_gain_title">Відновити відтворення</string>
+    <string name="resume_on_audio_focus_gain_summary">Продовжувати відтворення опісля переривання (наприклад телефонного дзвінка)</string>
+    <string name="show_hold_to_append_title">Підказка \"Утримуй, аби додати\"</string>
     <string name="default_content_country_title">Усталена країна контенту</string>
     <string name="service_title">Сервіс</string>
     <string name="settings_category_player_title">Програвач</string>
@@ -167,14 +167,14 @@
     <string name="settings_category_history_title">Історія та кеш</string>
     <string name="settings_category_popup_title">Вікно</string>
     <string name="popup_playing_toast">Відворення у вікні</string>
-    <string name="background_player_append">Додано до фонового програвання</string>
+    <string name="background_player_append">Додано до фонового відтворення</string>
     <string name="popup_playing_append">Додано до чергу у вікно</string>
     <string name="playlist">Плейлист</string>
     <string name="filter">Фільтрувати</string>
     <string name="refresh">Оновити</string>
     <string name="clear">Очистити</string>
     <string name="popup_resizing_indicator_title">Зміна розміру</string>
-    <string name="best_resolution">Найкраща роздільна здатність</string>
+    <string name="best_resolution">Найліпша роздільна здатність</string>
     <string name="undo">Відміна</string>
     <string name="play_all">Грати всі</string>
     <string name="always">Щоразу</string>
@@ -187,13 +187,13 @@
 
     <string name="switch_to_background">Перемкнутися до Тла</string>
     <string name="switch_to_popup">Перемкнутися до вікна</string>
-    <string name="switch_to_main">Перемкнутися до Головної</string>
+    <string name="switch_to_main">Перемкнутися на головну</string>
 
     <string name="import_data_title">Імпортувати базу</string>
     <string name="export_data_title">Експортувати базу</string>
     <string name="import_data_summary">Це перепише наявну історію та підписання</string>
     <string name="export_data_summary">Експортувати історію, підписання та плейлисти.</string>
-    <string name="player_stream_failure">Трапилася помилка під час відворення струму</string>
+    <string name="player_stream_failure">Хиба під час відворення стриму</string>
     <string name="player_recoverable_failure">Відновлююсь після помилки програвача</string>
     <string name="invalid_url_toast">Помилкова ланка URL</string>
     <string name="video_streams_empty">Відео-струмів не було знайдено</string>
@@ -207,7 +207,7 @@
 \nу вікні</string>
 
     <string name="reCaptchaActivity">«reCAPTCHA»</string>
-    <string name="settings_category_downloads_title">Завантажити</string>
+    <string name="settings_category_downloads_title">Завантаження</string>
     <string name="settings_file_charset_title">Допустимі символи у назвах файлів</string>
     <string name="settings_file_replacement_character_summary">"Неправильні символи будуть скоректовані цим "</string>
     <string name="settings_file_replacement_character_title">Символ заміни</string>
@@ -220,9 +220,9 @@
     <string name="action_about">Візитівка</string>
     <string name="error_unable_to_load_license">Неможливо завантажити ліцензію</string>
     <string name="tab_licenses">Ліцензії</string>
-    <string name="contribution_title">Допомогти</string>
+    <string name="contribution_title">Зробити внесок</string>
     <string name="view_on_github">Переглянути на Ґітгаб</string>
-    <string name="donation_title">Задонатуй</string>
+    <string name="donation_title">Фінансова допомога</string>
     <string name="website_title">Веб-сайт</string>
     <string name="title_activity_history">Історія</string>
     <string name="history_cleared">Історію стерто</string>
@@ -247,9 +247,9 @@
 
     <string name="controls_add_to_playlist_title">Додати до</string>
 
-    <string name="show_hold_to_append_summary">Показувати підказку коли натиснута кнопка фону або вікна, на сторінці інформації відео</string>
+    <string name="show_hold_to_append_summary">Показувати підказку коли натиснута кнопка фону або вікна на сторінці інформації відео</string>
     <string name="toggle_orientation">Перемкнути орієнтацію</string>
-    <string name="player_unrecoverable_failure">Фатальна помилка програвача</string>
+    <string name="player_unrecoverable_failure">Фатальна хиба програвача</string>
     <string name="external_player_unsupported_link_type">Зовнішні програвачі не підтримують такі види ланок</string>
     <string name="info_labels">Що:\\nЗапит:\\nМова змісту:\\nСервіс:\\nЧас GMT:\\nПакунок:\\nВерсія:\\nВерсія ОС:</string>
     <string name="detail_uploader_thumbnail_view_description">Ескіз аватару користувача</string>
@@ -279,8 +279,8 @@
     <string name="title_licenses">Сторонні ліцензії</string>
     <string name="action_open_website">Перейти до сайту</string>
     <string name="tab_about">Візитівка</string>
-    <string name="app_description">Легкий YouTube фронт-енд застосунок для Android.</string>
-    <string name="contribution_encouragement">Які б не були Ваші ідеї: переклад, дизайн, легкий чи глобальний рефакторинґ - будь яка допомога вітається. Що більше зроблено, то ліпшим NewPipe стає!</string>
+    <string name="app_description">Безкоштовний та легкий Ютюб застосунок для Андроїда.</string>
+    <string name="contribution_encouragement">Які б не були Ваші ідеї: переклад, дизайн, легкий чи глобальний рефакторинґ - будь-яка допомога завжди у нагоді. Що більше зроблено, то ліпшим NewPipe стає!</string>
     <string name="disable_leak_canary_notice">Моніторинг витоку памяті вимкнено</string>
 <string name="settings_category_debug_title">Усунення вад</string>
     <string name="empty_subscription_feed_subtitle">Нічого нема</string>
@@ -320,18 +320,18 @@
 
     <string name="main_page_content">Контент на головній сторінці</string>
     <string name="blank_page_summary">Порожня сторінка</string>
-    <string name="kiosk_page_summary">Сторінка ятки</string>
+    <string name="kiosk_page_summary">Kiosk</string>
     <string name="subscription_page_summary">Сторінка підписання</string>
     <string name="feed_page_summary">Сторінка фіду</string>
     <string name="channel_page_summary">Сторінка каналу</string>
     <string name="select_a_channel">Обрати канал</string>
     <string name="no_channel_subscribed_yet">Ви не підписані до жодного з каналів</string>
-    <string name="select_a_kiosk">Обрати ятку</string>
+    <string name="select_a_kiosk">Обрати kiosk</string>
     <string name="no_valid_zip_file">Недійсний ZIP-файл</string>
     <string name="could_not_import_all_files">Увага: не можливо здійснити імпортування всіх файлів.</string>
     <string name="override_current_data">Це перепише ваш чинний сетап.</string>
 
-    <string name="kiosk">Ятка</string>
+    <string name="kiosk">Кіоски</string>
     <string name="trending">Набуває популярності</string>
     <string name="title_activity_background_player">Фоновий програвач</string>
     <string name="title_activity_popup_player">Віконний програвач</string>
@@ -339,9 +339,9 @@
     <string name="hold_to_append">Затиснути, аби зняти з черги</string>
     <string name="enqueue_on_background">Зняти з черги у фоновому програвачеві</string>
     <string name="enqueue_on_popup">Зняти з черги у віконному програвачеві</string>
-    <string name="start_here_on_main">Розпочати програвання звідси</string>
-    <string name="start_here_on_background">Розпочати програвання звідси у фоновому програвачеві</string>
-    <string name="start_here_on_popup">Розпочати програвання у вікні звідси</string>
+    <string name="start_here_on_main">Розпочати відтворення звідси</string>
+    <string name="start_here_on_background">Розпочати відтворення звідси у фоновому програвачеві</string>
+    <string name="start_here_on_popup">Розпочати відтворення у вікні звідси</string>
 
     <string name="drawer_open">Відчинити шухляду</string>
     <string name="drawer_close">Зачинити шухляду</string>
@@ -386,8 +386,8 @@
 
 <string name="use_inexact_seek_title">Використовувати неточне шукання</string>
     <string name="use_inexact_seek_summary">Неточне шукання дозволяє програвачеві рухатися позиціями швидше, проте з меншою точністю</string>
-    <string name="auto_queue_title">Автоматично додати до черги наступний струм</string>
-    <string name="auto_queue_summary">Автоматично додавати пов\'язаний струм, під час початку програвання останнього струму.</string>
+    <string name="auto_queue_title">Автоматично додати до черги наступний стрим</string>
+    <string name="auto_queue_summary">Автоматично додавати пов\'язаний стрим, під час початку відтворення останнього стриму.</string>
     <string name="live_sync">СИНХРОНІЗАЦІЯ</string>
 
     <string name="file">Теки</string>
@@ -396,7 +396,7 @@
     <string name="invalid_source">Неправильний файл/контент джерела</string>
     <string name="invalid_file">Файл не існує, або немає дозволу на його запис чи читання</string>
     <string name="file_name_empty_error">Ім\'я файлу не повинно бути порожнім</string>
-    <string name="error_occurred_detail">Трапилась помилка: %1$s</string>
+    <string name="error_occurred_detail">Хиба: %1$s</string>
 
     <string name="import_export_title">Імпортування/Експортування</string>
     <string name="import_title">Імпортування</string>
@@ -437,7 +437,7 @@
     <string name="metadata_cache_wipe_title">Стерти кеш метаданих</string>
     <string name="metadata_cache_wipe_summary">"Усунути всі кешовані дані веб-сторінки "</string>
     <string name="metadata_cache_wipe_complete_notice">Кеш метаданих стерто</string>
-    <string name="playback_speed_control">Керування швидкістю програвання</string>
+    <string name="playback_speed_control">Керування швидкістю відтворення</string>
     <string name="playback_tempo">Темп</string>
     <string name="playback_pitch">Тон</string>
     <string name="unhook_checkbox">Від\'єднати (може спричинити спотворення)</string>
