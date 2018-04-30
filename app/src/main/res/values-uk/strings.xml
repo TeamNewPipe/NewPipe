@@ -453,4 +453,14 @@
 
     <string name="toast_no_player">Для цього файлу не було знайдено програвача</string>
 
+    <string name="clear_views_history_title">Очистити історію переглядів</string>
+    <string name="clear_views_history_summary">Видаляє історію відтворень.</string>
+    <string name="delete_view_history_alert">Видалити всю історію переглядів.</string>
+    <string name="view_history_deleted">Історію переглядів було видалено.</string>
+    <string name="clear_search_history_title">Очистити історію пошуків</string>
+    <string name="clear_search_history_summary">Видаляє історію шуканих ключових слів.</string>
+    <string name="delete_search_history_alert">Видалити всю пошукову історію.</string>
+    <string name="search_history_deleted">Пошукову історію було видалено.</string>
+    <string name="one_item_deleted">Видалено один фраґмент.</string>
+
     </resources>
