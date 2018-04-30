@@ -21,7 +21,7 @@
     <string name="play_with_kodi_title">Mit Kodi abspielen</string>
     <string name="kore_not_found">Kore App wurde nicht gefunden. Möchten Sie Kore jetzt installieren?</string>
     <string name="show_play_with_kodi_title">Zeige \"Mit Kodi abspielen\" Option</string>
-    <string name="show_play_with_kodi_summary">Zeigt eine Option an, über die man Videos mit dem Kodi Media Center abspielen kann</string>
+    <string name="show_play_with_kodi_summary">Zeigt eine Option an, über die man Videos mit Kodi abspielen kann</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Bevorzugtes Audioformat</string>
     <string name="webm_description">WebM — freies Format</string>
@@ -96,7 +96,7 @@
 
     <string name="duration_live">Live</string>
 
-    <string name="main_bg_subtitle">„Suchen“ antippen und loslegen</string>
+    <string name="main_bg_subtitle">„Suchen“ antippen um zu beginnen</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
     <string name="error_report_title">Fehlerbericht</string>
@@ -286,7 +286,7 @@
     <string name="show_hold_to_append_summary">Tipp anzeigen, wenn der Hintergrundwiedergabe- oder Pop-up-Button auf der Videodetailseite gedrückt gehalten wird</string>
     <string name="background_player_append">In der Warteschlange der Hintergrundwiedergabe</string>
     <string name="new_and_hot">Neu &amp; Heiß</string>
-    <string name="hold_to_append">Halten, um der Playlist hinzuzufügen</string>
+    <string name="hold_to_append">Zum Anfügen gedrückt halten</string>
 <string name="show_hold_to_append_title">\"Gedrückt halten, um Tipp hinzuzufügen\" anzeigen</string>
     <string name="unknown_content">[Unbekannt]</string>
 
@@ -301,7 +301,7 @@
     <string name="website_encouragement">Um mehr Informationen und die neuesten Nachrichten über NewPipe zu erhalten, besuche unsere Website.</string>
     <string name="donation_encouragement">NewPipe wird von Freiwilligen entwickelt, die ihre Freizeit dafür aufbringen, die beste Nutzererfahrung zu bieten. Jetzt ist es an Dir, ein wenig zurückzugeben und sicherzustellen, dass unsere Entwickler NewPipe noch besser machen können, während sie sich an einer Tasse Java-Kaffee erfreuen!</string>
     <string name="service_title">Service</string>
-    <string name="no_player_found_toast">Kein Streamplayer gefunden (Du kannst VLC installieren, um ihn abzuspielen)</string>
+    <string name="no_player_found_toast">Kein Streamplayer gefunden (Du kannst VLC installieren, um den Stream abzuspielen)</string>
     <string name="default_content_country_title">Standard-Land des Inhalts</string>
     <string name="always">Immer</string>
     <string name="just_once">Nur einmal</string>
@@ -407,8 +407,8 @@
     <string name="metadata_cache_wipe_complete_notice">Metadatencache gelöscht</string>
     <string name="settings_category_debug_title">Debug</string>
     <string name="invalid_source">Ungültige Datei-/Inhaltsquelle</string>
-    <string name="export_complete_toast">Export vollständig</string>
-    <string name="import_complete_toast">"Import vollständig "</string>
+    <string name="export_complete_toast">Export fertiggestellt</string>
+    <string name="import_complete_toast">Import fertiggestellt</string>
     <string name="playlist_name_input">Name</string>
     <string name="import_export_title">Import/Export</string>
     <string name="import_title">Import</string>
