@@ -155,6 +155,14 @@
     <string name="export_data_title">Export database</string>
     <string name="import_data_summary">Will override your current history and subscriptions</string>
     <string name="export_data_summary">Export history, subscriptions and playlists.</string>
+    <string name="clear_views_history_title">Clear watch history</string>
+    <string name="clear_views_history_summary">Deletes the history of played streams.</string>
+    <string name="delete_view_history_alert">Delete whole watch history.</string>
+    <string name="view_history_deleted">Watch history deleted.</string>
+    <string name="clear_search_history_title">Clear search history</string>
+    <string name="clear_search_history_summary">Deletes history of search keywords.</string>
+    <string name="delete_search_history_alert">Delete whole search history.</string>
+    <string name="search_history_deleted">Search history deleted.</string>
     <!-- error strings -->
     <string name="general_error">Error</string>
     <string name="network_error">Network error</string>
@@ -273,6 +281,7 @@
     <string name="msg_copied">Copied to clipboard</string>
     <string name="no_available_dir">Please select an available download folder</string>
     <string name="msg_popup_permission">This permission is needed to\nopen in popup mode</string>
+    <string name="one_item_deleted">1 item deleted.</string>
 
     <!-- Checksum types -->
     <string name="md5" translatable="false">MD5</string>

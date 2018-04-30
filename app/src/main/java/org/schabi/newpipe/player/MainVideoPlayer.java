@@ -62,10 +62,10 @@ import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.player.helper.PlaybackParameterDialog;
 import org.schabi.newpipe.player.helper.PlayerHelper;
-import org.schabi.newpipe.playlist.PlayQueueItem;
-import org.schabi.newpipe.playlist.PlayQueueItemBuilder;
-import org.schabi.newpipe.playlist.PlayQueueItemHolder;
-import org.schabi.newpipe.playlist.PlayQueueItemTouchCallback;
+import org.schabi.newpipe.player.playqueue.PlayQueueItem;
+import org.schabi.newpipe.player.playqueue.PlayQueueItemBuilder;
+import org.schabi.newpipe.player.playqueue.PlayQueueItemHolder;
+import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -847,10 +847,12 @@ public final class MainVideoPlayer extends AppCompatActivity
             if (DEBUG) Log.d(TAG, "onDoubleTap() called with: e = [" + e + "]" + "rawXy = " + e.getRawX() + ", " + e.getRawY() + ", xy = " + e.getX() + ", " + e.getY());
             if (!playerImpl.isPlaying()) return false;
 
-            if (e.getX() > playerImpl.getRootView().getWidth() / 2) {
+            if (e.getX() > playerImpl.getRootView().getWidth() * 2 / 3) {
                 playerImpl.onFastForward();
-            } else {
+            } else if (e.getX() < playerImpl.getRootView().getWidth() / 3) {
                 playerImpl.onFastRewind();
+            } else {
+                playerImpl.getPlayPauseButton().performClick();
             }
 
             return true;

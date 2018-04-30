@@ -151,7 +151,8 @@ public class MainActivity extends AppCompatActivity {
 
         settings.setOnClickListener(view -> NavigationHelper.openSettings(this));
         downloads.setOnClickListener(view ->NavigationHelper.openDownloads(this));
-        history.setOnClickListener(view -> NavigationHelper.openHistory(this));
+        history.setOnClickListener(view ->
+                NavigationHelper.openStatisticFragment(getSupportFragmentManager()));
     }
 
     private void setupDrawerHeader() {
@@ -327,16 +328,16 @@ public class MainActivity extends AppCompatActivity {
             case android.R.id.home:
                 onHomeButtonPressed();
                 return true;
-            case R.id.action_settings:
-                NavigationHelper.openSettings(this);
-                return true;
             case R.id.action_show_downloads:
                 return NavigationHelper.openDownloads(this);
+            case R.id.action_history:
+                NavigationHelper.openStatisticFragment(getSupportFragmentManager());
+                return true;
             case R.id.action_about:
                 NavigationHelper.openAbout(this);
                 return true;
-            case R.id.action_history:
-                NavigationHelper.openHistory(this);
+            case R.id.action_settings:
+                NavigationHelper.openSettings(this);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

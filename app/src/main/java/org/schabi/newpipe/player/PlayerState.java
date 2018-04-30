@@ -2,17 +2,12 @@ package org.schabi.newpipe.player;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
-
-import org.schabi.newpipe.playlist.PlayQueue;
+import org.schabi.newpipe.player.playqueue.PlayQueue;
 
 import java.io.Serializable;
 
 public class PlayerState implements Serializable {
-    private final static String TAG = "PlayerState";
 
     @NonNull private final PlayQueue playQueue;
     private final int repeatMode;
@@ -40,21 +35,6 @@ public class PlayerState implements Serializable {
     /*//////////////////////////////////////////////////////////////////////////
     // Serdes
     //////////////////////////////////////////////////////////////////////////*/
-
-    @Nullable
-    public static PlayerState fromJson(@NonNull final String json) {
-        try {
-            return new Gson().fromJson(json, PlayerState.class);
-        } catch (JsonSyntaxException error) {
-            Log.e(TAG, "Failed to deserialize PlayerState from json=[" + json + "]", error);
-            return null;
-        }
-    }
-
-    @NonNull
-    public String toJson() {
-        return new Gson().toJson(this);
-    }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Getters

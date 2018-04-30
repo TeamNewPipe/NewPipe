@@ -32,7 +32,6 @@ public class AboutActivity extends AppCompatActivity {
             new SoftwareComponent("Giga Get", "2014", "Peter Cai", "https://github.com/PaperAirplane-Dev-Team/GigaGet", StandardLicenses.GPL2),
             new SoftwareComponent("NewPipe Extractor", "2017", "Christian Schabesberger", "https://github.com/TeamNewPipe/NewPipeExtractor", StandardLicenses.GPL3),
             new SoftwareComponent("Jsoup", "2017", "Jonathan Hedley", "https://github.com/jhy/jsoup", StandardLicenses.MIT),
-            new SoftwareComponent("Google Gson", "2008", "Google Inc", "https://github.com/google/gson", StandardLicenses.APACHE2),
             new SoftwareComponent("Rhino", "2015", "Mozilla", "https://www.mozilla.org/rhino/", StandardLicenses.MPL2),
             new SoftwareComponent("ACRA", "2013", "Kevin Gaudin", "http://www.acra.ch", StandardLicenses.APACHE2),
             new SoftwareComponent("Universal Image Loader", "2011 - 2015", "Sergey Tarasevich", "https://github.com/nostra13/Android-Universal-Image-Loader", StandardLicenses.APACHE2),

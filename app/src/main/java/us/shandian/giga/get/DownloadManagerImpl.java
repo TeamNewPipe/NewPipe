@@ -3,8 +3,6 @@ package us.shandian.giga.get;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.google.gson.Gson;
-
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.RandomAccessFile;
@@ -156,16 +154,8 @@ public class DownloadManagerImpl implements DownloadManager {
 
             for (File sub : subs) {
                 if (sub.isFile() && sub.getName().endsWith(".giga")) {
-                    String str = Utility.readFromFile(sub.getAbsolutePath());
-                    if (str != null && !str.trim().equals("")) {
-
-                        if (DEBUG) {
-                            Log.d(TAG, "loading mission " + sub.getName());
-                            Log.d(TAG, str);
-                        }
-
-                        DownloadMission mis = new Gson().fromJson(str, DownloadMission.class);
-
+                    DownloadMission mis = Utility.readFromFile(sub.getAbsolutePath());
+                    if (mis != null) {
                         if (mis.finished) {
                             if (!sub.delete()) {
                                 Log.w(TAG, "Unable to delete .giga file: " + sub.getPath());
