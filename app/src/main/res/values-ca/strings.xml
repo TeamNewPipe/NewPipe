@@ -16,8 +16,8 @@
 
     <string name="fragment_whats_new">Novetats</string>
 
-    <string name="download_path_title">Ruta de baixada del vídeo</string>
-    <string name="download_path_audio_title">Ruta de baixada de l\'àudio</string>
+    <string name="download_path_title">Ruta de baixada dels vídeos</string>
+    <string name="download_path_audio_title">Ruta de baixada dels fitxers d\'àudio</string>
     <string name="autoplay_by_calling_app_title">Reproducció automàtica</string>
     <string name="default_resolution_title">Resolució per defecte</string>
     <string name="play_audio">Àudio</string>
@@ -40,7 +40,7 @@
     <string name="settings_category_other_title">Altres</string>
     <string name="settings_category_debug_title">Depuració</string>
     <string name="content">Contingut</string>
-    <string name="show_age_restricted_content_title">Mostra el contingut restringit per edat</string>
+    <string name="show_age_restricted_content_title">Desactiva les restriccions per edat</string>
     <string name="video_is_age_restricted">Vídeo restringit per edat. Podeu permetre aquesta mena de continguts des de la configuració.</string>
     <string name="duration_live">en directe</string>
     <string name="downloads">Baixades</string>
@@ -118,7 +118,7 @@
     <string name="delete_playlist">Elimina la llista de reproducció</string>
     <string name="rename_playlist">Canvia el nom de la llista de reproducció</string>
     <string name="playlist_name_input">Nom</string>
-    <string name="append_playlist">Afegeix a la llista de reproducció</string>
+    <string name="append_playlist">Afegeix a una llista de reproducció</string>
     <string name="import_title">Importa</string>
     <string name="import_from">Importa des de</string>
     <string name="export_to">Exporta a</string>
@@ -147,29 +147,29 @@
     <string name="controls_popup_title">Emergent</string>
     <string name="controls_add_to_playlist_title">Afegeix a</string>
 
-    <string name="download_path_summary">Ruta d\'emmagatzematge dels vídeos baixats</string>
+    <string name="download_path_summary">Ruta on es desaran els vídeos baixats</string>
     <string name="download_path_dialog_title">Introduïu una ruta de baixada per als vídeos</string>
 
-    <string name="download_path_audio_summary">Ruta d\'emmagatzematge dels fitxers d\'àudio baixats</string>
+    <string name="download_path_audio_summary">Ruta on es desaran els fitxers d\'àudio baixats</string>
     <string name="download_path_audio_dialog_title">Introduïu una ruta de baixada per als fitxers d\'àudio</string>
 
     <string name="autoplay_by_calling_app_summary">Reprodueix automàtica un vídeo quan el NewPipe s\'executa des d\'una altra aplicació</string>
-    <string name="default_popup_resolution_title">Resolució per defecte del reproductor emergent</string>
+    <string name="default_popup_resolution_title">Resolució per defecte del mode emergent</string>
     <string name="show_higher_resolutions_title">Mostra resolucions superiors</string>
     <string name="show_higher_resolutions_summary">Només alguns dispositius són compatibles amb la reproducció de vídeos en 2K/4K</string>
     <string name="play_with_kodi_title">Reprodueix amb Kodi</string>
     <string name="kore_not_found">No s\'ha trobat l\'aplicació Kodi. Voleu instal·lar-la?</string>
-    <string name="show_play_with_kodi_title">Mostra l\'opció «Reprodueix amb Kodi»</string>
+    <string name="show_play_with_kodi_title">Activa «Reprodueix amb Kodi»</string>
     <string name="show_play_with_kodi_summary">Mostra una opció per reproduir un vídeo amb el centre multimèdia Kodi</string>
     <string name="popup_remember_size_pos_title">Recorda la mida i la posició del reproductor emergent</string>
     <string name="popup_remember_size_pos_summary">Recorda la darrera mida i posició del reproductor emergent</string>
-    <string name="use_inexact_seek_title">Fes servir la cerca ràpida poc precisa</string>
+    <string name="use_inexact_seek_title">Cerca ràpida poc precisa</string>
     <string name="use_inexact_seek_summary">La cerca poc precisa permet que el reproductor cerqui una posició més ràpidament amb menys precisió</string>
     <string name="download_thumbnail_title">Carrega les miniatures</string>
     <string name="thumbnail_cache_wipe_complete_notice">S\'ha esborrat la memòria cau d\'imatges</string>
     <string name="metadata_cache_wipe_title">Esborra les metadades de la memòria cau</string>
     <string name="metadata_cache_wipe_complete_notice">S\'ha esborrat la memòria cau de metadades</string>
-    <string name="auto_queue_title">Afegeix automàticament a la cua el següent vídeo</string>
+    <string name="auto_queue_title">Afegeix vídeos relacionats a la cua</string>
     <string name="player_gesture_controls_title">Control per gestos del reproductor</string>
     <string name="player_gesture_controls_summary">Feu servir gestos per regular la brillantor i el volum del reproductor</string>
     <string name="show_search_suggestions_title">Suggeriments de cerca</string>
@@ -177,7 +177,7 @@
     <string name="enable_search_history_title">Historial de cerca</string>
     <string name="resume_on_audio_focus_gain_summary">Reprèn la reproducció després d\'una interrupció (per exemple, una trucada)</string>
     <string name="next_video_title">Vídeo següent</string>
-    <string name="show_next_and_similar_title">Mostra el següent vídeo i vídeos similars</string>
+    <string name="show_next_and_similar_title">Mostra el vídeo següent i similars</string>
     <string name="default_content_country_title">País per defecte dels continguts</string>
     <string name="search_language_title">Llengua per defecte dels continguts</string>
     <string name="settings_category_popup_title">Emergent</string>
@@ -213,7 +213,7 @@
     <string name="error_occurred_detail">S\'ha produït un error: %1$s</string>
     <string name="error_report_button_text">Informa de l\'error per correu electrònic</string>
     <string name="error_snackbar_message">S\'han produït alguns errors.</string>
-    <string name="error_snackbar_action">INFORME</string>
+    <string name="error_snackbar_action">INFORMA\'N</string>
     <string name="what_device_headline">Informació:</string>
     <string name="what_happened_headline">Què ha passat:</string>
     <string name="your_comment">Comentari (en anglès):</string>
@@ -257,7 +257,7 @@
     <string name="create">Crea</string>
     <string name="delete">Elimina</string>
     <string name="delete_one">Elimina\'n un</string>
-    <string name="delete_all">Elimina\'ls tots</string>
+    <string name="delete_all">Elimina-ho tot</string>
     <string name="checksum">Suma de verificació</string>
     <string name="dismiss">Tanca</string>
     <string name="rename">Canvia el nom</string>
@@ -294,7 +294,7 @@
     <string name="title_activity_popup_player">Reproductor emergent</string>
     <string name="enqueue_on_background">Afegeix a la cua de reproducció en segon pla</string>
     <string name="enqueue_on_popup">Afegeix a la cua de reproducció emergent</string>
-    <string name="start_here_on_main">Comença la reproducció aquí</string>
+    <string name="start_here_on_main">Reprodueix aquí</string>
     <string name="drawer_open">Obre el calaix</string>
     <string name="drawer_close">Tanca el calaix</string>
     <string name="preferred_player_fetcher_notification_title">S\'està obtenint la informació…</string>
@@ -358,8 +358,8 @@
     <string name="no_channel_subscribed_yet">Encara no us heu subscrit a cap canal</string>
     <string name="new_and_hot">Novetats</string>
     <string name="hold_to_append">Manteniu premut per afegir a la cua</string>
-    <string name="start_here_on_background">Inicia en segon pla</string>
-    <string name="start_here_on_popup">Inicia en mode emergent</string>
+    <string name="start_here_on_background">Reprodueix en segon pla</string>
+    <string name="start_here_on_popup">Reprodueix en mode emergent</string>
 
     <string name="set_as_playlist_thumbnail">Defineix com a miniatura de la llista de reproducció</string>
 
@@ -391,9 +391,9 @@
     <string name="playback_nightcore">Nightcore</string>
     <string name="metadata_cache_wipe_summary">Elimina totes les dades de llocs web de la memòria cau</string>
     <string name="auto_queue_summary">Afegeix automàticament a la cua un vídeo relacionat quan s\'inicia la reproducció de l\'últim vídeo en una cua de reproducció sense repetició.</string>
-    <string name="show_hold_to_append_title">Mostra el consell «Mantingueu premut per afegir a la cua»</string>
-    <string name="show_hold_to_append_summary">Mostra el consell quan el botó de mode en segon pla o emergent està premut a la pàgina de detalls del vídeo</string>
-    <string name="info_labels">Què:\\nPetició:\\nIdioma del contingut:\\nServei:\\nHora GMT:\\nPaquet:\\nVersió:\\nVersió del SO:</string>
+    <string name="show_hold_to_append_title">Mostra els missatges d\'ajuda</string>
+    <string name="show_hold_to_append_summary">Mostra un missatge d\'ajuda quan el botó de mode en segon pla o emergent estigui premut a la pàgina de detalls d\'un vídeo</string>
+    <string name="info_labels">Què ha passat:\\nPetició:\\nIdioma del contingut:\\nServei:\\nHora GMT:\\nPaquet:\\nVersió:\\nVersió del SO:</string>
     <string name="drawer_header_action_paceholder_text">Aviat hi haurà novetats aquí ;D</string>
 
 
@@ -430,5 +430,15 @@
     <string name="caption_setting_description">Modifica la mida del text i el fons dels subtítols. Cal reiniciar l\'aplicació per aplicar els canvis.</string>
 
     <string name="toast_no_player">No s\'ha trobat cap reproductor per a aquest fitxer</string>
+
+    <string name="clear_views_history_title">Esborra l\'historial de visualitzacions</string>
+    <string name="clear_views_history_summary">Esborra l\'historial dels vídeos que s\'han reproduït.</string>
+    <string name="delete_view_history_alert">Esborra tot l\'historial de visualitzacions.</string>
+    <string name="view_history_deleted">S\'ha esborrat l\'historial de visualitzacions.</string>
+    <string name="clear_search_history_title">Esborra l\'historial de cerca</string>
+    <string name="clear_search_history_summary">Esborra l\'historial de paraules cercades.</string>
+    <string name="delete_search_history_alert">Esborra tot l\'historial de cerca.</string>
+    <string name="search_history_deleted">S\'ha esborrat l\'historial de cerca.</string>
+    <string name="one_item_deleted">S\'ha esborrat 1 element.</string>
 
     </resources>
