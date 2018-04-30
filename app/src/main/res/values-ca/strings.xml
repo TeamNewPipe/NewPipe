@@ -137,7 +137,7 @@
     <string name="did_you_mean">Volíeu dir: %1$s?</string>
     <string name="share_dialog_title">Comparteix-ho amb</string>
     <string name="screen_rotation">rotació</string>
-    <string name="use_external_video_player_title">Fes servir un reproductor de vídeo extern</string>
+    <string name="use_external_video_player_title">Reproductor de vídeo extern</string>
     <string name="popup_mode_share_menu_title">Mode emergent del NewPipe</string>
     <string name="channel_unsubscribed">Heu eliminat la subscripció d\'aquest canal</string>
     <string name="subscription_change_failed">No s\'ha pogut modificar la subscripció</string>
@@ -161,7 +161,7 @@
     <string name="kore_not_found">No s\'ha trobat l\'aplicació Kodi. Voleu instal·lar-la?</string>
     <string name="show_play_with_kodi_title">Activa «Reprodueix amb Kodi»</string>
     <string name="show_play_with_kodi_summary">Mostra una opció per reproduir un vídeo amb el centre multimèdia Kodi</string>
-    <string name="popup_remember_size_pos_title">Recorda la mida i la posició del reproductor emergent</string>
+    <string name="popup_remember_size_pos_title">Reproductor emergent intel·ligent</string>
     <string name="popup_remember_size_pos_summary">Recorda la darrera mida i posició del reproductor emergent</string>
     <string name="use_inexact_seek_title">Cerca ràpida poc precisa</string>
     <string name="use_inexact_seek_summary">La cerca poc precisa permet que el reproductor cerqui una posició més ràpidament amb menys precisió</string>
@@ -171,7 +171,7 @@
     <string name="metadata_cache_wipe_complete_notice">S\'ha esborrat la memòria cau de metadades</string>
     <string name="auto_queue_title">Afegeix vídeos relacionats a la cua</string>
     <string name="player_gesture_controls_title">Control per gestos del reproductor</string>
-    <string name="player_gesture_controls_summary">Feu servir gestos per regular la brillantor i el volum del reproductor</string>
+    <string name="player_gesture_controls_summary">Fes servir gestos per regular la brillantor i el volum del reproductor</string>
     <string name="show_search_suggestions_title">Suggeriments de cerca</string>
     <string name="show_search_suggestions_summary">Mostra suggeriments durant la cerca</string>
     <string name="enable_search_history_title">Historial de cerca</string>
@@ -309,11 +309,11 @@
     <string name="playback_pitch">To</string>
     <string name="main_bg_subtitle">Toqueu el botó de cerca per començar</string>
     <string name="use_external_video_player_summary">En algunes resolucions NO hi haurà àudio quan aquesta opció estigui activada</string>
-    <string name="use_external_audio_player_title">Fes servir un reproductor d\'àudio extern</string>
+    <string name="use_external_audio_player_title">Reproductor d\'àudio extern</string>
     <string name="download_thumbnail_summary">Desactiveu-ho per evitar que es carreguin les miniatures i estalviar dades i memòria. Si canvieu aquesta opció, s\'esborrarà la memòria cau d\'imatges tant de la memòria com de l\'emmagatzematge.</string>
     <string name="enable_search_history_summary">Emmagatzema les cerques localment</string>
     <string name="enable_watch_history_summary">Registra els vídeos visualitzats</string>
-    <string name="resume_on_audio_focus_gain_title">Reprèn la reproducció en passar a primer pla</string>
+    <string name="resume_on_audio_focus_gain_title">Reprèn automàticament</string>
     <string name="url_not_supported_toast">Aquesta URL no és compatible</string>
     <string name="error_report_title">Informe d\'error</string>
     <string name="later">Més tard</string>
