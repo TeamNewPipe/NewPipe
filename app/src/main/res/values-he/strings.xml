@@ -127,7 +127,7 @@
     <string name="show_hold_to_append_summary">הצג עצה כאשר כפתור רקע או חלון צץ נלחץ במסך נגן הסרטים</string>
     <string name="settings_category_player_title">נגן</string>
     <string name="settings_category_player_behavior_title">התנהגות</string>
-    <string name="settings_category_history_title">היסטוריה</string>
+    <string name="settings_category_history_title">היסטוריה ומטמון</string>
     <string name="background_player_append">נוסף לתור של הנגן ברקע</string>
     <string name="popup_playing_append">נוסף לתור של הנגן הצץ</string>
     <string name="playlist">רשימת ניגון</string>
@@ -312,4 +312,78 @@
 
     <string name="switch_to_background">העברה לרקע</string>
     <string name="switch_to_popup">העברה לחלון צץ</string>
-    </resources>
+    <string name="no_player_found_toast">לא נמצא נגן לצפייה ישירה (באפשרותך להתקין VLC כדי לתקן זאת)</string>
+    <string name="thumbnail_cache_wipe_complete_notice">מטמון התמונות נוקה</string>
+    <string name="metadata_cache_wipe_title">נקה מטמון מטא-דאטה</string>
+    <string name="metadata_cache_wipe_complete_notice">מטמון המטא-דאטא נוקה</string>
+    <string name="export_data_summary">יצא היסטוריה, רישומים ורשימות השמעה.</string>
+    <string name="clear_views_history_title">ניקוי היסטוריית הצפייה</string>
+    <string name="view_history_deleted">היסטוריית הצפייה נמחקה.</string>
+    <string name="clear_search_history_title">ניקוי היסטוריית החיפוש</string>
+    <string name="search_history_deleted">היסטורית החיפוש נמחקה.</string>
+    <string name="invalid_file">הקובץ אינו קיים או שאין ברשותך הרשאות מתאימות לקריאתו/כתיבתו</string>
+    <string name="file_name_empty_error">שם הקובץ אינו יכול להיות ריק</string>
+    <string name="detail_drag_description">גרור כדי לסדר מחדש</string>
+
+    <string name="create">צור</string>
+    <string name="delete_one">מחק אחד</string>
+    <string name="delete_all">מחק הכל</string>
+    <string name="dismiss">סלק</string>
+    <string name="rename">שנה שם</string>
+
+    <string name="one_item_deleted">פריט אחד נמחק.</string>
+
+    <string name="toast_no_player">לא נמצא נגן מתאים לקובץ זה</string>
+
+    <string name="delete_stream_history_prompt">האם ברצונך למחוק פריט זה מהיסטוריית הצפייה שלך?</string>
+    <string name="delete_all_history_prompt">האם אתה בטוח שברצונך למחוק את כל הפריטים מההיסטוריה?</string>
+    <string name="export_complete_toast">יצוא הושלם</string>
+    <string name="import_complete_toast">יבוא הושלם</string>
+    <string name="no_valid_zip_file">אין קובץ ZIP תקף</string>
+    <string name="video_player">נגן וידאו</string>
+    <string name="background_player">נגן רקע</string>
+    <string name="popup_player">נגן קופץ</string>
+    <string name="always_ask_open_action">שאל תמיד</string>
+
+    <string name="preferred_player_fetcher_notification_title">משיג מידע…</string>
+    <string name="preferred_player_fetcher_notification_message">התוכן המבוקש בטעינה</string>
+
+    <string name="create_playlist">צור רשימת השמעה חדשה</string>
+    <string name="delete_playlist">מחק רשימת השמעה</string>
+    <string name="rename_playlist">שנה שם רשימת השמעה</string>
+    <string name="playlist_name_input">שם</string>
+    <string name="append_playlist">הוסף לרשימת השמעה</string>
+    <string name="bookmark_playlist">הוסף רשימת השמעה למועדפים</string>
+    <string name="unbookmark_playlist">הסרת מועדף</string>
+
+    <string name="delete_playlist_prompt">האם ברצונך למחוק רשימת השמעה זו?</string>
+    <string name="playlist_creation_success">רשימת ההשמעה נוצרה בהצלחה</string>
+    <string name="playlist_add_stream_success">נוסף לרשימת ההשמעה</string>
+    <string name="playlist_thumbnail_change_success">תמונת רשימת ההשמעה שונתה</string>
+    <string name="resize_fill">מלא</string>
+    <string name="resize_zoom">הגדל</string>
+
+    <string name="caption_auto_generated">נוצר אוטומטית</string>
+
+    <string name="import_export_title">יבוא/יצוא</string>
+    <string name="import_title">יבוא</string>
+    <string name="import_from">יבוא מ</string>
+    <string name="export_to">יצוא ל</string>
+
+    <string name="import_ongoing">מייבא…</string>
+    <string name="export_ongoing">מייצא…</string>
+
+    <string name="import_file_title">יבא קובץ</string>
+    <string name="previous_export">יצוא קודם</string>
+
+    <string name="subscriptions_import_unsuccessful">יבוא רשומים נכשל</string>
+    <string name="subscriptions_export_unsuccessful">יצוא רשומים נכשל</string>
+
+    <string name="import_youtube_instructions">כדי לייבא את הערוצים אליהם אתה רשום מיוטיוב אתה תזדקק לקובץ היצוא, אותו ניתן להוריד כך:
+\n
+\n1. היכנס ללינק הזה: %1$s
+\n2. התחבר לחשבונך כשתתבקש
+\n3. ההורדה אמורה להתחיל (זהו קובץ היצוא)</string>
+    <string name="playback_tempo">קצב</string>
+    <string name="playback_default">ברירת מחדל</string>
+</resources>
