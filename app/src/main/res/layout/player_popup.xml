@@ -53,6 +53,16 @@
         android:visibility="gone"
         tools:visibility="visible">
 
+        <ImageView
+        android:id="@+id/videoPlayPause"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_centerHorizontal="false"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        tools:ignore="ContentDescription"
+        tools:visibility="visible" />
+
         <RelativeLayout
             android:id="@+id/topControls"
             android:layout_width="match_parent"
@@ -226,26 +236,6 @@
             android:visibility="gone"
             tools:ignore="ContentDescription"
             tools:visibility="visible"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:weightSum="5.5">
-        <!--tools:visibility="gone">-->
-
-        <ImageView
-            android:id="@+id/videoPlayPause"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:scaleType="centerInside"
-            android:visibility="gone"
-            tools:ignore="ContentDescription"
-            tools:visibility="visible" />
-
     </LinearLayout>
 
     <TextView
