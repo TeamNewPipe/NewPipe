@@ -426,4 +426,19 @@
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Tonehøyde</string>
     <string name="playback_default">Forvalg</string>
-</resources>
+<string name="clear_views_history_title">Tøm avspillingshistorikk</string>
+    <string name="clear_views_history_summary">Slett historikken for avspilte strømmer</string>
+    <string name="delete_view_history_alert">Slett hele visningshistorikken.</string>
+    <string name="view_history_deleted">Visningshistorikk slettet.</string>
+    <string name="clear_search_history_title">Tøm søkehistorikk</string>
+    <string name="clear_search_history_summary">Sletter historikken for søkte nøkkelord.</string>
+    <string name="delete_search_history_alert">Slett hele søkehistorikken.</string>
+    <string name="search_history_deleted">Søkehistorikk slettet.</string>
+    <string name="one_item_deleted">Ett element slettet.</string>
+
+    <string name="toast_no_player">Fant ingen avspiller for denne filen.</string>
+
+    <string name="caption_setting_title">Undertekst</string>
+    <string name="caption_setting_description">Endre undertekststørrelse og bakgrunnsstiler. Krever omstart av programmet for å tre i effekt.</string>
+
+    </resources>
