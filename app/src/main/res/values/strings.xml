@@ -104,7 +104,7 @@
     <string name="settings_category_player_title">Player</string>
     <string name="settings_category_player_behavior_title">Behavior</string>
     <string name="settings_category_video_audio_title">Video &amp; Audio</string>
-    <string name="settings_category_history_title">History</string>
+    <string name="settings_category_history_title">History &amp; Cache</string>
     <string name="settings_category_popup_title">Popup</string>
     <string name="settings_category_appearance_title">Appearance</string>
     <string name="settings_category_other_title">Other</string>
