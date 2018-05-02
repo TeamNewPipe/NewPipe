@@ -29,7 +29,7 @@
     <string name="light_theme_title">Clar</string>
     <string name="dark_theme_title">Fosc</string>
     <string name="black_theme_title">Negre</string>
-    <string name="enable_watch_history_title">Historial</string>
+    <string name="enable_watch_history_title">Historial i memòria cau</string>
     <string name="download_dialog_title">Baixa</string>
     <string name="service_title">Servei</string>
     <string name="settings_category_player_title">Reproductor</string>
@@ -153,7 +153,7 @@
     <string name="download_path_audio_summary">Ruta on es desaran els fitxers d\'àudio baixats</string>
     <string name="download_path_audio_dialog_title">Introduïu una ruta de baixada per als fitxers d\'àudio</string>
 
-    <string name="autoplay_by_calling_app_summary">Reprodueix automàtica un vídeo quan el NewPipe s\'executa des d\'una altra aplicació</string>
+    <string name="autoplay_by_calling_app_summary">Reprodueix un vídeo quan el NewPipe s\'executa des d\'una altra aplicació</string>
     <string name="default_popup_resolution_title">Resolució per defecte del mode emergent</string>
     <string name="show_higher_resolutions_title">Mostra resolucions superiors</string>
     <string name="show_higher_resolutions_summary">Només alguns dispositius són compatibles amb la reproducció de vídeos en 2K/4K</string>
@@ -272,10 +272,10 @@
     <string name="charset_letters_and_digits">Lletres i dígits</string>
     <string name="title_activity_about">Quant al NewPipe</string>
     <string name="copyright" formatted="true">© %1$s per %2$s sota %3$s</string>
-    <string name="app_description">Aplicació lliure i lleugera de YouTube per a Android.</string>
+    <string name="app_description">Reprodueix transmissions de manera lliure i lleugera a l\'Android.</string>
     <string name="view_on_github">Visualitza a GitHub</string>
     <string name="donation_title">Fes una donació</string>
-    <string name="website_encouragement">Si voleu conèixer més informació i veure les últimes notícies del NewPipe visiteu el nostre lloc web.</string>
+    <string name="website_encouragement">Per a més informació i notícies, visiteu el nostre lloc web.</string>
     <string name="title_last_played">Última reproducció</string>
     <string name="title_most_played">Més reproduïts</string>
 
@@ -304,7 +304,7 @@
     <string name="playlist_delete_failure">No s\'ha pogut eliminar la llista de reproducció</string>
 
     <string name="import_export_title">Importació i exportació</string>
-    <string name="playback_speed_control">Control de la velocitat de reproducció</string>
+    <string name="playback_speed_control">Controls de la velocitat de reproducció</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">To</string>
     <string name="main_bg_subtitle">Toqueu el botó de cerca per començar</string>
@@ -351,7 +351,7 @@
     <string name="charset_most_special_characters">Principals caràcters especials</string>
 
     <string name="contribution_encouragement">Ja siguin idees, traduccions, canvis en el disseny, una neteja del codi o canvis importants de programació, la vostra ajuda sempre és benvinguda. Com més feina feta hi hagi, millor!</string>
-    <string name="donation_encouragement">El NewPipe està desenvolupat per voluntaris que fan servir el seu temps lliure per a oferir-vos la millor experiència possible. Ara és el moment de fer una aportació per assegurar que els nostres desenvolupadors puguin millorar encara més el NewPipe mentre fan un cafè!</string>
+    <string name="donation_encouragement">El NewPipe està desenvolupat per voluntaris que fan servir el seu temps lliure per a oferir-vos la millor experiència possible. Feu una aportació per assegurar que els nostres desenvolupadors puguin millorar encara més el NewPipe mentre fan un cafè.</string>
     <string name="give_back">Fes la teva aportació</string>
     <string name="title_history_search">Cerques</string>
     <string name="title_history_view">Visualitzacions</string>
@@ -366,14 +366,14 @@
     <string name="bookmark_playlist">Afegeix la llista de reproducció a les adreces d\'interès</string>
     <string name="unbookmark_playlist">Elimina l\'adreça d\'interès</string>
 
-    <string name="playlist_creation_success">S\'ha creat correctament la llista de reproducció</string>
+    <string name="playlist_creation_success">S\'ha creat la llista de reproducció</string>
     <string name="playlist_add_stream_success">Afegeix a la llista de reproducció</string>
     <string name="playlist_thumbnail_change_success">S\'ha canviat la miniatura de la llista de reproducció</string>
     <string name="caption_none">Sense subtítols</string>
 
-    <string name="resize_fit">AJUSTA</string>
-    <string name="resize_fill">OMPLE</string>
-    <string name="resize_zoom">ESCALA</string>
+    <string name="resize_fit">Ajusta</string>
+    <string name="resize_fill">Omple</string>
+    <string name="resize_zoom">Escala</string>
 
     <string name="caption_auto_generated">Generats automàticament</string>
     <string name="caption_font_size_settings_title">Mida dels subtítols</string>
@@ -384,13 +384,13 @@
     <string name="enable_leak_canary_title">Habilita el LeakCanary</string>
     <string name="previous_export">Darrera exportació</string>
 
-    <string name="subscriptions_import_unsuccessful">Ha fallat la importació de les subscripcions</string>
-    <string name="subscriptions_export_unsuccessful">Ha fallat l\'exportació de les subscripcions</string>
+    <string name="subscriptions_import_unsuccessful">No s\'han pogut importar les subscripcions</string>
+    <string name="subscriptions_export_unsuccessful">No s\'han pogut exportar les subscripcions</string>
 
     <string name="unhook_checkbox">Desvincula (pot provocar distorsió)</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="metadata_cache_wipe_summary">Elimina totes les dades de llocs web de la memòria cau</string>
-    <string name="auto_queue_summary">Afegeix automàticament a la cua un vídeo relacionat quan s\'inicia la reproducció de l\'últim vídeo en una cua de reproducció sense repetició.</string>
+    <string name="auto_queue_summary">Afegeix a la cua un vídeo relacionat quan es reprodueix l\'últim vídeo en una cua sense repetició.</string>
     <string name="show_hold_to_append_title">Mostra els missatges d\'ajuda</string>
     <string name="show_hold_to_append_summary">Mostra un missatge d\'ajuda quan el botó de mode en segon pla o emergent estigui premut a la pàgina de detalls d\'un vídeo</string>
     <string name="info_labels">Què ha passat:\\nPetició:\\nIdioma del contingut:\\nServei:\\nHora GMT:\\nPaquet:\\nVersió:\\nVersió del SO:</string>
@@ -405,19 +405,17 @@
     <string name="enable_disposed_exceptions_title">Informa d\'errors fora del cicle de vida</string>
     <string name="enable_disposed_exceptions_summary">Força l\'informe d\'excepcions Rx que no es puguin transmetre que tinguin lloc fora del cicle de vida d\'un fragment o activitat després de disposar-los</string>
 
-    <string name="import_youtube_instructions">Per importar les vostres subscripcions de YouTube necessitareu el fitxer d\'exportació. El podeu aconseguir seguint aquestes instruccions:
-\n
-\n1. Aneu a aquesta URL: %1$s
-\n2. Inicieu sessió quan se us demani
+    <string name="import_youtube_instructions">Importeu les vostres subscripcions de YouTube mitjançant el fitxer d\'exportació:
+\n 
+\n1. Aneu a aquesta URL: %1$s 
+\n2. Inicieu sessió quan se us demani 
 \n3. S\'hauria d\'iniciar una baixada (el fitxer d\'exportació)</string>
-    <string name="import_soundcloud_instructions">Per a importar les vostres subscripcions de SoundCloud heu de conèixer l\'URL o l\'identificador del vostre perfil. Si el sabeu, escriviu-lo a sota i no caldrà fer res més.
-\n
-\nSi no els sabeu, seguiu aquestes instruccions:
-\n
-\n1. Activeu el «Mode d\'ordinador» en un navegador (el lloc web no està disponible per a dispositius mòbils)
-\n2. Aneu a aquesta URL: %1$s
-\n3. Inicieu sessió al vostre compte quan se us demani
-\n4. Copieu l\'URL de la pàgina on se us redireccionarà (l\'URL del vostre perfil)</string>
+    <string name="import_soundcloud_instructions">Importeu un perfil de SoundCloud mitjançant l\'URL o l\'identificador del vostre perfil: 
+\n 
+\n1. Activeu el «Mode d\'ordinador» en un navegador (el lloc web no està disponible per a dispositius mòbils) 
+\n2. Aneu a aquesta URL: %1$s 
+\n3. Inicieu sessió al vostre compte quan se us demani 
+\n4. Copieu l\'URL de la pàgina on se us redireccionarà</string>
     <string name="import_soundcloud_instructions_hint">identificador, soundcloud.com/identificador</string>
 
     <string name="import_network_expensive_warning">Tingueu en compte que això pot comportar un ús intensiu de la xarxa.
@@ -429,7 +427,7 @@
     <string name="caption_setting_title">Subtítols</string>
     <string name="caption_setting_description">Modifica la mida del text i el fons dels subtítols. Cal reiniciar l\'aplicació per aplicar els canvis.</string>
 
-    <string name="toast_no_player">No s\'ha trobat cap reproductor per a aquest fitxer</string>
+    <string name="toast_no_player">No s\'ha trobat cap aplicació que pugui reproduir aquest fitxer</string>
 
     <string name="clear_views_history_title">Esborra l\'historial de visualitzacions</string>
     <string name="clear_views_history_summary">Esborra l\'historial dels vídeos que s\'han reproduït.</string>
@@ -441,4 +439,5 @@
     <string name="search_history_deleted">S\'ha esborrat l\'historial de cerca.</string>
     <string name="one_item_deleted">S\'ha esborrat 1 element.</string>
 
+    <string name="app_license">NewPipe és programari lliure sota llicència copyleft: podeu fer-lo servir, estudiar-lo, compartir-lo i millorar-lo al vostre gust. En concret, podeu redistribuir-lo i/o modificar-lo d\'acord amb els termes de la llicència GNU GPL publicada per la Free Software Foundation, ja sigui la versió 3 o (segons vulgueu) qualsevol altra versió posterior.</string>
     </resources>
