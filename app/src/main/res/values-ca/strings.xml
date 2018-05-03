@@ -415,7 +415,7 @@
 \n1. Activeu el «Mode d\'ordinador» en un navegador (el lloc web no està disponible per a dispositius mòbils) 
 \n2. Aneu a aquesta URL: %1$s 
 \n3. Inicieu sessió al vostre compte quan se us demani 
-\n4. Copieu l\'URL de la pàgina on se us redireccionarà</string>
+\n4. Copieu l\'URL de la pàgina on se us redireccioni</string>
     <string name="import_soundcloud_instructions_hint">identificador, soundcloud.com/identificador</string>
 
     <string name="import_network_expensive_warning">Tingueu en compte que això pot comportar un ús intensiu de la xarxa.
