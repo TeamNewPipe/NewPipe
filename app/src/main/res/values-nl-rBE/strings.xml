@@ -47,7 +47,7 @@
     <string name="download_path_audio_dialog_title">Voer downloadlocatie voor audiobestanden in</string>
 
     <string name="autoplay_by_calling_app_title">Automatisch afspelen</string>
-    <string name="autoplay_by_calling_app_summary">Speelt video’s automatisch af wanneer dat NewPipe vanuit nen anderen app geopend wordt</string>
+    <string name="autoplay_by_calling_app_summary">Speeld video’s af wanneer da NewPipe vanuit nen anderen app word g’opend</string>
     <string name="default_resolution_title">Standaardresolutie</string>
     <string name="default_popup_resolution_title">Standaardresolutie voor pop-up</string>
     <string name="show_higher_resolutions_title">Hogere resoluties weergeven</string>
@@ -76,21 +76,21 @@
     <string name="metadata_cache_wipe_summary">Alle gecachete webpagina-gegevens wissen</string>
     <string name="metadata_cache_wipe_complete_notice">Metagegevens-cache gewist</string>
     <string name="auto_queue_title">Volgende stream automatisch in wachtrij plaatsen</string>
-    <string name="auto_queue_summary">Automatisch ne gerelateerde stream toevoegen als het afspelen van de laatste stream start in een niet-herhalende afspeelwachtlijst.</string>
+    <string name="auto_queue_summary">Automatisch ne gerelateerde stream toevoegen bij het afspelen van de laatste stream in ne nie-herhalende wachtlijst.</string>
     <string name="player_gesture_controls_title">Bewegingscontrole</string>
     <string name="player_gesture_controls_summary">Gebruik bewegingen voor helderheid en volume van de speler aan te passen</string>
     <string name="show_search_suggestions_title">Zoeksuggesties</string>
     <string name="show_search_suggestions_summary">Toon suggesties bij zoeken</string>
     <string name="enable_search_history_title">Zoekgeschiedenis</string>
     <string name="enable_search_history_summary">Sla zoekopdrachten lokaal op</string>
-    <string name="enable_watch_history_title">Geschiedenis</string>
+    <string name="enable_watch_history_title">Geschiedenis &amp; cache</string>
     <string name="enable_watch_history_summary">Kijkgeschiedenis bijhouden</string>
     <string name="resume_on_audio_focus_gain_title">Hervat bij focus</string>
     <string name="resume_on_audio_focus_gain_summary">Ga verder met afspelen na onderbrekingen (zoals telefoongesprekken)</string>
     <string name="download_dialog_title">Downloaden</string>
     <string name="next_video_title">Volgende video</string>
-    <string name="show_next_and_similar_title">Toon volgende en vergelijkbare video’s</string>
-    <string name="show_hold_to_append_title">Toon tip voor ingedrukt houden voor toe te voegen</string>
+    <string name="show_next_and_similar_title">Toond ‘volgende’ en ‘vergelijkbare’ video’s</string>
+    <string name="show_hold_to_append_title">Toond tip voor ingedrukt houden voor toe te voegen</string>
     <string name="show_hold_to_append_summary">Toon tip wanneer dat den achtergrond- of pop-upknop is ingedrukt op de video-detailpagina</string>
     <string name="url_not_supported_toast">URL wordt niet ondersteund</string>
     <string name="default_content_country_title">Standaardinhoudsland</string>
@@ -160,7 +160,7 @@
     <string name="could_not_get_stream">Kon geen streams vinden</string>
     <string name="could_not_load_image">Kon afbeelding niet laden</string>
     <string name="app_ui_crash">App/UI gecrasht</string>
-    <string name="player_stream_failure">Kon deze stream niet afspelen</string>
+    <string name="player_stream_failure">Kon deze stream nie afspelen</string>
     <string name="player_unrecoverable_failure">Onherstelbare spelerfout opgetreden</string>
     <string name="player_recoverable_failure">Bezig met herstellen van spelerfout</string>
     <string name="external_player_unsupported_link_type">Externe spelers ondersteunen deze soorten koppelingen niet</string>
@@ -269,7 +269,7 @@
     <string name="charset_letters_and_digits">Letters en cijfers</string>
     <string name="charset_most_special_characters">Meeste speciale tekens</string>
 
-    <string name="toast_no_player">Gene speler gevonden voor dit bestand</string>
+    <string name="toast_no_player">Genen app gevonden voor dit bestand mee af te spelen</string>
 
     <string name="title_activity_about">Over NewPipe</string>
     <string name="action_settings">Instellingen</string>
@@ -281,15 +281,15 @@
     <string name="tab_about">Over</string>
     <string name="tab_contributors">Bijdragers</string>
     <string name="tab_licenses">Licenties</string>
-    <string name="app_description">Ne vrijen en lichte YouTube-cliënt voor Android.</string>
+    <string name="app_description">Vrij en licht streamen voor Android.</string>
     <string name="contribution_title">Bijdragen</string>
     <string name="contribution_encouragement">Hulp is altijd welkom, of ge nu nieuwe ideeën hebt, vertalingen kunt bijdragen, wijzigingen hebt voor het ontwerp, de code kunt opkuisen of der zelfs grote wijzigingen in wilt maken. Hoe meer hulp, hoe beter dat het wordt!</string>
     <string name="view_on_github">Bekijken op GitHub</string>
     <string name="donation_title">Doneren</string>
-    <string name="donation_encouragement">NewPipe wordt door vrijwilligers in hunne vrijen tijd ontwikkeld voor u de beste ervaring te brengen. Nu is het tijd voor terug te geven, zodat onze ontwikkelaars NewPipe nóg beter kunnen maken terwijl ze van hun taske koffie genieten!</string>
+    <string name="donation_encouragement">NewPipe word door vrijwilligers in hunne vrijen tijd ontwikkeld voor u de beste ervaring te brengen. Geefd iets terug zodat onze ontwikkelaars NewPipe nóg beter kunnen maken terwijl da’ ze van hun taske koffie genieten.</string>
     <string name="give_back">Teruggeven</string>
     <string name="website_title">Website</string>
-    <string name="website_encouragement">Bezoek onze website voor meer informatie en het laatste nieuws over NewPipe.</string>
+    <string name="website_encouragement">Bezoekt de website van NewPipe voor meer informatie en ’t laatste nieuws.</string>
     <string name="app_license_title">Licentie van NewPipe</string>
     <string name="read_full_license">Licentie lezen</string>
 
@@ -341,7 +341,7 @@
 
     <string name="drawer_open">Menu openen</string>
     <string name="drawer_close">Menu sluiten</string>
-    <string name="drawer_header_action_paceholder_text">Hier zal binnenkort iets verschijnen ;D</string>
+    <string name="drawer_header_action_paceholder_text">Hier zal der binnenkort iets verschijnen ;D</string>
 
 
     <string name="preferred_open_action_settings_title">Voorkeursactie voor openen</string>
@@ -353,7 +353,7 @@
     <string name="always_ask_open_action">Altijd vragen</string>
 
     <string name="preferred_player_fetcher_notification_title">Info ophalen…</string>
-    <string name="preferred_player_fetcher_notification_message">De gevraagde inhoud is aan het laden</string>
+    <string name="preferred_player_fetcher_notification_message">Bezig me laden van gevraagden inhoud</string>
 
     <string name="create_playlist">Nieuwen afspeellijst aanmaken</string>
     <string name="delete_playlist">Afspeellijst verwijderen</string>
@@ -365,28 +365,28 @@
     <string name="bookmark_playlist">Afspeellijst toevoegen aan bladwijzers</string>
     <string name="unbookmark_playlist">Bladwijzer verwijderen</string>
 
-    <string name="delete_playlist_prompt">Wilt ge dezen afspeellijst verwijderen?</string>
+    <string name="delete_playlist_prompt">Wild ge dezen afspeellijst verwijderen?</string>
     <string name="playlist_creation_success">Afspeellijst aangemaakt</string>
     <string name="playlist_add_stream_success">Toegevoegd aan afspeellijst</string>
     <string name="playlist_thumbnail_change_success">Miniatuur voor afspeellijst gewijzigd</string>
-    <string name="playlist_delete_failure">Verwijderen van afspeellijst mislukt</string>
+    <string name="playlist_delete_failure">Kon afspeellijst nie’ verwijderen</string>
 
-    <string name="caption_none">Geen bijschrift</string>
+    <string name="caption_none">Geen bijschriften</string>
 
-    <string name="resize_fit">PASSEN</string>
-    <string name="resize_fill">OPVULLEN</string>
-    <string name="resize_zoom">INZOOMEN</string>
+    <string name="resize_fit">Passen</string>
+    <string name="resize_fill">Opvullen</string>
+    <string name="resize_zoom">Inzoomen</string>
 
     <string name="caption_auto_generated">Automatisch gegenereerd</string>
 
-    <string name="caption_setting_title">Kop</string>
-    <string name="caption_setting_description">Koptekstgrootte en achtergrondstijlen wijzigen. Vereist een herstart van de speler.</string>
+    <string name="caption_setting_title">Koppen</string>
+    <string name="caption_setting_description">Koptekstgrootte en achtergrondstijlen wijzigen. Vereist nen herstart van den app.</string>
 
     <string name="enable_leak_canary_title">LeakCanary inschakelen</string>
-    <string name="enable_leak_canary_summary">Het monitoren van geheugenlekken kan dervoor zorgen dat den app niet goed meer reageert</string>
+    <string name="enable_leak_canary_summary">Het monitoren van geheugenlekken kan dervoor zorgen da’ den app nie’ goe meer reageerd</string>
 
-    <string name="enable_disposed_exceptions_title">Ouf-of-Lifecycle-fouten melden</string>
-    <string name="enable_disposed_exceptions_summary">Forceer het melden van niet-bezorgbare Rx-uitzonderingen die gebeuren buiten fragment- of activiteitscyclus</string>
+    <string name="enable_disposed_exceptions_title">Out-of-Lifecycle-fouten melden</string>
+    <string name="enable_disposed_exceptions_summary">Forceerd het melden van nie-bezorgbare Rx-uitzonderingen die gebeuren buiten fragments- of activiteitscyclus</string>
 
     <string name="import_export_title">Importeren/exporteren</string>
     <string name="import_title">Importeren</string>
@@ -399,29 +399,27 @@
     <string name="import_file_title">Bestand importeren</string>
     <string name="previous_export">Vorige exportering</string>
 
-    <string name="subscriptions_import_unsuccessful">Importeren van abonnementen is mislukt</string>
-    <string name="subscriptions_export_unsuccessful">Exporteren van abonnementen is mislukt</string>
+    <string name="subscriptions_import_unsuccessful">Kon abonnementen nie importeren</string>
+    <string name="subscriptions_export_unsuccessful">Kon abonnementen nie exporteren</string>
 
-    <string name="import_youtube_instructions">Als ge uw YouTube-abonnementen wilt importeren hebt ge het exportbestand nodig. Dit kan gedownload worden door onderstaande stappen te volgen: 
-\n 
-\n1. Ga naar dit adres: %1$s 
-\n2. Logt, indien nodig, in op uwen account 
-\n3. Den download met het exportbestand zou nu moeten starten</string>
-    <string name="import_soundcloud_instructions">Als ge uw SoundCloud-abonnementen wilt importeren, moet ge uwe profiels-URL of -ID kennen. Als ge hem kent, typ hem dan hieronder in. 
-\n 
-\nAls ge hem niet kent, volg dan onderstaande stappen: 
-\n 
-\n1. Kiest ne webbrowser en schakel bureaubladmodus in (de website is niet beschikbaar voor mobiele apparaten) 
-\n2. Volg deze koppeling: %1$s 
-\n3. Logt, indien nodig, in op uwen account 
-\n4. Kopieert de koppeling van de pagina waar ge op terechtkomt (dat is uwe profiel-URL)</string>
-    <string name="import_soundcloud_instructions_hint">uwenid, soundcloud.com/uwenid</string>
-
-    <string name="import_network_expensive_warning">Let op: deze actie kan veel MB’s van uw netwerk gebruiken.
+    <string name="import_youtube_instructions">Importeerd uw YouTube-abonnementen door het exportbestand te downloaden:
 \n
-\nWilt ge doorgaan?</string>
+\n1. Ga naar dit adres: %1$s
+\n2. Logd in op uwen account
+\n3. Den download me het exportbestand zou nu moeten starten</string>
+    <string name="import_soundcloud_instructions">Importeerd een SoundButt-profiel door den URL of ID dervan in te voeren:
+\n
+\n1. Kiesd ne webbrowser en schakeld bureaubladmodus in (de website is nie beschikbaar voor mobiele apparaten)
+\n2. Ga naar dit adres: %1$s
+\n3. Logd in op uwen account
+\n4. Kopieerd de koppeling van de pagina waarop da’ ge terechtkomd (da’s uwe profiel-URL).</string>
+    <string name="import_soundcloud_instructions_hint">uwenID, soundbutt.com/uwenid</string>
 
-    <string name="playback_speed_control">Afspeelsnelheid</string>
+    <string name="import_network_expensive_warning">Let op: deze actie kan veel MB’s van uw netwerk gebruiken. 
+\n 
+\nWild ge doorgaan?</string>
+
+    <string name="playback_speed_control">Afspeelsnelheidsbesturing</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Toon</string>
     <string name="unhook_checkbox">Ontkoppelen (kan ruis veroorzaken)</string>
@@ -437,4 +435,5 @@
     <string name="search_history_deleted">Zoekgeschiedenis verwijderd.</string>
     <string name="one_item_deleted">1 item verwijderd.</string>
 
+    <string name="app_license">NewPipe is vrije software: ge kund het gebruiken, bestuderen, delen en verbeteren zoveel als da’ ge maar wild. Ge kund het opnieuw uitgeven en/of aanpassen volgens de voorwaarden van de GNU General Public License, gepubliceerd door de Free Software Foundation, versie 3 van de licentie, of (indien gewenst) gelijk welke latere versie.</string>
     </resources>
