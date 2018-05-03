@@ -29,7 +29,7 @@
     <string name="download_dialog_title">Downloaden</string>
     <string name="next_video_title">Volgende video</string>
     <string name="url_not_supported_toast">URL wordt niet ondersteund</string>
-    <string name="show_next_and_similar_title">Toon volgende en vergelijkbare video\'s</string>
+    <string name="show_next_and_similar_title">Toon ‘volgende’ en ‘vergelijkbare’ video’s</string>
     <string name="search_language_title">Standaardtaal voor inhoud</string>
     <string name="use_external_video_player_title">Externe videospeler gebruiken</string>
     <string name="use_external_audio_player_title">Externe audiospeler gebruiken</string>
@@ -89,7 +89,7 @@
     <string name="retry">Opnieuw proberen</string>
     <string name="main_bg_subtitle">Tik op zoeken om te beginnen</string>
     <string name="autoplay_by_calling_app_title">Automatisch afspelen</string>
-    <string name="autoplay_by_calling_app_summary">Speelt video\'s automatisch af wanneer NewPipe vanuit een andere app geopend wordt</string>
+    <string name="autoplay_by_calling_app_summary">Speelt video’s af wanneer NewPipe vanuit een andere app geopend wordt</string>
     <string name="duration_live">live</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
@@ -188,7 +188,7 @@ te openen in pop-upmodus</string>
     <string name="tab_about">Over</string>
     <string name="tab_contributors">Bijdragers</string>
     <string name="tab_licenses">Licenties</string>
-    <string name="app_description">Een vrije en lichte YouTube-cliënt voor Android.</string>
+    <string name="app_description">Vrij en licht streamen voor Android.</string>
     <string name="view_on_github">Bekijken op GitHub</string>
     <string name="app_license_title">Licentie van NewPipe</string>
     <string name="contribution_encouragement">Hulp is altijd welkom, of je nu nieuwe ideeën hebt, vertalingen kan bijdragen, wijzigingen in het ontwerp, opschonen van of grote wijzigingen in de code. Hoe meer hulp, hoe beter het wordt!</string>
@@ -215,7 +215,7 @@ te openen in pop-upmodus</string>
 
     <string name="enable_search_history_title">Zoekgeschiedenis</string>
     <string name="enable_search_history_summary">Sla zoekopdrachten lokaal op</string>
-    <string name="enable_watch_history_title">Geschiedenis</string>
+    <string name="enable_watch_history_title">Geschiedenis &amp; cache</string>
     <string name="enable_watch_history_summary">Kijkgeschiedenis bijhouden</string>
     <string name="resume_on_audio_focus_gain_title">Hervat bij focus</string>
     <string name="resume_on_audio_focus_gain_summary">Ga verder met afspelen na onderbrekingen (zoals telefoongesprekken)</string>
@@ -299,10 +299,10 @@ te openen in pop-upmodus</string>
     <string name="start_here_on_background">Hier beginnen in achtergrond</string>
     <string name="start_here_on_popup">Hier beginnen in pop-up</string>
 <string name="donation_title">Doneren</string>
-    <string name="donation_encouragement">NewPipe wordt door vrijwilligers in hun vrije tijd ontwikkeld om jou de beste ervaring te brengen. Nu is het tijd om terug te geven, zodat onze ontwikkelaars NewPipe nóg beter kunnen maken terwijl ze van hun kopje koffie genieten!</string>
+    <string name="donation_encouragement">NewPipe wordt door vrijwilligers in hun vrije tijd ontwikkeld om jou de beste ervaring te brengen. Geef wat terug zodat onze ontwikkelaars NewPipe nóg beter kunnen maken terwijl ze van hun kopje koffie genieten.</string>
     <string name="give_back">Teruggeven</string>
     <string name="website_title">Website</string>
-    <string name="website_encouragement">Bezoek onze website voor meer informatie en het laatste nieuws over NewPipe.</string>
+    <string name="website_encouragement">Bezoek de website van NewPipe voor meer informatie en het laatste nieuws.</string>
     <string name="default_content_country_title">Standaardinhoudsland</string>
     <string name="service_title">Dienst</string>
     <string name="toggle_orientation">Oriëntatie wijzigen</string>
@@ -327,7 +327,7 @@ te openen in pop-upmodus</string>
     <string name="always_ask_player">Altijd vragen</string>
     
     <string name="preferred_player_fetcher_notification_title">Info ophalen…</string>
-    <string name="preferred_player_fetcher_notification_message">De gevraagde inhoud is aan het laden</string>
+    <string name="preferred_player_fetcher_notification_message">Bezig met laden van gevraagde inhoud</string>
 <string name="import_data_title">Database importeren</string>
     <string name="export_data_title">Database exporteren</string>
     <string name="import_data_summary">Dit zal je huidige geschiedenis en abonnementen overschrijven</string>
@@ -374,13 +374,13 @@ te openen in pop-upmodus</string>
     <string name="playlist_creation_success">Afspeellijst aangemaakt</string>
     <string name="playlist_add_stream_success">Toegevoegd aan afspeellijst</string>
     <string name="playlist_thumbnail_change_success">Miniatuur voor afspeellijst gewijzigd</string>
-    <string name="playlist_delete_failure">Verwijderen van afspeellijst mislukt</string>
+    <string name="playlist_delete_failure">Kon afspeellijst niet verwijderen</string>
 
-    <string name="caption_none">Geen bijschrift</string>
+    <string name="caption_none">Geen bijschriften</string>
 
-    <string name="resize_fit">PASSEN</string>
-    <string name="resize_fill">OPVULLEN</string>
-    <string name="resize_zoom">INZOOMEN</string>
+    <string name="resize_fit">Passen</string>
+    <string name="resize_fill">Opvullen</string>
+    <string name="resize_zoom">Inzoomen</string>
 
     <string name="caption_font_size_settings_title">Lettergrootte van bijschrift</string>
     <string name="smaller_caption_font_size">Kleiner lettertype</string>
@@ -393,13 +393,13 @@ te openen in pop-upmodus</string>
     <string name="enable_leak_canary_title">LeakCanary inschakelen</string>
     <string name="enable_leak_canary_summary">Het monitoren van geheugenlekken kan ervoor zorgen dat de app niet goed meer reageert</string>
 
-    <string name="enable_disposed_exceptions_title">Ouf-of-Lifecycle-fouten melden</string>
-    <string name="enable_disposed_exceptions_summary">Forceer het melden van niet-bezorgbare Rx-uitzonderingen die gebeuren buten fragment of activiteitscyclus</string>
+    <string name="enable_disposed_exceptions_title">Out-of-Lifecycle-fouten melden</string>
+    <string name="enable_disposed_exceptions_summary">Forceer het melden van niet-bezorgbare Rx-uitzonderingen buiten fragment of activiteitscyclus</string>
 
 <string name="use_inexact_seek_title">Snelle, minder exact spoelen gebruiken</string>
     <string name="use_inexact_seek_summary">Minder exact spoelen laat de speler sneller posities zoeken met verminderde precisie</string>
     <string name="auto_queue_title">Volgende stream automatisch in wachtrij plaatsen</string>
-    <string name="auto_queue_summary">Automatisch een gerealteerde stream toekennen als het afspelen van de laatste stream strat in een niet-herhalende afspeelwachtlijst.</string>
+    <string name="auto_queue_summary">Automatisch een gerelateerde stream toekennen bij het afspelen van de laatste stream in een niet-herhalende afspeelwachtlijst.</string>
     <string name="live_sync">SYNCHRONISEREN</string>
 
     <string name="file">Bestand</string>
@@ -421,34 +421,32 @@ te openen in pop-upmodus</string>
     <string name="import_file_title">Bestand importeren</string>
     <string name="previous_export">Vorige exportering</string>
 
-    <string name="subscriptions_import_unsuccessful">Importeren van abonnementen is mislukt</string>
-    <string name="subscriptions_export_unsuccessful">Exporteren van abonnementen is mislukt</string>
+    <string name="subscriptions_import_unsuccessful">Kon abonnementen niet importeren</string>
+    <string name="subscriptions_export_unsuccessful">Kon abonnementen niet exporteren</string>
 
-    <string name="import_youtube_instructions">Als u uw YouTube-abonnementen wilt importeren, dan heeft u het exportbestand nodig. Dit kan worden gedownload door het volgen van onderstaande stappen:
-\n
+    <string name="import_youtube_instructions">Importeer je YouTube-abonnementen door het exportbestand te downloaden: 
+\n 
 \n1. Ga naar dit adres: %1$s
-\n2. Log, indien nodig, in op uw account
+\n2. Log in op je account
 \n3. De download met het exportbestand zou nu moeten starten</string>
-    <string name="import_soundcloud_instructions">Als u uw SoundCloud-abonnementen wilt importeren, dan moet u uw profiel-URL of ID kennen. Als u hem kent, typ hem dan hieronder in.
-\n
-\nAls u hem niet kent, volg dan onderstaande stappen:
+    <string name="import_soundcloud_instructions">Importeer een SoundButt-profiel door de URL of het ID ervan in te voeren:
 \n
 \n1. Kies een webbrowser en schakel bureaubladmodus in (de website is niet beschikbaar voor mobiele apparaten)
-\n2. Volg deze link: %1$s
-\n3. Log, indien nodig, in op uw account
-\n4. Kopieer de link van de pagina waar u op terechtkomt (dat is uw profiel-URL)</string>
-    <string name="import_soundcloud_instructions_hint">uwid, soundcloud.com/uwid</string>
+\n2. Ga naar dit adres: %1$s
+\n3. Log in op je account
+\n4. Kopieer de koppeling van de pagina waar je op terechtkomt (dat is je profiel-URL).</string>
+    <string name="import_soundcloud_instructions_hint">jouwID, soundbutt.com/jouwid</string>
 
-    <string name="import_network_expensive_warning">Let op: deze actie kan veel MB\'s van uw netwerk gebruiken.
-\n
-\nWilt u doorgaan?</string>
+    <string name="import_network_expensive_warning">Let op: deze actie kan veel MB’s van je netwerk gebruiken. 
+\n 
+\nWil je doorgaan?</string>
 <string name="download_thumbnail_title">Miniatuurvoorbeelden laden</string>
     <string name="download_thumbnail_summary">Schakel dit uit om alle miniatuurvoorbeelden niet meer te laden; dit bespaart gegevens en geheugen. Het wijzigen van deze instelling wist het geheugen en de afbeeldingscache.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Afbeeldingscache gewist</string>
     <string name="metadata_cache_wipe_title">Gecachete metagegevens wissen</string>
     <string name="metadata_cache_wipe_summary">Alle gecachete webpagina-gegevens wissen</string>
     <string name="metadata_cache_wipe_complete_notice">Metagegevens-cache gewist</string>
-    <string name="playback_speed_control">Afspeelsnelheid</string>
+    <string name="playback_speed_control">Afspeelsnelheidsbesturing</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Toon</string>
     <string name="unhook_checkbox">Ontkoppelen (kan ruis veroorzaken)</string>
@@ -459,10 +457,10 @@ te openen in pop-upmodus</string>
 
     <string name="no_streams_available_download">Geen streams beschikbaar voor downloaden</string>
 
-    <string name="caption_setting_title">Kop</string>
-    <string name="caption_setting_description">Koptekstgrootte en achtergrondstijlen wijzigen. Vereist een herstart van de speler.</string>
+    <string name="caption_setting_title">Koppen</string>
+    <string name="caption_setting_description">Koptekstgrootte en achtergrondstijlen wijzigen. Vereist een herstart van de app.</string>
 
-    <string name="toast_no_player">Geen speler gevonden voor dit bestand</string>
+    <string name="toast_no_player">Geen app geïnstalleerd om dit bestand af te spelen</string>
 
     <string name="clear_views_history_title">Kijkgeschiedenis wissen</string>
     <string name="clear_views_history_summary">Verwijdert de geschiedenis van afgespeelde streams.</string>
@@ -474,4 +472,5 @@ te openen in pop-upmodus</string>
     <string name="search_history_deleted">Zoekgeschiedenis verwijderd.</string>
     <string name="one_item_deleted">1 item verwijderd.</string>
 
+    <string name="app_license">NewPipe is vrije software: je kan het gebruiken, bestuderen, delen en verbeteren zoveel je maar wil. Je kan het opnieuw uitgeven en/of aanpassen volgens de voorwaard van de GNU General Public License, gepubliceerd door de Free Software Foundation, versie 3 van de licentie, of (indien gewenst) om het even welke latere versie.</string>
     </resources>
