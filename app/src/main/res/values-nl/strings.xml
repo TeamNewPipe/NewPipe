@@ -29,7 +29,7 @@
     <string name="download_dialog_title">Downloaden</string>
     <string name="next_video_title">Volgende video</string>
     <string name="url_not_supported_toast">URL wordt niet ondersteund</string>
-    <string name="show_next_and_similar_title">Toon ‘volgende’ en ‘vergelijkbare’ video’s</string>
+    <string name="show_next_and_similar_title">‘volgende’ en ‘vergelijkbare’ video’s weergeven</string>
     <string name="search_language_title">Standaardtaal voor inhoud</string>
     <string name="use_external_video_player_title">Externe videospeler gebruiken</string>
     <string name="use_external_audio_player_title">Externe audiospeler gebruiken</string>
@@ -89,7 +89,7 @@
     <string name="retry">Opnieuw proberen</string>
     <string name="main_bg_subtitle">Tik op zoeken om te beginnen</string>
     <string name="autoplay_by_calling_app_title">Automatisch afspelen</string>
-    <string name="autoplay_by_calling_app_summary">Speelt video’s af wanneer NewPipe vanuit een andere app geopend wordt</string>
+    <string name="autoplay_by_calling_app_summary">Speelt video’s af als NewPipe vanuit een andere app wordt geopend</string>
     <string name="duration_live">live</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
@@ -215,7 +215,7 @@ te openen in pop-upmodus</string>
 
     <string name="enable_search_history_title">Zoekgeschiedenis</string>
     <string name="enable_search_history_summary">Sla zoekopdrachten lokaal op</string>
-    <string name="enable_watch_history_title">Geschiedenis &amp; cache</string>
+    <string name="enable_watch_history_title">Geschiedenis en cache</string>
     <string name="enable_watch_history_summary">Kijkgeschiedenis bijhouden</string>
     <string name="resume_on_audio_focus_gain_title">Hervat bij focus</string>
     <string name="resume_on_audio_focus_gain_summary">Ga verder met afspelen na onderbrekingen (zoals telefoongesprekken)</string>
@@ -261,13 +261,13 @@ te openen in pop-upmodus</string>
 
     <string name="item_deleted">Item verwijderd</string>
 <string name="delete_item_search_history">Wil je dit item uit je zoekgeschiedenis verwijderen?</string>
-<string name="show_hold_to_append_title">Toon tip voor ingedrukt houden om toe te voegen</string>
+<string name="show_hold_to_append_title">Tip weergeven voor ingedrukt houden om toe te voegen</string>
     <string name="show_hold_to_append_summary">Toon tip wanneer achtergrond- of pop-upknop is ingedrukt op de video-detailpagina</string>
     <string name="background_player_append">Toegevoegd aan wachtrij voor achtergrondspeler</string>
     <string name="popup_playing_append">Toegevoegd aan wachtrij voor pop-upspeler</string>
     <string name="play_all">Alles afspelen</string>
 
-    <string name="player_stream_failure">Kon deze stream niet afspelen</string>
+    <string name="player_stream_failure">Deze stream kan niet worden afgespeeld</string>
     <string name="player_unrecoverable_failure">Onherstelbare spelerfout opgetreden</string>
     <string name="player_recoverable_failure">Aan het herstellen van spelerfout</string>
 
@@ -460,7 +460,7 @@ te openen in pop-upmodus</string>
     <string name="caption_setting_title">Koppen</string>
     <string name="caption_setting_description">Koptekstgrootte en achtergrondstijlen wijzigen. Vereist een herstart van de app.</string>
 
-    <string name="toast_no_player">Geen app geïnstalleerd om dit bestand af te spelen</string>
+    <string name="toast_no_player">Er is geen app geïnstalleerd die dit bestand kan afspelen</string>
 
     <string name="clear_views_history_title">Kijkgeschiedenis wissen</string>
     <string name="clear_views_history_summary">Verwijdert de geschiedenis van afgespeelde streams.</string>
