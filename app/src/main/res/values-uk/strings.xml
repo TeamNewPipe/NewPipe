@@ -26,7 +26,7 @@
     <string name="download_path_audio_title">Шлях для завантаження аудіо</string>
     <string name="download_path_audio_summary">Шлях де будуть зберігатись завантажені аудіо файли</string>
     <string name="autoplay_by_calling_app_title">Автоматично відтворювати</string>
-    <string name="autoplay_by_calling_app_summary">Автоматично відтворювати відео коли NewPipe викликано з іншого застосунку</string>
+    <string name="autoplay_by_calling_app_summary">Відтворює відео коли NewPipe викликано з іншого застосунку</string>
     <string name="default_resolution_title">Типова роздільна здатність</string>
     <string name="play_with_kodi_title">Відтворювати за допомогою Kodi</string>
     <string name="kore_not_found">Застосунок Kore не знайдено. Встановити?</string>
@@ -42,7 +42,7 @@
 
     <string name="download_dialog_title">Завантажити</string>
     <string name="next_video_title">Наступне відео</string>
-    <string name="show_next_and_similar_title">Показувати наступні та схожі відео</string>
+    <string name="show_next_and_similar_title">Показувати \"наступні\" та \"схожі\" відео</string>
     <string name="url_not_supported_toast">URL не підтримується</string>
     <string name="search_language_title">Переважна мова контенту</string>
     <string name="settings_category_video_audio_title">Відео та Аудіо</string>
@@ -155,11 +155,11 @@
     <string name="show_search_suggestions_summary">Показувати схожі під час пошуку</string>
     <string name="enable_search_history_title">Історія пошуків</string>
     <string name="enable_search_history_summary">Зберігати пошукові запити локально</string>
-    <string name="enable_watch_history_title">Історія</string>
+    <string name="enable_watch_history_title">Історія та кеш</string>
     <string name="enable_watch_history_summary">Вести облік перегляду відео</string>
     <string name="resume_on_audio_focus_gain_title">Відновити відтворення</string>
     <string name="resume_on_audio_focus_gain_summary">Продовжувати відтворення опісля переривання (наприклад телефонного дзвінка)</string>
-    <string name="show_hold_to_append_title">Підказка \"Утримуй, аби додати\"</string>
+    <string name="show_hold_to_append_title">Показувати \"утримуй, аби додати\" підказку</string>
     <string name="default_content_country_title">Усталена країна контенту</string>
     <string name="service_title">Сервіс</string>
     <string name="settings_category_player_title">Програвач</string>
@@ -193,7 +193,7 @@
     <string name="export_data_title">Експортувати базу</string>
     <string name="import_data_summary">Це перепише наявну історію та підписання</string>
     <string name="export_data_summary">Експортувати історію, підписання та плейлисти.</string>
-    <string name="player_stream_failure">Хиба під час відворення стриму</string>
+    <string name="player_stream_failure">Неможливо відтворити цей стрим</string>
     <string name="player_recoverable_failure">Відновлююсь після помилки програвача</string>
     <string name="invalid_url_toast">Помилкова ланка URL</string>
     <string name="video_streams_empty">Відео-струмів не було знайдено</string>
@@ -239,7 +239,7 @@
     <string name="always_ask_player">Щоразу питати</string>
     
     <string name="preferred_player_fetcher_notification_title">Отримую інформацію…</string>
-    <string name="preferred_player_fetcher_notification_message">Контент завантажується</string>
+    <string name="preferred_player_fetcher_notification_message">Завантажується запитаний контент</string>
 <string name="controls_download_desc">Завантажити стримінґовий файл.</string>
     <string name="show_info">Показати інфо</string>
 
@@ -279,7 +279,7 @@
     <string name="title_licenses">Сторонні ліцензії</string>
     <string name="action_open_website">Перейти до сайту</string>
     <string name="tab_about">Візитівка</string>
-    <string name="app_description">Безкоштовний та легкий Ютюб застосунок для Андроїда.</string>
+    <string name="app_description">Вільний та легковагий стримінґ для Андроїду.</string>
     <string name="contribution_encouragement">Які б не були Ваші ідеї: переклад, дизайн, легкий чи глобальний рефакторинґ - будь-яка допомога завжди у нагоді. Що більше зроблено, то ліпшим NewPipe стає!</string>
     <string name="disable_leak_canary_notice">Моніторинг витоку памяті вимкнено</string>
 <string name="settings_category_debug_title">Усунення вад</string>
@@ -299,9 +299,9 @@
 
     <string name="copyright" formatted="true">© %1$s by %2$s under %3$s</string>
     <string name="tab_contributors">Учасники</string>
-    <string name="donation_encouragement">NewPipe розробляється добровольцями, які витрачають власний час заради вашого задоволення. Настала черга допомогти й вам, аби розробники мали можливість зробити NewPipe ще ліпшим, насолоджуючись філіжанкою джави!</string>
+    <string name="donation_encouragement">NewPipe розробний добровольцями, які витрачають власний час заради вашого задоволення. Допоможіть розробникам зробити NewPipe ще ліпшим, насолоджуючись філіжанкою кави.</string>
     <string name="give_back">Ваша допомога</string>
-    <string name="website_encouragement">Аби одержати більше інформації та прочитати останні новини стосовно NewPipe, завітайте до нашого веб-сайту.</string>
+    <string name="website_encouragement">Завітайте на офіційний сайт, аби отримати більше інформацій та новин.</string>
     <string name="app_license_title">Ліцензія NewPipe</string>
     <string name="read_full_license">Прочитати ліцензію</string>
 
@@ -345,7 +345,7 @@
 
     <string name="drawer_open">Відчинити шухляду</string>
     <string name="drawer_close">Зачинити шухляду</string>
-    <string name="drawer_header_action_paceholder_text">Ми тут матимемо щось незабаром ;D</string>
+    <string name="drawer_header_action_paceholder_text">Незабаром ми тут щось матимемо ;D</string>
 
 
     <string name="always_ask_open_action">Завжди питати</string>
@@ -364,13 +364,13 @@
     <string name="playlist_creation_success">Плейлист було створено</string>
     <string name="playlist_add_stream_success">Додано до плейлиста</string>
     <string name="playlist_thumbnail_change_success">Ескіз плейлиста було змінено</string>
-    <string name="playlist_delete_failure">Плейлист не видалено</string>
+    <string name="playlist_delete_failure">Неможливо видалити плейлист</string>
 
-    <string name="caption_none">Опис відсутній</string>
+    <string name="caption_none">Субтитри відсутні</string>
 
-    <string name="resize_fit">ЗАМОСТИТИ</string>
-    <string name="resize_fill">ЗАПОВНИТИ</string>
-    <string name="resize_zoom">ЗРОБИТИ БЛИЖЧИМ</string>
+    <string name="resize_fit">Замостити</string>
+    <string name="resize_fill">Заповнити</string>
+    <string name="resize_zoom">Збільшити</string>
 
     <string name="caption_auto_generated">Створено автоматичним шляхом</string>
     <string name="caption_font_size_settings_title">Розмір шрифту опису</string>
@@ -379,7 +379,7 @@
     <string name="larger_caption_font_size">Великий шрифт</string>
 
     <string name="enable_leak_canary_title">Увімкнути LeakCanary</string>
-    <string name="enable_leak_canary_summary">Під час роботи LeakCanary застосунок може стати несприйнятливим під час гіп-дампінґу</string>
+    <string name="enable_leak_canary_summary">Моніторування витіків пам\'яті може призвести до нереагівності застосунку</string>
 
     <string name="enable_disposed_exceptions_title">Зазвітувати Out-of-lifecycle хиби</string>
     <string name="enable_disposed_exceptions_summary">Примусове звітування про неможливість доставлення Rx винятків, які відбуваються за межами фраґменту або діяльності життєвого циклу після усунення</string>
@@ -387,7 +387,7 @@
 <string name="use_inexact_seek_title">Використовувати неточне шукання</string>
     <string name="use_inexact_seek_summary">Неточне шукання дозволяє програвачеві рухатися позиціями швидше, проте з меншою точністю</string>
     <string name="auto_queue_title">Автоматично додати до черги наступний стрим</string>
-    <string name="auto_queue_summary">Автоматично додавати пов\'язаний стрим, під час початку відтворення останнього стриму.</string>
+    <string name="auto_queue_summary">Автоматично додавати пов\'язаний стрим під час відтворення останнього у неповторювальній черзі.</string>
     <string name="live_sync">СИНХРОНІЗАЦІЯ</string>
 
     <string name="file">Теки</string>
@@ -409,24 +409,21 @@
     <string name="import_file_title">Імпортування файлу</string>
     <string name="previous_export">Попереднього експортування</string>
 
-    <string name="subscriptions_import_unsuccessful">Не вдалось імпортувати підписки</string>
-    <string name="subscriptions_export_unsuccessful">Не вдалося експортувати підписки</string>
+    <string name="subscriptions_import_unsuccessful">Неможливо імпортувати підписання</string>
+    <string name="subscriptions_export_unsuccessful">Неможливо експортувати підписання</string>
 
-    <string name="import_youtube_instructions">Аби імпортувати ваші підписання Ютюб, вам буде потрібно експортувати файл, який можна буде завантажити наступним чином:
+    <string name="import_youtube_instructions">Імпортуйте Ютюбові підписання завантаженням файлу еспортування: 
+\n 
+\n1. Перейдіть за цією ланкою: %1$s 
+\n2. За запитом увійдіть до вашої обліківки 
+\n3. Завантаження має початися (це й є файл еспортування)</string>
+    <string name="import_soundcloud_instructions">Імпортуйте SoundCloud\'овий профайл уписавши його URL, або ваш ID:
 \n
-\n1. Перейдіть за цією ланкою: %1$s
-\n2. За запитом увійдіть до вашої обліківки
-\n3. Завантаження має початися (експортований файл)</string>
-    <string name="import_soundcloud_instructions">Для імпортування ваших підписок з SoundCloud, ви маєте знати url вашого профайлу або ID. Якщо ви знаєте їх, упишіть їх нижче та можна працювати.
-\n
-\nЯкщо ви не маєте їх, зробіть наступним чином:
-\n
-\n1. Увімкніть режимі \"desktop\" у будь-якому з переглядачів (сайт не має підтримки мобільних ґаджетів)
-\n
-\n2. Перейдіть за цією ланкою: %1$s
-\n3. За запитом увійдіть до вашої обліківки
-\n4. Скопіюйте url, до якого вас відішле (це й є url вашого профайлу)</string>
-    <string name="import_soundcloud_instructions_hint">yourid, soundcloud.com/yourid</string>
+\n1. Увімкніть режимі \"desktop\" у переглядачівеві (сайт не підтримується мобільними ґаджетами) 
+\n2. Перейдіть за цією ланкою: %1$s 
+\n3. За запитом увійдіть до вашої обліківки 
+\n4. Скопіюйте URL профайлу, до якого вас переспрямує.</string>
+    <string name="import_soundcloud_instructions_hint">вашID, soundcloud.com/вашid</string>
 
     <string name="import_network_expensive_warning">Майте на увазі: ця операція може потребувати багато трафіку.
 \n
@@ -437,7 +434,7 @@
     <string name="metadata_cache_wipe_title">Стерти кеш метаданих</string>
     <string name="metadata_cache_wipe_summary">"Усунути всі кешовані дані веб-сторінки "</string>
     <string name="metadata_cache_wipe_complete_notice">Кеш метаданих стерто</string>
-    <string name="playback_speed_control">Керування швидкістю відтворення</string>
+    <string name="playback_speed_control">Реґулятори швидкісті відтворення</string>
     <string name="playback_tempo">Темп</string>
     <string name="playback_pitch">Тон</string>
     <string name="unhook_checkbox">Від\'єднати (може спричинити спотворення)</string>
@@ -445,13 +442,13 @@
     <string name="playback_default">Усталено</string>
 <string name="no_streams_available_download">Струми недоступні для завантаження</string>
 
-    <string name="preferred_open_action_settings_title">Переважний спосіб відкриття</string>
+    <string name="preferred_open_action_settings_title">Переважний спосіб \"відкриття\"</string>
     <string name="preferred_open_action_settings_summary">Типова дія під час відкриття вмісту — %s</string>
 
     <string name="caption_setting_title">Субтитри</string>
-    <string name="caption_setting_description">Змінення маштабу тексту субтитрів та фонових стилів. Дія потребує перезавантаження програвача.</string>
+    <string name="caption_setting_description">Змінення маштабу тексту субтитрів та фонових стилів. Увімкнення функції потребує перезавантаження застосунку.</string>
 
-    <string name="toast_no_player">Для цього файлу не було знайдено програвача</string>
+    <string name="toast_no_player">Не знайдено відповідного застосунку для відтворення цього файла</string>
 
     <string name="clear_views_history_title">Очистити історію переглядів</string>
     <string name="clear_views_history_summary">Видаляє історію відтворень.</string>
@@ -463,4 +460,5 @@
     <string name="search_history_deleted">Пошукову історію було видалено.</string>
     <string name="one_item_deleted">Видалено один фраґмент.</string>
 
+    <string name="app_license">"NewPipe є вільною копілефт програмою: Ви можете використовувати її, поширювати та вдосконавлювати за власним розсудом. Зокрема ви можете перерозподіляти та/або змінювати її за умов використання GNU General Public License, опублікованою Free Software Foundation,  під 3-ю версією ліцензії, або (на ваш вибір) будь-якою пізнішою версією."</string>
     </resources>
