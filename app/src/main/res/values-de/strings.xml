@@ -206,7 +206,7 @@
 
     <string name="enable_search_history_title">Suchverlauf</string>
     <string name="enable_search_history_summary">Speichere den Suchverlauf lokal</string>
-    <string name="enable_watch_history_title">Wiedergabeverlauf</string>
+    <string name="enable_watch_history_title">Verlauf &amp; Cache</string>
     <string name="enable_watch_history_summary">Speichere den Wiedergabeverlauf</string>
     <string name="title_activity_history">Verlauf</string>
     <string name="title_history_search">Gesucht</string>
@@ -366,7 +366,7 @@
     <string name="playlist_creation_success">Wiedergabeliste erstellt</string>
     <string name="playlist_add_stream_success">Zur Wiedergabeliste hinzugefügt</string>
     <string name="playlist_thumbnail_change_success">Vorschaubild der Wiedergabeliste geändert</string>
-    <string name="playlist_delete_failure">Löschen der Wiedergabeliste fehlgeschlagen</string>
+    <string name="playlist_delete_failure">Konnte Wiedergabeliste nicht löschen</string>
 
     <string name="caption_none">Keine Untertitel</string>
 
@@ -458,7 +458,7 @@
     <string name="preferred_open_action_settings_summary">Standardaktion beim Öffnen von Inhalten - %s</string>
 
     <string name="caption_setting_title">Untertitel</string>
-    <string name="caption_setting_description">Ändere Textgröße und Hintergrundstil des Untertitels im Player. Wird erst nach Neustart des Players wirksam.</string>
+    <string name="caption_setting_description">Ändere Textgröße und Hintergrundstil des Untertitels im Player. Wird erst nach Neustart des App wirksam.</string>
 
     <string name="toast_no_player">Für diese Datei wurde kein Player gefunden</string>
 
