@@ -191,18 +191,18 @@
 
     <string name="import_data_title">Імпортувати базу</string>
     <string name="export_data_title">Експортувати базу</string>
-    <string name="import_data_summary">Це перепише наявну історію та підписання</string>
+    <string name="import_data_summary">Це перепише чинну історію та підписання</string>
     <string name="export_data_summary">Експортувати історію, підписання та плейлисти.</string>
     <string name="player_stream_failure">Неможливо відтворити цей стрим</string>
     <string name="player_recoverable_failure">Відновлююсь після помилки програвача</string>
-    <string name="invalid_url_toast">Помилкова ланка URL</string>
+    <string name="invalid_url_toast">Помилкова URL</string>
     <string name="video_streams_empty">Відео-струмів не було знайдено</string>
     <string name="audio_streams_empty">Не знайдено жодних аудіо-струмів</string>
 
     <string name="user_report">Звіт користувача</string>
     <string name="no_subscribers">Без підписників</string>
     <string name="no_videos">Без відео</string>
-    <string name="msg_url_malform">Помилкова ланка URL або інтернет не є доступним</string>
+    <string name="msg_url_malform">Помилкова URL або інтернет не є доступним</string>
     <string name="msg_popup_permission">Цей дозвіл має бути відкритим 
 \nу вікні</string>
 
