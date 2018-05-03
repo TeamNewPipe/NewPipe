@@ -371,10 +371,10 @@ te openen in pop-upmodus</string>
     <string name="unbookmark_playlist">Bladwijzer verwijderen</string>
 
     <string name="delete_playlist_prompt">Wil je deze afspeellijst verwijderen?</string>
-    <string name="playlist_creation_success">Afspeellijst aangemaakt</string>
+    <string name="playlist_creation_success">Afspeellijst gecreëerd</string>
     <string name="playlist_add_stream_success">Toegevoegd aan afspeellijst</string>
     <string name="playlist_thumbnail_change_success">Miniatuur voor afspeellijst gewijzigd</string>
-    <string name="playlist_delete_failure">Kon afspeellijst niet verwijderen</string>
+    <string name="playlist_delete_failure">De afspeellijst kan niet worden verwijderd</string>
 
     <string name="caption_none">Geen bijschriften</string>
 
@@ -421,21 +421,21 @@ te openen in pop-upmodus</string>
     <string name="import_file_title">Bestand importeren</string>
     <string name="previous_export">Vorige exportering</string>
 
-    <string name="subscriptions_import_unsuccessful">Kon abonnementen niet importeren</string>
-    <string name="subscriptions_export_unsuccessful">Kon abonnementen niet exporteren</string>
+    <string name="subscriptions_import_unsuccessful">De abonnementen kunnen niet worden geïmporteerd</string>
+    <string name="subscriptions_export_unsuccessful">De abonnementen kunnen niet worden geëxporteerd</string>
 
     <string name="import_youtube_instructions">Importeer je YouTube-abonnementen door het exportbestand te downloaden: 
 \n 
 \n1. Ga naar dit adres: %1$s
 \n2. Log in op je account
 \n3. De download met het exportbestand zou nu moeten starten</string>
-    <string name="import_soundcloud_instructions">Importeer een SoundButt-profiel door de URL of het ID ervan in te voeren:
+    <string name="import_soundcloud_instructions">Importeer een SoundCloud-profiel door de URL of het ID ervan in te voeren:
 \n
 \n1. Kies een webbrowser en schakel bureaubladmodus in (de website is niet beschikbaar voor mobiele apparaten)
 \n2. Ga naar dit adres: %1$s
 \n3. Log in op je account
 \n4. Kopieer de koppeling van de pagina waar je op terechtkomt (dat is je profiel-URL).</string>
-    <string name="import_soundcloud_instructions_hint">jouwID, soundbutt.com/jouwid</string>
+    <string name="import_soundcloud_instructions_hint">jouwID, soundcloud.com/jouwid</string>
 
     <string name="import_network_expensive_warning">Let op: deze actie kan veel MB’s van je netwerk gebruiken. 
 \n 
@@ -446,7 +446,7 @@ te openen in pop-upmodus</string>
     <string name="metadata_cache_wipe_title">Gecachete metagegevens wissen</string>
     <string name="metadata_cache_wipe_summary">Alle gecachete webpagina-gegevens wissen</string>
     <string name="metadata_cache_wipe_complete_notice">Metagegevens-cache gewist</string>
-    <string name="playback_speed_control">Afspeelsnelheidsbesturing</string>
+    <string name="playback_speed_control">Afspeelsnelheidbesturing</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Toon</string>
     <string name="unhook_checkbox">Ontkoppelen (kan ruis veroorzaken)</string>
@@ -457,8 +457,8 @@ te openen in pop-upmodus</string>
 
     <string name="no_streams_available_download">Geen streams beschikbaar voor downloaden</string>
 
-    <string name="caption_setting_title">Koppen</string>
-    <string name="caption_setting_description">Koptekstgrootte en achtergrondstijlen wijzigen. Vereist een herstart van de app.</string>
+    <string name="caption_setting_title">Bijschriften</string>
+    <string name="caption_setting_description">Bijschriftgrootte en achtergrondstijlen wijzigen. Vereist een herstart van de app.</string>
 
     <string name="toast_no_player">Er is geen app geïnstalleerd die dit bestand kan afspelen</string>
 
