@@ -34,7 +34,7 @@
 
     <string name="download_dialog_title">下載</string>
     <string name="next_video_title">下一部影片</string>
-    <string name="show_next_and_similar_title">顯示下一部和相關的影片</string>
+    <string name="show_next_and_similar_title">顯示「下一部」與「相關」的影片</string>
     <string name="url_not_supported_toast">不支援此網址</string>
     <string name="search_language_title">預設內容語言</string>
     <string name="settings_category_video_audio_title">影片和音訊</string>
@@ -63,7 +63,7 @@
     <string name="popup_mode_share_menu_title">NewPipe懸浮視窗模式</string>
     <string name="controls_background_title">背景播放</string>
     <string name="autoplay_by_calling_app_title">自動播放</string>
-    <string name="autoplay_by_calling_app_summary">NewPipe被其他應用程式調用時，自動播放影片</string>
+    <string name="autoplay_by_calling_app_summary">NewPipe 被其他應用程式呼叫時播放影片</string>
     <string name="default_popup_resolution_title">懸浮視窗預設解析度</string>
     <string name="show_higher_resolutions_title">顯示更高的解析度</string>
     <string name="show_higher_resolutions_summary">只有部分裝置能播2K及4K影片</string>
@@ -175,7 +175,7 @@
 
     <string name="enable_search_history_title">搜尋紀錄</string>
     <string name="enable_search_history_summary">在本機儲存搜尋紀錄</string>
-    <string name="enable_watch_history_title">歷史紀錄</string>
+    <string name="enable_watch_history_title">歷史紀錄與快取</string>
     <string name="enable_watch_history_summary">記錄觀看過的影片</string>
     <string name="resume_on_audio_focus_gain_title">在取得視窗焦點時繼續播放</string>
     <string name="resume_on_audio_focus_gain_summary">在干擾結束後繼續播放（例如有來電）</string>
@@ -224,7 +224,7 @@
     <string name="tab_about">關於</string>
     <string name="tab_contributors">貢獻者</string>
     <string name="tab_licenses">授權條款</string>
-    <string name="app_description">一款在 Android 上免費輕巧的 YouTube 前端。</string>
+    <string name="app_description">Android 上開放且輕巧的 YouTube 串流應用程式。</string>
     <string name="view_on_github">在 GitHub 上檢視</string>
     <string name="app_license_title">NewPipe 使用的授權條款</string>
     <string name="contribution_encouragement">不管你有什麼點子，翻譯、設計、程式碼整理，或者程式碼撰寫，我們永遠歡迎你來幫忙。完成的越多，NewPipe 也會更好！</string>
@@ -241,7 +241,7 @@
     <string name="item_deleted">項目已刪除</string>
     <string name="delete_item_search_history">確定要刪除此項搜尋紀錄嗎？</string>
 <string name="no_player_found_toast">找不到串流播放器（您可以安裝 VLC播放）</string>
-    <string name="show_hold_to_append_title">顯示鎖定到附加提示</string>
+    <string name="show_hold_to_append_title">顯示「鎖定到附加」提示</string>
     <string name="default_content_country_title">預設內容國家</string>
     <string name="service_title">服務</string>
     <string name="background_player_append">在背景播放器上等候</string>
@@ -273,7 +273,7 @@
     <string name="import_data_summary">將覆蓋您目前的歷史記錄和訂閱</string>
     <string name="export_data_summary">匯出歷史記錄、訂閱和播放清單。</string>
     <string name="give_back">返回</string>
-    <string name="website_encouragement">欲了解更多關於 NewPipe 的資訊和最新近況，請造訪我們的網站。</string>
+    <string name="website_encouragement">欲了解更多關於 NewPipe 的資訊和新聞，請造訪我們的網站。</string>
     <string name="main_page_content">首頁內容</string>
     <string name="blank_page_summary">空白頁面</string>
     <string name="kiosk_page_summary">互動導覽頁面</string>
@@ -305,7 +305,7 @@
     <string name="start_here_on_popup">在懸浮視窗這裡開始</string>
 
     <string name="hold_to_append">維持在佇列</string>
-    <string name="donation_encouragement">NewPipe 由志願者所開發，他們花費了空閒時間將獲得的最佳體驗帶給您。現在是時候回過頭來，讓我們的開發人員可以能夠在享受一杯 java 的同時，使 NewPipe 更加的美好！</string>
+    <string name="donation_encouragement">NewPipe 由志願者所開發，他們花費了空閒時間將獲得的最佳體驗帶給您。現在是時候回過頭來，讓我們的開發人員可以能夠在享受一杯咖啡的同時，讓 NewPipe 變得更好。</string>
     <string name="drawer_open">打開抽屜</string>
     <string name="drawer_close">關閉抽屜</string>
 
@@ -349,12 +349,12 @@
     <string name="unbookmark_playlist">移除書簽</string>
 
     <string name="delete_playlist_prompt">您是否要刪除此播放清單？</string>
-    <string name="playlist_creation_success">已成功建立播放清單</string>
+    <string name="playlist_creation_success">已建立播放清單</string>
     <string name="playlist_add_stream_success">加入到播放清單</string>
     <string name="playlist_thumbnail_change_success">播放清單縮圖已更改</string>
-    <string name="playlist_delete_failure">刪除播放清單失败</string>
+    <string name="playlist_delete_failure">無法刪除播放清單</string>
 
-    <string name="caption_none">無標題</string>
+    <string name="caption_none">沒有字幕</string>
 
     <string name="resize_fit">適合的</string>
     <string name="resize_fill">填滿</string>
@@ -365,7 +365,7 @@
     <string name="normal_caption_font_size">正常字體</string>
     <string name="larger_caption_font_size">加大字體</string>
 
-    <string name="drawer_header_action_paceholder_text">某些東西很快就會到來 ;D</string>
+    <string name="drawer_header_action_paceholder_text">某些東西很快就會出現 ;D</string>
 
 
     <string name="toggle_leak_canary">監測流失</string>
@@ -401,50 +401,49 @@
     <string name="export_ongoing">正在匯出…</string>
 
     <string name="import_file_title">匯入檔案</string>
-    <string name="subscriptions_import_unsuccessful">訂閱匯入失敗</string>
-    <string name="subscriptions_export_unsuccessful">訂閱匯出失敗</string>
+    <string name="subscriptions_import_unsuccessful">無法匯入訂閱</string>
+    <string name="subscriptions_export_unsuccessful">無法匯出訂閱</string>
 
     <string name="previous_export">之前的匯出</string>
 
     <string name="invalid_file">檔案不存在或沒有足夠的權限讀取或寫入</string>
-    <string name="import_youtube_instructions">要匯入您的 YouTube 訂閱，您必須匯出檔案，可以按照以下說明進行下載：
-\n
-\n1. 轉到此網址：%1$s
-\n2. 當被詢問時登入您的帳戶
+    <string name="import_youtube_instructions">透過下載匯出檔案來匯入您的 YouTube 訂閱： 
+\n 
+\n1. 轉到此網址：%1$s 
+\n2. 當被詢問時登入您的帳戶 
 \n3. 下載應該開始 ( 這就是匯出的檔案 )</string>
-    <string name="import_soundcloud_instructions_hint">yourid, soundcloud.com/yourid</string>
+    <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/yourid</string>
 
     <string name="import_network_expensive_warning">請記住，此操作可能會造成網路昂貴花費。
 \n
 \n您想繼續嗎？</string>
-<string name="import_soundcloud_instructions">要匯入您的 SoundCloud，您必須知道您的個人資料網址或 ID。 如果您這樣做，只需在下方的輸入中鍵入其中的任意一個，然後就可以開始了。
-\n
-\n如果您不這樣做，您可以按照以下步驟操作：
-\n1. 在一些瀏覽器中啟用「桌面模式」(該網站不適用於行動裝置)
-\n2. 移至此網址：%1$s
-\n3. 詢問時登入到您的帳號
-\n4. 複製網址您會被重新導向(這是您的個人資料網址)</string>
+<string name="import_soundcloud_instructions">透過輸入 URL 或您的 ID 來匯入 SoundCloud 檔案： 
+\n 
+\n1. 在一些瀏覽器中啟用「桌面模式」(該網站不適用於行動裝置) 
+\n2. 移至此網址：%1$s 
+\n3. 詢問時登入到您的帳號 
+\n4. 複製您被重新導向到的網址。</string>
     <string name="download_thumbnail_title">載入縮圖</string>
     <string name="download_thumbnail_summary">停用後，NewPipe將不再載入縮圖，減少數據使用與騰空儲存空間，亦會清除記憶體和磁碟上的縮圖快取。</string>
     <string name="thumbnail_cache_wipe_complete_notice">已清除圖片快取</string>
     <string name="metadata_cache_wipe_title">抹除快取中介資料</string>
     <string name="metadata_cache_wipe_summary">移除所有網頁的快取資料</string>
     <string name="metadata_cache_wipe_complete_notice">已清除中介資料快取</string>
-    <string name="playback_speed_control">重播速度控制</string>
+    <string name="playback_speed_control">播放速度控制</string>
     <string name="playback_tempo">節拍</string>
     <string name="playback_pitch">間距</string>
     <string name="unhook_checkbox">解除 (可能導致失真)</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">預設</string>
-<string name="preferred_open_action_settings_title">偏好的開啟動作</string>
+<string name="preferred_open_action_settings_title">偏好的「開啟」動作</string>
     <string name="preferred_open_action_settings_summary">開起內容時的預設動作 — %s</string>
 
     <string name="no_streams_available_download">沒有可供下載的串流</string>
 
     <string name="caption_setting_title">字幕</string>
-    <string name="caption_setting_description">調整播放器字幕大小與背景樣式。必須重新啟動播放器才會生效。</string>
+    <string name="caption_setting_description">調整播放器字幕大小與背景樣式。必須重新啟動應用程式才會生效。</string>
 
-    <string name="toast_no_player">此檔案找不到播放器</string>
+    <string name="toast_no_player">未安裝可播放此檔案的應用程式</string>
 
     <string name="clear_views_history_title">清除觀看歷史</string>
     <string name="clear_views_history_summary">刪除播放過的串流歷史。</string>
@@ -456,4 +455,5 @@
     <string name="search_history_deleted">搜尋歷史已刪除。</string>
     <string name="one_item_deleted">已刪除 1 個項目。</string>
 
+    <string name="app_license">NewPipe 是一個 Copyleft 的自由軟體：您可以隨意使用、研究、分享並改進它。您可以在遵守由自由軟體基金會所發佈的 GNU 通用公共授權條款的狀況下自由地再散佈及／或修改它，授權條款預設使用第三版，但您也可以選擇更新的版本。</string>
     </resources>
