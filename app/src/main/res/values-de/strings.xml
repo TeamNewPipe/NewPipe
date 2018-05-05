@@ -28,7 +28,7 @@
     <string name="m4a_description">M4A — bessere Qualität</string>
     <string name="download_dialog_title">Herunterladen</string>
     <string name="next_video_title">Nächstes Video</string>
-    <string name="show_next_and_similar_title">Zeige nächstes und ähnliche Videos</string>
+    <string name="show_next_and_similar_title">\'Nächste\' und \'ähnliche\' Videos anzeigen</string>
     <string name="url_not_supported_toast">URL wird nicht unterstützt</string>
     <string name="settings_category_video_audio_title">Video &amp; Audio</string>
     <string name="search_language_title">Bevorzugte Sprache des Inhalts</string>
@@ -90,7 +90,7 @@
     <string name="your_comment">Dein Kommentar (auf englisch):</string>
     <string name="could_not_get_stream">Konnte keinen Stream holen</string>
     <string name="autoplay_by_calling_app_title">Autoplay</string>
-    <string name="autoplay_by_calling_app_summary">Spiele ein Video automatisch ab, wenn NewPipe von einer anderen App aufgerufen wurde</string>
+    <string name="autoplay_by_calling_app_summary">Spiele ein Video ab, wenn NewPipe von einer anderen App aufgerufen wurde</string>
     <string name="report_error">Einen Fehler melden</string>
     <string name="user_report">Anwenderbericht</string>
 
@@ -185,7 +185,7 @@
     <string name="error_unable_to_load_license">Lizenz konnte nicht geladen werden</string>
     <string name="copyright" formatted="true">© %1$s von %2$s unter %3$s</string>
     <string name="tab_about">Über</string>
-    <string name="app_description">Eine offene, schlanke YouTube App für Android.</string>
+    <string name="app_description">Eine freie, schlanke Streaming App für Android.</string>
     <string name="app_license_title">NewPipes Lizenz</string>
     <string name="contribution_encouragement">Ob Ideen, Übersetzung, Design-Änderungen, Code-Aufräumung oder richtig große Code-Änderungen - Hilfe ist immer willkommen. Je mehr geholfen wird, desto besser wird NewPipe!</string>
     <string name="title_licenses">Drittanbieter-Lizenzen</string>
@@ -267,7 +267,7 @@
 
     <string name="play_queue_remove">Entfernen</string>
     <string name="play_queue_audio_settings">Audio Einstellungen</string>
-    <string name="player_stream_failure">Abspielen des Streams fehlgeschlagen</string>
+    <string name="player_stream_failure">Konnte diesen Stream nicht abspielen</string>
     <string name="main_page_content">Inhalt der Hauptseite</string>
     <string name="subscription_page_summary">Abonnement-Seite</string>
     <string name="feed_page_summary">Feed-Seite</string>
@@ -298,8 +298,8 @@
 <string name="donation_title">Spenden</string>
     <string name="give_back">Zurückgeben</string>
     <string name="website_title">Website</string>
-    <string name="website_encouragement">Um mehr Informationen und die neuesten Nachrichten über NewPipe zu erhalten, besuche unsere Website.</string>
-    <string name="donation_encouragement">NewPipe wird von Freiwilligen entwickelt, die ihre Freizeit dafür aufbringen, die beste Nutzererfahrung zu bieten. Jetzt ist es an Dir, ein wenig zurückzugeben und sicherzustellen, dass unsere Entwickler NewPipe noch besser machen können, während sie sich an einer Tasse Java-Kaffee erfreuen!</string>
+    <string name="website_encouragement">Besuchen Sie die NewPipe Website für weitere Informationen und Neuigkeiten.</string>
+    <string name="donation_encouragement">NewPipe wird von Freiwilligen entwickelt, die ihre Freizeit dafür aufbringen, die beste Nutzererfahrung zu bieten. Geben Sie etwas zurück, um Entwicklern zu helfen, NewPipe bei einer Tasse Kaffee noch besser zu machen.</string>
     <string name="service_title">Service</string>
     <string name="no_player_found_toast">Kein Streamplayer gefunden (Du kannst VLC installieren, um den Stream abzuspielen)</string>
     <string name="default_content_country_title">Standard-Land des Inhalts</string>
@@ -325,7 +325,7 @@
     <string name="always_ask_player">Immer fragen</string>
     
     <string name="preferred_player_fetcher_notification_title">Informationen werden abgerufen…</string>
-    <string name="preferred_player_fetcher_notification_message">Der angeforderte Inhalt wird geladen</string>
+    <string name="preferred_player_fetcher_notification_message">Die angeforderten Inhalte werden geladen</string>
 <string name="import_data_title">Datenbank importieren</string>
     <string name="export_data_title">Datenbank exportieren</string>
     <string name="import_data_summary">Wird deinen Verlauf und deine Abos überschreiben</string>
@@ -397,9 +397,9 @@
     <string name="import_file_title">Datei importieren</string>
     <string name="previous_export">Vorheriger Export</string>
 
-    <string name="import_network_expensive_warning">Beachte, dass diese Aktion das Netzwerk stark belasten kann. 
+    <string name="import_network_expensive_warning">Beachten Sie, dass diese Aktion das Netzwerk stark belasten kann. 
 \n 
-\nMöchtest du fortfahren?</string>
+\nMöchten Sie fortfahren?</string>
 <string name="download_thumbnail_title">Vorschaubilder laden</string>
     <string name="thumbnail_cache_wipe_complete_notice">Bildercache gelöscht</string>
     <string name="metadata_cache_wipe_title">Leere die gecachten Metadaten</string>
@@ -412,10 +412,10 @@
     <string name="playlist_name_input">Name</string>
     <string name="import_export_title">Import/Export</string>
     <string name="import_title">Import</string>
-    <string name="subscriptions_import_unsuccessful">Import der Abonnements fehlgeschlagen</string>
-    <string name="subscriptions_export_unsuccessful">Export der Abonnements fehlgeschlagen</string>
+    <string name="subscriptions_import_unsuccessful">Abonnements konnten nicht importiert werden</string>
+    <string name="subscriptions_export_unsuccessful">Abonnements konnten nicht exportiert werden</string>
 
-    <string name="playback_speed_control">Wiedergabegeschwindigkeit</string>
+    <string name="playback_speed_control">Wiedergabegeschwindigkeitsregler</string>
     <string name="playback_tempo">Geschwindigkeit</string>
     <string name="playback_pitch">Tonhöhe</string>
     <string name="unhook_checkbox">Aushaken (kann zu Verzerrungen führen)</string>
@@ -423,44 +423,42 @@
     <string name="playback_default">Standard</string>
 <string name="download_thumbnail_summary">Deaktivieren Sie diese Option, um das Laden aller Miniaturansichten zu stoppen und Daten und Speicherverbrauch zu sparen. Wenn Sie dies ändern, wird sowohl der In-Memory- als auch der On-Disk-Image-Cache gelöscht.</string>
     <string name="auto_queue_title">Nächsten Stream automatisch einreihen</string>
-    <string name="auto_queue_summary">Fügen Sie automatisch einen zugehörigen Stream hinzu, wenn die Wiedergabe auf dem letzten Stream in einer sich nicht wiederholenden Wiedergabewarteschlange beginnt.</string>
+    <string name="auto_queue_summary">Automatisches Anhängen eines verwandten Streams beim Abspielen des letzten Streams in einer nicht wiederholten Warteschlange.</string>
     <string name="drawer_header_action_paceholder_text">Hier wird bald etwas stehen ;D</string>
 
 
     <string name="bookmark_playlist">Lesezeichen Wiedergabeliste</string>
-    <string name="resize_fit">ANPASSEN</string>
-    <string name="resize_fill">FÜLLEN</string>
-    <string name="resize_zoom">VERGRÖßERN</string>
+    <string name="resize_fit">Anpassen</string>
+    <string name="resize_fill">Füllen</string>
+    <string name="resize_zoom">Vergrößern</string>
 
     <string name="enable_leak_canary_summary">Speicherlecküberwachung kann dazu führen, dass die App beim Heap-Dumping nicht mehr reagiert</string>
 
     <string name="enable_disposed_exceptions_title">Fehler außerhalb des Lebenszyklus melden</string>
-    <string name="enable_disposed_exceptions_summary">Erzwingen der Meldung unzustellbarer Rx-Ausnahmen, die außerhalb des Lebenszyklus von Fragmenten oder Aktivitäten nach der Entsorgung auftreten</string>
+    <string name="enable_disposed_exceptions_summary">Erzwingen der Meldung unzustellbarer Rx-Ausnahmen außerhalb des Lebenszyklus von Fragmenten oder Aktivitäten nach der Entsorgung</string>
 
-    <string name="import_youtube_instructions">Um Ihre YouTube-Abonnements zu importieren, benötigen Sie die Exportdatei, die Sie mit dieser Anleitung herunterladen können:
-\n
-\n1. Gehen Sie zu dieser URL: %1$s
-\n2. Melden Sie sich bei Ihrem Konto an, wenn Sie dazu aufgefordert werden.
+    <string name="import_youtube_instructions">Importieren Sie YouTube-Abonnements, indem Sie die Exportdatei herunterladen: 
+\n 
+\n1. Gehen Sie zu dieser URL: %1$s 
+\n2. Melden Sie sich an, wenn Sie dazu aufgefordert werden. 
 \n3. Der Ladevorgang sollte beginnen (das ist die Exportdatei)</string>
-    <string name="import_soundcloud_instructions">Um Ihre SoundCloud-Folgen zu importieren, müssen Sie Ihre Profil-URL oder -ID kennen. Wenn ja, geben Sie einfach einen der beiden in die untenstehende Eingabe ein und Sie können loslegen.
+    <string name="import_soundcloud_instructions">Importieren Sie ein SoundCloud-Profil, indem Sie entweder die URL oder Ihre ID eingeben:
 \n
-\nWenn nicht, können Sie diesen Schritten folgen:
-\n
-\n1. Aktivieren Sie den \"Desktop-Modus\" in einigen Browsern (die Seite ist für mobile Geräte nicht verfügbar).
+\n1. Aktivieren des \"Desktop-Modus\" in einem Web-Browser (die Seite ist für mobile Geräte nicht verfügbar)
 \n2. Gehen Sie zu dieser URL: %1$s
-\n3. Melden Sie sich bei Ihrem Konto an, wenn Sie dazu aufgefordert werden.
-\n4. Kopieren Sie die URL, zu der Sie umgeleitet wurden (das ist Ihre Profil-URL)</string>
-    <string name="import_soundcloud_instructions_hint">yourid, soundcloud.com/yourid</string>
+\n3. Melden Sie sich an, wenn Sie gefragt werden
+\n4. Kopieren Sie die Profil-URL, zu der Sie weitergeleitet wurden.</string>
+    <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/yourid</string>
 
     <string name="no_streams_available_download">Keine Streams zum Download verfügbar</string>
 
-    <string name="preferred_open_action_settings_title">Bevorzugte öffnen Aktion</string>
+    <string name="preferred_open_action_settings_title">Bevorzugte \'öffnen\' Aktion</string>
     <string name="preferred_open_action_settings_summary">Standardaktion beim Öffnen von Inhalten - %s</string>
 
     <string name="caption_setting_title">Untertitel</string>
     <string name="caption_setting_description">Ändere Textgröße und Hintergrundstil des Untertitels im Player. Wird erst nach Neustart des App wirksam.</string>
 
-    <string name="toast_no_player">Für diese Datei wurde kein Player gefunden</string>
+    <string name="toast_no_player">Keine App zum Abspielen dieser Datei installiert</string>
 
     <string name="clear_views_history_title">Verlauf leeren</string>
     <string name="clear_views_history_summary">Löscht den Verlauf der abgespielten Streams.</string>
@@ -472,4 +470,5 @@
     <string name="search_history_deleted">Suchverlauf gelöscht.</string>
     <string name="one_item_deleted">1 Element gelöscht.</string>
 
+    <string name="app_license">NewPipe ist copyleft libre Software: Sie können es nach Belieben benutzen, studieren, mit anderen teilen und verbessern. Insbesondere können Sie sie unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder unter Version 3 der Lizenz oder (nach Ihrer Wahl) jeder späteren Version.</string>
     </resources>
