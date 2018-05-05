@@ -40,7 +40,7 @@
 
     <string name="download_dialog_title">Prevziať</string>
     <string name="next_video_title">Ďalšie video</string>
-    <string name="show_next_and_similar_title">Ukázať ďalšie a podobné videá</string>
+    <string name="show_next_and_similar_title">Ukázať \'ďalšie\' a \'podobné\' videá</string>
     <string name="url_not_supported_toast">URL nie je podporovaná</string>
     <string name="search_language_title">Preferovaný jazyk obsahu</string>
     <string name="settings_category_video_audio_title">Video &amp; Zvuk</string>
@@ -68,7 +68,7 @@
     <string name="info_dir_created">Adresár na preberanie bol vytvorený \'%1$s\'</string>
     <string name="main_bg_subtitle">Začnite vyhľadaním obsahu</string>
     <string name="autoplay_by_calling_app_title">Automatické prehrávanie</string>
-    <string name="autoplay_by_calling_app_summary">Video bude automaticky prehrané pri zavolaní NewPipe inou aplikáciou</string>
+    <string name="autoplay_by_calling_app_summary">Prehrá video pri zavolaní NewPipe inou aplikáciou</string>
     <string name="content">Obsah</string>
     <string name="show_age_restricted_content_title">Zobraziť vekovo obmedzený obsah</string>
     <string name="video_is_age_restricted">Toto video je vekovo obmedzené. Povoľte zobrazenie obsahu v nastavení.</string>
@@ -192,7 +192,7 @@
 
     <string name="enable_search_history_title">Hľadať v histórií</string>
     <string name="enable_search_history_summary">Hľadané výrazy ukladať lokálne</string>
-    <string name="enable_watch_history_title">História</string>
+    <string name="enable_watch_history_title">História a vyrovnávacia pamäť</string>
     <string name="enable_watch_history_summary">Ukladať históriu pozretých videí</string>
     <string name="resume_on_audio_focus_gain_title">Pokračovať po prepnutí zobrazenia</string>
     <string name="resume_on_audio_focus_gain_summary">Pokračovať po prerušeniach (napr. hlasový hovor)</string>
@@ -219,7 +219,7 @@
     <string name="tab_about">O</string>
     <string name="tab_contributors">Prispievatelia</string>
     <string name="tab_licenses">Licencie</string>
-    <string name="app_description">Bezplatný a nenáročný YouTube frontend pre Android.</string>
+    <string name="app_description">Ľahké streamovanie v systéme Android.</string>
     <string name="view_on_github">Pozrieť na GitHube</string>
     <string name="app_license_title">Licencia NewPipe</string>
     <string name="contribution_encouragement">Či už máte nápady, prekladáte, spravíte zmenu dizajnu, čistenie kódu alebo skutočné ťažké zmeny v kóde, pomoc je vždy vítaná. Čím viac, tým lepšie!</string>
@@ -377,13 +377,13 @@
     <string name="playlist_creation_success">Zoznam skladieb bol vytvorený</string>
     <string name="playlist_add_stream_success">Pridané do zoznamu skladieb</string>
     <string name="playlist_thumbnail_change_success">Miniatúra zoznamu skladieb bola zmenená</string>
-    <string name="playlist_delete_failure">Nepodarilo odstrániť zoznam skladieb</string>
+    <string name="playlist_delete_failure">Nemožno odstrániť zoznam skladieb</string>
 
     <string name="caption_none">Bez popisu</string>
 
-    <string name="resize_fit">PRISPÔSOBIŤ</string>
-    <string name="resize_fill">VYPLNIŤ</string>
-    <string name="resize_zoom">ZVÄČŠIŤ</string>
+    <string name="resize_fit">Prispôsobiť</string>
+    <string name="resize_fill">Vyplniť</string>
+    <string name="resize_zoom">Zväčšiť</string>
 
     <string name="caption_font_size_settings_title">Veľkosť písma titulkov</string>
     <string name="smaller_caption_font_size">Menšie Písmo</string>
@@ -398,7 +398,7 @@
     <string name="metadata_cache_wipe_summary">Odstrániť všetky údaje webových stránok vo vyrovnávacej pamäti</string>
     <string name="metadata_cache_wipe_complete_notice">Vyrovnávacia pamäť metadát bola vymazaná</string>
     <string name="auto_queue_title">Automaticky zaradiť daľší stream</string>
-    <string name="auto_queue_summary">Automaticky zaradí súvisiaci stream, keď prehrávanie začne na poslednom streame v neopakujúcich zoznamoch prehrávania.</string>
+    <string name="auto_queue_summary">Automaticky zaradí súvisiaci stream, keď prehrávanie začne na poslednom streame v neopakujúcich sa zoznamoch prehrávania.</string>
     <string name="settings_category_debug_title">Ladenie</string>
     <string name="file">Súbor</string>
 
@@ -411,7 +411,7 @@
 
     <string name="toast_no_player">Prehrávač pre daný typ súboru nebol nájdený</string>
 
-    <string name="drawer_header_action_paceholder_text">Čoskoro tu niečo pribudne ;D</string>
+    <string name="drawer_header_action_paceholder_text">Čoskoro sa tu niečo objaví ;D</string>
 
 
     <string name="preferred_open_action_settings_title">Preferovaná akcia pri otvorení</string>
@@ -442,14 +442,14 @@
     <string name="import_file_title">Import súboru</string>
     <string name="previous_export">Predchádzajúci export</string>
 
-    <string name="subscriptions_import_unsuccessful">Import odberov zlyhal</string>
-    <string name="subscriptions_export_unsuccessful">Export odberov zlyhal</string>
+    <string name="subscriptions_import_unsuccessful">Nemožno importovať odbery</string>
+    <string name="subscriptions_export_unsuccessful">Nemožno exportovať odbery</string>
 
-    <string name="import_youtube_instructions">Ak chcete importovať odbery služby YouTube, budete potrebovať súbor exportu, ktorý si môžete stiahnuť podľa týchto pokynov:
-\n
-\n1. Prejdite na túto adresu URL: %1$s
-\n2. Po výzve sa prihláste do svojho účtu
-\n3. Sťahovanie by malo začať (to je súbor exportu)
+    <string name="import_youtube_instructions">Import odberov služby YouTube pomocou exportovaného zoznamu
+\n 
+\n1. Prejdite na túto adresu URL: %1$s 
+\n2. Po výzve sa prihláste do svojho účtu 
+\n3. Sťahovanie by malo začať (to je exportovaný zoznam) 
 \n</string>
     <string name="import_soundcloud_instructions">"Pre importovanie vašich SoundCloud dát, musíte poznať adresu URL alebo ID vašeho profilu. Ak poznáte jedno alebo druhé, zadajte ho do nižšie uvedeného vstupu a ste pripravení ísť.
 \n
@@ -482,4 +482,5 @@
     <string name="search_history_deleted">História vyhľadávaní bola vymazaná.</string>
     <string name="one_item_deleted">1 položka bola vymazaná.</string>
 
+    <string name="app_license">"NewPipe je slobodný softvér pod licenciou copyleft. Môžete ho používať, študovať a vylepšovať ako len chcete.  Konkrétne ho môžete šíriť a/alebo upravovať pod podmienkami Všeobecnej verejnej licencie GNU, ako ju publikuje Free Software Foundation, buď verzia 3 licencie, alebo (podľa vašej voľby) ktorákoľvek neskoršia verzia."</string>
     </resources>
