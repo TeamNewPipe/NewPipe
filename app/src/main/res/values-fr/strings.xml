@@ -408,7 +408,7 @@
     <string name="resize_fill">Remplir</string>
     <string name="caption_auto_generated">Générés automatiquement</string>
     <string name="enable_leak_canary_title">Activer LeakCanary</string>
-    <string name="enable_leak_canary_summary">Surveiller la baisse de mémoire. L\'application pourrait ne plus répondre correctement</string>
+    <string name="enable_leak_canary_summary">La surveillance de la mémoire peut mettre temporairement l\'application en pause pendant les nettoyages</string>
 
     <string name="enable_disposed_exceptions_title">Signaler erreurs Out-of-lifecycle</string>
     <string name="enable_disposed_exceptions_summary">Forcer le signalement des exceptions Rx qui surviennent hors activité</string>
