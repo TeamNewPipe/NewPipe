@@ -424,8 +424,8 @@
     <string name="import_file_title">Importer fichier</string>
     <string name="previous_export">Export précédent</string>
 
-    <string name="subscriptions_import_unsuccessful">Import des abonnements échoué</string>
-    <string name="subscriptions_export_unsuccessful">Export des abonnements échoué</string>
+    <string name="subscriptions_import_unsuccessful">Impossible d\'importer des abonnements</string>
+    <string name="subscriptions_export_unsuccessful">Impossible d\'exporter les abonnements</string>
 
     <string name="import_youtube_instructions">\"Pour importer vos abonnements YouTube vous devez d\'abord télécharger un fichier export de YouTube, selon les modalités suivantes:
 \n
