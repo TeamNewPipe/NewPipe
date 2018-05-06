@@ -462,4 +462,5 @@
     <string name="playback_nightcore">Nightcore</string>
     <string name="toast_no_player">Aucun lecteur n\'a été trouvé pour ce fichier</string>
 
+    <string name="clear_views_history_title">Effacer l\'historique de visionage</string>
     </resources>
