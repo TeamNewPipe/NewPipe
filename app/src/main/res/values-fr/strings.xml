@@ -28,7 +28,7 @@
     <string name="m4a_description">M4A — meilleure qualité</string>
     <string name="download_dialog_title">Télécharger</string>
     <string name="next_video_title">Vidéo suivante</string>
-    <string name="show_next_and_similar_title">Afficher vidéos suivantes et liées</string>
+    <string name="show_next_and_similar_title">Afficher les vidéos \"suivantes\" et \"similaires\"</string>
     <string name="url_not_supported_toast">Lien non pris en charge</string>
     <string name="settings_category_video_audio_title">Vidéo et audio</string>
     <string name="settings_category_other_title">Autre</string>
@@ -74,7 +74,7 @@
     <string name="light_parsing_error">Impossible d\'analyser complètement le site web</string>
     <string name="live_streams_not_supported">Il s\'agit d\'un direct, non supporté pour le moment.</string>
     <string name="sorry_string">Désolé, une erreur inattendue s\'est produite.</string>
-    <string name="autoplay_by_calling_app_summary">Lire automatiquement la vidéo lorsque NewPipe est appelée par une autre application</string>
+    <string name="autoplay_by_calling_app_summary">Lire la vidéo lorsque NewPipe est appelée par une autre application</string>
     <string name="error_report_button_text">Signaler l\'erreur par e-mail</string>
     <string name="what_device_headline">Information :</string>
     <string name="what_happened_headline">Ce qui s\'est passé :</string>
@@ -213,7 +213,7 @@
 
     <string name="enable_search_history_title">Historique de recherche</string>
     <string name="enable_search_history_summary">Conserver les recherches sur l\'appareil</string>
-    <string name="enable_watch_history_title">Historique</string>
+    <string name="enable_watch_history_title">Historique et cache</string>
     <string name="title_activity_history">Historique</string>
     <string name="title_history_search">Recherché</string>
     <string name="title_history_view">Regardé</string>
