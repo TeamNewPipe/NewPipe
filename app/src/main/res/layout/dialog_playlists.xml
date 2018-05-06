@@ -49,7 +49,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/separator"
-        android:background="?android:windowBackground"
         android:scrollbars="vertical"
         android:visibility="gone"
         tools:visibility="visible"
