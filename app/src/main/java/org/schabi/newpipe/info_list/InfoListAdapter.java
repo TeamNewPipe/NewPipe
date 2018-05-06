@@ -17,6 +17,7 @@ import org.schabi.newpipe.info_list.holder.PlaylistInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistMiniInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.StreamInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.StreamMiniInfoItemHolder;
+import org.schabi.newpipe.util.FallbackViewHolder;
 import org.schabi.newpipe.util.OnClickGesture;
 
 import java.util.ArrayList;
@@ -238,7 +239,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 return new PlaylistInfoItemHolder(infoItemBuilder, parent);
             default:
                 Log.e(TAG, "Trollolo");
-                return null;
+                return new FallbackViewHolder(new View(parent.getContext()));
         }
     }
 

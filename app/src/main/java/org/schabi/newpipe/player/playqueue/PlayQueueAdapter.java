@@ -14,6 +14,7 @@ import org.schabi.newpipe.player.playqueue.events.MoveEvent;
 import org.schabi.newpipe.player.playqueue.events.PlayQueueEvent;
 import org.schabi.newpipe.player.playqueue.events.RemoveEvent;
 import org.schabi.newpipe.player.playqueue.events.SelectEvent;
+import org.schabi.newpipe.util.FallbackViewHolder;
 
 import java.util.List;
 
@@ -188,7 +189,7 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 return new PlayQueueItemHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.play_queue_item, parent, false));
             default:
                 Log.e(TAG, "Attempting to create view holder with undefined type: " + type);
-                return null;
+                return new FallbackViewHolder(new View(parent.getContext()));
         }
     }
 
