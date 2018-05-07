@@ -28,7 +28,7 @@
     <string name="m4a_description">M4A — miglior qualità</string>
     <string name="download_dialog_title">Scarica</string>
     <string name="next_video_title">Prossimo video</string>
-    <string name="show_next_and_similar_title">Mostra prossimi video e video simili</string>
+    <string name="show_next_and_similar_title">Mostra \'prossimi\' video e video \'simili\'</string>
     <string name="url_not_supported_toast">URL non supportato</string>
     <string name="search_language_title">Lingua predefinita per i contenuti</string>
     <string name="settings_category_video_audio_title">Video e Audio</string>
@@ -78,7 +78,7 @@
 
     <string name="main_bg_subtitle">Tocca cerca per iniziare</string>
     <string name="autoplay_by_calling_app_title">Riproduzione automatica</string>
-    <string name="autoplay_by_calling_app_summary">Riproduci automaticamente i video quando NewPipe viene aperto da un\'altra app</string>
+    <string name="autoplay_by_calling_app_summary">Riproduci i video quando NewPipe viene aperto da un\'altra app</string>
     <string name="duration_live">in diretta</string>
 
     <string name="light_parsing_error">Impossibile analizzare completamente il sito web</string>
@@ -191,7 +191,7 @@
     <string name="tab_about">Informazioni</string>
     <string name="tab_contributors">Contributori</string>
     <string name="tab_licenses">Licenze</string>
-    <string name="app_description">Un\'interfaccia libera e leggera per accedere a YouTube su Android.</string>
+    <string name="app_description">Interfaccia libera e leggera per lo streaming di YouTube su Android.</string>
     <string name="view_on_github">Mostra su GitHub</string>
     <string name="app_license_title">Licenza di NewPipe</string>
     <string name="contribution_encouragement">Un aiuto è sempre il benvenuto: nuove idee e funzionalità, traduzioni, modifiche al design o cambiamenti radicali del codice rendono l\'applicazione sempre migliore!</string>
@@ -210,7 +210,7 @@
 
     <string name="enable_search_history_title">Cronologia ricerche</string>
     <string name="enable_search_history_summary">Salva le ricerche</string>
-    <string name="enable_watch_history_title">Cronologia</string>
+    <string name="enable_watch_history_title">Cronologia &amp; Cache</string>
     <string name="enable_watch_history_summary">Salva la cronologia dei video visualizzati</string>
     <string name="resume_on_audio_focus_gain_title">Riprendi tornando in primo piano</string>
     <string name="resume_on_audio_focus_gain_summary">Continua a riprodurre dopo le interruzioni (es. chiamate)</string>
@@ -304,8 +304,8 @@
     <string name="start_here_on_popup">Inizia qui nel Popup</string>
 <string name="donation_title">Dona</string>
     <string name="website_title">Sito web</string>
-    <string name="website_encouragement">Per ricevere maggiori informazioni e le ultime novità su NewPipe visita il nostro sito web.</string>
-    <string name="donation_encouragement">NewPipe è sviluppato da volontari che trascorrono il loro tempo libero per offrirti la migliore esperienza. È il momento di restituire il favore per assicurarsi che i nostri sviluppatori possano rendere NewPipe ancora più piacevole mentre si gustano una tazza di java!</string>
+    <string name="website_encouragement">Visita il sito web di NewPipe per maggiori informazioni e novità.</string>
+    <string name="donation_encouragement">NewPipe è sviluppato da volontari che trascorrono il loro tempo libero per offrire la migliore esperienza. Restituisci il favore per aiutare gli sviluppatori a rendere NewPipe ancora più piacevole mentre si gustano una tazza di caffè.</string>
     <string name="give_back">Restituisci</string>
     <string name="default_content_country_title">Paese predefinito per i contenuti</string>
     <string name="toggle_orientation">Cambia orientamento</string>
@@ -375,7 +375,7 @@
     <string name="unbookmark_playlist">Rimuovi segnalibro</string>
 
     <string name="delete_playlist_prompt">Vuoi eliminare questa playlist?</string>
-    <string name="playlist_creation_success">Playlist creata con successo</string>
+    <string name="playlist_creation_success">Playlist creata</string>
     <string name="playlist_add_stream_success">Aggiunti alla playlist</string>
     <string name="playlist_thumbnail_change_success">Miniatura della playlist cambiata</string>
     <string name="playlist_delete_failure">Impossibile eliminare la playlist</string>
@@ -391,20 +391,20 @@
     <string name="normal_caption_font_size">Carattere normale</string>
     <string name="larger_caption_font_size">Carattere più grande</string>
 
-	<string name="drawer_header_action_paceholder_text">A breve qualcosa si troverà qui ;D</string>
+	<string name="drawer_header_action_paceholder_text">A breve qualcosa apparirà qui ;D</string>
 
 <string name="settings_category_debug_title">Debug</string>
     <string name="caption_auto_generated">Generato automaticamente</string>
     <string name="enable_leak_canary_title">Abilita LeakCanary</string>
     <string name="enable_leak_canary_summary">Il monitoraggio delle perdite di memoria potrebbe causare la mancata risposta dell\'applicazione durante il dumping dell\'heap</string>
 
-    <string name="enable_disposed_exceptions_title">Segnala errori \"Out-of-lifecycle\"</string>
-    <string name="enable_disposed_exceptions_summary">Forza la segnalazione di eccezioni Rx non consegnabili che si verificano al di fuori del ciclo di vita dell\'attività dopo la chiusura</string>
+    <string name="enable_disposed_exceptions_title">Segnala Errori \"Out-of-lifecycle\"</string>
+    <string name="enable_disposed_exceptions_summary">Forza la segnalazione di eccezioni Rx non consegnabili al di fuori del ciclo di vita dell\'attività dopo la chiusura</string>
 
 <string name="use_inexact_seek_title">Usa la ricerca rapida ma imprecisa</string>
     <string name="use_inexact_seek_summary">La ricerca imprecisa permette al lettore multimediale di spostarsi nelle posizioni più velocemente con una precisione ridotta</string>
     <string name="auto_queue_title">Metti in coda automaticamente il prossimo flusso</string>
-    <string name="auto_queue_summary">Aggiungi automaticamente un flusso correlato quando la riproduzione inizia dall\'ultimo flusso in una coda non ripetitiva.</string>
+    <string name="auto_queue_summary">Aggiungi automaticamente un flusso correlato quando è in corso la riproduzione dell\'ultimo flusso in una coda non ripetitiva.</string>
     <string name="live_sync">SINCRONIZZAZIONE</string>
 
     <string name="file">File</string>
@@ -426,23 +426,21 @@
     <string name="import_file_title">Importa file</string>
     <string name="previous_export">Esportazione precedente</string>
 
-    <string name="subscriptions_import_unsuccessful">L\'importazione delle iscrizioni è fallita</string>
-    <string name="subscriptions_export_unsuccessful">L\'esportazione delle iscrizioni è fallita</string>
+    <string name="subscriptions_import_unsuccessful">Impossibile importare le iscrizioni</string>
+    <string name="subscriptions_export_unsuccessful">Impossibile esportare le iscrizioni</string>
 
-    <string name="import_youtube_instructions">Per importare le tue iscrizioni di YouTube è necessario il file d\'esportazione, che può essere scaricato seguendo le seguenti istruzioni:
+    <string name="import_youtube_instructions">Importa le iscrizioni di YouTube scaricando il file d\'esportazione: 
 \n 
-\n1. Vai a questo URL: %1$s
-\n2. Accedi al tuo account quando richiesto
+\n1. Vai a questo URL: %1$s 
+\n2. Accedi quando richiesto 
 \n3. Il download del file d\'esportazione dovrebbe partire in automatico</string>
-    <string name="import_soundcloud_instructions">Per importare gli artisti che segui su SoundCloud devi conoscere l\'URL del tuo profilo o il tuo ID. Se ne sei a conoscenza, digita uno di questi nel campo qui sotto e sei pronto per iniziare.
-\n
-\nSe non lo sai, puoi seguire le seguenti istruzioni:
-\n
-\n1. Abilita la \"modalità desktop\" nel browser che utilizzi (il sito non è disponibile per i dispositivi mobili)
+    <string name="import_soundcloud_instructions">Importa un profilo SoundCloud digitando l\'URL o il tuo ID:
+\n 
+\n1. Abilita la \"modalità desktop\" nel browser (il sito non è disponibile per i dispositivi mobili)
 \n2. Vai a questo URL: %1$s
-\n3. Accedi al tuo account quando richiesto
-\n4. Copia l\'URL a cui vieni indirizzato (è l\'URL del tuo profilo)</string>
-    <string name="import_soundcloud_instructions_hint">iltuoid, soundcloud.com/iltuoid</string>
+\n3. Accedi quando richiesto
+\n4. Copia l\'URL del profilo a cui vieni indirizzato.</string>
+    <string name="import_soundcloud_instructions_hint">iltuoID, soundcloud.com/iltuoid</string>
 
     <string name="import_network_expensive_warning">Tieni presente che questa operazione può consumare una grande quantità di traffico dati.
 \n 
@@ -453,7 +451,7 @@
     <string name="metadata_cache_wipe_title">Pulisci la cache dei metadati</string>
     <string name="metadata_cache_wipe_summary">Rimuovi tutti i dati delle pagine web memorizzati nella cache</string>
     <string name="metadata_cache_wipe_complete_notice">Pulizia della cache dei metadati completata</string>
-    <string name="playback_speed_control">Controllo della velocità di riproduzione</string>
+    <string name="playback_speed_control">Controlli della velocità di riproduzione</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Tono</string>
     <string name="unhook_checkbox">Slega (può causare distorsione)</string>
@@ -461,13 +459,13 @@
     <string name="playback_default">Valore predefinito</string>
 <string name="no_streams_available_download">Nessun flusso disponibile per il download</string>
 
-    <string name="preferred_open_action_settings_title">Apri preferibilmente con</string>
+    <string name="preferred_open_action_settings_title">\'Apri\' preferibilmente con</string>
     <string name="preferred_open_action_settings_summary">Azione predefinita all\'apertura del contenuto — %s</string>
 
     <string name="caption_setting_title">Sottotitoli</string>
-    <string name="caption_setting_description">Modifica la dimensione e gli stili di sfondo dei sottotitoli. Richiede il riavvio del lettore multimediale per rendere effettive le modifiche.</string>
+    <string name="caption_setting_description">Modifica la dimensione e gli stili di sfondo dei sottotitoli. Richiede il riavvio dell\'app per rendere effettive le modifiche.</string>
 
-    <string name="toast_no_player">Non è stato trovato nessun riproduttore per questo file</string>
+    <string name="toast_no_player">Nessuna app installata per riprodurre questo file</string>
 
     <string name="clear_views_history_title">Pulisci cronologia visualizzazioni</string>
     <string name="clear_views_history_summary">Elimina la cronologia dei flussi riprodotti.</string>
@@ -479,4 +477,5 @@
     <string name="search_history_deleted">Cronologia delle ricerche eliminata.</string>
     <string name="one_item_deleted">1 elemento eliminato.</string>
 
+    <string name="app_license">NewPipe è un software libero con licenza copyleft: puoi usarlo, studiarlo, condividerlo e migliorarlo a tuo piacimento. In particolare, è possibile ridistribuirlo e/o modificarlo secondo i termini della GNU General Public License pubblicata dalla Free Software Foundation, sia nella versione 3 della Licenza, sia (a propria discrezione) in qualsiasi versione successiva.</string>
     </resources>
