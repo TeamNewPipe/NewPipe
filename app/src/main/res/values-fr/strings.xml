@@ -296,7 +296,7 @@
     <string name="start_here_on_background">Démarrer ici en arrière-plan</string>
     <string name="start_here_on_popup">Démarrer ici en fenêtré</string>
 <string name="donation_title">Donner</string>
-    <string name="donation_encouragement">NewPipe est développé par des volontaires sur leur temps libre afin de vous proposer la meilleur expérience. Maintenant il est temps de leurs offrir un café pour les soutenir dans leurs efforts et rendre NewPipe encore meilleur !</string>
+    <string name="donation_encouragement">NewPipe est développé par des volontaires, sur leur temps libre, afin de vous proposer la meilleur expérience. Offrez-leur un café pour les soutenir dans leurs efforts et rendre NewPipe encore meilleur !</string>
     <string name="website_title">Site</string>
     <string name="website_encouragement">Visitez le site internet de NewPipe pour plus d\'informations et de nouvelles.</string>
     <string name="give_back">Donner en retour</string>
@@ -465,7 +465,7 @@
     <string name="clear_views_history_title">Effacer l\'historique</string>
     <string name="clear_views_history_summary">Supprimer l\'historique des flux regardés.</string>
     <string name="delete_view_history_alert">Supprimer tout l\'historique regardé.</string>
-    <string name="view_history_deleted">Voir l\'historique des suppressions</string>
+    <string name="view_history_deleted">Historique des visionnages supprimé.</string>
     <string name="clear_search_history_title">Supprimer l\'historique des recherches</string>
     <string name="clear_search_history_summary">Supprimer l\'historique de recherche des mots clefs.</string>
     <string name="delete_search_history_alert">"Supprimer toutes les recherches de l\'historique. "</string>
