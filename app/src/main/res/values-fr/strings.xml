@@ -279,7 +279,7 @@
     <string name="play_queue_remove">Retirer</string>
     <string name="play_queue_stream_detail">Détails</string>
     <string name="play_queue_audio_settings">Paramètres audio</string>
-    <string name="show_hold_to_append_title">Afficher les fenêtres d\'aide</string>
+    <string name="show_hold_to_append_title">Afficher l\'astuce \"maintenir pour mettre en file d\'attente\"</string>
     <string name="show_hold_to_append_summary">Afficher l\'aide \"Appui long pour mettre en file d\'attente\" en appuyant sur les boutons \"Arrière-plan\" et \"Fenêtre\" sur la page de détails d\'une vidéo</string>
     <string name="unknown_content">[Inconnu]</string>
 
@@ -472,4 +472,5 @@
     <string name="search_history_deleted">Historique des recherches effacé.</string>
     <string name="one_item_deleted">Un élément supprimé.</string>
 
+    <string name="app_license">"NewPipe est un logiciel sous licence libre gauche d\'auteur : Vous pouvez l\'utiliser, l\'étudier, le partager et l\'améliorer  comme bon vous semble. Vous pouvez le redistribuer et/ou le modifier sous les termes de la licence générale publique GNU, comme publiée par la Free Software Foundation, dans sa version 3, ou, à votre convenance, dans une version plus récente. "</string>
     </resources>
