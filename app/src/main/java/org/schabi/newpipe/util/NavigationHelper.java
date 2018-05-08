@@ -100,11 +100,13 @@ public class NavigationHelper {
                                          final int repeatMode,
                                          final float playbackSpeed,
                                          final float playbackPitch,
+                                         final boolean playbackSkipSilence,
                                          @Nullable final String playbackQuality) {
         return getPlayerIntent(context, targetClazz, playQueue, playbackQuality)
                 .putExtra(BasePlayer.REPEAT_MODE, repeatMode)
                 .putExtra(BasePlayer.PLAYBACK_SPEED, playbackSpeed)
-                .putExtra(BasePlayer.PLAYBACK_PITCH, playbackPitch);
+                .putExtra(BasePlayer.PLAYBACK_PITCH, playbackPitch)
+                .putExtra(BasePlayer.PLAYBACK_SKIP_SILENCE, playbackSkipSilence);
     }
 
     public static void playOnMainPlayer(final Context context, final PlayQueue queue) {

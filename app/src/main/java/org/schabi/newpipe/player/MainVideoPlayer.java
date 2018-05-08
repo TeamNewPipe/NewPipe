@@ -181,7 +181,7 @@ public final class MainVideoPlayer extends AppCompatActivity
             playerImpl.setPlaybackQuality(playerState.getPlaybackQuality());
             playerImpl.initPlayback(playerState.getPlayQueue(), playerState.getRepeatMode(),
                     playerState.getPlaybackSpeed(), playerState.getPlaybackPitch(),
-                    playerState.wasPlaying());
+                    playerState.isPlaybackSkipSilence(), playerState.wasPlaying());
         }
     }
 
@@ -210,7 +210,8 @@ public final class MainVideoPlayer extends AppCompatActivity
         playerImpl.setRecovery();
         playerState = new PlayerState(playerImpl.getPlayQueue(), playerImpl.getRepeatMode(),
                 playerImpl.getPlaybackSpeed(), playerImpl.getPlaybackPitch(),
-                playerImpl.getPlaybackQuality(), playerImpl.isPlaying());
+                playerImpl.getPlaybackQuality(), playerImpl.getPlaybackSkipSilence(),
+                playerImpl.isPlaying());
         StateSaver.tryToSave(isChangingConfigurations(), null, outState, this);
     }
 
@@ -352,8 +353,11 @@ public final class MainVideoPlayer extends AppCompatActivity
     ////////////////////////////////////////////////////////////////////////////
 
     @Override
-    public void onPlaybackParameterChanged(float playbackTempo, float playbackPitch) {
-        if (playerImpl != null) playerImpl.setPlaybackParameters(playbackTempo, playbackPitch);
+    public void onPlaybackParameterChanged(float playbackTempo, float playbackPitch,
+                                           boolean playbackSkipSilence) {
+        if (playerImpl != null) {
+            playerImpl.setPlaybackParameters(playbackTempo, playbackPitch, playbackSkipSilence);
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -533,6 +537,7 @@ public final class MainVideoPlayer extends AppCompatActivity
                     this.getRepeatMode(),
                     this.getPlaybackSpeed(),
                     this.getPlaybackPitch(),
+                    this.getPlaybackSkipSilence(),
                     this.getPlaybackQuality()
             );
             context.startService(intent);
@@ -554,6 +559,7 @@ public final class MainVideoPlayer extends AppCompatActivity
                     this.getRepeatMode(),
                     this.getPlaybackSpeed(),
                     this.getPlaybackPitch(),
+                    this.getPlaybackSkipSilence(),
                     this.getPlaybackQuality()
             );
             context.startService(intent);
@@ -649,7 +655,8 @@ public final class MainVideoPlayer extends AppCompatActivity
 
         @Override
         public void onPlaybackSpeedClicked() {
-            PlaybackParameterDialog.newInstance(getPlaybackSpeed(), getPlaybackPitch())
+            PlaybackParameterDialog
+                    .newInstance(getPlaybackSpeed(), getPlaybackPitch(), getPlaybackSkipSilence())
                     .show(getSupportFragmentManager(), TAG);
         }
 

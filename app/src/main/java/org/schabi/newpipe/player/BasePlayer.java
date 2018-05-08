@@ -115,6 +115,7 @@ public abstract class BasePlayer implements
     public static final String REPEAT_MODE = "repeat_mode";
     public static final String PLAYBACK_PITCH = "playback_pitch";
     public static final String PLAYBACK_SPEED = "playback_speed";
+    public static final String PLAYBACK_SKIP_SILENCE = "playback_skip_silence";
     public static final String PLAYBACK_QUALITY = "playback_quality";
     public static final String PLAY_QUEUE_KEY = "play_queue_key";
     public static final String APPEND_ONLY = "append_only";
@@ -235,20 +236,23 @@ public abstract class BasePlayer implements
         final int repeatMode = intent.getIntExtra(REPEAT_MODE, getRepeatMode());
         final float playbackSpeed = intent.getFloatExtra(PLAYBACK_SPEED, getPlaybackSpeed());
         final float playbackPitch = intent.getFloatExtra(PLAYBACK_PITCH, getPlaybackPitch());
+        final boolean playbackSkipSilence = intent.getBooleanExtra(PLAYBACK_SKIP_SILENCE, false);
 
         // Good to go...
-        initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, /*playOnInit=*/true);
+        initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence,
+                /*playOnInit=*/true);
     }
 
     protected void initPlayback(@NonNull final PlayQueue queue,
                                 @Player.RepeatMode final int repeatMode,
                                 final float playbackSpeed,
                                 final float playbackPitch,
+                                final boolean playbackSkipSilence,
                                 final boolean playOnReady) {
         destroyPlayer();
         initPlayer(playOnReady);
         setRepeatMode(repeatMode);
-        setPlaybackParameters(playbackSpeed, playbackPitch);
+        setPlaybackParameters(playbackSpeed, playbackPitch, playbackSkipSilence);
 
         playQueue = queue;
         playQueue.init();
@@ -1162,19 +1166,22 @@ public abstract class BasePlayer implements
         return getPlaybackParameters().pitch;
     }
 
+    public boolean getPlaybackSkipSilence() {
+        return getPlaybackParameters().skipSilence;
+    }
+
     public void setPlaybackSpeed(float speed) {
-        setPlaybackParameters(speed, getPlaybackPitch());
+        setPlaybackParameters(speed, getPlaybackPitch(), getPlaybackSkipSilence());
     }
 
     public PlaybackParameters getPlaybackParameters() {
-        final PlaybackParameters defaultParameters = new PlaybackParameters(1f, 1f);
-        if (simpleExoPlayer == null) return defaultParameters;
+        if (simpleExoPlayer == null) return PlaybackParameters.DEFAULT;
         final PlaybackParameters parameters = simpleExoPlayer.getPlaybackParameters();
-        return parameters == null ? defaultParameters : parameters;
+        return parameters == null ? PlaybackParameters.DEFAULT : parameters;
     }
 
-    public void setPlaybackParameters(float speed, float pitch) {
-        simpleExoPlayer.setPlaybackParameters(new PlaybackParameters(speed, pitch));
+    public void setPlaybackParameters(float speed, float pitch, boolean skipSilence) {
+        simpleExoPlayer.setPlaybackParameters(new PlaybackParameters(speed, pitch, skipSilence));
     }
 
     public PlayQueue getPlayQueue() {

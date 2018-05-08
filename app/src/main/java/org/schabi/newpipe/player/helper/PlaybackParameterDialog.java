@@ -21,25 +21,24 @@ import static org.schabi.newpipe.player.BasePlayer.DEBUG;
 public class PlaybackParameterDialog extends DialogFragment {
     @NonNull private static final String TAG = "PlaybackParameterDialog";
 
-    public static final double MINIMUM_PLAYBACK_VALUE = 0.25f;
+    // Maximum allowable range in ExoPlayer
+    public static final double MINIMUM_PLAYBACK_VALUE = 0.10f;
     public static final double MAXIMUM_PLAYBACK_VALUE = 3.00f;
 
     public static final char STEP_UP_SIGN = '+';
     public static final char STEP_DOWN_SIGN = '-';
-    public static final double PLAYBACK_STEP_VALUE = 0.05f;
-
-    public static final double NIGHTCORE_TEMPO = 1.20f;
-    public static final double NIGHTCORE_PITCH_LOWER = 1.15f;
-    public static final double NIGHTCORE_PITCH_UPPER = 1.25f;
+    public static final double DEFAULT_PLAYBACK_STEP_VALUE = 0.05f;
 
     public static final double DEFAULT_TEMPO = 1.00f;
     public static final double DEFAULT_PITCH = 1.00f;
+    public static final boolean DEFAULT_SKIP_SILENCE = false;
 
     @NonNull private static final String INITIAL_TEMPO_KEY = "initial_tempo_key";
     @NonNull private static final String INITIAL_PITCH_KEY = "initial_pitch_key";
 
     public interface Callback {
-        void onPlaybackParameterChanged(final float playbackTempo, final float playbackPitch);
+        void onPlaybackParameterChanged(final float playbackTempo, final float playbackPitch,
+                                        final boolean playbackSkipSilence);
     }
 
     @Nullable private Callback callback;
@@ -50,6 +49,7 @@ public class PlaybackParameterDialog extends DialogFragment {
 
     private double initialTempo = DEFAULT_TEMPO;
     private double initialPitch = DEFAULT_PITCH;
+    private boolean initialSkipSilence = DEFAULT_SKIP_SILENCE;
 
     @Nullable private SeekBar tempoSlider;
     @Nullable private TextView tempoMinimumText;
@@ -65,16 +65,22 @@ public class PlaybackParameterDialog extends DialogFragment {
     @Nullable private TextView pitchStepDownText;
     @Nullable private TextView pitchStepUpText;
 
-    @Nullable private CheckBox unhookingCheckbox;
+    @Nullable private TextView stepSizeOnePercentText;
+    @Nullable private TextView stepSizeFivePercentText;
+    @Nullable private TextView stepSizeTenPercentText;
+    @Nullable private TextView stepSizeTwentyFivePercentText;
+    @Nullable private TextView stepSizeOneHundredPercentText;
 
-    @Nullable private TextView nightCorePresetText;
-    @Nullable private TextView resetPresetText;
+    @Nullable private CheckBox unhookingCheckbox;
+    @Nullable private CheckBox skipSilenceCheckbox;
 
     public static PlaybackParameterDialog newInstance(final double playbackTempo,
-                                                      final double playbackPitch) {
+                                                      final double playbackPitch,
+                                                      final boolean playbackSkipSilence) {
         PlaybackParameterDialog dialog = new PlaybackParameterDialog();
         dialog.initialTempo = playbackTempo;
         dialog.initialPitch = playbackPitch;
+        dialog.initialSkipSilence = playbackSkipSilence;
         return dialog;
     }
 
@@ -123,7 +129,9 @@ public class PlaybackParameterDialog extends DialogFragment {
                 .setView(view)
                 .setCancelable(true)
                 .setNegativeButton(R.string.cancel, (dialogInterface, i) ->
-                        setPlaybackParameters(initialTempo, initialPitch))
+                        setPlaybackParameters(initialTempo, initialPitch, initialSkipSilence))
+                .setNeutralButton(R.string.playback_reset, (dialogInterface, i) ->
+                        setPlaybackParameters(DEFAULT_TEMPO, DEFAULT_PITCH, DEFAULT_SKIP_SILENCE))
                 .setPositiveButton(R.string.finish, (dialogInterface, i) ->
                         setCurrentPlaybackParameters());
 
@@ -136,9 +144,13 @@ public class PlaybackParameterDialog extends DialogFragment {
 
     private void setupControlViews(@NonNull View rootView) {
         setupHookingControl(rootView);
+        setupSkipSilenceControl(rootView);
+
         setupTempoControl(rootView);
         setupPitchControl(rootView);
-        setupPresetControl(rootView);
+        setupStepSize(DEFAULT_PLAYBACK_STEP_VALUE);
+
+        setupStepSizeSelector(rootView);
     }
 
     private void setupTempoControl(@NonNull View rootView) {
@@ -157,17 +169,17 @@ public class PlaybackParameterDialog extends DialogFragment {
             tempoMinimumText.setText(PlayerHelper.formatSpeed(MINIMUM_PLAYBACK_VALUE));
 
         if (tempoStepUpText != null) {
-            tempoStepUpText.setText(getStepUpPercentString(PLAYBACK_STEP_VALUE));
+            tempoStepUpText.setText(getStepUpPercentString(DEFAULT_PLAYBACK_STEP_VALUE));
             tempoStepUpText.setOnClickListener(view -> {
-                onTempoSliderUpdated(getCurrentTempo() + PLAYBACK_STEP_VALUE);
+                onTempoSliderUpdated(getCurrentTempo() + DEFAULT_PLAYBACK_STEP_VALUE);
                 setCurrentPlaybackParameters();
             });
         }
 
         if (tempoStepDownText != null) {
-            tempoStepDownText.setText(getStepDownPercentString(PLAYBACK_STEP_VALUE));
+            tempoStepDownText.setText(getStepDownPercentString(DEFAULT_PLAYBACK_STEP_VALUE));
             tempoStepDownText.setOnClickListener(view -> {
-                onTempoSliderUpdated(getCurrentTempo() - PLAYBACK_STEP_VALUE);
+                onTempoSliderUpdated(getCurrentTempo() - DEFAULT_PLAYBACK_STEP_VALUE);
                 setCurrentPlaybackParameters();
             });
         }
@@ -194,22 +206,6 @@ public class PlaybackParameterDialog extends DialogFragment {
         if (pitchMinimumText != null)
             pitchMinimumText.setText(PlayerHelper.formatPitch(MINIMUM_PLAYBACK_VALUE));
 
-        if (pitchStepUpText != null) {
-            pitchStepUpText.setText(getStepUpPercentString(PLAYBACK_STEP_VALUE));
-            pitchStepUpText.setOnClickListener(view -> {
-                onPitchSliderUpdated(getCurrentPitch() + PLAYBACK_STEP_VALUE);
-                setCurrentPlaybackParameters();
-            });
-        }
-
-        if (pitchStepDownText != null) {
-            pitchStepDownText.setText(getStepDownPercentString(PLAYBACK_STEP_VALUE));
-            pitchStepDownText.setOnClickListener(view -> {
-                onPitchSliderUpdated(getCurrentPitch() - PLAYBACK_STEP_VALUE);
-                setCurrentPlaybackParameters();
-            });
-        }
-
         if (pitchSlider != null) {
             pitchSlider.setMax(strategy.progressOf(MAXIMUM_PLAYBACK_VALUE));
             pitchSlider.setProgress(strategy.progressOf(initialPitch));
@@ -231,24 +227,84 @@ public class PlaybackParameterDialog extends DialogFragment {
         }
     }
 
-    private void setupPresetControl(@NonNull View rootView) {
-        nightCorePresetText = rootView.findViewById(R.id.presetNightcore);
-        if (nightCorePresetText != null) {
-            nightCorePresetText.setOnClickListener(view -> {
-                final double randomPitch = NIGHTCORE_PITCH_LOWER +
-                        Math.random() * (NIGHTCORE_PITCH_UPPER - NIGHTCORE_PITCH_LOWER);
+    private void setupSkipSilenceControl(@NonNull View rootView) {
+        skipSilenceCheckbox = rootView.findViewById(R.id.skipSilenceCheckbox);
+        if (skipSilenceCheckbox != null) {
+            skipSilenceCheckbox.setChecked(initialSkipSilence);
+            skipSilenceCheckbox.setOnCheckedChangeListener((compoundButton, isChecked) ->
+                    setCurrentPlaybackParameters());
+        }
+    }
 
-                setTempoSlider(NIGHTCORE_TEMPO);
-                setPitchSlider(randomPitch);
+    private void setupStepSizeSelector(@NonNull final View rootView) {
+        stepSizeOnePercentText = rootView.findViewById(R.id.stepSizeOnePercent);
+        stepSizeFivePercentText = rootView.findViewById(R.id.stepSizeFivePercent);
+        stepSizeTenPercentText = rootView.findViewById(R.id.stepSizeTenPercent);
+        stepSizeTwentyFivePercentText = rootView.findViewById(R.id.stepSizeTwentyFivePercent);
+        stepSizeOneHundredPercentText = rootView.findViewById(R.id.stepSizeOneHundredPercent);
+
+        if (stepSizeOnePercentText != null) {
+            final double onePercent = 0.01f;
+            stepSizeOnePercentText.setText(getPercentString(onePercent));
+            stepSizeOnePercentText.setOnClickListener(view -> setupStepSize(onePercent));
+        }
+
+        if (stepSizeFivePercentText != null) {
+            final double fivePercent = 0.05f;
+            stepSizeFivePercentText.setText(getPercentString(fivePercent));
+            stepSizeFivePercentText.setOnClickListener(view -> setupStepSize(fivePercent));
+        }
+
+        if (stepSizeTenPercentText != null) {
+            final double tenPercent = 0.10f;
+            stepSizeTenPercentText.setText(getPercentString(tenPercent));
+            stepSizeTenPercentText.setOnClickListener(view -> setupStepSize(tenPercent));
+        }
+
+        if (stepSizeTwentyFivePercentText != null) {
+            final double twentyFivePercent = 0.25f;
+            stepSizeTwentyFivePercentText.setText(getPercentString(twentyFivePercent));
+            stepSizeTwentyFivePercentText.setOnClickListener(view ->
+                    setupStepSize(twentyFivePercent));
+        }
+
+        if (stepSizeOneHundredPercentText != null) {
+            final double oneHundredPercent = 1.00f;
+            stepSizeOneHundredPercentText.setText(getPercentString(oneHundredPercent));
+            stepSizeOneHundredPercentText.setOnClickListener(view ->
+                    setupStepSize(oneHundredPercent));
+        }
+    }
+
+    private void setupStepSize(final double stepSize) {
+        if (tempoStepUpText != null) {
+            tempoStepUpText.setText(getStepUpPercentString(stepSize));
+            tempoStepUpText.setOnClickListener(view -> {
+                onTempoSliderUpdated(getCurrentTempo() + stepSize);
                 setCurrentPlaybackParameters();
             });
         }
 
-        resetPresetText = rootView.findViewById(R.id.presetReset);
-        if (resetPresetText != null) {
-            resetPresetText.setOnClickListener(view -> {
-                setTempoSlider(DEFAULT_TEMPO);
-                setPitchSlider(DEFAULT_PITCH);
+        if (tempoStepDownText != null) {
+            tempoStepDownText.setText(getStepDownPercentString(stepSize));
+            tempoStepDownText.setOnClickListener(view -> {
+                onTempoSliderUpdated(getCurrentTempo() - stepSize);
+                setCurrentPlaybackParameters();
+            });
+        }
+
+        if (pitchStepUpText != null) {
+            pitchStepUpText.setText(getStepUpPercentString(stepSize));
+            pitchStepUpText.setOnClickListener(view -> {
+                onPitchSliderUpdated(getCurrentPitch() + stepSize);
+                setCurrentPlaybackParameters();
+            });
+        }
+
+        if (pitchStepDownText != null) {
+            pitchStepDownText.setText(getStepDownPercentString(stepSize));
+            pitchStepDownText.setOnClickListener(view -> {
+                onPitchSliderUpdated(getCurrentPitch() - stepSize);
                 setCurrentPlaybackParameters();
             });
         }
@@ -342,10 +398,11 @@ public class PlaybackParameterDialog extends DialogFragment {
     //////////////////////////////////////////////////////////////////////////*/
 
     private void setCurrentPlaybackParameters() {
-        setPlaybackParameters(getCurrentTempo(), getCurrentPitch());
+        setPlaybackParameters(getCurrentTempo(), getCurrentPitch(), getCurrentSkipSilence());
     }
 
-    private void setPlaybackParameters(final double tempo, final double pitch) {
+    private void setPlaybackParameters(final double tempo, final double pitch,
+                                       final boolean skipSilence) {
         if (callback != null && tempoCurrentText != null && pitchCurrentText != null) {
             if (DEBUG) Log.d(TAG, "Setting playback parameters to " +
                     "tempo=[" + tempo + "], " +
@@ -353,7 +410,7 @@ public class PlaybackParameterDialog extends DialogFragment {
 
             tempoCurrentText.setText(PlayerHelper.formatSpeed(tempo));
             pitchCurrentText.setText(PlayerHelper.formatPitch(pitch));
-            callback.onPlaybackParameterChanged((float) tempo, (float) pitch);
+            callback.onPlaybackParameterChanged((float) tempo, (float) pitch, skipSilence);
         }
     }
 
@@ -367,13 +424,22 @@ public class PlaybackParameterDialog extends DialogFragment {
                 pitchSlider.getProgress());
     }
 
+    private boolean getCurrentSkipSilence() {
+        return skipSilenceCheckbox != null && skipSilenceCheckbox.isChecked();
+    }
+
     @NonNull
     private static String getStepUpPercentString(final double percent) {
-        return STEP_UP_SIGN + PlayerHelper.formatPitch(percent);
+        return STEP_UP_SIGN + getPercentString(percent);
     }
 
     @NonNull
     private static String getStepDownPercentString(final double percent) {
-        return STEP_DOWN_SIGN + PlayerHelper.formatPitch(percent);
+        return STEP_DOWN_SIGN + getPercentString(percent);
+    }
+
+    @NonNull
+    private static String getPercentString(final double percent) {
+        return PlayerHelper.formatPitch(percent);
     }
 }
