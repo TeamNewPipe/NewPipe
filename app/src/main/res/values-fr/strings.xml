@@ -470,7 +470,7 @@
     <string name="clear_search_history_summary">Supprimer l\'historique de recherche par mot clef.</string>
     <string name="delete_search_history_alert">"Supprimer tout l\'historique de recherche. "</string>
     <string name="search_history_deleted">Historique des recherches effacé.</string>
-    <string name="one_item_deleted">Un élément supprimé.</string>
+    <string name="one_item_deleted">1 élément supprimé</string>
 
     <string name="app_license">"NewPipe est un logiciel sous licence libre : Vous pouvez l\'utiliser, l\'étudier, le partager et l\'améliorer  comme bon vous semble. Vous pouvez le redistribuer et/ou le modifier sous les termes de la licence générale publique GNU, comme publiée par la Free Software Foundation, dans sa version 3, ou, à votre convenance, dans une version plus récente. "</string>
     </resources>
