@@ -24,7 +24,7 @@
     <string name="download_path_audio_dialog_title">Masukkan lokasi unduhan berkas audio</string>
 
     <string name="autoplay_by_calling_app_title">Putar otomatis</string>
-    <string name="autoplay_by_calling_app_summary">Otomatis memutar video ketika NewPipe dijalankan dari aplikasi lain</string>
+    <string name="autoplay_by_calling_app_summary">Putar video ketika NewPipe dijalankan dari aplikasi lain</string>
     <string name="default_resolution_title">Resolusi baku</string>
     <string name="play_with_kodi_title">Putar dengan Kodi</string>
     <string name="kore_not_found">Aplikasi Kore tidak ditemukan. Pasang Kore?</string>
@@ -381,6 +381,28 @@ membuka di mode popup</string>
     <string name="larger_caption_font_size">Fon lebih besar</string>
 
     <string name="enable_leak_canary_title">Aktifkan LeakCanary</string>
-    <string name="playback_nightcore"></string>
+    <string name="playback_nightcore"/>
     <string name="playback_default">Bawaan</string>
-</resources>
+<string name="no_player_found_toast">Tidak ada aplikasi pemutar stream (Anda bisa memasang VLC untuk memutarnya)</string>
+    <string name="controls_download_desc">Unduh file stream.</string>
+    <string name="subscription_change_failed">Tidak bisa merubah langganan</string>
+    <string name="show_info">Perlihatkan Info</string>
+
+    <string name="controls_add_to_playlist_title">Tambahkan Ke</string>
+
+    <string name="clear_views_history_title">Hapus riwayat menonton</string>
+    <string name="clear_views_history_summary">Hapus riwayat stream yang diputar.</string>
+    <string name="delete_view_history_alert">Hapus seluruh riwayat menonton.</string>
+    <string name="view_history_deleted">Riwayat menonton dihapus.</string>
+    <string name="clear_search_history_title">Hapus riwayat pencarian</string>
+    <string name="clear_search_history_summary">Hapus riwayat dari ketikan pencarian.</string>
+    <string name="delete_search_history_alert">Hapus seluruh riwayat pencarian.</string>
+    <string name="search_history_deleted">Riwayat pencarian dihapus.</string>
+    <string name="no_streams_available_download">Tidak ada stream yang tersedia untuk diunduh</string>
+
+    <string name="one_item_deleted">1 item di hapus.</string>
+
+    <string name="toast_no_player">Tidak ada aplikasi terpasang untuk memutar file ini</string>
+
+    <string name="title_history_view">Sudah dilihat</string>
+    </resources>
