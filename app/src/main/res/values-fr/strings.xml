@@ -279,7 +279,7 @@
     <string name="play_queue_remove">Retirer</string>
     <string name="play_queue_stream_detail">Détails</string>
     <string name="play_queue_audio_settings">Paramètres audio</string>
-    <string name="show_hold_to_append_title">Afficher l\'astuce \"maintenir pour mettre en file d\'attente\"</string>
+    <string name="show_hold_to_append_title">Afficher l\'aide « maintenir pour ajouter »</string>
     <string name="show_hold_to_append_summary">Afficher l\'aide \"Appui long pour mettre en file d\'attente\" en appuyant sur les boutons \"Arrière-plan\" et \"Fenêtre\" sur la page de détails d\'une vidéo</string>
     <string name="unknown_content">[Inconnu]</string>
 
@@ -324,7 +324,7 @@
     <string name="always_ask_player">Toujours demander</string>
     
     <string name="preferred_player_fetcher_notification_title">Obtention des infos…</string>
-    <string name="preferred_player_fetcher_notification_message">Chargement du contenu demandé</string>
+    <string name="preferred_player_fetcher_notification_message">Chargement du contenu</string>
     <string name="import_data_title">Importer les données</string>
     <string name="export_data_title">Exporter les données</string>
     <string name="import_data_summary">Cela effacera vos données actuelles</string>
