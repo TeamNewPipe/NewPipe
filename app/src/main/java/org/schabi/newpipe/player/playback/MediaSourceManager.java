@@ -172,7 +172,6 @@ public class MediaSourceManager {
         playQueueReactor.cancel();
         loaderReactor.dispose();
         syncReactor.dispose();
-        playlist.dispose();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -481,8 +480,6 @@ public class MediaSourceManager {
 
     private void resetSources() {
         if (DEBUG) Log.d(TAG, "resetSources() called.");
-
-        playlist.dispose();
         playlist = new ManagedMediaSourcePlaylist();
     }
 

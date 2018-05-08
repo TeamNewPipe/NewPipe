@@ -3,14 +3,14 @@ package org.schabi.newpipe.player.mediasource;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.google.android.exoplayer2.source.DynamicConcatenatingMediaSource;
+import com.google.android.exoplayer2.source.ConcatenatingMediaSource;
 import com.google.android.exoplayer2.source.ShuffleOrder;
 
 public class ManagedMediaSourcePlaylist {
-    @NonNull private final DynamicConcatenatingMediaSource internalSource;
+    @NonNull private final ConcatenatingMediaSource internalSource;
 
     public ManagedMediaSourcePlaylist() {
-        internalSource = new DynamicConcatenatingMediaSource(/*isPlaylistAtomic=*/false,
+        internalSource = new ConcatenatingMediaSource(/*isPlaylistAtomic=*/false,
                 new ShuffleOrder.UnshuffledShuffleOrder(0));
     }
 
@@ -32,12 +32,8 @@ public class ManagedMediaSourcePlaylist {
                 null : (ManagedMediaSource) internalSource.getMediaSource(index);
     }
 
-    public void dispose() {
-        internalSource.releaseSource();
-    }
-
     @NonNull
-    public DynamicConcatenatingMediaSource getParentMediaSource() {
+    public ConcatenatingMediaSource getParentMediaSource() {
         return internalSource;
     }
 
@@ -46,7 +42,7 @@ public class ManagedMediaSourcePlaylist {
     //////////////////////////////////////////////////////////////////////////*/
 
     /**
-     * Expands the {@link DynamicConcatenatingMediaSource} by appending it with a
+     * Expands the {@link ConcatenatingMediaSource} by appending it with a
      * {@link PlaceholderMediaSource}.
      *
      * @see #append(ManagedMediaSource)
@@ -56,17 +52,17 @@ public class ManagedMediaSourcePlaylist {
     }
 
     /**
-     * Appends a {@link ManagedMediaSource} to the end of {@link DynamicConcatenatingMediaSource}.
-     * @see DynamicConcatenatingMediaSource#addMediaSource
+     * Appends a {@link ManagedMediaSource} to the end of {@link ConcatenatingMediaSource}.
+     * @see ConcatenatingMediaSource#addMediaSource
      * */
     public synchronized void append(@NonNull final ManagedMediaSource source) {
         internalSource.addMediaSource(source);
     }
 
     /**
-     * Removes a {@link ManagedMediaSource} from {@link DynamicConcatenatingMediaSource}
+     * Removes a {@link ManagedMediaSource} from {@link ConcatenatingMediaSource}
      * at the given index. If this index is out of bound, then the removal is ignored.
-     * @see DynamicConcatenatingMediaSource#removeMediaSource(int)
+     * @see ConcatenatingMediaSource#removeMediaSource(int)
      * */
     public synchronized void remove(final int index) {
         if (index < 0 || index > internalSource.getSize()) return;
@@ -75,10 +71,10 @@ public class ManagedMediaSourcePlaylist {
     }
 
     /**
-     * Moves a {@link ManagedMediaSource} in {@link DynamicConcatenatingMediaSource}
+     * Moves a {@link ManagedMediaSource} in {@link ConcatenatingMediaSource}
      * from the given source index to the target index. If either index is out of bound,
      * then the call is ignored.
-     * @see DynamicConcatenatingMediaSource#moveMediaSource(int, int)
+     * @see ConcatenatingMediaSource#moveMediaSource(int, int)
      * */
     public synchronized void move(final int source, final int target) {
         if (source < 0 || target < 0) return;
@@ -99,7 +95,7 @@ public class ManagedMediaSourcePlaylist {
     }
 
     /**
-     * Updates the {@link ManagedMediaSource} in {@link DynamicConcatenatingMediaSource}
+     * Updates the {@link ManagedMediaSource} in {@link ConcatenatingMediaSource}
      * at the given index with a given {@link ManagedMediaSource}.
      * @see #update(int, ManagedMediaSource, Runnable)
      * */
@@ -108,11 +104,11 @@ public class ManagedMediaSourcePlaylist {
     }
 
     /**
-     * Updates the {@link ManagedMediaSource} in {@link DynamicConcatenatingMediaSource}
+     * Updates the {@link ManagedMediaSource} in {@link ConcatenatingMediaSource}
      * at the given index with a given {@link ManagedMediaSource}. If the index is out of bound,
      * then the replacement is ignored.
-     * @see DynamicConcatenatingMediaSource#addMediaSource
-     * @see DynamicConcatenatingMediaSource#removeMediaSource(int, Runnable)
+     * @see ConcatenatingMediaSource#addMediaSource
+     * @see ConcatenatingMediaSource#removeMediaSource(int, Runnable)
      * */
     public synchronized void update(final int index, @NonNull final ManagedMediaSource source,
                                     @Nullable final Runnable finalizingAction) {
