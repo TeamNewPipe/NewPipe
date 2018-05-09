@@ -53,7 +53,7 @@
     <string name="use_tor_summary">(إختبارية) إجراء التنزيلات من خلال استخدام بروكسي Tor لزيادة الخصوصية ( تشغيل الفيديو المباشر غير مدعوم حتى الأن ).</string>
     <string name="use_tor_title">استخدام Tor</string>
     <string name="view_count_text">%1$s مشاهدات</string>
-    <string name="webm_description">WebM—صيغة حرة</string>
+    <string name="webm_description">تنسيق حر — WebM</string>
     <string name="blocked_by_gema">تم حجبه بواسطة GEMA</string>
     <string name="content_not_available">المحتوى غير متاح</string>
     <string name="could_not_load_thumbnails">لم يتمكن من تحميل كل صور المعاينة</string>
@@ -337,7 +337,7 @@
     <string name="always_ask_open_action">أُطلُب دائمًا</string>
     
     <string name="preferred_player_fetcher_notification_title">عملية تحميل المعلومات جارية …</string>
-    <string name="preferred_player_fetcher_notification_message">جارٍ تحميل المحتوى المطلوب</string>
+    <string name="preferred_player_fetcher_notification_message">تحميل المحتوى المطلوب</string>
 
     <string name="create_playlist">إنشاء قائمة تشغيل جديدة</string>
     <string name="delete_playlist">حذف قائمة التشغيل</string>
@@ -386,7 +386,7 @@
     <string name="export_ongoing">عملية التصدير جارية …</string>
 
     <string name="import_file_title">إستيراد ملف</string>
-    <string name="import_soundcloud_instructions_hint">yourid, soundcloud.com/yourid</string>
+    <string name="import_soundcloud_instructions_hint">"معرفك , soundcloud.com/ الخاص بك  "</string>
 
     <string name="playback_default">إفتراضي</string>
 <string name="download_thumbnail_summary">تعطيل إيقاف جميع الصور المصغرة من تحميل البيانات واستخدام الذاكرة وحفظها. سيؤدي تغيير هذا إلى محو ذاكرة التخزين المؤقت للصورة في ذاكرة أو على القرص.</string>
@@ -410,4 +410,59 @@
     <string name="enable_disposed_exceptions_title">تقرير الأخطاء خارج دورة الحياة</string>
     <string name="enable_disposed_exceptions_summary">فرض الإبلاغ عن استثناءات Rx غير القابلة للتسليم خارج دورة حياة الجزء أو النشاط بعد التخلص منها</string>
 
+    <string name="clear_views_history_title">محو سجل المشاهدة</string>
+    <string name="clear_views_history_summary">احذف محفوظات التدفقات التي تم تشغيلها.</string>
+    <string name="delete_view_history_alert">حذف سجل المشاهدة بالكامل.</string>
+    <string name="view_history_deleted">سجل المشاهدة المحذوف.</string>
+    <string name="clear_search_history_title">محو سجل البحث</string>
+    <string name="clear_search_history_summary">يحذف تاريخ البحث عن الكلمات الرئيسية.</string>
+    <string name="delete_search_history_alert">حذف محفوظات البحث بالكامل.</string>
+    <string name="search_history_deleted">سجل البحث المحذوف.</string>
+    <string name="external_player_unsupported_link_type">المشغل الخارجي لا يدعم هذه الأنواع من الروابط</string>
+    <string name="invalid_source">مصدر ملف / مصدر غير صالح</string>
+    <string name="invalid_file">الملف غير موجود أو ليس لديه الإذن الكافي للقراءة أو الكتابة إليه</string>
+    <string name="no_streams_available_download">لا توجد تدفقات متاحة للتنزيل</string>
+
+    <string name="one_item_deleted">تم حذف عنصر. 1</string>
+
+    <string name="toast_no_player">لم يتم تثبيت أي تطبيق لتشغيل هذا الملف</string>
+
+    <string name="app_license">NewPipe هو برنامج مفتوح المصدر حقوق متروكة: يمكنك استخدام حصة الدراسة وتحسينه في إرادتك. على وجه التحديد يمكنك إعادة توزيع و / أو تعديله تحت شروط رخصة تحت شروط GNU والتي نشرتها مؤسسة البرمجيات الحرة، سواء الإصدار 3 من الرخصة، أو (باختيارك) أي إصدار لاحق.</string>
+    <string name="delete_stream_history_prompt">هل تريد حذف هذا العنصر من سجل المشاهدة؟</string>
+    <string name="delete_all_history_prompt">هل أنت متأكد من أنك تريد حذف كل العناصر من السجل؟</string>
+    <string name="title_last_played">"اخر ما تم تشغيله "</string>
+    <string name="title_most_played">الأكثر تشغيلا</string>
+
+    <string name="override_current_data">هذا سوف يتجاوز الإعداد الحالي الخاص بك.</string>
+
+    <string name="preferred_open_action_settings_title">المفضل \'لفتح\' العمل</string>
+    <string name="preferred_open_action_settings_summary">"لإجراء الافتراضي عند فتح المحتوى  — %s"</string>
+
+    <string name="background_player">مشغل الخلفية</string>
+    <string name="popup_player">المشغل المنبثق</string>
+    <string name="previous_export">التصدير السابق</string>
+
+    <string name="subscriptions_import_unsuccessful">تعذر استيراد الاشتراكات</string>
+    <string name="subscriptions_export_unsuccessful">لا يمكن تصدير الاشتراكات</string>
+
+    <string name="import_youtube_instructions">استيراد اشتراكات YouTube عن طريق تنزيل ملف التصدير:
+\n
+\n1. انتقل إلى عنوان URL هذا: %1$s
+\n2. تسجيل الدخول عندما يتطلب
+\n3. يجب أن يبدأ تنزيل (وهذا ملف التصدير)</string>
+    <string name="import_soundcloud_instructions">قم باستيراد ملف تعريف SoundCloud عن طريق كتابة عنوان URL أو معرفك:
+\n
+\n1. تمكين \"وضع سطح المكتب\" في متصفح الويب (الموقع غير متاح للأجهزة المحمولة)
+\n2. انتقل إلى عنوان URL هذا: %1$s
+\n3. تسجيل الدخول عندما يتطلب
+\n4. انسخ عنوان URL للملف الشخصي الذي تمت إعادة توجيهك إليه.</string>
+    <string name="import_network_expensive_warning">ضع في اعتبارك أن هذه العملية يمكن أن تكون باهظة الثمن.
+\n
+\nهل تريد الاستمرار؟</string>
+
+    <string name="playback_speed_control">ضوابط سرعة التشغيل</string>
+    <string name="playback_tempo">سرعة الأداء</string>
+    <string name="playback_pitch">تردد الصوت</string>
+    <string name="unhook_checkbox">"النزع  (قد يسبب تشويه)"</string>
+    <string name="playback_nightcore">تعديل الايقاع Nightcore</string>
     </resources>
