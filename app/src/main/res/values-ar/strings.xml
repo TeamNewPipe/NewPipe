@@ -10,15 +10,15 @@
     <string name="detail_likes_img_view_description">الإعجابات</string>
     <string name="detail_thumbnail_view_description">صور معاينة الفيديو</string>
     <string name="detail_uploader_thumbnail_view_description">الصورة المصغرة الشخصية</string>
-    <string name="did_you_mean">هل تقصد : %1$s ؟</string>
+    <string name="did_you_mean">"هل تعني:  %1$s ?"</string>
     <string name="download">تنزيل</string>
     <string name="download_dialog_title">تنزيل</string>
-    <string name="download_path_audio_dialog_title">أدخل مسار لتنزيل الملفات الصوتية.</string>
+    <string name="download_path_audio_dialog_title">أدخل مسار تنزيل الملفات الصوتية</string>
     <string name="download_path_audio_summary">مسار حفظ التنزيلات الصوتية</string>
-    <string name="download_path_audio_title">مسار الصوتيات المُنزَّلة</string>
+    <string name="download_path_audio_title">مسار تنزيل ملفات الصوت</string>
     <string name="download_path_dialog_title">أدخل مسار التنزيل لملفات الفيديو</string>
     <string name="download_path_summary">مسار حفظ تنزيلات الفيديو في</string>
-    <string name="download_path_title">مسار الفيديوهات المُنزّلَة</string>
+    <string name="download_path_title">مسار تنزيل الفيديو</string>
     <string name="err_dir_create">"لا يمكن إنشاء مجلد للتنزيلات في '%1$s'"</string>
     <string name="info_dir_created">"تم إنشاء مجلد تنزيلات في '%1$s'"</string>
     <string name="install">تثبيت</string>
@@ -29,7 +29,7 @@
     <string name="network_error">خطأ في الشبكة</string>
     <string name="next_video_title">الفيديو التالي</string>
     <string name="no_player_found">لا يوجد مشغل فيديو. هل تريد تثبيت VLC ؟</string>
-    <string name="open_in_browser">إفتح في متصفح</string>
+    <string name="open_in_browser">فتح في المتصفح</string>
     <string name="play_audio">الصوت</string>
     <string name="play_btn_text">تشغيل</string>
     <string name="play_with_kodi_title">تشغيل بواسطة Kodi</string>
@@ -46,13 +46,13 @@
     <string name="show_play_with_kodi_summary">عرض خيار لتشغيل الفيديو بواسطة Kodi Media Center</string>
     <string name="show_play_with_kodi_title">عرض خيار التشغيل بواسطة Kodi</string>
     <string name="theme_title">السمة</string>
-    <string name="upload_date_text">نُشِرت في %1$s</string>
+    <string name="upload_date_text">نشرت يوم %1$s</string>
     <string name="url_not_supported_toast">الرابط غير مدعوم</string>
     <string name="use_external_audio_player_title">استخدام مشغل صوت خارجي</string>
     <string name="use_external_video_player_title">استخدام مشغل فيديو خارجي</string>
     <string name="use_tor_summary">(إختبارية) إجراء التنزيلات من خلال استخدام بروكسي Tor لزيادة الخصوصية ( تشغيل الفيديو المباشر غير مدعوم حتى الأن ).</string>
     <string name="use_tor_title">استخدام Tor</string>
-    <string name="view_count_text">%1$s مشاهدات</string>
+    <string name="view_count_text">مشاهدات %1$s</string>
     <string name="webm_description">تنسيق حر — WebM</string>
     <string name="blocked_by_gema">تم حجبه بواسطة GEMA</string>
     <string name="content_not_available">المحتوى غير متاح</string>
@@ -60,7 +60,7 @@
     <string name="general_error">خطأ</string>
     <string name="parsing_error">تعذرت عملية تحليل الموقع</string>
     <string name="youtube_signature_decryption_error">تعذر فك تشفير توقيع رابط الفيديو</string>
-<string name="main_bg_subtitle">أنقر على البحث للبدء</string>
+<string name="main_bg_subtitle">اضغط علي خانة البحث للبدء</string>
     <string name="subscribe_button_title">إشتراك</string>
     <string name="subscribed_button_title">مشترك</string>
     <string name="tab_main">الرئيسية</string>
@@ -69,8 +69,8 @@
     <string name="fragment_whats_new">ما الجديد</string>
 
     <string name="controls_background_title">الخلفية</string>
-    <string name="autoplay_by_calling_app_title">التشغيل التلقائي</string>
-    <string name="black_theme_title">أسوَد</string>
+    <string name="autoplay_by_calling_app_title">تشغيل تلقائي</string>
+    <string name="black_theme_title">اسود</string>
     <string name="enable_watch_history_title">التاريخ وذاكرة التخزين المؤقت</string>
     <string name="settings_category_history_title">التأريخ و ذاكرة التخزين المؤقتة</string>
     <string name="content">المحتوى</string>
@@ -84,19 +84,19 @@
     <string name="tab_about">عن التطبيق</string>
     <string name="title_activity_history">التأريخ</string>
     <string name="action_history">التأريخ</string>
-    <string name="open_in_popup_mode">إفتح في نافذة منبثقه</string>
-    <string name="use_external_video_player_summary">عند تمكين هذا الخيار لن يكون هنالك صوت في بعض خيارات الجودة</string>
-    <string name="popup_mode_share_menu_title">وضع نافذة NewPipe المنبثقة</string>
+    <string name="open_in_popup_mode">فتح في وضع النوافذ المنبثقة</string>
+    <string name="use_external_video_player_summary">"بعض القرارات لن يكون الصوت عند تمكين هذا الخيار "</string>
+    <string name="popup_mode_share_menu_title">"وضع النوافذ المنبثقة NewPipe  "</string>
     <string name="channel_unsubscribed">تم إلغاء اشتراك القناة</string>
     <string name="subscription_change_failed">تعذر تغيير في الاشتراك</string>
     <string name="subscription_update_failed">تعذر تحديث الاشتراك</string>
 
     <string name="controls_popup_title">نافذة</string>
 
-    <string name="autoplay_by_calling_app_summary">تشغيل الفيديو تلقائيا عند استدعاء NewPipe من تطبيق آخر</string>
-    <string name="default_popup_resolution_title">الجودة الإفتراضية للنوافذ المنبثقة</string>
-    <string name="show_higher_resolutions_title">إظهار جودة أعلى</string>
-    <string name="show_higher_resolutions_summary">بعض الأجهزة فقط تدعم تشغيل فيديوهات 2K / 4K</string>
+    <string name="autoplay_by_calling_app_summary">تشغيل مقطع الفيديو عند استدعاء NewPipe من تطبيق آخر</string>
+    <string name="default_popup_resolution_title">"دقة النوافذ المنبثقة الافتراضية "</string>
+    <string name="show_higher_resolutions_title">"عرض أعلى جودة "</string>
+    <string name="show_higher_resolutions_summary">بعض الأجهزة فقط تدعم تشغيل مقاطع الفيديو 2K / 4K</string>
     <string name="default_video_format_title">تنسيق الفيديو الافتراضي</string>
     <string name="popup_remember_size_pos_title">تذكر حجم النافذة و وضعها</string>
     <string name="popup_remember_size_pos_summary">تذكر آخر حجم ومكان النافذة</string>
@@ -154,7 +154,7 @@
     <string name="error_snackbar_action">تقرير</string>
     <string name="what_device_headline">معلومات:</string>
     <string name="what_happened_headline">ماذا حدث:</string>
-    <string name="info_labels">What:\\nRequest:\\nContent Lang:\\nService:\\nGMT Time:\\nPackage:\\nVersion:\\nOS version:</string>
+    <string name="info_labels">ماذا:\\nطلب:\\nيحتوى اللغة:\\nSالخدمات:\\nتوقيت غرينتش:\\nحزمة:\\nالإصدار:\\nOS إصدار نظام التشغيل:</string>
     <string name="your_comment">تعليقك (باللغة الإنجليزية):</string>
     <string name="error_details_headline">تفاصيل:</string>
 
@@ -265,21 +265,21 @@
 <string name="reCaptcha_title">تحدي ريكابتشا</string>
     <string name="hold_to_append">اضغط للإدراج بقائمة الانتظار</string>
     <plurals name="views">
-	<item quantity="zero">لم تُشاهَد</item>
+	<item quantity="zero">لم تتم المشاهدة</item>
 	<item quantity="one">%s مشاهدة</item>
-	<item quantity="two">مشاهدتَين</item>
-	<item quantity="few">%s مشاهدات</item>
-	<item quantity="many">%s مشاهدات</item>
-	<item quantity="other">%s مشاهدات</item>
+	<item quantity="two">"اثنان مشاهدات "</item>
+	<item quantity="few">%s مشاهدات كثيرة</item>
+	<item quantity="many">%s عدد المشاهدات</item>
+	<item quantity="other">%s أقصى مشاهدات</item>
 </plurals>
 
     <plurals name="videos">
-	<item quantity="zero">لا فيديو</item>
-	<item quantity="one">%s فيديو</item>
-	<item quantity="two">فيديوهتان</item>
-	<item quantity="few">%s فيديوهات</item>
-	<item quantity="many">%s فيديوهات</item>
-	<item quantity="other">%s فيديوهات</item>
+	<item quantity="zero">صفر</item>
+	<item quantity="one">واحد</item>
+	<item quantity="two">اثنان</item>
+	<item quantity="few">قليل</item>
+	<item quantity="many">عدد كثير</item>
+	<item quantity="other">"أخرى "</item>
 </plurals>
 
     <string name="recaptcha_request_toast">إعادة طلب كلمة التحقق</string>
@@ -360,7 +360,7 @@
     <string name="live_sync">مُزامَنة</string>
 
     <string name="controls_download_desc">تنزيل الملف المتدفق.</string>
-    <string name="tab_bookmarks">المؤشرات</string>
+    <string name="tab_bookmarks">إشارات مرجعية</string>
 
     <string name="use_inexact_seek_title">استعمال التقديم السريع الغير دقيق</string>
     <string name="use_inexact_seek_summary">"التقديم الغير دقيق يسمح للمشغل بالإطلاع الى الأماكن بشكل اسرع مع دقة اقل "</string>
@@ -389,7 +389,7 @@
     <string name="import_soundcloud_instructions_hint">"معرفك , soundcloud.com/ الخاص بك  "</string>
 
     <string name="playback_default">إفتراضي</string>
-<string name="download_thumbnail_summary">تعطيل إيقاف جميع الصور المصغرة من تحميل البيانات واستخدام الذاكرة وحفظها. سيؤدي تغيير هذا إلى محو ذاكرة التخزين المؤقت للصورة في ذاكرة أو على القرص.</string>
+<string name="download_thumbnail_summary">تعطيل إيقاف جميع الصور المصغرة من تحميل البيانات واستخدام الذاكرة وحفظها. سيؤدي التغيير هذا إلى محو-ذاكرة التخزين المؤقت في الذاكرة-وذاكرة على القرص.</string>
     <string name="metadata_cache_wipe_title">امسح البيانات الوصفية المخزنة مؤقتًا</string>
     <string name="metadata_cache_wipe_summary">إزالة جميع بيانات صفحات الويب المخزنة مؤقتًا</string>
     <string name="metadata_cache_wipe_complete_notice">تم محو ذاكرة التخزين المؤقت للبيانات الوصفية</string>
@@ -423,7 +423,7 @@
     <string name="invalid_file">الملف غير موجود أو ليس لديه الإذن الكافي للقراءة أو الكتابة إليه</string>
     <string name="no_streams_available_download">لا توجد تدفقات متاحة للتنزيل</string>
 
-    <string name="one_item_deleted">تم حذف عنصر. 1</string>
+    <string name="one_item_deleted">تم حذف عنصر واحد.</string>
 
     <string name="toast_no_player">لم يتم تثبيت أي تطبيق لتشغيل هذا الملف</string>
 
