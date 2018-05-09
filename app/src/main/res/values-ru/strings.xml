@@ -29,7 +29,7 @@
     <string name="download_dialog_title">Скачать</string>
     <string name="next_video_title">Следующее видео</string>
     <string name="url_not_supported_toast">URL не поддерживается</string>
-    <string name="show_next_and_similar_title">Показывать следующее и предложенные видео</string>
+    <string name="show_next_and_similar_title">Показывать \'следующее\' и \'предложенные\' видео</string>
     <string name="search_language_title">Язык контента по умолчанию</string>
     <string name="settings_category_video_audio_title">Видео и Аудио</string>
     <string name="settings_category_appearance_title">Внешний вид</string>
@@ -80,7 +80,7 @@
     <string name="your_comment">Ваш комментарий (на английском):</string>
     <string name="err_dir_create">Невозможно создать папку для загрузки \'%1$s\'</string>
     <string name="autoplay_by_calling_app_title">Воспроизводить автоматически</string>
-    <string name="autoplay_by_calling_app_summary">Автоматически воспроизводить видео при вызове NewPipe из другого приложения</string>
+    <string name="autoplay_by_calling_app_summary">Воспроизводить видео при вызове NewPipe из другого приложения</string>
     <string name="content">Контент</string>
     <string name="video_is_age_restricted">Видео с возрастными ограничениями. Разрешить подобный контент можно в настройках.</string>
     <string name="duration_live">вживую</string>
@@ -182,7 +182,7 @@
     <string name="tab_about">О приложении</string>
     <string name="tab_contributors">Участники</string>
     <string name="read_full_license">Прочитать лицензию</string>
-    <string name="app_description">Бесплатный и лёгкий интерфейс YouTube для Android.</string>
+    <string name="app_description">Библиотека лёгкого потокового воспроизведения на Android.</string>
     <string name="view_on_github">Открыть на GitHub</string>
     <string name="contribution_encouragement">Приветствуется всё — идеи, перевод, изменения дизайна, чистка кода или огромные изменения в коде. Чем больше сделано, тем лучше!</string>
     <string name="copyright" formatted="true">© %1$s %2$s под лицензией %3$s</string>
@@ -198,7 +198,7 @@
 
     <string name="enable_search_history_title">История поиска</string>
     <string name="enable_search_history_summary">Хранить поисковые запросы локально</string>
-    <string name="enable_watch_history_title">История</string>
+    <string name="enable_watch_history_title">История и Кэш</string>
     <string name="enable_watch_history_summary">Запоминать просмотренные видео</string>
     <string name="resume_on_audio_focus_gain_title">Возобновлять при возврате фокуса</string>
     <string name="resume_on_audio_focus_gain_summary">Возобновлять воспроизведение после перерывов (например, телефонных звонков)</string>
@@ -279,7 +279,7 @@
     <string name="play_queue_remove">Удалить</string>
     <string name="subscribed_button_title">Отписаться</string>
     <string name="channel_unsubscribed">Подписка отменена</string>
-    <string name="show_hold_to_append_title">Показывать напоминание о длинном нажатии</string>
+    <string name="show_hold_to_append_title">Показать \"держать, чтобы добавить\" подсказку</string>
     <string name="show_hold_to_append_summary">Показывать подсказку при нажатии на иконку «В окне» или «В фоне» на странице сведений о видео</string>
     <string name="unknown_content">[Неизвестно]</string>
 
@@ -311,10 +311,10 @@
     <string name="audio_streams_empty">Потоки аудио не найдены</string>
 
     <string name="donation_title">Пожертвовать</string>
-    <string name="donation_encouragement">NewPipe разрабатывается добровольцами в свободное время ради вашего удобства использования программы. Пора воздать должное, разработчики могут сделать NewPipe ещё лучше с чашечкой кофе!</string>
+    <string name="donation_encouragement">NewPipe разрабатывается волонтерами, которые проводят время, принося вам лучший опыт. Вернитесь, чтобы помочь разработчикам сделать NewPipe еще лучше, наслаждаясь чашечкой кофе.</string>
     <string name="give_back">Воздать должное</string>
     <string name="website_title">Веб-сайт</string>
-    <string name="website_encouragement">Для получения более подробной информации и последних новостей о NewPipe посетите наш веб-сайт.</string>
+    <string name="website_encouragement">Посетите сайт NewPipe для большей информации и новостей.</string>
     <string name="drawer_open">Открыть лоток</string>
     <string name="drawer_close">Закрыть лоток</string>
 
@@ -335,7 +335,7 @@
     <string name="use_inexact_seek_title">Использовать быстрый, но неточный поиск</string>
     <string name="use_inexact_seek_summary">Неточный поиск позволяет плееру искать позицию быстрее, но с пониженной точностью</string>
     <string name="auto_queue_title">Автоматическая очередь следующего стрима</string>
-    <string name="auto_queue_summary">Автоматически добавлять связанные потоки, когда воспроизведение начинается с последнего потока в неповторяющейся очереди воспроизведения.</string>
+    <string name="auto_queue_summary">Автоматически добавлять связанные видео, при воспроизведении с последнего видео в неповторяющейся очереди.</string>
     <string name="settings_category_debug_title">Отладка</string>
     <string name="file">Файл</string>
 
@@ -368,7 +368,7 @@
     <string name="could_not_import_all_files">Предупреждение: нет возможности импорта всех файлов.</string>
     <string name="override_current_data">Это перезапишет вашу текущую установку.</string>
 
-    <string name="drawer_header_action_paceholder_text">Скоро тут что-то будет ;D</string>
+    <string name="drawer_header_action_paceholder_text">Скоро что-то тут появится ;D</string>
 
 
     <string name="always_ask_open_action">Всегда спрашивать</string>
@@ -384,16 +384,16 @@
     <string name="unbookmark_playlist">Удалить закладку</string>
 
     <string name="delete_playlist_prompt">Вы хотите удалить этот плейлист?</string>
-    <string name="playlist_creation_success">Плейлист успешно создан</string>
+    <string name="playlist_creation_success">Плейлист создан</string>
     <string name="playlist_add_stream_success">Добавлено в плейлист</string>
     <string name="playlist_thumbnail_change_success">Иконка плейлиста изменена</string>
-    <string name="playlist_delete_failure">Ошибка при удалении плейлиста</string>
+    <string name="playlist_delete_failure">Нельзя удалить плейлист</string>
 
-    <string name="caption_none">Без субтитров</string>
+    <string name="caption_none">Без титров</string>
 
-    <string name="resize_fit">Уместить</string>
+    <string name="resize_fit">Пригнать</string>
     <string name="resize_fill">Заполнить</string>
-    <string name="resize_zoom">Приближение</string>
+    <string name="resize_zoom">Приблизить</string>
 
     <string name="caption_auto_generated">Созданы автоматически</string>
     <string name="caption_font_size_settings_title">Размер шрифта субтитров</string>
@@ -407,7 +407,7 @@
     <string name="enable_leak_canary_summary">Мониторинг утечки памяти может привести к зависанию приложения</string>
 
     <string name="enable_disposed_exceptions_title">Ошибки отчёта вне очереди</string>
-    <string name="enable_disposed_exceptions_summary">Форсировать отчетность о недопустимых исключениях Rx, возникающих за пределами фрагмента или цикла деятельности, после размещения</string>
+    <string name="enable_disposed_exceptions_summary">Принудительная отчетность об исключении исключаемых Rx исключений за пределами фрагмента или жизненного цикла деятельности после удаления</string>
 
     <string name="import_export_title">Импорт/Экспорт</string>
     <string name="import_title">Импорт</string>
@@ -420,25 +420,23 @@
     <string name="import_file_title">Импорт файла</string>
     <string name="previous_export">Предыдущий экспорт</string>
 
-    <string name="subscriptions_import_unsuccessful">Ошибка при импорте подписок</string>
-    <string name="subscriptions_export_unsuccessful">Ошибка при экспорте подписок</string>
+    <string name="subscriptions_import_unsuccessful">Нельзя импортировать подписки</string>
+    <string name="subscriptions_export_unsuccessful">Нельзя экспортировать подписки</string>
 
-    <string name="import_youtube_instructions">Для импорта подписок из YouTube вам необходим файл экспорта, который можно получить следующим образом:
-\n
-\n1. Перейдите на: %1$s
-\n2. Войдите в аккаунт, если необходимо
+    <string name="import_youtube_instructions">Импорт подписок из YouTube загрузкой файла экспорта: 
+\n 
+\n1. Перейдите на: %1$s 
+\n2. Войдите, если необходимо 
 \n3. Должна начаться загрузка (это будет файл экспорта)</string>
-    <string name="import_soundcloud_instructions">"Для импорта ваших подписок из SoundCloud вы должны знать ссылку на ваш профиль или id. Если вы знаете, просто напишите это в поле ниже и будьте готовы начинать.
+    <string name="import_soundcloud_instructions">Импорт подписок из SoundCloud набрав либо URL или ваш ID:
 \n
-\nЕсли вы не знаете, то проследуйте следующей инструкции:
-\n
-\n1. Включите \"режим рабочего стола\" в браузере (сайт недоступен на телефоне)
-\n2. Пройдите на:  %1$s
-\n3. Войдите в аккаунт, если надо
-\n4. Скопируйте адрес из адресной строки (это адрес вашего профиля)
-\n
-\n"</string>
-    <string name="import_soundcloud_instructions_hint">вашid, soundcloud.com/вашid</string>
+\n1. Включите \"режим рабочего стола\" в браузере (сайт недоступен на телефоне) 
+\n2. Пройдите на: %1$s 
+\n3. Войдите, если надо 
+\n4. Скопируйте адрес из адресной строки.
+\n 
+\n</string>
+    <string name="import_soundcloud_instructions_hint">вашID, soundcloud.com/вашID</string>
 
     <string name="import_network_expensive_warning">Помните, что за выход в интернет может взиматься плата.
 \n
@@ -448,7 +446,7 @@
     <string name="thumbnail_cache_wipe_complete_notice">Кеш изображений очищен</string>
     <string name="metadata_cache_wipe_title">Очистить кеш метаданных</string>
     <string name="metadata_cache_wipe_complete_notice">Кеш метаданных очищен</string>
-    <string name="playback_speed_control">Скорость воспроизведения</string>
+    <string name="playback_speed_control">Управление скоростью воспроизведения</string>
     <string name="playback_tempo">Темп</string>
     <string name="playback_pitch">Тон</string>
     <string name="unhook_checkbox">Независимо (может вызвать искажение)</string>
@@ -459,14 +457,21 @@
 
     <string name="no_streams_available_download">Нет потоков, доступных для загрузки</string>
 
-    <string name="caption_setting_title">Субтитры</string>
-    <string name="toast_no_player">Не найдено проигрывателя для воспроизведения этого файла</string>
+    <string name="caption_setting_title">Титры</string>
+    <string name="toast_no_player">Нет приложения, установленного для воспроизведения этого файла</string>
 
-    <string name="caption_setting_description">Изменить размер заголовка и фоновые стили. Требуется перезапуск проигрывателя для вступления изменений в силу.</string>
+    <string name="caption_setting_description">Изменить размер заголовка и фоновые стили. Требуется перезапуск приложения для изменений.</string>
 
     <string name="clear_views_history_title">Очистить историю просмотров</string>
     <string name="delete_view_history_alert">Удалить всю историю просмотров.</string>
     <string name="view_history_deleted">История просмотров была удалена.</string>
     <string name="clear_search_history_title">Очистить историю поиска</string>
     <string name="clear_search_history_summary">Удалить историю поисковых запросов.</string>
+    <string name="clear_views_history_summary">Удаляет историю воспроизведенных потоков.</string>
+    <string name="delete_search_history_alert">Удалить всю историю поиска.</string>
+    <string name="search_history_deleted">Удалить историю поиска.</string>
+    <string name="one_item_deleted">1 элемент удалён.</string>
+
+    <string name="app_license">NewPipe - программное обеспечение copyleft libre: вы можете использовать, изучать и улучшать его по своему усмотрению. В частности, вы можете распространять и/или изменять его в соответствии с GNU General Public License, опубликованным Free Software Foundation, либо версией 3 License, либо (по вашему выбору) любой более поздней версии.</string>
+    <string name="preferred_open_action_settings_title">Предпочтительное действие \'открытие\'</string>
     </resources>
