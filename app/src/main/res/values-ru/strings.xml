@@ -433,9 +433,7 @@
 \n1. Включите \"режим рабочего стола\" в браузере (сайт недоступен на телефоне) 
 \n2. Пройдите на: %1$s 
 \n3. Войдите, если надо 
-\n4. Скопируйте адрес из адресной строки.
-\n 
-\n</string>
+\n4. Скопируйте адрес из адресной строки.</string>
     <string name="import_soundcloud_instructions_hint">вашID, soundcloud.com/вашID</string>
 
     <string name="import_network_expensive_warning">Помните, что за выход в интернет может взиматься плата.
