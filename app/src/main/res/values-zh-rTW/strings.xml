@@ -106,7 +106,7 @@
     <string name="live_streams_not_supported">尚未支援現場直播。</string>
     <string name="could_not_get_stream">無法取得串流</string>
     <string name="could_not_load_image">無法載入圖片</string>
-    <string name="app_ui_crash">應用程式或 UI 已停止運作</string>
+    <string name="app_ui_crash">應用程式或界面已停止運作</string>
     <string name="sorry_string">抱歉，這不應該發生的。</string>
     <string name="error_report_button_text">使用電子郵件回報錯誤</string>
     <string name="error_snackbar_message">抱歉，發生了一些問題。</string>
@@ -189,7 +189,7 @@
     <string name="notification_channel_description">NewPipe 背景播放與懸浮模式播放器的通知</string>
 
     <string name="search_no_results">沒有結果</string>
-    <string name="empty_subscription_feed_subtitle">空空如也</string>
+    <string name="empty_subscription_feed_subtitle">這裡空空如也</string>
 
     <string name="no_subscribers">無訂閱者</string>
     <plurals name="subscribers">
