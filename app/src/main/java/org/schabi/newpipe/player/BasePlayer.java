@@ -236,7 +236,8 @@ public abstract class BasePlayer implements
         final int repeatMode = intent.getIntExtra(REPEAT_MODE, getRepeatMode());
         final float playbackSpeed = intent.getFloatExtra(PLAYBACK_SPEED, getPlaybackSpeed());
         final float playbackPitch = intent.getFloatExtra(PLAYBACK_PITCH, getPlaybackPitch());
-        final boolean playbackSkipSilence = intent.getBooleanExtra(PLAYBACK_SKIP_SILENCE, false);
+        final boolean playbackSkipSilence = intent.getBooleanExtra(PLAYBACK_SKIP_SILENCE,
+                getPlaybackSkipSilence());
 
         // Good to go...
         initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence,

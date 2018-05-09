@@ -241,7 +241,8 @@ public abstract class VideoPlayer extends BasePlayer
 
         // Setup audio session with onboard equalizer
         if (Build.VERSION.SDK_INT >= 21) {
-            trackSelector.setTunnelingAudioSessionId(C.generateAudioSessionIdV21(context));
+            trackSelector.setParameters(trackSelector.buildUponParameters()
+                    .setTunnelingAudioSessionId(C.generateAudioSessionIdV21(context)));
         }
     }
 
@@ -298,7 +299,8 @@ public abstract class VideoPlayer extends BasePlayer
         captionOffItem.setOnMenuItemClickListener(menuItem -> {
             final int textRendererIndex = getRendererIndex(C.TRACK_TYPE_TEXT);
             if (trackSelector != null && textRendererIndex != RENDERER_UNAVAILABLE) {
-                trackSelector.setRendererDisabled(textRendererIndex, true);
+                trackSelector.setParameters(trackSelector.buildUponParameters()
+                        .setRendererDisabled(textRendererIndex, true));
             }
             return true;
         });
@@ -312,7 +314,8 @@ public abstract class VideoPlayer extends BasePlayer
                 final int textRendererIndex = getRendererIndex(C.TRACK_TYPE_TEXT);
                 if (trackSelector != null && textRendererIndex != RENDERER_UNAVAILABLE) {
                     trackSelector.setPreferredTextLanguage(captionLanguage);
-                    trackSelector.setRendererDisabled(textRendererIndex, false);
+                    trackSelector.setParameters(trackSelector.buildUponParameters()
+                            .setRendererDisabled(textRendererIndex, false));
                 }
                 return true;
             });
@@ -575,8 +578,8 @@ public abstract class VideoPlayer extends BasePlayer
 
         // Build UI
         buildCaptionMenu(availableLanguages);
-        if (trackSelector.getRendererDisabled(textRenderer) || preferredLanguage == null ||
-                !availableLanguages.contains(preferredLanguage)) {
+        if (trackSelector.getParameters().getRendererDisabled(textRenderer) ||
+                preferredLanguage == null || !availableLanguages.contains(preferredLanguage)) {
             captionTextView.setText(R.string.caption_none);
         } else {
             captionTextView.setText(preferredLanguage);

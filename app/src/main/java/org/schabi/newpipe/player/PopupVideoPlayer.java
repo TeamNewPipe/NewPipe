@@ -729,7 +729,8 @@ public final class PopupVideoPlayer extends Service {
         /*package-private*/ void enableVideoRenderer(final boolean enable) {
             final int videoRendererIndex = getRendererIndex(C.TRACK_TYPE_VIDEO);
             if (trackSelector != null && videoRendererIndex != RENDERER_UNAVAILABLE) {
-                trackSelector.setRendererDisabled(videoRendererIndex, !enable);
+                trackSelector.setParameters(trackSelector.buildUponParameters()
+                        .setRendererDisabled(videoRendererIndex, !enable));
             }
         }
 
