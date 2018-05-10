@@ -190,7 +190,14 @@ public class PlayerHelper {
      * Returns the number of milliseconds the player buffers for before starting playback.
      * */
     public static int getPlaybackStartBufferMs(@NonNull final Context context) {
-        return 500;
+        return 2500;
+    }
+
+    /**
+     * Returns the number of milliseconds the player buffers for before starting playback.
+     * */
+    public static int getPlaybackRebufferMs(@NonNull final Context context) {
+        return 5000;
     }
 
     /**
@@ -198,7 +205,7 @@ public class PlayerHelper {
      * playback.
      * */
     public static int getPlaybackMinimumBufferMs(@NonNull final Context context) {
-        return 25000;
+        return 15000;
     }
 
     /**
@@ -206,7 +213,7 @@ public class PlayerHelper {
      * hits the point of {@link #getPlaybackMinimumBufferMs(Context)}.
      * */
     public static int getPlaybackOptimalBufferMs(@NonNull final Context context) {
-        return 60000;
+        return 30000;
     }
 
     public static TrackSelection.Factory getQualitySelector(@NonNull final Context context,
