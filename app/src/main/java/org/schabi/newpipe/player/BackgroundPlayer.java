@@ -42,14 +42,12 @@ import com.google.android.exoplayer2.source.MediaSource;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.MediaFormat;
-import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.helper.LockManager;
-import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
-import org.schabi.newpipe.util.ListHelper;
+import org.schabi.newpipe.player.resolver.AudioPlaybackResolver;
+import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
@@ -279,8 +277,16 @@ public final class BackgroundPlayer extends Service {
 
     protected class BasePlayerImpl extends BasePlayer {
 
+        @Nullable private AudioPlaybackResolver resolver;
+
         BasePlayerImpl(Context context) {
             super(context);
+        }
+
+        @Override
+        public void initPlayer(boolean playOnReady) {
+            super.initPlayer(playOnReady);
+            resolver = new AudioPlaybackResolver(context, dataSource);
         }
 
         @Override
@@ -390,11 +396,9 @@ public final class BackgroundPlayer extends Service {
         // Playback Listener
         //////////////////////////////////////////////////////////////////////////*/
 
-        protected void onMetadataChanged(@NonNull final PlayQueueItem item,
-                                         @Nullable final StreamInfo info,
-                                         final int newPlayQueueIndex,
-                                         final boolean hasPlayQueueItemChanged) {
-            if (shouldUpdateOnProgress || hasPlayQueueItemChanged) {
+        protected void onMetadataChanged(@NonNull final MediaSourceTag tag) {
+            super.onMetadataChanged(tag);
+            if (shouldUpdateOnProgress) {
                 resetNotification();
                 updateNotification(-1);
                 updateMetadata();
@@ -404,15 +408,7 @@ public final class BackgroundPlayer extends Service {
         @Override
         @Nullable
         public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
-            final MediaSource liveSource = super.sourceOf(item, info);
-            if (liveSource != null) return liveSource;
-
-            final int index = ListHelper.getDefaultAudioFormat(context, info.getAudioStreams());
-            if (index < 0 || index >= info.getAudioStreams().size()) return null;
-
-            final AudioStream audio = info.getAudioStreams().get(index);
-            return buildMediaSource(audio.getUrl(), PlayerHelper.cacheKeyOf(info, audio),
-                    MediaFormat.getSuffixById(audio.getFormatId()));
+            return resolver == null ? null : resolver.resolve(info);
         }
 
         @Override
@@ -439,8 +435,8 @@ public final class BackgroundPlayer extends Service {
         }
 
         private void updateMetadata() {
-            if (activityListener != null && currentInfo != null) {
-                activityListener.onMetadataUpdate(currentInfo);
+            if (activityListener != null && getCurrentMetadata() != null) {
+                activityListener.onMetadataUpdate(getCurrentMetadata().getMetadata());
             }
         }
 

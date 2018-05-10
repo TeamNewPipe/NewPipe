@@ -59,13 +59,13 @@ import com.google.android.exoplayer2.ui.SubtitleView;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.helper.LockManager;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
-import org.schabi.newpipe.player.playqueue.PlayQueueItem;
+import org.schabi.newpipe.player.resolver.MediaSourceTag;
+import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -511,14 +511,20 @@ public final class PopupVideoPlayer extends Service {
         }
 
         @Override
-        protected int getDefaultResolutionIndex(final List<VideoStream> sortedVideos) {
-            return ListHelper.getPopupDefaultResolutionIndex(context, sortedVideos);
-        }
+        protected VideoPlaybackResolver.QualityResolver getQualityResolver() {
+            return new VideoPlaybackResolver.QualityResolver() {
+                @Override
+                public int getDefaultResolutionIndex(List<VideoStream> sortedVideos) {
+                    return ListHelper.getPopupDefaultResolutionIndex(context, sortedVideos);
+                }
 
-        @Override
-        protected int getOverrideResolutionIndex(final List<VideoStream> sortedVideos,
-                                                 final String playbackQuality) {
-            return ListHelper.getPopupResolutionIndex(context, sortedVideos, playbackQuality);
+                @Override
+                public int getOverrideResolutionIndex(List<VideoStream> sortedVideos,
+                                                      String playbackQuality) {
+                    return ListHelper.getPopupResolutionIndex(context, sortedVideos,
+                            playbackQuality);
+                }
+            };
         }
 
         /*//////////////////////////////////////////////////////////////////////////
@@ -539,8 +545,8 @@ public final class PopupVideoPlayer extends Service {
         }
 
         private void updateMetadata() {
-            if (activityListener != null && currentInfo != null) {
-                activityListener.onMetadataUpdate(currentInfo);
+            if (activityListener != null && getCurrentMetadata() != null) {
+                activityListener.onMetadataUpdate(getCurrentMetadata().getMetadata());
             }
         }
 
@@ -586,11 +592,8 @@ public final class PopupVideoPlayer extends Service {
         // Playback Listener
         //////////////////////////////////////////////////////////////////////////*/
 
-        protected void onMetadataChanged(@NonNull final PlayQueueItem item,
-                                         @Nullable final StreamInfo info,
-                                         final int newPlayQueueIndex,
-                                         final boolean hasPlayQueueItemChanged) {
-            super.onMetadataChanged(item, info, newPlayQueueIndex, false);
+        protected void onMetadataChanged(@Nullable final MediaSourceTag tag) {
+            super.onMetadataChanged(tag);
             updateMetadata();
         }
 

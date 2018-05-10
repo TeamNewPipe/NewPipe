@@ -29,7 +29,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -47,11 +46,9 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.google.android.exoplayer2.C;
-import com.google.android.exoplayer2.Format;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.source.MergingMediaSource;
 import com.google.android.exoplayer2.source.TrackGroup;
 import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.text.CaptionStyleCompat;
@@ -62,21 +59,17 @@ import com.google.android.exoplayer2.video.VideoListener;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
-import org.schabi.newpipe.extractor.Subtitles;
-import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
-import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
+import org.schabi.newpipe.player.resolver.MediaSourceTag;
+import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
 import org.schabi.newpipe.util.AnimationUtils;
-import org.schabi.newpipe.util.ListHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.google.android.exoplayer2.C.SELECTION_FLAG_AUTOSELECT;
-import static com.google.android.exoplayer2.C.TIME_UNSET;
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
 import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
@@ -105,13 +98,12 @@ public abstract class VideoPlayer extends BasePlayer
     public static final int DEFAULT_CONTROLS_DURATION = 300; // 300 millis
     public static final int DEFAULT_CONTROLS_HIDE_TIME = 2000;  // 2 Seconds
 
-    private ArrayList<VideoStream> availableStreams;
+    private List<VideoStream> availableStreams;
     private int selectedStreamIndex;
-
-    protected String playbackQuality;
 
     protected boolean wasPlaying = false;
 
+    @Nullable private VideoPlaybackResolver resolver;
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
@@ -244,6 +236,8 @@ public abstract class VideoPlayer extends BasePlayer
             trackSelector.setParameters(trackSelector.buildUponParameters()
                     .setTunnelingAudioSessionId(C.generateAudioSessionIdV21(context)));
         }
+
+        resolver = new VideoPlaybackResolver(context, dataSource, getQualityResolver());
     }
 
     @Override
@@ -326,23 +320,18 @@ public abstract class VideoPlayer extends BasePlayer
     // Playback Listener
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected abstract int getDefaultResolutionIndex(final List<VideoStream> sortedVideos);
+    protected abstract VideoPlaybackResolver.QualityResolver getQualityResolver();
 
-    protected abstract int getOverrideResolutionIndex(final List<VideoStream> sortedVideos, final String playbackQuality);
+    protected void onMetadataChanged(@NonNull final MediaSourceTag tag) {
+        super.onMetadataChanged(tag);
 
-    protected void onMetadataChanged(@NonNull final PlayQueueItem item,
-                                     @Nullable final StreamInfo info,
-                                     final int newPlayQueueIndex,
-                                     final boolean hasPlayQueueItemChanged) {
         qualityTextView.setVisibility(View.GONE);
         playbackSpeedTextView.setVisibility(View.GONE);
 
         playbackEndTime.setVisibility(View.GONE);
         playbackLiveSync.setVisibility(View.GONE);
 
-        final StreamType streamType = info == null ? StreamType.NONE : info.getStreamType();
-
-        switch (streamType) {
+        switch (tag.getMetadata().getStreamType()) {
             case AUDIO_STREAM:
                 surfaceView.setVisibility(View.GONE);
                 playbackEndTime.setVisibility(View.VISIBLE);
@@ -359,20 +348,14 @@ public abstract class VideoPlayer extends BasePlayer
                 break;
 
             case VIDEO_STREAM:
+                final StreamInfo info = tag.getMetadata();
                 if (info.getVideoStreams().size() + info.getVideoOnlyStreams().size() == 0) break;
 
-                final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context,
-                        info.getVideoStreams(), info.getVideoOnlyStreams(), false);
-                availableStreams = new ArrayList<>(videos);
-                if (playbackQuality == null) {
-                    selectedStreamIndex = getDefaultResolutionIndex(videos);
-                } else {
-                    selectedStreamIndex = getOverrideResolutionIndex(videos, getPlaybackQuality());
-                }
-
+                availableStreams = tag.getSortedAvailableVideoStreams();
+                selectedStreamIndex = tag.getSelectedVideoStreamIndex();
                 buildQualityMenu();
-                qualityTextView.setVisibility(View.VISIBLE);
 
+                qualityTextView.setVisibility(View.VISIBLE);
                 surfaceView.setVisibility(View.VISIBLE);
             default:
                 playbackEndTime.setVisibility(View.VISIBLE);
@@ -386,65 +369,7 @@ public abstract class VideoPlayer extends BasePlayer
     @Override
     @Nullable
     public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
-        final MediaSource liveSource = super.sourceOf(item, info);
-        if (liveSource != null) return liveSource;
-
-        List<MediaSource> mediaSources = new ArrayList<>();
-
-        // Create video stream source
-        final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context,
-                info.getVideoStreams(), info.getVideoOnlyStreams(), false);
-        final int index;
-        if (videos.isEmpty()) {
-            index = -1;
-        } else if (playbackQuality == null) {
-            index = getDefaultResolutionIndex(videos);
-        } else {
-            index = getOverrideResolutionIndex(videos, getPlaybackQuality());
-        }
-        final VideoStream video = index >= 0 && index < videos.size() ? videos.get(index) : null;
-        if (video != null) {
-            final MediaSource streamSource = buildMediaSource(video.getUrl(),
-                    PlayerHelper.cacheKeyOf(info, video),
-                    MediaFormat.getSuffixById(video.getFormatId()));
-            mediaSources.add(streamSource);
-        }
-
-        // Create optional audio stream source
-        final List<AudioStream> audioStreams = info.getAudioStreams();
-        final AudioStream audio = audioStreams.isEmpty() ? null : audioStreams.get(
-                ListHelper.getDefaultAudioFormat(context, audioStreams));
-        // Use the audio stream if there is no video stream, or
-        // Merge with audio stream in case if video does not contain audio
-        if (audio != null && ((video != null && video.isVideoOnly) || video == null)) {
-            final MediaSource audioSource = buildMediaSource(audio.getUrl(),
-                    PlayerHelper.cacheKeyOf(info, audio),
-                    MediaFormat.getSuffixById(audio.getFormatId()));
-            mediaSources.add(audioSource);
-        }
-
-        // If there is no audio or video sources, then this media source cannot be played back
-        if (mediaSources.isEmpty()) return null;
-        // Below are auxiliary media sources
-
-        // Create subtitle sources
-        for (final Subtitles subtitle : info.getSubtitles()) {
-            final String mimeType = PlayerHelper.mimeTypesOf(subtitle.getFileType());
-            if (mimeType == null) continue;
-
-            final Format textFormat = Format.createTextSampleFormat(null, mimeType,
-                    SELECTION_FLAG_AUTOSELECT, PlayerHelper.captionLanguageOf(context, subtitle));
-            final MediaSource textSource = dataSource.getSampleMediaSourceFactory()
-                    .createMediaSource(Uri.parse(subtitle.getURL()), textFormat, TIME_UNSET);
-            mediaSources.add(textSource);
-        }
-
-        if (mediaSources.size() == 1) {
-            return mediaSources.get(0);
-        } else {
-            return new MergingMediaSource(mediaSources.toArray(
-                    new MediaSource[mediaSources.size()]));
-        }
+        return resolver == null ? null : resolver.resolve(info);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -908,11 +833,12 @@ public abstract class VideoPlayer extends BasePlayer
     //////////////////////////////////////////////////////////////////////////*/
 
     public void setPlaybackQuality(final String quality) {
-        this.playbackQuality = quality;
+        if (resolver != null) resolver.setPlaybackQuality(quality);
     }
 
+    @Nullable
     public String getPlaybackQuality() {
-        return playbackQuality;
+        return resolver == null ? null : resolver.getPlaybackQuality();
     }
 
     public AspectRatioFrameLayout getAspectRatioFrameLayout() {

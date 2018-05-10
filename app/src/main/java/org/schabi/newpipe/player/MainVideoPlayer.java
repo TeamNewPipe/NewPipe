@@ -58,7 +58,6 @@ import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.SubtitleView;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.player.helper.PlaybackParameterDialog;
@@ -67,6 +66,8 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.playqueue.PlayQueueItemBuilder;
 import org.schabi.newpipe.player.playqueue.PlayQueueItemHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
+import org.schabi.newpipe.player.resolver.MediaSourceTag;
+import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -497,11 +498,8 @@ public final class MainVideoPlayer extends AppCompatActivity
         // Playback Listener
         //////////////////////////////////////////////////////////////////////////*/
 
-        protected void onMetadataChanged(@NonNull final PlayQueueItem item,
-                                         @Nullable final StreamInfo info,
-                                         final int newPlayQueueIndex,
-                                         final boolean hasPlayQueueItemChanged) {
-            super.onMetadataChanged(item, info, newPlayQueueIndex, false);
+        protected void onMetadataChanged(@Nullable final MediaSourceTag tag) {
+            super.onMetadataChanged(tag);
 
             titleTextView.setText(getVideoTitle());
             channelTextView.setText(getUploaderName());
@@ -686,14 +684,19 @@ public final class MainVideoPlayer extends AppCompatActivity
         }
 
         @Override
-        protected int getDefaultResolutionIndex(final List<VideoStream> sortedVideos) {
-            return ListHelper.getDefaultResolutionIndex(context, sortedVideos);
-        }
+        protected VideoPlaybackResolver.QualityResolver getQualityResolver() {
+            return new VideoPlaybackResolver.QualityResolver() {
+                @Override
+                public int getDefaultResolutionIndex(List<VideoStream> sortedVideos) {
+                    return ListHelper.getDefaultResolutionIndex(context, sortedVideos);
+                }
 
-        @Override
-        protected int getOverrideResolutionIndex(final List<VideoStream> sortedVideos,
-                                                 final String playbackQuality) {
-            return ListHelper.getResolutionIndex(context, sortedVideos, playbackQuality);
+                @Override
+                public int getOverrideResolutionIndex(List<VideoStream> sortedVideos,
+                                                      String playbackQuality) {
+                    return ListHelper.getResolutionIndex(context, sortedVideos, playbackQuality);
+                }
+            };
         }
 
         /*//////////////////////////////////////////////////////////////////////////

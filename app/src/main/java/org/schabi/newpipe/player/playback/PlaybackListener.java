@@ -45,7 +45,7 @@ public interface PlaybackListener {
      *
      * May be called anytime at any amount once unblock is called.
      * */
-    void onPlaybackSynchronize(@NonNull final PlayQueueItem item, @Nullable final StreamInfo info);
+    void onPlaybackSynchronize(@NonNull final PlayQueueItem item);
 
     /**
      * Requests the listener to resolve a stream info into a media source
