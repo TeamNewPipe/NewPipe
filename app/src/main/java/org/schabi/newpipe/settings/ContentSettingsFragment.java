@@ -274,22 +274,16 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
                 alert.setTitle(R.string.import_settings);
 
-                alert.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        // restart app to properly load db
-                        System.exit(0);
-                    }
+                alert.setNegativeButton(android.R.string.no, (dialog, which) -> {
+                    dialog.dismiss();
+                    // restart app to properly load db
+                    System.exit(0);
                 });
-                alert.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        loadSharedPreferences(newpipe_settings);
-                        // restart app to properly load db
-                        System.exit(0);
-                    }
+                alert.setPositiveButton(android.R.string.yes, (dialog, which) -> {
+                    dialog.dismiss();
+                    loadSharedPreferences(newpipe_settings);
+                    // restart app to properly load db
+                    System.exit(0);
                 });
                 alert.show();
             } else {
