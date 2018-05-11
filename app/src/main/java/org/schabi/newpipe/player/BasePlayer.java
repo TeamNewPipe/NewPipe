@@ -285,9 +285,11 @@ public abstract class BasePlayer implements
         destroyPlayer();
         unregisterBroadcastReceiver();
 
+        if (mediaSessionManager != null) mediaSessionManager.dispose();
+
         trackSelector = null;
-        simpleExoPlayer = null;
         mediaSessionManager = null;
+        simpleExoPlayer = null;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -494,22 +496,6 @@ public abstract class BasePlayer implements
                 (manifest == null ? "no manifest" : "available manifest") + ", " +
                 "timeline size = [" + timeline.getWindowCount() + "], " +
                 "reason = [" + reason + "]");
-        if (playQueue == null) return;
-
-        switch (reason) {
-            case Player.TIMELINE_CHANGE_REASON_RESET: // called after #block
-            case Player.TIMELINE_CHANGE_REASON_PREPARED: // called after #unblock
-            case Player.TIMELINE_CHANGE_REASON_DYNAMIC: // called after playlist changes
-                // Ensures MediaSourceManager#update is complete
-                final boolean isPlaylistStable = timeline.getWindowCount() == playQueue.size();
-                // Ensure dynamic/livestream timeline changes does not cause negative position
-                if (isPlaylistStable && !isCurrentWindowValid() && !isSynchronizing) {
-                    if (DEBUG) Log.d(TAG, "Playback - negative time position reached, " +
-                            "clamping to default position.");
-                    seekToDefault();
-                }
-                break;
-        }
     }
 
     @Override
@@ -598,7 +584,7 @@ public abstract class BasePlayer implements
         } else if (isSynchronizing && isLive()) {
             // Is still synchronizing?
             if (DEBUG) Log.d(TAG, "Playback - Synchronizing livestream to default time");
-            seekToDefault();
+            //seekToDefault();
 
         } else if (isSynchronizing && presetStartPositionMillis > 0L) {
             // Has another start position?
