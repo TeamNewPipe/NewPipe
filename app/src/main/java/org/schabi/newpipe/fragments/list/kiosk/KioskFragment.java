@@ -77,7 +77,7 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
         UrlIdHandler kioskTypeUrlIdHandler = service.getKioskList()
                 .getUrlIdHandlerByType(kioskId);
         instance.setInitialData(serviceId,
-                kioskTypeUrlIdHandler.getUrl(kioskId),
+                kioskTypeUrlIdHandler.setId(kioskId).getUrl(),
                 kioskId);
         instance.kioskId = kioskId;
         return instance;
