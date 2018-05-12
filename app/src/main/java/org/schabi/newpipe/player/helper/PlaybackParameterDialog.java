@@ -21,7 +21,7 @@ import static org.schabi.newpipe.player.BasePlayer.DEBUG;
 public class PlaybackParameterDialog extends DialogFragment {
     @NonNull private static final String TAG = "PlaybackParameterDialog";
 
-    // Maximum allowable range in ExoPlayer
+    // Minimum allowable range in ExoPlayer
     public static final double MINIMUM_PLAYBACK_VALUE = 0.10f;
     public static final double MAXIMUM_PLAYBACK_VALUE = 3.00f;
 
