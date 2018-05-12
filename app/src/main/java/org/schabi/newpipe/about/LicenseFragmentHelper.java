@@ -1,8 +1,11 @@
 package org.schabi.newpipe.about;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.webkit.WebView;
 import org.schabi.newpipe.R;
@@ -10,26 +13,46 @@ import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.lang.ref.WeakReference;
 
 public class LicenseFragmentHelper extends AsyncTask<Object, Void, Integer> {
 
-    private Context context;
+    WeakReference<Activity> weakReference;
     private License license;
+
+    public LicenseFragmentHelper(@Nullable Activity activity) {
+        weakReference = new WeakReference<>(activity);
+    }
+
+    @Nullable
+    private Activity getActivity() {
+        Activity activity = weakReference.get();
+
+        if (activity != null && activity.isFinishing()) {
+            return null;
+        } else {
+            return activity;
+        }
+    }
 
     @Override
     protected Integer doInBackground(Object... objects) {
-        context = (Context) objects[0];
-        license = (License) objects[1];
+        license = (License) objects[0];
         return 1;
     }
 
     @Override
     protected void onPostExecute(Integer result){
-        String webViewData = getFormattedLicense(context, license);
-        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        Activity activity = getActivity();
+        if (activity == null) {
+            return;
+        }
+
+        String webViewData = getFormattedLicense(activity, license);
+        AlertDialog.Builder alert = new AlertDialog.Builder(activity);
         alert.setTitle(license.getName());
 
-        WebView wv = new WebView(context);
+        WebView wv = new WebView(activity);
         wv.loadData(webViewData, "text/html; charset=UTF-8", null);
 
         alert.setView(wv);

@@ -159,7 +159,7 @@ public class SelectChannelFragment extends DialogFragment {
 
             @Override
             public void onError(Throwable exception) {
-                onError(exception);
+                SelectChannelFragment.this.onError(exception);
             }
 
             @Override

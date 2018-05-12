@@ -14,6 +14,7 @@ import org.schabi.newpipe.local.holder.LocalPlaylistItemHolder;
 import org.schabi.newpipe.local.holder.LocalPlaylistStreamItemHolder;
 import org.schabi.newpipe.local.holder.LocalStatisticStreamItemHolder;
 import org.schabi.newpipe.local.holder.RemotePlaylistItemHolder;
+import org.schabi.newpipe.util.FallbackViewHolder;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.OnClickGesture;
 
@@ -225,7 +226,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
                 return new LocalStatisticStreamItemHolder(localItemBuilder, parent);
             default:
                 Log.e(TAG, "No view type has been considered for holder: [" + type + "]");
-                return null;
+                return new FallbackViewHolder(new View(parent.getContext()));
         }
     }
 
