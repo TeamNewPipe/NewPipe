@@ -26,9 +26,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
-import android.os.Build;
 import android.os.IBinder;
-import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
@@ -92,7 +90,6 @@ public final class BackgroundPlayer extends Service {
     private NotificationCompat.Builder notBuilder;
     private RemoteViews notRemoteView;
     private RemoteViews bigNotRemoteView;
-    private final String setAlphaMethodName = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) ? "setImageAlpha" : "setAlpha";
 
     private boolean shouldUpdateOnProgress;
 
@@ -246,16 +243,6 @@ public final class BackgroundPlayer extends Service {
         }
         notificationManager.notify(NOTIFICATION_ID, notBuilder.build());
     }
-
-    private void setControlsOpacity(@IntRange(from = 0, to = 255) int opacity) {
-        if (notRemoteView != null) notRemoteView.setInt(R.id.notificationPlayPause, setAlphaMethodName, opacity);
-        if (bigNotRemoteView != null) bigNotRemoteView.setInt(R.id.notificationPlayPause, setAlphaMethodName, opacity);
-        if (notRemoteView != null) notRemoteView.setInt(R.id.notificationFForward, setAlphaMethodName, opacity);
-        if (bigNotRemoteView != null) bigNotRemoteView.setInt(R.id.notificationFForward, setAlphaMethodName, opacity);
-        if (notRemoteView != null) notRemoteView.setInt(R.id.notificationFRewind, setAlphaMethodName, opacity);
-        if (bigNotRemoteView != null) bigNotRemoteView.setInt(R.id.notificationFRewind, setAlphaMethodName, opacity);
-    }
-
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
@@ -525,40 +512,26 @@ public final class BackgroundPlayer extends Service {
         public void changeState(int state) {
             super.changeState(state);
             updatePlayback();
-        }
-
-        @Override
-        public void onBlocked() {
-            super.onBlocked();
-
-            setControlsOpacity(77);
             updateNotification(-1);
         }
 
         @Override
         public void onPlaying() {
             super.onPlaying();
-
-            setControlsOpacity(255);
             updateNotification(R.drawable.ic_pause_white);
-
             lockManager.acquireWifiAndCpu();
         }
 
         @Override
         public void onPaused() {
             super.onPaused();
-
             updateNotification(R.drawable.ic_play_arrow_white);
-
             lockManager.releaseWifiAndCpu();
         }
 
         @Override
         public void onCompleted() {
             super.onCompleted();
-
-            setControlsOpacity(255);
 
             resetNotification();
             if (bigNotRemoteView != null) bigNotRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 100, false);
