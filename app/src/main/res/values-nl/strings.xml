@@ -473,4 +473,6 @@ te openen in pop-upmodus</string>
     <string name="one_item_deleted">1 item verwijderd.</string>
 
     <string name="app_license">NewPipe is vrije software: je kan het gebruiken, bestuderen, delen en verbeteren zoveel je maar wil. Je kan het opnieuw uitgeven en/of aanpassen volgens de voorwaarden van de GNU General Public License, gepubliceerd door de Free Software Foundation, versie 3 van de licentie, of (indien gewenst) om het even welke latere versie.</string>
+    <string name="import_settings">Wil je ook de instellingen importeren?</string>
+
     </resources>
