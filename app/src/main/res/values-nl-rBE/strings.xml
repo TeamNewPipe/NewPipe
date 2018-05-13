@@ -436,4 +436,6 @@
     <string name="one_item_deleted">1 item verwijderd.</string>
 
     <string name="app_license">NewPipe is vrije software: ge kund het gebruiken, bestuderen, delen en verbeteren zoveel als da’ ge maar wild. Ge kund het opnieuw uitgeven en/of aanpassen volgens de voorwaarden van de GNU General Public License, gepubliceerd door de Free Software Foundation, versie 3 van de licentie, of (indien gewenst) gelijk welke latere versie.</string>
+    <string name="import_settings">Wild ge d’instellingen ook importeren?</string>
+
     </resources>
