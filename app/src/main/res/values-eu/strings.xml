@@ -22,11 +22,11 @@
     <string name="show_play_with_kodi_summary">Erakutsi bideoa Kodi multimedia zentroarekin erreproduzitzeko aukera</string>
     <string name="play_audio">Audioa</string>
     <string name="default_audio_format_title">Audio formatu lehenetsia</string>
-    <string name="webm_description">WebM — formatu askea</string>
+    <string name="webm_description">WebM — formatu librea</string>
     <string name="m4a_description">M4A — kalitate hobea</string>
     <string name="download_dialog_title">Deskargatu</string>
     <string name="next_video_title">Hurrengo bideoa</string>
-    <string name="show_next_and_similar_title">Erakutsi hurrengo bideoa eta antzekoak</string>
+    <string name="show_next_and_similar_title">Erakutsi \'hurrengo\' eta \'antzeko\' bideoak</string>
     <string name="url_not_supported_toast">URLak ez du euskarririk</string>
     <string name="search_language_title">Edukiaren hizkuntz lehenetsia</string>
     <string name="settings_category_video_audio_title">Bideoa eta Audioa</string>
@@ -50,7 +50,7 @@
 
     <string name="download_path_audio_summary">Deskargatutako audioa gordetzeko bide-izena</string>
     <string name="autoplay_by_calling_app_title">Erreprodukzio automatikoa</string>
-    <string name="autoplay_by_calling_app_summary">Automatikoki jotzen da bideoa NewPipe beste aplikazio batek deitu badu</string>
+    <string name="autoplay_by_calling_app_summary">Bideoa abiatzen du NewPipe beste aplikazio batek deitu badu</string>
     <string name="dark_theme_title">Iluna</string>
     <string name="light_theme_title">Argia</string>
 
@@ -114,7 +114,7 @@
     <string name="error_snackbar_action">TXOSTENA</string>
     <string name="what_device_headline">Informazioa:</string>
     <string name="what_happened_headline">Zer gertatu da:</string>
-    <string name="info_labels">Zer:\\nEskaria:\\nEdukiaren hizkuntza:\\nZerbitzua:\\nGMT Ordua:\\nPaketea:\\nBertsioa:\\nSE bertsioa:\\nIP barruti orokorra:</string>
+    <string name="info_labels">Zer:\\nEskaria:\\nEdukiaren hizkuntza:\\nZerbitzua:\\nGMT Ordua:\\nPaketea:\\nBertsioa:\\nSE bertsioa:</string>
     <string name="your_comment">Zure iruzkina (Ingelesez):</string>
     <string name="error_details_headline">Xehetasunak:</string>
 
@@ -174,7 +174,7 @@
     <string name="tab_about">Honi buruz</string>
     <string name="tab_contributors">Parte hartzaileak</string>
     <string name="tab_licenses">Lizentziak</string>
-    <string name="app_description">Youtube Androiden ikusteko aplikazio libre eta arina.</string>
+    <string name="app_description">Androiderako streaming libre eta arina.</string>
     <string name="view_on_github">Ikusi GitHub zerbitzarian</string>
     <string name="app_license_title">NewPipe Lizentzia</string>
     <string name="contribution_encouragement">Ideiak, itzulpenak, diseinu aldaketak, kode garbiketak, kode aldaketa sakonak badituzu, laguntza beti da ongi etorria. Eginaz hobetzen da!</string>
@@ -204,12 +204,12 @@
 
     <string name="enable_search_history_title">Bilaketa historiala</string>
     <string name="enable_search_history_summary">Gorde bilaketak lokalki</string>
-    <string name="enable_watch_history_title">Historiala</string>
+    <string name="enable_watch_history_title">Historiala eta katxea</string>
     <string name="enable_watch_history_summary">Gorde ikusitako bideoen historiala</string>
     <string name="notification_channel_name">NewPipe jakinarazpena</string>
     <string name="settings_category_player_title">Erreproduzigailua</string>
     <string name="settings_category_player_behavior_title">Portaera</string>
-    <string name="settings_category_history_title">Historiala</string>
+    <string name="settings_category_history_title">Historiala eta cache-a</string>
     <string name="playlist">Erreprodukzio-zerrenda</string>
     <string name="undo">Desegin</string>
 
@@ -244,7 +244,7 @@
     <string name="history_empty">Historiala hutsik dago</string>
     <string name="history_cleared">Historiala garbitu da</string>
     <string name="item_deleted">Elementua ezabatuta</string>
-<string name="show_hold_to_append_title">Erakutsi \"Mantendu eransteko\" aholkua</string>
+<string name="show_hold_to_append_title">Erakutsi \"mantendu eransteko\" aholkua</string>
     <string name="show_hold_to_append_summary">Erakutsi aholkua bigarren planoko eta laster-leihoko botoia sakatzean bideoaren xehetasunen orrian</string>
     <string name="default_content_country_title">Lehenetsitako edukiaren herrialdea</string>
     <string name="service_title">Zerbitzua</string>
@@ -259,15 +259,15 @@
     <string name="switch_to_popup">Aldatu laster-leihora</string>
     <string name="switch_to_main">Aldatu nagusira</string>
 
-    <string name="player_stream_failure">Huts egin du jario hau erreproduzitzean</string>
+    <string name="player_stream_failure">Ezin izan da jario hau erreproduzitu</string>
     <string name="player_unrecoverable_failure">Erreproduzigailuaren errore berreskuraezina gertatu da</string>
     <string name="player_recoverable_failure">Erreproduzigailuaren erroretik berreskuratzen</string>
 
     <string name="donation_title">Dohaintza</string>
-    <string name="donation_encouragement">NewPipe bere denbora librea zuri esperientziarik onena ekartzeko ematen duten boluntarioek garatzen dute. Orain zerbait atzera emateko unea da, garatzaileek NewPipe hobetu ahal izan dezaten Javako kafe bat hartzen duten bitartean!</string>
+    <string name="donation_encouragement">NewPipe zuri esperientziarik onena ekartzeko denbora ematen duten boluntarioek garatzen dute. Emaiezu zerbait garatzaileei NewPipe kafe bat hartzen duten bitartean hobetu ahal izan dezaten.</string>
     <string name="give_back">Egin dohaintza</string>
     <string name="website_title">Webgunea</string>
-    <string name="website_encouragement">NewPipe aplikazioari buruzko informazio gehiago eta azken berriak jasotzeko bisitatu gure webgunea.</string>
+    <string name="website_encouragement">Bisitatu NewPipe webgunea informazio gehiagorako eta berriak irakurtzeko.</string>
     <string name="delete_item_search_history">Elementu hau bilaketen historialetik ezabatu nahi duzu?</string>
 
     <string name="main_page_content">Orri nagusiko edukia</string>
@@ -313,5 +313,141 @@
     <string name="always_ask_player">Galdetu beti</string>
     
     <string name="preferred_player_fetcher_notification_title">Informazioa eskuratzen…</string>
-    <string name="preferred_player_fetcher_notification_message">Eskatutako edukia kargatzen ari da</string>
+    <string name="preferred_player_fetcher_notification_message">Kargatzen eskatutako edukia</string>
+<string name="controls_download_desc">Deskargatu jario fitxategia.</string>
+    <string name="show_info">Erakutsi informazioa</string>
+
+    <string name="tab_bookmarks">Gogokoak</string>
+
+    <string name="controls_add_to_playlist_title">Gehitu hona</string>
+
+    <string name="use_inexact_seek_title">Erabili gutxi gora beherako bilaketa azkarra</string>
+    <string name="download_thumbnail_title">Kargatu iruditxoak</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Irudien cache-a ezabatuta</string>
+    <string name="metadata_cache_wipe_title">Ezabatu cache-ko metadatuak</string>
+    <string name="metadata_cache_wipe_summary">Kendu cache-ko wegbuneen datu guztiak</string>
+    <string name="metadata_cache_wipe_complete_notice">Metadatuen cache-a ezabatuta</string>
+    <string name="auto_queue_title">Gehitu ilarara hurrengo jarioa</string>
+    <string name="auto_queue_summary">Gehitu erlazionatutako jario bat azken jarioa jo bitartean errepikapenik gabeko ilara batean.</string>
+    <string name="settings_category_debug_title">Arazketa</string>
+    <string name="file">Fitxategia</string>
+
+    <string name="import_data_title">Inportatu datu-basea</string>
+    <string name="export_data_title">Esportatu datu-basea</string>
+    <string name="import_data_summary">Zure uneko historiala eta harpidetzak gainidatziko ditu</string>
+    <string name="export_data_summary">Esportatu historiala, harpidetzak eta erreprodukzio-zerrendak.</string>
+    <string name="clear_views_history_title">Garbitu ikusitakoaren historiala</string>
+    <string name="clear_views_history_summary">Jotako jarioen historiala ezabatzen du.</string>
+    <string name="delete_view_history_alert">Ezabatu ikusitakoaren historial osoa.</string>
+    <string name="view_history_deleted">Ikusitakoaren historiala ezabatuta.</string>
+    <string name="clear_search_history_title">Garbitu bilaketa historiala</string>
+    <string name="clear_search_history_summary">Ezabatu bilaketa gakoen historiala.</string>
+    <string name="delete_search_history_alert">Ezabatu bilaketen historial osoa.</string>
+    <string name="search_history_deleted">Bilaketen historiala ezabatuta.</string>
+    <string name="invalid_directory">Direktorio baliogabea</string>
+    <string name="invalid_source">Fitxategi edo edukiaren iturri baliogabea</string>
+    <string name="invalid_file">Fitxategia ez dago edo ez dago baimen nahiko berau irakurri edo idazteko</string>
+    <string name="file_name_empty_error">Fitxategi izena ezin da hutsik egon</string>
+    <string name="error_occurred_detail">Errore bat gertatu da: %1$s</string>
+    <string name="no_streams_available_download">Ez dago jariorik deskargatzeko eskuragarri</string>
+
+    <string name="detail_drag_description">Arrastatu ordena aldatzeko</string>
+
+    <string name="create">Sortu</string>
+    <string name="delete_one">Ezabatu bat</string>
+    <string name="delete_all">Ezabatu guztiak</string>
+    <string name="dismiss">Baztertu</string>
+    <string name="rename">Aldatu izena</string>
+
+    <string name="one_item_deleted">Elementu 1 ezabatuta.</string>
+
+    <string name="toast_no_player">Ez dago fitxategi hau erreproduzitzeko aplikaziorik instalatuta</string>
+
+    <string name="delete_stream_history_prompt">Elementu hau ikusitakoen historialetik ezabatu nahi duzu?</string>
+    <string name="delete_all_history_prompt">Ziur elementu guztiak ezabatu nahi dituzula historialetik?</string>
+    <string name="title_last_played">Jotako azkena</string>
+    <string name="title_most_played">Ikusiena</string>
+
+    <string name="export_complete_toast">Esportazioa burututa</string>
+    <string name="import_complete_toast">Inportazioa burututa</string>
+    <string name="no_valid_zip_file">Ez da baliozko ZIP fitxategia</string>
+    <string name="could_not_import_all_files">Ebisua: Ezin izan dira fitxategi guztiak inportatu.</string>
+    <string name="override_current_data">Honek oraingo ezarpenak gainidatziko ditu.</string>
+
+    <string name="drawer_header_action_paceholder_text">Laster hemen zerbait egongo da ;D</string>
+
+
+    <string name="preferred_open_action_settings_title">\'Ireki\' ekintza hobetsia</string>
+    <string name="preferred_open_action_settings_summary">Lehenetsitako ekintza edukia irekitzean — %s</string>
+
+    <string name="always_ask_open_action">Galdetu beti</string>
+
+    <string name="create_playlist">Sortu erreprodukzio-zerrenda berria</string>
+    <string name="delete_playlist">Ezabatu erreprodukzio-zerrenda</string>
+    <string name="rename_playlist">Aldatu izena erreprodukzio-zerrendari</string>
+    <string name="playlist_name_input">Izena</string>
+    <string name="append_playlist">Gehitu erreprodukzio-zerrendara</string>
+    <string name="set_as_playlist_thumbnail">Ezarri erreprodukzio-zerrendaren iruditxo gisa</string>
+
+    <string name="bookmark_playlist">Gogoko erreprodukzio-zerrenda</string>
+    <string name="unbookmark_playlist">Kendu gogokoa</string>
+
+    <string name="delete_playlist_prompt">Erreprodukzio zerrenda hau ezabatu nahi duzu?</string>
+    <string name="playlist_creation_success">Erreprodukzio-zerrenda sortuta</string>
+    <string name="playlist_add_stream_success">Erreprodukzio-zerrendara gehituta</string>
+    <string name="playlist_thumbnail_change_success">Erreprodukzio zerrendaren iruditxoa aldatuta</string>
+    <string name="playlist_delete_failure">Ezin izan da erreprodukzio-zerrenda ezabatu</string>
+
+    <string name="caption_none">Azpititulurik ez</string>
+
+    <string name="resize_fit">Doitu</string>
+    <string name="resize_fill">Bete</string>
+    <string name="resize_zoom">Zoom</string>
+
+    <string name="caption_auto_generated">Automatikoki sortuak</string>
+
+    <string name="caption_setting_title">Azpitituluak</string>
+    <string name="caption_setting_description">Aldatu azpitituluen testuaren eskala eta atzealdeko estiloa. Aplikazioa berrabiarazi behar da aldaketak aplikatzeko.</string>
+
+    <string name="enable_leak_canary_title">Gaitu LeakCanary</string>
+    <string name="enable_leak_canary_summary">Memoria galeren monitorizazioa. Aplikazioak agian ez du erantzungo memoriaren aitortza egin bitartean</string>
+
+    <string name="enable_disposed_exceptions_title">Eman bizitza-ziklo kanpoko erroreen berri</string>
+    <string name="import_export_title">Inportatu/Esportatu</string>
+    <string name="import_title">Inportatu</string>
+    <string name="import_from">Inportatu hemendik</string>
+    <string name="export_to">Esportatu hona</string>
+
+    <string name="import_ongoing">Inportatzen…</string>
+    <string name="export_ongoing">Esportatzen…</string>
+
+    <string name="import_file_title">Inportatu fitxategia</string>
+    <string name="previous_export">Aurreko esportazioa</string>
+
+    <string name="subscriptions_import_unsuccessful">Ezin izan dira harpidetzak inportatu</string>
+    <string name="subscriptions_export_unsuccessful">Ezin izan dira harpidetzak esportatu</string>
+
+    <string name="import_youtube_instructions">Inporttu YouTube harpidetzak esportazio fitxategia deskargatuz:
+\n
+\n1. Joan URL honetara: %1$s
+\n2. Hasi saioa eskatzen zaizunean
+\n3. Esportazio fitxategiaren deskarga hasi beharko litzateke</string>
+    <string name="import_soundcloud_instructions">Inportatu SoundCloud profila URL-a edo zure ID-a idatziz:
+\n
+\n1. Gaitu \"mahaigain modua\" web nabigatzailean (gunea ez dabil mugikorretan)
+\n2. Joan URL honetara: %1$s
+\n3. Hasi saioa eskatzen zaizunean
+\n4. Kopiatu profilaren URL-a eraman zaizun orritik.</string>
+    <string name="import_soundcloud_instructions_hint">zureID,soundcloud.com/zureid</string>
+
+    <string name="import_network_expensive_warning">Eragiketa honek sarearen erabilera handia egin lezake.
+\n
+\nJarraitu nahi duzu?</string>
+
+    <string name="playback_speed_control">Erreprodukzio-abiaduraren kontrolak</string>
+    <string name="playback_tempo">Tempoa</string>
+    <string name="playback_pitch">Tonua</string>
+    <string name="unhook_checkbox">Deslotu (distortsioa sor lezake)</string>
+    <string name="playback_nightcore">Nightcore</string>
+    <string name="playback_default">Lehenetsia</string>
 </resources>
