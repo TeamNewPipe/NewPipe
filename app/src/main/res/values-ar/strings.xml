@@ -465,4 +465,6 @@
     <string name="playback_pitch">تردد الصوت</string>
     <string name="unhook_checkbox">"النزع  (قد يسبب تشويه)"</string>
     <string name="playback_nightcore">تعديل الايقاع Nightcore</string>
+    <string name="import_settings">هل تريد أيضا استيراد الإعدادات؟</string>
+
     </resources>
