@@ -86,6 +86,7 @@ import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -477,7 +478,6 @@ public class VideoDetailFragment
         videoUploadDateView = rootView.findViewById(R.id.detail_upload_date_view);
         videoDescriptionView = rootView.findViewById(R.id.detail_description_view);
         videoDescriptionView.setMovementMethod(LinkMovementMethod.getInstance());
-        videoDescriptionView.setAutoLinkMask(Linkify.WEB_URLS);
 
         //thumbsRootLayout = rootView.findViewById(R.id.detail_thumbs_root_layout);
         thumbsUpTextView = rootView.findViewById(R.id.detail_thumbs_up_count_view);
@@ -961,12 +961,14 @@ public class VideoDetailFragment
 
         disposables.add(Single.just(descriptionHtml)
                 .map((@io.reactivex.annotations.NonNull String description) -> {
+
+                    String descriptionFixed = fixDescriptionLinks(description);
                     Spanned parsedDescription;
                     if (Build.VERSION.SDK_INT >= 24) {
-                        parsedDescription = Html.fromHtml(description, 0);
+                        parsedDescription = Html.fromHtml(descriptionFixed, 0);
                     } else {
                         //noinspection deprecation
-                        parsedDescription = Html.fromHtml(description);
+                        parsedDescription = Html.fromHtml(descriptionFixed);
                     }
                     return parsedDescription;
                 })
@@ -976,6 +978,34 @@ public class VideoDetailFragment
                     videoDescriptionView.setText(spanned);
                     videoDescriptionView.setVisibility(View.VISIBLE);
                 }));
+    }
+
+    private String fixDescriptionLinks(String description) {
+        boolean everythingIsFine = true;
+        while(everythingIsFine) {
+        try {
+                String[] FirstCut = description.split("<a href=\"",2);
+                if(FirstCut.length==1) {
+                    everythingIsFine = false;
+                }
+                String Beginning = FirstCut[0];
+                String[] SecondCut = FirstCut[1].split("\"",2);
+                String End = SecondCut[1];
+                if(SecondCut[0].contains("q=")) {
+                    String LinkToBeFixed = SecondCut[0].split("q=")[1].split("&amp")[0];
+                    String Link = java.net.URLDecoder.decode(LinkToBeFixed, "UTF-8");
+
+                    description = Beginning + "<a  href=\"" + Link + "\"" + End; //I'm inserting a double space between "<a" and "href" here so the next cut doesn't cut here.
+                } else { //Timestamps and other links to youtube videos are processed here
+                    description = Beginning + "<a  href=\"" + SecondCut[0] + "\"" + End;
+                }
+            } catch (ArrayIndexOutOfBoundsException end) {
+                //this means we have run out of Links because there are no more <a href=" to split the text in so the Array has only one Element.
+            } catch (UnsupportedEncodingException e) {
+                //this means something went wrong. I don't know what, so let's hope this never happens.
+            }
+        }
+        return description;
     }
 
     private View getSeparatorView() {
