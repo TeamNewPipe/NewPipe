@@ -28,7 +28,7 @@ Do not report crashes in the GitHub issue tracker. NewPipe has an automated cras
 * Stick to NewPipe's style conventions (well, just look the other code and then do it the same way :))
 * Do not bring non-free software (e.g., binary blobs) into the project. Also, make sure you do not introduce Google libraries.
 * Stick to [F-Droid contribution guidelines](https://f-droid.org/wiki/page/Inclusion_Policy)
-* Make changes on a separate branch, not on the master branch. This is commonly known as *feature branch workflow*. You may then send your changes as a pull request on GitHub. Patches to the email address mentioned in this document might not be considered, GitHub is the primary platform.
+* Make changes on a separate branch, not on the master branch. This is commonly known as *feature branch workflow*. You may then send your changes as a pull request on GitHub. Patches to the email address mentioned in this document might not be considered, GitHub is the primary platform. (This only affects you if you are a member of TeamNewPipe)
 * When submitting changes, you confirm that your code is licensed under the terms of the [GNU General Public License v3](https://www.gnu.org/licenses/gpl-3.0.html).
 * Please test (compile and run) your code before you submit changes! Ideally, provide test feedback in the PR description. Untested code will **not** be merged!
 * Try to figure out yourself why builds on our CI fail.
