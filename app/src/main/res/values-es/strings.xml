@@ -398,7 +398,7 @@ abrir en modo popup</string>
     <string name="enable_leak_canary_summary">La monitorización de fugas de memoria puede causar que la app no responda cuando hay Heap Dump</string>
 
     <string name="enable_disposed_exceptions_title">Reportar errores fuera del ciclo de duración</string>
-    <string name="enable_disposed_exceptions_summary">Forzar la notificación de excepciones no entregables de RX que ocurren fuera del fragmento o del ciclo de actividad después de disponer</string>
+    <string name="enable_disposed_exceptions_summary">Forzar reporte de excepciones no entregables de RX fuera del fragmento o del ciclo de actividad después del descarte</string>
 
 <string name="use_inexact_seek_title">Usar búsqueda rápida inexacta</string>
     <string name="use_inexact_seek_summary">La búsqueda inexacta permite al reproductor buscar posiciones más rápido con menor precisión</string>
@@ -425,22 +425,20 @@ abrir en modo popup</string>
     <string name="import_file_title">Importar archivo</string>
     <string name="previous_export">Exportación anterior</string>
 
-    <string name="subscriptions_import_unsuccessful">Importación de suscripciones fallida</string>
-    <string name="subscriptions_export_unsuccessful">Exportación de suscripciones fallida</string>
+    <string name="subscriptions_import_unsuccessful">No se pudo importar suscripciones</string>
+    <string name="subscriptions_export_unsuccessful">No se pudo exportar suscripciones</string>
 
-    <string name="import_youtube_instructions">Para importar sus suscripciones de YouTube, necesitará el archivo de exportación, el cual puede ser descargado siguiendo estas instrucciones:
-\n
-\n1. Vaya a esta URL: %1$s
-\n2. Ingrese a su cuenta cuando se le pida
-\n3. Una descarga debería comenzar (ese es el archivo de exportación)</string>
-    <string name="import_soundcloud_instructions">Para importar sus seguimientos de SoundCloud, debe conocer la URL o el ID de su perfil. Si es así, simplemente escriba cualquiera de ellos en la entrada de abajo y ya está listo para comenzar.
-\n
-\nSi no es así, puede seguir estos pasos:
-\n
-\n1. Active el \"modo escritorio\" en algún navegador (el sitio no está disponible para dispositivos móviles)
-\n2. Vaya a esta URL: %1$s
-\n3. Ingrese a su cuenta cuando se le pida
-\n4. Copie la URL a la que fue redireccionado (esa es la URL de su perfil)</string>
+    <string name="import_youtube_instructions">Importe suscripciones de YouTube descargando el archivo de exportación: 
+\n 
+\n1. Vaya a esta URL: %1$s 
+\n2. Inicie sesión cuando se le pida 
+\n3. Una descarga debería empezar (ese es el archivo de exportación)</string>
+    <string name="import_soundcloud_instructions">Importe un perfil de SoundCloud escribiendo la URL o su ID: 
+\n 
+\n1. Active el \"modo escritorio\" en un navegador web (el sitio no está disponible para dispositivos móviles) 
+\n2. Vaya a esta URL: %1$s 
+\n3. Inicie sesión cuando se le pida 
+\n4. Copie la URL del perfil a la que fue redireccionado.</string>
     <string name="import_soundcloud_instructions_hint">suID, soundcloud.com/suID</string>
 
     <string name="import_network_expensive_warning">Tenga en cuenta que esta operación puede ser costosa para la red.
@@ -452,7 +450,7 @@ abrir en modo popup</string>
     <string name="metadata_cache_wipe_title">Metadatos eliminados del caché</string>
     <string name="metadata_cache_wipe_summary">Eliminar todos los datos de la página web en caché</string>
     <string name="metadata_cache_wipe_complete_notice">Metadatos del caché limpiados</string>
-    <string name="playback_speed_control">Control de velocidad de la reproducción</string>
+    <string name="playback_speed_control">Controles de velocidad de reproducción</string>
     <string name="playback_tempo">Tiempo</string>
     <string name="playback_pitch">Tono</string>
     <string name="unhook_checkbox">Desenganchar (puede casusar distorsión)</string>
@@ -479,4 +477,6 @@ abrir en modo popup</string>
     <string name="one_item_deleted">1 elemento eliminado.</string>
 
     <string name="app_license">NewPipe es un software copyleft libre: puedes usarlo, estudiarlo, compartirlo y mejorarlo a tu antojo. Específicamente, puedes redistribuirlo y/o modificarlo bajo los términos de la Licencia Pública General GNU publicada por la Free Software Foundation, ya sea la versión 3 de la Licencia, o (a tu elección) cualquier versión posterior.</string>
+    <string name="import_settings">¿Desea importar también los ajustes?</string>
+
     </resources>
