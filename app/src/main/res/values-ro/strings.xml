@@ -286,7 +286,7 @@ pentru a deschide în mod pop-up</string>
 
     <string name="use_inexact_seek_title">Folosește parcurgerea inexactă</string>
     <string name="use_inexact_seek_summary">Derularea inexactă permite player-ului să îl poziţionezi mai rapid dar cu o precizie mai redusă.</string>
-    <string name="download_thumbnail_title">Încarcă thumbnail-urile</string>
+    <string name="download_thumbnail_title">Încarcă miniaturi</string>
     <string name="download_thumbnail_summary">Dezactivați pentru a opri încărcarea și salvarea tuturor thumbnail-urilor, pentru a economisi consumul de date și de memorie. Schimbarea acestei opțiuni va curăța tot cache-ul din memorie și de pe disc.</string>
     <string name="thumbnail_cache_wipe_complete_notice"/>
     <string name="metadata_cache_wipe_title">Șterge cache-ul pentru metadata</string>
