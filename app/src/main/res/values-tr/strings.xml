@@ -469,4 +469,6 @@
     <string name="one_item_deleted">1 öge silindi.</string>
 
     <string name="app_license">NewPipe, telif müsaadeli özgür yazılımdır: İstediğiniz gibi kullanabilir, öğrenebilir, paylaşabilir, iyileştirebilirsiniz. Özellikle; Özgür Yazılım Vakfı tarafından yayımlanan GNU Genel Kamu Lisansı\'nın, lisansın 3. sürümüyle veya (isterseniz) daha sonraki sürümünün koşulları altında yeniden dağıtabilir ve/veya düzenleyebilirsiniz.</string>
+    <string name="import_settings">Ayrıca ayarları içe aktarmak istiyor musunuz?</string>
+
     </resources>
