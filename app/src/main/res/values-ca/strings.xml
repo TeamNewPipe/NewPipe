@@ -128,7 +128,7 @@
 
     <string name="import_file_title">Importa un fitxer</string>
     <string name="playback_default">Per defecte</string>
-<string name="view_count_text">%1$s visualitzacions</string>
+<string name="view_count_text">%1$s reproduccions</string>
     <string name="upload_date_text">Publicat el %1$s</string>
     <string name="no_player_found">No s\'ha trobat un reproductor de fluxos. Voleu instal·lar el VLC?</string>
     <string name="no_player_found_toast">No s\'ha trobat cap reproductor de fluxos (podeu instal·lar el VLC per reproduir-lo)</string>
@@ -240,10 +240,10 @@
     <string name="use_old_player_summary">Antic reproductor integrat de Mediaframework</string>
 
     <string name="no_subscribers">Sense subscriptors</string>
-    <string name="no_views">Sense visualitzacions</string>
+    <string name="no_views">Sense reproduccions</string>
     <plurals name="views">
-	<item quantity="one">%s visualització</item>
-	<item quantity="other">%s visualitzacions</item>
+	<item quantity="one">%s reproducció</item>
+	<item quantity="other">%s reproduccions</item>
 </plurals>
 
     <string name="no_videos">Sense vídeos</string>
@@ -354,7 +354,7 @@
     <string name="donation_encouragement">El NewPipe està desenvolupat per voluntaris que fan servir el seu temps lliure per a oferir-vos la millor experiència possible. Feu una aportació per assegurar que els nostres desenvolupadors puguin millorar encara més el NewPipe mentre fan un cafè.</string>
     <string name="give_back">Fes la teva aportació</string>
     <string name="title_history_search">Cerques</string>
-    <string name="title_history_view">Visualitzacions</string>
+    <string name="title_history_view">Reproduccions</string>
     <string name="no_channel_subscribed_yet">Encara no us heu subscrit a cap canal</string>
     <string name="new_and_hot">Novetats</string>
     <string name="hold_to_append">Manteniu premut per afegir a la cua</string>
@@ -429,10 +429,10 @@
 
     <string name="toast_no_player">No s\'ha trobat cap aplicació que pugui reproduir aquest fitxer</string>
 
-    <string name="clear_views_history_title">Esborra l\'historial de visualitzacions</string>
+    <string name="clear_views_history_title">Esborra l\'historial de reproduccions</string>
     <string name="clear_views_history_summary">Esborra l\'historial dels vídeos que s\'han reproduït.</string>
-    <string name="delete_view_history_alert">Esborra tot l\'historial de visualitzacions.</string>
-    <string name="view_history_deleted">S\'ha esborrat l\'historial de visualitzacions.</string>
+    <string name="delete_view_history_alert">Esborra tot l\'historial de reproduccions.</string>
+    <string name="view_history_deleted">S\'ha esborrat l\'historial de reproduccions.</string>
     <string name="clear_search_history_title">Esborra l\'historial de cerca</string>
     <string name="clear_search_history_summary">Esborra l\'historial de paraules cercades.</string>
     <string name="delete_search_history_alert">Esborra tot l\'historial de cerca.</string>

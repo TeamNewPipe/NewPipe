@@ -441,4 +441,20 @@
     <string name="caption_setting_title">Undertekster</string>
     <string name="caption_setting_description">Endre undertekststørrelse og bakgrunnsstiler. Krever omstart av programmet for å tre i effekt.</string>
 
+    <string name="app_license">NewPipe er copyleft, fri programvare: Du kan bruke, studere og forbedre etter egen vilje. Spesifikt kan du redistribuere og/eller modifisere det i henhold til vilkårene gitt i GNU General Public-lisensen, som publisert av Free Software Foundation, enten versjon 3 av lisensen, eller (etter eget ønske) enhver senere versjon.</string>
+    <string name="import_settings">Ønsker du også å importere innstillinger?</string>
+
+    <string name="subscriptions_import_unsuccessful">Kunne ikke importere abonnementer</string>
+    <string name="subscriptions_export_unsuccessful">Kunne ikke eksportere abonnementer</string>
+
+    <string name="import_youtube_instructions">Importer YoutTube-abonnementer ved å laste ned eksportfilen:
+\n
+\n1. Gå til denne nettadressen: %1$s
+\n2. Logg inn når forespurt
+\n3. En nedlasting av eksportfilen bør starte</string>
+    <string name="import_soundcloud_instructions">Importer en SoundCloud-profil ved å skrive enten nettadressen eller din ID:
+\n
+\n1. Skru på \"skrivebordsmodus\" i en nettleser ( siden er ikke tilgjengelig for mobile enheter)
+\n2. Logg inn når forespurt
+\n4. Kopier profil-nettadressen du ble videresendt til.</string>
     </resources>
