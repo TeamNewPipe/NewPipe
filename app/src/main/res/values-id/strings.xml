@@ -381,7 +381,7 @@ membuka di mode popup</string>
     <string name="larger_caption_font_size">Fon lebih besar</string>
 
     <string name="enable_leak_canary_title">Aktifkan LeakCanary</string>
-    <string name="playback_nightcore"/>
+    <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Bawaan</string>
 <string name="no_player_found_toast">Tidak ada aplikasi pemutar stream (Anda bisa memasang VLC untuk memutarnya)</string>
     <string name="controls_download_desc">Unduh berkas stream.</string>
@@ -408,4 +408,58 @@ membuka di mode popup</string>
     <string name="tab_bookmarks">Markah</string>
 
     <string name="auto_queue_title">Antre otomatis stream berikutnya</string>
+    <string name="channel_unsubscribed">Berhenti langganan channel ini</string>
+    <string name="subscription_update_failed">Tidak dapat memperbarui langganan</string>
+    <string name="tab_subscriptions">Langganan</string>
+    <string name="use_inexact_seek_title">Gunakan pencarian dengan cepat dengan tidak tepat</string>
+    <string name="use_inexact_seek_summary">Pencarian tidak beraturan memungkinkan pengguna untuk mencari posisi lebih cepat dengan ketepatan yang berkurang</string>
+    <string name="app_license">NewPipe adalah perangkat lunak libre copyleft: Anda dapat menggunakannya, mempelajarinya, berbagi, dan meningkatkannya sesuai keinginan Anda. Secara khusus Anda dapat mendistribusikan ulang dan/atau memodifikasinya di bawah syarat-syarat Lisensi GNU General Public License yang diterbitkan oleh Free Software Foundation, baik versi 3 dari Lisensi, atau (sesuai pilihan Anda) versi yang lebih baru.</string>
+    <string name="import_settings">Apa Anda ingin juga mengimpor pengaturan?</string>
+
+    <string name="preferred_open_action_settings_title">Lebih disukai tindakan \'terbuka\'</string>
+    <string name="preferred_open_action_settings_summary">Aksi bawaan ketika membuka konten — %s</string>
+
+    <string name="caption_setting_title">Keterangan</string>
+    <string name="caption_setting_description">Mengubah skala keterangan teks pemutar dan gaya latar belakang. Perlu memulai ulang aplikasi agar berdampak.</string>
+
+    <string name="enable_leak_canary_summary">Pemantauan kebocoran memori dapat menyebabkan aplikasi menjadi tidak responsif saat terjadi dumping</string>
+
+    <string name="enable_disposed_exceptions_title">Laporkan Kesalahan di Luar-Siklus</string>
+    <string name="enable_disposed_exceptions_summary">Memaksa pelaporan pengecualian Rx yang tidak dapat dikirim di luar kepingan atau siklus hidup aktivitas setelah dibuang</string>
+
+    <string name="import_export_title">Impor/Ekspor</string>
+    <string name="import_title">Impor</string>
+    <string name="import_from">Impor dari</string>
+    <string name="export_to">Ekspor ke</string>
+
+    <string name="import_ongoing">Mengimpor…</string>
+    <string name="export_ongoing">Mengekspor…</string>
+
+    <string name="import_file_title">Impor file</string>
+    <string name="previous_export">Ekspor sebelumnya</string>
+
+    <string name="subscriptions_import_unsuccessful">Tidak dapat mengimpor langganan</string>
+    <string name="subscriptions_export_unsuccessful">Tidak dapat mengekspor langganan</string>
+
+    <string name="import_youtube_instructions">Impor langganan YouTube dengan mengunduh file ekspor:
+\n
+\n1. Pergi ke URL ini: %1$s
+\n2. Masuk ketika disuruh
+\n3. Unduhan akan dimulai (Itulah file ekspornya)</string>
+    <string name="import_soundcloud_instructions">Untuk mengimpor profil SoundCloud dengan mengetik URL atau ID Anda:
+\n
+\n1. Nyalakan \"mode desktop\" di web-browser (situsnya tidak tersedia untuk perangkat mobile)
+\n2. Pergi ke URL ini: %1$s
+\n3. Masuk ketika disuruh
+\n4. Salin URL profil Anda ketika dialihkan.</string>
+    <string name="import_soundcloud_instructions_hint">IDanda, soundcloud.com/idanda</string>
+
+    <string name="import_network_expensive_warning">Perlu diingat operasi ini bisa menyedot jaringan yang mahal.
+\n
+\nApakah Anda ingin melanjutkan?</string>
+
+    <string name="playback_speed_control">Kontrol Kecepatan Pemutaran</string>
+    <string name="playback_tempo">Tempo</string>
+    <string name="playback_pitch">Nada</string>
+    <string name="unhook_checkbox">Lepas kaitan (dapat menyebabkan distorsi)</string>
     </resources>
