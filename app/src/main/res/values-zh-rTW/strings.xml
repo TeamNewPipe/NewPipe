@@ -456,4 +456,6 @@
     <string name="one_item_deleted">已刪除 1 個項目。</string>
 
     <string name="app_license">NewPipe 是一個 Copyleft 的自由軟體：您可以隨意使用、研究、分享並改進它。您可以在遵守由自由軟體基金會所發佈的 GNU 通用公共授權條款的狀況下自由地再散佈及／或修改它，授權條款預設使用第三版，但您也可以選擇更新的版本。</string>
+    <string name="import_settings">您是否同時的匯入設定？</string>
+
     </resources>
