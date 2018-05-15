@@ -478,4 +478,6 @@
     <string name="one_item_deleted">1 elemento eliminato.</string>
 
     <string name="app_license">NewPipe è un software libero con licenza copyleft: puoi usarlo, studiarlo, condividerlo e migliorarlo a tuo piacimento. In particolare, è possibile ridistribuirlo e/o modificarlo secondo i termini della GNU General Public License pubblicata dalla Free Software Foundation, sia nella versione 3 della Licenza, sia (a propria discrezione) in qualsiasi versione successiva.</string>
+    <string name="import_settings">Vuoi anche importare le impostazioni?</string>
+
     </resources>
