@@ -60,7 +60,6 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
-import org.schabi.newpipe.extractor.utils.Parser;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.util.StreamItemAdapter;
@@ -87,7 +86,6 @@ import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -962,7 +960,6 @@ public class VideoDetailFragment
 
         disposables.add(Single.just(descriptionHtml)
                 .map((@io.reactivex.annotations.NonNull String description) -> {
-
                     Spanned parsedDescription;
                     if (Build.VERSION.SDK_INT >= 24) {
                         parsedDescription = Html.fromHtml(description, 0);
