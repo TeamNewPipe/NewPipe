@@ -60,6 +60,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
+import org.schabi.newpipe.extractor.utils.Parser;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.util.StreamItemAdapter;
@@ -962,13 +963,12 @@ public class VideoDetailFragment
         disposables.add(Single.just(descriptionHtml)
                 .map((@io.reactivex.annotations.NonNull String description) -> {
 
-                    String descriptionFixed = fixDescriptionLinks(description);
                     Spanned parsedDescription;
                     if (Build.VERSION.SDK_INT >= 24) {
-                        parsedDescription = Html.fromHtml(descriptionFixed, 0);
+                        parsedDescription = Html.fromHtml(description, 0);
                     } else {
                         //noinspection deprecation
-                        parsedDescription = Html.fromHtml(descriptionFixed);
+                        parsedDescription = Html.fromHtml(description);
                     }
                     return parsedDescription;
                 })
@@ -978,34 +978,6 @@ public class VideoDetailFragment
                     videoDescriptionView.setText(spanned);
                     videoDescriptionView.setVisibility(View.VISIBLE);
                 }));
-    }
-
-    private String fixDescriptionLinks(String description) {
-        boolean everythingIsFine = true;
-        while(everythingIsFine) {
-        try {
-                String[] FirstCut = description.split("<a href=\"",2);
-                if(FirstCut.length==1) {
-                    everythingIsFine = false;
-                }
-                String Beginning = FirstCut[0];
-                String[] SecondCut = FirstCut[1].split("\"",2);
-                String End = SecondCut[1];
-                if(SecondCut[0].contains("q=")) {
-                    String LinkToBeFixed = SecondCut[0].split("q=")[1].split("&amp")[0];
-                    String Link = java.net.URLDecoder.decode(LinkToBeFixed, "UTF-8");
-
-                    description = Beginning + "<a  href=\"" + Link + "\"" + End; //I'm inserting a double space between "<a" and "href" here so the next cut doesn't cut here.
-                } else { //Timestamps and other links to youtube videos are processed here
-                    description = Beginning + "<a  href=\"" + SecondCut[0] + "\"" + End;
-                }
-            } catch (ArrayIndexOutOfBoundsException end) {
-                //this means we have run out of Links because there are no more <a href=" to split the text in so the Array has only one Element.
-            } catch (UnsupportedEncodingException e) {
-                //this means something went wrong. I don't know what, so let's hope this never happens.
-            }
-        }
-        return description;
     }
 
     private View getSeparatorView() {
