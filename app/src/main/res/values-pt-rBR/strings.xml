@@ -10,7 +10,7 @@
     <string name="view">Reproduzir</string>
     <string name="video_is_age_restricted">Vídeo com restrição de idade. Permissão para vídeos com essa restrição podem ser feitas no menu configurações.</string>
     <string name="video">Vídeo</string>
-    <string name="autoplay_by_calling_app_summary">Reproduzir o vídeo automaticamente quando o NewPipe for aberto a partir de outro app</string>
+    <string name="autoplay_by_calling_app_summary">Reproduz o vídeo quando o NewPipe for aberto a partir de outro aplicativo</string>
     <string name="autoplay_by_calling_app_title">Reproduzir automaticamente</string>
     <string name="black_theme_title">Preto</string>
     <string name="blocked_by_gema">Bloqueado pelo GEMA</string>
@@ -66,7 +66,7 @@
     <string name="share">Compartilhar</string>
     <string name="share_dialog_title">Compartilhar com</string>
     <string name="show_age_restricted_content_title">Exibir conteúdo com restrição de idade</string>
-    <string name="show_next_and_similar_title">Exibir próximo vídeo e relacionados</string>
+    <string name="show_next_and_similar_title">Exibir \'próximo\' vídeo e \'relacionados\'</string>
     <string name="sorry_string">Desculpe, isto não deveria ter acontecido.</string>
     <string name="start">Iniciar</string>
     <string name="storage_permission_denied">Permissão para acessar armazenamento negada</string>
@@ -168,7 +168,7 @@ abrir em modo popup</string>
     <string name="tab_about">Sobre</string>
     <string name="tab_contributors">Contribuintes</string>
     <string name="tab_licenses">Licenças</string>
-    <string name="app_description">Um leve, simples e grátis aplicativo de YouTube para Android.</string>
+    <string name="app_description">Streaming leve e gratuito no Android.</string>
     <string name="view_on_github">Ver no GitHub</string>
     <string name="app_license_title">Licença do NewPipe</string>
     <string name="contribution_encouragement">Sempre que tiver ideias, traduções, mudanças do design, limpeza de código ou grandes alterações de código, a ajuda é bem vinda. Quanto mais for feito, melhor o aplicativo fica!</string>
@@ -200,7 +200,7 @@ abrir em modo popup</string>
 
     <string name="enable_search_history_title">Histórico de pesquisas</string>
     <string name="enable_search_history_summary">Armazenar histórico de pesquisa localmente</string>
-    <string name="enable_watch_history_title">Histórico</string>
+    <string name="enable_watch_history_title">Histórico &amp; Cache</string>
     <string name="enable_watch_history_summary">Armazenar histórico de vídeos assistidos</string>
     <string name="title_activity_history">Histórico</string>
     <string name="title_history_search">Pesquisado</string>
@@ -256,13 +256,13 @@ abrir em modo popup</string>
     <string name="trending">Em Alta</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Novos e tendências</string>
-<string name="show_hold_to_append_title">Mostrar dica para mantenha pressionado para pendurar</string>
+<string name="show_hold_to_append_title">"Mostrar dica  \"mantenha pressionado\" para enfileirar"</string>
     <string name="show_hold_to_append_summary">Mostrar dica quando o botão de plano de fundo ou de popup for pressionado na página de detalhes do vídeo</string>
     <string name="background_player_append">Adicionado a fila do reprodutor em plano de fundo</string>
     <string name="popup_playing_append">Adicionado a fila no reprodutor popup</string>
     <string name="play_all">Reproduzir tudo</string>
 
-    <string name="player_stream_failure">Falha ao reproduzir esta stream</string>
+    <string name="player_stream_failure">Não foi possível reproduzir esta stream</string>
     <string name="player_unrecoverable_failure">Ocorreu um erro no reprodutor</string>
     <string name="player_recoverable_failure">Recuperando erro do reprodutor</string>
 
@@ -280,10 +280,10 @@ abrir em modo popup</string>
     <string name="start_here_on_background">Iniciar aqui em plano de fundo</string>
     <string name="start_here_on_popup">Iniciar aqui em popup</string>
 <string name="donation_title">Doar</string>
-    <string name="donation_encouragement">NewPipe é desenvolvido por voluntários que gastam seu tempo livre para trazer a melhor experiência para você. Agora é a hora de retribuir o favor e ter certeza que os desenvolvedores podem fazer com que o NewPipe fique ainda melhor enquanto desfrutam uma xícara de café!</string>
+    <string name="donation_encouragement">NewPipe é desenvolvido por voluntários que usam seu tempo para trazer a melhor experiência para você. Retribua para ajudar os desenvolvedores a tornarem o NewPipe ainda melhor enquanto desfrutam uma xícara de café.</string>
     <string name="give_back">Retribuir</string>
     <string name="website_title">Site oficial</string>
-    <string name="website_encouragement">Para obter mais informações e as últimas notícias sobre o NewPipe visite nosso Site.</string>
+    <string name="website_encouragement">Visite o site do NewPipe para mais informações e novidades.</string>
     <string name="no_player_found_toast">Nenhum reprodutor de stream encontrado (você pode instalar o VLC para reproduzir isto)</string>
     <string name="default_content_country_title">País do conteúdo padrão</string>
     <string name="service_title">Serviço</string>
@@ -306,7 +306,7 @@ abrir em modo popup</string>
     <string name="always_ask_player">Sempre perguntar</string>
     
     <string name="preferred_player_fetcher_notification_title">Obtendo informações…</string>
-    <string name="preferred_player_fetcher_notification_message">O conteúdo solicitado está carregando</string>
+    <string name="preferred_player_fetcher_notification_message">Carregando o conteúdo requisitado</string>
 <string name="import_data_title">Importar base de dados</string>
     <string name="export_data_title">Exportar base de dados</string>
     <string name="import_data_summary">Isso irá sobrescrever seu histórico e inscrições</string>
@@ -350,14 +350,14 @@ abrir em modo popup</string>
     <string name="unbookmark_playlist">Remover Favorito</string>
 
     <string name="delete_playlist_prompt">Deseja remover esta lista de reprodução?</string>
-    <string name="playlist_creation_success">Lista de Reprodução Criada</string>
+    <string name="playlist_creation_success">Lista de Reprodução criada</string>
     <string name="playlist_add_stream_success">Adicionado a lista de reprodução</string>
     <string name="playlist_thumbnail_change_success">Miniatura para a lista de reprodução alterada</string>
     <string name="playlist_delete_failure">Falha ao apagar lista de reprodução</string>
 
     <string name="caption_none">Sem Legenda</string>
 
-    <string name="resize_fit">FIT</string>
+    <string name="resize_fit">Ajustar</string>
     <string name="resize_fill">Preencher</string>
     <string name="resize_zoom">Zoom</string>
 
@@ -371,15 +371,15 @@ abrir em modo popup</string>
 
     <string name="caption_auto_generated">Gerado automaticamente</string>
     <string name="enable_leak_canary_title">Habilitar LeakCanary</string>
-    <string name="enable_leak_canary_summary">Monitoramento de vazamento de memória pode fazer com que o app fique sem responder quando estiver despejando a pilha</string>
+    <string name="enable_leak_canary_summary">"Monitoramento de vazamento de memória pode fazer com que o app fique sem responder quando estiver despejando a pilha "</string>
 
-    <string name="enable_disposed_exceptions_title">Reportar Erros fora do ciclo de vida</string>
+    <string name="enable_disposed_exceptions_title">Reportar Erros de Fora do Ciclo de Vida</string>
     <string name="enable_disposed_exceptions_summary">Forçar o report de exceções Rx não entregáveis ocorrendo fora do fragmento ou ciclo de vida da atividade após o dispose</string>
 
 <string name="use_inexact_seek_title">Usar índice de indexação rápido porém não preciso</string>
     <string name="use_inexact_seek_summary">Usar índice de indexação inexato</string>
     <string name="auto_queue_title">Adicionar a próxima stream à fila automaticamente</string>
-    <string name="auto_queue_summary">Anexar automaticamente uma stream relacionada quando a reprodução iniciar na última stream em uma fila não repetitiva.</string>
+    <string name="auto_queue_summary">Auto anexar uma stream relacionada quando a reprodução iniciar na última stream em uma fila não repetitiva.</string>
     <string name="live_sync">Sincronizar</string>
 
     <string name="file">Arquivo</string>
@@ -404,20 +404,18 @@ abrir em modo popup</string>
     <string name="subscriptions_import_unsuccessful">Importação de inscrições falhou</string>
     <string name="subscriptions_export_unsuccessful">Exportação de inscrições falhou</string>
 
-    <string name="import_youtube_instructions">"Para importar inscrições do YouTube você vai precisar exportar o arquivo, o que pode ser baixado seguindo estas informações:
-\n
-\n1. Vá para este link:  %1$s
-\n2. Faça login na sua conta quando solicitado
-\n3. O download deverá começar (isto é exportar arquivo)"</string>
-    <string name="import_soundcloud_instructions">Para importar as contas que você segue no SoundCloud, você terá que saber o link ou id do seu perfil. Se você souber, basta escrever um deles no campo abaixo e estará tudo pronto.
-\n
-\nSe você não souber, você pode seguir estas etapas:
-\n
-\n1. Habilite \"modo desktop\" em algum navegador da internet ( o site não está disponível para dispositivos móveis)
-\n2. Vá para esta url: %1$s
-\n3. Faça login na sua conta quando solicitado
-\n4. Copie o link no qual que você foi redirecionado (este é o link do seu perfil)</string>
-    <string name="import_soundcloud_instructions_hint">seuid, soundcloud.com/seuid</string>
+    <string name="import_youtube_instructions">"Importe as inscrições da sua conta no YouTube através do arquivo exportado por ela em: 
+\n 
+\n1. Vá para este link:  %1$s 
+\n2. Faça login quando solicitado 
+\n3. O download deverá começar (isto é o arquivo exportado)"</string>
+    <string name="import_soundcloud_instructions">Importe uma conta do SoundCloud escrevendo o ID ou a URL no campo abaixo: 
+\n 
+\n1. Habilite o \"modo desktop\" em algum navegador da internet (pois essa opção não está disponível para páginas mobile)
+\n2. Vá para esta URL: %1$s
+\n3. Faça login quando solicitado 
+\n4. Copie o link no qual você foi redirecionado (este é o link do seu perfil).</string>
+    <string name="import_soundcloud_instructions_hint">seuID, soundcloud.com/seuid</string>
 
     <string name="import_network_expensive_warning">Tenha em mente que esta operação poderá usar bastante a conexão com a internet.
 \n
@@ -427,23 +425,36 @@ abrir em modo popup</string>
     <string name="metadata_cache_wipe_title">Limpar o cache de metadados</string>
     <string name="metadata_cache_wipe_summary">Remover todos os dados de páginas em cache</string>
     <string name="metadata_cache_wipe_complete_notice">Cache de metadados foi limpo</string>
-    <string name="playback_speed_control">Controle de Velocidade de reprodução</string>
-    <string name="playback_tempo">Tempo</string>
+    <string name="playback_speed_control">Controles de Velocidade de Reprodução</string>
+    <string name="playback_tempo">"Tempo "</string>
     <string name="download_thumbnail_summary">Desabilite para para de carregar todas as miniaturas e economizar dados e uso de memória. Alterar esta configuração irá limpar o cache de imagens na memória e em disco.</string>
     <string name="playback_pitch">Passo</string>
     <string name="unhook_checkbox">Desenganchar</string>
     <string name="playback_default">Padrão</string>
-<string name="preferred_open_action_settings_title">Ação de abrir preferida</string>
+<string name="preferred_open_action_settings_title">Ação de \'abrir\' preferida</string>
     <string name="preferred_open_action_settings_summary">Ação padrão quando abrir conteúdo — %s</string>
 
     <string name="no_streams_available_download">Sem fontes disponíveis para download</string>
 
     <string name="drawer_open">Abrir gaveta</string>
     <string name="drawer_close">Fechar gaveta</string>
-    <string name="caption_setting_title">Legenda</string>
+    <string name="caption_setting_title">Legendas</string>
     <string name="caption_setting_description">Modifique o tamanho da legenda e o estilo da tela de fundo. Necessário reiniciar o aplicativo para ter efeito.</string>
 
     <string name="playback_nightcore">Night-core</string>
-    <string name="toast_no_player">Nenhum player foi encontrado para este arquivo</string>
+    <string name="toast_no_player">Nenhum player instalado para reproduzir este arquivo</string>
+
+    <string name="clear_views_history_title">"Limpar histórico de já assistidos "</string>
+    <string name="clear_views_history_summary">Deleta o histórico de videos já reproduzidos.</string>
+    <string name="delete_view_history_alert">Deleta todo o histórico de já reproduzidos.</string>
+    <string name="view_history_deleted">Histórico de já assistidos deletado.</string>
+    <string name="clear_search_history_title">Limpar histórico de pesquisa</string>
+    <string name="clear_search_history_summary">Deleta histórico de palavras chave pesquisadas.</string>
+    <string name="delete_search_history_alert">Deletar todo o histórico de pesquisa.</string>
+    <string name="search_history_deleted">Histórico de pesquisa deletado.</string>
+    <string name="one_item_deleted">1 item deletado.</string>
+
+    <string name="app_license">NewPipe is copyleft libre software: Você pode usar, estudar, compartilhar e melhorar ele a vontade. Mais especificamente você pode redistribuir e/ou modificar ele sob os termos da GNU General Public License como publicada pela Free Software Foundation, tanto a versão 3 dessa Licença, ou (a sua escolha) qualquer outra versão posterior.</string>
+    <string name="import_settings">Você também quer importar as configurações?</string>
 
     </resources>
