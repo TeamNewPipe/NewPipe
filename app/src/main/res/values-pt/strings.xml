@@ -30,7 +30,7 @@
     <string name="m4a_description">M4A — melhor qualidade</string>
     <string name="download_dialog_title">Descarregar</string>
     <string name="next_video_title">Vídeo seguinte</string>
-    <string name="show_next_and_similar_title">Mostrar vídeos seguintes e semelhantes</string>
+    <string name="show_next_and_similar_title">Mostrar vídeos \'seguintes\' e \'semelhantes\'</string>
     <string name="url_not_supported_toast">URL não suportado</string>
     <string name="search_language_title">Idioma padrão do conteúdo</string>
     <string name="settings_category_video_audio_title">Vídeo e áudio</string>
@@ -89,7 +89,7 @@
     <string name="storage_permission_denied">Permissão para aceder ao armazenamento foi negada</string>
     <string name="main_bg_subtitle">Toque para iniciar a pesquisa</string>
     <string name="autoplay_by_calling_app_title">Reprodução automática</string>
-    <string name="autoplay_by_calling_app_summary">Reproduzir vídeo automaticamente se o NewPipe for invocado por outra aplicação</string>
+    <string name="autoplay_by_calling_app_summary">Reproduzir vídeo se o NewPipe for invocado por outra aplicação</string>
     <string name="duration_live">direto</string>
 
     <string name="report_error">Reportar um erro</string>
@@ -205,7 +205,7 @@
 
     <string name="enable_search_history_title">Histórico de pesquisa</string>
     <string name="enable_search_history_summary">Guardar termos de pesquisa localmente</string>
-    <string name="enable_watch_history_title">Histórico</string>
+    <string name="enable_watch_history_title">Histórico e Cache</string>
     <string name="enable_watch_history_summary">Guardar histórico de vídeos assistidos</string>
     <string name="resume_on_audio_focus_gain_title">Retomar ao ganhar foco</string>
     <string name="resume_on_audio_focus_gain_summary">Continuar reprodução após interrupções (ex. chamadas)</string>
@@ -419,4 +419,5 @@
     <string name="playback_tempo">Tempo</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Predefinido</string>
-</resources>
+<string name="clear_views_history_title">Limpar histórico de exibição</string>
+    </resources>
