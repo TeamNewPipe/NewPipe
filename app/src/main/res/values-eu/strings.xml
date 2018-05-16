@@ -450,4 +450,6 @@
     <string name="unhook_checkbox">Deslotu (distortsioa sor lezake)</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Lehenetsia</string>
-</resources>
+<string name="import_settings">Ezarpenak ere inportatu nahi dituzu?</string>
+
+    </resources>
