@@ -127,7 +127,7 @@ public final class MainVideoPlayer extends AppCompatActivity
 
         hideSystemUi();
         setContentView(R.layout.activity_main_player);
-        playerImpl = new VideoPlayerImpl(this);
+        playerImpl = new  VideoPlayerImpl(this);
         playerImpl.setup(findViewById(android.R.id.content));
 
         if (savedInstanceState != null && savedInstanceState.get(KEY_SAVED_STATE) != null) {
@@ -498,11 +498,11 @@ public final class MainVideoPlayer extends AppCompatActivity
         // Playback Listener
         //////////////////////////////////////////////////////////////////////////*/
 
-        protected void onMetadataChanged(@Nullable final MediaSourceTag tag) {
+        protected void onMetadataChanged(@NonNull final MediaSourceTag tag) {
             super.onMetadataChanged(tag);
 
-            titleTextView.setText(getVideoTitle());
-            channelTextView.setText(getUploaderName());
+            titleTextView.setText(tag.getMetadata().getName());
+            channelTextView.setText(tag.getMetadata().getUploaderName());
         }
 
         @Override

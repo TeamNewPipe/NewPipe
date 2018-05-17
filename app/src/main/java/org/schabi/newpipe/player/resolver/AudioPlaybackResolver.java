@@ -2,6 +2,7 @@ package org.schabi.newpipe.player.resolver;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.google.android.exoplayer2.source.MediaSource;
 
@@ -24,6 +25,7 @@ public class AudioPlaybackResolver implements PlaybackResolver {
     }
 
     @Override
+    @Nullable
     public MediaSource resolve(@NonNull StreamInfo info) {
         final MediaSource liveSource = maybeBuildLiveMediaSource(dataSource, info);
         if (liveSource != null) return liveSource;

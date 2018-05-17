@@ -37,6 +37,7 @@ import android.widget.RemoteViews;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.source.MediaSource;
+import com.nostra13.universalimageloader.core.assist.FailReason;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
@@ -264,16 +265,16 @@ public final class BackgroundPlayer extends Service {
 
     protected class BasePlayerImpl extends BasePlayer {
 
-        @Nullable private AudioPlaybackResolver resolver;
+        @NonNull final private AudioPlaybackResolver resolver;
 
         BasePlayerImpl(Context context) {
             super(context);
+            this.resolver = new AudioPlaybackResolver(context, dataSource);
         }
 
         @Override
         public void initPlayer(boolean playOnReady) {
             super.initPlayer(playOnReady);
-            resolver = new AudioPlaybackResolver(context, dataSource);
         }
 
         @Override
@@ -286,29 +287,64 @@ public final class BackgroundPlayer extends Service {
             startForeground(NOTIFICATION_ID, notBuilder.build());
         }
 
-        @Override
-        public void initThumbnail(final String url) {
+        /*//////////////////////////////////////////////////////////////////////////
+        // Thumbnail Loading
+        //////////////////////////////////////////////////////////////////////////*/
+
+        private void setDummyRemoteViewThumbnail() {
             resetNotification();
-            if (notRemoteView != null) notRemoteView.setImageViewResource(R.id.notificationCover, R.drawable.dummy_thumbnail);
-            if (bigNotRemoteView != null) bigNotRemoteView.setImageViewResource(R.id.notificationCover, R.drawable.dummy_thumbnail);
+            if (notRemoteView != null) {
+                notRemoteView.setImageViewResource(R.id.notificationCover,
+                        R.drawable.dummy_thumbnail);
+            }
+            if (bigNotRemoteView != null) {
+                bigNotRemoteView.setImageViewResource(R.id.notificationCover,
+                        R.drawable.dummy_thumbnail);
+            }
             updateNotification(-1);
-            super.initThumbnail(url);
+        }
+
+        @Override
+        public void onLoadingStarted(String imageUri, View view) {
+            super.onLoadingStarted(imageUri, view);
+            setDummyRemoteViewThumbnail();
         }
 
         @Override
         public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
             super.onLoadingComplete(imageUri, view, loadedImage);
-
-            if (loadedImage != null) {
-                // rebuild notification here since remote view does not release bitmaps, causing memory leaks
-                resetNotification();
-
-                if (notRemoteView != null) notRemoteView.setImageViewBitmap(R.id.notificationCover, loadedImage);
-                if (bigNotRemoteView != null) bigNotRemoteView.setImageViewBitmap(R.id.notificationCover, loadedImage);
-
-                updateNotification(-1);
+            if (loadedImage == null) {
+                setDummyRemoteViewThumbnail();
+                return;
             }
+
+            // rebuild notification here since remote view does not release bitmaps,
+            // causing memory leaks
+            resetNotification();
+            if (notRemoteView != null) {
+                notRemoteView.setImageViewBitmap(R.id.notificationCover, loadedImage);
+            }
+            if (bigNotRemoteView != null) {
+                bigNotRemoteView.setImageViewBitmap(R.id.notificationCover, loadedImage);
+            }
+            updateNotification(-1);
         }
+
+        @Override
+        public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+            super.onLoadingFailed(imageUri, view, failReason);
+            setDummyRemoteViewThumbnail();
+        }
+
+        @Override
+        public void onLoadingCancelled(String imageUri, View view) {
+            super.onLoadingCancelled(imageUri, view);
+            setDummyRemoteViewThumbnail();
+        }
+
+        /*//////////////////////////////////////////////////////////////////////////
+        // States Implementation
+        //////////////////////////////////////////////////////////////////////////*/
 
         @Override
         public void onPrepared(boolean playWhenReady) {
@@ -385,17 +421,15 @@ public final class BackgroundPlayer extends Service {
 
         protected void onMetadataChanged(@NonNull final MediaSourceTag tag) {
             super.onMetadataChanged(tag);
-            if (shouldUpdateOnProgress) {
-                resetNotification();
-                updateNotification(-1);
-                updateMetadata();
-            }
+            resetNotification();
+            updateNotification(-1);
+            updateMetadata();
         }
 
         @Override
         @Nullable
         public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
-            return resolver == null ? null : resolver.resolve(info);
+            return resolver.resolve(info);
         }
 
         @Override
@@ -516,17 +550,39 @@ public final class BackgroundPlayer extends Service {
         }
 
         @Override
+        public void onBlocked() {
+            super.onBlocked();
+            startForeground(NOTIFICATION_ID, notBuilder.build());
+        }
+
+        @Override
+        public void onBuffering() {
+            super.onBuffering();
+            startForeground(NOTIFICATION_ID, notBuilder.build());
+        }
+
+        @Override
+        public void onPausedSeek() {
+            super.onPausedSeek();
+            startForeground(NOTIFICATION_ID, notBuilder.build());
+        }
+
+        @Override
         public void onPlaying() {
             super.onPlaying();
             updateNotification(R.drawable.ic_pause_white);
+
             lockManager.acquireWifiAndCpu();
+            startForeground(NOTIFICATION_ID, notBuilder.build());
         }
 
         @Override
         public void onPaused() {
             super.onPaused();
             updateNotification(R.drawable.ic_play_arrow_white);
+
             lockManager.releaseWifiAndCpu();
+            stopForeground(false);
         }
 
         @Override
@@ -539,6 +595,7 @@ public final class BackgroundPlayer extends Service {
             updateNotification(R.drawable.ic_replay_white);
 
             lockManager.releaseWifiAndCpu();
+            stopForeground(false);
         }
     }
 }

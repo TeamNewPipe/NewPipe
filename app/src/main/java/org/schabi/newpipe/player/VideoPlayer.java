@@ -103,7 +103,7 @@ public abstract class VideoPlayer extends BasePlayer
 
     protected boolean wasPlaying = false;
 
-    @Nullable private VideoPlaybackResolver resolver;
+    @NonNull final private VideoPlaybackResolver resolver;
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
@@ -154,6 +154,7 @@ public abstract class VideoPlayer extends BasePlayer
     public VideoPlayer(String debugTag, Context context) {
         super(context);
         this.TAG = debugTag;
+        this.resolver = new VideoPlaybackResolver(context, dataSource, getQualityResolver());
     }
 
     public void setup(View rootView) {
@@ -236,8 +237,6 @@ public abstract class VideoPlayer extends BasePlayer
             trackSelector.setParameters(trackSelector.buildUponParameters()
                     .setTunnelingAudioSessionId(C.generateAudioSessionIdV21(context)));
         }
-
-        resolver = new VideoPlaybackResolver(context, dataSource, getQualityResolver());
     }
 
     @Override
@@ -292,7 +291,7 @@ public abstract class VideoPlayer extends BasePlayer
                 0, Menu.NONE, R.string.caption_none);
         captionOffItem.setOnMenuItemClickListener(menuItem -> {
             final int textRendererIndex = getRendererIndex(C.TRACK_TYPE_TEXT);
-            if (trackSelector != null && textRendererIndex != RENDERER_UNAVAILABLE) {
+            if (textRendererIndex != RENDERER_UNAVAILABLE) {
                 trackSelector.setParameters(trackSelector.buildUponParameters()
                         .setRendererDisabled(textRendererIndex, true));
             }
@@ -306,7 +305,7 @@ public abstract class VideoPlayer extends BasePlayer
                     i + 1, Menu.NONE, captionLanguage);
             captionItem.setOnMenuItemClickListener(menuItem -> {
                 final int textRendererIndex = getRendererIndex(C.TRACK_TYPE_TEXT);
-                if (trackSelector != null && textRendererIndex != RENDERER_UNAVAILABLE) {
+                if (textRendererIndex != RENDERER_UNAVAILABLE) {
                     trackSelector.setPreferredTextLanguage(captionLanguage);
                     trackSelector.setParameters(trackSelector.buildUponParameters()
                             .setRendererDisabled(textRendererIndex, false));
@@ -369,7 +368,7 @@ public abstract class VideoPlayer extends BasePlayer
     @Override
     @Nullable
     public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
-        return resolver == null ? null : resolver.resolve(info);
+        return resolver.resolve(info);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -480,8 +479,7 @@ public abstract class VideoPlayer extends BasePlayer
         final int textRenderer = getRendererIndex(C.TRACK_TYPE_TEXT);
 
         if (captionTextView == null) return;
-        if (trackSelector == null || trackSelector.getCurrentMappedTrackInfo() == null ||
-                textRenderer == RENDERER_UNAVAILABLE) {
+        if (trackSelector.getCurrentMappedTrackInfo() == null || textRenderer == RENDERER_UNAVAILABLE) {
             captionTextView.setVisibility(View.GONE);
             return;
         }
@@ -833,12 +831,12 @@ public abstract class VideoPlayer extends BasePlayer
     //////////////////////////////////////////////////////////////////////////*/
 
     public void setPlaybackQuality(final String quality) {
-        if (resolver != null) resolver.setPlaybackQuality(quality);
+        this.resolver.setPlaybackQuality(quality);
     }
 
     @Nullable
     public String getPlaybackQuality() {
-        return resolver == null ? null : resolver.getPlaybackQuality();
+        return resolver.getPlaybackQuality();
     }
 
     public AspectRatioFrameLayout getAspectRatioFrameLayout() {
