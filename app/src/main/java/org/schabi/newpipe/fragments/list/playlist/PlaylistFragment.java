@@ -289,7 +289,6 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         remotePlaylistManager.getPlaylist(result)
                 .flatMap(lists -> getUpdateProcessor(lists, result), (lists, id) -> lists)
                 .onBackpressureLatest()
-                .flatMap(lists -> getUpdateProcessor(lists, result), (lists, id) -> lists)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getPlaylistBookmarkSubscriber());
 
@@ -355,6 +354,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
         final PlaylistRemoteEntity playlistEntity = playlists.get(0);
         if (playlistEntity.isIdenticalTo(result)) return noItemToUpdate;
+
         return remotePlaylistManager.onUpdate(playlists.get(0).getUid(), result).toFlowable();
     }
 
