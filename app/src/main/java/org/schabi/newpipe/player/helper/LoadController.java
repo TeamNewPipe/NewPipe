@@ -18,7 +18,6 @@ public class LoadController implements LoadControl {
 
     public static final String TAG = "LoadController";
 
-    private final long initialPlaybackBufferUs;
     private final LoadControl internalLoadControl;
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -27,15 +26,15 @@ public class LoadController implements LoadControl {
 
     public LoadController(final Context context) {
         this(PlayerHelper.getPlaybackStartBufferMs(context),
+                PlayerHelper.getPlaybackRebufferMs(context),
                 PlayerHelper.getPlaybackMinimumBufferMs(context),
                 PlayerHelper.getPlaybackOptimalBufferMs(context));
     }
 
     private LoadController(final int initialPlaybackBufferMs,
+                           final int rebufferPlaybackBufferMs,
                            final int minimumPlaybackbufferMs,
                            final int optimalPlaybackBufferMs) {
-        this.initialPlaybackBufferUs = initialPlaybackBufferMs * 1000;
-
         final DefaultAllocator allocator = new DefaultAllocator(true,
                 C.DEFAULT_BUFFER_SEGMENT_SIZE);
 
@@ -43,7 +42,7 @@ public class LoadController implements LoadControl {
                 /*minBufferMs=*/minimumPlaybackbufferMs,
                 /*maxBufferMs=*/optimalPlaybackBufferMs,
                 /*bufferForPlaybackMs=*/initialPlaybackBufferMs,
-                /*bufferForPlaybackAfterRebufferMs=*/initialPlaybackBufferMs,
+                /*bufferForPlaybackAfterRebufferMs=*/rebufferPlaybackBufferMs,
                 DEFAULT_TARGET_BUFFER_BYTES, DEFAULT_PRIORITIZE_TIME_OVER_SIZE_THRESHOLDS);
     }
 
@@ -95,10 +94,7 @@ public class LoadController implements LoadControl {
     @Override
     public boolean shouldStartPlayback(long bufferedDurationUs, float playbackSpeed,
                                        boolean rebuffering) {
-        final boolean isInitialPlaybackBufferFilled = bufferedDurationUs >=
-                this.initialPlaybackBufferUs * playbackSpeed;
-        final boolean isInternalStartingPlayback = internalLoadControl.shouldStartPlayback(
-                bufferedDurationUs, playbackSpeed, rebuffering);
-        return isInitialPlaybackBufferFilled || isInternalStartingPlayback;
+        return internalLoadControl.shouldStartPlayback(bufferedDurationUs, playbackSpeed,
+                rebuffering);
     }
 }
