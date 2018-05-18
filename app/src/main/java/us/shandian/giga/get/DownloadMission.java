@@ -5,6 +5,7 @@ import android.os.Looper;
 import android.util.Log;
 
 import java.io.File;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -310,6 +311,13 @@ public class DownloadMission implements Serializable {
         synchronized (blockState) {
             Utility.writeToFile(getMetaFilename(), this);
         }
+    }
+
+    private void readObject(ObjectInputStream inputStream)
+    throws java.io.IOException, ClassNotFoundException
+    {
+        inputStream.defaultReadObject();
+        mListeners = new ArrayList<>();
     }
 
     private void deleteThisFromFile() {
