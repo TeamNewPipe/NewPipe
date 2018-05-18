@@ -5,15 +5,15 @@
     <string name="upload_date_text">প্রকাশকাল %1$s</string>
     <string name="no_player_found">কোন স্ট্রিম প্লেয়ার পাওয়া যায়নি। তুমি কি VLC ইনস্টল করতে চাও?</string>
     <string name="install">ইনস্টল</string>
-    <string name="cancel">বাদ দাও</string>
+    <string name="cancel">"বাদ দিন "</string>
     <!--     <string name="fdroid_vlc_url" translatable="false">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string> -->
-    <string name="open_in_browser">ব্রাউজারে খোলো</string>
-    <string name="open_in_popup_mode">পপআপ মোডে খোলো</string>
+    <string name="open_in_browser">"ব্রাউজারে ওপেন করো "</string>
+    <string name="open_in_popup_mode">"popup মোডে Open করো "</string>
     <string name="share">শেয়ার</string>
     <string name="download">ডাউনলোড</string>
     <string name="search">খোঁজ</string>
-    <string name="settings">সেটিং</string>
-    <string name="did_you_mean">তুমি কি বলতে চাচ্ছ %1$s ?</string>
+    <string name="settings">"সেটিংস "</string>
+    <string name="did_you_mean">আপনি কি বুঝিয়েছেনঃ %1$s ?</string>
     <string name="share_dialog_title">শেয়ার কর</string>
     <string name="choose_browser">ব্রাউজার পছন্দ কর</string>
     <string name="screen_rotation">রোটেশন</string>
@@ -200,4 +200,5 @@
     <string name="action_settings">সেটিংস</string>
     <string name="action_open_website">ওয়েব সাইট খুলুন</string>
     <string name="website_title">ওয়েব সাইট</string>
+    <string name="no_player_found_toast">"কোন স্ট্রিম প্লেয়ার পাওয়া যায়নি (প্লে করতে VLC ইন্সটল করতে পারেন)  "</string>
     </resources>
