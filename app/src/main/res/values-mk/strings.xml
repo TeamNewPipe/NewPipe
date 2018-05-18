@@ -47,7 +47,7 @@
     <string name="download_path_audio_dialog_title">Внеси локација за зачувување аудио</string>
 
     <string name="autoplay_by_calling_app_title">Автоматско пуштање</string>
-    <string name="autoplay_by_calling_app_summary">Автоматски пушта видео кога NewPipe е повикана од друга апликација</string>
+    <string name="autoplay_by_calling_app_summary">Пушта видео кога NewPipe е повикана од друга апликација</string>
     <string name="default_resolution_title">Стандардна резолуција</string>
     <string name="default_popup_resolution_title">Стандардна резолуција на подпрозорчето</string>
     <string name="show_higher_resolutions_title">Покажи повисоки резолуции</string>
@@ -83,13 +83,13 @@
     <string name="show_search_suggestions_summary">Покажи предлози при пребарување</string>
     <string name="enable_search_history_title">Историја на пребарувањата</string>
     <string name="enable_search_history_summary">Зачувај ги пребарувањата локално</string>
-    <string name="enable_watch_history_title">Историја</string>
+    <string name="enable_watch_history_title">Историја и зачувано</string>
     <string name="enable_watch_history_summary">Зачувај ја листата на гледани видеа</string>
     <string name="resume_on_audio_focus_gain_title">Продолжи видео при враќање на фокусот</string>
     <string name="resume_on_audio_focus_gain_summary">Продолжи го видеото по прекини (пр. телефонски повик)</string>
     <string name="download_dialog_title">Превземи</string>
     <string name="next_video_title">Следно видео</string>
-    <string name="show_next_and_similar_title">Покажи следни и слични видеа</string>
+    <string name="show_next_and_similar_title">Покажи „следни“ и „слични“ видеа</string>
     <string name="show_hold_to_append_title">Покажи совет „задржи за прикачување“</string>
     <string name="show_hold_to_append_summary">Прикажи совет кога позадината или копче од подпрозорчето се притиснати, на страната за видео детаљи</string>
     <string name="url_not_supported_toast">Неподдржана URL врска</string>
@@ -257,7 +257,7 @@
     <string name="msg_popup_permission">Оваа привилегија е потребна за
 \nотворање во подпрозорче</string>
 
-    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="reCaptchaActivity">„reCAPTCHA“</string>
     <string name="reCaptcha_title">reCAPTCHA Предизвик</string>
     <string name="recaptcha_request_toast">Потребен е reCAPTCHA предизвик</string>
 
@@ -284,10 +284,10 @@
     <string name="contribution_encouragement">Ако имаш идеи за; превод, дизајн, чистење или големи промени во кодот - помошта е секогаш добредојдена. Што повеќе се работи, подобра е апликацијата!</string>
     <string name="view_on_github">Види на GitHub</string>
     <string name="donation_title">Донирај</string>
-    <string name="donation_encouragement">NewPipe се гради од волонтери кои го вложуваат слободното време за важето задоволство. Време е да им возвратиме за тие да можат да ја подобрат апликацијата, уживајќи во топло кафе!</string>
+    <string name="donation_encouragement">NewPipe се гради од волонтери кои го вложуваат слободното време за важето задоволство. Време е да им возвратиме за тие да можат да ја подобрат апликацијата, уживајќи во топло кафе.</string>
     <string name="give_back">Возврати</string>
     <string name="website_title">Вебсајт</string>
-    <string name="website_encouragement">За повеќе информации и најновите новости за NewPipe посети ја вебстраната.</string>
+    <string name="website_encouragement">За повеќе информации и новости за NewPipe посети ја вебстраната.</string>
     <string name="app_license_title">"Лиценцата на NewPipe "</string>
     <string name="read_full_license">Прочитај лиценца</string>
 
@@ -361,16 +361,16 @@
     <string name="unbookmark_playlist">Избриши ја белешката</string>
 
     <string name="delete_playlist_prompt">Сакаш да ја избришеш плејлистата?</string>
-    <string name="playlist_creation_success">Успешно создадена плејлиста</string>
+    <string name="playlist_creation_success">Листата е создадена</string>
     <string name="playlist_add_stream_success">Додадено во плејлиста</string>
     <string name="playlist_thumbnail_change_success">Се смени иконата на плејлистата</string>
-    <string name="playlist_delete_failure">Неуспешно бришење на плејлистата</string>
+    <string name="playlist_delete_failure">Неуспешно бришење на листата</string>
 
     <string name="caption_none">Без превод</string>
 
-    <string name="resize_fit">ВКЛОПИ</string>
-    <string name="resize_fill">ИСПОЛНИ</string>
-    <string name="resize_zoom">ЗУМИРАЈ</string>
+    <string name="resize_fit">Вклопи</string>
+    <string name="resize_fill">Исполни</string>
+    <string name="resize_zoom">Зумирај</string>
 
     <string name="caption_auto_generated">Автоматски создадено</string>
     <string name="caption_font_size_settings_title">Големина на преводот</string>
@@ -398,29 +398,50 @@
     <string name="subscriptions_import_unsuccessful">Неуспешно внесување членства</string>
     <string name="subscriptions_export_unsuccessful">Неуспешно изнесување членства</string>
 
-    <string name="import_youtube_instructions">За да ги внесеш твоите YouTube членства, ти треба фајл кој можеш да го добиеш на следниот начин:
-\n
-\n1. Оди на оваа врска: %1$s
-\n2. Пријави се на твојот профил
+    <string name="import_youtube_instructions">Внеси YouTube членства, преку симнување на извозен фајл: 
+\n 
+\n1. Оди на оваа врска: %1$s 
+\n2. Пријави се на твојот профил 
 \n3. Ќе започне превземање (тој фајл ти треба)</string>
-    <string name="import_soundcloud_instructions">За да ги внесете вашите SoundCloud членства, ви треба URL или ID на профилот. Ако ги знаете, само внесете едно од нив во полето, и готови сте.
-\n
-\nАко не ги знаете, одете по следните чекори:
-\n
-\n1. Вклучете „десктоп режим“ во вашиот пребарувач (страната не е достапна за мобилни уреди)
-\n2. Одете на оваа врска: %1$s
-\n3. Пријавете се на вашиот профил
-\n4. Копирајте го URL-то на кое бевте пренасочени (тоа е URL-то на вашиот профил)</string>
+    <string name="import_soundcloud_instructions">Внеси SoundCloud членства, преку внесување URL или ID на профилот: 
+\n 
+\n1. Вклучете „десктоп режим“ во вашиот пребарувач (страната не е достапна за мобилни уреди) 
+\n2. Одете на оваа врска: %1$s 
+\n3. Пријавете се на вашиот профил 
+\n4. Копирајте го URL-то на кое бевте пренасочени (тоа е URL-то на вашиот профил).</string>
     <string name="import_soundcloud_instructions_hint">korisnickoime, soundcloud.com/korisnickoime</string>
 
     <string name="import_network_expensive_warning">Треба да знаеш дека оваа операција троши многу интернет.
 \n
 \nСакаш да продолжиш?</string>
 
-    <string name="playback_speed_control">Контрола на брзина на траката</string>
+    <string name="playback_speed_control">Контрола на брзината на траката</string>
     <string name="playback_tempo">Темпо</string>
     <string name="playback_pitch">Тон</string>
     <string name="unhook_checkbox">Откачи (може да создаде мутации)</string>
-    <string name="playback_nightcore">Nightcore</string>
+    <string name="playback_nightcore">„Nightcore“</string>
     <string name="playback_default">Стандардно</string>
-</resources>
+<string name="clear_views_history_title">Избриши историја на гледаност</string>
+    <string name="clear_views_history_summary">Ја брише историјата на пуштени видеа.</string>
+    <string name="delete_view_history_alert">Избриши ја целата историја на гледаност.</string>
+    <string name="view_history_deleted">Избришана е историјата на гледаност.</string>
+    <string name="clear_search_history_title">Избриши историја на пребарувања</string>
+    <string name="clear_search_history_summary">Ја брише историјата на пребарувања.</string>
+    <string name="delete_search_history_alert">Избриши ја целата историја на пребарувања.</string>
+    <string name="search_history_deleted">Избришана е историјата на пребарувања.</string>
+    <string name="no_streams_available_download">Нема стримови за симнување</string>
+
+    <string name="one_item_deleted">1 ставка избришана.</string>
+
+    <string name="toast_no_player">Нема апликација за пуштање на овој фајл</string>
+
+    <string name="app_license">NewPipe е „copyleft“ слободен софтвер: Можеш да ја користиш, истражуваш и подобруваш по твоја желба. Можеш да ја редистрибуираш и/или да ја промениш под условите на GNU GPL лиценцата, публикувана од фондацијата FSF - или верзија 3 од лиценцата, или (по можност) понова верзија.</string>
+    <string name="import_settings">Дали сакаш да се внесат и подесувањата?</string>
+
+    <string name="preferred_open_action_settings_title">Преферирана акција за „отворање“</string>
+    <string name="preferred_open_action_settings_summary">Стандардна акција при отворање видеа — %s</string>
+
+    <string name="caption_setting_title">Преводи</string>
+    <string name="caption_setting_description">Смени ја големината и стилот на преводот. Потребен е рестарт за промена.</string>
+
+    </resources>
