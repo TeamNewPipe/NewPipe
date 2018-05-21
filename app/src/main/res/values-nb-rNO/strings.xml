@@ -457,4 +457,14 @@
 \n1. Skru på \"skrivebordsmodus\" i en nettleser ( siden er ikke tilgjengelig for mobile enheter)
 \n2. Logg inn når forespurt
 \n4. Kopier profil-nettadressen du ble videresendt til.</string>
+    <string name="use_inexact_seek_summary">Unøyaktig blafring tillater spilleren å blafre til posisjoner raskere med redusert nøyaktighet</string>
+    <string name="download_thumbnail_summary">Skru av for å stoppe alle miniatyrbilder fra innlasting og spare data og minnebruke. Endring av dette vil tømme både disk- og minne-hurtiglager.</string>
+    <string name="auto_queue_summary">Legg til en relatert strøm ved avspilling av forrige strøm i ikke-repeterende kø.</string>
+    <string name="enable_leak_canary_summary">Minnelekkasjeoppsyn kan forårsake programmet å opptre uresponsivt under haugdumping</string>
+
+    <string name="enable_disposed_exceptions_title">Rapporter feil som opptrer utenfor sin levetid</string>
+    <string name="enable_disposed_exceptions_summary">Tving rapportering av uleverbare Rx-unntak utenom fragment eller aktivitetslevetid etter forkastelse</string>
+
+    <string name="unhook_checkbox">Avhekt (kan forårsake forvrenging)</string>
+    <string name="playback_nightcore">Nightcore</string>
     </resources>
