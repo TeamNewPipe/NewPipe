@@ -376,4 +376,5 @@
     <string name="enable_leak_canary_summary">हीप डंप करने के दौरान मेमोरी लीक मॉनिटरिंग app को अनुत्तरदायी बना सकता है</string>
 
     <string name="enable_disposed_exceptions_title">Out-of-Lifecycle त्रुटियों की रिपोर्ट करें</string>
+    <string name="download_thumbnail_title">छायाप्रारुप लोड करें</string>
     </resources>
