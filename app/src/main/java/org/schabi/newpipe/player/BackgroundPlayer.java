@@ -544,26 +544,29 @@ public final class BackgroundPlayer extends Service {
 
         @Override
         public void changeState(int state) {
+            resetNotification();
             super.changeState(state);
             updatePlayback();
-            updateNotification(-1);
         }
 
         @Override
         public void onBlocked() {
             super.onBlocked();
+            updateNotification(-1);
             startForeground(NOTIFICATION_ID, notBuilder.build());
         }
 
         @Override
         public void onBuffering() {
             super.onBuffering();
+            updateNotification(-1);
             startForeground(NOTIFICATION_ID, notBuilder.build());
         }
 
         @Override
         public void onPausedSeek() {
             super.onPausedSeek();
+            updateNotification(-1);
             startForeground(NOTIFICATION_ID, notBuilder.build());
         }
 
@@ -589,7 +592,6 @@ public final class BackgroundPlayer extends Service {
         public void onCompleted() {
             super.onCompleted();
 
-            resetNotification();
             if (bigNotRemoteView != null) bigNotRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 100, false);
             if (notRemoteView != null) notRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 100, false);
             updateNotification(R.drawable.ic_replay_white);

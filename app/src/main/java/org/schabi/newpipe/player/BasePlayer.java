@@ -85,7 +85,6 @@ import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_INTERNAL
 import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_PERIOD_TRANSITION;
 import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SEEK;
 import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SEEK_ADJUSTMENT;
-import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
 
 /**
  * Base for the players, joining the common properties
@@ -157,7 +156,6 @@ public abstract class BasePlayer implements
     protected MediaSessionManager mediaSessionManager;
 
     private boolean isPrepared = false;
-    private boolean isSynchronizing = false;
 
     //////////////////////////////////////////////////////////////////////////*/
 
@@ -575,37 +573,17 @@ public abstract class BasePlayer implements
     private void maybeCorrectSeekPosition() {
         if (playQueue == null || simpleExoPlayer == null || currentMetadata == null) return;
 
-        final int currentSourceIndex = playQueue.getIndex();
         final PlayQueueItem currentSourceItem = playQueue.getItem();
-        final StreamInfo currentInfo = currentMetadata.getMetadata();
-
         if (currentSourceItem == null) return;
 
-        final long recoveryPositionMillis = currentSourceItem.getRecoveryPosition();
-        final boolean isCurrentWindowCorrect =
-                simpleExoPlayer.getCurrentPeriodIndex() == currentSourceIndex;
+        final StreamInfo currentInfo = currentMetadata.getMetadata();
         final long presetStartPositionMillis = currentInfo.getStartPosition() * 1000;
-
-        if (recoveryPositionMillis != PlayQueueItem.RECOVERY_UNSET && isCurrentWindowCorrect) {
-            // Is recovering previous playback?
-            if (DEBUG) Log.d(TAG, "Playback - Rewinding to recovery time=" +
-                    "[" + getTimeString((int)recoveryPositionMillis) + "]");
-            seekTo(recoveryPositionMillis);
-            playQueue.unsetRecovery(currentSourceIndex);
-
-        } else if (isSynchronizing && isLive()) {
-            // Is still synchronizing?
-            if (DEBUG) Log.d(TAG, "Playback - Synchronizing livestream to default time");
-            //seekToDefault();
-
-        } else if (isSynchronizing && presetStartPositionMillis > 0L) {
+        if (presetStartPositionMillis > 0L) {
             // Has another start position?
             if (DEBUG) Log.d(TAG, "Playback - Seeking to preset start " +
                     "position=[" + presetStartPositionMillis + "]");
             seekTo(presetStartPositionMillis);
         }
-
-        isSynchronizing = false;
     }
 
     /**
@@ -784,16 +762,18 @@ public abstract class BasePlayer implements
                     "index=[" + currentPlayQueueIndex + "] with " +
                     "playlist length=[" + currentPlaylistSize + "]");
 
-            // If not playing correct stream, change window position and sets flag
-            // for synchronizing once window position is corrected
-            // @see maybeCorrectSeekPosition()
         } else if (currentPlaylistIndex != currentPlayQueueIndex || onPlaybackInitial ||
                 !isPlaying()) {
             if (DEBUG) Log.d(TAG, "Playback - Rewinding to correct" +
                     " index=[" + currentPlayQueueIndex + "]," +
                     " from=[" + currentPlaylistIndex + "], size=[" + currentPlaylistSize + "].");
-            isSynchronizing = true;
-            simpleExoPlayer.seekToDefaultPosition(currentPlayQueueIndex);
+
+            if (item.getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET) {
+                simpleExoPlayer.seekTo(currentPlayQueueIndex, item.getRecoveryPosition());
+                playQueue.unsetRecovery(currentPlayQueueIndex);
+            } else {
+                simpleExoPlayer.seekToDefaultPosition(currentPlayQueueIndex);
+            }
         }
     }
 
@@ -936,9 +916,7 @@ public abstract class BasePlayer implements
 
     public void seekTo(long positionMillis) {
         if (DEBUG) Log.d(TAG, "seekBy() called with: position = [" + positionMillis + "]");
-        if (simpleExoPlayer == null || positionMillis < 0 ||
-                positionMillis > simpleExoPlayer.getDuration()) return;
-        simpleExoPlayer.seekTo(positionMillis);
+        if (simpleExoPlayer != null) simpleExoPlayer.seekTo(positionMillis);
     }
 
     public void seekBy(long offsetMillis) {

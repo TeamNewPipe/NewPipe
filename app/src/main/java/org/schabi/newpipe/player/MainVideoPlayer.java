@@ -896,7 +896,6 @@ public final class MainVideoPlayer extends AppCompatActivity
         @Override
         public boolean onDoubleTap(MotionEvent e) {
             if (DEBUG) Log.d(TAG, "onDoubleTap() called with: e = [" + e + "]" + "rawXy = " + e.getRawX() + ", " + e.getRawY() + ", xy = " + e.getX() + ", " + e.getY());
-            if (!playerImpl.isPlaying()) return false;
 
             if (e.getX() > playerImpl.getRootView().getWidth() * 2 / 3) {
                 playerImpl.onFastForward();

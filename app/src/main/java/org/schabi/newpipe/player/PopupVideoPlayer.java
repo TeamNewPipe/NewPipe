@@ -683,9 +683,9 @@ public final class PopupVideoPlayer extends Service {
 
         @Override
         public void changeState(int state) {
+            resetNotification();
             super.changeState(state);
             updatePlayback();
-            updateNotification(-1);
         }
 
         @Override

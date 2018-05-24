@@ -27,7 +27,13 @@ public class PlaybackParameterDialog extends DialogFragment {
 
     public static final char STEP_UP_SIGN = '+';
     public static final char STEP_DOWN_SIGN = '-';
-    public static final double DEFAULT_PLAYBACK_STEP_VALUE = 0.05f;
+
+    public static final double STEP_ONE_PERCENT_VALUE = 0.01f;
+    public static final double STEP_FIVE_PERCENT_VALUE = 0.05f;
+    public static final double STEP_TEN_PERCENT_VALUE = 0.10f;
+    public static final double STEP_TWENTY_FIVE_PERCENT_VALUE = 0.25f;
+    public static final double STEP_ONE_HUNDRED_PERCENT_VALUE = 1.00f;
+    public static final double DEFAULT_PLAYBACK_STEP_VALUE = STEP_TWENTY_FIVE_PERCENT_VALUE;
 
     public static final double DEFAULT_TEMPO = 1.00f;
     public static final double DEFAULT_PITCH = 1.00f;
@@ -244,35 +250,33 @@ public class PlaybackParameterDialog extends DialogFragment {
         stepSizeOneHundredPercentText = rootView.findViewById(R.id.stepSizeOneHundredPercent);
 
         if (stepSizeOnePercentText != null) {
-            final double onePercent = 0.01f;
-            stepSizeOnePercentText.setText(getPercentString(onePercent));
-            stepSizeOnePercentText.setOnClickListener(view -> setupStepSize(onePercent));
+            stepSizeOnePercentText.setText(getPercentString(STEP_ONE_PERCENT_VALUE));
+            stepSizeOnePercentText.setOnClickListener(view ->
+                    setupStepSize(STEP_ONE_PERCENT_VALUE));
         }
 
         if (stepSizeFivePercentText != null) {
-            final double fivePercent = 0.05f;
-            stepSizeFivePercentText.setText(getPercentString(fivePercent));
-            stepSizeFivePercentText.setOnClickListener(view -> setupStepSize(fivePercent));
+            stepSizeFivePercentText.setText(getPercentString(STEP_FIVE_PERCENT_VALUE));
+            stepSizeFivePercentText.setOnClickListener(view ->
+                    setupStepSize(STEP_FIVE_PERCENT_VALUE));
         }
 
         if (stepSizeTenPercentText != null) {
-            final double tenPercent = 0.10f;
-            stepSizeTenPercentText.setText(getPercentString(tenPercent));
-            stepSizeTenPercentText.setOnClickListener(view -> setupStepSize(tenPercent));
+            stepSizeTenPercentText.setText(getPercentString(STEP_TEN_PERCENT_VALUE));
+            stepSizeTenPercentText.setOnClickListener(view ->
+                    setupStepSize(STEP_TEN_PERCENT_VALUE));
         }
 
         if (stepSizeTwentyFivePercentText != null) {
-            final double twentyFivePercent = 0.25f;
-            stepSizeTwentyFivePercentText.setText(getPercentString(twentyFivePercent));
+            stepSizeTwentyFivePercentText.setText(getPercentString(STEP_TWENTY_FIVE_PERCENT_VALUE));
             stepSizeTwentyFivePercentText.setOnClickListener(view ->
-                    setupStepSize(twentyFivePercent));
+                    setupStepSize(STEP_TWENTY_FIVE_PERCENT_VALUE));
         }
 
         if (stepSizeOneHundredPercentText != null) {
-            final double oneHundredPercent = 1.00f;
-            stepSizeOneHundredPercentText.setText(getPercentString(oneHundredPercent));
+            stepSizeOneHundredPercentText.setText(getPercentString(STEP_ONE_HUNDRED_PERCENT_VALUE));
             stepSizeOneHundredPercentText.setOnClickListener(view ->
-                    setupStepSize(oneHundredPercent));
+                    setupStepSize(STEP_ONE_HUNDRED_PERCENT_VALUE));
         }
     }
 
