@@ -20,6 +20,9 @@
 
 package org.schabi.newpipe;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -89,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(findViewById(R.id.toolbar));
         setupDrawer();
+        checkPrivacyPolicy();
     }
 
     private void setupDrawer() {
@@ -164,6 +168,30 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             drawer.closeDrawers();
         });
+    }
+
+    private void checkPrivacyPolicy() {
+        Context context = this;
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String revision_key = this.getString(R.string.privacy_policy_revision_key);
+        if (sharedPreferences.getInt(revision_key,-1) != Constants.PRIVACY_POLICY_REVISION) {
+            new AlertDialog.Builder(context)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle(R.string.privacy_policy_title)
+                    .setMessage(R.string.start_accept_privacy_policy)
+                    .setCancelable(false)
+                    .setPositiveButton(R.string.accept, (dialog, which) -> {
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putInt(revision_key, Constants.PRIVACY_POLICY_REVISION);
+                        editor.apply();
+                    })
+                    .setNegativeButton(R.string.decline, (dialog, which) -> finish())
+                    .setNeutralButton(R.string.read_privacy_policy, (dialog, which) -> {
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.privacy_policy_url)));
+                        context.startActivity(intent);
+                    })
+                    .show();
+        }
     }
 
     @Override
