@@ -117,14 +117,14 @@ public abstract class BasePlayer implements
     // Intent
     //////////////////////////////////////////////////////////////////////////*/
 
-    public static final String REPEAT_MODE = "repeat_mode";
-    public static final String PLAYBACK_PITCH = "playback_pitch";
-    public static final String PLAYBACK_SPEED = "playback_speed";
-    public static final String PLAYBACK_SKIP_SILENCE = "playback_skip_silence";
-    public static final String PLAYBACK_QUALITY = "playback_quality";
-    public static final String PLAY_QUEUE_KEY = "play_queue_key";
-    public static final String APPEND_ONLY = "append_only";
-    public static final String SELECT_ON_APPEND = "select_on_append";
+    @NonNull public static final String REPEAT_MODE = "repeat_mode";
+    @NonNull public static final String PLAYBACK_PITCH = "playback_pitch";
+    @NonNull public static final String PLAYBACK_SPEED = "playback_speed";
+    @NonNull public static final String PLAYBACK_SKIP_SILENCE = "playback_skip_silence";
+    @NonNull public static final String PLAYBACK_QUALITY = "playback_quality";
+    @NonNull public static final String PLAY_QUEUE_KEY = "play_queue_key";
+    @NonNull public static final String APPEND_ONLY = "append_only";
+    @NonNull public static final String SELECT_ON_APPEND = "select_on_append";
 
     /*//////////////////////////////////////////////////////////////////////////
     // Playback
@@ -276,7 +276,6 @@ public abstract class BasePlayer implements
         if (playQueue != null) playQueue.dispose();
         if (audioReactor != null) audioReactor.dispose();
         if (playbackManager != null) playbackManager.dispose();
-        if (databaseUpdateReactor != null) databaseUpdateReactor.dispose();
         if (mediaSessionManager != null) mediaSessionManager.dispose();
 
         if (playQueueAdapter != null) {
@@ -290,9 +289,9 @@ public abstract class BasePlayer implements
         destroyPlayer();
         unregisterBroadcastReceiver();
 
-        if (mediaSessionManager != null) mediaSessionManager.dispose();
+        databaseUpdateReactor.clear();
+        progressUpdateReactor.set(null);
 
-        mediaSessionManager = null;
         simpleExoPlayer = null;
     }
 
@@ -635,7 +634,7 @@ public abstract class BasePlayer implements
         setRecovery();
 
         final Throwable cause = error.getCause();
-        if (cause instanceof BehindLiveWindowException) {
+        if (error instanceof BehindLiveWindowException) {
             reload();
         } else if (cause instanceof UnknownHostException) {
             playQueue.error(/*isNetworkProblem=*/true);
@@ -942,11 +941,12 @@ public abstract class BasePlayer implements
     private void registerView() {
         if (currentMetadata == null) return;
         final StreamInfo currentInfo = currentMetadata.getMetadata();
-        databaseUpdateReactor.add(recordManager.onViewed(currentInfo).onErrorComplete()
+        final Disposable viewRegister = recordManager.onViewed(currentInfo).onErrorComplete()
                 .subscribe(
                         ignored -> {/* successful */},
                         error -> Log.e(TAG, "Player onViewed() failure: ", error)
-                ));
+                );
+        databaseUpdateReactor.add(viewRegister);
     }
 
     protected void reload() {
