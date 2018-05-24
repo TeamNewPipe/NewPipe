@@ -853,4 +853,7 @@
         <item>ZM</item>
         <item>ZW</item>
     </string-array>
+
+    <!-- Start dialogs -->
+    <string name="privacy_policy_revision_key" translatable="false">privacy_policy_revision</string>
 </resources>

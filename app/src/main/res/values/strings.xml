@@ -328,6 +328,10 @@
     <string name="website_title">Website</string>
     <string name="website_encouragement">Visit the NewPipe Website for more info and news.</string>
     <string name="website_url" translatable="false">https://newpipe.schabi.org/</string>
+    <string name="privacy_policy_title">NewPipe\'s Privacy Policy</string>
+    <string name="privacy_policy_encouragement">NewPipe takes your privacy seriously. Therefore our privacy policy informs detailed about which data NewPipe collects and your rights according to the European General Data Protection Regulation (GDPR).</string>
+    <string name="privacy_policy_url" translatable="false">https://newpipe.schabi.org/legal/privacy/</string>
+    <string name="read_privacy_policy">Read privacy policy</string>
     <string name="app_license_title">NewPipe\'s License</string>
     <string name="app_license">NewPipe is copyleft libre software: You can use, study share and improve it at your will. Specifically you can redistribute and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</string>
     <string name="read_full_license">Read license</string>
@@ -478,4 +482,9 @@
     <string name="unhook_checkbox">Unhook (may cause distortion)</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Default</string>
+
+    <!-- Start dialogs -->
+    <string name="start_accept_privacy_policy">In order to comply with the European General Data Protection Regulation (GDPR), we herby draw your attention to NewPipe\'s privacy policy. Please read it carefully.\nYou must accept it to continue using NewPipe.</string>
+    <string name="accept">Accept</string>
+    <string name="decline">Decline</string>
 </resources>

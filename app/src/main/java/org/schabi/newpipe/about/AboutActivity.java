@@ -128,47 +128,31 @@ public class AboutActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_about, container, false);
+            Context context = this.getContext();
+
             TextView version = rootView.findViewById(R.id.app_version);
             version.setText(BuildConfig.VERSION_NAME);
 
             View githubLink = rootView.findViewById(R.id.github_link);
-            githubLink.setOnClickListener(new OnGithubLinkClickListener());
+            githubLink.setOnClickListener(nv -> openWebsite(context.getString(R.string.github_url), context));
 
             View donationLink = rootView.findViewById(R.id.donation_link);
-            donationLink.setOnClickListener(new OnDonationLinkClickListener());
+            donationLink.setOnClickListener(v -> openWebsite(context.getString(R.string.donation_url), context));
 
             View websiteLink = rootView.findViewById(R.id.website_link);
-            websiteLink.setOnClickListener(new OnWebsiteLinkClickListener());
+            websiteLink.setOnClickListener(nv -> openWebsite(context.getString(R.string.website_url), context));
+
+            View privacyPolicyLink = rootView.findViewById(R.id.privacy_policy_link);
+            privacyPolicyLink.setOnClickListener(v -> openWebsite(context.getString(R.string.privacy_policy_url), context));
 
             return rootView;
         }
 
-        private static class OnGithubLinkClickListener implements View.OnClickListener {
-            @Override
-            public void onClick(final View view) {
-                final Context context = view.getContext();
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.github_url)));
-                context.startActivity(intent);
-            }
+        private void openWebsite(String url, Context context) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            context.startActivity(intent);
         }
 
-        private static class OnDonationLinkClickListener implements View.OnClickListener {
-            @Override
-            public void onClick(final View view) {
-                final Context context = view.getContext();
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.donation_url)));
-                context.startActivity(intent);
-            }
-        }
-
-        private static class OnWebsiteLinkClickListener implements View.OnClickListener {
-            @Override
-            public void onClick(final View view) {
-                final Context context = view.getContext();
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.website_url)));
-                context.startActivity(intent);
-            }
-        }
     }
 
 

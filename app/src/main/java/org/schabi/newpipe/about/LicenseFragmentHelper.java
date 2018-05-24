@@ -42,7 +42,7 @@ public class LicenseFragmentHelper extends AsyncTask<Object, Void, Integer> {
     }
 
     @Override
-    protected void onPostExecute(Integer result){
+    protected void onPostExecute(Integer result) {
         Activity activity = getActivity();
         if (activity == null) {
             return;
