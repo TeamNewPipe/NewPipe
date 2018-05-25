@@ -472,4 +472,6 @@
 
     <string name="app_license">NewPipe - программное обеспечение copyleft libre: вы можете использовать, изучать и улучшать его по своему усмотрению. В частности, вы можете распространять и/или изменять его в соответствии с GNU General Public License, опубликованным Free Software Foundation, либо версией 3 License, либо (по вашему выбору) любой более поздней версии.</string>
     <string name="preferred_open_action_settings_title">Предпочтительное действие \'открытие\'</string>
+    <string name="import_settings">Желаете ли вы также импортировать настройки?</string>
+
     </resources>
