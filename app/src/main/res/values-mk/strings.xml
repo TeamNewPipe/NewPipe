@@ -106,7 +106,7 @@
     <string name="settings_category_debug_title">Дебагирање</string>
     <string name="background_player_playing_toast">Пуштено во позадина</string>
     <string name="popup_playing_toast">Пуштено во прозорче</string>
-    <string name="background_player_append">Ставено на листа, за заднинско пуштање</string>
+    <string name="background_player_append">Ставено на листата за заднинско пуштање</string>
     <string name="popup_playing_append">Ставено на листа, за пуштање во прозорче</string>
     <string name="play_btn_text">Пушти</string>
     <string name="content">Содржина</string>
@@ -438,7 +438,7 @@
     <string name="app_license">NewPipe е „copyleft“ слободен софтвер: Можеш да ја користиш, истражуваш и подобруваш по твоја желба. Можеш да ја редистрибуираш и/или да ја промениш под условите на GNU GPL лиценцата, публикувана од фондацијата FSF - или верзија 3 од лиценцата, или (по можност) понова верзија.</string>
     <string name="import_settings">Дали сакаш да се внесат и подесувањата?</string>
 
-    <string name="preferred_open_action_settings_title">Преферирана акција за „отворање“</string>
+    <string name="preferred_open_action_settings_title">Претпочитана акција за „отворање“</string>
     <string name="preferred_open_action_settings_summary">Стандардна акција при отворање видеа — %s</string>
 
     <string name="caption_setting_title">Преводи</string>
