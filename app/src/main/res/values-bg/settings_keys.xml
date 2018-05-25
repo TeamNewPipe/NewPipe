@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources translatable="false">
+    <!-- Service -->
+
+    <!-- Key values -->
+
+
+
+
+
+
+
+
+
+    <!-- DEBUG ONLY -->
+
+
+    <!-- THEMES -->
+
+    <!-- Caption Size -->
+
+    <!-- Content & History -->
+    <string name="default_language_value">en</string>
+    <string name="default_country_value">GB</string>
+
+
+
+    <!-- FileName Downloads  -->
+
+
+
+
+    <!-- Preferred action on open (open from external app) -->
+
+
+
+    <!-- alternatively, load these from some local android data store -->
+
+
+
+</resources>
