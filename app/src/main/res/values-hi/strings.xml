@@ -76,7 +76,7 @@
     <string name="download_path_audio_summary">डाउनलोड किये गए ऑडियो फाइल की जगह</string>
     <string name="download_path_audio_dialog_title">ऑडियो फाइल डाउनलोड करने के लिए जगह दर्ज करें</string>
 
-    <string name="autoplay_by_calling_app_summary">जब NewPipe को दुसरे एप्प से बुलावा आये तो विडियो अपनी स्वेच्छा से चले</string>
+    <string name="autoplay_by_calling_app_summary">अन्य अप्प के द्वारा NewPipe के आह्वान पर वीडियो तुरंत चले</string>
     <string name="default_resolution_title">वीडियो का डिफ़ॉल्ट रिज़ॉल्यूशन</string>
     <string name="default_popup_resolution_title">विडियो पॉपअप का डिफ़ॉल्ट रिज़ॉल्यूशन</string>
     <string name="show_higher_resolutions_title">उच्च रिज़ॉल्यूशन दिखाएं</string>
