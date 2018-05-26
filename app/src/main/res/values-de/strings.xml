@@ -134,7 +134,7 @@
     <string name="black_theme_title">Schwarz</string>
 
     <string name="reCaptcha_title">reCAPTCHA-Aufgabe</string>
-    <string name="recaptcha_request_toast">reCAPTCHA-Herausforderung angefordert</string>
+    <string name="recaptcha_request_toast">reCAPTCHA-Aufgabe angefordert</string>
 
     <string name="later">Später</string>
 
@@ -185,14 +185,14 @@
     <string name="error_unable_to_load_license">Lizenz konnte nicht geladen werden</string>
     <string name="copyright" formatted="true">© %1$s von %2$s unter %3$s</string>
     <string name="tab_about">Über</string>
-    <string name="app_description">Eine freie, schlanke Streaming App für Android.</string>
+    <string name="app_description">Eine freie, schlanke Streaming-App für Android.</string>
     <string name="app_license_title">NewPipes Lizenz</string>
-    <string name="contribution_encouragement">Ob Ideen, Übersetzung, Design-Änderungen, Code-Aufräumung oder richtig große Code-Änderungen - Hilfe ist immer willkommen. Je mehr geholfen wird, desto besser wird NewPipe!</string>
+    <string name="contribution_encouragement">Ob Ideen, Übersetzungen, Design-Änderungen, Code-Aufräumung oder richtig große Code-Änderungen – Hilfe ist immer willkommen. Je mehr geholfen wird, desto besser wird NewPipe!</string>
     <string name="title_licenses">Drittanbieter-Lizenzen</string>
     <string name="view_on_github">Auf GitHub ansehen</string>
     <string name="contribution_title">Beitragen</string>
 <string name="settings_category_downloads_title">Download</string>
-    <string name="settings_file_charset_title">Erlaubt Zeichen im Dateinamen</string>
+    <string name="settings_file_charset_title">Erlaubte Zeichen im Dateinamen</string>
     <string name="settings_file_replacement_character_summary">Ungültige Zeichen werden durch dieses Zeichen ersetzt</string>
     <string name="settings_file_replacement_character_title">Ersetzungszeichen</string>
 
