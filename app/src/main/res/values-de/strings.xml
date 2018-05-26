@@ -298,8 +298,8 @@
 <string name="donation_title">Spenden</string>
     <string name="give_back">Zurückgeben</string>
     <string name="website_title">Website</string>
-    <string name="website_encouragement">Besuchen Sie die NewPipe Website für weitere Informationen und Neuigkeiten.</string>
-    <string name="donation_encouragement">NewPipe wird von Freiwilligen entwickelt, die ihre Freizeit dafür aufbringen, die beste Nutzererfahrung zu bieten. Geben Sie etwas zurück, um Entwicklern zu helfen, NewPipe bei einer Tasse Kaffee noch besser zu machen.</string>
+    <string name="website_encouragement">Besuche die NewPipe Website für weitere Informationen und Neuigkeiten.</string>
+    <string name="donation_encouragement">NewPipe wird von Freiwilligen entwickelt, die ihre Freizeit dafür aufbringen, die beste Nutzererfahrung zu bieten. Gib etwas zurück, um Entwicklern zu helfen, NewPipe bei einer Tasse Kaffee noch besser zu machen.</string>
     <string name="service_title">Service</string>
     <string name="no_player_found_toast">Keinen Streamplayer gefunden (du kannst VLC installieren, um den Stream abzuspielen)</string>
     <string name="default_content_country_title">Standard-Land des Inhalts</string>
@@ -473,7 +473,7 @@
     <string name="app_license">NewPipe ist copyleft libre Software: Sie können es nach Belieben benutzen, studieren, mit anderen teilen und verbessern. Insbesondere können Sie sie unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder unter Version 3 der Lizenz oder (nach Ihrer Wahl) jeder späteren Version.</string>
     <string name="import_settings">Möchten Sie auch Einstellungen importieren?</string>
 
-    <string name="privacy_policy_title">NewPipes Datenschutzbestimmungen</string>
+    <string name="privacy_policy_title">NewPipe-Datenschutzbestimmungen</string>
     <string name="privacy_policy_encouragement">Dem NewPipe Projekt ist Datenschutz sehr wichtig. Deshalb sammelt diese App keine Daten ohne ihre Zustimmung.
 \nNewPipes Datenschutzbestimmungen erklären im Detail, welche Daten beim Absenden eines Absturzberichtes verschickt und gespeichert werden.</string>
     <string name="read_privacy_policy">Lesen Sie die Datenschutzerklärung</string>
