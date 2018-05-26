@@ -115,7 +115,7 @@
     <string name="msg_exists">Datei existiert bereits</string>
     <string name="msg_wait">Bitte warten…</string>
     <string name="msg_copied">In Zwischenablage kopiert</string>
-    <string name="no_available_dir">Bitte wählen Sie ein verfügbares Download-Verzeichnis</string>
+    <string name="no_available_dir">Bitte wähle ein verfügbares Download-Verzeichnis</string>
 
     <string name="start">Starten</string>
     <string name="pause">Pause</string>
