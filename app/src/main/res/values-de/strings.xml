@@ -479,4 +479,6 @@
     <string name="read_privacy_policy">Lesen Sie die Datenschutzerklärung</string>
     <string name="accept">Akzeptieren</string>
     <string name="decline">Ablehnen</string>
-</resources>
+<string name="start_accept_privacy_policy">Um den Anforderungen der Datenschutz-Grundverordnung (DSGVO) genüge zu tun, möchten wir dich hiermit auf die Datenschutzbedingungen von NewPipe aufmerksam machen. Bitte lies sie sorgfältig durch.
+\nDu musst ihr zustimmen, um einen Bugreport an uns zu senden.</string>
+    </resources>
