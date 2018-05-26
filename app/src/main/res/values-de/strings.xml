@@ -473,4 +473,10 @@
     <string name="app_license">NewPipe ist copyleft libre Software: Sie können es nach Belieben benutzen, studieren, mit anderen teilen und verbessern. Insbesondere können Sie sie unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder unter Version 3 der Lizenz oder (nach Ihrer Wahl) jeder späteren Version.</string>
     <string name="import_settings">Möchten Sie auch Einstellungen importieren?</string>
 
-    </resources>
+    <string name="privacy_policy_title">NewPipes Datenschutzbestimmungen</string>
+    <string name="privacy_policy_encouragement">Dem NewPipe Projekt ist Datenschutz sehr wichtig. Deshalb sammelt diese App keine Daten ohne ihre Zustimmung.
+\nNewPipes Datenschutzbestimmungen erklären im Detail, welche Daten beim Absenden eines Absturzberichtes verschickt und gespeichert werden.</string>
+    <string name="read_privacy_policy">Lesen Sie die Datenschutzerklärung</string>
+    <string name="accept">Akzeptieren</string>
+    <string name="decline">Ablehnen</string>
+</resources>
