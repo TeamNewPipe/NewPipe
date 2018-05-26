@@ -403,7 +403,7 @@
 <string name="download_thumbnail_title">Vorschaubilder laden</string>
     <string name="thumbnail_cache_wipe_complete_notice">Bildercache gelöscht</string>
     <string name="metadata_cache_wipe_title">Leere die gecachten Metadaten</string>
-    <string name="metadata_cache_wipe_summary">Entfene alle gecachten Website-Daten</string>
+    <string name="metadata_cache_wipe_summary">Entferne alle gecachten Website-Daten</string>
     <string name="metadata_cache_wipe_complete_notice">Metadatencache gelöscht</string>
     <string name="settings_category_debug_title">Debug</string>
     <string name="invalid_source">Ungültige Datei-/Inhaltsquelle</string>
