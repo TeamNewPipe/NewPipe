@@ -67,7 +67,7 @@
 
     <string name="content">Inhalt</string>
     <string name="show_age_restricted_content_title">Altersbeschränkte Inhalte anzeigen</string>
-    <string name="video_is_age_restricted">Video ist altersbeschränkt. Schalten Sie erst altersbeschränkte Videos in den Einstellungen ein.</string>
+    <string name="video_is_age_restricted">Video ist altersbeschränkt. Schalte erst altersbeschränkte Videos in den Einstellungen ein.</string>
 
     <string name="could_not_setup_download_menu">Konnte Download-Menü nicht einrichten</string>
     <string name="live_streams_not_supported">Dies ist ein LIVESTREAM. Diese werden noch nicht unterstützt.</string>
@@ -222,7 +222,7 @@
     <string name="resume_on_audio_focus_gain_summary">Nach Unterbrechungen (z.B. Telefonaten) Wiedergabe fortsetzen</string>
 
 
-    <string name="notification_channel_name">NewPipe Benachrichtigung</string>
+    <string name="notification_channel_name">NewPipe-Benachrichtigung</string>
     <string name="notification_channel_description">Benachrichtigungen für NewPipe-Hintergrund- und Pop-up Player</string>
 
     <string name="tab_main">Hauptmenü</string>
@@ -397,9 +397,9 @@
     <string name="import_file_title">Datei importieren</string>
     <string name="previous_export">Vorheriger Export</string>
 
-    <string name="import_network_expensive_warning">Beachten Sie, dass diese Aktion das Netzwerk stark belasten kann. 
+    <string name="import_network_expensive_warning">Beachte, dass diese Aktion das Netzwerk stark belasten kann. 
 \n 
-\nMöchten Sie fortfahren?</string>
+\nMöchtest du fortfahren?</string>
 <string name="download_thumbnail_title">Vorschaubilder laden</string>
     <string name="thumbnail_cache_wipe_complete_notice">Bildercache gelöscht</string>
     <string name="metadata_cache_wipe_title">Leere die gecachten Metadaten</string>
