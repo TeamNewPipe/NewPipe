@@ -76,7 +76,7 @@
     <string name="download_path_audio_summary">डाउनलोड किये गए ऑडियो फाइल की जगह</string>
     <string name="download_path_audio_dialog_title">ऑडियो फाइल डाउनलोड करने के लिए जगह दर्ज करें</string>
 
-    <string name="autoplay_by_calling_app_summary">जब NewPipe को दुसरे एप्प से बुलावा आये तो विडियो अपनी स्वेच्छा से चले</string>
+    <string name="autoplay_by_calling_app_summary">अन्य अप्प के द्वारा NewPipe के आह्वान पर वीडियो तुरंत चले</string>
     <string name="default_resolution_title">वीडियो का डिफ़ॉल्ट रिज़ॉल्यूशन</string>
     <string name="default_popup_resolution_title">विडियो पॉपअप का डिफ़ॉल्ट रिज़ॉल्यूशन</string>
     <string name="show_higher_resolutions_title">उच्च रिज़ॉल्यूशन दिखाएं</string>
@@ -93,8 +93,8 @@
     <string name="dark_theme_title">काला</string>
     <string name="popup_remember_size_pos_title">विडियो पॉपअप की आकर और उसकी स्थति को याद रखे</string>
     <string name="popup_remember_size_pos_summary">विडियो पॉपअप के पहले वाली आकर और उसकी स्थिति को याद रखे</string>
-    <string name="player_gesture_controls_title">विडियो प्लेयर के gesture कण्ट्रोल</string>
-    <string name="player_gesture_controls_summary">विडियो प्लेयर की ब्राइटनेस और ध्वनी को नियंत्रण के लिए फ़ोन में gesture से इशारो का प्रयोग करे</string>
+    <string name="player_gesture_controls_title">प्लेयर इशारा नियंत्रण</string>
+    <string name="player_gesture_controls_summary">विडियो प्लेयर की ब्राइटनेस और ध्वनी को नियंत्रण के लिए फ़ोन में इशारो का प्रयोग करे</string>
     <string name="show_search_suggestions_title">खोज के सुझाव देखे</string>
     <string name="show_search_suggestions_summary">जब कुछ ढूंड रहे हो तो सुझाव दिखाये</string>
     <string name="enable_search_history_title">खोज के इतिहास को देखे</string>
@@ -377,4 +377,15 @@
 
     <string name="enable_disposed_exceptions_title">Out-of-Lifecycle त्रुटियों की रिपोर्ट करें</string>
     <string name="download_thumbnail_title">छायाप्रारुप लोड करें</string>
+    <string name="use_inexact_seek_title">तेजी से अचूक तलाश का प्रयोग करें</string>
+    <string name="use_inexact_seek_summary">अचूक खोज प्लेयर को कम परिशुद्धता के साथ तेजी से पदों की तलाश करने की अनुमति देता है</string>
+    <string name="download_thumbnail_summary">सभी थंबनेल को डेटा और मेमोरी उपयोग पर लोड करने और सहेजने से रोकने के लिए अक्षम करें। इसे बदलने से इन-मेमोरी और ऑन-डिस्क छवि कैश दोनों साफ़ हो जाएंगे।</string>
+    <string name="thumbnail_cache_wipe_complete_notice">छवि कैश मिटा दिया</string>
+    <string name="metadata_cache_wipe_title">कैश मेटाडेटा वाइप करें</string>
+    <string name="metadata_cache_wipe_summary">सभी कैश किए गए वेबपृष्ठ डेटा हटाएं</string>
+    <string name="metadata_cache_wipe_complete_notice">मेटाडाटा कैश मिटा दिया गया</string>
+    <string name="auto_queue_title">अगली स्ट्रीम को स्वचालित रूप से जोड़ें</string>
+    <string name="auto_queue_summary">गैर-दोहराने वाली कतार में अंतिम स्ट्रीम चलाते समय संबंधित स्ट्रीम को स्वतः संलग्न करें।</string>
+    <string name="file">फाइल</string>
+
     </resources>
