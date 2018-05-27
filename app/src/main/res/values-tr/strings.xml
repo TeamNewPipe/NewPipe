@@ -393,7 +393,7 @@
     <string name="enable_disposed_exceptions_summary">Parçanın dışında veya atımdan sonraki etkinlik yaşam döngüsündeki teslim edilemeyen Rx beklentilerinin bildirimini zorla</string>
 
 <string name="use_inexact_seek_title">Hızlı isabetsiz konumlama kullan</string>
-    <string name="use_inexact_seek_summary">İsabetsiz konumlama, oynatıcının konumları düşürülmüş duyarlıkla saptamasını sağlar</string>
+    <string name="use_inexact_seek_summary">İsabetsiz konumlama, oynatıcının yerlere azaltılmış kesinlikle daha hızlı konumlamasını sağlar</string>
     <string name="auto_queue_title">Sonraki akışı kendiliğinden kuyruğa ekle</string>
     <string name="auto_queue_summary">Yinelemeyen bir kuyruktaki son akış oynatılırken ilgili bir akışı kendiliğinden sonuna ekle.</string>
     <string name="live_sync">EŞZAMANLA</string>
@@ -479,4 +479,6 @@
 \nBize hata bildirimini göndermek için kabul etmelisiniz.</string>
     <string name="accept">Kabul et</string>
     <string name="decline">Kabul etme</string>
-</resources>
+<string name="limit_data_usage_none_description">Sınırsız</string>
+    <string name="limit_mobile_data_usage_title">Mobil veri kullanırken çözünürlüğü sınırla</string>
+    </resources>
