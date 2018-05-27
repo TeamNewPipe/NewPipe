@@ -465,4 +465,6 @@ abrir em modo popup</string>
 \nVocê tem que aceitá-la para nos enviar relatório de erros.</string>
     <string name="accept">Aceitar</string>
     <string name="decline">Recusar</string>
-</resources>
+<string name="limit_data_usage_none_description">Ilimitado</string>
+    <string name="limit_mobile_data_usage_title">Limitar resolução quando dados móveis estiverem em uso</string>
+    </resources>
