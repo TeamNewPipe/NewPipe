@@ -475,4 +475,6 @@
 \nDu må godta den for å sende oss feilrapporten.</string>
     <string name="accept">Godta</string>
     <string name="decline">Avslå</string>
-</resources>
+<string name="limit_data_usage_none_description">Ubegrenset</string>
+    <string name="limit_mobile_data_usage_title">Begrens oppløsning når mobildata brukes</string>
+    </resources>
