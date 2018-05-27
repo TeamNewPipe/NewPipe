@@ -393,7 +393,7 @@
     <string name="enable_disposed_exceptions_summary">Parçanın dışında veya atımdan sonraki etkinlik yaşam döngüsündeki teslim edilemeyen Rx beklentilerinin bildirimini zorla</string>
 
 <string name="use_inexact_seek_title">Hızlı isabetsiz konumlama kullan</string>
-    <string name="use_inexact_seek_summary">İsabetsiz konumlama, oynatıcının yerlere azaltılmış kesinlikle daha hızlı konumlamasını sağlar</string>
+    <string name="use_inexact_seek_summary">İsabetsiz konumlama, oynatıcının azaltılmış kesinlikle daha hızlı konumlama yapmasını sağlar</string>
     <string name="auto_queue_title">Sonraki akışı kendiliğinden kuyruğa ekle</string>
     <string name="auto_queue_summary">Yinelemeyen bir kuyruktaki son akış oynatılırken ilgili bir akışı kendiliğinden sonuna ekle.</string>
     <string name="live_sync">EŞZAMANLA</string>
