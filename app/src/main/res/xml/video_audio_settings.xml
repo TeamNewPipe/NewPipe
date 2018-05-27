@@ -19,6 +19,14 @@
         android:summary="%s"
         android:title="@string/default_popup_resolution_title"/>
 
+    <ListPreference
+        android:defaultValue="@string/limit_mobile_data_usage_value"
+        android:entries="@array/limit_data_usage_description_list"
+        android:entryValues="@array/limit_data_usage_values_list"
+        android:key="@string/limit_mobile_data_usage_key"
+        android:summary="%s"
+        android:title="@string/limit_mobile_data_usage_title" />
+
     <SwitchPreference
         android:defaultValue="false"
         android:key="@string/show_higher_resolutions_key"
@@ -39,7 +47,7 @@
         android:entryValues="@array/audio_format_values_list"
         android:key="@string/default_audio_format_key"
         android:summary="%s"
-        android:title="@string/default_audio_format_title"/>
+        android:title="@string/default_audio_format_title" />
 
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"

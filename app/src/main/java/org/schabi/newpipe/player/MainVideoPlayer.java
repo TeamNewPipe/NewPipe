@@ -647,7 +647,7 @@ public final class MainVideoPlayer extends AppCompatActivity
         @Override
         protected int getOverrideResolutionIndex(final List<VideoStream> sortedVideos,
                                                  final String playbackQuality) {
-            return ListHelper.getDefaultResolutionIndex(context, sortedVideos, playbackQuality);
+            return ListHelper.getResolutionIndex(context, sortedVideos, playbackQuality);
         }
 
         /*//////////////////////////////////////////////////////////////////////////

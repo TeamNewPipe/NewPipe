@@ -483,8 +483,25 @@
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Default</string>
 
-    <!-- Start dialogs -->
+    <!-- GDPR dialog -->
     <string name="start_accept_privacy_policy">In order to comply with the European General Data Protection Regulation (GDPR), we herby draw your attention to NewPipe\'s privacy policy. Please read it carefully.\nYou must accept it to send us the bug report.</string>
     <string name="accept">Accept</string>
     <string name="decline">Decline</string>
+
+    <!-- Limit mobile data usage  -->
+    <string name="limit_data_usage_none_description">No limit</string>
+    <string name="limit_mobile_data_usage_title">Limit resolution when using mobile data</string>
+    <string name="limit_mobile_data_usage_value" translatable="false">@string/limit_data_usage_none_key</string>
+    <string-array name="limit_data_usage_description_list">
+        <item>@string/limit_data_usage_none_description</item>
+        <item>1080p60</item>
+        <item>1080p</item>
+        <item>720p60</item>
+        <item>720p</item>
+        <item>480p</item>
+        <item>360p</item>
+        <item>240p</item>
+        <item>144p</item>
+    </string-array>
+
 </resources>
