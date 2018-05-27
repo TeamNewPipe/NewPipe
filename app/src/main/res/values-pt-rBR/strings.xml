@@ -457,4 +457,12 @@ abrir em modo popup</string>
     <string name="app_license">NewPipe is copyleft libre software: Você pode usar, estudar, compartilhar e melhorar ele a vontade. Mais especificamente você pode redistribuir e/ou modificar ele sob os termos da GNU General Public License como publicada pela Free Software Foundation, tanto a versão 3 dessa Licença, ou (a sua escolha) qualquer outra versão posterior.</string>
     <string name="import_settings">Você também quer importar as configurações?</string>
 
-    </resources>
+    <string name="privacy_policy_title">Política de privacidade do NewPipe</string>
+    <string name="privacy_policy_encouragement">O projeto NewPipe leva a sua privacidade muito a sério. Sendo assim, o aplicativo não coleta nenhum dado sem seu consentimento.
+\nA polícia de privacidade do NewPipe explica em detalhes qual dado é enviado e salvo quando você envia um relatório de erros.</string>
+    <string name="read_privacy_policy">Ler a política de privacidade</string>
+    <string name="start_accept_privacy_policy">A fim de cumprir com o European General Data Protection Regulation (GDPR), em português, Regulamento Geral sobre a Proteção de Dados (RGPD), chamamos sua atenção para a política de privacidade do NewPipe. Por vafor, leia-a cuidadosamente.
+\nVocê tem que aceitá-la para nos enviar relatório de erros.</string>
+    <string name="accept">Aceitar</string>
+    <string name="decline">Recusar</string>
+</resources>

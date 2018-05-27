@@ -266,7 +266,7 @@
     <string name="play_all">Alles abspielen</string>
 
     <string name="play_queue_remove">Entfernen</string>
-    <string name="play_queue_audio_settings">Audio Einstellungen</string>
+    <string name="play_queue_audio_settings">Audio-Einstellungen</string>
     <string name="player_stream_failure">Konnte diesen Stream nicht abspielen</string>
     <string name="main_page_content">Inhalt der Hauptseite</string>
     <string name="subscription_page_summary">Abonnement-Seite</string>
@@ -470,13 +470,13 @@
     <string name="search_history_deleted">Suchverlauf gelöscht.</string>
     <string name="one_item_deleted">1 Element gelöscht.</string>
 
-    <string name="app_license">NewPipe ist copyleft libre Software: Sie können es nach Belieben benutzen, studieren, mit anderen teilen und verbessern. Insbesondere können Sie sie unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder unter Version 3 der Lizenz oder (nach Ihrer Wahl) jeder späteren Version.</string>
-    <string name="import_settings">Möchten Sie auch Einstellungen importieren?</string>
+    <string name="app_license">NewPipe ist freie Copyleft-Software: Du kannst es nach Belieben benutzen, studieren, mit anderen teilen und verbessern. Insbesondere kannst du sie unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder unter Version 3 der Lizenz oder (nach deiner Wahl) jeder späteren Version.</string>
+    <string name="import_settings">Möchtest du auch Einstellungen importieren?</string>
 
     <string name="privacy_policy_title">NewPipe-Datenschutzbestimmungen</string>
-    <string name="privacy_policy_encouragement">Dem NewPipe Projekt ist Datenschutz sehr wichtig. Deshalb sammelt diese App keine Daten ohne ihre Zustimmung.
+    <string name="privacy_policy_encouragement">Dem NewPipe-Projekt ist Datenschutz sehr wichtig. Deshalb sammelt diese App keine Daten ohne deine Zustimmung.
 \nNewPipes Datenschutzbestimmungen erklären im Detail, welche Daten beim Absenden eines Absturzberichtes verschickt und gespeichert werden.</string>
-    <string name="read_privacy_policy">Lesen Sie die Datenschutzerklärung</string>
+    <string name="read_privacy_policy">Lies die Datenschutzbestimmungen</string>
     <string name="accept">Akzeptieren</string>
     <string name="decline">Ablehnen</string>
 <string name="start_accept_privacy_policy">Um den Anforderungen der Datenschutz-Grundverordnung (DSGVO) genüge zu tun, möchten wir dich hiermit auf die Datenschutzbedingungen von NewPipe aufmerksam machen. Bitte lies sie sorgfältig durch.
