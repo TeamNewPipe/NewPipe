@@ -466,4 +466,6 @@
 \n您必須接受它才能向我們發送錯誤報告。</string>
     <string name="accept">接受</string>
     <string name="decline">下降</string>
-</resources>
+<string name="limit_data_usage_none_description">沒有限制</string>
+    <string name="limit_mobile_data_usage_title">當您使用行動網路時限制解析度</string>
+    </resources>
