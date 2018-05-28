@@ -446,4 +446,6 @@
 \nGe moet ’t aanvaarden voor ons ’t bugrapport te sturen.</string>
     <string name="accept">Aanvaarden</string>
     <string name="decline">Weigeren</string>
-</resources>
+<string name="limit_data_usage_none_description">Onbeperkt</string>
+    <string name="limit_mobile_data_usage_title">Resolutie beperken bij gebruik van mobiele gegevens</string>
+    </resources>
