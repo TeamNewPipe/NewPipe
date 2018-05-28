@@ -467,4 +467,15 @@
     <string name="playback_nightcore">تعديل الايقاع Nightcore</string>
     <string name="import_settings">هل تريد أيضا استيراد الإعدادات؟</string>
 
+    <string name="privacy_policy_title">"سياسة الخصوصية في NewPipe "</string>
+    <string name="privacy_policy_encouragement">يأخذ مشروع NewPipe خصوصيتك على محمل الجد. لذلك ، لا يجمع التطبيق أي بيانات دون موافقتك.
+\nتوضح سياسة خصوصية NewPipe بالتفصيل البيانات التي يتم إرسالها وتخزينها عند إرسال تقرير الأعطال.</string>
+    <string name="read_privacy_policy">قراءة سياسة الخصوصية</string>
+    <string name="start_accept_privacy_policy">من أجل الامتثال للائحة الأوروبية العامة لحماية البيانات (GDPR) ، فإننا نلفت انتباهك إلى سياسة خصوصية NewPipe. يرجى قراءتها بعناية.
+\nيجب عليك قبولها لإرسال تقرير الأخطاء إلينا.</string>
+    <string name="accept">قبول</string>
+    <string name="decline">انخفاض</string>
+
+    <string name="limit_data_usage_none_description">لا حدود</string>
+    <string name="limit_mobile_data_usage_title">الحد من جودة الفيديو عند استخدام بيانات الهاتف المحمول</string>
     </resources>
