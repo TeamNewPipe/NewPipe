@@ -471,4 +471,6 @@
 \nВи маєте підтвердити її аби надіслати нам баґового звіту.</string>
     <string name="accept">Ухвалити</string>
     <string name="decline">Відхилити</string>
-</resources>
+<string name="limit_data_usage_none_description">Безмежно</string>
+    <string name="limit_mobile_data_usage_title">Обмежити роздільну здатність під час користування мобільним інтернетом</string>
+    </resources>
