@@ -450,4 +450,6 @@
 \nSi voleu enviar-nos un informe d\'error, l\'haureu d\'acceptar.</string>
     <string name="accept">Accepta</string>
     <string name="decline">Rebutja</string>
-</resources>
+<string name="limit_data_usage_none_description">Sense restriccions</string>
+    <string name="limit_mobile_data_usage_title">Restringeix la resolució quan es facin servir dades mòbils</string>
+    </resources>
