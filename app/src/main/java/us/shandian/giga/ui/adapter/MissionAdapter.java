@@ -1,8 +1,10 @@
 package us.shandian.giga.ui.adapter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -245,8 +247,18 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
 
                         return true;
                     case R.id.delete:
-                        mManager.deleteMission(h.position);
-                        notifyDataSetChanged();
+                        new AlertDialog.Builder(mContext)
+                                .setTitle(mManager.getMission(h.position).name)
+                                .setMessage(R.string.confirm_deletion)
+                                .setPositiveButton(R.string.yes, (dialogInterface, i) -> {
+                                    mManager.deleteMission(h.position);
+                                    Toast.makeText(mContext,
+                                            R.string.item_deleted,
+                                            Toast.LENGTH_SHORT).show();
+                                    notifyDataSetChanged();
+                                })
+                                .setNegativeButton(R.string.cancel, (dialogInterface, i) -> {})
+                                .show();
                         return true;
                     case R.id.md5:
                     case R.id.sha1:
