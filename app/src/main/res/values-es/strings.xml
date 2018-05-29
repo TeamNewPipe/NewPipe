@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-    <string name="view_count_text">%1$s visualizaciones</string>
+    <string name="view_count_text">%1$s de visualizaciones</string>
     <string name="upload_date_text">Publicado el %1$s</string>
     <string name="no_player_found">No se encontró ningún reproductor de vídeo. ¿Desea instalar VLC?</string>
     <string name="install">Instalar</string>
@@ -112,7 +112,7 @@
     <string name="finish">OK</string>
 
     <string name="msg_name">Nombre del archivo</string>
-    <string name="msg_threads">Threads</string>
+    <string name="msg_threads">Trapos</string>
     <string name="msg_error">Error</string>
     <string name="msg_server_unsupported">Servidor no soportado</string>
     <string name="msg_exists">El archivo ya existe</string>
@@ -479,4 +479,13 @@ abrir en modo popup</string>
     <string name="app_license">NewPipe es un software copyleft libre: puedes usarlo, estudiarlo, compartirlo y mejorarlo a tu antojo. Específicamente, puedes redistribuirlo y/o modificarlo bajo los términos de la Licencia Pública General GNU publicada por la Free Software Foundation, ya sea la versión 3 de la Licencia, o (a tu elección) cualquier versión posterior.</string>
     <string name="import_settings">¿Desea importar también los ajustes?</string>
 
+    <string name="privacy_policy_title">Política de Privacidad de NewPipe</string>
+    <string name="privacy_policy_encouragement">El proyecto NewPipe toma su privacidad muy en serio. Por lo tanto, la aplicación no recopila ningún dato sin su consentimiento. La política de privacidad de NewPipe explica en detalle qué datos se envían y almacenan cuando envía un informe de fallas.</string>
+    <string name="read_privacy_policy">Leer la Política de Privacidad</string>
+    <string name="start_accept_privacy_policy">Para cumplir con el Reglamento general europeo de protección de datos (GDPR), podemos llamar su atención sobre la política de privacidad de NewPipe. Por favor léelo cuidadosamente. Debe aceptarlo para enviarnos el informe de error.</string>
+    <string name="accept">Aceptar</string>
+    <string name="decline">Declinar</string>
+
+    <string name="limit_data_usage_none_description">Sin límite</string>
+    <string name="limit_mobile_data_usage_title">Limitar resolución cuando se use Datos Móviles</string>
     </resources>
