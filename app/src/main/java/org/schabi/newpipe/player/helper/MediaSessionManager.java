@@ -11,7 +11,6 @@ import android.view.KeyEvent;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 
-import org.schabi.newpipe.player.mediasession.DummyPlaybackPreparer;
 import org.schabi.newpipe.player.mediasession.MediaSessionCallback;
 import org.schabi.newpipe.player.mediasession.PlayQueueNavigator;
 import org.schabi.newpipe.player.mediasession.PlayQueuePlaybackController;
@@ -26,15 +25,24 @@ public class MediaSessionManager {
                                @NonNull final Player player,
                                @NonNull final MediaSessionCallback callback) {
         this.mediaSession = new MediaSessionCompat(context, TAG);
+        this.mediaSession.setActive(true);
+
         this.sessionConnector = new MediaSessionConnector(mediaSession,
                 new PlayQueuePlaybackController(callback));
         this.sessionConnector.setQueueNavigator(new PlayQueueNavigator(mediaSession, callback));
-        this.sessionConnector.setPlayer(player, new DummyPlaybackPreparer());
+        this.sessionConnector.setPlayer(player, null);
     }
 
     @Nullable
     @SuppressWarnings("UnusedReturnValue")
     public KeyEvent handleMediaButtonIntent(final Intent intent) {
         return MediaButtonReceiver.handleIntent(mediaSession, intent);
+    }
+
+    public void dispose() {
+        this.sessionConnector.setPlayer(null, null);
+        this.sessionConnector.setQueueNavigator(null);
+        this.mediaSession.setActive(false);
+        this.mediaSession.release();
     }
 }
