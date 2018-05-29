@@ -24,6 +24,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -139,6 +140,7 @@ public abstract class BasePlayer implements
 
     @Nullable private PlayQueueItem currentItem;
     @Nullable private MediaSourceTag currentMetadata;
+    @Nullable private Bitmap currentThumbnail;
 
     @Nullable protected Toast errorToast;
 
@@ -317,6 +319,7 @@ public abstract class BasePlayer implements
     public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
         Log.e(TAG, "Thumbnail - onLoadingFailed() called on imageUri = [" + imageUri + "]",
                 failReason.getCause());
+        currentThumbnail = null;
     }
 
     @Override
@@ -324,12 +327,14 @@ public abstract class BasePlayer implements
         if (DEBUG) Log.d(TAG, "Thumbnail - onLoadingComplete() called with: " +
                 "imageUri = [" + imageUri + "], view = [" + view + "], " +
                 "loadedImage = [" + loadedImage + "]");
+        currentThumbnail = loadedImage;
     }
 
     @Override
     public void onLoadingCancelled(String imageUri, View view) {
         if (DEBUG) Log.d(TAG, "Thumbnail - onLoadingCancelled() called with: " +
                 "imageUri = [" + imageUri + "], view = [" + view + "]");
+        currentThumbnail = null;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -653,19 +658,25 @@ public abstract class BasePlayer implements
     public void onPositionDiscontinuity(@Player.DiscontinuityReason final int reason) {
         if (DEBUG) Log.d(TAG, "ExoPlayer - onPositionDiscontinuity() called with " +
                 "reason = [" + reason + "]");
+        if (playQueue == null) return;
 
         // Refresh the playback if there is a transition to the next video
-        final int newPeriodIndex = simpleExoPlayer.getCurrentPeriodIndex();
+        final int newWindowIndex = simpleExoPlayer.getCurrentWindowIndex();
         switch (reason) {
             case DISCONTINUITY_REASON_PERIOD_TRANSITION:
-                if (newPeriodIndex == playQueue.getIndex()) {
+                // When player is in single repeat mode and a period transition occurs,
+                // we need to register a view count here since no metadata has changed
+                if (getRepeatMode() == Player.REPEAT_MODE_ONE &&
+                        newWindowIndex == playQueue.getIndex()) {
                     registerView();
-                } else {
-                    playQueue.setIndex(newPeriodIndex);
+                    break;
                 }
             case DISCONTINUITY_REASON_SEEK:
             case DISCONTINUITY_REASON_SEEK_ADJUSTMENT:
             case DISCONTINUITY_REASON_INTERNAL:
+                if (playQueue.getIndex() != newWindowIndex) {
+                    playQueue.setIndex(newWindowIndex);
+                }
                 break;
         }
 
@@ -777,9 +788,10 @@ public abstract class BasePlayer implements
     }
 
     protected void onMetadataChanged(@NonNull final MediaSourceTag tag) {
-        Log.d(TAG, "Playback - onMetadataChanged() called, " +
-                "playing: " + tag.getMetadata().getName());
         final StreamInfo info = tag.getMetadata();
+        if (DEBUG) {
+            Log.d(TAG, "Playback - onMetadataChanged() called, playing: " + info.getName());
+        }
 
         initThumbnail(info.getThumbnailUrl());
         registerView();
@@ -1043,6 +1055,13 @@ public abstract class BasePlayer implements
     @NonNull
     public String getUploaderName() {
         return currentItem == null ? context.getString(R.string.unknown_content) : currentItem.getUploader();
+    }
+
+    @Nullable
+    public Bitmap getThumbnail() {
+        return currentThumbnail == null ?
+                BitmapFactory.decodeResource(context.getResources(), R.drawable.dummy_thumbnail) :
+                currentThumbnail;
     }
 
     /** Checks if the current playback is a livestream AND is playing at or beyond the live edge */

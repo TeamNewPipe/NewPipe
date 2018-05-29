@@ -34,7 +34,6 @@ import android.os.Build;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -229,6 +228,7 @@ public final class PopupVideoPlayer extends Service {
 
         notRemoteView.setTextViewText(R.id.notificationSongName, playerImpl.getVideoTitle());
         notRemoteView.setTextViewText(R.id.notificationArtist, playerImpl.getUploaderName());
+        notRemoteView.setImageViewBitmap(R.id.notificationCover, playerImpl.getThumbnail());
 
         notRemoteView.setOnClickPendingIntent(R.id.notificationPlayPause,
                 PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_PAUSE), PendingIntent.FLAG_UPDATE_CURRENT));
@@ -517,48 +517,27 @@ public final class PopupVideoPlayer extends Service {
         // Thumbnail Loading
         //////////////////////////////////////////////////////////////////////////*/
 
-        private void setDummyRemoteViewThumbnail() {
-            resetNotification();
-            if (notRemoteView != null) {
-                notRemoteView.setImageViewResource(R.id.notificationCover,
-                        R.drawable.dummy_thumbnail);
-            }
-            updateNotification(-1);
-        }
-
-        @Override
-        public void onLoadingStarted(String imageUri, View view) {
-            super.onLoadingStarted(imageUri, view);
-            setDummyRemoteViewThumbnail();
-        }
-
         @Override
         public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
             super.onLoadingComplete(imageUri, view, loadedImage);
-            if (loadedImage == null) {
-                setDummyRemoteViewThumbnail();
-                return;
-            }
-
             // rebuild notification here since remote view does not release bitmaps,
             // causing memory leaks
             resetNotification();
-            if (notRemoteView != null) {
-                notRemoteView.setImageViewBitmap(R.id.notificationCover, loadedImage);
-            }
             updateNotification(-1);
         }
 
         @Override
         public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
             super.onLoadingFailed(imageUri, view, failReason);
-            setDummyRemoteViewThumbnail();
+            resetNotification();
+            updateNotification(-1);
         }
 
         @Override
         public void onLoadingCancelled(String imageUri, View view) {
             super.onLoadingCancelled(imageUri, view);
-            setDummyRemoteViewThumbnail();
+            resetNotification();
+            updateNotification(-1);
         }
 
         /*//////////////////////////////////////////////////////////////////////////
@@ -613,6 +592,7 @@ public final class PopupVideoPlayer extends Service {
             super.onRepeatModeChanged(i);
             setRepeatModeRemote(notRemoteView, i);
             updatePlayback();
+            resetNotification();
             updateNotification(-1);
         }
 
@@ -683,7 +663,6 @@ public final class PopupVideoPlayer extends Service {
 
         @Override
         public void changeState(int state) {
-            resetNotification();
             super.changeState(state);
             updatePlayback();
         }
@@ -691,14 +670,16 @@ public final class PopupVideoPlayer extends Service {
         @Override
         public void onBlocked() {
             super.onBlocked();
+            resetNotification();
             updateNotification(R.drawable.ic_play_arrow_white);
-            startForeground(NOTIFICATION_ID, notBuilder.build());
         }
 
         @Override
         public void onPlaying() {
             super.onPlaying();
+            resetNotification();
             updateNotification(R.drawable.ic_pause_white);
+
             videoPlayPause.setBackgroundResource(R.drawable.ic_pause_white);
             hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
 
@@ -713,16 +694,17 @@ public final class PopupVideoPlayer extends Service {
         @Override
         public void onBuffering() {
             super.onBuffering();
+            resetNotification();
             updateNotification(R.drawable.ic_play_arrow_white);
-            startForeground(NOTIFICATION_ID, notBuilder.build());
         }
 
         @Override
         public void onPaused() {
             super.onPaused();
+            resetNotification();
             updateNotification(R.drawable.ic_play_arrow_white);
-            videoPlayPause.setBackgroundResource(R.drawable.ic_play_arrow_white);
 
+            videoPlayPause.setBackgroundResource(R.drawable.ic_play_arrow_white);
             lockManager.releaseWifiAndCpu();
 
             windowLayoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
@@ -734,17 +716,19 @@ public final class PopupVideoPlayer extends Service {
         @Override
         public void onPausedSeek() {
             super.onPausedSeek();
-            videoPlayPause.setBackgroundResource(R.drawable.ic_pause_white);
+            resetNotification();
             updateNotification(R.drawable.ic_play_arrow_white);
-            startForeground(NOTIFICATION_ID, notBuilder.build());
+
+            videoPlayPause.setBackgroundResource(R.drawable.ic_pause_white);
         }
 
         @Override
         public void onCompleted() {
             super.onCompleted();
+            resetNotification();
             updateNotification(R.drawable.ic_replay_white);
-            videoPlayPause.setBackgroundResource(R.drawable.ic_replay_white);
 
+            videoPlayPause.setBackgroundResource(R.drawable.ic_replay_white);
             lockManager.releaseWifiAndCpu();
 
             windowLayoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
@@ -767,8 +751,6 @@ public final class PopupVideoPlayer extends Service {
         public void hideControls(final long duration, long delay) {
             super.hideControlsAndButton(duration, delay, videoPlayPause);
         }
-
-
 
         /*//////////////////////////////////////////////////////////////////////////
         // Utils

@@ -333,16 +333,19 @@ public abstract class VideoPlayer extends BasePlayer
         switch (tag.getMetadata().getStreamType()) {
             case AUDIO_STREAM:
                 surfaceView.setVisibility(View.GONE);
+                endScreen.setVisibility(View.VISIBLE);
                 playbackEndTime.setVisibility(View.VISIBLE);
                 break;
 
             case AUDIO_LIVE_STREAM:
                 surfaceView.setVisibility(View.GONE);
+                endScreen.setVisibility(View.VISIBLE);
                 playbackLiveSync.setVisibility(View.VISIBLE);
                 break;
 
             case LIVE_STREAM:
                 surfaceView.setVisibility(View.VISIBLE);
+                endScreen.setVisibility(View.GONE);
                 playbackLiveSync.setVisibility(View.VISIBLE);
                 break;
 
@@ -357,6 +360,7 @@ public abstract class VideoPlayer extends BasePlayer
                 qualityTextView.setVisibility(View.VISIBLE);
                 surfaceView.setVisibility(View.VISIBLE);
             default:
+                endScreen.setVisibility(View.GONE);
                 playbackEndTime.setVisibility(View.VISIBLE);
                 break;
         }
@@ -387,7 +391,6 @@ public abstract class VideoPlayer extends BasePlayer
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
             playbackSeekBar.getThumb().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
 
-        animateView(endScreen, false, 0);
         loadingPanel.setBackgroundColor(Color.BLACK);
         animateView(loadingPanel, true, 0);
         animateView(surfaceForeground, true, 100);
@@ -407,14 +410,12 @@ public abstract class VideoPlayer extends BasePlayer
         loadingPanel.setVisibility(View.GONE);
 
         animateView(currentDisplaySeek, AnimationUtils.Type.SCALE_AND_ALPHA, false, 200);
-        animateView(endScreen, false, 0);
     }
 
     @Override
     public void onBuffering() {
         if (DEBUG) Log.d(TAG, "onBuffering() called");
         loadingPanel.setBackgroundColor(Color.TRANSPARENT);
-        animateView(loadingPanel, true, 500);
     }
 
     @Override

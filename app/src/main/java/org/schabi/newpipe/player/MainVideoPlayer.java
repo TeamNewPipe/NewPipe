@@ -720,7 +720,6 @@ public final class MainVideoPlayer extends AppCompatActivity
         @Override
         public void onBuffering() {
             super.onBuffering();
-            animatePlayButtons(false, 100);
             getRootView().setKeepScreenOn(true);
         }
 

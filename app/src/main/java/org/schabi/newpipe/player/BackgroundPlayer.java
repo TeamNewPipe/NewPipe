@@ -188,7 +188,9 @@ public final class BackgroundPlayer extends Service {
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setCustomContentView(notRemoteView)
                 .setCustomBigContentView(bigNotRemoteView);
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) builder.setPriority(NotificationCompat.PRIORITY_MAX);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+            builder.setPriority(NotificationCompat.PRIORITY_MAX);
+        }
         return builder;
     }
 
@@ -197,6 +199,7 @@ public final class BackgroundPlayer extends Service {
 
         remoteViews.setTextViewText(R.id.notificationSongName, basePlayerImpl.getVideoTitle());
         remoteViews.setTextViewText(R.id.notificationArtist, basePlayerImpl.getUploaderName());
+        remoteViews.setImageViewBitmap(R.id.notificationCover, basePlayerImpl.getThumbnail());
 
         remoteViews.setOnClickPendingIntent(R.id.notificationPlayPause,
                 PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_PAUSE), PendingIntent.FLAG_UPDATE_CURRENT));
@@ -244,6 +247,7 @@ public final class BackgroundPlayer extends Service {
         }
         notificationManager.notify(NOTIFICATION_ID, notBuilder.build());
     }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
@@ -291,57 +295,26 @@ public final class BackgroundPlayer extends Service {
         // Thumbnail Loading
         //////////////////////////////////////////////////////////////////////////*/
 
-        private void setDummyRemoteViewThumbnail() {
-            resetNotification();
-            if (notRemoteView != null) {
-                notRemoteView.setImageViewResource(R.id.notificationCover,
-                        R.drawable.dummy_thumbnail);
-            }
-            if (bigNotRemoteView != null) {
-                bigNotRemoteView.setImageViewResource(R.id.notificationCover,
-                        R.drawable.dummy_thumbnail);
-            }
-            updateNotification(-1);
-        }
-
-        @Override
-        public void onLoadingStarted(String imageUri, View view) {
-            super.onLoadingStarted(imageUri, view);
-            setDummyRemoteViewThumbnail();
-        }
-
         @Override
         public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
             super.onLoadingComplete(imageUri, view, loadedImage);
-            if (loadedImage == null) {
-                setDummyRemoteViewThumbnail();
-                return;
-            }
-
-            // rebuild notification here since remote view does not release bitmaps,
-            // causing memory leaks
             resetNotification();
-            if (notRemoteView != null) {
-                notRemoteView.setImageViewBitmap(R.id.notificationCover, loadedImage);
-            }
-            if (bigNotRemoteView != null) {
-                bigNotRemoteView.setImageViewBitmap(R.id.notificationCover, loadedImage);
-            }
             updateNotification(-1);
         }
 
         @Override
         public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
             super.onLoadingFailed(imageUri, view, failReason);
-            setDummyRemoteViewThumbnail();
+            resetNotification();
+            updateNotification(-1);
         }
 
         @Override
         public void onLoadingCancelled(String imageUri, View view) {
             super.onLoadingCancelled(imageUri, view);
-            setDummyRemoteViewThumbnail();
+            resetNotification();
+            updateNotification(-1);
         }
-
         /*//////////////////////////////////////////////////////////////////////////
         // States Implementation
         //////////////////////////////////////////////////////////////////////////*/
@@ -544,60 +517,38 @@ public final class BackgroundPlayer extends Service {
 
         @Override
         public void changeState(int state) {
-            resetNotification();
             super.changeState(state);
             updatePlayback();
         }
 
         @Override
-        public void onBlocked() {
-            super.onBlocked();
-            updateNotification(-1);
-            startForeground(NOTIFICATION_ID, notBuilder.build());
-        }
-
-        @Override
-        public void onBuffering() {
-            super.onBuffering();
-            updateNotification(-1);
-            startForeground(NOTIFICATION_ID, notBuilder.build());
-        }
-
-        @Override
-        public void onPausedSeek() {
-            super.onPausedSeek();
-            updateNotification(-1);
-            startForeground(NOTIFICATION_ID, notBuilder.build());
-        }
-
-        @Override
         public void onPlaying() {
             super.onPlaying();
+            resetNotification();
             updateNotification(R.drawable.ic_pause_white);
-
             lockManager.acquireWifiAndCpu();
-            startForeground(NOTIFICATION_ID, notBuilder.build());
         }
 
         @Override
         public void onPaused() {
             super.onPaused();
+            resetNotification();
             updateNotification(R.drawable.ic_play_arrow_white);
-
             lockManager.releaseWifiAndCpu();
-            stopForeground(false);
         }
 
         @Override
         public void onCompleted() {
             super.onCompleted();
-
-            if (bigNotRemoteView != null) bigNotRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 100, false);
-            if (notRemoteView != null) notRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 100, false);
+            resetNotification();
+            if (bigNotRemoteView != null) {
+                bigNotRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 100, false);
+            }
+            if (notRemoteView != null) {
+                notRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 100, false);
+            }
             updateNotification(R.drawable.ic_replay_white);
-
             lockManager.releaseWifiAndCpu();
-            stopForeground(false);
         }
     }
 }
