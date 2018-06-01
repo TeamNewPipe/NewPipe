@@ -10,7 +10,7 @@
     <string name="detail_likes_img_view_description">الإعجابات</string>
     <string name="detail_thumbnail_view_description">صور معاينة الفيديو</string>
     <string name="detail_uploader_thumbnail_view_description">الصورة المصغرة الشخصية</string>
-    <string name="did_you_mean">"هل تقصد :  %1$s ?"</string>
+    <string name="did_you_mean">هل تقصد: %1$s ?</string>
     <string name="download">تنزيل</string>
     <string name="download_dialog_title">تنزيل</string>
     <string name="download_path_audio_dialog_title">أدخل مسار تنزيل الملفات الصوتية</string>
@@ -86,7 +86,7 @@
     <string name="action_history">التاريخ</string>
     <string name="open_in_popup_mode">فتح في وضع النوافذ المنبثقة</string>
     <string name="use_external_video_player_summary">"بعض القرارات لن يكون الصوت عند تمكين هذا الخيار "</string>
-    <string name="popup_mode_share_menu_title">"وضع النوافذ المنبثقة NewPipe  "</string>
+    <string name="popup_mode_share_menu_title">وضع النوافذ المنبثقة NewPipe</string>
     <string name="channel_unsubscribed">تم إلغاء اشتراك القناة</string>
     <string name="subscription_change_failed">تعذر تغيير في الاشتراك</string>
     <string name="subscription_update_failed">تعذر تحديث الاشتراك</string>
