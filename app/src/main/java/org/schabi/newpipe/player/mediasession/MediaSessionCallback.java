@@ -13,5 +13,4 @@ public interface MediaSessionCallback {
 
     void onPlay();
     void onPause();
-    void onSetShuffle(final boolean isShuffled);
 }

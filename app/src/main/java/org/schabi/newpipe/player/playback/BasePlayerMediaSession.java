@@ -69,9 +69,4 @@ public class BasePlayerMediaSession implements MediaSessionCallback {
     public void onPause() {
         player.onPause();
     }
-
-    @Override
-    public void onSetShuffle(boolean isShuffled) {
-        player.onShuffleModeEnabledChanged(isShuffled);
-    }
 }

@@ -271,6 +271,7 @@ public abstract class BasePlayer implements
         if (audioReactor != null) audioReactor.dispose();
         if (playbackManager != null) playbackManager.dispose();
         if (databaseUpdateReactor != null) databaseUpdateReactor.dispose();
+        if (mediaSessionManager != null) mediaSessionManager.dispose();
 
         if (playQueueAdapter != null) {
             playQueueAdapter.unsetSelectedListener();
