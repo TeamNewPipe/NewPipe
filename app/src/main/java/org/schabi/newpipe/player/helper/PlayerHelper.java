@@ -9,9 +9,9 @@ import android.support.annotation.Nullable;
 import android.view.accessibility.CaptioningManager;
 
 import com.google.android.exoplayer2.SeekParameters;
+import com.google.android.exoplayer2.text.CaptionStyleCompat;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.TrackSelection;
-import com.google.android.exoplayer2.text.CaptionStyleCompat;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.upstream.BandwidthMeter;
 import com.google.android.exoplayer2.util.MimeTypes;
@@ -37,6 +37,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_FILL;
 import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_FIT;
@@ -260,6 +261,16 @@ public class PlayerHelper {
 
         return captioningManager.getFontScale();
     }
+
+    public static float getScreenBrightness(@NonNull final Context context) {
+        //a value of less than 0, the default, means to use the preferred screen brightness
+        return getScreenBrightness(context, -1);
+    }
+
+    public static void setScreenBrightness(@NonNull final Context context, final float setScreenBrightness) {
+        setScreenBrightness(context, setScreenBrightness, System.currentTimeMillis());
+    }
+
     ////////////////////////////////////////////////////////////////////////////
     // Private helpers
     ////////////////////////////////////////////////////////////////////////////
@@ -291,5 +302,24 @@ public class PlayerHelper {
 
     private static boolean isAutoQueueEnabled(@NonNull final Context context, final boolean b) {
         return getPreferences(context).getBoolean(context.getString(R.string.auto_queue_key), b);
+    }
+
+    private static void setScreenBrightness(@NonNull final Context context, final float screenBrightness, final long timestamp) {
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putFloat(context.getString(R.string.screen_brightness_key), screenBrightness);
+        editor.putLong(context.getString(R.string.screen_brightness_timestamp_key), timestamp);
+        editor.apply();
+    }
+
+    private static float getScreenBrightness(@NonNull final Context context, final float screenBrightness) {
+        SharedPreferences sp = getPreferences(context);
+        long timestamp = sp.getLong(context.getString(R.string.screen_brightness_timestamp_key), 0);
+        // hypothesis: 4h covers a viewing block, eg evening. External lightning conditions will change in the next
+        // viewing block so we fall back to the default brightness
+        if ((System.currentTimeMillis() - timestamp) > TimeUnit.HOURS.toMillis(4)) {
+            return screenBrightness;
+        } else {
+            return sp.getFloat(context.getString(R.string.screen_brightness_key), screenBrightness);
+        }
     }
 }

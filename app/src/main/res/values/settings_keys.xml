@@ -22,6 +22,8 @@
     <string name="popup_remember_size_pos_key" translatable="false">popup_remember_size_pos_key</string>
     <string name="use_inexact_seek_key" translatable="false">use_inexact_seek_key</string>
     <string name="auto_queue_key" translatable="false">auto_queue_key</string>
+    <string name="screen_brightness_key" translatable="false">screen_brightness_key</string>
+    <string name="screen_brightness_timestamp_key" translatable="false">screen_brightness_timestamp_key</string>
 
     <string name="default_resolution_key" translatable="false">default_resolution</string>
     <string name="default_resolution_value" translatable="false">360p</string>
