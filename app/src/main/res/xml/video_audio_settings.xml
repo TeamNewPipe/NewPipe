@@ -90,6 +90,14 @@
             android:summary="@string/preferred_open_action_settings_summary"
             android:title="@string/preferred_open_action_settings_title"/>
 
+        <ListPreference
+            android:defaultValue="@string/minimize_on_exit_value"
+            android:entries="@array/minimize_on_exit_action_description"
+            android:entryValues="@array/minimize_on_exit_action_key"
+            android:key="@string/minimize_on_exit_key"
+            android:summary="@string/minimize_on_exit_summary"
+            android:title="@string/minimize_on_exit_title"/>
+
         <SwitchPreference
             android:defaultValue="false"
             android:key="@string/resume_on_audio_focus_gain_key"
@@ -113,11 +121,5 @@
             android:key="@string/use_inexact_seek_key"
             android:summary="@string/use_inexact_seek_summary"
             android:title="@string/use_inexact_seek_title"/>
-
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="@string/minimize_on_exit_key"
-            android:title="@string/minimize_on_exit_title"
-            android:summary="@string/minimize_on_exit_summary"/>
     </PreferenceCategory>
 </PreferenceScreen>

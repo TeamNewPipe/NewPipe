@@ -74,8 +74,6 @@
     <string name="popup_remember_size_pos_summary">Remember last size and position of popup</string>
     <string name="use_inexact_seek_title">Use fast inexact seek</string>
     <string name="use_inexact_seek_summary">Inexact seek allows the player to seek to positions faster with reduced precision</string>
-    <string name="minimize_on_exit_title">Minimize on exit</string>
-    <string name="minimize_on_exit_summary">Experimental. Switch to play on popup player when exiting main video player</string>
     <string name="download_thumbnail_title">Load thumbnails</string>
     <string name="download_thumbnail_summary">Disable to stop all thumbnails from loading and save on data and memory usage. Changing this will clear both in-memory and on-disk image cache.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Image cache wiped</string>
@@ -505,5 +503,12 @@
         <item>240p</item>
         <item>144p</item>
     </string-array>
+
+    <!-- Minimize to exit action -->
+    <string name="minimize_on_exit_title">Minimize on exit</string>
+    <string name="minimize_on_exit_summary">Action when exiting main video player — %s</string>
+    <string name="minimize_on_exit_none_description">None</string>
+    <string name="minimize_on_exit_background_description">Minimize to background player</string>
+    <string name="minimize_on_exit_popup_description">Minimize to popup player</string>
 
 </resources>
