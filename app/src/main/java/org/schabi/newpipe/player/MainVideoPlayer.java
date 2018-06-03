@@ -208,10 +208,17 @@ public final class MainVideoPlayer extends AppCompatActivity
     protected void onStop() {
         if (DEBUG) Log.d(TAG, "onStop() called");
         super.onStop();
-        playerImpl.destroy();
-
         PlayerHelper.setScreenBrightness(getApplicationContext(),
                 getWindow().getAttributes().screenBrightness);
+
+        isInMultiWindow = false;
+
+        if (playerImpl == null) return;
+        if (PlayerHelper.isMinimizeOnExitEnabled(this)) {
+            playerImpl.onFullScreenButtonClicked();
+        } else {
+            playerImpl.destroy();
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////

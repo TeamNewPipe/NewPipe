@@ -173,6 +173,10 @@ public class PlayerHelper {
         return isAutoQueueEnabled(context, false);
     }
 
+    public static boolean isMinimizeOnExitEnabled(@NonNull final Context context) {
+        return isMinimizeOnExitEnabled(context, false);
+    }
+
     @NonNull
     public static SeekParameters getSeekParameters(@NonNull final Context context) {
         return isUsingInexactSeek(context, false) ?
@@ -249,7 +253,6 @@ public class PlayerHelper {
      * System font scaling:
      * Very small - 0.25f, Small - 0.5f, Normal - 1.0f, Large - 1.5f, Very Large - 2.0f
      * */
-    @NonNull
     public static float getCaptionScale(@NonNull final Context context) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return 1f;
 
@@ -321,5 +324,9 @@ public class PlayerHelper {
         } else {
             return sp.getFloat(context.getString(R.string.screen_brightness_key), screenBrightness);
         }
+    }
+
+    private static boolean isMinimizeOnExitEnabled(@NonNull final Context context, final boolean b) {
+        return getPreferences(context).getBoolean(context.getString(R.string.minimize_on_exit_key), b);
     }
 }
