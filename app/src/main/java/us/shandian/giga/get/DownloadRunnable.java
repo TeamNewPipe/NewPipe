@@ -2,7 +2,6 @@ package us.shandian.giga.get;
 
 import android.util.Log;
 
-import java.io.BufferedInputStream;
 import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -104,11 +103,11 @@ public class DownloadRunnable implements Runnable {
 
                 RandomAccessFile f = new RandomAccessFile(mMission.location + "/" + mMission.name, "rw");
                 f.seek(start);
-                BufferedInputStream ipt = new BufferedInputStream(conn.getInputStream());
-                byte[] buf = new byte[512];
+                java.io.InputStream ipt = conn.getInputStream();
+                byte[] buf = new byte[64*1024];
 
                 while (start < end && mMission.running) {
-                    int len = ipt.read(buf, 0, 512);
+                    int len = ipt.read(buf, 0, buf.length);
 
                     if (len == -1) {
                         break;
