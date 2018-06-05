@@ -328,6 +328,10 @@
     <string name="website_title">Website</string>
     <string name="website_encouragement">Visit the NewPipe Website for more info and news.</string>
     <string name="website_url" translatable="false">https://newpipe.schabi.org/</string>
+    <string name="privacy_policy_title">NewPipe\'s Privacy Policy</string>
+    <string name="privacy_policy_encouragement">The NewPipe project takes your privacy very seriously. Therefore, the app does not collect any data without your consent.\nNewPipe\'s privacy policy explains in detail what data is sent and stored when you send a crash report.</string>
+    <string name="privacy_policy_url" translatable="false">https://newpipe.schabi.org/legal/privacy/</string>
+    <string name="read_privacy_policy">Read privacy policy</string>
     <string name="app_license_title">NewPipe\'s License</string>
     <string name="app_license">NewPipe is copyleft libre software: You can use, study share and improve it at your will. Specifically you can redistribute and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</string>
     <string name="read_full_license">Read license</string>
@@ -478,4 +482,26 @@
     <string name="unhook_checkbox">Unhook (may cause distortion)</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Default</string>
+
+    <!-- GDPR dialog -->
+    <string name="start_accept_privacy_policy">In order to comply with the European General Data Protection Regulation (GDPR), we herby draw your attention to NewPipe\'s privacy policy. Please read it carefully.\nYou must accept it to send us the bug report.</string>
+    <string name="accept">Accept</string>
+    <string name="decline">Decline</string>
+
+    <!-- Limit mobile data usage  -->
+    <string name="limit_data_usage_none_description">No limit</string>
+    <string name="limit_mobile_data_usage_title">Limit resolution when using mobile data</string>
+    <string name="limit_mobile_data_usage_value" translatable="false">@string/limit_data_usage_none_key</string>
+    <string-array name="limit_data_usage_description_list">
+        <item>@string/limit_data_usage_none_description</item>
+        <item>1080p60</item>
+        <item>1080p</item>
+        <item>720p60</item>
+        <item>720p</item>
+        <item>480p</item>
+        <item>360p</item>
+        <item>240p</item>
+        <item>144p</item>
+    </string-array>
+
 </resources>

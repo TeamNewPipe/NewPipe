@@ -438,4 +438,14 @@
     <string name="app_license">NewPipe is vrije software: ge kund het gebruiken, bestuderen, delen en verbeteren zoveel als da’ ge maar wild. Ge kund het opnieuw uitgeven en/of aanpassen volgens de voorwaarden van de GNU General Public License, gepubliceerd door de Free Software Foundation, versie 3 van de licentie, of (indien gewenst) gelijk welke latere versie.</string>
     <string name="import_settings">Wild ge d’instellingen ook importeren?</string>
 
+    <string name="privacy_policy_title">Privacybeleid van NewPipe</string>
+    <string name="privacy_policy_encouragement">’t NewPipe-project neemt uw privacy ter harte. Daarom verzameld den app geen gegevens zonder uw toestemming.
+\n’t Privacybeleid van NewPipe legd in detail uit welke gegevens da’ der worden verzonden en opgeslagen wanneer da’ g’een crashrappor indiend.</string>
+    <string name="read_privacy_policy">Privacybeleid lezen</string>
+    <string name="start_accept_privacy_policy">Voor d’Europese privacywet (ook wel GDPR genoemd) na te leven, wijzen w’u op ’t nieuw privacybeleid van NewPipe. Leesd ’t aandachtig.
+\nGe moet ’t aanvaarden voor ons ’t bugrapport te sturen.</string>
+    <string name="accept">Aanvaarden</string>
+    <string name="decline">Weigeren</string>
+<string name="limit_data_usage_none_description">Onbeperkt</string>
+    <string name="limit_mobile_data_usage_title">Resolutie beperken bij gebruik van mobiele gegevens</string>
     </resources>

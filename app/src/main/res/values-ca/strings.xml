@@ -442,4 +442,14 @@
     <string name="app_license">NewPipe és programari lliure sota llicència copyleft: podeu fer-lo servir, estudiar-lo, compartir-lo i millorar-lo al vostre gust. En concret, podeu redistribuir-lo i/o modificar-lo d\'acord amb els termes de la llicència GNU GPL publicada per la Free Software Foundation, ja sigui la versió 3 o (segons vulgueu) qualsevol altra versió posterior.</string>
     <string name="import_settings">Voleu importar també la configuració?</string>
 
+    <string name="privacy_policy_title">Política de privacitat del NewPipe</string>
+    <string name="privacy_policy_encouragement">El projecte NewPipe es pren molt seriosament la vostra privacitat. Per aquesta raó, l\'aplicació no emmagatzema cap mena de dades sense el vostre consentiment.
+\nLa política de privacitat del NewPipe descriu detalladament quines dades s\'envien i s\'emmagatzemen quan envieu un informe d\'error.</string>
+    <string name="read_privacy_policy">Llegeix la política de privacitat</string>
+    <string name="start_accept_privacy_policy">Per tal de complir amb el Reglament General de Protecció de Dades europeu (GDPR), us demanem que poseu atenció a la política de privacitat del NewPipe. Llegiu-la detingudament.
+\nSi voleu enviar-nos un informe d\'error, l\'haureu d\'acceptar.</string>
+    <string name="accept">Accepta</string>
+    <string name="decline">Rebutja</string>
+<string name="limit_data_usage_none_description">Sense restriccions</string>
+    <string name="limit_mobile_data_usage_title">Restringeix la resolució quan es facin servir dades mòbils</string>
     </resources>

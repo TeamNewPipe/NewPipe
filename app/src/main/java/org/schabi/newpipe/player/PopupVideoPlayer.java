@@ -517,7 +517,7 @@ public final class PopupVideoPlayer extends Service {
         @Override
         protected int getOverrideResolutionIndex(final List<VideoStream> sortedVideos,
                                                  final String playbackQuality) {
-            return ListHelper.getPopupDefaultResolutionIndex(context, sortedVideos, playbackQuality);
+            return ListHelper.getPopupResolutionIndex(context, sortedVideos, playbackQuality);
         }
 
         /*//////////////////////////////////////////////////////////////////////////

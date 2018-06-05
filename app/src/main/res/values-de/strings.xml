@@ -12,14 +12,14 @@
     <string name="settings">Einstellungen</string>
     <string name="did_you_mean">Meintest du: %1$s ?</string>
     <string name="share_dialog_title">Teilen mit</string>
-    <string name="choose_browser">Browser</string>
+    <string name="choose_browser">Browser auswählen</string>
     <string name="screen_rotation">Drehen des Geräts</string>
     <string name="download_path_title">Download-Verzeichnis für Videos</string>
     <string name="download_path_summary">Verzeichnis für heruntergeladene Videos</string>
     <string name="download_path_dialog_title">Download-Verzeichnis für Videos angeben</string>
     <string name="default_resolution_title">Standardauflösung</string>
     <string name="play_with_kodi_title">Mit Kodi abspielen</string>
-    <string name="kore_not_found">Kore App wurde nicht gefunden. Möchten Sie Kore jetzt installieren?</string>
+    <string name="kore_not_found">Kore App wurde nicht gefunden. Kore jetzt installieren?</string>
     <string name="show_play_with_kodi_title">Zeige \"Mit Kodi abspielen\" Option</string>
     <string name="show_play_with_kodi_summary">Zeigt eine Option an, über die man Videos mit Kodi abspielen kann</string>
     <string name="play_audio">Audio</string>
@@ -67,7 +67,7 @@
 
     <string name="content">Inhalt</string>
     <string name="show_age_restricted_content_title">Altersbeschränkte Inhalte anzeigen</string>
-    <string name="video_is_age_restricted">Video ist altersbeschränkt. Schalten Sie erst altersbeschränkte Videos in den Einstellungen ein.</string>
+    <string name="video_is_age_restricted">Video ist altersbeschränkt. Schalte erst altersbeschränkte Videos in den Einstellungen ein.</string>
 
     <string name="could_not_setup_download_menu">Konnte Download-Menü nicht einrichten</string>
     <string name="live_streams_not_supported">Dies ist ein LIVESTREAM. Diese werden noch nicht unterstützt.</string>
@@ -115,7 +115,7 @@
     <string name="msg_exists">Datei existiert bereits</string>
     <string name="msg_wait">Bitte warten…</string>
     <string name="msg_copied">In Zwischenablage kopiert</string>
-    <string name="no_available_dir">Bitte wählen Sie ein verfügbares Download-Verzeichnis</string>
+    <string name="no_available_dir">Bitte wähle ein verfügbares Download-Verzeichnis</string>
 
     <string name="start">Starten</string>
     <string name="pause">Pause</string>
@@ -134,7 +134,7 @@
     <string name="black_theme_title">Schwarz</string>
 
     <string name="reCaptcha_title">reCAPTCHA-Aufgabe</string>
-    <string name="recaptcha_request_toast">reCAPTCHA-Herausforderung angefordert</string>
+    <string name="recaptcha_request_toast">reCAPTCHA-Aufgabe angefordert</string>
 
     <string name="later">Später</string>
 
@@ -185,14 +185,14 @@
     <string name="error_unable_to_load_license">Lizenz konnte nicht geladen werden</string>
     <string name="copyright" formatted="true">© %1$s von %2$s unter %3$s</string>
     <string name="tab_about">Über</string>
-    <string name="app_description">Eine freie, schlanke Streaming App für Android.</string>
+    <string name="app_description">Eine freie, schlanke Streaming-App für Android.</string>
     <string name="app_license_title">NewPipes Lizenz</string>
-    <string name="contribution_encouragement">Ob Ideen, Übersetzung, Design-Änderungen, Code-Aufräumung oder richtig große Code-Änderungen - Hilfe ist immer willkommen. Je mehr geholfen wird, desto besser wird NewPipe!</string>
+    <string name="contribution_encouragement">Ob Ideen, Übersetzungen, Design-Änderungen, Code-Aufräumung oder richtig große Code-Änderungen – Hilfe ist immer willkommen. Je mehr geholfen wird, desto besser wird NewPipe!</string>
     <string name="title_licenses">Drittanbieter-Lizenzen</string>
     <string name="view_on_github">Auf GitHub ansehen</string>
     <string name="contribution_title">Beitragen</string>
 <string name="settings_category_downloads_title">Download</string>
-    <string name="settings_file_charset_title">Erlaubt Zeichen im Dateinamen</string>
+    <string name="settings_file_charset_title">Erlaubte Zeichen im Dateinamen</string>
     <string name="settings_file_replacement_character_summary">Ungültige Zeichen werden durch dieses Zeichen ersetzt</string>
     <string name="settings_file_replacement_character_title">Ersetzungszeichen</string>
 
@@ -222,7 +222,7 @@
     <string name="resume_on_audio_focus_gain_summary">Nach Unterbrechungen (z.B. Telefonaten) Wiedergabe fortsetzen</string>
 
 
-    <string name="notification_channel_name">NewPipe Benachrichtigung</string>
+    <string name="notification_channel_name">NewPipe-Benachrichtigung</string>
     <string name="notification_channel_description">Benachrichtigungen für NewPipe-Hintergrund- und Pop-up Player</string>
 
     <string name="tab_main">Hauptmenü</string>
@@ -255,7 +255,7 @@
     <string name="item_deleted">Element gelöscht</string>
     <string name="resume_on_audio_focus_gain_title">Fortsetzen bei erneutem Fokussieren</string>
     <string name="settings_category_player_title">Player</string>
-    <string name="empty_subscription_feed_subtitle">Nichts hier außer Grillen</string>
+    <string name="empty_subscription_feed_subtitle">Nichts hier außer das Zirpen der Grillen</string>
 
     <string name="delete_item_search_history">Möchtest du dieses Element aus dem Suchverlauf löschen?</string>
 <string name="blank_page_summary">Leere Seite</string>
@@ -266,7 +266,7 @@
     <string name="play_all">Alles abspielen</string>
 
     <string name="play_queue_remove">Entfernen</string>
-    <string name="play_queue_audio_settings">Audio Einstellungen</string>
+    <string name="play_queue_audio_settings">Audio-Einstellungen</string>
     <string name="player_stream_failure">Konnte diesen Stream nicht abspielen</string>
     <string name="main_page_content">Inhalt der Hauptseite</string>
     <string name="subscription_page_summary">Abonnement-Seite</string>
@@ -298,10 +298,10 @@
 <string name="donation_title">Spenden</string>
     <string name="give_back">Zurückgeben</string>
     <string name="website_title">Website</string>
-    <string name="website_encouragement">Besuchen Sie die NewPipe Website für weitere Informationen und Neuigkeiten.</string>
-    <string name="donation_encouragement">NewPipe wird von Freiwilligen entwickelt, die ihre Freizeit dafür aufbringen, die beste Nutzererfahrung zu bieten. Geben Sie etwas zurück, um Entwicklern zu helfen, NewPipe bei einer Tasse Kaffee noch besser zu machen.</string>
+    <string name="website_encouragement">Besuche die NewPipe Website für weitere Informationen und Neuigkeiten.</string>
+    <string name="donation_encouragement">NewPipe wird von Freiwilligen entwickelt, die ihre Freizeit dafür aufbringen, die beste Nutzererfahrung zu bieten. Gib etwas zurück, um Entwicklern zu helfen, NewPipe bei einer Tasse Kaffee noch besser zu machen.</string>
     <string name="service_title">Service</string>
-    <string name="no_player_found_toast">Kein Streamplayer gefunden (Du kannst VLC installieren, um den Stream abzuspielen)</string>
+    <string name="no_player_found_toast">Keinen Streamplayer gefunden (du kannst VLC installieren, um den Stream abzuspielen)</string>
     <string name="default_content_country_title">Standard-Land des Inhalts</string>
     <string name="always">Immer</string>
     <string name="just_once">Nur einmal</string>
@@ -373,8 +373,8 @@
     <string name="caption_font_size_settings_title">Schriftgröße der Untertitel</string>
     <string name="dismiss">Abbrechen</string>
     <string name="normal_caption_font_size">Normale Schriftgröße</string>
-    <string name="controls_download_desc">Stream-Datei herunterladen</string>
-    <string name="use_inexact_seek_title">Benutze schnelle ungenaue Suche</string>
+    <string name="controls_download_desc">Stream-Datei herunterladen.</string>
+    <string name="use_inexact_seek_title">Benutze schnelle, ungenaue Suche</string>
     <string name="use_inexact_seek_summary">Mit ungenauem Suchen kann die Abspielposition schneller erreicht werden, aber auf Kosten der Genauigkeit</string>
     <string name="file">Datei</string>
 
@@ -397,13 +397,13 @@
     <string name="import_file_title">Datei importieren</string>
     <string name="previous_export">Vorheriger Export</string>
 
-    <string name="import_network_expensive_warning">Beachten Sie, dass diese Aktion das Netzwerk stark belasten kann. 
+    <string name="import_network_expensive_warning">Beachte, dass diese Aktion das Netzwerk stark belasten kann. 
 \n 
-\nMöchten Sie fortfahren?</string>
+\nMöchtest du fortfahren?</string>
 <string name="download_thumbnail_title">Vorschaubilder laden</string>
     <string name="thumbnail_cache_wipe_complete_notice">Bildercache gelöscht</string>
     <string name="metadata_cache_wipe_title">Leere die gecachten Metadaten</string>
-    <string name="metadata_cache_wipe_summary">Entfene alle gecachten Website-Daten</string>
+    <string name="metadata_cache_wipe_summary">Entferne alle gecachten Website-Daten</string>
     <string name="metadata_cache_wipe_complete_notice">Metadatencache gelöscht</string>
     <string name="settings_category_debug_title">Debug</string>
     <string name="invalid_source">Ungültige Datei-/Inhaltsquelle</string>
@@ -421,7 +421,7 @@
     <string name="unhook_checkbox">Aushaken (kann zu Verzerrungen führen)</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Standard</string>
-<string name="download_thumbnail_summary">Deaktivieren Sie diese Option, um das Laden aller Miniaturansichten zu stoppen und Daten und Speicherverbrauch zu sparen. Wenn Sie dies ändern, wird sowohl der In-Memory- als auch der On-Disk-Image-Cache gelöscht.</string>
+<string name="download_thumbnail_summary">Deaktiviere diese Option, um das Laden aller Miniaturansichten zu stoppen und Daten und Speicherverbrauch zu sparen. Wenn du dies änderst, wird sowohl der In-Memory- als auch der On-Disk-Image-Cache gelöscht.</string>
     <string name="auto_queue_title">Nächsten Stream automatisch einreihen</string>
     <string name="auto_queue_summary">Automatisches Anhängen eines verwandten Streams beim Abspielen des letzten Streams in einer nicht wiederholten Warteschlange.</string>
     <string name="drawer_header_action_paceholder_text">Hier wird bald etwas stehen ;D</string>
@@ -470,7 +470,17 @@
     <string name="search_history_deleted">Suchverlauf gelöscht.</string>
     <string name="one_item_deleted">1 Element gelöscht.</string>
 
-    <string name="app_license">NewPipe ist copyleft libre Software: Sie können es nach Belieben benutzen, studieren, mit anderen teilen und verbessern. Insbesondere können Sie sie unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder unter Version 3 der Lizenz oder (nach Ihrer Wahl) jeder späteren Version.</string>
-    <string name="import_settings">Möchten Sie auch Einstellungen importieren?</string>
+    <string name="app_license">NewPipe ist freie Copyleft-Software: Du kannst es nach Belieben benutzen, studieren, mit anderen teilen und verbessern. Insbesondere kannst du sie unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder unter Version 3 der Lizenz oder (nach deiner Wahl) jeder späteren Version.</string>
+    <string name="import_settings">Möchtest du auch Einstellungen importieren?</string>
 
+    <string name="privacy_policy_title">NewPipe-Datenschutzbestimmungen</string>
+    <string name="privacy_policy_encouragement">Dem NewPipe-Projekt ist Datenschutz sehr wichtig. Deshalb sammelt diese App keine Daten ohne deine Zustimmung.
+\nNewPipes Datenschutzbestimmungen erklären im Detail, welche Daten beim Absenden eines Absturzberichtes verschickt und gespeichert werden.</string>
+    <string name="read_privacy_policy">Lies die Datenschutzbestimmungen</string>
+    <string name="accept">Akzeptieren</string>
+    <string name="decline">Ablehnen</string>
+<string name="start_accept_privacy_policy">Um den Anforderungen der Datenschutz-Grundverordnung (DSGVO) genüge zu tun, möchten wir dich hiermit auf die Datenschutzbedingungen von NewPipe aufmerksam machen. Bitte lies sie sorgfältig durch.
+\nDu musst ihr zustimmen, um einen Bugreport an uns zu senden.</string>
+    <string name="limit_data_usage_none_description">Unbegrenzt</string>
+    <string name="limit_mobile_data_usage_title">Auflösung bei Verwendung mobiler Daten begrenzen</string>
     </resources>

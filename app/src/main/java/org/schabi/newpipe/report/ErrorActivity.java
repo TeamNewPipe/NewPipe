@@ -1,7 +1,9 @@
 package org.schabi.newpipe.report;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -33,10 +35,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.schabi.newpipe.ActivityCommunicator;
 import org.schabi.newpipe.BuildConfig;
-import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.utils.Parser;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.PrintWriter;
@@ -44,9 +44,9 @@ import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.TimeZone;
 import java.util.Vector;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /*
  * Created by Christian Schabesberger on 24.10.15.
@@ -210,12 +210,31 @@ public class ErrorActivity extends AppCompatActivity {
         currentTimeStamp = getCurrentTimeStamp();
 
         reportButton.setOnClickListener((View v) -> {
-            Intent i = new Intent(Intent.ACTION_SENDTO);
-            i.setData(Uri.parse("mailto:" + ERROR_EMAIL_ADDRESS))
-                    .putExtra(Intent.EXTRA_SUBJECT, ERROR_EMAIL_SUBJECT)
-                    .putExtra(Intent.EXTRA_TEXT, buildJson());
+            Context context = this;
+            new AlertDialog.Builder(context)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle(R.string.privacy_policy_title)
+                    .setMessage(R.string.start_accept_privacy_policy)
+                    .setCancelable(false)
+                    .setNeutralButton(R.string.read_privacy_policy, (dialog, which) -> {
+                        Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                                Uri.parse(context.getString(R.string.privacy_policy_url))
+                        );
+                        context.startActivity(webIntent);
+                    })
+                    .setPositiveButton(R.string.accept, (dialog, which) -> {
+                        Intent i = new Intent(Intent.ACTION_SENDTO);
+                        i.setData(Uri.parse("mailto:" + ERROR_EMAIL_ADDRESS))
+                                .putExtra(Intent.EXTRA_SUBJECT, ERROR_EMAIL_SUBJECT)
+                                .putExtra(Intent.EXTRA_TEXT, buildJson());
 
-            startActivity(Intent.createChooser(i, "Send Email"));
+                        startActivity(Intent.createChooser(i, "Send Email"));
+                    })
+                    .setNegativeButton(R.string.decline, (dialog, which) -> {
+                        // do nothing
+                    })
+                    .show();
+
         });
 
         // normal bugreport

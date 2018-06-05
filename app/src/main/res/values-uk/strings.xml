@@ -461,4 +461,16 @@
     <string name="one_item_deleted">Видалено один фраґмент.</string>
 
     <string name="app_license">"NewPipe є вільною копілефт програмою: Ви можете використовувати її, поширювати та вдосконавлювати за власним розсудом. Зокрема ви можете перерозподіляти та/або змінювати її за умов використання GNU General Public License, опублікованою Free Software Foundation,  під 3-ю версією ліцензії, або (на ваш вибір) будь-якою пізнішою версією."</string>
+    <string name="import_settings">Чи ви також бажаєте імпортувати налаштування?</string>
+
+    <string name="privacy_policy_title">Політика приватності NewPip\'у</string>
+    <string name="privacy_policy_encouragement">Проєкт NewPipe дуже серйозно ставиться до вашої приватності. Тому цей застосунок не збирає ніяких даних без вашої згоди
+\nПолітика приватності NewPipe поясняє у деталях які дані було відіслано та збережено, під час відсилання крахового звіту.</string>
+    <string name="read_privacy_policy">Читати політику приватності</string>
+    <string name="start_accept_privacy_policy">Аби дотриматися Норм загального захисту даних ЄС (General Data Protection Regulation, GDPR), ми просимо звернути вашу увагу на NewPipe\'ову політику приватності. Будь ласка, прочитайте уважно
+\nВи маєте підтвердити її аби надіслати нам баґового звіту.</string>
+    <string name="accept">Ухвалити</string>
+    <string name="decline">Відхилити</string>
+<string name="limit_data_usage_none_description">Безмежно</string>
+    <string name="limit_mobile_data_usage_title">Обмежити роздільну здатність під час користування мобільним інтернетом</string>
     </resources>

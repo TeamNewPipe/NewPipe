@@ -1,7 +1,5 @@
 package org.schabi.newpipe.player.mediasession;
 
-import android.support.v4.media.session.PlaybackStateCompat;
-
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.ext.mediasession.DefaultPlaybackController;
 
@@ -21,11 +19,5 @@ public class PlayQueuePlaybackController extends DefaultPlaybackController {
     @Override
     public void onPause(Player player) {
         callback.onPause();
-    }
-
-    @Override
-    public void onSetShuffleMode(Player player, int shuffleMode) {
-        callback.onSetShuffle(shuffleMode == PlaybackStateCompat.SHUFFLE_MODE_ALL
-                || shuffleMode == PlaybackStateCompat.SHUFFLE_MODE_GROUP);
     }
 }

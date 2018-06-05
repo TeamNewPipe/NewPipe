@@ -458,4 +458,14 @@
     <string name="app_license">NewPipe 是一個 Copyleft 的自由軟體：您可以隨意使用、研究、分享並改進它。您可以在遵守由自由軟體基金會所發佈的 GNU 通用公共授權條款的狀況下自由地再散佈及／或修改它，授權條款預設使用第三版，但您也可以選擇更新的版本。</string>
     <string name="import_settings">您是否同時的匯入設定？</string>
 
+    <string name="privacy_policy_title">NewPipe 的隱私政策</string>
+    <string name="privacy_policy_encouragement">NewPipe 專案非常重視您的隱私。因此，未經您的同意應用程式不會收集任何的資料。
+\nNewPipe 的隱私權政策，詳細說明了當您發送錯誤回報時，什麼資料才會進行傳送及儲存。</string>
+    <string name="read_privacy_policy">閱讀隱私政策</string>
+    <string name="start_accept_privacy_policy">為了符合歐洲通用資料保護條例 ( GDPR ) ，我們請您注意 NewPipe 的隱私政策。請您務必仔細閱讀。
+\n您必須接受它才能向我們發送錯誤報告。</string>
+    <string name="accept">接受</string>
+    <string name="decline">下降</string>
+<string name="limit_data_usage_none_description">沒有限制</string>
+    <string name="limit_mobile_data_usage_title">當您使用行動網路時限制解析度</string>
     </resources>

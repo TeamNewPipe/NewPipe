@@ -119,6 +119,10 @@ public final class MainVideoPlayer extends AppCompatActivity
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) getWindow().setStatusBarColor(Color.BLACK);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
+        lp.screenBrightness = PlayerHelper.getScreenBrightness(getApplicationContext());
+        getWindow().setAttributes(lp);
+
         hideSystemUi();
         setContentView(R.layout.activity_main_player);
         playerImpl = new VideoPlayerImpl(this);
@@ -205,6 +209,9 @@ public final class MainVideoPlayer extends AppCompatActivity
         if (DEBUG) Log.d(TAG, "onStop() called");
         super.onStop();
         playerImpl.destroy();
+
+        PlayerHelper.setScreenBrightness(getApplicationContext(),
+                getWindow().getAttributes().screenBrightness);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -647,7 +654,7 @@ public final class MainVideoPlayer extends AppCompatActivity
         @Override
         protected int getOverrideResolutionIndex(final List<VideoStream> sortedVideos,
                                                  final String playbackQuality) {
-            return ListHelper.getDefaultResolutionIndex(context, sortedVideos, playbackQuality);
+            return ListHelper.getResolutionIndex(context, sortedVideos, playbackQuality);
         }
 
         /*//////////////////////////////////////////////////////////////////////////
@@ -884,7 +891,9 @@ public final class MainVideoPlayer extends AppCompatActivity
         private final boolean isPlayerGestureEnabled = PlayerHelper.isPlayerGestureEnabled(getApplicationContext());
 
         private final float stepsBrightness = 15, stepBrightness = (1f / stepsBrightness), minBrightness = .01f;
-        private float currentBrightness = .5f;
+        private float currentBrightness = getWindow().getAttributes().screenBrightness > 0
+                ? getWindow().getAttributes().screenBrightness
+                : 0.5f;
 
         private int currentVolume, maxVolume = playerImpl.getAudioReactor().getMaxVolume();
         private final float stepsVolume = 15, stepVolume = (float) Math.ceil(maxVolume / stepsVolume), minVolume = 0;

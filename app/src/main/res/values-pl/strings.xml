@@ -27,7 +27,7 @@
     <string name="download_path_audio_dialog_title">Podaj ścieżkę zapisu audio</string>
 
     <string name="autoplay_by_calling_app_title">Autoodtwarzanie</string>
-    <string name="autoplay_by_calling_app_summary">Automatycznie odtwórz wideo, kiedy NewPipe zostanie wywołany z innej aplikacji</string>
+    <string name="autoplay_by_calling_app_summary">Odtwórz wideo, kiedy NewPipe zostanie wywołany z innej aplikacji</string>
     <string name="default_resolution_title">Domyślna rozdzielczość</string>
     <string name="play_with_kodi_title">Odtwórz w Kodi</string>
     <string name="kore_not_found">Aplikacja Kore nie została znaleziona. Zainstalować ją?</string>
@@ -43,7 +43,7 @@
 
     <string name="download_dialog_title">Pobrane</string>
     <string name="next_video_title">Następny film</string>
-    <string name="show_next_and_similar_title">Pokaż następne i podobne filmy</string>
+    <string name="show_next_and_similar_title">Pokaż \'następne\' i \'podobne\' filmy</string>
     <string name="url_not_supported_toast">URL nieobsługiwany</string>
     <string name="search_language_title">Domyślny język zawartości</string>
     <string name="settings_category_video_audio_title">Wideo i audio</string>
@@ -180,7 +180,7 @@
     <string name="action_open_website">Otwórz stronę</string>
     <string name="tab_about">O programie</string>
     <string name="tab_licenses">Licencje</string>
-    <string name="app_description">Darmowa, lekka alternatywa YouTube dla Androida.</string>
+    <string name="app_description">Wolne, lekkie przesyłanie strumieniowania na Androidzie.</string>
     <string name="view_on_github">Zobacz na GitHubie</string>
     <string name="app_license_title">Licencja NewPipe</string>
     <string name="contribution_encouragement">Jeżeli masz pomysł na tłumaczenie, zmiany w wyglądzie aplikacji, oczyszczenie kodu źródłowego, pomoc jest zawsze mile widziana. Im więcej jest zrobione, tym lepiej!</string>
@@ -203,7 +203,7 @@
 
     <string name="enable_search_history_title">Historia wyszukiwania</string>
     <string name="enable_search_history_summary">Zapisuj lokalnie historię wyszukiwania</string>
-    <string name="enable_watch_history_title">Historia</string>
+    <string name="enable_watch_history_title">Historia i pamięć podręczna</string>
     <string name="enable_watch_history_summary">Zapisuj historię oglądania</string>
     <string name="resume_on_audio_focus_gain_title">Wznów gdy na pierwszym planie</string>
     <string name="resume_on_audio_focus_gain_summary">Kontynuuj odtwarzanie po przerwaniu (np. po rozmowie telefonicznej)</string>
@@ -237,7 +237,7 @@
 
     <string name="unknown_content">[Nieznany]</string>
 
-    <string name="player_stream_failure">Nie udało się odtworzyć strumienia</string>
+    <string name="player_stream_failure">Nie można odtworzyć strumienia</string>
     <string name="player_unrecoverable_failure">Wystąpił nieodwracalny błąd odtwarzacza</string>
     <string name="player_recoverable_failure">Odzyskiwanie po błędzie odtwarzacza</string>
 
@@ -266,7 +266,7 @@
     <string name="charset_most_special_characters">Większość znaków specjalnych</string>
 
     <string name="donation_title">Dotacja</string>
-    <string name="donation_encouragement">NewPipe rozwijane jest przez wolontariuszy, którzy poświęcają swój wolny czas, by zapewnić ci jak najlepsze wrażenia podczas korzystania z aplikacji. To dobry moment aby wesprzeć programistów i sprawić, aby program był jeszcze lepszy, nie przerywając przy tym popijania kawy!</string>
+    <string name="donation_encouragement">NewPipe rozwijane jest przez wolontariuszy, którzy poświęcają swój wolny czas, by zapewnić ci jak najlepsze wrażenia podczas korzystania z aplikacji. To dobry moment, aby wesprzeć programistów i sprawić, by program był jeszcze lepszy, nie przerywając przy tym popijania kawy!</string>
     <string name="give_back">Daj od siebie</string>
     <string name="website_title">Witryna</string>
     <string name="website_encouragement">By otrzymać więcej informacji oraz najnowsze wiadomości o NewPipe, odwiedź naszą stronę.</string>
@@ -298,7 +298,7 @@
     <string name="start_here_on_main">Odtwórz teraz</string>
     <string name="start_here_on_background">Odtwórz w tle</string>
     <string name="start_here_on_popup">Odtwórz w okienku</string>
-<string name="no_player_found_toast">Nie znaleziono odtwarzacza strumieniowego (żeby odtworzyć możesz zainstalować VLC)</string>
+<string name="no_player_found_toast">Nie znaleziono odtwarzacza strumieniowego (żeby odtworzyć, możesz zainstalować VLC)</string>
     <string name="default_content_country_title">Domyślny kraj zawartości</string>
     <string name="service_title">Usługa</string>
     <string name="always">Zawsze</string>
@@ -316,7 +316,7 @@
     <string name="always_ask_player">Pytaj za każdym razem</string>
     
     <string name="preferred_player_fetcher_notification_title">Informacje…</string>
-    <string name="preferred_player_fetcher_notification_message">Ładuję żądaną zawartość</string>
+    <string name="preferred_player_fetcher_notification_message">Ładowanie żądanej zawartości</string>
 <string name="controls_download_desc">Pobierz plik strumienia.</string>
     <string name="show_info">Pokaż informacje</string>
 
@@ -370,16 +370,16 @@
     <string name="unbookmark_playlist">Usuń z zakładek</string>
 
     <string name="delete_playlist_prompt">Czy chcesz usunąć playlistę?</string>
-    <string name="playlist_creation_success">Playlista utworzona pomyślnie</string>
+    <string name="playlist_creation_success">Playlista utworzona</string>
     <string name="playlist_add_stream_success">Dodano do playlisty</string>
     <string name="playlist_thumbnail_change_success">Miniaturka playlisty zmieniona</string>
-    <string name="playlist_delete_failure">Błąd podczas usuwania playlisty</string>
+    <string name="playlist_delete_failure">Nie można usunąć playlisty</string>
 
     <string name="caption_none">Bez napisów</string>
 
-    <string name="resize_fit">DOPASUJ</string>
-    <string name="resize_fill">WYPEŁNIJ</string>
-    <string name="resize_zoom">POWIĘKSZ</string>
+    <string name="resize_fit">Dopasuj</string>
+    <string name="resize_fill">Wypełnij</string>
+    <string name="resize_zoom">Powiększ</string>
 
     <string name="caption_auto_generated">Wygenerowane automatycznie</string>
     <string name="caption_font_size_settings_title">Rozmiar czcionki etykiet</string>
@@ -438,24 +438,39 @@
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Wysokość dźwięku</string>
     <string name="playback_default">Domyślna</string>
-<string name="import_soundcloud_instructions_hint">twojeid, soundcloud.com/twojeid</string>
+<string name="import_soundcloud_instructions_hint">twojeID, soundcloud.com/twojeid</string>
 
     <string name="unhook_checkbox">Odczep (może powodować zniekształcenia)</string>
     <string name="playback_nightcore">Nightcore</string>
-    <string name="import_soundcloud_instructions">"Aby zaimportować obserwowane z SoundCloud, musisz znać identyfikator lub  link do swojego profilu. Jeśli znasz którykolwiek z nich, po prostu wpisz go w polu poniżej.
-\n
-\nW przeciwnym wypadku spróbuj poniższych kroków:
-\n
-\n1. Włącz \"tryb stacjonarny\" w przeglądarce (strona z której zaraz skorzystasz nie jest dostępna w trybie mobilnym)
-\n2. Odwiedź stronę: %1$s
-\n3. Zaloguj się na swoje konto
-\n4. Skopiuj adres, na który przeglądarka przekieruje cię po zalogowaniu (to jest adres twojego profilu)"</string>
+    <string name="import_soundcloud_instructions">Aby zaimportować obserwowane z SoundCloud, musisz znać identyfikator lub link do swojego profilu. Jeśli znasz którykolwiek z nich, po prostu wpisz go w polu poniżej. 
+\n 
+\nW przeciwnym wypadku spróbuj poniższych kroków: 
+\n 
+\n1. Włącz \"tryb stacjonarny\" w przeglądarce (strona, z której zaraz skorzystasz, nie jest dostępna w trybie mobilnym) 
+\n2. Odwiedź stronę: %1$s 
+\n3. Zaloguj się na swoje konto 
+\n4. Skopiuj adres, na który przeglądarka przekieruje cię po zalogowaniu (to jest adres twojego profilu).</string>
     <string name="no_streams_available_download">Brak źródeł do pobrania</string>
 
-    <string name="preferred_open_action_settings_title">Preferowana akcja podczas otwierania</string>
+    <string name="preferred_open_action_settings_title">Preferowana akcja podczas \'otwierania\'</string>
     <string name="preferred_open_action_settings_summary">Domyślna akcja podczas otwierania materiału - %s</string>
 
     <string name="caption_setting_title">Napisy</string>
-    <string name="caption_setting_description">Zmień kolor tekstu i tła napisów. Wymaga restartu odtwarzacza.</string>
+    <string name="caption_setting_description">Zmień kolor tekstu i tła napisów. Wymaga restartu aplikacji.</string>
+
+    <string name="clear_views_history_title">Wyczyść historię oglądania</string>
+    <string name="clear_views_history_summary">Usuwa historię odtworzonych strumieni.</string>
+    <string name="delete_view_history_alert">Usuń całą historię oglądania.</string>
+    <string name="view_history_deleted">Usunięto historię oglądania.</string>
+    <string name="clear_search_history_title">Wyczyść historię wyszukiwania</string>
+    <string name="clear_search_history_summary">Usuwa historię wyszukiwania słów kluczowych.</string>
+    <string name="delete_search_history_alert">Usuń całą historię wyszukiwania.</string>
+    <string name="search_history_deleted">Usunięto historię wyszukiwania.</string>
+    <string name="one_item_deleted">Usunięto jedną pozycję.</string>
+
+    <string name="toast_no_player">Nie zainstalowano aplikacji do odtworzenia tego pliku</string>
+
+    <string name="app_license">NewPipe jest wolnym i bezpłatnym oprogramowaniem: Możesz używać, brać udział oraz udoskonalać je według własnego uznania. W szczególności możesz redystrybuować lub/i modyfikować pod zasadami GNU General Public License opublikowanej przez Free Software Fundation w wersji 3 lub (w zależności od ciebie) dowolnej późniejszej wersji.</string>
+    <string name="import_settings">Czy chcesz zaimportować również ustawienia?</string>
 
     </resources>

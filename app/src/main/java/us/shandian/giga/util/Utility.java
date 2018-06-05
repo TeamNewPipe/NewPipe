@@ -12,6 +12,7 @@ import android.widget.Toast;
 import org.schabi.newpipe.R;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -59,17 +60,17 @@ public class Utility {
         ObjectOutputStream objectOutputStream = null;
 
         try {
-            objectOutputStream = new ObjectOutputStream(new FileOutputStream(fileName));
+            objectOutputStream = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fileName)));
             objectOutputStream.writeObject(serializable);
         } catch (Exception e) {
             //nothing to do
-        }
-
-        if(objectOutputStream != null) {
-            try {
-                objectOutputStream.close();
-            } catch (Exception e) {
-                //nothing to do
+        } finally {
+            if(objectOutputStream != null) {
+                try {
+                    objectOutputStream.close();
+                } catch (Exception e) {
+                    //nothing to do
+                }
             }
         }
     }

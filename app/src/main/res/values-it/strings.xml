@@ -478,4 +478,17 @@
     <string name="one_item_deleted">1 elemento eliminato.</string>
 
     <string name="app_license">NewPipe è un software libero con licenza copyleft: puoi usarlo, studiarlo, condividerlo e migliorarlo a tuo piacimento. In particolare, è possibile ridistribuirlo e/o modificarlo secondo i termini della GNU General Public License pubblicata dalla Free Software Foundation, sia nella versione 3 della Licenza, sia (a propria discrezione) in qualsiasi versione successiva.</string>
+    <string name="import_settings">Vuoi anche importare le impostazioni?</string>
+
+    <string name="privacy_policy_title">Informativa sulla privacy</string>
+    <string name="privacy_policy_encouragement">Il progetto NewPipe tiene molto alla tua privacy. Perciò, l\'app non raccoglie alcun dato senza il tuo consenso.
+\nL\'informativa sulla privacy di NewPipe spiega in dettaglio quali dati vengono inviati e memorizzati quando si invia un rapporto sugli arresti anomali.</string>
+    <string name="read_privacy_policy">Leggi l\'informativa sulla privacy</string>
+    <string name="start_accept_privacy_policy">Per rispettare il regolamento europeo sulla protezione dei dati (GDPR), attiriamo la vostra attenzione riguardo l\'informativa sulla privacy di NewPipe. Si prega di leggerla attentamente.
+\nDevi accettarla per inviarci il bug report.</string>
+    <string name="accept">Accetto</string>
+    <string name="decline">Rifiuto</string>
+
+    <string name="limit_data_usage_none_description">Senza limiti</string>
+    <string name="limit_mobile_data_usage_title">Limita la risoluzione quando si utilizzano dati mobili</string>
     </resources>

@@ -22,6 +22,8 @@
     <string name="popup_remember_size_pos_key" translatable="false">popup_remember_size_pos_key</string>
     <string name="use_inexact_seek_key" translatable="false">use_inexact_seek_key</string>
     <string name="auto_queue_key" translatable="false">auto_queue_key</string>
+    <string name="screen_brightness_key" translatable="false">screen_brightness_key</string>
+    <string name="screen_brightness_timestamp_key" translatable="false">screen_brightness_timestamp_key</string>
 
     <string name="default_resolution_key" translatable="false">default_resolution</string>
     <string name="default_resolution_value" translatable="false">360p</string>
@@ -853,4 +855,22 @@
         <item>ZM</item>
         <item>ZW</item>
     </string-array>
+
+    <!-- Limit mobile data usage  -->
+    <string name="limit_mobile_data_usage_key" translatable="false">limit_mobile_data_usage</string>
+    <string name="limit_data_usage_none_key" translatable="false">limit_data_usage_none</string>
+
+    <string-array name="limit_data_usage_values_list">
+        <item>@string/limit_data_usage_none_key</item>
+        <item>1080p60</item>
+        <item>1080p</item>
+        <item>720p60</item>
+        <item>720p</item>
+        <item>480p</item>
+        <item>360p</item>
+        <item>240p</item>
+        <item>144p</item>
+    </string-array>
+
+
 </resources>
