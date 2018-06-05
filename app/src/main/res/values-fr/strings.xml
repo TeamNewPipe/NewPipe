@@ -479,4 +479,10 @@
 
     <string name="accept">Accepter</string>
     <string name="decline">Refuser</string>
-</resources>
+<string name="privacy_policy_encouragement">Le projet NewPipe prend votre vie privée très à cœur. Ainsi, l\'appli n\'envoie aucune donnée sans votre consentement.
+\nLa politique de vie privée de NewPipe explique en détail quelle donnée est envoyée et stockée quand vous envoyez un rapport de plantage.</string>
+    <string name="start_accept_privacy_policy">Afin de se conformer au Règlement Général sur la Protection des Données (RGPD ou GDPR), nous attirons votre attention sur la politique de vie privée de NewPipe. Merci de la lire attentivement.
+\nVous devez l\'accepter pour nous envoyer le rapport de bug.</string>
+    <string name="limit_data_usage_none_description">Pas de limite</string>
+    <string name="limit_mobile_data_usage_title">Limiter la résolution en données mobile</string>
+    </resources>
