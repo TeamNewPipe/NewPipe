@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="main_bg_subtitle">ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਸਰਚ ਦਬਾਓ</string>
+    <string name="view_count_text">%1$s ਦੇਖੇ</string>
+    <string name="upload_date_text">%1$s ਤੇ ਪਬਲਿਸ਼ ਕੀਤਾ</string>
+    <string name="no_player_found">ਸਟਰੀਮ ਪਲੇਅਰ ਨਹੀਂ ਮਿਲਿਆ . ਤੁਸੀ VLC ਭਰਨਾ ਚਾਹੋਗੇ?</string>
+    <string name="no_player_found_toast">ਸਟਰੀਮ ਪਲੇਅਰ ਨਹੀਂ ਮਿਲਿਆ (ਤੁਸੀਂ vlc ਇੰਸਟਾਲ ਕਰ ਸਕਦੇ ਹੋ)</string>
+    <string name="install">ਭਰੋ</string>
+    <string name="cancel">ਨਹੀਂ</string>
+    <string name="open_in_browser">Browser ਚ ਖੋਲੋ</string>
+    <string name="open_in_popup_mode">Popup ਚ ਖੋਲੋ</string>
+    <string name="share">ਭੇਜੋ</string>
+    <string name="download">ਡਾਊਨਲੋਡ</string>
+    <string name="controls_download_desc">ਡਾਊਨਲੋਡ ਸਟਰੀਮ ਫਾਈਲ.</string>
+    <string name="search">ਖੋਜੋ</string>
+    <string name="settings">ਸੇਟਿੰਗਾਂ</string>
+    <string name="did_you_mean">ਕੀ ਤੁਹਾਡਾ ਮਤਲਬ: %1$s ?</string>
+    <string name="share_dialog_title">ਭੇਜੋ</string>
+    <string name="choose_browser">Browser ਚੁਣੋ</string>
+    <string name="screen_rotation">ਉਲਟਾਨਾ</string>
+    <string name="use_external_video_player_title">ਹੋਰ ਪਲੇਅਰ ਵਰਤਣਾ</string>
+    </resources>

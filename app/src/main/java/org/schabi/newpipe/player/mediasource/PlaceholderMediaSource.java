@@ -6,7 +6,7 @@ import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.source.MediaPeriod;
 import com.google.android.exoplayer2.upstream.Allocator;
 
-import org.schabi.newpipe.playlist.PlayQueueItem;
+import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 
 import java.io.IOException;
 

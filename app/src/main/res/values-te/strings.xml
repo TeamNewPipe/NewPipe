@@ -196,4 +196,6 @@
     <string name="play_queue_stream_detail">వివరాలు</string>
     <string name="play_queue_audio_settings">ఆడియో సెట్టింగ్లు</string>
     <string name="hold_to_append">ఎన్క్యూలో పట్టుకోండి</string>
-</resources>
+<string name="no_player_found">"మీదగార వీడియో కి కావాల్సిన ప్లేయర్ లేదు. VLC  ప్లేయర్ ఇన్స్టాల్ చేసుకుంటారా?"</string>
+    <string name="no_player_found_toast">"మీదగార వీడియో కి కావాల్సిన ప్లేయర్ లేదు (మీరు VLC  ఇసన్తాల్ చేసుకోవచ్చు)"</string>
+    </resources>

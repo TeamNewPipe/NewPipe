@@ -20,10 +20,10 @@ import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
-import org.schabi.newpipe.fragments.local.dialog.PlaylistAppendDialog;
+import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.info_list.InfoListAdapter;
-import org.schabi.newpipe.playlist.SinglePlayQueue;
+import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.StateSaver;
@@ -140,9 +140,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
         infoListAdapter.setOnStreamSelectedListener(new OnClickGesture<StreamInfoItem>() {
             @Override
             public void selected(StreamInfoItem selectedItem) {
-                onItemSelected(selectedItem);
-                NavigationHelper.openVideoDetailFragment(useAsFrontPage ? getParentFragment().getFragmentManager() : getFragmentManager(),
-                        selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName());
+                onStreamSelected(selectedItem);
             }
 
             @Override
@@ -176,6 +174,12 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
                 onScrollToBottom();
             }
         });
+    }
+
+    private void onStreamSelected(StreamInfoItem selectedItem) {
+        onItemSelected(selectedItem);
+        NavigationHelper.openVideoDetailFragment(useAsFrontPage ? getParentFragment().getFragmentManager() : getFragmentManager(),
+                selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName());
     }
 
     protected void onScrollToBottom() {
@@ -216,6 +220,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
 
         new InfoItemDialog(getActivity(), item, commands, actions).show();
     }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Menu
     //////////////////////////////////////////////////////////////////////////*/

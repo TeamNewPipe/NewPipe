@@ -5,7 +5,7 @@ import android.support.v4.media.MediaDescriptionCompat;
 
 import org.schabi.newpipe.player.BasePlayer;
 import org.schabi.newpipe.player.mediasession.MediaSessionCallback;
-import org.schabi.newpipe.playlist.PlayQueueItem;
+import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 
 public class BasePlayerMediaSession implements MediaSessionCallback {
     private BasePlayer player;
@@ -68,10 +68,5 @@ public class BasePlayerMediaSession implements MediaSessionCallback {
     @Override
     public void onPause() {
         player.onPause();
-    }
-
-    @Override
-    public void onSetShuffle(boolean isShuffled) {
-        player.onShuffleModeEnabledChanged(isShuffled);
     }
 }

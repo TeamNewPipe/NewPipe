@@ -28,7 +28,7 @@
     <string name="m4a_description">M4A — meilleure qualité</string>
     <string name="download_dialog_title">Télécharger</string>
     <string name="next_video_title">Vidéo suivante</string>
-    <string name="show_next_and_similar_title">Afficher vidéos suivantes et liées</string>
+    <string name="show_next_and_similar_title">Afficher les vidéos \"suivantes\" et \"similaires\"</string>
     <string name="url_not_supported_toast">Lien non pris en charge</string>
     <string name="settings_category_video_audio_title">Vidéo et audio</string>
     <string name="settings_category_other_title">Autre</string>
@@ -70,11 +70,11 @@
     <string name="duration_live">Direct</string>
 
     <string name="could_not_load_thumbnails">Impossible de charger toutes les miniatures</string>
-    <string name="youtube_signature_decryption_error">Impossible de déchiffrer le lien de la vidéo</string>
+    <string name="youtube_signature_decryption_error">Impossible de déchiffrer la signature URL de la vidéo</string>
     <string name="light_parsing_error">Impossible d\'analyser complètement le site web</string>
     <string name="live_streams_not_supported">Il s\'agit d\'un direct, non supporté pour le moment.</string>
     <string name="sorry_string">Désolé, une erreur inattendue s\'est produite.</string>
-    <string name="autoplay_by_calling_app_summary">Lire automatiquement la vidéo lorsque NewPipe est appelée par une autre application</string>
+    <string name="autoplay_by_calling_app_summary">Lire la vidéo lorsque NewPipe est appelée par une autre application</string>
     <string name="error_report_button_text">Signaler l\'erreur par e-mail</string>
     <string name="what_device_headline">Information :</string>
     <string name="what_happened_headline">Ce qui s\'est passé :</string>
@@ -155,7 +155,7 @@
 
     <string name="default_popup_resolution_title">Résolution de la fenêtre par défaut</string>
     <string name="show_higher_resolutions_title">Afficher résolutions plus élevées</string>
-    <string name="show_higher_resolutions_summary">Certains appareils uniquement supportent la lecture 2K/4K</string>
+    <string name="show_higher_resolutions_summary">Seulement certains appareils supportent la lecture 2K/4K</string>
     <string name="default_video_format_title">Format vidéo par défaut</string>
     <string name="popup_remember_size_pos_title">Mémoriser la taille et la position de la fenêtre</string>
     <string name="popup_remember_size_pos_summary">Mémoriser la dernière taille et position de la fenêtre</string>
@@ -193,7 +193,7 @@
     <string name="tab_about">À propos</string>
     <string name="tab_contributors">Contributeurs</string>
     <string name="tab_licenses">Licences</string>
-    <string name="app_description">Une interface YouTube libre et légère pour Android.</string>
+    <string name="app_description">Lecteur de flux libre et léger pour Android.</string>
     <string name="view_on_github">Voir sur GitHub</string>
     <string name="app_license_title">Licence de NewPipe</string>
     <string name="read_full_license">Lire la licence</string>
@@ -213,7 +213,7 @@
 
     <string name="enable_search_history_title">Historique de recherche</string>
     <string name="enable_search_history_summary">Conserver les recherches sur l\'appareil</string>
-    <string name="enable_watch_history_title">Historique</string>
+    <string name="enable_watch_history_title">Historique et cache</string>
     <string name="title_activity_history">Historique</string>
     <string name="title_history_search">Recherché</string>
     <string name="title_history_view">Regardé</string>
@@ -225,7 +225,7 @@
 <string name="notification_channel_name">Notification NewPipe</string>
     <string name="undo">Annuler</string>
 
-    <string name="enable_watch_history_summary">Conserver les vidéos regardées</string>
+    <string name="enable_watch_history_summary">Garder une trace des vidéos regardées</string>
     <string name="resume_on_audio_focus_gain_title">Reprendre sur le gain de focus</string>
     <string name="settings_category_player_title">Lecteur</string>
     <string name="settings_category_player_behavior_title">Comportement</string>
@@ -271,7 +271,7 @@
     <string name="popup_playing_append">En file d\'attente sur le lecteur en fenêtré</string>
     <string name="play_all">Tout lire</string>
 
-    <string name="player_stream_failure">Échec de la lecture de ce flux</string>
+    <string name="player_stream_failure">Impossible de jouer ce flux</string>
     <string name="player_unrecoverable_failure">Une erreur irrécupérable du lecteur s\'est produite</string>
     <string name="no_channel_subscribed_yet">Encore aucune chaîne souscrite</string>
     <string name="title_activity_background_player">Lecteur en arrière-plan</string>
@@ -279,7 +279,7 @@
     <string name="play_queue_remove">Retirer</string>
     <string name="play_queue_stream_detail">Détails</string>
     <string name="play_queue_audio_settings">Paramètres audio</string>
-    <string name="show_hold_to_append_title">Afficher les fenêtres d\'aide</string>
+    <string name="show_hold_to_append_title">Afficher l\'aide « maintenir pour ajouter »</string>
     <string name="show_hold_to_append_summary">Afficher l\'aide \"Appui long pour mettre en file d\'attente\" en appuyant sur les boutons \"Arrière-plan\" et \"Fenêtre\" sur la page de détails d\'une vidéo</string>
     <string name="unknown_content">[Inconnu]</string>
 
@@ -296,9 +296,9 @@
     <string name="start_here_on_background">Démarrer ici en arrière-plan</string>
     <string name="start_here_on_popup">Démarrer ici en fenêtré</string>
 <string name="donation_title">Donner</string>
-    <string name="donation_encouragement">NewPipe est développé par des volontaires sur leur temps libre afin de vous proposer la meilleur expérience. Maintenant il est temps de leurs offrir un café pour les soutenir dans leurs efforts et rendre NewPipe encore meilleur !</string>
+    <string name="donation_encouragement">NewPipe est développé par des volontaires sur leur temps libre afin de vous proposer la meilleure expérience possible. Vous pouvez leur offrir un café pour les soutenir dans leurs efforts et rendre NewPipe encore meilleur.</string>
     <string name="website_title">Site</string>
-    <string name="website_encouragement">Pour obtenir plus d\'informations et les dernières nouvelles à propos de NewPipe, visitez notre site Internet.</string>
+    <string name="website_encouragement">Visitez le site internet de NewPipe pour plus d\'informations et de nouvelles.</string>
     <string name="give_back">Donner en retour</string>
     <string name="default_content_country_title">Pays du contenu par défaut</string>
     <string name="toggle_orientation">Rotation</string>
@@ -324,7 +324,7 @@
     <string name="always_ask_player">Toujours demander</string>
     
     <string name="preferred_player_fetcher_notification_title">Obtention des infos…</string>
-    <string name="preferred_player_fetcher_notification_message">Le contenu demandé est en chargement</string>
+    <string name="preferred_player_fetcher_notification_message">Chargement du contenu</string>
     <string name="import_data_title">Importer les données</string>
     <string name="export_data_title">Exporter les données</string>
     <string name="import_data_summary">Cela effacera vos données actuelles</string>
@@ -366,12 +366,12 @@
     <string name="unbookmark_playlist">Retirer la marque</string>
 
     <string name="delete_playlist_prompt">Voulez-vous supprimer cette playlist ?</string>
-    <string name="playlist_creation_success">Playlist créée avec succès</string>
+    <string name="playlist_creation_success">Liste de lecture créée</string>
     <string name="playlist_add_stream_success">Ajoutée à la playlist</string>
     <string name="playlist_thumbnail_change_success">Modification de la playlist réussie</string>
-    <string name="playlist_delete_failure">Échec de la suppression de la playlist</string>
+    <string name="playlist_delete_failure">Impossible de supprimer la liste de lecture</string>
 
-    <string name="caption_none">Aucun sous-titre</string>
+    <string name="caption_none">Aucuns sous-titres</string>
 
     <string name="resize_fit">Ajuster</string>
     <string name="resize_zoom">Zoom</string>
@@ -398,19 +398,19 @@
     <string name="error_occurred_detail">Une erreur s\'est produite: %1$s</string>
 
     <string name="delete_one">Supprimer un seul média</string>
-    <string name="drawer_header_action_paceholder_text">En cours de développement ;D</string>
+    <string name="drawer_header_action_paceholder_text">Quelque chose va bien bientôt arriver ;D</string>
 
 
     <string name="controls_download_desc">Télécharger le fichier de flux</string>
     <string name="auto_queue_title">Vidéo suivante en file d\'attente</string>
-    <string name="auto_queue_summary">Mettre automatiquement en file d\'attente la vidéo suivante liée à la vidéo en cours de lecture dans une file de lecture non répétitive</string>
+    <string name="auto_queue_summary">Ajout automatique d\'un flux connexe lors de la lecture du dernier flux dans une file d\'attente non répétitive.</string>
     <string name="settings_category_debug_title">Débogage</string>
     <string name="resize_fill">Remplir</string>
     <string name="caption_auto_generated">Générés automatiquement</string>
     <string name="enable_leak_canary_title">Activer LeakCanary</string>
-    <string name="enable_leak_canary_summary">Surveiller la baisse de mémoire. L\'application pourrait ne plus répondre correctement</string>
+    <string name="enable_leak_canary_summary">La surveillance de la mémoire peut mettre temporairement l\'application en pause pendant les nettoyages</string>
 
-    <string name="enable_disposed_exceptions_title">Signaler erreurs Out-of-lifecycle</string>
+    <string name="enable_disposed_exceptions_title">Signaler les erreurs de développement hors cycle</string>
     <string name="enable_disposed_exceptions_summary">Forcer le signalement des exceptions Rx qui surviennent hors activité</string>
 
     <string name="import_export_title">Importer/Exporter</string>
@@ -424,40 +424,59 @@
     <string name="import_file_title">Importer fichier</string>
     <string name="previous_export">Export précédent</string>
 
-    <string name="subscriptions_import_unsuccessful">Import des abonnements échoué</string>
-    <string name="subscriptions_export_unsuccessful">Export des abonnements échoué</string>
+    <string name="subscriptions_import_unsuccessful">Impossible d\'importer des abonnements</string>
+    <string name="subscriptions_export_unsuccessful">Impossible d\'exporter les abonnements</string>
 
-    <string name="import_youtube_instructions">\"Pour importer vos abonnements YouTube vous devez d\'abord télécharger un fichier export de YouTube, selon les modalités suivantes:
-\n
-\n1. Allez à ce lien: %1$s
-\n2. Connectez-vous à votre compte
-\n3. Le téléchargement devrait démarrer (votre fichier export YouTube)\"</string>
-    <string name="import_soundcloud_instructions">Pour importer vos abonnements SoundCloud vous devez connaitre l\'URL de votre profil ou votre identifiant (id). Si vous le savez, tapez-le ci-dessous.
-\n
-\nSi vous ne le connaissez pas, veuillez suivre les étapes suivantes:
-\n
-\n1. Activer le \\\"mode bureau\\\" dans votre navigateur (le site n\'est pas accesible en mode mobile)
-\n2. Aller à ce lien: %1$s
+    <string name="import_youtube_instructions">"Pour importer vos abonnements YouTube vous devez d\'abord télécharger un fichier spécial  de YouTube, selon les modalités suivantes : 
+\n 
+\n1. Suivez ce lien : %1$s 
+\n2. Connectez-vous à votre compte lorsque ce sera demandé 
+\n3. Un téléchargement va démarrer (ce sera celui du fichier nécessaire à l\'importation des abonnements)"</string>
+    <string name="import_soundcloud_instructions">Pour importer vos abonnements SoundCloud, vous devez connaitre l\'URL de votre profil ou votre identifiant (id). Si vous le savez, tapez-le ci-dessous. 
+\n 
+\nSi vous ne le connaissez pas, veuillez suivre les étapes suivantes :
+\n 
+\n1. Activer le \"mode bureau\" dans votre navigateur (le site n\'est pas accesible en mode mobile)
+\n2. Suivez ce : %1$s
 \n3. Connectez-vous à votre compte
 \n4. Copier l\'URL vers lequel vous venez d\'être redirigé (qui est l\'URL de votre profil)</string>
-    <string name="import_soundcloud_instructions_hint">votreid, soundcloud.com/votreid</string>
+    <string name="import_soundcloud_instructions_hint">votreID, soundcloud.com/votreid</string>
 
-    <string name="import_network_expensive_warning">N\'oubliez pas que cette opération peut consommer beaucoup de données mobiles.
-\n
+    <string name="import_network_expensive_warning">Cette opération peut consommer beaucoup de données mobiles. 
+\n 
 \nSouhaitez-vous continuer ?</string>
 
     <string name="playback_speed_control">Vitesse de lecture</string>
     <string name="playback_tempo">Cadence</string>
     <string name="unhook_checkbox">Unhook (déformations possibles)</string>
     <string name="playback_default">Défaut</string>
-<string name="preferred_open_action_settings_title">Ouverture préférée</string>
+<string name="preferred_open_action_settings_title">Ouvrir de préférence avec</string>
     <string name="preferred_open_action_settings_summary">Action par défaut lors de l\'ouverture de contenu - %s</string>
 
     <string name="no_streams_available_download">Aucun flux disponible au téléchargement</string>
 
-    <string name="caption_setting_title">Sous-titre</string>
+    <string name="caption_setting_title">Sous-titres</string>
     <string name="caption_setting_description">Modifier la taille du texte et les styles d\'arrière-plan du lecteur. Redémarrage requis pour prendre effet.</string>
 
     <string name="playback_pitch">Ton</string>
     <string name="playback_nightcore">Nightcore</string>
-    </resources>
+    <string name="toast_no_player">Aucune application installée pour lire ce fichier</string>
+
+    <string name="clear_views_history_title">Effacer l\'historique</string>
+    <string name="clear_views_history_summary">Supprimer l\'historique des flux regardés.</string>
+    <string name="delete_view_history_alert">Supprimer tout l\'historique regardé.</string>
+    <string name="view_history_deleted">Voir l’historique supprimé.</string>
+    <string name="clear_search_history_title">Supprimer l\'historique des recherches</string>
+    <string name="clear_search_history_summary">Supprimer l\'historique de recherche par mot clef.</string>
+    <string name="delete_search_history_alert">Supprimer tout l\'historique de recherche.</string>
+    <string name="search_history_deleted">Historique des recherches effacé.</string>
+    <string name="one_item_deleted">1 élément supprimé.</string>
+
+    <string name="app_license">"NewPipe est un logiciel sous licence libre : Vous pouvez l\'utiliser, l\'étudier, le partager et l\'améliorer  comme bon vous semble. Vous pouvez le redistribuer et/ou le modifier sous les termes de la licence générale publique GNU, comme publiée par la Free Software Foundation, dans sa version 3, ou, à votre convenance, dans une version plus récente."</string>
+    <string name="privacy_policy_title">Politique de confidentialité de NewPipe</string>
+    <string name="read_privacy_policy">Lire la politique de confidentialité</string>
+    <string name="import_settings">Voulez-vous également importer des paramètres ?</string>
+
+    <string name="accept">Accepter</string>
+    <string name="decline">Refuser</string>
+</resources>

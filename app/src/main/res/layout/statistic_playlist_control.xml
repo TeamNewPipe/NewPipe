@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/sortButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true">
+        <ImageView
+            android:id="@+id/sortButtonIcon"
+            android:layout_width="48dp"
+            android:layout_height="28dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:src="?attr/filter"
+            tools:ignore="ContentDescription,RtlHardcoded"/>
+
+        <TextView
+            android:id="@+id/sortButtonText"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@id/sortButtonIcon"
+            android:gravity="left|center"
+            android:text="@string/title_most_played"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            tools:ignore="RtlHardcoded"/>
+    </RelativeLayout>
+
+    <include layout="@layout/playlist_control" />
+
+</LinearLayout>

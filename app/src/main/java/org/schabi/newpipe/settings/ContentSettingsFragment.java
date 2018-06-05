@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.preference.ListPreference;
@@ -30,14 +32,20 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Map;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class ContentSettingsFragment extends BasePreferenceFragment {
 
@@ -48,6 +56,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     private File databasesDir;
     private File newpipe_db;
     private File newpipe_db_journal;
+    private File newpipe_settings;
 
     private String thumbnailLoadToggleKey;
 
@@ -79,6 +88,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         databasesDir = new File(homeDir + "/databases");
         newpipe_db = new File(homeDir + "/databases/newpipe.db");
         newpipe_db_journal = new File(homeDir + "/databases/newpipe.db-journal");
+        newpipe_settings = new File(homeDir + "/databases/newpipe.settings");
+        newpipe_settings.delete();
 
         addPreferencesFromResource(R.xml.content_settings);
 
@@ -174,19 +185,19 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
         if ((requestCode == REQUEST_IMPORT_PATH || requestCode == REQUEST_EXPORT_PATH)
                 && resultCode == Activity.RESULT_OK && data.getData() != null) {
-                String path = Utils.getFileForUri(data.getData()).getAbsolutePath();
-                if (requestCode == REQUEST_EXPORT_PATH) {
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
-                    exportDatabase(path + "/NewPipeData-" + sdf.format(new Date()) + ".zip");
-                } else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(R.string.override_current_data)
-                            .setPositiveButton(android.R.string.ok,
-                                    (DialogInterface d, int id) -> importDatabase(path))
-                            .setNegativeButton(android.R.string.cancel,
-                                    (DialogInterface d, int id) -> d.cancel());
-                    builder.create().show();
-                }
+            String path = Utils.getFileForUri(data.getData()).getAbsolutePath();
+            if (requestCode == REQUEST_EXPORT_PATH) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
+                exportDatabase(path + "/NewPipeData-" + sdf.format(new Date()) + ".zip");
+            } else {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setMessage(R.string.override_current_data)
+                        .setPositiveButton(android.R.string.ok,
+                                (DialogInterface d, int id) -> importDatabase(path))
+                        .setNegativeButton(android.R.string.cancel,
+                                (DialogInterface d, int id) -> d.cancel());
+                builder.create().show();
+            }
         }
     }
 
@@ -197,6 +208,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                             new FileOutputStream(path)));
             ZipHelper.addFileToZip(outZip, newpipe_db.getPath(), "newpipe.db");
             ZipHelper.addFileToZip(outZip, newpipe_db_journal.getPath(), "newpipe.db-journal");
+            saveSharedPreferencesToFile(newpipe_settings);
+            ZipHelper.addFileToZip(outZip, newpipe_settings.getPath(), "newpipe.settings");
 
             outZip.close();
 
@@ -204,6 +217,29 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                     .show();
         } catch (Exception e) {
             onError(e);
+        }
+    }
+
+    private void saveSharedPreferencesToFile(File dst) {
+        ObjectOutputStream output = null;
+        try {
+            output = new ObjectOutputStream(new FileOutputStream(dst));
+            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
+            output.writeObject(pref.getAll());
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if (output != null) {
+                    output.flush();
+                    output.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
@@ -223,27 +259,80 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         }
 
         try {
-            ZipInputStream zipIn = new ZipInputStream(
-                    new BufferedInputStream(
-                            new FileInputStream(filePath)));
-
             if (!databasesDir.exists() && !databasesDir.mkdir()) {
                 throw new Exception("Could not create databases dir");
             }
 
-            if(!(ZipHelper.extractFileFromZip(zipIn, newpipe_db.getPath(), "newpipe.db")
-                && ZipHelper.extractFileFromZip(zipIn, newpipe_db_journal.getPath(), "newpipe.db-journal"))) {
-               Toast.makeText(getContext(), R.string.could_not_import_all_files, Toast.LENGTH_LONG)
-                       .show();
+            if(!(ZipHelper.extractFileFromZip(filePath, newpipe_db.getPath(), "newpipe.db")
+                    && ZipHelper.extractFileFromZip(filePath, newpipe_db_journal.getPath(), "newpipe.db-journal"))) {
+                Toast.makeText(getContext(), R.string.could_not_import_all_files, Toast.LENGTH_LONG)
+                        .show();
             }
 
-            zipIn.close();
+            //If settings file exist, ask if it should be imported.
+            if(ZipHelper.extractFileFromZip(filePath, newpipe_settings.getPath(), "newpipe.settings")) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+                alert.setTitle(R.string.import_settings);
 
-            // restart app to properly load db
-            //App.restart(getContext());
-            System.exit(0);
+                alert.setNegativeButton(android.R.string.no, (dialog, which) -> {
+                    dialog.dismiss();
+                    // restart app to properly load db
+                    System.exit(0);
+                });
+                alert.setPositiveButton(android.R.string.yes, (dialog, which) -> {
+                    dialog.dismiss();
+                    loadSharedPreferences(newpipe_settings);
+                    // restart app to properly load db
+                    System.exit(0);
+                });
+                alert.show();
+            } else {
+                // restart app to properly load db
+                System.exit(0);
+            }
+
         } catch (Exception e) {
             onError(e);
+        }
+    }
+
+    private void loadSharedPreferences(File src) {
+        ObjectInputStream input = null;
+        try {
+            input = new ObjectInputStream(new FileInputStream(src));
+            SharedPreferences.Editor prefEdit = PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
+            prefEdit.clear();
+            Map<String, ?> entries = (Map<String, ?>) input.readObject();
+            for (Map.Entry<String, ?> entry : entries.entrySet()) {
+                Object v = entry.getValue();
+                String key = entry.getKey();
+
+                if (v instanceof Boolean)
+                    prefEdit.putBoolean(key, ((Boolean) v).booleanValue());
+                else if (v instanceof Float)
+                    prefEdit.putFloat(key, ((Float) v).floatValue());
+                else if (v instanceof Integer)
+                    prefEdit.putInt(key, ((Integer) v).intValue());
+                else if (v instanceof Long)
+                    prefEdit.putLong(key, ((Long) v).longValue());
+                else if (v instanceof String)
+                    prefEdit.putString(key, ((String) v));
+            }
+            prefEdit.commit();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if (input != null) {
+                    input.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 

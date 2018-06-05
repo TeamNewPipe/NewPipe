@@ -130,11 +130,6 @@ public class ListHelperTest {
     }
 
     @Test
-    public void getHighestQualityAudioTest() throws Exception {
-        assertEquals(320, ListHelper.getHighestQualityAudio(audioStreamsTestList).average_bitrate);
-    }
-
-    @Test
     public void getHighestQualityAudioFormatTest() throws Exception {
         AudioStream stream = audioStreamsTestList.get(ListHelper.getHighestQualityAudioIndex(MediaFormat.M4A, audioStreamsTestList));
         assertEquals(320, stream.average_bitrate);
@@ -174,19 +169,20 @@ public class ListHelperTest {
                 new AudioStream("", MediaFormat.WEBMA, /**/ 192),
                 new AudioStream("", MediaFormat.M4A,   /**/ 192),
                 new AudioStream("", MediaFormat.WEBMA, /**/ 192),
-                new AudioStream("", MediaFormat.M4A,   /**/ 192)));
-        // List doesn't contains this format, it should fallback to the highest bitrate audio no matter what format it is
-        // and as it have multiple with the same high value, the last one wins
+                new AudioStream("", MediaFormat.M4A,   /**/ 192),
+                new AudioStream("", MediaFormat.WEBMA, /**/ 192)));
+        // List doesn't contains this format, it should fallback to the highest bitrate audio and
+        // the highest quality format.
         stream = testList.get(ListHelper.getHighestQualityAudioIndex(MediaFormat.MP3, testList));
         assertEquals(192, stream.average_bitrate);
         assertEquals(MediaFormat.M4A, stream.getFormat());
 
-
-        // Again with a new element
+        // Adding a new format and bitrate. Adding another stream will have no impact since
+        // it's not a prefered format.
         testList.add(new AudioStream("", MediaFormat.WEBMA, /**/ 192));
         stream = testList.get(ListHelper.getHighestQualityAudioIndex(MediaFormat.MP3, testList));
         assertEquals(192, stream.average_bitrate);
-        assertEquals(MediaFormat.WEBMA, stream.getFormat());
+        assertEquals(MediaFormat.M4A, stream.getFormat());
     }
 
     @Test
@@ -195,5 +191,111 @@ public class ListHelperTest {
         assertEquals(-1, ListHelper.getHighestQualityAudioIndex(null, new ArrayList<AudioStream>()));
     }
 
+    @Test
+    public void getLowestQualityAudioFormatTest() throws Exception {
+        AudioStream stream = audioStreamsTestList.get(ListHelper.getMostCompactAudioIndex(MediaFormat.M4A, audioStreamsTestList));
+        assertEquals(128, stream.average_bitrate);
+        assertEquals(MediaFormat.M4A, stream.getFormat());
 
+        stream = audioStreamsTestList.get(ListHelper.getMostCompactAudioIndex(MediaFormat.WEBMA, audioStreamsTestList));
+        assertEquals(64, stream.average_bitrate);
+        assertEquals(MediaFormat.WEBMA, stream.getFormat());
+
+        stream = audioStreamsTestList.get(ListHelper.getMostCompactAudioIndex(MediaFormat.MP3, audioStreamsTestList));
+        assertEquals(64, stream.average_bitrate);
+        assertEquals(MediaFormat.MP3, stream.getFormat());
+    }
+
+    @Test
+    public void getLowestQualityAudioFormatPreferredAbsent() throws Exception {
+
+        //////////////////////////////////////////
+        // Doesn't contain the preferred format //
+        ////////////////////////////////////////
+
+        List<AudioStream> testList = new ArrayList<>(Arrays.asList(
+                new AudioStream("", MediaFormat.M4A,   /**/ 128),
+                new AudioStream("", MediaFormat.WEBMA, /**/ 192)));
+        // List doesn't contains this format, it should fallback to the most compact audio no matter what format it is.
+        AudioStream stream = testList.get(ListHelper.getMostCompactAudioIndex(MediaFormat.MP3, testList));
+        assertEquals(128, stream.average_bitrate);
+        assertEquals(MediaFormat.M4A, stream.getFormat());
+
+        // WEBMA is more compact than M4A
+        testList.add(new AudioStream("", MediaFormat.WEBMA,   /**/ 128));
+        stream = testList.get(ListHelper.getMostCompactAudioIndex(MediaFormat.MP3, testList));
+        assertEquals(128, stream.average_bitrate);
+        assertEquals(MediaFormat.WEBMA, stream.getFormat());
+
+        ////////////////////////////////////////////////////////
+        // Multiple not-preferred-formats and equal bitrates //
+        //////////////////////////////////////////////////////
+
+        testList = new ArrayList<>(Arrays.asList(
+                new AudioStream("", MediaFormat.WEBMA, /**/ 192),
+                new AudioStream("", MediaFormat.M4A,   /**/ 192),
+                new AudioStream("", MediaFormat.WEBMA, /**/ 256),
+                new AudioStream("", MediaFormat.M4A,   /**/ 192),
+                new AudioStream("", MediaFormat.WEBMA, /**/ 192),
+                new AudioStream("", MediaFormat.M4A,   /**/ 192)));
+        // List doesn't contains this format, it should fallback to the most compact audio no matter what format it is.
+        stream = testList.get(ListHelper.getMostCompactAudioIndex(MediaFormat.MP3, testList));
+        assertEquals(192, stream.average_bitrate);
+        assertEquals(MediaFormat.WEBMA, stream.getFormat());
+
+        // Should be same as above
+        stream = testList.get(ListHelper.getMostCompactAudioIndex(null, testList));
+        assertEquals(192, stream.average_bitrate);
+        assertEquals(MediaFormat.WEBMA, stream.getFormat());
+    }
+
+    @Test
+    public void getLowestQualityAudioNull() throws Exception {
+        assertEquals(-1, ListHelper.getMostCompactAudioIndex(null, null));
+        assertEquals(-1, ListHelper.getMostCompactAudioIndex(null, new ArrayList<AudioStream>()));
+    }
+
+    @Test
+    public void getVideoDefaultStreamIndexCombinations() throws Exception {
+        List<VideoStream> testList = Arrays.asList(
+                new VideoStream("", MediaFormat.MPEG_4,   /**/ "1080p"),
+                new VideoStream("", MediaFormat.MPEG_4,   /**/ "720p60"),
+                new VideoStream("", MediaFormat.MPEG_4,   /**/ "720p"),
+                new VideoStream("", MediaFormat.WEBM,     /**/ "480p"),
+                new VideoStream("", MediaFormat.MPEG_4,   /**/ "360p"),
+                new VideoStream("", MediaFormat.WEBM,     /**/ "360p"),
+                new VideoStream("", MediaFormat.v3GPP,    /**/ "240p60"),
+                new VideoStream("", MediaFormat.WEBM,     /**/ "144p"));
+
+        // exact matches
+        assertEquals(1, ListHelper.getVideoStreamIndex("720p60", MediaFormat.MPEG_4, testList));
+        assertEquals(2, ListHelper.getVideoStreamIndex("720p", MediaFormat.MPEG_4, testList));
+
+        // match but not refresh
+        assertEquals(0, ListHelper.getVideoStreamIndex("1080p60", MediaFormat.MPEG_4, testList));
+        assertEquals(6, ListHelper.getVideoStreamIndex("240p", MediaFormat.v3GPP, testList));
+
+        // match but not format
+        assertEquals(1, ListHelper.getVideoStreamIndex("720p60", MediaFormat.WEBM, testList));
+        assertEquals(2, ListHelper.getVideoStreamIndex("720p", MediaFormat.WEBM, testList));
+        assertEquals(1, ListHelper.getVideoStreamIndex("720p60", null, testList));
+        assertEquals(2, ListHelper.getVideoStreamIndex("720p", null, testList));
+
+        // match but not format and not refresh
+        assertEquals(0, ListHelper.getVideoStreamIndex("1080p60", MediaFormat.WEBM, testList));
+        assertEquals(6, ListHelper.getVideoStreamIndex("240p", MediaFormat.WEBM, testList));
+        assertEquals(0, ListHelper.getVideoStreamIndex("1080p60", null, testList));
+        assertEquals(6, ListHelper.getVideoStreamIndex("240p", null, testList));
+
+        // match closest lower resolution
+        assertEquals(7, ListHelper.getVideoStreamIndex("200p", MediaFormat.WEBM, testList));
+        assertEquals(7, ListHelper.getVideoStreamIndex("200p60", MediaFormat.WEBM, testList));
+        assertEquals(7, ListHelper.getVideoStreamIndex("200p", MediaFormat.MPEG_4, testList));
+        assertEquals(7, ListHelper.getVideoStreamIndex("200p60", MediaFormat.MPEG_4, testList));
+        assertEquals(7, ListHelper.getVideoStreamIndex("200p", null, testList));
+        assertEquals(7, ListHelper.getVideoStreamIndex("200p60", null, testList));
+
+        // Can't find a match
+        assertEquals(-1, ListHelper.getVideoStreamIndex("100p", null, testList));
+    }
 }

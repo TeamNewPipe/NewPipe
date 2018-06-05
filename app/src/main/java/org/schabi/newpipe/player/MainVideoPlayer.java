@@ -25,6 +25,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -62,10 +63,10 @@ import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.player.helper.PlaybackParameterDialog;
 import org.schabi.newpipe.player.helper.PlayerHelper;
-import org.schabi.newpipe.playlist.PlayQueueItem;
-import org.schabi.newpipe.playlist.PlayQueueItemBuilder;
-import org.schabi.newpipe.playlist.PlayQueueItemHolder;
-import org.schabi.newpipe.playlist.PlayQueueItemTouchCallback;
+import org.schabi.newpipe.player.playqueue.PlayQueueItem;
+import org.schabi.newpipe.player.playqueue.PlayQueueItemBuilder;
+import org.schabi.newpipe.player.playqueue.PlayQueueItemHolder;
+import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -114,8 +115,13 @@ public final class MainVideoPlayer extends AppCompatActivity
         if (DEBUG) Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
         defaultPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         ThemeHelper.setTheme(this);
+        getWindow().setBackgroundDrawable(new ColorDrawable(Color.BLACK));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) getWindow().setStatusBarColor(Color.BLACK);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
+
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
+        lp.screenBrightness = PlayerHelper.getScreenBrightness(getApplicationContext());
+        getWindow().setAttributes(lp);
 
         hideSystemUi();
         setContentView(R.layout.activity_main_player);
@@ -203,6 +209,9 @@ public final class MainVideoPlayer extends AppCompatActivity
         if (DEBUG) Log.d(TAG, "onStop() called");
         super.onStop();
         playerImpl.destroy();
+
+        PlayerHelper.setScreenBrightness(getApplicationContext(),
+                getWindow().getAttributes().screenBrightness);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -645,7 +654,7 @@ public final class MainVideoPlayer extends AppCompatActivity
         @Override
         protected int getOverrideResolutionIndex(final List<VideoStream> sortedVideos,
                                                  final String playbackQuality) {
-            return ListHelper.getDefaultResolutionIndex(context, sortedVideos, playbackQuality);
+            return ListHelper.getResolutionIndex(context, sortedVideos, playbackQuality);
         }
 
         /*//////////////////////////////////////////////////////////////////////////
@@ -847,10 +856,12 @@ public final class MainVideoPlayer extends AppCompatActivity
             if (DEBUG) Log.d(TAG, "onDoubleTap() called with: e = [" + e + "]" + "rawXy = " + e.getRawX() + ", " + e.getRawY() + ", xy = " + e.getX() + ", " + e.getY());
             if (!playerImpl.isPlaying()) return false;
 
-            if (e.getX() > playerImpl.getRootView().getWidth() / 2) {
+            if (e.getX() > playerImpl.getRootView().getWidth() * 2 / 3) {
                 playerImpl.onFastForward();
-            } else {
+            } else if (e.getX() < playerImpl.getRootView().getWidth() / 3) {
                 playerImpl.onFastRewind();
+            } else {
+                playerImpl.getPlayPauseButton().performClick();
             }
 
             return true;
@@ -880,7 +891,9 @@ public final class MainVideoPlayer extends AppCompatActivity
         private final boolean isPlayerGestureEnabled = PlayerHelper.isPlayerGestureEnabled(getApplicationContext());
 
         private final float stepsBrightness = 15, stepBrightness = (1f / stepsBrightness), minBrightness = .01f;
-        private float currentBrightness = .5f;
+        private float currentBrightness = getWindow().getAttributes().screenBrightness > 0
+                ? getWindow().getAttributes().screenBrightness
+                : 0.5f;
 
         private int currentVolume, maxVolume = playerImpl.getAudioReactor().getMaxVolume();
         private final float stepsVolume = 15, stepVolume = (float) Math.ceil(maxVolume / stepsVolume), minVolume = 0;

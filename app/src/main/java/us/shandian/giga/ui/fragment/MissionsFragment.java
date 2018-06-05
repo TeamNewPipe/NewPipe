@@ -129,7 +129,7 @@ public abstract class MissionsFragment extends Fragment {
     }
 
     private void updateList() {
-        mAdapter = new MissionAdapter(mActivity, mBinder, mManager, mLinear);
+        mAdapter = new MissionAdapter((Activity) mActivity, mBinder, mManager, mLinear);
 
         if (mLinear) {
             mList.setLayoutManager(mLinearManager);

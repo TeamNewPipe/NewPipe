@@ -4,9 +4,9 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
-import com.google.gson.Gson;
-
 import java.io.File;
+import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,7 +18,9 @@ import us.shandian.giga.util.Utility;
 
 import static org.schabi.newpipe.BuildConfig.DEBUG;
 
-public class DownloadMission {
+public class DownloadMission implements Serializable {
+    private static final long serialVersionUID = 0L;
+
     private static final String TAG = DownloadMission.class.getSimpleName();
 
     public interface MissionListener {
@@ -79,7 +81,6 @@ public class DownloadMission {
     private transient boolean mWritingToFile;
 
     private static final int NO_IDENTIFIER = -1;
-    private long db_identifier = NO_IDENTIFIER;
 
     public DownloadMission() {
     }
@@ -308,8 +309,15 @@ public class DownloadMission {
      */
     private void doWriteThisToFile() {
         synchronized (blockState) {
-            Utility.writeToFile(getMetaFilename(), new Gson().toJson(this));
+            Utility.writeToFile(getMetaFilename(), this);
         }
+    }
+
+    private void readObject(ObjectInputStream inputStream)
+    throws java.io.IOException, ClassNotFoundException
+    {
+        inputStream.defaultReadObject();
+        mListeners = new ArrayList<>();
     }
 
     private void deleteThisFromFile() {

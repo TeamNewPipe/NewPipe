@@ -68,7 +68,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.player.helper.PlayerHelper;
-import org.schabi.newpipe.playlist.PlayQueueItem;
+import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ListHelper;
 
@@ -887,6 +887,19 @@ public abstract class VideoPlayer extends BasePlayer
                 () -> animateView(controlsRoot, false, duration), delay);
     }
 
+    public void hideControlsAndButton(final long duration, long delay, View button) {
+        if (DEBUG) Log.d(TAG, "hideControls() called with: delay = [" + delay + "]");
+        controlsVisibilityHandler.removeCallbacksAndMessages(null);
+        controlsVisibilityHandler.postDelayed(hideControlsAndButtonHandler(duration, button), delay);
+    }
+
+    private Runnable hideControlsAndButtonHandler(long duration, View videoPlayPause)
+    {
+        return () -> {
+            videoPlayPause.setVisibility(View.INVISIBLE);
+            animateView(controlsRoot, false,duration);
+        };
+    }
     /*//////////////////////////////////////////////////////////////////////////
     // Getters and Setters
     //////////////////////////////////////////////////////////////////////////*/

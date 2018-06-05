@@ -33,15 +33,13 @@ import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
-import org.schabi.newpipe.fragments.list.feed.FeedFragment;
+import org.schabi.newpipe.local.feed.FeedFragment;
 import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
-import org.schabi.newpipe.fragments.local.bookmark.LastPlayedFragment;
-import org.schabi.newpipe.fragments.local.bookmark.LocalPlaylistFragment;
-import org.schabi.newpipe.fragments.local.bookmark.MostPlayedFragment;
-import org.schabi.newpipe.fragments.subscription.SubscriptionsImportFragment;
-import org.schabi.newpipe.history.HistoryActivity;
+import org.schabi.newpipe.local.history.StatisticsPlaylistFragment;
+import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
+import org.schabi.newpipe.local.subscription.SubscriptionsImportFragment;
 import org.schabi.newpipe.player.BackgroundPlayer;
 import org.schabi.newpipe.player.BackgroundPlayerActivity;
 import org.schabi.newpipe.player.BasePlayer;
@@ -50,7 +48,7 @@ import org.schabi.newpipe.player.PopupVideoPlayer;
 import org.schabi.newpipe.player.PopupVideoPlayerActivity;
 import org.schabi.newpipe.player.VideoPlayer;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
-import org.schabi.newpipe.playlist.PlayQueue;
+import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.settings.SettingsActivity;
 
 import java.util.ArrayList;
@@ -352,16 +350,9 @@ public class NavigationHelper {
                 .commit();
     }
 
-    public static void openLastPlayedFragment(FragmentManager fragmentManager) {
+    public static void openStatisticFragment(FragmentManager fragmentManager) {
         defaultTransaction(fragmentManager)
-                .replace(R.id.fragment_holder, new LastPlayedFragment())
-                .addToBackStack(null)
-                .commit();
-    }
-
-    public static void openMostPlayedFragment(FragmentManager fragmentManager) {
-        defaultTransaction(fragmentManager)
-                .replace(R.id.fragment_holder, new MostPlayedFragment())
+                .replace(R.id.fragment_holder, new StatisticsPlaylistFragment())
                 .addToBackStack(null)
                 .commit();
     }
@@ -414,11 +405,6 @@ public class NavigationHelper {
 
     public static void openAbout(Context context) {
         Intent intent = new Intent(context, AboutActivity.class);
-        context.startActivity(intent);
-    }
-
-    public static void openHistory(Context context) {
-        Intent intent = new Intent(context, HistoryActivity.class);
         context.startActivity(intent);
     }
 

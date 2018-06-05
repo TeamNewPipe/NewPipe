@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="main_bg_subtitle">Shtyp \"kërko\" për të filluar</string>
+    <string name="view_count_text">%1$s shikime</string>
+    <string name="upload_date_text">Publikuar më %1$s</string>
+    <string name="install">Instalo</string>
+    <string name="cancel">Anulo</string>
+    <string name="open_in_browser">Hape në shfletues uebi</string>
+    <string name="share">Shpërndaje</string>
+    <string name="download">Shkarko</string>
+    <string name="search">Kërko</string>
+    <string name="settings">Cilësimet</string>
+    <string name="did_you_mean">A mendonit: %1$s ?</string>
+    <string name="share_dialog_title">Shpërndaje me</string>
+    <string name="show_info">Shfaq informatat</string>
+
+    <string name="tab_main">Menyja kryesore</string>
+    <string name="fragment_whats_new">Të rejat</string>
+
+    <string name="controls_add_to_playlist_title">Shto në</string>
+
+    <string name="autoplay_by_calling_app_title">Luaj automatikisht</string>
+    <string name="default_resolution_title">Rezolucioni i parazgjedhur</string>
+    <string name="play_with_kodi_title">Luaj me Kodi</string>
+    <string name="play_audio">Audio</string>
+    <string name="black_theme_title">E zezë</string>
+    <string name="download_thumbnail_title">Ngarko pamjet miniaturë</string>
+    <string name="show_search_suggestions_title">Kërko propozimet</string>
+    <string name="enable_watch_history_title">Të shikuarat</string>
+    <string name="enable_watch_history_summary">Ruaji videot e shikuara</string>
+    <string name="download_dialog_title">Shkarko</string>
+    <string name="next_video_title">Videoja tjetër</string>
+    <string name="service_title">Shërbimi</string>
+    <string name="search_language_title">Gjuha e dëshiruar e përmbajtjeve</string>
+    <string name="settings_category_player_title">Aplikacioni për video</string>
+    <string name="settings_category_player_behavior_title">Sjellja</string>
+    <string name="settings_category_video_audio_title">Video &amp; Audio</string>
+    <string name="settings_category_history_title">Historia dhe memorja e përkohshme</string>
+    <string name="settings_category_appearance_title">Dukja</string>
+    <string name="settings_category_other_title">Të tjera</string>
+    <string name="play_btn_text">Luaj</string>
+    <string name="content">Përmbajtja</string>
+    <string name="downloads">Të shkarkuarat</string>
+    <string name="downloads_title">Të shkarkuarat</string>
+    <string name="error_report_title">Raporti i gabimit</string>
+    <string name="all">Të gjitha</string>
+    <string name="channel">Kanali</string>
+    <string name="playlist">Lista e videove</string>
+    <string name="yes">Po</string>
+    <string name="later">Më vonë</string>
+    <string name="playback_default">Standard</string>
+</resources>

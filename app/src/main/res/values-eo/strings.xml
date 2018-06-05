@@ -45,7 +45,7 @@
     <string name="detail_dislikes_img_view_description">Malŝatoj</string>
     <string name="use_tor_title">Uzi la programon Tor</string>
     <string name="no_player_found">Neniu elsendlflua ludilo trovita. Ĉu instali la aplikaĵon VLC?</string>
-    <string name="kore_not_found">La aplikaĵo Kore ne estas trovita. Ĉu instali la aplikaĵon Kore?</string>
+    <string name="kore_not_found">La aplikaĵo Kore ne estas trovita. Ĉu instali ĝin?</string>
     <string name="show_next_and_similar_title">Montri la sekvan videon kaj similajn videojn</string>
     <string name="could_not_load_thumbnails">Ĉiuj miniaturoj ne ŝargeblas</string>
     <string name="youtube_signature_decryption_error">La subskribo de la ligilo de la video ne malĉifreblas.</string>
@@ -59,12 +59,12 @@
     <string name="download_path_audio_title">Elŝutujo por muziko</string>
     <string name="use_tor_summary">(Eksperimenta) Devigi elŝuttrafikon tra Tor por pli bona privateco (elsendfluaj videoj estas ankoraŭ ne subtenitaj).</string>
 
-    <string name="show_play_with_kodi_summary">Montri opcion por ludi videon per la aplikaĵo Kodi.</string>
-    <string name="download_path_summary">Dosierujo por konservi elŝutitajn videojn.</string>
+    <string name="show_play_with_kodi_summary">Montri opcion por ludi videon per la aplikaĵo Kodi</string>
+    <string name="download_path_summary">Dosierujo por konservi elŝutitajn videojn</string>
     <string name="download_path_audio_summary">Dosierujo por konservi elŝutitan muzikon</string>
     <string name="download_path_dialog_title">Elektu lokon por konservi elŝutitajn videojn</string>
 
-    <string name="download_path_audio_dialog_title">Elektu lokon por konservi elŝutitan muzikon.</string>
+    <string name="download_path_audio_dialog_title">Elektu lokon por konservi elŝutitan muzikon</string>
 
     <string name="content">Enhavo</string>
     <string name="error_report_button_text">Raporti eraron per retpoŝto</string>
@@ -77,13 +77,39 @@
     <string name="report_error">Raporti eraron</string>
     <string name="video">Video</string>
     <string name="retry">Reprovi</string>
-<string name="main_bg_subtitle">Alklaku serĉon por ekkomenci</string>
+<string name="main_bg_subtitle">Tapu serĉo por komenci</string>
     <string name="no_player_found_toast">Neniu elsendlflua ludilo trovita (instalu VLC por ludi ĝin)</string>
-    <string name="open_in_popup_mode">Malferu per fenestreta maniero</string>
-    <string name="use_external_video_player_summary">Iuj rezolucioj NE havos aŭdion kiam ĉi tiu eblo estas ebligita.</string>
-    <string name="popup_mode_share_menu_title">Fenestreta maniero de NewPipe</string>
+    <string name="open_in_popup_mode">Malfermi en ŝprucfenestron modon</string>
+    <string name="use_external_video_player_summary">Iuj rezolucioj NE havos aŭdion kiam ĉi tiu eblo estas ebligita</string>
+    <string name="popup_mode_share_menu_title">NewPipe ŝprucfenestron modon</string>
     <string name="subscribe_button_title">Aboni</string>
     <string name="subscribed_button_title">Abonita</string>
     <string name="channel_unsubscribed">Kanalo malabonita</string>
     <string name="subscription_change_failed">Neebla ŝanĝi abonon</string>
+    <string name="controls_download_desc">Elŝutu dosieron.</string>
+    <string name="subscription_update_failed">Ne eblas ĝisdatigi abonon</string>
+    <string name="show_info">Montri informon</string>
+
+    <string name="tab_main">Ĉefa</string>
+    <string name="tab_subscriptions">Abonoj</string>
+    <string name="tab_bookmarks">Legosigno</string>
+
+    <string name="fragment_whats_new">Kio novas</string>
+
+    <string name="controls_background_title">Fono</string>
+    <string name="controls_popup_title">ŝprucfenestron</string>
+    <string name="controls_add_to_playlist_title">Aldonu al</string>
+
+    <string name="autoplay_by_calling_app_title">Aŭtomata play</string>
+    <string name="autoplay_by_calling_app_summary">Ludas video kiam NewPipe vokas de alia programo</string>
+    <string name="default_popup_resolution_title">Defaŭlta popup rezolucio</string>
+    <string name="show_higher_resolutions_title">Montri pli altajn rezoluciojn</string>
+    <string name="show_higher_resolutions_summary">Nur kelkaj aparatoj subtenas ludante 2K / 4K filmetojn</string>
+    <string name="default_video_format_title">Defaŭlta video-formato</string>
+    <string name="black_theme_title">Nigra</string>
+    <string name="popup_remember_size_pos_title">Memoru ŝprucfenestron kaj pozicion</string>
+    <string name="popup_remember_size_pos_summary">Memoru lastan grandecon kaj pozicion de ŝprucfenestro</string>
+    <string name="use_inexact_seek_title">Uzu rapide, ne preciza serĉon</string>
+    <string name="use_inexact_seek_summary">Ne preciza serĉo permesas al la ludanto serĉi poziciojn pli rapide kun malalta precizeco</string>
+    <string name="download_thumbnail_title">Ŝarĝi bildetojn</string>
     </resources>
