@@ -277,6 +277,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 newpipe_db_shm.delete();
 
             } else {
+
                 Toast.makeText(getContext(), R.string.could_not_import_all_files, Toast.LENGTH_LONG)
                         .show();
             }
