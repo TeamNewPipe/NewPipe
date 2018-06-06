@@ -191,14 +191,19 @@ public final class PopupVideoPlayer extends Service {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         popupWidth = popupRememberSizeAndPos ? sharedPreferences.getFloat(POPUP_SAVED_WIDTH, defaultSize) : defaultSize;
 
-        final int layoutParamType = Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O ? WindowManager.LayoutParams.TYPE_PHONE : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+        final int layoutParamType = Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O ?
+                WindowManager.LayoutParams.TYPE_PHONE :
+                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+        final int interactiveInputMethodLayout = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |
+                WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM;
 
         windowLayoutParams = new WindowManager.LayoutParams(
                 (int) popupWidth, (int) getMinimumVideoHeight(popupWidth),
                 layoutParamType,
-                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                interactiveInputMethodLayout,
                 PixelFormat.TRANSLUCENT);
         windowLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
+        windowLayoutParams.softInputMode = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE;
 
         int centerX = (int) (screenWidth / 2f - popupWidth / 2f);
         int centerY = (int) (screenHeight / 2f - popupHeight / 2f);
@@ -608,6 +613,8 @@ public final class PopupVideoPlayer extends Service {
 
         protected void onMetadataChanged(@NonNull final MediaSourceTag tag) {
             super.onMetadataChanged(tag);
+            resetNotification();
+            updateNotification(-1);
             updateMetadata();
         }
 
