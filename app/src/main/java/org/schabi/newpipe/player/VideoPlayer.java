@@ -315,14 +315,13 @@ public abstract class VideoPlayer extends BasePlayer
         }
         captionPopupMenu.setOnDismissListener(this);
     }
-    /*//////////////////////////////////////////////////////////////////////////
-    // Playback Listener
-    //////////////////////////////////////////////////////////////////////////*/
 
-    protected abstract VideoPlaybackResolver.QualityResolver getQualityResolver();
 
-    protected void onMetadataChanged(@NonNull final MediaSourceTag tag) {
-        super.onMetadataChanged(tag);
+    private void updateStreamRelatedViews() {
+        if (getCurrentMetadata() == null) return;
+
+        final MediaSourceTag tag = getCurrentMetadata();
+        final StreamInfo metadata = tag.getMetadata();
 
         qualityTextView.setVisibility(View.GONE);
         playbackSpeedTextView.setVisibility(View.GONE);
@@ -330,7 +329,7 @@ public abstract class VideoPlayer extends BasePlayer
         playbackEndTime.setVisibility(View.GONE);
         playbackLiveSync.setVisibility(View.GONE);
 
-        switch (tag.getMetadata().getStreamType()) {
+        switch (metadata.getStreamType()) {
             case AUDIO_STREAM:
                 surfaceView.setVisibility(View.GONE);
                 endScreen.setVisibility(View.VISIBLE);
@@ -350,8 +349,8 @@ public abstract class VideoPlayer extends BasePlayer
                 break;
 
             case VIDEO_STREAM:
-                final StreamInfo info = tag.getMetadata();
-                if (info.getVideoStreams().size() + info.getVideoOnlyStreams().size() == 0) break;
+                if (metadata.getVideoStreams().size() + metadata.getVideoOnlyStreams().size() == 0)
+                    break;
 
                 availableStreams = tag.getSortedAvailableVideoStreams();
                 selectedStreamIndex = tag.getSelectedVideoStreamIndex();
@@ -367,6 +366,16 @@ public abstract class VideoPlayer extends BasePlayer
 
         buildPlaybackSpeedMenu();
         playbackSpeedTextView.setVisibility(View.VISIBLE);
+    }
+    /*//////////////////////////////////////////////////////////////////////////
+    // Playback Listener
+    //////////////////////////////////////////////////////////////////////////*/
+
+    protected abstract VideoPlaybackResolver.QualityResolver getQualityResolver();
+
+    protected void onMetadataChanged(@NonNull final MediaSourceTag tag) {
+        super.onMetadataChanged(tag);
+        updateStreamRelatedViews();
     }
 
     @Override
@@ -399,6 +408,8 @@ public abstract class VideoPlayer extends BasePlayer
     @Override
     public void onPlaying() {
         super.onPlaying();
+
+        updateStreamRelatedViews();
 
         showAndAnimateControl(-1, true);
 
