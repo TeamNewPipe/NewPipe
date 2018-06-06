@@ -505,8 +505,8 @@
     </string-array>
 
     <!-- Minimize to exit action -->
-    <string name="minimize_on_exit_title">Minimize on exit</string>
-    <string name="minimize_on_exit_summary">Action when exiting main video player — %s</string>
+    <string name="minimize_on_exit_title">Minimize on application switch</string>
+    <string name="minimize_on_exit_summary">Action when switching to other application from main video player — %s</string>
     <string name="minimize_on_exit_none_description">None</string>
     <string name="minimize_on_exit_background_description">Minimize to background player</string>
     <string name="minimize_on_exit_popup_description">Minimize to popup player</string>
