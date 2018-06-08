@@ -13,6 +13,7 @@ import android.os.Parcelable;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
@@ -239,8 +240,15 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
     }
 
     private void onImportFromServiceSelected(int serviceId) {
-        if (getParentFragment() == null) return;
-        NavigationHelper.openSubscriptionsImportFragment(getParentFragment().getFragmentManager(), serviceId);
+        FragmentManager fragmentManager;
+
+        if (getParentFragment() == null)
+        {
+            fragmentManager = getFragmentManager();
+        } else {
+            fragmentManager = getParentFragment().getFragmentManager();
+        }
+        NavigationHelper.openSubscriptionsImportFragment(fragmentManager, serviceId);
     }
 
     private void onImportPreviousSelected() {
@@ -318,15 +326,32 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
         infoListAdapter.setOnChannelSelectedListener(new OnClickGesture<ChannelInfoItem>() {
             @Override
             public void selected(ChannelInfoItem selectedItem) {
-                // Requires the parent fragment to find holder for fragment replacement
-                NavigationHelper.openChannelFragment(getParentFragment().getFragmentManager(),
+                FragmentManager fragmentManager;
+
+                if (getParentFragment() == null)
+                {
+                    fragmentManager = getFragmentManager();
+                } else {
+                    fragmentManager = getParentFragment().getFragmentManager();
+                }
+                NavigationHelper.openChannelFragment(fragmentManager,
                         selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName());
             }
         });
 
         //noinspection ConstantConditions
         whatsNewItemListHeader.setOnClickListener(v ->
-                NavigationHelper.openWhatsNewFragment(getParentFragment().getFragmentManager()));
+        {
+            FragmentManager fragmentManager;
+
+            if (getParentFragment() == null)
+            {
+                fragmentManager = getFragmentManager();
+            } else {
+                fragmentManager = getParentFragment().getFragmentManager();
+            }
+            NavigationHelper.openWhatsNewFragment(fragmentManager);
+        });
         importExportListHeader.setOnClickListener(v -> importExportOptions.switchState());
     }
 
