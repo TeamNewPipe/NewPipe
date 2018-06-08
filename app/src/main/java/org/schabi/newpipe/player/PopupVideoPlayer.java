@@ -662,7 +662,8 @@ public final class PopupVideoPlayer extends Service {
             videoPlayPause.setBackgroundResource(R.drawable.ic_pause_white);
             lockManager.acquireWifiAndCpu();
 
-            hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
+            windowLayoutParams.flags = WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
+            windowManager.updateViewLayout(playerImpl.getRootView(), windowLayoutParams);
         }
 
         @Override
@@ -677,6 +678,9 @@ public final class PopupVideoPlayer extends Service {
             updateNotification(R.drawable.ic_play_arrow_white);
             videoPlayPause.setBackgroundResource(R.drawable.ic_play_arrow_white);
             lockManager.releaseWifiAndCpu();
+
+            windowLayoutParams.flags = 0;
+            windowManager.updateViewLayout(playerImpl.getRootView(), windowLayoutParams);
         }
 
         @Override
