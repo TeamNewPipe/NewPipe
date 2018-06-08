@@ -664,7 +664,8 @@ public final class PopupVideoPlayer extends Service {
 
             hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
 
-            windowLayoutParams.flags = WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
+            windowLayoutParams.flags = WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+                    | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
             windowManager.updateViewLayout(playerImpl.getRootView(), windowLayoutParams);
         }
 
@@ -681,7 +682,7 @@ public final class PopupVideoPlayer extends Service {
             videoPlayPause.setBackgroundResource(R.drawable.ic_play_arrow_white);
             lockManager.releaseWifiAndCpu();
 
-            windowLayoutParams.flags = 0;
+            windowLayoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
             windowManager.updateViewLayout(playerImpl.getRootView(), windowLayoutParams);
         }
 
@@ -698,6 +699,9 @@ public final class PopupVideoPlayer extends Service {
             updateNotification(R.drawable.ic_replay_white);
             videoPlayPause.setBackgroundResource(R.drawable.ic_replay_white);
             lockManager.releaseWifiAndCpu();
+
+            windowLayoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+            windowManager.updateViewLayout(playerImpl.getRootView(), windowLayoutParams);
         }
 
         @Override
