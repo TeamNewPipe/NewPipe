@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
             item.setIcon(ServiceHelper.getIcon(s.getServiceId()));
         }
 
+
         drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
 
         toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.drawer_open, R.string.drawer_close);
