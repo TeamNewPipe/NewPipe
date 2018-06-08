@@ -49,12 +49,15 @@ import android.widget.TextView;
 
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.Constants;
+import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ServiceHelper;
@@ -90,24 +93,70 @@ public class MainActivity extends AppCompatActivity {
         }
 
         setSupportActionBar(findViewById(R.id.toolbar));
-        setupDrawer();
+        try {
+            setupDrawer();
+        } catch (Exception e) {
+            ErrorActivity.reportUiError(this, e);
+        }
     }
 
-    private void setupDrawer() {
+    private void setupDrawer() throws Exception {
         final Toolbar toolbar = findViewById(R.id.toolbar);
         drawer = findViewById(R.id.drawer_layout);
         drawerItems = findViewById(R.id.navigation);
 
+        //Services
+
         for(StreamingService s : NewPipe.getServices()) {
             final String title = s.getServiceInfo().getName() +
                     (ServiceHelper.isBeta(s) ? " (beta)" : "");
-            final MenuItem item = drawerItems.getMenu()
-                    .add(R.id.menu_services_group, s.getServiceId(), 0, title);
-            item.setIcon(ServiceHelper.getIcon(s.getServiceId()));
+
+            drawerItems.getMenu()
+                    .add(R.id.menu_services_group, s.getServiceId(), 0, title)
+                    .setIcon(ServiceHelper.getIcon(s.getServiceId()));
         }
 
+        //Tabs
 
-        drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
+        int currentServiceId = ServiceHelper.getSelectedServiceId(this);
+        StreamingService service = NewPipe.getService(currentServiceId);
+
+        int kioskId = 0;
+
+        for (final String ks : service.getKioskList().getAvailableKiosks()) {
+            drawerItems.getMenu()
+                    .add(R.id.menu_tabs_group, kioskId, 0, KioskTranslator.getTranslatedKioskName(ks, this))
+                    .setIcon(KioskTranslator.getKioskIcons(ks, this));
+            kioskId ++;
+            }
+
+        drawerItems.getMenu()
+                .add(R.id.menu_tabs_group, -1, 0, R.string.tab_subscriptions)
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_channel));
+        drawerItems.getMenu()
+                .add(R.id.menu_tabs_group, -2, 0, R.string.fragment_whats_new)
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.rss));
+        drawerItems.getMenu()
+                .add(R.id.menu_tabs_group, -3, 0, R.string.tab_bookmarks)
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_bookmark));
+        drawerItems.getMenu()
+                .add(R.id.menu_tabs_group, -4, 0, R.string.downloads)
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.download));
+        drawerItems.getMenu()
+                .add(R.id.menu_tabs_group, -5, 0, R.string.action_history)
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.history));
+
+        //Settings and About
+
+        drawerItems.getMenu()
+                .add(R.id.menu_options_about_group, 0, 0, R.string.settings)
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.settings));
+        drawerItems.getMenu()
+                .add(R.id.menu_options_about_group, 1, 0, R.string.tab_about)
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.info));
+
+
+            drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
 
         toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.drawer_open, R.string.drawer_close) {
@@ -140,32 +189,83 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        drawerItems.setNavigationItemSelectedListener(this::changeService);
-
-        setupDrawerFooter();
+        drawerItems.setNavigationItemSelectedListener(this::drawerItemSelected);
         setupDrawerHeader();
     }
 
+    private boolean drawerItemSelected(MenuItem item) {
+        switch (item.getGroupId()) {
+            case R.id.menu_services_group:
+                changeService(item);
+                break;
+            case R.id.menu_tabs_group:
+                try {
+                    tabSelected(item);
+                } catch (Exception e) {
+                    ErrorActivity.reportUiError(this, e);
+                }
+                break;
+            case R.id.menu_options_about_group:
+                optionsAboutSelected(item);
+                break;
+            default:
+                return false;
+        }
 
-    private boolean changeService(MenuItem item) {
-        if (item.getGroupId() != R.id.menu_services_group)
-            return false;
-        drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(false);
-        ServiceHelper.setSelectedServiceId(this, item.getItemId());
-        drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
         drawer.closeDrawers();
         return true;
     }
 
-    private void setupDrawerFooter() {
-        ImageButton settings = findViewById(R.id.drawer_settings);
-        ImageButton downloads = findViewById(R.id.drawer_downloads);
-        ImageButton history = findViewById(R.id.drawer_history);
+    private  void changeService(MenuItem item) {
+        drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(false);
+        ServiceHelper.setSelectedServiceId(this, item.getItemId());
+        drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
+    }
 
-        settings.setOnClickListener(view -> NavigationHelper.openSettings(this));
-        downloads.setOnClickListener(view ->NavigationHelper.openDownloads(this));
-        history.setOnClickListener(view ->
-                NavigationHelper.openStatisticFragment(getSupportFragmentManager()));
+    private void tabSelected(MenuItem item) throws ExtractionException {
+        switch(item.getItemId()) {
+            case -1:
+                NavigationHelper.openSubscriptionFragment(getSupportFragmentManager());
+                break;
+            case -2:
+                NavigationHelper.openWhatsNewFragment(getSupportFragmentManager());
+                break;
+            case -3:
+                NavigationHelper.openBookmarksFragment(getSupportFragmentManager());
+                break;
+            case -4:
+                NavigationHelper.openDownloads(this);
+                break;
+            case -5:
+                NavigationHelper.openStatisticFragment(getSupportFragmentManager());
+                break;
+            default:
+                int currentServiceId = ServiceHelper.getSelectedServiceId(this);
+                StreamingService service = NewPipe.getService(currentServiceId);
+                String serviceName = "";
+
+                int kioskId = 0;
+                for (final String ks : service.getKioskList().getAvailableKiosks()) {
+                    if(kioskId == item.getItemId()) {
+                        serviceName = ks;
+                    }
+                    kioskId ++;
+                }
+
+                NavigationHelper.openKioskFragment(getSupportFragmentManager(), currentServiceId, serviceName);
+                break;
+        }
+    }
+
+    private void optionsAboutSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case 0:
+                NavigationHelper.openSettings(this);
+                break;
+            case 1:
+                NavigationHelper.openAbout(this);
+                break;
+        }
     }
 
     private void setupDrawerHeader() {

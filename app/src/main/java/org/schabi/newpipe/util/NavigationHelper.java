@@ -36,12 +36,14 @@ import org.schabi.newpipe.extractor.linkhandler.SearchQueryHandler;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
+import org.schabi.newpipe.local.bookmark.BookmarkFragment;
 import org.schabi.newpipe.local.feed.FeedFragment;
 import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.local.history.StatisticsPlaylistFragment;
 import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
+import org.schabi.newpipe.local.subscription.SubscriptionFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionsImportFragment;
 import org.schabi.newpipe.player.BackgroundPlayer;
 import org.schabi.newpipe.player.BackgroundPlayerActivity;
@@ -345,6 +347,20 @@ public class NavigationHelper {
     public static void openWhatsNewFragment(FragmentManager fragmentManager) {
         defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, new FeedFragment())
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public static void openBookmarksFragment(FragmentManager fragmentManager) {
+        defaultTransaction(fragmentManager)
+                .replace(R.id.fragment_holder, new BookmarkFragment())
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public static void openSubscriptionFragment(FragmentManager fragmentManager) {
+        defaultTransaction(fragmentManager)
+                .replace(R.id.fragment_holder, new SubscriptionFragment())
                 .addToBackStack(null)
                 .commit();
     }

@@ -104,8 +104,10 @@ public final class BookmarkFragment
             public void selected(LocalItem selectedItem) {
                 try {
                     // Requires the parent fragment to find holder for fragment replacement
-                    if (getParentFragment() == null) return;
-                    final FragmentManager fragmentManager = getParentFragment().getFragmentManager();
+                    final FragmentManager fragmentManager =
+                            getParentFragment() == null
+                                    ? getFragmentManager()
+                                    : getParentFragment().getFragmentManager();
 
                     if (selectedItem instanceof PlaylistMetadataEntry) {
                         final PlaylistMetadataEntry entry = ((PlaylistMetadataEntry) selectedItem);
