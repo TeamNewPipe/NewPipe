@@ -24,7 +24,7 @@ import org.schabi.newpipe.R;
 
 public class KioskTranslator {
     public static String getTranslatedKioskName(String kioskId, Context c) {
-        switch(kioskId) {
+        switch (kioskId) {
             case "Trending":
                 return c.getString(R.string.trending);
             case "Top 50":
@@ -33,6 +33,19 @@ public class KioskTranslator {
                 return c.getString(R.string.new_and_hot);
             default:
                 return kioskId;
+        }
+    }
+
+    public static int getKioskIcons(String kioskId, Context c) {
+        switch(kioskId) {
+            case "Trending":
+                return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_hot);
+            case "Top 50":
+                return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_hot);
+            case "New & hot":
+                return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_hot);
+            default:
+                return 0;
         }
     }
 }

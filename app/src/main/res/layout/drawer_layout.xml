@@ -89,29 +89,6 @@
         android:layout_alignEnd="@id/navigation"
 
         android:layout_alignParentBottom="true">
-        <ImageButton
-            android:id="@+id/drawer_settings"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="?attr/settings"/>
-
-        <ImageButton
-            android:id="@+id/drawer_downloads"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="?attr/download" />
-
-        <ImageButton
-            android:id="@+id/drawer_history"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="?attr/history"/>
     </LinearLayout>
 
 </RelativeLayout>
