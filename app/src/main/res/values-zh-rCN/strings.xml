@@ -308,7 +308,7 @@
     <string name="rename">重命名</string>
 
     <string name="donation_title">捐赠</string>
-    <string name="donation_encouragement">NewPipe 是一群志愿者花费业余时间开发的，目的是给你们带来最佳体验。你的一点心意，可以让开发者们在享受一杯 Java 的咖啡的同时让 NewPipe 变得更好用。</string>
+    <string name="donation_encouragement">NewPipe 是一群志愿者花费业余时间开发的，目的是为您带来最佳体验。你的一点心意，可以让开发者们在享受一杯 Java 的咖啡的同时让 NewPipe 变得更好用。</string>
     <string name="give_back">捐赠</string>
     <string name="website_title">网页</string>
     <string name="website_encouragement">访问 NewPipe 网站以获取更多的信息和新闻。</string>
@@ -335,7 +335,7 @@
 
     <string name="kiosk">Kiosk</string>
     <string name="trending">流行的</string>
-    <string name="top_50">Top 50</string>
+    <string name="top_50">前50</string>
     <string name="new_and_hot">最新 &amp; 最热</string>
     <string name="title_activity_background_player">后台播放器</string>
     <string name="title_activity_popup_player">悬浮窗播放器</string>
@@ -414,7 +414,7 @@
     <string name="subscriptions_export_unsuccessful">无法导出订阅</string>
 
     <string name="import_youtube_instructions">通过下载导出文件导入 YouTube 订阅： 
-\n1. 浏览器打开链接：%1$s 
+\n1. 在浏览器打开URL：%1$s 
 \n2. 登录账户 
 \n3. 下载应该会马上开始（这个就是导出文件）</string>
     <string name="import_soundcloud_instructions">通过输入URL或您的ID导入SoundCloud配置： 
@@ -460,5 +460,5 @@
     <string name="decline">拒绝</string>
 
     <string name="limit_data_usage_none_description">不限制</string>
-    <string name="limit_mobile_data_usage_title">使用移动数据时的限制分辨率</string>
+    <string name="limit_mobile_data_usage_title">使用移动数据时限制分辨率</string>
     </resources>
