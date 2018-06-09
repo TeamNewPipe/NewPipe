@@ -3,7 +3,6 @@ package org.schabi.newpipe.report;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -37,6 +36,8 @@ import org.schabi.newpipe.ActivityCommunicator;
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.Downloader;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.PrintWriter;
@@ -46,7 +47,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 import java.util.Vector;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /*
  * Created by Christian Schabesberger on 24.10.15.
@@ -382,8 +382,14 @@ public class ErrorActivity extends AppCompatActivity {
     }
 
     private String getContentLangString() {
-        return PreferenceManager.getDefaultSharedPreferences(this)
+        // content_county value is not a language is a COUNTRY!
+        String country = PreferenceManager.getDefaultSharedPreferences(this)
                 .getString(this.getString(R.string.content_country_key), "none");
+
+        Downloader dl = NewPipe.getDownloader();
+        String lang = dl == null ? "nolang" : dl.getLanguageCode();
+
+        return country.concat("-").concat(lang);// return something like "en-GB"
     }
 
     private String getOsString() {

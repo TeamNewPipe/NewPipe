@@ -5,6 +5,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
@@ -33,6 +34,7 @@ import java.io.InterruptedIOException;
 import java.net.SocketException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import io.reactivex.annotations.NonNull;
 import io.reactivex.exceptions.CompositeException;
@@ -88,7 +90,18 @@ public class App extends Application {
         // Initialize settings first because others inits can use its values
         SettingsActivity.initSettings(this);
 
-        NewPipe.init(getDownloader());
+        String contentCountry = PreferenceManager
+                .getDefaultSharedPreferences(this)
+                .getString(getString(R.string.content_country_key), getString(R.string.default_country_value));
+
+        Downloader dl = getDownloader();
+
+        // Instead of using the """Application""" language, the device language will be used (if a translation is missing)
+        dl.initLanguageFromContext(null, contentCountry);
+        //dl.initLanguageFromContext(this.getResources().getConfiguration().locale;, contentCountry);
+
+        NewPipe.init(dl);
+
         StateSaver.init(this);
         initNotificationChannel();
 
