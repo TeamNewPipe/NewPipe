@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tabName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="22dp"
+        android:layout_marginStart="22dp" />
+
+    <Button
+        android:id="@+id/buttonAddRemove"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="22dp"
+        android:background="@color/dark_background_color"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="22dp" />
+
+    <Button
+        android:id="@+id/buttonDown"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/buttonAddRemove"
+        android:background="@color/dark_background_color"
+        android:layout_toLeftOf="@+id/buttonAddRemove" />
+
+    <Button
+        android:id="@+id/buttonUp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/buttonDown"
+        android:layout_toStartOf="@+id/buttonDown"
+        android:background="@color/dark_background_color" />
+
+</RelativeLayout>
