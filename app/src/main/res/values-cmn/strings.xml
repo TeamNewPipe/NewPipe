@@ -1,2 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="main_bg_subtitle"></string>
+    <string name="view_count_text"></string>
+    <string name="upload_date_text"></string>
+    <string name="no_player_found"></string>
+    <string name="no_player_found_toast"></string>
+    <string name="install"></string>
+    <string name="cancel"></string>
+    <string name="open_in_browser"></string>
+    <string name="open_in_popup_mode"></string>
+    <string name="share"></string>
+    <string name="download"></string>
+    <string name="controls_download_desc"></string>
+    <string name="search"></string>
+    <string name="settings"></string>
+    <string name="did_you_mean"></string>
+    <string name="share_dialog_title"></string>
+    <string name="choose_browser"></string>
+    <string name="screen_rotation"></string>
+    </resources>
