@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.util.Log;
@@ -98,6 +99,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
         addPreferencesFromResource(R.xml.content_settings);
 
+        /*
+
         final ListPreference mainPageContentPref =  (ListPreference) findPreference(getString(R.string.main_page_content_key));
         mainPageContentPref.setOnPreferenceChangeListener((Preference preference, Object newValueO) -> {
             final String newValue = newValueO.toString();
@@ -157,6 +160,14 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
             defaultPreferences.edit().putBoolean(Constants.KEY_MAIN_PAGE_CHANGE, true).apply();
 
+            return true;
+        });
+
+        */
+
+        Preference contentPreference = findPreference(getString(R.string.main_page_content_key));
+        contentPreference.setOnPreferenceClickListener((Preference p) -> {
+            new ContentSettingsDialog().show(getFragmentManager(),"");
             return true;
         });
 

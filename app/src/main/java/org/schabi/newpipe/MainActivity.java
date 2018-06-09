@@ -417,9 +417,6 @@ public class MainActivity extends AppCompatActivity {
 
         if (!(fragment instanceof SearchFragment)) {
             findViewById(R.id.toolbar).findViewById(R.id.toolbar_search_container).setVisibility(View.GONE);
-
-            MenuInflater inflater = getMenuInflater();
-            inflater.inflate(R.menu.main_menu, menu);
         }
 
         ActionBar actionBar = getSupportActionBar();
@@ -440,17 +437,6 @@ public class MainActivity extends AppCompatActivity {
         switch (id) {
             case android.R.id.home:
                 onHomeButtonPressed();
-                return true;
-            case R.id.action_show_downloads:
-                return NavigationHelper.openDownloads(this);
-            case R.id.action_history:
-                NavigationHelper.openStatisticFragment(getSupportFragmentManager());
-                return true;
-            case R.id.action_about:
-                NavigationHelper.openAbout(this);
-                return true;
-            case R.id.action_settings:
-                NavigationHelper.openSettings(this);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
