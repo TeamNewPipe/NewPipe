@@ -69,11 +69,10 @@ public final class BookmarkFragment
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              Bundle savedInstanceState) {
-        if (activity != null && activity.getSupportActionBar() != null) {
-            activity.getSupportActionBar().setDisplayShowTitleEnabled(true);
-            activity.setTitle(R.string.tab_subscriptions);
-        }
 
+        if(!useAsFrontPage) {
+            setTitle(activity.getString(R.string.tab_bookmarks));
+        }
         return inflater.inflate(R.layout.fragment_bookmarks, container, false);
     }
 

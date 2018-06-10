@@ -59,7 +59,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     private Bundle savedInstanceStateBundle;
 
     SharedPreferences.OnSharedPreferenceChangeListener listener = (prefs, key) -> {
-        if(key.equals("saveUsedTabs")||key.equals("service")) {
+        if(key.equals("service")||key.equals("saveUsedTabs")) {
             mainPageChanged();
         }
     };
@@ -99,18 +99,65 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     protected void initViews(View rootView, Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
 
-        getTabOrder();
-
         tabLayout = rootView.findViewById(R.id.main_tab_layout);
         viewPager = rootView.findViewById(R.id.pager);
 
         /*  Nested fragment, use child fragment here to maintain backstack in view pager. */
         adapter = new PagerAdapter(getChildFragmentManager());
         viewPager.setAdapter(adapter);
-        viewPager.setOffscreenPageLimit(adapter.getCount());
 
         tabLayout.setupWithViewPager(viewPager);
+
+        mainPageChanged();
     }
+
+
+    public void mainPageChanged() {
+        getTabOrder();
+        adapter.notifyDataSetChanged();
+        viewPager.setOffscreenPageLimit(adapter.getCount());
+        setIcons();
+    }
+
+    private void setIcons() {
+        for (int i = 0; i < tabs.size(); i++) {
+            String tabNumber = tabs.get(i);
+
+            TabLayout.Tab tabToSet = tabLayout.getTabAt(i);
+
+            if (tabToSet != null) {
+
+                if (tabNumber.startsWith("1\t")) {
+                    String kiosk[] = tabNumber.split("\t");
+                    if (kiosk.length == 2) {
+                        try {
+                            tabToSet.setIcon(KioskTranslator.getKioskIcons(kiosk[1], getContext()));
+                        } catch (Exception e) {
+                            //ignore this. It WILL be thrown while the service is changed.
+                        }
+                    }
+                } else if (tabNumber.startsWith("6\t")) {
+                    tabToSet.setIcon(R.drawable.ic_channel_white_24dp);
+
+                } else {
+                    switch (tabNumber) {
+                        case "0":
+                            tabToSet.setIcon(R.drawable.ic_whatshot_white_24dp);
+                        case "2":
+                            tabToSet.setIcon(R.drawable.ic_channel_white_24dp);
+                        case "3":
+                            tabToSet.setIcon(R.drawable.ic_rss_feed_white_24dp);
+                        case "4":
+                            tabToSet.setIcon(R.drawable.ic_bookmark_white_24dp);
+                        case "5":
+                            tabToSet.setIcon(R.drawable.ic_history_white_24dp);
+                    }
+                }
+
+            }
+        }
+    }
+
 
     private void getTabOrder() {
         tabs.clear();
@@ -194,11 +241,6 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     public void onTabReselected(TabLayout.Tab tab) {
     }
 
-    public void mainPageChanged() {
-        getTabOrder();
-        adapter.notifyDataSetChanged();
-    }
-
     private class PagerAdapter extends FragmentPagerAdapter {
         PagerAdapter(FragmentManager fm) {
             super(fm);
@@ -213,8 +255,6 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                 if(kiosk.length==2) {
                     KioskFragment fragment = null;
                     try {
-                        tabLayout.getTabAt(position).setIcon(KioskTranslator.getKioskIcons(kiosk[1], getContext()));
-
                         fragment = KioskFragment.getInstance(currentServiceId, kiosk[1]);
                         fragment.useAsFrontPage(true);
                         return fragment;
@@ -229,8 +269,6 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             } else if(tabNumber.startsWith("6\t")) {
                 String channelInfo[] = tabNumber.split("\t");
                 if(channelInfo.length==4) {
-                    tabLayout.getTabAt(position).setIcon(R.drawable.ic_channel_white_24dp);
-
                     ChannelFragment fragment = ChannelFragment.getInstance(Integer.parseInt(channelInfo[3]), channelInfo[1], channelInfo[2]);
                     fragment.useAsFrontPage(true);
                     return fragment;
@@ -240,30 +278,20 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             } else {
                     switch (tabNumber) {
                         case "0":
-                            tabLayout.getTabAt(position).setIcon(R.drawable.ic_whatshot_white_24dp);
-
                             return new BlankFragment();
                         case "2":
-                            tabLayout.getTabAt(position).setIcon(R.drawable.ic_channel_white_24dp);
-
                             SubscriptionFragment sfragment = new SubscriptionFragment();
                             sfragment.useAsFrontPage(true);
                             return sfragment;
                         case "3":
-                            tabLayout.getTabAt(position).setIcon(R.drawable.ic_rss_feed_white_24dp);
-
                             FeedFragment ffragment = new FeedFragment();
                             ffragment.useAsFrontPage(true);
                             return ffragment;
                         case "4":
-                            tabLayout.getTabAt(position).setIcon(R.drawable.ic_bookmark_white_24dp);
-
                             BookmarkFragment bFragment = new BookmarkFragment();
                             bFragment.useAsFrontPage(true);
                             return bFragment;
                         case "5":
-                            tabLayout.getTabAt(position).setIcon(R.drawable.ic_history_white_24dp);
-
                             StatisticsPlaylistFragment cFragment = new StatisticsPlaylistFragment();
                             cFragment.useAsFrontPage(true);
                             return cFragment;
@@ -283,6 +311,11 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         @Override
         public int getCount() {
             return tabs.size();
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            getFragmentManager().beginTransaction().remove((Fragment)object).commitNowAllowingStateLoss();
         }
     }
 }
