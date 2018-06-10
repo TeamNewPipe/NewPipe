@@ -174,6 +174,12 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             startActivityForResult(i, REQUEST_EXPORT_PATH);
             return true;
         });
+
+        findPreference(getString(R.string.content_country_key)).setOnPreferenceChangeListener((Preference preference, Object newValue) -> {
+            NewPipe.setCountryLanguage(newValue.toString());//enforce device language with the selected country (See comment on App.java:107).
+            return true;
+        });
+
     }
 
     @Override

@@ -36,7 +36,6 @@ import org.schabi.newpipe.ActivityCommunicator;
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.util.ThemeHelper;
 
@@ -383,13 +382,11 @@ public class ErrorActivity extends AppCompatActivity {
 
     private String getContentLangString() {
         // content_county value is not a language is a COUNTRY!
-        String country = PreferenceManager.getDefaultSharedPreferences(this)
+        String country = PreferenceManager
+                .getDefaultSharedPreferences(this)
                 .getString(this.getString(R.string.content_country_key), "none");
 
-        Downloader dl = NewPipe.getDownloader();
-        String lang = dl == null ? "nolang" : dl.getLanguageCode();
-
-        return country.concat("-").concat(lang);// return something like "en-GB"
+        return NewPipe.getLanguage().concat("-").concat(country);
     }
 
     private String getOsString() {

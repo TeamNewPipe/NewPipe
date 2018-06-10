@@ -94,13 +94,7 @@ public class App extends Application {
                 .getDefaultSharedPreferences(this)
                 .getString(getString(R.string.content_country_key), getString(R.string.default_country_value));
 
-        Downloader dl = getDownloader();
-
-        // Instead of using the """Application""" language, the device language will be used (if a translation is missing)
-        dl.initLanguageFromContext(null, contentCountry);
-        //dl.initLanguageFromContext(this.getResources().getConfiguration().locale;, contentCountry);
-
-        NewPipe.init(dl);
+        NewPipe.init(getDownloader());
 
         StateSaver.init(this);
         initNotificationChannel();
@@ -109,6 +103,10 @@ public class App extends Application {
         ImageLoader.getInstance().init(getImageLoaderConfigurations(10, 50));
 
         configureRxJavaErrorHandler();
+        
+        // Instead of using the """Application""" language, the device language will be used (if a translation is missing)
+        //dl.initLanguageFromContext(this.getResources().getConfiguration().locale;, contentCountry);
+        NewPipe.setCountryLanguage(contentCountry);
     }
 
     protected Downloader getDownloader() {
