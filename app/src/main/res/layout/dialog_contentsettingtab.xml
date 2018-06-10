@@ -8,36 +8,46 @@
         android:id="@+id/tabName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="22dp"
-        android:layout_marginStart="22dp" />
+        android:layout_marginLeft="2dp"
+        android:layout_marginStart="0dp"
+        android:paddingBottom="2dp"
+        android:paddingLeft="2dp"
+        android:paddingStart="3dp"
+        android:paddingTop="2dp"
+        android:textColor="@color/background_title_color"
+        android:textSize="24sp"
+        android:layout_toStartOf="@id/buttonDown"
+        android:layout_toLeftOf="@id/buttonDown"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/buttonAddRemove"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="22dp"
-        android:background="@color/dark_background_color"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="22dp" />
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:background="@color/black_background_color" />
 
     <Button
         android:id="@+id/buttonDown"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_alignParentTop="true"
-        android:layout_toStartOf="@+id/buttonAddRemove"
-        android:background="@color/dark_background_color"
-        android:layout_toLeftOf="@+id/buttonAddRemove" />
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/buttonUp"
+        android:layout_toStartOf="@+id/buttonUp"
+        android:background="@color/black_background_color" />
 
     <Button
         android:id="@+id/buttonUp"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/buttonDown"
-        android:layout_toStartOf="@+id/buttonDown"
-        android:background="@color/dark_background_color" />
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/buttonAddRemove"
+        android:layout_toStartOf="@+id/buttonAddRemove"
+        android:background="@color/black_background_color" />
 
 </RelativeLayout>
