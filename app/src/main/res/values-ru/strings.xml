@@ -474,4 +474,15 @@
     <string name="preferred_open_action_settings_title">Предпочтительное действие \'открытие\'</string>
     <string name="import_settings">Желаете ли вы также импортировать настройки?</string>
 
+    <string name="privacy_policy_title">Политика конфиденциальности NewPipe</string>
+    <string name="privacy_policy_encouragement">Проект NewPipe очень серьезно относится к вашей конфиденциальности. Поэтому приложение не собирает никаких данных без вашего согласия.
+\nПолитика конфиденциальности NewPipe подробно объясняет, какие данные отправляются и хранятся при отправке отчета о сбоях.</string>
+    <string name="read_privacy_policy">Прочитать политику конфиденциальности</string>
+    <string name="start_accept_privacy_policy">Чтобы соответствовать Европейскому стандарту защиты данных (GDPR), мы обращаем ваше внимание на политику конфиденциальности NewPipe. Пожалуйста, внимательно прочитайте его.
+\nВы должны принять её, чтобы отправить нам отчет об ошибке.</string>
+    <string name="accept">Принять</string>
+    <string name="decline">Отклонить</string>
+
+    <string name="limit_data_usage_none_description">Без лимита</string>
+    <string name="limit_mobile_data_usage_title">Предельное разрешение при использовании мобильных данных</string>
     </resources>
