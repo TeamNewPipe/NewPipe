@@ -483,6 +483,6 @@
     <string name="accept">Принять</string>
     <string name="decline">Отклонить</string>
 
-    <string name="limit_data_usage_none_description">Без лимита</string>
+    <string name="limit_data_usage_none_description">Безлимитный</string>
     <string name="limit_mobile_data_usage_title">Предельное разрешение при использовании мобильных данных</string>
     </resources>
