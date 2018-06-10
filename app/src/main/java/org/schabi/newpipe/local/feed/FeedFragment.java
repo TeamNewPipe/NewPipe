@@ -71,6 +71,10 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+
+        if(!useAsFrontPage) {
+            setTitle(activity.getString(R.string.fragment_whats_new));
+        }
         return inflater.inflate(R.layout.fragment_feed, container, false);
     }
 
@@ -105,6 +109,14 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
         super.onDestroyView();
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (activity != null && isVisibleToUser) {
+            setTitle(activity.getString(R.string.fragment_whats_new));
+        }
+    }
+
     /*@Override
     protected RecyclerView.LayoutManager getListLayoutManager() {
         boolean isPortrait = getResources().getDisplayMetrics().heightPixels > getResources().getDisplayMetrics().widthPixels;
@@ -116,9 +128,6 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
         super.onCreateOptionsMenu(menu, inflater);
 
         ActionBar supportActionBar = activity.getSupportActionBar();
-        if (supportActionBar != null) {
-            supportActionBar.setTitle(R.string.fragment_whats_new);
-        }
 
         if(useAsFrontPage) {
             supportActionBar.setDisplayShowTitleEnabled(true);
