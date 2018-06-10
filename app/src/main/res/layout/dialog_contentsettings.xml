@@ -1,38 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/firstText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/selection"
-        android:textStyle="bold" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/tabs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </android.support.v7.widget.RecyclerView>
-
-    <TextView
-        android:id="@+id/secondText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/chosenTabs"
-        android:textStyle="bold" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/usedTabs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minWidth="550dp"
+    android:orientation="vertical"
+    android:padding="12dp">
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_above="@id/buttonLayout"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/firstText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:text="@string/selection"
+            android:textStyle="bold" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:background="@color/black_background_color">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/secondText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:text="@string/chosenTabs"
+            android:textStyle="bold" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/usedTabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:background="@color/black_background_color" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/buttonLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal"
         android:padding="4dp">
 
@@ -40,21 +63,21 @@
             android:id="@+id/cancelText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:padding="4dp"
             android:paddingLeft="6dp"
             android:paddingRight="6dp"
             android:text="@string/cancel"
-            android:textColor="@color/black_settings_accent_color" />
+            android:textColor="@color/black_settings_accent_color"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/confirmText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:padding="4dp"
             android:text="@string/accept"
-            android:textColor="@color/black_settings_accent_color" />
+            android:textColor="@color/black_settings_accent_color"
+            android:textStyle="bold" />
 
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

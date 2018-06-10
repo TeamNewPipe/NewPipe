@@ -95,4 +95,5 @@ dependencies {
 
     implementation "com.squareup.okhttp3:okhttp:$okHttpLibVersion"
     debugImplementation "com.facebook.stetho:stetho-okhttp3:$stethoLibVersion"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
 }

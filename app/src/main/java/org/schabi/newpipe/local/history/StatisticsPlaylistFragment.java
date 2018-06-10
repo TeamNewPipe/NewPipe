@@ -96,6 +96,14 @@ public class StatisticsPlaylistFragment
         return inflater.inflate(R.layout.fragment_playlist, container, false);
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (activity != null && isVisibleToUser) {
+            setTitle(activity.getString(R.string.title_activity_history));
+        }
+    }
+
     ///////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle - Views
     ///////////////////////////////////////////////////////////////////////////

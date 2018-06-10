@@ -22,15 +22,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.schabi.newpipe.BaseFragment;
+import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.kiosk.KioskList;
 import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
 import org.schabi.newpipe.local.feed.FeedFragment;
 import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.local.bookmark.BookmarkFragment;
+import org.schabi.newpipe.local.history.StatisticsPlaylistFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionFragment;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
@@ -39,10 +42,28 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.schabi.newpipe.util.NavigationHelper.MAIN_FRAGMENT_TAG;
+
 public class MainFragment extends BaseFragment implements TabLayout.OnTabSelectedListener {
 
     public int currentServiceId = -1;
     private ViewPager viewPager;
+    private List<String> tabs = new ArrayList<>();
+    static PagerAdapter adapter;
+    TabLayout tabLayout;
+    private SharedPreferences prefs;
+    private Bundle savedInstanceStateBundle;
+
+    SharedPreferences.OnSharedPreferenceChangeListener listener = (prefs, key) -> {
+        if(key.equals("saveUsedTabs")||key.equals("service")) {
+            mainPageChanged();
+        }
+    };
+
 
     /*//////////////////////////////////////////////////////////////////////////
     // Constants
@@ -60,6 +81,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        savedInstanceStateBundle = savedInstanceState;
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
     }
@@ -67,6 +89,9 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         currentServiceId = ServiceHelper.getSelectedServiceId(activity);
+
+        prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+        prefs.registerOnSharedPreferenceChangeListener(listener);
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
@@ -74,31 +99,49 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     protected void initViews(View rootView, Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
 
-        TabLayout tabLayout = rootView.findViewById(R.id.main_tab_layout);
+        getTabOrder();
+
+        tabLayout = rootView.findViewById(R.id.main_tab_layout);
         viewPager = rootView.findViewById(R.id.pager);
 
         /*  Nested fragment, use child fragment here to maintain backstack in view pager. */
-        PagerAdapter adapter = new PagerAdapter(getChildFragmentManager());
+        adapter = new PagerAdapter(getChildFragmentManager());
         viewPager.setAdapter(adapter);
         viewPager.setOffscreenPageLimit(adapter.getCount());
 
         tabLayout.setupWithViewPager(viewPager);
+    }
 
-        int channelIcon = ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.ic_channel);
-        int whatsHotIcon = ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.ic_hot);
-        int bookmarkIcon = ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.ic_bookmark);
+    private void getTabOrder() {
+        tabs.clear();
 
-        //assign proper icons to tabs
-        /*
-        if (isSubscriptionsPageOnlySelected()) {
-            tabLayout.getTabAt(0).setIcon(channelIcon);
-            tabLayout.getTabAt(1).setIcon(bookmarkIcon);
-        } else {
-            tabLayout.getTabAt(0).setIcon(whatsHotIcon);
-            tabLayout.getTabAt(1).setIcon(channelIcon);
-            tabLayout.getTabAt(2).setIcon(bookmarkIcon);
+        String save = prefs.getString("saveUsedTabs", "1\n2\n4\n");
+        String tabsArray[] = save.trim().split("\n");
+
+        KioskList kl = null;
+
+        try {
+            StreamingService service = NewPipe.getService(currentServiceId);
+            kl = service.getKioskList();
+        } catch (Exception e) {
+            ErrorActivity.reportError(activity, e,
+                    activity.getClass(),
+                    null,
+                    ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
+                            "none", "", R.string.app_ui_crash));
         }
-        */
+
+        for(String tabNumber:tabsArray) {
+            if(tabNumber.equals("1")) {
+                if (kl != null) {
+                    for(String ks : kl.getAvailableKiosks()) {
+                        tabs.add(tabNumber+"\t"+ks);
+                    }
+                }
+            } else {
+                tabs.add(tabNumber);
+            }
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -151,6 +194,11 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     public void onTabReselected(TabLayout.Tab tab) {
     }
 
+    public void mainPageChanged() {
+        getTabOrder();
+        adapter.notifyDataSetChanged();
+    }
+
     private class PagerAdapter extends FragmentPagerAdapter {
         PagerAdapter(FragmentManager fm) {
             super(fm);
@@ -158,30 +206,83 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
         @Override
         public Fragment getItem(int position) {
-            //return proper fragments
+            String tabNumber = tabs.get(position);
+
+            if(tabNumber.startsWith("1\t")) {
+                String kiosk[] = tabNumber.split("\t");
+                if(kiosk.length==2) {
+                    KioskFragment fragment = null;
+                    try {
+                        tabLayout.getTabAt(position).setIcon(KioskTranslator.getKioskIcons(kiosk[1], getContext()));
+
+                        fragment = KioskFragment.getInstance(currentServiceId, kiosk[1]);
+                        fragment.useAsFrontPage(true);
+                        return fragment;
+                    } catch (Exception e) {
+                        ErrorActivity.reportError(activity, e,
+                                activity.getClass(),
+                                null,
+                                ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
+                                        "none", "", R.string.app_ui_crash));
+                    }
+                }
+            } else if(tabNumber.startsWith("6\t")) {
+                String channelInfo[] = tabNumber.split("\t");
+                if(channelInfo.length==4) {
+                    tabLayout.getTabAt(position).setIcon(R.drawable.ic_channel_white_24dp);
+
+                    ChannelFragment fragment = ChannelFragment.getInstance(Integer.parseInt(channelInfo[3]), channelInfo[1], channelInfo[2]);
+                    fragment.useAsFrontPage(true);
+                    return fragment;
+                } else {
+                    return new BlankFragment();
+                }
+            } else {
+                    switch (tabNumber) {
+                        case "0":
+                            tabLayout.getTabAt(position).setIcon(R.drawable.ic_whatshot_white_24dp);
+
+                            return new BlankFragment();
+                        case "2":
+                            tabLayout.getTabAt(position).setIcon(R.drawable.ic_channel_white_24dp);
+
+                            SubscriptionFragment sfragment = new SubscriptionFragment();
+                            sfragment.useAsFrontPage(true);
+                            return sfragment;
+                        case "3":
+                            tabLayout.getTabAt(position).setIcon(R.drawable.ic_rss_feed_white_24dp);
+
+                            FeedFragment ffragment = new FeedFragment();
+                            ffragment.useAsFrontPage(true);
+                            return ffragment;
+                        case "4":
+                            tabLayout.getTabAt(position).setIcon(R.drawable.ic_bookmark_white_24dp);
+
+                            BookmarkFragment bFragment = new BookmarkFragment();
+                            bFragment.useAsFrontPage(true);
+                            return bFragment;
+                        case "5":
+                            tabLayout.getTabAt(position).setIcon(R.drawable.ic_history_white_24dp);
+
+                            StatisticsPlaylistFragment cFragment = new StatisticsPlaylistFragment();
+                            cFragment.useAsFrontPage(true);
+                            return cFragment;
+                    }
+                }
+
             return new BlankFragment();
-        }
+            }
 
         @Override
-        public CharSequence getPageTitle(int position) {
-            //return getString(this.tabTitles[position]);
-            return "";
+        public int getItemPosition(Object object) {
+            // Causes adapter to reload all Fragments when
+            // notifyDataSetChanged is called
+            return POSITION_NONE;
         }
 
         @Override
         public int getCount() {
-            //return number of framgents
-            return 10;
+            return tabs.size();
         }
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Main page content
-    //////////////////////////////////////////////////////////////////////////*/
-
-    private boolean isSubscriptionsPageOnlySelected() {
-        return PreferenceManager.getDefaultSharedPreferences(activity)
-                .getString(getString(R.string.main_page_content_key), getString(R.string.blank_page_key))
-                .equals(getString(R.string.subscription_page_key));
     }
 }

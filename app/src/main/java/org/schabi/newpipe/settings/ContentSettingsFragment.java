@@ -2,6 +2,7 @@ package org.schabi.newpipe.settings;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,9 +11,11 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.util.Log;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.nononsenseapps.filepicker.Utils;
@@ -99,75 +102,9 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
         addPreferencesFromResource(R.xml.content_settings);
 
-        /*
-
-        final ListPreference mainPageContentPref =  (ListPreference) findPreference(getString(R.string.main_page_content_key));
-        mainPageContentPref.setOnPreferenceChangeListener((Preference preference, Object newValueO) -> {
-            final String newValue = newValueO.toString();
-
-            final String mainPrefOldValue =
-                    defaultPreferences.getString(getString(R.string.main_page_content_key), "blank_page");
-            final String mainPrefOldSummary = getMainPagePrefSummery(mainPrefOldValue, mainPageContentPref);
-
-            if(newValue.equals(getString(R.string.kiosk_page_key))) {
-                SelectKioskFragment selectKioskFragment = new SelectKioskFragment();
-                selectKioskFragment.setOnSelectedLisener((String kioskId, int service_id) -> {
-                    defaultPreferences.edit()
-                            .putInt(getString(R.string.main_page_selected_service), service_id).apply();
-                    defaultPreferences.edit()
-                            .putString(getString(R.string.main_page_selectd_kiosk_id), kioskId).apply();
-                    String serviceName = "";
-                    try {
-                        serviceName = NewPipe.getService(service_id).getServiceInfo().getName();
-                    } catch (ExtractionException e) {
-                        onError(e);
-                    }
-                    String kioskName = KioskTranslator.getTranslatedKioskName(kioskId,
-                            getContext());
-
-                    String summary =
-                            String.format(getString(R.string.service_kiosk_string),
-                                    serviceName,
-                                    kioskName);
-
-                    mainPageContentPref.setSummary(summary);
-                });
-                selectKioskFragment.setOnCancelListener(() -> {
-                    mainPageContentPref.setSummary(mainPrefOldSummary);
-                    mainPageContentPref.setValue(mainPrefOldValue);
-                });
-                selectKioskFragment.show(getFragmentManager(), "select_kiosk");
-            } else if(newValue.equals(getString(R.string.channel_page_key))) {
-                SelectChannelFragment selectChannelFragment = new SelectChannelFragment();
-                selectChannelFragment.setOnSelectedLisener((String url, String name, int service) -> {
-                    defaultPreferences.edit()
-                            .putInt(getString(R.string.main_page_selected_service), service).apply();
-                    defaultPreferences.edit()
-                            .putString(getString(R.string.main_page_selected_channel_url), url).apply();
-                    defaultPreferences.edit()
-                            .putString(getString(R.string.main_page_selected_channel_name), name).apply();
-
-                    mainPageContentPref.setSummary(name);
-                });
-                selectChannelFragment.setOnCancelListener(() -> {
-                    mainPageContentPref.setSummary(mainPrefOldSummary);
-                    mainPageContentPref.setValue(mainPrefOldValue);
-                });
-                selectChannelFragment.show(getFragmentManager(), "select_channel");
-            } else {
-                mainPageContentPref.setSummary(getMainPageSummeryByKey(newValue));
-            }
-
-            defaultPreferences.edit().putBoolean(Constants.KEY_MAIN_PAGE_CHANGE, true).apply();
-
-            return true;
-        });
-
-        */
-
         Preference contentPreference = findPreference(getString(R.string.main_page_content_key));
         contentPreference.setOnPreferenceClickListener((Preference p) -> {
-            new ContentSettingsDialog().show(getFragmentManager(),"");
+            new ContentSettingsDialog().show(getFragmentManager(),"select_content");
             return true;
         });
 
