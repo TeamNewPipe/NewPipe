@@ -111,7 +111,9 @@ public class StatisticsPlaylistFragment
     @Override
     protected void initViews(View rootView, Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
-        setTitle(getString(R.string.title_last_played));
+        if(!useAsFrontPage) {
+            setTitle(getString(R.string.title_last_played));
+        }
     }
 
     @Override
