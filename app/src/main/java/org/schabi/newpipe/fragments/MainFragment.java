@@ -117,6 +117,50 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         adapter.notifyDataSetChanged();
         viewPager.setOffscreenPageLimit(adapter.getCount());
         setIcons();
+        setFirstTitle();
+    }
+
+    private void setFirstTitle() {
+        if((tabs.size()>0)&&activity != null) {
+            String tabNumber = tabs.get(0);
+
+                if (tabNumber.startsWith("1\t")) {
+                    String kiosk[] = tabNumber.split("\t");
+                    if (kiosk.length == 2) {
+                        try {
+                            setTitle(kiosk[1]);
+                        } catch (Exception e) {
+                            //ignore this. It WILL be thrown while the service is changed.
+                        }
+                    }
+                } else if (tabNumber.startsWith("6\t")) {
+
+                    String channelInfo[] = tabNumber.split("\t");
+                    if(channelInfo.length==4) {
+                        setTitle(channelInfo[2]);
+                    }
+                } else {
+                    switch (tabNumber) {
+                        case "0":
+                            setTitle(getString(R.string.app_name));
+                            break;
+                        case "2":
+                            setTitle(getString(R.string.tab_subscriptions));
+                            break;
+                        case "3":
+                            setTitle(getString(R.string.fragment_whats_new));
+                            break;
+                        case "4":
+                            setTitle(getString(R.string.tab_bookmarks));
+                            break;
+                        case "5":
+                            setTitle(getString(R.string.title_activity_history));
+                            break;
+                    }
+                }
+
+
+        }
     }
 
     private void setIcons() {
@@ -138,19 +182,23 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                     }
                 } else if (tabNumber.startsWith("6\t")) {
                     tabToSet.setIcon(R.drawable.ic_channel_white_24dp);
-
                 } else {
                     switch (tabNumber) {
                         case "0":
                             tabToSet.setIcon(R.drawable.ic_whatshot_white_24dp);
+                            break;
                         case "2":
                             tabToSet.setIcon(R.drawable.ic_channel_white_24dp);
+                            break;
                         case "3":
                             tabToSet.setIcon(R.drawable.ic_rss_feed_white_24dp);
+                            break;
                         case "4":
                             tabToSet.setIcon(R.drawable.ic_bookmark_white_24dp);
+                            break;
                         case "5":
                             tabToSet.setIcon(R.drawable.ic_history_white_24dp);
+                            break;
                     }
                 }
 
@@ -280,13 +328,13 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                         case "0":
                             return new BlankFragment();
                         case "2":
-                            SubscriptionFragment sfragment = new SubscriptionFragment();
-                            sfragment.useAsFrontPage(true);
-                            return sfragment;
+                            SubscriptionFragment sFragment = new SubscriptionFragment();
+                            sFragment.useAsFrontPage(true);
+                            return sFragment;
                         case "3":
-                            FeedFragment ffragment = new FeedFragment();
-                            ffragment.useAsFrontPage(true);
-                            return ffragment;
+                            FeedFragment fFragment = new FeedFragment();
+                            fFragment.useAsFrontPage(true);
+                            return fFragment;
                         case "4":
                             BookmarkFragment bFragment = new BookmarkFragment();
                             bFragment.useAsFrontPage(true);
