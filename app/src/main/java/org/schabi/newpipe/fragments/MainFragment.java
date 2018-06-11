@@ -1,5 +1,6 @@
 package org.schabi.newpipe.fragments;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -168,8 +169,9 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             String tabNumber = tabs.get(i);
 
             TabLayout.Tab tabToSet = tabLayout.getTabAt(i);
+            Context c = getContext();
 
-            if (tabToSet != null) {
+            if (tabToSet != null && c != null) {
 
                 if (tabNumber.startsWith("1\t")) {
                     String kiosk[] = tabNumber.split("\t");
@@ -181,23 +183,23 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                         }
                     }
                 } else if (tabNumber.startsWith("6\t")) {
-                    tabToSet.setIcon(R.drawable.ic_channel_white_24dp);
+                    tabToSet.setIcon(ThemeHelper.resolveResourceIdFromAttr(getContext(), R.attr.ic_channel));
                 } else {
                     switch (tabNumber) {
                         case "0":
-                            tabToSet.setIcon(R.drawable.ic_whatshot_white_24dp);
+                            tabToSet.setIcon(ThemeHelper.resolveResourceIdFromAttr(getContext(), R.attr.ic_hot));
                             break;
                         case "2":
-                            tabToSet.setIcon(R.drawable.ic_channel_white_24dp);
+                            tabToSet.setIcon(ThemeHelper.resolveResourceIdFromAttr(getContext(), R.attr.ic_channel));
                             break;
                         case "3":
-                            tabToSet.setIcon(R.drawable.ic_rss_feed_white_24dp);
+                            tabToSet.setIcon(ThemeHelper.resolveResourceIdFromAttr(getContext(), R.attr.rss));
                             break;
                         case "4":
-                            tabToSet.setIcon(R.drawable.ic_bookmark_white_24dp);
+                            tabToSet.setIcon(ThemeHelper.resolveResourceIdFromAttr(getContext(), R.attr.ic_bookmark));
                             break;
                         case "5":
-                            tabToSet.setIcon(R.drawable.ic_history_white_24dp);
+                            tabToSet.setIcon(ThemeHelper.resolveResourceIdFromAttr(getContext(), R.attr.history));
                             break;
                     }
                 }
