@@ -20,14 +20,14 @@
             android:paddingBottom="2dp"
             android:paddingTop="2dp"
             android:text="@string/selection"
-            android:textStyle="bold" />
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="0dp"
-            android:background="@color/black_background_color">
+            android:background="@color/gray_transparent">
 
         </android.support.v7.widget.RecyclerView>
 
@@ -38,14 +38,14 @@
             android:paddingBottom="2dp"
             android:paddingTop="2dp"
             android:text="@string/chosenTabs"
-            android:textStyle="bold" />
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/usedTabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="0dp"
-            android:background="@color/black_background_color" />
+            android:background="@color/gray_transparent" />
     </LinearLayout>
 
     <LinearLayout

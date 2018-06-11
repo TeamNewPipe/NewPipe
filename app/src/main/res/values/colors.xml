@@ -35,7 +35,7 @@
     <color name="black_contrast_background_color">#23454545</color>
 
     <!-- Miscellaneous -->
-    <color name="duration_background_color">#AA000000</color>
+    <color name="duration_background_color">#aa000000</color>
     <color name="live_duration_background_color">#c8E53935</color>
     <color name="playlist_stream_count_background_color">#e6000000</color>
     <color name="duration_text_color">#EEFFFFFF</color>
@@ -70,5 +70,6 @@
     <color name="gray">#616161</color>
 
     <color name="black">#000</color>
+    <color name="gray_transparent">#be757575</color>
 
 </resources>
