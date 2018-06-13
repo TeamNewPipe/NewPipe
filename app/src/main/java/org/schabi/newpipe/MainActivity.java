@@ -269,8 +269,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupDrawerHeader() {
-        headerServiceView = findViewById(R.id.drawer_header_service_view);
-        Button action = findViewById(R.id.drawer_header_action_button);
+        NavigationView navigationView = findViewById(R.id.navigation);
+        View hView =  navigationView.getHeaderView(0);
+
+        headerServiceView = hView.findViewById(R.id.drawer_header_service_view);
+        Button action = hView.findViewById(R.id.drawer_header_action_button);
         action.setOnClickListener(view -> {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse("https://newpipe.schabi.org/blog/"));
