@@ -2,6 +2,7 @@ package org.schabi.newpipe.fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -93,6 +94,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
         prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         prefs.registerOnSharedPreferenceChangeListener(listener);
+
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
