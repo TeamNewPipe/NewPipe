@@ -52,4 +52,16 @@ android:focusable="true">
         android:textSize="18dp"
         android:textStyle="italic"/>
 
+    <ImageView
+        android:id="@+id/drawer_arrow"
+        android:layout_width="10dp"
+        android:layout_height="15dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
+        android:src="@drawable/ic_arrow_down_white" />
+
 </RelativeLayout>
