@@ -1,83 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:minWidth="550dp"
-    android:orientation="vertical"
-    android:padding="12dp">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_above="@id/buttonLayout"
+        android:layout_margin="2dp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/firstText"
+        <RelativeLayout
+            android:id="@+id/topBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="2dp"
-            android:paddingTop="2dp"
-            android:text="@string/selection"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal"
+            android:paddingBottom="3dp"
+            android:paddingTop="3dp">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="0dp"
-            android:background="@color/gray_transparent">
+            <TextView
+                android:id="@+id/secondText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="3dp"
+                android:text="@string/chosenTabs"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        </android.support.v7.widget.RecyclerView>
+            <Button
+                android:id="@+id/buttonAdd"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:background="@color/transparent_background_color"
+                android:paddingBottom="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="15dp"
+                android:paddingTop="5dp" />
 
-        <TextView
-            android:id="@+id/secondText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="2dp"
-            android:paddingTop="2dp"
-            android:text="@string/chosenTabs"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+        </RelativeLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/usedTabs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="0dp"
-            android:background="@color/gray_transparent" />
+            android:layout_height="match_parent"
+            android:layout_margin="0dp" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/buttonLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="10dp"
-        android:orientation="horizontal"
-        android:padding="4dp">
-
-        <TextView
-            android:id="@+id/cancelText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:paddingLeft="6dp"
-            android:paddingRight="6dp"
-            android:text="@string/cancel"
-            android:textColor="@color/black_settings_accent_color"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/confirmText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:text="@string/accept"
-            android:textColor="@color/black_settings_accent_color"
-            android:textStyle="bold" />
-
-    </LinearLayout>
 </RelativeLayout>

@@ -43,7 +43,8 @@
         android:title="@string/download_thumbnail_title"
         android:summary="@string/download_thumbnail_summary"/>
 
-    <Preference
+    <PreferenceScreen
+        android:fragment="org.schabi.newpipe.settings.ContentSettingsMain"
         android:summary="@string/main_page_content_summary"
         android:key="@string/main_page_content_key"
         android:title="@string/main_page_content"/>
