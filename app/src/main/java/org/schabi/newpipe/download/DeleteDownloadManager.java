@@ -24,7 +24,7 @@ import io.reactivex.subjects.PublishSubject;
 import us.shandian.giga.get.DownloadManager;
 import us.shandian.giga.get.DownloadMission;
 
-public class DeleteManager {
+public class DeleteDownloadManager {
 
     private static final String KEY_STATE = "delete_manager_state";
 
@@ -34,7 +34,7 @@ public class DeleteManager {
     private DownloadManager mDownloadManager;
     private PublishSubject<DownloadMission> publishSubject = PublishSubject.create();
 
-    DeleteManager(Activity activity) {
+    DeleteDownloadManager(Activity activity) {
         mPendingMap = new HashSet<>();
         mDisposableList = new ArrayList<>();
         mView = activity.findViewById(android.R.id.content);
@@ -59,19 +59,13 @@ public class DeleteManager {
     public void setDownloadManager(@NonNull DownloadManager downloadManager) {
         mDownloadManager = downloadManager;
 
-        if (mPendingMap.size() < 1) {
-            //nothing to do
-            return;
-        }
+        if (mPendingMap.size() < 1) return;
 
         showUndoDeleteSnackbar();
     }
 
     public void restoreState(@Nullable Bundle savedInstanceState) {
-        if (savedInstanceState == null) {
-            // nothing to do
-            return;
-        }
+        if (savedInstanceState == null) return;
 
         List<String> list = savedInstanceState.getStringArrayList(KEY_STATE);
         if (list != null) {
@@ -80,10 +74,7 @@ public class DeleteManager {
     }
 
     public void saveState(@Nullable Bundle outState) {
-        if (outState == null) {
-            // nothing to do
-            return;
-        }
+        if (outState == null) return;
 
         for (Disposable disposable : mDisposableList) {
             disposable.dispose();
@@ -93,10 +84,7 @@ public class DeleteManager {
     }
 
     private void showUndoDeleteSnackbar() {
-        if (mPendingMap.size() < 1) {
-            // nothing to do
-            return;
-        }
+        if (mPendingMap.size() < 1) return;
 
         String url = mPendingMap.iterator().next();
 
@@ -128,11 +116,11 @@ public class DeleteManager {
             @Override
             public void onDismissed(Snackbar transientBottomBar, int event) {
                 if (!disposable.isDisposed()) {
-                    mPendingMap.remove(mission.url);
                     Completable.fromAction(() -> deletePending(mission))
                             .subscribeOn(Schedulers.io())
                             .subscribe();
                 }
+                mPendingMap.remove(mission.url);
                 snackbar.removeCallback(this);
                 mDisposableList.remove(disposable);
                 showUndoDeleteSnackbar();
@@ -143,10 +131,7 @@ public class DeleteManager {
     }
 
     public void deletePending() {
-        if (mPendingMap.size() < 1) {
-            // nothing to do
-            return;
-        }
+        if (mPendingMap.size() < 1) return;
 
         HashSet<Integer> idSet = new HashSet<>();
         for (int i = 0; i < mDownloadManager.getCount(); i++) {
@@ -163,11 +148,6 @@ public class DeleteManager {
     }
 
     private void deletePending(@NonNull DownloadMission mission) {
-        if (!contains(mission)) {
-            // nothing to do
-            return;
-        }
-
         for (int i = 0; i < mDownloadManager.getCount(); i++) {
             if (mission.url.equals(mDownloadManager.getMission(i).url)) {
                 mDownloadManager.deleteMission(i);

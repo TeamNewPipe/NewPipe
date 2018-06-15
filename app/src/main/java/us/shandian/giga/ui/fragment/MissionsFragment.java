@@ -21,12 +21,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.download.DeleteManager;
+import org.schabi.newpipe.download.DeleteDownloadManager;
 
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import us.shandian.giga.get.DownloadManager;
-import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.ui.adapter.MissionAdapter;
 
@@ -43,7 +41,7 @@ public abstract class MissionsFragment extends Fragment {
     private GridLayoutManager mGridManager;
     private LinearLayoutManager mLinearManager;
     private Context mActivity;
-    private DeleteManager mDeleteManager;
+    private DeleteDownloadManager mDeleteDownloadManager;
     private Disposable mDeleteDisposable;
 
     private ServiceConnection mConnection = new ServiceConnection() {
@@ -52,8 +50,8 @@ public abstract class MissionsFragment extends Fragment {
         public void onServiceConnected(ComponentName name, IBinder binder) {
             mBinder = (DownloadManagerService.DMBinder) binder;
             mDownloadManager = setupDownloadManager(mBinder);
-            if (mDeleteManager != null) {
-                mDeleteManager.setDownloadManager(mDownloadManager);
+            if (mDeleteDownloadManager != null) {
+                mDeleteDownloadManager.setDownloadManager(mDownloadManager);
                 updateList();
             }
         }
@@ -66,10 +64,10 @@ public abstract class MissionsFragment extends Fragment {
 
     };
 
-    public void setDeleteManager(@NonNull DeleteManager deleteManager) {
-        mDeleteManager = deleteManager;
+    public void setDeleteManager(@NonNull DeleteDownloadManager deleteDownloadManager) {
+        mDeleteDownloadManager = deleteDownloadManager;
         if (mDownloadManager != null) {
-            mDeleteManager.setDownloadManager(mDownloadManager);
+            mDeleteDownloadManager.setDownloadManager(mDownloadManager);
             updateList();
         }
     }
@@ -126,8 +124,8 @@ public abstract class MissionsFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if (mDeleteManager != null) {
-            mDeleteDisposable = mDeleteManager.getUndoObservable().subscribe(mission -> {
+        if (mDeleteDownloadManager != null) {
+            mDeleteDisposable = mDeleteDownloadManager.getUndoObservable().subscribe(mission -> {
                 if (mAdapter != null) {
                     mAdapter.updateItemList();
                     mAdapter.notifyDataSetChanged();
@@ -164,7 +162,7 @@ public abstract class MissionsFragment extends Fragment {
     }
 
     private void updateList() {
-        mAdapter = new MissionAdapter((Activity) mActivity, mBinder, mDownloadManager, mDeleteManager, mLinear);
+        mAdapter = new MissionAdapter((Activity) mActivity, mBinder, mDownloadManager, mDeleteDownloadManager, mLinear);
 
         if (mLinear) {
             mList.setLayoutManager(mLinearManager);

@@ -25,7 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.download.DeleteManager;
+import org.schabi.newpipe.download.DeleteDownloadManager;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
@@ -56,15 +56,15 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
     private Activity mContext;
     private LayoutInflater mInflater;
     private DownloadManager mDownloadManager;
-    private DeleteManager mDeleteManager;
+    private DeleteDownloadManager mDeleteDownloadManager;
     private List<DownloadMission> mItemList;
     private DownloadManagerService.DMBinder mBinder;
     private int mLayout;
 
-    public MissionAdapter(Activity context, DownloadManagerService.DMBinder binder, DownloadManager downloadManager, DeleteManager deleteManager, boolean isLinear) {
+    public MissionAdapter(Activity context, DownloadManagerService.DMBinder binder, DownloadManager downloadManager, DeleteDownloadManager deleteDownloadManager, boolean isLinear) {
         mContext = context;
         mDownloadManager = downloadManager;
-        mDeleteManager = deleteManager;
+        mDeleteDownloadManager = deleteDownloadManager;
         mBinder = binder;
 
         mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -79,7 +79,7 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
 
         for (int i = 0; i < mDownloadManager.getCount(); i++) {
             DownloadMission mission = mDownloadManager.getMission(i);
-            if (!mDeleteManager.contains(mission)) {
+            if (!mDeleteDownloadManager.contains(mission)) {
                 mItemList.add(mDownloadManager.getMission(i));
             }
         }
@@ -264,7 +264,7 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
 
                         return true;
                     case R.id.delete:
-                        mDeleteManager.add(h.mission);
+                        mDeleteDownloadManager.add(h.mission);
                         updateItemList();
                         notifyDataSetChanged();
                         return true;
