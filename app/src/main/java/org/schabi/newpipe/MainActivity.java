@@ -106,7 +106,19 @@ public class MainActivity extends AppCompatActivity {
 
         drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
 
-        toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.drawer_open, R.string.drawer_close);
+        toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.drawer_open, R.string.drawer_close) {
+            @Override
+            public void onDrawerClosed(View view) { super.onDrawerClosed(view); }
+
+            @Override
+            public void onDrawerOpened(View drawerView) { super.onDrawerOpened(drawerView); }
+
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                super.onDrawerSlide(drawerView, 0);
+            }
+        };
         toggle.syncState();
         drawer.addDrawerListener(toggle);
         drawer.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
@@ -133,13 +145,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     private boolean changeService(MenuItem item) {
-        if (item.getGroupId() == R.id.menu_services_group) {
-            drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(false);
-            ServiceHelper.setSelectedServiceId(this, item.getItemId());
-            drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
-        } else {
+        if (item.getGroupId() != R.id.menu_services_group)
             return false;
-        }
+        drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(false);
+        ServiceHelper.setSelectedServiceId(this, item.getItemId());
+        drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
         drawer.closeDrawers();
         return true;
     }
