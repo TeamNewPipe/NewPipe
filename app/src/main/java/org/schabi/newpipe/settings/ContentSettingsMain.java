@@ -40,7 +40,7 @@ public class ContentSettingsMain extends Fragment {
     RecyclerView usedTabsView;
 
     List<String> usedTabs = new ArrayList<>();
-
+    private String saveString;
     public String[] allTabs = new String[7];
 
     @Override
@@ -81,10 +81,17 @@ public class ContentSettingsMain extends Fragment {
             }
         }
 
+        saveString = save.toString();
+    }
+
+    @Override
+    public void onPause() {
+        saveChanges();
         SharedPreferences sharedPreferences  = android.preference.PreferenceManager.getDefaultSharedPreferences(getContext());
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("saveUsedTabs", save.toString());
+        editor.putString("saveUsedTabs", saveString);
         editor.commit();
+        super.onPause();
     }
 
     private void initUsedTabs() {
