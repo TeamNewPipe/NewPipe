@@ -2,7 +2,6 @@ package org.schabi.newpipe.settings;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,12 +9,10 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.Fragment;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.util.Log;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.nononsenseapps.filepicker.Utils;
@@ -24,15 +21,12 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
-import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.ZipHelper;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -46,10 +40,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
 import java.util.zip.ZipFile;
-import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class ContentSettingsFragment extends BasePreferenceFragment {
 
@@ -101,12 +92,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         newpipe_settings.delete();
 
         addPreferencesFromResource(R.xml.content_settings);
-
-        Preference contentPreference = findPreference(getString(R.string.main_page_content_key));
-        contentPreference.setOnPreferenceClickListener((Preference p) -> {
-            new ContentSettingsDialog().show(getFragmentManager(),"select_content");
-            return true;
-        });
 
         Preference importDataPreference = findPreference(getString(R.string.import_data));
         importDataPreference.setOnPreferenceClickListener((Preference p) -> {

@@ -8,18 +8,16 @@
         android:id="@+id/tabName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="2dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
         android:layout_marginStart="0dp"
-        android:paddingBottom="2dp"
-        android:paddingLeft="2dp"
+        android:layout_toLeftOf="@id/buttonDown"
+        android:layout_toStartOf="@id/buttonDown"
         android:paddingStart="3dp"
-        android:paddingTop="2dp"
         android:textAppearance="?android:attr/textAppearanceListItem"
         android:textSize="24sp"
-        android:layout_toStartOf="@id/buttonDown"
-        android:layout_toLeftOf="@id/buttonDown"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:paddingLeft="3dp" />
 
     <Button
         android:id="@+id/buttonAddRemove"
