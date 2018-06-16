@@ -184,9 +184,6 @@ public class ContentSettingsMain extends Fragment {
         class TabViewHolder extends RecyclerView.ViewHolder {
 
             TextView text;
-            Button remove;
-            Button up;
-            Button down;
 
             public TabViewHolder(View itemView) {
                 super(itemView);

@@ -1,51 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
     <TextView
         android:id="@+id/tabName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:layout_marginStart="0dp"
-        android:layout_toLeftOf="@id/buttonDown"
-        android:layout_toStartOf="@id/buttonDown"
+        android:paddingLeft="3dp"
         android:paddingStart="3dp"
         android:textAppearance="?android:attr/textAppearanceListItem"
-        android:textSize="24sp"
-        android:paddingLeft="3dp" />
-
-    <Button
-        android:id="@+id/buttonAddRemove"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="0dp"
-        android:background="@color/transparent_background_color" />
-
-    <Button
-        android:id="@+id/buttonDown"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/buttonUp"
-        android:layout_toStartOf="@+id/buttonUp"
-        android:background="@color/transparent_background_color" />
-
-    <Button
-        android:id="@+id/buttonUp"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/buttonAddRemove"
-        android:layout_toStartOf="@+id/buttonAddRemove"
-        android:background="@color/transparent_background_color" />
+        android:textSize="24sp" />
 
 </RelativeLayout>
