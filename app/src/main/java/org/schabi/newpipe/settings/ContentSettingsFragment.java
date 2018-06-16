@@ -282,40 +282,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        final String mainPageContentKey = getString(R.string.main_page_content_key);
-        final Preference mainPagePref = findPreference(getString(R.string.main_page_content_key));
-        final String bpk = getString(R.string.blank_page_key);
-        if(defaultPreferences.getString(mainPageContentKey, bpk)
-                .equals(getString(R.string.channel_page_key))) {
-            mainPagePref.setSummary(defaultPreferences.getString(getString(R.string.main_page_selected_channel_name), "error"));
-        } else if(defaultPreferences.getString(mainPageContentKey, bpk)
-                .equals(getString(R.string.kiosk_page_key))) {
-            try {
-                StreamingService service = NewPipe.getService(
-                        defaultPreferences.getInt(
-                                getString(R.string.main_page_selected_service), 0));
-
-                String kioskName = KioskTranslator.getTranslatedKioskName(
-                        defaultPreferences.getString(
-                                getString(R.string.main_page_selectd_kiosk_id), "Trending"),
-                        getContext());
-
-                String summary =
-                        String.format(getString(R.string.service_kiosk_string),
-                                service.getServiceInfo().getName(),
-                                kioskName);
-
-                mainPagePref.setSummary(summary);
-            } catch (Exception e) {
-                onError(e);
-            }
-        }
-    }
-
     /*//////////////////////////////////////////////////////////////////////////
     // Error
     //////////////////////////////////////////////////////////////////////////*/
