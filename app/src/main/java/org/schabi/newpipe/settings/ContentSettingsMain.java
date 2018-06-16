@@ -57,7 +57,6 @@ public class ContentSettingsMain extends Fragment {
 
         tabNames();
         initUsedTabs();
-        initAddButton(rootView);
 
         usedTabsView = rootView.findViewById(R.id.usedTabs);
         usedTabsView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -80,7 +79,6 @@ public class ContentSettingsMain extends Fragment {
                 save.append("\n");
             }
         }
-
         saveString = save.toString();
     }
 
@@ -98,18 +96,6 @@ public class ContentSettingsMain extends Fragment {
         String save = android.preference.PreferenceManager.getDefaultSharedPreferences(getContext()).getString("saveUsedTabs", "1\n2\n4\n");
         String tabs[] = save.trim().split("\n");
         usedTabs.addAll(Arrays.asList(tabs));
-    }
-
-    private void initAddButton(View rootView) {
-        Button addButton = rootView.findViewById(R.id.buttonAdd);
-        addButton.setBackgroundResource(ThemeHelper.getIconByAttr(R.attr.ic_add, getActivity()));
-        addButton.setOnClickListener(v -> {
-            ContentSettingsMainDialog contentSettingsMainDialog = new ContentSettingsMainDialog();
-            contentSettingsMainDialog.setOnAddListener((int position) -> {
-                addTab(position);
-            });
-            contentSettingsMainDialog.show(getFragmentManager(), "select_channel");
-        });
     }
 
     private void tabNames() {
@@ -143,6 +129,10 @@ public class ContentSettingsMain extends Fragment {
         // ... code from gist
         @Override
         public void onItemDismiss(int position) {
+            if(position==getItemCount() - 1) {
+                notifyDataSetChanged();
+                return;
+            }
             usedTabs.remove(position);
             notifyItemRemoved(position);
             saveChanges();
@@ -150,6 +140,7 @@ public class ContentSettingsMain extends Fragment {
 
         @Override
         public void onItemMove(int fromPosition, int toPosition) {
+            if(fromPosition==getItemCount() - 1 || toPosition==getItemCount() - 1) return;
             if (fromPosition < toPosition) {
                 for (int i = fromPosition; i < toPosition; i++) {
                     Collections.swap(usedTabs, i, i + 1);
@@ -178,21 +169,31 @@ public class ContentSettingsMain extends Fragment {
 
         @Override
         public int getItemCount() {
-            return usedTabs.size();
+            return usedTabs.size() + 1;
         }
 
         class TabViewHolder extends RecyclerView.ViewHolder {
 
             TextView text;
+            View view;
 
             public TabViewHolder(View itemView) {
                 super(itemView);
 
                 text = itemView.findViewById(R.id.tabName);
+                view = itemView;
             }
 
             void bind(int position) {
-                if(usedTabs.get(position).startsWith("6\t")) {
+                if(position == getItemCount() - 1) {
+                    String newTabString = "+ " + getString(R.string.tab_new);
+                    text.setText(newTabString);
+                    view.setOnClickListener(v -> {
+                        ContentSettingsMainDialog contentSettingsMainDialog = new ContentSettingsMainDialog();
+                        contentSettingsMainDialog.setOnAddListener(ContentSettingsMain.this::addTab);
+                        contentSettingsMainDialog.show(getFragmentManager(), "select_channel");
+                    });
+                } else if(usedTabs.get(position).startsWith("6\t")) {
                     String channelInfo[] = usedTabs.get(position).split("\t");
                     String channelName = "";
                     if(channelInfo.length==4)   channelName = channelInfo[2];
@@ -273,6 +274,7 @@ public class ContentSettingsMain extends Fragment {
         @Override
         public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
             mAdapter.onItemDismiss(viewHolder.getAdapterPosition());
+
         }
     }
 

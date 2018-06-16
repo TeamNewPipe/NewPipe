@@ -35,6 +35,8 @@
     <string name="tab_main">Main</string>
     <string name="tab_subscriptions">Subscriptions</string>
     <string name="tab_bookmarks">Bookmarks</string>
+    <string name="tab_new">New Tab</string>
+    <string name="tab_chose">Chose Tab</string>
 
     <string name="fragment_whats_new">What\'s New</string>
 
