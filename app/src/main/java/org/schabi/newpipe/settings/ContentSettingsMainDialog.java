@@ -101,26 +101,17 @@ public class ContentSettingsMainDialog extends DialogFragment {
         class TabViewHolder extends RecyclerView.ViewHolder {
 
             TextView text;
-            Button add;
-            Button up;
-            Button down;
             View view;
 
             public TabViewHolder(View itemView) {
                 super(itemView);
 
                 text = itemView.findViewById(R.id.tabName);
-                add = itemView.findViewById(R.id.buttonAddRemove);
-                up = itemView.findViewById(R.id.buttonUp);
-                down = itemView.findViewById(R.id.buttonDown);
-                view = itemView;
+                view = itemView.findViewById(R.id.layout);
             }
 
             void bind(int position) {
-                up.setBackgroundResource(0);
-                down.setBackgroundResource(0);
                 text.setText(allTabs[position]);
-                add.setBackgroundResource(0);
                 view.setOnClickListener(v -> {
                     addTab(position);
                 });
