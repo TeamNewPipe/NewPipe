@@ -317,32 +317,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     }
 
     /*//////////////////////////////////////////////////////////////////////////
-    // Utils
-    //////////////////////////////////////////////////////////////////////////*/
-    private String getMainPagePrefSummery(final String mainPrefOldValue, final ListPreference mainPageContentPref) {
-        if(mainPrefOldValue.equals(getString(R.string.channel_page_key))) {
-            return defaultPreferences.getString(getString(R.string.main_page_selected_channel_name), "error");
-        } else {
-            return mainPageContentPref.getSummary().toString();
-        }
-    }
-
-    private int getMainPageSummeryByKey(final String key) {
-        if(key.equals(getString(R.string.blank_page_key))) {
-            return R.string.blank_page_summary;
-        } else if(key.equals(getString(R.string.kiosk_page_key))) {
-            return R.string.kiosk_page_summary;
-        } else if(key.equals(getString(R.string.feed_page_key))) {
-            return R.string.feed_page_summary;
-        } else if(key.equals(getString(R.string.subscription_page_key))) {
-            return R.string.subscription_page_summary;
-        } else if(key.equals(getString(R.string.channel_page_key))) {
-            return R.string.channel_page_summary;
-        }
-        return R.string.blank_page_summary;
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
     // Error
     //////////////////////////////////////////////////////////////////////////*/
 
