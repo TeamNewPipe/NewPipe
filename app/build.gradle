@@ -96,4 +96,5 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.9.1'
     debugImplementation "com.facebook.stetho:stetho-okhttp3:$okHttpLibVersion"
     implementation 'com.android.support.constraint:constraint-layout:1.1.1'
+    implementation 'com.android.support:cardview-v7:27.1.1'
 }
