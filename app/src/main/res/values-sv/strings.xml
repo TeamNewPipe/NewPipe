@@ -29,7 +29,7 @@
     <string name="download_path_audio_summary">Plats för att lagra nerladdat ljud i</string>
     <string name="download_path_audio_dialog_title">Ange nerladdningsplats för ljudfiler</string>
 
-    <string name="autoplay_by_calling_app_summary">Spelar automatiskt upp en video när NewPipe öppnas av en annan app</string>
+    <string name="autoplay_by_calling_app_summary">Automatiskt spelar en video upp när NewPipe öppnas av en annan app</string>
     <string name="default_resolution_title">Standardupplösning</string>
     <string name="default_popup_resolution_title">Standardupplösning för popup</string>
     <string name="show_higher_resolutions_title">Visa högre upplösningar</string>
@@ -41,7 +41,7 @@
     <string name="play_audio">Ljud</string>
     <string name="default_audio_format_title">Standardformat för ljud</string>
     <string name="default_video_format_title">Videoformat som föredras</string>
-    <string name="webm_description">WebM — fritt format</string>
+    <string name="webm_description">WebM — öppet format</string>
     <string name="m4a_description">M4A — bättre kvalité</string>
     <string name="theme_title">Tema</string>
     <string name="light_theme_title">Ljus</string>
@@ -57,7 +57,7 @@
     <string name="download_dialog_title">Ladda ner</string>
 
     <string name="next_video_title">Nästa video</string>
-    <string name="show_next_and_similar_title">Visa nästkommande och liknande videor</string>
+    <string name="show_next_and_similar_title">Visa \'nästkommande\' och \'liknande\' videor</string>
     <string name="url_not_supported_toast">Webbadressen stöds inte</string>
     <string name="search_language_title">Standard innehållsspråk</string>
     <string name="settings_category_video_audio_title">Video &amp; Ljud</string>
@@ -123,15 +123,15 @@
     <string name="autoplay_by_calling_app_title">Autospela</string>
     <string name="enable_search_history_title">Sök historik</string>
     <string name="enable_search_history_summary">Spara sökfrågor lokalt</string>
-    <string name="enable_watch_history_title">Historik</string>
+    <string name="enable_watch_history_title">Historik &amp; Cacheminne</string>
     <string name="enable_watch_history_summary">Håll koll på videor som du tittat på</string>
     <string name="resume_on_audio_focus_gain_title">Fortsätt då fokus fås</string>
     <string name="resume_on_audio_focus_gain_summary">Fortsätta spela efter avbrott (t.ex. telefonsamtal)</string>
-    <string name="show_hold_to_append_title">Visa \"Håll för att lägga till\" tips</string>
+    <string name="show_hold_to_append_title">Visa \"håll för att lägga till\" tips</string>
     <string name="show_hold_to_append_summary">Visa tips när bakgrunds- eller popup-knappen trycks på sidan för videodetaljer</string>
     <string name="settings_category_player_title">Spelare</string>
     <string name="settings_category_player_behavior_title">Beteende</string>
-    <string name="settings_category_history_title">Historik</string>
+    <string name="settings_category_history_title">Historik &amp; Cacheminne</string>
     <string name="background_player_append">Tillagd till bakgrunds-spelar kön</string>
     <string name="popup_playing_append">Tillagd till popup-spelar kön</string>
     <string name="playlist">Spellista</string>
@@ -237,7 +237,7 @@
     <string name="tab_about">Om</string>
     <string name="tab_contributors">Medverkande</string>
     <string name="tab_licenses">Licenser</string>
-    <string name="app_description">Gratis och enkel YouTube-app för Android.</string>
+    <string name="app_description">Öppet och enkel Android app för mediastreaming.</string>
     <string name="view_on_github">Visa på GitHub</string>
     <string name="app_license_title">NewPipes licens</string>
     <string name="contribution_encouragement">Vad du än har för idéer gällande översättning, designändringar, kod rengöring eller riktigt tunga så är hjälp alltid välkommet. Ju mer som görs desto bättre blir det!</string>
@@ -280,8 +280,25 @@
     <string name="start_here_on_background">Börja här i bakgrunden</string>
     <string name="start_here_on_popup">Börja här i popup</string>
 <string name="donation_title">Donera</string>
-    <string name="donation_encouragement">NewPipe utvecklas av frivilliga som spenderar sin fritid på att ge dig den bästa användarupplevelsen. Nu är det tid att ge tillbaka för att säkerställa att utvecklarna kan göra NewPipe ännu bättre medan de njuter av en kopp kaffe!</string>
+    <string name="donation_encouragement">NewPipe utvecklas av frivilliga som spenderar sin fritid på att ge dig den bästa användarupplevelsen. Nu är det tid att ge tillbaka för att säkerställa att utvecklarna kan göra NewPipe ännu bättre medan de njuter av en kopp kaffe.</string>
     <string name="give_back">Ge tillbaka</string>
     <string name="website_title">Webbplats</string>
     <string name="website_encouragement">För att få mer information och de senaste nyheterna om NewPipe, besök vår webbplats.</string>
+    <string name="show_info">Visa info</string>
+
+    <string name="tab_bookmarks">Bokmärken</string>
+
+    <string name="controls_add_to_playlist_title">Lägga till</string>
+
+    <string name="use_inexact_seek_title">Använda snabb inexact sökning</string>
+    <string name="download_thumbnail_title">Ladda miniatyrer</string>
+    <string name="download_thumbnail_summary">Inaktivera för att stoppa alla miniatyrer från lastning och spara på nät och minnesanvändning. Ändring av detta kommer att rensa cache-minnet.</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Bild cacheminnet var rensad</string>
+    <string name="service_title">Tjänst</string>
+    <string name="settings_category_debug_title">Debug</string>
+    <string name="always">Alltid</string>
+    <string name="just_once">Bara en gång</string>
+    <string name="file">Fil</string>
+
+    <string name="toggle_orientation">Byta orientationen</string>
     </resources>
