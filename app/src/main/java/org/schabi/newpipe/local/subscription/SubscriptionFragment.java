@@ -240,14 +240,7 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
     }
 
     private void onImportFromServiceSelected(int serviceId) {
-        FragmentManager fragmentManager;
-
-        if (getParentFragment() == null)
-        {
-            fragmentManager = getFragmentManager();
-        } else {
-            fragmentManager = getParentFragment().getFragmentManager();
-        }
+        FragmentManager fragmentManager = getFM();
         NavigationHelper.openSubscriptionsImportFragment(fragmentManager, serviceId);
     }
 
@@ -326,14 +319,7 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
         infoListAdapter.setOnChannelSelectedListener(new OnClickGesture<ChannelInfoItem>() {
             @Override
             public void selected(ChannelInfoItem selectedItem) {
-                FragmentManager fragmentManager;
-
-                if (getParentFragment() == null)
-                {
-                    fragmentManager = getFragmentManager();
-                } else {
-                    fragmentManager = getParentFragment().getFragmentManager();
-                }
+                FragmentManager fragmentManager = getFM();
                 NavigationHelper.openChannelFragment(fragmentManager,
                         selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName());
             }
@@ -342,17 +328,19 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
         //noinspection ConstantConditions
         whatsNewItemListHeader.setOnClickListener(v ->
         {
-            FragmentManager fragmentManager;
-
-            if (getParentFragment() == null)
-            {
-                fragmentManager = getFragmentManager();
-            } else {
-                fragmentManager = getParentFragment().getFragmentManager();
-            }
+            FragmentManager fragmentManager = getFM();
             NavigationHelper.openWhatsNewFragment(fragmentManager);
         });
         importExportListHeader.setOnClickListener(v -> importExportOptions.switchState());
+    }
+
+    private FragmentManager getFM() {
+        if (getParentFragment() == null)
+        {
+            return getFragmentManager();
+        } else {
+            return getParentFragment().getFragmentManager();
+        }
     }
 
     private void resetFragment() {
