@@ -60,6 +60,14 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     private SharedPreferences prefs;
     private Bundle savedInstanceStateBundle;
 
+    private static final String TAB_NUMBER_BLANK = "0";
+    private static final String TAB_NUMBER_KIOSK = "1";
+    private static final String TAB_NUMBER_SUBSCIRPTIONS = "2";
+    private static final String TAB_NUMBER_FEED = "3";
+    private static final String TAB_NUMBER_BOOKMARKS = "4";
+    private static final String TAB_NUMBER_HISTORY = "5";
+    private static final String TAB_NUMBER_CHANNEL = "6";
+
     SharedPreferences.OnSharedPreferenceChangeListener listener = (prefs, key) -> {
         if(key.equals("service")||key.equals("saveUsedTabs")) {
             mainPageChanged();
@@ -127,7 +135,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         if((tabs.size()>0)&&activity != null) {
             String tabNumber = tabs.get(0);
 
-                if (tabNumber.startsWith("1\t")) {
+                if (tabNumber.startsWith(TAB_NUMBER_KIOSK + "\t")) {
                     String kiosk[] = tabNumber.split("\t");
                     if (kiosk.length == 2) {
                         try {
@@ -136,7 +144,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                             //ignore this. It WILL be thrown while the service is changed.
                         }
                     }
-                } else if (tabNumber.startsWith("6\t")) {
+                } else if (tabNumber.startsWith(TAB_NUMBER_CHANNEL + "\t")) {
 
                     String channelInfo[] = tabNumber.split("\t");
                     if(channelInfo.length==4) {
@@ -144,19 +152,19 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                     }
                 } else {
                     switch (tabNumber) {
-                        case "0":
+                        case TAB_NUMBER_BLANK:
                             setTitle(getString(R.string.app_name));
                             break;
-                        case "2":
+                        case TAB_NUMBER_SUBSCIRPTIONS:
                             setTitle(getString(R.string.tab_subscriptions));
                             break;
-                        case "3":
+                        case TAB_NUMBER_FEED:
                             setTitle(getString(R.string.fragment_whats_new));
                             break;
-                        case "4":
+                        case TAB_NUMBER_BOOKMARKS:
                             setTitle(getString(R.string.tab_bookmarks));
                             break;
-                        case "5":
+                        case TAB_NUMBER_HISTORY:
                             setTitle(getString(R.string.title_activity_history));
                             break;
                     }
@@ -175,7 +183,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
             if (tabToSet != null && c != null) {
 
-                if (tabNumber.startsWith("1\t")) {
+                if (tabNumber.startsWith(TAB_NUMBER_KIOSK + "\t")) {
                     String kiosk[] = tabNumber.split("\t");
                     if (kiosk.length == 2) {
                         try {
@@ -184,23 +192,23 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                             //ignore this. It WILL be thrown while the service is changed.
                         }
                     }
-                } else if (tabNumber.startsWith("6\t")) {
+                } else if (tabNumber.startsWith(TAB_NUMBER_CHANNEL + "\t")) {
                     tabToSet.setIcon(ThemeHelper.resolveResourceIdFromAttr(getContext(), R.attr.ic_channel));
                 } else {
                     switch (tabNumber) {
-                        case "0":
+                        case TAB_NUMBER_BLANK:
                             tabToSet.setIcon(ThemeHelper.resolveResourceIdFromAttr(getContext(), R.attr.ic_hot));
                             break;
-                        case "2":
+                        case TAB_NUMBER_SUBSCIRPTIONS:
                             tabToSet.setIcon(ThemeHelper.resolveResourceIdFromAttr(getContext(), R.attr.ic_channel));
                             break;
-                        case "3":
+                        case TAB_NUMBER_FEED:
                             tabToSet.setIcon(ThemeHelper.resolveResourceIdFromAttr(getContext(), R.attr.rss));
                             break;
-                        case "4":
+                        case TAB_NUMBER_BOOKMARKS:
                             tabToSet.setIcon(ThemeHelper.resolveResourceIdFromAttr(getContext(), R.attr.ic_bookmark));
                             break;
-                        case "5":
+                        case TAB_NUMBER_HISTORY:
                             tabToSet.setIcon(ThemeHelper.resolveResourceIdFromAttr(getContext(), R.attr.history));
                             break;
                     }
@@ -231,7 +239,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         }
 
         for(String tabNumber:tabsArray) {
-            if(tabNumber.equals("1")) {
+            if(tabNumber.equals(TAB_NUMBER_KIOSK)) {
                 if (kl != null) {
                     for(String ks : kl.getAvailableKiosks()) {
                         tabs.add(tabNumber+"\t"+ks);
@@ -302,7 +310,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         public Fragment getItem(int position) {
             String tabNumber = tabs.get(position);
 
-            if(tabNumber.startsWith("1\t")) {
+            if(tabNumber.startsWith(TAB_NUMBER_KIOSK + "\t")) {
                 String kiosk[] = tabNumber.split("\t");
                 if(kiosk.length==2) {
                     KioskFragment fragment = null;
@@ -318,7 +326,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                                         "none", "", R.string.app_ui_crash));
                     }
                 }
-            } else if(tabNumber.startsWith("6\t")) {
+            } else if(tabNumber.startsWith(TAB_NUMBER_CHANNEL + "\t")) {
                 String channelInfo[] = tabNumber.split("\t");
                 if(channelInfo.length==4) {
                     ChannelFragment fragment = ChannelFragment.getInstance(Integer.parseInt(channelInfo[3]), channelInfo[1], channelInfo[2]);
@@ -329,21 +337,21 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                 }
             } else {
                     switch (tabNumber) {
-                        case "0":
+                        case TAB_NUMBER_BLANK:
                             return new BlankFragment();
-                        case "2":
+                        case TAB_NUMBER_SUBSCIRPTIONS:
                             SubscriptionFragment sFragment = new SubscriptionFragment();
                             sFragment.useAsFrontPage(true);
                             return sFragment;
-                        case "3":
+                        case TAB_NUMBER_FEED:
                             FeedFragment fFragment = new FeedFragment();
                             fFragment.useAsFrontPage(true);
                             return fFragment;
-                        case "4":
+                        case TAB_NUMBER_BOOKMARKS:
                             BookmarkFragment bFragment = new BookmarkFragment();
                             bFragment.useAsFrontPage(true);
                             return bFragment;
-                        case "5":
+                        case TAB_NUMBER_HISTORY:
                             StatisticsPlaylistFragment cFragment = new StatisticsPlaylistFragment();
                             cFragment.useAsFrontPage(true);
                             return cFragment;

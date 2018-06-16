@@ -242,14 +242,7 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
     }
 
     private void onImportFromServiceSelected(int serviceId) {
-        FragmentManager fragmentManager;
-
-        if (getParentFragment() == null)
-        {
-            fragmentManager = getFragmentManager();
-        } else {
-            fragmentManager = getParentFragment().getFragmentManager();
-        }
+        FragmentManager fragmentManager = getFM();
         NavigationHelper.openSubscriptionsImportFragment(fragmentManager, serviceId);
     }
 
@@ -328,37 +321,25 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
         infoListAdapter.setOnChannelSelectedListener(new OnClickGesture<ChannelInfoItem>() {
             @Override
             public void selected(ChannelInfoItem selectedItem) {
-                try {
-                    final FragmentManager fragmentManager = getParentFragment() == null
-                            ? getFragmentManager()
-                            : getParentFragment().getFragmentManager();
-
-                    // Requires the parent fragment to find holder for fragment replacement
-                    NavigationHelper.openChannelFragment(fragmentManager,
-                            selectedItem.getServiceId(),
-                            selectedItem.getUrl(),
-                            selectedItem.getName());
-                } catch (Exception e) {
-                    ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
-                }
-
+                FragmentManager fragmentManager = getFM();
+                NavigationHelper.openChannelFragment(fragmentManager,
+                        selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName());
             }
         });
 
         //noinspection ConstantConditions
         whatsNewItemListHeader.setOnClickListener(v ->
         {
-            FragmentManager fragmentManager;
-
-            if (getParentFragment() == null)
-            {
-                fragmentManager = getFragmentManager();
-            } else {
-                fragmentManager = getParentFragment().getFragmentManager();
-            }
+            FragmentManager fragmentManager = getFM();
             NavigationHelper.openWhatsNewFragment(fragmentManager);
         });
         importExportListHeader.setOnClickListener(v -> importExportOptions.switchState());
+    }
+
+    private FragmentManager getFM() {
+        return getParentFragment() == null
+                ? getFragmentManager()
+                : getParentFragment().getFragmentManager();
     }
 
     private void resetFragment() {
