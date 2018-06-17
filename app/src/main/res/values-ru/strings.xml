@@ -1,20 +1,20 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="view_count_text">%1$s просмотров</string>
-    <string name="upload_date_text">Опубликовано %1$s</string>
-    <string name="no_player_found">Ни одного потокового проигрывателя не было найдено. Установить VLC?</string>
+    <string name="upload_date_text">Опубликован в %1$s</string>
+    <string name="no_player_found">Потоковый плеер не найден. Установить VLC?</string>
     <string name="install">Установить</string>
     <string name="cancel">Отмена</string>
     <string name="open_in_browser">Открыть в браузере</string>
     <string name="share">Поделиться</string>
     <string name="download">Скачать</string>
-    <string name="search">Найти</string>
+    <string name="search">Поиск</string>
     <string name="settings">Настройки</string>
     <string name="did_you_mean">Возможно, вы имели в виду: %1$s?</string>
     <string name="share_dialog_title">Поделиться с помощью</string>
     <string name="choose_browser">Выбрать браузер</string>
     <string name="screen_rotation">поворот</string>
-    <string name="download_path_title">Папка для загрузки видео</string>
+    <string name="download_path_title">Путь для загрузки видео</string>
     <string name="download_path_summary">Папка для хранения загруженных видео</string>
     <string name="download_path_dialog_title">Введите путь к папке для загрузки видео</string>
     <string name="default_resolution_title">Разрешение по умолчанию</string>
@@ -155,7 +155,7 @@
     <string name="disabled">Отключено</string>
     <string name="popup_resizing_indicator_title">Изменение размера</string>
 
-    <string name="use_external_video_player_summary">Для некоторых видео может отсутствовать звук, если включена эта опция</string>
+    <string name="use_external_video_player_summary">В некоторых разрешениях НЕ будет звука, если эта опция выбрана</string>
     <string name="short_million"> млн.</string>
     <string name="short_billion"> млрд.</string>
 
@@ -293,7 +293,7 @@
     <string name="start_here_on_main">Воспроизвести тут</string>
     <string name="start_here_on_background">Воспроизвести в фоне</string>
     <string name="start_here_on_popup">Воспроизвести в окне</string>
-<string name="no_player_found_toast">Ни одного потокового проигрывателя не было найдено (вы можете установить VLC)</string>
+<string name="no_player_found_toast">Потоковый плеер не найден (вы можете установить VLC)</string>
     <string name="default_content_country_title">Страна контента по умолчанию</string>
     <string name="service_title">Сервис</string>
     <string name="always">Всегда</string>
