@@ -1,5 +1,7 @@
 package org.schabi.newpipe;
 
+import android.annotation.SuppressLint;
+import android.app.FragmentManager;
 import android.app.IntentService;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -8,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AlertDialog;
@@ -23,6 +26,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.extractor.Info;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
@@ -31,6 +35,8 @@ import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.stream.VideoStream;
+import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.playqueue.ChannelPlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
@@ -38,16 +44,19 @@ import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Observer;
 
 import icepick.Icepick;
 import icepick.State;
@@ -77,6 +86,8 @@ public class RouterActivity extends AppCompatActivity {
     protected String currentUrl;
     protected CompositeDisposable disposables = new CompositeDisposable();
 
+    private boolean notDownload = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,10 +106,16 @@ public class RouterActivity extends AppCompatActivity {
                 ? R.style.RouterActivityThemeLight : R.style.RouterActivityThemeDark);
     }
 
+    @SuppressLint("MissingSuperCall")
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        Icepick.saveInstanceState(this, outState);
+
+    }
+
+    @Override
+    protected void onPause() {
+
+        super.onPause();
     }
 
     @Override
@@ -165,6 +182,7 @@ public class RouterActivity extends AppCompatActivity {
         final String videoPlayerKey = getString(R.string.video_player_key);
         final String backgroundPlayerKey = getString(R.string.background_player_key);
         final String popupPlayerKey = getString(R.string.popup_player_key);
+        final String downloadKey = getString(R.string.download_key);
         final String alwaysAskKey = getString(R.string.always_ask_open_action_key);
 
         if (selectedChoiceKey.equals(alwaysAskKey)) {
@@ -179,6 +197,8 @@ public class RouterActivity extends AppCompatActivity {
             }
         } else if (selectedChoiceKey.equals(showInfoKey)) {
             handleChoice(showInfoKey);
+        } else if (selectedChoiceKey.equals(downloadKey)) {
+            handleChoice(downloadKey);
         } else {
             final boolean isExtVideoEnabled = preferences.getBoolean(getString(R.string.use_external_video_player_key), false);
             final boolean isExtAudioEnabled = preferences.getBoolean(getString(R.string.use_external_audio_player_key), false);
@@ -236,7 +256,9 @@ public class RouterActivity extends AppCompatActivity {
                 .setCancelable(true)
                 .setNegativeButton(R.string.just_once, dialogButtonsClickListener)
                 .setPositiveButton(R.string.always, dialogButtonsClickListener)
-                .setOnDismissListener((dialog) -> finish())
+                .setOnDismissListener((dialog) -> {
+                    if(notDownload) finish();
+                })
                 .create();
 
         //noinspection CodeBlock2Expr
@@ -316,6 +338,9 @@ public class RouterActivity extends AppCompatActivity {
                     resolveResourceIdFromAttr(context, R.attr.audio)));
         }
 
+        returnList.add(new AdapterChoiceItem(getString(R.string.download_key), getString(R.string.download),
+                resolveResourceIdFromAttr(context, R.attr.download)));
+
         return returnList;
     }
 
@@ -333,6 +358,7 @@ public class RouterActivity extends AppCompatActivity {
         positiveButton.setEnabled(state);
     }
 
+    @SuppressLint("CheckResult")
     private void handleChoice(final String selectedChoiceKey) {
         final List<String> validChoicesList = Arrays.asList(getResources().getStringArray(R.array.preferred_open_action_values_list));
         if (validChoicesList.contains(selectedChoiceKey)) {
@@ -344,6 +370,33 @@ public class RouterActivity extends AppCompatActivity {
         if (selectedChoiceKey.equals(getString(R.string.popup_player_key)) && !PermissionHelper.isPopupEnabled(this)) {
             PermissionHelper.showPopupEnablementToast(this);
             finish();
+            return;
+        }
+
+        if (selectedChoiceKey.equals(getString(R.string.download_key))) {
+            ExtractorHelper.getStreamInfo(currentServiceId, currentUrl, true)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe((@NonNull StreamInfo result) -> {
+                        StreamInfo currentInfo = result;
+                        List<VideoStream> sortedVideoStreams = ListHelper.getSortedStreamVideosList(this, currentInfo.getVideoStreams(), currentInfo.getVideoOnlyStreams(), false);
+                        int selectedVideoStreamIndex = ListHelper.getDefaultResolutionIndex(this, sortedVideoStreams);
+
+                        android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+
+                        DownloadDialog downloadDialog = DownloadDialog.newInstance(currentInfo);
+                        downloadDialog.setVideoStreams(sortedVideoStreams);
+                        downloadDialog.setAudioStreams(currentInfo.getAudioStreams());
+                        downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex);
+                        downloadDialog.show(fm, "downloadDialog");
+                        fm.executePendingTransactions();
+                        downloadDialog.getDialog().setOnDismissListener(dialog -> {
+                            finish();
+                        });
+                    }, (@NonNull Throwable throwable) -> {
+                        onError();
+                    });
+            notDownload = false;
             return;
         }
 
