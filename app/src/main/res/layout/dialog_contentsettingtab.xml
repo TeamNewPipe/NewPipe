@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/layout"
+    android:id="@+id/layoutCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="0dp"
     android:layout_marginTop="1dp"
     android:orientation="horizontal">
 
@@ -15,10 +16,11 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:paddingBottom="6dp"
-        android:paddingLeft="3dp"
+        android:paddingBottom="9dp"
+        android:paddingLeft="19dp"
+        android:paddingRight="19dp"
         android:paddingStart="3dp"
-        android:paddingTop="6dp"
+        android:paddingTop="9dp"
         android:textAppearance="?android:attr/textAppearanceListItem"
         android:textSize="16sp" />
 

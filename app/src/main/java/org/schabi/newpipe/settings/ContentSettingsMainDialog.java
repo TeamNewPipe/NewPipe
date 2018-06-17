@@ -11,6 +11,7 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -50,7 +51,6 @@ public class ContentSettingsMainDialog extends DialogFragment {
         allTabs.setLayoutManager(new LinearLayoutManager(getContext()));
         allAdapter = new AllAdapter();
         allTabs.setAdapter(allAdapter);
-        allTabs.addItemDecoration(new DividerItemDecoration(getActivity()));
     }
 
     private void tabNames() {
@@ -107,48 +107,16 @@ public class ContentSettingsMainDialog extends DialogFragment {
                 super(itemView);
 
                 text = itemView.findViewById(R.id.tabName);
-                view = itemView.findViewById(R.id.layout);
+                view = itemView.findViewById(R.id.layoutCard);
             }
 
             void bind(int position) {
                 text.setText(allTabs[position]);
+                ((CardView) view).setCardElevation(0);
                 view.setOnClickListener(v -> {
                     addTab(position);
                 });
 
-            }
-        }
-    }
-
-    public class DividerItemDecoration extends RecyclerView.ItemDecoration {
-
-        private final int[] ATTRS = new int[]{android.R.attr.listDivider};
-
-        private Drawable divider;
-
-        public DividerItemDecoration(Context context) {
-            final TypedArray styledAttributes = context.obtainStyledAttributes(ATTRS);
-            divider = styledAttributes.getDrawable(0);
-            styledAttributes.recycle();
-        }
-
-
-        @Override
-        public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
-            int left = parent.getPaddingLeft();
-            int right = parent.getWidth() - parent.getPaddingRight();
-
-            int childCount = parent.getChildCount();
-            for (int i = 0; i < childCount; i++) {
-                View child = parent.getChildAt(i);
-
-                RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
-
-                int top = child.getBottom() + params.bottomMargin;
-                int bottom = top + divider.getIntrinsicHeight();
-
-                divider.setBounds(left, top, right, bottom);
-                divider.draw(c);
             }
         }
     }
