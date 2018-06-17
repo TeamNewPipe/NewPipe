@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.PreferenceManager;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -18,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import org.schabi.newpipe.R;
@@ -176,11 +178,13 @@ public class ContentSettingsMain extends Fragment {
 
             TextView text;
             View view;
+            CardView cardView;
 
             public TabViewHolder(View itemView) {
                 super(itemView);
 
                 text = itemView.findViewById(R.id.tabName);
+                cardView = itemView.findViewById(R.id.layoutCard);
                 view = itemView;
             }
 

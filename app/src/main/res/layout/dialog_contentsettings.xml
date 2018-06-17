@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relLay"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -8,6 +9,8 @@
         android:id="@+id/usedTabs"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="0dp" />
+        android:layout_margin="0dp"
+        android:paddingBottom="0dp"
+        android:paddingTop="0dp" />
 
 </RelativeLayout>
