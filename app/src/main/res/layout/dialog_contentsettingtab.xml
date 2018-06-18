@@ -12,7 +12,7 @@
     android:paddingBottom="4dp"
     android:paddingTop="4dp"
     app:cardCornerRadius="5dp"
-    app:cardElevation="12dp">
+    app:cardElevation="4dp">
 
     <ImageView
         android:id="@+id/handle"

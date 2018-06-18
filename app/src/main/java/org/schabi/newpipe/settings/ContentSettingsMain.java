@@ -2,8 +2,10 @@ package org.schabi.newpipe.settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -120,6 +122,7 @@ public class ContentSettingsMain extends Fragment {
             contentSettingsMainDialog.setOnAddListener(ContentSettingsMain.this::addTab);
             contentSettingsMainDialog.show(getFragmentManager(), "select_channel");
         });
+        fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.light_settings_accent_color)));
     }
 
 
