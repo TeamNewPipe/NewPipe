@@ -132,11 +132,7 @@ public class ContentSettingsMain extends Fragment {
 
 
     private void addTab(int position) {
-        if(position!=6) {
-            usedTabs.add(String.valueOf(position));
-            usedAdapter.notifyDataSetChanged();
-            saveChanges();
-        } else {
+        if(position==6) {
             SelectChannelFragment selectChannelFragment = new SelectChannelFragment();
             selectChannelFragment.setOnSelectedLisener((String url, String name, int service) -> {
                 usedTabs.add(position+"\t"+url+"\t"+name+"\t"+service);
@@ -144,6 +140,18 @@ public class ContentSettingsMain extends Fragment {
                 saveChanges();
             });
             selectChannelFragment.show(getFragmentManager(), "select_channel");
+        } else if(position==1) {
+            SelectKioskFragment selectKioskFragment = new SelectKioskFragment();
+            selectKioskFragment.setOnSelectedLisener((String kioskId, int service_id) -> {
+                usedTabs.add(position+"\t"+kioskId+"\t"+service_id);
+                usedAdapter.notifyDataSetChanged();
+                saveChanges();
+            });
+            selectKioskFragment.show(getFragmentManager(), "select_kiosk");
+        } else {
+            usedTabs.add(String.valueOf(position));
+            usedAdapter.notifyDataSetChanged();
+            saveChanges();
         }
     }
 
@@ -212,8 +220,14 @@ public class ContentSettingsMain extends Fragment {
                 if(usedTabs.get(position).startsWith("6\t")) {
                     String channelInfo[] = usedTabs.get(position).split("\t");
                     String channelName = "";
-                    if(channelInfo.length==4)   channelName = channelInfo[2];
-                    String textToSet = allTabs[6]+": "+channelName;
+                    if (channelInfo.length == 4) channelName = channelInfo[2];
+                    String textToSet = allTabs[6] + ": " + channelName;
+                    text.setText(textToSet);
+                } else if(usedTabs.get(position).startsWith("1\t")) {
+                    String kioskInfo[] = usedTabs.get(position).split("\t");
+                    String kioskName = "";
+                    if (kioskInfo.length == 3) kioskName = kioskInfo[1];
+                    String textToSet = allTabs[1] + ": " + kioskName;
                     text.setText(textToSet);
                 } else {
                     text.setText(allTabs[Integer.parseInt(usedTabs.get(position))]);
