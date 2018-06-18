@@ -18,6 +18,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -122,7 +123,11 @@ public class ContentSettingsMain extends Fragment {
             contentSettingsMainDialog.setOnAddListener(ContentSettingsMain.this::addTab);
             contentSettingsMainDialog.show(getFragmentManager(), "select_channel");
         });
-        fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.light_settings_accent_color)));
+
+        TypedValue typedValue = new TypedValue();
+        getActivity().getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
+        int color = typedValue.data;
+        fab.setBackgroundTintList(ColorStateList.valueOf(color));
     }
 
 
