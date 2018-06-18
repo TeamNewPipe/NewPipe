@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.PreferenceManager;
@@ -20,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.schabi.newpipe.R;
@@ -59,12 +61,12 @@ public class ContentSettingsMain extends Fragment {
 
         tabNames();
         initUsedTabs();
+        initButton(rootView);
 
         usedTabsView = rootView.findViewById(R.id.usedTabs);
         usedTabsView.setLayoutManager(new LinearLayoutManager(getContext()));
         usedAdapter = new ContentSettingsMain.UsedAdapter();
         usedTabsView.setAdapter(usedAdapter);
-        usedTabsView.addItemDecoration(new ContentSettingsMain.DividerItemDecoration(getActivity()));
 
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(usedAdapter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
@@ -110,6 +112,17 @@ public class ContentSettingsMain extends Fragment {
         allTabs[6] = getString(R.string.channel_page_summary);
     }
 
+    private void initButton(View rootView) {
+        FloatingActionButton fab = rootView.findViewById(R.id.floatingActionButton);
+        fab.setImageResource(ThemeHelper.getIconByAttr(R.attr.ic_add, getContext()));
+        fab.setOnClickListener(v -> {
+            ContentSettingsMainDialog contentSettingsMainDialog = new ContentSettingsMainDialog();
+            contentSettingsMainDialog.setOnAddListener(ContentSettingsMain.this::addTab);
+            contentSettingsMainDialog.show(getFragmentManager(), "select_channel");
+        });
+    }
+
+
     private void addTab(int position) {
         if(position!=6) {
             usedTabs.add(String.valueOf(position));
@@ -131,10 +144,6 @@ public class ContentSettingsMain extends Fragment {
         // ... code from gist
         @Override
         public void onItemDismiss(int position) {
-            if(position==getItemCount() - 1) {
-                notifyDataSetChanged();
-                return;
-            }
             usedTabs.remove(position);
             notifyItemRemoved(position);
             saveChanges();
@@ -142,7 +151,6 @@ public class ContentSettingsMain extends Fragment {
 
         @Override
         public void onItemMove(int fromPosition, int toPosition) {
-            if(fromPosition==getItemCount() - 1 || toPosition==getItemCount() - 1) return;
             if (fromPosition < toPosition) {
                 for (int i = fromPosition; i < toPosition; i++) {
                     Collections.swap(usedTabs, i, i + 1);
@@ -171,7 +179,7 @@ public class ContentSettingsMain extends Fragment {
 
         @Override
         public int getItemCount() {
-            return usedTabs.size() + 1;
+            return usedTabs.size();
         }
 
         class TabViewHolder extends RecyclerView.ViewHolder {
@@ -179,25 +187,21 @@ public class ContentSettingsMain extends Fragment {
             TextView text;
             View view;
             CardView cardView;
+            ImageView handle;
 
             public TabViewHolder(View itemView) {
                 super(itemView);
 
                 text = itemView.findViewById(R.id.tabName);
                 cardView = itemView.findViewById(R.id.layoutCard);
+                handle = itemView.findViewById(R.id.handle);
                 view = itemView;
             }
 
             void bind(int position) {
-                if(position == getItemCount() - 1) {
-                    String newTabString = "+ " + getString(R.string.tab_new);
-                    text.setText(newTabString);
-                    view.setOnClickListener(v -> {
-                        ContentSettingsMainDialog contentSettingsMainDialog = new ContentSettingsMainDialog();
-                        contentSettingsMainDialog.setOnAddListener(ContentSettingsMain.this::addTab);
-                        contentSettingsMainDialog.show(getFragmentManager(), "select_channel");
-                    });
-                } else if(usedTabs.get(position).startsWith("6\t")) {
+                handle.setImageResource(ThemeHelper.getIconByAttr(R.attr.drag_handle, getContext()));
+
+                if(usedTabs.get(position).startsWith("6\t")) {
                     String channelInfo[] = usedTabs.get(position).split("\t");
                     String channelName = "";
                     if(channelInfo.length==4)   channelName = channelInfo[2];
@@ -206,39 +210,6 @@ public class ContentSettingsMain extends Fragment {
                 } else {
                     text.setText(allTabs[Integer.parseInt(usedTabs.get(position))]);
                 }
-            }
-        }
-    }
-
-    public class DividerItemDecoration extends RecyclerView.ItemDecoration {
-
-        private final int[] ATTRS = new int[]{android.R.attr.listDivider};
-
-        private Drawable divider;
-
-        public DividerItemDecoration(Context context) {
-            final TypedArray styledAttributes = context.obtainStyledAttributes(ATTRS);
-            divider = styledAttributes.getDrawable(0);
-            styledAttributes.recycle();
-        }
-
-
-        @Override
-        public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
-            int left = parent.getPaddingLeft();
-            int right = parent.getWidth() - parent.getPaddingRight();
-
-            int childCount = parent.getChildCount();
-            for (int i = 0; i < childCount; i++) {
-                View child = parent.getChildAt(i);
-
-                RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
-
-                int top = child.getBottom() + params.bottomMargin;
-                int bottom = top + divider.getIntrinsicHeight();
-
-                divider.setBounds(left, top, right, bottom);
-                divider.draw(c);
             }
         }
     }

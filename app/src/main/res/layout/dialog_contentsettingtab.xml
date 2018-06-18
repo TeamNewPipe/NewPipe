@@ -4,9 +4,22 @@
     android:id="@+id/layoutCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="0dp"
-    android:layout_marginTop="1dp"
-    android:orientation="horizontal">
+    android:layout_marginBottom="3dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="3dp"
+    android:orientation="horizontal"
+    android:paddingBottom="4dp"
+    android:paddingTop="4dp"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="12dp">
+
+    <ImageView
+        android:id="@+id/handle"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center_vertical|end"
+        android:layout_marginRight="10dp" />
 
     <TextView
         android:id="@+id/tabName"
@@ -17,8 +30,8 @@
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:paddingBottom="9dp"
-        android:paddingLeft="19dp"
-        android:paddingRight="19dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:paddingStart="3dp"
         android:paddingTop="9dp"
         android:textAppearance="?android:attr/textAppearanceListItem"
