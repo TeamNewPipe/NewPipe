@@ -100,7 +100,7 @@ public class ContentSettingsMain extends Fragment {
     }
 
     private void initUsedTabs() {
-        String save = android.preference.PreferenceManager.getDefaultSharedPreferences(getContext()).getString("saveUsedTabs", "1\n2\n4\n");
+        String save = android.preference.PreferenceManager.getDefaultSharedPreferences(getContext()).getString("saveUsedTabs", "1\tTrending\t0\n2\n4\n");
         String tabs[] = save.trim().split("\n");
         usedTabs.addAll(Arrays.asList(tabs));
     }

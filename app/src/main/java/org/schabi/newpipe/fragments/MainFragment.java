@@ -211,7 +211,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     private void getTabOrder() {
         tabs.clear();
 
-        String save = prefs.getString("saveUsedTabs", "1\n2\n4\n");
+        String save = prefs.getString("saveUsedTabs", "1\tTrending\t0\n2\n4\n");
         String tabsArray[] = save.trim().split("\n");
 
         for(String tabNumber:tabsArray) { {
