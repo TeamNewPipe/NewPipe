@@ -161,12 +161,12 @@ public class ContentSettingsMain extends Fragment {
             itemTouchHelper = mItemTouchHelper;
         }
 
-        public boolean swapItems(int fromPosition, int toPosition) {
+        public void swapItems(int fromPosition, int toPosition) {
             String temp = usedTabs.get(fromPosition);
             usedTabs.set(fromPosition, usedTabs.get(toPosition));
             usedTabs.set(toPosition, temp);
             notifyItemMoved(fromPosition, toPosition);
-            return true;
+            saveChanges();
         }
 
         @Override
@@ -208,6 +208,8 @@ public class ContentSettingsMain extends Fragment {
                 handle.setImageResource(ThemeHelper.getIconByAttr(R.attr.drag_handle, getContext()));
                 handle.setOnTouchListener(getOnTouchListener(holder));
 
+                view.setOnLongClickListener(getOnLongClickListener(holder));
+
                 if(usedTabs.get(position).startsWith("6\t")) {
                     String channelInfo[] = usedTabs.get(position).split("\t");
                     String channelName = "";
@@ -225,6 +227,16 @@ public class ContentSettingsMain extends Fragment {
                     if (motionEvent.getActionMasked() == MotionEvent.ACTION_DOWN) {
                         if(itemTouchHelper != null) itemTouchHelper.startDrag(item);
                     }
+                    return false;
+                };
+            }
+
+            private View.OnLongClickListener getOnLongClickListener(TabViewHolder holder) {
+                return (view) -> {
+                    int position = holder.getAdapterPosition();
+                    usedTabs.remove(position);
+                    notifyItemRemoved(position);
+                    saveChanges();
                     return false;
                 };
             }
@@ -255,9 +267,8 @@ public class ContentSettingsMain extends Fragment {
 
                 final int sourceIndex = source.getAdapterPosition();
                 final int targetIndex = target.getAdapterPosition();
-                final boolean isSwapped = usedAdapter.swapItems(sourceIndex, targetIndex);
-                if (isSwapped) saveChanges();
-                return isSwapped;
+                usedAdapter.swapItems(sourceIndex, targetIndex);
+                return true;
             }
 
             @Override
