@@ -29,8 +29,8 @@ import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
-import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
 import org.schabi.newpipe.info_list.InfoItemDialog;
+import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
@@ -44,6 +44,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import io.reactivex.Flowable;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -93,7 +94,8 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         super.onCreate(savedInstanceState);
         disposables = new CompositeDisposable();
         isBookmarkButtonReady = new AtomicBoolean(false);
-        remotePlaylistManager = new RemotePlaylistManager(NewPipeDatabase.getInstance(getContext()));
+        remotePlaylistManager = new RemotePlaylistManager(NewPipeDatabase.getInstance(
+                requireContext()));
     }
 
     @Override
@@ -281,13 +283,10 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         }
 
         remotePlaylistManager.getPlaylist(result)
+                .flatMap(lists -> getUpdateProcessor(lists, result), (lists, id) -> lists)
                 .onBackpressureLatest()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getPlaylistBookmarkSubscriber());
-
-        remotePlaylistManager.onUpdate(result)
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .subscribe(integer -> {/* Do nothing*/}, this::onError);
 
         headerPlayAllButton.setOnClickListener(view ->
                 NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));
@@ -343,6 +342,17 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
+
+    private Flowable<Integer> getUpdateProcessor(@NonNull List<PlaylistRemoteEntity> playlists,
+                                                 @NonNull PlaylistInfo result) {
+        final Flowable<Integer> noItemToUpdate = Flowable.just(/*noItemToUpdate=*/-1);
+        if (playlists.isEmpty()) return noItemToUpdate;
+
+        final PlaylistRemoteEntity playlistEntity = playlists.get(0);
+        if (playlistEntity.isIdenticalTo(result)) return noItemToUpdate;
+
+        return remotePlaylistManager.onUpdate(playlists.get(0).getUid(), result).toFlowable();
+    }
 
     private Subscriber<List<PlaylistRemoteEntity>> getPlaylistBookmarkSubscriber() {
         return new Subscriber<List<PlaylistRemoteEntity>>() {
