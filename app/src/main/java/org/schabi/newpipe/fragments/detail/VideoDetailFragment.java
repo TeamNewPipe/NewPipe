@@ -56,12 +56,14 @@ import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
 import org.schabi.newpipe.extractor.stream.AudioStream;
+import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.StreamItemAdapter;
 import org.schabi.newpipe.util.StreamItemAdapter.StreamSizeWrapper;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
@@ -128,7 +130,7 @@ public class VideoDetailFragment
 
     private StreamInfo currentInfo;
     private Disposable currentWorker;
-    private CompositeDisposable disposables = new CompositeDisposable();
+    @NonNull private CompositeDisposable disposables = new CompositeDisposable();
 
     private List<VideoStream> sortedVideoStreams;
     private int selectedVideoStreamIndex = -1;
@@ -872,10 +874,7 @@ public class VideoDetailFragment
         if (!useExternalAudioPlayer && android.os.Build.VERSION.SDK_INT >= 16) {
             openNormalBackgroundPlayer(append);
         } else {
-            NavigationHelper.playOnExternalPlayer(activity,
-                    currentInfo.getName(),
-                    currentInfo.getUploaderName(),
-                    audioStream);
+            startOnExternalPlayer(activity, currentInfo, audioStream);
         }
     }
 
@@ -902,10 +901,7 @@ public class VideoDetailFragment
 
         if (PreferenceManager.getDefaultSharedPreferences(activity)
                 .getBoolean(this.getString(R.string.use_external_video_player_key), false)) {
-            NavigationHelper.playOnExternalPlayer(activity,
-                    currentInfo.getName(),
-                    currentInfo.getUploaderName(),
-                    selectedVideoStream);
+            startOnExternalPlayer(activity, currentInfo, selectedVideoStream);
         } else {
             openNormalPlayer(selectedVideoStream);
         }
@@ -947,6 +943,20 @@ public class VideoDetailFragment
 
     public void setAutoplay(boolean autoplay) {
         this.autoPlayEnabled = autoplay;
+    }
+
+    private void startOnExternalPlayer(@NonNull final Context context,
+                                       @NonNull final StreamInfo info,
+                                       @NonNull final Stream selectedStream) {
+        NavigationHelper.playOnExternalPlayer(context, currentInfo.getName(),
+                currentInfo.getUploaderName(), selectedStream);
+
+        final HistoryRecordManager recordManager = new HistoryRecordManager(requireContext());
+        disposables.add(recordManager.onViewed(info).onErrorComplete()
+                .subscribe(
+                        ignored -> {/* successful */},
+                        error -> Log.e(TAG, "Register view failure: ", error)
+                ));
     }
 
     @Nullable
