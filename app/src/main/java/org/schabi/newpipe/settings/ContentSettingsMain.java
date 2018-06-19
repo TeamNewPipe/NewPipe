@@ -19,7 +19,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.TypedValue;
+import android.view.DragEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -30,6 +32,7 @@ import android.widget.TextView;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
+import org.schabi.newpipe.local.holder.LocalPlaylistStreamItemHolder;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.ServiceHelper;
@@ -69,11 +72,13 @@ public class ContentSettingsMain extends Fragment {
         usedTabsView = rootView.findViewById(R.id.usedTabs);
         usedTabsView.setLayoutManager(new LinearLayoutManager(getContext()));
         usedAdapter = new ContentSettingsMain.UsedAdapter();
-        usedTabsView.setAdapter(usedAdapter);
 
-        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(usedAdapter);
-        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
-        touchHelper.attachToRecyclerView(usedTabsView);
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(getItemTouchCallback());
+        itemTouchHelper.attachToRecyclerView(usedTabsView);
+        usedAdapter.setOnItemSelectedListener(itemTouchHelper);
+
+        usedTabsView.setAdapter(usedAdapter);
     }
 
     private void saveChanges() {
@@ -147,29 +152,21 @@ public class ContentSettingsMain extends Fragment {
         }
     }
 
-    public class UsedAdapter extends RecyclerView.Adapter<ContentSettingsMain.UsedAdapter.TabViewHolder>
-            implements ItemTouchHelperAdapter {
+    public class UsedAdapter extends RecyclerView.Adapter<ContentSettingsMain.UsedAdapter.TabViewHolder>{
         // ... code from gist
-        @Override
-        public void onItemDismiss(int position) {
-            usedTabs.remove(position);
-            notifyItemRemoved(position);
-            saveChanges();
+
+        private ItemTouchHelper itemTouchHelper;
+
+        public void setOnItemSelectedListener(ItemTouchHelper mItemTouchHelper) {
+            itemTouchHelper = mItemTouchHelper;
         }
 
-        @Override
-        public void onItemMove(int fromPosition, int toPosition) {
-            if (fromPosition < toPosition) {
-                for (int i = fromPosition; i < toPosition; i++) {
-                    Collections.swap(usedTabs, i, i + 1);
-                }
-            } else {
-                for (int i = fromPosition; i > toPosition; i--) {
-                    Collections.swap(usedTabs, i, i - 1);
-                }
-            }
+        public boolean swapItems(int fromPosition, int toPosition) {
+            String temp = usedTabs.get(fromPosition);
+            usedTabs.set(fromPosition, usedTabs.get(toPosition));
+            usedTabs.set(toPosition, temp);
             notifyItemMoved(fromPosition, toPosition);
-            saveChanges();
+            return true;
         }
 
         @Override
@@ -182,7 +179,7 @@ public class ContentSettingsMain extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull ContentSettingsMain.UsedAdapter.TabViewHolder holder, int position) {
-            holder.bind(position);
+            holder.bind(position, holder);
         }
 
         @Override
@@ -206,8 +203,10 @@ public class ContentSettingsMain extends Fragment {
                 view = itemView;
             }
 
-            void bind(int position) {
+            void bind(int position, ContentSettingsMain.UsedAdapter.TabViewHolder holder) {
+
                 handle.setImageResource(ThemeHelper.getIconByAttr(R.attr.drag_handle, getContext()));
+                handle.setOnTouchListener(getOnTouchListener(holder));
 
                 if(usedTabs.get(position).startsWith("6\t")) {
                     String channelInfo[] = usedTabs.get(position).split("\t");
@@ -219,52 +218,60 @@ public class ContentSettingsMain extends Fragment {
                     text.setText(allTabs[Integer.parseInt(usedTabs.get(position))]);
                 }
             }
+
+            private View.OnTouchListener getOnTouchListener(final RecyclerView.ViewHolder item) {
+                return (view, motionEvent) -> {
+                    view.performClick();
+                    if (motionEvent.getActionMasked() == MotionEvent.ACTION_DOWN) {
+                        if(itemTouchHelper != null) itemTouchHelper.startDrag(item);
+                    }
+                    return false;
+                };
+            }
         }
     }
 
-    public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
+    private ItemTouchHelper.SimpleCallback getItemTouchCallback() {
+        return new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,
+                ItemTouchHelper.ACTION_STATE_IDLE) {
+            @Override
+            public int interpolateOutOfBoundsScroll(RecyclerView recyclerView, int viewSize,
+                                                    int viewSizeOutOfBounds, int totalSize,
+                                                    long msSinceStartScroll) {
+                final int standardSpeed = super.interpolateOutOfBoundsScroll(recyclerView, viewSize,
+                        viewSizeOutOfBounds, totalSize, msSinceStartScroll);
+                final int minimumAbsVelocity = Math.max(12,
+                        Math.abs(standardSpeed));
+                return minimumAbsVelocity * (int) Math.signum(viewSizeOutOfBounds);
+            }
 
-        private final ItemTouchHelperAdapter mAdapter;
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder source,
+                                  RecyclerView.ViewHolder target) {
+                if (source.getItemViewType() != target.getItemViewType() ||
+                        usedAdapter == null) {
+                    return false;
+                }
 
-        public SimpleItemTouchHelperCallback(ItemTouchHelperAdapter adapter) {
-            mAdapter = adapter;
-        }
+                final int sourceIndex = source.getAdapterPosition();
+                final int targetIndex = target.getAdapterPosition();
+                final boolean isSwapped = usedAdapter.swapItems(sourceIndex, targetIndex);
+                if (isSwapped) saveChanges();
+                return isSwapped;
+            }
 
-        @Override
-        public boolean isLongPressDragEnabled() {
-            return true;
-        }
+            @Override
+            public boolean isLongPressDragEnabled() {
+                return false;
+            }
 
-        @Override
-        public boolean isItemViewSwipeEnabled() {
-            return true;
-        }
+            @Override
+            public boolean isItemViewSwipeEnabled() {
+                return false;
+            }
 
-        @Override
-        public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-            int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
-            int swipeFlags = ItemTouchHelper.START | ItemTouchHelper.END;
-            return makeMovementFlags(dragFlags, swipeFlags);
-        }
-
-        @Override
-        public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,
-                              RecyclerView.ViewHolder target) {
-            mAdapter.onItemMove(viewHolder.getAdapterPosition(), target.getAdapterPosition());
-            return true;
-        }
-
-        @Override
-        public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-            mAdapter.onItemDismiss(viewHolder.getAdapterPosition());
-
-        }
-    }
-
-    public interface ItemTouchHelperAdapter {
-
-        void onItemMove(int fromPosition, int toPosition);
-
-        void onItemDismiss(int position);
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {}
+        };
     }
 }
