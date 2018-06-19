@@ -69,10 +69,21 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     private static final String TAB_NUMBER_CHANNEL = "6";
 
     SharedPreferences.OnSharedPreferenceChangeListener listener = (prefs, key) -> {
-        if(key.equals("saveUsedTabs")) {
+        if(key.equals("service")||key.equals("saveUsedTabs")) {
             mainPageChanged();
         }
     };
+
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Constants
+    //////////////////////////////////////////////////////////////////////////*/
+
+    private static final int FALLBACK_SERVICE_ID = ServiceList.YouTube.getServiceId();
+    private static final String FALLBACK_CHANNEL_URL = "https://www.youtube.com/channel/UC-9-kyTW8ZkZNDHQJ6FgpwQ";
+    private static final String FALLBACK_CHANNEL_NAME = "Music";
+    private static final String FALLBACK_KIOSK_ID = "Trending";
+    private static final int KIOSK_MENU_OFFSET = 2000;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Fragment's LifeCycle
@@ -126,7 +137,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
                 if (tabNumber.startsWith(TAB_NUMBER_KIOSK + "\t")) {
                     String kiosk[] = tabNumber.split("\t");
-                    if (kiosk.length == 3) {
+                    if (kiosk.length == 2) {
                         try {
                             setTitle(kiosk[1]);
                         } catch (Exception e) {
@@ -174,7 +185,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
                 if (tabNumber.startsWith(TAB_NUMBER_KIOSK + "\t")) {
                     String kiosk[] = tabNumber.split("\t");
-                    if (kiosk.length == 3) {
+                    if (kiosk.length == 2) {
                         try {
                             tabToSet.setIcon(KioskTranslator.getKioskIcons(kiosk[1], getContext()));
                         } catch (Exception e) {
@@ -214,7 +225,27 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         String save = prefs.getString("saveUsedTabs", "1\n2\n4\n");
         String tabsArray[] = save.trim().split("\n");
 
-        for(String tabNumber:tabsArray) { {
+        KioskList kl = null;
+
+        try {
+            StreamingService service = NewPipe.getService(currentServiceId);
+            kl = service.getKioskList();
+        } catch (Exception e) {
+            ErrorActivity.reportError(activity, e,
+                    activity.getClass(),
+                    null,
+                    ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
+                            "none", "", R.string.app_ui_crash));
+        }
+
+        for(String tabNumber:tabsArray) {
+            if(tabNumber.equals(TAB_NUMBER_KIOSK)) {
+                if (kl != null) {
+                    for(String ks : kl.getAvailableKiosks()) {
+                        tabs.add(tabNumber+"\t"+ks);
+                    }
+                }
+            } else {
                 tabs.add(tabNumber);
             }
         }
@@ -281,10 +312,10 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
             if(tabNumber.startsWith(TAB_NUMBER_KIOSK + "\t")) {
                 String kiosk[] = tabNumber.split("\t");
-                if(kiosk.length==3) {
+                if(kiosk.length==2) {
                     KioskFragment fragment = null;
                     try {
-                        fragment = KioskFragment.getInstance(Integer.parseInt(kiosk[2]), kiosk[1]);
+                        fragment = KioskFragment.getInstance(currentServiceId, kiosk[1]);
                         fragment.useAsFrontPage(true);
                         return fragment;
                     } catch (Exception e) {
