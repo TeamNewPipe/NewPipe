@@ -117,12 +117,6 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
         }
     }
 
-    /*@Override
-    protected RecyclerView.LayoutManager getListLayoutManager() {
-        boolean isPortrait = getResources().getDisplayMetrics().heightPixels > getResources().getDisplayMetrics().widthPixels;
-        return new GridLayoutManager(activity, isPortrait ? 1 : 2);
-    }*/
-
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);

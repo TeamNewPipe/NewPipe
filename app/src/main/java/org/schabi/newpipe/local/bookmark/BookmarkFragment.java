@@ -101,28 +101,20 @@ public final class BookmarkFragment
         itemListAdapter.setSelectedListener(new OnClickGesture<LocalItem>() {
             @Override
             public void selected(LocalItem selectedItem) {
-                try {
-                    // Requires the parent fragment to find holder for fragment replacement
-                    final FragmentManager fragmentManager =
-                            getParentFragment() == null
-                                    ? getFragmentManager()
-                                    : getParentFragment().getFragmentManager();
+                final FragmentManager fragmentManager = getFM();
 
-                    if (selectedItem instanceof PlaylistMetadataEntry) {
-                        final PlaylistMetadataEntry entry = ((PlaylistMetadataEntry) selectedItem);
-                        NavigationHelper.openLocalPlaylistFragment(fragmentManager, entry.uid,
-                                entry.name);
+                if (selectedItem instanceof PlaylistMetadataEntry) {
+                    final PlaylistMetadataEntry entry = ((PlaylistMetadataEntry) selectedItem);
+                    NavigationHelper.openLocalPlaylistFragment(fragmentManager, entry.uid,
+                            entry.name);
 
-                    } else if (selectedItem instanceof PlaylistRemoteEntity) {
-                        final PlaylistRemoteEntity entry = ((PlaylistRemoteEntity) selectedItem);
-                        NavigationHelper.openPlaylistFragment(
-                                fragmentManager,
-                                entry.getServiceId(),
-                                entry.getUrl(),
-                                entry.getName());
-                    }
-                } catch (Exception e) {
-                    ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
+                } else if (selectedItem instanceof PlaylistRemoteEntity) {
+                    final PlaylistRemoteEntity entry = ((PlaylistRemoteEntity) selectedItem);
+                    NavigationHelper.openPlaylistFragment(
+                            fragmentManager,
+                            entry.getServiceId(),
+                            entry.getUrl(),
+                            entry.getName());
                 }
             }
 

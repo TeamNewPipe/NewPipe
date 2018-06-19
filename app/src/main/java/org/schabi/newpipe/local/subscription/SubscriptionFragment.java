@@ -328,18 +328,11 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
         });
 
         //noinspection ConstantConditions
-        whatsNewItemListHeader.setOnClickListener(v ->
-        {
+        whatsNewItemListHeader.setOnClickListener(v -> {
             FragmentManager fragmentManager = getFM();
             NavigationHelper.openWhatsNewFragment(fragmentManager);
         });
         importExportListHeader.setOnClickListener(v -> importExportOptions.switchState());
-    }
-
-    private FragmentManager getFM() {
-        return getParentFragment() == null
-                ? getFragmentManager()
-                : getParentFragment().getFragmentManager();
     }
 
     private void resetFragment() {

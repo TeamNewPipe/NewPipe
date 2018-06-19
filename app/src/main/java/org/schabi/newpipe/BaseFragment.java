@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -91,5 +92,11 @@ public abstract class BaseFragment extends Fragment {
         if (activity != null && activity.getSupportActionBar() != null) {
             activity.getSupportActionBar().setTitle(title);
         }
+    }
+
+    protected FragmentManager getFM() {
+        return getParentFragment() == null
+                ? getFragmentManager()
+                : getParentFragment().getFragmentManager();
     }
 }
