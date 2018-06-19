@@ -98,15 +98,7 @@ public final class BookmarkFragment
         itemListAdapter.setSelectedListener(new OnClickGesture<LocalItem>() {
             @Override
             public void selected(LocalItem selectedItem) {
-
-                FragmentManager fragmentManager;
-
-                if (getParentFragment() == null)
-                {
-                    fragmentManager = getFragmentManager();
-                } else {
-                    fragmentManager = getParentFragment().getFragmentManager();
-                }
+                FragmentManager fragmentManager = getFM();
 
                 if (selectedItem instanceof PlaylistMetadataEntry) {
                     final PlaylistMetadataEntry entry = ((PlaylistMetadataEntry) selectedItem);
