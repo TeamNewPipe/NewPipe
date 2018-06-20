@@ -7,11 +7,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -86,7 +88,7 @@ public class RouterActivity extends AppCompatActivity {
     protected String currentUrl;
     protected CompositeDisposable disposables = new CompositeDisposable();
 
-    private boolean notDownload = true;
+    private boolean selectionIsDownload = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,22 +108,16 @@ public class RouterActivity extends AppCompatActivity {
                 ? R.style.RouterActivityThemeLight : R.style.RouterActivityThemeDark);
     }
 
-    @SuppressLint("MissingSuperCall")
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-
-    }
-
-    @Override
-    protected void onPause() {
-
-        super.onPause();
+        super.onSaveInstanceState(outState);
+        Icepick.saveInstanceState(this, outState);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-
+        
         handleUrl(currentUrl);
     }
 
@@ -257,7 +253,7 @@ public class RouterActivity extends AppCompatActivity {
                 .setNegativeButton(R.string.just_once, dialogButtonsClickListener)
                 .setPositiveButton(R.string.always, dialogButtonsClickListener)
                 .setOnDismissListener((dialog) -> {
-                    if(notDownload) finish();
+                    if(!selectionIsDownload) finish();
                 })
                 .create();
 
@@ -358,7 +354,6 @@ public class RouterActivity extends AppCompatActivity {
         positiveButton.setEnabled(state);
     }
 
-    @SuppressLint("CheckResult")
     private void handleChoice(final String selectedChoiceKey) {
         final List<String> validChoicesList = Arrays.asList(getResources().getStringArray(R.array.preferred_open_action_values_list));
         if (validChoicesList.contains(selectedChoiceKey)) {
@@ -374,29 +369,10 @@ public class RouterActivity extends AppCompatActivity {
         }
 
         if (selectedChoiceKey.equals(getString(R.string.download_key))) {
-            ExtractorHelper.getStreamInfo(currentServiceId, currentUrl, true)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe((@NonNull StreamInfo result) -> {
-                        StreamInfo currentInfo = result;
-                        List<VideoStream> sortedVideoStreams = ListHelper.getSortedStreamVideosList(this, currentInfo.getVideoStreams(), currentInfo.getVideoOnlyStreams(), false);
-                        int selectedVideoStreamIndex = ListHelper.getDefaultResolutionIndex(this, sortedVideoStreams);
-
-                        android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
-
-                        DownloadDialog downloadDialog = DownloadDialog.newInstance(currentInfo);
-                        downloadDialog.setVideoStreams(sortedVideoStreams);
-                        downloadDialog.setAudioStreams(currentInfo.getAudioStreams());
-                        downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex);
-                        downloadDialog.show(fm, "downloadDialog");
-                        fm.executePendingTransactions();
-                        downloadDialog.getDialog().setOnDismissListener(dialog -> {
-                            finish();
-                        });
-                    }, (@NonNull Throwable throwable) -> {
-                        onError();
-                    });
-            notDownload = false;
+            if (PermissionHelper.checkStoragePermissions(this, PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE)) {
+                selectionIsDownload = true;
+                openDownloadDialog();
+            }
             return;
         }
 
@@ -424,6 +400,47 @@ public class RouterActivity extends AppCompatActivity {
         startService(intent);
 
         finish();
+    }
+
+    @SuppressLint("CheckResult")
+    private void openDownloadDialog() {
+        ExtractorHelper.getStreamInfo(currentServiceId, currentUrl, true)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe((@NonNull StreamInfo result) -> {
+                    List<VideoStream> sortedVideoStreams = ListHelper.getSortedStreamVideosList(this,
+                            result.getVideoStreams(),
+                            result.getVideoOnlyStreams(),
+                            false);
+                    int selectedVideoStreamIndex = ListHelper.getDefaultResolutionIndex(this,
+                            sortedVideoStreams);
+
+                    android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+                    DownloadDialog downloadDialog = DownloadDialog.newInstance(result);
+                    downloadDialog.setVideoStreams(sortedVideoStreams);
+                    downloadDialog.setAudioStreams(result.getAudioStreams());
+                    downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex);
+                    downloadDialog.show(fm, "downloadDialog");
+                    fm.executePendingTransactions();
+                    downloadDialog.getDialog().setOnDismissListener(dialog -> {
+                        finish();
+                    });
+                }, (@NonNull Throwable throwable) -> {
+                    onError();
+                });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        for (int i: grantResults){
+            if (i == PackageManager.PERMISSION_DENIED){
+                finish();
+                return;
+            }
+        }
+        if (requestCode == PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE) {
+            openDownloadDialog();
+        }
     }
 
     private static class AdapterChoiceItem {
