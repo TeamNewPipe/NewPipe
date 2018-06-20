@@ -18,7 +18,7 @@
     <string name="use_external_video_player_title">Използвай външен видео плейър</string>
     <string name="use_external_video_player_summary">Някои резолюции няма да имат вграден аудио поток ако изберете тази опция</string>
     <string name="use_external_audio_player_title">Използвай външен аудио плейър</string>
-    <string name="popup_mode_share_menu_title">Режим с подпрозорец на NewPipe</string>
+    <string name="popup_mode_share_menu_title">Режим малък прозорец на NewPipe</string>
     <string name="subscribe_button_title">Абониране</string>
     <string name="subscribed_button_title">Абониран</string>
     <string name="channel_unsubscribed">Премахнат абонамент за канала</string>
@@ -33,7 +33,7 @@
     <string name="controls_popup_title">Подпрозорец</string>
 
     <string name="download_path_title">Локация за запис на клиповете</string>
-    <string name="download_path_summary">Път за съхранение на свалени клипове</string>
+    <string name="download_path_summary">Място за съхранение на свалени клипове</string>
     <string name="download_path_dialog_title">Въведи път за съхранение на свалени клипове</string>
 
     <string name="download_path_audio_title">Локация за запис на аудио</string>
@@ -64,25 +64,25 @@
     <string name="player_gesture_controls_title">Контролиране на плейъра чрез жестове</string>
     <string name="player_gesture_controls_summary">Използвай жестове за да контролираш яркостта и силата на звука на плейъра</string>
     <string name="show_search_suggestions_title">Предложения за търсене</string>
-    <string name="show_search_suggestions_summary">Покажи предположения по време на търсене</string>
+    <string name="show_search_suggestions_summary">Показвай предположения по време на търсене</string>
     <string name="enable_search_history_title">История на търсенията</string>
     <string name="enable_search_history_summary">Съхранявай заявките за търсене локално</string>
-    <string name="enable_watch_history_title">История</string>
+    <string name="enable_watch_history_title">История и кеш-памет</string>
     <string name="enable_watch_history_summary">Следи изгледаните клипове</string>
     <string name="resume_on_audio_focus_gain_title">Поднови клип при възобновяване на фокуса</string>
     <string name="resume_on_audio_focus_gain_summary">Продължава въпроизвеждането след прекъсване (например, телефонно обаждане)</string>
     <string name="download_dialog_title">Свалени</string>
     <string name="next_video_title">Следващ клип</string>
-    <string name="show_next_and_similar_title">Показвай следващия и подобни клипове</string>
+    <string name="show_next_and_similar_title">Показвай „следващи“ и „подобни“ клипове</string>
     <string name="show_hold_to_append_title">Показвай поле със съвет \"Задръж за добавяне\"</string>
     <string name="url_not_supported_toast">Неподдържан URL</string>
     <string name="search_language_title">Език на съдържанието по подразбиране</string>
     <string name="settings_category_player_title">Плейър</string>
     <string name="settings_category_player_behavior_title">Поведение</string>
     <string name="settings_category_video_audio_title">Видео &amp; Аудио</string>
-    <string name="settings_category_history_title">История</string>
+    <string name="settings_category_history_title">История и кеш-памет</string>
     <string name="settings_category_popup_title">Подпрозорец</string>
-    <string name="settings_category_appearance_title">Вид</string>
+    <string name="settings_category_appearance_title">Външност</string>
     <string name="settings_category_other_title">Други</string>
     <string name="background_player_playing_toast">Въпроизвеждане във фонов режим</string>
     <string name="popup_playing_toast">Въпроизвеждане в подпрозорец</string>
@@ -211,4 +211,77 @@
     <string name="tab_licenses">Лицензии</string>
     <string name="app_description">Безплатен и лек YouTube фронтенд за Android.</string>
     <string name="view_on_github">Виж в GitHub</string>
+    <string name="controls_download_desc">Изтегли стрийм файл.</string>
+    <string name="show_info">Покажи инфо</string>
+
+    <string name="tab_main">NewPipe</string>
+    <string name="tab_bookmarks">Отметки</string>
+
+    <string name="controls_add_to_playlist_title">Добави към</string>
+
+    <string name="use_inexact_seek_title">Използвай бързо, но неточно превъртане</string>
+    <string name="use_inexact_seek_summary">Неточното превъртане позволява на плейъра да превърта кадри по-бързо с намалена прецизност</string>
+    <string name="download_thumbnail_title">Зареждай иконки</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Кеш-паметта с изображения е изтрита</string>
+    <string name="metadata_cache_wipe_title">Изчисти кешираните метаданни</string>
+    <string name="metadata_cache_wipe_summary">Изчисти всички кешираини метаданни за уебстраници</string>
+    <string name="metadata_cache_wipe_complete_notice">Кеш-паметта с метаданни бе изчистена</string>
+    <string name="auto_queue_title">Автоматично пускай следващия</string>
+    <string name="auto_queue_summary">Автоматично прибавяне на сродно съдържание при неповтарящ се преглед .</string>
+    <string name="default_content_country_title">Държава по подразбиране, за която да бъде показвано подходящо съдържание</string>
+    <string name="service_title">Услуга</string>
+    <string name="settings_category_debug_title">Отстраняване на грешки</string>
+    <string name="always">Винаги</string>
+    <string name="just_once">Само веднъж</string>
+    <string name="file">Файл</string>
+
+    <string name="toggle_orientation">Смени ориентацията</string>
+    <string name="switch_to_background">Мини към фонов режим</string>
+    <string name="switch_to_popup">Мини към изкачащ прозорец</string>
+    <string name="switch_to_main">Мини в основен режим</string>
+
+    <string name="import_data_title">Внасяне на база данни</string>
+    <string name="export_data_title">Изнасяне на база данни</string>
+    <string name="import_data_summary">Ще замени текущите история и абонаменти</string>
+    <string name="export_data_summary">Изнасяне на история, абонаменти и плейлисти</string>
+    <string name="clear_views_history_title">Изчисти историята с изгледани</string>
+    <string name="delete_view_history_alert">Изтрий цялата история с изгледани.</string>
+    <string name="view_history_deleted">Историята с изгледани е изтрита.</string>
+    <string name="clear_search_history_title">Изтрий историята на търсенията</string>
+    <string name="clear_search_history_summary">Изтрива историята с въвежданите за търсене ключови думи.</string>
+    <string name="delete_search_history_alert">Изтрий цялата история на гледанията.</string>
+    <string name="search_history_deleted">Историята на търсенията е изтрита.</string>
+    <string name="youtube_signature_decryption_error">URL подписът на видеото не можа да бъде дешифрован</string>
+    <string name="external_player_unsupported_link_type">Външните плейъри не поддържат този вид линкове</string>
+    <string name="invalid_url_toast">Невалиден URL</string>
+    <string name="invalid_directory">Невалидна директория</string>
+    <string name="invalid_source">Невалиден файл или източник на съдържание</string>
+    <string name="invalid_file">Файлът не съществува или липсва разрешение за четене и/или запис</string>
+    <string name="file_name_empty_error">Името на файла не може да бъде празно</string>
+    <string name="error_occurred_detail">Възникна грешка: %1$s</string>
+    <string name="no_streams_available_download">Не са налични източници за изтегляне</string>
+
+    <string name="short_thousand">хил.</string>
+    <string name="short_million">млн.</string>
+    <string name="short_billion">млрд.</string>
+
+    <string name="no_subscribers">Няма абонати</string>
+    <string name="create">Създай</string>
+    <string name="delete_all">Изтрий всички</string>
+    <string name="dismiss">Откажи</string>
+    <string name="toast_no_player">Няма инсталирано приложение, което да изпълни този файл</string>
+
+    <string name="copyright" formatted="true">© %1$s от %2$s под лиценза %3$s</string>
+    <string name="contribution_title">Направи принос</string>
+    <string name="contribution_encouragement">За всичко, което се сетите: превод, промени по дизайна, изчистване на кода или много сериозни промени по кода – помощта е винаги добре дошла. Колкото повече се прави по това, толкова по-добре се получава.</string>
+    <string name="donation_title">Направи дарение</string>
+    <string name="donation_encouragement">NewPipe се разработва от доброволни разработчици, което отделят от своето време, за да ви доставят най-доброто преживяване. Дайте от себе си, за да помогнете на разработчиците да направят NewPipe още по-добро приложение, докато се наслаждават на едно кафе от вас.</string>
+    <string name="give_back">Дари</string>
+    <string name="website_title">Уебсайт</string>
+    <string name="website_encouragement">Посетете сайта на NewPipe за повече информация и новини.</string>
+    <string name="privacy_policy_title">Политиката на NewPipe за личните данни</string>
+    <string name="privacy_policy_encouragement">Проектът NewPipe се отнася много сериозно към вашата поверителност. За това, приложението не събира никакви данни без вашето съгласие.
+\nНашата политика за личните данни обяснява подробно какви данни изпращате и къде се съхраняват, когато изпращате съобщения за грешки.</string>
+    <string name="read_privacy_policy">Прочетет нашата политика за поверителност</string>
+    <string name="app_license_title">Лицензът на NewPipe</string>
     </resources>
