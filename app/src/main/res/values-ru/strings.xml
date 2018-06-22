@@ -230,7 +230,7 @@
     <string name="undo">Отменить</string>
 
     <string name="search_no_results">Нет результатов</string>
-    <string name="empty_subscription_feed_subtitle">Тут только сверчки</string>
+    <string name="empty_subscription_feed_subtitle">Тут ничего нет</string>
 
     <string name="no_subscribers">Нет подписчиков</string>
     <plurals name="subscribers">
@@ -277,7 +277,7 @@
     <string name="play_queue_audio_settings">Настройки аудио</string>
     <string name="no_channel_subscribed_yet">Пока нет подписок на каналы</string>
     <string name="play_queue_remove">Удалить</string>
-    <string name="subscribed_button_title">Отписаться</string>
+    <string name="subscribed_button_title">Вы подписаны</string>
     <string name="channel_unsubscribed">Подписка отменена</string>
     <string name="show_hold_to_append_title">Показать \"держать, чтобы добавить\" подсказку</string>
     <string name="show_hold_to_append_summary">Показывать подсказку при нажатии на иконку «В окне» или «В фоне» на странице сведений о видео</string>
@@ -320,7 +320,7 @@
 
     <string name="video_player">Проигрыватель видео</string>
     <string name="background_player">Фоновый проигрыватель</string>
-    <string name="popup_player">Проигрыватель в окне</string>
+    <string name="popup_player">Плеер в окне</string>
     <string name="always_ask_player">Всегда спрашивать</string>
     
     <string name="preferred_player_fetcher_notification_title">Получение информации…</string>
@@ -391,7 +391,7 @@
 
     <string name="caption_none">Без титров</string>
 
-    <string name="resize_fit">Пригнать</string>
+    <string name="resize_fit">Подогнать</string>
     <string name="resize_fill">Заполнить</string>
     <string name="resize_zoom">Приблизить</string>
 
@@ -428,8 +428,8 @@
 \n1. Перейдите на: %1$s 
 \n2. Войдите, если необходимо 
 \n3. Должна начаться загрузка (это будет файл экспорта)</string>
-    <string name="import_soundcloud_instructions">Импорт подписок из SoundCloud набрав либо URL или ваш ID:
-\n
+    <string name="import_soundcloud_instructions">Импорт подписок из SoundCloud набрав либо URL, либо ваш ID: 
+\n 
 \n1. Включите \"режим рабочего стола\" в браузере (сайт недоступен на телефоне) 
 \n2. Пройдите на: %1$s 
 \n3. Войдите, если надо 
@@ -471,7 +471,7 @@
     <string name="one_item_deleted">1 элемент удалён.</string>
 
     <string name="app_license">NewPipe - программное обеспечение copyleft libre: вы можете использовать, изучать и улучшать его по своему усмотрению. В частности, вы можете распространять и/или изменять его в соответствии с GNU General Public License, опубликованным Free Software Foundation, либо версией 3 License, либо (по вашему выбору) любой более поздней версии.</string>
-    <string name="preferred_open_action_settings_title">Предпочтительное действие \'открытие\'</string>
+    <string name="preferred_open_action_settings_title">Предпочтительное действие \'Открыть\'</string>
     <string name="import_settings">Желаете ли вы также импортировать настройки?</string>
 
     <string name="privacy_policy_title">Политика конфиденциальности NewPipe</string>
