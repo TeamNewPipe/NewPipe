@@ -266,7 +266,7 @@
     <string name="charset_most_special_characters">Większość znaków specjalnych</string>
 
     <string name="donation_title">Dotacja</string>
-    <string name="donation_encouragement">NewPipe rozwijane jest przez wolontariuszy, którzy poświęcają swój wolny czas, by zapewnić ci jak najlepsze wrażenia podczas korzystania z aplikacji. To dobry moment, aby wesprzeć programistów i sprawić, by program był jeszcze lepszy, nie przerywając przy tym popijania kawy!</string>
+    <string name="donation_encouragement">NewPipe rozwijane jest przez wolontariuszy, którzy poświęcają swój wolny czas, by zapewnić ci jak najlepsze wrażenia podczas korzystania z aplikacji. To dobry moment, aby wesprzeć programistów i sprawić, by program był jeszcze lepszy, nie przerywając przy tym popijania kawy.</string>
     <string name="give_back">Daj od siebie</string>
     <string name="website_title">Witryna</string>
     <string name="website_encouragement">By otrzymać więcej informacji oraz najnowsze wiadomości o NewPipe, odwiedź naszą stronę.</string>
@@ -477,8 +477,7 @@
     <string name="privacy_policy_encouragement">Projekt NewPipe bardzo poważnie traktuję politykę prywatności. Aplikacja nie zbiera żadnych danych bez Twojej zgody. Polityka prywatności programu NewPipe szczegółowo wyjaśnia, jakie dane są zbierane i przesyłane, kiedy wysyłasz raport o błędach aplikacji.</string>
     <string name="read_privacy_policy">Przeczytaj politykę prywatności</string>
     <string name="start_accept_privacy_policy">Ze względu na wprowadzenie Ogólnego Rozporządzenia o ochronie danych (RODO), chcielibyśmy zwrócić Twoją uwagę na politykę prywatności NewPipe. Proszę przeczytać ją uważnie.
-\nMusisz ją zaakceptować, aby przesyłać raporty o błędach.
-\n</string>
+\nMusisz ją zaakceptować, aby przesyłać raporty o błędach.</string>
     <string name="accept">Akceptuj</string>
     <string name="decline">Odrzuć</string>
 
