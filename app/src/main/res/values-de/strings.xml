@@ -325,7 +325,7 @@
     <string name="always_ask_player">Immer fragen</string>
     
     <string name="preferred_player_fetcher_notification_title">Informationen werden abgerufen…</string>
-    <string name="preferred_player_fetcher_notification_message">Die angeforderten Inhalte werden geladen</string>
+    <string name="preferred_player_fetcher_notification_message">Angeforderter Inhalt lädt</string>
 <string name="import_data_title">Datenbank importieren</string>
     <string name="export_data_title">Datenbank exportieren</string>
     <string name="import_data_summary">Wird deinen Verlauf und deine Abos überschreiben</string>
