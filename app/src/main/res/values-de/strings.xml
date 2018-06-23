@@ -407,8 +407,8 @@
     <string name="metadata_cache_wipe_complete_notice">Metadatencache gelöscht</string>
     <string name="settings_category_debug_title">Debug</string>
     <string name="invalid_source">Ungültige Datei-/Inhaltsquelle</string>
-    <string name="export_complete_toast">Export fertiggestellt</string>
-    <string name="import_complete_toast">Import fertiggestellt</string>
+    <string name="export_complete_toast">Export abgeschlossen</string>
+    <string name="import_complete_toast">Import abgeschlossen</string>
     <string name="playlist_name_input">Name</string>
     <string name="import_export_title">Import/Export</string>
     <string name="import_title">Import</string>
