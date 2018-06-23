@@ -299,7 +299,7 @@
     <string name="give_back">Zurückgeben</string>
     <string name="website_title">Website</string>
     <string name="website_encouragement">Besuche die NewPipe Website für weitere Informationen und Neuigkeiten.</string>
-    <string name="donation_encouragement">NewPipe wird von Freiwilligen entwickelt, die ihre Freizeit dafür aufbringen, die beste Nutzererfahrung zu bieten. Gib etwas zurück, um Entwicklern zu helfen, NewPipe bei einer Tasse Kaffee noch besser zu machen.</string>
+    <string name="donation_encouragement">"NewPipe wird von Freiwilligen entwickelt, die ihre Freizeit dafür aufbringen, dir die beste Nutzererfahrung zu bieten. Gib etwas zurück, um den Entwicklern zu helfen,  NewPipe noch besser machen können, während sie sich an einer Tasse Kaffee erfreuen!"</string>
     <string name="service_title">Service</string>
     <string name="no_player_found_toast">Keinen Streamplayer gefunden (du kannst VLC installieren, um den Stream abzuspielen)</string>
     <string name="default_content_country_title">Standard-Land des Inhalts</string>
