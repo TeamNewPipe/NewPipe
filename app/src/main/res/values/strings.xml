@@ -290,6 +290,9 @@
     <string name="reCaptcha_title">reCAPTCHA Challenge</string>
     <string name="recaptcha_request_toast">reCAPTCHA Challenge requested</string>
 
+    <!-- File deletion -->
+    <string name="confirm_deletion">Do you want to delete this file?</string>
+
     <!-- End of GigaGet's Strings -->
 
     <!-- Downloads -->
