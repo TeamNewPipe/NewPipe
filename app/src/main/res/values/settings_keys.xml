@@ -25,6 +25,22 @@
     <string name="screen_brightness_key" translatable="false">screen_brightness_key</string>
     <string name="screen_brightness_timestamp_key" translatable="false">screen_brightness_timestamp_key</string>
 
+    <string name="minimize_on_exit_key" translatable="false">minimize_on_exit_key</string>
+    <string name="minimize_on_exit_value" translatable="false">@string/minimize_on_exit_none_key</string>
+    <string name="minimize_on_exit_none_key" translatable="false">minimize_on_exit_none_key</string>
+    <string name="minimize_on_exit_background_key" translatable="false">minimize_on_exit_background_key</string>
+    <string name="minimize_on_exit_popup_key" translatable="false">minimize_on_exit_popup_key</string>
+    <string-array name="minimize_on_exit_action_key" translatable="false">
+        <item>@string/minimize_on_exit_none_key</item>
+        <item>@string/minimize_on_exit_background_key</item>
+        <item>@string/minimize_on_exit_popup_key</item>
+    </string-array>
+    <string-array name="minimize_on_exit_action_description" translatable="false">
+        <item>@string/minimize_on_exit_none_description</item>
+        <item>@string/minimize_on_exit_background_description</item>
+        <item>@string/minimize_on_exit_popup_description</item>
+    </string-array>
+
     <string name="default_resolution_key" translatable="false">default_resolution</string>
     <string name="default_resolution_value" translatable="false">360p</string>
     <string name="show_higher_resolutions_key" translatable="false">show_higher_resolutions</string>
