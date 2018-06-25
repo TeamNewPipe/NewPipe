@@ -542,7 +542,8 @@ public class VideoDetailFragment
         final String[] commands = new String[]{
                 context.getResources().getString(R.string.enqueue_on_background),
                 context.getResources().getString(R.string.enqueue_on_popup),
-                context.getResources().getString(R.string.append_playlist)
+                context.getResources().getString(R.string.append_playlist),
+                context.getResources().getString(R.string.share)
         };
 
         final DialogInterface.OnClickListener actions = (DialogInterface dialogInterface, int i) -> {
@@ -558,6 +559,9 @@ public class VideoDetailFragment
                         PlaylistAppendDialog.fromStreamInfoItems(Collections.singletonList(item))
                                 .show(getFragmentManager(), TAG);
                     }
+                    break;
+                case 3:
+                    shareUrl(item.getName(), item.getUrl());
                     break;
                 default:
                     break;

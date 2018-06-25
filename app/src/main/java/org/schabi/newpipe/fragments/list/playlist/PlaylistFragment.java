@@ -144,6 +144,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                 context.getResources().getString(R.string.start_here_on_main),
                 context.getResources().getString(R.string.start_here_on_background),
                 context.getResources().getString(R.string.start_here_on_popup),
+                context.getResources().getString(R.string.share)
         };
 
         final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
@@ -163,6 +164,9 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                     break;
                 case 4:
                     NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index));
+                    break;
+                case 5:
+                    shareUrl(item.getName(), item.getUrl());
                     break;
                 default:
                     break;
