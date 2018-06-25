@@ -186,6 +186,7 @@
         <item>@string/video_player</item>
         <item>@string/background_player</item>
         <item>@string/popup_player</item>
+        <item>@string/download</item>
         <item>@string/always_ask_open_action</item>
     </string-array>
     <string-array name="preferred_open_action_values_list" translatable="false">
@@ -193,6 +194,7 @@
         <item>@string/video_player_key</item>
         <item>@string/background_player_key</item>
         <item>@string/popup_player_key</item>
+        <item>@string/download_key</item>
         <item>@string/always_ask_open_action_key</item>
     </string-array>
 
