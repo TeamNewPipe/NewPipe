@@ -479,7 +479,6 @@ public class VideoDetailFragment
         videoUploadDateView = rootView.findViewById(R.id.detail_upload_date_view);
         videoDescriptionView = rootView.findViewById(R.id.detail_description_view);
         videoDescriptionView.setMovementMethod(LinkMovementMethod.getInstance());
-        videoDescriptionView.setAutoLinkMask(Linkify.WEB_URLS);
 
         //thumbsRootLayout = rootView.findViewById(R.id.detail_thumbs_root_layout);
         thumbsUpTextView = rootView.findViewById(R.id.detail_thumbs_up_count_view);
