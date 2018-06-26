@@ -153,7 +153,10 @@ public final class MainVideoPlayer extends AppCompatActivity
     protected void onNewIntent(Intent intent) {
         if (DEBUG) Log.d(TAG, "onNewIntent() called with: intent = [" + intent + "]");
         super.onNewIntent(intent);
-        playerImpl.handleIntent(intent);
+        if (intent != null) {
+            playerState = null;
+            playerImpl.handleIntent(intent);
+        }
     }
 
     @Override
