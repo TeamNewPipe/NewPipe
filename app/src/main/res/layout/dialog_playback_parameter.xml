@@ -260,43 +260,19 @@
         </RelativeLayout>
 
         <View
-            android:id="@+id/separatorCheckbox"
+            android:id="@+id/separatorStepSizeSelector"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/pitchControl"
             android:layout_margin="@dimen/video_item_search_padding"
             android:background="?attr/separator_color"/>
 
-        <CheckBox
-            android:id="@+id/unhookCheckbox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="@string/unhook_checkbox"
-            android:maxLines="1"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/separatorCheckbox"/>
-
-        <CheckBox
-            android:id="@+id/skipSilenceCheckbox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="@string/skip_silence_checkbox"
-            android:maxLines="1"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/unhookCheckbox"/>
-
         <LinearLayout
             android:id="@+id/stepSizeSelector"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:orientation="horizontal"
-            android:layout_below="@id/skipSilenceCheckbox">
+            android:layout_below="@id/separatorStepSizeSelector">
 
             <TextView
                 android:id="@+id/stepSizeText"
@@ -364,6 +340,38 @@
                 android:background="?attr/selectableItemBackground"
                 android:textColor="?attr/colorAccent"/>
         </LinearLayout>
+
+        <View
+            android:id="@+id/separatorCheckbox"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/stepSizeSelector"
+            android:layout_margin="@dimen/video_item_search_padding"
+            android:background="?attr/separator_color"/>
+
+        <CheckBox
+            android:id="@+id/unhookCheckbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/unhook_checkbox"
+            android:maxLines="1"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/separatorCheckbox"/>
+
+        <CheckBox
+            android:id="@+id/skipSilenceCheckbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/skip_silence_checkbox"
+            android:maxLines="1"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/unhookCheckbox"/>
 
         <!-- END HERE -->
 
