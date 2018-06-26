@@ -98,6 +98,11 @@ public final class PopupVideoPlayer extends Service {
 
     private static final int MINIMUM_SHOW_EXTRA_WIDTH_DP = 300;
 
+    private static final int IDLE_WINDOW_FLAGS = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |
+            WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM;
+    private static final int ONGOING_PLAYBACK_WINDOW_FLAGS = IDLE_WINDOW_FLAGS |
+            WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
+
     private WindowManager windowManager;
     private WindowManager.LayoutParams windowLayoutParams;
     private GestureDetector gestureDetector;
@@ -194,13 +199,11 @@ public final class PopupVideoPlayer extends Service {
         final int layoutParamType = Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O ?
                 WindowManager.LayoutParams.TYPE_PHONE :
                 WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
-        final int interactiveInputMethodLayout = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |
-                WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM;
 
         windowLayoutParams = new WindowManager.LayoutParams(
                 (int) popupWidth, (int) getMinimumVideoHeight(popupWidth),
                 layoutParamType,
-                interactiveInputMethodLayout,
+                IDLE_WINDOW_FLAGS,
                 PixelFormat.TRANSLUCENT);
         windowLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
         windowLayoutParams.softInputMode = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE;
@@ -249,11 +252,15 @@ public final class PopupVideoPlayer extends Service {
 
         setRepeatModeRemote(notRemoteView, playerImpl.getRepeatMode());
 
-        return new NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
                 .setOngoing(true)
                 .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setContent(notRemoteView);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+            builder.setPriority(NotificationCompat.PRIORITY_MAX);
+        }
+        return builder;
     }
 
     /**
@@ -372,6 +379,12 @@ public final class PopupVideoPlayer extends Service {
         }
     }
 
+    private void updateWindowFlags(final int flags) {
+        if (windowLayoutParams == null || windowManager == null || playerImpl == null) return;
+
+        windowLayoutParams.flags = flags;
+        windowManager.updateViewLayout(playerImpl.getRootView(), windowLayoutParams);
+    }
     ///////////////////////////////////////////////////////////////////////////
 
     protected class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeListener {
@@ -684,15 +697,14 @@ public final class PopupVideoPlayer extends Service {
         @Override
         public void onPlaying() {
             super.onPlaying();
+
+            updateWindowFlags(ONGOING_PLAYBACK_WINDOW_FLAGS);
+
             resetNotification();
             updateNotification(R.drawable.ic_pause_white);
 
             videoPlayPause.setBackgroundResource(R.drawable.ic_pause_white);
             hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
-
-            windowLayoutParams.flags = WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
-                    | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
-            windowManager.updateViewLayout(playerImpl.getRootView(), windowLayoutParams);
 
             startForeground(NOTIFICATION_ID, notBuilder.build());
             lockManager.acquireWifiAndCpu();
@@ -708,14 +720,14 @@ public final class PopupVideoPlayer extends Service {
         @Override
         public void onPaused() {
             super.onPaused();
+
+            updateWindowFlags(IDLE_WINDOW_FLAGS);
+
             resetNotification();
             updateNotification(R.drawable.ic_play_arrow_white);
 
             videoPlayPause.setBackgroundResource(R.drawable.ic_play_arrow_white);
             lockManager.releaseWifiAndCpu();
-
-            windowLayoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
-            windowManager.updateViewLayout(playerImpl.getRootView(), windowLayoutParams);
 
             stopForeground(false);
         }
@@ -732,14 +744,14 @@ public final class PopupVideoPlayer extends Service {
         @Override
         public void onCompleted() {
             super.onCompleted();
+
+            updateWindowFlags(IDLE_WINDOW_FLAGS);
+
             resetNotification();
             updateNotification(R.drawable.ic_replay_white);
 
             videoPlayPause.setBackgroundResource(R.drawable.ic_replay_white);
             lockManager.releaseWifiAndCpu();
-
-            windowLayoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
-            windowManager.updateViewLayout(playerImpl.getRootView(), windowLayoutParams);
 
             stopForeground(false);
         }

@@ -1044,17 +1044,17 @@ public abstract class BasePlayer implements
 
     @NonNull
     public String getVideoUrl() {
-        return currentItem == null ? context.getString(R.string.unknown_content) : currentItem.getUrl();
+        return currentMetadata == null ? context.getString(R.string.unknown_content) : currentMetadata.getMetadata().getUrl();
     }
 
     @NonNull
     public String getVideoTitle() {
-        return currentItem == null ? context.getString(R.string.unknown_content) : currentItem.getTitle();
+        return currentMetadata == null ? context.getString(R.string.unknown_content) : currentMetadata.getMetadata().getName();
     }
 
     @NonNull
     public String getUploaderName() {
-        return currentItem == null ? context.getString(R.string.unknown_content) : currentItem.getUploader();
+        return currentMetadata == null ? context.getString(R.string.unknown_content) : currentMetadata.getMetadata().getUploaderName();
     }
 
     @Nullable

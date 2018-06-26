@@ -199,7 +199,6 @@ public final class BackgroundPlayer extends Service {
 
         remoteViews.setTextViewText(R.id.notificationSongName, basePlayerImpl.getVideoTitle());
         remoteViews.setTextViewText(R.id.notificationArtist, basePlayerImpl.getUploaderName());
-        remoteViews.setImageViewBitmap(R.id.notificationCover, basePlayerImpl.getThumbnail());
 
         remoteViews.setOnClickPendingIntent(R.id.notificationPlayPause,
                 PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_PAUSE), PendingIntent.FLAG_UPDATE_CURRENT));
@@ -295,10 +294,22 @@ public final class BackgroundPlayer extends Service {
         // Thumbnail Loading
         //////////////////////////////////////////////////////////////////////////*/
 
+        private void updateNotificationThumbnail() {
+            if (notRemoteView != null) {
+                notRemoteView.setImageViewBitmap(R.id.notificationCover,
+                        basePlayerImpl.getThumbnail());
+            }
+            if (bigNotRemoteView != null) {
+                bigNotRemoteView.setImageViewBitmap(R.id.notificationCover,
+                        basePlayerImpl.getThumbnail());
+            }
+        }
+
         @Override
         public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
             super.onLoadingComplete(imageUri, view, loadedImage);
             resetNotification();
+            updateNotificationThumbnail();
             updateNotification(-1);
         }
 
@@ -306,13 +317,7 @@ public final class BackgroundPlayer extends Service {
         public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
             super.onLoadingFailed(imageUri, view, failReason);
             resetNotification();
-            updateNotification(-1);
-        }
-
-        @Override
-        public void onLoadingCancelled(String imageUri, View view) {
-            super.onLoadingCancelled(imageUri, view);
-            resetNotification();
+            updateNotificationThumbnail();
             updateNotification(-1);
         }
         /*//////////////////////////////////////////////////////////////////////////
@@ -395,6 +400,7 @@ public final class BackgroundPlayer extends Service {
         protected void onMetadataChanged(@NonNull final MediaSourceTag tag) {
             super.onMetadataChanged(tag);
             resetNotification();
+            updateNotificationThumbnail();
             updateNotification(-1);
             updateMetadata();
         }
@@ -525,6 +531,7 @@ public final class BackgroundPlayer extends Service {
         public void onPlaying() {
             super.onPlaying();
             resetNotification();
+            updateNotificationThumbnail();
             updateNotification(R.drawable.ic_pause_white);
             lockManager.acquireWifiAndCpu();
         }
@@ -533,6 +540,7 @@ public final class BackgroundPlayer extends Service {
         public void onPaused() {
             super.onPaused();
             resetNotification();
+            updateNotificationThumbnail();
             updateNotification(R.drawable.ic_play_arrow_white);
             lockManager.releaseWifiAndCpu();
         }
@@ -547,6 +555,7 @@ public final class BackgroundPlayer extends Service {
             if (notRemoteView != null) {
                 notRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 100, false);
             }
+            updateNotificationThumbnail();
             updateNotification(R.drawable.ic_replay_white);
             lockManager.releaseWifiAndCpu();
         }
