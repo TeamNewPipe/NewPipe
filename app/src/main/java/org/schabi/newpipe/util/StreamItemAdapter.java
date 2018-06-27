@@ -13,7 +13,9 @@ import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.Stream;
+import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
+import org.schabi.newpipe.player.helper.PlayerHelper;
 
 import java.io.Serializable;
 import java.util.Collections;
@@ -100,18 +102,24 @@ public class StreamItemAdapter<T extends Stream> extends BaseAdapter {
             }
         } else if (stream instanceof AudioStream) {
             qualityString = ((AudioStream) stream).getAverageBitrate() + "kbps";
+        } else if (stream instanceof SubtitlesStream) {
+            qualityString = PlayerHelper.captionLanguageOf(context, ((SubtitlesStream) stream));
         } else {
             qualityString = stream.getFormat().getSuffix();
         }
 
-        if (streamsWrapper.getSizeInBytes(position) > 0) {
+        if (!(stream instanceof SubtitlesStream) && streamsWrapper.getSizeInBytes(position) > 0) {
             sizeView.setText(streamsWrapper.getFormattedSize(position));
             sizeView.setVisibility(View.VISIBLE);
         } else {
             sizeView.setVisibility(View.GONE);
         }
 
-        formatNameView.setText(stream.getFormat().getName());
+        if (stream instanceof SubtitlesStream) {
+            formatNameView.setText(((SubtitlesStream) stream).getLanguageTag());
+        } else {
+            formatNameView.setText(stream.getFormat().getName());
+        }
         qualityView.setText(qualityString);
         woSoundIconView.setVisibility(woSoundIconVisibility);
 

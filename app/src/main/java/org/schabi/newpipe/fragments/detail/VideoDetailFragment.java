@@ -54,11 +54,12 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
-import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
+import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeStreamExtractor;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
+import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
@@ -1231,6 +1232,7 @@ public class VideoDetailFragment
                 downloadDialog.setVideoStreams(sortedVideoStreams);
                 downloadDialog.setAudioStreams(currentInfo.getAudioStreams());
                 downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex);
+                downloadDialog.setSubtitleStreams(currentInfo.getSubtitles());
 
                 downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
             } catch (Exception e) {

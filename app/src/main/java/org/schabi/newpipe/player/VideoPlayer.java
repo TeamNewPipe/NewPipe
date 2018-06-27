@@ -62,11 +62,11 @@ import com.google.android.exoplayer2.video.VideoListener;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
-import org.schabi.newpipe.extractor.Subtitles;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
+import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.util.AnimationUtils;
@@ -425,8 +425,8 @@ public abstract class VideoPlayer extends BasePlayer
         // Below are auxiliary media sources
 
         // Create subtitle sources
-        for (final Subtitles subtitle : info.getSubtitles()) {
-            final String mimeType = PlayerHelper.mimeTypesOf(subtitle.getFileType());
+        for (final SubtitlesStream subtitle : info.getSubtitles()) {
+            final String mimeType = PlayerHelper.subtitleMimeTypesOf(subtitle.getFormat());
             if (mimeType == null) continue;
 
             final Format textFormat = Format.createTextSampleFormat(null, mimeType,

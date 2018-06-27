@@ -2,6 +2,7 @@ package org.schabi.newpipe.download;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
@@ -20,11 +22,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.kapodamy.SubtitleConverter;
+import org.kapodamy.SubtitleUtils;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.util.FilenameUtils;
@@ -36,6 +42,7 @@ import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import icepick.Icepick;
 import icepick.State;
@@ -49,11 +56,14 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     @State protected StreamInfo currentInfo;
     @State protected StreamSizeWrapper<AudioStream> wrappedAudioStreams = StreamSizeWrapper.empty();
     @State protected StreamSizeWrapper<VideoStream> wrappedVideoStreams = StreamSizeWrapper.empty();
+    @State protected StreamSizeWrapper<SubtitlesStream> wrappedSubtitleStreams = StreamSizeWrapper.empty();
     @State protected int selectedVideoIndex = 0;
     @State protected int selectedAudioIndex = 0;
+    @State protected int selectedSubtitleIndex = 0;
 
     private StreamItemAdapter<AudioStream> audioStreamsAdapter;
     private StreamItemAdapter<VideoStream> videoStreamsAdapter;
+    private StreamItemAdapter<SubtitlesStream> subtitleStreamsAdapter;
 
     private CompositeDisposable disposables = new CompositeDisposable();
 
@@ -78,6 +88,8 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         instance.setVideoStreams(streamsList);
         instance.setSelectedVideoStream(selectedStreamIndex);
         instance.setAudioStreams(info.getAudioStreams());
+        instance.setSubtitleStreams(info.getSubtitles());
+
         return instance;
     }
 
@@ -101,12 +113,24 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         this.wrappedVideoStreams = wrappedVideoStreams;
     }
 
+    public void setSubtitleStreams(List<SubtitlesStream> subtitleStreams) {
+        setSubtitleStreams(new StreamSizeWrapper<>(subtitleStreams));
+    }
+
+    public void setSubtitleStreams(StreamSizeWrapper<SubtitlesStream> wrappedSubtitleStreams) {
+        this.wrappedSubtitleStreams = wrappedSubtitleStreams;
+    }
+
     public void setSelectedVideoStream(int selectedVideoIndex) {
         this.selectedVideoIndex = selectedVideoIndex;
     }
 
     public void setSelectedAudioStream(int selectedAudioIndex) {
         this.selectedAudioIndex = selectedAudioIndex;
+    }
+
+    public void setSelectedSubtitleStream(int selectedSubtitleIndex) {
+        this.selectedSubtitleIndex = selectedSubtitleIndex;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -127,6 +151,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
 
         this.videoStreamsAdapter = new StreamItemAdapter<>(getContext(), wrappedVideoStreams, true);
         this.audioStreamsAdapter = new StreamItemAdapter<>(getContext(), wrappedAudioStreams);
+        this.subtitleStreamsAdapter = new StreamItemAdapter<>(getContext(), wrappedSubtitleStreams);
     }
 
     @Override
@@ -140,7 +165,16 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         super.onViewCreated(view, savedInstanceState);
         nameEditText = view.findViewById(R.id.file_name);
         nameEditText.setText(FilenameUtils.createFilename(getContext(), currentInfo.getName()));
+
         selectedAudioIndex = ListHelper.getDefaultAudioFormat(getContext(), currentInfo.getAudioStreams());
+
+        String country = PreferenceManager
+                .getDefaultSharedPreferences(getContext())
+                .getString(getString(R.string.content_country_key), getString(R.string.default_country_value));
+
+        selectedSubtitleIndex = SubtitleUtils.getSubtitleIndexBy(subtitleStreamsAdapter.getAll(),
+                NewPipe.getLanguage().concat("-").concat(country)
+        );
 
         streamsSpinner = view.findViewById(R.id.quality_spinner);
         streamsSpinner.setOnItemSelectedListener(this);
@@ -187,6 +221,11 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         disposables.add(StreamSizeWrapper.fetchSizeForWrapper(wrappedAudioStreams).subscribe(result -> {
             if (radioVideoAudioGroup.getCheckedRadioButtonId() == R.id.audio_button) {
                 setupAudioSpinner();
+            }
+        }));
+        disposables.add(StreamSizeWrapper.fetchSizeForWrapper(wrappedSubtitleStreams).subscribe(result -> {
+            if (radioVideoAudioGroup.getCheckedRadioButtonId() == R.id.subtitle_button) {
+                setupSubtitleSpinner();
             }
         }));
     }
@@ -239,6 +278,14 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         setRadioButtonsState(true);
     }
 
+    private void setupSubtitleSpinner() {
+        if (getContext() == null) return;
+
+        streamsSpinner.setAdapter(subtitleStreamsAdapter);
+        streamsSpinner.setSelection(selectedSubtitleIndex);
+        setRadioButtonsState(true);
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Radio group Video&Audio options - Listener
     //////////////////////////////////////////////////////////////////////////*/
@@ -246,6 +293,8 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     @Override
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
         if (DEBUG) Log.d(TAG, "onCheckedChanged() called with: group = [" + group + "], checkedId = [" + checkedId + "]");
+        boolean flag = true;
+
         switch (checkedId) {
             case R.id.audio_button:
                 setupAudioSpinner();
@@ -253,7 +302,13 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
             case R.id.video_button:
                 setupVideoSpinner();
                 break;
+            case R.id.subtitle_button:
+                setupSubtitleSpinner();
+                flag = false;
+                break;
         }
+
+        threadsSeekBar.setEnabled(flag);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -269,6 +324,9 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
                 break;
             case R.id.video_button:
                 selectedVideoIndex = position;
+                break;
+            case R.id.subtitle_button:
+                selectedSubtitleIndex = position;
                 break;
         }
     }
@@ -286,11 +344,14 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
 
         final RadioButton audioButton = radioVideoAudioGroup.findViewById(R.id.audio_button);
         final RadioButton videoButton = radioVideoAudioGroup.findViewById(R.id.video_button);
+        final RadioButton subtitleButton = radioVideoAudioGroup.findViewById(R.id.subtitle_button);
         final boolean isVideoStreamsAvailable = videoStreamsAdapter.getCount() > 0;
         final boolean isAudioStreamsAvailable = audioStreamsAdapter.getCount() > 0;
+        final boolean isSubtitleStreamsAvailable = subtitleStreamsAdapter.getCount() > 0;
 
         audioButton.setVisibility(isAudioStreamsAvailable ? View.VISIBLE : View.GONE);
         videoButton.setVisibility(isVideoStreamsAvailable ? View.VISIBLE : View.GONE);
+        subtitleButton.setVisibility(isSubtitleStreamsAvailable ? View.VISIBLE : View.GONE);
 
         if (isVideoStreamsAvailable) {
             videoButton.setChecked(true);
@@ -298,6 +359,9 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         } else if (isAudioStreamsAvailable) {
             audioButton.setChecked(true);
             setupAudioSpinner();
+        } else if (isSubtitleStreamsAvailable) {
+            subtitleButton.setChecked(true);
+            setupSubtitleSpinner();
         } else {
             Toast.makeText(getContext(), R.string.no_streams_available_download, Toast.LENGTH_SHORT).show();
             getDialog().dismiss();
@@ -307,28 +371,50 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     private void setRadioButtonsState(boolean enabled) {
         radioVideoAudioGroup.findViewById(R.id.audio_button).setEnabled(enabled);
         radioVideoAudioGroup.findViewById(R.id.video_button).setEnabled(enabled);
+        radioVideoAudioGroup.findViewById(R.id.subtitle_button).setEnabled(enabled);
     }
 
     private void downloadSelected() {
         Stream stream;
         String location;
+        char kind;// Unused in any DownloadManager
 
         String fileName = nameEditText.getText().toString().trim();
         if (fileName.isEmpty()) fileName = FilenameUtils.createFilename(getContext(), currentInfo.getName());
 
-        boolean isAudio = radioVideoAudioGroup.getCheckedRadioButtonId() == R.id.audio_button;
-        if (isAudio) {
-            stream = audioStreamsAdapter.getItem(selectedAudioIndex);
-            location = NewPipeSettings.getAudioDownloadPath(getContext());
-        } else {
-            stream = videoStreamsAdapter.getItem(selectedVideoIndex);
-            location = NewPipeSettings.getVideoDownloadPath(getContext());
+        switch (radioVideoAudioGroup.getCheckedRadioButtonId()) {
+            case R.id.audio_button:
+                stream = audioStreamsAdapter.getItem(selectedAudioIndex);
+                location = NewPipeSettings.getAudioDownloadPath(getContext());
+                kind = 'a';
+                break;
+            case R.id.video_button:
+                stream = videoStreamsAdapter.getItem(selectedVideoIndex);
+                location = NewPipeSettings.getVideoDownloadPath(getContext());
+                kind = 'v';
+                break;
+            case R.id.subtitle_button:
+                stream = subtitleStreamsAdapter.getItem(selectedSubtitleIndex);
+                location = NewPipeSettings.getVideoDownloadPath(getContext());// assume that subtitle & video go together
+                kind = 's';
+                break;
+            default:
+                return;
         }
 
         String url = stream.getUrl();
-        fileName += "." + stream.getFormat().getSuffix();
+        int threads;
 
-        DownloadManagerService.startMission(getContext(), url, location, fileName, isAudio, threadsSeekBar.getProgress() + 1);
+        if (radioVideoAudioGroup.getCheckedRadioButtonId() == R.id.subtitle_button) {
+            threads = 1;// use unique thread for subtitles due small file size
+            fileName += ".srt";// final subtitle format
+            SubtitleConverter.startMission(getContext(), (SubtitlesStream) stream, location, fileName);
+        } else {
+            threads = threadsSeekBar.getProgress() + 1;
+            fileName += "." + stream.getFormat().getSuffix();
+            DownloadManagerService.startMission(getContext(), url, location, fileName, kind, threads);
+        }
+
         getDialog().dismiss();
     }
 }
