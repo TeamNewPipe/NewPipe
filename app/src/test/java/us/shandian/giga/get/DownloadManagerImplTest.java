@@ -106,7 +106,7 @@ public class DownloadManagerImplTest {
         String name = tempFile.getName();
         String location = tempFile.getParent();
         assertTrue(tempFile.delete());
-        int id = downloadManager.startMission(url, location, name, true, 10);
+        int id = downloadManager.startMission(url, location, name, 'i', 10);
     }
 
     @Test
