@@ -89,6 +89,13 @@ public class NewPipeSettings {
         final String key = context.getString(R.string.download_path_audio_key);
         return prefs.getString(key, Environment.DIRECTORY_MUSIC);
     }
+    
+    public static String getCountry(Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        final String key = context.getString(R.string.content_country_key);
+        final String def = context.getString(R.string.default_country_value);
+        return prefs.getString(key, def);
+    }
 
     private static File getFolder(Context context, int keyID, String defaultDirectoryName) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);

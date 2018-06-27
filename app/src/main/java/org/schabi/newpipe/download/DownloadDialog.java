@@ -2,7 +2,6 @@ package org.schabi.newpipe.download;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -165,15 +164,10 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         super.onViewCreated(view, savedInstanceState);
         nameEditText = view.findViewById(R.id.file_name);
         nameEditText.setText(FilenameUtils.createFilename(getContext(), currentInfo.getName()));
-
         selectedAudioIndex = ListHelper.getDefaultAudioFormat(getContext(), currentInfo.getAudioStreams());
 
-        String country = PreferenceManager
-                .getDefaultSharedPreferences(getContext())
-                .getString(getString(R.string.content_country_key), getString(R.string.default_country_value));
-
         selectedSubtitleIndex = SubtitleUtils.getSubtitleIndexBy(subtitleStreamsAdapter.getAll(),
-                NewPipe.getLanguage().concat("-").concat(country)
+                NewPipe.getLanguage().concat("-").concat(NewPipeSettings.getCountry(getContext()))
         );
 
         streamsSpinner = view.findViewById(R.id.quality_spinner);
@@ -406,12 +400,11 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         int threads;
 
         if (radioVideoAudioGroup.getCheckedRadioButtonId() == R.id.subtitle_button) {
-            threads = 1;// use unique thread for subtitles due small file size
             fileName += ".srt";// final subtitle format
             SubtitleConverter.startMission(getContext(), (SubtitlesStream) stream, location, fileName);
         } else {
-            threads = threadsSeekBar.getProgress() + 1;
             fileName += "." + stream.getFormat().getSuffix();
+            int threads = threadsSeekBar.getProgress() + 1;
             DownloadManagerService.startMission(getContext(), url, location, fileName, kind, threads);
         }
 
