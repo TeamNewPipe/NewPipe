@@ -97,7 +97,6 @@
     <string name="user_report">Reporte de usuario</string>
 
     <string name="video">Vídeo</string>
-
     <string name="audio">Audio</string>
     <string name="retry">Reintentar</string>
     <string name="storage_permission_denied">Permiso de acceso al almacenamiento denegado</string>
@@ -456,7 +455,7 @@ abrir en modo popup</string>
     <string name="unhook_checkbox">Desenganchar (puede casusar distorsión)</string>
     <string name="playback_nightcore">Nightcore (tipo de música)</string>
     <string name="playback_default">Reproducción por defecto</string>
-<string name="no_streams_available_download">No hay streams disponibles para descargar</string>
+    <string name="no_streams_available_download">No hay streams disponibles para descargar</string>
 
     <string name="preferred_open_action_settings_title">Acción \'abrir\' preferida</string>
     <string name="preferred_open_action_settings_summary">Acción por defecto al abrir contenido — %s</string>
@@ -465,6 +464,7 @@ abrir en modo popup</string>
 
     <string name="caption_setting_title">Subtítulos</string>
     <string name="caption_setting_description">Modificar la escala de texto de los subtítulos y los estilos de fondo del reproductor. Requiere el reinicio de la app para que surta efecto.</string>
+    <string name="caption_parse_error">No se pudieron guardar los subtitulos "%s", ocurrio un error durante el analisis</string>
 
     <string name="clear_views_history_title">Borrar historial de reproducciones</string>
     <string name="clear_views_history_summary">Elimina el historial de las transmisiones reproducidas.</string>
