@@ -113,6 +113,8 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
         h.size.setText(Utility.formatBytes(ms.length));
 
         h.progress = new ProgressDrawable(mContext, Utility.getBackgroundForFileType(type), Utility.getForegroundForFileType(type));
+        h.progress.setMarquee(h.mission.running && h.mission.unknownLength);
+
         ViewCompat.setBackground(h.bkg, h.progress);
 
         h.observer = new MissionObserver(this, h);
@@ -155,9 +157,24 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
             if (h.mission.errCode > 0) {
                 h.status.setText(R.string.msg_error);
             } else {
-                float progress = (float) h.mission.done / h.mission.length;
-                h.status.setText(String.format(Locale.US, "%.2f%%", progress * 100));
-                h.progress.setProgress(progress);
+                float progress;
+                if (h.mission.unknownLength) {
+                    progress = Float.NaN;
+                    h.size.setText(Utility.formatBytes(h.mission.length));// the length is updated dynamically
+                    if (h.mission.finished) {
+                        h.progress.setMarquee(false);
+                        progress = 1f;
+                    }
+                } else {
+                    progress = (float) h.mission.done / h.mission.length;
+                }
+
+                if (Float.isNaN(progress) || Float.isInfinite(progress)) {
+                    h.status.setText("--.-%");// don't print NaN or the progress if the length is unknown
+                } else {
+                    h.status.setText(String.format(Locale.US, "%.2f%%", progress * 100));
+                    h.progress.setProgress(progress);
+                }
             }
         }
 
@@ -166,7 +183,7 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
             String speedStr = Utility.formatSpeed(speed * 1000);
             String sizeStr = Utility.formatBytes(h.mission.length);
 
-            h.size.setText(sizeStr + " " + speedStr);
+            h.size.setText(sizeStr.concat(" ").concat(speedStr));
 
             h.lastTimeStamp = now;
             h.lastDone = h.mission.done;
@@ -215,11 +232,11 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
                 switch (id) {
                     case R.id.start:
                         mManager.resumeMission(h.position);
-                        mBinder.onMissionAdded(mManager.getMission(h.position));
+                        mBinder.onMissionStarted(mManager.getMission(h.position));
                         return true;
                     case R.id.pause:
                         mManager.pauseMission(h.position);
-                        mBinder.onMissionRemoved(mManager.getMission(h.position));
+                        mBinder.onMissionPaused(mManager.getMission(h.position));
                         h.lastTimeStamp = -1;
                         h.lastDone = -1;
                         return true;
@@ -352,6 +369,10 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
         @Override
         public void onError(DownloadMission downloadMission, int errCode) {
             mAdapter.updateProgress(mHolder);
+        }
+
+        @Override
+        public void onDeleted(DownloadMission downloadMission){
         }
 
     }

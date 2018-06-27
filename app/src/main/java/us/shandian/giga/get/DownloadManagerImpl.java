@@ -1,11 +1,14 @@
 package us.shandian.giga.get;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.RandomAccessFile;
+import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -13,6 +16,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
 import us.shandian.giga.util.Utility;
@@ -23,7 +27,8 @@ public class DownloadManagerImpl implements DownloadManager {
     private static final String TAG = DownloadManagerImpl.class.getSimpleName();
     private final DownloadDataSource mDownloadDataSource;
 
-    private final ArrayList<DownloadMission> mMissions = new ArrayList<DownloadMission>();
+    private final ArrayList<DownloadMission> mMissions = new ArrayList<>();
+    private transient ArrayList<WeakReference<DownloadMission.MissionListener>> mListeners = new ArrayList<>();
 
     /**
      * Create a new instance
@@ -36,8 +41,18 @@ public class DownloadManagerImpl implements DownloadManager {
         loadMissions(searchLocations);
     }
 
+    /**
+     * Start a new download mission
+     *
+     * @param url      the url to download
+     * @param location the location
+     * @param name     the name of the file to create
+     * @param kind     type of file (a: audio  v: video  s: subtitle)
+     * @param threads  the number of threads maximal used to download chunks of the file.
+     * @return the identifier of the mission.
+     */
     @Override
-    public int startMission(String url, String location, String name, boolean isAudio, int threads) {
+    public int startMission(String url, String location, String name, char kind, int threads) {
         DownloadMission existingMission = getMissionByLocation(location, name);
         if (existingMission != null) {
             // Already downloaded or downloading
@@ -60,6 +75,7 @@ public class DownloadManagerImpl implements DownloadManager {
         mission.timestamp = System.currentTimeMillis();
         mission.threadCount = threads;
         mission.addListener(new MissionListener(mission));
+        appendListeners(mission);
         new Initializer(mission).start();
         return insertMission(mission);
     }
@@ -86,6 +102,7 @@ public class DownloadManagerImpl implements DownloadManager {
         if (mission.finished) {
             mDownloadDataSource.deleteMission(mission);
         }
+
         mission.delete();
         mMissions.remove(i);
     }
@@ -276,6 +293,42 @@ public class DownloadManagerImpl implements DownloadManager {
         return newName;
     }
 
+    private void appendListeners(DownloadMission mission) {
+        for (Iterator<WeakReference<DownloadMission.MissionListener>> iterator = mListeners.iterator(); iterator.hasNext(); ) {
+            DownloadMission.MissionListener listener = iterator.next().get();
+            if (listener == null) {
+                iterator.remove();
+            } else {
+                mission.addListener(listener);
+            }
+        }
+    }
+
+    /**
+     * Attach a listener to each new missions
+     * @param listener the listener object
+     */
+    public synchronized void addListener(DownloadMission.MissionListener listener) {
+        Handler handler = new Handler(Looper.getMainLooper());
+        MissionListener.handlerStore.put(listener, handler);
+        mListeners.add(new WeakReference<>(listener));
+    }
+
+    /**
+     * Remove a listener previously added with addListener()
+     * @param listener the listener object to remove
+     */
+    public synchronized void removeListener(DownloadMission.MissionListener listener) {
+        for (Iterator<WeakReference<DownloadMission.MissionListener>> iterator = mListeners.iterator();
+             iterator.hasNext(); ) {
+            WeakReference<DownloadMission.MissionListener> weakRef = iterator.next();
+            if (listener == null || listener == weakRef.get()) {
+                iterator.remove();
+            }
+        }
+    }
+
+
     private class Initializer extends Thread {
         private DownloadMission mission;
 
@@ -288,24 +341,35 @@ public class DownloadManagerImpl implements DownloadManager {
             try {
                 URL url = new URL(mission.url);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                mission.length = conn.getContentLength();
+                mission.length = conn.getContentLength();// conn.getResponseCode()
 
-                if (mission.length <= 0) {
+                if (mission.length == 0 || mission.length < -1) {
                     mission.errCode = DownloadMission.ERROR_SERVER_UNSUPPORTED;
                     //mission.notifyError(DownloadMission.ERROR_SERVER_UNSUPPORTED);
                     return;
+
                 }
 
-                // Open again
-                conn = (HttpURLConnection) url.openConnection();
-                conn.setRequestProperty("Range", "bytes=" + (mission.length - 10) + "-" + mission.length);
-
-                if (conn.getResponseCode() != 206) {
-                    // Fallback to single thread if no partial content support
+                // ¿dynamic generated content?
+                if (mission.length == -1 && conn.getResponseCode() == 200) {
+                    mission.length = 0;
                     mission.fallback = true;
-
+                    mission.unknownLength = true;
                     if (DEBUG) {
-                        Log.d(TAG, "falling back");
+                        Log.d(TAG, "falling back (unknown length)");
+                    }
+                } else {
+                    // Open again
+                    conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestProperty("Range", "bytes=" + (mission.length - 10) + "-" + mission.length);
+
+                    if (conn.getResponseCode() != 206) {
+                        // Fallback to single thread if no partial content support
+                        mission.fallback = true;
+
+                        if (DEBUG) {
+                            Log.d(TAG, "falling back");
+                        }
                     }
                 }
 
@@ -331,7 +395,7 @@ public class DownloadManagerImpl implements DownloadManager {
                 new File(mission.location).mkdirs();
                 new File(mission.location + "/" + mission.name).createNewFile();
                 RandomAccessFile af = new RandomAccessFile(mission.location + "/" + mission.name, "rw");
-                af.setLength(mission.length);
+                af.setLength(mission.length < 1 ? 0 : mission.length);
                 af.close();
 
                 mission.start();
@@ -366,5 +430,10 @@ public class DownloadManagerImpl implements DownloadManager {
         @Override
         public void onError(DownloadMission downloadMission, int errCode) {
         }
+
+        @Override
+        public void onDeleted(DownloadMission downloadMission){
+        }
     }
+
 }

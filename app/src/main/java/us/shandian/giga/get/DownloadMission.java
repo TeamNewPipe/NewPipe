@@ -31,6 +31,8 @@ public class DownloadMission implements Serializable {
         void onFinish(DownloadMission downloadMission);
 
         void onError(DownloadMission downloadMission, int errCode);
+
+        void onDeleted(DownloadMission downloadMission);
     }
 
     public static final int ERROR_SERVER_UNSUPPORTED = 206;
@@ -65,6 +67,12 @@ public class DownloadMission implements Serializable {
      * Number of bytes downloaded
      */
     public long done;
+
+    /**
+     * file generated dynamically by the web server
+     */
+    public boolean unknownLength = false;
+
     public int threadCount = 3;
     public int finishCount;
     private List<Long> threadPositions = new ArrayList<Long>();
@@ -149,6 +157,10 @@ public class DownloadMission implements Serializable {
             recovered = false;
         }
 
+        if (unknownLength) {
+            length += deltaLen;// Update length before proceeding
+        }
+
         done += deltaLen;
 
         if (done > length) {
@@ -229,6 +241,20 @@ public class DownloadMission implements Serializable {
         }
     }
 
+    private synchronized void onDeleted() {
+        for (WeakReference<MissionListener> ref : mListeners) {
+            final MissionListener listener = ref.get();
+            if (listener != null) {
+                MissionListener.handlerStore.get(listener).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        listener.onDeleted(DownloadMission.this);
+                    }
+                });
+            }
+        }
+    }
+
     public synchronized void addListener(MissionListener listener) {
         Handler handler = new Handler(Looper.getMainLooper());
         MissionListener.handlerStore.put(listener, handler);
@@ -285,6 +311,7 @@ public class DownloadMission implements Serializable {
     public void delete() {
         deleteThisFromFile();
         new File(location, name).delete();
+        onDeleted();
     }
 
     /**

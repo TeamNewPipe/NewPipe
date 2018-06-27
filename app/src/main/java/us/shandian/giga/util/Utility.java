@@ -29,6 +29,7 @@ public class Utility {
     public enum FileType {
         VIDEO,
         MUSIC,
+        SUBTITLE,
         UNKNOWN
     }
 
@@ -122,7 +123,9 @@ public class Utility {
     }
 
     public static FileType getFileType(String file) {
-        if (file.endsWith(".mp3") || file.endsWith(".wav") || file.endsWith(".flac") || file.endsWith(".m4a")) {
+        if (file.endsWith(".srt") || file.endsWith(".vtt") || file.endsWith(".ssa")) {
+            return FileType.SUBTITLE;
+        } else if (file.endsWith(".mp3") || file.endsWith(".wav") || file.endsWith(".flac") || file.endsWith(".m4a") || file.endsWith(".opus")) {
             return FileType.MUSIC;
         } else if (file.endsWith(".mp4") || file.endsWith(".mpeg") || file.endsWith(".rm") || file.endsWith(".rmvb")
                 || file.endsWith(".flv") || file.endsWith(".webp") || file.endsWith(".webm")) {
@@ -139,6 +142,8 @@ public class Utility {
                 return R.color.audio_left_to_load_color;
             case VIDEO:
                 return R.color.video_left_to_load_color;
+            case SUBTITLE:
+                return R.color.subtitle_left_to_load_color;
             default:
                 return R.color.gray;
         }
@@ -151,6 +156,8 @@ public class Utility {
                 return R.color.audio_already_load_color;
             case VIDEO:
                 return R.color.video_already_load_color;
+            case SUBTITLE:
+                return R.color.subtitle_already_load_color;
             default:
                 return R.color.gray;
         }
@@ -163,6 +170,8 @@ public class Utility {
                 return R.drawable.music;
             case VIDEO:
                 return R.drawable.video;
+            case SUBTITLE:
+                return R.drawable.subtitle;
             default:
                 return R.drawable.video;
         }

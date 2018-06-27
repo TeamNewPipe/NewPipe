@@ -25,13 +25,17 @@ public class DownloadRunnableFallback implements Runnable {
             if (conn.getResponseCode() != 200 && conn.getResponseCode() != 206) {
                 notifyError(DownloadMission.ERROR_SERVER_UNSUPPORTED);
             } else {
+                if (!mMission.unknownLength) {
+                    mMission.unknownLength = conn.getContentLength() == -1;
+                }
+
                 RandomAccessFile f = new RandomAccessFile(mMission.location + "/" + mMission.name, "rw");
                 f.seek(0);
                 BufferedInputStream ipt = new BufferedInputStream(conn.getInputStream());
-                byte[] buf = new byte[512];
+                byte[] buf = new byte[64*1024];
                 int len = 0;
 
-                while ((len = ipt.read(buf, 0, 512)) != -1 && mMission.running) {
+                while ((len = ipt.read(buf, 0, buf.length)) != -1 && mMission.running) {
                     f.write(buf, 0, len);
                     notifyProgress(len);
 
@@ -55,6 +59,10 @@ public class DownloadRunnableFallback implements Runnable {
 
     private void notifyProgress(final long len) {
         synchronized (mMission) {
+            if (mMission.unknownLength) {
+                mMission.length += len;
+            }
+            mMission.done += len;
             mMission.notifyProgress(len);
         }
     }

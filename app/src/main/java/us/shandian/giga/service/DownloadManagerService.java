@@ -44,7 +44,7 @@ public class DownloadManagerService extends Service {
     private static final int NOTIFICATION_ID = 1000;
     private static final String EXTRA_NAME = "DownloadManagerService.extra.name";
     private static final String EXTRA_LOCATION = "DownloadManagerService.extra.location";
-    private static final String EXTRA_IS_AUDIO = "DownloadManagerService.extra.is_audio";
+    private static final String EXTRA_KIND = "DownloadManagerService.extra.kind";
     private static final String EXTRA_THREADS = "DownloadManagerService.extra.threads";
 
 
@@ -57,7 +57,6 @@ public class DownloadManagerService extends Service {
 
 
     private MissionListener missionListener = new MissionListener();
-
 
     private void notifyMediaScanner(DownloadMission mission) {
         Uri uri = Uri.parse("file://" + mission.location + "/" + mission.name);
@@ -127,16 +126,14 @@ public class DownloadManagerService extends Service {
                 }
             }
         };
-
     }
 
-    private void startMissionAsync(final String url, final String location, final String name,
-                                   final boolean isAudio, final int threads) {
+    private void startMissionAsync(final String url, final String location, final String name, final char kind, final int threads) {
         mHandler.post(new Runnable() {
             @Override
             public void run() {
-                int missionId = mManager.startMission(url, location, name, isAudio, threads);
-                mBinder.onMissionAdded(mManager.getMission(missionId));
+                int missionId = mManager.startMission(url, location, name, kind, threads);
+                mBinder.onMissionStarted(mManager.getMission(missionId));
             }
         });
     }
@@ -152,9 +149,9 @@ public class DownloadManagerService extends Service {
             String name = intent.getStringExtra(EXTRA_NAME);
             String location = intent.getStringExtra(EXTRA_LOCATION);
             int threads = intent.getIntExtra(EXTRA_THREADS, 1);
-            boolean isAudio = intent.getBooleanExtra(EXTRA_IS_AUDIO, false);
+            char kind = intent.getCharExtra(EXTRA_KIND, '?');
             String url = intent.getDataString();
-            startMissionAsync(url, location, name, isAudio, threads);
+            startMissionAsync(url, location, name, kind, threads);
         }
         return START_NOT_STICKY;
     }
@@ -204,17 +201,26 @@ public class DownloadManagerService extends Service {
         }
     }
 
-    public static void startMission(Context context, String url, String location, String name, boolean isAudio, int threads) {
+    public static void startMission(Context context, String url, String location, String name, char kind, int threads) {
         Intent intent = new Intent(context, DownloadManagerService.class);
         intent.setAction(Intent.ACTION_RUN);
         intent.setData(Uri.parse(url));
         intent.putExtra(EXTRA_NAME, name);
         intent.putExtra(EXTRA_LOCATION, location);
-        intent.putExtra(EXTRA_IS_AUDIO, isAudio);
+        intent.putExtra(EXTRA_KIND, kind);
         intent.putExtra(EXTRA_THREADS, threads);
         context.startService(intent);
     }
 
+    // Wrapper of DownloadManager.addListener()
+    public void addListener(DownloadMission.MissionListener listener) {
+        mManager.addListener(listener);
+    }
+
+    // Wrapper of DownloadManager.removeListener()
+    public void removeListener(DownloadMission.MissionListener listener) {
+        mManager.removeListener(listener);
+    }
 
     private class MissionListener implements DownloadMission.MissionListener {
         @Override
@@ -237,8 +243,11 @@ public class DownloadManagerService extends Service {
         public void onError(DownloadMission downloadMission, int errCode) {
             postUpdateMessage();
         }
-    }
 
+        @Override
+        public void onDeleted(DownloadMission downloadMission){
+        }
+    }
 
     // Wrapper of DownloadManager
     public class DMBinder extends Binder {
@@ -246,14 +255,15 @@ public class DownloadManagerService extends Service {
             return mManager;
         }
 
-        public void onMissionAdded(DownloadMission mission) {
+        public void onMissionStarted(DownloadMission mission) {
             mission.addListener(missionListener);
             postUpdateMessage();
         }
 
-        public void onMissionRemoved(DownloadMission mission) {
+        public void onMissionPaused(DownloadMission mission) {
             mission.removeListener(missionListener);
             postUpdateMessage();
         }
     }
+
 }
