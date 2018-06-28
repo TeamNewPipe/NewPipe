@@ -409,7 +409,9 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.newThread())
                 .subscribe((@NonNull ChannelInfo result) -> {
-                    List<SubscriptionEntity> toDelete = subscriptionService.subscriptionTable().getSubscription(result.getServiceId(), result.getUrl()).blockingFirst();
+                    List<SubscriptionEntity> toDelete = subscriptionService.subscriptionTable()
+                            .getSubscription(result.getServiceId(), result.getUrl())
+                            .blockingFirst();
                     subscriptionService.subscriptionTable().delete(toDelete);
                 });
     }
