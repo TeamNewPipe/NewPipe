@@ -341,7 +341,7 @@ public class DownloadManagerImpl implements DownloadManager {
             try {
                 URL url = new URL(mission.url);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                mission.length = conn.getContentLength();// conn.getResponseCode()
+                mission.length = conn.getContentLength();
 
                 if (mission.length == 0 || mission.length < -1) {
                     mission.errCode = DownloadMission.ERROR_SERVER_UNSUPPORTED;
