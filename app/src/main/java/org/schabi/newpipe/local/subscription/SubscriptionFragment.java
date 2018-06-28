@@ -73,6 +73,7 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import icepick.State;
+import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.Single;
@@ -406,18 +407,20 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe((@NonNull ChannelInfo result) -> {
-                    new LongOperation().execute(SubscriptionEntity.from(result));
+                    new LongOperation().execute(result);
                 }, (@NonNull Throwable throwable) -> {
 
                 });
     }
 
 
-    private class LongOperation extends AsyncTask<SubscriptionEntity, Void, Void> {
+    private class LongOperation extends AsyncTask<ChannelInfo, Void, Void> {
 
         @Override
-        protected Void doInBackground(SubscriptionEntity... params) {
-            subscriptionService.subscriptionTable().delete(params[0]);
+        protected Void doInBackground(ChannelInfo... params) {
+            ChannelInfo info = params[0];
+            Flowable<List<SubscriptionEntity>> subscription = subscriptionService.subscriptionTable().getSubscription(info.getServiceId(), info.getUrl());
+            subscriptionService.subscriptionTable().delete(subscription.blockingFirst());
             return null;
         }
     }
