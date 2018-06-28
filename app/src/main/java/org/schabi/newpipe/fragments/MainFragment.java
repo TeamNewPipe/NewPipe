@@ -10,6 +10,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -46,6 +47,7 @@ import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.schabi.newpipe.util.NavigationHelper.MAIN_FRAGMENT_TAG;
@@ -206,32 +208,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         String save = prefs.getString("saveUsedTabs", "1\n2\n4\n");
         String tabsArray[] = save.trim().split("\n");
 
-        KioskList kl = null;
-
-        try {
-            StreamingService service = NewPipe.getService(currentServiceId);
-            kl = service.getKioskList();
-        } catch (Exception e) {
-            ErrorActivity.reportError(activity, e,
-                    activity.getClass(),
-                    null,
-                    ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
-                            "none", "", R.string.app_ui_crash));
-        }
-
-        for(String tabInformation:tabsArray) {
-            if(tabInformation.equals(TAB_NUMBER_KIOSK)) {
-                if (kl != null) {
-                    for(String ks : kl.getAvailableKiosks()) {
-                        tabs.add(tabInformation+"\t"+ks);
-                    }
-                }
-            } else {
-                tabs.add(tabInformation);
-        for(String tabNumber:tabsArray) { {
-                tabs.add(tabNumber);
-            }
-        }
+        Collections.addAll(tabs, tabsArray);
     }
 
     /*//////////////////////////////////////////////////////////////////////////

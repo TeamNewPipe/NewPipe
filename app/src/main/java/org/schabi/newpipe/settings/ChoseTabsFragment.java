@@ -128,11 +128,7 @@ public class ChoseTabsFragment extends Fragment {
 
 
     private void addTab(int position) {
-        if(position!=6) {
-            selectedTabs.add(String.valueOf(position));
-            selectedTabsAdapter.notifyDataSetChanged();
-            saveChanges();
-        } else {
+        if(position==6) {
             SelectChannelFragment selectChannelFragment = new SelectChannelFragment();
             selectChannelFragment.setOnSelectedLisener((String url, String name, int service) -> {
                 selectedTabs.add(position+"\t"+url+"\t"+name+"\t"+service);
@@ -140,6 +136,18 @@ public class ChoseTabsFragment extends Fragment {
                 saveChanges();
             });
             selectChannelFragment.show(getFragmentManager(), "select_channel");
+        } else if(position==1) {
+            SelectKioskFragment selectKioskFragment = new SelectKioskFragment();
+            selectKioskFragment.setOnSelectedLisener((String kioskId, int service_id) -> {
+                selectedTabs.add(position+"\t"+kioskId+"\t"+service_id);
+                selectedTabsAdapter.notifyDataSetChanged();
+                saveChanges();
+            });
+            selectKioskFragment.show(getFragmentManager(), "select_kiosk");
+        } else {
+            selectedTabs.add(String.valueOf(position));
+            selectedTabsAdapter.notifyDataSetChanged();
+            saveChanges();
         }
     }
 
@@ -168,7 +176,7 @@ public class ChoseTabsFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull ChoseTabsFragment.SelectedTabsAdapter.TabViewHolder holder, int position) {
-            holder.bind(position, holder);
+            holder.bind(position);
         }
 
         @Override
@@ -192,18 +200,20 @@ public class ChoseTabsFragment extends Fragment {
                 view = itemView;
             }
 
-            void bind(int position, ChoseTabsFragment.SelectedTabsAdapter.TabViewHolder holder) {
-
+            void bind(int position) {
                 handle.setImageResource(ThemeHelper.getIconByAttr(R.attr.drag_handle, getContext()));
-                handle.setOnTouchListener(getOnTouchListener(holder));
-
-                view.setOnLongClickListener(getOnLongClickListener(holder));
 
                 if(selectedTabs.get(position).startsWith("6\t")) {
                     String channelInfo[] = selectedTabs.get(position).split("\t");
                     String channelName = "";
-                    if(channelInfo.length==4)   channelName = channelInfo[2];
-                    String textToSet = availableTabs[6]+": "+channelName;
+                    if (channelInfo.length == 4) channelName = channelInfo[2];
+                    String textToSet = availableTabs[6] + ": " + channelName;
+                    text.setText(textToSet);
+                } else if(selectedTabs.get(position).startsWith("1\t")) {
+                    String kioskInfo[] = selectedTabs.get(position).split("\t");
+                    String kioskName = "";
+                    if (kioskInfo.length == 3) kioskName = kioskInfo[1];
+                    String textToSet = availableTabs[1] + ": " + kioskName;
                     text.setText(textToSet);
                 } else {
                     text.setText(availableTabs[Integer.parseInt(selectedTabs.get(position))]);
