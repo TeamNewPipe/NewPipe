@@ -39,10 +39,12 @@ public class SubtitleUtils {
         if (i < 1) {
             return 0;
         }
-
+        
+        // The schema is worldwide-language -> region-language -> language-country
+        // region level is not implemented, use worldwide-language instead
+        // Examples: es -> es-419 -> es-MX
         languageCode = languageCode.substring(0, i);
 
-        // not found? use language with county+variant pair
         return getSubtitleIndexBy(streams, languageCode);
     }
 
