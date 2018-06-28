@@ -176,7 +176,7 @@ public class ChoseTabsFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull ChoseTabsFragment.SelectedTabsAdapter.TabViewHolder holder, int position) {
-            holder.bind(position);
+            holder.bind(position, holder);
         }
 
         @Override
@@ -200,8 +200,11 @@ public class ChoseTabsFragment extends Fragment {
                 view = itemView;
             }
 
-            void bind(int position) {
+            void bind(int position, TabViewHolder holder) {
                 handle.setImageResource(ThemeHelper.getIconByAttr(R.attr.drag_handle, getContext()));
+                handle.setOnTouchListener(getOnTouchListener(holder));
+
+                view.setOnLongClickListener(getOnLongClickListener(holder));
 
                 if(selectedTabs.get(position).startsWith("6\t")) {
                     String channelInfo[] = selectedTabs.get(position).split("\t");
