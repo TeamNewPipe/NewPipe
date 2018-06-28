@@ -295,6 +295,7 @@ public final class BackgroundPlayer extends Service {
         //////////////////////////////////////////////////////////////////////////*/
 
         private void updateNotificationThumbnail() {
+            if (basePlayerImpl == null) return;
             if (notRemoteView != null) {
                 notRemoteView.setImageViewBitmap(R.id.notificationCover,
                         basePlayerImpl.getThumbnail());
