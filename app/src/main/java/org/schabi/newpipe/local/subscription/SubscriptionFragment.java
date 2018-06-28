@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Entity;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ResolveInfo;
@@ -76,6 +77,7 @@ import icepick.State;
 import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
+import io.reactivex.Scheduler;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -405,24 +407,11 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
     private void deleteChannel (ChannelInfoItem selectedItem) {
         ExtractorHelper.getChannelInfo(selectedItem.getServiceId(), selectedItem.getUrl(), true)
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .observeOn(Schedulers.newThread())
                 .subscribe((@NonNull ChannelInfo result) -> {
-                    new LongOperation().execute(result);
-                }, (@NonNull Throwable throwable) -> {
-
+                    List<SubscriptionEntity> toDelete = subscriptionService.subscriptionTable().getSubscription(result.getServiceId(), result.getUrl()).blockingFirst();
+                    subscriptionService.subscriptionTable().delete(toDelete);
                 });
-    }
-
-
-    private class LongOperation extends AsyncTask<ChannelInfo, Void, Void> {
-
-        @Override
-        protected Void doInBackground(ChannelInfo... params) {
-            ChannelInfo info = params[0];
-            Flowable<List<SubscriptionEntity>> subscription = subscriptionService.subscriptionTable().getSubscription(info.getServiceId(), info.getUrl());
-            subscriptionService.subscriptionTable().delete(subscription.blockingFirst());
-            return null;
-        }
     }
 
     private void resetFragment() {
