@@ -42,7 +42,7 @@ android {
 
 ext {
     supportLibVersion = '27.1.1'
-    exoPlayerLibVersion = '2.8.1'
+    exoPlayerLibVersion = '2.8.2'
     roomDbLibVersion = '1.1.1'
     leakCanaryLibVersion = '1.5.4'
     okHttpLibVersion = '3.10.0'
