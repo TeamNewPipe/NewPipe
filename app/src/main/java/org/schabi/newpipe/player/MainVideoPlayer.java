@@ -153,7 +153,10 @@ public final class MainVideoPlayer extends AppCompatActivity
     protected void onNewIntent(Intent intent) {
         if (DEBUG) Log.d(TAG, "onNewIntent() called with: intent = [" + intent + "]");
         super.onNewIntent(intent);
-        playerImpl.handleIntent(intent);
+        if (intent != null) {
+            playerState = null;
+            playerImpl.handleIntent(intent);
+        }
     }
 
     @Override
@@ -219,11 +222,10 @@ public final class MainVideoPlayer extends AppCompatActivity
                 getWindow().getAttributes().screenBrightness);
 
         if (playerImpl == null) return;
-        if (isBackPressed) {
-            playerImpl.destroy();
-        } else {
+        if (!isBackPressed) {
             playerImpl.minimize();
         }
+        playerImpl.destroy();
 
         isInMultiWindow = false;
         isBackPressed = false;
@@ -465,7 +467,8 @@ public final class MainVideoPlayer extends AppCompatActivity
                     onFullScreenButtonClicked();
                     break;
                 case PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_NONE:
-                    destroy();
+                default:
+                    // No action
                     break;
             }
         }
