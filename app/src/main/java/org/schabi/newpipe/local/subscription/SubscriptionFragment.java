@@ -8,8 +8,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ResolveInfo;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
@@ -21,6 +25,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -78,6 +83,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
+import static android.content.ContentValues.TAG;
 import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_MODE;
 import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_VALUE;
 import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.PREVIOUS_EXPORT_MODE;
@@ -400,20 +406,20 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe((@NonNull ChannelInfo result) -> {
-                    mapOnUnsubscribe(SubscriptionEntity.from(result));
+                    new LongOperation().execute(SubscriptionEntity.from(result));
                 }, (@NonNull Throwable throwable) -> {
 
                 });
     }
 
-    private Function<Object, Object> mapOnUnsubscribe(final SubscriptionEntity subscription) {
-        return new Function<Object, Object>() {
-            @Override
-            public Object apply(@NonNull Object o) throws Exception {
-                subscriptionService.subscriptionTable().delete(subscription);
-                return o;
-            }
-        };
+
+    private class LongOperation extends AsyncTask<SubscriptionEntity, Void, Void> {
+
+        @Override
+        protected Void doInBackground(SubscriptionEntity... params) {
+            subscriptionService.subscriptionTable().delete(params[0]);
+            return null;
+        }
     }
 
     private void resetFragment() {
