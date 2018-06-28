@@ -1,20 +1,20 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="view_count_text">%1$s просмотров</string>
-    <string name="upload_date_text">Опубликовано %1$s</string>
-    <string name="no_player_found">Ни одного потокового проигрывателя не было найдено. Установить VLC?</string>
+    <string name="upload_date_text">Опубликован в %1$s</string>
+    <string name="no_player_found">Потоковый плеер не найден. Установить VLC?</string>
     <string name="install">Установить</string>
     <string name="cancel">Отмена</string>
     <string name="open_in_browser">Открыть в браузере</string>
     <string name="share">Поделиться</string>
     <string name="download">Скачать</string>
-    <string name="search">Найти</string>
+    <string name="search">Поиск</string>
     <string name="settings">Настройки</string>
     <string name="did_you_mean">Возможно, вы имели в виду: %1$s?</string>
     <string name="share_dialog_title">Поделиться с помощью</string>
     <string name="choose_browser">Выбрать браузер</string>
     <string name="screen_rotation">поворот</string>
-    <string name="download_path_title">Папка для загрузки видео</string>
+    <string name="download_path_title">Путь для загрузки видео</string>
     <string name="download_path_summary">Папка для хранения загруженных видео</string>
     <string name="download_path_dialog_title">Введите путь к папке для загрузки видео</string>
     <string name="default_resolution_title">Разрешение по умолчанию</string>
@@ -155,7 +155,7 @@
     <string name="disabled">Отключено</string>
     <string name="popup_resizing_indicator_title">Изменение размера</string>
 
-    <string name="use_external_video_player_summary">Для некоторых видео может отсутствовать звук, если включена эта опция</string>
+    <string name="use_external_video_player_summary">В некоторых разрешениях НЕ будет звука, если эта опция выбрана</string>
     <string name="short_million"> млн.</string>
     <string name="short_billion"> млрд.</string>
 
@@ -230,7 +230,7 @@
     <string name="undo">Отменить</string>
 
     <string name="search_no_results">Нет результатов</string>
-    <string name="empty_subscription_feed_subtitle">Тут только сверчки</string>
+    <string name="empty_subscription_feed_subtitle">Тут ничего нет</string>
 
     <string name="no_subscribers">Нет подписчиков</string>
     <plurals name="subscribers">
@@ -277,7 +277,7 @@
     <string name="play_queue_audio_settings">Настройки аудио</string>
     <string name="no_channel_subscribed_yet">Пока нет подписок на каналы</string>
     <string name="play_queue_remove">Удалить</string>
-    <string name="subscribed_button_title">Отписаться</string>
+    <string name="subscribed_button_title">Вы подписаны</string>
     <string name="channel_unsubscribed">Подписка отменена</string>
     <string name="show_hold_to_append_title">Показать \"держать, чтобы добавить\" подсказку</string>
     <string name="show_hold_to_append_summary">Показывать подсказку при нажатии на иконку «В окне» или «В фоне» на странице сведений о видео</string>
@@ -293,7 +293,7 @@
     <string name="start_here_on_main">Воспроизвести тут</string>
     <string name="start_here_on_background">Воспроизвести в фоне</string>
     <string name="start_here_on_popup">Воспроизвести в окне</string>
-<string name="no_player_found_toast">Ни одного потокового проигрывателя не было найдено (вы можете установить VLC)</string>
+<string name="no_player_found_toast">Потоковый плеер не найден (вы можете установить VLC)</string>
     <string name="default_content_country_title">Страна контента по умолчанию</string>
     <string name="service_title">Сервис</string>
     <string name="always">Всегда</string>
@@ -320,7 +320,7 @@
 
     <string name="video_player">Проигрыватель видео</string>
     <string name="background_player">Фоновый проигрыватель</string>
-    <string name="popup_player">Проигрыватель в окне</string>
+    <string name="popup_player">Плеер в окне</string>
     <string name="always_ask_player">Всегда спрашивать</string>
     
     <string name="preferred_player_fetcher_notification_title">Получение информации…</string>
@@ -391,7 +391,7 @@
 
     <string name="caption_none">Без титров</string>
 
-    <string name="resize_fit">Пригнать</string>
+    <string name="resize_fit">Подогнать</string>
     <string name="resize_fill">Заполнить</string>
     <string name="resize_zoom">Приблизить</string>
 
@@ -428,8 +428,8 @@
 \n1. Перейдите на: %1$s 
 \n2. Войдите, если необходимо 
 \n3. Должна начаться загрузка (это будет файл экспорта)</string>
-    <string name="import_soundcloud_instructions">Импорт подписок из SoundCloud набрав либо URL или ваш ID:
-\n
+    <string name="import_soundcloud_instructions">Импорт подписок из SoundCloud набрав либо URL, либо ваш ID: 
+\n 
 \n1. Включите \"режим рабочего стола\" в браузере (сайт недоступен на телефоне) 
 \n2. Пройдите на: %1$s 
 \n3. Войдите, если надо 
@@ -471,7 +471,7 @@
     <string name="one_item_deleted">1 элемент удалён.</string>
 
     <string name="app_license">NewPipe - программное обеспечение copyleft libre: вы можете использовать, изучать и улучшать его по своему усмотрению. В частности, вы можете распространять и/или изменять его в соответствии с GNU General Public License, опубликованным Free Software Foundation, либо версией 3 License, либо (по вашему выбору) любой более поздней версии.</string>
-    <string name="preferred_open_action_settings_title">Предпочтительное действие \'открытие\'</string>
+    <string name="preferred_open_action_settings_title">Предпочтительное действие \'Открыть\'</string>
     <string name="import_settings">Желаете ли вы также импортировать настройки?</string>
 
     <string name="privacy_policy_title">Политика конфиденциальности NewPipe</string>

@@ -96,7 +96,7 @@
 
     <string name="duration_live">Live</string>
 
-    <string name="main_bg_subtitle">„Suchen“ antippen um zu beginnen</string>
+    <string name="main_bg_subtitle">„Suchen“ antippen, um zu beginnen</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
     <string name="error_report_title">Fehlerbericht</string>
@@ -286,7 +286,7 @@
     <string name="show_hold_to_append_summary">Tipp anzeigen, wenn der Hintergrundwiedergabe- oder Pop-up-Button auf der Videodetailseite gedrückt gehalten wird</string>
     <string name="background_player_append">In der Warteschlange der Hintergrundwiedergabe</string>
     <string name="new_and_hot">Neu &amp; Heiß</string>
-    <string name="hold_to_append">Zum Anfügen gedrückt halten</string>
+    <string name="hold_to_append">Halten, um zur Wiedergabeliste hinzuzufügen</string>
 <string name="show_hold_to_append_title">\"Gedrückt halten, um Tipp hinzuzufügen\" anzeigen</string>
     <string name="unknown_content">[Unbekannt]</string>
 
@@ -298,8 +298,8 @@
 <string name="donation_title">Spenden</string>
     <string name="give_back">Zurückgeben</string>
     <string name="website_title">Website</string>
-    <string name="website_encouragement">Besuche die NewPipe Website für weitere Informationen und Neuigkeiten.</string>
-    <string name="donation_encouragement">NewPipe wird von Freiwilligen entwickelt, die ihre Freizeit dafür aufbringen, die beste Nutzererfahrung zu bieten. Gib etwas zurück, um Entwicklern zu helfen, NewPipe bei einer Tasse Kaffee noch besser zu machen.</string>
+    <string name="website_encouragement">Besuche die NewPipe-Website für weitere Informationen und Neuigkeiten.</string>
+    <string name="donation_encouragement">NewPipe wird von Freiwilligen entwickelt, die ihre Freizeit dafür verwenden, dir die beste Nutzererfahrung zu bieten. Gib etwas zurück, um den Entwicklern zu helfen, NewPipe noch besser machen zu können, während sie sich an einer Tasse Kaffee erfreuen.</string>
     <string name="service_title">Service</string>
     <string name="no_player_found_toast">Keinen Streamplayer gefunden (du kannst VLC installieren, um den Stream abzuspielen)</string>
     <string name="default_content_country_title">Standard-Land des Inhalts</string>
@@ -325,7 +325,7 @@
     <string name="always_ask_player">Immer fragen</string>
     
     <string name="preferred_player_fetcher_notification_title">Informationen werden abgerufen…</string>
-    <string name="preferred_player_fetcher_notification_message">Die angeforderten Inhalte werden geladen</string>
+    <string name="preferred_player_fetcher_notification_message">Gewünschten Inhalt laden</string>
 <string name="import_data_title">Datenbank importieren</string>
     <string name="export_data_title">Datenbank exportieren</string>
     <string name="import_data_summary">Wird deinen Verlauf und deine Abos überschreiben</string>
@@ -358,7 +358,7 @@
     <string name="delete_playlist">Wiedergabeliste löschen</string>
     <string name="rename_playlist">Wiedergabeliste umbenennen</string>
     <string name="append_playlist">Zur Wiedergabeliste hinzufügen</string>
-    <string name="set_as_playlist_thumbnail">Als Vorschaubild der Wiedergabeliste festlegen</string>
+    <string name="set_as_playlist_thumbnail">Als Symbolbild der Wiedergabeliste festlegen</string>
 
     <string name="unbookmark_playlist">Lesezeichen entfernen</string>
 
@@ -407,8 +407,8 @@
     <string name="metadata_cache_wipe_complete_notice">Metadatencache gelöscht</string>
     <string name="settings_category_debug_title">Debug</string>
     <string name="invalid_source">Ungültige Datei-/Inhaltsquelle</string>
-    <string name="export_complete_toast">Export fertiggestellt</string>
-    <string name="import_complete_toast">Import fertiggestellt</string>
+    <string name="export_complete_toast">Export abgeschlossen</string>
+    <string name="import_complete_toast">Import abgeschlossen</string>
     <string name="playlist_name_input">Name</string>
     <string name="import_export_title">Import/Export</string>
     <string name="import_title">Import</string>
@@ -479,8 +479,8 @@
     <string name="read_privacy_policy">Lies die Datenschutzbestimmungen</string>
     <string name="accept">Akzeptieren</string>
     <string name="decline">Ablehnen</string>
-<string name="start_accept_privacy_policy">Um den Anforderungen der Datenschutz-Grundverordnung (DSGVO) genüge zu tun, möchten wir dich hiermit auf die Datenschutzbedingungen von NewPipe aufmerksam machen. Bitte lies sie sorgfältig durch.
-\nDu musst ihr zustimmen, um einen Bugreport an uns zu senden.</string>
+<string name="start_accept_privacy_policy">Um der europäischen Datenschutz-Grundverordnung (DSGVO) gerecht zu werden, weisen wir hiermit auf NewPipe\'s Datenschutzerklärung hin. Bitte lies sie sorgfältig durch.
+\nDu musst den Datenschutzrichtlinien zustimmen, um den Fehlerbericht an uns zu senden.</string>
     <string name="limit_data_usage_none_description">Unbegrenzt</string>
     <string name="limit_mobile_data_usage_title">Auflösung bei Verwendung mobiler Daten begrenzen</string>
     </resources>

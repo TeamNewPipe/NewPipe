@@ -340,6 +340,13 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             return true;
         });
 
+        final MenuItem share = menu.getMenu().add(RECYCLER_ITEM_POPUP_MENU_GROUP_ID, /*pos=*/3,
+                Menu.NONE, R.string.share);
+        share.setOnMenuItemClickListener(menuItem -> {
+            shareUrl(item.getTitle(), item.getUrl());
+            return true;
+        });
+
         menu.show();
     }
 
@@ -507,6 +514,18 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private void openPlaylistAppendDialog(final List<PlayQueueItem> playlist) {
         PlaylistAppendDialog.fromPlayQueueItems(playlist)
                 .show(getSupportFragmentManager(), getTag());
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Share
+    ////////////////////////////////////////////////////////////////////////////
+
+    private void shareUrl(String subject, String url) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        intent.putExtra(Intent.EXTRA_TEXT, url);
+        startActivity(Intent.createChooser(intent, getString(R.string.share_dialog_title)));
     }
 
     ////////////////////////////////////////////////////////////////////////////
