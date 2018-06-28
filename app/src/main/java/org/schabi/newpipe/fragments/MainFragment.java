@@ -69,7 +69,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     private static final String TAB_NUMBER_CHANNEL = "6";
 
     SharedPreferences.OnSharedPreferenceChangeListener listener = (prefs, key) -> {
-        if(key.equals("service")||key.equals("saveUsedTabs")) {
+        if(key.equals("saveUsedTabs")) {
             mainPageChanged();
         }
     };
@@ -126,7 +126,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             String tabInformation = tabs.get(0);
                 if (tabInformation.startsWith(TAB_NUMBER_KIOSK + "\t")) {
                     String kiosk[] = tabInformation.split("\t");
-                    if (kiosk.length == 2) {
+                    if (kiosk.length == 3) {
                         setTitle(kiosk[1]);
                     }
                 } else if (tabInformation.startsWith(TAB_NUMBER_CHANNEL + "\t")) {
@@ -170,7 +170,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
                 if (tabInformation.startsWith(TAB_NUMBER_KIOSK + "\t")) {
                     String kiosk[] = tabInformation.split("\t");
-                    if (kiosk.length == 2) {
+                    if (kiosk.length == 3) {
                         tabToSet.setIcon(KioskTranslator.getKioskIcons(kiosk[1], getContext()));
                     }
                 } else if (tabInformation.startsWith(TAB_NUMBER_CHANNEL + "\t")) {
@@ -228,6 +228,8 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                 }
             } else {
                 tabs.add(tabInformation);
+        for(String tabNumber:tabsArray) { {
+                tabs.add(tabNumber);
             }
         }
     }
@@ -293,10 +295,10 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
             if(tabInformation.startsWith(TAB_NUMBER_KIOSK + "\t")) {
                 String kiosk[] = tabInformation.split("\t");
-                if(kiosk.length==2) {
+                if(kiosk.length==3) {
                     KioskFragment fragment = null;
                     try {
-                        fragment = KioskFragment.getInstance(currentServiceId, kiosk[1]);
+                        fragment = KioskFragment.getInstance(Integer.parseInt(kiosk[2]), kiosk[1]);
                         fragment.useAsFrontPage(true);
                         return fragment;
                     } catch (Exception e) {
