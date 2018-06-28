@@ -1,8 +1,11 @@
 package org.schabi.newpipe.local.subscription;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
@@ -17,6 +20,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -30,18 +34,24 @@ import com.nononsenseapps.filepicker.Utils;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
+import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService;
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService;
+import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
+import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.ServiceHelper;
@@ -55,12 +65,17 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import icepick.State;
+import io.reactivex.Observable;
 import io.reactivex.Observer;
+import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_MODE;
@@ -316,18 +331,89 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
         super.initListeners();
 
         infoListAdapter.setOnChannelSelectedListener(new OnClickGesture<ChannelInfoItem>() {
-            @Override
+
             public void selected(ChannelInfoItem selectedItem) {
                 // Requires the parent fragment to find holder for fragment replacement
                 NavigationHelper.openChannelFragment(getParentFragment().getFragmentManager(),
                         selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName());
             }
+
+            public void held(ChannelInfoItem selectedItem) {
+                showLongTapDialog(selectedItem);
+            }
+
         });
 
         //noinspection ConstantConditions
         whatsNewItemListHeader.setOnClickListener(v ->
                 NavigationHelper.openWhatsNewFragment(getParentFragment().getFragmentManager()));
         importExportListHeader.setOnClickListener(v -> importExportOptions.switchState());
+    }
+
+    private void showLongTapDialog(ChannelInfoItem selectedItem) {
+        final Context context = getContext();
+        final Activity activity = getActivity();
+        if (context == null || context.getResources() == null || getActivity() == null) return;
+
+        final String[] commands = new String[]{
+                context.getResources().getString(R.string.share),
+                context.getResources().getString(R.string.unsubscribe)
+        };
+
+        final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
+            switch (i) {
+                case 0:
+                    shareChannel(selectedItem);
+                    break;
+                case 1:
+                    deleteChannel(selectedItem);
+                    break;
+                default:
+                    break;
+            }
+        };
+
+        final View bannerView = View.inflate(activity, R.layout.dialog_title, null);
+        bannerView.setSelected(true);
+
+        TextView titleView = bannerView.findViewById(R.id.itemTitleView);
+        titleView.setText(selectedItem.getName());
+
+        TextView detailsView = bannerView.findViewById(R.id.itemAdditionalDetails);
+        detailsView.setVisibility(View.GONE);
+
+        new AlertDialog.Builder(activity)
+                .setCustomTitle(bannerView)
+                .setItems(commands, actions)
+                .create()
+                .show();
+
+    }
+
+    private void shareChannel (ChannelInfoItem selectedItem) {
+        shareUrl(selectedItem.getName(), selectedItem.getUrl());
+    }
+
+    @SuppressLint("CheckResult")
+    private void deleteChannel (ChannelInfoItem selectedItem) {
+        ExtractorHelper.getChannelInfo(selectedItem.getServiceId(), selectedItem.getUrl(), true)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe((@NonNull ChannelInfo result) -> {
+                    mapOnUnsubscribe(SubscriptionEntity.from(result));
+                }, (@NonNull Throwable throwable) -> {
+
+                });
+    }
+
+    private Function<Object, Object> mapOnUnsubscribe(final SubscriptionEntity subscription) {
+        return new Function<Object, Object>() {
+            @Override
+            public Object apply(@NonNull Object o) throws Exception {
+                subscriptionService.subscriptionTable().delete(subscription);
+                return o;
+            }
+        };
     }
 
     private void resetFragment() {
