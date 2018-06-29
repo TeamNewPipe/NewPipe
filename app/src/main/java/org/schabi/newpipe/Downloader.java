@@ -2,13 +2,13 @@ package org.schabi.newpipe;
 
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -40,13 +40,10 @@ import okhttp3.ResponseBody;
 
 public class Downloader implements org.schabi.newpipe.extractor.Downloader {
     public static final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0";
-    private static final String ACCEPT_LANGUAGE = "Accept-Language";
 
     private static Downloader instance;
     private String mCookies;
     private OkHttpClient client;
-    private static String countryCode = "GB";
-    private static String languageCode = "en";
 
     private Downloader(OkHttpClient.Builder builder) {
         this.client = builder
@@ -110,10 +107,9 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
      * @return the contents of the specified text file
      */
     @Override
-    public String download(String siteUrl, @Nullable String language) throws IOException, ReCaptchaException {
+    public String download(String siteUrl, String language) throws IOException, ReCaptchaException {
         Map<String, String> requestProperties = new HashMap<>();
-
-        requestProperties.put(ACCEPT_LANGUAGE, language);
+        requestProperties.put("Accept-Language", language);
         return download(siteUrl, requestProperties);
     }
 
@@ -128,22 +124,6 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
      */
     @Override
     public String download(String siteUrl, Map<String, String> customProperties) throws IOException, ReCaptchaException {
-        if (isNullorEmpty(customProperties.get(ACCEPT_LANGUAGE))) {
-            StringBuilder language = new StringBuilder(25);
-            language.append(languageCode);
-
-            if (!isNullorEmpty(countryCode)) {
-                    language.append('-')
-                        .append(countryCode)
-                        .append(',')
-                        .append(languageCode)
-                        .append(";q=8.0");
-            }
-
-            language.append(",*;q=0.3");
-            customProperties.put(ACCEPT_LANGUAGE, language.toString());
-        }
-
         return getBody(siteUrl, customProperties).string();
     }
 
@@ -193,39 +173,6 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
      */
     @Override
     public String download(String siteUrl) throws IOException, ReCaptchaException {
-        return download(siteUrl, new HashMap<>());
-    }
-
-    /**
-     * Define the language for HTTP requests and which locale variant is preferred.
-     *
-     * @param locale         The application locale to obtain the language.
-     *                       If this parameter is NULL, the device country/language will be used.
-     * @param defaultCountry Default country code to be used if not possible
-     *                       determine the device country code. This parameter can be NULL.
-     */
-    @Override
-    public void initLanguageFromContext(Locale locale, String defaultCountry) {
-        if (locale == null) {
-            // Use device defaults country/language.
-            // NOTE: the use of "Locale.Category.DISPLAY" is only available on API 24 or higher.
-            locale = Locale.getDefault();
-        }
-
-        languageCode = locale.getLanguage();
-        countryCode = locale.getCountry();
-
-        if (isNullorEmpty(countryCode) && !isNullorEmpty(defaultCountry)) {
-            countryCode = defaultCountry;// Just use a default value
-        }
-    }
-
-    private boolean isNullorEmpty(String str) {
-        return str == null || str.isEmpty();
-    }
-
-    @Override
-    public String getLanguageCode(){
-        return languageCode;
+        return download(siteUrl, Collections.emptyMap());
     }
 }
