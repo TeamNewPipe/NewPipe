@@ -104,6 +104,7 @@ public final class MainVideoPlayer extends AppCompatActivity
 
     @Nullable private PlayerState playerState;
     private boolean isInMultiWindow;
+    private boolean isBackPressed;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Activity LifeCycle
@@ -152,7 +153,10 @@ public final class MainVideoPlayer extends AppCompatActivity
     protected void onNewIntent(Intent intent) {
         if (DEBUG) Log.d(TAG, "onNewIntent() called with: intent = [" + intent + "]");
         super.onNewIntent(intent);
-        playerImpl.handleIntent(intent);
+        if (intent != null) {
+            playerState = null;
+            playerImpl.handleIntent(intent);
+        }
     }
 
     @Override
@@ -192,6 +196,12 @@ public final class MainVideoPlayer extends AppCompatActivity
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        isBackPressed = true;
+    }
+
+    @Override
     protected void onSaveInstanceState(Bundle outState) {
         if (DEBUG) Log.d(TAG, "onSaveInstanceState() called");
         super.onSaveInstanceState(outState);
@@ -208,10 +218,17 @@ public final class MainVideoPlayer extends AppCompatActivity
     protected void onStop() {
         if (DEBUG) Log.d(TAG, "onStop() called");
         super.onStop();
-        playerImpl.destroy();
-
         PlayerHelper.setScreenBrightness(getApplicationContext(),
                 getWindow().getAttributes().screenBrightness);
+
+        if (playerImpl == null) return;
+        if (!isBackPressed) {
+            playerImpl.minimize();
+        }
+        playerImpl.destroy();
+
+        isInMultiWindow = false;
+        isBackPressed = false;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -439,6 +456,21 @@ public final class MainVideoPlayer extends AppCompatActivity
             toggleOrientationButton.setOnClickListener(this);
             switchBackgroundButton.setOnClickListener(this);
             switchPopupButton.setOnClickListener(this);
+        }
+
+        public void minimize() {
+            switch (PlayerHelper.getMinimizeOnExitAction(context)) {
+                case PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_BACKGROUND:
+                    onPlayBackgroundButtonClicked();
+                    break;
+                case PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_POPUP:
+                    onFullScreenButtonClicked();
+                    break;
+                case PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_NONE:
+                default:
+                    // No action
+                    break;
+            }
         }
 
         /*//////////////////////////////////////////////////////////////////////////

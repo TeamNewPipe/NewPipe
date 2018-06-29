@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.accessibility.CaptioningManager;
@@ -28,6 +29,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 
+import java.lang.annotation.Retention;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -42,6 +44,8 @@ import java.util.concurrent.TimeUnit;
 import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_FILL;
 import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_FIT;
 import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_ZOOM;
+import static java.lang.annotation.RetentionPolicy.SOURCE;
+import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.*;
 
 public class PlayerHelper {
     private PlayerHelper() {}
@@ -51,6 +55,14 @@ public class PlayerHelper {
     private static final NumberFormat speedFormatter = new DecimalFormat("0.##x");
     private static final NumberFormat pitchFormatter = new DecimalFormat("##%");
 
+    @Retention(SOURCE)
+    @IntDef({MINIMIZE_ON_EXIT_MODE_NONE, MINIMIZE_ON_EXIT_MODE_BACKGROUND,
+            MINIMIZE_ON_EXIT_MODE_POPUP})
+    public @interface MinimizeMode {
+        int MINIMIZE_ON_EXIT_MODE_NONE = 0;
+        int MINIMIZE_ON_EXIT_MODE_BACKGROUND = 1;
+        int MINIMIZE_ON_EXIT_MODE_POPUP = 2;
+    }
     ////////////////////////////////////////////////////////////////////////////
     // Exposed helpers
     ////////////////////////////////////////////////////////////////////////////
@@ -173,6 +185,22 @@ public class PlayerHelper {
         return isAutoQueueEnabled(context, false);
     }
 
+    @MinimizeMode
+    public static int getMinimizeOnExitAction(@NonNull final Context context) {
+        final String defaultAction = context.getString(R.string.minimize_on_exit_none_key);
+        final String popupAction = context.getString(R.string.minimize_on_exit_popup_key);
+        final String backgroundAction = context.getString(R.string.minimize_on_exit_background_key);
+
+        final String action = getMinimizeOnExitAction(context, defaultAction);
+        if (action.equals(popupAction)) {
+            return MINIMIZE_ON_EXIT_MODE_POPUP;
+        } else if (action.equals(backgroundAction)) {
+            return MINIMIZE_ON_EXIT_MODE_BACKGROUND;
+        } else {
+            return MINIMIZE_ON_EXIT_MODE_NONE;
+        }
+    }
+
     @NonNull
     public static SeekParameters getSeekParameters(@NonNull final Context context) {
         return isUsingInexactSeek(context, false) ?
@@ -249,7 +277,6 @@ public class PlayerHelper {
      * System font scaling:
      * Very small - 0.25f, Small - 0.5f, Normal - 1.0f, Large - 1.5f, Very Large - 2.0f
      * */
-    @NonNull
     public static float getCaptionScale(@NonNull final Context context) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return 1f;
 
@@ -321,5 +348,11 @@ public class PlayerHelper {
         } else {
             return sp.getFloat(context.getString(R.string.screen_brightness_key), screenBrightness);
         }
+    }
+
+    private static String getMinimizeOnExitAction(@NonNull final Context context,
+                                                  final String key) {
+        return getPreferences(context).getString(context.getString(R.string.minimize_on_exit_key),
+                key);
     }
 }

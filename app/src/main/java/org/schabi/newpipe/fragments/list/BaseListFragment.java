@@ -196,7 +196,8 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
         final String[] commands = new String[]{
                 context.getResources().getString(R.string.enqueue_on_background),
                 context.getResources().getString(R.string.enqueue_on_popup),
-                context.getResources().getString(R.string.append_playlist)
+                context.getResources().getString(R.string.append_playlist),
+                context.getResources().getString(R.string.share)
         };
 
         final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
@@ -212,6 +213,9 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
                         PlaylistAppendDialog.fromStreamInfoItems(Collections.singletonList(item))
                                 .show(getFragmentManager(), TAG);
                     }
+                    break;
+                case 3:
+                    shareUrl(item.getName(), item.getUrl());
                     break;
                 default:
                     break;
