@@ -6,15 +6,10 @@ import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Entity;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.ResolveInfo;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
@@ -26,7 +21,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -40,24 +34,20 @@ import com.nononsenseapps.filepicker.Utils;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
-import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
-import org.schabi.newpipe.extractor.stream.StreamInfo;
-import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.info_list.InfoListAdapter;
-import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService;
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService;
+import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
-import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.ServiceHelper;
@@ -71,22 +61,15 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
 import icepick.State;
-import io.reactivex.Flowable;
-import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.Scheduler;
-import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
-import static android.content.ContentValues.TAG;
 import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_MODE;
 import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.KEY_VALUE;
 import static org.schabi.newpipe.local.subscription.services.SubscriptionsImportService.PREVIOUS_EXPORT_MODE;
@@ -405,16 +388,42 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
 
     @SuppressLint("CheckResult")
     private void deleteChannel (ChannelInfoItem selectedItem) {
-        disposables.add(
-        ExtractorHelper.getChannelInfo(selectedItem.getServiceId(), selectedItem.getUrl(), true)
+        ExtractorHelper.getChannelInfo(selectedItem.getServiceId(), selectedItem.getUrl(), true).toObservable()
                 .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.newThread())
-                .subscribe((@NonNull ChannelInfo result) -> {
-                    List<SubscriptionEntity> toDelete = subscriptionService.subscriptionTable()
-                            .getSubscription(result.getServiceId(), result.getUrl())
-                            .blockingFirst();
-                    subscriptionService.subscriptionTable().delete(toDelete);
-                }));
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getUnsubscribeObserver());
+    }
+
+
+
+    private Observer<ChannelInfo> getUnsubscribeObserver() {
+        return new Observer<ChannelInfo>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposables.add(d);
+            }
+
+            @Override
+            public void onNext(ChannelInfo info) {
+                List<SubscriptionEntity> toDelete = subscriptionService.subscriptionTable()
+                        .getSubscription(info.getServiceId(), info.getUrl())
+                        .blockingFirst();
+                Log.d(TAG, "onNext: test");
+
+                Scheduler io = Schedulers.io();
+                io.scheduleDirect(() -> subscriptionService.subscriptionTable().delete(toDelete));
+            }
+
+            @Override
+            public void onError(Throwable exception) {
+                SubscriptionFragment.this.onError(exception);
+            }
+
+            @Override
+            public void onComplete() {
+                Toast.makeText(activity, getString(R.string.channel_unsubscribed), Toast.LENGTH_SHORT).show();
+            }
+        };
     }
 
     private void resetFragment() {
