@@ -405,6 +405,7 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
 
     @SuppressLint("CheckResult")
     private void deleteChannel (ChannelInfoItem selectedItem) {
+        disposables.add(
         ExtractorHelper.getChannelInfo(selectedItem.getServiceId(), selectedItem.getUrl(), true)
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.newThread())
@@ -413,7 +414,7 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
                             .getSubscription(result.getServiceId(), result.getUrl())
                             .blockingFirst();
                     subscriptionService.subscriptionTable().delete(toDelete);
-                });
+                }));
     }
 
     private void resetFragment() {
