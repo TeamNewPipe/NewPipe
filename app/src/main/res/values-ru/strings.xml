@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="view_count_text">%1$s просмотров</string>
-    <string name="upload_date_text">Опубликован в %1$s</string>
+    <string name="upload_date_text">Опубликовано %1$s</string>
     <string name="no_player_found">Потоковый плеер не найден. Установить VLC?</string>
     <string name="install">Установить</string>
     <string name="cancel">Отмена</string>
@@ -125,7 +125,7 @@
     <string name="controls_background_title">В фоне</string>
     <string name="controls_popup_title">В окне</string>
 
-    <string name="show_higher_resolutions_summary">Только некоторые устройства могут воспроизводить 2K/4K видео</string>
+    <string name="show_higher_resolutions_summary">Только некоторые устройства могут воспроизводить видео в 2K/4K</string>
     <string name="default_video_format_title">Формат видео по умолчанию</string>
     <string name="black_theme_title">Чёрная</string>
     <string name="popup_remember_size_pos_title">Запоминать размер и положение всплывающего окна</string>
@@ -311,10 +311,10 @@
     <string name="audio_streams_empty">Потоки аудио не найдены</string>
 
     <string name="donation_title">Пожертвовать</string>
-    <string name="donation_encouragement">NewPipe разрабатывается волонтерами, которые проводят время, принося вам лучший опыт. Вернитесь, чтобы помочь разработчикам сделать NewPipe еще лучше, наслаждаясь чашечкой кофе.</string>
+    <string name="donation_encouragement">NewPipe разрабатывается добровольцами в свободное время ради вашего удобства использования программы. Пора воздать должное, разработчики могут сделать NewPipe ещё лучше с чашечкой кофе!</string>
     <string name="give_back">Воздать должное</string>
     <string name="website_title">Веб-сайт</string>
-    <string name="website_encouragement">Посетите сайт NewPipe для большей информации и новостей.</string>
+    <string name="website_encouragement">Для получения более подробной информации и последних новостей о NewPipe посетите наш веб-сайт.</string>
     <string name="drawer_open">Открыть лоток</string>
     <string name="drawer_close">Закрыть лоток</string>
 
@@ -368,7 +368,7 @@
     <string name="could_not_import_all_files">Предупреждение: нет возможности импорта всех файлов.</string>
     <string name="override_current_data">Это перезапишет вашу текущую установку.</string>
 
-    <string name="drawer_header_action_paceholder_text">Скоро что-то тут появится ;D</string>
+    <string name="drawer_header_action_paceholder_text">Скоро тут что-то будет ;D</string>
 
 
     <string name="always_ask_open_action">Всегда спрашивать</string>
@@ -387,7 +387,7 @@
     <string name="playlist_creation_success">Плейлист создан</string>
     <string name="playlist_add_stream_success">Добавлено в плейлист</string>
     <string name="playlist_thumbnail_change_success">Иконка плейлиста изменена</string>
-    <string name="playlist_delete_failure">Нельзя удалить плейлист</string>
+    <string name="playlist_delete_failure">Не удалось удалить плейлист</string>
 
     <string name="caption_none">Без титров</string>
 
@@ -407,7 +407,7 @@
     <string name="enable_leak_canary_summary">Мониторинг утечки памяти может привести к зависанию приложения</string>
 
     <string name="enable_disposed_exceptions_title">Ошибки отчёта вне очереди</string>
-    <string name="enable_disposed_exceptions_summary">Принудительная отчетность об исключении исключаемых Rx исключений за пределами фрагмента или жизненного цикла деятельности после удаления</string>
+    <string name="enable_disposed_exceptions_summary"></string>
 
     <string name="import_export_title">Импорт/Экспорт</string>
     <string name="import_title">Импорт</string>
@@ -420,8 +420,8 @@
     <string name="import_file_title">Импорт файла</string>
     <string name="previous_export">Предыдущий экспорт</string>
 
-    <string name="subscriptions_import_unsuccessful">Нельзя импортировать подписки</string>
-    <string name="subscriptions_export_unsuccessful">Нельзя экспортировать подписки</string>
+    <string name="subscriptions_import_unsuccessful">Не удалось импортировать подписки</string>
+    <string name="subscriptions_export_unsuccessful">Не удалось экспортировать подписки</string>
 
     <string name="import_youtube_instructions">Импорт подписок из YouTube загрузкой файла экспорта: 
 \n 
@@ -447,7 +447,7 @@
     <string name="playback_speed_control">Управление скоростью воспроизведения</string>
     <string name="playback_tempo">Темп</string>
     <string name="playback_pitch">Тон</string>
-    <string name="unhook_checkbox">Независимо (может вызвать искажение)</string>
+    <string name="unhook_checkbox">Независимо (возможны искажения)</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">По умолчанию</string>
 <string name="metadata_cache_wipe_summary">Удалить все загруженные данные веб-страниц</string>
@@ -458,14 +458,14 @@
     <string name="caption_setting_title">Титры</string>
     <string name="toast_no_player">Нет приложения, установленного для воспроизведения этого файла</string>
 
-    <string name="caption_setting_description">Изменить размер заголовка и фоновые стили. Требуется перезапуск приложения для изменений.</string>
+    <string name="caption_setting_description">Изменить размер и фон титров. Требуется перезапуск приложения для вступления изменений в силу.</string>
 
     <string name="clear_views_history_title">Очистить историю просмотров</string>
     <string name="delete_view_history_alert">Удалить всю историю просмотров.</string>
     <string name="view_history_deleted">История просмотров была удалена.</string>
     <string name="clear_search_history_title">Очистить историю поиска</string>
     <string name="clear_search_history_summary">Удалить историю поисковых запросов.</string>
-    <string name="clear_views_history_summary">Удаляет историю воспроизведенных потоков.</string>
+    <string name="clear_views_history_summary">Удаляет историю воспроизведённых потоков.</string>
     <string name="delete_search_history_alert">Удалить всю историю поиска.</string>
     <string name="search_history_deleted">Удалить историю поиска.</string>
     <string name="one_item_deleted">1 элемент удалён.</string>
@@ -483,6 +483,6 @@
     <string name="accept">Принять</string>
     <string name="decline">Отклонить</string>
 
-    <string name="limit_data_usage_none_description">Безлимитный</string>
-    <string name="limit_mobile_data_usage_title">Предельное разрешение при использовании мобильных данных</string>
+    <string name="limit_data_usage_none_description">Без ограничения</string>
+    <string name="limit_mobile_data_usage_title">Ограничить разрешение при использовании мобильных данных</string>
     </resources>
