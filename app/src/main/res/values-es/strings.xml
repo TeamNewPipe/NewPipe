@@ -492,6 +492,6 @@ abrir en modo popup</string>
     <string name="minimize_on_exit_summary">Acción de cambiar a otra aplicación desde el reproductor principal</string>
     <string name="minimize_on_exit_none_description">Ninguna</string>
     <string name="minimize_on_exit_background_description">Minimizar al reproductor de fondo</string>
-    <string name="minimize_on_exit_popup_description">Minimizar el reproductor popup</string>
+    <string name="minimize_on_exit_popup_description">Minimizar el reproductor emergente</string>
 
 </resources>
