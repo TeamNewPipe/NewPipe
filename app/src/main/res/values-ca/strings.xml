@@ -452,4 +452,10 @@
     <string name="decline">Rebutja</string>
 <string name="limit_data_usage_none_description">Sense restriccions</string>
     <string name="limit_mobile_data_usage_title">Restringeix la resolució quan es facin servir dades mòbils</string>
-    </resources>
+    <string name="minimize_on_exit_title">Minimitza en canviar d\'aplicació</string>
+    <string name="minimize_on_exit_summary">Acció en canviar a una altra aplicació des del reproductor de vídeo principal — %s</string>
+    <string name="minimize_on_exit_none_description">Cap</string>
+    <string name="minimize_on_exit_background_description">Minimitza al reproductor en segon pla</string>
+    <string name="minimize_on_exit_popup_description">Minimitza al reproductor emergent</string>
+
+</resources>
