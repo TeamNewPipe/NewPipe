@@ -468,4 +468,10 @@
     <string name="decline">下降</string>
 <string name="limit_data_usage_none_description">沒有限制</string>
     <string name="limit_mobile_data_usage_title">當您使用行動網路時限制解析度</string>
-    </resources>
+    <string name="minimize_on_exit_title">在應用程式切換時最小化</string>
+    <string name="minimize_on_exit_summary">當從主影片播放器切換到其他應用程式時要進行的動作 — %s</string>
+    <string name="minimize_on_exit_none_description">無</string>
+    <string name="minimize_on_exit_background_description">最小化為背景播放器</string>
+    <string name="minimize_on_exit_popup_description">最小化為彈出式播放器</string>
+
+</resources>
