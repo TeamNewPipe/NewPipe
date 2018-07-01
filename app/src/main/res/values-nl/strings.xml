@@ -485,4 +485,10 @@ te openen in pop-upmodus</string>
     <string name="decline">Weigeren</string>
 <string name="limit_data_usage_none_description">Ongelimiteerd</string>
     <string name="limit_mobile_data_usage_title">Resolutie beperken bij gebruik van mobiele gegevens</string>
-    </resources>
+    <string name="minimize_on_exit_title">Minimaliseren bij overschakelen naar andere app</string>
+    <string name="minimize_on_exit_summary">Actie bij overschakelen van videospeler naar andere app — %s</string>
+    <string name="minimize_on_exit_none_description">Geen</string>
+    <string name="minimize_on_exit_background_description">Afspelen op achtergrond</string>
+    <string name="minimize_on_exit_popup_description">Afspelen in pop-upvenster</string>
+
+</resources>
