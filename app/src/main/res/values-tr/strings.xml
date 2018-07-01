@@ -119,16 +119,16 @@
 
 
     <string name="could_not_setup_download_menu">İndirme menüsü ayarlanamadı</string>
-    <string name="open_in_popup_mode">Açılır pencere kipinde aç</string>
-    <string name="popup_mode_share_menu_title">NewPipe açılır pencere kipi</string>
+    <string name="open_in_popup_mode">Açılır oynatıcı kipinde aç</string>
+    <string name="popup_mode_share_menu_title">NewPipe açılır oynatıcı kipi</string>
 
-    <string name="default_popup_resolution_title">Öntanımlı açılır pencere çözünürlüğü</string>
+    <string name="default_popup_resolution_title">Öntanımlı açılır oynatıcı çözünürlüğü</string>
     <string name="show_higher_resolutions_title">Daha yüksek çözünürlükleri göster</string>
     <string name="show_higher_resolutions_summary">Yalnızca bazı aygıtlar 2K/4K video oynatmayı destekler</string>
     <string name="default_video_format_title">Öntanımlı video biçimi</string>
     <string name="black_theme_title">Siyah</string>
 
-    <string name="popup_playing_toast">Açılır pencere kipinde oynatılıyor</string>
+    <string name="popup_playing_toast">Açılır oynatıcı kipinde oynatılıyor</string>
     <string name="all">Tümü</string>
     <string name="channel">Kanal</string>
     <string name="yes">Evet</string>
@@ -148,7 +148,7 @@
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
 
-    <string name="msg_popup_permission">Bu izin açılır pencere kipinde
+    <string name="msg_popup_permission">Bu izin açılır oynatıcı kipinde 
 \naçmak için gerekli</string>
 
     <string name="reCaptchaActivity">reCAPTCHA</string>
@@ -156,16 +156,16 @@
     <string name="recaptcha_request_toast">reCAPTCHA Formu istendi</string>
 
     <string name="controls_background_title">Arka Plan</string>
-    <string name="controls_popup_title">Açılır Pencere</string>
+    <string name="controls_popup_title">Açılır Oynatıcı</string>
 
     <string name="filter">Süz</string>
     <string name="refresh">Yenile</string>
     <string name="clear">Temizle</string>
 
-    <string name="popup_remember_size_pos_title">Açılır pencere boyutunu ve konumunu hatırla</string>
-    <string name="popup_remember_size_pos_summary">Açılır pencerenin ayarlandığı son boyutu ve konumu hatırla</string>
+    <string name="popup_remember_size_pos_title">Açılır oynatıcı boyutunu ve konumunu hatırla</string>
+    <string name="popup_remember_size_pos_summary">Açılır oynatıcının ayarlandığı son boyutu ve konumu hatırla</string>
 
-    <string name="settings_category_popup_title">Açılır Pencere</string>
+    <string name="settings_category_popup_title">Açılır Oynatıcı</string>
     <string name="popup_resizing_indicator_title">Boyutlandırılıyor</string>
 
     <string name="use_external_video_player_summary">Bu seçenek etkinken bazı çözünürlüklerin sesi olmayacaktır</string>
@@ -224,7 +224,7 @@
     <string name="undo">Geri Al</string>
 
     <string name="notification_channel_name">NewPipe Bildirimi</string>
-    <string name="notification_channel_description">NewPipe Arka Plan ve Açılır Pencere Oynatıcıları için Bildirimler</string>
+    <string name="notification_channel_description">NewPipe Arka Plan ve Açılır Oynatıcılar için Bildirimler</string>
 
     <string name="search_no_results">Sonuç yok</string>
     <string name="empty_subscription_feed_subtitle">Burada Cırcır Böceklerinden Başka Şey Yok</string>
@@ -257,9 +257,9 @@
     <string name="item_deleted">Öge silindi</string>
 <string name="delete_item_search_history">Bu içeriği arama geçmişinden silmek istiyor musunuz?</string>
 <string name="show_hold_to_append_title">\"Kuyruğa almak İçin bas\" ipucunu göster</string>
-    <string name="show_hold_to_append_summary">Video ayrıntıları sayfasında arka plan veya açılır pencere düğmesine basıldığında ipucu göster</string>
+    <string name="show_hold_to_append_summary">Video ayrıntıları sayfasında arka plan veya açılır oynatıcı düğmesine basıldığında ipucu göster</string>
     <string name="background_player_append">Arka plan oynatıcıda kuyruğa eklendi</string>
-    <string name="popup_playing_append">Açılır pencere oynatıcıda kuyruğa eklendi</string>
+    <string name="popup_playing_append">Açılır oynatıcıda kuyruğa eklendi</string>
     <string name="play_all">Tümünü Oynat</string>
 
     <string name="unknown_content">[Bilinmeyen]</string>
@@ -283,16 +283,16 @@
     <string name="top_50">En İyi 50</string>
     <string name="new_and_hot">Yeni ve sıcak</string>
     <string name="title_activity_background_player">Arka Plan Oynatıcı</string>
-    <string name="title_activity_popup_player">Açılır Pencere Oynatıcı</string>
+    <string name="title_activity_popup_player">Açılır Oynatıcı</string>
     <string name="play_queue_remove">Kaldır</string>
     <string name="play_queue_stream_detail">Ayrıntılar</string>
     <string name="play_queue_audio_settings">Ses Ayarları</string>
     <string name="hold_to_append">Kuyruğa Almak İçin Bas</string>
     <string name="enqueue_on_background">Arka Planda Kuyruğa Al</string>
-    <string name="enqueue_on_popup">Açılır Pencerede Kuyruğa Al</string>
+    <string name="enqueue_on_popup">Açılır Oynatıcıda Kuyruğa Al</string>
     <string name="start_here_on_main">Burada Oynatmaya Başla</string>
     <string name="start_here_on_background">Burada Arka Planda Başlat</string>
-    <string name="start_here_on_popup">Burada Açılır Pencerede Başlat</string>
+    <string name="start_here_on_popup">Burada Açılır Oynatıcıda Başlat</string>
 <string name="donation_title">Bağış yapın</string>
     <string name="donation_encouragement">NewPipe, size en iyi deneyimi sunmak için zamanını harcayan gönüllüler tarafından geliştirilmiştir. Bir fincan kahveyi yudumlarken NewPipe\'ı daha da iyi yapmaları için geliştiricilere yardımcı olun.</string>
     <string name="give_back">Geri ver</string>
@@ -302,7 +302,7 @@
     <string name="service_title">Hizmet</string>
     <string name="toggle_orientation">Yönelimi Değiştir</string>
     <string name="switch_to_background">Arka Plana Geç</string>
-    <string name="switch_to_popup">Açılır Pencereye Geç</string>
+    <string name="switch_to_popup">Açılır Oynatıcıya Geç</string>
     <string name="switch_to_main">Ana Görünüme Geç</string>
 
     <string name="drawer_open">Çekmeceyi Aç</string>
@@ -318,7 +318,7 @@
 
     <string name="video_player">Video oynatıcı</string>
     <string name="background_player">Arka plan oynatıcı</string>
-    <string name="popup_player">Açılır pencere oynatıcı</string>
+    <string name="popup_player">Açılır oynatıcı</string>
     <string name="always_ask_player">Her zaman sor</string>
     
     <string name="preferred_player_fetcher_notification_title">Bilgi alınıyor…</string>
