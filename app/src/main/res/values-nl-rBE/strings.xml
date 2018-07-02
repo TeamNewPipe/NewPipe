@@ -452,6 +452,6 @@
     <string name="minimize_on_exit_summary">Actie bij overschakelen van videospeler naar anderen app — %s</string>
     <string name="minimize_on_exit_none_description">Geen</string>
     <string name="minimize_on_exit_background_description">Afspelen in achtergrond</string>
-    <string name="minimize_on_exit_popup_description">Afspelen in pop-upspeler</string>
+    <string name="minimize_on_exit_popup_description">Afspelen in pop-up</string>
 
 </resources>
