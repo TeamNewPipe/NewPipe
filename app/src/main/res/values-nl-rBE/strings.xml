@@ -448,4 +448,10 @@
     <string name="decline">Weigeren</string>
 <string name="limit_data_usage_none_description">Onbeperkt</string>
     <string name="limit_mobile_data_usage_title">Resolutie beperken bij gebruik van mobiele gegevens</string>
-    </resources>
+    <string name="minimize_on_exit_title">Minimaliseren bij overschakelen naar anderen app</string>
+    <string name="minimize_on_exit_summary">Actie bij overschakelen van videospeler naar anderen app — %s</string>
+    <string name="minimize_on_exit_none_description">Geen</string>
+    <string name="minimize_on_exit_background_description">Afspelen in achtergrond</string>
+    <string name="minimize_on_exit_popup_description">Afspelen in pop-upspeler</string>
+
+</resources>
