@@ -477,4 +477,10 @@
     <string name="decline">Avslå</string>
 <string name="limit_data_usage_none_description">Ubegrenset</string>
     <string name="limit_mobile_data_usage_title">Begrens oppløsning når mobildata brukes</string>
-    </resources>
+    <string name="minimize_on_exit_title">Minimer ved programbytte</string>
+    <string name="minimize_on_exit_summary">Handling ved bytting til annet program fra hovedspiller — %s</string>
+    <string name="minimize_on_exit_none_description">Ingen</string>
+    <string name="minimize_on_exit_background_description">Minimer til bakgrunnsspiller</string>
+    <string name="minimize_on_exit_popup_description">Minimer til oppsprettsspiller</string>
+
+</resources>
