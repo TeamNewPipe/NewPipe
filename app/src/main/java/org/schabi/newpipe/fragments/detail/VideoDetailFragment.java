@@ -185,6 +185,7 @@ public class VideoDetailFragment
 
     private OrientationEventListener mOrientationListener;
     private int lastOrientation;
+    private boolean landscapeAutoPlay;
 
 
     /*////////////////////////////////////////////////////////////////////////*/
@@ -206,6 +207,8 @@ public class VideoDetailFragment
 
         showRelatedStreams = PreferenceManager.getDefaultSharedPreferences(activity)
                 .getBoolean(getString(R.string.show_next_video_key), true);
+        landscapeAutoPlay = PreferenceManager.getDefaultSharedPreferences(activity)
+                .getBoolean(getString(R.string.landscape_auto_play_key), false);
         PreferenceManager.getDefaultSharedPreferences(activity)
                 .registerOnSharedPreferenceChangeListener(this);
     }
@@ -226,13 +229,14 @@ public class VideoDetailFragment
     public void onResume() {
         super.onResume();
 
-        if (android.provider.Settings.System.getInt(this.activity.getContentResolver(),
-                Settings.System.ACCELEROMETER_ROTATION, 0) == 1) {
-            if (mOrientationListener.canDetectOrientation()) {
-                mOrientationListener.enable();
-            }
-            else {
-                mOrientationListener.disable();
+        if (landscapeAutoPlay) {
+            if (android.provider.Settings.System.getInt(this.activity.getContentResolver(),
+                    Settings.System.ACCELEROMETER_ROTATION, 0) == 1) {
+                if (mOrientationListener.canDetectOrientation()) {
+                    mOrientationListener.enable();
+                } else {
+                    mOrientationListener.disable();
+                }
             }
         }
 
@@ -304,6 +308,8 @@ public class VideoDetailFragment
             updateFlags |= RESOLUTIONS_MENU_UPDATE_FLAG;
         } else if (key.equals(getString(R.string.show_play_with_kodi_key))) {
             updateFlags |= TOOLBAR_ITEMS_UPDATE_FLAG;
+        } else if (key.equals(getString(R.string.landscape_auto_play_key))) {
+            landscapeAutoPlay = sharedPreferences.getBoolean(key, false);
         }
     }
 

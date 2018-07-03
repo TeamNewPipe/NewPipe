@@ -259,6 +259,8 @@
 
     <string name="controls_add_to_playlist_title">添入</string>
 
+    <string name="landscape_auto_play_title">横屏自动播放</string>
+    <string name="landscape_auto_play_summary">横放手机将自动播放（需要设置系统，允许自动旋转）</string>
     <string name="use_inexact_seek_title">使用粗略但快速的寻找</string>
     <string name="use_inexact_seek_summary">粗略寻找让播放器更快找到视频的进度位置</string>
     <string name="download_thumbnail_title">加载缩略图</string>
