@@ -260,10 +260,92 @@
         </RelativeLayout>
 
         <View
-            android:id="@+id/separatorCheckbox"
+            android:id="@+id/separatorStepSizeSelector"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/pitchControl"
+            android:layout_margin="@dimen/video_item_search_padding"
+            android:background="?attr/separator_color"/>
+
+        <LinearLayout
+            android:id="@+id/stepSizeSelector"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:layout_below="@id/separatorStepSizeSelector">
+
+            <TextView
+                android:id="@+id/stepSizeText"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/playback_step"
+                android:textStyle="bold"
+                android:clickable="false"
+                android:textColor="?attr/colorAccent"/>
+
+            <TextView
+                android:id="@+id/stepSizeOnePercent"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground"
+                android:textColor="?attr/colorAccent"/>
+
+            <TextView
+                android:id="@+id/stepSizeFivePercent"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground"
+                android:textColor="?attr/colorAccent"/>
+
+            <TextView
+                android:id="@+id/stepSizeTenPercent"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground"
+                android:textColor="?attr/colorAccent"/>
+
+            <TextView
+                android:id="@+id/stepSizeTwentyFivePercent"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground"
+                android:textColor="?attr/colorAccent"/>
+
+            <TextView
+                android:id="@+id/stepSizeOneHundredPercent"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground"
+                android:textColor="?attr/colorAccent"/>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/separatorCheckbox"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/stepSizeSelector"
             android:layout_margin="@dimen/video_item_search_padding"
             android:background="?attr/separator_color"/>
 
@@ -279,33 +361,17 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@id/separatorCheckbox"/>
 
-        <LinearLayout
-            android:id="@+id/presetSelector"
+        <CheckBox
+            android:id="@+id/skipSilenceCheckbox"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal"
-            android:layout_below="@id/unhookCheckbox">
-
-            <TextView
-                android:id="@+id/presetNightcore"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/playback_nightcore"
-                android:background="?attr/selectableItemBackground"
-                android:textColor="?attr/colorAccent"/>
-
-            <TextView
-                android:id="@+id/presetReset"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/playback_default"
-                android:background="?attr/selectableItemBackground"
-                android:textColor="?attr/colorAccent"/>
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/skip_silence_checkbox"
+            android:maxLines="1"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/unhookCheckbox"/>
 
         <!-- END HERE -->
 

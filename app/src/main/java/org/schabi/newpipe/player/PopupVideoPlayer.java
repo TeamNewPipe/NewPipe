@@ -34,7 +34,6 @@ import android.os.Build;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -56,16 +55,17 @@ import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.text.CaptionStyleCompat;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.SubtitleView;
+import com.nostra13.universalimageloader.core.assist.FailReason;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.helper.LockManager;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
-import org.schabi.newpipe.player.playqueue.PlayQueueItem;
+import org.schabi.newpipe.player.resolver.MediaSourceTag;
+import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -97,6 +97,11 @@ public final class PopupVideoPlayer extends Service {
     private static final String POPUP_SAVED_Y = "popup_saved_y";
 
     private static final int MINIMUM_SHOW_EXTRA_WIDTH_DP = 300;
+
+    private static final int IDLE_WINDOW_FLAGS = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |
+            WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM;
+    private static final int ONGOING_PLAYBACK_WINDOW_FLAGS = IDLE_WINDOW_FLAGS |
+            WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
 
     private WindowManager windowManager;
     private WindowManager.LayoutParams windowLayoutParams;
@@ -191,14 +196,17 @@ public final class PopupVideoPlayer extends Service {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         popupWidth = popupRememberSizeAndPos ? sharedPreferences.getFloat(POPUP_SAVED_WIDTH, defaultSize) : defaultSize;
 
-        final int layoutParamType = Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O ? WindowManager.LayoutParams.TYPE_PHONE : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+        final int layoutParamType = Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O ?
+                WindowManager.LayoutParams.TYPE_PHONE :
+                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
 
         windowLayoutParams = new WindowManager.LayoutParams(
                 (int) popupWidth, (int) getMinimumVideoHeight(popupWidth),
                 layoutParamType,
-                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                IDLE_WINDOW_FLAGS,
                 PixelFormat.TRANSLUCENT);
         windowLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
+        windowLayoutParams.softInputMode = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE;
 
         int centerX = (int) (screenWidth / 2f - popupWidth / 2f);
         int centerY = (int) (screenHeight / 2f - popupHeight / 2f);
@@ -228,6 +236,7 @@ public final class PopupVideoPlayer extends Service {
 
         notRemoteView.setTextViewText(R.id.notificationSongName, playerImpl.getVideoTitle());
         notRemoteView.setTextViewText(R.id.notificationArtist, playerImpl.getUploaderName());
+        notRemoteView.setImageViewBitmap(R.id.notificationCover, playerImpl.getThumbnail());
 
         notRemoteView.setOnClickPendingIntent(R.id.notificationPlayPause,
                 PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_PAUSE), PendingIntent.FLAG_UPDATE_CURRENT));
@@ -243,11 +252,15 @@ public final class PopupVideoPlayer extends Service {
 
         setRepeatModeRemote(notRemoteView, playerImpl.getRepeatMode());
 
-        return new NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
                 .setOngoing(true)
                 .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setContent(notRemoteView);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+            builder.setPriority(NotificationCompat.PRIORITY_MAX);
+        }
+        return builder;
     }
 
     /**
@@ -366,6 +379,12 @@ public final class PopupVideoPlayer extends Service {
         }
     }
 
+    private void updateWindowFlags(final int flags) {
+        if (windowLayoutParams == null || windowManager == null || playerImpl == null) return;
+
+        windowLayoutParams.flags = flags;
+        windowManager.updateViewLayout(playerImpl.getRootView(), windowLayoutParams);
+    }
     ///////////////////////////////////////////////////////////////////////////
 
     protected class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeListener {
@@ -429,21 +448,6 @@ public final class PopupVideoPlayer extends Service {
         }
 
         @Override
-        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-            super.onLoadingComplete(imageUri, view, loadedImage);
-            if (loadedImage != null) {
-                // rebuild notification here since remote view does not release bitmaps, causing memory leaks
-                notBuilder = createNotification();
-
-                if (notRemoteView != null) {
-                    notRemoteView.setImageViewBitmap(R.id.notificationCover, loadedImage);
-                }
-
-                updateNotification(-1);
-            }
-        }
-
-        @Override
         public void onFullScreenButtonClicked() {
             super.onFullScreenButtonClicked();
 
@@ -459,6 +463,7 @@ public final class PopupVideoPlayer extends Service {
                         this.getRepeatMode(),
                         this.getPlaybackSpeed(),
                         this.getPlaybackPitch(),
+                        this.getPlaybackSkipSilence(),
                         this.getPlaybackQuality()
                 );
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -510,14 +515,47 @@ public final class PopupVideoPlayer extends Service {
         }
 
         @Override
-        protected int getDefaultResolutionIndex(final List<VideoStream> sortedVideos) {
-            return ListHelper.getPopupDefaultResolutionIndex(context, sortedVideos);
+        protected VideoPlaybackResolver.QualityResolver getQualityResolver() {
+            return new VideoPlaybackResolver.QualityResolver() {
+                @Override
+                public int getDefaultResolutionIndex(List<VideoStream> sortedVideos) {
+                    return ListHelper.getPopupDefaultResolutionIndex(context, sortedVideos);
+                }
+
+                @Override
+                public int getOverrideResolutionIndex(List<VideoStream> sortedVideos,
+                                                      String playbackQuality) {
+                    return ListHelper.getPopupResolutionIndex(context, sortedVideos,
+                            playbackQuality);
+                }
+            };
+        }
+
+        /*//////////////////////////////////////////////////////////////////////////
+        // Thumbnail Loading
+        //////////////////////////////////////////////////////////////////////////*/
+
+        @Override
+        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+            super.onLoadingComplete(imageUri, view, loadedImage);
+            // rebuild notification here since remote view does not release bitmaps,
+            // causing memory leaks
+            resetNotification();
+            updateNotification(-1);
         }
 
         @Override
-        protected int getOverrideResolutionIndex(final List<VideoStream> sortedVideos,
-                                                 final String playbackQuality) {
-            return ListHelper.getPopupResolutionIndex(context, sortedVideos, playbackQuality);
+        public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+            super.onLoadingFailed(imageUri, view, failReason);
+            resetNotification();
+            updateNotification(-1);
+        }
+
+        @Override
+        public void onLoadingCancelled(String imageUri, View view) {
+            super.onLoadingCancelled(imageUri, view);
+            resetNotification();
+            updateNotification(-1);
         }
 
         /*//////////////////////////////////////////////////////////////////////////
@@ -538,8 +576,8 @@ public final class PopupVideoPlayer extends Service {
         }
 
         private void updateMetadata() {
-            if (activityListener != null && currentInfo != null) {
-                activityListener.onMetadataUpdate(currentInfo);
+            if (activityListener != null && getCurrentMetadata() != null) {
+                activityListener.onMetadataUpdate(getCurrentMetadata().getMetadata());
             }
         }
 
@@ -571,8 +609,9 @@ public final class PopupVideoPlayer extends Service {
         public void onRepeatModeChanged(int i) {
             super.onRepeatModeChanged(i);
             setRepeatModeRemote(notRemoteView, i);
-            updateNotification(-1);
             updatePlayback();
+            resetNotification();
+            updateNotification(-1);
         }
 
         @Override
@@ -585,11 +624,10 @@ public final class PopupVideoPlayer extends Service {
         // Playback Listener
         //////////////////////////////////////////////////////////////////////////*/
 
-        protected void onMetadataChanged(@NonNull final PlayQueueItem item,
-                                         @Nullable final StreamInfo info,
-                                         final int newPlayQueueIndex,
-                                         final boolean hasPlayQueueItemChanged) {
-            super.onMetadataChanged(item, info, newPlayQueueIndex, false);
+        protected void onMetadataChanged(@NonNull final MediaSourceTag tag) {
+            super.onMetadataChanged(tag);
+            resetNotification();
+            updateNotification(-1);
             updateMetadata();
         }
 
@@ -652,56 +690,70 @@ public final class PopupVideoPlayer extends Service {
         @Override
         public void onBlocked() {
             super.onBlocked();
+            resetNotification();
             updateNotification(R.drawable.ic_play_arrow_white);
         }
 
         @Override
         public void onPlaying() {
             super.onPlaying();
-            updateNotification(R.drawable.ic_pause_white);
-            videoPlayPause.setBackgroundResource(R.drawable.ic_pause_white);
-            lockManager.acquireWifiAndCpu();
 
+            updateWindowFlags(ONGOING_PLAYBACK_WINDOW_FLAGS);
+
+            resetNotification();
+            updateNotification(R.drawable.ic_pause_white);
+
+            videoPlayPause.setBackgroundResource(R.drawable.ic_pause_white);
             hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
 
-            windowLayoutParams.flags = WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
-                    | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
-            windowManager.updateViewLayout(playerImpl.getRootView(), windowLayoutParams);
+            startForeground(NOTIFICATION_ID, notBuilder.build());
+            lockManager.acquireWifiAndCpu();
         }
 
         @Override
         public void onBuffering() {
             super.onBuffering();
+            resetNotification();
             updateNotification(R.drawable.ic_play_arrow_white);
         }
 
         @Override
         public void onPaused() {
             super.onPaused();
+
+            updateWindowFlags(IDLE_WINDOW_FLAGS);
+
+            resetNotification();
             updateNotification(R.drawable.ic_play_arrow_white);
+
             videoPlayPause.setBackgroundResource(R.drawable.ic_play_arrow_white);
             lockManager.releaseWifiAndCpu();
 
-            windowLayoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
-            windowManager.updateViewLayout(playerImpl.getRootView(), windowLayoutParams);
+            stopForeground(false);
         }
 
         @Override
         public void onPausedSeek() {
             super.onPausedSeek();
-            videoPlayPause.setBackgroundResource(R.drawable.ic_pause_white);
+            resetNotification();
             updateNotification(R.drawable.ic_play_arrow_white);
+
+            videoPlayPause.setBackgroundResource(R.drawable.ic_pause_white);
         }
 
         @Override
         public void onCompleted() {
             super.onCompleted();
+
+            updateWindowFlags(IDLE_WINDOW_FLAGS);
+
+            resetNotification();
             updateNotification(R.drawable.ic_replay_white);
+
             videoPlayPause.setBackgroundResource(R.drawable.ic_replay_white);
             lockManager.releaseWifiAndCpu();
 
-            windowLayoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
-            windowManager.updateViewLayout(playerImpl.getRootView(), windowLayoutParams);
+            stopForeground(false);
         }
 
         @Override
@@ -719,16 +771,15 @@ public final class PopupVideoPlayer extends Service {
             super.hideControlsAndButton(duration, delay, videoPlayPause);
         }
 
-
-
         /*//////////////////////////////////////////////////////////////////////////
         // Utils
         //////////////////////////////////////////////////////////////////////////*/
 
         /*package-private*/ void enableVideoRenderer(final boolean enable) {
             final int videoRendererIndex = getRendererIndex(C.TRACK_TYPE_VIDEO);
-            if (trackSelector != null && videoRendererIndex != RENDERER_UNAVAILABLE) {
-                trackSelector.setRendererDisabled(videoRendererIndex, !enable);
+            if (videoRendererIndex != RENDERER_UNAVAILABLE) {
+                trackSelector.setParameters(trackSelector.buildUponParameters()
+                        .setRendererDisabled(videoRendererIndex, !enable));
             }
         }
 
