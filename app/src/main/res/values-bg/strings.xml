@@ -236,7 +236,7 @@
     <string name="file">Файл</string>
 
     <string name="toggle_orientation">Смени ориентацията</string>
-    <string name="switch_to_background">Мини към фонов режим</string>
+    <string name="switch_to_background">Мини във фонов режим</string>
     <string name="switch_to_popup">Мини към изкачащ прозорец</string>
     <string name="switch_to_main">Мини в основен режим</string>
 
