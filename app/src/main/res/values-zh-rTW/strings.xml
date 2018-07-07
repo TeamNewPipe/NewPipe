@@ -432,7 +432,7 @@
     <string name="playback_speed_control">播放速度控制</string>
     <string name="playback_tempo">節拍</string>
     <string name="playback_pitch">間距</string>
-    <string name="unhook_checkbox">解除 (可能導致失真)</string>
+    <string name="unhook_checkbox">解除連結（可能導致失真）</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">預設</string>
 <string name="preferred_open_action_settings_title">偏好的「開啟」動作</string>
@@ -474,4 +474,8 @@
     <string name="minimize_on_exit_background_description">最小化為背景播放器</string>
     <string name="minimize_on_exit_popup_description">最小化為彈出式播放器</string>
 
-</resources>
+<string name="skip_silence_checkbox">在靜音時快轉</string>
+    <string name="playback_step">步進</string>
+    <string name="playback_reset">重設</string>
+
+    </resources>
