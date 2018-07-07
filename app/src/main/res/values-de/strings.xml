@@ -418,7 +418,7 @@
     <string name="playback_speed_control">Wiedergabegeschwindigkeitsregler</string>
     <string name="playback_tempo">Geschwindigkeit</string>
     <string name="playback_pitch">Tonhöhe</string>
-    <string name="unhook_checkbox">Aushaken (kann zu Verzerrungen führen)</string>
+    <string name="unhook_checkbox">Verknüpfung aufheben (kann zu Verzerrungen führen)</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Standard</string>
 <string name="download_thumbnail_summary">Deaktiviere diese Option, um das Laden aller Miniaturansichten zu stoppen und Daten und Speicherverbrauch zu sparen. Wenn du dies änderst, wird sowohl der In-Memory- als auch der On-Disk-Image-Cache gelöscht.</string>
@@ -489,4 +489,8 @@
     <string name="minimize_on_exit_background_description">Zum Hintergrund-Player minimieren</string>
     <string name="minimize_on_exit_popup_description">Zum Popup-Player minimieren</string>
 
-</resources>
+<string name="skip_silence_checkbox">Vorspulen während der Stille</string>
+    <string name="playback_step">Schritt</string>
+    <string name="playback_reset">Zurücksetzen</string>
+
+    </resources>
