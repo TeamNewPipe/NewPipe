@@ -458,4 +458,8 @@
     <string name="minimize_on_exit_background_description">Minimitza al reproductor en segon pla</string>
     <string name="minimize_on_exit_popup_description">Minimitza al reproductor emergent</string>
 
-</resources>
+<string name="skip_silence_checkbox">Avança ràpid durant el silenci</string>
+    <string name="playback_step">Pas</string>
+    <string name="playback_reset">Reinicialitza</string>
+
+    </resources>
