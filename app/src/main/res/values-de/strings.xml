@@ -483,4 +483,10 @@
 \nDu musst den Datenschutzrichtlinien zustimmen, um den Fehlerbericht an uns zu senden.</string>
     <string name="limit_data_usage_none_description">Unbegrenzt</string>
     <string name="limit_mobile_data_usage_title">Auflösung bei Verwendung mobiler Daten begrenzen</string>
-    </resources>
+    <string name="minimize_on_exit_title">Minimieren beim Anwendungswechsel</string>
+    <string name="minimize_on_exit_summary">Aktion beim Umschalten auf eine andere Anwendung vom Haupt-Videoplayer - %s</string>
+    <string name="minimize_on_exit_none_description">Keine</string>
+    <string name="minimize_on_exit_background_description">Zum Hintergrund-Player minimieren</string>
+    <string name="minimize_on_exit_popup_description">Zum Popup-Player minimieren</string>
+
+</resources>
