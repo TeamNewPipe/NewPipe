@@ -495,4 +495,7 @@ abrir en modo popup</string>
     <string name="minimize_on_exit_popup_description">Minimizar el reproductor emergente</string>
 
 <string name="skip_silence_checkbox">Avance rápido durante el silencio</string>
+    <string name="playback_step">Paso</string>
+    <string name="playback_reset">Reiniciar</string>
+
     </resources>
