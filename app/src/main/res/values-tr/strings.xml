@@ -446,7 +446,7 @@
     <string name="playback_tempo">Hız</string>
     <string name="playback_default">Öntanımlı</string>
 <string name="playback_pitch">Ses titreşimi</string>
-    <string name="unhook_checkbox">Çengeli Çıkar (bozukluğa neden olabilir)</string>
+    <string name="unhook_checkbox">Bağlantıyı kes (bozulmalara neden olabilir)</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="no_streams_available_download">İndirmeye uygun akış yok</string>
 
@@ -487,4 +487,8 @@
     <string name="minimize_on_exit_background_description">Arka plan oynatıcıya küçült</string>
     <string name="minimize_on_exit_popup_description">Açılır oynatıcıya küçült</string>
 
-</resources>
+<string name="skip_silence_checkbox">Sessizlik sırasında hızlı ileri</string>
+    <string name="playback_step">Adım</string>
+    <string name="playback_reset">Sıfırla</string>
+
+    </resources>
