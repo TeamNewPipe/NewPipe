@@ -64,4 +64,9 @@
     <string name="dark_theme_title">酷黑</string>
     <string name="black_theme_title">黑色</string>
     <string name="popup_remember_size_pos_title">记住弹出窗口的尺寸与位置</string>
-    </resources>
+    <string name="m4a_description">M4A — 更好的音质</string>
+    <string name="popup_remember_size_pos_summary">记住上一次弹出窗口的位置以及大小</string>
+    <string name="thumbnail_cache_wipe_complete_notice">清理照片内存</string>
+    <string name="minimize_on_exit_popup_description">最小化弹出播放器</string>
+
+</resources>
