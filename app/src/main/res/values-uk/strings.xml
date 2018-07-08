@@ -473,4 +473,14 @@
     <string name="decline">Відхилити</string>
 <string name="limit_data_usage_none_description">Безмежно</string>
     <string name="limit_mobile_data_usage_title">Обмежити роздільну здатність під час користування мобільним інтернетом</string>
-    </resources>
+    <string name="skip_silence_checkbox">Перемотувати підчас тиші</string>
+    <string name="playback_step">Крок</string>
+    <string name="playback_reset">Скинути</string>
+
+    <string name="minimize_on_exit_title">Зменшити при перемкненні застосунку</string>
+    <string name="minimize_on_exit_summary">Дія при перемкненні до інших застосунків з головного відео-програвачу — %s</string>
+    <string name="minimize_on_exit_none_description">Жодних</string>
+    <string name="minimize_on_exit_background_description">Зменшити до фонового програвачу</string>
+    <string name="minimize_on_exit_popup_description">Зменшити до віконного програвачу</string>
+
+</resources>
