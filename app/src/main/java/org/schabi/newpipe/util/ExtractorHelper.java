@@ -38,9 +38,11 @@ import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.extractor.kiosk.KioskInfo;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.search.SearchEngine;
+import org.schabi.newpipe.extractor.search.SearchInfo;
 import org.schabi.newpipe.extractor.search.SearchResult;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.uih.SearchQIHandler;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 
@@ -66,29 +68,23 @@ public final class ExtractorHelper {
         }
     }
 
-    public static Single<SearchResult> searchFor(final int serviceId,
-                                                 final String query,
-                                                 final int pageNumber,
-                                                 final String contentCountry,
-                                                 final SearchEngine.Filter filter) {
+    public static Single<SearchInfo> searchFor(final int serviceId,
+                                               final SearchQIHandler query,
+                                               final String contentCountry) {
         checkServiceId(serviceId);
         return Single.fromCallable(() ->
-            SearchResult.getSearchResult(NewPipe.getService(serviceId).getSearchEngine(),
-                    query, pageNumber, contentCountry, filter)
-        );
+            SearchInfo.getInfo(NewPipe.getService(serviceId).getSearchExtractor(query, contentCountry)));
     }
 
     public static Single<InfoItemsPage> getMoreSearchItems(final int serviceId,
-                                                             final String query,
-                                                             final int nextPageNumber,
-                                                             final String searchLanguage,
-                                                             final SearchEngine.Filter filter) {
+                                                             final SearchQIHandler query,
+                                                             final String pageUrl,
+                                                             final String contentCountry) {
         checkServiceId(serviceId);
-        return searchFor(serviceId, query, nextPageNumber, searchLanguage, filter)
-                .map((@NonNull SearchResult searchResult) ->
-                        new InfoItemsPage(searchResult.resultList,
-                                nextPageNumber + "",
-                                searchResult.errors));
+        return Single.fromCallable(() ->
+                SearchInfo.get
+                NewPipe.getService(serviceId).getSearchExtractor(query, contentCountry))
+
     }
 
     public static Single<List<String>> suggestionsFor(final int serviceId,
