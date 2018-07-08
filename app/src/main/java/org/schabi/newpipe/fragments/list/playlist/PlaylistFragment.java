@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
@@ -28,12 +30,14 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.extractor.uih.ListUIHandler;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
+import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ImageDisplayConstants;
@@ -79,9 +83,9 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
     private MenuItem playlistBookmarkButton;
 
-    public static PlaylistFragment getInstance(int serviceId, String url, String name) {
+    public static PlaylistFragment getInstance(int serviceId, ListUIHandler uiHandler, String name) {
         PlaylistFragment instance = new PlaylistFragment();
-        instance.setInitialData(serviceId, url, name);
+        instance.setInitialData(serviceId, uiHandler, name);
         return instance;
     }
 
@@ -216,22 +220,22 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
     @Override
     protected Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic() {
-        return ExtractorHelper.getMorePlaylistItems(serviceId, url, currentNextPageUrl);
+        return ExtractorHelper.getMorePlaylistItems(serviceId, uiHandler.getUrl(), currentNextPageUrl);
     }
 
     @Override
     protected Single<PlaylistInfo> loadResult(boolean forceLoad) {
-        return ExtractorHelper.getPlaylistInfo(serviceId, url, forceLoad);
+        return ExtractorHelper.getPlaylistInfo(serviceId, uiHandler.getUrl(), forceLoad);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_item_openInBrowser:
-                openUrlInBrowser(url);
+                openUrlInBrowser(uiHandler.getUrl());
                 break;
             case R.id.menu_item_share:
-                shareUrl(name, url);
+                shareUrl(name, uiHandler.getUrl());
                 break;
             case R.id.menu_item_bookmark:
                 onBookmarkClicked();
@@ -267,11 +271,18 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         if (!TextUtils.isEmpty(result.getUploaderName())) {
             headerUploaderName.setText(result.getUploaderName());
             if (!TextUtils.isEmpty(result.getUploaderUrl())) {
-                headerUploaderLayout.setOnClickListener(v ->
+                headerUploaderLayout.setOnClickListener(v -> {
+                    try {
                         NavigationHelper.openChannelFragment(getFragmentManager(),
-                                result.getServiceId(), result.getUploaderUrl(),
-                                result.getUploaderName())
-                );
+                                result.getServiceId(),
+                                NewPipe.getService(serviceId)
+                                    .getChannelUIHFactory()
+                                    .fromUrl(result.getUploaderUrl()),
+                                result.getUploaderName());
+                    } catch (Exception e) {
+                        ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
+                    }
+                });
             }
         }
 
@@ -326,7 +337,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(), UserAction.REQUESTED_PLAYLIST, NewPipe.getNameOfService(serviceId)
-                    , "Get next page of: " + url, 0);
+                    , "Get next page of: " + uiHandler.getUrl(), 0);
         }
     }
 
@@ -339,7 +350,11 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         if (super.onError(exception)) return true;
 
         int errorId = exception instanceof ExtractionException ? R.string.parsing_error : R.string.general_error;
-        onUnrecoverableError(exception, UserAction.REQUESTED_PLAYLIST, NewPipe.getNameOfService(serviceId), url, errorId);
+        onUnrecoverableError(exception,
+                UserAction.REQUESTED_PLAYLIST,
+                NewPipe.getNameOfService(serviceId),
+                uiHandler.getUrl(),
+                errorId);
         return true;
     }
 

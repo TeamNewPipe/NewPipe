@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -127,7 +128,16 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_search:
-                NavigationHelper.openSearchFragment(getFragmentManager(), ServiceHelper.getSelectedServiceId(activity), "");
+                try {
+                    NavigationHelper.openSearchFragment(
+                            getFragmentManager(),
+                            ServiceHelper.getSelectedServiceId(activity),
+                            NewPipe.getService(currentServiceId)
+                                .getSearchQIHFactory()
+                                .fromQuery(""));
+                } catch (Exception e) {
+                    ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
+                }
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -226,7 +236,9 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                         FALLBACK_CHANNEL_URL);
                 String name = preferences.getString(getString(R.string.main_page_selected_channel_name),
                         FALLBACK_CHANNEL_NAME);
-                ChannelFragment fragment = ChannelFragment.getInstance(serviceId, url, name);
+                ChannelFragment fragment = ChannelFragment.getInstance(serviceId,
+                        NewPipe.getService(currentServiceId).getPlaylistUIHFactory().fromUrl(url),
+                        name);
                 fragment.useAsFrontPage(true);
                 return fragment;
             } else {
@@ -255,20 +267,13 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         for (final String ks : kl.getAvailableKiosks()) {
             menu.add(0, KIOSK_MENU_OFFSET + i, Menu.NONE,
                     KioskTranslator.getTranslatedKioskName(ks, getContext()))
-                    .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                        @Override
-                        public boolean onMenuItemClick(MenuItem menuItem) {
+                    .setOnMenuItemClickListener(menuItem -> {
                             try {
                                 NavigationHelper.openKioskFragment(getFragmentManager(), currentServiceId, ks);
                             } catch (Exception e) {
-                                ErrorActivity.reportError(activity, e,
-                                        activity.getClass(),
-                                        null,
-                                        ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
-                                                "none", "", R.string.app_ui_crash));
+                                ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
                             }
                             return true;
-                        }
                     });
             i++;
         }

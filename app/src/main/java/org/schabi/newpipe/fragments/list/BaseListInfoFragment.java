@@ -8,6 +8,9 @@ import android.view.View;
 
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.ListInfo;
+import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.uih.ListUIHandler;
+import org.schabi.newpipe.extractor.uih.UIHandler;
 import org.schabi.newpipe.util.Constants;
 
 import java.util.Queue;
@@ -27,7 +30,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
     @State
     protected String name;
     @State
-    protected String url;
+    protected ListUIHandler uiHandler;
 
     protected I currentInfo;
     protected String currentNextPageUrl;
@@ -166,7 +169,6 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
     public void handleResult(@NonNull I result) {
         super.handleResult(result);
 
-        url = result.getUrl();
         name = result.getName();
         setTitle(name);
 
@@ -185,9 +187,9 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected void setInitialData(int serviceId, String url, String name) {
+    protected void setInitialData(int serviceId, ListUIHandler uiHandler, String name) {
         this.serviceId = serviceId;
-        this.url = url;
+        this.uiHandler = uiHandler;
         this.name = !TextUtils.isEmpty(name) ? name : "";
     }
 }

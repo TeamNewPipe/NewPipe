@@ -26,10 +26,13 @@ import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.search.SearchExtractor;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
+import org.schabi.newpipe.extractor.uih.ListUIHandler;
+import org.schabi.newpipe.extractor.uih.SearchQIHandler;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
@@ -283,7 +286,7 @@ public class NavigationHelper {
         return fragmentManager.popBackStackImmediate(SEARCH_FRAGMENT_TAG, 0);
     }
 
-    public static void openSearchFragment(FragmentManager fragmentManager, int serviceId, String query) {
+    public static void openSearchFragment(FragmentManager fragmentManager, int serviceId, SearchQIHandler query) {
         defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, SearchFragment.getInstance(serviceId, query))
                 .addToBackStack(SEARCH_FRAGMENT_TAG)
@@ -314,18 +317,18 @@ public class NavigationHelper {
                 .commit();
     }
 
-    public static void openChannelFragment(FragmentManager fragmentManager, int serviceId, String url, String name) {
+    public static void openChannelFragment(FragmentManager fragmentManager, int serviceId, ListUIHandler uiHandler, String name) {
         if (name == null) name = "";
         defaultTransaction(fragmentManager)
-                .replace(R.id.fragment_holder, ChannelFragment.getInstance(serviceId, url, name))
+                .replace(R.id.fragment_holder, ChannelFragment.getInstance(serviceId, uiHandler, name))
                 .addToBackStack(null)
                 .commit();
     }
 
-    public static void openPlaylistFragment(FragmentManager fragmentManager, int serviceId, String url, String name) {
+    public static void openPlaylistFragment(FragmentManager fragmentManager, int serviceId, ListUIHandler uiHandler, String name) {
         if (name == null) name = "";
         defaultTransaction(fragmentManager)
-                .replace(R.id.fragment_holder, PlaylistFragment.getInstance(serviceId, url, name))
+                .replace(R.id.fragment_holder, PlaylistFragment.getInstance(serviceId, uiHandler, name))
                 .addToBackStack(null)
                 .commit();
     }
@@ -370,10 +373,10 @@ public class NavigationHelper {
     // Through Intents
     //////////////////////////////////////////////////////////////////////////*/
 
-    public static void openSearch(Context context, int serviceId, String query) {
+    public static void openSearch(Context context, int serviceId, String searchString) {
         Intent mIntent = new Intent(context, MainActivity.class);
         mIntent.putExtra(Constants.KEY_SERVICE_ID, serviceId);
-        mIntent.putExtra(Constants.KEY_QUERY, query);
+        mIntent.putExtra(Constants.KEY_SEARCH_STRING, searchString);
         mIntent.putExtra(Constants.KEY_OPEN_SEARCH, true);
         context.startActivity(mIntent);
     }

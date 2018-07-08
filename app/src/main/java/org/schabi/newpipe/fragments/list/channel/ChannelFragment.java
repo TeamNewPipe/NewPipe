@@ -33,6 +33,7 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.extractor.uih.ListUIHandler;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
@@ -90,9 +91,9 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
 
     private MenuItem menuRssButton;
 
-    public static ChannelFragment getInstance(int serviceId, String url, String name) {
+    public static ChannelFragment getInstance(int serviceId, ListUIHandler uiHandler, String name) {
         ChannelFragment instance = new ChannelFragment();
-        instance.setInitialData(serviceId, url, name);
+        instance.setInitialData(serviceId, uiHandler, name);
         return instance;
     }
 
@@ -236,10 +237,10 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                 openRssFeed();
                 break;
             case R.id.menu_item_openInBrowser:
-                openUrlInBrowser(url);
+                openUrlInBrowser(uiHandler.getUrl());
                 break;
             case R.id.menu_item_share:
-                shareUrl(name, url);
+                shareUrl(name, uiHandler.getUrl());
                 break;
             default:
                 return super.onOptionsItemSelected(item);
@@ -405,12 +406,12 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
 
     @Override
     protected Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic() {
-        return ExtractorHelper.getMoreChannelItems(serviceId, url, currentNextPageUrl);
+        return ExtractorHelper.getMoreChannelItems(serviceId, uiHandler.getUrl(), currentNextPageUrl);
     }
 
     @Override
     protected Single<ChannelInfo> loadResult(boolean forceLoad) {
-        return ExtractorHelper.getChannelInfo(serviceId, url, forceLoad);
+        return ExtractorHelper.getChannelInfo(serviceId, uiHandler.getUrl(), forceLoad);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -488,7 +489,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(), UserAction.REQUESTED_CHANNEL, NewPipe.getNameOfService(serviceId),
-                    "Get next page of: " + url, R.string.general_error);
+                    "Get next page of: " + uiHandler.getUrl(), R.string.general_error);
         }
     }
 
@@ -501,7 +502,11 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         if (super.onError(exception)) return true;
 
         int errorId = exception instanceof ExtractionException ? R.string.parsing_error : R.string.general_error;
-        onUnrecoverableError(exception, UserAction.REQUESTED_CHANNEL, NewPipe.getNameOfService(serviceId), url, errorId);
+        onUnrecoverableError(exception,
+                UserAction.REQUESTED_CHANNEL,
+                NewPipe.getNameOfService(serviceId),
+                uiHandler.getUrl(),
+                errorId);
         return true;
     }
 

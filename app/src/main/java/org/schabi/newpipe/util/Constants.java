@@ -6,7 +6,7 @@ public class Constants {
     public static final String KEY_TITLE = "key_title";
     public static final String KEY_LINK_TYPE = "key_link_type";
     public static final String KEY_OPEN_SEARCH = "key_open_search";
-    public static final String KEY_QUERY = "key_query";
+    public static final String KEY_SEARCH_STRING = "key_search_string";
 
     public static final String KEY_THEME_CHANGE = "key_theme_change";
     public static final String KEY_MAIN_PAGE_CHANGE = "key_main_page_change";

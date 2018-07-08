@@ -37,9 +37,8 @@ import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
-import org.schabi.newpipe.extractor.search.SearchEngine;
+import org.schabi.newpipe.extractor.search.SearchExtractor;
 import org.schabi.newpipe.extractor.search.SearchInfo;
-import org.schabi.newpipe.extractor.search.SearchResult;
 import org.schabi.newpipe.extractor.uih.SearchQIHandler;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.list.BaseListFragment;
@@ -59,7 +58,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Queue;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 import icepick.State;
@@ -103,8 +101,6 @@ public class SearchFragment
     protected SearchQIHandler lastSearchedQuery;
     @State
     protected boolean wasSearchFocused = false;
-    @State
-    List<String> contentFilter;
 
     private StreamingService service;
     private String currentPageUrl;
@@ -381,8 +377,6 @@ public class SearchFragment
             if (item == null) return;
 
             item.setChecked(true);
-            contentFilter.clear();
-            contentFilter.add(menu.getItem(itemId).getTitle().toString());
         }
     }
 
@@ -703,8 +697,7 @@ public class SearchFragment
         super.startLoading(forceLoad);
         if (disposables != null) disposables.clear();
         if (searchDisposable != null) searchDisposable.dispose();
-        searchDisposable = ExtractorHelper.searchFor(serviceId,
-                searchQuery, currentPageUrl, contentCountry, contentFilter, "")
+        searchDisposable = ExtractorHelper.searchFor(serviceId, searchQuery, contentCountry)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnEvent((searchResult, throwable) -> isLoading.set(false))
@@ -716,9 +709,8 @@ public class SearchFragment
         isLoading.set(true);
         showListFooter(true);
         if (searchDisposable != null) searchDisposable.dispose();
-        currentNextPage = currentPage + 1;
         searchDisposable = ExtractorHelper.getMoreSearchItems(serviceId,
-                searchQuery, currentNextPage, contentCountry, filter)
+                searchQuery, nextPageUrl, contentCountry)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnEvent((nextItemsResult, throwable) -> isLoading.set(false))
@@ -745,7 +737,6 @@ public class SearchFragment
         this.filterItemCheckedId = item.getItemId();
         item.setChecked(true);
 
-        this.contentFilter = contentFilter;
         searchQuery = getSearchQuery(searchQuery.getSearchString(), contentFilter, "");
 
         if (!TextUtils.isEmpty(searchQuery.getSearchString())) {
@@ -765,12 +756,12 @@ public class SearchFragment
             return service.getSearchQIHFactory()
                     .fromQuery(searchString, contentFilter, sortFilter);
         } catch (Exception e) {
-            ErrorActivity.reportError(getActivity(), e, getActivity().getClass(),
-                    getActivity().findViewById(android.R.id.content),
-                    ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
-                            "",
-                            "", R.string.general_error));
+            onUnrecoverableError(e, UserAction.SEARCHED,
+                    service.getServiceInfo().getName(),
+                    searchQuery.getSearchString(),
+                    R.string.general_error);
         }
+        return searchQuery;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -795,7 +786,7 @@ public class SearchFragment
                 ? R.string.parsing_error
                 : R.string.general_error;
         onUnrecoverableError(exception, UserAction.GET_SUGGESTIONS,
-                NewPipe.getNameOfService(serviceId), searchQuery, errorId);
+                NewPipe.getNameOfService(serviceId), searchQuery.getSearchString(), errorId);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -820,17 +811,17 @@ public class SearchFragment
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void handleResult(@NonNull SearchResult result) {
-        if (!result.errors.isEmpty()) {
-            showSnackBarError(result.errors, UserAction.SEARCHED,
-                    NewPipe.getNameOfService(serviceId), searchQuery, 0);
+    public void handleResult(@NonNull SearchInfo result) {
+        if (!result.getErrors().isEmpty()) {
+            showSnackBarError(result.getErrors(), UserAction.SEARCHED,
+                    NewPipe.getNameOfService(serviceId), searchQuery.getSearchString(), 0);
         }
 
         lastSearchedQuery = searchQuery;
 
         if (infoListAdapter.getItemsList().size() == 0) {
-            if (!result.getResults().isEmpty()) {
-                infoListAdapter.addInfoItemList(result.getResults());
+            if (!result.getRelatedItems().isEmpty()) {
+                infoListAdapter.addInfoItemList(result.getRelatedItems());
             } else {
                 infoListAdapter.clearStreamItemList();
                 showEmptyState();
@@ -844,13 +835,13 @@ public class SearchFragment
     @Override
     public void handleNextItems(ListExtractor.InfoItemsPage result) {
         showListFooter(false);
-        currentPage = Integer.parseInt(result.getNextPageUrl());
+        currentPageUrl = result.getNextPageUrl();
         infoListAdapter.addInfoItemList(result.getItems());
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(), UserAction.SEARCHED,
                     NewPipe.getNameOfService(serviceId)
-                    , "\"" + searchQuery + "\" → page " + currentPage, 0);
+                    , "\"" + searchQuery + "\" → page: " + nextPageUrl, 0);
         }
         super.handleNextItems(result);
     }
@@ -859,7 +850,7 @@ public class SearchFragment
     protected boolean onError(Throwable exception) {
         if (super.onError(exception)) return true;
 
-        if (exception instanceof SearchEngine.NothingFoundException) {
+        if (exception instanceof SearchExtractor.NothingFoundException) {
             infoListAdapter.clearStreamItemList();
             showEmptyState();
         } else {
@@ -867,7 +858,7 @@ public class SearchFragment
                     ? R.string.parsing_error
                     : R.string.general_error;
             onUnrecoverableError(exception, UserAction.SEARCHED,
-                    NewPipe.getNameOfService(serviceId), searchQuery, errorId);
+                    NewPipe.getNameOfService(serviceId), searchQuery.getSearchString(), errorId);
         }
 
         return true;

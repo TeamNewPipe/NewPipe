@@ -37,10 +37,8 @@ import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.extractor.kiosk.KioskInfo;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
-import org.schabi.newpipe.extractor.search.SearchEngine;
 import org.schabi.newpipe.extractor.search.SearchInfo;
-import org.schabi.newpipe.extractor.search.SearchResult;
-import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
+import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeStreamExtractor;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.uih.SearchQIHandler;
 import org.schabi.newpipe.report.ErrorActivity;
@@ -52,7 +50,6 @@ import java.util.List;
 
 import io.reactivex.Maybe;
 import io.reactivex.Single;
-import io.reactivex.annotations.NonNull;
 
 public final class ExtractorHelper {
     private static final String TAG = ExtractorHelper.class.getSimpleName();
@@ -82,8 +79,7 @@ public final class ExtractorHelper {
                                                              final String contentCountry) {
         checkServiceId(serviceId);
         return Single.fromCallable(() ->
-                SearchInfo.get
-                NewPipe.getService(serviceId).getSearchExtractor(query, contentCountry))
+                SearchInfo.getMoreItems(NewPipe.getService(serviceId), query, contentCountry, pageUrl));
 
     }
 
