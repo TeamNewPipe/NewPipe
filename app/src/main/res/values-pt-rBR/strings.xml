@@ -429,7 +429,7 @@ abrir em modo popup</string>
     <string name="playback_tempo">"Tempo "</string>
     <string name="download_thumbnail_summary">Desabilite para para de carregar todas as miniaturas e economizar dados e uso de memória. Alterar esta configuração irá limpar o cache de imagens na memória e em disco.</string>
     <string name="playback_pitch">Passo</string>
-    <string name="unhook_checkbox">Desenganchar</string>
+    <string name="unhook_checkbox">Desvincular (pode causar distorção)</string>
     <string name="playback_default">Padrão</string>
 <string name="preferred_open_action_settings_title">Ação de \'abrir\' preferida</string>
     <string name="preferred_open_action_settings_summary">Ação padrão quando abrir conteúdo — %s</string>
@@ -473,4 +473,9 @@ abrir em modo popup</string>
     <string name="minimize_on_exit_background_description">Minimizar para reprodutor em plano de fundo</string>
     <string name="minimize_on_exit_popup_description">Minimizar para reprodutor popup</string>
 
-</resources>
+<string name="skip_silence_checkbox">Avançar rapidamente durante silêncio</string>
+    <string name="playback_step">Parar
+\n</string>
+    <string name="playback_reset">Reiniciar</string>
+
+    </resources>
