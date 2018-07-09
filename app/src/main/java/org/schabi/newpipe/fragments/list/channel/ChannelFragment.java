@@ -164,7 +164,8 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                 context.getResources().getString(R.string.start_here_on_main),
                 context.getResources().getString(R.string.start_here_on_background),
                 context.getResources().getString(R.string.start_here_on_popup),
-                context.getResources().getString(R.string.append_playlist)
+                context.getResources().getString(R.string.append_playlist),
+                context.getResources().getString(R.string.share)
         };
 
         final DialogInterface.OnClickListener actions = new DialogInterface.OnClickListener() {
@@ -192,6 +193,9 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                             PlaylistAppendDialog.fromStreamInfoItems(Collections.singletonList(item))
                                     .show(getFragmentManager(), TAG);
                         }
+                        break;
+                    case 6:
+                        shareUrl(item.getName(), item.getUrl());
                         break;
                     default:
                         break;

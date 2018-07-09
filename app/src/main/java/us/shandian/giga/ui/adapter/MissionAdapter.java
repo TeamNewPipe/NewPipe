@@ -25,10 +25,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.download.DeleteDownloadManager;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -52,18 +55,34 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
 
     private Activity mContext;
     private LayoutInflater mInflater;
-    private DownloadManager mManager;
+    private DownloadManager mDownloadManager;
+    private DeleteDownloadManager mDeleteDownloadManager;
+    private List<DownloadMission> mItemList;
     private DownloadManagerService.DMBinder mBinder;
     private int mLayout;
 
-    public MissionAdapter(Activity context, DownloadManagerService.DMBinder binder, DownloadManager manager, boolean isLinear) {
+    public MissionAdapter(Activity context, DownloadManagerService.DMBinder binder, DownloadManager downloadManager, DeleteDownloadManager deleteDownloadManager, boolean isLinear) {
         mContext = context;
-        mManager = manager;
+        mDownloadManager = downloadManager;
+        mDeleteDownloadManager = deleteDownloadManager;
         mBinder = binder;
 
         mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
         mLayout = isLinear ? R.layout.mission_item_linear : R.layout.mission_item;
+
+        mItemList = new ArrayList<>();
+        updateItemList();
+    }
+
+    public void updateItemList() {
+        mItemList.clear();
+
+        for (int i = 0; i < mDownloadManager.getCount(); i++) {
+            DownloadMission mission = mDownloadManager.getMission(i);
+            if (!mDeleteDownloadManager.contains(mission)) {
+                mItemList.add(mDownloadManager.getMission(i));
+            }
+        }
     }
 
     @Override
@@ -102,7 +121,7 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(MissionAdapter.ViewHolder h, int pos) {
-        DownloadMission ms = mManager.getMission(pos);
+        DownloadMission ms = mItemList.get(pos);
         h.mission = ms;
         h.position = pos;
 
@@ -123,7 +142,7 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return mManager.getCount();
+        return mItemList.size();
     }
 
     @Override
@@ -214,12 +233,12 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
                 int id = item.getItemId();
                 switch (id) {
                     case R.id.start:
-                        mManager.resumeMission(h.position);
-                        mBinder.onMissionAdded(mManager.getMission(h.position));
+                        mDownloadManager.resumeMission(h.position);
+                        mBinder.onMissionAdded(mItemList.get(h.position));
                         return true;
                     case R.id.pause:
-                        mManager.pauseMission(h.position);
-                        mBinder.onMissionRemoved(mManager.getMission(h.position));
+                        mDownloadManager.pauseMission(h.position);
+                        mBinder.onMissionRemoved(mItemList.get(h.position));
                         h.lastTimeStamp = -1;
                         h.lastDone = -1;
                         return true;
@@ -245,12 +264,13 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
 
                         return true;
                     case R.id.delete:
-                        mManager.deleteMission(h.position);
+                        mDeleteDownloadManager.add(h.mission);
+                        updateItemList();
                         notifyDataSetChanged();
                         return true;
                     case R.id.md5:
                     case R.id.sha1:
-                        DownloadMission mission = mManager.getMission(h.position);
+                        DownloadMission mission = mItemList.get(h.position);
                         new ChecksumTask(mContext).execute(mission.location + "/" + mission.name, ALGORITHMS.get(id));
                         return true;
                     default:
@@ -260,19 +280,6 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
         });
 
         popup.show();
-    }
-
-    private void viewFile(File file, String mimetype) {
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_VIEW);
-        intent.setDataAndType(Uri.fromFile(file), mimetype);
-        intent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            intent.addFlags(FLAG_GRANT_PREFIX_URI_PERMISSION);
-        }
-        //mContext.grantUriPermission(packageName, uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        Log.v(TAG, "Starting intent: " + intent);
-        mContext.startActivity(intent);
     }
 
     private void viewFileWithFileProvider(File file, String mimetype) {
