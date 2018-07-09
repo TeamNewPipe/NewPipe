@@ -1,7 +1,6 @@
 package org.schabi.newpipe.settings;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
@@ -23,7 +22,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.ArrayList;
@@ -235,19 +233,17 @@ public class ChoseTabsFragment extends Fragment {
 
             private View.OnLongClickListener getOnLongClickListener(TabViewHolder holder) {
                 return (view) -> {
-                    int position = holder.getAdapterPosition();
-                    selectedTabs.remove(position);
-                    notifyItemRemoved(position);
-                    saveChanges();
+                    if(itemTouchHelper != null) itemTouchHelper.startSwipe(holder);
                     return false;
                 };
             }
+
         }
     }
 
     private ItemTouchHelper.SimpleCallback getItemTouchCallback() {
         return new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,
-                ItemTouchHelper.ACTION_STATE_IDLE) {
+                ItemTouchHelper.START | ItemTouchHelper.END) {
             @Override
             public int interpolateOutOfBoundsScroll(RecyclerView recyclerView, int viewSize,
                                                     int viewSizeOutOfBounds, int totalSize,
@@ -284,7 +280,12 @@ public class ChoseTabsFragment extends Fragment {
             }
 
             @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {}
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+                int position = viewHolder.getAdapterPosition();
+                selectedTabs.remove(position);
+                selectedTabsAdapter.notifyItemRemoved(position);
+                saveChanges();
+            }
         };
     }
 }
