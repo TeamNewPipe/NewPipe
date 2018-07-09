@@ -78,10 +78,10 @@
     <string name="filter">Φίλτρο</string>
     <string name="general_error">Σφάλμα</string>
     <string name="error_snackbar_action">ΑΝΑΦΟΡΑ</string>
-    <string name="what_device_headline">"Πληροφορίες: "</string>
-    <string name="what_happened_headline">"Τι συνέβη: "</string>
+    <string name="what_device_headline">Πληροφορίες:</string>
+    <string name="what_happened_headline">Τι συνέβη:</string>
     <string name="your_comment">Το σχόλιό σας (στα Αγγλικά):</string>
-    <string name="error_details_headline">"Λεπτομέρειες: "</string>
+    <string name="error_details_headline">Λεπτομέρειες:</string>
 
 
     <string name="report_error">Αναφορά Σφάλματος</string>
