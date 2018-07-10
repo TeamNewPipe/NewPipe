@@ -91,9 +91,9 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
 
     private MenuItem menuRssButton;
 
-    public static ChannelFragment getInstance(int serviceId, ListUIHandler uiHandler, String name) {
+    public static ChannelFragment getInstance(int serviceId, String url, String name) {
         ChannelFragment instance = new ChannelFragment();
-        instance.setInitialData(serviceId, uiHandler, name);
+        instance.setInitialData(serviceId, url, name);
         return instance;
     }
 
@@ -237,10 +237,10 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                 openRssFeed();
                 break;
             case R.id.menu_item_openInBrowser:
-                openUrlInBrowser(uiHandler.getUrl());
+                openUrlInBrowser(url);
                 break;
             case R.id.menu_item_share:
-                shareUrl(name, uiHandler.getUrl());
+                shareUrl(name, url);
                 break;
             default:
                 return super.onOptionsItemSelected(item);
@@ -406,12 +406,12 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
 
     @Override
     protected Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic() {
-        return ExtractorHelper.getMoreChannelItems(serviceId, uiHandler.getUrl(), currentNextPageUrl);
+        return ExtractorHelper.getMoreChannelItems(serviceId, url, currentNextPageUrl);
     }
 
     @Override
     protected Single<ChannelInfo> loadResult(boolean forceLoad) {
-        return ExtractorHelper.getChannelInfo(serviceId, uiHandler.getUrl(), forceLoad);
+        return ExtractorHelper.getChannelInfo(serviceId, url, forceLoad);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -489,7 +489,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(), UserAction.REQUESTED_CHANNEL, NewPipe.getNameOfService(serviceId),
-                    "Get next page of: " + uiHandler.getUrl(), R.string.general_error);
+                    "Get next page of: " + url, R.string.general_error);
         }
     }
 
@@ -505,7 +505,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         onUnrecoverableError(exception,
                 UserAction.REQUESTED_CHANNEL,
                 NewPipe.getNameOfService(serviceId),
-                uiHandler.getUrl(),
+                url,
                 errorId);
         return true;
     }

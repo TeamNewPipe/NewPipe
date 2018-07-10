@@ -324,9 +324,7 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
                     // Requires the parent fragment to find holder for fragment replacement
                     NavigationHelper.openChannelFragment(getParentFragment().getFragmentManager(),
                             selectedItem.getServiceId(),
-                            NewPipe.getService(selectedItem.getServiceId())
-                                .getChannelUIHFactory()
-                                .fromUrl(selectedItem.getUrl()),
+                            selectedItem.getUrl(),
                             selectedItem.getName());
                 } catch (Exception e) {
                     ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);

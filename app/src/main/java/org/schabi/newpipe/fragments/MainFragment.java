@@ -132,9 +132,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                     NavigationHelper.openSearchFragment(
                             getFragmentManager(),
                             ServiceHelper.getSelectedServiceId(activity),
-                            NewPipe.getService(currentServiceId)
-                                .getSearchQIHFactory()
-                                .fromQuery(""));
+                            "");
                 } catch (Exception e) {
                     ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
                 }
@@ -237,7 +235,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                 String name = preferences.getString(getString(R.string.main_page_selected_channel_name),
                         FALLBACK_CHANNEL_NAME);
                 ChannelFragment fragment = ChannelFragment.getInstance(serviceId,
-                        NewPipe.getService(currentServiceId).getPlaylistUIHFactory().fromUrl(url),
+                        url,
                         name);
                 fragment.useAsFrontPage(true);
                 return fragment;

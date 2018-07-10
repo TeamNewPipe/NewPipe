@@ -40,7 +40,6 @@ import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.search.SearchInfo;
 import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeStreamExtractor;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
-import org.schabi.newpipe.extractor.uih.SearchQIHandler;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 
@@ -66,20 +65,33 @@ public final class ExtractorHelper {
     }
 
     public static Single<SearchInfo> searchFor(final int serviceId,
-                                               final SearchQIHandler query,
+                                               final String searchString,
+                                               final List<String> contentFilter,
+                                               final String sortFilter,
                                                final String contentCountry) {
         checkServiceId(serviceId);
         return Single.fromCallable(() ->
-            SearchInfo.getInfo(NewPipe.getService(serviceId).getSearchExtractor(query, contentCountry)));
+            SearchInfo.getInfo(NewPipe.getService(serviceId),
+                    NewPipe.getService(serviceId)
+                        .getSearchQIHFactory()
+                        .fromQuery(searchString, contentFilter, sortFilter),
+                    contentCountry));
     }
 
     public static Single<InfoItemsPage> getMoreSearchItems(final int serviceId,
-                                                             final SearchQIHandler query,
-                                                             final String pageUrl,
-                                                             final String contentCountry) {
+                                                           final String searchString,
+                                                           final List<String> contentFilter,
+                                                           final String sortFilter,
+                                                           final String pageUrl,
+                                                           final String contentCountry) {
         checkServiceId(serviceId);
         return Single.fromCallable(() ->
-                SearchInfo.getMoreItems(NewPipe.getService(serviceId), query, contentCountry, pageUrl));
+                SearchInfo.getMoreItems(NewPipe.getService(serviceId),
+                        NewPipe.getService(serviceId)
+                            .getSearchQIHFactory()
+                            .fromQuery(searchString, contentFilter, sortFilter),
+                        contentCountry,
+                        pageUrl));
 
     }
 
@@ -225,7 +237,6 @@ public final class ExtractorHelper {
                         serviceId == -1 ? "none" : NewPipe.getNameOfService(serviceId), url + (optionalErrorMessage == null ? "" : optionalErrorMessage), errorId));
             }
         });
-
     }
 
     /**

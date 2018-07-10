@@ -286,9 +286,11 @@ public class NavigationHelper {
         return fragmentManager.popBackStackImmediate(SEARCH_FRAGMENT_TAG, 0);
     }
 
-    public static void openSearchFragment(FragmentManager fragmentManager, int serviceId, SearchQIHandler query) {
+    public static void openSearchFragment(FragmentManager fragmentManager,
+                                          int serviceId,
+                                          String searchString) {
         defaultTransaction(fragmentManager)
-                .replace(R.id.fragment_holder, SearchFragment.getInstance(serviceId, query))
+                .replace(R.id.fragment_holder, SearchFragment.getInstance(serviceId, searchString))
                 .addToBackStack(SEARCH_FRAGMENT_TAG)
                 .commit();
     }
@@ -317,18 +319,25 @@ public class NavigationHelper {
                 .commit();
     }
 
-    public static void openChannelFragment(FragmentManager fragmentManager, int serviceId, ListUIHandler uiHandler, String name) {
+    public static void openChannelFragment(
+            FragmentManager fragmentManager,
+            int serviceId,
+            String url,
+            String name) {
         if (name == null) name = "";
         defaultTransaction(fragmentManager)
-                .replace(R.id.fragment_holder, ChannelFragment.getInstance(serviceId, uiHandler, name))
+                .replace(R.id.fragment_holder, ChannelFragment.getInstance(serviceId, url, name))
                 .addToBackStack(null)
                 .commit();
     }
 
-    public static void openPlaylistFragment(FragmentManager fragmentManager, int serviceId, ListUIHandler uiHandler, String name) {
+    public static void openPlaylistFragment(FragmentManager fragmentManager,
+                                            int serviceId,
+                                            String url,
+                                            String name) {
         if (name == null) name = "";
         defaultTransaction(fragmentManager)
-                .replace(R.id.fragment_holder, PlaylistFragment.getInstance(serviceId, uiHandler, name))
+                .replace(R.id.fragment_holder, PlaylistFragment.getInstance(serviceId, url, name))
                 .addToBackStack(null)
                 .commit();
     }
@@ -470,7 +479,8 @@ public class NavigationHelper {
 
         switch (linkType) {
             case STREAM:
-                rIntent.putExtra(VideoDetailFragment.AUTO_PLAY, PreferenceManager.getDefaultSharedPreferences(context)
+                rIntent.putExtra(VideoDetailFragment.AUTO_PLAY,
+                        PreferenceManager.getDefaultSharedPreferences(context)
                         .getBoolean(context.getString(R.string.autoplay_through_intent_key), false));
                 break;
         }

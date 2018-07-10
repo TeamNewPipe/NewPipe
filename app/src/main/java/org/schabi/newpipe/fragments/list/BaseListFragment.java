@@ -162,10 +162,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
                                     getParentFragment().getFragmentManager()
                                     : getFragmentManager(),
                             selectedItem.getServiceId(),
-                            NewPipe.getService(selectedItem
-                                    .getServiceId())
-                                    .getChannelUIHFactory()
-                                    .fromUrl(selectedItem.getUrl()),
+                            selectedItem.getUrl(),
                             selectedItem.getName());
                 } catch (Exception e) {
                     ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
@@ -183,9 +180,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
                                     ? getParentFragment().getFragmentManager()
                                     : getFragmentManager(),
                             selectedItem.getServiceId(),
-                            NewPipe.getService(selectedItem.getServiceId())
-                                .getPlaylistUIHFactory()
-                                .fromUrl(selectedItem.getUrl()),
+                            selectedItem.getUrl(),
                             selectedItem.getName());
                 } catch (Exception e) {
                     ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
@@ -204,7 +199,9 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
 
     private void onStreamSelected(StreamInfoItem selectedItem) {
         onItemSelected(selectedItem);
-        NavigationHelper.openVideoDetailFragment(useAsFrontPage ? getParentFragment().getFragmentManager() : getFragmentManager(),
+        NavigationHelper.openVideoDetailFragment(useAsFrontPage
+                        ? getParentFragment().getFragmentManager()
+                        : getFragmentManager(),
                 selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName());
     }
 

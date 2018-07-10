@@ -371,9 +371,7 @@ public class VideoDetailFragment
                         NavigationHelper.openChannelFragment(
                                 getFragmentManager(),
                                 currentInfo.getServiceId(),
-                                NewPipe.getService(currentInfo.getServiceId())
-                                    .getChannelUIHFactory()
-                                    .fromUrl(currentInfo.getUploaderUrl()),
+                                currentInfo.getUploaderUrl(),
                                 currentInfo.getUploaderName());
                     } catch (Exception e) {
                         ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);

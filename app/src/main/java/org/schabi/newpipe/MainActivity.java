@@ -410,17 +410,13 @@ public class MainActivity extends AppCompatActivity {
                     case CHANNEL:
                         NavigationHelper.openChannelFragment(getSupportFragmentManager(),
                                 serviceId,
-                                NewPipe.getService(serviceId)
-                                    .getChannelUIHFactory()
-                                    .fromUrl(url),
+                                url,
                                 title);
                         break;
                     case PLAYLIST:
                         NavigationHelper.openPlaylistFragment(getSupportFragmentManager(),
                                 serviceId,
-                                NewPipe.getService(serviceId)
-                                        .getChannelUIHFactory()
-                                        .fromUrl(url),
+                                url,
                                 title);
                         break;
                 }
@@ -431,9 +427,7 @@ public class MainActivity extends AppCompatActivity {
                 NavigationHelper.openSearchFragment(
                         getSupportFragmentManager(),
                         serviceId,
-                        NewPipe.getService(serviceId)
-                                .getSearchQIHFactory()
-                                .fromQuery(searchString));
+                        searchString);
 
             } else {
                 NavigationHelper.gotoMainFragment(getSupportFragmentManager());

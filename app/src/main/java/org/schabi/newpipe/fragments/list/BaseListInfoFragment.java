@@ -30,7 +30,7 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
     @State
     protected String name;
     @State
-    protected ListUIHandler uiHandler;
+    protected String url;
 
     protected I currentInfo;
     protected String currentNextPageUrl;
@@ -187,9 +187,9 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected void setInitialData(int serviceId, ListUIHandler uiHandler, String name) {
+    protected void setInitialData(int serviceId, String url, String name) {
         this.serviceId = serviceId;
-        this.uiHandler = uiHandler;
+        this.url = url;
         this.name = !TextUtils.isEmpty(name) ? name : "";
     }
 }

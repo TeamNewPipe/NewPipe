@@ -117,9 +117,7 @@ public final class BookmarkFragment
                         NavigationHelper.openPlaylistFragment(
                                 fragmentManager,
                                 entry.getServiceId(),
-                                NewPipe.getService(entry.getServiceId())
-                                        .getPlaylistUIHFactory()
-                                        .fromUrl(entry.getUrl()),
+                                entry.getUrl(),
                                 entry.getName());
                     }
                 } catch (Exception e) {

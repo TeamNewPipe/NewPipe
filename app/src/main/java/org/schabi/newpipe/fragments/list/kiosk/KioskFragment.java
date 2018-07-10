@@ -75,7 +75,7 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
         ListUIHFactory kioskUIHFactory = service.getKioskList()
                 .getUIHFactoryByType(kioskId);
         instance.setInitialData(serviceId,
-                kioskUIHFactory.fromId(kioskId), kioskId);
+                kioskUIHFactory.fromId(kioskId).getUrl(), kioskId);
         instance.kioskId = kioskId;
         return instance;
     }
@@ -135,7 +135,7 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
                 .getString(getString(R.string.content_country_key),
                         getString(R.string.default_country_value));
         return ExtractorHelper.getKioskInfo(serviceId,
-                uiHandler.getUrl(),
+                url,
                 contentCountry,
                 forceReload);
     }
@@ -147,7 +147,7 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
                 .getString(getString(R.string.content_country_key),
                         getString(R.string.default_country_value));
         return ExtractorHelper.getMoreKioskItems(serviceId,
-                uiHandler.getUrl(),
+                url,
                 currentNextPageUrl,
                 contentCountry);
     }
@@ -183,7 +183,7 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(),
                     UserAction.REQUESTED_PLAYLIST, NewPipe.getNameOfService(serviceId)
-                    , "Get next page of: " + uiHandler.getUrl(), 0);
+                    , "Get next page of: " + url, 0);
         }
     }
 }

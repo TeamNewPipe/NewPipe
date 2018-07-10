@@ -83,9 +83,9 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
     private MenuItem playlistBookmarkButton;
 
-    public static PlaylistFragment getInstance(int serviceId, ListUIHandler uiHandler, String name) {
+    public static PlaylistFragment getInstance(int serviceId, String url, String name) {
         PlaylistFragment instance = new PlaylistFragment();
-        instance.setInitialData(serviceId, uiHandler, name);
+        instance.setInitialData(serviceId, url, name);
         return instance;
     }
 
@@ -220,22 +220,22 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
     @Override
     protected Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic() {
-        return ExtractorHelper.getMorePlaylistItems(serviceId, uiHandler.getUrl(), currentNextPageUrl);
+        return ExtractorHelper.getMorePlaylistItems(serviceId, url, currentNextPageUrl);
     }
 
     @Override
     protected Single<PlaylistInfo> loadResult(boolean forceLoad) {
-        return ExtractorHelper.getPlaylistInfo(serviceId, uiHandler.getUrl(), forceLoad);
+        return ExtractorHelper.getPlaylistInfo(serviceId, url, forceLoad);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_item_openInBrowser:
-                openUrlInBrowser(uiHandler.getUrl());
+                openUrlInBrowser(url);
                 break;
             case R.id.menu_item_share:
-                shareUrl(name, uiHandler.getUrl());
+                shareUrl(name, url);
                 break;
             case R.id.menu_item_bookmark:
                 onBookmarkClicked();
@@ -275,9 +275,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                     try {
                         NavigationHelper.openChannelFragment(getFragmentManager(),
                                 result.getServiceId(),
-                                NewPipe.getService(serviceId)
-                                    .getChannelUIHFactory()
-                                    .fromUrl(result.getUploaderUrl()),
+                                result.getUploaderUrl(),
                                 result.getUploaderName());
                     } catch (Exception e) {
                         ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
@@ -337,7 +335,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(), UserAction.REQUESTED_PLAYLIST, NewPipe.getNameOfService(serviceId)
-                    , "Get next page of: " + uiHandler.getUrl(), 0);
+                    , "Get next page of: " + url, 0);
         }
     }
 
@@ -353,7 +351,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         onUnrecoverableError(exception,
                 UserAction.REQUESTED_PLAYLIST,
                 NewPipe.getNameOfService(serviceId),
-                uiHandler.getUrl(),
+                url,
                 errorId);
         return true;
     }

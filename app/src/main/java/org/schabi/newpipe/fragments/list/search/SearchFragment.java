@@ -29,12 +29,15 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.facebook.stetho.common.ListUtil;
+
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.search.SearchExtractor;
@@ -55,6 +58,7 @@ import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.net.SocketException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Queue;
@@ -68,6 +72,8 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
+
+import static java.util.Arrays.asList;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
@@ -95,10 +101,19 @@ public class SearchFragment
 
     @State
     protected int serviceId = Constants.NO_SERVICE_ID;
+    
+    // this three represet the current search query
     @State
-    protected SearchQIHandler searchQuery;
+    protected String searchString;
     @State
-    protected SearchQIHandler lastSearchedQuery;
+    protected String[] contentFilter;
+    @State
+    protected String sortFilter;
+    
+    // these represtent the last search
+    @State
+    protected String lastSearchedString;
+    
     @State
     protected boolean wasSearchFocused = false;
 
@@ -130,11 +145,11 @@ public class SearchFragment
 
     /*////////////////////////////////////////////////////////////////////////*/
 
-    public static SearchFragment getInstance(int serviceId, SearchQIHandler query) {
+    public static SearchFragment getInstance(int serviceId, String searchString) {
         SearchFragment searchFragment = new SearchFragment();
-        searchFragment.setQuery(serviceId, query);
+        searchFragment.setQuery(serviceId, searchString, new String[0], "");
 
-        if (!TextUtils.isEmpty(query.getSearchString())) {
+        if (!TextUtils.isEmpty(searchString)) {
             searchFragment.setSearchOnResume();
         }
 
@@ -212,12 +227,12 @@ public class SearchFragment
                             "", R.string.general_error));
         }
 
-        if (!TextUtils.isEmpty(searchQuery.getSearchString())) {
+        if (!TextUtils.isEmpty(searchString)) {
             if (wasLoading.getAndSet(false)) {
-                search(searchQuery);
+                search(searchString, contentFilter, sortFilter);
             } else if (infoListAdapter.getItemsList().size() == 0) {
                 if (savedState == null) {
-                    search(searchQuery);
+                    search(searchString, contentFilter, sortFilter);
                 } else if (!isLoading.get() && !wasSearchFocused) {
                     infoListAdapter.clearStreamItemList();
                     showEmptyState();
@@ -227,7 +242,7 @@ public class SearchFragment
 
         if (suggestionDisposable == null || suggestionDisposable.isDisposed()) initSuggestionObserver();
 
-        if (TextUtils.isEmpty(searchQuery.getSearchString()) || wasSearchFocused) {
+        if (TextUtils.isEmpty(searchString) || wasSearchFocused) {
             showKeyboardSearch();
             showSuggestionsPanel();
         } else {
@@ -257,8 +272,8 @@ public class SearchFragment
         switch (requestCode) {
             case ReCaptchaActivity.RECAPTCHA_REQUEST:
                 if (resultCode == Activity.RESULT_OK
-                        && !TextUtils.isEmpty(searchQuery.getSearchString())) {
-                    search(searchQuery);
+                        && !TextUtils.isEmpty(searchString)) {
+                    search(searchString, contentFilter, sortFilter);
                 } else Log.e(TAG, "ReCaptcha failed");
                 break;
 
@@ -305,18 +320,9 @@ public class SearchFragment
 
     @Override
     public void onSaveInstanceState(Bundle bundle) {
-        try {
-            searchQuery = searchEditText != null
-                    ? NewPipe.getService(serviceId).getSearchQIHFactory().fromQuery(
-                    searchEditText.getText().toString())
-                    : searchQuery;
-        } catch (Exception e) {
-            ErrorActivity.reportError(getActivity(), e, getActivity().getClass(),
-                    getActivity().findViewById(android.R.id.content),
-                    ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
-                            "",
-                            "", R.string.general_error));
-        }
+        searchString = searchEditText != null
+                ? searchEditText.getText().toString()
+                : searchString;
         super.onSaveInstanceState(bundle);
     }
 
@@ -326,12 +332,11 @@ public class SearchFragment
 
     @Override
     public void reloadContent() {
-        if (!TextUtils.isEmpty(searchQuery.getSearchString())
+        if (!TextUtils.isEmpty(searchString)
                 || (searchEditText != null && !TextUtils.isEmpty(searchEditText.getText()))) {
-            search(!TextUtils.isEmpty(searchQuery.getSearchString())
-                    ? searchQuery
-                    : getSearchQuery(searchEditText.getText().toString(),
-                    new ArrayList<>(0), ""));
+            search(!TextUtils.isEmpty(searchString)
+                    ? searchString
+                    : searchEditText.getText().toString(), new String[0], "");
         } else {
             if (searchEditText != null) {
                 searchEditText.setText("");
@@ -387,14 +392,21 @@ public class SearchFragment
     private TextWatcher textWatcher;
 
     private void showSearchOnStart() {
-        if (DEBUG) Log.d(TAG, "showSearchOnStart() called, searchQuery → " + searchQuery+", lastSearchedQuery → " + lastSearchedQuery);
-        searchEditText.setText(searchQuery.getSearchString());
+        if (DEBUG) Log.d(TAG, "showSearchOnStart() called, searchQuery → "
+                + searchString
+                + ", lastSearchedQuery → "
+                + lastSearchedString);
+        searchEditText.setText(searchString);
 
-        if (TextUtils.isEmpty(searchQuery.getSearchString()) || TextUtils.isEmpty(searchEditText.getText())) {
+        if (TextUtils.isEmpty(searchString) || TextUtils.isEmpty(searchEditText.getText())) {
             searchToolbarContainer.setTranslationX(100);
             searchToolbarContainer.setAlpha(0f);
             searchToolbarContainer.setVisibility(View.VISIBLE);
-            searchToolbarContainer.animate().translationX(0).alpha(1f).setDuration(200).setInterpolator(new DecelerateInterpolator()).start();
+            searchToolbarContainer.animate()
+                    .translationX(0)
+                    .alpha(1f)
+                    .setDuration(200)
+                    .setInterpolator(new DecelerateInterpolator()).start();
         } else {
             searchToolbarContainer.setTranslationX(0);
             searchToolbarContainer.setAlpha(1f);
@@ -435,7 +447,7 @@ public class SearchFragment
         suggestionListAdapter.setListener(new SuggestionListAdapter.OnSuggestionItemSelected() {
             @Override
             public void onSuggestionItemSelected(SuggestionItem item) {
-                search(getSearchQuery(item.query, new ArrayList<>(), ""));
+                search(item.query, new String[0], "");
                 searchEditText.setText(item.query);
             }
 
@@ -476,7 +488,7 @@ public class SearchFragment
                     if (event != null
                             && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER
                                 || event.getAction() == EditorInfo.IME_ACTION_SEARCH)) {
-                        search(getSearchQuery(searchEditText.getText().toString(), new ArrayList<>(), ""));
+                        search(searchEditText.getText().toString(), new String[0], "");
                         return true;
                     }
                     return false;
@@ -557,10 +569,12 @@ public class SearchFragment
 
     @Override
     public boolean onBackPressed() {
-        if (suggestionsPanel.getVisibility() == View.VISIBLE && infoListAdapter.getItemsList().size() > 0 && !isLoading.get()) {
+        if (suggestionsPanel.getVisibility() == View.VISIBLE
+                && infoListAdapter.getItemsList().size() > 0
+                && !isLoading.get()) {
             hideSuggestionsPanel();
             hideKeyboardSearch();
-            searchEditText.setText(lastSearchedQuery.getSearchString());
+            searchEditText.setText(lastSearchedString);
             return true;
         }
         return false;
@@ -576,8 +590,8 @@ public class SearchFragment
 
         final Observable<String> observable = suggestionPublisher
                 .debounce(SUGGESTIONS_DEBOUNCE, TimeUnit.MILLISECONDS)
-                .startWith(searchQuery != null
-                        ? searchQuery.getSearchString()
+                .startWith(searchString != null
+                        ? searchString
                         : "")
                 .filter(searchString -> isSuggestionsEnabled);
 
@@ -650,17 +664,17 @@ public class SearchFragment
         // no-op
     }
 
-    private void search(final SearchQIHandler query) {
-        if (DEBUG) Log.d(TAG, "search() called with: query = [" + query + "]");
-        if (query.getSearchString().isEmpty()) return;
+    private void search(final String searchString, String[] contentFilter, String sortFilter) {
+        if (DEBUG) Log.d(TAG, "search() called with: query = [" + searchString + "]");
+        if (searchString.isEmpty()) return;
 
         try {
-            final StreamingService service = NewPipe.getServiceByUrl(query.getUrl());
+            final StreamingService service = NewPipe.getServiceByUrl(searchString);
             if (service != null) {
                 showLoading();
                 disposables.add(Observable
                         .fromCallable(() ->
-                                NavigationHelper.getIntentByLink(activity, service, query.getUrl()))
+                                NavigationHelper.getIntentByLink(activity, service, searchString))
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(intent -> {
@@ -674,21 +688,20 @@ public class SearchFragment
             // Exception occurred, it's not a url
         }
 
-        lastSearchedQuery = query;
-        searchQuery = query;
-        currentPageUrl = "";
+        lastSearchedString = this.searchString;
+        this.searchString = searchString;
         infoListAdapter.clearStreamItemList();
         hideSuggestionsPanel();
         hideKeyboardSearch();
 
-        historyRecordManager.onSearched(serviceId, query.getSearchString())
+        historyRecordManager.onSearched(serviceId, searchString)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         ignored -> {},
                         error -> showSnackBarError(error, UserAction.SEARCHED,
-                                NewPipe.getNameOfService(serviceId), query.getSearchString(), 0)
+                                NewPipe.getNameOfService(serviceId), searchString, 0)
                 );
-        suggestionPublisher.onNext(query.getSearchString());
+        suggestionPublisher.onNext(searchString);
         startLoading(false);
     }
 
@@ -697,11 +710,16 @@ public class SearchFragment
         super.startLoading(forceLoad);
         if (disposables != null) disposables.clear();
         if (searchDisposable != null) searchDisposable.dispose();
-        searchDisposable = ExtractorHelper.searchFor(serviceId, searchQuery, contentCountry)
+        searchDisposable = ExtractorHelper.searchFor(serviceId,
+                    searchString,
+                    Arrays.asList(contentFilter),
+                    sortFilter,
+                    contentCountry)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnEvent((searchResult, throwable) -> isLoading.set(false))
                 .subscribe(this::handleResult, this::onError);
+
     }
 
     @Override
@@ -709,8 +727,13 @@ public class SearchFragment
         isLoading.set(true);
         showListFooter(true);
         if (searchDisposable != null) searchDisposable.dispose();
-        searchDisposable = ExtractorHelper.getMoreSearchItems(serviceId,
-                searchQuery, nextPageUrl, contentCountry)
+        searchDisposable = ExtractorHelper.getMoreSearchItems(
+                    serviceId,
+                    searchString,
+                    asList(contentFilter),
+                    sortFilter,
+                    nextPageUrl,
+                    contentCountry)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnEvent((nextItemsResult, throwable) -> isLoading.set(false))
@@ -737,31 +760,18 @@ public class SearchFragment
         this.filterItemCheckedId = item.getItemId();
         item.setChecked(true);
 
-        searchQuery = getSearchQuery(searchQuery.getSearchString(), contentFilter, "");
+        this.contentFilter = new String[] {contentFilter.get(0)};
 
-        if (!TextUtils.isEmpty(searchQuery.getSearchString())) {
-            search(searchQuery);
+        if (!TextUtils.isEmpty(searchString)) {
+            search(searchString, this.contentFilter, sortFilter);
         }
     }
 
-    private void setQuery(int serviceId, SearchQIHandler searchQuery) {
+    private void setQuery(int serviceId, String searchString, String[] contentfilter, String sortFilter) {
         this.serviceId = serviceId;
-        this.searchQuery = searchQuery;
-    }
-
-    private SearchQIHandler getSearchQuery(String searchString,
-                                           List<String> contentFilter,
-                                           String sortFilter) {
-        try {
-            return service.getSearchQIHFactory()
-                    .fromQuery(searchString, contentFilter, sortFilter);
-        } catch (Exception e) {
-            onUnrecoverableError(e, UserAction.SEARCHED,
-                    service.getServiceInfo().getName(),
-                    searchQuery.getSearchString(),
-                    R.string.general_error);
-        }
-        return searchQuery;
+        this.searchString = searchString;
+        this.contentFilter = contentfilter;
+        this.sortFilter = sortFilter;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -786,7 +796,7 @@ public class SearchFragment
                 ? R.string.parsing_error
                 : R.string.general_error;
         onUnrecoverableError(exception, UserAction.GET_SUGGESTIONS,
-                NewPipe.getNameOfService(serviceId), searchQuery.getSearchString(), errorId);
+                NewPipe.getNameOfService(serviceId), searchString, errorId);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -814,10 +824,12 @@ public class SearchFragment
     public void handleResult(@NonNull SearchInfo result) {
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(), UserAction.SEARCHED,
-                    NewPipe.getNameOfService(serviceId), searchQuery.getSearchString(), 0);
+                    NewPipe.getNameOfService(serviceId), searchString, 0);
         }
 
-        lastSearchedQuery = searchQuery;
+        lastSearchedString = searchString;
+        nextPageUrl = result.getNextPageUrl();
+        currentPageUrl = result.getUrl();
 
         if (infoListAdapter.getItemsList().size() == 0) {
             if (!result.getRelatedItems().isEmpty()) {
@@ -841,7 +853,7 @@ public class SearchFragment
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(), UserAction.SEARCHED,
                     NewPipe.getNameOfService(serviceId)
-                    , "\"" + searchQuery + "\" → page: " + nextPageUrl, 0);
+                    , "\"" + searchString + "\" → page: " + nextPageUrl, 0);
         }
         super.handleNextItems(result);
     }
@@ -858,7 +870,7 @@ public class SearchFragment
                     ? R.string.parsing_error
                     : R.string.general_error;
             onUnrecoverableError(exception, UserAction.SEARCHED,
-                    NewPipe.getNameOfService(serviceId), searchQuery.getSearchString(), errorId);
+                    NewPipe.getNameOfService(serviceId), searchString, errorId);
         }
 
         return true;
