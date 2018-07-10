@@ -99,4 +99,6 @@
     <string name="tab_licenses">Άδειες</string>
     <string name="title_activity_history">Ιστορικό</string>
     <string name="action_history">Ιστορικό</string>
+    <string name="show_info">Εμφάνιση πληροφοριών</string>
+
     </resources>
