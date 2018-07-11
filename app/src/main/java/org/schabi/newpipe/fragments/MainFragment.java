@@ -2,7 +2,6 @@ package org.schabi.newpipe.fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,7 +9,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.preference.PreferenceManager;
@@ -19,22 +17,15 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 
 import org.schabi.newpipe.BaseFragment;
-import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.ServiceList;
-import org.schabi.newpipe.extractor.StreamingService;
-import org.schabi.newpipe.extractor.exceptions.ExtractionException;
-import org.schabi.newpipe.extractor.kiosk.KioskList;
 import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
-import org.schabi.newpipe.local.feed.FeedFragment;
 import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.local.bookmark.BookmarkFragment;
+import org.schabi.newpipe.local.feed.FeedFragment;
 import org.schabi.newpipe.local.history.StatisticsPlaylistFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionFragment;
 import org.schabi.newpipe.report.ErrorActivity;
@@ -45,11 +36,8 @@ import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
-import static org.schabi.newpipe.util.NavigationHelper.MAIN_FRAGMENT_TAG;
 
 public class MainFragment extends BaseFragment implements TabLayout.OnTabSelectedListener {
 
@@ -69,11 +57,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     private static final String TAB_NUMBER_HISTORY = "5";
     private static final String TAB_NUMBER_CHANNEL = "6";
 
-    SharedPreferences.OnSharedPreferenceChangeListener listener = (prefs, key) -> {
-        if(key.equals("saveUsedTabs")) {
-            mainPageChanged();
-        }
-    };
+    SharedPreferences.OnSharedPreferenceChangeListener listener;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Fragment's LifeCycle
@@ -84,6 +68,11 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         savedInstanceStateBundle = savedInstanceState;
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        listener = (prefs, key) -> {
+            if(key.equals("saveUsedTabs")) {
+                mainPageChanged();
+            }
+        };
     }
 
     @Override
