@@ -454,4 +454,8 @@
     <string name="minimize_on_exit_background_description">Afspelen in achtergrond</string>
     <string name="minimize_on_exit_popup_description">Afspelen in pop-up</string>
 
-</resources>
+<string name="skip_silence_checkbox">Doorspoelen tijdens stilte</string>
+    <string name="playback_step">Stap</string>
+    <string name="playback_reset">Standaardwaarden herstellen</string>
+
+    </resources>
