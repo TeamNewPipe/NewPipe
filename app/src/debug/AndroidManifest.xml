@@ -2,7 +2,7 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="org.schabi.newpipe">
+    package="org.schabi.newpipe" android:installLocation="auto">
 
     <application
         android:name=".DebugApp"
@@ -13,5 +13,4 @@
             android:label="NewPipe Debug"
             tools:replace="android:label"/>
     </application>
-
 </manifest>

@@ -330,7 +330,7 @@
     <string name="export_complete_toast">تمت عملية التصدير</string>
     <string name="import_complete_toast">إكتَملَت عملية الإستيراد</string>
     <string name="could_not_import_all_files">تنبيه : تعذرت عملية استيراد كافة الملفات.</string>
-    <string name="drawer_header_action_paceholder_text">سوف يظهر شيء هنا قريبا ;D</string>
+    <string name="drawer_header_action_placeholder_text">سوف يظهر شيء هنا قريبا ;D</string>
 
 
     <string name="video_player">مشغل الفديو</string>

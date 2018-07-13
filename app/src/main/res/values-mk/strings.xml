@@ -339,7 +339,7 @@
 
     <string name="drawer_open">Отвори картон</string>
     <string name="drawer_close">Затвори картон</string>
-    <string name="drawer_header_action_paceholder_text">Нешто спремаме за тука ;D</string>
+    <string name="drawer_header_action_placeholder_text">Нешто спремаме за тука ;D</string>
 
 
     <string name="video_player">Видео плеер</string>

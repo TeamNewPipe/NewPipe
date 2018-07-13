@@ -353,7 +353,7 @@
 
     <string name="drawer_open">Otwórz menu</string>
     <string name="drawer_close">Zamknij menu</string>
-    <string name="drawer_header_action_paceholder_text">Niebawem coś tutaj się pojawi</string>
+    <string name="drawer_header_action_placeholder_text">Niebawem coś tutaj się pojawi</string>
 
 
     <string name="popup_player">Odtwarzacz w okienku</string>

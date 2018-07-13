@@ -339,7 +339,7 @@
 
     <string name="drawer_open">드로어 열기</string>
     <string name="drawer_close">드로어 닫기</string>
-    <string name="drawer_header_action_paceholder_text">여기에 무언가가 추가될 거에요~ :D</string>
+    <string name="drawer_header_action_placeholder_text">여기에 무언가가 추가될 거에요~ :D</string>
 
 
     <string name="video_player">비디오 플레이어</string>

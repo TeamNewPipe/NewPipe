@@ -374,7 +374,7 @@
     <string name="could_not_import_all_files">Ebisua: Ezin izan dira fitxategi guztiak inportatu.</string>
     <string name="override_current_data">Honek oraingo ezarpenak gainidatziko ditu.</string>
 
-    <string name="drawer_header_action_paceholder_text">Laster hemen zerbait egongo da ;D</string>
+    <string name="drawer_header_action_placeholder_text">Laster hemen zerbait egongo da ;D</string>
 
 
     <string name="preferred_open_action_settings_title">\'Ireki\' ekintza hobetsia</string>

@@ -351,7 +351,7 @@
     <string name="delete_all_history_prompt">¿De xuru que quies desaniciar tolos elementos del historial de visualizaciones?</string>
     <string name="title_most_played">Lo más reproducío</string>
 
-    <string name="drawer_header_action_paceholder_text">Equí va haber daqué ceo ;D</string>
+    <string name="drawer_header_action_placeholder_text">Equí va haber daqué ceo ;D</string>
 
 
     <string name="always_ask_open_action">Entrugar siempres</string>

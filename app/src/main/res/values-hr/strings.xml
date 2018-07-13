@@ -292,7 +292,7 @@
 
     <string name="drawer_open">Otvori ladicu</string>
     <string name="drawer_close">Zatvori ladicu</string>
-    <string name="drawer_header_action_paceholder_text">Nešto će zasigurno doći ovdje :D</string>
+    <string name="drawer_header_action_placeholder_text">Nešto će zasigurno doći ovdje :D</string>
 
 
     <string name="video_player">Video reprodukcija</string>

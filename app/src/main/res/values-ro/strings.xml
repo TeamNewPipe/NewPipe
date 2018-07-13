@@ -378,7 +378,7 @@ pentru a deschide în mod pop-up</string>
     <string name="toast_no_player">Niciun player a fost găsit pentru acest fişier</string>
 
     <string name="donation_title">Donaţi</string>
-    <string name="drawer_header_action_paceholder_text">Ceva va apărea aici în curând ;D</string>
+    <string name="drawer_header_action_placeholder_text">Ceva va apărea aici în curând ;D</string>
 
 
     <string name="import_settings">De asemenea, doriți să importați setări?</string>

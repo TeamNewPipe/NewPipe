@@ -391,7 +391,7 @@
     <string name="normal_caption_font_size">Carattere normale</string>
     <string name="larger_caption_font_size">Carattere più grande</string>
 
-	<string name="drawer_header_action_paceholder_text">A breve qualcosa apparirà qui ;D</string>
+	<string name="drawer_header_action_placeholder_text">A breve qualcosa apparirà qui ;D</string>
 
 <string name="settings_category_debug_title">Debug</string>
     <string name="caption_auto_generated">Generato automaticamente</string>

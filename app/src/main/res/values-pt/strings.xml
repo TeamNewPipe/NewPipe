@@ -357,7 +357,7 @@
     <string name="title_last_played">Última reprodução</string>
     <string name="title_most_played">Mais reproduzido</string>
 
-    <string name="drawer_header_action_paceholder_text">Algo vai surgir aqui em breve ;D</string>
+    <string name="drawer_header_action_placeholder_text">Algo vai surgir aqui em breve ;D</string>
 
 
     <string name="video_player">Reprodutor de vídeo</string>

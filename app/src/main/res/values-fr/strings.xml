@@ -398,7 +398,7 @@
     <string name="error_occurred_detail">Une erreur s\'est produite: %1$s</string>
 
     <string name="delete_one">Supprimer un seul média</string>
-    <string name="drawer_header_action_paceholder_text">Quelque chose va bien bientôt arriver ;D</string>
+    <string name="drawer_header_action_placeholder_text">Quelque chose va bien bientôt arriver ;D</string>
 
 
     <string name="controls_download_desc">Télécharger le fichier de flux</string>

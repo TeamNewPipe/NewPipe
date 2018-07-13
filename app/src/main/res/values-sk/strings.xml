@@ -411,7 +411,7 @@
 
     <string name="toast_no_player">Prehrávač pre daný typ súboru nebol nájdený</string>
 
-    <string name="drawer_header_action_paceholder_text">Čoskoro sa tu niečo objaví ;D</string>
+    <string name="drawer_header_action_placeholder_text">Čoskoro sa tu niečo objaví ;D</string>
 
 
     <string name="preferred_open_action_settings_title">Preferovaná akcia \'otvoriť\'</string>

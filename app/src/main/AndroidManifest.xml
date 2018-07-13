@@ -2,7 +2,7 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="org.schabi.newpipe">
+    package="org.schabi.newpipe" android:installLocation="auto">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
@@ -212,7 +212,7 @@
                 <data android:pathPrefix="/user/"/>
             </intent-filter>
 
-            <!-- Soundcloud filter -->
+            <!-- SoundCloud filter -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>

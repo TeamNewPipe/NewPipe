@@ -5,13 +5,11 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.ListExtractor;
@@ -20,13 +18,10 @@ import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.UrlIdHandler;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.kiosk.KioskInfo;
-import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
-import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.KioskTranslator;
-import org.schabi.newpipe.util.NavigationHelper;
 
 import icepick.State;
 import io.reactivex.Single;
@@ -77,7 +72,7 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
         UrlIdHandler kioskTypeUrlIdHandler = service.getKioskList()
                 .getUrlIdHandlerByType(kioskId);
         instance.setInitialData(serviceId,
-                kioskTypeUrlIdHandler.getUrl(kioskId), kioskId);
+                kioskTypeUrlIdHandler.getUrl(), kioskId);
         instance.kioskId = kioskId;
         return instance;
     }

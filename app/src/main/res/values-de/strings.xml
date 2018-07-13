@@ -424,7 +424,7 @@
 <string name="download_thumbnail_summary">Deaktiviere diese Option, um das Laden aller Miniaturansichten zu stoppen und Daten und Speicherverbrauch zu sparen. Wenn du dies änderst, wird sowohl der In-Memory- als auch der On-Disk-Image-Cache gelöscht.</string>
     <string name="auto_queue_title">Nächsten Stream automatisch einreihen</string>
     <string name="auto_queue_summary">Automatisches Anhängen eines verwandten Streams beim Abspielen des letzten Streams in einer nicht wiederholten Warteschlange.</string>
-    <string name="drawer_header_action_paceholder_text">Hier wird bald etwas stehen ;D</string>
+    <string name="drawer_header_action_placeholder_text">Hier wird bald etwas stehen ;D</string>
 
 
     <string name="bookmark_playlist">Lesezeichen Wiedergabeliste</string>

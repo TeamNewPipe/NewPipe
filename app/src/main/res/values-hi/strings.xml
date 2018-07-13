@@ -329,7 +329,7 @@
 
     <string name="drawer_open">ड्रावर खोलें</string>
     <string name="drawer_close">ड्रावर बंद करें</string>
-    <string name="drawer_header_action_paceholder_text">जल्द ही यहां पर कुछ आएगा ;D</string>
+    <string name="drawer_header_action_placeholder_text">जल्द ही यहां पर कुछ आएगा ;D</string>
 
 
     <string name="video_player">वीडियो प्लेयर</string>
