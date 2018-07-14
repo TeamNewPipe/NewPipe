@@ -463,7 +463,7 @@
     <string name="playback_speed_control">ضوابط سرعة التشغيل</string>
     <string name="playback_tempo">سرعة الأداء</string>
     <string name="playback_pitch">تردد الصوت</string>
-    <string name="unhook_checkbox">"النزع  (قد يسبب تشويه)"</string>
+    <string name="unhook_checkbox">نزع الإرتباط (قد يسبب تشويه)</string>
     <string name="playback_nightcore">تعديل الايقاع Nightcore</string>
     <string name="import_settings">هل تريد أيضا استيراد الإعدادات؟</string>
 
@@ -478,4 +478,14 @@
 
     <string name="limit_data_usage_none_description">لا حدود</string>
     <string name="limit_mobile_data_usage_title">الحد من جودة الفيديو عند استخدام بيانات الهاتف المحمول</string>
-    </resources>
+    <string name="skip_silence_checkbox">تسريع إلى الأمام أثناء الصمت</string>
+    <string name="playback_step">خطوة</string>
+    <string name="playback_reset">إعادة تعيين</string>
+
+    <string name="minimize_on_exit_title">تصغير عند تبديل التطبيق</string>
+    <string name="minimize_on_exit_summary">الإجراء عند التبديل إلى تطبيق آخر من مشغل الفيديو الرئيسي — %s</string>
+    <string name="minimize_on_exit_none_description">لاشيء</string>
+    <string name="minimize_on_exit_background_description">تصغير إلى مشغل الخلفية</string>
+    <string name="minimize_on_exit_popup_description">تصغير إلى مشغل منبثق</string>
+
+</resources>
