@@ -9,8 +9,8 @@ import android.view.View;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.ListInfo;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.uih.ListUIHandler;
-import org.schabi.newpipe.extractor.uih.UIHandler;
+import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
+import org.schabi.newpipe.extractor.linkhandler.LinkHandler;
 import org.schabi.newpipe.util.Constants;
 
 import java.util.Queue;

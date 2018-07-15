@@ -18,9 +18,9 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.kiosk.KioskInfo;
-import org.schabi.newpipe.extractor.uih.ListUIHFactory;
-import org.schabi.newpipe.extractor.uih.ListUIHandler;
-import org.schabi.newpipe.extractor.uih.UIHFactory;
+import org.schabi.newpipe.extractor.linkhandler.ListLinkHandlerFactory;
+import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
+import org.schabi.newpipe.extractor.linkhandler.LinkHandlerFactory;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -72,10 +72,10 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
             throws ExtractionException {
         KioskFragment instance = new KioskFragment();
         StreamingService service = NewPipe.getService(serviceId);
-        ListUIHFactory kioskUIHFactory = service.getKioskList()
-                .getUIHFactoryByType(kioskId);
+        ListLinkHandlerFactory kioskLinkHandlerFactory = service.getKioskList()
+                .getListLinkHandlerFactoryByType(kioskId);
         instance.setInitialData(serviceId,
-                kioskUIHFactory.fromId(kioskId).getUrl(), kioskId);
+                kioskLinkHandlerFactory.fromId(kioskId).getUrl(), kioskId);
         instance.kioskId = kioskId;
         return instance;
     }
