@@ -2,7 +2,7 @@
 <resources>
     <string name="background_player_playing_toast">جاري التشغيل في الخلفية</string>
     <string name="cancel">إلغاء</string>
-    <string name="choose_browser">إختر متصفح</string>
+    <string name="choose_browser">اختر المتصفح</string>
     <string name="dark_theme_title">مظلم</string>
     <string name="default_audio_format_title">صيغة الصوت الإفتراضية</string>
     <string name="default_resolution_title">الدقة الإفتراضية</string>
@@ -61,10 +61,10 @@
     <string name="parsing_error">تعذرت عملية تحليل الموقع</string>
     <string name="youtube_signature_decryption_error">تعذر فك تشفير توقيع رابط الفيديو</string>
 <string name="main_bg_subtitle">اضغط بحث للبدء</string>
-    <string name="subscribe_button_title">إشتراك</string>
+    <string name="subscribe_button_title">اشتراك</string>
     <string name="subscribed_button_title">مشترك</string>
     <string name="tab_main">الرئيسية</string>
-    <string name="tab_subscriptions">الإشتراكات</string>
+    <string name="tab_subscriptions">الاشتراكات</string>
 
     <string name="fragment_whats_new">ما الجديد</string>
 
@@ -84,11 +84,11 @@
     <string name="tab_about">عن التطبيق</string>
     <string name="title_activity_history">التاريخ</string>
     <string name="action_history">التاريخ</string>
-    <string name="open_in_popup_mode">فتح في وضع النوافذ المنبثقة</string>
-    <string name="use_external_video_player_summary">"بعض القرارات لن يكون الصوت عند تمكين هذا الخيار "</string>
+    <string name="open_in_popup_mode">فتح في وضع النافذة المنبثقة</string>
+    <string name="use_external_video_player_summary">"بعض الخيارات الدقة لن تحتوي على صوت عند تمكين هذا الخيار "</string>
     <string name="popup_mode_share_menu_title">وضع النوافذ المنبثقة NewPipe</string>
-    <string name="channel_unsubscribed">تم إلغاء اشتراك القناة</string>
-    <string name="subscription_change_failed">تعذر تغيير في الاشتراك</string>
+    <string name="channel_unsubscribed">تم إلغاء الاشتراك في القناة</string>
+    <string name="subscription_change_failed">تعذر تغيير حالة الاشتراك</string>
     <string name="subscription_update_failed">تعذر تحديث الاشتراك</string>
 
     <string name="controls_popup_title">نافذة</string>
@@ -305,7 +305,7 @@
     <string name="just_once">مرة واحدة فقط</string>
 
     <string name="invalid_url_toast">العنوان خاطئ</string>
-    <string name="no_player_found_toast">لم يتم العثور على مشغل بث (يمكنك تثبيت VLC لتشغيله)</string>
+    <string name="no_player_found_toast">لم يتم العثور على مشغل الفديو (يمكنك تثبيت VLC لتشغيله)</string>
     <string name="import_data_title">استيراد قاعدة البيانات</string>
     <string name="export_data_title">تصدير قاعدة البيانات</string>
     <string name="import_data_summary">"سيقوم بالكتابة على سجل التاريخ  والاشتراكات الحالية "</string>
