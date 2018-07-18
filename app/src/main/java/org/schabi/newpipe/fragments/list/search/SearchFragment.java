@@ -358,9 +358,17 @@ public class SearchFragment
             supportActionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        int itemId = 0;
+        boolean isFirstItem = true;
         for(String filter : service.getSearchQIHFactory().getAvailableContentFilter()) {
-            menu.add(filter);
+            MenuItem item = menu.add(1, itemId++, 0, filter);
+            if(isFirstItem) {
+                item.setChecked(true);
+                isFirstItem = false;
+            }
         }
+        menu.setGroupCheckable(1, true, true);
+
         restoreFilterChecked(menu, filterItemCheckedId);
     }
 
