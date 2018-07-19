@@ -30,6 +30,18 @@ public class ServiceHelper {
         }
     }
 
+    public static String getTranslatedFilterString(String filter, Context c) {
+        switch(filter) {
+            case "all": return c.getString(R.string.all);
+            case "videos": return c.getString(R.string.videos);
+            case "channels": return c.getString(R.string.channels);
+            case "playlists": return c.getString(R.string.playlists);
+            case "tracks": return c.getString(R.string.tracks);
+            case "users": return c.getString(R.string.users);
+            default: return filter;
+        }
+    }
+
     /**
      * Get a resource string with instructions for importing subscriptions for each service.
      *

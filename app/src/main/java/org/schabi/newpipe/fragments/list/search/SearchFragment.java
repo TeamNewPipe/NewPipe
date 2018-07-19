@@ -51,6 +51,7 @@ import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.LayoutManagerSmoothScroller;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.ServiceHelper;
 
 import java.io.IOException;
 import java.io.InterruptedIOException;
@@ -360,8 +361,12 @@ public class SearchFragment
 
         int itemId = 0;
         boolean isFirstItem = true;
+        final Context c = getContext();
         for(String filter : service.getSearchQIHFactory().getAvailableContentFilter()) {
-            MenuItem item = menu.add(1, itemId++, 0, filter);
+            MenuItem item = menu.add(1,
+                    itemId++,
+                    0,
+                    ServiceHelper.getTranslatedFilterString(filter, c));
             if(isFirstItem) {
                 item.setChecked(true);
                 isFirstItem = false;
