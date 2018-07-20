@@ -17,6 +17,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -63,6 +64,11 @@ import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
+import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.util.StreamItemAdapter;
+import org.schabi.newpipe.util.StreamItemAdapter.StreamSizeWrapper;
+import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
@@ -365,11 +371,15 @@ public class VideoDetailFragment
                 if (TextUtils.isEmpty(currentInfo.getUploaderUrl())) {
                     Log.w(TAG, "Can't open channel because we got no channel URL");
                 } else {
-                    NavigationHelper.openChannelFragment(
-                            getFragmentManager(),
-                            currentInfo.getServiceId(),
-                            currentInfo.getUploaderUrl(),
-                            currentInfo.getUploaderName());
+                    try {
+                        NavigationHelper.openChannelFragment(
+                                getFragmentManager(),
+                                currentInfo.getServiceId(),
+                                currentInfo.getUploaderUrl(),
+                                currentInfo.getUploaderName());
+                    } catch (Exception e) {
+                        ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
+                    }
                 }
                 break;
             case R.id.detail_thumbnail_root_layout:

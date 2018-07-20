@@ -33,6 +33,7 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
@@ -501,7 +502,11 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         if (super.onError(exception)) return true;
 
         int errorId = exception instanceof ExtractionException ? R.string.parsing_error : R.string.general_error;
-        onUnrecoverableError(exception, UserAction.REQUESTED_CHANNEL, NewPipe.getNameOfService(serviceId), url, errorId);
+        onUnrecoverableError(exception,
+                UserAction.REQUESTED_CHANNEL,
+                NewPipe.getNameOfService(serviceId),
+                url,
+                errorId);
         return true;
     }
 

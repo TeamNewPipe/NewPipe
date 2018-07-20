@@ -61,6 +61,8 @@ import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.ThemeHelper;
 
+import static org.schabi.newpipe.extractor.InfoItem.InfoType.PLAYLIST;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
@@ -392,31 +394,45 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void handleIntent(Intent intent) {
-        if (DEBUG) Log.d(TAG, "handleIntent() called with: intent = [" + intent + "]");
+        try {
+            if (DEBUG) Log.d(TAG, "handleIntent() called with: intent = [" + intent + "]");
 
-        if (intent.hasExtra(Constants.KEY_LINK_TYPE)) {
-            String url = intent.getStringExtra(Constants.KEY_URL);
-            int serviceId = intent.getIntExtra(Constants.KEY_SERVICE_ID, 0);
-            String title = intent.getStringExtra(Constants.KEY_TITLE);
-            switch (((StreamingService.LinkType) intent.getSerializableExtra(Constants.KEY_LINK_TYPE))) {
-                case STREAM:
-                    boolean autoPlay = intent.getBooleanExtra(VideoDetailFragment.AUTO_PLAY, false);
-                    NavigationHelper.openVideoDetailFragment(getSupportFragmentManager(), serviceId, url, title, autoPlay);
-                    break;
-                case CHANNEL:
-                    NavigationHelper.openChannelFragment(getSupportFragmentManager(), serviceId, url, title);
-                    break;
-                case PLAYLIST:
-                    NavigationHelper.openPlaylistFragment(getSupportFragmentManager(), serviceId, url, title);
-                    break;
+            if (intent.hasExtra(Constants.KEY_LINK_TYPE)) {
+                String url = intent.getStringExtra(Constants.KEY_URL);
+                int serviceId = intent.getIntExtra(Constants.KEY_SERVICE_ID, 0);
+                String title = intent.getStringExtra(Constants.KEY_TITLE);
+                switch (((StreamingService.LinkType) intent.getSerializableExtra(Constants.KEY_LINK_TYPE))) {
+                    case STREAM:
+                        boolean autoPlay = intent.getBooleanExtra(VideoDetailFragment.AUTO_PLAY, false);
+                        NavigationHelper.openVideoDetailFragment(getSupportFragmentManager(), serviceId, url, title, autoPlay);
+                        break;
+                    case CHANNEL:
+                        NavigationHelper.openChannelFragment(getSupportFragmentManager(),
+                                serviceId,
+                                url,
+                                title);
+                        break;
+                    case PLAYLIST:
+                        NavigationHelper.openPlaylistFragment(getSupportFragmentManager(),
+                                serviceId,
+                                url,
+                                title);
+                        break;
+                }
+            } else if (intent.hasExtra(Constants.KEY_OPEN_SEARCH)) {
+                String searchString = intent.getStringExtra(Constants.KEY_SEARCH_STRING);
+                if (searchString == null) searchString = "";
+                int serviceId = intent.getIntExtra(Constants.KEY_SERVICE_ID, 0);
+                NavigationHelper.openSearchFragment(
+                        getSupportFragmentManager(),
+                        serviceId,
+                        searchString);
+
+            } else {
+                NavigationHelper.gotoMainFragment(getSupportFragmentManager());
             }
-        } else if (intent.hasExtra(Constants.KEY_OPEN_SEARCH)) {
-            String searchQuery = intent.getStringExtra(Constants.KEY_QUERY);
-            if (searchQuery == null) searchQuery = "";
-            int serviceId = intent.getIntExtra(Constants.KEY_SERVICE_ID, 0);
-            NavigationHelper.openSearchFragment(getSupportFragmentManager(), serviceId, searchQuery);
-        } else {
-            NavigationHelper.gotoMainFragment(getSupportFragmentManager());
+        } catch (Exception e) {
+            ErrorActivity.reportUiError(this, e);
         }
     }
 }
