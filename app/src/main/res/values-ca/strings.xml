@@ -462,4 +462,8 @@
     <string name="playback_step">Pas</string>
     <string name="playback_reset">Reinicialitza</string>
 
+    <string name="channels">Canals</string>
+    <string name="playlists">Llistes de reproducció</string>
+    <string name="tracks">Pistes</string>
+    <string name="users">Usuaris</string>
     </resources>
