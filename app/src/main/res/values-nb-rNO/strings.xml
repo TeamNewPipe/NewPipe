@@ -483,4 +483,12 @@
     <string name="minimize_on_exit_background_description">Minimer til bakgrunnsspiller</string>
     <string name="minimize_on_exit_popup_description">Minimer til oppsprettsspiller</string>
 
-</resources>
+<string name="channels">Kanaler</string>
+    <string name="playlists">Spillelister</string>
+    <string name="tracks">Spor</string>
+    <string name="users">Brukere</string>
+    <string name="skip_silence_checkbox">Hurtig foroverspoling ved stillhet</string>
+    <string name="playback_step">Steg</string>
+    <string name="playback_reset">Tilbakestill</string>
+
+    </resources>
