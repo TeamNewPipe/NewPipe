@@ -226,7 +226,7 @@
     <string name="detail_likes_img_view_description">M\'agrada</string>
     <string name="detail_dislikes_img_view_description">No m\'agrada</string>
     <string name="use_tor_title">Fes servir el Tor</string>
-    <string name="use_tor_summary">(En proves) Força el trànsit de baixada a través del Tot per a més privadesa (no compatible encara amb les emissions de vídeo).</string>
+    <string name="use_tor_summary">(En proves) Força el trànsit de baixada a través del Tor per a més privadesa (no compatible encara amb les emissions de vídeo).</string>
     <string name="report_error">Informa sobre un error</string>
     <string name="user_report">Informe de l\'usuari</string>
     <string name="search_no_results">Cap resultat</string>
