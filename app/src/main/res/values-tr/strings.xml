@@ -491,4 +491,8 @@
     <string name="playback_step">Adım</string>
     <string name="playback_reset">Sıfırla</string>
 
+    <string name="channels">Kanallar</string>
+    <string name="playlists">Onatma listeleri</string>
+    <string name="tracks">Parçalar</string>
+    <string name="users">Kullanıcılar</string>
     </resources>
