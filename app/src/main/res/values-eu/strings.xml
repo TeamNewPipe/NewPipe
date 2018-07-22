@@ -468,4 +468,14 @@
 
     <string name="limit_data_usage_none_description">Mugagabea</string>
     <string name="limit_mobile_data_usage_title">Mugatu bereizmena datu mugikorrak erabiltzean</string>
-    </resources>
+    <string name="skip_silence_checkbox">Aurreratu azkar isilunea dagoenean</string>
+    <string name="playback_step">Urratsa</string>
+    <string name="playback_reset">Leheneratu</string>
+
+    <string name="minimize_on_exit_title">Minimizatu aplikazioa aldatzean</string>
+    <string name="minimize_on_exit_summary">Ekintza bideo erreproduzigailu nagusitik beste aplikazio batera aldatzean — %s</string>
+    <string name="minimize_on_exit_none_description">Bat ere ez</string>
+    <string name="minimize_on_exit_background_description">Minimizatu bigarren planoko erreproduzigailura</string>
+    <string name="minimize_on_exit_popup_description">Minimizatu laster-leiho erreproduzigailura</string>
+
+</resources>
