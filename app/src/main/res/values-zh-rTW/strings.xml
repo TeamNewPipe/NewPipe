@@ -478,4 +478,8 @@
     <string name="playback_step">步進</string>
     <string name="playback_reset">重設</string>
 
+    <string name="channels">頻道</string>
+    <string name="playlists">播放清單</string>
+    <string name="tracks">軌</string>
+    <string name="users">使用者</string>
     </resources>
