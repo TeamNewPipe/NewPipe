@@ -476,6 +476,10 @@
     <string name="minimize_on_exit_summary">Ekintza bideo erreproduzigailu nagusitik beste aplikazio batera aldatzean — %s</string>
     <string name="minimize_on_exit_none_description">Bat ere ez</string>
     <string name="minimize_on_exit_background_description">Minimizatu bigarren planoko erreproduzigailura</string>
-    <string name="minimize_on_exit_popup_description">Minimizatu laster-leiho erreproduzigailura</string>
+    <string name="minimize_on_exit_popup_description">Minimizatu laster-liho erreproduzigailura</string>
 
-</resources>
+<string name="channels">Kanalak</string>
+    <string name="playlists">Erreprodukzio-zerrendak</string>
+    <string name="tracks">Pistak</string>
+    <string name="users">Erabiltzaileak</string>
+    </resources>
