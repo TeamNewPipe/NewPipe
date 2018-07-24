@@ -483,4 +483,8 @@
     <string name="minimize_on_exit_background_description">Зменшити до фонового програвачу</string>
     <string name="minimize_on_exit_popup_description">Зменшити до віконного програвачу</string>
 
-</resources>
+<string name="channels">Канали</string>
+    <string name="playlists">Плейлисти</string>
+    <string name="tracks">Стежки</string>
+    <string name="users">Користувачі</string>
+    </resources>
