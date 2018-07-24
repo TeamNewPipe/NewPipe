@@ -24,8 +24,6 @@
     <string name="show_play_with_kodi_summary">Zeigt eine Option an, über die man Videos mit Kodi abspielen kann</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Bevorzugtes Audioformat</string>
-    <string name="webm_description">WebM — freies Format</string>
-    <string name="m4a_description">M4A — bessere Qualität</string>
     <string name="download_dialog_title">Herunterladen</string>
     <string name="next_video_title">Nächstes Video</string>
     <string name="show_next_and_similar_title">\'Nächste\' und \'ähnliche\' Videos anzeigen</string>

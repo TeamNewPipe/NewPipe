@@ -54,8 +54,6 @@
     <string name="play_audio">Ääni</string>
     <string name="default_audio_format_title">Oletusääniformaatti</string>
     <string name="default_video_format_title">Oletusvideoformaatti</string>
-    <string name="webm_description">WebM — vapaa formaatti</string>
-    <string name="m4a_description">M4A — parempi laatu</string>
     <string name="theme_title">Teema</string>
     <string name="light_theme_title">Kirkas</string>
     <string name="dark_theme_title">Tumma</string>

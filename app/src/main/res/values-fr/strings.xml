@@ -24,8 +24,6 @@
     <string name="view_count_text">%1$s vues</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Format audio par défaut</string>
-    <string name="webm_description">WebM — format libre</string>
-    <string name="m4a_description">M4A — meilleure qualité</string>
     <string name="download_dialog_title">Télécharger</string>
     <string name="next_video_title">Vidéo suivante</string>
     <string name="show_next_and_similar_title">Afficher les vidéos \"suivantes\" et \"similaires\"</string>

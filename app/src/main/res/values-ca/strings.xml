@@ -23,8 +23,6 @@
     <string name="play_audio">Àudio</string>
     <string name="default_audio_format_title">Format d\'àudio per defecte</string>
     <string name="default_video_format_title">Format de vídeo per defecte</string>
-    <string name="webm_description">WebM — format lliure</string>
-    <string name="m4a_description">M4A — millor qualitat</string>
     <string name="theme_title">Tema</string>
     <string name="light_theme_title">Clar</string>
     <string name="dark_theme_title">Fosc</string>

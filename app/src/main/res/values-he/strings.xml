@@ -44,8 +44,6 @@
     <string name="play_audio">שמע</string>
     <string name="default_audio_format_title">תבנית ברירת המחדל לשמע</string>
     <string name="default_video_format_title">תבנית סרט ברירת מחדל</string>
-    <string name="webm_description">WebM — תבנית חופשית</string>
-    <string name="m4a_description">M4A — איכות גבוהה יותר</string>
     <string name="theme_title">ערכת נושא</string>
     <string name="light_theme_title">מואר</string>
     <string name="dark_theme_title">חשוך</string>

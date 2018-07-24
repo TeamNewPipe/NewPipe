@@ -53,8 +53,6 @@
     <string name="play_audio">Аудио</string>
     <string name="default_audio_format_title">Аудио формат по подразбиране</string>
     <string name="default_video_format_title">Видео формат по подразбиране</string>
-    <string name="webm_description">WebM — свободен формат</string>
-    <string name="m4a_description">M4A — по-добро качество</string>
     <string name="theme_title">Тема на външния вид</string>
     <string name="light_theme_title">Светла</string>
     <string name="dark_theme_title">Тъмна</string>

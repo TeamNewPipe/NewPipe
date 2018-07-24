@@ -34,8 +34,6 @@
     <string name="show_play_with_kodi_summary">Показувати опцію відтворення відео за допомогою Kodi media center</string>
     <string name="play_audio">Аудіо</string>
     <string name="default_audio_format_title">Типовий аудіо формат</string>
-    <string name="webm_description">WebM — вільний формат</string>
-    <string name="m4a_description">M4A — ліпша якість</string>
     <string name="theme_title">Тема</string>
     <string name="dark_theme_title">Темна</string>
     <string name="light_theme_title">Світла</string>
