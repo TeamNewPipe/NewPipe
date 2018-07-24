@@ -488,4 +488,8 @@
     <string name="minimize_on_exit_background_description">تصغير إلى مشغل الخلفية</string>
     <string name="minimize_on_exit_popup_description">تصغير إلى مشغل منبثق</string>
 
-</resources>
+<string name="channels">القنوات</string>
+    <string name="playlists">قوائم التشغيل</string>
+    <string name="tracks">المسارات</string>
+    <string name="users">المستخدمين</string>
+    </resources>
