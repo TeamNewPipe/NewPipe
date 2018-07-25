@@ -102,7 +102,7 @@
     <string name="error_snackbar_action">ОТЧЁТ</string>
     <string name="what_device_headline">Информация:</string>
     <string name="what_happened_headline">Что произошло:</string>
-    <string name="error_details_headline">Детали:</string>
+    <string name="error_details_headline">Подробности:</string>
 
 
     <string name="use_tor_summary">(Экспериментально) Загружать через Tor для повышения конфиденциальности (прямые трансляции пока не поддерживаются).</string>
