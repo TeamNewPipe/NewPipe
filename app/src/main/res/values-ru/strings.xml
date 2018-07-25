@@ -472,7 +472,7 @@
 
     <string name="app_license">NewPipe - программное обеспечение copyleft libre: вы можете использовать, изучать и улучшать его по своему усмотрению. В частности, вы можете распространять и/или изменять его в соответствии с GNU General Public License, опубликованным Free Software Foundation, либо версией 3 License, либо (по вашему выбору) любой более поздней версии.</string>
     <string name="preferred_open_action_settings_title">Предпочтительное действие \'Открыть\'</string>
-    <string name="import_settings">Желаете ли вы также импортировать настройки?</string>
+    <string name="import_settings">Хотите импортировать настройки?</string>
 
     <string name="privacy_policy_title">Политика конфиденциальности NewPipe</string>
     <string name="privacy_policy_encouragement">Проект NewPipe очень серьезно относится к вашей конфиденциальности. Поэтому приложение не собирает никаких данных без вашего согласия.
@@ -489,7 +489,7 @@
     <string name="playlists">Плей-листы</string>
     <string name="tracks">Дорожки</string>
     <string name="users">Пользователи</string>
-    <string name="skip_silence_checkbox">Перематывать вперёд при включённом беззвучном режиме.</string>
+    <string name="skip_silence_checkbox">Перематывать вперёд при включённом беззвучном режиме</string>
     <string name="playback_step">Щаг</string>
     <string name="playback_reset">Сбросить</string>
 
