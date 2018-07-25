@@ -311,7 +311,7 @@
     <string name="audio_streams_empty">Потоки аудио не найдены</string>
 
     <string name="donation_title">Пожертвовать</string>
-    <string name="donation_encouragement">NewPipe разрабатывается добровольцами в свободное время ради вашего удобства использования программы. Пора воздать должное, разработчики могут сделать NewPipe ещё лучше с чашечкой кофе!</string>
+    <string name="donation_encouragement">NewPipe разрабатывают добровольцы в свободное время. Они делают это для того, чтобы программой было легко и удобно пользоваться. Давайте порадуем разработчиков чашечкой кофе! Когда им будет приятно, они так всё сделают, что и вам будет приятно.</string>
     <string name="give_back">Воздать должное</string>
     <string name="website_title">Веб-сайт</string>
     <string name="website_encouragement">Для получения более подробной информации и последних новостей о NewPipe посетите наш веб-сайт.</string>
@@ -407,7 +407,7 @@
     <string name="enable_leak_canary_summary">Мониторинг утечки памяти может привести к зависанию приложения</string>
 
     <string name="enable_disposed_exceptions_title">Ошибки отчёта вне очереди</string>
-    <string name="enable_disposed_exceptions_summary"></string>
+    <string name="enable_disposed_exceptions_summary">Принудительно отсылать недоставленные сообщения об ошибках в коде или действиях после их удаления</string>
 
     <string name="import_export_title">Импорт/Экспорт</string>
     <string name="import_title">Импорт</string>
@@ -485,4 +485,18 @@
 
     <string name="limit_data_usage_none_description">Без ограничения</string>
     <string name="limit_mobile_data_usage_title">Ограничить разрешение при использовании мобильных данных</string>
-    </resources>
+    <string name="channels">Каналы</string>
+    <string name="playlists">Плей-листы</string>
+    <string name="tracks">Дорожки</string>
+    <string name="users">Пользователи</string>
+    <string name="skip_silence_checkbox">Перематывать вперёд при включённом беззвучном режиме.</string>
+    <string name="playback_step">Щаг</string>
+    <string name="playback_reset">Сбросить</string>
+
+    <string name="minimize_on_exit_title">Сворачивать при переключении приложений</string>
+    <string name="minimize_on_exit_summary">При переключении воспроизведения видео со стандартного плеера на другое приложение — %s</string>
+    <string name="minimize_on_exit_none_description">Ничего не делать</string>
+    <string name="minimize_on_exit_background_description">Свернуть в режим фонового воспроизведения</string>
+    <string name="minimize_on_exit_popup_description">Свернуть в режим всплывающего окна</string>
+
+</resources>
