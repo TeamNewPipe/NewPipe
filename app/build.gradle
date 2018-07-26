@@ -8,8 +8,8 @@ android {
         applicationId "org.schabi.newpipe"
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 64
-        versionName "0.13.5"
+        versionCode 66
+        versionName "0.13.7"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -22,7 +22,6 @@ android {
         }
         debug {
             multiDexEnabled true
-
             debuggable true
             applicationIdSuffix ".debug"
         }
@@ -41,11 +40,11 @@ android {
 }
 
 ext {
-    supportLibVersion = '28.0.0-alpha3'
+    supportLibVersion = '27.1.1'
     exoPlayerLibVersion = '2.8.2'
     roomDbLibVersion = '1.1.1'
-    leakCanaryLibVersion = '1.5.4'
-    okHttpLibVersion = '3.10.0'
+    leakCanaryLibVersion = '1.6.1'
+    okHttpLibVersion = '3.11.0'
     icepickLibVersion = '3.2.0'
     stethoLibVersion = '1.5.0'
 }
@@ -57,7 +56,7 @@ dependencies {
     implementation 'com.github.TeamNewPipe:NewPipeExtractor:1eff8c5708'
 
     testImplementation 'junit:junit:4.12'
-    testImplementation 'org.mockito:mockito-core:2.19.0'
+    testImplementation 'org.mockito:mockito-core:2.20.0'
 
     implementation "com.android.support:appcompat-v7:$supportLibVersion"
     implementation "com.android.support:support-v4:$supportLibVersion"
@@ -79,7 +78,7 @@ dependencies {
     debugImplementation "com.facebook.stetho:stetho-urlconnection:$stethoLibVersion"
     debugImplementation 'com.android.support:multidex:1.0.3'
 
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.16'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.17'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
     implementation 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
 

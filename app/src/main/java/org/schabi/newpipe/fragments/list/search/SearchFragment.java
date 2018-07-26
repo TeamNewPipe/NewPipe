@@ -29,8 +29,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.facebook.stetho.common.ListUtil;
-
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
@@ -58,8 +56,10 @@ import java.io.InterruptedIOException;
 import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.TimeUnit;
 
@@ -116,6 +116,7 @@ public class SearchFragment
     @State
     protected boolean wasSearchFocused = false;
 
+    private Map<Integer, String> menuItemToFilterName;
     private StreamingService service;
     private String currentPageUrl;
     private String nextPageUrl;
@@ -359,10 +360,13 @@ public class SearchFragment
             supportActionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        menuItemToFilterName = new HashMap<>();
+
         int itemId = 0;
         boolean isFirstItem = true;
         final Context c = getContext();
         for(String filter : service.getSearchQIHFactory().getAvailableContentFilter()) {
+            menuItemToFilterName.put(itemId, filter);
             MenuItem item = menu.add(1,
                     itemId++,
                     0,
@@ -381,7 +385,7 @@ public class SearchFragment
     public boolean onOptionsItemSelected(MenuItem item) {
 
         List<String> contentFilter = new ArrayList<>(1);
-        contentFilter.add(item.getTitle().toString());
+        contentFilter.add(menuItemToFilterName.get(item.getItemId()));
         changeContentFilter(item, contentFilter);
 
         return true;
