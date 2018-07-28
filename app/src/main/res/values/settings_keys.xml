@@ -872,5 +872,7 @@
         <item>144p</item>
     </string-array>
 
+    <!-- redirection/shorted link check -->
+    <string name="check_link_redirection">check_link_redirection</string>
 
 </resources>

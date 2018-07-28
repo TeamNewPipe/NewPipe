@@ -48,7 +48,6 @@
         android:key="@string/default_audio_format_key"
         android:summary="%s"
         android:title="@string/default_audio_format_title" />
-
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"
         android:title="@string/settings_category_player_title">
@@ -113,5 +112,11 @@
             android:key="@string/use_inexact_seek_key"
             android:summary="@string/use_inexact_seek_summary"
             android:title="@string/use_inexact_seek_title"/>
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/check_link_redirection"
+            android:summary="@string/check_link_redirection_summary"
+            android:title="@string/check_link_redirection_title"/>
     </PreferenceCategory>
 </PreferenceScreen>

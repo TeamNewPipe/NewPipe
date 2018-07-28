@@ -23,6 +23,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 import org.schabi.newpipe.extractor.Info;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
@@ -42,7 +47,10 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
+import java.io.InputStream;
 import java.io.Serializable;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -105,7 +113,10 @@ public class RouterActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        handleUrl(currentUrl);
+        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        final boolean checkLinkRedirection = preferences.getBoolean(getString(R.string.check_link_redirection), true);
+
+        handleUrl(currentUrl, checkLinkRedirection);
     }
 
     @Override
@@ -115,16 +126,37 @@ public class RouterActivity extends AppCompatActivity {
         disposables.clear();
     }
 
-    private void handleUrl(String url) {
+    private void handleUrl(String desiredUrl, boolean checkLinkRedirection) {
         disposables.add(Observable
                 .fromCallable(() -> {
-                    if (currentServiceId == -1) {
-                        currentService = NewPipe.getServiceByUrl(url);
-                        currentServiceId = currentService.getServiceId();
-                        currentLinkType = currentService.getLinkTypeByUrl(url);
-                        currentUrl = url;
-                    } else {
-                        currentService = NewPipe.getService(currentServiceId);
+                    String url = desiredUrl;
+                    boolean check = checkLinkRedirection;
+
+                    while (true) {
+                        if (currentServiceId == -1) {
+                            try {
+                                currentService = NewPipe.getServiceByUrl(url);
+                                currentServiceId = currentService.getServiceId();
+                                currentLinkType = currentService.getLinkTypeByUrl(url);
+                                currentUrl = url;
+                            } catch (ExtractionException e) {
+                                if (checkLinkRedirection) {
+                                    if (check && currentLinkType != LinkType.NONE) {
+                                        url = getRedirectionOf(url);
+                                        check = false;
+                                        if (url != null) {
+                                            continue;
+                                        }
+                                    }
+                                }
+
+                                throw e;
+                            }
+                        } else {
+                            currentService = NewPipe.getService(currentServiceId);
+                        }
+
+                        break;
                     }
 
                     return currentLinkType != LinkType.NONE;
@@ -551,7 +583,7 @@ public class RouterActivity extends AppCompatActivity {
             // this means the video was called though another app
             videoUrl = intent.getData().toString();
         } else if (intent.getStringExtra(Intent.EXTRA_TEXT) != null) {
-            //this means that vidoe was called through share menu
+            //this means that video was called through share menu
             String extraText = intent.getStringExtra(Intent.EXTRA_TEXT);
             final String[] uris = getUris(extraText);
             videoUrl = uris.length > 0 ? uris[0] : null;
@@ -611,4 +643,102 @@ public class RouterActivity extends AppCompatActivity {
         }
         return result.toArray(new String[result.size()]);
     }
+
+    /**
+     * get the redirection url (if exists)
+     *
+     * @param url the url to check
+     * @return the redirection, or {@code null} if there is no such redirection
+     */
+    private static String getRedirectionOf(String url) {
+        HttpURLConnection con = null;
+        InputStream stream = null;
+
+        try {
+            con = (HttpURLConnection) (new URL(url).openConnection());
+            con.setRequestProperty("User-Agent", Downloader.USER_AGENT);
+            con.setRequestProperty("Accept", "text/html,application/xhtml+xml,application/xml");
+            con.setRequestProperty("Accept-Language", NewPipe.getCountryLanguage());
+            //con.setRequestProperty("DNT", "1");
+            con.setInstanceFollowRedirects(false);
+            con.connect();
+
+            switch (con.getResponseCode()) {
+                case HttpURLConnection.HTTP_OK:
+                    stream = con.getInputStream();
+
+                    boolean isHTTPS = url.substring(0, 8).toLowerCase().equals("https://");
+                    Document page = Jsoup.parse(stream, "UTF-8", url);
+                    Elements metas = page.head().getElementsByTag("meta");
+
+                    for (int i = 0; i < metas.size(); i++) {
+                        Element meta = metas.get(i);
+
+                        url = meta.attr("http-equiv");
+                        if (url.length() < 1) {
+                            continue;// find another tag
+                        }
+
+                        url = url.toLowerCase();
+                        if (url.equals("refresh") || url.equals("location")) {
+                            url = meta.attr("content");
+                            if (url.length() < 8) {
+                                continue;// content always MUST BE present
+                            }
+
+                            // read content attribute
+                            String[] pairs = url.split(";");// ¿by regex?
+
+                            int idx = pairs.length == 2 ? 1 : 0;
+                            pairs[idx] = pairs[idx].trim();
+                            if (pairs[idx].toUpperCase().startsWith("URL=")) {
+                                pairs[idx] = pairs[idx].substring(4);
+                            }
+
+                            /* Now check if the url is absolute. Valid cases:
+                             *       http://youtube.com/v?=abc123
+                             *       https://youtube.com/v?=abc123
+                             *       //youtube.com/v?=abc123
+                             */
+                            if (pairs[idx].length() < 8) {
+                                return null;// not a youtube link
+                            }
+                            url = pairs[idx].substring(0, 9).toLowerCase();
+
+                            if (url.startsWith("https://") || url.startsWith("http://")) {
+                                return pairs[idx];
+                            } else if (url.startsWith("//")) {
+                                // calculate relative protocol
+                                url = "http";
+                                if (isHTTPS) {
+                                    url = url.concat("s");
+                                }
+                                return url.concat(":").concat(pairs[idx]);
+                            }
+
+                            return null;// not valid url
+                        }
+                    }
+                    break;
+                case HttpURLConnection.HTTP_MOVED_TEMP:
+                case HttpURLConnection.HTTP_MOVED_PERM:
+                case HttpURLConnection.HTTP_SEE_OTHER:
+                    return con.getHeaderField("Location");
+            }
+        } catch (Exception e) {
+            e.printStackTrace(System.err);
+            if (con != null) {
+                con.disconnect();
+            }
+            if (stream != null) {
+                try {
+                    stream.close();
+                } catch (Exception er) {
+                }
+            }
+        }
+
+        return null;// not found
+    }
+
 }

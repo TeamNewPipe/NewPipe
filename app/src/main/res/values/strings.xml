@@ -446,6 +446,7 @@
     <!-- Caption Settings -->
     <string name="caption_setting_title">Captions</string>
     <string name="caption_setting_description">Modify player caption text scale and background styles. Requires app restart to take effect.</string>
+    <string name="caption_parse_error">The subtitles "%s" could not be saved, an error occurred during the parsing</string>
 
     <!-- Debug Settings -->
     <string name="enable_leak_canary_title">Enable LeakCanary</string>
@@ -503,5 +504,9 @@
         <item>240p</item>
         <item>144p</item>
     </string-array>
+
+    <!-- redirection/shorted link check -->
+    <string name="check_link_redirection_title">Check for redirection links</string>
+    <string name="check_link_redirection_summary">Use this option to try open shortened or deferred links</string>
 
 </resources>
