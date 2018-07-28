@@ -93,7 +93,7 @@ dependencies {
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanaryLibVersion"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryLibVersion"
 
-    implementation "com.squareup.okhttp3:okhttp:3.9.1"
+    implementation 'com.squareup.okhttp3:okhttp:3.9.1'
     debugImplementation "com.facebook.stetho:stetho-okhttp3:$okHttpLibVersion"
     implementation 'org.jsoup:jsoup:1.9.2'
 }

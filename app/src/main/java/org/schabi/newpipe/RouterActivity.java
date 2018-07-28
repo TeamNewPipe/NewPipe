@@ -13,6 +13,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +28,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
 import org.schabi.newpipe.extractor.Info;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
@@ -75,6 +75,7 @@ import static org.schabi.newpipe.util.ThemeHelper.resolveResourceIdFromAttr;
  * Get the url from the intent and open it in the chosen preferred player
  */
 public class RouterActivity extends AppCompatActivity {
+    private static final String TAG = "RouterActivity";
 
     @State protected int currentServiceId = -1;
     private StreamingService currentService;
@@ -674,20 +675,20 @@ public class RouterActivity extends AppCompatActivity {
                     for (int i = 0; i < metas.size(); i++) {
                         Element meta = metas.get(i);
 
-                        url = meta.attr("http-equiv");
-                        if (url.length() < 1) {
+                        String tmp = meta.attr("http-equiv");
+                        if (tmp.length() < 1) {
                             continue;// find another tag
                         }
 
-                        url = url.toLowerCase();
-                        if (url.equals("refresh") || url.equals("location")) {
-                            url = meta.attr("content");
-                            if (url.length() < 8) {
+                        tmp = tmp.toLowerCase();
+                        if (tmp.equals("refresh") || tmp.equals("location")) {
+                            tmp = meta.attr("content");
+                            if (tmp.length() < 8) {
                                 continue;// content always MUST BE present
                             }
 
                             // read content attribute
-                            String[] pairs = url.split(";");// ¿by regex?
+                            String[] pairs = tmp.split(";");// ¿by regex?
 
                             int idx = pairs.length == 1 ? 0 : 1;
                             pairs[idx] = pairs[idx].trim();
@@ -703,17 +704,17 @@ public class RouterActivity extends AppCompatActivity {
                             if (pairs[idx].length() < 8) {
                                 return null;// not a youtube link
                             }
-                            url = pairs[idx].substring(0, 9).toLowerCase();
+                            tmp = pairs[idx].substring(0, 9).toLowerCase();
 
-                            if (url.startsWith("https://") || url.startsWith("http://")) {
+                            if (tmp.startsWith("https://") || tmp.startsWith("http://")) {
                                 return pairs[idx];
-                            } else if (url.startsWith("//")) {
+                            } else if (tmp.startsWith("//")) {
                                 // calculate relative protocol
-                                url = "http";
+                                tmp = "http";
                                 if (isHTTPS) {
-                                    url = url.concat("s");
+                                    tmp = tmp.concat("s");
                                 }
-                                return url.concat(":").concat(pairs[idx]);
+                                return tmp.concat(":").concat(pairs[idx]);
                             }
 
                             return null;// not valid url
@@ -726,8 +727,8 @@ public class RouterActivity extends AppCompatActivity {
                     return con.getHeaderField("Location");
             }
         } catch (Exception e) {
-            Log.e(TAG, e);
-            
+            Log.e(TAG, "Failed to check for redirection in ".concat(url), e);
+
             if (con != null) {
                 con.disconnect();
             }

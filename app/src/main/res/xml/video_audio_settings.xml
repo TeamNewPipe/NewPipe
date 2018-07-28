@@ -48,7 +48,7 @@
         android:key="@string/default_audio_format_key"
         android:summary="%s"
         android:title="@string/default_audio_format_title" />
-        
+
     <PreferenceCategory
         android:layout="@layout/settings_category_header_layout"
         android:title="@string/settings_category_player_title">
