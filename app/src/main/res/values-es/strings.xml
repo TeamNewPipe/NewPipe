@@ -498,4 +498,6 @@ abrir en modo popup</string>
     <string name="playback_step">Paso</string>
     <string name="playback_reset">Reiniciar</string>
 
+    <string name="channels">Canales</string>
+    <string name="users">Usuarios</string>
     </resources>
