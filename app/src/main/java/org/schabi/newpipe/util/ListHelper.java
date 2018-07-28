@@ -443,11 +443,11 @@ public final class ListHelper {
     /**
      * Are we connected to wifi?
      * @param context App context
-     * @return True if connected to wifi
+     * @return {@code true} if connected to wifi
      */
     private static boolean isWifiActive(Context context)
     {
         ConnectivityManager manager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        return manager.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI;
+        return manager != null && manager.getActiveNetworkInfo() != null && manager.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI;
     }
 }
