@@ -446,7 +446,6 @@
     <!-- Caption Settings -->
     <string name="caption_setting_title">Captions</string>
     <string name="caption_setting_description">Modify player caption text scale and background styles. Requires app restart to take effect.</string>
-    <string name="caption_parse_error">The subtitles "%s" could not be saved, an error occurred during the parsing</string>
 
     <!-- Debug Settings -->
     <string name="enable_leak_canary_title">Enable LeakCanary</string>

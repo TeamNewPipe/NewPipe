@@ -689,7 +689,7 @@ public class RouterActivity extends AppCompatActivity {
                             // read content attribute
                             String[] pairs = url.split(";");// ¿by regex?
 
-                            int idx = pairs.length == 2 ? 1 : 0;
+                            int idx = pairs.length == 1 ? 0 : 1;
                             pairs[idx] = pairs[idx].trim();
                             if (pairs[idx].toUpperCase().startsWith("URL=")) {
                                 pairs[idx] = pairs[idx].substring(4);
@@ -726,7 +726,8 @@ public class RouterActivity extends AppCompatActivity {
                     return con.getHeaderField("Location");
             }
         } catch (Exception e) {
-            e.printStackTrace(System.err);
+            Log.e(TAG, e);
+            
             if (con != null) {
                 con.disconnect();
             }
