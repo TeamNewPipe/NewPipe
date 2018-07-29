@@ -105,7 +105,6 @@ public class App extends Application {
         configureRxJavaErrorHandler();
         
         // Instead of using the """Application""" language, the device language will be used (if a translation is missing)
-        //dl.initLanguageFromContext(this.getResources().getConfiguration().locale;, contentCountry);
         NewPipe.setCountryLanguage(contentCountry);
     }
 

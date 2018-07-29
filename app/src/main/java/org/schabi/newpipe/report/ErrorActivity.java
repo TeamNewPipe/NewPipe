@@ -381,7 +381,6 @@ public class ErrorActivity extends AppCompatActivity {
     }
 
     private String getContentLangString() {
-        // content_county value is not a language is a COUNTRY!
         String country = PreferenceManager
                 .getDefaultSharedPreferences(this)
                 .getString(this.getString(R.string.content_country_key), "none");
