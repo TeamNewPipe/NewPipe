@@ -478,4 +478,8 @@ abrir em modo popup</string>
 \n</string>
     <string name="playback_reset">Reiniciar</string>
 
+    <string name="channels">Canais</string>
+    <string name="playlists">Listas de reprodução</string>
+    <string name="tracks">Faixas</string>
+    <string name="users">Usuários</string>
     </resources>
