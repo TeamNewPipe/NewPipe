@@ -100,7 +100,7 @@
     <string name="msg_threads">Threads</string>
     <string name="msg_url_malform">URL inválida ou internet indisponível</string>
     <string name="no_available_dir">Selecione uma pasta para download</string>
-    <string name="no_player_found">Nenhum player de stream encontrado. Deseja Instalar o VLC?</string>
+    <string name="no_player_found">Nenhum player de stream encontrado. Deseja instalar o VLC?</string>
     <string name="parsing_error">Não foi possível interpretar o site</string>
     <string name="play_audio">Áudio</string>
     <string name="play_btn_text">Reproduzir</string>
