@@ -21,7 +21,7 @@
     <string name="play_with_kodi_title">Воспроизвести в Kodi</string>
     <string name="kore_not_found">Приложение Kore не найдено. Установить его?</string>
     <string name="show_play_with_kodi_title">Показать опцию «Воспроизвести в Kodi»</string>
-    <string name="show_play_with_kodi_summary">Показать опцию воспроизведения видео через Kodi media center</string>
+    <string name="show_play_with_kodi_summary">Показать опцию воспроизведения видео через медиацентр Kodi</string>
     <string name="play_audio">Аудио</string>
     <string name="default_audio_format_title">Формат аудио по умолчанию</string>
     <string name="webm_description">WebM — свободный формат</string>
@@ -440,7 +440,7 @@
 \n 
 \nПродолжить?</string>
 <string name="download_thumbnail_title">Загружать миниатюры</string>
-    <string name="download_thumbnail_summary">Отключите, чтобы перестать загружать миниатюры и начать экономить трафик и память. Изменение настройки очистит кэш изображений в памяти и на диске.</string>
+    <string name="download_thumbnail_summary">Отключите, чтобы не загружать миниатюры и сэкономить трафик и память. Изменение настройки очистит кэш изображений в памяти и на диске.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Кэш изображений очищен</string>
     <string name="metadata_cache_wipe_title">Очистить кэш метаданных</string>
     <string name="metadata_cache_wipe_complete_notice">Кэш метаданных очищен</string>
