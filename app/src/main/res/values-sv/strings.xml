@@ -4,7 +4,7 @@
     <string name="no_player_found">Ingen strömspelare hittades. Vill du installera VLC?</string>
     <string name="install">Installera</string>
     <string name="cancel">Avbryt</string>
-    <string name="open_in_browser">Öppna i bläddrare</string>
+    <string name="open_in_browser">Öppna i webbläsare</string>
     <string name="open_in_popup_mode">Öppna i popup-läge</string>
     <string name="share">Dela</string>
     <string name="download">Ladda ner</string>
@@ -12,7 +12,7 @@
     <string name="settings">Inställningar</string>
     <string name="did_you_mean">Menade du: %1$s ?</string>
     <string name="share_dialog_title">Dela med</string>
-    <string name="choose_browser">Välj bläddrare</string>
+    <string name="choose_browser">Välj webbläsare</string>
     <string name="screen_rotation">rotering</string>
     <string name="use_external_video_player_title">Använd extern videospelare</string>
     <string name="use_external_video_player_summary">Några upplösningar kommer INTE ha ljud när det här alternativet är aktiverat</string>
@@ -189,7 +189,7 @@
     <string name="no_videos">Inga videor</string>
     <plurals name="videos">
 	<item quantity="one">%s video</item>
-	<item quantity="other">%s videon</item>
+	<item quantity="other">%s videor</item>
 </plurals>
 
     <string name="start">Start</string>
@@ -292,7 +292,7 @@
 
     <string name="use_inexact_seek_title">Använda snabb inexact sökning</string>
     <string name="download_thumbnail_title">Ladda miniatyrer</string>
-    <string name="download_thumbnail_summary">Inaktivera för att stoppa alla miniatyrer från lastning och spara på nät och minnesanvändning. Ändring av detta kommer att rensa cache-minnet.</string>
+    <string name="download_thumbnail_summary">Inaktivera för att stoppa alla miniatyrbilder från att ladda och spara på data och minnesanvändning. Ändring av detta kommer att rensa cache-minnet.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Bild cacheminnet var rensad</string>
     <string name="service_title">Tjänst</string>
     <string name="settings_category_debug_title">Debug</string>
@@ -302,4 +302,171 @@
 
     <string name="toggle_orientation">Byta orientationen</string>
     <string name="metadata_cache_wipe_title">Rensa metadatan i cacheminnet</string>
-    </resources>
+    <string name="no_player_found_toast">Ingen strömspelare hittades (du kan installera VLC för att spela upp)</string>
+    <string name="controls_download_desc">Ladda ned sändning.</string>
+    <string name="use_inexact_seek_summary">"Ej exakt sökning tillåter spelaren att söka positioner snabbare med minskad precision "</string>
+    <string name="metadata_cache_wipe_summary">Ta bort alla cachade webbsidor</string>
+    <string name="metadata_cache_wipe_complete_notice">Metadata cache rensad</string>
+    <string name="auto_queue_title">"Köa nästa ström automatiskt "</string>
+    <string name="auto_queue_summary">Lägg automatiskt till en relaterad ström när du spelar den sista strömmen i en ej upprepad kö.</string>
+    <string name="default_content_country_title">Standard innehåll land</string>
+    <string name="channels">Kanaler</string>
+    <string name="playlists">Spellistor</string>
+    <string name="tracks">Spår</string>
+    <string name="users">Användare</string>
+    <string name="switch_to_background">Växla till Bakgrunden</string>
+    <string name="switch_to_popup">Växla till popup</string>
+    <string name="switch_to_main">Växla till main</string>
+
+    <string name="import_data_title">Importera databas</string>
+    <string name="export_data_title">Exportera databas</string>
+    <string name="import_data_summary">Kommer att skriva över din nuvarande historik och prenumerationer</string>
+    <string name="export_data_summary">Exportera historik, prenumerationer och spellistor.</string>
+    <string name="clear_views_history_title">Rensa visningshistorik</string>
+    <string name="clear_views_history_summary">Tar bort historiken för spelade videoklipp.</string>
+    <string name="delete_view_history_alert">Ta bort hela visningshistoriken.</string>
+    <string name="view_history_deleted">Visningshistorik borttagen.</string>
+    <string name="clear_search_history_title">Rensa sökhistorik</string>
+    <string name="clear_search_history_summary">Tar bort historiken för söka nyckelord.</string>
+    <string name="delete_search_history_alert">Ta bort hela sökhistoriken.</string>
+    <string name="search_history_deleted">Sökhistorik borttagen.</string>
+    <string name="external_player_unsupported_link_type">Externa spelare stöder inte dessa typer av länkar</string>
+    <string name="invalid_url_toast">Ogiltig URL</string>
+    <string name="video_streams_empty">Inga videoströmmar hittades</string>
+    <string name="audio_streams_empty">Inga ljudspår hittades</string>
+    <string name="invalid_directory">Ogiltig katalog</string>
+    <string name="invalid_source">Ogiltig fil/innehålls källa</string>
+    <string name="invalid_file">Filen finns inte eller otillräcklig behörighet att läsa eller skriva till den</string>
+    <string name="file_name_empty_error">Filnamnet får inte vara tomt</string>
+    <string name="error_occurred_detail">Ett fel uppstod: %1$s</string>
+    <string name="no_streams_available_download">Inga strömmar är tillgängliga för nedladdning</string>
+
+    <string name="detail_drag_description">Dra för att ändra ordning</string>
+
+    <string name="create">Skapa</string>
+    <string name="delete_one">Ta bort en</string>
+    <string name="delete_all">Ta bort alla</string>
+    <string name="dismiss">Avfärda</string>
+    <string name="rename">Döp om</string>
+
+    <string name="one_item_deleted">1 objekt borttaget.</string>
+
+    <string name="toast_no_player">Ingen app installerad för att spela upp filen</string>
+
+    <string name="privacy_policy_title">NewPipes Sekretesspolicy</string>
+    <string name="privacy_policy_encouragement">"NewPipe projektet tar din integritet på största allvar. Appen samlar därför inte in några uppgifter utan ditt medgivande. NewPipes Sekretesspolicy  förklarar i detalj vad för data som skickas och lagras när du skickar en kraschrapport."</string>
+    <string name="read_privacy_policy">Läs sekretesspolicy</string>
+    <string name="app_license">NewPipe är copyleft fri programvara: Du kan använda, studera, dela och förbättra den som du vill. Specifikt kan du distribuera och/eller modifiera det under villkoren för GNU General Public License som publicerats av Free Software Foundation, antingen version 3 av licensen, eller (om du så önskar) en senare version.</string>
+    <string name="delete_stream_history_prompt">Vill du ta bort det här föremålet från visningshistoriken?</string>
+    <string name="delete_all_history_prompt">Är du säker du vill ta bort alla föremål från historiken?</string>
+    <string name="title_last_played">Senast spelade</string>
+    <string name="title_most_played">Mest spelade</string>
+
+    <string name="export_complete_toast">Exporteringen har slutförts</string>
+    <string name="import_complete_toast">Importeringen har slutförts</string>
+    <string name="no_valid_zip_file">Ingen giltig ZIP-fil</string>
+    <string name="could_not_import_all_files">Varning: det gick inte att importera alla filer.</string>
+    <string name="override_current_data">Det här kommer skriva över dina nuvarande inställningar.</string>
+    <string name="import_settings">Vill du också importera inställningar?</string>
+
+    <string name="drawer_open">Öppna navigationspanelen</string>
+    <string name="drawer_close">Stäng navigationspanelen</string>
+    <string name="drawer_header_action_paceholder_text">Något kommer att visas här snart ;D</string>
+
+
+    <string name="preferred_open_action_settings_title">Föredra \'öppna\' åtgärden</string>
+    <string name="preferred_open_action_settings_summary">Standardåtgärden när du öppnar innehåll — %s</string>
+
+    <string name="video_player">Videospelare</string>
+    <string name="background_player">Bakgrundsspelare</string>
+    <string name="popup_player">Popup-spelare</string>
+    <string name="always_ask_open_action">Fråga alltid</string>
+
+    <string name="preferred_player_fetcher_notification_title">Hämtar information…</string>
+    <string name="preferred_player_fetcher_notification_message">Laddar begärt innehåll</string>
+
+    <string name="create_playlist">Skapa ny spellista</string>
+    <string name="delete_playlist">Radera spellista</string>
+    <string name="rename_playlist">Byt namn på spellista</string>
+    <string name="playlist_name_input">Namn</string>
+    <string name="append_playlist">Lägg till i spellistan</string>
+    <string name="set_as_playlist_thumbnail">Använd som spellistans miniatyrbild</string>
+
+    <string name="bookmark_playlist">Bokmärk spellistan</string>
+    <string name="unbookmark_playlist">Ta bort bokmärke</string>
+
+    <string name="delete_playlist_prompt">Vill du ta bort den här spellistan?</string>
+    <string name="playlist_creation_success">Spellistan skapades</string>
+    <string name="playlist_add_stream_success">Tillagad i spellistan</string>
+    <string name="playlist_thumbnail_change_success">"Spellistans miniatyrbild förändrades "</string>
+    <string name="playlist_delete_failure">Kunde inte ta bort spellistan</string>
+
+    <string name="caption_none">Ingen textning</string>
+
+    <string name="resize_fit">Passa</string>
+    <string name="resize_fill">Fyll</string>
+    <string name="resize_zoom">Zoom</string>
+
+    <string name="caption_auto_generated">Auto-genererade</string>
+
+    <string name="caption_setting_title">Textning</string>
+    <string name="caption_setting_description">Ändra spelaren textskala och bakgrundsstil. Kräver att appen startar om för att träder i kraft.</string>
+
+    <string name="enable_leak_canary_title">Aktivera LeakCanary</string>
+    <string name="enable_leak_canary_summary">Minnesläcka övervakning kan orsaka att appen inte svarar under heap dumpning</string>
+
+    <string name="enable_disposed_exceptions_title">Rapportera Out-of-lifecycle fel</string>
+    <string name="enable_disposed_exceptions_summary">Tvinga rapportering av otillåtna Rx-undantag utanför fragment eller aktivitetslivscykel efter uppstädning</string>
+
+    <string name="import_export_title">Importera/Exportera</string>
+    <string name="import_title">Importera</string>
+    <string name="import_from">Importera från</string>
+    <string name="export_to">Exportera till</string>
+
+    <string name="import_ongoing">Importera…</string>
+    <string name="export_ongoing">Exporterar…</string>
+
+    <string name="import_file_title">Importera fil</string>
+    <string name="previous_export">Föregående export</string>
+
+    <string name="subscriptions_import_unsuccessful">Kunde inte importera prenumerationer</string>
+    <string name="subscriptions_export_unsuccessful">kunde inte exportera prenumerationer</string>
+
+    <string name="import_youtube_instructions">Importera YouTube-prenumerationer genom att hämta export-filen:
+\n
+\n1. Gå till följande webbadress: %1$s
+\n2. Logga in när du blir tillfrågad
+\n3. En nedladdning ska starta (det är export-filen)</string>
+    <string name="import_soundcloud_instructions">Importera en SoundCloud profil genom att skriva in webbadressen eller ditt ID:
+\n
+\n1. Aktivera \"skrivbordsläge\" i en webbläsare (sidan är inte tillgänglig för mobila enheter)
+\n2. Gå till följande webbadress: %1$s
+\n3. Logga in när du blir tillfrågad
+\n4. Kopiera profilens webbadress som du blev omdirigerad till.</string>
+    <string name="import_soundcloud_instructions_hint">dittID, soundcloud.com/dittid</string>
+
+    <string name="import_network_expensive_warning">Tänk på att operationer kan vara nätverks intensiv.
+\n
+\nVill du fortsätta?</string>
+
+    <string name="playback_speed_control">Uppspelningshastighet Kontroller</string>
+    <string name="playback_tempo">Tempo</string>
+    <string name="playback_pitch">Pitch</string>
+    <string name="unhook_checkbox">Avlänka (kan orsaka förvrängning)</string>
+    <string name="skip_silence_checkbox">Snabbspola vid frånvaro av ljud</string>
+    <string name="playback_step">Steg</string>
+    <string name="playback_reset">Återställ</string>
+
+    <string name="start_accept_privacy_policy">För att uppfylla den Europeiska dataskyddsförordningen (GDPR), uppmärksammar vi NewPipes sekretesspolicy. Läs den noggrant. Du måste acceptera det om du vill skicka felrapporten.</string>
+    <string name="accept">Acceptera</string>
+    <string name="decline">Avböj</string>
+
+    <string name="limit_data_usage_none_description">Ingen gräns</string>
+    <string name="limit_mobile_data_usage_title">Begränsa upplösningen när du använder mobil data</string>
+    <string name="minimize_on_exit_title">"Minimera vid växling av applikationen "</string>
+    <string name="minimize_on_exit_summary">Åtgärd när du växlar till andra applikationer från huvudvideospelare — %s</string>
+    <string name="minimize_on_exit_none_description">Ingen</string>
+    <string name="minimize_on_exit_background_description">Minimera till Bakgrunds-spelare</string>
+    <string name="minimize_on_exit_popup_description">Minimera till popup-spelare</string>
+
+</resources>
