@@ -20,7 +20,7 @@
     <string name="default_resolution_title">Разрешение по умолчанию</string>
     <string name="play_with_kodi_title">Воспроизвести в Kodi</string>
     <string name="kore_not_found">Приложение Kore не найдено. Установить его?</string>
-    <string name="show_play_with_kodi_title">Показать опцию «Воспроизвести в Kodi»</string>
+    <string name="show_play_with_kodi_title">Показать \"Воспроизвести в Kodi\"</string>
     <string name="show_play_with_kodi_summary">Показать опцию воспроизведения видео через медиацентр Kodi</string>
     <string name="play_audio">Аудио</string>
     <string name="default_audio_format_title">Формат аудио по умолчанию</string>
@@ -29,7 +29,7 @@
     <string name="download_dialog_title">Скачать</string>
     <string name="next_video_title">Следующее видео</string>
     <string name="url_not_supported_toast">URL не поддерживается</string>
-    <string name="show_next_and_similar_title">Показывать \'следующее\' и \'предложенные\' видео</string>
+    <string name="show_next_and_similar_title">\"Следующее\" и \"Предложенные\" видео</string>
     <string name="search_language_title">Язык контента по умолчанию</string>
     <string name="settings_category_video_audio_title">Видео и Аудио</string>
     <string name="settings_category_appearance_title">Внешний вид</string>
@@ -78,7 +78,7 @@
     <string name="show_age_restricted_content_title">Контент с ограничением по возрасту</string>
     <string name="general_error">Ошибка</string>
     <string name="your_comment">Ваш комментарий (English):</string>
-    <string name="err_dir_create">Невозможно создать папку для загрузки \'%1$s\'</string>
+    <string name="err_dir_create">Не удалось создать папку для загрузки \"%1$s\"</string>
     <string name="autoplay_by_calling_app_title">Автовоспроизведение</string>
     <string name="autoplay_by_calling_app_summary">Воспроизводить видео при вызове NewPipe из другого приложения</string>
     <string name="content">Контент</string>
@@ -109,7 +109,7 @@
     <string name="report_error">Сообщить об ошибке</string>
     <string name="user_report">Сообщить о нарушении</string>
 
-    <string name="info_dir_created">Создана папка для загрузок \'%1$s\'</string>
+    <string name="info_dir_created">Создана папка для загрузок \"%1$s\"</string>
 
     <string name="video">Видео</string>
     <string name="audio">Аудио</string>
@@ -280,7 +280,7 @@
     <string name="subscribed_button_title">Вы подписаны</string>
     <string name="channel_unsubscribed">Подписка отменена</string>
     <string name="show_hold_to_append_title">Подсказка \"Зажмите, чтобы добавить\"</string>
-    <string name="show_hold_to_append_summary">Показывать подсказку при нажатии на иконку «В окне» или «В фоне» на странице сведений о видео</string>
+    <string name="show_hold_to_append_summary">Показать подсказку при нажатии \"В окне\" или \"В фоне\" на странице сведений о видео</string>
     <string name="unknown_content">[Неизвестно]</string>
 
     <string name="player_recoverable_failure">Восстановление после ошибки проигрывателя</string>
@@ -288,8 +288,8 @@
     <string name="title_activity_background_player">В фоне</string>
     <string name="title_activity_popup_player">В окне</string>
     <string name="hold_to_append">Зажмите, чтобы добавить в очередь</string>
-    <string name="enqueue_on_background">Добавить в очередь «В фоне»</string>
-    <string name="enqueue_on_popup">Добавить в очередь «В окне»</string>
+    <string name="enqueue_on_background">Добавить в очередь \"В фоне\"</string>
+    <string name="enqueue_on_popup">Добавить в очередь \"В окне\"</string>
     <string name="start_here_on_main">Воспроизвести здесь</string>
     <string name="start_here_on_background">Воспроизвести в фоне</string>
     <string name="start_here_on_popup">Воспроизвести в окне</string>
@@ -365,7 +365,7 @@
     <string name="export_complete_toast">Экспорт завершён</string>
     <string name="import_complete_toast">Импорт завершён</string>
     <string name="no_valid_zip_file">Нет верного Zip-файла</string>
-    <string name="could_not_import_all_files">Предупреждение: не все файлы были импортированы.</string>
+    <string name="could_not_import_all_files">Внимание: не все файлы были импортированы.</string>
     <string name="override_current_data">Текущие данные будут заменены.</string>
 
     <string name="drawer_header_action_paceholder_text">Скоро здесь кое-что появится ;D</string>
@@ -471,7 +471,7 @@
     <string name="one_item_deleted">1 элемент удалён.</string>
 
     <string name="app_license">NewPipe — свободное программное обеспечение: вы можете использовать, изучать и улучшать его по своему усмотрению. В частности, вы можете распространять и/или изменять его в соответствии с условиями GNU General Public License, опубликованной Free Software Foundation, либо версии 3, либо (по вашему выбору) любой более поздней версии.</string>
-    <string name="preferred_open_action_settings_title">Предпочтительное действие \'Открыть\'</string>
+    <string name="preferred_open_action_settings_title">Предпочтительное действие \"Открыть\"</string>
     <string name="import_settings">Хотите импортировать настройки?</string>
 
     <string name="privacy_policy_title">Политика конфиденциальности NewPipe</string>
