@@ -326,7 +326,7 @@
 <string name="import_data_title">Veri tabanını içe aktar</string>
     <string name="export_data_title">Veri tabanını dışa aktar</string>
     <string name="import_data_summary">Şu anki geçmişinizi ve aboneliklerinizi geçersiz kılar</string>
-    <string name="export_data_summary">Geçmişi, abonelikleri ve oynatma listelerini dışa aktar.</string>
+    <string name="export_data_summary">Geçmişi, abonelikleri ve oynatma listelerini dışa aktar</string>
     <string name="export_complete_toast">Dışa aktarım bitti</string>
     <string name="import_complete_toast">İçe aktarım bitti</string>
     <string name="no_valid_zip_file">Geçerli ZIP dosyası yok</string>
@@ -395,7 +395,7 @@
 <string name="use_inexact_seek_title">Hızlı isabetsiz konumlama kullan</string>
     <string name="use_inexact_seek_summary">İsabetsiz konumlama, oynatıcının azaltılmış kesinlikle daha hızlı konumlama yapmasını sağlar</string>
     <string name="auto_queue_title">Sonraki akışı kendiliğinden kuyruğa ekle</string>
-    <string name="auto_queue_summary">Yinelemeyen bir kuyruktaki son akış oynatılırken ilgili bir akışı kendiliğinden sonuna ekle.</string>
+    <string name="auto_queue_summary">Yinelemeyen bir kuyruktaki son akış oynatılırken ilgili bir akışı kendiliğinden sonuna ekle</string>
     <string name="live_sync">EŞZAMANLA</string>
 
     <string name="file">Dosya</string>
@@ -437,7 +437,7 @@
 \n 
 \nDevam etmek istiyor musunuz?</string>
 <string name="download_thumbnail_title">Küçük resimleri yükle</string>
-    <string name="download_thumbnail_summary">Küçük resimlerin hepsinin yüklenmesini engellemek ve bellek ve veri kullanımını azaltmak için devre dışı bırakın. Bunu değiştirmek, hem bellekteki hem de diskteki resim önbelleğini temizler.</string>
+    <string name="download_thumbnail_summary">Küçük resimlerin hepsinin yüklenmesini engellemek ve bellek ve veri kullanımını azaltmak için devre dışı bırakın. Bunu değiştirmek, hem bellekteki hem de diskteki resim önbelleğini temizler</string>
     <string name="thumbnail_cache_wipe_complete_notice">Resim önbelleği temizlendi</string>
     <string name="metadata_cache_wipe_title">Önbelleklenmiş üst veriyi temizle</string>
     <string name="metadata_cache_wipe_summary">Önbelleklenmiş tüm web sayfası verisini kaldır</string>
@@ -454,17 +454,17 @@
     <string name="preferred_open_action_settings_summary">İçerik açılırken öntanımlı eylem — %s</string>
 
     <string name="caption_setting_title">Ek Açıklamalar</string>
-    <string name="caption_setting_description">Oynatıcı ek açıklamalar metin boyutunu ve arka plan biçimlerini düzenle. Etki için uygulamayı yeniden başlatmak gerekir.</string>
+    <string name="caption_setting_description">Oynatıcı ek açıklamalar metin boyutunu ve arka plan biçimlerini düzenle. Etki için uygulamayı yeniden başlatmak gerekir</string>
 
     <string name="toast_no_player">Bu dosyayı oynatmak için kurulan uygulama yok</string>
 
     <string name="clear_views_history_title">İzleme geçmişini temizle</string>
-    <string name="clear_views_history_summary">Oynatılan akışların geçmişini siler.</string>
-    <string name="delete_view_history_alert">Tüm izleme geçmişini sil.</string>
+    <string name="clear_views_history_summary">Oynatılan akışların geçmişini siler</string>
+    <string name="delete_view_history_alert">Tüm izleme geçmişini sil</string>
     <string name="view_history_deleted">İzleme geçmişi silindi.</string>
     <string name="clear_search_history_title">Arama geçmişini temizle</string>
-    <string name="clear_search_history_summary">Aranan anahtar sözcüklerin geçmişini siler.</string>
-    <string name="delete_search_history_alert">Tüm arama geçmişini sil.</string>
+    <string name="clear_search_history_summary">Aranan anahtar sözcüklerin geçmişini siler</string>
+    <string name="delete_search_history_alert">Tüm arama geçmişini sil</string>
     <string name="search_history_deleted">Arama geçmişi silindi.</string>
     <string name="one_item_deleted">1 öge silindi.</string>
 

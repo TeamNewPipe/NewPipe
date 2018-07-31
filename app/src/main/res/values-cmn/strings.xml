@@ -69,4 +69,55 @@
     <string name="thumbnail_cache_wipe_complete_notice">清理照片内存</string>
     <string name="minimize_on_exit_popup_description">最小化弹出播放器</string>
 
-</resources>
+<string name="clear_views_history_title">清楚观看历史</string>
+    <string name="search_history_deleted">已删除搜索历史</string>
+    <string name="general_error">错误</string>
+    <string name="network_error">网络错误</string>
+    <string name="report_error">举报错误</string>
+    <string name="search_no_results">没有结果</string>
+    <string name="start">开始</string>
+    <string name="pause">暂停</string>
+    <string name="view">播放</string>
+    <string name="create">创建</string>
+    <string name="delete">删除</string>
+    <string name="delete_all">删除所有</string>
+    <string name="add">新任务</string>
+    <string name="finish">好
+\n</string>
+
+    <string name="msg_error">错误
+\n</string>
+    <string name="msg_server_unsupported">服务器无法支持</string>
+    <string name="msg_exists">文件已存在</string>
+    <string name="msg_running">NewPipe 下载中</string>
+    <string name="msg_wait">请稍等…</string>
+    <string name="charset_letters_and_digits">字母与数字</string>
+    <string name="charset_most_special_characters">最特别的字符</string>
+
+    <string name="toast_no_player">这个文件里没有已下载应用程式</string>
+
+    <string name="title_activity_about">关于NewPipe</string>
+    <string name="action_settings">设置</string>
+    <string name="action_about">关于</string>
+    <string name="title_licenses">第三方执照</string>
+    <string name="action_open_website">打开网页</string>
+    <string name="unbookmark_playlist">删除书签</string>
+
+    <string name="delete_playlist_prompt">请问你要删除这个列表吗?</string>
+    <string name="playlist_creation_success">已创建播放列表</string>
+    <string name="playlist_add_stream_success">已加入播放列表</string>
+    <string name="playback_step">步骤</string>
+    <string name="playback_reset">重置</string>
+
+    <string name="start_accept_privacy_policy">为了遵守欧洲通用数据保护法规（GDPR,我们请你注意NewPipe的隐私政策.请仔细阅读.
+\n你必须接受它才能将错误报告发送给我们.</string>
+    <string name="accept">接受</string>
+    <string name="decline">拒绝</string>
+
+    <string name="limit_data_usage_none_description">没有限制</string>
+    <string name="limit_mobile_data_usage_title">使用移动数据时的解析度限制</string>
+    <string name="minimize_on_exit_title">最小化应用程序切换</string>
+    <string name="minimize_on_exit_summary">从主视频播放器切换到其他应用程序时的操作 - %s</string>
+    <string name="minimize_on_exit_none_description">没有</string>
+    <string name="minimize_on_exit_background_description">最小化背景播放器</string>
+    </resources>

@@ -61,7 +61,7 @@
 
     <string name="import_data_title">Importa una base de dades</string>
     <string name="export_data_title">Exporta una base de dades</string>
-    <string name="export_data_summary">Exporta l\'historial, les subscripcions i les llistes de reproducció.</string>
+    <string name="export_data_summary">Exporta l\'historial, les subscripcions i les llistes de reproducció</string>
     <string name="general_error">Error</string>
     <string name="network_error">Error de xarxa</string>
     <string name="video">Vídeo</string>
@@ -310,7 +310,7 @@
     <string name="main_bg_subtitle">Toqueu el botó de cerca per començar</string>
     <string name="use_external_video_player_summary">En algunes resolucions NO hi haurà àudio quan aquesta opció estigui activada</string>
     <string name="use_external_audio_player_title">Reproductor d\'àudio extern</string>
-    <string name="download_thumbnail_summary">Desactiveu-ho per evitar que es carreguin les miniatures i estalviar dades i memòria. Si canvieu aquesta opció, s\'esborrarà la memòria cau d\'imatges tant de la memòria com de l\'emmagatzematge.</string>
+    <string name="download_thumbnail_summary">Desactiveu-ho per evitar que es carreguin les miniatures i estalviar dades i memòria. Si canvieu aquesta opció, s\'esborrarà la memòria cau d\'imatges tant de la memòria com de l\'emmagatzematge</string>
     <string name="enable_search_history_summary">Emmagatzema les cerques localment</string>
     <string name="enable_watch_history_summary">Registra els vídeos visualitzats</string>
     <string name="resume_on_audio_focus_gain_title">Reprèn automàticament</string>
@@ -390,7 +390,7 @@
     <string name="unhook_checkbox">Desvincula (pot provocar distorsió)</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="metadata_cache_wipe_summary">Elimina totes les dades de llocs web de la memòria cau</string>
-    <string name="auto_queue_summary">Afegeix a la cua un vídeo relacionat quan es reprodueix l\'últim vídeo en una cua sense repetició.</string>
+    <string name="auto_queue_summary">Afegeix a la cua un vídeo relacionat quan es reprodueix l\'últim vídeo en una cua sense repetició</string>
     <string name="show_hold_to_append_title">Mostra els missatges d\'ajuda</string>
     <string name="show_hold_to_append_summary">Mostra un missatge d\'ajuda quan el botó de mode en segon pla o emergent estigui premut a la pàgina de detalls d\'un vídeo</string>
     <string name="info_labels">Què ha passat:\\nPetició:\\nIdioma del contingut:\\nServei:\\nHora GMT:\\nPaquet:\\nVersió:\\nVersió del SO:</string>
@@ -425,17 +425,17 @@
     <string name="no_streams_available_download">No hi ha vídeos que es puguin baixar</string>
 
     <string name="caption_setting_title">Subtítols</string>
-    <string name="caption_setting_description">Modifica la mida del text i el fons dels subtítols. Cal reiniciar l\'aplicació per aplicar els canvis.</string>
+    <string name="caption_setting_description">Modifica la mida del text i el fons dels subtítols. Cal reiniciar l\'aplicació per aplicar els canvis</string>
 
     <string name="toast_no_player">No s\'ha trobat cap aplicació que pugui reproduir aquest fitxer</string>
 
     <string name="clear_views_history_title">Esborra l\'historial de reproduccions</string>
-    <string name="clear_views_history_summary">Esborra l\'historial dels vídeos que s\'han reproduït.</string>
-    <string name="delete_view_history_alert">Esborra tot l\'historial de reproduccions.</string>
+    <string name="clear_views_history_summary">Esborra l\'historial dels vídeos que s\'han reproduït</string>
+    <string name="delete_view_history_alert">Esborra tot l\'historial de reproduccions</string>
     <string name="view_history_deleted">S\'ha esborrat l\'historial de reproduccions.</string>
     <string name="clear_search_history_title">Esborra l\'historial de cerca</string>
-    <string name="clear_search_history_summary">Esborra l\'historial de paraules cercades.</string>
-    <string name="delete_search_history_alert">Esborra tot l\'historial de cerca.</string>
+    <string name="clear_search_history_summary">Esborra l\'historial de paraules cercades</string>
+    <string name="delete_search_history_alert">Esborra tot l\'historial de cerca</string>
     <string name="search_history_deleted">S\'ha esborrat l\'historial de cerca.</string>
     <string name="one_item_deleted">S\'ha esborrat 1 element.</string>
 
