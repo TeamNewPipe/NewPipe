@@ -13,7 +13,6 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +27,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
 import org.schabi.newpipe.extractor.Info;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
@@ -49,8 +49,6 @@ import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.InputStream;
 import java.io.Serializable;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -66,6 +64,9 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability.AUDIO;
 import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability.VIDEO;
@@ -652,21 +653,29 @@ public class RouterActivity extends AppCompatActivity {
      * @return the redirection, or {@code null} if there is no such redirection
      */
     private static String getRedirectionOf(String url) {
-        HttpURLConnection con = null;
+        Response res = null;
         InputStream stream = null;
 
         try {
-            con = (HttpURLConnection) (new URL(url).openConnection());
-            con.setRequestProperty("User-Agent", Downloader.USER_AGENT);
-            con.setRequestProperty("Accept", "text/html,application/xhtml+xml,application/xml");
-            con.setRequestProperty("Accept-Language", NewPipe.getCountryLanguage());
-            //con.setRequestProperty("DNT", "1");
-            con.setInstanceFollowRedirects(false);
-            con.connect();
+            OkHttpClient ohc = new OkHttpClient()
+                    .newBuilder()
+                    .followRedirects(false)
+                    .followSslRedirects(false)
+                    .build();
 
-            switch (con.getResponseCode()) {
-                case HttpURLConnection.HTTP_OK:
-                    stream = con.getInputStream();
+            Request req = new Request.Builder()
+                    .url(url)
+                    .method("GET", null)
+                    .addHeader("User-Agent", Downloader.USER_AGENT)
+                    .addHeader("Accept-Language", NewPipe.getCountryLanguage())
+                    .addHeader("Accept", "text/html,application/xhtml+xml,application/xml")
+                    .build();
+
+            res = ohc.newCall(req).execute();
+
+            switch (res.code()) {
+                case 200:
+                    stream = res.body().byteStream();
 
                     boolean isHTTPS = url.substring(0, 8).toLowerCase().equals("https://");
                     Document page = Jsoup.parse(stream, "UTF-8", url);
@@ -721,22 +730,23 @@ public class RouterActivity extends AppCompatActivity {
                         }
                     }
                     break;
-                case HttpURLConnection.HTTP_MOVED_TEMP:
-                case HttpURLConnection.HTTP_MOVED_PERM:
-                case HttpURLConnection.HTTP_SEE_OTHER:
-                    return con.getHeaderField("Location");
+                case 301:
+                case 302:
+                case 303:
+                case 307:
+                case 308:
+                    return res.header("Location");
             }
         } catch (Exception e) {
-            Log.e(TAG, "Failed to check for redirection in ".concat(url), e);
-
-            if (con != null) {
-                con.disconnect();
-            }
+        } finally {
             if (stream != null) {
                 try {
                     stream.close();
                 } catch (Exception er) {
                 }
+            }
+            if (res != null) {
+                res.close();
             }
         }
 
