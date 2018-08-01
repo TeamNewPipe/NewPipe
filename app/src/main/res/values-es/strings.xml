@@ -500,4 +500,6 @@ abrir en modo popup</string>
 
     <string name="channels">Canales</string>
     <string name="users">Usuarios</string>
+    <string name="playlists">Listas de reproducción</string>
+    <string name="tracks">Pistas</string>
     </resources>
