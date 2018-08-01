@@ -434,11 +434,11 @@
 \n3. Un téléchargement va démarrer (ce sera celui du fichier nécessaire à l\'importation des abonnements)"</string>
     <string name="import_soundcloud_instructions">Pour importer vos abonnements SoundCloud, vous devez connaitre l\'URL de votre profil ou votre identifiant (id). Si vous le savez, tapez-le ci-dessous. 
 \n 
-\nSi vous ne le connaissez pas, veuillez suivre les étapes suivantes :
+\nSi vous ne le connaissez pas, veuillez suivre les étapes suivantes : 
 \n 
-\n1. Activer le \"mode bureau\" dans votre navigateur (le site n\'est pas accesible en mode mobile)
-\n2. Suivez ce : %1$s
-\n3. Connectez-vous à votre compte
+\n1. Activer le \"mode bureau\" dans votre navigateur (le site n\'est pas accesible en mode mobile) 
+\n2. Suivez cette URL : %1$s 
+\n3. Connectez-vous à votre compte 
 \n4. Copier l\'URL vers lequel vous venez d\'être redirigé (qui est l\'URL de votre profil)</string>
     <string name="import_soundcloud_instructions_hint">votreID, soundcloud.com/votreid</string>
 
@@ -485,4 +485,16 @@
 \nVous devez l\'accepter pour nous envoyer le rapport de bug.</string>
     <string name="limit_data_usage_none_description">Pas de limite</string>
     <string name="limit_mobile_data_usage_title">Limiter la résolution en données mobile</string>
+    <string name="channels">Chaînes</string>
+    <string name="playlists">Listes de lecture</string>
+    <string name="tracks">Pistes</string>
+    <string name="users">Utilisateurs</string>
+    <string name="skip_silence_checkbox">Accélérer pendant les silences</string>
+    <string name="playback_step">Étape</string>
+    <string name="playback_reset">Réinitialiser</string>
+
+    <string name="minimize_on_exit_title">Minimiser</string>
+    <string name="minimize_on_exit_summary">Action lors du changement d\'applications depuis le lecteur vidéo</string>
+    <string name="minimize_on_exit_none_description">Aucune</string>
+    <string name="minimize_on_exit_background_description">Réduire</string>
     </resources>
