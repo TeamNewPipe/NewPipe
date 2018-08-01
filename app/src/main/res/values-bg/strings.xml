@@ -72,7 +72,7 @@
     <string name="resume_on_audio_focus_gain_title">Възобнови при връщане на фокус</string>
     <string name="resume_on_audio_focus_gain_summary">Продължавай възпроизвеждането след прекъсване (например телефонно обаждане)</string>
     <string name="download_dialog_title">Изтегли</string>
-    <string name="next_video_title">Следващо видео</string>
+    <string name="next_video_title">Следващ клип</string>
     <string name="show_next_and_similar_title">Показвай „следващ“ и „подобни“</string>
     <string name="show_hold_to_append_title">Показвай съвет „задръж за добавяне“</string>
     <string name="url_not_supported_toast">Непознат URL</string>
@@ -157,7 +157,7 @@
     <string name="video">Видео</string>
     <string name="audio">Аудио</string>
     <string name="retry">Опитай отново</string>
-    <string name="storage_permission_denied">Отказан достъп до хранилището (провери правата)</string>
+    <string name="storage_permission_denied">Достъпа до хранилището е отказан</string>
     <string name="use_old_player_title">Използвай стария плейър</string>
     <string name="use_old_player_summary">Използваю стария вграден Mediaframewoek плейър</string>
 
@@ -174,8 +174,8 @@
 
     <string name="no_videos">Няма клипове</string>
     <plurals name="videos">
-	<item quantity="one">%s видео</item>
-	<item quantity="other">%s видеота</item>
+	<item quantity="one">%s клип</item>
+	<item quantity="other">%s клипове</item>
 </plurals>
 
     <string name="pause">Пауза</string>
@@ -251,7 +251,7 @@
     <string name="clear_search_history_summary">Изтрива историята с въвежданите за търсене ключови думи.</string>
     <string name="delete_search_history_alert">Изтрий цялата история на търсенията.</string>
     <string name="search_history_deleted">Историята на търсенията е изтрита.</string>
-    <string name="youtube_signature_decryption_error">URL подписът на видеото не можа да бъде дешифрован</string>
+    <string name="youtube_signature_decryption_error">URL подписът на клипа не можа да бъде дешифрован</string>
     <string name="external_player_unsupported_link_type">Външните плейъри не поддържат този вид линкове</string>
     <string name="invalid_url_toast">Невалиден URL</string>
     <string name="invalid_directory">Невалидна директория</string>
@@ -286,7 +286,7 @@
     <string name="app_license_title">Лицензът на NewPipe</string>
     <string name="no_player_found_toast">Липсва стрийм плейър (можете да изтеглите VLC, за да пуснете стрийма)</string>
     <string name="download_thumbnail_summary">Изключете, за да спрете зареждането на всички миниатюри, спестявайки трафик и памет. При промяна на тази настройка, текущата кеш-памет на изображенията ще бъде изтрита.</string>
-    <string name="show_hold_to_append_summary">Показвай подсказка, когато е избран фонов режим или режим в прозорец на страницата с детайли на съответното видео</string>
+    <string name="show_hold_to_append_summary">Показвай подсказка, когато е избран фонов режим или режим в прозорец на страницата с детайли на съответния клип</string>
     <string name="clear_views_history_summary">Изтрива историята на възпроизвежданите стриймове.</string>
     <string name="video_streams_empty">Не са намерени видео стриймове</string>
     <string name="audio_streams_empty">Не са намерени аудио стриймове</string>
@@ -457,4 +457,10 @@
     <string name="minimize_on_exit_background_description">Минимизирай във фонов режим</string>
     <string name="minimize_on_exit_popup_description">Минимизирай в прозорец</string>
 
-</resources>
+<string name="channels">Канали</string>
+    <string name="playlists">Плейлисти</string>
+    <string name="tracks">Песни</string>
+    <string name="users">Потребители</string>
+    <string name="playback_reset">Възстанови</string>
+
+    </resources>
