@@ -493,4 +493,8 @@
     <string name="playback_step">Schritt</string>
     <string name="playback_reset">Zurücksetzen</string>
 
+    <string name="channels">Kanäle</string>
+    <string name="playlists">Wiedergabelisten</string>
+    <string name="tracks">Titel</string>
+    <string name="users">Nutzer</string>
     </resources>
