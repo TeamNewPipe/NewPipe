@@ -25,9 +25,9 @@
     <string name="download_path_summary">Genväg för att lagra nerladdade videor i</string>
     <string name="download_path_dialog_title">Fyll i genvägen som videor ska laddas ner till</string>
 
-    <string name="download_path_audio_title">Plats för att ladda ner ljud till</string>
-    <string name="download_path_audio_summary">Plats för att lagra nerladdat ljud i</string>
-    <string name="download_path_audio_dialog_title">Ange nerladdningsplats för ljudfiler</string>
+    <string name="download_path_audio_title">Genväg för nerladdning av ljud</string>
+    <string name="download_path_audio_summary">Genväg för att lagra nerladdade ljudfiler i</string>
+    <string name="download_path_audio_dialog_title">Fyll i genvägen som ljudfiler ska laddas ner till</string>
 
     <string name="autoplay_by_calling_app_summary">Automatiskt spelar en video upp när NewPipe öppnas av en annan app</string>
     <string name="default_resolution_title">Standardupplösning</string>
@@ -120,7 +120,7 @@
 
     <string name="fragment_whats_new">Vad är nytt</string>
 
-    <string name="autoplay_by_calling_app_title">Autospela</string>
+    <string name="autoplay_by_calling_app_title">Spela upp automatiskt</string>
     <string name="enable_search_history_title">Sök historik</string>
     <string name="enable_search_history_summary">Spara sökfrågor lokalt</string>
     <string name="enable_watch_history_title">Historik &amp; Cacheminne</string>
@@ -327,7 +327,7 @@
     <string name="delete_view_history_alert">Ta bort hela visningshistoriken.</string>
     <string name="view_history_deleted">Visningshistorik borttagen.</string>
     <string name="clear_search_history_title">Rensa sökhistorik</string>
-    <string name="clear_search_history_summary">Tar bort historiken för söka nyckelord.</string>
+    <string name="clear_search_history_summary">Tar bort historiken för sökta nyckelord.</string>
     <string name="delete_search_history_alert">Ta bort hela sökhistoriken.</string>
     <string name="search_history_deleted">Sökhistorik borttagen.</string>
     <string name="external_player_unsupported_link_type">Externa spelare stöder inte dessa typer av länkar</string>
