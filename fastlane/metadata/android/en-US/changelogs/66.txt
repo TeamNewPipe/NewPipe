@@ -1,4 +1,4 @@
-# Chagelog of v0.13.7
+# Changelog of v0.13.7
 
 ### Fixed
 - Fix sort filter issues of v0.13.6
