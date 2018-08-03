@@ -20,7 +20,7 @@
     <string name="default_resolution_title">Разрешение по умолчанию</string>
     <string name="play_with_kodi_title">Воспроизвести в Kodi</string>
     <string name="kore_not_found">Приложение Kore не найдено. Установить его?</string>
-    <string name="show_play_with_kodi_title">Показать \"Воспроизвести в Kodi\"</string>
+    <string name="show_play_with_kodi_title">\"Воспроизвести в Kodi\"</string>
     <string name="show_play_with_kodi_summary">Показать опцию воспроизведения видео через медиацентр Kodi</string>
     <string name="play_audio">Аудио</string>
     <string name="default_audio_format_title">Формат аудио по умолчанию</string>
@@ -128,7 +128,7 @@
     <string name="show_higher_resolutions_summary">Только некоторые устройства могут воспроизводить видео в 2K/4K</string>
     <string name="default_video_format_title">Формат видео по умолчанию</string>
     <string name="black_theme_title">Чёрная</string>
-    <string name="popup_remember_size_pos_title">Запоминать размер и положение всплывающего окна</string>
+    <string name="popup_remember_size_pos_title">Восстановить всплывающее окно</string>
     <string name="player_gesture_controls_summary">Изменять яркость и громкость жестами</string>
     <string name="settings_category_popup_title">Всплывающее окно</string>
     <string name="popup_playing_toast">Воспроизведение во всплывающем окне</string>
@@ -162,7 +162,7 @@
     <string name="short_thousand"> тыс.</string>
     <string name="default_popup_resolution_title">Разрешение всплывающего окна</string>
     <string name="popup_remember_size_pos_summary">Запоминать размер и положение всплывающего окна</string>
-    <string name="show_search_suggestions_title">Подсказки поиска</string>
+    <string name="show_search_suggestions_title">Варианты поиска</string>
 <string name="best_resolution">Лучшее разрешение</string>
 
     <string name="use_old_player_summary">Старый встроенный плеер на Mediaframework</string>
@@ -200,7 +200,7 @@
     <string name="enable_search_history_summary">Хранить поисковые запросы локально</string>
     <string name="enable_watch_history_title">История и кэш</string>
     <string name="enable_watch_history_summary">Запоминать просмотренные видео</string>
-    <string name="resume_on_audio_focus_gain_title">Возобновлять при возврате фокуса</string>
+    <string name="resume_on_audio_focus_gain_title">Возобновлять при фокусе</string>
     <string name="resume_on_audio_focus_gain_summary">Возобновлять воспроизведение после перерывов (например, телефонных звонков)</string>
 
 
@@ -279,7 +279,7 @@
     <string name="play_queue_remove">Удалить</string>
     <string name="subscribed_button_title">Вы подписаны</string>
     <string name="channel_unsubscribed">Подписка отменена</string>
-    <string name="show_hold_to_append_title">Подсказка \"Зажмите, чтобы добавить\"</string>
+    <string name="show_hold_to_append_title">\"Зажмите, чтобы добавить\"</string>
     <string name="show_hold_to_append_summary">Показать подсказку при нажатии \"В окне\" или \"В фоне\" на странице сведений о видео</string>
     <string name="unknown_content">[Неизвестно]</string>
 
@@ -334,7 +334,7 @@
 
     <string name="use_inexact_seek_title">Быстрый неточный поиск</string>
     <string name="use_inexact_seek_summary">Неточный поиск позволяет плееру искать позицию быстрее, но менее точно</string>
-    <string name="auto_queue_title">Автоматическая очередь следующего стрима</string>
+    <string name="auto_queue_title">Автовоспроизведение</string>
     <string name="auto_queue_summary">Автоматически добавлять связанные видео, при воспроизведении с последнего видео в неповторяющейся очереди.</string>
     <string name="settings_category_debug_title">Отладка</string>
     <string name="file">Файл</string>
@@ -471,7 +471,7 @@
     <string name="one_item_deleted">1 элемент удалён.</string>
 
     <string name="app_license">NewPipe — свободное программное обеспечение: вы можете использовать, изучать и улучшать его по своему усмотрению. В частности, вы можете распространять и/или изменять его в соответствии с условиями GNU General Public License, опубликованной Free Software Foundation, либо версии 3, либо (по вашему выбору) любой более поздней версии.</string>
-    <string name="preferred_open_action_settings_title">Предпочтительное действие \"Открыть\"</string>
+    <string name="preferred_open_action_settings_title">При открытии контента</string>
     <string name="import_settings">Хотите импортировать настройки?</string>
 
     <string name="privacy_policy_title">Политика конфиденциальности NewPipe</string>
@@ -484,7 +484,7 @@
     <string name="decline">Отклонить</string>
 
     <string name="limit_data_usage_none_description">Без ограничений</string>
-    <string name="limit_mobile_data_usage_title">Предельное разрешение в мобильной сети</string>
+    <string name="limit_mobile_data_usage_title">Предел разрешения в мобильной сети</string>
     <string name="channels">Каналы</string>
     <string name="playlists">Плейлисты</string>
     <string name="tracks">Дорожки</string>
@@ -493,7 +493,7 @@
     <string name="playback_step">Шаг</string>
     <string name="playback_reset">Сброс</string>
 
-    <string name="minimize_on_exit_title">Сворачивать при переключении приложений</string>
+    <string name="minimize_on_exit_title">При сворачивании приложения</string>
     <string name="minimize_on_exit_summary">При переключении воспроизведения видео со стандартного плеера на другое приложение — %s</string>
     <string name="minimize_on_exit_none_description">Ничего не делать</string>
     <string name="minimize_on_exit_background_description">Свернуть в режим фонового воспроизведения</string>
