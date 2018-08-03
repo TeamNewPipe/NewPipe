@@ -334,8 +334,8 @@
 
     <string name="use_inexact_seek_title">Быстрый неточный поиск</string>
     <string name="use_inexact_seek_summary">Неточный поиск позволяет плееру искать позицию быстрее, но менее точно</string>
-    <string name="auto_queue_title">Автовоспроизведение</string>
-    <string name="auto_queue_summary">Автоматически добавлять связанные видео, при воспроизведении с последнего видео в неповторяющейся очереди.</string>
+    <string name="auto_queue_title">Автодополнение очереди</string>
+    <string name="auto_queue_summary">Автоматически добавлять связанные видео, при воспроизведении с последнего видео в неповторяющейся очереди</string>
     <string name="settings_category_debug_title">Отладка</string>
     <string name="file">Файл</string>
 
@@ -461,12 +461,12 @@
     <string name="caption_setting_description">Изменить размер и фон титров. Требуется перезапуск приложения для вступления изменений в силу.</string>
 
     <string name="clear_views_history_title">Очистить историю просмотров</string>
-    <string name="delete_view_history_alert">Удалить всю историю просмотров.</string>
+    <string name="delete_view_history_alert">История просмотров будет удалена.</string>
     <string name="view_history_deleted">История просмотров удалена.</string>
     <string name="clear_search_history_title">Очистить историю поиска</string>
     <string name="clear_search_history_summary">Удалить историю поисковых запросов.</string>
     <string name="clear_views_history_summary">Удалить историю воспроизведённых потоков.</string>
-    <string name="delete_search_history_alert">Удалить всю историю поиска.</string>
+    <string name="delete_search_history_alert">История поиска будет удалена.</string>
     <string name="search_history_deleted">История поиска удалена.</string>
     <string name="one_item_deleted">1 элемент удалён.</string>
 
