@@ -329,7 +329,7 @@
 <string name="import_data_title">Datenbank importieren</string>
     <string name="export_data_title">Datenbank exportieren</string>
     <string name="import_data_summary">Wird deinen Verlauf und deine Abos überschreiben</string>
-    <string name="export_data_summary">Verlauf, Abos und Wiedergabelisten exportieren.</string>
+    <string name="export_data_summary">Verlauf, Abos und Wiedergabelisten exportieren</string>
     <string name="no_valid_zip_file">Keine gültige ZIP-Datei</string>
     <string name="could_not_import_all_files">Warnung: Nicht alle Dateien konnten importiert werden.</string>
     <string name="override_current_data">Dies wird deine aktuellen Einstellungen überschreiben.</string>
@@ -421,9 +421,9 @@
     <string name="unhook_checkbox">Verknüpfung aufheben (kann zu Verzerrungen führen)</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Standard</string>
-<string name="download_thumbnail_summary">Deaktiviere diese Option, um das Laden aller Miniaturansichten zu stoppen und Daten und Speicherverbrauch zu sparen. Wenn du dies änderst, wird sowohl der In-Memory- als auch der On-Disk-Image-Cache gelöscht.</string>
+<string name="download_thumbnail_summary">Deaktiviere diese Option, um das Laden aller Miniaturansichten zu stoppen und Daten und Speicherverbrauch zu sparen. Wenn du dies änderst, wird sowohl der In-Memory- als auch der On-Disk-Image-Cache gelöscht</string>
     <string name="auto_queue_title">Nächsten Stream automatisch einreihen</string>
-    <string name="auto_queue_summary">Automatisches Anhängen eines verwandten Streams beim Abspielen des letzten Streams in einer nicht wiederholten Warteschlange.</string>
+    <string name="auto_queue_summary">Automatisches Anhängen eines verwandten Streams beim Abspielen des letzten Streams in einer nicht wiederholten Warteschlange</string>
     <string name="drawer_header_action_paceholder_text">Hier wird bald etwas stehen ;D</string>
 
 
@@ -456,16 +456,16 @@
     <string name="preferred_open_action_settings_summary">Standardaktion beim Öffnen von Inhalten - %s</string>
 
     <string name="caption_setting_title">Untertitel</string>
-    <string name="caption_setting_description">Ändere Textgröße und Hintergrundstil des Untertitels im Player. Wird erst nach Neustart des App wirksam.</string>
+    <string name="caption_setting_description">Ändere Textgröße und Hintergrundstil des Untertitels im Player. Wird erst nach Neustart des App wirksam</string>
 
     <string name="toast_no_player">Keine App zum Abspielen dieser Datei installiert</string>
 
     <string name="clear_views_history_title">Verlauf leeren</string>
-    <string name="clear_views_history_summary">Löscht den Verlauf der abgespielten Streams.</string>
+    <string name="clear_views_history_summary">Löscht den Verlauf der abgespielten Streams</string>
     <string name="delete_view_history_alert">Löscht den ganzen Verlauf.</string>
     <string name="view_history_deleted">Verlauf gelöscht.</string>
     <string name="clear_search_history_title">Suchverlauf löschen</string>
-    <string name="clear_search_history_summary">Lösche Verlauf der Suchschlüsselwörter.</string>
+    <string name="clear_search_history_summary">Lösche Verlauf der Suchschlüsselwörter</string>
     <string name="delete_search_history_alert">Lösche gesamten Suchverlauf.</string>
     <string name="search_history_deleted">Suchverlauf gelöscht.</string>
     <string name="one_item_deleted">1 Element gelöscht.</string>
