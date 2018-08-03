@@ -332,7 +332,7 @@
 
     <string name="controls_add_to_playlist_title">Добавить к</string>
 
-    <string name="use_inexact_seek_title">Быстрый неточный поиск</string>
+    <string name="use_inexact_seek_title">Быстрый поиск позиции</string>
     <string name="use_inexact_seek_summary">Неточный поиск позволяет плееру искать позицию быстрее, но менее точно</string>
     <string name="auto_queue_title">Автодополнение очереди</string>
     <string name="auto_queue_summary">Автоматически добавлять связанные видео, при воспроизведении с последнего видео в неповторяющейся очереди</string>
@@ -447,7 +447,7 @@
     <string name="playback_speed_control">Управление скоростью воспроизведения</string>
     <string name="playback_tempo">Темп</string>
     <string name="playback_pitch">Тон</string>
-    <string name="unhook_checkbox">Независимо (возможны искажения)</string>
+    <string name="unhook_checkbox">Независимо (искажения)</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">По умолчанию</string>
 <string name="metadata_cache_wipe_summary">Удалить все загруженные данные веб-страниц</string>
