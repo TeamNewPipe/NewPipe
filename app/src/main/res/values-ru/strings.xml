@@ -342,7 +342,7 @@
     <string name="import_data_title">Импорт данных</string>
     <string name="export_data_title">Экспорт данных</string>
     <string name="import_data_summary">Ваша текущая история и подписки будут перезаписаны</string>
-    <string name="export_data_summary">Экспорт истории, подписок и плейлистов.</string>
+    <string name="export_data_summary">Экспорт истории, подписок и плейлистов</string>
     <string name="invalid_directory">Неверная папка</string>
     <string name="invalid_source">Неверный файл или источник контента</string>
     <string name="invalid_file">Файл не существует или нет разрешения на его чтение или запись</string>
