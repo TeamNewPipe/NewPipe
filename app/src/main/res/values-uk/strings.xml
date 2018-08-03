@@ -192,7 +192,7 @@
     <string name="import_data_title">Імпортувати базу</string>
     <string name="export_data_title">Експортувати базу</string>
     <string name="import_data_summary">Це перепише чинну історію та підписання</string>
-    <string name="export_data_summary">Експортувати історію, підписання та плейлисти.</string>
+    <string name="export_data_summary">Експортувати історію, підписання та плейлисти</string>
     <string name="player_stream_failure">Неможливо відтворити цей стрим</string>
     <string name="player_recoverable_failure">Відновлююсь після помилки програвача</string>
     <string name="invalid_url_toast">Помилкова URL</string>
@@ -387,7 +387,7 @@
 <string name="use_inexact_seek_title">Використовувати неточне шукання</string>
     <string name="use_inexact_seek_summary">Неточне шукання дозволяє програвачеві рухатися позиціями швидше, проте з меншою точністю</string>
     <string name="auto_queue_title">Автоматично додати до черги наступний стрим</string>
-    <string name="auto_queue_summary">Автоматично додавати пов\'язаний стрим під час відтворення останнього у неповторювальній черзі.</string>
+    <string name="auto_queue_summary">Автоматично додавати пов\'язаний стрим під час відтворення останнього у неповторювальній черзі</string>
     <string name="live_sync">СИНХРОНІЗАЦІЯ</string>
 
     <string name="file">Теки</string>
@@ -429,7 +429,7 @@
 \n
 \nПродовжуватимете?</string>
 <string name="download_thumbnail_title">Завантажити ескізи</string>
-    <string name="download_thumbnail_summary">Відключити аби зупинити завантаження ескізів та заощадити використання ресурсів та пам\'яті. Увімкнення функції призведе до повного вичищення кешу зображень.</string>
+    <string name="download_thumbnail_summary">Відключити аби зупинити завантаження ескізів та заощадити використання ресурсів та пам\'яті. Увімкнення функції призведе до повного вичищення кешу зображень</string>
     <string name="thumbnail_cache_wipe_complete_notice">Кеш зображень стерто</string>
     <string name="metadata_cache_wipe_title">Стерти кеш метаданих</string>
     <string name="metadata_cache_wipe_summary">"Усунути всі кешовані дані веб-сторінки "</string>
@@ -446,16 +446,16 @@
     <string name="preferred_open_action_settings_summary">Типова дія під час відкриття вмісту — %s</string>
 
     <string name="caption_setting_title">Субтитри</string>
-    <string name="caption_setting_description">Змінення маштабу тексту субтитрів та фонових стилів. Увімкнення функції потребує перезавантаження застосунку.</string>
+    <string name="caption_setting_description">Змінення маштабу тексту субтитрів та фонових стилів. Увімкнення функції потребує перезавантаження застосунку</string>
 
     <string name="toast_no_player">Не знайдено відповідного застосунку для відтворення цього файла</string>
 
     <string name="clear_views_history_title">Очистити історію переглядів</string>
-    <string name="clear_views_history_summary">Видаляє історію відтворень.</string>
+    <string name="clear_views_history_summary">Видаляє історію відтворень</string>
     <string name="delete_view_history_alert">Видалити всю історію переглядів.</string>
     <string name="view_history_deleted">Історію переглядів було видалено.</string>
     <string name="clear_search_history_title">Очистити історію пошуків</string>
-    <string name="clear_search_history_summary">Видаляє історію шуканих ключових слів.</string>
+    <string name="clear_search_history_summary">Видаляє історію шуканих ключових слів</string>
     <string name="delete_search_history_alert">Видалити всю пошукову історію.</string>
     <string name="search_history_deleted">Пошукову історію було видалено.</string>
     <string name="one_item_deleted">Видалено один фраґмент.</string>
