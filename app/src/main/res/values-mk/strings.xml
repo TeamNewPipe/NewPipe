@@ -70,13 +70,13 @@
     <string name="use_inexact_seek_title">Брзо, непрецизно премотување</string>
     <string name="use_inexact_seek_summary">Со непрецизното премотување може да се пребарува побрзо, но понепрецизно</string>
     <string name="download_thumbnail_title">Прочитај сликички</string>
-    <string name="download_thumbnail_summary">Оневозможи, за да не се читаат сликичките од видеото, за штедење меморија и интернет. Промена на опцијата ќе ја избрише кеш-меморијата.</string>
+    <string name="download_thumbnail_summary">Оневозможи, за да не се читаат сликичките од видеото, за штедење меморија и интернет. Промена на опцијата ќе ја избрише кеш-меморијата</string>
     <string name="thumbnail_cache_wipe_complete_notice">Сликичките се избришани</string>
     <string name="metadata_cache_wipe_title">Избриши ги собраните мета-податоци</string>
     <string name="metadata_cache_wipe_summary">Избриши ги сите собрани податоци од веб-страни</string>
     <string name="metadata_cache_wipe_complete_notice">Избришани се мета-податоците</string>
     <string name="auto_queue_title">Автоматски постави го на листа следното видео</string>
-    <string name="auto_queue_summary">Автоматски прикачи поврзано видео кога ќе почне последното пуштено видео во неповторлива листа.</string>
+    <string name="auto_queue_summary">Автоматски прикачи поврзано видео кога ќе почне последното пуштено видео во неповторлива листа</string>
     <string name="player_gesture_controls_title">Управување на плеерот со гестови</string>
     <string name="player_gesture_controls_summary">Користи гестови за управување на светлоста и тонот</string>
     <string name="show_search_suggestions_title">Предлози за пребарување</string>
@@ -146,7 +146,7 @@
     <string name="import_data_title">Внеси датабаза</string>
     <string name="export_data_title">Изнеси база на податоци</string>
     <string name="import_data_summary">Ќе ги избрише моменталните членства и историја</string>
-    <string name="export_data_summary">Изнеси историја, членства и плејлисти.</string>
+    <string name="export_data_summary">Изнеси историја, членства и плејлисти</string>
     <string name="general_error">Грешка</string>
     <string name="network_error">Мрежна грешка</string>
     <string name="could_not_load_thumbnails">Не можеа да се прочитаат сите сликички</string>
@@ -422,12 +422,12 @@
     <string name="playback_nightcore">„Nightcore“</string>
     <string name="playback_default">Стандардно</string>
 <string name="clear_views_history_title">Избриши историја на гледаност</string>
-    <string name="clear_views_history_summary">Ја брише историјата на пуштени видеа.</string>
-    <string name="delete_view_history_alert">Избриши ја целата историја на гледаност.</string>
+    <string name="clear_views_history_summary">Ја брише историјата на пуштени видеа</string>
+    <string name="delete_view_history_alert">Избриши ја целата историја на гледаност</string>
     <string name="view_history_deleted">Избришана е историјата на гледаност.</string>
     <string name="clear_search_history_title">Избриши историја на пребарувања</string>
-    <string name="clear_search_history_summary">Ја брише историјата на пребарувања.</string>
-    <string name="delete_search_history_alert">Избриши ја целата историја на пребарувања.</string>
+    <string name="clear_search_history_summary">Ја брише историјата на пребарувања</string>
+    <string name="delete_search_history_alert">Избриши ја целата историја на пребарувања</string>
     <string name="search_history_deleted">Избришана е историјата на пребарувања.</string>
     <string name="no_streams_available_download">Нема стримови за симнување</string>
 
@@ -442,7 +442,7 @@
     <string name="preferred_open_action_settings_summary">Стандардна акција при отворање видеа — %s</string>
 
     <string name="caption_setting_title">Преводи</string>
-    <string name="caption_setting_description">Смени ја големината и стилот на преводот. Потребен е рестарт за промена.</string>
+    <string name="caption_setting_description">Смени ја големината и стилот на преводот. Потребен е рестарт за промена</string>
 
     <string name="privacy_policy_title">NewPipe - политика за приватност</string>
     <string name="privacy_policy_encouragement">Проектот NewPipe сериозно ја сфаќа вашата приватност. Затоа апликацијата не собира ваши податоци без ваша дозвола.
