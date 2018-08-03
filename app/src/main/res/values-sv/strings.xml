@@ -324,11 +324,11 @@
     <string name="export_data_summary">Exportera historik, prenumerationer och spellistor</string>
     <string name="clear_views_history_title">Rensa visningshistorik</string>
     <string name="clear_views_history_summary">Tar bort historiken för spelade videoklipp</string>
-    <string name="delete_view_history_alert">Ta bort hela visningshistoriken.</string>
+    <string name="delete_view_history_alert">Ta bort hela visningshistoriken</string>
     <string name="view_history_deleted">Visningshistorik borttagen.</string>
     <string name="clear_search_history_title">Rensa sökhistorik</string>
     <string name="clear_search_history_summary">Tar bort historiken för sökta nyckelord</string>
-    <string name="delete_search_history_alert">Ta bort hela sökhistoriken.</string>
+    <string name="delete_search_history_alert">Ta bort hela sökhistoriken</string>
     <string name="search_history_deleted">Sökhistorik borttagen.</string>
     <string name="external_player_unsupported_link_type">Externa spelare stöder inte dessa typer av länkar</string>
     <string name="invalid_url_toast">Ogiltig URL</string>
