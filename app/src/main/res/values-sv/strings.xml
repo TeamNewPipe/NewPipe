@@ -292,7 +292,7 @@
 
     <string name="use_inexact_seek_title">Använda snabb inexact sökning</string>
     <string name="download_thumbnail_title">Ladda miniatyrer</string>
-    <string name="download_thumbnail_summary">Inaktivera för att stoppa alla miniatyrbilder från att ladda och spara på data och minnesanvändning. Ändring av detta kommer att rensa cache-minnet.</string>
+    <string name="download_thumbnail_summary">Inaktivera för att stoppa alla miniatyrbilder från att ladda och spara på data och minnesanvändning. Ändring av detta kommer att rensa cache-minnet</string>
     <string name="thumbnail_cache_wipe_complete_notice">Bild cacheminnet var rensad</string>
     <string name="service_title">Tjänst</string>
     <string name="settings_category_debug_title">Debug</string>
@@ -308,7 +308,7 @@
     <string name="metadata_cache_wipe_summary">Ta bort alla cachade webbsidor</string>
     <string name="metadata_cache_wipe_complete_notice">Metadata cache rensad</string>
     <string name="auto_queue_title">"Köa nästa ström automatiskt "</string>
-    <string name="auto_queue_summary">Lägg automatiskt till en relaterad ström när du spelar den sista strömmen i en ej upprepad kö.</string>
+    <string name="auto_queue_summary">Lägg automatiskt till en relaterad ström när du spelar den sista strömmen i en ej upprepad kö</string>
     <string name="default_content_country_title">Standard innehåll land</string>
     <string name="channels">Kanaler</string>
     <string name="playlists">Spellistor</string>
@@ -321,13 +321,13 @@
     <string name="import_data_title">Importera databas</string>
     <string name="export_data_title">Exportera databas</string>
     <string name="import_data_summary">Kommer att skriva över din nuvarande historik och prenumerationer</string>
-    <string name="export_data_summary">Exportera historik, prenumerationer och spellistor.</string>
+    <string name="export_data_summary">Exportera historik, prenumerationer och spellistor</string>
     <string name="clear_views_history_title">Rensa visningshistorik</string>
-    <string name="clear_views_history_summary">Tar bort historiken för spelade videoklipp.</string>
+    <string name="clear_views_history_summary">Tar bort historiken för spelade videoklipp</string>
     <string name="delete_view_history_alert">Ta bort hela visningshistoriken.</string>
     <string name="view_history_deleted">Visningshistorik borttagen.</string>
     <string name="clear_search_history_title">Rensa sökhistorik</string>
-    <string name="clear_search_history_summary">Tar bort historiken för sökta nyckelord.</string>
+    <string name="clear_search_history_summary">Tar bort historiken för sökta nyckelord</string>
     <string name="delete_search_history_alert">Ta bort hela sökhistoriken.</string>
     <string name="search_history_deleted">Sökhistorik borttagen.</string>
     <string name="external_player_unsupported_link_type">Externa spelare stöder inte dessa typer av länkar</string>
@@ -410,7 +410,7 @@
     <string name="caption_auto_generated">Auto-genererade</string>
 
     <string name="caption_setting_title">Textning</string>
-    <string name="caption_setting_description">Ändra spelaren textskala och bakgrundsstil. Kräver att appen startar om för att träder i kraft.</string>
+    <string name="caption_setting_description">Ändra spelaren textskala och bakgrundsstil. Kräver att appen startar om för att träder i kraft</string>
 
     <string name="enable_leak_canary_title">Aktivera LeakCanary</string>
     <string name="enable_leak_canary_summary">Minnesläcka övervakning kan orsaka att appen inte svarar under heap dumpning</string>
