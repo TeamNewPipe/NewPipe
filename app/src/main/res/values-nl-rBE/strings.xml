@@ -70,13 +70,13 @@
     <string name="use_inexact_seek_title">Snel, minder exact spoelen gebruiken</string>
     <string name="use_inexact_seek_summary">Minder exact spoelen laat de speler sneller posities zoeken met verminderde precisie</string>
     <string name="download_thumbnail_title">Miniatuurvoorbeelden laden</string>
-    <string name="download_thumbnail_summary">Schakelt dit uit voor alle miniatuurvoorbeelden niet meer te laden; dit bespaart gegevens en geheugen. Het wijzigen van deze instelling wist het geheugen en de afbeeldingscache.</string>
+    <string name="download_thumbnail_summary">Schakelt dit uit voor alle miniatuurvoorbeelden niet meer te laden; dit bespaart gegevens en geheugen. Het wijzigen van deze instelling wist het geheugen en de afbeeldingscache</string>
     <string name="thumbnail_cache_wipe_complete_notice">Afbeeldingscache gewist</string>
     <string name="metadata_cache_wipe_title">Gecachete metagegevens wissen</string>
     <string name="metadata_cache_wipe_summary">Alle gecachete webpagina-gegevens wissen</string>
     <string name="metadata_cache_wipe_complete_notice">Metagegevens-cache gewist</string>
     <string name="auto_queue_title">Volgende stream automatisch in wachtrij plaatsen</string>
-    <string name="auto_queue_summary">Automatisch ne gerelateerde stream toevoegen bij het afspelen van de laatste stream in ne nie-herhalende wachtlijst.</string>
+    <string name="auto_queue_summary">Automatisch ne gerelateerde stream toevoegen bij het afspelen van de laatste stream in ne nie-herhalende wachtlijst</string>
     <string name="player_gesture_controls_title">Bewegingscontrole</string>
     <string name="player_gesture_controls_summary">Gebruik bewegingen voor helderheid en volume van de speler aan te passen</string>
     <string name="show_search_suggestions_title">Zoeksuggesties</string>
@@ -146,7 +146,7 @@
     <string name="import_data_title">Databank importeren</string>
     <string name="export_data_title">Databank exporteren</string>
     <string name="import_data_summary">Dit zal uw huidige geschiedenis en abonnementen overschrijven</string>
-    <string name="export_data_summary">Exporteer geschiedenis, abonnementen en speellijsten.</string>
+    <string name="export_data_summary">Exporteer geschiedenis, abonnementen en speellijsten</string>
     <string name="general_error">Fout</string>
     <string name="network_error">Netwerkfout</string>
     <string name="could_not_load_thumbnails">Kon niet alle miniaturen laden</string>
@@ -380,7 +380,7 @@
     <string name="caption_auto_generated">Automatisch gegenereerd</string>
 
     <string name="caption_setting_title">Koppen</string>
-    <string name="caption_setting_description">Koptekstgrootte en achtergrondstijlen wijzigen. Vereist nen herstart van den app.</string>
+    <string name="caption_setting_description">Koptekstgrootte en achtergrondstijlen wijzigen. Vereist nen herstart van den app</string>
 
     <string name="enable_leak_canary_title">LeakCanary inschakelen</string>
     <string name="enable_leak_canary_summary">Het monitoren van geheugenlekken kan dervoor zorgen da’ den app nie’ goe meer reageerd</string>
@@ -426,12 +426,12 @@
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Standaard</string>
 <string name="clear_views_history_title">Kijkgeschiedenis wissen</string>
-    <string name="clear_views_history_summary">Verwijderd de geschiedenis van afgespeelde streams.</string>
-    <string name="delete_view_history_alert">Verwijderd de ganse kijkgeschiedenis.</string>
+    <string name="clear_views_history_summary">Verwijderd de geschiedenis van afgespeelde streams</string>
+    <string name="delete_view_history_alert">Verwijderd de ganse kijkgeschiedenis</string>
     <string name="view_history_deleted">Kijkgeschiedenis verwijderd.</string>
     <string name="clear_search_history_title">Zoekgeschiedenis wissen</string>
-    <string name="clear_search_history_summary">Verwijderd de gebruikte zoektermen.</string>
-    <string name="delete_search_history_alert">Verwijderd de ganse geschiedenis.</string>
+    <string name="clear_search_history_summary">Verwijderd de gebruikte zoektermen</string>
+    <string name="delete_search_history_alert">Verwijderd de ganse geschiedenis</string>
     <string name="search_history_deleted">Zoekgeschiedenis verwijderd.</string>
     <string name="one_item_deleted">1 item verwijderd.</string>
 
