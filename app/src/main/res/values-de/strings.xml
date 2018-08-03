@@ -462,11 +462,11 @@
 
     <string name="clear_views_history_title">Verlauf leeren</string>
     <string name="clear_views_history_summary">Löscht den Verlauf der abgespielten Streams</string>
-    <string name="delete_view_history_alert">Löscht den ganzen Verlauf.</string>
+    <string name="delete_view_history_alert">Löscht den ganzen Verlauf</string>
     <string name="view_history_deleted">Verlauf gelöscht.</string>
     <string name="clear_search_history_title">Suchverlauf löschen</string>
     <string name="clear_search_history_summary">Lösche Verlauf der Suchschlüsselwörter</string>
-    <string name="delete_search_history_alert">Lösche gesamten Suchverlauf.</string>
+    <string name="delete_search_history_alert">Lösche gesamten Suchverlauf</string>
     <string name="search_history_deleted">Suchverlauf gelöscht.</string>
     <string name="one_item_deleted">1 Element gelöscht.</string>
 
