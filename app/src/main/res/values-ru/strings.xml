@@ -465,7 +465,7 @@
     <string name="view_history_deleted">История просмотров удалена.</string>
     <string name="clear_search_history_title">Очистить историю поиска</string>
     <string name="clear_search_history_summary">Удалить историю поисковых запросов</string>
-    <string name="clear_views_history_summary">Удалить историю воспроизведённых потоков.</string>
+    <string name="clear_views_history_summary">Удалить историю воспроизведённых потоков</string>
     <string name="delete_search_history_alert">История поиска будет удалена.</string>
     <string name="search_history_deleted">История поиска удалена.</string>
     <string name="one_item_deleted">1 элемент удалён.</string>
