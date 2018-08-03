@@ -403,7 +403,7 @@
 
     <string name="controls_download_desc">Télécharger le fichier de flux</string>
     <string name="auto_queue_title">Vidéo suivante en file d\'attente</string>
-    <string name="auto_queue_summary">Ajout automatique d\'un flux connexe lors de la lecture du dernier flux dans une file d\'attente non répétitive.</string>
+    <string name="auto_queue_summary">Ajout automatique d\'un morceau suggéré lors de la lecture du dernier morceau dans une file d\'attente non bouclée.</string>
     <string name="settings_category_debug_title">Débogage</string>
     <string name="resize_fill">Remplir</string>
     <string name="caption_auto_generated">Générés automatiquement</string>
@@ -448,7 +448,7 @@
 
     <string name="playback_speed_control">Vitesse de lecture</string>
     <string name="playback_tempo">Cadence</string>
-    <string name="unhook_checkbox">Unhook (déformations possibles)</string>
+    <string name="unhook_checkbox">Détacher (déformations possibles)</string>
     <string name="playback_default">Défaut</string>
 <string name="preferred_open_action_settings_title">Ouvrir de préférence avec</string>
     <string name="preferred_open_action_settings_summary">Action par défaut lors de l\'ouverture de contenu - %s</string>
@@ -493,8 +493,10 @@
     <string name="playback_step">Étape</string>
     <string name="playback_reset">Réinitialiser</string>
 
-    <string name="minimize_on_exit_title">Minimiser</string>
-    <string name="minimize_on_exit_summary">Action lors du changement d\'applications depuis le lecteur vidéo</string>
+    <string name="minimize_on_exit_title">Minimiser lors du changement d\'application</string>
+    <string name="minimize_on_exit_summary">Action lors du changement d\'applications depuis le lecteur vidéo —%s</string>
     <string name="minimize_on_exit_none_description">Aucune</string>
-    <string name="minimize_on_exit_background_description">Réduire</string>
-    </resources>
+    <string name="minimize_on_exit_background_description">Lecture en arrière plan</string>
+    <string name="minimize_on_exit_popup_description">Mettre en lecteur popup</string>
+
+</resources>
