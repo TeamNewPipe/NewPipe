@@ -75,13 +75,13 @@
     <string name="use_inexact_seek_title">Use fast inexact seek</string>
     <string name="use_inexact_seek_summary">Inexact seek allows the player to seek to positions faster with reduced precision</string>
     <string name="download_thumbnail_title">Load thumbnails</string>
-    <string name="download_thumbnail_summary">Disable to stop all thumbnails from loading and save on data and memory usage. Changing this will clear both in-memory and on-disk image cache.</string>
+    <string name="download_thumbnail_summary">Disable to stop all thumbnails from loading and save on data and memory usage. Changing this will clear both in-memory and on-disk image cache</string>
     <string name="thumbnail_cache_wipe_complete_notice">Image cache wiped</string>
     <string name="metadata_cache_wipe_title">Wipe cached metadata</string>
     <string name="metadata_cache_wipe_summary">Remove all cached webpage data</string>
     <string name="metadata_cache_wipe_complete_notice">Metadata cache wiped</string>
     <string name="auto_queue_title">Auto-queue next stream</string>
-    <string name="auto_queue_summary">Auto-append a related stream when playing the last stream in a non-repeating queue.</string>
+    <string name="auto_queue_summary">Auto-append a related stream when playing the last stream in a non-repeating queue</string>
     <string name="player_gesture_controls_title">Player gesture controls</string>
     <string name="player_gesture_controls_summary">Use gestures to control the brightness and volume of the player</string>
     <string name="show_search_suggestions_title">Search suggestions</string>
@@ -159,14 +159,14 @@
     <string name="import_data_title">Import database</string>
     <string name="export_data_title">Export database</string>
     <string name="import_data_summary">Will override your current history and subscriptions</string>
-    <string name="export_data_summary">Export history, subscriptions and playlists.</string>
+    <string name="export_data_summary">Export history, subscriptions and playlists</string>
     <string name="clear_views_history_title">Clear watch history</string>
-    <string name="clear_views_history_summary">Deletes the history of played streams.</string>
-    <string name="delete_view_history_alert">Delete whole watch history.</string>
+    <string name="clear_views_history_summary">Deletes the history of played streams</string>
+    <string name="delete_view_history_alert">Delete whole watch history</string>
     <string name="view_history_deleted">Watch history deleted.</string>
     <string name="clear_search_history_title">Clear search history</string>
-    <string name="clear_search_history_summary">Deletes history of search keywords.</string>
-    <string name="delete_search_history_alert">Delete whole search history.</string>
+    <string name="clear_search_history_summary">Deletes history of search keywords</string>
+    <string name="delete_search_history_alert">Delete whole search history</string>
     <string name="search_history_deleted">Search history deleted.</string>
     <!-- error strings -->
     <string name="general_error">Error</string>
@@ -450,7 +450,7 @@
 
     <!-- Caption Settings -->
     <string name="caption_setting_title">Captions</string>
-    <string name="caption_setting_description">Modify player caption text scale and background styles. Requires app restart to take effect.</string>
+    <string name="caption_setting_description">Modify player caption text scale and background styles. Requires app restart to take effect</string>
 
     <!-- Debug Settings -->
     <string name="enable_leak_canary_title">Enable LeakCanary</string>
