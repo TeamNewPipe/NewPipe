@@ -309,7 +309,7 @@
     <string name="import_data_title">استيراد قاعدة البيانات</string>
     <string name="export_data_title">تصدير قاعدة البيانات</string>
     <string name="import_data_summary">"سيقوم بالكتابة على سجل التاريخ  والاشتراكات الحالية "</string>
-    <string name="export_data_summary">تصدير سجل, الاشتراكات وقوائم التشغيل.</string>
+    <string name="export_data_summary">تصدير سجل, الاشتراكات وقوائم التشغيل</string>
     <string name="show_info">عرض المعلومات</string>
 
     <string name="controls_add_to_playlist_title">إضافة إلى</string>
@@ -389,12 +389,12 @@
     <string name="import_soundcloud_instructions_hint">"معرفك , soundcloud.com/ الخاص بك  "</string>
 
     <string name="playback_default">إفتراضي</string>
-<string name="download_thumbnail_summary">تعطيل إيقاف جميع الصور المصغرة من تحميل البيانات واستخدام الذاكرة وحفظها. سيؤدي التغيير هذا إلى محو-ذاكرة التخزين المؤقت في الذاكرة-وذاكرة على القرص.</string>
+<string name="download_thumbnail_summary">تعطيل إيقاف جميع الصور المصغرة من تحميل البيانات واستخدام الذاكرة وحفظها. سيؤدي التغيير هذا إلى محو-ذاكرة التخزين المؤقت في الذاكرة-وذاكرة على القرص</string>
     <string name="metadata_cache_wipe_title">امسح البيانات الوصفية المخزنة مؤقتًا</string>
     <string name="metadata_cache_wipe_summary">إزالة جميع بيانات صفحات الويب المخزنة مؤقتًا</string>
     <string name="metadata_cache_wipe_complete_notice">تم محو ذاكرة التخزين المؤقت للبيانات الوصفية</string>
     <string name="auto_queue_title">وضع البث القادم تلقائيا في قائمة الإنتظار</string>
-    <string name="auto_queue_summary">رفض البث المشابه في حال كون البث السابق يعمل في حالة عدم التكرار.</string>
+    <string name="auto_queue_summary">رفض البث المشابه في حال كون البث السابق يعمل في حالة عدم التكرار</string>
     <string name="set_as_playlist_thumbnail">إضافة صورة مصغرة إلى قائمة التشغيل</string>
 
     <string name="bookmark_playlist">قائمة التشغيل المخزنة</string>
@@ -402,7 +402,7 @@
     <string name="caption_none">بدون تسميات توضيحية</string>
 
     <string name="caption_setting_title">تسميات توضيحية</string>
-    <string name="caption_setting_description">تعديل مشغل نص التسمية التوضيحية وأنماط الخلفية. يتطلب إعادة تشغيل التطبيق لتصبح التغييرات سارية المفعول.</string>
+    <string name="caption_setting_description">تعديل مشغل نص التسمية التوضيحية وأنماط الخلفية. يتطلب إعادة تشغيل التطبيق لتصبح التغييرات سارية المفعول</string>
 
     <string name="enable_leak_canary_title">تمكين LeakCanary</string>
     <string name="enable_leak_canary_summary">قد تتسبب مراقبة تسرب الذاكرة في عدم استجابة التطبيق عند تفريغ السجلات</string>
@@ -411,11 +411,11 @@
     <string name="enable_disposed_exceptions_summary">فرض الإبلاغ عن استثناءات Rx غير القابلة للتسليم خارج دورة حياة الجزء أو النشاط بعد التخلص منها</string>
 
     <string name="clear_views_history_title">محو سجل المشاهدة</string>
-    <string name="clear_views_history_summary">احذف محفوظات الفديوهات التي تم تشغيلها.</string>
+    <string name="clear_views_history_summary">احذف محفوظات الفديوهات التي تم تشغيلها</string>
     <string name="delete_view_history_alert">حذف سجل المشاهدة بالكامل.</string>
     <string name="view_history_deleted">سجل المشاهدة محذوف.</string>
     <string name="clear_search_history_title">محو سجل البحث</string>
-    <string name="clear_search_history_summary">يحذف تاريخ البحث عن الكلمات الرئيسية.</string>
+    <string name="clear_search_history_summary">يحذف تاريخ البحث عن الكلمات الرئيسية</string>
     <string name="delete_search_history_alert">حذف محفوظات البحث بالكامل.</string>
     <string name="search_history_deleted">سجل البحث المحذوف.</string>
     <string name="external_player_unsupported_link_type">المشغل الخارجي لا يدعم هذه الأنواع من الروابط</string>
