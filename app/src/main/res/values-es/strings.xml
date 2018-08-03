@@ -330,7 +330,7 @@ abrir en modo popup</string>
 <string name="import_data_title">Importar base de datos</string>
     <string name="export_data_title">Exportar base de datos</string>
     <string name="import_data_summary">Reemplazará su historial actual y sus suscripciones</string>
-    <string name="export_data_summary">Exportar historial, suscripciones y listas de reproducción.</string>
+    <string name="export_data_summary">Exportar historial, suscripciones y listas de reproducción</string>
     <string name="export_complete_toast">Exportación completa</string>
     <string name="import_complete_toast">Importación completa</string>
     <string name="no_valid_zip_file">Archivo ZIP no válido</string>
@@ -403,7 +403,7 @@ abrir en modo popup</string>
 <string name="use_inexact_seek_title">Usar búsqueda rápida inexacta</string>
     <string name="use_inexact_seek_summary">La búsqueda inexacta permite al reproductor buscar posiciones más rápido con menor precisión</string>
     <string name="auto_queue_title">Auto-encolar la siguiente transmisión</string>
-    <string name="auto_queue_summary">Auto-añadir un vídeo relacionado al reproducir el último vídeo en una cola no repetitiva.</string>
+    <string name="auto_queue_summary">Auto-añadir un vídeo relacionado al reproducir el último vídeo en una cola no repetitiva</string>
     <string name="live">DIRECTO</string>
     <string name="live_sync">SINCRONIZAR</string>
 <string name="file">Archivo</string>
@@ -445,7 +445,7 @@ abrir en modo popup</string>
 \n
 \n¿Desea continuar?</string>
 <string name="download_thumbnail_title">Cargar Miniaturas</string>
-    <string name="download_thumbnail_summary">Descativar todas las miniaturas para evitar que se carguen, guarden datos y usen memoria. Al cambiar esto se borrarán tanto la caché de imágenes en la memoria como en el disco.</string>
+    <string name="download_thumbnail_summary">Descativar todas las miniaturas para evitar que se carguen, guarden datos y usen memoria. Al cambiar esto se borrarán tanto la caché de imágenes en la memoria como en el disco</string>
     <string name="thumbnail_cache_wipe_complete_notice">Caché de imagen limpiado</string>
     <string name="metadata_cache_wipe_title">Metadatos eliminados del caché</string>
     <string name="metadata_cache_wipe_summary">Eliminar todos los datos de la página web en caché</string>
@@ -464,14 +464,14 @@ abrir en modo popup</string>
     <string name="toast_no_player">No hay ninguna app instalada para reproducir este archivo</string>
 
     <string name="caption_setting_title">Subtítulos</string>
-    <string name="caption_setting_description">Modificar la escala de texto de los subtítulos y los estilos de fondo del reproductor. Requiere el reinicio de la app para que surta efecto.</string>
+    <string name="caption_setting_description">Modificar la escala de texto de los subtítulos y los estilos de fondo del reproductor. Requiere el reinicio de la app para que surta efecto</string>
 
     <string name="clear_views_history_title">Borrar historial de reproducciones</string>
-    <string name="clear_views_history_summary">Elimina el historial de las transmisiones reproducidas.</string>
+    <string name="clear_views_history_summary">Elimina el historial de las transmisiones reproducidas</string>
     <string name="delete_view_history_alert">Elimina todo el historial de reproducciones.</string>
     <string name="view_history_deleted">Historial de reproducciones eliminado.</string>
     <string name="clear_search_history_title">Borrar historial de búsqueda</string>
-    <string name="clear_search_history_summary">Elimina el historial de palabras clave de búsqueda.</string>
+    <string name="clear_search_history_summary">Elimina el historial de palabras clave de búsqueda</string>
     <string name="delete_search_history_alert">Elimina todo el historial de búsqueda.</string>
     <string name="search_history_deleted">Historial de búsquedas eliminado.</string>
     <string name="one_item_deleted">1 elemento eliminado.</string>
