@@ -75,7 +75,7 @@
     <string name="no_available_dir">Выберите доступную папку для загрузки</string>
 
 
-    <string name="show_age_restricted_content_title">Контент с ограничением по возрасту</string>
+    <string name="show_age_restricted_content_title">Контент 18+</string>
     <string name="general_error">Ошибка</string>
     <string name="your_comment">Ваш комментарий (English):</string>
     <string name="err_dir_create">Не удалось создать папку для загрузки \"%1$s\"</string>
@@ -208,7 +208,7 @@
     <string name="notification_channel_description">Уведомления для NewPipe в фоне и во всплывающем окне</string>
 
     <string name="settings_category_downloads_title">Загрузки</string>
-    <string name="settings_file_charset_title">Допустимые символы в именах файлов</string>
+    <string name="settings_file_charset_title">Допустимые символы имён файлов</string>
     <string name="settings_file_replacement_character_summary">Недопустимые символы заменяются на этот</string>
     <string name="settings_file_replacement_character_title">Символ для замены</string>
 
@@ -461,12 +461,12 @@
     <string name="caption_setting_description">Изменить размер и фон титров. Требуется перезапуск приложения для вступления изменений в силу</string>
 
     <string name="clear_views_history_title">Очистить историю просмотров</string>
-    <string name="delete_view_history_alert">Вся история просмотров будет удалена.</string>
+    <string name="delete_view_history_alert">Вся история просмотров будет удалена</string>
     <string name="view_history_deleted">История просмотров удалена.</string>
     <string name="clear_search_history_title">Очистить историю поиска</string>
     <string name="clear_search_history_summary">Удалить историю поисковых запросов</string>
     <string name="clear_views_history_summary">Удалить историю воспроизведённых потоков</string>
-    <string name="delete_search_history_alert">Вся история поиска будет удалена.</string>
+    <string name="delete_search_history_alert">Вся история поиска будет удалена</string>
     <string name="search_history_deleted">История поиска удалена.</string>
     <string name="one_item_deleted">1 элемент удалён.</string>
 
