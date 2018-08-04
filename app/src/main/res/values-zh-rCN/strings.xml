@@ -461,4 +461,7 @@
 
     <string name="limit_data_usage_none_description">不限制</string>
     <string name="limit_mobile_data_usage_title">使用移动数据时限制分辨率</string>
+    <string name="channels">更多频道</string>
+    <string name="playlists">更多频道</string>
+    <string name="users">用户们</string>
     </resources>
