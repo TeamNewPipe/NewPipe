@@ -335,7 +335,7 @@
     <string name="use_inexact_seek_title">Быстрый поиск позиции</string>
     <string name="use_inexact_seek_summary">Неточный поиск позволяет плееру искать позицию быстрее, но менее точно</string>
     <string name="auto_queue_title">Автодополнение очереди</string>
-    <string name="auto_queue_summary">Автоматически добавлять связанные видео, при воспроизведении с последнего видео в неповторяющейся очереди</string>
+    <string name="auto_queue_summary">Добавлять похожие потоки в очередь при воспроизведении последнего, если не включён повтор</string>
     <string name="settings_category_debug_title">Отладка</string>
     <string name="file">Файл</string>
 
@@ -440,7 +440,7 @@
 \n 
 \nПродолжить?</string>
 <string name="download_thumbnail_title">Загружать миниатюры</string>
-    <string name="download_thumbnail_summary">Отключите, чтобы не загружать миниатюры и сэкономить трафик и память. Изменение настройки очистит кэш изображений в памяти и на диске</string>
+    <string name="download_thumbnail_summary">Отключите, чтобы не загружать миниатюры и сэкономить трафик и память. Изменение настройки очистит кэш изображений в памяти и накопителе</string>
     <string name="thumbnail_cache_wipe_complete_notice">Кэш изображений очищен</string>
     <string name="metadata_cache_wipe_title">Очистить кэш метаданных</string>
     <string name="metadata_cache_wipe_complete_notice">Кэш метаданных очищен</string>
