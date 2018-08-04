@@ -29,7 +29,7 @@
     <string name="download_dialog_title">Скачать</string>
     <string name="next_video_title">Следующее видео</string>
     <string name="url_not_supported_toast">URL не поддерживается</string>
-    <string name="show_next_and_similar_title">\"Следующее\" и \"Предложенные\" видео</string>
+    <string name="show_next_and_similar_title">\"Следующее\" и \"Предложенные\"</string>
     <string name="search_language_title">Язык контента по умолчанию</string>
     <string name="settings_category_video_audio_title">Видео и аудио</string>
     <string name="settings_category_appearance_title">Внешний вид</string>
@@ -128,7 +128,7 @@
     <string name="show_higher_resolutions_summary">Только некоторые устройства могут воспроизводить видео в 2K/4K</string>
     <string name="default_video_format_title">Формат видео по умолчанию</string>
     <string name="black_theme_title">Чёрная</string>
-    <string name="popup_remember_size_pos_title">Восстановить всплывающее окно</string>
+    <string name="popup_remember_size_pos_title">Восстановить окно</string>
     <string name="player_gesture_controls_summary">Изменять яркость и громкость жестами</string>
     <string name="settings_category_popup_title">Всплывающее окно</string>
     <string name="popup_playing_toast">Воспроизведение во всплывающем окне</string>
@@ -318,7 +318,7 @@
     <string name="drawer_open">Открыть боковую панель</string>
     <string name="drawer_close">Закрыть боковую панель</string>
 
-    <string name="video_player">Плеер видео</string>
+    <string name="video_player">Видеоплеер</string>
     <string name="background_player">Фоновый плеер</string>
     <string name="popup_player">Плеер в окне</string>
     <string name="always_ask_player">Всегда спрашивать</string>
@@ -496,7 +496,7 @@
     <string name="minimize_on_exit_title">При сворачивании плеера</string>
     <string name="minimize_on_exit_summary">При переключении со стандартного плеера на другое приложение — %s</string>
     <string name="minimize_on_exit_none_description">Ничего не делать</string>
-    <string name="minimize_on_exit_background_description">Свернуть в режим фонового воспроизведения</string>
-    <string name="minimize_on_exit_popup_description">Свернуть в режим всплывающего окна</string>
+    <string name="minimize_on_exit_background_description">Воспроизводить в фоне</string>
+    <string name="minimize_on_exit_popup_description">Воспроизводить в окне</string>
 
 </resources>
