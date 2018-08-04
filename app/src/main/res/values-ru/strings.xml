@@ -451,7 +451,7 @@
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">По умолчанию</string>
 <string name="metadata_cache_wipe_summary">Удалить все загруженные данные веб-страниц</string>
-    <string name="preferred_open_action_settings_summary">По умолчанию, при открытии контента — %s</string>
+    <string name="preferred_open_action_settings_summary">При открытии контента — %s</string>
 
     <string name="no_streams_available_download">Нет потоков, доступных для загрузки</string>
 
@@ -493,7 +493,7 @@
     <string name="playback_step">Шаг</string>
     <string name="playback_reset">Сброс</string>
 
-    <string name="minimize_on_exit_title">Сворачивание при переключении</string>
+    <string name="minimize_on_exit_title">При сворачивании плеера</string>
     <string name="minimize_on_exit_summary">При переключении со стандартного плеера на другое приложение — %s</string>
     <string name="minimize_on_exit_none_description">Ничего не делать</string>
     <string name="minimize_on_exit_background_description">Свернуть в режим фонового воспроизведения</string>
