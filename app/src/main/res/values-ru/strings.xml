@@ -323,10 +323,10 @@
     <string name="popup_player">Плеер в окне</string>
     <string name="always_ask_player">Всегда спрашивать</string>
     
-    <string name="preferred_player_fetcher_notification_title">Получение информации…</string>
+    <string name="preferred_player_fetcher_notification_title">Получение сведений…</string>
     <string name="preferred_player_fetcher_notification_message">Загрузка запрошенного контента</string>
 <string name="controls_download_desc">Загрузка файла прямой трансляции.</string>
-    <string name="show_info">Показать информацию</string>
+    <string name="show_info">Показать сведения</string>
 
     <string name="tab_bookmarks">Закладки</string>
 
