@@ -31,7 +31,7 @@
     <string name="url_not_supported_toast">URL не поддерживается</string>
     <string name="show_next_and_similar_title">\"Следующее\" и \"Предложенные\" видео</string>
     <string name="search_language_title">Язык контента по умолчанию</string>
-    <string name="settings_category_video_audio_title">Видео и Аудио</string>
+    <string name="settings_category_video_audio_title">Видео и аудио</string>
     <string name="settings_category_appearance_title">Внешний вид</string>
     <string name="settings_category_other_title">Другое</string>
 
@@ -225,7 +225,7 @@
 
 <string name="settings_category_player_title">Плеер</string>
     <string name="settings_category_player_behavior_title">Поведение</string>
-    <string name="settings_category_history_title">История и Кэш</string>
+    <string name="settings_category_history_title">История и кэш</string>
     <string name="playlist">Плейлист</string>
     <string name="undo">Отменить</string>
 
