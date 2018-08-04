@@ -288,11 +288,11 @@
     <string name="title_activity_background_player">В фоне</string>
     <string name="title_activity_popup_player">В окне</string>
     <string name="hold_to_append">Зажмите, чтобы добавить в очередь</string>
-    <string name="enqueue_on_background">Добавить в очередь \"В фоне\"</string>
-    <string name="enqueue_on_popup">Добавить в очередь \"В окне\"</string>
-    <string name="start_here_on_main">Воспроизвести здесь</string>
-    <string name="start_here_on_background">Воспроизвести в фоне</string>
-    <string name="start_here_on_popup">Воспроизвести в окне</string>
+    <string name="enqueue_on_background">В очередь \"В фоне\"</string>
+    <string name="enqueue_on_popup">В очередь \"В окне\"</string>
+    <string name="start_here_on_main">Видеоплеер</string>
+    <string name="start_here_on_background">Фоновый плеер</string>
+    <string name="start_here_on_popup">Плеер в окне</string>
 <string name="no_player_found_toast">Потоковый плеер не найден (вы можете установить VLC)</string>
     <string name="default_content_country_title">Страна контента по умолчанию</string>
     <string name="service_title">Сервис</string>
