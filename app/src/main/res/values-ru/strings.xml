@@ -451,7 +451,7 @@
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">По умолчанию</string>
 <string name="metadata_cache_wipe_summary">Удалить все загруженные данные веб-страниц</string>
-    <string name="preferred_open_action_settings_summary">При открытии контента — %s</string>
+    <string name="preferred_open_action_settings_summary">При открытии ссылки на контент — %s</string>
 
     <string name="no_streams_available_download">Нет потоков, доступных для загрузки</string>
 
