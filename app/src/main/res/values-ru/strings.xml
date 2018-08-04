@@ -297,7 +297,7 @@
     <string name="default_content_country_title">Страна контента по умолчанию</string>
     <string name="service_title">Сервис</string>
     <string name="always">Всегда</string>
-    <string name="just_once">Только один раз</string>
+    <string name="just_once">Только сейчас</string>
 
     <string name="toggle_orientation">Переключить ориентацию</string>
     <string name="switch_to_background">Перейти в фон</string>
