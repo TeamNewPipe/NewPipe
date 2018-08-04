@@ -378,7 +378,7 @@
     <string name="rename_playlist">Переименовать плейлист</string>
     <string name="playlist_name_input">Имя</string>
     <string name="append_playlist">Добавить в плейлист</string>
-    <string name="set_as_playlist_thumbnail">Установить как миниатюру плейлиста</string>
+    <string name="set_as_playlist_thumbnail">На миниатюру плейлиста</string>
 
     <string name="bookmark_playlist">Добавить плейлист в закладки</string>
     <string name="unbookmark_playlist">Удалить закладку</string>
