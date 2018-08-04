@@ -200,7 +200,7 @@
     <string name="enable_search_history_summary">Хранить поисковые запросы локально</string>
     <string name="enable_watch_history_title">История и кэш</string>
     <string name="enable_watch_history_summary">Запоминать просмотренные видео</string>
-    <string name="resume_on_audio_focus_gain_title">Возобновлять при фокусе</string>
+    <string name="resume_on_audio_focus_gain_title">Возобновить при фокусе</string>
     <string name="resume_on_audio_focus_gain_summary">Возобновлять воспроизведение после перерывов (например, телефонных звонков)</string>
 
 
@@ -451,7 +451,7 @@
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">По умолчанию</string>
 <string name="metadata_cache_wipe_summary">Удалить все загруженные данные веб-страниц</string>
-    <string name="preferred_open_action_settings_summary">Действие по умолчанию при открытии контента — %s</string>
+    <string name="preferred_open_action_settings_summary">По умолчанию, при открытии контента — %s</string>
 
     <string name="no_streams_available_download">Нет потоков, доступных для загрузки</string>
 
@@ -493,8 +493,8 @@
     <string name="playback_step">Шаг</string>
     <string name="playback_reset">Сброс</string>
 
-    <string name="minimize_on_exit_title">При сворачивании приложения</string>
-    <string name="minimize_on_exit_summary">При переключении воспроизведения видео со стандартного плеера на другое приложение — %s</string>
+    <string name="minimize_on_exit_title">Сворачивание при переключении</string>
+    <string name="minimize_on_exit_summary">При переключении со стандартного плеера на другое приложение — %s</string>
     <string name="minimize_on_exit_none_description">Ничего не делать</string>
     <string name="minimize_on_exit_background_description">Свернуть в режим фонового воспроизведения</string>
     <string name="minimize_on_exit_popup_description">Свернуть в режим всплывающего окна</string>
