@@ -338,11 +338,11 @@
     <string name="export_data_summary">Esportatu historiala, harpidetzak eta erreprodukzio-zerrendak</string>
     <string name="clear_views_history_title">Garbitu ikusitakoaren historiala</string>
     <string name="clear_views_history_summary">Jotako jarioen historiala ezabatzen du</string>
-    <string name="delete_view_history_alert">Ezabatu ikusitakoaren historial osoa</string>
+    <string name="delete_view_history_alert">Ezabatu ikusitakoaren historial osoa.</string>
     <string name="view_history_deleted">Ikusitakoaren historiala ezabatuta.</string>
     <string name="clear_search_history_title">Garbitu bilaketa historiala</string>
     <string name="clear_search_history_summary">Ezabatu bilaketa gakoen historiala</string>
-    <string name="delete_search_history_alert">Ezabatu bilaketen historial osoa</string>
+    <string name="delete_search_history_alert">Ezabatu bilaketen historial osoa.</string>
     <string name="search_history_deleted">Bilaketen historiala ezabatuta.</string>
     <string name="invalid_directory">Direktorio baliogabea</string>
     <string name="invalid_source">Fitxategi edo edukiaren iturri baliogabea</string>
