@@ -365,7 +365,7 @@ public class SearchFragment
         int itemId = 0;
         boolean isFirstItem = true;
         final Context c = getContext();
-        for(String filter : service.getSearchQIHFactory().getAvailableContentFilter()) {
+        for(String filter : service.getSearchQHFactory().getAvailableContentFilter()) {
             menuItemToFilterName.put(itemId, filter);
             MenuItem item = menu.add(1,
                     itemId++,
