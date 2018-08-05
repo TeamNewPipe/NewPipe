@@ -380,7 +380,7 @@
     <string name="append_playlist">Добавить в плейлист</string>
     <string name="set_as_playlist_thumbnail">На миниатюру плейлиста</string>
 
-    <string name="bookmark_playlist">Добавить плейлист в закладки</string>
+    <string name="bookmark_playlist">Добавить закладку</string>
     <string name="unbookmark_playlist">Удалить закладку</string>
 
     <string name="delete_playlist_prompt">Удалить этот плейлист?</string>
