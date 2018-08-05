@@ -409,7 +409,7 @@
     <string name="enable_disposed_exceptions_title">Сообщать об ошибках жизненного цикла</string>
     <string name="enable_disposed_exceptions_summary">Принудительно сообщать о недоставляемых Rx-исключениях вне фрагмента или жизненного цикла после удаления</string>
 
-    <string name="import_export_title">Импорт/Экспорт</string>
+    <string name="import_export_title">Импорт и экспорт</string>
     <string name="import_title">Импорт</string>
     <string name="import_from">Импорт из</string>
     <string name="export_to">Экспорт в</string>
