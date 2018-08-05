@@ -423,11 +423,11 @@
     <string name="playback_default">Стандардно</string>
 <string name="clear_views_history_title">Избриши историја на гледаност</string>
     <string name="clear_views_history_summary">Ја брише историјата на пуштени видеа</string>
-    <string name="delete_view_history_alert">Избриши ја целата историја на гледаност</string>
+    <string name="delete_view_history_alert">Избриши ја целата историја на гледаност.</string>
     <string name="view_history_deleted">Избришана е историјата на гледаност.</string>
     <string name="clear_search_history_title">Избриши историја на пребарувања</string>
     <string name="clear_search_history_summary">Ја брише историјата на пребарувања</string>
-    <string name="delete_search_history_alert">Избриши ја целата историја на пребарувања</string>
+    <string name="delete_search_history_alert">Избриши ја целата историја на пребарувања.</string>
     <string name="search_history_deleted">Избришана е историјата на пребарувања.</string>
     <string name="no_streams_available_download">Нема стримови за симнување</string>
 
