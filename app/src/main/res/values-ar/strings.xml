@@ -412,11 +412,11 @@
 
     <string name="clear_views_history_title">محو سجل المشاهدة</string>
     <string name="clear_views_history_summary">احذف محفوظات الفديوهات التي تم تشغيلها</string>
-    <string name="delete_view_history_alert">حذف سجل المشاهدة بالكامل</string>
+    <string name="delete_view_history_alert">حذف سجل المشاهدة بالكامل.</string>
     <string name="view_history_deleted">سجل المشاهدة محذوف.</string>
     <string name="clear_search_history_title">محو سجل البحث</string>
     <string name="clear_search_history_summary">يحذف تاريخ البحث عن الكلمات الرئيسية</string>
-    <string name="delete_search_history_alert">حذف محفوظات البحث بالكامل</string>
+    <string name="delete_search_history_alert">حذف محفوظات البحث بالكامل.</string>
     <string name="search_history_deleted">سجل البحث المحذوف.</string>
     <string name="external_player_unsupported_link_type">المشغل الخارجي لا يدعم هذه الأنواع من الروابط</string>
     <string name="invalid_source">مصدر ملف / مصدر غير صالح</string>
