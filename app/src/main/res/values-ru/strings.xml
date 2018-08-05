@@ -462,12 +462,12 @@
 
     <string name="clear_views_history_title">Очистить историю просмотров</string>
     <string name="delete_view_history_alert">Вся история просмотров будет удалена.</string>
-    <string name="view_history_deleted">История просмотров удалена.</string>
+    <string name="view_history_deleted">История просмотров удалена</string>
     <string name="clear_search_history_title">Очистить историю поиска</string>
     <string name="clear_search_history_summary">Удалить историю поисковых запросов</string>
     <string name="clear_views_history_summary">Удалить историю воспроизведённых потоков</string>
     <string name="delete_search_history_alert">Вся история поиска будет удалена.</string>
-    <string name="search_history_deleted">История поиска удалена.</string>
+    <string name="search_history_deleted">История поиска удалена</string>
     <string name="one_item_deleted">1 элемент удалён.</string>
 
     <string name="app_license">NewPipe — свободное программное обеспечение: вы можете использовать, изучать и улучшать его по своему усмотрению. В частности, вы можете распространять и/или изменять его в соответствии с условиями GNU General Public License, опубликованной Free Software Foundation, либо версии 3, либо (по вашему выбору) любой более поздней версии.</string>
