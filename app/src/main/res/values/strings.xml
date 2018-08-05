@@ -162,11 +162,11 @@
     <string name="export_data_summary">Export history, subscriptions and playlists</string>
     <string name="clear_views_history_title">Clear watch history</string>
     <string name="clear_views_history_summary">Deletes the history of played streams</string>
-    <string name="delete_view_history_alert">Delete whole watch history</string>
+    <string name="delete_view_history_alert">Delete whole watch history.</string>
     <string name="view_history_deleted">Watch history deleted.</string>
     <string name="clear_search_history_title">Clear search history</string>
     <string name="clear_search_history_summary">Deletes history of search keywords</string>
-    <string name="delete_search_history_alert">Delete whole search history</string>
+    <string name="delete_search_history_alert">Delete whole search history.</string>
     <string name="search_history_deleted">Search history deleted.</string>
     <!-- error strings -->
     <string name="general_error">Error</string>
