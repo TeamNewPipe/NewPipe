@@ -245,11 +245,11 @@
     <string name="import_data_summary">Ще замени текущите история и абонаменти</string>
     <string name="export_data_summary">Експортиране на историята, абонаментите и плейлистите</string>
     <string name="clear_views_history_title">Изтрий историята с изгледани</string>
-    <string name="delete_view_history_alert">Изтрий цялата история с изгледани</string>
+    <string name="delete_view_history_alert">Изтрий цялата история с изгледани.</string>
     <string name="view_history_deleted">Историята с изгледани е изтрита.</string>
     <string name="clear_search_history_title">Изтрий историята на търсенията</string>
     <string name="clear_search_history_summary">Изтрива историята с въвежданите за търсене ключови думи</string>
-    <string name="delete_search_history_alert">Изтрий цялата история на търсенията</string>
+    <string name="delete_search_history_alert">Изтрий цялата история на търсенията.</string>
     <string name="search_history_deleted">Историята на търсенията е изтрита.</string>
     <string name="youtube_signature_decryption_error">URL подписът на клипа не можа да бъде дешифрован</string>
     <string name="external_player_unsupported_link_type">Външните плейъри не поддържат този вид линкове</string>
