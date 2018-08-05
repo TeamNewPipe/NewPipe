@@ -464,11 +464,11 @@ te openen in pop-upmodus</string>
 
     <string name="clear_views_history_title">Kijkgeschiedenis wissen</string>
     <string name="clear_views_history_summary">Verwijdert de geschiedenis van afgespeelde streams</string>
-    <string name="delete_view_history_alert">Verwijdert de gehele kijkgeschiedenis</string>
+    <string name="delete_view_history_alert">Verwijdert de gehele kijkgeschiedenis.</string>
     <string name="view_history_deleted">Kijkgeschiedenis verwijderd.</string>
     <string name="clear_search_history_title">Zoekgeschiedenis wissen</string>
     <string name="clear_search_history_summary">Verwijdert de gebruikte zoektermen</string>
-    <string name="delete_search_history_alert">Verwijdert de gehele geschiedenis</string>
+    <string name="delete_search_history_alert">Verwijdert de gehele geschiedenis.</string>
     <string name="search_history_deleted">Zoekgeschiedenis verwijderd.</string>
     <string name="one_item_deleted">1 item verwijderd.</string>
 
