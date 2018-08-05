@@ -863,6 +863,7 @@ public class SearchFragment
         showListFooter(false);
         currentPageUrl = result.getNextPageUrl();
         infoListAdapter.addInfoItemList(result.getItems());
+        nextPageUrl = result.getNextPageUrl();
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(), UserAction.SEARCHED,
