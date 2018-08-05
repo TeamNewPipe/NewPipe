@@ -466,11 +466,11 @@ otevření ve vyskakovacím okně</string>
 
     <string name="clear_views_history_title">Vymazat historii sledování</string>
     <string name="clear_views_history_summary">Vymaže historii přehrávaných streamů</string>
-    <string name="delete_view_history_alert">Vymazat celkovou historii sledování</string>
+    <string name="delete_view_history_alert">Vymazat celkovou historii sledování.</string>
     <string name="view_history_deleted">Historie sledování smazána.</string>
     <string name="clear_search_history_title">Vymazat historii vyhledávání</string>
     <string name="clear_search_history_summary">Vymaže historii vyhledávaných klíčových slov</string>
-    <string name="delete_search_history_alert">Vymazat celkovou historii vyhledávání</string>
+    <string name="delete_search_history_alert">Vymazat celkovou historii vyhledávání.</string>
     <string name="search_history_deleted">Historie vyhledávání smazána.</string>
     <string name="one_item_deleted">Jedna položka smazána.</string>
 
