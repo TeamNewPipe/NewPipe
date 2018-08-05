@@ -575,8 +575,7 @@ public class SearchFragment
                                             .onNext(searchEditText.getText().toString()),
                                     throwable -> showSnackBarError(throwable,
                                             UserAction.DELETE_FROM_HISTORY, "none",
-                                            "Deleting item failed", R.string.general_error)
-                            );
+                                            "Deleting item failed", R.string.general_error));
                     disposables.add(onDelete);
                 })
                 .show();
