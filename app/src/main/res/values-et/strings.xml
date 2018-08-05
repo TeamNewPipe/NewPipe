@@ -146,11 +146,11 @@
     <string name="export_data_summary">Ekspordi ajalugu, tellimused ja pleilistid</string>
     <string name="clear_views_history_title">Puhasta vaatamiste ajalugu</string>
     <string name="clear_views_history_summary">Kustutab vaadatud voogude ajaloo</string>
-    <string name="delete_view_history_alert">Kustuta kogu vaatamiste ajalugu</string>
+    <string name="delete_view_history_alert">Kustuta kogu vaatamiste ajalugu.</string>
     <string name="view_history_deleted">Vaatamiste ajalugu kustutati.</string>
     <string name="clear_search_history_title">Kustuta otsinguajalugu</string>
     <string name="clear_search_history_summary">Kustutab otsisõnade ajaloo</string>
-    <string name="delete_search_history_alert">Kustuta kogu otsinguajalugu</string>
+    <string name="delete_search_history_alert">Kustuta kogu otsinguajalugu.</string>
     <string name="search_history_deleted">Otsinguajalugu kustutati.</string>
     <string name="general_error">Viga</string>
     <string name="network_error">Võrgu viga</string>
