@@ -427,11 +427,11 @@
     <string name="playback_default">Standaard</string>
 <string name="clear_views_history_title">Kijkgeschiedenis wissen</string>
     <string name="clear_views_history_summary">Verwijderd de geschiedenis van afgespeelde streams</string>
-    <string name="delete_view_history_alert">Verwijderd de ganse kijkgeschiedenis</string>
+    <string name="delete_view_history_alert">Verwijderd de ganse kijkgeschiedenis.</string>
     <string name="view_history_deleted">Kijkgeschiedenis verwijderd.</string>
     <string name="clear_search_history_title">Zoekgeschiedenis wissen</string>
     <string name="clear_search_history_summary">Verwijderd de gebruikte zoektermen</string>
-    <string name="delete_search_history_alert">Verwijderd de ganse geschiedenis</string>
+    <string name="delete_search_history_alert">Verwijderd de ganse geschiedenis.</string>
     <string name="search_history_deleted">Zoekgeschiedenis verwijderd.</string>
     <string name="one_item_deleted">1 item verwijderd.</string>
 
