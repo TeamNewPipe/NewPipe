@@ -70,7 +70,7 @@
     <string name="msg_server_unsupported">Сервер не поддерживается</string>
     <string name="msg_running">NewPipe скачивает</string>
     <string name="msg_url_malform">Неверный URL или нет доступа к интернету</string>
-    <string name="msg_running_detail">Подробности</string>
+    <string name="msg_running_detail">Сведения</string>
     <string name="msg_copied">Скопировано в буфер обмена</string>
     <string name="no_available_dir">Выберите доступную папку для загрузки</string>
 
@@ -302,7 +302,7 @@
     <string name="toggle_orientation">Переключить ориентацию</string>
     <string name="switch_to_background">Перейти в фон</string>
     <string name="switch_to_popup">Перейти в окно</string>
-    <string name="switch_to_main">Перейти в главное окно</string>
+    <string name="switch_to_main">Перейти в плеер</string>
 
     <string name="player_unrecoverable_failure">Ошибка плеера без возможности восстановления</string>
     <string name="external_player_unsupported_link_type">Внешние плееры не поддерживают ссылки этих типов</string>
