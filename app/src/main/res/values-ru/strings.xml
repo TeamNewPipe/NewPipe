@@ -248,9 +248,9 @@
 
     <string name="no_videos">Нет видео</string>
     <plurals name="videos">
-	<item quantity="one">%s видео</item>
-	<item quantity="few">%s видео</item>
-	<item quantity="many">%s видео</item>
+	<item quantity="one">%s видео ролик</item>
+	<item quantity="few">%s видео ролика</item>
+	<item quantity="many">%s видео роликов</item>
 </plurals>
 
     <string name="item_deleted">Элемент удалён</string>
