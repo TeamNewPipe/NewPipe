@@ -227,7 +227,7 @@
     <string name="settings_category_player_behavior_title">Поведение</string>
     <string name="settings_category_history_title">История и кэш</string>
     <string name="playlist">Плейлист</string>
-    <string name="undo">Отменить</string>
+    <string name="undo">Отмена</string>
 
     <string name="search_no_results">Нет результатов</string>
     <string name="empty_subscription_feed_subtitle">Ничего нет</string>
