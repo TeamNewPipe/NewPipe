@@ -70,7 +70,7 @@
     <string name="msg_server_unsupported">Сервер не поддерживается</string>
     <string name="msg_running">NewPipe скачивает</string>
     <string name="msg_url_malform">Неверный URL или нет доступа к интернету</string>
-    <string name="msg_running_detail">Сведения</string>
+    <string name="msg_running_detail">Подробнее</string>
     <string name="msg_copied">Скопировано в буфер обмена</string>
     <string name="no_available_dir">Выберите доступную папку для загрузки</string>
 
