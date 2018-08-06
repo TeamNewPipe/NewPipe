@@ -209,7 +209,7 @@
 
     <string name="settings_category_downloads_title">Загрузки</string>
     <string name="settings_file_charset_title">Допустимые символы имён файлов</string>
-    <string name="settings_file_replacement_character_summary">Недопустимые символы заменяются на этот</string>
+    <string name="settings_file_replacement_character_summary">Заменяет недопустимые символы</string>
     <string name="settings_file_replacement_character_title">Символ для замены</string>
 
     <string name="charset_letters_and_digits">Буквы и цифры</string>
@@ -341,8 +341,8 @@
 
     <string name="import_data_title">Импорт данных</string>
     <string name="export_data_title">Экспорт данных</string>
-    <string name="import_data_summary">Ваша текущая история и подписки будут перезаписаны</string>
-    <string name="export_data_summary">Экспорт истории, подписок и плейлистов</string>
+    <string name="import_data_summary">Текущие подписки, плейлисты и история будут заменены</string>
+    <string name="export_data_summary">Экспорт подписок, плейлистов и истории</string>
     <string name="invalid_directory">Неверная папка</string>
     <string name="invalid_source">Неверный файл или источник контента</string>
     <string name="invalid_file">Файл не существует или нет разрешения на его чтение или запись</string>
@@ -458,7 +458,7 @@
     <string name="caption_setting_title">Титры</string>
     <string name="toast_no_player">Приложение для воспроизведения этого файла не установлено</string>
 
-    <string name="caption_setting_description">Изменить размер текста и стиль титров. Изменения вступят в силу после перезапуска</string>
+    <string name="caption_setting_description">Изменить размер текста и стиль титров. Нужен перезапуск</string>
 
     <string name="clear_views_history_title">Очистить историю просмотров</string>
     <string name="delete_view_history_alert">Вся история просмотров будет удалена.</string>
