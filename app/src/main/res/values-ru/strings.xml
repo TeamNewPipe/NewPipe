@@ -494,7 +494,7 @@
     <string name="playback_reset">Сброс</string>
 
     <string name="minimize_on_exit_title">При сворачивании плеера</string>
-    <string name="minimize_on_exit_summary">При переключении со стандартного плеера на другое приложение — %s</string>
+    <string name="minimize_on_exit_summary">При переключении со встроенного плеера на другое приложение — %s</string>
     <string name="minimize_on_exit_none_description">Ничего не делать</string>
     <string name="minimize_on_exit_background_description">Фоновый плеер</string>
     <string name="minimize_on_exit_popup_description">Плеер в окне</string>
