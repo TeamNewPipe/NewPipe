@@ -273,8 +273,8 @@
     <string name="play_all">Воспроизвести всё</string>
 
     <string name="player_stream_failure">Не удалось воспроизвести этот поток</string>
-    <string name="play_queue_stream_detail">Подробности</string>
-    <string name="play_queue_audio_settings">Настройки аудио</string>
+    <string name="play_queue_stream_detail">Сведения</string>
+    <string name="play_queue_audio_settings">Настройки звука</string>
     <string name="no_channel_subscribed_yet">Пока нет подписок на каналы</string>
     <string name="play_queue_remove">Удалить</string>
     <string name="subscribed_button_title">Вы подписаны</string>
