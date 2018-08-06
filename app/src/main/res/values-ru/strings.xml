@@ -458,7 +458,7 @@
     <string name="caption_setting_title">Титры</string>
     <string name="toast_no_player">Приложение для воспроизведения этого файла не установлено</string>
 
-    <string name="caption_setting_description">Изменить размер и фон титров. Изменения вступят в силу после перезапуска</string>
+    <string name="caption_setting_description">Изменить размер текста и стиль титров. Изменения вступят в силу после перезапуска</string>
 
     <string name="clear_views_history_title">Очистить историю просмотров</string>
     <string name="delete_view_history_alert">Вся история просмотров будет удалена.</string>
