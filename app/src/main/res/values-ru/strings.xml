@@ -270,7 +270,7 @@
     <string name="new_and_hot">Новое и горячее</string>
     <string name="background_player_append">Добавлено в очередь в фоне</string>
     <string name="popup_playing_append">Добавлено в очередь в окне</string>
-    <string name="play_all">Воспроизвести всё</string>
+    <string name="play_all">Играть всё</string>
 
     <string name="player_stream_failure">Не удалось воспроизвести этот поток</string>
     <string name="play_queue_stream_detail">Сведения</string>
