@@ -256,7 +256,7 @@ te openen in pop-upmodus</string>
     <string name="no_videos">Geen video\'s</string>
     <plurals name="videos">
 	<item quantity="one">%s video</item>
-	<item quantity="other">%s video\'s</item>
+	<item quantity="other">%s video’s</item>
 </plurals>
 
     <string name="item_deleted">Item verwijderd</string>
