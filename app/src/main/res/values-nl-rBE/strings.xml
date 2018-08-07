@@ -458,4 +458,8 @@
     <string name="playback_step">Stap</string>
     <string name="playback_reset">Standaardwaarden herstellen</string>
 
+    <string name="channels">Kanalen</string>
+    <string name="playlists">Afspeellijsten</string>
+    <string name="tracks">Nummers</string>
+    <string name="users">Gebruikers</string>
     </resources>
