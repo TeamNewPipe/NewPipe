@@ -489,7 +489,7 @@
     <string name="playlists">Плейлисты</string>
     <string name="tracks">Дорожки</string>
     <string name="users">Пользователи</string>
-    <string name="skip_silence_checkbox">Пропускать тишину</string>
+    <string name="skip_silence_checkbox">Проматывать тишину</string>
     <string name="playback_step">Шаг</string>
     <string name="playback_reset">Сброс</string>
 
