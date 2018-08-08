@@ -197,9 +197,9 @@
     <string name="fragment_whats_new">Что нового</string>
 
     <string name="enable_search_history_title">История поиска</string>
-    <string name="enable_search_history_summary">Хранить поисковые запросы локально</string>
+    <string name="enable_search_history_summary">Хранить запросы поиска локально</string>
     <string name="enable_watch_history_title">История и кэш</string>
-    <string name="enable_watch_history_summary">Запоминать просмотренные видео</string>
+    <string name="enable_watch_history_summary">Запоминать воспроизведённые потоки</string>
     <string name="resume_on_audio_focus_gain_title">Возобновить при фокусе</string>
     <string name="resume_on_audio_focus_gain_summary">Возобновлять воспроизведение после перерывов (например, телефонных звонков)</string>
 
@@ -464,7 +464,7 @@
     <string name="delete_view_history_alert">Вся история просмотров будет удалена.</string>
     <string name="view_history_deleted">История просмотров удалена</string>
     <string name="clear_search_history_title">Очистить историю поиска</string>
-    <string name="clear_search_history_summary">Удалить историю поисковых запросов</string>
+    <string name="clear_search_history_summary">Удалить историю запросов поиска</string>
     <string name="clear_views_history_summary">Удалить историю воспроизведённых потоков</string>
     <string name="delete_search_history_alert">Вся история поиска будет удалена.</string>
     <string name="search_history_deleted">История поиска удалена</string>
