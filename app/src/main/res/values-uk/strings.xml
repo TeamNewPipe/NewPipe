@@ -321,8 +321,8 @@
     <string name="main_page_content">Контент на головній сторінці</string>
     <string name="blank_page_summary">Порожня сторінка</string>
     <string name="kiosk_page_summary">Kiosk</string>
-    <string name="subscription_page_summary">Сторінка підписання</string>
-    <string name="feed_page_summary">Сторінка фіду</string>
+    <string name="subscription_page_summary">Підписання</string>
+    <string name="feed_page_summary">Нове</string>
     <string name="channel_page_summary">Сторінка каналу</string>
     <string name="select_a_channel">Обрати канал</string>
     <string name="no_channel_subscribed_yet">Ви не підписані до жодного з каналів</string>
