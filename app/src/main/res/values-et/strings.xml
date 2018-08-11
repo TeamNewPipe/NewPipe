@@ -9,7 +9,7 @@
     <string name="open_in_browser">Ava veebilehitsejas</string>
     <string name="open_in_popup_mode">Ava hüpikaknas</string>
     <string name="share">Jaga</string>
-    <string name="download">Laadi alla</string>
+    <string name="download">Allalaadimine</string>
     <string name="controls_download_desc">Laadi voog alla.</string>
     <string name="search">Otsi</string>
     <string name="settings">Seaded</string>
@@ -95,7 +95,7 @@
     <string name="default_content_country_title">Sisu vaikimisi riik</string>
     <string name="service_title">Teenus</string>
     <string name="search_language_title">Sisu vaikimisi keel</string>
-    <string name="settings_category_player_title">Mängija</string>
+    <string name="settings_category_player_title">Pleier</string>
     <string name="settings_category_player_behavior_title">Käitumine</string>
     <string name="settings_category_video_audio_title">Heli ja pilt</string>
     <string name="settings_category_history_title">Ajalugu ja vahemälu</string>
@@ -210,7 +210,7 @@
     <string name="audio">Audio</string>
     <string name="retry">Proovi uuesti</string>
     <string name="storage_permission_denied">Pääsuõigused salvestile puuduvad</string>
-    <string name="use_old_player_title">Kasuta vana mängijat</string>
+    <string name="use_old_player_title">Kasuta vana pleierit</string>
     <string name="use_old_player_summary">Vana sisseehitatud mediaframework pleier</string>
 
     <string name="short_thousand">K</string>
@@ -346,7 +346,7 @@
     <string name="drawer_header_action_paceholder_text">Siia ilmub varsti midagi ;D</string>
 
 
-    <string name="preferred_open_action_settings_title">Eelistatud \'ava\' toiming</string>
+    <string name="preferred_open_action_settings_title">Lingi avamine</string>
     <string name="preferred_open_action_settings_summary">Vaikimisi tegevus sisu avamisel — %s</string>
 
     <string name="video_player">Videopleier</string>
@@ -418,4 +418,46 @@
 
     <string name="limit_data_usage_none_description">Piiranguta</string>
     <string name="limit_mobile_data_usage_title">Piira lahutust mobiilse andmeside kasutamisel</string>
-    </resources>
+    <string name="tab_main">Peamenüü</string>
+    <string name="channels">Kanalid</string>
+    <string name="playlists">Pleilistid</string>
+    <string name="tracks">Lood</string>
+    <string name="users">Kasutajad</string>
+    <string name="switch_to_main">Lülitu peamisele</string>
+
+    <string name="reCaptcha_title">reCAPTCHA nõue</string>
+    <string name="recaptcha_request_toast">Nõutav on reCAPTCHA</string>
+
+    <string name="copyright" formatted="true">© %1$s %2$s %3$s alla</string>
+    <string name="app_description">Vaba kergekaaluline Androidi voogesitus.</string>
+    <string name="contribution_encouragement">Kui sul on ideid kujunduse muutmisest, koodi puhastamisest või suurtest koodi muudatustest - abi on alati teretulnud. Mida rohkem tehtud, seda paremaks läheb!</string>
+    <string name="donation_encouragement">NewPipe arendajad on vabatahtlikud, kes kulutavad oma vaba aega, toomaks sulle parimat kogemust. On aeg anda tagasi aidates arendajaid ja muuta NewPipe veel paremaks, nautides ise tassi kohvi.</string>
+    <string name="give_back">Anneta</string>
+    <string name="privacy_policy_encouragement">NewPipe võtab privaatsust väga tõsiselt. Seetõttu ei kogu rakendus ilma nõusolekuta mingeid andmeid.
+\nNewPipe privaatsuspoliitika selgitab üksikasjalikult, milliseid andmeid saadetakse ja kogutakse veateate saatmisel.</string>
+    <string name="app_license">NewPipe vaba avatud koodiga tarkvara. Seada võib kasutada, uurida, jagada ja parandada. Täpsemalt - seda võib levitada ja/või muuta vastavalt Vaba Tarkvara Sihtasutuse avaldatud GNU Üldise Avaliku Litsentsi v.3 (või hilisem) tingimustele.</string>
+    <string name="enable_leak_canary_title">Luba LeakCanary</string>
+    <string name="enable_disposed_exceptions_title">Teavita elutsüklist väljas vigadest</string>
+    <string name="import_soundcloud_instructions">Impordi SoundCloudi profiil trükkides URL või oma ID:
+\n
+\n1. Luba \"töölaua režiim\" veebilehitsejas (lmobiilsete seadmete jaoks leht pole kättesaadav)
+\n2. Ava URL: %1$s
+\n3. Logi sisse
+\n4. Kopeeri suunatud profiili URL.</string>
+    <string name="import_soundcloud_instructions_hint">sinu_ID, soundcloud.com/sinu_id</string>
+
+    <string name="playback_pitch">Toon</string>
+    <string name="unhook_checkbox">Tühista ühendus (võib põhjustada moonutusi)</string>
+    <string name="skip_silence_checkbox">Keri helitu koht edasi</string>
+    <string name="playback_step">Samm</string>
+    <string name="playback_reset">Lähtesta</string>
+
+    <string name="start_accept_privacy_policy">Selleks, et täita Euroopa Üldist Andmekaitse Määrust (GDPR), juhime tähelepanu NewPipe\'i privaatsuspoliitikale. Palun lugege seda hoolikalt.
+\nMeile veateate saatmiseks tuleb sellega nõustuda.</string>
+    <string name="minimize_on_exit_title">Minimeeri, kui kasutad teisi rakendusi</string>
+    <string name="minimize_on_exit_summary">Tegevus lülitusel peamiselt videopleierilt teisele rakendusele — %s</string>
+    <string name="minimize_on_exit_none_description">Pole</string>
+    <string name="minimize_on_exit_background_description">Esita taustal</string>
+    <string name="minimize_on_exit_popup_description">Minimeeri hüpikpleierisse</string>
+
+</resources>
