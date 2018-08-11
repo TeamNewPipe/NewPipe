@@ -14,12 +14,14 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
+
     buildTypes {
         release {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
         debug {
             multiDexEnabled true
 
@@ -34,9 +36,24 @@ android {
         // but continue the build even when errors are found:
         abortOnError false
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    flavorDimensions "apkSource"
+    productFlavors {
+        github {
+            dimension "apkSource"
+            applicationIdSuffix ".github"
+
+        }
+
+        fdroid {
+            dimension "apkSource"
+            applicationIdSuffix ".fdroid"
+        }
     }
 }
 
