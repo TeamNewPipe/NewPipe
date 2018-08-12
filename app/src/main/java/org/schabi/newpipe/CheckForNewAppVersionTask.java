@@ -25,13 +25,15 @@ import java.net.URL;
  */
 public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
 
+    private Application app = App.getContext();
+
     private String newPipeApiUrl = "https://newpipe.schabi.org/api/data.json";
     private int timeoutPeriod = 10000;
 
     @Override
     protected void onPreExecute() {
         // Continue with version check only if the build variant is of type "github".
-        if (!BuildConfig.FLAVOR.equals("github")) {
+        if (!BuildConfig.FLAVOR.equals(app.getString(R.string.app_flavor_github))) {
             this.cancel(true);
         }
     }
@@ -63,8 +65,7 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
 
                 case 200:
                 case 201:
-                    BufferedReader bufferedReader
-                            = new BufferedReader(
+                    BufferedReader bufferedReader = new BufferedReader(
                             new InputStreamReader(connection.getInputStream()));
 
                     StringBuilder stringBuilder = new StringBuilder();
@@ -134,8 +135,6 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
 
         if (!BuildConfig.VERSION_NAME.equals(versionName.replace("v", ""))) {
 
-            Application app = App.getContext();
-
             // A pending intent to open the apk location url in the browser.
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(apkLocationUrl));
             PendingIntent pendingIntent
@@ -152,8 +151,6 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
                             + " " + versionName);
 
             NotificationManagerCompat notificationManager = NotificationManagerCompat.from(app);
-
-            // notificationId is a unique int for each notification that you must define
             notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
         }
     }

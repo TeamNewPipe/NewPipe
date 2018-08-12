@@ -512,4 +512,8 @@
     <string name="app_update_notification_content_title">NewPipe Update Available</string>
     <string name="app_update_notification_content_text">Tap to download</string>
 
+    <!-- Flavor names -->
+    <string name="app_flavor_github">github</string>
+    <string name="app_flavor_fdroid">fdroid</string>
+
 </resources>
