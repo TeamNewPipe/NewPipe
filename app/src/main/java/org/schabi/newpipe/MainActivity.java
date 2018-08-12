@@ -80,10 +80,6 @@ public class MainActivity extends AppCompatActivity {
 
         ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
 
-        if (BuildConfig.FLAVOR.equals("github")) {
-            new FetchAppVersionTask().execute();
-        }
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

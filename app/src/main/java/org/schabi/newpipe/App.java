@@ -99,6 +99,11 @@ public class App extends Application {
         ImageLoader.getInstance().init(getImageLoaderConfigurations(10, 50));
 
         configureRxJavaErrorHandler();
+
+        // Check for new version
+        if (BuildConfig.FLAVOR.equals("github")) {
+            new FetchAppVersionTask().execute();
+        }
     }
 
     protected Downloader getDownloader() {

@@ -124,6 +124,7 @@ public class FetchAppVersionTask extends AsyncTask<Void, Void, String> {
 
             Application app = App.getContext();
 
+            // A pending intent to open the apk location url in the browser.
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(apkLocationUrl));
             PendingIntent pendingIntent
                     = PendingIntent.getActivity(app, 0, intent, 0);
