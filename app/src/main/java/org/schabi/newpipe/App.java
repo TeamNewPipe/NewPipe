@@ -101,9 +101,7 @@ public class App extends Application {
         configureRxJavaErrorHandler();
 
         // Check for new version
-        if (BuildConfig.FLAVOR.equals("github")) {
-            new FetchAppVersionTask().execute();
-        }
+        new CheckForNewAppVersionTask().execute();
     }
 
     protected Downloader getDownloader() {

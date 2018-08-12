@@ -19,20 +19,29 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
- * AsyncTask to check if there is a newer version of the github apk available or not.
+ * AsyncTask to check if there is a newer version of the NewPipe github apk available or not.
  * If there is a newer version we show a notification, informing the user. On tapping
- * the notification, the user will be directed to download link.
+ * the notification, the user will be directed to the download link.
  */
-public class FetchAppVersionTask extends AsyncTask<Void, Void, String> {
+public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
 
     private String newPipeApiUrl = "https://newpipe.schabi.org/api/data.json";
     private int timeoutPeriod = 10000;
 
     @Override
+    protected void onPreExecute() {
+        // Continue with version check only if the build variant is of type "github".
+        if (!BuildConfig.FLAVOR.equals("github")) {
+            this.cancel(true);
+        }
+    }
+
+    @Override
     protected String doInBackground(Void... voids) {
 
-        String output;
+        // Make a network request to get latest NewPipe data.
 
+        String response;
         HttpURLConnection connection = null;
 
         try {
@@ -63,13 +72,14 @@ public class FetchAppVersionTask extends AsyncTask<Void, Void, String> {
                     String line;
 
                     while ((line = bufferedReader.readLine()) != null) {
-                        stringBuilder.append(line + "\n");
+                        stringBuilder.append(line);
+                        stringBuilder.append("\n");
                     }
 
                     bufferedReader.close();
-                    output = stringBuilder.toString();
+                    response = stringBuilder.toString();
 
-                    return output;
+                    return response;
             }
         } catch (MalformedURLException ex) {
             ex.printStackTrace();
@@ -89,12 +99,13 @@ public class FetchAppVersionTask extends AsyncTask<Void, Void, String> {
     }
 
     @Override
-    protected void onPostExecute(String output) {
+    protected void onPostExecute(String response) {
 
-        if (output != null) {
+        // Parse the json from the response.
+        if (response != null) {
 
             try {
-                JSONObject mainObject = new JSONObject(output);
+                JSONObject mainObject = new JSONObject(response);
                 JSONObject flavoursObject = mainObject.getJSONObject("flavors");
                 JSONObject githubObject = flavoursObject.getJSONObject("github");
                 JSONObject githubStableObject = githubObject.getJSONObject("stable");
@@ -112,7 +123,8 @@ public class FetchAppVersionTask extends AsyncTask<Void, Void, String> {
     }
 
     /**
-     * Method to compare
+     * Method to compare the current and latest available app version.
+     * If a newer version is available, we show the update notification.
      * @param versionName
      * @param apkLocationUrl
      */
