@@ -144,6 +144,10 @@
     <string name="notification_channel_name">NewPipe Notification</string>
     <string name="notification_channel_description">Notifications for NewPipe Background and Popup Players</string>
 
+    <string name="app_update_notification_channel_id" translatable="false">newpipeAppUpdate</string>
+    <string name="app_update_notification_channel_name">App Update Notification</string>
+    <string name="app_update_notification_channel_description">Notifications for new NewPipe version</string>
+
     <string name="unknown_content">[Unknown]</string>
 
     <string name="toggle_orientation">Toggle Orientation</string>
@@ -503,5 +507,9 @@
         <item>240p</item>
         <item>144p</item>
     </string-array>
+
+    <!-- App update notification -->
+    <string name="app_update_notification_content_title">NewPipe Update Available</string>
+    <string name="app_update_notification_content_text">Tap to download</string>
 
 </resources>

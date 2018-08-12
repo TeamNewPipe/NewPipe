@@ -63,6 +63,7 @@ import io.reactivex.plugins.RxJavaPlugins;
 public class App extends Application {
     protected static final String TAG = App.class.toString();
     private RefWatcher refWatcher;
+    private static App context;
 
     @SuppressWarnings("unchecked")
     private static final Class<? extends ReportSenderFactory>[] reportSenderFactoryClasses = new Class[]{AcraReportSenderFactory.class};
@@ -84,6 +85,8 @@ public class App extends Application {
             return;
         }
         refWatcher = installLeakCanary();
+
+        context = this;
 
         // Initialize settings first because others inits can use its values
         SettingsActivity.initSettings(this);
@@ -202,6 +205,22 @@ public class App extends Application {
 
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.createNotificationChannel(mChannel);
+
+        // Set up notification channel for app update
+        final String appUpdateId
+                = getString(R.string.app_update_notification_channel_id);
+        final CharSequence appUpdateName
+                = getString(R.string.app_update_notification_channel_name);
+        final String appUpdateDescription
+                = getString(R.string.app_update_notification_channel_description);
+
+        NotificationChannel appUpdateChannel
+                = new NotificationChannel(appUpdateId, appUpdateName, importance);
+        appUpdateChannel.setDescription(appUpdateDescription);
+
+        NotificationManager appUpdateNotificationManager
+                = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        appUpdateNotificationManager.createNotificationChannel(appUpdateChannel);
     }
 
     @Nullable
@@ -216,5 +235,9 @@ public class App extends Application {
 
     protected boolean isDisposedRxExceptionsReported() {
         return false;
+    }
+
+    public static App getContext() {
+        return context;
     }
 }

@@ -1,7 +1,12 @@
 package org.schabi.newpipe;
 
+import android.app.Application;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
-import android.util.Log;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -88,8 +93,6 @@ public class FetchAppVersionTask extends AsyncTask<Void, Void, String> {
 
         if (output != null) {
 
-            Log.i("output---", output);
-
             try {
                 JSONObject mainObject = new JSONObject(output);
                 JSONObject flavoursObject = mainObject.getJSONObject("flavors");
@@ -108,11 +111,37 @@ public class FetchAppVersionTask extends AsyncTask<Void, Void, String> {
         }
     }
 
+    /**
+     * Method to compare
+     * @param versionName
+     * @param apkLocationUrl
+     */
     private void compareAppVersionAndShowNotification(String versionName, String apkLocationUrl) {
 
-        if (!BuildConfig.VERSION_NAME.equals(versionName)) {
+        int NOTIFICATION_ID = 2000;
 
+        if (!BuildConfig.VERSION_NAME.equals(versionName.replace("v", ""))) {
 
+            Application app = App.getContext();
+
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(apkLocationUrl));
+            PendingIntent pendingIntent
+                    = PendingIntent.getActivity(app, 0, intent, 0);
+
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat
+                    .Builder(app, app.getString(R.string.app_update_notification_channel_id))
+                    .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
+                    .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                    .setContentIntent(pendingIntent)
+                    .setAutoCancel(true)
+                    .setContentTitle(app.getString(R.string.app_update_notification_content_title))
+                    .setContentText(app.getString(R.string.app_update_notification_content_text)
+                            + " " + versionName);
+
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(app);
+
+            // notificationId is a unique int for each notification that you must define
+            notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
         }
     }
 }
