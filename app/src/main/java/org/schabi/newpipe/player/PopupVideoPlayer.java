@@ -58,6 +58,7 @@ import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.SubtitleView;
 
 import org.schabi.newpipe.BuildConfig;
+import org.schabi.newpipe.FetchAppVersionTask;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
@@ -663,6 +664,11 @@ public final class PopupVideoPlayer extends Service {
             lockManager.acquireWifiAndCpu();
 
             hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
+
+            // Check for new version
+            if (BuildConfig.FLAVOR.equals("github")) {
+                new FetchAppVersionTask().execute();
+            }
         }
 
         @Override
