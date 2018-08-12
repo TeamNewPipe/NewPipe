@@ -131,7 +131,7 @@ public class FetchAppVersionTask extends AsyncTask<Void, Void, String> {
 
             NotificationCompat.Builder notificationBuilder = new NotificationCompat
                     .Builder(app, app.getString(R.string.app_update_notification_channel_id))
-                    .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
+                    .setSmallIcon(R.drawable.ic_newpipe_update)
                     .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                     .setContentIntent(pendingIntent)
                     .setAutoCancel(true)
