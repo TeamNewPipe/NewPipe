@@ -112,7 +112,7 @@
     <string name="finish">OK</string>
 
     <string name="msg_name">Nombre del archivo</string>
-    <string name="msg_threads">Trapos</string>
+    <string name="msg_threads">Hilo</string>
     <string name="msg_error">Error</string>
     <string name="msg_server_unsupported">Servidor no soportado</string>
     <string name="msg_exists">El archivo ya existe</string>

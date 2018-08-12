@@ -15,6 +15,8 @@ Do not report crashes in the GitHub issue tracker. NewPipe has an automated cras
 * If you are an Android/Java developer, you are always welcome to fix/implement an issue/a feature yourself. PRs welcome!
 * We use English for development. Issues in other languages will be closed and ignored.
 * Please only add *one* issue at a time. Do not put multiple issues into one thread.
+* When reporting a bug please give us a context, and a description how to reproduce it.
+* Issues that only contain a generated bug report, but no describtion might be closed.
 
 ## Bug Fixing
 * If you want to help NewPipe to become free of bugs (this is our utopic goal for NewPipe), you can send us an email to tnp@newpipe.schabi.org to let me know that you intend to help. We'll send you further instructions. You may, on request, register at our [Sentry](https://sentry.schabi.org) instance (see section "Crash reporting" for more information.
