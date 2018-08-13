@@ -8,8 +8,8 @@ android {
         applicationId "org.schabi.newpipe"
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 64
-        versionName "0.13.5"
+        versionCode 66
+        versionName "0.13.7"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -42,10 +42,10 @@ android {
 
 ext {
     supportLibVersion = '27.1.1'
-    exoPlayerLibVersion = '2.7.3'
-    roomDbLibVersion = '1.0.0'
+    exoPlayerLibVersion = '2.8.2'
+    roomDbLibVersion = '1.1.1'
     leakCanaryLibVersion = '1.5.4'
-    okHttpLibVersion = '1.5.0'
+    okHttpLibVersion = '3.10.0'
     icepickLibVersion = '3.2.0'
     stethoLibVersion = '1.5.0'
 }
@@ -54,10 +54,10 @@ dependencies {
         exclude module: 'support-annotations'
     }
 
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:bf1c771'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:1eff8c5708'
 
     testImplementation 'junit:junit:4.12'
-    testImplementation 'org.mockito:mockito-core:1.10.19'
+    testImplementation 'org.mockito:mockito-core:2.8.9'
 
     implementation "com.android.support:appcompat-v7:$supportLibVersion"
     implementation "com.android.support:support-v4:$supportLibVersion"
@@ -79,7 +79,7 @@ dependencies {
     debugImplementation "com.facebook.stetho:stetho-urlconnection:$stethoLibVersion"
     debugImplementation 'com.android.support:multidex:1.0.3'
 
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.10'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.14'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
     implementation 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
 
@@ -93,6 +93,6 @@ dependencies {
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanaryLibVersion"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryLibVersion"
 
-    implementation 'com.squareup.okhttp3:okhttp:3.9.1'
-    debugImplementation "com.facebook.stetho:stetho-okhttp3:$okHttpLibVersion"
+    implementation "com.squareup.okhttp3:okhttp:$okHttpLibVersion"
+    debugImplementation "com.facebook.stetho:stetho-okhttp3:$stethoLibVersion"
 }

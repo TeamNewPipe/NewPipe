@@ -271,7 +271,7 @@
     <string name="import_data_title">匯入資料庫</string>
     <string name="export_data_title">匯出資料庫</string>
     <string name="import_data_summary">將覆蓋您目前的歷史記錄和訂閱</string>
-    <string name="export_data_summary">匯出歷史記錄、訂閱和播放清單。</string>
+    <string name="export_data_summary">匯出歷史記錄、訂閱和播放清單</string>
     <string name="give_back">返回</string>
     <string name="website_encouragement">欲了解更多關於 NewPipe 的資訊和新聞，請造訪我們的網站。</string>
     <string name="main_page_content">首頁內容</string>
@@ -382,7 +382,7 @@
 <string name="use_inexact_seek_title">使用粗略但快速的尋找</string>
     <string name="use_inexact_seek_summary">粗略尋找讓播放器更快找到影片的進度位置</string>
     <string name="auto_queue_title">自動播放隊列中下一部影片</string>
-    <string name="auto_queue_summary">在非重複播放佇列中的最後一個串流上開始播放時，自動附上相關串流。</string>
+    <string name="auto_queue_summary">在非重複播放佇列中的最後一個串流上開始播放時，自動附上相關串流</string>
     <string name="live_sync">同步</string>
 
     <string name="file">檔案</string>
@@ -424,7 +424,7 @@
 \n3. 詢問時登入到您的帳號 
 \n4. 複製您被重新導向到的網址。</string>
     <string name="download_thumbnail_title">載入縮圖</string>
-    <string name="download_thumbnail_summary">停用後，NewPipe將不再載入縮圖，減少數據使用與騰空儲存空間，亦會清除記憶體和磁碟上的縮圖快取。</string>
+    <string name="download_thumbnail_summary">停用後，NewPipe將不再載入縮圖，減少數據使用與騰空儲存空間，亦會清除記憶體和磁碟上的縮圖快取</string>
     <string name="thumbnail_cache_wipe_complete_notice">已清除圖片快取</string>
     <string name="metadata_cache_wipe_title">抹除快取中介資料</string>
     <string name="metadata_cache_wipe_summary">移除所有網頁的快取資料</string>
@@ -432,7 +432,7 @@
     <string name="playback_speed_control">播放速度控制</string>
     <string name="playback_tempo">節拍</string>
     <string name="playback_pitch">間距</string>
-    <string name="unhook_checkbox">解除 (可能導致失真)</string>
+    <string name="unhook_checkbox">解除連結（可能導致失真）</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">預設</string>
 <string name="preferred_open_action_settings_title">偏好的「開啟」動作</string>
@@ -441,17 +441,17 @@
     <string name="no_streams_available_download">沒有可供下載的串流</string>
 
     <string name="caption_setting_title">字幕</string>
-    <string name="caption_setting_description">調整播放器字幕大小與背景樣式。必須重新啟動應用程式才會生效。</string>
+    <string name="caption_setting_description">調整播放器字幕大小與背景樣式。必須重新啟動應用程式才會生效</string>
 
     <string name="toast_no_player">未安裝可播放此檔案的應用程式</string>
 
     <string name="clear_views_history_title">清除觀看歷史</string>
-    <string name="clear_views_history_summary">刪除播放過的串流歷史。</string>
-    <string name="delete_view_history_alert">刪除全部的觀看歷史。</string>
+    <string name="clear_views_history_summary">刪除播放過的串流歷史</string>
+    <string name="delete_view_history_alert">刪除全部的觀看歷史</string>
     <string name="view_history_deleted">觀看歷史已刪除。</string>
     <string name="clear_search_history_title">清除觀看歷史</string>
-    <string name="clear_search_history_summary">刪除搜尋關鍵字的歷史。</string>
-    <string name="delete_search_history_alert">刪除全部的搜尋歷史。</string>
+    <string name="clear_search_history_summary">刪除搜尋關鍵字的歷史</string>
+    <string name="delete_search_history_alert">刪除全部的搜尋歷史</string>
     <string name="search_history_deleted">搜尋歷史已刪除。</string>
     <string name="one_item_deleted">已刪除 1 個項目。</string>
 
@@ -468,4 +468,18 @@
     <string name="decline">下降</string>
 <string name="limit_data_usage_none_description">沒有限制</string>
     <string name="limit_mobile_data_usage_title">當您使用行動網路時限制解析度</string>
+    <string name="minimize_on_exit_title">在應用程式切換時最小化</string>
+    <string name="minimize_on_exit_summary">當從主影片播放器切換到其他應用程式時要進行的動作 — %s</string>
+    <string name="minimize_on_exit_none_description">無</string>
+    <string name="minimize_on_exit_background_description">最小化為背景播放器</string>
+    <string name="minimize_on_exit_popup_description">最小化為彈出式播放器</string>
+
+<string name="skip_silence_checkbox">在靜音時快轉</string>
+    <string name="playback_step">步進</string>
+    <string name="playback_reset">重設</string>
+
+    <string name="channels">頻道</string>
+    <string name="playlists">播放清單</string>
+    <string name="tracks">軌</string>
+    <string name="users">使用者</string>
     </resources>

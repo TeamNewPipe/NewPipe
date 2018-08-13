@@ -37,9 +37,8 @@ import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.extractor.kiosk.KioskInfo;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
-import org.schabi.newpipe.extractor.search.SearchEngine;
-import org.schabi.newpipe.extractor.search.SearchResult;
-import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
+import org.schabi.newpipe.extractor.search.SearchInfo;
+import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeStreamExtractor;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
@@ -50,7 +49,6 @@ import java.util.List;
 
 import io.reactivex.Maybe;
 import io.reactivex.Single;
-import io.reactivex.annotations.NonNull;
 
 public final class ExtractorHelper {
     private static final String TAG = ExtractorHelper.class.getSimpleName();
@@ -66,29 +64,35 @@ public final class ExtractorHelper {
         }
     }
 
-    public static Single<SearchResult> searchFor(final int serviceId,
-                                                 final String query,
-                                                 final int pageNumber,
-                                                 final String contentCountry,
-                                                 final SearchEngine.Filter filter) {
+    public static Single<SearchInfo> searchFor(final int serviceId,
+                                               final String searchString,
+                                               final List<String> contentFilter,
+                                               final String sortFilter,
+                                               final String contentCountry) {
         checkServiceId(serviceId);
         return Single.fromCallable(() ->
-            SearchResult.getSearchResult(NewPipe.getService(serviceId).getSearchEngine(),
-                    query, pageNumber, contentCountry, filter)
-        );
+            SearchInfo.getInfo(NewPipe.getService(serviceId),
+                    NewPipe.getService(serviceId)
+                        .getSearchQIHFactory()
+                        .fromQuery(searchString, contentFilter, sortFilter),
+                    contentCountry));
     }
 
     public static Single<InfoItemsPage> getMoreSearchItems(final int serviceId,
-                                                             final String query,
-                                                             final int nextPageNumber,
-                                                             final String searchLanguage,
-                                                             final SearchEngine.Filter filter) {
+                                                           final String searchString,
+                                                           final List<String> contentFilter,
+                                                           final String sortFilter,
+                                                           final String pageUrl,
+                                                           final String contentCountry) {
         checkServiceId(serviceId);
-        return searchFor(serviceId, query, nextPageNumber, searchLanguage, filter)
-                .map((@NonNull SearchResult searchResult) ->
-                        new InfoItemsPage(searchResult.resultList,
-                                nextPageNumber + "",
-                                searchResult.errors));
+        return Single.fromCallable(() ->
+                SearchInfo.getMoreItems(NewPipe.getService(serviceId),
+                        NewPipe.getService(serviceId)
+                            .getSearchQIHFactory()
+                            .fromQuery(searchString, contentFilter, sortFilter),
+                        contentCountry,
+                        pageUrl));
+
     }
 
     public static Single<List<String>> suggestionsFor(final int serviceId,
@@ -233,7 +237,6 @@ public final class ExtractorHelper {
                         serviceId == -1 ? "none" : NewPipe.getNameOfService(serviceId), url + (optionalErrorMessage == null ? "" : optionalErrorMessage), errorId));
             }
         });
-
     }
 
     /**

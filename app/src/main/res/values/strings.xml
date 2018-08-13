@@ -125,7 +125,12 @@
     <string name="error_report_title">Error report</string>
     <string name="all">All</string>
     <string name="channel">Channel</string>
+    <string name="channels">Channels</string>
     <string name="playlist">Playlist</string>
+    <string name="playlists">Playlists</string>
+    <string name="videos">Videos</string>
+    <string name="tracks">Tracks</string>
+    <string name="users">Users</string>
     <string name="yes">Yes</string>
     <string name="later">Later</string>
     <string name="disabled">Disabled</string>
@@ -479,9 +484,10 @@
     <string name="playback_speed_control">Playback Speed Controls</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Pitch</string>
-    <string name="unhook_checkbox">Unhook (may cause distortion)</string>
-    <string name="playback_nightcore">Nightcore</string>
-    <string name="playback_default">Default</string>
+    <string name="unhook_checkbox">Unlink (may cause distortion)</string>
+    <string name="skip_silence_checkbox">Fast-forward during silence</string>
+    <string name="playback_step">Step</string>
+    <string name="playback_reset">Reset</string>
 
     <!-- GDPR dialog -->
     <string name="start_accept_privacy_policy">In order to comply with the European General Data Protection Regulation (GDPR), we herby draw your attention to NewPipe\'s privacy policy. Please read it carefully.\nYou must accept it to send us the bug report.</string>
@@ -503,5 +509,12 @@
         <item>240p</item>
         <item>144p</item>
     </string-array>
+
+    <!-- Minimize to exit action -->
+    <string name="minimize_on_exit_title">Minimize on application switch</string>
+    <string name="minimize_on_exit_summary">Action when switching to other application from main video player — %s</string>
+    <string name="minimize_on_exit_none_description">None</string>
+    <string name="minimize_on_exit_background_description">Minimize to background player</string>
+    <string name="minimize_on_exit_popup_description">Minimize to popup player</string>
 
 </resources>

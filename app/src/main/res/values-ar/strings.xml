@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-    <string name="background_player_playing_toast">جاري التشغيل في الخلفية</string>
+    <string name="background_player_playing_toast">يتم التشغيل في الخلفية</string>
     <string name="cancel">إلغاء</string>
-    <string name="choose_browser">إختر متصفح</string>
+    <string name="choose_browser">اختر المتصفح</string>
     <string name="dark_theme_title">مظلم</string>
     <string name="default_audio_format_title">صيغة الصوت الإفتراضية</string>
     <string name="default_resolution_title">الدقة الإفتراضية</string>
@@ -25,7 +25,7 @@
     <string name="kore_not_found">تطبيق Kore غير موجود. هل تريد تثبيته ؟</string>
     <string name="light_theme_title">مضيء</string>
     <string name="list_thumbnail_view_description">صور معاينة الفيديو</string>
-    <string name="m4a_description">M4A — جودة أفضل</string>
+    <string name="m4a_description">جودة أفضل — M4A</string>
     <string name="network_error">خطأ في الشبكة</string>
     <string name="next_video_title">الفيديو التالي</string>
     <string name="no_player_found">لا يوجد مشغل فيديو. هل تريد تثبيت VLC ؟</string>
@@ -42,7 +42,7 @@
     <string name="settings_category_video_audio_title">الفيديو والصوتيات</string>
     <string name="share">مشاركة</string>
     <string name="share_dialog_title">مشاركة بواسطة</string>
-    <string name="show_next_and_similar_title">عرض\'مقاطع\'الفيديو\'التالية\'و\'المشابهة\'</string>
+    <string name="show_next_and_similar_title">عرض الفديوهات \'التالية\'و\'المماثلة\'</string>
     <string name="show_play_with_kodi_summary">عرض خيار لتشغيل الفيديو بواسطة Kodi Media Center</string>
     <string name="show_play_with_kodi_title">عرض خيار التشغيل بواسطة Kodi</string>
     <string name="theme_title">السمة</string>
@@ -61,10 +61,10 @@
     <string name="parsing_error">تعذرت عملية تحليل الموقع</string>
     <string name="youtube_signature_decryption_error">تعذر فك تشفير توقيع رابط الفيديو</string>
 <string name="main_bg_subtitle">اضغط بحث للبدء</string>
-    <string name="subscribe_button_title">إشتراك</string>
+    <string name="subscribe_button_title">اشتراك</string>
     <string name="subscribed_button_title">مشترك</string>
     <string name="tab_main">الرئيسية</string>
-    <string name="tab_subscriptions">الإشتراكات</string>
+    <string name="tab_subscriptions">الاشتراكات</string>
 
     <string name="fragment_whats_new">ما الجديد</string>
 
@@ -72,7 +72,7 @@
     <string name="autoplay_by_calling_app_title">تشغيل تلقائي</string>
     <string name="black_theme_title">اسود</string>
     <string name="enable_watch_history_title">التاريخ وذاكرة التخزين المؤقت</string>
-    <string name="settings_category_history_title">التأريخ و ذاكرة التخزين المؤقتة</string>
+    <string name="settings_category_history_title">التاريخ و ذاكرة التخزين المؤقتة</string>
     <string name="content">المحتوى</string>
     <string name="downloads">التنزيلات</string>
     <string name="downloads_title">التنزيلات</string>
@@ -84,24 +84,24 @@
     <string name="tab_about">عن التطبيق</string>
     <string name="title_activity_history">التاريخ</string>
     <string name="action_history">التاريخ</string>
-    <string name="open_in_popup_mode">فتح في وضع النوافذ المنبثقة</string>
-    <string name="use_external_video_player_summary">"بعض القرارات لن يكون الصوت عند تمكين هذا الخيار "</string>
+    <string name="open_in_popup_mode">فتح في وضع النافذة المنبثقة</string>
+    <string name="use_external_video_player_summary">"بعض الخيارات الدقة لن تحتوي على صوت عند تمكين هذا الخيار "</string>
     <string name="popup_mode_share_menu_title">وضع النوافذ المنبثقة NewPipe</string>
-    <string name="channel_unsubscribed">تم إلغاء اشتراك القناة</string>
-    <string name="subscription_change_failed">تعذر تغيير في الاشتراك</string>
+    <string name="channel_unsubscribed">تم إلغاء الاشتراك في القناة</string>
+    <string name="subscription_change_failed">تعذر تغيير حالة الاشتراك</string>
     <string name="subscription_update_failed">تعذر تحديث الاشتراك</string>
 
     <string name="controls_popup_title">نافذة</string>
 
     <string name="autoplay_by_calling_app_summary">تشغيل مقطع الفيديو عند إستدعاء NewPipe من تطبيق آخر</string>
-    <string name="default_popup_resolution_title">"دقة النوافذ المنبثقة الافتراضية "</string>
+    <string name="default_popup_resolution_title">الدقة الافتراضية لنوافذ المنبثقة</string>
     <string name="show_higher_resolutions_title">"عرض أعلى جودة "</string>
     <string name="show_higher_resolutions_summary">بعض الأجهزة فقط تدعم تشغيل مقاطع الفيديو 2K / 4K</string>
     <string name="default_video_format_title">تنسيق الفيديو الافتراضي</string>
     <string name="popup_remember_size_pos_title">تذكر حجم النافذة و وضعها</string>
-    <string name="popup_remember_size_pos_summary">تذكر آخر حجم ومكان للنافذة</string>
+    <string name="popup_remember_size_pos_summary">تذكر آخر مكان و حجم للنافذة المنبثقة</string>
     <string name="player_gesture_controls_title">اعدادات إيماءة المشغل</string>
-    <string name="player_gesture_controls_summary">استخدم إيماءات للتحكم في سطوع وحجم المشغل</string>
+    <string name="player_gesture_controls_summary">استخدم إيماءات التحكم في سطوع وصوت المشغل</string>
     <string name="show_search_suggestions_title">اقتراحات البحث</string>
     <string name="show_search_suggestions_summary">عرض الاقتراحات عند البحث</string>
     <string name="enable_search_history_title">سجل البحث</string>
@@ -114,7 +114,7 @@
     <string name="settings_category_player_title">المشغل</string>
     <string name="settings_category_player_behavior_title">السلوك</string>
     <string name="settings_category_popup_title">المنبثق</string>
-    <string name="popup_playing_toast">التشغيل في الوضع المنبثق</string>
+    <string name="popup_playing_toast">يتم التشغيل في الوضع المنبثق</string>
     <string name="background_player_append">تم وضعه على قائمة الانتظار في مشغل الخلفية</string>
     <string name="popup_playing_append">تم وضعه على قائمة الانتظار في مشغل النافذة المنبثقة</string>
     <string name="show_age_restricted_content_title">عرض المحتوى المقيّد بحسب العُمر</string>
@@ -170,9 +170,9 @@
     <string name="use_old_player_title">استخدام المشغل القديم</string>
     <string name="use_old_player_summary">المشغل القديم المدمج في إطار Mediaframework</string>
 
-    <string name="short_thousand">ك</string>
-    <string name="short_million">م</string>
-    <string name="short_billion">ب</string>
+    <string name="short_thousand">الف</string>
+    <string name="short_million">مليون</string>
+    <string name="short_billion">بليون</string>
 
     <string name="no_subscribers">صفر لا تقم با الإختيار (في بعض اللغات) لأنها ليست \"حالة خاصة\" للأندرويد</string>
     <plurals name="subscribers">
@@ -186,14 +186,14 @@
 
     <string name="no_views">لاتوجد مشاهدات</string>
     <string name="no_videos">لاتوجد فديوهات</string>
-    <string name="start">بداية</string>
+    <string name="start">تشغيل</string>
     <string name="pause">إيقاف</string>
     <string name="view">شغل</string>
     <string name="delete">حذف</string>
     <string name="checksum">التوقيع</string>
 
     <string name="add">مهمة جديدة</string>
-    <string name="finish">حسنا</string>
+    <string name="finish">حسناً</string>
 
     <string name="msg_name">اسم الملف</string>
     <string name="msg_threads">العمليات</string>
@@ -238,7 +238,7 @@
 
 
     <string name="title_history_search">البحث</string>
-    <string name="title_history_view">شاهد</string>
+    <string name="title_history_view">تمت مشاهدته</string>
     <string name="history_disabled">تم تعطيل السجل</string>
     <string name="history_empty">التاريخ فارغ</string>
     <string name="history_cleared">تم مسح التاريخ</string>
@@ -251,7 +251,7 @@
     <string name="feed_page_summary">صفحة الخلاصة</string>
     <string name="channel_page_summary">صفحة القناة</string>
     <string name="select_a_channel">حدد قناة</string>
-    <string name="no_channel_subscribed_yet">لم يتم الاشتراك في القناة بعد</string>
+    <string name="no_channel_subscribed_yet">لم يتم الاشتراك في اي قناة بعد</string>
     <string name="trending">الترند</string>
     <string name="top_50">أفضل 50</string>
     <string name="new_and_hot">جديد &amp; وساخن</string>
@@ -265,9 +265,9 @@
 <string name="reCaptcha_title">تحدي ريكابتشا</string>
     <string name="hold_to_append">اضغط للإدراج بقائمة الانتظار</string>
     <plurals name="views">
-	<item quantity="zero">لم تتم المشاهدة</item>
+	<item quantity="zero">لاتوجد مشاهدة</item>
 	<item quantity="one">%s مشاهدة</item>
-	<item quantity="two">"اثنان مشاهدات "</item>
+	<item quantity="two">مشاهدتين</item>
 	<item quantity="few">%s مشاهدات كثيرة</item>
 	<item quantity="many">%s عدد المشاهدات</item>
 	<item quantity="other">%s أقصى مشاهدات</item>
@@ -276,10 +276,10 @@
     <plurals name="videos">
 	<item quantity="zero">صفر</item>
 	<item quantity="one">واحد</item>
-	<item quantity="two">اثنان</item>
-	<item quantity="few">قليل</item>
-	<item quantity="many">عدد كثير</item>
-	<item quantity="other">"أخرى "</item>
+	<item quantity="two">%s اثنان</item>
+	<item quantity="few">%s قليل</item>
+	<item quantity="many">%s عدد كثير</item>
+	<item quantity="other">"%s أخرى "</item>
 </plurals>
 
     <string name="recaptcha_request_toast">إعادة طلب كلمة التحقق</string>
@@ -289,27 +289,27 @@
     <string name="select_a_kiosk">حدد كشك</string>
 
     <string name="kiosk">كشك</string>
-    <string name="enqueue_on_background">إدراج بقائمة الانتظار على خلفية</string>
+    <string name="enqueue_on_background">إدراج بقائمة الانتظار في مشغل الخلفية</string>
     <string name="enqueue_on_popup">إدراج بقائمة الانتظار على المنبثقة</string>
     <string name="start_here_on_background">ابدأ هنا على خلفية المصدر</string>
 <string name="default_content_country_title">المحتوى الإفتراضي حسب البلد</string>
     <string name="toggle_orientation">تغيير الإتجاه</string>
-    <string name="switch_to_background">الإنتقال إلى الخلفية</string>
-    <string name="switch_to_popup">الإنتقال إلى نافذة منبثقة</string>
-    <string name="switch_to_main">التحول إلى الرئيسية</string>
+    <string name="switch_to_background">الإنتقال إلى التشغيل في الخلفية</string>
+    <string name="switch_to_popup">الإنتقال إلى التشغيل في النافذة المنبثقة</string>
+    <string name="switch_to_main">الإنتقال إلى الرئيسية</string>
 
     <string name="service_title">الخدمة</string>
     <string name="drawer_open">فتح الدرج</string>
     <string name="drawer_close">إغلاق الدرج</string>
-    <string name="always">دائمًا</string>
+    <string name="always">دائماً</string>
     <string name="just_once">مرة واحدة فقط</string>
 
     <string name="invalid_url_toast">العنوان خاطئ</string>
-    <string name="no_player_found_toast">لم يتم العثور على مشغل بث (يمكنك تثبيت VLC لتشغيله)</string>
+    <string name="no_player_found_toast">لم يتم العثور على مشغل الفديو (يمكنك تثبيت VLC لتشغيله)</string>
     <string name="import_data_title">استيراد قاعدة البيانات</string>
     <string name="export_data_title">تصدير قاعدة البيانات</string>
     <string name="import_data_summary">"سيقوم بالكتابة على سجل التاريخ  والاشتراكات الحالية "</string>
-    <string name="export_data_summary">تصدير سجل, الاشتراكات وقوائم التشغيل.</string>
+    <string name="export_data_summary">تصدير سجل, الاشتراكات وقوائم التشغيل</string>
     <string name="show_info">عرض المعلومات</string>
 
     <string name="controls_add_to_playlist_title">إضافة إلى</string>
@@ -334,7 +334,7 @@
 
 
     <string name="video_player">مشغل الفديو</string>
-    <string name="always_ask_open_action">السؤال دائمًا</string>
+    <string name="always_ask_open_action">السؤال دائماً</string>
     
     <string name="preferred_player_fetcher_notification_title">الحصول على المعلومات …</string>
     <string name="preferred_player_fetcher_notification_message">تحميل المحتوى المطلوب</string>
@@ -342,14 +342,14 @@
     <string name="create_playlist">إنشاء قائمة تشغيل جديدة</string>
     <string name="delete_playlist">حذف قائمة التشغيل</string>
     <string name="rename_playlist">"إعادة تسمية قائمة التشغيل "</string>
-    <string name="playlist_name_input">التسمية</string>
+    <string name="playlist_name_input">الأسم</string>
     <string name="append_playlist">إضافة إلى قائمة تشغيل</string>
     <string name="delete_playlist_prompt">هل تريد حذف قائمة التشغيل هذه ؟</string>
     <string name="playlist_creation_success">قائمة التشغيل التي تم إنشاؤها</string>
     <string name="playlist_add_stream_success">تمت إضافتها إلى قائمة التشغيل</string>
     <string name="playlist_delete_failure">لا يمكن حذف قائمة التشغيل</string>
 
-    <string name="resize_fill">ملئ</string>
+    <string name="resize_fill">ملئ الشاشة</string>
     <string name="resize_zoom">تكبير</string>
 
     <string name="caption_font_size_settings_title">حجم خط التسمية</string>
@@ -359,7 +359,7 @@
 
     <string name="live_sync">مُزامَنة</string>
 
-    <string name="controls_download_desc">تنزيل الملف البث.</string>
+    <string name="controls_download_desc">تنزيل ملف البث.</string>
     <string name="tab_bookmarks">الإشارات مرجعية</string>
 
     <string name="use_inexact_seek_title">استعمال التقديم السريع الغير دقيق</string>
@@ -389,38 +389,38 @@
     <string name="import_soundcloud_instructions_hint">"معرفك , soundcloud.com/ الخاص بك  "</string>
 
     <string name="playback_default">إفتراضي</string>
-<string name="download_thumbnail_summary">تعطيل إيقاف جميع الصور المصغرة من تحميل البيانات واستخدام الذاكرة وحفظها. سيؤدي التغيير هذا إلى محو-ذاكرة التخزين المؤقت في الذاكرة-وذاكرة على القرص.</string>
+<string name="download_thumbnail_summary">تعطيل إيقاف جميع الصور المصغرة من تحميل البيانات واستخدام الذاكرة وحفظها. سيؤدي التغيير هذا إلى محو-ذاكرة التخزين المؤقت في الذاكرة-وذاكرة على القرص</string>
     <string name="metadata_cache_wipe_title">امسح البيانات الوصفية المخزنة مؤقتًا</string>
     <string name="metadata_cache_wipe_summary">إزالة جميع بيانات صفحات الويب المخزنة مؤقتًا</string>
     <string name="metadata_cache_wipe_complete_notice">تم محو ذاكرة التخزين المؤقت للبيانات الوصفية</string>
     <string name="auto_queue_title">وضع البث القادم تلقائيا في قائمة الإنتظار</string>
-    <string name="auto_queue_summary">رفض البث المشابه في حال كون البث السابق يعمل في حالة عدم التكرار.</string>
-    <string name="set_as_playlist_thumbnail">إضافة إلى قائمة التشغيل كصورة مصغرة</string>
+    <string name="auto_queue_summary">رفض البث المشابه في حال كون البث السابق يعمل في حالة عدم التكرار</string>
+    <string name="set_as_playlist_thumbnail">إضافة صورة مصغرة إلى قائمة التشغيل</string>
 
     <string name="bookmark_playlist">قائمة التشغيل المخزنة</string>
     <string name="playlist_thumbnail_change_success">تم تغيير الصورة المصغرة لقائمة التشغيل</string>
     <string name="caption_none">بدون تسميات توضيحية</string>
 
     <string name="caption_setting_title">تسميات توضيحية</string>
-    <string name="caption_setting_description">تعديل مشغل نص التسمية التوضيحية وأنماط الخلفية. يتطلب إعادة تشغيل التطبيق ليصبح ساري المفعول.</string>
+    <string name="caption_setting_description">تعديل مشغل نص التسمية التوضيحية وأنماط الخلفية. يتطلب إعادة تشغيل التطبيق لتصبح التغييرات سارية المفعول</string>
 
     <string name="enable_leak_canary_title">تمكين LeakCanary</string>
-    <string name="enable_leak_canary_summary">قد يتسبب مراقبة في تسرب الذاكرة في عدم استجابة التطبيق عند تفريغ السجلات</string>
+    <string name="enable_leak_canary_summary">قد تتسبب مراقبة تسرب الذاكرة في عدم استجابة التطبيق عند تفريغ السجلات</string>
 
     <string name="enable_disposed_exceptions_title">تقرير الأخطاء خارج دورة الحياة</string>
     <string name="enable_disposed_exceptions_summary">فرض الإبلاغ عن استثناءات Rx غير القابلة للتسليم خارج دورة حياة الجزء أو النشاط بعد التخلص منها</string>
 
     <string name="clear_views_history_title">محو سجل المشاهدة</string>
-    <string name="clear_views_history_summary">احذف محفوظات التدفقات التي تم تشغيلها.</string>
-    <string name="delete_view_history_alert">حذف سجل المشاهدة بالكامل.</string>
-    <string name="view_history_deleted">سجل المشاهدة المحذوف.</string>
+    <string name="clear_views_history_summary">احذف محفوظات الفديوهات التي تم تشغيلها</string>
+    <string name="delete_view_history_alert">حذف سجل المشاهدة بالكامل</string>
+    <string name="view_history_deleted">سجل المشاهدة محذوف.</string>
     <string name="clear_search_history_title">محو سجل البحث</string>
-    <string name="clear_search_history_summary">يحذف تاريخ البحث عن الكلمات الرئيسية.</string>
-    <string name="delete_search_history_alert">حذف محفوظات البحث بالكامل.</string>
+    <string name="clear_search_history_summary">يحذف تاريخ البحث عن الكلمات الرئيسية</string>
+    <string name="delete_search_history_alert">حذف محفوظات البحث بالكامل</string>
     <string name="search_history_deleted">سجل البحث المحذوف.</string>
     <string name="external_player_unsupported_link_type">المشغل الخارجي لا يدعم هذه الأنواع من الروابط</string>
     <string name="invalid_source">مصدر ملف / مصدر غير صالح</string>
-    <string name="invalid_file">الملف غير موجود أو ليس لديه الإذن الكافي للقراءة أو الكتابة إليه</string>
+    <string name="invalid_file">الملف غير موجود أو ليس لديك الإذن الكافي للقراءة أو الكتابة إليه</string>
     <string name="no_streams_available_download">لا توجد تدفقات متاحة للتنزيل</string>
 
     <string name="one_item_deleted">تم حذف عنصر واحد.</string>
@@ -433,7 +433,7 @@
     <string name="title_last_played">آخر ما تم تشغيله</string>
     <string name="title_most_played">الأكثر تشغيلا</string>
 
-    <string name="override_current_data">هذا سوف يتجاوز الإعداد الحالي الخاص بك.</string>
+    <string name="override_current_data">هذا سوف يتجاوز الإعدادت الحالية الخاصة بك.</string>
 
     <string name="preferred_open_action_settings_title">طريقة \'التشغيل\' المفضلة</string>
     <string name="preferred_open_action_settings_summary">"الإجراء الافتراضي عند فتح المحتوى  — %s"</string>
@@ -445,25 +445,25 @@
     <string name="subscriptions_import_unsuccessful">تعذر استيراد الاشتراكات</string>
     <string name="subscriptions_export_unsuccessful">لا يمكن تصدير الاشتراكات</string>
 
-    <string name="import_youtube_instructions">استيراد اشتراكات YouTube عن طريق تنزيل ملف التصدير:
-\n
-\n1. انتقل إلى عنوان URL هذا: %1$s
-\n2. تسجيل الدخول عندما يتطلب
-\n3. يجب أن يبدأ تنزيل (وهذا ملف التصدير)</string>
-    <string name="import_soundcloud_instructions">قم باستيراد ملف تعريف SoundCloud عن طريق كتابة عنوان URL أو معرفك:
-\n
-\n1. تمكين \"وضع سطح المكتب\" في متصفح الويب (الموقع غير متاح للأجهزة المحمولة)
-\n2. انتقل إلى عنوان URL هذا: %1$s
-\n3. تسجيل الدخول عندما يتطلب
+    <string name="import_youtube_instructions">استيراد اشتراكات YouTube عن طريق تنزيل ملف التصدير: 
+\n 
+\n1. انتقل إلى عنوان URL هذا: %1$s 
+\n2. تسجيل الدخول عندما يطلب منك
+\n3. يجب أن يبدأ التنزيل (وهذا ملف التصدير)</string>
+    <string name="import_soundcloud_instructions">قم باستيراد ملف تعريف SoundCloud عن طريق كتابة عنوان URL أو معرفك: 
+\n 
+\n1. تمكين \"وضع سطح المكتب\" في متصفح الويب (الموقع غير متاح للأجهزة المحمولة) 
+\n2. انتقل إلى عنوان URL هذا: %1$s 
+\n3. تسجيل الدخول عندما يطلب منك
 \n4. انسخ عنوان URL للملف الشخصي الذي تمت إعادة توجيهك إليه.</string>
-    <string name="import_network_expensive_warning">ضع في اعتبارك أن هذه العملية يمكن أن تكون باهظة الثمن.
-\n
+    <string name="import_network_expensive_warning">ضع في اعتبارك أن هذه العملية يمكن أن تكون مكلفة اذا كنت تستخدم بيانات اشتراك انترنت. 
+\n 
 \nهل تريد الاستمرار؟</string>
 
     <string name="playback_speed_control">ضوابط سرعة التشغيل</string>
     <string name="playback_tempo">سرعة الأداء</string>
     <string name="playback_pitch">تردد الصوت</string>
-    <string name="unhook_checkbox">"النزع  (قد يسبب تشويه)"</string>
+    <string name="unhook_checkbox">نزع الإرتباط (قد يسبب تشويه)</string>
     <string name="playback_nightcore">تعديل الايقاع Nightcore</string>
     <string name="import_settings">هل تريد أيضا استيراد الإعدادات؟</string>
 
@@ -478,4 +478,18 @@
 
     <string name="limit_data_usage_none_description">لا حدود</string>
     <string name="limit_mobile_data_usage_title">الحد من جودة الفيديو عند استخدام بيانات الهاتف المحمول</string>
+    <string name="skip_silence_checkbox">تسريع إلى الأمام أثناء الصمت</string>
+    <string name="playback_step">خطوة</string>
+    <string name="playback_reset">إعادة تعيين</string>
+
+    <string name="minimize_on_exit_title">تصغير عند تبديل التطبيق</string>
+    <string name="minimize_on_exit_summary">الإجراء عند التبديل إلى تطبيق آخر من مشغل الفيديو الرئيسي — %s</string>
+    <string name="minimize_on_exit_none_description">لاشيء</string>
+    <string name="minimize_on_exit_background_description">تصغير إلى مشغل الخلفية</string>
+    <string name="minimize_on_exit_popup_description">تصغير إلى مشغل منبثق</string>
+
+<string name="channels">القنوات</string>
+    <string name="playlists">قوائم التشغيل</string>
+    <string name="tracks">المسارات</string>
+    <string name="users">المستخدمين</string>
     </resources>

@@ -444,4 +444,15 @@
     <string name="caption_setting_title">Преводи</string>
     <string name="caption_setting_description">Смени ја големината и стилот на преводот. Потребен е рестарт за промена.</string>
 
+    <string name="privacy_policy_title">NewPipe - политика за приватност</string>
+    <string name="privacy_policy_encouragement">Проектот NewPipe сериозно ја сфаќа вашата приватност. Затоа апликацијата не собира ваши податоци без ваша дозвола.
+\nПолитиката за приватност на NewPipe детално објаснува кои податоци се зачувани и пратени кога праќате извештај за грешка во апликацијата.</string>
+    <string name="read_privacy_policy">Прочитај ја политиката за приватност</string>
+    <string name="start_accept_privacy_policy">За да постапуваме соодветно со регулацијата за заштита на податоци (GDPR) на ЕУ, вараме да обрнете внимание на политиката за приватност на NewPipe.
+\nВе молиме прочитајте ја внимателно. Мора да ја прифатите за да ни го испратите извештајот за грешка во апликацијата.</string>
+    <string name="accept">Прифати</string>
+    <string name="decline">Отфрли</string>
+
+    <string name="limit_data_usage_none_description">Неограничено</string>
+    <string name="limit_mobile_data_usage_title">Ограничи резолуција при користење мобилен интернет</string>
     </resources>

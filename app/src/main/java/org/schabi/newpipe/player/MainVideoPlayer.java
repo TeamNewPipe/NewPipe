@@ -58,7 +58,6 @@ import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.SubtitleView;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.player.helper.PlaybackParameterDialog;
@@ -67,6 +66,8 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.playqueue.PlayQueueItemBuilder;
 import org.schabi.newpipe.player.playqueue.PlayQueueItemHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
+import org.schabi.newpipe.player.resolver.MediaSourceTag;
+import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -104,6 +105,7 @@ public final class MainVideoPlayer extends AppCompatActivity
 
     @Nullable private PlayerState playerState;
     private boolean isInMultiWindow;
+    private boolean isBackPressed;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Activity LifeCycle
@@ -125,7 +127,7 @@ public final class MainVideoPlayer extends AppCompatActivity
 
         hideSystemUi();
         setContentView(R.layout.activity_main_player);
-        playerImpl = new VideoPlayerImpl(this);
+        playerImpl = new  VideoPlayerImpl(this);
         playerImpl.setup(findViewById(android.R.id.content));
 
         if (savedInstanceState != null && savedInstanceState.get(KEY_SAVED_STATE) != null) {
@@ -152,7 +154,10 @@ public final class MainVideoPlayer extends AppCompatActivity
     protected void onNewIntent(Intent intent) {
         if (DEBUG) Log.d(TAG, "onNewIntent() called with: intent = [" + intent + "]");
         super.onNewIntent(intent);
-        playerImpl.handleIntent(intent);
+        if (intent != null) {
+            playerState = null;
+            playerImpl.handleIntent(intent);
+        }
     }
 
     @Override
@@ -177,7 +182,7 @@ public final class MainVideoPlayer extends AppCompatActivity
             playerImpl.setPlaybackQuality(playerState.getPlaybackQuality());
             playerImpl.initPlayback(playerState.getPlayQueue(), playerState.getRepeatMode(),
                     playerState.getPlaybackSpeed(), playerState.getPlaybackPitch(),
-                    playerState.wasPlaying());
+                    playerState.isPlaybackSkipSilence(), playerState.wasPlaying());
         }
     }
 
@@ -192,6 +197,12 @@ public final class MainVideoPlayer extends AppCompatActivity
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        isBackPressed = true;
+    }
+
+    @Override
     protected void onSaveInstanceState(Bundle outState) {
         if (DEBUG) Log.d(TAG, "onSaveInstanceState() called");
         super.onSaveInstanceState(outState);
@@ -200,7 +211,8 @@ public final class MainVideoPlayer extends AppCompatActivity
         playerImpl.setRecovery();
         playerState = new PlayerState(playerImpl.getPlayQueue(), playerImpl.getRepeatMode(),
                 playerImpl.getPlaybackSpeed(), playerImpl.getPlaybackPitch(),
-                playerImpl.getPlaybackQuality(), playerImpl.isPlaying());
+                playerImpl.getPlaybackQuality(), playerImpl.getPlaybackSkipSilence(),
+                playerImpl.isPlaying());
         StateSaver.tryToSave(isChangingConfigurations(), null, outState, this);
     }
 
@@ -208,10 +220,17 @@ public final class MainVideoPlayer extends AppCompatActivity
     protected void onStop() {
         if (DEBUG) Log.d(TAG, "onStop() called");
         super.onStop();
-        playerImpl.destroy();
-
         PlayerHelper.setScreenBrightness(getApplicationContext(),
                 getWindow().getAttributes().screenBrightness);
+
+        if (playerImpl == null) return;
+        if (!isBackPressed) {
+            playerImpl.minimize();
+        }
+        playerImpl.destroy();
+
+        isInMultiWindow = false;
+        isBackPressed = false;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -335,8 +354,11 @@ public final class MainVideoPlayer extends AppCompatActivity
     ////////////////////////////////////////////////////////////////////////////
 
     @Override
-    public void onPlaybackParameterChanged(float playbackTempo, float playbackPitch) {
-        if (playerImpl != null) playerImpl.setPlaybackParameters(playbackTempo, playbackPitch);
+    public void onPlaybackParameterChanged(float playbackTempo, float playbackPitch,
+                                           boolean playbackSkipSilence) {
+        if (playerImpl != null) {
+            playerImpl.setPlaybackParameters(playbackTempo, playbackPitch, playbackSkipSilence);
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -441,6 +463,21 @@ public final class MainVideoPlayer extends AppCompatActivity
             switchPopupButton.setOnClickListener(this);
         }
 
+        public void minimize() {
+            switch (PlayerHelper.getMinimizeOnExitAction(context)) {
+                case PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_BACKGROUND:
+                    onPlayBackgroundButtonClicked();
+                    break;
+                case PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_POPUP:
+                    onFullScreenButtonClicked();
+                    break;
+                case PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_NONE:
+                default:
+                    // No action
+                    break;
+            }
+        }
+
         /*//////////////////////////////////////////////////////////////////////////
         // ExoPlayer Video Listener
         //////////////////////////////////////////////////////////////////////////*/
@@ -461,14 +498,11 @@ public final class MainVideoPlayer extends AppCompatActivity
         // Playback Listener
         //////////////////////////////////////////////////////////////////////////*/
 
-        protected void onMetadataChanged(@NonNull final PlayQueueItem item,
-                                         @Nullable final StreamInfo info,
-                                         final int newPlayQueueIndex,
-                                         final boolean hasPlayQueueItemChanged) {
-            super.onMetadataChanged(item, info, newPlayQueueIndex, false);
+        protected void onMetadataChanged(@NonNull final MediaSourceTag tag) {
+            super.onMetadataChanged(tag);
 
-            titleTextView.setText(getVideoTitle());
-            channelTextView.setText(getUploaderName());
+            titleTextView.setText(tag.getMetadata().getName());
+            channelTextView.setText(tag.getMetadata().getUploaderName());
         }
 
         @Override
@@ -501,6 +535,7 @@ public final class MainVideoPlayer extends AppCompatActivity
                     this.getRepeatMode(),
                     this.getPlaybackSpeed(),
                     this.getPlaybackPitch(),
+                    this.getPlaybackSkipSilence(),
                     this.getPlaybackQuality()
             );
             context.startService(intent);
@@ -522,6 +557,7 @@ public final class MainVideoPlayer extends AppCompatActivity
                     this.getRepeatMode(),
                     this.getPlaybackSpeed(),
                     this.getPlaybackPitch(),
+                    this.getPlaybackSkipSilence(),
                     this.getPlaybackQuality()
             );
             context.startService(intent);
@@ -617,7 +653,8 @@ public final class MainVideoPlayer extends AppCompatActivity
 
         @Override
         public void onPlaybackSpeedClicked() {
-            PlaybackParameterDialog.newInstance(getPlaybackSpeed(), getPlaybackPitch())
+            PlaybackParameterDialog
+                    .newInstance(getPlaybackSpeed(), getPlaybackPitch(), getPlaybackSkipSilence())
                     .show(getSupportFragmentManager(), TAG);
         }
 
@@ -647,14 +684,19 @@ public final class MainVideoPlayer extends AppCompatActivity
         }
 
         @Override
-        protected int getDefaultResolutionIndex(final List<VideoStream> sortedVideos) {
-            return ListHelper.getDefaultResolutionIndex(context, sortedVideos);
-        }
+        protected VideoPlaybackResolver.QualityResolver getQualityResolver() {
+            return new VideoPlaybackResolver.QualityResolver() {
+                @Override
+                public int getDefaultResolutionIndex(List<VideoStream> sortedVideos) {
+                    return ListHelper.getDefaultResolutionIndex(context, sortedVideos);
+                }
 
-        @Override
-        protected int getOverrideResolutionIndex(final List<VideoStream> sortedVideos,
-                                                 final String playbackQuality) {
-            return ListHelper.getResolutionIndex(context, sortedVideos, playbackQuality);
+                @Override
+                public int getOverrideResolutionIndex(List<VideoStream> sortedVideos,
+                                                      String playbackQuality) {
+                    return ListHelper.getResolutionIndex(context, sortedVideos, playbackQuality);
+                }
+            };
         }
 
         /*//////////////////////////////////////////////////////////////////////////
@@ -678,7 +720,6 @@ public final class MainVideoPlayer extends AppCompatActivity
         @Override
         public void onBuffering() {
             super.onBuffering();
-            animatePlayButtons(false, 100);
             getRootView().setKeepScreenOn(true);
         }
 
@@ -854,7 +895,6 @@ public final class MainVideoPlayer extends AppCompatActivity
         @Override
         public boolean onDoubleTap(MotionEvent e) {
             if (DEBUG) Log.d(TAG, "onDoubleTap() called with: e = [" + e + "]" + "rawXy = " + e.getRawX() + ", " + e.getRawY() + ", xy = " + e.getX() + ", " + e.getY());
-            if (!playerImpl.isPlaying()) return false;
 
             if (e.getX() > playerImpl.getRootView().getWidth() * 2 / 3) {
                 playerImpl.onFastForward();

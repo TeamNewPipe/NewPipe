@@ -186,7 +186,7 @@
     <string name="action_about">Informazioni</string>
     <string name="title_licenses">Licenze di terze parti</string>
     <string name="copyright" formatted="true">© %1$s di %2$s protetto da licenza %3$s</string>
-    <string name="error_unable_to_load_license">Impossible caricare il contratto di licenza</string>
+    <string name="error_unable_to_load_license">Impossible caricare la licenza</string>
     <string name="action_open_website">Visita il sito</string>
     <string name="tab_about">Informazioni</string>
     <string name="tab_contributors">Contributori</string>
@@ -218,7 +218,7 @@
 
     <string name="settings_category_downloads_title">Scarica</string>
     <string name="settings_file_charset_title">Caratteri ammessi nei nomi dei file</string>
-    <string name="settings_file_replacement_character_summary">I caratteri non validi vengono sostituiti con questo</string>
+    <string name="settings_file_replacement_character_summary">I caratteri non validi vengono sostituiti con</string>
     <string name="settings_file_replacement_character_title">Carattere sostitutivo</string>
 
     <string name="charset_letters_and_digits">Lettere e cifre</string>
@@ -325,9 +325,9 @@
     <string name="video_streams_empty">Nessun flusso video trovato</string>
     <string name="audio_streams_empty">Nessun flusso audio trovato</string>
 
-    <string name="video_player">Riproduttore video</string>
-    <string name="background_player">Riproduttore di fondo</string>
-    <string name="popup_player">Riproduttore a comparsa</string>
+    <string name="video_player">Lettore video</string>
+    <string name="background_player">Riproduzione in sottofondo</string>
+    <string name="popup_player">Riproduzione in modalità popup</string>
     <string name="always_ask_player">Chiedi sempre</string>
     
     <string name="preferred_player_fetcher_notification_title">Raccogliendo informazioni…</string>
@@ -418,7 +418,7 @@
     <string name="import_export_title">Importa/Esporta</string>
     <string name="import_title">Importa</string>
     <string name="import_from">Importa da</string>
-    <string name="export_to">Esporta a</string>
+    <string name="export_to">Esporta in</string>
 
     <string name="import_ongoing">Importando…</string>
     <string name="export_ongoing">Esportando…</string>
@@ -454,7 +454,7 @@
     <string name="playback_speed_control">Controlli della velocità di riproduzione</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Tono</string>
-    <string name="unhook_checkbox">Slega (può causare distorsione)</string>
+    <string name="unhook_checkbox">Scollega (può causare distorsione)</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Valore predefinito</string>
 <string name="no_streams_available_download">Nessun flusso disponibile per il download</string>
@@ -472,7 +472,7 @@
     <string name="delete_view_history_alert">Elimina l\'intera cronologia visualizzazioni.</string>
     <string name="view_history_deleted">Cronologia visualizzazioni eliminata.</string>
     <string name="clear_search_history_title">Pulisci cronologia delle ricerche</string>
-    <string name="clear_search_history_summary">Elimina la cronologia delle ricerche effettuate.</string>
+    <string name="clear_search_history_summary">Cancella la cronologia dei termini di ricerca.</string>
     <string name="delete_search_history_alert">Elimina l\'intera cronologia delle ricerche.</string>
     <string name="search_history_deleted">Cronologia delle ricerche eliminata.</string>
     <string name="one_item_deleted">1 elemento eliminato.</string>
@@ -491,4 +491,14 @@
 
     <string name="limit_data_usage_none_description">Senza limiti</string>
     <string name="limit_mobile_data_usage_title">Limita la risoluzione quando si utilizzano dati mobili</string>
-    </resources>
+    <string name="skip_silence_checkbox">Avanzamento veloce durante il silenzio</string>
+    <string name="playback_step">Step</string>
+    <string name="playback_reset">Reset</string>
+
+    <string name="minimize_on_exit_title">Minimizza al cambio applicazione</string>
+    <string name="minimize_on_exit_summary">Azione quando si passa ad un\'altra applicazione dal lettore video principale — %s</string>
+    <string name="minimize_on_exit_none_description">Nessuna</string>
+    <string name="minimize_on_exit_background_description">Minimizza al lettore in sottofondo</string>
+    <string name="minimize_on_exit_popup_description">Minimizza al lettore popup</string>
+
+</resources>
