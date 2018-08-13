@@ -24,8 +24,6 @@
     <string name="show_play_with_kodi_summary">Toont een optie om een video op een Kodi media center af te spelen</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Standaardaudioformaat</string>
-    <string name="webm_description">WebM — vrij formaat</string>
-    <string name="m4a_description">M4A — betere kwaliteit</string>
     <string name="download_dialog_title">Downloaden</string>
     <string name="next_video_title">Volgende video</string>
     <string name="url_not_supported_toast">URL wordt niet ondersteund</string>

@@ -25,7 +25,6 @@
     <string name="kore_not_found">تطبيق Kore غير موجود. هل تريد تثبيته ؟</string>
     <string name="light_theme_title">مضيء</string>
     <string name="list_thumbnail_view_description">صور معاينة الفيديو</string>
-    <string name="m4a_description">جودة أفضل — M4A</string>
     <string name="network_error">خطأ في الشبكة</string>
     <string name="next_video_title">الفيديو التالي</string>
     <string name="no_player_found">لا يوجد مشغل فيديو. هل تريد تثبيت VLC ؟</string>
@@ -53,7 +52,6 @@
     <string name="use_tor_summary">(إختبارية) إجراء التنزيلات من خلال استخدام بروكسي Tor لزيادة الخصوصية ( تشغيل الفيديو المباشر غير مدعوم حتى الأن ).</string>
     <string name="use_tor_title">استخدام Tor</string>
     <string name="view_count_text">مشاهدات %1$s</string>
-    <string name="webm_description">تنسيق حر — WebM</string>
     <string name="blocked_by_gema">تم حجبه بواسطة GEMA</string>
     <string name="content_not_available">المحتوى غير متاح</string>
     <string name="could_not_load_thumbnails">لم يتمكن من تحميل كل صور المعاينة</string>

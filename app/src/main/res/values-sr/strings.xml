@@ -24,8 +24,6 @@
     <string name="show_play_with_kodi_summary">Приказ опције за пуштање видеа у Коди медија центру</string>
     <string name="play_audio">Аудио</string>
     <string name="default_audio_format_title">Подразумевани формат звука</string>
-    <string name="webm_description">WebM — слободни формат</string>
-    <string name="m4a_description">M4A — бољи квалитет</string>
     <string name="download_dialog_title">Преузми</string>
     <string name="next_video_title">Следећи видео</string>
     <string name="url_not_supported_toast">УРЛ није подржан</string>

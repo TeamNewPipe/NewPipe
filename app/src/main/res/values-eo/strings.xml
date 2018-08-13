@@ -21,8 +21,6 @@
     <string name="show_play_with_kodi_title">Montri \"Ludi per Kodi\"-opcion</string>
     <string name="play_audio">Sono</string>
     <string name="default_audio_format_title">Defaŭlta sondosierformo</string>
-    <string name="webm_description">WebM — libera dosierformo</string>
-    <string name="m4a_description">m4a — pli bona kvalito</string>
     <string name="theme_title">Etoso</string>
     <string name="dark_theme_title">Malluma</string>
     <string name="light_theme_title">Luma</string>

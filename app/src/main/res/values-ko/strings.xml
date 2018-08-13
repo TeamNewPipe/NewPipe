@@ -24,8 +24,6 @@
     <string name="show_play_with_kodi_summary">비디오를 Kodi media center를 사용해 재생하는 옵션을 표시합니다</string>
     <string name="play_audio">오디오</string>
     <string name="default_audio_format_title">기본 오디오 형식</string>
-    <string name="webm_description">WebM — 공개형 무료 자유 포맷입니다</string>
-    <string name="m4a_description">m4a — 보다 나은 품질을 제공합니다</string>
     <string name="download_dialog_title">다운로드</string>
     <string name="next_video_title">다음 비디오</string>
     <string name="show_next_and_similar_title">다음 및 유사한 비디오 표시</string>

@@ -32,8 +32,6 @@
     <string name="show_play_with_kodi_summary">Vis valg for avspilling via Kodi mediasenter</string>
     <string name="play_audio">Lyd</string>
     <string name="default_audio_format_title">Forvalgt lydformat</string>
-    <string name="webm_description">WebM — fritt format</string>
-    <string name="m4a_description">M4A — bedre kvalitet</string>
     <string name="theme_title">Drakt</string>
     <string name="dark_theme_title">Mørk</string>
     <string name="light_theme_title">Lys</string>
