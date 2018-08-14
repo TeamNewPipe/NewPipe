@@ -48,7 +48,7 @@
     <string name="settings_category_video_audio_title">Відео та Аудіо</string>
     <string name="settings_category_appearance_title">Зовнішній вигляд</string>
     <string name="settings_category_other_title">Інше</string>
-    <string name="background_player_playing_toast">Відтворення у фоновому режимі</string>
+    <string name="background_player_playing_toast">Відтворення у тловому режимі</string>
     <string name="play_btn_text">Відтворити</string>
     <string name="storage_permission_denied">У доступі відмовлено</string>
     <string name="content">Контент</string>
@@ -167,7 +167,7 @@
     <string name="settings_category_history_title">Історія та кеш</string>
     <string name="settings_category_popup_title">Вікно</string>
     <string name="popup_playing_toast">Відворення у вікні</string>
-    <string name="background_player_append">Додано до фонового відтворення</string>
+    <string name="background_player_append">Додано до тлового відтворення</string>
     <string name="popup_playing_append">Додано до чергу у вікно</string>
     <string name="playlist">Плейлист</string>
     <string name="filter">Фільтрувати</string>
@@ -181,11 +181,11 @@
     <string name="just_once">Тільки тепер</string>
 
     <string name="notification_channel_name">NewPipe сповіщення</string>
-    <string name="notification_channel_description">Сповіщення для фонового та віконного програвачів NewPipe</string>
+    <string name="notification_channel_description">"Сповіщення для NewPipe\'пових тлового і віконного програвачів "</string>
 
     <string name="unknown_content">[Невідомо]</string>
 
-    <string name="switch_to_background">Перемкнутися до Тла</string>
+    <string name="switch_to_background">Перемкнутися до тла</string>
     <string name="switch_to_popup">Перемкнутися до вікна</string>
     <string name="switch_to_main">Перемкнутися на головну</string>
 
@@ -234,7 +234,7 @@
     <string name="play_queue_audio_settings">Налаштування аудіо</string>
 
     <string name="video_player">Відеопрогравач</string>
-    <string name="background_player">Фоновий програвач</string>
+    <string name="background_player">Тловий програвач</string>
     <string name="popup_player">Віконний програвач</string>
     <string name="always_ask_player">Щоразу питати</string>
     
@@ -247,7 +247,7 @@
 
     <string name="controls_add_to_playlist_title">Додати до</string>
 
-    <string name="show_hold_to_append_summary">Показувати підказку коли натиснута кнопка фону або вікна на сторінці інформації відео</string>
+    <string name="show_hold_to_append_summary">Показувати підказку коли натиснута кнопка тла або вікна на сторінці інформації відеозапису</string>
     <string name="toggle_orientation">Перемкнути орієнтацію</string>
     <string name="player_unrecoverable_failure">Фатальна хиба програвача</string>
     <string name="external_player_unsupported_link_type">Зовнішні програвачі не підтримують такі види ланок</string>
@@ -333,14 +333,14 @@
 
     <string name="kiosk">Кіоски</string>
     <string name="trending">Набуває популярності</string>
-    <string name="title_activity_background_player">Фоновий програвач</string>
+    <string name="title_activity_background_player">Тловий програвач</string>
     <string name="title_activity_popup_player">Віконний програвач</string>
     <string name="play_queue_remove">Усунути</string>
     <string name="hold_to_append">Затиснути, аби зняти з черги</string>
-    <string name="enqueue_on_background">Зняти з черги у фоновому програвачеві</string>
+    <string name="enqueue_on_background">Зняти з черги у тловому програвачеві</string>
     <string name="enqueue_on_popup">Зняти з черги у віконному програвачеві</string>
     <string name="start_here_on_main">Розпочати відтворення звідси</string>
-    <string name="start_here_on_background">Розпочати відтворення звідси у фоновому програвачеві</string>
+    <string name="start_here_on_background">Розпочати відтворення у тловому програвачеві</string>
     <string name="start_here_on_popup">Розпочати відтворення у вікні звідси</string>
 
     <string name="drawer_open">Відчинити шухляду</string>
@@ -446,7 +446,7 @@
     <string name="preferred_open_action_settings_summary">Типова дія під час відкриття вмісту — %s</string>
 
     <string name="caption_setting_title">Субтитри</string>
-    <string name="caption_setting_description">Змінення маштабу тексту субтитрів та фонових стилів. Увімкнення функції потребує перезавантаження застосунку</string>
+    <string name="caption_setting_description">Змінення маштабу субтитрового тексту та тлових стилів. Увімкнення функції потребує перезавантаження застосунку</string>
 
     <string name="toast_no_player">Не знайдено відповідного застосунку для відтворення цього файла</string>
 
@@ -480,7 +480,7 @@
     <string name="minimize_on_exit_title">Зменшити при перемкненні застосунку</string>
     <string name="minimize_on_exit_summary">Дія при перемкненні до інших застосунків з головного відеопрогравача — %s</string>
     <string name="minimize_on_exit_none_description">Жодних</string>
-    <string name="minimize_on_exit_background_description">Зменшити до фонового програвачу</string>
+    <string name="minimize_on_exit_background_description">До тлового програвача</string>
     <string name="minimize_on_exit_popup_description">Зменшити до віконного програвачу</string>
 
 <string name="channels">Канали</string>
