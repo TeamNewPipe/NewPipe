@@ -501,4 +501,8 @@
     <string name="minimize_on_exit_background_description">Minimizza al lettore in sottofondo</string>
     <string name="minimize_on_exit_popup_description">Minimizza al lettore popup</string>
 
-</resources>
+<string name="channels">Canali</string>
+    <string name="playlists">Playlist</string>
+    <string name="tracks">Tracce</string>
+    <string name="users">Utenti</string>
+    </resources>
