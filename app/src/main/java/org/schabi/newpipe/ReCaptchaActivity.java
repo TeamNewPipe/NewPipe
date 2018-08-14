@@ -142,16 +142,12 @@ public class ReCaptchaActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        switch (id) {
-            case android.R.id.home: {
-                Intent intent = new Intent(this, org.schabi.newpipe.MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                NavUtils.navigateUpTo(this, intent);
-                return true;
-            }
-            default:
-                return false;
+        if (item.getItemId() == android.R.id.home) {
+            Intent intent = new Intent(this, org.schabi.newpipe.MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            NavUtils.navigateUpTo(this, intent);
+            return true;
         }
+        return false;
     }
 }
