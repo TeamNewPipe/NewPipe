@@ -149,7 +149,7 @@
     <string name="msg_exists">ఫైల్ ఇప్పటికే ఉంది</string>
     <string name="msg_running">న్యూపిప్ డౌన్లోడ్ అవుతంది</string>
     <string name="msg_running_detail">వివరాల కోసం నొక్కండి</string>
-    <string name="msg_wait">దయచేసి వేచి ఉండండి</string>
+    <string name="msg_wait">దయచేసి వేచి ఉండండి…</string>
     <string name="msg_copied">క్లిప్బోర్డ్కు కాపీ చేయబడింది</string>
     <string name="no_available_dir">దయచేసి అందుబాటులో ఉన్న డౌన్లోడ్ ఫోల్డర్ను ఎంచుకోండి</string>
     <string name="settings_category_downloads_title">డౌన్లోడ్</string>
