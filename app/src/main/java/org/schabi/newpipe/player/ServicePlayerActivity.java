@@ -187,6 +187,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                 this.player.getRepeatMode(),
                 this.player.getPlaybackSpeed(),
                 this.player.getPlaybackPitch(),
+                this.player.getPlaybackSkipSilence(),
                 null
         ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     }
@@ -466,13 +467,16 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     private void openPlaybackParameterDialog() {
         if (player == null) return;
-        PlaybackParameterDialog.newInstance(player.getPlaybackSpeed(),
-                player.getPlaybackPitch()).show(getSupportFragmentManager(), getTag());
+        PlaybackParameterDialog.newInstance(player.getPlaybackSpeed(), player.getPlaybackPitch(),
+                player.getPlaybackSkipSilence()).show(getSupportFragmentManager(), getTag());
     }
 
     @Override
-    public void onPlaybackParameterChanged(float playbackTempo, float playbackPitch) {
-        if (player != null) player.setPlaybackParameters(playbackTempo, playbackPitch);
+    public void onPlaybackParameterChanged(float playbackTempo, float playbackPitch,
+                                           boolean playbackSkipSilence) {
+        if (player != null) {
+            player.setPlaybackParameters(playbackTempo, playbackPitch, playbackSkipSilence);
+        }
     }
 
     ////////////////////////////////////////////////////////////////////////////

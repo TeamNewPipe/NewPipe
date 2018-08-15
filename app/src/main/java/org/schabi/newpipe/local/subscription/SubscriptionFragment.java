@@ -18,6 +18,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -43,6 +44,7 @@ import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.info_list.InfoListAdapter;
+import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService;
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService;
 import org.schabi.newpipe.report.UserAction;
@@ -325,9 +327,15 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
         infoListAdapter.setOnChannelSelectedListener(new OnClickGesture<ChannelInfoItem>() {
 
             public void selected(ChannelInfoItem selectedItem) {
-                // Requires the parent fragment to find holder for fragment replacement
-                NavigationHelper.openChannelFragment(getParentFragment().getFragmentManager(),
-                        selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName());
+                try {
+                    // Requires the parent fragment to find holder for fragment replacement
+                    NavigationHelper.openChannelFragment(getParentFragment().getFragmentManager(),
+                            selectedItem.getServiceId(),
+                            selectedItem.getUrl(),
+                            selectedItem.getName());
+                } catch (Exception e) {
+                    ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
+                }
             }
 
             public void held(ChannelInfoItem selectedItem) {

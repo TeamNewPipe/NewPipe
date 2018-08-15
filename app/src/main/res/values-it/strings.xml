@@ -24,8 +24,6 @@
     <string name="show_play_with_kodi_summary">Mostra l\'opzione per riprodurre i video tramite Kodi</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Formato audio predefinito</string>
-    <string name="webm_description">WebM — formato libero</string>
-    <string name="m4a_description">M4A — miglior qualità</string>
     <string name="download_dialog_title">Scarica</string>
     <string name="next_video_title">Prossimo video</string>
     <string name="show_next_and_similar_title">Mostra \'prossimi\' video e video \'simili\'</string>
@@ -454,7 +452,7 @@
     <string name="playback_speed_control">Controlli della velocità di riproduzione</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Tono</string>
-    <string name="unhook_checkbox">Slega (può causare distorsione)</string>
+    <string name="unhook_checkbox">Scollega (può causare distorsione)</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Valore predefinito</string>
 <string name="no_streams_available_download">Nessun flusso disponibile per il download</string>
@@ -491,4 +489,14 @@
 
     <string name="limit_data_usage_none_description">Senza limiti</string>
     <string name="limit_mobile_data_usage_title">Limita la risoluzione quando si utilizzano dati mobili</string>
-    </resources>
+    <string name="skip_silence_checkbox">Avanzamento veloce durante il silenzio</string>
+    <string name="playback_step">Step</string>
+    <string name="playback_reset">Reset</string>
+
+    <string name="minimize_on_exit_title">Minimizza al cambio applicazione</string>
+    <string name="minimize_on_exit_summary">Azione quando si passa ad un\'altra applicazione dal lettore video principale — %s</string>
+    <string name="minimize_on_exit_none_description">Nessuna</string>
+    <string name="minimize_on_exit_background_description">Minimizza al lettore in sottofondo</string>
+    <string name="minimize_on_exit_popup_description">Minimizza al lettore popup</string>
+
+</resources>

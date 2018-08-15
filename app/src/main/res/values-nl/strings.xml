@@ -24,8 +24,6 @@
     <string name="show_play_with_kodi_summary">Toont een optie om een video op een Kodi media center af te spelen</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Standaardaudioformaat</string>
-    <string name="webm_description">WebM — vrij formaat</string>
-    <string name="m4a_description">M4A — betere kwaliteit</string>
     <string name="download_dialog_title">Downloaden</string>
     <string name="next_video_title">Volgende video</string>
     <string name="url_not_supported_toast">URL wordt niet ondersteund</string>
@@ -331,7 +329,7 @@ te openen in pop-upmodus</string>
 <string name="import_data_title">Database importeren</string>
     <string name="export_data_title">Database exporteren</string>
     <string name="import_data_summary">Dit zal je huidige geschiedenis en abonnementen overschrijven</string>
-    <string name="export_data_summary">Exporteer geschiedenis, abonnementen en speellijsten.</string>
+    <string name="export_data_summary">Exporteer geschiedenis, abonnementen en speellijsten</string>
     <string name="export_complete_toast">Export voltooid</string>
     <string name="import_complete_toast">Import voltooid</string>
     <string name="no_valid_zip_file">Geen geldig ZIP-bestand</string>
@@ -399,7 +397,7 @@ te openen in pop-upmodus</string>
 <string name="use_inexact_seek_title">Snelle, minder exact spoelen gebruiken</string>
     <string name="use_inexact_seek_summary">Minder exact spoelen laat de speler sneller posities zoeken met verminderde precisie</string>
     <string name="auto_queue_title">Volgende stream automatisch in wachtrij plaatsen</string>
-    <string name="auto_queue_summary">Automatisch een gerelateerde stream toekennen bij het afspelen van de laatste stream in een niet-herhalende afspeelwachtlijst.</string>
+    <string name="auto_queue_summary">Automatisch een gerelateerde stream toekennen bij het afspelen van de laatste stream in een niet-herhalende afspeelwachtlijst</string>
     <string name="live_sync">SYNCHRONISEREN</string>
 
     <string name="file">Bestand</string>
@@ -441,7 +439,7 @@ te openen in pop-upmodus</string>
 \n 
 \nWil je doorgaan?</string>
 <string name="download_thumbnail_title">Miniatuurvoorbeelden laden</string>
-    <string name="download_thumbnail_summary">Schakel dit uit om alle miniatuurvoorbeelden niet meer te laden; dit bespaart gegevens en geheugen. Het wijzigen van deze instelling wist het geheugen en de afbeeldingscache.</string>
+    <string name="download_thumbnail_summary">Schakel dit uit om alle miniatuurvoorbeelden niet meer te laden; dit bespaart gegevens en geheugen. Het wijzigen van deze instelling wist het geheugen en de afbeeldingscache</string>
     <string name="thumbnail_cache_wipe_complete_notice">Afbeeldingscache gewist</string>
     <string name="metadata_cache_wipe_title">Gecachete metagegevens wissen</string>
     <string name="metadata_cache_wipe_summary">Alle gecachete webpagina-gegevens wissen</string>
@@ -449,7 +447,7 @@ te openen in pop-upmodus</string>
     <string name="playback_speed_control">Afspeelsnelheidbesturing</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Toon</string>
-    <string name="unhook_checkbox">Ontkoppelen (kan ruis veroorzaken)</string>
+    <string name="unhook_checkbox">Ontlinken (kan ruis veroorzaken)</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Standaard</string>
 <string name="preferred_open_action_settings_title">Voorkeursactie voor openen</string>
@@ -458,17 +456,17 @@ te openen in pop-upmodus</string>
     <string name="no_streams_available_download">Geen streams beschikbaar voor downloaden</string>
 
     <string name="caption_setting_title">Bijschriften</string>
-    <string name="caption_setting_description">Bijschriftgrootte en achtergrondstijlen wijzigen. Vereist een herstart van de app.</string>
+    <string name="caption_setting_description">Bijschriftgrootte en achtergrondstijlen wijzigen. Vereist een herstart van de app</string>
 
     <string name="toast_no_player">Er is geen app geïnstalleerd die dit bestand kan afspelen</string>
 
     <string name="clear_views_history_title">Kijkgeschiedenis wissen</string>
-    <string name="clear_views_history_summary">Verwijdert de geschiedenis van afgespeelde streams.</string>
-    <string name="delete_view_history_alert">Verwijdert de gehele kijkgeschiedenis.</string>
+    <string name="clear_views_history_summary">Verwijdert de geschiedenis van afgespeelde streams</string>
+    <string name="delete_view_history_alert">Verwijdert de gehele kijkgeschiedenis</string>
     <string name="view_history_deleted">Kijkgeschiedenis verwijderd.</string>
     <string name="clear_search_history_title">Zoekgeschiedenis wissen</string>
-    <string name="clear_search_history_summary">Verwijdert de gebruikte zoektermen.</string>
-    <string name="delete_search_history_alert">Verwijdert de gehele geschiedenis.</string>
+    <string name="clear_search_history_summary">Verwijdert de gebruikte zoektermen</string>
+    <string name="delete_search_history_alert">Verwijdert de gehele geschiedenis</string>
     <string name="search_history_deleted">Zoekgeschiedenis verwijderd.</string>
     <string name="one_item_deleted">1 item verwijderd.</string>
 
@@ -485,4 +483,18 @@ te openen in pop-upmodus</string>
     <string name="decline">Weigeren</string>
 <string name="limit_data_usage_none_description">Ongelimiteerd</string>
     <string name="limit_mobile_data_usage_title">Resolutie beperken bij gebruik van mobiele gegevens</string>
+    <string name="minimize_on_exit_title">Minimaliseren bij overschakelen naar andere app</string>
+    <string name="minimize_on_exit_summary">Actie bij overschakelen van videospeler naar andere app — %s</string>
+    <string name="minimize_on_exit_none_description">Geen</string>
+    <string name="minimize_on_exit_background_description">Afspelen op achtergrond</string>
+    <string name="minimize_on_exit_popup_description">Afspelen in pop-upvenster</string>
+
+<string name="skip_silence_checkbox">Vooruitspoelen tijdens stilte</string>
+    <string name="playback_step">Stap</string>
+    <string name="playback_reset">Standaardwaarden</string>
+
+    <string name="channels">Kanalen</string>
+    <string name="playlists">Afspeellijsten</string>
+    <string name="tracks">Nummers</string>
+    <string name="users">Gebruikers</string>
     </resources>

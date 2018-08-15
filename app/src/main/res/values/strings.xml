@@ -65,8 +65,6 @@
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Default audio format</string>
     <string name="default_video_format_title">Default video format</string>
-    <string name="webm_description">WebM — libre format</string>
-    <string name="m4a_description">M4A — better quality</string>
     <string name="theme_title">Theme</string>
     <string name="light_theme_title">Light</string>
     <string name="dark_theme_title">Dark</string>
@@ -126,7 +124,12 @@
     <string name="error_report_title">Error report</string>
     <string name="all">All</string>
     <string name="channel">Channel</string>
+    <string name="channels">Channels</string>
     <string name="playlist">Playlist</string>
+    <string name="playlists">Playlists</string>
+    <string name="videos">Videos</string>
+    <string name="tracks">Tracks</string>
+    <string name="users">Users</string>
     <string name="yes">Yes</string>
     <string name="later">Later</string>
     <string name="disabled">Disabled</string>
@@ -480,9 +483,10 @@
     <string name="playback_speed_control">Playback Speed Controls</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Pitch</string>
-    <string name="unhook_checkbox">Unhook (may cause distortion)</string>
-    <string name="playback_nightcore">Nightcore</string>
-    <string name="playback_default">Default</string>
+    <string name="unhook_checkbox">Unlink (may cause distortion)</string>
+    <string name="skip_silence_checkbox">Fast-forward during silence</string>
+    <string name="playback_step">Step</string>
+    <string name="playback_reset">Reset</string>
 
     <!-- GDPR dialog -->
     <string name="start_accept_privacy_policy">In order to comply with the European General Data Protection Regulation (GDPR), we herby draw your attention to NewPipe\'s privacy policy. Please read it carefully.\nYou must accept it to send us the bug report.</string>

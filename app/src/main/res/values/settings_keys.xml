@@ -93,8 +93,8 @@
     <string name="audio_m4a_key" translatable="false">audio_m4a</string>
     <string name="audio_webm_key" translatable="false">audio_webm</string>
     <string-array name="audio_format_description_list" translatable="false">
-        <item>@string/m4a_description</item>
-        <item>@string/webm_description</item>
+        <item>M4A</item>
+        <item>WebM</item>
     </string-array>
     <string-array name="audio_format_values_list" translatable="false">
         <item>@string/audio_m4a_key</item>

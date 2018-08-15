@@ -29,7 +29,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -47,11 +46,9 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.google.android.exoplayer2.C;
-import com.google.android.exoplayer2.Format;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.source.MergingMediaSource;
 import com.google.android.exoplayer2.source.TrackGroup;
 import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.text.CaptionStyleCompat;
@@ -62,21 +59,17 @@ import com.google.android.exoplayer2.video.VideoListener;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
-import org.schabi.newpipe.extractor.Subtitles;
-import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
-import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
+import org.schabi.newpipe.player.resolver.MediaSourceTag;
+import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
 import org.schabi.newpipe.util.AnimationUtils;
-import org.schabi.newpipe.util.ListHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.google.android.exoplayer2.C.SELECTION_FLAG_AUTOSELECT;
-import static com.google.android.exoplayer2.C.TIME_UNSET;
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
 import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
@@ -105,13 +98,12 @@ public abstract class VideoPlayer extends BasePlayer
     public static final int DEFAULT_CONTROLS_DURATION = 300; // 300 millis
     public static final int DEFAULT_CONTROLS_HIDE_TIME = 2000;  // 2 Seconds
 
-    private ArrayList<VideoStream> availableStreams;
+    private List<VideoStream> availableStreams;
     private int selectedStreamIndex;
-
-    protected String playbackQuality;
 
     protected boolean wasPlaying = false;
 
+    @NonNull final private VideoPlaybackResolver resolver;
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
@@ -162,6 +154,7 @@ public abstract class VideoPlayer extends BasePlayer
     public VideoPlayer(String debugTag, Context context) {
         super(context);
         this.TAG = debugTag;
+        this.resolver = new VideoPlaybackResolver(context, dataSource, getQualityResolver());
     }
 
     public void setup(View rootView) {
@@ -241,7 +234,8 @@ public abstract class VideoPlayer extends BasePlayer
 
         // Setup audio session with onboard equalizer
         if (Build.VERSION.SDK_INT >= 21) {
-            trackSelector.setTunnelingAudioSessionId(C.generateAudioSessionIdV21(context));
+            trackSelector.setParameters(trackSelector.buildUponParameters()
+                    .setTunnelingAudioSessionId(C.generateAudioSessionIdV21(context)));
         }
     }
 
@@ -297,8 +291,9 @@ public abstract class VideoPlayer extends BasePlayer
                 0, Menu.NONE, R.string.caption_none);
         captionOffItem.setOnMenuItemClickListener(menuItem -> {
             final int textRendererIndex = getRendererIndex(C.TRACK_TYPE_TEXT);
-            if (trackSelector != null && textRendererIndex != RENDERER_UNAVAILABLE) {
-                trackSelector.setRendererDisabled(textRendererIndex, true);
+            if (textRendererIndex != RENDERER_UNAVAILABLE) {
+                trackSelector.setParameters(trackSelector.buildUponParameters()
+                        .setRendererDisabled(textRendererIndex, true));
             }
             return true;
         });
@@ -310,68 +305,61 @@ public abstract class VideoPlayer extends BasePlayer
                     i + 1, Menu.NONE, captionLanguage);
             captionItem.setOnMenuItemClickListener(menuItem -> {
                 final int textRendererIndex = getRendererIndex(C.TRACK_TYPE_TEXT);
-                if (trackSelector != null && textRendererIndex != RENDERER_UNAVAILABLE) {
+                if (textRendererIndex != RENDERER_UNAVAILABLE) {
                     trackSelector.setPreferredTextLanguage(captionLanguage);
-                    trackSelector.setRendererDisabled(textRendererIndex, false);
+                    trackSelector.setParameters(trackSelector.buildUponParameters()
+                            .setRendererDisabled(textRendererIndex, false));
                 }
                 return true;
             });
         }
         captionPopupMenu.setOnDismissListener(this);
     }
-    /*//////////////////////////////////////////////////////////////////////////
-    // Playback Listener
-    //////////////////////////////////////////////////////////////////////////*/
 
-    protected abstract int getDefaultResolutionIndex(final List<VideoStream> sortedVideos);
 
-    protected abstract int getOverrideResolutionIndex(final List<VideoStream> sortedVideos, final String playbackQuality);
+    private void updateStreamRelatedViews() {
+        if (getCurrentMetadata() == null) return;
 
-    protected void onMetadataChanged(@NonNull final PlayQueueItem item,
-                                     @Nullable final StreamInfo info,
-                                     final int newPlayQueueIndex,
-                                     final boolean hasPlayQueueItemChanged) {
+        final MediaSourceTag tag = getCurrentMetadata();
+        final StreamInfo metadata = tag.getMetadata();
+
         qualityTextView.setVisibility(View.GONE);
         playbackSpeedTextView.setVisibility(View.GONE);
 
         playbackEndTime.setVisibility(View.GONE);
         playbackLiveSync.setVisibility(View.GONE);
 
-        final StreamType streamType = info == null ? StreamType.NONE : info.getStreamType();
-
-        switch (streamType) {
+        switch (metadata.getStreamType()) {
             case AUDIO_STREAM:
                 surfaceView.setVisibility(View.GONE);
+                endScreen.setVisibility(View.VISIBLE);
                 playbackEndTime.setVisibility(View.VISIBLE);
                 break;
 
             case AUDIO_LIVE_STREAM:
                 surfaceView.setVisibility(View.GONE);
+                endScreen.setVisibility(View.VISIBLE);
                 playbackLiveSync.setVisibility(View.VISIBLE);
                 break;
 
             case LIVE_STREAM:
                 surfaceView.setVisibility(View.VISIBLE);
+                endScreen.setVisibility(View.GONE);
                 playbackLiveSync.setVisibility(View.VISIBLE);
                 break;
 
             case VIDEO_STREAM:
-                if (info.getVideoStreams().size() + info.getVideoOnlyStreams().size() == 0) break;
+                if (metadata.getVideoStreams().size() + metadata.getVideoOnlyStreams().size() == 0)
+                    break;
 
-                final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context,
-                        info.getVideoStreams(), info.getVideoOnlyStreams(), false);
-                availableStreams = new ArrayList<>(videos);
-                if (playbackQuality == null) {
-                    selectedStreamIndex = getDefaultResolutionIndex(videos);
-                } else {
-                    selectedStreamIndex = getOverrideResolutionIndex(videos, getPlaybackQuality());
-                }
-
+                availableStreams = tag.getSortedAvailableVideoStreams();
+                selectedStreamIndex = tag.getSelectedVideoStreamIndex();
                 buildQualityMenu();
-                qualityTextView.setVisibility(View.VISIBLE);
 
+                qualityTextView.setVisibility(View.VISIBLE);
                 surfaceView.setVisibility(View.VISIBLE);
             default:
+                endScreen.setVisibility(View.GONE);
                 playbackEndTime.setVisibility(View.VISIBLE);
                 break;
         }
@@ -379,69 +367,21 @@ public abstract class VideoPlayer extends BasePlayer
         buildPlaybackSpeedMenu();
         playbackSpeedTextView.setVisibility(View.VISIBLE);
     }
+    /*//////////////////////////////////////////////////////////////////////////
+    // Playback Listener
+    //////////////////////////////////////////////////////////////////////////*/
+
+    protected abstract VideoPlaybackResolver.QualityResolver getQualityResolver();
+
+    protected void onMetadataChanged(@NonNull final MediaSourceTag tag) {
+        super.onMetadataChanged(tag);
+        updateStreamRelatedViews();
+    }
 
     @Override
     @Nullable
     public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
-        final MediaSource liveSource = super.sourceOf(item, info);
-        if (liveSource != null) return liveSource;
-
-        List<MediaSource> mediaSources = new ArrayList<>();
-
-        // Create video stream source
-        final List<VideoStream> videos = ListHelper.getSortedStreamVideosList(context,
-                info.getVideoStreams(), info.getVideoOnlyStreams(), false);
-        final int index;
-        if (videos.isEmpty()) {
-            index = -1;
-        } else if (playbackQuality == null) {
-            index = getDefaultResolutionIndex(videos);
-        } else {
-            index = getOverrideResolutionIndex(videos, getPlaybackQuality());
-        }
-        final VideoStream video = index >= 0 && index < videos.size() ? videos.get(index) : null;
-        if (video != null) {
-            final MediaSource streamSource = buildMediaSource(video.getUrl(),
-                    PlayerHelper.cacheKeyOf(info, video),
-                    MediaFormat.getSuffixById(video.getFormatId()));
-            mediaSources.add(streamSource);
-        }
-
-        // Create optional audio stream source
-        final List<AudioStream> audioStreams = info.getAudioStreams();
-        final AudioStream audio = audioStreams.isEmpty() ? null : audioStreams.get(
-                ListHelper.getDefaultAudioFormat(context, audioStreams));
-        // Use the audio stream if there is no video stream, or
-        // Merge with audio stream in case if video does not contain audio
-        if (audio != null && ((video != null && video.isVideoOnly) || video == null)) {
-            final MediaSource audioSource = buildMediaSource(audio.getUrl(),
-                    PlayerHelper.cacheKeyOf(info, audio),
-                    MediaFormat.getSuffixById(audio.getFormatId()));
-            mediaSources.add(audioSource);
-        }
-
-        // If there is no audio or video sources, then this media source cannot be played back
-        if (mediaSources.isEmpty()) return null;
-        // Below are auxiliary media sources
-
-        // Create subtitle sources
-        for (final Subtitles subtitle : info.getSubtitles()) {
-            final String mimeType = PlayerHelper.mimeTypesOf(subtitle.getFileType());
-            if (mimeType == null) continue;
-
-            final Format textFormat = Format.createTextSampleFormat(null, mimeType,
-                    SELECTION_FLAG_AUTOSELECT, PlayerHelper.captionLanguageOf(context, subtitle));
-            final MediaSource textSource = dataSource.getSampleMediaSourceFactory()
-                    .createMediaSource(Uri.parse(subtitle.getURL()), textFormat, TIME_UNSET);
-            mediaSources.add(textSource);
-        }
-
-        if (mediaSources.size() == 1) {
-            return mediaSources.get(0);
-        } else {
-            return new MergingMediaSource(mediaSources.toArray(
-                    new MediaSource[mediaSources.size()]));
-        }
+        return resolver.resolve(info);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -460,7 +400,6 @@ public abstract class VideoPlayer extends BasePlayer
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
             playbackSeekBar.getThumb().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
 
-        animateView(endScreen, false, 0);
         loadingPanel.setBackgroundColor(Color.BLACK);
         animateView(loadingPanel, true, 0);
         animateView(surfaceForeground, true, 100);
@@ -469,6 +408,8 @@ public abstract class VideoPlayer extends BasePlayer
     @Override
     public void onPlaying() {
         super.onPlaying();
+
+        updateStreamRelatedViews();
 
         showAndAnimateControl(-1, true);
 
@@ -480,14 +421,12 @@ public abstract class VideoPlayer extends BasePlayer
         loadingPanel.setVisibility(View.GONE);
 
         animateView(currentDisplaySeek, AnimationUtils.Type.SCALE_AND_ALPHA, false, 200);
-        animateView(endScreen, false, 0);
     }
 
     @Override
     public void onBuffering() {
         if (DEBUG) Log.d(TAG, "onBuffering() called");
         loadingPanel.setBackgroundColor(Color.TRANSPARENT);
-        animateView(loadingPanel, true, 500);
     }
 
     @Override
@@ -552,8 +491,7 @@ public abstract class VideoPlayer extends BasePlayer
         final int textRenderer = getRendererIndex(C.TRACK_TYPE_TEXT);
 
         if (captionTextView == null) return;
-        if (trackSelector == null || trackSelector.getCurrentMappedTrackInfo() == null ||
-                textRenderer == RENDERER_UNAVAILABLE) {
+        if (trackSelector.getCurrentMappedTrackInfo() == null || textRenderer == RENDERER_UNAVAILABLE) {
             captionTextView.setVisibility(View.GONE);
             return;
         }
@@ -575,8 +513,8 @@ public abstract class VideoPlayer extends BasePlayer
 
         // Build UI
         buildCaptionMenu(availableLanguages);
-        if (trackSelector.getRendererDisabled(textRenderer) || preferredLanguage == null ||
-                !availableLanguages.contains(preferredLanguage)) {
+        if (trackSelector.getParameters().getRendererDisabled(textRenderer) ||
+                preferredLanguage == null || !availableLanguages.contains(preferredLanguage)) {
             captionTextView.setText(R.string.caption_none);
         } else {
             captionTextView.setText(preferredLanguage);
@@ -905,11 +843,12 @@ public abstract class VideoPlayer extends BasePlayer
     //////////////////////////////////////////////////////////////////////////*/
 
     public void setPlaybackQuality(final String quality) {
-        this.playbackQuality = quality;
+        this.resolver.setPlaybackQuality(quality);
     }
 
+    @Nullable
     public String getPlaybackQuality() {
-        return playbackQuality;
+        return resolver.getPlaybackQuality();
     }
 
     public AspectRatioFrameLayout getAspectRatioFrameLayout() {

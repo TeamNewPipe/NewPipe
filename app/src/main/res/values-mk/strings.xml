@@ -59,8 +59,6 @@
     <string name="play_audio">Звук</string>
     <string name="default_audio_format_title">Стандарден аудио формат</string>
     <string name="default_video_format_title">Стандарден видео формат</string>
-    <string name="webm_description">WebM — слободен формат</string>
-    <string name="m4a_description">М4А — подобар квалитет</string>
     <string name="theme_title">Тема</string>
     <string name="light_theme_title">Светла</string>
     <string name="dark_theme_title">Темна</string>

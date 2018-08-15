@@ -5,7 +5,6 @@ import android.preference.PreferenceManager;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
 
-import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.ServiceList;
@@ -28,6 +27,18 @@ public class ServiceHelper {
                 return R.drawable.place_holder_circle;
             default:
                 return R.drawable.service;
+        }
+    }
+
+    public static String getTranslatedFilterString(String filter, Context c) {
+        switch(filter) {
+            case "all": return c.getString(R.string.all);
+            case "videos": return c.getString(R.string.videos);
+            case "channels": return c.getString(R.string.channels);
+            case "playlists": return c.getString(R.string.playlists);
+            case "tracks": return c.getString(R.string.tracks);
+            case "users": return c.getString(R.string.users);
+            default: return filter;
         }
     }
 
