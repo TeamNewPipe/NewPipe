@@ -36,6 +36,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.DisplayMetrics;
@@ -46,7 +47,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -82,6 +85,7 @@ import java.util.UUID;
 import static org.schabi.newpipe.player.BasePlayer.STATE_PLAYING;
 import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_DURATION;
 import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME;
+import static org.schabi.newpipe.util.AnimationUtils.Type.SCALE_AND_ALPHA;
 import static org.schabi.newpipe.util.AnimationUtils.Type.SLIDE_AND_ALPHA;
 import static org.schabi.newpipe.util.AnimationUtils.animateRotation;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
@@ -365,10 +369,16 @@ public final class MainVideoPlayer extends AppCompatActivity
 
     @SuppressWarnings({"unused", "WeakerAccess"})
     private class VideoPlayerImpl extends VideoPlayer {
+        private final float MAX_GESTURE_LENGTH = 0.75f;
+
         private TextView titleTextView;
         private TextView channelTextView;
-        private TextView volumeTextView;
-        private TextView brightnessTextView;
+        private RelativeLayout volumeRelativeLayout;
+        private ProgressBar volumeProgressBar;
+        private ImageView volumeImageView;
+        private RelativeLayout brightnessRelativeLayout;
+        private ProgressBar brightnessProgressBar;
+        private ImageView brightnessImageView;
         private ImageButton queueButton;
         private ImageButton repeatButton;
         private ImageButton shuffleButton;
@@ -392,6 +402,8 @@ public final class MainVideoPlayer extends AppCompatActivity
         private RelativeLayout windowRootLayout;
         private View secondaryControls;
 
+        private int maxGestureLength;
+
         VideoPlayerImpl(final Context context) {
             super("VideoPlayerImpl" + MainVideoPlayer.TAG, context);
         }
@@ -401,8 +413,12 @@ public final class MainVideoPlayer extends AppCompatActivity
             super.initViews(rootView);
             this.titleTextView = rootView.findViewById(R.id.titleTextView);
             this.channelTextView = rootView.findViewById(R.id.channelTextView);
-            this.volumeTextView = rootView.findViewById(R.id.volumeTextView);
-            this.brightnessTextView = rootView.findViewById(R.id.brightnessTextView);
+            this.volumeRelativeLayout = rootView.findViewById(R.id.volumeRelativeLayout);
+            this.volumeProgressBar = rootView.findViewById(R.id.volumeProgressBar);
+            this.volumeImageView = rootView.findViewById(R.id.volumeImageView);
+            this.brightnessRelativeLayout = rootView.findViewById(R.id.brightnessRelativeLayout);
+            this.brightnessProgressBar = rootView.findViewById(R.id.brightnessProgressBar);
+            this.brightnessImageView = rootView.findViewById(R.id.brightnessImageView);
             this.queueButton = rootView.findViewById(R.id.queueButton);
             this.repeatButton = rootView.findViewById(R.id.repeatButton);
             this.shuffleButton = rootView.findViewById(R.id.shuffleButton);
@@ -461,6 +477,20 @@ public final class MainVideoPlayer extends AppCompatActivity
             toggleOrientationButton.setOnClickListener(this);
             switchBackgroundButton.setOnClickListener(this);
             switchPopupButton.setOnClickListener(this);
+
+            getRootView().addOnLayoutChangeListener((view, l, t, r, b, ol, ot, or, ob) -> {
+                if (l != ol || t != ot || r != or || b != ob) {
+                    // Use smaller value to be consistent between screen orientations
+                    // (and to make usage easier)
+                    int width = r - l, height = b - t;
+                    maxGestureLength = (int) (Math.min(width, height) * MAX_GESTURE_LENGTH);
+
+                    if (DEBUG) Log.d(TAG, "maxGestureLength = " + maxGestureLength);
+
+                    volumeProgressBar.setMax(maxGestureLength);
+                    brightnessProgressBar.setMax(maxGestureLength);
+                }
+            });
         }
 
         public void minimize() {
@@ -872,12 +902,28 @@ public final class MainVideoPlayer extends AppCompatActivity
             return channelTextView;
         }
 
-        public TextView getVolumeTextView() {
-            return volumeTextView;
+        public RelativeLayout getVolumeRelativeLayout() {
+            return volumeRelativeLayout;
         }
 
-        public TextView getBrightnessTextView() {
-            return brightnessTextView;
+        public ProgressBar getVolumeProgressBar() {
+            return volumeProgressBar;
+        }
+
+        public ImageView getVolumeImageView() {
+            return volumeImageView;
+        }
+
+        public RelativeLayout getBrightnessRelativeLayout() {
+            return brightnessRelativeLayout;
+        }
+
+        public ProgressBar getBrightnessProgressBar() {
+            return brightnessProgressBar;
+        }
+
+        public ImageView getBrightnessImageView() {
+            return brightnessImageView;
         }
 
         public ImageButton getRepeatButton() {
@@ -886,6 +932,10 @@ public final class MainVideoPlayer extends AppCompatActivity
 
         public ImageButton getPlayPauseButton() {
             return playPauseButton;
+        }
+
+        public int getMaxGestureLength() {
+            return maxGestureLength;
         }
     }
 
@@ -930,23 +980,10 @@ public final class MainVideoPlayer extends AppCompatActivity
 
         private final boolean isPlayerGestureEnabled = PlayerHelper.isPlayerGestureEnabled(getApplicationContext());
 
-        private final float stepsBrightness = 15, stepBrightness = (1f / stepsBrightness), minBrightness = .01f;
-        private float currentBrightness = getWindow().getAttributes().screenBrightness > 0
-                ? getWindow().getAttributes().screenBrightness
-                : 0.5f;
-
-        private int currentVolume, maxVolume = playerImpl.getAudioReactor().getMaxVolume();
-        private final float stepsVolume = 15, stepVolume = (float) Math.ceil(maxVolume / stepsVolume), minVolume = 0;
-
-        private final String brightnessUnicode = new String(Character.toChars(0x2600));
-        private final String volumeUnicode = new String(Character.toChars(0x1F508));
+        private final int maxVolume = playerImpl.getAudioReactor().getMaxVolume();
 
         private final int MOVEMENT_THRESHOLD = 40;
-        private final int eventsThreshold = 8;
-        private boolean triggered = false;
-        private int eventsNum;
 
-        // TODO: Improve video gesture controls
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
             if (!isPlayerGestureEnabled) return false;
@@ -956,63 +993,77 @@ public final class MainVideoPlayer extends AppCompatActivity
                     ", e1.getRaw = [" + e1.getRawX() + ", " + e1.getRawY() + "]" +
                     ", e2.getRaw = [" + e2.getRawX() + ", " + e2.getRawY() + "]" +
                     ", distanceXy = [" + distanceX + ", " + distanceY + "]");
-            float abs = Math.abs(e2.getY() - e1.getY());
-            if (!triggered) {
-                triggered = abs > MOVEMENT_THRESHOLD;
+
+            if (!isMoving && (
+                    Math.abs(e2.getY() - e1.getY()) <= MOVEMENT_THRESHOLD
+                            || Math.abs(distanceX) > Math.abs(distanceY)
+            ) || playerImpl.getCurrentState() == BasePlayer.STATE_COMPLETED)
                 return false;
-            }
 
-            if (eventsNum++ % eventsThreshold != 0 || playerImpl.getCurrentState() == BasePlayer.STATE_COMPLETED) return false;
             isMoving = true;
-//            boolean up = !((e2.getY() - e1.getY()) > 0) && distanceY > 0; // Android's origin point is on top
-            boolean up = distanceY > 0;
-
 
             if (e1.getX() > playerImpl.getRootView().getWidth() / 2) {
-                double floor = Math.floor(up ? stepVolume : -stepVolume);
-                currentVolume = (int) (playerImpl.getAudioReactor().getVolume() + floor);
-                if (currentVolume >= maxVolume) currentVolume = maxVolume;
-                if (currentVolume <= minVolume) currentVolume = (int) minVolume;
+                playerImpl.getVolumeProgressBar().incrementProgressBy((int) distanceY);
+                float currentProgressPercent =
+                        (float) playerImpl.getVolumeProgressBar().getProgress() / playerImpl.getMaxGestureLength();
+                int currentVolume = (int) (maxVolume * currentProgressPercent);
                 playerImpl.getAudioReactor().setVolume(currentVolume);
 
-                currentVolume = playerImpl.getAudioReactor().getVolume();
                 if (DEBUG) Log.d(TAG, "onScroll().volumeControl, currentVolume = " + currentVolume);
-                final String volumeText = volumeUnicode + " " + Math.round((((float) currentVolume) / maxVolume) * 100) + "%";
-                playerImpl.getVolumeTextView().setText(volumeText);
 
-                if (playerImpl.getVolumeTextView().getVisibility() != View.VISIBLE) animateView(playerImpl.getVolumeTextView(), true, 200);
-                if (playerImpl.getBrightnessTextView().getVisibility() == View.VISIBLE) playerImpl.getBrightnessTextView().setVisibility(View.GONE);
+                final int resId =
+                        currentProgressPercent <= 0 ? R.drawable.ic_volume_off_white_72dp
+                        : currentProgressPercent < 0.25 ? R.drawable.ic_volume_mute_white_72dp
+                        : currentProgressPercent < 0.75 ? R.drawable.ic_volume_down_white_72dp
+                        : R.drawable.ic_volume_up_white_72dp;
+
+                playerImpl.getVolumeImageView().setImageDrawable(
+                        AppCompatResources.getDrawable(getApplicationContext(), resId)
+                );
+
+                if (playerImpl.getVolumeRelativeLayout().getVisibility() != View.VISIBLE) {
+                    animateView(playerImpl.getVolumeRelativeLayout(), SCALE_AND_ALPHA, true, 200);
+                }
+                if (playerImpl.getBrightnessRelativeLayout().getVisibility() == View.VISIBLE) {
+                    playerImpl.getBrightnessRelativeLayout().setVisibility(View.GONE);
+                }
             } else {
-                WindowManager.LayoutParams lp = getWindow().getAttributes();
-                currentBrightness += up ? stepBrightness : -stepBrightness;
-                if (currentBrightness >= 1f) currentBrightness = 1f;
-                if (currentBrightness <= minBrightness) currentBrightness = minBrightness;
+                playerImpl.getBrightnessProgressBar().incrementProgressBy((int) distanceY);
+                float currentProgressPercent =
+                        (float) playerImpl.getBrightnessProgressBar().getProgress() / playerImpl.getMaxGestureLength();
+                WindowManager.LayoutParams layoutParams = getWindow().getAttributes();
+                layoutParams.screenBrightness = currentProgressPercent;
+                getWindow().setAttributes(layoutParams);
 
-                lp.screenBrightness = currentBrightness;
-                getWindow().setAttributes(lp);
-                if (DEBUG) Log.d(TAG, "onScroll().brightnessControl, currentBrightness = " + currentBrightness);
-                int brightnessNormalized = Math.round(currentBrightness * 100);
+                if (DEBUG) Log.d(TAG, "onScroll().brightnessControl, currentBrightness = " + currentProgressPercent);
 
-                final String brightnessText = brightnessUnicode + " " + (brightnessNormalized == 1 ? 0 : brightnessNormalized) + "%";
-                playerImpl.getBrightnessTextView().setText(brightnessText);
+                final int resId =
+                        currentProgressPercent < 0.25 ? R.drawable.ic_brightness_low_white_72dp
+                        : currentProgressPercent < 0.75 ? R.drawable.ic_brightness_medium_white_72dp
+                        : R.drawable.ic_brightness_high_white_72dp;
 
-                if (playerImpl.getBrightnessTextView().getVisibility() != View.VISIBLE) animateView(playerImpl.getBrightnessTextView(), true, 200);
-                if (playerImpl.getVolumeTextView().getVisibility() == View.VISIBLE) playerImpl.getVolumeTextView().setVisibility(View.GONE);
+                playerImpl.getBrightnessImageView().setImageDrawable(
+                        AppCompatResources.getDrawable(getApplicationContext(), resId)
+                );
+
+                if (playerImpl.getBrightnessRelativeLayout().getVisibility() != View.VISIBLE) {
+                    animateView(playerImpl.getBrightnessRelativeLayout(), SCALE_AND_ALPHA, true, 200);
+                }
+                if (playerImpl.getVolumeRelativeLayout().getVisibility() == View.VISIBLE) {
+                    playerImpl.getVolumeRelativeLayout().setVisibility(View.GONE);
+                }
             }
             return true;
         }
 
         private void onScrollEnd() {
             if (DEBUG) Log.d(TAG, "onScrollEnd() called");
-            triggered = false;
-            eventsNum = 0;
-            /* if (playerImpl.getVolumeTextView().getVisibility() == View.VISIBLE) playerImpl.getVolumeTextView().setVisibility(View.GONE);
-            if (playerImpl.getBrightnessTextView().getVisibility() == View.VISIBLE) playerImpl.getBrightnessTextView().setVisibility(View.GONE);*/
-            if (playerImpl.getVolumeTextView().getVisibility() == View.VISIBLE) {
-                animateView(playerImpl.getVolumeTextView(), false, 200, 200);
+
+            if (playerImpl.getVolumeRelativeLayout().getVisibility() == View.VISIBLE) {
+                animateView(playerImpl.getVolumeRelativeLayout(), SCALE_AND_ALPHA, false, 200, 200);
             }
-            if (playerImpl.getBrightnessTextView().getVisibility() == View.VISIBLE) {
-                animateView(playerImpl.getBrightnessTextView(), false, 200, 200);
+            if (playerImpl.getBrightnessRelativeLayout().getVisibility() == View.VISIBLE) {
+                animateView(playerImpl.getBrightnessRelativeLayout(), SCALE_AND_ALPHA, false, 200, 200);
             }
 
             if (playerImpl.isControlsVisible() && playerImpl.getCurrentState() == STATE_PLAYING) {
