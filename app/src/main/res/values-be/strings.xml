@@ -153,11 +153,11 @@
     <string name="export_data_summary">Экспарт гісторыі, падпісак і плэйлістоў</string>
     <string name="clear_views_history_title">Ачысціць гісторыю праглядаў</string>
     <string name="clear_views_history_summary">Выдаліць гісторыю прайграных патокаў</string>
-    <string name="delete_view_history_alert">Уся гісторыя праглядаў будзе выдалена</string>
+    <string name="delete_view_history_alert">Выдаліць усю гісторыю праглядаў.</string>
     <string name="view_history_deleted">Гісторыя праглядаў выдалена.</string>
     <string name="clear_search_history_title">Ачысціць гісторыю пошуку</string>
     <string name="clear_search_history_summary">Выдаліць гісторыю пошукавых запытаў</string>
-    <string name="delete_search_history_alert">Уся гісторыя пошуку будзе выдалена</string>
+    <string name="delete_search_history_alert">Выдаліць усю гісторыю пошуку.</string>
     <string name="search_history_deleted">Гісторыя пошуку выдалена.</string>
     <string name="general_error">Памылка</string>
     <string name="network_error">Памылка сеткі</string>
