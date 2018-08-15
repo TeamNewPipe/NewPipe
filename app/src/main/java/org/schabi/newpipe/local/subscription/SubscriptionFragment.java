@@ -37,7 +37,6 @@ import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
-import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
@@ -47,7 +46,6 @@ import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
@@ -394,42 +392,17 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
 
     @SuppressLint("CheckResult")
     private void deleteChannel (ChannelInfoItem selectedItem) {
-        ExtractorHelper.getChannelInfo(selectedItem.getServiceId(), selectedItem.getUrl(), true).toObservable()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getUnsubscribeObserver());
-    }
+        final io.reactivex.Observable<List<SubscriptionEntity>> observable = subscriptionService.subscriptionTable()
+                .getSubscription(selectedItem.getServiceId(), selectedItem.getUrl())
+                .toObservable();
 
-
-
-    private Observer<ChannelInfo> getUnsubscribeObserver() {
-        return new Observer<ChannelInfo>() {
-            @Override
-            public void onSubscribe(Disposable d) {
-                disposables.add(d);
-            }
-
-            @Override
-            public void onNext(ChannelInfo info) {
-                final io.reactivex.Observable<List<SubscriptionEntity>> observable = subscriptionService.subscriptionTable()
-                        .getSubscription(info.getServiceId(), info.getUrl())
-                        .toObservable();
-
-                observable.observeOn(Schedulers.io())
+        observable.observeOn(Schedulers.io())
                 .subscribe(getDeleteObserver());
-            }
 
-            @Override
-            public void onError(Throwable exception) {
-                SubscriptionFragment.this.onError(exception);
-            }
-
-            @Override
-            public void onComplete() {
-                Toast.makeText(activity, getString(R.string.channel_unsubscribed), Toast.LENGTH_SHORT).show();
-            }
-        };
+        Toast.makeText(activity, getString(R.string.channel_unsubscribed), Toast.LENGTH_SHORT).show();
     }
+
+
 
     private Observer<List<SubscriptionEntity>> getDeleteObserver(){
         return new Observer<List<SubscriptionEntity>>() {
@@ -449,7 +422,7 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
             }
 
             @Override
-            public void onComplete() { }
+            public void onComplete() {  }
         };
     }
 
