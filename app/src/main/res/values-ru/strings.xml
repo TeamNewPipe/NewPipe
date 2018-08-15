@@ -29,7 +29,7 @@
     <string name="download_dialog_title">Скачать</string>
     <string name="next_video_title">Следующее видео</string>
     <string name="url_not_supported_toast">URL не поддерживается</string>
-    <string name="show_next_and_similar_title">\"Следующее\" и \"Предложенные\" видео</string>
+    <string name="show_next_and_similar_title">\"Следующее\" и \"Похожие\" видео</string>
     <string name="search_language_title">Язык контента по умолчанию</string>
     <string name="settings_category_video_audio_title">Видео и аудио</string>
     <string name="settings_category_appearance_title">Внешний вид</string>
