@@ -1,8 +1,10 @@
 package org.schabi.newpipe.player;
 
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -13,9 +15,12 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
@@ -562,6 +567,12 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         if (player != null) {
             progressLiveSync.setClickable(!player.isLiveEdge());
         }
+
+        // this will make shure progressCurrentTime has the same width as progressEndTime
+        final ViewGroup.LayoutParams endTimeParams = progressEndTime.getLayoutParams();
+        final ViewGroup.LayoutParams currentTimeParams = progressCurrentTime.getLayoutParams();
+        currentTimeParams.width = progressEndTime.getWidth();
+        progressCurrentTime.setLayoutParams(currentTimeParams);
     }
 
     @Override
