@@ -21,7 +21,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -44,9 +43,9 @@ import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.info_list.InfoListAdapter;
-import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService;
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService;
+import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
@@ -66,7 +65,6 @@ import java.util.Locale;
 
 import icepick.State;
 import io.reactivex.Observer;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -413,13 +411,12 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
 
             @Override
             public void onNext(ChannelInfo info) {
-                List<SubscriptionEntity> toDelete = subscriptionService.subscriptionTable()
+                final io.reactivex.Observable<List<SubscriptionEntity>> observable = subscriptionService.subscriptionTable()
                         .getSubscription(info.getServiceId(), info.getUrl())
-                        .blockingFirst();
-                Log.d(TAG, "onNext: test");
+                        .toObservable();
 
-                Scheduler io = Schedulers.io();
-                io.scheduleDirect(() -> subscriptionService.subscriptionTable().delete(toDelete));
+                observable.observeOn(Schedulers.io())
+                .subscribe(getDeleteObserver());
             }
 
             @Override
@@ -431,6 +428,28 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
             public void onComplete() {
                 Toast.makeText(activity, getString(R.string.channel_unsubscribed), Toast.LENGTH_SHORT).show();
             }
+        };
+    }
+
+    private Observer<List<SubscriptionEntity>> getDeleteObserver(){
+        return new Observer<List<SubscriptionEntity>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposables.add(d);
+            }
+
+            @Override
+            public void onNext(List<SubscriptionEntity> subscriptionEntities) {
+                subscriptionService.subscriptionTable().delete(subscriptionEntities);
+            }
+
+            @Override
+            public void onError(Throwable exception) {
+                SubscriptionFragment.this.onError(exception);
+            }
+
+            @Override
+            public void onComplete() { }
         };
     }
 
