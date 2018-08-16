@@ -209,21 +209,25 @@ public class App extends Application {
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.createNotificationChannel(mChannel);
 
-        // Set up notification channel for app update
-        final String appUpdateId
-                = getString(R.string.app_update_notification_channel_id);
-        final CharSequence appUpdateName
-                = getString(R.string.app_update_notification_channel_name);
-        final String appUpdateDescription
-                = getString(R.string.app_update_notification_channel_description);
+        // Set up notification channel for app update only if it's a github apk.
 
-        NotificationChannel appUpdateChannel
-                = new NotificationChannel(appUpdateId, appUpdateName, importance);
-        appUpdateChannel.setDescription(appUpdateDescription);
+        if (!BuildConfig.FLAVOR.equals(getString(R.string.app_flavor_github))) {
 
-        NotificationManager appUpdateNotificationManager
-                = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        appUpdateNotificationManager.createNotificationChannel(appUpdateChannel);
+            final String appUpdateId
+                    = getString(R.string.app_update_notification_channel_id);
+            final CharSequence appUpdateName
+                    = getString(R.string.app_update_notification_channel_name);
+            final String appUpdateDescription
+                    = getString(R.string.app_update_notification_channel_description);
+
+            NotificationChannel appUpdateChannel
+                    = new NotificationChannel(appUpdateId, appUpdateName, importance);
+            appUpdateChannel.setDescription(appUpdateDescription);
+
+            NotificationManager appUpdateNotificationManager
+                    = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            appUpdateNotificationManager.createNotificationChannel(appUpdateChannel);
+        }
     }
 
     @Nullable

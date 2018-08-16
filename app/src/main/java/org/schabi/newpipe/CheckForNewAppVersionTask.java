@@ -112,10 +112,10 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
                 JSONObject githubStableObject = githubObject.getJSONObject("stable");
 
                 String versionName = githubStableObject.getString("version");
-                // String versionCode = githubStableObject.getString("version_code");
+                String versionCode = githubStableObject.getString("version_code");
                 String apkLocationUrl = githubStableObject.getString("apk");
 
-                compareAppVersionAndShowNotification(versionName, apkLocationUrl);
+                compareAppVersionAndShowNotification(versionName, apkLocationUrl, versionCode);
 
             } catch (JSONException ex) {
                 ex.printStackTrace();
@@ -129,11 +129,13 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
      * @param versionName
      * @param apkLocationUrl
      */
-    private void compareAppVersionAndShowNotification(String versionName, String apkLocationUrl) {
+    private void compareAppVersionAndShowNotification(String versionName,
+                                                      String apkLocationUrl,
+                                                      String versionCode) {
 
         int NOTIFICATION_ID = 2000;
 
-        if (!BuildConfig.VERSION_NAME.equals(versionName.replace("v", ""))) {
+        if (BuildConfig.VERSION_CODE < Integer.valueOf(versionCode)) {
 
             // A pending intent to open the apk location url in the browser.
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(apkLocationUrl));
