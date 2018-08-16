@@ -22,8 +22,6 @@
     <string name="show_play_with_kodi_summary">Erakutsi bideoa Kodi multimedia zentroarekin erreproduzitzeko aukera</string>
     <string name="play_audio">Audioa</string>
     <string name="default_audio_format_title">Audio formatu lehenetsia</string>
-    <string name="webm_description">WebM — formatu librea</string>
-    <string name="m4a_description">M4A — kalitate hobea</string>
     <string name="download_dialog_title">Deskargatu</string>
     <string name="next_video_title">Hurrengo bideoa</string>
     <string name="show_next_and_similar_title">Erakutsi \'hurrengo\' eta \'antzeko\' bideoak</string>

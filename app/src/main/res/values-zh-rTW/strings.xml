@@ -26,8 +26,6 @@
     <string name="kore_not_found">找不到Kore，您要安裝Kore嗎？</string>
     <string name="show_play_with_kodi_title">顯示「用Kodi播放」的選項</string>
     <string name="default_audio_format_title">預設音訊格式</string>
-    <string name="webm_description">WebM — 開放格式</string>
-    <string name="m4a_description">M4A — 畫質更佳</string>
     <string name="theme_title">主題</string>
     <string name="dark_theme_title">灰暗</string>
     <string name="light_theme_title">明亮</string>

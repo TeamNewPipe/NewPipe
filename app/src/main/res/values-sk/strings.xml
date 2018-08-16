@@ -32,8 +32,6 @@
     <string name="show_play_with_kodi_summary">Zobrazovať možnosť prehrať video cez mediálne centrum Kodi</string>
     <string name="play_audio">Zvuk</string>
     <string name="default_audio_format_title">Predvolený zvukový formát</string>
-    <string name="webm_description">WebM — voľný formát</string>
-    <string name="m4a_description">M4A — lepšia kvalita</string>
     <string name="theme_title">Téma</string>
     <string name="dark_theme_title">Tmavá</string>
     <string name="light_theme_title">Svetlá</string>

@@ -58,8 +58,6 @@
     <string name="play_audio">Heli</string>
     <string name="default_audio_format_title">Heli vaikevorming</string>
     <string name="default_video_format_title">Video vaikevorming</string>
-    <string name="webm_description">WebM — libre vorming</string>
-    <string name="m4a_description">M4A — parem kvaliteet</string>
     <string name="theme_title">Teema</string>
     <string name="light_theme_title">Hele</string>
     <string name="dark_theme_title">Tume</string>

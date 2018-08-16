@@ -43,8 +43,6 @@
     <string name="play_audio">Garso įrašas</string>
     <string name="default_audio_format_title">Numatytasos garso formatas</string>
     <string name="default_video_format_title">Numatytasos vaizdo formatas</string>
-    <string name="webm_description">WebM — laisvas formatas</string>
-    <string name="m4a_description">M4A - geresnė kokybė</string>
     <string name="theme_title">Tema</string>
     <string name="light_theme_title">Šviesi</string>
     <string name="dark_theme_title">Tamsi</string>

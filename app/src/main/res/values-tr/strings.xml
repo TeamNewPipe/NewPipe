@@ -34,8 +34,6 @@
     <string name="show_play_with_kodi_title">\"Kodi ile oynat\" seçeneğini göster</string>
     <string name="show_play_with_kodi_summary">Kodi ortam merkezi aracılığıyla video oynatmak için bir seçenek görüntüler</string>
     <string name="default_audio_format_title">Öntanımlı ses biçimi</string>
-    <string name="webm_description">WebM — özgür biçim</string>
-    <string name="m4a_description">M4A — daha iyi kalite</string>
     <string name="theme_title">Tema</string>
     <string name="dark_theme_title">Koyu</string>
     <string name="light_theme_title">Açık</string>

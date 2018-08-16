@@ -35,8 +35,6 @@
     <string name="show_play_with_kodi_summary">Wyświetl opcję, aby odtworzyć wideo przez Kodi</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Domyślny format audio</string>
-    <string name="webm_description">WebM — otwarty i darmowy format</string>
-    <string name="m4a_description">M4A — lepsza jakość</string>
     <string name="theme_title">Motyw</string>
     <string name="dark_theme_title">Ciemny</string>
     <string name="light_theme_title">Jasny</string>

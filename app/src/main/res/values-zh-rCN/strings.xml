@@ -26,8 +26,6 @@
     <string name="show_play_with_kodi_summary">显示 Kodi 媒体中心播放视频的选项</string>
     <string name="play_audio">音频</string>
     <string name="default_audio_format_title">默认音频格式</string>
-    <string name="webm_description">WebM — 开放格式</string>
-    <string name="m4a_description">M4A — 品质更佳</string>
     <string name="theme_title">主题</string>
     <string name="dark_theme_title">灰暗</string>
     <string name="light_theme_title">明亮</string>

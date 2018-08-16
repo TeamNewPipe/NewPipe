@@ -41,8 +41,6 @@
     <string name="play_audio">Ljud</string>
     <string name="default_audio_format_title">Standardformat för ljud</string>
     <string name="default_video_format_title">Videoformat som föredras</string>
-    <string name="webm_description">WebM — öppet format</string>
-    <string name="m4a_description">M4A — bättre kvalité</string>
     <string name="theme_title">Tema</string>
     <string name="light_theme_title">Ljus</string>
     <string name="dark_theme_title">Mörk</string>
