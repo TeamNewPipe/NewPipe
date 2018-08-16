@@ -35,7 +35,7 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
     protected void onPreExecute() {
         // Continue with version check only if the build variant is of type "github".
         if (!BuildConfig.FLAVOR.equals(app.getString(R.string.app_flavor_github))) {
-            // this.cancel(true);
+            this.cancel(true);
         }
     }
 
