@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,7 +35,7 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
     protected void onPreExecute() {
         // Continue with version check only if the build variant is of type "github".
         if (!BuildConfig.FLAVOR.equals(app.getString(R.string.app_flavor_github))) {
-            this.cancel(true);
+            // this.cancel(true);
         }
     }
 
@@ -101,6 +102,8 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
 
     @Override
     protected void onPostExecute(String response) {
+
+        Log.i("Response--", response);
 
         // Parse the json from the response.
         if (response != null) {

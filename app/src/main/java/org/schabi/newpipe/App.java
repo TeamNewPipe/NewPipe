@@ -210,8 +210,7 @@ public class App extends Application {
         mNotificationManager.createNotificationChannel(mChannel);
 
         // Set up notification channel for app update only if it's a github apk.
-
-        if (!BuildConfig.FLAVOR.equals(getString(R.string.app_flavor_github))) {
+        if (BuildConfig.FLAVOR.equals(getString(R.string.app_flavor_github))) {
 
             final String appUpdateId
                     = getString(R.string.app_update_notification_channel_id);
