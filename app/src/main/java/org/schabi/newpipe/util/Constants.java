@@ -11,5 +11,7 @@ public class Constants {
     public static final String KEY_THEME_CHANGE = "key_theme_change";
     public static final String KEY_MAIN_PAGE_CHANGE = "key_main_page_change";
 
+    public static final String KEY_VIDEO_PLAYBACK_POSITION_PREFS = "key_saved_video_positions";
+
     public static final int NO_SERVICE_ID = -1;
 }

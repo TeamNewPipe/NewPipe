@@ -16,6 +16,12 @@
         android:summary="@string/enable_search_history_summary"
         android:title="@string/enable_search_history_title"/>
 
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="@string/enable_video_playback_resume_key"
+        android:summary="@string/enable_video_playback_resume_summary"
+        android:title="@string/enable_video_playback_resume_title" />
+
     <Preference
         android:key="@string/metadata_cache_wipe_key"
         android:summary="@string/metadata_cache_wipe_summary"

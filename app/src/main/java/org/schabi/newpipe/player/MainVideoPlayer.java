@@ -69,6 +69,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
 import org.schabi.newpipe.util.AnimationUtils;
+import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
@@ -107,6 +108,9 @@ public final class MainVideoPlayer extends AppCompatActivity
     private boolean isInMultiWindow;
     private boolean isBackPressed;
 
+    private SharedPreferences playbackPreferences;
+    private boolean isVideoPlaybackResumeEnabled;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Activity LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
@@ -120,6 +124,10 @@ public final class MainVideoPlayer extends AppCompatActivity
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.BLACK));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) getWindow().setStatusBarColor(Color.BLACK);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
+
+        this.playbackPreferences = this.getSharedPreferences(Constants.KEY_VIDEO_PLAYBACK_POSITION_PREFS,0);
+        this.isVideoPlaybackResumeEnabled = PreferenceManager.getDefaultSharedPreferences(this).getBoolean(getString(R.string.enable_video_playback_resume_key), false);
+
 
         WindowManager.LayoutParams lp = getWindow().getAttributes();
         lp.screenBrightness = PlayerHelper.getScreenBrightness(getApplicationContext());
@@ -227,6 +235,11 @@ public final class MainVideoPlayer extends AppCompatActivity
         if (!isBackPressed) {
             playerImpl.minimize();
         }
+
+        if(isVideoPlaybackResumeEnabled && (playerImpl.simpleExoPlayer.getCurrentPosition() < playerImpl.simpleExoPlayer.getDuration())){
+            playbackPreferences.edit().putLong(playerImpl.getVideoUrl(), playerImpl.simpleExoPlayer.getCurrentPosition()).apply();
+        }
+
         playerImpl.destroy();
 
         isInMultiWindow = false;
@@ -761,8 +774,18 @@ public final class MainVideoPlayer extends AppCompatActivity
                 animatePlayButtons(true, DEFAULT_CONTROLS_DURATION);
             });
 
+            if(isVideoPlaybackResumeEnabled){
+                playbackPreferences.edit().remove(getVideoUrl()).apply();
+            }
+
             getRootView().setKeepScreenOn(false);
             super.onCompleted();
+        }
+
+        @Override
+        public void onPrepared(boolean playWhenReady) {
+            super.onPrepared(playWhenReady);
+            if(isVideoPlaybackResumeEnabled) seekTo(playbackPreferences.getLong(getVideoUrl(), 0));
         }
 
         /*//////////////////////////////////////////////////////////////////////////

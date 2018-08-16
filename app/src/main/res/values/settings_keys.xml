@@ -168,6 +168,8 @@
     <string name="clear_views_history_key" translatable="false">clear_play_history</string>
     <string name="clear_search_history_key" translatable="false">clear_search_history</string>
 
+    <string name="enable_video_playback_resume_key" translatable="false">enable_video_playback_resume</string>
+
     <!-- FileName Downloads  -->
     <string name="settings_file_charset_key" translatable="false">file_rename</string>
     <string name="settings_file_replacement_character_key" translatable="false">file_replacement_character</string>

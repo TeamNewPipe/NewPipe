@@ -66,6 +66,7 @@ import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
+import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -123,6 +124,9 @@ public final class PopupVideoPlayer extends Service {
     private VideoPlayerImpl playerImpl;
     private LockManager lockManager;
 
+    private SharedPreferences playbackPreferences;
+    private boolean isVideoPlaybackResumeEnabled;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Service-Activity Binder
     //////////////////////////////////////////////////////////////////////////*/
@@ -142,6 +146,9 @@ public final class PopupVideoPlayer extends Service {
         lockManager = new LockManager(this);
         playerImpl = new VideoPlayerImpl(this);
         ThemeHelper.setTheme(this);
+
+        this.playbackPreferences = this.getSharedPreferences(Constants.KEY_VIDEO_PLAYBACK_POSITION_PREFS,0);
+        this.isVideoPlaybackResumeEnabled = PreferenceManager.getDefaultSharedPreferences(this).getBoolean(getString(R.string.enable_video_playback_resume_key), false);
 
         mBinder = new PlayerServiceBinder(playerImpl);
     }
@@ -288,6 +295,11 @@ public final class PopupVideoPlayer extends Service {
                 windowManager.removeView(playerImpl.getRootView());
                 playerImpl.setRootView(null);
             }
+
+            if(isVideoPlaybackResumeEnabled && (playerImpl.simpleExoPlayer.getCurrentPosition() < playerImpl.simpleExoPlayer.getDuration())){
+                playbackPreferences.edit().putLong(playerImpl.getVideoUrl(), playerImpl.simpleExoPlayer.getCurrentPosition()).apply();
+            }
+
             playerImpl.stopActivityBinding();
             playerImpl.destroy();
         }
@@ -753,7 +765,17 @@ public final class PopupVideoPlayer extends Service {
             videoPlayPause.setBackgroundResource(R.drawable.ic_replay_white);
             lockManager.releaseWifiAndCpu();
 
+            if(isVideoPlaybackResumeEnabled){
+                playbackPreferences.edit().remove(getVideoUrl()).apply();
+            }
+
             stopForeground(false);
+        }
+
+        @Override
+        public void onPrepared(boolean playWhenReady) {
+            super.onPrepared(playWhenReady);
+            if(isVideoPlaybackResumeEnabled) seekTo(playbackPreferences.getLong(getVideoUrl(), 0));
         }
 
         @Override
