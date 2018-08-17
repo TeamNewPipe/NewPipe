@@ -15,16 +15,16 @@
     <string name="choose_browser">Оберіть переглядач</string>
     <string name="screen_rotation">обертання</string>
     <string name="use_external_video_player_title">Зовнішній відео-програвач</string>
-    <string name="use_external_audio_player_title">Зовнішній аудіо-програвач</string>
+    <string name="use_external_audio_player_title">Зовнішній авдіо-програвач</string>
 
     <string name="download_path_title">Шлях для завантаження відеозапису</string>
     <string name="download_path_dialog_title">Вкажіть шлях для завантаження відеозаписів</string>
 
-    <string name="download_path_audio_dialog_title">Вкажіть шлях для завантаження аудіо файлів</string>
+    <string name="download_path_audio_dialog_title">Вкажіть шлях для завантаження авдіофайлів</string>
 
     <string name="download_path_summary">Шлях де зберігатимуться завантажені відеозаписи</string>
-    <string name="download_path_audio_title">Шлях для завантаження аудіо</string>
-    <string name="download_path_audio_summary">Шлях де зберігатимуться завантажені аудіофайли</string>
+    <string name="download_path_audio_title">Шлях для завантаження авдіо</string>
+    <string name="download_path_audio_summary">Шлях де зберігатимуться завантажені авдіофайли</string>
     <string name="autoplay_by_calling_app_title">Автоматично відтворювати</string>
     <string name="autoplay_by_calling_app_summary">Відтворює відеозапис коли NewPipe викликано з іншого застосунку</string>
     <string name="default_resolution_title">Типова роздільна здатність</string>
@@ -32,8 +32,8 @@
     <string name="kore_not_found">Застосунок Kore не знайдено. Встановити?</string>
     <string name="show_play_with_kodi_title">Відтворювти у Kodi</string>
     <string name="show_play_with_kodi_summary">Показувати опцію відтворення відеозапису за допомогою Kodi media center</string>
-    <string name="play_audio">Аудіо</string>
-    <string name="default_audio_format_title">Типовий аудіо формат</string>
+    <string name="play_audio">Авдіо</string>
+    <string name="default_audio_format_title">Типовий авдіоформат</string>
     <string name="webm_description">WebM — вільний формат</string>
     <string name="m4a_description">M4A — ліпша якість</string>
     <string name="theme_title">Тема</string>
@@ -45,7 +45,7 @@
     <string name="show_next_and_similar_title">Являти \"наступні\" й \"схожі\" відео</string>
     <string name="url_not_supported_toast">URL не підтримується</string>
     <string name="search_language_title">Переважна мова контенту</string>
-    <string name="settings_category_video_audio_title">Відео та Аудіо</string>
+    <string name="settings_category_video_audio_title">Відео та Авдіо</string>
     <string name="settings_category_appearance_title">Зовнішній вигляд</string>
     <string name="settings_category_other_title">Інше</string>
     <string name="background_player_playing_toast">Відтворення у тловому режимі</string>
@@ -100,7 +100,7 @@
     <string name="info_dir_created">Створити теку для завантаження \'%1$s\'</string>
 
     <string name="video">Відео</string>
-    <string name="audio">Аудіо</string>
+    <string name="audio">Авдіо</string>
     <string name="retry">Повторити</string>
     <string name="use_old_player_title">Використовувати старий програвач</string>
     <string name="short_thousand">К</string>
@@ -108,7 +108,7 @@
     <string name="short_billion">Б</string>
 
     <string name="start">Почати</string>
-    <string name="pause">Пауза</string>
+    <string name="pause">Павза</string>
     <string name="view">Відтворити</string>
     <string name="delete">Видалити</string>
     <string name="checksum">Контрольна сума</string>
@@ -127,7 +127,7 @@
 
 <string name="no_player_found_toast">Стримінґового програвача не знайдено (ви можете встановити VLC для відтворення)</string>
     <string name="open_in_popup_mode">Відкрити у віконному режимі</string>
-    <string name="use_external_video_player_summary">Певні роздільності НЕ МАТИМУТЬ звуку якщо цей параметр увімкнено</string>
+    <string name="use_external_video_player_summary">Певні роздільності НЕ матимуть звуку якщо цей параметр увімкнено</string>
     <string name="popup_mode_share_menu_title">NewPipe у віконному режимі</string>
     <string name="subscribe_button_title">Підписатися</string>
     <string name="subscribed_button_title">Ви підписалися</string>
@@ -197,7 +197,7 @@
     <string name="player_recoverable_failure">Відновлююсь після помилки програвача</string>
     <string name="invalid_url_toast">Помилкова URL</string>
     <string name="video_streams_empty">Відео-струмів не було знайдено</string>
-    <string name="audio_streams_empty">Не знайдено жодних аудіо-струмів</string>
+    <string name="audio_streams_empty">Не знайдено жодних авдіострумів</string>
 
     <string name="user_report">Звіт користувача</string>
     <string name="no_subscribers">Без підписників</string>
@@ -231,7 +231,7 @@
     <string name="top_50">Топ 50</string>
     <string name="new_and_hot">Новинки</string>
     <string name="play_queue_stream_detail">Деталі</string>
-    <string name="play_queue_audio_settings">Налаштування аудіо</string>
+    <string name="play_queue_audio_settings">Звукові налаштування</string>
 
     <string name="video_player">Відеопрогравач</string>
     <string name="background_player">Тловий програвач</string>
