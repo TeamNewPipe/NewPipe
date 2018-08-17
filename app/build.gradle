@@ -49,12 +49,13 @@ ext {
     icepickLibVersion = '3.2.0'
     stethoLibVersion = '1.5.0'
 }
+
 dependencies {
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2') {
         exclude module: 'support-annotations'
     }
 
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:aeb813840d6'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:c4e16c7337'
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.8.9'
