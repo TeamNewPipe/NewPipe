@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -24,6 +25,7 @@ import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.info_list.InfoListAdapter;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
+import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.StateSaver;
@@ -152,18 +154,35 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
         infoListAdapter.setOnChannelSelectedListener(new OnClickGesture<ChannelInfoItem>() {
             @Override
             public void selected(ChannelInfoItem selectedItem) {
-                onItemSelected(selectedItem);
-                NavigationHelper.openChannelFragment(useAsFrontPage ? getParentFragment().getFragmentManager() : getFragmentManager(),
-                        selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName());
+                try {
+                    onItemSelected(selectedItem);
+                    NavigationHelper.openChannelFragment(useAsFrontPage ?
+                                    getParentFragment().getFragmentManager()
+                                    : getFragmentManager(),
+                            selectedItem.getServiceId(),
+                            selectedItem.getUrl(),
+                            selectedItem.getName());
+                } catch (Exception e) {
+                    ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
+                }
             }
         });
 
         infoListAdapter.setOnPlaylistSelectedListener(new OnClickGesture<PlaylistInfoItem>() {
             @Override
             public void selected(PlaylistInfoItem selectedItem) {
-                onItemSelected(selectedItem);
-                NavigationHelper.openPlaylistFragment(useAsFrontPage ? getParentFragment().getFragmentManager() : getFragmentManager(),
-                        selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName());
+                try {
+                    onItemSelected(selectedItem);
+                    NavigationHelper.openPlaylistFragment(
+                            useAsFrontPage
+                                    ? getParentFragment().getFragmentManager()
+                                    : getFragmentManager(),
+                            selectedItem.getServiceId(),
+                            selectedItem.getUrl(),
+                            selectedItem.getName());
+                } catch (Exception e) {
+                    ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
+                }
             }
         });
 
@@ -178,7 +197,9 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
 
     private void onStreamSelected(StreamInfoItem selectedItem) {
         onItemSelected(selectedItem);
-        NavigationHelper.openVideoDetailFragment(useAsFrontPage ? getParentFragment().getFragmentManager() : getFragmentManager(),
+        NavigationHelper.openVideoDetailFragment(useAsFrontPage
+                        ? getParentFragment().getFragmentManager()
+                        : getFragmentManager(),
                 selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName());
     }
 

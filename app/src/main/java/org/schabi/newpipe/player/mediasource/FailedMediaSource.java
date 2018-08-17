@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.google.android.exoplayer2.ExoPlayer;
+import com.google.android.exoplayer2.source.BaseMediaSource;
 import com.google.android.exoplayer2.source.MediaPeriod;
 import com.google.android.exoplayer2.upstream.Allocator;
 
@@ -11,7 +12,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 
 import java.io.IOException;
 
-public class FailedMediaSource implements ManagedMediaSource {
+public class FailedMediaSource extends BaseMediaSource implements ManagedMediaSource {
     private final String TAG = "FailedMediaSource@" + Integer.toHexString(hashCode());
 
     public static class FailedMediaSourceException extends Exception {
@@ -73,11 +74,6 @@ public class FailedMediaSource implements ManagedMediaSource {
     }
 
     @Override
-    public void prepareSource(ExoPlayer player, boolean isTopLevelSource, Listener listener) {
-        Log.e(TAG, "Loading failed source: ", error);
-    }
-
-    @Override
     public void maybeThrowSourceInfoRefreshError() throws IOException {
         throw new IOException(error);
     }
@@ -90,8 +86,14 @@ public class FailedMediaSource implements ManagedMediaSource {
     @Override
     public void releasePeriod(MediaPeriod mediaPeriod) {}
 
+
     @Override
-    public void releaseSource() {}
+    protected void prepareSourceInternal(ExoPlayer player, boolean isTopLevelSource) {
+        Log.e(TAG, "Loading failed source: ", error);
+    }
+
+    @Override
+    protected void releaseSourceInternal() {}
 
     @Override
     public boolean shouldBeReplacedWith(@NonNull final PlayQueueItem newIdentity,

@@ -32,8 +32,6 @@
     <string name="show_play_with_kodi_summary">Προβολή μιας επιλογής για αναπαραγωγή με το Kodi media center.</string>
     <string name="play_audio">Ήχος</string>
     <string name="default_audio_format_title">Προεπιλεγμένη μορφή ήχου</string>
-    <string name="webm_description">WebM — δωρεάν format</string>
-    <string name="m4a_description">m4a — καλύτερη ποιότητα</string>
     <string name="theme_title">Θέμα</string>
     <string name="dark_theme_title">Σκοτεινό</string>
     <string name="light_theme_title">Φωτεινό</string>
@@ -61,5 +59,44 @@
     <string name="err_dir_create">Δεν μπόρεσε να δημιουργηθεί ο φάκελος \'%1$s\'</string>
     <string name="info_dir_created">Δημιουργήθηκε ο φάκελος \'%1$s\'</string>
 <string name="short_billion">Δ</string>
+
+    <string name="open_in_popup_mode">Άνοιγμα σε αναδυόμενο παράθυρο</string>
+    <string name="subscribe_button_title">Εγγραφή</string>
+    <string name="subscribed_button_title">Εγγεγραμμένος</string>
+    <string name="show_higher_resolutions_summary">Μόνο μερικές συσκευές υποστηρίζουν την αναπαραγωγή 2K/4K βίντεο</string>
+    <string name="black_theme_title">Μαύρο</string>
+    <string name="show_search_suggestions_title">Προτάσεις αναζήτησης</string>
+    <string name="enable_search_history_title">Ιστορικό αναζήτησης</string>
+    <string name="downloads">Λήψεις</string>
+    <string name="downloads_title">Λήψεις</string>
+    <string name="all">Όλα</string>
+    <string name="channel">Κανάλι</string>
+    <string name="yes">Ναι</string>
+    <string name="later">Αργότερα</string>
+    <string name="filter">Φίλτρο</string>
+    <string name="general_error">Σφάλμα</string>
+    <string name="error_snackbar_action">ΑΝΑΦΟΡΑ</string>
+    <string name="what_device_headline">Πληροφορίες:</string>
+    <string name="what_happened_headline">Τι συνέβη:</string>
+    <string name="your_comment">Το σχόλιό σας (στα Αγγλικά):</string>
+    <string name="error_details_headline">Λεπτομέρειες:</string>
+
+
+    <string name="report_error">Αναφορά Σφάλματος</string>
+    <string name="video">Βίντεο</string>
+    <string name="audio">Ήχος</string>
+    <string name="pause">Παύση</string>
+    <string name="delete">Διαγραφή</string>
+    <string name="msg_error">Σφάλμα</string>
+    <string name="msg_exists">Το αρχείο υπάρχει ήδη</string>
+    <string name="msg_running_detail">Πατήστε για λεπτομέρειες</string>
+    <string name="settings_category_downloads_title">Λήψη</string>
+    <string name="charset_letters_and_digits">Γράμματα και ψηφία</string>
+    <string name="action_settings">Ρυθμίσεις</string>
+    <string name="action_open_website">Άνοιγμα ιστοσελίδας</string>
+    <string name="tab_licenses">Άδειες</string>
+    <string name="title_activity_history">Ιστορικό</string>
+    <string name="action_history">Ιστορικό</string>
+    <string name="show_info">Εμφάνιση πληροφοριών</string>
 
     </resources>

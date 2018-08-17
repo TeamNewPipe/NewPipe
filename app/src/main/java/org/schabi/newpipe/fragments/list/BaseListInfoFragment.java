@@ -8,6 +8,9 @@ import android.view.View;
 
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.ListInfo;
+import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
+import org.schabi.newpipe.extractor.linkhandler.LinkHandler;
 import org.schabi.newpipe.util.Constants;
 
 import java.util.Queue;
@@ -166,7 +169,6 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
     public void handleResult(@NonNull I result) {
         super.handleResult(result);
 
-        url = result.getUrl();
         name = result.getName();
         setTitle(name);
 

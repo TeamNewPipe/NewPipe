@@ -26,9 +26,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
-import android.os.Build;
 import android.os.IBinder;
-import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
@@ -39,17 +37,16 @@ import android.widget.RemoteViews;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.source.MediaSource;
+import com.nostra13.universalimageloader.core.assist.FailReason;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.MediaFormat;
-import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.helper.LockManager;
-import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
-import org.schabi.newpipe.util.ListHelper;
+import org.schabi.newpipe.player.resolver.AudioPlaybackResolver;
+import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
@@ -94,7 +91,6 @@ public final class BackgroundPlayer extends Service {
     private NotificationCompat.Builder notBuilder;
     private RemoteViews notRemoteView;
     private RemoteViews bigNotRemoteView;
-    private final String setAlphaMethodName = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) ? "setImageAlpha" : "setAlpha";
 
     private boolean shouldUpdateOnProgress;
 
@@ -192,7 +188,9 @@ public final class BackgroundPlayer extends Service {
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setCustomContentView(notRemoteView)
                 .setCustomBigContentView(bigNotRemoteView);
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) builder.setPriority(NotificationCompat.PRIORITY_MAX);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+            builder.setPriority(NotificationCompat.PRIORITY_MAX);
+        }
         return builder;
     }
 
@@ -249,15 +247,6 @@ public final class BackgroundPlayer extends Service {
         notificationManager.notify(NOTIFICATION_ID, notBuilder.build());
     }
 
-    private void setControlsOpacity(@IntRange(from = 0, to = 255) int opacity) {
-        if (notRemoteView != null) notRemoteView.setInt(R.id.notificationPlayPause, setAlphaMethodName, opacity);
-        if (bigNotRemoteView != null) bigNotRemoteView.setInt(R.id.notificationPlayPause, setAlphaMethodName, opacity);
-        if (notRemoteView != null) notRemoteView.setInt(R.id.notificationFForward, setAlphaMethodName, opacity);
-        if (bigNotRemoteView != null) bigNotRemoteView.setInt(R.id.notificationFForward, setAlphaMethodName, opacity);
-        if (notRemoteView != null) notRemoteView.setInt(R.id.notificationFRewind, setAlphaMethodName, opacity);
-        if (bigNotRemoteView != null) bigNotRemoteView.setInt(R.id.notificationFRewind, setAlphaMethodName, opacity);
-    }
-
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
@@ -279,8 +268,16 @@ public final class BackgroundPlayer extends Service {
 
     protected class BasePlayerImpl extends BasePlayer {
 
+        @NonNull final private AudioPlaybackResolver resolver;
+
         BasePlayerImpl(Context context) {
             super(context);
+            this.resolver = new AudioPlaybackResolver(context, dataSource);
+        }
+
+        @Override
+        public void initPlayer(boolean playOnReady) {
+            super.initPlayer(playOnReady);
         }
 
         @Override
@@ -293,29 +290,40 @@ public final class BackgroundPlayer extends Service {
             startForeground(NOTIFICATION_ID, notBuilder.build());
         }
 
-        @Override
-        public void initThumbnail(final String url) {
-            resetNotification();
-            if (notRemoteView != null) notRemoteView.setImageViewResource(R.id.notificationCover, R.drawable.dummy_thumbnail);
-            if (bigNotRemoteView != null) bigNotRemoteView.setImageViewResource(R.id.notificationCover, R.drawable.dummy_thumbnail);
-            updateNotification(-1);
-            super.initThumbnail(url);
+        /*//////////////////////////////////////////////////////////////////////////
+        // Thumbnail Loading
+        //////////////////////////////////////////////////////////////////////////*/
+
+        private void updateNotificationThumbnail() {
+            if (basePlayerImpl == null) return;
+            if (notRemoteView != null) {
+                notRemoteView.setImageViewBitmap(R.id.notificationCover,
+                        basePlayerImpl.getThumbnail());
+            }
+            if (bigNotRemoteView != null) {
+                bigNotRemoteView.setImageViewBitmap(R.id.notificationCover,
+                        basePlayerImpl.getThumbnail());
+            }
         }
 
         @Override
         public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
             super.onLoadingComplete(imageUri, view, loadedImage);
-
-            if (loadedImage != null) {
-                // rebuild notification here since remote view does not release bitmaps, causing memory leaks
-                resetNotification();
-
-                if (notRemoteView != null) notRemoteView.setImageViewBitmap(R.id.notificationCover, loadedImage);
-                if (bigNotRemoteView != null) bigNotRemoteView.setImageViewBitmap(R.id.notificationCover, loadedImage);
-
-                updateNotification(-1);
-            }
+            resetNotification();
+            updateNotificationThumbnail();
+            updateNotification(-1);
         }
+
+        @Override
+        public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+            super.onLoadingFailed(imageUri, view, failReason);
+            resetNotification();
+            updateNotificationThumbnail();
+            updateNotification(-1);
+        }
+        /*//////////////////////////////////////////////////////////////////////////
+        // States Implementation
+        //////////////////////////////////////////////////////////////////////////*/
 
         @Override
         public void onPrepared(boolean playWhenReady) {
@@ -390,29 +398,18 @@ public final class BackgroundPlayer extends Service {
         // Playback Listener
         //////////////////////////////////////////////////////////////////////////*/
 
-        protected void onMetadataChanged(@NonNull final PlayQueueItem item,
-                                         @Nullable final StreamInfo info,
-                                         final int newPlayQueueIndex,
-                                         final boolean hasPlayQueueItemChanged) {
-            if (shouldUpdateOnProgress || hasPlayQueueItemChanged) {
-                resetNotification();
-                updateNotification(-1);
-                updateMetadata();
-            }
+        protected void onMetadataChanged(@NonNull final MediaSourceTag tag) {
+            super.onMetadataChanged(tag);
+            resetNotification();
+            updateNotificationThumbnail();
+            updateNotification(-1);
+            updateMetadata();
         }
 
         @Override
         @Nullable
         public MediaSource sourceOf(final PlayQueueItem item, final StreamInfo info) {
-            final MediaSource liveSource = super.sourceOf(item, info);
-            if (liveSource != null) return liveSource;
-
-            final int index = ListHelper.getDefaultAudioFormat(context, info.getAudioStreams());
-            if (index < 0 || index >= info.getAudioStreams().size()) return null;
-
-            final AudioStream audio = info.getAudioStreams().get(index);
-            return buildMediaSource(audio.getUrl(), PlayerHelper.cacheKeyOf(info, audio),
-                    MediaFormat.getSuffixById(audio.getFormatId()));
+            return resolver.resolve(info);
         }
 
         @Override
@@ -439,8 +436,8 @@ public final class BackgroundPlayer extends Service {
         }
 
         private void updateMetadata() {
-            if (activityListener != null && currentInfo != null) {
-                activityListener.onMetadataUpdate(currentInfo);
+            if (activityListener != null && getCurrentMetadata() != null) {
+                activityListener.onMetadataUpdate(getCurrentMetadata().getMetadata());
             }
         }
 
@@ -532,43 +529,35 @@ public final class BackgroundPlayer extends Service {
         }
 
         @Override
-        public void onBlocked() {
-            super.onBlocked();
-
-            setControlsOpacity(77);
-            updateNotification(-1);
-        }
-
-        @Override
         public void onPlaying() {
             super.onPlaying();
-
-            setControlsOpacity(255);
+            resetNotification();
+            updateNotificationThumbnail();
             updateNotification(R.drawable.ic_pause_white);
-
             lockManager.acquireWifiAndCpu();
         }
 
         @Override
         public void onPaused() {
             super.onPaused();
-
+            resetNotification();
+            updateNotificationThumbnail();
             updateNotification(R.drawable.ic_play_arrow_white);
-
             lockManager.releaseWifiAndCpu();
         }
 
         @Override
         public void onCompleted() {
             super.onCompleted();
-
-            setControlsOpacity(255);
-
             resetNotification();
-            if (bigNotRemoteView != null) bigNotRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 100, false);
-            if (notRemoteView != null) notRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 100, false);
+            if (bigNotRemoteView != null) {
+                bigNotRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 100, false);
+            }
+            if (notRemoteView != null) {
+                notRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 100, false);
+            }
+            updateNotificationThumbnail();
             updateNotification(R.drawable.ic_replay_white);
-
             lockManager.releaseWifiAndCpu();
         }
     }

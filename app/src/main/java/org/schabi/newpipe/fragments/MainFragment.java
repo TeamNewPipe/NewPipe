@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -219,7 +220,14 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_search:
-                NavigationHelper.openSearchFragment(getFragmentManager(), ServiceHelper.getSelectedServiceId(activity), "");
+                try {
+                    NavigationHelper.openSearchFragment(
+                            getFragmentManager(),
+                            ServiceHelper.getSelectedServiceId(activity),
+                            "");
+                } catch (Exception e) {
+                    ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
+                }
                 return true;
         }
         return super.onOptionsItemSelected(item);

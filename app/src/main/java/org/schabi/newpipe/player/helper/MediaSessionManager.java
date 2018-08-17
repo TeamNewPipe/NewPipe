@@ -39,10 +39,13 @@ public class MediaSessionManager {
         return MediaButtonReceiver.handleIntent(mediaSession, intent);
     }
 
+    /**
+     * Should be called on player destruction to prevent leakage.
+     * */
     public void dispose() {
         this.sessionConnector.setPlayer(null, null);
         this.sessionConnector.setQueueNavigator(null);
         this.mediaSession.setActive(false);
         this.mediaSession.release();
-    }
+	}
 }

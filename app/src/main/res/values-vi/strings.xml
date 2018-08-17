@@ -41,8 +41,6 @@
     <string name="play_audio">Âm thanh</string>
     <string name="default_audio_format_title">Định dạng âm thanh mặc định</string>
     <string name="default_video_format_title">Định dạng video ưa thích</string>
-    <string name="webm_description">WebM — Định dạng miễn phí</string>
-    <string name="m4a_description">M4a — chất lượng tốt hơn</string>
     <string name="controls_background_title">Nền</string>
     <string name="theme_title">Chủ đề</string>
     <string name="light_theme_title">Sáng</string>

@@ -54,8 +54,6 @@
     <string name="play_audio">Zvuk</string>
     <string name="default_audio_format_title">Zadani format zvuka</string>
     <string name="default_video_format_title">Zadani format videozapisa</string>
-    <string name="webm_description">WebM - slobodni format</string>
-    <string name="m4a_description">M4A - bolja kvaliteta</string>
     <string name="theme_title">Tema</string>
     <string name="light_theme_title">Svijetla</string>
     <string name="dark_theme_title">Tamna</string>

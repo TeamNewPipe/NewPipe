@@ -33,8 +33,6 @@
     <string name="show_play_with_kodi_summary">Amuesa una opción pa reproducir un videu per Kodi</string>
     <string name="play_audio">Audiu</string>
     <string name="default_audio_format_title">Formatu por defeutu d\'audiu</string>
-    <string name="webm_description">WebM — formatu llibre</string>
-    <string name="m4a_description">M4A — calidá meyor</string>
     <string name="theme_title">Tema</string>
     <string name="dark_theme_title">Escuru</string>
     <string name="light_theme_title">Claru</string>

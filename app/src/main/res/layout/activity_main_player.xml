@@ -41,7 +41,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:scaleType="centerInside"
         android:visibility="gone"
         tools:background="@android:color/white"
         tools:ignore="ContentDescription"

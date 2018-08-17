@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +20,11 @@ import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistLocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.local.BaseLocalListFragment;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
+import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
@@ -102,13 +105,16 @@ public final class BookmarkFragment
 
                 if (selectedItem instanceof PlaylistMetadataEntry) {
                     final PlaylistMetadataEntry entry = ((PlaylistMetadataEntry) selectedItem);
-                    NavigationHelper.openLocalPlaylistFragment(fragmentManager, entry.uid,
+                    NavigationHelper.openLocalPlaylistFragment(fragmentManager, 
+                            entry.uid,
                             entry.name);
 
                 } else if (selectedItem instanceof PlaylistRemoteEntity) {
                     final PlaylistRemoteEntity entry = ((PlaylistRemoteEntity) selectedItem);
-                    NavigationHelper.openPlaylistFragment(fragmentManager, entry.getServiceId(),
-                            entry.getUrl(), entry.getName());
+                    NavigationHelper.openPlaylistFragment(fragmentManager, 
+                            entry.getServiceId(),
+                            entry.getUrl(), 
+                            entry.getName());
                 }
             }
 
