@@ -836,7 +836,10 @@ public class SearchFragment
 
     @Override
     public void handleResult(@NonNull SearchInfo result) {
-        if (!result.getErrors().isEmpty()) {
+        final List<Throwable> exceptions = result.getErrors();
+        if (!exceptions.isEmpty()
+            && !(exceptions.size() == 1
+                && exceptions.get(0) instanceof SearchExtractor.NothingFoundException)){
             showSnackBarError(result.getErrors(), UserAction.SEARCHED,
                     NewPipe.getNameOfService(serviceId), searchString, 0);
         }
