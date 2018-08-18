@@ -25,12 +25,10 @@ public class ExtSDDownloadFailedActivity extends AppCompatActivity {
                 .setTitle(R.string.download_to_sdcard_error_title)
                 .setMessage(R.string.download_to_sdcard_error_message)
                 .setPositiveButton(R.string.yes, (DialogInterface dialogInterface, int i) -> {
-
                     NewPipeSettings.resetDownloadFolders(this);
                     finish();
                 })
                 .setNegativeButton(R.string.cancel, (DialogInterface dialogInterface, int i) -> {
-
                     dialogInterface.dismiss();
                     finish();
                 })

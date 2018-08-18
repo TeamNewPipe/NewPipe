@@ -69,6 +69,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueAdapter;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
+import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.SerializedCache;
 
@@ -86,6 +87,7 @@ import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_INTERNAL
 import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_PERIOD_TRANSITION;
 import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SEEK;
 import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SEEK_ADJUSTMENT;
+import static org.schabi.newpipe.report.UserAction.PLAY_STREAM;
 
 /**
  * Base for the players, joining the common properties
@@ -363,7 +365,10 @@ public abstract class BasePlayer implements
         try {
             context.unregisterReceiver(broadcastReceiver);
         } catch (final IllegalArgumentException unregisteredException) {
-            Log.e(TAG, "Broadcast receiver already unregistered.", unregisteredException);
+            ErrorActivity.reportError(context, unregisteredException, null, null,
+                    ErrorActivity.ErrorInfo.make(PLAY_STREAM,
+                            "none",
+                            "play stream", R.string.general_error));
         }
     }
 
@@ -1001,6 +1006,8 @@ public abstract class BasePlayer implements
         try {
             metadata = (MediaSourceTag) simpleExoPlayer.getCurrentTag();
         } catch (IndexOutOfBoundsException | ClassCastException error) {
+            if(DEBUG) Log.d(TAG, "Could not update metadata: " + error.getMessage());
+            if(DEBUG) error.printStackTrace();
             return;
         }
 
@@ -1087,6 +1094,9 @@ public abstract class BasePlayer implements
             return simpleExoPlayer.isCurrentWindowDynamic();
         } catch (@NonNull IndexOutOfBoundsException ignored) {
             // Why would this even happen =(
+            // But lets log it anyway. Save is save
+            if(DEBUG) Log.d(TAG, "Could not update metadata: " + ignored.getMessage());
+            if(DEBUG) ignored.printStackTrace();
             return false;
         }
     }
