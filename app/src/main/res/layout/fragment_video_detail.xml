@@ -57,19 +57,19 @@
                     android:id="@+id/touch_append_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:background="#64000000"
                     android:paddingBottom="10dp"
                     android:paddingLeft="30dp"
                     android:paddingRight="30dp"
                     android:paddingTop="10dp"
-                    android:layout_gravity="center"
+                    android:text="@string/hold_to_append"
                     android:textColor="@android:color/white"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:text="@string/hold_to_append"
                     android:visibility="gone"
                     tools:ignore="RtlHardcoded"
-                    tools:visibility="visible"/>
+                    tools:visibility="visible" />
 
                 <TextView
                     android:id="@+id/detail_duration_view"
@@ -95,6 +95,31 @@
                     tools:ignore="RtlHardcoded"
                     tools:text="12:38"
                     tools:visibility="visible"/>
+
+                <TextView
+                    android:id="@+id/detail_playback_resume_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|left"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginTop="8dp"
+                    android:alpha=".6"
+                    android:background="@android:color/holo_red_dark"
+                    android:gravity="center"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="6dp"
+                    android:paddingRight="6dp"
+                    android:paddingTop="2dp"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    tools:ignore="RtlHardcoded"
+                    tools:text="12:38"
+                    tools:visibility="visible" />
             </FrameLayout>
 
             <!-- CONTENT -->
@@ -127,7 +152,7 @@
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textSize="@dimen/video_item_detail_title_text_size"
                         tools:ignore="RtlHardcoded"
-                        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a ultricies ex. Integer sit amet sodales risus. Duis non mi et urna pretium bibendum. Nunc eleifend est quis ipsum porttitor egestas. Sed facilisis, nisl quis eleifend pellentesque, orci metus egestas dolor, at accumsan eros metus quis libero."/>
+                        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a ultricies ex. Integer sit amet sodales risus. Duis non mi et urna pretium bibendum. Nunc eleifend est quis ipsum porttitor egestas. Sed facilisis, nisl quis eleifend pellentesque, orci metus egestas dolor, at accumsan eros metus quis libero." />
 
                     <ImageView
                         android:id="@+id/detail_toggle_description_view"

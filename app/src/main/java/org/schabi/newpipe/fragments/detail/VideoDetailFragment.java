@@ -163,6 +163,7 @@ public class VideoDetailFragment
     private TextView detailControlsDownload;
     private TextView appendControlsDetail;
     private TextView detailDurationView;
+    private TextView detailPlaybackResumeView;
 
     private LinearLayout videoDescriptionRootLayout;
     private TextView videoUploadDateView;
@@ -182,6 +183,9 @@ public class VideoDetailFragment
     private LinearLayout relatedStreamRootLayout;
     private LinearLayout relatedStreamsView;
     private ImageButton relatedStreamExpandButton;
+
+    private SharedPreferences playbackPreferences;
+    private boolean isVideoPlaybackResumeEnabled;
 
 
     /*////////////////////////////////////////////////////////////////////////*/
@@ -205,6 +209,9 @@ public class VideoDetailFragment
                 .getBoolean(getString(R.string.show_next_video_key), true);
         PreferenceManager.getDefaultSharedPreferences(activity)
                 .registerOnSharedPreferenceChangeListener(this);
+
+        this.playbackPreferences = activity.getSharedPreferences(Constants.KEY_VIDEO_PLAYBACK_POSITION_PREFS,0);
+        this.isVideoPlaybackResumeEnabled = PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(getString(R.string.enable_video_playback_resume_key), false);
     }
 
     @Override
@@ -480,6 +487,7 @@ public class VideoDetailFragment
         detailControlsDownload = rootView.findViewById(R.id.detail_controls_download);
         appendControlsDetail = rootView.findViewById(R.id.touch_append_detail);
         detailDurationView = rootView.findViewById(R.id.detail_duration_view);
+        detailPlaybackResumeView = rootView.findViewById(R.id.detail_playback_resume_view);
 
         videoDescriptionRootLayout = rootView.findViewById(R.id.detail_description_root_layout);
         videoUploadDateView = rootView.findViewById(R.id.detail_upload_date_view);
@@ -1108,6 +1116,7 @@ public class VideoDetailFragment
         animateView(spinnerToolbar, false, 200);
         animateView(thumbnailPlayButton, false, 50);
         animateView(detailDurationView, false, 100);
+        animateView(detailPlaybackResumeView, false, 100);
 
         videoTitleTextView.setText(name != null ? name : "");
         videoTitleTextView.setMaxLines(1);
@@ -1182,12 +1191,22 @@ public class VideoDetailFragment
             detailDurationView.setText(Localization.getDurationString(info.getDuration()));
             detailDurationView.setBackgroundColor(ContextCompat.getColor(activity, R.color.duration_background_color));
             animateView(detailDurationView, true, 100);
+            if(isVideoPlaybackResumeEnabled){
+                int playback = (int) playbackPreferences.getLong(info.getOriginalUrl(), 0);
+                if(playback > 0){
+                    detailPlaybackResumeView.setVisibility(View.VISIBLE);
+                    detailPlaybackResumeView.setText(PlayerHelper.getTimeString(playback));
+                    animateView(detailPlaybackResumeView, true, 100);
+                }
+            }
         } else if (info.getStreamType() == StreamType.LIVE_STREAM) {
             detailDurationView.setText(R.string.duration_live);
             detailDurationView.setBackgroundColor(ContextCompat.getColor(activity, R.color.live_duration_background_color));
             animateView(detailDurationView, true, 100);
+            detailPlaybackResumeView.setVisibility(View.GONE);
         } else {
             detailDurationView.setVisibility(View.GONE);
+            detailPlaybackResumeView.setVisibility(View.GONE);
         }
 
         videoTitleRoot.setClickable(true);
