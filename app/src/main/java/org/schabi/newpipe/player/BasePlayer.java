@@ -51,6 +51,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
+import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
@@ -98,7 +99,7 @@ import static org.schabi.newpipe.report.UserAction.PLAY_STREAM;
 public abstract class BasePlayer implements
         Player.EventListener, PlaybackListener, ImageLoadingListener {
 
-    public static final boolean DEBUG = true;
+    public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
     @NonNull public static final String TAG = "BasePlayer";
 
     @NonNull final protected Context context;

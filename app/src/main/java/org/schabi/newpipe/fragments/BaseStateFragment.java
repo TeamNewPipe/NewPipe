@@ -87,12 +87,7 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
         RxView.clicks(errorButtonRetry)
                 .debounce(300, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Object>() {
-                    @Override
-                    public void accept(Object o) throws Exception {
-                        onRetryButtonClicked();
-                    }
-                });
+                .subscribe(o -> onRetryButtonClicked());
     }
 
     protected void onRetryButtonClicked() {

@@ -309,7 +309,6 @@ public final class BackgroundPlayer extends Service {
         @Override
         public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
             super.onLoadingComplete(imageUri, view, loadedImage);
-            resetNotification();
             updateNotificationThumbnail();
             updateNotification(-1);
         }
@@ -342,7 +341,6 @@ public final class BackgroundPlayer extends Service {
             updateProgress(currentProgress, duration, bufferPercent);
 
             if (!shouldUpdateOnProgress) return;
-            resetNotification();
             if (bigNotRemoteView != null) {
                 bigNotRemoteView.setProgressBar(R.id.notificationProgressBar, duration, currentProgress, false);
                 bigNotRemoteView.setTextViewText(R.id.notificationTime, getTimeString(currentProgress) + " / " + getTimeString(duration));
@@ -531,8 +529,6 @@ public final class BackgroundPlayer extends Service {
         @Override
         public void onPlaying() {
             super.onPlaying();
-            resetNotification();
-            updateNotificationThumbnail();
             updateNotification(R.drawable.ic_pause_white);
             lockManager.acquireWifiAndCpu();
         }
