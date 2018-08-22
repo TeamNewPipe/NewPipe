@@ -471,10 +471,11 @@
             android:id="@+id/controlAnimationView"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/ic_action_av_fast_rewind"
+            android:background="@drawable/background_oval_black_transparent"
             android:visibility="gone"
             tools:ignore="ContentDescription"
-            tools:visibility="visible"/>
+            tools:src="@drawable/ic_action_av_fast_rewind"
+            tools:visibility="visible" />
     </LinearLayout>
 
 
