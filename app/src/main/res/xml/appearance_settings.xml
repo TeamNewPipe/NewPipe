@@ -22,6 +22,14 @@
         android:title="@string/show_hold_to_append_title"
         android:summary="@string/show_hold_to_append_summary"/>
 
+    <ListPreference
+        android:defaultValue="@string/list_view_mode_value"
+        android:entries="@array/list_view_mode_description"
+        android:entryValues="@array/list_view_mode_values"
+        android:key="@string/list_view_mode_key"
+        android:summary="%s"
+        android:title="@string/list_view_mode"/>
+
     <Preference
         android:key="@string/caption_settings_key"
         android:title="@string/caption_setting_title"
