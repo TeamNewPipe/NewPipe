@@ -456,13 +456,13 @@
 	</com.nirhart.parallaxscroll.views.ParallaxScrollView>
 
 	<ScrollView
-		android:id="@+id/detail_related_streams_root_layout"
 		android:layout_width="0dp"
 		android:layout_height="match_parent"
 		android:layout_weight="3">
 
 		<!--NEXT AND RELATED VIDEOS-->
 		<LinearLayout
+			android:id="@+id/detail_related_streams_root_layout"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_horizontal"

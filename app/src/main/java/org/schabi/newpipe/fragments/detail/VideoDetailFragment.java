@@ -33,12 +33,14 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -64,19 +66,17 @@ import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
-import org.schabi.newpipe.local.history.HistoryRecordManager;
-import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.util.StreamItemAdapter;
-import org.schabi.newpipe.util.StreamItemAdapter.StreamSizeWrapper;
-import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoItemDialog;
+import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.MainVideoPlayer;
 import org.schabi.newpipe.player.PopupVideoPlayer;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
+import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -87,6 +87,8 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.PermissionHelper;
+import org.schabi.newpipe.util.StreamItemAdapter;
+import org.schabi.newpipe.util.StreamItemAdapter.StreamSizeWrapper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.Serializable;
@@ -179,7 +181,7 @@ public class VideoDetailFragment
     private TextView thumbsDisabledTextView;
 
     private TextView nextStreamTitle;
-    private View relatedStreamRootLayout;
+    private LinearLayout relatedStreamRootLayout;
     private LinearLayout relatedStreamsView;
     private ImageButton relatedStreamExpandButton;
 
@@ -622,10 +624,10 @@ public class VideoDetailFragment
             relatedStreamsView.addView(
                     infoItemBuilder.buildView(relatedStreamsView, info.getNextVideo()));
             relatedStreamsView.addView(getSeparatorView());
-            relatedStreamRootLayout.setVisibility(View.VISIBLE);
+            setRelatedStreamsVisibility(View.VISIBLE);
         } else {
             nextStreamTitle.setVisibility(View.GONE);
-            relatedStreamRootLayout.setVisibility(View.GONE);
+            setRelatedStreamsVisibility(View.GONE);
         }
 
         if (info.getRelatedStreams() != null
@@ -642,13 +644,13 @@ public class VideoDetailFragment
             }
             //if (DEBUG) Log.d(TAG, "Total time " + ((System.nanoTime() - first) / 1000000L) + "ms");
 
-            relatedStreamRootLayout.setVisibility(View.VISIBLE);
+            setRelatedStreamsVisibility(View.VISIBLE);
             relatedStreamExpandButton.setVisibility(View.VISIBLE);
 
             relatedStreamExpandButton.setImageDrawable(ContextCompat.getDrawable(
                     activity, ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.expand)));
         } else {
-            if (info.getNextVideo() == null) relatedStreamRootLayout.setVisibility(View.GONE);
+            if (info.getNextVideo() == null) setRelatedStreamsVisibility(View.GONE);
             relatedStreamExpandButton.setVisibility(View.GONE);
         }
     }
@@ -1301,5 +1303,14 @@ public class VideoDetailFragment
         });
 
         showError(getString(R.string.blocked_by_gema), false, R.drawable.gruese_die_gema);
+    }
+
+    private void setRelatedStreamsVisibility(int visibility) {
+        final ViewParent parent = relatedStreamRootLayout.getParent();
+        if (parent instanceof ScrollView) {
+            ((ScrollView) parent).setVisibility(visibility);
+        } else {
+            relatedStreamRootLayout.setVisibility(visibility);
+        }
     }
 }
