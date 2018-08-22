@@ -179,7 +179,7 @@ public class VideoDetailFragment
     private TextView thumbsDisabledTextView;
 
     private TextView nextStreamTitle;
-    private LinearLayout relatedStreamRootLayout;
+    private View relatedStreamRootLayout;
     private LinearLayout relatedStreamsView;
     private ImageButton relatedStreamExpandButton;
 
@@ -623,7 +623,10 @@ public class VideoDetailFragment
                     infoItemBuilder.buildView(relatedStreamsView, info.getNextVideo()));
             relatedStreamsView.addView(getSeparatorView());
             relatedStreamRootLayout.setVisibility(View.VISIBLE);
-        } else nextStreamTitle.setVisibility(View.GONE);
+        } else {
+            nextStreamTitle.setVisibility(View.GONE);
+            relatedStreamRootLayout.setVisibility(View.GONE);
+        }
 
         if (info.getRelatedStreams() != null
                 && !info.getRelatedStreams().isEmpty() && showRelatedStreams) {
