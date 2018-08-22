@@ -392,11 +392,10 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
 
     @SuppressLint("CheckResult")
     private void deleteChannel (ChannelInfoItem selectedItem) {
-        final io.reactivex.Observable<List<SubscriptionEntity>> observable = subscriptionService.subscriptionTable()
+        subscriptionService.subscriptionTable()
                 .getSubscription(selectedItem.getServiceId(), selectedItem.getUrl())
-                .toObservable();
-
-        observable.observeOn(Schedulers.io())
+                .toObservable()
+                .observeOn(Schedulers.io())
                 .subscribe(getDeleteObserver());
 
         Toast.makeText(activity, getString(R.string.channel_unsubscribed), Toast.LENGTH_SHORT).show();
