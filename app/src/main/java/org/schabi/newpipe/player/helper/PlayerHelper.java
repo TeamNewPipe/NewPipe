@@ -251,10 +251,6 @@ public class PlayerHelper {
         return true;
     }
 
-    public static int getShutdownFlingVelocity(@NonNull final Context context) {
-        return 6000;
-    }
-
     public static int getTossFlingVelocity(@NonNull final Context context) {
         return 2500;
     }

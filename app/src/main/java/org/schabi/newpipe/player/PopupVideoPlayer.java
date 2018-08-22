@@ -116,7 +116,6 @@ public final class PopupVideoPlayer extends Service {
     private FloatingActionButton closeOverlayButton;
     private WindowManager.LayoutParams closeOverlayLayoutParams;
 
-    private int shutdownFlingVelocity;
     private int tossFlingVelocity;
 
     private float screenWidth, screenHeight;
@@ -200,7 +199,6 @@ public final class PopupVideoPlayer extends Service {
         View rootView = View.inflate(this, R.layout.player_popup, null);
         playerImpl.setup(rootView);
 
-        shutdownFlingVelocity = PlayerHelper.getShutdownFlingVelocity(this);
         tossFlingVelocity = PlayerHelper.getTossFlingVelocity(this);
 
         updateScreenSize();
@@ -995,10 +993,7 @@ public final class PopupVideoPlayer extends Service {
 
             final float absVelocityX = Math.abs(velocityX);
             final float absVelocityY = Math.abs(velocityY);
-            if (absVelocityX > shutdownFlingVelocity) {
-                closePopup();
-                return true;
-            } else if (Math.max(absVelocityX, absVelocityY) > tossFlingVelocity) {
+            if (Math.max(absVelocityX, absVelocityY) > tossFlingVelocity) {
                 if (absVelocityX > tossFlingVelocity) popupLayoutParams.x = (int) velocityX;
                 if (absVelocityY > tossFlingVelocity) popupLayoutParams.y = (int) velocityY;
                 checkPositionBounds();
