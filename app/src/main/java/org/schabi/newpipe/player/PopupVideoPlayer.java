@@ -928,9 +928,6 @@ public final class PopupVideoPlayer extends Service {
         public boolean onScroll(MotionEvent initialEvent, MotionEvent movingEvent, float distanceX, float distanceY) {
             if (isResizing || playerImpl == null) return super.onScroll(initialEvent, movingEvent, distanceX, distanceY);
 
-            if (playerImpl.getCurrentState() != BasePlayer.STATE_BUFFERING
-                    && (!isMoving || playerImpl.getControlsRoot().getAlpha() != 1f)) playerImpl.showControls(0);
-
             if (!isMoving) {
                 animateView(closeOverlayButton, true, 200);
             }
