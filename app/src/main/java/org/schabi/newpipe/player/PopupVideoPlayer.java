@@ -175,7 +175,7 @@ public final class PopupVideoPlayer extends Service {
         if (DEBUG) Log.d(TAG, "onConfigurationChanged() called with: newConfig = [" + newConfig + "]");
         updateScreenSize();
         updatePopupSize(popupLayoutParams.width, -1);
-        checkPositionBounds();
+        checkPopupPositionBounds();
     }
 
     @Override
@@ -225,7 +225,7 @@ public final class PopupVideoPlayer extends Service {
         popupLayoutParams.x = popupRememberSizeAndPos ? sharedPreferences.getInt(POPUP_SAVED_X, centerX) : centerX;
         popupLayoutParams.y = popupRememberSizeAndPos ? sharedPreferences.getInt(POPUP_SAVED_Y, centerY) : centerY;
 
-        checkPositionBounds();
+        checkPopupPositionBounds();
 
         PopupWindowGestureListener listener = new PopupWindowGestureListener();
         popupGestureDetector = new GestureDetector(this, listener);
@@ -371,15 +371,44 @@ public final class PopupVideoPlayer extends Service {
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
-    private void checkPositionBounds() {
-        if (DEBUG) Log.d(TAG, "checkPositionBounds() called");
-        if (popupLayoutParams.x > screenWidth - popupLayoutParams.width)
-            popupLayoutParams.x = (int) (screenWidth - popupLayoutParams.width);
-        if (popupLayoutParams.x < 0) popupLayoutParams.x = 0;
+    /**
+     * @see #checkPopupPositionBounds(float, float)
+     */
+    @SuppressWarnings("UnusedReturnValue")
+    private boolean checkPopupPositionBounds() {
+        return checkPopupPositionBounds(screenWidth, screenHeight);
+    }
 
-        if (popupLayoutParams.y > screenHeight - popupLayoutParams.height)
-            popupLayoutParams.y = (int) (screenHeight - popupLayoutParams.height);
-        if (popupLayoutParams.y < 0) popupLayoutParams.y = 0;
+    /**
+     * Check if {@link #popupLayoutParams}' position is within a arbitrary boundary that goes from (0,0) to (boundaryWidth,boundaryHeight).
+     * <p>
+     * If it's out of these boundaries, {@link #popupLayoutParams}' position is changed and {@code true} is returned
+     * to represent this change.
+     *
+     * @return if the popup was out of bounds and have been moved back to it
+     */
+    private boolean checkPopupPositionBounds(final float boundaryWidth, final float boundaryHeight) {
+        if (DEBUG) {
+            Log.d(TAG, "checkPopupPositionBounds() called with: boundaryWidth = [" + boundaryWidth + "], boundaryHeight = [" + boundaryHeight + "]");
+        }
+
+        if (popupLayoutParams.x < 0) {
+            popupLayoutParams.x = 0;
+            return true;
+        } else if (popupLayoutParams.x > boundaryWidth - popupLayoutParams.width) {
+            popupLayoutParams.x = (int) (boundaryWidth - popupLayoutParams.width);
+            return true;
+        }
+
+        if (popupLayoutParams.y < 0) {
+            popupLayoutParams.y = 0;
+            return true;
+        } else if (popupLayoutParams.y > boundaryHeight - popupLayoutParams.height) {
+            popupLayoutParams.y = (int) (boundaryHeight - popupLayoutParams.height);
+            return true;
+        }
+
+        return false;
     }
 
     private void savePositionAndSize() {
@@ -907,6 +936,11 @@ public final class PopupVideoPlayer extends Service {
         @Override
         public boolean onDown(MotionEvent e) {
             if (DEBUG) Log.d(TAG, "onDown() called with: e = [" + e + "]");
+
+            // Fix popup position when the user touch it, it may have the wrong one
+            // because the soft input is visible (the draggable area is currently resized).
+            checkPopupPositionBounds(closeOverlayView.getWidth(), closeOverlayView.getHeight());
+
             initialPopupX = popupLayoutParams.x;
             initialPopupY = popupLayoutParams.y;
             popupWidth = popupLayoutParams.width;
@@ -918,7 +952,7 @@ public final class PopupVideoPlayer extends Service {
         public void onLongPress(MotionEvent e) {
             if (DEBUG) Log.d(TAG, "onLongPress() called with: e = [" + e + "]");
             updateScreenSize();
-            checkPositionBounds();
+            checkPopupPositionBounds();
             updatePopupSize((int) screenWidth, -1);
         }
 
@@ -996,7 +1030,7 @@ public final class PopupVideoPlayer extends Service {
             if (Math.max(absVelocityX, absVelocityY) > tossFlingVelocity) {
                 if (absVelocityX > tossFlingVelocity) popupLayoutParams.x = (int) velocityX;
                 if (absVelocityY > tossFlingVelocity) popupLayoutParams.y = (int) velocityY;
-                checkPositionBounds();
+                checkPopupPositionBounds();
                 windowManager.updateViewLayout(playerImpl.getRootView(), popupLayoutParams);
                 return true;
             }
@@ -1061,7 +1095,7 @@ public final class PopupVideoPlayer extends Service {
                 popupLayoutParams.x = (int) event.getRawX();
             }
 
-            checkPositionBounds();
+            checkPopupPositionBounds();
             updateScreenSize();
 
             final int width = (int) Math.min(screenWidth, diff);
