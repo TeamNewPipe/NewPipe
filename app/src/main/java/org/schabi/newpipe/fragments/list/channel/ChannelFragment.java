@@ -260,7 +260,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     private void monitorSubscription(final ChannelInfo info) {
         final Consumer<Throwable> onError = new Consumer<Throwable>() {
             @Override
-            public void accept(Throwable throwable) throws Exception {
+            public void accept(Throwable throwable) {
                 animateView(headerSubscribeButton, false, 100);
                 showSnackBarError(throwable, UserAction.SUBSCRIPTION, NewPipe.getNameOfService(currentInfo.getServiceId()), "Get subscription status", 0);
             }
@@ -281,7 +281,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<List<SubscriptionEntity>>() {
                     @Override
-                    public void accept(List<SubscriptionEntity> subscriptionEntities) throws Exception {
+                    public void accept(List<SubscriptionEntity> subscriptionEntities) {
                         updateSubscribeButton(!subscriptionEntities.isEmpty());
                     }
                 }, onError));
@@ -291,7 +291,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     private Function<Object, Object> mapOnSubscribe(final SubscriptionEntity subscription) {
         return new Function<Object, Object>() {
             @Override
-            public Object apply(@NonNull Object o) throws Exception {
+            public Object apply(@NonNull Object o) {
                 subscriptionService.subscriptionTable().insert(subscription);
                 return o;
             }
@@ -301,7 +301,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     private Function<Object, Object> mapOnUnsubscribe(final SubscriptionEntity subscription) {
         return new Function<Object, Object>() {
             @Override
-            public Object apply(@NonNull Object o) throws Exception {
+            public Object apply(@NonNull Object o) {
                 subscriptionService.subscriptionTable().delete(subscription);
                 return o;
             }
@@ -312,14 +312,14 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         if (DEBUG) Log.d(TAG, "updateSubscription() called with: info = [" + info + "]");
         final Action onComplete = new Action() {
             @Override
-            public void run() throws Exception {
+            public void run() {
                 if (DEBUG) Log.d(TAG, "Updated subscription: " + info.getUrl());
             }
         };
 
         final Consumer<Throwable> onError = new Consumer<Throwable>() {
             @Override
-            public void accept(@NonNull Throwable throwable) throws Exception {
+            public void accept(@NonNull Throwable throwable) {
                 onUnrecoverableError(throwable, UserAction.SUBSCRIPTION, NewPipe.getNameOfService(info.getServiceId()), "Updating Subscription for " + info.getUrl(), R.string.subscription_update_failed);
             }
         };
@@ -333,14 +333,14 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     private Disposable monitorSubscribeButton(final Button subscribeButton, final Function<Object, Object> action) {
         final Consumer<Object> onNext = new Consumer<Object>() {
             @Override
-            public void accept(@NonNull Object o) throws Exception {
+            public void accept(@NonNull Object o) {
                 if (DEBUG) Log.d(TAG, "Changed subscription status to this channel!");
             }
         };
 
         final Consumer<Throwable> onError = new Consumer<Throwable>() {
             @Override
-            public void accept(@NonNull Throwable throwable) throws Exception {
+            public void accept(@NonNull Throwable throwable) {
                 onUnrecoverableError(throwable, UserAction.SUBSCRIPTION, NewPipe.getNameOfService(currentInfo.getServiceId()), "Subscription Change", R.string.subscription_change_failed);
             }
         };
@@ -357,7 +357,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     private Consumer<List<SubscriptionEntity>> getSubscribeUpdateMonitor(final ChannelInfo info) {
         return new Consumer<List<SubscriptionEntity>>() {
             @Override
-            public void accept(List<SubscriptionEntity> subscriptionEntities) throws Exception {
+            public void accept(List<SubscriptionEntity> subscriptionEntities) {
                 if (DEBUG)
                     Log.d(TAG, "subscriptionService.subscriptionTable.doOnNext() called with: subscriptionEntities = [" + subscriptionEntities + "]");
                 if (subscribeButtonMonitor != null) subscribeButtonMonitor.dispose();

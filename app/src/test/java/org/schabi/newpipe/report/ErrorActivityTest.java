@@ -15,7 +15,7 @@ import static org.junit.Assert.assertNull;
  */
 public class ErrorActivityTest {
     @Test
-    public void getReturnActivity() throws Exception {
+    public void getReturnActivity() {
         Class<? extends Activity> returnActivity;
         returnActivity = ErrorActivity.getReturnActivity(MainActivity.class);
         assertEquals(MainActivity.class, returnActivity);

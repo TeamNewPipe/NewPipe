@@ -89,7 +89,7 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Object>() {
                     @Override
-                    public void accept(Object o) throws Exception {
+                    public void accept(Object o) {
                         onRetryButtonClicked();
                     }
                 });
