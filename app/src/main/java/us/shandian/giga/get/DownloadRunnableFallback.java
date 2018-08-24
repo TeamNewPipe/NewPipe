@@ -29,7 +29,7 @@ public class DownloadRunnableFallback implements Runnable {
                 f.seek(0);
                 BufferedInputStream ipt = new BufferedInputStream(conn.getInputStream());
                 byte[] buf = new byte[512];
-                int len = 0;
+                int len;
 
                 while ((len = ipt.read(buf, 0, 512)) != -1 && mMission.running) {
                     f.write(buf, 0, len);

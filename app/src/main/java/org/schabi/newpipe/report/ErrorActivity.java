@@ -274,15 +274,14 @@ public class ErrorActivity extends AppCompatActivity {
     }
 
     private String formErrorText(String[] el) {
-        String text = "";
+        StringBuilder text = new StringBuilder();
         if (el != null) {
             for (String e : el) {
-                text += "-------------------------------------\n"
-                        + e;
+                text.append("-------------------------------------\n").append(e);
             }
         }
-        text += "-------------------------------------";
-        return text;
+        text.append("-------------------------------------");
+        return text.toString();
     }
 
     /**
