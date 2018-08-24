@@ -23,7 +23,7 @@ public class DownloadManagerImpl implements DownloadManager {
     private static final String TAG = DownloadManagerImpl.class.getSimpleName();
     private final DownloadDataSource mDownloadDataSource;
 
-    private final ArrayList<DownloadMission> mMissions = new ArrayList<DownloadMission>();
+    private final ArrayList<DownloadMission> mMissions = new ArrayList<>();
 
     /**
      * Create a new instance

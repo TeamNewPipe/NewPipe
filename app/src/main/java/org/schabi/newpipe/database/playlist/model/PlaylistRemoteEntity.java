@@ -6,7 +6,6 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
-import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistLocalItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.util.Constants;

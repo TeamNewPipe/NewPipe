@@ -11,9 +11,7 @@ import android.widget.Toast;
 
 import org.schabi.newpipe.R;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -198,7 +196,7 @@ public class Utility {
             while ((len = i.read(buf)) != -1) {
                 md.update(buf, 0, len);
             }
-        } catch (IOException e) {
+        } catch (IOException ignored) {
 
         }
 

@@ -188,7 +188,7 @@ public class ListHelperTest {
     @Test
     public void getHighestQualityAudioNull() {
         assertEquals(-1, ListHelper.getHighestQualityAudioIndex(null, null));
-        assertEquals(-1, ListHelper.getHighestQualityAudioIndex(null, new ArrayList<AudioStream>()));
+        assertEquals(-1, ListHelper.getHighestQualityAudioIndex(null, new ArrayList<>()));
     }
 
     @Test
@@ -252,7 +252,7 @@ public class ListHelperTest {
     @Test
     public void getLowestQualityAudioNull() {
         assertEquals(-1, ListHelper.getMostCompactAudioIndex(null, null));
-        assertEquals(-1, ListHelper.getMostCompactAudioIndex(null, new ArrayList<AudioStream>()));
+        assertEquals(-1, ListHelper.getMostCompactAudioIndex(null, new ArrayList<>()));
     }
 
     @Test

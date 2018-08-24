@@ -5,7 +5,6 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Query;
 import android.support.annotation.Nullable;
 
-import org.schabi.newpipe.database.BasicDAO;
 import org.schabi.newpipe.database.history.model.StreamHistoryEntry;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
 import org.schabi.newpipe.database.history.model.StreamHistoryEntity;

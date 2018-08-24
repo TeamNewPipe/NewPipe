@@ -42,12 +42,12 @@ public class DownloadManagerImplTest {
             missions.add(generateFinishedDownloadMission());
         }
         when(downloadDataSource.loadMissions()).thenReturn(new ArrayList<>(missions));
-        downloadManager = new DownloadManagerImpl(new ArrayList<String>(), downloadDataSource);
+        downloadManager = new DownloadManagerImpl(new ArrayList<>(), downloadDataSource);
     }
 
     @Test(expected = NullPointerException.class)
     public void testConstructorWithNullAsDownloadDataSource() {
-        new DownloadManagerImpl(new ArrayList<String>(), null);
+        new DownloadManagerImpl(new ArrayList<>(), null);
     }
 
 
@@ -84,7 +84,7 @@ public class DownloadManagerImplTest {
 
         downloadDataSource = mock(DownloadDataSource.class);
         when(downloadDataSource.loadMissions()).thenReturn(new ArrayList<>(missions));
-        downloadManager = new DownloadManagerImpl(new ArrayList<String>(), downloadDataSource);
+        downloadManager = new DownloadManagerImpl(new ArrayList<>(), downloadDataSource);
         verify(downloadDataSource, times(1)).loadMissions();
 
         assertEquals(50, downloadManager.getCount());
