@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 
 import org.acra.collector.CrashReportData;
 import org.acra.sender.ReportSender;
-import org.acra.sender.ReportSenderException;
 import org.schabi.newpipe.R;
 
 /*
