@@ -519,13 +519,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
 
     @Override
     public void setTitle(String title) {
-        if(!useAsFrontPage) {
-            super.setTitle(title);
-            headerTitleView.setText(title);
-        } else {
-            if(mIsVisibleToUser) {
-                super.setTitle(title);
-            }
-        }
+        super.setTitle(title);
+        if (!useAsFrontPage) headerTitleView.setText(title);
     }
 }

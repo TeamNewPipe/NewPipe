@@ -179,19 +179,9 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
         showLoading();
         showListFooter(true);
         subscriptionObserver = subscriptionService.getSubscription()
-                .onErrorReturnItem(Collections.<SubscriptionEntity>emptyList())
+                .onErrorReturnItem(Collections.emptyList())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<List<SubscriptionEntity>>() {
-                    @Override
-                    public void accept(List<SubscriptionEntity> subscriptionEntities) throws Exception {
-                        handleResult(subscriptionEntities);
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        onError(throwable);
-                    }
-                });
+                .subscribe(this::handleResult, this::onError);
     }
 
     @Override
@@ -242,13 +232,12 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
                 if (!itemsLoaded.contains(subscriptionEntity.getServiceId() + subscriptionEntity.getUrl())) {
                     subscriptionService.getChannelInfo(subscriptionEntity)
                             .observeOn(AndroidSchedulers.mainThread())
-                            .onErrorComplete(new Predicate<Throwable>() {
-                                @Override
-                                public boolean test(@io.reactivex.annotations.NonNull Throwable throwable) throws Exception {
-                                    return FeedFragment.super.onError(throwable);
-                                }
-                            })
-                            .subscribe(getChannelInfoObserver(subscriptionEntity.getServiceId(), subscriptionEntity.getUrl()));
+                            .onErrorComplete(
+                                    (@io.reactivex.annotations.NonNull Throwable throwable) ->
+                                            FeedFragment.super.onError(throwable))
+                            .subscribe(
+                                    getChannelInfoObserver(subscriptionEntity.getServiceId(),
+                                            subscriptionEntity.getUrl()));
                 } else {
                     requestFeed(1);
                 }
@@ -319,7 +308,10 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
 
             @Override
             public void onError(Throwable exception) {
-                showSnackBarError(exception, UserAction.SUBSCRIPTION, NewPipe.getNameOfService(serviceId), url, 0);
+                showSnackBarError(exception,
+                        UserAction.SUBSCRIPTION,
+                        NewPipe.getNameOfService(serviceId),
+                        url, 0);
                 requestFeed(1);
                 onDone();
             }
@@ -364,12 +356,7 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
         delayHandler.removeCallbacksAndMessages(null);
         // Add a little of a delay when requesting more items because the cache is so fast,
         // that the view seems stuck to the user when he scroll to the bottom
-        delayHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                requestFeed(FEED_LOAD_COUNT);
-            }
-        }, 300);
+        delayHandler.postDelayed(() -> requestFeed(FEED_LOAD_COUNT), 300);
     }
 
     @Override
@@ -426,7 +413,9 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
         int heightPixels = getResources().getDisplayMetrics().heightPixels;
         int itemHeightPixels = activity.getResources().getDimensionPixelSize(R.dimen.video_item_search_height);
 
-        int items = itemHeightPixels > 0 ? heightPixels / itemHeightPixels + OFF_SCREEN_ITEMS_COUNT : MIN_ITEMS_INITIAL_LOAD;
+        int items = itemHeightPixels > 0
+                ? heightPixels / itemHeightPixels + OFF_SCREEN_ITEMS_COUNT
+                : MIN_ITEMS_INITIAL_LOAD;
         return Math.max(MIN_ITEMS_INITIAL_LOAD, items);
     }
 
@@ -444,8 +433,14 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
     protected boolean onError(Throwable exception) {
         if (super.onError(exception)) return true;
 
-        int errorId = exception instanceof ExtractionException ? R.string.parsing_error : R.string.general_error;
-        onUnrecoverableError(exception, UserAction.SOMETHING_ELSE, "none", "Requesting feed", errorId);
+        int errorId = exception instanceof ExtractionException
+                ? R.string.parsing_error
+                : R.string.general_error;
+        onUnrecoverableError(exception,
+                UserAction.SOMETHING_ELSE,
+                "none",
+                "Requesting feed",
+                errorId);
         return true;
     }
 }

@@ -57,7 +57,6 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     protected String kioskId = "";
     protected String kioskTranslatedName;
 
-    private boolean mIsVisibleToUser = false;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Views
@@ -97,7 +96,6 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        mIsVisibleToUser = isVisibleToUser;
         if(useAsFrontPage && isVisibleToUser && activity != null) {
             try {
                 setTitle(kioskTranslatedName);
@@ -189,21 +187,6 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
             showSnackBarError(result.getErrors(),
                     UserAction.REQUESTED_PLAYLIST, NewPipe.getNameOfService(serviceId)
                     , "Get next page of: " + url, 0);
-        }
-    }
-
-        /*//////////////////////////////////////////////////////////////////////////
-    // Utils
-    //////////////////////////////////////////////////////////////////////////*/
-
-    @Override
-    public void setTitle(String title) {
-        if(!useAsFrontPage) {
-            super.setTitle(title);
-        } else {
-            if(mIsVisibleToUser) {
-                super.setTitle(title);
-            }
         }
     }
 }

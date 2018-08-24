@@ -12,7 +12,10 @@ import android.view.View;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.squareup.leakcanary.RefWatcher;
 
+import org.schabi.newpipe.report.UserAction;
+
 import icepick.Icepick;
+import icepick.State;
 
 public abstract class BaseFragment extends Fragment {
     protected final String TAG = getClass().getSimpleName() + "@" + Integer.toHexString(hashCode());
@@ -20,6 +23,15 @@ public abstract class BaseFragment extends Fragment {
 
     protected AppCompatActivity activity;
     public static final ImageLoader imageLoader = ImageLoader.getInstance();
+
+    //These values are used for controlling framgents when they are part of the frontpage
+    @State
+    protected boolean useAsFrontPage = false;
+    protected boolean mIsVisibleToUser = false;
+
+    public void useAsFrontPage(boolean value) {
+        useAsFrontPage = value;
+    }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Fragment's Lifecycle
@@ -73,6 +85,12 @@ public abstract class BaseFragment extends Fragment {
         if (refWatcher != null) refWatcher.watch(this);
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        mIsVisibleToUser = isVisibleToUser;
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Init
     //////////////////////////////////////////////////////////////////////////*/
@@ -89,7 +107,8 @@ public abstract class BaseFragment extends Fragment {
 
     public void setTitle(String title) {
         if (DEBUG) Log.d(TAG, "setTitle() called with: title = [" + title + "]");
-        if (activity != null && activity.getSupportActionBar() != null) {
+        if((!useAsFrontPage || mIsVisibleToUser)
+            && (activity != null && activity.getSupportActionBar() != null)) {
             activity.getSupportActionBar().setTitle(title);
         }
     }
