@@ -322,7 +322,7 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
         infoListAdapter.setOnChannelSelectedListener(new OnClickGesture<ChannelInfoItem>() {
             @Override
             public void selected(ChannelInfoItem selectedItem) {
-                FragmentManager fragmentManager = getFM();
+                final FragmentManager fragmentManager = getFM();
                 NavigationHelper.openChannelFragment(fragmentManager,
                         selectedItem.getServiceId(),
                         selectedItem.getUrl(),

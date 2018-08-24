@@ -140,9 +140,7 @@ public class StatisticsPlaylistFragment
             public void selected(LocalItem selectedItem) {
                 if (selectedItem instanceof StreamStatisticsEntry) {
                     final StreamStatisticsEntry item = (StreamStatisticsEntry) selectedItem;
-                    NavigationHelper.openVideoDetailFragment(useAsFrontPage
-                                    ? getParentFragment().getFragmentManager()
-                                    : getFragmentManager(),
+                    NavigationHelper.openVideoDetailFragment(getFM(),
                             item.serviceId,
                             item.url,
                             item.title);
