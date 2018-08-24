@@ -75,7 +75,7 @@ public class DownloadRunnable implements Runnable {
                 end = mMission.length - 1;
             }
 
-            HttpURLConnection conn = null;
+            HttpURLConnection conn;
 
             int total = 0;
 

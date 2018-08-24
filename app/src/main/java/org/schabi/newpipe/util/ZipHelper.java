@@ -84,7 +84,7 @@ public class ZipHelper {
                 }
 
                 FileOutputStream outFile = new FileOutputStream(file);
-                int count = 0;
+                int count;
                 while((count = inZip.read(data)) != -1) {
                     outFile.write(data, 0, count);
                 }

@@ -185,7 +185,7 @@ public class DownloadManagerImpl implements DownloadManager {
     private int insertMission(DownloadMission mission) {
         int i = -1;
 
-        DownloadMission m = null;
+        DownloadMission m;
 
         if (mMissions.size() > 0) {
             do {
