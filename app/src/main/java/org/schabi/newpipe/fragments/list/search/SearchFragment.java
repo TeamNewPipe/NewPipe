@@ -122,7 +122,6 @@ public class SearchFragment
     private String nextPageUrl;
     private String contentCountry;
     private boolean isSuggestionsEnabled = true;
-    private boolean isSearchHistoryEnabled = true;
 
     private PublishSubject<String> suggestionPublisher = PublishSubject.create();
     private Disposable searchDisposable;
@@ -147,7 +146,7 @@ public class SearchFragment
 
     public static SearchFragment getInstance(int serviceId, String searchString) {
         SearchFragment searchFragment = new SearchFragment();
-        searchFragment.setQuery(serviceId, searchString, new String[0], "");
+        searchFragment.setQuery(serviceId, searchString, new String[0]);
 
         if (!TextUtils.isEmpty(searchString)) {
             searchFragment.setSearchOnResume();
@@ -173,7 +172,7 @@ public class SearchFragment
 
         suggestionListAdapter = new SuggestionListAdapter(activity);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
-        isSearchHistoryEnabled = preferences.getBoolean(getString(R.string.enable_search_history_key), true);
+        boolean isSearchHistoryEnabled = preferences.getBoolean(getString(R.string.enable_search_history_key), true);
         suggestionListAdapter.setShowSuggestionHistory(isSearchHistoryEnabled);
 
         historyRecordManager = new HistoryRecordManager(context);
@@ -781,11 +780,11 @@ public class SearchFragment
         }
     }
 
-    private void setQuery(int serviceId, String searchString, String[] contentfilter, String sortFilter) {
+    private void setQuery(int serviceId, String searchString, String[] contentfilter) {
         this.serviceId = serviceId;
         this.searchString = searchString;
         this.contentFilter = contentfilter;
-        this.sortFilter = sortFilter;
+        this.sortFilter = "";
     }
 
     /*//////////////////////////////////////////////////////////////////////////

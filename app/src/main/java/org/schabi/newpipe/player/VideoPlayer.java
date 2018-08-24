@@ -146,7 +146,6 @@ public abstract class VideoPlayer extends BasePlayer
     private int playbackSpeedPopupMenuGroupId = 79;
     private PopupMenu playbackSpeedPopupMenu;
 
-    private int captionPopupMenuGroupId = 89;
     private PopupMenu captionPopupMenu;
 
     ///////////////////////////////////////////////////////////////////////////
@@ -284,6 +283,7 @@ public abstract class VideoPlayer extends BasePlayer
 
     private void buildCaptionMenu(final List<String> availableLanguages) {
         if (captionPopupMenu == null) return;
+        int captionPopupMenuGroupId = 89;
         captionPopupMenu.getMenu().removeGroup(captionPopupMenuGroupId);
 
         // Add option for turning off caption

@@ -187,13 +187,13 @@ public abstract class BaseImportExportService extends Service {
     protected Toast toast;
 
     protected void showToast(@StringRes int message) {
-        showToast(getString(message), Toast.LENGTH_SHORT);
+        showToast(getString(message));
     }
 
-    protected void showToast(String message, int duration) {
+    protected void showToast(String message) {
         if (toast != null) toast.cancel();
 
-        toast = Toast.makeText(this, message, duration);
+        toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
         toast.show();
     }
 
