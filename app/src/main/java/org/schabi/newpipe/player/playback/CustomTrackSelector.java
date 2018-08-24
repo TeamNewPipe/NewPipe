@@ -55,7 +55,7 @@ public class CustomTrackSelector extends DefaultTrackSelector {
     /** @see DefaultTrackSelector#selectTextTrack(TrackGroupArray, int[][], Parameters) */
     @Override
     protected TrackSelection selectTextTrack(TrackGroupArray groups, int[][] formatSupport,
-                                             Parameters params) throws ExoPlaybackException {
+                                             Parameters params) {
         TrackGroup selectedGroup = null;
         int selectedTrackIndex = 0;
         int selectedTrackScore = 0;

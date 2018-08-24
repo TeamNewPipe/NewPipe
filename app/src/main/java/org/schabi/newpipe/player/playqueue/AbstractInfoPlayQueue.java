@@ -26,7 +26,7 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo, U extends InfoItem> ext
     transient Disposable fetchReactor;
 
     AbstractInfoPlayQueue(final U item) {
-        this(item.getServiceId(), item.getUrl(), null, Collections.<StreamInfoItem>emptyList(), 0);
+        this(item.getServiceId(), item.getUrl(), null, Collections.emptyList(), 0);
     }
 
     AbstractInfoPlayQueue(final int serviceId,
