@@ -171,7 +171,7 @@
     <!-- error strings -->
     <string name="general_error">Error</string>
     <string name="download_to_sdcard_error_title">External storage not available.</string>
-    <string name="download_to_sdcard_error_message">Download to external SD Card is not possible yet. Should the download place be reseted?</string>
+    <string name="download_to_sdcard_error_message">Download to external SD Card is not possible yet. Should the download place be reset?</string>
     <string name="network_error">Network error</string>
     <string name="could_not_load_thumbnails">Could not load all thumbnails</string>
     <string name="youtube_signature_decryption_error">Could not decrypt video URL signature</string>

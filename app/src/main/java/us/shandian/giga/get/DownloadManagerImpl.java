@@ -1,18 +1,13 @@
 package us.shandian.giga.get;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Handler;
-import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import org.schabi.newpipe.R;
 import org.schabi.newpipe.download.ExtSDDownloadFailedActivity;
-import org.schabi.newpipe.settings.NewPipeSettings;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -36,6 +31,7 @@ public class DownloadManagerImpl implements DownloadManager {
     private final DownloadDataSource mDownloadDataSource;
 
     private final ArrayList<DownloadMission> mMissions = new ArrayList<>();
+    @NonNull
     private final Context context;
 
     /**
