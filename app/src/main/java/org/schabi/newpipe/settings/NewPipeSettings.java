@@ -70,8 +70,8 @@ public class NewPipeSettings {
         getAudioDownloadFolder(context);
     }
 
-    public static File getVideoDownloadFolder(Context context) {
-        return getFolder(context, R.string.download_path_key, Environment.DIRECTORY_MOVIES);
+    public static void getVideoDownloadFolder(Context context) {
+        getFolder(context, R.string.download_path_key, Environment.DIRECTORY_MOVIES);
     }
 
     public static String getVideoDownloadPath(Context context) {
@@ -80,8 +80,8 @@ public class NewPipeSettings {
         return prefs.getString(key, Environment.DIRECTORY_MOVIES);
     }
 
-    public static File getAudioDownloadFolder(Context context) {
-        return getFolder(context, R.string.download_path_audio_key, Environment.DIRECTORY_MUSIC);
+    public static void getAudioDownloadFolder(Context context) {
+        getFolder(context, R.string.download_path_audio_key, Environment.DIRECTORY_MUSIC);
     }
 
     public static String getAudioDownloadPath(Context context) {
