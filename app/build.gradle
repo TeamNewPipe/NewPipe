@@ -93,6 +93,9 @@ dependencies {
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanaryLibVersion"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryLibVersion"
 
+    implementation 'com.android.support.constraint:constraint-layout:1.1.1'
+    implementation 'com.android.support:cardview-v7:27.1.1'
+    
     implementation "com.squareup.okhttp3:okhttp:$okHttpLibVersion"
     debugImplementation "com.facebook.stetho:stetho-okhttp3:$stethoLibVersion"
 }

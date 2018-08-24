@@ -21,6 +21,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.fragments.list.BaseListFragment;
 import org.schabi.newpipe.local.BaseLocalListFragment;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
@@ -96,6 +97,14 @@ public class StatisticsPlaylistFragment
         return inflater.inflate(R.layout.fragment_playlist, container, false);
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (activity != null && isVisibleToUser) {
+            setTitle(activity.getString(R.string.title_activity_history));
+        }
+    }
+
     ///////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle - Views
     ///////////////////////////////////////////////////////////////////////////
@@ -103,7 +112,9 @@ public class StatisticsPlaylistFragment
     @Override
     protected void initViews(View rootView, Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
-        setTitle(getString(R.string.title_last_played));
+        if(!useAsFrontPage) {
+            setTitle(getString(R.string.title_last_played));
+        }
     }
 
     @Override
@@ -129,8 +140,12 @@ public class StatisticsPlaylistFragment
             public void selected(LocalItem selectedItem) {
                 if (selectedItem instanceof StreamStatisticsEntry) {
                     final StreamStatisticsEntry item = (StreamStatisticsEntry) selectedItem;
-                    NavigationHelper.openVideoDetailFragment(getFragmentManager(),
-                            item.serviceId, item.url, item.title);
+                    NavigationHelper.openVideoDetailFragment(useAsFrontPage
+                            ? getParentFragment().getFragmentManager()
+                            : getFragmentManager(),
+                            item.serviceId,
+                            item.url,
+                            item.title);
                 }
             }
 

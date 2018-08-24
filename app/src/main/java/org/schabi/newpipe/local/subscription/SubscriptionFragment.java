@@ -13,6 +13,7 @@ import android.os.Parcelable;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -241,8 +242,8 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
     }
 
     private void onImportFromServiceSelected(int serviceId) {
-        if (getParentFragment() == null) return;
-        NavigationHelper.openSubscriptionsImportFragment(getParentFragment().getFragmentManager(), serviceId);
+        FragmentManager fragmentManager = getFM();
+        NavigationHelper.openSubscriptionsImportFragment(fragmentManager, serviceId);
     }
 
     private void onImportPreviousSelected() {
@@ -320,21 +321,19 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
         infoListAdapter.setOnChannelSelectedListener(new OnClickGesture<ChannelInfoItem>() {
             @Override
             public void selected(ChannelInfoItem selectedItem) {
-                try {
-                    // Requires the parent fragment to find holder for fragment replacement
-                    NavigationHelper.openChannelFragment(getParentFragment().getFragmentManager(),
-                            selectedItem.getServiceId(),
-                            selectedItem.getUrl(),
-                            selectedItem.getName());
-                } catch (Exception e) {
-                    ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
-                }
+                FragmentManager fragmentManager = getFM();
+                NavigationHelper.openChannelFragment(fragmentManager,
+                        selectedItem.getServiceId(), 
+                        selectedItem.getUrl(), 
+                        selectedItem.getName());
             }
         });
 
         //noinspection ConstantConditions
-        whatsNewItemListHeader.setOnClickListener(v ->
-                NavigationHelper.openWhatsNewFragment(getParentFragment().getFragmentManager()));
+        whatsNewItemListHeader.setOnClickListener(v -> {
+            FragmentManager fragmentManager = getFM();
+            NavigationHelper.openWhatsNewFragment(fragmentManager);
+        });
         importExportListHeader.setOnClickListener(v -> importExportOptions.switchState());
     }
 
