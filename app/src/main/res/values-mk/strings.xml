@@ -455,4 +455,18 @@
 
     <string name="limit_data_usage_none_description">Неограничено</string>
     <string name="limit_mobile_data_usage_title">Ограничи резолуција при користење мобилен интернет</string>
-    </resources>
+    <string name="channels">Канали</string>
+    <string name="playlists">Плејлисти</string>
+    <string name="tracks">Нумери</string>
+    <string name="users">Корисници</string>
+    <string name="skip_silence_checkbox">Прескокни ја тишината</string>
+    <string name="playback_step">Скокни</string>
+    <string name="playback_reset">Почни одново</string>
+
+    <string name="minimize_on_exit_title">Скриј при промена на апликацијата</string>
+    <string name="minimize_on_exit_summary">Пушти во заднина при промена на апликацијата од видео плеерот — %s</string>
+    <string name="minimize_on_exit_none_description">Никое</string>
+    <string name="minimize_on_exit_background_description">Смали го во позадина</string>
+    <string name="minimize_on_exit_popup_description">Смали го во прозорче</string>
+
+</resources>
