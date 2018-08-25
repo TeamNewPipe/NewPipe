@@ -105,7 +105,7 @@ public class MediaSourceManager {
 
     public MediaSourceManager(@NonNull final PlaybackListener listener,
                               @NonNull final PlayQueue playQueue) {
-        this(listener, playQueue, /*loadDebounceMillis=*/
+        this(listener, playQueue,
                 /*playbackNearEndGapMillis=*/TimeUnit.MILLISECONDS.convert(30, TimeUnit.SECONDS),
                 /*progressUpdateIntervalMillis*/TimeUnit.MILLISECONDS.convert(2, TimeUnit.SECONDS));
     }

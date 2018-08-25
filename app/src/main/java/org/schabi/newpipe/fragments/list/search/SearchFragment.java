@@ -100,7 +100,7 @@ public class SearchFragment
 
     @State
     protected int serviceId = Constants.NO_SERVICE_ID;
-    
+
     // this three represet the current search query
     @State
     protected String searchString;
@@ -108,11 +108,11 @@ public class SearchFragment
     protected String[] contentFilter;
     @State
     protected String sortFilter;
-    
+
     // these represtent the last search
     @State
     protected String lastSearchedString;
-    
+
     @State
     protected boolean wasSearchFocused = false;
 
@@ -146,7 +146,7 @@ public class SearchFragment
 
     public static SearchFragment getInstance(int serviceId, String searchString) {
         SearchFragment searchFragment = new SearchFragment();
-        searchFragment.setQuery(serviceId, searchString, new String[0]);
+        searchFragment.setQuery(serviceId, searchString, new String[0], "");
 
         if (!TextUtils.isEmpty(searchString)) {
             searchFragment.setSearchOnResume();
@@ -780,11 +780,11 @@ public class SearchFragment
         }
     }
 
-    private void setQuery(int serviceId, String searchString, String[] contentfilter) {
+    private void setQuery(int serviceId, String searchString, String[] contentfilter, String sortFilter) {
         this.serviceId = serviceId;
         this.searchString = searchString;
         this.contentFilter = contentfilter;
-        this.sortFilter = "";
+        this.sortFilter = sortFilter;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
