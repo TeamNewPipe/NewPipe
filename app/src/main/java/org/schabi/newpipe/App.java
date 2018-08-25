@@ -93,7 +93,7 @@ public class App extends Application {
         initNotificationChannel();
 
         // Initialize image loader
-        ImageLoader.getInstance().init(getImageLoaderConfigurations());
+        ImageLoader.getInstance().init(getImageLoaderConfigurations(10));
 
         configureRxJavaErrorHandler();
     }
@@ -162,9 +162,9 @@ public class App extends Application {
         });
     }
 
-    private ImageLoaderConfiguration getImageLoaderConfigurations() {
+    private ImageLoaderConfiguration getImageLoaderConfigurations(final int memoryCacheSizeMb) {
         return new ImageLoaderConfiguration.Builder(this)
-                .memoryCache(new LRULimitedMemoryCache(10 * 1024 * 1024))
+                .memoryCache(new LRULimitedMemoryCache(memoryCacheSizeMb * 1024 * 1024))
                 .diskCacheSize(50 * 1024 * 1024)
                 .imageDownloader(new ImageDownloader(getApplicationContext()))
                 .build();

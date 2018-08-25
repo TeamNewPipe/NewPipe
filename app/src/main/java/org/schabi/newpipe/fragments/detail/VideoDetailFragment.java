@@ -839,7 +839,7 @@ public class VideoDetailFragment
                 false,
                 greaterThanThreshold ? 250 : 0, 0, () -> {
                     handleResult(info);
-                    showContentWithAnimation(.01f);
+                    showContentWithAnimation(120, 0, .01f);
                 });
     }
 
@@ -862,7 +862,7 @@ public class VideoDetailFragment
                 .subscribe((@NonNull StreamInfo result) -> {
                     isLoading.set(false);
                     currentInfo = result;
-                    showContentWithAnimation(0);
+                    showContentWithAnimation(120, 0, 0);
                     handleResult(result);
                 }, (@NonNull Throwable throwable) -> {
                     isLoading.set(false);
@@ -1027,7 +1027,7 @@ public class VideoDetailFragment
         thumbnailImageView.setMinimumHeight(height);
     }
 
-    private void showContentWithAnimation(@FloatRange(from = 0.0f, to = 1.0f) float translationPercent) {
+    private void showContentWithAnimation(long duration, long delay, @FloatRange(from = 0.0f, to = 1.0f) float translationPercent) {
         int translationY = (int) (getResources().getDisplayMetrics().heightPixels *
                 (translationPercent > 0.0f ? translationPercent : .06f));
 
@@ -1038,8 +1038,8 @@ public class VideoDetailFragment
         contentRootLayoutHiding.animate()
                 .alpha(1f)
                 .translationY(0)
-                .setStartDelay((long) 0)
-                .setDuration((long) 120)
+                .setStartDelay(delay)
+                .setDuration(duration)
                 .setInterpolator(new FastOutSlowInInterpolator())
                 .start();
 
@@ -1050,8 +1050,8 @@ public class VideoDetailFragment
         uploaderRootLayout.animate()
                 .alpha(1f)
                 .translationY(0)
-                .setStartDelay((long) ((long) 120 * .5f) + (long) 0)
-                .setDuration((long) 120)
+                .setStartDelay((long) (duration * .5f) + delay)
+                .setDuration(duration)
                 .setInterpolator(new FastOutSlowInInterpolator())
                 .start();
 
@@ -1063,8 +1063,8 @@ public class VideoDetailFragment
             relatedStreamRootLayout.animate()
                     .alpha(1f)
                     .translationY(0)
-                    .setStartDelay((long) ((long) 120 * .8f) + (long) 0)
-                    .setDuration((long) 120)
+                    .setStartDelay((long) (duration * .8f) + delay)
+                    .setDuration(duration)
                     .setInterpolator(new FastOutSlowInInterpolator())
                     .start();
         }
