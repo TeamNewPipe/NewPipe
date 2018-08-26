@@ -71,5 +71,6 @@
 
     <color name="black">#000</color>
     <color name="gray_transparent">#be757575</color>
+	<color name="black_transparent">#8b000000</color>
 
 </resources>

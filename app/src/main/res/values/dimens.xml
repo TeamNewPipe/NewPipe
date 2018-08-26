@@ -83,4 +83,7 @@
 
     <!-- File picker dimensions -->
     <dimen name="file_picker_items_text_size">14sp</dimen>
+
+    <!--Offset for the On Screen Captions -->
+	<dimen name="osc_offset">12dp</dimen>
 </resources>

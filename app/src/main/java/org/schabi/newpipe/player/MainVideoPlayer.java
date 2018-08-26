@@ -35,6 +35,7 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.RecyclerView;
@@ -43,6 +44,9 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.GestureDetector;
+import android.view.Gravity;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -171,7 +175,8 @@ public final class MainVideoPlayer extends AppCompatActivity
 
         if (globalScreenOrientationLocked()) {
             boolean lastOrientationWasLandscape = defaultPreferences.getBoolean(
-                    getString(R.string.last_orientation_landscape_key), false);
+                    getString(R.string.last_orientation_landscape_key), getResources().getConfiguration()
+                            .isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE));
             setLandscape(lastOrientationWasLandscape);
         }
 
@@ -1083,5 +1088,60 @@ public final class MainVideoPlayer extends AppCompatActivity
             return true;
         }
 
+    }
+
+    private void showOSC(String text) {
+        final TextView layout = (TextView) LayoutInflater.from(this).inflate(R.layout.toast_osc, null);
+        layout.setText(text);
+        final int offset = getResources().getDimensionPixelSize(R.dimen.osc_offset);
+        final Toast toast = new Toast(getApplicationContext());
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(GravityCompat.END | Gravity.TOP, offset, offset);
+        toast.setView(layout);
+        toast.show();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_MEDIA_PLAY:
+            case KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE:
+                playerImpl.getPlayPauseButton().performClick();
+                return true;
+            case KeyEvent.KEYCODE_MEDIA_NEXT:
+            case KeyEvent.KEYCODE_NAVIGATE_NEXT:
+            case KeyEvent.KEYCODE_DPAD_RIGHT:
+                playerImpl.playNextButton.performClick();
+                return true;
+            case KeyEvent.KEYCODE_MEDIA_PREVIOUS:
+            case KeyEvent.KEYCODE_NAVIGATE_PREVIOUS:
+            case KeyEvent.KEYCODE_DPAD_LEFT:
+                playerImpl.playPreviousButton.performClick();
+                return true;
+            case KeyEvent.KEYCODE_TV_ZOOM_MODE:
+                if (playerImpl.getAspectRatioFrameLayout() != null) {
+                    final int currentResizeMode = playerImpl.getAspectRatioFrameLayout().getResizeMode();
+                    final int newResizeMode = playerImpl.nextResizeMode(currentResizeMode);
+                    playerImpl.getAspectRatioFrameLayout().setResizeMode(newResizeMode);
+                    final String text = PlayerHelper.resizeTypeOf(this, newResizeMode);
+                    playerImpl.getResizeView().setText(text);
+                    showOSC(text);
+                }
+                return true;
+            case KeyEvent.KEYCODE_TV_TELETEXT:
+                playerImpl.getCaptionTextView().performClick();
+                return true;
+            case KeyEvent.KEYCODE_MEDIA_REWIND:
+                playerImpl.onFastRewind();
+                return true;
+            case KeyEvent.KEYCODE_MEDIA_FAST_FORWARD:
+                playerImpl.onFastForward();
+                return true;
+            case KeyEvent.KEYCODE_TV_CONTENTS_MENU:
+                playerImpl.queueButton.performClick();
+                return true;
+            default:
+                return super.onKeyDown(keyCode, event);
+        }
     }
 }

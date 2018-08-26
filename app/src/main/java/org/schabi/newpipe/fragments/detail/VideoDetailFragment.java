@@ -26,6 +26,7 @@ import android.text.util.Linkify;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -64,6 +65,7 @@ import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
+import org.schabi.newpipe.fragments.KeyPressable;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.StreamItemAdapter;
@@ -107,6 +109,7 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
 public class VideoDetailFragment
         extends BaseStateFragment<StreamInfo>
         implements BackPressable,
+        KeyPressable,
         SharedPreferences.OnSharedPreferenceChangeListener,
         View.OnClickListener,
         View.OnLongClickListener {
@@ -1298,5 +1301,17 @@ public class VideoDetailFragment
         });
 
         showError(getString(R.string.blocked_by_gema), false, R.drawable.gruese_die_gema);
+    }
+
+    @Override
+    public boolean onKeyPressed(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_MEDIA_PLAY:
+            case KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE:
+                openVideoPlayer();
+                return true;
+            default:
+                return false;
+        }
     }
 }

@@ -23,7 +23,6 @@ package org.schabi.newpipe;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -40,6 +39,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -54,6 +54,7 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.fragments.BackPressable;
+import org.schabi.newpipe.fragments.KeyPressable;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
@@ -65,8 +66,6 @@ import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.ThemeHelper;
-
-import static org.schabi.newpipe.extractor.InfoItem.InfoType.PLAYLIST;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -600,6 +599,27 @@ public class MainActivity extends AppCompatActivity {
             }
         } catch (Exception e) {
             ErrorActivity.reportUiError(this, e);
+        }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        Fragment fragment = NavigationHelper.getTopFragment(getSupportFragmentManager());
+        if (fragment != null && fragment instanceof KeyPressable &&
+                ((KeyPressable) fragment).onKeyPressed(keyCode, event)) {
+            return true;
+        }
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_SEARCH:
+                NavigationHelper.openSearchFragment(
+                        getSupportFragmentManager(),
+                        0,
+                        "");
+            case KeyEvent.KEYCODE_TV:
+                drawer.openDrawer(GravityCompat.START);
+                return true;
+            default:
+                return super.onKeyDown(keyCode, event);
         }
     }
 }
