@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v7.preference.Preference;
-import android.util.Log;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.Constants;

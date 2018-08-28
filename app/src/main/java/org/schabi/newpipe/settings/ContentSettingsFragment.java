@@ -187,7 +187,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         } finally {
             try {
                 zipFile.close();
-            } catch (Exception e){}
+            } catch (Exception ignored){}
         }
 
         try {
@@ -248,13 +248,13 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 String key = entry.getKey();
 
                 if (v instanceof Boolean)
-                    prefEdit.putBoolean(key, ((Boolean) v).booleanValue());
+                    prefEdit.putBoolean(key, (Boolean) v);
                 else if (v instanceof Float)
-                    prefEdit.putFloat(key, ((Float) v).floatValue());
+                    prefEdit.putFloat(key, (Float) v);
                 else if (v instanceof Integer)
-                    prefEdit.putInt(key, ((Integer) v).intValue());
+                    prefEdit.putInt(key, (Integer) v);
                 else if (v instanceof Long)
-                    prefEdit.putLong(key, ((Long) v).longValue());
+                    prefEdit.putLong(key, (Long) v);
                 else if (v instanceof String)
                     prefEdit.putString(key, ((String) v));
             }

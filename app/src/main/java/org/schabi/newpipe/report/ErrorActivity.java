@@ -3,7 +3,6 @@ package org.schabi.newpipe.report;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -46,7 +45,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 import java.util.Vector;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /*
  * Created by Christian Schabesberger on 24.10.15.

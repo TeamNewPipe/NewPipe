@@ -12,8 +12,6 @@ import android.view.View;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.squareup.leakcanary.RefWatcher;
 
-import org.schabi.newpipe.report.UserAction;
-
 import icepick.Icepick;
 import icepick.State;
 
