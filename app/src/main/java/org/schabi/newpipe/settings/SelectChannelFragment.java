@@ -89,7 +89,7 @@ public class SelectChannelFragment extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.select_channel_fragment, container, false);
-        recyclerView = (RecyclerView) v.findViewById(R.id.items_list);
+        recyclerView = v.findViewById(R.id.items_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         channelAdapter = new SelectChannelAdapter();
         recyclerView.setAdapter(channelAdapter);
