@@ -90,8 +90,6 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
 
     private MenuItem menuRssButton;
 
-    private boolean mIsVisibleToUser = false;
-
     public static ChannelFragment getInstance(int serviceId, String url, String name) {
         ChannelFragment instance = new ChannelFragment();
         instance.setInitialData(serviceId, url, name);
@@ -105,7 +103,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        mIsVisibleToUser = isVisibleToUser;
+        boolean mIsVisibleToUser = isVisibleToUser;
         if(activity != null
                 && useAsFrontPage
                 && isVisibleToUser) {

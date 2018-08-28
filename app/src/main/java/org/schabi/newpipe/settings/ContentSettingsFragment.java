@@ -47,7 +47,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     private static final int REQUEST_IMPORT_PATH = 8945;
     private static final int REQUEST_EXPORT_PATH = 30945;
 
-    private String homeDir;
     private File databasesDir;
     private File newpipe_db;
     private File newpipe_db_journal;
@@ -81,7 +80,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
 
-        homeDir = getActivity().getApplicationInfo().dataDir;
+        String homeDir = getActivity().getApplicationInfo().dataDir;
         databasesDir = new File(homeDir + "/databases");
         newpipe_db = new File(homeDir + "/databases/newpipe.db");
         newpipe_db_journal = new File(homeDir + "/databases/newpipe.db-journal");

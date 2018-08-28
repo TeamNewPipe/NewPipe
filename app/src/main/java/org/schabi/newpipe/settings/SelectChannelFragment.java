@@ -51,8 +51,6 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 public class SelectChannelFragment extends DialogFragment {
-    private SelectChannelAdapter channelAdapter;
-    private SubscriptionService subscriptionService;
     private ImageLoader imageLoader = ImageLoader.getInstance();
 
     private ProgressBar progressBar;
@@ -91,7 +89,7 @@ public class SelectChannelFragment extends DialogFragment {
         View v = inflater.inflate(R.layout.select_channel_fragment, container, false);
         recyclerView = v.findViewById(R.id.items_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        channelAdapter = new SelectChannelAdapter();
+        SelectChannelAdapter channelAdapter = new SelectChannelAdapter();
         recyclerView.setAdapter(channelAdapter);
 
         progressBar = v.findViewById(R.id.progressBar);
@@ -101,7 +99,7 @@ public class SelectChannelFragment extends DialogFragment {
         emptyView.setVisibility(View.GONE);
 
 
-        subscriptionService = SubscriptionService.getInstance(getContext());
+        SubscriptionService subscriptionService = SubscriptionService.getInstance(getContext());
         subscriptionService.getSubscription().toObservable()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
