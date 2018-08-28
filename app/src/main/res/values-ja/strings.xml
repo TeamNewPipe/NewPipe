@@ -23,8 +23,6 @@
     <string name="show_play_with_kodi_summary">Kodi メディアセンター経由で動画を再生するための設定を表示します</string>
     <string name="play_audio">音楽</string>
     <string name="default_audio_format_title">デフォルトの音楽形式</string>
-    <string name="webm_description">WebM形式</string>
-    <string name="m4a_description">m4a形式</string>
     <string name="download_dialog_title">保存</string>
     <string name="next_video_title">次の動画</string>
     <string name="show_next_and_similar_title">\"次の動画\"と\"関連動画\"を表示します</string>

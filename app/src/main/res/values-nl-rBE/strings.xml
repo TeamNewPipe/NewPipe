@@ -59,8 +59,6 @@
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Standaardaudioformaat</string>
     <string name="default_video_format_title">Standaardvideoformaat</string>
-    <string name="webm_description">WebM — vrij formaat</string>
-    <string name="m4a_description">M4A — betere kwaliteit</string>
     <string name="theme_title">Thema</string>
     <string name="light_theme_title">Licht</string>
     <string name="dark_theme_title">Donker</string>

@@ -75,7 +75,7 @@ public class SelectKioskFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.select_kiosk_fragment, container, false);
-        recyclerView = (RecyclerView) v.findViewById(R.id.items_list);
+        recyclerView = v.findViewById(R.id.items_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         try {
             selectKioskAdapter = new SelectKioskAdapter();
@@ -179,13 +179,12 @@ public class SelectKioskFragment extends DialogFragment {
     // Error
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected boolean onError(Throwable e) {
+    protected void onError(Throwable e) {
         final Activity activity = getActivity();
         ErrorActivity.reportError(activity, e,
                 activity.getClass(),
                 null,
                 ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
                         "none", "", R.string.app_ui_crash));
-        return true;
     }
 }

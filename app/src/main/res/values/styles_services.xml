@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- YouTube -->
-    <style name="LightTheme.YouTube" parent="LightTheme.Switchable"/>
+    <style name="LightTheme.YouTube" parent="LightTheme.Switchable">
+    </style>
 
-    <style name="DarkTheme.YouTube" parent="DarkTheme.Switchable"/>
+    <style name="DarkTheme.YouTube" parent="DarkTheme.Switchable">
+    </style>
 
-    <style name="BlackTheme.YouTube" parent="BlackTheme.Switchable"/>
-
+    <style name="BlackTheme.YouTube" parent="BlackTheme.Switchable">
+    </style>
     <!-- SoundCloud -->
     <style name="LightTheme.SoundCloud" parent="LightTheme.Switchable">
         <item name="colorPrimary">@color/light_soundcloud_primary_color</item>

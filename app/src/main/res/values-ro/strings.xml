@@ -33,8 +33,6 @@
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Format audio implicit</string>
     <string name="info_dir_created">Directorul de descărcare \'%1$s\' a fost creat</string>
-    <string name="webm_description">WebM — format liber</string>
-    <string name="m4a_description">M4A — calitate superioară</string>
     <string name="theme_title">Temă</string>
     <string name="dark_theme_title">Întunecat</string>
     <string name="light_theme_title">Luminos</string>

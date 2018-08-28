@@ -1027,9 +1027,7 @@ public class VideoDetailFragment
         thumbnailImageView.setMinimumHeight(height);
     }
 
-    private void showContentWithAnimation(long duration,
-                                          long delay,
-                                          @FloatRange(from = 0.0f, to = 1.0f) float translationPercent) {
+    private void showContentWithAnimation(long duration, long delay, @FloatRange(from = 0.0f, to = 1.0f) float translationPercent) {
         int translationY = (int) (getResources().getDisplayMetrics().heightPixels *
                 (translationPercent > 0.0f ? translationPercent : .06f));
 

@@ -58,8 +58,6 @@
     <string name="play_audio">Heli</string>
     <string name="default_audio_format_title">Heli vaikevorming</string>
     <string name="default_video_format_title">Video vaikevorming</string>
-    <string name="webm_description">WebM — libre vorming</string>
-    <string name="m4a_description">M4A — parem kvaliteet</string>
     <string name="theme_title">Teema</string>
     <string name="light_theme_title">Hele</string>
     <string name="dark_theme_title">Tume</string>
@@ -69,13 +67,13 @@
     <string name="use_inexact_seek_title">Kasuta ebatäpset kerimist</string>
     <string name="use_inexact_seek_summary">Ebatäpne kerimine lubab pleieril otsida asukohta kiiremini täpsuse arvel</string>
     <string name="download_thumbnail_title">Laadi pisipildid</string>
-    <string name="download_thumbnail_summary">Keela, peatamaks pisipiltide laadimine ja vähenda andme- ja mälukasutust. Selle muutmine puhastab nii sisemälu kui piltide vahemälu andmekandjal.</string>
+    <string name="download_thumbnail_summary">Keela, peatamaks pisipiltide laadimine ja vähenda andme- ja mälukasutust. Selle muutmine puhastab nii sisemälu kui piltide vahemälu andmekandjal</string>
     <string name="thumbnail_cache_wipe_complete_notice">Pildid kustutati vahemälust</string>
     <string name="metadata_cache_wipe_title">Kustuta metaandmed vahemälust</string>
     <string name="metadata_cache_wipe_summary">Kustuta veebilehtede andmed vahemälust</string>
     <string name="metadata_cache_wipe_complete_notice">Metaandmed kustutati vahemälust</string>
     <string name="auto_queue_title">Järgmine voog automaatselt järjekorda</string>
-    <string name="auto_queue_summary">Lisa seotud voog automaatselt, kui esitusel on viimane voog mittekorduvast järjekorrast.</string>
+    <string name="auto_queue_summary">Lisa seotud voog automaatselt, kui esitusel on viimane voog mittekorduvast järjekorrast</string>
     <string name="player_gesture_controls_title">Pleieri juhtimise viiped</string>
     <string name="player_gesture_controls_summary">Luba viiped helitugevuse ja ereduse juhtimiseks</string>
     <string name="show_search_suggestions_title">Kuva soovitused</string>
@@ -143,14 +141,14 @@
     <string name="import_data_title">Impordi andmebaas</string>
     <string name="export_data_title">Ekspordi andmebaas</string>
     <string name="import_data_summary">Alistab praeguse ajaloo ja tellimused</string>
-    <string name="export_data_summary">Ekspordi ajalugu, tellimused ja pleilistid.</string>
+    <string name="export_data_summary">Ekspordi ajalugu, tellimused ja pleilistid</string>
     <string name="clear_views_history_title">Puhasta vaatamiste ajalugu</string>
-    <string name="clear_views_history_summary">Kustutab vaadatud voogude ajaloo.</string>
-    <string name="delete_view_history_alert">Kustuta kogu vaatamiste ajalugu.</string>
+    <string name="clear_views_history_summary">Kustutab vaadatud voogude ajaloo</string>
+    <string name="delete_view_history_alert">Kustuta kogu vaatamiste ajalugu</string>
     <string name="view_history_deleted">Vaatamiste ajalugu kustutati.</string>
     <string name="clear_search_history_title">Kustuta otsinguajalugu</string>
-    <string name="clear_search_history_summary">Kustutab otsisõnade ajaloo.</string>
-    <string name="delete_search_history_alert">Kustuta kogu otsinguajalugu.</string>
+    <string name="clear_search_history_summary">Kustutab otsisõnade ajaloo</string>
+    <string name="delete_search_history_alert">Kustuta kogu otsinguajalugu</string>
     <string name="search_history_deleted">Otsinguajalugu kustutati.</string>
     <string name="general_error">Viga</string>
     <string name="network_error">Võrgu viga</string>
@@ -382,7 +380,7 @@
     <string name="caption_auto_generated">Automaatselt loodud</string>
 
     <string name="caption_setting_title">Subtiitrid</string>
-    <string name="caption_setting_description">Kohanda pleieri subtiitrite teksti suurust ja tausta. Jõustamiseks tuleb rakendus taaskäivitada.</string>
+    <string name="caption_setting_description">Kohanda pleieri subtiitrite teksti suurust ja tausta. Jõustamiseks tuleb rakendus taaskäivitada</string>
 
     <string name="enable_leak_canary_summary">Mälulekke seire võib põhjustada rakenduse hangumise</string>
 

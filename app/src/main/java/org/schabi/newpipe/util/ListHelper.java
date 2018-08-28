@@ -204,7 +204,7 @@ public final class ListHelper {
      */
     private static void sortStreamList(List<VideoStream> videoStreams, final boolean ascendingOrder) {
         Collections.sort(videoStreams, (o1, o2) -> {
-            int result = compareVideoStreamResolution(o1, o2, VIDEO_FORMAT_QUALITY_RANKING);
+            int result = compareVideoStreamResolution(o1, o2);
             return result == 0 ? 0 : (ascendingOrder ? result : -result);
         });
     }
@@ -399,8 +399,7 @@ public final class ListHelper {
     }
 
     // Compares the quality of two video streams.
-    private static int compareVideoStreamResolution(VideoStream streamA, VideoStream streamB,
-                                                    List<MediaFormat> formatRanking) {
+    private static int compareVideoStreamResolution(VideoStream streamA, VideoStream streamB) {
         if (streamA == null) {
             return -1;
         }
@@ -414,7 +413,7 @@ public final class ListHelper {
         }
 
         // Same bitrate and format
-        return formatRanking.indexOf(streamA.getFormat()) - formatRanking.indexOf(streamB.getFormat());
+        return ListHelper.VIDEO_FORMAT_QUALITY_RANKING.indexOf(streamA.getFormat()) - ListHelper.VIDEO_FORMAT_QUALITY_RANKING.indexOf(streamB.getFormat());
     }
 
 
@@ -443,11 +442,11 @@ public final class ListHelper {
     /**
      * Are we connected to wifi?
      * @param context App context
-     * @return True if connected to wifi
+     * @return {@code true} if connected to wifi
      */
     private static boolean isWifiActive(Context context)
     {
         ConnectivityManager manager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        return manager.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI;
+        return manager != null && manager.getActiveNetworkInfo() != null && manager.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI;
     }
 }

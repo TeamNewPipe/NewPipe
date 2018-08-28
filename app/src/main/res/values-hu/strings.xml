@@ -24,8 +24,6 @@
     <string name="show_play_with_kodi_summary">Mutat egy opciót a videók Kodi médiaközponttal való lejátszására.</string>
     <string name="play_audio">Hang</string>
     <string name="default_audio_format_title">Alapértelmezett hang formátum</string>
-    <string name="webm_description">WebM — szabad formátum</string>
-    <string name="m4a_description">m4a — jobb minőség</string>
     <string name="download_dialog_title">Letöltés</string>
     <string name="next_video_title">Következő videó</string>
     <string name="url_not_supported_toast">A webcím nem támogatott</string>
@@ -113,7 +111,7 @@
     <string name="msg_url_malform">Hibás URL vagy nincs internet</string>
     <string name="msg_running">NewPipe letöltés folyamatban</string>
     <string name="msg_running_detail">Katt a részletekért</string>
-    <string name="msg_wait">Kérlek várj...</string>
+    <string name="msg_wait">Kérlek várj…</string>
     <string name="msg_copied">Vágólapra másolva.</string>
     <string name="no_available_dir">Kérlek válassz egy létező könyvtárat a letöltésekhez.</string>
 

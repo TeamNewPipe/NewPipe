@@ -9,7 +9,6 @@
     tools:layout_height="84dp"
     tools:layout_width="@dimen/popup_minimum_width">
 
-
     <com.google.android.exoplayer2.ui.AspectRatioFrameLayout
         android:id="@+id/aspectRatioLayout"
         android:layout_width="match_parent"
@@ -290,4 +289,11 @@
         android:visibility="gone"
         tools:ignore="RtlHardcoded"
         tools:visibility="gone"/>
+
+    <View
+        android:id="@+id/closingOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#AAFF0000"
+        android:visibility="gone"/>
 </FrameLayout>

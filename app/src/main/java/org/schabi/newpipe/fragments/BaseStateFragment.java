@@ -51,9 +51,6 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
     protected Button errorButtonRetry;
     protected TextView errorTextView;
 
-    @State
-    protected boolean useAsFrontPage = false;
-
     @Override
     public void onViewCreated(View rootView, Bundle savedInstanceState) {
         super.onViewCreated(rootView, savedInstanceState);
@@ -66,9 +63,6 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
         wasLoading.set(isLoading.get());
     }
 
-    public void useAsFrontPage(boolean value) {
-        useAsFrontPage = value;
-    }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Init
@@ -95,7 +89,7 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Object>() {
                     @Override
-                    public void accept(Object o) throws Exception {
+                    public void accept(Object o) {
                         onRetryButtonClicked();
                     }
                 });
