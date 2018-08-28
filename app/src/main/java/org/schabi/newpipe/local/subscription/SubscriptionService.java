@@ -116,7 +116,7 @@ public class SubscriptionService {
     public Completable updateChannelInfo(final ChannelInfo info) {
         final Function<List<SubscriptionEntity>, CompletableSource> update = new Function<List<SubscriptionEntity>, CompletableSource>() {
             @Override
-            public CompletableSource apply(@NonNull List<SubscriptionEntity> subscriptionEntities) throws Exception {
+            public CompletableSource apply(@NonNull List<SubscriptionEntity> subscriptionEntities) {
                 if (DEBUG) Log.d(TAG, "updateChannelInfo() called with: subscriptionEntities = [" + subscriptionEntities + "]");
                 if (subscriptionEntities.size() == 1) {
                     SubscriptionEntity subscription = subscriptionEntities.get(0);

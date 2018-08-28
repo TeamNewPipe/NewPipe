@@ -93,7 +93,7 @@ public class App extends Application {
         initNotificationChannel();
 
         // Initialize image loader
-        ImageLoader.getInstance().init(getImageLoaderConfigurations(10, 50));
+        ImageLoader.getInstance().init(getImageLoaderConfigurations(10));
 
         configureRxJavaErrorHandler();
     }
@@ -106,7 +106,7 @@ public class App extends Application {
         // https://github.com/ReactiveX/RxJava/wiki/What's-different-in-2.0#error-handling
         RxJavaPlugins.setErrorHandler(new Consumer<Throwable>() {
             @Override
-            public void accept(@NonNull Throwable throwable) throws Exception {
+            public void accept(@NonNull Throwable throwable) {
                 Log.e(TAG, "RxJavaPlugins.ErrorHandler called with -> : " +
                         "throwable = [" + throwable.getClass().getName() + "]");
 
@@ -162,11 +162,10 @@ public class App extends Application {
         });
     }
 
-    private ImageLoaderConfiguration getImageLoaderConfigurations(final int memoryCacheSizeMb,
-                                                                  final int diskCacheSizeMb) {
+    private ImageLoaderConfiguration getImageLoaderConfigurations(final int memoryCacheSizeMb) {
         return new ImageLoaderConfiguration.Builder(this)
                 .memoryCache(new LRULimitedMemoryCache(memoryCacheSizeMb * 1024 * 1024))
-                .diskCacheSize(diskCacheSizeMb * 1024 * 1024)
+                .diskCacheSize(50 * 1024 * 1024)
                 .imageDownloader(new ImageDownloader(getApplicationContext()))
                 .build();
     }

@@ -11,9 +11,7 @@ import android.widget.Toast;
 
 import org.schabi.newpipe.R;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -175,7 +173,7 @@ public class Utility {
     }
 
     public static String checksum(String path, String algorithm) {
-        MessageDigest md = null;
+        MessageDigest md;
 
         try {
             md = MessageDigest.getInstance(algorithm);
@@ -183,7 +181,7 @@ public class Utility {
             throw new RuntimeException(e);
         }
 
-        FileInputStream i = null;
+        FileInputStream i;
 
         try {
             i = new FileInputStream(path);
@@ -192,13 +190,13 @@ public class Utility {
         }
 
         byte[] buf = new byte[1024];
-        int len = 0;
+        int len;
 
         try {
             while ((len = i.read(buf)) != -1) {
                 md.update(buf, 0, len);
             }
-        } catch (IOException e) {
+        } catch (IOException ignored) {
 
         }
 

@@ -1,23 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   version="1.1"
-   id="svg2"
-   viewBox="0 0 192 192"
-   height="192"
-   width="192"
-   inkscape:version="0.91 r13725"
-   sodipodi:docname="new_pipe_icon_4.svg"
-   inkscape:export-filename="/home/the-scrabi/Projects/NewPipe/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
-   inkscape:export-xdpi="67.5"
-   inkscape:export-ydpi="67.5">
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" id="svg2" viewBox="0 0 192 192"
+    height="192" width="192" inkscape:version="0.91 r13725" sodipodi:docname="new_pipe_icon_4.svg"
+    inkscape:export-filename="/home/the-scrabi/Projects/NewPipe/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
+    inkscape:export-xdpi="67.5" inkscape:export-ydpi="67.5">
   <sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -463,7 +450,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+          <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>

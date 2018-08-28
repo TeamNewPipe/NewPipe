@@ -232,12 +232,13 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
                 if (!itemsLoaded.contains(subscriptionEntity.getServiceId() + subscriptionEntity.getUrl())) {
                     subscriptionService.getChannelInfo(subscriptionEntity)
                             .observeOn(AndroidSchedulers.mainThread())
-                            .onErrorComplete(
-                                    (@io.reactivex.annotations.NonNull Throwable throwable) ->
-                                            FeedFragment.super.onError(throwable))
-                            .subscribe(
-                                    getChannelInfoObserver(subscriptionEntity.getServiceId(),
-                                            subscriptionEntity.getUrl()));
+                            .onErrorComplete(new Predicate<Throwable>() {
+                                @Override
+                                public boolean test(@io.reactivex.annotations.NonNull Throwable throwable) throws Exception {
+                                    return FeedFragment.super.onError(throwable);
+                                }
+                            })
+                            .subscribe(getChannelInfoObserver(subscriptionEntity.getServiceId(), subscriptionEntity.getUrl()));
                 } else {
                     requestFeed(1);
                 }

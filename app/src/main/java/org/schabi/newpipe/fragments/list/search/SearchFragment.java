@@ -100,7 +100,7 @@ public class SearchFragment
 
     @State
     protected int serviceId = Constants.NO_SERVICE_ID;
-    
+
     // this three represet the current search query
     @State
     protected String searchString;
@@ -108,11 +108,11 @@ public class SearchFragment
     protected String[] contentFilter;
     @State
     protected String sortFilter;
-    
+
     // these represtent the last search
     @State
     protected String lastSearchedString;
-    
+
     @State
     protected boolean wasSearchFocused = false;
 
@@ -122,7 +122,6 @@ public class SearchFragment
     private String nextPageUrl;
     private String contentCountry;
     private boolean isSuggestionsEnabled = true;
-    private boolean isSearchHistoryEnabled = true;
 
     private PublishSubject<String> suggestionPublisher = PublishSubject.create();
     private Disposable searchDisposable;
@@ -173,7 +172,7 @@ public class SearchFragment
 
         suggestionListAdapter = new SuggestionListAdapter(activity);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
-        isSearchHistoryEnabled = preferences.getBoolean(getString(R.string.enable_search_history_key), true);
+        boolean isSearchHistoryEnabled = preferences.getBoolean(getString(R.string.enable_search_history_key), true);
         suggestionListAdapter.setShowSuggestionHistory(isSearchHistoryEnabled);
 
         historyRecordManager = new HistoryRecordManager(context);

@@ -81,7 +81,6 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
     protected Parcelable itemsListState;
     private InfoListAdapter infoListAdapter;
 
-    private View headerRootLayout;
     private View whatsNewItemListHeader;
     private View importExportListHeader;
 
@@ -291,6 +290,7 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
         itemsList = rootView.findViewById(R.id.items_list);
         itemsList.setLayoutManager(new LinearLayoutManager(activity));
 
+        View headerRootLayout;
         infoListAdapter.setHeader(headerRootLayout = activity.getLayoutInflater().inflate(R.layout.subscription_header, itemsList, false));
         whatsNewItemListHeader = headerRootLayout.findViewById(R.id.whats_new);
         importExportListHeader = headerRootLayout.findViewById(R.id.import_export);

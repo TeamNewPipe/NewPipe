@@ -10,7 +10,6 @@ import org.schabi.newpipe.database.BasicDAO;
 import org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.database.history.model.StreamHistoryEntity;
-import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +22,6 @@ import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_SERVI
 import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_TABLE;
 import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_URL;
 import static org.schabi.newpipe.database.history.model.StreamHistoryEntity.STREAM_HISTORY_TABLE;
-import static org.schabi.newpipe.database.stream.model.StreamStateEntity.STREAM_STATE_TABLE;
 
 @Dao
 public abstract class StreamDAO implements BasicDAO<StreamEntity> {

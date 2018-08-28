@@ -147,6 +147,7 @@ public abstract class VideoPlayer extends BasePlayer
     private PopupMenu playbackSpeedPopupMenu;
 
     private int captionPopupMenuGroupId = 89;
+
     private PopupMenu captionPopupMenu;
 
     ///////////////////////////////////////////////////////////////////////////

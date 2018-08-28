@@ -42,12 +42,12 @@ public class DownloadManagerImplTest {
             missions.add(generateFinishedDownloadMission());
         }
         when(downloadDataSource.loadMissions()).thenReturn(new ArrayList<>(missions));
-        downloadManager = new DownloadManagerImpl(new ArrayList<String>(), downloadDataSource);
+        downloadManager = new DownloadManagerImpl(new ArrayList<>(), downloadDataSource);
     }
 
     @Test(expected = NullPointerException.class)
     public void testConstructorWithNullAsDownloadDataSource() {
-        new DownloadManagerImpl(new ArrayList<String>(), null);
+        new DownloadManagerImpl(new ArrayList<>(), null);
     }
 
 
@@ -84,7 +84,7 @@ public class DownloadManagerImplTest {
 
         downloadDataSource = mock(DownloadDataSource.class);
         when(downloadDataSource.loadMissions()).thenReturn(new ArrayList<>(missions));
-        downloadManager = new DownloadManagerImpl(new ArrayList<String>(), downloadDataSource);
+        downloadManager = new DownloadManagerImpl(new ArrayList<>(), downloadDataSource);
         verify(downloadDataSource, times(1)).loadMissions();
 
         assertEquals(50, downloadManager.getCount());
@@ -110,7 +110,7 @@ public class DownloadManagerImplTest {
     }
 
     @Test
-    public void resumeMission() throws Exception {
+    public void resumeMission() {
         DownloadMission mission = missions.get(0);
         mission.running = true;
         verify(mission, never()).start();
@@ -122,7 +122,7 @@ public class DownloadManagerImplTest {
     }
 
     @Test
-    public void pauseMission() throws Exception {
+    public void pauseMission() {
         DownloadMission mission = missions.get(0);
         mission.running = false;
         downloadManager.pauseMission(0);
@@ -133,7 +133,7 @@ public class DownloadManagerImplTest {
     }
 
     @Test
-    public void deleteMission() throws Exception {
+    public void deleteMission() {
         DownloadMission mission = missions.get(0);
         assertEquals(mission, downloadManager.getMission(0));
         downloadManager.deleteMission(0);
@@ -143,18 +143,18 @@ public class DownloadManagerImplTest {
     }
 
     @Test(expected = RuntimeException.class)
-    public void getMissionWithNegativeIndex() throws Exception {
+    public void getMissionWithNegativeIndex() {
         downloadManager.getMission(-1);
     }
 
     @Test
-    public void getMission() throws Exception {
+    public void getMission() {
         assertSame(missions.get(0), downloadManager.getMission(0));
         assertSame(missions.get(1), downloadManager.getMission(1));
     }
 
     @Test
-    public void sortByTimestamp() throws Exception {
+    public void sortByTimestamp() {
         ArrayList<DownloadMission> downloadMissions = new ArrayList<>();
         DownloadMission mission = new DownloadMission();
         mission.timestamp = 0;
