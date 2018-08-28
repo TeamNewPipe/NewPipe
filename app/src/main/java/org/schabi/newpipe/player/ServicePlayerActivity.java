@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
@@ -562,6 +563,12 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         if (player != null) {
             progressLiveSync.setClickable(!player.isLiveEdge());
         }
+
+        // this will make shure progressCurrentTime has the same width as progressEndTime
+        final ViewGroup.LayoutParams endTimeParams = progressEndTime.getLayoutParams();
+        final ViewGroup.LayoutParams currentTimeParams = progressCurrentTime.getLayoutParams();
+        currentTimeParams.width = progressEndTime.getWidth();
+        progressCurrentTime.setLayoutParams(currentTimeParams);
     }
 
     @Override
