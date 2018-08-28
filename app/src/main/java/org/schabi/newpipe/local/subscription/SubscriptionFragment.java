@@ -13,6 +13,7 @@ import android.os.Parcelable;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -209,7 +210,8 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
     }
 
     private void setupImportFromItems(final ViewGroup listHolder) {
-        final View previousBackupItem = addItemView(getString(R.string.previous_export), ThemeHelper.resolveResourceIdFromAttr(getContext(), R.attr.ic_backup), listHolder);
+        final View previousBackupItem = addItemView(getString(R.string.previous_export),
+                ThemeHelper.resolveResourceIdFromAttr(getContext(), R.attr.ic_backup), listHolder);
         previousBackupItem.setOnClickListener(item -> onImportPreviousSelected());
 
         final int iconColor = ThemeHelper.isLightThemeSelected(getContext()) ? Color.BLACK : Color.WHITE;
@@ -241,8 +243,8 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
     }
 
     private void onImportFromServiceSelected(int serviceId) {
-        if (getParentFragment() == null) return;
-        NavigationHelper.openSubscriptionsImportFragment(getParentFragment().getFragmentManager(), serviceId);
+        FragmentManager fragmentManager = getFM();
+        NavigationHelper.openSubscriptionsImportFragment(fragmentManager, serviceId);
     }
 
     private void onImportPreviousSelected() {
@@ -320,21 +322,19 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
         infoListAdapter.setOnChannelSelectedListener(new OnClickGesture<ChannelInfoItem>() {
             @Override
             public void selected(ChannelInfoItem selectedItem) {
-                try {
-                    // Requires the parent fragment to find holder for fragment replacement
-                    NavigationHelper.openChannelFragment(getParentFragment().getFragmentManager(),
-                            selectedItem.getServiceId(),
-                            selectedItem.getUrl(),
-                            selectedItem.getName());
-                } catch (Exception e) {
-                    ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
-                }
+                final FragmentManager fragmentManager = getFM();
+                NavigationHelper.openChannelFragment(fragmentManager,
+                        selectedItem.getServiceId(),
+                        selectedItem.getUrl(),
+                        selectedItem.getName());
             }
         });
 
         //noinspection ConstantConditions
-        whatsNewItemListHeader.setOnClickListener(v ->
-                NavigationHelper.openWhatsNewFragment(getParentFragment().getFragmentManager()));
+        whatsNewItemListHeader.setOnClickListener(v -> {
+            FragmentManager fragmentManager = getFM();
+            NavigationHelper.openWhatsNewFragment(fragmentManager);
+        });
         importExportListHeader.setOnClickListener(v -> importExportOptions.switchState());
     }
 
@@ -405,10 +405,13 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
 
     private List<InfoItem> getSubscriptionItems(List<SubscriptionEntity> subscriptions) {
         List<InfoItem> items = new ArrayList<>();
-        for (final SubscriptionEntity subscription : subscriptions) items.add(subscription.toChannelInfoItem());
+        for (final SubscriptionEntity subscription : subscriptions) {
+            items.add(subscription.toChannelInfoItem());
+        }
 
         Collections.sort(items,
-                (InfoItem o1, InfoItem o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
+                (InfoItem o1, InfoItem o2) ->
+                        o1.getName().compareToIgnoreCase(o2.getName()));
         return items;
     }
 
@@ -437,7 +440,11 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
         resetFragment();
         if (super.onError(exception)) return true;
 
-        onUnrecoverableError(exception, UserAction.SOMETHING_ELSE, "none", "Subscriptions", R.string.general_error);
+        onUnrecoverableError(exception,
+                UserAction.SOMETHING_ELSE,
+                "none",
+                "Subscriptions",
+                R.string.general_error);
         return true;
     }
 }

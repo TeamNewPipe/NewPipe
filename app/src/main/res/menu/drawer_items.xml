@@ -2,13 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group
         android:id="@+id/menu_services_group">
-        <item
-            android:id="@+id/menu_service_youtube"
-            android:icon="@drawable/place_holder_youtube"
-            android:title="@string/youtube"/>
-        <item
-            android:id="@+id/menu_service_soundcloud"
-            android:icon="@drawable/place_holder_circle"
-            android:title="@string/soundcloud"/>
+    </group>
+    <group
+        android:id="@+id/menu_tabs_group">
+    </group>
+    <group
+        android:id="@+id/menu_options_about_group">
     </group>
 </menu>
