@@ -179,12 +179,16 @@ public class RouterActivity extends AppCompatActivity {
         if (selectedChoiceKey.equals(alwaysAskKey)) {
             final List<AdapterChoiceItem> choices = getChoicesForService(currentService, currentLinkType);
 
-            if (choices.size() == 1) {
-                handleChoice(choices.get(0).key);
-            } else if (choices.size() == 0) {
-                handleChoice(showInfoKey);
-            } else {
-                showDialog(choices);
+            switch (choices.size()) {
+                case 1:
+                    handleChoice(choices.get(0).key);
+                    break;
+                case 0:
+                    handleChoice(showInfoKey);
+                    break;
+                default:
+                    showDialog(choices);
+                    break;
             }
         } else if (selectedChoiceKey.equals(showInfoKey)) {
             handleChoice(showInfoKey);

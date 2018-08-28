@@ -77,18 +77,18 @@ public class LicenseFragmentHelper extends AsyncTask<Object, Void, Integer> {
             throw new NullPointerException("license is null");
         }
 
-        String licenseContent = "";
+        StringBuilder licenseContent = new StringBuilder();
         String webViewData;
         try {
             BufferedReader in = new BufferedReader(new InputStreamReader(context.getAssets().open(license.getFilename()), "UTF-8"));
             String str;
             while ((str = in.readLine()) != null) {
-                licenseContent += str;
+                licenseContent.append(str);
             }
             in.close();
 
             // split the HTML file and insert the stylesheet into the HEAD of the file
-            String[] insert = licenseContent.split("</head>");
+            String[] insert = licenseContent.toString().split("</head>");
             webViewData = insert[0] + "<style type=\"text/css\">"
                     + getLicenseStylesheet(context) + "</style></head>"
                     + insert[1];
