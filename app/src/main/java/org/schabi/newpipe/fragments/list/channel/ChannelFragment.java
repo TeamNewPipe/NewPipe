@@ -169,38 +169,35 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                 context.getResources().getString(R.string.share)
         };
 
-        final DialogInterface.OnClickListener actions = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                final int index = Math.max(infoListAdapter.getItemsList().indexOf(item), 0);
-                switch (i) {
-                    case 0:
-                        NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
-                        break;
-                    case 1:
-                        NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(item));
-                        break;
-                    case 2:
-                        NavigationHelper.playOnMainPlayer(context, getPlayQueue(index));
-                        break;
-                    case 3:
-                        NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index));
-                        break;
-                    case 4:
-                        NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index));
-                        break;
-                    case 5:
-                        if (getFragmentManager() != null) {
-                            PlaylistAppendDialog.fromStreamInfoItems(Collections.singletonList(item))
-                                    .show(getFragmentManager(), TAG);
-                        }
-                        break;
-                    case 6:
-                        shareUrl(item.getName(), item.getUrl());
-                        break;
-                    default:
-                        break;
-                }
+        final DialogInterface.OnClickListener actions = (DialogInterface dialogInterface, int i) -> {
+            final int index = Math.max(infoListAdapter.getItemsList().indexOf(item), 0);
+            switch (i) {
+                case 0:
+                    NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
+                    break;
+                case 1:
+                    NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(item));
+                    break;
+                case 2:
+                    NavigationHelper.playOnMainPlayer(context, getPlayQueue(index));
+                    break;
+                case 3:
+                    NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index));
+                    break;
+                case 4:
+                    NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index));
+                    break;
+                case 5:
+                    if (getFragmentManager() != null) {
+                        PlaylistAppendDialog.fromStreamInfoItems(Collections.singletonList(item))
+                                .show(getFragmentManager(), TAG);
+                    }
+                    break;
+                case 6:
+                    shareUrl(item.getName(), item.getUrl());
+                    break;
+                default:
+                    break;
             }
         };
 
@@ -258,12 +255,12 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     private static final int BUTTON_DEBOUNCE_INTERVAL = 100;
 
     private void monitorSubscription(final ChannelInfo info) {
-        final Consumer<Throwable> onError = new Consumer<Throwable>() {
-            @Override
-            public void accept(Throwable throwable) throws Exception {
+        final Consumer<Throwable> onError = (Throwable throwable) -> {
                 animateView(headerSubscribeButton, false, 100);
-                showSnackBarError(throwable, UserAction.SUBSCRIPTION, NewPipe.getNameOfService(currentInfo.getServiceId()), "Get subscription status", 0);
-            }
+                showSnackBarError(throwable, UserAction.SUBSCRIPTION,
+                        NewPipe.getNameOfService(currentInfo.getServiceId()),
+                        "Get subscription status",
+                        0);
         };
 
         final Observable<List<SubscriptionEntity>> observable = subscriptionService.subscriptionTable()
@@ -279,50 +276,38 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                 // so only update the UI for the latest emission ("sync" the subscribe button's state)
                 .debounce(100, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<List<SubscriptionEntity>>() {
-                    @Override
-                    public void accept(List<SubscriptionEntity> subscriptionEntities) throws Exception {
-                        updateSubscribeButton(!subscriptionEntities.isEmpty());
-                    }
-                }, onError));
+                .subscribe((List<SubscriptionEntity> subscriptionEntities) ->
+                        updateSubscribeButton(!subscriptionEntities.isEmpty())
+                        , onError));
 
     }
 
     private Function<Object, Object> mapOnSubscribe(final SubscriptionEntity subscription) {
-        return new Function<Object, Object>() {
-            @Override
-            public Object apply(@NonNull Object o) throws Exception {
-                subscriptionService.subscriptionTable().insert(subscription);
-                return o;
-            }
+        return (@NonNull Object o) -> {
+            subscriptionService.subscriptionTable().insert(subscription);
+            return o;
         };
     }
 
     private Function<Object, Object> mapOnUnsubscribe(final SubscriptionEntity subscription) {
-        return new Function<Object, Object>() {
-            @Override
-            public Object apply(@NonNull Object o) throws Exception {
-                subscriptionService.subscriptionTable().delete(subscription);
-                return o;
-            }
+        return (@NonNull Object o) -> {
+            subscriptionService.subscriptionTable().delete(subscription);
+            return o;
         };
     }
 
     private void updateSubscription(final ChannelInfo info) {
         if (DEBUG) Log.d(TAG, "updateSubscription() called with: info = [" + info + "]");
-        final Action onComplete = new Action() {
-            @Override
-            public void run() throws Exception {
+        final Action onComplete = () -> {
                 if (DEBUG) Log.d(TAG, "Updated subscription: " + info.getUrl());
-            }
         };
 
-        final Consumer<Throwable> onError = new Consumer<Throwable>() {
-            @Override
-            public void accept(@NonNull Throwable throwable) throws Exception {
-                onUnrecoverableError(throwable, UserAction.SUBSCRIPTION, NewPipe.getNameOfService(info.getServiceId()), "Updating Subscription for " + info.getUrl(), R.string.subscription_update_failed);
-            }
-        };
+        final Consumer<Throwable> onError = (@NonNull Throwable throwable) ->
+                onUnrecoverableError(throwable,
+                        UserAction.SUBSCRIPTION,
+                        NewPipe.getNameOfService(info.getServiceId()),
+                        "Updating Subscription for " + info.getUrl(),
+                        R.string.subscription_update_failed);
 
         disposables.add(subscriptionService.updateChannelInfo(info)
                 .subscribeOn(Schedulers.io())
@@ -331,19 +316,16 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     }
 
     private Disposable monitorSubscribeButton(final Button subscribeButton, final Function<Object, Object> action) {
-        final Consumer<Object> onNext = new Consumer<Object>() {
-            @Override
-            public void accept(@NonNull Object o) throws Exception {
+        final Consumer<Object> onNext = (@NonNull Object o) -> {
                 if (DEBUG) Log.d(TAG, "Changed subscription status to this channel!");
-            }
         };
 
-        final Consumer<Throwable> onError = new Consumer<Throwable>() {
-            @Override
-            public void accept(@NonNull Throwable throwable) throws Exception {
-                onUnrecoverableError(throwable, UserAction.SUBSCRIPTION, NewPipe.getNameOfService(currentInfo.getServiceId()), "Subscription Change", R.string.subscription_change_failed);
-            }
-        };
+        final Consumer<Throwable> onError = (@NonNull Throwable throwable) ->
+                onUnrecoverableError(throwable,
+                        UserAction.SUBSCRIPTION,
+                        NewPipe.getNameOfService(currentInfo.getServiceId()),
+                        "Subscription Change",
+                        R.string.subscription_change_failed);
 
         /* Emit clicks from main thread unto io thread */
         return RxView.clicks(subscribeButton)
@@ -355,25 +337,25 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     }
 
     private Consumer<List<SubscriptionEntity>> getSubscribeUpdateMonitor(final ChannelInfo info) {
-        return new Consumer<List<SubscriptionEntity>>() {
-            @Override
-            public void accept(List<SubscriptionEntity> subscriptionEntities) throws Exception {
-                if (DEBUG)
-                    Log.d(TAG, "subscriptionService.subscriptionTable.doOnNext() called with: subscriptionEntities = [" + subscriptionEntities + "]");
-                if (subscribeButtonMonitor != null) subscribeButtonMonitor.dispose();
+        return (List<SubscriptionEntity> subscriptionEntities) -> {
+            if (DEBUG)
+                Log.d(TAG, "subscriptionService.subscriptionTable.doOnNext() called with: subscriptionEntities = [" + subscriptionEntities + "]");
+            if (subscribeButtonMonitor != null) subscribeButtonMonitor.dispose();
 
-                if (subscriptionEntities.isEmpty()) {
-                    if (DEBUG) Log.d(TAG, "No subscription to this channel!");
-                    SubscriptionEntity channel = new SubscriptionEntity();
-                    channel.setServiceId(info.getServiceId());
-                    channel.setUrl(info.getUrl());
-                    channel.setData(info.getName(), info.getAvatarUrl(), info.getDescription(), info.getSubscriberCount());
-                    subscribeButtonMonitor = monitorSubscribeButton(headerSubscribeButton, mapOnSubscribe(channel));
-                } else {
-                    if (DEBUG) Log.d(TAG, "Found subscription to this channel!");
-                    final SubscriptionEntity subscription = subscriptionEntities.get(0);
-                    subscribeButtonMonitor = monitorSubscribeButton(headerSubscribeButton, mapOnUnsubscribe(subscription));
-                }
+            if (subscriptionEntities.isEmpty()) {
+                if (DEBUG) Log.d(TAG, "No subscription to this channel!");
+                SubscriptionEntity channel = new SubscriptionEntity();
+                channel.setServiceId(info.getServiceId());
+                channel.setUrl(info.getUrl());
+                channel.setData(info.getName(),
+                        info.getAvatarUrl(),
+                        info.getDescription(),
+                        info.getSubscriberCount());
+                subscribeButtonMonitor = monitorSubscribeButton(headerSubscribeButton, mapOnSubscribe(channel));
+            } else {
+                if (DEBUG) Log.d(TAG, "Found subscription to this channel!");
+                final SubscriptionEntity subscription = subscriptionEntities.get(0);
+                subscribeButtonMonitor = monitorSubscribeButton(headerSubscribeButton, mapOnUnsubscribe(subscription));
             }
         };
     }
@@ -491,8 +473,11 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         super.handleNextItems(result);
 
         if (!result.getErrors().isEmpty()) {
-            showSnackBarError(result.getErrors(), UserAction.REQUESTED_CHANNEL, NewPipe.getNameOfService(serviceId),
-                    "Get next page of: " + url, R.string.general_error);
+            showSnackBarError(result.getErrors(),
+                    UserAction.REQUESTED_CHANNEL,
+                    NewPipe.getNameOfService(serviceId),
+                    "Get next page of: " + url,
+                    R.string.general_error);
         }
     }
 
