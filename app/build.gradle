@@ -8,8 +8,8 @@ android {
         applicationId "org.schabi.newpipe"
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 66
-        versionName "0.13.7"
+        versionCode 67
+        versionName "0.14.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
