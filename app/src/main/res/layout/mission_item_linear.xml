@@ -17,7 +17,8 @@
 			android:layout_centerVertical="true"
 			android:scaleType="fitXY"
 			android:gravity="center"
-			android:padding="15dp"/>
+			android:padding="15dp"
+            android:contentDescription="TODO" />
 		
 		<LinearLayout
 			android:id="@+id/item_name_and_size"
@@ -76,7 +77,8 @@
 			android:layout_centerVertical="true"
 			android:layout_marginRight="4dp"
 			android:src="@drawable/ic_menu_more"
-			android:scaleType="centerInside"/>
+			android:scaleType="centerInside"
+            android:contentDescription="TODO" />
 
 	</RelativeLayout>
 
