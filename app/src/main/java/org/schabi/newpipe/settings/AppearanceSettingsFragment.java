@@ -49,7 +49,7 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
         return super.onPreferenceTreeClick(preference);
     }
 
-    private Preference.OnPreferenceChangeListener themePreferenceChange = new Preference.OnPreferenceChangeListener() {
+    private final Preference.OnPreferenceChangeListener themePreferenceChange = new Preference.OnPreferenceChangeListener() {
         @Override
         public boolean onPreferenceChange(Preference preference, Object newValue) {
             defaultPreferences.edit().putBoolean(Constants.KEY_THEME_CHANGE, true).apply();

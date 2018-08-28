@@ -19,7 +19,7 @@ import icepick.State;
 
 public abstract class BaseFragment extends Fragment {
     protected final String TAG = getClass().getSimpleName() + "@" + Integer.toHexString(hashCode());
-    protected boolean DEBUG = MainActivity.DEBUG;
+    protected final boolean DEBUG = MainActivity.DEBUG;
 
     protected AppCompatActivity activity;
     public static final ImageLoader imageLoader = ImageLoader.getInstance();

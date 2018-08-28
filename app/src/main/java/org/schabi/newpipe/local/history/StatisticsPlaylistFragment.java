@@ -57,7 +57,7 @@ public class StatisticsPlaylistFragment
     /* Used for independent events */
     private Subscription databaseSubscription;
     private HistoryRecordManager recordManager;
-    private CompositeDisposable disposables = new CompositeDisposable();
+    private final CompositeDisposable disposables = new CompositeDisposable();
 
     private enum StatisticSortMode {
         LAST_PLAYED,

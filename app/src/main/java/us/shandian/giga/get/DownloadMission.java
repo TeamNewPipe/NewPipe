@@ -67,7 +67,7 @@ public class DownloadMission implements Serializable {
     public long done;
     public int threadCount = 3;
     public int finishCount;
-    private List<Long> threadPositions = new ArrayList<Long>();
+    private final List<Long> threadPositions = new ArrayList<Long>();
     public final Map<Long, Boolean> blockState = new HashMap<Long, Boolean>();
     public boolean running;
     public boolean finished;

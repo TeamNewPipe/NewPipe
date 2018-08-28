@@ -55,10 +55,10 @@ public class SubscriptionService {
     private static final int SUBSCRIPTION_DEBOUNCE_INTERVAL = 500;
     private static final int SUBSCRIPTION_THREAD_POOL_SIZE = 4;
 
-    private AppDatabase db;
-    private Flowable<List<SubscriptionEntity>> subscription;
+    private final AppDatabase db;
+    private final Flowable<List<SubscriptionEntity>> subscription;
 
-    private Scheduler subscriptionScheduler;
+    private final Scheduler subscriptionScheduler;
 
     private SubscriptionService(Context context) {
         db = NewPipeDatabase.getInstance(context.getApplicationContext());

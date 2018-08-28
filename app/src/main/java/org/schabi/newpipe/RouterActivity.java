@@ -86,7 +86,7 @@ public class RouterActivity extends AppCompatActivity {
     protected int selectedPreviously = -1;
 
     protected String currentUrl;
-    protected CompositeDisposable disposables = new CompositeDisposable();
+    protected final CompositeDisposable disposables = new CompositeDisposable();
 
     private boolean selectionIsDownload = false;
 

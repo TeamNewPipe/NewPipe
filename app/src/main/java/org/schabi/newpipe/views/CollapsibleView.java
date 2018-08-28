@@ -81,7 +81,7 @@ public class CollapsibleView extends LinearLayout {
 
     private int targetHeight = -1;
     private ValueAnimator currentAnimator;
-    private List<StateListener> listeners = new ArrayList<>();
+    private final List<StateListener> listeners = new ArrayList<>();
 
     /**
      * This method recalculates the height of this view so it <b>must</b> be called when

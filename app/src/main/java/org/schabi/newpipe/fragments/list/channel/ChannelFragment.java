@@ -68,7 +68,7 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
 
-    private CompositeDisposable disposables = new CompositeDisposable();
+    private final CompositeDisposable disposables = new CompositeDisposable();
     private Disposable subscribeButtonMonitor;
     private SubscriptionService subscriptionService;
 
@@ -103,7 +103,6 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        boolean mIsVisibleToUser = isVisibleToUser;
         if(activity != null
                 && useAsFrontPage
                 && isVisibleToUser) {

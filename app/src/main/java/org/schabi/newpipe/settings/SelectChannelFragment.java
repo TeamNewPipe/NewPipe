@@ -51,7 +51,7 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 public class SelectChannelFragment extends DialogFragment {
-    private ImageLoader imageLoader = ImageLoader.getInstance();
+    private final ImageLoader imageLoader = ImageLoader.getInstance();
 
     private ProgressBar progressBar;
     private TextView emptyView;
@@ -201,9 +201,9 @@ public class SelectChannelFragment extends DialogFragment {
                 thumbnailView = v.findViewById(R.id.itemThumbnailView);
                 titleView = v.findViewById(R.id.itemTitleView);
             }
-            public View view;
-            public CircleImageView thumbnailView;
-            public TextView titleView;
+            public final View view;
+            public final CircleImageView thumbnailView;
+            public final TextView titleView;
         }
     }
 
@@ -211,14 +211,13 @@ public class SelectChannelFragment extends DialogFragment {
     // Error
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected boolean onError(Throwable e) {
+    protected void onError(Throwable e) {
         final Activity activity = getActivity();
         ErrorActivity.reportError(activity, e,
                 activity.getClass(),
                 null,
                 ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
                         "none", "", R.string.app_ui_crash));
-        return true;
     }
 
 

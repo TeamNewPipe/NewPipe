@@ -17,7 +17,7 @@ import java.lang.ref.WeakReference;
 
 public class LicenseFragmentHelper extends AsyncTask<Object, Void, Integer> {
 
-    WeakReference<Activity> weakReference;
+    final WeakReference<Activity> weakReference;
     private License license;
 
     public LicenseFragmentHelper(@Nullable Activity activity) {

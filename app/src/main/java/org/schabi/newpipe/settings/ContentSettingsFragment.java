@@ -9,8 +9,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.util.Log;
 import android.widget.Toast;
@@ -19,12 +17,9 @@ import com.nononsenseapps.filepicker.Utils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
-import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.ZipHelper;
 
 import java.io.BufferedOutputStream;
@@ -285,13 +280,12 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     // Error
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected boolean onError(Throwable e) {
+    protected void onError(Throwable e) {
         final Activity activity = getActivity();
         ErrorActivity.reportError(activity, e,
                 activity.getClass(),
                 null,
                 ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
                         "none", "", R.string.app_ui_crash));
-        return true;
     }
 }

@@ -123,10 +123,10 @@ public class SearchFragment
     private String contentCountry;
     private boolean isSuggestionsEnabled = true;
 
-    private PublishSubject<String> suggestionPublisher = PublishSubject.create();
+    private final PublishSubject<String> suggestionPublisher = PublishSubject.create();
     private Disposable searchDisposable;
     private Disposable suggestionDisposable;
-    private CompositeDisposable disposables = new CompositeDisposable();
+    private final CompositeDisposable disposables = new CompositeDisposable();
 
     private SuggestionListAdapter suggestionListAdapter;
     private HistoryRecordManager historyRecordManager;

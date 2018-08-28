@@ -13,7 +13,7 @@ import org.schabi.newpipe.MainActivity;
 
 public abstract class BasePreferenceFragment extends PreferenceFragmentCompat {
     protected final String TAG = getClass().getSimpleName() + "@" + Integer.toHexString(hashCode());
-    protected boolean DEBUG = MainActivity.DEBUG;
+    protected final boolean DEBUG = MainActivity.DEBUG;
 
     protected SharedPreferences defaultPreferences;
 
