@@ -1227,10 +1227,10 @@ public class VideoDetailFragment
                 spinnerToolbar.setVisibility(View.GONE);
                 break;
             default:
+                if(info.getAudioStreams().isEmpty()) detailControlsBackground.setVisibility(View.GONE);
                 if (!info.getVideoStreams().isEmpty()
                         || !info.getVideoOnlyStreams().isEmpty()) break;
 
-                detailControlsBackground.setVisibility(View.GONE);
                 detailControlsPopup.setVisibility(View.GONE);
                 spinnerToolbar.setVisibility(View.GONE);
                 thumbnailPlayButton.setImageResource(R.drawable.ic_headset_white_24dp);

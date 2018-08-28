@@ -24,6 +24,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -43,18 +44,22 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.Constants;
+import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ServiceHelper;
@@ -72,6 +77,19 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView drawerItems = null;
     private TextView headerServiceView = null;
 
+    private boolean servicesShown = false;
+    private ImageView serviceArrow;
+
+    private static final int ITEM_ID_SUBSCRIPTIONS = - 1;
+    private static final int ITEM_ID_FEED = - 2;
+    private static final int ITEM_ID_BOOKMARKS = - 3;
+    private static final int ITEM_ID_DOWNLOADS = - 4;
+    private static final int ITEM_ID_HISTORY = - 5;
+    private static final int ITEM_ID_SETTINGS = 0;
+    private static final int ITEM_ID_ABOUT = 1;
+
+    private static final int ORDER = 0;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Activity's LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
@@ -85,42 +103,66 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window w = getWindow();
+            w.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+
         if (getSupportFragmentManager() != null && getSupportFragmentManager().getBackStackEntryCount() == 0) {
             initFragments();
         }
 
         setSupportActionBar(findViewById(R.id.toolbar));
-        setupDrawer();
+        try {
+            setupDrawer();
+        } catch (Exception e) {
+            ErrorActivity.reportUiError(this, e);
+        }
     }
 
-    private void setupDrawer() {
+    private void setupDrawer() throws Exception {
         final Toolbar toolbar = findViewById(R.id.toolbar);
         drawer = findViewById(R.id.drawer_layout);
         drawerItems = findViewById(R.id.navigation);
 
-        for(StreamingService s : NewPipe.getServices()) {
-            final String title = s.getServiceInfo().getName() +
-                    (ServiceHelper.isBeta(s) ? " (beta)" : "");
-            final MenuItem item = drawerItems.getMenu()
-                    .add(R.id.menu_services_group, s.getServiceId(), 0, title);
-            item.setIcon(ServiceHelper.getIcon(s.getServiceId()));
+        //Tabs
+        int currentServiceId = ServiceHelper.getSelectedServiceId(this);
+        StreamingService service = NewPipe.getService(currentServiceId);
+
+        int kioskId = 0;
+
+        for (final String ks : service.getKioskList().getAvailableKiosks()) {
+            drawerItems.getMenu()
+                    .add(R.id.menu_tabs_group, kioskId, 0, KioskTranslator.getTranslatedKioskName(ks, this))
+                    .setIcon(KioskTranslator.getKioskIcons(ks, this));
+            kioskId ++;
         }
 
-        drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
+        drawerItems.getMenu()
+                .add(R.id.menu_tabs_group, ITEM_ID_SUBSCRIPTIONS, ORDER, R.string.tab_subscriptions)
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_channel));
+        drawerItems.getMenu()
+                .add(R.id.menu_tabs_group, ITEM_ID_FEED, ORDER, R.string.fragment_whats_new)
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.rss));
+        drawerItems.getMenu()
+                .add(R.id.menu_tabs_group, ITEM_ID_BOOKMARKS, ORDER, R.string.tab_bookmarks)
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_bookmark));
+        drawerItems.getMenu()
+                .add(R.id.menu_tabs_group, ITEM_ID_DOWNLOADS, ORDER, R.string.downloads)
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.download));
+        drawerItems.getMenu()
+                .add(R.id.menu_tabs_group, ITEM_ID_HISTORY, ORDER, R.string.action_history)
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.history));
 
-        toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
-                R.string.drawer_open, R.string.drawer_close) {
-            @Override
-            public void onDrawerClosed(View view) { super.onDrawerClosed(view); }
+        //Settings and About
+        drawerItems.getMenu()
+                .add(R.id.menu_options_about_group, ITEM_ID_SETTINGS, ORDER, R.string.settings)
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.settings));
+        drawerItems.getMenu()
+                .add(R.id.menu_options_about_group, ITEM_ID_ABOUT, ORDER, R.string.tab_about)
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.info));
 
-            @Override
-            public void onDrawerOpened(View drawerView) { super.onDrawerOpened(drawerView); }
-
-            @Override
-            public void onDrawerSlide(View drawerView, float slideOffset) {
-                super.onDrawerSlide(drawerView, 0);
-            }
-        };
+        toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.drawer_open, R.string.drawer_close);
         toggle.syncState();
         drawer.addDrawerListener(toggle);
         drawer.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
@@ -133,49 +175,177 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onDrawerClosed(View drawerView) {
+                if(servicesShown) {
+                    toggleServices();
+                }
                 if (lastService != ServiceHelper.getSelectedServiceId(MainActivity.this)) {
                     new Handler(Looper.getMainLooper()).post(MainActivity.this::recreate);
                 }
             }
         });
 
-        drawerItems.setNavigationItemSelectedListener(this::changeService);
-
-        setupDrawerFooter();
+        drawerItems.setNavigationItemSelectedListener(this::drawerItemSelected);
         setupDrawerHeader();
     }
 
+    private boolean drawerItemSelected(MenuItem item) {
+        switch (item.getGroupId()) {
+            case R.id.menu_services_group:
+                changeService(item);
+                break;
+            case R.id.menu_tabs_group:
+                try {
+                    tabSelected(item);
+                } catch (Exception e) {
+                    ErrorActivity.reportUiError(this, e);
+                }
+                break;
+            case R.id.menu_options_about_group:
+                optionsAboutSelected(item);
+                break;
+            default:
+                return false;
+        }
 
-    private boolean changeService(MenuItem item) {
-        if (item.getGroupId() != R.id.menu_services_group)
-            return false;
-        drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(false);
-        ServiceHelper.setSelectedServiceId(this, item.getItemId());
-        drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
         drawer.closeDrawers();
         return true;
     }
 
-    private void setupDrawerFooter() {
-        ImageButton settings = findViewById(R.id.drawer_settings);
-        ImageButton downloads = findViewById(R.id.drawer_downloads);
-        ImageButton history = findViewById(R.id.drawer_history);
+    private  void changeService(MenuItem item) {
+        drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(false);
+        ServiceHelper.setSelectedServiceId(this, item.getItemId());
+        drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
+    }
 
-        settings.setOnClickListener(view -> NavigationHelper.openSettings(this));
-        downloads.setOnClickListener(view ->NavigationHelper.openDownloads(this));
-        history.setOnClickListener(view ->
-                NavigationHelper.openStatisticFragment(getSupportFragmentManager()));
+    private void tabSelected(MenuItem item) throws ExtractionException {
+        switch(item.getItemId()) {
+            case ITEM_ID_SUBSCRIPTIONS:
+                NavigationHelper.openSubscriptionFragment(getSupportFragmentManager());
+                break;
+            case ITEM_ID_FEED:
+                NavigationHelper.openWhatsNewFragment(getSupportFragmentManager());
+                break;
+            case ITEM_ID_BOOKMARKS:
+                NavigationHelper.openBookmarksFragment(getSupportFragmentManager());
+                break;
+            case ITEM_ID_DOWNLOADS:
+                NavigationHelper.openDownloads(this);
+                break;
+            case ITEM_ID_HISTORY:
+                NavigationHelper.openStatisticFragment(getSupportFragmentManager());
+                break;
+            default:
+                int currentServiceId = ServiceHelper.getSelectedServiceId(this);
+                StreamingService service = NewPipe.getService(currentServiceId);
+                String serviceName = "";
+
+                int kioskId = 0;
+                for (final String ks : service.getKioskList().getAvailableKiosks()) {
+                    if(kioskId == item.getItemId()) {
+                        serviceName = ks;
+                    }
+                    kioskId ++;
+                }
+
+                NavigationHelper.openKioskFragment(getSupportFragmentManager(), currentServiceId, serviceName);
+                break;
+        }
+    }
+
+    private void optionsAboutSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case ITEM_ID_SETTINGS:
+                NavigationHelper.openSettings(this);
+                break;
+            case ITEM_ID_ABOUT:
+                NavigationHelper.openAbout(this);
+                break;
+        }
     }
 
     private void setupDrawerHeader() {
-        headerServiceView = findViewById(R.id.drawer_header_service_view);
-        Button action = findViewById(R.id.drawer_header_action_button);
+        NavigationView navigationView = findViewById(R.id.navigation);
+        View hView =  navigationView.getHeaderView(0);
+
+        serviceArrow = hView.findViewById(R.id.drawer_arrow);
+        headerServiceView = hView.findViewById(R.id.drawer_header_service_view);
+        Button action = hView.findViewById(R.id.drawer_header_action_button);
         action.setOnClickListener(view -> {
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse("https://newpipe.schabi.org/blog/"));
-            startActivity(intent);
-            drawer.closeDrawers();
+            toggleServices();
         });
+    }
+
+    private void toggleServices() {
+        servicesShown = !servicesShown;
+
+        drawerItems.getMenu().removeGroup(R.id.menu_services_group);
+        drawerItems.getMenu().removeGroup(R.id.menu_tabs_group);
+        drawerItems.getMenu().removeGroup(R.id.menu_options_about_group);
+
+        if(servicesShown) {
+            showServices();
+        } else {
+            try {
+                showTabs();
+            } catch (Exception e) {
+                ErrorActivity.reportUiError(this, e);
+            }
+        }
+    }
+
+    private void showServices() {
+        serviceArrow.setImageResource(R.drawable.ic_arrow_up_white);
+
+        for(StreamingService s : NewPipe.getServices()) {
+            final String title = s.getServiceInfo().getName() +
+                    (ServiceHelper.isBeta(s) ? " (beta)" : "");
+
+            drawerItems.getMenu()
+                    .add(R.id.menu_services_group, s.getServiceId(), ORDER, title)
+                    .setIcon(ServiceHelper.getIcon(s.getServiceId()));
+        }
+        drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
+    }
+
+    private void showTabs() throws ExtractionException {
+        serviceArrow.setImageResource(R.drawable.ic_arrow_down_white);
+
+        //Tabs
+        int currentServiceId = ServiceHelper.getSelectedServiceId(this);
+        StreamingService service = NewPipe.getService(currentServiceId);
+
+        int kioskId = 0;
+
+        for (final String ks : service.getKioskList().getAvailableKiosks()) {
+            drawerItems.getMenu()
+                    .add(R.id.menu_tabs_group, kioskId, ORDER, KioskTranslator.getTranslatedKioskName(ks, this))
+                    .setIcon(KioskTranslator.getKioskIcons(ks, this));
+            kioskId ++;
+        }
+
+        drawerItems.getMenu()
+                .add(R.id.menu_tabs_group, ITEM_ID_SUBSCRIPTIONS, ORDER, R.string.tab_subscriptions)
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_channel));
+        drawerItems.getMenu()
+                .add(R.id.menu_tabs_group, ITEM_ID_FEED, ORDER, R.string.fragment_whats_new)
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.rss));
+        drawerItems.getMenu()
+                .add(R.id.menu_tabs_group, ITEM_ID_BOOKMARKS, ORDER, R.string.tab_bookmarks)
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_bookmark));
+        drawerItems.getMenu()
+                .add(R.id.menu_tabs_group, ITEM_ID_DOWNLOADS, ORDER, R.string.downloads)
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.download));
+        drawerItems.getMenu()
+                .add(R.id.menu_tabs_group, ITEM_ID_HISTORY, ORDER, R.string.action_history)
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.history));
+
+        //Settings and About
+        drawerItems.getMenu()
+                .add(R.id.menu_options_about_group, ITEM_ID_SETTINGS, ORDER, R.string.settings)
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.settings));
+        drawerItems.getMenu()
+                .add(R.id.menu_options_about_group, ITEM_ID_ABOUT, ORDER, R.string.tab_about)
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.info));
     }
 
     @Override
@@ -341,16 +511,13 @@ public class MainActivity extends AppCompatActivity {
                 onHomeButtonPressed();
                 return true;
             case R.id.action_show_downloads:
-                return NavigationHelper.openDownloads(this);
+                    return NavigationHelper.openDownloads(this);
             case R.id.action_history:
-                NavigationHelper.openStatisticFragment(getSupportFragmentManager());
-                return true;
-            case R.id.action_about:
-                NavigationHelper.openAbout(this);
-                return true;
+                    NavigationHelper.openStatisticFragment(getSupportFragmentManager());
+                    return true;
             case R.id.action_settings:
-                NavigationHelper.openSettings(this);
-                return true;
+                    NavigationHelper.openSettings(this);
+                    return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

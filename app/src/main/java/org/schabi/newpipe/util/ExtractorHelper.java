@@ -74,7 +74,7 @@ public final class ExtractorHelper {
         return Single.fromCallable(() ->
             SearchInfo.getInfo(NewPipe.getService(serviceId),
                     NewPipe.getService(serviceId)
-                        .getSearchQIHFactory()
+                        .getSearchQHFactory()
                         .fromQuery(searchString, contentFilter, sortFilter),
                     contentCountry));
     }
@@ -89,7 +89,7 @@ public final class ExtractorHelper {
         return Single.fromCallable(() ->
                 SearchInfo.getMoreItems(NewPipe.getService(serviceId),
                         NewPipe.getService(serviceId)
-                            .getSearchQIHFactory()
+                            .getSearchQHFactory()
                             .fromQuery(searchString, contentFilter, sortFilter),
                         contentCountry,
                         pageUrl));
