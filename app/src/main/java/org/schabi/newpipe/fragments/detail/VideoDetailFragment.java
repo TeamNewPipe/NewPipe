@@ -1122,9 +1122,15 @@ public class VideoDetailFragment
         animateView(videoTitleTextView, true, 0);
 
         videoDescriptionRootLayout.setVisibility(View.GONE);
-        if (videoTitleToggleArrow != null) {
+        if (videoTitleToggleArrow != null) {    //phone
             videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
             videoTitleToggleArrow.setVisibility(View.GONE);
+        } else {    //tablet
+            final View related = (View) relatedStreamRootLayout.getParent();
+            //don`t need to hide it if related streams are disabled
+            if (related.getVisibility() == View.VISIBLE) {
+                related.setVisibility(View.INVISIBLE);
+            }
         }
         videoTitleRoot.setClickable(false);
 
