@@ -501,5 +501,6 @@
     <string name="list_view_mode">Вид списка</string>
     <string name="list">Список</string>
     <string name="grid">Сетка</string>
+	<string name="auto">Автоматически</string>
 
 </resources>

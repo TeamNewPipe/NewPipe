@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -84,8 +85,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
 
         if (updateFlags != 0) {
             if ((updateFlags & LIST_MODE_UPDATE_FLAG) != 0) {
-                final String list_key = getString(R.string.list_view_mode_value);
-                final boolean useGrid = !list_key.equals(PreferenceManager.getDefaultSharedPreferences(activity).getString(getString(R.string.list_view_mode_key), list_key));
+                final boolean useGrid = isGridLayout();
                 itemsList.setLayoutManager(useGrid ? getGridLayoutManager() : getListLayoutManager());
                 infoListAdapter.setGridItemVariants(useGrid);
                 infoListAdapter.notifyDataSetChanged();
@@ -160,9 +160,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
     protected void initViews(View rootView, Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
 
-        final String list_key = getString(R.string.list_view_mode_value);
-        final boolean useGrid = !list_key.equals(PreferenceManager.getDefaultSharedPreferences(activity).getString(getString(R.string.list_view_mode_key), list_key));
-
+        final boolean useGrid = isGridLayout();
         itemsList = rootView.findViewById(R.id.items_list);
         itemsList.setLayoutManager(useGrid ? getGridLayoutManager() : getListLayoutManager());
 
@@ -361,6 +359,17 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals(getString(R.string.list_view_mode_key))) {
             updateFlags |= LIST_MODE_UPDATE_FLAG;
+        }
+    }
+
+    protected boolean isGridLayout() {
+        final String list_mode = PreferenceManager.getDefaultSharedPreferences(activity).getString(getString(R.string.list_view_mode_key), getString(R.string.list_view_mode_value));
+        if ("auto".equals(list_mode)) {
+            final Configuration configuration = getResources().getConfiguration();
+            return configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+                    && configuration.isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE);
+        } else {
+            return "grid".equals(list_mode);
         }
     }
 }

@@ -517,5 +517,6 @@
 	<string name="list_view_mode">List view mode</string>
     <string name="list">List</string>
     <string name="grid">Grid</string>
+	<string name="auto">Auto</string>
 
 </resources>
