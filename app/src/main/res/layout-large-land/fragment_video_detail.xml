@@ -109,9 +109,6 @@
 					android:id="@+id/detail_title_root_layout"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:background="?attr/selectableItemBackground"
-					android:clickable="true"
-					android:focusable="true"
 					android:paddingLeft="12dp"
 					android:paddingRight="12dp">
 
@@ -128,15 +125,6 @@
 						android:textSize="@dimen/video_item_detail_title_text_size"
 						tools:ignore="RtlHardcoded"
 						tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a ultricies ex. Integer sit amet sodales risus. Duis non mi et urna pretium bibendum. Nunc eleifend est quis ipsum porttitor egestas. Sed facilisis, nisl quis eleifend pellentesque, orci metus egestas dolor, at accumsan eros metus quis libero." />
-
-					<ImageView
-						android:id="@+id/detail_toggle_description_view"
-						android:layout_width="15dp"
-						android:layout_height="15dp"
-						android:layout_gravity="center_vertical|right"
-						android:layout_marginLeft="5dp"
-						android:src="@drawable/arrow_down"
-						tools:ignore="ContentDescription,RtlHardcoded" />
 
 				</FrameLayout>
 
@@ -413,9 +401,7 @@
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_marginTop="5dp"
-						android:orientation="vertical"
-						android:visibility="gone"
-						tools:visibility="visible">
+						android:orientation="vertical">
 
 						<TextView
 							android:id="@+id/detail_upload_date_view"

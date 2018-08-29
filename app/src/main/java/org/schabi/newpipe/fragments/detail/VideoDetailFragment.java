@@ -156,6 +156,7 @@ public class VideoDetailFragment
 
     private View videoTitleRoot;
     private TextView videoTitleTextView;
+    @Nullable
     private ImageView videoTitleToggleArrow;
     private TextView videoCountView;
 
@@ -417,14 +418,16 @@ public class VideoDetailFragment
     }
 
     private void toggleTitleAndDescription() {
-        if (videoDescriptionRootLayout.getVisibility() == View.VISIBLE) {
-            videoTitleTextView.setMaxLines(1);
-            videoDescriptionRootLayout.setVisibility(View.GONE);
-            videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
-        } else {
-            videoTitleTextView.setMaxLines(10);
-            videoDescriptionRootLayout.setVisibility(View.VISIBLE);
-            videoTitleToggleArrow.setImageResource(R.drawable.arrow_up);
+        if (videoTitleToggleArrow != null) {    //it is null for tablets
+            if (videoDescriptionRootLayout.getVisibility() == View.VISIBLE) {
+                videoTitleTextView.setMaxLines(1);
+                videoDescriptionRootLayout.setVisibility(View.GONE);
+                videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
+            } else {
+                videoTitleTextView.setMaxLines(10);
+                videoDescriptionRootLayout.setVisibility(View.VISIBLE);
+                videoTitleToggleArrow.setImageResource(R.drawable.arrow_up);
+            }
         }
     }
 
@@ -1119,8 +1122,10 @@ public class VideoDetailFragment
         animateView(videoTitleTextView, true, 0);
 
         videoDescriptionRootLayout.setVisibility(View.GONE);
-        videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
-        videoTitleToggleArrow.setVisibility(View.GONE);
+        if (videoTitleToggleArrow != null) {
+            videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
+            videoTitleToggleArrow.setVisibility(View.GONE);
+        }
         videoTitleRoot.setClickable(false);
 
         imageLoader.cancelDisplayTask(thumbnailImageView);
@@ -1195,11 +1200,15 @@ public class VideoDetailFragment
             detailDurationView.setVisibility(View.GONE);
         }
 
-        videoTitleRoot.setClickable(true);
-        videoTitleToggleArrow.setVisibility(View.VISIBLE);
-        videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
         videoDescriptionView.setVisibility(View.GONE);
-        videoDescriptionRootLayout.setVisibility(View.GONE);
+        if (videoTitleToggleArrow != null) {
+            videoTitleRoot.setClickable(true);
+            videoTitleToggleArrow.setVisibility(View.VISIBLE);
+            videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
+            videoDescriptionRootLayout.setVisibility(View.GONE);
+        } else {
+            videoDescriptionRootLayout.setVisibility(View.VISIBLE);
+        }
         if (!TextUtils.isEmpty(info.getUploadDate())) {
             videoUploadDateView.setText(Localization.localizeDate(activity, info.getUploadDate()));
         }
