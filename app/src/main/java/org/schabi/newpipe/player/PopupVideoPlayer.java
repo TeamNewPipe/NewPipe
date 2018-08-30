@@ -19,6 +19,8 @@
 
 package org.schabi.newpipe.player;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -34,6 +36,7 @@ import android.os.Build;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.NotificationCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -41,7 +44,9 @@ import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.animation.AnticipateInterpolator;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
@@ -104,10 +109,13 @@ public final class PopupVideoPlayer extends Service {
             WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
 
     private WindowManager windowManager;
-    private WindowManager.LayoutParams windowLayoutParams;
-    private GestureDetector gestureDetector;
+    private WindowManager.LayoutParams popupLayoutParams;
+    private GestureDetector popupGestureDetector;
 
-    private int shutdownFlingVelocity;
+    private View closeOverlayView;
+    private FloatingActionButton closeOverlayButton;
+    private WindowManager.LayoutParams closeOverlayLayoutParams;
+
     private int tossFlingVelocity;
 
     private float screenWidth, screenHeight;
@@ -122,6 +130,7 @@ public final class PopupVideoPlayer extends Service {
 
     private VideoPlayerImpl playerImpl;
     private LockManager lockManager;
+    private boolean isPopupClosing = false;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Service-Activity Binder
@@ -150,7 +159,10 @@ public final class PopupVideoPlayer extends Service {
     public int onStartCommand(final Intent intent, int flags, int startId) {
         if (DEBUG)
             Log.d(TAG, "onStartCommand() called with: intent = [" + intent + "], flags = [" + flags + "], startId = [" + startId + "]");
-        if (playerImpl.getPlayer() == null) initPopup();
+        if (playerImpl.getPlayer() == null) {
+            initPopup();
+            initPopupCloseOverlay();
+        }
         if (!playerImpl.isPlaying()) playerImpl.getPlayer().setPlayWhenReady(true);
 
         playerImpl.handleIntent(intent);
@@ -160,15 +172,16 @@ public final class PopupVideoPlayer extends Service {
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
+        if (DEBUG) Log.d(TAG, "onConfigurationChanged() called with: newConfig = [" + newConfig + "]");
         updateScreenSize();
-        updatePopupSize(windowLayoutParams.width, -1);
-        checkPositionBounds();
+        updatePopupSize(popupLayoutParams.width, -1);
+        checkPopupPositionBounds();
     }
 
     @Override
     public void onDestroy() {
         if (DEBUG) Log.d(TAG, "onDestroy() called");
-        onClose();
+        closePopup();
     }
 
     @Override
@@ -186,7 +199,6 @@ public final class PopupVideoPlayer extends Service {
         View rootView = View.inflate(this, R.layout.player_popup, null);
         playerImpl.setup(rootView);
 
-        shutdownFlingVelocity = PlayerHelper.getShutdownFlingVelocity(this);
         tossFlingVelocity = PlayerHelper.getTossFlingVelocity(this);
 
         updateScreenSize();
@@ -200,27 +212,52 @@ public final class PopupVideoPlayer extends Service {
                 WindowManager.LayoutParams.TYPE_PHONE :
                 WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
 
-        windowLayoutParams = new WindowManager.LayoutParams(
+        popupLayoutParams = new WindowManager.LayoutParams(
                 (int) popupWidth, (int) getMinimumVideoHeight(popupWidth),
                 layoutParamType,
                 IDLE_WINDOW_FLAGS,
                 PixelFormat.TRANSLUCENT);
-        windowLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
-        windowLayoutParams.softInputMode = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE;
+        popupLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
+        popupLayoutParams.softInputMode = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE;
 
         int centerX = (int) (screenWidth / 2f - popupWidth / 2f);
         int centerY = (int) (screenHeight / 2f - popupHeight / 2f);
-        windowLayoutParams.x = popupRememberSizeAndPos ? sharedPreferences.getInt(POPUP_SAVED_X, centerX) : centerX;
-        windowLayoutParams.y = popupRememberSizeAndPos ? sharedPreferences.getInt(POPUP_SAVED_Y, centerY) : centerY;
+        popupLayoutParams.x = popupRememberSizeAndPos ? sharedPreferences.getInt(POPUP_SAVED_X, centerX) : centerX;
+        popupLayoutParams.y = popupRememberSizeAndPos ? sharedPreferences.getInt(POPUP_SAVED_Y, centerY) : centerY;
 
-        checkPositionBounds();
+        checkPopupPositionBounds();
 
-        MySimpleOnGestureListener listener = new MySimpleOnGestureListener();
-        gestureDetector = new GestureDetector(this, listener);
+        PopupWindowGestureListener listener = new PopupWindowGestureListener();
+        popupGestureDetector = new GestureDetector(this, listener);
         rootView.setOnTouchListener(listener);
-        playerImpl.getLoadingPanel().setMinimumWidth(windowLayoutParams.width);
-        playerImpl.getLoadingPanel().setMinimumHeight(windowLayoutParams.height);
-        windowManager.addView(rootView, windowLayoutParams);
+
+        playerImpl.getLoadingPanel().setMinimumWidth(popupLayoutParams.width);
+        playerImpl.getLoadingPanel().setMinimumHeight(popupLayoutParams.height);
+        windowManager.addView(rootView, popupLayoutParams);
+    }
+
+    @SuppressLint("RtlHardcoded")
+    private void initPopupCloseOverlay() {
+        if (DEBUG) Log.d(TAG, "initPopupCloseOverlay() called");
+        closeOverlayView = View.inflate(this, R.layout.player_popup_close_overlay, null);
+        closeOverlayButton = closeOverlayView.findViewById(R.id.closeButton);
+
+        final int layoutParamType = Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O ?
+                WindowManager.LayoutParams.TYPE_PHONE :
+                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+        final int flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+                | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM;
+
+        closeOverlayLayoutParams = new WindowManager.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT,
+                layoutParamType,
+                flags,
+                PixelFormat.TRANSLUCENT);
+        closeOverlayLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
+        closeOverlayLayoutParams.softInputMode = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE;
+
+        closeOverlayButton.setVisibility(View.GONE);
+        windowManager.addView(closeOverlayView, closeOverlayLayoutParams);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -280,44 +317,105 @@ public final class PopupVideoPlayer extends Service {
     // Misc
     //////////////////////////////////////////////////////////////////////////*/
 
-    public void onClose() {
-        if (DEBUG) Log.d(TAG, "onClose() called");
+    public void closePopup() {
+        if (DEBUG) Log.d(TAG, "closePopup() called, isPopupClosing = " + isPopupClosing);
+        if (isPopupClosing) return;
+        isPopupClosing = true;
 
         if (playerImpl != null) {
             if (playerImpl.getRootView() != null) {
                 windowManager.removeView(playerImpl.getRootView());
-                playerImpl.setRootView(null);
             }
+            playerImpl.setRootView(null);
             playerImpl.stopActivityBinding();
             playerImpl.destroy();
+            playerImpl = null;
         }
+
+        mBinder = null;
         if (lockManager != null) lockManager.releaseWifiAndCpu();
         if (notificationManager != null) notificationManager.cancel(NOTIFICATION_ID);
-        mBinder = null;
-        playerImpl = null;
 
-        stopForeground(true);
-        stopSelf();
+        animateOverlayAndFinishService();
+    }
+
+    private void animateOverlayAndFinishService() {
+        final int targetTranslationY = (int) (closeOverlayButton.getRootView().getHeight() - closeOverlayButton.getY());
+
+        closeOverlayButton.animate().setListener(null).cancel();
+        closeOverlayButton.animate()
+                .setInterpolator(new AnticipateInterpolator())
+                .translationY(targetTranslationY)
+                .setDuration(400)
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+                        end();
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        end();
+                    }
+
+                    private void end() {
+                        windowManager.removeView(closeOverlayView);
+
+                        stopForeground(true);
+                        stopSelf();
+                    }
+                }).start();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
-    private void checkPositionBounds() {
-        if (windowLayoutParams.x > screenWidth - windowLayoutParams.width)
-            windowLayoutParams.x = (int) (screenWidth - windowLayoutParams.width);
-        if (windowLayoutParams.x < 0) windowLayoutParams.x = 0;
-        if (windowLayoutParams.y > screenHeight - windowLayoutParams.height)
-            windowLayoutParams.y = (int) (screenHeight - windowLayoutParams.height);
-        if (windowLayoutParams.y < 0) windowLayoutParams.y = 0;
+    /**
+     * @see #checkPopupPositionBounds(float, float)
+     */
+    @SuppressWarnings("UnusedReturnValue")
+    private boolean checkPopupPositionBounds() {
+        return checkPopupPositionBounds(screenWidth, screenHeight);
+    }
+
+    /**
+     * Check if {@link #popupLayoutParams}' position is within a arbitrary boundary that goes from (0,0) to (boundaryWidth,boundaryHeight).
+     * <p>
+     * If it's out of these boundaries, {@link #popupLayoutParams}' position is changed and {@code true} is returned
+     * to represent this change.
+     *
+     * @return if the popup was out of bounds and have been moved back to it
+     */
+    private boolean checkPopupPositionBounds(final float boundaryWidth, final float boundaryHeight) {
+        if (DEBUG) {
+            Log.d(TAG, "checkPopupPositionBounds() called with: boundaryWidth = [" + boundaryWidth + "], boundaryHeight = [" + boundaryHeight + "]");
+        }
+
+        if (popupLayoutParams.x < 0) {
+            popupLayoutParams.x = 0;
+            return true;
+        } else if (popupLayoutParams.x > boundaryWidth - popupLayoutParams.width) {
+            popupLayoutParams.x = (int) (boundaryWidth - popupLayoutParams.width);
+            return true;
+        }
+
+        if (popupLayoutParams.y < 0) {
+            popupLayoutParams.y = 0;
+            return true;
+        } else if (popupLayoutParams.y > boundaryHeight - popupLayoutParams.height) {
+            popupLayoutParams.y = (int) (boundaryHeight - popupLayoutParams.height);
+            return true;
+        }
+
+        return false;
     }
 
     private void savePositionAndSize() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(PopupVideoPlayer.this);
-        sharedPreferences.edit().putInt(POPUP_SAVED_X, windowLayoutParams.x).apply();
-        sharedPreferences.edit().putInt(POPUP_SAVED_Y, windowLayoutParams.y).apply();
-        sharedPreferences.edit().putFloat(POPUP_SAVED_WIDTH, windowLayoutParams.width).apply();
+        sharedPreferences.edit().putInt(POPUP_SAVED_X, popupLayoutParams.x).apply();
+        sharedPreferences.edit().putInt(POPUP_SAVED_Y, popupLayoutParams.y).apply();
+        sharedPreferences.edit().putFloat(POPUP_SAVED_WIDTH, popupLayoutParams.width).apply();
     }
 
     private float getMinimumVideoHeight(float width) {
@@ -352,13 +450,13 @@ public final class PopupVideoPlayer extends Service {
         if (height == -1) height = (int) getMinimumVideoHeight(width);
         else height = (int) (height > maximumHeight ? maximumHeight : height < minimumHeight ? minimumHeight : height);
 
-        windowLayoutParams.width = width;
-        windowLayoutParams.height = height;
+        popupLayoutParams.width = width;
+        popupLayoutParams.height = height;
         popupWidth = width;
         popupHeight = height;
 
         if (DEBUG) Log.d(TAG, "updatePopupSize() updated values:  width = [" + width + "], height = [" + height + "]");
-        windowManager.updateViewLayout(playerImpl.getRootView(), windowLayoutParams);
+        windowManager.updateViewLayout(playerImpl.getRootView(), popupLayoutParams);
     }
 
     protected void setRepeatModeRemote(final RemoteViews remoteViews, final int repeatMode) {
@@ -380,10 +478,10 @@ public final class PopupVideoPlayer extends Service {
     }
 
     private void updateWindowFlags(final int flags) {
-        if (windowLayoutParams == null || windowManager == null || playerImpl == null) return;
+        if (popupLayoutParams == null || windowManager == null || playerImpl == null) return;
 
-        windowLayoutParams.flags = flags;
-        windowManager.updateViewLayout(playerImpl.getRootView(), windowLayoutParams);
+        popupLayoutParams.flags = flags;
+        windowManager.updateViewLayout(playerImpl.getRootView(), popupLayoutParams);
     }
     ///////////////////////////////////////////////////////////////////////////
 
@@ -393,6 +491,7 @@ public final class PopupVideoPlayer extends Service {
         private ImageView videoPlayPause;
 
         private View extraOptionsView;
+        private View closingOverlayView;
 
         @Override
         public void handleIntent(Intent intent) {
@@ -413,10 +512,16 @@ public final class PopupVideoPlayer extends Service {
             fullScreenButton = rootView.findViewById(R.id.fullScreenButton);
             fullScreenButton.setOnClickListener(v -> onFullScreenButtonClicked());
             videoPlayPause = rootView.findViewById(R.id.videoPlayPause);
-            videoPlayPause.setOnClickListener(this::onPlayPauseButtonPressed);
 
             extraOptionsView = rootView.findViewById(R.id.extraOptionsView);
+            closingOverlayView = rootView.findViewById(R.id.closingOverlay);
             rootView.addOnLayoutChangeListener(this);
+        }
+
+        @Override
+        public void initListeners() {
+            super.initListeners();
+            videoPlayPause.setOnClickListener(v -> onPlayPause());
         }
 
         @Override
@@ -427,10 +532,6 @@ public final class PopupVideoPlayer extends Service {
             view.setFractionalTextSize(SubtitleView.DEFAULT_TEXT_SIZE_FRACTION * captionRatio);
             view.setApplyEmbeddedStyles(captionStyle.equals(CaptionStyleCompat.DEFAULT));
             view.setStyle(captionStyle);
-        }
-
-        private void onPlayPauseButtonPressed(View ib) {
-            onPlayPause();
         }
 
         @Override
@@ -476,7 +577,7 @@ public final class PopupVideoPlayer extends Service {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             }
             context.startActivity(intent);
-            onClose();
+            closePopup();
         }
 
         @Override
@@ -634,7 +735,7 @@ public final class PopupVideoPlayer extends Service {
         @Override
         public void onPlaybackShutdown() {
             super.onPlaybackShutdown();
-            onClose();
+            closePopup();
         }
 
         /*//////////////////////////////////////////////////////////////////////////
@@ -660,7 +761,7 @@ public final class PopupVideoPlayer extends Service {
             if (DEBUG) Log.d(TAG, "onBroadcastReceived() called with: intent = [" + intent + "]");
             switch (intent.getAction()) {
                 case ACTION_CLOSE:
-                    onClose();
+                    closePopup();
                     break;
                 case ACTION_PLAY_PAUSE:
                     onPlayPause();
@@ -791,12 +892,15 @@ public final class PopupVideoPlayer extends Service {
         public TextView getResizingIndicator() {
             return resizingIndicator;
         }
+
+        public View getClosingOverlayView() {
+            return closingOverlayView;
+        }
     }
 
-    private class MySimpleOnGestureListener extends GestureDetector.SimpleOnGestureListener implements View.OnTouchListener {
+    private class PopupWindowGestureListener extends GestureDetector.SimpleOnGestureListener implements View.OnTouchListener {
         private int initialPopupX, initialPopupY;
         private boolean isMoving;
-
         private boolean isResizing;
 
         @Override
@@ -832,10 +936,15 @@ public final class PopupVideoPlayer extends Service {
         @Override
         public boolean onDown(MotionEvent e) {
             if (DEBUG) Log.d(TAG, "onDown() called with: e = [" + e + "]");
-            initialPopupX = windowLayoutParams.x;
-            initialPopupY = windowLayoutParams.y;
-            popupWidth = windowLayoutParams.width;
-            popupHeight = windowLayoutParams.height;
+
+            // Fix popup position when the user touch it, it may have the wrong one
+            // because the soft input is visible (the draggable area is currently resized).
+            checkPopupPositionBounds(closeOverlayView.getWidth(), closeOverlayView.getHeight());
+
+            initialPopupX = popupLayoutParams.x;
+            initialPopupY = popupLayoutParams.y;
+            popupWidth = popupLayoutParams.width;
+            popupHeight = popupLayoutParams.height;
             return super.onDown(e);
         }
 
@@ -843,20 +952,22 @@ public final class PopupVideoPlayer extends Service {
         public void onLongPress(MotionEvent e) {
             if (DEBUG) Log.d(TAG, "onLongPress() called with: e = [" + e + "]");
             updateScreenSize();
-            checkPositionBounds();
+            checkPopupPositionBounds();
             updatePopupSize((int) screenWidth, -1);
         }
 
         @Override
-        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-            if (isResizing || playerImpl == null) return super.onScroll(e1, e2, distanceX, distanceY);
+        public boolean onScroll(MotionEvent initialEvent, MotionEvent movingEvent, float distanceX, float distanceY) {
+            if (isResizing || playerImpl == null) return super.onScroll(initialEvent, movingEvent, distanceX, distanceY);
 
-            if (playerImpl.getCurrentState() != BasePlayer.STATE_BUFFERING
-                    && (!isMoving || playerImpl.getControlsRoot().getAlpha() != 1f)) playerImpl.showControls(0);
+            if (!isMoving) {
+                animateView(closeOverlayButton, true, 200);
+            }
+
             isMoving = true;
 
-            float diffX = (int) (e2.getRawX() - e1.getRawX()), posX = (int) (initialPopupX + diffX);
-            float diffY = (int) (e2.getRawY() - e1.getRawY()), posY = (int) (initialPopupY + diffY);
+            float diffX = (int) (movingEvent.getRawX() - initialEvent.getRawX()), posX = (int) (initialPopupX + diffX);
+            float diffY = (int) (movingEvent.getRawY() - initialEvent.getRawY()), posY = (int) (initialPopupY + diffY);
 
             if (posX > (screenWidth - popupWidth)) posX = (int) (screenWidth - popupWidth);
             else if (posX < 0) posX = 0;
@@ -864,25 +975,48 @@ public final class PopupVideoPlayer extends Service {
             if (posY > (screenHeight - popupHeight)) posY = (int) (screenHeight - popupHeight);
             else if (posY < 0) posY = 0;
 
-            windowLayoutParams.x = (int) posX;
-            windowLayoutParams.y = (int) posY;
+            popupLayoutParams.x = (int) posX;
+            popupLayoutParams.y = (int) posY;
+
+            final View closingOverlayView = playerImpl.getClosingOverlayView();
+            if (isInsideClosingRadius(movingEvent)) {
+                if (closingOverlayView.getVisibility() == View.GONE) {
+                    animateView(closingOverlayView, true, 250);
+                }
+            } else {
+                if (closingOverlayView.getVisibility() == View.VISIBLE) {
+                    animateView(closingOverlayView, false, 0);
+                }
+            }
 
             //noinspection PointlessBooleanExpression
-            if (DEBUG && false) Log.d(TAG, "PopupVideoPlayer.onScroll = " +
-                    ", e1.getRaw = [" + e1.getRawX() + ", " + e1.getRawY() + "]" +
-                    ", e2.getRaw = [" + e2.getRawX() + ", " + e2.getRawY() + "]" +
-                    ", distanceXy = [" + distanceX + ", " + distanceY + "]" +
-                    ", posXy = [" + posX + ", " + posY + "]" +
-                    ", popupWh = [" + popupWidth + " x " + popupHeight + "]");
-            windowManager.updateViewLayout(playerImpl.getRootView(), windowLayoutParams);
+            if (DEBUG && false) {
+                Log.d(TAG, "PopupVideoPlayer.onScroll = " +
+                        ", e1.getRaw = [" + initialEvent.getRawX() + ", " + initialEvent.getRawY() + "]" + ", e1.getX,Y = [" + initialEvent.getX() + ", " + initialEvent.getY() + "]" +
+                        ", e2.getRaw = [" + movingEvent.getRawX() + ", " + movingEvent.getRawY() + "]" + ", e2.getX,Y = [" + movingEvent.getX() + ", " + movingEvent.getY() + "]" +
+                        ", distanceX,Y = [" + distanceX + ", " + distanceY + "]" +
+                        ", posX,Y = [" + posX + ", " + posY + "]" +
+                        ", popupW,H = [" + popupWidth + " x " + popupHeight + "]");
+            }
+            windowManager.updateViewLayout(playerImpl.getRootView(), popupLayoutParams);
             return true;
         }
 
-        private void onScrollEnd() {
+        private void onScrollEnd(MotionEvent event) {
             if (DEBUG) Log.d(TAG, "onScrollEnd() called");
             if (playerImpl == null) return;
             if (playerImpl.isControlsVisible() && playerImpl.getCurrentState() == STATE_PLAYING) {
                 playerImpl.hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
+            }
+
+            if (isInsideClosingRadius(event)) {
+                closePopup();
+            } else {
+                animateView(playerImpl.getClosingOverlayView(), false, 0);
+
+                if (!isPopupClosing) {
+                    animateView(closeOverlayButton, false, 200);
+                }
             }
         }
 
@@ -893,14 +1027,11 @@ public final class PopupVideoPlayer extends Service {
 
             final float absVelocityX = Math.abs(velocityX);
             final float absVelocityY = Math.abs(velocityY);
-            if (absVelocityX > shutdownFlingVelocity) {
-                onClose();
-                return true;
-            } else if (Math.max(absVelocityX, absVelocityY) > tossFlingVelocity) {
-                if (absVelocityX > tossFlingVelocity) windowLayoutParams.x = (int) velocityX;
-                if (absVelocityY > tossFlingVelocity) windowLayoutParams.y = (int) velocityY;
-                checkPositionBounds();
-                windowManager.updateViewLayout(playerImpl.getRootView(), windowLayoutParams);
+            if (Math.max(absVelocityX, absVelocityY) > tossFlingVelocity) {
+                if (absVelocityX > tossFlingVelocity) popupLayoutParams.x = (int) velocityX;
+                if (absVelocityY > tossFlingVelocity) popupLayoutParams.y = (int) velocityY;
+                checkPopupPositionBounds();
+                windowManager.updateViewLayout(playerImpl.getRootView(), popupLayoutParams);
                 return true;
             }
             return false;
@@ -908,7 +1039,7 @@ public final class PopupVideoPlayer extends Service {
 
         @Override
         public boolean onTouch(View v, MotionEvent event) {
-            gestureDetector.onTouchEvent(event);
+            popupGestureDetector.onTouchEvent(event);
             if (playerImpl == null) return false;
             if (event.getPointerCount() == 2 && !isResizing) {
                 if (DEBUG) Log.d(TAG, "onTouch() 2 finger pointer detected, enabling resizing.");
@@ -931,7 +1062,7 @@ public final class PopupVideoPlayer extends Service {
                     Log.d(TAG, "onTouch() ACTION_UP > v = [" + v + "],  e1.getRaw = [" + event.getRawX() + ", " + event.getRawY() + "]");
                 if (isMoving) {
                     isMoving = false;
-                    onScrollEnd();
+                    onScrollEnd(event);
                 }
 
                 if (isResizing) {
@@ -939,7 +1070,10 @@ public final class PopupVideoPlayer extends Service {
                     animateView(playerImpl.getResizingIndicator(), false, 100, 0);
                     playerImpl.changeState(playerImpl.getCurrentState());
                 }
-                savePositionAndSize();
+
+                if (!isPopupClosing) {
+                    savePositionAndSize();
+                }
             }
 
             v.performClick();
@@ -955,19 +1089,43 @@ public final class PopupVideoPlayer extends Service {
             final float diff = Math.abs(firstPointerX - secondPointerX);
             if (firstPointerX > secondPointerX) {
                 // second pointer is the anchor (the leftmost pointer)
-                windowLayoutParams.x = (int) (event.getRawX() - diff);
+                popupLayoutParams.x = (int) (event.getRawX() - diff);
             } else {
                 // first pointer is the anchor
-                windowLayoutParams.x = (int) event.getRawX();
+                popupLayoutParams.x = (int) event.getRawX();
             }
 
-            checkPositionBounds();
+            checkPopupPositionBounds();
             updateScreenSize();
 
             final int width = (int) Math.min(screenWidth, diff);
             updatePopupSize(width, -1);
 
             return true;
+        }
+
+        /*//////////////////////////////////////////////////////////////////////////
+        // Utils
+        //////////////////////////////////////////////////////////////////////////*/
+
+        private int distanceFromCloseButton(MotionEvent popupMotionEvent) {
+            final int closeOverlayButtonX = closeOverlayButton.getLeft() + closeOverlayButton.getWidth() / 2;
+            final int closeOverlayButtonY = closeOverlayButton.getTop() + closeOverlayButton.getHeight() / 2;
+
+            float fingerX = popupLayoutParams.x + popupMotionEvent.getX();
+            float fingerY = popupLayoutParams.y + popupMotionEvent.getY();
+
+            return (int) Math.sqrt(Math.pow(closeOverlayButtonX - fingerX, 2) + Math.pow(closeOverlayButtonY - fingerY, 2));
+        }
+
+        private float getClosingRadius() {
+            final int buttonRadius = closeOverlayButton.getWidth() / 2;
+            // 20% wider than the button itself
+            return buttonRadius * 1.2f;
+        }
+
+        private boolean isInsideClosingRadius(MotionEvent popupMotionEvent) {
+            return distanceFromCloseButton(popupMotionEvent) <= getClosingRadius();
         }
     }
 }

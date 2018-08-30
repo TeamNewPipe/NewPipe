@@ -56,6 +56,7 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     protected String kioskId = "";
     protected String kioskTranslatedName;
 
+
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
@@ -166,7 +167,9 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
         super.handleResult(result);
 
         name = kioskTranslatedName;
-        setTitle(kioskTranslatedName);
+        if(!useAsFrontPage) {
+            setTitle(kioskTranslatedName);
+        }
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(),

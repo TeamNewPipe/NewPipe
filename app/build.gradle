@@ -2,8 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion '28.0.1'
-
+    buildToolsVersion '28.0.2'
     defaultConfig {
         applicationId "org.schabi.newpipe"
         minSdkVersion 15
@@ -41,28 +40,30 @@ android {
 
 ext {
     supportLibVersion = '27.1.1'
-    exoPlayerLibVersion = '2.8.2'
+    exoPlayerLibVersion = '2.8.4'
     roomDbLibVersion = '1.1.1'
     leakCanaryLibVersion = '1.6.1'
     okHttpLibVersion = '3.11.0'
     icepickLibVersion = '3.2.0'
     stethoLibVersion = '1.5.0'
 }
-dependencies {
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.2') {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    }
 
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:1eff8c5708'
+dependencies {
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.2', {
+        exclude group: 'com.android.support', module: 'support-annotations' })
+
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:fef71aeccc37'
 
     testImplementation 'junit:junit:4.12'
-    testImplementation 'org.mockito:mockito-core:2.20.0'
+    testImplementation 'org.mockito:mockito-core:2.21.0'
 
     implementation "com.android.support:appcompat-v7:$supportLibVersion"
     implementation "com.android.support:support-v4:$supportLibVersion"
     implementation "com.android.support:design:$supportLibVersion"
     implementation "com.android.support:recyclerview-v7:$supportLibVersion"
     implementation "com.android.support:preference-v14:$supportLibVersion"
+    implementation "com.android.support:cardview-v7:$supportLibVersion"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
 
     implementation 'ch.acra:acra:4.11'
 
@@ -78,8 +79,8 @@ dependencies {
     debugImplementation "com.facebook.stetho:stetho-urlconnection:$stethoLibVersion"
     debugImplementation 'com.android.support:multidex:1.0.3'
 
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.17'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.1'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
     implementation 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
 
     implementation "android.arch.persistence.room:runtime:$roomDbLibVersion"

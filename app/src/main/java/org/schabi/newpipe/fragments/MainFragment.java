@@ -1,5 +1,6 @@
 package org.schabi.newpipe.fragments;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,20 +18,16 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 
 import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.ServiceList;
-import org.schabi.newpipe.extractor.StreamingService;
-import org.schabi.newpipe.extractor.kiosk.KioskList;
 import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
-import org.schabi.newpipe.local.feed.FeedFragment;
 import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.local.bookmark.BookmarkFragment;
+import org.schabi.newpipe.local.feed.FeedFragment;
+import org.schabi.newpipe.local.history.StatisticsPlaylistFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionFragment;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
@@ -39,20 +36,29 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class MainFragment extends BaseFragment implements TabLayout.OnTabSelectedListener {
 
     public int currentServiceId = -1;
     private ViewPager viewPager;
+    private List<String> tabs = new ArrayList<>();
+    static PagerAdapter adapter;
+    TabLayout tabLayout;
+    private SharedPreferences prefs;
+    private Bundle savedInstanceStateBundle;
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Constants
-    //////////////////////////////////////////////////////////////////////////*/
+    private static final String TAB_NUMBER_BLANK = "0";
+    private static final String TAB_NUMBER_KIOSK = "1";
+    private static final String TAB_NUMBER_SUBSCIRPTIONS = "2";
+    private static final String TAB_NUMBER_FEED = "3";
+    private static final String TAB_NUMBER_BOOKMARKS = "4";
+    private static final String TAB_NUMBER_HISTORY = "5";
+    private static final String TAB_NUMBER_CHANNEL = "6";
 
-    private static final int FALLBACK_SERVICE_ID = ServiceList.YouTube.getServiceId();
-    private static final String FALLBACK_CHANNEL_URL = "https://www.youtube.com/channel/UC-9-kyTW8ZkZNDHQJ6FgpwQ";
-    private static final String FALLBACK_CHANNEL_NAME = "Music";
-    private static final String FALLBACK_KIOSK_ID = "Trending";
-    private static final int KIOSK_MENU_OFFSET = 2000;
+    SharedPreferences.OnSharedPreferenceChangeListener listener;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Fragment's LifeCycle
@@ -60,13 +66,23 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        savedInstanceStateBundle = savedInstanceState;
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        listener = (prefs, key) -> {
+            if(key.equals("saveUsedTabs")) {
+                mainPageChanged();
+            }
+        };
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         currentServiceId = ServiceHelper.getSelectedServiceId(activity);
+
+        prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+        prefs.registerOnSharedPreferenceChangeListener(listener);
+
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
@@ -74,28 +90,114 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     protected void initViews(View rootView, Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
 
-        TabLayout tabLayout = rootView.findViewById(R.id.main_tab_layout);
+        tabLayout = rootView.findViewById(R.id.main_tab_layout);
         viewPager = rootView.findViewById(R.id.pager);
 
         /*  Nested fragment, use child fragment here to maintain backstack in view pager. */
-        PagerAdapter adapter = new PagerAdapter(getChildFragmentManager());
+        adapter = new PagerAdapter(getChildFragmentManager());
         viewPager.setAdapter(adapter);
-        viewPager.setOffscreenPageLimit(adapter.getCount());
 
         tabLayout.setupWithViewPager(viewPager);
 
-        int channelIcon = ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.ic_channel);
-        int whatsHotIcon = ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.ic_hot);
-        int bookmarkIcon = ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.ic_bookmark);
+        mainPageChanged();
+    }
 
-        if (isSubscriptionsPageOnlySelected()) {
-            tabLayout.getTabAt(0).setIcon(channelIcon);
-            tabLayout.getTabAt(1).setIcon(bookmarkIcon);
-        } else {
-            tabLayout.getTabAt(0).setIcon(whatsHotIcon);
-            tabLayout.getTabAt(1).setIcon(channelIcon);
-            tabLayout.getTabAt(2).setIcon(bookmarkIcon);
+
+    public void mainPageChanged() {
+        getTabOrder();
+        adapter.notifyDataSetChanged();
+        viewPager.setOffscreenPageLimit(adapter.getCount());
+        setIcons();
+        setFirstTitle();
+    }
+
+    private void setFirstTitle() {
+        if((tabs.size() > 0)
+                && activity != null) {
+            String tabInformation = tabs.get(0);
+                if (tabInformation.startsWith(TAB_NUMBER_KIOSK + "\t")) {
+                    String kiosk[] = tabInformation.split("\t");
+                    if (kiosk.length == 3) {
+                        setTitle(kiosk[1]);
+                    }
+                } else if (tabInformation.startsWith(TAB_NUMBER_CHANNEL + "\t")) {
+
+                    String channelInfo[] = tabInformation.split("\t");
+                    if(channelInfo.length==4) {
+                        setTitle(channelInfo[2]);
+                    }
+                } else {
+                    switch (tabInformation) {
+                        case TAB_NUMBER_BLANK:
+                            setTitle(getString(R.string.app_name));
+                            break;
+                        case TAB_NUMBER_SUBSCIRPTIONS:
+                            setTitle(getString(R.string.tab_subscriptions));
+                            break;
+                        case TAB_NUMBER_FEED:
+                            setTitle(getString(R.string.fragment_whats_new));
+                            break;
+                        case TAB_NUMBER_BOOKMARKS:
+                            setTitle(getString(R.string.tab_bookmarks));
+                            break;
+                        case TAB_NUMBER_HISTORY:
+                            setTitle(getString(R.string.title_activity_history));
+                            break;
+                    }
+                }
+
+
         }
+    }
+
+    private void setIcons() {
+        for (int i = 0; i < tabs.size(); i++) {
+            String tabInformation = tabs.get(i);
+
+            TabLayout.Tab tabToSet = tabLayout.getTabAt(i);
+            Context c = getContext();
+
+            if (tabToSet != null && c != null) {
+
+                if (tabInformation.startsWith(TAB_NUMBER_KIOSK + "\t")) {
+                    String kiosk[] = tabInformation.split("\t");
+                    if (kiosk.length == 3) {
+                        tabToSet.setIcon(KioskTranslator.getKioskIcons(kiosk[1], getContext()));
+                    }
+                } else if (tabInformation.startsWith(TAB_NUMBER_CHANNEL + "\t")) {
+                    tabToSet.setIcon(ThemeHelper.resolveResourceIdFromAttr(getContext(), R.attr.ic_channel));
+                } else {
+                    switch (tabInformation) {
+                        case TAB_NUMBER_BLANK:
+                            tabToSet.setIcon(ThemeHelper.resolveResourceIdFromAttr(getContext(), R.attr.ic_hot));
+                            break;
+                        case TAB_NUMBER_SUBSCIRPTIONS:
+                            tabToSet.setIcon(ThemeHelper.resolveResourceIdFromAttr(getContext(), R.attr.ic_channel));
+                            break;
+                        case TAB_NUMBER_FEED:
+                            tabToSet.setIcon(ThemeHelper.resolveResourceIdFromAttr(getContext(), R.attr.rss));
+                            break;
+                        case TAB_NUMBER_BOOKMARKS:
+                            tabToSet.setIcon(ThemeHelper.resolveResourceIdFromAttr(getContext(), R.attr.ic_bookmark));
+                            break;
+                        case TAB_NUMBER_HISTORY:
+                            tabToSet.setIcon(ThemeHelper.resolveResourceIdFromAttr(getContext(), R.attr.history));
+                            break;
+                    }
+                }
+
+            }
+        }
+    }
+
+
+    private void getTabOrder() {
+        tabs.clear();
+
+        String save = prefs.getString("saveUsedTabs", "1\tTrending\t0\n2\n4\n");
+        String tabsArray[] = save.trim().split("\n");
+
+        Collections.addAll(tabs, tabsArray);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -107,16 +209,6 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         super.onCreateOptionsMenu(menu, inflater);
         if (DEBUG) Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu + "], inflater = [" + inflater + "]");
         inflater.inflate(R.menu.main_fragment_menu, menu);
-        SubMenu kioskMenu = menu.addSubMenu(Menu.NONE, Menu.NONE, 200, getString(R.string.kiosk));
-        try {
-            createKioskMenu(kioskMenu, inflater);
-        } catch (Exception e) {
-            ErrorActivity.reportError(activity, e,
-                    activity.getClass(),
-                    null,
-                    ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
-                            "none", "", R.string.app_ui_crash));
-        }
 
         ActionBar supportActionBar = activity.getSupportActionBar();
         if (supportActionBar != null) {
@@ -165,115 +257,77 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
         @Override
         public Fragment getItem(int position) {
-            switch (position) {
-                case 0:
-                    return isSubscriptionsPageOnlySelected() ? new SubscriptionFragment() : getMainPageFragment();
-                case 1:
-                    if(PreferenceManager.getDefaultSharedPreferences(getActivity())
-                            .getString(getString(R.string.main_page_content_key), getString(R.string.blank_page_key))
-                            .equals(getString(R.string.subscription_page_key))) {
-                        return new BookmarkFragment();
-                    } else {
-                        return new SubscriptionFragment();
+            String tabInformation = tabs.get(position);
+
+            if(tabInformation.startsWith(TAB_NUMBER_KIOSK + "\t")) {
+                String kiosk[] = tabInformation.split("\t");
+                if(kiosk.length==3) {
+                    KioskFragment fragment = null;
+                    try {
+                        fragment = KioskFragment.getInstance(Integer.parseInt(kiosk[2]), kiosk[1]);
+                        fragment.useAsFrontPage(true);
+                        return fragment;
+                    } catch (Exception e) {
+                        ErrorActivity.reportError(activity, e,
+                                activity.getClass(),
+                                null,
+                                ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
+                                        "none", "", R.string.app_ui_crash));
                     }
-                case 2:
-                    return new BookmarkFragment();
-                default:
+                }
+            } else if(tabInformation.startsWith(TAB_NUMBER_CHANNEL + "\t")) {
+                String channelInfo[] = tabInformation.split("\t");
+                if(channelInfo.length==4) {
+                    ChannelFragment fragment = ChannelFragment.getInstance(Integer.parseInt(channelInfo[3]), channelInfo[1], channelInfo[2]);
+                    fragment.useAsFrontPage(true);
+                    return fragment;
+                } else {
                     return new BlankFragment();
+                }
+            } else {
+                    switch (tabInformation) {
+                        case TAB_NUMBER_BLANK:
+                            return new BlankFragment();
+                        case TAB_NUMBER_SUBSCIRPTIONS:
+                            SubscriptionFragment sFragment = new SubscriptionFragment();
+                            sFragment.useAsFrontPage(true);
+                            return sFragment;
+                        case TAB_NUMBER_FEED:
+                            FeedFragment fFragment = new FeedFragment();
+                            fFragment.useAsFrontPage(true);
+                            return fFragment;
+                        case TAB_NUMBER_BOOKMARKS:
+                            BookmarkFragment bFragment = new BookmarkFragment();
+                            bFragment.useAsFrontPage(true);
+                            return bFragment;
+                        case TAB_NUMBER_HISTORY:
+                            StatisticsPlaylistFragment cFragment = new StatisticsPlaylistFragment();
+                            cFragment.useAsFrontPage(true);
+                            return cFragment;
+                    }
+                }
+
+            return new BlankFragment();
             }
-        }
 
         @Override
-        public CharSequence getPageTitle(int position) {
-            //return getString(this.tabTitles[position]);
-            return "";
+        public int getItemPosition(Object object) {
+            // Causes adapter to reload all Fragments when
+            // notifyDataSetChanged is called
+            return POSITION_NONE;
         }
 
         @Override
         public int getCount() {
-            return isSubscriptionsPageOnlySelected() ? 2 : 3;
+            return tabs.size();
         }
-    }
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Main page content
-    //////////////////////////////////////////////////////////////////////////*/
-
-    private boolean isSubscriptionsPageOnlySelected() {
-        return PreferenceManager.getDefaultSharedPreferences(activity)
-                .getString(getString(R.string.main_page_content_key), getString(R.string.blank_page_key))
-                .equals(getString(R.string.subscription_page_key));
-    }
-
-    private Fragment getMainPageFragment() {
-        if (getActivity() == null) return new BlankFragment();
-
-        try {
-            SharedPreferences preferences =
-                    PreferenceManager.getDefaultSharedPreferences(getActivity());
-            final String setMainPage = preferences.getString(getString(R.string.main_page_content_key),
-                    getString(R.string.main_page_selectd_kiosk_id));
-            if (setMainPage.equals(getString(R.string.blank_page_key))) {
-                return new BlankFragment();
-            } else if (setMainPage.equals(getString(R.string.kiosk_page_key))) {
-                int serviceId = preferences.getInt(getString(R.string.main_page_selected_service),
-                        FALLBACK_SERVICE_ID);
-                String kioskId = preferences.getString(getString(R.string.main_page_selectd_kiosk_id),
-                        FALLBACK_KIOSK_ID);
-                KioskFragment fragment = KioskFragment.getInstance(serviceId, kioskId);
-                fragment.useAsFrontPage(true);
-                return fragment;
-            } else if (setMainPage.equals(getString(R.string.feed_page_key))) {
-                FeedFragment fragment = new FeedFragment();
-                fragment.useAsFrontPage(true);
-                return fragment;
-            } else if (setMainPage.equals(getString(R.string.channel_page_key))) {
-                int serviceId = preferences.getInt(getString(R.string.main_page_selected_service),
-                        FALLBACK_SERVICE_ID);
-                String url = preferences.getString(getString(R.string.main_page_selected_channel_url),
-                        FALLBACK_CHANNEL_URL);
-                String name = preferences.getString(getString(R.string.main_page_selected_channel_name),
-                        FALLBACK_CHANNEL_NAME);
-                ChannelFragment fragment = ChannelFragment.getInstance(serviceId,
-                        url,
-                        name);
-                fragment.useAsFrontPage(true);
-                return fragment;
-            } else {
-                return new BlankFragment();
-            }
-
-        } catch (Exception e) {
-            ErrorActivity.reportError(activity, e,
-                    activity.getClass(),
-                    null,
-                    ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
-                            "none", "", R.string.app_ui_crash));
-            return new BlankFragment();
-        }
-    }
-
-    /*//////////////////////////////////////////////////////////////////////////
-    // Select Kiosk
-    //////////////////////////////////////////////////////////////////////////*/
-
-    private void createKioskMenu(Menu menu, MenuInflater menuInflater)
-            throws Exception {
-        StreamingService service = NewPipe.getService(currentServiceId);
-        KioskList kl = service.getKioskList();
-        int i = 0;
-        for (final String ks : kl.getAvailableKiosks()) {
-            menu.add(0, KIOSK_MENU_OFFSET + i, Menu.NONE,
-                    KioskTranslator.getTranslatedKioskName(ks, getContext()))
-                    .setOnMenuItemClickListener(menuItem -> {
-                            try {
-                                NavigationHelper.openKioskFragment(getFragmentManager(), currentServiceId, ks);
-                            } catch (Exception e) {
-                                ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
-                            }
-                            return true;
-                    });
-            i++;
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            getFragmentManager()
+                    .beginTransaction()
+                    .remove((Fragment)object)
+                    .commitNowAllowingStateLoss();
         }
     }
 }

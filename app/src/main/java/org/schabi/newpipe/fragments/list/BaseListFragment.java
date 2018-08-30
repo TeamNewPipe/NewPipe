@@ -156,9 +156,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
             public void selected(ChannelInfoItem selectedItem) {
                 try {
                     onItemSelected(selectedItem);
-                    NavigationHelper.openChannelFragment(useAsFrontPage ?
-                                    getParentFragment().getFragmentManager()
-                                    : getFragmentManager(),
+                    NavigationHelper.openChannelFragment(getFM(),
                             selectedItem.getServiceId(),
                             selectedItem.getUrl(),
                             selectedItem.getName());
@@ -173,10 +171,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
             public void selected(PlaylistInfoItem selectedItem) {
                 try {
                     onItemSelected(selectedItem);
-                    NavigationHelper.openPlaylistFragment(
-                            useAsFrontPage
-                                    ? getParentFragment().getFragmentManager()
-                                    : getFragmentManager(),
+                    NavigationHelper.openPlaylistFragment(getFM(),
                             selectedItem.getServiceId(),
                             selectedItem.getUrl(),
                             selectedItem.getName());
@@ -197,9 +192,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
 
     private void onStreamSelected(StreamInfoItem selectedItem) {
         onItemSelected(selectedItem);
-        NavigationHelper.openVideoDetailFragment(useAsFrontPage
-                        ? getParentFragment().getFragmentManager()
-                        : getFragmentManager(),
+        NavigationHelper.openVideoDetailFragment(getFM(),
                 selectedItem.getServiceId(), selectedItem.getUrl(), selectedItem.getName());
     }
 
