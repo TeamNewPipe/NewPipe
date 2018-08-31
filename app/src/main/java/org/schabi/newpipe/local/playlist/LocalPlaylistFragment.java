@@ -459,7 +459,11 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
 
     private ItemTouchHelper.SimpleCallback getItemTouchCallback() {
-        return new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,
+        int directions = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
+        if (isGridLayout()) {
+            directions |= ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
+        }
+        return new ItemTouchHelper.SimpleCallback(directions,
                 ItemTouchHelper.ACTION_STATE_IDLE) {
             @Override
             public int interpolateOutOfBoundsScroll(RecyclerView recyclerView, int viewSize,
