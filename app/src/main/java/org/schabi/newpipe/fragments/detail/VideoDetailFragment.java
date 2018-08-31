@@ -1262,6 +1262,11 @@ public class VideoDetailFragment
             // Only auto play in the first open
             autoPlayEnabled = false;
         }
+
+        final ViewParent related = relatedStreamRootLayout.getParent();
+        if (related instanceof ScrollView) {
+            ((ScrollView) related).scrollTo(0, 0);
+        }
     }
 
 
