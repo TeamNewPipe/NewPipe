@@ -458,11 +458,11 @@
 
     <string name="clear_views_history_title">İzleme geçmişini temizle</string>
     <string name="clear_views_history_summary">Oynatılan akışların geçmişini siler</string>
-    <string name="delete_view_history_alert">Tüm izleme geçmişini sil</string>
+    <string name="delete_view_history_alert">Tüm izleme geçmişini sil.</string>
     <string name="view_history_deleted">İzleme geçmişi silindi.</string>
     <string name="clear_search_history_title">Arama geçmişini temizle</string>
     <string name="clear_search_history_summary">Aranan anahtar sözcüklerin geçmişini siler</string>
-    <string name="delete_search_history_alert">Tüm arama geçmişini sil</string>
+    <string name="delete_search_history_alert">Tüm arama geçmişini sil.</string>
     <string name="search_history_deleted">Arama geçmişi silindi.</string>
     <string name="one_item_deleted">1 öge silindi.</string>
 
