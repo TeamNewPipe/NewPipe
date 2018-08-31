@@ -17,7 +17,8 @@
     <string name="autoplay_through_intent_key" translatable="false">autoplay_through_intent</string>
     <string name="use_old_player_key" translatable="false">use_oldplayer</string>
 
-    <string name="player_gesture_controls_key" translatable="false">player_gesture_controls</string>
+    <string name="volume_gesture_control_key" translatable="false">volume_gesture_control</string>
+    <string name="brightness_gesture_control_key" translatable="false">brightness_gesture_control</string>
     <string name="resume_on_audio_focus_gain_key" translatable="false">resume_on_audio_focus_gain</string>
     <string name="popup_remember_size_pos_key" translatable="false">popup_remember_size_pos_key</string>
     <string name="use_inexact_seek_key" translatable="false">use_inexact_seek_key</string>

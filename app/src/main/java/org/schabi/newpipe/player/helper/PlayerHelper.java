@@ -169,8 +169,12 @@ public class PlayerHelper {
         return isResumeAfterAudioFocusGain(context, false);
     }
 
-    public static boolean isPlayerGestureEnabled(@NonNull final Context context) {
-        return isPlayerGestureEnabled(context, true);
+    public static boolean isVolumeGestureEnabled(@NonNull final Context context) {
+        return isVolumeGestureEnabled(context, true);
+    }
+
+    public static boolean isBrightnessGestureEnabled(@NonNull final Context context) {
+        return isBrightnessGestureEnabled(context, true);
     }
 
     public static boolean isUsingOldPlayer(@NonNull final Context context) {
@@ -306,8 +310,12 @@ public class PlayerHelper {
         return getPreferences(context).getBoolean(context.getString(R.string.resume_on_audio_focus_gain_key), b);
     }
 
-    private static boolean isPlayerGestureEnabled(@NonNull final Context context, final boolean b) {
-        return getPreferences(context).getBoolean(context.getString(R.string.player_gesture_controls_key), b);
+    private static boolean isVolumeGestureEnabled(@NonNull final Context context, final boolean b) {
+        return getPreferences(context).getBoolean(context.getString(R.string.volume_gesture_control_key), b);
+    }
+
+    private static boolean isBrightnessGestureEnabled(@NonNull final Context context, final boolean b) {
+        return getPreferences(context).getBoolean(context.getString(R.string.brightness_gesture_control_key), b);
     }
 
     private static boolean isUsingOldPlayer(@NonNull final Context context, final boolean b) {
