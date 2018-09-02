@@ -46,6 +46,7 @@ import org.schabi.newpipe.report.UserAction;
 import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.util.List;
+import java.util.Locale;
 
 import io.reactivex.Maybe;
 import io.reactivex.Single;
@@ -118,7 +119,7 @@ public final class ExtractorHelper {
                                                      boolean forceLoad) {
         checkServiceId(serviceId);
         return checkCache(forceLoad, serviceId, url, Single.fromCallable(() ->
-                ChannelInfo.getInfo(NewPipe.getService(serviceId), url)));
+                ChannelInfo.getInfo(NewPipe.getService(serviceId), url, Locale.getDefault().getLanguage())));
     }
 
     public static Single<InfoItemsPage> getMoreChannelItems(final int serviceId,
@@ -150,7 +151,7 @@ public final class ExtractorHelper {
                                                  final String contentCountry,
                                                  boolean forceLoad) {
         return checkCache(forceLoad, serviceId, url, Single.fromCallable(() ->
-                KioskInfo.getInfo(NewPipe.getService(serviceId), url, contentCountry)));
+                KioskInfo.getInfo(NewPipe.getService(serviceId), url, contentCountry, Locale.getDefault().getLanguage())));
     }
 
     public static Single<InfoItemsPage> getMoreKioskItems(final int serviceId,
@@ -159,7 +160,7 @@ public final class ExtractorHelper {
                                                             final String contentCountry) {
         return Single.fromCallable(() ->
                 KioskInfo.getMoreItems(NewPipe.getService(serviceId),
-                        url, nextStreamsUrl, contentCountry));
+                        url, nextStreamsUrl, contentCountry, Locale.getDefault().getLanguage()));
     }
 
     /*//////////////////////////////////////////////////////////////////////////
