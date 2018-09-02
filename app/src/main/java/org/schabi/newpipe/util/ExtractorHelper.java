@@ -59,7 +59,7 @@ public final class ExtractorHelper {
     }
 
     private static void checkServiceId(int serviceId) {
-        if(serviceId == Constants.NO_SERVICE_ID) {
+        if (serviceId == Constants.NO_SERVICE_ID) {
             throw new IllegalArgumentException("serviceId is NO_SERVICE_ID");
         }
     }
@@ -122,8 +122,8 @@ public final class ExtractorHelper {
     }
 
     public static Single<InfoItemsPage> getMoreChannelItems(final int serviceId,
-                                                              final String url,
-                                                              final String nextStreamsUrl) {
+                                                            final String url,
+                                                            final String nextStreamsUrl) {
         checkServiceId(serviceId);
         return Single.fromCallable(() ->
                 ChannelInfo.getMoreItems(NewPipe.getService(serviceId), url, nextStreamsUrl));
@@ -138,8 +138,8 @@ public final class ExtractorHelper {
     }
 
     public static Single<InfoItemsPage> getMorePlaylistItems(final int serviceId,
-                                                               final String url,
-                                                               final String nextStreamsUrl) {
+                                                             final String url,
+                                                             final String nextStreamsUrl) {
         checkServiceId(serviceId);
         return Single.fromCallable(() ->
                 PlaylistInfo.getMoreItems(NewPipe.getService(serviceId), url, nextStreamsUrl));
@@ -154,9 +154,9 @@ public final class ExtractorHelper {
     }
 
     public static Single<InfoItemsPage> getMoreKioskItems(final int serviceId,
-                                                            final String url,
-                                                            final String nextStreamsUrl,
-                                                            final String contentCountry) {
+                                                          final String url,
+                                                          final String nextStreamsUrl,
+                                                          final String contentCountry) {
         return Single.fromCallable(() ->
                 KioskInfo.getMoreItems(NewPipe.getService(serviceId),
                         url, nextStreamsUrl, contentCountry));
@@ -198,17 +198,17 @@ public final class ExtractorHelper {
     public static <I extends Info> Maybe<I> loadFromCache(final int serviceId, final String url) {
         checkServiceId(serviceId);
         return Maybe.defer(() -> {
-                //noinspection unchecked
-                I info = (I) cache.getFromKey(serviceId, url);
-                if (MainActivity.DEBUG) Log.d(TAG, "loadFromCache() called, info > " + info);
+            //noinspection unchecked
+            I info = (I) cache.getFromKey(serviceId, url);
+            if (MainActivity.DEBUG) Log.d(TAG, "loadFromCache() called, info > " + info);
 
-                // Only return info if it's not null (it is cached)
-                if (info != null) {
-                    return Maybe.just(info);
-                }
+            // Only return info if it's not null (it is cached)
+            if (info != null) {
+                return Maybe.just(info);
+            }
 
-                return Maybe.empty();
-            });
+            return Maybe.empty();
+        });
     }
 
     /**

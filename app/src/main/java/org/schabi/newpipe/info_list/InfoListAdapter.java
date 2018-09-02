@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
+import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.info_list.holder.ChannelInfoItemHolder;
@@ -88,6 +89,10 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public void setOnPlaylistSelectedListener(OnClickGesture<PlaylistInfoItem> listener) {
         infoItemBuilder.setOnPlaylistSelectedListener(listener);
+    }
+
+    public void setOnCommentsSelectedListener(OnClickGesture<CommentsInfoItem> listener) {
+        infoItemBuilder.setOnCommentsSelectedListener(listener);
     }
 
     public void useMiniItemVariants(boolean useMiniVariant) {
