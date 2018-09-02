@@ -217,7 +217,7 @@
     <string name="invalid_url_toast">Μη έγκυρο URL</string>
     <string name="video_streams_empty">Δε βρέθηκαν ροές βίντεο</string>
     <string name="audio_streams_empty">Δε βρέθηκαν ροές ήχου</string>
-    <string name="invalid_directory">Μη έγκυρη τοποθεσία</string>
+    <string name="invalid_directory">Μη έγκυρη διεύθυνση</string>
     <string name="invalid_source">Μη έγκυρο αρχείο ή πηγή περιεχομένου</string>
     <string name="invalid_file">Το αρχείο δεν υπάρχει ή δεν έχουμε επαρκή εξουσιοδότηση για να διαβάσουμε ή να γράψουμε σε αυτό</string>
     <string name="file_name_empty_error">Το όνομα αρχείου δεν μπορεί να είναι κενό</string>
@@ -301,7 +301,7 @@
     <string name="error_unable_to_load_license">Δεν ήταν δυνατή η φόρτωση της άδειας</string>
     <string name="tab_about">Περί</string>
     <string name="tab_contributors">Συνεισφέροντες</string>
-    <string name="app_description">Ελέυθερη και ελαφριά εφαρμογή αναπαραγωγής ροών στο Android.</string>
+    <string name="app_description">Ανοιχτού κώδικα, ελαφριά εφαρμογή του Android, για την αναπαραγωγή πολυμεσων από το ίντερνετ.</string>
     <string name="contribution_title">Συνεισφέρετε</string>
     <string name="contribution_encouragement">Αν έχετε ιδέες για μετάφραση, αλλαγή σχεδιασμού, εκκαθάριση ή ριζικές αλλαγές κώδικα της εφαρμογής—η βοήθεια σας είναι πάντα ευπρόσδεκτη. Όσο περισσότερη έχουμε, τόσο καλύτεροι γινόμαστε!</string>
     <string name="view_on_github">Δείτε το στο GitHub</string>
