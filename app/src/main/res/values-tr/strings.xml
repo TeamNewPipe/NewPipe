@@ -338,7 +338,7 @@
 
     <string name="tab_bookmarks">Yer imleri</string>
 
-    <string name="controls_add_to_playlist_title">Şuna Ekle</string>
+    <string name="controls_add_to_playlist_title">Listeye Ekle</string>
 
     <string name="detail_drag_description">Yeniden sıralamak için sürükle</string>
 
@@ -382,7 +382,7 @@
     <string name="normal_caption_font_size">Normal yazı tipi</string>
     <string name="larger_caption_font_size">Daha büyük yazı tipi</string>
 <string name="settings_category_debug_title">Hata Ayıklama</string>
-    <string name="drawer_header_action_paceholder_text">Yakında burada bir şeyler görünecek ;D</string>
+    <string name="drawer_header_action_paceholder_text">Yakında burada bir şeyler görünecek :)</string>
 
 
     <string name="caption_auto_generated">Kendiliğinden Üretilmiş</string>
