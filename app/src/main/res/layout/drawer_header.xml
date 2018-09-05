@@ -39,6 +39,7 @@ android:focusable="true">
         android:layout_alignBottom="@id/drawer_header_np_nude_view"
         android:gravity="center"
         android:textSize="30dp"
+        android:textColor="@color/drawer_header_font_color"
         android:textStyle="bold|italic"/>
 
     <TextView
@@ -50,6 +51,7 @@ android:focusable="true">
         android:layout_alignLeft="@id/drawer_header_np_text_view"
         android:layout_alignStart="@id/drawer_header_np_text_view"
         android:textSize="18dp"
+        android:textColor="@color/drawer_header_font_color"
         android:textStyle="italic"/>
 
     <ImageView

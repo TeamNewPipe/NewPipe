@@ -366,10 +366,7 @@ public abstract class BasePlayer implements
         try {
             context.unregisterReceiver(broadcastReceiver);
         } catch (final IllegalArgumentException unregisteredException) {
-            ErrorActivity.reportError(context, unregisteredException, null, null,
-                    ErrorActivity.ErrorInfo.make(PLAY_STREAM,
-                            "none",
-                            "play stream", R.string.general_error));
+            Log.e(TAG, "Broadcast receiver already unregistered.", unregisteredException);
         }
     }
 

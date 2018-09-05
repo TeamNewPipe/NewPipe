@@ -15,7 +15,8 @@
     <string name="choose_browser">బ్రౌజర్ను ఎంచుకోండి</string>
     <string name="screen_rotation">భ్రమణ</string>
     <string name="use_external_audio_player_title">బాహ్యట ఆడియో ప్లేయర్ని ఉపయోగించండి</string>
-    <string name="popup_mode_share_menu_title">న్యూపై పాప్అప్</string>
+    <string name="popup_mode_share_menu_title">న్యూపైప్ పాపప్ మోడ్
+\n</string>
     <string name="subscribe_button_title">సభ్యత్వ</string>
     <string name="subscribed_button_title">సబ్ స్క్రైబ్</string>
     <string name="channel_unsubscribed">అన్ సబ్స్క్రైబ్ చేయబడింది</string>
@@ -28,7 +29,7 @@
     <string name="fragment_whats_new">కొత్తది ఏమిటి</string>
 
     <string name="controls_background_title">వెనకవైపు</string>
-    <string name="controls_popup_title">పాప్అప్</string>
+    <string name="controls_popup_title">పాపప్</string>
 
     <string name="download_path_title">వీడియో డౌన్లోడ్ మార్గం</string>
     <string name="download_path_summary">డౌన్లోడ్ చేసిన వీడియోలను నిల్వ చేయడానికి మార్గం</string>
@@ -148,7 +149,7 @@
     <string name="msg_exists">ఫైల్ ఇప్పటికే ఉంది</string>
     <string name="msg_running">న్యూపిప్ డౌన్లోడ్ అవుతంది</string>
     <string name="msg_running_detail">వివరాల కోసం నొక్కండి</string>
-    <string name="msg_wait">దయచేసి వేచి ఉండండి</string>
+    <string name="msg_wait">దయచేసి వేచి ఉండండి…</string>
     <string name="msg_copied">క్లిప్బోర్డ్కు కాపీ చేయబడింది</string>
     <string name="no_available_dir">దయచేసి అందుబాటులో ఉన్న డౌన్లోడ్ ఫోల్డర్ను ఎంచుకోండి</string>
     <string name="settings_category_downloads_title">డౌన్లోడ్</string>
@@ -198,4 +199,6 @@
     <string name="hold_to_append">ఎన్క్యూలో పట్టుకోండి</string>
 <string name="no_player_found">"మీదగార వీడియో కి కావాల్సిన ప్లేయర్ లేదు. VLC  ప్లేయర్ ఇన్స్టాల్ చేసుకుంటారా?"</string>
     <string name="no_player_found_toast">"మీదగార వీడియో కి కావాల్సిన ప్లేయర్ లేదు (మీరు VLC  ఇసన్తాల్ చేసుకోవచ్చు)"</string>
+    <string name="open_in_popup_mode">పాపప్ మోడ్ తెరవండి</string>
+    <string name="default_popup_resolution_title">డిఫాల్ట్ పాపప్ స్పష్టత</string>
     </resources>
