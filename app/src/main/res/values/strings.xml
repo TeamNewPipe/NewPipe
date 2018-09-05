@@ -249,6 +249,7 @@
         <item quantity="one">%s subscriber</item>
         <item quantity="other">%s subscribers</item>
     </plurals>
+    <string name="subscribers_count_not_available">Subscribers count not available</string>
 
     <string name="no_views">No views</string>
     <plurals name="views">
