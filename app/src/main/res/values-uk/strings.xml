@@ -15,49 +15,51 @@
     <string name="choose_browser">Оберіть переглядач</string>
     <string name="screen_rotation">обертання</string>
     <string name="use_external_video_player_title">Зовнішній відео-програвач</string>
-    <string name="use_external_audio_player_title">Зовнішній аудіо-програвач</string>
+    <string name="use_external_audio_player_title">Зовнішній авдіо-програвач</string>
 
-    <string name="download_path_title">Шлях для завантаження відео</string>
-    <string name="download_path_dialog_title">Вкажіть шлях для завантаження відео</string>
+    <string name="download_path_title">Шлях для завантаження відеозапису</string>
+    <string name="download_path_dialog_title">Вкажіть шлях для завантаження відеозаписів</string>
 
-    <string name="download_path_audio_dialog_title">Вкажіть шлях для завантаження аудіо файлів</string>
+    <string name="download_path_audio_dialog_title">Вкажіть шлях для завантаження авдіофайлів</string>
 
-    <string name="download_path_summary">Шлях де будуть зберігатись завантажені відео</string>
-    <string name="download_path_audio_title">Шлях для завантаження аудіо</string>
-    <string name="download_path_audio_summary">Шлях де будуть зберігатись завантажені аудіо файли</string>
+    <string name="download_path_summary">Шлях де зберігатимуться завантажені відеозаписи</string>
+    <string name="download_path_audio_title">Шлях для завантаження авдіо</string>
+    <string name="download_path_audio_summary">Шлях де зберігатимуться завантажені авдіофайли</string>
     <string name="autoplay_by_calling_app_title">Автоматично відтворювати</string>
-    <string name="autoplay_by_calling_app_summary">Відтворює відео коли NewPipe викликано з іншого застосунку</string>
+    <string name="autoplay_by_calling_app_summary">Відтворює відеозапис коли NewPipe викликано з іншого застосунку</string>
     <string name="default_resolution_title">Типова роздільна здатність</string>
     <string name="play_with_kodi_title">Відтворювати за допомогою Kodi</string>
     <string name="kore_not_found">Застосунок Kore не знайдено. Встановити?</string>
     <string name="show_play_with_kodi_title">Відтворювти у Kodi</string>
-    <string name="show_play_with_kodi_summary">Показувати опцію відтворення відео за допомогою Kodi media center</string>
-    <string name="play_audio">Аудіо</string>
-    <string name="default_audio_format_title">Типовий аудіо формат</string>
+    <string name="show_play_with_kodi_summary">Показувати опцію відтворення відеозапису за допомогою Kodi media center</string>
+    <string name="play_audio">Авдіо</string>
+    <string name="default_audio_format_title">Типовий авдіоформат</string>
+    <string name="webm_description">WebM — вільний формат</string>
+    <string name="m4a_description">M4A — ліпша якість</string>
     <string name="theme_title">Тема</string>
     <string name="dark_theme_title">Темна</string>
     <string name="light_theme_title">Світла</string>
 
     <string name="download_dialog_title">Завантажити</string>
-    <string name="next_video_title">Наступне відео</string>
-    <string name="show_next_and_similar_title">Показувати \"наступні\" та \"схожі\" відео</string>
+    <string name="next_video_title">Наступний відеозапис</string>
+    <string name="show_next_and_similar_title">Являти \"наступні\" й \"схожі\" відео</string>
     <string name="url_not_supported_toast">URL не підтримується</string>
     <string name="search_language_title">Переважна мова контенту</string>
-    <string name="settings_category_video_audio_title">Відео та Аудіо</string>
+    <string name="settings_category_video_audio_title">Відео та Авдіо</string>
     <string name="settings_category_appearance_title">Зовнішній вигляд</string>
     <string name="settings_category_other_title">Інше</string>
-    <string name="background_player_playing_toast">Відтворення у фоновому режимі</string>
+    <string name="background_player_playing_toast">Відтворення у тловому режимі</string>
     <string name="play_btn_text">Відтворити</string>
     <string name="storage_permission_denied">У доступі відмовлено</string>
     <string name="content">Контент</string>
-    <string name="show_age_restricted_content_title">Показувати контент з віковими обмеженнями</string>
-    <string name="video_is_age_restricted">Це відео має вікові обмеження. Спершу активуйте опцію для відображення таких відео у налаштуваннях.</string>
+    <string name="show_age_restricted_content_title">Контент з віковими обмеженнями</string>
+    <string name="video_is_age_restricted">Відеозапис має вікові обмеження. Спершу активуйте опцію для програвання таких записів у налаштуваннях.</string>
     <string name="duration_live">наживо</string>
 
     <string name="general_error">Хиба</string>
     <string name="network_error">Хиба мережі</string>
     <string name="could_not_load_thumbnails">Не вдалося завантажити всі ескізи</string>
-    <string name="youtube_signature_decryption_error">Не вдалося розшифрувати підпис URL відео</string>
+    <string name="youtube_signature_decryption_error">Не вдалося розшифрувати URL підпис відеозапису</string>
     <string name="parsing_error">Не вдалося проаналізувати веб-сайт</string>
     <string name="light_parsing_error">Не вдалося повністю проаналізувати веб-сайт</string>
     <string name="content_not_available">Контент не доступний</string>
@@ -98,7 +100,7 @@
     <string name="info_dir_created">Створити теку для завантаження \'%1$s\'</string>
 
     <string name="video">Відео</string>
-    <string name="audio">Аудіо</string>
+    <string name="audio">Авдіо</string>
     <string name="retry">Повторити</string>
     <string name="use_old_player_title">Використовувати старий програвач</string>
     <string name="short_thousand">К</string>
@@ -106,7 +108,7 @@
     <string name="short_billion">Б</string>
 
     <string name="start">Почати</string>
-    <string name="pause">Пауза</string>
+    <string name="pause">Павза</string>
     <string name="view">Відтворити</string>
     <string name="delete">Видалити</string>
     <string name="checksum">Контрольна сума</string>
@@ -125,7 +127,7 @@
 
 <string name="no_player_found_toast">Стримінґового програвача не знайдено (ви можете встановити VLC для відтворення)</string>
     <string name="open_in_popup_mode">Відкрити у віконному режимі</string>
-    <string name="use_external_video_player_summary">Певні роздільності НЕ МАТИМУТЬ звуку якщо цей параметр увімкнено</string>
+    <string name="use_external_video_player_summary">Певні роздільності НЕ матимуть звуку якщо цей параметр увімкнено</string>
     <string name="popup_mode_share_menu_title">NewPipe у віконному режимі</string>
     <string name="subscribe_button_title">Підписатися</string>
     <string name="subscribed_button_title">Ви підписалися</string>
@@ -138,13 +140,13 @@
 
     <string name="fragment_whats_new">Новинки</string>
 
-    <string name="controls_background_title">Тло</string>
+    <string name="controls_background_title">На тлі</string>
     <string name="controls_popup_title">У вікні</string>
 
     <string name="default_popup_resolution_title">Типова роздільна здатність вікна</string>
-    <string name="show_higher_resolutions_summary">Не всі пристрої підтримують відтворення 2K/4K відео</string>
-    <string name="show_higher_resolutions_title">Показувати більші роздільні здатності</string>
-    <string name="default_video_format_title">Типовий відео формат</string>
+    <string name="show_higher_resolutions_summary">Не всі пристрої підтримують відтворення 2K/4K відеозаписи</string>
+    <string name="show_higher_resolutions_title">Більші роздільні здатності</string>
+    <string name="default_video_format_title">Типовий формат відеозапису</string>
     <string name="popup_remember_size_pos_title">Пам\'ятати розмір та позицію вікна</string>
     <string name="popup_remember_size_pos_summary">Пам\'ятати останній розмір вікна</string>
     <string name="player_gesture_controls_title">Керування жестами</string>
@@ -154,10 +156,10 @@
     <string name="enable_search_history_title">Історія пошуків</string>
     <string name="enable_search_history_summary">Зберігати пошукові запити локально</string>
     <string name="enable_watch_history_title">Історія та кеш</string>
-    <string name="enable_watch_history_summary">Вести облік перегляду відео</string>
+    <string name="enable_watch_history_summary">Вести облік перегляду відеозаписів</string>
     <string name="resume_on_audio_focus_gain_title">Відновити відтворення</string>
     <string name="resume_on_audio_focus_gain_summary">Продовжувати відтворення опісля переривання (наприклад телефонного дзвінка)</string>
-    <string name="show_hold_to_append_title">Показувати \"утримуй, аби додати\" підказку</string>
+    <string name="show_hold_to_append_title">\"Утримуй аби додати\" підказка</string>
     <string name="default_content_country_title">Усталена країна контенту</string>
     <string name="service_title">Сервіс</string>
     <string name="settings_category_player_title">Програвач</string>
@@ -165,7 +167,7 @@
     <string name="settings_category_history_title">Історія та кеш</string>
     <string name="settings_category_popup_title">Вікно</string>
     <string name="popup_playing_toast">Відворення у вікні</string>
-    <string name="background_player_append">Додано до фонового відтворення</string>
+    <string name="background_player_append">Додано до тлового відтворення</string>
     <string name="popup_playing_append">Додано до чергу у вікно</string>
     <string name="playlist">Плейлист</string>
     <string name="filter">Фільтрувати</string>
@@ -179,11 +181,11 @@
     <string name="just_once">Тільки тепер</string>
 
     <string name="notification_channel_name">NewPipe сповіщення</string>
-    <string name="notification_channel_description">Сповіщення для фонового та віконного програвачів NewPipe</string>
+    <string name="notification_channel_description">"Сповіщення для NewPipe\'пових тлового і віконного програвачів "</string>
 
     <string name="unknown_content">[Невідомо]</string>
 
-    <string name="switch_to_background">Перемкнутися до Тла</string>
+    <string name="switch_to_background">Перемкнутися до тла</string>
     <string name="switch_to_popup">Перемкнутися до вікна</string>
     <string name="switch_to_main">Перемкнутися на головну</string>
 
@@ -195,11 +197,11 @@
     <string name="player_recoverable_failure">Відновлююсь після помилки програвача</string>
     <string name="invalid_url_toast">Помилкова URL</string>
     <string name="video_streams_empty">Відео-струмів не було знайдено</string>
-    <string name="audio_streams_empty">Не знайдено жодних аудіо-струмів</string>
+    <string name="audio_streams_empty">Не знайдено жодних авдіострумів</string>
 
     <string name="user_report">Звіт користувача</string>
     <string name="no_subscribers">Без підписників</string>
-    <string name="no_videos">Без відео</string>
+    <string name="no_videos">Відео нема</string>
     <string name="msg_url_malform">Помилкова URL або інтернет не є доступним</string>
     <string name="msg_popup_permission">Цей дозвіл має бути відкритим 
 \nу вікні</string>
@@ -207,7 +209,7 @@
     <string name="reCaptchaActivity">«reCAPTCHA»</string>
     <string name="settings_category_downloads_title">Завантаження</string>
     <string name="settings_file_charset_title">Допустимі символи у назвах файлів</string>
-    <string name="settings_file_replacement_character_summary">"Неправильні символи будуть скоректовані цим "</string>
+    <string name="settings_file_replacement_character_summary">"Неправильні символи коригуватимуться цим "</string>
     <string name="settings_file_replacement_character_title">Символ заміни</string>
 
     <string name="charset_letters_and_digits">Літери та цифри</string>
@@ -229,10 +231,10 @@
     <string name="top_50">Топ 50</string>
     <string name="new_and_hot">Новинки</string>
     <string name="play_queue_stream_detail">Деталі</string>
-    <string name="play_queue_audio_settings">Налаштування аудіо</string>
+    <string name="play_queue_audio_settings">Звукові налаштування</string>
 
-    <string name="video_player">Відео програвач</string>
-    <string name="background_player">Фоновий програвач</string>
+    <string name="video_player">Відеопрогравач</string>
+    <string name="background_player">Тловий програвач</string>
     <string name="popup_player">Віконний програвач</string>
     <string name="always_ask_player">Щоразу питати</string>
     
@@ -245,7 +247,7 @@
 
     <string name="controls_add_to_playlist_title">Додати до</string>
 
-    <string name="show_hold_to_append_summary">Показувати підказку коли натиснута кнопка фону або вікна на сторінці інформації відео</string>
+    <string name="show_hold_to_append_summary">Показувати підказку коли натиснута кнопка тла або вікна на сторінці інформації відеозапису</string>
     <string name="toggle_orientation">Перемкнути орієнтацію</string>
     <string name="player_unrecoverable_failure">Фатальна хиба програвача</string>
     <string name="external_player_unsupported_link_type">Зовнішні програвачі не підтримують такі види ланок</string>
@@ -263,9 +265,9 @@
 </plurals>
 
     <plurals name="videos">
-	<item quantity="one">%s відео</item>
-	<item quantity="few">%s відео</item>
-	<item quantity="many">%s відео</item>
+	<item quantity="one">%s відеозапис</item>
+	<item quantity="few">%s відеозаписи</item>
+	<item quantity="many">%s відеозаписів</item>
 </plurals>
 
     <string name="create">Створити</string>
@@ -282,7 +284,7 @@
     <string name="disable_leak_canary_notice">Моніторинг витоку памяті вимкнено</string>
 <string name="settings_category_debug_title">Усунення вад</string>
     <string name="empty_subscription_feed_subtitle">Нічого нема</string>
-    <string name="use_old_player_summary">Старий убудований медіа-фреймворк програвач</string>
+    <string name="use_old_player_summary">Старий убудований медія-фреймворк програвач</string>
 
     <string name="no_views">Перегляди відсутні</string>
     <plurals name="views">
@@ -319,8 +321,8 @@
     <string name="main_page_content">Контент на головній сторінці</string>
     <string name="blank_page_summary">Порожня сторінка</string>
     <string name="kiosk_page_summary">Kiosk</string>
-    <string name="subscription_page_summary">Сторінка підписання</string>
-    <string name="feed_page_summary">Сторінка фіду</string>
+    <string name="subscription_page_summary">Підписання</string>
+    <string name="feed_page_summary">Нове</string>
     <string name="channel_page_summary">Сторінка каналу</string>
     <string name="select_a_channel">Обрати канал</string>
     <string name="no_channel_subscribed_yet">Ви не підписані до жодного з каналів</string>
@@ -331,14 +333,14 @@
 
     <string name="kiosk">Кіоски</string>
     <string name="trending">Набуває популярності</string>
-    <string name="title_activity_background_player">Фоновий програвач</string>
+    <string name="title_activity_background_player">Тловий програвач</string>
     <string name="title_activity_popup_player">Віконний програвач</string>
     <string name="play_queue_remove">Усунути</string>
     <string name="hold_to_append">Затиснути, аби зняти з черги</string>
-    <string name="enqueue_on_background">Зняти з черги у фоновому програвачеві</string>
+    <string name="enqueue_on_background">Зняти з черги у тловому програвачеві</string>
     <string name="enqueue_on_popup">Зняти з черги у віконному програвачеві</string>
     <string name="start_here_on_main">Розпочати відтворення звідси</string>
-    <string name="start_here_on_background">Розпочати відтворення звідси у фоновому програвачеві</string>
+    <string name="start_here_on_background">Розпочати відтворення у тловому програвачеві</string>
     <string name="start_here_on_popup">Розпочати відтворення у вікні звідси</string>
 
     <string name="drawer_open">Відчинити шухляду</string>
@@ -384,7 +386,7 @@
 
 <string name="use_inexact_seek_title">Використовувати неточне шукання</string>
     <string name="use_inexact_seek_summary">Неточне шукання дозволяє програвачеві рухатися позиціями швидше, проте з меншою точністю</string>
-    <string name="auto_queue_title">Автоматично додати до черги наступний стрим</string>
+    <string name="auto_queue_title">Чи наступний стрим у черзі</string>
     <string name="auto_queue_summary">Автоматично додавати пов\'язаний стрим під час відтворення останнього у неповторювальній черзі</string>
     <string name="live_sync">СИНХРОНІЗАЦІЯ</string>
 
@@ -444,41 +446,41 @@
     <string name="preferred_open_action_settings_summary">Типова дія під час відкриття вмісту — %s</string>
 
     <string name="caption_setting_title">Субтитри</string>
-    <string name="caption_setting_description">Змінення маштабу тексту субтитрів та фонових стилів. Увімкнення функції потребує перезавантаження застосунку</string>
+    <string name="caption_setting_description">Змінення маштабу субтитрового тексту та тлових стилів. Увімкнення функції потребує перезавантаження застосунку</string>
 
     <string name="toast_no_player">Не знайдено відповідного застосунку для відтворення цього файла</string>
 
     <string name="clear_views_history_title">Очистити історію переглядів</string>
     <string name="clear_views_history_summary">Видаляє історію відтворень</string>
-    <string name="delete_view_history_alert">Видалити всю історію переглядів</string>
+    <string name="delete_view_history_alert">Видалити всю історію переглядів.</string>
     <string name="view_history_deleted">Історію переглядів було видалено.</string>
     <string name="clear_search_history_title">Очистити історію пошуків</string>
     <string name="clear_search_history_summary">Видаляє історію шуканих ключових слів</string>
-    <string name="delete_search_history_alert">Видалити всю пошукову історію</string>
+    <string name="delete_search_history_alert">Видалити всю пошукову історію.</string>
     <string name="search_history_deleted">Пошукову історію було видалено.</string>
     <string name="one_item_deleted">Видалено один фраґмент.</string>
 
     <string name="app_license">"NewPipe є вільною копілефт програмою: Ви можете використовувати її, поширювати та вдосконавлювати за власним розсудом. Зокрема ви можете перерозподіляти та/або змінювати її за умов використання GNU General Public License, опублікованою Free Software Foundation,  під 3-ю версією ліцензії, або (на ваш вибір) будь-якою пізнішою версією."</string>
     <string name="import_settings">Чи ви також бажаєте імпортувати налаштування?</string>
 
-    <string name="privacy_policy_title">Політика приватності NewPip\'у</string>
-    <string name="privacy_policy_encouragement">Проєкт NewPipe дуже серйозно ставиться до вашої приватності. Тому цей застосунок не збирає ніяких даних без вашої згоди
-\nПолітика приватності NewPipe поясняє у деталях які дані було відіслано та збережено, під час відсилання крахового звіту.</string>
+    <string name="privacy_policy_title">Політика приватності NewPipe\'у</string>
+    <string name="privacy_policy_encouragement">Проєкт NewPipe дуже серйозно ставиться до вашої приватності. Тому цей застосунок не збирає ніяких даних без вашої згоди 
+\nПолітика приватності NewPipe пояснюється у деталях, які дані було відіслано та збережено, під час відсилання крахового звіту.</string>
     <string name="read_privacy_policy">Читати політику приватності</string>
     <string name="start_accept_privacy_policy">Аби дотриматися Норм загального захисту даних ЄС (General Data Protection Regulation, GDPR), ми просимо звернути вашу увагу на NewPipe\'ову політику приватності. Будь ласка, прочитайте уважно
 \nВи маєте підтвердити її аби надіслати нам баґового звіту.</string>
     <string name="accept">Ухвалити</string>
     <string name="decline">Відхилити</string>
 <string name="limit_data_usage_none_description">Безмежно</string>
-    <string name="limit_mobile_data_usage_title">Обмежити роздільну здатність під час користування мобільним інтернетом</string>
+    <string name="limit_mobile_data_usage_title">Обмеження якості відео (мобільний трафік)</string>
     <string name="skip_silence_checkbox">Перемотувати підчас тиші</string>
     <string name="playback_step">Крок</string>
     <string name="playback_reset">Скинути</string>
 
     <string name="minimize_on_exit_title">Зменшити при перемкненні застосунку</string>
-    <string name="minimize_on_exit_summary">Дія при перемкненні до інших застосунків з головного відео-програвачу — %s</string>
+    <string name="minimize_on_exit_summary">Дія при перемкненні до інших застосунків з головного відеопрогравача — %s</string>
     <string name="minimize_on_exit_none_description">Жодних</string>
-    <string name="minimize_on_exit_background_description">Зменшити до фонового програвачу</string>
+    <string name="minimize_on_exit_background_description">До тлового програвача</string>
     <string name="minimize_on_exit_popup_description">Зменшити до віконного програвачу</string>
 
 <string name="channels">Канали</string>

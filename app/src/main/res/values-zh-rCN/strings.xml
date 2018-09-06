@@ -260,13 +260,13 @@
     <string name="use_inexact_seek_title">使用粗略但快速的寻找</string>
     <string name="use_inexact_seek_summary">粗略寻找让播放器更快找到视频的进度位置</string>
     <string name="download_thumbnail_title">加载缩略图</string>
-    <string name="download_thumbnail_summary">停用后，NewPipe將不再加载缩略图，减少数据使用和腾空存储空间，亦会清除内存和内存卡上的缩略图缓存。</string>
+    <string name="download_thumbnail_summary">停用后，NewPipe將不再加载缩略图，减少数据使用和腾空存储空间，亦会清除内存和内存卡上的缩略图缓存</string>
     <string name="thumbnail_cache_wipe_complete_notice">已清除图像缓存</string>
     <string name="metadata_cache_wipe_title">清除缓存元数据</string>
     <string name="metadata_cache_wipe_summary">移除所有网页的缓存数据</string>
     <string name="metadata_cache_wipe_complete_notice">已清除元数据缓存</string>
     <string name="auto_queue_title">自动播放队列中下一个视频</string>
-    <string name="auto_queue_summary">当播放完非循环列表中的最后一个视频时，自动加入一个相关视频到播放列表。</string>
+    <string name="auto_queue_summary">当播放完非循环列表中的最后一个视频时，自动加入一个相关视频到播放列表</string>
     <string name="show_hold_to_append_title">显示\"长按添加\"提示</string>
     <string name="show_hold_to_append_summary">当视频详情页中的背景或悬浮按钮被按下的时候显示提示</string>
     <string name="default_content_country_title">默认内容国家</string>
@@ -284,7 +284,7 @@
     <string name="import_data_title">导入数据库</string>
     <string name="export_data_title">导出数据库</string>
     <string name="import_data_summary">将覆盖你现有历史记录和订阅</string>
-    <string name="export_data_summary">导出历史记录，订阅和播放列表。</string>
+    <string name="export_data_summary">导出历史记录，订阅和播放列表</string>
     <string name="player_recoverable_failure">从播放器错误中恢复</string>
     <string name="external_player_unsupported_link_type">外部播放器不支持这些链接类型</string>
     <string name="invalid_url_toast">无效的链接</string>
@@ -434,14 +434,14 @@
 <string name="toast_no_player">未安装能播放此文件的应用</string>
 
     <string name="caption_setting_title">字幕</string>
-    <string name="caption_setting_description">修改播放器的字幕文本大小和背景样式。需要重启应用程序以生效。</string>
+    <string name="caption_setting_description">修改播放器的字幕文本大小和背景样式。需要重启应用程序以生效</string>
 
     <string name="clear_views_history_title">清除观看记录</string>
-    <string name="clear_views_history_summary">删除视频观看记录。</string>
+    <string name="clear_views_history_summary">删除视频观看记录</string>
     <string name="delete_view_history_alert">删除全部观看记录。</string>
     <string name="view_history_deleted">观看记录已删除。</string>
     <string name="clear_search_history_title">清除搜索记录</string>
-    <string name="clear_search_history_summary">删除搜索关键词记录。</string>
+    <string name="clear_search_history_summary">删除搜索关键词记录</string>
     <string name="delete_search_history_alert">删除全部搜索记录。</string>
     <string name="search_history_deleted">搜索记录已删除。</string>
     <string name="one_item_deleted">已删除1项。</string>

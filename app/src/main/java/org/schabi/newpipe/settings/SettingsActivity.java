@@ -77,7 +77,8 @@ public class SettingsActivity extends AppCompatActivity implements BasePreferenc
                 finish();
             } else getSupportFragmentManager().popBackStack();
         }
-        return true;
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

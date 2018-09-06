@@ -36,7 +36,7 @@
     <string name="tab_subscriptions">Subscriptions</string>
     <string name="tab_bookmarks">Bookmarks</string>
     <string name="tab_new">New Tab</string>
-    <string name="tab_chose">Chose Tab</string>
+    <string name="tab_choose">Choose Tab</string>
 
     <string name="fragment_whats_new">What\'s New</string>
 
@@ -197,6 +197,9 @@
     <string name="file_name_empty_error">File name cannot be empty</string>
     <string name="error_occurred_detail">An error occurred: %1$s</string>
     <string name="no_streams_available_download">No streams available to download</string>
+    <string name="saved_tabs_invalid_json">Using default tabs, error while reading saved tabs</string>
+    <string name="restore_defaults">Restore defaults</string>
+    <string name="restore_defaults_confirmation">Do you want to restore the defaults?</string>
 
     <!-- error activity -->
     <string name="sorry_string">Sorry, that should not have happened.</string>
@@ -246,6 +249,7 @@
         <item quantity="one">%s subscriber</item>
         <item quantity="other">%s subscribers</item>
     </plurals>
+    <string name="subscribers_count_not_available">Subscribers count not available</string>
 
     <string name="no_views">No views</string>
     <plurals name="views">
@@ -363,19 +367,11 @@
     <string name="main_page_content">Content of main page</string>
     <string name="main_page_content_summary">What tabs are shown on the main page</string>
     <string name="selection">Selection</string>
-    <string name="chosenTabs">Your tabs</string>
     <string name="blank_page_summary">Blank Page</string>
     <string name="kiosk_page_summary">Kiosk Page</string>
     <string name="subscription_page_summary">Subscription Page</string>
     <string name="feed_page_summary">Feed Page</string>
     <string name="channel_page_summary">Channel Page</string>
-    <string-array name="main_page_content_names">
-        <item>@string/blank_page_summary</item>
-        <item>@string/kiosk_page_summary</item>
-        <item>@string/feed_page_summary</item>
-        <item>@string/subscription_page_summary</item>
-        <item>@string/channel_page_summary</item>
-    </string-array>
     <string name="select_a_channel">Select a channel</string>
     <string name="no_channel_subscribed_yet">No channel subscribed yet</string>
     <string name="select_a_kiosk">Select a kiosk</string>

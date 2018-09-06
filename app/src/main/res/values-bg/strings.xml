@@ -225,7 +225,7 @@
     <string name="metadata_cache_wipe_summary">Премахни всички метаданни за уебстраници от кеш-паметта</string>
     <string name="metadata_cache_wipe_complete_notice">Кеш-паметта с метаданни бе изтрита</string>
     <string name="auto_queue_title">Автоматично нареди на опашка следващия</string>
-    <string name="auto_queue_summary">"Автоматично прибавяне на сродно съдържание при неповтарящ се преглед . "</string>
+    <string name="auto_queue_summary">"Автоматично прибавяне на сродно съдържание при неповтарящ се преглед "</string>
     <string name="default_content_country_title">Държава, за която да бъде показвано съдържание</string>
     <string name="service_title">Услуга</string>
     <string name="settings_category_debug_title">Отстраняване на грешки</string>
@@ -246,7 +246,7 @@
     <string name="delete_view_history_alert">Изтрий цялата история с изгледани.</string>
     <string name="view_history_deleted">Историята с изгледани е изтрита.</string>
     <string name="clear_search_history_title">Изтрий историята на търсенията</string>
-    <string name="clear_search_history_summary">Изтрива историята с въвежданите за търсене ключови думи.</string>
+    <string name="clear_search_history_summary">Изтрива историята с въвежданите за търсене ключови думи</string>
     <string name="delete_search_history_alert">Изтрий цялата история на търсенията.</string>
     <string name="search_history_deleted">Историята на търсенията е изтрита.</string>
     <string name="youtube_signature_decryption_error">URL подписът на клипа не можа да бъде дешифрован</string>
@@ -283,9 +283,9 @@
     <string name="read_privacy_policy">Прочетете нашата политика за поверителност</string>
     <string name="app_license_title">Лицензът на NewPipe</string>
     <string name="no_player_found_toast">Липсва стрийм плейър (можете да изтеглите VLC, за да пуснете стрийма)</string>
-    <string name="download_thumbnail_summary">Изключете, за да спрете зареждането на всички миниатюри, спестявайки трафик и памет. При промяна на тази настройка, текущата кеш-памет на изображенията ще бъде изтрита.</string>
+    <string name="download_thumbnail_summary">Изключете, за да спрете зареждането на всички миниатюри, спестявайки трафик и памет. При промяна на тази настройка, текущата кеш-памет на изображенията ще бъде изтрита</string>
     <string name="show_hold_to_append_summary">Показвай подсказка, когато е избран фонов режим или режим в прозорец на страницата с детайли на съответния клип</string>
-    <string name="clear_views_history_summary">Изтрива историята на възпроизвежданите стриймове.</string>
+    <string name="clear_views_history_summary">Изтрива историята на възпроизвежданите стриймове</string>
     <string name="video_streams_empty">Не са намерени видео стриймове</string>
     <string name="audio_streams_empty">Не са намерени аудио стриймове</string>
     <string name="info_labels">"Какво:\\nЗаявка:\\nЕзик на съдържанието:\\nУслуга:\\nВреме по GMT:\\nПакет:\\nВерсия:\\nОС версия: "</string>
@@ -401,7 +401,7 @@
     <string name="caption_auto_generated">Авто-генерирани</string>
 
     <string name="caption_setting_title">Надписи</string>
-    <string name="caption_setting_description">Модифицирай мащаба на текста и фона на надписите. Изисква рестарт на приложението, за да се приложат промените.</string>
+    <string name="caption_setting_description">Модифицирай мащаба на текста и фона на надписите. Изисква рестарт на приложението, за да се приложат промените</string>
 
     <string name="enable_leak_canary_title">Включи LeakCanary</string>
     <string name="enable_leak_canary_summary">Следенето за пропускане на памет може да направи приложението нестабилно</string>

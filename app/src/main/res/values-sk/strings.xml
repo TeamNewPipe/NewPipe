@@ -291,7 +291,7 @@
     <string name="import_data_title">Importovať databázu</string>
     <string name="export_data_title">Exportovať databázu</string>
     <string name="import_data_summary">Prepíše aktuálnu históriu pozretí a odberov</string>
-    <string name="export_data_summary">Exportovať históriu, odbery a zoznamy skladieb.</string>
+    <string name="export_data_summary">Exportovať históriu, odbery a zoznamy skladieb</string>
     <string name="player_stream_failure">Nepodarilo sa prehrať tento stream</string>
     <string name="player_unrecoverable_failure">Pri prehrávaní došlo k chybe a nemožno pokračovať</string>
     <string name="player_recoverable_failure">Zotavovanie po chybe v prehrávaní</string>
@@ -390,13 +390,13 @@
 <string name="use_inexact_seek_title">Používať rýchly posun</string>
     <string name="use_inexact_seek_summary">Rýchly posun umožňuje prejsť na novú pozíciu rýchlejšie, ale s menšou presnosťou</string>
     <string name="download_thumbnail_title">Načítanie miniatúr</string>
-    <string name="download_thumbnail_summary">Vypnutím tejto funkcie sa nebudú vytvárať miniatúry a tým sa ušetrí miesto a pamäť. Zmena nastavení spôsobuje vyčistenie vyrovnávacej pamäte.</string>
+    <string name="download_thumbnail_summary">Vypnutím tejto funkcie sa nebudú vytvárať miniatúry a tým sa ušetrí miesto a pamäť. Zmena nastavení spôsobuje vyčistenie vyrovnávacej pamäte</string>
     <string name="thumbnail_cache_wipe_complete_notice">Vyrovnávacia pamäť obrázkov vymazaná</string>
     <string name="metadata_cache_wipe_title">Vymazať metadáta uložené vo vyrovnávacej pamäti</string>
     <string name="metadata_cache_wipe_summary">Odstrániť všetky údaje webových stránok vo vyrovnávacej pamäti</string>
     <string name="metadata_cache_wipe_complete_notice">Vyrovnávacia pamäť metadát bola vymazaná</string>
     <string name="auto_queue_title">Automaticky zaradiť daľší stream</string>
-    <string name="auto_queue_summary">Automaticky zaradí súvisiaci stream, keď prehrávanie začne na poslednom streame v neopakujúcich sa zoznamoch prehrávania.</string>
+    <string name="auto_queue_summary">Automaticky zaradí súvisiaci stream, keď prehrávanie začne na poslednom streame v neopakujúcich sa zoznamoch prehrávania</string>
     <string name="settings_category_debug_title">Ladenie</string>
     <string name="file">Súbor</string>
 
@@ -418,7 +418,7 @@
     <string name="caption_auto_generated">Automaticky vygenerované</string>
 
     <string name="caption_setting_title">Nastavenie titulkov</string>
-    <string name="caption_setting_description">Upravte mierku textu titulkov a štýly pozadia. Vyžaduje reštart prehrávača.</string>
+    <string name="caption_setting_description">Upravte mierku textu titulkov a štýly pozadia. Vyžaduje reštart prehrávača</string>
 
     <string name="enable_leak_canary_title">Povoliť službu LeakCanary</string>
     <string name="enable_leak_canary_summary">Monitorovanie pretečenia pamäte môže spôsobiť, že aplikácia nebude reagovať</string>
@@ -471,11 +471,11 @@
     <string name="playback_nightcore">Nightcore režim</string>
     <string name="playback_default">Predvolené</string>
 <string name="clear_views_history_title">Vymazať históriu pozretí</string>
-    <string name="clear_views_history_summary">Odstráni históriu prehrávaných streamov.</string>
+    <string name="clear_views_history_summary">Odstráni históriu prehrávaných streamov</string>
     <string name="delete_view_history_alert">Vymazať celú históriu pozretí.</string>
     <string name="view_history_deleted">História pozretí bola vymazaná.</string>
     <string name="clear_search_history_title">Vymazať históriu vyhľadávania</string>
-    <string name="clear_search_history_summary">Vymaže históriu vyhľadávania kľúčových slov.</string>
+    <string name="clear_search_history_summary">Vymaže históriu vyhľadávania kľúčových slov</string>
     <string name="delete_search_history_alert">Vymazať celú históriu vyhľadávania.</string>
     <string name="search_history_deleted">História vyhľadávaní bola vymazaná.</string>
     <string name="one_item_deleted">1 položka bola vymazaná.</string>
