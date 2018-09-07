@@ -118,7 +118,7 @@
     <string name="could_not_get_stream">Nije moguće dobaviti stream</string>
     <string name="could_not_load_image">Nije moguće učitati sliku</string>
     <string name="app_ui_crash">Aplikacija/UI se srušio</string>
-    <string name="sorry_string">Oprostitee, ovo se nije trebalo dogoditi.</string>
+    <string name="sorry_string">Oprostite, ovo se nije trebalo dogoditi.</string>
     <string name="error_report_button_text">Prijavi pogrešku putem e-maila</string>
     <string name="error_snackbar_message">Oprostite, neke greške su se dogodile.</string>
     <string name="error_snackbar_action">PRIJAVI</string>
