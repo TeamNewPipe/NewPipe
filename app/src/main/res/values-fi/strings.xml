@@ -54,7 +54,7 @@
     <string name="play_audio">Ääni</string>
     <string name="default_audio_format_title">Oletusääniformaatti</string>
     <string name="default_video_format_title">Oletusvideoformaatti</string>
-    <string name="webm_description">WebM — vapaa formaatti</string>
+    <string name="webm_description">WebM — vapaa tiedostomuoto</string>
     <string name="m4a_description">M4A — parempi laatu</string>
     <string name="theme_title">Teema</string>
     <string name="light_theme_title">Kirkas</string>
@@ -68,18 +68,18 @@
     <string name="show_search_suggestions_summary">Näytä ehdotuksia hakiessa</string>
     <string name="enable_search_history_title">Hakuhistoria</string>
     <string name="enable_search_history_summary">Tallentaa hakutietokannan paikallisesti</string>
-    <string name="enable_watch_history_title">Historia</string>
+    <string name="enable_watch_history_title">Historia ja Välimuisti</string>
     <string name="enable_watch_history_summary">Pidä muistissa katsotut videot</string>
     <string name="resume_on_audio_focus_gain_summary">Jatka toistoa keskeytysten jälkeen (esim. puhelut)</string>
     <string name="download_dialog_title">Lataus</string>
     <string name="next_video_title">Seuraava video</string>
     <string name="show_next_and_similar_title">Näytä seuraavia ja samankaltaisia videoita</string>
-    <string name="url_not_supported_toast">URL ei tueta</string>
+    <string name="url_not_supported_toast">Osoitetta ei tueta</string>
     <string name="search_language_title">Oletus-sisällon kieli</string>
     <string name="settings_category_player_title">Soitin</string>
     <string name="settings_category_player_behavior_title">Käyttäytyminen</string>
     <string name="settings_category_video_audio_title">Video &amp; Ääni</string>
-    <string name="settings_category_history_title">Historia</string>
+    <string name="settings_category_history_title">Historia ja välimuisti</string>
     <string name="settings_category_popup_title">Ponnahdusikkuna</string>
     <string name="settings_category_appearance_title">Ulkoasu</string>
     <string name="settings_category_other_title">Muu</string>
@@ -257,7 +257,7 @@
     <string name="popup_playing_append">Lisätty ikkunajonoon</string>
     <string name="play_all">Toista kaikki</string>
 
-    <string name="player_stream_failure">Toisto epäonnistui</string>
+    <string name="player_stream_failure">Tämän toisto epäonnistui</string>
     <string name="player_unrecoverable_failure">Palautuskelvoton soittimen virhe</string>
     <string name="player_recoverable_failure">Palaudutaan soittimen virheestä</string>
 
@@ -267,7 +267,7 @@
     <string name="play_queue_stream_detail">Yksityiskohdat</string>
     <string name="play_queue_audio_settings">Ääniasetukset</string>
     <string name="hold_to_append">Pidä pohjassa lisätäksesi jonoon</string>
-<string name="show_hold_to_append_title">Näytä vihje soittolistalle</string>
+<string name="show_hold_to_append_title">"Näytä vihje soittolistalle lisäämiselle "</string>
     <string name="unknown_content">[Tuntematon]</string>
 
     <string name="enqueue_on_background">Lisää taustatoistojonoon</string>
@@ -279,5 +279,74 @@
     <string name="donation_encouragement">NewPipe kehitetään vapaaehtoisten toimesta, jotka käyttävät vapaa-aikaansa tuottaakseen parhaimman kokemuksen sinulle. Nyt on aika antaa takaisin, jotta kehittäjät voivat tehdä NewPipe:sta vielä paremman nauttiessaan kupin kahvia!</string>
     <string name="give_back">Anna takaisin</string>
     <string name="website_title">Websivu</string>
-    <string name="website_encouragement">Käy verkkosivuillamme saadaksesi lisää tietoa ja uusimmat uutiset NewPipe:sta.</string>
+    <string name="website_encouragement">Käy verkkosivuillamme saadaksesi lisää tietoa ja uusimmat uutiset NewPipe:stä.</string>
+    <string name="no_player_found_toast">Soitinta ei löytynyt (voit asentaa VLC:n toistaaksesi)</string>
+    <string name="controls_download_desc">Lataa toistotiedosto.</string>
+    <string name="show_info">Näytä lisätietoja</string>
+
+    <string name="tab_bookmarks">Kirjanmerkit</string>
+
+    <string name="controls_add_to_playlist_title">Lisää soittolistaan</string>
+
+    <string name="use_inexact_seek_title">Käytä nopeampaa epätarkkaa pikakelausta</string>
+    <string name="use_inexact_seek_summary">Epätarkka kelaus mahdollistaa videon kelauksen nopeammin, huonommalla tarkkuudella</string>
+    <string name="download_thumbnail_title">Näytä videoiden pikkukuvat</string>
+    <string name="download_thumbnail_summary">Poista käytöstä lopettaaksesi kaikkien pikkukuvien lataus säästääksesi mobiilidataa ja muistinkäyttöä. Tämän asetuksen muuttaminen poistaa kaikki pikkukuvat välimuistista</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Kuvavälimuisti tyhjennetty</string>
+    <string name="metadata_cache_wipe_title">Tyhjennä tallennettu metadata</string>
+    <string name="metadata_cache_wipe_summary">Poista kaikki tallennettu nettisivujen tieto</string>
+    <string name="metadata_cache_wipe_complete_notice">Välimuistin tiedot poistettu</string>
+    <string name="auto_queue_summary">Automaattisesti lisää ehdotuksista video soittolistaan kun repeat on pois päältä</string>
+    <string name="default_content_country_title">Sisällön oletusmaa</string>
+    <string name="service_title">Palvelu</string>
+    <string name="settings_category_debug_title">"Virheenkorjaus "</string>
+    <string name="channels">Kanavat</string>
+    <string name="playlists">Soittolistat</string>
+    <string name="tracks">Ääniraidat</string>
+    <string name="users">Käyttäjät</string>
+    <string name="always">Aina</string>
+    <string name="just_once">Vain kerran</string>
+    <string name="file">Tiedosto</string>
+
+    <string name="toggle_orientation">Muuta näytön suuntausta</string>
+    <string name="switch_to_background">Vaihda taustalle</string>
+    <string name="switch_to_popup">Vaihda pop-up toistoon</string>
+    <string name="switch_to_main">Vaihda normaalitilaan</string>
+
+    <string name="import_data_title">Tuo tietokanta</string>
+    <string name="export_data_title">Vie tietokanta</string>
+    <string name="import_data_summary">Kirjoittaa yli tämänhetkisen historian ja tilaukset</string>
+    <string name="export_data_summary">Vie historia, tilaukset tai soittolistat</string>
+    <string name="clear_views_history_title">Poista katseluhistoria</string>
+    <string name="clear_views_history_summary">Poistaa toistettujen videoiden historian</string>
+    <string name="delete_view_history_alert">Poista koko katseluhistoria.</string>
+    <string name="view_history_deleted">Katseluhistoria onnistuneesti poistettu.</string>
+    <string name="clear_search_history_title">Poista hakuhistoria</string>
+    <string name="clear_search_history_summary">Poistaa historian haetuista videoista</string>
+    <string name="delete_search_history_alert">Poista koko hakuhistoria.</string>
+    <string name="search_history_deleted">Hakuhistoria onnistuneesti poistettu.</string>
+    <string name="external_player_unsupported_link_type">Ulkoiset soittimet eivät tue tämänkaltaisia linkkejä</string>
+    <string name="invalid_url_toast">Viallinen osoite</string>
+    <string name="video_streams_empty">Videostriimejä ei löytynyt</string>
+    <string name="audio_streams_empty">Audiostriimejä ei löytynyt</string>
+    <string name="invalid_directory">Virheellinen kansio</string>
+    <string name="invalid_source">Virheellinen tiedosto/lähde</string>
+    <string name="invalid_file">Tiedosta ei löydy tai sen kirjoittamiseen/lukemiseen ei ole lupaa</string>
+    <string name="file_name_empty_error">Tiedostonimi ei voi olla tyhjä</string>
+    <string name="error_occurred_detail">Hups! Tapahtui virhe: %1$s</string>
+    <string name="detail_drag_description">Vedä järjestelläksesi</string>
+
+    <string name="create">Luo</string>
+    <string name="delete_one">Poista yksi</string>
+    <string name="delete_all">Poista kaikki</string>
+    <string name="dismiss">Hyväksy</string>
+    <string name="rename">Nimeä uudelleen</string>
+
+    <string name="one_item_deleted">1 poistettu.</string>
+
+    <string name="toast_no_player">Ohjelmaa tämän toistamiseen ei ole asennettu</string>
+
+    <string name="privacy_policy_title">NewPipen tietosuojakäytäntö</string>
+    <string name="privacy_policy_encouragement">NewPipen projekti ottaa yksityisyytesi tosissaan. Siksi se ei kerää sinulta mitään tietoja ilman lupaasi. NewPipen tietosuojakäytännössä selitetään tarkasti mitä tietoja lähetetään tai tallennetaan virheraportin yhteydessä.</string>
+    <string name="read_privacy_policy">Lue tietosuojakäytäntö</string>
     </resources>
