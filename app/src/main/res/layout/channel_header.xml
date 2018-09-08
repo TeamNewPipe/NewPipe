@@ -61,7 +61,7 @@
             android:layout_below="@+id/channel_title_view"
             android:ellipsize="end"
             android:gravity="left|center"
-            android:lines="1"
+            android:maxLines="2"
             android:textSize="@dimen/channel_subscribers_text_size"
             android:visibility="gone"
             tools:ignore="RtlHardcoded"

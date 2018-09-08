@@ -66,7 +66,7 @@ public class SelectChannelFragment extends DialogFragment {
     //////////////////////////////////////////////////////////////////////////*/
 
     public interface OnSelectedLisener {
-        void onChannelSelected(String url, String name, int service);
+        void onChannelSelected(int serviceId, String url, String name);
     }
     OnSelectedLisener onSelectedLisener = null;
     public void setOnSelectedLisener(OnSelectedLisener listener) {
@@ -126,7 +126,7 @@ public class SelectChannelFragment extends DialogFragment {
     private void clickedItem(int position) {
         if(onSelectedLisener != null) {
             SubscriptionEntity entry = subscriptions.get(position);
-            onSelectedLisener.onChannelSelected(entry.getUrl(), entry.getName(), entry.getServiceId());
+            onSelectedLisener.onChannelSelected(entry.getServiceId(), entry.getUrl(), entry.getName());
         }
         dismiss();
     }
