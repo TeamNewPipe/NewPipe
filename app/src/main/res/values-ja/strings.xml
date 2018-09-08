@@ -393,4 +393,9 @@
     <string name="import_settings">設定をインポートしますか？</string>
 
     <string name="caption_setting_title">字幕</string>
+    <string name="channels">チャンネル</string>
+    <string name="playlists">プレイリスト</string>
+    <string name="users">ユーザー</string>
+    <string name="privacy_policy_title">NewPipe プライバシーポリシー</string>
+    <string name="read_privacy_policy">プライバシーポリシーを確認</string>
     </resources>
