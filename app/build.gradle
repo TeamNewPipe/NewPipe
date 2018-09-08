@@ -7,8 +7,8 @@ android {
         applicationId "org.schabi.newpipe"
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 67
-        versionName "0.14.0"
+        versionCode 68
+        versionName "0.14.1"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -39,7 +39,7 @@ android {
 }
 
 ext {
-    supportLibVersion = '27.1.1'
+    supportLibVersion = '28.0.0-rc01'
     exoPlayerLibVersion = '2.8.4'
     roomDbLibVersion = '1.1.1'
     leakCanaryLibVersion = '1.6.1'
@@ -52,7 +52,7 @@ dependencies {
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.2', {
         exclude group: 'com.android.support', module: 'support-annotations' })
 
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:850670917fce'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:66c3c3f45241d4b0c909'
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.21.0'
@@ -83,9 +83,9 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
     implementation 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
 
-    implementation "android.arch.persistence.room:runtime:$roomDbLibVersion"
-    implementation "android.arch.persistence.room:rxjava2:$roomDbLibVersion"
-    annotationProcessor "android.arch.persistence.room:compiler:$roomDbLibVersion"
+    implementation "android.arch.persistence.room:runtime:${roomDbLibVersion}"
+    implementation "android.arch.persistence.room:rxjava2:${roomDbLibVersion}"
+    annotationProcessor "android.arch.persistence.room:compiler:${roomDbLibVersion}"
 
     implementation "frankiesardo:icepick:${icepickLibVersion}"
     annotationProcessor "frankiesardo:icepick-processor:${icepickLibVersion}"
