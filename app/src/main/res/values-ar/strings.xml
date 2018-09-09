@@ -29,10 +29,10 @@
     <string name="network_error">خطأ في الشبكة</string>
     <string name="next_video_title">الفيديو التالي</string>
     <string name="no_player_found">لا يوجد مشغل فيديو. هل تريد تثبيت VLC ؟</string>
-    <string name="open_in_browser">فتح في المتصفح</string>
+    <string name="open_in_browser">افتح في المتصفح</string>
     <string name="play_audio">الصوت</string>
     <string name="play_btn_text">تشغيل</string>
-    <string name="play_with_kodi_title">تشغيل بواسطة Kodi</string>
+    <string name="play_with_kodi_title">تشغيل بواسطة كودي</string>
     <string name="screen_rotation">التدوير</string>
     <string name="search">بحث</string>
     <string name="search_language_title">اللغة الإفتراضية للمحتوى</string>
@@ -43,8 +43,8 @@
     <string name="share">مشاركة</string>
     <string name="share_dialog_title">مشاركة بواسطة</string>
     <string name="show_next_and_similar_title">عرض الفديوهات \'التالية\'و\'المماثلة\'</string>
-    <string name="show_play_with_kodi_summary">عرض خيار لتشغيل الفيديو بواسطة Kodi Media Center</string>
-    <string name="show_play_with_kodi_title">عرض خيار التشغيل بواسطة Kodi</string>
+    <string name="show_play_with_kodi_summary">عرض خيار لتشغيل الفيديو بواسطة مشغل كودي</string>
+    <string name="show_play_with_kodi_title">عرض خيار التشغيل بواسطة كودي</string>
     <string name="theme_title">السمة</string>
     <string name="upload_date_text">تم النشر يوم %1$s</string>
     <string name="url_not_supported_toast">الرابط غير مدعوم</string>
@@ -52,7 +52,7 @@
     <string name="use_external_video_player_title">استخدام مشغل فيديو خارجي</string>
     <string name="use_tor_summary">(إختبارية) إجراء التنزيلات من خلال استخدام بروكسي Tor لزيادة الخصوصية ( تشغيل الفيديو المباشر غير مدعوم حتى الأن ).</string>
     <string name="use_tor_title">استخدام تور</string>
-    <string name="view_count_text">مشاهدات %1$s</string>
+    <string name="view_count_text">"مشاهدة  %1$s"</string>
     <string name="webm_description">تنسيق حر — WebM</string>
     <string name="blocked_by_gema">تم حجبه بواسطة GEMA</string>
     <string name="content_not_available">المحتوى غير متاح</string>
@@ -68,30 +68,30 @@
 
     <string name="fragment_whats_new">ما الجديد</string>
 
-    <string name="controls_background_title">الخلفية</string>
+    <string name="controls_background_title">في الخلفية</string>
     <string name="autoplay_by_calling_app_title">تشغيل تلقائي</string>
     <string name="black_theme_title">اسود</string>
     <string name="enable_watch_history_title">التاريخ وذاكرة التخزين المؤقت</string>
-    <string name="settings_category_history_title">التاريخ و ذاكرة التخزين المؤقتة</string>
+    <string name="settings_category_history_title">التاريخ و التخزين المؤقت</string>
     <string name="content">المحتوى</string>
     <string name="downloads">التنزيلات</string>
     <string name="downloads_title">التنزيلات</string>
     <string name="all">الكل</string>
     <string name="channel">القناة</string>
-    <string name="video">فيديو</string>
+    <string name="video">الفيديو</string>
     <string name="settings_category_downloads_title">التنزيل</string>
     <string name="action_about">عن التطبيق</string>
     <string name="tab_about">عن التطبيق</string>
     <string name="title_activity_history">التاريخ</string>
     <string name="action_history">التاريخ</string>
-    <string name="open_in_popup_mode">فتح في وضع النافذة المنبثقة</string>
+    <string name="open_in_popup_mode">افتح في وضع النافذة المنبثقة</string>
     <string name="use_external_video_player_summary">"بعض الخيارات الدقة لن تحتوي على صوت عند تمكين هذا الخيار "</string>
     <string name="popup_mode_share_menu_title">وضع النوافذ المنبثقة NewPipe</string>
     <string name="channel_unsubscribed">تم إلغاء الاشتراك في القناة</string>
     <string name="subscription_change_failed">تعذر تغيير حالة الاشتراك</string>
     <string name="subscription_update_failed">تعذر تحديث الاشتراك</string>
 
-    <string name="controls_popup_title">نافذة</string>
+    <string name="controls_popup_title">نافذة المنبثقة</string>
 
     <string name="autoplay_by_calling_app_summary">تشغيل مقطع الفيديو عند إستدعاء NewPipe من تطبيق آخر</string>
     <string name="default_popup_resolution_title">الدقة الافتراضية لنوافذ المنبثقة</string>
@@ -109,11 +109,11 @@
     <string name="enable_watch_history_summary">تتبع مقاطع الفيديو التي تمت مشاهدتها</string>
     <string name="resume_on_audio_focus_gain_title">استئناف عند اكتساب التركيز</string>
     <string name="resume_on_audio_focus_gain_summary">متابعة التشغيل بعد المقاطعات (مثل المكالمات الهاتفية)</string>
-    <string name="show_hold_to_append_title">عرض\"عقد لإلحاق\"عنوان</string>
-    <string name="show_hold_to_append_summary">عرض تلميح أو زر منبثق عند الضغط على خلفية على صفحة تفاصيل الفيديو</string>
+    <string name="show_hold_to_append_title">عرض تلميح \"اضغط للتجاهل\"</string>
+    <string name="show_hold_to_append_summary">عرض تلميح على صفحة التفاصيل عند استخدام وضع مشغل الخلفية أو النافذة المنبثقة</string>
     <string name="settings_category_player_title">المشغل</string>
     <string name="settings_category_player_behavior_title">السلوك</string>
-    <string name="settings_category_popup_title">المنبثق</string>
+    <string name="settings_category_popup_title">الوضع المنبثق</string>
     <string name="popup_playing_toast">يتم التشغيل في الوضع المنبثق</string>
     <string name="background_player_append">تم وضعه على قائمة الانتظار في مشغل الخلفية</string>
     <string name="popup_playing_append">تم وضعه على قائمة الانتظار في مشغل النافذة المنبثقة</string>
@@ -181,7 +181,7 @@
 	<item quantity="two">مشترِكان</item>
 	<item quantity="few">%s مشترك</item>
 	<item quantity="many">%s مشترك</item>
-	<item quantity="other">%s مشتركون</item>
+	<item quantity="other">%s مشترك</item>
 </plurals>
 
     <string name="no_views">دون مشاهدات</string>
@@ -196,7 +196,7 @@
     <string name="finish">حسناً</string>
 
     <string name="msg_name">اسم الملف</string>
-    <string name="msg_threads">الخيوط</string>
+    <string name="msg_threads">التقسيم</string>
     <string name="msg_error">الخطأ</string>
     <string name="msg_server_unsupported">الخادم غير معتمد</string>
     <string name="msg_exists">الملف موجود مسبقا</string>
@@ -210,8 +210,8 @@
 \nللفتح في وضع النافذة المنبثقة</string>
 
     <string name="reCaptchaActivity">اختبار reCAPTCHA</string>
-    <string name="settings_file_charset_title">الأحرف المسموح بها في أسماء الملفات</string>
-    <string name="settings_file_replacement_character_summary">يتم استبدال الأحرف غير الصالحة بهذه القيمة</string>
+    <string name="settings_file_charset_title">السماح بالرموز في أسماء الملفات</string>
+    <string name="settings_file_replacement_character_summary">يتم استبدال الرموز غير المسموح بها بهذه القيمة</string>
     <string name="settings_file_replacement_character_title">استبدال الحرف</string>
 
     <string name="charset_letters_and_digits">الحروف والأرقام</string>
@@ -224,7 +224,7 @@
     <string name="action_open_website">فتح الموقع</string>
     <string name="tab_contributors">المساهمون</string>
     <string name="tab_licenses">التراخيص</string>
-    <string name="app_description">تطبيق حُر و خفيف لالتقاط البث على نظام الأندرويد.</string>
+    <string name="app_description">تطبيق حُر و خفيف لتشغيل اليوتيوب على نظام الأندرويد.</string>
     <string name="contribution_title">ساهم</string>
     <string name="contribution_encouragement">إذا كانت لديك أفكار؛ أو ترجمة، أو تغييرات تخص التصميم، أو تنظيف و تحسين الشفرة البرمجية ، أو تعديلات عميقة عليها، فتذكر أنّ مساعدتك دائما موضع ترحيب. وكلما أتممنا شيئا كلما كان ذلك أفضل !</string>
     <string name="view_on_github">عرض على GitHub</string>
@@ -260,7 +260,7 @@
     <string name="play_queue_remove">حذف</string>
     <string name="play_queue_stream_detail">التفاصيل</string>
     <string name="play_queue_audio_settings">الإعدادات الصوتية</string>
-    <string name="start_here_on_main">ابدء التشغيل هنا</string>
+    <string name="start_here_on_main">تشغيل هنا</string>
     <string name="start_here_on_popup">تشغيل هنا في وضع النافذة المنبثقة</string>
 <string name="reCaptcha_title">تحدي ريكابتشا</string>
     <string name="hold_to_append">اضغط للإدراج في قائمة الانتظار</string>
@@ -268,9 +268,9 @@
 	<item quantity="zero">لاتوجد مشاهدة</item>
 	<item quantity="one">%s مشاهدة</item>
 	<item quantity="two">مشاهدتين</item>
-	<item quantity="few">%s مشاهدات كثيرة</item>
-	<item quantity="many">%s عدد المشاهدات</item>
-	<item quantity="other">%s أقصى مشاهدات</item>
+	<item quantity="few">%s مشاهدة</item>
+	<item quantity="many">%s مشاهدة</item>
+	<item quantity="other">%s مشاهدة</item>
 </plurals>
 
     <plurals name="videos">
@@ -291,7 +291,7 @@
     <string name="kiosk">الكشك</string>
     <string name="enqueue_on_background">إدراج في قائمة الانتظار في الخلفية</string>
     <string name="enqueue_on_popup">إدراج في قائمة الانتظار على المنبثقة</string>
-    <string name="start_here_on_background">ابدأ هنا في الخلفية</string>
+    <string name="start_here_on_background">تشغيل في الخلفية</string>
 <string name="default_content_country_title">المحتوى الإفتراضي حسب البلد</string>
     <string name="toggle_orientation">تغيير الإتجاه</string>
     <string name="switch_to_background">الإنتقال إلى التشغيل في الخلفية</string>
@@ -377,7 +377,7 @@
     <string name="resize_fit">تناسب مع الشاشة</string>
     <string name="caption_auto_generated">توليد تلقائي</string>
 
-    <string name="import_export_title">إستيراد وتصدير</string>
+    <string name="import_export_title">إستيراد او تصدير</string>
     <string name="import_title">إستيراد</string>
     <string name="import_from">إستعادة مِن</string>
     <string name="export_to">تصدير إلى</string>
@@ -421,7 +421,7 @@
     <string name="external_player_unsupported_link_type">المشغل الخارجي لا يدعم هذه الأنواع من الروابط</string>
     <string name="invalid_source">ملف غير صالح / محتوى غير صالح</string>
     <string name="invalid_file">الملف غير موجود أو ليس لديك الإذن الكافي للقراءة أو الكتابة فيه</string>
-    <string name="no_streams_available_download">لا توجد تدفقات متاحة للتنزيل</string>
+    <string name="no_streams_available_download">لا يوجد بث متاح للتنزيل</string>
 
     <string name="one_item_deleted">تم حذف عنصر واحد.</string>
 
@@ -440,7 +440,7 @@
 
     <string name="background_player">مشغل الخلفية</string>
     <string name="popup_player">المشغل المنبثق</string>
-    <string name="previous_export">التصدير السابق</string>
+    <string name="previous_export">نسخة احتياطية</string>
 
     <string name="subscriptions_import_unsuccessful">تعذر استيراد الاشتراكات</string>
     <string name="subscriptions_export_unsuccessful">لا يمكن تصدير الاشتراكات</string>
