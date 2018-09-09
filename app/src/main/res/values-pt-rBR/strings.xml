@@ -293,7 +293,7 @@ abrir em modo popup</string>
     <string name="toggle_orientation">Alterar a orientação</string>
     <string name="switch_to_background">Alterar para Plano de Fundo</string>
     <string name="switch_to_popup">Alterar para Popup</string>
-    <string name="switch_to_main">Aletar para principal</string>
+    <string name="switch_to_main">Alterar para principal</string>
 
     <string name="external_player_unsupported_link_type">Reprodutores externos não suportam estes tipos de links</string>
     <string name="invalid_url_toast">URL inválida</string>
