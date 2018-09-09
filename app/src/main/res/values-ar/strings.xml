@@ -179,7 +179,7 @@
 	<item quantity="zero">صفر مشترِك</item>
 	<item quantity="one">%s مشترِك</item>
 	<item quantity="two">مشترِكان</item>
-	<item quantity="few">%s مشترك</item>
+	<item quantity="few">%s مشتركين</item>
 	<item quantity="many">%s مشترك</item>
 	<item quantity="other">%s مشترك</item>
 </plurals>
@@ -268,8 +268,8 @@
 	<item quantity="zero">لاتوجد مشاهدة</item>
 	<item quantity="one">%s مشاهدة</item>
 	<item quantity="two">مشاهدتين</item>
-	<item quantity="few">%s مشاهدة</item>
-	<item quantity="many">%s مشاهدة</item>
+	<item quantity="few">%s مشاهدات</item>
+	<item quantity="many">%s مشاهدات</item>
 	<item quantity="other">%s مشاهدة</item>
 </plurals>
 
