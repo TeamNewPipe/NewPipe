@@ -442,4 +442,5 @@
     <string name="privacy_policy_encouragement">O projeto NewPipe leva a sua privacidade muito a sério. Sendo assim, o aplicativo não coleta nenhum dado sem seu consentimento. 
 \nA polícia de privacidade do NewPipe explica em detalhes qual dado é enviado e salvo quando você envia um relatório de erros.</string>
     <string name="read_privacy_policy">Ler a política de privacidade</string>
+    <string name="auto_queue_title">Próximo stream automaticamente em lista de espera</string>
     </resources>
