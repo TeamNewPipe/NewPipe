@@ -351,7 +351,7 @@ otevření ve vyskakovacím okně</string>
     <string name="title_last_played">Poslední přehráno</string>
     <string name="title_most_played">Nejvíce přehráno</string>
 
-    <string name="drawer_header_action_paceholder_text">Zde se brzy něco objeví ;D</string>
+    <string name="drawer_header_action_placeholder_text">Zde se brzy něco objeví ;D</string>
 
 
     <string name="always_ask_open_action">Vždy se zeptat</string>

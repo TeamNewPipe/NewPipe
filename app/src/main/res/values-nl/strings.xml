@@ -385,7 +385,7 @@ te openen in pop-upmodus</string>
     <string name="normal_caption_font_size">Normaal lettertype</string>
     <string name="larger_caption_font_size">Groter lettertype</string>
 
-	<string name="drawer_header_action_paceholder_text">Hier zal binnenkort iets verschijnen ;D</string>
+	<string name="drawer_header_action_placeholder_text">Hier zal binnenkort iets verschijnen ;D</string>
 <string name="settings_category_debug_title">Foutopsporing</string>
     <string name="caption_auto_generated">Automatisch gegenereerd</string>
     <string name="enable_leak_canary_title">LeakCanary inschakelen</string>

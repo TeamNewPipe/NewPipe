@@ -392,7 +392,7 @@
     <string name="show_hold_to_append_title">Mostra els missatges d\'ajuda</string>
     <string name="show_hold_to_append_summary">Mostra un missatge d\'ajuda quan el botó de mode en segon pla o emergent estigui premut a la pàgina de detalls d\'un vídeo</string>
     <string name="info_labels">Què ha passat:\\nPetició:\\nIdioma del contingut:\\nServei:\\nHora GMT:\\nPaquet:\\nVersió:\\nVersió del SO:</string>
-    <string name="drawer_header_action_paceholder_text">Aviat hi haurà novetats aquí ;D</string>
+    <string name="drawer_header_action_placeholder_text">Aviat hi haurà novetats aquí ;D</string>
 
 
     <string name="preferred_open_action_settings_title">Acció d\'obertura preferida</string>

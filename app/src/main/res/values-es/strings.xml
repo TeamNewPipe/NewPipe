@@ -377,7 +377,7 @@ abrir en modo popup</string>
     <string name="normal_caption_font_size">Fuente normal</string>
     <string name="larger_caption_font_size">Fuente más grande</string>
 
-    <string name="drawer_header_action_paceholder_text">Algo aparecerá aquí pronto ;D</string>
+    <string name="drawer_header_action_placeholder_text">Algo aparecerá aquí pronto ;D</string>
 
 
     <string name="caption_none">Sin subtítulos</string>

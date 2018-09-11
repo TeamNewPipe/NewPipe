@@ -363,7 +363,7 @@
     <string name="normal_caption_font_size">正常字體</string>
     <string name="larger_caption_font_size">加大字體</string>
 
-    <string name="drawer_header_action_paceholder_text">某些東西很快就會出現 ;D</string>
+    <string name="drawer_header_action_placeholder_text">某些東西很快就會出現 ;D</string>
 
 
     <string name="toggle_leak_canary">監測流失</string>

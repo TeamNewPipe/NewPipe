@@ -19,7 +19,7 @@
     <string name="did_you_mean">Did you mean: %1$s ?</string>
     <string name="share_dialog_title">Share with</string>
     <string name="choose_browser">Choose browser</string>
-    <string name="screen_rotation">rotation</string>
+    <string name="screen_rotation">Rotation</string>
     <string name="use_external_video_player_title">Use external video player</string>
     <string name="use_external_video_player_summary">Some resolutions will NOT have audio when this option is enabled</string>
     <string name="use_external_audio_player_title">Use external audio player</string>
@@ -344,7 +344,7 @@
     <string name="privacy_policy_url" translatable="false">https://newpipe.schabi.org/legal/privacy/</string>
     <string name="read_privacy_policy">Read privacy policy</string>
     <string name="app_license_title">NewPipe\'s License</string>
-    <string name="app_license">NewPipe is copyleft libre software: You can use, study share and improve it at your will. Specifically you can redistribute and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</string>
+    <string name="app_license">NewPipe is copyleft libre software: You can use, study, share, and improve it at your will. Specifically you can redistribute and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</string>
     <string name="read_full_license">Read license</string>
 
 
@@ -407,8 +407,7 @@
     <string name="drawer_close">Close Drawer</string>
     <string name="youtube" translatable="false">YouTube</string>
     <string name="soundcloud" translatable="false">SoundCloud</string>
-    <string name="drawer_header_action_paceholder_text">Something will appear here soon ;D</string>
-
+    <string name="drawer_header_action_placeholder_text">Something will appear here soon ;D</string>
 
     <!-- Preferred player -->
     <string name="preferred_open_action_share_menu_title" translatable="false">NewPipe</string>
@@ -455,10 +454,10 @@
 
     <!-- Debug Settings -->
     <string name="enable_leak_canary_title">Enable LeakCanary</string>
-    <string name="enable_leak_canary_summary">Memory leak monitoring may cause the app to become unresponsive when heap dumping</string>
+    <string name="enable_leak_canary_summary">Memory leak monitoring may cause the app to become unresponsive when heap dumping.</string>
 
     <string name="enable_disposed_exceptions_title">Report Out-of-lifecycle Errors</string>
-    <string name="enable_disposed_exceptions_summary">Force reporting of undeliverable Rx exceptions outside of fragment or activity lifecycle after disposal</string>
+    <string name="enable_disposed_exceptions_summary">Force reporting of undeliverable Rx exceptions outside of fragment or activity lifecycle after disposal.</string>
 
     <!-- Subscriptions import/export -->
     <string name="import_export_title">Import/Export</string>

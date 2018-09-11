@@ -424,7 +424,6 @@
     <string name="auto_queue_summary">Automatisches Anhängen eines verwandten Streams beim Abspielen des letzten Streams in einer nicht wiederholten Warteschlange</string>
     <string name="drawer_header_action_paceholder_text">Hier wird bald etwas stehen ;D</string>
 
-
     <string name="bookmark_playlist">Lesezeichen Wiedergabeliste</string>
     <string name="resize_fit">Anpassen</string>
     <string name="resize_fill">Füllen</string>

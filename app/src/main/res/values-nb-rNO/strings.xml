@@ -407,7 +407,7 @@
     <string name="auto_queue_title">Sett neste strøm i kø automatisk</string>
     <string name="no_streams_available_download">Ingen strømmer tilgjengelige for nedlasting</string>
 
-    <string name="drawer_header_action_paceholder_text">Noe vil bli presentert her snart ;D</string>
+    <string name="drawer_header_action_placeholder_text">Noe vil bli presentert her snart ;D</string>
 
 
     <string name="preferred_open_action_settings_title">Foretrukket åpningshandling</string>

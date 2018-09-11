@@ -339,7 +339,7 @@ membuka di mode popup</string>
 
     <string name="drawer_open">Buka Menu</string>
     <string name="drawer_close">Tutup Menu</string>
-    <string name="drawer_header_action_paceholder_text">Sesuatu akan muncul di sini segera ;D</string>
+    <string name="drawer_header_action_placeholder_text">Sesuatu akan muncul di sini segera ;D</string>
 
 
     <string name="video_player">Pemutar video</string>

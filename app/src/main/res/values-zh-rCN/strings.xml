@@ -349,7 +349,7 @@
 
     <string name="drawer_open">打开侧栏菜单</string>
     <string name="drawer_close">关闭侧栏菜单</string>
-    <string name="drawer_header_action_paceholder_text">精彩内容即将呈现 ;D</string>
+    <string name="drawer_header_action_placeholder_text">精彩内容即将呈现 ;D</string>
 
 
     <string name="preferred_open_action_settings_title">偏好\"打开\"动作</string>

@@ -364,7 +364,7 @@ abrir em modo popup</string>
     <string name="normal_caption_font_size">Fonte normal</string>
     <string name="larger_caption_font_size">Maior fonte</string>
 <string name="settings_category_debug_title">Depurar</string>
-    <string name="drawer_header_action_paceholder_text">Algo irá aparecer aqui em breve ;D</string>
+    <string name="drawer_header_action_placeholder_text">Algo irá aparecer aqui em breve ;D</string>
 
 
     <string name="caption_auto_generated">Gerado automaticamente</string>
