@@ -186,7 +186,7 @@
     <string name="tab_about">Sobre</string>
     <string name="tab_contributors">Colaboradores</string>
     <string name="tab_licenses">Licenças</string>
-    <string name="app_description">Aplicação leve, simples e grátis de YouTube para Android.</string>
+    <string name="app_description">Aplicação leve livre de YouTube para Android.</string>
     <string name="view_on_github">Ver no GitHub</string>
     <string name="app_license_title">Licença do NewPipe</string>
     <string name="contribution_encouragement">Se tem ideias de tradução, alterações de design, limpeza de código ou alterações de código pesado—ajuda é sempre bem-vinda. Quanto mais se faz melhor fica!</string>
@@ -295,7 +295,7 @@
     <string name="import_data_title">Importar base de dados</string>
     <string name="export_data_title">Exportar base de dados</string>
     <string name="import_data_summary">Irá sobrepor o seu histórico atual e subscrições</string>
-    <string name="export_data_summary">Exportar histórico, subscrições e listas de reprodução.</string>
+    <string name="export_data_summary">Exportar histórico, subscrições e listas de reprodução</string>
     <string name="background_player_append">Em lista de espera no reprodutor em segundo plano</string>
     <string name="popup_playing_append">Em lista de espera no reprodutor popup</string>
     <string name="switch_to_background">Mudar para segundo plano</string>
@@ -320,7 +320,7 @@
     <string name="use_inexact_seek_title">Utilizar pesquisa rápida</string>
     <string name="use_inexact_seek_summary">A pesquisa rápida permite que a pesquisa seja mais rápida mas diminui a qualidade da precisão</string>
     <string name="download_thumbnail_title">Carregar miniaturas</string>
-    <string name="download_thumbnail_summary">Desative para parar o carregamento das miniaturas e poupar dados e memória. Se alterar esta opção limpa a cache de memória e do disco.</string>
+    <string name="download_thumbnail_summary">Desative para parar o carregamento das miniaturas e poupar dados e memória. Se alterar esta opção limpa a cache de memória e do disco</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache de imagens limpa</string>
     <string name="default_content_country_title">País padrão para o conteúdo</string>
     <string name="settings_category_debug_title">Depuração</string>
@@ -335,7 +335,7 @@
 
     <string name="dismiss">Descartar</string>
     <string name="website_title">Site</string>
-    <string name="website_encouragement">Para obter mais informações e saber as novidades do NewPipe, aceda ao nosso site.</string>
+    <string name="website_encouragement">Visite ao website NewPipe para obter mais informações e saber as novidades.</string>
     <string name="kiosk_page_summary">Página \"kiosk\"</string>
     <string name="feed_page_summary">Página da fonte</string>
     <string name="export_complete_toast">Exportação terminada</string>
@@ -366,7 +366,7 @@
     <string name="always_ask_open_action">Perguntar sempre</string>
 
     <string name="preferred_player_fetcher_notification_title">A obter informação…</string>
-    <string name="preferred_player_fetcher_notification_message">O conteúdo requisitado está a carregar</string>
+    <string name="preferred_player_fetcher_notification_message">O conteúdo requisitado está carregando</string>
 
     <string name="create_playlist">Criar Nova Lista de Reprodução</string>
     <string name="delete_playlist">Apagar Lista de Reprodução</string>
@@ -381,7 +381,7 @@
     <string name="playlist_thumbnail_change_success">Thumbnail da Lista de Reprodução modificada</string>
     <string name="caption_none">Sem Legenda</string>
 
-    <string name="resize_zoom">ZOOM</string>
+    <string name="resize_zoom">Zoom</string>
 
     <string name="caption_auto_generated">Gerado automaticamente</string>
 
@@ -400,24 +400,46 @@
     <string name="subscriptions_import_unsuccessful">Importação de subscrições falhou</string>
     <string name="subscriptions_export_unsuccessful">Exportação de subscrições falhou</string>
 
-    <string name="import_youtube_instructions">Para importar as tuas subscrições do Google vais precisar do ficheiro de exportação, que pode ser descarregado com auxílio destas instruções:
-\n
-\n1. Vai a esta hiperligação: %1$s
-\n2. Inicia a tua sessão quando requisitado
-\n3. O descarregamento deve começar (esse é o ficheiro de exportação)</string>
-    <string name="import_soundcloud_instructions">Para importar as contas que segue no SoundCloud, terá que saber o link ou id do seu perfil. Se souber, basta escrever um deles no campo abaixo e estará tudo pronto. 
+    <string name="import_youtube_instructions">Para importar as tuas subscrições do Youtube vais precisar do ficheiro de exportação, que pode ser descarregado com auxílio destas instruções: 
 \n 
-\nSe não souber, pode seguir estas etapas: 
+\n1. Vai a esta hiperligação: %1$s 
+\n2. Inicia a tua sessão quando requisitado 
+\n3. O descarregamento deve começar (esse é o ficheiro de exportação)</string>
+    <string name="import_soundcloud_instructions">Para importar as contas SoundCloud, vais precisar do link ou id do seu perfil que pode ser descarregado com auxílio destas instruções: 
 \n 
 \n1. Ative \"modo desktop\" num navegador da internet (o site não está disponível para dispositivos móveis) 
 \n2. Vá a este url: %1$s 
 \n3. Inicie sessão na sua conta quando solicitado 
-\n4. Copie o link para o qual foi redirecionado (este é o link do seu perfil)</string>
-    <string name="import_soundcloud_instructions_hint">seuid, soundcloud.com/seuid</string>
+\n4. Copie o link para o qual foi redirecionado.</string>
+    <string name="import_soundcloud_instructions_hint">seuID, soundcloud.com/seuID</string>
 
     <string name="playback_speed_control">Controlo de velocidade de reprodução</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Predefinido</string>
 <string name="clear_views_history_title">Limpar histórico de exibição</string>
+    <string name="auto_queue_summary">Auto anexar um fluxo relacionado quando jogar o último fluxo em uma fila não repetitiva</string>
+    <string name="show_hold_to_append_title">Mostrar dica \"mantenha pressionado para enfileirar\"</string>
+    <string name="show_hold_to_append_summary">Mostrar dica quando o botão de plano de fundo ou de popup for pressionado na página de detalhes do vídeo</string>
+    <string name="channels">Canais</string>
+    <string name="playlists">Listas de reprodução</string>
+    <string name="tracks">Faixas</string>
+    <string name="users">Utilizadores</string>
+    <string name="clear_views_history_summary">Deleta o histórico de videos já reproduzidos</string>
+    <string name="delete_view_history_alert">Deleta o histórico de videos já reproduzidos.</string>
+    <string name="view_history_deleted">Histórico de já assistidos deletado.</string>
+    <string name="clear_search_history_title">Deleta histórico de pesquisa</string>
+    <string name="clear_search_history_summary">Deleta histórico de palavras chave pesquisadas</string>
+    <string name="delete_search_history_alert">Deleta histórico de pesquisa completo.</string>
+    <string name="search_history_deleted">Histórico de pesquisa deletado.</string>
+    <string name="one_item_deleted">1 elemento deletado.</string>
+
+    <string name="toast_no_player">Nehum aplicativo instalada para reproduzir este arquivo</string>
+
+    <string name="donation_encouragement">NewPipe é desenvolvido por voluntários que usam seu tempo para trazer a melhor experiência para você. Retribua para ajudar os desenvolvedores a tornarem o NewPipe ainda melhor enquanto desfrutam uma xícara de café.</string>
+    <string name="give_back">Retribuir</string>
+    <string name="privacy_policy_title">Política de privacidade do NewPipe</string>
+    <string name="privacy_policy_encouragement">O projeto NewPipe leva a sua privacidade muito a sério. Sendo assim, o aplicativo não coleta nenhum dado sem seu consentimento. 
+\nA polícia de privacidade do NewPipe explica em detalhes qual dado é enviado e salvo quando você envia um relatório de erros.</string>
+    <string name="read_privacy_policy">Ler a política de privacidade</string>
     </resources>
