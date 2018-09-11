@@ -374,7 +374,7 @@ otevření ve vyskakovacím okně</string>
     <string name="playlist_thumbnail_change_success">Náhled playlistu změněn</string>
     <string name="playlist_delete_failure">Playlist nelze smazat</string>
 
-    <string name="caption_none">Žádné poznámky</string>
+    <string name="caption_none">Žádné titulky</string>
 
     <string name="resize_fit">Přizpůsobit</string>
     <string name="resize_fill">Vyplnit</string>
@@ -459,8 +459,8 @@ otevření ve vyskakovacím okně</string>
     <string name="preferred_open_action_settings_title">Preferovaná \'otevřít\' akce</string>
     <string name="preferred_open_action_settings_summary">Výchozí chování při otevírání obsahu — %s</string>
 
-    <string name="caption_setting_title">Poznámky</string>
-    <string name="caption_setting_description">Upravuje velikost textu poznámek a styly pozadí. Změny se projeví po restartu aplikace</string>
+    <string name="caption_setting_title">Titulky</string>
+    <string name="caption_setting_description">Upravuje velikost textu titulků a styly pozadí. Změny se projeví po restartu aplikace</string>
 
     <string name="toast_no_player">K přehrání tohoto souboru chybí vhodná aplikace</string>
 
@@ -475,4 +475,31 @@ otevření ve vyskakovacím okně</string>
     <string name="one_item_deleted">Jedna položka smazána.</string>
 
     <string name="app_license">NewPipe je copyleft libre software: Můžete jej používat, sdílet a vylepšovat dle vaší vůle. Redistribuovat a/nebo upravovat lze za podmínek GNU General Public Licence zveřejňované nadací Free Software Foundation, a to buď za podmínek licence verze 3 nebo (dle vaší volby) jakékoli pozdější verze.</string>
-    </resources>
+    <string name="channels">kanály</string>
+    <string name="playlists">Playlisty</string>
+    <string name="tracks">Stopy</string>
+    <string name="users">Uživatelé</string>
+    <string name="privacy_policy_title">Zásady ochrany soukromí v NewPipe</string>
+    <string name="privacy_policy_encouragement">Projekt NewPipe bere vaše soukromí velice vážně. Proto aplikace neshromažďuje žádné údaje bez vašeho souhlasu.
+\nZásady ochrany soukromí NewPipe podrobně vysvětlují, jaké údaje jsou odesílány a ukládány, když odešlete zprávu o pádu aplikace.</string>
+    <string name="read_privacy_policy">Přečíst zásady ochrany soukromí</string>
+    <string name="import_settings">Chcete také přenést nastavení?</string>
+
+    <string name="skip_silence_checkbox">Zrychleně vpřed během ticha</string>
+    <string name="playback_step">Krok</string>
+    <string name="playback_reset">Reset</string>
+
+    <string name="start_accept_privacy_policy">Abychom vyhověli Obecnému nařízení o ochraně osobních údajů (GDPR), upozorňujeme vás na zásady ochrany soukromí v NewPipe. Přečtěte si je prosím pozorně.
+\nJe potřeba je odsouhlasit, abyste nám mohli odeslat hlášení chyb.</string>
+    <string name="accept">Přijmout</string>
+    <string name="decline">Odmítnout</string>
+
+    <string name="limit_data_usage_none_description">Bez omezení</string>
+    <string name="limit_mobile_data_usage_title">Omezit rozlišení při použití mobilních dat</string>
+    <string name="minimize_on_exit_title">Minimalizovat při přepínání aplikací</string>
+    <string name="minimize_on_exit_summary">Akce při přepínání aplikací z hlavního přehrávače videa - %s</string>
+    <string name="minimize_on_exit_none_description">Žádná</string>
+    <string name="minimize_on_exit_background_description">Minimalizovat přehrávač na pozadí</string>
+    <string name="minimize_on_exit_popup_description">Minimalizovat přehrávač do vyskakovacího okna</string>
+
+</resources>
