@@ -10,7 +10,7 @@
     <string name="download">Scarica</string>
     <string name="search">Cerca</string>
     <string name="settings">Impostazioni</string>
-    <string name="did_you_mean">Intendevi: %1$s ?</string>
+    <string name="did_you_mean">Intendevi %1$s?</string>
     <string name="share_dialog_title">Condividi con</string>
     <string name="choose_browser">Scegli il browser</string>
     <string name="screen_rotation">rotazione</string>
@@ -76,7 +76,7 @@
     <string name="show_age_restricted_content_title">Mostra contenuti vietati ai minori</string>
     <string name="video_is_age_restricted">Questo video è riservato ad un pubblico maggiorenne. Per accedervi, abilita \"Mostra contenuti vietati ai minori\" nelle impostazioni.</string>
 
-    <string name="main_bg_subtitle">Tocca cerca per iniziare</string>
+    <string name="main_bg_subtitle">Tocca Cerca per iniziare</string>
     <string name="autoplay_by_calling_app_title">Riproduzione automatica</string>
     <string name="autoplay_by_calling_app_summary">Riproduci i video quando NewPipe viene aperto da un\'altra app</string>
     <string name="duration_live">in diretta</string>
@@ -149,7 +149,7 @@
 
 
     <string name="open_in_popup_mode">Apri in modalità popup</string>
-    <string name="popup_mode_share_menu_title">NewPipe modalità popup</string>
+    <string name="popup_mode_share_menu_title">Modalità popup di NewPipe</string>
 
     <string name="popup_playing_toast">Riproduzione in modalità popup</string>
     <string name="disabled">Disattivato</string>
