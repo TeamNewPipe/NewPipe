@@ -23,18 +23,18 @@
     <string name="show_play_with_kodi_summary">Kodi メディアセンター経由で動画を再生するための設定を表示します</string>
     <string name="play_audio">音楽</string>
     <string name="default_audio_format_title">デフォルトの音楽形式</string>
-    <string name="webm_description">WebM形式</string>
-    <string name="m4a_description">m4a形式</string>
-    <string name="download_dialog_title">保存</string>
+    <string name="webm_description">WebM 形式 — 自由なフォーマット</string>
+    <string name="m4a_description">M4A 形式 — 高音質</string>
+    <string name="download_dialog_title">ダウンロード</string>
     <string name="next_video_title">次の動画</string>
-    <string name="show_next_and_similar_title">\"次の動画\"と\"関連動画\"を表示します</string>
+    <string name="show_next_and_similar_title">「次の動画」と「関連動画」を表示</string>
     <string name="url_not_supported_toast">URLは使用できません</string>
     <string name="search_language_title">優先言語</string>
     <string name="settings_category_video_audio_title">動画と音楽</string>
     <string name="view_count_text">%1$s ビュー</string>
     <string name="list_thumbnail_view_description">動画 プレビュー サムネイル</string>
     <string name="detail_thumbnail_view_description">動画 プレビュー サムネイル</string>
-    <string name="detail_uploader_thumbnail_view_description">アップローダー サムネイル</string>
+    <string name="detail_uploader_thumbnail_view_description">投稿者アイコンのサムネイル</string>
     <string name="detail_dislikes_img_view_description">低評価</string>
     <string name="detail_likes_img_view_description">高評価</string>
     <string name="use_external_video_player_title">外部プレイヤーを使用する</string>
@@ -45,9 +45,9 @@
 
     <string name="use_tor_title">Torを使用する</string>
     <string name="use_tor_summary">(実験的) 強制的に Tor を経由した経路で保存して､匿名性を高めます(動画の同時再生は未だ対応していません)｡</string>
-    <string name="theme_title">外観</string>
-    <string name="dark_theme_title">暗</string>
-    <string name="light_theme_title">明</string>
+    <string name="theme_title">テーマ</string>
+    <string name="dark_theme_title">ダーク</string>
+    <string name="light_theme_title">ライト</string>
 
     <string name="settings_category_appearance_title">外観</string>
     <string name="settings_category_other_title">その他</string>
@@ -61,22 +61,22 @@
     <string name="info_dir_created">保存場所 \'%1$s\' を作成しました</string>
     <string name="general_error">エラー</string>
     <string name="could_not_load_thumbnails">全てのサムネイルを読み込むことができません</string>
-    <string name="youtube_signature_decryption_error">動画のURL署名を復号できませんでした</string>
+    <string name="youtube_signature_decryption_error">動画の URL 署名を復号できませんでした</string>
     <string name="parsing_error">Webサイトを解析できませんでした</string>
     <string name="content_not_available">コンテンツが利用できません</string>
-    <string name="blocked_by_gema">GEMA によって阻止されました</string>
+    <string name="blocked_by_gema">GEMA にブロックされました</string>
 
     <string name="could_not_setup_download_menu">保存メニューを設定できませんでした</string>
 
 
-    <string name="live_streams_not_supported">生放送には対応していません</string>
+    <string name="live_streams_not_supported">生放送にはまだ対応していません</string>
 
 
-    <string name="content">内容</string>
+    <string name="content">コンテンツ</string>
     <string name="show_age_restricted_content_title">年齢制限のあるコンテンツを表示する</string>
     <string name="video_is_age_restricted">この動画には年齢制限があります｡視聴するには設定から制限を解除して下さい｡</string>
 
-    <string name="light_parsing_error">Webｻｲﾄを完全には解析できませんでした</string>
+    <string name="light_parsing_error">ウェブサイトを完全には解析できませんでした</string>
     <string name="could_not_get_stream">動画を取得できませんでした</string>
     <string name="sorry_string">申し訳ありません。発生すべきではありませんでした。</string>
     <string name="error_report_button_text">メールで不具合を報告</string>
@@ -93,7 +93,7 @@
     <string name="retry">再試行</string>
     <string name="storage_permission_denied">ストレージへのアクセスが拒否されました</string>
     <string name="autoplay_by_calling_app_title">自動再生</string>
-    <string name="autoplay_by_calling_app_summary">NewPipeが他のアプリから呼び出された際に､自動的に動画を再生します｡</string>
+    <string name="autoplay_by_calling_app_summary">NewPipe が他のアプリから呼び出された時､動画を再生します｡</string>
     <string name="report_error">不具合を報告</string>
     <string name="user_report">利用者報告</string>
 
@@ -102,7 +102,7 @@
     <string name="main_bg_subtitle">開始するには検索をタップ</string>
     <string name="start">開始</string>
     <string name="pause">一時停止</string>
-    <string name="view">表示</string>
+    <string name="view">再生</string>
     <string name="delete">削除</string>
     <string name="checksum">チェックサム</string>
 
@@ -119,7 +119,7 @@
     <string name="msg_running_detail">タップして詳細を表示</string>
     <string name="msg_wait">お待ちください…</string>
     <string name="msg_copied">クリップボードにコピーしました</string>
-    <string name="no_available_dir">利用可能な保存場所を選択して下さい</string>
+    <string name="no_available_dir">ダウンロードフォルダを選択して下さい</string>
 
     <string name="downloads">保存</string>
     <string name="downloads_title">保存</string>
@@ -134,7 +134,7 @@
 
     <string name="recaptcha_request_toast">reCAPTCHA を要求しました</string>
 
-    <string name="black_theme_title">黒</string>
+    <string name="black_theme_title">ブラック</string>
 
     <string name="all">すべて</string>
     <string name="channel">チャンネル</string>
@@ -163,7 +163,7 @@
 
     <string name="default_popup_resolution_title">デフォルトのポップアップ解像度</string>
     <string name="show_higher_resolutions_title">高い解像度で表示</string>
-    <string name="show_higher_resolutions_summary">一部のデバイスのみ 2K/4K ビデオの再生をサポートしています</string>
+    <string name="show_higher_resolutions_summary">2K/4K ビデオの再生は一部のデバイスのみサポートしています</string>
     <string name="controls_background_title">背景</string>
     <string name="controls_popup_title">ポップアップ</string>
 
@@ -195,12 +195,12 @@
     <string name="tab_about">このアプリについて</string>
     <string name="tab_contributors">貢献者</string>
     <string name="tab_licenses">ライセンス</string>
-    <string name="app_description">Android向けの無料で軽量なYouTubeフロントエンド。</string>
-    <string name="view_on_github">Github で表示</string>
+    <string name="app_description">Android 向けの自由で軽量なプレイヤー</string>
+    <string name="view_on_github">GitHub で表示</string>
     <string name="app_license_title">NewPipe のライセンス</string>
     <string name="contribution_encouragement">翻訳、デザインの変更、コードの整理、動作の重いコードの変更など、アイデアをお持ちではありませんか？ヘルプはいつでも歓迎します。より良いものを一緒に作り上げましょう！</string>
     <string name="read_full_license">ライセンスを読む</string>
-    <string name="contribution_title">貢献</string>
+    <string name="contribution_title">貢献する</string>
 <string name="subscribe_button_title">チャンネル登録</string>
     <string name="subscribed_button_title">チャンネル登録しました</string>
     <string name="channel_unsubscribed">チャンネル登録を解除しました</string>
@@ -214,14 +214,14 @@
 
     <string name="enable_search_history_title">検索履歴</string>
     <string name="enable_search_history_summary">検索履歴をローカルに保存します</string>
-    <string name="enable_watch_history_title">再生履歴</string>
+    <string name="enable_watch_history_title">再生履歴とキャッシュ</string>
     <string name="enable_watch_history_summary">再生した動画を記録します</string>
     <string name="resume_on_audio_focus_gain_title">フォーカスで再開</string>
     <string name="resume_on_audio_focus_gain_summary">電話などによる中断の後、再生を再開します</string>
     <string name="settings_category_player_title">プレーヤー</string>
     <string name="show_hold_to_append_summary">動画の詳細ページで背景、またはポップアップボタンが押されたときにヒントを表示する</string>
     <string name="settings_category_player_behavior_title">動作</string>
-    <string name="settings_category_history_title">履歴</string>
+    <string name="settings_category_history_title">履歴とキャッシュ</string>
     <string name="playlist">再生リスト</string>
     <string name="undo">元に戻す</string>
     <string name="play_all">すべて再生</string>
@@ -229,7 +229,7 @@
     <string name="notification_channel_name">NewPipeの通知</string>
     <string name="unknown_content">[不明]</string>
 
-    <string name="player_stream_failure">動画の再生に失敗しました</string>
+    <string name="player_stream_failure">動画の再生ができませんでした</string>
     <string name="player_unrecoverable_failure">回復不能な再生エラーが発生しました</string>
     <string name="search_no_results">何も見つかりませんでした</string>
     <string name="no_subscribers">チャンネル登録なし</string>
@@ -243,9 +243,9 @@
     <string name="charset_most_special_characters">ほとんどの特殊文字</string>
 
     <string name="donation_title">寄付</string>
-    <string name="donation_encouragement">NewPipeはあなたに最高の経験をもたらすため、自由時間を費やしたボランティアによって開発されています。カップのコーヒー(Java)を楽しんでいる間に、開発者がNewPipeをより良いものにすることが出来るよう、今度はお返しをする時間です！</string>
+    <string name="donation_encouragement">NewPipe は、あなたに最高の体験を味わってもらうために、ボランティアが自分たちの時間を使って開発しています。開発者たちがコーヒーを飲みながら NewPipe を継続的に改良できるよう、あなたのご支援をお願いします。</string>
     <string name="website_title">Webサイト</string>
-    <string name="website_encouragement">NewPipeに関する詳しい情報や最新のニュースについては、我々のWebサイトをご覧ください。</string>
+    <string name="website_encouragement">NewPipe の詳しい情報や最新情報については、ウェブサイトをご覧ください。</string>
     <string name="title_activity_history">履歴</string>
     <string name="title_history_search">検索履歴</string>
     <string name="title_history_view">再生履歴</string>
@@ -287,13 +287,13 @@
     <string name="import_data_title">データベースのインポート</string>
     <string name="export_data_title">データベースのエクスポート</string>
     <string name="import_data_summary">既存の履歴と購読リストは上書きされます</string>
-    <string name="export_data_summary">履歴や購読リスト、プレイリストをエクスポートします。</string>
+    <string name="export_data_summary">履歴や購読リスト、プレイリストをエクスポートします</string>
     <string name="player_recoverable_failure">再生エラーからの回復中</string>
     <string name="external_player_unsupported_link_type">外部プレーヤーは、これらのタイプのリンクをサポートしていません</string>
     <string name="invalid_url_toast">無効なURL</string>
     <string name="export_complete_toast">エクスポートが完了しました</string>
     <string name="import_complete_toast">インポートが完了しました</string>
-    <string name="no_valid_zip_file">有効なZipファイルがありません</string>
+    <string name="no_valid_zip_file">有効な ZIP ファイルではありません</string>
     <string name="could_not_import_all_files">警告: すべてのファイルをインポートできませんでした。</string>
     <string name="override_current_data">これにより、現在の設定が上書きされます。</string>
 
@@ -309,7 +309,7 @@
     <string name="always_ask_player">常に尋ねる</string>
     
     <string name="preferred_player_fetcher_notification_title">情報を取得しています…</string>
-    <string name="preferred_player_fetcher_notification_message">要求したコンテンツを読み込んでいます</string>
+    <string name="preferred_player_fetcher_notification_message">コンテンツを読み込んでいます</string>
 <string name="controls_download_desc">動画ファイルをダウンロード</string>
     <string name="show_info">情報を表示</string>
 
@@ -355,10 +355,10 @@
     <string name="unbookmark_playlist">ブックマークを削除</string>
 
     <string name="delete_playlist_prompt">このプレイリストを削除しますか？</string>
-    <string name="playlist_creation_success">プレイリストが正常に作成されました</string>
+    <string name="playlist_creation_success">プレイリストが作成されました</string>
     <string name="playlist_add_stream_success">プレイリストに追加しました</string>
     <string name="playlist_thumbnail_change_success">プレイリストのサムネイルを変更しました</string>
-    <string name="playlist_delete_failure">プレイリストの削除に失敗しました</string>
+    <string name="playlist_delete_failure">プレイリストが削除できませんでした</string>
 
     <string name="caption_none">字幕なし</string>
 
@@ -374,8 +374,8 @@
     <string name="import_file_title">ファイルからインポート</string>
     <string name="previous_export">前回のエクスポート</string>
 
-    <string name="subscriptions_import_unsuccessful">購読リストのインポートに失敗しました</string>
-    <string name="subscriptions_export_unsuccessful">購読リストのエクスポートに失敗しました</string>
+    <string name="subscriptions_import_unsuccessful">購読リストがインポートできませんでした</string>
+    <string name="subscriptions_export_unsuccessful">購読リストがエクスポートできませんでした</string>
 
     <string name="playback_tempo">テンポ</string>
     <string name="playback_pitch">音程</string>
@@ -383,10 +383,10 @@
 <string name="background_player_append">バックグラウンド再生リストに追加されました</string>
     <string name="popup_playing_append">ポップアップ再生リストに追加されました</string>
     <string name="clear_views_history_title">再生履歴を消去</string>
-    <string name="clear_views_history_summary">再生した動画の履歴を削除します。</string>
+    <string name="clear_views_history_summary">再生した動画の履歴を削除します</string>
     <string name="view_history_deleted">再生履歴を削除しました。</string>
     <string name="clear_search_history_title">検索履歴を消去</string>
-    <string name="clear_search_history_summary">検索キーワードの履歴を削除します。</string>
+    <string name="clear_search_history_summary">検索キーワードの履歴を削除します</string>
     <string name="search_history_deleted">検索履歴を削除しました。</string>
     <string name="toast_no_player">このファイルを再生するためのアプリがインストールされていません</string>
 
@@ -398,4 +398,34 @@
     <string name="users">ユーザー</string>
     <string name="privacy_policy_title">NewPipe プライバシーポリシー</string>
     <string name="read_privacy_policy">プライバシーポリシーを確認</string>
+    <string name="use_inexact_seek_title">おおまかなシーク</string>
+    <string name="use_inexact_seek_summary">おおまかなシークを使用すると、正確さ下がりますが、高速なシークが可能になります</string>
+    <string name="download_thumbnail_summary">すべてのサムネイルの読み込みと保存を無効化します。このオプションを切り替えるとメモリおよびディスク上の画像キャッシュがクリアされます</string>
+    <string name="auto_queue_summary">繰り返しでないキューの最後の動画を再生時、関連動画を自動的にキューに追加する</string>
+    <string name="delete_view_history_alert">すべての再生履歴を削除します</string>
+    <string name="delete_search_history_alert">すべての検索履歴を削除します</string>
+    <string name="invalid_source">ファイル/コンテンツのソースが無効です</string>
+    <plurals name="subscribers">
+	<item quantity="other">登録者数 %s 人</item>
+</plurals>
+
+    <string name="no_views">視聴なし</string>
+    <plurals name="views">
+	<item quantity="other">視聴回数 %s 回</item>
+</plurals>
+
+    <plurals name="videos">
+	<item quantity="other">%s 本の動画</item>
+</plurals>
+
+    <string name="one_item_deleted">1 つのアイテムが削除されました</string>
+
+    <string name="give_back">支援する</string>
+    <string name="privacy_policy_encouragement">NewPipe プロジェクトはあなたのプライバシーを非常に大切にしています。あなたの同意がない限り、アプリはいかなるデータも収集しません。NewPipe のプライバシー・ポリシーでは、クラッシュリポート送信時にどのような種類のデータが送信・記録されるかを詳細に説明しています。</string>
+    <string name="app_license">NewPipe は著作権が自由のソフトウェアです。自由であるとは、あなたは自分の自由意志で、ソフトウェアを自由に使ったり、自由に研究したり、自由に改良することができるということです。あなたは、GNU フリーソフトウェア財団が公開する GNU General Public ライセンス バージョン3以降の下に、自由に再配布・修正を行うことができます。</string>
+    <string name="title_last_played">最終再生日時</string>
+    <string name="title_most_played">最も再生した動画</string>
+
+    <string name="resize_zoom">ズーム</string>
+
     </resources>
