@@ -30,6 +30,11 @@
         android:title="@string/content"/>
 
     <PreferenceScreen
+        android:fragment="org.schabi.newpipe.settings.UpdateSettingsFragment"
+        android:icon="?attr/ic_settings_update"
+        android:title="@string/settings_category_updates_title" />
+
+    <PreferenceScreen
         android:fragment="org.schabi.newpipe.settings.DebugSettingsFragment"
         android:icon="?attr/bug"
         android:title="@string/settings_category_debug_title"

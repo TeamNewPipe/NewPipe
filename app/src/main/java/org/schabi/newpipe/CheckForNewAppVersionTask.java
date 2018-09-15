@@ -3,10 +3,13 @@ package org.schabi.newpipe;
 import android.app.Application;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,12 +32,23 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
     private String newPipeApiUrl = "https://newpipe.schabi.org/api/data.json";
     private int timeoutPeriod = 10000;
 
+    private SharedPreferences mPrefs;
+
     @Override
     protected void onPreExecute() {
-        // Continue with version check only if the build variant is of type "github".
-        if (!BuildConfig.FLAVOR.equals(app.getString(R.string.app_flavor_github))) {
+
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(app);
+
+        // Check if user has enabled/ disabled update checking.
+        if (mPrefs.getBoolean(app.getString(R.string.update_app_key), true)) {
+
+            // Go ahead with further checks.
+            Log.i("pref---", "true");
+        } else {
+            Log.i("pref---", "false");
             this.cancel(true);
         }
+
     }
 
     @Override

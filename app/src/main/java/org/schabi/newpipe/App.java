@@ -209,24 +209,21 @@ public class App extends Application {
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.createNotificationChannel(mChannel);
 
-        // Set up notification channel for app update only if it's a github apk.
-        if (BuildConfig.FLAVOR.equals(getString(R.string.app_flavor_github))) {
+        // Set up notification channel for app update.
+        final String appUpdateId
+                = getString(R.string.app_update_notification_channel_id);
+        final CharSequence appUpdateName
+                = getString(R.string.app_update_notification_channel_name);
+        final String appUpdateDescription
+                = getString(R.string.app_update_notification_channel_description);
 
-            final String appUpdateId
-                    = getString(R.string.app_update_notification_channel_id);
-            final CharSequence appUpdateName
-                    = getString(R.string.app_update_notification_channel_name);
-            final String appUpdateDescription
-                    = getString(R.string.app_update_notification_channel_description);
+        NotificationChannel appUpdateChannel
+                = new NotificationChannel(appUpdateId, appUpdateName, importance);
+        appUpdateChannel.setDescription(appUpdateDescription);
 
-            NotificationChannel appUpdateChannel
-                    = new NotificationChannel(appUpdateId, appUpdateName, importance);
-            appUpdateChannel.setDescription(appUpdateDescription);
-
-            NotificationManager appUpdateNotificationManager
-                    = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            appUpdateNotificationManager.createNotificationChannel(appUpdateChannel);
-        }
+        NotificationManager appUpdateNotificationManager
+                = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        appUpdateNotificationManager.createNotificationChannel(appUpdateChannel);
     }
 
     @Nullable
