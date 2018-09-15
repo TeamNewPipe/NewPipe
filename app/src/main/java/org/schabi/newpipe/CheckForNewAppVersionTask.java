@@ -44,6 +44,8 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
 
         // Make a network request to get latest NewPipe data.
 
+        Log.i("Update---", "checking");
+
         String response;
         HttpURLConnection connection = null;
 
@@ -102,8 +104,6 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
 
     @Override
     protected void onPostExecute(String response) {
-
-        Log.i("Response--", response);
 
         // Parse the json from the response.
         if (response != null) {

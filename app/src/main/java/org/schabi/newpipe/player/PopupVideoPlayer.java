@@ -666,7 +666,7 @@ public final class PopupVideoPlayer extends Service {
             hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
 
             // Check for new version
-            new CheckForNewAppVersionTask().execute();
+            //new CheckForNewAppVersionTask().execute();
         }
 
         @Override
