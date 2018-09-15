@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
-import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,7 +15,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
@@ -43,8 +41,6 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
     protected String doInBackground(Void... voids) {
 
         // Make a network request to get latest NewPipe data.
-
-        Log.i("Update---", "checking");
 
         String response;
         HttpURLConnection connection = null;
@@ -85,8 +81,6 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
 
                     return response;
             }
-        } catch (MalformedURLException ex) {
-            ex.printStackTrace();
         } catch (IOException ex) {
             ex.printStackTrace();
         } finally {
