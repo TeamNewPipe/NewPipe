@@ -8,6 +8,8 @@
     <string name="current_service_key" translatable="false">service</string>
     <string name="default_service_value" translatable="false">@string/youtube</string>
 
+    <string name="saved_tabs_key" translatable="false">saved_tabs_key</string>
+
     <!-- Key values -->
     <string name="download_path_key" translatable="false">download_path</string>
     <string name="download_path_audio_key" translatable="false">download_path_audio</string>
@@ -24,6 +26,22 @@
     <string name="auto_queue_key" translatable="false">auto_queue_key</string>
     <string name="screen_brightness_key" translatable="false">screen_brightness_key</string>
     <string name="screen_brightness_timestamp_key" translatable="false">screen_brightness_timestamp_key</string>
+
+    <string name="minimize_on_exit_key" translatable="false">minimize_on_exit_key</string>
+    <string name="minimize_on_exit_value" translatable="false">@string/minimize_on_exit_none_key</string>
+    <string name="minimize_on_exit_none_key" translatable="false">minimize_on_exit_none_key</string>
+    <string name="minimize_on_exit_background_key" translatable="false">minimize_on_exit_background_key</string>
+    <string name="minimize_on_exit_popup_key" translatable="false">minimize_on_exit_popup_key</string>
+    <string-array name="minimize_on_exit_action_key" translatable="false">
+        <item>@string/minimize_on_exit_none_key</item>
+        <item>@string/minimize_on_exit_background_key</item>
+        <item>@string/minimize_on_exit_popup_key</item>
+    </string-array>
+    <string-array name="minimize_on_exit_action_description" translatable="false">
+        <item>@string/minimize_on_exit_none_description</item>
+        <item>@string/minimize_on_exit_background_description</item>
+        <item>@string/minimize_on_exit_popup_description</item>
+    </string-array>
 
     <string name="default_resolution_key" translatable="false">default_resolution</string>
     <string name="default_resolution_value" translatable="false">360p</string>
@@ -77,8 +95,8 @@
     <string name="audio_m4a_key" translatable="false">audio_m4a</string>
     <string name="audio_webm_key" translatable="false">audio_webm</string>
     <string-array name="audio_format_description_list" translatable="false">
-        <item>@string/m4a_description</item>
-        <item>@string/webm_description</item>
+        <item>M4A</item>
+        <item>WebM</item>
     </string-array>
     <string-array name="audio_format_values_list" translatable="false">
         <item>@string/audio_m4a_key</item>
@@ -127,22 +145,7 @@
     <string name="enable_search_history_key" translatable="false">enable_search_history</string>
     <string name="enable_watch_history_key" translatable="false">enable_watch_history</string>
     <string name="main_page_content_key" translatable="false">main_page_content</string>
-    <string name="blank_page_key" translatable="false">blank_page</string>
-    <string name="feed_page_key" translatable="false">feed_page</string>
-    <string name="subscription_page_key" translatable="false">subscription_page_key</string>
-    <string name="kiosk_page_key" translatable="false">kiosk_page</string>
-    <string name="channel_page_key" translatable="false">channel_page</string>
-    <string-array name="main_page_content_pages" translatable="false">
-        <item>@string/blank_page_key</item>
-        <item>@string/kiosk_page_key</item>
-        <item>@string/feed_page_key</item>
-        <item>@string/subscription_page_key</item>
-        <item>@string/channel_page_key</item>
-    </string-array>
-    <string name="main_page_selected_service" translatable="false">main_page_selected_service</string>
-    <string name="main_page_selected_channel_name" translatable="false">main_page_selected_channel_name</string>
-    <string name="main_page_selected_channel_url" translatable="false">main_page_selected_channel_url</string>
-    <string name="main_page_selectd_kiosk_id" translatable="false">main_page_selectd_kiosk_id</string>
+
     <string name="import_data">import_data</string>
     <string name="export_data">export_data</string>
 
@@ -178,6 +181,7 @@
     <string name="video_player_key" translatable="false">video_player</string>
     <string name="background_player_key" translatable="false">background_player</string>
     <string name="popup_player_key" translatable="false">popup_player</string>
+    <string name="download_key" translatable="false">download</string>
     <string name="always_ask_open_action_key" translatable="false">always_ask_player</string>
 
     <string-array name="preferred_open_action_description_list" translatable="false">
@@ -185,6 +189,7 @@
         <item>@string/video_player</item>
         <item>@string/background_player</item>
         <item>@string/popup_player</item>
+        <item>@string/download</item>
         <item>@string/always_ask_open_action</item>
     </string-array>
     <string-array name="preferred_open_action_values_list" translatable="false">
@@ -192,6 +197,7 @@
         <item>@string/video_player_key</item>
         <item>@string/background_player_key</item>
         <item>@string/popup_player_key</item>
+        <item>@string/download_key</item>
         <item>@string/always_ask_open_action_key</item>
     </string-array>
 

@@ -32,7 +32,7 @@
     <string name="download_path_audio_dialog_title">הכנס נתיב לשמירת קבצי שמע</string>
 
     <string name="autoplay_by_calling_app_title">נגן אוטומטית</string>
-    <string name="autoplay_by_calling_app_summary">הפעל סרטון אוטומטית כאשר NewPipe נפתח דרך אפליקציה אחרת</string>
+    <string name="autoplay_by_calling_app_summary">מנגן סרטון כאשר NewPipe נפתח דרך אפליקציה אחרת</string>
     <string name="default_resolution_title">רזולוציית ברירת המחדל</string>
     <string name="default_popup_resolution_title">רזולוציית ברירת המחדל לחלון צץ</string>
     <string name="show_higher_resolutions_title">הצג רזולוציות גבוהות יותר</string>
@@ -44,8 +44,6 @@
     <string name="play_audio">שמע</string>
     <string name="default_audio_format_title">תבנית ברירת המחדל לשמע</string>
     <string name="default_video_format_title">תבנית סרט ברירת מחדל</string>
-    <string name="webm_description">WebM — תבנית חופשית</string>
-    <string name="m4a_description">M4A — איכות גבוהה יותר</string>
     <string name="theme_title">ערכת נושא</string>
     <string name="light_theme_title">מואר</string>
     <string name="dark_theme_title">חשוך</string>
@@ -119,7 +117,7 @@
 
     <string name="enable_search_history_title">היסטוריית חיפושים</string>
     <string name="enable_search_history_summary">שמור חיפושים מקומית</string>
-    <string name="enable_watch_history_title">היסטוריה</string>
+    <string name="enable_watch_history_title">היסטוריה ומטמון</string>
     <string name="enable_watch_history_summary">המשך לעקוב אחר סרטונים שנצפו</string>
     <string name="resume_on_audio_focus_gain_title">המשך לנגן בעת חזרת המיקוד ליישום</string>
     <string name="resume_on_audio_focus_gain_summary">המשך לנגן לאחר הפרעות (לדוגמה: שיחות טלפון)</string>
@@ -386,4 +384,16 @@
 \n3. ההורדה אמורה להתחיל (זהו קובץ היצוא)</string>
     <string name="playback_tempo">קצב</string>
     <string name="playback_default">ברירת מחדל</string>
-</resources>
+<string name="use_inexact_seek_title">השתמש בחיפוש מהיר שאינו מדויק</string>
+    <string name="use_inexact_seek_summary">חיפוש לא מדויק מאפשר לנגן לחפש נקודת זמן מהר יותר, עם דיוק מופחת</string>
+    <string name="download_thumbnail_title">טען תמונות ממוזערות</string>
+    <string name="download_thumbnail_summary">"השבת כדי לעצור את טעינת כל התמונות הממוזערות וחסוך בשימוש בנתונים ובזכרון. השינוי ימחק את המטמון בזכרון ובדיסק. "</string>
+    <string name="metadata_cache_wipe_summary">הסר את כל נתוני העמודים במטמון</string>
+    <string name="auto_queue_title">אוטומטית הכנס לתור את ההזרמה הבאה</string>
+    <string name="auto_queue_summary">"אוטומטית הוסף הזרמה קשורה כאשר ההזרמה האחרונה לא נמצאת במצב  הזרמה חוזרת של התור. "</string>
+    <string name="toggle_orientation">כפתור כיוון</string>
+    <string name="switch_to_main">החלף לראשי</string>
+
+    <string name="import_data_summary">פעולה זו תדרוס את ההיסטוריה ורשימת המנויים הקיימת.</string>
+    <string name="clear_views_history_summary">"מחק הסטוריה של ניגונים קודמים. "</string>
+    </resources>

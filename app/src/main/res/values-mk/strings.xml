@@ -59,8 +59,6 @@
     <string name="play_audio">Звук</string>
     <string name="default_audio_format_title">Стандарден аудио формат</string>
     <string name="default_video_format_title">Стандарден видео формат</string>
-    <string name="webm_description">WebM — слободен формат</string>
-    <string name="m4a_description">М4А — подобар квалитет</string>
     <string name="theme_title">Тема</string>
     <string name="light_theme_title">Светла</string>
     <string name="dark_theme_title">Темна</string>
@@ -70,13 +68,13 @@
     <string name="use_inexact_seek_title">Брзо, непрецизно премотување</string>
     <string name="use_inexact_seek_summary">Со непрецизното премотување може да се пребарува побрзо, но понепрецизно</string>
     <string name="download_thumbnail_title">Прочитај сликички</string>
-    <string name="download_thumbnail_summary">Оневозможи, за да не се читаат сликичките од видеото, за штедење меморија и интернет. Промена на опцијата ќе ја избрише кеш-меморијата.</string>
+    <string name="download_thumbnail_summary">Оневозможи, за да не се читаат сликичките од видеото, за штедење меморија и интернет. Промена на опцијата ќе ја избрише кеш-меморијата</string>
     <string name="thumbnail_cache_wipe_complete_notice">Сликичките се избришани</string>
     <string name="metadata_cache_wipe_title">Избриши ги собраните мета-податоци</string>
     <string name="metadata_cache_wipe_summary">Избриши ги сите собрани податоци од веб-страни</string>
     <string name="metadata_cache_wipe_complete_notice">Избришани се мета-податоците</string>
     <string name="auto_queue_title">Автоматски постави го на листа следното видео</string>
-    <string name="auto_queue_summary">Автоматски прикачи поврзано видео кога ќе почне последното пуштено видео во неповторлива листа.</string>
+    <string name="auto_queue_summary">Автоматски прикачи поврзано видео кога ќе почне последното пуштено видео во неповторлива листа</string>
     <string name="player_gesture_controls_title">Управување на плеерот со гестови</string>
     <string name="player_gesture_controls_summary">Користи гестови за управување на светлоста и тонот</string>
     <string name="show_search_suggestions_title">Предлози за пребарување</string>
@@ -146,7 +144,7 @@
     <string name="import_data_title">Внеси датабаза</string>
     <string name="export_data_title">Изнеси база на податоци</string>
     <string name="import_data_summary">Ќе ги избрише моменталните членства и историја</string>
-    <string name="export_data_summary">Изнеси историја, членства и плејлисти.</string>
+    <string name="export_data_summary">Изнеси историја, членства и плејлисти</string>
     <string name="general_error">Грешка</string>
     <string name="network_error">Мрежна грешка</string>
     <string name="could_not_load_thumbnails">Не можеа да се прочитаат сите сликички</string>
@@ -422,11 +420,11 @@
     <string name="playback_nightcore">„Nightcore“</string>
     <string name="playback_default">Стандардно</string>
 <string name="clear_views_history_title">Избриши историја на гледаност</string>
-    <string name="clear_views_history_summary">Ја брише историјата на пуштени видеа.</string>
+    <string name="clear_views_history_summary">Ја брише историјата на пуштени видеа</string>
     <string name="delete_view_history_alert">Избриши ја целата историја на гледаност.</string>
     <string name="view_history_deleted">Избришана е историјата на гледаност.</string>
     <string name="clear_search_history_title">Избриши историја на пребарувања</string>
-    <string name="clear_search_history_summary">Ја брише историјата на пребарувања.</string>
+    <string name="clear_search_history_summary">Ја брише историјата на пребарувања</string>
     <string name="delete_search_history_alert">Избриши ја целата историја на пребарувања.</string>
     <string name="search_history_deleted">Избришана е историјата на пребарувања.</string>
     <string name="no_streams_available_download">Нема стримови за симнување</string>
@@ -442,6 +440,31 @@
     <string name="preferred_open_action_settings_summary">Стандардна акција при отворање видеа — %s</string>
 
     <string name="caption_setting_title">Преводи</string>
-    <string name="caption_setting_description">Смени ја големината и стилот на преводот. Потребен е рестарт за промена.</string>
+    <string name="caption_setting_description">Смени ја големината и стилот на преводот. Потребен е рестарт за промена</string>
 
-    </resources>
+    <string name="privacy_policy_title">NewPipe - политика за приватност</string>
+    <string name="privacy_policy_encouragement">Проектот NewPipe сериозно ја сфаќа вашата приватност. Затоа апликацијата не собира ваши податоци без ваша дозвола.
+\nПолитиката за приватност на NewPipe детално објаснува кои податоци се зачувани и пратени кога праќате извештај за грешка во апликацијата.</string>
+    <string name="read_privacy_policy">Прочитај ја политиката за приватност</string>
+    <string name="start_accept_privacy_policy">За да постапуваме соодветно со регулацијата за заштита на податоци (GDPR) на ЕУ, вараме да обрнете внимание на политиката за приватност на NewPipe.
+\nВе молиме прочитајте ја внимателно. Мора да ја прифатите за да ни го испратите извештајот за грешка во апликацијата.</string>
+    <string name="accept">Прифати</string>
+    <string name="decline">Отфрли</string>
+
+    <string name="limit_data_usage_none_description">Неограничено</string>
+    <string name="limit_mobile_data_usage_title">Ограничи резолуција при користење мобилен интернет</string>
+    <string name="channels">Канали</string>
+    <string name="playlists">Плејлисти</string>
+    <string name="tracks">Нумери</string>
+    <string name="users">Корисници</string>
+    <string name="skip_silence_checkbox">Прескокни ја тишината</string>
+    <string name="playback_step">Скокни</string>
+    <string name="playback_reset">Почни одново</string>
+
+    <string name="minimize_on_exit_title">Скриј при промена на апликацијата</string>
+    <string name="minimize_on_exit_summary">Пушти во заднина при промена на апликацијата од видео плеерот — %s</string>
+    <string name="minimize_on_exit_none_description">Никое</string>
+    <string name="minimize_on_exit_background_description">Смали го во позадина</string>
+    <string name="minimize_on_exit_popup_description">Смали го во прозорче</string>
+
+</resources>

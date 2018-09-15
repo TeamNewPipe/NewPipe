@@ -35,8 +35,11 @@
     <attr name="ic_import_export" format="reference"/>
     <attr name="ic_save" format="reference"/>
     <attr name="ic_backup" format="reference"/>
+    <attr name="ic_add" format="reference"/>
+    <attr name="ic_restore_defaults" format="reference"/>
+    <attr name="ic_blank_page" format="reference"/>
 
-    <!-- Can't refer to colors directly into drawable's xml-->
+    <!-- Can't refer to colors directly in drawable's xml-->
     <attr name="toolbar_shadow_drawable" format="reference"/>
     <attr name="selector_drawable" format="reference"/>
     <attr name="checked_selector_drawable" format="reference"/>

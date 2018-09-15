@@ -1,81 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:id="@+id/navigation_layout"
+<android.support.design.widget.NavigationView android:id="@+id/navigation_layout"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="wrap_content"
     android:layout_gravity="start"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="?attr/android:windowBackground"
     android:clickable="true"
-    android:focusable="true">
-
-    <RelativeLayout
-        android:id="@+id/drawer_header"
-        android:layout_width="0dp"
-        android:layout_height="150dp"
-        android:layout_alignLeft="@id/navigation"
-        android:layout_alignRight="@id/navigation"
-        android:layout_alignStart="@id/navigation"
-        android:layout_alignEnd="@id/navigation"
-        android:clickable="true"
-        android:focusable="true">
-
-        <Button
-            android:id="@+id/drawer_header_action_button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?android:attr/selectableItemBackground"/>
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?attr/colorPrimary"
-            android:src="@drawable/background_header"
-            android:scaleType="centerCrop"/>
-
-        <ImageView
-            android:id="@+id/drawer_header_np_nude_view"
-            android:layout_marginLeft="30dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="20dp"
-
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/np_logo_nude_shadow"/>
-
-        <TextView
-            android:id="@+id/drawer_header_np_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:text="@string/app_name"
-            android:layout_toRightOf="@id/drawer_header_np_nude_view"
-            android:layout_toEndOf="@id/drawer_header_np_nude_view"
-            android:layout_alignTop="@id/drawer_header_np_nude_view"
-            android:layout_alignBottom="@id/drawer_header_np_nude_view"
-            android:gravity="center"
-            android:textSize="30dp"
-            android:textStyle="bold|italic"/>
-
-        <TextView
-            android:id="@+id/drawer_header_service_view"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:text="YouTube"
-            android:layout_below="@id/drawer_header_np_text_view"
-            android:layout_alignLeft="@id/drawer_header_np_text_view"
-            android:layout_alignStart="@id/drawer_header_np_text_view"
-            android:textSize="18dp"
-            android:textStyle="italic"/>
-
-    </RelativeLayout>
+    android:focusable="true"
+    >
 
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation"
-        android:layout_below="@id/drawer_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:elevation="0dp"/>
+        app:elevation="0dp"
+        android:background="?attr/android:windowBackground"
+        app:headerLayout="@layout/drawer_header"/>
         <!-- app:menu="@menu/drawer_items" -->
 
     <LinearLayout
@@ -89,29 +30,6 @@
         android:layout_alignEnd="@id/navigation"
 
         android:layout_alignParentBottom="true">
-        <ImageButton
-            android:id="@+id/drawer_settings"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="?attr/settings"/>
-
-        <ImageButton
-            android:id="@+id/drawer_downloads"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="?attr/download" />
-
-        <ImageButton
-            android:id="@+id/drawer_history"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="?attr/history"/>
     </LinearLayout>
 
-</RelativeLayout>
+</android.support.design.widget.NavigationView>

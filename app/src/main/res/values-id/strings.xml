@@ -32,8 +32,6 @@
     <string name="show_play_with_kodi_summary">Tampilkan opsi untuk memutar video via media center Kodi</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Format audio baku</string>
-    <string name="webm_description">WebM — format bebas</string>
-    <string name="m4a_description">M4A — kualitas lebih baik</string>
     <string name="theme_title">Tema</string>
     <string name="dark_theme_title">Gelap</string>
     <string name="light_theme_title">Terang</string>
@@ -219,12 +217,12 @@ membuka di mode popup</string>
     <string name="action_history">Riwayat</string>
     <string name="history_empty">Riwayat kosong</string>
     <string name="download_thumbnail_title">Muat thumbnail</string>
-    <string name="download_thumbnail_summary">Nonaktifkan untuk berhenti memuat semua thumbnail dan menghemat penggunaan data dan memori. Mengubah ini akan menghapus tembolok gambar pada diska dan memory.</string>
+    <string name="download_thumbnail_summary">Nonaktifkan untuk berhenti memuat semua thumbnail dan menghemat penggunaan data dan memori. Mengubah ini akan menghapus tembolok gambar pada diska dan memory</string>
     <string name="thumbnail_cache_wipe_complete_notice">Tembolok gambar dihapus</string>
     <string name="metadata_cache_wipe_title">Hapus tembolok metadata</string>
     <string name="metadata_cache_wipe_summary">Buang semua data tembolok laman web</string>
     <string name="metadata_cache_wipe_complete_notice">Tembolok metadata dihapus</string>
-    <string name="auto_queue_summary">Otomatis tambahkan stream yang terkait ketika memutar stream terakhir dalam antrean tanpa perulangan.</string>
+    <string name="auto_queue_summary">Otomatis tambahkan stream yang terkait ketika memutar stream terakhir dalam antrean tanpa perulangan</string>
     <string name="enable_watch_history_summary">Simpan daftar video yang telah ditonton</string>
     <string name="show_hold_to_append_title">Tampilkan tip \"tahan untuk menambahkan\"</string>
     <string name="show_hold_to_append_summary">Tampilkan tip ketika tombol latar belakang atau popup ditekan pada halaman detail video</string>
@@ -255,7 +253,7 @@ membuka di mode popup</string>
     <string name="import_data_title">Impor database</string>
     <string name="export_data_title">Ekspor database</string>
     <string name="import_data_summary">Akan menimpa riwayat dan langganan kamu saat ini</string>
-    <string name="export_data_summary">Ekspor riwayat, daftat langganan dan daftar putar.</string>
+    <string name="export_data_summary">Ekspor riwayat, daftat langganan dan daftar putar</string>
     <string name="player_stream_failure">Tidak bisa memutar stream ini</string>
     <string name="player_unrecoverable_failure">Galat yg tidak bisa dipulihkan terjadi di pemutar</string>
     <string name="player_recoverable_failure">Memulihkan dari galat pemutar</string>
@@ -391,11 +389,11 @@ membuka di mode popup</string>
     <string name="controls_add_to_playlist_title">Tambahkan Ke</string>
 
     <string name="clear_views_history_title">Hapus riwayat menonton</string>
-    <string name="clear_views_history_summary">Hapus riwayat stream yang diputar.</string>
+    <string name="clear_views_history_summary">Hapus riwayat stream yang diputar</string>
     <string name="delete_view_history_alert">Hapus seluruh riwayat menonton.</string>
     <string name="view_history_deleted">Riwayat menonton dihapus.</string>
     <string name="clear_search_history_title">Hapus riwayat pencarian</string>
-    <string name="clear_search_history_summary">Hapus riwayat dari ketikan pencarian.</string>
+    <string name="clear_search_history_summary">Hapus riwayat dari ketikan pencarian</string>
     <string name="delete_search_history_alert">Hapus seluruh riwayat pencarian.</string>
     <string name="search_history_deleted">Riwayat pencarian dihapus.</string>
     <string name="no_streams_available_download">Tidak ada stream yang tersedia untuk diunduh</string>
@@ -420,7 +418,7 @@ membuka di mode popup</string>
     <string name="preferred_open_action_settings_summary">Aksi bawaan ketika membuka konten — %s</string>
 
     <string name="caption_setting_title">Takarir</string>
-    <string name="caption_setting_description">Mengubah skala keterangan teks pemutar dan gaya latar belakang. Perlu memulai ulang aplikasi untuk melihat hasilnya.</string>
+    <string name="caption_setting_description">Mengubah skala keterangan teks pemutar dan gaya latar belakang. Perlu memulai ulang aplikasi untuk melihat hasilnya</string>
 
     <string name="enable_leak_canary_summary">Pemantauan kebocoran memori dapat menyebabkan aplikasi menjadi tidak responsif saat terjadi dumping</string>
 

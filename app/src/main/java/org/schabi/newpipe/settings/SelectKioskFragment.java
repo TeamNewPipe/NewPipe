@@ -56,7 +56,7 @@ public class SelectKioskFragment extends DialogFragment {
     //////////////////////////////////////////////////////////////////////////*/
 
     public interface OnSelectedLisener {
-        void onKioskSelected(String kioskId, int service_id);
+        void onKioskSelected(int serviceId, String kioskId, String kioskName);
     }
 
     OnSelectedLisener onSelectedLisener = null;
@@ -101,7 +101,7 @@ public class SelectKioskFragment extends DialogFragment {
 
     private void clickedItem(SelectKioskAdapter.Entry entry) {
         if(onSelectedLisener != null) {
-            onSelectedLisener.onKioskSelected(entry.kioskId, entry.serviceId);
+            onSelectedLisener.onKioskSelected(entry.serviceId, entry.kioskId, entry.kioskName);
         }
         dismiss();
     }

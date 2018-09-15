@@ -22,8 +22,6 @@
     <string name="show_play_with_kodi_summary">顯示以 Kodi 媒體中心播放影片的選項</string>
     <string name="play_audio">聲音</string>
     <string name="default_audio_format_title">預設聲音檔案格式</string>
-    <string name="webm_description">WebM — 開放格式</string>
-    <string name="m4a_description">M4A — 更佳畫質</string>
     <string name="theme_title">主題</string>
     <string name="dark_theme_title">黑暗</string>
     <string name="light_theme_title">明亮</string>
@@ -186,4 +184,5 @@
     <string name="contribution_encouragement">無論您僅想分享您對 NewPipe 的一些構思，還是願意設計和翻譯程式介面，甚至想幫我們整理或重新編寫原始碼，我們都無任歡迎。貢獻更多，應用程式便會變得更好！</string>
     <string name="read_full_license">檢閱特許</string>
     <string name="contribution_title">貢獻</string>
-</resources>
+<string name="clear_views_history_title">清除觀看歷史</string>
+    </resources>

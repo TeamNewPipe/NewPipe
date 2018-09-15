@@ -26,6 +26,7 @@ import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.search.SearchExtractor;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
@@ -33,12 +34,14 @@ import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
+import org.schabi.newpipe.local.bookmark.BookmarkFragment;
 import org.schabi.newpipe.local.feed.FeedFragment;
 import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.local.history.StatisticsPlaylistFragment;
 import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
+import org.schabi.newpipe.local.subscription.SubscriptionFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionsImportFragment;
 import org.schabi.newpipe.player.BackgroundPlayer;
 import org.schabi.newpipe.player.BackgroundPlayerActivity;
@@ -100,11 +103,13 @@ public class NavigationHelper {
                                          final int repeatMode,
                                          final float playbackSpeed,
                                          final float playbackPitch,
+                                         final boolean playbackSkipSilence,
                                          @Nullable final String playbackQuality) {
         return getPlayerIntent(context, targetClazz, playQueue, playbackQuality)
                 .putExtra(BasePlayer.REPEAT_MODE, repeatMode)
                 .putExtra(BasePlayer.PLAYBACK_SPEED, playbackSpeed)
-                .putExtra(BasePlayer.PLAYBACK_PITCH, playbackPitch);
+                .putExtra(BasePlayer.PLAYBACK_PITCH, playbackPitch)
+                .putExtra(BasePlayer.PLAYBACK_SKIP_SILENCE, playbackSkipSilence);
     }
 
     public static void playOnMainPlayer(final Context context, final PlayQueue queue) {
@@ -281,9 +286,11 @@ public class NavigationHelper {
         return fragmentManager.popBackStackImmediate(SEARCH_FRAGMENT_TAG, 0);
     }
 
-    public static void openSearchFragment(FragmentManager fragmentManager, int serviceId, String query) {
+    public static void openSearchFragment(FragmentManager fragmentManager,
+                                          int serviceId,
+                                          String searchString) {
         defaultTransaction(fragmentManager)
-                .replace(R.id.fragment_holder, SearchFragment.getInstance(serviceId, query))
+                .replace(R.id.fragment_holder, SearchFragment.getInstance(serviceId, searchString))
                 .addToBackStack(SEARCH_FRAGMENT_TAG)
                 .commit();
     }
@@ -312,7 +319,11 @@ public class NavigationHelper {
                 .commit();
     }
 
-    public static void openChannelFragment(FragmentManager fragmentManager, int serviceId, String url, String name) {
+    public static void openChannelFragment(
+            FragmentManager fragmentManager,
+            int serviceId,
+            String url,
+            String name) {
         if (name == null) name = "";
         defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, ChannelFragment.getInstance(serviceId, url, name))
@@ -320,7 +331,10 @@ public class NavigationHelper {
                 .commit();
     }
 
-    public static void openPlaylistFragment(FragmentManager fragmentManager, int serviceId, String url, String name) {
+    public static void openPlaylistFragment(FragmentManager fragmentManager,
+                                            int serviceId,
+                                            String url,
+                                            String name) {
         if (name == null) name = "";
         defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, PlaylistFragment.getInstance(serviceId, url, name))
@@ -331,6 +345,20 @@ public class NavigationHelper {
     public static void openWhatsNewFragment(FragmentManager fragmentManager) {
         defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, new FeedFragment())
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public static void openBookmarksFragment(FragmentManager fragmentManager) {
+        defaultTransaction(fragmentManager)
+                .replace(R.id.fragment_holder, new BookmarkFragment())
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public static void openSubscriptionFragment(FragmentManager fragmentManager) {
+        defaultTransaction(fragmentManager)
+                .replace(R.id.fragment_holder, new SubscriptionFragment())
                 .addToBackStack(null)
                 .commit();
     }
@@ -368,10 +396,10 @@ public class NavigationHelper {
     // Through Intents
     //////////////////////////////////////////////////////////////////////////*/
 
-    public static void openSearch(Context context, int serviceId, String query) {
+    public static void openSearch(Context context, int serviceId, String searchString) {
         Intent mIntent = new Intent(context, MainActivity.class);
         mIntent.putExtra(Constants.KEY_SERVICE_ID, serviceId);
-        mIntent.putExtra(Constants.KEY_QUERY, query);
+        mIntent.putExtra(Constants.KEY_SEARCH_STRING, searchString);
         mIntent.putExtra(Constants.KEY_OPEN_SEARCH, true);
         context.startActivity(mIntent);
     }
@@ -465,7 +493,8 @@ public class NavigationHelper {
 
         switch (linkType) {
             case STREAM:
-                rIntent.putExtra(VideoDetailFragment.AUTO_PLAY, PreferenceManager.getDefaultSharedPreferences(context)
+                rIntent.putExtra(VideoDetailFragment.AUTO_PLAY,
+                        PreferenceManager.getDefaultSharedPreferences(context)
                         .getBoolean(context.getString(R.string.autoplay_through_intent_key), false));
                 break;
         }

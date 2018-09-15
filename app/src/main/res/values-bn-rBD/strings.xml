@@ -46,8 +46,6 @@
     <string name="play_audio">অডিও</string>
     <string name="default_audio_format_title">ডিফল্ট অডিও ফরম্যাট</string>
     <string name="default_video_format_title">পছন্দসই ভিডিও ফরম্যাট</string>
-    <string name="webm_description">WebM — বিনামূল্য/স্বাধীন ফরম্যাট</string>
-    <string name="m4a_description">m4a — ভালো মানের</string>
     <string name="theme_title">থিম</string>
     <string name="light_theme_title">উজ্জ্বল</string>
     <string name="dark_theme_title">অন্ধকার</string>

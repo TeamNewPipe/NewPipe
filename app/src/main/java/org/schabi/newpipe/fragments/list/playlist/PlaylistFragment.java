@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
@@ -28,12 +30,14 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
-import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
 import org.schabi.newpipe.info_list.InfoItemDialog;
+import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
+import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ImageDisplayConstants;
@@ -44,6 +48,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import io.reactivex.Flowable;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -93,7 +98,8 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         super.onCreate(savedInstanceState);
         disposables = new CompositeDisposable();
         isBookmarkButtonReady = new AtomicBoolean(false);
-        remotePlaylistManager = new RemotePlaylistManager(NewPipeDatabase.getInstance(getContext()));
+        remotePlaylistManager = new RemotePlaylistManager(NewPipeDatabase.getInstance(
+                requireContext()));
     }
 
     @Override
@@ -142,6 +148,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                 context.getResources().getString(R.string.start_here_on_main),
                 context.getResources().getString(R.string.start_here_on_background),
                 context.getResources().getString(R.string.start_here_on_popup),
+                context.getResources().getString(R.string.share)
         };
 
         final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
@@ -161,6 +168,9 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                     break;
                 case 4:
                     NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index));
+                    break;
+                case 5:
+                    shareUrl(item.getName(), item.getUrl());
                     break;
                 default:
                     break;
@@ -261,11 +271,16 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         if (!TextUtils.isEmpty(result.getUploaderName())) {
             headerUploaderName.setText(result.getUploaderName());
             if (!TextUtils.isEmpty(result.getUploaderUrl())) {
-                headerUploaderLayout.setOnClickListener(v ->
+                headerUploaderLayout.setOnClickListener(v -> {
+                    try {
                         NavigationHelper.openChannelFragment(getFragmentManager(),
-                                result.getServiceId(), result.getUploaderUrl(),
-                                result.getUploaderName())
-                );
+                                result.getServiceId(),
+                                result.getUploaderUrl(),
+                                result.getUploaderName());
+                    } catch (Exception e) {
+                        ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
+                    }
+                });
             }
         }
 
@@ -281,13 +296,10 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         }
 
         remotePlaylistManager.getPlaylist(result)
+                .flatMap(lists -> getUpdateProcessor(lists, result), (lists, id) -> lists)
                 .onBackpressureLatest()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getPlaylistBookmarkSubscriber());
-
-        remotePlaylistManager.onUpdate(result)
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .subscribe(integer -> {/* Do nothing*/}, this::onError);
 
         headerPlayAllButton.setOnClickListener(view ->
                 NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));
@@ -336,13 +348,28 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         if (super.onError(exception)) return true;
 
         int errorId = exception instanceof ExtractionException ? R.string.parsing_error : R.string.general_error;
-        onUnrecoverableError(exception, UserAction.REQUESTED_PLAYLIST, NewPipe.getNameOfService(serviceId), url, errorId);
+        onUnrecoverableError(exception,
+                UserAction.REQUESTED_PLAYLIST,
+                NewPipe.getNameOfService(serviceId),
+                url,
+                errorId);
         return true;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
+
+    private Flowable<Integer> getUpdateProcessor(@NonNull List<PlaylistRemoteEntity> playlists,
+                                                 @NonNull PlaylistInfo result) {
+        final Flowable<Integer> noItemToUpdate = Flowable.just(/*noItemToUpdate=*/-1);
+        if (playlists.isEmpty()) return noItemToUpdate;
+
+        final PlaylistRemoteEntity playlistEntity = playlists.get(0);
+        if (playlistEntity.isIdenticalTo(result)) return noItemToUpdate;
+
+        return remotePlaylistManager.onUpdate(playlists.get(0).getUid(), result).toFlowable();
+    }
 
     private Subscriber<List<PlaylistRemoteEntity>> getPlaylistBookmarkSubscriber() {
         return new Subscriber<List<PlaylistRemoteEntity>>() {

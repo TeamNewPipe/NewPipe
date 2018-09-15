@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="main_bg_subtitle">Ketuk carian untuk bermula</string>
+    <string name="view_count_text">%1$s dilihat</string>
+    <string name="upload_date_text">Diterbitkan pada %1$s</string>
+    <string name="no_player_found">Tiada pemain strim yang ditemui. Adakah anda mahu memasang VLC?</string>
+    <string name="no_player_found_toast">Tiada pemain strim yang ditemui (anda boleh memasang VLC untuk bermain)</string>
+    <string name="install">Pasang</string>
+    <string name="cancel">Batal</string>
+    <string name="open_in_browser">Buka dalam pelayar</string>
+    <string name="open_in_popup_mode">Buka dalam mod popup</string>
+    <string name="share">Kongsi</string>
+    <string name="download">Muat turun</string>
+    <string name="controls_download_desc">Muat turun fail strim.</string>
+    <string name="search">Carian</string>
+    <string name="settings">Tetapan</string>
+    <string name="did_you_mean">Adakah anda maksudkan: %1$s ?</string>
+    <string name="share_dialog_title">Berkongsi dengan</string>
+    <string name="choose_browser">Pilih pelayar</string>
+    <string name="screen_rotation">putaran</string>
+    <string name="use_external_video_player_title">Guna pemain video luaran</string>
+    <string name="use_external_video_player_summary">Beberapa resolusi yang TIDAK akan mempunyai audio apabila opsyen ini diaktifkan</string>
+    <string name="use_external_audio_player_title">Gunakan pemain audio luaran</string>
+    <string name="popup_mode_share_menu_title">NewPipe mod popup</string>
+    <string name="subscribe_button_title">Langgan</string>
+    <string name="subscribed_button_title">Dilanggan</string>
+    <string name="channel_unsubscribed">Saluran tanpa langganan</string>
+    <string name="subscription_change_failed">Tidak dapat menukar langganan</string>
+    <string name="subscription_update_failed">Tidak dapat mengemaskini langganan</string>
+    <string name="show_info">Papar maklumat</string>
+
+    <string name="tab_main">Utama</string>
+    <string name="tab_subscriptions">Langganan</string>
+    <string name="tab_bookmarks">Penanda halaman</string>
+
+    </resources>

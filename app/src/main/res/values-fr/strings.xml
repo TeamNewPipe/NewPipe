@@ -24,8 +24,6 @@
     <string name="view_count_text">%1$s vues</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Format audio par défaut</string>
-    <string name="webm_description">WebM — format libre</string>
-    <string name="m4a_description">M4A — meilleure qualité</string>
     <string name="download_dialog_title">Télécharger</string>
     <string name="next_video_title">Vidéo suivante</string>
     <string name="show_next_and_similar_title">Afficher les vidéos \"suivantes\" et \"similaires\"</string>
@@ -384,7 +382,7 @@
     <string name="use_inexact_seek_title">Recherche rapide approximative</string>
     <string name="use_inexact_seek_summary">Permettre au lecteur d\'accéder plus rapidement à une position au détriment de la précision</string>
     <string name="download_thumbnail_title">Charger miniatures</string>
-    <string name="download_thumbnail_summary">Désactiver pour arrêter le chargement de toutes les miniatures et sauvegarder les données et l\'utilisation de la mémoire. Modifier cela effacera à la fois le cache d\'image en mémoire et sur disque.</string>
+    <string name="download_thumbnail_summary">Désactiver pour arrêter le chargement de toutes les miniatures et sauvegarder les données et l\'utilisation de la mémoire. Modifier cela effacera à la fois le cache d\'image en mémoire et sur disque</string>
     <string name="thumbnail_cache_wipe_complete_notice">Images en cache effacées</string>
     <string name="metadata_cache_wipe_title">Effacer les données en cache</string>
     <string name="metadata_cache_wipe_summary">Effacer toutes les pages web mises en cache</string>
@@ -403,7 +401,8 @@
 
     <string name="controls_download_desc">Télécharger le fichier de flux</string>
     <string name="auto_queue_title">Vidéo suivante en file d\'attente</string>
-    <string name="auto_queue_summary">Ajout automatique d\'un flux connexe lors de la lecture du dernier flux dans une file d\'attente non répétitive.</string>
+    <string name="auto_queue_summary">Ajout automatique d\'un morceau suggéré lors de la lecture du dernier morceau dans une file d\'attente non bouclée.</string>
+
     <string name="settings_category_debug_title">Débogage</string>
     <string name="resize_fill">Remplir</string>
     <string name="caption_auto_generated">Générés automatiquement</string>
@@ -434,11 +433,11 @@
 \n3. Un téléchargement va démarrer (ce sera celui du fichier nécessaire à l\'importation des abonnements)"</string>
     <string name="import_soundcloud_instructions">Pour importer vos abonnements SoundCloud, vous devez connaitre l\'URL de votre profil ou votre identifiant (id). Si vous le savez, tapez-le ci-dessous. 
 \n 
-\nSi vous ne le connaissez pas, veuillez suivre les étapes suivantes :
+\nSi vous ne le connaissez pas, veuillez suivre les étapes suivantes : 
 \n 
-\n1. Activer le \"mode bureau\" dans votre navigateur (le site n\'est pas accesible en mode mobile)
-\n2. Suivez ce : %1$s
-\n3. Connectez-vous à votre compte
+\n1. Activer le \"mode bureau\" dans votre navigateur (le site n\'est pas accesible en mode mobile) 
+\n2. Suivez cette URL : %1$s 
+\n3. Connectez-vous à votre compte 
 \n4. Copier l\'URL vers lequel vous venez d\'être redirigé (qui est l\'URL de votre profil)</string>
     <string name="import_soundcloud_instructions_hint">votreID, soundcloud.com/votreid</string>
 
@@ -448,7 +447,7 @@
 
     <string name="playback_speed_control">Vitesse de lecture</string>
     <string name="playback_tempo">Cadence</string>
-    <string name="unhook_checkbox">Unhook (déformations possibles)</string>
+    <string name="unhook_checkbox">Détacher (déformations possibles)</string>
     <string name="playback_default">Défaut</string>
 <string name="preferred_open_action_settings_title">Ouvrir de préférence avec</string>
     <string name="preferred_open_action_settings_summary">Action par défaut lors de l\'ouverture de contenu - %s</string>
@@ -456,18 +455,18 @@
     <string name="no_streams_available_download">Aucun flux disponible au téléchargement</string>
 
     <string name="caption_setting_title">Sous-titres</string>
-    <string name="caption_setting_description">Modifier la taille du texte et les styles d\'arrière-plan du lecteur. Redémarrage requis pour prendre effet.</string>
+    <string name="caption_setting_description">Modifier la taille du texte et les styles d\'arrière-plan du lecteur. Redémarrage requis pour prendre effet</string>
 
     <string name="playback_pitch">Ton</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="toast_no_player">Aucune application installée pour lire ce fichier</string>
 
     <string name="clear_views_history_title">Effacer l\'historique</string>
-    <string name="clear_views_history_summary">Supprimer l\'historique des flux regardés.</string>
+    <string name="clear_views_history_summary">Supprimer l\'historique des flux regardés</string>
     <string name="delete_view_history_alert">Supprimer tout l\'historique regardé.</string>
     <string name="view_history_deleted">Voir l’historique supprimé.</string>
     <string name="clear_search_history_title">Supprimer l\'historique des recherches</string>
-    <string name="clear_search_history_summary">Supprimer l\'historique de recherche par mot clef.</string>
+    <string name="clear_search_history_summary">Supprimer l\'historique de recherche par mot clef</string>
     <string name="delete_search_history_alert">Supprimer tout l\'historique de recherche.</string>
     <string name="search_history_deleted">Historique des recherches effacé.</string>
     <string name="one_item_deleted">1 élément supprimé.</string>
@@ -485,4 +484,18 @@
 \nVous devez l\'accepter pour nous envoyer le rapport de bug.</string>
     <string name="limit_data_usage_none_description">Pas de limite</string>
     <string name="limit_mobile_data_usage_title">Limiter la résolution en données mobile</string>
-    </resources>
+    <string name="channels">Chaînes</string>
+    <string name="playlists">Listes de lecture</string>
+    <string name="tracks">Pistes</string>
+    <string name="users">Utilisateurs</string>
+    <string name="skip_silence_checkbox">Accélérer pendant les silences</string>
+    <string name="playback_step">Étape</string>
+    <string name="playback_reset">Réinitialiser</string>
+
+    <string name="minimize_on_exit_title">Minimiser lors du changement d\'application</string>
+    <string name="minimize_on_exit_summary">Action lors du changement d\'applications depuis le lecteur vidéo —%s</string>
+    <string name="minimize_on_exit_none_description">Aucune</string>
+    <string name="minimize_on_exit_background_description">Lecture en arrière plan</string>
+    <string name="minimize_on_exit_popup_description">Mettre en lecteur popup</string>
+
+</resources>

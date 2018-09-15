@@ -21,8 +21,6 @@
     <string name="show_play_with_kodi_title">Montri \"Ludi per Kodi\"-opcion</string>
     <string name="play_audio">Sono</string>
     <string name="default_audio_format_title">Defaŭlta sondosierformo</string>
-    <string name="webm_description">WebM — libera dosierformo</string>
-    <string name="m4a_description">m4a — pli bona kvalito</string>
     <string name="theme_title">Etoso</string>
     <string name="dark_theme_title">Malluma</string>
     <string name="light_theme_title">Luma</string>
@@ -38,8 +36,8 @@
     <string name="play_btn_text">Ludi</string>
     <string name="general_error">Eraro</string>
     <string name="network_error">Reteraro</string>
-    <string name="content_not_available">Enhavo ne estas disponebla.</string>
-    <string name="blocked_by_gema">Blokita de GEMA.</string>
+    <string name="content_not_available">Enhavo ne estas disponebla</string>
+    <string name="blocked_by_gema">Blokita de GEMA</string>
 
     <string name="detail_likes_img_view_description">Ŝatoj</string>
     <string name="detail_dislikes_img_view_description">Malŝatoj</string>
@@ -48,8 +46,8 @@
     <string name="kore_not_found">La aplikaĵo Kore ne estas trovita. Ĉu instali ĝin?</string>
     <string name="show_next_and_similar_title">Montri la sekvan videon kaj similajn videojn</string>
     <string name="could_not_load_thumbnails">Ĉiuj miniaturoj ne ŝargeblas</string>
-    <string name="youtube_signature_decryption_error">La subskribo de la ligilo de la video ne malĉifreblas.</string>
-    <string name="parsing_error">La retejo ne analizeblas.</string>
+    <string name="youtube_signature_decryption_error">La subskribo de la ligilo de la video ne malĉifreblas</string>
+    <string name="parsing_error">La retejo ne analizeblas</string>
     <string name="list_thumbnail_view_description">Miniaturo de la antaŭrigardo de la video</string>
     <string name="detail_thumbnail_view_description">Miniaturo de la antaŭrigardo de la video</string>
     <string name="detail_uploader_thumbnail_view_description">Miniaturo de la bildo de la alŝutinto</string>

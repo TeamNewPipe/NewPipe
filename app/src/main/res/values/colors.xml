@@ -29,13 +29,14 @@
     <color name="dark_queue_background_color">#af000000</color>
 
     <!-- Black Theme -->
-    <color name="black_background_color">#000</color>
+    <color name="black_background_color">#000000</color>
     <color name="black_settings_accent_color">@color/dark_settings_accent_color</color>
     <color name="black_separator_color">#1effffff</color>
     <color name="black_contrast_background_color">#23454545</color>
 
     <!-- Miscellaneous -->
-    <color name="duration_background_color">#AA000000</color>
+    <color name="drawer_header_font_color">#ddffffff</color>
+    <color name="duration_background_color">#aa000000</color>
     <color name="live_duration_background_color">#c8E53935</color>
     <color name="playlist_stream_count_background_color">#e6000000</color>
     <color name="duration_text_color">#EEFFFFFF</color>
@@ -70,5 +71,6 @@
     <color name="gray">#616161</color>
 
     <color name="black">#000</color>
+    <color name="gray_transparent">#be757575</color>
 
 </resources>

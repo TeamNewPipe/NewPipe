@@ -520,7 +520,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 context.getResources().getString(R.string.start_here_on_background),
                 context.getResources().getString(R.string.start_here_on_popup),
                 context.getResources().getString(R.string.set_as_playlist_thumbnail),
-                context.getResources().getString(R.string.delete)
+                context.getResources().getString(R.string.delete),
+                context.getResources().getString(R.string.share)
         };
 
         final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
@@ -548,6 +549,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     break;
                 case 6:
                     deleteItem(item);
+                    break;
+                case 7:
+                    shareUrl(item.toStreamInfoItem().getName(), item.toStreamInfoItem().getUrl());
                     break;
                 default:
                     break;
