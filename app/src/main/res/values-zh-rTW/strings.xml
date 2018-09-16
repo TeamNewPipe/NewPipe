@@ -2,7 +2,7 @@
 <resources>
     <string name="view_count_text">點播%1$s次</string>
     <string name="upload_date_text">%1$s發布</string>
-    <string name="no_player_found">找不到串流播放器，您要安裝VLC吗？</string>
+    <string name="no_player_found">找不到串流播放器，您要安裝VLC嗎？</string>
     <string name="install">安裝</string>
     <string name="cancel">取消</string>
     <string name="open_in_browser">用瀏覽器開啟</string>
@@ -63,7 +63,7 @@
     <string name="popup_mode_share_menu_title">NewPipe懸浮視窗模式</string>
     <string name="controls_background_title">背景播放</string>
     <string name="autoplay_by_calling_app_title">自動播放</string>
-    <string name="autoplay_by_calling_app_summary">NewPipe 被其他應用程式呼叫時播放影片</string>
+    <string name="autoplay_by_calling_app_summary">當NewPipe 被其他應用程式呼叫時播放影片</string>
     <string name="default_popup_resolution_title">懸浮視窗預設解析度</string>
     <string name="show_higher_resolutions_title">顯示更高的解析度</string>
     <string name="show_higher_resolutions_summary">只有部分裝置能播2K及4K影片</string>
