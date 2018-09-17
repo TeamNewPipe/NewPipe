@@ -76,10 +76,6 @@
             android:name=".about.AboutActivity"
             android:label="@string/title_activity_about"/>
 
-        <activity
-            android:name=".history.HistoryActivity"
-            android:label="@string/title_activity_history"/>
-
         <service android:name=".local.subscription.services.SubscriptionsImportService"/>
         <service android:name=".local.subscription.services.SubscriptionsExportService"/>
 
@@ -122,6 +118,7 @@
         <activity
             android:name=".ReCaptchaActivity"
             android:label="@string/reCaptchaActivity"/>
+        <activity android:name=".download.ExtSDDownloadFailedActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

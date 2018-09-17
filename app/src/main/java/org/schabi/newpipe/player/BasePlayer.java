@@ -51,6 +51,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
+import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
@@ -96,7 +97,7 @@ import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SEEK_ADJ
 public abstract class BasePlayer implements
         Player.EventListener, PlaybackListener, ImageLoadingListener {
 
-    public static final boolean DEBUG = true;
+    public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
     @NonNull public static final String TAG = "BasePlayer";
 
     @NonNull final protected Context context;
@@ -172,7 +173,6 @@ public abstract class BasePlayer implements
         };
         this.intentFilter = new IntentFilter();
         setupBroadcastReceiver(intentFilter);
-        context.registerReceiver(broadcastReceiver, intentFilter);
 
         this.recordManager = new HistoryRecordManager(context);
 
@@ -209,6 +209,8 @@ public abstract class BasePlayer implements
         audioReactor = new AudioReactor(context, simpleExoPlayer);
         mediaSessionManager = new MediaSessionManager(context, simpleExoPlayer,
                 new BasePlayerMediaSession(this));
+
+        registerBroadcastReceiver();
     }
 
     public void initListeners() {}
@@ -359,11 +361,17 @@ public abstract class BasePlayer implements
         }
     }
 
-    public void unregisterBroadcastReceiver() {
+    protected void registerBroadcastReceiver() {
+        // Try to unregister current first
+        unregisterBroadcastReceiver();
+        context.registerReceiver(broadcastReceiver, intentFilter);
+    }
+
+    protected void unregisterBroadcastReceiver() {
         try {
             context.unregisterReceiver(broadcastReceiver);
         } catch (final IllegalArgumentException unregisteredException) {
-            Log.e(TAG, "Broadcast receiver already unregistered.", unregisteredException);
+            Log.w(TAG, "Broadcast receiver already unregistered (" + unregisteredException.getMessage() + ")");
         }
     }
 
@@ -1001,6 +1009,8 @@ public abstract class BasePlayer implements
         try {
             metadata = (MediaSourceTag) simpleExoPlayer.getCurrentTag();
         } catch (IndexOutOfBoundsException | ClassCastException error) {
+            if(DEBUG) Log.d(TAG, "Could not update metadata: " + error.getMessage());
+            if(DEBUG) error.printStackTrace();
             return;
         }
 
@@ -1087,6 +1097,9 @@ public abstract class BasePlayer implements
             return simpleExoPlayer.isCurrentWindowDynamic();
         } catch (@NonNull IndexOutOfBoundsException ignored) {
             // Why would this even happen =(
+            // But lets log it anyway. Save is save
+            if(DEBUG) Log.d(TAG, "Could not update metadata: " + ignored.getMessage());
+            if(DEBUG) ignored.printStackTrace();
             return false;
         }
     }
