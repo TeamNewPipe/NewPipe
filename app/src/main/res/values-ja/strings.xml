@@ -29,7 +29,7 @@
     <string name="next_video_title">次の動画</string>
     <string name="show_next_and_similar_title">「次の動画」と「関連動画」を表示</string>
     <string name="url_not_supported_toast">URLは使用できません</string>
-    <string name="search_language_title">優先言語</string>
+    <string name="search_language_title">デフォルトのコンテンツ言語</string>
     <string name="settings_category_video_audio_title">動画と音楽</string>
     <string name="view_count_text">%1$s ビュー</string>
     <string name="list_thumbnail_view_description">動画 プレビュー サムネイル</string>
@@ -78,9 +78,9 @@
 
     <string name="light_parsing_error">ウェブサイトを完全には解析できませんでした</string>
     <string name="could_not_get_stream">動画を取得できませんでした</string>
-    <string name="sorry_string">申し訳ありません。発生すべきではありませんでした。</string>
+    <string name="sorry_string">申し訳ありません。発生すべきでものではありませんでした。</string>
     <string name="error_report_button_text">メールで不具合を報告</string>
-    <string name="error_snackbar_message">複数の不具合が発生しました</string>
+    <string name="error_snackbar_message">申し訳ありません。いくつかのエラーが発生しました。</string>
     <string name="error_snackbar_action">報告</string>
     <string name="what_device_headline">情報:</string>
     <string name="what_happened_headline">何が起こりましたか:</string>
@@ -427,5 +427,29 @@
     <string name="title_most_played">最も再生した動画</string>
 
     <string name="resize_zoom">ズーム</string>
+
+    <string name="controls_add_to_playlist_title">追加...</string>
+
+    <string name="show_hold_to_append_title">「長押しして追加」のヒントを表示</string>
+    <string name="tracks">トラック</string>
+    <string name="notification_channel_description">NewPipe バックグラウンドおよびポップアップのプレーヤーの通知</string>
+
+    <string name="new_and_hot">新しい &amp; ホット</string>
+    <string name="hold_to_append">長押ししてキューに入れる</string>
+    <string name="enqueue_on_background">バックグラウンド時にキューに入れる</string>
+    <string name="enqueue_on_popup">ポップアップ時にキューに入れる</string>
+    <string name="start_here_on_popup">ポップアップ時にここから開始</string>
+
+    <string name="drawer_header_action_paceholder_text">すぐにここに表示されます;D</string>
+
+
+    <string name="preferred_open_action_settings_title">お好みの \'開く\' アクション</string>
+    <string name="preferred_open_action_settings_summary">コンテンツを開くときのデフォルト動作 — %s</string>
+
+    <string name="resize_fit">フィット</string>
+    <string name="resize_fill">埋める</string>
+    <string name="caption_auto_generated">自動生成</string>
+
+    <string name="caption_setting_description">プレーヤーのキャプション文字スケールと背景スタイルを変更します。有効にするにはアプリの再起動が必要です</string>
 
     </resources>
