@@ -90,10 +90,10 @@
     <string name="parsing_error">Không thể phân tích cú pháp trang web</string>
     <string name="light_parsing_error">Không thể phân tích cú pháp hoàn toàn trang web</string>
     <string name="content_not_available">Nội dung không khả dụng</string>
-    <string name="blocked_by_gema">Chặn bởi GEMA.</string>
+    <string name="blocked_by_gema">Chặn bởi GEMA</string>
     <string name="could_not_setup_download_menu">Không thể thiết lập menu tải xuống</string>
     <string name="live_streams_not_supported">Đây là STREAM LIVE, chưa được hỗ trợ.</string>
-    <string name="could_not_get_stream">Không thể lấy bất kỳ luồng nào.</string>
+    <string name="could_not_get_stream">Không thể lấy bất kỳ luồng nào</string>
     <string name="could_not_load_image">Không thể tải hình ảnh</string>
     <string name="app_ui_crash">Ứng dụng / Giao diện người dùng bị lỗi</string>
     <string name="sorry_string">Xin lỗi, điều đó không nên xảy ra.</string>
@@ -125,7 +125,7 @@
     <string name="retry">Thử lại</string>
     <string name="storage_permission_denied">Quyền truy cập vào bộ nhớ đã bị từ chối</string>
     <string name="use_old_player_title">Sử dụng trình phát cũ</string>
-    <string name="use_old_player_summary">Máy nghe nhạc Mediaframework tích hợp sẵn.</string>
+    <string name="use_old_player_summary">Máy nghe nhạc Mediaframework tích hợp sẵn</string>
 
 
     <string name="short_thousand">ngàn</string>
@@ -150,7 +150,7 @@
     <string name="msg_running">NewPipe đang tải xuống</string>
     <string name="msg_running_detail">Chạm để biết chi tiết</string>
     <string name="msg_wait">Vui lòng đợi …</string>
-    <string name="msg_copied">Sao chép vào clipboard.</string>
+    <string name="msg_copied">Sao chép vào clipboard</string>
     <string name="no_available_dir">Hãy chọn một thư mục tải về có sẵn.</string>
     <string name="msg_popup_permission">Sự cho phép này là cần thiết để
 \nMở trong chế độ bật lên</string>
@@ -170,7 +170,7 @@
     <string name="tab_contributors">Cộng tác viên</string>
     <string name="tab_licenses">Giấy phép</string>
     <string name="app_description">Giao diện trực quan nhẹ cho Android.</string>
-    <string name="view_on_github">Xem trên Github</string>
+    <string name="view_on_github">Xem trên GitHub</string>
     <string name="app_license_title">Giấy phép của NewPipe</string>
     <string name="contribution_encouragement">Cho dù bạn có ý tưởng, dịch, thay đổi thiết kế, làm sạch mã hoặc thay đổi mã, sự trợ giúp luôn được hoan nghênh. Càng làm nhiều thì càng tốt!</string>
     <string name="read_full_license">Đọc giấy phép</string>
