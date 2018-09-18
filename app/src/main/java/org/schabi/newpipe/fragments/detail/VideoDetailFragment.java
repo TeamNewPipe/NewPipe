@@ -54,6 +54,7 @@ import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.comments.CommentsInfo;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
@@ -252,7 +253,7 @@ public class VideoDetailFragment
                 if ((updateFlags & RELATED_STREAMS_UPDATE_FLAG) != 0)
                     initRelatedVideos(currentInfo);
                 if ((updateFlags & RESOLUTIONS_MENU_UPDATE_FLAG) != 0) setupActionBar(currentInfo);
-                if ((updateFlags & COMMENTS_UPDATE_FLAG) != 0) initComments(currentInfo);
+                if ((updateFlags & COMMENTS_UPDATE_FLAG) != 0) initComments(currentInfo.getCommentsInfo());
             }
 
             if ((updateFlags & TOOLBAR_ITEMS_UPDATE_FLAG) != 0
@@ -343,8 +344,7 @@ public class VideoDetailFragment
         }
 
         if (!isLoading.get() && currentInfo != null && isVisible()) {
-            //TODO fix this. it should not be commented
-            //outState.putSerializable(INFO_KEY, currentInfo);
+            outState.putSerializable(INFO_KEY, currentInfo);
         }
 
         outState.putSerializable(STACK_KEY, stack);
@@ -425,7 +425,7 @@ public class VideoDetailFragment
                 toggleExpandRelatedVideos(currentInfo);
                 break;
             case R.id.detail_comments_expand:
-                toggleExpandComments(currentInfo);
+                toggleExpandComments(currentInfo.getCommentsInfo());
                 break;
         }
     }
@@ -488,9 +488,9 @@ public class VideoDetailFragment
     }
 
 
-    private void toggleExpandComments(StreamInfo info) {
+    private void toggleExpandComments(CommentsInfo info) {
         if (DEBUG) Log.d(TAG, "toggleExpandComments() called with: info = [" + info + "]");
-        if (!showComments) return;
+        if (!showComments || null == info) return;
 
         int initialCount = INITIAL_COMMENTS;
 
@@ -519,11 +519,11 @@ public class VideoDetailFragment
         }
     }
 
-    private void loadMoreComments(StreamInfo info) {
+    private void loadMoreComments(CommentsInfo info) {
         if (commentsDisposable != null) commentsDisposable.dispose();
 
         commentsDisposable = Single.fromCallable(() -> {
-            StreamInfo.loadMoreComments(info);
+            CommentsInfo.loadMoreComments(info);
             return info.getComments();
         }).subscribeOn(Schedulers.io()).doOnError(e -> info.addError(e)).subscribe();
     }
@@ -756,10 +756,10 @@ public class VideoDetailFragment
         }
     }
 
-    private void initComments(StreamInfo info) {
+    private void initComments(CommentsInfo info) {
         if (commentsView.getChildCount() > 0) commentsView.removeAllViews();
 
-        if (info.getComments() != null
+        if (null != info && info.getComments() != null
                 && !info.getComments().isEmpty() && showComments) {
             //long first = System.nanoTime(), each;
             int to = info.getComments().size() >= INITIAL_RELATED_VIDEOS
@@ -1360,7 +1360,7 @@ public class VideoDetailFragment
         setupActionBar(info);
         initThumbnailViews(info);
         initRelatedVideos(info);
-        initComments(info);
+        initComments(info.getCommentsInfo());
 
         if (wasRelatedStreamsExpanded) {
             toggleExpandRelatedVideos(currentInfo);
