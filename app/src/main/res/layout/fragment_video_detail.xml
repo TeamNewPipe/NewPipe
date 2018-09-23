@@ -495,6 +495,7 @@
                                         android:src="?attr/expand"
                                         android:textAlignment="center"
                                         android:textAllCaps="true"
+                                        android:visibility="gone"
                                         tools:ignore="ContentDescription" />
 
                                 </LinearLayout>

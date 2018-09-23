@@ -54,9 +54,12 @@ import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.ServiceList;
+import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.comments.CommentsInfo;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeStreamExtractor;
 import org.schabi.newpipe.extractor.stream.AudioStream;
@@ -131,6 +134,7 @@ public class VideoDetailFragment
     private boolean autoPlayEnabled;
     private boolean showRelatedStreams;
     private boolean showComments;
+    private boolean isCommentsSupported;
     private boolean wasRelatedStreamsExpanded = false;
 
     @State
@@ -141,6 +145,7 @@ public class VideoDetailFragment
     protected String url;
 
     private StreamInfo currentInfo;
+    private CommentsInfo commentsInfo;
     private Disposable currentWorker;
     @NonNull
     private CompositeDisposable disposables = new CompositeDisposable();
@@ -242,6 +247,7 @@ public class VideoDetailFragment
     public void onPause() {
         super.onPause();
         if (currentWorker != null) currentWorker.dispose();
+        if (commentsDisposable != null) commentsDisposable.dispose();
     }
 
     @Override
@@ -253,7 +259,7 @@ public class VideoDetailFragment
                 if ((updateFlags & RELATED_STREAMS_UPDATE_FLAG) != 0)
                     initRelatedVideos(currentInfo);
                 if ((updateFlags & RESOLUTIONS_MENU_UPDATE_FLAG) != 0) setupActionBar(currentInfo);
-                if ((updateFlags & COMMENTS_UPDATE_FLAG) != 0) initComments(currentInfo.getCommentsInfo());
+                if ((updateFlags & COMMENTS_UPDATE_FLAG) != 0) initComments(commentsInfo);
             }
 
             if ((updateFlags & TOOLBAR_ITEMS_UPDATE_FLAG) != 0
@@ -267,6 +273,8 @@ public class VideoDetailFragment
         // Check if it was loading when the fragment was stopped/paused,
         if (wasLoading.getAndSet(false)) {
             selectAndLoadVideo(serviceId, url, name);
+        }else{
+            loadComments(false);
         }
     }
 
@@ -277,8 +285,10 @@ public class VideoDetailFragment
                 .unregisterOnSharedPreferenceChangeListener(this);
 
         if (currentWorker != null) currentWorker.dispose();
+        if (commentsDisposable != null) commentsDisposable.dispose();
         if (disposables != null) disposables.clear();
         currentWorker = null;
+        commentsDisposable = null;
         disposables = null;
     }
 
@@ -359,7 +369,7 @@ public class VideoDetailFragment
         if (serializable instanceof StreamInfo) {
             //noinspection unchecked
             currentInfo = (StreamInfo) serializable;
-            InfoCache.getInstance().putInfo(serviceId, url, currentInfo);
+            InfoCache.getInstance().putInfo(serviceId, url, currentInfo, InfoItem.InfoType.STREAM);
         }
 
         serializable = savedState.getSerializable(STACK_KEY);
@@ -367,6 +377,7 @@ public class VideoDetailFragment
             //noinspection unchecked
             stack.addAll((Collection<? extends StackItem>) serializable);
         }
+
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -425,7 +436,7 @@ public class VideoDetailFragment
                 toggleExpandRelatedVideos(currentInfo);
                 break;
             case R.id.detail_comments_expand:
-                toggleExpandComments(currentInfo.getCommentsInfo());
+                toggleExpandComments(commentsInfo);
                 break;
         }
     }
@@ -493,40 +504,33 @@ public class VideoDetailFragment
         if (!showComments || null == info) return;
 
         int initialCount = INITIAL_COMMENTS;
+        int currentCount = commentsView.getChildCount();
 
-        if (commentsView.getChildCount() > initialCount && commentsView.getChildCount() >= info.getComments().size() && !info.hasMoreComments()) {
+        //collapse
+        if (currentCount > initialCount && !info.hasNextPage()) {
             commentsView.removeViews(initialCount,
-                    commentsView.getChildCount() - (initialCount));
+                    currentCount - (initialCount));
             commentsExpandButton.setImageDrawable(ContextCompat.getDrawable(
                     activity, ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.expand)));
             return;
         }
 
-        //Log.d(TAG, "toggleExpandRelatedVideos() called with: info = [" + info + "], from = [" + INITIAL_RELATED_VIDEOS + "]");
-        int currentCount = commentsView.getChildCount();
-        for (int i = currentCount; i < info.getComments().size(); i++) {
-            CommentsInfoItem item = info.getComments().get(i);
-            //Log.d(TAG, "i = " + i);
-            commentsView.addView(infoItemBuilder.buildView(commentsView, item));
-        }
-
-        if (info.hasMoreComments()) {
-            loadMoreComments(info);
-        } else {
-            commentsExpandButton.setImageDrawable(
-                    ContextCompat.getDrawable(activity,
-                            ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.collapse)));
+        if(currentCount < info.getRelatedItems().size()){
+            //expand
+            for (int i = currentCount; i < info.getRelatedItems().size(); i++) {
+                CommentsInfoItem item = info.getRelatedItems().get(i);
+                commentsView.addView(infoItemBuilder.buildView(commentsView, item));
+            }
+            if(!info.hasNextPage()){
+                commentsExpandButton.setImageDrawable(
+                        ContextCompat.getDrawable(activity,
+                                ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.collapse)));
+            }
+        }else{
+            NavigationHelper.openCommentsFragment(getFragmentManager(), serviceId, url, name);
         }
     }
 
-    private void loadMoreComments(CommentsInfo info) {
-        if (commentsDisposable != null) commentsDisposable.dispose();
-
-        commentsDisposable = Single.fromCallable(() -> {
-            CommentsInfo.loadMoreComments(info);
-            return info.getComments();
-        }).subscribeOn(Schedulers.io()).doOnError(e -> info.addError(e)).subscribe();
-    }
     /*//////////////////////////////////////////////////////////////////////////
     // Init
     //////////////////////////////////////////////////////////////////////////*/
@@ -573,23 +577,17 @@ public class VideoDetailFragment
         uploaderTextView = rootView.findViewById(R.id.detail_uploader_text_view);
         uploaderThumb = rootView.findViewById(R.id.detail_uploader_thumbnail_view);
 
-        tabHost = (TabHost) rootView.findViewById(R.id.tab_host);
-        tabHost.setup();
+        StreamingService service = null;
+        try {
+            service = NewPipe.getService(serviceId);
+        } catch (ExtractionException e) {
+            onError(e);
+        }
 
-        TabHost.TabSpec commentsTab = tabHost.newTabSpec(COMMENTS_TAB_TAG);
-        commentsTab.setContent(R.id.detail_comments_root_layout);
-        commentsTab.setIndicator(getString(R.string.comments));
-
-
-        TabHost.TabSpec relatedVideosTab = tabHost.newTabSpec(RELATED_TAB_TAG);
-        relatedVideosTab.setContent(R.id.detail_related_streams_root_layout);
-        relatedVideosTab.setIndicator(getString(R.string.next_video_title));
-
-        tabHost.addTab(commentsTab);
-        tabHost.addTab(relatedVideosTab);
-
-        //show comments tab by default
-        tabHost.setCurrentTabByTag(COMMENTS_TAB_TAG);
+        if (service.isCommentsSupported()) {
+            isCommentsSupported = true;
+            initTabs(rootView);
+        }
 
         relatedStreamRootLayout = rootView.findViewById(R.id.detail_related_streams_root_layout);
         nextStreamTitle = rootView.findViewById(R.id.detail_next_stream_title);
@@ -604,6 +602,25 @@ public class VideoDetailFragment
         setHeightThumbnail();
 
 
+    }
+
+    private void initTabs(View rootView) {
+        tabHost = (TabHost) rootView.findViewById(R.id.tab_host);
+        tabHost.setup();
+
+        TabHost.TabSpec commentsTab = tabHost.newTabSpec(COMMENTS_TAB_TAG);
+        commentsTab.setContent(R.id.detail_comments_root_layout);
+        commentsTab.setIndicator(getString(R.string.comments));
+
+        TabHost.TabSpec relatedVideosTab = tabHost.newTabSpec(RELATED_TAB_TAG);
+        relatedVideosTab.setContent(R.id.detail_related_streams_root_layout);
+        relatedVideosTab.setIndicator(getString(R.string.next_video_title));
+
+        tabHost.addTab(commentsTab);
+        tabHost.addTab(relatedVideosTab);
+
+        //show comments tab by default
+        tabHost.setCurrentTabByTag(COMMENTS_TAB_TAG);
     }
 
     @Override
@@ -751,22 +768,25 @@ public class VideoDetailFragment
     }
 
     private void showRelatedStreamsIfSelected() {
-        if (tabHost.getCurrentTabTag().contentEquals(RELATED_TAB_TAG)) {
+        if (null == tabHost || tabHost.getCurrentTabTag().contentEquals(RELATED_TAB_TAG)) {
             relatedStreamRootLayout.setVisibility(View.VISIBLE);
         }
     }
 
     private void initComments(CommentsInfo info) {
+        if(null == info) return;
+
         if (commentsView.getChildCount() > 0) commentsView.removeAllViews();
 
-        if (null != info && info.getComments() != null
-                && !info.getComments().isEmpty() && showComments) {
+        List<CommentsInfoItem> initialComments = info.getRelatedItems();
+        if (null != info && initialComments != null
+                && !initialComments.isEmpty() && showComments) {
             //long first = System.nanoTime(), each;
-            int to = info.getComments().size() >= INITIAL_RELATED_VIDEOS
-                    ? INITIAL_RELATED_VIDEOS
-                    : info.getComments().size();
+            int to = initialComments.size() >= INITIAL_COMMENTS
+                    ? INITIAL_COMMENTS
+                    : initialComments.size();
             for (int i = 0; i < to; i++) {
-                InfoItem item = info.getComments().get(i);
+                InfoItem item = initialComments.get(i);
                 //each = System.nanoTime();
                 commentsView.addView(infoItemBuilder.buildView(commentsView, item));
                 //if (DEBUG) Log.d(TAG, "each took " + ((System.nanoTime() - each) / 1000000L) + "ms");
@@ -774,10 +794,13 @@ public class VideoDetailFragment
             //if (DEBUG) Log.d(TAG, "Total time " + ((System.nanoTime() - first) / 1000000L) + "ms");
 
             showCommentsIfSelected();
-            commentsExpandButton.setVisibility(View.VISIBLE);
-
-            commentsExpandButton.setImageDrawable(ContextCompat.getDrawable(
-                    activity, ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.expand)));
+            if(initialComments.size() > INITIAL_COMMENTS){
+                commentsExpandButton.setVisibility(View.VISIBLE);
+                commentsExpandButton.setImageDrawable(ContextCompat.getDrawable(
+                        activity, ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.expand)));
+            }else{
+                commentsExpandButton.setVisibility(View.GONE);
+            }
         } else {
             commentsRootLayout.setVisibility(View.GONE);
         }
@@ -785,9 +808,14 @@ public class VideoDetailFragment
     }
 
     private void showCommentsIfSelected() {
-        if (tabHost.getCurrentTabTag().contentEquals(COMMENTS_TAB_TAG)) {
+        if (null == tabHost || tabHost.getCurrentTabTag().contentEquals(COMMENTS_TAB_TAG)) {
             commentsRootLayout.setVisibility(View.VISIBLE);
         }
+    }
+
+    private void clearComments(){
+        if (commentsView.getChildCount() > 0) commentsView.removeAllViews();
+        commentsExpandButton.setVisibility(View.GONE);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -988,6 +1016,7 @@ public class VideoDetailFragment
     protected void prepareAndLoadInfo() {
         parallaxScrollRootView.smoothScrollTo(0, 0);
         pushToStack(serviceId, url, name);
+        //clearComments();
         startLoading(false);
     }
 
@@ -1010,6 +1039,27 @@ public class VideoDetailFragment
                     isLoading.set(false);
                     onError(throwable);
                 });
+
+        loadComments(forceLoad);
+
+    }
+
+    private void loadComments(boolean forceLoad) {
+        if(isCommentsSupported && showComments){
+            commentsInfo = null;
+            if (commentsDisposable != null) commentsDisposable.dispose();
+
+            commentsDisposable = ExtractorHelper.getCommentsInfo(serviceId, url, forceLoad)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe((@NonNull CommentsInfo result) -> {
+                        commentsInfo = result;
+                        showCommentsWithAnimation(120, 0,0);
+                        initComments(commentsInfo);
+                    }, (@NonNull Throwable throwable) -> {
+                        onError(throwable);
+                    });
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1199,7 +1249,7 @@ public class VideoDetailFragment
                 .setInterpolator(new FastOutSlowInInterpolator())
                 .start();
 
-        if (showRelatedStreams && tabHost.getCurrentTabTag().contentEquals(RELATED_TAB_TAG)) {
+        if (showRelatedStreams && (null == tabHost || tabHost.getCurrentTabTag().contentEquals(RELATED_TAB_TAG))) {
             relatedStreamRootLayout.animate().setListener(null).cancel();
             relatedStreamRootLayout.setAlpha(0f);
             relatedStreamRootLayout.setTranslationY(translationY);
@@ -1213,7 +1263,15 @@ public class VideoDetailFragment
                     .start();
         }
 
-        if (showComments && tabHost.getCurrentTabTag().contentEquals(COMMENTS_TAB_TAG)) {
+    }
+
+    private void showCommentsWithAnimation(long duration,
+                                           long delay,
+                                           @FloatRange(from = 0.0f, to = 1.0f) float translationPercent) {
+        int translationY = (int) (getResources().getDisplayMetrics().heightPixels *
+                (translationPercent > 0.0f ? translationPercent : .06f));
+
+        if (showComments && (null == tabHost || tabHost.getCurrentTabTag().contentEquals(COMMENTS_TAB_TAG))) {
             commentsRootLayout.animate().setListener(null).cancel();
             commentsRootLayout.setAlpha(0f);
             commentsRootLayout.setTranslationY(translationY);
@@ -1360,7 +1418,6 @@ public class VideoDetailFragment
         setupActionBar(info);
         initThumbnailViews(info);
         initRelatedVideos(info);
-        initComments(info.getCommentsInfo());
 
         if (wasRelatedStreamsExpanded) {
             toggleExpandRelatedVideos(currentInfo);
