@@ -121,7 +121,7 @@ public class VideoDetailFragment
     // Amount of videos to show on start
     private static final int INITIAL_RELATED_VIDEOS = 8;
     // Amount of comments to show on start
-    private static final int INITIAL_COMMENTS = 8;
+    public static final int INITIAL_COMMENTS = 8;
 
     private InfoItemBuilder infoItemBuilder = null;
 
@@ -503,32 +503,8 @@ public class VideoDetailFragment
         if (DEBUG) Log.d(TAG, "toggleExpandComments() called with: info = [" + info + "]");
         if (!showComments || null == info) return;
 
-        int initialCount = INITIAL_COMMENTS;
-        int currentCount = commentsView.getChildCount();
+        NavigationHelper.openCommentsFragment(getFragmentManager(), serviceId, url, name);
 
-        //collapse
-        if (currentCount > initialCount && !info.hasNextPage()) {
-            commentsView.removeViews(initialCount,
-                    currentCount - (initialCount));
-            commentsExpandButton.setImageDrawable(ContextCompat.getDrawable(
-                    activity, ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.expand)));
-            return;
-        }
-
-        if(currentCount < info.getRelatedItems().size()){
-            //expand
-            for (int i = currentCount; i < info.getRelatedItems().size(); i++) {
-                CommentsInfoItem item = info.getRelatedItems().get(i);
-                commentsView.addView(infoItemBuilder.buildView(commentsView, item));
-            }
-            if(!info.hasNextPage()){
-                commentsExpandButton.setImageDrawable(
-                        ContextCompat.getDrawable(activity,
-                                ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.collapse)));
-            }
-        }else{
-            NavigationHelper.openCommentsFragment(getFragmentManager(), serviceId, url, name);
-        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////

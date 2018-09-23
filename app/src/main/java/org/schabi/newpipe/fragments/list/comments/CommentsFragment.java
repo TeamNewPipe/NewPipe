@@ -34,6 +34,7 @@ import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.comments.CommentsInfo;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
@@ -153,7 +154,7 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfo> {
     public void handleResult(@NonNull CommentsInfo result) {
         super.handleResult(result);
         if(initialLoad){
-            itemsList.smoothScrollToPosition(infoListAdapter.getItemCount());
+            itemsList.smoothScrollToPosition(VideoDetailFragment.INITIAL_COMMENTS);
             initialLoad = false;
         }
 
