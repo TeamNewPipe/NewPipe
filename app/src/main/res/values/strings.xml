@@ -16,7 +16,7 @@
     <string name="controls_download_desc">Download stream file</string>
     <string name="search">Search</string>
     <string name="settings">Settings</string>
-    <string name="did_you_mean">Did you mean: %1$s\?</string>
+    <string name="did_you_mean">Did you mean: %1$s?</string>
     <string name="share_dialog_title">Share with</string>
     <string name="choose_browser">Choose browser</string>
     <string name="screen_rotation">rotation</string>
@@ -143,6 +143,7 @@
     <string name="popup_resizing_indicator_title">Resizing</string>
     <string name="best_resolution">Best resolution</string>
     <string name="undo">Undo</string>
+    <string name="file_deleted">File deleted</string>
     <string name="play_all">Play All</string>
     <string name="always">Always</string>
     <string name="just_once">Just Once</string>
@@ -520,9 +521,55 @@
     <string name="minimize_on_exit_none_description">None</string>
     <string name="minimize_on_exit_background_description">Minimize to background player</string>
     <string name="minimize_on_exit_popup_description">Minimize to popup player</string>
-	  <string name="list_view_mode">List view mode</string>
+	<string name="list_view_mode">List view mode</string>
     <string name="list">List</string>
     <string name="grid">Grid</string>
-	  <string name="auto">Auto</string>
+	<string name="auto">Auto</string>
     <string name="switch_view">Switch View</string>
+
+
+    <string name="missions_header_finished">Finished</string>
+    <string name="missions_header_pending">In queue</string>
+    
+    <string name="paused">paused</string>
+    <string name="queued">queued</string>
+    <string name="post_processing">post-processing</string>
+    
+    <string name="enqueue">Queue</string>
+    
+    <string name="permission_denied">Action denied by the system</string>
+
+    <!-- download done notifications -->
+    <string name="download_finished">Download finished: %s</string>
+    <string name="download_finished_more">%s downloads finished</string>
+
+    <!-- dialog about existing downloads -->
+    <string name="generate_unique_name">Generate unique name</string>
+    <string name="overwrite">Overwrite</string>
+    <string name="overwrite_warning">A downloaded file with this name already exists</string>
+    <string name="download_already_running">There is a download in progress with this name</string>
+
+    <!-- message dialog about download error -->
+    <string name="show_error">Show error</string>
+    <string name="label_code">Code</string>
+    <string name="error_path_creation">The file can not be created</string>
+    <string name="error_file_creation">The destination folder can not be created</string>
+    <string name="error_permission_denied">Permission denied by the system</string>
+    <string name="error_ssl_exception">Secure connection failed</string>
+    <string name="error_unknown_host">Can not found the server</string>
+    <string name="error_connect_host">Can not connect to the server</string>
+    <string name="error_http_no_content">The server does not send data</string>
+    <string name="error_http_unsupported_range">The server does not accept multi-threaded downloads, retry with @string/msg_threads = 1</string>
+    <string name="error_http_requested_range_not_satisfiable">Requested Range Not Satisfiable</string>
+    <string name="error_http_not_found">Not found</string>
+    <string name="error_postprocessing_failed">Post-processing failed</string>
+
+    <string name="clear_finished_download">Clear finished downloads</string>
+    <string name="msg_pending_downloads">You have %s pending downloads, goto Downloads to continue</string>
+    <string name="stop">Stop</string>
+    <string name="max_retry_msg">Maximum retry</string>
+    <string name="max_retry_desc">Maximum number of attempts before canceling the download</string>
+    <string name="pause_downloads_on_mobile">Pause on switching to mobile data</string>
+    <string name="pause_downloads_on_mobile_desc">Not all downloads can be suspended, in those cases, will be restarted</string>
+
 </resources>

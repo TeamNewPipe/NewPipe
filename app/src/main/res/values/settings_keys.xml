@@ -174,6 +174,12 @@
     </string-array>
 
     <string name="default_file_charset_value" translatable="false">@string/charset_most_special_characters_value</string>
+    
+    <string name="downloads_max_retry" translatable="false">downloads_max_retry</string>
+    <string name="default_max_retry" translatable="false">3</string>
+    <string name="cross_network_downloads" translatable="false">cross_network_downloads</string>
+
+    <string name="default_download_threads" translatable="false">default_download_threads</string>
 
     <!-- Preferred action on open (open from external app) -->
     <string name="preferred_open_action_key" translatable="false">preferred_open_action_key</string>

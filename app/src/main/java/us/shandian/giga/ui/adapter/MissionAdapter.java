@@ -1,5 +1,6 @@
 package us.shandian.giga.ui.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -7,12 +8,20 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.FileProvider;
 import android.support.v4.view.ViewCompat;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,28 +33,28 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.download.DeleteDownloadManager;
+import org.schabi.newpipe.util.NavigationHelper;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
-import us.shandian.giga.get.DownloadManager;
 import us.shandian.giga.get.DownloadMission;
+import us.shandian.giga.get.FinishedMission;
+import us.shandian.giga.service.DownloadManager;
 import us.shandian.giga.service.DownloadManagerService;
+import us.shandian.giga.ui.common.Deleter;
 import us.shandian.giga.ui.common.ProgressDrawable;
 import us.shandian.giga.util.Utility;
 
 import static android.content.Intent.FLAG_GRANT_PREFIX_URI_PERMISSION;
 import static android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION;
 
-public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHolder> {
-    private static final Map<Integer, String> ALGORITHMS = new HashMap<>();
+public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
+    private static final SparseArray<String> ALGORITHMS = new SparseArray<>();
     private static final String TAG = "MissionAdapter";
 
     static {
@@ -53,109 +62,131 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
         ALGORITHMS.put(R.id.sha1, "SHA1");
     }
 
-    private Activity mContext;
+    private Context mContext;
     private LayoutInflater mInflater;
     private DownloadManager mDownloadManager;
-    private DeleteDownloadManager mDeleteDownloadManager;
-    private List<DownloadMission> mItemList;
-    private DownloadManagerService.DMBinder mBinder;
+    private Deleter mDeleter;
     private int mLayout;
+    private DownloadManager.MissionIterator mIterator;
+    private Handler mHandler;
+    private ArrayList<ViewHolderItem> mPendingDownloadsItems = new ArrayList<>();
+    private MenuItem mClear;
+    private View mEmptyMessage;
 
-    public MissionAdapter(Activity context, DownloadManagerService.DMBinder binder, DownloadManager downloadManager, DeleteDownloadManager deleteDownloadManager, boolean isLinear) {
+    public MissionAdapter(Context context, DownloadManager downloadManager, MenuItem clearButton, View emptyMessage) {
         mContext = context;
         mDownloadManager = downloadManager;
-        mDeleteDownloadManager = deleteDownloadManager;
-        mBinder = binder;
+        mDeleter = null;
 
         mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        mLayout = isLinear ? R.layout.mission_item_linear : R.layout.mission_item;
+        mLayout = R.layout.mission_item;
 
-        mItemList = new ArrayList<>();
-        updateItemList();
+        mHandler = new Handler(Looper.myLooper()) {
+            @Override
+            public void handleMessage(Message msg) {
+                switch (msg.what) {
+                    case DownloadManagerService.MESSAGE_PROGRESS:
+                    case DownloadManagerService.MESSAGE_ERROR:
+                    case DownloadManagerService.MESSAGE_FINISHED:
+                        onServiceMessage(msg);
+                }
+            }
+        };
+
+        mClear = clearButton;
+        mEmptyMessage = emptyMessage;
+
+        mIterator = downloadManager.getIterator();
+
+        checkEmptyMessageVisibility();
     }
 
-    public void updateItemList() {
-        mItemList.clear();
+    @Override
+    @NonNull
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        switch (viewType) {
+            case DownloadManager.SPECIAL_PENDING:
+            case DownloadManager.SPECIAL_FINISHED:
+                return new ViewHolderHeader(mInflater.inflate(R.layout.missions_header, parent, false));
+        }
 
-        for (int i = 0; i < mDownloadManager.getCount(); i++) {
-            DownloadMission mission = mDownloadManager.getMission(i);
-            if (!mDeleteDownloadManager.contains(mission)) {
-                mItemList.add(mDownloadManager.getMission(i));
+        return new ViewHolderItem(mInflater.inflate(mLayout, parent, false));
+    }
+
+    @Override
+    public void onViewRecycled(@NonNull ViewHolder view) {
+        super.onViewRecycled(view);
+
+        if (view instanceof ViewHolderHeader) return;
+        ViewHolderItem h = (ViewHolderItem) view;
+
+        if (h.item.mission instanceof DownloadMission) mPendingDownloadsItems.remove(h);
+
+        h.popupMenu.dismiss();
+        h.item = null;
+        h.lastTimeStamp = -1;
+        h.lastDone = -1;
+        h.lastCurrent = -1;
+        h.state = 0;
+    }
+
+    @Override
+    @SuppressLint("SetTextI18n")
+    public void onBindViewHolder(@NonNull ViewHolder view, @SuppressLint("RecyclerView") int pos) {
+        DownloadManager.MissionItem item = mIterator.getItem(pos);
+
+        if (view instanceof ViewHolderHeader) {
+            if (item.special == DownloadManager.SPECIAL_NOTHING) return;
+            int str;
+            if (item.special == DownloadManager.SPECIAL_PENDING) {
+                str = R.string.missions_header_pending;
+            } else {
+                str = R.string.missions_header_finished;
+                mClear.setVisible(true);
             }
+
+            ((ViewHolderHeader) view).header.setText(str);
+            return;
+        }
+
+        ViewHolderItem h = (ViewHolderItem) view;
+        h.item = item;
+
+        Utility.FileType type = Utility.getFileType(item.mission.kind, item.mission.name);
+
+        h.icon.setImageResource(Utility.getIconForFileType(type));
+        h.name.setText(item.mission.name);
+        h.size.setText(Utility.formatBytes(item.mission.length));
+
+        h.progress.setColors(Utility.getBackgroundForFileType(mContext, type), Utility.getForegroundForFileType(mContext, type));
+
+        if (h.item.mission instanceof DownloadMission) {
+            DownloadMission mission = (DownloadMission) item.mission;
+            h.progress.setMarquee(mission.done < 1);
+            updateProgress(h);
+            h.pause.setTitle(mission.unknownLength ? R.string.stop : R.string.pause);
+            mPendingDownloadsItems.add(h);
+        } else {
+            h.progress.setMarquee(false);
+            h.status.setText("100%");
+            h.progress.setProgress(1f);
         }
     }
 
     @Override
-    public MissionAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        final ViewHolder h = new ViewHolder(mInflater.inflate(mLayout, parent, false));
-
-        h.menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                buildPopup(h);
-            }
-        });
-
-		/*h.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-			public void onClick(View v) {
-				showDetail(h);
-			}
-		});*/
-
-        return h;
-    }
-
-    @Override
-    public void onViewRecycled(MissionAdapter.ViewHolder h) {
-        super.onViewRecycled(h);
-        h.mission.removeListener(h.observer);
-        h.mission = null;
-        h.observer = null;
-        h.progress = null;
-        h.position = -1;
-        h.lastTimeStamp = -1;
-        h.lastDone = -1;
-        h.colorId = 0;
-    }
-
-    @Override
-    public void onBindViewHolder(MissionAdapter.ViewHolder h, int pos) {
-        DownloadMission ms = mItemList.get(pos);
-        h.mission = ms;
-        h.position = pos;
-
-        Utility.FileType type = Utility.getFileType(ms.name);
-
-        h.icon.setImageResource(Utility.getIconForFileType(type));
-        h.name.setText(ms.name);
-        h.size.setText(Utility.formatBytes(ms.length));
-
-        h.progress = new ProgressDrawable(mContext, Utility.getBackgroundForFileType(type), Utility.getForegroundForFileType(type));
-        ViewCompat.setBackground(h.bkg, h.progress);
-
-        h.observer = new MissionObserver(this, h);
-        ms.addListener(h.observer);
-
-        updateProgress(h);
-    }
-
-    @Override
     public int getItemCount() {
-        return mItemList.size();
+        return mIterator.getOldListSize();
     }
 
     @Override
-    public long getItemId(int position) {
-        return position;
+    public int getItemViewType(int position) {
+        return mIterator.getSpecialAtItem(position);
     }
 
-    private void updateProgress(ViewHolder h) {
-        updateProgress(h, false);
-    }
+    private void updateProgress(ViewHolderItem h) {
+        if (h == null || h.item == null || h.item.mission instanceof FinishedMission) return;
 
-    private void updateProgress(ViewHolder h, boolean finished) {
-        if (h.mission == null) return;
+        DownloadMission mission = (DownloadMission) h.item.mission;
 
         long now = System.currentTimeMillis();
 
@@ -164,130 +195,110 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
         }
 
         if (h.lastDone == -1) {
-            h.lastDone = h.mission.done;
+            h.lastDone = mission.done;
+        }
+        if (h.lastCurrent != mission.current) {
+            h.lastCurrent = mission.current;
+            h.lastDone = 0;
+            h.lastTimeStamp = now;
         }
 
         long deltaTime = now - h.lastTimeStamp;
-        long deltaDone = h.mission.done - h.lastDone;
+        long deltaDone = mission.done - h.lastDone;
+        boolean hasError = mission.errCode != DownloadMission.ERROR_NOTHING;
 
-        if (deltaTime == 0 || deltaTime > 1000 || finished) {
-            if (h.mission.errCode > 0) {
-                h.status.setText(R.string.msg_error);
+        if (hasError || deltaTime == 0 || deltaTime > 1000) {
+            // on error hide marquee or show if condition (mission.done < 1 || mission.unknownLength) is true
+            h.progress.setMarquee(!hasError && (mission.done < 1 || mission.unknownLength));
+
+            float progress;
+            if (mission.unknownLength) {
+                progress = Float.NaN;
+                h.progress.setProgress(0f);
             } else {
-                float progress = (float) h.mission.done / h.mission.length;
-                h.status.setText(String.format(Locale.US, "%.2f%%", progress * 100));
+                progress = (float) mission.done / mission.length;
+                if (mission.urls.length > 1 && mission.current < mission.urls.length) {
+                    progress = (progress / mission.urls.length) + ((float) mission.current / mission.urls.length);
+                }
+            }
+
+            if (hasError) {
+                if (Float.isNaN(progress) || Float.isInfinite(progress)) h.progress.setProgress(1f);
+                h.status.setText(R.string.msg_error);
+            } else if (Float.isNaN(progress) || Float.isInfinite(progress)) {
+                h.status.setText("--.-%");
+            } else {
+                h.status.setText(String.format("%.2f%%", progress * 100));
                 h.progress.setProgress(progress);
             }
+        }
+
+        long length = mission.offsets[mission.current < mission.offsets.length ? mission.current : (mission.offsets.length - 1)];
+        length += mission.length;
+
+        int state = 0;
+        if (!mission.isFinished()) {
+            if (!mission.running) {
+                state = mission.enqueued ? 1 : 2;
+            } else if (mission.postprocessingRunning) {
+                state = 3;
+            }
+        }
+
+        if (state != 0) {
+            if (h.state != state) {
+                String statusStr;
+                h.state = state;
+
+                switch (state) {
+                    case 1:
+                        statusStr = mContext.getString(R.string.queued);
+                        break;
+                    case 2:
+                        statusStr = mContext.getString(R.string.paused);
+                        break;
+                    case 3:
+                        statusStr = mContext.getString(R.string.post_processing);
+                        break;
+                    default:
+                        statusStr = "?";
+                        break;
+                }
+
+                h.size.setText(Utility.formatBytes(length).concat("  (").concat(statusStr).concat(")"));
+            } else if (deltaTime > 1000 && deltaDone > 0) {
+                h.lastTimeStamp = now;
+                h.lastDone = mission.done;
+            }
+
+            return;
         }
 
         if (deltaTime > 1000 && deltaDone > 0) {
             float speed = (float) deltaDone / deltaTime;
             String speedStr = Utility.formatSpeed(speed * 1000);
-            String sizeStr = Utility.formatBytes(h.mission.length);
+            String sizeStr = Utility.formatBytes(length);
 
-            h.size.setText(sizeStr + " " + speedStr);
+            h.size.setText(sizeStr.concat(" ").concat(speedStr));
 
             h.lastTimeStamp = now;
-            h.lastDone = h.mission.done;
+            h.lastDone = mission.done;
         }
     }
 
+    private boolean viewWithFileProvider(@NonNull File file) {
+        if (!file.exists()) return true;
 
-    private void buildPopup(final ViewHolder h) {
-        PopupMenu popup = new PopupMenu(mContext, h.menu);
-        popup.inflate(R.menu.mission);
+        String ext = Utility.getFileExt(file.getName());
+        if (ext == null) return false;
 
-        Menu menu = popup.getMenu();
-        MenuItem start = menu.findItem(R.id.start);
-        MenuItem pause = menu.findItem(R.id.pause);
-        MenuItem view = menu.findItem(R.id.view);
-        MenuItem delete = menu.findItem(R.id.delete);
-        MenuItem checksum = menu.findItem(R.id.checksum);
+        String mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(ext.substring(1));
+        Log.v(TAG, "Mime: " + mimeType + " package: " + BuildConfig.APPLICATION_ID + ".provider");
 
-        // Set to false first
-        start.setVisible(false);
-        pause.setVisible(false);
-        view.setVisible(false);
-        delete.setVisible(false);
-        checksum.setVisible(false);
-
-        if (!h.mission.finished) {
-            if (!h.mission.running) {
-                if (h.mission.errCode == -1) {
-                    start.setVisible(true);
-                }
-
-                delete.setVisible(true);
-            } else {
-                pause.setVisible(true);
-            }
-        } else {
-            view.setVisible(true);
-            delete.setVisible(true);
-            checksum.setVisible(true);
-        }
-
-        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                int id = item.getItemId();
-                switch (id) {
-                    case R.id.start:
-                        mDownloadManager.resumeMission(h.position);
-                        mBinder.onMissionAdded(mItemList.get(h.position));
-                        return true;
-                    case R.id.pause:
-                        mDownloadManager.pauseMission(h.position);
-                        mBinder.onMissionRemoved(mItemList.get(h.position));
-                        h.lastTimeStamp = -1;
-                        h.lastDone = -1;
-                        return true;
-                    case R.id.view:
-                        File f = new File(h.mission.location, h.mission.name);
-                        String ext = Utility.getFileExt(h.mission.name);
-
-                        Log.d(TAG, "Viewing file: " + f.getAbsolutePath() + " ext: " + ext);
-
-                        if (ext == null) {
-                            Log.w(TAG, "Can't view file because it has no extension: " +
-                                    h.mission.name);
-                            return false;
-                        }
-
-                        String mime = MimeTypeMap.getSingleton().getMimeTypeFromExtension(ext.substring(1));
-                        Log.v(TAG, "Mime: " + mime + " package: " + mContext.getApplicationContext().getPackageName() + ".provider");
-                        if (f.exists()) {
-                            viewFileWithFileProvider(f, mime);
-                        } else {
-                            Log.w(TAG, "File doesn't exist");
-                        }
-
-                        return true;
-                    case R.id.delete:
-                        mDeleteDownloadManager.add(h.mission);
-                        updateItemList();
-                        notifyDataSetChanged();
-                        return true;
-                    case R.id.md5:
-                    case R.id.sha1:
-                        DownloadMission mission = mItemList.get(h.position);
-                        new ChecksumTask(mContext).execute(mission.location + "/" + mission.name, ALGORITHMS.get(id));
-                        return true;
-                    default:
-                        return false;
-                }
-            }
-        });
-
-        popup.show();
-    }
-
-    private void viewFileWithFileProvider(File file, String mimetype) {
-        String ourPackage = mContext.getApplicationContext().getPackageName();
-        Uri uri = FileProvider.getUriForFile(mContext, ourPackage + ".provider", file);
+        Uri uri = FileProvider.getUriForFile(mContext, BuildConfig.APPLICATION_ID + ".provider", file);
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
-        intent.setDataAndType(uri, mimetype);
+        intent.setDataAndType(uri, mimeType);
         intent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             intent.addFlags(FLAG_GRANT_PREFIX_URI_PERMISSION);
@@ -300,75 +311,338 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
             Toast noPlayerToast = Toast.makeText(mContext, R.string.toast_no_player, Toast.LENGTH_LONG);
             noPlayerToast.show();
         }
+
+        return true;
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
-        public DownloadMission mission;
-        public int position;
+    public Handler getMessenger() {
+        return mHandler;
+    }
 
-        public final TextView status;
-        public final ImageView icon;
-        public final TextView name;
-        public final TextView size;
-        public final View bkg;
-        public final ImageView menu;
-        public ProgressDrawable progress;
-        public MissionObserver observer;
+    private void onServiceMessage(@NonNull Message msg) {
+        switch (msg.what) {
+            case DownloadManagerService.MESSAGE_PROGRESS:
+            case DownloadManagerService.MESSAGE_ERROR:
+            case DownloadManagerService.MESSAGE_FINISHED:
+                break;
+            default:
+                return;
+        }
 
-        public long lastTimeStamp = -1;
-        public long lastDone = -1;
-        public int colorId;
+        for (int i = 0; i < mPendingDownloadsItems.size(); i++) {
+            ViewHolderItem h = mPendingDownloadsItems.get(i);
+            if (h.item.mission != msg.obj) continue;
 
-        public ViewHolder(View v) {
-            super(v);
+            if (msg.what == DownloadManagerService.MESSAGE_FINISHED) {
+                // DownloadManager should mark the download as finished
+                applyChanges();
 
-            status = v.findViewById(R.id.item_status);
-            icon = v.findViewById(R.id.item_icon);
-            name = v.findViewById(R.id.item_name);
-            size = v.findViewById(R.id.item_size);
-            bkg = v.findViewById(R.id.item_bkg);
-            menu = v.findViewById(R.id.item_more);
+                mPendingDownloadsItems.remove(i);
+                return;
+            }
+
+            updateProgress(h);
+            return;
         }
     }
 
-    static class MissionObserver implements DownloadMission.MissionListener {
-        private final MissionAdapter mAdapter;
-        private final ViewHolder mHolder;
+    private void showError(@NonNull DownloadMission mission) {
+        StringBuilder str = new StringBuilder();
+        str.append(mContext.getString(R.string.label_code));
+        str.append(": ");
+        str.append(mission.errCode);
+        str.append('\n');
 
-        public MissionObserver(MissionAdapter adapter, ViewHolder holder) {
-            mAdapter = adapter;
-            mHolder = holder;
+        switch (mission.errCode) {
+            case 416:
+                str.append(mContext.getString(R.string.error_http_requested_range_not_satisfiable));
+                break;
+            case 404:
+                str.append(mContext.getString(R.string.error_http_not_found));
+                break;
+            case DownloadMission.ERROR_NOTHING:
+                str.append("¿?");
+                break;
+            case DownloadMission.ERROR_FILE_CREATION:
+                str.append(mContext.getString(R.string.error_file_creation));
+                break;
+            case DownloadMission.ERROR_HTTP_NO_CONTENT:
+                str.append(mContext.getString(R.string.error_http_no_content));
+                break;
+            case DownloadMission.ERROR_HTTP_UNSUPPORTED_RANGE:
+                str.append(mContext.getString(R.string.error_http_unsupported_range));
+                break;
+            case DownloadMission.ERROR_PATH_CREATION:
+                str.append(mContext.getString(R.string.error_path_creation));
+                break;
+            case DownloadMission.ERROR_PERMISSION_DENIED:
+                str.append(mContext.getString(R.string.permission_denied));
+                break;
+            case DownloadMission.ERROR_SSL_EXCEPTION:
+                str.append(mContext.getString(R.string.error_ssl_exception));
+                break;
+            case DownloadMission.ERROR_UNKNOWN_HOST:
+                str.append(mContext.getString(R.string.error_unknown_host));
+                break;
+            case DownloadMission.ERROR_CONNECT_HOST:
+                str.append(mContext.getString(R.string.error_connect_host));
+                break;
+            case DownloadMission.ERROR_POSTPROCESSING_FAILED:
+                str.append(R.string.error_postprocessing_failed);
+            case DownloadMission.ERROR_UNKNOWN_EXCEPTION:
+                break;
+            default:
+                if (mission.errCode >= 100 && mission.errCode < 600) {
+                    str.append("HTTP");
+                } else if (mission.errObject == null) {
+                    str.append("(not_decelerated_error_code)");
+                }
+                break;
         }
 
-        @Override
-        public void onProgressUpdate(DownloadMission downloadMission, long done, long total) {
-            mAdapter.updateProgress(mHolder);
+        if (mission.errObject != null) {
+            str.append("\n\n");
+            str.append(mission.errObject.toString());
         }
 
-        @Override
-        public void onFinish(DownloadMission downloadMission) {
-            //mAdapter.mManager.deleteMission(mHolder.position);
-            // TODO Notification
-            //mAdapter.notifyDataSetChanged();
-            if (mHolder.mission != null) {
-                mHolder.size.setText(Utility.formatBytes(mHolder.mission.length));
-                mAdapter.updateProgress(mHolder, true);
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setTitle(mission.name)
+                .setMessage(str)
+                .setNegativeButton(android.R.string.ok, (dialog, which) -> dialog.cancel())
+                .create()
+                .show();
+    }
+
+    public void clearFinishedDownloads() {
+        mDownloadManager.forgetFinishedDownloads();
+        applyChanges();
+        mClear.setVisible(false);
+    }
+
+    private boolean handlePopupItem(@NonNull ViewHolderItem h, @NonNull MenuItem option) {
+        int id = option.getItemId();
+        DownloadMission mission = h.item.mission instanceof DownloadMission ? (DownloadMission) h.item.mission : null;
+
+        if (mission != null) {
+            switch (id) {
+                case R.id.start:
+                    h.state = -1;
+                    h.size.setText(Utility.formatBytes(mission.length));
+                    mDownloadManager.resumeMission(mission);
+                    return true;
+                case R.id.pause:
+                    h.state = -1;
+                    mDownloadManager.pauseMission(mission);
+                    notifyItemChanged(h.getAdapterPosition());
+                    h.lastTimeStamp = -1;
+                    h.lastDone = -1;
+                    return true;
+                case R.id.error_message_view:
+                    showError(mission);
+                    return true;
+                case R.id.queue:
+                    h.queue.setChecked(!h.queue.isChecked());
+                    mission.enqueued = h.queue.isChecked();
+                    updateProgress(h);
+                    return true;
             }
         }
 
-        @Override
-        public void onError(DownloadMission downloadMission, int errCode) {
-            mAdapter.updateProgress(mHolder);
+        switch (id) {
+            case R.id.open:
+                return viewWithFileProvider(h.item.mission.getDownloadedFile());
+            case R.id.delete:
+                if (mDeleter == null) {
+                    mDownloadManager.deleteMission(h.item.mission);
+                } else {
+                    mDeleter.append(h.item.mission);
+                }
+                applyChanges();
+                return true;
+            case R.id.md5:
+            case R.id.sha1:
+                new ChecksumTask(mContext).execute(h.item.mission.getDownloadedFile().getAbsolutePath(), ALGORITHMS.get(id));
+                return true;
+            case R.id.source:
+                        /*Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(h.item.mission.source));
+                        mContext.startActivity(intent);*/
+                try {
+                    Intent intent = NavigationHelper.getIntentByLink(mContext, h.item.mission.source);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    mContext.startActivity(intent);
+                } catch (Exception e) {
+                    Log.w(TAG, "Selected item has a invalid source", e);
+                }
+                return true;
+            default:
+                return false;
         }
-
     }
 
-    private static class ChecksumTask extends AsyncTask<String, Void, String> {
-        ProgressDialog prog;
-        final WeakReference<Activity> weakReference;
+    public void applyChanges() {
+        mIterator.start();
+        DiffUtil.calculateDiff(mIterator, true).dispatchUpdatesTo(this);
+        mIterator.end();
 
-        ChecksumTask(@NonNull Activity activity) {
-            weakReference = new WeakReference<>(activity);
+        checkEmptyMessageVisibility();
+
+        if (mIterator.getOldListSize() > 0) {
+            int lastItemType = mIterator.getSpecialAtItem(mIterator.getOldListSize() - 1);
+            mClear.setVisible(lastItemType == DownloadManager.SPECIAL_FINISHED);
+        }
+    }
+
+    public void forceUpdate() {
+        mIterator.start();
+        mIterator.end();
+
+        notifyDataSetChanged();
+    }
+
+    public void setLinear(boolean isLinear) {
+        mLayout = isLinear ? R.layout.mission_item_linear : R.layout.mission_item;
+    }
+
+    private void checkEmptyMessageVisibility() {
+        int flag = mIterator.getOldListSize() > 0 ? View.GONE : View.VISIBLE;
+        if (mEmptyMessage.getVisibility() != flag) mEmptyMessage.setVisibility(flag);
+    }
+
+
+    public void deleterDispose(Bundle bundle) {
+        if (mDeleter != null) mDeleter.dispose(bundle);
+    }
+
+    public void deleterLoad(Bundle bundle, View view) {
+        if (mDeleter == null)
+            mDeleter = new Deleter(bundle, view, mContext, this, mDownloadManager, mIterator, mHandler);
+    }
+
+    public void deleterResume() {
+        if (mDeleter != null) mDeleter.resume();
+    }
+
+
+    class ViewHolderItem extends RecyclerView.ViewHolder {
+        DownloadManager.MissionItem item;
+
+        TextView status;
+        ImageView icon;
+        TextView name;
+        TextView size;
+        ProgressDrawable progress;
+
+        PopupMenu popupMenu;
+        MenuItem start;
+        MenuItem pause;
+        MenuItem open;
+        MenuItem queue;
+        MenuItem showError;
+        MenuItem delete;
+        MenuItem source;
+        MenuItem checksum;
+
+        long lastTimeStamp = -1;
+        long lastDone = -1;
+        int lastCurrent = -1;
+        int state = 0;
+
+        ViewHolderItem(View view) {
+            super(view);
+
+            progress = new ProgressDrawable();
+            ViewCompat.setBackground(itemView.findViewById(R.id.item_bkg), progress);
+
+            status = itemView.findViewById(R.id.item_status);
+            name = itemView.findViewById(R.id.item_name);
+            icon = itemView.findViewById(R.id.item_icon);
+            size = itemView.findViewById(R.id.item_size);
+
+            name.setSelected(true);
+
+            ImageView button = itemView.findViewById(R.id.item_more);
+            popupMenu = buildPopup(button);
+            button.setOnClickListener(v -> showPopupMenu());
+
+            Menu menu = popupMenu.getMenu();
+            start = menu.findItem(R.id.start);
+            pause = menu.findItem(R.id.pause);
+            open = menu.findItem(R.id.open);
+            queue = menu.findItem(R.id.queue);
+            showError = menu.findItem(R.id.error_message_view);
+            delete = menu.findItem(R.id.delete);
+            source = menu.findItem(R.id.source);
+            checksum = menu.findItem(R.id.checksum);
+
+            //h.itemView.setOnClickListener(v -> showDetail(h));
+        }
+
+        private void showPopupMenu() {
+            start.setVisible(false);
+            pause.setVisible(false);
+            open.setVisible(false);
+            queue.setVisible(false);
+            showError.setVisible(false);
+            delete.setVisible(false);
+            source.setVisible(false);
+            checksum.setVisible(false);
+
+            DownloadMission mission = item.mission instanceof DownloadMission ? (DownloadMission) item.mission : null;
+
+            if (mission != null) {
+                if (!mission.postprocessingRunning) {
+                    if (mission.running) {
+                        pause.setVisible(true);
+                    } else {
+                        if (mission.errCode != DownloadMission.ERROR_NOTHING) {
+                            showError.setVisible(true);
+                        }
+
+                        queue.setChecked(mission.enqueued);
+
+                        start.setVisible(mission.errCode != DownloadMission.ERROR_POSTPROCESSING_FAILED);
+                        delete.setVisible(true);
+                        queue.setVisible(true);
+                    }
+                }
+            } else {
+                open.setVisible(true);
+                delete.setVisible(true);
+                checksum.setVisible(true);
+            }
+
+            if (item.mission.source != null && !item.mission.source.isEmpty()) {
+                source.setVisible(true);
+            }
+
+            popupMenu.show();
+        }
+
+        private PopupMenu buildPopup(final View button) {
+            PopupMenu popup = new PopupMenu(mContext, button);
+            popup.inflate(R.menu.mission);
+            popup.setOnMenuItemClickListener(option -> handlePopupItem(this, option));
+
+            return popup;
+        }
+    }
+
+    class ViewHolderHeader extends RecyclerView.ViewHolder {
+        TextView header;
+
+        ViewHolderHeader(View view) {
+            super(view);
+            header = itemView.findViewById(R.id.item_name);
+        }
+    }
+
+
+    static class ChecksumTask extends AsyncTask<String, Void, String> {
+        ProgressDialog progressDialog;
+        WeakReference<Activity> weakReference;
+
+        ChecksumTask(@NonNull Context context) {
+            weakReference = new WeakReference<>((Activity) context);
         }
 
         @Override
@@ -378,10 +652,10 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
             Activity activity = getActivity();
             if (activity != null) {
                 // Create dialog
-                prog = new ProgressDialog(activity);
-                prog.setCancelable(false);
-                prog.setMessage(activity.getString(R.string.msg_wait));
-                prog.show();
+                progressDialog = new ProgressDialog(activity);
+                progressDialog.setCancelable(false);
+                progressDialog.setMessage(activity.getString(R.string.msg_wait));
+                progressDialog.show();
             }
         }
 
@@ -394,10 +668,10 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
-            if (prog != null) {
-                Utility.copyToClipboard(prog.getContext(), result);
+            if (progressDialog != null) {
+                Utility.copyToClipboard(progressDialog.getContext(), result);
                 if (getActivity() != null) {
-                    prog.dismiss();
+                    progressDialog.dismiss();
                 }
             }
         }
@@ -413,4 +687,5 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
             }
         }
     }
+
 }

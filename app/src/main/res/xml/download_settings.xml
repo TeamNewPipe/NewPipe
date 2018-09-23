@@ -29,4 +29,17 @@
         android:summary="@string/settings_file_replacement_character_summary"
         android:title="@string/settings_file_replacement_character_title"/>
 
+    <SeekBarPreference
+        android:defaultValue="@string/default_max_retry"
+        android:key="@string/downloads_max_retry"
+        android:max="15"
+        android:summary="@string/max_retry_desc"
+        android:title="@string/max_retry_msg" />
+
+    <CheckBoxPreference
+        android:defaultValue="false"
+        android:key="@string/cross_network_downloads"
+        android:summary="@string/pause_downloads_on_mobile_desc"
+        android:title="@string/pause_downloads_on_mobile" />
+
 </PreferenceScreen>

@@ -1,74 +1,109 @@
 package us.shandian.giga.get;
 
+import android.support.annotation.NonNull;
+import android.util.Log;
+
 import java.io.BufferedInputStream;
+import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
-import java.net.URL;
+import java.nio.channels.ClosedByInterruptException;
+
+
+import static org.schabi.newpipe.BuildConfig.DEBUG;
 
 // Single-threaded fallback mode
 public class DownloadRunnableFallback implements Runnable {
-    private final DownloadMission mMission;
-    //private int mId;
+    private static final String TAG = "DownloadRunnableFallbac";
 
-    public DownloadRunnableFallback(DownloadMission mission) {
-        if (mission == null) throw new NullPointerException("mission is null");
-        //mId = id;
+    private final DownloadMission mMission;
+    private int retryCount = 0;
+
+    private BufferedInputStream ipt;
+    private RandomAccessFile f;
+
+    DownloadRunnableFallback(@NonNull DownloadMission mission) {
         mMission = mission;
+        ipt = null;
+        f = null;
+    }
+
+    private void dispose() {
+        try {
+            if (ipt != null) ipt.close();
+        } catch (IOException e) {
+            // nothing to do
+        }
+
+        try {
+            if (f != null) f.close();
+        } catch (IOException e) {
+            // ¿ejected media storage? ¿file deleted? ¿storage ran out of space?
+        }
     }
 
     @Override
     public void run() {
-        try {
-            URL url = new URL(mMission.url);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        boolean done;
 
-            if (conn.getResponseCode() != 200 && conn.getResponseCode() != 206) {
-                notifyError(DownloadMission.ERROR_SERVER_UNSUPPORTED);
-            } else {
-                RandomAccessFile f = new RandomAccessFile(mMission.location + "/" + mMission.name, "rw");
-                f.seek(0);
-                BufferedInputStream ipt = new BufferedInputStream(conn.getInputStream());
-                byte[] buf = new byte[512];
-                int len = 0;
+        int start = 0;
 
-                while ((len = ipt.read(buf, 0, 512)) != -1 && mMission.running) {
-                    f.write(buf, 0, len);
-                    notifyProgress(len);
-
-                    if (Thread.interrupted()) {
-                        break;
-                    }
-
-                }
-
-                f.close();
-                ipt.close();
+        if (!mMission.unknownLength) {
+            start = mMission.getBlockBytePosition(0);
+            if (DEBUG && start > 0) {
+                Log.i(TAG, "Resuming a single-thread download at " + start);
             }
+        }
+
+        try {
+            int rangeStart = (mMission.unknownLength || start < 1) ? -1 : start;
+            HttpURLConnection conn = mMission.openConnection(1, rangeStart, -1);
+
+            // secondary check for the file length
+            if (!mMission.unknownLength) mMission.unknownLength = conn.getContentLength() == -1;
+
+            f = new RandomAccessFile(mMission.getDownloadedFile(), "rw");
+            f.seek(mMission.offsets[mMission.current] + start);
+
+            ipt = new BufferedInputStream(conn.getInputStream());
+
+            byte[] buf = new byte[DownloadMission.BUFFER_SIZE];
+            int len = 0;
+
+            while (mMission.running && (len = ipt.read(buf, 0, buf.length)) != -1) {
+                f.write(buf, 0, len);
+                start += len;
+
+                mMission.notifyProgress(len);
+
+                if (Thread.interrupted()) break;
+            }
+
+            // if thread goes interrupted check if the last part is written. This avoid re-download the whole file
+            done = len == -1;
         } catch (Exception e) {
-            notifyError(DownloadMission.ERROR_UNKNOWN);
+            dispose();
+
+            // save position
+            mMission.setThreadBytePosition(0, start);
+
+            if (e instanceof ClosedByInterruptException) return;
+
+            if (retryCount++ > mMission.maxRetry) {
+                mMission.notifyError(e);
+                return;
+            }
+
+            run();// try again
+            return;
         }
 
-        if (mMission.errCode == -1 && mMission.running) {
-            notifyFinished();
-        }
-    }
+        dispose();
 
-    private void notifyProgress(final long len) {
-        synchronized (mMission) {
-            mMission.notifyProgress(len);
-        }
-    }
-
-    private void notifyError(final int err) {
-        synchronized (mMission) {
-            mMission.notifyError(err);
-            mMission.pause();
-        }
-    }
-
-    private void notifyFinished() {
-        synchronized (mMission) {
+        if (done) {
             mMission.notifyFinished();
+        } else {
+            mMission.setThreadBytePosition(0, start);
         }
     }
 }

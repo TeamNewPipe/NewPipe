@@ -28,14 +28,14 @@ public class DeleteDownloadManager {
 
     private static final String KEY_STATE = "delete_manager_state";
 
-    private final View mView;
-    private final HashSet<String> mPendingMap;
-    private final List<Disposable> mDisposableList;
+    private View mView;
+    private ArrayList<Long> mPendingMap;
+    private List<Disposable> mDisposableList;
     private DownloadManager mDownloadManager;
     private final PublishSubject<DownloadMission> publishSubject = PublishSubject.create();
 
     DeleteDownloadManager(Activity activity) {
-        mPendingMap = new HashSet<>();
+        mPendingMap = new ArrayList<>();
         mDisposableList = new ArrayList<>();
         mView = activity.findViewById(android.R.id.content);
     }
@@ -45,11 +45,11 @@ public class DeleteDownloadManager {
     }
 
     public boolean contains(@NonNull DownloadMission mission) {
-        return mPendingMap.contains(mission.url);
+        return mPendingMap.contains(mission.timestamp);
     }
 
     public void add(@NonNull DownloadMission mission) {
-        mPendingMap.add(mission.url);
+        mPendingMap.add(mission.timestamp);
 
         if (mPendingMap.size() == 1) {
             showUndoDeleteSnackbar(mission);
@@ -67,9 +67,10 @@ public class DeleteDownloadManager {
     public void restoreState(@Nullable Bundle savedInstanceState) {
         if (savedInstanceState == null) return;
 
-        List<String> list = savedInstanceState.getStringArrayList(KEY_STATE);
+        long[] list = savedInstanceState.getLongArray(KEY_STATE);
         if (list != null) {
-            mPendingMap.addAll(list);
+            mPendingMap.ensureCapacity(mPendingMap.size() + list.length);
+            for (long timestamp : list) mPendingMap.add(timestamp);
         }
     }
 
@@ -80,17 +81,20 @@ public class DeleteDownloadManager {
             disposable.dispose();
         }
 
-        outState.putStringArrayList(KEY_STATE, new ArrayList<>(mPendingMap));
+        long[] list = new long[mPendingMap.size()];
+        for (int i = 0; i < mPendingMap.size(); i++) list[i] = mPendingMap.get(i);
+
+        outState.putLongArray(KEY_STATE, list);
     }
 
     private void showUndoDeleteSnackbar() {
         if (mPendingMap.size() < 1) return;
 
-        String url = mPendingMap.iterator().next();
+        long timestamp = mPendingMap.iterator().next();
 
         for (int i = 0; i < mDownloadManager.getCount(); i++) {
             DownloadMission mission = mDownloadManager.getMission(i);
-            if (url.equals(mission.url)) {
+            if (timestamp == mission.timestamp) {
                 showUndoDeleteSnackbar(mission);
                 break;
             }
@@ -106,7 +110,7 @@ public class DeleteDownloadManager {
         mDisposableList.add(disposable);
 
         snackbar.setAction(R.string.undo, v -> {
-            mPendingMap.remove(mission.url);
+            mPendingMap.remove(mission.timestamp);
             publishSubject.onNext(mission);
             disposable.dispose();
             snackbar.dismiss();
@@ -115,12 +119,13 @@ public class DeleteDownloadManager {
         snackbar.addCallback(new BaseTransientBottomBar.BaseCallback<Snackbar>() {
             @Override
             public void onDismissed(Snackbar transientBottomBar, int event) {
+                // TODO: disposable.isDisposed() is always true. fix this
                 if (!disposable.isDisposed()) {
                     Completable.fromAction(() -> deletePending(mission))
                             .subscribeOn(Schedulers.io())
                             .subscribe();
                 }
-                mPendingMap.remove(mission.url);
+                mPendingMap.remove(mission.timestamp);
                 snackbar.removeCallback(this);
                 mDisposableList.remove(disposable);
                 showUndoDeleteSnackbar();
@@ -149,7 +154,7 @@ public class DeleteDownloadManager {
 
     private void deletePending(@NonNull DownloadMission mission) {
         for (int i = 0; i < mDownloadManager.getCount(); i++) {
-            if (mission.url.equals(mDownloadManager.getMission(i).url)) {
+            if (mission.timestamp == mDownloadManager.getMission(i).timestamp) {
                 mDownloadManager.deleteMission(i);
                 break;
             }
