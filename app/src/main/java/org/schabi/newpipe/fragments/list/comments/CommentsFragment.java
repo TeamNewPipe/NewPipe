@@ -70,7 +70,7 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
 public class CommentsFragment extends BaseListInfoFragment<CommentsInfo> {
 
     private CompositeDisposable disposables = new CompositeDisposable();
-
+    private boolean initialLoad = true;
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
@@ -152,6 +152,10 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfo> {
     @Override
     public void handleResult(@NonNull CommentsInfo result) {
         super.handleResult(result);
+        if(initialLoad){
+            itemsList.smoothScrollToPosition(infoListAdapter.getItemCount());
+            initialLoad = false;
+        }
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(), UserAction.REQUESTED_COMMENTS, NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);

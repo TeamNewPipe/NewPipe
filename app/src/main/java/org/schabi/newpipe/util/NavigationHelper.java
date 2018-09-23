@@ -338,7 +338,7 @@ public class NavigationHelper {
             String url,
             String name) {
         if (name == null) name = "";
-        defaultTransaction(fragmentManager)
+        fragmentManager.beginTransaction().setCustomAnimations(R.anim.switch_service_in, R.anim.switch_service_out)
                 .replace(R.id.fragment_holder, CommentsFragment.getInstance(serviceId, url, name))
                 .addToBackStack(null)
                 .commit();
