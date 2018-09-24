@@ -452,4 +452,5 @@
 
     <string name="caption_setting_description">プレーヤーのキャプション文字スケールと背景スタイルを変更します。有効にするにはアプリの再起動が必要です</string>
 
+    <string name="empty_subscription_feed_subtitle">何もありません</string>
     </resources>
