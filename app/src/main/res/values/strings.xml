@@ -227,6 +227,7 @@
     <string name="user_report">User report</string>
     <string name="search_no_results">No results</string>
     <string name="empty_view_no_videos" translatable="false">@string/no_videos</string>
+    <string name="empty_view_no_comments" translatable="false">@string/no_comments</string>
     <string name="empty_subscription_feed_subtitle">Nothing Here But Crickets</string>
     <string name="detail_drag_description">Drag to reorder</string>
 
@@ -262,6 +263,12 @@
     <plurals name="videos">
         <item quantity="one">%s video</item>
         <item quantity="other">%s videos</item>
+    </plurals>
+
+    <string name="no_comments">No comments</string>
+    <plurals name="comments">
+        <item quantity="one">%s comment</item>
+        <item quantity="other">%s comments</item>
     </plurals>
 
     <!-- Missions -->

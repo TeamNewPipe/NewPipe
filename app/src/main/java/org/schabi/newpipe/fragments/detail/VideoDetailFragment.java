@@ -54,7 +54,6 @@ import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.comments.CommentsInfo;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
@@ -200,6 +199,7 @@ public class VideoDetailFragment
     private ImageButton relatedStreamExpandButton;
 
     private LinearLayout commentsRootLayout;
+    private View commentsEmptyStateView;
     private LinearLayout commentsView;
     private ImageButton commentsExpandButton;
     private Disposable commentsDisposable;
@@ -571,6 +571,7 @@ public class VideoDetailFragment
         relatedStreamExpandButton = rootView.findViewById(R.id.detail_related_streams_expand);
 
         commentsRootLayout = rootView.findViewById(R.id.detail_comments_root_layout);
+        commentsEmptyStateView = rootView.findViewById(R.id.comments_empty_state_view);
         commentsView = rootView.findViewById(R.id.detail_comments_view);
         commentsExpandButton = rootView.findViewById(R.id.detail_comments_expand);
 
@@ -750,9 +751,13 @@ public class VideoDetailFragment
     }
 
     private void initComments(CommentsInfo info) {
-        if(null == info) return;
+        clearComments();
 
-        if (commentsView.getChildCount() > 0) commentsView.removeAllViews();
+        if(null == info || null == info.getRelatedItems() || info.getRelatedItems().size() == 0){
+            commentsEmptyStateView.setVisibility(View.VISIBLE);
+            return;
+        }
+        commentsEmptyStateView.setVisibility(View.GONE);
 
         List<CommentsInfoItem> initialComments = info.getRelatedItems();
         if (null != info && initialComments != null

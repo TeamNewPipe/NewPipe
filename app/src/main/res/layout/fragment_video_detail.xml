@@ -478,6 +478,35 @@
                                     android:orientation="vertical">
 
                                     <LinearLayout
+                                        android:id="@+id/comments_empty_state_view"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerInParent="true"
+                                        android:orientation="vertical"
+                                        android:paddingTop="65dp"
+                                        android:visibility="gone"
+                                        tools:visibility="visible">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:layout_marginBottom="10dp"
+                                            android:fontFamily="monospace"
+                                            android:text="(╯°-°)╯"
+                                            android:textSize="35sp"
+                                            tools:ignore="HardcodedText,UnusedAttribute"/>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:text="@string/empty_view_no_comments"
+                                            android:textSize="18sp"/>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
                                         android:id="@+id/detail_comments_view"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
