@@ -68,6 +68,8 @@ import org.schabi.newpipe.util.ThemeHelper;
 
 import static org.schabi.newpipe.extractor.InfoItem.InfoType.PLAYLIST;
 
+//Test comment
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
