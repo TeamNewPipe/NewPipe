@@ -68,7 +68,7 @@ import org.schabi.newpipe.util.ThemeHelper;
 
 import static org.schabi.newpipe.extractor.InfoItem.InfoType.PLAYLIST;
 
-//Test comment
+//Test comment test
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
