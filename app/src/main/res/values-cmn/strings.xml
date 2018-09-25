@@ -1,20 +1,20 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="main_bg_subtitle">点按搜索即可开始</string>
-    <string name="view_count_text">%1$s 意见</string>
-    <string name="upload_date_text">发布 %1$s</string>
-    <string name="no_player_found">找不到流播放器。你想安装VLC吗？</string>
-    <string name="no_player_found_toast">找不到流播放器（您可以安装VLC播放它）</string>
+<resources><string name="main_bg_subtitle">点击搜索按钮即可开始使用</string>
+    <string name="view_count_text">%1$s 次观看</string>
+    <string name="upload_date_text">发布于 %1$s</string>
+    <string name="no_player_found">找不到流媒体播放器。您想安装 VLC 吗？</string>
+    <string name="no_player_found_toast">找不到流媒体播放器（您可以安装 VLC 来播放）</string>
     <string name="install">安装</string>
     <string name="cancel">取消</string>
     <string name="open_in_browser">在浏览器中打开</string>
-    <string name="open_in_popup_mode">在弹出模式下打开</string>
+    <string name="open_in_popup_mode">在悬浮窗模式下打开</string>
     <string name="share">分享</string>
     <string name="download">下载</string>
-    <string name="controls_download_desc">下载流文件.</string>
+    <string name="controls_download_desc">下载流媒体文件。</string>
     <string name="search">搜索</string>
     <string name="settings">设置</string>
-    <string name="did_you_mean">你的意思是: %1$s ?</string>
-    <string name="share_dialog_title">与某人分享</string>
+    <string name="did_you_mean">您是不是要找: %1$s ?</string>
+    <string name="share_dialog_title">用…分享</string>
     <string name="choose_browser">选择浏览器</string>
     <string name="screen_rotation">回转</string>
     <string name="use_external_video_player_title">使用外部视频播放器</string>
@@ -66,7 +66,7 @@
     <string name="popup_remember_size_pos_title">记住弹出窗口的尺寸与位置</string>
     <string name="m4a_description">M4A — 更好的音质</string>
     <string name="popup_remember_size_pos_summary">记住上一次弹出窗口的位置以及大小</string>
-    <string name="thumbnail_cache_wipe_complete_notice">清理照片内存</string>
+    <string name="thumbnail_cache_wipe_complete_notice">已清除图像缓存</string>
     <string name="minimize_on_exit_popup_description">最小化弹出播放器</string>
 
 <string name="clear_views_history_title">清除观看历史</string>
@@ -120,4 +120,11 @@
     <string name="minimize_on_exit_summary">从主视频播放器切换到其他应用程序时的操作 - %s</string>
     <string name="minimize_on_exit_none_description">没有</string>
     <string name="minimize_on_exit_background_description">最小化背景播放器</string>
+    <string name="webm_description">WebM — 自由视频格式</string>
+    <string name="use_inexact_seek_title">使用快速粗略定位</string>
+    <string name="use_inexact_seek_summary">粗略定位功能允许播放器以略低的精确度为代价换取更快的定位速度</string>
+    <string name="download_thumbnail_title">下载缩略图</string>
+    <string name="metadata_cache_wipe_title">清除缓存的元数据</string>
+    <string name="metadata_cache_wipe_summary">移除所有缓存的网页数据</string>
+    <string name="metadata_cache_wipe_complete_notice">已清除缓存的元数据</string>
     </resources>
