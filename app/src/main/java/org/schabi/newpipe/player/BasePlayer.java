@@ -434,6 +434,11 @@ public abstract class BasePlayer implements
 
     public void onCompleted() {
         if (DEBUG) Log.d(TAG, "onCompleted() called");
+
+        if(currentMetadata!=null){
+            maybeAutoQueueNextStream(currentMetadata);
+        }
+
         if (playQueue.getIndex() < playQueue.size() - 1) playQueue.offsetIndex(+1);
         if (isProgressLoopRunning()) stopProgressLoop();
     }
@@ -1015,7 +1020,6 @@ public abstract class BasePlayer implements
         }
 
         if (metadata == null) return;
-        maybeAutoQueueNextStream(metadata);
 
         if (currentMetadata == metadata) return;
         currentMetadata = metadata;
