@@ -389,6 +389,7 @@
     <string name="could_not_import_all_files">Warning: Could not import all files.</string>
     <string name="override_current_data">This will override your current setup.</string>
     <string name="import_settings">Do you want to also import settings?</string>
+    <string name="error_unable_to_load_comments">Could not load comments</string>
 
     <!-- Kiosk Names -->
     <string name="kiosk">Kiosk</string>

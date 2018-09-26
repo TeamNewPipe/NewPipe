@@ -997,7 +997,6 @@ public class VideoDetailFragment
     protected void prepareAndLoadInfo() {
         parallaxScrollRootView.smoothScrollTo(0, 0);
         pushToStack(serviceId, url, name);
-        //clearComments();
         startLoading(false);
     }
 
@@ -1027,6 +1026,7 @@ public class VideoDetailFragment
 
     private void loadComments(boolean forceLoad) {
         if(isCommentsSupported && showComments){
+            clearComments();
             commentsInfo = null;
             if (commentsDisposable != null) commentsDisposable.dispose();
 
@@ -1038,7 +1038,7 @@ public class VideoDetailFragment
                         showCommentsWithAnimation(120, 0,0);
                         initComments(commentsInfo);
                     }, (@NonNull Throwable throwable) -> {
-                        onError(throwable);
+                        onCommentsError(throwable);
                     });
         }
     }
@@ -1494,5 +1494,9 @@ public class VideoDetailFragment
         });
 
         showError(getString(R.string.blocked_by_gema), false, R.drawable.gruese_die_gema);
+    }
+
+    public void onCommentsError(Throwable exception) {
+        showSnackBarError(exception, UserAction.REQUESTED_COMMENTS, NewPipe.getNameOfService(serviceId), url, R.string.error_unable_to_load_comments);
     }
 }
