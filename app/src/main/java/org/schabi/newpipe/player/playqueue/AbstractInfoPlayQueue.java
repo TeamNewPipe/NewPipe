@@ -19,14 +19,14 @@ abstract class AbstractInfoPlayQueue<T extends ListInfo, U extends InfoItem> ext
     boolean isInitial;
     boolean isComplete;
 
-    int serviceId;
-    String baseUrl;
+    final int serviceId;
+    final String baseUrl;
     String nextUrl;
 
     transient Disposable fetchReactor;
 
     AbstractInfoPlayQueue(final U item) {
-        this(item.getServiceId(), item.getUrl(), null, Collections.<StreamInfoItem>emptyList(), 0);
+        this(item.getServiceId(), item.getUrl(), null, Collections.emptyList(), 0);
     }
 
     AbstractInfoPlayQueue(final int serviceId,

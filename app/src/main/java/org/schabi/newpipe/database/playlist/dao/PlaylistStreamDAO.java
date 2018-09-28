@@ -8,7 +8,6 @@ import org.schabi.newpipe.database.BasicDAO;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
 import org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity;
-import org.schabi.newpipe.database.stream.model.StreamEntity;
 
 import java.util.List;
 

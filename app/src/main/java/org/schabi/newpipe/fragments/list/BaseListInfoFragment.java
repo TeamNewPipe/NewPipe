@@ -8,9 +8,6 @@ import android.view.View;
 
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.ListInfo;
-import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
-import org.schabi.newpipe.extractor.linkhandler.LinkHandler;
 import org.schabi.newpipe.util.Constants;
 
 import java.util.Queue;
@@ -19,7 +16,6 @@ import icepick.State;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public abstract class BaseListInfoFragment<I extends ListInfo>

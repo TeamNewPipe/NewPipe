@@ -58,7 +58,7 @@ public abstract class PlaylistDialog extends DialogFragment implements StateSave
 
     @Override
     @SuppressWarnings("unchecked")
-    public void readFrom(@NonNull Queue<Object> savedObjects) throws Exception {
+    public void readFrom(@NonNull Queue<Object> savedObjects) {
         streamEntities = (List<StreamEntity>) savedObjects.poll();
     }
 
