@@ -45,7 +45,7 @@ public class InfoItemBuilder {
     private static final String TAG = InfoItemBuilder.class.toString();
 
     private final Context context;
-    private ImageLoader imageLoader = ImageLoader.getInstance();
+    private final ImageLoader imageLoader = ImageLoader.getInstance();
 
     private OnClickGesture<StreamInfoItem> onStreamSelectedListener;
     private OnClickGesture<ChannelInfoItem> onChannelSelectedListener;

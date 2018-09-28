@@ -3,9 +3,9 @@ package org.schabi.newpipe.fragments.detail;
 import java.io.Serializable;
 
 class StackItem implements Serializable {
-    private int serviceId;
+    private final int serviceId;
     private String title;
-    private String url;
+    private final String url;
 
     StackItem(int serviceId, String url, String title) {
         this.serviceId = serviceId;
