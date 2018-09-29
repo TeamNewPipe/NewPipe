@@ -335,7 +335,7 @@ public class MediaSourceManager {
 
     private void loadImmediate() {
         if (DEBUG) Log.d(TAG, "MediaSource - loadImmediate() called");
-        final ItemsToLoad itemsToLoad = getItemsToLoad(playQueue, WINDOW_SIZE);
+        final ItemsToLoad itemsToLoad = getItemsToLoad(playQueue);
         if (itemsToLoad == null) return;
 
         // Evict the previous items being loaded to free up memory, before start loading new ones
@@ -472,8 +472,7 @@ public class MediaSourceManager {
     // Manager Helpers
     //////////////////////////////////////////////////////////////////////////*/
     @Nullable
-    private static ItemsToLoad getItemsToLoad(@NonNull final PlayQueue playQueue,
-                                              final int windowSize) {
+    private static ItemsToLoad getItemsToLoad(@NonNull final PlayQueue playQueue) {
         // The current item has higher priority
         final int currentIndex = playQueue.getIndex();
         final PlayQueueItem currentItem = playQueue.getItem(currentIndex);
@@ -482,8 +481,8 @@ public class MediaSourceManager {
         // The rest are just for seamless playback
         // Although timeline is not updated prior to the current index, these sources are still
         // loaded into the cache for faster retrieval at a potentially later time.
-        final int leftBound = Math.max(0, currentIndex - windowSize);
-        final int rightLimit = currentIndex + windowSize + 1;
+        final int leftBound = Math.max(0, currentIndex - MediaSourceManager.WINDOW_SIZE);
+        final int rightLimit = currentIndex + MediaSourceManager.WINDOW_SIZE + 1;
         final int rightBound = Math.min(playQueue.size(), rightLimit);
         final Set<PlayQueueItem> neighbors = new ArraySet<>(
                 playQueue.getStreams().subList(leftBound,rightBound));

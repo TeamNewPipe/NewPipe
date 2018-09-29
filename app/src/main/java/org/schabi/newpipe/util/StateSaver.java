@@ -21,7 +21,6 @@ package org.schabi.newpipe.util;
 
 
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;

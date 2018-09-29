@@ -760,7 +760,7 @@ public class VideoDetailFragment
      * Stack that contains the "navigation history".<br>
      * The peek is the current video.
      */
-    protected LinkedList<StackItem> stack = new LinkedList<>();
+    protected final LinkedList<StackItem> stack = new LinkedList<>();
 
     public void clearHistory() {
         stack.clear();

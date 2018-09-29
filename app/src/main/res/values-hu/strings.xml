@@ -111,7 +111,7 @@
     <string name="msg_url_malform">Hibás URL vagy nincs internet</string>
     <string name="msg_running">NewPipe letöltés folyamatban</string>
     <string name="msg_running_detail">Katt a részletekért</string>
-    <string name="msg_wait">Kérlek várj...</string>
+    <string name="msg_wait">Kérlek várj…</string>
     <string name="msg_copied">Vágólapra másolva.</string>
     <string name="no_available_dir">Kérlek válassz egy létező könyvtárat a letöltésekhez.</string>
 

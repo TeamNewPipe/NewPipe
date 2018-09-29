@@ -123,7 +123,7 @@ public class DownloadManagerImpl implements DownloadManager {
         Collections.sort(missions, new Comparator<DownloadMission>() {
             @Override
             public int compare(DownloadMission o1, DownloadMission o2) {
-                return Long.valueOf(o1.timestamp).compareTo(o2.timestamp);
+                return Long.compare(o1.timestamp, o2.timestamp);
             }
         });
     }

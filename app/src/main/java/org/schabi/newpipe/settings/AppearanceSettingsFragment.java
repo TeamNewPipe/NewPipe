@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v7.preference.Preference;
-import android.util.Log;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.Constants;
@@ -49,7 +48,7 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
         return super.onPreferenceTreeClick(preference);
     }
 
-    private Preference.OnPreferenceChangeListener themePreferenceChange = new Preference.OnPreferenceChangeListener() {
+    private final Preference.OnPreferenceChangeListener themePreferenceChange = new Preference.OnPreferenceChangeListener() {
         @Override
         public boolean onPreferenceChange(Preference preference, Object newValue) {
             defaultPreferences.edit().putBoolean(Constants.KEY_THEME_CHANGE, true).apply();

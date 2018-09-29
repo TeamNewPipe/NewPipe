@@ -28,9 +28,6 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.extractor.Info;
 
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
-import static org.schabi.newpipe.extractor.ServiceList.SoundCloud;
 
 
 public final class InfoCache {
@@ -58,7 +55,7 @@ public final class InfoCache {
     public Info getFromKey(int serviceId, @NonNull String url) {
         if (DEBUG) Log.d(TAG, "getFromKey() called with: serviceId = [" + serviceId + "], url = [" + url + "]");
         synchronized (lruCache) {
-            return getInfo(lruCache, keyOf(serviceId, url));
+            return getInfo(keyOf(serviceId, url));
         }
     }
 
@@ -89,7 +86,7 @@ public final class InfoCache {
     public void trimCache() {
         if (DEBUG) Log.d(TAG, "trimCache() called");
         synchronized (lruCache) {
-            removeStaleCache(lruCache);
+            removeStaleCache();
             lruCache.trimToSize(TRIM_CACHE_TO);
         }
     }
@@ -105,23 +102,22 @@ public final class InfoCache {
         return serviceId + url;
     }
 
-    private static void removeStaleCache(@NonNull final LruCache<String, CacheData> cache) {
-        for (Map.Entry<String, CacheData> entry : cache.snapshot().entrySet()) {
+    private static void removeStaleCache() {
+        for (Map.Entry<String, CacheData> entry : InfoCache.lruCache.snapshot().entrySet()) {
             final CacheData data = entry.getValue();
             if (data != null && data.isExpired()) {
-                cache.remove(entry.getKey());
+                InfoCache.lruCache.remove(entry.getKey());
             }
         }
     }
 
     @Nullable
-    private static Info getInfo(@NonNull final LruCache<String, CacheData> cache,
-                                @NonNull final String key) {
-        final CacheData data = cache.get(key);
+    private static Info getInfo(@NonNull final String key) {
+        final CacheData data = InfoCache.lruCache.get(key);
         if (data == null) return null;
 
         if (data.isExpired()) {
-            cache.remove(key);
+            InfoCache.lruCache.remove(key);
             return null;
         }
 
