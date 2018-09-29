@@ -45,7 +45,7 @@ public class ListHelperTest {
             new VideoStream("", MediaFormat.MPEG_4,   /**/ "1080p60", true));
 
     @Test
-    public void getSortedStreamVideosListTest() throws Exception {
+    public void getSortedStreamVideosListTest() {
         List<VideoStream> result = ListHelper.getSortedStreamVideosList(MediaFormat.MPEG_4, true, videoStreamsTestList, videoOnlyStreamsTestList, true);
 
         List<String> expected = Arrays.asList("144p", "240p", "360p", "480p", "720p", "720p60", "1080p", "1080p60", "1440p60", "2160p", "2160p60");
@@ -67,7 +67,7 @@ public class ListHelperTest {
     }
 
     @Test
-    public void getSortedStreamVideosExceptHighResolutionsTest() throws Exception {
+    public void getSortedStreamVideosExceptHighResolutionsTest() {
         ////////////////////////////////////
         // Don't show Higher resolutions //
         //////////////////////////////////
@@ -79,7 +79,7 @@ public class ListHelperTest {
     }
 
     @Test
-    public void getDefaultResolutionTest() throws Exception {
+    public void getDefaultResolutionTest() {
         List<VideoStream> testList = Arrays.asList(
                 new VideoStream("", MediaFormat.MPEG_4,   /**/ "720p"),
                 new VideoStream("", MediaFormat.v3GPP,    /**/ "240p"),
@@ -130,7 +130,7 @@ public class ListHelperTest {
     }
 
     @Test
-    public void getHighestQualityAudioFormatTest() throws Exception {
+    public void getHighestQualityAudioFormatTest() {
         AudioStream stream = audioStreamsTestList.get(ListHelper.getHighestQualityAudioIndex(MediaFormat.M4A, audioStreamsTestList));
         assertEquals(320, stream.average_bitrate);
         assertEquals(MediaFormat.M4A, stream.getFormat());
@@ -145,7 +145,7 @@ public class ListHelperTest {
     }
 
     @Test
-    public void getHighestQualityAudioFormatPreferredAbsent() throws Exception {
+    public void getHighestQualityAudioFormatPreferredAbsent() {
 
         //////////////////////////////////////////
         // Doesn't contain the preferred format //
@@ -186,13 +186,13 @@ public class ListHelperTest {
     }
 
     @Test
-    public void getHighestQualityAudioNull() throws Exception {
+    public void getHighestQualityAudioNull() {
         assertEquals(-1, ListHelper.getHighestQualityAudioIndex(null, null));
-        assertEquals(-1, ListHelper.getHighestQualityAudioIndex(null, new ArrayList<AudioStream>()));
+        assertEquals(-1, ListHelper.getHighestQualityAudioIndex(null, new ArrayList<>()));
     }
 
     @Test
-    public void getLowestQualityAudioFormatTest() throws Exception {
+    public void getLowestQualityAudioFormatTest() {
         AudioStream stream = audioStreamsTestList.get(ListHelper.getMostCompactAudioIndex(MediaFormat.M4A, audioStreamsTestList));
         assertEquals(128, stream.average_bitrate);
         assertEquals(MediaFormat.M4A, stream.getFormat());
@@ -207,7 +207,7 @@ public class ListHelperTest {
     }
 
     @Test
-    public void getLowestQualityAudioFormatPreferredAbsent() throws Exception {
+    public void getLowestQualityAudioFormatPreferredAbsent() {
 
         //////////////////////////////////////////
         // Doesn't contain the preferred format //
@@ -250,13 +250,13 @@ public class ListHelperTest {
     }
 
     @Test
-    public void getLowestQualityAudioNull() throws Exception {
+    public void getLowestQualityAudioNull() {
         assertEquals(-1, ListHelper.getMostCompactAudioIndex(null, null));
-        assertEquals(-1, ListHelper.getMostCompactAudioIndex(null, new ArrayList<AudioStream>()));
+        assertEquals(-1, ListHelper.getMostCompactAudioIndex(null, new ArrayList<>()));
     }
 
     @Test
-    public void getVideoDefaultStreamIndexCombinations() throws Exception {
+    public void getVideoDefaultStreamIndexCombinations() {
         List<VideoStream> testList = Arrays.asList(
                 new VideoStream("", MediaFormat.MPEG_4,   /**/ "1080p"),
                 new VideoStream("", MediaFormat.MPEG_4,   /**/ "720p60"),

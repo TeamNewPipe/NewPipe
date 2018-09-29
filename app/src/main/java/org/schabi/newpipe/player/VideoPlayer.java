@@ -137,16 +137,16 @@ public abstract class VideoPlayer extends BasePlayer
     private TextView captionTextView;
 
     private ValueAnimator controlViewAnimator;
-    private Handler controlsVisibilityHandler = new Handler();
+    private final Handler controlsVisibilityHandler = new Handler();
 
     boolean isSomePopupMenuVisible = false;
-    private int qualityPopupMenuGroupId = 69;
+    private final int qualityPopupMenuGroupId = 69;
     private PopupMenu qualityPopupMenu;
 
-    private int playbackSpeedPopupMenuGroupId = 79;
+    private final int playbackSpeedPopupMenuGroupId = 79;
     private PopupMenu playbackSpeedPopupMenu;
 
-    private int captionPopupMenuGroupId = 89;
+    private final int captionPopupMenuGroupId = 89;
     private PopupMenu captionPopupMenu;
 
     ///////////////////////////////////////////////////////////////////////////

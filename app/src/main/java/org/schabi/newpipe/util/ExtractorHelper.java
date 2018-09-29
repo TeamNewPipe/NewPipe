@@ -202,7 +202,7 @@ public final class ExtractorHelper {
             cache.removeInfo(serviceId, url, infoType);
             load = loadFromNetwork;
         } else {
-            load = Maybe.concat(ExtractorHelper.<I>loadFromCache(serviceId, url, infoType),
+            load = Maybe.concat(ExtractorHelper.loadFromCache(serviceId, url, infoType),
                     loadFromNetwork.toMaybe())
                     .firstElement() //Take the first valid
                     .toSingle();

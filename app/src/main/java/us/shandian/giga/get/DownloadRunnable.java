@@ -92,7 +92,7 @@ public class DownloadRunnable implements Runnable {
                 // A server may be ignoring the range request
                 if (conn.getResponseCode() != 206) {
                     mMission.errCode = DownloadMission.ERROR_SERVER_UNSUPPORTED;
-                    notifyError(DownloadMission.ERROR_SERVER_UNSUPPORTED);
+                    notifyError();
 
                     if (DEBUG) {
                         Log.e(TAG, mId + ":Unsupported " + conn.getResponseCode());
@@ -161,9 +161,9 @@ public class DownloadRunnable implements Runnable {
         }
     }
 
-    private void notifyError(final int err) {
+    private void notifyError() {
         synchronized (mMission) {
-            mMission.notifyError(err);
+            mMission.notifyError(DownloadMission.ERROR_SERVER_UNSUPPORTED);
             mMission.pause();
         }
     }
