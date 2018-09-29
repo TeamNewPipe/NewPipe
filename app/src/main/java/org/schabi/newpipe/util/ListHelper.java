@@ -204,7 +204,7 @@ public final class ListHelper {
      */
     private static void sortStreamList(List<VideoStream> videoStreams, final boolean ascendingOrder) {
         Collections.sort(videoStreams, (o1, o2) -> {
-            int result = compareVideoStreamResolution(o1, o2, VIDEO_FORMAT_QUALITY_RANKING);
+            int result = compareVideoStreamResolution(o1, o2);
             return result == 0 ? 0 : (ascendingOrder ? result : -result);
         });
     }
@@ -399,8 +399,7 @@ public final class ListHelper {
     }
 
     // Compares the quality of two video streams.
-    private static int compareVideoStreamResolution(VideoStream streamA, VideoStream streamB,
-                                                    List<MediaFormat> formatRanking) {
+    private static int compareVideoStreamResolution(VideoStream streamA, VideoStream streamB) {
         if (streamA == null) {
             return -1;
         }
@@ -414,7 +413,7 @@ public final class ListHelper {
         }
 
         // Same bitrate and format
-        return formatRanking.indexOf(streamA.getFormat()) - formatRanking.indexOf(streamB.getFormat());
+        return ListHelper.VIDEO_FORMAT_QUALITY_RANKING.indexOf(streamA.getFormat()) - ListHelper.VIDEO_FORMAT_QUALITY_RANKING.indexOf(streamB.getFormat());
     }
 
 

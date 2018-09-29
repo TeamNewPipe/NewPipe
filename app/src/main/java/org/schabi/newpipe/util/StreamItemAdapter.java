@@ -31,7 +31,7 @@ import us.shandian.giga.util.Utility;
 public class StreamItemAdapter<T extends Stream> extends BaseAdapter {
     private final Context context;
 
-    private StreamSizeWrapper<T> streamsWrapper;
+    private final StreamSizeWrapper<T> streamsWrapper;
     private final boolean showIconNoAudio;
 
     public StreamItemAdapter(Context context, StreamSizeWrapper<T> streamsWrapper, boolean showIconNoAudio) {
@@ -124,7 +124,7 @@ public class StreamItemAdapter<T extends Stream> extends BaseAdapter {
     public static class StreamSizeWrapper<T extends Stream> implements Serializable {
         private static final StreamSizeWrapper<Stream> EMPTY = new StreamSizeWrapper<>(Collections.emptyList());
         private final List<T> streamsList;
-        private long[] streamSizes;
+        private final long[] streamSizes;
 
         public StreamSizeWrapper(List<T> streamsList) {
             this.streamsList = streamsList;

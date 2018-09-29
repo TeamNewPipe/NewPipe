@@ -56,7 +56,7 @@ public class DownloadManagerService extends Service {
     private DownloadDataSource mDataSource;
 
 
-    private MissionListener missionListener = new MissionListener();
+    private final MissionListener missionListener = new MissionListener();
 
 
     private void notifyMediaScanner(DownloadMission mission) {

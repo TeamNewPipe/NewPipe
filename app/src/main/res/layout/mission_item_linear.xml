@@ -17,7 +17,8 @@
 			android:layout_centerVertical="true"
 			android:scaleType="fitXY"
 			android:gravity="center"
-			android:padding="15dp"/>
+			android:padding="15dp"
+            android:contentDescription="TODO" />
 		
 		<LinearLayout
 			android:id="@+id/item_name_and_size"
@@ -44,8 +45,7 @@
 				android:id="@+id/item_size"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_below="@id/item_name"
-				android:padding="6dp"
+                android:padding="6dp"
 				android:singleLine="true"
 				android:text="100.00MB"
 				android:textSize="12sp"
@@ -76,7 +76,8 @@
 			android:layout_centerVertical="true"
 			android:layout_marginRight="4dp"
 			android:src="@drawable/ic_menu_more"
-			android:scaleType="centerInside"/>
+			android:scaleType="centerInside"
+            android:contentDescription="TODO" />
 
 	</RelativeLayout>
 
