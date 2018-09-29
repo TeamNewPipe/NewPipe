@@ -412,6 +412,7 @@ public final class MainVideoPlayer extends AppCompatActivity
 
         private int maxGestureLength;
         private boolean isMoving;
+        private boolean isScaling;
 
 
         VideoPlayerImpl(final Context context) {
@@ -980,17 +981,25 @@ public final class MainVideoPlayer extends AppCompatActivity
 
         @Override
         public boolean onTouch(View v, MotionEvent event) {
+            // FixMe(?) I' don't see the point in this statement (remove comment, if wrongful)
             //noinspection PointlessBooleanExpression
             if (DEBUG && false) Log.d(TAG, "onTouch() called with: v = [" + v + "], event = [" + event + "]");
 
             if (!isPlayerGestureEnabled) return false;
 
-            boolean retVal = scaleDetector.onTouchEvent(event);
+            boolean retVal = false;
+            if (!playerImpl.isMoving)
+                retVal = scaleDetector.onTouchEvent(event);
+            if (!playerImpl.isScaling)
+                retVal = gestureDetector.onTouchEvent(event) || retVal;
 
-            retVal = gestureDetector.onTouchEvent(event) || retVal;
-            if (event.getAction() == MotionEvent.ACTION_UP && playerImpl.isMoving) {
-                playerImpl.isMoving = false;
-                onScrollEnd();
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                if (playerImpl.isScaling) {
+                    playerImpl.isScaling = false;
+                } else if (playerImpl.isMoving) {
+                    playerImpl.isMoving = false;
+                    onScrollEnd();
+                }
             }
 
             return retVal;
@@ -1009,6 +1018,37 @@ public final class MainVideoPlayer extends AppCompatActivity
             if (playerImpl.isControlsVisible() && playerImpl.getCurrentState() == STATE_PLAYING) {
                 playerImpl.hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
             }
+        }
+    }
+
+    private class PlayerScaleGestureListener
+            extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+
+        private static final float ZOOM_IN_THRESHOLD = 1.1f;
+        private static final float ZOOM_OUT_THRESHOLD = 0.9f;
+
+        @Override
+        public boolean onScale(ScaleGestureDetector detector) {
+            playerImpl.isScaling = true;
+
+            if (detector.getScaleFactor() > ZOOM_IN_THRESHOLD ) {
+                zoomIn();
+                return true;
+            } else if (detector.getScaleFactor() < ZOOM_OUT_THRESHOLD){
+                zoomOut();
+                return true;
+            }
+            return false;
+        }
+
+        private void zoomIn() {
+            playerImpl.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_ZOOM);
+            playerImpl.storeResizeMode(AspectRatioFrameLayout.RESIZE_MODE_ZOOM);
+        }
+
+        private void zoomOut() {
+            playerImpl.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FIT);
+            playerImpl.storeResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FIT);
         }
     }
 
@@ -1122,18 +1162,6 @@ public final class MainVideoPlayer extends AppCompatActivity
                     playerImpl.getVolumeRelativeLayout().setVisibility(View.GONE);
                 }
             }
-            return true;
-        }
-    }
-
-    private class PlayerScaleGestureListener
-            extends ScaleGestureDetector.SimpleOnScaleGestureListener {
-        @Override
-        public boolean onScale(ScaleGestureDetector detector) {
-
-            Log.d("yup", "detected scale gesture");
-            // ToDo set and store resize mode depending on gesture, set treshold before changing resize mode
-            playerImpl.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_ZOOM);
             return true;
         }
     }
