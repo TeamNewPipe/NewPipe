@@ -27,7 +27,6 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
-import android.nfc.Tag;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -73,7 +72,6 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItemHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
-import org.schabi.newpipe.settings.tabs.Tab;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -105,7 +103,7 @@ public final class MainVideoPlayer extends AppCompatActivity
     private static final boolean DEBUG = BasePlayer.DEBUG;
 
     private GestureDetector gestureDetector;
-    private ScaleGestureDetector scaleDetector;
+    private ScaleGestureDetector scaleGestureDetector;
 
     private VideoPlayerImpl playerImpl;
 
@@ -472,11 +470,12 @@ public final class MainVideoPlayer extends AppCompatActivity
             super.initListeners();
 
             ScaleGestureDetector.SimpleOnScaleGestureListener scaleGestureListener = new PlayerScaleGestureListener();
-            scaleDetector = new ScaleGestureDetector(context, scaleGestureListener);
+            scaleGestureDetector = new ScaleGestureDetector(context, scaleGestureListener);
 
             GestureDetector.SimpleOnGestureListener listener = new PlayerGestureListener();
             gestureDetector = new GestureDetector(context, listener);
             gestureDetector.setIsLongpressEnabled(false);
+
             getRootView().setOnTouchListener(new PlayerOnTouchListener());
 
             queueButton.setOnClickListener(this);
@@ -976,22 +975,18 @@ public final class MainVideoPlayer extends AppCompatActivity
     }
 
     private class PlayerOnTouchListener implements View.OnTouchListener {
-        private final boolean isPlayerGestureEnabled = PlayerHelper.isPlayerGestureEnabled(getApplicationContext());
-
 
         @Override
         public boolean onTouch(View v, MotionEvent event) {
             // FixMe(?) I' don't see the point in this statement (remove comment, if wrongful)
             //noinspection PointlessBooleanExpression
-            if (DEBUG && false) Log.d(TAG, "onTouch() called with: v = [" + v + "], event = [" + event + "]");
+            if (DEBUG) Log.d(TAG, "onTouch() called with: v = [" + v + "], event = [" + event + "]" );
 
-            if (!isPlayerGestureEnabled) return false;
-
-            boolean retVal = false;
+            boolean eventHandled = false;
             if (!playerImpl.isMoving)
-                retVal = scaleDetector.onTouchEvent(event);
+                eventHandled = scaleGestureDetector.onTouchEvent(event);
             if (!playerImpl.isScaling)
-                retVal = gestureDetector.onTouchEvent(event) || retVal;
+                eventHandled = gestureDetector.onTouchEvent(event) || eventHandled;
 
             if (event.getAction() == MotionEvent.ACTION_UP) {
                 if (playerImpl.isScaling) {
@@ -1002,7 +997,7 @@ public final class MainVideoPlayer extends AppCompatActivity
                 }
             }
 
-            return retVal;
+            return eventHandled;
             }
 
         private void onScrollEnd() {
@@ -1024,11 +1019,15 @@ public final class MainVideoPlayer extends AppCompatActivity
     private class PlayerScaleGestureListener
             extends ScaleGestureDetector.SimpleOnScaleGestureListener {
 
+        private final boolean isPlayerGestureEnabled = PlayerHelper.isPlayerGestureEnabled(getApplicationContext());
+
         private static final float ZOOM_IN_THRESHOLD = 1.1f;
         private static final float ZOOM_OUT_THRESHOLD = 0.9f;
 
         @Override
         public boolean onScale(ScaleGestureDetector detector) {
+            if (!isPlayerGestureEnabled) return false;
+
             playerImpl.isScaling = true;
 
             if (detector.getScaleFactor() > ZOOM_IN_THRESHOLD ) {
@@ -1093,10 +1092,13 @@ public final class MainVideoPlayer extends AppCompatActivity
 
         private static final int MOVEMENT_THRESHOLD = 40;
 
+        private final boolean isPlayerGestureEnabled = PlayerHelper.isPlayerGestureEnabled(getApplicationContext());
         private final int maxVolume = playerImpl.getAudioReactor().getMaxVolume();
 
         @Override
         public boolean onScroll(MotionEvent initialEvent, MotionEvent movingEvent, float distanceX, float distanceY) {
+            if (!isPlayerGestureEnabled) return false;
+
             //noinspection PointlessBooleanExpression
             if (DEBUG && false) Log.d(TAG, "MainVideoPlayer.onScroll = " +
                     ", e1.getRaw = [" + initialEvent.getRawX() + ", " + initialEvent.getRawY() + "]" +
