@@ -27,6 +27,7 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
+import android.nfc.Tag;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -44,6 +45,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
@@ -71,6 +73,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItemHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
+import org.schabi.newpipe.settings.tabs.Tab;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -102,6 +105,7 @@ public final class MainVideoPlayer extends AppCompatActivity
     private static final boolean DEBUG = BasePlayer.DEBUG;
 
     private GestureDetector gestureDetector;
+    private ScaleGestureDetector scaleDetector;
 
     private VideoPlayerImpl playerImpl;
 
@@ -403,6 +407,8 @@ public final class MainVideoPlayer extends AppCompatActivity
         private View secondaryControls;
 
         private int maxGestureLength;
+        private boolean isMoving;
+
 
         VideoPlayerImpl(final Context context) {
             super("VideoPlayerImpl" + MainVideoPlayer.TAG, context);
@@ -460,10 +466,13 @@ public final class MainVideoPlayer extends AppCompatActivity
         public void initListeners() {
             super.initListeners();
 
-            PlayerGestureListener listener = new PlayerGestureListener();
+            ScaleGestureDetector.SimpleOnScaleGestureListener scaleGestureListener = new PlayerScaleGestureListener();
+            scaleDetector = new ScaleGestureDetector(context, scaleGestureListener);
+
+            GestureDetector.SimpleOnGestureListener listener = new PlayerGestureListener();
             gestureDetector = new GestureDetector(context, listener);
             gestureDetector.setIsLongpressEnabled(false);
-            getRootView().setOnTouchListener(listener);
+            getRootView().setOnTouchListener(new PlayerOnTouchListener());
 
             queueButton.setOnClickListener(this);
             repeatButton.setOnClickListener(this);
@@ -948,8 +957,46 @@ public final class MainVideoPlayer extends AppCompatActivity
         }
     }
 
-    private class PlayerGestureListener extends GestureDetector.SimpleOnGestureListener implements View.OnTouchListener {
-        private boolean isMoving;
+    private class PlayerOnTouchListener implements View.OnTouchListener {
+        private final boolean isPlayerGestureEnabled = PlayerHelper.isPlayerGestureEnabled(getApplicationContext());
+
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            //noinspection PointlessBooleanExpression
+            if (DEBUG && false) Log.d(TAG, "onTouch() called with: v = [" + v + "], event = [" + event + "]");
+
+            if (!isPlayerGestureEnabled) return false;
+
+            boolean retVal = scaleDetector.onTouchEvent(event);
+
+            retVal = gestureDetector.onTouchEvent(event) || retVal;
+            if (event.getAction() == MotionEvent.ACTION_UP && playerImpl.isMoving) {
+                playerImpl.isMoving = false;
+                onScrollEnd();
+            }
+
+            return retVal;
+            }
+
+        private void onScrollEnd() {
+            if (DEBUG) Log.d(TAG, "onScrollEnd() called");
+
+            if (playerImpl.getVolumeRelativeLayout().getVisibility() == View.VISIBLE) {
+                animateView(playerImpl.getVolumeRelativeLayout(), SCALE_AND_ALPHA, false, 200, 200);
+            }
+            if (playerImpl.getBrightnessRelativeLayout().getVisibility() == View.VISIBLE) {
+                animateView(playerImpl.getBrightnessRelativeLayout(), SCALE_AND_ALPHA, false, 200, 200);
+            }
+
+            if (playerImpl.isControlsVisible() && playerImpl.getCurrentState() == STATE_PLAYING) {
+                playerImpl.hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
+            }
+        }
+    }
+
+    private class PlayerGestureListener
+            extends GestureDetector.SimpleOnGestureListener {
 
         @Override
         public boolean onDoubleTap(MotionEvent e) {
@@ -989,13 +1036,10 @@ public final class MainVideoPlayer extends AppCompatActivity
 
         private static final int MOVEMENT_THRESHOLD = 40;
 
-        private final boolean isPlayerGestureEnabled = PlayerHelper.isPlayerGestureEnabled(getApplicationContext());
         private final int maxVolume = playerImpl.getAudioReactor().getMaxVolume();
 
         @Override
         public boolean onScroll(MotionEvent initialEvent, MotionEvent movingEvent, float distanceX, float distanceY) {
-            if (!isPlayerGestureEnabled) return false;
-
             //noinspection PointlessBooleanExpression
             if (DEBUG && false) Log.d(TAG, "MainVideoPlayer.onScroll = " +
                     ", e1.getRaw = [" + initialEvent.getRawX() + ", " + initialEvent.getRawY() + "]" +
@@ -1003,12 +1047,12 @@ public final class MainVideoPlayer extends AppCompatActivity
                     ", distanceXy = [" + distanceX + ", " + distanceY + "]");
 
             final boolean insideThreshold = Math.abs(movingEvent.getY() - initialEvent.getY()) <= MOVEMENT_THRESHOLD;
-            if (!isMoving && (insideThreshold || Math.abs(distanceX) > Math.abs(distanceY))
+            if (!playerImpl.isMoving && (insideThreshold || Math.abs(distanceX) > Math.abs(distanceY))
                     || playerImpl.getCurrentState() == BasePlayer.STATE_COMPLETED) {
                 return false;
             }
 
-            isMoving = true;
+            playerImpl.isMoving = true;
 
             if (initialEvent.getX() > playerImpl.getRootView().getWidth() / 2) {
                 playerImpl.getVolumeProgressBar().incrementProgressBy((int) distanceY);
@@ -1063,33 +1107,17 @@ public final class MainVideoPlayer extends AppCompatActivity
             }
             return true;
         }
+    }
 
-        private void onScrollEnd() {
-            if (DEBUG) Log.d(TAG, "onScrollEnd() called");
-
-            if (playerImpl.getVolumeRelativeLayout().getVisibility() == View.VISIBLE) {
-                animateView(playerImpl.getVolumeRelativeLayout(), SCALE_AND_ALPHA, false, 200, 200);
-            }
-            if (playerImpl.getBrightnessRelativeLayout().getVisibility() == View.VISIBLE) {
-                animateView(playerImpl.getBrightnessRelativeLayout(), SCALE_AND_ALPHA, false, 200, 200);
-            }
-
-            if (playerImpl.isControlsVisible() && playerImpl.getCurrentState() == STATE_PLAYING) {
-                playerImpl.hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
-            }
-        }
-
+    private class PlayerScaleGestureListener
+            extends ScaleGestureDetector.SimpleOnScaleGestureListener {
         @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            //noinspection PointlessBooleanExpression
-            if (DEBUG && false) Log.d(TAG, "onTouch() called with: v = [" + v + "], event = [" + event + "]");
-            gestureDetector.onTouchEvent(event);
-            if (event.getAction() == MotionEvent.ACTION_UP && isMoving) {
-                isMoving = false;
-                onScrollEnd();
-            }
+        public boolean onScale(ScaleGestureDetector detector) {
+
+            Log.d("yup", "detected scale gesture");
+            // ToDo set and store resize mode depending on gesture, set treshold before changing resize mode
+            playerImpl.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_ZOOM);
             return true;
         }
-
     }
 }

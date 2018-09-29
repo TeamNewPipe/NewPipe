@@ -688,6 +688,11 @@ public abstract class VideoPlayer extends BasePlayer
         }
     }
 
+    protected void setResizeMode(@AspectRatioFrameLayout.ResizeMode final int resizeMode) {
+        getAspectRatioFrameLayout().setResizeMode(resizeMode);
+        getResizeView().setText(PlayerHelper.resizeTypeOf(context, resizeMode));
+    }
+
     protected abstract int nextResizeMode(@AspectRatioFrameLayout.ResizeMode final int resizeMode);
     /*//////////////////////////////////////////////////////////////////////////
     // SeekBar Listener
