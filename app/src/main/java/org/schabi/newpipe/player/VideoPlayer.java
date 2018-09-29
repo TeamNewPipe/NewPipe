@@ -683,8 +683,7 @@ public abstract class VideoPlayer extends BasePlayer
         if (getAspectRatioFrameLayout() != null) {
             final int currentResizeMode = getAspectRatioFrameLayout().getResizeMode();
             final int newResizeMode = nextResizeMode(currentResizeMode);
-            getAspectRatioFrameLayout().setResizeMode(newResizeMode);
-            getResizeView().setText(PlayerHelper.resizeTypeOf(context, newResizeMode));
+            setResizeMode(newResizeMode);
         }
     }
 
@@ -694,6 +693,7 @@ public abstract class VideoPlayer extends BasePlayer
     }
 
     protected abstract int nextResizeMode(@AspectRatioFrameLayout.ResizeMode final int resizeMode);
+
     /*//////////////////////////////////////////////////////////////////////////
     // SeekBar Listener
     //////////////////////////////////////////////////////////////////////////*/
