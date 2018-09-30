@@ -265,7 +265,7 @@
 <string name="reCaptcha_title">تحدي ريكابتشا</string>
     <string name="hold_to_append">اضغط للإدراج في قائمة الانتظار</string>
     <plurals name="views">
-	<item quantity="zero">لاتوجد مشاهدة</item>
+	<item quantity="zero">بدون مشاهدات</item>
 	<item quantity="one">%s مشاهدة</item>
 	<item quantity="two">مشاهدتين</item>
 	<item quantity="few">%s مشاهدات</item>
