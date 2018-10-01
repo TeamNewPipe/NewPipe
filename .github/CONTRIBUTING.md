@@ -44,5 +44,5 @@ Do not report crashes in the GitHub issue tracker. NewPipe has an automated cras
 
 * WE DO NOW HAVE A MAILING LIST: [newpipe@list.schabi.org](https://list.schabi.org/cgi-bin/mailman/listinfo/newpipe).
 * There is an IRC channel on Freenode which is regularly visited by the core team and other developers: [#newpipe](irc:irc.freenode.net/newpipe). [Click here for Webchat](https://webchat.freenode.net/?channels=newpipe)!
-* If you want to get in touch with the core team or one of our other contributors you can send an email to tnp(at)schabi.org. Please do not send issue reports, they will be ignored and remain unanswered! Use the GitHub issue tracker described above!
+* If you want to get in touch with the core team or one of our other contributors you can send an email to tnp@schabi.org. Please do not send issue reports, they will be ignored and remain unanswered! Use the GitHub issue tracker described above!
 * Feel free to post suggestions, changes, ideas etc. on GitHub, IRC or the mailing list!
