@@ -16,6 +16,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -144,17 +146,21 @@ public abstract class MissionsFragment extends Fragment {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
+    public void onPrepareOptionsMenu(Menu menu) {
+        mSwitch = menu.findItem(R.id.switch_mode);
+        super.onPrepareOptionsMenu(menu);
+    }
 
-		/*switch (item.getItemId()) {
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case R.id.switch_mode:
 				mLinear = !mLinear;
 				updateList();
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
-		}*/
+		}
     }
 
     public void notifyChange() {
