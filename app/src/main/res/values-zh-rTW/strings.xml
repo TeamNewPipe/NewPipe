@@ -23,7 +23,7 @@
     <string name="play_with_kodi_title">用 Kodi 播放</string>
     <string name="show_play_with_kodi_summary">顯示用 Kodi 媒體中心播放影片的選項</string>
     <string name="play_audio">聲音</string>
-    <string name="kore_not_found">找不到Kore，您要安裝Kore嗎？</string>
+    <string name="kore_not_found">找不到 Kore ，您要安裝 Kore 嗎？</string>
     <string name="show_play_with_kodi_title">顯示「用 Kodi 播放」的選項</string>
     <string name="default_audio_format_title">預設音訊格式</string>
     <string name="webm_description">WebM — 開放格式</string>
@@ -80,7 +80,7 @@
     <string name="popup_playing_toast">以懸浮視窗播放中</string>
     <string name="content">內容</string>
     <string name="show_age_restricted_content_title">顯示具有年齡限制的內容</string>
-    <string name="video_is_age_restricted">此影片具有年齡限制。可於設定中選擇允許此種內容。</string>
+    <string name="video_is_age_restricted">有年齡限制的影片。可於設定中選擇允許此種內容。</string>
     <string name="downloads">下載</string>
     <string name="downloads_title">下載</string>
     <string name="error_report_title">錯誤回報</string>
@@ -380,7 +380,7 @@
     <string name="enable_disposed_exceptions_summary">強制報告在處理完片段或活動週期外發生的無法傳遞的 Rx 異常</string>
 
 <string name="use_inexact_seek_title">使用粗略但快速的尋找</string>
-    <string name="use_inexact_seek_summary">粗略尋找能讓播放器更快找到影片的進度位置</string>
+    <string name="use_inexact_seek_summary">粗略的尋找能讓播放器以降低的精確度更快找到影片的進度位置</string>
     <string name="auto_queue_title">自動將下一部影片新增至佇列</string>
     <string name="auto_queue_summary">在非重複播放佇列中最後一個串流開始播放時，自動新增相關串流</string>
     <string name="live_sync">同步</string>
