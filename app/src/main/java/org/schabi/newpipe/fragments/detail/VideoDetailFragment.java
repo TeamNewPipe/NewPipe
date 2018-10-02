@@ -216,7 +216,7 @@ public class VideoDetailFragment
                 .getBoolean(getString(R.string.show_next_video_key), true);
 
         showComments = PreferenceManager.getDefaultSharedPreferences(activity)
-                .getBoolean(getString(R.string.show_comments), true);
+                .getBoolean(getString(R.string.show_comments_key), true);
 
         PreferenceManager.getDefaultSharedPreferences(activity)
                 .registerOnSharedPreferenceChangeListener(this);
@@ -305,7 +305,7 @@ public class VideoDetailFragment
             updateFlags |= RESOLUTIONS_MENU_UPDATE_FLAG;
         } else if (key.equals(getString(R.string.show_play_with_kodi_key))) {
             updateFlags |= TOOLBAR_ITEMS_UPDATE_FLAG;
-        } else if (key.equals(R.string.show_comments)) {
+        } else if (key.equals(getString(R.string.show_comments_key))) {
             showComments = sharedPreferences.getBoolean(key, true);
             updateFlags |= COMMENTS_UPDATE_FLAG;
         }
@@ -815,11 +815,14 @@ public class VideoDetailFragment
         }
 
         if(showRelatedStreams){
+            //temp empty fragment. will be updated in handleResult
             pageAdapter.addFragment(new Fragment(), RELATED_TAB_TAG);
         }
 
         if(pageAdapter.getCount() < 2){
             tabLayout.setVisibility(View.GONE);
+        }else{
+            tabLayout.setVisibility(View.VISIBLE);
         }
     }
 
@@ -1246,9 +1249,5 @@ public class VideoDetailFragment
         });
 
         showError(getString(R.string.blocked_by_gema), false, R.drawable.gruese_die_gema);
-    }
-
-    public void onCommentsError(Throwable exception) {
-        showSnackBarError(exception, UserAction.REQUESTED_COMMENTS, NewPipe.getNameOfService(serviceId), url, R.string.error_unable_to_load_comments);
     }
 }
