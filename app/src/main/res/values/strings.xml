@@ -517,5 +517,6 @@
     <string name="minimize_on_exit_none_description">None</string>
     <string name="minimize_on_exit_background_description">Minimize to background player</string>
     <string name="minimize_on_exit_popup_description">Minimize to popup player</string>
+    <string name="switch_view">Switch View</string>
 
 </resources>
