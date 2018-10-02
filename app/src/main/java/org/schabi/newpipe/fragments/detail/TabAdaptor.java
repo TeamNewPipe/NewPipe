@@ -44,27 +44,20 @@ public class TabAdaptor extends FragmentPagerAdapter {
     public void addFragment(Fragment fragment, String title) {
         mFragmentList.add(fragment);
         mFragmentTitleList.add(title);
-        notifyDataSetChanged();
     }
 
     public void clearAllItems() {
         mFragmentList.clear();
         mFragmentTitleList.clear();
-        notifyDataSetChanged();
     }
 
     public void removeItem(int position){
         mFragmentList.remove(position == 0 ? 0 : position - 1);
         mFragmentTitleList.remove(position == 0 ? 0 : position - 1);
-        notifyDataSetChanged();
     }
 
     public void updateItem(int position, Fragment fragment){
         mFragmentList.set(position, fragment);
-        // shift the ID returned by getItemId outside the range of all previous fragments
-        // https://stackoverflow.com/questions/10396321/remove-fragment-page-from-viewpager-in-android
-        baseId += getCount() + 1;
-        notifyDataSetChanged();
     }
 
     public void updateItem(String title, Fragment fragment){
@@ -78,5 +71,21 @@ public class TabAdaptor extends FragmentPagerAdapter {
     public int getItemPosition(Object object) {
         if (mFragmentList.contains(object)) return mFragmentList.indexOf(object);
         else return POSITION_NONE;
+    }
+
+    /**
+     * Notify that the position of a fragment has been changed.
+     * Create a new ID for each position to force recreation of the fragment
+     * @param n number of items which have been changed
+     */
+    public void notifyChangeInPosition(int n) {
+        // shift the ID returned by getItemId outside the range of all previous fragments
+        // https://stackoverflow.com/questions/10396321/remove-fragment-page-from-viewpager-in-android
+        baseId += getCount() + n;
+    }
+
+    public void notifyDataSetUpdate(){
+        notifyChangeInPosition(1);
+        notifyDataSetChanged();
     }
 }

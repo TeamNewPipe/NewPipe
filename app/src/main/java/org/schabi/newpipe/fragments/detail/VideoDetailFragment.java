@@ -819,6 +819,8 @@ public class VideoDetailFragment
             pageAdapter.addFragment(new Fragment(), RELATED_TAB_TAG);
         }
 
+        pageAdapter.notifyDataSetUpdate();
+
         if(pageAdapter.getCount() < 2){
             tabLayout.setVisibility(View.GONE);
         }else{
@@ -1083,6 +1085,7 @@ public class VideoDetailFragment
 
         if(showRelatedStreams){
             pageAdapter.updateItem(RELATED_TAB_TAG, RelatedVideosFragment.getInstance(currentInfo));
+            pageAdapter.notifyDataSetUpdate();
         }
 
         pushToStack(serviceId, url, name);
