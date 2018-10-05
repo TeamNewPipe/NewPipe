@@ -34,7 +34,7 @@
     <string name="play_with_kodi_title">تشغيل بواسطة Kodi</string>
     <string name="screen_rotation">التدوير</string>
     <string name="search">بحث</string>
-    <string name="search_language_title">اللغة الإفتراضية للمحتوى</string>
+    <string name="content_language_title">اللغة الإفتراضية للمحتوى</string>
     <string name="settings">الإعدادات</string>
     <string name="settings_category_appearance_title">المظهر</string>
     <string name="settings_category_other_title">اخرى</string>

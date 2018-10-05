@@ -57,7 +57,7 @@
     <string name="next_video_title">Nästa video</string>
     <string name="show_next_and_similar_title">Visa \'nästkommande\' och \'liknande\' videor</string>
     <string name="url_not_supported_toast">Webbadressen stöds inte</string>
-    <string name="search_language_title">Standard innehållsspråk</string>
+    <string name="content_language_title">Standard innehållsspråk</string>
     <string name="settings_category_video_audio_title">Video &amp; Ljud</string>
     <string name="settings_category_popup_title">Popup-ruta</string>
     <string name="settings_category_appearance_title">Utseende</string>

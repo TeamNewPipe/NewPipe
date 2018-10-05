@@ -34,7 +34,7 @@
     <string name="next_video_title">即将播放</string>
     <string name="show_next_and_similar_title">显示下一部和相似的视频</string>
     <string name="url_not_supported_toast">不支援此网址</string>
-    <string name="search_language_title">默认内容语言</string>
+    <string name="content_language_title">默认内容语言</string>
     <string name="settings_category_video_audio_title">视频和音频</string>
     <string name="settings_category_appearance_title">外观</string>
     <string name="settings_category_other_title">其他</string>

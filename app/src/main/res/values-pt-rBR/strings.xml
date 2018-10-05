@@ -57,7 +57,7 @@
     <string name="report_error">Reportar um erro</string>
     <string name="retry">Tentar novamente</string>
     <string name="screen_rotation">Rotação</string>
-    <string name="search_language_title">Idioma de conteúdo preferido</string>
+    <string name="content_language_title">Idioma de conteúdo preferido</string>
     <string name="settings">Configurações</string>
     <string name="settings_category_appearance_title">Aparência</string>
     <string name="settings_category_other_title">Outros</string>

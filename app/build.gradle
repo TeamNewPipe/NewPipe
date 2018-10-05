@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "org.schabi.newpipe"
@@ -55,7 +54,7 @@ dependencies {
         exclude module: 'support-annotations'
     }
 
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:217d13b1028'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:3a865749e89b'
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.8.9'
