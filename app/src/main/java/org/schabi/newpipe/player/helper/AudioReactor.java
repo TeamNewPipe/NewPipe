@@ -116,7 +116,7 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener,
     private void onAudioFocusGain() {
         Log.d(TAG, "onAudioFocusGain() called");
         player.setVolume(DUCK_AUDIO_TO);
-        animateAudio(DUCK_AUDIO_TO, 1f, DUCK_DURATION);
+        animateAudio(DUCK_AUDIO_TO, 1f);
 
         if (PlayerHelper.isResumeAfterAudioFocusGain(context)) {
             player.setPlayWhenReady(true);
@@ -131,13 +131,13 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener,
     private void onAudioFocusLossCanDuck() {
         Log.d(TAG, "onAudioFocusLossCanDuck() called");
         // Set the volume to 1/10 on ducking
-        animateAudio(player.getVolume(), DUCK_AUDIO_TO, DUCK_DURATION);
+        animateAudio(player.getVolume(), DUCK_AUDIO_TO);
     }
 
-    private void animateAudio(final float from, final float to, int duration) {
+    private void animateAudio(final float from, final float to) {
         ValueAnimator valueAnimator = new ValueAnimator();
         valueAnimator.setFloatValues(from, to);
-        valueAnimator.setDuration(duration);
+        valueAnimator.setDuration(AudioReactor.DUCK_DURATION);
         valueAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animation) {

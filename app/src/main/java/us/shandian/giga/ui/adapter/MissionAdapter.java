@@ -306,12 +306,12 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
         public DownloadMission mission;
         public int position;
 
-        public TextView status;
-        public ImageView icon;
-        public TextView name;
-        public TextView size;
-        public View bkg;
-        public ImageView menu;
+        public final TextView status;
+        public final ImageView icon;
+        public final TextView name;
+        public final TextView size;
+        public final View bkg;
+        public final ImageView menu;
         public ProgressDrawable progress;
         public MissionObserver observer;
 
@@ -332,8 +332,8 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
     }
 
     static class MissionObserver implements DownloadMission.MissionListener {
-        private MissionAdapter mAdapter;
-        private ViewHolder mHolder;
+        private final MissionAdapter mAdapter;
+        private final ViewHolder mHolder;
 
         public MissionObserver(MissionAdapter adapter, ViewHolder holder) {
             mAdapter = adapter;
@@ -365,7 +365,7 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
 
     private static class ChecksumTask extends AsyncTask<String, Void, String> {
         ProgressDialog prog;
-        WeakReference<Activity> weakReference;
+        final WeakReference<Activity> weakReference;
 
         ChecksumTask(@NonNull Activity activity) {
             weakReference = new WeakReference<>(activity);

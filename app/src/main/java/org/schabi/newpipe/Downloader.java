@@ -43,7 +43,7 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
 
     private static Downloader instance;
     private String mCookies;
-    private OkHttpClient client;
+    private final OkHttpClient client;
 
     private Downloader(OkHttpClient.Builder builder) {
         this.client = builder

@@ -85,7 +85,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
     }
 
     private class ReCaptchaWebViewClient extends WebViewClient {
-        private Activity context;
+        private final Activity context;
         private String mCookies;
 
         ReCaptchaWebViewClient(Activity ctx) {

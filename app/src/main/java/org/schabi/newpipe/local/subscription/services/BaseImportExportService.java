@@ -58,8 +58,8 @@ public abstract class BaseImportExportService extends Service {
     protected NotificationCompat.Builder notificationBuilder;
 
     protected SubscriptionService subscriptionService;
-    protected CompositeDisposable disposables = new CompositeDisposable();
-    protected PublishProcessor<String> notificationUpdater = PublishProcessor.create();
+    protected final CompositeDisposable disposables = new CompositeDisposable();
+    protected final PublishProcessor<String> notificationUpdater = PublishProcessor.create();
 
     @Nullable
     @Override
@@ -90,9 +90,9 @@ public abstract class BaseImportExportService extends Service {
 
     private static final int NOTIFICATION_SAMPLING_PERIOD = 2500;
 
-    protected AtomicInteger currentProgress = new AtomicInteger(-1);
-    protected AtomicInteger maxProgress = new AtomicInteger(-1);
-    protected ImportExportEventListener eventListener = new ImportExportEventListener() {
+    protected final AtomicInteger currentProgress = new AtomicInteger(-1);
+    protected final AtomicInteger maxProgress = new AtomicInteger(-1);
+    protected final ImportExportEventListener eventListener = new ImportExportEventListener() {
         @Override
         public void onSizeReceived(int size) {
             maxProgress.set(size);
@@ -187,13 +187,13 @@ public abstract class BaseImportExportService extends Service {
     protected Toast toast;
 
     protected void showToast(@StringRes int message) {
-        showToast(getString(message), Toast.LENGTH_SHORT);
+        showToast(getString(message));
     }
 
-    protected void showToast(String message, int duration) {
+    protected void showToast(String message) {
         if (toast != null) toast.cancel();
 
-        toast = Toast.makeText(this, message, duration);
+        toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
         toast.show();
     }
 

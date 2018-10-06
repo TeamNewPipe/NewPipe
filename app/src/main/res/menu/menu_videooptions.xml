@@ -7,16 +7,16 @@
         android:id="@+id/toggleOrientation"
         android:icon="@drawable/ic_screen_rotation_white"
         android:title="@string/toggle_orientation"
-        app:showAsAction="always|withText" />
+        app:showAsAction="ifRoom|withText" />
     <item
         android:id="@+id/switchPopup"
         android:icon="@drawable/ic_fullscreen_exit_white"
         android:title="@string/switch_to_popup"
-        app:showAsAction="always|withText" />
+        app:showAsAction="ifRoom|withText" />
     <item
         android:id="@+id/switchBackground"
         android:icon="?audio"
         android:title="@string/switch_to_background"
-        app:showAsAction="always|withText" />
+        app:showAsAction="ifRoom|withText" />
 </menu>
 
