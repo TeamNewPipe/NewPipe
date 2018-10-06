@@ -105,6 +105,8 @@
 
     <string name="last_orientation_landscape_key" translatable="false">last_orientation_landscape_key</string>
 
+    <string name="last_resize_mode" translatable="false">last_resize_mode</string>
+
     <!-- DEBUG ONLY -->
     <string name="debug_pref_screen_key" translatable="false">debug_pref_screen_key</string>
     <string name="allow_heap_dumping_key" translatable="false">allow_heap_dumping_key</string>
