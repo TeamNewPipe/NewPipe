@@ -23,7 +23,6 @@ package org.schabi.newpipe;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -65,8 +64,6 @@ import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.ThemeHelper;
-
-import static org.schabi.newpipe.extractor.InfoItem.InfoType.PLAYLIST;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";

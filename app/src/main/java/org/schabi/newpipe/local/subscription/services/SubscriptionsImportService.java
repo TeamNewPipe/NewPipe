@@ -144,12 +144,16 @@ public class SubscriptionsImportService extends BaseImportExportService {
         showToast(R.string.import_ongoing);
 
         Flowable<List<SubscriptionItem>> flowable = null;
-        if (currentMode == CHANNEL_URL_MODE) {
-            flowable = importFromChannelUrl();
-        } else if (currentMode == INPUT_STREAM_MODE) {
-            flowable = importFromInputStream();
-        } else if (currentMode == PREVIOUS_EXPORT_MODE) {
-            flowable = importFromPreviousExport();
+        switch (currentMode) {
+            case CHANNEL_URL_MODE:
+                flowable = importFromChannelUrl();
+                break;
+            case INPUT_STREAM_MODE:
+                flowable = importFromInputStream();
+                break;
+            case PREVIOUS_EXPORT_MODE:
+                flowable = importFromPreviousExport();
+                break;
         }
 
         if (flowable == null) {

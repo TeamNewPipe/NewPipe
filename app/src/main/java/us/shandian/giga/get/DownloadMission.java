@@ -67,8 +67,8 @@ public class DownloadMission implements Serializable {
     public long done;
     public int threadCount = 3;
     public int finishCount;
-    private List<Long> threadPositions = new ArrayList<Long>();
-    public final Map<Long, Boolean> blockState = new HashMap<Long, Boolean>();
+    private final List<Long> threadPositions = new ArrayList<>();
+    public final Map<Long, Boolean> blockState = new HashMap<>();
     public boolean running;
     public boolean finished;
     public boolean fallback;
@@ -77,7 +77,7 @@ public class DownloadMission implements Serializable {
 
     public transient boolean recovered;
 
-    private transient ArrayList<WeakReference<MissionListener>> mListeners = new ArrayList<WeakReference<MissionListener>>();
+    private transient ArrayList<WeakReference<MissionListener>> mListeners = new ArrayList<>();
     private transient boolean mWritingToFile;
 
     private static final int NO_IDENTIFIER = -1;
@@ -232,7 +232,7 @@ public class DownloadMission implements Serializable {
     public synchronized void addListener(MissionListener listener) {
         Handler handler = new Handler(Looper.getMainLooper());
         MissionListener.handlerStore.put(listener, handler);
-        mListeners.add(new WeakReference<MissionListener>(listener));
+        mListeners.add(new WeakReference<>(listener));
     }
 
     public synchronized void removeListener(MissionListener listener) {

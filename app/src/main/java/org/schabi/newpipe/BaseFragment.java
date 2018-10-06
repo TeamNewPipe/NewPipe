@@ -12,14 +12,12 @@ import android.view.View;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.squareup.leakcanary.RefWatcher;
 
-import org.schabi.newpipe.report.UserAction;
-
 import icepick.Icepick;
 import icepick.State;
 
 public abstract class BaseFragment extends Fragment {
     protected final String TAG = getClass().getSimpleName() + "@" + Integer.toHexString(hashCode());
-    protected boolean DEBUG = MainActivity.DEBUG;
+    protected final boolean DEBUG = MainActivity.DEBUG;
 
     protected AppCompatActivity activity;
     public static final ImageLoader imageLoader = ImageLoader.getInstance();

@@ -28,11 +28,11 @@ public class DeleteDownloadManager {
 
     private static final String KEY_STATE = "delete_manager_state";
 
-    private View mView;
-    private HashSet<String> mPendingMap;
-    private List<Disposable> mDisposableList;
+    private final View mView;
+    private final HashSet<String> mPendingMap;
+    private final List<Disposable> mDisposableList;
     private DownloadManager mDownloadManager;
-    private PublishSubject<DownloadMission> publishSubject = PublishSubject.create();
+    private final PublishSubject<DownloadMission> publishSubject = PublishSubject.create();
 
     DeleteDownloadManager(Activity activity) {
         mPendingMap = new HashSet<>();
