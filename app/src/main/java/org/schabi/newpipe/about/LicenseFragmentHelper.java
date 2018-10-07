@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.webkit.WebView;
@@ -17,7 +16,7 @@ import java.lang.ref.WeakReference;
 
 public class LicenseFragmentHelper extends AsyncTask<Object, Void, Integer> {
 
-    WeakReference<Activity> weakReference;
+    final WeakReference<Activity> weakReference;
     private License license;
 
     public LicenseFragmentHelper(@Nullable Activity activity) {
@@ -78,18 +77,18 @@ public class LicenseFragmentHelper extends AsyncTask<Object, Void, Integer> {
             throw new NullPointerException("license is null");
         }
 
-        String licenseContent = "";
+        StringBuilder licenseContent = new StringBuilder();
         String webViewData;
         try {
             BufferedReader in = new BufferedReader(new InputStreamReader(context.getAssets().open(license.getFilename()), "UTF-8"));
             String str;
             while ((str = in.readLine()) != null) {
-                licenseContent += str;
+                licenseContent.append(str);
             }
             in.close();
 
             // split the HTML file and insert the stylesheet into the HEAD of the file
-            String[] insert = licenseContent.split("</head>");
+            String[] insert = licenseContent.toString().split("</head>");
             webViewData = insert[0] + "<style type=\"text/css\">"
                     + getLicenseStylesheet(context) + "</style></head>"
                     + insert[1];

@@ -288,7 +288,7 @@
 
     <string name="controls_add_to_playlist_title">Lägga till</string>
 
-    <string name="use_inexact_seek_title">Använda snabb inexact sökning</string>
+    <string name="use_inexact_seek_title">Använda snabb inexakt sökning</string>
     <string name="download_thumbnail_title">Ladda miniatyrer</string>
     <string name="download_thumbnail_summary">Inaktivera för att stoppa alla miniatyrbilder från att ladda och spara på data och minnesanvändning. Ändring av detta kommer att rensa cache-minnet</string>
     <string name="thumbnail_cache_wipe_complete_notice">Bild cacheminnet var rensad</string>
@@ -302,7 +302,7 @@
     <string name="metadata_cache_wipe_title">Rensa metadatan i cacheminnet</string>
     <string name="no_player_found_toast">Ingen strömspelare hittades (du kan installera VLC för att spela upp)</string>
     <string name="controls_download_desc">Ladda ned sändning.</string>
-    <string name="use_inexact_seek_summary">"Ej exakt sökning tillåter spelaren att söka positioner snabbare med minskad precision "</string>
+    <string name="use_inexact_seek_summary">"Inexakt sökning tillåter spelaren att söka positioner snabbare med minskad precision "</string>
     <string name="metadata_cache_wipe_summary">Ta bort alla cachade webbsidor</string>
     <string name="metadata_cache_wipe_complete_notice">Metadata cache rensad</string>
     <string name="auto_queue_title">"Köa nästa ström automatiskt "</string>
@@ -322,11 +322,11 @@
     <string name="export_data_summary">Exportera historik, prenumerationer och spellistor</string>
     <string name="clear_views_history_title">Rensa visningshistorik</string>
     <string name="clear_views_history_summary">Tar bort historiken för spelade videoklipp</string>
-    <string name="delete_view_history_alert">Ta bort hela visningshistoriken</string>
+    <string name="delete_view_history_alert">Ta bort hela visningshistoriken.</string>
     <string name="view_history_deleted">Visningshistorik borttagen.</string>
     <string name="clear_search_history_title">Rensa sökhistorik</string>
     <string name="clear_search_history_summary">Tar bort historiken för sökta nyckelord</string>
-    <string name="delete_search_history_alert">Ta bort hela sökhistoriken</string>
+    <string name="delete_search_history_alert">Ta bort hela sökhistoriken.</string>
     <string name="search_history_deleted">Sökhistorik borttagen.</string>
     <string name="external_player_unsupported_link_type">Externa spelare stöder inte dessa typer av länkar</string>
     <string name="invalid_url_toast">Ogiltig URL</string>

@@ -184,4 +184,5 @@
     <string name="contribution_encouragement">無論您僅想分享您對 NewPipe 的一些構思，還是願意設計和翻譯程式介面，甚至想幫我們整理或重新編寫原始碼，我們都無任歡迎。貢獻更多，應用程式便會變得更好！</string>
     <string name="read_full_license">檢閱特許</string>
     <string name="contribution_title">貢獻</string>
-</resources>
+<string name="clear_views_history_title">清除觀看歷史</string>
+    </resources>

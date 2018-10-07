@@ -30,7 +30,7 @@ public interface BasicDAO<Entity> {
 
     /* Deletes */
     @Delete
-    int delete(final Entity entity);
+    void delete(final Entity entity);
 
     @Delete
     int delete(final Collection<Entity> entities);
@@ -42,5 +42,5 @@ public interface BasicDAO<Entity> {
     int update(final Entity entity);
 
     @Update
-    int update(final Collection<Entity> entities);
+    void update(final Collection<Entity> entities);
 }

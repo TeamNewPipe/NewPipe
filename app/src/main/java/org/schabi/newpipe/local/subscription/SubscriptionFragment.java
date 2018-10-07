@@ -19,7 +19,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -43,6 +42,7 @@ import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.info_list.InfoListAdapter;
+import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService;
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService;
 import org.schabi.newpipe.report.ErrorActivity;
@@ -84,7 +84,6 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
     protected Parcelable itemsListState;
     private InfoListAdapter infoListAdapter;
 
-    private View headerRootLayout;
     private View whatsNewItemListHeader;
     private View importExportListHeader;
 
@@ -294,6 +293,7 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
         itemsList = rootView.findViewById(R.id.items_list);
         itemsList.setLayoutManager(new LinearLayoutManager(activity));
 
+        View headerRootLayout;
         infoListAdapter.setHeader(headerRootLayout = activity.getLayoutInflater().inflate(R.layout.subscription_header, itemsList, false));
         whatsNewItemListHeader = headerRootLayout.findViewById(R.id.whats_new);
         importExportListHeader = headerRootLayout.findViewById(R.id.import_export);

@@ -56,7 +56,7 @@ public class SelectKioskFragment extends DialogFragment {
     //////////////////////////////////////////////////////////////////////////*/
 
     public interface OnSelectedLisener {
-        void onKioskSelected(String kioskId, int service_id);
+        void onKioskSelected(int serviceId, String kioskId, String kioskName);
     }
 
     OnSelectedLisener onSelectedLisener = null;
@@ -75,7 +75,7 @@ public class SelectKioskFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.select_kiosk_fragment, container, false);
-        recyclerView = (RecyclerView) v.findViewById(R.id.items_list);
+        recyclerView = v.findViewById(R.id.items_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         try {
             selectKioskAdapter = new SelectKioskAdapter();
@@ -101,7 +101,7 @@ public class SelectKioskFragment extends DialogFragment {
 
     private void clickedItem(SelectKioskAdapter.Entry entry) {
         if(onSelectedLisener != null) {
-            onSelectedLisener.onKioskSelected(entry.kioskId, entry.serviceId);
+            onSelectedLisener.onKioskSelected(entry.serviceId, entry.kioskId, entry.kioskName);
         }
         dismiss();
     }
@@ -112,13 +112,13 @@ public class SelectKioskFragment extends DialogFragment {
             public Entry (int i, int si, String ki, String kn){
                 icon = i; serviceId=si; kioskId=ki; kioskName = kn;
             }
-            int icon;
-            int serviceId;
-            String kioskId;
-            String kioskName;
+            final int icon;
+            final int serviceId;
+            final String kioskId;
+            final String kioskName;
         }
 
-        private List<Entry> kioskList = new Vector<>();
+        private final List<Entry> kioskList = new Vector<>();
 
         public SelectKioskAdapter()
                 throws Exception {
@@ -157,9 +157,9 @@ public class SelectKioskFragment extends DialogFragment {
                 thumbnailView = v.findViewById(R.id.itemThumbnailView);
                 titleView = v.findViewById(R.id.itemTitleView);
             }
-            public View view;
-            public ImageView thumbnailView;
-            public TextView titleView;
+            public final View view;
+            public final ImageView thumbnailView;
+            public final TextView titleView;
         }
 
         public void onBindViewHolder(SelectKioskItemHolder holder, final int position) {
@@ -179,13 +179,12 @@ public class SelectKioskFragment extends DialogFragment {
     // Error
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected boolean onError(Throwable e) {
+    protected void onError(Throwable e) {
         final Activity activity = getActivity();
         ErrorActivity.reportError(activity, e,
                 activity.getClass(),
                 null,
                 ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
                         "none", "", R.string.app_ui_crash));
-        return true;
     }
 }

@@ -329,7 +329,7 @@
     <string name="import_data_title">Importuj dane</string>
     <string name="export_data_title">Eksportuj dane</string>
     <string name="import_data_summary">Nadpisuje bieżącą historię i subskrypcje</string>
-    <string name="export_data_summary">Eksportuje bieżącą historię, subskrypcje i playlisty.</string>
+    <string name="export_data_summary">Eksportuje bieżącą historię, subskrypcje i playlisty</string>
     <string name="detail_drag_description">Przeciągnij, aby zmienić kolejność</string>
 
     <string name="create">Utwórz</string>
@@ -394,13 +394,13 @@
 <string name="use_inexact_seek_title">Użyj szybkiego niedokładnego wyszukiwania</string>
     <string name="use_inexact_seek_summary">Szybkie wyszukiwanie pozwala przeskoczyć do wybranej pozycji szybciej, lecz jest mniej precyzyjne</string>
     <string name="download_thumbnail_title">Załaduj miniatury</string>
-    <string name="download_thumbnail_summary">Wyłącz, by aplikacja nie ściągała miniatur. Oszczędza transfer i pamięć. Zmiana tej opcji spowoduje wyczyszczenie pamięci podręcznej miniatur.</string>
+    <string name="download_thumbnail_summary">Wyłącz, by aplikacja nie ściągała miniatur. Oszczędza transfer i pamięć. Zmiana tej opcji spowoduje wyczyszczenie pamięci podręcznej miniatur</string>
     <string name="thumbnail_cache_wipe_complete_notice">Wyczyszczono pamięć podręczną miniatur</string>
     <string name="metadata_cache_wipe_title">Wyczyść pamięć podręczną metadanych</string>
     <string name="metadata_cache_wipe_summary">Wyczyść pamięć podręczną stron</string>
     <string name="metadata_cache_wipe_complete_notice">Wyczyszczono pamięć podręczną metadanych</string>
     <string name="auto_queue_title">Automatycznie dołącz kolejny stream</string>
-    <string name="auto_queue_summary">Automatycznie dodaj kolejny powiązany stream w momencie rozpoczęcia odtwarzania ostatniego elementu w niezapętlonej kolejce.</string>
+    <string name="auto_queue_summary">Automatycznie dodaj kolejny powiązany stream w momencie rozpoczęcia odtwarzania ostatniego elementu w niezapętlonej kolejce</string>
     <string name="file">Plik</string>
 
     <string name="invalid_directory">Nieprawidłowy katalog</string>
@@ -454,14 +454,14 @@
     <string name="preferred_open_action_settings_summary">Domyślna akcja podczas otwierania materiału - %s</string>
 
     <string name="caption_setting_title">Napisy</string>
-    <string name="caption_setting_description">Zmień kolor tekstu i tła napisów. Wymaga restartu aplikacji.</string>
+    <string name="caption_setting_description">Zmień kolor tekstu i tła napisów. Wymaga restartu aplikacji</string>
 
     <string name="clear_views_history_title">Wyczyść historię oglądania</string>
-    <string name="clear_views_history_summary">Usuwa historię odtworzonych strumieni.</string>
+    <string name="clear_views_history_summary">Usuwa historię odtworzonych strumieni</string>
     <string name="delete_view_history_alert">Usuń całą historię oglądania.</string>
     <string name="view_history_deleted">Usunięto historię oglądania.</string>
     <string name="clear_search_history_title">Wyczyść historię wyszukiwania</string>
-    <string name="clear_search_history_summary">Usuwa historię wyszukiwania słów kluczowych.</string>
+    <string name="clear_search_history_summary">Usuwa historię wyszukiwania słów kluczowych</string>
     <string name="delete_search_history_alert">Usuń całą historię wyszukiwania.</string>
     <string name="search_history_deleted">Usunięto historię wyszukiwania.</string>
     <string name="one_item_deleted">Usunięto jedną pozycję.</string>
