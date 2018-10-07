@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-    <string name="view_count_text">點播%1$s次</string>
+    <string name="view_count_text">點播 %1$s 次</string>
     <string name="upload_date_text">%1$s 發布</string>
     <string name="no_player_found">找不到串流播放器，您要安裝 VLC 嗎？</string>
     <string name="install">安裝</string>
     <string name="cancel">取消</string>
-    <string name="open_in_browser">用瀏覽器開啟</string>
+    <string name="open_in_browser">以瀏覽器開啟</string>
     <string name="share">分享</string>
     <string name="download">下載</string>
     <string name="search">搜尋</string>
@@ -57,7 +57,7 @@
 
     <string name="err_dir_create">無法建立下載目錄「%1$s」</string>
     <string name="info_dir_created">已建立下載目錄「%1$s」</string>
-<string name="main_bg_subtitle">輕觸搜尋按鈕開始使用NewPipe</string>
+<string name="main_bg_subtitle">輕觸搜尋按鈕開始使用 NewPipe</string>
     <string name="open_in_popup_mode">以懸浮視窗開啟</string>
     <string name="use_external_video_player_summary">勾選後，部分解析度的影片將沒有聲音</string>
     <string name="popup_mode_share_menu_title">NewPipe 懸浮視窗模式</string>
