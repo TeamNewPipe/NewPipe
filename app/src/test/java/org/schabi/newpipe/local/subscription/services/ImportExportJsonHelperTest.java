@@ -27,7 +27,7 @@ public class ImportExportJsonHelperTest {
     }
 
     @Test
-    public void testInvalidSource() throws Exception {
+    public void testInvalidSource() {
         List<String> invalidList = Arrays.asList(
                 "{}",
                 "",

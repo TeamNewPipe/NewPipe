@@ -8,7 +8,7 @@ import org.schabi.newpipe.player.mediasession.MediaSessionCallback;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 
 public class BasePlayerMediaSession implements MediaSessionCallback {
-    private BasePlayer player;
+    private final BasePlayer player;
 
     public BasePlayerMediaSession(final BasePlayer player) {
         this.player = player;
