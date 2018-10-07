@@ -36,6 +36,7 @@ import org.schabi.newpipe.ActivityCommunicator;
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.PrintWriter;
@@ -374,8 +375,11 @@ public class ErrorActivity extends AppCompatActivity {
     }
 
     private String getContentLangString() {
-        return PreferenceManager.getDefaultSharedPreferences(this)
+        String country = PreferenceManager
+                .getDefaultSharedPreferences(this)
                 .getString(this.getString(R.string.content_country_key), "none");
+
+        return NewPipe.getLanguage().concat("-").concat(country);
     }
 
     private String getOsString() {
