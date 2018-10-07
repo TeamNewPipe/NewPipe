@@ -51,6 +51,9 @@
         <item name="ic_import_export">@drawable/ic_import_export_black_24dp</item>
         <item name="ic_save">@drawable/ic_save_black_24dp</item>
         <item name="ic_backup">@drawable/ic_backup_black_24dp</item>
+        <item name="ic_add">@drawable/ic_add_black_24dp</item>
+        <item name="ic_restore_defaults">@drawable/ic_settings_backup_restore_black_24dp</item>
+        <item name="ic_blank_page">@drawable/ic_blank_page_black_24dp</item>
 
         <item name="separator_color">@color/light_separator_color</item>
         <item name="contrast_background_color">@color/light_contrast_background_color</item>
@@ -108,6 +111,9 @@
         <item name="ic_import_export">@drawable/ic_import_export_white_24dp</item>
         <item name="ic_save">@drawable/ic_save_white_24dp</item>
         <item name="ic_backup">@drawable/ic_backup_white_24dp</item>
+        <item name="ic_add">@drawable/ic_add_white_24dp</item>
+        <item name="ic_restore_defaults">@drawable/ic_settings_backup_restore_white_24dp</item>
+        <item name="ic_blank_page">@drawable/ic_blank_page_white_24dp</item>
 
         <item name="separator_color">@color/dark_separator_color</item>
         <item name="contrast_background_color">@color/dark_contrast_background_color</item>

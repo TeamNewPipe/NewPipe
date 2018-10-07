@@ -25,11 +25,11 @@
     <string name="play_audio">ऑडियो</string>
     <string name="light_theme_title">हलका</string>
     <string name="black_theme_title">काली</string>
-    <string name="enable_watch_history_title">इतिहास</string>
+    <string name="enable_watch_history_title">इतिहास और कैच</string>
     <string name="download_dialog_title">डाउनलोड</string>
     <string name="next_video_title">अगला वीडियो</string>
     <string name="settings_category_video_audio_title">वीडियो और ऑडियो</string>
-    <string name="settings_category_history_title">इतिहास</string>
+    <string name="settings_category_history_title">इतिहास और कैच</string>
     <string name="background_player_playing_toast">बैकग्राउंड में चल रहा है</string>
     <string name="no_views">कोई दर्शक नहीं</string>
     <string name="no_videos">कोई वीडियो नहीं है</string>
@@ -87,8 +87,6 @@
     <string name="show_play_with_kodi_summary">उस विकल्प को दिखाए जिसमे Kodi Media Center के जरिये विडियो प्ले किया जाता है</string>
     <string name="default_audio_format_title">डिफ़ॉल्ट ऑडियो का फॉर्मेट</string>
     <string name="default_video_format_title">डिफ़ॉल्ट विडियो का फॉर्मेट</string>
-    <string name="webm_description">webm - फ्री फॉर्मेट</string>
-    <string name="m4a_description">M4A - बेहतर क्वालिटी</string>
     <string name="theme_title">एप्प का नया रूप</string>
     <string name="dark_theme_title">काला</string>
     <string name="popup_remember_size_pos_title">विडियो पॉपअप की आकर और उसकी स्थति को याद रखे</string>
@@ -99,11 +97,11 @@
     <string name="show_search_suggestions_summary">जब कुछ ढूंड रहे हो तो सुझाव दिखाये</string>
     <string name="enable_search_history_title">खोज के इतिहास को देखे</string>
     <string name="enable_search_history_summary">खोज के query को फ़ोन की मेमोरी में ही रखे</string>
-    <string name="enable_watch_history_summary">जो विडियो देखे है उस पर नजर रखे</string>
+    <string name="enable_watch_history_summary">देखे हुए वीडियो की सूची रखे</string>
     <string name="resume_on_audio_focus_gain_title">जब फोकस मिले तो विडियो resume हो</string>
     <string name="resume_on_audio_focus_gain_summary">रूकावट आने पर भी विडियो को जारी रखे (जैसे - फ़ोन कॉल आये)</string>
-    <string name="show_next_and_similar_title">आगे ऐसा ही विडियो दिखाए जैसा पहले देखा था</string>
-    <string name="show_hold_to_append_title">"\"संलग्न करने के लिए पकड़ें\" देखायें "</string>
+    <string name="show_next_and_similar_title">\'अगला\' और \'पहले समान\' वीडियो दिखाए</string>
+    <string name="show_hold_to_append_title">\"संलग्न करने के लिए पकड़ें रहे\" दिखाए</string>
     <string name="show_hold_to_append_summary">जब बैकग्राउंड और पॉपअप बटन विडियो के विवरण पन्ने में दबाई जाए तो tip को दिखाए</string>
     <string name="url_not_supported_toast">ये वाला URL इसमें नहीं चलेगा</string>
     <string name="search_language_title">डिफ़ॉल्ट विषय की भाषा</string>
@@ -155,7 +153,7 @@
     <string name="could_not_get_stream">कोई भी विडियो नहीं मिल रहा</string>
     <string name="could_not_load_image">फोटो को load नहीं कर सकते</string>
     <string name="app_ui_crash">APP/UI टूट गया</string>
-    <string name="player_stream_failure">इस विडियो को चलाने में असफलता हो रही है</string>
+    <string name="player_stream_failure">इस विडियो को चलाने में असफल हुए</string>
     <string name="player_unrecoverable_failure">कभी ठीक न होने वाले विडियो प्लेयर की त्रुटी आ रही है</string>
     <string name="player_recoverable_failure">विडियो प्लेयर त्रुटी से ठीक हो रहा है</string>
 
@@ -183,7 +181,7 @@
     <string name="empty_subscription_feed_subtitle">यंहा कुछ नहीं है</string>
 
     <string name="err_dir_create">"डाउनलोड वाली डायरेक्टरी को बना नहीं सकते  \'%1$s\'"</string>
-    <string name="info_dir_created">डाउनलोड की डायरेक्टरी बन चुकी है \'%1$s\'</string>
+    <string name="info_dir_created">डाउनलोड की डायरेक्टरी बना दी गई है \'%1$s\'</string>
 
     <string name="video">विडियो</string>
     <string name="audio">ऑडियो</string>
@@ -249,7 +247,7 @@
     <string name="copyright" formatted="true">%2$s के द्वारा © %1$s जो %3$s के अधीन आते है</string>
     <string name="error_unable_to_load_license">लाइसेंस load नहीं हो रहा</string>
     <string name="tab_contributors">सहयोगकर्ता</string>
-    <string name="app_description">एंड्राइड के लिए कम मेमोरी वाला और मुफ्त फ्रंट एंड Youtube.</string>
+    <string name="app_description">एंड्राइड के लिए हल्का और मुफ्त स्ट्रीमिंग।</string>
     <string name="contribution_encouragement">अगर आपके पास कोई सुझाव हो जैसे -अनुवाद , डिजाईन में बदलाव ,code को साफ़ रखना , या फिर code में जायदा बदलाव लाना हो तो - साहयता के लिए आपका स्वागत है . जितना ज्यादा होगा उतना बेहतर होगा !</string>
     <string name="delete_item_search_history">क्या आप इसको खोज इतिहास के मिटाना चाहते है ?</string>
 
@@ -312,10 +310,10 @@
     <string name="rename">नाम बदलें</string>
 
     <string name="donation_title">दान करें</string>
-    <string name="donation_encouragement">NewPipe स्वयंसेवकों द्वारा विकसित किया जाता है जो आपको अच्छा अनुभव देने के लिए अपना खाली समय व्यतीत करते हैं। अब यह सुनिश्चित करने का समय है कि हमारे डेवलपर्स जावा के कप का आनंद लेते समय NewPipe को और भी बेहतर बना सके!</string>
+    <string name="donation_encouragement">NewPipe स्वयंसेवकों द्वारा विकसित किया जाता है जो आपको अच्छा अनुभव देने के लिए अपना खाली समय व्यतीत करते हैं। स्वयंसेवको को मदद भेजे, ताकि वह NewPipe को और अच्छा बना सके।</string>
     <string name="give_back">वापस दे</string>
     <string name="website_title">वेबसाइट</string>
-    <string name="website_encouragement">अधिक जानकारी और NewPipe के बारे में नवीनतम समाचार प्राप्त करने के लिए हमारी वेबसाइट पर जाएं ।</string>
+    <string name="website_encouragement">अधिक जानकारी और खबरों के लिए NewPipe की वेबसाइट पर जाएं ।</string>
     <string name="delete_stream_history_prompt">क्या आप इस आइटम को वॉच इतिहास से हटाना चाहते हैं?</string>
     <string name="delete_all_history_prompt">क्या आप वाकई इतिहास से सभी आइटंस हटाना चाहते हैं?</string>
     <string name="title_last_played">पिछला चलाया गया</string>
@@ -329,7 +327,7 @@
 
     <string name="drawer_open">ड्रावर खोलें</string>
     <string name="drawer_close">ड्रावर बंद करें</string>
-    <string name="drawer_header_action_paceholder_text">जल्द ही यहां पर कुछ आएगा ;D</string>
+    <string name="drawer_header_action_paceholder_text">जल्द ही यहां पर कुछ दिखाई देगा ;D</string>
 
 
     <string name="video_player">वीडियो प्लेयर</string>
@@ -338,7 +336,7 @@
     <string name="always_ask_open_action">हमेशा पूछें</string>
     
     <string name="preferred_player_fetcher_notification_title">जानकारी प्राप्त की जा रही है…</string>
-    <string name="preferred_player_fetcher_notification_message">अनुरोधित कंटेंट लोड हो रहा है</string>
+    <string name="preferred_player_fetcher_notification_message">अनुरोधित सामग्री लोड कर रहे है</string>
 
     <string name="create_playlist">नई प्लेलिस्ट बनाएं</string>
     <string name="delete_playlist">प्लेलिस्ट हटाएं</string>
@@ -351,12 +349,12 @@
     <string name="unbookmark_playlist">बुकमार्क हटायें</string>
 
     <string name="delete_playlist_prompt">क्या आप इस प्लेलिस्ट को हटाना चाहते हैं?</string>
-    <string name="playlist_creation_success">प्लेलिस्ट सफलतापूर्वक बनाई गई</string>
+    <string name="playlist_creation_success">सूची बना दी गई</string>
     <string name="playlist_add_stream_success">प्लेलिस्ट में जोड़ा गया</string>
     <string name="playlist_thumbnail_change_success">प्लेलिस्ट का थंबनेल बदल दिया गया है</string>
-    <string name="playlist_delete_failure">प्लेलिस्ट हटाने में असफल</string>
+    <string name="playlist_delete_failure">सूची हटाने में असफल</string>
 
-    <string name="caption_none">कोई कैप्शन नहीं</string>
+    <string name="caption_none">कोई कैप्शन नहीं है</string>
 
     <string name="resize_fit">फिट</string>
     <string name="resize_fill">भरें</string>
@@ -373,13 +371,13 @@
 <string name="settings_category_debug_title">डीबग करें</string>
     <string name="caption_auto_generated">ऑटो-जनरेटेड</string>
     <string name="enable_leak_canary_title">LeakCanary सक्षम करें</string>
-    <string name="enable_leak_canary_summary">हीप डंप करने के दौरान मेमोरी लीक मॉनिटरिंग app को अनुत्तरदायी बना सकता है</string>
+    <string name="enable_leak_canary_summary">हीप डंप करने के दौरान मेमोरी लीक मॉनिटरिंग ऐप को अनुत्तरदायी बना सकता है</string>
 
     <string name="enable_disposed_exceptions_title">Out-of-Lifecycle त्रुटियों की रिपोर्ट करें</string>
     <string name="download_thumbnail_title">छायाप्रारुप लोड करें</string>
     <string name="use_inexact_seek_title">तेजी से अचूक तलाश का प्रयोग करें</string>
     <string name="use_inexact_seek_summary">अचूक खोज प्लेयर को कम परिशुद्धता के साथ तेजी से पदों की तलाश करने की अनुमति देता है</string>
-    <string name="download_thumbnail_summary">सभी थंबनेल को डेटा और मेमोरी उपयोग पर लोड करने और सहेजने से रोकने के लिए अक्षम करें। इसे बदलने से इन-मेमोरी और ऑन-डिस्क छवि कैश दोनों साफ़ हो जाएंगे।</string>
+    <string name="download_thumbnail_summary">सभी थंबनेल को लोड होने से रोके और डेटा और मेमोरी का उपयोग घटाए। इसे बदलने से मेमोरी और डिस्क की छवि की कैश साफ़ हो जाएगी</string>
     <string name="thumbnail_cache_wipe_complete_notice">छवि कैश मिटा दिया</string>
     <string name="metadata_cache_wipe_title">कैश मेटाडेटा वाइप करें</string>
     <string name="metadata_cache_wipe_summary">सभी कैश किए गए वेबपृष्ठ डेटा हटाएं</string>
@@ -388,4 +386,83 @@
     <string name="auto_queue_summary">गैर-दोहराने वाली कतार में अंतिम स्ट्रीम चलाते समय संबंधित स्ट्रीम को स्वतः संलग्न करें।</string>
     <string name="file">फाइल</string>
 
-    </resources>
+    <string name="channels">चेनल्स</string>
+    <string name="playlists">सूची</string>
+    <string name="tracks">ट्रेक</string>
+    <string name="users">उपभोगता</string>
+    <string name="clear_views_history_title">देखे हुए वीडियो की सूची साफ करें</string>
+    <string name="clear_views_history_summary">चलाये गए स्ट्रीम का इतिहास साफ करता है</string>
+    <string name="delete_view_history_alert">देखे गए सभी का इतिहास साफ करें।</string>
+    <string name="view_history_deleted">देखे हुए का इतिहास साफ कर दिया गया।</string>
+    <string name="clear_search_history_title">ढूंढने के इतिहास को साफ करें</string>
+    <string name="clear_search_history_summary">ढूंढे गए शब्दो का इतिहास साफ करता है</string>
+    <string name="delete_search_history_alert">ढूंढने के इतिहास को पूरा साफ करें।</string>
+    <string name="search_history_deleted">ढूंढने के इतिहास को साफ कर दिया।</string>
+    <string name="invalid_directory">अमान्य डाइरेक्टरी</string>
+    <string name="invalid_source">अमान्य फाइल/कॉन्टेंट उदभावस्थान</string>
+    <string name="invalid_file">फाइल मौजूद नही है या उसे पढने या लिखने की पर्याप्त अनुमति नही है</string>
+    <string name="file_name_empty_error">फाइल का नाम खाली नही हो सकता</string>
+    <string name="error_occurred_detail">एक भूल हुई: %1$s</string>
+    <string name="no_streams_available_download">डाउनलोड करने के लिए कोई स्ट्रीम उपलब्ध नही है</string>
+
+    <string name="one_item_deleted">एक चीज़ साफ कर दी गई।</string>
+
+    <string name="toast_no_player">इस फ़ाइल को चलाने के लिए कोई ऐप स्थापित नही है</string>
+
+    <string name="privacy_policy_title">NewPipe की गोपनीयता नीति</string>
+    <string name="privacy_policy_encouragement">NewPipe परियोजना आपकी गोपनीयता को बहोत गंभीर रूप से लेता है। इसलिए, ऐप आपकी अनुमति के बिना कोई डेटा जमा नही करता।
+\nNewPipe की गोपनीयता नीति विस्तार से समज़ाती है कि कोनसा डेटा भेजा या संग्रह किया जाता है जब आप क्रेश विवरण भेजते है।</string>
+    <string name="read_privacy_policy">गोपनीयता नीति पढ़े</string>
+    <string name="import_settings">क्या आप सेटिंग्स भी आयात करना चाहते है?</string>
+
+    <string name="preferred_open_action_settings_title">पसंदीदा \'खोलने पर\' करवाई</string>
+    <string name="preferred_open_action_settings_summary">सामग्री खोलते समय डिफ़ॉल्ट कारवाही</string>
+
+    <string name="caption_setting_title">केप्सन</string>
+    <string name="caption_setting_description">प्लेयर केप्शन के शब्दों का परिमाण और पृष्ठभूमि शैलियो को बदले। लागू करने के लिए ऐप को पुनः प्रारम्भ करना जरूरी है।</string>
+
+    <string name="import_export_title">आयात/निर्यात</string>
+    <string name="import_title">आयात</string>
+    <string name="import_from">से आयात करे</string>
+    <string name="export_to">पर निर्यात करे</string>
+
+    <string name="import_ongoing">आयात किया जा रहा है…</string>
+    <string name="export_ongoing">निर्यात किया जा रहा है…</string>
+
+    <string name="import_file_title">फाइल आयात करे</string>
+    <string name="previous_export">पहले वाला निर्यात</string>
+
+    <string name="subscriptions_import_unsuccessful">सब्सक्रिप्शन आयात नही कर सके</string>
+    <string name="subscriptions_export_unsuccessful">सब्सक्रिप्शन निर्यात नही कर सके</string>
+
+    <string name="import_youtube_instructions">निर्यात की गई फाइल को डाउनलोड करके यूट्यूब सब्सक्रिप्शन को आयात करे:
+\n
+\n1. इस URL पर जाए: %1$s
+\n2. जब कहा जाए, लॉगिन करे
+\n3. एक डाउनलोड शुरू होना चाहिए (यही निर्यात की गई फाइल है)</string>
+    <string name="import_soundcloud_instructions_hint">आपका आई डी, soundcloud.com/yourid</string>
+
+    <string name="import_network_expensive_warning">ध्यान रखे, यह तरीका नेटवर्क साधनो के लिए मंहगा हो सकता है।
+\n
+\nक्या आप आगे बढ़ना चाहते है?</string>
+
+    <string name="playback_speed_control">चलाने की गति के नियंत्रण</string>
+    <string name="playback_tempo">गति</string>
+    <string name="playback_pitch">ऊंचाई</string>
+    <string name="unhook_checkbox">अनलिंक (बिगाड़ सकता है)</string>
+    <string name="skip_silence_checkbox">खामोशी के समय तेज़ी से आगे बढ़े</string>
+    <string name="playback_step">कदम</string>
+    <string name="playback_reset">रिसेट</string>
+
+    <string name="accept">स्वीकारे</string>
+    <string name="decline">अस्वीकार करे</string>
+
+    <string name="limit_data_usage_none_description">असीमित</string>
+    <string name="limit_mobile_data_usage_title">मोबाइल डेटा उपयोग करते समय रेसॉल्युसेन मर्यादित करे</string>
+    <string name="minimize_on_exit_title">ऐप बदलते समय मिनिमाइज करे</string>
+    <string name="minimize_on_exit_summary">"कार्यवाई, मुख्य वीडियो चालक से दूसरी ऐप पर जाने पर  — %s"</string>
+    <string name="minimize_on_exit_none_description">कोई नही</string>
+    <string name="minimize_on_exit_background_description">पृष्ठभूमि प्लेयर जैसे मिनिमाइज करे</string>
+    <string name="minimize_on_exit_popup_description">पॉप अप प्लेयर जैसे मिनिमाइज करे</string>
+
+</resources>

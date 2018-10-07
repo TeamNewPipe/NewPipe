@@ -66,11 +66,10 @@ public final class BookmarkFragment
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              Bundle savedInstanceState) {
-        if (activity != null && activity.getSupportActionBar() != null) {
-            activity.getSupportActionBar().setDisplayShowTitleEnabled(true);
-            activity.setTitle(R.string.tab_subscriptions);
-        }
 
+        if(!useAsFrontPage) {
+            setTitle(activity.getString(R.string.tab_bookmarks));
+        }
         return inflater.inflate(R.layout.fragment_bookmarks, container, false);
     }
 
@@ -99,9 +98,7 @@ public final class BookmarkFragment
         itemListAdapter.setSelectedListener(new OnClickGesture<LocalItem>() {
             @Override
             public void selected(LocalItem selectedItem) {
-                // Requires the parent fragment to find holder for fragment replacement
-                if (getParentFragment() == null) return;
-                final FragmentManager fragmentManager = getParentFragment().getFragmentManager();
+                final FragmentManager fragmentManager = getFM();
 
                 if (selectedItem instanceof PlaylistMetadataEntry) {
                     final PlaylistMetadataEntry entry = ((PlaylistMetadataEntry) selectedItem);
@@ -110,8 +107,11 @@ public final class BookmarkFragment
 
                 } else if (selectedItem instanceof PlaylistRemoteEntity) {
                     final PlaylistRemoteEntity entry = ((PlaylistRemoteEntity) selectedItem);
-                    NavigationHelper.openPlaylistFragment(fragmentManager, entry.getServiceId(),
-                            entry.getUrl(), entry.getName());
+                    NavigationHelper.openPlaylistFragment(
+                            fragmentManager,
+                            entry.getServiceId(),
+                            entry.getUrl(),
+                            entry.getName());
                 }
             }
 

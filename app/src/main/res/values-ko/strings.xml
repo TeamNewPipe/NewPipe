@@ -24,8 +24,6 @@
     <string name="show_play_with_kodi_summary">비디오를 Kodi media center를 사용해 재생하는 옵션을 표시합니다</string>
     <string name="play_audio">오디오</string>
     <string name="default_audio_format_title">기본 오디오 형식</string>
-    <string name="webm_description">WebM — 공개형 무료 자유 포맷입니다</string>
-    <string name="m4a_description">m4a — 보다 나은 품질을 제공합니다</string>
     <string name="download_dialog_title">다운로드</string>
     <string name="next_video_title">다음 비디오</string>
     <string name="show_next_and_similar_title">다음 및 유사한 비디오 표시</string>
@@ -416,7 +414,7 @@
 \n
 \n만약 모르신다면, 다음을 참고하세요:
 \n
-\n1. 모바일 환경이시면 브라우저 설정에서 데스크탑 모드를 활성화해주세요. Chrome 모바일에서는 오른쪽 ... 클릭시 아래쪽에 있습니다.
+\n1. 모바일 환경이시면 브라우저 설정에서 데스크탑 모드를 활성화해주세요. Chrome 모바일에서는 오른쪽 … 클릭시 아래쪽에 있습니다.
 \n2. 이 주소로 가세요: %1$s 
 \n3. 로그인이 필요하면 하세요.
 \n4. 리디렉트된 곳의 URL을 복사하세요. (이 URL이 당신의 프로필 URL 입니다)</string>

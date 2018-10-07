@@ -24,8 +24,6 @@
     <string name="show_play_with_kodi_summary">Mostra l\'opzione per riprodurre i video tramite Kodi</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Formato audio predefinito</string>
-    <string name="webm_description">WebM — formato libero</string>
-    <string name="m4a_description">M4A — miglior qualità</string>
     <string name="download_dialog_title">Scarica</string>
     <string name="next_video_title">Prossimo video</string>
     <string name="show_next_and_similar_title">Mostra \'prossimi\' video e video \'simili\'</string>
@@ -186,7 +184,7 @@
     <string name="action_about">Informazioni</string>
     <string name="title_licenses">Licenze di terze parti</string>
     <string name="copyright" formatted="true">© %1$s di %2$s protetto da licenza %3$s</string>
-    <string name="error_unable_to_load_license">Impossible caricare il contratto di licenza</string>
+    <string name="error_unable_to_load_license">Impossible caricare la licenza</string>
     <string name="action_open_website">Visita il sito</string>
     <string name="tab_about">Informazioni</string>
     <string name="tab_contributors">Contributori</string>
@@ -218,7 +216,7 @@
 
     <string name="settings_category_downloads_title">Scarica</string>
     <string name="settings_file_charset_title">Caratteri ammessi nei nomi dei file</string>
-    <string name="settings_file_replacement_character_summary">I caratteri non validi vengono sostituiti con questo</string>
+    <string name="settings_file_replacement_character_summary">I caratteri non validi vengono sostituiti con</string>
     <string name="settings_file_replacement_character_title">Carattere sostitutivo</string>
 
     <string name="charset_letters_and_digits">Lettere e cifre</string>
@@ -325,9 +323,9 @@
     <string name="video_streams_empty">Nessun flusso video trovato</string>
     <string name="audio_streams_empty">Nessun flusso audio trovato</string>
 
-    <string name="video_player">Riproduttore video</string>
-    <string name="background_player">Riproduttore di fondo</string>
-    <string name="popup_player">Riproduttore a comparsa</string>
+    <string name="video_player">Lettore video</string>
+    <string name="background_player">Riproduzione in sottofondo</string>
+    <string name="popup_player">Riproduzione in modalità popup</string>
     <string name="always_ask_player">Chiedi sempre</string>
     
     <string name="preferred_player_fetcher_notification_title">Raccogliendo informazioni…</string>
@@ -335,7 +333,7 @@
 <string name="import_data_title">Importa database</string>
     <string name="export_data_title">Esporta database</string>
     <string name="import_data_summary">Sovrascriverà la cronologia corrente e le iscrizioni</string>
-    <string name="export_data_summary">Esporta la cronologia, le iscrizioni e le playlist.</string>
+    <string name="export_data_summary">Esporta la cronologia, le iscrizioni e le playlist</string>
     <string name="export_complete_toast">Esportazione completa</string>
     <string name="import_complete_toast">Importazione completa</string>
     <string name="no_valid_zip_file">Nessun file ZIP valido</string>
@@ -404,7 +402,7 @@
 <string name="use_inexact_seek_title">Usa la ricerca rapida ma imprecisa</string>
     <string name="use_inexact_seek_summary">La ricerca imprecisa permette al lettore multimediale di spostarsi nelle posizioni più velocemente con una precisione ridotta</string>
     <string name="auto_queue_title">Metti in coda automaticamente il prossimo flusso</string>
-    <string name="auto_queue_summary">Aggiungi automaticamente un flusso correlato quando è in corso la riproduzione dell\'ultimo flusso in una coda non ripetitiva.</string>
+    <string name="auto_queue_summary">Aggiungi automaticamente un flusso correlato quando è in corso la riproduzione dell\'ultimo flusso in una coda non ripetitiva</string>
     <string name="live_sync">SINCRONIZZAZIONE</string>
 
     <string name="file">File</string>
@@ -418,7 +416,7 @@
     <string name="import_export_title">Importa/Esporta</string>
     <string name="import_title">Importa</string>
     <string name="import_from">Importa da</string>
-    <string name="export_to">Esporta a</string>
+    <string name="export_to">Esporta in</string>
 
     <string name="import_ongoing">Importando…</string>
     <string name="export_ongoing">Esportando…</string>
@@ -446,7 +444,7 @@
 \n 
 \nVuoi continuare?</string>
 <string name="download_thumbnail_title">Carica miniature</string>
-    <string name="download_thumbnail_summary">Disabilita per interrompere il caricamento delle miniature, la loro archiviazione e l\'utilizzo della memoria. La modifica di questa opzione cancellerà la cache delle immagini in memoria e sul disco.</string>
+    <string name="download_thumbnail_summary">Disabilita per interrompere il caricamento delle miniature, la loro archiviazione e l\'utilizzo della memoria. La modifica di questa opzione cancellerà la cache delle immagini in memoria e sul disco</string>
     <string name="thumbnail_cache_wipe_complete_notice">Pulizia della cache delle immagini completata</string>
     <string name="metadata_cache_wipe_title">Pulisci la cache dei metadati</string>
     <string name="metadata_cache_wipe_summary">Rimuovi tutti i dati delle pagine web memorizzati nella cache</string>
@@ -454,7 +452,7 @@
     <string name="playback_speed_control">Controlli della velocità di riproduzione</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Tono</string>
-    <string name="unhook_checkbox">Slega (può causare distorsione)</string>
+    <string name="unhook_checkbox">Scollega (può causare distorsione)</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Valore predefinito</string>
 <string name="no_streams_available_download">Nessun flusso disponibile per il download</string>
@@ -463,16 +461,16 @@
     <string name="preferred_open_action_settings_summary">Azione predefinita all\'apertura del contenuto — %s</string>
 
     <string name="caption_setting_title">Sottotitoli</string>
-    <string name="caption_setting_description">Modifica la dimensione e gli stili di sfondo dei sottotitoli. Richiede il riavvio dell\'app per rendere effettive le modifiche.</string>
+    <string name="caption_setting_description">Modifica la dimensione e gli stili di sfondo dei sottotitoli. Richiede il riavvio dell\'app per rendere effettive le modifiche</string>
 
     <string name="toast_no_player">Nessuna app installata per riprodurre questo file</string>
 
     <string name="clear_views_history_title">Pulisci cronologia visualizzazioni</string>
-    <string name="clear_views_history_summary">Elimina la cronologia dei flussi riprodotti.</string>
+    <string name="clear_views_history_summary">Elimina la cronologia dei flussi riprodotti</string>
     <string name="delete_view_history_alert">Elimina l\'intera cronologia visualizzazioni.</string>
     <string name="view_history_deleted">Cronologia visualizzazioni eliminata.</string>
     <string name="clear_search_history_title">Pulisci cronologia delle ricerche</string>
-    <string name="clear_search_history_summary">Elimina la cronologia delle ricerche effettuate.</string>
+    <string name="clear_search_history_summary">Cancella la cronologia dei termini di ricerca</string>
     <string name="delete_search_history_alert">Elimina l\'intera cronologia delle ricerche.</string>
     <string name="search_history_deleted">Cronologia delle ricerche eliminata.</string>
     <string name="one_item_deleted">1 elemento eliminato.</string>
@@ -491,4 +489,18 @@
 
     <string name="limit_data_usage_none_description">Senza limiti</string>
     <string name="limit_mobile_data_usage_title">Limita la risoluzione quando si utilizzano dati mobili</string>
+    <string name="skip_silence_checkbox">Avanzamento veloce durante il silenzio</string>
+    <string name="playback_step">Step</string>
+    <string name="playback_reset">Reset</string>
+
+    <string name="minimize_on_exit_title">Minimizza al cambio applicazione</string>
+    <string name="minimize_on_exit_summary">Azione quando si passa ad un\'altra applicazione dal lettore video principale — %s</string>
+    <string name="minimize_on_exit_none_description">Nessuna</string>
+    <string name="minimize_on_exit_background_description">Minimizza al lettore in sottofondo</string>
+    <string name="minimize_on_exit_popup_description">Minimizza al lettore popup</string>
+
+<string name="channels">Canali</string>
+    <string name="playlists">Playlist</string>
+    <string name="tracks">Tracce</string>
+    <string name="users">Utenti</string>
     </resources>

@@ -56,7 +56,6 @@ public class ZipHelper {
     /**
      * This will extract data from Zipfiles.
      * Caution this will override the original file.
-     * @param inZip The ZipOutputStream where the data is stored in
      * @param file The path of the file on the disk where the data should be extracted to.
      * @param name The path of the file inside the zip.
      * @return will return true if the file was found within the zip file

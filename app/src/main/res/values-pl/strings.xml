@@ -35,8 +35,6 @@
     <string name="show_play_with_kodi_summary">Wyświetl opcję, aby odtworzyć wideo przez Kodi</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Domyślny format audio</string>
-    <string name="webm_description">WebM — otwarty i darmowy format</string>
-    <string name="m4a_description">M4A — lepsza jakość</string>
     <string name="theme_title">Motyw</string>
     <string name="dark_theme_title">Ciemny</string>
     <string name="light_theme_title">Jasny</string>
@@ -266,7 +264,7 @@
     <string name="charset_most_special_characters">Większość znaków specjalnych</string>
 
     <string name="donation_title">Dotacja</string>
-    <string name="donation_encouragement">NewPipe rozwijane jest przez wolontariuszy, którzy poświęcają swój wolny czas, by zapewnić ci jak najlepsze wrażenia podczas korzystania z aplikacji. To dobry moment, aby wesprzeć programistów i sprawić, by program był jeszcze lepszy, nie przerywając przy tym popijania kawy!</string>
+    <string name="donation_encouragement">NewPipe rozwijane jest przez wolontariuszy, którzy poświęcają swój wolny czas, by zapewnić ci jak najlepsze wrażenia podczas korzystania z aplikacji. To dobry moment, aby wesprzeć programistów i sprawić, by program był jeszcze lepszy, nie przerywając przy tym popijania kawy.</string>
     <string name="give_back">Daj od siebie</string>
     <string name="website_title">Witryna</string>
     <string name="website_encouragement">By otrzymać więcej informacji oraz najnowsze wiadomości o NewPipe, odwiedź naszą stronę.</string>
@@ -331,7 +329,7 @@
     <string name="import_data_title">Importuj dane</string>
     <string name="export_data_title">Eksportuj dane</string>
     <string name="import_data_summary">Nadpisuje bieżącą historię i subskrypcje</string>
-    <string name="export_data_summary">Eksportuje bieżącą historię, subskrypcje i playlisty.</string>
+    <string name="export_data_summary">Eksportuje bieżącą historię, subskrypcje i playlisty</string>
     <string name="detail_drag_description">Przeciągnij, aby zmienić kolejność</string>
 
     <string name="create">Utwórz</string>
@@ -396,13 +394,13 @@
 <string name="use_inexact_seek_title">Użyj szybkiego niedokładnego wyszukiwania</string>
     <string name="use_inexact_seek_summary">Szybkie wyszukiwanie pozwala przeskoczyć do wybranej pozycji szybciej, lecz jest mniej precyzyjne</string>
     <string name="download_thumbnail_title">Załaduj miniatury</string>
-    <string name="download_thumbnail_summary">Wyłącz, by aplikacja nie ściągała miniatur. Oszczędza transfer i pamięć. Zmiana tej opcji spowoduje wyczyszczenie pamięci podręcznej miniatur.</string>
+    <string name="download_thumbnail_summary">Wyłącz, by aplikacja nie ściągała miniatur. Oszczędza transfer i pamięć. Zmiana tej opcji spowoduje wyczyszczenie pamięci podręcznej miniatur</string>
     <string name="thumbnail_cache_wipe_complete_notice">Wyczyszczono pamięć podręczną miniatur</string>
     <string name="metadata_cache_wipe_title">Wyczyść pamięć podręczną metadanych</string>
     <string name="metadata_cache_wipe_summary">Wyczyść pamięć podręczną stron</string>
     <string name="metadata_cache_wipe_complete_notice">Wyczyszczono pamięć podręczną metadanych</string>
     <string name="auto_queue_title">Automatycznie dołącz kolejny stream</string>
-    <string name="auto_queue_summary">Automatycznie dodaj kolejny powiązany stream w momencie rozpoczęcia odtwarzania ostatniego elementu w niezapętlonej kolejce.</string>
+    <string name="auto_queue_summary">Automatycznie dodaj kolejny powiązany stream w momencie rozpoczęcia odtwarzania ostatniego elementu w niezapętlonej kolejce</string>
     <string name="file">Plik</string>
 
     <string name="invalid_directory">Nieprawidłowy katalog</string>
@@ -456,14 +454,14 @@
     <string name="preferred_open_action_settings_summary">Domyślna akcja podczas otwierania materiału - %s</string>
 
     <string name="caption_setting_title">Napisy</string>
-    <string name="caption_setting_description">Zmień kolor tekstu i tła napisów. Wymaga restartu aplikacji.</string>
+    <string name="caption_setting_description">Zmień kolor tekstu i tła napisów. Wymaga restartu aplikacji</string>
 
     <string name="clear_views_history_title">Wyczyść historię oglądania</string>
-    <string name="clear_views_history_summary">Usuwa historię odtworzonych strumieni.</string>
+    <string name="clear_views_history_summary">Usuwa historię odtworzonych strumieni</string>
     <string name="delete_view_history_alert">Usuń całą historię oglądania.</string>
     <string name="view_history_deleted">Usunięto historię oglądania.</string>
     <string name="clear_search_history_title">Wyczyść historię wyszukiwania</string>
-    <string name="clear_search_history_summary">Usuwa historię wyszukiwania słów kluczowych.</string>
+    <string name="clear_search_history_summary">Usuwa historię wyszukiwania słów kluczowych</string>
     <string name="delete_search_history_alert">Usuń całą historię wyszukiwania.</string>
     <string name="search_history_deleted">Usunięto historię wyszukiwania.</string>
     <string name="one_item_deleted">Usunięto jedną pozycję.</string>
@@ -473,4 +471,14 @@
     <string name="app_license">NewPipe jest wolnym i bezpłatnym oprogramowaniem: Możesz używać, brać udział oraz udoskonalać je według własnego uznania. W szczególności możesz redystrybuować lub/i modyfikować pod zasadami GNU General Public License opublikowanej przez Free Software Fundation w wersji 3 lub (w zależności od ciebie) dowolnej późniejszej wersji.</string>
     <string name="import_settings">Czy chcesz zaimportować również ustawienia?</string>
 
+    <string name="privacy_policy_title">Polityka prywatności programu NewPipe</string>
+    <string name="privacy_policy_encouragement">Projekt NewPipe bardzo poważnie traktuję politykę prywatności. Aplikacja nie zbiera żadnych danych bez Twojej zgody. Polityka prywatności programu NewPipe szczegółowo wyjaśnia, jakie dane są zbierane i przesyłane, kiedy wysyłasz raport o błędach aplikacji.</string>
+    <string name="read_privacy_policy">Przeczytaj politykę prywatności</string>
+    <string name="start_accept_privacy_policy">Ze względu na wprowadzenie Ogólnego Rozporządzenia o ochronie danych (RODO), chcielibyśmy zwrócić Twoją uwagę na politykę prywatności NewPipe. Proszę przeczytać ją uważnie.
+\nMusisz ją zaakceptować, aby przesyłać raporty o błędach.</string>
+    <string name="accept">Akceptuj</string>
+    <string name="decline">Odrzuć</string>
+
+    <string name="limit_data_usage_none_description">Brak limitu</string>
+    <string name="limit_mobile_data_usage_title">Limit przy użyciu danych mobilnych</string>
     </resources>

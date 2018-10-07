@@ -5,12 +5,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.util.ArraySet;
 import android.util.Log;
 
-import com.google.android.exoplayer2.source.DynamicConcatenatingMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
-import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.mediasource.FailedMediaSource;
 import org.schabi.newpipe.player.mediasource.LoadedMediaSource;
 import org.schabi.newpipe.player.mediasource.ManagedMediaSource;
@@ -24,10 +22,8 @@ import org.schabi.newpipe.player.playqueue.events.RemoveEvent;
 import org.schabi.newpipe.player.playqueue.events.ReorderEvent;
 import org.schabi.newpipe.util.ServiceHelper;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -37,8 +33,6 @@ import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.disposables.SerialDisposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.internal.subscriptions.EmptySubscription;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
@@ -104,7 +98,6 @@ public class MediaSourceManager {
     private final static int MAXIMUM_LOADER_SIZE = WINDOW_SIZE * 2 + 1;
     @NonNull private final CompositeDisposable loaderReactor;
     @NonNull private final Set<PlayQueueItem> loadingItems;
-    @NonNull private final SerialDisposable syncReactor;
 
     @NonNull private final AtomicBoolean isBlocked;
 
@@ -144,7 +137,6 @@ public class MediaSourceManager {
 
         this.playQueueReactor = EmptySubscription.INSTANCE;
         this.loaderReactor = new CompositeDisposable();
-        this.syncReactor = new SerialDisposable();
 
         this.isBlocked = new AtomicBoolean(false);
 
@@ -171,8 +163,6 @@ public class MediaSourceManager {
 
         playQueueReactor.cancel();
         loaderReactor.dispose();
-        syncReactor.dispose();
-        playlist.dispose();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -311,21 +301,7 @@ public class MediaSourceManager {
         final PlayQueueItem currentItem = playQueue.getItem();
         if (isBlocked.get() || currentItem == null) return;
 
-        final Consumer<StreamInfo> onSuccess = info -> syncInternal(currentItem, info);
-        final Consumer<Throwable> onError = throwable -> syncInternal(currentItem, null);
-
-        final Disposable sync = currentItem.getStream()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(onSuccess, onError);
-        syncReactor.set(sync);
-    }
-
-    private void syncInternal(@NonNull final PlayQueueItem item,
-                              @Nullable final StreamInfo info) {
-        // Ensure the current item is up to date with the play queue
-        if (playQueue.getItem() == item) {
-            playbackListener.onPlaybackSynchronize(item, info);
-        }
+        playbackListener.onPlaybackSynchronize(currentItem);
     }
 
     private synchronized void maybeSynchronizePlayer() {
@@ -359,7 +335,7 @@ public class MediaSourceManager {
 
     private void loadImmediate() {
         if (DEBUG) Log.d(TAG, "MediaSource - loadImmediate() called");
-        final ItemsToLoad itemsToLoad = getItemsToLoad(playQueue, WINDOW_SIZE);
+        final ItemsToLoad itemsToLoad = getItemsToLoad(playQueue);
         if (itemsToLoad == null) return;
 
         // Evict the previous items being loaded to free up memory, before start loading new ones
@@ -424,7 +400,8 @@ public class MediaSourceManager {
     }
 
     /**
-     * Checks if the corresponding MediaSource in {@link DynamicConcatenatingMediaSource}
+     * Checks if the corresponding MediaSource in
+     * {@link com.google.android.exoplayer2.source.ConcatenatingMediaSource}
      * for a given {@link PlayQueueItem} needs replacement, either due to gapless playback
      * readiness or playlist desynchronization.
      * <br><br>
@@ -481,8 +458,6 @@ public class MediaSourceManager {
 
     private void resetSources() {
         if (DEBUG) Log.d(TAG, "resetSources() called.");
-
-        playlist.dispose();
         playlist = new ManagedMediaSourcePlaylist();
     }
 
@@ -497,8 +472,7 @@ public class MediaSourceManager {
     // Manager Helpers
     //////////////////////////////////////////////////////////////////////////*/
     @Nullable
-    private static ItemsToLoad getItemsToLoad(@NonNull final PlayQueue playQueue,
-                                              final int windowSize) {
+    private static ItemsToLoad getItemsToLoad(@NonNull final PlayQueue playQueue) {
         // The current item has higher priority
         final int currentIndex = playQueue.getIndex();
         final PlayQueueItem currentItem = playQueue.getItem(currentIndex);
@@ -507,8 +481,8 @@ public class MediaSourceManager {
         // The rest are just for seamless playback
         // Although timeline is not updated prior to the current index, these sources are still
         // loaded into the cache for faster retrieval at a potentially later time.
-        final int leftBound = Math.max(0, currentIndex - windowSize);
-        final int rightLimit = currentIndex + windowSize + 1;
+        final int leftBound = Math.max(0, currentIndex - MediaSourceManager.WINDOW_SIZE);
+        final int rightLimit = currentIndex + MediaSourceManager.WINDOW_SIZE + 1;
         final int rightBound = Math.min(playQueue.size(), rightLimit);
         final Set<PlayQueueItem> neighbors = new ArraySet<>(
                 playQueue.getStreams().subList(leftBound,rightBound));

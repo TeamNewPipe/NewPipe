@@ -58,8 +58,6 @@
     <string name="play_audio">ده‌نگ</string>
     <string name="default_audio_format_title">جۆری سه‌ره‌كی ده‌نگ</string>
     <string name="default_video_format_title">جۆری سه‌ره‌كی ڤیدیۆ</string>
-    <string name="webm_description">WebM — جۆری ئاسایی</string>
-    <string name="m4a_description">M4A — كوالێتی به‌رزتر</string>
     <string name="theme_title">ڕووكار</string>
     <string name="light_theme_title">ڕووناك</string>
     <string name="dark_theme_title">تاریك</string>

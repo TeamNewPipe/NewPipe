@@ -8,8 +8,6 @@ import com.google.android.exoplayer2.source.MediaSource;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 
-import java.util.List;
-
 public interface PlaybackListener {
 
     /**
@@ -45,7 +43,7 @@ public interface PlaybackListener {
      *
      * May be called anytime at any amount once unblock is called.
      * */
-    void onPlaybackSynchronize(@NonNull final PlayQueueItem item, @Nullable final StreamInfo info);
+    void onPlaybackSynchronize(@NonNull final PlayQueueItem item);
 
     /**
      * Requests the listener to resolve a stream info into a media source

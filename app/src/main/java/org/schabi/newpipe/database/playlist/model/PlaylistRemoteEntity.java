@@ -6,7 +6,6 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
-import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistLocalItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.util.Constants;
@@ -69,6 +68,14 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
         this(info.getServiceId(), info.getName(), info.getUrl(),
                 info.getThumbnailUrl() == null ? info.getUploaderAvatarUrl() : info.getThumbnailUrl(),
                 info.getUploaderName(), info.getStreamCount());
+    }
+
+    @Ignore
+    public boolean isIdenticalTo(final PlaylistInfo info) {
+        return getServiceId() == info.getServiceId() && getName().equals(info.getName()) &&
+                getStreamCount() == info.getStreamCount() && getUrl().equals(info.getUrl()) &&
+                getThumbnailUrl().equals(info.getThumbnailUrl()) &&
+                getUploader().equals(info.getUploaderName());
     }
 
     public long getUid() {

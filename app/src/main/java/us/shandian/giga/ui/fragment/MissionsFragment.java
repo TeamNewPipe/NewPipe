@@ -10,22 +10,28 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.download.DeleteDownloadManager;
 
+import io.reactivex.disposables.Disposable;
 import us.shandian.giga.get.DownloadManager;
 import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.ui.adapter.MissionAdapter;
 
 public abstract class MissionsFragment extends Fragment {
-    private DownloadManager mManager;
+    private DownloadManager mDownloadManager;
     private DownloadManagerService.DMBinder mBinder;
 
     private SharedPreferences mPrefs;
@@ -37,14 +43,19 @@ public abstract class MissionsFragment extends Fragment {
     private GridLayoutManager mGridManager;
     private LinearLayoutManager mLinearManager;
     private Context mActivity;
+    private DeleteDownloadManager mDeleteDownloadManager;
+    private Disposable mDeleteDisposable;
 
-    private ServiceConnection mConnection = new ServiceConnection() {
+    private final ServiceConnection mConnection = new ServiceConnection() {
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder binder) {
             mBinder = (DownloadManagerService.DMBinder) binder;
-            mManager = setupDownloadManager(mBinder);
-            updateList();
+            mDownloadManager = setupDownloadManager(mBinder);
+            if (mDeleteDownloadManager != null) {
+                mDeleteDownloadManager.setDownloadManager(mDownloadManager);
+                updateList();
+            }
         }
 
         @Override
@@ -54,6 +65,14 @@ public abstract class MissionsFragment extends Fragment {
 
 
     };
+
+    public void setDeleteManager(@NonNull DeleteDownloadManager deleteDownloadManager) {
+        mDeleteDownloadManager = deleteDownloadManager;
+        if (mDownloadManager != null) {
+            mDeleteDownloadManager.setDownloadManager(mDownloadManager);
+            updateList();
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -105,23 +124,43 @@ public abstract class MissionsFragment extends Fragment {
     }
 
     @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        if (mDeleteDownloadManager != null) {
+            mDeleteDisposable = mDeleteDownloadManager.getUndoObservable().subscribe(mission -> {
+                if (mAdapter != null) {
+                    mAdapter.updateItemList();
+                    mAdapter.notifyDataSetChanged();
+                }
+            });
+        }
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         getActivity().unbindService(mConnection);
+        if (mDeleteDisposable != null) {
+            mDeleteDisposable.dispose();
+        }
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        mSwitch = menu.findItem(R.id.switch_mode);
+        super.onPrepareOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
-
-		/*switch (item.getItemId()) {
+        switch (item.getItemId()) {
             case R.id.switch_mode:
 				mLinear = !mLinear;
 				updateList();
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
-		}*/
+		}
     }
 
     public void notifyChange() {
@@ -129,7 +168,7 @@ public abstract class MissionsFragment extends Fragment {
     }
 
     private void updateList() {
-        mAdapter = new MissionAdapter((Activity) mActivity, mBinder, mManager, mLinear);
+        mAdapter = new MissionAdapter((Activity) mActivity, mBinder, mDownloadManager, mDeleteDownloadManager, mLinear);
 
         if (mLinear) {
             mList.setLayoutManager(mLinearManager);
@@ -143,7 +182,7 @@ public abstract class MissionsFragment extends Fragment {
             mSwitch.setIcon(mLinear ? R.drawable.grid : R.drawable.list);
         }
 
-        mPrefs.edit().putBoolean("linear", mLinear).commit();
+        mPrefs.edit().putBoolean("linear", mLinear).apply();
     }
 
     protected abstract DownloadManager setupDownloadManager(DownloadManagerService.DMBinder binder);

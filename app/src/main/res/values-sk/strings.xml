@@ -32,8 +32,6 @@
     <string name="show_play_with_kodi_summary">Zobrazovať možnosť prehrať video cez mediálne centrum Kodi</string>
     <string name="play_audio">Zvuk</string>
     <string name="default_audio_format_title">Predvolený zvukový formát</string>
-    <string name="webm_description">WebM — voľný formát</string>
-    <string name="m4a_description">M4A — lepšia kvalita</string>
     <string name="theme_title">Téma</string>
     <string name="dark_theme_title">Tmavá</string>
     <string name="light_theme_title">Svetlá</string>
@@ -293,7 +291,7 @@
     <string name="import_data_title">Importovať databázu</string>
     <string name="export_data_title">Exportovať databázu</string>
     <string name="import_data_summary">Prepíše aktuálnu históriu pozretí a odberov</string>
-    <string name="export_data_summary">Exportovať históriu, odbery a zoznamy skladieb.</string>
+    <string name="export_data_summary">Exportovať históriu, odbery a zoznamy skladieb</string>
     <string name="player_stream_failure">Nepodarilo sa prehrať tento stream</string>
     <string name="player_unrecoverable_failure">Pri prehrávaní došlo k chybe a nemožno pokračovať</string>
     <string name="player_recoverable_failure">Zotavovanie po chybe v prehrávaní</string>
@@ -361,7 +359,7 @@
     <string name="always_ask_open_action">Vždy sa opýtať</string>
     
     <string name="preferred_player_fetcher_notification_title">Získavajú sa informácie…</string>
-    <string name="preferred_player_fetcher_notification_message">Požadovaný obsah sa načítava</string>
+    <string name="preferred_player_fetcher_notification_message">Načítanie požadované obsahu</string>
 
     <string name="create_playlist">Vytvoriť nový zoznam skladieb</string>
     <string name="delete_playlist">Vymazať zoznam skladieb</string>
@@ -374,7 +372,7 @@
     <string name="unbookmark_playlist">Odstrániť Záložku</string>
 
     <string name="delete_playlist_prompt">Chcete odstrániť tento zoznam skladieb?</string>
-    <string name="playlist_creation_success">Zoznam skladieb bol vytvorený</string>
+    <string name="playlist_creation_success">Zoznam skladieb vytvorený</string>
     <string name="playlist_add_stream_success">Pridané do zoznamu skladieb</string>
     <string name="playlist_thumbnail_change_success">Miniatúra zoznamu skladieb bola zmenená</string>
     <string name="playlist_delete_failure">Nemožno odstrániť zoznam skladieb</string>
@@ -392,13 +390,13 @@
 <string name="use_inexact_seek_title">Používať rýchly posun</string>
     <string name="use_inexact_seek_summary">Rýchly posun umožňuje prejsť na novú pozíciu rýchlejšie, ale s menšou presnosťou</string>
     <string name="download_thumbnail_title">Načítanie miniatúr</string>
-    <string name="download_thumbnail_summary">Vypnutím tejto funkcie sa nebudú vytvárať miniatúry a tým sa ušetrí miesto a pamäť. Zmena nastavení spôsobuje vyčistenie vyrovnávacej pamäte.</string>
+    <string name="download_thumbnail_summary">Vypnutím tejto funkcie sa nebudú vytvárať miniatúry a tým sa ušetrí miesto a pamäť. Zmena nastavení spôsobuje vyčistenie vyrovnávacej pamäte</string>
     <string name="thumbnail_cache_wipe_complete_notice">Vyrovnávacia pamäť obrázkov vymazaná</string>
     <string name="metadata_cache_wipe_title">Vymazať metadáta uložené vo vyrovnávacej pamäti</string>
     <string name="metadata_cache_wipe_summary">Odstrániť všetky údaje webových stránok vo vyrovnávacej pamäti</string>
     <string name="metadata_cache_wipe_complete_notice">Vyrovnávacia pamäť metadát bola vymazaná</string>
     <string name="auto_queue_title">Automaticky zaradiť daľší stream</string>
-    <string name="auto_queue_summary">Automaticky zaradí súvisiaci stream, keď prehrávanie začne na poslednom streame v neopakujúcich sa zoznamoch prehrávania.</string>
+    <string name="auto_queue_summary">Automaticky zaradí súvisiaci stream, keď prehrávanie začne na poslednom streame v neopakujúcich sa zoznamoch prehrávania</string>
     <string name="settings_category_debug_title">Ladenie</string>
     <string name="file">Súbor</string>
 
@@ -414,18 +412,18 @@
     <string name="drawer_header_action_paceholder_text">Čoskoro sa tu niečo objaví ;D</string>
 
 
-    <string name="preferred_open_action_settings_title">Preferovaná akcia pri otvorení</string>
+    <string name="preferred_open_action_settings_title">Preferovaná akcia \'otvoriť\'</string>
     <string name="preferred_open_action_settings_summary">Predvolená akcia pri otváraní obsahu — %s</string>
 
     <string name="caption_auto_generated">Automaticky vygenerované</string>
 
     <string name="caption_setting_title">Nastavenie titulkov</string>
-    <string name="caption_setting_description">Upravte mierku textu titulkov a štýly pozadia. Vyžaduje reštartovanie prehrávača.</string>
+    <string name="caption_setting_description">Upravte mierku textu titulkov a štýly pozadia. Vyžaduje reštart prehrávača</string>
 
     <string name="enable_leak_canary_title">Povoliť službu LeakCanary</string>
     <string name="enable_leak_canary_summary">Monitorovanie pretečenia pamäte môže spôsobiť, že aplikácia nebude reagovať</string>
 
-    <string name="enable_disposed_exceptions_title">Nahlásiť mimocyklické chyby</string>
+    <string name="enable_disposed_exceptions_title">Nahlásiť mimo-cyklické chyby</string>
     <string name="enable_disposed_exceptions_summary">Vynútenie hlásenia nedodržateľných výnimiek Rx, ktoré sa vyskytnú mimo časového cyklu fragmentu alebo aktivity po zlikvidovaní</string>
 
     <string name="import_export_title">Import/Export
@@ -451,14 +449,14 @@
 \n2. Po výzve sa prihláste do svojho účtu 
 \n3. Sťahovanie by malo začať (to je exportovaný zoznam) 
 \n</string>
-    <string name="import_soundcloud_instructions">"Pre importovanie vašich SoundCloud dát, musíte poznať adresu URL alebo ID vašeho profilu. Ak poznáte jedno alebo druhé, zadajte ho do nižšie uvedeného vstupu a ste pripravení ísť.
-\n
-\nAk nepoznáte ani URL ani ID vašeho profilu, môžete postupovať nasledovne:
-\n
-\n1. V niektorom prehliadači povoľte režim \"desktop\" (web nie je dostupný pre mobilné zariadenia)
-\n2. Prejdite na túto adresu URL:  %1$s
-\n3. Po výzve sa prihláste do svojho účtu
-\n4. Skopírujte adresu URL, na ktorú ste boli presmerovaní (to je adresa vášho profilu)
+    <string name="import_soundcloud_instructions">"Importovať SoundCloud profil zadaním URL adresy alebo vášho ID:
+\n 
+\nAk nepoznáte ani URL ani ID vašeho profilu, môžete postupovať nasledovne: 
+\n 
+\n1. V niektorom prehliadači povoľte režim \"desktop\" (web nie je dostupný pre mobilné zariadenia) 
+\n2. Prejdite na túto adresu URL:  %1$s 
+\n3. Po výzve sa prihláste do svojho účtu 
+\n4. Skopírujte adresu URL, na ktorú ste boli presmerovaní (to je adresa vášho profilu).
 \n"</string>
     <string name="import_soundcloud_instructions_hint">ID,soundcloud.com/ID</string>
 
@@ -473,14 +471,26 @@
     <string name="playback_nightcore">Nightcore režim</string>
     <string name="playback_default">Predvolené</string>
 <string name="clear_views_history_title">Vymazať históriu pozretí</string>
-    <string name="clear_views_history_summary">Odstráni históriu prehrávaných streamov.</string>
+    <string name="clear_views_history_summary">Odstráni históriu prehrávaných streamov</string>
     <string name="delete_view_history_alert">Vymazať celú históriu pozretí.</string>
     <string name="view_history_deleted">História pozretí bola vymazaná.</string>
     <string name="clear_search_history_title">Vymazať históriu vyhľadávania</string>
-    <string name="clear_search_history_summary">Vymaže históriu vyhľadávania kľúčových slov.</string>
+    <string name="clear_search_history_summary">Vymaže históriu vyhľadávania kľúčových slov</string>
     <string name="delete_search_history_alert">Vymazať celú históriu vyhľadávania.</string>
     <string name="search_history_deleted">História vyhľadávaní bola vymazaná.</string>
     <string name="one_item_deleted">1 položka bola vymazaná.</string>
 
     <string name="app_license">"NewPipe je slobodný softvér pod licenciou copyleft. Môžete ho používať, študovať a vylepšovať ako len chcete.  Konkrétne ho môžete šíriť a/alebo upravovať pod podmienkami Všeobecnej verejnej licencie GNU, ako ju publikuje Free Software Foundation, buď verzia 3 licencie, alebo (podľa vašej voľby) ktorákoľvek neskoršia verzia."</string>
+    <string name="privacy_policy_title">Ochrana osobných údajov v NewPipe</string>
+    <string name="privacy_policy_encouragement">NewPipe projekt berie vaše súkromie vážne. Preto aplikácia nezhromažďuje žiadne údaje bez vášho súhlasu.
+\nNewPipe v ochrane súkromia podrobne vysvetľuje, aké údaje budú odoslané a uložené pri hlásení o páde.</string>
+    <string name="read_privacy_policy">Prečítajte si pravidlá ochrany osobných údajov</string>
+    <string name="import_settings">Chcete zároveň importovať aj nastavenia?</string>
+
+    <string name="start_accept_privacy_policy">V súlade s Európskym Všeobecným Nariadením o Ochrane Údajov (GDPR), chceme upriamiť vašu pozornosť na ochranu osobných údajov v NewPipe. Starostlivo si ich prečítajte. Musíte ich prijať pred nahlásením chyby.</string>
+    <string name="accept">Prijať</string>
+    <string name="decline">Odmietnuť</string>
+
+    <string name="limit_data_usage_none_description">Bez limitu</string>
+    <string name="limit_mobile_data_usage_title">Limitovať rozlíšenie pri použití mobilných dát</string>
     </resources>

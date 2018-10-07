@@ -32,8 +32,6 @@
     <string name="show_play_with_kodi_summary">Vis valg for avspilling via Kodi mediasenter</string>
     <string name="play_audio">Lyd</string>
     <string name="default_audio_format_title">Forvalgt lydformat</string>
-    <string name="webm_description">WebM — fritt format</string>
-    <string name="m4a_description">M4A — bedre kvalitet</string>
     <string name="theme_title">Drakt</string>
     <string name="dark_theme_title">Mørk</string>
     <string name="light_theme_title">Lys</string>
@@ -324,7 +322,7 @@
 <string name="import_data_title">Importer database</string>
     <string name="export_data_title">Eksporter database</string>
     <string name="import_data_summary">Vil overstyre din nåværende historikk og abonnementsliste</string>
-    <string name="export_data_summary">Eksporter historikk, abonnementer og spillelister.</string>
+    <string name="export_data_summary">Eksporter historikk, abonnementer og spillelister</string>
     <string name="export_complete_toast">Eksport fullført</string>
     <string name="import_complete_toast">Import fullført</string>
     <string name="no_valid_zip_file">Ingen gyldig ZIP-fil</string>
@@ -431,7 +429,7 @@
     <string name="delete_view_history_alert">Slett hele visningshistorikken.</string>
     <string name="view_history_deleted">Visningshistorikk slettet.</string>
     <string name="clear_search_history_title">Tøm søkehistorikk</string>
-    <string name="clear_search_history_summary">Sletter historikken for søkte nøkkelord.</string>
+    <string name="clear_search_history_summary">Sletter historikken for søkte nøkkelord</string>
     <string name="delete_search_history_alert">Slett hele søkehistorikken.</string>
     <string name="search_history_deleted">Søkehistorikk slettet.</string>
     <string name="one_item_deleted">Ett element slettet.</string>
@@ -439,7 +437,7 @@
     <string name="toast_no_player">Inget program installert for avspilling av denne filen.</string>
 
     <string name="caption_setting_title">Undertekster</string>
-    <string name="caption_setting_description">Endre undertekststørrelse og bakgrunnsstiler. Krever omstart av programmet for å tre i effekt.</string>
+    <string name="caption_setting_description">Endre undertekststørrelse og bakgrunnsstiler. Krever omstart av programmet for å tre i effekt</string>
 
     <string name="app_license">NewPipe er copyleft, fri programvare: Du kan bruke, studere og forbedre etter egen vilje. Spesifikt kan du redistribuere og/eller modifisere det i henhold til vilkårene gitt i GNU General Public-lisensen, som publisert av Free Software Foundation, enten versjon 3 av lisensen, eller (etter eget ønske) enhver senere versjon.</string>
     <string name="import_settings">Ønsker du også å importere innstillinger?</string>
@@ -458,8 +456,8 @@
 \n2. Logg inn når forespurt
 \n4. Kopier profil-nettadressen du ble videresendt til.</string>
     <string name="use_inexact_seek_summary">Unøyaktig blafring tillater spilleren å blafre til posisjoner raskere med redusert nøyaktighet</string>
-    <string name="download_thumbnail_summary">Skru av for å stoppe alle miniatyrbilder fra innlasting og spare data og minnebruke. Endring av dette vil tømme både disk- og minne-hurtiglager.</string>
-    <string name="auto_queue_summary">Legg til en relatert strøm ved avspilling av forrige strøm i ikke-repeterende kø.</string>
+    <string name="download_thumbnail_summary">Skru av for å stoppe alle miniatyrbilder fra innlasting og spare data og minnebruke. Endring av dette vil tømme både disk- og minne-hurtiglager</string>
+    <string name="auto_queue_summary">Legg til en relatert strøm ved avspilling av forrige strøm i ikke-repeterende kø</string>
     <string name="enable_leak_canary_summary">Minnelekkasjeoppsyn kan forårsake programmet å opptre uresponsivt under haugdumping</string>
 
     <string name="enable_disposed_exceptions_title">Rapporter feil som opptrer utenfor sin levetid</string>
@@ -477,4 +475,18 @@
     <string name="decline">Avslå</string>
 <string name="limit_data_usage_none_description">Ubegrenset</string>
     <string name="limit_mobile_data_usage_title">Begrens oppløsning når mobildata brukes</string>
+    <string name="minimize_on_exit_title">Minimer ved programbytte</string>
+    <string name="minimize_on_exit_summary">Handling ved bytting til annet program fra hovedspiller — %s</string>
+    <string name="minimize_on_exit_none_description">Ingen</string>
+    <string name="minimize_on_exit_background_description">Minimer til bakgrunnsspiller</string>
+    <string name="minimize_on_exit_popup_description">Minimer til oppsprettsspiller</string>
+
+<string name="channels">Kanaler</string>
+    <string name="playlists">Spillelister</string>
+    <string name="tracks">Spor</string>
+    <string name="users">Brukere</string>
+    <string name="skip_silence_checkbox">Hurtig foroverspoling ved stillhet</string>
+    <string name="playback_step">Steg</string>
+    <string name="playback_reset">Tilbakestill</string>
+
     </resources>

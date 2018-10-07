@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="wrap_content"
+android:layout_height="150dp"
+android:clickable="true"
+android:focusable="true">
+
+    <Button
+        android:id="@+id/drawer_header_action_button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?android:attr/selectableItemBackground"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/colorPrimary"
+        android:src="@drawable/background_header"
+        android:scaleType="centerCrop"
+        android:contentDescription="TODO" />
+
+    <ImageView
+        android:id="@+id/drawer_header_np_nude_view"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/np_logo_nude_shadow"
+        android:contentDescription="TODO" />
+
+    <TextView
+        android:id="@+id/drawer_header_np_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="@string/app_name"
+        android:layout_toRightOf="@id/drawer_header_np_nude_view"
+        android:layout_toEndOf="@id/drawer_header_np_nude_view"
+        android:layout_alignTop="@id/drawer_header_np_nude_view"
+        android:layout_alignBottom="@id/drawer_header_np_nude_view"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textColor="@color/drawer_header_font_color"
+        android:textStyle="bold|italic"/>
+
+    <TextView
+        android:id="@+id/drawer_header_service_view"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="YouTube"
+        android:layout_below="@id/drawer_header_np_text_view"
+        android:layout_alignLeft="@id/drawer_header_np_text_view"
+        android:layout_alignStart="@id/drawer_header_np_text_view"
+        android:textSize="18sp"
+        android:textColor="@color/drawer_header_font_color"
+        android:textStyle="italic"/>
+
+    <ImageView
+        android:id="@+id/drawer_arrow"
+        android:layout_width="30dp"
+        android:layout_height="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="0dp"
+        android:paddingBottom="20dp"
+        android:paddingRight="20dp"
+        android:src="@drawable/ic_arrow_down_white"
+        android:paddingEnd="20dp"
+        android:contentDescription="TODO" />
+
+</RelativeLayout>

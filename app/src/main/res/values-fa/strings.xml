@@ -35,8 +35,6 @@
     <string name="show_play_with_kodi_summary">نمایش گزینه‌ای برای پخش ویدیو با مرکز رسانهٔ کودی.</string>
     <string name="play_audio">صدا</string>
     <string name="default_audio_format_title">قالب صدای پیش‌گزیده</string>
-    <string name="webm_description">قالب آزاد — WebM</string>
-    <string name="m4a_description">کیفیت بهتر — m4a</string>
     <string name="theme_title">زمینه</string>
     <string name="dark_theme_title">تیره</string>
     <string name="light_theme_title">روشن</string>

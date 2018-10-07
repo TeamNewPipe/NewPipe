@@ -56,7 +56,7 @@ public class DownloadManagerService extends Service {
     private DownloadDataSource mDataSource;
 
 
-    private MissionListener missionListener = new MissionListener();
+    private final MissionListener missionListener = new MissionListener();
 
 
     private void notifyMediaScanner(DownloadMission mission) {
@@ -81,7 +81,7 @@ public class DownloadManagerService extends Service {
             ArrayList<String> paths = new ArrayList<>(2);
             paths.add(NewPipeSettings.getVideoDownloadPath(this));
             paths.add(NewPipeSettings.getAudioDownloadPath(this));
-            mManager = new DownloadManagerImpl(paths, mDataSource);
+            mManager = new DownloadManagerImpl(paths, mDataSource, this);
             if (DEBUG) {
                 Log.d(TAG, "mManager == null");
                 Log.d(TAG, "Download directory: " + paths);

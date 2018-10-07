@@ -23,8 +23,6 @@
     <string name="play_audio">Àudio</string>
     <string name="default_audio_format_title">Format d\'àudio per defecte</string>
     <string name="default_video_format_title">Format de vídeo per defecte</string>
-    <string name="webm_description">WebM — format lliure</string>
-    <string name="m4a_description">M4A — millor qualitat</string>
     <string name="theme_title">Tema</string>
     <string name="light_theme_title">Clar</string>
     <string name="dark_theme_title">Fosc</string>
@@ -61,7 +59,7 @@
 
     <string name="import_data_title">Importa una base de dades</string>
     <string name="export_data_title">Exporta una base de dades</string>
-    <string name="export_data_summary">Exporta l\'historial, les subscripcions i les llistes de reproducció.</string>
+    <string name="export_data_summary">Exporta l\'historial, les subscripcions i les llistes de reproducció</string>
     <string name="general_error">Error</string>
     <string name="network_error">Error de xarxa</string>
     <string name="video">Vídeo</string>
@@ -226,7 +224,7 @@
     <string name="detail_likes_img_view_description">M\'agrada</string>
     <string name="detail_dislikes_img_view_description">No m\'agrada</string>
     <string name="use_tor_title">Fes servir el Tor</string>
-    <string name="use_tor_summary">(En proves) Força el trànsit de baixada a través del Tot per a més privadesa (no compatible encara amb les emissions de vídeo).</string>
+    <string name="use_tor_summary">(En proves) Força el trànsit de baixada a través del Tor per a més privadesa (no compatible encara amb les emissions de vídeo).</string>
     <string name="report_error">Informa sobre un error</string>
     <string name="user_report">Informe de l\'usuari</string>
     <string name="search_no_results">Cap resultat</string>
@@ -310,7 +308,7 @@
     <string name="main_bg_subtitle">Toqueu el botó de cerca per començar</string>
     <string name="use_external_video_player_summary">En algunes resolucions NO hi haurà àudio quan aquesta opció estigui activada</string>
     <string name="use_external_audio_player_title">Reproductor d\'àudio extern</string>
-    <string name="download_thumbnail_summary">Desactiveu-ho per evitar que es carreguin les miniatures i estalviar dades i memòria. Si canvieu aquesta opció, s\'esborrarà la memòria cau d\'imatges tant de la memòria com de l\'emmagatzematge.</string>
+    <string name="download_thumbnail_summary">Desactiveu-ho per evitar que es carreguin les miniatures i estalviar dades i memòria. Si canvieu aquesta opció, s\'esborrarà la memòria cau d\'imatges tant de la memòria com de l\'emmagatzematge</string>
     <string name="enable_search_history_summary">Emmagatzema les cerques localment</string>
     <string name="enable_watch_history_summary">Registra els vídeos visualitzats</string>
     <string name="resume_on_audio_focus_gain_title">Reprèn automàticament</string>
@@ -390,7 +388,7 @@
     <string name="unhook_checkbox">Desvincula (pot provocar distorsió)</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="metadata_cache_wipe_summary">Elimina totes les dades de llocs web de la memòria cau</string>
-    <string name="auto_queue_summary">Afegeix a la cua un vídeo relacionat quan es reprodueix l\'últim vídeo en una cua sense repetició.</string>
+    <string name="auto_queue_summary">Afegeix a la cua un vídeo relacionat quan es reprodueix l\'últim vídeo en una cua sense repetició</string>
     <string name="show_hold_to_append_title">Mostra els missatges d\'ajuda</string>
     <string name="show_hold_to_append_summary">Mostra un missatge d\'ajuda quan el botó de mode en segon pla o emergent estigui premut a la pàgina de detalls d\'un vídeo</string>
     <string name="info_labels">Què ha passat:\\nPetició:\\nIdioma del contingut:\\nServei:\\nHora GMT:\\nPaquet:\\nVersió:\\nVersió del SO:</string>
@@ -425,16 +423,16 @@
     <string name="no_streams_available_download">No hi ha vídeos que es puguin baixar</string>
 
     <string name="caption_setting_title">Subtítols</string>
-    <string name="caption_setting_description">Modifica la mida del text i el fons dels subtítols. Cal reiniciar l\'aplicació per aplicar els canvis.</string>
+    <string name="caption_setting_description">Modifica la mida del text i el fons dels subtítols. Cal reiniciar l\'aplicació per aplicar els canvis</string>
 
     <string name="toast_no_player">No s\'ha trobat cap aplicació que pugui reproduir aquest fitxer</string>
 
     <string name="clear_views_history_title">Esborra l\'historial de reproduccions</string>
-    <string name="clear_views_history_summary">Esborra l\'historial dels vídeos que s\'han reproduït.</string>
+    <string name="clear_views_history_summary">Esborra l\'historial dels vídeos que s\'han reproduït</string>
     <string name="delete_view_history_alert">Esborra tot l\'historial de reproduccions.</string>
     <string name="view_history_deleted">S\'ha esborrat l\'historial de reproduccions.</string>
     <string name="clear_search_history_title">Esborra l\'historial de cerca</string>
-    <string name="clear_search_history_summary">Esborra l\'historial de paraules cercades.</string>
+    <string name="clear_search_history_summary">Esborra l\'historial de paraules cercades</string>
     <string name="delete_search_history_alert">Esborra tot l\'historial de cerca.</string>
     <string name="search_history_deleted">S\'ha esborrat l\'historial de cerca.</string>
     <string name="one_item_deleted">S\'ha esborrat 1 element.</string>
@@ -452,4 +450,18 @@
     <string name="decline">Rebutja</string>
 <string name="limit_data_usage_none_description">Sense restriccions</string>
     <string name="limit_mobile_data_usage_title">Restringeix la resolució quan es facin servir dades mòbils</string>
+    <string name="minimize_on_exit_title">Minimitza en canviar d\'aplicació</string>
+    <string name="minimize_on_exit_summary">Acció en canviar a una altra aplicació des del reproductor de vídeo principal — %s</string>
+    <string name="minimize_on_exit_none_description">Cap</string>
+    <string name="minimize_on_exit_background_description">Minimitza al reproductor en segon pla</string>
+    <string name="minimize_on_exit_popup_description">Minimitza al reproductor emergent</string>
+
+<string name="skip_silence_checkbox">Avança ràpid durant el silenci</string>
+    <string name="playback_step">Pas</string>
+    <string name="playback_reset">Reinicialitza</string>
+
+    <string name="channels">Canals</string>
+    <string name="playlists">Llistes de reproducció</string>
+    <string name="tracks">Pistes</string>
+    <string name="users">Usuaris</string>
     </resources>

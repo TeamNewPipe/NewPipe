@@ -1,10 +1,17 @@
 package us.shandian.giga.get;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import org.schabi.newpipe.download.ExtSDDownloadFailedActivity;
+
 import java.io.File;
 import java.io.FilenameFilter;
+import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -23,7 +30,9 @@ public class DownloadManagerImpl implements DownloadManager {
     private static final String TAG = DownloadManagerImpl.class.getSimpleName();
     private final DownloadDataSource mDownloadDataSource;
 
-    private final ArrayList<DownloadMission> mMissions = new ArrayList<DownloadMission>();
+    private final ArrayList<DownloadMission> mMissions = new ArrayList<>();
+    @NonNull
+    private final Context context;
 
     /**
      * Create a new instance
@@ -33,6 +42,13 @@ public class DownloadManagerImpl implements DownloadManager {
      */
     public DownloadManagerImpl(Collection<String> searchLocations, DownloadDataSource downloadDataSource) {
         mDownloadDataSource = downloadDataSource;
+        this.context = null;
+        loadMissions(searchLocations);
+    }
+
+    public DownloadManagerImpl(Collection<String> searchLocations, DownloadDataSource downloadDataSource, Context context) {
+        mDownloadDataSource = downloadDataSource;
+        this.context = context;
         loadMissions(searchLocations);
     }
 
@@ -107,7 +123,7 @@ public class DownloadManagerImpl implements DownloadManager {
         Collections.sort(missions, new Comparator<DownloadMission>() {
             @Override
             public int compare(DownloadMission o1, DownloadMission o2) {
-                return Long.valueOf(o1.timestamp).compareTo(o2.timestamp);
+                return Long.compare(o1.timestamp, o2.timestamp);
             }
         });
     }
@@ -277,10 +293,12 @@ public class DownloadManagerImpl implements DownloadManager {
     }
 
     private class Initializer extends Thread {
-        private DownloadMission mission;
+        private final DownloadMission mission;
+        private final Handler handler;
 
         public Initializer(DownloadMission mission) {
             this.mission = mission;
+            this.handler = new Handler();
         }
 
         @Override
@@ -335,6 +353,13 @@ public class DownloadManagerImpl implements DownloadManager {
                 af.close();
 
                 mission.start();
+            } catch (IOException ie) {
+                if(context == null) throw new RuntimeException(ie);
+
+                if(ie.getMessage().contains("Permission denied")) {
+                    handler.post(() ->
+                        context.startActivity(new Intent(context, ExtSDDownloadFailedActivity.class)));
+                } else throw new RuntimeException(ie);
             } catch (Exception e) {
                 // TODO Notify
                 throw new RuntimeException(e);

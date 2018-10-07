@@ -5,7 +5,6 @@
     <string name="your_comment">Seu comentário (em inglês):</string>
     <string name="what_happened_headline">O que aconteceu:</string>
     <string name="what_device_headline">Informações:</string>
-    <string name="webm_description">WebM — formato aberto</string>
     <string name="view_count_text">%1$s visualizações</string>
     <string name="view">Reproduzir</string>
     <string name="video_is_age_restricted">Vídeo com restrição de idade. Permissão para vídeos com essa restrição podem ser feitas no menu configurações.</string>
@@ -78,7 +77,6 @@
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
     <string name="did_you_mean">Você quis dizer: %1$s ?</string>
-    <string name="m4a_description">M4A — melhor qualidade</string>
     <string name="add">Nova missão</string>
     <string name="app_ui_crash">App/interface parou</string>
     <string name="background_player_playing_toast">Reproduzindo em segundo plano</string>
@@ -100,7 +98,7 @@
     <string name="msg_threads">Threads</string>
     <string name="msg_url_malform">URL inválida ou internet indisponível</string>
     <string name="no_available_dir">Selecione uma pasta para download</string>
-    <string name="no_player_found">Nenhum player de stream encontrado. Deseja Instalar o VLC?</string>
+    <string name="no_player_found">Nenhum player de stream encontrado. Deseja instalar o VLC?</string>
     <string name="parsing_error">Não foi possível interpretar o site</string>
     <string name="play_audio">Áudio</string>
     <string name="play_btn_text">Reproduzir</string>
@@ -310,7 +308,7 @@ abrir em modo popup</string>
 <string name="import_data_title">Importar base de dados</string>
     <string name="export_data_title">Exportar base de dados</string>
     <string name="import_data_summary">Isso irá sobrescrever seu histórico e inscrições</string>
-    <string name="export_data_summary">Exportar histórico, inscrições e listas de reprodução.</string>
+    <string name="export_data_summary">Exportar histórico, inscrições e listas de reprodução</string>
     <string name="export_complete_toast">Exportação completa</string>
     <string name="import_complete_toast">Importação completa</string>
     <string name="no_valid_zip_file">Não há nenhum arquivo ZIP válido</string>
@@ -379,7 +377,7 @@ abrir em modo popup</string>
 <string name="use_inexact_seek_title">Usar índice de indexação rápido porém não preciso</string>
     <string name="use_inexact_seek_summary">Usar índice de indexação inexato</string>
     <string name="auto_queue_title">Adicionar a próxima stream à fila automaticamente</string>
-    <string name="auto_queue_summary">Auto anexar uma stream relacionada quando a reprodução iniciar na última stream em uma fila não repetitiva.</string>
+    <string name="auto_queue_summary">Auto anexar uma stream relacionada quando a reprodução iniciar na última stream em uma fila não repetitiva</string>
     <string name="live_sync">Sincronizar</string>
 
     <string name="file">Arquivo</string>
@@ -427,9 +425,9 @@ abrir em modo popup</string>
     <string name="metadata_cache_wipe_complete_notice">Cache de metadados foi limpo</string>
     <string name="playback_speed_control">Controles de Velocidade de Reprodução</string>
     <string name="playback_tempo">"Tempo "</string>
-    <string name="download_thumbnail_summary">Desabilite para para de carregar todas as miniaturas e economizar dados e uso de memória. Alterar esta configuração irá limpar o cache de imagens na memória e em disco.</string>
+    <string name="download_thumbnail_summary">Desabilite para para de carregar todas as miniaturas e economizar dados e uso de memória. Alterar esta configuração irá limpar o cache de imagens na memória e em disco</string>
     <string name="playback_pitch">Passo</string>
-    <string name="unhook_checkbox">Desenganchar</string>
+    <string name="unhook_checkbox">Desvincular (pode causar distorção)</string>
     <string name="playback_default">Padrão</string>
 <string name="preferred_open_action_settings_title">Ação de \'abrir\' preferida</string>
     <string name="preferred_open_action_settings_summary">Ação padrão quando abrir conteúdo — %s</string>
@@ -439,17 +437,17 @@ abrir em modo popup</string>
     <string name="drawer_open">Abrir gaveta</string>
     <string name="drawer_close">Fechar gaveta</string>
     <string name="caption_setting_title">Legendas</string>
-    <string name="caption_setting_description">Modifique o tamanho da legenda e o estilo da tela de fundo. Necessário reiniciar o aplicativo para ter efeito.</string>
+    <string name="caption_setting_description">Modifique o tamanho da legenda e o estilo da tela de fundo. Necessário reiniciar o aplicativo para ter efeito</string>
 
     <string name="playback_nightcore">Night-core</string>
     <string name="toast_no_player">Nenhum player instalado para reproduzir este arquivo</string>
 
     <string name="clear_views_history_title">"Limpar histórico de já assistidos "</string>
-    <string name="clear_views_history_summary">Deleta o histórico de videos já reproduzidos.</string>
+    <string name="clear_views_history_summary">Deleta o histórico de videos já reproduzidos</string>
     <string name="delete_view_history_alert">Deleta todo o histórico de já reproduzidos.</string>
     <string name="view_history_deleted">Histórico de já assistidos deletado.</string>
     <string name="clear_search_history_title">Limpar histórico de pesquisa</string>
-    <string name="clear_search_history_summary">Deleta histórico de palavras chave pesquisadas.</string>
+    <string name="clear_search_history_summary">Deleta histórico de palavras chave pesquisadas</string>
     <string name="delete_search_history_alert">Deletar todo o histórico de pesquisa.</string>
     <string name="search_history_deleted">Histórico de pesquisa deletado.</string>
     <string name="one_item_deleted">1 item deletado.</string>
@@ -467,4 +465,19 @@ abrir em modo popup</string>
     <string name="decline">Recusar</string>
 <string name="limit_data_usage_none_description">Ilimitado</string>
     <string name="limit_mobile_data_usage_title">Limitar resolução quando dados móveis estiverem em uso</string>
+    <string name="minimize_on_exit_title">Minimizar ao trocar de aplicativo</string>
+    <string name="minimize_on_exit_summary">Ação ao trocar de aplicativo quando estiver no reprodutor de vídeo principal — %s</string>
+    <string name="minimize_on_exit_none_description">"Nenhuma "</string>
+    <string name="minimize_on_exit_background_description">Minimizar para reprodutor em plano de fundo</string>
+    <string name="minimize_on_exit_popup_description">Minimizar para reprodutor popup</string>
+
+<string name="skip_silence_checkbox">Avançar rapidamente durante silêncio</string>
+    <string name="playback_step">Parar
+\n</string>
+    <string name="playback_reset">Reiniciar</string>
+
+    <string name="channels">Canais</string>
+    <string name="playlists">Listas de reprodução</string>
+    <string name="tracks">Faixas</string>
+    <string name="users">Usuários</string>
     </resources>

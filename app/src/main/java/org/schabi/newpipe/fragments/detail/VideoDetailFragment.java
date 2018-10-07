@@ -20,6 +20,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -58,14 +59,17 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
-import org.schabi.newpipe.extractor.services.youtube.YoutubeStreamExtractor;
+import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeStreamExtractor;
 import org.schabi.newpipe.extractor.stream.AudioStream;
+import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
+import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.StreamItemAdapter;
 import org.schabi.newpipe.util.StreamItemAdapter.StreamSizeWrapper;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
@@ -132,7 +136,7 @@ public class VideoDetailFragment
 
     private StreamInfo currentInfo;
     private Disposable currentWorker;
-    private CompositeDisposable disposables = new CompositeDisposable();
+    @NonNull private CompositeDisposable disposables = new CompositeDisposable();
 
     private List<VideoStream> sortedVideoStreams;
     private int selectedVideoStreamIndex = -1;
@@ -392,11 +396,15 @@ public class VideoDetailFragment
                 if (TextUtils.isEmpty(currentInfo.getUploaderUrl())) {
                     Log.w(TAG, "Can't open channel because we got no channel URL");
                 } else {
-                    NavigationHelper.openChannelFragment(
-                            getFragmentManager(),
-                            currentInfo.getServiceId(),
-                            currentInfo.getUploaderUrl(),
-                            currentInfo.getUploaderName());
+                    try {
+                        NavigationHelper.openChannelFragment(
+                                getFragmentManager(),
+                                currentInfo.getServiceId(),
+                                currentInfo.getUploaderUrl(),
+                                currentInfo.getUploaderName());
+                    } catch (Exception e) {
+                        ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
+                    }
                 }
                 break;
             case R.id.detail_thumbnail_root_layout:
@@ -592,7 +600,8 @@ public class VideoDetailFragment
         final String[] commands = new String[]{
                 context.getResources().getString(R.string.enqueue_on_background),
                 context.getResources().getString(R.string.enqueue_on_popup),
-                context.getResources().getString(R.string.append_playlist)
+                context.getResources().getString(R.string.append_playlist),
+                context.getResources().getString(R.string.share)
         };
 
         final DialogInterface.OnClickListener actions = (DialogInterface dialogInterface, int i) -> {
@@ -608,6 +617,9 @@ public class VideoDetailFragment
                         PlaylistAppendDialog.fromStreamInfoItems(Collections.singletonList(item))
                                 .show(getFragmentManager(), TAG);
                     }
+                    break;
+                case 3:
+                    shareUrl(item.getName(), item.getUrl());
                     break;
                 default:
                     break;
@@ -800,7 +812,7 @@ public class VideoDetailFragment
      * Stack that contains the "navigation history".<br>
      * The peek is the current video.
      */
-    protected LinkedList<StackItem> stack = new LinkedList<>();
+    protected final LinkedList<StackItem> stack = new LinkedList<>();
 
     public void clearHistory() {
         stack.clear();
@@ -924,10 +936,7 @@ public class VideoDetailFragment
         if (!useExternalAudioPlayer && android.os.Build.VERSION.SDK_INT >= 16) {
             openNormalBackgroundPlayer(append);
         } else {
-            NavigationHelper.playOnExternalPlayer(activity,
-                    currentInfo.getName(),
-                    currentInfo.getUploaderName(),
-                    audioStream);
+            startOnExternalPlayer(activity, currentInfo, audioStream);
         }
     }
 
@@ -954,10 +963,7 @@ public class VideoDetailFragment
 
         if (PreferenceManager.getDefaultSharedPreferences(activity)
                 .getBoolean(this.getString(R.string.use_external_video_player_key), false)) {
-            NavigationHelper.playOnExternalPlayer(activity,
-                    currentInfo.getName(),
-                    currentInfo.getUploaderName(),
-                    selectedVideoStream);
+            startOnExternalPlayer(activity, currentInfo, selectedVideoStream);
         } else {
             openNormalPlayer(selectedVideoStream);
         }
@@ -999,6 +1005,20 @@ public class VideoDetailFragment
 
     public void setAutoplay(boolean autoplay) {
         this.autoPlayEnabled = autoplay;
+    }
+
+    private void startOnExternalPlayer(@NonNull final Context context,
+                                       @NonNull final StreamInfo info,
+                                       @NonNull final Stream selectedStream) {
+        NavigationHelper.playOnExternalPlayer(context, currentInfo.getName(),
+                currentInfo.getUploaderName(), selectedStream);
+
+        final HistoryRecordManager recordManager = new HistoryRecordManager(requireContext());
+        disposables.add(recordManager.onViewed(info).onErrorComplete()
+                .subscribe(
+                        ignored -> {/* successful */},
+                        error -> Log.e(TAG, "Register view failure: ", error)
+                ));
     }
 
     @Nullable
@@ -1259,10 +1279,10 @@ public class VideoDetailFragment
                 spinnerToolbar.setVisibility(View.GONE);
                 break;
             default:
+                if(info.getAudioStreams().isEmpty()) detailControlsBackground.setVisibility(View.GONE);
                 if (!info.getVideoStreams().isEmpty()
                         || !info.getVideoOnlyStreams().isEmpty()) break;
 
-                detailControlsBackground.setVisibility(View.GONE);
                 detailControlsPopup.setVisibility(View.GONE);
                 spinnerToolbar.setVisibility(View.GONE);
                 thumbnailPlayButton.setImageResource(R.drawable.ic_headset_white_24dp);

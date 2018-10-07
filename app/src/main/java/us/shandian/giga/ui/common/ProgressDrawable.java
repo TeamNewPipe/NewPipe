@@ -12,7 +12,8 @@ import android.support.v4.content.ContextCompat;
 
 public class ProgressDrawable extends Drawable {
     private float mProgress;
-    private int mBackgroundColor, mForegroundColor;
+    private final int mBackgroundColor;
+    private final int mForegroundColor;
 
     public ProgressDrawable(Context context, @ColorRes int background, @ColorRes int foreground) {
         this(ContextCompat.getColor(context, background), ContextCompat.getColor(context, foreground));

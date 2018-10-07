@@ -32,8 +32,6 @@
     <string name="show_play_with_kodi_summary">Zobrazit možnost přehrání videa pomocí multimediálního centra Kodi</string>
     <string name="play_audio">Zvuk</string>
     <string name="default_audio_format_title">Výchozí formát zvuku</string>
-    <string name="webm_description">WebM — volný formát</string>
-    <string name="m4a_description">M4A — lepší kvalita</string>
     <string name="theme_title">Téma</string>
     <string name="dark_theme_title">Tmavé</string>
     <string name="light_theme_title">Světlé</string>
@@ -314,7 +312,7 @@ otevření ve vyskakovacím okně</string>
     <string name="import_data_title">Importovat databázi</string>
     <string name="export_data_title">Exportovat databázi</string>
     <string name="import_data_summary">Přepíše vaši dosavadní historii a odběry</string>
-    <string name="export_data_summary">Exportuje historii, odběry a playlisty.</string>
+    <string name="export_data_summary">Exportuje historii, odběry a playlisty</string>
     <string name="external_player_unsupported_link_type">Externí přehrávače nepodporují tyto druhy odkazů</string>
     <string name="invalid_url_toast">Neplatná URL</string>
     <string name="video_streams_empty">Nenalezeny žádné video streamy</string>
@@ -399,13 +397,13 @@ otevření ve vyskakovacím okně</string>
 <string name="use_inexact_seek_title">Použít rychlé nepřesné hledání</string>
     <string name="use_inexact_seek_summary">Nepřesné hledání umožní přehrávači posouvat se rychleji, ale se sníženou přesností</string>
     <string name="download_thumbnail_title">Načítat náhledy</string>
-    <string name="download_thumbnail_summary">Zakažte, chcete-li zabránit načítání všech náhledů a tím šetřit data a využití paměti. Změnou tohoto nastavení dojde k vyčištění mezipaměti obrázků.</string>
+    <string name="download_thumbnail_summary">Zakažte, chcete-li zabránit načítání všech náhledů a tím šetřit data a využití paměti. Změnou tohoto nastavení dojde k vyčištění mezipaměti obrázků</string>
     <string name="thumbnail_cache_wipe_complete_notice">Mezipaměť obrázků vymazána</string>
     <string name="metadata_cache_wipe_title">Vymazat metadata v mezipaměti</string>
     <string name="metadata_cache_wipe_summary">Odebrat všechna data uložená v mezipaměti</string>
     <string name="metadata_cache_wipe_complete_notice">Mezipaměť metadat vymazána</string>
     <string name="auto_queue_title">Automatická fronta dalšího streamu</string>
-    <string name="auto_queue_summary">Automaticky připojí související stream při přehrávání posledního streamu v neopakující se frontě.</string>
+    <string name="auto_queue_summary">Automaticky připojí související stream při přehrávání posledního streamu v neopakující se frontě</string>
     <string name="file">Soubor</string>
 
     <string name="invalid_directory">Neplatný adresář</string>
@@ -460,16 +458,16 @@ otevření ve vyskakovacím okně</string>
     <string name="preferred_open_action_settings_summary">Výchozí chování při otevírání obsahu — %s</string>
 
     <string name="caption_setting_title">Poznámky</string>
-    <string name="caption_setting_description">Upravuje velikost textu poznámek a styly pozadí. Změny se projeví po restartu aplikace.</string>
+    <string name="caption_setting_description">Upravuje velikost textu poznámek a styly pozadí. Změny se projeví po restartu aplikace</string>
 
     <string name="toast_no_player">K přehrání tohoto souboru chybí vhodná aplikace</string>
 
     <string name="clear_views_history_title">Vymazat historii sledování</string>
-    <string name="clear_views_history_summary">Vymaže historii přehrávaných streamů.</string>
+    <string name="clear_views_history_summary">Vymaže historii přehrávaných streamů</string>
     <string name="delete_view_history_alert">Vymazat celkovou historii sledování.</string>
     <string name="view_history_deleted">Historie sledování smazána.</string>
     <string name="clear_search_history_title">Vymazat historii vyhledávání</string>
-    <string name="clear_search_history_summary">Vymaže historii vyhledávaných klíčových slov.</string>
+    <string name="clear_search_history_summary">Vymaže historii vyhledávaných klíčových slov</string>
     <string name="delete_search_history_alert">Vymazat celkovou historii vyhledávání.</string>
     <string name="search_history_deleted">Historie vyhledávání smazána.</string>
     <string name="one_item_deleted">Jedna položka smazána.</string>

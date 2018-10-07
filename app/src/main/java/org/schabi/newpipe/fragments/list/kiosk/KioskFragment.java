@@ -5,28 +5,23 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
-import org.schabi.newpipe.extractor.UrlIdHandler;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.kiosk.KioskInfo;
-import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.extractor.linkhandler.ListLinkHandlerFactory;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
-import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.KioskTranslator;
-import org.schabi.newpipe.util.NavigationHelper;
 
 import icepick.State;
 import io.reactivex.Single;
@@ -59,6 +54,7 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     protected String kioskId = "";
     protected String kioskTranslatedName;
 
+
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
@@ -74,10 +70,10 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
             throws ExtractionException {
         KioskFragment instance = new KioskFragment();
         StreamingService service = NewPipe.getService(serviceId);
-        UrlIdHandler kioskTypeUrlIdHandler = service.getKioskList()
-                .getUrlIdHandlerByType(kioskId);
+        ListLinkHandlerFactory kioskLinkHandlerFactory = service.getKioskList()
+                .getListLinkHandlerFactoryByType(kioskId);
         instance.setInitialData(serviceId,
-                kioskTypeUrlIdHandler.getUrl(kioskId), kioskId);
+                kioskLinkHandlerFactory.fromId(kioskId).getUrl(), kioskId);
         instance.kioskId = kioskId;
         return instance;
     }
@@ -136,7 +132,10 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
                 .getDefaultSharedPreferences(activity)
                 .getString(getString(R.string.content_country_key),
                         getString(R.string.default_country_value));
-        return ExtractorHelper.getKioskInfo(serviceId, url, contentCountry, forceReload);
+        return ExtractorHelper.getKioskInfo(serviceId,
+                url,
+                contentCountry,
+                forceReload);
     }
 
     @Override
@@ -145,7 +144,10 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
                 .getDefaultSharedPreferences(activity)
                 .getString(getString(R.string.content_country_key),
                         getString(R.string.default_country_value));
-        return ExtractorHelper.getMoreKioskItems(serviceId, url, currentNextPageUrl, contentCountry);
+        return ExtractorHelper.getMoreKioskItems(serviceId,
+                url,
+                currentNextPageUrl,
+                contentCountry);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -163,7 +165,9 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
         super.handleResult(result);
 
         name = kioskTranslatedName;
-        setTitle(kioskTranslatedName);
+        if(!useAsFrontPage) {
+            setTitle(kioskTranslatedName);
+        }
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(),

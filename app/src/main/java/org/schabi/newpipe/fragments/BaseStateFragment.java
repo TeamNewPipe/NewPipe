@@ -32,7 +32,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import icepick.State;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
@@ -51,9 +50,6 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
     protected Button errorButtonRetry;
     protected TextView errorTextView;
 
-    @State
-    protected boolean useAsFrontPage = false;
-
     @Override
     public void onViewCreated(View rootView, Bundle savedInstanceState) {
         super.onViewCreated(rootView, savedInstanceState);
@@ -66,9 +62,6 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
         wasLoading.set(isLoading.get());
     }
 
-    public void useAsFrontPage(boolean value) {
-        useAsFrontPage = value;
-    }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Init
@@ -93,12 +86,7 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
         RxView.clicks(errorButtonRetry)
                 .debounce(300, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Object>() {
-                    @Override
-                    public void accept(Object o) throws Exception {
-                        onRetryButtonClicked();
-                    }
-                });
+                .subscribe(o -> onRetryButtonClicked());
     }
 
     protected void onRetryButtonClicked() {
