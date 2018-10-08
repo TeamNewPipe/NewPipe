@@ -107,8 +107,8 @@
             android:id="@+id/notificationCover"
             android:layout_width="90dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="90dp"
-            android:layout_marginLeft="90dp"
+            android:layout_marginStart="39dp"
+            android:layout_marginLeft="39dp"
             android:scaleType="centerCrop"
             android:src="@drawable/dummy_thumbnail"
             tools:ignore="ContentDescription" />
@@ -118,7 +118,7 @@
     <ProgressBar
         android:id="@+id/notificationProgressBar"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_width="321dp"
+        android:layout_width="270dp"
         android:layout_height="3dp"
         android:layout_gravity="bottom"
         android:progressDrawable="@drawable/custom_progress_bar"
