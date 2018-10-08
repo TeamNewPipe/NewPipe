@@ -29,6 +29,8 @@
 [<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_8.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_8.png)
 [<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_9.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_9.png)
 [<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_10.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_10.png)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_11.png" width=405>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_11.png)
+[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_12.png" width=405>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_12.png)
 
 ## Description
 
