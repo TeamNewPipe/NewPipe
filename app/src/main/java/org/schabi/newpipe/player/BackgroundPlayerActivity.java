@@ -29,14 +29,14 @@ public final class BackgroundPlayerActivity extends ServicePlayerActivity {
 
     @Override
     public void startPlayerListener() {
-        if (player != null && player instanceof BackgroundPlayer.BasePlayerImpl) {
+        if (player instanceof BackgroundPlayer.BasePlayerImpl) {
             ((BackgroundPlayer.BasePlayerImpl) player).setActivityListener(this);
         }
     }
 
     @Override
     public void stopPlayerListener() {
-        if (player != null && player instanceof BackgroundPlayer.BasePlayerImpl) {
+        if (player instanceof BackgroundPlayer.BasePlayerImpl) {
             ((BackgroundPlayer.BasePlayerImpl) player).removeActivityListener(this);
         }
     }

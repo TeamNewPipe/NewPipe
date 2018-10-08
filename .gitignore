@@ -11,3 +11,5 @@ gradle.properties
 *~
 .weblate
 *.class
+app/.idea
+app/local.properties

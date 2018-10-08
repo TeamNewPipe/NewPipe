@@ -188,10 +188,11 @@ public final class BackgroundPlayer extends Service {
                 .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setCustomContentView(notRemoteView)
+                .setPriority(NotificationCompat.PRIORITY_MAX)
                 .setCustomBigContentView(bigNotRemoteView);
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-            builder.setPriority(NotificationCompat.PRIORITY_MAX);
-        }
+//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+//            builder.setPriority(NotificationCompat.PRIORITY_MAX);
+//        }
         return builder;
     }
 
@@ -208,7 +209,7 @@ public final class BackgroundPlayer extends Service {
         remoteViews.setOnClickPendingIntent(R.id.notificationRepeat,
                 PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_REPEAT), PendingIntent.FLAG_UPDATE_CURRENT));
 
-        // Starts background player activity -- attempts to unlock lockscreen
+        // Starts background player activity -- attempts to unlock lock screen
         final Intent intent = NavigationHelper.getBackgroundPlayerActivityIntent(this);
         remoteViews.setOnClickPendingIntent(R.id.notificationContent,
                 PendingIntent.getActivity(this, NOTIFICATION_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT));
