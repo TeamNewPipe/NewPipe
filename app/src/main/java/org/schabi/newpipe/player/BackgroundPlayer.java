@@ -26,11 +26,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
+import android.media.browse.MediaBrowser;
 import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.media.session.MediaSessionCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -184,16 +186,15 @@ public final class BackgroundPlayer extends Service {
         setupNotification(bigNotRemoteView);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
-                .setContentTitle("NewPipe")
                 .setOngoing(true)
                 .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setCustomContentView(notRemoteView)
-                .setShowWhen(false)
+                .setPriority(NotificationCompat.PRIORITY_MAX)
                 .setCustomBigContentView(bigNotRemoteView);
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-            builder.setPriority(NotificationCompat.PRIORITY_MAX);
-        }
+//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+//            builder.setPriority(NotificationCompat.PRIORITY_MAX);
+//        }
         return builder;
     }
 

@@ -2,12 +2,9 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
-<<<<<<< HEAD
     buildToolsVersion '28.0.2'
 
-=======
     buildToolsVersion '28.0.3'
->>>>>>> ce6614e11d0e1c77fc59f35441b1fd3d44979734
     defaultConfig {
         applicationId "org.schabi.newpipe"
         minSdkVersion 15

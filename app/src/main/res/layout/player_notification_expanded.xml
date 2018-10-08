@@ -5,7 +5,7 @@
     android:id="@+id/notificationContent"
     android:layout_width="match_parent"
     android:layout_height="128dp"
-    android:background="@color/background_notification_color"
+    android:background="@color/dark_background_color"
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
@@ -58,7 +58,7 @@
         android:layout_alignBottom="@+id/songDetails"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="3dp"
+        android:layout_marginBottom="-2dp"
         android:layout_toLeftOf="@+id/notificationCover"
         android:progressDrawable="@drawable/custom_progress_bar"
         tools:ignore="RtlHardcoded"
@@ -97,10 +97,10 @@
             android:id="@+id/notificationRepeat"
             android:layout_width="35dp"
             android:layout_height="match_parent"
-            android:layout_centerVertical="true"
 
-            android:layout_marginLeft="20dp"
             android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+
             android:background="#00000000"
             android:clickable="true"
             android:focusable="true"
@@ -113,9 +113,10 @@
             android:id="@+id/notificationFRewind"
             android:layout_width="35dp"
             android:layout_height="match_parent"
-            android:layout_centerVertical="true"
+
+            android:layout_toRightOf="@id/notificationRepeat"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/notificationRepeat"
+
             android:background="#00000000"
             android:clickable="true"
             android:focusable="true"
@@ -128,9 +129,10 @@
             android:id="@+id/notificationPlayPause"
             android:layout_width="35dp"
             android:layout_height="match_parent"
-            android:layout_centerVertical="true"
+
+            android:layout_toRightOf="@id/notificationFRewind"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/notificationFRewind"
+
             android:background="#00000000"
             android:clickable="true"
             android:focusable="true"
@@ -143,9 +145,10 @@
             android:id="@+id/notificationFForward"
             android:layout_width="35dp"
             android:layout_height="match_parent"
-            android:layout_centerVertical="true"
+
+            android:layout_toRightOf="@id/notificationPlayPause"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/notificationPlayPause"
+
             android:background="#00000000"
             android:clickable="true"
             android:focusable="true"
@@ -158,15 +161,16 @@
             android:id="@+id/notificationStop"
             android:layout_width="35dp"
             android:layout_height="match_parent"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
+
             android:layout_toRightOf="@+id/notificationFForward"
+            android:layout_marginLeft="10dp"
+
             android:background="#00000000"
             android:clickable="true"
             android:focusable="true"
             android:padding="2dp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_close_white_24dp"
-            tools:ignore="ContentDescription,RtlHardcoded"/>
+            tools:ignore="ContentDescription,RtlHardcoded" />
     </RelativeLayout>
 </RelativeLayout>
