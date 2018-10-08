@@ -126,7 +126,7 @@
         tools:progress="50" />
 
     <LinearLayout
-        android:layout_width="225dp"
+        android:layout_width="308dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="6dp"
@@ -135,7 +135,7 @@
 
         <TextView
             android:id="@+id/notificationSongName"
-            android:layout_width="215dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
