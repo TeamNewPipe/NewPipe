@@ -8,17 +8,23 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
+import android.preference.PreferenceManager;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -75,7 +81,7 @@ import static org.schabi.newpipe.local.subscription.services.SubscriptionsImport
 import static org.schabi.newpipe.util.AnimationUtils.animateRotation;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
-public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEntity>> {
+public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEntity>> implements SharedPreferences.OnSharedPreferenceChangeListener {
     private static final int REQUEST_EXPORT_CODE = 666;
     private static final int REQUEST_IMPORT_CODE = 667;
 
@@ -83,6 +89,9 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
     @State
     protected Parcelable itemsListState;
     private InfoListAdapter infoListAdapter;
+    private int updateFlags = 0;
+
+    private static final int LIST_MODE_UPDATE_FLAG = 0x32;
 
     private View whatsNewItemListHeader;
     private View importExportListHeader;
@@ -102,6 +111,8 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        PreferenceManager.getDefaultSharedPreferences(activity)
+                .registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
@@ -129,6 +140,15 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
     public void onResume() {
         super.onResume();
         setupBroadcastReceiver();
+        if (updateFlags != 0) {
+            if ((updateFlags & LIST_MODE_UPDATE_FLAG) != 0) {
+                final boolean useGrid = isGridLayout();
+                itemsList.setLayoutManager(useGrid ? getGridLayoutManager() : getListLayoutManager());
+                infoListAdapter.setGridItemVariants(useGrid);
+                infoListAdapter.notifyDataSetChanged();
+            }
+            updateFlags = 0;
+        }
     }
 
     @Override
@@ -155,7 +175,23 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
         disposables = null;
         subscriptionService = null;
 
+        PreferenceManager.getDefaultSharedPreferences(activity)
+                .unregisterOnSharedPreferenceChangeListener(this);
         super.onDestroy();
+    }
+
+    protected RecyclerView.LayoutManager getListLayoutManager() {
+        return new LinearLayoutManager(activity);
+    }
+
+    protected RecyclerView.LayoutManager getGridLayoutManager() {
+        final Resources resources = activity.getResources();
+        int width = resources.getDimensionPixelSize(R.dimen.video_item_grid_thumbnail_image_width);
+        width += (24 * resources.getDisplayMetrics().density);
+        final int spanCount = (int) Math.floor(resources.getDisplayMetrics().widthPixels / (double)width);
+        final GridLayoutManager lm = new GridLayoutManager(activity, spanCount);
+        lm.setSpanSizeLookup(infoListAdapter.getSpanSizeLookup(spanCount));
+        return lm;
     }
 
     /*/////////////////////////////////////////////////////////////////////////
@@ -289,9 +325,10 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
     protected void initViews(View rootView, Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
 
+        final boolean useGrid = isGridLayout();
         infoListAdapter = new InfoListAdapter(getActivity());
         itemsList = rootView.findViewById(R.id.items_list);
-        itemsList.setLayoutManager(new LinearLayoutManager(activity));
+        itemsList.setLayoutManager(useGrid ? getGridLayoutManager() : getListLayoutManager());
 
         View headerRootLayout;
         infoListAdapter.setHeader(headerRootLayout = activity.getLayoutInflater().inflate(R.layout.subscription_header, itemsList, false));
@@ -300,6 +337,7 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
         importExportOptions = headerRootLayout.findViewById(R.id.import_export_options);
 
         infoListAdapter.useMiniItemVariants(true);
+        infoListAdapter.setGridItemVariants(useGrid);
         itemsList.setAdapter(infoListAdapter);
 
         setupImportFromItems(headerRootLayout.findViewById(R.id.import_from_options));
@@ -533,5 +571,23 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
                 "Subscriptions",
                 R.string.general_error);
         return true;
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals(getString(R.string.list_view_mode_key))) {
+            updateFlags |= LIST_MODE_UPDATE_FLAG;
+        }
+    }
+
+    protected boolean isGridLayout() {
+        final String list_mode = PreferenceManager.getDefaultSharedPreferences(activity).getString(getString(R.string.list_view_mode_key), getString(R.string.list_view_mode_value));
+        if ("auto".equals(list_mode)) {
+            final Configuration configuration = getResources().getConfiguration();
+            return configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+                    && configuration.isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE);
+        } else {
+            return "grid".equals(list_mode);
+        }
     }
 }

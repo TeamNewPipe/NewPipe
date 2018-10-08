@@ -1,5 +1,6 @@
 package org.schabi.newpipe.local.holder;
 
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,10 +43,15 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
     public final TextView itemVideoTitleView;
     public final TextView itemUploaderView;
     public final TextView itemDurationView;
+    @Nullable
     public final TextView itemAdditionalDetails;
 
-    public LocalStatisticStreamItemHolder(LocalItemBuilder infoItemBuilder, ViewGroup parent) {
-        super(infoItemBuilder, R.layout.list_stream_item, parent);
+    public LocalStatisticStreamItemHolder(LocalItemBuilder itemBuilder, ViewGroup parent) {
+        this(itemBuilder, R.layout.list_stream_item, parent);
+    }
+
+    LocalStatisticStreamItemHolder(LocalItemBuilder infoItemBuilder, int layoutId, ViewGroup parent) {
+        super(infoItemBuilder, layoutId, parent);
 
         itemThumbnailView = itemView.findViewById(R.id.itemThumbnailView);
         itemVideoTitleView = itemView.findViewById(R.id.itemVideoTitleView);
@@ -80,7 +86,9 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
             itemDurationView.setVisibility(View.GONE);
         }
 
-        itemAdditionalDetails.setText(getStreamInfoDetailLine(item, dateFormat));
+        if (itemAdditionalDetails != null) {
+            itemAdditionalDetails.setText(getStreamInfoDetailLine(item, dateFormat));
+        }
 
         // Default thumbnail is shown on error, while loading and if the url is empty
         itemBuilder.displayImage(item.thumbnailUrl, itemThumbnailView,
