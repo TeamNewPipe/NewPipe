@@ -1,8 +1,11 @@
 package org.schabi.newpipe.local.subscription;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -45,10 +48,11 @@ import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.info_list.InfoListAdapter;
-import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService;
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService;
+import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
@@ -89,7 +93,6 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
 
     private static final int LIST_MODE_UPDATE_FLAG = 0x32;
 
-    private View headerRootLayout;
     private View whatsNewItemListHeader;
     private View importExportListHeader;
 
@@ -327,6 +330,7 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
         itemsList = rootView.findViewById(R.id.items_list);
         itemsList.setLayoutManager(useGrid ? getGridLayoutManager() : getListLayoutManager());
 
+        View headerRootLayout;
         infoListAdapter.setHeader(headerRootLayout = activity.getLayoutInflater().inflate(R.layout.subscription_header, itemsList, false));
         whatsNewItemListHeader = headerRootLayout.findViewById(R.id.whats_new);
         importExportListHeader = headerRootLayout.findViewById(R.id.import_export);
@@ -357,7 +361,7 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
         super.initListeners();
 
         infoListAdapter.setOnChannelSelectedListener(new OnClickGesture<ChannelInfoItem>() {
-            @Override
+
             public void selected(ChannelInfoItem selectedItem) {
                 final FragmentManager fragmentManager = getFM();
                 NavigationHelper.openChannelFragment(fragmentManager,
@@ -365,6 +369,11 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
                         selectedItem.getUrl(),
                         selectedItem.getName());
             }
+
+            public void held(ChannelInfoItem selectedItem) {
+                showLongTapDialog(selectedItem);
+            }
+
         });
 
         //noinspection ConstantConditions
@@ -373,6 +382,85 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
             NavigationHelper.openWhatsNewFragment(fragmentManager);
         });
         importExportListHeader.setOnClickListener(v -> importExportOptions.switchState());
+    }
+
+    private void showLongTapDialog(ChannelInfoItem selectedItem) {
+        final Context context = getContext();
+        final Activity activity = getActivity();
+        if (context == null || context.getResources() == null || getActivity() == null) return;
+
+        final String[] commands = new String[]{
+                context.getResources().getString(R.string.share),
+                context.getResources().getString(R.string.unsubscribe)
+        };
+
+        final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
+            switch (i) {
+                case 0:
+                    shareChannel(selectedItem);
+                    break;
+                case 1:
+                    deleteChannel(selectedItem);
+                    break;
+                default:
+                    break;
+            }
+        };
+
+        final View bannerView = View.inflate(activity, R.layout.dialog_title, null);
+        bannerView.setSelected(true);
+
+        TextView titleView = bannerView.findViewById(R.id.itemTitleView);
+        titleView.setText(selectedItem.getName());
+
+        TextView detailsView = bannerView.findViewById(R.id.itemAdditionalDetails);
+        detailsView.setVisibility(View.GONE);
+
+        new AlertDialog.Builder(activity)
+                .setCustomTitle(bannerView)
+                .setItems(commands, actions)
+                .create()
+                .show();
+
+    }
+
+    private void shareChannel (ChannelInfoItem selectedItem) {
+        shareUrl(selectedItem.getName(), selectedItem.getUrl());
+    }
+
+    @SuppressLint("CheckResult")
+    private void deleteChannel (ChannelInfoItem selectedItem) {
+        subscriptionService.subscriptionTable()
+                .getSubscription(selectedItem.getServiceId(), selectedItem.getUrl())
+                .toObservable()
+                .observeOn(Schedulers.io())
+                .subscribe(getDeleteObserver());
+
+        Toast.makeText(activity, getString(R.string.channel_unsubscribed), Toast.LENGTH_SHORT).show();
+    }
+
+
+
+    private Observer<List<SubscriptionEntity>> getDeleteObserver(){
+        return new Observer<List<SubscriptionEntity>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposables.add(d);
+            }
+
+            @Override
+            public void onNext(List<SubscriptionEntity> subscriptionEntities) {
+                subscriptionService.subscriptionTable().delete(subscriptionEntities);
+            }
+
+            @Override
+            public void onError(Throwable exception) {
+                SubscriptionFragment.this.onError(exception);
+            }
+
+            @Override
+            public void onComplete() {  }
+        };
     }
 
     private void resetFragment() {

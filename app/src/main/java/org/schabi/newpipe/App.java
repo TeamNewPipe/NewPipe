@@ -106,7 +106,7 @@ public class App extends Application {
         // https://github.com/ReactiveX/RxJava/wiki/What's-different-in-2.0#error-handling
         RxJavaPlugins.setErrorHandler(new Consumer<Throwable>() {
             @Override
-            public void accept(@NonNull Throwable throwable) throws Exception {
+            public void accept(@NonNull Throwable throwable) {
                 Log.e(TAG, "RxJavaPlugins.ErrorHandler called with -> : " +
                         "throwable = [" + throwable.getClass().getName() + "]");
 

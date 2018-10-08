@@ -33,15 +33,14 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
-import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
+import org.schabi.newpipe.local.subscription.SubscriptionService;
 import org.schabi.newpipe.player.playqueue.ChannelPlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.local.subscription.SubscriptionService;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ImageDisplayConstants;
@@ -69,7 +68,7 @@ import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
 
-    private CompositeDisposable disposables = new CompositeDisposable();
+    private final CompositeDisposable disposables = new CompositeDisposable();
     private Disposable subscribeButtonMonitor;
     private SubscriptionService subscriptionService;
 
@@ -91,8 +90,6 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
 
     private MenuItem menuRssButton;
 
-    private boolean mIsVisibleToUser = false;
-
     public static ChannelFragment getInstance(int serviceId, String url, String name) {
         ChannelFragment instance = new ChannelFragment();
         instance.setInitialData(serviceId, url, name);
@@ -106,7 +103,6 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        mIsVisibleToUser = isVisibleToUser;
         if(activity != null
                 && useAsFrontPage
                 && isVisibleToUser) {
@@ -422,10 +418,12 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         imageLoader.displayImage(result.getAvatarUrl(), headerAvatarView,
         		ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
 
-        if (result.getSubscriberCount() != -1) {
+        headerSubscribersTextView.setVisibility(View.VISIBLE);
+        if (result.getSubscriberCount() >= 0) {
             headerSubscribersTextView.setText(Localization.localizeSubscribersCount(activity, result.getSubscriberCount()));
-            headerSubscribersTextView.setVisibility(View.VISIBLE);
-        } else headerSubscribersTextView.setVisibility(View.GONE);
+        } else {
+            headerSubscribersTextView.setText(R.string.subscribers_count_not_available);
+        }
 
         if (menuRssButton != null) menuRssButton.setVisible(!TextUtils.isEmpty(result.getFeedUrl()));
 

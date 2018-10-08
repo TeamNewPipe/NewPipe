@@ -68,7 +68,8 @@
     <string name="thumbnail_cache_wipe_complete_notice">清理照片内存</string>
     <string name="minimize_on_exit_popup_description">最小化弹出播放器</string>
 
-<string name="clear_views_history_title">清楚观看历史</string>
+
+<string name="clear_views_history_title">清除观看历史</string>
     <string name="search_history_deleted">已删除搜索历史</string>
     <string name="general_error">错误</string>
     <string name="network_error">网络错误</string>

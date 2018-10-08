@@ -38,7 +38,8 @@
 				android:layout_centerVertical="true"
 				android:layout_marginRight="1dp"
 				android:src="@drawable/ic_menu_more"
-				android:scaleType="centerInside"/>
+				android:scaleType="centerInside"
+                android:contentDescription="TODO" />
 			
 		</RelativeLayout>
 		
@@ -50,7 +51,8 @@
 			android:layout_centerHorizontal="true"
 			android:scaleType="fitXY"
 			android:gravity="center"
-			android:padding="10dp"/>
+			android:padding="10dp"
+            android:contentDescription="TODO" />
 		
 		<TextView
 			android:id="@+id/item_name"

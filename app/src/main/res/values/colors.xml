@@ -35,6 +35,7 @@
     <color name="black_contrast_background_color">#23454545</color>
 
     <!-- Miscellaneous -->
+    <color name="drawer_header_font_color">#ddffffff</color>
     <color name="duration_background_color">#aa000000</color>
     <color name="live_duration_background_color">#c8E53935</color>
     <color name="playlist_stream_count_background_color">#e6000000</color>

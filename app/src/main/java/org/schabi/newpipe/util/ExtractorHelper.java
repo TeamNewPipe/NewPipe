@@ -32,6 +32,7 @@ import org.schabi.newpipe.extractor.Info;
 import org.schabi.newpipe.extractor.ListExtractor.InfoItemsPage;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
+import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
@@ -183,7 +184,7 @@ public final class ExtractorHelper {
             cache.removeInfo(serviceId, url);
             load = loadFromNetwork;
         } else {
-            load = Maybe.concat(ExtractorHelper.<I>loadFromCache(serviceId, url),
+            load = Maybe.concat(ExtractorHelper.loadFromCache(serviceId, url),
                     loadFromNetwork.toMaybe())
                     .firstElement() //Take the first valid
                     .toSingle();

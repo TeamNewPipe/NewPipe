@@ -175,6 +175,10 @@ public final class MainVideoPlayer extends AppCompatActivity
             setLandscape(lastOrientationWasLandscape);
         }
 
+        final int lastResizeMode = defaultPreferences.getInt(
+                getString(R.string.last_resize_mode), AspectRatioFrameLayout.RESIZE_MODE_FIT);
+        playerImpl.setResizeMode(lastResizeMode);
+
         // Upon going in or out of multiwindow mode, isInMultiWindow will always be false,
         // since the first onResume needs to restore the player.
         // Subsequent onResume calls while multiwindow mode remains the same and the player is
@@ -460,7 +464,7 @@ public final class MainVideoPlayer extends AppCompatActivity
         public void initListeners() {
             super.initListeners();
 
-            MySimpleOnGestureListener listener = new MySimpleOnGestureListener();
+            PlayerGestureListener listener = new PlayerGestureListener();
             gestureDetector = new GestureDetector(context, listener);
             gestureDetector.setIsLongpressEnabled(false);
             getRootView().setOnTouchListener(listener);
@@ -489,6 +493,8 @@ public final class MainVideoPlayer extends AppCompatActivity
 
                     volumeProgressBar.setMax(maxGestureLength);
                     brightnessProgressBar.setMax(maxGestureLength);
+
+                    setInitialGestureValues();
                 }
             });
         }
@@ -703,14 +709,27 @@ public final class MainVideoPlayer extends AppCompatActivity
 
         @Override
         protected int nextResizeMode(int currentResizeMode) {
+            final int newResizeMode;
             switch (currentResizeMode) {
                 case AspectRatioFrameLayout.RESIZE_MODE_FIT:
-                    return AspectRatioFrameLayout.RESIZE_MODE_FILL;
+                    newResizeMode = AspectRatioFrameLayout.RESIZE_MODE_FILL;
+                    break;
                 case AspectRatioFrameLayout.RESIZE_MODE_FILL:
-                    return AspectRatioFrameLayout.RESIZE_MODE_ZOOM;
+                    newResizeMode = AspectRatioFrameLayout.RESIZE_MODE_ZOOM;
+                    break;
                 default:
-                    return AspectRatioFrameLayout.RESIZE_MODE_FIT;
+                    newResizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIT;
+                    break;
             }
+
+            storeResizeMode(newResizeMode);
+            return newResizeMode;
+        }
+
+        private void storeResizeMode(@AspectRatioFrameLayout.ResizeMode int resizeMode) {
+            defaultPreferences.edit()
+                    .putInt(getString(R.string.last_resize_mode), resizeMode)
+                    .apply();
         }
 
         @Override
@@ -798,6 +817,13 @@ public final class MainVideoPlayer extends AppCompatActivity
         /*//////////////////////////////////////////////////////////////////////////
         // Utils
         //////////////////////////////////////////////////////////////////////////*/
+
+        private void setInitialGestureValues() {
+            if (getAudioReactor() != null) {
+                final float currentVolumeNormalized = (float) getAudioReactor().getVolume() / getAudioReactor().getMaxVolume();
+                volumeProgressBar.setProgress((int) (volumeProgressBar.getMax() * currentVolumeNormalized));
+            }
+        }
 
         @Override
         public void showControlsThenHide() {
@@ -939,7 +965,7 @@ public final class MainVideoPlayer extends AppCompatActivity
         }
     }
 
-    private class MySimpleOnGestureListener extends GestureDetector.SimpleOnGestureListener implements View.OnTouchListener {
+    private class PlayerGestureListener extends GestureDetector.SimpleOnGestureListener implements View.OnTouchListener {
         private boolean isMoving;
 
         @Override
@@ -978,31 +1004,30 @@ public final class MainVideoPlayer extends AppCompatActivity
             return super.onDown(e);
         }
 
-        private final boolean isPlayerGestureEnabled = PlayerHelper.isPlayerGestureEnabled(getApplicationContext());
+        private static final int MOVEMENT_THRESHOLD = 40;
 
+        private final boolean isPlayerGestureEnabled = PlayerHelper.isPlayerGestureEnabled(getApplicationContext());
         private final int maxVolume = playerImpl.getAudioReactor().getMaxVolume();
 
-        private final int MOVEMENT_THRESHOLD = 40;
-
         @Override
-        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+        public boolean onScroll(MotionEvent initialEvent, MotionEvent movingEvent, float distanceX, float distanceY) {
             if (!isPlayerGestureEnabled) return false;
 
             //noinspection PointlessBooleanExpression
             if (DEBUG && false) Log.d(TAG, "MainVideoPlayer.onScroll = " +
-                    ", e1.getRaw = [" + e1.getRawX() + ", " + e1.getRawY() + "]" +
-                    ", e2.getRaw = [" + e2.getRawX() + ", " + e2.getRawY() + "]" +
+                    ", e1.getRaw = [" + initialEvent.getRawX() + ", " + initialEvent.getRawY() + "]" +
+                    ", e2.getRaw = [" + movingEvent.getRawX() + ", " + movingEvent.getRawY() + "]" +
                     ", distanceXy = [" + distanceX + ", " + distanceY + "]");
 
-            if (!isMoving && (
-                    Math.abs(e2.getY() - e1.getY()) <= MOVEMENT_THRESHOLD
-                            || Math.abs(distanceX) > Math.abs(distanceY)
-            ) || playerImpl.getCurrentState() == BasePlayer.STATE_COMPLETED)
+            final boolean insideThreshold = Math.abs(movingEvent.getY() - initialEvent.getY()) <= MOVEMENT_THRESHOLD;
+            if (!isMoving && (insideThreshold || Math.abs(distanceX) > Math.abs(distanceY))
+                    || playerImpl.getCurrentState() == BasePlayer.STATE_COMPLETED) {
                 return false;
+            }
 
             isMoving = true;
 
-            if (e1.getX() > playerImpl.getRootView().getWidth() / 2) {
+            if (initialEvent.getX() > playerImpl.getRootView().getWidth() / 2) {
                 playerImpl.getVolumeProgressBar().incrementProgressBy((int) distanceY);
                 float currentProgressPercent =
                         (float) playerImpl.getVolumeProgressBar().getProgress() / playerImpl.getMaxGestureLength();

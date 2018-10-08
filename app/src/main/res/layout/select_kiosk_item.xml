@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground"
     android:clickable="true"
-    android:padding="5dp">
+    android:padding="5dp"
+    android:focusable="true">
 
     <ImageView
         android:id="@+id/itemThumbnailView"
@@ -17,7 +18,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginRight="5dp"
         android:src="@drawable/service"
-        tools:ignore="RtlHardcoded"/>
+        tools:ignore="RtlHardcoded"
+        android:contentDescription="TODO" />
 
     <TextView
         android:id="@+id/itemTitleView"

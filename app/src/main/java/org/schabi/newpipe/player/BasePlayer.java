@@ -70,7 +70,6 @@ import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueAdapter;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
-import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.SerializedCache;
 
@@ -88,7 +87,6 @@ import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_INTERNAL
 import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_PERIOD_TRANSITION;
 import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SEEK;
 import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SEEK_ADJUSTMENT;
-import static org.schabi.newpipe.report.UserAction.PLAY_STREAM;
 
 /**
  * Base for the players, joining the common properties
@@ -175,7 +173,6 @@ public abstract class BasePlayer implements
         };
         this.intentFilter = new IntentFilter();
         setupBroadcastReceiver(intentFilter);
-        context.registerReceiver(broadcastReceiver, intentFilter);
 
         this.recordManager = new HistoryRecordManager(context);
 
@@ -212,6 +209,8 @@ public abstract class BasePlayer implements
         audioReactor = new AudioReactor(context, simpleExoPlayer);
         mediaSessionManager = new MediaSessionManager(context, simpleExoPlayer,
                 new BasePlayerMediaSession(this));
+
+        registerBroadcastReceiver();
     }
 
     public void initListeners() {}
@@ -231,7 +230,8 @@ public abstract class BasePlayer implements
             int sizeBeforeAppend = playQueue.size();
             playQueue.append(queue.getStreams());
 
-            if (intent.getBooleanExtra(SELECT_ON_APPEND, false) &&
+            if ((intent.getBooleanExtra(SELECT_ON_APPEND, false) ||
+                    getCurrentState() == STATE_COMPLETED) &&
                     queue.getStreams().size() > 0) {
                 playQueue.setIndex(sizeBeforeAppend);
             }
@@ -362,14 +362,17 @@ public abstract class BasePlayer implements
         }
     }
 
-    public void unregisterBroadcastReceiver() {
+    protected void registerBroadcastReceiver() {
+        // Try to unregister current first
+        unregisterBroadcastReceiver();
+        context.registerReceiver(broadcastReceiver, intentFilter);
+    }
+
+    protected void unregisterBroadcastReceiver() {
         try {
             context.unregisterReceiver(broadcastReceiver);
         } catch (final IllegalArgumentException unregisteredException) {
-            ErrorActivity.reportError(context, unregisteredException, null, null,
-                    ErrorActivity.ErrorInfo.make(PLAY_STREAM,
-                            "none",
-                            "play stream", R.string.general_error));
+            Log.w(TAG, "Broadcast receiver already unregistered (" + unregisteredException.getMessage() + ")");
         }
     }
 

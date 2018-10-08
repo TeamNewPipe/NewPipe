@@ -79,7 +79,7 @@ public class PlayQueueNavigator implements MediaSessionConnector.QueueNavigator 
 
     private void publishFloatingQueueWindow() {
         if (callback.getQueueSize() == 0) {
-            mediaSession.setQueue(Collections.<MediaSessionCompat.QueueItem>emptyList());
+            mediaSession.setQueue(Collections.emptyList());
             activeQueueItemId = MediaSessionCompat.QueueItem.UNKNOWN_ID;
             return;
         }

@@ -5,4 +5,7 @@
     <item android:id="@+id/action_settings"
         app:showAsAction="never"
         android:title="@string/settings"/>
+    <item android:id="@+id/switch_mode"
+        app:showAsAction="ifRoom"
+        android:title="@string/switch_view"/>
 </menu>
