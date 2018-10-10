@@ -93,7 +93,7 @@
     <string name="your_comment">Opomba (v angleščini):</string>
     <string name="storage_permission_denied">Dovoljenje za dostop do shrambe je zavrnjeno</string>
     <string name="autoplay_by_calling_app_title">Samodejno predvajanje</string>
-    <string name="autoplay_by_calling_app_summary">Samodejno predvaja vsebino, če je NewPipe klican iz drugega programa</string>
+    <string name="autoplay_by_calling_app_summary">Predvaja vsebino, če je program zagnan iz drugega programa</string>
     <string name="report_error">Pošlji poročilo o napaki</string>
     <string name="user_report">Poročilo uporabnika</string>
 
@@ -322,4 +322,5 @@ odpiranje v pojavnem načinu</string>
     <string name="dismiss">Opusti</string>
     <string name="rename">Preimenuj</string>
 
+    <string name="download_thumbnail_title">Naloži sličice</string>
     </resources>
