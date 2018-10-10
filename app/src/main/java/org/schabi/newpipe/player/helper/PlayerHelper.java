@@ -207,7 +207,7 @@ public class PlayerHelper {
 
     @NonNull
     public static SeekParameters getSeekParameters(@NonNull final Context context) {
-        return isUsingInexactSeek(context, false) ?
+        return isUsingInexactSeek(context) ?
                 SeekParameters.CLOSEST_SYNC : SeekParameters.EXACT;
     }
 
@@ -326,8 +326,8 @@ public class PlayerHelper {
         return getPreferences(context).getBoolean(context.getString(R.string.popup_remember_size_pos_key), b);
     }
 
-    private static boolean isUsingInexactSeek(@NonNull final Context context, final boolean b) {
-        return getPreferences(context).getBoolean(context.getString(R.string.use_inexact_seek_key), b);
+    private static boolean isUsingInexactSeek(@NonNull final Context context) {
+        return getPreferences(context).getBoolean(context.getString(R.string.use_inexact_seek_key), false);
     }
 
     private static boolean isAutoQueueEnabled(@NonNull final Context context, final boolean b) {

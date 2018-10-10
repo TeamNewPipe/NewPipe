@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="vertical"
-        app:layoutManager="LinearLayoutManager"
         android:visibility="gone"
         tools:listitem="@layout/list_channel_item"
         tools:visibility="visible"/>

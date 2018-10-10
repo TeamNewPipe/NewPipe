@@ -175,6 +175,10 @@ public final class MainVideoPlayer extends AppCompatActivity
             setLandscape(lastOrientationWasLandscape);
         }
 
+        final int lastResizeMode = defaultPreferences.getInt(
+                getString(R.string.last_resize_mode), AspectRatioFrameLayout.RESIZE_MODE_FIT);
+        playerImpl.setResizeMode(lastResizeMode);
+
         // Upon going in or out of multiwindow mode, isInMultiWindow will always be false,
         // since the first onResume needs to restore the player.
         // Subsequent onResume calls while multiwindow mode remains the same and the player is
@@ -705,14 +709,27 @@ public final class MainVideoPlayer extends AppCompatActivity
 
         @Override
         protected int nextResizeMode(int currentResizeMode) {
+            final int newResizeMode;
             switch (currentResizeMode) {
                 case AspectRatioFrameLayout.RESIZE_MODE_FIT:
-                    return AspectRatioFrameLayout.RESIZE_MODE_FILL;
+                    newResizeMode = AspectRatioFrameLayout.RESIZE_MODE_FILL;
+                    break;
                 case AspectRatioFrameLayout.RESIZE_MODE_FILL:
-                    return AspectRatioFrameLayout.RESIZE_MODE_ZOOM;
+                    newResizeMode = AspectRatioFrameLayout.RESIZE_MODE_ZOOM;
+                    break;
                 default:
-                    return AspectRatioFrameLayout.RESIZE_MODE_FIT;
+                    newResizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIT;
+                    break;
             }
+
+            storeResizeMode(newResizeMode);
+            return newResizeMode;
+        }
+
+        private void storeResizeMode(@AspectRatioFrameLayout.ResizeMode int resizeMode) {
+            defaultPreferences.edit()
+                    .putInt(getString(R.string.last_resize_mode), resizeMode)
+                    .apply();
         }
 
         @Override

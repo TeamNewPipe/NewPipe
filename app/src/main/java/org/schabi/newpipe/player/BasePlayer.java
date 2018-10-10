@@ -230,7 +230,8 @@ public abstract class BasePlayer implements
             int sizeBeforeAppend = playQueue.size();
             playQueue.append(queue.getStreams());
 
-            if (intent.getBooleanExtra(SELECT_ON_APPEND, false) &&
+            if ((intent.getBooleanExtra(SELECT_ON_APPEND, false) ||
+                    getCurrentState() == STATE_COMPLETED) &&
                     queue.getStreams().size() > 0) {
                 playQueue.setIndex(sizeBeforeAppend);
             }

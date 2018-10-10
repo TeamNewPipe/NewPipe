@@ -106,6 +106,8 @@
 
     <string name="last_orientation_landscape_key" translatable="false">last_orientation_landscape_key</string>
 
+    <string name="last_resize_mode" translatable="false">last_resize_mode</string>
+
     <!-- DEBUG ONLY -->
     <string name="debug_pref_screen_key" translatable="false">debug_pref_screen_key</string>
     <string name="allow_heap_dumping_key" translatable="false">allow_heap_dumping_key</string>
@@ -879,5 +881,18 @@
         <item>144p</item>
     </string-array>
 
+    <string name="list_view_mode_key" translatable="false">list_view_mode</string>
+    <string name="list_view_mode_value" translatable="false">auto</string>
+
+    <string-array name="list_view_mode_values" translatable="false">
+        <item>auto</item>
+        <item>list</item>
+        <item>grid</item>
+    </string-array>
+    <string-array name="list_view_mode_description" translatable="false">
+        <item>@string/auto</item>
+        <item>@string/list</item>
+        <item>@string/grid</item>
+    </string-array>
 
 </resources>

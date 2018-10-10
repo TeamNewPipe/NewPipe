@@ -8,8 +8,6 @@ import com.google.android.exoplayer2.source.MediaSource;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 
-import java.util.List;
-
 public interface PlaybackListener {
 
     /**

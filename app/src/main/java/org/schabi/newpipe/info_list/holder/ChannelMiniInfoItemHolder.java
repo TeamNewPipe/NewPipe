@@ -47,6 +47,13 @@ public class ChannelMiniInfoItemHolder extends InfoItemHolder {
                 itemBuilder.getOnChannelSelectedListener().selected(item);
             }
         });
+
+        itemView.setOnLongClickListener(view -> {
+            if (itemBuilder.getOnChannelSelectedListener() != null) {
+                itemBuilder.getOnChannelSelectedListener().held(item);
+            }
+            return true;
+        });
     }
 
     protected String getDetailLine(final ChannelInfoItem item) {

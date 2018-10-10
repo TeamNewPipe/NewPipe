@@ -1,15 +1,22 @@
 package org.schabi.newpipe.local.subscription;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
+import android.preference.PreferenceManager;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,6 +24,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -40,10 +48,11 @@ import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.info_list.InfoListAdapter;
-import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService;
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService;
+import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
@@ -72,7 +81,7 @@ import static org.schabi.newpipe.local.subscription.services.SubscriptionsImport
 import static org.schabi.newpipe.util.AnimationUtils.animateRotation;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
-public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEntity>> {
+public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEntity>> implements SharedPreferences.OnSharedPreferenceChangeListener {
     private static final int REQUEST_EXPORT_CODE = 666;
     private static final int REQUEST_IMPORT_CODE = 667;
 
@@ -80,8 +89,10 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
     @State
     protected Parcelable itemsListState;
     private InfoListAdapter infoListAdapter;
+    private int updateFlags = 0;
 
-    private View headerRootLayout;
+    private static final int LIST_MODE_UPDATE_FLAG = 0x32;
+
     private View whatsNewItemListHeader;
     private View importExportListHeader;
 
@@ -100,6 +111,8 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        PreferenceManager.getDefaultSharedPreferences(activity)
+                .registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
@@ -127,6 +140,15 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
     public void onResume() {
         super.onResume();
         setupBroadcastReceiver();
+        if (updateFlags != 0) {
+            if ((updateFlags & LIST_MODE_UPDATE_FLAG) != 0) {
+                final boolean useGrid = isGridLayout();
+                itemsList.setLayoutManager(useGrid ? getGridLayoutManager() : getListLayoutManager());
+                infoListAdapter.setGridItemVariants(useGrid);
+                infoListAdapter.notifyDataSetChanged();
+            }
+            updateFlags = 0;
+        }
     }
 
     @Override
@@ -153,7 +175,23 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
         disposables = null;
         subscriptionService = null;
 
+        PreferenceManager.getDefaultSharedPreferences(activity)
+                .unregisterOnSharedPreferenceChangeListener(this);
         super.onDestroy();
+    }
+
+    protected RecyclerView.LayoutManager getListLayoutManager() {
+        return new LinearLayoutManager(activity);
+    }
+
+    protected RecyclerView.LayoutManager getGridLayoutManager() {
+        final Resources resources = activity.getResources();
+        int width = resources.getDimensionPixelSize(R.dimen.video_item_grid_thumbnail_image_width);
+        width += (24 * resources.getDisplayMetrics().density);
+        final int spanCount = (int) Math.floor(resources.getDisplayMetrics().widthPixels / (double)width);
+        final GridLayoutManager lm = new GridLayoutManager(activity, spanCount);
+        lm.setSpanSizeLookup(infoListAdapter.getSpanSizeLookup(spanCount));
+        return lm;
     }
 
     /*/////////////////////////////////////////////////////////////////////////
@@ -287,16 +325,19 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
     protected void initViews(View rootView, Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
 
+        final boolean useGrid = isGridLayout();
         infoListAdapter = new InfoListAdapter(getActivity());
         itemsList = rootView.findViewById(R.id.items_list);
-        itemsList.setLayoutManager(new LinearLayoutManager(activity));
+        itemsList.setLayoutManager(useGrid ? getGridLayoutManager() : getListLayoutManager());
 
+        View headerRootLayout;
         infoListAdapter.setHeader(headerRootLayout = activity.getLayoutInflater().inflate(R.layout.subscription_header, itemsList, false));
         whatsNewItemListHeader = headerRootLayout.findViewById(R.id.whats_new);
         importExportListHeader = headerRootLayout.findViewById(R.id.import_export);
         importExportOptions = headerRootLayout.findViewById(R.id.import_export_options);
 
         infoListAdapter.useMiniItemVariants(true);
+        infoListAdapter.setGridItemVariants(useGrid);
         itemsList.setAdapter(infoListAdapter);
 
         setupImportFromItems(headerRootLayout.findViewById(R.id.import_from_options));
@@ -320,7 +361,7 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
         super.initListeners();
 
         infoListAdapter.setOnChannelSelectedListener(new OnClickGesture<ChannelInfoItem>() {
-            @Override
+
             public void selected(ChannelInfoItem selectedItem) {
                 final FragmentManager fragmentManager = getFM();
                 NavigationHelper.openChannelFragment(fragmentManager,
@@ -328,6 +369,11 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
                         selectedItem.getUrl(),
                         selectedItem.getName());
             }
+
+            public void held(ChannelInfoItem selectedItem) {
+                showLongTapDialog(selectedItem);
+            }
+
         });
 
         //noinspection ConstantConditions
@@ -336,6 +382,85 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
             NavigationHelper.openWhatsNewFragment(fragmentManager);
         });
         importExportListHeader.setOnClickListener(v -> importExportOptions.switchState());
+    }
+
+    private void showLongTapDialog(ChannelInfoItem selectedItem) {
+        final Context context = getContext();
+        final Activity activity = getActivity();
+        if (context == null || context.getResources() == null || getActivity() == null) return;
+
+        final String[] commands = new String[]{
+                context.getResources().getString(R.string.share),
+                context.getResources().getString(R.string.unsubscribe)
+        };
+
+        final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
+            switch (i) {
+                case 0:
+                    shareChannel(selectedItem);
+                    break;
+                case 1:
+                    deleteChannel(selectedItem);
+                    break;
+                default:
+                    break;
+            }
+        };
+
+        final View bannerView = View.inflate(activity, R.layout.dialog_title, null);
+        bannerView.setSelected(true);
+
+        TextView titleView = bannerView.findViewById(R.id.itemTitleView);
+        titleView.setText(selectedItem.getName());
+
+        TextView detailsView = bannerView.findViewById(R.id.itemAdditionalDetails);
+        detailsView.setVisibility(View.GONE);
+
+        new AlertDialog.Builder(activity)
+                .setCustomTitle(bannerView)
+                .setItems(commands, actions)
+                .create()
+                .show();
+
+    }
+
+    private void shareChannel (ChannelInfoItem selectedItem) {
+        shareUrl(selectedItem.getName(), selectedItem.getUrl());
+    }
+
+    @SuppressLint("CheckResult")
+    private void deleteChannel (ChannelInfoItem selectedItem) {
+        subscriptionService.subscriptionTable()
+                .getSubscription(selectedItem.getServiceId(), selectedItem.getUrl())
+                .toObservable()
+                .observeOn(Schedulers.io())
+                .subscribe(getDeleteObserver());
+
+        Toast.makeText(activity, getString(R.string.channel_unsubscribed), Toast.LENGTH_SHORT).show();
+    }
+
+
+
+    private Observer<List<SubscriptionEntity>> getDeleteObserver(){
+        return new Observer<List<SubscriptionEntity>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposables.add(d);
+            }
+
+            @Override
+            public void onNext(List<SubscriptionEntity> subscriptionEntities) {
+                subscriptionService.subscriptionTable().delete(subscriptionEntities);
+            }
+
+            @Override
+            public void onError(Throwable exception) {
+                SubscriptionFragment.this.onError(exception);
+            }
+
+            @Override
+            public void onComplete() {  }
+        };
     }
 
     private void resetFragment() {
@@ -446,5 +571,23 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
                 "Subscriptions",
                 R.string.general_error);
         return true;
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals(getString(R.string.list_view_mode_key))) {
+            updateFlags |= LIST_MODE_UPDATE_FLAG;
+        }
+    }
+
+    protected boolean isGridLayout() {
+        final String list_mode = PreferenceManager.getDefaultSharedPreferences(activity).getString(getString(R.string.list_view_mode_key), getString(R.string.list_view_mode_value));
+        if ("auto".equals(list_mode)) {
+            final Configuration configuration = getResources().getConfiguration();
+            return configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+                    && configuration.isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE);
+        } else {
+            return "grid".equals(list_mode);
+        }
     }
 }
