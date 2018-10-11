@@ -76,8 +76,7 @@ public final class ExtractorHelper {
             SearchInfo.getInfo(NewPipe.getService(serviceId),
                     NewPipe.getService(serviceId)
                         .getSearchQHFactory()
-                        .fromQuery(searchString, contentFilter, sortFilter),
-                    contentCountry));
+                        .fromQuery(searchString, contentFilter, sortFilter)));
     }
 
     public static Single<InfoItemsPage> getMoreSearchItems(final int serviceId,
@@ -92,7 +91,6 @@ public final class ExtractorHelper {
                         NewPipe.getService(serviceId)
                             .getSearchQHFactory()
                             .fromQuery(searchString, contentFilter, sortFilter),
-                        contentCountry,
                         pageUrl));
 
     }
@@ -104,7 +102,7 @@ public final class ExtractorHelper {
         return Single.fromCallable(() ->
                 NewPipe.getService(serviceId)
                         .getSuggestionExtractor()
-                        .suggestionList(query, contentCountry));
+                        .suggestionList(query));
     }
 
     public static Single<StreamInfo> getStreamInfo(final int serviceId,
@@ -128,7 +126,7 @@ public final class ExtractorHelper {
                                                             final String nextStreamsUrl) {
         checkServiceId(serviceId);
         return Single.fromCallable(() ->
-                ChannelInfo.getMoreItems(NewPipe.getService(serviceId), url, nextStreamsUrl));
+                ChannelInfo.getMoreItems(NewPipe.getService(serviceId), url, nextStreamsUrl, NewPipe.getLocalization()));
     }
 
     public static Single<CommentsInfo> getCommentsInfo(final int serviceId,

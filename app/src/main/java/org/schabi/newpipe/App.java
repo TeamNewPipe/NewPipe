@@ -21,6 +21,7 @@ import org.acra.config.ConfigurationBuilder;
 import org.acra.sender.ReportSenderFactory;
 import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.utils.Localization;
 import org.schabi.newpipe.report.AcraReportSenderFactory;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
@@ -88,7 +89,7 @@ public class App extends Application {
         // Initialize settings first because others inits can use its values
         SettingsActivity.initSettings(this);
 
-        NewPipe.init(getDownloader());
+        NewPipe.init(getDownloader(), new Localization("GB", "en"));
         StateSaver.init(this);
         initNotificationChannel();
 
