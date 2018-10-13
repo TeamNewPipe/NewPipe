@@ -43,7 +43,7 @@
     <string name="background_player_playing_toast">Lejátszás háttérben</string>
     <string name="settings_category_video_audio_title">Videó és audio</string>
     <string name="settings_category_appearance_title">Megjelenés</string>
-    <string name="search_language_title">Tartalom preferált nyelve</string>
+    <string name="search_language_title">Tartalom alapértelmezett nyelve</string>
     <string name="settings_category_other_title">További beállítások</string>
     <string name="show_next_and_similar_title">Következő hasonló videók mutatása</string>
     <string name="dark_theme_title">Sötét</string>
