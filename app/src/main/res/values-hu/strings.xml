@@ -206,4 +206,6 @@
     <string name="metadata_cache_wipe_summary">Minden gyorsítótárazott weboldal adat törlése</string>
     <string name="metadata_cache_wipe_complete_notice">A metaadat gyorsítótár törölve lett</string>
     <string name="auto_queue_title">Következő videó automatikus lejátszása</string>
+    <string name="enable_search_history_summary">Keresési előzmények tárolása az eszközön</string>
+    <string name="service_title">Szolgáltatás</string>
     </resources>
