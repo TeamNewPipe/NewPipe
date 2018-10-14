@@ -1,7 +1,6 @@
 package org.schabi.newpipe;
 
 import android.annotation.SuppressLint;
-import android.app.FragmentManager;
 import android.app.IntentService;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -13,7 +12,6 @@ import android.preference.PreferenceManager;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -38,7 +36,6 @@ import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
-import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.playqueue.ChannelPlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
@@ -51,14 +48,12 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Observer;
 
 import icepick.Icepick;
 import icepick.State;
@@ -86,7 +81,7 @@ public class RouterActivity extends AppCompatActivity {
     protected int selectedPreviously = -1;
 
     protected String currentUrl;
-    protected CompositeDisposable disposables = new CompositeDisposable();
+    protected final CompositeDisposable disposables = new CompositeDisposable();
 
     private boolean selectionIsDownload = false;
 
@@ -184,12 +179,16 @@ public class RouterActivity extends AppCompatActivity {
         if (selectedChoiceKey.equals(alwaysAskKey)) {
             final List<AdapterChoiceItem> choices = getChoicesForService(currentService, currentLinkType);
 
-            if (choices.size() == 1) {
-                handleChoice(choices.get(0).key);
-            } else if (choices.size() == 0) {
-                handleChoice(showInfoKey);
-            } else {
-                showDialog(choices);
+            switch (choices.size()) {
+                case 1:
+                    handleChoice(choices.get(0).key);
+                    break;
+                case 0:
+                    handleChoice(showInfoKey);
+                    break;
+                default:
+                    showDialog(choices);
+                    break;
             }
         } else if (selectedChoiceKey.equals(showInfoKey)) {
             handleChoice(showInfoKey);

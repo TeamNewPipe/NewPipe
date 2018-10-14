@@ -33,7 +33,7 @@ public class LocalItemBuilder {
     private static final String TAG = LocalItemBuilder.class.toString();
 
     private final Context context;
-    private ImageLoader imageLoader = ImageLoader.getInstance();
+    private final ImageLoader imageLoader = ImageLoader.getInstance();
 
     private OnClickGesture<LocalItem> onSelectedListener;
 
