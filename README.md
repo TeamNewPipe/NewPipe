@@ -100,6 +100,11 @@ If you like NewPipe we'd be happy about a donation. You can either donate via Bi
   </tr>
 </table>
 
+## Privacy Policy
+
+The NewPipe project aims to provide a private, anonymous experience for using media web services.
+Therefore, the app does not collect any data without your consent. NewPipe's privacy policy explains in detail what data is sent and stored when you send a crash report or leave a comment at our blog. You can find the document [here](https://newpipe.schabi.org/legal/privacy/).
+
 ## License
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  
 
