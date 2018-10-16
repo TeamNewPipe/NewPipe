@@ -83,8 +83,10 @@
     <string name="metadata_cache_wipe_complete_notice">Metadata cache wiped</string>
     <string name="auto_queue_title">Auto-queue next stream</string>
     <string name="auto_queue_summary">Auto-append a related stream when playing the last stream in a non-repeating queue.</string>
-    <string name="player_gesture_controls_title">Player gesture controls</string>
-    <string name="player_gesture_controls_summary">Use gestures to control the brightness and volume of the player</string>
+    <string name="volume_gesture_control_title">Volume gesture control</string>
+    <string name="volume_gesture_control_summary">Use gestures to control the volume of the player</string>
+    <string name="brightness_gesture_control_title">Brightness gesture control</string>
+    <string name="brightness_gesture_control_summary">Use gestures to control the brightness of the player</string>
     <string name="show_search_suggestions_title">Search suggestions</string>
     <string name="show_search_suggestions_summary">Show suggestions when searching</string>
     <string name="enable_search_history_title">Search history</string>
