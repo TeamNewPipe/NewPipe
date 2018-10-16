@@ -30,8 +30,8 @@
 [<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_8.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_8.png)
 [<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_9.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_9.png)
 [<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_10.png" width=160>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_10.png)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_11.png" width=405>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_11.png)
-[<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/shot_12.png" width=405>](fastlane/metadata/android/en-US/images/phoneScreenshots/shot_12.png)
+[<img src="fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_11.png" width=405>](fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_11.png)
+[<img src="fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_12.png" width=405>](fastlane/metadata/android/en-US/images/tenInchScreenshots/shot_12.png)
 
 ## Description
 
@@ -99,6 +99,11 @@ If you like NewPipe we'd be happy about a donation. You can either donate via Bi
     <td><a href="https://www.bountysource.com/teams/newpipe/issues"><img src="https://img.shields.io/bountysource/team/newpipe/activity.svg?colorB=cd201f" height="30px" alt="Check out how many bounties you can earn."></a></td>
   </tr>
 </table>
+
+## Privacy Policy
+
+The NewPipe project aims to provide a private, anonymous experience for using media web services.
+Therefore, the app does not collect any data without your consent. NewPipe's privacy policy explains in detail what data is sent and stored when you send a crash report or leave a comment at our blog. You can find the document [here](https://newpipe.schabi.org/legal/privacy/).
 
 ## License
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  
