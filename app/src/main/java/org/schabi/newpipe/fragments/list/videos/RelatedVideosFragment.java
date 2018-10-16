@@ -1,7 +1,9 @@
 package org.schabi.newpipe.fragments.list.videos;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -9,34 +11,31 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
-import org.schabi.newpipe.extractor.ListInfo;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.comments.CommentsInfo;
-import org.schabi.newpipe.extractor.exceptions.ExtractionException;
-import org.schabi.newpipe.extractor.kiosk.KioskInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
-import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.RelatedStreamInfo;
 
-import java.util.List;
+import java.io.Serializable;
 
 import io.reactivex.Single;
 import io.reactivex.disposables.CompositeDisposable;
 
-public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInfo> {
+public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInfo> implements SharedPreferences.OnSharedPreferenceChangeListener{
 
     private CompositeDisposable disposables = new CompositeDisposable();
     private RelatedStreamInfo relatedStreamInfo;
     /*//////////////////////////////////////////////////////////////////////////
     // Views
     //////////////////////////////////////////////////////////////////////////*/
+    private View headerRootLayout;
+    private Switch aSwitch;
 
 
 
@@ -72,6 +71,28 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
     public void onDestroy() {
         super.onDestroy();
         if (disposables != null) disposables.clear();
+    }
+
+    protected View getListHeader(){
+        if(relatedStreamInfo != null && relatedStreamInfo.getNextStream() != null){
+            headerRootLayout = activity.getLayoutInflater().inflate(R.layout.related_streams_header, itemsList, false);
+            aSwitch = headerRootLayout.findViewById(R.id.autoplay_switch);
+
+            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
+            Boolean autoplay = pref.getBoolean(getString(R.string.auto_queue_key), false);
+            aSwitch.setChecked(autoplay);
+            aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    SharedPreferences.Editor prefEdit = PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
+                    prefEdit.putBoolean(getString(R.string.auto_queue_key), b);
+                    prefEdit.apply();
+                }
+            });
+            return headerRootLayout;
+        }else{
+            return null;
+        }
     }
 
     @Override
@@ -145,6 +166,33 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
 
     private void setInitialData(StreamInfo info) {
         super.setInitialData(info.getServiceId(), info.getUrl(), info.getName());
-        this.relatedStreamInfo = RelatedStreamInfo.getInfo(info);
+        if(this.relatedStreamInfo == null) this.relatedStreamInfo = RelatedStreamInfo.getInfo(info);
+    }
+
+
+    private static final String INFO_KEY = "related_info_key";
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable(INFO_KEY, relatedStreamInfo);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedState) {
+        super.onRestoreInstanceState(savedState);
+        if (savedState != null) {
+            Serializable serializable = savedState.getSerializable(INFO_KEY);
+            if(serializable instanceof RelatedStreamInfo){
+                this.relatedStreamInfo = (RelatedStreamInfo) serializable;
+            }
+        }
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
+        Boolean autoplay = pref.getBoolean(getString(R.string.auto_queue_key), false);
+        aSwitch.setChecked(autoplay);
     }
 }

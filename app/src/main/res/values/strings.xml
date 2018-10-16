@@ -95,7 +95,8 @@
     <string name="resume_on_audio_focus_gain_title">Resume on focus gain</string>
     <string name="resume_on_audio_focus_gain_summary">Continue playing after interruptions (e.g. phone calls)</string>
     <string name="download_dialog_title">Download</string>
-    <string name="next_video_title">Next video</string>
+    <string name="next_video_title">Up next</string>
+    <string name="autoplay_title">Autoplay</string>
     <string name="show_next_and_similar_title">Show \'next\' and \'similar\' videos</string>
     <string name="show_hold_to_append_title">Show \"hold to append\" tip</string>
     <string name="show_hold_to_append_summary">Show tip when background or popup button is pressed on video details page</string>
