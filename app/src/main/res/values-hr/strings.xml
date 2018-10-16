@@ -42,7 +42,7 @@
     <string name="download_path_audio_dialog_title">Unesi put za preuzimanje zvučne datoteke</string>
 
     <string name="autoplay_by_calling_app_title">Auto. reprod. kada je NewPipe pozvan iz druge apl.</string>
-    <string name="autoplay_by_calling_app_summary">Automatski reproduciraj videozapis kad je NewPipe pozvan iz druge aplikacije</string>
+    <string name="autoplay_by_calling_app_summary">Reproducira videozapis kad je NewPipe pozvan iz druge aplikacije</string>
     <string name="default_resolution_title">Zadana razlučivost</string>
     <string name="default_popup_resolution_title">Zadana razlučivost skočnog prozora</string>
     <string name="show_higher_resolutions_title">Prikaži veće razlučivosti</string>
@@ -436,4 +436,8 @@
     <string name="limit_data_usage_none_description">Bez ograničenja</string>
     <string name="limit_mobile_data_usage_title">Ograniči rezoluciju tijekom korištenja mobilnih podataka</string>
     <string name="minimize_on_exit_none_description">Nijedan</string>
+    <string name="no_player_found_toast">Reproduktor za stream nije pronađen (možete instalirati VLC za reprodukciju)</string>
+    <string name="controls_download_desc">Preuzmite datoteku za stream.</string>
+    <string name="use_inexact_seek_title">Koristi brzo netočno premotavanje</string>
+    <string name="use_inexact_seek_summary">Netočno premotavanje omogućava reproduktoru da premota na mjesto brže uz manju preciznost</string>
     </resources>
