@@ -626,7 +626,7 @@ public class SearchFragment
                     }
 
                     final Observable<List<SuggestionItem>> network = ExtractorHelper
-                            .suggestionsFor(serviceId, query, contentCountry)
+                            .suggestionsFor(serviceId, query)
                             .toObservable()
                             .map(strings -> {
                                 List<SuggestionItem> result = new ArrayList<>();
@@ -726,8 +726,7 @@ public class SearchFragment
         searchDisposable = ExtractorHelper.searchFor(serviceId,
                     searchString,
                     Arrays.asList(contentFilter),
-                    sortFilter,
-                    contentCountry)
+                    sortFilter)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnEvent((searchResult, throwable) -> isLoading.set(false))
@@ -745,8 +744,7 @@ public class SearchFragment
                     searchString,
                     asList(contentFilter),
                     sortFilter,
-                    nextPageUrl,
-                    contentCountry)
+                    nextPageUrl)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnEvent((nextItemsResult, throwable) -> isLoading.set(false))

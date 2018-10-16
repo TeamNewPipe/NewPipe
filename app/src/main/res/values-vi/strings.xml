@@ -174,7 +174,7 @@
     <string name="read_full_license">Đọc giấy phép</string>
     <string name="contribution_title">Sự đóng góp</string>
 <string name="screen_rotation">Quay</string>
-    <string name="search_language_title">Ngôn ngữ nội dung ưu tiên</string>
+    <string name="content_language_title">Ngôn ngữ nội dung ưu tiên</string>
     <string name="settings_category_video_audio_title">Video &amp; Âm thanh</string>
     <string name="settings_category_popup_title">Bật lên</string>
     <string name="enable_watch_history_title">Lịch sử</string>

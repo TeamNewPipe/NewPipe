@@ -35,7 +35,7 @@
     <string name="detail_thumbnail_view_description">Miniature d’aperçu vidéo</string>
     <string name="detail_dislikes_img_view_description">Je n’aime pas</string>
     <string name="detail_likes_img_view_description">J’aime</string>
-    <string name="search_language_title">Langue du contenu par défaut</string>
+    <string name="content_language_title">Langue du contenu par défaut</string>
     <string name="detail_uploader_thumbnail_view_description">Miniature de l’avatar de l’utilisateur</string>
     <string name="use_external_video_player_title">Utiliser un lecteur vidéo externe</string>
     <string name="use_external_audio_player_title">Utiliser un lecteur audio externe</string>
