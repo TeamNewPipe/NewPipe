@@ -17,14 +17,14 @@ import java.util.List;
 
 import io.reactivex.schedulers.Schedulers;
 
-public class DownloadPlayer extends Service {
+public class HistoryHelper extends Service {
     private Context context;
     private HistoryRecordManager History;
 
     private Subscription databaseSubscription;
     private String[] returnarr;
 
-    public DownloadPlayer (Context inputcontext){context= inputcontext;}
+    public HistoryHelper(Context inputcontext){context= inputcontext;}
 
     public String[] onClose(){
         History = new HistoryRecordManager(context);
