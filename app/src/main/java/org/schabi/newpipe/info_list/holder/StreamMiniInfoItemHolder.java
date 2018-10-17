@@ -1,11 +1,13 @@
 package org.schabi.newpipe.info_list.holder;
 
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
@@ -20,6 +22,8 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
     public final TextView itemVideoTitleView;
     public final TextView itemUploaderView;
     public final TextView itemDurationView;
+    public final TextView itemSeenView;
+    private String[] HistoryArr;
 
     StreamMiniInfoItemHolder(InfoItemBuilder infoItemBuilder, int layoutId, ViewGroup parent) {
         super(infoItemBuilder, layoutId, parent);
@@ -28,6 +32,7 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
         itemVideoTitleView = itemView.findViewById(R.id.itemVideoTitleView);
         itemUploaderView = itemView.findViewById(R.id.itemUploaderView);
         itemDurationView = itemView.findViewById(R.id.itemDurationView);
+        itemSeenView = itemView.findViewById(R.id.itemSeenView);
     }
 
     public StreamMiniInfoItemHolder(InfoItemBuilder infoItemBuilder, ViewGroup parent) {
@@ -67,6 +72,32 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
                 itemBuilder.getOnStreamSelectedListener().selected(item);
             }
         });
+        //item.getUrl().
+/*
+        if(item.getUrl().equals("https://www.youtube.com/watch?v=Uk1hv6h7O1Y")){
+            itemSeenView.setText("Seen");
+        }else{
+            itemSeenView.setVisibility(View.GONE);
+        }
+*/
+
+
+
+        HistoryArr = MainActivity.URLs;
+        if(HistoryArr != null) {
+            for (int i = 0; i < HistoryArr.length; i++) {
+                if (item.getUrl().equals(HistoryArr[i])) {
+                    itemSeenView.setText(R.string.seen_or_not);
+                }
+            }
+            if (itemSeenView.getText().equals("Seen")) {
+
+            } else {
+                itemSeenView.setVisibility(View.GONE);
+            }
+        }
+
+
 
         switch (item.getStreamType()) {
             case AUDIO_STREAM:

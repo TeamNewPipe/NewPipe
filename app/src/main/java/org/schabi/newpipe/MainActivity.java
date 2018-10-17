@@ -57,6 +57,7 @@ import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
+import org.schabi.newpipe.player.DownloadPlayer;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.KioskTranslator;
@@ -78,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawer = null;
     private NavigationView drawerItems = null;
     private TextView headerServiceView = null;
+    private DownloadPlayer History;
+    public static String[] URLs;
 
     private boolean servicesShown = false;
     private ImageView serviceArrow;
@@ -101,6 +104,10 @@ public class MainActivity extends AppCompatActivity {
         if (DEBUG) Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
 
         ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
+
+        History = new DownloadPlayer(getApplicationContext());
+        URLs = History.onClose();
+        Log.i("Iminpain", Boolean.toString(URLs == null));
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
