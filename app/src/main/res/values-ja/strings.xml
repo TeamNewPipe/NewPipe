@@ -128,7 +128,7 @@
     <string name="could_not_load_image">画像を読み込みできません</string>
 
     <string name="app_ui_crash">アプリ/UI がクラッシュしました</string>
-    <string name="info_labels">何:\\n提案:\\nｺﾝﾃﾝﾂ言語:\\nｻｰﾋﾞｽ:\\nGMT 時間:\\nﾊﾟｯｹｰｼﾞ:\\nﾊﾞｰｼﾞｮﾝ:\\nOS ﾊﾞｰｼﾞｮﾝ:</string>
+    <string name="info_labels">何:\\\\n提案:\\\\nコンテンツ言語:\\\\nサービス:\\\\nGMT 時間:\\\\nパッケージ:\\\\nバージョン:\\\\nOSバージョン:</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">reCAPTCHA の要求</string>
 
@@ -177,7 +177,7 @@
     <string name="settings_category_popup_title">ポップアップ</string>
     <string name="popup_resizing_indicator_title">サイズを変更</string>
 
-    <string name="use_external_video_player_summary">このオプションが有効になっているとき、一部の解像度では音声がありません。</string>
+    <string name="use_external_video_player_summary">このオプションが有効になっているとき、一部の解像度では音声がありません</string>
     <string name="player_gesture_controls_title">プレーヤーのジェスチャー コントロール</string>
     <string name="player_gesture_controls_summary">ジェスチャーを使用してプレーヤーの明るさと音量をコントロールする</string>
     <string name="show_search_suggestions_title">検索候補</string>
@@ -453,4 +453,22 @@
     <string name="caption_setting_description">プレーヤーのキャプション文字スケールと背景スタイルを変更します。有効にするにはアプリの再起動が必要です</string>
 
     <string name="empty_subscription_feed_subtitle">何もありません</string>
-    </resources>
+    <string name="import_youtube_instructions">保存したエクスポートファイルからYoutubeの購読をインポート:
+\n
+\n1. このURLを開きます: %1$s
+\n2. ログインしていなければログインします
+\n3. ダウンロードが始まります (これがエクスポートファイルです)</string>
+    <string name="playback_reset">リセット</string>
+
+    <string name="accept">同意する</string>
+    <string name="decline">拒否</string>
+
+    <string name="limit_data_usage_none_description">制限なし</string>
+    <string name="limit_mobile_data_usage_title">モバイルデータ使用時の解像度の制限</string>
+    <string name="minimize_on_exit_title">アプリ切り替え時の最小化</string>
+    <string name="minimize_on_exit_summary">プレーヤーから他アプリに切り替え時の動作 — %s</string>
+    <string name="minimize_on_exit_none_description">何もしない</string>
+    <string name="minimize_on_exit_background_description">バックグラウンドに変更</string>
+    <string name="minimize_on_exit_popup_description">ポップアップに変更</string>
+
+</resources>
