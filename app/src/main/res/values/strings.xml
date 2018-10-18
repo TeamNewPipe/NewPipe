@@ -529,7 +529,7 @@
     <string name="switch_view">Switch View</string>
 
     <!-- App update notification -->
-    <string name="app_update_notification_content_title">NewPipe Update Available</string>
+    <string name="app_update_notification_content_title">NewPipe Update Available!</string>
     <string name="app_update_notification_content_text">Tap to download</string>
 
 </resources>

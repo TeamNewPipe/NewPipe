@@ -38,11 +38,10 @@ import java.security.cert.X509Certificate;
  */
 public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
 
-    private Application app = App.getContext();
-
-    private String GITHUB_APK_SHA1 = "B0:2E:90:7C:1C:D6:FC:57:C3:35:F0:88:D0:8F:50:5F:94:E4:D2:15";
-    private String newPipeApiUrl = "https://newpipe.schabi.org/api/data.json";
-    private int timeoutPeriod = 10000;
+    private static final Application app = App.getContext();
+    private static final String GITHUB_APK_SHA1 = "B0:2E:90:7C:1C:D6:FC:57:C3:35:F0:88:D0:8F:50:5F:94:E4:D2:15";
+    private static final String newPipeApiUrl = "https://newpipe.schabi.org/api/data.json";
+    private static final int timeoutPeriod = 10000;
 
     private SharedPreferences mPrefs;
 
@@ -54,7 +53,7 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
         // Check if user has enabled/ disabled update checking
         // and if the current apk is a github one or not.
         if (!mPrefs.getBoolean(app.getString(R.string.update_app_key), true)
-                || !getCertificateSHA1Fingerprint().equals(GITHUB_APK_SHA1)) {
+                || !isGithubApk()) {
             this.cancel(true);
         }
     }
@@ -179,7 +178,7 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
      * Method to get the apk's SHA1 key.
      * https://stackoverflow.com/questions/9293019/get-certificate-fingerprint-from-android-app#22506133
      */
-    private String getCertificateSHA1Fingerprint() {
+    private static String getCertificateSHA1Fingerprint() {
 
         PackageManager pm = app.getPackageManager();
         String packageName = app.getPackageName();
@@ -239,5 +238,10 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
             if (i < (arr.length - 1)) str.append(':');
         }
         return str.toString();
+    }
+
+    public static boolean isGithubApk() {
+
+        return getCertificateSHA1Fingerprint().equals(GITHUB_APK_SHA1);
     }
 }
