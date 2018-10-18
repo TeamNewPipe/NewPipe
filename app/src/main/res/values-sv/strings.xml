@@ -10,7 +10,7 @@
     <string name="download">Ladda ner</string>
     <string name="search">Sök</string>
     <string name="settings">Inställningar</string>
-    <string name="did_you_mean">Menade du: %1$s ?</string>
+    <string name="did_you_mean">Menade du: %1$s\?</string>
     <string name="share_dialog_title">Dela med</string>
     <string name="choose_browser">Välj webbläsare</string>
     <string name="screen_rotation">rotation</string>
@@ -398,7 +398,7 @@
     <string name="delete_playlist_prompt">Vill du ta bort den här spellistan?</string>
     <string name="playlist_creation_success">Spellistan skapades</string>
     <string name="playlist_add_stream_success">Tillagad i spellistan</string>
-    <string name="playlist_thumbnail_change_success">"Spellistans miniatyrbild förändrades "</string>
+    <string name="playlist_thumbnail_change_success">Spellistans miniatyrbild förändrades</string>
     <string name="playlist_delete_failure">Kunde inte ta bort spellistan</string>
 
     <string name="caption_none">Ingen textning</string>
@@ -451,7 +451,7 @@
 
     <string name="playback_speed_control">Uppspelningshastighet Kontroller</string>
     <string name="playback_tempo">Tempo</string>
-    <string name="playback_pitch">Pitch</string>
+    <string name="playback_pitch">Tonhöjd</string>
     <string name="unhook_checkbox">Avlänka (kan orsaka förvrängning)</string>
     <string name="skip_silence_checkbox">Snabbspola vid frånvaro av ljud</string>
     <string name="playback_step">Steg</string>
