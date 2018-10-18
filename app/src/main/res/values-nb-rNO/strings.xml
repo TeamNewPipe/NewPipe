@@ -436,7 +436,7 @@
     <string name="search_history_deleted">Søkehistorikk slettet.</string>
     <string name="one_item_deleted">Ett element slettet.</string>
 
-    <string name="toast_no_player">Inget program installert for avspilling av denne filen.</string>
+    <string name="toast_no_player">Inget program installert for avspilling av denne filen</string>
 
     <string name="caption_setting_title">Undertekster</string>
     <string name="caption_setting_description">Endre undertekststørrelse og bakgrunnsstiler. Krever omstart av programmet for å tre i effekt</string>
