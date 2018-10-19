@@ -1,6 +1,6 @@
 <p align="center"><a href="https://newpipe.schabi.org"><img src="assets/new_pipe_icon_5.png" width="150"></a></p> 
 <h2 align="center"><b>NewPipe</b></h2>
-<h4 align="center">A free lightweight YouTube frontend for Android.</h4>
+<h4 align="center">A libre lightweight streaming frontend for Android.</h4>
 <p align="center"><a href="https://f-droid.org/packages/org.schabi.newpipe/"><img src="https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png"></a></p> 
 
 <p align="center">
@@ -35,43 +35,43 @@
 
 ## Description
 
-NewPipe does not use any Google framework libraries, or the YouTube API. It only parses the website in order to gain the information it needs. Therefore this app can be used on devices without Google Services installed. Also, you don't need a YouTube account to use NewPipe, and it's FLOSS.
+NewPipe does not use any Google framework libraries, nor the YouTube API. Websites are only parsed to fetch required info, so this app can be used on devices without Google services installed. Also, you don't need a YouTube account to use NewPipe, which is copylefted libre software.
 
 ### Features
 
 * Search videos
-* Display general information about a video
+* Display general info about videos
 * Watch YouTube videos
 * Listen to YouTube videos
 * Popup mode (floating player)
-* Select the streaming player to watch the video with
-* Download videos 
+* Select streaming player to watch video with
+* Download videos
 * Download audio only
 * Open a video in Kodi
-* Show Next/Related videos
+* Show next/related videos
 * Search YouTube in a specific language
 * Watch/Block age restricted material
-* Display general information about channels
+* Display general info about channels
 * Search channels
 * Watch videos from a channel
 * Orbot/Tor support (not yet directly)
-* 1080p/2k/4k support
+* 1080p/2K/4K support
 * View history
 * Subscribe to channels
 * Search history
-* Search/Watch Playlists
-* Watch as queues Playlists
-* Queuing videos
+* Search/watch playlists
+* Watch as enqueued playlists
+* Enqueue videos
 * Local playlists
 * Subtitles
-* Multi-service support (eg. SoundCloud \[beta\])
+* Multi-service support (e.g. SoundCloud \[beta\])
 * Livestream support
 
 ### Coming Features
 
 * Cast to UPnP and Cast
 * Show comments
-* ... and many more
+* … and many more
 
 ## Contribution
 Whether you have ideas, translations, design changes, code cleaning, or real heavy code changes, help is always welcome.
@@ -80,12 +80,12 @@ The more is done the better it gets!
 If you'd like to get involved, check our [contribution notes](.github/CONTRIBUTING.md).
 
 ## Donate
-If you like NewPipe we'd be happy about a donation. You can either donate via Bitcoin, Bountysource or Liberapay. For further information about donating to NewPipe, please visit our [website](https://newpipe.schabi.org/donate).
+If you like NewPipe we'd be happy about a donation. You can either send bitcoin or donate via Bountysource or Liberapay. For further info on donating to NewPipe, please visit our [website](https://newpipe.schabi.org/donate).
 
 <table>
   <tr>
     <td><img src="https://bitcoin.org/img/icons/logotop.svg" alt="Bitcoin"></td>
-    <td><img src="assets/bitcoin_qr_code.png" alt="Bitcoin QR Code" width="100px"></td>
+    <td><img src="assets/bitcoin_qr_code.png" alt="Bitcoin QR code" width="100px"></td>
     <td><samp>16A9J59ahMRqkLSZjhYj33n9j3fMztFxnh</samp></td>
   </tr>
   <tr>
@@ -103,7 +103,7 @@ If you like NewPipe we'd be happy about a donation. You can either donate via Bi
 ## Privacy Policy
 
 The NewPipe project aims to provide a private, anonymous experience for using media web services.
-Therefore, the app does not collect any data without your consent. NewPipe's privacy policy explains in detail what data is sent and stored when you send a crash report or leave a comment at our blog. You can find the document [here](https://newpipe.schabi.org/legal/privacy/).
+Therefore, the app does not collect any data without your consent. NewPipe's privacy policy explains in detail what data is sent and stored when you send a crash report, or comment in our blog. You can find the document [here](https://newpipe.schabi.org/legal/privacy/).
 
 ## License
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  
