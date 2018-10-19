@@ -11,7 +11,7 @@
     <string name="download">İndir</string>
     <string name="search">Ara</string>
     <string name="settings">Ayarlar</string>
-    <string name="did_you_mean">Bunu mu demek istediniz: %1$s ?</string>
+    <string name="did_you_mean">Bunu mu demek istediniz: %1$s\?</string>
     <string name="share_dialog_title">Şununla paylaş</string>
     <string name="choose_browser">Tarayıcı seç</string>
     <string name="screen_rotation">döndürme</string>
