@@ -37,8 +37,6 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
     private View headerRootLayout;
     private Switch aSwitch;
 
-
-
     private boolean mIsVisibleToUser = false;
 
     public static RelatedVideosFragment getInstance(StreamInfo info) {

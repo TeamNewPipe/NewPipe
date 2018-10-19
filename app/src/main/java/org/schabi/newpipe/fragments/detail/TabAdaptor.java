@@ -3,6 +3,7 @@ package org.schabi.newpipe.fragments.detail;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,10 +12,11 @@ public class TabAdaptor extends FragmentPagerAdapter {
 
     private final List<Fragment> mFragmentList = new ArrayList<>();
     private final List<String> mFragmentTitleList = new ArrayList<>();
-    int baseId = 0;
+    private final FragmentManager fragmentManager;
 
     public TabAdaptor(FragmentManager fm) {
         super(fm);
+        this.fragmentManager = fm;
     }
 
     @Override
@@ -25,12 +27,6 @@ public class TabAdaptor extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return mFragmentList.size();
-    }
-
-    @Override
-    public long getItemId(int position) {
-        // give an ID different from position when position has been changed
-        return baseId + position;
     }
 
     public void addFragment(Fragment fragment, String title) {
@@ -65,19 +61,13 @@ public class TabAdaptor extends FragmentPagerAdapter {
         else return POSITION_NONE;
     }
 
-    /**
-     * Notify that the position of a fragment has been changed.
-     * Create a new ID for each position to force recreation of the fragment
-     * @param n number of items which have been changed
-     */
-    public void notifyChangeInPosition(int n) {
-        // shift the ID returned by getItemId outside the range of all previous fragments
-        // https://stackoverflow.com/questions/10396321/remove-fragment-page-from-viewpager-in-android
-        baseId += getCount() + n;
-    }
-
     public void notifyDataSetUpdate(){
-        notifyChangeInPosition(1);
         notifyDataSetChanged();
     }
+
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+        fragmentManager.beginTransaction().remove((Fragment) object).commitNowAllowingStateLoss();
+    }
+
 }
