@@ -10,7 +10,7 @@
     <string name="download">Downloaden</string>
     <string name="search">Zoeken</string>
     <string name="settings">Instellingen</string>
-    <string name="did_you_mean">Bedoelde je: %1$s ?</string>
+    <string name="did_you_mean">Bedoelde je: %1$s\?</string>
     <string name="share_dialog_title">Delen met</string>
     <string name="choose_browser">Kies een browser</string>
     <string name="screen_rotation">draaiing</string>
