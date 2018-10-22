@@ -117,4 +117,21 @@
     <string name="msg_copied">در حافظه رونوشت شد.</string>
     <string name="no_available_dir">لطفاً یک شاخهٔ بارگیری موجود را برگزینید.</string>
 
-</resources>
+<string name="no_player_found_toast">هیچ پخش کننده استریمی پیدا نشد (شما می‌توانید برنامه وی‌ال‌سی را برای پخش آن نصب نمایید)</string>
+    <string name="controls_download_desc">بارگیری پرونده جریان.</string>
+    <string name="use_external_video_player_summary">هنگامی که این گزینه فعال باشد، برخی از کیفیت‌ها فاقد صدا خواهند بود</string>
+    <string name="subscribe_button_title">اشتراک</string>
+    <string name="subscribed_button_title">مشترک شده</string>
+    <string name="channel_unsubscribed">اشتراک کانال لغو شد</string>
+    <string name="subscription_change_failed">ناتوانی در تغییر وضعیت اشتراک</string>
+    <string name="subscription_update_failed">ناتوانی در به‌روزرسانی اشتراک</string>
+    <string name="show_info">نمایش اطلاعات</string>
+
+    <string name="tab_main">اصلی</string>
+    <string name="tab_subscriptions">اشتراک‌ها</string>
+    <string name="tab_bookmarks">نشان‌گذاری‌ها</string>
+
+    <string name="fragment_whats_new">موارد جدید</string>
+
+    <string name="controls_background_title">پس زمینه</string>
+    </resources>

@@ -10,7 +10,7 @@
     <string name="download">Download</string>
     <string name="search">Suchen</string>
     <string name="settings">Einstellungen</string>
-    <string name="did_you_mean">Meintest du: %1$s ?</string>
+    <string name="did_you_mean">Meintest du: %1$s\?</string>
     <string name="share_dialog_title">Teilen mit</string>
     <string name="choose_browser">Browser auswählen</string>
     <string name="screen_rotation">Drehen des Geräts</string>

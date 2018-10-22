@@ -254,7 +254,7 @@ abrir em modo popup</string>
     <string name="trending">Em Alta</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Novos e tendências</string>
-<string name="show_hold_to_append_title">"Mostrar dica  \"mantenha pressionado\" para enfileirar"</string>
+<string name="show_hold_to_append_title">"Mostrar dica  \"mantenha pressionado para enfileirar\""</string>
     <string name="show_hold_to_append_summary">Mostrar dica quando o botão de plano de fundo ou de popup for pressionado na página de detalhes do vídeo</string>
     <string name="background_player_append">Adicionado a fila do reprodutor em plano de fundo</string>
     <string name="popup_playing_append">Adicionado a fila no reprodutor popup</string>
@@ -291,7 +291,7 @@ abrir em modo popup</string>
     <string name="toggle_orientation">Alterar a orientação</string>
     <string name="switch_to_background">Alterar para Plano de Fundo</string>
     <string name="switch_to_popup">Alterar para Popup</string>
-    <string name="switch_to_main">Aletar para principal</string>
+    <string name="switch_to_main">Alterar para o Principal</string>
 
     <string name="external_player_unsupported_link_type">Reprodutores externos não suportam estes tipos de links</string>
     <string name="invalid_url_toast">URL inválida</string>

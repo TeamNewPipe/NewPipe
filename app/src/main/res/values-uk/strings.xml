@@ -10,7 +10,7 @@
     <string name="download">Завантажити</string>
     <string name="search">Шукати</string>
     <string name="settings">Налаштування</string>
-    <string name="did_you_mean">Чи ви мали на увазі: %1$s ?</string>
+    <string name="did_you_mean">Чи ви мали на увазі: %1$s\?</string>
     <string name="share_dialog_title">Поділитись з</string>
     <string name="choose_browser">Оберіть переглядач</string>
     <string name="screen_rotation">обертання</string>

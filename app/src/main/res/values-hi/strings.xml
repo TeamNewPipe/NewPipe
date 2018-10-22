@@ -247,7 +247,7 @@
     <string name="copyright" formatted="true">%2$s के द्वारा © %1$s जो %3$s के अधीन आते है</string>
     <string name="error_unable_to_load_license">लाइसेंस load नहीं हो रहा</string>
     <string name="tab_contributors">सहयोगकर्ता</string>
-    <string name="app_description">एंड्राइड के लिए हल्का और मुफ्त स्ट्रीमिंग।</string>
+    <string name="app_description">एंड्राइड के लिए हल्का और मुफ्त स्ट्रीमिंग एप्लिकेशन|</string>
     <string name="contribution_encouragement">अगर आपके पास कोई सुझाव हो जैसे -अनुवाद , डिजाईन में बदलाव ,code को साफ़ रखना , या फिर code में जायदा बदलाव लाना हो तो - साहयता के लिए आपका स्वागत है . जितना ज्यादा होगा उतना बेहतर होगा !</string>
     <string name="delete_item_search_history">क्या आप इसको खोज इतिहास के मिटाना चाहते है ?</string>
 
@@ -295,7 +295,7 @@
     <string name="import_data_title">डेटाबेस आयात करें</string>
     <string name="export_data_title">डेटाबेस निर्यात करें</string>
     <string name="import_data_summary">आपके वर्तमान इतिहास और सब्सक्रिप्शन को ओवरराइड करेगा</string>
-    <string name="export_data_summary">इतिहास, सब्सक्रिप्शन और प्लेलिस्ट निर्यात करें ।</string>
+    <string name="export_data_summary">इतिहास, सब्सक्रिप्शन और प्लेलिस्ट निर्यात करें</string>
     <string name="external_player_unsupported_link_type">एक्सटर्नल प्लेयर इन प्रकार के लिंक सपोर्ट नहीं करता</string>
     <string name="invalid_url_toast">अमान्य URL</string>
     <string name="video_streams_empty">कोई वीडियो स्ट्रीम नहीं मिला</string>
@@ -383,7 +383,7 @@
     <string name="metadata_cache_wipe_summary">सभी कैश किए गए वेबपृष्ठ डेटा हटाएं</string>
     <string name="metadata_cache_wipe_complete_notice">मेटाडाटा कैश मिटा दिया गया</string>
     <string name="auto_queue_title">अगली स्ट्रीम को स्वचालित रूप से जोड़ें</string>
-    <string name="auto_queue_summary">गैर-दोहराने वाली कतार में अंतिम स्ट्रीम चलाते समय संबंधित स्ट्रीम को स्वतः संलग्न करें।</string>
+    <string name="auto_queue_summary">गैर-दोहराने वाली कतार में अंतिम स्ट्रीम चलाते समय संबंधित स्ट्रीम को स्वतः संलग्न करें</string>
     <string name="file">फाइल</string>
 
     <string name="channels">चेनल्स</string>
@@ -416,7 +416,7 @@
     <string name="import_settings">क्या आप सेटिंग्स भी आयात करना चाहते है?</string>
 
     <string name="preferred_open_action_settings_title">पसंदीदा \'खोलने पर\' करवाई</string>
-    <string name="preferred_open_action_settings_summary">सामग्री खोलते समय डिफ़ॉल्ट कारवाही</string>
+    <string name="preferred_open_action_settings_summary">सामग्री खोलते समय डिफ़ॉल्ट कारवाही — %s</string>
 
     <string name="caption_setting_title">केप्सन</string>
     <string name="caption_setting_description">प्लेयर केप्शन के शब्दों का परिमाण और पृष्ठभूमि शैलियो को बदले। लागू करने के लिए ऐप को पुनः प्रारम्भ करना जरूरी है।</string>

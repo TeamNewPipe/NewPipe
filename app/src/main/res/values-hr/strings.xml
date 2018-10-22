@@ -42,7 +42,7 @@
     <string name="download_path_audio_dialog_title">Unesi put za preuzimanje zvučne datoteke</string>
 
     <string name="autoplay_by_calling_app_title">Auto. reprod. kada je NewPipe pozvan iz druge apl.</string>
-    <string name="autoplay_by_calling_app_summary">Automatski reproduciraj videozapis kad je NewPipe pozvan iz druge aplikacije</string>
+    <string name="autoplay_by_calling_app_summary">Reproducira videozapis kad je NewPipe pozvan iz druge aplikacije</string>
     <string name="default_resolution_title">Zadana razlučivost</string>
     <string name="default_popup_resolution_title">Zadana razlučivost skočnog prozora</string>
     <string name="show_higher_resolutions_title">Prikaži veće razlučivosti</string>
@@ -116,7 +116,7 @@
     <string name="could_not_get_stream">Nije moguće dobaviti stream</string>
     <string name="could_not_load_image">Nije moguće učitati sliku</string>
     <string name="app_ui_crash">Aplikacija/UI se srušio</string>
-    <string name="sorry_string">Oprostitee, ovo se nije trebalo dogoditi.</string>
+    <string name="sorry_string">Oprostite, ovo se nije trebalo dogoditi.</string>
     <string name="error_report_button_text">Prijavi pogrešku putem e-maila</string>
     <string name="error_snackbar_message">Oprostite, neke greške su se dogodile.</string>
     <string name="error_snackbar_action">PRIJAVI</string>
@@ -284,7 +284,7 @@
     <string name="website_title">Web stranica</string>
     <string name="start_here_on_main">Ovdje započni reprodukciju</string>
     <string name="start_here_on_background">Ovdje započni repr. u pozadini</string>
-    <string name="enqueue_on_background">Dadaj na red čekanja u pozadini</string>
+    <string name="enqueue_on_background">Dodaj na red čekanja u pozadini</string>
     <string name="enqueue_on_popup">Dodaj na red u skočnom prozoru</string>
     <string name="start_here_on_popup">Započni ovdje u Skočnom prozoru</string>
 
@@ -333,4 +333,109 @@
     <string name="enable_leak_canary_summary">Monitoring curenja memorije može uzrokovati greške u radu aplikacije prilikom odlaganje gomile</string>
 
     <string name="enable_disposed_exceptions_title">Izvijestite o pogreškama izvan životnog ciklusa</string>
+    <string name="show_info">Prikaži informacije</string>
+
+    <string name="tab_bookmarks">Oznake</string>
+
+    <string name="controls_add_to_playlist_title">Dodaj u</string>
+
+    <string name="download_thumbnail_title">Učitaj slike</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Slikovna predmemorija obrisana</string>
+    <string name="metadata_cache_wipe_title">Obriši predmemorijsku metupodataka</string>
+    <string name="service_title">Usluga</string>
+    <string name="channels">Kanali</string>
+    <string name="playlists">Playliste</string>
+    <string name="tracks">Pjesme</string>
+    <string name="users">Korisnici</string>
+    <string name="always">Uvijek</string>
+    <string name="just_once">Samo jednom</string>
+    <string name="file">Datoteka</string>
+
+    <string name="switch_to_background">Prijeđi na pozadinu</string>
+    <string name="switch_to_popup">Prijeđi na skočni prozor</string>
+    <string name="switch_to_main">Prijeđi na glavni</string>
+
+    <string name="import_data_title">Uvoz baze podataka</string>
+    <string name="export_data_title">Izvoz baze podataka</string>
+    <string name="import_data_summary">Poništava vašu trenutnu povijest i pretplate</string>
+    <string name="export_data_summary">Izvoz povijesti, pretplata i playlisti</string>
+    <string name="clear_views_history_title">Očisti povijest gledanja</string>
+    <string name="clear_views_history_summary">Briše povijest reproduciranih streamova</string>
+    <string name="delete_view_history_alert">Obriši cijelu povijest gledanja.</string>
+    <string name="view_history_deleted">Povijest gledanja izbrisana.</string>
+    <string name="clear_search_history_title">Obriši povijest pretraživanja</string>
+    <string name="delete_search_history_alert">Obriši cijelu povijest pretraživanja.</string>
+    <string name="search_history_deleted">Povijest pretraživanja obrisana.</string>
+    <string name="invalid_url_toast">Neispravan URL</string>
+    <string name="invalid_directory">Nevažeći direktorij</string>
+    <string name="file_name_empty_error">Naziv datoteke ne može biti prazan</string>
+    <string name="error_occurred_detail">Dogodila se greška: %1$s</string>
+    <string name="detail_drag_description">Povucite za promjenu redoslijeda</string>
+
+    <string name="create">Stvori</string>
+    <string name="delete_one">Izbriši jedan</string>
+    <string name="delete_all">Izbriši sve</string>
+    <string name="dismiss">Odbaci</string>
+    <string name="rename">Preimenuj</string>
+
+    <string name="one_item_deleted">1 stavka izbrisana.</string>
+
+    <string name="toast_no_player">Nijedna aplikacija nije instalirana za reprodukciju te datoteke</string>
+
+    <string name="give_back">Vrati</string>
+    <string name="website_encouragement">Posjetite web stranicu NewPipe za više informacija i vijesti.</string>
+    <string name="privacy_policy_title">NewPipeova pravila o privatnosti</string>
+    <string name="read_privacy_policy">Pročitajte pravila o privatnosti</string>
+    <string name="delete_stream_history_prompt">Želite li izbrisati ovu stavku iz povijesti gledanja?</string>
+    <string name="delete_all_history_prompt">Jeste li sigurni da želite izbrisati sve stavke iz povijesti?</string>
+    <string name="title_last_played">Zadnje svirano</string>
+    <string name="title_most_played">Najviše svirano</string>
+
+    <string name="export_complete_toast">Izvoz završen</string>
+    <string name="import_complete_toast">Uvoz završen</string>
+    <string name="no_valid_zip_file">Nema važeće ZIP datoteke</string>
+    <string name="could_not_import_all_files">Upozorenje: Nije moguće uvesti sve datoteke.</string>
+    <string name="override_current_data">Ovo će poništiti vaše trenutne postavke.</string>
+    <string name="import_settings">Želite li također uvesti postavke?</string>
+
+    <string name="import_export_title">Uvoz/Izvoz</string>
+    <string name="import_title">Uvoz</string>
+    <string name="import_from">Uvoz iz</string>
+    <string name="export_to">Izvoz u</string>
+
+    <string name="import_ongoing">Uvoz…</string>
+    <string name="export_ongoing">Izvoz…</string>
+
+    <string name="import_file_title">Uvoz datoteke</string>
+    <string name="previous_export">Prethodni izvozi</string>
+
+    <string name="subscriptions_import_unsuccessful">Nije moguće uvesti pretplatnike</string>
+    <string name="subscriptions_export_unsuccessful">Nije moguće izvesti pretplatnike</string>
+
+    <string name="import_youtube_instructions">Uvezite YouTube pretplatnike preuzimanjem izvozne datoteke:
+\n
+\n1. Idite na ovaj URL: %1%s
+\n2. Ulogirajte se
+\n3. Preuzimanje bi trebalo početi (to je izvozna datoteka)</string>
+    <string name="import_soundcloud_instructions_hint">vašID, soundcloud.com/vašID</string>
+
+    <string name="import_network_expensive_warning">Uzmite u obzir da ova operacija može uzrokovat veliku potrošnju prometa.
+\n
+\nŽelite li nastaviti?</string>
+
+    <string name="playback_speed_control">Kontrole brzine reprodukcije</string>
+    <string name="skip_silence_checkbox">Premotaj naprijed tijekom šutnje</string>
+    <string name="playback_step">Korak</string>
+    <string name="playback_reset">Resetiraj</string>
+
+    <string name="accept">Prihvati</string>
+    <string name="decline">Odbij</string>
+
+    <string name="limit_data_usage_none_description">Bez ograničenja</string>
+    <string name="limit_mobile_data_usage_title">Ograniči rezoluciju tijekom korištenja mobilnih podataka</string>
+    <string name="minimize_on_exit_none_description">Nijedan</string>
+    <string name="no_player_found_toast">Reproduktor za stream nije pronađen (možete instalirati VLC za reprodukciju)</string>
+    <string name="controls_download_desc">Preuzmite datoteku za stream.</string>
+    <string name="use_inexact_seek_title">Koristi brzo netočno premotavanje</string>
+    <string name="use_inexact_seek_summary">Netočno premotavanje omogućava reproduktoru da premota na mjesto brže uz manju preciznost</string>
     </resources>

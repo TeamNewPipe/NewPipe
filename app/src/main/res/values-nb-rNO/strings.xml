@@ -377,7 +377,7 @@
     <string name="smaller_caption_font_size">Mindre skrift</string>
     <string name="normal_caption_font_size">Normal skrift</string>
     <string name="larger_caption_font_size">Større skrift</string>
-<string name="use_inexact_seek_title">Bruk raskt unøyaktig søk</string>
+<string name="use_inexact_seek_title">Bruk raskt unøyaktig blafring</string>
     <string name="settings_category_debug_title">Feilretting</string>
     <string name="file">Fil</string>
 
@@ -434,7 +434,7 @@
     <string name="search_history_deleted">Søkehistorikk slettet.</string>
     <string name="one_item_deleted">Ett element slettet.</string>
 
-    <string name="toast_no_player">Inget program installert for avspilling av denne filen.</string>
+    <string name="toast_no_player">Inget program installert for avspilling av denne filen</string>
 
     <string name="caption_setting_title">Undertekster</string>
     <string name="caption_setting_description">Endre undertekststørrelse og bakgrunnsstiler. Krever omstart av programmet for å tre i effekt</string>
