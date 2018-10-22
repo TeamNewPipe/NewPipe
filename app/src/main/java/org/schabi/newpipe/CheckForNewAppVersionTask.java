@@ -194,17 +194,12 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
         Signature[] signatures = packageInfo.signatures;
         byte[] cert = signatures[0].toByteArray();
         InputStream input = new ByteArrayInputStream(cert);
+
         CertificateFactory cf = null;
-
-        try {
-            cf = CertificateFactory.getInstance("X509");
-        } catch (CertificateException e) {
-            e.printStackTrace();
-        }
-
         X509Certificate c = null;
 
         try {
+            cf = CertificateFactory.getInstance("X509");
             c = (X509Certificate) cf.generateCertificate(input);
         } catch (CertificateException e) {
             e.printStackTrace();
