@@ -40,7 +40,7 @@
     <string name="next_video_title">Ďalšie video</string>
     <string name="show_next_and_similar_title">Ukázať \'ďalšie\' a \'podobné\' videá</string>
     <string name="url_not_supported_toast">URL nie je podporovaná</string>
-    <string name="search_language_title">Preferovaný jazyk obsahu</string>
+    <string name="content_language_title">Preferovaný jazyk obsahu</string>
     <string name="settings_category_video_audio_title">Video &amp; Zvuk</string>
     <string name="settings_category_appearance_title">Vzhľad</string>
     <string name="settings_category_other_title">Iné</string>

@@ -10,15 +10,13 @@
         android:summary="%s"
         android:title="@string/default_content_country_title"/>
 
-    <!-- TODO: add support for this within code
     <ListPreference
         android:defaultValue="@string/default_language_value"
         android:entries="@array/language_names"
         android:entryValues="@array/language_codes"
-        android:key="@string/search_language_key"
+        android:key="@string/content_language_key"
         android:summary="%s"
-        android:title="@string/search_language_title"/>
-        -->
+        android:title="@string/content_language_title"/>
 
     <SwitchPreference
         android:defaultValue="false"

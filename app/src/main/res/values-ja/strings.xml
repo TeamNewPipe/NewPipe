@@ -27,7 +27,7 @@
     <string name="next_video_title">次の動画</string>
     <string name="show_next_and_similar_title">\"次の動画\"と\"関連動画\"を表示します</string>
     <string name="url_not_supported_toast">URLは使用できません</string>
-    <string name="search_language_title">優先言語</string>
+    <string name="content_language_title">優先言語</string>
     <string name="settings_category_video_audio_title">動画と音楽</string>
     <string name="view_count_text">%1$s ビュー</string>
     <string name="list_thumbnail_view_description">動画 プレビュー サムネイル</string>

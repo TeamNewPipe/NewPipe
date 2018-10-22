@@ -17,6 +17,8 @@ import com.nononsenseapps.filepicker.Utils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.utils.Localization;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
@@ -104,6 +106,20 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                     .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, true)
                     .putExtra(FilePickerActivityHelper.EXTRA_MODE, FilePickerActivityHelper.MODE_DIR);
             startActivityForResult(i, REQUEST_EXPORT_PATH);
+            return true;
+        });
+
+        Preference setPreferredLanguage = findPreference(getString(R.string.content_language_key));
+        setPreferredLanguage.setOnPreferenceChangeListener((Preference p, Object newLanguage) -> {
+            Localization oldLocal = org.schabi.newpipe.util.Localization.getPreferredExtractorLocal(getActivity());
+            NewPipe.setLocalization(new Localization(oldLocal.getCountry(), (String) newLanguage));
+            return true;
+        });
+
+        Preference setPreferredCountry = findPreference(getString(R.string.content_country_key));
+        setPreferredCountry.setOnPreferenceChangeListener((Preference p, Object newCountry) -> {
+            Localization oldLocal = org.schabi.newpipe.util.Localization.getPreferredExtractorLocal(getActivity());
+            NewPipe.setLocalization(new Localization((String) newCountry, oldLocal.getLanguage()));
             return true;
         });
     }

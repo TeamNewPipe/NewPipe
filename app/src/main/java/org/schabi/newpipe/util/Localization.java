@@ -69,10 +69,23 @@ public class Localization {
         return stringBuilder.toString();
     }
 
+    public static org.schabi.newpipe.extractor.utils.Localization getPreferredExtractorLocal(Context context) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+
+        String languageCode = sp.getString(context.getString(R.string.content_language_key),
+                context.getString(R.string.default_language_value));
+
+        String countryCode = sp.getString(context.getString(R.string.content_country_key),
+                context.getString(R.string.default_country_value));
+
+        return new org.schabi.newpipe.extractor.utils.Localization(countryCode, languageCode);
+    }
+
     public static Locale getPreferredLocale(Context context) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 
-        String languageCode = sp.getString(context.getString(R.string.search_language_key), context.getString(R.string.default_language_value));
+        String languageCode = sp.getString(context.getString(R.string.content_language_key),
+                context.getString(R.string.default_language_value));
 
         try {
             if (languageCode.length() == 2) {

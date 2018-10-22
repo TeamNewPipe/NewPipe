@@ -41,7 +41,7 @@
     <string name="next_video_title">Videu siguiente</string>
     <string name="show_next_and_similar_title">Amosar vídeos siguientes y asemeyaos</string>
     <string name="url_not_supported_toast">URL non sofitada</string>
-    <string name="search_language_title">Llingua por defeutu del conteníu</string>
+    <string name="content_language_title">Llingua por defeutu del conteníu</string>
     <string name="settings_category_video_audio_title">Videu y audiu</string>
     <string name="settings_category_appearance_title">Aspeutu</string>
     <string name="settings_category_other_title">Otru</string>
