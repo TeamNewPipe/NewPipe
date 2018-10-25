@@ -77,7 +77,7 @@
     <string name="duration_live">ao vivo</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
-    <string name="did_you_mean">Você quis dizer: %1$s ?</string>
+    <string name="did_you_mean">Você quis dizer: %1$s\?</string>
     <string name="m4a_description">M4A — melhor qualidade</string>
     <string name="add">Nova missão</string>
     <string name="app_ui_crash">App/interface parou</string>
