@@ -14,3 +14,6 @@
 - Fix time parsing for . format, so NewPipe can be used in Finland
 - Fix subscription count
 - Add foreground service permission for API 28+ devices #1830
+
+### Known Bugs
+- Playback state can not be saved on Android P

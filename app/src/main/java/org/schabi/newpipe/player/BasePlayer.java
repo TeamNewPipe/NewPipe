@@ -145,10 +145,6 @@ public abstract class BasePlayer implements
 
     @Nullable protected Toast errorToast;
 
-    /** Will remember the last playback state even if simpleExoPlayer ot destroyed */
-    private int lastPlaybackState;
-    private boolean lastPlayWhenReady;
-
     /*//////////////////////////////////////////////////////////////////////////
     // Player
     //////////////////////////////////////////////////////////////////////////*/
@@ -277,8 +273,6 @@ public abstract class BasePlayer implements
     public void destroyPlayer() {
         if (DEBUG) Log.d(TAG, "destroyPlayer() called");
         if (simpleExoPlayer != null) {
-            lastPlaybackState = simpleExoPlayer.getPlaybackState();
-            lastPlayWhenReady = simpleExoPlayer.getPlayWhenReady();
             simpleExoPlayer.removeListener(this);
             simpleExoPlayer.stop();
             simpleExoPlayer.release();
@@ -1112,9 +1106,9 @@ public abstract class BasePlayer implements
     }
 
     public boolean isPlaying() {
-        final int state = getLastPlaybackState();
+        final int state = simpleExoPlayer.getPlaybackState();
         return (state == Player.STATE_READY || state == Player.STATE_BUFFERING)
-                && getLastPlayWhenReady();
+                && simpleExoPlayer.getPlayWhenReady();
     }
 
     @Player.RepeatMode
@@ -1188,21 +1182,7 @@ public abstract class BasePlayer implements
         playQueue.setRecovery(queuePos, windowPos);
     }
 
-    /**
-     * Sometimes the playbac kstate gets asked even though simpleExoPlayer got already destroyed.
-     * Therefore on destroying simpleExoPlayer the playback state will get asked once more, so
-     * you can retreve the last playback state here.
-     * @return the playback state of simpleExoPlayer even if got destroyed
-     */
-    public int getLastPlaybackState() {
-        return simpleExoPlayer == null
-                ? lastPlaybackState
-                : simpleExoPlayer.getPlaybackState();
-    }
-
-    public boolean getLastPlayWhenReady() {
-        return simpleExoPlayer == null
-                ? lastPlayWhenReady
-                : simpleExoPlayer.getPlayWhenReady();
+    public boolean gotDestroyed() {
+        return simpleExoPlayer == null;
     }
 }
