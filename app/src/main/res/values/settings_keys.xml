@@ -19,7 +19,8 @@
     <string name="autoplay_through_intent_key" translatable="false">autoplay_through_intent</string>
     <string name="use_old_player_key" translatable="false">use_oldplayer</string>
 
-    <string name="player_gesture_controls_key" translatable="false">player_gesture_controls</string>
+    <string name="volume_gesture_control_key" translatable="false">volume_gesture_control</string>
+    <string name="brightness_gesture_control_key" translatable="false">brightness_gesture_control</string>
     <string name="resume_on_audio_focus_gain_key" translatable="false">resume_on_audio_focus_gain</string>
     <string name="popup_remember_size_pos_key" translatable="false">popup_remember_size_pos_key</string>
     <string name="use_inexact_seek_key" translatable="false">use_inexact_seek_key</string>
@@ -105,6 +106,8 @@
 
     <string name="last_orientation_landscape_key" translatable="false">last_orientation_landscape_key</string>
 
+    <string name="last_resize_mode" translatable="false">last_resize_mode</string>
+
     <!-- DEBUG ONLY -->
     <string name="debug_pref_screen_key" translatable="false">debug_pref_screen_key</string>
     <string name="allow_heap_dumping_key" translatable="false">allow_heap_dumping_key</string>
@@ -138,7 +141,7 @@
     <string name="show_hold_to_append_key" translatable="false">show_hold_to_append</string>
     <string name="default_language_value">en</string>
     <string name="default_country_value">GB</string>
-    <string name="search_language_key" translatable="false">search_language</string>
+    <string name="content_language_key" translatable="false">content_language</string>
     <string name="content_country_key" translatable="false">content_country</string>
     <string name="show_age_restricted_content" translatable="false">show_age_restricted_content</string>
     <string name="use_tor_key" translatable="false">use_tor</string>
@@ -371,8 +374,8 @@
         <item>Andorra</item>
         <item>Angola</item>
         <item>Anguilla</item>
-        <item>Antarctica</item>
-        <item>Antiguaand Barbuda</item>
+        <item>Antartica</item>
+        <item>Antigua and Barbuda</item>
         <item>Argentina</item>
         <item>Armenia</item>
         <item>Aruba</item>
@@ -390,9 +393,9 @@
         <item>Bermuda</item>
         <item>Bhutan</item>
         <item>Bolivia</item>
-        <item>Bosniaand Herzegovina</item>
+        <item>Bosnia and Herzegovina</item>
         <item>Botswana</item>
-        <item>BouvetIsland</item>
+        <item>Bouvet Island</item>
         <item>Brazil</item>
         <item>British Virgin Islands</item>
         <item>British Indian Ocean Territory</item>
@@ -403,23 +406,23 @@
         <item>Cambodia</item>
         <item>Cameroon</item>
         <item>Canada</item>
-        <item>CapeVerde</item>
+        <item>Cape Verde</item>
         <item>Cayman Islands</item>
         <item>Central African Republic</item>
         <item>Chad</item>
         <item>Chile</item>
         <item>China</item>
-        <item>HongKong, China</item>
-        <item>Macao,China</item>
+        <item>Hong Kong (China)</item>
+        <item>Macao (China)</item>
         <item>Christmas Island</item>
-        <item>Cocos(Keeling) Islands</item>
+        <item>Cocos (Keeling) Islands</item>
         <item>Colombia</item>
         <item>Comoros</item>
-        <item>Congo(Brazzaville)</item>
-        <item>Congo, (Kinshasa)</item>
+        <item>Brazzaville (Congo)</item>
+        <item>Kinshasa (Congo)</item>
         <item>Cook Islands</item>
-        <item>CostaRica</item>
-        <item>Côted\'Ivoire</item>
+        <item>Costa Rica</item>
+        <item>Côte d\'Ivoire</item>
         <item>Croatia</item>
         <item>Cuba</item>
         <item>Cyprus</item>
@@ -430,8 +433,8 @@
         <item>Dominican Republic</item>
         <item>Ecuador</item>
         <item>Egypt</item>
-        <item>ElSalvador</item>
-        <item>EquatorialGuinea</item>
+        <item>El Salvador</item>
+        <item>Equatorial Guinea</item>
         <item>Eritrea</item>
         <item>Estonia</item>
         <item>Ethiopia</item>
@@ -460,8 +463,8 @@
         <item>Guinea-Bissau</item>
         <item>Guyana</item>
         <item>Haiti</item>
-        <item>Heardand Mcdonald Islands</item>
-        <item>HolySee (Vatican City State)</item>
+        <item>Heard and McDonald Islands</item>
+        <item>Holy See (Vatican City State)</item>
         <item>Honduras</item>
         <item>Hungary</item>
         <item>Iceland</item>
@@ -470,7 +473,7 @@
         <item>Iran</item>
         <item>Iraq</item>
         <item>Ireland</item>
-        <item>Isleof Man</item>
+        <item>Isle of Man</item>
         <item>Israel</item>
         <item>Italy</item>
         <item>Jamaica</item>
@@ -480,8 +483,8 @@
         <item>Kazakhstan</item>
         <item>Kenya</item>
         <item>Kiribati</item>
-        <item>Korea(North)</item>
-        <item>Korea(South)</item>
+        <item>North Korea</item>
+        <item>South Korea</item>
         <item>Kuwait</item>
         <item>Kyrgyzstan</item>
         <item>Lao</item>
@@ -500,7 +503,7 @@
         <item>Maldives</item>
         <item>Mali</item>
         <item>Malta</item>
-        <item>MarshallIslands</item>
+        <item>Marshall Islands</item>
         <item>Martinique</item>
         <item>Mauritania</item>
         <item>Mauritius</item>
@@ -532,7 +535,7 @@
         <item>Oman</item>
         <item>Pakistan</item>
         <item>Palau</item>
-        <item>Palestinian Territory</item>
+        <item>Palestine</item>
         <item>Panama</item>
         <item>Papua New Guinea</item>
         <item>Paraguay</item>
@@ -541,71 +544,71 @@
         <item>Pitcairn</item>
         <item>Poland</item>
         <item>Portugal</item>
-        <item>PuertoRico</item>
+        <item>Puerto Rico</item>
         <item>Qatar</item>
         <item>Réunion</item>
         <item>Romania</item>
         <item>Russian Federation</item>
         <item>Rwanda</item>
-        <item>Saint-Barthélemy</item>
+        <item>Saint Barthélemy</item>
         <item>Saint Helena</item>
-        <item>Saint KittsandNevis</item>
-        <item>SaintLucia</item>
-        <item>Saint-Martin(Frenchpart)</item>
-        <item>SaintPierreandMiquelon</item>
-        <item>Saint Vincentand Grenadines</item>
+        <item>Saint Kitts and Nevis</item>
+        <item>Saint Lucia</item>
+        <item>Saint Martin</item>
+        <item>Saint Pierre and Miquelon</item>
+        <item>Saint Vincent and Grenadines</item>
         <item>Samoa</item>
         <item>San Marino</item>
-        <item>Sao Tomeand Principe</item>
-        <item>SaudiArabia</item>
+        <item>Sao Tome and Principe</item>
+        <item>Saudi Arabia</item>
         <item>Senegal</item>
         <item>Serbia</item>
         <item>Seychelles</item>
-        <item>SierraLeone</item>
+        <item>Sierra Leone</item>
         <item>Singapore</item>
         <item>Slovakia</item>
         <item>Slovenia</item>
-        <item>SolomonIslands</item>
+        <item>Solomon Islands</item>
         <item>Somalia</item>
-        <item>SouthAfrica</item>
-        <item>South Georgiaandthe South Sandwich Islands</item>
+        <item>South Africa</item>
+        <item>South Georgia and South Sandwich Islands</item>
         <item>South Sudan</item>
         <item>Spain</item>
         <item>Sri Lanka</item>
         <item>Sudan</item>
         <item>Suriname</item>
-        <item>Svalbardand Jan Mayen Islands</item>
+        <item>Svalbard and Jan Mayen Islands</item>
         <item>Swaziland</item>
         <item>Sweden</item>
         <item>Switzerland</item>
-        <item>Syrian ArabRepublic(Syria)</item>
-        <item>Taiwan, Republicof China</item>
+        <item>Syrian Arab Republic (Syria)</item>
+        <item>Taiwan</item>
         <item>Tajikistan</item>
         <item>Tanzania</item>
         <item>Thailand</item>
-        <item>Timor-Leste</item>
+        <item>Timor Leste</item>
         <item>Togo</item>
         <item>Tokelau</item>
         <item>Tonga</item>
-        <item>Trinidadand Tobago</item>
+        <item>Trinidad and Tobago</item>
         <item>Tunisia</item>
         <item>Turkey</item>
         <item>Turkmenistan</item>
-        <item>Turksand Caicos Islands</item>
+        <item>Turks and Caicos Islands</item>
         <item>Tuvalu</item>
         <item>Uganda</item>
         <item>Ukraine</item>
         <item>United Arab Emirates</item>
         <item>United Kingdom</item>
-        <item>USA</item>
+        <item>United States</item>
         <item>Minor Outlying Islands</item>
         <item>Uruguay</item>
         <item>Uzbekistan</item>
         <item>Vanuatu</item>
-        <item>Venezuela (BolivarianRepublic)</item>
-        <item>VietNam</item>
-        <item>Virgin Islands,</item>
-        <item>Wallisand Futuna Islands</item>
+        <item>Venezuela (Bolivarian Republic)</item>
+        <item>Vietnam</item>
+        <item>Virgin Islands</item>
+        <item>Wallis and Futuna Islands</item>
         <item>Western Sahara</item>
         <item>Yemen</item>
         <item>Zambia</item>
@@ -878,5 +881,18 @@
         <item>144p</item>
     </string-array>
 
+    <string name="list_view_mode_key" translatable="false">list_view_mode</string>
+    <string name="list_view_mode_value" translatable="false">auto</string>
+
+    <string-array name="list_view_mode_values" translatable="false">
+        <item>auto</item>
+        <item>list</item>
+        <item>grid</item>
+    </string-array>
+    <string-array name="list_view_mode_description" translatable="false">
+        <item>@string/auto</item>
+        <item>@string/list</item>
+        <item>@string/grid</item>
+    </string-array>
 
 </resources>

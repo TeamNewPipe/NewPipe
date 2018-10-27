@@ -33,12 +33,14 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -64,19 +66,17 @@ import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
-import org.schabi.newpipe.local.history.HistoryRecordManager;
-import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.util.StreamItemAdapter;
-import org.schabi.newpipe.util.StreamItemAdapter.StreamSizeWrapper;
-import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoItemDialog;
+import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.MainVideoPlayer;
 import org.schabi.newpipe.player.PopupVideoPlayer;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
+import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -87,6 +87,8 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.PermissionHelper;
+import org.schabi.newpipe.util.StreamItemAdapter;
+import org.schabi.newpipe.util.StreamItemAdapter.StreamSizeWrapper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.Serializable;
@@ -154,6 +156,7 @@ public class VideoDetailFragment
 
     private View videoTitleRoot;
     private TextView videoTitleTextView;
+    @Nullable
     private ImageView videoTitleToggleArrow;
     private TextView videoCountView;
 
@@ -415,14 +418,16 @@ public class VideoDetailFragment
     }
 
     private void toggleTitleAndDescription() {
-        if (videoDescriptionRootLayout.getVisibility() == View.VISIBLE) {
-            videoTitleTextView.setMaxLines(1);
-            videoDescriptionRootLayout.setVisibility(View.GONE);
-            videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
-        } else {
-            videoTitleTextView.setMaxLines(10);
-            videoDescriptionRootLayout.setVisibility(View.VISIBLE);
-            videoTitleToggleArrow.setImageResource(R.drawable.arrow_up);
+        if (videoTitleToggleArrow != null) {    //it is null for tablets
+            if (videoDescriptionRootLayout.getVisibility() == View.VISIBLE) {
+                videoTitleTextView.setMaxLines(1);
+                videoDescriptionRootLayout.setVisibility(View.GONE);
+                videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
+            } else {
+                videoTitleTextView.setMaxLines(10);
+                videoDescriptionRootLayout.setVisibility(View.VISIBLE);
+                videoTitleToggleArrow.setImageResource(R.drawable.arrow_up);
+            }
         }
     }
 
@@ -622,8 +627,11 @@ public class VideoDetailFragment
             relatedStreamsView.addView(
                     infoItemBuilder.buildView(relatedStreamsView, info.getNextVideo()));
             relatedStreamsView.addView(getSeparatorView());
-            relatedStreamRootLayout.setVisibility(View.VISIBLE);
-        } else nextStreamTitle.setVisibility(View.GONE);
+            setRelatedStreamsVisibility(View.VISIBLE);
+        } else {
+            nextStreamTitle.setVisibility(View.GONE);
+            setRelatedStreamsVisibility(View.GONE);
+        }
 
         if (info.getRelatedStreams() != null
                 && !info.getRelatedStreams().isEmpty() && showRelatedStreams) {
@@ -639,13 +647,13 @@ public class VideoDetailFragment
             }
             //if (DEBUG) Log.d(TAG, "Total time " + ((System.nanoTime() - first) / 1000000L) + "ms");
 
-            relatedStreamRootLayout.setVisibility(View.VISIBLE);
+            setRelatedStreamsVisibility(View.VISIBLE);
             relatedStreamExpandButton.setVisibility(View.VISIBLE);
 
             relatedStreamExpandButton.setImageDrawable(ContextCompat.getDrawable(
                     activity, ThemeHelper.resolveResourceIdFromAttr(activity, R.attr.expand)));
         } else {
-            if (info.getNextVideo() == null) relatedStreamRootLayout.setVisibility(View.GONE);
+            if (info.getNextVideo() == null) setRelatedStreamsVisibility(View.GONE);
             relatedStreamExpandButton.setVisibility(View.GONE);
         }
     }
@@ -760,7 +768,7 @@ public class VideoDetailFragment
      * Stack that contains the "navigation history".<br>
      * The peek is the current video.
      */
-    protected LinkedList<StackItem> stack = new LinkedList<>();
+    protected final LinkedList<StackItem> stack = new LinkedList<>();
 
     public void clearHistory() {
         stack.clear();
@@ -1114,8 +1122,16 @@ public class VideoDetailFragment
         animateView(videoTitleTextView, true, 0);
 
         videoDescriptionRootLayout.setVisibility(View.GONE);
-        videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
-        videoTitleToggleArrow.setVisibility(View.GONE);
+        if (videoTitleToggleArrow != null) {    //phone
+            videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
+            videoTitleToggleArrow.setVisibility(View.GONE);
+        } else {    //tablet
+            final View related = (View) relatedStreamRootLayout.getParent();
+            //don`t need to hide it if related streams are disabled
+            if (related.getVisibility() == View.VISIBLE) {
+                related.setVisibility(View.INVISIBLE);
+            }
+        }
         videoTitleRoot.setClickable(false);
 
         imageLoader.cancelDisplayTask(thumbnailImageView);
@@ -1190,11 +1206,15 @@ public class VideoDetailFragment
             detailDurationView.setVisibility(View.GONE);
         }
 
-        videoTitleRoot.setClickable(true);
-        videoTitleToggleArrow.setVisibility(View.VISIBLE);
-        videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
         videoDescriptionView.setVisibility(View.GONE);
-        videoDescriptionRootLayout.setVisibility(View.GONE);
+        if (videoTitleToggleArrow != null) {
+            videoTitleRoot.setClickable(true);
+            videoTitleToggleArrow.setVisibility(View.VISIBLE);
+            videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
+            videoDescriptionRootLayout.setVisibility(View.GONE);
+        } else {
+            videoDescriptionRootLayout.setVisibility(View.VISIBLE);
+        }
         if (!TextUtils.isEmpty(info.getUploadDate())) {
             videoUploadDateView.setText(Localization.localizeDate(activity, info.getUploadDate()));
         }
@@ -1241,6 +1261,11 @@ public class VideoDetailFragment
             openVideoPlayer();
             // Only auto play in the first open
             autoPlayEnabled = false;
+        }
+
+        final ViewParent related = relatedStreamRootLayout.getParent();
+        if (related instanceof ScrollView) {
+            ((ScrollView) related).scrollTo(0, 0);
         }
     }
 
@@ -1298,5 +1323,14 @@ public class VideoDetailFragment
         });
 
         showError(getString(R.string.blocked_by_gema), false, R.drawable.gruese_die_gema);
+    }
+
+    private void setRelatedStreamsVisibility(int visibility) {
+        final ViewParent parent = relatedStreamRootLayout.getParent();
+        if (parent instanceof ScrollView) {
+            ((ScrollView) parent).setVisibility(visibility);
+        } else {
+            relatedStreamRootLayout.setVisibility(visibility);
+        }
     }
 }

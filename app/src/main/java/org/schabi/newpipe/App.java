@@ -5,6 +5,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
@@ -21,6 +22,7 @@ import org.acra.config.ConfigurationBuilder;
 import org.acra.sender.ReportSenderFactory;
 import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.utils.Localization;
 import org.schabi.newpipe.report.AcraReportSenderFactory;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
@@ -65,7 +67,8 @@ public class App extends Application {
     private RefWatcher refWatcher;
 
     @SuppressWarnings("unchecked")
-    private static final Class<? extends ReportSenderFactory>[] reportSenderFactoryClasses = new Class[]{AcraReportSenderFactory.class};
+    private static final Class<? extends ReportSenderFactory>[]
+            reportSenderFactoryClasses = new Class[]{AcraReportSenderFactory.class};
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -88,7 +91,8 @@ public class App extends Application {
         // Initialize settings first because others inits can use its values
         SettingsActivity.initSettings(this);
 
-        NewPipe.init(getDownloader());
+        NewPipe.init(getDownloader(),
+                org.schabi.newpipe.util.Localization.getPreferredExtractorLocal(this));
         StateSaver.init(this);
         initNotificationChannel();
 
@@ -106,7 +110,7 @@ public class App extends Application {
         // https://github.com/ReactiveX/RxJava/wiki/What's-different-in-2.0#error-handling
         RxJavaPlugins.setErrorHandler(new Consumer<Throwable>() {
             @Override
-            public void accept(@NonNull Throwable throwable) throws Exception {
+            public void accept(@NonNull Throwable throwable) {
                 Log.e(TAG, "RxJavaPlugins.ErrorHandler called with -> : " +
                         "throwable = [" + throwable.getClass().getName() + "]");
 
@@ -180,7 +184,11 @@ public class App extends Application {
             ACRA.init(this, acraConfig);
         } catch (ACRAConfigurationException ace) {
             ace.printStackTrace();
-            ErrorActivity.reportError(this, ace, null, null, ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
+            ErrorActivity.reportError(this,
+                    ace,
+                    null,
+                    null,
+                    ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
                     "Could not initialize ACRA crash report", R.string.app_ui_crash));
         }
     }
@@ -200,7 +208,8 @@ public class App extends Application {
         NotificationChannel mChannel = new NotificationChannel(id, name, importance);
         mChannel.setDescription(description);
 
-        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager mNotificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.createNotificationChannel(mChannel);
     }
 

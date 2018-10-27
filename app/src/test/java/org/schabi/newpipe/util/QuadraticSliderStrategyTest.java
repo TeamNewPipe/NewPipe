@@ -11,25 +11,25 @@ public class QuadraticSliderStrategyTest {
     private final SliderStrategy.Quadratic standard =
             new SliderStrategy.Quadratic(0f, 100f, 50f, STEP);
     @Test
-    public void testLeftBound() throws Exception {
+    public void testLeftBound() {
         assertEquals(standard.progressOf(0), 0);
         assertEquals(standard.valueOf(0), 0f, DELTA);
     }
 
     @Test
-    public void testCenter() throws Exception {
+    public void testCenter() {
         assertEquals(standard.progressOf(50), 50);
         assertEquals(standard.valueOf(50), 50f, DELTA);
     }
 
     @Test
-    public void testRightBound() throws Exception {
+    public void testRightBound() {
         assertEquals(standard.progressOf(100), 100);
         assertEquals(standard.valueOf(100), 100f, DELTA);
     }
 
     @Test
-    public void testLeftRegion() throws Exception {
+    public void testLeftRegion() {
         final int leftProgress = standard.progressOf(25);
         final double leftValue = standard.valueOf(25);
         assertTrue(leftProgress > 0 && leftProgress < 50);
@@ -37,7 +37,7 @@ public class QuadraticSliderStrategyTest {
     }
 
     @Test
-    public void testRightRegion() throws Exception {
+    public void testRightRegion() {
         final int leftProgress = standard.progressOf(75);
         final double leftValue = standard.valueOf(75);
         assertTrue(leftProgress > 50 && leftProgress < 100);
@@ -45,7 +45,7 @@ public class QuadraticSliderStrategyTest {
     }
 
     @Test
-    public void testConversion() throws Exception {
+    public void testConversion() {
         assertEquals(standard.progressOf(standard.valueOf(0)), 0);
         assertEquals(standard.progressOf(standard.valueOf(25)), 25);
         assertEquals(standard.progressOf(standard.valueOf(50)), 50);
@@ -54,7 +54,7 @@ public class QuadraticSliderStrategyTest {
     }
 
     @Test
-    public void testReverseConversion() throws Exception {
+    public void testReverseConversion() {
         // Need a larger delta since step size / granularity is too small and causes
         // floating point round-off errors during conversion
         final float largeDelta = 1f;
@@ -67,7 +67,7 @@ public class QuadraticSliderStrategyTest {
     }
 
     @Test
-    public void testQuadraticPropertyLeftRegion() throws Exception {
+    public void testQuadraticPropertyLeftRegion() {
         final double differenceCloserToCenter =
                 Math.abs(standard.valueOf(40) - standard.valueOf(45));
         final double differenceFurtherFromCenter =
@@ -76,7 +76,7 @@ public class QuadraticSliderStrategyTest {
     }
 
     @Test
-    public void testQuadraticPropertyRightRegion() throws Exception {
+    public void testQuadraticPropertyRightRegion() {
         final double differenceCloserToCenter =
                 Math.abs(standard.valueOf(75) - standard.valueOf(70));
         final double differenceFurtherFromCenter =

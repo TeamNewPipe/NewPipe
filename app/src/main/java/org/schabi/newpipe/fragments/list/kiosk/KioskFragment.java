@@ -5,7 +5,6 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,8 +18,6 @@ import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.kiosk.KioskInfo;
 import org.schabi.newpipe.extractor.linkhandler.ListLinkHandlerFactory;
-import org.schabi.newpipe.extractor.linkhandler.ListLinkHandler;
-import org.schabi.newpipe.extractor.linkhandler.LinkHandlerFactory;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
@@ -131,26 +128,16 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
 
     @Override
     public Single<KioskInfo> loadResult(boolean forceReload) {
-        String contentCountry = PreferenceManager
-                .getDefaultSharedPreferences(activity)
-                .getString(getString(R.string.content_country_key),
-                        getString(R.string.default_country_value));
         return ExtractorHelper.getKioskInfo(serviceId,
                 url,
-                contentCountry,
                 forceReload);
     }
 
     @Override
     public Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic() {
-        String contentCountry = PreferenceManager
-                .getDefaultSharedPreferences(activity)
-                .getString(getString(R.string.content_country_key),
-                        getString(R.string.default_country_value));
         return ExtractorHelper.getMoreKioskItems(serviceId,
                 url,
-                currentNextPageUrl,
-                contentCountry);
+                currentNextPageUrl);
     }
 
     /*//////////////////////////////////////////////////////////////////////////

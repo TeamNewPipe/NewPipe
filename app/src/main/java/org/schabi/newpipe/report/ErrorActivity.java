@@ -3,7 +3,6 @@ package org.schabi.newpipe.report;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -46,7 +45,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 import java.util.Vector;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /*
  * Created by Christian Schabesberger on 24.10.15.
@@ -81,12 +79,7 @@ public class ErrorActivity extends AppCompatActivity {
     private ErrorInfo errorInfo;
     private Class returnActivity;
     private String currentTimeStamp;
-    // views
-    private TextView errorView;
     private EditText userCommentBox;
-    private Button reportButton;
-    private TextView infoView;
-    private TextView errorMessageView;
 
     public static void reportUiError(final AppCompatActivity activity, final Throwable el) {
         reportError(activity, el, activity.getClass(), null,
@@ -194,11 +187,11 @@ public class ErrorActivity extends AppCompatActivity {
             actionBar.setDisplayShowTitleEnabled(true);
         }
 
-        reportButton = findViewById(R.id.errorReportButton);
+        Button reportButton = findViewById(R.id.errorReportButton);
         userCommentBox = findViewById(R.id.errorCommentBox);
-        errorView = findViewById(R.id.errorView);
-        infoView = findViewById(R.id.errorInfosView);
-        errorMessageView = findViewById(R.id.errorMessageView);
+        TextView errorView = findViewById(R.id.errorView);
+        TextView infoView = findViewById(R.id.errorInfosView);
+        TextView errorMessageView = findViewById(R.id.errorMessageView);
 
         ActivityCommunicator ac = ActivityCommunicator.getCommunicator();
         returnActivity = ac.returnActivity;
@@ -281,15 +274,14 @@ public class ErrorActivity extends AppCompatActivity {
     }
 
     private String formErrorText(String[] el) {
-        String text = "";
+        StringBuilder text = new StringBuilder();
         if (el != null) {
             for (String e : el) {
-                text += "-------------------------------------\n"
-                        + e;
+                text.append("-------------------------------------\n").append(e);
             }
         }
-        text += "-------------------------------------";
-        return text;
+        text.append("-------------------------------------");
+        return text.toString();
     }
 
     /**

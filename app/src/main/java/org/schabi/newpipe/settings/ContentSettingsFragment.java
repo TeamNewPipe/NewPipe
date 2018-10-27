@@ -9,8 +9,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.util.Log;
 import android.widget.Toast;
@@ -20,11 +18,10 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.utils.Localization;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
-import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.ZipHelper;
 
 import java.io.BufferedOutputStream;
@@ -47,7 +44,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     private static final int REQUEST_IMPORT_PATH = 8945;
     private static final int REQUEST_EXPORT_PATH = 30945;
 
-    private String homeDir;
     private File databasesDir;
     private File newpipe_db;
     private File newpipe_db_journal;
@@ -81,7 +77,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
 
-        homeDir = getActivity().getApplicationInfo().dataDir;
+        String homeDir = getActivity().getApplicationInfo().dataDir;
         databasesDir = new File(homeDir + "/databases");
         newpipe_db = new File(homeDir + "/databases/newpipe.db");
         newpipe_db_journal = new File(homeDir + "/databases/newpipe.db-journal");
@@ -110,6 +106,20 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                     .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, true)
                     .putExtra(FilePickerActivityHelper.EXTRA_MODE, FilePickerActivityHelper.MODE_DIR);
             startActivityForResult(i, REQUEST_EXPORT_PATH);
+            return true;
+        });
+
+        Preference setPreferredLanguage = findPreference(getString(R.string.content_language_key));
+        setPreferredLanguage.setOnPreferenceChangeListener((Preference p, Object newLanguage) -> {
+            Localization oldLocal = org.schabi.newpipe.util.Localization.getPreferredExtractorLocal(getActivity());
+            NewPipe.setLocalization(new Localization(oldLocal.getCountry(), (String) newLanguage));
+            return true;
+        });
+
+        Preference setPreferredCountry = findPreference(getString(R.string.content_country_key));
+        setPreferredCountry.setOnPreferenceChangeListener((Preference p, Object newCountry) -> {
+            Localization oldLocal = org.schabi.newpipe.util.Localization.getPreferredExtractorLocal(getActivity());
+            NewPipe.setLocalization(new Localization((String) newCountry, oldLocal.getLanguage()));
             return true;
         });
     }
@@ -193,7 +203,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         } finally {
             try {
                 zipFile.close();
-            } catch (Exception e){}
+            } catch (Exception ignored){}
         }
 
         try {
@@ -254,17 +264,17 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 String key = entry.getKey();
 
                 if (v instanceof Boolean)
-                    prefEdit.putBoolean(key, ((Boolean) v).booleanValue());
+                    prefEdit.putBoolean(key, (Boolean) v);
                 else if (v instanceof Float)
-                    prefEdit.putFloat(key, ((Float) v).floatValue());
+                    prefEdit.putFloat(key, (Float) v);
                 else if (v instanceof Integer)
-                    prefEdit.putInt(key, ((Integer) v).intValue());
+                    prefEdit.putInt(key, (Integer) v);
                 else if (v instanceof Long)
-                    prefEdit.putLong(key, ((Long) v).longValue());
+                    prefEdit.putLong(key, (Long) v);
                 else if (v instanceof String)
                     prefEdit.putString(key, ((String) v));
             }
-            prefEdit.commit();
+            prefEdit.apply();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -286,13 +296,12 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     // Error
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected boolean onError(Throwable e) {
+    protected void onError(Throwable e) {
         final Activity activity = getActivity();
         ErrorActivity.reportError(activity, e,
                 activity.getClass(),
                 null,
                 ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
                         "none", "", R.string.app_ui_crash));
-        return true;
     }
 }

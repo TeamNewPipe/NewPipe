@@ -16,7 +16,8 @@
         android:layout_height="match_parent"
         android:background="?attr/colorPrimary"
         android:scaleType="centerCrop"
-        android:src="@drawable/background_header" />
+        android:src="@drawable/background_header"
+        android:contentDescription="TODO" />
 
     <ImageView
         android:id="@+id/drawer_header_np_nude_view"
@@ -26,7 +27,8 @@
 
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
-        android:src="@drawable/np_logo_nude_shadow" />
+        android:src="@drawable/np_logo_nude_shadow"
+        android:contentDescription="TODO" />
 
     <TextView
         android:id="@+id/drawer_header_np_text_view"
@@ -38,7 +40,7 @@
         android:layout_toRightOf="@id/drawer_header_np_nude_view"
         android:gravity="center"
         android:text="@string/app_name"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:textColor="@color/drawer_header_font_color"
         android:textStyle="bold|italic" />
 
@@ -50,7 +52,7 @@
         android:layout_alignStart="@id/drawer_header_np_text_view"
         android:layout_below="@id/drawer_header_np_text_view"
         android:text="YouTube"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:textColor="@color/drawer_header_font_color"
         android:textStyle="italic" />
 
@@ -66,6 +68,7 @@
         android:paddingBottom="20dp"
         android:paddingEnd="20dp"
         android:paddingRight="20dp"
-        android:src="@drawable/ic_arrow_down_white" />
+        android:src="@drawable/ic_arrow_down_white"
+        android:contentDescription="TODO" />
 
 </RelativeLayout>

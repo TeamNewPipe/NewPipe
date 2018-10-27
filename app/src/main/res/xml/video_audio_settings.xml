@@ -106,9 +106,15 @@
 
         <SwitchPreference
             android:defaultValue="true"
-            android:key="@string/player_gesture_controls_key"
-            android:summary="@string/player_gesture_controls_summary"
-            android:title="@string/player_gesture_controls_title"/>
+            android:key="@string/volume_gesture_control_key"
+            android:summary="@string/volume_gesture_control_summary"
+            android:title="@string/volume_gesture_control_title"/>
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/brightness_gesture_control_key"
+            android:summary="@string/brightness_gesture_control_summary"
+            android:title="@string/brightness_gesture_control_title"/>
 
         <SwitchPreference
             android:defaultValue="true"

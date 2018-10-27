@@ -93,7 +93,7 @@
     <string name="url_not_supported_toast">URL wordt niet ondersteund</string>
     <string name="default_content_country_title">Standaardinhoudsland</string>
     <string name="service_title">Dienst</string>
-    <string name="search_language_title">Standaardtaal voor inhoud</string>
+    <string name="content_language_title">Standaardtaal voor inhoud</string>
     <string name="settings_category_player_title">Speler</string>
     <string name="settings_category_player_behavior_title">Gedrag</string>
     <string name="settings_category_video_audio_title">Video &amp; audio</string>

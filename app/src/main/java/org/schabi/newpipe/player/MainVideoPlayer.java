@@ -175,6 +175,10 @@ public final class MainVideoPlayer extends AppCompatActivity
             setLandscape(lastOrientationWasLandscape);
         }
 
+        final int lastResizeMode = defaultPreferences.getInt(
+                getString(R.string.last_resize_mode), AspectRatioFrameLayout.RESIZE_MODE_FIT);
+        playerImpl.setResizeMode(lastResizeMode);
+
         // Upon going in or out of multiwindow mode, isInMultiWindow will always be false,
         // since the first onResume needs to restore the player.
         // Subsequent onResume calls while multiwindow mode remains the same and the player is
@@ -213,10 +217,9 @@ public final class MainVideoPlayer extends AppCompatActivity
         if (playerImpl == null) return;
 
         playerImpl.setRecovery();
-        playerState = new PlayerState(playerImpl.getPlayQueue(), playerImpl.getRepeatMode(),
-                playerImpl.getPlaybackSpeed(), playerImpl.getPlaybackPitch(),
-                playerImpl.getPlaybackQuality(), playerImpl.getPlaybackSkipSilence(),
-                playerImpl.isPlaying());
+        if(!playerImpl.gotDestroyed()) {
+            playerState = createPlayerState();
+        }
         StateSaver.tryToSave(isChangingConfigurations(), null, outState, this);
     }
 
@@ -231,6 +234,7 @@ public final class MainVideoPlayer extends AppCompatActivity
         if (!isBackPressed) {
             playerImpl.minimize();
         }
+        playerState = createPlayerState();
         playerImpl.destroy();
 
         isInMultiWindow = false;
@@ -240,6 +244,13 @@ public final class MainVideoPlayer extends AppCompatActivity
     /*//////////////////////////////////////////////////////////////////////////
     // State Saving
     //////////////////////////////////////////////////////////////////////////*/
+
+    private PlayerState createPlayerState() {
+        return new PlayerState(playerImpl.getPlayQueue(), playerImpl.getRepeatMode(),
+                playerImpl.getPlaybackSpeed(), playerImpl.getPlaybackPitch(),
+                playerImpl.getPlaybackQuality(), playerImpl.getPlaybackSkipSilence(),
+                playerImpl.isPlaying());
+    }
 
     @Override
     public String generateSuffix() {
@@ -705,14 +716,27 @@ public final class MainVideoPlayer extends AppCompatActivity
 
         @Override
         protected int nextResizeMode(int currentResizeMode) {
+            final int newResizeMode;
             switch (currentResizeMode) {
                 case AspectRatioFrameLayout.RESIZE_MODE_FIT:
-                    return AspectRatioFrameLayout.RESIZE_MODE_FILL;
+                    newResizeMode = AspectRatioFrameLayout.RESIZE_MODE_FILL;
+                    break;
                 case AspectRatioFrameLayout.RESIZE_MODE_FILL:
-                    return AspectRatioFrameLayout.RESIZE_MODE_ZOOM;
+                    newResizeMode = AspectRatioFrameLayout.RESIZE_MODE_ZOOM;
+                    break;
                 default:
-                    return AspectRatioFrameLayout.RESIZE_MODE_FIT;
+                    newResizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIT;
+                    break;
             }
+
+            storeResizeMode(newResizeMode);
+            return newResizeMode;
+        }
+
+        private void storeResizeMode(@AspectRatioFrameLayout.ResizeMode int resizeMode) {
+            defaultPreferences.edit()
+                    .putInt(getString(R.string.last_resize_mode), resizeMode)
+                    .apply();
         }
 
         @Override
@@ -989,12 +1013,14 @@ public final class MainVideoPlayer extends AppCompatActivity
 
         private static final int MOVEMENT_THRESHOLD = 40;
 
-        private final boolean isPlayerGestureEnabled = PlayerHelper.isPlayerGestureEnabled(getApplicationContext());
+        private final boolean isVolumeGestureEnabled = PlayerHelper.isVolumeGestureEnabled(getApplicationContext());
+        private final boolean isBrightnessGestureEnabled = PlayerHelper.isBrightnessGestureEnabled(getApplicationContext());
+
         private final int maxVolume = playerImpl.getAudioReactor().getMaxVolume();
 
         @Override
         public boolean onScroll(MotionEvent initialEvent, MotionEvent movingEvent, float distanceX, float distanceY) {
-            if (!isPlayerGestureEnabled) return false;
+            if (!isVolumeGestureEnabled && !isBrightnessGestureEnabled) return false;
 
             //noinspection PointlessBooleanExpression
             if (DEBUG && false) Log.d(TAG, "MainVideoPlayer.onScroll = " +
@@ -1010,7 +1036,11 @@ public final class MainVideoPlayer extends AppCompatActivity
 
             isMoving = true;
 
-            if (initialEvent.getX() > playerImpl.getRootView().getWidth() / 2) {
+            boolean acceptAnyArea = isVolumeGestureEnabled != isBrightnessGestureEnabled;
+            boolean acceptVolumeArea = acceptAnyArea || initialEvent.getX() > playerImpl.getRootView().getWidth() / 2;
+            boolean acceptBrightnessArea = acceptAnyArea || !acceptVolumeArea;
+
+            if (isVolumeGestureEnabled && acceptVolumeArea) {
                 playerImpl.getVolumeProgressBar().incrementProgressBy((int) distanceY);
                 float currentProgressPercent =
                         (float) playerImpl.getVolumeProgressBar().getProgress() / playerImpl.getMaxGestureLength();
@@ -1035,7 +1065,7 @@ public final class MainVideoPlayer extends AppCompatActivity
                 if (playerImpl.getBrightnessRelativeLayout().getVisibility() == View.VISIBLE) {
                     playerImpl.getBrightnessRelativeLayout().setVisibility(View.GONE);
                 }
-            } else {
+            } else if (isBrightnessGestureEnabled && acceptBrightnessArea) {
                 playerImpl.getBrightnessProgressBar().incrementProgressBy((int) distanceY);
                 float currentProgressPercent =
                         (float) playerImpl.getBrightnessProgressBar().getProgress() / playerImpl.getMaxGestureLength();

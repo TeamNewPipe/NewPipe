@@ -122,12 +122,11 @@ public class SearchFragment
     private String nextPageUrl;
     private String contentCountry;
     private boolean isSuggestionsEnabled = true;
-    private boolean isSearchHistoryEnabled = true;
 
-    private PublishSubject<String> suggestionPublisher = PublishSubject.create();
+    private final PublishSubject<String> suggestionPublisher = PublishSubject.create();
     private Disposable searchDisposable;
     private Disposable suggestionDisposable;
-    private CompositeDisposable disposables = new CompositeDisposable();
+    private final CompositeDisposable disposables = new CompositeDisposable();
 
     private SuggestionListAdapter suggestionListAdapter;
     private HistoryRecordManager historyRecordManager;
@@ -173,7 +172,7 @@ public class SearchFragment
 
         suggestionListAdapter = new SuggestionListAdapter(activity);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
-        isSearchHistoryEnabled = preferences.getBoolean(getString(R.string.enable_search_history_key), true);
+        boolean isSearchHistoryEnabled = preferences.getBoolean(getString(R.string.enable_search_history_key), true);
         suggestionListAdapter.setShowSuggestionHistory(isSearchHistoryEnabled);
 
         historyRecordManager = new HistoryRecordManager(context);
@@ -627,7 +626,7 @@ public class SearchFragment
                     }
 
                     final Observable<List<SuggestionItem>> network = ExtractorHelper
-                            .suggestionsFor(serviceId, query, contentCountry)
+                            .suggestionsFor(serviceId, query)
                             .toObservable()
                             .map(strings -> {
                                 List<SuggestionItem> result = new ArrayList<>();
@@ -727,8 +726,7 @@ public class SearchFragment
         searchDisposable = ExtractorHelper.searchFor(serviceId,
                     searchString,
                     Arrays.asList(contentFilter),
-                    sortFilter,
-                    contentCountry)
+                    sortFilter)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnEvent((searchResult, throwable) -> isLoading.set(false))
@@ -746,8 +744,7 @@ public class SearchFragment
                     searchString,
                     asList(contentFilter),
                     sortFilter,
-                    nextPageUrl,
-                    contentCountry)
+                    nextPageUrl)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnEvent((nextItemsResult, throwable) -> isLoading.set(false))
