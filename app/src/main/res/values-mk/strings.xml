@@ -13,7 +13,7 @@
     <string name="controls_download_desc">Превземи стрим датотека.</string>
     <string name="search">Пребарај</string>
     <string name="settings">Поставки</string>
-    <string name="did_you_mean">Мислеше на: %1$s ?</string>
+    <string name="did_you_mean">Мислеше на: %1$s\?</string>
     <string name="share_dialog_title">Сподели со</string>
     <string name="choose_browser">Одбери пребарувач</string>
     <string name="screen_rotation">ротација</string>
