@@ -29,7 +29,7 @@
     <string name="play_with_kodi_title">Prehrať cez Kodi</string>
     <string name="kore_not_found">Aplikácia Kore nie je nainštalovaná. Chcete ju nainštalovať?</string>
     <string name="show_play_with_kodi_title">Zobraziť možnosť \"Prehrať cez Kodi\"</string>
-    <string name="show_play_with_kodi_summary">Zobrazovať možnosť prehrať video cez mediálne centrum Kodi</string>
+    <string name="show_play_with_kodi_summary">Zobrazovať možnosť prehrať video cez multimediálne centrum Kodi</string>
     <string name="play_audio">Zvuk</string>
     <string name="default_audio_format_title">Predvolený zvukový formát</string>
     <string name="theme_title">Téma</string>
@@ -309,10 +309,10 @@
     <string name="rename">Premenovať</string>
 
     <string name="donation_title">Prispieť</string>
-    <string name="donation_encouragement">Aplikácia NewPipe je vyvíjaná dobrovoľníkmi vo voľnom čase. Ak sa vám aplikácia páči a chceli by ste odmeniť vývojárov, teraz je ten najlepši čas. Podporte vývojárov aby mohli NewPipe zlepšovať a zároveň si pochutnávať na šálke kávy!</string>
+    <string name="donation_encouragement">Aplikácia NewPipe je vyvíjaná dobrovoľníkmi vo voľnom čase. Ak sa vám aplikácia páči, odmeňte vývojárov aby mohli NewPipe naďalej vylepšovať. Určite ich poteší napríklad šálka dobrej kávy.</string>
     <string name="give_back">Daruj</string>
     <string name="website_title">Webstránka</string>
-    <string name="website_encouragement">Ak chcete získať ďalšie informácie a novinky o NewPipe navštívte naše webové stránky.</string>
+    <string name="website_encouragement">"Pre viac informácií  a noviniek navštívte webstránku NewPipe."</string>
     <string name="delete_item_search_history">Chcete odstrániť túto položku z histórie vyhľadávania?</string>
     <string name="delete_stream_history_prompt">Chcete odstrániť túto položku z histórie pozretých videí?</string>
     <string name="delete_all_history_prompt">Ste si istý, že chcete vymazať všetky položky z histórie?</string>
@@ -377,7 +377,7 @@
     <string name="playlist_thumbnail_change_success">Miniatúra zoznamu skladieb bola zmenená</string>
     <string name="playlist_delete_failure">Nemožno odstrániť zoznam skladieb</string>
 
-    <string name="caption_none">Bez popisu</string>
+    <string name="caption_none">Bez titulkov</string>
 
     <string name="resize_fit">Prispôsobiť</string>
     <string name="resize_fill">Vyplniť</string>
@@ -417,14 +417,14 @@
 
     <string name="caption_auto_generated">Automaticky vygenerované</string>
 
-    <string name="caption_setting_title">Nastavenie titulkov</string>
+    <string name="caption_setting_title">Titulky</string>
     <string name="caption_setting_description">Upravte mierku textu titulkov a štýly pozadia. Vyžaduje reštart prehrávača</string>
 
     <string name="enable_leak_canary_title">Povoliť službu LeakCanary</string>
     <string name="enable_leak_canary_summary">Monitorovanie pretečenia pamäte môže spôsobiť, že aplikácia nebude reagovať</string>
 
     <string name="enable_disposed_exceptions_title">Nahlásiť mimo-cyklické chyby</string>
-    <string name="enable_disposed_exceptions_summary">Vynútenie hlásenia nedodržateľných výnimiek Rx, ktoré sa vyskytnú mimo časového cyklu fragmentu alebo aktivity po zlikvidovaní</string>
+    <string name="enable_disposed_exceptions_summary">Vynútiť hlásenie výnimiek nedoručiteľných Rx mimo časového cyklu fragmentov alebo aktivity po zneškodnení</string>
 
     <string name="import_export_title">Import/Export
 \n</string>
@@ -449,16 +449,13 @@
 \n2. Po výzve sa prihláste do svojho účtu 
 \n3. Sťahovanie by malo začať (to je exportovaný zoznam) 
 \n</string>
-    <string name="import_soundcloud_instructions">"Importovať SoundCloud profil zadaním URL adresy alebo vášho ID:
-\n 
-\nAk nepoznáte ani URL ani ID vašeho profilu, môžete postupovať nasledovne: 
-\n 
-\n1. V niektorom prehliadači povoľte režim \"desktop\" (web nie je dostupný pre mobilné zariadenia) 
-\n2. Prejdite na túto adresu URL:  %1$s 
+    <string name="import_soundcloud_instructions">"Importovať SoundCloud profil zadaním URL adresy alebo vášho ID: 
+\n
+\n1. Prepnite režim na \"desktop\" (web nie je dostupný pre mobilné zariadenia) 
+\n2. Prejdite na túto URL adresu: %1$s
 \n3. Po výzve sa prihláste do svojho účtu 
-\n4. Skopírujte adresu URL, na ktorú ste boli presmerovaní (to je adresa vášho profilu).
-\n"</string>
-    <string name="import_soundcloud_instructions_hint">ID,soundcloud.com/ID</string>
+\n4. Skopírujte adresu URL, na ktorú ste boli presmerovaní. "</string>
+    <string name="import_soundcloud_instructions_hint">vašeID, soundcloud.com/vašeid</string>
 
     <string name="import_network_expensive_warning">Operácia môže byť náročná na počet prenesených dát.
 \n
@@ -467,7 +464,7 @@
     <string name="playback_speed_control">Ovládanie rýchlosti prehrávania</string>
     <string name="playback_tempo">Rýchlosť</string>
     <string name="playback_pitch">Výška</string>
-    <string name="unhook_checkbox">"Zvoľnenie  (môže spôsobovať skreslenie)"</string>
+    <string name="unhook_checkbox">"Spomalenie  (môže spôsobovať skreslenie)"</string>
     <string name="playback_nightcore">Nightcore režim</string>
     <string name="playback_default">Predvolené</string>
 <string name="clear_views_history_title">Vymazať históriu pozretí</string>
@@ -493,4 +490,18 @@
 
     <string name="limit_data_usage_none_description">Bez limitu</string>
     <string name="limit_mobile_data_usage_title">Limitovať rozlíšenie pri použití mobilných dát</string>
-    </resources>
+    <string name="channels">Kanály</string>
+    <string name="playlists">Zoznamy skladieb</string>
+    <string name="tracks">Skladby</string>
+    <string name="users">Používatelia</string>
+    <string name="skip_silence_checkbox">Pretáčať tiché pasáže</string>
+    <string name="playback_step">Krok</string>
+    <string name="playback_reset">Vynulovať</string>
+
+    <string name="minimize_on_exit_title">Minimalizovať pri prepnutí aplikácie</string>
+    <string name="minimize_on_exit_summary">Akcia pri prepnutí na inú aplikáciu z hlavného prehrávača videa — %s</string>
+    <string name="minimize_on_exit_none_description">Nič</string>
+    <string name="minimize_on_exit_background_description">Prehrávať na pozadí</string>
+    <string name="minimize_on_exit_popup_description">Prehrávať v okne</string>
+
+</resources>

@@ -1117,7 +1117,9 @@ public abstract class BasePlayer implements
 
     @Player.RepeatMode
     public int getRepeatMode() {
-        return simpleExoPlayer == null ? Player.REPEAT_MODE_OFF : simpleExoPlayer.getRepeatMode();
+        return simpleExoPlayer == null
+                ? Player.REPEAT_MODE_OFF
+                : simpleExoPlayer.getRepeatMode();
     }
 
     public void setRepeatMode(@Player.RepeatMode final int repeatMode) {
@@ -1182,5 +1184,9 @@ public abstract class BasePlayer implements
 
         if (DEBUG) Log.d(TAG, "Setting recovery, queue: " + queuePos + ", pos: " + windowPos);
         playQueue.setRecovery(queuePos, windowPos);
+    }
+
+    public boolean gotDestroyed() {
+        return simpleExoPlayer == null;
     }
 }

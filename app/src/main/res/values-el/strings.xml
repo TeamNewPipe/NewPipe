@@ -217,7 +217,7 @@
     <string name="invalid_url_toast">Μη έγκυρο URL</string>
     <string name="video_streams_empty">Δε βρέθηκαν ροές βίντεο</string>
     <string name="audio_streams_empty">Δε βρέθηκαν ροές ήχου</string>
-    <string name="invalid_directory">Μη έγκυρη τοποθεσία</string>
+    <string name="invalid_directory">Μη έγκυρη διεύθυνση</string>
     <string name="invalid_source">Μη έγκυρο αρχείο ή πηγή περιεχομένου</string>
     <string name="invalid_file">Το αρχείο δεν υπάρχει ή δεν έχουμε επαρκή εξουσιοδότηση για να διαβάσουμε ή να γράψουμε σε αυτό</string>
     <string name="file_name_empty_error">Το όνομα αρχείου δεν μπορεί να είναι κενό</string>
@@ -301,7 +301,7 @@
     <string name="error_unable_to_load_license">Δεν ήταν δυνατή η φόρτωση της άδειας</string>
     <string name="tab_about">Περί</string>
     <string name="tab_contributors">Συνεισφέροντες</string>
-    <string name="app_description">Ελέυθερη και ελαφριά εφαρμογή αναπαραγωγής ροών στο Android.</string>
+    <string name="app_description">Ανοιχτού κώδικα, ελαφριά εφαρμογή του Android, για την αναπαραγωγή πολυμεσων από το ίντερνετ.</string>
     <string name="contribution_title">Συνεισφέρετε</string>
     <string name="contribution_encouragement">Αν έχετε ιδέες για μετάφραση, αλλαγή σχεδιασμού, εκκαθάριση ή ριζικές αλλαγές κώδικα της εφαρμογής—η βοήθεια σας είναι πάντα ευπρόσδεκτη. Όσο περισσότερη έχουμε, τόσο καλύτεροι γινόμαστε!</string>
     <string name="view_on_github">Δείτε το στο GitHub</string>
@@ -405,7 +405,7 @@
     <string name="caption_setting_description">Τροποποίηση του μεγέθους και του φόντου των υπότιτλων. Απαιτεί επανεκκίνηση της εφαρμογής</string>
 
     <string name="enable_leak_canary_title">Ενεργοποίηση του LeakCanary</string>
-    <string name="enable_leak_canary_summary">Η παρακολούθηση των διαρροών μνήμης μπορεί να κάνει την εφαρμογή να μην αποκρίνεται κατά το heap dumping</string>
+    <string name="enable_leak_canary_summary">Η παρακολούθηση των διαρροών μνήμης μπορεί να προκαλέσει την διακοπή της εφαρμογής</string>
 
     <string name="enable_disposed_exceptions_summary"/>
 
@@ -442,7 +442,7 @@
     <string name="playback_tempo">Τέμπο</string>
     <string name="playback_pitch">Τόνος</string>
     <string name="minimize_on_exit_summary">Ενέργεια κατά τη μετάβαση σε άλλη εφαρμογή — %s</string>
-    <string name="feed_page_summary">Σελίδαρ Ροής</string>
+    <string name="feed_page_summary">Σελίδα Ροής</string>
     <string name="trending">Δημοφιλή</string>
     <string name="enable_disposed_exceptions_title">Αναφορά σφαλμάτων εκτός κύκλου ζωής</string>
     <string name="import_soundcloud_instructions_hint">Το όνομα χρήστη σας, soundcloud.com/όνομαχρήστη</string>
@@ -450,7 +450,7 @@
     <string name="unhook_checkbox">Αποσύνδεση (μπορεί να προκαλέσει παραμόρφωση)</string>
     <string name="skip_silence_checkbox">Επιτάχυνση αναπαραγωγής κατά τη διάρκεια σιωπής</string>
     <string name="playback_step">Βήμα</string>
-    <string name="playback_reset">Μηδενισμός</string>
+    <string name="playback_reset">Επαναφορά</string>
 
     <string name="start_accept_privacy_policy">Προς συμμόρφωση με τον Ευρωπαϊκό Γενικό Κανονισμό για την Προστασία Δεδομένων (GDPR), σας επιστούμε την προσοχή στην πολιτική προστασίας προσωπικών δεδομένων του NewPipe. Παραλούμε, διαβάστε την προσεκτικά.
 \nΘα πρέπει να την αποδεχτέιτε προκειμένου να μας αποστείλετε την αναφορά σφάλματος.</string>
