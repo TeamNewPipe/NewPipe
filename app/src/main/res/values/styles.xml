@@ -126,6 +126,62 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     </style>
 
+    <style name="DarkHackingTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/hacking_youtube_accent_color</item>
+        <item name="android:windowBackground">@color/dark_background_color</item>
+        <item name="windowBackground">@color/dark_background_color</item>
+
+        <item name="thumbs_up">@drawable/ic_hacking_thumb_up_24px</item>
+        <item name="thumbs_down">@drawable/ic_hacking_thumb_down_24px</item>
+        <item name="audio">@drawable/ic_hacking_headset_24px</item>
+        <item name="info">@drawable/ic_hacking_bug_24dp</item>
+        <item name="bug">@drawable/ic_hacking_error_outline_24px</item>
+        <item name="clear_history">@drawable/ic_hacking_delete_sweep_24dp</item>
+        <item name="download">@drawable/ic_hacking_vertical_align_bottom_24px</item>
+        <item name="share">@drawable/ic_hacking_share_24px</item>
+        <item name="cast">@drawable/ic_hacking_cast_24dp</item>
+        <item name="rss">@drawable/ic_hacking_rss_feed_24px</item>
+        <item name="search">@drawable/ic_hacking_search_24px</item>
+        <item name="close">@drawable/ic_hacking_close_24dp</item>
+        <item name="filter">@drawable/ic_hacking_filter_list_24px</item>
+        <item name="popup">@drawable/ic_hacking_popup_24px</item>
+        <item name="expand">@drawable/ic_hacking_keyboard_arrow_down_24px</item>
+        <item name="collapse">@drawable/ic_hacking__keyboard_arrow_up_24px</item>
+        <item name="volume_off">@drawable/ic_hacking_volume_off_24px</item>
+        <item name="palette">@drawable/ic_hacking_palette_24px</item>
+        <item name="language">@drawable/ic_hacking_language_24px</item>
+        <item name="history">@drawable/ic_hacking_history_24px</item>
+        <item name="drag_handle">@drawable/ic_hacking_drag_handle_24px</item>
+        <item name="selected">@drawable/ic_hacking_circle_24px</item>
+        <item name="search_add">@drawable/ic_hacking_call_made_24px</item>
+        <item name="options">@drawable/ic_hacking_option_24px</item>
+        <item name="play">@drawable/ic_hacking_play_arrow_24px</item>
+        <item name="settings">@drawable/ic_hacking_settings_20px</item>
+        <item name="ic_hot">@drawable/ic_hacking_hot_24px</item>
+        <item name="ic_channel">@drawable/ic_hacking_live_24px</item>
+        <item name="ic_bookmark">@drawable/ic_hacking_bookmark_24px</item>
+        <item name="ic_playlist_add">@drawable/ic_hacking_playlist_add_24px</item>
+        <item name="ic_playlist_check">@drawable/ic_hacking_playlist_add_check_24px</item>
+        <item name="ic_import_export">@drawable/ic_hacking_import_export_24px</item>
+        <item name="ic_save">@drawable/ic_hacking_save_24px</item>
+        <item name="ic_backup">@drawable/ic_hacking_download_24dp</item>
+        <item name="ic_add">@drawable/ic_hacking_add_24px</item>
+        <item name="ic_restore_defaults">@drawable/ic_hacking_settings_backup_restore_24px</item>
+        <item name="ic_blank_page">@drawable/ic_hacking_blank_page_24px</item>
+
+        <item name="separator_color">@color/dark_separator_color</item>
+        <item name="contrast_background_color">@color/dark_contrast_background_color</item>
+        <item name="checked_selector_drawable">@drawable/dark_checked_selector</item>
+        <item name="queue_background_color">@color/dark_queue_background_color</item>
+        <item name="toolbar_shadow_drawable">@drawable/toolbar_shadow_dark</item>
+        <item name="selector_drawable">@drawable/dark_selector</item>
+        <item name="colorControlHighlight">@color/dark_ripple_color</item>
+
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+    </style>
+
     <style name="DarkTheme.Switchable">
         <item name="android:windowAnimationStyle">@style/SwitchAnimation</item>
     </style>
@@ -137,6 +193,20 @@
         <item name="separator_color">@color/black_separator_color</item>
         <item name="contrast_background_color">@color/black_contrast_background_color</item>
     </style>
+
+    <style name="HackingTheme" parent="DarkHackingTheme">
+
+        <item name="android:editTextColor">@color/hacking_youtube_accent_color</item>
+        <item name="android:textColorPrimary">@color/hacking_youtube_accent_color</item>
+        <item name="android:textColorSecondary">@color/hacking_youtube_accent_color</item>
+        <item name="android:textColorTertiary">@color/hacking_youtube_accent_color</item>
+
+        <item name="android:windowBackground">@color/black_background_color</item>
+        <item name="windowBackground">@color/black_background_color</item>
+        <item name="separator_color">@color/black_separator_color</item>
+        <item name="contrast_background_color">@color/black_contrast_background_color</item>
+    </style>
+
 
     <style name="BlackTheme.Switchable">
         <item name="android:windowAnimationStyle">@style/SwitchAnimation</item>
@@ -172,6 +242,10 @@
         <item name="colorAccent">@color/black_settings_accent_color</item>
     </style>
 
+    <style name="HackingSettingsTheme" parent="HackingTheme">
+        <item name="colorAccent">@color/white</item>
+    </style>
+
     <style name="SwitchAnimation" parent="@android:style/Animation.Activity">
         <item name="android:windowEnterAnimation">@anim/switch_service_in</item>
         <item name="android:windowExitAnimation">@anim/switch_service_out</item>
@@ -179,6 +253,10 @@
 
     <style name="Toolbar.Title" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="HackingText" parent="@android:style/TextAppearance.Small">
+        <item name="android:textColor">@color/hacking_youtube_accent_color</item>
     </style>
 
     <style name="OldVideoPlayerTheme" parent="Theme.AppCompat.Light.DarkActionBar">
