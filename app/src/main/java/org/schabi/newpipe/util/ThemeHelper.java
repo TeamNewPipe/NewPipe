@@ -118,7 +118,7 @@ public class ThemeHelper {
 
         int defaultTheme = R.style.DarkTheme;
         if (selectedTheme.equals(lightTheme)) defaultTheme = R.style.LightTheme;
-        else if (selectedTheme.equals(blackTheme)) defaultTheme = R.style.BlackTheme;
+//        else if (selectedTheme.equals(blackTheme)) defaultTheme = R.style.BlackTheme;
         else if (selectedTheme.equals(darkTheme)) defaultTheme = R.style.DarkTheme;
         else if (selectedTheme.equals(hackingTheme)) return R.style.HackingTheme;
 
@@ -135,7 +135,7 @@ public class ThemeHelper {
 
         String themeName = "DarkTheme";
         if (selectedTheme.equals(lightTheme)) themeName = "LightTheme";
-        else if (selectedTheme.equals(blackTheme)) themeName = "BlackTheme";
+//        else if (selectedTheme.equals(blackTheme)) themeName = "BlackTheme";
         else if (selectedTheme.equals(darkTheme)) themeName = "DarkTheme";
         else if (selectedTheme.equals(hackingTheme)) themeName = "HackingTheme";
 
@@ -159,7 +159,7 @@ public class ThemeHelper {
         String selectedTheme = getSelectedThemeString(context);
 
         if (selectedTheme.equals(lightTheme)) return R.style.LightSettingsTheme;
-        else if (selectedTheme.equals(blackTheme)) return R.style.BlackSettingsTheme;
+//        else if (selectedTheme.equals(blackTheme)) return R.style.BlackSettingsTheme;
         else if (selectedTheme.equals(darkTheme)) return R.style.DarkSettingsTheme;
         else if (selectedTheme.equals(hackingTheme)) return R.style.HackingSettingsTheme;
         // Fallback
