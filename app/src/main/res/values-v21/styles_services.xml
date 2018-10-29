@@ -10,7 +10,7 @@
     </style>
 
     <style name="BlackTheme.YouTube" parent="BlackTheme.Switchable">
-        <item name="colorPrimaryDark">@color/dark_youtube_statusbar_color</item>
+        <item name="colorPrimaryDark">@color/black</item>
     </style>
     <!-- SoundCloud -->
     <style name="LightTheme.SoundCloud" parent="LightTheme.Switchable">
@@ -26,8 +26,8 @@
     </style>
 
     <style name="BlackTheme.SoundCloud" parent="BlackTheme.Switchable">
-        <item name="colorPrimary">@color/dark_soundcloud_primary_color</item>
-        <item name="colorPrimaryDark">@color/dark_soundcloud_statusbar_color</item>
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryDark">@color/black</item>
         <item name="colorAccent">@color/dark_soundcloud_accent_color</item>
     </style>
 

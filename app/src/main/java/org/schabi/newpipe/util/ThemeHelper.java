@@ -112,15 +112,14 @@ public class ThemeHelper {
         String lightTheme = context.getResources().getString(R.string.light_theme_key);
         String darkTheme = context.getResources().getString(R.string.dark_theme_key);
         String blackTheme = context.getResources().getString(R.string.black_theme_key);
-        String hackingTheme = context.getResources().getString(R.string.hacking_theme_key);
+
 
         String selectedTheme = getSelectedThemeString(context);
 
         int defaultTheme = R.style.DarkTheme;
         if (selectedTheme.equals(lightTheme)) defaultTheme = R.style.LightTheme;
-//        else if (selectedTheme.equals(blackTheme)) defaultTheme = R.style.BlackTheme;
+        else if (selectedTheme.equals(blackTheme)) defaultTheme = R.style.BlackTheme;
         else if (selectedTheme.equals(darkTheme)) defaultTheme = R.style.DarkTheme;
-        else if (selectedTheme.equals(hackingTheme)) return R.style.HackingTheme;
 
         if (serviceId <= -1) {
             return defaultTheme;
@@ -135,9 +134,8 @@ public class ThemeHelper {
 
         String themeName = "DarkTheme";
         if (selectedTheme.equals(lightTheme)) themeName = "LightTheme";
-//        else if (selectedTheme.equals(blackTheme)) themeName = "BlackTheme";
+        else if (selectedTheme.equals(blackTheme)) themeName = "BlackTheme";
         else if (selectedTheme.equals(darkTheme)) themeName = "DarkTheme";
-        else if (selectedTheme.equals(hackingTheme)) themeName = "HackingTheme";
 
         themeName += "." + service.getServiceInfo().getName();
         int resourceId = context.getResources().getIdentifier(themeName, "style", context.getPackageName());
@@ -154,14 +152,13 @@ public class ThemeHelper {
         String lightTheme = context.getResources().getString(R.string.light_theme_key);
         String darkTheme = context.getResources().getString(R.string.dark_theme_key);
         String blackTheme = context.getResources().getString(R.string.black_theme_key);
-        String hackingTheme = context.getResources().getString(R.string.hacking_theme_key);
 
         String selectedTheme = getSelectedThemeString(context);
 
         if (selectedTheme.equals(lightTheme)) return R.style.LightSettingsTheme;
-//        else if (selectedTheme.equals(blackTheme)) return R.style.BlackSettingsTheme;
+        else if (selectedTheme.equals(blackTheme)) return R.style.BlackSettingsTheme;
         else if (selectedTheme.equals(darkTheme)) return R.style.DarkSettingsTheme;
-        else if (selectedTheme.equals(hackingTheme)) return R.style.HackingSettingsTheme;
+
         // Fallback
         else return R.style.DarkSettingsTheme;
     }
