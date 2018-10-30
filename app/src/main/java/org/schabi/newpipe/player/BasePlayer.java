@@ -297,7 +297,6 @@ public abstract class BasePlayer implements
         databaseUpdateReactor.clear();
         progressUpdateReactor.set(null);
 
-        simpleExoPlayer = null;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
