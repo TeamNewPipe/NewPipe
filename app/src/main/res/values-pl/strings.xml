@@ -8,7 +8,7 @@
     <string name="download">Pobierz</string>
     <string name="search">Wyszukaj</string>
     <string name="settings">Ustawienia</string>
-    <string name="did_you_mean">Miałeś na myśli: %1$s ?</string>
+    <string name="did_you_mean">Miałeś na myśli: %1$s\?</string>
     <string name="share_dialog_title">Udostępnij przez</string>
     <string name="choose_browser">Wybierz przeglądarkę</string>
     <string name="screen_rotation">obrót</string>
