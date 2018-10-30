@@ -10,7 +10,7 @@
     <string name="detail_likes_img_view_description">الإعجابات</string>
     <string name="detail_thumbnail_view_description">صور معاينة الفيديو</string>
     <string name="detail_uploader_thumbnail_view_description">الصورة المصغرة الشخصية</string>
-    <string name="did_you_mean">هل تقصد: %1$s ?</string>
+    <string name="did_you_mean">هل تقصد: %1$s\?</string>
     <string name="download">تنزيل</string>
     <string name="download_dialog_title">تنزيل</string>
     <string name="download_path_audio_dialog_title">أدخل مسار تنزيل الملفات الصوتية</string>
@@ -176,18 +176,18 @@
 
     <string name="no_subscribers">ليس هناك مشترِكون</string>
     <plurals name="subscribers">
-	<item quantity="zero">صفر مشترِك</item>
-	<item quantity="one">%s مشترِك</item>
-	<item quantity="two">مشترِكان</item>
-	<item quantity="few">%s مشتركين</item>
-	<item quantity="many">%s مشترك</item>
-	<item quantity="other">%s مشترك</item>
+	<item quantity="zero">%s لا يوجد مشترك</item>
+	<item quantity="one">%s مشترك</item>
+	<item quantity="two">%s اثنتين مشتركين</item>
+	<item quantity="few">%s اشتراكات</item>
+	<item quantity="many">%s مشتركين</item>
+	<item quantity="other">%s مشتركين</item>
 </plurals>
 
     <string name="no_views">دون مشاهدات</string>
     <string name="no_videos">لاتوجد فيديوهات</string>
-    <string name="start">تشغيل</string>
-    <string name="pause">إيقاف</string>
+    <string name="start">ابدأ</string>
+    <string name="pause">إيقاف مؤقت</string>
     <string name="view">شغل</string>
     <string name="delete">حذف</string>
     <string name="checksum">التوقيع</string>
