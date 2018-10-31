@@ -217,10 +217,9 @@ public final class MainVideoPlayer extends AppCompatActivity
         if (playerImpl == null) return;
 
         playerImpl.setRecovery();
-        playerState = new PlayerState(playerImpl.getPlayQueue(), playerImpl.getRepeatMode(),
-                playerImpl.getPlaybackSpeed(), playerImpl.getPlaybackPitch(),
-                playerImpl.getPlaybackQuality(), playerImpl.getPlaybackSkipSilence(),
-                playerImpl.isPlaying());
+        if(!playerImpl.gotDestroyed()) {
+            playerState = createPlayerState();
+        }
         StateSaver.tryToSave(isChangingConfigurations(), null, outState, this);
     }
 
@@ -235,6 +234,7 @@ public final class MainVideoPlayer extends AppCompatActivity
         if (!isBackPressed) {
             playerImpl.minimize();
         }
+        playerState = createPlayerState();
         playerImpl.destroy();
 
         isInMultiWindow = false;
@@ -244,6 +244,13 @@ public final class MainVideoPlayer extends AppCompatActivity
     /*//////////////////////////////////////////////////////////////////////////
     // State Saving
     //////////////////////////////////////////////////////////////////////////*/
+
+    private PlayerState createPlayerState() {
+        return new PlayerState(playerImpl.getPlayQueue(), playerImpl.getRepeatMode(),
+                playerImpl.getPlaybackSpeed(), playerImpl.getPlaybackPitch(),
+                playerImpl.getPlaybackQuality(), playerImpl.getPlaybackSkipSilence(),
+                playerImpl.isPlaying());
+    }
 
     @Override
     public String generateSuffix() {

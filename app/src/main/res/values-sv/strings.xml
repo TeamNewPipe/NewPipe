@@ -10,10 +10,10 @@
     <string name="download">Ladda ner</string>
     <string name="search">Sök</string>
     <string name="settings">Inställningar</string>
-    <string name="did_you_mean">Menade du: %1$s ?</string>
+    <string name="did_you_mean">Menade du: %1$s\?</string>
     <string name="share_dialog_title">Dela med</string>
     <string name="choose_browser">Välj webbläsare</string>
-    <string name="screen_rotation">rotering</string>
+    <string name="screen_rotation">rotation</string>
     <string name="use_external_video_player_title">Använd extern videospelare</string>
     <string name="use_external_video_player_summary">Några upplösningar kommer INTE ha ljud när det här alternativet är aktiverat</string>
     <string name="use_external_audio_player_title">Använd extern ljudspelare</string>
@@ -109,7 +109,7 @@
     <string name="view_count_text">%1$s visningar</string>
     <string name="subscribe_button_title">Prenumerera</string>
     <string name="subscribed_button_title">Prenumererad</string>
-    <string name="channel_unsubscribed">Prenumerationen togs bort</string>
+    <string name="channel_unsubscribed">Prenumeration avslutad</string>
     <string name="subscription_change_failed">Kunde inte ändra prenumeration</string>
     <string name="subscription_update_failed">Kunde inte uppdatera prenumeration</string>
 
@@ -286,10 +286,10 @@
 
     <string name="tab_bookmarks">Bokmärken</string>
 
-    <string name="controls_add_to_playlist_title">Lägga till</string>
+    <string name="controls_add_to_playlist_title">Lägg till</string>
 
     <string name="use_inexact_seek_title">Använda snabb inexakt sökning</string>
-    <string name="download_thumbnail_title">Ladda miniatyrer</string>
+    <string name="download_thumbnail_title">Ladda miniatyrbilder</string>
     <string name="download_thumbnail_summary">Inaktivera för att stoppa alla miniatyrbilder från att ladda och spara på data och minnesanvändning. Ändring av detta kommer att rensa cache-minnet</string>
     <string name="thumbnail_cache_wipe_complete_notice">Bild cacheminnet var rensad</string>
     <string name="service_title">Tjänst</string>
@@ -396,7 +396,7 @@
     <string name="delete_playlist_prompt">Vill du ta bort den här spellistan?</string>
     <string name="playlist_creation_success">Spellistan skapades</string>
     <string name="playlist_add_stream_success">Tillagad i spellistan</string>
-    <string name="playlist_thumbnail_change_success">"Spellistans miniatyrbild förändrades "</string>
+    <string name="playlist_thumbnail_change_success">Spellistans miniatyrbild förändrades</string>
     <string name="playlist_delete_failure">Kunde inte ta bort spellistan</string>
 
     <string name="caption_none">Ingen textning</string>
@@ -449,7 +449,7 @@
 
     <string name="playback_speed_control">Uppspelningshastighet Kontroller</string>
     <string name="playback_tempo">Tempo</string>
-    <string name="playback_pitch">Pitch</string>
+    <string name="playback_pitch">Tonhöjd</string>
     <string name="unhook_checkbox">Avlänka (kan orsaka förvrängning)</string>
     <string name="skip_silence_checkbox">Snabbspola vid frånvaro av ljud</string>
     <string name="playback_step">Steg</string>
