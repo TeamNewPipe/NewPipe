@@ -473,7 +473,7 @@
     <string name="app_license">NewPipe jest wolnym i bezpłatnym oprogramowaniem: Możesz używać, brać udział oraz udoskonalać je według własnego uznania. W szczególności możesz redystrybuować lub/i modyfikować pod zasadami GNU General Public License opublikowanej przez Free Software Fundation w wersji 3 lub (w zależności od ciebie) dowolnej późniejszej wersji.</string>
     <string name="import_settings">Czy chcesz zaimportować również ustawienia?</string>
 
-    <string name="privacy_policy_title">Polityka prywatności programu NewPipe</string>
+    <string name="privacy_policy_title">Polityka prywatności NewPipe</string>
     <string name="privacy_policy_encouragement">Projekt NewPipe bardzo poważnie traktuję politykę prywatności. Aplikacja nie zbiera żadnych danych bez Twojej zgody. Polityka prywatności programu NewPipe szczegółowo wyjaśnia, jakie dane są zbierane i przesyłane, kiedy wysyłasz raport o błędach aplikacji.</string>
     <string name="read_privacy_policy">Przeczytaj politykę prywatności</string>
     <string name="start_accept_privacy_policy">Ze względu na wprowadzenie Ogólnego Rozporządzenia o ochronie danych (RODO), chcielibyśmy zwrócić Twoją uwagę na politykę prywatności NewPipe. Proszę przeczytać ją uważnie.
