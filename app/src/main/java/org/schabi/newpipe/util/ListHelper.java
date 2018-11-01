@@ -110,7 +110,8 @@ public final class ListHelper {
                 : context.getString(R.string.best_resolution_key);
 
         String maxResolution = getResolutionLimit(context);
-        if (maxResolution != null && compareVideoStreamResolution(maxResolution, resolution) < 1){
+        if (maxResolution != null && (resolution.equals(context.getString(R.string.best_resolution_key))
+                || compareVideoStreamResolution(maxResolution, resolution) < 1)) {
             resolution = maxResolution;
         }
         return resolution;
