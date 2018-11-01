@@ -19,6 +19,7 @@ import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -69,6 +70,7 @@ import java.util.Vector;
 public class ErrorActivity extends AppCompatActivity {
     // LOG TAGS
     public static final String TAG = ErrorActivity.class.toString();
+    private static final String HTML_SNIPPET = "<!DOCTYPE html><html lang=\"en\"><head> <meta charset=\"utf-8\"> </head><body> <div class=\"block\"> <table class=\"table\"> <tbody> <td> <div class=\"info\"> <h2>Exception</h2> <ul> <li><strong>User Action:</strong> %s</li> <li><strong>Request:</strong>%s</li> <li><strong>Content Language:</strong>%s</li> <li><strong>Service:</strong> %s</li> <li><strong>Package:</strong> %s</li> <li><strong>Version:</strong> %s</li> <li><strong>OS:</strong>%s</li> <li><strong>Time:</strong>%s</li> </ul> <div><strong>User Comment:</strong><p>%s</p></div> </div> <details open=\"\"> <summary><b>Crash log</b></summary> <div style=\" background-color: #fafafa; border: 1px solid #eee; border-radius: 3px; margin-top: 20px; padding: 10px; margin-bottom: 20px; color: #616161; overflow-x: scroll;\"><code> <pre>%s</pre> </code> </details> <hr> </td> </tbody> </table> </div></body></html>";
     // BUNDLE TAGS
     public static final String ERROR_INFO = "error_info";
     public static final String ERROR_LIST = "error_list";
@@ -217,10 +219,11 @@ public class ErrorActivity extends AppCompatActivity {
                     })
                     .setPositiveButton(R.string.accept, (dialog, which) -> {
                         Intent i = new Intent(Intent.ACTION_SENDTO);
+                        i.setType("text/html");
                         i.setData(Uri.parse("mailto:" + ERROR_EMAIL_ADDRESS))
                                 .putExtra(Intent.EXTRA_SUBJECT, ERROR_EMAIL_SUBJECT)
-                                .putExtra(Intent.EXTRA_TEXT, buildJson());
-
+                                .putExtra(Intent.EXTRA_TEXT,
+                                        Html.fromHtml(buildHtml()));
                         startActivity(Intent.createChooser(i, "Send Email"));
                     })
                     .setNegativeButton(R.string.decline, (dialog, which) -> {
@@ -363,6 +366,22 @@ public class ErrorActivity extends AppCompatActivity {
         }
 
         return "";
+    }
+
+    private String buildHtml() {
+        String snippet = HTML_SNIPPET;
+        StringBuilder exceptionString = new StringBuilder();
+        if (errorList != null) {
+            for (String e : errorList) {
+                exceptionString.append(e + "<br>");
+            }
+        }
+        String result = String.format(snippet, getUserActionString(errorInfo.userAction),
+                errorInfo.request, getContentLangString(), errorInfo.serviceName, getPackageName(),
+                BuildConfig.VERSION_NAME, getOsString(), currentTimeStamp, userCommentBox.getText().toString(),
+                exceptionString.toString().replace("\n", "<br>"));
+
+        return result;
     }
 
     private String getUserActionString(UserAction userAction) {
