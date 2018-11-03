@@ -126,21 +126,37 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     </style>
 
-    <style name="BlackTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="BlackTheme" parent="DarkTheme">
         <item name="colorPrimary">@color/black</item>
         <item name="colorPrimaryDark">@color/black</item>
 
-        <item name="android:editTextColor">@color/hacking_youtube_accent_color</item>
-        <item name="android:textColorPrimary">@color/hacking_youtube_accent_color</item>
-        <item name="android:textColorSecondary">@color/hacking_youtube_accent_color</item>
-        <item name="android:textColorTertiary">@color/hacking_youtube_accent_color</item>
+        <item name="android:editTextColor">@color/white</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
+        <item name="android:textColorTertiary">@color/white</item>
 
         <item name="android:windowBackground">@color/black_background_color</item>
         <item name="windowBackground">@color/black_background_color</item>
         <item name="separator_color">@color/black_separator_color</item>
         <item name="contrast_background_color">@color/black_contrast_background_color</item>
 
-        <item name="colorAccent">@color/hacking_youtube_accent_color</item>
+        <item name="colorAccent">@color/white</item>
+
+        <item name="checked_selector_drawable">@drawable/dark_checked_selector</item>
+        <item name="queue_background_color">@color/dark_queue_background_color</item>
+        <item name="toolbar_shadow_drawable">@drawable/toolbar_shadow_dark</item>
+        <item name="selector_drawable">@drawable/dark_selector</item>
+        <item name="colorControlHighlight">@color/dark_ripple_color</item>
+
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+    </style>
+
+    <style name="TerminalTheme" parent="BlackTheme">
+        <item name="android:editTextColor">@color/hacking_youtube_accent_color</item>
+        <item name="android:textColorPrimary">@color/hacking_youtube_accent_color</item>
+        <item name="android:textColorSecondary">@color/hacking_youtube_accent_color</item>
+        <item name="android:textColorTertiary">@color/hacking_youtube_accent_color</item>
+
         <item name="thumbs_up">@drawable/ic_hacking_thumb_up_24px</item>
         <item name="thumbs_down">@drawable/ic_hacking_thumb_down_24px</item>
         <item name="audio">@drawable/ic_hacking_headset_24px</item>
@@ -178,22 +194,11 @@
         <item name="ic_add">@drawable/ic_hacking_add_24px</item>
         <item name="ic_restore_defaults">@drawable/ic_hacking_settings_backup_restore_24px</item>
         <item name="ic_blank_page">@drawable/ic_hacking_blank_page_24px</item>
-
-        <item name="checked_selector_drawable">@drawable/dark_checked_selector</item>
-        <item name="queue_background_color">@color/dark_queue_background_color</item>
-        <item name="toolbar_shadow_drawable">@drawable/toolbar_shadow_dark</item>
-        <item name="selector_drawable">@drawable/dark_selector</item>
-        <item name="colorControlHighlight">@color/dark_ripple_color</item>
-
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     </style>
 
     <style name="DarkTheme.Switchable">
         <item name="android:windowAnimationStyle">@style/SwitchAnimation</item>
     </style>
-
-
-
 
     <style name="BlackTheme.Switchable">
         <item name="android:windowAnimationStyle">@style/SwitchAnimation</item>
@@ -227,6 +232,10 @@
 
     <style name="BlackSettingsTheme" parent="BlackTheme">
         <item name="colorAccent">@color/white</item>
+    </style>
+
+    <style name="TerminalSettingsTheme" parent="TerminalTheme">
+        <item name="colorAccent">@color/hacking_youtube_accent_color</item>
     </style>
 
 
