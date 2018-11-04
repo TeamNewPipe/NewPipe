@@ -13,7 +13,7 @@
     <string name="controls_download_desc">Laadi voog alla.</string>
     <string name="search">Otsi</string>
     <string name="settings">Seaded</string>
-    <string name="did_you_mean">Kas mõtlesid: %1$s ?</string>
+    <string name="did_you_mean">Kas mõtlesid: %1$s\?</string>
     <string name="share_dialog_title">Jaga</string>
     <string name="choose_browser">Vali veebilehitseja</string>
     <string name="screen_rotation">pööramine</string>
