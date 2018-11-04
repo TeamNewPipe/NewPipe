@@ -23,6 +23,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.preference.PreferenceManager;
 import android.support.annotation.AttrRes;
+import android.support.annotation.ColorInt;
 import android.support.annotation.StyleRes;
 import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
@@ -96,7 +97,19 @@ public class ThemeHelper {
      */
     @StyleRes
     public static int getDialogTheme(Context context) {
-        return isLightThemeSelected(context) ? R.style.LightDialogTheme : R.style.DarkDialogTheme;
+        String lightTheme = context.getResources().getString(R.string.light_theme_key);
+        String darkTheme = context.getResources().getString(R.string.dark_theme_key);
+        String blackTheme = context.getResources().getString(R.string.black_theme_key);
+        String terminalTheme = context.getResources().getString(R.string.terminal_theme_key);
+
+        String selectedTheme = getSelectedThemeString(context);
+
+        int defaultTheme = R.style.DarkTheme;
+        if (selectedTheme.equals(lightTheme)) defaultTheme = R.style.LightDialogTheme;
+        else if (selectedTheme.equals(blackTheme)) defaultTheme = R.style.DarkDialogTheme;
+        else if (selectedTheme.equals(darkTheme)) defaultTheme = R.style.DarkDialogTheme;
+        else if (selectedTheme.equals(terminalTheme)) defaultTheme = R.style.TerminalDialogTheme;
+        return defaultTheme;
     }
 
     /**
@@ -164,7 +177,7 @@ public class ThemeHelper {
         else if (selectedTheme.equals(darkTheme)) return R.style.DarkSettingsTheme;
         else if (selectedTheme.equals(terminalTheme)) return R.style.TerminalSettingsTheme;
 
-        // Fallback
+            // Fallback
         else return R.style.DarkSettingsTheme;
     }
 
@@ -201,12 +214,96 @@ public class ThemeHelper {
     /**
      * This will get the R.drawable.* resource to which attr is currently pointing to.
      *
-     * @param attr a R.attribute.* resource value
+     * @param attr    a R.attribute.* resource value
      * @param context the context to use
      * @return a R.drawable.* resource value
      */
     public static int getIconByAttr(final int attr, final Context context) {
-        return context.obtainStyledAttributes(new int[] {attr})
+        return context.obtainStyledAttributes(new int[]{attr})
                 .getResourceId(0, -1);
+    }
+
+
+    public static int getVideoLeftLoadColor(Context context) {
+        String lightTheme = context.getResources().getString(R.string.light_theme_key);
+        String darkTheme = context.getResources().getString(R.string.dark_theme_key);
+        String blackTheme = context.getResources().getString(R.string.black_theme_key);
+        String terminalTheme = context.getResources().getString(R.string.terminal_theme_key);
+
+        String selectedTheme = getSelectedThemeString(context);
+
+        if (selectedTheme.equals(lightTheme))
+            return R.color.video_left_to_load_color;
+        else if (selectedTheme.equals(blackTheme))
+            return R.color.video_left_to_load_color;
+        else if (selectedTheme.equals(darkTheme))
+            return R.color.video_left_to_load_color;
+        else if (selectedTheme.equals(terminalTheme))
+            return R.color.audio_left_to_load_color;
+
+            // Fallback
+        else return R.color.video_left_to_load_color;
+    }
+
+    public static int getVideoRightLoadColor(Context context) {
+        String lightTheme = context.getResources().getString(R.string.light_theme_key);
+        String darkTheme = context.getResources().getString(R.string.dark_theme_key);
+        String blackTheme = context.getResources().getString(R.string.black_theme_key);
+        String terminalTheme = context.getResources().getString(R.string.terminal_theme_key);
+
+        String selectedTheme = getSelectedThemeString(context);
+
+        if (selectedTheme.equals(lightTheme))
+            return R.color.video_already_load_color;
+        else if (selectedTheme.equals(blackTheme))
+            return R.color.video_already_load_color;
+        else if (selectedTheme.equals(darkTheme))
+            return R.color.video_already_load_color;
+        else if (selectedTheme.equals(terminalTheme))
+            return R.color.audio_already_load_color;
+
+            // Fallback
+        else return R.color.video_left_to_load_color;
+    }
+
+    public static int getToggleServiceArrowDown(Context context) {
+        String lightTheme = context.getResources().getString(R.string.light_theme_key);
+        String darkTheme = context.getResources().getString(R.string.dark_theme_key);
+        String blackTheme = context.getResources().getString(R.string.black_theme_key);
+        String terminalTheme = context.getResources().getString(R.string.terminal_theme_key);
+
+        String selectedTheme = getSelectedThemeString(context);
+
+        if (selectedTheme.equals(lightTheme))
+            return R.drawable.ic_arrow_down_black;
+        else if (selectedTheme.equals(blackTheme))
+            return R.drawable.ic_arrow_down_white;
+        else if (selectedTheme.equals(darkTheme))
+            return R.drawable.ic_arrow_down_white;
+        else if (selectedTheme.equals(terminalTheme))
+            return R.drawable.ic_arrow_down_;
+
+            // Fallback
+        else return R.drawable.ic_arrow_down_white;
+    }
+    public static int getToggleServiceArrowUp(Context context) {
+        String lightTheme = context.getResources().getString(R.string.light_theme_key);
+        String darkTheme = context.getResources().getString(R.string.dark_theme_key);
+        String blackTheme = context.getResources().getString(R.string.black_theme_key);
+        String terminalTheme = context.getResources().getString(R.string.terminal_theme_key);
+
+        String selectedTheme = getSelectedThemeString(context);
+
+        if (selectedTheme.equals(lightTheme))
+            return R.drawable.ic_arrow_up_black;
+        else if (selectedTheme.equals(blackTheme))
+            return R.drawable.ic_arrow_up_white;
+        else if (selectedTheme.equals(darkTheme))
+            return R.drawable.ic_arrow_up_white;
+        else if (selectedTheme.equals(terminalTheme))
+            return R.drawable.ic_arrow_up_;
+
+            // Fallback
+        else return R.drawable.ic_arrow_down_white;
     }
 }

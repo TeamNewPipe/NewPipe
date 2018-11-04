@@ -45,11 +45,13 @@
             android:id="@+id/video_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="?attr/theme_view_color"
             android:checked="true"
             android:text="@string/video"/>
 
         <RadioButton
             android:id="@+id/audio_button"
+            android:textColor="?attr/theme_view_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/audio"/>

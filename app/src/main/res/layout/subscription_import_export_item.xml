@@ -17,7 +17,7 @@
         android:layout_marginBottom="@dimen/subscription_import_export_item_icon_margin"
         android:scaleType="fitCenter"
         tools:ignore="ContentDescription,RtlHardcoded"
-        tools:src="@drawable/place_holder_youtube"/>
+        tools:src="@drawable/ic_youtube"/>
 
     <TextView
         android:id="@android:id/text1"

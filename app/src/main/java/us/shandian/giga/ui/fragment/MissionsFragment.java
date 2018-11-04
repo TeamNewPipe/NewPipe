@@ -179,7 +179,7 @@ public abstract class MissionsFragment extends Fragment {
         mList.setAdapter(mAdapter);
 
         if (mSwitch != null) {
-            mSwitch.setIcon(mLinear ? R.drawable.grid : R.drawable.list);
+            mSwitch.setIcon(mLinear ? R.drawable.ic_grid : R.drawable.ic_list);
         }
 
         mPrefs.edit().putBoolean("linear", mLinear).apply();

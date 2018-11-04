@@ -11,6 +11,17 @@
         <item name="colorPrimary">@color/black</item>
         <item name="colorPrimaryDark">@color/black</item>
     </style>
+
+    <style name="TerminalTheme.YouTube" parent="TerminalTheme.Switchable">
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/hacking_youtube_accent_color</item>
+    </style>
+    <style name="TerminalTheme.SoundCloud" parent="TerminalTheme.Switchable">
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/hacking_youtube_accent_color</item>
+    </style>
     <!-- SoundCloud -->
     <style name="LightTheme.SoundCloud" parent="LightTheme.Switchable">
         <item name="colorPrimary">@color/light_soundcloud_primary_color</item>

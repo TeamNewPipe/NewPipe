@@ -131,7 +131,7 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
         h.name.setText(ms.name);
         h.size.setText(Utility.formatBytes(ms.length));
 
-        h.progress = new ProgressDrawable(mContext, Utility.getBackgroundForFileType(type), Utility.getForegroundForFileType(type));
+        h.progress = new ProgressDrawable(mContext, Utility.getBackgroundForFileType(mContext, type), Utility.getForegroundForFileType(mContext, type));
         ViewCompat.setBackground(h.bkg, h.progress);
 
         h.observer = new MissionObserver(this, h);

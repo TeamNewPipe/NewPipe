@@ -27,7 +27,7 @@
 				android:singleLine="true"
 				android:text="0%"
 				android:textSize="20sp"
-				android:textColor="@color/white"/>
+				android:textColor="?white_green_text_color"/>
 			
 			<ImageView
 				style="?attr/buttonBarButtonStyle"
@@ -37,7 +37,7 @@
 				android:layout_alignParentRight="true"
 				android:layout_centerVertical="true"
 				android:layout_marginRight="1dp"
-				android:src="@drawable/ic_menu_more"
+				android:src="?options"
 				android:scaleType="centerInside"
                 android:contentDescription="TODO" />
 			
@@ -65,7 +65,7 @@
 			android:text="XXX.xx"
 			android:textSize="16sp"
 			android:textStyle="bold"
-			android:textColor="@color/white"/>
+			android:textColor="?white_green_text_color"/>
 		
 		<TextView
 			android:id="@+id/item_size"
@@ -76,7 +76,7 @@
 			android:singleLine="true"
 			android:text="100.00MB"
 			android:textSize="12sp"
-			android:textColor="@color/white"/>
+			android:textColor="?white_green_text_color"/>
 		
 	</RelativeLayout>
     

@@ -16,6 +16,8 @@
         <item name="colorAccent">@color/light_youtube_accent_color</item>
         <item name="android:windowBackground">@color/light_background_color</item>
         <item name="windowBackground">@color/light_background_color</item>
+        <item name="theme_view_color">@color/black</item>
+        <item name="white_green_text_color">@color/white</item>
 
         <item name="thumbs_up">@drawable/ic_thumb_up_black_24dp</item>
         <item name="thumbs_down">@drawable/ic_thumb_down_black_24dp</item>
@@ -54,6 +56,7 @@
         <item name="ic_add">@drawable/ic_add_black_24dp</item>
         <item name="ic_restore_defaults">@drawable/ic_settings_backup_restore_black_24dp</item>
         <item name="ic_blank_page">@drawable/ic_blank_page_black_24dp</item>
+        <item name="ic_toggle_service_down">@drawable/ic_arrow_down_black</item>
 
         <item name="separator_color">@color/light_separator_color</item>
         <item name="contrast_background_color">@color/light_contrast_background_color</item>
@@ -76,6 +79,8 @@
         <item name="colorAccent">@color/dark_youtube_accent_color</item>
         <item name="android:windowBackground">@color/dark_background_color</item>
         <item name="windowBackground">@color/dark_background_color</item>
+        <item name="theme_view_color">@color/white</item>
+        <item name="white_green_text_color">@color/white</item>
 
         <item name="thumbs_up">@drawable/ic_thumb_up_white_24dp</item>
         <item name="thumbs_down">@drawable/ic_thumb_down_white_24dp</item>
@@ -114,6 +119,7 @@
         <item name="ic_add">@drawable/ic_add_white_24dp</item>
         <item name="ic_restore_defaults">@drawable/ic_settings_backup_restore_white_24dp</item>
         <item name="ic_blank_page">@drawable/ic_blank_page_white_24dp</item>
+        <item name="ic_toggle_service_down">@drawable/ic_arrow_down_white</item>
 
         <item name="separator_color">@color/dark_separator_color</item>
         <item name="contrast_background_color">@color/dark_contrast_background_color</item>
@@ -124,11 +130,15 @@
         <item name="colorControlHighlight">@color/dark_ripple_color</item>
 
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+
     </style>
 
     <style name="BlackTheme" parent="DarkTheme">
         <item name="colorPrimary">@color/black</item>
         <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/white</item>
+        <item name="theme_view_color">@color/white</item>
+        <item name="white_green_text_color">@color/white</item>
 
         <item name="android:editTextColor">@color/white</item>
         <item name="android:textColorPrimary">@color/white</item>
@@ -140,7 +150,6 @@
         <item name="separator_color">@color/black_separator_color</item>
         <item name="contrast_background_color">@color/black_contrast_background_color</item>
 
-        <item name="colorAccent">@color/white</item>
 
         <item name="checked_selector_drawable">@drawable/dark_checked_selector</item>
         <item name="queue_background_color">@color/dark_queue_background_color</item>
@@ -152,6 +161,12 @@
     </style>
 
     <style name="TerminalTheme" parent="BlackTheme">
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/hacking_youtube_accent_color</item>
+        <item name="theme_view_color">@color/hacking_youtube_accent_color</item>
+        <item name="white_green_text_color">@color/hacking_youtube_accent_color</item>
+
         <item name="android:editTextColor">@color/hacking_youtube_accent_color</item>
         <item name="android:textColorPrimary">@color/hacking_youtube_accent_color</item>
         <item name="android:textColorSecondary">@color/hacking_youtube_accent_color</item>
@@ -191,6 +206,8 @@
         <item name="ic_import_export">@drawable/ic_hacking_import_export_24px</item>
         <item name="ic_save">@drawable/ic_hacking_save_24px</item>
         <item name="ic_backup">@drawable/ic_hacking_download_24dp</item>
+
+        <item name="ic_toggle_service_down">@drawable/ic_arrow_down_</item>
         <item name="ic_add">@drawable/ic_hacking_add_24px</item>
         <item name="ic_restore_defaults">@drawable/ic_hacking_settings_backup_restore_24px</item>
         <item name="ic_blank_page">@drawable/ic_hacking_blank_page_24px</item>
@@ -203,6 +220,11 @@
     <style name="BlackTheme.Switchable">
         <item name="android:windowAnimationStyle">@style/SwitchAnimation</item>
     </style>
+
+    <style name="TerminalTheme.Switchable">
+        <item name="android:windowAnimationStyle">@style/SwitchAnimation</item>
+    </style>
+
 
     <!-- Dialogs -->
     <style name="LightDialogTheme" parent="Theme.AppCompat.Light.Dialog">
@@ -220,6 +242,21 @@
         <item name="android:windowBackground">@color/dark_dialog_background_color</item>
         <item name="windowBackground">@color/dark_dialog_background_color</item>
     </style>
+
+    <style name="TerminalDialogTheme" parent="Theme.AppCompat.Dialog">
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/hacking_youtube_accent_color</item>
+        <item name="android:windowBackground">@color/black_background_color</item>
+        <item name="windowBackground">@color/black_background_color</item>
+        <item name="android:editTextColor">@color/hacking_youtube_accent_color</item>
+        <item name="android:textColorPrimary">@color/hacking_youtube_accent_color</item>
+        <item name="android:textColorSecondary">@color/hacking_youtube_accent_color</item>
+        <item name="android:textColorTertiary">@color/hacking_youtube_accent_color</item>
+
+    </style>
+
+
 
     <!-- Settings -->
     <style name="LightSettingsTheme" parent="LightTheme">

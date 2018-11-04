@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
@@ -63,7 +64,7 @@ public class Utility {
         } catch (Exception e) {
             //nothing to do
         } finally {
-            if(objectOutputStream != null) {
+            if (objectOutputStream != null) {
                 try {
                     objectOutputStream.close();
                 } catch (Exception e) {
@@ -86,9 +87,9 @@ public class Utility {
             //nothing to do
         }
 
-        if(objectInputStream != null){
+        if (objectInputStream != null) {
             try {
-                objectInputStream .close();
+                objectInputStream.close();
             } catch (Exception e) {
                 //nothing to do
             }
@@ -131,24 +132,24 @@ public class Utility {
     }
 
     @ColorRes
-    public static int getBackgroundForFileType(FileType type) {
+    public static int getBackgroundForFileType(Context context, FileType type) {
         switch (type) {
             case MUSIC:
                 return R.color.audio_left_to_load_color;
             case VIDEO:
-                return R.color.video_left_to_load_color;
+                return ThemeHelper.getVideoLeftLoadColor(context);
             default:
                 return R.color.gray;
         }
     }
 
     @ColorRes
-    public static int getForegroundForFileType(FileType type) {
+    public static int getForegroundForFileType(Context context, FileType type) {
         switch (type) {
             case MUSIC:
                 return R.color.audio_already_load_color;
             case VIDEO:
-                return R.color.video_already_load_color;
+                return ThemeHelper.getVideoRightLoadColor(context);
             default:
                 return R.color.gray;
         }
@@ -158,11 +159,11 @@ public class Utility {
     public static int getIconForFileType(FileType type) {
         switch (type) {
             case MUSIC:
-                return R.drawable.music;
+                return R.drawable.ic_music;
             case VIDEO:
-                return R.drawable.video;
+                return R.drawable.ic_video;
             default:
-                return R.drawable.video;
+                return R.drawable.ic_video;
         }
     }
 
