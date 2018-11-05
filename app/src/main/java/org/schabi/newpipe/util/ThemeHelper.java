@@ -66,6 +66,9 @@ public class ThemeHelper {
     public static boolean isLightThemeSelected(Context context) {
         return getSelectedThemeString(context).equals(context.getResources().getString(R.string.light_theme_key));
     }
+    public static boolean isTerminalThemeSelected(Context context) {
+        return getSelectedThemeString(context).equals(context.getResources().getString(R.string.terminal_theme_key));
+    }
 
 
     /**

@@ -292,7 +292,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showServices() {
-        serviceArrow.setImageResource(ThemeHelper.getToggleServiceArrowUp(this));
+        serviceArrow.setImageResource(R.drawable.ic_arrow_up_white);
 
         for (StreamingService s : NewPipe.getServices()) {
             final String title = s.getServiceInfo().getName() +
@@ -302,11 +302,12 @@ public class MainActivity extends AppCompatActivity {
                     .add(R.id.menu_services_group, s.getServiceId(), ORDER, title)
                     .setIcon(ServiceHelper.getIcon(s.getServiceId()));
         }
-        drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
+        if (!ThemeHelper.isTerminalThemeSelected(this))
+            drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
     }
 
     private void showTabs() throws ExtractionException {
-        serviceArrow.setImageResource(ThemeHelper.getToggleServiceArrowDown(this));
+        serviceArrow.setImageResource(R.drawable.ic_arrow_down_white);
 
         //Tabs
         int currentServiceId = ServiceHelper.getSelectedServiceId(this);

@@ -29,7 +29,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
         android:contentDescription="TODO"
-        app:srcCompat="@drawable/ic_np_logo_nude_shadow" />
+        app:srcCompat="@drawable/np_logo_nude_shadow" />
 
     <TextView
         android:id="@+id/drawer_header_np_text_view"
@@ -41,7 +41,7 @@
         android:layout_toRightOf="@id/drawer_header_np_nude_view"
         android:gravity="center"
         android:text="@string/app_name"
-        android:textColor="?theme_view_color"
+        android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold|italic" />
 
@@ -53,7 +53,7 @@
         android:layout_alignStart="@id/drawer_header_np_text_view"
         android:layout_below="@id/drawer_header_np_text_view"
         android:text="YouTube"
-        android:textColor="?attr/theme_view_color"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="italic" />
 
@@ -70,6 +70,6 @@
         android:paddingBottom="20dp"
         android:paddingEnd="20dp"
         android:paddingRight="20dp"
-        android:src="?attr/ic_toggle_service_down" />
+        android:src="@drawable/ic_arrow_down_white" />
 
 </RelativeLayout>
