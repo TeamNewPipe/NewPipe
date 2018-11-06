@@ -178,7 +178,7 @@
         <item name="info">@drawable/ic_hacking_bug_24dp</item>
         <item name="bug">@drawable/ic_hacking_error_outline_24px</item>
         <item name="clear_history">@drawable/ic_hacking_delete_sweep_24dp</item>
-        <item name="download">@drawable/ic_hacking_vertical_align_bottom_24px</item>
+        <item name="download">@drawable/ic_hacking_theme_file_download</item>
         <item name="share">@drawable/ic_hacking_share_24px</item>
         <item name="cast">@drawable/ic_hacking_cast_24dp</item>
         <item name="rss">@drawable/ic_hacking_rss_feed_24px</item>
