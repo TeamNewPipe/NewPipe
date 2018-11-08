@@ -24,7 +24,7 @@ import us.shandian.giga.util.Utility;
 import static org.schabi.newpipe.BuildConfig.DEBUG;
 
 public class DownloadMission extends Mission {
-    private static final long serialVersionUID = 3L;// last bump: 16 october 2018
+    private static final long serialVersionUID = 3L;// last bump: 8 november 2018
 
     static final int BUFFER_SIZE = 64 * 1024;
     final static int BLOCK_SIZE = 512 * 1024;

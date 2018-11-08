@@ -105,13 +105,13 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
      * but set the HTTP header field "Accept-Language" to the supplied string.
      *
      * @param siteUrl  the URL of the text file to return the contents of
-     * @param localisation the language and country (usually a 2-character code) to set
+     * @param localization the language and country (usually a 2-character code) to set
      * @return the contents of the specified text file
      */
     @Override
-    public String download(String siteUrl, Localization localisation) throws IOException, ReCaptchaException {
+    public String download(String siteUrl, Localization localization) throws IOException, ReCaptchaException {
         Map<String, String> requestProperties = new HashMap<>();
-        requestProperties.put("Accept-Language", localisation.getLanguage());
+        requestProperties.put("Accept-Language", localization.getLanguage());
         return download(siteUrl, requestProperties);
     }
 

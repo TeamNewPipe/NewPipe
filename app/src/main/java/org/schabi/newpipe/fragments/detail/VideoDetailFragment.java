@@ -572,6 +572,9 @@ public class VideoDetailFragment
                                 .show(getFragmentManager(), TAG);
                     }
                     break;
+                case 3:
+                    shareUrl(item.getName(), item.getUrl());
+                    break;
                 default:
                     break;
             }

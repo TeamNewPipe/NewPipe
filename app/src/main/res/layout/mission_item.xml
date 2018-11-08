@@ -2,7 +2,7 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_height="wrap_content"
 	android:layout_width="match_parent">
-
+	
 	<RelativeLayout
 		android:id="@+id/item_bkg"
 		android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
 				android:layout_marginRight="1dp"
 				android:src="@drawable/ic_menu_more"
 				android:scaleType="center"
-                android:contentDescription="TODO"/>
+                android:contentDescription="TODO" />
 			
 		</RelativeLayout>
 		
@@ -51,8 +51,8 @@
 			android:layout_centerHorizontal="true"
 			android:scaleType="fitXY"
 			android:gravity="center"
-            android:contentDescription="TODO"
-			android:padding="10dp"/>
+			android:padding="10dp"
+            android:contentDescription="TODO" />
 		
 		<TextView
 			android:id="@+id/item_name"
@@ -60,14 +60,14 @@
 			android:layout_height="wrap_content"
 			android:layout_below="@id/item_icon"
 			android:padding="6dp"
-			android:text="XXX.xx"
-			android:textSize="16sp"
-			android:textStyle="bold"
-			android:textColor="@color/white"
 			android:singleLine="true"
 			android:ellipsize="marquee"
 			android:marqueeRepeatLimit="marquee_forever"
-			android:scrollHorizontally="true"/>
+			android:scrollHorizontally="true"
+			android:text="XXX.xx"
+			android:textSize="16sp"
+			android:textStyle="bold"
+			android:textColor="@color/white"/>
 		
 		<TextView
 			android:id="@+id/item_size"

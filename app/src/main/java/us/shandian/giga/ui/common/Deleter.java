@@ -19,6 +19,7 @@ import us.shandian.giga.ui.adapter.MissionAdapter;
 public class Deleter {
     private static final int TIMEOUT = 5000;// ms
     private static final int DELAY = 350;// ms
+    private static final int DELAY_RESUME = 400;// ms
     private static final String BUNDLE_NAMES = "us.shandian.giga.ui.common.deleter.names";
     private static final String BUNDLE_LOCATIONS = "us.shandian.giga.ui.common.deleter.locations";
 
@@ -140,7 +141,7 @@ public class Deleter {
 
     public void resume() {
         if (running) return;
-        mHandler.postDelayed(rShow, (int) (DELAY * 1.5f));// 150% of the delay
+        mHandler.postDelayed(rShow, DELAY_RESUME);
     }
 
     public void dispose(Bundle bundle) {

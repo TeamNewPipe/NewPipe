@@ -97,7 +97,7 @@ public class StreamItemAdapter<T extends Stream> extends BaseAdapter {
             } else if (((VideoStream) stream).isVideoOnly()) {
                 switch (stream.getFormat()) {
                     case WEBM:// fully supported
-                    case MPEG_4:// ¿is DASH MPEG-4?
+                    case MPEG_4:// ¿is DASH MPEG-4 format?
                         woSoundIconVisibility = View.INVISIBLE;
                         break;
                     default:
@@ -143,7 +143,7 @@ public class StreamItemAdapter<T extends Stream> extends BaseAdapter {
     public static class StreamSizeWrapper<T extends Stream> implements Serializable {
         private static final StreamSizeWrapper<Stream> EMPTY = new StreamSizeWrapper<>(Collections.emptyList(), null);
         private final List<T> streamsList;
-        private long[] streamSizes;
+        private final long[] streamSizes;
         private final String unknownSize;
 
         public StreamSizeWrapper(List<T> streamsList, Context context) {

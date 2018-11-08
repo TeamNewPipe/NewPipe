@@ -1,4 +1,4 @@
-package us.shandian.giga.ui.common;// TODO: ¡git it!
+package us.shandian.giga.ui.common;
 
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;

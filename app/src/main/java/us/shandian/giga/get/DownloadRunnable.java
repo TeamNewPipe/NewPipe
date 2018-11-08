@@ -146,7 +146,7 @@ public class DownloadRunnable implements Runnable {
         try {
             f.close();
         } catch (Exception err) {
-            // ¿ejected media storage? ¿file deleted? ¿storage ran out of space?
+            // ¿ejected media storage?  ¿file deleted?  ¿storage ran out of space?
         }
 
         try {

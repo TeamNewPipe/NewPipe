@@ -55,20 +55,13 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     private static final String TAG = "DialogFragment";
     private static final boolean DEBUG = MainActivity.DEBUG;
 
-    @State
-    protected StreamInfo currentInfo;
-    @State
-    protected StreamSizeWrapper<AudioStream> wrappedAudioStreams = StreamSizeWrapper.empty();
-    @State
-    protected StreamSizeWrapper<VideoStream> wrappedVideoStreams = StreamSizeWrapper.empty();
-    @State
-    protected StreamSizeWrapper<SubtitlesStream> wrappedSubtitleStreams = StreamSizeWrapper.empty();
-    @State
-    protected int selectedVideoIndex = 0;
-    @State
-    protected int selectedAudioIndex = 0;
-    @State
-    protected int selectedSubtitleIndex = 0;
+    @State protected StreamInfo currentInfo;
+    @State protected StreamSizeWrapper<AudioStream> wrappedAudioStreams = StreamSizeWrapper.empty();
+    @State protected StreamSizeWrapper<VideoStream> wrappedVideoStreams = StreamSizeWrapper.empty();
+    @State protected StreamSizeWrapper<SubtitlesStream> wrappedSubtitleStreams = StreamSizeWrapper.empty();
+    @State protected int selectedVideoIndex = 0;
+    @State protected int selectedAudioIndex = 0;
+    @State protected int selectedSubtitleIndex = 0;
 
     private StreamItemAdapter<AudioStream> audioStreamsAdapter;
     private StreamItemAdapter<VideoStream> videoStreamsAdapter;
@@ -151,8 +144,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (DEBUG)
-            Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
+        if (DEBUG) Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
         if (!PermissionHelper.checkStoragePermissions(getActivity(), PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE)) {
             getDialog().dismiss();
             return;
@@ -168,8 +160,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if (DEBUG)
-            Log.d(TAG, "onCreateView() called with: inflater = [" + inflater + "], container = [" + container + "], savedInstanceState = [" + savedInstanceState + "]");
+        if (DEBUG) Log.d(TAG, "onCreateView() called with: inflater = [" + inflater + "], container = [" + container + "], savedInstanceState = [" + savedInstanceState + "]");
         return inflater.inflate(R.layout.download_dialog, container);
     }
 
@@ -302,8 +293,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
 
     @Override
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-        if (DEBUG)
-            Log.d(TAG, "onCheckedChanged() called with: group = [" + group + "], checkedId = [" + checkedId + "]");
+        if (DEBUG) Log.d(TAG, "onCheckedChanged() called with: group = [" + group + "], checkedId = [" + checkedId + "]");
         boolean flag = true;
 
         switch (checkedId) {
@@ -328,8 +318,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        if (DEBUG)
-            Log.d(TAG, "onItemSelected() called with: parent = [" + parent + "], view = [" + view + "], position = [" + position + "], id = [" + id + "]");
+        if (DEBUG) Log.d(TAG, "onItemSelected() called with: parent = [" + parent + "], view = [" + view + "], position = [" + position + "], id = [" + id + "]");
         switch (radioVideoAudioGroup.getCheckedRadioButtonId()) {
             case R.id.audio_button:
                 selectedAudioIndex = position;

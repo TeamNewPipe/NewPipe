@@ -73,6 +73,7 @@ public class DownloadManagerService extends Service {
     private StringBuilder downloadDoneList = null;
     NotificationManager notificationManager = null;
     private boolean mForeground = false;
+    
     private final ArrayList<Handler> mEchoObservers = new ArrayList<>(1);
 
     private BroadcastReceiver mNetworkStateListener;

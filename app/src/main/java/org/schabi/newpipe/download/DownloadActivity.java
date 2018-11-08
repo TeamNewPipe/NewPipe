@@ -24,7 +24,6 @@ public class DownloadActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         // Service
         Intent i = new Intent();
         i.setClass(this, DownloadManagerService.class);

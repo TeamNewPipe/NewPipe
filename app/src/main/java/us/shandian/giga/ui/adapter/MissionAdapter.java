@@ -68,8 +68,8 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
     private Deleter mDeleter;
     private int mLayout;
     private DownloadManager.MissionIterator mIterator;
-    private Handler mHandler;
     private ArrayList<ViewHolderItem> mPendingDownloadsItems = new ArrayList<>();
+    private Handler mHandler;
     private MenuItem mClear;
     private View mEmptyMessage;
 

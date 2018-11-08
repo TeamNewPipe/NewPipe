@@ -15,7 +15,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +46,7 @@ public class MissionsFragment extends Fragment {
     private Bundle mBundle;
     private boolean mForceUpdate;
 
-    private final ServiceConnection mConnection = new ServiceConnection() {
+    private ServiceConnection mConnection = new ServiceConnection() {
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder binder) {
@@ -111,15 +110,6 @@ public class MissionsFragment extends Fragment {
         return v;
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        if (menu != null) {
-            mSwitch = menu.findItem(R.id.switch_mode);
-            mClear = menu.findItem(R.id.clear_list);
-        }
-    }
-
     /**
      * Added in API level 23.
      */
@@ -129,7 +119,7 @@ public class MissionsFragment extends Fragment {
 
         // Bug: in api< 23 this is never called
         // so mActivity=null
-        // so app crashes with null-pointer exception
+        // so app crashes with nullpointer exception
         mActivity = activity;
     }
 
@@ -140,8 +130,10 @@ public class MissionsFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+        
         mActivity = activity;
     }
+
 
     @Override
     public void onDestroy() {
@@ -157,28 +149,10 @@ public class MissionsFragment extends Fragment {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        if (mAdapter != null) {
-            mAdapter.deleterDispose(outState);
-            mForceUpdate = true;
-            mBinder.removeMissionEventListener(mAdapter.getMessenger());
-        }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (mAdapter != null) {
-            mAdapter.deleterResume();
-
-            if (mForceUpdate) {
-                mForceUpdate = false;
-                mAdapter.forceUpdate();
-            }
-
-            mBinder.addMissionEventListener(mAdapter.getMessenger());
-        }
+    public void onPrepareOptionsMenu(Menu menu) {
+        mSwitch = menu.findItem(R.id.switch_mode);
+        mClear = menu.findItem(R.id.clear_list);
+        super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -203,8 +177,11 @@ public class MissionsFragment extends Fragment {
             mList.setLayoutManager(mGridManager);
         }
 
+        // destroy all created views in the recycler
         mList.setAdapter(null);
         mAdapter.notifyDataSetChanged();
+        
+        // re-attach the adapter in grid/lineal mode
         mAdapter.setLinear(mLinear);
         mList.setAdapter(mAdapter);
 
@@ -212,6 +189,34 @@ public class MissionsFragment extends Fragment {
             mSwitch.setIcon(mLinear ? R.drawable.grid : R.drawable.list);
             mSwitch.setTitle(mLinear ? R.string.grid : R.string.list);
             mPrefs.edit().putBoolean("linear", mLinear).apply();
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        if (mAdapter != null) {
+            mAdapter.deleterDispose(outState);
+            mForceUpdate = true;
+            mBinder.removeMissionEventListener(mAdapter.getMessenger());
+               
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+                                                 
+        if (mAdapter != null) {
+            mAdapter.deleterResume();
+
+            if (mForceUpdate) {
+                mForceUpdate = false;
+                mAdapter.forceUpdate();
+            }
+
+            mBinder.addMissionEventListener(mAdapter.getMessenger());
         }
     }
 }

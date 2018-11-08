@@ -14,7 +14,7 @@ import static org.schabi.newpipe.BuildConfig.DEBUG;
 
 // Single-threaded fallback mode
 public class DownloadRunnableFallback implements Runnable {
-    private static final String TAG = "DownloadRunnableFallbac";
+    private static final String TAG = "DownloadRunnableFallback";
 
     private final DownloadMission mMission;
     private int retryCount = 0;
