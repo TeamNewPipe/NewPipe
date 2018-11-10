@@ -255,7 +255,7 @@
 
     <string name="item_deleted">Элемент удалён</string>
 <string name="delete_item_search_history">Удалить этот элемент из истории поиска?</string>
-<string name="main_page_content">Контент главной страницы</string>
+<string name="main_page_content">Главная страница</string>
     <string name="blank_page_summary">Пустая страница</string>
     <string name="kiosk_page_summary">Киоск</string>
     <string name="subscription_page_summary">Подписки</string>
