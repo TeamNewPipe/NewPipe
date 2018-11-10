@@ -508,7 +508,7 @@
     <string name="grid">Сетка</string>
 	<string name="auto">Автоматически</string>
 
-    <string name="brightness_gesture_control_summary">Менять жестом яркость в плеере</string>
+    <string name="brightness_gesture_control_summary">Менять яркость плеера жестом</string>
     <string name="brightness_gesture_control_title">Жест яркости</string>
     <string name="download_to_sdcard_error_message">Загрузка на внешний накопитель невозможна. Сбросить расположение папки загрузки?</string>
     <string name="download_to_sdcard_error_title">Внешний накопитель недоступен</string>
@@ -522,7 +522,7 @@
     <string name="tab_choose">Выберите вкладку</string>
     <string name="tab_new">Новая вкладка</string>
     <string name="unsubscribe">Отписаться</string>
-    <string name="volume_gesture_control_summary">Менять жестом громкость в плеере</string>
+    <string name="volume_gesture_control_summary">Менять громкость плеера жестом</string>
     <string name="volume_gesture_control_title">Жест громкости</string>
 
 </resources>
