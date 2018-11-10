@@ -510,7 +510,7 @@
 
     <string name="brightness_gesture_control_summary">Менять жестом яркость в плеере</string>
     <string name="brightness_gesture_control_title">Жест яркости</string>
-    <string name="download_to_sdcard_error_message">Загрузка на внешний накопитель невозможна. Сбросить местоположение папки для загрузки?</string>
+    <string name="download_to_sdcard_error_message">Загрузка на внешний накопитель невозможна. Сбросить расположение папки для загрузки?</string>
     <string name="download_to_sdcard_error_title">Внешний накопитель недоступен</string>
     <string name="main_page_content_summary">Вкладки, видимые на главной странице</string>
     <string name="restore_defaults">По умолчанию</string>
