@@ -444,7 +444,7 @@
     <string name="thumbnail_cache_wipe_complete_notice">Кэш изображений очищен</string>
     <string name="metadata_cache_wipe_title">Очистить кэш метаданных</string>
     <string name="metadata_cache_wipe_complete_notice">Кэш метаданных очищен</string>
-    <string name="playback_speed_control">Управление скоростью воспроизведения</string>
+    <string name="playback_speed_control">Скорость воспроизведения</string>
     <string name="playback_tempo">Темп</string>
     <string name="playback_pitch">Тон</string>
     <string name="unhook_checkbox">Независимо (искажения)</string>
