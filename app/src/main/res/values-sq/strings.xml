@@ -30,7 +30,7 @@
     <string name="download_dialog_title">Shkarko</string>
     <string name="next_video_title">Videoja tjetër</string>
     <string name="service_title">Shërbimi</string>
-    <string name="search_language_title">Gjuha e dëshiruar e përmbajtjeve</string>
+    <string name="content_language_title">Gjuha e dëshiruar e përmbajtjeve</string>
     <string name="settings_category_player_title">Aplikacioni për video</string>
     <string name="settings_category_player_behavior_title">Sjellja</string>
     <string name="settings_category_video_audio_title">Video &amp; Audio</string>

@@ -4,6 +4,7 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
+import org.schabi.newpipe.extractor.utils.Localization;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -103,13 +104,13 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
      * but set the HTTP header field "Accept-Language" to the supplied string.
      *
      * @param siteUrl  the URL of the text file to return the contents of
-     * @param language the language (usually a 2-character code) to set as the preferred language
+     * @param localization the language and country (usually a 2-character code) to set
      * @return the contents of the specified text file
      */
     @Override
-    public String download(String siteUrl, String language) throws IOException, ReCaptchaException {
+    public String download(String siteUrl, Localization localization) throws IOException, ReCaptchaException {
         Map<String, String> requestProperties = new HashMap<>();
-        requestProperties.put("Accept-Language", language);
+        requestProperties.put("Accept-Language", localization.getLanguage());
         return download(siteUrl, requestProperties);
     }
 
