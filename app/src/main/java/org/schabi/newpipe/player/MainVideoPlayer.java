@@ -1025,8 +1025,7 @@ public final class MainVideoPlayer extends AppCompatActivity
 
     private class PlayerScaleGestureListener
             extends ScaleGestureDetector.SimpleOnScaleGestureListener {
-
-        private final boolean isPlayerGestureEnabled = PlayerHelper.isPlayerGestureEnabled(getApplicationContext());
+        private final boolean isPlayerGestureEnabled = PlayerHelper.isScaleGestureEnabled(getApplicationContext());
 
         private static final float ZOOM_IN_THRESHOLD = 1.1f;
         private static final float ZOOM_OUT_THRESHOLD = 0.9f;

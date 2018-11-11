@@ -118,6 +118,12 @@
 
         <SwitchPreference
             android:defaultValue="true"
+            android:key="@string/scale_gesture_control_key"
+            android:summary="@string/scale_gesture_control_summary"
+            android:title="@string/scale_gesture_control_title"/>
+
+        <SwitchPreference
+            android:defaultValue="true"
             android:key="@string/popup_remember_size_pos_key"
             android:summary="@string/popup_remember_size_pos_summary"
             android:title="@string/popup_remember_size_pos_title"/>

@@ -87,6 +87,8 @@
     <string name="volume_gesture_control_summary">Use gestures to control the volume of the player</string>
     <string name="brightness_gesture_control_title">Brightness gesture control</string>
     <string name="brightness_gesture_control_summary">Use gestures to control the brightness of the player</string>
+    <string name="scale_gesture_control_title">Scale gesture control</string>
+    <string name="scale_gesture_control_summary">Use gestures to control the scale / aspect ratio of the player</string>
     <string name="show_search_suggestions_title">Search suggestions</string>
     <string name="show_search_suggestions_summary">Show suggestions when searching</string>
     <string name="enable_search_history_title">Search history</string>

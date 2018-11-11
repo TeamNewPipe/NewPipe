@@ -177,6 +177,10 @@ public class PlayerHelper {
         return isBrightnessGestureEnabled(context, true);
     }
 
+    public static boolean isScaleGestureEnabled(@NonNull final Context context) {
+        return isScaleGestureEnabled(context, true);
+    }
+
     public static boolean isUsingOldPlayer(@NonNull final Context context) {
         return isUsingOldPlayer(context, false);
     }
@@ -316,6 +320,10 @@ public class PlayerHelper {
 
     private static boolean isBrightnessGestureEnabled(@NonNull final Context context, final boolean b) {
         return getPreferences(context).getBoolean(context.getString(R.string.brightness_gesture_control_key), b);
+    }
+
+    private static boolean isScaleGestureEnabled(@NonNull final Context context, final boolean b) {
+        return getPreferences(context).getBoolean(context.getString(R.string.scale_gesture_control_key), b);
     }
 
     private static boolean isUsingOldPlayer(@NonNull final Context context, final boolean b) {
