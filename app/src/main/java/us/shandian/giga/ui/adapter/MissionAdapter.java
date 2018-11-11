@@ -99,6 +99,7 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
 		h.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
 			public void onClick(View v) {
+                if(h.mission.finished) viewFile(h);
 			}
 		});
 
