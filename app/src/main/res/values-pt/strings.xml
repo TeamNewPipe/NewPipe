@@ -434,7 +434,7 @@
     <string name="search_history_deleted">Histórico de pesquisa deletado.</string>
     <string name="one_item_deleted">1 elemento deletado.</string>
 
-    <string name="toast_no_player">Nehum aplicativo instalada para reproduzir este arquivo</string>
+    <string name="toast_no_player">Nehum aplicativo instalado para reproduzir este ficheiro</string>
 
     <string name="donation_encouragement">NewPipe é desenvolvido por voluntários que usam seu tempo para trazer a melhor experiência para você. Retribua para ajudar os desenvolvedores a tornarem o NewPipe ainda melhor enquanto desfrutam uma xícara de café.</string>
     <string name="give_back">Retribuir</string>
@@ -443,4 +443,50 @@
 \nA polícia de privacidade do NewPipe explica em detalhes qual dado é enviado e salvo quando você envia um relatório de erros.</string>
     <string name="read_privacy_policy">Ler a política de privacidade</string>
     <string name="auto_queue_title">Próximo stream automaticamente em lista de espera</string>
-    </resources>
+    <string name="app_license">NewPipe é libre software copyleft: você pode usar, estudar, compartilhar e melhorar à sua vontade. Especificamente, você pode redistribuir e/ou modificá-la sob os termos da Licença Pública Geral GNU, conforme publicada pela Free Software Foundation, tanto a versão 3 da Licença, ou (por sua opção) qualquer versão posterior.</string>
+    <string name="import_settings">Deseja também importar configurações\?</string>
+
+    <string name="hold_to_append">Reter para enfileirar</string>
+    <string name="enqueue_on_background">Enfileirar no fundo</string>
+    <string name="enqueue_on_popup">Enfileirar em Popup</string>
+    <string name="preferred_open_action_settings_title">Ação \'abrir\' preferida</string>
+    <string name="preferred_open_action_settings_summary">Ação padrão para abrir o conteúdo — %s</string>
+
+    <string name="set_as_playlist_thumbnail">Definir como miniatura na lista de reprodução</string>
+
+    <string name="playlist_delete_failure">Não foi possível apagar a lista de reprodução</string>
+
+    <string name="resize_fit">Ajuste</string>
+    <string name="resize_fill">Preencher</string>
+    <string name="caption_setting_description">Modificar escala de texto do Player legenda e estilos de plano de fundo. Requer a reinicialização do aplicativo para ter efeito</string>
+
+    <string name="enable_leak_canary_title">Ativar o LeakCanary</string>
+    <string name="enable_leak_canary_summary">Monitoramento de vazamento à memória pode fazer com que o aplicativo pare de responder quando fizer um heap dumping</string>
+
+    <string name="enable_disposed_exceptions_title">Relatar erros fora do ciclo de vida</string>
+    <string name="enable_disposed_exceptions_summary">Forçar relatórios de exceções de Rx não entregues fora do ciclo de vida de fragmento ou atividade após a eliminação</string>
+
+    <string name="import_network_expensive_warning">Tenha em mente que esta operação pode ser cara para a rede.
+\n
+\nVocê deseja continuar\?</string>
+
+    <string name="playback_pitch">Tom</string>
+    <string name="unhook_checkbox">Desvincular (pode causar distorção)</string>
+    <string name="skip_silence_checkbox">Avanço rápido durante silêncio</string>
+    <string name="playback_step">Passo</string>
+    <string name="playback_reset">Reiniciar</string>
+
+    <string name="start_accept_privacy_policy">Para cumprir o Regulamento Geral sobre a Proteção de Dados (RGPD), chamamos a política de privacidade da NewPipe à sua atenção. Por favor, leia com atenção.
+\nVocê deve aceitá-lo para nos enviar o relatório de bug.</string>
+    <string name="accept">Aceitar</string>
+    <string name="decline">Recusar</string>
+
+    <string name="limit_data_usage_none_description">Ilimitado</string>
+    <string name="limit_mobile_data_usage_title">Limite de resolução quando usando dados móveis</string>
+    <string name="minimize_on_exit_title">Minimizar ao mudar o aplicativo</string>
+    <string name="minimize_on_exit_summary">Ação ao mudar do player de vídeo principal para outro aplicativo —% s</string>
+    <string name="minimize_on_exit_none_description">Nenhum</string>
+    <string name="minimize_on_exit_background_description">Minimizar para o player de fundo</string>
+    <string name="minimize_on_exit_popup_description">Minimizar para o player de fundo</string>
+
+</resources>
