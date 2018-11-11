@@ -13,9 +13,19 @@
     <string name="controls_download_desc">ਡਾਊਨਲੋਡ ਸਟਰੀਮ ਫਾਈਲ.</string>
     <string name="search">ਖੋਜੋ</string>
     <string name="settings">ਸੇਟਿੰਗਾਂ</string>
-    <string name="did_you_mean">ਕੀ ਤੁਹਾਡਾ ਮਤਲਬ: %1$s ?</string>
+    <string name="did_you_mean">ਕੀ ਤੁਹਾਡਾ ਮਤਲਬ: %1$s\?</string>
     <string name="share_dialog_title">ਭੇਜੋ</string>
     <string name="choose_browser">Browser ਚੁਣੋ</string>
     <string name="screen_rotation">ਉਲਟਾਨਾ</string>
-    <string name="use_external_video_player_title">ਹੋਰ ਪਲੇਅਰ ਵਰਤਣਾ</string>
+    <string name="use_external_video_player_title">ਹੋਰ ਪਲੇਅਰ ਵਰਤਤੋ</string>
+    <string name="use_external_video_player_summary">ਕੁਝ ਵੀਡੀਓ ਰੈਸੋਲੂਸ਼ਨ ਚੁਣਨ ਨਾਲ ਆਡੀਓ ਮੌਜੂਦ ਨਹੀਂ ਹੋਵੇਗੀ</string>
+    <string name="use_external_audio_player_title">ਬਾਹਰੀ ਆਡੀਓ ਪਲੇਅਰ ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
+    <string name="popup_mode_share_menu_title">NewPipe ਪੋਪਉਪ ਮੋਡ</string>
+    <string name="subscribe_button_title">ਸਅਬਸਕਰਾਇਬ</string>
+    <string name="subscribed_button_title">ਮੈਂਬਰ ਬਣਏ</string>
+    <string name="channel_unsubscribed">ਚੈਨਲ ਸਦੱਸਤਾ ਰੱਦ ਕੀਤੀ ਗਈ</string>
+    <string name="subscription_change_failed">ਸਦੱਸਤਾ ਨੂੰ ਬਦਲਣ ਵਿਚ ਅਸਮਰੱਥ ਹੈ</string>
+    <string name="show_info">ਜਾਣਕਾਰੀ</string>
+
+    <string name="tab_main">ਮੁੱਖ</string>
     </resources>

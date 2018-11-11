@@ -98,35 +98,54 @@ public abstract class BasePlayer implements
         Player.EventListener, PlaybackListener, ImageLoadingListener {
 
     public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
-    @NonNull public static final String TAG = "BasePlayer";
+    @NonNull
+    public static final String TAG = "BasePlayer";
 
-    @NonNull final protected Context context;
+    @NonNull
+    final protected Context context;
 
-    @NonNull final protected BroadcastReceiver broadcastReceiver;
-    @NonNull final protected IntentFilter intentFilter;
+    @NonNull
+    final protected BroadcastReceiver broadcastReceiver;
+    @NonNull
+    final protected IntentFilter intentFilter;
 
-    @NonNull final protected HistoryRecordManager recordManager;
+    @NonNull
+    final protected HistoryRecordManager recordManager;
 
-    @NonNull final protected CustomTrackSelector trackSelector;
-    @NonNull final protected PlayerDataSource dataSource;
+    @NonNull
+    final protected CustomTrackSelector trackSelector;
+    @NonNull
+    final protected PlayerDataSource dataSource;
 
-    @NonNull final private LoadControl loadControl;
-    @NonNull final private RenderersFactory renderFactory;
+    @NonNull
+    final private LoadControl loadControl;
+    @NonNull
+    final private RenderersFactory renderFactory;
 
-    @NonNull final private SerialDisposable progressUpdateReactor;
-    @NonNull final private CompositeDisposable databaseUpdateReactor;
+    @NonNull
+    final private SerialDisposable progressUpdateReactor;
+    @NonNull
+    final private CompositeDisposable databaseUpdateReactor;
     /*//////////////////////////////////////////////////////////////////////////
     // Intent
     //////////////////////////////////////////////////////////////////////////*/
 
-    @NonNull public static final String REPEAT_MODE = "repeat_mode";
-    @NonNull public static final String PLAYBACK_PITCH = "playback_pitch";
-    @NonNull public static final String PLAYBACK_SPEED = "playback_speed";
-    @NonNull public static final String PLAYBACK_SKIP_SILENCE = "playback_skip_silence";
-    @NonNull public static final String PLAYBACK_QUALITY = "playback_quality";
-    @NonNull public static final String PLAY_QUEUE_KEY = "play_queue_key";
-    @NonNull public static final String APPEND_ONLY = "append_only";
-    @NonNull public static final String SELECT_ON_APPEND = "select_on_append";
+    @NonNull
+    public static final String REPEAT_MODE = "repeat_mode";
+    @NonNull
+    public static final String PLAYBACK_PITCH = "playback_pitch";
+    @NonNull
+    public static final String PLAYBACK_SPEED = "playback_speed";
+    @NonNull
+    public static final String PLAYBACK_SKIP_SILENCE = "playback_skip_silence";
+    @NonNull
+    public static final String PLAYBACK_QUALITY = "playback_quality";
+    @NonNull
+    public static final String PLAY_QUEUE_KEY = "play_queue_key";
+    @NonNull
+    public static final String APPEND_ONLY = "append_only";
+    @NonNull
+    public static final String SELECT_ON_APPEND = "select_on_append";
 
     /*//////////////////////////////////////////////////////////////////////////
     // Playback
@@ -137,13 +156,18 @@ public abstract class BasePlayer implements
     protected PlayQueue playQueue;
     protected PlayQueueAdapter playQueueAdapter;
 
-    @Nullable protected MediaSourceManager playbackManager;
+    @Nullable
+    protected MediaSourceManager playbackManager;
 
-    @Nullable private PlayQueueItem currentItem;
-    @Nullable private MediaSourceTag currentMetadata;
-    @Nullable private Bitmap currentThumbnail;
+    @Nullable
+    private PlayQueueItem currentItem;
+    @Nullable
+    private MediaSourceTag currentMetadata;
+    @Nullable
+    private Bitmap currentThumbnail;
 
-    @Nullable protected Toast errorToast;
+    @Nullable
+    protected Toast errorToast;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Player
@@ -213,7 +237,8 @@ public abstract class BasePlayer implements
         registerBroadcastReceiver();
     }
 
-    public void initListeners() {}
+    public void initListeners() {
+    }
 
     public void handleIntent(Intent intent) {
         if (DEBUG) Log.d(TAG, "handleIntent() called with: intent = [" + intent + "]");
@@ -297,7 +322,6 @@ public abstract class BasePlayer implements
         databaseUpdateReactor.clear();
         progressUpdateReactor.set(null);
 
-        simpleExoPlayer = null;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -425,13 +449,15 @@ public abstract class BasePlayer implements
         if (!isProgressLoopRunning()) startProgressLoop();
     }
 
-    public void onBuffering() {}
+    public void onBuffering() {
+    }
 
     public void onPaused() {
         if (isProgressLoopRunning()) stopProgressLoop();
     }
 
-    public void onPausedSeek() {}
+    public void onPausedSeek() {
+    }
 
     public void onCompleted() {
         if (DEBUG) Log.d(TAG, "onCompleted() called");
@@ -602,19 +628,19 @@ public abstract class BasePlayer implements
     /**
      * Processes the exceptions produced by {@link com.google.android.exoplayer2.ExoPlayer ExoPlayer}.
      * There are multiple types of errors: <br><br>
-     *
+     * <p>
      * {@link ExoPlaybackException#TYPE_SOURCE TYPE_SOURCE}: <br><br>
-     *
+     * <p>
      * {@link ExoPlaybackException#TYPE_UNEXPECTED TYPE_UNEXPECTED}: <br><br>
      * If a runtime error occurred, then we can try to recover it by restarting the playback
      * after setting the timestamp recovery. <br><br>
-     *
+     * <p>
      * {@link ExoPlaybackException#TYPE_RENDERER TYPE_RENDERER}: <br><br>
      * If the renderer failed, treat the error as unrecoverable.
      *
      * @see #processSourceError(IOException)
      * @see Player.EventListener#onPlayerError(ExoPlaybackException)
-     *  */
+     */
     @Override
     public void onPlayerError(ExoPlaybackException error) {
         if (DEBUG) Log.d(TAG, "ExoPlayer - onPlayerError() called with: " +
@@ -900,8 +926,8 @@ public abstract class BasePlayer implements
         if (DEBUG) Log.d(TAG, "onPlayPrevious() called");
 
         /* If current playback has run for PLAY_PREV_ACTIVATION_LIMIT_MILLIS milliseconds,
-        * restart current track. Also restart the track if the current track
-        * is the first in a queue.*/
+         * restart current track. Also restart the track if the current track
+         * is the first in a queue.*/
         if (simpleExoPlayer.getCurrentPosition() > PLAY_PREV_ACTIVATION_LIMIT_MILLIS ||
                 playQueue.getIndex() == 0) {
             seekToDefault();
@@ -1010,8 +1036,8 @@ public abstract class BasePlayer implements
         try {
             metadata = (MediaSourceTag) simpleExoPlayer.getCurrentTag();
         } catch (IndexOutOfBoundsException | ClassCastException error) {
-            if(DEBUG) Log.d(TAG, "Could not update metadata: " + error.getMessage());
-            if(DEBUG) error.printStackTrace();
+            if (DEBUG) Log.d(TAG, "Could not update metadata: " + error.getMessage());
+            if (DEBUG) error.printStackTrace();
             return;
         }
 
@@ -1075,7 +1101,9 @@ public abstract class BasePlayer implements
                 currentThumbnail;
     }
 
-    /** Checks if the current playback is a livestream AND is playing at or beyond the live edge */
+    /**
+     * Checks if the current playback is a livestream AND is playing at or beyond the live edge
+     */
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean isLiveEdge() {
         if (simpleExoPlayer == null || !isLive()) return false;
@@ -1099,8 +1127,8 @@ public abstract class BasePlayer implements
         } catch (@NonNull IndexOutOfBoundsException ignored) {
             // Why would this even happen =(
             // But lets log it anyway. Save is save
-            if(DEBUG) Log.d(TAG, "Could not update metadata: " + ignored.getMessage());
-            if(DEBUG) ignored.printStackTrace();
+            if (DEBUG) Log.d(TAG, "Could not update metadata: " + ignored.getMessage());
+            if (DEBUG) ignored.printStackTrace();
             return false;
         }
     }
@@ -1113,7 +1141,9 @@ public abstract class BasePlayer implements
 
     @Player.RepeatMode
     public int getRepeatMode() {
-        return simpleExoPlayer == null ? Player.REPEAT_MODE_OFF : simpleExoPlayer.getRepeatMode();
+        return simpleExoPlayer == null
+                ? Player.REPEAT_MODE_OFF
+                : simpleExoPlayer.getRepeatMode();
     }
 
     public void setRepeatMode(@Player.RepeatMode final int repeatMode) {
@@ -1178,5 +1208,9 @@ public abstract class BasePlayer implements
 
         if (DEBUG) Log.d(TAG, "Setting recovery, queue: " + queuePos + ", pos: " + windowPos);
         playQueue.setRecovery(queuePos, windowPos);
+    }
+
+    public boolean gotDestroyed() {
+        return simpleExoPlayer == null;
     }
 }
