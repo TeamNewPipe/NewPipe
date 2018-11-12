@@ -3,7 +3,7 @@
     <string name="main_bg_subtitle">برای شروع، جست‌وجو را بزنید</string>
     <string name="view_count_text">‫%1$s مشاهده</string>
     <string name="upload_date_text">منتشر شده در %1$s</string>
-    <string name="no_player_found">هیچ پخش‌کنندهٔ جریانی پیدا نشد. وی‌ال‌سی نصب شود؟</string>
+    <string name="no_player_found">هیچ پخش‌کنندهٔ جریانی پیدا نشد. مایلید وی‌ال‌سی نصب شود؟</string>
     <string name="install">نصب</string>
     <string name="cancel">لغو</string>
     <string name="open_in_browser">گشودن در مرورگر</string>
@@ -11,7 +11,7 @@
     <string name="download">بارگیری</string>
     <string name="search">جست‌وجو</string>
     <string name="settings">تنظیمات</string>
-    <string name="did_you_mean">منظورتان این بود: %1$s ؟</string>
+    <string name="did_you_mean">منظورتان این بود: %1$s؟</string>
     <string name="share_dialog_title">هم‌رسانی با</string>
     <string name="choose_browser">گزیدن مرورگر</string>
     <string name="screen_rotation">چرخش</string>
@@ -19,33 +19,33 @@
     <string name="use_external_audio_player_title">استفاده از پخش‌کنندهٔ صدای خارجی</string>
 
     <string name="download_path_title">مسیر بارگیری ویدیو</string>
-    <string name="download_path_summary">مسیر ذخیرهٔ ویدیوهای بارگیری شده.</string>
+    <string name="download_path_summary">مسیر ذخیرهٔ ویدیوهای بارگیری شده</string>
     <string name="download_path_dialog_title">مسیر بارگیری را برای ویدیوها وارد کنید</string>
 
     <string name="download_path_audio_title">مسیر بارگیری صدا</string>
     <string name="download_path_audio_summary">مسیر ذخیرهٔ صداهای بارگیری شده</string>
-    <string name="download_path_audio_dialog_title">مسیر بارگیری را برای صداها وارد کنید.</string>
+    <string name="download_path_audio_dialog_title">مسیر بارگیری را برای صداها وارد کنید</string>
 
-    <string name="autoplay_by_calling_app_title">پخش خودکار هنگام فراخوانی از کاره‌ای دیگر</string>
-    <string name="autoplay_by_calling_app_summary">هنگامی که نیوپایپ از کارهٔ دیگری فراخوانی می‌شود، ویدیویی را به صورت خودکار پخش می‌کند.</string>
+    <string name="autoplay_by_calling_app_title">پخش خودکار</string>
+    <string name="autoplay_by_calling_app_summary">هنگامی که نیوپایپ از کارهٔ دیگری فراخوانی می‌شود، ویدیوی به طور خودکار پخش شود</string>
     <string name="default_resolution_title">وضوح پیش‌گزیده</string>
     <string name="play_with_kodi_title">پخش با کودی</string>
-    <string name="kore_not_found">کارهٔ کوره پیدا نشد. کوره نصب شود؟</string>
+    <string name="kore_not_found">کارهٔ کوره پیدا نشد. نصب شود؟</string>
     <string name="show_play_with_kodi_title">نمایش گزینهٔ «پخش با کودی»</string>
-    <string name="show_play_with_kodi_summary">نمایش گزینه‌ای برای پخش ویدیو با مرکز رسانهٔ کودی.</string>
+    <string name="show_play_with_kodi_summary">نمایش گزینه‌ای برای پخش ویدیو با مرکز رسانهٔ کودی</string>
     <string name="play_audio">صدا</string>
     <string name="default_audio_format_title">قالب صدای پیش‌گزیده</string>
     <string name="webm_description">قالب آزاد — WebM</string>
-    <string name="m4a_description">کیفیت بهتر — m4a</string>
+    <string name="m4a_description">کیفیت بهتر — M4A</string>
     <string name="theme_title">زمینه</string>
     <string name="dark_theme_title">تیره</string>
     <string name="light_theme_title">روشن</string>
 
     <string name="download_dialog_title">بارگیری</string>
     <string name="next_video_title">ویدیوی بعدی</string>
-    <string name="show_next_and_similar_title">نماش ویدیوهای بعدی و مشابه</string>
+    <string name="show_next_and_similar_title">نماش ویدیوهای «بعدی» و «مشابه»</string>
     <string name="url_not_supported_toast">نشانی اینترنتی پشتیبانی نمی‌شود</string>
-    <string name="search_language_title">زبان محتوای ترجیحی</string>
+    <string name="search_language_title">زبان محتوای پیش‌فرض</string>
     <string name="settings_category_video_audio_title">ویدیو و صدا</string>
     <string name="settings_category_appearance_title">ظاهر</string>
     <string name="settings_category_other_title">دیگر</string>
@@ -136,4 +136,62 @@
     <string name="fragment_whats_new">موارد جدید</string>
 
     <string name="controls_background_title">پس زمینه</string>
+    <string name="controls_add_to_playlist_title">افزودن به</string>
+
+    <string name="show_higher_resolutions_title">نمایش کیفیت بالاتر</string>
+    <string name="show_higher_resolutions_summary">تنها برخی دستگاه‌ها توانایی پخش ویدئوهای 2K و 4K را دارند</string>
+    <string name="default_video_format_title">قالب ویدئوی پیش‌فرض</string>
+    <string name="black_theme_title">سیاه</string>
+    <string name="download_thumbnail_title">بارگذاری بندانگشتی</string>
+    <string name="auto_queue_title">قرار دادن خودکار جریان بعدی در صف</string>
+    <string name="show_search_suggestions_title">پیشنهادهای جستجو</string>
+    <string name="show_search_suggestions_summary">نمایش پیشنهادها حین جستجو</string>
+    <string name="enable_search_history_title">تاریخچه جستجو</string>
+    <string name="enable_watch_history_summary">نگه‌داشتن آمار ویدئوهای دیده‌شده</string>
+    <string name="default_content_country_title">کشور محتوای پیش‌فرض</string>
+    <string name="settings_category_player_title">پخش‌کننده</string>
+    <string name="settings_category_player_behavior_title">رفتار</string>
+    <string name="all">همه</string>
+    <string name="channel">کانال</string>
+    <string name="channels">کانال‌ها</string>
+    <string name="playlist">سیاهه پخش</string>
+    <string name="playlists">سیاهه‌های پخش</string>
+    <string name="users">کاربران</string>
+    <string name="yes">بله</string>
+    <string name="later">بعدا</string>
+    <string name="disabled">غیرفعال</string>
+    <string name="filter">صافی</string>
+    <string name="refresh">تازه‌سازی</string>
+    <string name="clear">پاک‌کردن</string>
+    <string name="popup_resizing_indicator_title">تغییر اندازه</string>
+    <string name="play_all">پخش همه</string>
+    <string name="always">همیشه</string>
+    <string name="just_once">فقط یک‌بار</string>
+    <string name="file">پرونده</string>
+
+    <string name="notification_channel_name">اعلان نیوپایپ</string>
+    <string name="unknown_content">[ناشناخته]</string>
+
+    <string name="import_data_title">وارد کردن پایگاه‌داده</string>
+    <string name="export_data_title">"صادرکردن "</string>
+    <string name="import_data_summary">تاریخچه و اشتراک‌های شما بازنویسی خواهند شد</string>
+    <string name="export_data_summary">صادرکردن تاریخچه، اشتراک‌ها و سیاهه‌های پخش</string>
+    <string name="clear_views_history_title">پاک‌کردن تاریخچه ویدئوهای دیده‌شده</string>
+    <string name="import_export_title">وارد/صادر کردن</string>
+    <string name="import_title">وارد کردن</string>
+    <string name="import_from">وارد کردن از</string>
+    <string name="export_to">صادر کردن به</string>
+
+    <string name="import_ongoing">در حال وارد کردن…</string>
+    <string name="export_ongoing">در حال صدور…</string>
+
+    <string name="subscriptions_import_unsuccessful">ناتوانی در ورود اشتراک‌ها</string>
+    <string name="subscriptions_export_unsuccessful">ناتوانی در صدور اشتراک‌ها</string>
+
+    <string name="playback_speed_control">کنترل‌های سرعت پخش</string>
+    <string name="accept">قبول</string>
+    <string name="decline">رد</string>
+
+    <string name="limit_data_usage_none_description">بدون محدودیت</string>
+    <string name="minimize_on_exit_none_description">هیچ</string>
     </resources>
