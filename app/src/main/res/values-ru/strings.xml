@@ -82,8 +82,8 @@
     <string name="autoplay_by_calling_app_title">Автовоспроизведение</string>
     <string name="autoplay_by_calling_app_summary">Воспроизводить видео при вызове NewPipe из другого приложения</string>
     <string name="content">Контент</string>
-    <string name="video_is_age_restricted">Видео с возрастными ограничениями. Разрешить подобный контент можно в настройках.</string>
-    <string name="duration_live">вживую</string>
+    <string name="video_is_age_restricted">Видео с возрастными ограничениями. Разрешить подобный контент можно в настройках</string>
+    <string name="duration_live">Трансляция</string>
     <string name="downloads">Загрузки</string>
     <string name="downloads_title">Загрузки</string>
     <string name="error_report_title">Отчёт об ошибке</string>
@@ -93,7 +93,7 @@
     <string name="content_not_available">Контент недоступен</string>
     <string name="blocked_by_gema">Заблокировано GEMA</string>
     <string name="could_not_setup_download_menu">Не удалось создать меню загрузки</string>
-    <string name="live_streams_not_supported">Это прямая трансляция, они пока не поддерживаются.</string>
+    <string name="live_streams_not_supported">Это прямая трансляция, пока не поддерживается</string>
     <string name="could_not_load_image">Не удалось загрузить изображение</string>
     <string name="app_ui_crash">Падение приложения/UI</string>
     <string name="sorry_string">Простите, это не должно было произойти.</string>
@@ -205,7 +205,7 @@
 
 
     <string name="notification_channel_name">Уведомление NewPipe</string>
-    <string name="notification_channel_description">Уведомления для NewPipe в фоне и во всплывающем окне</string>
+    <string name="notification_channel_description">Уведомление для NewPipe в фоне и во всплывающем окне</string>
 
     <string name="settings_category_downloads_title">Загрузки</string>
     <string name="settings_file_charset_title">Допустимые символы имён файлов</string>
@@ -293,7 +293,7 @@
     <string name="start_here_on_main">Начать отсюда в плеере</string>
     <string name="start_here_on_background">Начать отсюда в фоне</string>
     <string name="start_here_on_popup">Начать отсюда в окне</string>
-<string name="no_player_found_toast">Потоковый плеер не найден (вы можете установить VLC)</string>
+<string name="no_player_found_toast">Потоковый плеер не найден (можно установить VLC)</string>
     <string name="default_content_country_title">Страна контента по умолчанию</string>
     <string name="service_title">Сервис</string>
     <string name="always">Всегда</string>
@@ -325,7 +325,7 @@
     
     <string name="preferred_player_fetcher_notification_title">Получение сведений…</string>
     <string name="preferred_player_fetcher_notification_message">Загрузка запрошенного контента</string>
-<string name="controls_download_desc">Загрузка файла прямой трансляции.</string>
+<string name="controls_download_desc">Загрузка файла прямой трансляции</string>
     <string name="show_info">Показать сведения</string>
 
     <string name="tab_bookmarks">Закладки</string>
@@ -374,8 +374,8 @@
     <string name="always_ask_open_action">Всегда спрашивать</string>
     
     <string name="create_playlist">Создать плейлист</string>
-    <string name="delete_playlist">Удалить плейлист</string>
-    <string name="rename_playlist">Переименовать плейлист</string>
+    <string name="delete_playlist">Удалить</string>
+    <string name="rename_playlist">Переименовать</string>
     <string name="playlist_name_input">Имя</string>
     <string name="append_playlist">Добавить в плейлист</string>
     <string name="set_as_playlist_thumbnail">На миниатюру плейлиста</string>
@@ -383,7 +383,7 @@
     <string name="bookmark_playlist">Добавить закладку</string>
     <string name="unbookmark_playlist">Удалить закладку</string>
 
-    <string name="delete_playlist_prompt">Удалить этот плейлист?</string>
+    <string name="delete_playlist_prompt">Удалить плейлист\?</string>
     <string name="playlist_creation_success">Плейлист создан</string>
     <string name="playlist_add_stream_success">Добавлено в плейлист</string>
     <string name="playlist_thumbnail_change_success">Миниатюра плейлиста изменена</string>
@@ -461,12 +461,12 @@
     <string name="caption_setting_description">Изменить размер текста и стиль титров. Нужен перезапуск</string>
 
     <string name="clear_views_history_title">Очистить историю просмотров</string>
-    <string name="delete_view_history_alert">Вся история просмотров будет удалена.</string>
+    <string name="delete_view_history_alert">Удалить всю историю просмотров\?</string>
     <string name="view_history_deleted">История просмотров удалена</string>
     <string name="clear_search_history_title">Очистить историю поиска</string>
     <string name="clear_search_history_summary">Удалить историю запросов поиска</string>
     <string name="clear_views_history_summary">Удалить историю воспроизведённых потоков</string>
-    <string name="delete_search_history_alert">Вся история поиска будет удалена.</string>
+    <string name="delete_search_history_alert">Удалить всю историю поиска\?</string>
     <string name="search_history_deleted">История поиска удалена</string>
     <string name="one_item_deleted">1 элемент удалён.</string>
 
