@@ -96,12 +96,12 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
             }
         });
 
-		/*h.itemView.setOnClickListener(new View.OnClickListener() {
+		h.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
 			public void onClick(View v) {
-				showDetail(h);
+                if(h.mission.finished) viewFile(h);
 			}
-		});*/
+		});
 
         return h;
     }
@@ -200,14 +200,12 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
         Menu menu = popup.getMenu();
         MenuItem start = menu.findItem(R.id.start);
         MenuItem pause = menu.findItem(R.id.pause);
-        MenuItem view = menu.findItem(R.id.view);
         MenuItem delete = menu.findItem(R.id.delete);
         MenuItem checksum = menu.findItem(R.id.checksum);
 
         // Set to false first
         start.setVisible(false);
         pause.setVisible(false);
-        view.setVisible(false);
         delete.setVisible(false);
         checksum.setVisible(false);
 
@@ -222,7 +220,6 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
                 pause.setVisible(true);
             }
         } else {
-            view.setVisible(true);
             delete.setVisible(true);
             checksum.setVisible(true);
         }
@@ -242,27 +239,6 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
                         h.lastTimeStamp = -1;
                         h.lastDone = -1;
                         return true;
-                    case R.id.view:
-                        File f = new File(h.mission.location, h.mission.name);
-                        String ext = Utility.getFileExt(h.mission.name);
-
-                        Log.d(TAG, "Viewing file: " + f.getAbsolutePath() + " ext: " + ext);
-
-                        if (ext == null) {
-                            Log.w(TAG, "Can't view file because it has no extension: " +
-                                    h.mission.name);
-                            return false;
-                        }
-
-                        String mime = MimeTypeMap.getSingleton().getMimeTypeFromExtension(ext.substring(1));
-                        Log.v(TAG, "Mime: " + mime + " package: " + mContext.getApplicationContext().getPackageName() + ".provider");
-                        if (f.exists()) {
-                            viewFileWithFileProvider(f, mime);
-                        } else {
-                            Log.w(TAG, "File doesn't exist");
-                        }
-
-                        return true;
                     case R.id.delete:
                         mDeleteDownloadManager.add(h.mission);
                         updateItemList();
@@ -280,6 +256,28 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
         });
 
         popup.show();
+    }
+
+    private boolean viewFile(ViewHolder h) {
+        File f = new File(h.mission.location, h.mission.name);
+        String ext = Utility.getFileExt(h.mission.name);
+
+        Log.d(TAG, "Viewing file: " + f.getAbsolutePath() + " ext: " + ext);
+
+        if (ext == null) {
+            Log.w(TAG, "Can't view file because it has no extension: " +
+                    h.mission.name);
+            return true;
+        }
+
+        String mime = MimeTypeMap.getSingleton().getMimeTypeFromExtension(ext.substring(1));
+        Log.v(TAG, "Mime: " + mime + " package: " + mContext.getApplicationContext().getPackageName() + ".provider");
+        if (f.exists()) {
+            viewFileWithFileProvider(f, mime);
+        } else {
+            Log.w(TAG, "File doesn't exist");
+        }
+        return false;
     }
 
     private void viewFileWithFileProvider(File file, String mimetype) {
