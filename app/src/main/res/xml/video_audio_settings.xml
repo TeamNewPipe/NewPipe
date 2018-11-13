@@ -66,12 +66,6 @@
 
         <SwitchPreference
             android:defaultValue="false"
-            android:key="@string/use_old_player_key"
-            android:summary="@string/use_old_player_summary"
-            android:title="@string/use_old_player_title"/>
-
-        <SwitchPreference
-            android:defaultValue="false"
             android:key="@string/show_play_with_kodi_key"
             android:summary="@string/show_play_with_kodi_summary"
             android:title="@string/show_play_with_kodi_title"/>

@@ -68,7 +68,6 @@ import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.player.event.PlayerEventListener;
 import org.schabi.newpipe.player.helper.LockManager;
 import org.schabi.newpipe.player.helper.PlayerHelper;
-import org.schabi.newpipe.player.old.PlayVideoActivity;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
 import org.schabi.newpipe.util.ListHelper;
@@ -80,7 +79,6 @@ import java.util.List;
 import static org.schabi.newpipe.player.BasePlayer.STATE_PLAYING;
 import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_DURATION;
 import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME;
-import static org.schabi.newpipe.player.helper.PlayerHelper.isUsingOldPlayer;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 /**
@@ -554,27 +552,17 @@ public final class PopupVideoPlayer extends Service {
             if (DEBUG) Log.d(TAG, "onFullScreenButtonClicked() called");
 
             setRecovery();
-            Intent intent;
-            if (!isUsingOldPlayer(getApplicationContext())) {
-                intent = NavigationHelper.getPlayerIntent(
-                        context,
-                        MainVideoPlayer.class,
-                        this.getPlayQueue(),
-                        this.getRepeatMode(),
-                        this.getPlaybackSpeed(),
-                        this.getPlaybackPitch(),
-                        this.getPlaybackSkipSilence(),
-                        this.getPlaybackQuality()
-                );
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            } else {
-                intent = new Intent(PopupVideoPlayer.this, PlayVideoActivity.class)
-                        .putExtra(PlayVideoActivity.VIDEO_TITLE, getVideoTitle())
-                        .putExtra(PlayVideoActivity.STREAM_URL, getSelectedVideoStream().getUrl())
-                        .putExtra(PlayVideoActivity.VIDEO_URL, getVideoUrl())
-                        .putExtra(PlayVideoActivity.START_POSITION, Math.round(getPlayer().getCurrentPosition() / 1000f));
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            }
+            final Intent intent = NavigationHelper.getPlayerIntent(
+                    context,
+                    MainVideoPlayer.class,
+                    this.getPlayQueue(),
+                    this.getRepeatMode(),
+                    this.getPlaybackSpeed(),
+                    this.getPlaybackPitch(),
+                    this.getPlaybackSkipSilence(),
+                    this.getPlaybackQuality()
+            );
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
             closePopup();
         }
