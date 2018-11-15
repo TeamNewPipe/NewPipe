@@ -274,6 +274,7 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
             return;
         }
 
+      
         if (deltaTime > 1000 && deltaDone > 0) {
             float speed = (float) deltaDone / deltaTime;
             String speedStr = Utility.formatSpeed(speed * 1000);
@@ -296,6 +297,7 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
         Log.v(TAG, "Mime: " + mimeType + " package: " + BuildConfig.APPLICATION_ID + ".provider");
 
         Uri uri = FileProvider.getUriForFile(mContext, BuildConfig.APPLICATION_ID + ".provider", file);
+  
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
         intent.setDataAndType(uri, mimeType);
@@ -573,6 +575,10 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
             delete = menu.findItem(R.id.delete);
             source = menu.findItem(R.id.source);
             checksum = menu.findItem(R.id.checksum);
+
+            itemView.setOnClickListener((v) -> {
+                  if(h.mission.finished) viewWithFileProvider(h);
+            });
 
             //h.itemView.setOnClickListener(v -> showDetail(h));
         }
