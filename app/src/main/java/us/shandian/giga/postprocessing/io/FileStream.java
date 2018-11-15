@@ -1,6 +1,6 @@
 package us.shandian.giga.postprocessing.io;
 
-import org.schabi.newpipe.extractor.utils.io.SharpStream;
+import org.schabi.newpipe.streams.io.SharpStream;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;

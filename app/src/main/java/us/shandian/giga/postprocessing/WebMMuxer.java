@@ -1,9 +1,9 @@
 package us.shandian.giga.postprocessing;
 
-import org.schabi.newpipe.extractor.utils.WebMReader.TrackKind;
-import org.schabi.newpipe.extractor.utils.WebMReader.WebMTrack;
-import org.schabi.newpipe.extractor.utils.WebMWriter;
-import org.schabi.newpipe.extractor.utils.io.SharpStream;
+import org.schabi.newpipe.streams.WebMReader.TrackKind;
+import org.schabi.newpipe.streams.WebMReader.WebMTrack;
+import org.schabi.newpipe.streams.WebMWriter;
+import org.schabi.newpipe.streams.io.SharpStream;
 
 import java.io.IOException;
 

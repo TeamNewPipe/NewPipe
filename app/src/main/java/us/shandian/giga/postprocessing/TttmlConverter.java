@@ -1,16 +1,25 @@
 package us.shandian.giga.postprocessing;
 
-import org.schabi.newpipe.extractor.utils.io.SharpStream;
-import org.schabi.newpipe.extractor.utils.SubtitleConverter;
+import android.util.Log;
+
+import org.schabi.newpipe.streams.io.SharpStream;
+import org.schabi.newpipe.streams.SubtitleConverter;
+import org.xml.sax.SAXException;
 
 import java.io.IOException;
+import java.text.ParseException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPathExpressionException;
 
 import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.postprocessing.io.SharpInputStream;
+
 /**
  * @author kapodamy
  */
 class TttmlConverter extends Postprocessing {
+    private static final String TAG = "TttmlConverter"; 
 
     TttmlConverter(DownloadMission mission) {
         super(mission);
@@ -26,14 +35,32 @@ class TttmlConverter extends Postprocessing {
         if (format == null || format.equals("ttml")) {
             SubtitleConverter ttmlDumper = new SubtitleConverter();
 
-            int res = ttmlDumper.dumpTTML(
-                    sources[0],
-                    out,
-                    getArgumentAt(1, "true").equals("true"),
-                    getArgumentAt(2, "true").equals("true")
-            );
+            try {
+                ttmlDumper.dumpTTML(
+                        sources[0],
+                        out,
+                        getArgumentAt(1, "true").equals("true"),
+                        getArgumentAt(2, "true").equals("true")
+                );   
+            } catch (Exception err) {
+                Log.e(TAG, "subtitle parse failed", err);
 
-            return res == 0 ? OK_RESULT : res;
+                if (err instanceof IOException) {
+                    return 1;
+                } else if (err instanceof ParseException) {
+                    return 2;
+                } else if (err instanceof SAXException) {
+                    return 3;
+                } else if (err instanceof ParserConfigurationException) {
+                    return 4;
+                } else if (err instanceof XPathExpressionException) {
+                    return 7;
+                }
+                
+                return 8;
+            }
+
+            return OK_RESULT;
         } else if (format.equals("srt")) {
             byte[] buffer = new byte[8 * 1024];
             int read;

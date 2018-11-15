@@ -1,7 +1,7 @@
 package us.shandian.giga.postprocessing;
 
-import org.schabi.newpipe.extractor.utils.Mp4DashWriter;
-import org.schabi.newpipe.extractor.utils.io.SharpStream;
+import org.schabi.newpipe.streams.Mp4DashWriter;
+import org.schabi.newpipe.streams.io.SharpStream;
 
 import java.io.IOException;
 
