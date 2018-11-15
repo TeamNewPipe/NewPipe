@@ -27,10 +27,10 @@
     <string name="webm_description">WebM — format libre</string>
     <string name="m4a_description">M4A — meilleure qualité</string>
     <string name="download_dialog_title">Télécharger</string>
-    <string name="next_video_title">Vidéo suivante</string>
-    <string name="show_next_and_similar_title">Afficher les vidéos \"suivantes\" et \"similaires\"</string>
-    <string name="url_not_supported_toast">Lien non pris en charge</string>
-    <string name="settings_category_video_audio_title">Vidéo et audio</string>
+    <string name="next_video_title">Suivant</string>
+    <string name="show_next_and_similar_title">Afficher les vidéos \"Suivantes\" et \"Similaires\"</string>
+    <string name="url_not_supported_toast">URL non supportée</string>
+    <string name="settings_category_video_audio_title">Vidéo &amp; audio</string>
     <string name="settings_category_other_title">Autre</string>
 
     <string name="list_thumbnail_view_description">Miniature d’aperçu vidéo</string>
@@ -53,8 +53,8 @@
     <string name="settings_category_appearance_title">Apparence</string>
     <string name="network_error">Erreur réseau</string>
 
-    <string name="download_path_audio_title">Chemin de téléchargement audio</string>
-    <string name="download_path_audio_summary">Chemin de stockage des fichiers audio téléchargés</string>
+    <string name="download_path_audio_title">Dossier de téléchargement audio</string>
+    <string name="download_path_audio_summary">L\'audio téléchargé est stocké ici</string>
     <string name="download_path_audio_dialog_title">Entrez le chemin de téléchargement des fichiers audio</string>
 
     <string name="err_dir_create">Impossible de créer le répertoire de téléchargement « %1$s »</string>
@@ -66,13 +66,13 @@
 
     <string name="error_snackbar_message">Désolé, des erreurs se sont produites.</string>
     <string name="content">Contenu</string>
-    <string name="show_age_restricted_content_title">Afficher contenu avec limite d\'âge</string>
-    <string name="duration_live">Direct</string>
+    <string name="show_age_restricted_content_title">Contenu avec limite d\'âge</string>
+    <string name="duration_live">EN DIRECT</string>
 
     <string name="could_not_load_thumbnails">Impossible de charger toutes les miniatures</string>
     <string name="youtube_signature_decryption_error">Impossible de déchiffrer la signature URL de la vidéo</string>
     <string name="light_parsing_error">Impossible d\'analyser complètement le site web</string>
-    <string name="live_streams_not_supported">Il s\'agit d\'un direct, non supporté pour le moment.</string>
+    <string name="live_streams_not_supported">Les flux en direct ne sont pas encore pris en charge</string>
     <string name="sorry_string">Désolé, une erreur inattendue s\'est produite.</string>
     <string name="autoplay_by_calling_app_summary">Lire la vidéo lorsque NewPipe est appelée par une autre application</string>
     <string name="error_report_button_text">Signaler l\'erreur par e-mail</string>
@@ -89,7 +89,7 @@
     <string name="storage_permission_denied">Autorisation d\'accès au stockage refusée</string>
     <string name="main_bg_subtitle">Faites une recherche pour commencer</string>
     <string name="autoplay_by_calling_app_title">Lecture automatique</string>
-    <string name="video_is_age_restricted">Vidéo soumise à une limite d\'âge. Autoriser ce type de contenu est possible depuis les paramètres.</string>
+    <string name="video_is_age_restricted">Afficher les vidéos soumises à une limite d\'âge. Autoriser ce type de contenu est possible depuis les \"Paramètres\".</string>
     <string name="user_report">Rapport utilisateur</string>
 
     <string name="error_snackbar_action">SIGNALER</string>
@@ -168,7 +168,7 @@
 
     <string name="short_billion">B</string>
 
-    <string name="use_external_video_player_summary">Certaines résolutions n\'auront PAS de son si cette option est activée</string>
+    <string name="use_external_video_player_summary">Supprime l\'audio à CERTAINES résolutions</string>
     <string name="player_gesture_controls_summary">Utiliser les gestes pour contrôler la luminosité et le volume du lecteur</string>
     <string name="show_search_suggestions_title">Suggestions de recherche</string>
     <string name="show_search_suggestions_summary">Afficher les suggestions lors d\'une recherche</string>
@@ -229,7 +229,7 @@
     <string name="resume_on_audio_focus_gain_title">Reprendre sur le gain de focus</string>
     <string name="settings_category_player_title">Lecteur</string>
     <string name="settings_category_player_behavior_title">Comportement</string>
-    <string name="settings_category_history_title">Historique et cache</string>
+    <string name="settings_category_history_title">Historique &amp; cache</string>
     <string name="playlist">Liste de lecture</string>
     <string name="notification_channel_description">Notifications pour les lecteurs \"Arrière-plan\" et \"Fenêtre\" de NewPipe</string>
 
@@ -273,13 +273,13 @@
 
     <string name="player_stream_failure">Impossible de jouer ce flux</string>
     <string name="player_unrecoverable_failure">Une erreur irrécupérable du lecteur s\'est produite</string>
-    <string name="no_channel_subscribed_yet">Encore aucune chaîne souscrite</string>
+    <string name="no_channel_subscribed_yet">Pas encore d\'abonnements de chaînes</string>
     <string name="title_activity_background_player">Lecteur en arrière-plan</string>
     <string name="title_activity_popup_player">Lecteur en fenêtré</string>
     <string name="play_queue_remove">Retirer</string>
     <string name="play_queue_stream_detail">Détails</string>
     <string name="play_queue_audio_settings">Paramètres audio</string>
-    <string name="show_hold_to_append_title">Afficher l\'aide « maintenir pour ajouter »</string>
+    <string name="show_hold_to_append_title">Afficher l\'astuce « Maintenir pour ajouter »</string>
     <string name="show_hold_to_append_summary">Afficher l\'aide \"Appui long pour mettre en file d\'attente\" en appuyant sur les boutons \"Arrière-plan\" et \"Fenêtre\" sur la page de détails d\'une vidéo</string>
     <string name="unknown_content">[Inconnu]</string>
 
@@ -292,7 +292,7 @@
     <string name="hold_to_append">Appui long pour mettre en file d\'attente</string>
     <string name="enqueue_on_background">Mettre en file d\'attente en arrière-plan</string>
     <string name="enqueue_on_popup">Mettre en file d\'attente en fenêtré</string>
-    <string name="start_here_on_main">Démarrer ici</string>
+    <string name="start_here_on_main">Commencer la lecture ici</string>
     <string name="start_here_on_background">Démarrer ici en arrière-plan</string>
     <string name="start_here_on_popup">Démarrer ici en fenêtré</string>
 <string name="donation_title">Donner</string>
@@ -309,7 +309,7 @@
     <string name="service_title">Service</string>
     <string name="drawer_open">Ouvrir le menu</string>
     <string name="drawer_close">Fermer le menu</string>
-    <string name="no_player_found_toast">Aucun lecteur de flux trouvé (vous pouvez installer VLC pour le lire)</string>
+    <string name="no_player_found_toast">Aucun lecteur de flux trouvé (vous pouvez installer VLC pour le lire).</string>
     <string name="always">Toujours</string>
     <string name="just_once">Une seule fois</string>
 
@@ -327,10 +327,10 @@
     <string name="preferred_player_fetcher_notification_message">Chargement du contenu</string>
     <string name="import_data_title">Importer les données</string>
     <string name="export_data_title">Exporter les données</string>
-    <string name="import_data_summary">Cela effacera vos données actuelles</string>
+    <string name="import_data_summary">Remplace votre historique et vos abonnements actuels</string>
     <string name="export_data_summary">Exporter votre historique, vos abonnements et vos listes de lecture</string>
-    <string name="export_complete_toast">Exportation terminée</string>
-    <string name="import_complete_toast">Importation terminée</string>
+    <string name="export_complete_toast">Exporté</string>
+    <string name="import_complete_toast">Importé</string>
     <string name="no_valid_zip_file">Aucun fichier ZIP valide</string>
     <string name="could_not_import_all_files">Avertissement: Impossible d\'importer tous les fichiers.</string>
     <string name="override_current_data">Cela effacera vos paramètres actuels</string>
@@ -355,9 +355,9 @@
 
     <string name="always_ask_open_action">Toujours demander</string>
     
-    <string name="create_playlist">Créer une nouvelle playlist</string>
-    <string name="delete_playlist">Supprimer la playlist</string>
-    <string name="rename_playlist">Renommer la playlist</string>
+    <string name="create_playlist">Nouvelle liste de lecture</string>
+    <string name="delete_playlist">Supprimer</string>
+    <string name="rename_playlist">Renommer</string>
     <string name="playlist_name_input">Nom</string>
     <string name="append_playlist">Ajouter à la playlist</string>
     <string name="set_as_playlist_thumbnail">Enregistrer la playlist en local</string>
@@ -365,11 +365,11 @@
     <string name="bookmark_playlist">Marquer cette playlist</string>
     <string name="unbookmark_playlist">Retirer la marque</string>
 
-    <string name="delete_playlist_prompt">Voulez-vous supprimer cette playlist ?</string>
+    <string name="delete_playlist_prompt">Supprimer cette liste de lecture \?</string>
     <string name="playlist_creation_success">Liste de lecture créée</string>
-    <string name="playlist_add_stream_success">Ajoutée à la playlist</string>
-    <string name="playlist_thumbnail_change_success">Modification de la playlist réussie</string>
-    <string name="playlist_delete_failure">Impossible de supprimer la liste de lecture</string>
+    <string name="playlist_add_stream_success">Ajouté à la liste de lecture</string>
+    <string name="playlist_thumbnail_change_success">Miniature de la liste de lecture changée.</string>
+    <string name="playlist_delete_failure">Impossible de supprimer la liste de lecture.</string>
 
     <string name="caption_none">Aucuns sous-titres</string>
 
@@ -391,8 +391,8 @@
     <string name="metadata_cache_wipe_complete_notice">Données en cache effacées</string>
     <string name="file">Fichier</string>
 
-    <string name="invalid_directory">Dossier non valide</string>
-    <string name="invalid_source">Fichier/source du contenu non valide</string>
+    <string name="invalid_directory">Aucun dossier de ce type</string>
+    <string name="invalid_source">Aucun fichier/contenu de ce type</string>
     <string name="invalid_file">Le fichier n\'existe pas ou il n\'est pas permis de le lire</string>
     <string name="file_name_empty_error">Le nom du fichier ne peut être vide</string>
     <string name="error_occurred_detail">Une erreur s\'est produite: %1$s</string>
@@ -403,7 +403,7 @@
 
     <string name="controls_download_desc">Télécharger le fichier de flux</string>
     <string name="auto_queue_title">Vidéo suivante en file d\'attente</string>
-    <string name="auto_queue_summary">Ajout automatique d\'un morceau suggéré lors de la lecture du dernier morceau dans une file d\'attente non bouclée</string>
+    <string name="auto_queue_summary">Ajout automatique d\'un morceau suggéré lors de la lecture du dernier morceau dans une file d\'attente non bouclée.</string>
     <string name="settings_category_debug_title">Débogage</string>
     <string name="resize_fill">Remplir</string>
     <string name="caption_auto_generated">Générés automatiquement</string>
@@ -413,7 +413,7 @@
     <string name="enable_disposed_exceptions_title">Signaler les erreurs de développement hors cycle</string>
     <string name="enable_disposed_exceptions_summary">Forcer le signalement des exceptions Rx qui surviennent hors activité</string>
 
-    <string name="import_export_title">Importer/Exporter</string>
+    <string name="import_export_title">Importer/exporter</string>
     <string name="import_title">Importer</string>
     <string name="import_from">Importer de</string>
     <string name="export_to">Exporter vers</string>
@@ -454,7 +454,7 @@
     <string name="no_streams_available_download">Aucun flux disponible au téléchargement</string>
 
     <string name="caption_setting_title">Sous-titres</string>
-    <string name="caption_setting_description">Modifier la taille du texte et les styles d\'arrière-plan du lecteur. Redémarrage requis pour prendre effet</string>
+    <string name="caption_setting_description">Modifier la taille du texte et les styles d\'arrière-plan du lecteur. Redémarrage requis pour prendre effet.</string>
 
     <string name="playback_pitch">Ton</string>
     <string name="playback_nightcore">Nightcore</string>
@@ -462,11 +462,11 @@
 
     <string name="clear_views_history_title">Effacer l\'historique</string>
     <string name="clear_views_history_summary">Supprimer l\'historique des flux regardés</string>
-    <string name="delete_view_history_alert">Supprimer tout l\'historique regardé.</string>
+    <string name="delete_view_history_alert">Supprimer tout l\'historique regardé\?</string>
     <string name="view_history_deleted">Voir l’historique supprimé.</string>
     <string name="clear_search_history_title">Supprimer l\'historique des recherches</string>
     <string name="clear_search_history_summary">Supprimer l\'historique de recherche par mot clef</string>
-    <string name="delete_search_history_alert">Supprimer tout l\'historique de recherche.</string>
+    <string name="delete_search_history_alert">Supprimer tout l\'historique de recherche \?</string>
     <string name="search_history_deleted">Historique des recherches effacé.</string>
     <string name="one_item_deleted">1 élément supprimé.</string>
 
@@ -492,7 +492,7 @@
     <string name="playback_reset">Réinitialiser</string>
 
     <string name="minimize_on_exit_title">Minimiser lors du changement d\'application</string>
-    <string name="minimize_on_exit_summary">Action lors du changement d\'applications depuis le lecteur vidéo —%s</string>
+    <string name="minimize_on_exit_summary">Action lors du changement d\'application depuis le lecteur vidéo —%s</string>
     <string name="minimize_on_exit_none_description">Aucune</string>
     <string name="minimize_on_exit_background_description">Minimiser pour lire en arrière plan</string>
     <string name="minimize_on_exit_popup_description">Minimiser vers lecteur PopUp</string>
