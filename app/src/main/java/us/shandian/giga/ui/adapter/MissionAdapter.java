@@ -577,7 +577,8 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
             checksum = menu.findItem(R.id.checksum);
 
             itemView.setOnClickListener((v) -> {
-                  if(h.mission.finished) viewWithFileProvider(h);
+                  if(((DownloadMission)item.mission).isFinished())
+                      viewWithFileProvider(item.mission.getDownloadedFile());
             });
 
             //h.itemView.setOnClickListener(v -> showDetail(h));

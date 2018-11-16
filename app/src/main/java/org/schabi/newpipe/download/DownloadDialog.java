@@ -376,7 +376,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     }
 
     private int getSubtitleIndexBy(List<SubtitlesStream> streams) {
-        Localization loc = NewPipe.getLocalization();
+        Localization loc = NewPipe.getPreferredLocalization();
         for (int j = 0; j < 2; j++) {
             for (int i = 0; i < streams.size(); i++) {
                 Locale streamLocale = streams.get(i).getLocale();
