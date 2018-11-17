@@ -15,7 +15,7 @@
     <string name="choose_browser">Välj webbläsare</string>
     <string name="screen_rotation">rotation</string>
     <string name="use_external_video_player_title">Använd extern videospelare</string>
-    <string name="use_external_video_player_summary">Några upplösningar kommer INTE ha ljud när det här alternativet är aktiverat</string>
+    <string name="use_external_video_player_summary">Tar bort ljud vid VISSA upplösningar</string>
     <string name="use_external_audio_player_title">Använd extern ljudspelare</string>
     <string name="popup_mode_share_menu_title">NewPipe popup-läge</string>
     <string name="controls_background_title">Bakgrund</string>
@@ -25,8 +25,8 @@
     <string name="download_path_summary">Genväg för att lagra nerladdade videor i</string>
     <string name="download_path_dialog_title">Fyll i genvägen som videor ska laddas ner till</string>
 
-    <string name="download_path_audio_title">Genväg för nerladdning av ljud</string>
-    <string name="download_path_audio_summary">Genväg för att lagra nerladdade ljudfiler i</string>
+    <string name="download_path_audio_title">Ljudhämtningsmapp</string>
+    <string name="download_path_audio_summary">Nedladdat ljud lagras här</string>
     <string name="download_path_audio_dialog_title">Fyll i genvägen som ljudfiler ska laddas ner till</string>
 
     <string name="autoplay_by_calling_app_summary">Automatiskt spelar en video upp när NewPipe öppnas av en annan app</string>
@@ -56,11 +56,11 @@
 
     <string name="download_dialog_title">Ladda ner</string>
 
-    <string name="next_video_title">Nästa video</string>
-    <string name="show_next_and_similar_title">Visa \'nästkommande\' och \'liknande\' videor</string>
+    <string name="next_video_title">Nästa</string>
+    <string name="show_next_and_similar_title">Visa \'Nästkommande\' och \'Liknande\' videor</string>
     <string name="url_not_supported_toast">Webbadressen stöds inte</string>
     <string name="search_language_title">Standard innehållsspråk</string>
-    <string name="settings_category_video_audio_title">Video &amp; Ljud</string>
+    <string name="settings_category_video_audio_title">Video &amp; ljud</string>
     <string name="settings_category_popup_title">Popup-ruta</string>
     <string name="settings_category_appearance_title">Utseende</string>
     <string name="settings_category_other_title">Andra</string>
@@ -68,9 +68,9 @@
     <string name="popup_playing_toast">Spelar upp i popup-läge</string>
     <string name="play_btn_text">Spela upp</string>
     <string name="content">Innehåll</string>
-    <string name="show_age_restricted_content_title">Visa åldersbegränsat innehåll</string>
+    <string name="show_age_restricted_content_title">Åldersbegränsat innehåll</string>
     <string name="video_is_age_restricted">Videon är åldersbegränsad. Du kan aktivera åldersbegränsade videor i inställningarna.</string>
-    <string name="duration_live">direkt</string>
+    <string name="duration_live">LIVE</string>
     <string name="downloads">Nerladdningar</string>
     <string name="downloads_title">Nerladdningar</string>
     <string name="error_report_title">Felrapport</string>
@@ -92,7 +92,7 @@
     <string name="content_not_available">Innehållet är inte tillgängligt</string>
     <string name="blocked_by_gema">Blockerat av GEMA</string>
     <string name="could_not_setup_download_menu">Kunde inte ställa in nerladdningsmenyn</string>
-    <string name="live_streams_not_supported">Det här är en DIREKTSÄNDNING vilket ännu inte stöds.</string>
+    <string name="live_streams_not_supported">Direktsändningar stöds inte än</string>
     <string name="could_not_load_image">Kunde inte ladda Bild</string>
     <string name="app_ui_crash">App/AnvändarGränssnitt kraschade</string>
     <string name="sorry_string">Oj, det där skulle inte ha hänt.</string>
@@ -127,11 +127,11 @@
     <string name="enable_watch_history_summary">Håll koll på videor som du tittat på</string>
     <string name="resume_on_audio_focus_gain_title">Fortsätt då fokus fås</string>
     <string name="resume_on_audio_focus_gain_summary">Fortsätta spela efter avbrott (t.ex. telefonsamtal)</string>
-    <string name="show_hold_to_append_title">Visa \"håll för att lägga till\" tips</string>
+    <string name="show_hold_to_append_title">Visa \"Håll för att lägga till\" tips</string>
     <string name="show_hold_to_append_summary">Visa tips när bakgrunds- eller popup-knappen trycks på sidan för videodetaljer</string>
     <string name="settings_category_player_title">Spelare</string>
     <string name="settings_category_player_behavior_title">Beteende</string>
-    <string name="settings_category_history_title">Historik &amp; Cacheminne</string>
+    <string name="settings_category_history_title">Historik &amp; cacheminne</string>
     <string name="background_player_append">Tillagd till bakgrunds-spelar kön</string>
     <string name="popup_playing_append">Tillagd till popup-spelar kön</string>
     <string name="playlist">Spellista</string>
@@ -204,7 +204,7 @@
     <string name="msg_name">Filnamn</string>
     <string name="msg_threads">Trådar</string>
     <string name="msg_error">Fel</string>
-    <string name="msg_server_unsupported">Serveren stöds inte</string>
+    <string name="msg_server_unsupported">Servern stöds inte</string>
     <string name="msg_exists">Filen finns redan</string>
     <string name="msg_url_malform">Felaktig webbadress eller Internet inte tillgängligt</string>
     <string name="msg_running">NewPipe nedladdning</string>
@@ -261,14 +261,14 @@
     <string name="feed_page_summary">Flödessida</string>
     <string name="channel_page_summary">Kanal-sida</string>
     <string name="select_a_channel">Välj en kanal</string>
-    <string name="no_channel_subscribed_yet">Ingen kanal prenumererad än</string>
+    <string name="no_channel_subscribed_yet">Inga kanal prenumerationer ännu</string>
     <string name="select_a_kiosk">Välj en kiosk</string>
 
     <string name="kiosk">Kiosk</string>
     <string name="trending">Trend</string>
     <string name="top_50">Topp 50</string>
     <string name="new_and_hot">Aktuellt</string>
-    <string name="title_activity_background_player">Bakgrunds-spelare</string>
+    <string name="title_activity_background_player">Bakgrundsspelare</string>
     <string name="title_activity_popup_player">Popup-spelare</string>
     <string name="play_queue_remove">Ta bort</string>
     <string name="play_queue_stream_detail">Detaljer</string>
@@ -286,7 +286,7 @@
     <string name="website_encouragement">För att få mer information och de senaste nyheterna om NewPipe, besök vår webbplats.</string>
     <string name="show_info">Visa info</string>
 
-    <string name="tab_bookmarks">Bokmärken</string>
+    <string name="tab_bookmarks">Bokmärkta Spellistor</string>
 
     <string name="controls_add_to_playlist_title">Lägg till</string>
 
@@ -302,13 +302,13 @@
 
     <string name="toggle_orientation">Byta orientationen</string>
     <string name="metadata_cache_wipe_title">Rensa metadatan i cacheminnet</string>
-    <string name="no_player_found_toast">Ingen strömspelare hittades (du kan installera VLC för att spela upp)</string>
-    <string name="controls_download_desc">Ladda ned sändning.</string>
+    <string name="no_player_found_toast">Ingen strömspelare hittades (du kan installera VLC för att spela upp).</string>
+    <string name="controls_download_desc">Ladda ned sändning</string>
     <string name="use_inexact_seek_summary">"Inexakt sökning tillåter spelaren att söka positioner snabbare med minskad precision "</string>
     <string name="metadata_cache_wipe_summary">Ta bort alla cachade webbsidor</string>
     <string name="metadata_cache_wipe_complete_notice">Metadata cache rensad</string>
     <string name="auto_queue_title">"Köa nästa ström automatiskt "</string>
-    <string name="auto_queue_summary">Lägg automatiskt till en relaterad ström när du spelar den sista strömmen i en ej upprepad kö</string>
+    <string name="auto_queue_summary">Lägg automatiskt till en relaterad ström när du spelar den sista strömmen i en ej upprepad kö.</string>
     <string name="default_content_country_title">Standard innehåll land</string>
     <string name="channels">Kanaler</string>
     <string name="playlists">Spellistor</string>
@@ -320,15 +320,15 @@
 
     <string name="import_data_title">Importera databas</string>
     <string name="export_data_title">Exportera databas</string>
-    <string name="import_data_summary">Kommer att skriva över din nuvarande historik och prenumerationer</string>
+    <string name="import_data_summary">Skriver över din nuvarande historik och prenumerationer</string>
     <string name="export_data_summary">Exportera historik, prenumerationer och spellistor</string>
     <string name="clear_views_history_title">Rensa visningshistorik</string>
     <string name="clear_views_history_summary">Tar bort historiken för spelade videoklipp</string>
-    <string name="delete_view_history_alert">Ta bort hela visningshistoriken.</string>
+    <string name="delete_view_history_alert">Ta bort hela visningshistoriken\?</string>
     <string name="view_history_deleted">Visningshistorik borttagen.</string>
     <string name="clear_search_history_title">Rensa sökhistorik</string>
     <string name="clear_search_history_summary">Tar bort historiken för sökta nyckelord</string>
-    <string name="delete_search_history_alert">Ta bort hela sökhistoriken.</string>
+    <string name="delete_search_history_alert">Ta bort hela sökhistoriken\?</string>
     <string name="search_history_deleted">Sökhistorik borttagen.</string>
     <string name="external_player_unsupported_link_type">Externa spelare stöder inte dessa typer av länkar</string>
     <string name="invalid_url_toast">Ogiltig URL</string>
@@ -336,7 +336,7 @@
     <string name="audio_streams_empty">Inga ljudspår hittades</string>
     <string name="invalid_directory">Ogiltig katalog</string>
     <string name="invalid_source">Ogiltig fil/innehålls källa</string>
-    <string name="invalid_file">Filen finns inte eller otillräcklig behörighet att läsa eller skriva till den</string>
+    <string name="invalid_file">Filen finns inte eller behörighet att läsa eller skriva till den saknas</string>
     <string name="file_name_empty_error">Filnamnet får inte vara tomt</string>
     <string name="error_occurred_detail">Ett fel uppstod: %1$s</string>
     <string name="no_streams_available_download">Inga strömmar är tillgängliga för nedladdning</string>
@@ -362,8 +362,8 @@
     <string name="title_last_played">Senast spelade</string>
     <string name="title_most_played">Mest spelade</string>
 
-    <string name="export_complete_toast">Exporteringen har slutförts</string>
-    <string name="import_complete_toast">Importeringen har slutförts</string>
+    <string name="export_complete_toast">Exporterad</string>
+    <string name="import_complete_toast">Importerad</string>
     <string name="no_valid_zip_file">Ingen giltig ZIP-fil</string>
     <string name="could_not_import_all_files">Varning: det gick inte att importera alla filer.</string>
     <string name="override_current_data">Det här kommer skriva över dina nuvarande inställningar.</string>
@@ -385,9 +385,9 @@
     <string name="preferred_player_fetcher_notification_title">Hämtar information…</string>
     <string name="preferred_player_fetcher_notification_message">Laddar begärt innehåll</string>
 
-    <string name="create_playlist">Skapa ny spellista</string>
-    <string name="delete_playlist">Radera spellista</string>
-    <string name="rename_playlist">Byt namn på spellista</string>
+    <string name="create_playlist">Ny spellista</string>
+    <string name="delete_playlist">Radera</string>
+    <string name="rename_playlist">Byt namn</string>
     <string name="playlist_name_input">Namn</string>
     <string name="append_playlist">Lägg till i spellistan</string>
     <string name="set_as_playlist_thumbnail">Använd som spellistans miniatyrbild</string>
@@ -395,11 +395,11 @@
     <string name="bookmark_playlist">Bokmärk spellistan</string>
     <string name="unbookmark_playlist">Ta bort bokmärke</string>
 
-    <string name="delete_playlist_prompt">Vill du ta bort den här spellistan?</string>
+    <string name="delete_playlist_prompt">Ta bort spellista\?</string>
     <string name="playlist_creation_success">Spellistan skapades</string>
     <string name="playlist_add_stream_success">Tillagad i spellistan</string>
-    <string name="playlist_thumbnail_change_success">Spellistans miniatyrbild förändrades</string>
-    <string name="playlist_delete_failure">Kunde inte ta bort spellistan</string>
+    <string name="playlist_thumbnail_change_success">Spellistans miniatyrbild förändrades.</string>
+    <string name="playlist_delete_failure">Kunde inte ta bort spellistan.</string>
 
     <string name="caption_none">Ingen textning</string>
 
@@ -410,15 +410,15 @@
     <string name="caption_auto_generated">Auto-genererade</string>
 
     <string name="caption_setting_title">Textning</string>
-    <string name="caption_setting_description">Ändra spelaren textskala och bakgrundsstil. Kräver att appen startar om för att träder i kraft</string>
+    <string name="caption_setting_description">Ändra spelarens textskala och bakgrundsstil. Kräver att appen startar om för att träder i kraft.</string>
 
     <string name="enable_leak_canary_title">Aktivera LeakCanary</string>
     <string name="enable_leak_canary_summary">Minnesläcka övervakning kan orsaka att appen inte svarar under heap dumpning</string>
 
-    <string name="enable_disposed_exceptions_title">Rapportera Out-of-lifecycle fel</string>
+    <string name="enable_disposed_exceptions_title">Rapportera out-of-lifecycle fel</string>
     <string name="enable_disposed_exceptions_summary">Tvinga rapportering av otillåtna Rx-undantag utanför fragment eller aktivitetslivscykel efter uppstädning</string>
 
-    <string name="import_export_title">Importera/Exportera</string>
+    <string name="import_export_title">Importera/exportera</string>
     <string name="import_title">Importera</string>
     <string name="import_from">Importera från</string>
     <string name="export_to">Exportera till</string>
