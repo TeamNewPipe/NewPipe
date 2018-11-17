@@ -27,9 +27,9 @@
     <string name="webm_description">WebM — freies Format</string>
     <string name="m4a_description">M4A — bessere Qualität</string>
     <string name="download_dialog_title">Herunterladen</string>
-    <string name="next_video_title">Nächstes Video</string>
+    <string name="next_video_title">Nächstes</string>
     <string name="show_next_and_similar_title">\'Nächste\' und \'ähnliche\' Videos anzeigen</string>
-    <string name="url_not_supported_toast">URL wird nicht unterstützt</string>
+    <string name="url_not_supported_toast">Nicht unterstützte URL</string>
     <string name="settings_category_video_audio_title">Video &amp; Audio</string>
     <string name="search_language_title">Bevorzugte Sprache des Inhalts</string>
     <string name="list_thumbnail_view_description">Video-Vorschaubild</string>
@@ -46,8 +46,8 @@
     <string name="use_tor_summary">(Experimentell) Erzwinge das Herunterladen durch Tor für verbesserte Privatsphäre (Videostream noch nicht unterstützt).</string>
     <string name="network_error">Netzwerkfehler</string>
 
-    <string name="download_path_audio_title">Download-Verzeichnis für Audiodateien</string>
-    <string name="download_path_audio_summary">Verzeichnis für heruntergeladene Audiodateien</string>
+    <string name="download_path_audio_title">Download-Ordner für Audiodateien</string>
+    <string name="download_path_audio_summary">Heruntergeladene Audiodateien werden hier gespeichert</string>
     <string name="download_path_audio_dialog_title">Download-Verzeichnis für Audiodateien angeben</string>
 
     <string name="theme_title">Design</string>
@@ -66,11 +66,11 @@
     <string name="blocked_by_gema">Durch die GEMA gesperrt</string>
 
     <string name="content">Inhalt</string>
-    <string name="show_age_restricted_content_title">Altersbeschränkte Inhalte anzeigen</string>
-    <string name="video_is_age_restricted">Video ist altersbeschränkt. Schalte erst altersbeschränkte Videos in den Einstellungen ein.</string>
+    <string name="show_age_restricted_content_title">Altersbeschränkte Inhalte</string>
+    <string name="video_is_age_restricted">Altersbeschränktes Video anzeigen. Das Zulassen dieses Materials ist unter \"Einstellungen\" möglich.</string>
 
     <string name="could_not_setup_download_menu">Konnte Download-Menü nicht einrichten</string>
-    <string name="live_streams_not_supported">Dies ist ein LIVESTREAM. Diese werden noch nicht unterstützt.</string>
+    <string name="live_streams_not_supported">Live-Streams werden noch nicht unterstützt</string>
 
 
     <string name="light_parsing_error">Konnte Webseite nicht vollständig analysieren</string>
@@ -94,7 +94,7 @@
     <string name="report_error">Einen Fehler melden</string>
     <string name="user_report">Anwenderbericht</string>
 
-    <string name="duration_live">Live</string>
+    <string name="duration_live">LIVE</string>
 
     <string name="main_bg_subtitle">„Suchen“ antippen, um zu beginnen</string>
     <string name="downloads">Downloads</string>
@@ -122,7 +122,7 @@
     <string name="view">Abspielen</string>
     <string name="add">Neue Mission</string>
     <string name="finish">OK</string>
-    <string name="msg_server_unsupported">Server nicht unterstützt</string>
+    <string name="msg_server_unsupported">Nicht unterstützter Server</string>
     <string name="could_not_load_image">Konnte Bild nicht laden</string>
     <string name="app_ui_crash">App/UI abgestürzt</string>
     <string name="msg_threads">Threads</string>
@@ -161,7 +161,7 @@
     <string name="controls_popup_title">Pop-up</string>
 
     <string name="popup_remember_size_pos_title">Größe und Position des Pop-ups merken</string>
-<string name="use_external_video_player_summary">Manche Auflösungen werden KEINE Tonspur haben, wenn diese Option eingeschaltet ist</string>
+<string name="use_external_video_player_summary">Entfernt Tonspur bei manchen Auflösungen</string>
     <string name="popup_remember_size_pos_summary">Letzte Größe und Position des Pop-ups merken</string>
     <string name="player_gesture_controls_title">Gestensteuerung</string>
     <string name="player_gesture_controls_summary">Helligkeit und Lautstärke mittels Gesten einstellen</string>
@@ -216,8 +216,8 @@
     <string name="history_empty">Der Verlauf ist leer</string>
     <string name="history_cleared">Verlauf bereinigt</string>
 
-<string name="subscription_change_failed">Fehler beim Ändern des Abos</string>
-    <string name="subscription_update_failed">Fehler beim Aktualisieren des Abos</string>
+<string name="subscription_change_failed">Abonnement konnte nicht geändert werden</string>
+    <string name="subscription_update_failed">Abonnement konnte nicht aktualisiert werden</string>
 
     <string name="resume_on_audio_focus_gain_summary">Nach Unterbrechungen (z.B. Telefonaten) Wiedergabe fortsetzen</string>
 
@@ -260,7 +260,7 @@
     <string name="delete_item_search_history">Möchtest du dieses Element aus dem Suchverlauf löschen?</string>
 <string name="blank_page_summary">Leere Seite</string>
     <string name="select_a_channel">Wähle einen Kanal aus</string>
-    <string name="no_channel_subscribed_yet">Noch kein Kanal abonniert</string>
+    <string name="no_channel_subscribed_yet">Noch keine Kanalabonnements vorhanden</string>
     <string name="trending">Trends</string>
     <string name="popup_playing_append">In der Warteschlange des Pop-up-Players</string>
     <string name="play_all">Alles abspielen</string>
@@ -287,7 +287,7 @@
     <string name="background_player_append">In der Warteschlange der Hintergrundwiedergabe</string>
     <string name="new_and_hot">Neu &amp; Heiß</string>
     <string name="hold_to_append">Halten, um zur Wiedergabeliste hinzuzufügen</string>
-<string name="show_hold_to_append_title">\"Gedrückt halten, um Tipp hinzuzufügen\" anzeigen</string>
+<string name="show_hold_to_append_title">\"Gedrückt halten, um hinzuzufügen\" Tipp anzeigen</string>
     <string name="unknown_content">[Unbekannt]</string>
 
     <string name="enqueue_on_background">In Warteschlange für Hintergrundwiedergabe</string>
@@ -301,7 +301,7 @@
     <string name="website_encouragement">Besuche die NewPipe-Website für weitere Informationen und Neuigkeiten.</string>
     <string name="donation_encouragement">NewPipe wird von Freiwilligen entwickelt, die ihre Freizeit dafür verwenden, dir die beste Nutzererfahrung zu bieten. Gib etwas zurück, um den Entwicklern zu helfen, NewPipe noch besser machen zu können, während sie sich an einer Tasse Kaffee erfreuen.</string>
     <string name="service_title">Service</string>
-    <string name="no_player_found_toast">Keinen Streamplayer gefunden (du kannst VLC installieren, um den Stream abzuspielen)</string>
+    <string name="no_player_found_toast">Keinen Streamplayer gefunden (du kannst VLC installieren, um den Stream abzuspielen).</string>
     <string name="default_content_country_title">Standard-Land des Inhalts</string>
     <string name="always">Immer</string>
     <string name="just_once">Nur einmal</string>
@@ -328,7 +328,7 @@
     <string name="preferred_player_fetcher_notification_message">Gewünschten Inhalt laden</string>
 <string name="import_data_title">Datenbank importieren</string>
     <string name="export_data_title">Datenbank exportieren</string>
-    <string name="import_data_summary">Wird deinen Verlauf und deine Abos überschreiben</string>
+    <string name="import_data_summary">Überschreibt Ihren aktuellen Verlauf und Ihre Abonnements</string>
     <string name="export_data_summary">Verlauf, Abos und Wiedergabelisten exportieren</string>
     <string name="no_valid_zip_file">Keine gültige ZIP-Datei</string>
     <string name="could_not_import_all_files">Warnung: Nicht alle Dateien konnten importiert werden.</string>
@@ -336,7 +336,7 @@
 
     <string name="show_info">Info anzeigen</string>
 
-    <string name="tab_bookmarks">Lesezeichen</string>
+    <string name="tab_bookmarks">Wiedergabelisten-Lesezeichen</string>
 
     <string name="controls_add_to_playlist_title">Hinzufügen zu</string>
 
@@ -354,9 +354,9 @@
 
     <string name="always_ask_open_action">Immer fragen</string>
     
-    <string name="create_playlist">Wiedergabeliste erstellen</string>
-    <string name="delete_playlist">Wiedergabeliste löschen</string>
-    <string name="rename_playlist">Wiedergabeliste umbenennen</string>
+    <string name="create_playlist">Neue Wiedergabeliste</string>
+    <string name="delete_playlist">Löschen</string>
+    <string name="rename_playlist">Umbenennen</string>
     <string name="append_playlist">Zur Wiedergabeliste hinzufügen</string>
     <string name="set_as_playlist_thumbnail">Als Symbolbild der Wiedergabeliste festlegen</string>
 
@@ -365,21 +365,21 @@
     <string name="delete_playlist_prompt">Diese Wiedergabeliste löschen?</string>
     <string name="playlist_creation_success">Wiedergabeliste erstellt</string>
     <string name="playlist_add_stream_success">Zur Wiedergabeliste hinzugefügt</string>
-    <string name="playlist_thumbnail_change_success">Vorschaubild der Wiedergabeliste geändert</string>
-    <string name="playlist_delete_failure">Konnte Wiedergabeliste nicht löschen</string>
+    <string name="playlist_thumbnail_change_success">Vorschaubild der Wiedergabeliste geändert.</string>
+    <string name="playlist_delete_failure">Konnte Wiedergabeliste nicht löschen.</string>
 
     <string name="caption_none">Keine Untertitel</string>
 
     <string name="caption_font_size_settings_title">Schriftgröße der Untertitel</string>
     <string name="dismiss">Abbrechen</string>
     <string name="normal_caption_font_size">Normale Schriftgröße</string>
-    <string name="controls_download_desc">Stream-Datei herunterladen.</string>
+    <string name="controls_download_desc">Stream-Datei herunterladen</string>
     <string name="use_inexact_seek_title">Benutze schnelle, ungenaue Suche</string>
     <string name="use_inexact_seek_summary">Mit ungenauem Suchen kann die Abspielposition schneller erreicht werden, aber auf Kosten der Genauigkeit</string>
     <string name="file">Datei</string>
 
-    <string name="invalid_directory">Ungültiges Verzeichnis</string>
-    <string name="invalid_file">"Datei existiert nicht, oder die Rechte zum  Lesen oder Schreiben fehlen"</string>
+    <string name="invalid_directory">Ordner existiert nicht</string>
+    <string name="invalid_file">Die Datei existiert nicht oder die Rechte zum Lesen oder Schreiben fehlen</string>
     <string name="file_name_empty_error">Dateiname darf nicht leer sein</string>
     <string name="error_occurred_detail">Ein Fehler ist aufgetreten: %1$s</string>
 
@@ -406,9 +406,9 @@
     <string name="metadata_cache_wipe_summary">Entferne alle gecachten Website-Daten</string>
     <string name="metadata_cache_wipe_complete_notice">Metadatencache gelöscht</string>
     <string name="settings_category_debug_title">Debug</string>
-    <string name="invalid_source">Ungültige Datei-/Inhaltsquelle</string>
-    <string name="export_complete_toast">Export abgeschlossen</string>
-    <string name="import_complete_toast">Import abgeschlossen</string>
+    <string name="invalid_source">Datei-/Inhaltsquelle existiert nicht</string>
+    <string name="export_complete_toast">Exportiert</string>
+    <string name="import_complete_toast">Importiert</string>
     <string name="playlist_name_input">Name</string>
     <string name="import_export_title">Import/Export</string>
     <string name="import_title">Import</string>
@@ -421,9 +421,9 @@
     <string name="unhook_checkbox">Verknüpfung aufheben (kann zu Verzerrungen führen)</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Standard</string>
-<string name="download_thumbnail_summary">Deaktiviere diese Option, um das Laden aller Miniaturansichten zu stoppen und Daten und Speicherverbrauch zu sparen. Wenn du dies änderst, wird sowohl der In-Memory- als auch der On-Disk-Image-Cache gelöscht</string>
+<string name="download_thumbnail_summary">Wenn ausgeschaltet, werden keine Miniaturansichten geladen, Daten und Speicherverbrauch sparend. Änderungen löschen sowohl Speicher- als auch Image-Caches auf der Festplatte.</string>
     <string name="auto_queue_title">Nächsten Stream automatisch einreihen</string>
-    <string name="auto_queue_summary">Automatisches Anhängen eines verwandten Streams beim Abspielen des letzten Streams in einer nicht wiederholten Warteschlange</string>
+    <string name="auto_queue_summary">Automatisches Anhängen eines verwandten Streams beim Abspielen des letzten Streams in einer nicht wiederholten Warteschlange.</string>
     <string name="drawer_header_action_paceholder_text">Hier wird bald etwas stehen ;D</string>
 
 
@@ -456,17 +456,17 @@
     <string name="preferred_open_action_settings_summary">Standardaktion beim Öffnen von Inhalten - %s</string>
 
     <string name="caption_setting_title">Untertitel</string>
-    <string name="caption_setting_description">Ändere Textgröße und Hintergrundstil des Untertitels im Player. Wird erst nach Neustart des App wirksam</string>
+    <string name="caption_setting_description">Ändere Textgröße und Hintergrundstil des Untertitels im Player. Wird erst nach Neustart des App wirksam.</string>
 
     <string name="toast_no_player">Keine App zum Abspielen dieser Datei installiert</string>
 
     <string name="clear_views_history_title">Verlauf leeren</string>
     <string name="clear_views_history_summary">Löscht den Verlauf der abgespielten Streams</string>
-    <string name="delete_view_history_alert">Löscht den ganzen Verlauf.</string>
+    <string name="delete_view_history_alert">Den ganzen Verlauf löschen\?</string>
     <string name="view_history_deleted">Verlauf gelöscht.</string>
     <string name="clear_search_history_title">Suchverlauf löschen</string>
     <string name="clear_search_history_summary">Lösche Verlauf der Suchschlüsselwörter</string>
-    <string name="delete_search_history_alert">Lösche gesamten Suchverlauf.</string>
+    <string name="delete_search_history_alert">Den gesamten Suchverlauf löschen\?</string>
     <string name="search_history_deleted">Suchverlauf gelöscht.</string>
     <string name="one_item_deleted">1 Element gelöscht.</string>
 
@@ -483,8 +483,8 @@
 \nDu musst den Datenschutzrichtlinien zustimmen, um den Fehlerbericht an uns zu senden.</string>
     <string name="limit_data_usage_none_description">Unbegrenzt</string>
     <string name="limit_mobile_data_usage_title">Auflösung bei Verwendung mobiler Daten begrenzen</string>
-    <string name="minimize_on_exit_title">Minimieren beim Anwendungswechsel</string>
-    <string name="minimize_on_exit_summary">Aktion beim Umschalten auf eine andere Anwendung vom Haupt-Videoplayer - %s</string>
+    <string name="minimize_on_exit_title">Minimieren beim Appwechsel</string>
+    <string name="minimize_on_exit_summary">Aktion beim Umschalten auf eine andere App vom Haupt-Videoplayer - %s</string>
     <string name="minimize_on_exit_none_description">Keine</string>
     <string name="minimize_on_exit_background_description">Zum Hintergrund-Player minimieren</string>
     <string name="minimize_on_exit_popup_description">Zum Popup-Player minimieren</string>
