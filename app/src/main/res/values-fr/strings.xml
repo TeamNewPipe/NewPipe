@@ -231,7 +231,7 @@
     <string name="settings_category_player_behavior_title">Comportement</string>
     <string name="settings_category_history_title">Historique &amp; cache</string>
     <string name="playlist">Liste de lecture</string>
-    <string name="notification_channel_description">Notifications pour les lecteurs \"Arrière-plan\" et \"Fenêtre\" de NewPipe</string>
+    <string name="notification_channel_description">Notifications pour les lecteurs \"arrière-plan\" et \"fenêtre\" de NewPipe</string>
 
     <string name="search_no_results">Aucun résultat</string>
     <string name="empty_subscription_feed_subtitle">Aucun contenu</string>
@@ -383,7 +383,7 @@
 
     <string name="use_inexact_seek_title">Recherche rapide approximative</string>
     <string name="use_inexact_seek_summary">Permettre au lecteur d\'accéder plus rapidement à une position au détriment de la précision</string>
-    <string name="download_thumbnail_title">Charger miniatures</string>
+    <string name="download_thumbnail_title">Charger les miniatures</string>
     <string name="download_thumbnail_summary">Désactiver pour arrêter le chargement de toutes les miniatures et sauvegarder les données et l\'utilisation de la mémoire. Modifier cela effacera à la fois le cache d\'image en mémoire et sur disque</string>
     <string name="thumbnail_cache_wipe_complete_notice">Images en cache effacées</string>
     <string name="metadata_cache_wipe_title">Effacer les données en cache</string>
@@ -462,8 +462,8 @@
 
     <string name="clear_views_history_title">Effacer l\'historique</string>
     <string name="clear_views_history_summary">Supprimer l\'historique des flux regardés</string>
-    <string name="delete_view_history_alert">Supprimer tout l\'historique regardé\?</string>
-    <string name="view_history_deleted">Voir l’historique supprimé.</string>
+    <string name="delete_view_history_alert">Supprimer tout l\'historique regardé \?</string>
+    <string name="view_history_deleted">Historique des vidéos regardées supprimé.</string>
     <string name="clear_search_history_title">Supprimer l\'historique des recherches</string>
     <string name="clear_search_history_summary">Supprimer l\'historique de recherche par mot clef</string>
     <string name="delete_search_history_alert">Supprimer tout l\'historique de recherche \?</string>
@@ -477,8 +477,8 @@
 
     <string name="accept">Accepter</string>
     <string name="decline">Refuser</string>
-<string name="privacy_policy_encouragement">Le projet NewPipe prend votre vie privée très à cœur. Ainsi, l\'appli n\'envoie aucune donnée sans votre consentement.
-\nLa politique de vie privée de NewPipe explique en détail quelle donnée est envoyée et stockée quand vous envoyez un rapport de plantage.</string>
+<string name="privacy_policy_encouragement">Le projet NewPipe prend votre vie privée très à cœur. Ainsi, l\'appli n\'envoie aucune donnée sans votre consentement. 
+\nLa politique de vie privée de NewPipe explique en détail quelles données sont envoyées et stockées quand vous envoyez un rapport de plantage.</string>
     <string name="start_accept_privacy_policy">Afin de se conformer au Règlement Général sur la Protection des Données (RGPD ou GDPR), nous attirons votre attention sur la politique de vie privée de NewPipe. Merci de la lire attentivement.
 \nVous devez l\'accepter pour nous envoyer le rapport de bug.</string>
     <string name="limit_data_usage_none_description">Pas de limite</string>
