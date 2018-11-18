@@ -17,7 +17,7 @@
     <string name="choose_browser">בחר דפדפן</string>
     <string name="screen_rotation">סיבוב</string>
     <string name="use_external_video_player_title">השתמש בנגן סרטים חיצוני</string>
-    <string name="use_external_video_player_summary">לחלק מהסרטונים עם רזולוציה גבוהה לא יהיה שמע כאשר אפשרות זו פועלת</string>
+    <string name="use_external_video_player_summary">מסיר שמע בחלק מהרזולוציות</string>
     <string name="use_external_audio_player_title">השתמש בנגן סרטים חיצוני</string>
     <string name="popup_mode_share_menu_title">מצב חלון צץ (NewPipe)</string>
     <string name="controls_background_title">רקע</string>
@@ -291,8 +291,8 @@
     <string name="start_here_on_main">התחל לנגן כאן</string>
     <string name="start_here_on_background">התחל כאן בנגן הרקע</string>
     <string name="start_here_on_popup">התחל כאן בנגן הצץ</string>
-<string name="controls_download_desc">הורדת קובץ הזרמה.</string>
-    <string name="show_info">הצגת מידע</string>
+<string name="controls_download_desc">הורד קובץ הזרמה</string>
+    <string name="show_info">הצג מידע</string>
 
     <string name="tab_bookmarks">סימניות</string>
 
@@ -312,7 +312,7 @@
 
     <string name="switch_to_background">העברה לרקע</string>
     <string name="switch_to_popup">העברה לחלון צץ</string>
-    <string name="no_player_found_toast">לא נמצא נגן לצפייה ישירה (באפשרותך להתקין VLC כדי לתקן זאת)</string>
+    <string name="no_player_found_toast">לא נמצא נגן לצפייה ישירה (באפשרותך להתקין VLC כדי לתקן זאת).</string>
     <string name="thumbnail_cache_wipe_complete_notice">מטמון התמונות נוקה</string>
     <string name="metadata_cache_wipe_title">נקה מטמון מטא-דאטה</string>
     <string name="metadata_cache_wipe_complete_notice">מטמון המטא-דאטא נוקה</string>
@@ -398,4 +398,52 @@
 
     <string name="import_data_summary">פעולה זו תדרוס את ההיסטוריה ורשימת המנויים הקיימת.</string>
     <string name="clear_views_history_summary">"מחק הסטוריה של ניגונים קודמים. "</string>
+    <string name="channels">ערוצים</string>
+    <string name="playlists">רשימות השמעה</string>
+    <string name="tracks">שירים</string>
+    <string name="users">משתמשים</string>
+    <string name="delete_view_history_alert">למחוק את כל הסטוריית הצפיה\?</string>
+    <string name="clear_search_history_summary">מוחק את היסטוריית מילות החיפוש</string>
+    <string name="delete_search_history_alert">למחוק את הסטוריית החיפוש\?</string>
+    <string name="video_streams_empty">לא נמצא וידאו להזרמה</string>
+    <string name="audio_streams_empty">לא נמצא שמע להזרמה</string>
+    <string name="invalid_directory">אין כזו תיקיה</string>
+    <string name="invalid_source">אין כזו תיקיה/תוכן</string>
+    <string name="error_occurred_detail">אירעה שגיאה: %1$s</string>
+    <string name="no_streams_available_download">אין מקור הזרמה זמין להורדה</string>
+
+    <string name="privacy_policy_title">מדיניות הפרטיות של NewPipe</string>
+    <string name="privacy_policy_encouragement">פרויקט NewPipe לוקח את הפרטיות שלך ברצינות רבה. לפיכך, האפליקציה אינה אוספת מידע ללא הסכמתך.
+\nמדיניות הפרטיות של NewPipe מפרטת במדויק איזה מידע נשמר ונשלח בזמן שאתה מדווח על קריסת האפליקציה.</string>
+    <string name="read_privacy_policy">קרא את מדיניות הפרטיות</string>
+    <string name="app_license">NewPipe היא תוכנה חופשית:
+\nאתה יכול להשתמש, ללמוד, לשתף ולשפר אותה כרצונך. באופן ספציפי ניתן להפיצה ו/או לשנות אותה תחת עמידה בתנאים של רישיון GNU GPL בגרסה 3, או בכל גרסה עדכנית יותר של רשיון זה.</string>
+    <string name="title_last_played">נוגן לאחרונה</string>
+    <string name="title_most_played">הכי נצפה</string>
+
+    <string name="could_not_import_all_files">אזהרה: לא ניתן היה לטעון את כל הקבצים.</string>
+    <string name="override_current_data">פעולה זו תדרוס את ההגדרות הקיימות.</string>
+    <string name="import_settings">האם ברצונך גם לטעון את ההגדרות\?</string>
+
+    <string name="drawer_open">פתח מגירה</string>
+    <string name="drawer_close">סגור מגירה</string>
+    <string name="drawer_header_action_paceholder_text">משהו יופיע כאן בקרוב D;</string>
+
+
+    <string name="preferred_open_action_settings_title">פעולת \'פתח\' מועדפת</string>
+    <string name="preferred_open_action_settings_summary">פעולת ברירת המחדל בעת פתיחת תוכן - %s</string>
+
+    <string name="set_as_playlist_thumbnail">קבע כתמונה של רשימת הניגון</string>
+
+    <string name="playlist_delete_failure">לא ניתן למחוק רשימת ניגון.</string>
+
+    <string name="caption_none">ללא כותרת</string>
+
+    <string name="resize_fit">התאם</string>
+    <string name="caption_setting_title">כותרות</string>
+    <string name="caption_setting_description">שינוי גודל כותרת הנגן וסגנוהות הרקע. נדרשת הפעלה מחדש כדי ששינויים אלה יתפסו.</string>
+
+    <string name="enable_leak_canary_title">אפשר LeakCanary</string>
+    <string name="enable_leak_canary_summary">מעקב אחר זליגת זיכרון יכולה לגרום לאפליקציה להיות בלתי זמינה בזמן העתקת תוכן הזכרון לקובץ</string>
+
     </resources>
