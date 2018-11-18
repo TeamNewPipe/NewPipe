@@ -12,10 +12,11 @@ import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
-import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.report.UserAction;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -30,6 +31,12 @@ import java.security.cert.CertificateEncodingException;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 /**
  * AsyncTask to check if there is a newer version of the NewPipe github apk available or not.
@@ -38,12 +45,13 @@ import java.security.cert.X509Certificate;
  */
 public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
 
-    private static final Application app = App.getContext();
+    private static final Application app = App.getApp();
     private static final String GITHUB_APK_SHA1 = "B0:2E:90:7C:1C:D6:FC:57:C3:35:F0:88:D0:8F:50:5F:94:E4:D2:15";
     private static final String newPipeApiUrl = "https://newpipe.schabi.org/api/data.json";
-    private static final int timeoutPeriod = 10000;
+    private static final int timeoutPeriod = 30;
 
     private SharedPreferences mPrefs;
+    private OkHttpClient client;
 
     @Override
     protected void onPreExecute() {
@@ -62,55 +70,29 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
     protected String doInBackground(Void... voids) {
 
         // Make a network request to get latest NewPipe data.
-        String response;
-        HttpURLConnection connection = null;
+
+        if (client == null) {
+
+            client = new OkHttpClient
+                    .Builder()
+                    .readTimeout(timeoutPeriod, TimeUnit.SECONDS)
+                    .build();
+        }
+
+        Request request = new Request.Builder()
+                .url(newPipeApiUrl)
+                .build();
 
         try {
 
-            URL url = new URL(newPipeApiUrl);
+            Response response = client.newCall(request).execute();
+            return response.body().string();
 
-            connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            connection.setConnectTimeout(timeoutPeriod);
-            connection.setReadTimeout(timeoutPeriod);
-            connection.setRequestProperty("Content-length", "0");
-            connection.setUseCaches(false);
-            connection.setAllowUserInteraction(false);
-            connection.connect();
-
-            int responseStatus = connection.getResponseCode();
-
-            switch (responseStatus) {
-
-                case 200:
-                case 201:
-                    BufferedReader bufferedReader = new BufferedReader(
-                            new InputStreamReader(connection.getInputStream()));
-
-                    StringBuilder stringBuilder = new StringBuilder();
-
-                    String line;
-
-                    while ((line = bufferedReader.readLine()) != null) {
-                        stringBuilder.append(line);
-                        stringBuilder.append("\n");
-                    }
-
-                    bufferedReader.close();
-                    response = stringBuilder.toString();
-
-                    return response;
-            }
         } catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            if (connection != null) {
-                try {
-                    connection.disconnect();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
+
+            ErrorActivity.reportError(app, ex, null, null,
+                    ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
+                            "app update API fail", R.string.app_ui_crash));
         }
 
         return null;
@@ -136,6 +118,9 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
 
             } catch (JSONException ex) {
                 ex.printStackTrace();
+                ErrorActivity.reportError(app, ex, null, null,
+                        ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
+                        "could not parse app update JSON data", R.string.app_ui_crash));
             }
         }
     }
@@ -211,10 +196,14 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
             MessageDigest md = MessageDigest.getInstance("SHA1");
             byte[] publicKey = md.digest(c.getEncoded());
             hexString = byte2HexFormatted(publicKey);
-        } catch (NoSuchAlgorithmException e1) {
-            e1.printStackTrace();
-        } catch (CertificateEncodingException e) {
-            e.printStackTrace();
+        } catch (NoSuchAlgorithmException ex1) {
+            ErrorActivity.reportError(app, ex1, null, null,
+                    ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
+                            "Could not retrieve SHA1 key", R.string.app_ui_crash));
+        } catch (CertificateEncodingException ex2) {
+            ErrorActivity.reportError(app, ex2, null, null,
+                    ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
+                            "Could not retrieve SHA1 key", R.string.app_ui_crash));
         }
 
         return hexString;

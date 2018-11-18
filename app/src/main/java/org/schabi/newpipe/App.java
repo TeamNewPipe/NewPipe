@@ -1,5 +1,6 @@
 package org.schabi.newpipe;
 
+import android.annotation.TargetApi;
 import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -63,7 +64,7 @@ import io.reactivex.plugins.RxJavaPlugins;
 public class App extends Application {
     protected static final String TAG = App.class.toString();
     private RefWatcher refWatcher;
-    private static App context;
+    private static App app;
 
     @SuppressWarnings("unchecked")
     private static final Class<? extends ReportSenderFactory>[] reportSenderFactoryClasses = new Class[]{AcraReportSenderFactory.class};
@@ -86,7 +87,7 @@ public class App extends Application {
         }
         refWatcher = installLeakCanary();
 
-        context = this;
+        app = this;
 
         // Initialize settings first because others inits can use its values
         SettingsActivity.initSettings(this);
@@ -209,7 +210,16 @@ public class App extends Application {
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.createNotificationChannel(mChannel);
 
-        // Set up notification channel for app update.
+        setUpUpdateNotificationChannel(importance);
+    }
+
+    /**
+     * Set up notification channel for app update.
+     * @param importance
+     */
+    @TargetApi(Build.VERSION_CODES.O)
+    private void setUpUpdateNotificationChannel(int importance) {
+
         final String appUpdateId
                 = getString(R.string.app_update_notification_channel_id);
         final CharSequence appUpdateName
@@ -240,7 +250,7 @@ public class App extends Application {
         return false;
     }
 
-    public static App getContext() {
-        return context;
+    public static App getApp() {
+        return app;
     }
 }
