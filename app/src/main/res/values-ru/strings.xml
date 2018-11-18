@@ -423,17 +423,17 @@
     <string name="subscriptions_import_unsuccessful">Не удалось импортировать подписки</string>
     <string name="subscriptions_export_unsuccessful">Не удалось экспортировать подписки</string>
 
-    <string name="import_youtube_instructions">Импорт подписок из YouTube загрузкой файла экспорта: 
+    <string name="import_youtube_instructions">Импортируйте подписки YouTube, загрузив файл экспорта: 
+\n
+\n1. Перейдите по ссылке %1$s
+\n2. Выполните вход.
+\n3. Дождитесь завершения загрузки файла экспорта.</string>
+    <string name="import_soundcloud_instructions">Импортируйте профиль SoundCloud, введя его URL или ID: 
 \n 
-\n1. Перейдите на: %1$s 
-\n2. Войдите, если необходимо 
-\n3. Должна начаться загрузка (это будет файл экспорта)</string>
-    <string name="import_soundcloud_instructions">Импорт подписок из SoundCloud набрав либо URL, либо ваш ID: 
-\n 
-\n1. Включите \"режим рабочего стола\" в браузере (сайт недоступен на телефоне) 
-\n2. Пройдите на: %1$s 
-\n3. Войдите, если надо 
-\n4. Скопируйте адрес из адресной строки.</string>
+\n1. Включите режим \"Полная версия сайта\" в браузере.
+\n2. Перейдите по ссылке %1$s
+\n3. Выполните вход.
+\n4. Скопируйте URL профиля из адресной строки.</string>
     <string name="import_soundcloud_instructions_hint">вашID, soundcloud.com/вашID</string>
 
     <string name="import_network_expensive_warning">Это действие может вызвать большой расход трафика. 
