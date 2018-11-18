@@ -441,7 +441,7 @@
 
     <string name="resize_fit">התאם</string>
     <string name="caption_setting_title">כותרות</string>
-    <string name="caption_setting_description">שינוי גודל כותרת הנגן וסגנוהות הרקע. נדרשת הפעלה מחדש כדי ששינויים אלה יתפסו.</string>
+    <string name="caption_setting_description">שינוי גודל כותרת הנגן וסגנונות הרקע. נדרשת הפעלה מחדש כדי ששינויים אלה יכנסו לתוקף.</string>
 
     <string name="enable_leak_canary_title">אפשר LeakCanary</string>
     <string name="enable_leak_canary_summary">מעקב אחר זליגת זיכרון יכולה לגרום לאפליקציה להיות בלתי זמינה בזמן העתקת תוכן הזכרון לקובץ</string>
