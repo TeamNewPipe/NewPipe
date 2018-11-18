@@ -349,8 +349,8 @@
 
     <string name="title_last_played">Dernière lecture</string>
     <string name="delete_all">Tout supprimer</string>
-    <string name="delete_stream_history_prompt">Voulez vous supprimer cet élément de votre historique ?</string>
-    <string name="delete_all_history_prompt">Êtes vous sûr de supprimer tout votre historique ?</string>
+    <string name="delete_stream_history_prompt">Voulez-vous supprimer cet élément de votre historique \?</string>
+    <string name="delete_all_history_prompt">Êtes-vous sûr de supprimer tout votre historique \?</string>
     <string name="title_most_played">Vidéos les plus regardées</string>
 
     <string name="always_ask_open_action">Toujours demander</string>
@@ -494,7 +494,7 @@
     <string name="minimize_on_exit_title">Minimiser lors du changement d\'application</string>
     <string name="minimize_on_exit_summary">Action lors du changement d\'application depuis le lecteur vidéo —%s</string>
     <string name="minimize_on_exit_none_description">Aucune</string>
-    <string name="minimize_on_exit_background_description">Minimiser pour lire en arrière plan</string>
+    <string name="minimize_on_exit_background_description">Minimiser pour lire en arrière-plan</string>
     <string name="minimize_on_exit_popup_description">Minimiser vers lecteur PopUp</string>
 
 </resources>
