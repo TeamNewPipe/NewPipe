@@ -89,7 +89,6 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
             return response.body().string();
 
         } catch (IOException ex) {
-
             ErrorActivity.reportError(app, ex, null, null,
                     ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
                             "app update API fail", R.string.app_ui_crash));
@@ -117,7 +116,6 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
                 compareAppVersionAndShowNotification(versionName, apkLocationUrl, versionCode);
 
             } catch (JSONException ex) {
-                ex.printStackTrace();
                 ErrorActivity.reportError(app, ex, null, null,
                         ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
                         "could not parse app update JSON data", R.string.app_ui_crash));
@@ -172,8 +170,10 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
 
         try {
             packageInfo = pm.getPackageInfo(packageName, flags);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+        } catch (PackageManager.NameNotFoundException ex) {
+            ErrorActivity.reportError(app, ex, null, null,
+                    ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
+                            "Could not find package info", R.string.app_ui_crash));
         }
 
         Signature[] signatures = packageInfo.signatures;
@@ -186,8 +186,10 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
         try {
             cf = CertificateFactory.getInstance("X509");
             c = (X509Certificate) cf.generateCertificate(input);
-        } catch (CertificateException e) {
-            e.printStackTrace();
+        } catch (CertificateException ex) {
+            ErrorActivity.reportError(app, ex, null, null,
+                    ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
+                            "Certificate error", R.string.app_ui_crash));
         }
 
         String hexString = null;
