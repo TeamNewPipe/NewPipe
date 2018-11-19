@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import org.schabi.newpipe.Downloader;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.downloader.util.Utility;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
@@ -23,7 +24,6 @@ import java.util.concurrent.Callable;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import us.shandian.giga.util.Utility;
 
 /**
  * A list adapter for a list of {@link Stream streams}, currently supporting {@link VideoStream} and {@link AudioStream}.

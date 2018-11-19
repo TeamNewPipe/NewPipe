@@ -12,14 +12,12 @@ import android.view.MenuItem;
 import android.view.ViewTreeObserver;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.download.service.DownloadManagerService;
 import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import io.reactivex.Completable;
 import io.reactivex.schedulers.Schedulers;
-import us.shandian.giga.service.DownloadManagerService;
-import us.shandian.giga.ui.fragment.AllMissionsFragment;
-import us.shandian.giga.ui.fragment.MissionsFragment;
 
 public class DownloadActivity extends AppCompatActivity {
 

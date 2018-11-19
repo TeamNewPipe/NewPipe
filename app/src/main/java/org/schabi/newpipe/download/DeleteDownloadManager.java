@@ -9,6 +9,8 @@ import android.support.design.widget.Snackbar;
 import android.view.View;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.downloader.get.DownloadManager;
+import org.schabi.newpipe.downloader.get.DownloadMission;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -21,8 +23,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
-import us.shandian.giga.get.DownloadManager;
-import us.shandian.giga.get.DownloadMission;
 
 public class DeleteDownloadManager {
 

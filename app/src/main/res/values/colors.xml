@@ -55,21 +55,6 @@
     <color name="transparent_background_color">#00000000</color>
     <color name="selected_background_color">#96717171</color>
 
-    <!-- GigaGet theme -->
-    <color name="bluegray">#607D8B</color>
-
-    <!-- GigaGet download Theme colors -->
-    <color name="audio_left_to_load_color">#555555</color>
-    <color name="audio_already_load_color">#000000</color>
-    <color name="video_left_to_load_color">#CD5656</color>
-    <color name="video_already_load_color">#BC211D</color>
-
-    <!-- GigaGet Component colors -->
-    <color name="white">#FFFFFF</color>
-    <color name="light_gray">#EFEFEF</color>
-    <color name="middle_gray">#E0E0E0</color>
-    <color name="gray">#616161</color>
-
     <color name="black">#000</color>
     <color name="gray_transparent">#be757575</color>
 
