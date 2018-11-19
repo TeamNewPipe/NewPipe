@@ -23,14 +23,11 @@ public class UpdateSettingsFragment extends BasePreferenceFragment {
     }
 
     private Preference.OnPreferenceChangeListener updatePreferenceChange
-            = new Preference.OnPreferenceChangeListener() {
-        @Override
-        public boolean onPreferenceChange(Preference preference, Object newValue) {
+            = (preference, newValue) ->  {
 
-            defaultPreferences.edit().putBoolean(getString(R.string.update_app_key),
-                    (boolean) newValue).apply();
+        defaultPreferences.edit().putBoolean(getString(R.string.update_app_key),
+                (boolean) newValue).apply();
 
-            return true;
-        }
+        return true;
     };
 }

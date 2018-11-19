@@ -70,7 +70,6 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
     protected String doInBackground(Void... voids) {
 
         // Make a network request to get latest NewPipe data.
-
         if (client == null) {
 
             client = new OkHttpClient
@@ -84,10 +83,8 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
                 .build();
 
         try {
-
             Response response = client.newCall(request).execute();
             return response.body().string();
-
         } catch (IOException ex) {
             ErrorActivity.reportError(app, ex, null, null,
                     ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
