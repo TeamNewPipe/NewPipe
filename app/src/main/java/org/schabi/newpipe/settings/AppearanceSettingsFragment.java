@@ -5,10 +5,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
+import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.Constants;
+
+import java.util.List;
 
 public class AppearanceSettingsFragment extends BasePreferenceFragment {
     private final static boolean CAPTIONING_SETTINGS_ACCESSIBLE =
@@ -19,6 +22,7 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
      */
     private String startThemeKey;
     private String captionSettingsKey;
+    private ListPreference themeListPrefrence;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,9 +30,26 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
         String themeKey = getString(R.string.theme_key);
         startThemeKey = defaultPreferences.getString(themeKey, getString(R.string.default_theme_value));
         findPreference(themeKey).setOnPreferenceChangeListener(themePreferenceChange);
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            // only for lollipop and newer versions
+            themeListPrefrence = (ListPreference) findPreference(themeKey);
+
+            CharSequence[] entries = new CharSequence[]{getContext().getString(R.string.light_theme_title),
+                    getContext().getString(R.string.dark_theme_title),
+                    getContext().getString(R.string.black_theme_title),
+                    getContext().getString(R.string.terminal_theme_title)};
+            CharSequence[] entryValues = new CharSequence[]{getContext().getString(R.string.light_theme_key),
+                    getContext().getString(R.string.dark_theme_key),
+                    getContext().getString(R.string.black_theme_key),
+                    getContext().getString(R.string.terminal_theme_key)};
+
+            // IMPORTANT - This is where set entries...looks OK to me
+            themeListPrefrence.setEntries(entries);
+            themeListPrefrence.setEntryValues(entryValues);
+        }
 
         captionSettingsKey = getString(R.string.caption_settings_key);
-        if (!CAPTIONING_SETTINGS_ACCESSIBLE)  {
+        if (!CAPTIONING_SETTINGS_ACCESSIBLE) {
             final Preference captionSettings = findPreference(captionSettingsKey);
             getPreferenceScreen().removePreference(captionSettings);
         }

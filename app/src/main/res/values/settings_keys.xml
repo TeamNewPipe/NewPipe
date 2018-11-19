@@ -125,13 +125,11 @@
         <item>@string/light_theme_key</item>
         <item>@string/dark_theme_key</item>
         <item>@string/black_theme_key</item>
-        <item>@string/terminal_theme_key</item>
     </string-array>
     <string-array name="theme_description_list" translatable="false">
         <item>@string/light_theme_title</item>
         <item>@string/dark_theme_title</item>
         <item>@string/black_theme_title</item>
-        <item>@string/terminal_theme_title</item>
     </string-array>
 
     <!-- Caption Size -->
