@@ -14,7 +14,7 @@ class Mp4DashMuxer extends Postprocessing {
 
     Mp4DashMuxer(DownloadMission mission) {
         super(mission);
-        recommendedReserve = 2048 * 1024;// 2 MiB
+        recommendedReserve = 15360 * 1024;// 15 MiB
         worksOnSameFile = true;
     }
 

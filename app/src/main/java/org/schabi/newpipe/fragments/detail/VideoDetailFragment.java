@@ -746,7 +746,7 @@ public class VideoDetailFragment
         sortedVideoStreams = ListHelper.getSortedStreamVideosList(activity, info.getVideoStreams(), info.getVideoOnlyStreams(), false);
         selectedVideoStreamIndex = ListHelper.getDefaultResolutionIndex(activity, sortedVideoStreams);
 
-        final StreamItemAdapter<VideoStream> streamsAdapter = new StreamItemAdapter<>(activity, new StreamSizeWrapper<>(sortedVideoStreams, activity), isExternalPlayerEnabled);
+        final StreamItemAdapter<VideoStream, Stream> streamsAdapter = new StreamItemAdapter<>(activity, new StreamSizeWrapper<>(sortedVideoStreams, activity), isExternalPlayerEnabled);
         spinnerToolbar.setAdapter(streamsAdapter);
         spinnerToolbar.setSelection(selectedVideoStreamIndex);
         spinnerToolbar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

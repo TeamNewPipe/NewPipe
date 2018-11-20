@@ -116,7 +116,6 @@ public class DownloadManager {
         return result;
     }
 
-    @SuppressWarnings("ResultOfMethodCallIgnored")
     private void loadPendingMissions() {
         File[] subs = mPendingMissionsDir.listFiles();
 
@@ -136,9 +135,11 @@ public class DownloadManager {
                 DownloadMission mis = Utility.readFromFile(sub);
 
                 if (mis == null) {
+                    //noinspection ResultOfMethodCallIgnored
                     sub.delete();
                 } else {
                     if (mis.isFinished()) {
+                        //noinspection ResultOfMethodCallIgnored
                         sub.delete();
                         continue;
                     }
@@ -173,6 +174,7 @@ public class DownloadManager {
                         m.threadCount = mis.threadCount;
                         m.source = mis.source;
                         m.maxRetry = mis.maxRetry;
+                        m.nearLength = mis.nearLength;
                         mis = m;
                     }
 
@@ -204,7 +206,7 @@ public class DownloadManager {
      * @param postProcessingArgs the arguments for the post-processing algorithm.
      */
     void startMission(String[] urls, String location, String name, char kind, int threads, String source,
-                      String postprocessingName, String[] postProcessingArgs) {
+                      String postprocessingName, String[] postProcessingArgs, long nearLength) {
         synchronized (this) {
             // check for existing pending download
             DownloadMission pendingMission = getPendingMission(location, name);
@@ -229,6 +231,7 @@ public class DownloadManager {
             mission.source = source;
             mission.mHandler = mHandler;
             mission.maxRetry = mPrefs.getInt(mPrefMaxRetry, 3);
+            mission.nearLength = nearLength;
 
             while (true) {
                 mission.metadata = new File(mPendingMissionsDir, String.valueOf(mission.timestamp));
@@ -406,26 +409,30 @@ public class DownloadManager {
      * Set a pending download as finished
      *
      * @param mission the desired mission
-     * @return true if exits pending missions running, otherwise, false
      */
-    boolean setFinished(DownloadMission mission) {
+    void setFinished(DownloadMission mission) {
         synchronized (this) {
-            int i = mMissionsPending.indexOf(mission);
-            mMissionsPending.remove(i);
-
+            mMissionsPending.remove(mission);
             mMissionsFinished.add(0, new FinishedMission(mission));
             mDownloadDataSource.addMission(mission);
+        }
+    }
 
+    /**
+     * runs another mission in queue if possible
+     * @return true if exits pending missions running or a mission was started, otherwise, false
+     */
+    boolean runAnotherMission() {
+        synchronized (this) {
             if (mMissionsPending.size() < 1) return false;
 
-            i = getRunningMissionsCount();
+            int i = getRunningMissionsCount();
             if (i > 0) return true;
 
-            // before returning, check the queue
             if (!canDownloadInCurrentNetwork()) return false;
 
-            for (DownloadMission mission1 : mMissionsPending) {
-                if (!mission1.running && mission.errCode != DownloadMission.ERROR_POSTPROCESSING_FAILED && mission1.enqueued) {
+            for (DownloadMission mission : mMissionsPending) {
+                if (!mission.running && mission.errCode != DownloadMission.ERROR_POSTPROCESSING_FAILED && mission.enqueued) {
                     resumeMission(mMissionsPending.get(i));
                     return true;
                 }
@@ -479,6 +486,12 @@ public class DownloadManager {
         }
 
         if (flag) mHandler.sendEmptyMessage(DownloadManagerService.MESSAGE_PAUSED);
+    }
+
+    void updateMaximumAttempts(int maxRetry) {
+        synchronized (this) {
+            for (DownloadMission mission : mMissionsPending) mission.maxRetry = maxRetry;
+        }
     }
 
     /**

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class CircularFile extends SharpStream {
 
     private final static int AUX_BUFFER_SIZE = 1024 * 1024;// 1 MiB
-    private final static int AUX2_BUFFER_SIZE = 256 * 1024;// 256 KiB
+    private final static int NOTIFY_BYTES_INTERVAL = 256 * 1024;// 256 KiB
     private final static int QUEUE_BUFFER_SIZE = 8 * 1024;// 8 KiB
 
     private RandomAccessFile out;
@@ -108,32 +108,56 @@ public class CircularFile extends SharpStream {
         }
 
         long end = callback.check();
-        int available;
+        long available;
 
         if (end == -1) {
-            available = Integer.MAX_VALUE;
+            available = Long.MAX_VALUE;
         } else {
             if (end < startOffset) {
                 throw new IOException("The reported offset is invalid. reported offset is " + String.valueOf(end));
             }
-            available = (int) (end - position);
+            available = end - position;
         }
 
         while (available > 0 && auxiliaryBuffers.size() > 0) {
             ManagedBuffer aux = auxiliaryBuffers.get(0);
 
-            if ((queue.size + aux.size) > available) {
-                available = 0;// wait for next check
-                break;
+            // check if there is enough space to dump the auxiliar buffer
+            if (available >= (aux.size + queue.size)) {
+                available -= aux.size;
+                writeQueue(aux.buffer, 0, aux.size);
+                aux.dereference();
+                auxiliaryBuffers.remove(0);
+                continue;
             }
 
-            writeQueue(aux.buffer, 0, aux.size);
-            available -= aux.size;
-            aux.dereference();
-            auxiliaryBuffers.remove(0);
+            // try flush contents to avoid allocate another auxiliar buffer
+            if (aux.available() < len && available > queue.size) {
+                int size = Math.min(len, aux.available());
+                aux.write(b, off, size);
+
+                off += size;
+                len -= size;
+
+                size = Math.min(aux.size, (int) available - queue.size);
+                if (size < 1) {
+                    break;
+                }
+
+                writeQueue(aux.buffer, 0, size);
+                aux.dereference(size);
+
+                available -= size;
+            }
+
+            break;
         }
 
-        if (available > (len + queue.size)) {
+        if (len < 1) {
+            return;
+        }
+
+        if (auxiliaryBuffers.size() < 1 && available > (len + queue.size)) {
             writeQueue(b, off, len);
         } else {
             int i = auxiliaryBuffers.size() - 1;
@@ -150,14 +174,14 @@ public class CircularFile extends SharpStream {
                 if (available < 1) {
                     // secondary auxiliary buffer
                     available = len;
-                    aux = new ManagedBuffer(Math.max(len, AUX2_BUFFER_SIZE));
+                    aux = new ManagedBuffer(Math.max(len, AUX_BUFFER_SIZE));
                     auxiliaryBuffers.add(aux);
                     i++;
                 } else {
                     available = Math.min(len, available);
                 }
 
-                aux.write(b, off, available);
+                aux.write(b, off, (int) available);
 
                 len -= available;
                 if (len < 1) {
@@ -173,7 +197,7 @@ public class CircularFile extends SharpStream {
         position += length;
 
         if (onProgress != null && position > reportPosition) {
-            reportPosition = position + AUX2_BUFFER_SIZE;// notify every 256 KiB (approx)
+            reportPosition = position + NOTIFY_BYTES_INTERVAL;
             onProgress.report(position);
         }
     }
@@ -194,6 +218,10 @@ public class CircularFile extends SharpStream {
 
             offset += size;
             length -= size;
+        }
+
+        if (queue.size >= queue.buffer.length) {
+            flushQueue();
         }
     }
 
@@ -238,7 +266,9 @@ public class CircularFile extends SharpStream {
         flush();
         out.seek(startOffset);
 
-        if (onProgress != null) onProgress.report(-position);
+        if (onProgress != null) {
+            onProgress.report(-position);
+        }
 
         position = startOffset;
         reportPosition = startOffset;
@@ -325,6 +355,18 @@ public class CircularFile extends SharpStream {
         void dereference() {
             buffer = null;
             size = 0;
+        }
+
+        void dereference(int amount) {
+            if (amount > size) {
+                throw new IndexOutOfBoundsException("Invalid dereference amount (" + amount + ">=" + size + ")");
+            }
+
+            size -= amount;
+
+            for (int i = 0; i < size; i++) {
+                buffer[i] = buffer[amount + i];
+            }
         }
 
         protected int available() {

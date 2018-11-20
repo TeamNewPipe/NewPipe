@@ -257,7 +257,7 @@ public class Mp4DashReader {
 
     private String boxName(int type) {
         try {
-            return new String(ByteBuffer.allocate(4).putInt(type).array(), "US-ASCII");
+            return new String(ByteBuffer.allocate(4).putInt(type).array(), "UTF-8");
         } catch (UnsupportedEncodingException e) {
             return "0x" + Integer.toHexString(type);
         }

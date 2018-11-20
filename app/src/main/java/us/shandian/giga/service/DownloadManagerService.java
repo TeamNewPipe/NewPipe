@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
@@ -22,6 +23,8 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
+import android.preference.PreferenceManager;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.Builder;
 import android.support.v4.content.PermissionChecker;
 import android.util.Log;
@@ -29,6 +32,7 @@ import android.widget.Toast;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.download.DownloadActivity;
+import org.schabi.newpipe.player.helper.LockManager;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -61,6 +65,7 @@ public class DownloadManagerService extends Service {
     private static final String EXTRA_POSTPROCESSING_NAME = "DownloadManagerService.extra.postprocessingName";
     private static final String EXTRA_POSTPROCESSING_ARGS = "DownloadManagerService.extra.postprocessingArgs";
     private static final String EXTRA_SOURCE = "DownloadManagerService.extra.source";
+    private static final String EXTRA_NEAR_LENGTH = "DownloadManagerService.extra.nearLength";
 
     private static final String ACTION_RESET_DOWNLOAD_COUNT = APPLICATION_ID + ".reset_download_count";
 
@@ -73,10 +78,21 @@ public class DownloadManagerService extends Service {
     private StringBuilder downloadDoneList = null;
     NotificationManager notificationManager = null;
     private boolean mForeground = false;
-    
+
     private final ArrayList<Handler> mEchoObservers = new ArrayList<>(1);
 
     private BroadcastReceiver mNetworkStateListener;
+
+    private SharedPreferences mPrefs = null;
+    private final SharedPreferences.OnSharedPreferenceChangeListener mPrefChangeListener = this::handlePreferenceChange;
+
+    private boolean wakeLockAcquired = false;
+    private LockManager wakeLock = null;
+
+    private int downloadFailedNotificationID = DOWNLOADS_NOTIFICATION_ID + 1;
+
+    private Bitmap icLauncher;
+    private Bitmap icDownloadDone;
 
     /**
      * notify media scanner on downloaded media file ...
@@ -112,12 +128,12 @@ public class DownloadManagerService extends Service {
                 openDownloadListIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
-        Bitmap iconBitmap = BitmapFactory.decodeResource(this.getResources(), R.mipmap.ic_launcher);
+        icLauncher = BitmapFactory.decodeResource(this.getResources(), R.mipmap.ic_launcher);
 
         Builder builder = new Builder(this, getString(R.string.notification_channel_id))
                 .setContentIntent(pendingIntent)
                 .setSmallIcon(android.R.drawable.stat_sys_download)
-                .setLargeIcon(iconBitmap)
+                .setLargeIcon(icLauncher)
                 .setContentTitle(getString(R.string.msg_running))
                 .setContentText(getString(R.string.msg_running_detail));
 
@@ -135,6 +151,11 @@ public class DownloadManagerService extends Service {
             }
         };
         registerReceiver(mNetworkStateListener, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        mPrefs.registerOnSharedPreferenceChangeListener(mPrefChangeListener);
+
+        wakeLock = new LockManager(this);
     }
 
     @Override
@@ -158,8 +179,9 @@ public class DownloadManagerService extends Service {
                 String psName = intent.getStringExtra(EXTRA_POSTPROCESSING_NAME);
                 String[] psArgs = intent.getStringArrayExtra(EXTRA_POSTPROCESSING_ARGS);
                 String source = intent.getStringExtra(EXTRA_SOURCE);
+                long nearLength = intent.getLongExtra(EXTRA_NEAR_LENGTH, 0);
 
-                mHandler.post(() -> mManager.startMission(urls, location, name, kind, threads, source, psName, psArgs));
+                mHandler.post(() -> mManager.startMission(urls, location, name, kind, threads, source, psName, psArgs, nearLength));
 
             } else if (downloadDoneNotification != null && action.equals(ACTION_RESET_DOWNLOAD_COUNT)) {
                 downloadDoneCount = 0;
@@ -184,10 +206,15 @@ public class DownloadManagerService extends Service {
             notificationManager.notify(DOWNLOADS_NOTIFICATION_ID, downloadDoneNotification.build());
         }
 
-        unregisterReceiver(mNetworkStateListener);
-
         mManager.pauseAllMissions();
 
+        if (wakeLockAcquired) wakeLock.releaseWifiAndCpu();
+
+        unregisterReceiver(mNetworkStateListener);
+        mPrefs.unregisterOnSharedPreferenceChangeListener(mPrefChangeListener);
+
+        icDownloadDone.recycle();
+        icLauncher.recycle();
     }
 
     @Override
@@ -209,19 +236,24 @@ public class DownloadManagerService extends Service {
     }
 
     public void handleMessage(Message msg) {
+        DownloadMission mission = (DownloadMission) msg.obj;
+
         switch (msg.what) {
             case MESSAGE_FINISHED:
-                DownloadMission mission = (DownloadMission) msg.obj;
                 notifyMediaScanner(mission.getDownloadedFile());
                 notifyFinishedDownload(mission.name);
-                updateForegroundState(mManager.setFinished(mission));
+                mManager.setFinished(mission);
+                updateForegroundState(mManager.runAnotherMission());
                 break;
             case MESSAGE_RUNNING:
             case MESSAGE_PROGRESS:
                 updateForegroundState(true);
                 break;
-            case MESSAGE_PAUSED:
             case MESSAGE_ERROR:
+                notifyFailedDownload(mission.name);
+                updateForegroundState(mManager.runAnotherMission());
+                break;
+            case MESSAGE_PAUSED:
                 updateForegroundState(mManager.getRunningMissionsCount() > 0);
                 break;
         }
@@ -272,21 +304,28 @@ public class DownloadManagerService extends Service {
         mManager.handleConnectivityChange(status);
     }
 
+    private void handlePreferenceChange(SharedPreferences prefs, String key) {
+        if (key.equals(getString(R.string.downloads_max_retry))) {
+            mManager.updateMaximumAttempts(prefs.getInt(key, 3));
+        }
+    }
+
     public void updateForegroundState(boolean state) {
         if (state == mForeground) return;
 
         if (state) {
             startForeground(FOREGROUND_NOTIFICATION_ID, mNotification);
+            if (!wakeLockAcquired) wakeLock.acquireWifiAndCpu();
         } else {
             stopForeground(true);
+            if (wakeLockAcquired) wakeLock.releaseWifiAndCpu();
         }
 
         mForeground = state;
     }
 
-    public static void startMission(Context context, String urls[], String location, String name,
-                                    char kind, int threads, String source, String postprocessingName,
-                                    String[] postprocessingArgs) {
+    public static void startMission(Context context, String urls[], String location, String name, char kind,
+                                    int threads, String source, String psName, String[] psArgs, long nearLength) {
         Intent intent = new Intent(context, DownloadManagerService.class);
         intent.setAction(Intent.ACTION_RUN);
         intent.putExtra(EXTRA_URLS, urls);
@@ -295,8 +334,9 @@ public class DownloadManagerService extends Service {
         intent.putExtra(EXTRA_KIND, kind);
         intent.putExtra(EXTRA_THREADS, threads);
         intent.putExtra(EXTRA_SOURCE, source);
-        intent.putExtra(EXTRA_POSTPROCESSING_NAME, postprocessingName);
-        intent.putExtra(EXTRA_POSTPROCESSING_ARGS, postprocessingArgs);
+        intent.putExtra(EXTRA_POSTPROCESSING_NAME, psName);
+        intent.putExtra(EXTRA_POSTPROCESSING_ARGS, psArgs);
+        intent.putExtra(EXTRA_NEAR_LENGTH, nearLength);
         context.startService(intent);
     }
 
@@ -330,16 +370,19 @@ public class DownloadManagerService extends Service {
         if (downloadDoneNotification == null) {
             downloadDoneList = new StringBuilder(name.length());
 
-            Bitmap icon = BitmapFactory.decodeResource(this.getResources(), android.R.drawable.stat_sys_download_done);
+            icDownloadDone = BitmapFactory.decodeResource(this.getResources(), android.R.drawable.stat_sys_download_done);
             downloadDoneNotification = new Builder(this, getString(R.string.notification_channel_id))
                     .setAutoCancel(true)
-                    .setLargeIcon(icon)
+                    .setLargeIcon(icDownloadDone)
                     .setSmallIcon(android.R.drawable.stat_sys_download_done)
                     .setDeleteIntent(PendingIntent.getService(this, (int) System.currentTimeMillis(),
                             new Intent(this, DownloadManagerService.class)
                                     .setAction(ACTION_RESET_DOWNLOAD_COUNT)
                             , PendingIntent.FLAG_UPDATE_CURRENT))
-                    .setContentIntent(mNotification.contentIntent);
+                    .setContentIntent(PendingIntent.getService(this, (int) System.currentTimeMillis() + 1,
+                            new Intent(this, DownloadActivity.class)
+                                    .setAction(Intent.ACTION_MAIN),
+                            PendingIntent.FLAG_UPDATE_CURRENT));
         }
 
         if (downloadDoneCount < 1) {
@@ -347,27 +390,61 @@ public class DownloadManagerService extends Service {
 
             if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                 downloadDoneNotification.setContentTitle(getString(R.string.app_name));
-                downloadDoneNotification.setContentText(getString(R.string.download_finished, name));
             } else {
-                downloadDoneNotification.setContentTitle(getString(R.string.download_finished, name));
-                downloadDoneNotification.setContentText(null);
+                downloadDoneNotification.setContentTitle(null);
             }
+
+            downloadDoneNotification.setContentText(getString(R.string.download_finished));
+            downloadDoneNotification.setStyle(new NotificationCompat.BigTextStyle()
+                    .setBigContentTitle(getString(R.string.download_finished))
+                    .bigText(name)
+            );
         } else {
-            downloadDoneList.append(", ");
+            downloadDoneList.append('\n');
             downloadDoneList.append(name);
 
+            downloadDoneNotification.setStyle(new NotificationCompat.BigTextStyle().bigText(downloadDoneList));
             downloadDoneNotification.setContentTitle(getString(R.string.download_finished_more, String.valueOf(downloadDoneCount + 1)));
-            downloadDoneNotification.setContentText(downloadDoneList.toString());
+            downloadDoneNotification.setContentText(downloadDoneList);
         }
 
         notificationManager.notify(DOWNLOADS_NOTIFICATION_ID, downloadDoneNotification.build());
         downloadDoneCount++;
     }
 
+    public void notifyFailedDownload(String name) {
+        if (icDownloadDone == null) {
+            // TODO: use a proper icon for failed downloads
+            icDownloadDone = BitmapFactory.decodeResource(this.getResources(), android.R.drawable.stat_sys_download_done);
+        }
+
+        Builder notification = new Builder(this, getString(R.string.notification_channel_id))
+                .setAutoCancel(true)
+                .setLargeIcon(icDownloadDone)
+                .setSmallIcon(android.R.drawable.stat_sys_download_done)
+                .setContentIntent(PendingIntent.getService(this, (int) System.currentTimeMillis() + 1,
+                        new Intent(this, DownloadActivity.class)
+                                .setAction(Intent.ACTION_MAIN),
+                        PendingIntent.FLAG_UPDATE_CURRENT));
+
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            notification.setContentTitle(getString(R.string.app_name));
+            notification.setStyle(new NotificationCompat.BigTextStyle()
+                    .bigText(getString(R.string.download_failed).concat(": ").concat(name)));
+        } else {
+            notification.setContentTitle(getString(R.string.download_failed));
+            notification.setContentText(name);
+            notification.setStyle(new NotificationCompat.BigTextStyle()
+                    .bigText(name));
+        }
+
+        notificationManager.notify(downloadFailedNotificationID++, notification.build());
+    }
+
     private void manageObservers(Handler handler, boolean add) {
         synchronized (mEchoObservers) {
             if (add) {
-               mEchoObservers.add(handler);
+                mEchoObservers.add(handler);
             } else {
                 mEchoObservers.remove(handler);
             }

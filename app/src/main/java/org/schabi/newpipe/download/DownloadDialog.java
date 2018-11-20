@@ -11,6 +11,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,7 @@ import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.util.FilenameUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.PermissionHelper;
+import org.schabi.newpipe.util.SecondaryStreamHelper;
 import org.schabi.newpipe.util.StreamItemAdapter;
 import org.schabi.newpipe.util.StreamItemAdapter.StreamSizeWrapper;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -55,17 +57,24 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     private static final String TAG = "DialogFragment";
     private static final boolean DEBUG = MainActivity.DEBUG;
 
-    @State protected StreamInfo currentInfo;
-    @State protected StreamSizeWrapper<AudioStream> wrappedAudioStreams = StreamSizeWrapper.empty();
-    @State protected StreamSizeWrapper<VideoStream> wrappedVideoStreams = StreamSizeWrapper.empty();
-    @State protected StreamSizeWrapper<SubtitlesStream> wrappedSubtitleStreams = StreamSizeWrapper.empty();
-    @State protected int selectedVideoIndex = 0;
-    @State protected int selectedAudioIndex = 0;
-    @State protected int selectedSubtitleIndex = 0;
+    @State
+    protected StreamInfo currentInfo;
+    @State
+    protected StreamSizeWrapper<AudioStream> wrappedAudioStreams = StreamSizeWrapper.empty();
+    @State
+    protected StreamSizeWrapper<VideoStream> wrappedVideoStreams = StreamSizeWrapper.empty();
+    @State
+    protected StreamSizeWrapper<SubtitlesStream> wrappedSubtitleStreams = StreamSizeWrapper.empty();
+    @State
+    protected int selectedVideoIndex = 0;
+    @State
+    protected int selectedAudioIndex = 0;
+    @State
+    protected int selectedSubtitleIndex = 0;
 
-    private StreamItemAdapter<AudioStream> audioStreamsAdapter;
-    private StreamItemAdapter<VideoStream> videoStreamsAdapter;
-    private StreamItemAdapter<SubtitlesStream> subtitleStreamsAdapter;
+    private StreamItemAdapter<AudioStream, Stream> audioStreamsAdapter;
+    private StreamItemAdapter<VideoStream, AudioStream> videoStreamsAdapter;
+    private StreamItemAdapter<SubtitlesStream, Stream> subtitleStreamsAdapter;
 
     private final CompositeDisposable disposables = new CompositeDisposable();
 
@@ -144,7 +153,8 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (DEBUG) Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
+        if (DEBUG)
+            Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
         if (!PermissionHelper.checkStoragePermissions(getActivity(), PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE)) {
             getDialog().dismiss();
             return;
@@ -153,14 +163,29 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         setStyle(STYLE_NO_TITLE, ThemeHelper.getDialogTheme(getContext()));
         Icepick.restoreInstanceState(this, savedInstanceState);
 
-        this.videoStreamsAdapter = new StreamItemAdapter<>(getContext(), wrappedVideoStreams, true);
+        SparseArray<SecondaryStreamHelper<AudioStream>> secondaryStreams = new SparseArray<>(4);
+        List<VideoStream> videoStreams = wrappedVideoStreams.getStreamsList();
+
+        for (int i = 0; i < videoStreams.size(); i++) {
+            if (!videoStreams.get(i).isVideoOnly()) continue;
+            AudioStream audioStream = SecondaryStreamHelper.getAudioStreamFor(wrappedAudioStreams.getStreamsList(), videoStreams.get(i));
+
+            if (audioStream != null) {
+                secondaryStreams.append(i, new SecondaryStreamHelper<>(wrappedAudioStreams, audioStream));
+            } else if (DEBUG) {
+                Log.w(TAG, "No audio stream candidates for video format " + videoStreams.get(i).getFormat().name());
+            }
+        }
+
+        this.videoStreamsAdapter = new StreamItemAdapter<>(getContext(), wrappedVideoStreams, secondaryStreams);
         this.audioStreamsAdapter = new StreamItemAdapter<>(getContext(), wrappedAudioStreams);
         this.subtitleStreamsAdapter = new StreamItemAdapter<>(getContext(), wrappedSubtitleStreams);
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if (DEBUG) Log.d(TAG, "onCreateView() called with: inflater = [" + inflater + "], container = [" + container + "], savedInstanceState = [" + savedInstanceState + "]");
+        if (DEBUG)
+            Log.d(TAG, "onCreateView() called with: inflater = [" + inflater + "], container = [" + container + "], savedInstanceState = [" + savedInstanceState + "]");
         return inflater.inflate(R.layout.download_dialog, container);
     }
 
@@ -293,7 +318,8 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
 
     @Override
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-        if (DEBUG) Log.d(TAG, "onCheckedChanged() called with: group = [" + group + "], checkedId = [" + checkedId + "]");
+        if (DEBUG)
+            Log.d(TAG, "onCheckedChanged() called with: group = [" + group + "], checkedId = [" + checkedId + "]");
         boolean flag = true;
 
         switch (checkedId) {
@@ -318,7 +344,8 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        if (DEBUG) Log.d(TAG, "onItemSelected() called with: parent = [" + parent + "], view = [" + view + "], position = [" + position + "], id = [" + id + "]");
+        if (DEBUG)
+            Log.d(TAG, "onItemSelected() called with: parent = [" + parent + "], view = [" + view + "], position = [" + position + "], id = [" + id + "]");
         switch (radioVideoAudioGroup.getCheckedRadioButtonId()) {
             case R.id.audio_button:
                 selectedAudioIndex = position;
@@ -458,57 +485,41 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         String[] urls;
         String psName = null;
         String[] psArgs = null;
-        String secondaryStream = null;
+        String secondaryStreamUrl = null;
+        long nearLength = 0;
 
         if (selectedStream instanceof VideoStream) {
-            VideoStream videoStream = (VideoStream) selectedStream;
-            if (videoStream.isVideoOnly() && videoStream.getFormat() != MediaFormat.v3GPP) {
-                boolean m4v = videoStream.getFormat() == MediaFormat.MPEG_4;
+            SecondaryStreamHelper<AudioStream> secondaryStream = videoStreamsAdapter
+                    .getAllSecondary()
+                    .get(wrappedVideoStreams.getStreamsList().indexOf(selectedStream));
 
-                for (AudioStream audio : audioStreamsAdapter.getAll()) {
-                    if (audio.getFormat() == (m4v ? MediaFormat.M4A : MediaFormat.WEBMA)) {
-                        secondaryStream = audio.getUrl();
-                        break;
-                    }
-                }
+            if (secondaryStream != null) {
+                secondaryStreamUrl = secondaryStream.getStream().getUrl();
+                psName = selectedStream.getFormat() == MediaFormat.MPEG_4 ? Postprocessing.ALGORITHM_MP4_DASH_MUXER : Postprocessing.ALGORITHM_WEBM_MUXER;
+                psArgs = null;
+                long videoSize = wrappedVideoStreams.getSizeInBytes((VideoStream) selectedStream);
 
-                if (secondaryStream == null) {
-                    // retry, but this time in reverse order
-                    List<AudioStream> audioStreams = audioStreamsAdapter.getAll();
-                    for (int i = audioStreams.size() - 1; i >= 0; i--) {
-                        AudioStream audio = audioStreams.get(i);
-                        if (audio.getFormat() == (m4v ? MediaFormat.MP3 : MediaFormat.OPUS)) {
-                            secondaryStream = audio.getUrl();
-                            break;
-                        }
-                    }
-                }
-
-                if (secondaryStream == null) {
-                    Log.w(TAG, "No audio stream candidates for video format " + videoStream.getFormat().name());
-                    psName = null;
-                    psArgs = null;
-                } else {
-                    psName = m4v ? Postprocessing.ALGORITHM_MP4_DASH_MUXER : Postprocessing.ALGORITHM_WEBM_MUXER;
-                    psArgs = null;
+                // set nearLength, only, if both sizes are fetched or known. this probably does not work on weak internet connections
+                if (secondaryStream.getSizeInBytes() > 0 && videoSize > 0) {
+                    nearLength = secondaryStream.getSizeInBytes() + videoSize;
                 }
             }
         } else if ((selectedStream instanceof SubtitlesStream) && selectedStream.getFormat() == MediaFormat.TTML) {
             psName = Postprocessing.ALGORITHM_TTML_CONVERTER;
             psArgs = new String[]{
                     selectedStream.getFormat().getSuffix(),
-                    "false",//ignore empty frames
-                    "false",// detect youtube duplicateLines
+                    "false",// ignore empty frames
+                    "false",// detect youtube duplicate lines
             };
         }
 
-        if (secondaryStream == null) {
+        if (secondaryStreamUrl == null) {
             urls = new String[]{selectedStream.getUrl()};
         } else {
-            urls = new String[]{selectedStream.getUrl(), secondaryStream};
+            urls = new String[]{selectedStream.getUrl(), secondaryStreamUrl};
         }
 
-        DownloadManagerService.startMission(context, urls, location, fileName, kind, threads, currentInfo.getUrl(), psName, psArgs);
+        DownloadManagerService.startMission(context, urls, location, fileName, kind, threads, currentInfo.getUrl(), psName, psArgs, nearLength);
 
         getDialog().dismiss();
     }

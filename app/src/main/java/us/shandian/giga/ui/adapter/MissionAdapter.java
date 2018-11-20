@@ -142,7 +142,7 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
                 str = R.string.missions_header_pending;
             } else {
                 str = R.string.missions_header_finished;
-                mClear.setVisible(true);
+                setClearButtonVisibility(true);
             }
 
             ((ViewHolderHeader) view).header.setText(str);
@@ -233,8 +233,7 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
             }
         }
 
-        long length = mission.offsets[mission.current < mission.offsets.length ? mission.current : (mission.offsets.length - 1)];
-        length += mission.length;
+        long length = mission.getLength();
 
         int state = 0;
         if (!mission.isFinished()) {
@@ -274,7 +273,7 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
             return;
         }
 
-      
+
         if (deltaTime > 1000 && deltaDone > 0) {
             float speed = (float) deltaDone / deltaTime;
             String speedStr = Utility.formatSpeed(speed * 1000);
@@ -297,7 +296,7 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
         Log.v(TAG, "Mime: " + mimeType + " package: " + BuildConfig.APPLICATION_ID + ".provider");
 
         Uri uri = FileProvider.getUriForFile(mContext, BuildConfig.APPLICATION_ID + ".provider", file);
-  
+
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
         intent.setDataAndType(uri, mimeType);
@@ -390,7 +389,7 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
                 str.append(mContext.getString(R.string.error_connect_host));
                 break;
             case DownloadMission.ERROR_POSTPROCESSING_FAILED:
-                str.append(R.string.error_postprocessing_failed);
+                str.append(mContext.getString(R.string.error_postprocessing_failed));
             case DownloadMission.ERROR_UNKNOWN_EXCEPTION:
                 break;
             default:
@@ -418,7 +417,7 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
     public void clearFinishedDownloads() {
         mDownloadManager.forgetFinishedDownloads();
         applyChanges();
-        mClear.setVisible(false);
+        setClearButtonVisibility(false);
     }
 
     private boolean handlePopupItem(@NonNull ViewHolderItem h, @NonNull MenuItem option) {
@@ -429,7 +428,7 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
             switch (id) {
                 case R.id.start:
                     h.state = -1;
-                    h.size.setText(Utility.formatBytes(mission.length));
+                    h.size.setText(Utility.formatBytes(mission.getLength()));
                     mDownloadManager.resumeMission(mission);
                     return true;
                 case R.id.pause:
@@ -466,11 +465,11 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
                 new ChecksumTask(mContext).execute(h.item.mission.getDownloadedFile().getAbsolutePath(), ALGORITHMS.get(id));
                 return true;
             case R.id.source:
-                        /*Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(h.item.mission.source));
-                        mContext.startActivity(intent);*/
+                /*Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(h.item.mission.source));
+                mContext.startActivity(intent);*/
                 try {
                     Intent intent = NavigationHelper.getIntentByLink(mContext, h.item.mission.source);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
                     mContext.startActivity(intent);
                 } catch (Exception e) {
                     Log.w(TAG, "Selected item has a invalid source", e);
@@ -490,7 +489,7 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
 
         if (mIterator.getOldListSize() > 0) {
             int lastItemType = mIterator.getSpecialAtItem(mIterator.getOldListSize() - 1);
-            mClear.setVisible(lastItemType == DownloadManager.SPECIAL_FINISHED);
+            setClearButtonVisibility(lastItemType == DownloadManager.SPECIAL_FINISHED);
         }
     }
 
@@ -498,11 +497,27 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
         mIterator.start();
         mIterator.end();
 
+        for (ViewHolderItem item: mPendingDownloadsItems) {
+            item.lastTimeStamp = -1;
+        }
+
         notifyDataSetChanged();
     }
 
     public void setLinear(boolean isLinear) {
         mLayout = isLinear ? R.layout.mission_item_linear : R.layout.mission_item;
+    }
+
+    public void setClearButton(MenuItem clearButton) {
+        if (mClear == null) {
+            int lastItemType = mIterator.getSpecialAtItem(mIterator.getOldListSize() - 1);
+            clearButton.setVisible(lastItemType == DownloadManager.SPECIAL_FINISHED);
+        }
+        mClear = clearButton;
+    }
+
+    private void setClearButtonVisibility(boolean flag) {
+        mClear.setVisible(flag);
     }
 
     private void checkEmptyMessageVisibility() {
@@ -577,8 +592,8 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
             checksum = menu.findItem(R.id.checksum);
 
             itemView.setOnClickListener((v) -> {
-                  if(((DownloadMission)item.mission).isFinished())
-                      viewWithFileProvider(item.mission.getDownloadedFile());
+                if (((DownloadMission) item.mission).isFinished())
+                    viewWithFileProvider(item.mission.getDownloadedFile());
             });
 
             //h.itemView.setOnClickListener(v -> showDetail(h));
@@ -607,9 +622,9 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
 
                         queue.setChecked(mission.enqueued);
 
-                        start.setVisible(mission.errCode != DownloadMission.ERROR_POSTPROCESSING_FAILED);
                         delete.setVisible(true);
-                        queue.setVisible(true);
+                        start.setVisible(mission.errCode != DownloadMission.ERROR_POSTPROCESSING_FAILED);
+                        queue.setVisible(mission.errCode != DownloadMission.ERROR_POSTPROCESSING_FAILED);
                     }
                 }
             } else {

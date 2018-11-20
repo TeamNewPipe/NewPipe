@@ -33,7 +33,7 @@ public class MissionsFragment extends Fragment {
     private SharedPreferences mPrefs;
     private boolean mLinear;
     private MenuItem mSwitch;
-    private MenuItem mClear;
+    private MenuItem mClear = null;
 
     private RecyclerView mList;
     private View mEmpty;
@@ -152,6 +152,7 @@ public class MissionsFragment extends Fragment {
     public void onPrepareOptionsMenu(Menu menu) {
         mSwitch = menu.findItem(R.id.switch_mode);
         mClear = menu.findItem(R.id.clear_list);
+        if (mAdapter != null) mAdapter.setClearButton(mClear);
         super.onPrepareOptionsMenu(menu);
     }
 

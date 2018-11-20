@@ -74,7 +74,7 @@ public class DownloadInitializer implements Runnable {
                             }
                         } else {
                             // if one thread is solicited don't calculate blocks, is useless
-                            mMission.blocks = 0;
+                            mMission.blocks = 1;
                             mMission.fallback = true;
                             mMission.unknownLength = false;
                         }

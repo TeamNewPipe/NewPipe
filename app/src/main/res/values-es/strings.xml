@@ -514,8 +514,9 @@ abrir en modo popup</string>
 
     <string name="file_deleted">Archivo borrado</string>
 
-    <!-- download done notifications -->
-    <string name="download_finished">Descarga finalizada: %s</string>
+    <!-- download notifications -->
+    <string name="download_failed">Descarga fallida</string>
+    <string name="download_finished">Descarga finalizada</string>
     <string name="download_finished_more">%s descargas finalizadas</string>
 
     <!-- dialog about existing downloads -->

@@ -16,7 +16,7 @@ class WebMMuxer extends Postprocessing {
 
     WebMMuxer(DownloadMission mission) {
         super(mission);
-        recommendedReserve = (1024 + 512) * 1024;// 1.50 MiB
+        recommendedReserve = 2048 * 1024;// 2 MiB
         worksOnSameFile = true;
     }
 

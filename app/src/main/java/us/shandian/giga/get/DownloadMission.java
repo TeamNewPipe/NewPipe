@@ -103,6 +103,11 @@ public class DownloadMission extends Mission {
      */
     public int maxRetry;
 
+    /**
+     * Approximated final length, this represent the sum of all resources sizes
+     */
+    public long nearLength;
+
     public int threadCount = 3;
     boolean fallback;
     private int finishCount;
@@ -432,7 +437,7 @@ public class DownloadMission extends Mission {
             return;
         }
 
-        if (DEBUG && blocks < 1) {
+        if (DEBUG && blocks == 0) {
             Log.w(TAG, "pausing a download that can not be resumed.");
         }
 
@@ -505,6 +510,13 @@ public class DownloadMission extends Mission {
 
     public boolean isFinished() {
         return current >= urls.length && postprocessingName == null;
+    }
+
+    public long getLength() {
+        long near = offsets[current < offsets.length ? current : (offsets.length - 1)] + length;
+        near -= offsets[0];// don't count reserved space
+
+        return near > nearLength ? near : nearLength;
     }
 
     private boolean doPostprocessing() {

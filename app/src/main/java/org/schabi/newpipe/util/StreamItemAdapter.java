@@ -1,6 +1,7 @@
 package org.schabi.newpipe.util;
 
 import android.content.Context;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,24 +30,32 @@ import us.shandian.giga.util.Utility;
 /**
  * A list adapter for a list of {@link Stream streams}, currently supporting {@link VideoStream} and {@link AudioStream}.
  */
-public class StreamItemAdapter<T extends Stream> extends BaseAdapter {
+public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseAdapter {
     private final Context context;
 
     private final StreamSizeWrapper<T> streamsWrapper;
-    private final boolean showIconNoAudio;
+    private final SparseArray<SecondaryStreamHelper<U>> secondaryStreams;
 
-    public StreamItemAdapter(Context context, StreamSizeWrapper<T> streamsWrapper, boolean showIconNoAudio) {
+    public StreamItemAdapter(Context context, StreamSizeWrapper<T> streamsWrapper, SparseArray<SecondaryStreamHelper<U>> secondaryStreams) {
         this.context = context;
         this.streamsWrapper = streamsWrapper;
-        this.showIconNoAudio = showIconNoAudio;
+        this.secondaryStreams = secondaryStreams;
+    }
+
+    public StreamItemAdapter(Context context, StreamSizeWrapper<T> streamsWrapper, boolean showIconNoAudio) {
+        this(context, streamsWrapper, showIconNoAudio ? new SparseArray<>() : null);
     }
 
     public StreamItemAdapter(Context context, StreamSizeWrapper<T> streamsWrapper) {
-        this(context, streamsWrapper, false);
+        this(context, streamsWrapper, null);
     }
 
     public List<T> getAll() {
         return streamsWrapper.getStreamsList();
+    }
+
+    public SparseArray<SecondaryStreamHelper<U>> getAllSecondary() {
+        return secondaryStreams;
     }
 
     @Override
@@ -90,22 +99,15 @@ public class StreamItemAdapter<T extends Stream> extends BaseAdapter {
         String qualityString;
 
         if (stream instanceof VideoStream) {
-            qualityString = ((VideoStream) stream).getResolution();
+            VideoStream videoStream = ((VideoStream) stream);
+            qualityString = videoStream.getResolution();
 
-            if (!showIconNoAudio) {
-                woSoundIconVisibility = View.GONE;
-            } else if (((VideoStream) stream).isVideoOnly()) {
-                switch (stream.getFormat()) {
-                    case WEBM:// fully supported
-                    case MPEG_4:// ¿is DASH MPEG-4 format?
-                        woSoundIconVisibility = View.INVISIBLE;
-                        break;
-                    default:
-                        woSoundIconVisibility = View.VISIBLE;
-                        break;
+            if (secondaryStreams != null) {
+                if (videoStream.isVideoOnly()) {
+                    woSoundIconVisibility = secondaryStreams.get(position) == null ? View.VISIBLE : View.INVISIBLE;
+                } else if (isDropdownItem) {
+                    woSoundIconVisibility = View.INVISIBLE;
                 }
-            } else if (isDropdownItem) {
-                woSoundIconVisibility = View.INVISIBLE;
             }
         } else if (stream instanceof AudioStream) {
             qualityString = ((AudioStream) stream).getAverageBitrate() + "kbps";
@@ -119,7 +121,13 @@ public class StreamItemAdapter<T extends Stream> extends BaseAdapter {
         }
 
         if (streamsWrapper.getSizeInBytes(position) > 0) {
-            sizeView.setText(streamsWrapper.getFormattedSize(position));
+            SecondaryStreamHelper secondary = secondaryStreams == null ? null : secondaryStreams.get(position);
+            if (secondary != null) {
+                long size = secondary.getSizeInBytes() + streamsWrapper.getSizeInBytes(position);
+                sizeView.setText(Utility.formatBytes(size));
+            } else {
+                sizeView.setText(streamsWrapper.getFormattedSize(position));
+            }
             sizeView.setVisibility(View.VISIBLE);
         } else {
             sizeView.setVisibility(View.GONE);

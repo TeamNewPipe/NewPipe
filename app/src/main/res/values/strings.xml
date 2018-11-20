@@ -539,8 +539,9 @@
     
     <string name="permission_denied">Action denied by the system</string>
 
-    <!-- download done notifications -->
-    <string name="download_finished">Download finished: %s</string>
+    <!-- download notifications -->
+    <string name="download_failed">Download failed</string>
+    <string name="download_finished">Download finished</string>
     <string name="download_finished_more">%s downloads finished</string>
 
     <!-- dialog about existing downloads -->
