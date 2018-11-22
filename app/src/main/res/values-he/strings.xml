@@ -59,7 +59,7 @@
     <string name="next_video_title">הסרטון הבא</string>
     <string name="show_next_and_similar_title">הראה את הסרטונים הבאים וסרטונים דומים</string>
     <string name="url_not_supported_toast">כתובת URL לא נתמכת</string>
-    <string name="search_language_title">שפת התוכן המועדפת</string>
+    <string name="content_language_title">שפת התוכן המועדפת</string>
     <string name="settings_category_video_audio_title">סרטים ושמע</string>
     <string name="settings_category_popup_title">חלון צץ</string>
     <string name="settings_category_appearance_title">תצוגה</string>

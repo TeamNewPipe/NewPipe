@@ -16,6 +16,10 @@ public class RemotePlaylistItemHolder extends PlaylistItemHolder {
         super(infoItemBuilder, parent);
     }
 
+    RemotePlaylistItemHolder(LocalItemBuilder infoItemBuilder, int layoutId, ViewGroup parent) {
+        super(infoItemBuilder, layoutId, parent);
+    }
+
     @Override
     public void updateFromItem(final LocalItem localItem, final DateFormat dateFormat) {
         if (!(localItem instanceof PlaylistRemoteEntity)) return;

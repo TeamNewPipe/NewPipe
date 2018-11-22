@@ -177,7 +177,7 @@
     <string name="next_video_title">Vídeo següent</string>
     <string name="show_next_and_similar_title">Mostra el vídeo següent i similars</string>
     <string name="default_content_country_title">País per defecte dels continguts</string>
-    <string name="search_language_title">Llengua per defecte dels continguts</string>
+    <string name="content_language_title">Llengua per defecte dels continguts</string>
     <string name="settings_category_popup_title">Emergent</string>
     <string name="background_player_playing_toast">S\'està reproduint en segon pla</string>
     <string name="popup_playing_toast">S\'està reproduint en mode emergent</string>

@@ -95,7 +95,7 @@
     <string name="url_not_supported_toast">URL не падтрымліваецца</string>
     <string name="default_content_country_title">Краіна кантэнту па змаўчанні</string>
     <string name="service_title">Сэрвіс</string>
-    <string name="search_language_title">Мова кантэнту па змаўчанні</string>
+    <string name="content_language_title">Мова кантэнту па змаўчанні</string>
     <string name="settings_category_player_title">Плэер</string>
     <string name="settings_category_player_behavior_title">Павядзенне</string>
     <string name="settings_category_video_audio_title">Відэа і аўдыё</string>

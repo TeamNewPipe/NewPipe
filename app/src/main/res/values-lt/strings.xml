@@ -57,7 +57,7 @@
     <string name="next_video_title">Kitas vaizdo įrašas</string>
     <string name="show_next_and_similar_title">Rodyti kitus panašius vaizdo įrašus</string>
     <string name="url_not_supported_toast">URL nepalaikoma</string>
-    <string name="search_language_title">Numatytoji tūrinio kalba</string>
+    <string name="content_language_title">Numatytoji tūrinio kalba</string>
     <string name="settings_category_video_audio_title">Vaizdas ir garsas</string>
     <string name="settings_category_popup_title">Iššokantis langas</string>
     <string name="settings_category_appearance_title">Išvaizda</string>

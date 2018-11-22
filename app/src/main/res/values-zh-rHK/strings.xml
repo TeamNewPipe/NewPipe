@@ -30,7 +30,7 @@
     <string name="next_video_title">下一部影片</string>
     <string name="show_next_and_similar_title">顯示下一部及相關的影片</string>
     <string name="url_not_supported_toast">不支援此網址</string>
-    <string name="search_language_title">預設內容語言</string>
+    <string name="content_language_title">預設內容語言</string>
     <string name="settings_category_video_audio_title">影片及聲音</string>
     <string name="settings_category_appearance_title">外觀</string>
     <string name="settings_category_other_title">其他</string>
@@ -55,7 +55,7 @@
 
     <string name="err_dir_create">未能建立下載路徑「%1$s」</string>
     <string name="info_dir_created">已建立下載路徑「%1$s」</string>
-    <string name="blocked_by_gema">內容被 GEMA 封鎖。</string>
+    <string name="blocked_by_gema">內容被 GEMA 封鎖</string>
     <string name="main_bg_subtitle">按一下搜尋按鈕以開始操作</string>
     <string name="autoplay_by_calling_app_title">自動撥放</string>
     <string name="autoplay_by_calling_app_summary">當其他應用程式要求播放影片時，NewPipe 將會自動播放</string>
@@ -69,9 +69,9 @@
     <string name="youtube_signature_decryption_error">無法為影片地址的簽署解碼。</string>
     <string name="parsing_error">無法讀取網站。</string>
     <string name="light_parsing_error">無法完全讀取網站。</string>
-    <string name="could_not_setup_download_menu">無法設定下載清單。</string>
+    <string name="could_not_setup_download_menu">無法設定下載清單</string>
     <string name="live_streams_not_supported">此內容是一個直播串流，所以暫時未能播放。</string>
-    <string name="could_not_get_stream">無法取得任何串流。</string>
+    <string name="could_not_get_stream">無法取得任何串流</string>
     <string name="sorry_string">抱歉，這是不應該發生的。</string>
     <string name="error_report_button_text">透過電郵彙報問題</string>
     <string name="error_snackbar_message">抱歉，程式出現了問題。</string>
@@ -114,7 +114,7 @@
     <string name="msg_running">NewPipe 正在下載</string>
     <string name="msg_running_detail">按一下以查看詳情</string>
     <string name="msg_wait">請稍候…</string>
-    <string name="msg_copied">已複製至剪貼板。</string>
+    <string name="msg_copied">已複製至剪貼板</string>
     <string name="no_available_dir">請選擇下載資料夾。</string>
 
     <string name="open_in_popup_mode">在畫中畫模式開啟</string>
@@ -130,7 +130,7 @@
     <string name="all">所有</string>
     <string name="channel">頻道</string>
     <string name="yes">是</string>
-    <string name="later">稍候</string>
+    <string name="later">稍後</string>
     <string name="could_not_load_image">無法取得圖片</string>
     <string name="app_ui_crash">應用程式或介面出現問題</string>
     <string name="info_labels">事件：\\n請求：\\n內容語言：\\n服務：\\nGMT 時間：\\nPackage：\\n版本：\\n作業系統版本：</string>
@@ -165,7 +165,7 @@
     <string name="best_resolution">最佳解像度</string>
 
     <string name="popup_resizing_indicator_title">調整大小</string>
-    <string name="use_old_player_summary">使用舊的內置 Mediaframework 播放器。</string>
+    <string name="use_old_player_summary">使用舊的內置 Mediaframework 播放器</string>
     <string name="short_billion">B</string>
 
     <string name="title_activity_about">關於 NewPipe</string>
@@ -179,7 +179,7 @@
     <string name="tab_contributors">貢獻者</string>
     <string name="tab_licenses">特許</string>
     <string name="app_description">在 Android 上運作自由輕便的 Youtube 前端。</string>
-    <string name="view_on_github">檢視我們的 Github</string>
+    <string name="view_on_github">檢視我們的 GitHub</string>
     <string name="app_license_title">NewPipe 的特許</string>
     <string name="contribution_encouragement">無論您僅想分享您對 NewPipe 的一些構思，還是願意設計和翻譯程式介面，甚至想幫我們整理或重新編寫原始碼，我們都無任歡迎。貢獻更多，應用程式便會變得更好！</string>
     <string name="read_full_license">檢閱特許</string>

@@ -217,10 +217,9 @@ public final class MainVideoPlayer extends AppCompatActivity
         if (playerImpl == null) return;
 
         playerImpl.setRecovery();
-        playerState = new PlayerState(playerImpl.getPlayQueue(), playerImpl.getRepeatMode(),
-                playerImpl.getPlaybackSpeed(), playerImpl.getPlaybackPitch(),
-                playerImpl.getPlaybackQuality(), playerImpl.getPlaybackSkipSilence(),
-                playerImpl.isPlaying());
+        if(!playerImpl.gotDestroyed()) {
+            playerState = createPlayerState();
+        }
         StateSaver.tryToSave(isChangingConfigurations(), null, outState, this);
     }
 
@@ -235,6 +234,7 @@ public final class MainVideoPlayer extends AppCompatActivity
         if (!isBackPressed) {
             playerImpl.minimize();
         }
+        playerState = createPlayerState();
         playerImpl.destroy();
 
         isInMultiWindow = false;
@@ -244,6 +244,13 @@ public final class MainVideoPlayer extends AppCompatActivity
     /*//////////////////////////////////////////////////////////////////////////
     // State Saving
     //////////////////////////////////////////////////////////////////////////*/
+
+    private PlayerState createPlayerState() {
+        return new PlayerState(playerImpl.getPlayQueue(), playerImpl.getRepeatMode(),
+                playerImpl.getPlaybackSpeed(), playerImpl.getPlaybackPitch(),
+                playerImpl.getPlaybackQuality(), playerImpl.getPlaybackSkipSilence(),
+                playerImpl.isPlaying());
+    }
 
     @Override
     public String generateSuffix() {
@@ -1006,12 +1013,14 @@ public final class MainVideoPlayer extends AppCompatActivity
 
         private static final int MOVEMENT_THRESHOLD = 40;
 
-        private final boolean isPlayerGestureEnabled = PlayerHelper.isPlayerGestureEnabled(getApplicationContext());
+        private final boolean isVolumeGestureEnabled = PlayerHelper.isVolumeGestureEnabled(getApplicationContext());
+        private final boolean isBrightnessGestureEnabled = PlayerHelper.isBrightnessGestureEnabled(getApplicationContext());
+
         private final int maxVolume = playerImpl.getAudioReactor().getMaxVolume();
 
         @Override
         public boolean onScroll(MotionEvent initialEvent, MotionEvent movingEvent, float distanceX, float distanceY) {
-            if (!isPlayerGestureEnabled) return false;
+            if (!isVolumeGestureEnabled && !isBrightnessGestureEnabled) return false;
 
             //noinspection PointlessBooleanExpression
             if (DEBUG && false) Log.d(TAG, "MainVideoPlayer.onScroll = " +
@@ -1027,7 +1036,11 @@ public final class MainVideoPlayer extends AppCompatActivity
 
             isMoving = true;
 
-            if (initialEvent.getX() > playerImpl.getRootView().getWidth() / 2) {
+            boolean acceptAnyArea = isVolumeGestureEnabled != isBrightnessGestureEnabled;
+            boolean acceptVolumeArea = acceptAnyArea || initialEvent.getX() > playerImpl.getRootView().getWidth() / 2;
+            boolean acceptBrightnessArea = acceptAnyArea || !acceptVolumeArea;
+
+            if (isVolumeGestureEnabled && acceptVolumeArea) {
                 playerImpl.getVolumeProgressBar().incrementProgressBy((int) distanceY);
                 float currentProgressPercent =
                         (float) playerImpl.getVolumeProgressBar().getProgress() / playerImpl.getMaxGestureLength();
@@ -1052,7 +1065,7 @@ public final class MainVideoPlayer extends AppCompatActivity
                 if (playerImpl.getBrightnessRelativeLayout().getVisibility() == View.VISIBLE) {
                     playerImpl.getBrightnessRelativeLayout().setVisibility(View.GONE);
                 }
-            } else {
+            } else if (isBrightnessGestureEnabled && acceptBrightnessArea) {
                 playerImpl.getBrightnessProgressBar().incrementProgressBy((int) distanceY);
                 float currentProgressPercent =
                         (float) playerImpl.getBrightnessProgressBar().getProgress() / playerImpl.getMaxGestureLength();

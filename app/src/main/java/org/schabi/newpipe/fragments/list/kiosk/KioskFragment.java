@@ -128,26 +128,16 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
 
     @Override
     public Single<KioskInfo> loadResult(boolean forceReload) {
-        String contentCountry = PreferenceManager
-                .getDefaultSharedPreferences(activity)
-                .getString(getString(R.string.content_country_key),
-                        getString(R.string.default_country_value));
         return ExtractorHelper.getKioskInfo(serviceId,
                 url,
-                contentCountry,
                 forceReload);
     }
 
     @Override
     public Single<ListExtractor.InfoItemsPage> loadMoreItemsLogic() {
-        String contentCountry = PreferenceManager
-                .getDefaultSharedPreferences(activity)
-                .getString(getString(R.string.content_country_key),
-                        getString(R.string.default_country_value));
         return ExtractorHelper.getMoreKioskItems(serviceId,
                 url,
-                currentNextPageUrl,
-                contentCountry);
+                currentNextPageUrl);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
