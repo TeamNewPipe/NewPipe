@@ -180,6 +180,21 @@
     <string name="preferred_open_action_default" translatable="false">@string/always_ask_open_action_key</string>
     <string name="preferred_open_action_last_selected_key" translatable="false">preferred_open_action_last_selected</string>
 
+    <!-- region: Preferred action on clicking an audio/video item -->
+    <string name="preferred_click_action_key" translatable="false">preferred_click_action_key</string>
+    <string name="preferred_click_action_default" translatable="false">@string/video_player_key</string>
+
+    <string-array name="preferred_click_action_description_list" translatable="false">
+        <item>@string/video_player</item>
+        <item>@string/background_player</item>
+        <item>@string/popup_player</item>
+    </string-array>
+    <string-array name="preferred_click_action_values_list" translatable="false">
+        <item>@string/video_player_key</item>
+        <item>@string/background_player_key</item>
+        <item>@string/popup_player_key</item>
+    </string-array>
+    <!-- endregion -->
     <string name="show_info_key" translatable="false">show_info</string>
     <string name="video_player_key" translatable="false">video_player</string>
     <string name="background_player_key" translatable="false">background_player</string>

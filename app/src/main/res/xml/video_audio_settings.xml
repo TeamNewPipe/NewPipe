@@ -91,6 +91,14 @@
             android:title="@string/preferred_open_action_settings_title"/>
 
         <ListPreference
+            android:defaultValue="@string/preferred_click_action_default"
+            android:entries="@array/preferred_click_action_description_list"
+            android:entryValues="@array/preferred_click_action_values_list"
+            android:key="@string/preferred_click_action_key"
+            android:summary="@string/preferred_click_action_settings_summary"
+            android:title="@string/preferred_click_action_settings_title"/>
+
+        <ListPreference
             android:defaultValue="@string/minimize_on_exit_value"
             android:entries="@array/minimize_on_exit_action_description"
             android:entryValues="@array/minimize_on_exit_action_key"

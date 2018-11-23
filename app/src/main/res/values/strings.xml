@@ -426,6 +426,11 @@
     <string name="preferred_player_fetcher_notification_title">Getting info…</string>
     <string name="preferred_player_fetcher_notification_message">"Loading requested content"</string>
 
+    <!-- region: Preferred click action -->
+    <string name="preferred_click_action_settings_title">Preferred \'click\' action</string>
+    <string name="preferred_click_action_settings_summary">Default action when clicking on audio/video item — %s</string>
+    <!-- endregion -->
+
     <!-- Local Playlist -->
     <string name="create_playlist">New Playlist</string>
     <string name="delete_playlist">Delete</string>
