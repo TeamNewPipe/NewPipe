@@ -1,7 +1,9 @@
 package us.shandian.giga.ui.common;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
@@ -11,6 +13,7 @@ import org.schabi.newpipe.R;
 
 import java.util.ArrayList;
 
+import us.shandian.giga.get.FinishedMission;
 import us.shandian.giga.get.Mission;
 import us.shandian.giga.service.DownloadManager;
 import us.shandian.giga.service.DownloadManager.MissionIterator;
@@ -120,6 +123,10 @@ public class Deleter {
 
             mIterator.unHide(mission);
             mDownloadManager.deleteMission(mission);
+
+            if (mission instanceof FinishedMission) {
+                mContext.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(mission.getDownloadedFile())));
+            }
             break;
         }
 

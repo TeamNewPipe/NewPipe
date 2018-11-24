@@ -89,7 +89,7 @@ public class DownloadRunnable implements Runnable {
                 end = mMission.length - 1;
             }
 
-            int total = 0;
+            long total = 0;
 
             try {
                 HttpURLConnection conn = mMission.openConnection(mId, start, end);

@@ -183,6 +183,7 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
         return mIterator.getSpecialAtItem(position);
     }
 
+    @SuppressLint("DefaultLocale")
     private void updateProgress(ViewHolderItem h) {
         if (h == null || h.item == null || h.item.mission instanceof FinishedMission) return;
 
@@ -216,14 +217,15 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
                 progress = Float.NaN;
                 h.progress.setProgress(0f);
             } else {
-                progress = (float) mission.done / mission.length;
+                progress = (float) ((double) mission.done / mission.length);
                 if (mission.urls.length > 1 && mission.current < mission.urls.length) {
                     progress = (progress / mission.urls.length) + ((float) mission.current / mission.urls.length);
                 }
             }
 
             if (hasError) {
-                if (Float.isNaN(progress) || Float.isInfinite(progress)) h.progress.setProgress(1f);
+                if (Float.isNaN(progress) || Float.isInfinite(progress))
+                    h.progress.setProgress(1f);
                 h.status.setText(R.string.msg_error);
             } else if (Float.isNaN(progress) || Float.isInfinite(progress)) {
                 h.status.setText("--.-%");
@@ -275,7 +277,7 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 
         if (deltaTime > 1000 && deltaDone > 0) {
-            float speed = (float) deltaDone / deltaTime;
+            float speed = (float) ((double) deltaDone / deltaTime);
             String speedStr = Utility.formatSpeed(speed * 1000);
             String sizeStr = Utility.formatBytes(length);
 
@@ -497,7 +499,7 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
         mIterator.start();
         mIterator.end();
 
-        for (ViewHolderItem item: mPendingDownloadsItems) {
+        for (ViewHolderItem item : mPendingDownloadsItems) {
             item.lastTimeStamp = -1;
         }
 
@@ -592,11 +594,9 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
             checksum = menu.findItem(R.id.checksum);
 
             itemView.setOnClickListener((v) -> {
-                if (((DownloadMission) item.mission).isFinished())
+                if (item.mission instanceof FinishedMission)
                     viewWithFileProvider(item.mission.getDownloadedFile());
             });
-
-            //h.itemView.setOnClickListener(v -> showDetail(h));
         }
 
         private void showPopupMenu() {

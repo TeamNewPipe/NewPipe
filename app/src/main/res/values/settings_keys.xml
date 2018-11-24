@@ -176,6 +176,17 @@
     <string name="default_file_charset_value" translatable="false">@string/charset_most_special_characters_value</string>
     
     <string name="downloads_max_retry" translatable="false">downloads_max_retry</string>
+    <string-array name="downloads_max_retry_list" translatable="false">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>7</item>
+        <item>10</item>
+        <item>15</item>
+    </string-array>
+    
     <string name="default_max_retry" translatable="false">3</string>
     <string name="cross_network_downloads" translatable="false">cross_network_downloads</string>
 

@@ -35,7 +35,9 @@ public class DownloadInitializer implements Runnable {
                 HttpURLConnection conn = mMission.openConnection(mId, -1, -1);
                 if (!mMission.running || Thread.interrupted()) return;
 
-                mMission.length = conn.getContentLength();
+                mMission.length = Utility.getContentLength(conn);
+
+
                 if (mMission.length == 0) {
                     mMission.notifyError(DownloadMission.ERROR_HTTP_NO_CONTENT, null);
                     return;
@@ -97,7 +99,7 @@ public class DownloadInitializer implements Runnable {
 
                 for (long i = 0; i < mMission.currentThreadCount; i++) {
                     mMission.threadBlockPositions.add(i);
-                    mMission.threadBytePositions.add(0);
+                    mMission.threadBytePositions.add(0L);
                 }
 
                 File file;

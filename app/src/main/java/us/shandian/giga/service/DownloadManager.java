@@ -1,9 +1,7 @@
 package us.shandian.giga.service;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.util.DiffUtil;
@@ -46,9 +44,8 @@ public class DownloadManager {
 
     private NetworkState mLastNetworkStatus = NetworkState.Unavailable;
 
-    private SharedPreferences mPrefs;
-    private String mPrefMaxRetry;
-    private String mPrefCrossNetwork;
+    int mPrefMaxRetry;
+    boolean mPrefCrossNetwork;
 
     /**
      * Create a new instance
@@ -65,9 +62,6 @@ public class DownloadManager {
         mHandler = handler;
         mMissionsFinished = loadFinishedMissions();
         mPendingMissionsDir = getPendingDir(context);
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        mPrefMaxRetry = context.getString(R.string.downloads_max_retry);
-        mPrefCrossNetwork = context.getString(R.string.cross_network_downloads);
 
         if (!Utility.mkdir(mPendingMissionsDir, false)) {
             throw new RuntimeException("failed to create pending_downloads in data directory");
@@ -196,17 +190,17 @@ public class DownloadManager {
     /**
      * Start a new download mission
      *
-     * @param urls               the list of urls to download
-     * @param location           the location
-     * @param name               the name of the file to create
-     * @param kind               type of file (a: audio  v: video  s: subtitle ?: file-extension defined)
-     * @param threads            the number of threads maximal used to download chunks of the file.
-     * @param postprocessingName the name of the required post-processing algorithm, or {@code null} to ignore.
-     * @param source             source url of the resource
-     * @param postProcessingArgs the arguments for the post-processing algorithm.
+     * @param urls     the list of urls to download
+     * @param location the location
+     * @param name     the name of the file to create
+     * @param kind     type of file (a: audio  v: video  s: subtitle ?: file-extension defined)
+     * @param threads  the number of threads maximal used to download chunks of the file.
+     * @param psName   the name of the required post-processing algorithm, or {@code null} to ignore.
+     * @param source   source url of the resource
+     * @param psArgs   the arguments for the post-processing algorithm.
      */
-    void startMission(String[] urls, String location, String name, char kind, int threads, String source,
-                      String postprocessingName, String[] postProcessingArgs, long nearLength) {
+    void startMission(String[] urls, String location, String name, char kind, int threads,
+                      String source, String psName, String[] psArgs, long nearLength) {
         synchronized (this) {
             // check for existing pending download
             DownloadMission pendingMission = getPendingMission(location, name);
@@ -225,12 +219,12 @@ public class DownloadManager {
                 if (index >= 0) mDownloadDataSource.deleteMission(mMissionsFinished.remove(index));
             }
 
-            DownloadMission mission = new DownloadMission(urls, name, location, kind, postprocessingName, postProcessingArgs);
+            DownloadMission mission = new DownloadMission(urls, name, location, kind, psName, psArgs);
             mission.timestamp = System.currentTimeMillis();
             mission.threadCount = threads;
             mission.source = source;
             mission.mHandler = mHandler;
-            mission.maxRetry = mPrefs.getInt(mPrefMaxRetry, 3);
+            mission.maxRetry = mPrefMaxRetry;
             mission.nearLength = nearLength;
 
             while (true) {
@@ -420,6 +414,7 @@ public class DownloadManager {
 
     /**
      * runs another mission in queue if possible
+     *
      * @return true if exits pending missions running or a mission was started, otherwise, false
      */
     boolean runAnotherMission() {
@@ -460,18 +455,17 @@ public class DownloadManager {
 
     private boolean canDownloadInCurrentNetwork() {
         if (mLastNetworkStatus == NetworkState.Unavailable) return false;
-        return !(mPrefs.getBoolean(mPrefCrossNetwork, false) && mLastNetworkStatus == NetworkState.MobileOperating);
+        return !(mPrefCrossNetwork && mLastNetworkStatus == NetworkState.MobileOperating);
     }
 
     void handleConnectivityChange(NetworkState currentStatus) {
         if (currentStatus == mLastNetworkStatus) return;
 
         mLastNetworkStatus = currentStatus;
-        boolean pauseOnMobile = mPrefs.getBoolean(mPrefCrossNetwork, false);
 
         if (currentStatus == NetworkState.Unavailable) {
             return;
-        } else if (currentStatus != NetworkState.MobileOperating || !pauseOnMobile) {
+        } else if (currentStatus != NetworkState.MobileOperating || !mPrefCrossNetwork) {
             return;
         }
 
@@ -488,9 +482,9 @@ public class DownloadManager {
         if (flag) mHandler.sendEmptyMessage(DownloadManagerService.MESSAGE_PAUSED);
     }
 
-    void updateMaximumAttempts(int maxRetry) {
+    void updateMaximumAttempts() {
         synchronized (this) {
-            for (DownloadMission mission : mMissionsPending) mission.maxRetry = maxRetry;
+            for (DownloadMission mission : mMissionsPending) mission.maxRetry = mPrefMaxRetry;
         }
     }
 

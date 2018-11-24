@@ -306,7 +306,12 @@ public class DownloadManagerService extends Service {
 
     private void handlePreferenceChange(SharedPreferences prefs, String key) {
         if (key.equals(getString(R.string.downloads_max_retry))) {
-            mManager.updateMaximumAttempts(prefs.getInt(key, 3));
+            mManager.mPrefMaxRetry = Integer.parseInt(
+                    prefs.getString(key, getString(R.string.default_max_retry))
+            );
+            mManager.updateMaximumAttempts();
+        } else if (key.equals(getString(R.string.cross_network_downloads))) {
+            mManager.mPrefCrossNetwork = prefs.getBoolean(key, false);
         }
     }
 

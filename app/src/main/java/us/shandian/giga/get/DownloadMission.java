@@ -124,7 +124,7 @@ public class DownloadMission extends Mission {
     @SuppressWarnings("UseSparseArrays")// LongSparseArray is not serializable
     private final HashMap<Long, Boolean> blockState = new HashMap<>();
     final List<Long> threadBlockPositions = new ArrayList<>();
-    final List<Integer> threadBytePositions = new ArrayList<>();
+    final List<Long> threadBytePositions = new ArrayList<>();
 
     private transient boolean deleted;
     int currentThreadCount;
@@ -216,7 +216,7 @@ public class DownloadMission extends Mission {
      * @param threadId the identifier of the thread
      * @param position the relative position in bytes or zero
      */
-    void setThreadBytePosition(int threadId, int position) {
+    void setThreadBytePosition(int threadId, long position) {
         threadBytePositions.set(threadId, position);
     }
 
@@ -226,7 +226,7 @@ public class DownloadMission extends Mission {
      * @param threadId the identifier of the thread
      * @return the relative position in bytes or zero
      */
-    int getBlockBytePosition(int threadId) {
+    long getBlockBytePosition(int threadId) {
         return threadBytePositions.get(threadId);
     }
 

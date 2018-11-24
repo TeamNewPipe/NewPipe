@@ -1,5 +1,6 @@
 package us.shandian.giga.get;
 
+import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -10,9 +11,13 @@ import java.net.HttpURLConnection;
 import java.nio.channels.ClosedByInterruptException;
 
 
+import us.shandian.giga.util.Utility;
+
 import static org.schabi.newpipe.BuildConfig.DEBUG;
 
-// Single-threaded fallback mode
+/**
+ * Single-threaded fallback mode
+ */
 public class DownloadRunnableFallback implements Runnable {
     private static final String TAG = "DownloadRunnableFallback";
 
@@ -43,10 +48,11 @@ public class DownloadRunnableFallback implements Runnable {
     }
 
     @Override
+    @SuppressLint("LongLogTag")
     public void run() {
         boolean done;
 
-        int start = 0;
+        long start = 0;
 
         if (!mMission.unknownLength) {
             start = mMission.getBlockBytePosition(0);
@@ -56,11 +62,12 @@ public class DownloadRunnableFallback implements Runnable {
         }
 
         try {
-            int rangeStart = (mMission.unknownLength || start < 1) ? -1 : start;
+            long rangeStart = (mMission.unknownLength || start < 1) ? -1 : start;
             HttpURLConnection conn = mMission.openConnection(1, rangeStart, -1);
 
             // secondary check for the file length
-            if (!mMission.unknownLength) mMission.unknownLength = conn.getContentLength() == -1;
+            if (!mMission.unknownLength)
+                mMission.unknownLength = Utility.getContentLength(conn) == -1;
 
             f = new RandomAccessFile(mMission.getDownloadedFile(), "rw");
             f.seek(mMission.offsets[mMission.current] + start);

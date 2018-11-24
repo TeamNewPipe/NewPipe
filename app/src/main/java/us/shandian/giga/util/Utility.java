@@ -3,6 +3,7 @@ package us.shandian.giga.util;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
@@ -21,6 +22,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.net.HttpURLConnection;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Locale;
@@ -38,11 +40,11 @@ public class Utility {
         if (bytes < 1024) {
             return String.format("%d B", bytes);
         } else if (bytes < 1024 * 1024) {
-            return String.format("%.2f kB", (float) bytes / 1024);
+            return String.format("%.2f kB", bytes / 1024d);
         } else if (bytes < 1024 * 1024 * 1024) {
-            return String.format("%.2f MB", (float) bytes / 1024 / 1024);
+            return String.format("%.2f MB", bytes / 1024d / 1024d);
         } else {
-            return String.format("%.2f GB", (float) bytes / 1024 / 1024 / 1024);
+            return String.format("%.2f GB", bytes / 1024d / 1024d / 1024d);
         }
     }
 
@@ -254,5 +256,20 @@ public class Utility {
             path.mkdir();
 
         return path.exists();
+    }
+
+    public static long getContentLength(HttpURLConnection connection) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return connection.getContentLengthLong();
+        }
+
+        try {
+            long length = Long.parseLong(connection.getHeaderField("Content-Length"));
+            if (length >= 0) return length;
+        } catch (Exception err) {
+            // nothing to do
+        }
+
+        return -1;
     }
 }
