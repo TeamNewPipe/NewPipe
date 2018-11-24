@@ -18,7 +18,7 @@
     <string name="choose_browser">Выбраць браўзэр</string>
     <string name="screen_rotation">паварот</string>
     <string name="use_external_video_player_title">Знешні відэаплэер</string>
-    <string name="use_external_video_player_summary">У некаторых разрозненнях НЕ будзе гуку, калі гэтая опцыя абраная</string>
+    <string name="use_external_video_player_summary">Адключае гук для НЕКАТОРЫХ разрозненняў</string>
     <string name="use_external_audio_player_title">Знешні аўдыяплэер</string>
     <string name="popup_mode_share_menu_title">NewPipe ў акне</string>
     <string name="subscribe_button_title">Падпісацца</string>
@@ -30,7 +30,7 @@
 
     <string name="tab_main">Галоўная</string>
     <string name="tab_subscriptions">Падпіскі</string>
-    <string name="tab_bookmarks">Закладкі</string>
+    <string name="tab_bookmarks">Адзначаныя плэйлісты</string>
 
     <string name="fragment_whats_new">Што новага</string>
 
@@ -42,8 +42,8 @@
     <string name="download_path_summary">Папка для захоўвання загружаных відэа</string>
     <string name="download_path_dialog_title">Увядзіце шлях да папкі для загрузкі відэа</string>
 
-    <string name="download_path_audio_title">Шлях загрузкі аўдыё</string>
-    <string name="download_path_audio_summary">Папка для захоўвання загружаных аўдыё</string>
+    <string name="download_path_audio_title">Тэчка загрузкі аўдыё</string>
+    <string name="download_path_audio_summary">"Сюды захоўваецца загружанае аўдыё "</string>
     <string name="download_path_audio_dialog_title">Увядзіце шлях да папкі для загрузкі аўдыё</string>
 
     <string name="autoplay_by_calling_app_title">Аўтапрайграванне</string>
