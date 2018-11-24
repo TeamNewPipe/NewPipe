@@ -31,6 +31,7 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -302,7 +303,8 @@ public class MainActivity extends AppCompatActivity {
                     .add(R.id.menu_services_group, s.getServiceId(), ORDER, title)
                     .setIcon(ServiceHelper.getIcon(s.getServiceId()));
         }
-        if (!ThemeHelper.isTerminalThemeSelected(this))
+
+        if (!ThemeHelper.isTerminalThemeSelected(this) && !ThemeHelper.isBlackThemeSelected(this))
             drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
     }
 
@@ -376,6 +378,18 @@ public class MainActivity extends AppCompatActivity {
             sharedPreferences.edit().putBoolean(Constants.KEY_THEME_CHANGE, false).apply();
             // https://stackoverflow.com/questions/10844112/runtimeexception-performing-pause-of-activity-that-is-not-resumed
             // Briefly, let the activity resume properly posting the recreate call to end of the message queue
+            new Handler(Looper.getMainLooper()).post(MainActivity.this::recreate);
+        }
+        if (sharedPreferences.getBoolean(Constants.KEY_COUNTRY_CHANGE, false)) {
+            if (DEBUG)
+                Log.d(TAG, "default content country has changed, recreating main fragment...");
+            sharedPreferences.edit().putBoolean(Constants.KEY_COUNTRY_CHANGE, false).apply();
+            // https://stackoverflow.com/questions/10844112/runtimeexception-performing-pause-of-activity-that-is-not-resumed
+            // Briefly, let the activity resume properly posting the recreate call to end of the message queue
+            FragmentManager fm = this.getSupportFragmentManager();
+            for (int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+                fm.popBackStack();
+            }
             new Handler(Looper.getMainLooper()).post(MainActivity.this::recreate);
         }
 

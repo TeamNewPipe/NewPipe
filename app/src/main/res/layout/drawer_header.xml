@@ -25,7 +25,6 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginLeft="30dp"
-
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
         android:contentDescription="TODO"

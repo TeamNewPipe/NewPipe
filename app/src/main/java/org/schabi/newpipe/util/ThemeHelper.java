@@ -69,6 +69,9 @@ public class ThemeHelper {
     public static boolean isTerminalThemeSelected(Context context) {
         return getSelectedThemeString(context).equals(context.getResources().getString(R.string.terminal_theme_key));
     }
+    public static boolean isBlackThemeSelected(Context context) {
+        return getSelectedThemeString(context).equals(context.getResources().getString(R.string.black_theme_key));
+    }
 
 
     /**

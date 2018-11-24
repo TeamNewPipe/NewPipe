@@ -15,6 +15,8 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.ThemeHelper;
 
+import java.util.Objects;
+
 import io.reactivex.Completable;
 import io.reactivex.schedulers.Schedulers;
 import us.shandian.giga.service.DownloadManagerService;
@@ -39,6 +41,7 @@ public class DownloadActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {

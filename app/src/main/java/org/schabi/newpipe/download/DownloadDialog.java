@@ -1,6 +1,7 @@
 package org.schabi.newpipe.download;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
@@ -8,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +38,7 @@ import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import icepick.Icepick;
 import icepick.State;
@@ -46,11 +49,16 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     private static final String TAG = "DialogFragment";
     private static final boolean DEBUG = MainActivity.DEBUG;
 
-    @State protected StreamInfo currentInfo;
-    @State protected StreamSizeWrapper<AudioStream> wrappedAudioStreams = StreamSizeWrapper.empty();
-    @State protected StreamSizeWrapper<VideoStream> wrappedVideoStreams = StreamSizeWrapper.empty();
-    @State protected int selectedVideoIndex = 0;
-    @State protected int selectedAudioIndex = 0;
+    @State
+    protected StreamInfo currentInfo;
+    @State
+    protected StreamSizeWrapper<AudioStream> wrappedAudioStreams = StreamSizeWrapper.empty();
+    @State
+    protected StreamSizeWrapper<VideoStream> wrappedVideoStreams = StreamSizeWrapper.empty();
+    @State
+    protected int selectedVideoIndex = 0;
+    @State
+    protected int selectedAudioIndex = 0;
 
     private StreamItemAdapter<AudioStream> audioStreamsAdapter;
     private StreamItemAdapter<VideoStream> videoStreamsAdapter;
@@ -116,7 +124,8 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (DEBUG) Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
+        if (DEBUG)
+            Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
         if (!PermissionHelper.checkStoragePermissions(getActivity(), PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE)) {
             getDialog().dismiss();
             return;
@@ -131,7 +140,8 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if (DEBUG) Log.d(TAG, "onCreateView() called with: inflater = [" + inflater + "], container = [" + container + "], savedInstanceState = [" + savedInstanceState + "]");
+        if (DEBUG)
+            Log.d(TAG, "onCreateView() called with: inflater = [" + inflater + "], container = [" + container + "], savedInstanceState = [" + savedInstanceState + "]");
         return inflater.inflate(R.layout.download_dialog, container);
     }
 
@@ -210,10 +220,17 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     private void initToolbar(Toolbar toolbar) {
         if (DEBUG) Log.d(TAG, "initToolbar() called with: toolbar = [" + toolbar + "]");
         toolbar.setTitle(R.string.download_dialog_title);
-        toolbar.setNavigationIcon(R.drawable.ic_back_24px);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         toolbar.inflateMenu(R.menu.dialog_url);
         toolbar.setNavigationOnClickListener(v -> getDialog().dismiss());
+        if (ThemeHelper.isTerminalThemeSelected(getContext())) {
+            View view = getView().findViewById(R.id.okay);
 
+            // Cast to a TextView instance if the menu item was found
+            if (view != null && view instanceof TextView) {
+                ((TextView) view).setTextColor(Objects.requireNonNull(getContext()).getResources().getColor(R.color.hacking_youtube_accent_color));
+            }
+        }
         toolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.okay) {
                 downloadSelected();
@@ -245,7 +262,8 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
 
     @Override
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-        if (DEBUG) Log.d(TAG, "onCheckedChanged() called with: group = [" + group + "], checkedId = [" + checkedId + "]");
+        if (DEBUG)
+            Log.d(TAG, "onCheckedChanged() called with: group = [" + group + "], checkedId = [" + checkedId + "]");
         switch (checkedId) {
             case R.id.audio_button:
                 setupAudioSpinner();
@@ -262,7 +280,8 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        if (DEBUG) Log.d(TAG, "onItemSelected() called with: parent = [" + parent + "], view = [" + view + "], position = [" + position + "], id = [" + id + "]");
+        if (DEBUG)
+            Log.d(TAG, "onItemSelected() called with: parent = [" + parent + "], view = [" + view + "], position = [" + position + "], id = [" + id + "]");
         switch (radioVideoAudioGroup.getCheckedRadioButtonId()) {
             case R.id.audio_button:
                 selectedAudioIndex = position;
@@ -314,7 +333,8 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         String location;
 
         String fileName = nameEditText.getText().toString().trim();
-        if (fileName.isEmpty()) fileName = FilenameUtils.createFilename(getContext(), currentInfo.getName());
+        if (fileName.isEmpty())
+            fileName = FilenameUtils.createFilename(getContext(), currentInfo.getName());
 
         boolean isAudio = radioVideoAudioGroup.getCheckedRadioButtonId() == R.id.audio_button;
         if (isAudio) {

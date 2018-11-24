@@ -21,6 +21,7 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.utils.Localization;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.ZipHelper;
 
@@ -53,10 +54,13 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
     private String thumbnailLoadToggleKey;
 
+    private String startCountryKey;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         thumbnailLoadToggleKey = getString(R.string.download_thumbnail_key);
+
     }
 
     @Override
@@ -120,6 +124,12 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         setPreferredCountry.setOnPreferenceChangeListener((Preference p, Object newCountry) -> {
             Localization oldLocal = org.schabi.newpipe.util.Localization.getPreferredExtractorLocal(getActivity());
             NewPipe.setLocalization(new Localization((String) newCountry, oldLocal.getLanguage()));
+            defaultPreferences.edit().putBoolean(Constants.KEY_COUNTRY_CHANGE, true).apply();
+            defaultPreferences.edit().putString(getString(R.string.content_country_key), newCountry.toString()).apply();
+            if (!newCountry.equals(startCountryKey) && getActivity() != null) {
+                // If it's not the current theme
+                getActivity().recreate();
+            }
             return true;
         });
     }
@@ -304,4 +314,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
                         "none", "", R.string.app_ui_crash));
     }
+
+
 }
