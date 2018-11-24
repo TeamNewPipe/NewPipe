@@ -234,10 +234,9 @@ public abstract class PlayQueue implements Serializable {
             Collections.shuffle(itemList);
         }
         if (!streams.isEmpty() && streams.get(streams.size() - 1).isAutoQueued() && !itemList.get(0).isAutoQueued()) {
-            streams.addAll(streams.size() - 1, itemList);
-        } else {
-            streams.addAll(itemList);
+            streams.remove(streams.size() - 1);
         }
+        streams.addAll(itemList);
 
         broadcast(new AppendEvent(itemList.size()));
     }
