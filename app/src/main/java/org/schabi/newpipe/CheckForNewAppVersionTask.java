@@ -225,6 +225,6 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
 
     public static boolean isGithubApk() {
 
-        return true;
+        return getCertificateSHA1Fingerprint().equals(GITHUB_APK_SHA1);
     }
 }
