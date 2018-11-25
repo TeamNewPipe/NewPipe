@@ -513,6 +513,8 @@
         <item>240p</item>
         <item>144p</item>
     </string-array>
+    <string name="mobile_data_live_stream_warning">It seems that you are using mobile data. Playing live stream can cause large amounts of data to be downloaded.</string>
+    <string name="disable_warning_mobile_data_live_stream">Play and do not warn me again</string>
 
     <!-- Minimize to exit action -->
     <string name="minimize_on_exit_title">Minimize on app switch</string>

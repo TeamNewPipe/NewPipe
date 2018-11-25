@@ -84,6 +84,7 @@ import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.InfoCache;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
+import org.schabi.newpipe.util.MobileDataHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.PermissionHelper;
@@ -883,15 +884,37 @@ public class VideoDetailFragment
     //////////////////////////////////////////////////////////////////////////*/
 
     private void openBackgroundPlayer(final boolean append) {
-        AudioStream audioStream = currentInfo.getAudioStreams()
-                .get(ListHelper.getDefaultAudioFormat(activity, currentInfo.getAudioStreams()));
+        if (MobileDataHelper.shouldDisplayWarningForMobileData(currentInfo, getContext())) {
+            displayWarningForMobileData((dialog, which) -> {
+                if (which == DialogInterface.BUTTON_POSITIVE) {
+                    playInBackground(append);
+                    PreferenceManager.getDefaultSharedPreferences(getContext()).edit()
+                            .putBoolean(getResources().getString(R.string.show_warning_live_stream_on_mobile), false)
+                            .apply();
+                }
+            });
+        } else {
+            playInBackground(append);
+        }
+    }
 
+    private void displayWarningForMobileData(DialogInterface.OnClickListener listener) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setMessage(R.string.mobile_data_live_stream_warning)
+                .setPositiveButton(R.string.disable_warning_mobile_data_live_stream, listener)
+                .setNegativeButton(R.string.cancel, null);
+        builder.create().show();
+    }
+
+    private void playInBackground(boolean append) {
         boolean useExternalAudioPlayer = PreferenceManager.getDefaultSharedPreferences(activity)
                 .getBoolean(activity.getString(R.string.use_external_audio_player_key), false);
 
-        if (!useExternalAudioPlayer && android.os.Build.VERSION.SDK_INT >= 16) {
+        if (!useExternalAudioPlayer && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             openNormalBackgroundPlayer(append);
         } else {
+            AudioStream audioStream = currentInfo.getAudioStreams()
+                    .get(ListHelper.getDefaultAudioFormat(activity, currentInfo.getAudioStreams()));
             startOnExternalPlayer(activity, currentInfo, audioStream);
         }
     }

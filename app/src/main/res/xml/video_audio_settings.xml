@@ -33,6 +33,13 @@
         android:summary="@string/show_higher_resolutions_summary"
         android:title="@string/show_higher_resolutions_title"/>
 
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="show_warning_live_stream_on_mobile"
+        android:summary="Show warning when playing live stream in background on mobile data"
+        android:title="Live stream in background"
+        />
+
     <ListPreference
         android:defaultValue="@string/default_video_format_value"
         android:entries="@array/video_format_description_list"

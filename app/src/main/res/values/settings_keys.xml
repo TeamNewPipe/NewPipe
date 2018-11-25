@@ -50,6 +50,7 @@
     <string name="default_popup_resolution_key" translatable="false">default_popup_resolution</string>
     <string name="default_popup_resolution_value" translatable="false">360p</string>
     <string name="best_resolution_key" translatable="false">best_resolution</string>
+    <string name="show_warning_live_stream_on_mobile" translatable="false">show_warning_live_stream_on_mobile</string>
 
     <string-array name="resolution_list_values" translatable="false">
         <item>@string/best_resolution_key</item>
