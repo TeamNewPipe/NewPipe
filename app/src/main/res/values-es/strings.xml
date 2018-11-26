@@ -50,8 +50,8 @@
 
     <string name="blocked_by_gema">Bloqueado por GEMA</string>
 
-    <string name="download_path_audio_title">Ruta de descarga de audio</string>
-    <string name="settings_category_video_audio_title">Vídeo y Audio</string>
+    <string name="download_path_audio_title">Carpeta de descarga de audio</string>
+    <string name="settings_category_video_audio_title">Vídeo y audio</string>
     <string name="play_btn_text">Reproducir</string>
     <string name="general_error">Error</string>
     <string name="network_error">Error de conexión</string>
@@ -69,13 +69,13 @@
 
 
     <string name="content">Contenido</string>
-    <string name="show_age_restricted_content_title">Mostrar contenido restringido por edad</string>
+    <string name="show_age_restricted_content_title">Contenido restringido por edad</string>
     <string name="video_is_age_restricted">Vídeo restringido por edad. Permitir este tipo de material es posible desde Ajustes.</string>
 
     <string name="main_bg_subtitle">Toque en buscar para empezar</string>
-    <string name="autoplay_by_calling_app_title">Autoreproducir</string>
+    <string name="autoplay_by_calling_app_title">Reproducción automática</string>
     <string name="autoplay_by_calling_app_summary">Reproducir un vídeo cuando NewPipe es llamado desde otra app</string>
-    <string name="duration_live">en vivo</string>
+    <string name="duration_live">EN DIRECTO</string>
     <string name="downloads">Descargas</string>
     <string name="downloads_title">Descargas</string>
     <string name="error_report_title">Reportar error</string>
@@ -233,7 +233,7 @@ abrir en modo popup</string>
 
     <string name="settings_category_player_title">Reproductor</string>
     <string name="settings_category_player_behavior_title">Funcionamiento</string>
-    <string name="settings_category_history_title">Historial y Caché</string>
+    <string name="settings_category_history_title">Historial y caché</string>
     <string name="playlist">Lista de reproducción</string>
     <string name="undo">Deshacer</string>
 
@@ -311,7 +311,7 @@ abrir en modo popup</string>
     <string name="service_title">Servicio</string>
     <string name="drawer_open">Abrir cajón</string>
     <string name="drawer_close">Cerrar cajón</string>
-    <string name="no_player_found_toast">No se ha encontrado ningún reproductor de vídeo (puede instalar VLC para reproducirlo)</string>
+    <string name="no_player_found_toast">No se ha encontrado ningún reproductor de vídeo (puede instalar VLC para reproducirlo).</string>
     <string name="always">Siempre</string>
     <string name="just_once">Sólo una vez</string>
 
@@ -331,8 +331,8 @@ abrir en modo popup</string>
     <string name="export_data_title">Exportar base de datos</string>
     <string name="import_data_summary">Reemplazará su historial actual y sus suscripciones</string>
     <string name="export_data_summary">Exportar historial, suscripciones y listas de reproducción</string>
-    <string name="export_complete_toast">Exportación completa</string>
-    <string name="import_complete_toast">Importación completa</string>
+    <string name="export_complete_toast">Exportado</string>
+    <string name="import_complete_toast">Importado</string>
     <string name="no_valid_zip_file">Archivo ZIP no válido</string>
     <string name="could_not_import_all_files">ADVERTENCIA: no se pudieron importar todos los archivos.</string>
     <string name="override_current_data">Esto reemplazará su configuración actual.</string>
@@ -359,9 +359,9 @@ abrir en modo popup</string>
 
     <string name="always_ask_open_action">Preguntar siempre</string>
     
-    <string name="create_playlist">Crear nueva lista de reproducción</string>
-    <string name="delete_playlist">Eliminar lista de reproducción</string>
-    <string name="rename_playlist">Renombrar lista de reproducción</string>
+    <string name="create_playlist">Nueva lista de reproducción</string>
+    <string name="delete_playlist">Eliminar</string>
+    <string name="rename_playlist">Renombrar</string>
     <string name="playlist_name_input">Nombre</string>
     <string name="append_playlist">Añadir a la lista de reproducción</string>
     <string name="set_as_playlist_thumbnail">Definir como miniatura de lista de reproducción</string>
