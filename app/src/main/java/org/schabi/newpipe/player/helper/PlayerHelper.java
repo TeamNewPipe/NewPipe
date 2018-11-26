@@ -177,10 +177,6 @@ public class PlayerHelper {
         return isBrightnessGestureEnabled(context, true);
     }
 
-    public static boolean isUsingOldPlayer(@NonNull final Context context) {
-        return isUsingOldPlayer(context, false);
-    }
-
     public static boolean isRememberingPopupDimensions(@NonNull final Context context) {
         return isRememberingPopupDimensions(context, true);
     }
@@ -316,10 +312,6 @@ public class PlayerHelper {
 
     private static boolean isBrightnessGestureEnabled(@NonNull final Context context, final boolean b) {
         return getPreferences(context).getBoolean(context.getString(R.string.brightness_gesture_control_key), b);
-    }
-
-    private static boolean isUsingOldPlayer(@NonNull final Context context, final boolean b) {
-        return getPreferences(context).getBoolean(context.getString(R.string.use_old_player_key), b);
     }
 
     private static boolean isRememberingPopupDimensions(@NonNull final Context context, final boolean b) {
