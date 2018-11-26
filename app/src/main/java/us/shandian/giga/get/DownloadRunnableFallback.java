@@ -4,8 +4,8 @@ import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
 import java.nio.channels.ClosedByInterruptException;
@@ -24,18 +24,18 @@ public class DownloadRunnableFallback implements Runnable {
     private final DownloadMission mMission;
     private int retryCount = 0;
 
-    private BufferedInputStream ipt;
+    private InputStream is;
     private RandomAccessFile f;
 
     DownloadRunnableFallback(@NonNull DownloadMission mission) {
         mMission = mission;
-        ipt = null;
+        is = null;
         f = null;
     }
 
     private void dispose() {
         try {
-            if (ipt != null) ipt.close();
+            if (is != null) is.close();
         } catch (IOException e) {
             // nothing to do
         }
@@ -55,7 +55,7 @@ public class DownloadRunnableFallback implements Runnable {
         long start = 0;
 
         if (!mMission.unknownLength) {
-            start = mMission.getBlockBytePosition(0);
+            start = mMission.getThreadBytePosition(0);
             if (DEBUG && start > 0) {
                 Log.i(TAG, "Resuming a single-thread download at " + start);
             }
@@ -72,18 +72,15 @@ public class DownloadRunnableFallback implements Runnable {
             f = new RandomAccessFile(mMission.getDownloadedFile(), "rw");
             f.seek(mMission.offsets[mMission.current] + start);
 
-            ipt = new BufferedInputStream(conn.getInputStream());
+            is = conn.getInputStream();
 
-            byte[] buf = new byte[DownloadMission.BUFFER_SIZE];
+            byte[] buf = new byte[64 * 1024];
             int len = 0;
 
-            while (mMission.running && (len = ipt.read(buf, 0, buf.length)) != -1) {
+            while (mMission.running && (len = is.read(buf, 0, buf.length)) != -1) {
                 f.write(buf, 0, len);
                 start += len;
-
                 mMission.notifyProgress(len);
-
-                if (Thread.interrupted()) break;
             }
 
             // if thread goes interrupted check if the last part is written. This avoid re-download the whole file
@@ -96,7 +93,7 @@ public class DownloadRunnableFallback implements Runnable {
 
             if (e instanceof ClosedByInterruptException) return;
 
-            if (retryCount++ > mMission.maxRetry) {
+            if (retryCount++ >= mMission.maxRetry) {
                 mMission.notifyError(e);
                 return;
             }

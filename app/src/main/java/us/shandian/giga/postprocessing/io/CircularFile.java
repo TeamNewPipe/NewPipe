@@ -10,8 +10,10 @@ import java.util.ArrayList;
 public class CircularFile extends SharpStream {
 
     private final static int AUX_BUFFER_SIZE = 1024 * 1024;// 1 MiB
-    private final static int NOTIFY_BYTES_INTERVAL = 256 * 1024;// 256 KiB
+    private final static int AUX_BUFFER_SIZE2 = 512 * 1024;// 512 KiB
+    private final static int NOTIFY_BYTES_INTERVAL = 64 * 1024;// 64 KiB
     private final static int QUEUE_BUFFER_SIZE = 8 * 1024;// 8 KiB
+    private final static boolean IMMEDIATE_AUX_BUFFER_FLUSH = false;
 
     private RandomAccessFile out;
     private long position;
@@ -45,7 +47,7 @@ public class CircularFile extends SharpStream {
             throw err;
         }
 
-        auxiliaryBuffers = new ArrayList<>(1);
+        auxiliaryBuffers = new ArrayList<>(15);
         callback = checker;
         startOffset = offset;
         reportPosition = offset;
@@ -122,7 +124,7 @@ public class CircularFile extends SharpStream {
         while (available > 0 && auxiliaryBuffers.size() > 0) {
             ManagedBuffer aux = auxiliaryBuffers.get(0);
 
-            // check if there is enough space to dump the auxiliar buffer
+            // check if there is enough space to dump the auxiliary buffer
             if (available >= (aux.size + queue.size)) {
                 available -= aux.size;
                 writeQueue(aux.buffer, 0, aux.size);
@@ -131,26 +133,27 @@ public class CircularFile extends SharpStream {
                 continue;
             }
 
-            // try flush contents to avoid allocate another auxiliar buffer
-            if (aux.available() < len && available > queue.size) {
-                int size = Math.min(len, aux.available());
-                aux.write(b, off, size);
+            if (IMMEDIATE_AUX_BUFFER_FLUSH) {
+                // try flush contents to avoid allocate another auxiliary buffer
+                if (aux.available() < len && available > queue.size) {
+                    int size = Math.min(len, aux.available());
+                    aux.write(b, off, size);
 
-                off += size;
-                len -= size;
+                    off += size;
+                    len -= size;
 
-                size = Math.min(aux.size, (int) available - queue.size);
-                if (size < 1) {
-                    break;
+                    size = Math.min(aux.size, (int) available - queue.size);
+                    if (size < 1) {
+                        break;
+                    }
+
+                    writeQueue(aux.buffer, 0, size);
+                    aux.dereference(size);
+
+                    available -= size;
                 }
-
-                writeQueue(aux.buffer, 0, size);
-                aux.dereference(size);
-
-                available -= size;
+                break;
             }
-
-            break;
         }
 
         if (len < 1) {
@@ -174,7 +177,7 @@ public class CircularFile extends SharpStream {
                 if (available < 1) {
                     // secondary auxiliary buffer
                     available = len;
-                    aux = new ManagedBuffer(Math.max(len, AUX_BUFFER_SIZE));
+                    aux = new ManagedBuffer(Math.max(len, AUX_BUFFER_SIZE2));
                     auxiliaryBuffers.add(aux);
                     i++;
                 } else {
@@ -184,10 +187,7 @@ public class CircularFile extends SharpStream {
                 aux.write(b, off, (int) available);
 
                 len -= available;
-                if (len < 1) {
-                    break;
-                }
-                off += available;
+                if (len > 0) off += available;
             }
         }
     }
@@ -361,12 +361,8 @@ public class CircularFile extends SharpStream {
             if (amount > size) {
                 throw new IndexOutOfBoundsException("Invalid dereference amount (" + amount + ">=" + size + ")");
             }
-
             size -= amount;
-
-            for (int i = 0; i < size; i++) {
-                buffer[i] = buffer[amount + i];
-            }
+            System.arraycopy(buffer, amount, buffer, 0, size);
         }
 
         protected int available() {

@@ -51,7 +51,7 @@ public class MissionsFragment extends Fragment {
         @Override
         public void onServiceConnected(ComponentName name, IBinder binder) {
             mBinder = (DownloadManagerService.DMBinder) binder;
-            mBinder.resetFinishedDownloadCount();
+            mBinder.clearDownloadNotifications();
 
             mAdapter = new MissionAdapter(mActivity, mBinder.getDownloadManager(), mClear, mEmpty);
             mAdapter.deleterLoad(mBundle, getView());
@@ -59,6 +59,7 @@ public class MissionsFragment extends Fragment {
             mBundle = null;
 
             mBinder.addMissionEventListener(mAdapter.getMessenger());
+            mBinder.enableNotifications(false);
 
             updateList();
         }
@@ -130,7 +131,7 @@ public class MissionsFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        
+
         mActivity = activity;
     }
 
@@ -141,6 +142,7 @@ public class MissionsFragment extends Fragment {
         if (mBinder == null || mAdapter == null) return;
 
         mBinder.removeMissionEventListener(mAdapter.getMessenger());
+        mBinder.enableNotifications(true);
         mActivity.unbindService(mConnection);
         mAdapter.deleterDispose(null);
 
@@ -181,7 +183,7 @@ public class MissionsFragment extends Fragment {
         // destroy all created views in the recycler
         mList.setAdapter(null);
         mAdapter.notifyDataSetChanged();
-        
+
         // re-attach the adapter in grid/lineal mode
         mAdapter.setLinear(mLinear);
         mList.setAdapter(mAdapter);
@@ -201,14 +203,13 @@ public class MissionsFragment extends Fragment {
             mAdapter.deleterDispose(outState);
             mForceUpdate = true;
             mBinder.removeMissionEventListener(mAdapter.getMessenger());
-               
         }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-                                                 
+
         if (mAdapter != null) {
             mAdapter.deleterResume();
 
@@ -219,5 +220,13 @@ public class MissionsFragment extends Fragment {
 
             mBinder.addMissionEventListener(mAdapter.getMessenger());
         }
+        if (mBinder != null) mBinder.enableNotifications(false);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (mAdapter != null) mAdapter.onPaused();
+        if (mBinder != null) mBinder.enableNotifications(true);
     }
 }

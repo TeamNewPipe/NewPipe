@@ -20,6 +20,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
+import android.support.v7.widget.RecyclerView.Adapter;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -40,7 +41,6 @@ import org.schabi.newpipe.util.NavigationHelper;
 import java.io.File;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Locale;
 
 import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.get.FinishedMission;
@@ -53,9 +53,10 @@ import us.shandian.giga.util.Utility;
 import static android.content.Intent.FLAG_GRANT_PREFIX_URI_PERMISSION;
 import static android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION;
 
-public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
+public class MissionAdapter extends Adapter<ViewHolder> {
     private static final SparseArray<String> ALGORITHMS = new SparseArray<>();
     private static final String TAG = "MissionAdapter";
+    private static final String UNDEFINED_SPEED = "--.-%";
 
     static {
         ALGORITHMS.put(R.id.md5, "MD5");
@@ -89,6 +90,7 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
                     case DownloadManagerService.MESSAGE_ERROR:
                     case DownloadManagerService.MESSAGE_FINISHED:
                         onServiceMessage(msg);
+                        break;
                 }
             }
         };
@@ -120,7 +122,10 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
         if (view instanceof ViewHolderHeader) return;
         ViewHolderItem h = (ViewHolderItem) view;
 
-        if (h.item.mission instanceof DownloadMission) mPendingDownloadsItems.remove(h);
+        if (h.item.mission instanceof DownloadMission) {
+            mPendingDownloadsItems.remove(h);
+            if (mPendingDownloadsItems.size() < 1) setAutoRefresh(false);
+        }
 
         h.popupMenu.dismiss();
         h.item = null;
@@ -153,10 +158,11 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
         h.item = item;
 
         Utility.FileType type = Utility.getFileType(item.mission.kind, item.mission.name);
+        long length = item.mission instanceof FinishedMission ? item.mission.length : ((DownloadMission) item.mission).getLength();
 
         h.icon.setImageResource(Utility.getIconForFileType(type));
         h.name.setText(item.mission.name);
-        h.size.setText(Utility.formatBytes(item.mission.length));
+        h.size.setText(Utility.formatBytes(length));
 
         h.progress.setColors(Utility.getBackgroundForFileType(mContext, type), Utility.getForegroundForFileType(mContext, type));
 
@@ -187,66 +193,60 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
     private void updateProgress(ViewHolderItem h) {
         if (h == null || h.item == null || h.item.mission instanceof FinishedMission) return;
 
+        long now = System.currentTimeMillis();
         DownloadMission mission = (DownloadMission) h.item.mission;
 
-        long now = System.currentTimeMillis();
-
-        if (h.lastTimeStamp == -1) {
-            h.lastTimeStamp = now;
-        }
-
-        if (h.lastDone == -1) {
-            h.lastDone = mission.done;
-        }
         if (h.lastCurrent != mission.current) {
             h.lastCurrent = mission.current;
-            h.lastDone = 0;
             h.lastTimeStamp = now;
+            h.lastDone = 0;
+        } else {
+            if (h.lastTimeStamp == -1) h.lastTimeStamp = now;
+            if (h.lastDone == -1) h.lastDone = mission.done;
         }
 
         long deltaTime = now - h.lastTimeStamp;
         long deltaDone = mission.done - h.lastDone;
         boolean hasError = mission.errCode != DownloadMission.ERROR_NOTHING;
 
-        if (hasError || deltaTime == 0 || deltaTime > 1000) {
-            // on error hide marquee or show if condition (mission.done < 1 || mission.unknownLength) is true
-            h.progress.setMarquee(!hasError && (mission.done < 1 || mission.unknownLength));
+        // on error hide marquee or show if condition (mission.done < 1 || mission.unknownLength) is true
+        h.progress.setMarquee(!hasError && (mission.done < 1 || mission.unknownLength));
 
-            float progress;
-            if (mission.unknownLength) {
-                progress = Float.NaN;
-                h.progress.setProgress(0f);
-            } else {
-                progress = (float) ((double) mission.done / mission.length);
-                if (mission.urls.length > 1 && mission.current < mission.urls.length) {
-                    progress = (progress / mission.urls.length) + ((float) mission.current / mission.urls.length);
-                }
+        float progress;
+        if (mission.unknownLength) {
+            progress = Float.NaN;
+            h.progress.setProgress(0f);
+        } else {
+            progress = (float) ((double) mission.done / mission.length);
+            if (mission.urls.length > 1 && mission.current < mission.urls.length) {
+                progress = (progress / mission.urls.length) + ((float) mission.current / mission.urls.length);
             }
+        }
 
-            if (hasError) {
-                if (Float.isNaN(progress) || Float.isInfinite(progress))
-                    h.progress.setProgress(1f);
-                h.status.setText(R.string.msg_error);
-            } else if (Float.isNaN(progress) || Float.isInfinite(progress)) {
-                h.status.setText("--.-%");
-            } else {
-                h.status.setText(String.format("%.2f%%", progress * 100));
-                h.progress.setProgress(progress);
-            }
+        if (hasError) {
+            if (Float.isNaN(progress) || Float.isInfinite(progress))
+                h.progress.setProgress(1f);
+            h.status.setText(R.string.msg_error);
+        } else if (Float.isNaN(progress) || Float.isInfinite(progress)) {
+            h.status.setText(UNDEFINED_SPEED);
+        } else {
+            h.status.setText(String.format("%.2f%%", progress * 100));
+            h.progress.setProgress(progress);
         }
 
         long length = mission.getLength();
 
-        int state = 0;
-        if (!mission.isFinished()) {
-            if (!mission.running) {
-                state = mission.enqueued ? 1 : 2;
-            } else if (mission.postprocessingRunning) {
-                state = 3;
-            }
+        int state;
+        if (!mission.running) {
+            state = mission.enqueued ? 1 : 2;
+        } else if (mission.postprocessingRunning) {
+            state = 3;
+        } else {
+            state = 0;
         }
 
         if (state != 0) {
+            // update state without download speed
             if (h.state != state) {
                 String statusStr;
                 h.state = state;
@@ -267,7 +267,7 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
                 }
 
                 h.size.setText(Utility.formatBytes(length).concat("  (").concat(statusStr).concat(")"));
-            } else if (deltaTime > 1000 && deltaDone > 0) {
+            } else if (deltaDone > 0) {
                 h.lastTimeStamp = now;
                 h.lastDone = mission.done;
             }
@@ -275,10 +275,10 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
             return;
         }
 
+        if (deltaDone > 0 && deltaTime > 0) {
+            float speed = (deltaDone * 1000f) / deltaTime;
 
-        if (deltaTime > 1000 && deltaDone > 0) {
-            float speed = (float) ((double) deltaDone / deltaTime);
-            String speedStr = Utility.formatSpeed(speed * 1000);
+            String speedStr = Utility.formatSpeed(speed);
             String sizeStr = Utility.formatBytes(length);
 
             h.size.setText(sizeStr.concat(" ").concat(speedStr));
@@ -325,6 +325,8 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
     private void onServiceMessage(@NonNull Message msg) {
         switch (msg.what) {
             case DownloadManagerService.MESSAGE_PROGRESS:
+                setAutoRefresh(true);
+                return;
             case DownloadManagerService.MESSAGE_ERROR:
             case DownloadManagerService.MESSAGE_FINISHED:
                 break;
@@ -339,8 +341,6 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
             if (msg.what == DownloadManagerService.MESSAGE_FINISHED) {
                 // DownloadManager should mark the download as finished
                 applyChanges();
-
-                mPendingDownloadsItems.remove(i);
                 return;
             }
 
@@ -396,7 +396,9 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
                 break;
             default:
                 if (mission.errCode >= 100 && mission.errCode < 600) {
-                    str.append("HTTP");
+                    str = new StringBuilder(8);
+                    str.append("HTTP ");
+                    str.append(mission.errCode);
                 } else if (mission.errObject == null) {
                     str.append("(not_decelerated_error_code)");
                 }
@@ -436,7 +438,7 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
                 case R.id.pause:
                     h.state = -1;
                     mDownloadManager.pauseMission(mission);
-                    notifyItemChanged(h.getAdapterPosition());
+                    updateProgress(h);
                     h.lastTimeStamp = -1;
                     h.lastDone = -1;
                     return true;
@@ -539,6 +541,43 @@ public class MissionAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     public void deleterResume() {
         if (mDeleter != null) mDeleter.resume();
+    }
+
+
+    private boolean mUpdaterRunning = false;
+    private final Runnable rUpdater = this::updater;
+
+    public void onPaused() {
+        setAutoRefresh(false);
+    }
+
+    private void setAutoRefresh(boolean enabled) {
+        if (enabled && !mUpdaterRunning) {
+            mUpdaterRunning = true;
+            updater();
+        } else if (!enabled && mUpdaterRunning) {
+            mUpdaterRunning = false;
+            mHandler.removeCallbacks(rUpdater);
+        }
+    }
+
+    private void updater() {
+        if (!mUpdaterRunning) return;
+
+        boolean running = false;
+        for (ViewHolderItem h : mPendingDownloadsItems) {
+            // check if the mission is running first
+            if (!((DownloadMission) h.item.mission).running) continue;
+
+            updateProgress(h);
+            running = true;
+        }
+
+        if (running) {
+            mHandler.postDelayed(rUpdater, 1000);
+        } else {
+            mUpdaterRunning = false;
+        }
     }
 
 

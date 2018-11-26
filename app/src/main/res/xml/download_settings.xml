@@ -30,7 +30,7 @@
         android:title="@string/settings_file_replacement_character_title"/>
 
     <ListPreference
-        android:defaultValue="@string/default_max_retry"
+        android:defaultValue="@string/downloads_max_retry_default"
         android:entries="@array/downloads_max_retry_list"
         android:entryValues="@array/downloads_max_retry_list"
         android:key="@string/downloads_max_retry"
@@ -39,7 +39,7 @@
 
     <SwitchPreference
         android:defaultValue="false"
-        android:key="@string/cross_network_downloads"
+        android:key="@string/downloads_cross_network"
         android:summary="@string/pause_downloads_on_mobile_desc"
         android:title="@string/pause_downloads_on_mobile" />
 

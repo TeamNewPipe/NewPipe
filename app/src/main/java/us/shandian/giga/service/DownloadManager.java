@@ -277,6 +277,7 @@ public class DownloadManager {
                 mDownloadDataSource.deleteMission(mission);
             }
 
+            mHandler.sendEmptyMessage(DownloadManagerService.MESSAGE_DELETED);
             mission.delete();
         }
     }
@@ -427,8 +428,8 @@ public class DownloadManager {
             if (!canDownloadInCurrentNetwork()) return false;
 
             for (DownloadMission mission : mMissionsPending) {
-                if (!mission.running && mission.errCode != DownloadMission.ERROR_POSTPROCESSING_FAILED && mission.enqueued) {
-                    resumeMission(mMissionsPending.get(i));
+                if (!mission.running && mission.errCode == DownloadMission.ERROR_NOTHING && mission.enqueued) {
+                    resumeMission(mission);
                     return true;
                 }
             }

@@ -2,11 +2,10 @@ package us.shandian.giga.get;
 
 import android.util.Log;
 
-import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
-import java.net.URL;
 import java.nio.channels.ClosedByInterruptException;
 
 import static org.schabi.newpipe.BuildConfig.DEBUG;
@@ -38,8 +37,8 @@ public class DownloadRunnable implements Runnable {
             Log.d(TAG, mId + ":recovered: " + mMission.recovered);
         }
 
-        BufferedInputStream ipt = null;
         RandomAccessFile f;
+        InputStream is = null;
 
         try {
             f = new RandomAccessFile(mMission.getDownloadedFile(), "rw");
@@ -82,8 +81,10 @@ public class DownloadRunnable implements Runnable {
             mMission.preserveBlock(blockPosition);
             mMission.setBlockPosition(mId, blockPosition);
 
-            long start = (blockPosition * DownloadMission.BLOCK_SIZE) + mMission.getBlockBytePosition(mId);
+            long start = blockPosition * DownloadMission.BLOCK_SIZE;
             long end = start + DownloadMission.BLOCK_SIZE - 1;
+
+            start += mMission.getThreadBytePosition(mId);
 
             if (end >= mMission.length) {
                 end = mMission.length - 1;
@@ -107,11 +108,11 @@ public class DownloadRunnable implements Runnable {
 
                 f.seek(mMission.offsets[mMission.current] + start);
 
-                ipt = new BufferedInputStream(conn.getInputStream());
+                is = conn.getInputStream();
                 byte[] buf = new byte[DownloadMission.BUFFER_SIZE];
                 int len;
 
-                while (start < end && mMission.running && (len = ipt.read(buf, 0, buf.length)) != -1) {
+                while (start < end && mMission.running && (len = is.read(buf, 0, buf.length)) != -1) {
                     f.write(buf, 0, len);
                     start += len;
                     total += len;
@@ -119,7 +120,8 @@ public class DownloadRunnable implements Runnable {
                 }
 
                 if (DEBUG && mMission.running) {
-                    Log.d(TAG, mId + ":position " + blockPosition + " finished, total length " + total);
+                    Log.d(TAG, mId + ":position " + blockPosition + " finished, " + total + " bytes downloaded");
+                    mMission.setThreadBytePosition(mId, 0L);
                 }
 
                 // if the download is paused, save progress for this thread
@@ -132,7 +134,7 @@ public class DownloadRunnable implements Runnable {
 
                 if (e instanceof ClosedByInterruptException) break;
 
-                if (retryCount++ > mMission.maxRetry) {
+                if (retryCount++ >= mMission.maxRetry) {
                     mMission.notifyError(e);
                     break;
                 }
@@ -140,6 +142,8 @@ public class DownloadRunnable implements Runnable {
                 if (DEBUG) {
                     Log.d(TAG, mId + ":position " + blockPosition + " retrying due exception", e);
                 }
+
+                retry = true;
             }
         }
 
@@ -150,7 +154,7 @@ public class DownloadRunnable implements Runnable {
         }
 
         try {
-            if (ipt != null) ipt.close();
+            if (is != null) is.close();
         } catch (Exception err) {
             // nothing to do
         }

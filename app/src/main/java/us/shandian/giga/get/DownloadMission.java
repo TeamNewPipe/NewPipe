@@ -221,12 +221,12 @@ public class DownloadMission extends Mission {
     }
 
     /**
-     * Get position inside of the block, where thread will be resumed
+     * Get position inside of the thread, where thread will be resumed
      *
      * @param threadId the identifier of the thread
      * @return the relative position in bytes or zero
      */
-    long getBlockBytePosition(int threadId) {
+    long getThreadBytePosition(int threadId) {
         return threadBytePositions.get(threadId);
     }
 
@@ -255,6 +255,8 @@ public class DownloadMission extends Mission {
                 Log.d(TAG, threadId + ":Content-Length=" + conn.getContentLength() + " Code:" + conn.getResponseCode());
             }
         }
+
+        conn.connect();
 
         int statusCode = conn.getResponseCode();
         switch (statusCode) {
@@ -446,6 +448,8 @@ public class DownloadMission extends Mission {
             return;
         }
 
+        if (postprocessingRunning) return;
+
         // wait for all threads are suspended before save the state
         runAsync(-1, () -> {
             try {
@@ -590,7 +594,7 @@ public class DownloadMission extends Mission {
 
         @Override
         public String getMessage() {
-            return "Http status code" + String.valueOf(statusCode);
+            return "Http status code: " + String.valueOf(statusCode);
         }
     }
 }

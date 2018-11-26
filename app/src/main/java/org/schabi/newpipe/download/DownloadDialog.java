@@ -416,7 +416,8 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         // fallback
         // 1st loop match country & language
         // 2nd loop match language only
-        String lang = loc.getLanguage().substring(0, loc.getLanguage().indexOf("-"));
+        int index = loc.getLanguage().indexOf("-");
+        String lang = index > 0 ? loc.getLanguage().substring(0, index) : loc.getLanguage();
 
         for (int j = 0; j < 2; j++) {
             for (int i = 0; i < streams.size(); i++) {
