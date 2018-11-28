@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
@@ -29,6 +30,7 @@ import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
@@ -51,12 +53,15 @@ import org.schabi.newpipe.player.PopupVideoPlayerActivity;
 import org.schabi.newpipe.player.VideoPlayer;
 import org.schabi.newpipe.player.old.PlayVideoActivity;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
+import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.settings.SettingsActivity;
 
 import java.util.ArrayList;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class NavigationHelper {
+    private static final String TAG = NavigationHelper.class.getSimpleName();
+
     public static final String MAIN_FRAGMENT_TAG = "main_fragment_tag";
     public static final String SEARCH_FRAGMENT_TAG = "search_fragment_tag";
 
@@ -183,6 +188,44 @@ public class NavigationHelper {
         } else {
             context.startService(intent);
         }
+    }
+
+    public static void playBasedOnUserPreference(
+      @NonNull final Fragment fragment,
+      @NonNull final StreamInfoItem streamInfoItem) {
+        final Context context = fragment.getContext();
+        if(context == null) {
+            throw new NullPointerException("Attempted playBasedOnUserPreference but context null");
+        }
+        final String actionChoice = getStreamClickActionChoice(context);
+        final String openVideoDetailChoice = context.getString(R.string.video_player_key);
+        final String openPopupPlayerChoice = context.getString(R.string.popup_player_key);
+        final String openBackgroundPlayerChoice = context.getString(R.string.background_player_key);
+
+        if(actionChoice.equals(openPopupPlayerChoice)) {
+            playOnPopupPlayer(context, new SinglePlayQueue(streamInfoItem));
+        } else if(actionChoice.equals(openBackgroundPlayerChoice)) {
+            playOnBackgroundPlayer(context, new SinglePlayQueue(streamInfoItem));
+        } else {
+            Log.i(TAG, "playBasedOnUserPreference: actionChoice = " + actionChoice + ", will open VideoDetailFragment");
+            openVideoDetailFragment(
+              getFM(fragment),
+              streamInfoItem.getServiceId(),
+              streamInfoItem.getUrl(),
+              streamInfoItem.getName()
+            );
+        }
+    }
+
+    private static String getStreamClickActionChoice(final Context context) {
+        final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return sharedPreferences.getString(context.getString(R.string.preferred_click_action_key), context.getString(R.string.preferred_click_action_default));
+    }
+
+    private static FragmentManager getFM(Fragment fragment) {
+        return fragment.getParentFragment() == null
+                 ? fragment.getFragmentManager()
+                 : fragment.getParentFragment().getFragmentManager();
     }
 
     /*//////////////////////////////////////////////////////////////////////////

@@ -3,11 +3,14 @@ package org.schabi.newpipe.local.history;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -139,10 +142,13 @@ public class StatisticsPlaylistFragment
             public void selected(LocalItem selectedItem) {
                 if (selectedItem instanceof StreamStatisticsEntry) {
                     final StreamStatisticsEntry item = (StreamStatisticsEntry) selectedItem;
-                    NavigationHelper.openVideoDetailFragment(getFM(),
-                            item.serviceId,
-                            item.url,
-                            item.title);
+                    final StreamInfoItem streamInfoItem = new StreamInfoItem(
+                      item.serviceId,
+                      item.url,
+                      item.title,
+                      item.streamType
+                    );
+                    NavigationHelper.playBasedOnUserPreference(StatisticsPlaylistFragment.this, streamInfoItem);
                 }
             }
 

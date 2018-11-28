@@ -181,7 +181,8 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
         infoListAdapter.setOnStreamSelectedListener(new OnClickGesture<StreamInfoItem>() {
             @Override
             public void selected(StreamInfoItem selectedItem) {
-                onStreamSelected(selectedItem);
+                onItemSelected(selectedItem);
+                NavigationHelper.playBasedOnUserPreference(BaseListFragment.this, selectedItem);
             }
 
             @Override
@@ -227,34 +228,6 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
                 onScrollToBottom();
             }
         });
-    }
-
-    private void onStreamSelected(StreamInfoItem selectedItem) {
-        onItemSelected(selectedItem);
-        final String actionChoice = getStreamSelectedActionChoice();
-        final String openVideoDetailChoice = getString(R.string.video_player_key);
-        final String openPopupPlayerChoice = getString(R.string.popup_player_key);
-        final String openBackgroundPlayerChoice = getString(R.string.background_player_key);
-        if(actionChoice.equals(openVideoDetailChoice)) {
-            openVideoDetailsFragment(selectedItem);
-        } else if(actionChoice.equals(openPopupPlayerChoice)) {
-            NavigationHelper.playOnPopupPlayer(getContext(), new SinglePlayQueue(selectedItem));
-        } else if(actionChoice.equals(openBackgroundPlayerChoice)) {
-            NavigationHelper.playOnBackgroundPlayer(getContext(), new SinglePlayQueue(selectedItem));
-        } else {
-            Log.e(TAG, "onStreamSelected(): unknown actionChoice found = " + actionChoice + ", going with default and opening video detail");
-            openVideoDetailsFragment(selectedItem);
-        }
-    }
-
-    private void openVideoDetailsFragment(StreamInfoItem streamInfoItem) {
-        NavigationHelper.openVideoDetailFragment(getFM(),
-          streamInfoItem.getServiceId(), streamInfoItem.getUrl(), streamInfoItem.getName());
-    }
-
-    private String getStreamSelectedActionChoice() {
-        final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        return sharedPreferences.getString(getString(R.string.preferred_click_action_key), getString(R.string.preferred_click_action_default));
     }
 
     protected void onScrollToBottom() {

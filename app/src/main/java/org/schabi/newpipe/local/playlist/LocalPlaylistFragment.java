@@ -165,8 +165,13 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             public void selected(LocalItem selectedItem) {
                 if (selectedItem instanceof PlaylistStreamEntry) {
                     final PlaylistStreamEntry item = (PlaylistStreamEntry) selectedItem;
-                    NavigationHelper.openVideoDetailFragment(getFragmentManager(),
-                            item.serviceId, item.url, item.title);
+                    final StreamInfoItem streamInfoItem = new StreamInfoItem(
+                      item.serviceId,
+                      item.url,
+                      item.title,
+                      item.streamType
+                    );
+                    NavigationHelper.playBasedOnUserPreference(LocalPlaylistFragment.this, streamInfoItem);
                 }
             }
 
