@@ -60,7 +60,7 @@
     <string name="did_you_mean">क्या आप का मतलब %1$s है?</string>
     <string name="share_dialog_title">शेयर करें</string>
     <string name="use_external_video_player_title">अन्य वीडियो प्लेयर उपयोग करें</string>
-    <string name="use_external_video_player_summary">यह विकल्प चुनने से कुछ वीडियो से ध्वनि नहीं आएगी</string>
+    <string name="use_external_video_player_summary">कुछ रेसोल्युशनस में नहीं आएगी</string>
     <string name="use_external_audio_player_title">अन्य ऑडियो प्लेयर उपयोग करें</string>
     <string name="tab_main">मुख्य</string>
     <string name="subscription_change_failed">सदस्यता को बदलने में असमर्थ है</string>
@@ -276,7 +276,7 @@
     <string name="start_here_on_main">यंहा से चलाना शुरू करे</string>
     <string name="start_here_on_background">बैकग्राउंड में चलाना शुरू करे</string>
     <string name="start_here_on_popup">पॉपअप में चलाना शुरू करे</string>
-<string name="no_player_found_toast">स्ट्रीम करने के लिए प्लेयर उपलब्ध नहीं है (आप इसे चलाने के लिए VLC इंस्टॉल कर सकते हैं)</string>
+<string name="no_player_found_toast">स्ट्रीम करने के लिए प्लेयर उपलब्ध नहीं है (आप इसे चलाने के लिए VLC प्लेयर इंस्टॉल कर सकते हैं)</string>
     <string name="controls_download_desc">स्ट्रीम डाउनलोड करें।</string>
     <string name="show_info">जानकारी दिखाएं</string>
 
