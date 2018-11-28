@@ -87,7 +87,7 @@
     <string name="show_play_with_kodi_summary">उस विकल्प को दिखाए जिसमे Kodi Media Center के जरिये विडियो प्ले किया जाता है</string>
     <string name="default_audio_format_title">डिफ़ॉल्ट ऑडियो का फॉर्मेट</string>
     <string name="default_video_format_title">डिफ़ॉल्ट विडियो का फॉर्मेट</string>
-    <string name="webm_description">webm - libre फॉर्मेट</string>
+    <string name="webm_description">WebM - libre फॉर्मेट</string>
     <string name="m4a_description">M4A - बेहतर क्वालिटी</string>
     <string name="theme_title">एप्प का नया रूप</string>
     <string name="dark_theme_title">काला</string>
