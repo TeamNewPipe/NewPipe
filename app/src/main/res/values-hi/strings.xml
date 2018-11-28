@@ -25,9 +25,9 @@
     <string name="play_audio">ऑडियो</string>
     <string name="light_theme_title">हलका</string>
     <string name="black_theme_title">काली</string>
-    <string name="enable_watch_history_title">इतिहास और कैच</string>
+    <string name="enable_watch_history_title">पूर्व और कैश</string>
     <string name="download_dialog_title">डाउनलोड</string>
-    <string name="next_video_title">अगला वीडियो</string>
+    <string name="next_video_title">अगला</string>
     <string name="settings_category_video_audio_title">वीडियो और ऑडियो</string>
     <string name="settings_category_history_title">इतिहास और कैच</string>
     <string name="background_player_playing_toast">बैकग्राउंड में चल रहा है</string>
@@ -99,7 +99,7 @@
     <string name="show_search_suggestions_summary">जब कुछ ढूंड रहे हो तो सुझाव दिखाये</string>
     <string name="enable_search_history_title">खोज के इतिहास को देखे</string>
     <string name="enable_search_history_summary">खोज के query को फ़ोन की मेमोरी में ही रखे</string>
-    <string name="enable_watch_history_summary">देखे हुए वीडियो की सूची रखे</string>
+    <string name="enable_watch_history_summary">देखे हुए वीडियोस का रिकॉर्ड रखें</string>
     <string name="resume_on_audio_focus_gain_title">जब फोकस मिले तो विडियो resume हो</string>
     <string name="resume_on_audio_focus_gain_summary">रूकावट आने पर भी विडियो को जारी रखे (जैसे - फ़ोन कॉल आये)</string>
     <string name="show_next_and_similar_title">\'अगला\' और \'पहले समान\' वीडियो दिखाए</string>
@@ -276,11 +276,11 @@
     <string name="start_here_on_main">यंहा से चलाना शुरू करे</string>
     <string name="start_here_on_background">बैकग्राउंड में चलाना शुरू करे</string>
     <string name="start_here_on_popup">पॉपअप में चलाना शुरू करे</string>
-<string name="no_player_found_toast">स्ट्रीम करने के लिए प्लेयर उपलब्ध नहीं है (आप इसे चलाने के लिए VLC प्लेयर इंस्टॉल कर सकते हैं)</string>
-    <string name="controls_download_desc">स्ट्रीम डाउनलोड करें।</string>
+<string name="no_player_found_toast">स्ट्रीम करने के लिए प्लेयर उपलब्ध नहीं है (आप इसे चलाने के लिए VLC प्लेयर इंस्टॉल कर सकते हैं)।</string>
+    <string name="controls_download_desc">स्ट्रीम डाउनलोड करें</string>
     <string name="show_info">जानकारी दिखाएं</string>
 
-    <string name="tab_bookmarks">बुकमार्क्स</string>
+    <string name="tab_bookmarks">बुकमार्क किये गए प्लेलिस्टस</string>
 
     <string name="controls_add_to_playlist_title">में जोड़े</string>
 
