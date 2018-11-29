@@ -165,7 +165,7 @@ public class DownloadManagerService extends Service {
         mPrefs.registerOnSharedPreferenceChangeListener(mPrefChangeListener);
 
         handlePreferenceChange(mPrefs, getString(R.string.downloads_cross_network));
-        handlePreferenceChange(mPrefs, getString(R.string.downloads_max_retry));
+        handlePreferenceChange(mPrefs, getString(R.string.downloads_maximum_retry));
 
         wakeLock = new LockManager(this);
     }
@@ -323,9 +323,9 @@ public class DownloadManagerService extends Service {
     }
 
     private void handlePreferenceChange(SharedPreferences prefs, String key) {
-        if (key.equals(getString(R.string.downloads_max_retry))) {
+        if (key.equals(getString(R.string.downloads_maximum_retry))) {
             try {
-                String value = prefs.getString(key, getString(R.string.downloads_max_retry_default));
+                String value = prefs.getString(key, getString(R.string.downloads_maximum_retry_default));
                 mManager.mPrefMaxRetry = Integer.parseInt(value);
             } catch (Exception e) {
                 mManager.mPrefMaxRetry = 0;

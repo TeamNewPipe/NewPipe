@@ -30,10 +30,10 @@
         android:title="@string/settings_file_replacement_character_title"/>
 
     <ListPreference
-        android:defaultValue="@string/downloads_max_retry_default"
-        android:entries="@array/downloads_max_retry_list"
-        android:entryValues="@array/downloads_max_retry_list"
-        android:key="@string/downloads_max_retry"
+        android:defaultValue="@string/downloads_maximum_retry_default"
+        android:entries="@array/downloads_maximum_retry_list"
+        android:entryValues="@array/downloads_maximum_retry_list"
+        android:key="@string/downloads_maximum_retry"
         android:summary="@string/max_retry_desc"
         android:title="@string/max_retry_msg" />
 
