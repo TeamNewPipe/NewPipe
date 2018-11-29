@@ -74,7 +74,6 @@ import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.MainVideoPlayer;
 import org.schabi.newpipe.player.PopupVideoPlayer;
 import org.schabi.newpipe.player.helper.PlayerHelper;
-import org.schabi.newpipe.player.old.PlayVideoActivity;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
@@ -922,7 +921,7 @@ public class VideoDetailFragment
                 .getBoolean(this.getString(R.string.use_external_video_player_key), false)) {
             startOnExternalPlayer(activity, currentInfo, selectedVideoStream);
         } else {
-            openNormalPlayer(selectedVideoStream);
+            openNormalPlayer();
         }
     }
 
@@ -935,24 +934,13 @@ public class VideoDetailFragment
         }
     }
 
-    private void openNormalPlayer(VideoStream selectedVideoStream) {
+    private void openNormalPlayer() {
         Intent mIntent;
-        boolean useOldPlayer = PlayerHelper.isUsingOldPlayer(activity) || (Build.VERSION.SDK_INT < 16);
-        if (!useOldPlayer) {
-            // ExoPlayer
-            final PlayQueue playQueue = new SinglePlayQueue(currentInfo);
-            mIntent = NavigationHelper.getPlayerIntent(activity,
-                    MainVideoPlayer.class,
-                    playQueue,
-                    getSelectedVideoStream().getResolution());
-        } else {
-            // Internal Player
-            mIntent = new Intent(activity, PlayVideoActivity.class)
-                    .putExtra(PlayVideoActivity.VIDEO_TITLE, currentInfo.getName())
-                    .putExtra(PlayVideoActivity.STREAM_URL, selectedVideoStream.getUrl())
-                    .putExtra(PlayVideoActivity.VIDEO_URL, currentInfo.getUrl())
-                    .putExtra(PlayVideoActivity.START_POSITION, currentInfo.getStartPosition());
-        }
+        final PlayQueue playQueue = new SinglePlayQueue(currentInfo);
+        mIntent = NavigationHelper.getPlayerIntent(activity,
+                MainVideoPlayer.class,
+                playQueue,
+                getSelectedVideoStream().getResolution());
         startActivity(mIntent);
     }
 
