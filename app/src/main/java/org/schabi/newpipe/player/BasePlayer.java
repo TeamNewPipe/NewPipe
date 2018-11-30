@@ -23,9 +23,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.AudioManager;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -100,6 +102,10 @@ public abstract class BasePlayer implements
     public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
     @NonNull
     public static final String TAG = "BasePlayer";
+    @NonNull
+    public static final String CURRENT_REPEAT_MODE = "currentRepeatMode";
+    @NonNull
+    public static final String IS_SHUFFLE_ENABLED = "isShuffleEnabled";
 
     @NonNull
     final protected Context context;
@@ -155,6 +161,7 @@ public abstract class BasePlayer implements
 
     protected PlayQueue playQueue;
     protected PlayQueueAdapter playQueueAdapter;
+    private SharedPreferences mySharedPreferences;
 
     @Nullable
     protected MediaSourceManager playbackManager;
@@ -234,6 +241,8 @@ public abstract class BasePlayer implements
         mediaSessionManager = new MediaSessionManager(context, simpleExoPlayer,
                 new BasePlayerMediaSession(this));
 
+        mySharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+
         registerBroadcastReceiver();
     }
 
@@ -293,6 +302,7 @@ public abstract class BasePlayer implements
 
         if (playQueueAdapter != null) playQueueAdapter.dispose();
         playQueueAdapter = new PlayQueueAdapter(context, playQueue);
+        simpleExoPlayer.setShuffleModeEnabled(mySharedPreferences.getBoolean(IS_SHUFFLE_ENABLED, false));
     }
 
     public void destroyPlayer() {
@@ -496,6 +506,7 @@ public abstract class BasePlayer implements
 
         if (simpleExoPlayer == null) return;
         simpleExoPlayer.setShuffleModeEnabled(!simpleExoPlayer.getShuffleModeEnabled());
+        mySharedPreferences.edit().putBoolean(IS_SHUFFLE_ENABLED, simpleExoPlayer.getShuffleModeEnabled()).apply();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1144,11 +1155,14 @@ public abstract class BasePlayer implements
     public int getRepeatMode() {
         return simpleExoPlayer == null
                 ? Player.REPEAT_MODE_OFF
-                : simpleExoPlayer.getRepeatMode();
+                : mySharedPreferences.getInt(CURRENT_REPEAT_MODE, simpleExoPlayer.getRepeatMode());
     }
 
     public void setRepeatMode(@Player.RepeatMode final int repeatMode) {
-        if (simpleExoPlayer != null) simpleExoPlayer.setRepeatMode(repeatMode);
+        if (simpleExoPlayer != null) {
+            mySharedPreferences.edit().putInt(CURRENT_REPEAT_MODE, repeatMode).apply();
+            simpleExoPlayer.setRepeatMode(repeatMode);
+        }
     }
 
     public float getPlaybackSpeed() {
