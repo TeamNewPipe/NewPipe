@@ -3,14 +3,14 @@
     <string name="view_count_text">%1$s vaatamist</string>
     <string name="upload_date_text">Avaldatud %1$s</string>
     <string name="no_player_found">Voogesituseks puudub pleier. Kas paigaldada VLC?</string>
-    <string name="no_player_found_toast">Voogesituseks puudub pleier. (Selleks võib paigaldada VLC)</string>
+    <string name="no_player_found_toast">Voogesituseks puudub pleier (selleks võib paigaldada VLC).</string>
     <string name="install">Paigalda</string>
     <string name="cancel">Tühista</string>
     <string name="open_in_browser">Ava veebilehitsejas</string>
     <string name="open_in_popup_mode">Ava hüpikaknas</string>
     <string name="share">Jaga</string>
     <string name="download">Allalaadimine</string>
-    <string name="controls_download_desc">Laadi voog alla.</string>
+    <string name="controls_download_desc">Laadi voog alla</string>
     <string name="search">Otsi</string>
     <string name="settings">Seaded</string>
     <string name="did_you_mean">Kas mõtlesid: %1$s\?</string>
@@ -18,14 +18,14 @@
     <string name="choose_browser">Vali veebilehitseja</string>
     <string name="screen_rotation">pööramine</string>
     <string name="use_external_video_player_title">Kasuta välist videopleierit</string>
-    <string name="use_external_video_player_summary">Kui see valik lubada, puudub osadel lahutustel heli</string>
+    <string name="use_external_video_player_summary">Eemaldab audio SOME lahutustel</string>
     <string name="use_external_audio_player_title">Kasuta välist audiopleierit</string>
     <string name="popup_mode_share_menu_title">NewPipe hüpikaknarežiim</string>
     <string name="subscribe_button_title">Telli</string>
     <string name="subscribed_button_title">Tellitud</string>
     <string name="channel_unsubscribed">Kanali tellimus tühistatud</string>
-    <string name="subscription_change_failed">Tellimuse muutmine nurjus</string>
-    <string name="subscription_update_failed">Tellimuse uuendamine nurjus</string>
+    <string name="subscription_change_failed">Tellimust ei saanud muuta</string>
+    <string name="subscription_update_failed">Tellimust ei õnnestunud uuendada</string>
     <string name="show_info">Kuva info</string>
 
     <string name="tab_subscriptions">Tellimused</string>
@@ -42,7 +42,7 @@
     <string name="download_path_dialog_title">Sisesta videote allalaadimise rada</string>
 
     <string name="download_path_audio_title">Audio allalaadimise kaust</string>
-    <string name="download_path_audio_summary">Kaust allalaetud audio hoiustamiseks</string>
+    <string name="download_path_audio_summary">Siia salvestatakse alla laaditud audio</string>
     <string name="download_path_audio_dialog_title">Sisesta audio allalaadimise rada</string>
 
     <string name="autoplay_by_calling_app_title">Automaatesitus</string>
