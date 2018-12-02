@@ -30,12 +30,6 @@
         android:title="@string/show_search_suggestions_title"/>
 
     <SwitchPreference
-        android:defaultValue="false"
-        android:key="@string/auto_queue_key"
-        android:summary="@string/auto_queue_summary"
-        android:title="@string/auto_queue_title"/>
-
-    <SwitchPreference
         android:defaultValue="true"
         android:key="@string/download_thumbnail_key"
         android:title="@string/download_thumbnail_title"

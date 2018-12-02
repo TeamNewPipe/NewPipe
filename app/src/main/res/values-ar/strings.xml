@@ -165,8 +165,6 @@
     <string name="audio">الصوت</string>
     <string name="retry">إعادة المحاولة</string>
     <string name="storage_permission_denied">تم رفض إذن الوصول إلى التخزين</string>
-    <string name="use_old_player_title">استخدام المشغل القديم</string>
-    <string name="use_old_player_summary">المشغل القديم المدمج في إطار Mediaframework</string>
 
     <string name="short_thousand">ألف</string>
     <string name="short_million">مليون</string>
