@@ -150,10 +150,8 @@ public class DownloadManager {
                         exists = true;
                         mis.postprocessingRunning = false;
                         mis.errCode = DownloadMission.ERROR_POSTPROCESSING_FAILED;
-                        mis.errObject = new RuntimeException("post-processing stopped unexpectedly");
-                    }
-
-                    if (exists && !dl.isFile()) {
+                        mis.errObject = new RuntimeException("stopped unexpectedly");
+                    } else if (exists && !dl.isFile()) {
                         // probably a folder, this should never happens
                         if (!sub.delete()) {
                             Log.w(TAG, "Unable to delete serialized file: " + sub.getPath());

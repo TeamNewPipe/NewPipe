@@ -90,8 +90,8 @@ public class DownloadManagerService extends Service {
     private SharedPreferences mPrefs = null;
     private final SharedPreferences.OnSharedPreferenceChangeListener mPrefChangeListener = this::handlePreferenceChange;
 
-    private boolean wakeLockAcquired = false;
-    private LockManager wakeLock = null;
+    private boolean mLockAcquired = false;
+    private LockManager mLock = null;
 
     private int downloadFailedNotificationID = DOWNLOADS_NOTIFICATION_ID + 1;
     private Builder downloadFailedNotification = null;
@@ -167,7 +167,7 @@ public class DownloadManagerService extends Service {
         handlePreferenceChange(mPrefs, getString(R.string.downloads_cross_network));
         handlePreferenceChange(mPrefs, getString(R.string.downloads_maximum_retry));
 
-        wakeLock = new LockManager(this);
+        mLock = new LockManager(this);
     }
 
     @Override
@@ -228,7 +228,7 @@ public class DownloadManagerService extends Service {
 
         mManager.pauseAllMissions();
 
-        if (wakeLockAcquired) wakeLock.releaseWifiAndCpu();
+        manageLock(false);
 
         unregisterReceiver(mNetworkStateListener);
         mPrefs.unregisterOnSharedPreferenceChangeListener(mPrefChangeListener);
@@ -341,11 +341,11 @@ public class DownloadManagerService extends Service {
 
         if (state) {
             startForeground(FOREGROUND_NOTIFICATION_ID, mNotification);
-            if (!wakeLockAcquired) wakeLock.acquireWifiAndCpu();
         } else {
             stopForeground(true);
-            if (wakeLockAcquired) wakeLock.releaseWifiAndCpu();
         }
+
+        manageLock(state);
 
         mForeground = state;
     }
@@ -474,6 +474,17 @@ public class DownloadManagerService extends Service {
                 mEchoObservers.remove(handler);
             }
         }
+    }
+
+    private void manageLock(boolean acquire) {
+        if (acquire == mLockAcquired) return;
+
+        if (acquire)
+            mLock.acquireWifiAndCpu();
+        else
+            mLock.releaseWifiAndCpu();
+
+        mLockAcquired = acquire;
     }
 
     // Wrapper of DownloadManager

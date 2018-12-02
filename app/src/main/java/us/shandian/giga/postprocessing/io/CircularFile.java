@@ -121,43 +121,35 @@ public class CircularFile extends SharpStream {
             available = end - position;
         }
 
-        while (available > 0 && auxiliaryBuffers.size() > 0) {
+        // Check if possible flush one or more auxiliary buffer
+        if (auxiliaryBuffers.size() > 0) {
             ManagedBuffer aux = auxiliaryBuffers.get(0);
 
-            // check if there is enough space to dump the auxiliary buffer
-            if (available >= (aux.size + queue.size)) {
+            // check if there is enough space to flush it completely
+            while (available >= (aux.size + queue.size)) {
                 available -= aux.size;
                 writeQueue(aux.buffer, 0, aux.size);
                 aux.dereference();
                 auxiliaryBuffers.remove(0);
-                continue;
+
+                if (auxiliaryBuffers.size() < 1) {
+                    aux = null;
+                    break;
+                }
+                aux = auxiliaryBuffers.get(0);
             }
 
             if (IMMEDIATE_AUX_BUFFER_FLUSH) {
-                // try flush contents to avoid allocate another auxiliary buffer
-                if (aux.available() < len && available > queue.size) {
-                    int size = Math.min(len, aux.available());
-                    aux.write(b, off, size);
-
-                    off += size;
-                    len -= size;
-
-                    size = Math.min(aux.size, (int) available - queue.size);
-                    if (size < 1) {
-                        break;
-                    }
+                // try partial flush to avoid allocate another auxiliary buffer
+                if (aux != null && aux.available() < len && available > queue.size) {
+                    int size = Math.min(aux.size, (int) available - queue.size);
 
                     writeQueue(aux.buffer, 0, size);
                     aux.dereference(size);
 
                     available -= size;
                 }
-                break;
             }
-        }
-
-        if (len < 1) {
-            return;
         }
 
         if (auxiliaryBuffers.size() < 1 && available > (len + queue.size)) {

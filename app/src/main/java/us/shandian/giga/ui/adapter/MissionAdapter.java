@@ -52,6 +52,17 @@ import us.shandian.giga.util.Utility;
 
 import static android.content.Intent.FLAG_GRANT_PREFIX_URI_PERMISSION;
 import static android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION;
+import static us.shandian.giga.get.DownloadMission.ERROR_CONNECT_HOST;
+import static us.shandian.giga.get.DownloadMission.ERROR_FILE_CREATION;
+import static us.shandian.giga.get.DownloadMission.ERROR_HTTP_NO_CONTENT;
+import static us.shandian.giga.get.DownloadMission.ERROR_HTTP_UNSUPPORTED_RANGE;
+import static us.shandian.giga.get.DownloadMission.ERROR_NOTHING;
+import static us.shandian.giga.get.DownloadMission.ERROR_PATH_CREATION;
+import static us.shandian.giga.get.DownloadMission.ERROR_PERMISSION_DENIED;
+import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING_FAILED;
+import static us.shandian.giga.get.DownloadMission.ERROR_SSL_EXCEPTION;
+import static us.shandian.giga.get.DownloadMission.ERROR_UNKNOWN_EXCEPTION;
+import static us.shandian.giga.get.DownloadMission.ERROR_UNKNOWN_HOST;
 
 public class MissionAdapter extends Adapter<ViewHolder> {
     private static final SparseArray<String> ALGORITHMS = new SparseArray<>();
@@ -158,24 +169,27 @@ public class MissionAdapter extends Adapter<ViewHolder> {
         h.item = item;
 
         Utility.FileType type = Utility.getFileType(item.mission.kind, item.mission.name);
-        long length = item.mission instanceof FinishedMission ? item.mission.length : ((DownloadMission) item.mission).getLength();
 
         h.icon.setImageResource(Utility.getIconForFileType(type));
         h.name.setText(item.mission.name);
-        h.size.setText(Utility.formatBytes(length));
 
         h.progress.setColors(Utility.getBackgroundForFileType(mContext, type), Utility.getForegroundForFileType(mContext, type));
 
         if (h.item.mission instanceof DownloadMission) {
             DownloadMission mission = (DownloadMission) item.mission;
-            h.progress.setMarquee(mission.done < 1);
-            updateProgress(h);
+            String length = Utility.formatBytes(mission.getLength());
+            if (mission.running && !mission.postprocessingRunning) length += " --.- kB/s";
+
+            h.size.setText(length);
             h.pause.setTitle(mission.unknownLength ? R.string.stop : R.string.pause);
+            h.lastCurrent = mission.current;
+            updateProgress(h);
             mPendingDownloadsItems.add(h);
         } else {
             h.progress.setMarquee(false);
             h.status.setText("100%");
             h.progress.setProgress(1f);
+            h.size.setText(Utility.formatBytes(item.mission.length));
         }
     }
 
@@ -207,7 +221,7 @@ public class MissionAdapter extends Adapter<ViewHolder> {
 
         long deltaTime = now - h.lastTimeStamp;
         long deltaDone = mission.done - h.lastDone;
-        boolean hasError = mission.errCode != DownloadMission.ERROR_NOTHING;
+        boolean hasError = mission.errCode != ERROR_NOTHING;
 
         // on error hide marquee or show if condition (mission.done < 1 || mission.unknownLength) is true
         h.progress.setMarquee(!hasError && (mission.done < 1 || mission.unknownLength));
@@ -237,7 +251,9 @@ public class MissionAdapter extends Adapter<ViewHolder> {
         long length = mission.getLength();
 
         int state;
-        if (!mission.running) {
+        if (mission.errCode == ERROR_POSTPROCESSING_FAILED) {
+            state = 0;
+        } else if (!mission.running) {
             state = mission.enqueued ? 1 : 2;
         } else if (mission.postprocessingRunning) {
             state = 3;
@@ -363,36 +379,36 @@ public class MissionAdapter extends Adapter<ViewHolder> {
             case 404:
                 str.append(mContext.getString(R.string.error_http_not_found));
                 break;
-            case DownloadMission.ERROR_NOTHING:
+            case ERROR_NOTHING:
                 str.append("¿?");
                 break;
-            case DownloadMission.ERROR_FILE_CREATION:
+            case ERROR_FILE_CREATION:
                 str.append(mContext.getString(R.string.error_file_creation));
                 break;
-            case DownloadMission.ERROR_HTTP_NO_CONTENT:
+            case ERROR_HTTP_NO_CONTENT:
                 str.append(mContext.getString(R.string.error_http_no_content));
                 break;
-            case DownloadMission.ERROR_HTTP_UNSUPPORTED_RANGE:
+            case ERROR_HTTP_UNSUPPORTED_RANGE:
                 str.append(mContext.getString(R.string.error_http_unsupported_range));
                 break;
-            case DownloadMission.ERROR_PATH_CREATION:
+            case ERROR_PATH_CREATION:
                 str.append(mContext.getString(R.string.error_path_creation));
                 break;
-            case DownloadMission.ERROR_PERMISSION_DENIED:
+            case ERROR_PERMISSION_DENIED:
                 str.append(mContext.getString(R.string.permission_denied));
                 break;
-            case DownloadMission.ERROR_SSL_EXCEPTION:
+            case ERROR_SSL_EXCEPTION:
                 str.append(mContext.getString(R.string.error_ssl_exception));
                 break;
-            case DownloadMission.ERROR_UNKNOWN_HOST:
+            case ERROR_UNKNOWN_HOST:
                 str.append(mContext.getString(R.string.error_unknown_host));
                 break;
-            case DownloadMission.ERROR_CONNECT_HOST:
+            case ERROR_CONNECT_HOST:
                 str.append(mContext.getString(R.string.error_connect_host));
                 break;
-            case DownloadMission.ERROR_POSTPROCESSING_FAILED:
+            case ERROR_POSTPROCESSING_FAILED:
                 str.append(mContext.getString(R.string.error_postprocessing_failed));
-            case DownloadMission.ERROR_UNKNOWN_EXCEPTION:
+            case ERROR_UNKNOWN_EXCEPTION:
                 break;
             default:
                 if (mission.errCode >= 100 && mission.errCode < 600) {
@@ -655,15 +671,15 @@ public class MissionAdapter extends Adapter<ViewHolder> {
                     if (mission.running) {
                         pause.setVisible(true);
                     } else {
-                        if (mission.errCode != DownloadMission.ERROR_NOTHING) {
+                        if (mission.errCode != ERROR_NOTHING) {
                             showError.setVisible(true);
                         }
 
                         queue.setChecked(mission.enqueued);
 
                         delete.setVisible(true);
-                        start.setVisible(mission.errCode != DownloadMission.ERROR_POSTPROCESSING_FAILED);
-                        queue.setVisible(mission.errCode != DownloadMission.ERROR_POSTPROCESSING_FAILED);
+                        start.setVisible(mission.errCode != ERROR_POSTPROCESSING_FAILED);
+                        queue.setVisible(mission.errCode != ERROR_POSTPROCESSING_FAILED);
                     }
                 }
             } else {

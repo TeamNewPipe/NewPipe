@@ -341,6 +341,12 @@ public class DownloadMission extends Mission {
         finishCount++;
 
         if (finishCount == currentThreadCount) {
+            if (errCode > ERROR_NOTHING) return;
+
+            if (DEBUG) {
+                Log.d(TAG, "onFinish" + (current + 1) + "/" + urls.length);
+            }
+
             if ((current + 1) < urls.length) {
                 // prepare next sub-mission
                 long current_offset = offsets[current++];
@@ -354,10 +360,6 @@ public class DownloadMission extends Mission {
 
             if (!doPostprocessing()) return;
 
-            if (errCode > ERROR_NOTHING) return;
-            if (DEBUG) {
-                Log.d(TAG, "onFinish");
-            }
             running = false;
             deleteThisFromFile();
 
@@ -517,10 +519,16 @@ public class DownloadMission extends Mission {
     }
 
     public long getLength() {
-        long near = offsets[current < offsets.length ? current : (offsets.length - 1)] + length;
-        near -= offsets[0];// don't count reserved space
+        long calculated;
+        if (postprocessingRunning) {
+            calculated = length;
+        } else {
+            calculated = offsets[current < offsets.length ? current : (offsets.length - 1)] + length;
+        }
 
-        return near > nearLength ? near : nearLength;
+        calculated -= offsets[0];// don't count reserved space
+
+        return calculated > nearLength ? calculated : nearLength;
     }
 
     private boolean doPostprocessing() {

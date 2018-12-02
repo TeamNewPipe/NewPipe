@@ -91,7 +91,7 @@ public abstract class Postprocessing {
             out = new CircularFile(file, 0, this::progressReport, checker);
 
             mission.done = 0;
-            mission.length = mission.getLength();
+            mission.length = file.length();
 
             int result = process(out, sources);
 
