@@ -224,7 +224,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
         infoListAdapter.setOnCommentsSelectedListener(new OnClickGesture<CommentsInfoItem>() {
             @Override
             public void selected(CommentsInfoItem selectedItem) {
-                //Log.d("comments" , "this comment was clicked" + selectedItem.getCommentText());
+                onItemSelected(selectedItem);
             }
         });
 
