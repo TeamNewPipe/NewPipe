@@ -20,7 +20,7 @@
     <string name="default_resolution_title">Standardauflösung</string>
     <string name="play_with_kodi_title">Mit Kodi abspielen</string>
     <string name="kore_not_found">Kore App wurde nicht gefunden. Kore jetzt installieren?</string>
-    <string name="show_play_with_kodi_title">Zeige \"Mit Kodi abspielen\" Option</string>
+    <string name="show_play_with_kodi_title">Option \"Mit Kodi abspielen\" anzeigen</string>
     <string name="show_play_with_kodi_summary">Zeigt eine Option an, über die man Videos mit Kodi abspielen kann</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Bevorzugtes Audioformat</string>
@@ -37,8 +37,8 @@
     <string name="detail_uploader_thumbnail_view_description">Nutzerbild</string>
     <string name="detail_dislikes_img_view_description">Gefällt nicht</string>
     <string name="detail_likes_img_view_description">Gefällt</string>
-    <string name="use_external_video_player_title">Benutze externen Videoabspieler</string>
-    <string name="use_external_audio_player_title">Benutze externen Audioabspieler</string>
+    <string name="use_external_video_player_title">Externen Video-Player verwenden</string>
+    <string name="use_external_audio_player_title">Externen Audio-Player verwenden</string>
     <string name="background_player_playing_toast">Spiele im Hintergrund ab</string>
     <string name="play_btn_text">Abspielen</string>
 
@@ -56,7 +56,7 @@
 
     <string name="settings_category_appearance_title">Aussehen</string>
     <string name="settings_category_other_title">Andere</string>
-    <string name="err_dir_create">Kann Download-Verzeichnis nicht anlegen \'%1$s\'</string>
+    <string name="err_dir_create">Kann Download-Verzeichnis \'%1$s\' nicht anlegen</string>
     <string name="info_dir_created">Download-Verzeichnis \'%1$s\' erstellt</string>
     <string name="general_error">Fehler</string>
     <string name="could_not_load_thumbnails">Konnte nicht alle Vorschaubilder laden</string>
@@ -144,7 +144,7 @@
 
     <string name="disabled">Deaktiviert</string>
 
-    <string name="use_old_player_title">Benutze den alten Player</string>
+    <string name="use_old_player_title">Alten Player benutzen</string>
     <string name="open_in_popup_mode">Im Pop-up-Modus öffnen</string>
     <string name="default_video_format_title">Bevorzugtes Videoformat</string>
     <string name="popup_playing_toast">Spiele im Pop-up Modus ab</string>
@@ -155,7 +155,7 @@
 
     <string name="use_old_player_summary">Alter eingebauter Mediaframework-Player</string>
     <string name="default_popup_resolution_title">Standardauflösung des Pop-ups</string>
-    <string name="show_higher_resolutions_title">Zeige höhere Auflösungen an</string>
+    <string name="show_higher_resolutions_title">Höhere Auflösungen anzeigen</string>
     <string name="show_higher_resolutions_summary">Nur manche Geräte unterstützen das Abspielen von 2K-/4K-Videos</string>
     <string name="controls_background_title">Hintergrund</string>
     <string name="controls_popup_title">Pop-up</string>
@@ -165,8 +165,8 @@
     <string name="popup_remember_size_pos_summary">Letzte Größe und Position des Pop-ups merken</string>
     <string name="player_gesture_controls_title">Gestensteuerung</string>
     <string name="player_gesture_controls_summary">Helligkeit und Lautstärke mittels Gesten einstellen</string>
-    <string name="show_search_suggestions_title">Durchsuche Vorschläge</string>
-    <string name="show_search_suggestions_summary">Zeige Vorschläge beim Suchen</string>
+    <string name="show_search_suggestions_title">Suchvorschläge</string>
+    <string name="show_search_suggestions_summary">Beim Suchen Vorschläge anzeigen</string>
 
     <string name="settings_category_popup_title">Pop-up</string>
     <string name="filter">Filter</string>
@@ -185,7 +185,7 @@
     <string name="error_unable_to_load_license">Lizenz konnte nicht geladen werden</string>
     <string name="copyright" formatted="true">© %1$s von %2$s unter %3$s</string>
     <string name="tab_about">Über</string>
-    <string name="app_description">Eine freie, schlanke Streaming-App für Android.</string>
+    <string name="app_description">Freies und schlankes Streaming für Android.</string>
     <string name="app_license_title">NewPipes Lizenz</string>
     <string name="contribution_encouragement">Ob Ideen, Übersetzungen, Design-Änderungen, Code-Aufräumung oder richtig große Code-Änderungen – Hilfe ist immer willkommen. Je mehr geholfen wird, desto besser wird NewPipe!</string>
     <string name="title_licenses">Drittanbieter-Lizenzen</string>
@@ -199,13 +199,13 @@
     <string name="charset_letters_and_digits">Buchstaben und Zahlen</string>
     <string name="subscribe_button_title">Abonnieren</string>
     <string name="subscribed_button_title">Abonniert</string>
-    <string name="channel_unsubscribed">Abo beenden</string>
+    <string name="channel_unsubscribed">Abo beendet</string>
     <string name="tab_subscriptions">Abos</string>
 
     <string name="fragment_whats_new">Neuigkeiten</string>
 
     <string name="enable_search_history_title">Suchverlauf</string>
-    <string name="enable_search_history_summary">Speichere den Suchverlauf lokal</string>
+    <string name="enable_search_history_summary">Suchanfragen lokal speichern</string>
     <string name="enable_watch_history_title">Verlauf &amp; Cache</string>
     <string name="enable_watch_history_summary">Speichere den Wiedergabeverlauf</string>
     <string name="title_activity_history">Verlauf</string>
@@ -298,7 +298,7 @@
 <string name="donation_title">Spenden</string>
     <string name="give_back">Zurückgeben</string>
     <string name="website_title">Website</string>
-    <string name="website_encouragement">Besuche die NewPipe-Website für weitere Informationen und Neuigkeiten.</string>
+    <string name="website_encouragement">Besuche die NewPipe Website für weitere Informationen und Neuigkeiten.</string>
     <string name="donation_encouragement">NewPipe wird von Freiwilligen entwickelt, die ihre Freizeit dafür verwenden, dir die beste Nutzererfahrung zu bieten. Gib etwas zurück, um den Entwicklern zu helfen, NewPipe noch besser machen zu können, während sie sich an einer Tasse Kaffee erfreuen.</string>
     <string name="service_title">Service</string>
     <string name="no_player_found_toast">Keinen Streamplayer gefunden (du kannst VLC installieren, um den Stream abzuspielen).</string>
@@ -358,7 +358,7 @@
     <string name="delete_playlist">Löschen</string>
     <string name="rename_playlist">Umbenennen</string>
     <string name="append_playlist">Zur Wiedergabeliste hinzufügen</string>
-    <string name="set_as_playlist_thumbnail">Als Symbolbild der Wiedergabeliste festlegen</string>
+    <string name="set_as_playlist_thumbnail">Als Vorschaubild der Wiedergabeliste festlegen</string>
 
     <string name="unbookmark_playlist">Lesezeichen entfernen</string>
 
@@ -374,7 +374,7 @@
     <string name="dismiss">Abbrechen</string>
     <string name="normal_caption_font_size">Normale Schriftgröße</string>
     <string name="controls_download_desc">Stream-Datei herunterladen</string>
-    <string name="use_inexact_seek_title">Benutze schnelle, ungenaue Suche</string>
+    <string name="use_inexact_seek_title">Schnelle, ungenaue Suche verwenden</string>
     <string name="use_inexact_seek_summary">Mit ungenauem Suchen kann die Abspielposition schneller erreicht werden, aber auf Kosten der Genauigkeit</string>
     <string name="file">Datei</string>
 
@@ -401,9 +401,9 @@
 \n 
 \nMöchtest du fortfahren?</string>
 <string name="download_thumbnail_title">Vorschaubilder laden</string>
-    <string name="thumbnail_cache_wipe_complete_notice">Bildercache gelöscht</string>
-    <string name="metadata_cache_wipe_title">Leere die gecachten Metadaten</string>
-    <string name="metadata_cache_wipe_summary">Entferne alle gecachten Website-Daten</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Bilder-Cache gelöscht</string>
+    <string name="metadata_cache_wipe_title">Zwischengespeicherte Metadaten löschen</string>
+    <string name="metadata_cache_wipe_summary">Alle zwischengespeicherten Website-Daten entfernen</string>
     <string name="metadata_cache_wipe_complete_notice">Metadatencache gelöscht</string>
     <string name="settings_category_debug_title">Debug</string>
     <string name="invalid_source">Datei-/Inhaltsquelle existiert nicht</string>
@@ -421,13 +421,13 @@
     <string name="unhook_checkbox">Verknüpfung aufheben (kann zu Verzerrungen führen)</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Standard</string>
-<string name="download_thumbnail_summary">Wenn ausgeschaltet, werden keine Miniaturansichten geladen, Daten und Speicherverbrauch sparend. Änderungen löschen sowohl Speicher- als auch Image-Caches auf der Festplatte.</string>
+<string name="download_thumbnail_summary">Wenn ausgeschaltet, werden keine Miniaturansichten geladen, Daten und Speicherverbrauch sparend. Änderungen löschen die Bilder-Caches sowohl im Arbeitsspeicher als auch auf der SD-Karte.</string>
     <string name="auto_queue_title">Nächsten Stream automatisch einreihen</string>
     <string name="auto_queue_summary">Automatisches Anhängen eines verwandten Streams beim Abspielen des letzten Streams in einer nicht wiederholten Warteschlange.</string>
     <string name="drawer_header_action_paceholder_text">Hier wird bald etwas stehen ;D</string>
 
 
-    <string name="bookmark_playlist">Lesezeichen Wiedergabeliste</string>
+    <string name="bookmark_playlist">Wiedergabeliste mit Lesezeichen versehen</string>
     <string name="resize_fit">Anpassen</string>
     <string name="resize_fill">Füllen</string>
     <string name="resize_zoom">Vergrößern</string>
@@ -437,17 +437,17 @@
     <string name="enable_disposed_exceptions_title">Fehler außerhalb des Lebenszyklus melden</string>
     <string name="enable_disposed_exceptions_summary">Erzwingen der Meldung unzustellbarer Rx-Ausnahmen außerhalb des Lebenszyklus von Fragmenten oder Aktivitäten nach der Entsorgung</string>
 
-    <string name="import_youtube_instructions">Importieren Sie YouTube-Abonnements, indem Sie die Exportdatei herunterladen: 
+    <string name="import_youtube_instructions">Importiere YouTube-Abonnements, indem du die Exportdatei herunterlädst: 
 \n 
-\n1. Gehen Sie zu dieser URL: %1$s 
-\n2. Melden Sie sich an, wenn Sie dazu aufgefordert werden. 
+\n1. Gehe zu dieser URL: %1$s 
+\n2. Melde dich an, falls du dazu aufgefordert wirst. 
 \n3. Der Ladevorgang sollte beginnen (das ist die Exportdatei)</string>
-    <string name="import_soundcloud_instructions">Importieren Sie ein SoundCloud-Profil, indem Sie entweder die URL oder Ihre ID eingeben:
-\n
-\n1. Aktivieren des \"Desktop-Modus\" in einem Web-Browser (die Seite ist für mobile Geräte nicht verfügbar)
-\n2. Gehen Sie zu dieser URL: %1$s
-\n3. Melden Sie sich an, wenn Sie gefragt werden
-\n4. Kopieren Sie die Profil-URL, zu der Sie weitergeleitet wurden.</string>
+    <string name="import_soundcloud_instructions">Importiere ein SoundCloud-Profil, indem du entweder die URL oder deine ID eingibst: 
+\n 
+\n1. Aktiviere den \"Desktop-Modus\" in einem Web-Browser (die Seite ist für mobile Geräte nicht verfügbar) 
+\n2. Gehe zu dieser URL: %1$s 
+\n3. Melden dich an, falls du dazu aufgefordert wirst 
+\n4. Kopiere die Profil-URL, zu der du weitergeleitet wurdest.</string>
     <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/yourid</string>
 
     <string name="no_streams_available_download">Keine Streams zum Download verfügbar</string>
@@ -456,7 +456,7 @@
     <string name="preferred_open_action_settings_summary">Standardaktion beim Öffnen von Inhalten - %s</string>
 
     <string name="caption_setting_title">Untertitel</string>
-    <string name="caption_setting_description">Ändere Textgröße und Hintergrundstil des Untertitels im Player. Wird erst nach Neustart des App wirksam.</string>
+    <string name="caption_setting_description">Textgröße und Hintergrund der Untertitel im Player anpassen. Wird erst nach Neustart der App wirksam.</string>
 
     <string name="toast_no_player">Keine App zum Abspielen dieser Datei installiert</string>
 
