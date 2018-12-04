@@ -2,8 +2,8 @@ package android.support.design.widget;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.design.animation.AnimationUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -18,11 +18,6 @@ public final class FlingBehavior extends AppBarLayout.Behavior {
 
     public FlingBehavior(Context context, AttributeSet attrs) {
         super(context, attrs);
-    }
-
-    @Override
-    public boolean onStartNestedScroll(CoordinatorLayout parent, AppBarLayout child, View directTargetChild, View target, int nestedScrollAxes, int type) {
-        return super.onStartNestedScroll(parent, child, directTargetChild, target, nestedScrollAxes, type);
     }
 
     @Override
@@ -41,31 +36,6 @@ public final class FlingBehavior extends AppBarLayout.Behavior {
                 }
             }
         }
-    }
-
-    @Override
-    public void onNestedScroll(CoordinatorLayout coordinatorLayout, AppBarLayout child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed, int type) {
-        super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, type);
-    }
-
-    @Override
-    public void onStopNestedScroll(CoordinatorLayout coordinatorLayout, AppBarLayout abl, View target, int type) {
-        super.onStopNestedScroll(coordinatorLayout, abl, target, type);
-    }
-
-    @Override
-    public boolean onMeasureChild(CoordinatorLayout parent, AppBarLayout child, int parentWidthMeasureSpec, int widthUsed, int parentHeightMeasureSpec, int heightUsed) {
-        return super.onMeasureChild(parent, child, parentWidthMeasureSpec, widthUsed, parentHeightMeasureSpec, heightUsed);
-    }
-
-    @Override
-    public Parcelable onSaveInstanceState(CoordinatorLayout parent, AppBarLayout abl) {
-        return super.onSaveInstanceState(parent, abl);
-    }
-
-    @Override
-    public void onRestoreInstanceState(CoordinatorLayout parent, AppBarLayout appBarLayout, Parcelable state) {
-        super.onRestoreInstanceState(parent, appBarLayout, state);
     }
 
     @Override

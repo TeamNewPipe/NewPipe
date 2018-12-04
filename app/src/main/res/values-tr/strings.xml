@@ -11,7 +11,7 @@
     <string name="download">İndir</string>
     <string name="search">Ara</string>
     <string name="settings">Ayarlar</string>
-    <string name="did_you_mean">Bunu mu demek istediniz: %1$s ?</string>
+    <string name="did_you_mean">Bunu mu demek istediniz: %1$s\?</string>
     <string name="share_dialog_title">Şununla paylaş</string>
     <string name="choose_browser">Tarayıcı seç</string>
     <string name="screen_rotation">döndürme</string>
@@ -42,7 +42,7 @@
     <string name="next_video_title">Sonraki video</string>
     <string name="show_next_and_similar_title">\'Sonraki\' ve \'benzer\' videoları göster</string>
     <string name="url_not_supported_toast">URL desteklenmiyor</string>
-    <string name="search_language_title">Öntanımlı içerik dili</string>
+    <string name="content_language_title">Öntanımlı içerik dili</string>
     <string name="play_audio">Ses</string>
     <string name="settings_category_video_audio_title">Video ve Ses</string>
     <string name="settings_category_appearance_title">Görünüm</string>
@@ -65,7 +65,7 @@
     <string name="light_parsing_error">Web sitesi tümüyle ayrıştırılamadı</string>
     <string name="content_not_available">İçerik kullanılabilir değil</string>
     <string name="blocked_by_gema">GEMA tarafından engellendi</string>
-    <string name="live_streams_not_supported">Bu, henüz desteklenmeyen, bir CANLI AKIŞ.</string>
+    <string name="live_streams_not_supported">Bu, henüz desteklenmeyen bir CANLI AKIŞ.</string>
     <string name="could_not_get_stream">Herhangi bir akış alınamadı</string>
     <string name="could_not_load_image">Resim yüklenemedi</string>
     <string name="app_ui_crash">Uygulama/arayüz çöktü</string>
@@ -254,7 +254,7 @@
     <string name="history_cleared">Geçmiş temizlendi</string>
     <string name="item_deleted">Öge silindi</string>
 <string name="delete_item_search_history">Bu içeriği arama geçmişinden silmek istiyor musunuz?</string>
-<string name="show_hold_to_append_title">\"Kuyruğa almak İçin bas\" ipucunu göster</string>
+<string name="show_hold_to_append_title">\"Kuyruğa almak için basılı tut\" ipucunu göster</string>
     <string name="show_hold_to_append_summary">Video ayrıntıları sayfasında arka plan veya açılır oynatıcı düğmesine basıldığında ipucu göster</string>
     <string name="background_player_append">Arka plan oynatıcıda kuyruğa eklendi</string>
     <string name="popup_playing_append">Açılır oynatıcıda kuyruğa eklendi</string>
@@ -272,7 +272,7 @@
     <string name="subscription_page_summary">Abonelik Sayfası</string>
     <string name="feed_page_summary">Besleme Sayfası</string>
     <string name="channel_page_summary">Kanal Sayfası</string>
-    <string name="select_a_channel">Bir kanal seç</string>
+    <string name="select_a_channel">Kanal seç</string>
     <string name="no_channel_subscribed_yet">Henüz abone olunan kanal yok</string>
     <string name="select_a_kiosk">Köşk seç</string>
 
@@ -285,7 +285,7 @@
     <string name="play_queue_remove">Kaldır</string>
     <string name="play_queue_stream_detail">Ayrıntılar</string>
     <string name="play_queue_audio_settings">Ses Ayarları</string>
-    <string name="hold_to_append">Kuyruğa Almak İçin Bas</string>
+    <string name="hold_to_append">Kuyruğa Almak İçin Basılı Tut</string>
     <string name="enqueue_on_background">Arka Planda Kuyruğa Al</string>
     <string name="enqueue_on_popup">Açılır Oynatıcıda Kuyruğa Al</string>
     <string name="start_here_on_main">Burada Oynatmaya Başla</string>
@@ -334,9 +334,9 @@
     <string name="controls_download_desc">Akış dosyasını indir.</string>
     <string name="show_info">Bilgileri göster</string>
 
-    <string name="tab_bookmarks">Yer imleri</string>
+    <string name="tab_bookmarks">Yer İmleri</string>
 
-    <string name="controls_add_to_playlist_title">Şuna Ekle</string>
+    <string name="controls_add_to_playlist_title">Listeye Ekle</string>
 
     <string name="detail_drag_description">Yeniden sıralamak için sürükle</string>
 
@@ -380,7 +380,7 @@
     <string name="normal_caption_font_size">Normal yazı tipi</string>
     <string name="larger_caption_font_size">Daha büyük yazı tipi</string>
 <string name="settings_category_debug_title">Hata Ayıklama</string>
-    <string name="drawer_header_action_paceholder_text">Yakında burada bir şeyler görünecek ;D</string>
+    <string name="drawer_header_action_paceholder_text">Yakında burada bir şeyler görünecek :)</string>
 
 
     <string name="caption_auto_generated">Kendiliğinden Üretilmiş</string>
@@ -435,7 +435,7 @@
 \n 
 \nDevam etmek istiyor musunuz?</string>
 <string name="download_thumbnail_title">Küçük resimleri yükle</string>
-    <string name="download_thumbnail_summary">Küçük resimlerin hepsinin yüklenmesini engellemek ve bellek ve veri kullanımını azaltmak için devre dışı bırakın. Bunu değiştirmek, hem bellekteki hem de diskteki resim önbelleğini temizler</string>
+    <string name="download_thumbnail_summary">Küçük resimlerin tümünün yüklenmesini engellemek, bellek ve veri kullanımını azaltmak için devre dışı bırakın. Bunu değiştirmek, hem bellekteki hem de diskteki resim önbelleğini temizler</string>
     <string name="thumbnail_cache_wipe_complete_notice">Resim önbelleği temizlendi</string>
     <string name="metadata_cache_wipe_title">Önbelleklenmiş üst veriyi temizle</string>
     <string name="metadata_cache_wipe_summary">Önbelleklenmiş tüm web sayfası verisini kaldır</string>

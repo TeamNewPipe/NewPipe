@@ -1,18 +1,21 @@
 package org.schabi.newpipe.local;
 
 import android.app.Activity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
 import org.schabi.newpipe.database.LocalItem;
-import org.schabi.newpipe.local.HeaderFooterHolder;
-import org.schabi.newpipe.local.LocalItemBuilder;
 import org.schabi.newpipe.local.holder.LocalItemHolder;
+import org.schabi.newpipe.local.holder.LocalPlaylistGridItemHolder;
 import org.schabi.newpipe.local.holder.LocalPlaylistItemHolder;
+import org.schabi.newpipe.local.holder.LocalPlaylistStreamGridItemHolder;
 import org.schabi.newpipe.local.holder.LocalPlaylistStreamItemHolder;
+import org.schabi.newpipe.local.holder.LocalStatisticStreamGridItemHolder;
 import org.schabi.newpipe.local.holder.LocalStatisticStreamItemHolder;
+import org.schabi.newpipe.local.holder.RemotePlaylistGridItemHolder;
 import org.schabi.newpipe.local.holder.RemotePlaylistItemHolder;
 import org.schabi.newpipe.util.FallbackViewHolder;
 import org.schabi.newpipe.util.Localization;
@@ -52,14 +55,19 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     private static final int STREAM_STATISTICS_HOLDER_TYPE = 0x1000;
     private static final int STREAM_PLAYLIST_HOLDER_TYPE = 0x1001;
+    private static final int STREAM_STATISTICS_GRID_HOLDER_TYPE = 0x1002;
+    private static final int STREAM_PLAYLIST_GRID_HOLDER_TYPE = 0x1004;
     private static final int LOCAL_PLAYLIST_HOLDER_TYPE = 0x2000;
     private static final int REMOTE_PLAYLIST_HOLDER_TYPE = 0x2001;
+	private static final int LOCAL_PLAYLIST_GRID_HOLDER_TYPE = 0x2002;
+	private static final int REMOTE_PLAYLIST_GRID_HOLDER_TYPE = 0x2004;
 
     private final LocalItemBuilder localItemBuilder;
     private final ArrayList<LocalItem> localItems;
     private final DateFormat dateFormat;
 
     private boolean showFooter = false;
+    private boolean useGridVariant = false;
     private View header = null;
     private View footer = null;
 
@@ -134,6 +142,10 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         notifyDataSetChanged();
     }
 
+    public void setGridItemVariants(boolean useGridVariant) {
+        this.useGridVariant = useGridVariant;
+    }
+
     public void setHeader(View header) {
         boolean changed = header != this.header;
         this.header = header;
@@ -195,11 +207,11 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         final LocalItem item = localItems.get(position);
 
         switch (item.getLocalItemType()) {
-            case PLAYLIST_LOCAL_ITEM: return LOCAL_PLAYLIST_HOLDER_TYPE;
-            case PLAYLIST_REMOTE_ITEM: return REMOTE_PLAYLIST_HOLDER_TYPE;
+            case PLAYLIST_LOCAL_ITEM: return useGridVariant ? LOCAL_PLAYLIST_GRID_HOLDER_TYPE : LOCAL_PLAYLIST_HOLDER_TYPE;
+            case PLAYLIST_REMOTE_ITEM: return useGridVariant ? REMOTE_PLAYLIST_GRID_HOLDER_TYPE : REMOTE_PLAYLIST_HOLDER_TYPE;
 
-            case PLAYLIST_STREAM_ITEM: return STREAM_PLAYLIST_HOLDER_TYPE;
-            case STATISTIC_STREAM_ITEM: return STREAM_STATISTICS_HOLDER_TYPE;
+            case PLAYLIST_STREAM_ITEM: return useGridVariant ? STREAM_PLAYLIST_GRID_HOLDER_TYPE : STREAM_PLAYLIST_HOLDER_TYPE;
+            case STATISTIC_STREAM_ITEM: return useGridVariant ? STREAM_STATISTICS_GRID_HOLDER_TYPE : STREAM_STATISTICS_HOLDER_TYPE;
             default:
                 Log.e(TAG, "No holder type has been considered for item: [" +
                         item.getLocalItemType() + "]");
@@ -218,12 +230,20 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
                 return new HeaderFooterHolder(footer);
             case LOCAL_PLAYLIST_HOLDER_TYPE:
                 return new LocalPlaylistItemHolder(localItemBuilder, parent);
+            case LOCAL_PLAYLIST_GRID_HOLDER_TYPE:
+                return new LocalPlaylistGridItemHolder(localItemBuilder, parent);
             case REMOTE_PLAYLIST_HOLDER_TYPE:
                 return new RemotePlaylistItemHolder(localItemBuilder, parent);
+            case REMOTE_PLAYLIST_GRID_HOLDER_TYPE:
+                return new RemotePlaylistGridItemHolder(localItemBuilder, parent);
             case STREAM_PLAYLIST_HOLDER_TYPE:
                 return new LocalPlaylistStreamItemHolder(localItemBuilder, parent);
+            case STREAM_PLAYLIST_GRID_HOLDER_TYPE:
+                return new LocalPlaylistStreamGridItemHolder(localItemBuilder, parent);
             case STREAM_STATISTICS_HOLDER_TYPE:
                 return new LocalStatisticStreamItemHolder(localItemBuilder, parent);
+            case STREAM_STATISTICS_GRID_HOLDER_TYPE:
+                return new LocalStatisticStreamGridItemHolder(localItemBuilder, parent);
             default:
                 Log.e(TAG, "No view type has been considered for holder: [" + type + "]");
                 return new FallbackViewHolder(new View(parent.getContext()));
@@ -246,5 +266,15 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
                 && footer != null && showFooter) {
             ((HeaderFooterHolder) holder).view = footer;
         }
+    }
+
+    public GridLayoutManager.SpanSizeLookup getSpanSizeLookup(final int spanCount) {
+        return new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                final int type = getItemViewType(position);
+                return type == HEADER_TYPE || type == FOOTER_TYPE ? spanCount : 1;
+            }
+        };
     }
 }

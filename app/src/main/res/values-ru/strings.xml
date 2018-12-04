@@ -30,7 +30,7 @@
     <string name="next_video_title">Следующее видео</string>
     <string name="url_not_supported_toast">URL не поддерживается</string>
     <string name="show_next_and_similar_title">\"Следующее\" и \"Похожие\" видео</string>
-    <string name="search_language_title">Язык контента по умолчанию</string>
+    <string name="content_language_title">Язык контента по умолчанию</string>
     <string name="settings_category_video_audio_title">Видео и аудио</string>
     <string name="settings_category_appearance_title">Внешний вид</string>
     <string name="settings_category_other_title">Другое</string>
@@ -470,7 +470,7 @@
     <string name="clear_search_history_summary">Удалить историю запросов поиска</string>
     <string name="clear_views_history_summary">Удалить историю воспроизведённых потоков</string>
     <string name="delete_search_history_alert">Вся история поиска будет удалена.</string>
-    <string name="search_history_deleted">История поиска удалена</string>
+    <string name="search_history_deleted">История поиска удалена.</string>
     <string name="one_item_deleted">1 элемент удалён.</string>
 
     <string name="app_license">NewPipe — свободное программное обеспечение: вы можете использовать, изучать и улучшать его по своему усмотрению. В частности, вы можете распространять и/или изменять его в соответствии с условиями GNU General Public License, опубликованной Free Software Foundation, либо версии 3, либо (по вашему выбору) любой более поздней версии.</string>
@@ -490,6 +490,7 @@
     <string name="limit_mobile_data_usage_title">Предел разрешения в мобильной сети</string>
     <string name="channels">Каналы</string>
     <string name="playlists">Плейлисты</string>
+    <string name="videos">Видео</string>
     <string name="tracks">Дорожки</string>
     <string name="users">Пользователи</string>
     <string name="skip_silence_checkbox">Проматывать тишину</string>
@@ -501,5 +502,27 @@
     <string name="minimize_on_exit_none_description">Ничего не делать</string>
     <string name="minimize_on_exit_background_description">Фоновый плеер</string>
     <string name="minimize_on_exit_popup_description">Плеер в окне</string>
+
+    <string name="list_view_mode">Вид списка</string>
+    <string name="list">Список</string>
+    <string name="grid">Сетка</string>
+	<string name="auto">Автоматически</string>
+
+    <string name="brightness_gesture_control_summary">Менять яркость плеера жестом</string>
+    <string name="brightness_gesture_control_title">Жест яркости</string>
+    <string name="download_to_sdcard_error_message">Загрузка на внешний накопитель невозможна. Сбросить расположение папки загрузки?</string>
+    <string name="download_to_sdcard_error_title">Внешний накопитель недоступен</string>
+    <string name="main_page_content_summary">Вкладки, видимые на главной странице</string>
+    <string name="restore_defaults">По умолчанию</string>
+    <string name="restore_defaults_confirmation">Хотите восстановить умолчания?</string>
+    <string name="saved_tabs_invalid_json">Ошибка чтения сохранённых вкладок. Используются вкладки по умолчанию</string>
+    <string name="selection">Выбор</string>
+    <string name="subscribers_count_not_available">Количество подписчиков недоступно</string>
+    <string name="switch_view">Переключить вид</string>
+    <string name="tab_choose">Выберите вкладку</string>
+    <string name="tab_new">Новая вкладка</string>
+    <string name="unsubscribe">Отписаться</string>
+    <string name="volume_gesture_control_summary">Менять громкость плеера жестом</string>
+    <string name="volume_gesture_control_title">Жест громкости</string>
 
 </resources>

@@ -73,8 +73,6 @@ import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.MainVideoPlayer;
 import org.schabi.newpipe.player.PopupVideoPlayer;
-import org.schabi.newpipe.player.helper.PlayerHelper;
-import org.schabi.newpipe.player.old.PlayVideoActivity;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
@@ -154,6 +152,7 @@ public class VideoDetailFragment
 
     private View videoTitleRoot;
     private TextView videoTitleTextView;
+    @Nullable
     private ImageView videoTitleToggleArrow;
     private TextView videoCountView;
 
@@ -420,14 +419,16 @@ public class VideoDetailFragment
     }
 
     private void toggleTitleAndDescription() {
-        if (videoDescriptionRootLayout.getVisibility() == View.VISIBLE) {
-            videoTitleTextView.setMaxLines(1);
-            videoDescriptionRootLayout.setVisibility(View.GONE);
-            videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
-        } else {
-            videoTitleTextView.setMaxLines(10);
-            videoDescriptionRootLayout.setVisibility(View.VISIBLE);
-            videoTitleToggleArrow.setImageResource(R.drawable.arrow_up);
+        if (videoTitleToggleArrow != null) {    //it is null for tablets
+            if (videoDescriptionRootLayout.getVisibility() == View.VISIBLE) {
+                videoTitleTextView.setMaxLines(1);
+                videoDescriptionRootLayout.setVisibility(View.GONE);
+                videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
+            } else {
+                videoTitleTextView.setMaxLines(10);
+                videoDescriptionRootLayout.setVisibility(View.VISIBLE);
+                videoTitleToggleArrow.setImageResource(R.drawable.arrow_up);
+            }
         }
     }
 
@@ -580,6 +581,7 @@ public class VideoDetailFragment
                     ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
         }
     }
+
 
     /*//////////////////////////////////////////////////////////////////////////
     // Menu
@@ -872,7 +874,7 @@ public class VideoDetailFragment
                 .getBoolean(this.getString(R.string.use_external_video_player_key), false)) {
             startOnExternalPlayer(activity, currentInfo, selectedVideoStream);
         } else {
-            openNormalPlayer(selectedVideoStream);
+            openNormalPlayer();
         }
     }
 
@@ -885,24 +887,13 @@ public class VideoDetailFragment
         }
     }
 
-    private void openNormalPlayer(VideoStream selectedVideoStream) {
+    private void openNormalPlayer() {
         Intent mIntent;
-        boolean useOldPlayer = PlayerHelper.isUsingOldPlayer(activity) || (Build.VERSION.SDK_INT < 16);
-        if (!useOldPlayer) {
-            // ExoPlayer
-            final PlayQueue playQueue = new SinglePlayQueue(currentInfo);
-            mIntent = NavigationHelper.getPlayerIntent(activity,
-                    MainVideoPlayer.class,
-                    playQueue,
-                    getSelectedVideoStream().getResolution());
-        } else {
-            // Internal Player
-            mIntent = new Intent(activity, PlayVideoActivity.class)
-                    .putExtra(PlayVideoActivity.VIDEO_TITLE, currentInfo.getName())
-                    .putExtra(PlayVideoActivity.STREAM_URL, selectedVideoStream.getUrl())
-                    .putExtra(PlayVideoActivity.VIDEO_URL, currentInfo.getUrl())
-                    .putExtra(PlayVideoActivity.START_POSITION, currentInfo.getStartPosition());
-        }
+        final PlayQueue playQueue = new SinglePlayQueue(currentInfo);
+        mIntent = NavigationHelper.getPlayerIntent(activity,
+                MainVideoPlayer.class,
+                playQueue,
+                getSelectedVideoStream().getResolution());
         startActivity(mIntent);
     }
 
@@ -1042,8 +1033,12 @@ public class VideoDetailFragment
         animateView(videoTitleTextView, true, 0);
 
         videoDescriptionRootLayout.setVisibility(View.GONE);
-        videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
-        videoTitleToggleArrow.setVisibility(View.GONE);
+        if (videoTitleToggleArrow != null) {    //phone
+            videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
+            videoTitleToggleArrow.setVisibility(View.GONE);
+        } else { //tablet
+            //TODO make comments/related streams fragment invisible
+        }
         videoTitleRoot.setClickable(false);
 
         imageLoader.cancelDisplayTask(thumbnailImageView);
@@ -1124,11 +1119,15 @@ public class VideoDetailFragment
             detailDurationView.setVisibility(View.GONE);
         }
 
-        videoTitleRoot.setClickable(true);
-        videoTitleToggleArrow.setVisibility(View.VISIBLE);
-        videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
         videoDescriptionView.setVisibility(View.GONE);
-        videoDescriptionRootLayout.setVisibility(View.GONE);
+        if (videoTitleToggleArrow != null) {
+            videoTitleRoot.setClickable(true);
+            videoTitleToggleArrow.setVisibility(View.VISIBLE);
+            videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
+            videoDescriptionRootLayout.setVisibility(View.GONE);
+        } else {
+            videoDescriptionRootLayout.setVisibility(View.VISIBLE);
+        }
         if (!TextUtils.isEmpty(info.getUploadDate())) {
             videoUploadDateView.setText(Localization.localizeDate(activity, info.getUploadDate()));
         }
