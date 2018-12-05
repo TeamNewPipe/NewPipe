@@ -168,7 +168,7 @@
     <string name="settings_category_popup_title">Açılır Oynatıcı</string>
     <string name="popup_resizing_indicator_title">Boyutlandırılıyor</string>
 
-    <string name="use_external_video_player_summary">Bu seçenek etkinken bazı çözünürlüklerin sesi olmayacaktır</string>
+    <string name="use_external_video_player_summary">BAZI çözünürlüklerdeki sesi kaldırır</string>
     <string name="player_gesture_controls_summary">Oynatıcının parlaklığını ve sesini yönetmek için el hareketlerini kullan</string>
     <string name="player_gesture_controls_title">Oynatıcı el hareketi denetimleri</string>
     <string name="show_search_suggestions_title">Arama önerileri</string>
@@ -288,11 +288,11 @@
     <string name="play_queue_stream_detail">Ayrıntılar</string>
     <string name="play_queue_audio_settings">Ses Ayarları</string>
     <string name="hold_to_append">Kuyruğa almak için basılı tut</string>
-    <string name="enqueue_on_background">Arka Planda Kuyruğa Al</string>
-    <string name="enqueue_on_popup">Açılır Oynatıcıda Kuyruğa Al</string>
+    <string name="enqueue_on_background">Arka planda kuyruğa al</string>
+    <string name="enqueue_on_popup">Yeni açılır oynatıcıda sıraya al</string>
     <string name="start_here_on_main">Burada oynatmaya başla</string>
-    <string name="start_here_on_background">Burada Arka Planda Başlat</string>
-    <string name="start_here_on_popup">Burada Açılır Oynatıcıda Başlat</string>
+    <string name="start_here_on_background">Burada arka planda başlat</string>
+    <string name="start_here_on_popup">Burada yeni açılır oynatıcıda başlat</string>
 <string name="donation_title">Bağış yapın</string>
     <string name="donation_encouragement">NewPipe, size en iyi deneyimi sunmak için zamanını harcayan gönüllüler tarafından geliştirilmiştir. Bir fincan kahveyi yudumlarken NewPipe\'ı daha da iyi yapmaları için geliştiricilere yardımcı olun.</string>
     <string name="give_back">Geri ver</string>
@@ -368,7 +368,7 @@
     <string name="delete_playlist_prompt">Bu oynatma listesi silinsin mi\?</string>
     <string name="playlist_creation_success">Oynatma listesi oluşturuldu</string>
     <string name="playlist_add_stream_success">Oynatma listesinde</string>
-    <string name="playlist_thumbnail_change_success">Oynatma listesi küçük resmi değiştirildi</string>
+    <string name="playlist_thumbnail_change_success">Oynatma listesi küçük resmi değiştirildi.</string>
     <string name="playlist_delete_failure">Oynatma listesi silinemedi.</string>
 
     <string name="caption_none">Alt Yazı Yok</string>
@@ -395,14 +395,14 @@
 <string name="use_inexact_seek_title">Hızlı isabetsiz konumlama kullan</string>
     <string name="use_inexact_seek_summary">İsabetsiz konumlama, oynatıcının azaltılmış kesinlikle daha hızlı konumlama yapmasını sağlar</string>
     <string name="auto_queue_title">Sonraki akışı kendiliğinden kuyruğa ekle</string>
-    <string name="auto_queue_summary">Yinelemeyen bir kuyruktaki son akış oynatılırken ilgili bir akışı kendiliğinden sonuna ekle</string>
+    <string name="auto_queue_summary">Yinelemeyen bir kuyruktaki son akış oynatılırken ilgili bir akışı kendiliğinden sonuna ekle.</string>
     <string name="live_sync">EŞZAMANLA</string>
 
     <string name="file">Dosya</string>
 
     <string name="invalid_directory">Böyle bir dizin yok</string>
-    <string name="invalid_source">Geçersiz dosya/içerik kaynağı</string>
-    <string name="invalid_file">Dosya mevcut değil veya okuma yazma izni eksik</string>
+    <string name="invalid_source">Dosya/içerik kaynağı değil</string>
+    <string name="invalid_file">Dosya yok veya okuma yazma izni eksik</string>
     <string name="file_name_empty_error">Dosya adı boş olamaz</string>
     <string name="error_occurred_detail">Hata oluştu: %1$s</string>
 
@@ -437,7 +437,7 @@
 \n 
 \nDevam etmek istiyor musunuz?</string>
 <string name="download_thumbnail_title">Küçük resimleri yükle</string>
-    <string name="download_thumbnail_summary">Küçük resimlerin tümünün yüklenmesini engellemek, bellek ve veri kullanımını azaltmak için devre dışı bırakın. Bunu değiştirmek, hem bellekteki hem de diskteki resim önbelleğini temizler</string>
+    <string name="download_thumbnail_summary">Kapalıyken küçük resimler yüklenmez, veri ve bellek kullanımı azaltılır. Değişiklikler hem bellekteki hem diskteki resim önbelleğini temizler.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Resim önbelleği temizlendi</string>
     <string name="metadata_cache_wipe_title">Önbelleklenmiş üst veriyi temizle</string>
     <string name="metadata_cache_wipe_summary">Önbelleklenmiş tüm web sayfası verisini kaldır</string>
@@ -454,7 +454,7 @@
     <string name="preferred_open_action_settings_summary">İçerik açılırken öntanımlı eylem — %s</string>
 
     <string name="caption_setting_title">Ek Açıklamalar</string>
-    <string name="caption_setting_description">Oynatıcı ek açıklamalar metin boyutunu ve arka plan biçimlerini düzenle. Etki için uygulamayı yeniden başlatmak gerekir</string>
+    <string name="caption_setting_description">Oynatıcı ek açıklamalar metin boyutunu ve arka plan biçimlerini düzenle. Etki için uygulamayı yeniden başlatmak gerekir.</string>
 
     <string name="toast_no_player">Bu dosyayı oynatmak için kurulan uygulama yok</string>
 
