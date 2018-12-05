@@ -18,30 +18,33 @@ import static org.schabi.newpipe.BuildConfig.DEBUG;
 /**
  * Single-threaded fallback mode
  */
-public class DownloadRunnableFallback implements Runnable {
+public class DownloadRunnableFallback extends Thread {
     private static final String TAG = "DownloadRunnableFallback";
 
     private final DownloadMission mMission;
-    private int retryCount = 0;
+    private final int mId = 1;
 
-    private InputStream is;
-    private RandomAccessFile f;
+    private int mRetryCount = 0;
+    private InputStream mIs;
+    private RandomAccessFile mF;
+    private HttpURLConnection mConn;
 
     DownloadRunnableFallback(@NonNull DownloadMission mission) {
         mMission = mission;
-        is = null;
-        f = null;
+        mIs = null;
+        mF = null;
+        mConn = null;
     }
 
     private void dispose() {
         try {
-            if (is != null) is.close();
+            if (mIs != null) mIs.close();
         } catch (IOException e) {
             // nothing to do
         }
 
         try {
-            if (f != null) f.close();
+            if (mF != null) mF.close();
         } catch (IOException e) {
             // ¿ejected media storage? ¿file deleted? ¿storage ran out of space?
         }
@@ -63,27 +66,36 @@ public class DownloadRunnableFallback implements Runnable {
 
         try {
             long rangeStart = (mMission.unknownLength || start < 1) ? -1 : start;
-            HttpURLConnection conn = mMission.openConnection(1, rangeStart, -1);
+
+            mConn = mMission.openConnection(mId, rangeStart, -1);
+            mMission.establishConnection(mId, mConn);
+
+            // check if the download can be resumed
+            if (mConn.getResponseCode() == 416 && start > 0) {
+                start = 0;
+                mRetryCount--;
+                throw new DownloadMission.HttpError(416);
+            }
 
             // secondary check for the file length
             if (!mMission.unknownLength)
-                mMission.unknownLength = Utility.getContentLength(conn) == -1;
+                mMission.unknownLength = Utility.getContentLength(mConn) == -1;
 
-            f = new RandomAccessFile(mMission.getDownloadedFile(), "rw");
-            f.seek(mMission.offsets[mMission.current] + start);
+            mF = new RandomAccessFile(mMission.getDownloadedFile(), "rw");
+            mF.seek(mMission.offsets[mMission.current] + start);
 
-            is = conn.getInputStream();
+            mIs = mConn.getInputStream();
 
             byte[] buf = new byte[64 * 1024];
             int len = 0;
 
-            while (mMission.running && (len = is.read(buf, 0, buf.length)) != -1) {
-                f.write(buf, 0, len);
+            while (mMission.running && (len = mIs.read(buf, 0, buf.length)) != -1) {
+                mF.write(buf, 0, len);
                 start += len;
                 mMission.notifyProgress(len);
             }
 
-            // if thread goes interrupted check if the last part is written. This avoid re-download the whole file
+            // if thread goes interrupted check if the last part mIs written. This avoid re-download the whole file
             done = len == -1;
         } catch (Exception e) {
             dispose();
@@ -91,9 +103,9 @@ public class DownloadRunnableFallback implements Runnable {
             // save position
             mMission.setThreadBytePosition(0, start);
 
-            if (e instanceof ClosedByInterruptException) return;
+            if (!mMission.running || e instanceof ClosedByInterruptException) return;
 
-            if (retryCount++ >= mMission.maxRetry) {
+            if (mRetryCount++ >= mMission.maxRetry) {
                 mMission.notifyError(e);
                 return;
             }
@@ -108,6 +120,20 @@ public class DownloadRunnableFallback implements Runnable {
             mMission.notifyFinished();
         } else {
             mMission.setThreadBytePosition(0, start);
+        }
+    }
+
+    @Override
+    public void interrupt() {
+        super.interrupt();
+
+        if (mConn != null) {
+            try {
+                mConn.disconnect();
+            } catch (Exception e) {
+                // nothing to do
+            }
+
         }
     }
 }

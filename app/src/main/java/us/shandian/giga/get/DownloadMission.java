@@ -122,13 +122,13 @@ public class DownloadMission extends Mission {
     private transient boolean mWritingToFile;
 
     @SuppressWarnings("UseSparseArrays")// LongSparseArray is not serializable
-    private final HashMap<Long, Boolean> blockState = new HashMap<>();
+    final HashMap<Long, Boolean> blockState = new HashMap<>();
     final List<Long> threadBlockPositions = new ArrayList<>();
     final List<Long> threadBytePositions = new ArrayList<>();
 
     private transient boolean deleted;
     int currentThreadCount;
-    private transient Thread[] threads = null;
+    private transient Thread[] threads = new Thread[0];
     private transient Thread init = null;
 
 
@@ -238,9 +238,8 @@ public class DownloadMission extends Mission {
      * @param rangeEnd   range end
      * @return a {@link java.net.URLConnection URLConnection} linking to the URL.
      * @throws IOException if an I/O exception occurs.
-     * @throws HttpError   if the the http response is not satisfiable
      */
-    HttpURLConnection openConnection(int threadId, long rangeStart, long rangeEnd) throws IOException, HttpError {
+    HttpURLConnection openConnection(int threadId, long rangeStart, long rangeEnd) throws IOException {
         URL url = new URL(urls[current]);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setInstanceFollowRedirects(true);
@@ -250,28 +249,44 @@ public class DownloadMission extends Mission {
             if (rangeEnd > 0) req += rangeEnd;
 
             conn.setRequestProperty("Range", req);
+
             if (DEBUG) {
                 Log.d(TAG, threadId + ":" + conn.getRequestProperty("Range"));
-                Log.d(TAG, threadId + ":Content-Length=" + conn.getContentLength() + " Code:" + conn.getResponseCode());
             }
         }
 
-        conn.connect();
+        return conn;
+    }
 
+    /**
+     * @param threadId id of the calling thread
+     * @param conn     Opens and establish the communication
+     * @throws IOException if an error occurred connecting to the server.
+     * @throws HttpError   if the HTTP Status-Code is not satisfiable
+     */
+    void establishConnection(int threadId, HttpURLConnection conn) throws IOException, HttpError {
+        conn.connect();
         int statusCode = conn.getResponseCode();
+
+        if (DEBUG) {
+            Log.d(TAG, threadId + ":Content-Length=" + conn.getContentLength() + " Code:" + statusCode);
+        }
+
         switch (statusCode) {
             case 204:
             case 205:
             case 207:
                 throw new HttpError(conn.getResponseCode());
+            case 416:
+                return;// let the download thread handle this error
             default:
                 if (statusCode < 200 || statusCode > 299) {
                     throw new HttpError(statusCode);
                 }
         }
 
-        return conn;
     }
+
 
     private void notify(int what) {
         Message m = new Message();
@@ -389,6 +404,11 @@ public class DownloadMission extends Mission {
      */
     public void start() {
         if (running || current >= urls.length) return;
+
+        // ensure that the previous state is completely paused.
+        joinForThread(init);
+        for (Thread thread : threads) joinForThread(thread);
+
         enqueued = false;
         running = true;
         errCode = ERROR_NOTHING;
@@ -400,7 +420,7 @@ public class DownloadMission extends Mission {
 
         init = null;
 
-        if (threads == null) {
+        if (threads.length < 1) {
             threads = new Thread[currentThreadCount];
         }
 
@@ -428,39 +448,37 @@ public class DownloadMission extends Mission {
         recovered = true;
         enqueued = false;
 
-        if (init != null && init != Thread.currentThread() && init.isAlive()) {
-            init.interrupt();
-
-            try {
-                init.join();
-            } catch (InterruptedException e) {
-                // nothing to do
+        if (postprocessingRunning) {
+            if (DEBUG) {
+                Log.w(TAG, "pause during post-processing is not applicable.");
             }
+            return;
+        }
 
-            resetState();
+        if (init != null && init.isAlive()) {
+            init.interrupt();
+            synchronized (blockState) {
+                resetState();
+            }
             return;
         }
 
         if (DEBUG && blocks == 0) {
-            Log.w(TAG, "pausing a download that can not be resumed.");
+            Log.w(TAG, "pausing a download that can not be resumed (range requests not allowed by the server).");
         }
 
-        if (threads == null || Thread.interrupted()) {
+        if (threads == null || Thread.currentThread().isInterrupted()) {
             writeThisToFile();
             return;
         }
-
-        if (postprocessingRunning) return;
 
         // wait for all threads are suspended before save the state
         runAsync(-1, () -> {
             try {
                 for (Thread thread : threads) {
-                    if (thread == Thread.currentThread()) continue;
-
                     if (thread.isAlive()) {
                         thread.interrupt();
-                        thread.join();
+                        thread.join(5000);
                     }
                 }
             } catch (Exception e) {
@@ -492,7 +510,7 @@ public class DownloadMission extends Mission {
         threadBlockPositions.clear();
         threadBytePositions.clear();
         blockState.clear();
-        threads = null;
+        threads = new Thread[0];
 
         Utility.writeToFile(metadata, DownloadMission.this);
     }
@@ -571,27 +589,60 @@ public class DownloadMission extends Mission {
     }
 
     /**
-     * run a method in a new thread
+     * run a new thread
      *
      * @param id  id of new thread (used for debugging only)
-     * @param who the object whose {@code run} method is invoked when this thread is started
-     * @return the created thread
+     * @param who the Runnable whose {@code run} method is invoked.
      */
-    private Thread runAsync(int id, Runnable who) {
+    private void runAsync(int id, Runnable who) {
+        runAsync(id, new Thread(who));
+    }
+
+    /**
+     * run a new thread
+     *
+     * @param id  id of new thread (used for debugging only)
+     * @param who the Thread whose {@code run} method is invoked when this thread is started
+     * @return the passed thread
+     */
+    private Thread runAsync(int id, Thread who) {
         // known thread ids:
         //   -2:     state saving by  notifyProgress()  method
         //   -1:     wait for saving the state by  pause()  method
         //    0:     initializer
         //  >=1:     any download thread
 
-        Thread thread = new Thread(who);
         if (DEBUG) {
-            thread.setName(String.format("[%s]   id = %s   filename = %s", TAG, id, name));
+            who.setName(String.format("%s[%s] %s", TAG, id, name));
         }
-        thread.start();
 
-        return thread;
+        who.start();
+
+        return who;
     }
+
+    private void joinForThread(Thread thread) {
+        if (thread == null || !thread.isAlive()) return;
+        if (thread == Thread.currentThread()) return;
+
+        if (DEBUG) {
+            Log.w(TAG, "a thread is !still alive!: " + thread.getName());
+        }
+
+        // still alive, this should not happen.
+        // Possible reasons:
+        //      slow device
+        //      the user is spamming start/pause buttons
+        //      start() method called quickly after pause()
+
+        try {
+            thread.join(10000);
+        } catch (InterruptedException e) {
+            Log.d(TAG, "timeout on join : " + thread.getName());
+            throw new RuntimeException("A thread is still running:\n" + thread.getName());
+        }
+    }
+
 
     static class HttpError extends Exception {
         int statusCode;
@@ -602,7 +653,7 @@ public class DownloadMission extends Mission {
 
         @Override
         public String getMessage() {
-            return "Http status code: " + String.valueOf(statusCode);
+            return "HTTP " + String.valueOf(statusCode);
         }
     }
 }

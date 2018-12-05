@@ -235,7 +235,7 @@ public class DownloadManagerService extends Service {
 
         if (icDownloadDone != null) icDownloadDone.recycle();
         if (icDownloadFailed != null) icDownloadFailed.recycle();
-        icLauncher.recycle();
+        if (icLauncher != null) icLauncher.recycle();
     }
 
     @Override
