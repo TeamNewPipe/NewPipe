@@ -380,8 +380,8 @@
     <string name="playback_tempo">テンポ</string>
     <string name="playback_pitch">音程</string>
     <string name="playback_default">デフォルト</string>
-<string name="background_player_append">バックグラウンド再生リストに追加されました</string>
-    <string name="popup_playing_append">ポップアップ再生リストに追加されました</string>
+<string name="background_player_append">バックグラウンド再生の順番待ちに追加</string>
+    <string name="popup_playing_append">ポップアップ再生の順番待ちに追加</string>
     <string name="clear_views_history_title">再生履歴を消去</string>
     <string name="clear_views_history_summary">再生した動画の履歴を削除します</string>
     <string name="view_history_deleted">再生履歴を削除しました。</string>
