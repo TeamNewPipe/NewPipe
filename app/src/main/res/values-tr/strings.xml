@@ -27,7 +27,7 @@
     <string name="download_path_audio_dialog_title">Ses dosyaları için indirme konumu girin</string>
 
     <string name="autoplay_by_calling_app_title">Kendiliğinden Oynat</string>
-    <string name="autoplay_by_calling_app_summary">NewPipe başka uygulamadan çağırıldığında videoyu oynatır</string>
+    <string name="autoplay_by_calling_app_summary">NewPipe başka uygulamadan çağrıldığında videoyu oynatır</string>
     <string name="default_resolution_title">Öntanımlı çözünürlük</string>
     <string name="play_with_kodi_title">Kodi ile oynat</string>
     <string name="kore_not_found">Kore uygulaması bulunamadı. Kurulsun mu?</string>
@@ -224,7 +224,7 @@
     <string name="undo">Geri Al</string>
 
     <string name="notification_channel_name">NewPipe Bildirimi</string>
-    <string name="notification_channel_description">NewPipe arkaplan ve açılır oynatıcılar için bildirimler</string>
+    <string name="notification_channel_description">NewPipe arka plan ve açılır oynatıcılar için bildirimler</string>
 
     <string name="search_no_results">Sonuç yok</string>
     <string name="empty_subscription_feed_subtitle">Burada cırcır böceklerinden başka şey yok</string>
