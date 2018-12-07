@@ -145,7 +145,7 @@ public class PlayerHelper {
 
         final StreamInfoItem nextVideo = info.getNextVideo();
         if (nextVideo != null && !urls.contains(nextVideo.getUrl())) {
-            return new SinglePlayQueue(nextVideo);
+            return getAutoQueuedSinglePlayQueue(nextVideo);
         }
 
         final List<InfoItem> relatedItems = info.getRelatedStreams();
@@ -158,7 +158,7 @@ public class PlayerHelper {
             }
         }
         Collections.shuffle(autoQueueItems);
-        return autoQueueItems.isEmpty() ? null : new SinglePlayQueue(autoQueueItems.get(0));
+        return autoQueueItems.isEmpty() ? null : getAutoQueuedSinglePlayQueue(autoQueueItems.get(0));
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -349,5 +349,11 @@ public class PlayerHelper {
                                                   final String key) {
         return getPreferences(context).getString(context.getString(R.string.minimize_on_exit_key),
                 key);
+    }
+
+    private static SinglePlayQueue getAutoQueuedSinglePlayQueue(StreamInfoItem streamInfoItem) {
+        SinglePlayQueue singlePlayQueue = new SinglePlayQueue(streamInfoItem);
+        singlePlayQueue.getItem().setAutoQueued(true);
+        return singlePlayQueue;
     }
 }
