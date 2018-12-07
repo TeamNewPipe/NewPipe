@@ -1,7 +1,10 @@
 package org.schabi.newpipe.info_list.holder;
 
 import android.support.v7.app.AppCompatActivity;
+import android.text.SpannableString;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +18,7 @@ import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.views.TouchTextView;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -31,9 +35,9 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         super(infoItemBuilder, layoutId, parent);
 
         itemThumbnailView = itemView.findViewById(R.id.itemThumbnailView);
-        itemContentView = itemView.findViewById(R.id.itemCommentContentView);
         itemLikesCountView = itemView.findViewById(R.id.detail_thumbs_up_count_view);
         itemDislikesCountView = itemView.findViewById(R.id.detail_thumbs_down_count_view);
+        itemContentView = itemView.findViewById(R.id.itemCommentContentView);
     }
 
     public CommentsMiniInfoItemHolder(InfoItemBuilder infoItemBuilder, ViewGroup parent) {
@@ -65,6 +69,12 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
                 }
             }
         });
+
+        // ellipsize if not already ellipsized
+        if (null == itemContentView.getEllipsize()) {
+            itemContentView.setEllipsize(TextUtils.TruncateAt.END);
+            itemContentView.setMaxLines(commentDefaultLines);
+        }
 
         itemContentView.setText(item.getCommentText());
         if (null != item.getLikeCount()) {

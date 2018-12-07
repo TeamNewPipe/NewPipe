@@ -30,6 +30,9 @@ public final class FlingBehavior extends AppBarLayout.Behavior {
                     // We're scrolling down
                 } else {
                     // We're scrolling up
+                    if (mOffsetAnimator != null && mOffsetAnimator.isRunning()) {
+                        mOffsetAnimator.cancel();
+                    }
                     min = -child.getUpNestedPreScrollRange();
                     max = 0;
                     consumed[1] = scroll(coordinatorLayout, child, dy, min, max);
