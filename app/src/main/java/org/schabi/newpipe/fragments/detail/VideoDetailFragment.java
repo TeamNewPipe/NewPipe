@@ -16,6 +16,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
@@ -152,7 +153,6 @@ public class VideoDetailFragment
 
     private View videoTitleRoot;
     private TextView videoTitleTextView;
-    @Nullable
     private ImageView videoTitleToggleArrow;
     private TextView videoCountView;
 
@@ -184,6 +184,7 @@ public class VideoDetailFragment
     private  ViewPager viewPager;
     private TabAdaptor pageAdapter;
     private TabLayout tabLayout;
+    private FrameLayout relatedStreamsLayout;
 
 
     /*////////////////////////////////////////////////////////////////////////*/
@@ -419,16 +420,14 @@ public class VideoDetailFragment
     }
 
     private void toggleTitleAndDescription() {
-        if (videoTitleToggleArrow != null) {    //it is null for tablets
-            if (videoDescriptionRootLayout.getVisibility() == View.VISIBLE) {
-                videoTitleTextView.setMaxLines(1);
-                videoDescriptionRootLayout.setVisibility(View.GONE);
-                videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
-            } else {
-                videoTitleTextView.setMaxLines(10);
-                videoDescriptionRootLayout.setVisibility(View.VISIBLE);
-                videoTitleToggleArrow.setImageResource(R.drawable.arrow_up);
-            }
+        if (videoDescriptionRootLayout.getVisibility() == View.VISIBLE) {
+            videoTitleTextView.setMaxLines(1);
+            videoDescriptionRootLayout.setVisibility(View.GONE);
+            videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
+        } else {
+            videoTitleTextView.setMaxLines(10);
+            videoDescriptionRootLayout.setVisibility(View.VISIBLE);
+            videoTitleToggleArrow.setImageResource(R.drawable.arrow_up);
         }
     }
 
@@ -482,6 +481,8 @@ public class VideoDetailFragment
         viewPager.setAdapter(pageAdapter);
         tabLayout = rootView.findViewById(R.id.tablayout);
         tabLayout.setupWithViewPager(viewPager);
+
+        relatedStreamsLayout = rootView.findViewById(R.id.relatedStreamsLayout);
 
         setHeightThumbnail();
 
@@ -809,7 +810,7 @@ public class VideoDetailFragment
             pageAdapter.addFragment(CommentsFragment.getInstance(serviceId, url, name), COMMENTS_TAB_TAG);
         }
 
-        if(showRelatedStreams){
+        if(showRelatedStreams && null == relatedStreamsLayout){
             //temp empty fragment. will be updated in handleResult
             pageAdapter.addFragment(new Fragment(), RELATED_TAB_TAG);
         }
@@ -1033,13 +1034,17 @@ public class VideoDetailFragment
         animateView(videoTitleTextView, true, 0);
 
         videoDescriptionRootLayout.setVisibility(View.GONE);
-        if (videoTitleToggleArrow != null) {    //phone
-            videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
-            videoTitleToggleArrow.setVisibility(View.GONE);
-        } else { //tablet
-            //TODO make comments/related streams fragment invisible
-        }
+        videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
+        videoTitleToggleArrow.setVisibility(View.GONE);
         videoTitleRoot.setClickable(false);
+
+        if(relatedStreamsLayout != null){
+            if(showRelatedStreams){
+                relatedStreamsLayout.setVisibility(View.INVISIBLE);
+            }else{
+                relatedStreamsLayout.setVisibility(View.GONE);
+            }
+        }
 
         imageLoader.cancelDisplayTask(thumbnailImageView);
         imageLoader.cancelDisplayTask(uploaderThumb);
@@ -1054,8 +1059,15 @@ public class VideoDetailFragment
         setInitialData(info.getServiceId(), info.getOriginalUrl(), info.getName());
 
         if(showRelatedStreams){
-            pageAdapter.updateItem(RELATED_TAB_TAG, RelatedVideosFragment.getInstance(currentInfo));
-            pageAdapter.notifyDataSetUpdate();
+            if(null == relatedStreamsLayout){ //phone
+                pageAdapter.updateItem(RELATED_TAB_TAG, RelatedVideosFragment.getInstance(currentInfo));
+                pageAdapter.notifyDataSetUpdate();
+            }else{ //tablet
+                getChildFragmentManager().beginTransaction()
+                        .replace(R.id.relatedStreamsLayout, RelatedVideosFragment.getInstance(currentInfo))
+                        .commitNow();
+                relatedStreamsLayout.setVisibility(View.VISIBLE);
+            }
         }
 
         pushToStack(serviceId, url, name);
@@ -1120,14 +1132,10 @@ public class VideoDetailFragment
         }
 
         videoDescriptionView.setVisibility(View.GONE);
-        if (videoTitleToggleArrow != null) {
-            videoTitleRoot.setClickable(true);
-            videoTitleToggleArrow.setVisibility(View.VISIBLE);
-            videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
-            videoDescriptionRootLayout.setVisibility(View.GONE);
-        } else {
-            videoDescriptionRootLayout.setVisibility(View.VISIBLE);
-        }
+        videoTitleRoot.setClickable(true);
+        videoTitleToggleArrow.setVisibility(View.VISIBLE);
+        videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
+        videoDescriptionRootLayout.setVisibility(View.GONE);
         if (!TextUtils.isEmpty(info.getUploadDate())) {
             videoUploadDateView.setText(Localization.localizeDate(activity, info.getUploadDate()));
         }

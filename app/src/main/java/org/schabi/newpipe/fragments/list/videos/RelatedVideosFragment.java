@@ -193,4 +193,9 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
         Boolean autoplay = pref.getBoolean(getString(R.string.auto_queue_key), false);
         aSwitch.setChecked(autoplay);
     }
+
+    @Override
+    protected boolean isGridLayout() {
+        return false;
+    }
 }

@@ -184,4 +184,9 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfo> {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         return;
     }
+
+    @Override
+    protected boolean isGridLayout() {
+        return false;
+    }
 }
