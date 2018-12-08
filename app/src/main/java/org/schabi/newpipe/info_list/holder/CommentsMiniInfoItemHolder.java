@@ -21,6 +21,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     private final TextView itemContentView;
     private final TextView itemLikesCountView;
     private final TextView itemDislikesCountView;
+    private final TextView itemPublishedTime;
 
     private static final int commentDefaultLines = 2;
     private static final int commentExpandedLines = 1000;
@@ -31,6 +32,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         itemThumbnailView = itemView.findViewById(R.id.itemThumbnailView);
         itemLikesCountView = itemView.findViewById(R.id.detail_thumbs_up_count_view);
         itemDislikesCountView = itemView.findViewById(R.id.detail_thumbs_down_count_view);
+        itemPublishedTime = itemView.findViewById(R.id.itemPublishedTime);
         itemContentView = itemView.findViewById(R.id.itemCommentContentView);
     }
 
@@ -74,6 +76,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         if (null != item.getLikeCount()) {
             itemLikesCountView.setText(String.valueOf(item.getLikeCount()));
         }
+        itemPublishedTime.setText(item.getPublishedTime());
 
         itemView.setOnClickListener(view -> {
             toggleEllipsize(item.getCommentText());
