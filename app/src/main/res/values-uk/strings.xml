@@ -197,7 +197,7 @@
     <string name="player_recoverable_failure">Відновлююсь після помилки програвача</string>
     <string name="invalid_url_toast">Помилкова URL</string>
     <string name="video_streams_empty">Відеостримів не знайдено</string>
-    <string name="audio_streams_empty">Не знайдено аудіо потоків</string>
+    <string name="audio_streams_empty">Не знайдено аудіопотоків</string>
 
     <string name="user_report">Звіт користувача</string>
     <string name="no_subscribers">Без підписників</string>
