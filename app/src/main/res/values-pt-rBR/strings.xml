@@ -106,7 +106,7 @@
     <string name="play_btn_text">Reproduzir</string>
     <string name="play_with_kodi_title">Reproduzir com Kodi</string>
     <string name="search">Buscar</string>
-    <string name="show_play_with_kodi_summary">Exibir opção para reproduzir vídeo pelo Kodi</string>
+    <string name="show_play_with_kodi_summary">Exibir uma opção para reproduzir o vídeo via centro de mídia Kodi</string>
     <string name="use_external_audio_player_title">Usar reprodutor de áudio externo</string>
     <string name="use_external_video_player_title">Usar reprodutor de vídeo externo</string>
     <string name="use_tor_summary">(Experimental) Forçar o download de conteúdo através do Tor para maior privacidade (streaming de vídeos ainda não suportado).</string>
