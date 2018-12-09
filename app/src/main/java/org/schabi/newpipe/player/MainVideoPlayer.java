@@ -900,6 +900,11 @@ public final class MainVideoPlayer extends AppCompatActivity
                 public void onMove(int sourceIndex, int targetIndex) {
                     if (playQueue != null) playQueue.move(sourceIndex, targetIndex);
                 }
+
+                @Override
+                public void onSwiped(int index) {
+                    if(index != -1) playQueue.remove(index);
+                }
             };
         }
 

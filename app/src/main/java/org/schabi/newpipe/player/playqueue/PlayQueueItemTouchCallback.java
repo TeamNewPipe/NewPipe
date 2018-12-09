@@ -8,10 +8,12 @@ public abstract class PlayQueueItemTouchCallback extends ItemTouchHelper.SimpleC
     private static final int MAXIMUM_INITIAL_DRAG_VELOCITY = 25;
 
     public PlayQueueItemTouchCallback() {
-        super(ItemTouchHelper.UP | ItemTouchHelper.DOWN, 0);
+        super(ItemTouchHelper.UP | ItemTouchHelper.DOWN, ItemTouchHelper.RIGHT);
     }
 
     public abstract void onMove(final int sourceIndex, final int targetIndex);
+
+    public abstract void onSwiped(int index);
 
     @Override
     public int interpolateOutOfBoundsScroll(RecyclerView recyclerView, int viewSize,
@@ -44,9 +46,11 @@ public abstract class PlayQueueItemTouchCallback extends ItemTouchHelper.SimpleC
 
     @Override
     public boolean isItemViewSwipeEnabled() {
-        return false;
+        return true;
     }
 
     @Override
-    public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {}
+    public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+        onSwiped(viewHolder.getAdapterPosition());
+    }
 }

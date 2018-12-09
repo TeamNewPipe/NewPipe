@@ -145,7 +145,7 @@ public class PlayerHelper {
 
         final StreamInfoItem nextVideo = info.getNextVideo();
         if (nextVideo != null && !urls.contains(nextVideo.getUrl())) {
-            return new SinglePlayQueue(nextVideo);
+            return getAutoQueuedSinglePlayQueue(nextVideo);
         }
 
         final List<InfoItem> relatedItems = info.getRelatedStreams();
@@ -158,7 +158,7 @@ public class PlayerHelper {
             }
         }
         Collections.shuffle(autoQueueItems);
-        return autoQueueItems.isEmpty() ? null : new SinglePlayQueue(autoQueueItems.get(0));
+        return autoQueueItems.isEmpty() ? null : getAutoQueuedSinglePlayQueue(autoQueueItems.get(0));
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -175,10 +175,6 @@ public class PlayerHelper {
 
     public static boolean isBrightnessGestureEnabled(@NonNull final Context context) {
         return isBrightnessGestureEnabled(context, true);
-    }
-
-    public static boolean isUsingOldPlayer(@NonNull final Context context) {
-        return isUsingOldPlayer(context, false);
     }
 
     public static boolean isRememberingPopupDimensions(@NonNull final Context context) {
@@ -318,10 +314,6 @@ public class PlayerHelper {
         return getPreferences(context).getBoolean(context.getString(R.string.brightness_gesture_control_key), b);
     }
 
-    private static boolean isUsingOldPlayer(@NonNull final Context context, final boolean b) {
-        return getPreferences(context).getBoolean(context.getString(R.string.use_old_player_key), b);
-    }
-
     private static boolean isRememberingPopupDimensions(@NonNull final Context context, final boolean b) {
         return getPreferences(context).getBoolean(context.getString(R.string.popup_remember_size_pos_key), b);
     }
@@ -357,5 +349,11 @@ public class PlayerHelper {
                                                   final String key) {
         return getPreferences(context).getString(context.getString(R.string.minimize_on_exit_key),
                 key);
+    }
+
+    private static SinglePlayQueue getAutoQueuedSinglePlayQueue(StreamInfoItem streamInfoItem) {
+        SinglePlayQueue singlePlayQueue = new SinglePlayQueue(streamInfoItem);
+        singlePlayQueue.getItem().setAutoQueued(true);
+        return singlePlayQueue;
     }
 }
