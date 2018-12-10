@@ -35,6 +35,15 @@ import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 
 public class ThemeHelper {
+    private static String lightTheme, darkTheme, blackTheme, terminalTheme;
+
+    public static void init(Context context) {
+        assert context != null;
+        lightTheme = context.getResources().getString(R.string.light_theme_key);
+        darkTheme = context.getResources().getString(R.string.dark_theme_key);
+        blackTheme = context.getResources().getString(R.string.black_theme_key);
+        terminalTheme = context.getResources().getString(R.string.terminal_theme_key);
+    }
 
     /**
      * Apply the selected theme (on NewPipe settings) in the context
@@ -66,9 +75,11 @@ public class ThemeHelper {
     public static boolean isLightThemeSelected(Context context) {
         return getSelectedThemeString(context).equals(context.getResources().getString(R.string.light_theme_key));
     }
+
     public static boolean isTerminalThemeSelected(Context context) {
         return getSelectedThemeString(context).equals(context.getResources().getString(R.string.terminal_theme_key));
     }
+
     public static boolean isBlackThemeSelected(Context context) {
         return getSelectedThemeString(context).equals(context.getResources().getString(R.string.black_theme_key));
     }
@@ -103,10 +114,6 @@ public class ThemeHelper {
      */
     @StyleRes
     public static int getDialogTheme(Context context) {
-        String lightTheme = context.getResources().getString(R.string.light_theme_key);
-        String darkTheme = context.getResources().getString(R.string.dark_theme_key);
-        String blackTheme = context.getResources().getString(R.string.black_theme_key);
-        String terminalTheme = context.getResources().getString(R.string.terminal_theme_key);
 
         String selectedTheme = getSelectedThemeString(context);
 
@@ -128,10 +135,6 @@ public class ThemeHelper {
      */
     @StyleRes
     public static int getThemeForService(Context context, int serviceId) {
-        String lightTheme = context.getResources().getString(R.string.light_theme_key);
-        String darkTheme = context.getResources().getString(R.string.dark_theme_key);
-        String blackTheme = context.getResources().getString(R.string.black_theme_key);
-        String terminalTheme = context.getResources().getString(R.string.terminal_theme_key);
 
 
         String selectedTheme = getSelectedThemeString(context);
@@ -229,12 +232,13 @@ public class ThemeHelper {
                 .getResourceId(0, -1);
     }
 
-
+    /**
+     * Return the downloading process process color for selected theme
+     *
+     * @param context context to get the selected theme
+     * @return the color code
+     */
     public static int getVideoLeftLoadColor(Context context) {
-        String lightTheme = context.getResources().getString(R.string.light_theme_key);
-        String darkTheme = context.getResources().getString(R.string.dark_theme_key);
-        String blackTheme = context.getResources().getString(R.string.black_theme_key);
-        String terminalTheme = context.getResources().getString(R.string.terminal_theme_key);
 
         String selectedTheme = getSelectedThemeString(context);
 
@@ -251,12 +255,13 @@ public class ThemeHelper {
         else return R.color.video_left_to_load_color;
     }
 
+    /**
+     * Return the background color for downloading process for selected theme
+     *
+     * @param context context to get the selected theme
+     * @return the color code
+     */
     public static int getVideoRightLoadColor(Context context) {
-        String lightTheme = context.getResources().getString(R.string.light_theme_key);
-        String darkTheme = context.getResources().getString(R.string.dark_theme_key);
-        String blackTheme = context.getResources().getString(R.string.black_theme_key);
-        String terminalTheme = context.getResources().getString(R.string.terminal_theme_key);
-
         String selectedTheme = getSelectedThemeString(context);
 
         if (selectedTheme.equals(lightTheme))
@@ -272,44 +277,4 @@ public class ThemeHelper {
         else return R.color.video_left_to_load_color;
     }
 
-    public static int getToggleServiceArrowDown(Context context) {
-        String lightTheme = context.getResources().getString(R.string.light_theme_key);
-        String darkTheme = context.getResources().getString(R.string.dark_theme_key);
-        String blackTheme = context.getResources().getString(R.string.black_theme_key);
-        String terminalTheme = context.getResources().getString(R.string.terminal_theme_key);
-
-        String selectedTheme = getSelectedThemeString(context);
-
-        if (selectedTheme.equals(lightTheme))
-            return R.drawable.ic_arrow_down_black;
-        else if (selectedTheme.equals(blackTheme))
-            return R.drawable.ic_arrow_down_white;
-        else if (selectedTheme.equals(darkTheme))
-            return R.drawable.ic_arrow_down_white;
-        else if (selectedTheme.equals(terminalTheme))
-            return R.drawable.ic_arrow_down_;
-
-            // Fallback
-        else return R.drawable.ic_arrow_down_white;
-    }
-    public static int getToggleServiceArrowUp(Context context) {
-        String lightTheme = context.getResources().getString(R.string.light_theme_key);
-        String darkTheme = context.getResources().getString(R.string.dark_theme_key);
-        String blackTheme = context.getResources().getString(R.string.black_theme_key);
-        String terminalTheme = context.getResources().getString(R.string.terminal_theme_key);
-
-        String selectedTheme = getSelectedThemeString(context);
-
-        if (selectedTheme.equals(lightTheme))
-            return R.drawable.ic_arrow_up_black;
-        else if (selectedTheme.equals(blackTheme))
-            return R.drawable.ic_arrow_up_white;
-        else if (selectedTheme.equals(darkTheme))
-            return R.drawable.ic_arrow_up_white;
-        else if (selectedTheme.equals(terminalTheme))
-            return R.drawable.ic_arrow_up_;
-
-            // Fallback
-        else return R.drawable.ic_arrow_down_white;
-    }
 }

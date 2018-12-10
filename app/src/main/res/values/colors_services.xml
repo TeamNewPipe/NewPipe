@@ -9,7 +9,7 @@
     <color name="dark_youtube_primary_color">#CD322E</color>
     <color name="dark_youtube_dark_color">#992722</color>
     <color name="dark_youtube_accent_color">#FFFFFF</color>
-    <color name="hacking_youtube_accent_color">#00FF00</color>
+    <color name="terminal_youtube_accent_color">#00FF00</color>
 
     <color name="dark_youtube_statusbar_color">#ff4336</color>
 

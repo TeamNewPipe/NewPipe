@@ -228,7 +228,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
 
             // Cast to a TextView instance if the menu item was found
             if (view != null && view instanceof TextView) {
-                ((TextView) view).setTextColor(Objects.requireNonNull(getContext()).getResources().getColor(R.color.hacking_youtube_accent_color));
+                ((TextView) view).setTextColor(Objects.requireNonNull(getContext()).getResources().getColor(R.color.terminal_youtube_accent_color));
             }
         }
         toolbar.setOnMenuItemClickListener(item -> {

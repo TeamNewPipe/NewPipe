@@ -303,7 +303,9 @@ public class MainActivity extends AppCompatActivity {
                     .add(R.id.menu_services_group, s.getServiceId(), ORDER, title)
                     .setIcon(ServiceHelper.getIcon(s.getServiceId()));
         }
-
+        /* Black and Terminal both themes are restricted here bcoz of their dark background color
+            which result with the text disappearing in drawable menu bar
+        * */
         if (!ThemeHelper.isTerminalThemeSelected(this) && !ThemeHelper.isBlackThemeSelected(this))
             drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
     }

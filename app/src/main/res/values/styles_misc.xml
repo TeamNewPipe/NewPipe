@@ -44,7 +44,7 @@
     <style name="FilePickerThemeTerminal" parent="NNF_BaseTheme">
         <item name="colorPrimary">@color/black</item>
         <item name="colorPrimaryDark">@color/black</item>
-        <item name="colorAccent">@color/hacking_youtube_accent_color</item>
+        <item name="colorAccent">@color/terminal_youtube_accent_color</item>
         <item name="android:windowBackground">@color/black</item>
         <item name="nnf_separator_color">@color/black</item>
 
@@ -54,6 +54,6 @@
     <style name="FilePickerAlertDialogThemeTerminal" parent="Theme.AppCompat.Dialog.Alert">
         <item name="colorPrimary">@color/black</item>
         <item name="colorPrimaryDark">@color/black</item>
-        <item name="colorAccent">@color/hacking_youtube_accent_color</item>
+        <item name="colorAccent">@color/terminal_youtube_accent_color</item>
     </style>
 </resources>

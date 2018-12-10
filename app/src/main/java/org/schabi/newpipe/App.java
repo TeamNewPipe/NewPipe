@@ -29,6 +29,7 @@ import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.StateSaver;
+import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.IOException;
 import java.io.InterruptedIOException;
@@ -65,6 +66,7 @@ import io.reactivex.plugins.RxJavaPlugins;
 public class App extends Application {
     protected static final String TAG = App.class.toString();
     private RefWatcher refWatcher;
+    private Context context;
 
     @SuppressWarnings("unchecked")
     private static final Class<? extends ReportSenderFactory>[]
@@ -80,7 +82,9 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        this.context = this;
 
+        ThemeHelper.init(context);
         if (LeakCanary.isInAnalyzerProcess(this)) {
             // This process is dedicated to LeakCanary for heap analysis.
             // You should not init your app in this process.
@@ -189,7 +193,7 @@ public class App extends Application {
                     null,
                     null,
                     ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
-                    "Could not initialize ACRA crash report", R.string.app_ui_crash));
+                            "Could not initialize ACRA crash report", R.string.app_ui_crash));
         }
     }
 
