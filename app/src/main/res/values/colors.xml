@@ -63,6 +63,8 @@
     <color name="audio_already_load_color">#000000</color>
     <color name="video_left_to_load_color">#CD5656</color>
     <color name="video_already_load_color">#BC211D</color>
+    <color name="subtitle_left_to_load_color">#008ea4</color>
+    <color name="subtitle_already_load_color">#005a71</color>
 
     <!-- GigaGet Component colors -->
     <color name="white">#FFFFFF</color>

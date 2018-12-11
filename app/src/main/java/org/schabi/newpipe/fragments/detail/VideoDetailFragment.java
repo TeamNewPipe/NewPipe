@@ -63,6 +63,7 @@ import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
+import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
@@ -370,14 +371,14 @@ public class VideoDetailFragment
                     Log.w(TAG, "Can't open channel because we got no channel URL");
                 } else {
                     try {
-                        NavigationHelper.openChannelFragment(
-                                getFragmentManager(),
-                                currentInfo.getServiceId(),
-                                currentInfo.getUploaderUrl(),
-                                currentInfo.getUploaderName());
+                    NavigationHelper.openChannelFragment(
+                            getFragmentManager(),
+                            currentInfo.getServiceId(),
+                            currentInfo.getUploaderUrl(),
+                            currentInfo.getUploaderName());
                     } catch (Exception e) {
                         ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
-                    }
+                }
                 }
                 break;
             case R.id.detail_thumbnail_root_layout:
@@ -744,7 +745,7 @@ public class VideoDetailFragment
         sortedVideoStreams = ListHelper.getSortedStreamVideosList(activity, info.getVideoStreams(), info.getVideoOnlyStreams(), false);
         selectedVideoStreamIndex = ListHelper.getDefaultResolutionIndex(activity, sortedVideoStreams);
 
-        final StreamItemAdapter<VideoStream> streamsAdapter = new StreamItemAdapter<>(activity, new StreamSizeWrapper<>(sortedVideoStreams), isExternalPlayerEnabled);
+        final StreamItemAdapter<VideoStream, Stream> streamsAdapter = new StreamItemAdapter<>(activity, new StreamSizeWrapper<>(sortedVideoStreams, activity), isExternalPlayerEnabled);
         spinnerToolbar.setAdapter(streamsAdapter);
         spinnerToolbar.setSelection(selectedVideoStreamIndex);
         spinnerToolbar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1264,6 +1265,7 @@ public class VideoDetailFragment
                 downloadDialog.setVideoStreams(sortedVideoStreams);
                 downloadDialog.setAudioStreams(currentInfo.getAudioStreams());
                 downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex);
+                downloadDialog.setSubtitleStreams(currentInfo.getSubtitles());
 
                 downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
             } catch (Exception e) {
