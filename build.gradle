@@ -19,5 +19,6 @@ allprojects {
         google()
         maven { url "https://jitpack.io" }
         maven { url "https://clojars.org/repo" }
+        maven { url 'https://google.bintray.com/exoplayer/' }
     }
 }
