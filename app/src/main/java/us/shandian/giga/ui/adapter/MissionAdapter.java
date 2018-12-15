@@ -158,7 +158,7 @@ public class MissionAdapter extends Adapter<ViewHolder> {
                 str = R.string.missions_header_pending;
             } else {
                 str = R.string.missions_header_finished;
-                setClearButtonVisibility(true);
+                mClear.setVisible(true);
             }
 
             ((ViewHolderHeader) view).header.setText(str);
@@ -437,7 +437,7 @@ public class MissionAdapter extends Adapter<ViewHolder> {
     public void clearFinishedDownloads() {
         mDownloadManager.forgetFinishedDownloads();
         applyChanges();
-        setClearButtonVisibility(false);
+        mClear.setVisible(false);
     }
 
     private boolean handlePopupItem(@NonNull ViewHolderItem h, @NonNull MenuItem option) {
@@ -506,11 +506,7 @@ public class MissionAdapter extends Adapter<ViewHolder> {
         mIterator.end();
 
         checkEmptyMessageVisibility();
-
-        if (mIterator.getOldListSize() > 0) {
-            int lastItemType = mIterator.getSpecialAtItem(mIterator.getOldListSize() - 1);
-            setClearButtonVisibility(lastItemType == DownloadManager.SPECIAL_FINISHED);
-        }
+        checkClearButtonVisibility(mClear);
     }
 
     public void forceUpdate() {
@@ -529,15 +525,18 @@ public class MissionAdapter extends Adapter<ViewHolder> {
     }
 
     public void setClearButton(MenuItem clearButton) {
-        if (mClear == null) {
-            int lastItemType = mIterator.getSpecialAtItem(mIterator.getOldListSize() - 1);
-            clearButton.setVisible(lastItemType == DownloadManager.SPECIAL_FINISHED);
-        }
+        if (mClear == null) checkClearButtonVisibility(clearButton);
         mClear = clearButton;
     }
 
-    private void setClearButtonVisibility(boolean flag) {
-        mClear.setVisible(flag);
+    private void checkClearButtonVisibility(MenuItem clearButton) {
+        if (mIterator.getOldListSize() < 1) {
+            clearButton.setVisible(false);
+            return;
+        }
+
+        DownloadManager.MissionItem item = mIterator.getItem(mIterator.getOldListSize() - 1);
+        clearButton.setVisible(item.special == DownloadManager.SPECIAL_FINISHED || item.mission instanceof FinishedMission);
     }
 
     private void checkEmptyMessageVisibility() {
