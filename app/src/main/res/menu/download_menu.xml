@@ -8,6 +8,7 @@
         app:showAsAction="ifRoom" />
 
     <item android:id="@+id/clear_list"
+        android:visible="false"
         android:icon="?attr/ic_delete"
         android:title="@string/clear_finished_download"
         app:showAsAction="ifRoom" />
