@@ -1,24 +1,24 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources><string name="main_bg_subtitle">Tik op zoeken voor te beginnen</string>
     <string name="view_count_text">%1$s keer bekeken</string>
     <string name="upload_date_text">Gepubliceerd op %1$s</string>
     <string name="no_player_found">Gene speler met streamondersteuning gevonden. Wilt ge VLC installeren?</string>
-    <string name="no_player_found_toast">Gene speler met streamondersteuning gevonden (ge kunt VLC installeren voor het af te spelen)</string>
+    <string name="no_player_found_toast">Gene speler met streamondersteuning gevonden (ge kunt VLC installeren voor af te spelen).</string>
     <string name="install">Installeren</string>
     <string name="cancel">Annuleren</string>
     <string name="open_in_browser">In browser openen</string>
     <string name="open_in_popup_mode">Openen in pop-upmodus</string>
     <string name="share">Delen</string>
     <string name="download">Downloaden</string>
-    <string name="controls_download_desc">Streambestand downloaden.</string>
+    <string name="controls_download_desc">Streambestand downloaden</string>
     <string name="search">Zoeken</string>
     <string name="settings">Instellingen</string>
-    <string name="did_you_mean">Bedoelde ge: %1$s ?</string>
+    <string name="did_you_mean">Bedoelde ge: %1$s\?</string>
     <string name="share_dialog_title">Delen met</string>
     <string name="choose_browser">Kies nen browser</string>
     <string name="screen_rotation">rotatie</string>
     <string name="use_external_video_player_title">Externe videospeler gebruiken</string>
-    <string name="use_external_video_player_summary">Sommige resoluties zullen geen geluid hebben als deze optie is ingeschakeld</string>
+    <string name="use_external_video_player_summary">Verwijdert het geluid bij SOMMIGE resoluties</string>
     <string name="use_external_audio_player_title">Externen audiospeler gebruiken</string>
     <string name="popup_mode_share_menu_title">NewPipe-pop-upmodus</string>
     <string name="subscribe_button_title">Abonneer</string>
