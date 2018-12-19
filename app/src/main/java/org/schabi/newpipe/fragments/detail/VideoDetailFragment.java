@@ -16,10 +16,8 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -767,11 +765,9 @@ public class VideoDetailFragment
         initTabs();
 
         if (scrollToTop) appBarLayout.setExpanded(true, true);
-        animateView(contentRootLayoutHiding,
-                false, 0, 0, () -> {
-                    handleResult(info);
-                    showContentWithAnimation(120, 0, .01f);
-                });
+        handleResult(info);
+        showContent();
+
     }
 
     protected void prepareAndLoadInfo() {
@@ -794,8 +790,8 @@ public class VideoDetailFragment
                 .subscribe((@NonNull StreamInfo result) -> {
                     isLoading.set(false);
                     currentInfo = result;
-                    showContentWithAnimation(120, 0, 0);
                     handleResult(result);
+                    showContent();
                 }, (@NonNull Throwable throwable) -> {
                     isLoading.set(false);
                     onError(throwable);
@@ -960,36 +956,8 @@ public class VideoDetailFragment
         thumbnailImageView.setMinimumHeight(height);
     }
 
-    private void showContentWithAnimation(long duration,
-                                          long delay,
-                                          @FloatRange(from = 0.0f, to = 1.0f) float translationPercent) {
-        int translationY = (int) (getResources().getDisplayMetrics().heightPixels *
-                (translationPercent > 0.0f ? translationPercent : .06f));
-
-        contentRootLayoutHiding.animate().setListener(null).cancel();
-        contentRootLayoutHiding.setAlpha(0f);
-        contentRootLayoutHiding.setTranslationY(translationY);
+    private void showContent() {
         contentRootLayoutHiding.setVisibility(View.VISIBLE);
-        contentRootLayoutHiding.animate()
-                .alpha(1f)
-                .translationY(0)
-                .setStartDelay(delay)
-                .setDuration(duration)
-                .setInterpolator(new FastOutSlowInInterpolator())
-                .start();
-
-        uploaderRootLayout.animate().setListener(null).cancel();
-        uploaderRootLayout.setAlpha(0f);
-        uploaderRootLayout.setTranslationY(translationY);
-        uploaderRootLayout.setVisibility(View.VISIBLE);
-        uploaderRootLayout.animate()
-                .alpha(1f)
-                .translationY(0)
-                .setStartDelay((long) (duration * .5f) + delay)
-                .setDuration(duration)
-                .setInterpolator(new FastOutSlowInInterpolator())
-                .start();
-
     }
 
     protected void setInitialData(int serviceId, String url, String name) {
@@ -1024,7 +992,7 @@ public class VideoDetailFragment
     public void showLoading() {
         super.showLoading();
 
-        animateView(contentRootLayoutHiding, false, 200);
+        contentRootLayoutHiding.setVisibility(View.INVISIBLE);
         animateView(spinnerToolbar, false, 200);
         animateView(thumbnailPlayButton, false, 50);
         animateView(detailDurationView, false, 100);
