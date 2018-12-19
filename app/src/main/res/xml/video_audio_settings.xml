@@ -106,6 +106,12 @@
 
         <SwitchPreference
             android:defaultValue="true"
+            android:key="@string/duck_on_audio_focus_change_key"
+            android:summary="@string/duck_on_audio_focus_change_summary"
+            android:title="@string/duck_on_audio_focus_change_title"/>
+
+        <SwitchPreference
+            android:defaultValue="true"
             android:key="@string/volume_gesture_control_key"
             android:summary="@string/volume_gesture_control_summary"
             android:title="@string/volume_gesture_control_title"/>

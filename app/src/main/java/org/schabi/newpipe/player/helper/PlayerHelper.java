@@ -169,6 +169,10 @@ public class PlayerHelper {
         return isResumeAfterAudioFocusGain(context, false);
     }
 
+    public static boolean isDuckOnAudioFocusChange(@NonNull final Context context) {
+        return isDuckOnAudioFocusChange(context, true);
+    }
+
     public static boolean isVolumeGestureEnabled(@NonNull final Context context) {
         return isVolumeGestureEnabled(context, true);
     }
@@ -304,6 +308,10 @@ public class PlayerHelper {
 
     private static boolean isResumeAfterAudioFocusGain(@NonNull final Context context, final boolean b) {
         return getPreferences(context).getBoolean(context.getString(R.string.resume_on_audio_focus_gain_key), b);
+    }
+
+    private static boolean isDuckOnAudioFocusChange(@NonNull final Context context, final boolean b) {
+        return getPreferences(context).getBoolean(context.getString(R.string.duck_on_audio_focus_change_key), b);
     }
 
     private static boolean isVolumeGestureEnabled(@NonNull final Context context, final boolean b) {
