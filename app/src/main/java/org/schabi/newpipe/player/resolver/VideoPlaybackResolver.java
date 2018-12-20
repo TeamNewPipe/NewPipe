@@ -10,6 +10,7 @@ import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.MergingMediaSource;
 
 import org.schabi.newpipe.extractor.MediaFormat;
+import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.SubtitlesStream;
@@ -94,7 +95,7 @@ public class VideoPlaybackResolver implements PlaybackResolver {
 
         // Create subtitle sources
         for (final SubtitlesStream subtitle : info.getSubtitles()) {
-            final String mimeType = PlayerHelper.mimeTypesOf(subtitle.getFormat());
+            final String mimeType = PlayerHelper.subtitleMimeTypesOf(subtitle.getFormat());
             if (mimeType == null) continue;
 
             final Format textFormat = Format.createTextSampleFormat(null, mimeType,
