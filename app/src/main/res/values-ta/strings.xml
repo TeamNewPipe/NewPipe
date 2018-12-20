@@ -153,4 +153,13 @@
     <string name="unknown_content">[அறியப்படவில்லை]</string>
     <string name="toggle_orientation">நோக்குநிலை மாற்று</string>
     <string name="switch_to_background">பின்னனிக்கு மாறு</string>
+    <string name="show_hold_to_append_title">\"சேர்ப்பதர்க்கு அழுத்தவும்\" அறிவிப்பை காண்பி</string>
+    <string name="import_data_title">தகவல்கலை இறக்குமதி செய்</string>
+    <string name="export_data_title">தகவல்கலை ஏற்றுமதி செய்</string>
+    <string name="import_data_summary">"தற்போதைய வரலாறு மற்றும் சந்தாக்கள் பதிலாக சேர்க்கப்படும் "</string>
+    <string name="export_data_summary">வரலாறு, சந்தாக்கள் மற்றும் பட்டியல்கலை ஏற்றுமதி செய்</string>
+    <string name="delete_view_history_alert">பார்த்த அனைத்து வரலாற்றயும் அழிக்கவா\?</string>
+    <string name="clear_search_history_summary">தேடப்பட்ட வார்த்தைகளின் வரலாற்றை அழி</string>
+    <string name="delete_search_history_alert">அனைத்து வரலாற்றயும் அழிக்கவா\?</string>
+    <string name="general_error">பிழை</string>
 </resources>
