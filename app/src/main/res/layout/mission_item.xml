@@ -37,11 +37,8 @@
 				android:layout_alignParentRight="true"
 				android:layout_centerVertical="true"
 				android:layout_marginRight="1dp"
-
 				android:src="?options"
 				android:scaleType="centerInside"
-
-				android:src="@drawable/ic_menu_more"
 				android:scaleType="center"
 
                 android:contentDescription="TODO" />
