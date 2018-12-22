@@ -3,19 +3,16 @@ package us.shandian.giga.util;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.os.Build;
-import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.BufferedOutputStream;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -23,17 +20,14 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.net.HttpURLConnection;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Locale;
 
 public class Utility {
 
     public enum FileType {
         VIDEO,
         MUSIC,
-        SUBTITLE,
         UNKNOWN
     }
 
@@ -41,11 +35,11 @@ public class Utility {
         if (bytes < 1024) {
             return String.format("%d B", bytes);
         } else if (bytes < 1024 * 1024) {
-            return String.format("%.2f kB", bytes / 1024d);
+            return String.format("%.2f kB", (float) bytes / 1024);
         } else if (bytes < 1024 * 1024 * 1024) {
-            return String.format("%.2f MB", bytes / 1024d / 1024d);
+            return String.format("%.2f MB", (float) bytes / 1024 / 1024);
         } else {
-            return String.format("%.2f GB", bytes / 1024d / 1024d / 1024d);
+            return String.format("%.2f GB", (float) bytes / 1024 / 1024 / 1024);
         }
     }
 
@@ -61,13 +55,14 @@ public class Utility {
         }
     }
 
-    public static void writeToFile(@NonNull File file, @NonNull Serializable serializable) {
+    public static void writeToFile(@NonNull String fileName, @NonNull Serializable serializable) {
+        ObjectOutputStream objectOutputStream = null;
 
-        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file)))) {
+        try {
+            objectOutputStream = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fileName)));
             objectOutputStream.writeObject(serializable);
         } catch (Exception e) {
             //nothing to do
-
         } finally {
             if (objectOutputStream != null) {
                 try {
@@ -77,20 +72,19 @@ public class Utility {
                 }
             }
         }
-        //nothing to do
     }
 
     @Nullable
     @SuppressWarnings("unchecked")
-    public static <T> T readFromFile(File file) {
-        T object;
+    public static <T> T readFromFile(String file) {
+        T object = null;
         ObjectInputStream objectInputStream = null;
 
         try {
             objectInputStream = new ObjectInputStream(new FileInputStream(file));
             object = (T) objectInputStream.readObject();
         } catch (Exception e) {
-            object = null;
+            //nothing to do
         }
 
         if (objectInputStream != null) {
@@ -126,84 +120,39 @@ public class Utility {
         }
     }
 
-    public static FileType getFileType(char kind, String file) {
-        switch (kind) {
-            case 'v':
-                return FileType.VIDEO;
-            case 'a':
-                return FileType.MUSIC;
-            case 's':
-                return FileType.SUBTITLE;
-            //default '?':
-        }
-
-        if (file.endsWith(".srt") || file.endsWith(".vtt") || file.endsWith(".ssa")) {
-            return FileType.SUBTITLE;
-        } else if (file.endsWith(".mp3") || file.endsWith(".wav") || file.endsWith(".flac") || file.endsWith(".m4a") || file.endsWith(".opus")) {
+    public static FileType getFileType(String file) {
+        if (file.endsWith(".mp3") || file.endsWith(".wav") || file.endsWith(".flac") || file.endsWith(".m4a")) {
             return FileType.MUSIC;
         } else if (file.endsWith(".mp4") || file.endsWith(".mpeg") || file.endsWith(".rm") || file.endsWith(".rmvb")
                 || file.endsWith(".flv") || file.endsWith(".webp") || file.endsWith(".webm")) {
             return FileType.VIDEO;
+        } else {
+            return FileType.UNKNOWN;
         }
-
-        return FileType.UNKNOWN;
     }
 
     @ColorRes
     public static int getBackgroundForFileType(Context context, FileType type) {
-   @ColorInt
-    public static int getBackgroundForFileType(Context ctx, FileType type) {
-        int colorRes;
-
         switch (type) {
             case MUSIC:
-                colorRes = R.color.audio_left_to_load_color;
-                break;
+                return R.color.audio_left_to_load_color;
             case VIDEO:
-
                 return ThemeHelper.getVideoLeftLoadColor(context);
-
-                colorRes = R.color.video_left_to_load_color;
-                break;
-            case SUBTITLE:
-                colorRes = R.color.subtitle_left_to_load_color;
-                break;
-
             default:
-                colorRes = R.color.gray;
+                return R.color.gray;
         }
-
-        return ContextCompat.getColor(ctx, colorRes);
     }
-
 
     @ColorRes
     public static int getForegroundForFileType(Context context, FileType type) {
-
-    @ColorInt
-    public static int getForegroundForFileType(Context ctx, FileType type) {
-        int colorRes;
-
         switch (type) {
             case MUSIC:
-                colorRes = R.color.audio_already_load_color;
-                break;
+                return R.color.audio_already_load_color;
             case VIDEO:
-
                 return ThemeHelper.getVideoRightLoadColor(context);
-
-                colorRes = R.color.video_already_load_color;
-                break;
-            case SUBTITLE:
-                colorRes = R.color.subtitle_already_load_color;
-                break;
-
             default:
-                colorRes = R.color.gray;
-                break;
+                return R.color.gray;
         }
-
-        return ContextCompat.getColor(ctx, colorRes);
     }
 
     @DrawableRes
@@ -212,13 +161,7 @@ public class Utility {
             case MUSIC:
                 return R.drawable.ic_music;
             case VIDEO:
-
                 return R.drawable.ic_video;
-
-                return R.drawable.video;
-            case SUBTITLE:
-                return R.drawable.subtitle;
-
             default:
                 return R.drawable.ic_video;
         }
@@ -226,18 +169,12 @@ public class Utility {
 
     public static void copyToClipboard(Context context, String str) {
         ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-
-        if (cm == null) {
-            Toast.makeText(context, R.string.permission_denied, Toast.LENGTH_LONG).show();
-            return;
-        }
-
         cm.setPrimaryClip(ClipData.newPlainText("text", str));
         Toast.makeText(context, R.string.msg_copied, Toast.LENGTH_SHORT).show();
     }
 
     public static String checksum(String path, String algorithm) {
-        MessageDigest md;
+        MessageDigest md = null;
 
         try {
             md = MessageDigest.getInstance(algorithm);
@@ -245,7 +182,7 @@ public class Utility {
             throw new RuntimeException(e);
         }
 
-        FileInputStream i;
+        FileInputStream i = null;
 
         try {
             i = new FileInputStream(path);
@@ -254,14 +191,14 @@ public class Utility {
         }
 
         byte[] buf = new byte[1024];
-        int len;
+        int len = 0;
 
         try {
             while ((len = i.read(buf)) != -1) {
                 md.update(buf, 0, len);
             }
-        } catch (IOException e) {
-            // nothing to do
+        } catch (IOException ignored) {
+
         }
 
         byte[] digest = md.digest();
@@ -274,32 +211,5 @@ public class Utility {
 
         return sb.toString();
 
-    }
-
-    @SuppressWarnings("ResultOfMethodCallIgnored")
-    public static boolean mkdir(File path, boolean allDirs) {
-        if (path.exists()) return true;
-
-        if (allDirs)
-            path.mkdirs();
-        else
-            path.mkdir();
-
-        return path.exists();
-    }
-
-    public static long getContentLength(HttpURLConnection connection) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            return connection.getContentLengthLong();
-        }
-
-        try {
-            long length = Long.parseLong(connection.getHeaderField("Content-Length"));
-            if (length >= 0) return length;
-        } catch (Exception err) {
-            // nothing to do
-        }
-
-        return -1;
     }
 }
