@@ -49,11 +49,7 @@ import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import java.util.Objects;
-
 import java.util.Locale;
-
 
 import icepick.Icepick;
 import icepick.State;
@@ -72,14 +68,6 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     @State
     protected StreamSizeWrapper<VideoStream> wrappedVideoStreams = StreamSizeWrapper.empty();
     @State
-
-    protected int selectedVideoIndex = 0;
-    @State
-    protected int selectedAudioIndex = 0;
-
-    private StreamItemAdapter<AudioStream> audioStreamsAdapter;
-    private StreamItemAdapter<VideoStream> videoStreamsAdapter;
-
     protected StreamSizeWrapper<SubtitlesStream> wrappedSubtitleStreams = StreamSizeWrapper.empty();
     @State
     protected int selectedVideoIndex = 0;
@@ -91,7 +79,6 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     private StreamItemAdapter<AudioStream, Stream> audioStreamsAdapter;
     private StreamItemAdapter<VideoStream, AudioStream> videoStreamsAdapter;
     private StreamItemAdapter<SubtitlesStream, Stream> subtitleStreamsAdapter;
-
 
     private final CompositeDisposable disposables = new CompositeDisposable();
 
@@ -144,7 +131,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     }
 
     public void setSubtitleStreams(List<SubtitlesStream> subtitleStreams) {
-        setSubtitleStreams(new StreamSizeWrapper<>(subtitleStreams, getContext()));
+        setSubtitleStreams(new StreamSizeWrapper<>(subtitleStreams,getContext()));
     }
 
     public void setSubtitleStreams(StreamSizeWrapper<SubtitlesStream> wrappedSubtitleStreams) {
@@ -292,17 +279,10 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     private void initToolbar(Toolbar toolbar) {
         if (DEBUG) Log.d(TAG, "initToolbar() called with: toolbar = [" + toolbar + "]");
         toolbar.setTitle(R.string.download_dialog_title);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        toolbar.setNavigationIcon(ThemeHelper.isLightThemeSelected(getActivity()) ? R.drawable.ic_arrow_back_black_24dp : R.drawable.ic_arrow_back_white_24dp);
         toolbar.inflateMenu(R.menu.dialog_url);
         toolbar.setNavigationOnClickListener(v -> getDialog().dismiss());
-        if (ThemeHelper.isTerminalThemeSelected(getContext())) {
-            View view = getView().findViewById(R.id.okay);
 
-            // Cast to a TextView instance if the menu item was found
-            if (view != null && view instanceof TextView) {
-                ((TextView) view).setTextColor(Objects.requireNonNull(getContext()).getResources().getColor(R.color.terminal_youtube_accent_color));
-            }
-        }
         toolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.okay) {
                 prepareSelectedDownload();
@@ -344,7 +324,6 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
         if (DEBUG)
             Log.d(TAG, "onCheckedChanged() called with: group = [" + group + "], checkedId = [" + checkedId + "]");
-
         boolean flag = true;
 
         switch (checkedId) {
@@ -467,9 +446,6 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
 
         String fileName = nameEditText.getText().toString().trim();
         if (fileName.isEmpty())
-
-            fileName = FilenameUtils.createFilename(getContext(), currentInfo.getName());
-
             fileName = FilenameUtils.createFilename(context, currentInfo.getName());
 
         switch (radioVideoAudioGroup.getCheckedRadioButtonId()) {

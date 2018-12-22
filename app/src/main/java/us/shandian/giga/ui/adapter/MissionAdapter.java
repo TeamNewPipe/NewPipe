@@ -173,8 +173,9 @@ public class MissionAdapter extends Adapter<ViewHolder> {
         h.icon.setImageResource(Utility.getIconForFileType(type));
         h.name.setText(item.mission.name);
 
-        h.progress = new ProgressDrawable(mContext, Utility.getBackgroundForFileType(mContext, type), Utility.getForegroundForFileType(mContext, type));
-        ViewCompat.setBackground(h.bkg, h.progress);
+        h.progress = new ProgressDrawable();
+        h.progress.setColors(Utility.getBackgroundForFileType(mContext, type), Utility.getForegroundForFileType(mContext, type));
+        ViewCompat.setBackground(h.itemView, h.progress);
 
         h.progress.setColors(Utility.getBackgroundForFileType(mContext, type), Utility.getForegroundForFileType(mContext, type));
 

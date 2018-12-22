@@ -1,5 +1,6 @@
 package us.shandian.giga.ui.common;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
