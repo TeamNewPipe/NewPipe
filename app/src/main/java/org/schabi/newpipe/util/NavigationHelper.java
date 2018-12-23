@@ -34,6 +34,7 @@ import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
 import org.schabi.newpipe.local.bookmark.BookmarkFragment;
+import org.schabi.newpipe.local.bookmark.BookmarkSubsFragment;
 import org.schabi.newpipe.local.feed.FeedFragment;
 import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment;
@@ -333,6 +334,14 @@ public class NavigationHelper {
                 .addToBackStack(null)
                 .commit();
     }
+
+    public static void openBookmarksSubsFragment(FragmentManager fragmentManager) {
+        defaultTransaction(fragmentManager)
+                .replace(R.id.fragment_holder, new BookmarkSubsFragment())
+                .addToBackStack(null)
+                .commit();
+    }
+
 
     public static void openSubscriptionFragment(FragmentManager fragmentManager) {
         defaultTransaction(fragmentManager)

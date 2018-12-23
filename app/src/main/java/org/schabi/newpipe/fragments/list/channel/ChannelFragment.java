@@ -346,7 +346,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                 channel.setData(info.getName(),
                         info.getAvatarUrl(),
                         info.getDescription(),
-                        info.getSubscriberCount());
+                        info.getSubscriberCount(),0);
                 subscribeButtonMonitor = monitorSubscribeButton(headerSubscribeButton, mapOnSubscribe(channel));
             } else {
                 if (DEBUG) Log.d(TAG, "Found subscription to this channel!");

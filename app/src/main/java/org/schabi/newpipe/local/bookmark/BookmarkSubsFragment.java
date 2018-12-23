@@ -1,4 +1,4 @@
-package org.schabi.newpipe.local.feed;
+package org.schabi.newpipe.local.bookmark;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,7 +14,10 @@ import android.view.ViewGroup;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
+import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.database.AppDatabase;
+import org.schabi.newpipe.database.subscription.SubscriptionDAO;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -22,8 +25,9 @@ import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListFragment;
-import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.local.feed.FeedFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionService;
+import org.schabi.newpipe.report.UserAction;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,17 +37,20 @@ import java.util.Queue;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import io.reactivex.Completable;
+import io.reactivex.CompletableObserver;
 import io.reactivex.Flowable;
 import io.reactivex.MaybeObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
+import io.reactivex.schedulers.Schedulers;
 
-public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Void> {
+public class BookmarkSubsFragment extends BaseListFragment<List<SubscriptionEntity>, Void> {
 
     private static final int OFF_SCREEN_ITEMS_COUNT = 3;
     private static final int MIN_ITEMS_INITIAL_LOAD = 8;
-    private int FEED_LOAD_COUNT = MIN_ITEMS_INITIAL_LOAD;
 
     private int subscriptionPoolSize;
 
@@ -61,7 +68,12 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
     List<InfoItem> hoursList = new ArrayList<>();
     List<InfoItem> daysList = new ArrayList<>();
     List<InfoItem> weeksList = new ArrayList<>();
-    int loaded = 0, counter = 20, count = 0;
+
+    SubscriptionDAO subscriptionDAO;
+    List<SubscriptionEntity> subscriptionEntity;
+    AppDatabase db;
+
+    int count = 1;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle
@@ -72,14 +84,15 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
         super.onCreate(savedInstanceState);
         subscriptionService = SubscriptionService.getInstance(activity);
 
-        FEED_LOAD_COUNT = subscriptionPoolSize;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        db = NewPipeDatabase.getInstance(container.getContext());
+        subscriptionDAO = db.subscriptionDAO();
 
         if(!useAsFrontPage) {
-            setTitle(activity.getString(R.string.fragment_whats_new));
+            setTitle(activity.getString(R.string.tab_subscriptions));
         }
         return inflater.inflate(R.layout.fragment_feed, container, false);
     }
@@ -131,7 +144,6 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
 
         if(useAsFrontPage) {
             supportActionBar.setDisplayShowTitleEnabled(true);
-            //supportActionBar.setDisplayShowTitleEnabled(false);
         }
     }
 
@@ -180,9 +192,6 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
             isLoading.set(false);
             return;
         }
-
-//        isLoading.set(true);
-//        showLoading();
         showListFooter(true);
         subscriptionObserver = subscriptionService.getSubscription()
                 .onErrorReturnItem(Collections.emptyList())
@@ -200,10 +209,37 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
             return;
         }
 
-        subscriptionPoolSize = result.size();
-        Flowable.fromIterable(result)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getSubscriptionObserver());
+        //getting list from database where subscription is bookmarked .[1 = bookmared , 0 = not bookmarked]
+        Completable.fromAction(new Action() {
+            @Override
+            public void run() throws Exception {
+                subscriptionEntity = subscriptionDAO.getBookMarkedList(1);
+                subscriptionPoolSize = subscriptionEntity.size();
+
+                Flowable.fromIterable(subscriptionEntity)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(getSubscriptionObserver());
+            }
+        }).subscribeOn(Schedulers.io()).subscribe(new CompletableObserver() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+        });
+
+
+
+
     }
 
     /**
@@ -222,30 +258,25 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
                 if (feedSubscriber != null) feedSubscriber.cancel();
                 feedSubscriber = s;
 
-               // int requestSize = FEED_LOAD_COUNT - infoListAdapter.getItemsList().size();
-                //if (wasLoading.getAndSet(false)) requestSize = FEED_LOAD_COUNT;
-
-                //boolean hasToLoad = true;
                 if (true) {
-                    //requestLoadedAtomic.set(infoListAdapter.getItemsList().size());
                     requestFeed(subscriptionPoolSize);
                 }
-                //isLoading.set(hasToLoad);
-                count=20;
-                counter=20;
+
             }
 
             @Override
             public void onNext(SubscriptionEntity subscriptionEntity) {
                 if (!itemsLoaded.contains(subscriptionEntity.getServiceId() + subscriptionEntity.getUrl())) {
-                    subscriptionService.getChannelInfo(subscriptionEntity)
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .onErrorComplete(
-                                    (@io.reactivex.annotations.NonNull Throwable throwable) ->
-                                            FeedFragment.super.onError(throwable))
-                            .subscribe(
-                                    getChannelInfoObserver(subscriptionEntity.getServiceId(),
-                                            subscriptionEntity.getUrl()));
+                        subscriptionService.getChannelInfo(subscriptionEntity)
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .onErrorComplete(
+                                        (@io.reactivex.annotations.NonNull Throwable throwable) ->
+                                                BookmarkSubsFragment.super.onError(throwable))
+                                .subscribe(
+                                        getChannelInfoObserver(subscriptionEntity.getServiceId(),
+                                                subscriptionEntity.getUrl()));
+
+
                 } else {
                     requestFeed(1);
                 }
@@ -253,7 +284,7 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
 
             @Override
             public void onError(Throwable exception) {
-                FeedFragment.this.onError(exception);
+                BookmarkSubsFragment.this.onError(exception);
             }
 
             @Override
@@ -302,13 +333,12 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
                     return;
                 }
 
-                for (int i = 0; i < 8; i++) {
-                    //get atleast 8 relative item of source youtube channel
+                for (int i = 0; i < 15; i++) {
+                    //get atleast 8 relative items of source youtube channel
                     InfoItem infoItem = channelInfo.getRelatedItems().get(i);
                     boolean itemExists = doesItemExist(infoListAdapter.getItemsList(), infoItem);
                     //categorize into time
                     if (!itemExists) {
-                       // loaded++;
                         if (((StreamInfoItem) infoItem).getUploadDate().contains("minutes ago")) {
                             infoListAdapter.addInfoItem(infoItem);
                             minutesList.add(infoItem);
@@ -322,27 +352,22 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
                             infoListAdapter.addInfoItem(infoItem);
                             weeksList.add(infoItem);
                         }
-
                     }
-
-                    //when itemsloaded size become equal to count it will repopulate entire infoListAdapter list
-                    if (itemsLoaded.size() == count) {
-                        infoListAdapter.clearStreamItemList();
-                        infoListAdapter.addInfoItemList(minutesList);
-                        infoListAdapter.addInfoItemList(hoursList);
-                        infoListAdapter.addInfoItemList(daysList);
-                        infoListAdapter.addInfoItemList(weeksList);
-                        if ((subscriptionPoolSize - count) <= 10) {
-                            int whatLeftValue = subscriptionPoolSize - count;
-                            counter = whatLeftValue;
-                            count += (counter - 1);
-                        } else {
-                            count += (counter - 1);
-                        }
-
-                    }
-                    onDone();
                 }
+                onDone();
+
+                //when itemsloaded size become equal to count it will repopulate entire infoListAdapter list
+                if (itemsLoaded.size() == count) {
+                    infoListAdapter.clearStreamItemList();
+                    infoListAdapter.addInfoItemList(minutesList);
+                    infoListAdapter.addInfoItemList(hoursList);
+                    infoListAdapter.addInfoItemList(daysList);
+                    infoListAdapter.addInfoItemList(weeksList);
+                    count++;
+
+
+                }
+
             }
 
             @Override
@@ -367,19 +392,16 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
                 }
 
                 itemsLoaded.add(serviceId + " " + url);
-                Log.d("itemLoaded ::", String.valueOf(itemsLoaded.size()));
                 compositeDisposable.remove(observer);
 
-                loaded = requestLoadedAtomic.getAndIncrement();
-                Log.d("loaded ::", String.valueOf(loaded));
+                int loaded = requestLoadedAtomic.getAndIncrement();
                 if (loaded < 7) {
                     //loaded = 0;
                     requestLoadedAtomic.set(0);
-                    isLoading.set(false);
+                    //isLoading.set(false);
                 }
 
-                Log.d("itemLoaded :: ", String.valueOf(itemsLoaded.size()));
-                if (itemsLoaded.size() == subscriptionPoolSize - 1) {
+                if (itemsLoaded.size() == subscriptionPoolSize-1) {
                     if (DEBUG) Log.d(TAG, "getChannelInfoObserver > All Items Loaded");
                     allItemsLoaded.set(true);
                     showListFooter(false);

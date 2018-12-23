@@ -27,6 +27,7 @@ public class SubscriptionEntity {
     final static String SUBSCRIPTION_AVATAR_URL         = "avatar_url";
     final static String SUBSCRIPTION_SUBSCRIBER_COUNT   = "subscriber_count";
     final static String SUBSCRIPTION_DESCRIPTION        = "description";
+    final static String SUBSCRIPTION_BOOKMARK           = "bookmarks";
 
     @PrimaryKey(autoGenerate = true)
     private long uid = 0;
@@ -48,6 +49,11 @@ public class SubscriptionEntity {
 
     @ColumnInfo(name = SUBSCRIPTION_DESCRIPTION)
     private String description;
+
+    @ColumnInfo(name = SUBSCRIPTION_BOOKMARK)
+    private int bookmarks;
+
+
 
     public long getUid() {
         return uid;
@@ -105,15 +111,27 @@ public class SubscriptionEntity {
         this.description = description;
     }
 
+    public int getBookmarks() {
+        return bookmarks;
+    }
+
+    public void setBookmarks(int bookmarks) {
+        this.bookmarks = bookmarks;
+    }
+
     @Ignore
     public void setData(final String name,
                         final String avatarUrl,
                         final String description,
-                        final Long subscriberCount) {
+                        final Long subscriberCount,
+                        final int bookMarkItem
+                       ) {
         this.setName(name);
         this.setAvatarUrl(avatarUrl);
         this.setDescription(description);
         this.setSubscriberCount(subscriberCount);
+        this.setBookmarks(bookMarkItem);
+
     }
 
     @Ignore
@@ -122,6 +140,7 @@ public class SubscriptionEntity {
         item.setThumbnailUrl(getAvatarUrl());
         item.setSubscriberCount(getSubscriberCount());
         item.setDescription(getDescription());
+        item.setBookmark(getBookmarks());
         return item;
     }
 
@@ -130,7 +149,7 @@ public class SubscriptionEntity {
         SubscriptionEntity result = new SubscriptionEntity();
         result.setServiceId(info.getServiceId());
         result.setUrl(info.getUrl());
-        result.setData(info.getName(), info.getAvatarUrl(), info.getDescription(), info.getSubscriberCount());
+        result.setData(info.getName(), info.getAvatarUrl(), info.getDescription(), info.getSubscriberCount(),result.getBookmarks());
         return result;
     }
 }

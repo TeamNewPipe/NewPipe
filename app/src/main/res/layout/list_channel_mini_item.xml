@@ -22,18 +22,18 @@
 
     <TextView
         android:id="@+id/itemTitleView"
-        android:layout_width="match_parent"
+        android:layout_width="241dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="2dp"
         android:layout_marginTop="3dp"
+        android:layout_marginBottom="2dp"
         android:layout_toRightOf="@+id/itemThumbnailView"
         android:ellipsize="end"
         android:lines="1"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="@dimen/video_item_search_title_text_size"
         tools:ignore="RtlHardcoded"
-        tools:text="Channel Title, Lorem ipsum"/>
+        tools:text="Channel Title, Lorem ipsum" />
 
     <TextView
         android:id="@+id/itemAdditionalDetails"
@@ -46,5 +46,14 @@
         android:textSize="@dimen/video_item_search_upload_date_text_size"
         tools:ignore="RtlHardcoded"
         tools:text="10M subscribers"/>
+
+    <Button
+        android:id="@+id/bookmarkItems"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="6dp"
+        android:background="@drawable/bookmark" />
 
 </RelativeLayout>

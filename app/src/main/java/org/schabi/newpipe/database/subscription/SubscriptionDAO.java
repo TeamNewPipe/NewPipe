@@ -12,6 +12,7 @@ import java.util.List;
 
 import io.reactivex.Flowable;
 
+import static org.schabi.newpipe.database.subscription.SubscriptionEntity.SUBSCRIPTION_BOOKMARK;
 import static org.schabi.newpipe.database.subscription.SubscriptionEntity.SUBSCRIPTION_SERVICE_ID;
 import static org.schabi.newpipe.database.subscription.SubscriptionEntity.SUBSCRIPTION_TABLE;
 import static org.schabi.newpipe.database.subscription.SubscriptionEntity.SUBSCRIPTION_UID;
@@ -23,6 +24,11 @@ public abstract class SubscriptionDAO implements BasicDAO<SubscriptionEntity> {
     @Query("SELECT * FROM " + SUBSCRIPTION_TABLE)
     public abstract Flowable<List<SubscriptionEntity>> getAll();
 
+    @Query("SELECT * FROM " + SUBSCRIPTION_TABLE )
+    public abstract List<SubscriptionEntity> getBookmark();
+
+    @Query("SELECT * FROM " + SUBSCRIPTION_TABLE + " WHERE " + SUBSCRIPTION_BOOKMARK + " = :int_book")
+    public abstract List<SubscriptionEntity> getBookMarkedList(int int_book);
     @Override
     @Query("DELETE FROM " + SUBSCRIPTION_TABLE)
     public abstract int deleteAll();

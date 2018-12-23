@@ -124,7 +124,7 @@ public class SubscriptionService {
                     // Subscriber count changes very often, making this check almost unnecessary.
                     // Consider removing it later.
                     if (!isSubscriptionUpToDate(info, subscription)) {
-                        subscription.setData(info.getName(), info.getAvatarUrl(), info.getDescription(), info.getSubscriberCount());
+                        subscription.setData(info.getName(), info.getAvatarUrl(), info.getDescription(), info.getSubscriberCount(),0);
 
                         return Completable.fromRunnable(() -> subscriptionTable().update(subscription));
                     }

@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int ITEM_ID_SUBSCRIPTIONS = - 1;
     private static final int ITEM_ID_FEED = - 2;
     private static final int ITEM_ID_BOOKMARKS = - 3;
+    private static final int ITEM_ID_BOOKMARKS_SUBSCRIPTIONS = -6;
     private static final int ITEM_ID_DOWNLOADS = - 4;
     private static final int ITEM_ID_HISTORY = - 5;
     private static final int ITEM_ID_SETTINGS = 0;
@@ -144,6 +145,9 @@ public class MainActivity extends AppCompatActivity {
         drawerItems.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_BOOKMARKS, ORDER, R.string.tab_bookmarks)
                 .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_bookmark));
+        drawerItems.getMenu()
+                .add(R.id.menu_tabs_group,ITEM_ID_BOOKMARKS_SUBSCRIPTIONS,ORDER,R.string.tab_subsbookmars)
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this,R.attr.ic_bookmark));
         drawerItems.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_DOWNLOADS, ORDER, R.string.downloads)
                 .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.download));
@@ -224,6 +228,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case ITEM_ID_BOOKMARKS:
                 NavigationHelper.openBookmarksFragment(getSupportFragmentManager());
+                break;
+            case ITEM_ID_BOOKMARKS_SUBSCRIPTIONS:
+                NavigationHelper.openBookmarksSubsFragment(getSupportFragmentManager());
                 break;
             case ITEM_ID_DOWNLOADS:
                 NavigationHelper.openDownloads(this);
@@ -328,6 +335,9 @@ public class MainActivity extends AppCompatActivity {
                 .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.rss));
         drawerItems.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_BOOKMARKS, ORDER, R.string.tab_bookmarks)
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_bookmark));
+        drawerItems.getMenu()
+                .add(R.id.menu_tabs_group, ITEM_ID_BOOKMARKS_SUBSCRIPTIONS, ORDER, R.string.tab_subsbookmars)
                 .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_bookmark));
         drawerItems.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_DOWNLOADS, ORDER, R.string.downloads)
