@@ -55,6 +55,7 @@ import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeStreamExtractor;
@@ -699,13 +700,13 @@ public class VideoDetailFragment
         switch (id) {
             case R.id.menu_item_share: {
                 if (currentInfo != null) {
-                    shareUrl(currentInfo.getName(), currentInfo.getUrl());
+                    shareUrl(currentInfo.getName(), currentInfo.getOriginalUrl());
                 }
                 return true;
             }
             case R.id.menu_item_openInBrowser: {
                 if (currentInfo != null) {
-                    openUrlInBrowser(currentInfo.getUrl());
+                    openUrlInBrowser(currentInfo.getOriginalUrl());
                 }
                 return true;
             }
@@ -1269,10 +1270,18 @@ public class VideoDetailFragment
 
                 downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
             } catch (Exception e) {
-                Toast.makeText(activity,
-                        R.string.could_not_setup_download_menu,
-                        Toast.LENGTH_LONG).show();
-                e.printStackTrace();
+                ErrorActivity.ErrorInfo info = ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
+                        ServiceList.all()
+                                .get(currentInfo
+                                        .getServiceId())
+                                .getServiceInfo()
+                                .getName(), "",
+                        R.string.could_not_setup_download_menu);
+
+                ErrorActivity.reportError(getActivity(),
+                        e,
+                        getActivity().getClass(),
+                        getActivity().findViewById(android.R.id.content), info);
             }
     }
 

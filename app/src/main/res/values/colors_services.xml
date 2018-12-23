@@ -22,4 +22,15 @@
     <color name="dark_soundcloud_accent_color">#FFFFFF</color>
     <color name="dark_soundcloud_statusbar_color">#ff9100</color>
 
+    <!-- MediaCCC -->
+    <color name="light_mediaccc_primary_color">#888888</color>
+    <color name="light_mediaccc_dark_color">#555555</color>
+    <color name="light_mediaccc_accent_color">#000000</color>
+    <color name="light_mediaccc_statusbar_color">#777777</color>
+
+    <color name="dark_mediaccc_primary_color">#888888</color>
+    <color name="dark_mediaccc_dark_color">#555555</color>
+    <color name="dark_mediaccc_accent_color">#FFFFFF</color>
+    <color name="dark_mediaccc_statusbar_color">#777777</color>
+
 </resources>
