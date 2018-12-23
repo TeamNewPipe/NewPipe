@@ -89,7 +89,8 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
                     .build();
             response = client.newCall(request).execute();
 
-            return Long.parseLong(response.header("Content-Length"));
+            String contentLength = response.header("Content-Length");
+            return contentLength == null ? -1 : Long.parseLong(contentLength);
         } catch (NumberFormatException e) {
             throw new IOException("Invalid content length", e);
         } finally {
