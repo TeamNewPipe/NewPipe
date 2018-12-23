@@ -24,9 +24,11 @@ public class ServiceHelper {
             case 0:
                 return R.drawable.place_holder_youtube;
             case 1:
-                return R.drawable.place_holder_circle;
+                return R.drawable.place_holder_cloud;
+            case 2:
+                return R.drawable.place_holder_gadse;
             default:
-                return R.drawable.service;
+                return R.drawable.place_holder_circle;
         }
     }
 
