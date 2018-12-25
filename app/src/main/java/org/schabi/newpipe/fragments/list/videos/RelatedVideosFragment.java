@@ -20,6 +20,7 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.RelatedStreamInfo;
 
 import java.io.Serializable;
@@ -110,11 +111,16 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
     @Override
     public void showLoading() {
         super.showLoading();
+        headerRootLayout.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void handleResult(@NonNull RelatedStreamInfo result) {
+
         super.handleResult(result);
+
+        headerRootLayout.setVisibility(View.VISIBLE);
+        AnimationUtils.slideUp(getView(),120, 96, 0.06f);
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(), UserAction.REQUESTED_STREAM, NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);
@@ -144,6 +150,7 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
     protected boolean onError(Throwable exception) {
         if (super.onError(exception)) return true;
 
+        hideLoading();
         showSnackBarError(exception, UserAction.REQUESTED_STREAM, NewPipe.getNameOfService(serviceId), url, R.string.general_error);
         return true;
     }

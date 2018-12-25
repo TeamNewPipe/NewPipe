@@ -16,6 +16,7 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.comments.CommentsInfo;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ExtractorHelper;
 
 import io.reactivex.Single;
@@ -92,6 +93,8 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfo> {
     public void handleResult(@NonNull CommentsInfo result) {
         super.handleResult(result);
 
+        AnimationUtils.slideUp(getView(),120, 96, 0.06f);
+
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(), UserAction.REQUESTED_COMMENTS, NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);
         }
@@ -120,6 +123,7 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfo> {
     protected boolean onError(Throwable exception) {
         if (super.onError(exception)) return true;
 
+        hideLoading();
         showSnackBarError(exception, UserAction.REQUESTED_COMMENTS, NewPipe.getNameOfService(serviceId), url, R.string.error_unable_to_load_comments);
         return true;
     }
