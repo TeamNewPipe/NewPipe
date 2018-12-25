@@ -233,6 +233,9 @@ public abstract class PlayQueue implements Serializable {
             backup.addAll(itemList);
             Collections.shuffle(itemList);
         }
+        if (!streams.isEmpty() && streams.get(streams.size() - 1).isAutoQueued() && !itemList.get(0).isAutoQueued()) {
+            streams.remove(streams.size() - 1);
+        }
         streams.addAll(itemList);
 
         broadcast(new AppendEvent(itemList.size()));
@@ -314,7 +317,9 @@ public abstract class PlayQueue implements Serializable {
             queueIndex.incrementAndGet();
         }
 
-        streams.add(target, streams.remove(source));
+        PlayQueueItem playQueueItem = streams.remove(source);
+        playQueueItem.setAutoQueued(false);
+        streams.add(target, playQueueItem);
         broadcast(new MoveEvent(source, target));
     }
 

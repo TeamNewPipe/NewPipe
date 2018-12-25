@@ -28,7 +28,7 @@
     <string name="download_dialog_title">Elŝuti</string>
     <string name="next_video_title">Sekva video</string>
     <string name="url_not_supported_toast">Ligilo ne subtenita</string>
-    <string name="search_language_title">Preferata enhavlingvo</string>
+    <string name="content_language_title">Preferata enhavlingvo</string>
     <string name="settings_category_video_audio_title">Video kaj sono</string>
     <string name="settings_category_appearance_title">Apero</string>
     <string name="settings_category_other_title">Alia</string>

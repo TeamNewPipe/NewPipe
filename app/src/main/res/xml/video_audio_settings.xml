@@ -66,12 +66,6 @@
 
         <SwitchPreference
             android:defaultValue="false"
-            android:key="@string/use_old_player_key"
-            android:summary="@string/use_old_player_summary"
-            android:title="@string/use_old_player_title"/>
-
-        <SwitchPreference
-            android:defaultValue="false"
             android:key="@string/show_play_with_kodi_key"
             android:summary="@string/show_play_with_kodi_summary"
             android:title="@string/show_play_with_kodi_title"/>
@@ -100,15 +94,27 @@
 
         <SwitchPreference
             android:defaultValue="false"
+            android:key="@string/auto_queue_key"
+            android:summary="@string/auto_queue_summary"
+            android:title="@string/auto_queue_title"/>
+
+        <SwitchPreference
+            android:defaultValue="false"
             android:key="@string/resume_on_audio_focus_gain_key"
             android:summary="@string/resume_on_audio_focus_gain_summary"
             android:title="@string/resume_on_audio_focus_gain_title"/>
 
         <SwitchPreference
             android:defaultValue="true"
-            android:key="@string/player_gesture_controls_key"
-            android:summary="@string/player_gesture_controls_summary"
-            android:title="@string/player_gesture_controls_title"/>
+            android:key="@string/volume_gesture_control_key"
+            android:summary="@string/volume_gesture_control_summary"
+            android:title="@string/volume_gesture_control_title"/>
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/brightness_gesture_control_key"
+            android:summary="@string/brightness_gesture_control_summary"
+            android:title="@string/brightness_gesture_control_title"/>
 
         <SwitchPreference
             android:defaultValue="true"

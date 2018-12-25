@@ -92,7 +92,7 @@
     <string name="url_not_supported_toast">URL pole toetatud</string>
     <string name="default_content_country_title">Sisu vaikimisi riik</string>
     <string name="service_title">Teenus</string>
-    <string name="search_language_title">Sisu vaikimisi keel</string>
+    <string name="content_language_title">Sisu vaikimisi keel</string>
     <string name="settings_category_player_title">Pleier</string>
     <string name="settings_category_player_behavior_title">Käitumine</string>
     <string name="settings_category_video_audio_title">Heli ja pilt</string>

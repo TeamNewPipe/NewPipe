@@ -10,7 +10,7 @@
     <string name="download">Завантажити</string>
     <string name="search">Шукати</string>
     <string name="settings">Налаштування</string>
-    <string name="did_you_mean">Чи ви мали на увазі: %1$s ?</string>
+    <string name="did_you_mean">Чи ви мали на увазі: %1$s\?</string>
     <string name="share_dialog_title">Поділитись з</string>
     <string name="choose_browser">Оберіть переглядач</string>
     <string name="screen_rotation">обертання</string>
@@ -44,7 +44,7 @@
     <string name="next_video_title">Наступний відеозапис</string>
     <string name="show_next_and_similar_title">Являти \"наступні\" й \"схожі\" відео</string>
     <string name="url_not_supported_toast">URL не підтримується</string>
-    <string name="search_language_title">Переважна мова контенту</string>
+    <string name="content_language_title">Переважна мова контенту</string>
     <string name="settings_category_video_audio_title">Відео та Авдіо</string>
     <string name="settings_category_appearance_title">Зовнішній вигляд</string>
     <string name="settings_category_other_title">Інше</string>
@@ -483,8 +483,12 @@
     <string name="minimize_on_exit_background_description">До тлового програвача</string>
     <string name="minimize_on_exit_popup_description">Зменшити до віконного програвачу</string>
 
-<string name="channels">Канали</string>
+    <string name="channels">Канали</string>
     <string name="playlists">Плейлисти</string>
     <string name="tracks">Стежки</string>
     <string name="users">Користувачі</string>
-    </resources>
+
+    <string name="list_view_mode">Вигляд списку</string>
+    <string name="list">Список</string>
+    <string name="grid">Сiтка</string>
+</resources>

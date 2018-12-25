@@ -69,8 +69,7 @@ public final class ExtractorHelper {
     public static Single<SearchInfo> searchFor(final int serviceId,
                                                final String searchString,
                                                final List<String> contentFilter,
-                                               final String sortFilter,
-                                               final String contentCountry) {
+                                               final String sortFilter) {
         checkServiceId(serviceId);
         return Single.fromCallable(() ->
             SearchInfo.getInfo(NewPipe.getService(serviceId),
@@ -83,8 +82,7 @@ public final class ExtractorHelper {
                                                            final String searchString,
                                                            final List<String> contentFilter,
                                                            final String sortFilter,
-                                                           final String pageUrl,
-                                                           final String contentCountry) {
+                                                           final String pageUrl) {
         checkServiceId(serviceId);
         return Single.fromCallable(() ->
                 SearchInfo.getMoreItems(NewPipe.getService(serviceId),
@@ -96,8 +94,7 @@ public final class ExtractorHelper {
     }
 
     public static Single<List<String>> suggestionsFor(final int serviceId,
-                                                      final String query,
-                                                      final String contentCountry) {
+                                                      final String query) {
         checkServiceId(serviceId);
         return Single.fromCallable(() ->
                 NewPipe.getService(serviceId)
@@ -126,7 +123,7 @@ public final class ExtractorHelper {
                                                             final String nextStreamsUrl) {
         checkServiceId(serviceId);
         return Single.fromCallable(() ->
-                ChannelInfo.getMoreItems(NewPipe.getService(serviceId), url, nextStreamsUrl, NewPipe.getLocalization()));
+                ChannelInfo.getMoreItems(NewPipe.getService(serviceId), url, nextStreamsUrl));
     }
 
     public static Single<CommentsInfo> getCommentsInfo(final int serviceId,
@@ -163,19 +160,17 @@ public final class ExtractorHelper {
 
     public static Single<KioskInfo> getKioskInfo(final int serviceId,
                                                  final String url,
-                                                 final String contentCountry,
                                                  boolean forceLoad) {
         return checkCache(forceLoad, serviceId, url, InfoItem.InfoType.PLAYLIST, Single.fromCallable(() ->
-                KioskInfo.getInfo(NewPipe.getService(serviceId), url, contentCountry)));
+                KioskInfo.getInfo(NewPipe.getService(serviceId), url)));
     }
 
     public static Single<InfoItemsPage> getMoreKioskItems(final int serviceId,
-                                                          final String url,
-                                                          final String nextStreamsUrl,
-                                                          final String contentCountry) {
+                                                            final String url,
+                                                            final String nextStreamsUrl) {
         return Single.fromCallable(() ->
                 KioskInfo.getMoreItems(NewPipe.getService(serviceId),
-                        url, nextStreamsUrl, contentCountry));
+                        url, nextStreamsUrl));
     }
 
     /*//////////////////////////////////////////////////////////////////////////

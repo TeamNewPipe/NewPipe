@@ -1,0 +1,464 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="main_bg_subtitle">Toque em «Procurar» para comezar</string>
+    <string name="view_count_text">%1$s visualizacións</string>
+    <string name="upload_date_text">Publicado o día %1$s</string>
+    <string name="no_player_found">Non foi encontrado ningún reprodutor. Desexa instalar o VLC?</string>
+    <string name="no_player_found_toast">Non foi encontrado ningún reprodutor (pode instalar o VLC para o reproducir)</string>
+    <string name="install">Instalar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="open_in_browser">Abrir no navegador</string>
+    <string name="open_in_popup_mode">Abrir no modo popup</string>
+    <string name="share">Compartillar</string>
+    <string name="download">Descarregar</string>
+    <string name="controls_download_desc">Descarregar o ficheiro de emisión.</string>
+    <string name="search">Procurar</string>
+    <string name="settings">Opcións</string>
+    <string name="did_you_mean">Non querería dicir «%1$s»?</string>
+    <string name="share_dialog_title">Compartillar con</string>
+    <string name="choose_browser">Escoller un navegador</string>
+    <string name="screen_rotation">rotación</string>
+    <string name="use_external_video_player_title">Usar un reprodutor de vídeo externo</string>
+    <string name="use_external_video_player_summary">Podería NON haber audio con algunhas resolucións se esta opción estiver activa</string>
+    <string name="use_external_audio_player_title">Usar un reprodutor externo de audio</string>
+    <string name="popup_mode_share_menu_title">Modo popup do NewPipe</string>
+    <string name="subscribe_button_title">Subscribir</string>
+    <string name="subscribed_button_title">Subscrito</string>
+    <string name="channel_unsubscribed">Xa non está subscrito ao canal</string>
+    <string name="subscription_change_failed">Non foi posíbel modificar a subscrición</string>
+    <string name="subscription_update_failed">Non foi posíbel actualizar a subscrición</string>
+    <string name="show_info">Mostrar información</string>
+
+    <string name="tab_main">Principal</string>
+    <string name="tab_subscriptions">Subscricións</string>
+    <string name="tab_bookmarks">Favoritos</string>
+
+    <string name="fragment_whats_new">Novidades</string>
+
+    <string name="controls_background_title">Segundo plano</string>
+    <string name="controls_popup_title">Modo popup</string>
+    <string name="controls_add_to_playlist_title">Engadir a</string>
+
+    <string name="download_path_title">Ruta de descarga de vídeos</string>
+    <string name="download_path_summary">Ruta onde gardar os vídeos descarregados</string>
+    <string name="download_path_dialog_title">Introduza a ruta de descarga de vídeos</string>
+
+    <string name="download_path_audio_title">Ruta de descarga de audio</string>
+    <string name="download_path_audio_summary">Ruta onde gardar o audio descarregado</string>
+    <string name="download_path_audio_dialog_title">Introduza a ruta de descarga dos ficheiros de audio</string>
+
+    <string name="autoplay_by_calling_app_title">Reproducir automaticamente</string>
+    <string name="autoplay_by_calling_app_summary">Reproducir o vídeo pedido cando o NewPipe sexa invocado por outro aplicativo</string>
+    <string name="default_resolution_title">Resolución predeterminada</string>
+    <string name="default_popup_resolution_title">Resolución predeterminada do popup</string>
+    <string name="show_higher_resolutions_title">Mostrar resolucións máis altas</string>
+    <string name="show_higher_resolutions_summary">Moitos dispositivos non permiten reproducir vídeos en 2K/4K</string>
+    <string name="play_with_kodi_title">Reproducir co Kodi</string>
+    <string name="kore_not_found">O aplicativo Kore non foi encontrado. Desexa instalalo?</string>
+    <string name="show_play_with_kodi_title">Mostrar a opción «Reproducir co Kodi»</string>
+    <string name="show_play_with_kodi_summary">Mostrar unha opción para reproducir o vídeo co Kodi Media Center</string>
+    <string name="play_audio">Audio</string>
+    <string name="default_audio_format_title">Formato de audio predeterminado</string>
+    <string name="default_video_format_title">Formato de vídeo predeterminado</string>
+    <string name="webm_description">WebM — formato libre</string>
+    <string name="m4a_description">M4A — mellor calidade</string>
+    <string name="theme_title">Tema</string>
+    <string name="light_theme_title">Claro</string>
+    <string name="dark_theme_title">Escuro</string>
+    <string name="black_theme_title">Negro</string>
+    <string name="popup_remember_size_pos_title">Lembrar o tamaño e a posición do «popup»</string>
+    <string name="popup_remember_size_pos_summary">Lembrar o tamaño e a posición anteriores do «popup»</string>
+    <string name="use_inexact_seek_title">Usar un salto inexacto mais inexacto</string>
+    <string name="use_inexact_seek_summary">O salto inexacto permite saltar a posicións máis rápido, mais con menos precisión</string>
+    <string name="download_thumbnail_title">Carregar miniaturas</string>
+    <string name="download_thumbnail_summary">Desactíveo para evitar a carga de miniaturas e poupar datos e memoria. Modificar esta opción limpa a caché de imaxes da memoria e do disco</string>
+    <string name="thumbnail_cache_wipe_complete_notice">A caché de imaxes foi limpada</string>
+    <string name="metadata_cache_wipe_title">Os metadatos da caché foron eliminados</string>
+    <string name="metadata_cache_wipe_summary">Eliminar todos os datos de páxinas en caché</string>
+    <string name="metadata_cache_wipe_complete_notice">Os metadatos da caché foron eliminados</string>
+    <string name="auto_queue_title">Colocar a seguinte emisión na cola automaticamente</string>
+    <string name="auto_queue_summary">Engadir automaticamente unha emisión ao reproducir a última emisión nunha cola sen repetición</string>
+    <string name="player_gesture_controls_title">Controis de xesto do reprodutor</string>
+    <string name="player_gesture_controls_summary">Usar xestos para controlar o brillo e volume do reprodutor</string>
+    <string name="show_search_suggestions_title">Suxestións de procura</string>
+    <string name="show_search_suggestions_summary">Mostrar suxestións ao procurar</string>
+    <string name="enable_search_history_title">Historial de procura</string>
+    <string name="enable_search_history_summary">Gardar os termos de pesquisa localmente</string>
+    <string name="enable_watch_history_title">Historial e caché</string>
+    <string name="enable_watch_history_summary">Gardar historial de vídeos vistos</string>
+    <string name="resume_on_audio_focus_gain_title">Retormar o vídeo ao enfocar</string>
+    <string name="resume_on_audio_focus_gain_summary">Continuar a reprodución após interrupcións (como chamadas)</string>
+    <string name="download_dialog_title">Descarregar</string>
+    <string name="next_video_title">Vídeo seguinte</string>
+    <string name="show_next_and_similar_title">Mostrar vídeos «seguintes» e «semellantes»</string>
+    <string name="show_hold_to_append_title">Mostrar a suxestión «Manteña presionado para engadir á cola»</string>
+    <string name="show_hold_to_append_summary">Mostrar unha suxestión ao premer o botón de segundo plano ou o de popup na páxina de detalles do vídeo</string>
+    <string name="url_not_supported_toast">Este URL non está soportado</string>
+    <string name="default_content_country_title">País predeterminado para o contido</string>
+    <string name="service_title">Servizo</string>
+    <string name="search_language_title">Idioma predeterminado do contido</string>
+    <string name="settings_category_player_title">Reprodutor</string>
+    <string name="settings_category_player_behavior_title">Comportamento</string>
+    <string name="settings_category_video_audio_title">Vídeo e audio</string>
+    <string name="settings_category_history_title">Historial e caché</string>
+    <string name="settings_category_popup_title">Popup</string>
+    <string name="settings_category_appearance_title">Aparencia</string>
+    <string name="settings_category_other_title">Outros</string>
+    <string name="settings_category_debug_title">Depuración</string>
+    <string name="background_player_playing_toast">Reproducindo en segundo plano</string>
+    <string name="popup_playing_toast">Reproducindo en modo «popup»</string>
+    <string name="background_player_append">Na cola do reprodutor en segundo plano</string>
+    <string name="popup_playing_append">Na cola do reprodutor popup</string>
+    <string name="play_btn_text">Reproducir</string>
+    <string name="content">Contido</string>
+    <string name="show_age_restricted_content_title">Mostrar contido con restrición de idade</string>
+    <string name="video_is_age_restricted">Vídeo con restrición de idade. Pode permitir a reprodución deste material nas Opcións.</string>
+    <string name="duration_live">en directo</string>
+    <string name="downloads">Descargas</string>
+    <string name="downloads_title">Descargas</string>
+    <string name="error_report_title">Relatorio de erro</string>
+    <string name="all">Todo</string>
+    <string name="channel">Canal</string>
+    <string name="channels">Canais</string>
+    <string name="playlist">Lista de reprodución</string>
+    <string name="playlists">Listas de reprodución</string>
+    <string name="tracks">Pistas</string>
+    <string name="users">Usuarios</string>
+    <string name="yes">Si</string>
+    <string name="later">Máis tarde</string>
+    <string name="disabled">Desactivado</string>
+    <string name="filter">Filtro</string>
+    <string name="refresh">Actualizar</string>
+    <string name="clear">Limpar</string>
+    <string name="popup_resizing_indicator_title">Redimensionando</string>
+    <string name="best_resolution">Mellor resolución</string>
+    <string name="undo">Desfacer</string>
+    <string name="play_all">Reproducilos todos</string>
+    <string name="always">Sempre</string>
+    <string name="just_once">Só unha vez</string>
+    <string name="file">Ficheiro</string>
+
+    <string name="notification_channel_name">Notificación do NewPipe</string>
+    <string name="notification_channel_description">Notificacións para o NewPipe e os reprodutores «popup»</string>
+
+    <string name="unknown_content">[Descoñecido]</string>
+
+    <string name="toggle_orientation">Mudar a orientación</string>
+    <string name="switch_to_background">Mudar para o segundo plano</string>
+    <string name="switch_to_popup">Mudar para o «popup»</string>
+    <string name="switch_to_main">Mudar para principal</string>
+
+    <string name="import_data_title">Importar base de datos</string>
+    <string name="export_data_title">Exportar base de datos</string>
+    <string name="import_data_summary">Isto vai sobreescribir o seu historial e as súas subscricións actuais</string>
+    <string name="export_data_summary">Exportar historial, subscricións e listas de reprodución</string>
+    <string name="clear_views_history_title">Limpar historial de reproducións</string>
+    <string name="clear_views_history_summary">Elimina o historial de emisións reproducidas</string>
+    <string name="delete_view_history_alert">Elimina todo o historial de reproducións.</string>
+    <string name="view_history_deleted">O historial de reproducións foi eliminado.</string>
+    <string name="clear_search_history_title">Limpar o historial de procura</string>
+    <string name="clear_search_history_summary">Elimina o historial de termos procurados</string>
+    <string name="delete_search_history_alert">Elimina todo o historial de procura.</string>
+    <string name="search_history_deleted">O historial de procuras foi eliminado.</string>
+    <string name="general_error">Erro</string>
+    <string name="network_error">Erro de rede</string>
+    <string name="could_not_load_thumbnails">Non foi posíbel carregar todas as miniaturas</string>
+    <string name="youtube_signature_decryption_error">Non foi posíbel descifrar a asinatura do vídeo</string>
+    <string name="parsing_error">Non foi posíbel procesar o sitio web</string>
+    <string name="light_parsing_error">Non foi posíbel procesar o sitio web por completo</string>
+    <string name="content_not_available">O contido non está dispoñíbel
+\n</string>
+    <string name="blocked_by_gema">Bloqueado pola GEMA</string>
+    <string name="could_not_setup_download_menu">Non foi posíbel configurar o menú de descargas</string>
+    <string name="live_streams_not_supported">Isto é unha emisión en directo, polo que aínda non está soportado.</string>
+    <string name="could_not_get_stream">Non foi posíbel obter unha emisión</string>
+    <string name="could_not_load_image">Non foi posíbel carregar a imaxe</string>
+    <string name="app_ui_crash">O aplicativo pechouse</string>
+    <string name="player_stream_failure">Non foi posíbel reproducir este vídeo</string>
+    <string name="player_unrecoverable_failure">Ocorreu un erro irrecuperábel co reprodutor</string>
+    <string name="player_recoverable_failure">Recuperándose dun erro do reprodutor</string>
+    <string name="external_player_unsupported_link_type">Os reprodutores externos non soportan estes tipos de ligazóns</string>
+    <string name="invalid_url_toast">URL inválido</string>
+    <string name="video_streams_empty">Non foi encontrada ningunha emisión de vídeo</string>
+    <string name="audio_streams_empty">Non foi encontrada ningunha emisión de audio</string>
+    <string name="invalid_directory">Directorio inválido</string>
+    <string name="invalid_source">A fonte do ficheiro ou contido é inválida</string>
+    <string name="invalid_file">O ficheiro non existe ou non ten permisos suficientes para o ler ou escribir</string>
+    <string name="file_name_empty_error">O nome do ficheiro non pode estar vacío</string>
+    <string name="error_occurred_detail">Ocorreu un erro: %1$s</string>
+    <string name="no_streams_available_download">Non hai emisións para descargar</string>
+
+    <string name="sorry_string">Deculpe, isto non debería ter acontecido.</string>
+    <string name="error_report_button_text">Informar do erro por correo electrónico</string>
+    <string name="error_snackbar_message">Desculpe, ocorreron algúns erros.</string>
+    <string name="error_snackbar_action">Relatorio</string>
+    <string name="what_device_headline">Información:</string>
+    <string name="what_happened_headline">Que ocorreu:</string>
+    <string name="info_labels">Problema:\\nPetición:\\nIdioma do contido:\\nServizo:\\nHora GMT:\\nPaquete:\\nVersión:\\nVersión do SO:</string>
+    <string name="your_comment">O teu comentario (en inglés):</string>
+    <string name="error_details_headline">Detalles:</string>
+
+
+    <string name="list_thumbnail_view_description">Miniatura do vídeo</string>
+    <string name="detail_thumbnail_view_description">Miniatura do vídeo</string>
+    <string name="detail_uploader_thumbnail_view_description">Miniatura do avatar do autor</string>
+    <string name="detail_likes_img_view_description">Gosto</string>
+    <string name="detail_dislikes_img_view_description">Non gosto</string>
+    <string name="use_tor_title">Usar o Tor</string>
+    <string name="use_tor_summary">(Experimental) Redirixir o tráfico polo Tor para aumentar a privacidade (as emisións aínda non están soportadas).</string>
+    <string name="report_error">Informar dun erro</string>
+    <string name="user_report">Relatorio do usuario</string>
+    <string name="search_no_results">Non hai resultados</string>
+    <string name="empty_subscription_feed_subtitle">Nada que ver</string>
+    <string name="detail_drag_description">Arrastre para reordenar</string>
+
+    <string name="err_dir_create">Non foi posíbel crear o directorio «%1$s»</string>
+    <string name="info_dir_created">O directorio de descargas «%1$s» foi creado</string>
+
+    <string name="video">Vídeo</string>
+    <string name="audio">Audio</string>
+    <string name="retry">Tentar de novo</string>
+    <string name="storage_permission_denied">A permisión de acceso ao almacenamento foi denegada</string>
+    <string name="use_old_player_title">Usar o reprodutor antigo</string>
+    <string name="use_old_player_summary">Versión interna anticuada do reprodutor Mediaframework</string>
+
+    <string name="short_thousand">K</string>
+    <string name="short_million">M</string>
+    <string name="short_billion">MM</string>
+
+    <string name="no_subscribers">Ningún subscrito</string>
+    <plurals name="subscribers">
+	<item quantity="one">%s subscrito</item>
+	<item quantity="other">%s subscritos</item>
+</plurals>
+
+    <string name="no_views">Ningunha visualización</string>
+    <plurals name="views">
+	<item quantity="one">%s visualización</item>
+	<item quantity="other">%s visualizacións</item>
+</plurals>
+
+    <string name="no_videos">Ningún vídeo</string>
+    <plurals name="videos">
+	<item quantity="one">%s vídeo</item>
+	<item quantity="other">%s vídeos</item>
+</plurals>
+
+    <string name="start">Comezar</string>
+    <string name="pause">Pausar</string>
+    <string name="view">Reproducir</string>
+    <string name="create">Crear</string>
+    <string name="delete">Eliminar</string>
+    <string name="delete_one">Eliminar un</string>
+    <string name="delete_all">Eliminalos todos</string>
+    <string name="checksum">Suma de comprobación</string>
+    <string name="dismiss">Descartar</string>
+    <string name="rename">Renomear</string>
+
+    <string name="add">Nova misión</string>
+    <string name="finish">OK</string>
+
+    <string name="msg_name">Nome do ficheiro</string>
+    <string name="msg_threads">Fios</string>
+    <string name="msg_error">Erro</string>
+    <string name="msg_server_unsupported">O servidor non está soportado</string>
+    <string name="msg_exists">O ficheiro xa existe</string>
+    <string name="msg_url_malform">O URL está mal formado ou a Internet non está dispoñíbel</string>
+    <string name="msg_running">Descarga do NewPipe</string>
+    <string name="msg_running_detail">Toque para ver detalles</string>
+    <string name="msg_wait">Por favor, agarde…</string>
+    <string name="msg_copied">Copiado para o portarretallos</string>
+    <string name="no_available_dir">Por favor, seleccione o directorio para descargas</string>
+    <string name="msg_popup_permission">Esta permisión é necesaria
+\npara abrir o vídeo no modo «popup»</string>
+    <string name="one_item_deleted">1 elemento foi eliminado.</string>
+
+    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="reCaptcha_title">Desafío reCAPTCHA</string>
+    <string name="recaptcha_request_toast">Desafío reCAPTCHA solicitado</string>
+
+    <string name="settings_category_downloads_title">Descarregar</string>
+    <string name="settings_file_charset_title">Caracteres permitidos nos nomes de ficheiros</string>
+    <string name="settings_file_replacement_character_summary">Os caracteres inválidos serán substituídos por este valor</string>
+    <string name="settings_file_replacement_character_title">Carácter de substitución</string>
+
+    <string name="charset_letters_and_digits">Letras e díxitos</string>
+    <string name="charset_most_special_characters">A maioría dos caracteres especiais</string>
+
+    <string name="toast_no_player">Non hai ningún aplicativo instalado para reproducir este ficheiro</string>
+
+    <string name="title_activity_about">Sobre o NewPipe</string>
+    <string name="action_settings">Opcións</string>
+    <string name="action_about">Sobre</string>
+    <string name="title_licenses">Licenzas de terceiros</string>
+    <string name="copyright" formatted="true">© %1$s de %2$s, so %3$s</string>
+    <string name="error_unable_to_load_license">Non foi posíbel carregar a licenza</string>
+    <string name="action_open_website">Abrir o sitio web</string>
+    <string name="tab_about">Sobre</string>
+    <string name="tab_contributors">Colaboradores</string>
+    <string name="tab_licenses">Licenzas</string>
+    <string name="app_description">Reprodutor lixeiro e libre para Android.</string>
+    <string name="contribution_title">Colaborar</string>
+    <string name="contribution_encouragement">Se ten ideas de tradución, mudanzas ao deseño, limpeza de código ou mudanzas serias deste—a axuda sempre é benvida. Canto máis fixermos, tanto máis vai mellorar!</string>
+    <string name="view_on_github">Ver no GitHub</string>
+    <string name="donation_title">Doar</string>
+    <string name="donation_encouragement">O NewPipe é desenvolvido por voluntarios que empregan o seu tempo libre para lle ofrecer a mellor experiencia. Pode retribuír e así axudar os desenvolvedores a tornaren o NewPipe aínda mellor en canto desfrutan dunha cunca de café.</string>
+    <string name="give_back">Retribuír</string>
+    <string name="website_title">Sitio web</string>
+    <string name="website_encouragement">Visite o sitio web do NewPipe para saber máis e ver noticias sobre o proxecto.</string>
+    <string name="privacy_policy_title">Política de privacidade do NewPipe</string>
+    <string name="privacy_policy_encouragement">O proxecto NewPipe dá moita importancia á súa privacidade. Por tanto, non recolle ningún dato sen o seu consentimento.
+\nA política de privacidade do NewPipe explica con máis detalle que datos son enviados e gardados cando envía un relatorio de erros.</string>
+    <string name="read_privacy_policy">Ler a política de privacidade</string>
+    <string name="app_license_title">Licenza do NewPipe</string>
+    <string name="app_license">O NewPipe é software copyleft libre: pode usalo, estudalo, compartillalo e melloralo como quixer. En concreto, pode redistribuílo e/ou modificalo so os termos da Licenza Pública Xeral GNU, publicada pola Free Software Foundation, quer a versión 3 da Licenza, ou calquera outra versión posterior da súa escolla.</string>
+    <string name="read_full_license">Ler a licenza</string>
+
+
+    <string name="title_activity_history">Historial</string>
+    <string name="title_history_search">Procurado</string>
+    <string name="title_history_view">Visto</string>
+    <string name="history_disabled">O historial está desactivado</string>
+    <string name="action_history">Historial</string>
+    <string name="history_empty">O historial está vacío</string>
+    <string name="history_cleared">O historial foi limpado</string>
+    <string name="item_deleted">O elemento foi eliminado</string>
+    <string name="delete_item_search_history">Desexa eliminar este elemento do historial de procura?</string>
+    <string name="delete_stream_history_prompt">Desexa eliminar este elemento do historial de visualizacións?</string>
+    <string name="delete_all_history_prompt">Ten a certeza de querer eliminar todos os elementos do historial?</string>
+    <string name="title_last_played">Última reprodución</string>
+    <string name="title_most_played">Máis reproducido</string>
+
+    <string name="main_page_content">Contido da páxina principal</string>
+    <string name="blank_page_summary">Páxina en branco</string>
+    <string name="kiosk_page_summary">Páxina do «kiosk»</string>
+    <string name="subscription_page_summary">Páxina de subscricións</string>
+    <string name="feed_page_summary">Páxina da fonte</string>
+    <string name="channel_page_summary">Páxina do canal</string>
+    <string name="select_a_channel">Seleccione un canal</string>
+    <string name="no_channel_subscribed_yet">Non subscribiu ningún canal</string>
+    <string name="select_a_kiosk">Seleccione un «kiosk»</string>
+    <string name="export_complete_toast">Exportación completa</string>
+    <string name="import_complete_toast">Importación completada</string>
+    <string name="no_valid_zip_file">Ficheiro ZIP inválido</string>
+    <string name="could_not_import_all_files">Aviso: non todos os ficheiros foron importados.</string>
+    <string name="override_current_data">Isto vai reescribir a súa configuración actual.</string>
+    <string name="import_settings">Desexa importar tamén as opcións?</string>
+
+    <string name="kiosk">Kiosk</string>
+    <string name="trending">Tendencias</string>
+    <string name="top_50">Top 50</string>
+    <string name="new_and_hot">Novo e popular</string>
+    <string name="title_activity_background_player">Reprodutor en segundo plano</string>
+    <string name="title_activity_popup_player">Reprodutor «popup»</string>
+    <string name="play_queue_remove">Eliminar</string>
+    <string name="play_queue_stream_detail">Detalles</string>
+    <string name="play_queue_audio_settings">Opcións de audio</string>
+    <string name="hold_to_append">Manteña para colocar na cola</string>
+    <string name="enqueue_on_background">Colocar na cola de segundo plano</string>
+    <string name="enqueue_on_popup">Colocar na cola de popup</string>
+    <string name="start_here_on_main">Comezar a reprodución aquí</string>
+    <string name="start_here_on_background">Comezar aquí en segundo plano</string>
+    <string name="start_here_on_popup">Comezar aquí en popup</string>
+
+    <string name="drawer_open">Abrir o menú</string>
+    <string name="drawer_close">Fechar o menú</string>
+    <string name="drawer_header_action_paceholder_text">Algo vai xurdir aquí en breve ;D</string>
+
+
+    <string name="preferred_open_action_settings_title">Acción «abrir» preferida</string>
+    <string name="preferred_open_action_settings_summary">Acción predeterminada ao abrir o contido — %s</string>
+
+    <string name="video_player">Reprodutor de vídeo</string>
+    <string name="background_player">Reprodutor en segundo plano</string>
+    <string name="popup_player">Reprodutor en popup</string>
+    <string name="always_ask_open_action">Preguntar sempre</string>
+
+    <string name="preferred_player_fetcher_notification_title">Obtendo información…</string>
+    <string name="preferred_player_fetcher_notification_message">Carregando o contido solicitado</string>
+
+    <string name="create_playlist">Crear unha nova lista de reprodución</string>
+    <string name="delete_playlist">Eliminar a lista de reprodución</string>
+    <string name="rename_playlist">Renomear a lista de reprodución</string>
+    <string name="playlist_name_input">Nome</string>
+    <string name="append_playlist">Engadir á lista de reprodución</string>
+    <string name="set_as_playlist_thumbnail">Estabelecer como miniatura da lista de reprodución</string>
+
+    <string name="bookmark_playlist">Gardar a lista de reprodución nos marcadores</string>
+    <string name="unbookmark_playlist">Eliminar o marcador</string>
+
+    <string name="delete_playlist_prompt">Desexa eliminar esta lista de reprodución?</string>
+    <string name="playlist_creation_success">A lista de reprodución foi creada</string>
+    <string name="playlist_add_stream_success">O vídeo foi engadido á lista de reprodución</string>
+    <string name="playlist_thumbnail_change_success">A miniatura da lista de reprodución foi modificada</string>
+    <string name="playlist_delete_failure">Non foi posíbel eliminar a lista de reprodución</string>
+
+    <string name="caption_none">Sen lenda</string>
+
+    <string name="resize_fit">Axustar</string>
+    <string name="resize_fill">Encher</string>
+    <string name="resize_zoom">Zoom</string>
+
+    <string name="caption_auto_generated">Xerado automaticamente</string>
+
+    <string name="caption_setting_title">Lenda</string>
+    <string name="caption_setting_description">Modificar a escala de texto da lenda e os estilos de segundo plano do reprodutor. Para ter efecto, é preciso reiniciar o aplicativo</string>
+
+    <string name="enable_leak_canary_title">Activar LeakCanary</string>
+    <string name="enable_leak_canary_summary">A monitorización de fugas de memoria pode facer que o aplicativo deixe de responder cando hai vertedura da pila</string>
+
+    <string name="enable_disposed_exceptions_title">Informar de erros de fóra do ciclo de vida</string>
+    <string name="enable_disposed_exceptions_summary">Forzar a comunicación de excepcións Rx non entregábeis fóra do ciclo de vida do fragmento ou actividade após o descarte</string>
+
+    <string name="import_export_title">Importar/Exportar</string>
+    <string name="import_title">Importar</string>
+    <string name="import_from">Importar de</string>
+    <string name="export_to">Exportar a</string>
+
+    <string name="import_ongoing">Importando…</string>
+    <string name="export_ongoing">Exportando…</string>
+
+    <string name="import_file_title">Importar un ficheiro</string>
+    <string name="previous_export">Exportación anterior</string>
+
+    <string name="subscriptions_import_unsuccessful">Non foi posíbel importar as subscricións</string>
+    <string name="subscriptions_export_unsuccessful">Non foi posíbel exportar as subscricións</string>
+
+    <string name="import_youtube_instructions">Pode importar as súas subscricións de YouTube descarregando o ficheiro de exportacións:
+\n
+\n1. Acceda ao URL %1$s
+\n2. Inicie a sesión cando lle for solicitado
+\n3. Ha comezar unha descarga (a do ficheiro de exportación)</string>
+    <string name="import_soundcloud_instructions">Pode importar un perfil do SoundCloud escribindo o URL ou o seu ID:
+\n
+\n1. Active o «modo desktop» nun navegador da Internet (o sitio non está dispoñíbel para dispositivos móbiles)
+\n2. Acceda ao URL %1$s
+\n3. Inicie a sesión cando lle for solicitado
+\n4. Copie o URL de perfil a que foi redirixido.</string>
+    <string name="import_soundcloud_instructions_hint">oseuID, soundcloud.com/oseuid</string>
+
+    <string name="import_network_expensive_warning">Teña en conta que esta operación pode consumir moitos recursos de rede.
+\n
+\nDesexa continuar?</string>
+
+    <string name="playback_speed_control">Controis de velocidade da reprodución</string>
+    <string name="playback_tempo">Tempo</string>
+    <string name="playback_pitch">Ton</string>
+    <string name="unhook_checkbox">Desvincular (pode causar distorsión)</string>
+    <string name="skip_silence_checkbox">Avanzar rápido durante os momentos de silencio</string>
+    <string name="playback_step">Paso</string>
+    <string name="playback_reset">Reiniciar</string>
+
+    <string name="start_accept_privacy_policy">Para cumprirmos co Regulamento Xeral Europeo de Protección de Datos (GDPR), chamamos a súa atención sobre a nova política de privacidade do NewPipe. Por favor, léao con coidado.
+\nDebe aceptalo para nos enviar un relatorio de erro.</string>
+    <string name="accept">Aceptar</string>
+    <string name="decline">Recusar</string>
+
+    <string name="limit_data_usage_none_description">Sen límite</string>
+    <string name="limit_mobile_data_usage_title">Limitar a resolución ao usar datos móbiles</string>
+    <string name="minimize_on_exit_title">Minimizar ao mudar de aplicativo</string>
+    <string name="minimize_on_exit_summary">Acción ao mudar de aplicativo desde o reprodutor orixinal — %s</string>
+    <string name="minimize_on_exit_none_description">Ningunha</string>
+    <string name="minimize_on_exit_background_description">Minimizar ao reprodutor en segundo plano</string>
+    <string name="minimize_on_exit_popup_description">Minimizar o reprodutor popup</string>
+
+</resources>

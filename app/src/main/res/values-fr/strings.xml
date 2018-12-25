@@ -35,7 +35,7 @@
     <string name="detail_thumbnail_view_description">Miniature d’aperçu vidéo</string>
     <string name="detail_dislikes_img_view_description">Je n’aime pas</string>
     <string name="detail_likes_img_view_description">J’aime</string>
-    <string name="search_language_title">Langue du contenu par défaut</string>
+    <string name="content_language_title">Langue du contenu par défaut</string>
     <string name="detail_uploader_thumbnail_view_description">Miniature de l’avatar de l’utilisateur</string>
     <string name="use_external_video_player_title">Utiliser un lecteur vidéo externe</string>
     <string name="use_external_audio_player_title">Utiliser un lecteur audio externe</string>
@@ -431,14 +431,12 @@
 \n1. Suivez ce lien : %1$s 
 \n2. Connectez-vous à votre compte lorsque ce sera demandé 
 \n3. Un téléchargement va démarrer (ce sera celui du fichier nécessaire à l\'importation des abonnements)"</string>
-    <string name="import_soundcloud_instructions">Pour importer vos abonnements SoundCloud, vous devez connaitre l\'URL de votre profil ou votre identifiant (id). Si vous le savez, tapez-le ci-dessous. 
+    <string name="import_soundcloud_instructions">Importez un profil SoundCloud avec l\'URL de votre profil ou votre identifiant (id) :
 \n 
-\nSi vous ne le connaissez pas, veuillez suivre les étapes suivantes : 
-\n 
-\n1. Activer le \"mode bureau\" dans votre navigateur (le site n\'est pas accesible en mode mobile) 
+\n1. Activer le \"mode bureau\" dans votre navigateur (le site n\'est pas accessible en mode mobile) 
 \n2. Suivez cette URL : %1$s 
 \n3. Connectez-vous à votre compte 
-\n4. Copier l\'URL vers lequel vous venez d\'être redirigé (qui est l\'URL de votre profil)</string>
+\n4. Copier l\'URL vers lequel vous venez d\'être redirigé (qui est l\'URL de votre profil).</string>
     <string name="import_soundcloud_instructions_hint">votreID, soundcloud.com/votreid</string>
 
     <string name="import_network_expensive_warning">Cette opération peut consommer beaucoup de données mobiles. 
@@ -495,7 +493,7 @@
     <string name="minimize_on_exit_title">Minimiser lors du changement d\'application</string>
     <string name="minimize_on_exit_summary">Action lors du changement d\'applications depuis le lecteur vidéo —%s</string>
     <string name="minimize_on_exit_none_description">Aucune</string>
-    <string name="minimize_on_exit_background_description">Lecture en arrière plan</string>
-    <string name="minimize_on_exit_popup_description">Mettre en lecteur popup</string>
+    <string name="minimize_on_exit_background_description">Minimiser pour lire en arrière plan</string>
+    <string name="minimize_on_exit_popup_description">Minimiser vers lecteur PopUp</string>
 
 </resources>

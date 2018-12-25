@@ -10,7 +10,6 @@ import org.schabi.newpipe.extractor.utils.Localization;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -95,7 +94,8 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
                     .build();
             response = client.newCall(request).execute();
 
-            return Long.parseLong(response.header("Content-Length"));
+            String contentLength = response.header("Content-Length");
+            return contentLength == null ? -1 : Long.parseLong(contentLength);
         } catch (NumberFormatException e) {
             throw new IOException("Invalid content length", e);
         } finally {
@@ -110,7 +110,7 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
      * but set the HTTP header field "Accept-Language" to the supplied string.
      *
      * @param siteUrl  the URL of the text file to return the contents of
-     * @param localization the language and country (usually a 2-character code for both values)
+     * @param localization the language and country (usually a 2-character code) to set
      * @return the contents of the specified text file
      */
     @Override

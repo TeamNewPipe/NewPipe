@@ -43,7 +43,7 @@
     <string name="next_video_title">Następny film</string>
     <string name="show_next_and_similar_title">Pokaż \'następne\' i \'podobne\' filmy</string>
     <string name="url_not_supported_toast">URL nieobsługiwany</string>
-    <string name="search_language_title">Domyślny język zawartości</string>
+    <string name="content_language_title">Domyślny język zawartości</string>
     <string name="settings_category_video_audio_title">Wideo i audio</string>
     <string name="settings_category_appearance_title">Wygląd</string>
     <string name="settings_category_other_title">Inne</string>
@@ -144,7 +144,7 @@
     <string name="channel">Kanał</string>
     <string name="yes">Tak</string>
     <string name="later">Później</string>
-    <string name="disabled">Wyłączone</string>
+    <string name="disabled">Wyłączony</string>
     <string name="filter">Filtr</string>
     <string name="refresh">Odśwież</string>
     <string name="clear">Wyczyść</string>
@@ -481,4 +481,18 @@
 
     <string name="limit_data_usage_none_description">Brak limitu</string>
     <string name="limit_mobile_data_usage_title">Limit przy użyciu danych mobilnych</string>
-    </resources>
+    <string name="channels">Kanały</string>
+    <string name="playlists">Playlisty</string>
+    <string name="tracks">Utwory</string>
+    <string name="users">Użytkownicy</string>
+    <string name="skip_silence_checkbox">Przewiń w przód podczas ciszy</string>
+    <string name="playback_step">Krok</string>
+    <string name="playback_reset">Zresetuj</string>
+
+    <string name="minimize_on_exit_title">Zminimalizuj podczas przełączenia aplikacji</string>
+    <string name="minimize_on_exit_summary">"Akcja podczas przełączenia  do innej aplikacji z głównego odtwarzacza — %s"</string>
+    <string name="minimize_on_exit_none_description">Zminimalizuj</string>
+    <string name="minimize_on_exit_background_description">Zminimalizuj do odtwarzania w tle</string>
+    <string name="minimize_on_exit_popup_description">Zminimalizuj do odtwarzania w okienku</string>
+
+</resources>

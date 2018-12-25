@@ -10,7 +10,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.DrawableRes;
-import android.support.annotation.FloatRange;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -18,7 +17,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -29,7 +27,6 @@ import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -39,7 +36,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -56,8 +52,6 @@ import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.StreamingService;
-import org.schabi.newpipe.extractor.comments.CommentsInfo;
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
@@ -72,18 +66,16 @@ import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.list.comments.CommentsFragment;
 import org.schabi.newpipe.fragments.list.videos.RelatedVideosFragment;
-import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.MainVideoPlayer;
 import org.schabi.newpipe.player.PopupVideoPlayer;
-import org.schabi.newpipe.player.helper.PlayerHelper;
-import org.schabi.newpipe.player.old.PlayVideoActivity;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ImageDisplayConstants;
@@ -91,11 +83,9 @@ import org.schabi.newpipe.util.InfoCache;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.StreamItemAdapter;
 import org.schabi.newpipe.util.StreamItemAdapter.StreamSizeWrapper;
-import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -192,6 +182,7 @@ public class VideoDetailFragment
     private  ViewPager viewPager;
     private TabAdaptor pageAdapter;
     private TabLayout tabLayout;
+    private FrameLayout relatedStreamsLayout;
 
 
     /*////////////////////////////////////////////////////////////////////////*/
@@ -383,14 +374,14 @@ public class VideoDetailFragment
                     Log.w(TAG, "Can't open channel because we got no channel URL");
                 } else {
                     try {
-                        NavigationHelper.openChannelFragment(
-                                getFragmentManager(),
-                                currentInfo.getServiceId(),
-                                currentInfo.getUploaderUrl(),
-                                currentInfo.getUploaderName());
+                    NavigationHelper.openChannelFragment(
+                            getFragmentManager(),
+                            currentInfo.getServiceId(),
+                            currentInfo.getUploaderUrl(),
+                            currentInfo.getUploaderName());
                     } catch (Exception e) {
                         ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
-                    }
+                }
                 }
                 break;
             case R.id.detail_thumbnail_root_layout:
@@ -488,6 +479,8 @@ public class VideoDetailFragment
         viewPager.setAdapter(pageAdapter);
         tabLayout = rootView.findViewById(R.id.tablayout);
         tabLayout.setupWithViewPager(viewPager);
+
+        relatedStreamsLayout = rootView.findViewById(R.id.relatedStreamsLayout);
 
         setHeightThumbnail();
 
@@ -588,6 +581,7 @@ public class VideoDetailFragment
         }
     }
 
+
     /*//////////////////////////////////////////////////////////////////////////
     // Menu
     //////////////////////////////////////////////////////////////////////////*/
@@ -676,7 +670,7 @@ public class VideoDetailFragment
         sortedVideoStreams = ListHelper.getSortedStreamVideosList(activity, info.getVideoStreams(), info.getVideoOnlyStreams(), false);
         selectedVideoStreamIndex = ListHelper.getDefaultResolutionIndex(activity, sortedVideoStreams);
 
-        final StreamItemAdapter<VideoStream> streamsAdapter = new StreamItemAdapter<>(activity, new StreamSizeWrapper<>(sortedVideoStreams), isExternalPlayerEnabled);
+        final StreamItemAdapter<VideoStream, Stream> streamsAdapter = new StreamItemAdapter<>(activity, new StreamSizeWrapper<>(sortedVideoStreams, activity), isExternalPlayerEnabled);
         spinnerToolbar.setAdapter(streamsAdapter);
         spinnerToolbar.setSelection(selectedVideoStreamIndex);
         spinnerToolbar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -771,11 +765,9 @@ public class VideoDetailFragment
         initTabs();
 
         if (scrollToTop) appBarLayout.setExpanded(true, true);
-        animateView(contentRootLayoutHiding,
-                false, 0, 0, () -> {
-                    handleResult(info);
-                    showContentWithAnimation(120, 0, .01f);
-                });
+        handleResult(info);
+        showContent();
+
     }
 
     protected void prepareAndLoadInfo() {
@@ -798,8 +790,8 @@ public class VideoDetailFragment
                 .subscribe((@NonNull StreamInfo result) -> {
                     isLoading.set(false);
                     currentInfo = result;
-                    showContentWithAnimation(120, 0, 0);
                     handleResult(result);
+                    showContent();
                 }, (@NonNull Throwable throwable) -> {
                     isLoading.set(false);
                     onError(throwable);
@@ -814,7 +806,7 @@ public class VideoDetailFragment
             pageAdapter.addFragment(CommentsFragment.getInstance(serviceId, url, name), COMMENTS_TAB_TAG);
         }
 
-        if(showRelatedStreams){
+        if(showRelatedStreams && null == relatedStreamsLayout){
             //temp empty fragment. will be updated in handleResult
             pageAdapter.addFragment(new Fragment(), RELATED_TAB_TAG);
         }
@@ -879,7 +871,7 @@ public class VideoDetailFragment
                 .getBoolean(this.getString(R.string.use_external_video_player_key), false)) {
             startOnExternalPlayer(activity, currentInfo, selectedVideoStream);
         } else {
-            openNormalPlayer(selectedVideoStream);
+            openNormalPlayer();
         }
     }
 
@@ -892,24 +884,13 @@ public class VideoDetailFragment
         }
     }
 
-    private void openNormalPlayer(VideoStream selectedVideoStream) {
+    private void openNormalPlayer() {
         Intent mIntent;
-        boolean useOldPlayer = PlayerHelper.isUsingOldPlayer(activity) || (Build.VERSION.SDK_INT < 16);
-        if (!useOldPlayer) {
-            // ExoPlayer
-            final PlayQueue playQueue = new SinglePlayQueue(currentInfo);
-            mIntent = NavigationHelper.getPlayerIntent(activity,
-                    MainVideoPlayer.class,
-                    playQueue,
-                    getSelectedVideoStream().getResolution());
-        } else {
-            // Internal Player
-            mIntent = new Intent(activity, PlayVideoActivity.class)
-                    .putExtra(PlayVideoActivity.VIDEO_TITLE, currentInfo.getName())
-                    .putExtra(PlayVideoActivity.STREAM_URL, selectedVideoStream.getUrl())
-                    .putExtra(PlayVideoActivity.VIDEO_URL, currentInfo.getUrl())
-                    .putExtra(PlayVideoActivity.START_POSITION, currentInfo.getStartPosition());
-        }
+        final PlayQueue playQueue = new SinglePlayQueue(currentInfo);
+        mIntent = NavigationHelper.getPlayerIntent(activity,
+                MainVideoPlayer.class,
+                playQueue,
+                getSelectedVideoStream().getResolution());
         startActivity(mIntent);
     }
 
@@ -964,24 +945,6 @@ public class VideoDetailFragment
                 }));
     }
 
-    private View getSeparatorView() {
-        View separator = new View(activity);
-        LinearLayout.LayoutParams params =
-                new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1);
-        int m8 = (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics());
-        int m5 = (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics());
-        params.setMargins(m8, m5, m8, m5);
-        separator.setLayoutParams(params);
-
-        TypedValue typedValue = new TypedValue();
-        activity.getTheme().resolveAttribute(R.attr.separator_color, typedValue, true);
-        separator.setBackgroundColor(typedValue.data);
-
-        return separator;
-    }
-
     private void setHeightThumbnail() {
         final DisplayMetrics metrics = getResources().getDisplayMetrics();
         boolean isPortrait = metrics.heightPixels > metrics.widthPixels;
@@ -993,36 +956,8 @@ public class VideoDetailFragment
         thumbnailImageView.setMinimumHeight(height);
     }
 
-    private void showContentWithAnimation(long duration,
-                                          long delay,
-                                          @FloatRange(from = 0.0f, to = 1.0f) float translationPercent) {
-        int translationY = (int) (getResources().getDisplayMetrics().heightPixels *
-                (translationPercent > 0.0f ? translationPercent : .06f));
-
-        contentRootLayoutHiding.animate().setListener(null).cancel();
-        contentRootLayoutHiding.setAlpha(0f);
-        contentRootLayoutHiding.setTranslationY(translationY);
-        contentRootLayoutHiding.setVisibility(View.VISIBLE);
-        contentRootLayoutHiding.animate()
-                .alpha(1f)
-                .translationY(0)
-                .setStartDelay(delay)
-                .setDuration(duration)
-                .setInterpolator(new FastOutSlowInInterpolator())
-                .start();
-
-        uploaderRootLayout.animate().setListener(null).cancel();
-        uploaderRootLayout.setAlpha(0f);
-        uploaderRootLayout.setTranslationY(translationY);
-        uploaderRootLayout.setVisibility(View.VISIBLE);
-        uploaderRootLayout.animate()
-                .alpha(1f)
-                .translationY(0)
-                .setStartDelay((long) (duration * .5f) + delay)
-                .setDuration(duration)
-                .setInterpolator(new FastOutSlowInInterpolator())
-                .start();
-
+    private void showContent() {
+        AnimationUtils.slideUp(contentRootLayoutHiding,120, 96, 0.06f);
     }
 
     protected void setInitialData(int serviceId, String url, String name) {
@@ -1057,7 +992,7 @@ public class VideoDetailFragment
     public void showLoading() {
         super.showLoading();
 
-        animateView(contentRootLayoutHiding, false, 200);
+        contentRootLayoutHiding.setVisibility(View.INVISIBLE);
         animateView(spinnerToolbar, false, 200);
         animateView(thumbnailPlayButton, false, 50);
         animateView(detailDurationView, false, 100);
@@ -1070,6 +1005,14 @@ public class VideoDetailFragment
         videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
         videoTitleToggleArrow.setVisibility(View.GONE);
         videoTitleRoot.setClickable(false);
+
+        if(relatedStreamsLayout != null){
+            if(showRelatedStreams){
+                relatedStreamsLayout.setVisibility(View.INVISIBLE);
+            }else{
+                relatedStreamsLayout.setVisibility(View.GONE);
+            }
+        }
 
         imageLoader.cancelDisplayTask(thumbnailImageView);
         imageLoader.cancelDisplayTask(uploaderThumb);
@@ -1084,8 +1027,15 @@ public class VideoDetailFragment
         setInitialData(info.getServiceId(), info.getOriginalUrl(), info.getName());
 
         if(showRelatedStreams){
-            pageAdapter.updateItem(RELATED_TAB_TAG, RelatedVideosFragment.getInstance(currentInfo));
-            pageAdapter.notifyDataSetUpdate();
+            if(null == relatedStreamsLayout){ //phone
+                pageAdapter.updateItem(RELATED_TAB_TAG, RelatedVideosFragment.getInstance(currentInfo));
+                pageAdapter.notifyDataSetUpdate();
+            }else{ //tablet
+                getChildFragmentManager().beginTransaction()
+                        .replace(R.id.relatedStreamsLayout, RelatedVideosFragment.getInstance(currentInfo))
+                        .commitNow();
+                relatedStreamsLayout.setVisibility(View.VISIBLE);
+            }
         }
 
         pushToStack(serviceId, url, name);
@@ -1149,10 +1099,10 @@ public class VideoDetailFragment
             detailDurationView.setVisibility(View.GONE);
         }
 
+        videoDescriptionView.setVisibility(View.GONE);
         videoTitleRoot.setClickable(true);
         videoTitleToggleArrow.setVisibility(View.VISIBLE);
         videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
-        videoDescriptionView.setVisibility(View.GONE);
         videoDescriptionRootLayout.setVisibility(View.GONE);
         if (!TextUtils.isEmpty(info.getUploadDate())) {
             videoUploadDateView.setText(Localization.localizeDate(activity, info.getUploadDate()));
@@ -1205,6 +1155,7 @@ public class VideoDetailFragment
             downloadDialog.setVideoStreams(sortedVideoStreams);
             downloadDialog.setAudioStreams(currentInfo.getAudioStreams());
             downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex);
+            downloadDialog.setSubtitleStreams(currentInfo.getSubtitles());
 
             downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
         } catch (Exception e) {
