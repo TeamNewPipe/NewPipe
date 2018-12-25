@@ -198,7 +198,7 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
         Boolean autoplay = pref.getBoolean(getString(R.string.auto_queue_key), false);
-        aSwitch.setChecked(autoplay);
+        if(null != aSwitch) aSwitch.setChecked(autoplay);
     }
 
     @Override
