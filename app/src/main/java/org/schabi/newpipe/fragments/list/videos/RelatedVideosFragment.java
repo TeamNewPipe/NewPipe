@@ -111,7 +111,7 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
     @Override
     public void showLoading() {
         super.showLoading();
-        headerRootLayout.setVisibility(View.INVISIBLE);
+        if(null != headerRootLayout) headerRootLayout.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -119,7 +119,7 @@ public class RelatedVideosFragment extends BaseListInfoFragment<RelatedStreamInf
 
         super.handleResult(result);
 
-        headerRootLayout.setVisibility(View.VISIBLE);
+        if(null != headerRootLayout) headerRootLayout.setVisibility(View.VISIBLE);
         AnimationUtils.slideUp(getView(),120, 96, 0.06f);
 
         if (!result.getErrors().isEmpty()) {
