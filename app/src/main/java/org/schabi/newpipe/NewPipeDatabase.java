@@ -8,6 +8,7 @@ import org.schabi.newpipe.database.AppDatabase;
 
 import static org.schabi.newpipe.database.AppDatabase.DATABASE_NAME;
 import static org.schabi.newpipe.database.Migrations.MIGRATION_11_12;
+import static org.schabi.newpipe.database.Migrations.MIGRATION_12_15;
 
 public final class NewPipeDatabase {
 
@@ -20,7 +21,7 @@ public final class NewPipeDatabase {
     private static AppDatabase getDatabase(Context context) {
         return Room
                 .databaseBuilder(context.getApplicationContext(), AppDatabase.class, DATABASE_NAME)
-                .addMigrations(MIGRATION_11_12)
+                .addMigrations(MIGRATION_11_12, MIGRATION_12_15)
                 .fallbackToDestructiveMigration()
                 .build();
     }
