@@ -524,5 +524,6 @@
     <string name="unsubscribe">Отписаться</string>
     <string name="volume_gesture_control_summary">Менять громкость плеера жестом</string>
     <string name="volume_gesture_control_title">Жест громкости</string>
+    <string name="close">Закрыть</string>
 
 </resources>
