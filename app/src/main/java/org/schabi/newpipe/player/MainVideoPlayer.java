@@ -43,6 +43,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.GestureDetector;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -73,6 +74,7 @@ import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ListHelper;
+import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.StateSaver;
@@ -815,6 +817,17 @@ public final class MainVideoPlayer extends AppCompatActivity
             getRootView().setKeepScreenOn(true);
         }
 
+        @Override
+        public void onPositionRestored(long position) {
+            super.onPositionRestored(position);
+            final Toast toast = Toast.makeText(
+                    MainVideoPlayer.this,
+                    getString(R.string.playback_resumed, Localization.getDurationString(Math.round(position / 1000.f))),
+                    Toast.LENGTH_SHORT
+            );
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
+        }
 
         @Override
         public void onCompleted() {

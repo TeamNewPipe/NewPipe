@@ -880,8 +880,9 @@ public abstract class BasePlayer implements
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
                     history -> {
-                        if (history.getPosition() <= simpleExoPlayer.getDuration()) {
+                        if (history.getPosition() > 0 && history.getPosition() <= simpleExoPlayer.getDuration()) {
                             seekTo(history.getPosition());
+                            onPositionRestored(history.getPosition());
                         }
                         changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
                     },
@@ -894,6 +895,9 @@ public abstract class BasePlayer implements
         } else {
             changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
         }
+    }
+
+    public void onPositionRestored(long position) {
     }
 
     public void onPlay() {
