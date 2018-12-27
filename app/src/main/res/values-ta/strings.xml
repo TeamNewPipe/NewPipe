@@ -162,4 +162,5 @@
     <string name="clear_search_history_summary">தேடப்பட்ட வார்த்தைகளின் வரலாற்றை அழி</string>
     <string name="delete_search_history_alert">அனைத்து வரலாற்றயும் அழிக்கவா\?</string>
     <string name="general_error">பிழை</string>
+    <string name="best_resolution">சிறந்த திரைத் தெளிவுத்திறன்</string>
 </resources>
