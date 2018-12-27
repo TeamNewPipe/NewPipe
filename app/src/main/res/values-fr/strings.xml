@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="cancel">Annuler</string>
     <string name="choose_browser">Choisir un navigateur</string>
@@ -73,7 +73,7 @@
     <string name="youtube_signature_decryption_error">Impossible de déchiffrer la signature URL de la vidéo</string>
     <string name="light_parsing_error">Impossible d\'analyser complètement le site web</string>
     <string name="live_streams_not_supported">Les flux en direct ne sont pas encore pris en charge</string>
-    <string name="sorry_string">Désolé, une erreur inattendue s\'est produite.</string>
+    <string name="sorry_string">Désolé, une erreur s’est produite.</string>
     <string name="autoplay_by_calling_app_summary">Lire la vidéo lorsque NewPipe est appelée par une autre application</string>
     <string name="error_report_button_text">Signaler l\'erreur par e-mail</string>
     <string name="what_device_headline">Information :</string>
@@ -384,7 +384,7 @@
     <string name="use_inexact_seek_title">Recherche rapide approximative</string>
     <string name="use_inexact_seek_summary">Permettre au lecteur d\'accéder plus rapidement à une position au détriment de la précision</string>
     <string name="download_thumbnail_title">Charger les miniatures</string>
-    <string name="download_thumbnail_summary">Désactiver pour arrêter le chargement de toutes les miniatures et sauvegarder les données et l\'utilisation de la mémoire. Modifier cela effacera à la fois le cache d\'image en mémoire et sur disque</string>
+    <string name="download_thumbnail_summary">Désactiver le chargement des miniatures afin de réduire l’utilisation de la bande passante et de la mémoire. Modifier cette option vide le cache d’images en mémoire vive et sur le disque.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Images en cache effacées</string>
     <string name="metadata_cache_wipe_title">Effacer les données en cache</string>
     <string name="metadata_cache_wipe_summary">Effacer toutes les pages web mises en cache</string>
@@ -393,7 +393,7 @@
 
     <string name="invalid_directory">Aucun dossier de ce type</string>
     <string name="invalid_source">Aucun fichier/contenu de ce type</string>
-    <string name="invalid_file">Le fichier n\'existe pas ou il n\'est pas permis de le lire</string>
+    <string name="invalid_file">Le fichier n’existe pas ou n’est pas accessible en lecture/écriture</string>
     <string name="file_name_empty_error">Le nom du fichier ne peut être vide</string>
     <string name="error_occurred_detail">Une erreur s\'est produite: %1$s</string>
 
@@ -432,12 +432,12 @@
 \n1. Suivez ce lien : %1$s 
 \n2. Connectez-vous à votre compte lorsque ce sera demandé 
 \n3. Un téléchargement va démarrer (ce sera celui du fichier nécessaire à l\'importation des abonnements)"</string>
-    <string name="import_soundcloud_instructions">Importez un profil SoundCloud avec l\'URL de votre profil ou votre identifiant (id) :
-\n 
-\n1. Activer le \"mode bureau\" dans votre navigateur (le site n\'est pas accessible en mode mobile) 
-\n2. Suivez cette URL : %1$s 
-\n3. Connectez-vous à votre compte 
-\n4. Copier l\'URL vers lequel vous venez d\'être redirigé (qui est l\'URL de votre profil).</string>
+    <string name="import_soundcloud_instructions">Importez un profil SoundCloud en saisissant l’URL de votre profil ou votre identifiant (ID).
+\n
+\n1. Activer le « mode bureau » dans votre navigateur (le site n’est pas disponible pour les appareils mobiles).
+\n2. Suivez cette URL : %1$s
+\n3. Connectez-vous à votre compte.
+\n4. Copier l’URL vers lequel vous venez d’être redirigé.</string>
     <string name="import_soundcloud_instructions_hint">votreID, soundcloud.com/votreid</string>
 
     <string name="import_network_expensive_warning">Cette opération peut consommer beaucoup de données mobiles. 
@@ -463,7 +463,7 @@
     <string name="clear_views_history_title">Effacer l\'historique</string>
     <string name="clear_views_history_summary">Supprimer l\'historique des flux regardés</string>
     <string name="delete_view_history_alert">Supprimer tout l\'historique regardé \?</string>
-    <string name="view_history_deleted">Historique des vidéos regardées supprimé.</string>
+    <string name="view_history_deleted">Historique des vidéos vues supprimé.</string>
     <string name="clear_search_history_title">Supprimer l\'historique des recherches</string>
     <string name="clear_search_history_summary">Supprimer l\'historique de recherche par mot clef</string>
     <string name="delete_search_history_alert">Supprimer tout l\'historique de recherche \?</string>
@@ -473,12 +473,12 @@
     <string name="app_license">"NewPipe est un logiciel sous licence libre : Vous pouvez l\'utiliser, l\'étudier, le partager et l\'améliorer  comme bon vous semble. Vous pouvez le redistribuer et/ou le modifier sous les termes de la licence générale publique GNU, comme publiée par la Free Software Foundation, dans sa version 3, ou, à votre convenance, dans une version plus récente."</string>
     <string name="privacy_policy_title">Politique de confidentialité de NewPipe</string>
     <string name="read_privacy_policy">Lire la politique de confidentialité</string>
-    <string name="import_settings">Voulez-vous également importer des paramètres ?</string>
+    <string name="import_settings">Voulez-vous également importer des paramètres \?</string>
 
     <string name="accept">Accepter</string>
     <string name="decline">Refuser</string>
-<string name="privacy_policy_encouragement">Le projet NewPipe prend votre vie privée très à cœur. Ainsi, l\'appli n\'envoie aucune donnée sans votre consentement. 
-\nLa politique de vie privée de NewPipe explique en détail quelles données sont envoyées et stockées quand vous envoyez un rapport de plantage.</string>
+<string name="privacy_policy_encouragement">Le projet NewPipe prend votre vie privée très à cœur. Ainsi, l’application n’envoie aucune donnée sans votre consentement.
+\nLa politique de confidentialité de NewPipe explique en détail quelles données sont envoyées et stockées lorsque vous envoyez un rapport de plantage.</string>
     <string name="start_accept_privacy_policy">Afin de se conformer au Règlement Général sur la Protection des Données (RGPD ou GDPR), nous attirons votre attention sur la politique de vie privée de NewPipe. Merci de la lire attentivement.
 \nVous devez l\'accepter pour nous envoyer le rapport de bug.</string>
     <string name="limit_data_usage_none_description">Pas de limite</string>
@@ -495,6 +495,6 @@
     <string name="minimize_on_exit_summary">Action lors du changement d\'application depuis le lecteur vidéo —%s</string>
     <string name="minimize_on_exit_none_description">Aucune</string>
     <string name="minimize_on_exit_background_description">Minimiser pour lire en arrière-plan</string>
-    <string name="minimize_on_exit_popup_description">Minimiser vers lecteur PopUp</string>
+    <string name="minimize_on_exit_popup_description">Minimiser vers le lecteur miniature</string>
 
 </resources>
