@@ -875,9 +875,14 @@ public abstract class BasePlayer implements
         if (DEBUG) Log.d(TAG, "onPrepared() called with: playWhenReady = [" + playWhenReady + "]");
         if (playWhenReady) audioReactor.requestAudioFocus();
         if (currentMetadata != null) {
-            final Disposable d = recordManager.getStreamHistory(currentMetadata.getMetadata()).onErrorComplete().subscribe(
+            final Disposable d = recordManager.getStreamHistory(currentMetadata.getMetadata())
+                    .onErrorComplete()
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
                     history -> {
-                        seekTo(history.getPosition());
+                        if (history.getPosition() <= simpleExoPlayer.getDuration()) {
+                            seekTo(history.getPosition());
+                        }
                         changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
                     },
                     error -> {

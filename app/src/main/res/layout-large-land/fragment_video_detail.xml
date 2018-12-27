@@ -95,7 +95,45 @@
 					tools:ignore="RtlHardcoded"
 					tools:text="12:38"
 					tools:visibility="visible" />
+
+				<TextView
+					android:id="@+id/detail_position_view"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="bottom|left"
+					android:layout_marginBottom="8dp"
+					android:layout_marginLeft="12dp"
+					android:layout_marginRight="12dp"
+					android:layout_marginTop="8dp"
+					android:alpha=".6"
+					android:background="?colorPrimary"
+					android:gravity="center"
+					android:paddingBottom="2dp"
+					android:paddingLeft="6dp"
+					android:paddingRight="6dp"
+					android:paddingTop="2dp"
+					android:textAllCaps="true"
+					android:textColor="@android:color/white"
+					android:textSize="12sp"
+					android:textStyle="bold"
+					android:visibility="gone"
+					tools:ignore="RtlHardcoded"
+					tools:text="12:38"
+					tools:visibility="visible"/>
+
 			</FrameLayout>
+
+			<ProgressBar
+				android:id="@+id/position_view"
+				style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+				android:layout_width="match_parent"
+				android:layout_height="4dp"
+				android:layout_marginTop="-2dp"
+				android:progressDrawable="?attr/progress_horizontal_drawable"
+				android:visibility="invisible"
+				tools:max="100"
+				tools:progress="40"
+				tools:visibility="visible" />
 
 			<!-- CONTENT -->
 			<RelativeLayout

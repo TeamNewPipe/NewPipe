@@ -31,10 +31,10 @@ public abstract class StreamHistoryDAO implements HistoryDAO<StreamHistoryEntity
     @Nullable
     public abstract StreamHistoryEntity getLatestEntry();
 
-    @Query("SELECT * FROM " + STREAM_HISTORY_TABLE + " WHERE " + JOIN_STREAM_ID + " = :streamId AND "
-            + STREAM_ACCESS_DATE + " = " + "(SELECT MAX(" + STREAM_ACCESS_DATE + ") FROM " + STREAM_HISTORY_TABLE + ")")
+    @Query("SELECT * FROM " + STREAM_HISTORY_TABLE + " WHERE " + JOIN_STREAM_ID +
+            " = :streamId ORDER BY " + STREAM_ACCESS_DATE + " DESC LIMIT 1")
     @Nullable
-    public abstract StreamHistoryEntity getOne(final long streamId);
+    public abstract StreamHistoryEntity getLatestEntry(final long streamId);
 
     @Override
     @Query("SELECT * FROM " + STREAM_HISTORY_TABLE)

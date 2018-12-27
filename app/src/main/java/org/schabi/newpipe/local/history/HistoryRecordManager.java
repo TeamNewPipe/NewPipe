@@ -84,9 +84,9 @@ public class HistoryRecordManager {
         final Date currentTime = new Date();
         return Maybe.fromCallable(() -> database.runInTransaction(() -> {
             final long streamId = streamTable.upsert(new StreamEntity(info));
-            StreamHistoryEntity latestEntry = streamHistoryTable.getLatestEntry();
+            StreamHistoryEntity latestEntry = streamHistoryTable.getLatestEntry(streamId);
 
-            if (latestEntry != null && latestEntry.getStreamUid() == streamId) {
+            if (latestEntry != null) {
                 streamHistoryTable.delete(latestEntry);
                 latestEntry.setAccessDate(currentTime);
                 if (position == -1) {
@@ -120,7 +120,7 @@ public class HistoryRecordManager {
     public Maybe<StreamHistoryEntity> getStreamHistory(final StreamInfo info) {
         return Maybe.fromCallable(() -> {
             final long streamId = streamTable.upsert(new StreamEntity(info));
-            return streamHistoryTable.getOne(streamId);
+            return streamHistoryTable.getLatestEntry(streamId);
         }).subscribeOn(Schedulers.io());
     }
 

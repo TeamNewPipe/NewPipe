@@ -39,6 +39,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
@@ -63,7 +64,6 @@ import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
-import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
@@ -73,7 +73,6 @@ import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.MainVideoPlayer;
 import org.schabi.newpipe.player.PopupVideoPlayer;
-import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
@@ -135,6 +134,7 @@ public class VideoDetailFragment
     private StreamInfo currentInfo;
     private Disposable currentWorker;
     @NonNull private CompositeDisposable disposables = new CompositeDisposable();
+    private HistoryRecordManager recordManager;
 
     private List<VideoStream> sortedVideoStreams;
     private int selectedVideoStreamIndex = -1;
@@ -153,6 +153,7 @@ public class VideoDetailFragment
     private View thumbnailBackgroundButton;
     private ImageView thumbnailImageView;
     private ImageView thumbnailPlayButton;
+    private ProgressBar positionView;
 
     private View videoTitleRoot;
     private TextView videoTitleTextView;
@@ -166,6 +167,7 @@ public class VideoDetailFragment
     private TextView detailControlsDownload;
     private TextView appendControlsDetail;
     private TextView detailDurationView;
+    private TextView detailPositionView;
 
     private LinearLayout videoDescriptionRootLayout;
     private TextView videoUploadDateView;
@@ -241,6 +243,8 @@ public class VideoDetailFragment
         // Check if it was loading when the fragment was stopped/paused,
         if (wasLoading.getAndSet(false)) {
             selectAndLoadVideo(serviceId, url, name);
+        } else if (currentInfo != null) {
+            updatePositionInfo(currentInfo);
         }
     }
 
@@ -471,6 +475,7 @@ public class VideoDetailFragment
         thumbnailBackgroundButton = rootView.findViewById(R.id.detail_thumbnail_root_layout);
         thumbnailImageView = rootView.findViewById(R.id.detail_thumbnail_image_view);
         thumbnailPlayButton = rootView.findViewById(R.id.detail_thumbnail_play_button);
+        positionView = rootView.findViewById(R.id.position_view);
 
         contentRootLayoutHiding = rootView.findViewById(R.id.detail_content_root_hiding);
 
@@ -485,6 +490,7 @@ public class VideoDetailFragment
         detailControlsDownload = rootView.findViewById(R.id.detail_controls_download);
         appendControlsDetail = rootView.findViewById(R.id.touch_append_detail);
         detailDurationView = rootView.findViewById(R.id.detail_duration_view);
+        detailPositionView = rootView.findViewById(R.id.detail_position_view);
 
         videoDescriptionRootLayout = rootView.findViewById(R.id.detail_description_root_layout);
         videoUploadDateView = rootView.findViewById(R.id.detail_upload_date_view);
@@ -958,7 +964,9 @@ public class VideoDetailFragment
         NavigationHelper.playOnExternalPlayer(context, currentInfo.getName(),
                 currentInfo.getUploaderName(), selectedStream);
 
-        final HistoryRecordManager recordManager = new HistoryRecordManager(requireContext());
+        if (recordManager == null) {
+            recordManager = new HistoryRecordManager(requireContext());
+        }
         disposables.add(recordManager.onViewed(info).onErrorComplete()
                 .subscribe(
                         ignored -> {/* successful */},
@@ -1105,6 +1113,8 @@ public class VideoDetailFragment
         animateView(spinnerToolbar, false, 200);
         animateView(thumbnailPlayButton, false, 50);
         animateView(detailDurationView, false, 100);
+        animateView(detailPositionView, false, 100);
+        animateView(positionView, false, 50);
 
         videoTitleTextView.setText(name != null ? name : "");
         videoTitleTextView.setMaxLines(1);
@@ -1208,6 +1218,7 @@ public class VideoDetailFragment
             videoUploadDateView.setText(Localization.localizeDate(activity, info.getUploadDate()));
         }
         prepareDescription(info.getDescription());
+        updatePositionInfo(info);
 
         animateView(spinnerToolbar, true, 500);
         setupActionBar(info);
@@ -1322,5 +1333,36 @@ public class VideoDetailFragment
         } else {
             relatedStreamRootLayout.setVisibility(visibility);
         }
+    }
+
+    private void updatePositionInfo(final StreamInfo info) {
+        if (info.getDuration() <= 0) {
+            positionView.setVisibility(View.INVISIBLE);
+            detailPositionView.setVisibility(View.GONE);
+            return;
+        }
+        if (recordManager == null) {
+            recordManager = new HistoryRecordManager(requireContext());
+        }
+        disposables.add(recordManager.getStreamHistory(info).onErrorComplete()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).subscribe(
+                history -> {
+                    final int seconds = Math.round(history.getPosition() / 1000.f);
+                    if (seconds < info.getDuration()) {
+                        positionView.setMax((int) info.getDuration());
+                        positionView.setProgress(seconds);
+                        detailPositionView.setText(Localization.getDurationString(seconds));
+						animateView(positionView, true, 500);
+						animateView(detailPositionView, true, 500);
+                    } else {
+						animateView(positionView, false, 500);
+						animateView(detailPositionView, false, 500);
+                    }
+                },
+                error -> {
+                    Log.e(TAG, "Player resume failure: ", error);
+                }
+        ));
     }
 }
