@@ -19,6 +19,7 @@
 
 package org.schabi.newpipe.player;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -870,10 +871,24 @@ public abstract class BasePlayer implements
         errorToast.show();
     }
 
-    public void onPrepared(boolean playWhenReady) {
+    public void onPrepared(final boolean playWhenReady) {
         if (DEBUG) Log.d(TAG, "onPrepared() called with: playWhenReady = [" + playWhenReady + "]");
         if (playWhenReady) audioReactor.requestAudioFocus();
-        changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
+        if (currentMetadata != null) {
+            final Disposable d = recordManager.getStreamHistory(currentMetadata.getMetadata()).onErrorComplete().subscribe(
+                    history -> {
+                        seekTo(history.getPosition());
+                        changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
+                    },
+                    error -> {
+                        Log.e(TAG, "Player resume failure: ", error);
+                        changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
+                    }
+            );
+            databaseUpdateReactor.add(d);
+        } else {
+            changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
+        }
     }
 
     public void onPlay() {
@@ -1213,5 +1228,18 @@ public abstract class BasePlayer implements
 
     public boolean gotDestroyed() {
         return simpleExoPlayer == null;
+    }
+
+    @SuppressWarnings("ResultOfMethodCallIgnored")
+    @SuppressLint("CheckResult")
+    public void saveCurrentPosition() {
+        if (currentMetadata == null) return;
+        final StreamInfo currentInfo = currentMetadata.getMetadata();
+        final long currentPosition = simpleExoPlayer.getCurrentPosition();
+        recordManager.onViewed(currentInfo, currentPosition).onErrorComplete()
+                .subscribe(
+                        ignored -> {/* successful */},
+                        error -> Log.e(TAG, "Player onViewed() failure: ", error)
+                );
     }
 }

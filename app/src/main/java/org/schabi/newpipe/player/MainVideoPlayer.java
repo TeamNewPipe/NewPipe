@@ -224,6 +224,12 @@ public final class MainVideoPlayer extends AppCompatActivity
     }
 
     @Override
+    protected void onPause() {
+        playerImpl.saveCurrentPosition();
+        super.onPause();
+    }
+
+    @Override
     protected void onStop() {
         if (DEBUG) Log.d(TAG, "onStop() called");
         super.onStop();

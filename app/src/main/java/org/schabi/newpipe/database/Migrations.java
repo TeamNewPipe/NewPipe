@@ -8,6 +8,7 @@ public class Migrations {
 
     public static final int DB_VER_11_0 = 1;
     public static final int DB_VER_12_0 = 2;
+    //TODO migration for stream position in history
 
     public static final Migration MIGRATION_11_12 = new Migration(DB_VER_11_0, DB_VER_12_0) {
         @Override
