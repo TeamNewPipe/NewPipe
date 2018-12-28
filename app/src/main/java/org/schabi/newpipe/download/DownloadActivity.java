@@ -15,16 +15,12 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.ThemeHelper;
 
-import io.reactivex.Completable;
-import io.reactivex.schedulers.Schedulers;
 import us.shandian.giga.service.DownloadManagerService;
-import us.shandian.giga.ui.fragment.AllMissionsFragment;
 import us.shandian.giga.ui.fragment.MissionsFragment;
 
 public class DownloadActivity extends AppCompatActivity {
 
     private static final String MISSIONS_FRAGMENT_TAG = "fragment_tag";
-    private DeleteDownloadManager mDeleteDownloadManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,32 +43,17 @@ public class DownloadActivity extends AppCompatActivity {
             actionBar.setDisplayShowTitleEnabled(true);
         }
 
-        mDeleteDownloadManager = new DeleteDownloadManager(this);
-        mDeleteDownloadManager.restoreState(savedInstanceState);
-
-        MissionsFragment fragment = (MissionsFragment) getFragmentManager().findFragmentByTag(MISSIONS_FRAGMENT_TAG);
-        if (fragment != null) {
-            fragment.setDeleteManager(mDeleteDownloadManager);
-        } else {
-            getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                @Override
-                public void onGlobalLayout() {
-                    updateFragments();
-                    getWindow().getDecorView().getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                }
-            });
-        }
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        mDeleteDownloadManager.saveState(outState);
-        super.onSaveInstanceState(outState);
+        getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                updateFragments();
+                getWindow().getDecorView().getViewTreeObserver().removeGlobalOnLayoutListener(this);
+            }
+        });
     }
 
     private void updateFragments() {
-        MissionsFragment fragment = new AllMissionsFragment();
-        fragment.setDeleteManager(mDeleteDownloadManager);
+        MissionsFragment fragment = new MissionsFragment();
 
         getFragmentManager().beginTransaction()
                 .replace(R.id.frame, fragment, MISSIONS_FRAGMENT_TAG)
@@ -99,7 +80,6 @@ public class DownloadActivity extends AppCompatActivity {
             case R.id.action_settings: {
                 Intent intent = new Intent(this, SettingsActivity.class);
                 startActivity(intent);
-                deletePending();
                 return true;
             }
             default:
@@ -108,14 +88,7 @@ public class DownloadActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        deletePending();
-    }
-
-    private void deletePending() {
-        Completable.fromAction(mDeleteDownloadManager::deletePending)
-                .subscribeOn(Schedulers.io())
-                .subscribe();
+    public void onRestoreInstanceState(Bundle inState){
+        super.onRestoreInstanceState(inState);
     }
 }

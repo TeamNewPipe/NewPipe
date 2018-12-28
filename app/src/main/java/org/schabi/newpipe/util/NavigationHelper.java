@@ -49,7 +49,6 @@ import org.schabi.newpipe.player.MainVideoPlayer;
 import org.schabi.newpipe.player.PopupVideoPlayer;
 import org.schabi.newpipe.player.PopupVideoPlayerActivity;
 import org.schabi.newpipe.player.VideoPlayer;
-import org.schabi.newpipe.player.old.PlayVideoActivity;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.settings.SettingsActivity;
 
@@ -115,26 +114,6 @@ public class NavigationHelper {
         final Intent playerIntent = getPlayerIntent(context, MainVideoPlayer.class, queue);
         playerIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(playerIntent);
-    }
-
-    public static void playOnOldVideoPlayer(Context context, StreamInfo info) {
-        ArrayList<VideoStream> videoStreamsList = new ArrayList<>(ListHelper.getSortedStreamVideosList(context, info.getVideoStreams(), null, false));
-        int index = ListHelper.getDefaultResolutionIndex(context, videoStreamsList);
-
-        if (index == -1) {
-            Toast.makeText(context, R.string.video_streams_empty, Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        VideoStream videoStream = videoStreamsList.get(index);
-        Intent intent = new Intent(context, PlayVideoActivity.class)
-                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                .putExtra(PlayVideoActivity.VIDEO_TITLE, info.getName())
-                .putExtra(PlayVideoActivity.STREAM_URL, videoStream.getUrl())
-                .putExtra(PlayVideoActivity.VIDEO_URL, info.getUrl())
-                .putExtra(PlayVideoActivity.START_POSITION, info.getStartPosition());
-
-        context.startActivity(intent);
     }
 
     public static void playOnPopupPlayer(final Context context, final PlayQueue queue) {
