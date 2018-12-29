@@ -223,4 +223,8 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowAnimationStyle">@null</item>
     </style>
+
+    <style name="AutoSwitchTheme" >
+        <item name="colorControlActivated">@color/light_youtube_primary_color</item>
+    </style>
 </resources>
