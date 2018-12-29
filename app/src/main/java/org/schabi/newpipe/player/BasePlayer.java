@@ -24,9 +24,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.AudioManager;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -881,7 +883,7 @@ public abstract class BasePlayer implements
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
                     history -> {
-                        if (history.getPosition() > 0 &&
+                        if (history.getPosition() > 0 && isPlaybackResumeEnabled() &&
                                 history.getPosition() < simpleExoPlayer.getDuration() - Constants.SECONDS_MIN_LEFT * 1000) {
                             seekTo(history.getPosition());
                             onPositionRestored(history.getPosition());
@@ -1252,5 +1254,11 @@ public abstract class BasePlayer implements
                         ignored -> {/* successful */},
                         error -> Log.e(TAG, "Player onViewed() failure: ", error)
                 );
+    }
+
+    private boolean isPlaybackResumeEnabled() {
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getBoolean(context.getString(R.string.enable_watch_history_key), true)
+                        && prefs.getBoolean(context.getString(R.string.enable_playback_resume_key), true);
     }
 }

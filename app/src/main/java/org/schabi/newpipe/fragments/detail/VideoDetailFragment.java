@@ -1336,7 +1336,11 @@ public class VideoDetailFragment
     }
 
     private void updatePositionInfo(final StreamInfo info) {
-        if (info.getDuration() <= 0) {
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        final boolean playbackResumeEnabled =
+                prefs.getBoolean(activity.getString(R.string.enable_watch_history_key), true)
+                && prefs.getBoolean(activity.getString(R.string.enable_playback_resume_key), true);
+        if (!playbackResumeEnabled || info.getDuration() <= 0) {
             positionView.setVisibility(View.INVISIBLE);
             detailPositionView.setVisibility(View.GONE);
             return;
