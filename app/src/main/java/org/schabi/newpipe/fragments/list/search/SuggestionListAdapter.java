@@ -75,7 +75,7 @@ public class SuggestionListAdapter extends RecyclerView.Adapter<SuggestionListAd
         });
     }
 
-    private SuggestionItem getItem(int position) {
+    SuggestionItem getItem(int position) {
         return items.get(position);
     }
 
