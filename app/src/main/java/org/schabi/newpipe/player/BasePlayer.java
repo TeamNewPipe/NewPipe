@@ -71,6 +71,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueAdapter;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
+import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.SerializedCache;
 
@@ -880,7 +881,8 @@ public abstract class BasePlayer implements
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
                     history -> {
-                        if (history.getPosition() > 0 && history.getPosition() <= simpleExoPlayer.getDuration()) {
+                        if (history.getPosition() > 0 &&
+                                history.getPosition() < simpleExoPlayer.getDuration() - Constants.SECONDS_MIN_LEFT * 1000) {
                             seekTo(history.getPosition());
                             onPositionRestored(history.getPosition());
                         }

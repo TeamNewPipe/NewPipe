@@ -1348,8 +1348,8 @@ public class VideoDetailFragment
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(
                 history -> {
-                    final int seconds = Math.round(history.getPosition() / 1000.f);
-                    if (seconds < info.getDuration()) {
+                    final int seconds = (int) (history.getPosition() / 1000.f);
+                    if (seconds < info.getDuration() - Constants.SECONDS_MIN_LEFT) {
                         positionView.setMax((int) info.getDuration());
                         positionView.setProgress(seconds);
                         detailPositionView.setText(Localization.getDurationString(seconds));
