@@ -2,9 +2,11 @@ package us.shandian.giga.get;
 
 import android.util.Log;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
-import java.net.URL;
+import java.nio.channels.ClosedByInterruptException;
 
 import static org.schabi.newpipe.BuildConfig.DEBUG;
 
@@ -12,142 +14,166 @@ import static org.schabi.newpipe.BuildConfig.DEBUG;
  * Runnable to download blocks of a file until the file is completely downloaded,
  * an error occurs or the process is stopped.
  */
-public class DownloadRunnable implements Runnable {
+public class DownloadRunnable extends Thread {
     private static final String TAG = DownloadRunnable.class.getSimpleName();
 
     private final DownloadMission mMission;
     private final int mId;
 
-    public DownloadRunnable(DownloadMission mission, int id) {
+    private HttpURLConnection mConn;
+
+    DownloadRunnable(DownloadMission mission, int id) {
         if (mission == null) throw new NullPointerException("mission is null");
         mMission = mission;
         mId = id;
+        mConn = null;
     }
 
     @Override
     public void run() {
         boolean retry = mMission.recovered;
-        long position = mMission.getPosition(mId);
+        long blockPosition = mMission.getBlockPosition(mId);
+        int retryCount = 0;
 
         if (DEBUG) {
-            Log.d(TAG, mId + ":default pos " + position);
+            Log.d(TAG, mId + ":default pos " + blockPosition);
             Log.d(TAG, mId + ":recovered: " + mMission.recovered);
         }
 
-        while (mMission.errCode == -1 && mMission.running && position < mMission.blocks) {
+        RandomAccessFile f;
+        InputStream is = null;
 
-            if (Thread.currentThread().isInterrupted()) {
-                mMission.pause();
-                return;
-            }
+        try {
+            f = new RandomAccessFile(mMission.getDownloadedFile(), "rw");
+        } catch (FileNotFoundException e) {
+            mMission.notifyError(e);// this never should happen
+            return;
+        }
+
+        while (mMission.running && mMission.errCode == DownloadMission.ERROR_NOTHING && blockPosition < mMission.blocks) {
 
             if (DEBUG && retry) {
-                Log.d(TAG, mId + ":retry is true. Resuming at " + position);
+                Log.d(TAG, mId + ":retry is true. Resuming at " + blockPosition);
             }
 
             // Wait for an unblocked position
-            while (!retry && position < mMission.blocks && mMission.isBlockPreserved(position)) {
+            while (!retry && blockPosition < mMission.blocks && mMission.isBlockPreserved(blockPosition)) {
 
                 if (DEBUG) {
-                    Log.d(TAG, mId + ":position " + position + " preserved, passing");
+                    Log.d(TAG, mId + ":position " + blockPosition + " preserved, passing");
                 }
 
-                position++;
+                blockPosition++;
             }
 
             retry = false;
 
-            if (position >= mMission.blocks) {
+            if (blockPosition >= mMission.blocks) {
                 break;
             }
 
             if (DEBUG) {
-                Log.d(TAG, mId + ":preserving position " + position);
+                Log.d(TAG, mId + ":preserving position " + blockPosition);
             }
 
-            mMission.preserveBlock(position);
-            mMission.setPosition(mId, position);
+            mMission.preserveBlock(blockPosition);
+            mMission.setBlockPosition(mId, blockPosition);
 
-            long start = position * DownloadManager.BLOCK_SIZE;
-            long end = start + DownloadManager.BLOCK_SIZE - 1;
+            long start = blockPosition * DownloadMission.BLOCK_SIZE;
+            long end = start + DownloadMission.BLOCK_SIZE - 1;
+            long offset = mMission.getThreadBytePosition(mId);
+
+            start += offset;
 
             if (end >= mMission.length) {
                 end = mMission.length - 1;
             }
 
-            HttpURLConnection conn = null;
-
-            int total = 0;
+            long total = 0;
 
             try {
-                URL url = new URL(mMission.url);
-                conn = (HttpURLConnection) url.openConnection();
-                conn.setRequestProperty("Range", "bytes=" + start + "-" + end);
+                mConn = mMission.openConnection(mId, start, end);
+                mMission.establishConnection(mId, mConn);
 
-                if (DEBUG) {
-                    Log.d(TAG, mId + ":" + conn.getRequestProperty("Range"));
-                    Log.d(TAG, mId + ":Content-Length=" + conn.getContentLength() + " Code:" + conn.getResponseCode());
+                // check if the download can be resumed
+                if (mConn.getResponseCode() == 416 && offset > 0) {
+                    retryCount--;
+                    throw new DownloadMission.HttpError(416);
                 }
 
-                // A server may be ignoring the range request
-                if (conn.getResponseCode() != 206) {
-                    mMission.errCode = DownloadMission.ERROR_SERVER_UNSUPPORTED;
-                    notifyError();
+                // The server may be ignoring the range request
+                if (mConn.getResponseCode() != 206) {
+                    mMission.notifyError(new DownloadMission.HttpError(mConn.getResponseCode()));
 
                     if (DEBUG) {
-                        Log.e(TAG, mId + ":Unsupported " + conn.getResponseCode());
+                        Log.e(TAG, mId + ":Unsupported " + mConn.getResponseCode());
                     }
 
                     break;
                 }
 
-                RandomAccessFile f = new RandomAccessFile(mMission.location + "/" + mMission.name, "rw");
-                f.seek(start);
-                java.io.InputStream ipt = conn.getInputStream();
-                byte[] buf = new byte[64*1024];
+                f.seek(mMission.offsets[mMission.current] + start);
 
-                while (start < end && mMission.running) {
-                    int len = ipt.read(buf, 0, buf.length);
+                is = mConn.getInputStream();
 
-                    if (len == -1) {
-                        break;
-                    } else {
-                        start += len;
-                        total += len;
-                        f.write(buf, 0, len);
-                        notifyProgress(len);
-                    }
+                byte[] buf = new byte[DownloadMission.BUFFER_SIZE];
+                int len;
+
+                while (start < end && mMission.running && (len = is.read(buf, 0, buf.length)) != -1) {
+                    f.write(buf, 0, len);
+                    start += len;
+                    total += len;
+                    mMission.notifyProgress(len);
                 }
 
                 if (DEBUG && mMission.running) {
-                    Log.d(TAG, mId + ":position " + position + " finished, total length " + total);
+                    Log.d(TAG, mId + ":position " + blockPosition + " finished, " + total + " bytes downloaded");
                 }
 
-                f.close();
-                ipt.close();
+                if (mMission.running)
+                    mMission.setThreadBytePosition(mId, 0L);// clear byte position for next block
+                else
+                    mMission.setThreadBytePosition(mId, total);// download paused, save progress for this block
 
-                // TODO We should save progress for each thread
             } catch (Exception e) {
-                // TODO Retry count limit & notify error
-                retry = true;
+                mMission.setThreadBytePosition(mId, total);
 
-                notifyProgress(-total);
+                if (!mMission.running || e instanceof ClosedByInterruptException) break;
+
+                if (retryCount++ >= mMission.maxRetry) {
+                    mMission.notifyError(e);
+                    break;
+                }
 
                 if (DEBUG) {
-                    Log.d(TAG, mId + ":position " + position + " retrying", e);
+                    Log.d(TAG, mId + ":position " + blockPosition + " retrying due exception", e);
                 }
+
+                retry = true;
             }
+        }
+
+        try {
+            if (is != null) is.close();
+        } catch (Exception err) {
+            // nothing to do
+        }
+
+        try {
+            f.close();
+        } catch (Exception err) {
+            // ¿ejected media storage?  ¿file deleted?  ¿storage ran out of space?
         }
 
         if (DEBUG) {
-            Log.d(TAG, "thread " + mId + " exited main loop");
+            Log.d(TAG, "thread " + mId + " exited from main download loop");
         }
 
-        if (mMission.errCode == -1 && mMission.running) {
+        if (mMission.errCode == DownloadMission.ERROR_NOTHING && mMission.running) {
             if (DEBUG) {
                 Log.d(TAG, "no error has happened, notifying");
             }
-            notifyFinished();
+            mMission.notifyFinished();
         }
 
         if (DEBUG && !mMission.running) {
@@ -155,22 +181,15 @@ public class DownloadRunnable implements Runnable {
         }
     }
 
-    private void notifyProgress(final long len) {
-        synchronized (mMission) {
-            mMission.notifyProgress(len);
+    @Override
+    public void interrupt() {
+        super.interrupt();
+
+        try {
+            if (mConn != null) mConn.disconnect();
+        } catch (Exception e) {
+            // nothing to do
         }
     }
 
-    private void notifyError() {
-        synchronized (mMission) {
-            mMission.notifyError(DownloadMission.ERROR_SERVER_UNSUPPORTED);
-            mMission.pause();
-        }
-    }
-
-    private void notifyFinished() {
-        synchronized (mMission) {
-            mMission.notifyFinished();
-        }
-    }
 }

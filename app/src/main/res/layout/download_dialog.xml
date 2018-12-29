@@ -53,6 +53,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/audio"/>
+
+        <RadioButton
+            android:id="@+id/subtitle_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/caption_setting_title"/>
     </RadioGroup>
 
     <Spinner
@@ -77,6 +83,7 @@
         android:text="@string/msg_threads"/>
 
     <LinearLayout
+        android:id="@+id/threads_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/threads_text_view"

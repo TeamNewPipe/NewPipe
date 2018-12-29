@@ -29,4 +29,18 @@
         android:summary="@string/settings_file_replacement_character_summary"
         android:title="@string/settings_file_replacement_character_title"/>
 
+    <ListPreference
+        android:defaultValue="@string/downloads_maximum_retry_default"
+        android:entries="@array/downloads_maximum_retry_list"
+        android:entryValues="@array/downloads_maximum_retry_list"
+        android:key="@string/downloads_maximum_retry"
+        android:summary="@string/max_retry_desc"
+        android:title="@string/max_retry_msg" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="@string/downloads_cross_network"
+        android:summary="@string/pause_downloads_on_mobile_desc"
+        android:title="@string/pause_downloads_on_mobile" />
+
 </PreferenceScreen>
