@@ -443,6 +443,15 @@ public abstract class VideoPlayer extends BasePlayer
     }
 
     @Override
+    public void onPositionRestored(long position) {
+        super.onPositionRestored(position);
+        if (!isControlsVisible()) {
+            controlsVisibilityHandler.removeCallbacksAndMessages(null);
+            controlsVisibilityHandler.postDelayed(this::showControlsThenHide, 500);
+        }
+    }
+
+    @Override
     public void onCompleted() {
         super.onCompleted();
 

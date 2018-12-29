@@ -570,8 +570,7 @@
     <string name="max_retry_desc">Maximum number of attempts before canceling the download</string>
     <string name="pause_downloads_on_mobile">Pause on switching to mobile data</string>
     <string name="pause_downloads_on_mobile_desc">Not all downloads can be suspended, in those cases, will be restarted</string>
-	<string name="playback_resumed">Playback resumed from %1$s</string>
-    <string name="enable_playback_resume_title">Resume playback</string>
+	<string name="enable_playback_resume_title">Resume playback</string>
     <string name="enable_playback_resume_summary">Restore last playback position</string>
     <string name="settings_category_clear_data_title">Clear data</string>
 

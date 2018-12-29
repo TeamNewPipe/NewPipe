@@ -524,7 +524,6 @@
     <string name="unsubscribe">Отписаться</string>
     <string name="volume_gesture_control_summary">Менять громкость плеера жестом</string>
     <string name="volume_gesture_control_title">Жест громкости</string>
-	<string name="playback_resumed">Продолжение воспроизведения с %1$s</string>
 
     <string name="enable_playback_resume_title">Продолжать воспроизведение</string>
     <string name="enable_playback_resume_summary">Восстанавливать с последней позиции</string>
