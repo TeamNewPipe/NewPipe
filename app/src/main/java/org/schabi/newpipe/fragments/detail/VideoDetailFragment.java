@@ -35,6 +35,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.AdapterView;
+import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -42,6 +43,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -147,6 +149,8 @@ public class VideoDetailFragment
 
     private Spinner spinnerToolbar;
 
+    private Switch switchAutoplay;
+
     private ParallaxScrollView parallaxScrollRootView;
     private LinearLayout contentRootLayoutHiding;
 
@@ -208,6 +212,7 @@ public class VideoDetailFragment
                 .getBoolean(getString(R.string.show_next_video_key), true);
         PreferenceManager.getDefaultSharedPreferences(activity)
                 .registerOnSharedPreferenceChangeListener(this);
+
     }
 
     @Override
@@ -466,6 +471,8 @@ public class VideoDetailFragment
         super.initViews(rootView, savedInstanceState);
         spinnerToolbar = activity.findViewById(R.id.toolbar).findViewById(R.id.toolbar_spinner);
 
+        switchAutoplay= rootView.findViewById(R.id.detail_autoplay_next);
+
         parallaxScrollRootView = rootView.findViewById(R.id.detail_main_content);
 
         thumbnailBackgroundButton = rootView.findViewById(R.id.detail_thumbnail_root_layout);
@@ -537,6 +544,18 @@ public class VideoDetailFragment
         detailControlsDownload.setOnClickListener(this);
         detailControlsDownload.setOnLongClickListener(this);
         relatedStreamExpandButton.setOnClickListener(this);
+        switchAutoplay.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                SharedPreferences autoplaysetting = PreferenceManager.getDefaultSharedPreferences(activity);
+                if(switchAutoplay.isChecked()){
+                    autoplaysetting.edit().putBoolean(getString(R.string.auto_queue_key),true).apply();
+
+                }else{
+                    autoplaysetting.edit().putBoolean(getString(R.string.auto_queue_key),false).apply();
+                }
+            }
+        });
 
         detailControlsBackground.setLongClickable(true);
         detailControlsPopup.setLongClickable(true);
@@ -573,6 +592,9 @@ public class VideoDetailFragment
                     break;
                 case 3:
                     shareUrl(item.getName(), item.getUrl());
+                    break;
+                case 4:
+                    openDownloadDialog();
                     break;
                 default:
                     break;
@@ -620,6 +642,8 @@ public class VideoDetailFragment
     }
 
     private void initRelatedVideos(StreamInfo info) {
+        switchAutoplay.setChecked(PlayerHelper.isAutoQueueEnabled(getContext()));
+
         if (relatedStreamsView.getChildCount() > 0) relatedStreamsView.removeAllViews();
 
         if (info.getNextVideo() != null && showRelatedStreams) {
