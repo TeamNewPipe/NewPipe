@@ -50,6 +50,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.fragments.BackPressable;
@@ -94,6 +95,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if (DEBUG) Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
+
+        ServiceHelper.initServices(this);
 
         ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
 

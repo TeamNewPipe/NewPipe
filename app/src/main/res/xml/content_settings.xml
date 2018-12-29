@@ -18,6 +18,11 @@
         android:summary="%s"
         android:title="@string/content_language_title"/>
 
+    <EditTextPreference
+        android:key="@string/peertube_instance_url_key"
+        android:title="@string/peertube_instance_url_title"
+        android:inputType="textUri" />
+
     <SwitchPreference
         android:defaultValue="false"
         android:key="@string/show_age_restricted_content"

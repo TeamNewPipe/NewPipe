@@ -18,9 +18,11 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.utils.Localization;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.ZipHelper;
 
@@ -38,6 +40,9 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
+
+import io.reactivex.Single;
+import io.reactivex.schedulers.Schedulers;
 
 public class ContentSettingsFragment extends BasePreferenceFragment {
 
@@ -121,6 +126,40 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             Localization oldLocal = org.schabi.newpipe.util.Localization.getPreferredExtractorLocal(getActivity());
             NewPipe.setLocalization(new Localization((String) newCountry, oldLocal.getLanguage()));
             return true;
+        });
+
+
+        Preference peerTubeInstance = findPreference(getString(R.string.peertube_instance_url_key));
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        peerTubeInstance.setDefaultValue(sharedPreferences.getString(getString(R.string.peertube_instance_url_key), ServiceList.PeerTube.getBaseUrl()));
+        peerTubeInstance.setSummary(sharedPreferences.getString(getString(R.string.peertube_instance_url_key), ServiceList.PeerTube.getBaseUrl()));
+
+        peerTubeInstance.setOnPreferenceChangeListener((Preference p, Object newInstance) -> {
+            String url = (String) newInstance;
+            if(!url.startsWith("https://")){
+                Toast.makeText(getActivity(), "instance url should start with https://",
+                        Toast.LENGTH_SHORT).show();
+                return false;
+            }else{
+                boolean shouldUpdate = Single.fromCallable(() -> {
+                    ServiceList.PeerTube.setInstance(url);
+                    return true;
+                }).subscribeOn(Schedulers.io())
+                        .onErrorReturnItem(false)
+                        .blockingGet();
+
+                if (shouldUpdate) {
+                    p.setSummary(url);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString(getString(R.string.peertube_instance_name_key), ServiceList.PeerTube.getServiceInfo().getName()).apply();
+                    editor.putString(getString(R.string.current_service_key), ServiceList.PeerTube.getServiceInfo().getName()).apply();
+                    editor.putBoolean(Constants.KEY_MAIN_PAGE_CHANGE, true).apply();
+                }else{
+                    Toast.makeText(getActivity(), "unable to update instance",
+                            Toast.LENGTH_SHORT).show();
+                }
+                return shouldUpdate;
+            }
         });
     }
 

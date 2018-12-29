@@ -1,6 +1,7 @@
 package org.schabi.newpipe.util;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
@@ -10,7 +11,9 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.services.peertube.PeertubeInstance;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import static org.schabi.newpipe.extractor.ServiceList.SoundCloud;
@@ -24,9 +27,11 @@ public class ServiceHelper {
             case 0:
                 return R.drawable.place_holder_youtube;
             case 1:
-                return R.drawable.place_holder_circle;
+                return R.drawable.place_holder_cloud;
+            case 2:
+                return R.drawable.place_holder_peertube;
             default:
-                return R.drawable.service;
+                return R.drawable.place_holder_circle;
         }
     }
 
@@ -125,6 +130,21 @@ public class ServiceHelper {
         switch(s.getServiceInfo().getName()) {
             case "YouTube": return false;
             default: return true;
+        }
+    }
+
+    public static void initService(Context context, int serviceId) {
+        if(serviceId == 2){
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+            String peerTubeInstanceUrl = sharedPreferences.getString(context.getString(R.string.peertube_instance_url_key), ServiceList.PeerTube.getBaseUrl());
+            String peerTubeInstanceName = sharedPreferences.getString(context.getString(R.string.peertube_instance_name_key), ServiceList.PeerTube.getServiceInfo().getName());
+            ServiceList.PeerTube.setInstance(peerTubeInstanceUrl, peerTubeInstanceName);
+        }
+    }
+
+    public static void initServices(Context context){
+        for(StreamingService s : ServiceList.all()){
+            initService(context, s.getServiceId());
         }
     }
 }

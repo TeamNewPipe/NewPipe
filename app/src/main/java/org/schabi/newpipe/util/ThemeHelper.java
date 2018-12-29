@@ -136,7 +136,14 @@ public class ThemeHelper {
         else if (selectedTheme.equals(blackTheme)) themeName = "BlackTheme";
         else if (selectedTheme.equals(darkTheme)) themeName = "DarkTheme";
 
-        themeName += "." + service.getServiceInfo().getName();
+        switch (serviceId) {
+            case 2:
+                //service name for peertube depends on the instance
+                themeName += ".PeerTube";
+                break;
+            default:
+                themeName += "." + service.getServiceInfo().getName();
+        }
         int resourceId = context.getResources().getIdentifier(themeName, "style", context.getPackageName());
 
         if (resourceId > 0) {

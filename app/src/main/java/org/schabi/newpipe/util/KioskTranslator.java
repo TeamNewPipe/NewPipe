@@ -44,6 +44,10 @@ public class KioskTranslator {
                 return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_hot);
             case "New & hot":
                 return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_hot);
+            case "Local":
+                return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_kiosk_local);
+            case "Recently added":
+                return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_kiosk_recent);
             default:
                 return 0;
         }
