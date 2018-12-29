@@ -447,7 +447,7 @@ public abstract class VideoPlayer extends BasePlayer
         super.onPositionRestored(position);
         if (!isControlsVisible()) {
             controlsVisibilityHandler.removeCallbacksAndMessages(null);
-            controlsVisibilityHandler.postDelayed(this::showControlsThenHide, 500);
+            controlsVisibilityHandler.postDelayed(this::showControlsThenHide, DEFAULT_CONTROLS_DURATION);
         }
     }
 

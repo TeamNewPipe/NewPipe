@@ -877,24 +877,23 @@ public abstract class BasePlayer implements
     public void onPrepared(final boolean playWhenReady) {
         if (DEBUG) Log.d(TAG, "onPrepared() called with: playWhenReady = [" + playWhenReady + "]");
         if (playWhenReady) audioReactor.requestAudioFocus();
-        if (currentMetadata != null) {
+        if (isPlaybackResumeEnabled() && currentMetadata != null) {
             final Disposable d = recordManager.getStreamHistory(currentMetadata.getMetadata())
-                    .onErrorComplete()
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
-                    history -> {
-                        if (history.getPosition() > 0 && isPlaybackResumeEnabled() &&
-                                history.getPosition() < simpleExoPlayer.getDuration() - Constants.SECONDS_MIN_LEFT * 1000) {
-                            seekTo(history.getPosition());
-                            onPositionRestored(history.getPosition());
-                        }
-                        changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
-                    },
-                    error -> {
-                        Log.e(TAG, "Player resume failure: ", error);
-                        changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
-                    }
-            );
+                            history -> {
+                                if (history.getPosition() > 0 &&
+                                        history.getPosition() < simpleExoPlayer.getDuration() - Constants.SECONDS_MIN_LEFT * 1000) {
+                                    seekTo(history.getPosition());
+                                    onPositionRestored(history.getPosition());
+                                }
+                                changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
+                            },
+                            error -> {
+                                Log.e(TAG, "Player resume failure: ", error);
+                                changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
+                            }
+                    );
             databaseUpdateReactor.add(d);
         } else {
             changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
