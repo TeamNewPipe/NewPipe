@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_bg_subtitle">Dotknij wyszukaj, aby rozpocząć</string>
     <string name="install">Instaluj</string>
@@ -180,7 +180,7 @@
     <string name="action_open_website">Otwórz stronę</string>
     <string name="tab_about">O programie</string>
     <string name="tab_licenses">Licencje</string>
-    <string name="app_description">Wolne, lekkie przesyłanie strumieniowania na Androidzie.</string>
+    <string name="app_description">Wolne, lekkie strumieniowanie na Androidzie.</string>
     <string name="view_on_github">Zobacz na GitHubie</string>
     <string name="app_license_title">Licencja NewPipe</string>
     <string name="contribution_encouragement">Jeżeli masz pomysł na tłumaczenie, zmiany w wyglądzie aplikacji, oczyszczenie kodu źródłowego, pomoc jest zawsze mile widziana. Im więcej jest zrobione, tym lepiej!</string>
