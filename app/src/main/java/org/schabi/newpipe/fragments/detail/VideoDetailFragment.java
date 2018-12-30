@@ -547,13 +547,9 @@ public class VideoDetailFragment
         switchAutoplay.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                SharedPreferences autoplaysetting = PreferenceManager.getDefaultSharedPreferences(activity);
-                if(switchAutoplay.isChecked()){
-                    autoplaysetting.edit().putBoolean(getString(R.string.auto_queue_key),true).apply();
-
-                }else{
-                    autoplaysetting.edit().putBoolean(getString(R.string.auto_queue_key),false).apply();
-                }
+                PreferenceManager.getDefaultSharedPreferences(activity).edit()
+                        .putBoolean(getString(R.string.auto_queue_key),switchAutoplay.isChecked())
+                        .apply();                
             }
         });
 
