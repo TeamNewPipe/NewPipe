@@ -178,7 +178,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                     NavigationHelper.playOnMainPlayer(context, getPlayQueue(index));
                     break;
                 case 3:
-                    NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index));
+                    NavigationHelper.playOnBackgroundPlayer(context, getView(), getPlayQueue(index));
                     break;
                 case 4:
                     NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index));
@@ -443,7 +443,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         headerPopupButton.setOnClickListener(
                 view -> NavigationHelper.playOnPopupPlayer(activity, getPlayQueue()));
         headerBackgroundButton.setOnClickListener(
-                view -> NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue()));
+                view -> NavigationHelper.playOnBackgroundPlayer(activity, getView(), getPlayQueue()));
     }
 
     private PlayQueue getPlayQueue() {

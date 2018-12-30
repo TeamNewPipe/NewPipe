@@ -930,7 +930,7 @@ public class VideoDetailFragment
         if (append) {
             NavigationHelper.enqueueOnBackgroundPlayer(activity, itemQueue);
         } else {
-            NavigationHelper.playOnBackgroundPlayer(activity, itemQueue);
+            NavigationHelper.playOnBackgroundPlayer(activity, getView(), itemQueue);
         }
     }
 

@@ -162,7 +162,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                     NavigationHelper.playOnMainPlayer(context, getPlayQueue(index));
                     break;
                 case 3:
-                    NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index));
+                    NavigationHelper.playOnBackgroundPlayer(context, getView(), getPlayQueue(index));
                     break;
                 case 4:
                     NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index));
@@ -304,7 +304,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         headerPopupButton.setOnClickListener(view ->
                 NavigationHelper.playOnPopupPlayer(activity, getPlayQueue()));
         headerBackgroundButton.setOnClickListener(view ->
-                NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue()));
+                NavigationHelper.playOnBackgroundPlayer(activity, getView(), getPlayQueue()));
     }
 
     private PlayQueue getPlayQueue() {
