@@ -194,7 +194,7 @@
     <plurals name="videos">
     <item quantity="one">סרטון אחד</item>
     <item quantity="two">שני סרטונים</item>
-    <item quantity="many">מספר סרטונים</item>
+    <item quantity="many">%s סרטונים</item>
     <item quantity="other">%s סרטונים</item>
 </plurals>
 
