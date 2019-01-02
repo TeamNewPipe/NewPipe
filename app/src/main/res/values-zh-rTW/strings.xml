@@ -421,7 +421,7 @@
 \n 
 \n1. 在瀏覽器中啟用「桌面模式」(該網站不適用於行動裝置) 
 \n2. 移至此網址： %1$s 
-\n3. 當被詢問時登入 
+\n3. 當被提示時登入帳號 
 \n4. 複製您被重新導向到的個人設定檔網址。</string>
     <string name="download_thumbnail_title">載入縮圖</string>
     <string name="download_thumbnail_summary">當關閉時不載入縮圖，減少數據和儲存空間的用量。改變時將清除記憶體和磁碟上的縮圖快取。</string>
