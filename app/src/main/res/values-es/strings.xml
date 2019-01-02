@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="view_count_text">%1$s de visualizaciones</string>
     <string name="upload_date_text">Publicado el %1$s</string>
@@ -27,7 +27,7 @@
     <string name="webm_description">WebM — formato libre</string>
     <string name="m4a_description">M4A — mejor calidad</string>
     <string name="download_dialog_title">Descargar</string>
-    <string name="next_video_title">Siguiente vídeo</string>
+    <string name="next_video_title">Siguiente</string>
     <string name="url_not_supported_toast">URL no soportada</string>
     <string name="use_external_video_player_title">Usar reproductor de vídeo externo</string>
     <string name="use_external_audio_player_title">Usar reproductor de audio externo</string>
@@ -170,7 +170,7 @@ abrir en modo popup</string>
     <string name="settings_category_popup_title">Popup</string>
     <string name="popup_resizing_indicator_title">Redimensionando</string>
 
-    <string name="use_external_video_player_summary">Algunas resoluciones podrían NO tener audio cuando esta opción está activada</string>
+    <string name="use_external_video_player_summary">Elimina el audio en algunas resoluciones</string>
     <string name="player_gesture_controls_title">Controles de gestos del reproductor</string>
     <string name="player_gesture_controls_summary">Usar gestos para controlar el brillo y volumen del reproductor</string>
     <string name="show_search_suggestions_title">Sugerencias de búsqueda</string>
@@ -337,10 +337,10 @@ abrir en modo popup</string>
     <string name="could_not_import_all_files">ADVERTENCIA: no se pudieron importar todos los archivos.</string>
     <string name="override_current_data">Esto reemplazará su configuración actual.</string>
 
-    <string name="controls_download_desc">Descargar archivo stream.</string>
+    <string name="controls_download_desc">Descargar archivo stream</string>
     <string name="show_info">Mostrar info</string>
 
-    <string name="tab_bookmarks">Marcadores</string>
+    <string name="tab_bookmarks">"Listas de reproducción en marcadores "</string>
 
     <string name="controls_add_to_playlist_title">Añadir a</string>
 
@@ -367,13 +367,13 @@ abrir en modo popup</string>
     <string name="set_as_playlist_thumbnail">Definir como miniatura de lista de reproducción</string>
 
     <string name="bookmark_playlist">Marcar lista de reproducción</string>
-    <string name="unbookmark_playlist">Remover marcador</string>
+    <string name="unbookmark_playlist">Eliminar marcador</string>
 
-    <string name="delete_playlist_prompt">¿Desea eliminar esta lista de reproducción?</string>
+    <string name="delete_playlist_prompt">¿Borrar esta lista de reproducción\?</string>
     <string name="playlist_creation_success">Lista de reproducción creada</string>
     <string name="playlist_add_stream_success">Añadido a la lista de reproducción</string>
-    <string name="playlist_thumbnail_change_success">Miniatura de lista de reproducción cambiada</string>
-    <string name="playlist_delete_failure">No se pudo eliminar la lista de reproducción</string>
+    <string name="playlist_thumbnail_change_success">Miniatura de lista de reproducción cambiada.</string>
+    <string name="playlist_delete_failure">No se pudo eliminar la lista de reproducción.</string>
 
     <string name="smaller_caption_font_size">Fuente más pequeña</string>
     <string name="normal_caption_font_size">Fuente normal</string>
@@ -414,7 +414,7 @@ abrir en modo popup</string>
     <string name="file_name_empty_error">El nombre del archivo no puede estar vacío</string>
     <string name="error_occurred_detail">Ocurrió un error: %1$s</string>
 
-    <string name="import_export_title">Importar/Exportar</string>
+    <string name="import_export_title">Importar/exportar</string>
     <string name="import_title">Importar</string>
     <string name="import_from">Importar desde</string>
     <string name="export_to">Exportar a</string>
@@ -489,7 +489,7 @@ abrir en modo popup</string>
     <string name="limit_data_usage_none_description">Sin límite</string>
     <string name="limit_mobile_data_usage_title">Limitar resolución cuando se use Datos Móviles</string>
     <string name="minimize_on_exit_title">Mimimizar al cambiar de aplicación</string>
-    <string name="minimize_on_exit_summary">Acción de cambiar a otra aplicación desde el reproductor principal</string>
+    <string name="minimize_on_exit_summary">Acción de cambiar a otra aplicación desde el reproductor principal — %s</string>
     <string name="minimize_on_exit_none_description">Ninguna</string>
     <string name="minimize_on_exit_background_description">Minimizar al reproductor de fondo</string>
     <string name="minimize_on_exit_popup_description">Minimizar el reproductor emergente</string>
