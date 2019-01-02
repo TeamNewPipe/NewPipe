@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources><string name="install">Instal·la</string>
     <string name="cancel">Cancel·la</string>
     <string name="open_in_browser">Obre al navegador</string>
@@ -12,7 +12,7 @@
     <string name="show_info">Mostra la informació</string>
 
     <string name="tab_subscriptions">Subscripcions</string>
-    <string name="tab_bookmarks">Llistes de reproducció desades a les adreces d\'interès</string>
+    <string name="tab_bookmarks">Llistes de reproducció desades</string>
 
     <string name="fragment_whats_new">Novetats</string>
 
