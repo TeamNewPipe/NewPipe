@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_bg_subtitle">Tekan pencarian untuk memulai</string>
     <string name="view_count_text">%1$s tayang</string>
@@ -219,7 +219,7 @@
     <string name="action_history">Riwayat</string>
     <string name="history_empty">Riwayat kosong</string>
     <string name="download_thumbnail_title">Muat thumbnail</string>
-    <string name="download_thumbnail_summary">Saat tidak ada pemuatan thumbnail, hemat data dan penggunaan memori. Perubahan menghapus cache gambar baik di memori dan di disk.</string>
+    <string name="download_thumbnail_summary">Saat mati, thumbnail tidak dimuat, menghemat penggunaan data dan memori. Perubahan menghapus tembolok gambar baik di memori dan disk.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Tembolok gambar dihapus</string>
     <string name="metadata_cache_wipe_title">Hapus tembolok metadata</string>
     <string name="metadata_cache_wipe_summary">Buang semua data tembolok laman web</string>
