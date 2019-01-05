@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="view_count_text">%1$s visualizações</string>
     <string name="upload_date_text">Publicado em %1$s</string>
@@ -53,7 +53,7 @@
     <string name="use_tor_title">Usar Tor</string>
     <string name="use_tor_summary">(Experimental) Usar a rede Tor para aumentar a privacidade (ainda não é suportada a emissão de vídeos).</string>
     <string name="download_path_audio_title">Pasta para a descarga de áudio</string>
-    <string name="download_path_audio_summary">O áudio descarregado é guardado aqui</string>
+    <string name="download_path_audio_summary">Local para guardar o áudio descarregado</string>
     <string name="download_path_audio_dialog_title">Digite o caminho para os ficheiros de áudio</string>
 
     <string name="err_dir_create">Não foi possível criar o diretório \'%1$s\'</string>
