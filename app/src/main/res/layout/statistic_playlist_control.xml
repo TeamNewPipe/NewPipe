@@ -6,6 +6,14 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <include
+        android:id="@+id/toolbar_search_container"
+        layout="@layout/toolbar_search_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        tools:visibility="visible" />
+
     <RelativeLayout
         android:id="@+id/sortButton"
         android:layout_width="wrap_content"
