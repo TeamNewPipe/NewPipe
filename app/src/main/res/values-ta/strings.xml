@@ -163,4 +163,7 @@
     <string name="delete_search_history_alert">அனைத்து வரலாற்றயும் அழிக்கவா\?</string>
     <string name="general_error">பிழை</string>
     <string name="best_resolution">சிறந்த திரைத் தெளிவுத்திறன்</string>
+    <string name="popup_playing_append">பாப் அப் இயக்கியின் வரிசையில் சேர்க்கப்பட்டது</string>
+    <string name="notification_channel_description">"NewPipe பின்னனி மற்றும் பாப்அப் இயக்கிகளின்  அறிவிப்புகள்"</string>
+    <string name="switch_to_popup">"பாப்அப் இயக்கிக்கு மாறு  "</string>
 </resources>
