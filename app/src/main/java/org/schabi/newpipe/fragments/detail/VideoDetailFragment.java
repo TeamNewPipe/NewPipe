@@ -1348,11 +1348,11 @@ public class VideoDetailFragment
         if (recordManager == null) {
             recordManager = new HistoryRecordManager(requireContext());
         }
-        disposables.add(recordManager.getStreamHistory(info).onErrorComplete()
+        disposables.add(recordManager.loadStreamState(info).onErrorComplete()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(
-                history -> {
-                    final int seconds = (int) (history.getPosition() / 1000.f);
+                state -> {
+                    final int seconds = (int) (state.getProgressTime() / 1000.f);
                     if (seconds < info.getDuration() - Constants.SECONDS_MIN_LEFT) {
                         positionView.setMax((int) info.getDuration());
                         positionView.setProgress(seconds);

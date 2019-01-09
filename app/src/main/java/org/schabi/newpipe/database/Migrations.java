@@ -8,7 +8,6 @@ public class Migrations {
 
     public static final int DB_VER_11_0 = 1;
     public static final int DB_VER_12_0 = 2;
-    public static final int DB_VER_15_0 = 3;
 
     public static final Migration MIGRATION_11_12 = new Migration(DB_VER_11_0, DB_VER_12_0) {
         @Override
@@ -57,13 +56,6 @@ public class Migrations {
                     "ORDER BY creation_date DESC");
 
             database.execSQL("DROP TABLE IF EXISTS watch_history");
-        }
-    };
-
-    public static final Migration MIGRATION_12_15 = new Migration(DB_VER_12_0, DB_VER_15_0) {
-        @Override
-        public void migrate(@NonNull SupportSQLiteDatabase database) {
-            database.execSQL("ALTER TABLE `stream_history` ADD COLUMN `position` INTEGER DEFAULT 0");
         }
     };
 }

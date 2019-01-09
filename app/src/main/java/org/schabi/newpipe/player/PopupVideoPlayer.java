@@ -323,7 +323,6 @@ public final class PopupVideoPlayer extends Service {
             if (playerImpl.getRootView() != null) {
                 windowManager.removeView(playerImpl.getRootView());
             }
-            playerImpl.saveCurrentPosition();
             playerImpl.setRootView(null);
             playerImpl.stopActivityBinding();
             playerImpl.destroy();

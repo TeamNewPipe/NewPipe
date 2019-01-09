@@ -31,7 +31,6 @@ public class StreamHistoryEntity {
     final public static String JOIN_STREAM_ID       = "stream_id";
     final public static String STREAM_ACCESS_DATE   = "access_date";
     final public static String STREAM_REPEAT_COUNT  = "repeat_count";
-    final public static String STREAM_POSITION      = "position";
 
     @ColumnInfo(name = JOIN_STREAM_ID)
     private long streamUid;
@@ -43,19 +42,15 @@ public class StreamHistoryEntity {
     @ColumnInfo(name = STREAM_REPEAT_COUNT)
     private long repeatCount;
 
-    @ColumnInfo(name = STREAM_POSITION)
-    private long position;
-
-    public StreamHistoryEntity(long streamUid, @NonNull Date accessDate, long repeatCount, long position) {
+    public StreamHistoryEntity(long streamUid, @NonNull Date accessDate, long repeatCount) {
         this.streamUid = streamUid;
         this.accessDate = accessDate;
         this.repeatCount = repeatCount;
-        this.position = position;
     }
 
     @Ignore
-    public StreamHistoryEntity(long streamUid, @NonNull Date accessDate, long position) {
-        this(streamUid, accessDate, 1, position);
+    public StreamHistoryEntity(long streamUid, @NonNull Date accessDate) {
+        this(streamUid, accessDate, 1);
     }
 
     public long getStreamUid() {
@@ -80,13 +75,5 @@ public class StreamHistoryEntity {
 
     public void setRepeatCount(long repeatCount) {
         this.repeatCount = repeatCount;
-    }
-
-    public long getPosition() {
-        return position;
-    }
-
-    public void setPosition(long position) {
-        this.position = position;
     }
 }

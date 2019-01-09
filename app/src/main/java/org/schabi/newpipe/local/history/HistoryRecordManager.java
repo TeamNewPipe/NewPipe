@@ -75,29 +75,20 @@ public class HistoryRecordManager {
     ///////////////////////////////////////////////////////
 
     public Maybe<Long> onViewed(final StreamInfo info) {
-        return onViewed(info, -1);
-    }
-
-    public Maybe<Long> onViewed(final StreamInfo info, final long position) {
         if (!isStreamHistoryEnabled()) return Maybe.empty();
 
         final Date currentTime = new Date();
         return Maybe.fromCallable(() -> database.runInTransaction(() -> {
             final long streamId = streamTable.upsert(new StreamEntity(info));
-            StreamHistoryEntity latestEntry = streamHistoryTable.getLatestEntry(streamId);
+            StreamHistoryEntity latestEntry = streamHistoryTable.getLatestEntry();
 
-            if (latestEntry != null) {
+            if (latestEntry != null && latestEntry.getStreamUid() == streamId) {
                 streamHistoryTable.delete(latestEntry);
                 latestEntry.setAccessDate(currentTime);
-                if (position == -1) {
-                    latestEntry.setRepeatCount(latestEntry.getRepeatCount() + 1);
-                } else {
-                    latestEntry.setPosition(position);
-                }
+                latestEntry.setRepeatCount(latestEntry.getRepeatCount() + 1);
                 return streamHistoryTable.insert(latestEntry);
             } else {
-                return streamHistoryTable.insert(new StreamHistoryEntity(streamId, currentTime,
-                        position == -1 ? 0 : position));
+                return streamHistoryTable.insert(new StreamHistoryEntity(streamId, currentTime));
             }
         })).subscribeOn(Schedulers.io());
     }
@@ -115,7 +106,6 @@ public class HistoryRecordManager {
     public Flowable<List<StreamHistoryEntry>> getStreamHistory() {
         return streamHistoryTable.getHistory().subscribeOn(Schedulers.io());
     }
-
 
     public Maybe<StreamHistoryEntity> getStreamHistory(final StreamInfo info) {
         return Maybe.fromCallable(() -> {

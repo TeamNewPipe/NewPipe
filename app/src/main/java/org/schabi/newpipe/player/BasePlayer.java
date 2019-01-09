@@ -19,7 +19,6 @@
 
 package org.schabi.newpipe.player;
 
-import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -878,21 +877,22 @@ public abstract class BasePlayer implements
         if (DEBUG) Log.d(TAG, "onPrepared() called with: playWhenReady = [" + playWhenReady + "]");
         if (playWhenReady) audioReactor.requestAudioFocus();
         if (isPlaybackResumeEnabled() && currentMetadata != null) {
-            final Disposable d = recordManager.getStreamHistory(currentMetadata.getMetadata())
+            final Disposable d = recordManager.loadStreamState(currentMetadata.getMetadata())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
-                            history -> {
-                                if (history.getPosition() > 0 &&
-                                        history.getPosition() < simpleExoPlayer.getDuration() - Constants.SECONDS_MIN_LEFT * 1000) {
-                                    seekTo(history.getPosition());
-                                    onPositionRestored(history.getPosition());
+                            state -> {
+                                if (state.getProgressTime() > 0 &&
+                                        state.getProgressTime() < simpleExoPlayer.getDuration() - Constants.SECONDS_MIN_LEFT * 1000) {
+                                    seekTo(state.getProgressTime());
+                                    onPositionRestored(state.getProgressTime());
                                 }
                                 changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
                             },
                             error -> {
                                 Log.e(TAG, "Player resume failure: ", error);
                                 changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
-                            }
+                            },
+                            () -> changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED)
                     );
             databaseUpdateReactor.add(d);
         } else {
@@ -1045,7 +1045,7 @@ public abstract class BasePlayer implements
         databaseUpdateReactor.add(stateSaver);
     }
 
-    private void savePlaybackState() {
+    protected void savePlaybackState() {
         if (simpleExoPlayer == null || currentMetadata == null) return;
         final StreamInfo currentInfo = currentMetadata.getMetadata();
 
@@ -1240,19 +1240,6 @@ public abstract class BasePlayer implements
 
     public boolean gotDestroyed() {
         return simpleExoPlayer == null;
-    }
-
-    @SuppressWarnings("ResultOfMethodCallIgnored")
-    @SuppressLint("CheckResult")
-    public void saveCurrentPosition() {
-        if (currentMetadata == null) return;
-        final StreamInfo currentInfo = currentMetadata.getMetadata();
-        final long currentPosition = simpleExoPlayer.getCurrentPosition();
-        recordManager.onViewed(currentInfo, currentPosition).onErrorComplete()
-                .subscribe(
-                        ignored -> {/* successful */},
-                        error -> Log.e(TAG, "Player onViewed() failure: ", error)
-                );
     }
 
     private boolean isPlaybackResumeEnabled() {
