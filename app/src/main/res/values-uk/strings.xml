@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="view_count_text">%1$s переглядів</string>
     <string name="upload_date_text">Опубліковано %1$s</string>
@@ -23,7 +23,7 @@
     <string name="download_path_audio_dialog_title">Вкажіть шлях для завантаження авдіофайлів</string>
 
     <string name="download_path_summary">Шлях де зберігатимуться завантажені відеозаписи</string>
-    <string name="download_path_audio_title">Тека для завантаженого авдіо</string>
+    <string name="download_path_audio_title">Тека для завантаженого аудіо</string>
     <string name="download_path_audio_summary">Завантажені авдіофайли зберігатимуться тут</string>
     <string name="autoplay_by_calling_app_title">Автоматично відтворювати</string>
     <string name="autoplay_by_calling_app_summary">Відтворює відеозапис коли NewPipe викликано з іншого застосунку</string>
@@ -32,7 +32,7 @@
     <string name="kore_not_found">Застосунок Kore не знайдено. Встановити?</string>
     <string name="show_play_with_kodi_title">Відтворювати у Kodi</string>
     <string name="show_play_with_kodi_summary">Показувати опцію відтворення відеозапису за допомогою Kodi media center</string>
-    <string name="play_audio">Авдіо</string>
+    <string name="play_audio">Аудіо</string>
     <string name="default_audio_format_title">Типовий авдіоформат</string>
     <string name="webm_description">WebM — вільний формат</string>
     <string name="m4a_description">M4A — ліпша якість</string>
@@ -45,7 +45,7 @@
     <string name="show_next_and_similar_title">Показати \"наступні\" й \"схожі\" відео</string>
     <string name="url_not_supported_toast">Непідтримувальний URL</string>
     <string name="search_language_title">Усталена мова контенту</string>
-    <string name="settings_category_video_audio_title">Відео та авдіо</string>
+    <string name="settings_category_video_audio_title">Відео та аудіо</string>
     <string name="settings_category_appearance_title">Зовнішній вигляд</string>
     <string name="settings_category_other_title">Інше</string>
     <string name="background_player_playing_toast">Відтворення у тловому режимі</string>
@@ -100,7 +100,7 @@
     <string name="info_dir_created">Створити теку для завантаження \'%1$s\'</string>
 
     <string name="video">Відео</string>
-    <string name="audio">Авдіо</string>
+    <string name="audio">Аудіо</string>
     <string name="retry">Повторити</string>
     <string name="use_old_player_title">Використовувати старий програвач</string>
     <string name="short_thousand">т</string>
