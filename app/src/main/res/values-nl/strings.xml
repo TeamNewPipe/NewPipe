@@ -361,8 +361,8 @@
     <string name="always_ask_open_action">Altijd vragen</string>
     
     <string name="create_playlist">Nieuwe afspeellijst</string>
-    <string name="delete_playlist">Verwijder</string>
-    <string name="rename_playlist">Wijzig naam</string>
+    <string name="delete_playlist">Verwijderen</string>
+    <string name="rename_playlist">Naam wijzigen</string>
     <string name="playlist_name_input">Naam</string>
     <string name="append_playlist">Toevoegen aan afspeellijst</string>
     <string name="set_as_playlist_thumbnail">Instellen als miniatuur voor afspeellijst</string>
