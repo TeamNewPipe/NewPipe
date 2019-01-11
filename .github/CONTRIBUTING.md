@@ -19,7 +19,7 @@ hasn't been reported/requested before
 * We use English for development. Issues in other languages will be closed and ignored.
 * Please only add *one* issue at a time. Do not put multiple issues into one thread.
 * When reporting a bug please give us a context, and a description how to reproduce it.
-* Issues that only contain a generated bug report, but no describtion might be closed.
+* Issues that only contain a generated bug report, but no description might be closed.
 
 ## Bug Fixing
 * If you want to help NewPipe to become free of bugs (this is our utopic goal for NewPipe), you can send us an email to
