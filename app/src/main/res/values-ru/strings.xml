@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="view_count_text">%1$s просмотров</string>
     <string name="upload_date_text">Опубликовано %1$s</string>
@@ -11,21 +11,21 @@
     <string name="search">Поиск</string>
     <string name="settings">Настройки</string>
     <string name="did_you_mean">Возможно, вы имели в виду: %1$s?</string>
-    <string name="share_dialog_title">Поделиться с помощью</string>
+    <string name="share_dialog_title">Поделиться в</string>
     <string name="choose_browser">Выбрать браузер</string>
     <string name="screen_rotation">поворот</string>
     <string name="download_path_title">Путь загрузки видео</string>
-    <string name="download_path_summary">Папка для хранения загруженных видео</string>
+    <string name="download_path_summary">Путь для сохранения загруженных видео</string>
     <string name="download_path_dialog_title">Введите путь к папке для загрузки видео</string>
-    <string name="default_resolution_title">Разрешение по умолчанию</string>
+    <string name="default_resolution_title">Стандартное качество</string>
     <string name="play_with_kodi_title">Воспроизвести в Kodi</string>
     <string name="kore_not_found">Приложение Kore не найдено. Установить его?</string>
-    <string name="show_play_with_kodi_title">\"Воспроизвести в Kodi\"</string>
-    <string name="show_play_with_kodi_summary">Показать опцию воспроизведения через медиацентр Kodi</string>
+    <string name="show_play_with_kodi_title">Показать \"Играть в Kodi\" опцию</string>
+    <string name="show_play_with_kodi_summary">Показать опцию воспроизведения через Kodi медиацентр</string>
     <string name="play_audio">Аудио</string>
-    <string name="default_audio_format_title">Формат аудио по умолчанию</string>
-    <string name="webm_description">WebM — свободный</string>
-    <string name="m4a_description">M4A — выше качество</string>
+    <string name="default_audio_format_title">Стандартный формат аудио</string>
+    <string name="webm_description">WebM — свободный формат</string>
+    <string name="m4a_description">M4A — лучше качество</string>
     <string name="download_dialog_title">Скачать</string>
     <string name="next_video_title">Следующее видео</string>
     <string name="url_not_supported_toast">URL не поддерживается</string>
@@ -40,8 +40,8 @@
     <string name="detail_uploader_thumbnail_view_description">Миниатюра аватара пользователя</string>
     <string name="detail_dislikes_img_view_description">Не понравилось</string>
     <string name="detail_likes_img_view_description">Понравилось</string>
-    <string name="use_external_video_player_title">Внешний видеоплеер</string>
-    <string name="use_external_audio_player_title">Внешний аудиоплеер</string>
+    <string name="use_external_video_player_title">Использовать внешний видеоплеер</string>
+    <string name="use_external_audio_player_title">Использовать внешний аудиоплеер</string>
     <string name="background_player_playing_toast">Воспроизведение в фоновом режиме</string>
     <string name="theme_title">Тема</string>
     <string name="dark_theme_title">Тёмная</string>
@@ -52,10 +52,10 @@
 
     <string name="use_tor_title">Использовать Tor</string>
     <string name="download_path_audio_title">Путь загрузки аудио</string>
-    <string name="download_path_audio_summary">Папка для хранения загруженных аудио</string>
+    <string name="download_path_audio_summary">Загруженные аудио находятся тут</string>
     <string name="download_path_audio_dialog_title">Введите путь к папке для загрузки аудио</string>
 
-    <string name="main_bg_subtitle">Начните с поиска</string>
+    <string name="main_bg_subtitle">Нажмите поиск, чтобы начать</string>
     <string name="msg_wait">Подождите…</string>
     <string name="msg_exists">Файл уже существует</string>
     <string name="msg_threads">Потоки</string>
@@ -79,7 +79,7 @@
     <string name="general_error">Ошибка</string>
     <string name="your_comment">Ваш комментарий (English):</string>
     <string name="err_dir_create">Не удалось создать папку для загрузки \"%1$s\"</string>
-    <string name="autoplay_by_calling_app_title">Автовоспроизведение</string>
+    <string name="autoplay_by_calling_app_title">Автозапуск</string>
     <string name="autoplay_by_calling_app_summary">Воспроизводить видео при вызове NewPipe из другого приложения</string>
     <string name="content">Контент</string>
     <string name="video_is_age_restricted">Видео с возрастными ограничениями. Разрешить подобный контент можно в настройках</string>
@@ -125,10 +125,10 @@
     <string name="controls_background_title">В фоне</string>
     <string name="controls_popup_title">В окне</string>
 
-    <string name="show_higher_resolutions_summary">Только некоторые устройства могут воспроизводить видео в 2K/4K</string>
-    <string name="default_video_format_title">Формат видео по умолчанию</string>
+    <string name="show_higher_resolutions_summary">Только некоторые устройства поддерживают видео в 2K/4K</string>
+    <string name="default_video_format_title">Стандартный формат видео</string>
     <string name="black_theme_title">Чёрная</string>
-    <string name="popup_remember_size_pos_title">Восстановить окно</string>
+    <string name="popup_remember_size_pos_title">Помнить размер и позицию \"В окне\"</string>
     <string name="player_gesture_controls_summary">Изменять яркость и громкость жестами</string>
     <string name="settings_category_popup_title">Всплывающее окно</string>
     <string name="popup_playing_toast">Воспроизведение во всплывающем окне</string>
@@ -148,20 +148,20 @@
 \nвоспроизведения в окне</string>
 
     <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="open_in_popup_mode">Открыть в отдельном окне</string>
+    <string name="open_in_popup_mode">Открыть в режиме окна</string>
     <string name="show_search_suggestions_summary">Отображать подсказки при поиске</string>
 
     <string name="later">Позже</string>
     <string name="disabled">Отключено</string>
     <string name="popup_resizing_indicator_title">Изменение размера</string>
 
-    <string name="use_external_video_player_summary">В некоторых разрешениях НЕ будет звука, если включено</string>
+    <string name="use_external_video_player_summary">Отключает звук в НЕКОТОРЫХ разрешениях</string>
     <string name="short_million"> млн.</string>
     <string name="short_billion"> млрд.</string>
 
     <string name="short_thousand"> тыс.</string>
-    <string name="default_popup_resolution_title">Разрешение очереди \"В окне\"</string>
-    <string name="popup_remember_size_pos_summary">Запоминать размер и положение всплывающего окна</string>
+    <string name="default_popup_resolution_title">Качество видео \"В окне\"</string>
+    <string name="popup_remember_size_pos_summary">Помнить последние размер и позицию \"В окне\"</string>
     <string name="show_search_suggestions_title">Варианты поиска</string>
 <string name="best_resolution">Лучшее разрешение</string>
 
@@ -169,7 +169,7 @@
     <string name="reCaptcha_title">Запрос reCAPTCHA</string>
     <string name="recaptcha_request_toast">Запрошен ввод reCAPTCHA</string>
 
-    <string name="show_higher_resolutions_title">Высокие разрешения</string>
+    <string name="show_higher_resolutions_title">Показывать высокие разрешения</string>
     <string name="popup_mode_share_menu_title">NewPipe в окне</string>
     <string name="title_activity_about">О NewPipe</string>
     <string name="action_settings">Настройки</string>
@@ -325,14 +325,14 @@
     
     <string name="preferred_player_fetcher_notification_title">Получение сведений…</string>
     <string name="preferred_player_fetcher_notification_message">Загрузка запрошенного контента</string>
-<string name="controls_download_desc">Загрузка файла прямой трансляции</string>
-    <string name="show_info">Показать сведения</string>
+<string name="controls_download_desc">Скачать файл прямой трансляции</string>
+    <string name="show_info">Подробнее</string>
 
-    <string name="tab_bookmarks">Закладки</string>
+    <string name="tab_bookmarks">Сохранённые плейлисты</string>
 
     <string name="controls_add_to_playlist_title">Добавить к</string>
 
-    <string name="use_inexact_seek_title">Быстрый поиск позиции</string>
+    <string name="use_inexact_seek_title">Использовать быстрый, но неточный поиск</string>
     <string name="use_inexact_seek_summary">Неточный поиск позволяет плееру искать позицию быстрее, но менее точно</string>
     <string name="auto_queue_title">Автодополнение очереди</string>
     <string name="auto_queue_summary">Добавлять похожие потоки в очередь при воспроизведении последнего потока, если не включён повтор</string>
