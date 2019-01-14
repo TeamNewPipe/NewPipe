@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="upload_date_text">%1$s に公開</string>
     <string name="no_player_found">動画プレイヤーが見つかりません｡VLC を入手しますか？</string>
@@ -470,5 +470,22 @@
     <string name="minimize_on_exit_none_description">何もしない</string>
     <string name="minimize_on_exit_background_description">バックグラウンドに変更</string>
     <string name="minimize_on_exit_popup_description">ポップアップに変更</string>
-
+    <string name="enable_leak_canary_title">LeakCanary を有効にする</string>
+    <string name="enable_leak_canary_summary">メモリリークの監視は、ヒープのダンピング時にアプリが無反応になる原因となります</string>
+    <string name="enable_disposed_exceptions_title">ライフサイクルエラーの報告</string>
+    <string name="enable_disposed_exceptions_summary">破棄後のフラグメントまたはアクティビティライフサイクル外の到達不能RX例外を強制的に報告します</string>
+    <string name="import_soundcloud_instructions">URL または ID を入力して SoundCloud プロファイルをインポートします:
+\n
+\n1. Web ブラウザーで \"デスクトップモード\" を有効にします (サイトは携帯デバイスで利用できません)
+\n2. この URL に移動します: %1$s
+\n3. 必要に応じてログインします
+\n4. リダイレクトされたプロファイル URL をコピーします。</string>
+    <string name="import_soundcloud_instructions_hint">あなたのID, soundcloud.com/あなたのid</string>
+    <string name="import_network_expensive_warning">この操作により通信料金が増えることがあることにご注意ください。
+\n
+\n続行しますか\?</string>
+    <string name="playback_speed_control">再生速度制御</string>
+    <string name="unhook_checkbox">リンク解除 (不備が生じる可能性があります)</string>
+    <string name="skip_silence_checkbox">無音の間に早送り</string>
+    <string name="playback_step">ステップ</string>
 </resources>
