@@ -8,6 +8,7 @@ import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.TooltipCompat;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -151,9 +152,11 @@ public class StatisticsPlaylistFragment
         sortButton = headerRootLayout.findViewById(R.id.sortButton);
         sortButtonIcon = headerRootLayout.findViewById(R.id.sortButtonIcon);
         sortButtonText = headerRootLayout.findViewById(R.id.sortButtonText);
-        searchToolbarContainer = headerRootLayout.findViewById(R.id.toolbar_search_container);
-        searchEditText = searchToolbarContainer.findViewById(R.id.toolbar_search_edit_text);
-        searchClear = searchToolbarContainer.findViewById(R.id.toolbar_search_clear);
+
+        Toolbar toolbar = headerRootLayout.findViewById(R.id.toolbar);
+        searchToolbarContainer = toolbar.findViewById(R.id.toolbar_search_container);
+        searchEditText = toolbar.findViewById(R.id.toolbar_search_edit_text);
+        searchClear = toolbar.findViewById(R.id.toolbar_search_clear);
         return headerRootLayout;
     }
 
