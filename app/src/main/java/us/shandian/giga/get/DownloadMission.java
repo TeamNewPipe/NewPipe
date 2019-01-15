@@ -407,7 +407,8 @@ public class DownloadMission extends Mission {
 
         // ensure that the previous state is completely paused.
         joinForThread(init);
-        for (Thread thread : threads) joinForThread(thread);
+        if (threads != null)
+            for (Thread thread : threads) joinForThread(thread);
 
         enqueued = false;
         running = true;
@@ -420,7 +421,7 @@ public class DownloadMission extends Mission {
 
         init = null;
 
-        if (threads.length < 1) {
+        if (threads == null || threads.length < 1) {
             threads = new Thread[currentThreadCount];
         }
 

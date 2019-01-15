@@ -447,6 +447,7 @@ public class MissionAdapter extends Adapter<ViewHolder> {
         if (mission != null) {
             switch (id) {
                 case R.id.start:
+                    h.status.setText(UNDEFINED_SPEED);
                     h.state = -1;
                     h.size.setText(Utility.formatBytes(mission.getLength()));
                     mDownloadManager.resumeMission(mission);
