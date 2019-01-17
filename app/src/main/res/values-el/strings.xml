@@ -157,7 +157,7 @@
     <string name="background_player_append">Προστέθηκε στη λίστα αναπαραγωγής παρασκηνίου</string>
     <string name="popup_playing_append">Προστέθηκε στη λίστα αναπαραγωγής αναδυόμενου παραθύρου</string>
     <string name="content">Περιεχόμενο</string>
-    <string name="show_age_restricted_content_title">Εμφάνιση περιεχομένου περιορισμένης πρόσβασης</string>
+    <string name="show_age_restricted_content_title">Περιεχόμενο περιορισμένης ηλικίας</string>
     <string name="video_is_age_restricted">Βίντεο περιορισμένης πρόσβασης. Για να επιτρέπετε περιερχόμενο τέτοιου είδους, ενεργοποιήστε το στις \"Ρυθμίσεις\".</string>
     <string name="duration_live">ΖΩΝΤΑΝΑ</string>
     <string name="error_report_title">Αναφορά σφαλμάτων</string>
@@ -263,7 +263,7 @@
     <string name="create">Δημιουργία</string>
     <string name="delete_one">Διαγραφή ενός</string>
     <string name="delete_all">Διαγραφή όλων</string>
-    <string name="checksum">Checksum</string>
+    <string name="checksum">Άθροισμα ελέγχου</string>
     <string name="dismiss">Αγνόηση</string>
     <string name="rename">Μετονομασία</string>
 
@@ -282,7 +282,7 @@
 \nτο άνοιγμα αναδυόμενων παραθύρων</string>
     <string name="one_item_deleted">1 αντικείμενο διαγράφηκε.</string>
 
-    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="reCaptchaActivity">Αυτόματο τεστ</string>
     <string name="reCaptcha_title">Πρόκληση reCAPTCHA</string>
     <string name="recaptcha_request_toast">Ζητήθηκε πρόκληση reCAPTCHA</string>
 
@@ -407,7 +407,7 @@
     <string name="enable_leak_canary_title">Ενεργοποίηση του LeakCanary</string>
     <string name="enable_leak_canary_summary">Η παρακολούθηση των διαρροών μνήμης μπορεί να προκαλέσει την διακοπή της εφαρμογής</string>
 
-    <string name="enable_disposed_exceptions_summary"/>
+    <string name="enable_disposed_exceptions_summary">Υποχρεωτική αναφορά μη παραδοτέων Rx εξαιρέσεων έξω από το κομμάτι ή τον κύκλο δραστηριότητας μετά από απόρριψη</string>
 
     <string name="import_export_title">Εισαγωγή/Εξαγωγή</string>
     <string name="import_title">Εισαγωγή</string>
