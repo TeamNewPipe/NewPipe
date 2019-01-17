@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="view_count_text">%1$s visualizzazioni</string>
     <string name="upload_date_text">Pubblicato il %1$s</string>
@@ -10,7 +10,7 @@
     <string name="download">Scarica</string>
     <string name="search">Cerca</string>
     <string name="settings">Impostazioni</string>
-    <string name="did_you_mean">Intendevi %1$s?</string>
+    <string name="did_you_mean">Intendevi: %1$s\?</string>
     <string name="share_dialog_title">Condividi con</string>
     <string name="choose_browser">Scegli il browser</string>
     <string name="screen_rotation">rotazione</string>
