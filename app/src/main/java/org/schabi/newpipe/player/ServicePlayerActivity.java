@@ -375,6 +375,11 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             public void onMove(int sourceIndex, int targetIndex) {
                 if (player != null) player.getPlayQueue().move(sourceIndex, targetIndex);
             }
+
+            @Override
+            public void onSwiped(int index) {
+                if (index != -1) player.getPlayQueue().remove(index);
+            }
         };
     }
 
