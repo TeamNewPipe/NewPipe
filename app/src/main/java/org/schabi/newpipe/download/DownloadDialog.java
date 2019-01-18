@@ -295,15 +295,22 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
             DownloadSetting downloadSetting = getDownloadSettingFromUi();
             if (item.getItemId() == R.id.okay) {
                 prepareSelectedDownload(downloadSetting);
-            }
 
-            if (playlistDownloadCallback != null) {
-                if (smartDownloadCheckbox.isChecked()) {
-                    playlistDownloadCallback.accept(downloadSetting);
-                } else  {
+                if (playlistDownloadCallback != null) {
+                    if (smartDownloadCheckbox.isChecked()) {
+                        playlistDownloadCallback.accept(downloadSetting);
+                    } else  {
+                        playlistDownloadCallback.accept(null);
+                    }
+                }
+            } else if (item.getItemId() == R.id.skip) {
+                if (playlistDownloadCallback != null) {
+
                     playlistDownloadCallback.accept(null);
                 }
             }
+
+            getDialog().dismiss();
             return true;
         });
     }
