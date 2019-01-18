@@ -305,6 +305,14 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                 NavigationHelper.playOnPopupPlayer(activity, getPlayQueue()));
         headerBackgroundButton.setOnClickListener(view ->
                 NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue()));
+
+        headerBackgroundButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                NavigationHelper.enqueueOnBackgroundPlayer(activity, getPlayQueue());
+                return true;
+            }
+        });
     }
 
     private PlayQueue getPlayQueue() {
