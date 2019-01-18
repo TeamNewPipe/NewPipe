@@ -158,12 +158,11 @@ public class NavigationHelper {
                                               final Iterator<PlayQueueItem> itemIterator,
                                               DownloadSetting downloadSetting) {
         if (downloadSetting != null) {
-            Toast.makeText(activity.getActivity(), "SMART DOWNLOADING", Toast.LENGTH_LONG).show();
             Completable.create(emitter -> {
                 while(itemIterator.hasNext()) {
                     PlayQueueItem queueItem = itemIterator.next();
-                    StreamInfo streamInfo = queueItem.getStream().blockingGet();
-                    startDownloadFromDownloadSetting(activity, downloadSetting, streamInfo);
+                    queueItem.getStream().subscribe(streamInfo -> startDownloadFromDownloadSetting(activity,
+                            downloadSetting, streamInfo), activity::onError);
                 }
                 emitter.onComplete();
             }).subscribe();
