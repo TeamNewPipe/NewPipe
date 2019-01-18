@@ -43,7 +43,7 @@ public class MissionsFragment extends Fragment {
     private MissionAdapter mAdapter;
     private GridLayoutManager mGridManager;
     private LinearLayoutManager mLinearManager;
-    private Context mActivity;
+    private Context mContext;
 
     private DMBinder mBinder;
     private Bundle mBundle;
@@ -56,7 +56,7 @@ public class MissionsFragment extends Fragment {
             mBinder = (DownloadManagerService.DMBinder) binder;
             mBinder.clearDownloadNotifications();
 
-            mAdapter = new MissionAdapter(mActivity, mBinder.getDownloadManager(), mClear, mEmpty);
+            mAdapter = new MissionAdapter(mContext, mBinder.getDownloadManager(), mClear, mEmpty);
             mAdapter.deleterLoad(mBundle, getView());
 
             mBundle = null;
@@ -82,11 +82,11 @@ public class MissionsFragment extends Fragment {
         mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         mLinear = mPrefs.getBoolean("linear", false);
 
-        mActivity = getActivity();
+        //mContext = getActivity().getApplicationContext();
         mBundle = savedInstanceState;
 
         // Bind the service
-        mActivity.bindService(new Intent(mActivity, DownloadManagerService.class), mConnection, Context.BIND_AUTO_CREATE);
+        mContext.bindService(new Intent(mContext, DownloadManagerService.class), mConnection, Context.BIND_AUTO_CREATE);
 
         // Views
         mEmpty = v.findViewById(R.id.list_empty_view);
@@ -117,13 +117,13 @@ public class MissionsFragment extends Fragment {
      * Added in API level 23.
      */
     @Override
-    public void onAttach(Context activity) {
-        super.onAttach(activity);
+    public void onAttach(Context context) {
+        super.onAttach(context);
 
         // Bug: in api< 23 this is never called
         // so mActivity=null
         // so app crashes with null-pointer exception
-        mActivity = activity;
+        mContext = context;
     }
 
     /**
@@ -134,7 +134,7 @@ public class MissionsFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
 
-        mActivity = activity;
+        mContext = activity.getApplicationContext();
     }
 
 
@@ -145,7 +145,7 @@ public class MissionsFragment extends Fragment {
 
         mBinder.removeMissionEventListener(mAdapter.getMessenger());
         mBinder.enableNotifications(true);
-        mActivity.unbindService(mConnection);
+        mContext.unbindService(mConnection);
         mAdapter.deleterDispose(null);
 
         mBinder = null;
@@ -199,7 +199,7 @@ public class MissionsFragment extends Fragment {
 
     @DrawableRes
     private int getDrawableFromAttribute(@AttrRes int ic) {
-        TypedArray styledAttributes = mActivity.obtainStyledAttributes(new int[]{ic});
+        TypedArray styledAttributes = mContext.obtainStyledAttributes(new int[]{ic});
         int resId = styledAttributes.getResourceId(0, -1);
         styledAttributes.recycle();
 
