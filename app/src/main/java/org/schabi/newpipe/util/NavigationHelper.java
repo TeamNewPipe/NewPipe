@@ -11,9 +11,11 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -23,12 +25,15 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.about.AboutActivity;
 import org.schabi.newpipe.download.DownloadActivity;
+import org.schabi.newpipe.download.DownloadDialog;
+import org.schabi.newpipe.download.DownloadSetting;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
@@ -50,9 +55,19 @@ import org.schabi.newpipe.player.PopupVideoPlayer;
 import org.schabi.newpipe.player.PopupVideoPlayerActivity;
 import org.schabi.newpipe.player.VideoPlayer;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
+import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.settings.SettingsActivity;
+import org.schabi.newpipe.util.StreamItemAdapter.StreamSizeWrapper;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import io.reactivex.Completable;
+import io.reactivex.CompletableEmitter;
+import io.reactivex.CompletableOnSubscribe;
+import io.reactivex.functions.Consumer;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class NavigationHelper {
@@ -129,6 +144,125 @@ public class NavigationHelper {
     public static void playOnBackgroundPlayer(final Context context, final PlayQueue queue) {
         Toast.makeText(context, R.string.background_player_playing_toast, Toast.LENGTH_SHORT).show();
         startService(context, getPlayerIntent(context, BackgroundPlayer.class, queue));
+    }
+
+    public static void downloadPlaylist(final PlaylistFragment context, final PlayQueue queue) {
+        List<PlayQueueItem> events = queue.getStreams();
+        Iterator<PlayQueueItem> eventsIterator = events.listIterator();
+        if (eventsIterator.hasNext()) {
+            startDownloadPlaylist(context, eventsIterator, null);
+        }
+    }
+
+    private static void startDownloadPlaylist(final PlaylistFragment activity,
+                                              final Iterator<PlayQueueItem> itemIterator,
+                                              DownloadSetting downloadSetting) {
+        if (downloadSetting != null) {
+            Toast.makeText(activity.getActivity(), "SMART DOWNLOADING", Toast.LENGTH_LONG).show();
+            Completable.create(emitter -> {
+                while(itemIterator.hasNext()) {
+                    PlayQueueItem queueItem = itemIterator.next();
+                    StreamInfo streamInfo = queueItem.getStream().blockingGet();
+                    startDownloadFromDownloadSetting(activity, downloadSetting, streamInfo);
+                }
+                emitter.onComplete();
+            }).subscribe();
+        } else {
+            try {
+                if (itemIterator.hasNext()) {
+                    PlayQueueItem item = itemIterator.next();
+                    item.getStream().subscribe(streamInfo -> startDownloadFromStreamInfo(activity, streamInfo, itemIterator),
+                            activity::onError);
+                }
+            } catch (Exception e) {
+                Toast.makeText(activity.getActivity(),
+                        R.string.could_not_setup_download_menu,
+                        Toast.LENGTH_LONG).show();
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Starts downloading video without invoking the {@link DownloadDialog}
+     * @param activity
+     * @param downloadSetting
+     * @param streamInfo
+     */
+    private static void startDownloadFromDownloadSetting(PlaylistFragment activity, DownloadSetting downloadSetting, StreamInfo streamInfo) {
+        Stream finalStream = null;
+
+        List<VideoStream> sortedVideoStream = ListHelper.getSortedStreamVideosList(activity.getActivity(),
+                streamInfo.getVideoStreams(), streamInfo.getVideoOnlyStreams(), false);
+
+        switch (downloadSetting.getSetting()) {
+            case DownloadSetting.SETTING_AUDIO:
+                for(AudioStream stream : streamInfo.getAudioStreams()) {
+                    if (stream.getFormat().getName().equals(downloadSetting.getStream().getFormat().getName())) {
+                        finalStream = stream;
+                    }
+                }
+                if (finalStream == null) {
+                    finalStream = streamInfo.getAudioStreams().get(ListHelper.getDefaultAudioFormat(activity.getContext(),
+                            streamInfo.getAudioStreams()));
+                }
+                break;
+            case DownloadSetting.SETTING_VIDEO:
+                for(VideoStream stream : sortedVideoStream) {
+                    if (stream.getFormat().getName().equals(
+                            downloadSetting.getStream().getFormat().getName())) {
+                        finalStream = stream;
+                    }
+                }
+                if (finalStream == null) {
+                    finalStream = sortedVideoStream.get(ListHelper.getDefaultResolutionIndex(activity.getContext(),
+                            sortedVideoStream));
+                }
+                break;
+            case DownloadSetting.SETTING_SUBTITLES:
+                for(SubtitlesStream stream : streamInfo.getSubtitles()) {
+                    if (stream.getFormat().getName().equals(downloadSetting.getStream().getFormat().getName())) {
+                        finalStream = stream;
+                    }
+                }
+                if (finalStream == null) {
+                    finalStream = streamInfo.getSubtitles().get(activity.getDefaultSubtitleStreamIndex(streamInfo.getSubtitles()));
+                }
+                break;
+            default:
+                return;
+        }
+
+        StreamItemAdapter.StreamSizeWrapper<VideoStream> wrappedVideoStreams = new StreamSizeWrapper<>(sortedVideoStream, activity.getContext());
+        StreamItemAdapter.StreamSizeWrapper<AudioStream> wrappedAudioStreams = new StreamSizeWrapper<>(streamInfo.getAudioStreams(), activity.getContext());
+        StreamItemAdapter<VideoStream, AudioStream> videoStreamsAdapter = new StreamItemAdapter<>(activity.getContext(),
+                wrappedVideoStreams, activity.getSecondaryStream(wrappedVideoStreams, wrappedAudioStreams));
+        activity.downloadSelected(activity.getContext(), streamInfo.getUrl(), finalStream,
+                downloadSetting.getLocation(), streamInfo, "",
+                downloadSetting.getSetting().charAt(0), downloadSetting.getThreadCount(),
+                videoStreamsAdapter, wrappedVideoStreams
+        );
+    }
+
+    /**
+     * Invokes the {@link DownloadDialog} for each play queue item
+     * @param activity
+     * @param streamInfo
+     * @param itemIterator
+     */
+    private static void startDownloadFromStreamInfo(PlaylistFragment activity, StreamInfo streamInfo, Iterator<PlayQueueItem> itemIterator) {
+        DownloadDialog downloadDialog = DownloadDialog.newInstance(streamInfo, smartDownload -> {
+            if (itemIterator.hasNext())
+                startDownloadPlaylist(activity, itemIterator, smartDownload);
+        });
+        List<VideoStream> sortedVideoStream = ListHelper.getSortedStreamVideosList(activity.getActivity(),
+                streamInfo.getVideoStreams(), streamInfo.getVideoOnlyStreams(), false);
+        downloadDialog.setVideoStreams(sortedVideoStream);
+        downloadDialog.setAudioStreams(streamInfo.getAudioStreams());
+        downloadDialog.setSelectedVideoStream(ListHelper.getDefaultResolutionIndex(activity.getActivity(), streamInfo.getVideoStreams()));
+        downloadDialog.setSubtitleStreams(streamInfo.getSubtitles());
+
+        downloadDialog.show(activity.getActivity().getSupportFragmentManager(), "downloadDialog");
     }
 
     public static void enqueueOnPopupPlayer(final Context context, final PlayQueue queue) {
@@ -473,7 +607,7 @@ public class NavigationHelper {
             case STREAM:
                 rIntent.putExtra(VideoDetailFragment.AUTO_PLAY,
                         PreferenceManager.getDefaultSharedPreferences(context)
-                        .getBoolean(context.getString(R.string.autoplay_through_intent_key), false));
+                                .getBoolean(context.getString(R.string.autoplay_through_intent_key), false));
                 break;
         }
 

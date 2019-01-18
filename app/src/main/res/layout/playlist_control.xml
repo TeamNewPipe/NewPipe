@@ -56,6 +56,32 @@
             android:textColor="?attr/colorAccent"/>
     </LinearLayout>
 
+    <View android:id="@+id/anchorMiddle"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:clickable="false"
+        android:layout_marginBottom="@dimen/playlist_ctrl_seperator_margin"
+        android:layout_marginTop="@dimen/playlist_ctrl_seperator_margin"
+        android:background="?attr/colorAccent"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground"
+        android:id="@+id/playlist_ctrl_download_all_button">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@string/download"
+            android:textSize="@dimen/channel_rss_title_size"
+            android:textColor="?attr/colorAccent"/>
+    </LinearLayout>
+
     <View android:id="@+id/anchorRight"
         android:layout_width="1dp"
         android:layout_height="match_parent"
