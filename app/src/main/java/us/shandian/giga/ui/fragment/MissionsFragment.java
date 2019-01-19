@@ -16,6 +16,7 @@ import android.support.annotation.DrawableRes;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -198,12 +199,20 @@ public class MissionsFragment extends Fragment {
     }
 
     @DrawableRes
-    private int getDrawableFromAttribute(@AttrRes int ic) {
-        TypedArray styledAttributes = mContext.obtainStyledAttributes(new int[]{ic});
-        int resId = styledAttributes.getResourceId(0, -1);
+    private int getDrawableFromAttribute(@AttrRes int attr) {
+        TypedArray styledAttributes = mContext.getTheme().obtainStyledAttributes(new int[]{attr});
+        int resId = styledAttributes.getResourceId(0, 0);
         styledAttributes.recycle();
 
-        return resId;
+        if (resId != 0) {
+            return resId;
+        } else {
+            // work-around
+            styledAttributes = mContext.obtainStyledAttributes(new int[]{attr});
+            resId = styledAttributes.getResourceId(0, 0);
+            styledAttributes.recycle();
+            return resId;
+        }
     }
 
     @Override
