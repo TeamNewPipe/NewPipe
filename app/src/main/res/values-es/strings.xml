@@ -112,7 +112,7 @@
     <string name="finish">OK</string>
 
     <string name="msg_name">Nombre del archivo</string>
-    <string name="msg_threads">Hilo</string>
+    <string name="msg_threads">Hilos</string>
     <string name="msg_error">Error</string>
     <string name="msg_server_unsupported">Servidor no soportado</string>
     <string name="msg_exists">El archivo ya existe</string>
@@ -197,8 +197,8 @@ abrir en modo popup</string>
 <string name="subscribe_button_title">Suscribirse</string>
     <string name="subscribed_button_title">Suscrito</string>
     <string name="channel_unsubscribed">Canal no suscrito</string>
-    <string name="subscription_change_failed">No se puede cambiar la suscripción</string>
-    <string name="subscription_update_failed">No se puede actualizar la suscripción</string>
+    <string name="subscription_change_failed">No se pudo cambiar la suscripción</string>
+    <string name="subscription_update_failed">No se pudo actualizar la suscripción</string>
 
     <string name="tab_main">Principal</string>
     <string name="tab_subscriptions">Suscripciones</string>
@@ -468,11 +468,11 @@ abrir en modo popup</string>
 
     <string name="clear_views_history_title">Borrar historial de reproducciones</string>
     <string name="clear_views_history_summary">Elimina el historial de las transmisiones reproducidas</string>
-    <string name="delete_view_history_alert">Elimina todo el historial de reproducciones.</string>
+    <string name="delete_view_history_alert">¿Eliminar todo el historial de reproducciones\?</string>
     <string name="view_history_deleted">Historial de reproducciones eliminado.</string>
     <string name="clear_search_history_title">Borrar historial de búsqueda</string>
     <string name="clear_search_history_summary">Elimina el historial de palabras clave de búsqueda</string>
-    <string name="delete_search_history_alert">Elimina todo el historial de búsqueda.</string>
+    <string name="delete_search_history_alert">¿Eliminar todo el historial de búsqueda\?</string>
     <string name="search_history_deleted">Historial de búsquedas eliminado.</string>
     <string name="one_item_deleted">1 elemento eliminado.</string>
 
