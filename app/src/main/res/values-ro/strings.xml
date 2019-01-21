@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="view_count_text">%1$s vizionări</string>
     <string name="upload_date_text">Încărcat pe %1$s</string>
@@ -10,7 +10,7 @@
     <string name="download">Descărcare</string>
     <string name="search">Căutare</string>
     <string name="settings">Setări</string>
-    <string name="did_you_mean">V-ați referit la: %1$s ?</string>
+    <string name="did_you_mean">V-ați referit la: %1$s\?</string>
     <string name="share_dialog_title">Partajează cu</string>
     <string name="choose_browser">Alegeți browser-ul</string>
     <string name="screen_rotation">rotație</string>
@@ -188,7 +188,7 @@ pentru a deschide în mod pop-up</string>
 
     <string name="enable_search_history_title">Istoric de căutări</string>
     <string name="enable_search_history_summary">Stochează local căutările</string>
-    <string name="enable_watch_history_title">Istoric</string>
+    <string name="enable_watch_history_title">Istoric și cache</string>
     <string name="enable_watch_history_summary">Reține videoclipurile vizionate</string>
     <string name="resume_on_audio_focus_gain_title">Reluați la refocalizare</string>
     <string name="resume_on_audio_focus_gain_summary">Continuă redarea după întreruperi (ex. după apeluri)</string>
@@ -391,4 +391,6 @@ pentru a deschide în mod pop-up</string>
     <string name="import_file_title">Import fișier</string>
     <string name="playback_speed_control">Controlul vitezei de redare</string>
     <string name="playback_default">implicit</string>
+    <string name="channels">Canale</string>
+    <string name="users">Utilizatori</string>
 </resources>
