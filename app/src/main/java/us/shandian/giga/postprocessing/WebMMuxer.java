@@ -15,9 +15,7 @@ import us.shandian.giga.get.DownloadMission;
 class WebMMuxer extends Postprocessing {
 
     WebMMuxer(DownloadMission mission) {
-        super(mission);
-        recommendedReserve = 2048 * 1024;// 2 MiB
-        worksOnSameFile = true;
+        super(mission, 2048 * 1024/* 2 MiB */, true);
     }
 
     @Override

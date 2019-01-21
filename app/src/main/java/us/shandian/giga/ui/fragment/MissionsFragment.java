@@ -7,16 +7,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
-import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
-import android.support.annotation.AttrRes;
-import android.support.annotation.DrawableRes;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.util.ThemeHelper;
 
 import us.shandian.giga.service.DownloadManager;
 import us.shandian.giga.service.DownloadManagerService;
@@ -192,26 +189,17 @@ public class MissionsFragment extends Fragment {
         mList.setAdapter(mAdapter);
 
         if (mSwitch != null) {
-            mSwitch.setIcon(getDrawableFromAttribute(mLinear ? R.attr.ic_grid : R.attr.ic_list));
+            boolean isLight = ThemeHelper.isLightThemeSelected(mContext);
+            int icon;
+
+            if (mLinear)
+                icon = isLight ? R.drawable.ic_list_black_24dp : R.drawable.ic_list_white_24dp;
+            else
+                icon = isLight ? R.drawable.ic_grid_black_24dp : R.drawable.ic_grid_white_24dp;
+
+            mSwitch.setIcon(icon);
             mSwitch.setTitle(mLinear ? R.string.grid : R.string.list);
             mPrefs.edit().putBoolean("linear", mLinear).apply();
-        }
-    }
-
-    @DrawableRes
-    private int getDrawableFromAttribute(@AttrRes int attr) {
-        TypedArray styledAttributes = mContext.getTheme().obtainStyledAttributes(new int[]{attr});
-        int resId = styledAttributes.getResourceId(0, 0);
-        styledAttributes.recycle();
-
-        if (resId != 0) {
-            return resId;
-        } else {
-            // work-around
-            styledAttributes = mContext.obtainStyledAttributes(new int[]{attr});
-            resId = styledAttributes.getResourceId(0, 0);
-            styledAttributes.recycle();
-            return resId;
         }
     }
 
