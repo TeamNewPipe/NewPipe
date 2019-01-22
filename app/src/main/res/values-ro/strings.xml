@@ -40,17 +40,17 @@
     <string name="light_theme_title">Luminos</string>
 
     <string name="download_dialog_title">Descărcați</string>
-    <string name="next_video_title">Următorul videoclip</string>
+    <string name="next_video_title">Următorul</string>
     <string name="show_next_and_similar_title">Arată videoclipurile care urmează</string>
     <string name="url_not_supported_toast">URL nesuportat</string>
     <string name="search_language_title">Limba dorită a conținutului</string>
-    <string name="settings_category_video_audio_title">Video &amp; Audio</string>
+    <string name="settings_category_video_audio_title">Video și audio</string>
     <string name="settings_category_appearance_title">Aspect</string>
     <string name="settings_category_other_title">Altele</string>
     <string name="background_player_playing_toast">Redare în fundal</string>
     <string name="play_btn_text">Redați</string>
     <string name="content">Conținut</string>
-    <string name="show_age_restricted_content_title">Arată conținutul restricționat în funcție de vârstă</string>
+    <string name="show_age_restricted_content_title">Conținut restricționat în funcție de vârstă</string>
     <string name="video_is_age_restricted">Videoclipul este restricționat în funcție de vârstă. Permiterea vizionării este posibilă din Setări.</string>
 
     <string name="general_error">Eroare</string>
@@ -75,7 +75,7 @@
     <string name="err_dir_create">Nu s-a putut crea directorul de descărcare \'%1$s\'</string>
     <string name="main_bg_subtitle">Apăsați căutare pentru a începe</string>
     <string name="autoplay_by_calling_app_title">Redare automată</string>
-    <string name="autoplay_by_calling_app_summary">Redă automat un videoclip atunci când NewPipe este deschis din altă aplicație</string>
+    <string name="autoplay_by_calling_app_summary">Redă un videoclip atunci când NewPipe este deschis din altă aplicație</string>
     <string name="duration_live">În direct</string>
     <string name="downloads">Descărcări</string>
     <string name="downloads_title">Descărcări</string>
@@ -194,7 +194,7 @@ pentru a deschide în mod pop-up</string>
     <string name="resume_on_audio_focus_gain_summary">Continuă redarea după întreruperi (ex. după apeluri)</string>
     <string name="settings_category_player_title">Player</string>
     <string name="settings_category_player_behavior_title">Comportament</string>
-    <string name="settings_category_history_title">Istoric &amp; Cache</string>
+    <string name="settings_category_history_title">Istoric și cache</string>
     <string name="playlist">Playlist</string>
     <string name="undo">Anulează</string>
 
@@ -276,8 +276,8 @@ pentru a deschide în mod pop-up</string>
 <string name="service_title">Serviciu</string>
     <string name="background_player_append">Adăugat în player de fundal</string>
     <string name="popup_playing_append">Adăugat în player pop-up</string>
-    <string name="no_player_found_toast">Niciun player pentru streaming găsit. (Totuși, puteți instala VLC)</string>
-    <string name="controls_download_desc">Descărcați fișierul de streaming.</string>
+    <string name="no_player_found_toast">Niciun player pentru streaming găsit. (Totuși, puteți instala VLC).</string>
+    <string name="controls_download_desc">Descărcați fișierul de streaming</string>
     <string name="show_info">Arată informații</string>
 
     <string name="tab_bookmarks">Marcaje</string>
@@ -288,13 +288,13 @@ pentru a deschide în mod pop-up</string>
     <string name="use_inexact_seek_summary">Derularea inexactă permite player-ului să îl poziţionezi mai rapid dar cu o precizie mai redusă.</string>
     <string name="download_thumbnail_title">Încarcă miniaturi</string>
     <string name="download_thumbnail_summary">Dezactivați pentru a opri încărcarea și salvarea tuturor thumbnail-urilor, pentru a economisi consumul de date și de memorie. Schimbarea acestei opțiuni va curăța tot cache-ul din memorie și de pe disc.</string>
-    <string name="thumbnail_cache_wipe_complete_notice"/>
+    <string name="thumbnail_cache_wipe_complete_notice">Cache-ul de imagini a fost curățat</string>
     <string name="metadata_cache_wipe_title">Șterge cache-ul pentru metadata</string>
     <string name="metadata_cache_wipe_summary">Șterge cache-ul pentru datele de pagini web</string>
     <string name="metadata_cache_wipe_complete_notice">Cache pentru metadata șters</string>
     <string name="auto_queue_title">Adaugă următorul stream în coadă automat</string>
     <string name="auto_queue_summary">Adaugă automat un stream asociat când redarea începe pe ultimul stream într-o coadă non-repetitivă.</string>
-    <string name="show_hold_to_append_title">Arată sfatul Țineți apăsat pentru a adăuga</string>
+    <string name="show_hold_to_append_title">Arată sfatul „Țineți apăsat pentru a adăuga”</string>
     <string name="show_hold_to_append_summary">Arată sfatul când butonul de background sau de popup este apăsat în pagina de informații a videoclipului</string>
     <string name="default_content_country_title">Țara implicită pentru conținut</string>
     <string name="settings_category_debug_title">Debug</string>
@@ -393,4 +393,6 @@ pentru a deschide în mod pop-up</string>
     <string name="playback_default">implicit</string>
     <string name="channels">Canale</string>
     <string name="users">Utilizatori</string>
+    <string name="playlists">Playlist-uri</string>
+    <string name="tracks">Titluri</string>
 </resources>
