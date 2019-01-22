@@ -31,6 +31,7 @@ import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
+import android.support.v7.graphics.Palette;
 import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -297,13 +298,22 @@ public final class BackgroundPlayer extends Service {
 
         private void updateNotificationThumbnail() {
             if (basePlayerImpl == null) return;
+            // Generate palette
+            Palette coverColor = Palette.from(basePlayerImpl.getThumbnail()).generate();
+            Palette.Swatch swatch = coverColor.getVibrantSwatch();
             if (notRemoteView != null) {
                 notRemoteView.setImageViewBitmap(R.id.notificationCover,
                         basePlayerImpl.getThumbnail());
+                if (swatch != null) {
+                    notRemoteView.setInt(R.id.notificationContent, "setBackgroundColor", swatch.getRgb());
+                }
             }
             if (bigNotRemoteView != null) {
                 bigNotRemoteView.setImageViewBitmap(R.id.notificationCover,
                         basePlayerImpl.getThumbnail());
+                if (swatch != null) {
+                    bigNotRemoteView.setInt(R.id.notificationContent, "setBackgroundColor", swatch.getRgb());
+                }
             }
         }
 

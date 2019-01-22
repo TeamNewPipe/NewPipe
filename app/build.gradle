@@ -66,6 +66,7 @@ dependencies {
     implementation "com.android.support:preference-v14:${supportLibVersion}"
     implementation "com.android.support:cardview-v7:${supportLibVersion}"
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.android.support:palette-v7:28.0.0'
 
     implementation 'ch.acra:acra:4.9.2' //4.11
 
