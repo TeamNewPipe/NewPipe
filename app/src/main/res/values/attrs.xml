@@ -38,6 +38,10 @@
     <attr name="ic_add" format="reference"/>
     <attr name="ic_restore_defaults" format="reference"/>
     <attr name="ic_blank_page" format="reference"/>
+    <attr name="ic_list" format="reference"/>
+    <attr name="ic_grid" format="reference"/>
+    <attr name="ic_delete" format="reference"/>
+    <attr name="ic_settings_update" format="reference"/>
 
     <!-- Can't refer to colors directly in drawable's xml-->
     <attr name="toolbar_shadow_drawable" format="reference"/>

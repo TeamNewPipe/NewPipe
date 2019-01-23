@@ -119,7 +119,6 @@
         <activity
             android:name=".ReCaptchaActivity"
             android:label="@string/reCaptchaActivity"/>
-        <activity android:name=".download.ExtSDDownloadFailedActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

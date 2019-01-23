@@ -39,7 +39,7 @@ public class DownloadMission extends Mission {
     public static final int ERROR_SSL_EXCEPTION = 1004;
     public static final int ERROR_UNKNOWN_HOST = 1005;
     public static final int ERROR_CONNECT_HOST = 1006;
-    public static final int ERROR_POSTPROCESSING_FAILED = 1007;
+    public static final int ERROR_POSTPROCESSING = 1007;
     public static final int ERROR_HTTP_NO_CONTENT = 204;
     public static final int ERROR_HTTP_UNSUPPORTED_RANGE = 206;
 
@@ -79,9 +79,12 @@ public class DownloadMission extends Mission {
     public String postprocessingName;
 
     /**
-     * Indicates if the post-processing algorithm is actually running, used to detect corrupt downloads
+     * Indicates if the post-processing state:
+     * 0: ready
+     * 1: running
+     * 2: completed
      */
-    public boolean postprocessingRunning;
+    public int postprocessingState;
 
     /**
      * Indicate if the post-processing algorithm works on the same file
@@ -356,7 +359,7 @@ public class DownloadMission extends Mission {
         finishCount++;
 
         if (finishCount == currentThreadCount) {
-            if (errCode > ERROR_NOTHING) return;
+            if (errCode != ERROR_NOTHING) return;
 
             if (DEBUG) {
                 Log.d(TAG, "onFinish" + (current + 1) + "/" + urls.length);
@@ -382,19 +385,26 @@ public class DownloadMission extends Mission {
         }
     }
 
-    private void notifyPostProcessing(boolean processing) {
+    private void notifyPostProcessing(int state) {
         if (DEBUG) {
-            Log.d(TAG, (processing ? "enter" : "exit") + " postprocessing on " + location + File.separator + name);
+            String action;
+            switch (state) {
+                case 1:
+                    action = "Running";
+                    break;
+                case 2:
+                    action = "Completed";
+                    break;
+                default:
+                    action = "Failed";
+            }
+
+            Log.d(TAG, action + " postprocessing on " + location + File.separator + name);
         }
 
         synchronized (blockState) {
-            if (!processing) {
-                postprocessingName = null;
-                postprocessingArgs = null;
-            }
-
             // don't return without fully write the current state
-            postprocessingRunning = processing;
+            postprocessingState = state;
             Utility.writeToFile(metadata, DownloadMission.this);
         }
     }
@@ -403,15 +413,29 @@ public class DownloadMission extends Mission {
      * Start downloading with multiple threads.
      */
     public void start() {
-        if (running || current >= urls.length) return;
+        if (running || isFinished()) return;
 
         // ensure that the previous state is completely paused.
         joinForThread(init);
-        for (Thread thread : threads) joinForThread(thread);
+        if (threads != null)
+            for (Thread thread : threads) joinForThread(thread);
 
         enqueued = false;
         running = true;
         errCode = ERROR_NOTHING;
+
+        if (current >= urls.length && postprocessingName != null) {
+            runAsync(1, () -> {
+                if (doPostprocessing()) {
+                    running = false;
+                    deleteThisFromFile();
+
+                    notify(DownloadManagerService.MESSAGE_FINISHED);
+                }
+            });
+
+            return;
+        }
 
         if (blocks < 0) {
             initializer();
@@ -420,7 +444,7 @@ public class DownloadMission extends Mission {
 
         init = null;
 
-        if (threads.length < 1) {
+        if (threads == null || threads.length < 1) {
             threads = new Thread[currentThreadCount];
         }
 
@@ -444,18 +468,18 @@ public class DownloadMission extends Mission {
     public synchronized void pause() {
         if (!running) return;
 
-        running = false;
-        recovered = true;
-        enqueued = false;
-
-        if (postprocessingRunning) {
+        if (isPsRunning()) {
             if (DEBUG) {
                 Log.w(TAG, "pause during post-processing is not applicable.");
             }
             return;
         }
 
-        if (init != null && init.isAlive()) {
+        running = false;
+        recovered = true;
+        enqueued = false;
+
+        if (init != null && Thread.currentThread() != init && init.isAlive()) {
             init.interrupt();
             synchronized (blockState) {
                 resetState();
@@ -532,13 +556,36 @@ public class DownloadMission extends Mission {
         mWritingToFile = false;
     }
 
+    /**
+     * Indicates if the download if fully finished
+     *
+     * @return true, otherwise, false
+     */
     public boolean isFinished() {
-        return current >= urls.length && postprocessingName == null;
+        return current >= urls.length && (postprocessingName == null || postprocessingState == 2);
+    }
+
+    /**
+     * Indicates if the download file is corrupt due a failed post-processing
+     *
+     * @return {@code true} if this mission is unrecoverable
+     */
+    public boolean isPsFailed() {
+        return postprocessingName != null && errCode == DownloadMission.ERROR_POSTPROCESSING && postprocessingThis;
+    }
+
+    /**
+     * Indicates if a post-processing algorithm is running
+     *
+     * @return true, otherwise, false
+     */
+    public boolean isPsRunning() {
+        return postprocessingName != null && postprocessingState == 1;
     }
 
     public long getLength() {
         long calculated;
-        if (postprocessingRunning) {
+        if (postprocessingState == 1) {
             calculated = length;
         } else {
             calculated = offsets[current < offsets.length ? current : (offsets.length - 1)] + length;
@@ -550,16 +597,19 @@ public class DownloadMission extends Mission {
     }
 
     private boolean doPostprocessing() {
-        if (postprocessingName == null) return true;
+        if (postprocessingName == null || postprocessingState == 2) return true;
+
+        notifyPostProcessing(1);
+        notifyProgress(0);
+
+        Thread.currentThread().setName("[" + TAG + "]  post-processing = " + postprocessingName + "  filename = " + name);
+
+        Exception exception = null;
 
         try {
-            notifyPostProcessing(true);
-            notifyProgress(0);
-
-            Thread.currentThread().setName("[" + TAG + "]  post-processing = " + postprocessingName + "  filename = " + name);
-
-            Postprocessing algorithm = Postprocessing.getAlgorithm(postprocessingName, this);
-            algorithm.run();
+            Postprocessing
+                    .getAlgorithm(postprocessingName, this)
+                    .run();
         } catch (Exception err) {
             StringBuilder args = new StringBuilder("  ");
             if (postprocessingArgs != null) {
@@ -571,15 +621,21 @@ public class DownloadMission extends Mission {
             }
             Log.e(TAG, String.format("Post-processing failed. algorithm = %s  args = [%s]", postprocessingName, args), err);
 
-            notifyError(ERROR_POSTPROCESSING_FAILED, err);
-            return false;
+            if (errCode == ERROR_NOTHING) errCode = ERROR_POSTPROCESSING;
+
+            exception = err;
         } finally {
-            notifyPostProcessing(false);
+            notifyPostProcessing(errCode == ERROR_NOTHING ? 2 : 0);
         }
 
-        if (errCode != ERROR_NOTHING) notify(DownloadManagerService.MESSAGE_ERROR);
+        if (errCode != ERROR_NOTHING) {
+            if (exception == null) exception = errObject;
+            notifyError(ERROR_POSTPROCESSING, exception);
 
-        return errCode == ERROR_NOTHING;
+            return false;
+        }
+
+        return true;
     }
 
     private boolean deleteThisFromFile() {

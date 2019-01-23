@@ -22,7 +22,6 @@
         <item name="info">@drawable/ic_info_outline_black_24dp</item>
         <item name="bug">@drawable/ic_bug_report_black_24dp</item>
         <item name="audio">@drawable/ic_headset_black_24dp</item>
-        <item name="clear_history">@drawable/ic_delete_sweep_white_24dp</item>
         <item name="download">@drawable/ic_file_download_black_24dp</item>
         <item name="share">@drawable/ic_share_black_24dp</item>
         <item name="cast">@drawable/ic_cast_black_24dp</item>
@@ -54,6 +53,10 @@
         <item name="ic_add">@drawable/ic_add_black_24dp</item>
         <item name="ic_restore_defaults">@drawable/ic_settings_backup_restore_black_24dp</item>
         <item name="ic_blank_page">@drawable/ic_blank_page_black_24dp</item>
+        <item name="ic_list">@drawable/ic_list_black_24dp</item>
+        <item name="ic_grid">@drawable/ic_grid_black_24dp</item>
+        <item name="ic_delete">@drawable/ic_delete_black_24dp</item>
+        <item name="ic_settings_update">@drawable/ic_settings_update_black</item>
 
         <item name="separator_color">@color/light_separator_color</item>
         <item name="contrast_background_color">@color/light_contrast_background_color</item>
@@ -82,7 +85,6 @@
         <item name="audio">@drawable/ic_headset_white_24dp</item>
         <item name="info">@drawable/ic_info_outline_white_24dp</item>
         <item name="bug">@drawable/ic_bug_report_white_24dp</item>
-        <item name="clear_history">@drawable/ic_delete_sweep_black_24dp</item>
         <item name="download">@drawable/ic_file_download_white_24dp</item>
         <item name="share">@drawable/ic_share_white_24dp</item>
         <item name="cast">@drawable/ic_cast_white_24dp</item>
@@ -114,6 +116,10 @@
         <item name="ic_add">@drawable/ic_add_white_24dp</item>
         <item name="ic_restore_defaults">@drawable/ic_settings_backup_restore_white_24dp</item>
         <item name="ic_blank_page">@drawable/ic_blank_page_white_24dp</item>
+        <item name="ic_list">@drawable/ic_list_white_24dp</item>
+        <item name="ic_grid">@drawable/ic_grid_white_24dp</item>
+        <item name="ic_delete">@drawable/ic_delete_white_24dp</item>
+        <item name="ic_settings_update">@drawable/ic_settings_update_white</item>
 
         <item name="separator_color">@color/dark_separator_color</item>
         <item name="contrast_background_color">@color/dark_contrast_background_color</item>
