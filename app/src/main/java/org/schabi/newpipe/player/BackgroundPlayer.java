@@ -34,6 +34,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v7.graphics.Palette;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.RemoteViews;
 
 import com.google.android.exoplayer2.PlaybackParameters;
@@ -305,14 +306,16 @@ public final class BackgroundPlayer extends Service {
                 notRemoteView.setImageViewBitmap(R.id.notificationCover,
                         basePlayerImpl.getThumbnail());
                 if (swatch != null) {
-                    notRemoteView.setInt(R.id.notificationContent, "setBackgroundColor", swatch.getRgb());
+                    notRemoteView.setInt(R.id.notificationContent,
+                            "setBackgroundColor", swatch.getRgb());
                 }
             }
             if (bigNotRemoteView != null) {
                 bigNotRemoteView.setImageViewBitmap(R.id.notificationCover,
                         basePlayerImpl.getThumbnail());
                 if (swatch != null) {
-                    bigNotRemoteView.setInt(R.id.notificationContent, "setBackgroundColor", swatch.getRgb());
+                    bigNotRemoteView.setInt(R.id.notificationContent,
+                            "setBackgroundColor", swatch.getRgb());
                 }
             }
         }
