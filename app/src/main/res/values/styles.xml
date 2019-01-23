@@ -56,6 +56,7 @@
         <item name="ic_list">@drawable/ic_list_black_24dp</item>
         <item name="ic_grid">@drawable/ic_grid_black_24dp</item>
         <item name="ic_delete">@drawable/ic_delete_black_24dp</item>
+        <item name="ic_settings_update">@drawable/ic_settings_update_black</item>
 
         <item name="separator_color">@color/light_separator_color</item>
         <item name="contrast_background_color">@color/light_contrast_background_color</item>
@@ -118,6 +119,7 @@
         <item name="ic_list">@drawable/ic_list_white_24dp</item>
         <item name="ic_grid">@drawable/ic_grid_white_24dp</item>
         <item name="ic_delete">@drawable/ic_delete_white_24dp</item>
+        <item name="ic_settings_update">@drawable/ic_settings_update_white</item>
 
         <item name="separator_color">@color/dark_separator_color</item>
         <item name="contrast_background_color">@color/dark_contrast_background_color</item>
