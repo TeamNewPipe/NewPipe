@@ -301,7 +301,7 @@ public final class BackgroundPlayer extends Service {
             if (basePlayerImpl == null) return;
             // Generate palette
             Palette coverColor = Palette.from(basePlayerImpl.getThumbnail()).generate();
-            Palette.Swatch swatch = coverColor.getVibrantSwatch();
+            Palette.Swatch swatch = coverColor.getMutedSwatch();
             if (notRemoteView != null) {
                 notRemoteView.setImageViewBitmap(R.id.notificationCover,
                         basePlayerImpl.getThumbnail());
