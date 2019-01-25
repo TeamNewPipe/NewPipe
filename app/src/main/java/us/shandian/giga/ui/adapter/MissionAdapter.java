@@ -159,7 +159,7 @@ public class MissionAdapter extends Adapter<ViewHolder> {
                 str = R.string.missions_header_pending;
             } else {
                 str = R.string.missions_header_finished;
-                mClear.setVisible(true);
+                if (mClear != null) mClear.setVisible(true);
             }
 
             ((ViewHolderHeader) view).header.setText(str);
@@ -437,7 +437,6 @@ public class MissionAdapter extends Adapter<ViewHolder> {
     public void clearFinishedDownloads() {
         mDownloadManager.forgetFinishedDownloads();
         applyChanges();
-        mClear.setVisible(false);
     }
 
     private boolean handlePopupItem(@NonNull ViewHolderItem h, @NonNull MenuItem option) {
@@ -507,7 +506,7 @@ public class MissionAdapter extends Adapter<ViewHolder> {
         mIterator.end();
 
         checkEmptyMessageVisibility();
-        mClear.setVisible(mIterator.hasFinishedMissions());
+        if (mClear != null) mClear.setVisible(mIterator.hasFinishedMissions());
     }
 
     public void forceUpdate() {
