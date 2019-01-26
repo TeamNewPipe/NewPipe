@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="view_count_text">%1$s Aufrufe</string>
     <string name="upload_date_text">Veröffentlicht am %1$s</string>
@@ -14,9 +14,9 @@
     <string name="share_dialog_title">Teilen mit</string>
     <string name="choose_browser">Browser auswählen</string>
     <string name="screen_rotation">Drehen des Geräts</string>
-    <string name="download_path_title">Download-Verzeichnis für Videos</string>
+    <string name="download_path_title">Downloadverzeichnis für Videos</string>
     <string name="download_path_summary">Verzeichnis für heruntergeladene Videos</string>
-    <string name="download_path_dialog_title">Download-Verzeichnis für Videos angeben</string>
+    <string name="download_path_dialog_title">Downloadverzeichnis für Videos angeben</string>
     <string name="default_resolution_title">Standardauflösung</string>
     <string name="play_with_kodi_title">Mit Kodi abspielen</string>
     <string name="kore_not_found">Kore App wurde nicht gefunden. Kore jetzt installieren?</string>
@@ -43,12 +43,12 @@
     <string name="play_btn_text">Abspielen</string>
 
     <string name="use_tor_title">Benutze Tor</string>
-    <string name="use_tor_summary">(Experimentell) Erzwinge das Herunterladen durch Tor für verbesserte Privatsphäre (Videostream noch nicht unterstützt).</string>
+    <string name="use_tor_summary">(Experimentell) Erzwinge das Herunterladen über Tor für verbesserte Privatsphäre (Videostream werden noch nicht unterstützt).</string>
     <string name="network_error">Netzwerkfehler</string>
 
-    <string name="download_path_audio_title">Download-Ordner für Audiodateien</string>
+    <string name="download_path_audio_title">Downloadverzeichnis für Audiodateien</string>
     <string name="download_path_audio_summary">Heruntergeladene Audiodateien werden hier gespeichert</string>
-    <string name="download_path_audio_dialog_title">Download-Verzeichnis für Audiodateien angeben</string>
+    <string name="download_path_audio_dialog_title">Downloadverzeichnis für Audiodateien angeben</string>
 
     <string name="theme_title">Design</string>
     <string name="dark_theme_title">Dunkel</string>
@@ -56,8 +56,8 @@
 
     <string name="settings_category_appearance_title">Aussehen</string>
     <string name="settings_category_other_title">Andere</string>
-    <string name="err_dir_create">Kann Download-Verzeichnis \'%1$s\' nicht anlegen</string>
-    <string name="info_dir_created">Download-Verzeichnis \'%1$s\' erstellt</string>
+    <string name="err_dir_create">Kann Downloadverzeichnis \'%1$s\' nicht anlegen</string>
+    <string name="info_dir_created">Downloadverzeichnis \'%1$s\' erstellt</string>
     <string name="general_error">Fehler</string>
     <string name="could_not_load_thumbnails">Konnte nicht alle Vorschaubilder laden</string>
     <string name="youtube_signature_decryption_error">Konnte Video-URL-Signatur nicht entschlüsseln</string>
@@ -88,7 +88,7 @@
     <string name="sorry_string">Entschuldigung. Dies hätte nicht passieren sollen.</string>
     <string name="error_snackbar_message">Entschuldigung. Es sind einige Fehler aufgetreten.</string>
     <string name="your_comment">Dein Kommentar (auf englisch):</string>
-    <string name="could_not_get_stream">Konnte keinen Stream holen</string>
+    <string name="could_not_get_stream">Konnte keinen Stream abrufen</string>
     <string name="autoplay_by_calling_app_title">Autoplay</string>
     <string name="autoplay_by_calling_app_summary">Spiele ein Video ab, wenn NewPipe von einer anderen App aufgerufen wurde</string>
     <string name="report_error">Einen Fehler melden</string>
@@ -115,7 +115,7 @@
     <string name="msg_exists">Datei existiert bereits</string>
     <string name="msg_wait">Bitte warten…</string>
     <string name="msg_copied">In Zwischenablage kopiert</string>
-    <string name="no_available_dir">Bitte wähle ein verfügbares Download-Verzeichnis</string>
+    <string name="no_available_dir">Bitte wähle ein verfügbares Downloadverzeichnis</string>
 
     <string name="start">Starten</string>
     <string name="pause">Pause</string>
@@ -171,7 +171,7 @@
     <string name="settings_category_popup_title">Pop-up</string>
     <string name="filter">Filter</string>
     <string name="refresh">Aktualisieren</string>
-    <string name="clear">Leeren</string>
+    <string name="clear">Löschen</string>
     <string name="popup_resizing_indicator_title">Größenänderung</string>
     <string name="best_resolution">Beste Auflösung</string>
 
@@ -199,7 +199,7 @@
     <string name="charset_letters_and_digits">Buchstaben und Zahlen</string>
     <string name="subscribe_button_title">Abonnieren</string>
     <string name="subscribed_button_title">Abonniert</string>
-    <string name="channel_unsubscribed">Abo beendet</string>
+    <string name="channel_unsubscribed">Abonnement beendet</string>
     <string name="tab_subscriptions">Abos</string>
 
     <string name="fragment_whats_new">Neuigkeiten</string>
@@ -223,7 +223,7 @@
 
 
     <string name="notification_channel_name">NewPipe-Benachrichtigung</string>
-    <string name="notification_channel_description">Benachrichtigungen für NewPipe-Hintergrund- und Pop-up Player</string>
+    <string name="notification_channel_description">Benachrichtigungen für NewPipe-Hintergrund- und Pop-up Wiedergabe</string>
 
     <string name="tab_main">Hauptmenü</string>
     <string name="settings_category_player_behavior_title">Verhalten</string>
@@ -262,7 +262,7 @@
     <string name="select_a_channel">Wähle einen Kanal aus</string>
     <string name="no_channel_subscribed_yet">Noch keine Kanalabonnements vorhanden</string>
     <string name="trending">Trends</string>
-    <string name="popup_playing_append">In der Warteschlange des Pop-up-Players</string>
+    <string name="popup_playing_append">In der Warteschlange der Pop-up-Wiedergabe</string>
     <string name="play_all">Alles abspielen</string>
 
     <string name="play_queue_remove">Entfernen</string>
@@ -277,7 +277,7 @@
     <string name="play_queue_stream_detail">Details</string>
     <string name="top_50">Top 50</string>
     <string name="player_unrecoverable_failure">Nicht behebbarer Wiedergabefehler aufgetreten</string>
-    <string name="player_recoverable_failure">Player-Fehler gelöst</string>
+    <string name="player_recoverable_failure">Wiederherstellen nach einem Wiedergabefehler</string>
 
     <string name="kiosk_page_summary">Kiosk-Seite</string>
     <string name="select_a_kiosk">Kiosk auswählen</string>
@@ -302,14 +302,14 @@
     <string name="donation_encouragement">NewPipe wird von Freiwilligen entwickelt, die ihre Freizeit dafür verwenden, dir die beste Nutzererfahrung zu bieten. Gib etwas zurück, um den Entwicklern zu helfen, NewPipe noch besser machen zu können, während sie sich an einer Tasse Kaffee erfreuen.</string>
     <string name="service_title">Service</string>
     <string name="no_player_found_toast">Keinen Streamplayer gefunden (du kannst VLC installieren, um den Stream abzuspielen).</string>
-    <string name="default_content_country_title">Standard-Land des Inhalts</string>
+    <string name="default_content_country_title">Bevorzugtes Land des Inhalts</string>
     <string name="always">Immer</string>
     <string name="just_once">Nur einmal</string>
 
     <string name="toggle_orientation">Ausrichtung umschalten</string>
     <string name="switch_to_background">In den Hintergrund wechseln</string>
-    <string name="switch_to_popup">Zu Popup wechseln</string>
-    <string name="switch_to_main">Zum normalen Player wechseln</string>
+    <string name="switch_to_popup">Zum Pop-up wechseln</string>
+    <string name="switch_to_main">Zur normalen Wiedergabe wechseln</string>
 
     <string name="external_player_unsupported_link_type">Externe Player unterstützen diese Art von Links nicht</string>
     <string name="invalid_url_toast">Ungültige URL</string>
@@ -328,15 +328,15 @@
     <string name="preferred_player_fetcher_notification_message">Gewünschten Inhalt laden</string>
 <string name="import_data_title">Datenbank importieren</string>
     <string name="export_data_title">Datenbank exportieren</string>
-    <string name="import_data_summary">Überschreibt Ihren aktuellen Verlauf und Ihre Abonnements</string>
-    <string name="export_data_summary">Verlauf, Abos und Wiedergabelisten exportieren</string>
+    <string name="import_data_summary">Überschreibt deinen aktuellen Verlauf und deine Abonnements</string>
+    <string name="export_data_summary">Verlauf, Abonnements und Wiedergabelisten exportieren</string>
     <string name="no_valid_zip_file">Keine gültige ZIP-Datei</string>
     <string name="could_not_import_all_files">Warnung: Nicht alle Dateien konnten importiert werden.</string>
     <string name="override_current_data">Dies wird deine aktuellen Einstellungen überschreiben.</string>
 
     <string name="show_info">Info anzeigen</string>
 
-    <string name="tab_bookmarks">Wiedergabelisten-Lesezeichen</string>
+    <string name="tab_bookmarks">Lesezeichen für Wiedergabelisten</string>
 
     <string name="controls_add_to_playlist_title">Hinzufügen zu</string>
 
@@ -378,7 +378,7 @@
     <string name="use_inexact_seek_summary">Mit ungenauem Suchen kann die Abspielposition schneller erreicht werden, aber auf Kosten der Genauigkeit</string>
     <string name="file">Datei</string>
 
-    <string name="invalid_directory">Ordner existiert nicht</string>
+    <string name="invalid_directory">Verzeichnis existiert nicht</string>
     <string name="invalid_file">Die Datei existiert nicht oder die Rechte zum Lesen oder Schreiben fehlen</string>
     <string name="file_name_empty_error">Dateiname darf nicht leer sein</string>
     <string name="error_occurred_detail">Ein Fehler ist aufgetreten: %1$s</string>
@@ -452,7 +452,7 @@
 
     <string name="no_streams_available_download">Keine Streams zum Download verfügbar</string>
 
-    <string name="preferred_open_action_settings_title">Bevorzugte \'öffnen\' Aktion</string>
+    <string name="preferred_open_action_settings_title">Bevorzugte \'Öffnen\' Aktion</string>
     <string name="preferred_open_action_settings_summary">Standardaktion beim Öffnen von Inhalten - %s</string>
 
     <string name="caption_setting_title">Untertitel</string>
@@ -460,12 +460,12 @@
 
     <string name="toast_no_player">Keine App zum Abspielen dieser Datei installiert</string>
 
-    <string name="clear_views_history_title">Verlauf leeren</string>
+    <string name="clear_views_history_title">Wiedergabeverlauf löschen</string>
     <string name="clear_views_history_summary">Löscht den Verlauf der abgespielten Streams</string>
-    <string name="delete_view_history_alert">Den ganzen Verlauf löschen\?</string>
-    <string name="view_history_deleted">Verlauf gelöscht.</string>
+    <string name="delete_view_history_alert">Den ganzen Wiedergabeverlauf löschen\?</string>
+    <string name="view_history_deleted">Wiedergabeverlauf gelöscht.</string>
     <string name="clear_search_history_title">Suchverlauf löschen</string>
-    <string name="clear_search_history_summary">Lösche Verlauf der Suchschlüsselwörter</string>
+    <string name="clear_search_history_summary">Löscht den Verlauf der Suchbegriffe</string>
     <string name="delete_search_history_alert">Den gesamten Suchverlauf löschen\?</string>
     <string name="search_history_deleted">Suchverlauf gelöscht.</string>
     <string name="one_item_deleted">1 Element gelöscht.</string>
@@ -476,7 +476,7 @@
     <string name="privacy_policy_title">NewPipe-Datenschutzbestimmungen</string>
     <string name="privacy_policy_encouragement">Dem NewPipe-Projekt ist Datenschutz sehr wichtig. Deshalb sammelt diese App keine Daten ohne deine Zustimmung.
 \nNewPipes Datenschutzbestimmungen erklären im Detail, welche Daten beim Absenden eines Absturzberichtes verschickt und gespeichert werden.</string>
-    <string name="read_privacy_policy">Lies die Datenschutzbestimmungen</string>
+    <string name="read_privacy_policy">Datenschutzbestimmungen lesen</string>
     <string name="accept">Akzeptieren</string>
     <string name="decline">Ablehnen</string>
 <string name="start_accept_privacy_policy">Um der europäischen Datenschutz-Grundverordnung (DSGVO) gerecht zu werden, weisen wir hiermit auf NewPipe\'s Datenschutzerklärung hin. Bitte lies sie sorgfältig durch.
