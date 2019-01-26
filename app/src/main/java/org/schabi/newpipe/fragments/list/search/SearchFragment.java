@@ -736,6 +736,7 @@ public class SearchFragment
 
     @Override
     protected void loadMoreItems() {
+        if(nextPageUrl == null || nextPageUrl.isEmpty()) return;
         isLoading.set(true);
         showListFooter(true);
         if (searchDisposable != null) searchDisposable.dispose();
