@@ -11,12 +11,12 @@
     <string name="download">Изтегли</string>
     <string name="search">Търси</string>
     <string name="settings">Настройки</string>
-    <string name="did_you_mean">Може би имахте в предвид: %1$s ?</string>
+    <string name="did_you_mean">Може би имахте в предвид: %1$s\?</string>
     <string name="share_dialog_title">Сподели с</string>
     <string name="choose_browser">Избери браузър</string>
     <string name="screen_rotation">ориентация</string>
     <string name="use_external_video_player_title">Използвай външен видео плейър</string>
-    <string name="use_external_video_player_summary">Някои резолюции няма да имат вграден аудио поток, ако тази опция е избрана</string>
+    <string name="use_external_video_player_summary">Премахва аудио при НЯКОИ резолюции</string>
     <string name="use_external_audio_player_title">Използвай външен аудио плейър</string>
     <string name="popup_mode_share_menu_title">NewPipe в прозорец</string>
     <string name="subscribe_button_title">Абониране</string>
@@ -77,8 +77,8 @@
     <string name="content_language_title">Език на съдържанието по подразбиране</string>
     <string name="settings_category_player_title">Плейър</string>
     <string name="settings_category_player_behavior_title">Поведение</string>
-    <string name="settings_category_video_audio_title">Видео &amp; Аудио</string>
-    <string name="settings_category_history_title">История и кеш-памет</string>
+    <string name="settings_category_video_audio_title">Видео &amp; аудио</string>
+    <string name="settings_category_history_title">История и кеш</string>
     <string name="settings_category_popup_title">Нов прозорец</string>
     <string name="settings_category_appearance_title">Външност</string>
     <string name="settings_category_other_title">Други</string>
@@ -88,9 +88,9 @@
     <string name="popup_playing_append">Включен в опашката в нов прозорец</string>
     <string name="play_btn_text">Възпроизвеждане</string>
     <string name="content">Съдържание</string>
-    <string name="show_age_restricted_content_title">Покажи съдържание за възрастни</string>
-    <string name="video_is_age_restricted">Съдържание за възрастни. Разрешаването на такова съдържание става от Настройки.</string>
-    <string name="duration_live">на живо</string>
+    <string name="show_age_restricted_content_title">Съдържание за възрастни</string>
+    <string name="video_is_age_restricted">Покажи съдържание за възрастни. Разрешаването на такова съдържание става от \"Настройки\".</string>
+    <string name="duration_live">НА ЖИВО</string>
     <string name="downloads">Изтегляния</string>
     <string name="downloads_title">Изтегляния</string>
     <string name="error_report_title">Съобщение за грешка</string>
@@ -109,7 +109,7 @@
     <string name="play_all">Възпроизведи всички</string>
 
     <string name="notification_channel_name">Известия от NewPipe</string>
-    <string name="notification_channel_description">Известия за фоновия плейър и плейъра в отделен прозорец на NewPipe</string>
+    <string name="notification_channel_description">Известия за Фонов плейър и плейъра в Отделен прозорец на NewPipe</string>
 
     <string name="unknown_content">[Неизвестен]</string>
 
@@ -121,7 +121,7 @@
     <string name="content_not_available">Съдържанието не е налично</string>
     <string name="blocked_by_gema">Блокирано от „GEMA“</string>
     <string name="could_not_setup_download_menu">Не мога да настроя меню за сваляне</string>
-    <string name="live_streams_not_supported">Това е предаване на живо, което все още не се поддържа.</string>
+    <string name="live_streams_not_supported">Предаването на живо все още не се поддържа</string>
     <string name="could_not_get_stream">Не мога да достъпя нито един поток</string>
     <string name="could_not_load_image">Не мога да заредя изображение</string>
     <string name="app_ui_crash">Приложението или потребителският интерфейс се сринаха</string>
@@ -209,11 +209,11 @@
     <string name="tab_licenses">Лицензи</string>
     <string name="app_description">Безплатно и леко поточно предаване за Android.</string>
     <string name="view_on_github">Виж в GitHub</string>
-    <string name="controls_download_desc">Изтегли стрийм файл.</string>
+    <string name="controls_download_desc">Изтегли стрийм файл</string>
     <string name="show_info">Покажи инфо</string>
 
     <string name="tab_main">Главен</string>
-    <string name="tab_bookmarks">Отметки</string>
+    <string name="tab_bookmarks">Отметнати плейлисти</string>
 
     <string name="controls_add_to_playlist_title">Добави към</string>
 
@@ -225,7 +225,7 @@
     <string name="metadata_cache_wipe_summary">Премахни всички метаданни за уебстраници от кеш-паметта</string>
     <string name="metadata_cache_wipe_complete_notice">Кеш-паметта с метаданни бе изтрита</string>
     <string name="auto_queue_title">Автоматично нареди на опашка следващия</string>
-    <string name="auto_queue_summary">"Автоматично прибавяне на сродно съдържание при неповтарящ се преглед "</string>
+    <string name="auto_queue_summary">Автоматично прибавяне на сродно съдържание при неповтарящ се преглед.</string>
     <string name="default_content_country_title">Държава, за която да бъде показвано съдържание</string>
     <string name="service_title">Услуга</string>
     <string name="settings_category_debug_title">Отстраняване на грешки</string>
@@ -240,14 +240,14 @@
 
     <string name="import_data_title">Импортиране на база данни</string>
     <string name="export_data_title">Експортиране на база данни</string>
-    <string name="import_data_summary">Ще замени текущите история и абонаменти</string>
+    <string name="import_data_summary">Замества текущите история и абонаменти</string>
     <string name="export_data_summary">Експортиране на историята, абонаментите и плейлистите</string>
     <string name="clear_views_history_title">Изтрий историята с изгледани</string>
-    <string name="delete_view_history_alert">Изтрий цялата история с изгледани.</string>
+    <string name="delete_view_history_alert">Изтрий цялата история с изгледани\?</string>
     <string name="view_history_deleted">Историята с изгледани е изтрита.</string>
     <string name="clear_search_history_title">Изтрий историята на търсенията</string>
     <string name="clear_search_history_summary">Изтрива историята с въвежданите за търсене ключови думи</string>
-    <string name="delete_search_history_alert">Изтрий цялата история на търсенията.</string>
+    <string name="delete_search_history_alert">Изтрий цялата история на търсенията\?</string>
     <string name="search_history_deleted">Историята на търсенията е изтрита.</string>
     <string name="youtube_signature_decryption_error">URL подписът на клипа не можа да бъде дешифрован</string>
     <string name="external_player_unsupported_link_type">Външните плейъри не поддържат този вид линкове</string>
@@ -282,8 +282,8 @@
 \nНашата политика за личните данни обяснява подробно какви данни изпращате и къде се съхраняват, когато изпращате съобщения за грешки.</string>
     <string name="read_privacy_policy">Прочетете нашата политика за поверителност</string>
     <string name="app_license_title">Лицензът на NewPipe</string>
-    <string name="no_player_found_toast">Липсва стрийм плейър (можете да изтеглите VLC, за да пуснете стрийма)</string>
-    <string name="download_thumbnail_summary">Изключете, за да спрете зареждането на всички миниатюри, спестявайки трафик и памет. При промяна на тази настройка, текущата кеш-памет на изображенията ще бъде изтрита</string>
+    <string name="no_player_found_toast">Липсва стрийм плейър (можете да изтеглите VLC, за да пуснете стрийма).</string>
+    <string name="download_thumbnail_summary">Изключете, за да спрете зареждането на всички миниатюри, спестявайки трафик и памет. При промяна на тази настройка, текущата кеш-памет на изображенията ще бъде изтрита.</string>
     <string name="show_hold_to_append_summary">Показвай подсказка, когато е избран фонов режим или режим в прозорец на страницата с детайли на съответния клип</string>
     <string name="clear_views_history_summary">Изтрива историята на възпроизвежданите стриймове</string>
     <string name="video_streams_empty">Не са намерени видео стриймове</string>
@@ -303,14 +303,14 @@
 \nвъзпроизвеждане в отделен прозорец</string>
     <string name="one_item_deleted">1 елемент е изтрит.</string>
 
-    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="reCaptchaActivity">преКАПЧА</string>
     <string name="reCaptcha_title">reCAPTCHA заявка</string>
     <string name="recaptcha_request_toast">Изисква се въвеждане на reCAPTCHA</string>
 
     <string name="settings_category_downloads_title">Изтегляне</string>
     <string name="charset_most_special_characters">Повечето специални символи</string>
 
-    <string name="app_license">NewPipe е безплатен „copyleft“ софтуер: Можете да го използвате, изучавате, споделяте и подобрявате по ваше усмотрение. В частност, Вие можете да препубликувате и/или модифицирате приложението според правилата на Главния обществен лиценз на ГНУ, издаден от Фондацията за свободен софтуер – версия 3 на лиценза или по-нова.</string>
+    <string name="app_license">NewPipe е безплатен „copyleft“ софтуер: Можете да го използвате, изучавате, споделяте и подобрявате по желание. В частност, Вие можете да препубликувате и/или модифицирате приложението според правилата на Главния обществен лиценз на ГНУ, издаден от Фондацията за свободен софтуер – версия 3 на лиценза или по-нова.</string>
     <string name="read_full_license">Прочетете лиценза</string>
 
 
@@ -354,11 +354,11 @@
     <string name="play_queue_stream_detail">Детайли</string>
     <string name="play_queue_audio_settings">Аудио настройки</string>
     <string name="hold_to_append">Задръжте, за да поставите на опашката</string>
-    <string name="enqueue_on_background">На опашката във „фонов режим“</string>
-    <string name="enqueue_on_popup">На опашката в „режим в прозорец“</string>
+    <string name="enqueue_on_background">На опашката при „фонов режим“</string>
+    <string name="enqueue_on_popup">На опашката при „режим в прозорец“</string>
     <string name="start_here_on_main">Възпроизвеждане от тук</string>
-    <string name="start_here_on_background">Възпроизвеждане от тук във фонов режим</string>
-    <string name="start_here_on_popup">Възпроизвеждане от тук в прозорец</string>
+    <string name="start_here_on_background">Възпроизвеждане от тук при фонов режим</string>
+    <string name="start_here_on_popup">Възпроизвеждане от тук при прозорец</string>
 
     <string name="drawer_open">Отвори навигационната лента</string>
     <string name="drawer_close">Затвори навигационната лента</string>
@@ -376,9 +376,9 @@
     <string name="preferred_player_fetcher_notification_title">Получаване на инфо…</string>
     <string name="preferred_player_fetcher_notification_message">Зареждане на заявеното съдържание</string>
 
-    <string name="create_playlist">Създай Нов Плейлист</string>
-    <string name="delete_playlist">Изтрий Плейлист</string>
-    <string name="rename_playlist">Преименувай Прелист</string>
+    <string name="create_playlist">Нов Плейлист</string>
+    <string name="delete_playlist">Изтрий</string>
+    <string name="rename_playlist">"Преименувай "</string>
     <string name="playlist_name_input">Име</string>
     <string name="append_playlist">Добави Към Плейлист</string>
     <string name="set_as_playlist_thumbnail">Задай като миниатюра на плейлиста</string>
@@ -389,8 +389,8 @@
     <string name="delete_playlist_prompt">Искате ли да изтриете този плейлист?</string>
     <string name="playlist_creation_success">Плейлистът е създаден</string>
     <string name="playlist_add_stream_success">Добавено към плейлист</string>
-    <string name="playlist_thumbnail_change_success">Миниатюрата на плейлиста е сменена</string>
-    <string name="playlist_delete_failure">Плейлистът не можа да бъде изтрит</string>
+    <string name="playlist_thumbnail_change_success">Миниатюрата на плейлиста е сменена.</string>
+    <string name="playlist_delete_failure">Плейлистът не можа да бъде изтрит.</string>
 
     <string name="caption_none">Без надписи</string>
 
@@ -401,13 +401,13 @@
     <string name="caption_auto_generated">Авто-генерирани</string>
 
     <string name="caption_setting_title">Надписи</string>
-    <string name="caption_setting_description">Модифицирай мащаба на текста и фона на надписите. Изисква рестарт на приложението, за да се приложат промените</string>
+    <string name="caption_setting_description">Модифицирай мащаба на текста и фона на надписите. Изисква рестарт на приложението, за да се приложат промените.</string>
 
     <string name="enable_leak_canary_title">Включи LeakCanary</string>
     <string name="enable_leak_canary_summary">Следенето за пропускане на памет може да направи приложението нестабилно</string>
 
     <string name="enable_disposed_exceptions_title">Докладвай за извънредни грешки</string>
-    <string name="import_export_title">Импортиране/експортиране</string>
+    <string name="import_export_title">Импортиране/Експортиране</string>
     <string name="import_title">Импортирай</string>
     <string name="import_from">Импортирай от</string>
     <string name="export_to">Експортирай в</string>
@@ -462,4 +462,7 @@
     <string name="playback_reset">Възстанови</string>
 
     <string name="playback_step">Стъпка</string>
+    <string name="enable_disposed_exceptions_summary">Насили докладването на неизпращаеми Rx изключения извън фрагмента или кръговрата на активност след приключване</string>
+
+    <string name="unhook_checkbox">Откачи (може да предизвика промени)</string>
     </resources>

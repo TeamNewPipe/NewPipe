@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="view_count_text">%1$s keer bekeken</string>
     <string name="upload_date_text">Gepubliceerd op %1$s</string>
@@ -25,7 +25,7 @@
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Standaardaudioformaat</string>
     <string name="download_dialog_title">Downloaden</string>
-    <string name="next_video_title">Volgende video</string>
+    <string name="next_video_title">Volgende</string>
     <string name="url_not_supported_toast">URL wordt niet ondersteund</string>
     <string name="show_next_and_similar_title">‘volgende’ en ‘vergelijkbare’ video’s weergeven</string>
     <string name="content_language_title">Standaardtaal voor inhoud</string>
@@ -37,8 +37,8 @@
     <string name="detail_thumbnail_view_description">Videovoorbeeldminiatuur</string>
     <string name="detail_uploader_thumbnail_view_description">Gebruikersafbeelding van uploader</string>
     <string name="detail_dislikes_img_view_description">Vind-ik-niet-leuks</string>
-    <string name="download_path_audio_title">Downloadlocatie voor audio</string>
-    <string name="download_path_audio_summary">Locatie om gedownloade muziek in op te slaan</string>
+    <string name="download_path_audio_title">Downloadfolder voor audio</string>
+    <string name="download_path_audio_summary">Gedownloade muziek is hier opgeslagen</string>
     <string name="download_path_audio_dialog_title">Voer downloadlocatie voor audiobestanden in</string>
 
     <string name="theme_title">Thema</string>
@@ -50,8 +50,8 @@
     <string name="background_player_playing_toast">Speelt af op achtergrond</string>
     <string name="play_btn_text">Afspelen</string>
     <string name="content">Inhoud</string>
-    <string name="show_age_restricted_content_title">Inhoud met leeftijdsbeperking tonen</string>
-    <string name="video_is_age_restricted">De video heeft een leeftijdsbeperking. Toestaan van dit soort video\'s kan worden ingeschakeld in de instellingen.</string>
+    <string name="show_age_restricted_content_title">Inhoud met leeftijdsbeperking</string>
+    <string name="video_is_age_restricted">Toon video met leeftijdsbeperking. Toestaan van dit soort video\'s kan worden ingeschakeld in \"Instellingen\".</string>
 
     <string name="general_error">Fout</string>
     <string name="network_error">Netwerkfout</string>
@@ -61,7 +61,7 @@
     <string name="content_not_available">Inhoud niet beschikbaar</string>
     <string name="blocked_by_gema">Geblokkeerd door GEMA</string>
     <string name="could_not_setup_download_menu">Kan downloadmenu niet instellen</string>
-    <string name="live_streams_not_supported">Dit is een LIVESTREAM; deze worden nog niet ondersteund.</string>
+    <string name="live_streams_not_supported">Livestreams zijn nog niet ondersteund</string>
 
 
     <string name="detail_likes_img_view_description">Vind-ik-leuks</string>
@@ -88,7 +88,7 @@
     <string name="main_bg_subtitle">Druk op zoeken om te beginnen</string>
     <string name="autoplay_by_calling_app_title">Automatisch afspelen</string>
     <string name="autoplay_by_calling_app_summary">Speelt video’s af als NewPipe vanuit een andere app wordt geopend</string>
-    <string name="duration_live">live</string>
+    <string name="duration_live">LIVE</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
     <string name="error_report_title">Foutrapport</string>
@@ -168,7 +168,7 @@
     <string name="settings_category_popup_title">Pop-up</string>
     <string name="popup_resizing_indicator_title">Bezig met wijzigen van grootte</string>
 
-    <string name="use_external_video_player_summary">Sommige resoluties hebben GEEN geluid hebben als deze optie is ingeschakeld</string>
+    <string name="use_external_video_player_summary">Verwijdert geluid bij SOMMIGE resoluties</string>
     <string name="show_search_suggestions_title">Zoeksuggesties</string>
     <string name="show_search_suggestions_summary">Toon suggesties bij zoeken</string>
 
@@ -259,7 +259,7 @@
 
     <string name="item_deleted">Item verwijderd</string>
 <string name="delete_item_search_history">Wil je dit item verwijderen uit je zoekgeschiedenis?</string>
-<string name="show_hold_to_append_title">Tip tonen voor ingedrukt houden om toe te voegen</string>
+<string name="show_hold_to_append_title">Toon tip \"Ingedrukt houden om toe te voegen\"</string>
     <string name="show_hold_to_append_summary">Toon tip als achtergrond- of pop-upknop wordt ingedrukt op de videogegevenspagina</string>
     <string name="background_player_append">Toegevoegd aan wachtrij voor achtergrondspeler</string>
     <string name="popup_playing_append">Toegevoegd aan wachtrij voor pop-upspeler</string>
@@ -291,11 +291,11 @@
     <string name="hold_to_append">Houd ingedrukt om toe te voegen aan wachtrij</string>
 <string name="unknown_content">[Onbekend]</string>
 
-    <string name="enqueue_on_background">Toevoegen aan wachtrij in achtergrond</string>
-    <string name="enqueue_on_popup">Toevoegen aan wachtrij in pop-up</string>
+    <string name="enqueue_on_background">Toevoegen aan wachtrij wanneer in de achtergrond</string>
+    <string name="enqueue_on_popup">Toevoegen aan wachtrij bij nieuwe pop-up</string>
     <string name="start_here_on_main">Begin hier met afspelen</string>
-    <string name="start_here_on_background">Begin hier met afspelen op achtergrond</string>
-    <string name="start_here_on_popup">Begin hier met afspelen in pop-up</string>
+    <string name="start_here_on_background">Begin hier met afspelen wanneer op de achtergrond</string>
+    <string name="start_here_on_popup">Begin hier met afspelen in nieuwe pop-up</string>
 <string name="donation_title">Doneren</string>
     <string name="donation_encouragement">NewPipe wordt door vrijwilligers in hun vrije tijd ontwikkeld om jou de beste ervaring te brengen. Geef wat terug zodat onze ontwikkelaars NewPipe nóg beter kunnen maken terwijl ze van hun kopje koffie genieten.</string>
     <string name="give_back">Teruggeven</string>
@@ -310,7 +310,7 @@
 
     <string name="drawer_open">Menu openen</string>
     <string name="drawer_close">Menu sluiten</string>
-    <string name="no_player_found_toast">Geen speler met streamondersteuning gevonden (je kan VLC installeren om af te spelen)</string>
+    <string name="no_player_found_toast">Geen speler met streamondersteuning gevonden (je kan VLC installeren om af te spelen).</string>
     <string name="always">Altijd</string>
     <string name="just_once">Eenmalig</string>
 
@@ -330,16 +330,16 @@
     <string name="export_data_title">Databank exporteren</string>
     <string name="import_data_summary">Dit overschrijft je huidige geschiedenis en abonnementen</string>
     <string name="export_data_summary">Exporteer geschiedenis, abonnementen en afspeellijsten</string>
-    <string name="export_complete_toast">Exporteren voltooid</string>
-    <string name="import_complete_toast">Importeren voltooid</string>
+    <string name="export_complete_toast">Geëxporteerd</string>
+    <string name="import_complete_toast">Geïmporteerd</string>
     <string name="no_valid_zip_file">Geen geldig ZIP-bestand</string>
     <string name="could_not_import_all_files">Let op: niet alle bestanden konden worden geïmporteerd.</string>
     <string name="override_current_data">Dit overschrijft je huidige configuratie.</string>
 
-    <string name="controls_download_desc">Streambestand downloaden.</string>
+    <string name="controls_download_desc">Streambestand downloaden</string>
     <string name="show_info">Informatie tonen</string>
 
-    <string name="tab_bookmarks">Bladwijzers</string>
+    <string name="tab_bookmarks">Bijgehouden afspeellijsten</string>
 
     <string name="controls_add_to_playlist_title">Toevoegen aan</string>
 
@@ -358,9 +358,9 @@
 
     <string name="always_ask_open_action">Altijd vragen</string>
     
-    <string name="create_playlist">Nieuwe afspeellijst creëren</string>
-    <string name="delete_playlist">Afspeellijst verwijderen</string>
-    <string name="rename_playlist">Afspeellijstnaam wijzigen</string>
+    <string name="create_playlist">Nieuwe afspeellijst</string>
+    <string name="delete_playlist">Verwijderen</string>
+    <string name="rename_playlist">Naam wijzigen</string>
     <string name="playlist_name_input">Naam</string>
     <string name="append_playlist">Toevoegen aan afspeellijst</string>
     <string name="set_as_playlist_thumbnail">Instellen als miniatuur voor afspeellijst</string>
@@ -368,11 +368,11 @@
     <string name="bookmark_playlist">Afspeellijst toevoegen aan bladwijzers</string>
     <string name="unbookmark_playlist">Bladwijzer verwijderen</string>
 
-    <string name="delete_playlist_prompt">Wil je deze afspeellijst verwijderen?</string>
+    <string name="delete_playlist_prompt">Deze afspeellijst verwijderen\?</string>
     <string name="playlist_creation_success">Afspeellijst gecreëerd</string>
     <string name="playlist_add_stream_success">Toegevoegd aan afspeellijst</string>
-    <string name="playlist_thumbnail_change_success">Miniatuur voor afspeellijst gewijzigd</string>
-    <string name="playlist_delete_failure">De afspeellijst kan niet worden verwijderd</string>
+    <string name="playlist_thumbnail_change_success">Miniatuur voor afspeellijst gewijzigd.</string>
+    <string name="playlist_delete_failure">De afspeellijst kan niet worden verwijderd.</string>
 
     <string name="caption_none">Geen bijschriften</string>
 
@@ -391,24 +391,24 @@
     <string name="enable_leak_canary_title">LeakCanary inschakelen</string>
     <string name="enable_leak_canary_summary">Het monitoren van geheugenlekken kan ervoor zorgen dat de app niet goed meer reageert</string>
 
-    <string name="enable_disposed_exceptions_title">Out-of-Lifecycle-fouten melden</string>
+    <string name="enable_disposed_exceptions_title">Out-of-lifecycle-fouten melden</string>
     <string name="enable_disposed_exceptions_summary">Forceer het melden van niet-bezorgbare Rx-uitzonderingen buiten fragment of activiteitscyclus</string>
 
 <string name="use_inexact_seek_title">Snelle, minder exact spoelen gebruiken</string>
     <string name="use_inexact_seek_summary">Minder exact spoelen laat de speler sneller posities zoeken met verminderde precisie</string>
     <string name="auto_queue_title">Volgende stream automatisch in wachtrij plaatsen</string>
-    <string name="auto_queue_summary">Automatisch een gerelateerde stream toekennen bij het afspelen van de laatste stream in een niet-herhalende afspeelwachtlijst</string>
+    <string name="auto_queue_summary">Automatisch een gerelateerde stream toekennen bij het afspelen van de laatste stream in een niet-herhalende afspeelwachtlijst.</string>
     <string name="live_sync">SYNCHRONISEREN</string>
 
     <string name="file">Bestand</string>
 
-    <string name="invalid_directory">Ongeldige map</string>
-    <string name="invalid_source">Ongeldig bestand/Ongeldige inhoudsbron</string>
+    <string name="invalid_directory">Deze map bestaat niet</string>
+    <string name="invalid_source">Bestand/Inhoudsbron bestaat niet</string>
     <string name="invalid_file">Het bestand bestaat niet of je bent onvoldoende gemachtigd om het te lezen/er naar te schrijven</string>
     <string name="file_name_empty_error">De bestandsnaam mag niet blanco zijn</string>
     <string name="error_occurred_detail">Er is een fout opgetreden: %1$s</string>
 
-    <string name="import_export_title">Importeren/Exporteren</string>
+    <string name="import_export_title">Importeren/exporteren</string>
     <string name="import_title">Importeren</string>
     <string name="import_from">Importeren uit</string>
     <string name="export_to">Exporteren naar</string>
@@ -439,7 +439,7 @@
 \n 
 \nWil je doorgaan?</string>
 <string name="download_thumbnail_title">Miniatuurvoorbeelden laden</string>
-    <string name="download_thumbnail_summary">Schakel dit uit om alle miniatuurvoorbeelden niet meer te laden; dit bespaart gegevens en geheugen. Het wijzigen van deze instelling wist het geheugen en de afbeeldingscache</string>
+    <string name="download_thumbnail_summary">Er worden geen miniatuurvoorbeelden geladen wanneer dit uit staat; dit bespaart mobiele data en geheugen. Het wijzigen van deze instelling wist het geheugen en de afbeeldingscache.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Afbeeldingscache gewist</string>
     <string name="metadata_cache_wipe_title">Gecachete metagegevens wissen</string>
     <string name="metadata_cache_wipe_summary">Alle gecachete webpagina-gegevens wissen</string>
@@ -456,18 +456,17 @@
     <string name="no_streams_available_download">Geen streams beschikbaar voor downloaden</string>
 
     <string name="caption_setting_title">Bijschriften</string>
-    <string name="caption_setting_description">Bijschriftgrootte en -achtergrondstijlen wijzigen. Vereist een herstart van de app</string>
+    <string name="caption_setting_description">Bijschriftgrootte en -achtergrondstijlen wijzigen. Vereist een herstart van de app.</string>
 
     <string name="toast_no_player">Er is geen app geïnstalleerd die dit bestand kan afspelen</string>
 
     <string name="clear_views_history_title">Kijkgeschiedenis wissen</string>
     <string name="clear_views_history_summary">Verwijdert de geschiedenis van afgespeelde streams</string>
-
-    <string name="delete_view_history_alert">Verwijdert de gehele kijkgeschiedenis.</string>
+    <string name="delete_view_history_alert">Verwijder de gehele kijkgeschiedenis\?</string>
     <string name="view_history_deleted">Kijkgeschiedenis gewist.</string>
     <string name="clear_search_history_title">Zoekgeschiedenis wissen</string>
     <string name="clear_search_history_summary">Verwijdert de gebruikte zoektermen</string>
-    <string name="delete_search_history_alert">Verwijdert de gehele geschiedenis.</string>
+    <string name="delete_search_history_alert">Verwijder de gehele geschiedenis\?</string>
     <string name="search_history_deleted">Zoekgeschiedenis gewist.</string>
     <string name="one_item_deleted">1 item verwijderd.</string>
 
@@ -484,7 +483,7 @@
     <string name="decline">Weigeren</string>
 <string name="limit_data_usage_none_description">Ongelimiteerd</string>
     <string name="limit_mobile_data_usage_title">Resolutie beperken bij gebruik van mobiele gegevens</string>
-    <string name="minimize_on_exit_title">Minimaliseren bij overschakelen naar andere app</string>
+    <string name="minimize_on_exit_title">Minimaliseer bij overschakelen naar andere app</string>
     <string name="minimize_on_exit_summary">Actie bij overschakelen van videospeler naar andere app — %s</string>
     <string name="minimize_on_exit_none_description">Geen</string>
     <string name="minimize_on_exit_background_description">Afspelen op achtergrond</string>
