@@ -112,6 +112,7 @@
     <string name="settings_category_appearance_title">Appearance</string>
     <string name="settings_category_other_title">Other</string>
     <string name="settings_category_debug_title">Debug</string>
+    <string name="settings_category_updates_title">Updates</string>
     <string name="background_player_playing_toast">Playing in background</string>
     <string name="popup_playing_toast">Playing in popup mode</string>
     <string name="background_player_append">Queued on background player</string>
@@ -143,6 +144,7 @@
     <string name="popup_resizing_indicator_title">Resizing</string>
     <string name="best_resolution">Best resolution</string>
     <string name="undo">Undo</string>
+    <string name="file_deleted">File deleted</string>
     <string name="play_all">Play All</string>
     <string name="always">Always</string>
     <string name="just_once">Just Once</string>
@@ -151,6 +153,10 @@
     <string name="notification_channel_id" translatable="false">newpipe</string>
     <string name="notification_channel_name">NewPipe Notification</string>
     <string name="notification_channel_description">Notifications for NewPipe background and popup players</string>
+
+    <string name="app_update_notification_channel_id" translatable="false">newpipeAppUpdate</string>
+    <string name="app_update_notification_channel_name">App Update Notification</string>
+    <string name="app_update_notification_channel_description">Notifications for new NewPipe version</string>
 
     <string name="unknown_content">[Unknown]</string>
 
@@ -239,8 +245,6 @@
     <string name="audio">Audio</string>
     <string name="retry">Retry</string>
     <string name="storage_permission_denied">Storage access permission denied</string>
-    <string name="use_old_player_title">Use old player</string>
-    <string name="use_old_player_summary">Old built-in Mediaframework player</string>
 
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
@@ -514,6 +518,10 @@
         <item>144p</item>
     </string-array>
 
+    <!-- Updates Settings -->
+    <string name="updates_setting_title">Updates</string>
+    <string name="updates_setting_description">Show a notification to prompt app update when a new version is available</string>
+
     <!-- Minimize to exit action -->
     <string name="minimize_on_exit_title">Minimize on app switch</string>
     <string name="minimize_on_exit_summary">Action when switching to other app from main video player — %s</string>
@@ -525,4 +533,56 @@
     <string name="grid">Grid</string>
 	  <string name="auto">Auto</string>
     <string name="switch_view">Switch View</string>
+
+    <!-- App update notification -->
+    <string name="app_update_notification_content_title">NewPipe Update Available!</string>
+    <string name="app_update_notification_content_text">Tap to download</string>
+
+
+
+    <string name="missions_header_finished">Finished</string>
+    <string name="missions_header_pending">In queue</string>
+
+    <string name="paused">paused</string>
+    <string name="queued">queued</string>
+    <string name="post_processing">post-processing</string>
+
+    <string name="enqueue">Queue</string>
+
+    <string name="permission_denied">Action denied by the system</string>
+
+    <!-- download notifications -->
+    <string name="download_failed">Download failed</string>
+    <string name="download_finished">Download finished</string>
+    <string name="download_finished_more">%s downloads finished</string>
+
+    <!-- dialog about existing downloads -->
+    <string name="generate_unique_name">Generate unique name</string>
+    <string name="overwrite">Overwrite</string>
+    <string name="overwrite_warning">A downloaded file with this name already exists</string>
+    <string name="download_already_running">There is a download in progress with this name</string>
+
+    <!-- message dialog about download error -->
+    <string name="show_error">Show error</string>
+    <string name="label_code">Code</string>
+    <string name="error_path_creation">The file can not be created</string>
+    <string name="error_file_creation">The destination folder can not be created</string>
+    <string name="error_permission_denied">Permission denied by the system</string>
+    <string name="error_ssl_exception">Secure connection failed</string>
+    <string name="error_unknown_host">Can not found the server</string>
+    <string name="error_connect_host">Can not connect to the server</string>
+    <string name="error_http_no_content">The server does not send data</string>
+    <string name="error_http_unsupported_range">The server does not accept multi-threaded downloads, retry with @string/msg_threads = 1</string>
+    <string name="error_http_requested_range_not_satisfiable">Requested Range Not Satisfiable</string>
+    <string name="error_http_not_found">Not found</string>
+    <string name="error_postprocessing_failed">Post-processing failed</string>
+
+    <string name="clear_finished_download">Clear finished downloads</string>
+    <string name="msg_pending_downloads">You have %s pending downloads, goto Downloads to continue</string>
+    <string name="stop">Stop</string>
+    <string name="max_retry_msg">Maximum retry</string>
+    <string name="max_retry_desc">Maximum number of attempts before canceling the download</string>
+    <string name="pause_downloads_on_mobile">Pause on switching to mobile data</string>
+    <string name="pause_downloads_on_mobile_desc">Not all downloads can be suspended, in those cases, will be restarted</string>
+
 </resources>

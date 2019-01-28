@@ -10,52 +10,59 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.download.DeleteDownloadManager;
+import org.schabi.newpipe.util.ThemeHelper;
 
-import io.reactivex.disposables.Disposable;
-import us.shandian.giga.get.DownloadManager;
+import us.shandian.giga.service.DownloadManager;
 import us.shandian.giga.service.DownloadManagerService;
+import us.shandian.giga.service.DownloadManagerService.DMBinder;
 import us.shandian.giga.ui.adapter.MissionAdapter;
 
-public abstract class MissionsFragment extends Fragment {
-    private DownloadManager mDownloadManager;
-    private DownloadManagerService.DMBinder mBinder;
+public class MissionsFragment extends Fragment {
+
+    private static final int SPAN_SIZE = 2;
 
     private SharedPreferences mPrefs;
     private boolean mLinear;
     private MenuItem mSwitch;
+    private MenuItem mClear = null;
 
     private RecyclerView mList;
+    private View mEmpty;
     private MissionAdapter mAdapter;
     private GridLayoutManager mGridManager;
     private LinearLayoutManager mLinearManager;
-    private Context mActivity;
-    private DeleteDownloadManager mDeleteDownloadManager;
-    private Disposable mDeleteDisposable;
+    private Context mContext;
 
-    private final ServiceConnection mConnection = new ServiceConnection() {
+    private DMBinder mBinder;
+    private Bundle mBundle;
+    private boolean mForceUpdate;
+
+    private ServiceConnection mConnection = new ServiceConnection() {
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder binder) {
             mBinder = (DownloadManagerService.DMBinder) binder;
-            mDownloadManager = setupDownloadManager(mBinder);
-            if (mDeleteDownloadManager != null) {
-                mDeleteDownloadManager.setDownloadManager(mDownloadManager);
-                updateList();
-            }
+            mBinder.clearDownloadNotifications();
+
+            mAdapter = new MissionAdapter(mContext, mBinder.getDownloadManager(), mClear, mEmpty);
+            mAdapter.deleterLoad(mBundle, getView());
+
+            mBundle = null;
+
+            mBinder.addMissionEventListener(mAdapter.getMessenger());
+            mBinder.enableNotifications(false);
+
+            updateList();
         }
 
         @Override
@@ -66,14 +73,6 @@ public abstract class MissionsFragment extends Fragment {
 
     };
 
-    public void setDeleteManager(@NonNull DeleteDownloadManager deleteDownloadManager) {
-        mDeleteDownloadManager = deleteDownloadManager;
-        if (mDownloadManager != null) {
-            mDeleteDownloadManager.setDownloadManager(mDownloadManager);
-            updateList();
-        }
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.missions, container, false);
@@ -81,18 +80,31 @@ public abstract class MissionsFragment extends Fragment {
         mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         mLinear = mPrefs.getBoolean("linear", false);
 
+        //mContext = getActivity().getApplicationContext();
+        mBundle = savedInstanceState;
+
         // Bind the service
-        Intent i = new Intent();
-        i.setClass(getActivity(), DownloadManagerService.class);
-        getActivity().bindService(i, mConnection, Context.BIND_AUTO_CREATE);
+        mContext.bindService(new Intent(mContext, DownloadManagerService.class), mConnection, Context.BIND_AUTO_CREATE);
 
         // Views
+        mEmpty = v.findViewById(R.id.list_empty_view);
         mList = v.findViewById(R.id.mission_recycler);
 
-        // Init
-        mGridManager = new GridLayoutManager(getActivity(), 2);
+        // Init layouts managers
+        mGridManager = new GridLayoutManager(getActivity(), SPAN_SIZE);
+        mGridManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                switch (mAdapter.getItemViewType(position)) {
+                    case DownloadManager.SPECIAL_PENDING:
+                    case DownloadManager.SPECIAL_FINISHED:
+                        return SPAN_SIZE;
+                    default:
+                        return 1;
+                }
+            }
+        });
         mLinearManager = new LinearLayoutManager(getActivity());
-        mList.setLayoutManager(mGridManager);
 
         setHasOptionsMenu(true);
 
@@ -103,13 +115,13 @@ public abstract class MissionsFragment extends Fragment {
      * Added in API level 23.
      */
     @Override
-    public void onAttach(Context activity) {
-        super.onAttach(activity);
+    public void onAttach(Context context) {
+        super.onAttach(context);
 
         // Bug: in api< 23 this is never called
         // so mActivity=null
-        // so app crashes with nullpointer exception
-        mActivity = activity;
+        // so app crashes with null-pointer exception
+        mContext = context;
     }
 
     /**
@@ -120,34 +132,29 @@ public abstract class MissionsFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
 
-        mActivity = activity;
+        mContext = activity.getApplicationContext();
     }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        if (mDeleteDownloadManager != null) {
-            mDeleteDisposable = mDeleteDownloadManager.getUndoObservable().subscribe(mission -> {
-                if (mAdapter != null) {
-                    mAdapter.updateItemList();
-                    mAdapter.notifyDataSetChanged();
-                }
-            });
-        }
-    }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        getActivity().unbindService(mConnection);
-        if (mDeleteDisposable != null) {
-            mDeleteDisposable.dispose();
-        }
+    public void onDestroy() {
+        super.onDestroy();
+        if (mBinder == null || mAdapter == null) return;
+
+        mBinder.removeMissionEventListener(mAdapter.getMessenger());
+        mBinder.enableNotifications(true);
+        mContext.unbindService(mConnection);
+        mAdapter.deleterDispose(null);
+
+        mBinder = null;
+        mAdapter = null;
     }
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         mSwitch = menu.findItem(R.id.switch_mode);
+        mClear = menu.findItem(R.id.clear_list);
+        if (mAdapter != null) mAdapter.setClearButton(mClear);
         super.onPrepareOptionsMenu(menu);
     }
 
@@ -155,35 +162,79 @@ public abstract class MissionsFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.switch_mode:
-				mLinear = !mLinear;
-				updateList();
-				return true;
-			default:
-				return super.onOptionsItemSelected(item);
-		}
-    }
-
-    public void notifyChange() {
-        mAdapter.notifyDataSetChanged();
+                mLinear = !mLinear;
+                updateList();
+                return true;
+            case R.id.clear_list:
+                mAdapter.clearFinishedDownloads();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void updateList() {
-        mAdapter = new MissionAdapter((Activity) mActivity, mBinder, mDownloadManager, mDeleteDownloadManager, mLinear);
-
         if (mLinear) {
             mList.setLayoutManager(mLinearManager);
         } else {
             mList.setLayoutManager(mGridManager);
         }
 
+        // destroy all created views in the recycler
+        mList.setAdapter(null);
+        mAdapter.notifyDataSetChanged();
+
+        // re-attach the adapter in grid/lineal mode
+        mAdapter.setLinear(mLinear);
         mList.setAdapter(mAdapter);
 
         if (mSwitch != null) {
-            mSwitch.setIcon(mLinear ? R.drawable.grid : R.drawable.list);
-        }
+            boolean isLight = ThemeHelper.isLightThemeSelected(mContext);
+            int icon;
 
-        mPrefs.edit().putBoolean("linear", mLinear).apply();
+            if (mLinear)
+                icon = isLight ? R.drawable.ic_list_black_24dp : R.drawable.ic_list_white_24dp;
+            else
+                icon = isLight ? R.drawable.ic_grid_black_24dp : R.drawable.ic_grid_white_24dp;
+
+            mSwitch.setIcon(icon);
+            mSwitch.setTitle(mLinear ? R.string.grid : R.string.list);
+            mPrefs.edit().putBoolean("linear", mLinear).apply();
+        }
     }
 
-    protected abstract DownloadManager setupDownloadManager(DownloadManagerService.DMBinder binder);
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        if (mAdapter != null) {
+            mAdapter.deleterDispose(outState);
+            mForceUpdate = true;
+            mBinder.removeMissionEventListener(mAdapter.getMessenger());
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (mAdapter != null) {
+            mAdapter.deleterResume();
+
+            if (mForceUpdate) {
+                mForceUpdate = false;
+                mAdapter.forceUpdate();
+            }
+
+            mBinder.addMissionEventListener(mAdapter.getMessenger());
+        }
+        if (mBinder != null) mBinder.enableNotifications(false);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (mAdapter != null) mAdapter.onPaused();
+        if (mBinder != null) mBinder.enableNotifications(true);
+    }
 }
