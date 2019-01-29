@@ -40,6 +40,8 @@ public class ServiceHelper {
             case "playlists": return c.getString(R.string.playlists);
             case "tracks": return c.getString(R.string.tracks);
             case "users": return c.getString(R.string.users);
+            case "conferences" : return c.getString(R.string.conferences);
+            case "events" : return c.getString(R.string.events);
             default: return filter;
         }
     }
