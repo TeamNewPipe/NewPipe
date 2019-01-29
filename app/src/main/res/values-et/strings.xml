@@ -3,33 +3,33 @@
     <string name="view_count_text">%1$s vaatamist</string>
     <string name="upload_date_text">Avaldatud %1$s</string>
     <string name="no_player_found">Voogesituseks puudub pleier. Kas paigaldada VLC?</string>
-    <string name="no_player_found_toast">Voogesituseks puudub pleier. (Selleks võib paigaldada VLC)</string>
+    <string name="no_player_found_toast">Voogesituseks puudub pleier (selleks võib paigaldada VLC).</string>
     <string name="install">Paigalda</string>
     <string name="cancel">Tühista</string>
     <string name="open_in_browser">Ava veebilehitsejas</string>
     <string name="open_in_popup_mode">Ava hüpikaknas</string>
     <string name="share">Jaga</string>
     <string name="download">Allalaadimine</string>
-    <string name="controls_download_desc">Laadi voog alla.</string>
+    <string name="controls_download_desc">Laadi voog alla</string>
     <string name="search">Otsi</string>
     <string name="settings">Seaded</string>
-    <string name="did_you_mean">Kas mõtlesid: %1$s ?</string>
+    <string name="did_you_mean">Kas mõtlesid: %1$s\?</string>
     <string name="share_dialog_title">Jaga</string>
     <string name="choose_browser">Vali veebilehitseja</string>
     <string name="screen_rotation">pööramine</string>
     <string name="use_external_video_player_title">Kasuta välist videopleierit</string>
-    <string name="use_external_video_player_summary">Kui see valik lubada, puudub osadel lahutustel heli</string>
+    <string name="use_external_video_player_summary">Eemaldab audio SOME lahutustel</string>
     <string name="use_external_audio_player_title">Kasuta välist audiopleierit</string>
     <string name="popup_mode_share_menu_title">NewPipe hüpikaknarežiim</string>
     <string name="subscribe_button_title">Telli</string>
     <string name="subscribed_button_title">Tellitud</string>
     <string name="channel_unsubscribed">Kanali tellimus tühistatud</string>
-    <string name="subscription_change_failed">Tellimuse muutmine nurjus</string>
-    <string name="subscription_update_failed">Tellimuse uuendamine nurjus</string>
+    <string name="subscription_change_failed">Tellimust ei saanud muuta</string>
+    <string name="subscription_update_failed">Tellimust ei õnnestunud uuendada</string>
     <string name="show_info">Kuva info</string>
 
     <string name="tab_subscriptions">Tellimused</string>
-    <string name="tab_bookmarks">Järjehoidjad</string>
+    <string name="tab_bookmarks">Esitusloendid järjehoidjates</string>
 
     <string name="fragment_whats_new">Mis on uut</string>
 
@@ -42,7 +42,7 @@
     <string name="download_path_dialog_title">Sisesta videote allalaadimise rada</string>
 
     <string name="download_path_audio_title">Audio allalaadimise kaust</string>
-    <string name="download_path_audio_summary">Kaust allalaetud audio hoiustamiseks</string>
+    <string name="download_path_audio_summary">Siia salvestatakse alla laaditud audio</string>
     <string name="download_path_audio_dialog_title">Sisesta audio allalaadimise rada</string>
 
     <string name="autoplay_by_calling_app_title">Automaatesitus</string>
@@ -67,13 +67,13 @@
     <string name="use_inexact_seek_title">Kasuta ebatäpset kerimist</string>
     <string name="use_inexact_seek_summary">Ebatäpne kerimine lubab pleieril otsida asukohta kiiremini täpsuse arvel</string>
     <string name="download_thumbnail_title">Laadi pisipildid</string>
-    <string name="download_thumbnail_summary">Keela, peatamaks pisipiltide laadimine ja vähenda andme- ja mälukasutust. Selle muutmine puhastab nii sisemälu kui piltide vahemälu andmekandjal</string>
+    <string name="download_thumbnail_summary">Välujalülitatult ei toimu pisipiltide laadimist, salvestamist ja puhverdamist. Muutmine puhastab vahemälu nii kettal kui ka mälus.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Pildid kustutati vahemälust</string>
     <string name="metadata_cache_wipe_title">Kustuta metaandmed vahemälust</string>
     <string name="metadata_cache_wipe_summary">Kustuta veebilehtede andmed vahemälust</string>
     <string name="metadata_cache_wipe_complete_notice">Metaandmed kustutati vahemälust</string>
     <string name="auto_queue_title">Järgmine voog automaatselt järjekorda</string>
-    <string name="auto_queue_summary">Lisa seotud voog automaatselt, kui esitusel on viimane voog mittekorduvast järjekorrast</string>
+    <string name="auto_queue_summary">Lisa seotud voog automaatselt, kui esitusel on viimane voog mittekorduvast järjekorrast.</string>
     <string name="player_gesture_controls_title">Pleieri juhtimise viiped</string>
     <string name="player_gesture_controls_summary">Luba viiped helitugevuse ja ereduse juhtimiseks</string>
     <string name="show_search_suggestions_title">Kuva soovitused</string>
@@ -85,17 +85,17 @@
     <string name="resume_on_audio_focus_gain_title">Jätka taasesitust fookuse saamisel</string>
     <string name="resume_on_audio_focus_gain_summary">Jätka taasesitust pärast katkestamist (nt. telefonikõne)</string>
     <string name="download_dialog_title">Laadi alla</string>
-    <string name="next_video_title">Järgmine video</string>
+    <string name="next_video_title">Järgmine</string>
     <string name="show_next_and_similar_title">Kuva \'järgmine\' ja \'sarnased\' videod</string>
     <string name="show_hold_to_append_title">Kuva vihjet \"lisamiseks hoia\"</string>
     <string name="show_hold_to_append_summary">Kuva vihje, kui videoandmete lehel vajutatakse tausta või hüpikakna nupule</string>
-    <string name="url_not_supported_toast">URL pole toetatud</string>
+    <string name="url_not_supported_toast">Mitte toetatud URL</string>
     <string name="default_content_country_title">Sisu vaikimisi riik</string>
     <string name="service_title">Teenus</string>
     <string name="content_language_title">Sisu vaikimisi keel</string>
     <string name="settings_category_player_title">Pleier</string>
     <string name="settings_category_player_behavior_title">Käitumine</string>
-    <string name="settings_category_video_audio_title">Heli ja pilt</string>
+    <string name="settings_category_video_audio_title">Pilt ja heli</string>
     <string name="settings_category_history_title">Ajalugu ja vahemälu</string>
     <string name="settings_category_popup_title">Hüpikaken</string>
     <string name="settings_category_appearance_title">Välimus</string>
@@ -107,9 +107,9 @@
     <string name="popup_playing_append">Lisati hüpikpleieri järjekorda</string>
     <string name="play_btn_text">Esita</string>
     <string name="content">Sisu</string>
-    <string name="show_age_restricted_content_title">Kuva vanusepiiranguga sisu</string>
-    <string name="video_is_age_restricted">Vanusepiiranguga sisu. Selle saab lubada seadetes.</string>
-    <string name="duration_live">Otse</string>
+    <string name="show_age_restricted_content_title">Vanusepiiranguga sisu</string>
+    <string name="video_is_age_restricted">Kuva vanusepiiranguga sisu. Sellise materjali saab lubada \"seadetes\".</string>
+    <string name="duration_live">OTSE</string>
     <string name="downloads">Allalaadimised</string>
     <string name="downloads_title">Allalaadimised</string>
     <string name="error_report_title">Vea teatamine</string>
@@ -144,11 +144,11 @@
     <string name="export_data_summary">Ekspordi ajalugu, tellimused ja pleilistid</string>
     <string name="clear_views_history_title">Puhasta vaatamiste ajalugu</string>
     <string name="clear_views_history_summary">Kustutab vaadatud voogude ajaloo</string>
-    <string name="delete_view_history_alert">Kustuta kogu vaatamiste ajalugu.</string>
+    <string name="delete_view_history_alert">Kas kustutada kogu vaatamiste ajalugu\?</string>
     <string name="view_history_deleted">Vaatamiste ajalugu kustutati.</string>
     <string name="clear_search_history_title">Kustuta otsinguajalugu</string>
     <string name="clear_search_history_summary">Kustutab otsisõnade ajaloo</string>
-    <string name="delete_search_history_alert">Kustuta kogu otsinguajalugu.</string>
+    <string name="delete_search_history_alert">Kas kustutada kogu otsinguajalugu\?</string>
     <string name="search_history_deleted">Otsinguajalugu kustutati.</string>
     <string name="general_error">Viga</string>
     <string name="network_error">Võrgu viga</string>
@@ -159,7 +159,7 @@
     <string name="content_not_available">Sisu pole saadaval</string>
     <string name="blocked_by_gema">GEMA poolt blokeeritud</string>
     <string name="could_not_setup_download_menu">Allalaadimismenüü seadistamine nurjus</string>
-    <string name="live_streams_not_supported">See on OTSEVOOG, mis pole veel toetatud.</string>
+    <string name="live_streams_not_supported">Otsevood ei ole veel toetatud</string>
     <string name="could_not_get_stream">Ühtegi voogu ei leitud</string>
     <string name="could_not_load_image">Pildi laadimine nurjus</string>
     <string name="app_ui_crash">Rakendus jooksis kokku</string>
@@ -170,9 +170,9 @@
     <string name="invalid_url_toast">Kehtetu URL</string>
     <string name="video_streams_empty">Videovooge ei leitud</string>
     <string name="audio_streams_empty">Helivooge ei leitud</string>
-    <string name="invalid_directory">Kehtetu kataloog</string>
-    <string name="invalid_source">Kehtetu faili/sisu allikas</string>
-    <string name="invalid_file">Fail puudub või puuduvad õigused seda lugeda või kirjutada</string>
+    <string name="invalid_directory">Kataloogi pole</string>
+    <string name="invalid_source">Faili/sisu allikat pole</string>
+    <string name="invalid_file">Puudub fail või puuduvad õigused seda faili lugeda või kirjutada</string>
     <string name="file_name_empty_error">Tühi failinimi pole lubatud</string>
     <string name="error_occurred_detail">Ilmnes viga: %1$s</string>
     <string name="no_streams_available_download">Allalaaditavaid videovooge pole</string>
@@ -314,10 +314,10 @@
     <string name="feed_page_summary">Voo leht</string>
     <string name="channel_page_summary">Kanali leht</string>
     <string name="select_a_channel">Vali kanal</string>
-    <string name="no_channel_subscribed_yet">Ühtki kanalit pole veel tellitud</string>
+    <string name="no_channel_subscribed_yet">Kanaleid pole veel tellitud</string>
     <string name="select_a_kiosk">Vali kiosk</string>
-    <string name="export_complete_toast">Eksport tehtud</string>
-    <string name="import_complete_toast">Import tehtud</string>
+    <string name="export_complete_toast">Eksporditud</string>
+    <string name="import_complete_toast">Imporditud</string>
     <string name="no_valid_zip_file">Korralikku ZIP faili pole</string>
     <string name="could_not_import_all_files">Hoiatus: Kõiki faile ei õnnestunud importida.</string>
     <string name="override_current_data">See alistab praeguse seadistuse.</string>
@@ -334,10 +334,10 @@
     <string name="play_queue_audio_settings">Heli seaded</string>
     <string name="hold_to_append">Hoia järjekorda lisamiseks</string>
     <string name="enqueue_on_background">Lisa järjekorda taustal</string>
-    <string name="enqueue_on_popup">Lisa järjekorda hüpikaknaga</string>
+    <string name="enqueue_on_popup">Lisa järjekorda uue hüpikaknaga</string>
     <string name="start_here_on_main">Alusta taasesitust siit</string>
-    <string name="start_here_on_background">Alusta siit taustal</string>
-    <string name="start_here_on_popup">Alusta siit hüpikaknaga</string>
+    <string name="start_here_on_background">Alusta siit olles taustal</string>
+    <string name="start_here_on_popup">Alusta siit uue hüpikaknaga</string>
 
     <string name="drawer_open">Ava sahtel</string>
     <string name="drawer_close">Sulge sahtel</string>
@@ -355,9 +355,9 @@
     <string name="preferred_player_fetcher_notification_title">Info hankimine…</string>
     <string name="preferred_player_fetcher_notification_message">Soovitud sisu laadimine</string>
 
-    <string name="create_playlist">Loo uus pleilist</string>
-    <string name="delete_playlist">Kustuta pleilist</string>
-    <string name="rename_playlist">Nimeta pleilist ümber</string>
+    <string name="create_playlist">Uus pleilist</string>
+    <string name="delete_playlist">Kustuta</string>
+    <string name="rename_playlist">Nimeta ümber</string>
     <string name="playlist_name_input">Nimi</string>
     <string name="append_playlist">Lisa pleilisti</string>
     <string name="set_as_playlist_thumbnail">Määra pleilisti pisipildiks</string>
@@ -368,8 +368,8 @@
     <string name="delete_playlist_prompt">Kas kustutada see pleilist?</string>
     <string name="playlist_creation_success">Pleilist loodud</string>
     <string name="playlist_add_stream_success">Lisati pleilisti</string>
-    <string name="playlist_thumbnail_change_success">Pleilisti pisipilt muudetud</string>
-    <string name="playlist_delete_failure">Pleilisti kustutamine nurjus</string>
+    <string name="playlist_thumbnail_change_success">Pleilisti pisipilt muudetud.</string>
+    <string name="playlist_delete_failure">Pleilisti kustutamine nurjus.</string>
 
     <string name="caption_none">Subtiitriteta</string>
 
@@ -380,7 +380,7 @@
     <string name="caption_auto_generated">Automaatselt loodud</string>
 
     <string name="caption_setting_title">Subtiitrid</string>
-    <string name="caption_setting_description">Kohanda pleieri subtiitrite teksti suurust ja tausta. Jõustamiseks tuleb rakendus taaskäivitada</string>
+    <string name="caption_setting_description">Kohanda pleieri subtiitrite teksti suurust ja tausta. Jõustamiseks tuleb rakendus taaskäivitada.</string>
 
     <string name="enable_leak_canary_summary">Mälulekke seire võib põhjustada rakenduse hangumise</string>
 
@@ -424,7 +424,7 @@
     <string name="switch_to_main">Lülitu peamisele</string>
 
     <string name="reCaptcha_title">reCAPTCHA nõue</string>
-    <string name="recaptcha_request_toast">Nõutav on reCAPTCHA</string>
+    <string name="recaptcha_request_toast">reCAPTCHA nõude taotlus</string>
 
     <string name="copyright" formatted="true">© %1$s %2$s %3$s alla</string>
     <string name="app_description">Vaba kergekaaluline Androidi voogesitus.</string>
@@ -458,4 +458,6 @@
     <string name="minimize_on_exit_background_description">Esita taustal</string>
     <string name="minimize_on_exit_popup_description">Minimeeri hüpikpleierisse</string>
 
-</resources>
+<string name="enable_disposed_exceptions_summary">Jõusta väljaspool fragmenti või elutsüklit olevate kättetoimetamatute Rx erindite raporteerimine nende vabastamise järgselt</string>
+
+    </resources>

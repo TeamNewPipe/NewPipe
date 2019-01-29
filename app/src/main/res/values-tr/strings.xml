@@ -22,12 +22,12 @@
     <string name="download_path_summary">İndirilen videoların saklanacağı konum</string>
     <string name="download_path_dialog_title">Videolar için indirme konumu girin</string>
 
-    <string name="download_path_audio_title">Ses indirme konumu</string>
-    <string name="download_path_audio_summary">İndirilmiş seslerin saklanacağı konum</string>
+    <string name="download_path_audio_title">Ses indirme klasörü</string>
+    <string name="download_path_audio_summary">İndirilen ses dosyalarını burada depola</string>
     <string name="download_path_audio_dialog_title">Ses dosyaları için indirme konumu girin</string>
 
     <string name="autoplay_by_calling_app_title">Kendiliğinden Oynat</string>
-    <string name="autoplay_by_calling_app_summary">NewPipe başka uygulamadan çağırıldığında videoyu oynatır</string>
+    <string name="autoplay_by_calling_app_summary">NewPipe başka uygulamadan çağrıldığında videoyu oynatır</string>
     <string name="default_resolution_title">Öntanımlı çözünürlük</string>
     <string name="play_with_kodi_title">Kodi ile oynat</string>
     <string name="kore_not_found">Kore uygulaması bulunamadı. Kurulsun mu?</string>
@@ -39,7 +39,7 @@
     <string name="light_theme_title">Açık</string>
 
     <string name="download_dialog_title">İndir</string>
-    <string name="next_video_title">Sonraki video</string>
+    <string name="next_video_title">"Sonraki "</string>
     <string name="show_next_and_similar_title">\'Sonraki\' ve \'benzer\' videoları göster</string>
     <string name="url_not_supported_toast">URL desteklenmiyor</string>
     <string name="content_language_title">Öntanımlı içerik dili</string>
@@ -50,9 +50,9 @@
     <string name="background_player_playing_toast">Arka planda oynatıyor</string>
     <string name="play_btn_text">Oynat</string>
     <string name="content">İçerik</string>
-    <string name="show_age_restricted_content_title">Yaş sınırlı içeriği göster</string>
-    <string name="video_is_age_restricted">Yaş Sınırlı Video. Bu gibi materyallere Ayarlar\'dan izin verilebilir.</string>
-    <string name="duration_live">canlı</string>
+    <string name="show_age_restricted_content_title">Yaş sınırlı içerik</string>
+    <string name="video_is_age_restricted">Yaş Sınırı olan Videoları göster. Bu gibi materyallere \"Ayarlar\"dan izin verilebilir.</string>
+    <string name="duration_live">CANLI</string>
     <string name="downloads">İndirilenler</string>
     <string name="downloads_title">İndirilenler</string>
     <string name="error_report_title">Hata bildirimi</string>
@@ -63,9 +63,9 @@
     <string name="youtube_signature_decryption_error">Video URL imzası çözülemedi</string>
     <string name="parsing_error">Web sitesi ayrıştırılamadı</string>
     <string name="light_parsing_error">Web sitesi tümüyle ayrıştırılamadı</string>
-    <string name="content_not_available">İçerik kullanılabilir değil</string>
+    <string name="content_not_available">İçerik kullanılamıyor</string>
     <string name="blocked_by_gema">GEMA tarafından engellendi</string>
-    <string name="live_streams_not_supported">Bu, henüz desteklenmeyen bir CANLI AKIŞ.</string>
+    <string name="live_streams_not_supported">Canlı akışlar henüz desteklenmiyor</string>
     <string name="could_not_get_stream">Herhangi bir akış alınamadı</string>
     <string name="could_not_load_image">Resim yüklenemedi</string>
     <string name="app_ui_crash">Uygulama/arayüz çöktü</string>
@@ -150,8 +150,8 @@
 \naçmak için gerekli</string>
 
     <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">reCAPTCHA Formu</string>
-    <string name="recaptcha_request_toast">reCAPTCHA Formu istendi</string>
+    <string name="reCaptcha_title">"reCAPTCHA "</string>
+    <string name="recaptcha_request_toast">reCAPTCHA Formu gerekli</string>
 
     <string name="controls_background_title">Arka Plan</string>
     <string name="controls_popup_title">Açılır Oynatıcı</string>
@@ -166,7 +166,7 @@
     <string name="settings_category_popup_title">Açılır Oynatıcı</string>
     <string name="popup_resizing_indicator_title">Boyutlandırılıyor</string>
 
-    <string name="use_external_video_player_summary">Bu seçenek etkinken bazı çözünürlüklerin sesi olmayacaktır</string>
+    <string name="use_external_video_player_summary">BAZI çözünürlüklerdeki sesi kaldırır</string>
     <string name="player_gesture_controls_summary">Oynatıcının parlaklığını ve sesini yönetmek için el hareketlerini kullan</string>
     <string name="player_gesture_controls_title">Oynatıcı el hareketi denetimleri</string>
     <string name="show_search_suggestions_title">Arama önerileri</string>
@@ -222,10 +222,10 @@
     <string name="undo">Geri Al</string>
 
     <string name="notification_channel_name">NewPipe Bildirimi</string>
-    <string name="notification_channel_description">NewPipe Arka Plan ve Açılır Oynatıcılar için Bildirimler</string>
+    <string name="notification_channel_description">NewPipe arka plan ve açılır oynatıcılar için bildirimler</string>
 
     <string name="search_no_results">Sonuç yok</string>
-    <string name="empty_subscription_feed_subtitle">Burada Cırcır Böceklerinden Başka Şey Yok</string>
+    <string name="empty_subscription_feed_subtitle">Burada cırcır böceklerinden başka şey yok</string>
 
     <string name="no_subscribers">Abone yok</string>
     <plurals name="subscribers">
@@ -248,7 +248,7 @@
     <string name="title_activity_history">Geçmiş</string>
     <string name="title_history_search">Aranan</string>
     <string name="title_history_view">İzlenen</string>
-    <string name="history_disabled">Geçmiş devre dışı</string>
+    <string name="history_disabled">Geçmiş kapalı</string>
     <string name="action_history">Geçmiş</string>
     <string name="history_empty">Geçmiş boş</string>
     <string name="history_cleared">Geçmiş temizlendi</string>
@@ -280,17 +280,17 @@
     <string name="trending">Trendler</string>
     <string name="top_50">En İyi 50</string>
     <string name="new_and_hot">Yeni ve sıcak</string>
-    <string name="title_activity_background_player">Arka Plan Oynatıcı</string>
-    <string name="title_activity_popup_player">Açılır Oynatıcı</string>
+    <string name="title_activity_background_player">Arkaplan oynatıcı</string>
+    <string name="title_activity_popup_player">Açılır oynatıcı</string>
     <string name="play_queue_remove">Kaldır</string>
     <string name="play_queue_stream_detail">Ayrıntılar</string>
     <string name="play_queue_audio_settings">Ses Ayarları</string>
-    <string name="hold_to_append">Kuyruğa Almak İçin Basılı Tut</string>
-    <string name="enqueue_on_background">Arka Planda Kuyruğa Al</string>
-    <string name="enqueue_on_popup">Açılır Oynatıcıda Kuyruğa Al</string>
-    <string name="start_here_on_main">Burada Oynatmaya Başla</string>
-    <string name="start_here_on_background">Burada Arka Planda Başlat</string>
-    <string name="start_here_on_popup">Burada Açılır Oynatıcıda Başlat</string>
+    <string name="hold_to_append">Kuyruğa almak için basılı tut</string>
+    <string name="enqueue_on_background">Arka planda kuyruğa al</string>
+    <string name="enqueue_on_popup">Yeni açılır oynatıcıda sıraya al</string>
+    <string name="start_here_on_main">Burada oynatmaya başla</string>
+    <string name="start_here_on_background">Burada arka planda başlat</string>
+    <string name="start_here_on_popup">Burada yeni açılır oynatıcıda başlat</string>
 <string name="donation_title">Bağış yapın</string>
     <string name="donation_encouragement">NewPipe, size en iyi deneyimi sunmak için zamanını harcayan gönüllüler tarafından geliştirilmiştir. Bir fincan kahveyi yudumlarken NewPipe\'ı daha da iyi yapmaları için geliştiricilere yardımcı olun.</string>
     <string name="give_back">Geri ver</string>
@@ -305,7 +305,7 @@
 
     <string name="drawer_open">Çekmeceyi Aç</string>
     <string name="drawer_close">Çekmeceyi Kapat</string>
-    <string name="no_player_found_toast">Akış oynatıcı bulunamadı (oynatmak için VLC\'yi kurabilirsiniz)</string>
+    <string name="no_player_found_toast">Akış oynatıcı bulunamadı (bunun için VLC kurabilirsiniz).</string>
     <string name="always">Her Zaman</string>
     <string name="just_once">Yalnızca Bir Kez</string>
 
@@ -325,16 +325,16 @@
     <string name="export_data_title">Veri tabanını dışa aktar</string>
     <string name="import_data_summary">Şu anki geçmişinizi ve aboneliklerinizi geçersiz kılar</string>
     <string name="export_data_summary">Geçmişi, abonelikleri ve oynatma listelerini dışa aktar</string>
-    <string name="export_complete_toast">Dışa aktarım bitti</string>
-    <string name="import_complete_toast">İçe aktarım bitti</string>
+    <string name="export_complete_toast">Dışa aktarıldı</string>
+    <string name="import_complete_toast">İçe aktarıldı</string>
     <string name="no_valid_zip_file">Geçerli ZIP dosyası yok</string>
     <string name="could_not_import_all_files">Uyarı: Tüm dosyalar içe aktarılamadı.</string>
     <string name="override_current_data">Bu, şu anki kurulumunuzu geçersiz kılacak.</string>
 
-    <string name="controls_download_desc">Akış dosyasını indir.</string>
+    <string name="controls_download_desc">Akış dosyasını indir</string>
     <string name="show_info">Bilgileri göster</string>
 
-    <string name="tab_bookmarks">Yer İmleri</string>
+    <string name="tab_bookmarks">Çalma listeleri yer imlerinde</string>
 
     <string name="controls_add_to_playlist_title">Listeye Ekle</string>
 
@@ -354,8 +354,8 @@
     <string name="always_ask_open_action">Her zaman sor</string>
     
     <string name="create_playlist">Yeni Oynatma Listesi Oluştur</string>
-    <string name="delete_playlist">Oynatma Listesini Sil</string>
-    <string name="rename_playlist">Oynatma Listesini Yeniden Adlandır</string>
+    <string name="delete_playlist">Sil</string>
+    <string name="rename_playlist">Yeniden adlandır</string>
     <string name="playlist_name_input">Ad</string>
     <string name="append_playlist">Oynatma Listesine Ekle</string>
     <string name="set_as_playlist_thumbnail">Oynatma Listesi Küçük Resmi Olarak Belirle</string>
@@ -363,11 +363,11 @@
     <string name="bookmark_playlist">Oynatma Listesini İmle</string>
     <string name="unbookmark_playlist">Yer İmini Kaldır</string>
 
-    <string name="delete_playlist_prompt">Bu oynatma listesini silmek istiyor musunuz?</string>
+    <string name="delete_playlist_prompt">Bu oynatma listesi silinsin mi\?</string>
     <string name="playlist_creation_success">Oynatma listesi oluşturuldu</string>
-    <string name="playlist_add_stream_success">Oynatma listesine eklendi</string>
-    <string name="playlist_thumbnail_change_success">Oynatma listesi küçük resmi değiştirildi</string>
-    <string name="playlist_delete_failure">Oynatma listesi silinemedi</string>
+    <string name="playlist_add_stream_success">Oynatma listesinde</string>
+    <string name="playlist_thumbnail_change_success">Oynatma listesi küçük resmi değiştirildi.</string>
+    <string name="playlist_delete_failure">Oynatma listesi silinemedi.</string>
 
     <string name="caption_none">Alt Yazı Yok</string>
 
@@ -387,20 +387,20 @@
     <string name="enable_leak_canary_title">LeakCanary\'i Etkinleştir</string>
     <string name="enable_leak_canary_summary">Bellek sızıntı gözlemlemesi, yığın boşaltımı sırasında uygulamanın tepkisiz kalmasına neden olabilir</string>
 
-    <string name="enable_disposed_exceptions_title">Olağan Dışı İşleyiş Hatalarını Bildir</string>
+    <string name="enable_disposed_exceptions_title">Olağan dışı işleyiş hatalarını bildir</string>
     <string name="enable_disposed_exceptions_summary">Parçanın dışında veya atımdan sonraki etkinlik yaşam döngüsündeki teslim edilemeyen Rx beklentilerinin bildirimini zorla</string>
 
 <string name="use_inexact_seek_title">Hızlı isabetsiz konumlama kullan</string>
     <string name="use_inexact_seek_summary">İsabetsiz konumlama, oynatıcının azaltılmış kesinlikle daha hızlı konumlama yapmasını sağlar</string>
     <string name="auto_queue_title">Sonraki akışı kendiliğinden kuyruğa ekle</string>
-    <string name="auto_queue_summary">Yinelemeyen bir kuyruktaki son akış oynatılırken ilgili bir akışı kendiliğinden sonuna ekle</string>
+    <string name="auto_queue_summary">Yinelemeyen bir kuyruktaki son akış oynatılırken ilgili bir akışı kendiliğinden sonuna ekle.</string>
     <string name="live_sync">EŞZAMANLA</string>
 
     <string name="file">Dosya</string>
 
-    <string name="invalid_directory">Geçersiz dizin</string>
-    <string name="invalid_source">Geçersiz dosya/içerik kaynağı</string>
-    <string name="invalid_file">Dosya yok ya da okuma veya yazma izni yetersiz</string>
+    <string name="invalid_directory">Böyle bir dizin yok</string>
+    <string name="invalid_source">Dosya/içerik kaynağı değil</string>
+    <string name="invalid_file">Dosya yok veya okuma yazma izni eksik</string>
     <string name="file_name_empty_error">Dosya adı boş olamaz</string>
     <string name="error_occurred_detail">Hata oluştu: %1$s</string>
 
@@ -435,7 +435,7 @@
 \n 
 \nDevam etmek istiyor musunuz?</string>
 <string name="download_thumbnail_title">Küçük resimleri yükle</string>
-    <string name="download_thumbnail_summary">Küçük resimlerin tümünün yüklenmesini engellemek, bellek ve veri kullanımını azaltmak için devre dışı bırakın. Bunu değiştirmek, hem bellekteki hem de diskteki resim önbelleğini temizler</string>
+    <string name="download_thumbnail_summary">Kapalıyken küçük resimler yüklenmez, veri ve bellek kullanımı azaltılır. Değişiklikler hem bellekteki hem diskteki resim önbelleğini temizler.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Resim önbelleği temizlendi</string>
     <string name="metadata_cache_wipe_title">Önbelleklenmiş üst veriyi temizle</string>
     <string name="metadata_cache_wipe_summary">Önbelleklenmiş tüm web sayfası verisini kaldır</string>
@@ -452,21 +452,21 @@
     <string name="preferred_open_action_settings_summary">İçerik açılırken öntanımlı eylem — %s</string>
 
     <string name="caption_setting_title">Ek Açıklamalar</string>
-    <string name="caption_setting_description">Oynatıcı ek açıklamalar metin boyutunu ve arka plan biçimlerini düzenle. Etki için uygulamayı yeniden başlatmak gerekir</string>
+    <string name="caption_setting_description">Oynatıcı ek açıklamalar metin boyutunu ve arka plan biçimlerini düzenle. Etki için uygulamayı yeniden başlatmak gerekir.</string>
 
     <string name="toast_no_player">Bu dosyayı oynatmak için kurulan uygulama yok</string>
 
     <string name="clear_views_history_title">İzleme geçmişini temizle</string>
     <string name="clear_views_history_summary">Oynatılan akışların geçmişini siler</string>
-    <string name="delete_view_history_alert">Tüm izleme geçmişini sil.</string>
+    <string name="delete_view_history_alert">Tüm izleme geçmişi silinsin mi\?</string>
     <string name="view_history_deleted">İzleme geçmişi silindi.</string>
     <string name="clear_search_history_title">Arama geçmişini temizle</string>
     <string name="clear_search_history_summary">Aranan anahtar sözcüklerin geçmişini siler</string>
-    <string name="delete_search_history_alert">Tüm arama geçmişini sil.</string>
+    <string name="delete_search_history_alert">Tüm arama geçmişi silinsin mi\?</string>
     <string name="search_history_deleted">Arama geçmişi silindi.</string>
     <string name="one_item_deleted">1 öge silindi.</string>
 
-    <string name="app_license">NewPipe, telif müsaadeli özgür yazılımdır: İstediğiniz gibi kullanabilir, öğrenebilir, paylaşabilir, iyileştirebilirsiniz. Özellikle; Özgür Yazılım Vakfı tarafından yayımlanan GNU Genel Kamu Lisansı\'nın, lisansın 3. sürümüyle veya (isterseniz) daha sonraki sürümünün koşulları altında yeniden dağıtabilir ve/veya düzenleyebilirsiniz.</string>
+    <string name="app_license">NewPipe, telif haklı özgür yazılımdır: İstediğiniz gibi kullanabilir, öğrenebilir, paylaşabilir, iyileştirebilirsiniz. Özellikle; Özgür Yazılım Vakfı tarafından yayımlanan GNU Genel Kamu Lisansı\'nın, lisansın 3. sürümüyle veya (isterseniz) daha sonraki sürümünün koşulları altında yeniden dağıtabilir ve/veya düzenleyebilirsiniz.</string>
     <string name="import_settings">Ayarları da içe aktarmak istiyor musunuz?</string>
 
     <string name="privacy_policy_title">NewPipe\'ın Gizlilik İlkesi</string>
@@ -479,7 +479,7 @@
     <string name="decline">Kabul etme</string>
 <string name="limit_data_usage_none_description">Sınırsız</string>
     <string name="limit_mobile_data_usage_title">Mobil veri kullanırken çözünürlüğü sınırla</string>
-    <string name="minimize_on_exit_title">Uygulama geçişinde küçült</string>
+    <string name="minimize_on_exit_title">Uygulamayı simge durumuna küçült</string>
     <string name="minimize_on_exit_summary">Ana video oynatıcıdan başka bir uygulamaya geçişteki eylem — %s</string>
     <string name="minimize_on_exit_none_description">Yok</string>
     <string name="minimize_on_exit_background_description">Arka plan oynatıcıya küçült</string>

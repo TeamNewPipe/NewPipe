@@ -50,6 +50,7 @@ import us.shandian.giga.ui.common.Deleter;
 import us.shandian.giga.ui.common.ProgressDrawable;
 import us.shandian.giga.util.Utility;
 
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 import static android.content.Intent.FLAG_GRANT_PREFIX_URI_PERMISSION;
 import static android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION;
 import static us.shandian.giga.get.DownloadMission.ERROR_CONNECT_HOST;
@@ -159,7 +160,7 @@ public class MissionAdapter extends Adapter<ViewHolder> {
                 str = R.string.missions_header_pending;
             } else {
                 str = R.string.missions_header_finished;
-                mClear.setVisible(true);
+                if (mClear != null) mClear.setVisible(true);
             }
 
             ((ViewHolderHeader) view).header.setText(str);
@@ -322,6 +323,9 @@ public class MissionAdapter extends Adapter<ViewHolder> {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             intent.addFlags(FLAG_GRANT_PREFIX_URI_PERMISSION);
         }
+        if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.M) {
+            intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+        }
         //mContext.grantUriPermission(packageName, uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
         Log.v(TAG, "Starting intent: " + intent);
         if (intent.resolveActivity(mContext.getPackageManager()) != null) {
@@ -437,7 +441,6 @@ public class MissionAdapter extends Adapter<ViewHolder> {
     public void clearFinishedDownloads() {
         mDownloadManager.forgetFinishedDownloads();
         applyChanges();
-        mClear.setVisible(false);
     }
 
     private boolean handlePopupItem(@NonNull ViewHolderItem h, @NonNull MenuItem option) {
@@ -507,7 +510,7 @@ public class MissionAdapter extends Adapter<ViewHolder> {
         mIterator.end();
 
         checkEmptyMessageVisibility();
-        mClear.setVisible(mIterator.hasFinishedMissions());
+        if (mClear != null) mClear.setVisible(mIterator.hasFinishedMissions());
     }
 
     public void forceUpdate() {
