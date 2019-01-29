@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.util.ThemeHelper;
 
 import us.shandian.giga.service.DownloadManager;
 import us.shandian.giga.service.DownloadManagerService;
@@ -40,7 +41,7 @@ public class MissionsFragment extends Fragment {
     private MissionAdapter mAdapter;
     private GridLayoutManager mGridManager;
     private LinearLayoutManager mLinearManager;
-    private Context mActivity;
+    private Context mContext;
 
     private DMBinder mBinder;
     private Bundle mBundle;
@@ -53,7 +54,7 @@ public class MissionsFragment extends Fragment {
             mBinder = (DownloadManagerService.DMBinder) binder;
             mBinder.clearDownloadNotifications();
 
-            mAdapter = new MissionAdapter(mActivity, mBinder.getDownloadManager(), mClear, mEmpty);
+            mAdapter = new MissionAdapter(mContext, mBinder.getDownloadManager(), mClear, mEmpty);
             mAdapter.deleterLoad(mBundle, getView());
 
             mBundle = null;
@@ -79,17 +80,17 @@ public class MissionsFragment extends Fragment {
         mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         mLinear = mPrefs.getBoolean("linear", false);
 
-        mActivity = getActivity();
+        //mContext = getActivity().getApplicationContext();
         mBundle = savedInstanceState;
 
         // Bind the service
-        mActivity.bindService(new Intent(mActivity, DownloadManagerService.class), mConnection, Context.BIND_AUTO_CREATE);
+        mContext.bindService(new Intent(mContext, DownloadManagerService.class), mConnection, Context.BIND_AUTO_CREATE);
 
         // Views
         mEmpty = v.findViewById(R.id.list_empty_view);
         mList = v.findViewById(R.id.mission_recycler);
 
-        // Init
+        // Init layouts managers
         mGridManager = new GridLayoutManager(getActivity(), SPAN_SIZE);
         mGridManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
@@ -103,7 +104,6 @@ public class MissionsFragment extends Fragment {
                 }
             }
         });
-
         mLinearManager = new LinearLayoutManager(getActivity());
 
         setHasOptionsMenu(true);
@@ -115,13 +115,13 @@ public class MissionsFragment extends Fragment {
      * Added in API level 23.
      */
     @Override
-    public void onAttach(Context activity) {
-        super.onAttach(activity);
+    public void onAttach(Context context) {
+        super.onAttach(context);
 
         // Bug: in api< 23 this is never called
         // so mActivity=null
-        // so app crashes with nullpointer exception
-        mActivity = activity;
+        // so app crashes with null-pointer exception
+        mContext = context;
     }
 
     /**
@@ -132,7 +132,7 @@ public class MissionsFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
 
-        mActivity = activity;
+        mContext = activity.getApplicationContext();
     }
 
 
@@ -143,7 +143,7 @@ public class MissionsFragment extends Fragment {
 
         mBinder.removeMissionEventListener(mAdapter.getMessenger());
         mBinder.enableNotifications(true);
-        mActivity.unbindService(mConnection);
+        mContext.unbindService(mConnection);
         mAdapter.deleterDispose(null);
 
         mBinder = null;
@@ -189,7 +189,15 @@ public class MissionsFragment extends Fragment {
         mList.setAdapter(mAdapter);
 
         if (mSwitch != null) {
-            mSwitch.setIcon(mLinear ? R.drawable.grid : R.drawable.list);
+            boolean isLight = ThemeHelper.isLightThemeSelected(mContext);
+            int icon;
+
+            if (mLinear)
+                icon = isLight ? R.drawable.ic_list_black_24dp : R.drawable.ic_list_white_24dp;
+            else
+                icon = isLight ? R.drawable.ic_grid_black_24dp : R.drawable.ic_grid_white_24dp;
+
+            mSwitch.setIcon(icon);
             mSwitch.setTitle(mLinear ? R.string.grid : R.string.list);
             mPrefs.edit().putBoolean("linear", mLinear).apply();
         }

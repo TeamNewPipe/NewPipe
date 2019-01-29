@@ -7,7 +7,7 @@
     <string name="what_device_headline">Informações:</string>
     <string name="view_count_text">%1$s visualizações</string>
     <string name="view">Reproduzir</string>
-    <string name="video_is_age_restricted">Vídeo com restrição de idade. Permissão para vídeos com essa restrição podem ser feitas no menu configurações.</string>
+    <string name="video_is_age_restricted">Vídeo com restrição de idade. Permissão para vídeos com essa restrição podem ser feitas no menu \"Configurações\".</string>
     <string name="video">Vídeo</string>
     <string name="autoplay_by_calling_app_summary">Reproduz o vídeo quando o NewPipe for aberto a partir de outro aplicativo</string>
     <string name="autoplay_by_calling_app_title">Reproduzir automaticamente</string>
@@ -48,7 +48,7 @@
     <string name="msg_server_unsupported">Servidor não suportado</string>
     <string name="msg_wait">Aguarde…</string>
     <string name="network_error">Erro de rede</string>
-    <string name="next_video_title">Próximo vídeo</string>
+    <string name="next_video_title">Próximo</string>
     <string name="open_in_browser">Abrir no navegador</string>
     <string name="pause">Pausar</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
@@ -64,8 +64,8 @@
     <string name="settings_category_video_audio_title">Vídeo &amp; Áudio</string>
     <string name="share">Compartilhar</string>
     <string name="share_dialog_title">Compartilhar com</string>
-    <string name="show_age_restricted_content_title">Exibir conteúdo com restrição de idade</string>
-    <string name="show_next_and_similar_title">Exibir \'próximo\' vídeo e \'relacionados\'</string>
+    <string name="show_age_restricted_content_title">Conteúdo com restrição de idade</string>
+    <string name="show_next_and_similar_title">Exibir \'Próximo\' vídeo e \'Relacionados\'</string>
     <string name="sorry_string">Desculpe, isto não deveria ter acontecido.</string>
     <string name="start">Iniciar</string>
     <string name="storage_permission_denied">Permissão para acessar armazenamento negada</string>
@@ -76,7 +76,7 @@
     <string name="duration_live">ao vivo</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
-    <string name="did_you_mean">Você quis dizer: %1$s ?</string>
+    <string name="did_you_mean">Você quis dizer: %1$s\?</string>
     <string name="add">Nova missão</string>
     <string name="app_ui_crash">App/interface parou</string>
     <string name="background_player_playing_toast">Reproduzindo em segundo plano</string>
@@ -84,15 +84,15 @@
     <string name="detail_thumbnail_view_description">Thumbnail do vídeo</string>
     <string name="detail_uploader_thumbnail_view_description">Miniatura do usuário que enviou o vídeo</string>
     <string name="download_path_audio_dialog_title">Informe o local para download de áudios</string>
-    <string name="download_path_audio_summary">Local para salvar áudios baixados</string>
-    <string name="download_path_audio_title">Local de download de áudio</string>
+    <string name="download_path_audio_summary">Áudios baixados são gravados aqui</string>
+    <string name="download_path_audio_title">Pasta de download de áudio</string>
     <string name="download_path_dialog_title">Informe o local para download de vídeos</string>
     <string name="download_path_summary">Local para salvar vídeos baixados</string>
     <string name="download_path_title">Local de download de vídeo</string>
     <string name="kore_not_found">Aplicativo Kore não instalado. Instalar?</string>
     <string name="light_parsing_error">Não foi possível interpretar completamente o site</string>
     <string name="list_thumbnail_view_description">Miniatura do vídeo</string>
-    <string name="live_streams_not_supported">Isto é uma transmissão ao vivo, a qual ainda não é suportada.</string>
+    <string name="live_streams_not_supported">"Transmissões ao vivo ainda não são suportadas "</string>
     <string name="main_bg_subtitle">Toque em pesquisar para começar</string>
     <string name="msg_exists">Arquivo já existe</string>
     <string name="msg_threads">Threads</string>
@@ -104,7 +104,7 @@
     <string name="play_btn_text">Reproduzir</string>
     <string name="play_with_kodi_title">Reproduzir com Kodi</string>
     <string name="search">Buscar</string>
-    <string name="show_play_with_kodi_summary">Exibir opção para reproduzir vídeo pelo Kodi</string>
+    <string name="show_play_with_kodi_summary">Exibir uma opção para reproduzir o vídeo via centro de mídia Kodi</string>
     <string name="use_external_audio_player_title">Usar reprodutor de áudio externo</string>
     <string name="use_external_video_player_title">Usar reprodutor de vídeo externo</string>
     <string name="use_tor_summary">(Experimental) Forçar o download de conteúdo através do Tor para maior privacidade (streaming de vídeos ainda não suportado).</string>
@@ -124,9 +124,6 @@
     <string name="yes">Sim</string>
     <string name="later">Depois</string>
     <string name="disabled">Desabilitado</string>
-
-    <string name="use_old_player_title">Usar player antigo</string>
-    <string name="use_old_player_summary">Antigo player interno Mediaframework</string>
 
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
@@ -150,7 +147,7 @@ abrir em modo popup</string>
     <string name="settings_category_popup_title">Popup</string>
     <string name="popup_resizing_indicator_title">Redimensionamento</string>
 
-    <string name="use_external_video_player_summary">Algumas resoluções não terão áudio quando esta opção estiver habilitada</string>
+    <string name="use_external_video_player_summary">Remove o áudio em ALGUMAS resoluções</string>
     <string name="player_gesture_controls_title">Controle do player por gestos</string>
     <string name="player_gesture_controls_summary">Usar gestos para controlar o brilho da tela e volume do player</string>
     <string name="show_search_suggestions_title">Sugestões de busca</string>
@@ -254,7 +251,7 @@ abrir em modo popup</string>
     <string name="trending">Em Alta</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Novos e tendências</string>
-<string name="show_hold_to_append_title">"Mostrar dica  \"mantenha pressionado para enfileirar\""</string>
+<string name="show_hold_to_append_title">Mostrar dica \"Mantenha pressionado para enfileirar\"</string>
     <string name="show_hold_to_append_summary">Mostrar dica quando o botão de plano de fundo ou de popup for pressionado na página de detalhes do vídeo</string>
     <string name="background_player_append">Adicionado a fila do reprodutor em plano de fundo</string>
     <string name="popup_playing_append">Adicionado a fila no reprodutor popup</string>
@@ -275,14 +272,14 @@ abrir em modo popup</string>
     <string name="enqueue_on_background">Adicionar a fila em Plano de Fundo</string>
     <string name="enqueue_on_popup">Adicionar a fila em Popup</string>
     <string name="start_here_on_main">Iniciar a reproduzir à partir daqui</string>
-    <string name="start_here_on_background">Iniciar aqui em Plano de Fundo</string>
-    <string name="start_here_on_popup">Iniciar aqui em popup</string>
+    <string name="start_here_on_background">Iniciar aqui quando estiver em Plano de Fundo</string>
+    <string name="start_here_on_popup">Iniciar aqui em novo popup</string>
 <string name="donation_title">Doar</string>
     <string name="donation_encouragement">NewPipe é desenvolvido por voluntários que usam seu tempo para trazer a melhor experiência para você. Retribua para ajudar os desenvolvedores a tornarem o NewPipe ainda melhor enquanto desfrutam uma xícara de café.</string>
     <string name="give_back">Retribuir</string>
     <string name="website_title">Site oficial</string>
     <string name="website_encouragement">Visite o site do NewPipe para mais informações e novidades.</string>
-    <string name="no_player_found_toast">Nenhum reprodutor de stream encontrado (você pode instalar o VLC para reproduzir isto)</string>
+    <string name="no_player_found_toast">Nenhum reprodutor de stream encontrado (você pode instalar o VLC para reproduzir isto).</string>
     <string name="default_content_country_title">País do conteúdo padrão</string>
     <string name="service_title">Serviço</string>
     <string name="always">Sempre</string>
@@ -301,24 +298,23 @@ abrir em modo popup</string>
     <string name="video_player">Reprodutor de vídeo</string>
     <string name="background_player">Reprodutor em plano de fundo</string>
     <string name="popup_player">Reprodutor popup</string>
-    <string name="always_ask_player">Sempre perguntar</string>
     
     <string name="preferred_player_fetcher_notification_title">Obtendo informações…</string>
     <string name="preferred_player_fetcher_notification_message">Carregando o conteúdo requisitado</string>
 <string name="import_data_title">Importar base de dados</string>
     <string name="export_data_title">Exportar base de dados</string>
-    <string name="import_data_summary">Isso irá sobrescrever seu histórico e inscrições</string>
+    <string name="import_data_summary">Sobrescreve seu histórico e inscrições</string>
     <string name="export_data_summary">Exportar histórico, inscrições e listas de reprodução</string>
-    <string name="export_complete_toast">Exportação completa</string>
-    <string name="import_complete_toast">Importação completa</string>
+    <string name="export_complete_toast">Exportado</string>
+    <string name="import_complete_toast">Importado</string>
     <string name="no_valid_zip_file">Não há nenhum arquivo ZIP válido</string>
     <string name="could_not_import_all_files">Aviso: Não foi possível importar todos arquivos.</string>
     <string name="override_current_data">Isso irá sobrescrever suas configurações atuais.</string>
 
-    <string name="controls_download_desc">Baixar arquivo de stream.</string>
+    <string name="controls_download_desc">Baixar arquivo de stream</string>
     <string name="show_info">Mostrar informações</string>
 
-    <string name="tab_bookmarks">Favoritos</string>
+    <string name="tab_bookmarks">Playlists favoritas</string>
 
     <string name="controls_add_to_playlist_title">Adicionar a</string>
 
@@ -337,9 +333,9 @@ abrir em modo popup</string>
 
     <string name="always_ask_open_action">Sempre perguntar</string>
     
-    <string name="create_playlist">Criar nova Lista de Reprodução</string>
-    <string name="delete_playlist">Apagar Lista de Reprodução</string>
-    <string name="rename_playlist">Renomear Lista de Reprodução</string>
+    <string name="create_playlist">Nova Lista de Reprodução</string>
+    <string name="delete_playlist">Apagar</string>
+    <string name="rename_playlist">Renomear</string>
     <string name="playlist_name_input">Nome</string>
     <string name="append_playlist">Adicionar a Lista de Reprodução</string>
     <string name="set_as_playlist_thumbnail">Definir como Miniatura da Lista de Reprodução</string>
@@ -347,23 +343,17 @@ abrir em modo popup</string>
     <string name="bookmark_playlist">Favoritar Lista de Reprodução</string>
     <string name="unbookmark_playlist">Remover Favorito</string>
 
-    <string name="delete_playlist_prompt">Deseja remover esta lista de reprodução?</string>
+    <string name="delete_playlist_prompt">Deletar esta lista de reprodução\?</string>
     <string name="playlist_creation_success">Lista de Reprodução criada</string>
     <string name="playlist_add_stream_success">Adicionado a lista de reprodução</string>
-    <string name="playlist_thumbnail_change_success">Miniatura para a lista de reprodução alterada</string>
-    <string name="playlist_delete_failure">Falha ao apagar lista de reprodução</string>
+    <string name="playlist_thumbnail_change_success">Miniatura da lista de reprodução alterada.</string>
+    <string name="playlist_delete_failure">Falha ao apagar lista de reprodução.</string>
 
     <string name="caption_none">Sem Legendas</string>
 
     <string name="resize_fit">Ajustar</string>
     <string name="resize_fill">Preencher</string>
     <string name="resize_zoom">Zoom</string>
-
-    <string name="caption_font_size_settings_title">Tamanho da fonte da legenda</string>
-    <string name="smaller_caption_font_size">Fonte menor</string>
-    <string name="normal_caption_font_size">Fonte normal</string>
-    <string name="larger_caption_font_size">Maior fonte</string>
-<string name="settings_category_debug_title">Depurar</string>
     <string name="drawer_header_action_paceholder_text">Algo irá aparecer aqui em breve ;D</string>
 
 
@@ -377,13 +367,13 @@ abrir em modo popup</string>
 <string name="use_inexact_seek_title">Usar índice de indexação rápido porém não preciso</string>
     <string name="use_inexact_seek_summary">Usar índice de indexação inexato</string>
     <string name="auto_queue_title">Adicionar a próxima stream à fila automaticamente</string>
-    <string name="auto_queue_summary">Auto anexar uma stream relacionada quando a reprodução iniciar na última stream em uma fila não repetitiva</string>
-    <string name="live_sync">Sincronizar</string>
+    <string name="auto_queue_summary">Auto anexar uma stream relacionada quando a reprodução iniciar na última stream em uma fila não repetitiva.</string>
+
 
     <string name="file">Arquivo</string>
 
-    <string name="invalid_directory">Diretório inválido</string>
-    <string name="invalid_source">Origem do arquivo/conteúdo inválido</string>
+    <string name="invalid_directory">Pasta não encontrada</string>
+    <string name="invalid_source">Origem do arquivo/conteúdo não econtrada</string>
     <string name="invalid_file">Arquivo não existe ou não há permissão para ler ou escrever nele</string>
     <string name="file_name_empty_error">Nome do arquivo não pode ser vazio</string>
     <string name="error_occurred_detail">Um erro ocorreu: %1$s</string>
@@ -425,10 +415,9 @@ abrir em modo popup</string>
     <string name="metadata_cache_wipe_complete_notice">Cache de metadados foi limpo</string>
     <string name="playback_speed_control">Controles de Velocidade de Reprodução</string>
     <string name="playback_tempo">"Tempo "</string>
-    <string name="download_thumbnail_summary">Desabilite para para de carregar todas as miniaturas e economizar dados e uso de memória. Alterar esta configuração irá limpar o cache de imagens na memória e em disco</string>
+    <string name="download_thumbnail_summary">Quando desligado miniaturas não carregarão, economizando dados e uso de memória. Alterar esta configuração irá limpar o cache de imagens na memória e em disco.</string>
     <string name="playback_pitch">Passo</string>
     <string name="unhook_checkbox">Desvincular (pode causar distorção)</string>
-    <string name="playback_default">Padrão</string>
 <string name="preferred_open_action_settings_title">Ação de \'abrir\' preferida</string>
     <string name="preferred_open_action_settings_summary">Ação padrão quando abrir conteúdo — %s</string>
 
@@ -437,22 +426,21 @@ abrir em modo popup</string>
     <string name="drawer_open">Abrir gaveta</string>
     <string name="drawer_close">Fechar gaveta</string>
     <string name="caption_setting_title">Legendas</string>
-    <string name="caption_setting_description">Modifique o tamanho da legenda e o estilo da tela de fundo. Necessário reiniciar o aplicativo para ter efeito</string>
+    <string name="caption_setting_description">Modifique o tamanho da legenda e o estilo da tela de fundo. Necessário reiniciar o aplicativo para ter efeito.</string>
 
-    <string name="playback_nightcore">Night-core</string>
     <string name="toast_no_player">Nenhum player instalado para reproduzir este arquivo</string>
 
     <string name="clear_views_history_title">"Limpar histórico de já assistidos "</string>
     <string name="clear_views_history_summary">Deleta o histórico de videos já reproduzidos</string>
-    <string name="delete_view_history_alert">Deleta todo o histórico de já reproduzidos.</string>
+    <string name="delete_view_history_alert">Deletar todo o histórico de já reproduzidos\?</string>
     <string name="view_history_deleted">Histórico de já assistidos deletado.</string>
     <string name="clear_search_history_title">Limpar histórico de pesquisa</string>
     <string name="clear_search_history_summary">Deleta histórico de palavras chave pesquisadas</string>
-    <string name="delete_search_history_alert">Deletar todo o histórico de pesquisa.</string>
+    <string name="delete_search_history_alert">Deletar todo o histórico de pesquisa\?</string>
     <string name="search_history_deleted">Histórico de pesquisa deletado.</string>
     <string name="one_item_deleted">1 item deletado.</string>
 
-    <string name="app_license">NewPipe is copyleft libre software: Você pode usar, estudar, compartilhar e melhorar ele a vontade. Mais especificamente você pode redistribuir e/ou modificar ele sob os termos da GNU General Public License como publicada pela Free Software Foundation, tanto a versão 3 dessa Licença, ou (a sua escolha) qualquer outra versão posterior.</string>
+    <string name="app_license">NewPipe é software livre copyleft: Você pode usar, estudar, compartilhar e melhorar ele a vontade. Mais especificamente você pode redistribuir e/ou modificar ele sob os termos da GNU General Public License como publicada pela Free Software Foundation, tanto a versão 3 dessa Licença, ou (a sua escolha) qualquer outra versão posterior.</string>
     <string name="import_settings">Você também quer importar as configurações?</string>
 
     <string name="privacy_policy_title">Política de privacidade do NewPipe</string>
