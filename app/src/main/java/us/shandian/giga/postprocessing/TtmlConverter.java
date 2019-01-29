@@ -18,13 +18,12 @@ import us.shandian.giga.postprocessing.io.SharpInputStream;
 /**
  * @author kapodamy
  */
-class TttmlConverter extends Postprocessing {
-    private static final String TAG = "TttmlConverter"; 
+class TtmlConverter extends Postprocessing {
+    private static final String TAG = "TtmlConverter";
 
-    TttmlConverter(DownloadMission mission) {
-        super(mission);
-        recommendedReserve = 0;// due how XmlPullParser works, the xml is fully loaded on the ram
-        worksOnSameFile = true;
+    TtmlConverter(DownloadMission mission) {
+        // due how XmlPullParser works, the xml is fully loaded on the ram
+        super(mission, 0, true);
     }
 
     @Override
@@ -41,7 +40,7 @@ class TttmlConverter extends Postprocessing {
                         out,
                         getArgumentAt(1, "true").equals("true"),
                         getArgumentAt(2, "true").equals("true")
-                );   
+                );
             } catch (Exception err) {
                 Log.e(TAG, "subtitle parse failed", err);
 
@@ -56,7 +55,7 @@ class TttmlConverter extends Postprocessing {
                 } else if (err instanceof XPathExpressionException) {
                     return 7;
                 }
-                
+
                 return 8;
             }
 

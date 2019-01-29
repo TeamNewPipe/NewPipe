@@ -222,6 +222,10 @@
         <item>@string/always_ask_open_action_key</item>
     </string-array>
 
+    <!-- Updates -->
+    <string name="update_app_key" translatable="false">update_app_key</string>
+    <string name="update_pref_screen_key" translatable="false">update_pref_screen_key</string>
+
     <!-- alternatively, load these from some local android data store -->
     <string-array name="language_codes" translatable="false">
         <item>af</item>

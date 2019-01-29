@@ -1,16 +1,16 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources><string name="main_bg_subtitle">Націсніце пошук, каб пачаць</string>
     <string name="view_count_text">%1$s праглядаў</string>
     <string name="upload_date_text">Апублікавана %1$s</string>
     <string name="no_player_found">Патокавы плэер не знойдзены. Усталяваць VLC?</string>
-    <string name="no_player_found_toast">Патокавы плэер не знойдзены (вы можаце ўсталяваць VLC)</string>
+    <string name="no_player_found_toast">Патокавы плэер не знойдзены (вы можаце ўсталяваць VLC).</string>
     <string name="install">Усталяваць</string>
     <string name="cancel">Скасаваць</string>
-    <string name="open_in_browser">Адкрыць у браўзэры</string>
+    <string name="open_in_browser">Адкрыць у браўзеры</string>
     <string name="open_in_popup_mode">Адкрыць у асобным акне</string>
     <string name="share">Падзяліцца</string>
     <string name="download">Спампаваць</string>
-    <string name="controls_download_desc">Загрузка файла прамой трансляцыі.</string>
+    <string name="controls_download_desc">Загрузка файла прамой трансляцыі</string>
     <string name="search">Пошук</string>
     <string name="settings">Налады</string>
     <string name="did_you_mean">Магчыма, вы мелі на ўвазе: %1$s?</string>
@@ -18,7 +18,7 @@
     <string name="choose_browser">Выбраць браўзэр</string>
     <string name="screen_rotation">паварот</string>
     <string name="use_external_video_player_title">Знешні відэаплэер</string>
-    <string name="use_external_video_player_summary">У некаторых разрозненнях НЕ будзе гуку, калі гэтая опцыя абраная</string>
+    <string name="use_external_video_player_summary">Адключае гук для НЕКАТОРЫХ разрозненняў</string>
     <string name="use_external_audio_player_title">Знешні аўдыяплэер</string>
     <string name="popup_mode_share_menu_title">NewPipe ў акне</string>
     <string name="subscribe_button_title">Падпісацца</string>
@@ -30,7 +30,7 @@
 
     <string name="tab_main">Галоўная</string>
     <string name="tab_subscriptions">Падпіскі</string>
-    <string name="tab_bookmarks">Закладкі</string>
+    <string name="tab_bookmarks">Адзначаныя плэйлісты</string>
 
     <string name="fragment_whats_new">Што новага</string>
 
@@ -42,8 +42,8 @@
     <string name="download_path_summary">Папка для захоўвання загружаных відэа</string>
     <string name="download_path_dialog_title">Увядзіце шлях да папкі для загрузкі відэа</string>
 
-    <string name="download_path_audio_title">Шлях загрузкі аўдыё</string>
-    <string name="download_path_audio_summary">Папка для захоўвання загружаных аўдыё</string>
+    <string name="download_path_audio_title">Тэчка загрузкі аўдыё</string>
+    <string name="download_path_audio_summary">"Сюды захоўваецца загружанае аўдыё "</string>
     <string name="download_path_audio_dialog_title">Увядзіце шлях да папкі для загрузкі аўдыё</string>
 
     <string name="autoplay_by_calling_app_title">Аўтапрайграванне</string>
