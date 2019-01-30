@@ -314,7 +314,7 @@
     <string name="service_title">Servizio</string>
     <string name="drawer_open">Apri il menu</string>
     <string name="drawer_close">Chiudi il menu</string>
-    <string name="no_player_found_toast">Nessun lettore multimediale trovato (puoi installare VLC per riprodurlo).</string>
+    <string name="no_player_found_toast">Nessun lettore multimediale trovato. Puoi installare VLC per riprodurlo.</string>
     <string name="always">Sempre</string>
     <string name="just_once">Solo una volta</string>
 
@@ -343,7 +343,7 @@
     <string name="controls_download_desc">Scarica il video</string>
     <string name="show_info">Mostra informazioni</string>
 
-    <string name="tab_bookmarks">Scalette preferite</string>
+    <string name="tab_bookmarks">Playlist preferite</string>
 
     <string name="controls_add_to_playlist_title">Aggiungi a</string>
 
