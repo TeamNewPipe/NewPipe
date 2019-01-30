@@ -510,7 +510,7 @@
     <string name="download_to_sdcard_error_message">Herunterladen auf externe SD-Karte ist noch nicht möglich. Zielverzeichnis zurücksetzen\?</string>
     <string name="saved_tabs_invalid_json">Fehler beim Lesen der gespeicherten Tabs – es werden die Voreinstellungen benutzt</string>
     <string name="restore_defaults">Voreinstellungen wiederherstellen</string>
-    <string name="restore_defaults_confirmation">Möchten Sie die Voreinstellungen wiederherstellen\?</string>
+    <string name="restore_defaults_confirmation">Möchtest du die Voreinstellungen wiederherstellen\?</string>
     <string name="subscribers_count_not_available">Abonnentenzahl nicht verfügbar</string>
     <string name="main_page_content_summary">Welche Tabs auf der Hauptseite angezeigt werden</string>
     <string name="selection">Auswahl</string>
@@ -551,7 +551,7 @@
     <string name="error_http_not_found">Nicht gefunden</string>
     <string name="error_postprocessing_failed">Nachbearbeitung fehlgeschlagen</string>
     <string name="clear_finished_download">Um fertige Downloads bereinigen</string>
-    <string name="msg_pending_downloads">Sie haben %s ausstehende Downloads. Wechseln Sie zu Downloads um fortzufahren</string>
+    <string name="msg_pending_downloads">Du hast %s ausstehende Downloads. Wechsle zu Downloads um fortzufahren</string>
     <string name="stop">Anhalten</string>
     <string name="max_retry_msg">Maximale Wiederholungen</string>
     <string name="max_retry_desc">Maximalanzahl der Versuche, bevor der Download abgebrochen wird</string>
