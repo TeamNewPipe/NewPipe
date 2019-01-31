@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="view_count_text">%1$s visualizzazioni</string>
     <string name="upload_date_text">Pubblicato il %1$s</string>
@@ -10,7 +10,7 @@
     <string name="download">Scarica</string>
     <string name="search">Cerca</string>
     <string name="settings">Impostazioni</string>
-    <string name="did_you_mean">Intendevi %1$s?</string>
+    <string name="did_you_mean">Intendevi: %1$s\?</string>
     <string name="share_dialog_title">Condividi con</string>
     <string name="choose_browser">Scegli il browser</string>
     <string name="screen_rotation">rotazione</string>
@@ -25,8 +25,8 @@
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Formato audio predefinito</string>
     <string name="download_dialog_title">Scarica</string>
-    <string name="next_video_title">Prossimo video</string>
-    <string name="show_next_and_similar_title">Mostra \'prossimi\' video e video \'simili\'</string>
+    <string name="next_video_title">Prossimo</string>
+    <string name="show_next_and_similar_title">Mostra video \'Prossimo\' e \'Simili\'</string>
     <string name="url_not_supported_toast">URL non supportato</string>
     <string name="content_language_title">Lingua predefinita per i contenuti</string>
     <string name="settings_category_video_audio_title">Video e Audio</string>
@@ -41,7 +41,7 @@
     <string name="use_external_video_player_title">Usa un lettore video esterno</string>
     <string name="use_external_audio_player_title">Usa un lettore audio esterno</string>
 
-    <string name="download_path_audio_title">Percorso degli audio scaricati</string>
+    <string name="download_path_audio_title">Cartella degli audio scaricati</string>
     <string name="download_path_audio_summary">Cartella in cui salvare gli audio scaricati</string>
     <string name="download_path_audio_dialog_title">Inserisci la cartella per gli audio scaricati</string>
 
@@ -67,17 +67,17 @@
     <string name="could_not_setup_download_menu">Impossibile impostare il menu di download</string>
 
 
-    <string name="live_streams_not_supported">Questo è uno stream in diretta, il quale non è ancora supportato.</string>
+    <string name="live_streams_not_supported">I contenuti in diretta non sono al momento supportati</string>
 
 
     <string name="content">Contenuti</string>
-    <string name="show_age_restricted_content_title">Mostra contenuti vietati ai minori</string>
-    <string name="video_is_age_restricted">Questo video è riservato ad un pubblico maggiorenne. Per accedervi, abilita \"Mostra contenuti vietati ai minori\" nelle impostazioni.</string>
+    <string name="show_age_restricted_content_title">Contenuti vietati ai minori</string>
+    <string name="video_is_age_restricted">Mostra video riversati ad un pubblico maggiorenne. Si possono abilitare dalle \"Impostazioni\".</string>
 
     <string name="main_bg_subtitle">Tocca Cerca per iniziare</string>
     <string name="autoplay_by_calling_app_title">Riproduzione automatica</string>
     <string name="autoplay_by_calling_app_summary">Riproduci i video quando NewPipe viene aperto da un\'altra app</string>
-    <string name="duration_live">in diretta</string>
+    <string name="duration_live">IN DIRETTA</string>
 
     <string name="light_parsing_error">Impossibile analizzare completamente il sito web</string>
     <string name="could_not_get_stream">Impossibile ottenere alcun flusso</string>
@@ -128,7 +128,7 @@
     <string name="info_labels">Cosa:\\nRichiesta:\\nLingua contenuto:\\nServizio:\\nOrario GMT:\\nPacchetto:\\nVersione:\\nVersione SO:</string>
 
     <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">reCAPTCHA</string>
+    <string name="reCaptcha_title">Risoluzione reCAPTCHA</string>
 
     <string name="black_theme_title">Nero</string>
 
@@ -153,7 +153,7 @@
     <string name="disabled">Disattivato</string>
 
     <string name="use_old_player_title">Usa il vecchio lettore multimediale</string>
-<string name="use_external_video_player_summary">Alcune risoluzioni NON riprodurranno l\'audio se questa opzione viene abilitata</string>
+<string name="use_external_video_player_summary">Non riproduce l\'audio con ALCUNE risoluzioni</string>
     <string name="controls_background_title">In sottofondo</string>
     <string name="controls_popup_title">Popup</string>
 
@@ -270,14 +270,14 @@
     <string name="feed_page_summary">Pagina feed</string>
     <string name="channel_page_summary">Pagina del canale</string>
     <string name="select_a_channel">Seleziona un canale</string>
-    <string name="no_channel_subscribed_yet">Non sei ancora iscritto a nessun canale</string>
+    <string name="no_channel_subscribed_yet">Nessuna iscrizione ad un canale</string>
     <string name="select_a_kiosk">Seleziona una locandina</string>
 
     <string name="kiosk">Locandina</string>
     <string name="trending">Tendenze</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">New &amp; hot</string>
-<string name="show_hold_to_append_title">Mostra il suggerimento \"tenere premuto per aggiungere video alla coda\"</string>
+<string name="show_hold_to_append_title">Mostra il suggerimento \"Tenere premuto per aggiungere video alla coda\"</string>
     <string name="show_hold_to_append_summary">Mostra suggerimento quando il pulsante per la riproduzione popup o in sottofondo viene premuto nella pagina dei dettagli del video</string>
     <string name="background_player_append">In coda al lettore multimediale in sottofondo</string>
     <string name="popup_playing_append">In coda al lettore multimediale a comparsa</string>
@@ -288,18 +288,18 @@
     <string name="player_recoverable_failure">Ripristino dell\'errore del lettore multimediale</string>
 
     <string name="title_activity_background_player">Riproduzione in sottofondo</string>
-    <string name="title_activity_popup_player">Riproduzione in modalità popup</string>
+    <string name="title_activity_popup_player">Riproduzione in modalità a comparsa</string>
     <string name="play_queue_remove">Rimuovi</string>
     <string name="play_queue_stream_detail">Dettagli</string>
     <string name="play_queue_audio_settings">Impostazioni audio</string>
-    <string name="hold_to_append">Tieni premuto per aggiungere alla coda</string>
+    <string name="hold_to_append">Tenere premuto per aggiungere alla coda</string>
 <string name="unknown_content">[Sconosciuto]</string>
 
     <string name="enqueue_on_background">In coda in sottofondo</string>
-    <string name="enqueue_on_popup">In coda nel Popup</string>
+    <string name="enqueue_on_popup">In coda nel riproduttore a comparsa</string>
     <string name="start_here_on_main">Inizia la riproduzione qui</string>
     <string name="start_here_on_background">Inizia qui in sottofondo</string>
-    <string name="start_here_on_popup">Inizia qui nel Popup</string>
+    <string name="start_here_on_popup">Inizia qui nel riproduttore a comparsa</string>
 <string name="donation_title">Dona</string>
     <string name="website_title">Sito web</string>
     <string name="website_encouragement">Visita il sito web di NewPipe per maggiori informazioni e novità.</string>
@@ -314,7 +314,7 @@
     <string name="service_title">Servizio</string>
     <string name="drawer_open">Apri il menu</string>
     <string name="drawer_close">Chiudi il menu</string>
-    <string name="no_player_found_toast">Nessun lettore multimediale trovato (puoi installare VLC per riprodurlo)</string>
+    <string name="no_player_found_toast">Nessun lettore multimediale trovato (puoi installare VLC per riprodurlo).</string>
     <string name="always">Sempre</string>
     <string name="just_once">Solo una volta</string>
 
@@ -332,7 +332,7 @@
     <string name="preferred_player_fetcher_notification_message">Caricamento del contenuto richiesto</string>
 <string name="import_data_title">Importa database</string>
     <string name="export_data_title">Esporta database</string>
-    <string name="import_data_summary">Sovrascriverà la cronologia corrente e le iscrizioni</string>
+    <string name="import_data_summary">Sovrascrive la cronologia corrente e le iscrizioni</string>
     <string name="export_data_summary">Esporta la cronologia, le iscrizioni e le playlist</string>
     <string name="export_complete_toast">Esportazione completa</string>
     <string name="import_complete_toast">Importazione completa</string>
@@ -340,10 +340,10 @@
     <string name="could_not_import_all_files">Attenzione: Impossibile importare tutti i file.</string>
     <string name="override_current_data">Questa operazione sostituirà le tue impostazioni attuali.</string>
 
-    <string name="controls_download_desc">Scarica il video.</string>
+    <string name="controls_download_desc">Scarica il video</string>
     <string name="show_info">Mostra informazioni</string>
 
-    <string name="tab_bookmarks">Segnalibri</string>
+    <string name="tab_bookmarks">Scalette preferite</string>
 
     <string name="controls_add_to_playlist_title">Aggiungi a</string>
 
@@ -362,9 +362,9 @@
 
     <string name="always_ask_open_action">Chiedi sempre</string>
     
-    <string name="create_playlist">Crea nuova playlist</string>
-    <string name="delete_playlist">Elimina playlist</string>
-    <string name="rename_playlist">Rinomina playlist</string>
+    <string name="create_playlist">Nuova scaletta</string>
+    <string name="delete_playlist">Elimina scaletta</string>
+    <string name="rename_playlist">Rinomina scaletta</string>
     <string name="playlist_name_input">Nome</string>
     <string name="append_playlist">Aggiunti alla playlist</string>
     <string name="set_as_playlist_thumbnail">Imposta come miniatura della playlist</string>
@@ -372,11 +372,11 @@
     <string name="bookmark_playlist">Segnalibri playlist</string>
     <string name="unbookmark_playlist">Rimuovi segnalibro</string>
 
-    <string name="delete_playlist_prompt">Vuoi eliminare questa playlist?</string>
+    <string name="delete_playlist_prompt">Eliminare questa scaletta\?</string>
     <string name="playlist_creation_success">Playlist creata</string>
-    <string name="playlist_add_stream_success">Aggiunti alla playlist</string>
-    <string name="playlist_thumbnail_change_success">Miniatura della playlist cambiata</string>
-    <string name="playlist_delete_failure">Impossibile eliminare la playlist</string>
+    <string name="playlist_add_stream_success">Aggiunti alla scaletta</string>
+    <string name="playlist_thumbnail_change_success">Miniatura della scaletta cambiata.</string>
+    <string name="playlist_delete_failure">Impossibile eliminare la scaletta.</string>
 
     <string name="caption_none">No sottotitoli</string>
 
@@ -402,18 +402,18 @@
 <string name="use_inexact_seek_title">Usa la ricerca rapida ma imprecisa</string>
     <string name="use_inexact_seek_summary">La ricerca imprecisa permette al lettore multimediale di spostarsi nelle posizioni più velocemente con una precisione ridotta</string>
     <string name="auto_queue_title">Metti in coda automaticamente il prossimo flusso</string>
-    <string name="auto_queue_summary">Aggiungi automaticamente un flusso correlato quando è in corso la riproduzione dell\'ultimo flusso in una coda non ripetitiva</string>
+    <string name="auto_queue_summary">Aggiungi automaticamente un flusso correlato quando è in corso la riproduzione dell\'ultimo flusso in una coda non ripetitiva.</string>
     <string name="live_sync">SINCRONIZZAZIONE</string>
 
     <string name="file">File</string>
 
-    <string name="invalid_directory">Cartella non valida</string>
-    <string name="invalid_source">Fonte del contenuto o file non valido</string>
-    <string name="invalid_file">Il file non esiste o non si hanno i permessi sufficienti per leggerlo o scriverci</string>
+    <string name="invalid_directory">Nessuna cartella</string>
+    <string name="invalid_source">Nessun file o cartella che contiene sorgenti</string>
+    <string name="invalid_file">Il file non esiste o non si hanno i permessi sufficienti di scrittura o lettura</string>
     <string name="file_name_empty_error">Il nome del file non può essere vuoto</string>
     <string name="error_occurred_detail">Si è verificato un errore: %1$s</string>
 
-    <string name="import_export_title">Importa/Esporta</string>
+    <string name="import_export_title">Importa/esporta</string>
     <string name="import_title">Importa</string>
     <string name="import_from">Importa da</string>
     <string name="export_to">Esporta in</string>
@@ -444,7 +444,7 @@
 \n 
 \nVuoi continuare?</string>
 <string name="download_thumbnail_title">Carica miniature</string>
-    <string name="download_thumbnail_summary">Disabilita per interrompere il caricamento delle miniature, la loro archiviazione e l\'utilizzo della memoria. La modifica di questa opzione cancellerà la cache delle immagini in memoria e sul disco</string>
+    <string name="download_thumbnail_summary">Disabilita per interrompere il caricamento delle miniature, la loro archiviazione e l\'utilizzo della memoria. La modifica di questa opzione cancellerà la cache delle immagini in memoria e sul disco.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Pulizia della cache delle immagini completata</string>
     <string name="metadata_cache_wipe_title">Pulisci la cache dei metadati</string>
     <string name="metadata_cache_wipe_summary">Rimuovi tutti i dati delle pagine web memorizzati nella cache</string>
@@ -461,21 +461,21 @@
     <string name="preferred_open_action_settings_summary">Azione predefinita all\'apertura del contenuto — %s</string>
 
     <string name="caption_setting_title">Sottotitoli</string>
-    <string name="caption_setting_description">Modifica la dimensione e gli stili di sfondo dei sottotitoli. Richiede il riavvio dell\'app per rendere effettive le modifiche</string>
+    <string name="caption_setting_description">Modifica la dimensione e gli stili di sfondo dei sottotitoli. Per applicare le modifiche è richesto un riavvio.</string>
 
     <string name="toast_no_player">Nessuna app installata per riprodurre questo file</string>
 
     <string name="clear_views_history_title">Pulisci cronologia visualizzazioni</string>
     <string name="clear_views_history_summary">Elimina la cronologia dei flussi riprodotti</string>
-    <string name="delete_view_history_alert">Elimina l\'intera cronologia visualizzazioni.</string>
+    <string name="delete_view_history_alert">Elimina l\'intera cronologia delle visualizzazioni\?</string>
     <string name="view_history_deleted">Cronologia visualizzazioni eliminata.</string>
     <string name="clear_search_history_title">Pulisci cronologia delle ricerche</string>
     <string name="clear_search_history_summary">Cancella la cronologia dei termini di ricerca</string>
-    <string name="delete_search_history_alert">Elimina l\'intera cronologia delle ricerche.</string>
+    <string name="delete_search_history_alert">Elimina l\'intera cronologia delle ricerche\?</string>
     <string name="search_history_deleted">Cronologia delle ricerche eliminata.</string>
     <string name="one_item_deleted">1 elemento eliminato.</string>
 
-    <string name="app_license">NewPipe è un software libero con licenza copyleft: puoi usarlo, studiarlo, condividerlo e migliorarlo a tuo piacimento. In particolare, è possibile ridistribuirlo e/o modificarlo secondo i termini della GNU General Public License pubblicata dalla Free Software Foundation, sia nella versione 3 della Licenza, sia (a propria discrezione) in qualsiasi versione successiva.</string>
+    <string name="app_license">NewPipe è un software libero con licenza copyleft: si può utilizzarlo, studiarlo, condividerlo e migliorarlo a proprio piacimento. In particolare, è possibile ridistribuirlo e/o modificarlo secondo i termini della GNU General Public License pubblicata dalla Free Software Foundation, sia nella versione 3 della Licenza, sia (a propria discrezione) in qualsiasi versione successiva.</string>
     <string name="import_settings">Vuoi anche importare le impostazioni?</string>
 
     <string name="privacy_policy_title">Informativa sulla privacy</string>
@@ -493,8 +493,8 @@
     <string name="playback_step">Step</string>
     <string name="playback_reset">Reset</string>
 
-    <string name="minimize_on_exit_title">Minimizza al cambio applicazione</string>
-    <string name="minimize_on_exit_summary">Azione quando si passa ad un\'altra applicazione dal lettore video principale — %s</string>
+    <string name="minimize_on_exit_title">Minimizza al cambio dell\'applicazione</string>
+    <string name="minimize_on_exit_summary">Azione quando si passa ad un\'altra app dal lettore video principale — %s</string>
     <string name="minimize_on_exit_none_description">Nessuna</string>
     <string name="minimize_on_exit_background_description">Minimizza al lettore in sottofondo</string>
     <string name="minimize_on_exit_popup_description">Minimizza al lettore popup</string>

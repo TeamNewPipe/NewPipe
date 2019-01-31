@@ -13,9 +13,7 @@ import us.shandian.giga.get.DownloadMission;
 class Mp4DashMuxer extends Postprocessing {
 
     Mp4DashMuxer(DownloadMission mission) {
-        super(mission);
-        recommendedReserve = 15360 * 1024;// 15 MiB
-        worksOnSameFile = true;
+        super(mission, 15360 * 1024/* 15 MiB */, true);
     }
 
     @Override

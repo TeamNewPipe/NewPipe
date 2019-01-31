@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 <string name="view_count_text">%1$s दृश्य</string>
     <string name="upload_date_text">%1$s को प्रकाशित</string>
@@ -12,7 +12,7 @@
     <string name="settings">सेटिंग्स</string>
     <string name="choose_browser">ब्राउज़र चुनें</string>
     <string name="screen_rotation">स्क्रीन रोटेशन</string>
-    <string name="popup_mode_share_menu_title">NewPipe पॉपअप मोड</string>
+    <string name="popup_mode_share_menu_title">नयूपाइप पॉपअप मोड</string>
     <string name="subscribe_button_title">सदस्य बनें</string>
     <string name="subscribed_button_title">सदस्यता ली</string>
     <string name="channel_unsubscribed">चैनल सदस्यता रद्द करी गयी</string>
@@ -25,11 +25,11 @@
     <string name="play_audio">ऑडियो</string>
     <string name="light_theme_title">हलका</string>
     <string name="black_theme_title">काली</string>
-    <string name="enable_watch_history_title">इतिहास और कैच</string>
+    <string name="enable_watch_history_title">पूर्व और कैश</string>
     <string name="download_dialog_title">डाउनलोड</string>
-    <string name="next_video_title">अगला वीडियो</string>
+    <string name="next_video_title">अगला</string>
     <string name="settings_category_video_audio_title">वीडियो और ऑडियो</string>
-    <string name="settings_category_history_title">इतिहास और कैच</string>
+    <string name="settings_category_history_title">इतिहास और कैश भंडार</string>
     <string name="background_player_playing_toast">बैकग्राउंड में चल रहा है</string>
     <string name="no_views">कोई दर्शक नहीं</string>
     <string name="no_videos">कोई वीडियो नहीं है</string>
@@ -48,7 +48,7 @@
     <string name="title_activity_history">इतिहास</string>
     <string name="title_history_search">खोजा जा चूका है</string>
     <string name="title_history_view">विडियो जो देख लिए गए है</string>
-    <string name="history_disabled">इतिहास disable है</string>
+    <string name="history_disabled">इतिहास बंद है</string>
     <string name="action_history">इतिहास</string>
     <string name="history_empty">इतिहास खाली है</string>
     <string name="history_cleared">इतिहास साफ़ हो चुकी है</string>
@@ -60,7 +60,7 @@
     <string name="did_you_mean">क्या आप का मतलब %1$s है?</string>
     <string name="share_dialog_title">शेयर करें</string>
     <string name="use_external_video_player_title">अन्य वीडियो प्लेयर उपयोग करें</string>
-    <string name="use_external_video_player_summary">यह विकल्प चुनने से कुछ वीडियो से ध्वनि नहीं आएगी</string>
+    <string name="use_external_video_player_summary">कुछ रेसोल्युशनस में नहीं आएगी</string>
     <string name="use_external_audio_player_title">अन्य ऑडियो प्लेयर उपयोग करें</string>
     <string name="tab_main">मुख्य</string>
     <string name="subscription_change_failed">सदस्यता को बदलने में असमर्थ है</string>
@@ -72,8 +72,8 @@
     <string name="download_path_summary">डाउनलोड किए गए विडियो फाइल को रखने की जगह</string>
     <string name="download_path_dialog_title">वीडियो के लिए डाउनलोड पथ दर्ज करें</string>
 
-    <string name="download_path_audio_title">ऑडियो फाइल डाउनलोड करने की जगह</string>
-    <string name="download_path_audio_summary">डाउनलोड किये गए ऑडियो फाइल की जगह</string>
+    <string name="download_path_audio_title">ऑडियो डाउनलोड फ़ोल्डर</string>
+    <string name="download_path_audio_summary">डाउनलोड किये गए ऑडियो यहाँ है</string>
     <string name="download_path_audio_dialog_title">ऑडियो फाइल डाउनलोड करने के लिए जगह दर्ज करें</string>
 
     <string name="autoplay_by_calling_app_summary">अन्य अप्प के द्वारा NewPipe के आह्वान पर वीडियो तुरंत चले</string>
@@ -87,6 +87,8 @@
     <string name="show_play_with_kodi_summary">उस विकल्प को दिखाए जिसमे Kodi Media Center के जरिये विडियो प्ले किया जाता है</string>
     <string name="default_audio_format_title">डिफ़ॉल्ट ऑडियो का फॉर्मेट</string>
     <string name="default_video_format_title">डिफ़ॉल्ट विडियो का फॉर्मेट</string>
+    <string name="webm_description">WebM - libre फॉर्मेट</string>
+    <string name="m4a_description">M4A - बेहतर क्वालिटी</string>
     <string name="theme_title">एप्प का नया रूप</string>
     <string name="dark_theme_title">काला</string>
     <string name="popup_remember_size_pos_title">विडियो पॉपअप की आकर और उसकी स्थति को याद रखे</string>
@@ -97,14 +99,15 @@
     <string name="show_search_suggestions_summary">जब कुछ ढूंड रहे हो तो सुझाव दिखाये</string>
     <string name="enable_search_history_title">खोज के इतिहास को देखे</string>
     <string name="enable_search_history_summary">खोज के query को फ़ोन की मेमोरी में ही रखे</string>
-    <string name="enable_watch_history_summary">देखे हुए वीडियो की सूची रखे</string>
+    <string name="enable_watch_history_summary">देखे हुए वीडियोस का रिकॉर्ड रखें</string>
     <string name="resume_on_audio_focus_gain_title">जब फोकस मिले तो विडियो resume हो</string>
     <string name="resume_on_audio_focus_gain_summary">रूकावट आने पर भी विडियो को जारी रखे (जैसे - फ़ोन कॉल आये)</string>
     <string name="show_next_and_similar_title">\'अगला\' और \'पहले समान\' वीडियो दिखाए</string>
-    <string name="show_hold_to_append_title">\"संलग्न करने के लिए पकड़ें रहे\" दिखाए</string>
+    <string name="show_hold_to_append_title">\"जोड़ने के लिए पकड़ें रहे\" दिखाए</string>
     <string name="show_hold_to_append_summary">जब बैकग्राउंड और पॉपअप बटन विडियो के विवरण पन्ने में दबाई जाए तो tip को दिखाए</string>
     <string name="url_not_supported_toast">ये वाला URL इसमें नहीं चलेगा</string>
     <string name="content_language_title">डिफ़ॉल्ट विषय की भाषा</string>
+
     <string name="settings_category_player_title">प्लेयर</string>
     <string name="settings_category_player_behavior_title">चाल चलन</string>
     <string name="settings_category_popup_title">पॉपअप</string>
@@ -115,7 +118,7 @@
     <string name="popup_playing_append">पॉपअप प्लेयर की कतार पर</string>
     <string name="play_btn_text">चलाये</string>
     <string name="content">विषयवस्तु</string>
-    <string name="show_age_restricted_content_title">उम्र प्रतिबंदित से सम्बंधित विषयवस्तु दिखाये (जैसे - हिंसात्मक,कामोतोजनक)</string>
+    <string name="show_age_restricted_content_title">उम्र प्रतिबंधित विषय वस्तु</string>
     <string name="video_is_age_restricted">उम्र प्रतिबंदित विडियो है .इस प्रकार की विषयवस्तु को अनुमति देने के लिए Setting से संभव है |</string>
     <string name="duration_live">सीधा प्रसारण</string>
     <string name="downloads">डाउनलोड</string>
@@ -146,10 +149,10 @@
     <string name="youtube_signature_decryption_error">विडियो के URL signature को decrypt नहीं कर सकते</string>
     <string name="parsing_error">इस website का निरंक्षण नहीं कर सकते</string>
     <string name="light_parsing_error">website का पूरी तरह से निरंक्षण नहीं हो सकता</string>
-    <string name="content_not_available">विषयवस्तु उपलब्ध नहीं है</string>
+    <string name="content_not_available">विषय वस्तु उपलब्ध नहीं है</string>
     <string name="blocked_by_gema">GEMA ने block किया है</string>
     <string name="could_not_setup_download_menu">डाउनलोड मेनू को स्थापित नहीं कर सकते</string>
-    <string name="live_streams_not_supported">यह सीधा प्रसारण है, जो की अभी पूरी तरह से काम नहीं कर रहा.</string>
+    <string name="live_streams_not_supported">"सीधे प्रसारण के लिये फिलहाल समर्थन नहीं है "</string>
     <string name="could_not_get_stream">कोई भी विडियो नहीं मिल रहा</string>
     <string name="could_not_load_image">फोटो को load नहीं कर सकते</string>
     <string name="app_ui_crash">APP/UI टूट गया</string>
@@ -274,11 +277,11 @@
     <string name="start_here_on_main">यंहा से चलाना शुरू करे</string>
     <string name="start_here_on_background">बैकग्राउंड में चलाना शुरू करे</string>
     <string name="start_here_on_popup">पॉपअप में चलाना शुरू करे</string>
-<string name="no_player_found_toast">स्ट्रीम करने के लिए प्लेयर उपलब्ध नहीं है (आप इसे चलाने के लिए VLC इंस्टॉल कर सकते हैं)</string>
-    <string name="controls_download_desc">स्ट्रीम डाउनलोड करें।</string>
+<string name="no_player_found_toast">स्ट्रीम करने के लिए प्लेयर उपलब्ध नहीं है (आप इसे चलाने के लिए VLC प्लेयर इंस्टॉल कर सकते हैं)।</string>
+    <string name="controls_download_desc">स्ट्रीम डाउनलोड करें</string>
     <string name="show_info">जानकारी दिखाएं</string>
 
-    <string name="tab_bookmarks">बुकमार्क्स</string>
+    <string name="tab_bookmarks">बुकमार्क किये गए प्लेलिस्टस</string>
 
     <string name="controls_add_to_playlist_title">में जोड़े</string>
 
@@ -313,7 +316,7 @@
     <string name="donation_encouragement">NewPipe स्वयंसेवकों द्वारा विकसित किया जाता है जो आपको अच्छा अनुभव देने के लिए अपना खाली समय व्यतीत करते हैं। स्वयंसेवको को मदद भेजे, ताकि वह NewPipe को और अच्छा बना सके।</string>
     <string name="give_back">वापस दे</string>
     <string name="website_title">वेबसाइट</string>
-    <string name="website_encouragement">अधिक जानकारी और खबरों के लिए NewPipe की वेबसाइट पर जाएं ।</string>
+    <string name="website_encouragement">अधिक जानकारी और खबरों के लिए न्यूपाइप की वेबसाइट पर जाएं।</string>
     <string name="delete_stream_history_prompt">क्या आप इस आइटम को वॉच इतिहास से हटाना चाहते हैं?</string>
     <string name="delete_all_history_prompt">क्या आप वाकई इतिहास से सभी आइटंस हटाना चाहते हैं?</string>
     <string name="title_last_played">पिछला चलाया गया</string>
@@ -377,7 +380,7 @@
     <string name="download_thumbnail_title">छायाप्रारुप लोड करें</string>
     <string name="use_inexact_seek_title">तेजी से अचूक तलाश का प्रयोग करें</string>
     <string name="use_inexact_seek_summary">अचूक खोज प्लेयर को कम परिशुद्धता के साथ तेजी से पदों की तलाश करने की अनुमति देता है</string>
-    <string name="download_thumbnail_summary">सभी थंबनेल को लोड होने से रोके और डेटा और मेमोरी का उपयोग घटाए। इसे बदलने से मेमोरी और डिस्क की छवि की कैश साफ़ हो जाएगी</string>
+    <string name="download_thumbnail_summary">बंद होने पे छोटी छवियां नहीं दिखेंगी। इससे डेटा और मेमोरी की बचत होगी। इसे बदलने से मेमोरी और डिस्क की छवि का भंडार भी साफ़ हो जाएगा।</string>
     <string name="thumbnail_cache_wipe_complete_notice">छवि कैश मिटा दिया</string>
     <string name="metadata_cache_wipe_title">कैश मेटाडेटा वाइप करें</string>
     <string name="metadata_cache_wipe_summary">सभी कैश किए गए वेबपृष्ठ डेटा हटाएं</string>
@@ -396,12 +399,12 @@
     <string name="view_history_deleted">देखे हुए का इतिहास साफ कर दिया गया।</string>
     <string name="clear_search_history_title">ढूंढने के इतिहास को साफ करें</string>
     <string name="clear_search_history_summary">ढूंढे गए शब्दो का इतिहास साफ करता है</string>
-    <string name="delete_search_history_alert">ढूंढने के इतिहास को पूरा साफ करें।</string>
+    <string name="delete_search_history_alert">पूरे खोज इतिहास को मिटा दे \?</string>
     <string name="search_history_deleted">ढूंढने के इतिहास को साफ कर दिया।</string>
-    <string name="invalid_directory">अमान्य डाइरेक्टरी</string>
+    <string name="invalid_directory">एसी कोई भी फ़ोल्डर मौजूद नहीं है</string>
     <string name="invalid_source">अमान्य फाइल/कॉन्टेंट उदभावस्थान</string>
-    <string name="invalid_file">फाइल मौजूद नही है या उसे पढने या लिखने की पर्याप्त अनुमति नही है</string>
-    <string name="file_name_empty_error">फाइल का नाम खाली नही हो सकता</string>
+    <string name="invalid_file">फ़ाइल मौजूद नहीं है या उसे पढ़ने या लिखने की पर्याप्त अनुमति नही़ं है</string>
+    <string name="file_name_empty_error">फ़ाइल का नाम खाली नहीं हो सकता</string>
     <string name="error_occurred_detail">एक भूल हुई: %1$s</string>
     <string name="no_streams_available_download">डाउनलोड करने के लिए कोई स्ट्रीम उपलब्ध नही है</string>
 
@@ -409,9 +412,9 @@
 
     <string name="toast_no_player">इस फ़ाइल को चलाने के लिए कोई ऐप स्थापित नही है</string>
 
-    <string name="privacy_policy_title">NewPipe की गोपनीयता नीति</string>
-    <string name="privacy_policy_encouragement">NewPipe परियोजना आपकी गोपनीयता को बहोत गंभीर रूप से लेता है। इसलिए, ऐप आपकी अनुमति के बिना कोई डेटा जमा नही करता।
-\nNewPipe की गोपनीयता नीति विस्तार से समज़ाती है कि कोनसा डेटा भेजा या संग्रह किया जाता है जब आप क्रेश विवरण भेजते है।</string>
+    <string name="privacy_policy_title">न्यूपाइप की गोपनीयता नीति</string>
+    <string name="privacy_policy_encouragement">न्यूपाइप परियोजना आपकी गोपनीयता को बहोत गंभीर रूप से लेता है। इसलिए, ऐप आपकी अनुमति के बिना कोई डेटा जमा नही करता। 
+\nन्यूपाइप की गोपनीयता नीति विस्तार से समज़ाती है कि कोनसा डेटा भेजा या संग्रह किया जाता है जब आप क्रेश विवरण भेजते है।</string>
     <string name="read_privacy_policy">गोपनीयता नीति पढ़े</string>
     <string name="import_settings">क्या आप सेटिंग्स भी आयात करना चाहते है?</string>
 
@@ -464,5 +467,5 @@
     <string name="minimize_on_exit_none_description">कोई नही</string>
     <string name="minimize_on_exit_background_description">पृष्ठभूमि प्लेयर जैसे मिनिमाइज करे</string>
     <string name="minimize_on_exit_popup_description">पॉप अप प्लेयर जैसे मिनिमाइज करे</string>
-
+    <string name="app_license">न्यूपाइप एक काॅपीलेफ़्ट फ़्री साॅफ़्टवेर है: इसे आप अपनी इच्छा के अनुसार इस्तेमाल, जाँच, बाँट तथा और बेहतर बना सकते है। खास तौर पर आप इसे फ़्री साॅफ़्टवेर फ़ाउंडेशन के द्वारा जारी जीएनयू जनरल पब्लिक लाइसेंस के तीसरे या उसके बाद आने वाले कोई भी वर्णन के शर्तों के मुताबिक फिर से बाँट या बदल सकते हैं।</string>
 </resources>

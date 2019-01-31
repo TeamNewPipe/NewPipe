@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources><string name="install">Instal·la</string>
     <string name="cancel">Cancel·la</string>
     <string name="open_in_browser">Obre al navegador</string>
@@ -12,12 +12,12 @@
     <string name="show_info">Mostra la informació</string>
 
     <string name="tab_subscriptions">Subscripcions</string>
-    <string name="tab_bookmarks">Adreces d\'interès</string>
+    <string name="tab_bookmarks">Llistes de reproducció desades</string>
 
     <string name="fragment_whats_new">Novetats</string>
 
     <string name="download_path_title">Ruta de baixada dels vídeos</string>
-    <string name="download_path_audio_title">Ruta de baixada dels fitxers d\'àudio</string>
+    <string name="download_path_audio_title">Carpeta de baixada dels fitxers d\'àudio</string>
     <string name="autoplay_by_calling_app_title">Reproducció automàtica</string>
     <string name="default_resolution_title">Resolució per defecte</string>
     <string name="play_audio">Àudio</string>
@@ -40,7 +40,7 @@
     <string name="content">Contingut</string>
     <string name="show_age_restricted_content_title">Desactiva les restriccions per edat</string>
     <string name="video_is_age_restricted">Vídeo restringit per edat. Podeu permetre aquesta mena de continguts des de la configuració.</string>
-    <string name="duration_live">en directe</string>
+    <string name="duration_live">EN DIRECTE</string>
     <string name="downloads">Baixades</string>
     <string name="downloads_title">Baixades</string>
     <string name="all">Tot</string>
@@ -112,9 +112,9 @@
     <string name="popup_player">Reproductor emergent</string>
     <string name="always_ask_open_action">Demana-ho sempre</string>
 
-    <string name="create_playlist">Crea una nova llista de reproducció</string>
-    <string name="delete_playlist">Elimina la llista de reproducció</string>
-    <string name="rename_playlist">Canvia el nom de la llista de reproducció</string>
+    <string name="create_playlist">Crea una llista de reproducció</string>
+    <string name="delete_playlist">Elimina</string>
+    <string name="rename_playlist">Canvia el nom</string>
     <string name="playlist_name_input">Nom</string>
     <string name="append_playlist">Afegeix a una llista de reproducció</string>
     <string name="import_title">Importa</string>
@@ -129,9 +129,9 @@
 <string name="view_count_text">%1$s reproduccions</string>
     <string name="upload_date_text">Publicat el %1$s</string>
     <string name="no_player_found">No s\'ha trobat un reproductor de fluxos. Voleu instal·lar el VLC?</string>
-    <string name="no_player_found_toast">No s\'ha trobat cap reproductor de fluxos (podeu instal·lar el VLC per reproduir-lo)</string>
+    <string name="no_player_found_toast">No s\'ha trobat cap reproductor de fluxos (podeu instal·lar el VLC per reproduir-lo).</string>
     <string name="open_in_popup_mode">Obre en mode emergent</string>
-    <string name="controls_download_desc">Baixa el fitxer de vídeo.</string>
+    <string name="controls_download_desc">Baixa el fitxer de vídeo</string>
     <string name="did_you_mean">Volíeu dir: %1$s?</string>
     <string name="share_dialog_title">Comparteix-ho amb</string>
     <string name="screen_rotation">rotació</string>
@@ -148,7 +148,7 @@
     <string name="download_path_summary">Ruta on es desaran els vídeos baixats</string>
     <string name="download_path_dialog_title">Introduïu una ruta de baixada per als vídeos</string>
 
-    <string name="download_path_audio_summary">Ruta on es desaran els fitxers d\'àudio baixats</string>
+    <string name="download_path_audio_summary">Els fitxers d\'àudio baixats es desaran aquí</string>
     <string name="download_path_audio_dialog_title">Introduïu una ruta de baixada per als fitxers d\'àudio</string>
 
     <string name="autoplay_by_calling_app_summary">Reprodueix un vídeo quan el NewPipe s\'executa des d\'una altra aplicació</string>
@@ -174,7 +174,7 @@
     <string name="show_search_suggestions_summary">Mostra suggeriments durant la cerca</string>
     <string name="enable_search_history_title">Historial de cerca</string>
     <string name="resume_on_audio_focus_gain_summary">Reprèn la reproducció després d\'una interrupció (per exemple, una trucada)</string>
-    <string name="next_video_title">Vídeo següent</string>
+    <string name="next_video_title">Següent</string>
     <string name="show_next_and_similar_title">Mostra el vídeo següent i similars</string>
     <string name="default_content_country_title">País per defecte dels continguts</string>
     <string name="content_language_title">Llengua per defecte dels continguts</string>
@@ -194,7 +194,7 @@
     <string name="content_not_available">Contingut no disponible</string>
     <string name="blocked_by_gema">Blocat per la GEMA</string>
     <string name="could_not_setup_download_menu">No s\'ha pogut configurar el menú de baixades</string>
-    <string name="live_streams_not_supported">Això és una emissió en directe, que encara no és compatible.</string>
+    <string name="live_streams_not_supported">Les emissions en directe encara no són compatibles</string>
     <string name="could_not_get_stream">No s\'ha pogut obtenir cap vídeo</string>
     <string name="could_not_load_image">No s\'ha pogut carregar la imatge</string>
     <string name="app_ui_crash">Ha fallat l\'aplicació o la interfície d\'usuari</string>
@@ -204,9 +204,9 @@
     <string name="invalid_url_toast">L\'URL no és vàlid</string>
     <string name="video_streams_empty">No s\'ha trobat cap flux de vídeo</string>
     <string name="audio_streams_empty">No s\'ha trobat cap flux d\'àudio</string>
-    <string name="invalid_directory">Directori no vàlid</string>
-    <string name="invalid_source">Fitxer o font de contingut no vàlid</string>
-    <string name="invalid_file">El fitxer no existeix o no teniu permisos suficients per llegir-lo o escriure-hi</string>
+    <string name="invalid_directory">La carpeta no existeix</string>
+    <string name="invalid_source">El fitxer o la font de contingut no existeix</string>
+    <string name="invalid_file">El fitxer no existeix o no teniu permisos per llegir-lo o escriure-hi</string>
     <string name="file_name_empty_error">El nom del fitxer no pot estar en blanc</string>
     <string name="error_occurred_detail">S\'ha produït un error: %1$s</string>
     <string name="error_report_button_text">Informa de l\'error per correu electrònic</string>
@@ -299,16 +299,16 @@
     <string name="preferred_player_fetcher_notification_message">S\'està carregant el contingut seleccionat</string>
 
     <string name="delete_playlist_prompt">Voleu eliminar aquesta llista de reproducció?</string>
-    <string name="playlist_delete_failure">No s\'ha pogut eliminar la llista de reproducció</string>
+    <string name="playlist_delete_failure">No s\'ha pogut eliminar la llista de reproducció.</string>
 
     <string name="import_export_title">Importació i exportació</string>
     <string name="playback_speed_control">Controls de la velocitat de reproducció</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">To</string>
     <string name="main_bg_subtitle">Toqueu el botó de cerca per començar</string>
-    <string name="use_external_video_player_summary">En algunes resolucions NO hi haurà àudio quan aquesta opció estigui activada</string>
+    <string name="use_external_video_player_summary">Elimina l\'àudio en algunes resolucions</string>
     <string name="use_external_audio_player_title">Reproductor d\'àudio extern</string>
-    <string name="download_thumbnail_summary">Desactiveu-ho per evitar que es carreguin les miniatures i estalviar dades i memòria. Si canvieu aquesta opció, s\'esborrarà la memòria cau d\'imatges tant de la memòria com de l\'emmagatzematge</string>
+    <string name="download_thumbnail_summary">Desactiveu-ho per evitar que es carreguin les miniatures i estalviar dades i memòria. Si canvieu aquesta opció, s\'esborrarà la memòria cau d\'imatges tant de la memòria com de l\'emmagatzematge.</string>
     <string name="enable_search_history_summary">Emmagatzema les cerques localment</string>
     <string name="enable_watch_history_summary">Registra els vídeos visualitzats</string>
     <string name="resume_on_audio_focus_gain_title">Reprèn automàticament</string>
@@ -324,7 +324,7 @@
     <string name="switch_to_popup">Canvia al mode emergent</string>
     <string name="switch_to_main">Canvia al mode principal</string>
 
-    <string name="import_data_summary">Això sobreescriurà l\'historial i les subscripcions actuals</string>
+    <string name="import_data_summary">Sobreescriu l\'historial i les subscripcions actuals</string>
     <string name="player_recoverable_failure">S\'està recuperant el reproductor després de l\'error</string>
     <string name="sorry_string">Ho sentim, això no hauria d\'haver ocorregut.</string>
     <string name="detail_drag_description">Arrossegueu per a reordenar la llista</string>
@@ -356,8 +356,8 @@
     <string name="no_channel_subscribed_yet">Encara no us heu subscrit a cap canal</string>
     <string name="new_and_hot">Novetats</string>
     <string name="hold_to_append">Manteniu premut per afegir a la cua</string>
-    <string name="start_here_on_background">Reprodueix en segon pla</string>
-    <string name="start_here_on_popup">Reprodueix en mode emergent</string>
+    <string name="start_here_on_background">Reprodueix aquí en segon pla</string>
+    <string name="start_here_on_popup">Reprodueix aquí en mode emergent</string>
 
     <string name="set_as_playlist_thumbnail">Defineix com a miniatura de la llista de reproducció</string>
 
@@ -365,8 +365,8 @@
     <string name="unbookmark_playlist">Elimina l\'adreça d\'interès</string>
 
     <string name="playlist_creation_success">S\'ha creat la llista de reproducció</string>
-    <string name="playlist_add_stream_success">Afegeix a la llista de reproducció</string>
-    <string name="playlist_thumbnail_change_success">S\'ha canviat la miniatura de la llista de reproducció</string>
+    <string name="playlist_add_stream_success">S\'ha afegit a la llista de reproducció</string>
+    <string name="playlist_thumbnail_change_success">S\'ha canviat la miniatura de la llista de reproducció.</string>
     <string name="caption_none">Sense subtítols</string>
 
     <string name="resize_fit">Ajusta</string>
@@ -388,7 +388,7 @@
     <string name="unhook_checkbox">Desvincula (pot provocar distorsió)</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="metadata_cache_wipe_summary">Elimina totes les dades de llocs web de la memòria cau</string>
-    <string name="auto_queue_summary">Afegeix a la cua un vídeo relacionat quan es reprodueix l\'últim vídeo en una cua sense repetició</string>
+    <string name="auto_queue_summary">Afegeix a la cua un vídeo relacionat quan es reprodueix l\'últim vídeo en una cua sense repetició.</string>
     <string name="show_hold_to_append_title">Mostra els missatges d\'ajuda</string>
     <string name="show_hold_to_append_summary">Mostra un missatge d\'ajuda quan el botó de mode en segon pla o emergent estigui premut a la pàgina de detalls d\'un vídeo</string>
     <string name="info_labels">Què ha passat:\\nPetició:\\nIdioma del contingut:\\nServei:\\nHora GMT:\\nPaquet:\\nVersió:\\nVersió del SO:</string>
@@ -423,17 +423,17 @@
     <string name="no_streams_available_download">No hi ha vídeos que es puguin baixar</string>
 
     <string name="caption_setting_title">Subtítols</string>
-    <string name="caption_setting_description">Modifica la mida del text i el fons dels subtítols. Cal reiniciar l\'aplicació per aplicar els canvis</string>
+    <string name="caption_setting_description">Modifica la mida del text i el fons dels subtítols. Cal reiniciar l\'aplicació per aplicar els canvis.</string>
 
     <string name="toast_no_player">No s\'ha trobat cap aplicació que pugui reproduir aquest fitxer</string>
 
     <string name="clear_views_history_title">Esborra l\'historial de reproduccions</string>
     <string name="clear_views_history_summary">Esborra l\'historial dels vídeos que s\'han reproduït</string>
-    <string name="delete_view_history_alert">Esborra tot l\'historial de reproduccions.</string>
+    <string name="delete_view_history_alert">Voleu esborrar tot l\'historial de reproduccions\?</string>
     <string name="view_history_deleted">S\'ha esborrat l\'historial de reproduccions.</string>
     <string name="clear_search_history_title">Esborra l\'historial de cerca</string>
     <string name="clear_search_history_summary">Esborra l\'historial de paraules cercades</string>
-    <string name="delete_search_history_alert">Esborra tot l\'historial de cerca.</string>
+    <string name="delete_search_history_alert">Voleu esborrar tot l\'historial de cerca\?</string>
     <string name="search_history_deleted">S\'ha esborrat l\'historial de cerca.</string>
     <string name="one_item_deleted">S\'ha esborrat 1 element.</string>
 

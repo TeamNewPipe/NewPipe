@@ -87,6 +87,8 @@
     <string name="volume_gesture_control_summary">Use gestures to control the volume of the player</string>
     <string name="brightness_gesture_control_title">Brightness gesture control</string>
     <string name="brightness_gesture_control_summary">Use gestures to control the brightness of the player</string>
+    <string name="player_gesture_controls_title">Player gesture controls</string>
+    <string name="player_gesture_controls_summary">Use gestures to control the brightness and volume of the player</string>
     <string name="show_search_suggestions_title">Search suggestions</string>
     <string name="show_search_suggestions_summary">Show suggestions when searching</string>
     <string name="enable_search_history_title">Search history</string>
@@ -112,6 +114,7 @@
     <string name="settings_category_appearance_title">Appearance</string>
     <string name="settings_category_other_title">Other</string>
     <string name="settings_category_debug_title">Debug</string>
+    <string name="settings_category_updates_title">Updates</string>
     <string name="background_player_playing_toast">Playing in background</string>
     <string name="popup_playing_toast">Playing in popup mode</string>
     <string name="background_player_append">Queued on background player</string>
@@ -121,7 +124,7 @@
     <string name="content">Content</string>
     <string name="show_age_restricted_content_title">Age restricted content</string>
     <string name="video_is_age_restricted">Show age Restricted Video. Allowing such material is possible from \"Settings\".</string>
-    <string name="duration_live">live</string>
+    <string name="duration_live">LIVE</string>
     <string name="duration_live_button" translatable="false">LIVE</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
@@ -152,6 +155,10 @@
     <string name="notification_channel_id" translatable="false">newpipe</string>
     <string name="notification_channel_name">NewPipe Notification</string>
     <string name="notification_channel_description">Notifications for NewPipe background and popup players</string>
+
+    <string name="app_update_notification_channel_id" translatable="false">newpipeAppUpdate</string>
+    <string name="app_update_notification_channel_name">App Update Notification</string>
+    <string name="app_update_notification_channel_description">Notifications for new NewPipe version</string>
 
     <string name="unknown_content">[Unknown]</string>
 
@@ -436,7 +443,7 @@
     <string name="bookmark_playlist">Bookmark Playlist</string>
     <string name="unbookmark_playlist">Remove Bookmark</string>
 
-    <string name="delete_playlist_prompt">Delete this playlist?</string>
+    <string name="delete_playlist_prompt">Delete this playlist\?</string>
     <string name="playlist_creation_success">Playlist created</string>
     <string name="playlist_add_stream_success">Playlisted</string>
     <string name="playlist_thumbnail_change_success">Playlist thumbnail changed.</string>
@@ -513,6 +520,10 @@
         <item>144p</item>
     </string-array>
 
+    <!-- Updates Settings -->
+    <string name="updates_setting_title">Updates</string>
+    <string name="updates_setting_description">Show a notification to prompt app update when a new version is available</string>
+
     <!-- Minimize to exit action -->
     <string name="minimize_on_exit_title">Minimize on app switch</string>
     <string name="minimize_on_exit_summary">Action when switching to other app from main video player — %s</string>
@@ -525,16 +536,21 @@
 	  <string name="auto">Auto</string>
     <string name="switch_view">Switch View</string>
 
+    <!-- App update notification -->
+    <string name="app_update_notification_content_title">NewPipe Update Available!</string>
+    <string name="app_update_notification_content_text">Tap to download</string>
+
+
 
     <string name="missions_header_finished">Finished</string>
     <string name="missions_header_pending">In queue</string>
-    
+
     <string name="paused">paused</string>
     <string name="queued">queued</string>
     <string name="post_processing">post-processing</string>
-    
+
     <string name="enqueue">Queue</string>
-    
+
     <string name="permission_denied">Action denied by the system</string>
 
     <!-- download notifications -->
