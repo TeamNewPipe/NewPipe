@@ -488,4 +488,13 @@
     <string name="playlists">قوائم التشغيل</string>
     <string name="tracks">المسارات</string>
     <string name="users">المستخدمين</string>
-    </resources>
+    <string name="unsubscribe">إلغاء الاشتراك</string>
+    <string name="tab_new">علامة تبويب جديدة</string>
+    <string name="tab_choose">اختر علامة التبويب</string>
+    <string name="volume_gesture_control_summary">استخدم إيماءات التحكم في سطوع وصوت المشغل</string>
+    <string name="brightness_gesture_control_title">التحكم بالإيماءات السطوع</string>
+    <string name="brightness_gesture_control_summary">استخدام الإيماءات للتحكم في سطوع المشغل</string>
+    <string name="settings_category_updates_title">التحديثات</string>
+    <string name="file_deleted">تم حذف الملف</string>
+    <string name="app_update_notification_channel_name">تتبيه تحديث التطبيق</string>
+</resources>
