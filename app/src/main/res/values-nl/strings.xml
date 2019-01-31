@@ -202,7 +202,7 @@
 
     <string name="subscribe_button_title">Abonneren</string>
     <string name="subscribed_button_title">Geabonneerd</string>
-    <string name="channel_unsubscribed">Gedeabonneerd</string>
+    <string name="channel_unsubscribed">Abonnement opgezegd</string>
     <string name="subscription_change_failed">Kan abonnement niet wijzigen</string>
     <string name="subscription_update_failed">Kan abonnement niet bijwerken</string>
 
@@ -497,4 +497,7 @@
     <string name="playlists">Afspeellijsten</string>
     <string name="tracks">Nummers</string>
     <string name="users">Gebruikers</string>
-    </resources>
+    <string name="unsubscribe">Abonnement opzeggen</string>
+    <string name="tab_new">Nieuw tabblad</string>
+    <string name="tab_choose">Kies tabblad</string>
+</resources>
