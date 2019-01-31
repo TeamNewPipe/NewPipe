@@ -252,9 +252,9 @@
 
     <string name="no_videos">Brak filmów</string>
     <plurals name="videos">
-	<item quantity="one">%s film</item>
-	<item quantity="few">%s filmy</item>
-	<item quantity="many">%s filmów</item>
+    <item quantity="one">film</item>
+    <item quantity="few">filmów</item>
+    <item quantity="many">filmy</item>
 </plurals>
 
     <string name="charset_most_special_characters">Większość znaków specjalnych</string>
@@ -482,5 +482,66 @@
     <string name="minimize_on_exit_none_description">Zminimalizuj</string>
     <string name="minimize_on_exit_background_description">Zminimalizuj do odtwarzania w tle</string>
     <string name="minimize_on_exit_popup_description">Zminimalizuj do odtwarzania w okienku</string>
-
+    <string name="unsubscribe">Zrezygnuj z subskrypcji</string>
+    <string name="tab_new">Nowa karta</string>
+    <string name="tab_choose">Wybierz kartę</string>
+    <string name="volume_gesture_control_title">Kontrola gestów głośności</string>
+    <string name="volume_gesture_control_summary">Użyj gestów, aby kontrolować głośność odtwarzacza</string>
+    <string name="brightness_gesture_control_title">Kontrola gestu jasności</string>
+    <string name="brightness_gesture_control_summary">Użyj gestów do sterowania jasnością odtwarzania</string>
+    <string name="settings_category_updates_title">Aktualizacje</string>
+    <string name="file_deleted">Plik został usunięty</string>
+    <string name="app_update_notification_channel_name">Powiadomienie o aktualizacji aplikacji</string>
+    <string name="app_update_notification_channel_description">Powiadomienia o nowej wersji NewPipe</string>
+    <string name="download_to_sdcard_error_title">Pamięć zewnętrzna jest niedostępna</string>
+    <string name="download_to_sdcard_error_message">Pobieranie na zewnętrzną kartę SD nie jest jeszcze możliwe. Zresetować lokalizację folderu pobierania\?</string>
+    <string name="saved_tabs_invalid_json">Korzystanie z domyślnych kart, błąd podczas czytania zapisanych kart</string>
+    <string name="restore_defaults">rzywróć domyślne</string>
+    <string name="restore_defaults_confirmation">Czy chcesz przywrócić ustawienia domyślne\?</string>
+    <string name="subscribers_count_not_available">Subskrybenci nie są dostępni</string>
+    <string name="main_page_content_summary">Jakie karty są wyświetlane na stronie głównej</string>
+    <string name="selection">Wybierz</string>
+    <string name="updates_setting_title">Aktualizacje</string>
+    <string name="updates_setting_description">Pokaż powiadomienie, aby monitować aktualizację aplikacji, gdy dostępna jest nowa wersja</string>
+    <string name="list_view_mode">Tryb widoku listy</string>
+    <string name="list">Lista</string>
+    <string name="grid">Siatka</string>
+    <string name="auto">Automatycznie</string>
+    <string name="switch_view">Przełącznik widoku</string>
+    <string name="app_update_notification_content_title">Dostępna jest aktualizacja NewPipe!</string>
+    <string name="app_update_notification_content_text">Stuknij, aby pobrać</string>
+    <string name="missions_header_finished">Gotowe</string>
+    <string name="missions_header_pending">W kolejce</string>
+    <string name="paused">wstrzymane</string>
+    <string name="queued">w kolejce</string>
+    <string name="post_processing">przetwarzanie końcowe</string>
+    <string name="enqueue">Kolejka</string>
+    <string name="permission_denied">Akcja odrzucona przez system</string>
+    <string name="download_failed">Pobieranie nie powiodło się</string>
+    <string name="download_finished">Pobieranie zakończone</string>
+    <string name="download_finished_more">%s pobieranie zostało zakończone</string>
+    <string name="generate_unique_name">Wygeneruj unikalną nazwę</string>
+    <string name="overwrite">Zastąpić</string>
+    <string name="overwrite_warning">Pobrany plik o tej nazwie już istnieje</string>
+    <string name="download_already_running">Trwa pobieranie z tą nazwą</string>
+    <string name="show_error">Pokaż błąd</string>
+    <string name="label_code">Kod</string>
+    <string name="error_path_creation">Nie można utworzyć pliku</string>
+    <string name="error_file_creation">Nie można utworzyć folderu docelowego</string>
+    <string name="error_permission_denied">Odmowa dostępu do systemu</string>
+    <string name="error_ssl_exception">Bezpieczne połączenie nie powiodło się</string>
+    <string name="error_unknown_host">Nie można znaleźć serwera</string>
+    <string name="error_connect_host">Nie można połączyć się z serwerem</string>
+    <string name="error_http_no_content">Serwer nie wysyła danych</string>
+    <string name="error_http_unsupported_range">Serwer nie akceptuje pobierania wielowątkowego, spróbuj ponownie za pomocą @string/msg_threads = 1</string>
+    <string name="error_http_requested_range_not_satisfiable">Żądany zakres jest niewłaściwy</string>
+    <string name="error_http_not_found">Nie znaleziono</string>
+    <string name="error_postprocessing_failed">Przetwarzanie końcowe nie powiodło się</string>
+    <string name="clear_finished_download">Wyczyść ukończone pobieranie</string>
+    <string name="msg_pending_downloads">Masz %s do pobrania, pobieranie goto do kontynuowania</string>
+    <string name="stop">Zatrzymaj</string>
+    <string name="max_retry_msg">Maksimum prób</string>
+    <string name="max_retry_desc">Maksymalna liczba prób przed anulowaniem pobierania</string>
+    <string name="pause_downloads_on_mobile">Przerwij przełączanie na dane mobilne</string>
+    <string name="pause_downloads_on_mobile_desc">Nie wszystkie pobrania mogą zostać zawieszone, w takich przypadkach zostaną ponownie uruchomione</string>
 </resources>
