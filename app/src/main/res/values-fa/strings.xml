@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_bg_subtitle">برای شروع، جست‌وجو را بزنید</string>
     <string name="view_count_text">‫%1$s مشاهده</string>
@@ -22,8 +22,8 @@
     <string name="download_path_summary">مسیر ذخیرهٔ ویدیوهای بارگیری شده</string>
     <string name="download_path_dialog_title">مسیر بارگیری را برای ویدیوها وارد کنید</string>
 
-    <string name="download_path_audio_title">مسیر بارگیری صدا</string>
-    <string name="download_path_audio_summary">مسیر ذخیرهٔ صداهای بارگیری شده</string>
+    <string name="download_path_audio_title">پوشه بارگیری صدا</string>
+    <string name="download_path_audio_summary">صدای بارگیری شده در این‌جا نگه داشته می‌شود</string>
     <string name="download_path_audio_dialog_title">مسیر بارگیری را برای صداها وارد کنید</string>
 
     <string name="autoplay_by_calling_app_title">پخش خودکار</string>
@@ -42,7 +42,7 @@
     <string name="light_theme_title">روشن</string>
 
     <string name="download_dialog_title">بارگیری</string>
-    <string name="next_video_title">ویدیوی بعدی</string>
+    <string name="next_video_title">بعدی</string>
     <string name="show_next_and_similar_title">نماش ویدیوهای «بعدی» و «مشابه»</string>
     <string name="url_not_supported_toast">نشانی اینترنتی پشتیبانی نمی‌شود</string>
     <string name="content_language_title">زبان محتوای ترجیحی</string>
@@ -52,8 +52,8 @@
     <string name="background_player_playing_toast">در حال پخش در پس‌زمینه</string>
     <string name="play_btn_text">پخش</string>
     <string name="content">محتوا</string>
-    <string name="show_age_restricted_content_title">نمایش محتوای محدود شده بر اساس سن</string>
-    <string name="video_is_age_restricted">ویدیو بر اساس سن محدود شده است. نخست، ویدیوهای محدود شده بر اساس سن را در تنظیمات فعّال کنید.</string>
+    <string name="show_age_restricted_content_title">محتوای محدود شده بر اساس سن</string>
+    <string name="video_is_age_restricted">نمایش ویدیوهای محدود شده بر اساس سن. اجازه دادن به چنین محتوای از بخش «تنظیمات» ممکن است.</string>
     <string name="duration_live">زنده</string>
     <string name="downloads">بارگیری‌ها</string>
     <string name="downloads_title">بارگیری‌ها</string>
@@ -120,8 +120,8 @@
     <string name="no_available_dir">لطفاً یک شاخهٔ بارگیری موجود را برگزینید.</string>
 
 <string name="no_player_found_toast">هیچ پخش کننده جریانی پیدا نشد (شما می‌توانید برنامه وی‌ال‌سی را برای پخش آن نصب کنید).</string>
-    <string name="controls_download_desc">بارگیری پرونده جریان.</string>
-    <string name="use_external_video_player_summary">هنگامی که این گزینه فعال باشد، برخی از کیفیت‌ها فاقد صدا خواهند بود</string>
+    <string name="controls_download_desc">بارگیری پرونده جریان</string>
+    <string name="use_external_video_player_summary">حذف صدا در برخی کیفیت‌ها</string>
     <string name="subscribe_button_title">اشتراک</string>
     <string name="subscribed_button_title">مشترک شده</string>
     <string name="channel_unsubscribed">اشتراک کانال لغو شد</string>
@@ -131,7 +131,7 @@
 
     <string name="tab_main">اصلی</string>
     <string name="tab_subscriptions">اشتراک‌ها</string>
-    <string name="tab_bookmarks">نشان‌گذاری‌ها</string>
+    <string name="tab_bookmarks">فهرست‌های پخش دارای نشانک</string>
 
     <string name="fragment_whats_new">موارد جدید</string>
 
@@ -231,8 +231,8 @@
 
     <string name="no_videos">بدون ویدئو</string>
     <plurals name="videos">
-	<item quantity="one">%s ویدئو</item>
-	<item quantity="other">%s ویدئو</item>
+    <item quantity="one">ویدئو</item>
+    <item quantity="other">ویدئو</item>
 </plurals>
 
     <string name="create">ایجاد</string>
@@ -325,4 +325,11 @@
     <string name="caption_none">بدون توضیحات</string>
 
     <string name="caption_setting_title">توضحیات</string>
-    </resources>
+    <string name="unsubscribe">لغو اشتراک</string>
+    <string name="tab_new">زبان جدید</string>
+    <string name="tab_choose">انتخاب زبانه</string>
+    <string name="enable_watch_history_title">تاریخچه و حافظه نهان</string>
+    <string name="settings_category_history_title">تاریخچه و حافظه نهان</string>
+    <string name="settings_category_debug_title">اشکال‌زدایی</string>
+    <string name="settings_category_updates_title">به‌روزرسانی‌ها</string>
+</resources>
