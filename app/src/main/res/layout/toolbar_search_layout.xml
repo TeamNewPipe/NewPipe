@@ -30,7 +30,9 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_gravity="right|center_vertical"
-        tools:ignore="RtlHardcoded">
+        android:focusable="true"
+        tools:ignore="RtlHardcoded"
+        android:background="?attr/selectableItemBackground">
 
         <View
             android:layout_width="28dp"

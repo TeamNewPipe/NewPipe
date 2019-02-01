@@ -39,6 +39,7 @@ import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.search.SearchExtractor;
 import org.schabi.newpipe.extractor.search.SearchInfo;
+import org.schabi.newpipe.firetv.FireTvUtils;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.list.BaseListFragment;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
@@ -449,6 +450,9 @@ public class SearchFragment
             if (isSuggestionsEnabled && errorPanelRoot.getVisibility() != View.VISIBLE) {
                 showSuggestionsPanel();
             }
+            if(FireTvUtils.isFireTv()){
+                showKeyboardSearch();
+            }
         });
 
         searchEditText.setOnFocusChangeListener((View v, boolean hasFocus) -> {
@@ -499,7 +503,9 @@ public class SearchFragment
                     if (DEBUG) {
                         Log.d(TAG, "onEditorAction() called with: v = [" + v + "], actionId = [" + actionId + "], event = [" + event + "]");
                     }
-                    if (event != null
+                    if(actionId == EditorInfo.IME_ACTION_PREVIOUS){
+                        hideKeyboardSearch();
+                    } else if (event != null
                             && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER
                                 || event.getAction() == EditorInfo.IME_ACTION_SEARCH)) {
                         search(searchEditText.getText().toString(), new String[0], "");
@@ -541,7 +547,7 @@ public class SearchFragment
         if (searchEditText.requestFocus()) {
             InputMethodManager imm = (InputMethodManager) activity.getSystemService(
                     Context.INPUT_METHOD_SERVICE);
-            imm.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
+            imm.showSoftInput(searchEditText, InputMethodManager.SHOW_FORCED);
         }
     }
 
@@ -551,8 +557,7 @@ public class SearchFragment
 
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(
                 Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(searchEditText.getWindowToken(),
-                InputMethodManager.HIDE_NOT_ALWAYS);
+        imm.hideSoftInputFromWindow(searchEditText.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
 
         searchEditText.clearFocus();
     }
