@@ -201,7 +201,7 @@
 
     <string name="no_videos">沒有影片</string>
     <plurals name="videos">
-	<item quantity="other">%s 部影片</item>
+    <item quantity="other">影片</item>
 </plurals>
 
     <string name="settings_category_downloads_title">下載</string>
@@ -480,4 +480,66 @@
     <string name="playlists">播放清單</string>
     <string name="tracks">軌</string>
     <string name="users">使用者</string>
-    </resources>
+    <string name="unsubscribe">取消訂閱</string>
+    <string name="tab_new">新分頁</string>
+    <string name="tab_choose">選擇分頁</string>
+    <string name="volume_gesture_control_title">音量手勢控制</string>
+    <string name="volume_gesture_control_summary">使用手勢控制播放器音量</string>
+    <string name="brightness_gesture_control_title">亮度手勢控制</string>
+    <string name="brightness_gesture_control_summary">使用手勢控制播放器亮度</string>
+    <string name="settings_category_updates_title">更新</string>
+    <string name="file_deleted">已刪除檔案</string>
+    <string name="app_update_notification_channel_name">應用程式更新通知</string>
+    <string name="app_update_notification_channel_description">新 NewPipe 版本通知</string>
+    <string name="download_to_sdcard_error_title">外部儲存不可用</string>
+    <string name="download_to_sdcard_error_message">目前無法下載到外部 SD 卡。重設下載資料夾位置？</string>
+    <string name="saved_tabs_invalid_json">使用預設分頁，讀取已儲存的分頁時發生錯誤</string>
+    <string name="restore_defaults">恢復預設值</string>
+    <string name="restore_defaults_confirmation">您想要恢復預設值嗎？</string>
+    <string name="subscribers_count_not_available">訂閱數不可用</string>
+    <string name="main_page_content_summary">要在首頁顯示哪些分頁</string>
+    <string name="selection">選擇</string>
+    <string name="updates_setting_title">更新</string>
+    <string name="updates_setting_description">當有新版本可用時顯示通知以告知應用程式更新</string>
+    <string name="list_view_mode">清單檢視模式</string>
+    <string name="list">清單</string>
+    <string name="grid">網格</string>
+    <string name="auto">自動</string>
+    <string name="switch_view">切換檢視</string>
+    <string name="app_update_notification_content_title">有可用的 NewPipe 更新！</string>
+    <string name="app_update_notification_content_text">輕觸以下載</string>
+    <string name="missions_header_finished">結束</string>
+    <string name="missions_header_pending">在佇列中</string>
+    <string name="paused">已暫停</string>
+    <string name="queued">已排入佇列</string>
+    <string name="post_processing">正在後處理</string>
+    <string name="enqueue">佇列</string>
+    <string name="permission_denied">動作被系統拒絕</string>
+    <string name="download_failed">下載失敗</string>
+    <string name="download_finished">下載已結束</string>
+    <string name="download_finished_more">%s 個下載已結束</string>
+    <string name="generate_unique_name">生成獨特的名稱</string>
+    <string name="overwrite">覆寫</string>
+    <string name="overwrite_warning">已有此名稱的已下載檔案</string>
+    <string name="download_already_running">已有此名稱的當案的下載正在進行</string>
+    <string name="show_error">顯示錯誤</string>
+    <string name="label_code">代碼</string>
+    <string name="error_path_creation">無法建立檔案</string>
+    <string name="error_file_creation">無法建立目的地資料夾</string>
+    <string name="error_permission_denied">被系統拒絕的權限</string>
+    <string name="error_ssl_exception">安全連線失敗</string>
+    <string name="error_unknown_host">找不到伺服器</string>
+    <string name="error_connect_host">無法連線到伺服器</string>
+    <string name="error_http_no_content">伺服器沒有傳送資料</string>
+    <string name="error_http_unsupported_range">伺服器不接受多執行緒下載，請以 @string/msg_threads = 1 重試</string>
+    <string name="error_http_requested_range_not_satisfiable">請求範圍無法滿足</string>
+    <string name="error_http_not_found">找不到</string>
+    <string name="error_postprocessing_failed">後處理失敗</string>
+    <string name="clear_finished_download">清除已結束的下載</string>
+    <string name="msg_pending_downloads">您有 %s 個擱置中的下載，到「下載」以繼續</string>
+    <string name="stop">停止</string>
+    <string name="max_retry_msg">最大重試</string>
+    <string name="max_retry_desc">在取消下載前的最大嘗試數</string>
+    <string name="pause_downloads_on_mobile">切換到行動數據時暫停</string>
+    <string name="pause_downloads_on_mobile_desc">並不是所有下載都可以暫停，如果是這種情況，就會重新開始</string>
+</resources>
