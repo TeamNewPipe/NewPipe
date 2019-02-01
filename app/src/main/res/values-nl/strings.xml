@@ -253,8 +253,8 @@
 
     <string name="no_videos">Geen video\'s</string>
     <plurals name="videos">
-	<item quantity="one">%s video</item>
-	<item quantity="other">%s video’s</item>
+    <item quantity="one">video</item>
+    <item quantity="other">video’s</item>
 </plurals>
 
     <string name="item_deleted">Item verwijderd</string>
