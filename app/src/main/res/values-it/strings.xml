@@ -535,7 +535,7 @@
     <string name="missions_header_pending">In coda</string>
     <string name="paused">in pausa</string>
     <string name="queued">in coda</string>
-    <string name="post_processing">post-processing</string>
+    <string name="post_processing">post-processo</string>
     <string name="enqueue">Coda</string>
     <string name="permission_denied">Azione negata dal sistema</string>
     <string name="download_failed">Download fallito</string>
