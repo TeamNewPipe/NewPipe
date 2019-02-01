@@ -20,10 +20,12 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListFragment;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.local.subscription.SubscriptionService;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -54,6 +56,19 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
     private Disposable subscriptionObserver;
     private Subscription feedSubscriber;
+
+    List<InfoItem> minutesList = new ArrayList<>();
+    List<InfoItem> hoursList = new ArrayList<>();
+    List<InfoItem> daysList = new ArrayList<>();
+    List<InfoItem> weeksList = new ArrayList<>();
+
+    //offset
+    int minuteHoldPos = 0;
+    int housrHoldPos  = 0;
+    int daysHoldPos   = 0;
+    int weekHoldPos   = 0;
+
+    int count = 0;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle
@@ -292,16 +307,40 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
                     return;
                 }
 
-                final InfoItem item = channelInfo.getRelatedItems().get(0);
-                // Keep requesting new items if the current one already exists
-                boolean itemExists = doesItemExist(infoListAdapter.getItemsList(), item);
-                if (!itemExists) {
-                    infoListAdapter.addInfoItem(item);
-                    //updateSubscription(channelInfo);
-                } else {
-                    requestFeed(1);
+                for (int i = 0; i < 15; i++) {
+                    //get atleast 8 relative items of source youtube channel
+                    InfoItem infoItem = channelInfo.getRelatedItems().get(i);
+                    boolean itemExists = doesItemExist(infoListAdapter.getItemsList(), infoItem);
+                    //categorize into time
+                    if (!itemExists) {
+                        if (((StreamInfoItem) infoItem).getUploadDate().contains("minutes ago")) {
+                            minutesList.add(infoItem);
+                        } else if (((StreamInfoItem) infoItem).getUploadDate().contains("hours ago")) {
+                            hoursList.add(infoItem);
+                        } else if (((StreamInfoItem) infoItem).getUploadDate().contains("days ago")) {
+                            daysList.add(infoItem);
+                        } else if (((StreamInfoItem) infoItem).getUploadDate().contains("weeks ago")) {
+                            weeksList.add(infoItem);
+                        }
+                    }
                 }
                 onDone();
+
+                //when itemsloaded size become equal to count it will repopulate entire infoListAdapter list
+                if (itemsLoaded.size() == count) {
+                    infoListAdapter.addInfoInOrder(minutesList,minuteHoldPos);
+                    minuteHoldPos += minutesList.size();
+                    infoListAdapter.addInfoInOrder(hoursList,housrHoldPos+minuteHoldPos);
+                    housrHoldPos  += hoursList.size();
+                    infoListAdapter.addInfoInOrder(daysList,daysHoldPos + housrHoldPos + minuteHoldPos);
+                    daysHoldPos   += daysList.size();
+                    infoListAdapter.addInfoInOrder(weeksList,weekHoldPos + daysHoldPos + housrHoldPos + minuteHoldPos);
+                    weekHoldPos   += weeksList.size();
+                    count++;
+                    minutesList.clear();
+                    hoursList.clear();
+                    daysList.clear();
+                }
             }
 
             @Override

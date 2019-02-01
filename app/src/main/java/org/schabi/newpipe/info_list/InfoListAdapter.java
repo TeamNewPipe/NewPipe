@@ -106,6 +106,24 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.useGridVariant = useGridVariant;
     }
 
+    //Smooth ordering of feeds
+    public void addInfoInOrder(List<InfoItem> data,int offset){
+        if (data != null) {
+
+            int offsetStart = sizeConsideringHeaderOffset();
+            infoItemList.addAll(offset,data);
+
+            notifyItemRangeInserted(offsetStart, data.size());
+
+            if (footer != null && showFooter) {
+                int footerNow = sizeConsideringHeaderOffset();
+                notifyItemMoved(offsetStart, footerNow);
+
+            }
+        }
+    }
+
+
     public void addInfoItemList(List<InfoItem> data) {
         if (data != null) {
             if (DEBUG) {
