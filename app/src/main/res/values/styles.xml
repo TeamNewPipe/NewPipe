@@ -5,7 +5,7 @@
         <item name="colorPrimaryDark">@android:color/transparent</item>
         <item name="colorAccent">@android:color/transparent</item>
 
-        <item name="android:windowBackground">@color/dark_background_color</item>
+        <item name="android:windowBackground">@drawable/splash_background</item>
     </style>
 
     <!-- Base themes -->
