@@ -2,11 +2,6 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:drawable="@color/light_youtube_primary_color"/>
+        android:drawable="@color/dark_background_color"/>
 
-    <item>
-        <bitmap
-            android:gravity="center"
-            android:src="@drawable/splash_forground"/>
-    </item>
 </layer-list>
