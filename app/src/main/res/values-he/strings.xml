@@ -490,4 +490,5 @@
 \n4. להעתיק את כתובת הפרופיל אליו הועברת.</string>
     <string name="playback_speed_control">בקרי מהירות נגינה</string>
     <string name="playback_pitch">גובה צליל</string>
+    <string name="limit_mobile_data_usage_title">הגבל רזולוציה כאשר משתמשים בתקשורת מובייל</string>
 </resources>
