@@ -190,7 +190,7 @@
 
     <string name="no_videos">אין סרטונים</string>
     <plurals name="videos">
-    <item quantity="one">סרטון אחד</item>
+    <item quantity="one">סרטון</item>
     <item quantity="two">שני סרטונים</item>
     <item quantity="many">%s סרטונים</item>
     <item quantity="other">%s סרטונים</item>
@@ -208,7 +208,7 @@
     <string name="msg_name">שם קובץ</string>
     <string name="msg_threads">אשכולות</string>
     <string name="msg_error">שגיאה</string>
-    <string name="msg_server_unsupported">שרת לא נתמך</string>
+    <string name="msg_server_unsupported">שרת בלתי נתמך</string>
     <string name="msg_exists">קובץ כבר קיים</string>
     <string name="msg_url_malform">URL לא תקין או שאין אינטרנט זמין</string>
     <string name="msg_running">NewPipe מוריד</string>
@@ -221,7 +221,7 @@
 
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">אתגר reCAPTCHA</string>
-    <string name="recaptcha_request_toast">נתבקש אתגר reCAPTCHA</string>
+    <string name="recaptcha_request_toast">התקבלה בקשה לאתגר reCAPTCHA</string>
 
     <string name="settings_category_downloads_title">הורדה</string>
     <string name="settings_file_charset_title">רשימת תווים אפשרית בשמות קבצים</string>
@@ -249,7 +249,7 @@
     <string name="donation_encouragement">NewPipe מפותח ע\"י מתנדבים אשר תורמים מזמנם להביא את החוויה המושלמת עבורך. עכשיו זה הזמן לתת להם חזרה כדי לדאוג לכך ש-NewPipe תמשיך לצמוח!</string>
     <string name="give_back">לתרום בחזרה</string>
     <string name="website_title">אתר הבית</string>
-    <string name="website_encouragement">לקבלת מידע נוסף ועדכונים אחרונים עבור NewPipe אנא בקר באתרנו.</string>
+    <string name="website_encouragement">מומלץ לבקר באתר של NewPipe לפרטים נוספים ולמידע.</string>
     <string name="app_license_title">רישיון NewPipe</string>
     <string name="read_full_license">קרא רישיון</string>
 
@@ -257,7 +257,7 @@
     <string name="title_activity_history">היסטוריה</string>
     <string name="title_history_search">חופש בעבר</string>
     <string name="title_history_view">נצפה בעבר</string>
-    <string name="history_disabled">היסטוריה אינה פעילה</string>
+    <string name="history_disabled">היסטוריה כבויה</string>
     <string name="action_history">היסטוריה</string>
     <string name="history_empty">ההיסטוריה ריקה</string>
     <string name="history_cleared">היסטוריה נוקתה</string>
@@ -271,7 +271,7 @@
     <string name="feed_page_summary">דף עדכונים</string>
     <string name="channel_page_summary">דף ערוץ</string>
     <string name="select_a_channel">בחר ערוץ</string>
-    <string name="no_channel_subscribed_yet">אף ערוץ אינו ברשימת המעקב עדיין</string>
+    <string name="no_channel_subscribed_yet">אין עדיין מינויים לערוצים</string>
     <string name="select_a_kiosk">בחר קיוסק</string>
 
     <string name="kiosk">קיוסק</string>
@@ -279,7 +279,7 @@
     <string name="top_50">50 הנצפים ביותר</string>
     <string name="new_and_hot">חדש &amp; חם</string>
     <string name="title_activity_background_player">נגן רקע</string>
-    <string name="title_activity_popup_player">נגן צץ</string>
+    <string name="title_activity_popup_player">נגן צף</string>
     <string name="play_queue_remove">הסר</string>
     <string name="play_queue_stream_detail">פרטים</string>
     <string name="play_queue_audio_settings">אפשרויות שמע</string>
@@ -319,7 +319,7 @@
     <string name="view_history_deleted">היסטוריית הצפייה נמחקה.</string>
     <string name="clear_search_history_title">ניקוי היסטוריית החיפוש</string>
     <string name="search_history_deleted">היסטורית החיפוש נמחקה.</string>
-    <string name="invalid_file">הקובץ אינו קיים או שאין ברשותך הרשאות מתאימות לקריאתו/כתיבתו</string>
+    <string name="invalid_file">הקובץ אינו קיים או שחסרה הרשאה לקרוא אותו או לכתוב אליו</string>
     <string name="file_name_empty_error">שם הקובץ אינו יכול להיות ריק</string>
     <string name="detail_drag_description">גרור כדי לסדר מחדש</string>
 
@@ -331,12 +331,12 @@
 
     <string name="one_item_deleted">פריט אחד נמחק.</string>
 
-    <string name="toast_no_player">לא נמצא נגן מתאים לקובץ זה</string>
+    <string name="toast_no_player">לא מותקן יישומון שמתאים לנגינת הקובץ הזה</string>
 
     <string name="delete_stream_history_prompt">האם ברצונך למחוק פריט זה מהיסטוריית הצפייה שלך?</string>
     <string name="delete_all_history_prompt">האם אתה בטוח שברצונך למחוק את כל הפריטים מההיסטוריה?</string>
-    <string name="export_complete_toast">יצוא הושלם</string>
-    <string name="import_complete_toast">יבוא הושלם</string>
+    <string name="export_complete_toast">הייצוא הסתיים</string>
+    <string name="import_complete_toast">הייבוא הסתיים</string>
     <string name="no_valid_zip_file">אין קובץ ZIP תקף</string>
     <string name="video_player">נגן וידאו</string>
     <string name="background_player">נגן רקע</string>
@@ -387,7 +387,7 @@
 <string name="use_inexact_seek_title">השתמש בחיפוש מהיר שאינו מדויק</string>
     <string name="use_inexact_seek_summary">חיפוש לא מדויק מאפשר לנגן לחפש נקודת זמן מהר יותר, עם דיוק מופחת</string>
     <string name="download_thumbnail_title">טען תמונות ממוזערות</string>
-    <string name="download_thumbnail_summary">"השבת כדי לעצור את טעינת כל התמונות הממוזערות וחסוך בשימוש בנתונים ובזכרון. השינוי ימחק את המטמון בזכרון ובדיסק. "</string>
+    <string name="download_thumbnail_summary">כשהאפשרות כבויה לא נטענות תמונות ממוזערות, לא נשמרים נתונים ואין שימוש בזיכרון. שינוי ישנה את המטמון בזיכרון ובכונן.</string>
     <string name="metadata_cache_wipe_summary">הסר את כל נתוני העמודים במטמון</string>
     <string name="auto_queue_title">הכנס את ההזרמה הבאה לתור באופן אוטומטי</string>
     <string name="auto_queue_summary">אוטומטית הוסף הזרמה קשורה כאשר ההזרמה האחרונה לא נמצאת במצב הזרמה חוזרת של התור.</string>
@@ -459,4 +459,23 @@
     <string name="minimize_on_exit_none_description">כלום</string>
     <string name="minimize_on_exit_background_description">הקטן לנגן הפועל ברקע</string>
     <string name="minimize_on_exit_popup_description">הקטן לנגן פופאפ (חלונית)</string>
+    <string name="unsubscribe">ביטול מינוי</string>
+    <string name="tab_new">לשונית חדשה</string>
+    <string name="tab_choose">בחירת לשונית</string>
+    <string name="volume_gesture_control_title">מחוות בקרת עצמת שמע</string>
+    <string name="volume_gesture_control_summary">ניתן להשתמש במחוות כדי לשלוט בעצמת השמע של הנגן</string>
+    <string name="brightness_gesture_control_title">מחוות בקרת בהירות</string>
+    <string name="brightness_gesture_control_summary">ניתן להשתמש במחוות כדי לשלוט בבהירות הנגן</string>
+    <string name="settings_category_updates_title">עדכונים</string>
+    <string name="file_deleted">נמחק קובץ</string>
+    <string name="app_update_notification_channel_name">התראת עדכון יישומון</string>
+    <string name="app_update_notification_channel_description">התראות על גרסה חדשה של NewPipe</string>
+    <string name="download_to_sdcard_error_title">האחסון החיצוני אינו זמין</string>
+    <string name="download_to_sdcard_error_message">אין עדיין אפשרות להוריד לכרטיס SD. לאפס את מיקום תיקיית ההורדה\?</string>
+    <string name="saved_tabs_invalid_json">נעשה שימוש בלשוניות בררת המחדל, אירעה שגיאה בעת שמירת הלשוניות</string>
+    <string name="restore_defaults">שחזור בררות מחדל</string>
+    <string name="restore_defaults_confirmation">לשחזר את בררות המחדל\?</string>
+    <string name="subscribers_count_not_available">מספר העוקבים אינו זמין</string>
+    <string name="main_page_content_summary">אילו לשוניות תופענה בעמוד הראשי</string>
+    <string name="selection">בחירה</string>
 </resources>

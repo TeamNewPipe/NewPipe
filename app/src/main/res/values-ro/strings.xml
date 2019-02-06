@@ -356,8 +356,7 @@ pentru a deschide în mod pop-up</string>
     <string name="preferred_open_action_settings_summary">Opţiunea prestabilită când se deschide contentul -%s</string>
 
     <string name="video_player">Player Video</string>
-    <string name="background_player">Player Fundal
-\n</string>
+    <string name="background_player">Player Fundal</string>
     <string name="popup_player">Player Popup</string>
     <string name="always_ask_open_action">Întreabă întotdeauna</string>
 
