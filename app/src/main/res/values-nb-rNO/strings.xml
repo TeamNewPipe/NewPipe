@@ -63,7 +63,7 @@
     <string name="autoplay_by_calling_app_summary">Spiller en video når NewPipe blir forespurt av et annet program</string>
     <string name="content">Innhold</string>
     <string name="show_age_restricted_content_title">Aldersbegrenset innhold</string>
-    <string name="video_is_age_restricted">Vis aldersbegrenset video. Skru på videoer med aldersgrenser i innstillingene først.</string>
+    <string name="video_is_age_restricted">Vis aldersbegrenset video. Å tillate slikt materiale kan gjøres fra innstillingene.</string>
     <string name="general_error">Feil</string>
     <string name="could_not_load_thumbnails">Kunne ikke laste inn alle miniatyrbilder</string>
     <string name="youtube_signature_decryption_error">Kunne ikke dekryptere signaturen til videoens nettadresse</string>
@@ -72,7 +72,7 @@
     <string name="content_not_available">Innholdet er ikke tilgjengelig</string>
     <string name="blocked_by_gema">Blokkert av GEMA</string>
     <string name="could_not_setup_download_menu">Kunne ikke sette opp nedlastingsmeny</string>
-    <string name="live_streams_not_supported">Direkteoverføringer støttes ikke enda.</string>
+    <string name="live_streams_not_supported">Direktesendinger støttes ikke enda.</string>
     <string name="could_not_get_stream">Kunne ikke finne noen strømmer</string>
     <string name="sorry_string">Beklager, dette skal ikke skje.</string>
     <string name="error_report_button_text">Rapporter feil via e-post</string>
@@ -91,7 +91,7 @@
     <string name="audio">Audio</string>
     <string name="retry">Prøv igjen</string>
     <string name="storage_permission_denied">Tilgang til lagring nektet</string>
-    <string name="duration_live">direkteoverført</string>
+    <string name="duration_live">Direkteoverført</string>
 
     <string name="downloads">Nedlastinger</string>
     <string name="downloads_title">Nedlastinger</string>
@@ -233,8 +233,8 @@
 
     <string name="no_videos">Ingen videoer</string>
     <plurals name="videos">
-	<item quantity="one">%s video</item>
-	<item quantity="other">%s videoer</item>
+    <item quantity="one">video</item>
+    <item quantity="other">videoer</item>
 </plurals>
 
     <string name="view_on_github">Vis på GitHub</string>
@@ -456,7 +456,7 @@
 \n2. Logg inn når forespurt
 \n4. Kopier profil-nettadressen du ble videresendt til.</string>
     <string name="use_inexact_seek_summary">Unøyaktig blafring tillater spilleren å blafre til posisjoner raskere med redusert nøyaktighet</string>
-    <string name="download_thumbnail_summary">Skru av for å stoppe alle miniatyrbilder fra innlasting og spare data og minnebruke. Endring av dette vil tømme både disk- og minne-hurtiglager</string>
+    <string name="download_thumbnail_summary">Skru av for å stoppe innlasting av miniatyrbilder, noe som sparer data- og minnebruk. Endring av dette vil tømme både disk- og minne-hurtiglager.</string>
     <string name="auto_queue_summary">Legg til en relatert strøm ved avspilling av forrige strøm i ikke-repeterende kø</string>
     <string name="enable_leak_canary_summary">Minnelekkasjeoppsyn kan forårsake programmet å opptre uresponsivt under haugdumping</string>
 
@@ -488,5 +488,68 @@
     <string name="skip_silence_checkbox">Hurtig foroverspoling ved stillhet</string>
     <string name="playback_step">Steg</string>
     <string name="playback_reset">Tilbakestill</string>
-
-    </resources>
+    <string name="unsubscribe">Opphev abonnement</string>
+    <string name="tab_new">Ny fane</string>
+    <string name="tab_choose">Velg fane</string>
+    <string name="volume_gesture_control_title">Håndvendingskontroll for lydstyrke</string>
+    <string name="volume_gesture_control_summary">Bruk håndvendinger for å kontrollere avspillerens lydstyrke</string>
+    <string name="brightness_gesture_control_title">Håndvendingskontroll for lysstyrke</string>
+    <string name="brightness_gesture_control_summary">Bruk håndvendinger for å kontrollere avspillerens lysstyrke</string>
+    <string name="settings_category_updates_title">Oppdateringer</string>
+    <string name="events">Hendelser</string>
+    <string name="file_deleted">Fil slettet</string>
+    <string name="app_update_notification_channel_name">Programoppgraderingsmerknad</string>
+    <string name="app_update_notification_channel_description">Merknader for nye NewPipe-versjoner</string>
+    <string name="download_to_sdcard_error_title">Ekstern lagring utilgjengelig</string>
+    <string name="download_to_sdcard_error_message">Nedlasting til eksternt SD-kort er ikke mulig enda. Tilbakestill plassering av nedlastingsmappe\?</string>
+    <string name="saved_tabs_invalid_json">Bruker forvalgte faner, feil under lagring av lagrede faner.</string>
+    <string name="restore_defaults">Gjenopprett forvalg</string>
+    <string name="restore_defaults_confirmation">Ønsker du å gjenopprette alt til forvalgene\?</string>
+    <string name="subscribers_count_not_available">Abonnementsantall ikke tilgjengelig</string>
+    <string name="main_page_content_summary">Hvilke faner vises på hovedsiden</string>
+    <string name="selection">Utvalg</string>
+    <string name="conferences">Konferanser</string>
+    <string name="updates_setting_title">Oppdatering</string>
+    <string name="updates_setting_description">Vis en merknad for spørring om programoppdatering når en ny versjon er tilgjengelig</string>
+    <string name="list_view_mode">Listevisningmodus</string>
+    <string name="list">Liste</string>
+    <string name="grid">Rutenett</string>
+    <string name="auto">Auto</string>
+    <string name="switch_view">Veksle visning</string>
+    <string name="app_update_notification_content_title">Ny NewPipe-versjon tilgjengelig.</string>
+    <string name="app_update_notification_content_text">Trykk for å laste ned</string>
+    <string name="missions_header_finished">Fullført</string>
+    <string name="missions_header_pending">I kø</string>
+    <string name="paused">pauset</string>
+    <string name="queued">i kø</string>
+    <string name="post_processing">etterbehandling</string>
+    <string name="enqueue">Kø</string>
+    <string name="permission_denied">H</string>
+    <string name="download_failed">Nedlasting mislyktes</string>
+    <string name="download_finished">Nedlasting fullført</string>
+    <string name="download_finished_more">%s nedlastinger fullført</string>
+    <string name="generate_unique_name">Generer unikt navn</string>
+    <string name="overwrite">Overskriv</string>
+    <string name="overwrite_warning">Nedlastet fil ved dette navnet finnes allerede</string>
+    <string name="download_already_running">Nedlasting med dette navnet underveis allerede</string>
+    <string name="show_error">Vis feil</string>
+    <string name="label_code">Kode</string>
+    <string name="error_path_creation">Filen kan ikke opprettes</string>
+    <string name="error_file_creation">Målmappen kan ikke opprettes</string>
+    <string name="error_permission_denied">Tilgang nektet av systemet</string>
+    <string name="error_ssl_exception">Sikker tilkobling mislyktes</string>
+    <string name="error_unknown_host">Fant ikke tjeneren</string>
+    <string name="error_connect_host">Kan ikke koble til tjeneren</string>
+    <string name="error_http_no_content">Tjeneren sender ikke data</string>
+    <string name="error_http_unsupported_range">"Tjeneren godtar ikke flertrådede nedlastinger, prøv igjen med @string/msg_threads = 1 "</string>
+    <string name="error_http_requested_range_not_satisfiable">Forespurt nummerområde kan ikke innvilges</string>
+    <string name="error_http_not_found">Ikke funnet</string>
+    <string name="error_postprocessing_failed">Etterbehandling mislyktes</string>
+    <string name="clear_finished_download">Tøm fullførte nedlastinger</string>
+    <string name="msg_pending_downloads">Fortsett dine %s ventende overføringer fra Nedlastinger</string>
+    <string name="stop">Stopp</string>
+    <string name="max_retry_msg">Maksimalt antall forsøk</string>
+    <string name="max_retry_desc">Maksimalt antall tilkoblingsforsøk før nedlastingen avblåses</string>
+    <string name="pause_downloads_on_mobile">Pause ved veksling til mobildata</string>
+    <string name="pause_downloads_on_mobile_desc">Nedlastinger som ikke kan pauses vil bli startet på nytt</string>
+</resources>
