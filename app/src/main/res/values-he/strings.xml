@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">לחץ \"חפש\" כדי להתחיל</string>
+    <string name="main_bg_subtitle">יש ללחוץ על „חיפוש” כדי להתחיל</string>
     <string name="view_count_text">%1$s צפיות</string>
-    <string name="upload_date_text">פורסם ב:-%1$s</string>
-    <string name="no_player_found">לא נמצאו נגני רשת, האם תרצה להתקין את VLC?</string>
-    <string name="install">התקן</string>
-    <string name="cancel">בטל</string>
-    <string name="open_in_browser">פתח בדפדפן</string>
+    <string name="upload_date_text">פורסם ב־%1$s</string>
+    <string name="no_player_found">לא נמצאו נגני צפייה ישירה, להתקין את VLC\?</string>
+    <string name="install">התקנה</string>
+    <string name="cancel">ביטול</string>
+    <string name="open_in_browser">פתיחה בדפדפן</string>
     <string name="open_in_popup_mode">פתיחה בחלון צף</string>
-    <string name="share">שתף</string>
-    <string name="download">הורד</string>
-    <string name="search">חפש</string>
+    <string name="share">שיתוף</string>
+    <string name="download">הורדה</string>
+    <string name="search">חיפוש</string>
     <string name="settings">הגדרות</string>
-    <string name="did_you_mean">האם התכוונת ל-%1$s ?</string>
-    <string name="share_dialog_title">שתף עם</string>
-    <string name="choose_browser">בחר דפדפן</string>
-    <string name="screen_rotation">סיבוב</string>
-    <string name="use_external_video_player_title">השתמש בנגן סרטים חיצוני</string>
-    <string name="use_external_video_player_summary">מסיר שמע בחלק מהרזולוציות</string>
-    <string name="use_external_audio_player_title">השתמש בנגן סרטים חיצוני</string>
+    <string name="did_you_mean">כוונתך הייתה: %1$s\?</string>
+    <string name="share_dialog_title">שיתוף עם</string>
+    <string name="choose_browser">בחירת דפדפן</string>
+    <string name="screen_rotation">הטייה</string>
+    <string name="use_external_video_player_title">שימוש בנגן סרטונים חיצוני</string>
+    <string name="use_external_video_player_summary">בחלק מהרזולוציות השמע יוסר</string>
+    <string name="use_external_audio_player_title">שימוש בנגן סרטונים חיצוני</string>
     <string name="popup_mode_share_menu_title">מצב חלון צף של NewPipe</string>
     <string name="controls_background_title">רקע</string>
     <string name="controls_popup_title">חלון צף</string>
 
-    <string name="download_path_title">נתיב הורדה לסרטונים</string>
-    <string name="download_path_summary">נתיב לשמירת סרטונים</string>
-    <string name="download_path_dialog_title">הכנס נתיב לשמירת סרטונים</string>
+    <string name="download_path_title">נתיב להורדת סרטונים</string>
+    <string name="download_path_summary">נתיב מיקום לאחסון סרטונים</string>
+    <string name="download_path_dialog_title">נא להקליד נתיב לשמירת סרטונים</string>
 
     <string name="download_path_audio_title">תיקיית הורדות שמע</string>
     <string name="download_path_audio_summary">הורדות שמע נשמרות כאן</string>
-    <string name="download_path_audio_dialog_title">הכנס נתיב לשמירת קבצי שמע</string>
+    <string name="download_path_audio_dialog_title">נא להקליד נתיב לשמירת קובצי שמע</string>
 
-    <string name="autoplay_by_calling_app_title">נגן אוטומטית</string>
+    <string name="autoplay_by_calling_app_title">ניגון אוטומטי</string>
     <string name="autoplay_by_calling_app_summary">מנגן סרטון כאשר NewPipe נפתח דרך אפליקציה אחרת</string>
     <string name="default_resolution_title">רזולוציית ברירת המחדל</string>
     <string name="default_popup_resolution_title">רזולוציית בררת המחדל לחלון צף</string>
@@ -104,14 +104,14 @@
     <string name="what_device_headline">מידע:</string>
     <string name="what_happened_headline">מה קרה:</string>
     <string name="info_labels">מה:\\nבקשה:\\nשפת התוכן:\\nשירות:\\nזמן גריניץ׳:\\nחבילה:\\nגרסה:\\nגרסת מערכת ההפעלה:</string>
-<string name="subscribe_button_title">הירשם כמנוי</string>
-    <string name="subscribed_button_title">רשום כמנוי</string>
-    <string name="channel_unsubscribed">ביטול מנוי לערוץ</string>
-    <string name="subscription_change_failed">לא הצלחתי לשנות מנוי</string>
-    <string name="subscription_update_failed">אין אפשרות לעדכן מנוי</string>
+<string name="subscribe_button_title">עריכת מינוי</string>
+    <string name="subscribed_button_title">נרשמת</string>
+    <string name="channel_unsubscribed">ביטול מינוי לערוץ</string>
+    <string name="subscription_change_failed">לא הצלחתי לשנות מינוי</string>
+    <string name="subscription_update_failed">לא ניתן לעדכן את המינוי</string>
 
     <string name="tab_main">ראשי</string>
-    <string name="tab_subscriptions">מנויים</string>
+    <string name="tab_subscriptions">מינויים</string>
 
     <string name="fragment_whats_new">מה חדש</string>
 
@@ -289,10 +289,10 @@
     <string name="start_here_on_main">להתחיל לנגן מכאן</string>
     <string name="start_here_on_background">"להתחיל מכאן  כאשר נגן הרקע מופעל"</string>
     <string name="start_here_on_popup">להתחיל כאן בנגן הצף</string>
-<string name="controls_download_desc">הורד קובץ הזרמה</string>
-    <string name="show_info">הצג מידע</string>
+<string name="controls_download_desc">הורדת קובץ הזרמה</string>
+    <string name="show_info">הצגת מידע</string>
 
-    <string name="tab_bookmarks">רשימות השמעה מסומנות</string>
+    <string name="tab_bookmarks">רשימות נגינה מסומנות</string>
 
     <string name="controls_add_to_playlist_title">הוספה אל</string>
 
@@ -310,7 +310,7 @@
 
     <string name="switch_to_background">העברה לרקע</string>
     <string name="switch_to_popup">מעבר לחלון צף</string>
-    <string name="no_player_found_toast">לא נמצא נגן לצפייה ישירה (באפשרותך להתקין VLC כדי לתקן זאת).</string>
+    <string name="no_player_found_toast">לא נמצא נגן צפייה ישירה (ניתן להתקין את VLC כדי לתקן זאת).</string>
     <string name="thumbnail_cache_wipe_complete_notice">מטמון התמונות נוקה</string>
     <string name="metadata_cache_wipe_title">נקה מטמון מטא-דאטה</string>
     <string name="metadata_cache_wipe_complete_notice">מטמון המטא-דאטא נוקה</string>
@@ -490,5 +490,50 @@
 \n4. להעתיק את כתובת הפרופיל אליו הועברת.</string>
     <string name="playback_speed_control">בקרי מהירות נגינה</string>
     <string name="playback_pitch">גובה צליל</string>
-    <string name="limit_mobile_data_usage_title">הגבל רזולוציה כאשר משתמשים בתקשורת מובייל</string>
+    <string name="limit_mobile_data_usage_title">הגבלת הרזולוציה בעת שימוש בנתונים סלולריים</string>
+    <string name="start_accept_privacy_policy">כדי לעמוד בדרישות האסדרה הכללית להגנה על מידע (GDPR), אנו מפנים את תשומת לבך למדיניות הפרטיות של NewPipe. נא לקרוא אותה בעיון רב.
+\nעליך לאשר את הסכמתך למדיניות כדי לשלוח לנו דיווחים על תקלות.</string>
+    <string name="updates_setting_title">עדכונים</string>
+    <string name="updates_setting_description">הצגת התראה כדי להודיע על עדכון ליישומון כשיוצאת גרסה חדשה לאור</string>
+    <string name="list_view_mode">מצב תצוגת רשימה</string>
+    <string name="list">רשימה</string>
+    <string name="grid">טבלה</string>
+    <string name="auto">אוטומטית</string>
+    <string name="switch_view">החלפת תצוגה</string>
+    <string name="app_update_notification_content_title">יצא עדכון ל־NewPipe!</string>
+    <string name="app_update_notification_content_text">יש לגעת כדי להוריד</string>
+    <string name="missions_header_finished">הסתיים</string>
+    <string name="missions_header_pending">בתור</string>
+    <string name="paused">מושהה</string>
+    <string name="queued">בתור</string>
+    <string name="post_processing">עיבוד מאוחר</string>
+    <string name="enqueue">תור</string>
+    <string name="permission_denied">הפעולה נדחתה על ידי המערכת</string>
+    <string name="download_failed">ההורדה נכשלה</string>
+    <string name="download_finished">ההורדה הסתיימה</string>
+    <string name="download_finished_more">%s הורדות הסתיימו</string>
+    <string name="generate_unique_name">יצירת שם ייחודי</string>
+    <string name="overwrite">שכתוב</string>
+    <string name="overwrite_warning">כבר קיים קובץ בשם הזה</string>
+    <string name="download_already_running">אחת ההורדות הפעילות כבר נושאת את השם הזה</string>
+    <string name="show_error">הצגת שגיאה</string>
+    <string name="label_code">קוד</string>
+    <string name="error_path_creation">לא ניתן ליצור את הקובץ</string>
+    <string name="error_file_creation">לא ניתן ליצור את תיקיית היעד</string>
+    <string name="error_permission_denied">ההרשאה נדחתה על ידי המערכת</string>
+    <string name="error_ssl_exception">החיבור המאובטח נכשל</string>
+    <string name="error_unknown_host">לא ניתן למצוא את השרת</string>
+    <string name="error_connect_host">לא ניתן להתחבר לשרת</string>
+    <string name="error_http_no_content">השרת לא שולח נתונים</string>
+    <string name="error_http_unsupported_range">"השרת לא מקבל הורדות רב ערוציות, מוטב לנסות שוב עם ‎@string/msg_threads = 1 "</string>
+    <string name="error_http_requested_range_not_satisfiable">הטווח שמבוקש לא מתאים</string>
+    <string name="error_http_not_found">לא נמצא</string>
+    <string name="error_postprocessing_failed">העיבוד המאוחר נכשל</string>
+    <string name="clear_finished_download">פינוי ההורדות שהסתיימו</string>
+    <string name="msg_pending_downloads">יש לך %s הורדות ממתינות, יש לעבור להורדות כדי להמשיך</string>
+    <string name="stop">עצירה</string>
+    <string name="max_retry_msg">מספר הניסיונות החוזרים המרבי</string>
+    <string name="max_retry_desc">מספר הניסיונות החוזרים המרבי בטרם ביטול ההורדה</string>
+    <string name="pause_downloads_on_mobile">להשהות בעת מעבר לתקשורת נתונים סלולרית</string>
+    <string name="pause_downloads_on_mobile_desc">לא את כל ההורדות ניתן להשהות, במקרים כאלה, ההורדה תתחיל מחדש</string>
 </resources>
