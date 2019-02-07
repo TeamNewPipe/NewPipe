@@ -65,7 +65,7 @@
 
     <string name="content">Inhalt</string>
     <string name="show_age_restricted_content_title">Altersbeschränkte Inhalte</string>
-    <string name="video_is_age_restricted">Altersbeschränktes Video anzeigen. Das Zulassen dieses Materials ist unter \"Einstellungen\" möglich.</string>
+    <string name="video_is_age_restricted">Altersbeschränktes Video anzeigen. Das Zulassen dieses Materials ist von den Einstellungen aus möglich.</string>
 
     <string name="could_not_setup_download_menu">Konnte Download-Menü nicht einrichten</string>
     <string name="live_streams_not_supported">Live-Streams werden noch nicht unterstützt</string>
@@ -556,5 +556,6 @@
     <string name="max_retry_msg">Maximale Wiederholungen</string>
     <string name="max_retry_desc">Maximalanzahl der Versuche, bevor der Download abgebrochen wird</string>
     <string name="pause_downloads_on_mobile">Beim Umschalten auf mobile Daten pausieren</string>
-    <string name="pause_downloads_on_mobile_desc">Nicht alle Downloads können ausgesetzt werden. Diese werden neu gestartet</string>
+    <string name="pause_downloads_on_mobile_desc">Downloads, die nicht pausiert werden können, werden wiederholt</string>
+    <string name="conferences">Konferenzen</string>
 </resources>
