@@ -419,7 +419,7 @@
     <string name="unhook_checkbox">Verknüpfung aufheben (kann zu Verzerrungen führen)</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Standard</string>
-<string name="download_thumbnail_summary">Wenn ausgeschaltet, werden keine Miniaturansichten geladen, Daten und Speicherverbrauch sparend. Änderungen löschen die Bilder-Caches sowohl im Arbeitsspeicher als auch auf der SD-Karte.</string>
+<string name="download_thumbnail_summary">Deaktivieren Sie diese Option, um das Laden von Miniaturansichten zu verhindern und Datenspeicher- und Hauptspeicherverbrauch zu sparen. Änderungen werden sowohl im Hauptspeicher als auch im Bildpuffer auf der Festplatte gelöscht.</string>
     <string name="auto_queue_title">Nächsten Stream automatisch einreihen</string>
     <string name="auto_queue_summary">Automatisches Anhängen eines verwandten Streams beim Abspielen des letzten Streams in einer nicht wiederholten Warteschlange.</string>
     <string name="drawer_header_action_paceholder_text">Hier wird bald etwas stehen ;D</string>
@@ -543,7 +543,7 @@
     <string name="error_file_creation">Der Zielordner kann nicht erstellt werden</string>
     <string name="error_permission_denied">System verweigert den Zugriff</string>
     <string name="error_ssl_exception">Sichere Verbindung fehlgeschlagen</string>
-    <string name="error_unknown_host">Server nicht auffindbar</string>
+    <string name="error_unknown_host">Der Server konnte nicht gefunden werden</string>
     <string name="error_connect_host">Kann nicht mit dem Server verbinden</string>
     <string name="error_http_no_content">Der Server sendet keine Daten</string>
     <string name="error_http_unsupported_range">Der Server erlaubt kein mehrfädiges Herunterladen – wiederhole mit @string/msg_threads = 1</string>
@@ -551,11 +551,12 @@
     <string name="error_http_not_found">Nicht gefunden</string>
     <string name="error_postprocessing_failed">Nachbearbeitung fehlgeschlagen</string>
     <string name="clear_finished_download">Um fertige Downloads bereinigen</string>
-    <string name="msg_pending_downloads">Du hast %s ausstehende Downloads. Wechsle zu Downloads um fortzufahren</string>
+    <string name="msg_pending_downloads">Setzen Sie Ihre %s ausstehenden Transfers von Downloads fort</string>
     <string name="stop">Anhalten</string>
     <string name="max_retry_msg">Maximale Wiederholungen</string>
     <string name="max_retry_desc">Maximalanzahl der Versuche, bevor der Download abgebrochen wird</string>
     <string name="pause_downloads_on_mobile">Beim Umschalten auf mobile Daten pausieren</string>
     <string name="pause_downloads_on_mobile_desc">Downloads, die nicht pausiert werden können, werden wiederholt</string>
     <string name="conferences">Konferenzen</string>
+    <string name="events">Ereignisse</string>
 </resources>
