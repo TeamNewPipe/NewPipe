@@ -1,32 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:key="general_preferences"
     android:title="@string/settings_category_history_title">
 
     <SwitchPreference
+        app:iconSpaceReserved="false"
         android:defaultValue="true"
         android:key="@string/enable_watch_history_key"
         android:summary="@string/enable_watch_history_summary"
         android:title="@string/enable_watch_history_title"/>
 
     <SwitchPreference
+        app:iconSpaceReserved="false"
         android:defaultValue="true"
         android:key="@string/enable_search_history_key"
         android:summary="@string/enable_search_history_summary"
         android:title="@string/enable_search_history_title"/>
 
     <Preference
+        app:iconSpaceReserved="false"
         android:key="@string/metadata_cache_wipe_key"
         android:summary="@string/metadata_cache_wipe_summary"
         android:title="@string/metadata_cache_wipe_title"/>
 
     <Preference
+        app:iconSpaceReserved="false"
         android:key="@string/clear_views_history_key"
         android:title="@string/clear_views_history_title"
         android:summary="@string/clear_views_history_summary"/>
 
     <Preference
+        app:iconSpaceReserved="false"
         android:key="@string/clear_search_history_key"
         android:title="@string/clear_search_history_title"
         android:summary="@string/clear_search_history_summary"/>
