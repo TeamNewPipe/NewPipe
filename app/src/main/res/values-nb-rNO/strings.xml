@@ -457,7 +457,7 @@
 \n4. Kopier profil-nettadressen du ble videresendt til.</string>
     <string name="use_inexact_seek_summary">Unøyaktig blafring tillater spilleren å blafre til posisjoner raskere med redusert nøyaktighet</string>
     <string name="download_thumbnail_summary">Skru av for å stoppe innlasting av miniatyrbilder, noe som sparer data- og minnebruk. Endring av dette vil tømme både disk- og minne-hurtiglager.</string>
-    <string name="auto_queue_summary">Legg til en relatert strøm ved avspilling av forrige strøm i ikke-repeterende kø</string>
+    <string name="auto_queue_summary">Legg til en relatert strøm ved avspilling av forrige strøm i ikke-repeterende kø.</string>
     <string name="enable_leak_canary_summary">Minnelekkasjeoppsyn kan forårsake programmet å opptre uresponsivt under haugdumping</string>
 
     <string name="enable_disposed_exceptions_title">Rapporter feil som opptrer utenfor sin levetid</string>
