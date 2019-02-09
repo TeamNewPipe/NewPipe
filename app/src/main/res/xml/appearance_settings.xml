@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:title="@string/settings_category_appearance_title">
 
     <ListPreference
+        app:iconSpaceReserved="false"
         android:defaultValue="@string/default_theme_value"
         android:entries="@array/theme_description_list"
         android:entryValues="@array/theme_values_list"
@@ -12,17 +14,20 @@
         android:title="@string/theme_title"/>
 
     <SwitchPreference
+        app:iconSpaceReserved="false"
         android:defaultValue="true"
         android:key="@string/show_next_video_key"
         android:title="@string/show_next_and_similar_title"/>
 
     <SwitchPreference
+        app:iconSpaceReserved="false"
         android:defaultValue="true"
         android:key="@string/show_hold_to_append_key"
         android:title="@string/show_hold_to_append_title"
         android:summary="@string/show_hold_to_append_summary"/>
 
     <ListPreference
+        app:iconSpaceReserved="false"
         android:defaultValue="@string/list_view_mode_value"
         android:entries="@array/list_view_mode_description"
         android:entryValues="@array/list_view_mode_values"
@@ -31,11 +36,13 @@
         android:title="@string/list_view_mode"/>
 
     <Preference
+        app:iconSpaceReserved="false"
         android:key="@string/caption_settings_key"
         android:title="@string/caption_setting_title"
         android:summary="@string/caption_setting_description"/>
 
     <PreferenceScreen
+        app:iconSpaceReserved="false"
         android:fragment="org.schabi.newpipe.settings.tabs.ChooseTabsFragment"
         android:summary="@string/main_page_content_summary"
         android:key="@string/main_page_content_key"
