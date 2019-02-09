@@ -524,7 +524,7 @@
     <string name="queued">i kø</string>
     <string name="post_processing">etterbehandling</string>
     <string name="enqueue">Kø</string>
-    <string name="permission_denied">H</string>
+    <string name="permission_denied"></string>
     <string name="download_failed">Nedlasting mislyktes</string>
     <string name="download_finished">Nedlasting fullført</string>
     <string name="download_finished_more">%s nedlastinger fullført</string>
