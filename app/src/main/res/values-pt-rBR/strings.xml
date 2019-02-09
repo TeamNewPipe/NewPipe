@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="audio">Áudio</string>
     <string name="youtube_signature_decryption_error">Não foi possível descriptografar assinatura de URL do vídeo</string>
@@ -7,7 +7,7 @@
     <string name="what_device_headline">Informações:</string>
     <string name="view_count_text">%1$s visualizações</string>
     <string name="view">Reproduzir</string>
-    <string name="video_is_age_restricted">Vídeo com restrição de idade. Permissão para vídeos com essa restrição podem ser feitas no menu \"Configurações\".</string>
+    <string name="video_is_age_restricted">Mostar vídeo com restrição de idade. Permissão para vídeos com essa restrição podem ser feitas no menu Configurações.</string>
     <string name="video">Vídeo</string>
     <string name="autoplay_by_calling_app_summary">Reproduz o vídeo quando o NewPipe for aberto a partir de outro aplicativo</string>
     <string name="autoplay_by_calling_app_title">Reproduzir automaticamente</string>
@@ -228,8 +228,8 @@ abrir em modo popup</string>
 
     <string name="no_videos">Nenhum video</string>
     <plurals name="videos">
-	<item quantity="one">%s vídeo</item>
-	<item quantity="other">%s vídeos</item>
+    <item quantity="one">%s Vídeo</item>
+    <item quantity="other">%s Vídeos</item>
 </plurals>
 
     <string name="item_deleted">Item excluído</string>
@@ -415,7 +415,7 @@ abrir em modo popup</string>
     <string name="metadata_cache_wipe_complete_notice">Cache de metadados foi limpo</string>
     <string name="playback_speed_control">Controles de Velocidade de Reprodução</string>
     <string name="playback_tempo">"Tempo "</string>
-    <string name="download_thumbnail_summary">Quando desligado miniaturas não carregarão, economizando dados e uso de memória. Alterar esta configuração irá limpar o cache de imagens na memória e em disco.</string>
+    <string name="download_thumbnail_summary">Quando desligado miniaturas não carregarão, economizando uso de dados e memória. Alterar esta configuração irá limpar o cache de imagens na memória e em disco.</string>
     <string name="playback_pitch">Passo</string>
     <string name="unhook_checkbox">Desvincular (pode causar distorção)</string>
 <string name="preferred_open_action_settings_title">Ação de \'abrir\' preferida</string>
@@ -468,4 +468,69 @@ abrir em modo popup</string>
     <string name="playlists">Listas de reprodução</string>
     <string name="tracks">Faixas</string>
     <string name="users">Usuários</string>
-    </resources>
+    <string name="unsubscribe">Cancelar inscrição</string>
+    <string name="tab_new">Nova Aba</string>
+    <string name="tab_choose">Selecionar aba</string>
+    <string name="volume_gesture_control_title">Gesto de controle do volume</string>
+    <string name="volume_gesture_control_summary">Usar gestos para controlar o volume do reprodutor</string>
+    <string name="brightness_gesture_control_title">Gesto para controle do brilho</string>
+    <string name="brightness_gesture_control_summary">Usar gestos para controlar o brilho do reprodutor</string>
+    <string name="settings_category_debug_title">Debugar</string>
+    <string name="settings_category_updates_title">Atualizações</string>
+    <string name="events">Eventos</string>
+    <string name="file_deleted">Arquivo apagado</string>
+    <string name="app_update_notification_channel_name">Notificação de Atualização do Aplicativo</string>
+    <string name="app_update_notification_channel_description">Notificações para a versão do NewPipe</string>
+    <string name="download_to_sdcard_error_title">Armazenamento externo indisponível</string>
+    <string name="download_to_sdcard_error_message">Baixar para o cartão SD externo ainda não é possivel. Resetar o local da pasta de download\?</string>
+    <string name="saved_tabs_invalid_json">Usando abas padrão, erro ao ler abas salvas</string>
+    <string name="restore_defaults">Restaurar padrões</string>
+    <string name="restore_defaults_confirmation">Deseja restaurar os padrões\?</string>
+    <string name="subscribers_count_not_available">Contagem de inscritos não disponível</string>
+    <string name="main_page_content_summary">Abas que são mostradas na página principal</string>
+    <string name="selection">Seleção</string>
+    <string name="conferences">Conferências</string>
+    <string name="updates_setting_title">Atualizações</string>
+    <string name="updates_setting_description">Mostrar uma notificação para solicitar atualização do aplicativo quando uma nova versão estiver disponível</string>
+    <string name="list_view_mode">Modo de visualização em lista</string>
+    <string name="list">Lista</string>
+    <string name="grid">Grade</string>
+    <string name="auto">Automático</string>
+    <string name="switch_view">Alterar visualização</string>
+    <string name="app_update_notification_content_title">Atualização do NewPipe Disponivel!</string>
+    <string name="app_update_notification_content_text">Toque para baixar</string>
+    <string name="missions_header_finished">Finalizado</string>
+    <string name="missions_header_pending">Na fila</string>
+    <string name="paused">pausado</string>
+    <string name="queued">adicionado na fila</string>
+    <string name="post_processing">pós processamento</string>
+    <string name="enqueue">Fila</string>
+    <string name="permission_denied">Ação negada pelo sistema</string>
+    <string name="download_failed">Falha ao baixar</string>
+    <string name="download_finished">Download finalizado</string>
+    <string name="download_finished_more">%s downloads terminados</string>
+    <string name="generate_unique_name">Gerar nome único</string>
+    <string name="overwrite">"Sobrescrever "</string>
+    <string name="overwrite_warning">Um arquivo baixado com esse nome já existe</string>
+    <string name="download_already_running">Existe um download em progresso com esse nome</string>
+    <string name="show_error">Mostrar erro</string>
+    <string name="label_code">Código</string>
+    <string name="error_path_creation">O arquivo não pode ser criado</string>
+    <string name="error_file_creation">A pasta de destino não pode ser criada</string>
+    <string name="error_permission_denied">Permissão negada pelo sistema</string>
+    <string name="error_ssl_exception">"Falha na conexão segura "</string>
+    <string name="error_unknown_host">Não foi possível encontrar o servidor</string>
+    <string name="error_connect_host">Não foi possível conectar ao servidor</string>
+    <string name="error_http_no_content">O servidor não envia dados</string>
+    <string name="error_http_unsupported_range">"O servidor não aceita downloads em multi-thread, tente com @string/msg_threads = 1 "</string>
+    <string name="error_http_requested_range_not_satisfiable">Intervalo solicitado não satisfazível</string>
+    <string name="error_http_not_found">Não encontrado</string>
+    <string name="error_postprocessing_failed">Falha no pós processamento</string>
+    <string name="clear_finished_download">Limpar downloads finalizados</string>
+    <string name="msg_pending_downloads">Continuar seus %s downloads pendentes</string>
+    <string name="stop">Parar</string>
+    <string name="max_retry_msg">Máximo de tentativas</string>
+    <string name="max_retry_desc">Número máximo de tentativas antes de cancelar o download</string>
+    <string name="pause_downloads_on_mobile">Pausar quando trocar para dados móveis</string>
+    <string name="pause_downloads_on_mobile_desc">Downloads que não puderem ser pausados serão reiniciados</string>
+</resources>
