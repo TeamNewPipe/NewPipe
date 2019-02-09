@@ -51,7 +51,7 @@
     <string name="play_btn_text">Afspelen</string>
     <string name="content">Inhoud</string>
     <string name="show_age_restricted_content_title">Inhoud met leeftijdsbeperking</string>
-    <string name="video_is_age_restricted">Toon video met leeftijdsbeperking. Toestaan van dit soort video\'s kan worden ingeschakeld in \"Instellingen\".</string>
+    <string name="video_is_age_restricted">Toon video met leeftijdsbeperking. Toestaan van dit soort video’s kan worden ingeschakeld in de Instellingen.</string>
 
     <string name="general_error">Fout</string>
     <string name="network_error">Netwerkfout</string>
@@ -172,8 +172,8 @@
     <string name="show_search_suggestions_title">Zoeksuggesties</string>
     <string name="show_search_suggestions_summary">Toon suggesties bij zoeken</string>
 
-    <string name="player_gesture_controls_title">Bewegingscontrole</string>
-    <string name="player_gesture_controls_summary">Gebruik bewegingen om helderheid en volume van de speler aan te passen</string>
+    <string name="player_gesture_controls_title">Gebaarbesturing</string>
+    <string name="player_gesture_controls_summary">Gebruik gebaren om de helderheid en het volume van de speler aan te passen</string>
 <string name="best_resolution">Beste resolutie</string>
 
     <string name="title_activity_about">Over NewPipe</string>
@@ -439,7 +439,7 @@
 \n 
 \nWil je doorgaan?</string>
 <string name="download_thumbnail_title">Miniatuurvoorbeelden laden</string>
-    <string name="download_thumbnail_summary">Er worden geen miniatuurvoorbeelden geladen wanneer dit uit staat; dit bespaart mobiele data en geheugen. Het wijzigen van deze instelling wist het geheugen en de afbeeldingscache.</string>
+    <string name="download_thumbnail_summary">Schakel dit uit om het laden van miniatuurvoorbeelden te verhinderen; dit bespaart mobiele data en geheugen. Het wijzigen van deze instelling wist het geheugen en de afbeeldingscache.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Afbeeldingscache gewist</string>
     <string name="metadata_cache_wipe_title">Gecachete metagegevens wissen</string>
     <string name="metadata_cache_wipe_summary">Alle gecachete webpagina-gegevens wissen</string>
@@ -462,11 +462,11 @@
 
     <string name="clear_views_history_title">Kijkgeschiedenis wissen</string>
     <string name="clear_views_history_summary">Verwijdert de geschiedenis van afgespeelde streams</string>
-    <string name="delete_view_history_alert">Verwijder de gehele kijkgeschiedenis\?</string>
+    <string name="delete_view_history_alert">De gehele kijkgeschiedenis wissen\?</string>
     <string name="view_history_deleted">Kijkgeschiedenis gewist.</string>
     <string name="clear_search_history_title">Zoekgeschiedenis wissen</string>
     <string name="clear_search_history_summary">Verwijdert de gebruikte zoektermen</string>
-    <string name="delete_search_history_alert">Verwijder de gehele geschiedenis\?</string>
+    <string name="delete_search_history_alert">De gehele zoekgeschiedenis wissen\?</string>
     <string name="search_history_deleted">Zoekgeschiedenis gewist.</string>
     <string name="one_item_deleted">1 item verwijderd.</string>
 
@@ -500,20 +500,20 @@
     <string name="unsubscribe">Afmelden</string>
     <string name="tab_new">Nieuw tabblad</string>
     <string name="tab_choose">Kies tabblad</string>
-    <string name="volume_gesture_control_title">Volume controle gebaar</string>
+    <string name="volume_gesture_control_title">Gebaarbesturing voor volume</string>
     <string name="volume_gesture_control_summary">Gebruik gebaren om het volume van de speler aan te passen</string>
-    <string name="brightness_gesture_control_title">Helderheid controle gebaar</string>
+    <string name="brightness_gesture_control_title">Gebaarbesturing voor helderheid</string>
     <string name="brightness_gesture_control_summary">Gebruik gebaren om de helderheid van de speler aan te passen</string>
     <string name="settings_category_updates_title">Updates</string>
     <string name="file_deleted">Bestand verwijderd</string>
-    <string name="app_update_notification_channel_name">Applicatie Update Melding</string>
-    <string name="app_update_notification_channel_description">Meldingen voor de nieuwe NewPipe-versie</string>
+    <string name="app_update_notification_channel_name">Appupdatemelding</string>
+    <string name="app_update_notification_channel_description">Meldingen voor nieuwe versies van NewPipe</string>
     <string name="download_to_sdcard_error_title">Externe opslag niet beschikbaar</string>
-    <string name="download_to_sdcard_error_message">Downloaden naar externe SD-kaart is nog niet mogelijk. Reset map locatie voor downloads\?</string>
+    <string name="download_to_sdcard_error_message">Downloaden naar externe SD-kaart is nog niet mogelijk. Downloadmap opnieuw instellen\?</string>
     <string name="saved_tabs_invalid_json">Standaard tabbladen worden gebruikt, fout bij het lezen van de opgeslagen tabbladen</string>
-    <string name="restore_defaults">Herstel standaardinstellingen</string>
+    <string name="restore_defaults">Standaardinstellingen herstellen</string>
     <string name="restore_defaults_confirmation">Wilt u de standaardinstellingen herstellen\?</string>
-    <string name="subscribers_count_not_available">Aantallen van abonnees niet beschikbaar</string>
+    <string name="subscribers_count_not_available">Aantal abonnees niet beschikbaar</string>
     <string name="main_page_content_summary">Welke tabbladen worden weergegeven op de hoofdpagina</string>
     <string name="selection">Selectie</string>
     <string name="updates_setting_title">Updates</string>
@@ -545,7 +545,7 @@
     <string name="error_file_creation">De doelmap kan niet worden gemaakt</string>
     <string name="error_permission_denied">Toestemming door het systeem geweigerd</string>
     <string name="error_ssl_exception">Beveiligde connectie is mislukt</string>
-    <string name="error_unknown_host">Kan de server niet vinden</string>
+    <string name="error_unknown_host">Kon de server niet vinden</string>
     <string name="error_connect_host">Kan niet met de server verbinden</string>
     <string name="error_http_no_content">De server verzendt geen gegevens</string>
     <string name="error_http_unsupported_range">De server accepteert geen multi-threaded downloads, probeer het opnieuw met @string/msg_threads = 1</string>
@@ -553,10 +553,12 @@
     <string name="error_http_not_found">Niet gevonden</string>
     <string name="error_postprocessing_failed">Nabewerking mislukt</string>
     <string name="clear_finished_download">Voltooide downloads wissen</string>
-    <string name="msg_pending_downloads">U hebt %s wachtende downloads, ga naar Downloads om verder te gaan</string>
+    <string name="msg_pending_downloads">Zet je %s wachtende downloads voort via Downloads</string>
     <string name="stop">Stop</string>
     <string name="max_retry_msg">Maximum aantal keer proberen</string>
     <string name="max_retry_desc">Maximum aantal pogingen voordat de download wordt geannuleerd</string>
     <string name="pause_downloads_on_mobile">Pauzeren bij overschakelen naar mobiele data</string>
-    <string name="pause_downloads_on_mobile_desc">Niet alle downloads kunnen worden gepauzeerd, in die gevallen zullen ze opnieuw worden opgestart</string>
+    <string name="pause_downloads_on_mobile_desc">Downloads die niet kunnen worden gepauzeerd zullen worden herstart</string>
+    <string name="events">Gebeurtenissen</string>
+    <string name="conferences">Conferenties</string>
 </resources>
