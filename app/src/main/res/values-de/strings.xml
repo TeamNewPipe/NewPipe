@@ -419,7 +419,7 @@
     <string name="unhook_checkbox">Verknüpfung aufheben (kann zu Verzerrungen führen)</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Standard</string>
-<string name="download_thumbnail_summary">Deaktivieren Sie diese Option, um das Laden von Miniaturansichten zu verhindern und Datenspeicher- und Hauptspeicherverbrauch zu sparen. Änderungen werden sowohl im Hauptspeicher als auch im Bildpuffer auf der Festplatte gelöscht.</string>
+<string name="download_thumbnail_summary">Abschalten, um das Laden von Miniaturansichten zu verhindern, was Daten- und Speicherverbrauch spart. Änderungen löschen den Bildzwischenspeicher sowohl im Arbeitsspeicher als auch auf der Festplatte.</string>
     <string name="auto_queue_title">Nächsten Stream automatisch einreihen</string>
     <string name="auto_queue_summary">Automatisches Anhängen eines verwandten Streams beim Abspielen des letzten Streams in einer nicht wiederholten Warteschlange.</string>
     <string name="drawer_header_action_paceholder_text">Hier wird bald etwas stehen ;D</string>
@@ -468,7 +468,7 @@
     <string name="search_history_deleted">Suchverlauf gelöscht.</string>
     <string name="one_item_deleted">1 Element gelöscht.</string>
 
-    <string name="app_license">NewPipe ist freie Copyleft-Software: Du kannst es nach Belieben benutzen, studieren, mit anderen teilen und verbessern. Insbesondere kannst du sie unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder unter Version 3 der Lizenz oder (nach deiner Wahl) jeder späteren Version.</string>
+    <string name="app_license">NewPipe ist freie Copyleft-Software: Du kannst sie nach Belieben benutzen, untersuchen, mit anderen teilen und verbessern. Insbesondere kannst du sie unter den von der Free Software Foundation veröffentlichten Bedingungen der GNU General Public License, in der Version 3 der Lizenz oder (nach deiner Wahl) jeder späteren Version, weitergeben und/oder verändern.</string>
     <string name="import_settings">Möchtest du auch Einstellungen importieren?</string>
 
     <string name="privacy_policy_title">NewPipe-Datenschutzbestimmungen</string>
@@ -551,7 +551,7 @@
     <string name="error_http_not_found">Nicht gefunden</string>
     <string name="error_postprocessing_failed">Nachbearbeitung fehlgeschlagen</string>
     <string name="clear_finished_download">Um fertige Downloads bereinigen</string>
-    <string name="msg_pending_downloads">Setzen Sie Ihre %s ausstehenden Transfers von Downloads fort</string>
+    <string name="msg_pending_downloads">Setze deine %s ausstehenden Übertragungen von Downloads fort</string>
     <string name="stop">Anhalten</string>
     <string name="max_retry_msg">Maximale Wiederholungen</string>
     <string name="max_retry_desc">Maximalanzahl der Versuche, bevor der Download abgebrochen wird</string>
