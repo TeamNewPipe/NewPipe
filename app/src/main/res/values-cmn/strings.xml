@@ -165,7 +165,7 @@
     <string name="play_btn_text">播放</string>
     <string name="content">内容</string>
     <string name="show_age_restricted_content_title">年龄限制内容</string>
-    <string name="video_is_age_restricted">显示有年龄限制的视频。可以从「设置」中允许该内容。</string>
+    <string name="video_is_age_restricted">显示有年龄限制的视频。可以从设置中允许该内容。</string>
     <string name="duration_live">直播</string>
     <string name="downloads">下载</string>
     <string name="downloads_title">下载</string>
@@ -273,8 +273,8 @@
 </plurals>
     <string name="no_videos">没有视频</string>
     <plurals name="videos">
-    <item quantity="one">%s 部视频</item>
-    <item quantity="other"/>
+    <item quantity="one">部视频</item>
+    <item quantity="other"></item>
 </plurals>
     <string name="delete_one">删除</string>
     <string name="checksum">校验</string>
@@ -471,4 +471,19 @@
     <string name="max_retry_msg">重试上限</string>
     <string name="max_retry_desc">取消下载前可以尝试的最多次数</string>
     <string name="pause_downloads_on_mobile">换成手机数据时暂停</string>
+    <string name="events">事件</string>
+    <string name="saved_tabs_invalid_json">使用默认选项卡, 读取保存的选项卡时出错</string>
+    <string name="subscribers_count_not_available">订阅者计数不可用</string>
+    <string name="main_page_content_summary">主页上显示的选项卡</string>
+    <string name="conferences">会议</string>
+    <string name="updates_setting_description">显示通知, 以便在新版本可用时提示应用更新</string>
+    <string name="list_view_mode">列表视图模式</string>
+    <string name="grid">网格</string>
+    <string name="switch_view">切换视图</string>
+    <string name="app_update_notification_content_title">NewPipe 更新可用!</string>
+    <string name="error_file_creation">无法创建目标文件夹</string>
+    <string name="error_http_unsupported_range">服务器不接受多线程下载, 请重试使用 @string/msg_threads = 1</string>
+    <string name="error_http_requested_range_not_satisfiable">请求的范围不满足</string>
+    <string name="msg_pending_downloads">继续进行%s个待下载转移</string>
+    <string name="pause_downloads_on_mobile_desc">将重新启动无法暂停的下载</string>
 </resources>
