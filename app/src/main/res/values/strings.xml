@@ -269,9 +269,9 @@
 
     <string name="no_videos">No videos</string>
     <plurals name="videos">
-        <item quantity="one">%s video</item>
-        <item quantity="other">%s videos</item>
-    </plurals>
+    <item quantity="one">Video</item>
+    <item quantity="other">Videos</item>
+</plurals>
 
     <!-- Missions -->
     <string name="start">Start</string>
