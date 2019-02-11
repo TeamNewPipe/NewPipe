@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="view_count_text">%1$s ikustaldi</string>
     <string name="upload_date_text">Argitaratze-data: %1$s</string>
@@ -230,8 +230,8 @@
 
     <string name="no_videos">Bideorik ez</string>
     <plurals name="videos">
-	<item quantity="one">bideo %s</item>
-	<item quantity="other">%s bideo</item>
+    <item quantity="one">Bideoa</item>
+    <item quantity="other">Bideoak</item>
 </plurals>
 
     <string name="title_activity_history">Historiala</string>
@@ -451,7 +451,7 @@
 <string name="import_settings">Ezarpenak ere inportatu nahi dituzu?</string>
 
     <string name="use_inexact_seek_summary">Bilaketa ez zehatzak posizioak azkarrago baina prezisio gutxiagoz bilatzea ahalbidetzen du</string>
-    <string name="download_thumbnail_summary">Desgaituta dagoenean koadro txikiak ez dira kargatuko datuak eta memoria aurreztuz. Aldaketak memoria eta diskoko irudien cache-ak garbituko ditu.</string>
+    <string name="download_thumbnail_summary">Desgaitu koadro txikiak ez kargatzeko, datuak eta memoria aurreztuz. Aldaketak memoria eta diskoko irudien cache-ak garbituko ditu.</string>
     <string name="app_license">NewPipe Software Librea eta Copyleft da: Erabili, ikertu, partekatu eta hobetu dezakezu. Zehazki, elkarbanatzea eta aldatzea Free Software Foundation-ek argitaratutako GNU General Public License-ren 3. bertsioa edo berriagoren baten terminoen arabera egiteko baimena duzu.</string>
     <string name="enable_disposed_exceptions_summary">Behartu aktibitatearen bizitza ziklotik kanpo baztertu eta gero entregatu ezin diren Rx salbuespenen inguruko txostena</string>
 
@@ -480,4 +480,68 @@
     <string name="playlists">Erreprodukzio-zerrendak</string>
     <string name="tracks">Pistak</string>
     <string name="users">Erabiltzaileak</string>
-    </resources>
+    <string name="unsubscribe">Kendu harpidetza</string>
+    <string name="tab_new">Fitxa berria</string>
+    <string name="tab_choose">Hautatu fitxa</string>
+    <string name="volume_gesture_control_title">Keinuen bidezko bolumenaren kontrola</string>
+    <string name="volume_gesture_control_summary">Erabili keinuak erreproduzigailuaren bolumena kontrolatzeko</string>
+    <string name="brightness_gesture_control_title">Keinuen bidezko distiraren kontrola</string>
+    <string name="brightness_gesture_control_summary">Erabili keinuak erreproduzigailuaren distira kontrolatzeko</string>
+    <string name="settings_category_updates_title">Eguneraketak</string>
+    <string name="events">Gertaerak</string>
+    <string name="file_deleted">Fitxategia ezabatu da</string>
+    <string name="app_update_notification_channel_name">Aplikazioaren eguneraketaren jakinarazpena</string>
+    <string name="app_update_notification_channel_description">NewPipe aplikazioaren bertsio berrien jakinarazpena</string>
+    <string name="download_to_sdcard_error_title">Kanpo biltegiratzea ez dago eskuragarri</string>
+    <string name="download_to_sdcard_error_message">Oraindik ezin da SD txartel batera deskargatu. Deskargen karpeta berrezarri\?</string>
+    <string name="saved_tabs_invalid_json">Lehenetsitako fitxak erabiltzen, errorea gordetako fitxak irakurtzean</string>
+    <string name="restore_defaults">Berrezarri lehenetsitakoak</string>
+    <string name="restore_defaults_confirmation">Lehenetsitakoak berrezarri nahi dituzu\?</string>
+    <string name="subscribers_count_not_available">Harpidedunen kontua ez dago eskuragarri</string>
+    <string name="main_page_content_summary">Orri nagusian ikusiko diren fitxak</string>
+    <string name="selection">Hautaketa</string>
+    <string name="conferences">Konferentziak</string>
+    <string name="updates_setting_title">Eguneraketak</string>
+    <string name="updates_setting_description">Erakutsi jakinarazpena aplikazioa eguneratzea eskatuz bertsio berria eskuragarri dagoenean</string>
+    <string name="list_view_mode">Zerrenda ikuspegi modua</string>
+    <string name="list">Zerrenda</string>
+    <string name="grid">Sareta</string>
+    <string name="auto">Automatikoa</string>
+    <string name="switch_view">Aldatu ikuspegia</string>
+    <string name="app_update_notification_content_title">NewPipe eguneraketa eskuragarri!</string>
+    <string name="app_update_notification_content_text">Sakatu deskargatzeko</string>
+    <string name="missions_header_finished">Amaituta</string>
+    <string name="missions_header_pending">Ilaran</string>
+    <string name="paused">pausatuta</string>
+    <string name="queued">ilaran</string>
+    <string name="post_processing">post-prozesua</string>
+    <string name="enqueue">Gehitu ilarara</string>
+    <string name="permission_denied">Ekintza sistemak ukatu du</string>
+    <string name="download_failed">Deskargak huts egin du</string>
+    <string name="download_finished">Deskarga amaitu da</string>
+    <string name="download_finished_more">%s deskarga amaituta</string>
+    <string name="generate_unique_name">Sortu izen bakana</string>
+    <string name="overwrite">Gainidatzi</string>
+    <string name="overwrite_warning">Badago izen bera duen deskargatutako fitxategi bat</string>
+    <string name="download_already_running">Badago izen bera duen deskarga bat abian</string>
+    <string name="show_error">Erakutsi errorea</string>
+    <string name="label_code">Kodea</string>
+    <string name="error_path_creation">Ezin da fitxategia sortu</string>
+    <string name="error_file_creation">Ezin da helburu karpeta sortu</string>
+    <string name="error_permission_denied">Sistemak baimena ukatu du</string>
+    <string name="error_ssl_exception">Konexio seguruak huts egin du</string>
+    <string name="error_unknown_host">Ezin izan da zerbitzaria aurkitu</string>
+    <string name="error_connect_host">Ezin da zerbitzariarekin konektatu</string>
+    <string name="error_http_no_content">Zerbitzariak ez du daturik bidaltzen</string>
+    <string name="error_http_unsupported_range">Zerbitzariak ez ditu hainbat hariko deskargak onartzen, saiatu @string/msg_threads = 1 erabilita</string>
+    <string name="error_http_requested_range_not_satisfiable">Eskatutako barrutia ezin da bete</string>
+    <string name="error_http_not_found">Ez aurkitua</string>
+    <string name="error_postprocessing_failed">Post-prozesuak huts egin du</string>
+    <string name="clear_finished_download">Garbitu amaitutako deskargak</string>
+    <string name="msg_pending_downloads">Berrekin burutzeke dauden %s transferentzia deskargetatik</string>
+    <string name="stop">Gelditu</string>
+    <string name="max_retry_msg">Saiakerak gehienez</string>
+    <string name="max_retry_desc">Deskarga ezeztatu aurretik saiatu beharreko aldi kopurua</string>
+    <string name="pause_downloads_on_mobile">Pausatu datu mugikorretara aldatzean</string>
+    <string name="pause_downloads_on_mobile_desc">Pausatu ezin daitezkeen deskargak berrekingo dira</string>
+</resources>
