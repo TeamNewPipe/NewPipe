@@ -87,7 +87,7 @@
     <string name="storage_permission_denied">Autorisation d\'accès au stockage refusée</string>
     <string name="main_bg_subtitle">Faites une recherche pour commencer</string>
     <string name="autoplay_by_calling_app_title">Lecture automatique</string>
-    <string name="video_is_age_restricted">Afficher les vidéos soumises à une limite d\'âge. Autoriser ce type de contenu est possible depuis les \"Paramètres\".</string>
+    <string name="video_is_age_restricted">Afficher les vidéos soumises à une limite d\'âge. Autoriser ce type de contenu est possible depuis les paramètres.</string>
     <string name="user_report">Rapport utilisateur</string>
 
     <string name="error_snackbar_action">SIGNALER</string>
@@ -248,7 +248,7 @@
 
     <string name="no_videos">Aucune vidéo</string>
     <plurals name="videos">
-    <item quantity="one">Vidéos</item>
+    <item quantity="one">Vidéo</item>
     <item quantity="other">Vidéos</item>
 </plurals>
 
@@ -382,7 +382,7 @@
     <string name="use_inexact_seek_title">Recherche rapide approximative</string>
     <string name="use_inexact_seek_summary">Permettre au lecteur d\'accéder plus rapidement à une position au détriment de la précision</string>
     <string name="download_thumbnail_title">Charger les miniatures</string>
-    <string name="download_thumbnail_summary">Désactiver le chargement des miniatures afin de réduire l’utilisation de la bande passante et de la mémoire. Modifier cette option vide le cache d’images en mémoire vive et sur le disque.</string>
+    <string name="download_thumbnail_summary">Désactivez pour empêcher le chargement des miniatures afin de réduire l’utilisation de bande passante et de mémoire. Modifier cette option vide le cache d’images en mémoire vive et sur le disque.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Images en cache effacées</string>
     <string name="metadata_cache_wipe_title">Effacer les données en cache</string>
     <string name="metadata_cache_wipe_summary">Effacer toutes les pages web mises en cache</string>
@@ -512,4 +512,19 @@
     <string name="subscribers_count_not_available">Nombre d\'abonnés non disponible</string>
     <string name="selection">Sélection</string>
     <string name="stop">Arrêter</string>
+    <string name="events">Événements</string>
+    <string name="download_to_sdcard_error_message">Télécharger vers la carte SD n\'est pas encore possible. Voulez-vous réinitialiser l\'emplacement du dossier \?</string>
+    <string name="main_page_content_summary">Quels onglets seront visibles sur la page principale</string>
+    <string name="updates_setting_title">Mises à jour</string>
+    <string name="updates_setting_description">Afficher une notification pour proposer une mise à jour de l\'application lorsqu\'une nouvelle version est disponible</string>
+    <string name="list">Liste</string>
+    <string name="grid">Grille</string>
+    <string name="auto">Auto</string>
+    <string name="switch_view">Changer de vue</string>
+    <string name="app_update_notification_content_title">Une mise à jour de NewPipe disponible !</string>
+    <string name="app_update_notification_content_text">Appuyez pour télécharger</string>
+    <string name="missions_header_finished">Terminé</string>
+    <string name="missions_header_pending">En file</string>
+    <string name="paused">En pause</string>
+    <string name="download_failed">Téléchargement échoué</string>
 </resources>
