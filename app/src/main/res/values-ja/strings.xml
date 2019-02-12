@@ -324,7 +324,7 @@
 
     <string name="video_streams_empty">動画が見つかりません</string>
     <string name="audio_streams_empty">音声が見つかりません</string>
-    <string name="invalid_directory">このフォルダはありません</string>
+    <string name="invalid_directory">そのフォルダーはありません</string>
     <string name="invalid_file">ファイルが存在しないか、ファイルへの読み書きができません</string>
     <string name="file_name_empty_error">ファイル名は空白にできません</string>
     <string name="error_occurred_detail">エラーが発生しました: %1$s</string>
@@ -546,4 +546,10 @@
     <string name="file_deleted">ファイルを削除しました</string>
     <string name="app_update_notification_channel_name">アプリの更新通知</string>
     <string name="download_to_sdcard_error_message">まだ外部 SD カードにダウンロードできません。ダウンロードフォルダーの場所をリセットしますか\?</string>
+    <string name="saved_tabs_invalid_json">デフォルトのタブを使用します。保存タブの読み取りエラーが発生しました</string>
+    <string name="main_page_content_summary">メインページに表示されるタブ</string>
+    <string name="updates_setting_description">新しいバージョンが利用可能なときにアプリの更新を確認する通知を表示します</string>
+    <string name="msg_pending_downloads">ダウンロードから %s の保留中の転送を続行します</string>
+    <string name="pause_downloads_on_mobile">モバイルデータ通信に切り替え時に休止</string>
+    <string name="pause_downloads_on_mobile_desc">休止できないダウンロードが再開されます</string>
 </resources>
