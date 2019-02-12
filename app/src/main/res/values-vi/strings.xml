@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources><string name="main_bg_subtitle">Nhấp tìm kiếm để bắt đầu</string>
     <string name="view_count_text">%1$s lượt xem</string>
     <string name="upload_date_text">Đăng vào %1$s</string>
@@ -11,11 +11,11 @@
     <string name="download">Tải về</string>
     <string name="search">Tìm kiếm</string>
     <string name="settings">Cài đặt</string>
-    <string name="did_you_mean">Ý của bạn là %1$s ?</string>
+    <string name="did_you_mean">Ý của bạn là %1$s\?</string>
     <string name="share_dialog_title">Chia sẻ với</string>
     <string name="choose_browser">Chọn trình duyệt</string>
     <string name="use_external_video_player_title">Sử dụng trình phát video bên ngoài</string>
-    <string name="use_external_video_player_summary">Một số độ phân giải sẽ KHÔNG có âm thanh khi chế độ này</string>
+    <string name="use_external_video_player_summary">Loại bỏ âm thanh ở MỘT SỐ độ phân giải</string>
     <string name="use_external_audio_player_title">Sử dụng trình phát âm thanh bên ngoài</string>
     <string name="popup_mode_share_menu_title">Chế độ popup của NewPipe</string>
     <string name="controls_popup_title">Chế độ Popup</string>
@@ -24,8 +24,8 @@
     <string name="download_path_summary">Đường dẫn để lưu trữ video đã tải xuống</string>
     <string name="download_path_dialog_title">Nhập đường dẫn tải xuống cho video</string>
 
-    <string name="download_path_audio_title">Đường dẫn tải audio</string>
-    <string name="download_path_audio_summary">Đường dẫn để lưu trữ âm thanh đã tải xuống</string>
+    <string name="download_path_audio_title">Thư mục âm thanh được tải xuống</string>
+    <string name="download_path_audio_summary">Âm thanh đã tải xuống được lưu trữ ở đây</string>
     <string name="download_path_audio_dialog_title">Nhập đường dẫn tải xuống cho tệp âm thanh</string>
 
     <string name="autoplay_by_calling_app_title">Tự động phát</string>
@@ -55,8 +55,8 @@
 
     <string name="download_dialog_title">Tải về</string>
 
-    <string name="next_video_title">Video tiếp theo</string>
-    <string name="show_next_and_similar_title">Hiển thị video \'tiếp theo\' và \'tương tự\'</string>
+    <string name="next_video_title">Tiếp</string>
+    <string name="show_next_and_similar_title">Hiển thị video \'Tiếp\' và \'Tương tự\'</string>
     <string name="url_not_supported_toast">URL không được hỗ trợ</string>
     <string name="settings_category_appearance_title">Hiển thị</string>
     <string name="settings_category_other_title">Khác</string>
@@ -64,8 +64,8 @@
     <string name="popup_playing_toast">Phát ở chế độ cửa sổ bật lên (Popup)</string>
     <string name="play_btn_text">Phát</string>
     <string name="content">Nội dung</string>
-    <string name="show_age_restricted_content_title">Hiển thị nội dung bị hạn chế độ tuổi</string>
-    <string name="video_is_age_restricted">Video giới hạn độ tuổi người xem. Cho phép các tài liệu đó có thể từ Cài đặt.</string>
+    <string name="show_age_restricted_content_title">Độ tuổi giới hạn nội dung</string>
+    <string name="video_is_age_restricted">Hiển thị video giới hạn độ tuổi. Cho phép các tài liệu đó có thể từ Cài đặt.</string>
     <string name="duration_live">Trực tiếp</string>
     <string name="downloads">Tải xuống</string>
     <string name="downloads_title">Tải xuống</string>
@@ -175,7 +175,7 @@
     <string name="contribution_title">Sự đóng góp</string>
 <string name="screen_rotation">Quay</string>
     <string name="content_language_title">Ngôn ngữ nội dung ưu tiên</string>
-    <string name="settings_category_video_audio_title">Video &amp; Âm thanh</string>
+    <string name="settings_category_video_audio_title">Video &amp; âm thanh</string>
     <string name="settings_category_popup_title">Cửa sổ</string>
     <string name="enable_watch_history_title">Lịch sử &amp; bộ nhớ cache</string>
     <string name="settings_category_history_title">Lịch sử &amp; bộ nhớ cache</string>
@@ -188,12 +188,12 @@
     <string name="subscription_update_failed">Không thể cập nhật tình trạng theo dõi</string>
 
     <string name="no_player_found_toast">Không tìm thấy trình phát luồng nào (bạn có thể cài đặt VLC để phát)</string>
-    <string name="controls_download_desc">Tải xuống tệp luồng.</string>
+    <string name="controls_download_desc">Tải xuống tệp luồng</string>
     <string name="show_info">Hiển thị thông tin</string>
 
     <string name="tab_main">main</string>
     <string name="tab_subscriptions">Đăng ký</string>
-    <string name="tab_bookmarks">Dấu trang</string>
+    <string name="tab_bookmarks">Danh sách được đánh dấu</string>
 
     <string name="fragment_whats_new">Có gì mới</string>
 
@@ -202,19 +202,19 @@
     <string name="use_inexact_seek_title">Sử dụng tìm kiếm không chính xác nhanh</string>
     <string name="use_inexact_seek_summary">Tìm kiếm không chính xác cho phép người chơi tìm kiếm vị trí nhanh hơn với độ chính xác giảm</string>
     <string name="download_thumbnail_title">Tải hình thu nhỏ</string>
-    <string name="download_thumbnail_summary">Vô hiệu hóa để ngăn chặn tất cả các hình thu nhỏ tải và lưu dữ liệu và sử dụng bộ nhớ. Thay đổi điều này sẽ xóa bộ nhớ cache hình ảnh trong bộ nhớ và trên đĩa</string>
+    <string name="download_thumbnail_summary">Tắt để ngăn tải về các hình thu nhỏ, tiết kiệm dung lượng mạng sử dụng và dụng lượng bộ nhớ. Thay đổi điều này sẽ xóa bộ nhớ cache hình ảnh trong bộ nhớ tạm thời và bộ nhớ trong</string>
     <string name="thumbnail_cache_wipe_complete_notice">Đã xóa bộ nhớ cache hình ảnh</string>
     <string name="metadata_cache_wipe_title">Xóa siêu dữ liệu đã lưu vào bộ nhớ cache</string>
     <string name="metadata_cache_wipe_summary">Xóa tất cả dữ liệu trang web được lưu trong bộ nhớ cache</string>
     <string name="metadata_cache_wipe_complete_notice">Đã xóa bộ nhớ cache siêu dữ liệu</string>
     <string name="auto_queue_title">Tự động phát tiếp theo theo hàng</string>
-    <string name="auto_queue_summary">Tự động thêm một luồng có liên quan khi phát luồng cuối cùng trong hàng đợi không lặp lại</string>
+    <string name="auto_queue_summary">Tự động thêm một luồng có liên quan khi phát luồng cuối cùng trong hàng đợi không lặp lại.</string>
     <string name="enable_search_history_title">Lịch sử tìm kiếm</string>
     <string name="enable_search_history_summary">Lưu trữ truy vấn tìm kiếm cục bộ</string>
     <string name="enable_watch_history_summary">Theo dõi các video đã xem</string>
     <string name="resume_on_audio_focus_gain_title">Tiếp tục lấy tiêu điểm</string>
     <string name="resume_on_audio_focus_gain_summary">Tiếp tục phát sau khi bị gián đoạn (ví dụ: cuộc gọi điện thoại)</string>
-    <string name="show_hold_to_append_title">Hiển thị mẹo \"giữ để nối thêm\"</string>
+    <string name="show_hold_to_append_title">Hiển thị mẹo \"Giữ để nối thêm\"</string>
     <string name="show_hold_to_append_summary">Hiển thị mẹo khi nhấn nút nền hoặc bật lên trên trang chi tiết video</string>
     <string name="default_content_country_title">Quốc gia nội dung mặc định</string>
     <string name="service_title">Dịch vụ</string>
@@ -284,7 +284,7 @@
 
     <string name="no_videos">Không có video nào</string>
     <plurals name="videos">
-	<item quantity="other">%s video</item>
+    <item quantity="other">Videos</item>
 </plurals>
 
     <string name="create">Tạo nên</string>
@@ -458,5 +458,14 @@
     <string name="minimize_on_exit_none_description">không ai</string>
     <string name="minimize_on_exit_background_description">Thu nhỏ xuống trình phát nền</string>
     <string name="minimize_on_exit_popup_description">Thu nhỏ trình phát bật lên</string>
-
+    <string name="unsubscribe">Hủy đăng ký</string>
+    <string name="tab_new">Tab mới</string>
+    <string name="tab_choose">Chọn Tab</string>
+    <string name="volume_gesture_control_title">Điều khiển âm lượng bằng cử chỉ</string>
+    <string name="volume_gesture_control_summary">Sử dụng cử chỉ để điều khiển âm lượng của trình nghe nhạc</string>
+    <string name="brightness_gesture_control_title">Điều khiển độ sáng màn hình bằng cử chỉ</string>
+    <string name="brightness_gesture_control_summary">Sử dụng cử chỉ để điều khiển độ sáng màn hình của trình phát nhạc</string>
+    <string name="settings_category_updates_title">Cập nhật</string>
+    <string name="events">Sự kiện</string>
+    <string name="file_deleted">Đã xóa tập tin</string>
 </resources>
