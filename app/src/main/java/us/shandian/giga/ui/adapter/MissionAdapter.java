@@ -50,6 +50,7 @@ import us.shandian.giga.ui.common.Deleter;
 import us.shandian.giga.ui.common.ProgressDrawable;
 import us.shandian.giga.util.Utility;
 
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 import static android.content.Intent.FLAG_GRANT_PREFIX_URI_PERMISSION;
 import static android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION;
 import static us.shandian.giga.get.DownloadMission.ERROR_CONNECT_HOST;
@@ -59,7 +60,7 @@ import static us.shandian.giga.get.DownloadMission.ERROR_HTTP_UNSUPPORTED_RANGE;
 import static us.shandian.giga.get.DownloadMission.ERROR_NOTHING;
 import static us.shandian.giga.get.DownloadMission.ERROR_PATH_CREATION;
 import static us.shandian.giga.get.DownloadMission.ERROR_PERMISSION_DENIED;
-import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING_FAILED;
+import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING;
 import static us.shandian.giga.get.DownloadMission.ERROR_SSL_EXCEPTION;
 import static us.shandian.giga.get.DownloadMission.ERROR_UNKNOWN_EXCEPTION;
 import static us.shandian.giga.get.DownloadMission.ERROR_UNKNOWN_HOST;
@@ -67,7 +68,8 @@ import static us.shandian.giga.get.DownloadMission.ERROR_UNKNOWN_HOST;
 public class MissionAdapter extends Adapter<ViewHolder> {
     private static final SparseArray<String> ALGORITHMS = new SparseArray<>();
     private static final String TAG = "MissionAdapter";
-    private static final String UNDEFINED_SPEED = "--.-%";
+    private static final String UNDEFINED_PROGRESS = "--.-%";
+
 
     static {
         ALGORITHMS.put(R.id.md5, "MD5");
@@ -158,7 +160,7 @@ public class MissionAdapter extends Adapter<ViewHolder> {
                 str = R.string.missions_header_pending;
             } else {
                 str = R.string.missions_header_finished;
-                setClearButtonVisibility(true);
+                if (mClear != null) mClear.setVisible(true);
             }
 
             ((ViewHolderHeader) view).header.setText(str);
@@ -178,7 +180,7 @@ public class MissionAdapter extends Adapter<ViewHolder> {
         if (h.item.mission instanceof DownloadMission) {
             DownloadMission mission = (DownloadMission) item.mission;
             String length = Utility.formatBytes(mission.getLength());
-            if (mission.running && !mission.postprocessingRunning) length += " --.- kB/s";
+            if (mission.running && !mission.isPsRunning()) length += " --.- kB/s";
 
             h.size.setText(length);
             h.pause.setTitle(mission.unknownLength ? R.string.stop : R.string.pause);
@@ -238,11 +240,10 @@ public class MissionAdapter extends Adapter<ViewHolder> {
         }
 
         if (hasError) {
-            if (Float.isNaN(progress) || Float.isInfinite(progress))
-                h.progress.setProgress(1f);
+            h.progress.setProgress(isNotFinite(progress) ? 1f : progress);
             h.status.setText(R.string.msg_error);
-        } else if (Float.isNaN(progress) || Float.isInfinite(progress)) {
-            h.status.setText(UNDEFINED_SPEED);
+        } else if (isNotFinite(progress)) {
+            h.status.setText(UNDEFINED_PROGRESS);
         } else {
             h.status.setText(String.format("%.2f%%", progress * 100));
             h.progress.setProgress(progress);
@@ -251,11 +252,11 @@ public class MissionAdapter extends Adapter<ViewHolder> {
         long length = mission.getLength();
 
         int state;
-        if (mission.errCode == ERROR_POSTPROCESSING_FAILED) {
+        if (mission.isPsFailed()) {
             state = 0;
         } else if (!mission.running) {
             state = mission.enqueued ? 1 : 2;
-        } else if (mission.postprocessingRunning) {
+        } else if (mission.isPsRunning()) {
             state = 3;
         } else {
             state = 0;
@@ -321,6 +322,9 @@ public class MissionAdapter extends Adapter<ViewHolder> {
         intent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             intent.addFlags(FLAG_GRANT_PREFIX_URI_PERMISSION);
+        }
+        if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.M) {
+            intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
         }
         //mContext.grantUriPermission(packageName, uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
         Log.v(TAG, "Starting intent: " + intent);
@@ -406,7 +410,7 @@ public class MissionAdapter extends Adapter<ViewHolder> {
             case ERROR_CONNECT_HOST:
                 str.append(mContext.getString(R.string.error_connect_host));
                 break;
-            case ERROR_POSTPROCESSING_FAILED:
+            case ERROR_POSTPROCESSING:
                 str.append(mContext.getString(R.string.error_postprocessing_failed));
             case ERROR_UNKNOWN_EXCEPTION:
                 break;
@@ -437,7 +441,6 @@ public class MissionAdapter extends Adapter<ViewHolder> {
     public void clearFinishedDownloads() {
         mDownloadManager.forgetFinishedDownloads();
         applyChanges();
-        setClearButtonVisibility(false);
     }
 
     private boolean handlePopupItem(@NonNull ViewHolderItem h, @NonNull MenuItem option) {
@@ -447,6 +450,7 @@ public class MissionAdapter extends Adapter<ViewHolder> {
         if (mission != null) {
             switch (id) {
                 case R.id.start:
+                    h.status.setText(UNDEFINED_PROGRESS);
                     h.state = -1;
                     h.size.setText(Utility.formatBytes(mission.getLength()));
                     mDownloadManager.resumeMission(mission);
@@ -506,11 +510,7 @@ public class MissionAdapter extends Adapter<ViewHolder> {
         mIterator.end();
 
         checkEmptyMessageVisibility();
-
-        if (mIterator.getOldListSize() > 0) {
-            int lastItemType = mIterator.getSpecialAtItem(mIterator.getOldListSize() - 1);
-            setClearButtonVisibility(lastItemType == DownloadManager.SPECIAL_FINISHED);
-        }
+        if (mClear != null) mClear.setVisible(mIterator.hasFinishedMissions());
     }
 
     public void forceUpdate() {
@@ -529,15 +529,8 @@ public class MissionAdapter extends Adapter<ViewHolder> {
     }
 
     public void setClearButton(MenuItem clearButton) {
-        if (mClear == null) {
-            int lastItemType = mIterator.getSpecialAtItem(mIterator.getOldListSize() - 1);
-            clearButton.setVisible(lastItemType == DownloadManager.SPECIAL_FINISHED);
-        }
+        if (mClear == null) clearButton.setVisible(mIterator.hasFinishedMissions());
         mClear = clearButton;
-    }
-
-    private void setClearButtonVisibility(boolean flag) {
-        mClear.setVisible(flag);
     }
 
     private void checkEmptyMessageVisibility() {
@@ -594,6 +587,10 @@ public class MissionAdapter extends Adapter<ViewHolder> {
         } else {
             mUpdaterRunning = false;
         }
+    }
+
+    private boolean isNotFinite(Float value) {
+        return Float.isNaN(value) || Float.isInfinite(value);
     }
 
 
@@ -667,7 +664,7 @@ public class MissionAdapter extends Adapter<ViewHolder> {
             DownloadMission mission = item.mission instanceof DownloadMission ? (DownloadMission) item.mission : null;
 
             if (mission != null) {
-                if (!mission.postprocessingRunning) {
+                if (!mission.isPsRunning()) {
                     if (mission.running) {
                         pause.setVisible(true);
                     } else {
@@ -678,8 +675,10 @@ public class MissionAdapter extends Adapter<ViewHolder> {
                         queue.setChecked(mission.enqueued);
 
                         delete.setVisible(true);
-                        start.setVisible(mission.errCode != ERROR_POSTPROCESSING_FAILED);
-                        queue.setVisible(mission.errCode != ERROR_POSTPROCESSING_FAILED);
+
+                        boolean flag = !mission.isPsFailed();
+                        start.setVisible(flag);
+                        queue.setVisible(flag);
                     }
                 }
             } else {

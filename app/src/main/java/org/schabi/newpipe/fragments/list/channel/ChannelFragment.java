@@ -233,10 +233,10 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                 openRssFeed();
                 break;
             case R.id.menu_item_openInBrowser:
-                openUrlInBrowser(url);
+                openUrlInBrowser(currentInfo.getOriginalUrl());
                 break;
             case R.id.menu_item_share:
-                shareUrl(name, url);
+                shareUrl(name, currentInfo.getOriginalUrl());
                 break;
             default:
                 return super.onOptionsItemSelected(item);
