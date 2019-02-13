@@ -72,7 +72,7 @@
 
     <string name="content">Contenuti</string>
     <string name="show_age_restricted_content_title">Contenuti vietati ai minori</string>
-    <string name="video_is_age_restricted">Mostra video riversati ad un pubblico maggiorenne. Si possono abilitare dalle \"Impostazioni\".</string>
+    <string name="video_is_age_restricted">Mostra video riversati a un pubblico maggiorenne. Si possono abilitare dalle Impostazioni.</string>
 
     <string name="main_bg_subtitle">Tocca Cerca per iniziare</string>
     <string name="autoplay_by_calling_app_title">Riproduzione automatica</string>
@@ -444,7 +444,7 @@
 \n 
 \nVuoi continuare?</string>
 <string name="download_thumbnail_title">Carica miniature</string>
-    <string name="download_thumbnail_summary">Disabilita per interrompere il caricamento delle miniature, la loro archiviazione e l\'utilizzo della memoria. La modifica di questa opzione cancellerà la cache delle immagini in memoria e sul disco.</string>
+    <string name="download_thumbnail_summary">Disabilita il caricamento delle miniature, risparmiando dati e memoria. La modifica dell\'opzione comporta la cancellazione della cache in memoria e sul disco.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Pulizia della cache delle immagini completata</string>
     <string name="metadata_cache_wipe_title">Pulisci la cache dei metadati</string>
     <string name="metadata_cache_wipe_summary">Rimuovi tutti i dati delle pagine web memorizzati nella cache</string>
@@ -515,7 +515,7 @@
     <string name="app_update_notification_channel_name">Notifiche di aggiornamenti dell\'applicazione</string>
     <string name="app_update_notification_channel_description">Notifiche per una nuova versione di NewPipe</string>
     <string name="download_to_sdcard_error_title">Archiviazione esterna non disponibile</string>
-    <string name="download_to_sdcard_error_message">Il download sulla scheda SD esterna non è ancora possibile. Reimpostare la posizione della cartella di download\?</string>
+    <string name="download_to_sdcard_error_message">Download sulla memoria esterna SD ancora non disponibile. Reimpostare la posizione della cartella di download\?</string>
     <string name="saved_tabs_invalid_json">Utilizzando le schede predefinite, c\'è stato un errore durante la lettura delle schede salvate</string>
     <string name="restore_defaults">Ripristina predefiniti</string>
     <string name="restore_defaults_confirmation">Davvero ripristinare i predefiniti\?</string>
@@ -559,10 +559,12 @@
     <string name="error_http_not_found">Non trovato</string>
     <string name="error_postprocessing_failed">Post-processing fallito</string>
     <string name="clear_finished_download">Pulisci i download completati</string>
-    <string name="msg_pending_downloads">Si hanno %s download in corso, andare su Download per continuare</string>
+    <string name="msg_pending_downloads">Continua i %s trasferimenti in corso dai Download</string>
     <string name="stop">Ferma</string>
     <string name="max_retry_msg">Tentativi massimi</string>
     <string name="max_retry_desc">Tentativi massimi prima di cancellare il download</string>
     <string name="pause_downloads_on_mobile">Metti in pausa quando si usano i dati mobili</string>
-    <string name="pause_downloads_on_mobile_desc">Non tutti i download possono essere sospesi; questi verranno ravviati</string>
+    <string name="pause_downloads_on_mobile_desc">I download che non possono essere messi in pausa verranno ravviati</string>
+    <string name="events">Eventi</string>
+    <string name="conferences">Conferenze</string>
 </resources>
