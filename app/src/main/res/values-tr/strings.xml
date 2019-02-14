@@ -51,7 +51,7 @@
     <string name="play_btn_text">Oynat</string>
     <string name="content">İçerik</string>
     <string name="show_age_restricted_content_title">Yaş kısıtlamalı içerik</string>
-    <string name="video_is_age_restricted">Yaş kısıtlaması olan videoyu göster. Bu tür materyallere \"Ayarlar\"dan izin verilebilir.</string>
+    <string name="video_is_age_restricted">Yaş kısıtlamalı videoyu göster. Bu tür materyallere Ayarlar\'dan izin verilebilir.</string>
     <string name="duration_live">CANLI</string>
     <string name="downloads">İndirilenler</string>
     <string name="downloads_title">İndirilenler</string>
@@ -505,7 +505,7 @@
     <string name="app_update_notification_channel_name">Uygulama Güncelleme Bildirimi</string>
     <string name="app_update_notification_channel_description">Yeni NewPipe sürümü için bildirimler</string>
     <string name="download_to_sdcard_error_title">Harici depolama kullanılamıyor</string>
-    <string name="download_to_sdcard_error_message">Harici SD karta yükleme henüz mümkün değil. İndirme klasörü konumu sıfırlansın mı\?</string>
+    <string name="download_to_sdcard_error_message">Harici SD karta indirmek henüz mümkün değil. İndirme klasörü konumu sıfırlansın mı\?</string>
     <string name="saved_tabs_invalid_json">Varsayılan sekmeleri kullanarak, kaydedilen sekmeleri okurken hata</string>
     <string name="restore_defaults">Varsayılanları geri yükle</string>
     <string name="restore_defaults_confirmation">Varsayılanları geri yüklemek istiyor musunuz\?</string>
@@ -545,14 +545,16 @@
     <string name="error_connect_host">Sunucuya bağlanılamıyor</string>
     <string name="error_http_no_content">Sunucu veri göndermiyor</string>
     <string name="error_http_unsupported_range">Sunucu, çok iş parçacıklı indirmeleri kabul etmez, @string/msg_threads = 1 ile yeniden deneyin</string>
-    <string name="error_http_requested_range_not_satisfiable">İstenen Aralık Karşılanamaz</string>
+    <string name="error_http_requested_range_not_satisfiable">İstenen aralık karşılanamaz</string>
     <string name="error_http_not_found">Bulunamadı</string>
     <string name="error_postprocessing_failed">İşlem sonrası başarısız</string>
     <string name="clear_finished_download">Tamamlanan indirmeleri temizle</string>
-    <string name="msg_pending_downloads">Bekleyen %s indirme işleminiz var, devam etmek için İndirilenler bölümüne gidin</string>
+    <string name="msg_pending_downloads">Beklemedeki %s transferinize İndirmeler\'den devam edin</string>
     <string name="stop">Durdur</string>
-    <string name="max_retry_msg">Maksimum yeniden deneme</string>
+    <string name="max_retry_msg">Maksimum deneme sayısı</string>
     <string name="max_retry_desc">İndirmeyi iptal etmeden önce maksimum deneme sayısı</string>
     <string name="pause_downloads_on_mobile">Mobil veriye geçerken duraklat</string>
-    <string name="pause_downloads_on_mobile_desc">Tüm indirmeler askıya alınamaz, bu durumda yeniden başlatılır</string>
+    <string name="pause_downloads_on_mobile_desc">Duraklatılamayan indirmeler yeniden başlatılacak</string>
+    <string name="events">Olaylar</string>
+    <string name="conferences">Konferanslar</string>
 </resources>
