@@ -100,6 +100,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
+import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability.COMMENTS;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
 public class VideoDetailFragment
@@ -822,7 +823,10 @@ public class VideoDetailFragment
 
     private boolean shouldShowComments() {
         try {
-            return showComments && NewPipe.getService(serviceId).isCommentsSupported();
+            return showComments && NewPipe.getService(serviceId)
+                    .getServiceInfo()
+                    .getMediaCapabilities()
+                    .contains(COMMENTS);
         } catch (ExtractionException e) {
             return false;
         }
