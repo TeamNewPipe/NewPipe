@@ -141,6 +141,7 @@
     <string name="comments">Comments</string>
     <string name="tracks">Tracks</string>
     <string name="users">Users</string>
+    <string name="events">Events</string>
     <string name="yes">Yes</string>
     <string name="later">Later</string>
     <string name="disabled">Disabled</string>
@@ -408,6 +409,7 @@
     <string name="trending">Trending</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">New &amp; hot</string>
+    <string name="conferences">Conferences</string>
     <string name="service_kiosk_string" translatable="false">%1$s/%2$s</string>
 
     <!-- Play Queue -->

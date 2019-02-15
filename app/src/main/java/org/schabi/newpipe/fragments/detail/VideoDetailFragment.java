@@ -52,6 +52,7 @@ import org.schabi.newpipe.ReCaptchaActivity;
 import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
@@ -366,7 +367,8 @@ public class VideoDetailFragment
                 }
                 break;
             case R.id.detail_controls_download:
-                if (PermissionHelper.checkStoragePermissions(activity, PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE)) {
+                if (PermissionHelper.checkStoragePermissions(activity,
+                        PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE)) {
                     this.openDownloadDialog();
                 }
                 break;
@@ -624,13 +626,13 @@ public class VideoDetailFragment
         switch (id) {
             case R.id.menu_item_share: {
                 if (currentInfo != null) {
-                    shareUrl(currentInfo.getName(), currentInfo.getUrl());
+                    shareUrl(currentInfo.getName(), currentInfo.getOriginalUrl());
                 }
                 return true;
             }
             case R.id.menu_item_openInBrowser: {
                 if (currentInfo != null) {
-                    openUrlInBrowser(currentInfo.getUrl());
+                    openUrlInBrowser(currentInfo.getOriginalUrl());
                 }
                 return true;
             }
@@ -668,10 +670,16 @@ public class VideoDetailFragment
         boolean isExternalPlayerEnabled = PreferenceManager.getDefaultSharedPreferences(activity)
                 .getBoolean(activity.getString(R.string.use_external_video_player_key), false);
 
-        sortedVideoStreams = ListHelper.getSortedStreamVideosList(activity, info.getVideoStreams(), info.getVideoOnlyStreams(), false);
+        sortedVideoStreams = ListHelper.getSortedStreamVideosList(
+                activity,
+                info.getVideoStreams(),
+                info.getVideoOnlyStreams(),
+                false);
         selectedVideoStreamIndex = ListHelper.getDefaultResolutionIndex(activity, sortedVideoStreams);
 
-        final StreamItemAdapter<VideoStream, Stream> streamsAdapter = new StreamItemAdapter<>(activity, new StreamSizeWrapper<>(sortedVideoStreams, activity), isExternalPlayerEnabled);
+        final StreamItemAdapter<VideoStream, Stream> streamsAdapter =
+                new StreamItemAdapter<>(activity,
+                        new StreamSizeWrapper<>(sortedVideoStreams, activity), isExternalPlayerEnabled);
         spinnerToolbar.setAdapter(streamsAdapter);
         spinnerToolbar.setSelection(selectedVideoStreamIndex);
         spinnerToolbar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -696,17 +704,17 @@ public class VideoDetailFragment
      */
     protected final LinkedList<StackItem> stack = new LinkedList<>();
 
-    public void clearHistory() {
-        stack.clear();
-    }
-
     public void pushToStack(int serviceId, String videoUrl, String name) {
         if (DEBUG) {
-            Log.d(TAG, "pushToStack() called with: serviceId = [" + serviceId + "], videoUrl = [" + videoUrl + "], name = [" + name + "]");
+            Log.d(TAG, "pushToStack() called with: serviceId = ["
+                    + serviceId + "], videoUrl = [" + videoUrl + "], name = [" + name + "]");
         }
 
-        if (stack.size() > 0 && stack.peek().getServiceId() == serviceId && stack.peek().getUrl().equals(videoUrl)) {
-            Log.d(TAG, "pushToStack() called with: serviceId == peek.serviceId = [" + serviceId + "], videoUrl == peek.getUrl = [" + videoUrl + "]");
+        if (stack.size() > 0
+                && stack.peek().getServiceId() == serviceId
+                && stack.peek().getUrl().equals(videoUrl)) {
+            Log.d(TAG, "pushToStack() called with: serviceId == peek.serviceId = ["
+                    + serviceId + "], videoUrl == peek.getUrl = [" + videoUrl + "]");
             return;
         } else {
             Log.d(TAG, "pushToStack() wasn't equal");
@@ -737,7 +745,11 @@ public class VideoDetailFragment
         // Get stack item from the new top
         StackItem peek = stack.peek();
 
-        selectAndLoadVideo(peek.getServiceId(), peek.getUrl(), !TextUtils.isEmpty(peek.getTitle()) ? peek.getTitle() : "");
+        selectAndLoadVideo(peek.getServiceId(),
+                peek.getUrl(),
+                !TextUtils.isEmpty(peek.getTitle())
+                        ? peek.getTitle()
+                        : "");
         return true;
     }
 
@@ -757,10 +769,10 @@ public class VideoDetailFragment
     }
 
     public void prepareAndHandleInfo(final StreamInfo info, boolean scrollToTop) {
-        if (DEBUG)
-            Log.d(TAG, "prepareAndHandleInfo() called with: info = [" + info + "], scrollToTop = [" + scrollToTop + "]");
+        if (DEBUG) Log.d(TAG, "prepareAndHandleInfo() called with: info = ["
+                + info + "], scrollToTop = [" + scrollToTop + "]");
 
-        setInitialData(info.getServiceId(), info.getOriginalUrl(), info.getName());
+        setInitialData(info.getServiceId(), info.getUrl(), info.getName());
         pushToStack(serviceId, url, name);
         showLoading();
         initTabs();
@@ -1042,7 +1054,7 @@ public class VideoDetailFragment
             }
         }
 
-        pushToStack(serviceId, url, name);
+        //pushToStack(serviceId, url, name);
 
         animateView(thumbnailPlayButton, true, 200);
         videoTitleTextView.setText(name);
@@ -1093,11 +1105,13 @@ public class VideoDetailFragment
 
         if (info.getDuration() > 0) {
             detailDurationView.setText(Localization.getDurationString(info.getDuration()));
-            detailDurationView.setBackgroundColor(ContextCompat.getColor(activity, R.color.duration_background_color));
+            detailDurationView.setBackgroundColor(
+                    ContextCompat.getColor(activity, R.color.duration_background_color));
             animateView(detailDurationView, true, 100);
         } else if (info.getStreamType() == StreamType.LIVE_STREAM) {
             detailDurationView.setText(R.string.duration_live);
-            detailDurationView.setBackgroundColor(ContextCompat.getColor(activity, R.color.live_duration_background_color));
+            detailDurationView.setBackgroundColor(
+                    ContextCompat.getColor(activity, R.color.live_duration_background_color));
             animateView(detailDurationView, true, 100);
         } else {
             detailDurationView.setVisibility(View.GONE);
@@ -1154,20 +1168,28 @@ public class VideoDetailFragment
 
 
     public void openDownloadDialog() {
-        try {
-            DownloadDialog downloadDialog = DownloadDialog.newInstance(currentInfo);
-            downloadDialog.setVideoStreams(sortedVideoStreams);
-            downloadDialog.setAudioStreams(currentInfo.getAudioStreams());
-            downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex);
-            downloadDialog.setSubtitleStreams(currentInfo.getSubtitles());
+            try {
+                DownloadDialog downloadDialog = DownloadDialog.newInstance(currentInfo);
+                downloadDialog.setVideoStreams(sortedVideoStreams);
+                downloadDialog.setAudioStreams(currentInfo.getAudioStreams());
+                downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex);
+                downloadDialog.setSubtitleStreams(currentInfo.getSubtitles());
 
-            downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
-        } catch (Exception e) {
-            Toast.makeText(activity,
-                    R.string.could_not_setup_download_menu,
-                    Toast.LENGTH_LONG).show();
-            e.printStackTrace();
-        }
+                downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
+            } catch (Exception e) {
+                ErrorActivity.ErrorInfo info = ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
+                        ServiceList.all()
+                                .get(currentInfo
+                                        .getServiceId())
+                                .getServiceInfo()
+                                .getName(), "",
+                        R.string.could_not_setup_download_menu);
+
+                ErrorActivity.reportError(getActivity(),
+                        e,
+                        getActivity().getClass(),
+                        getActivity().findViewById(android.R.id.content), info);
+            }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
