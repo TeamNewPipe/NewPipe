@@ -35,12 +35,6 @@
             </intent-filter>
         </receiver>
 
-        <activity
-            android:name=".player.old.PlayVideoActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@style/OldVideoPlayerTheme"
-            tools:ignore="UnusedAttribute"/>
-
         <service
             android:name=".player.BackgroundPlayer"
             android:exported="false">
