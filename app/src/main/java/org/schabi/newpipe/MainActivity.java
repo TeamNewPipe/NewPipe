@@ -49,7 +49,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.yausername.youtubedl_android.YoutubeDL;
+import com.yausername.youtubedl_android.YoutubeDLException;
+
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.OtherService;
+import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.fragments.BackPressable;
@@ -115,6 +120,13 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             ErrorActivity.reportUiError(this, e);
         }
+
+        try {
+            YoutubeDL.getInstance().init(getApplication());
+        } catch (YoutubeDLException e) {
+            Log.e(TAG, "failed to initialize youtubedl-android", e);
+        }
+        ServiceList.EXTRA_SERVICES.add(OtherService.INSTANCE);
     }
 
     private void setupDrawer() throws Exception {

@@ -57,7 +57,8 @@ dependencies {
         exclude module: 'support-annotations'
     })
 
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:79b0a19d1af'
+    implementation 'com.github.yausername:NewPipeExtractor:bff57d2'
+    implementation 'com.github.yausername:youtubedl-android:8744175'
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.23.0'
