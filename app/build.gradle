@@ -57,7 +57,7 @@ dependencies {
         exclude module: 'support-annotations'
     })
 
-    implementation 'com.github.yausername:NewPipeExtractor:bff57d2'
+    implementation 'com.github.yausername:NewPipeExtractor:ab84ff7'
     implementation 'com.github.yausername:youtubedl-android:8744175'
 
     testImplementation 'junit:junit:4.12'

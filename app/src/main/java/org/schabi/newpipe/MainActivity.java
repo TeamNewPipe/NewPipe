@@ -126,7 +126,9 @@ public class MainActivity extends AppCompatActivity {
         } catch (YoutubeDLException e) {
             Log.e(TAG, "failed to initialize youtubedl-android", e);
         }
-        ServiceList.EXTRA_SERVICES.add(OtherService.INSTANCE);
+        if(!ServiceList.EXTRA_SERVICES.contains(OtherService.INSTANCE)){
+            ServiceList.EXTRA_SERVICES.add(OtherService.INSTANCE);
+        }
     }
 
     private void setupDrawer() throws Exception {
