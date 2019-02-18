@@ -458,4 +458,8 @@
     <string name="events">События</string>
     <string name="conferences">Конференции</string>
     <string name="post_processing">Завершающая обработка</string>
+    <string name="missions_header_pending">На очереди</string>
+    <string name="download_finished">Загрузка завершена</string>
+    <string name="download_finished_more">" %s загрузок завершено"</string>
+    <string name="generate_unique_name">Задать уникальное имя</string>
 </resources>
