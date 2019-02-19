@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources><string name="install">Instaliraj</string>
+    <string name="cancel">Otkaži</string>
+    <string name="open_in_popup_mode">Otvori u slika u sliki modu</string>
+    <string name="share">Podijeli</string>
+    <string name="search">Pretraga</string>
+    <string name="settings">Postavke</string>
+    <string name="share_dialog_title">Podijeli sa</string>
+    <string name="screen_rotation">Rotacija</string>
+    <string name="subscribe_button_title">Preplati se</string>
+    <string name="subscribed_button_title">Preplaćen</string>
+    <string name="show_info">Pokaži informacije</string>
+    <string name="tab_new">Novi Tab</string>
+    <string name="tab_choose">Izaberi Tab</string>
+    <string name="fragment_whats_new">Šta je novo</string>
+    <string name="controls_background_title">Pozadina</string>
+    <string name="download_path_audio_summary">Skinuti audio je spašen ovdje</string>
+    <string name="default_resolution_title">Zadana rezolucija</string>
+    <string name="show_higher_resolutions_title">Pokaži više rezolucije</string>
+    <string name="show_higher_resolutions_summary">Samo neki uređaji podržavaju puštanje 2K/4K videa</string>
+    <string name="kore_not_found">Kore aplikacija nije nađena. Instaliraj te\?</string>
+    <string name="play_audio">Zvuk</string>
+    <string name="default_audio_format_title">Zadani zvučni format</string>
+    <string name="default_video_format_title">Zadani video format</string>
+    <string name="dark_theme_title">Mračno</string>
+    <string name="settings_category_appearance_title">Izgled</string>
+    <string name="settings_category_other_title">Drugo</string>
+    <string name="downloads">Skinuto</string>
+    <string name="caption_auto_generated">Auto-generirano</string>
+    <string name="error_path_creation">Fajl ne može biti krejiran</string>
+    <string name="error_http_no_content">Ovaj server ne šalje podatke</string>
+</resources>

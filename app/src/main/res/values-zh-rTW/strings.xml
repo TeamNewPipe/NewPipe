@@ -78,7 +78,7 @@
     <string name="popup_playing_toast">以懸浮視窗播放中</string>
     <string name="content">內容</string>
     <string name="show_age_restricted_content_title">年齡限制內容</string>
-    <string name="video_is_age_restricted">顯示有年齡限制的影片。可於「設定」中選擇允許此種內容。</string>
+    <string name="video_is_age_restricted">顯示有年齡限制的影片。可於設定中選擇允許此種內容。</string>
     <string name="downloads">下載</string>
     <string name="downloads_title">下載</string>
     <string name="error_report_title">錯誤回報</string>
@@ -201,7 +201,7 @@
 
     <string name="no_videos">沒有影片</string>
     <plurals name="videos">
-	<item quantity="other">%s 部影片</item>
+    <item quantity="other">影片</item>
 </plurals>
 
     <string name="settings_category_downloads_title">下載</string>
@@ -422,7 +422,7 @@
 \n3. 當被提示時登入帳號 
 \n4. 複製您被重新導向到的個人設定檔網址。</string>
     <string name="download_thumbnail_title">載入縮圖</string>
-    <string name="download_thumbnail_summary">當關閉時不載入縮圖，減少數據和儲存空間的用量。改變時將清除記憶體和磁碟上的縮圖快取。</string>
+    <string name="download_thumbnail_summary">關閉以防止載入縮圖，減少數據和儲存空間的用量。改變時將清除記憶體和磁碟上的縮圖快取。</string>
     <string name="thumbnail_cache_wipe_complete_notice">已清除圖片快取</string>
     <string name="metadata_cache_wipe_title">清除快取中介資料</string>
     <string name="metadata_cache_wipe_summary">移除所有網頁的快取資料</string>
@@ -480,4 +480,68 @@
     <string name="playlists">播放清單</string>
     <string name="tracks">軌</string>
     <string name="users">使用者</string>
-    </resources>
+    <string name="unsubscribe">取消訂閱</string>
+    <string name="tab_new">新分頁</string>
+    <string name="tab_choose">選擇分頁</string>
+    <string name="volume_gesture_control_title">音量手勢控制</string>
+    <string name="volume_gesture_control_summary">使用手勢控制播放器音量</string>
+    <string name="brightness_gesture_control_title">亮度手勢控制</string>
+    <string name="brightness_gesture_control_summary">使用手勢控制播放器亮度</string>
+    <string name="settings_category_updates_title">更新</string>
+    <string name="file_deleted">已刪除檔案</string>
+    <string name="app_update_notification_channel_name">應用程式更新通知</string>
+    <string name="app_update_notification_channel_description">新 NewPipe 版本通知</string>
+    <string name="download_to_sdcard_error_title">外部儲存不可用</string>
+    <string name="download_to_sdcard_error_message">目前無法下載到外部 SD 卡。重設下載資料夾位置？</string>
+    <string name="saved_tabs_invalid_json">使用預設分頁，讀取已儲存的分頁時發生錯誤</string>
+    <string name="restore_defaults">恢復預設值</string>
+    <string name="restore_defaults_confirmation">您想要恢復預設值嗎？</string>
+    <string name="subscribers_count_not_available">訂閱數不可用</string>
+    <string name="main_page_content_summary">要在首頁顯示哪些分頁</string>
+    <string name="selection">選擇</string>
+    <string name="updates_setting_title">更新</string>
+    <string name="updates_setting_description">當有新版本可用時顯示通知以告知應用程式更新</string>
+    <string name="list_view_mode">清單檢視模式</string>
+    <string name="list">清單</string>
+    <string name="grid">網格</string>
+    <string name="auto">自動</string>
+    <string name="switch_view">切換檢視</string>
+    <string name="app_update_notification_content_title">有可用的 NewPipe 更新！</string>
+    <string name="app_update_notification_content_text">輕觸以下載</string>
+    <string name="missions_header_finished">結束</string>
+    <string name="missions_header_pending">在佇列中</string>
+    <string name="paused">已暫停</string>
+    <string name="queued">已排入佇列</string>
+    <string name="post_processing">正在後處理</string>
+    <string name="enqueue">佇列</string>
+    <string name="permission_denied">動作被系統拒絕</string>
+    <string name="download_failed">下載失敗</string>
+    <string name="download_finished">下載已結束</string>
+    <string name="download_finished_more">%s 個下載已結束</string>
+    <string name="generate_unique_name">生成獨特的名稱</string>
+    <string name="overwrite">覆寫</string>
+    <string name="overwrite_warning">已有此名稱的已下載檔案</string>
+    <string name="download_already_running">已有此名稱的當案的下載正在進行</string>
+    <string name="show_error">顯示錯誤</string>
+    <string name="label_code">代碼</string>
+    <string name="error_path_creation">無法建立檔案</string>
+    <string name="error_file_creation">無法建立目的地資料夾</string>
+    <string name="error_permission_denied">被系統拒絕的權限</string>
+    <string name="error_ssl_exception">安全連線失敗</string>
+    <string name="error_unknown_host">找不到伺服器</string>
+    <string name="error_connect_host">無法連線到伺服器</string>
+    <string name="error_http_no_content">伺服器沒有傳送資料</string>
+    <string name="error_http_unsupported_range">伺服器不接受多執行緒下載，請以 @string/msg_threads = 1 重試</string>
+    <string name="error_http_requested_range_not_satisfiable">請求範圍無法滿足</string>
+    <string name="error_http_not_found">找不到</string>
+    <string name="error_postprocessing_failed">後處理失敗</string>
+    <string name="clear_finished_download">清除已結束的下載</string>
+    <string name="msg_pending_downloads">繼續從您所擱置中的下載 %s 傳輸</string>
+    <string name="stop">停止</string>
+    <string name="max_retry_msg">最高的重試次數</string>
+    <string name="max_retry_desc">在取消下載前的最大嘗試數</string>
+    <string name="pause_downloads_on_mobile">切換到行動數據時暫停</string>
+    <string name="pause_downloads_on_mobile_desc">無法暫停下載，將重新開始</string>
+    <string name="events">事件</string>
+    <string name="conferences">會議</string>
+</resources>

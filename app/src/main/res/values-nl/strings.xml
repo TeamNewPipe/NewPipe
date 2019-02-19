@@ -21,7 +21,7 @@
     <string name="play_with_kodi_title">Afspelen met Kodi</string>
     <string name="kore_not_found">Kore-app niet gevonden. Installeren?</string>
     <string name="show_play_with_kodi_title">\"Afspelen met Kodi\"-optie tonen</string>
-    <string name="show_play_with_kodi_summary">Toont een optie om een video af te spelen op een Kodi-mediastation</string>
+    <string name="show_play_with_kodi_summary">Toon een optie om een video af te spelen via Kodi media center</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Standaardaudioformaat</string>
     <string name="download_dialog_title">Downloaden</string>
@@ -51,7 +51,7 @@
     <string name="play_btn_text">Afspelen</string>
     <string name="content">Inhoud</string>
     <string name="show_age_restricted_content_title">Inhoud met leeftijdsbeperking</string>
-    <string name="video_is_age_restricted">Toon video met leeftijdsbeperking. Toestaan van dit soort video\'s kan worden ingeschakeld in \"Instellingen\".</string>
+    <string name="video_is_age_restricted">Toon video met leeftijdsbeperking. Toestaan van dit soort video’s kan worden ingeschakeld in de Instellingen.</string>
 
     <string name="general_error">Fout</string>
     <string name="network_error">Netwerkfout</string>
@@ -172,8 +172,8 @@
     <string name="show_search_suggestions_title">Zoeksuggesties</string>
     <string name="show_search_suggestions_summary">Toon suggesties bij zoeken</string>
 
-    <string name="player_gesture_controls_title">Bewegingscontrole</string>
-    <string name="player_gesture_controls_summary">Gebruik bewegingen om helderheid en volume van de speler aan te passen</string>
+    <string name="player_gesture_controls_title">Gebaarbesturing</string>
+    <string name="player_gesture_controls_summary">Gebruik gebaren om de helderheid en het volume van de speler aan te passen</string>
 <string name="best_resolution">Beste resolutie</string>
 
     <string name="title_activity_about">Over NewPipe</string>
@@ -186,7 +186,7 @@
     <string name="tab_about">Over</string>
     <string name="tab_contributors">Bijdragers</string>
     <string name="tab_licenses">Licenties</string>
-    <string name="app_description">Vrij en licht streamen voor Android.</string>
+    <string name="app_description">Vrij en lichtgewicht streamen op Android.</string>
     <string name="view_on_github">Bekijken op GitHub</string>
     <string name="app_license_title">Licentie van NewPipe</string>
     <string name="contribution_encouragement">Hulp is altijd welkom. Of je nu nieuwe ideeën hebt, vertalingen kan aanleveren, wijzigingen in het ontwerp kan verrichten, code kan opschonen of van grote wijzigingen voorzien. Hoe meer hulp, hoe beter het wordt!</string>
@@ -202,7 +202,7 @@
 
     <string name="subscribe_button_title">Abonneren</string>
     <string name="subscribed_button_title">Geabonneerd</string>
-    <string name="channel_unsubscribed">Gedeabonneerd</string>
+    <string name="channel_unsubscribed">Abonnement opgezegd</string>
     <string name="subscription_change_failed">Kan abonnement niet wijzigen</string>
     <string name="subscription_update_failed">Kan abonnement niet bijwerken</string>
 
@@ -253,8 +253,8 @@
 
     <string name="no_videos">Geen video\'s</string>
     <plurals name="videos">
-	<item quantity="one">%s video</item>
-	<item quantity="other">%s video’s</item>
+    <item quantity="one">video</item>
+    <item quantity="other">video’s</item>
 </plurals>
 
     <string name="item_deleted">Item verwijderd</string>
@@ -439,7 +439,7 @@
 \n 
 \nWil je doorgaan?</string>
 <string name="download_thumbnail_title">Miniatuurvoorbeelden laden</string>
-    <string name="download_thumbnail_summary">Er worden geen miniatuurvoorbeelden geladen wanneer dit uit staat; dit bespaart mobiele data en geheugen. Het wijzigen van deze instelling wist het geheugen en de afbeeldingscache.</string>
+    <string name="download_thumbnail_summary">Schakel dit uit om het laden van miniatuurvoorbeelden te verhinderen; dit bespaart mobiele data en geheugen. Het wijzigen van deze instelling wist het geheugen en de afbeeldingscache.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Afbeeldingscache gewist</string>
     <string name="metadata_cache_wipe_title">Gecachete metagegevens wissen</string>
     <string name="metadata_cache_wipe_summary">Alle gecachete webpagina-gegevens wissen</string>
@@ -462,11 +462,11 @@
 
     <string name="clear_views_history_title">Kijkgeschiedenis wissen</string>
     <string name="clear_views_history_summary">Verwijdert de geschiedenis van afgespeelde streams</string>
-    <string name="delete_view_history_alert">Verwijder de gehele kijkgeschiedenis\?</string>
+    <string name="delete_view_history_alert">De gehele kijkgeschiedenis wissen\?</string>
     <string name="view_history_deleted">Kijkgeschiedenis gewist.</string>
     <string name="clear_search_history_title">Zoekgeschiedenis wissen</string>
     <string name="clear_search_history_summary">Verwijdert de gebruikte zoektermen</string>
-    <string name="delete_search_history_alert">Verwijder de gehele geschiedenis\?</string>
+    <string name="delete_search_history_alert">De gehele zoekgeschiedenis wissen\?</string>
     <string name="search_history_deleted">Zoekgeschiedenis gewist.</string>
     <string name="one_item_deleted">1 item verwijderd.</string>
 
@@ -497,4 +497,68 @@
     <string name="playlists">Afspeellijsten</string>
     <string name="tracks">Nummers</string>
     <string name="users">Gebruikers</string>
-    </resources>
+    <string name="unsubscribe">Afmelden</string>
+    <string name="tab_new">Nieuw tabblad</string>
+    <string name="tab_choose">Kies tabblad</string>
+    <string name="volume_gesture_control_title">Gebaarbesturing voor volume</string>
+    <string name="volume_gesture_control_summary">Gebruik gebaren om het volume van de speler aan te passen</string>
+    <string name="brightness_gesture_control_title">Gebaarbesturing voor helderheid</string>
+    <string name="brightness_gesture_control_summary">Gebruik gebaren om de helderheid van de speler aan te passen</string>
+    <string name="settings_category_updates_title">Updates</string>
+    <string name="file_deleted">Bestand verwijderd</string>
+    <string name="app_update_notification_channel_name">Appupdatemelding</string>
+    <string name="app_update_notification_channel_description">Meldingen voor nieuwe versies van NewPipe</string>
+    <string name="download_to_sdcard_error_title">Externe opslag niet beschikbaar</string>
+    <string name="download_to_sdcard_error_message">Downloaden naar externe SD-kaart is nog niet mogelijk. Downloadmap opnieuw instellen\?</string>
+    <string name="saved_tabs_invalid_json">Standaard tabbladen worden gebruikt, fout bij het lezen van de opgeslagen tabbladen</string>
+    <string name="restore_defaults">Standaardinstellingen herstellen</string>
+    <string name="restore_defaults_confirmation">Wilt u de standaardinstellingen herstellen\?</string>
+    <string name="subscribers_count_not_available">Aantal abonnees niet beschikbaar</string>
+    <string name="main_page_content_summary">Welke tabbladen worden weergegeven op de hoofdpagina</string>
+    <string name="selection">Selectie</string>
+    <string name="updates_setting_title">Updates</string>
+    <string name="updates_setting_description">Toon een melding om de applicatie te updaten wanneer er een nieuwe versie beschikbaar is</string>
+    <string name="list_view_mode">Lijstweergavemodus</string>
+    <string name="list">Lijst</string>
+    <string name="grid">Raster</string>
+    <string name="auto">Auto</string>
+    <string name="switch_view">Wissel van weergave</string>
+    <string name="app_update_notification_content_title">NewPipe-update beschikbaar!</string>
+    <string name="app_update_notification_content_text">Tik om te downloaden</string>
+    <string name="missions_header_finished">Voltooid</string>
+    <string name="missions_header_pending">In de wachtrij</string>
+    <string name="paused">gepauzeerd</string>
+    <string name="queued">aan de wachtrij toegevoegd</string>
+    <string name="post_processing">nabewerking</string>
+    <string name="enqueue">Wachtrij</string>
+    <string name="permission_denied">Actie door het systeem geweigerd</string>
+    <string name="download_failed">Downloaden mislukt</string>
+    <string name="download_finished">Downloaden voltooid</string>
+    <string name="download_finished_more">%s downloads voltooid</string>
+    <string name="generate_unique_name">Genereer een unieke naam</string>
+    <string name="overwrite">Overschrijven</string>
+    <string name="overwrite_warning">Er bestaat al een gedownload bestand met deze naam</string>
+    <string name="download_already_running">Er is een download aan de gang met deze naam</string>
+    <string name="show_error">Toon foutmelding</string>
+    <string name="label_code">Code</string>
+    <string name="error_path_creation">Het bestand kan niet worden gemaakt</string>
+    <string name="error_file_creation">De doelmap kan niet worden gemaakt</string>
+    <string name="error_permission_denied">Toestemming door het systeem geweigerd</string>
+    <string name="error_ssl_exception">Beveiligde connectie is mislukt</string>
+    <string name="error_unknown_host">Kon de server niet vinden</string>
+    <string name="error_connect_host">Kan niet met de server verbinden</string>
+    <string name="error_http_no_content">De server verzendt geen gegevens</string>
+    <string name="error_http_unsupported_range">De server accepteert geen multi-threaded downloads, probeer het opnieuw met @string/msg_threads = 1</string>
+    <string name="error_http_requested_range_not_satisfiable">Gevraagde bereik niet beschikbaar</string>
+    <string name="error_http_not_found">Niet gevonden</string>
+    <string name="error_postprocessing_failed">Nabewerking mislukt</string>
+    <string name="clear_finished_download">Voltooide downloads wissen</string>
+    <string name="msg_pending_downloads">Zet je %s wachtende downloads voort via Downloads</string>
+    <string name="stop">Stop</string>
+    <string name="max_retry_msg">Maximum aantal keer proberen</string>
+    <string name="max_retry_desc">Maximum aantal pogingen voordat de download wordt geannuleerd</string>
+    <string name="pause_downloads_on_mobile">Pauzeren bij overschakelen naar mobiele data</string>
+    <string name="pause_downloads_on_mobile_desc">Downloads die niet kunnen worden gepauzeerd zullen worden herstart</string>
+    <string name="events">Gebeurtenissen</string>
+    <string name="conferences">Conferenties</string>
+</resources>
