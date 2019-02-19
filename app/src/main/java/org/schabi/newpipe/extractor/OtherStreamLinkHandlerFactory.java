@@ -1,6 +1,8 @@
 package org.schabi.newpipe.extractor;
 
 
+import android.util.Patterns;
+
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.linkhandler.LinkHandlerFactory;
 
@@ -27,6 +29,6 @@ public class OtherStreamLinkHandlerFactory extends LinkHandlerFactory {
 
     @Override
     public boolean onAcceptUrl(String url) throws ParsingException {
-        return true;
+        return Patterns.WEB_URL.matcher(url).matches();
     }
 }
