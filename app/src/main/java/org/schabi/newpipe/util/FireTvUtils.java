@@ -1,6 +1,5 @@
-package org.schabi.newpipe.firetv;
+package org.schabi.newpipe.util;
 
-import android.content.Context;
 import org.schabi.newpipe.App;
 
 public class FireTvUtils {
