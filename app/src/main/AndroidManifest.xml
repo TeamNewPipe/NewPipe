@@ -35,12 +35,6 @@
             </intent-filter>
         </receiver>
 
-        <activity
-            android:name=".player.old.PlayVideoActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@style/OldVideoPlayerTheme"
-            tools:ignore="UnusedAttribute"/>
-
         <service
             android:name=".player.BackgroundPlayer"
             android:exported="false">
@@ -174,6 +168,19 @@
                 <data android:scheme="https"/>
                 <data android:host="youtu.be"/>
                 <data android:pathPrefix="/"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data android:scheme="http"/>
+                <data android:scheme="https"/>
+                <data android:host="www.youtube-nocookie.com"/>
+                <data android:pathPrefix="/embed/"/>
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
