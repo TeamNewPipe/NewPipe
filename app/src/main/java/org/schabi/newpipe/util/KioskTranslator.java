@@ -31,6 +31,8 @@ public class KioskTranslator {
                 return c.getString(R.string.top_50);
             case "New & hot":
                 return c.getString(R.string.new_and_hot);
+            case "conferences":
+                return c.getString(R.string.conferences);
             default:
                 return kioskId;
         }
@@ -43,6 +45,8 @@ public class KioskTranslator {
             case "Top 50":
                 return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_hot);
             case "New & hot":
+                return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_hot);
+            case "conferences":
                 return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_hot);
             default:
                 return 0;

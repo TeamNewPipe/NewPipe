@@ -105,8 +105,13 @@ public class SearchFragment
     // this three represet the current search query
     @State
     protected String searchString;
+
+    /**
+     * No content filter should add like contentfilter = all
+     * be aware of this when implementing an extractor.
+     */
     @State
-    protected String[] contentFilter;
+    protected String[] contentFilter = new String[0];
     @State
     protected String sortFilter;
     
@@ -336,7 +341,7 @@ public class SearchFragment
                 || (searchEditText != null && !TextUtils.isEmpty(searchEditText.getText()))) {
             search(!TextUtils.isEmpty(searchString)
                     ? searchString
-                    : searchEditText.getText().toString(), new String[0], "");
+                    : searchEditText.getText().toString(), this.contentFilter, "");
         } else {
             if (searchEditText != null) {
                 searchEditText.setText("");
@@ -741,6 +746,7 @@ public class SearchFragment
 
     @Override
     protected void loadMoreItems() {
+        if(nextPageUrl == null || nextPageUrl.isEmpty()) return;
         isLoading.set(true);
         showListFooter(true);
         if (searchDisposable != null) searchDisposable.dispose();

@@ -626,6 +626,7 @@ public final class PopupVideoPlayer extends Service {
         @Override
         public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
             super.onLoadingComplete(imageUri, view, loadedImage);
+            if (playerImpl == null) return;
             // rebuild notification here since remote view does not release bitmaps,
             // causing memory leaks
             resetNotification();
