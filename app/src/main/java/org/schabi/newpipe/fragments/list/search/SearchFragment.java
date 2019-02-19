@@ -16,7 +16,6 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -36,7 +35,6 @@ import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.OtherService;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.search.SearchExtractor;
@@ -221,11 +219,6 @@ public class SearchFragment
     public void onResume() {
         if (DEBUG) Log.d(TAG, "onResume() called");
         super.onResume();
-
-        // do not show anything when returning from a video detail
-        if(searchString != null && Patterns.WEB_URL.matcher(searchString).matches()){
-            return;
-        }
 
         try {
             service = NewPipe.getService(serviceId);
@@ -691,11 +684,6 @@ public class SearchFragment
     private void search(final String searchString, String[] contentFilter, String sortFilter) {
         if (DEBUG) Log.d(TAG, "search() called with: query = [" + searchString + "]");
         if (searchString.isEmpty()) return;
-
-        //open video detail if search is a url
-        if(Patterns.WEB_URL.matcher(searchString).matches()){
-            NavigationHelper.openVideoDetail(getContext(), OtherService.INSTANCE.getServiceId(), searchString);
-        }
 
         try {
             final StreamingService service = NewPipe.getServiceByUrl(searchString);
