@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/video_item_detail"
@@ -8,101 +7,111 @@
     android:layout_height="match_parent"
     android:focusableInTouchMode="true">
 
-    <com.nirhart.parallaxscroll.views.ParallaxScrollView
+    <android.support.design.widget.CoordinatorLayout
         android:id="@+id/detail_main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible"
-        app:parallax_factor="1.9">
+        android:fitsSystemWindows="true">
 
-        <!--WRAPPER-->
-        <LinearLayout
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbarlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:fitsSystemWindows="true"
+            app:elevation="0dp"
+            app:layout_behavior="android.support.design.widget.FlingBehavior">
 
-            <!-- THUMBNAIL -->
-            <FrameLayout
-                android:id="@+id/detail_thumbnail_root_layout"
+            <android.support.design.widget.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/black"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackground">
+                app:layout_scrollFlags="scroll">
 
-                <ImageView
-                    android:id="@+id/detail_thumbnail_image_view"
+                <!-- THUMBNAIL -->
+                <FrameLayout
+                    android:id="@+id/detail_thumbnail_root_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:contentDescription="@string/detail_thumbnail_view_description"
-                    android:scaleType="fitCenter"
-                    tools:ignore="RtlHardcoded"
-                    tools:layout_height="200dp"
-                    tools:src="@drawable/dummy_thumbnail"/>
+                    android:background="@android:color/black"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:layout_collapseMode="parallax">
 
-                <ImageView
-                    android:id="@+id/detail_thumbnail_play_button"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:layout_gravity="center"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/new_play_arrow"
-                    android:visibility="invisible"
-                    tools:ignore="ContentDescription"
-                    tools:visibility="visible"/>
+                    <ImageView
+                        android:id="@+id/detail_thumbnail_image_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="@string/detail_thumbnail_view_description"
+                        android:scaleType="fitCenter"
+                        tools:ignore="RtlHardcoded"
+                        tools:layout_height="200dp"
+                        tools:src="@drawable/dummy_thumbnail" />
 
-                <TextView
-                    android:id="@+id/touch_append_detail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#64000000"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="30dp"
-                    android:paddingRight="30dp"
-                    android:paddingTop="10dp"
-                    android:layout_gravity="center"
-                    android:textColor="@android:color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:text="@string/hold_to_append"
-                    android:visibility="gone"
-                    tools:ignore="RtlHardcoded"
-                    tools:visibility="visible"/>
+                    <ImageView
+                        android:id="@+id/detail_thumbnail_play_button"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:layout_gravity="center"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/new_play_arrow"
+                        android:visibility="invisible"
+                        tools:ignore="ContentDescription"
+                        tools:visibility="visible" />
 
-                <TextView
-                    android:id="@+id/detail_duration_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|right"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:layout_marginTop="8dp"
-                    android:alpha=".6"
-                    android:background="#23000000"
-                    android:gravity="center"
-                    android:paddingBottom="2dp"
-                    android:paddingLeft="6dp"
-                    android:paddingRight="6dp"
-                    android:paddingTop="2dp"
-                    android:textAllCaps="true"
-                    android:textColor="@android:color/white"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:visibility="gone"
-                    tools:ignore="RtlHardcoded"
-                    tools:text="12:38"
-                    tools:visibility="visible"/>
-            </FrameLayout>
+                    <TextView
+                        android:id="@+id/touch_append_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="#64000000"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="30dp"
+                        android:paddingRight="30dp"
+                        android:paddingTop="10dp"
+                        android:text="@string/hold_to_append"
+                        android:textColor="@android:color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:visibility="gone"
+                        tools:ignore="RtlHardcoded"
+                        tools:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/detail_duration_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|right"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginTop="8dp"
+                        android:alpha=".6"
+                        android:background="#23000000"
+                        android:gravity="center"
+                        android:paddingBottom="2dp"
+                        android:paddingLeft="6dp"
+                        android:paddingRight="6dp"
+                        android:paddingTop="2dp"
+                        android:textAllCaps="true"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:visibility="gone"
+                        tools:ignore="RtlHardcoded"
+                        tools:text="12:38"
+                        tools:visibility="visible" />
+                </FrameLayout>
+
+            </android.support.design.widget.CollapsingToolbarLayout>
 
             <!-- CONTENT -->
             <RelativeLayout
                 android:id="@+id/detail_content_root_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="?android:windowBackground">
+                android:layout_height="wrap_content"
+                android:background="?android:windowBackground"
+                app:layout_scrollFlags="scroll">
 
                 <!-- TITLE -->
                 <FrameLayout
@@ -127,7 +136,7 @@
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textSize="@dimen/video_item_detail_title_text_size"
                         tools:ignore="RtlHardcoded"
-                        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a ultricies ex. Integer sit amet sodales risus. Duis non mi et urna pretium bibendum. Nunc eleifend est quis ipsum porttitor egestas. Sed facilisis, nisl quis eleifend pellentesque, orci metus egestas dolor, at accumsan eros metus quis libero."/>
+                        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a ultricies ex. Integer sit amet sodales risus. Duis non mi et urna pretium bibendum. Nunc eleifend est quis ipsum porttitor egestas. Sed facilisis, nisl quis eleifend pellentesque, orci metus egestas dolor, at accumsan eros metus quis libero." />
 
                     <ImageView
                         android:id="@+id/detail_toggle_description_view"
@@ -136,7 +145,7 @@
                         android:layout_gravity="center_vertical|right"
                         android:layout_marginLeft="5dp"
                         android:src="@drawable/arrow_down"
-                        tools:ignore="ContentDescription,RtlHardcoded"/>
+                        tools:ignore="ContentDescription,RtlHardcoded" />
 
                 </FrameLayout>
 
@@ -150,7 +159,7 @@
                     android:layout_marginTop="@dimen/video_item_detail_error_panel_margin"
                     android:indeterminate="true"
                     android:visibility="gone"
-                    tools:visibility="visible"/>
+                    tools:visibility="visible" />
 
                 <!--ERROR PANEL-->
                 <include
@@ -161,7 +170,7 @@
                     android:layout_below="@id/detail_title_root_layout"
                     android:layout_marginTop="@dimen/video_item_detail_error_panel_margin"
                     android:visibility="gone"
-                    tools:visibility="visible"/>
+                    tools:visibility="visible" />
 
                 <!--HIDING ROOT-->
                 <LinearLayout
@@ -189,12 +198,12 @@
                             android:id="@+id/detail_uploader_root_layout"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_toLeftOf="@id/details_panel"
+                            android:layout_toStartOf="@id/details_panel"
                             android:background="?attr/selectableItemBackground"
                             android:gravity="center_vertical"
                             android:orientation="horizontal"
-                            android:padding="6dp"
-                            android:layout_toLeftOf="@id/details_panel"
-                            android:layout_toStartOf="@id/details_panel">
+                            android:padding="6dp">
 
                             <de.hdodenhof.circleimageview.CircleImageView
                                 android:id="@+id/detail_uploader_thumbnail_view"
@@ -202,23 +211,23 @@
                                 android:layout_height="@dimen/video_item_detail_uploader_image_size"
                                 android:contentDescription="@string/detail_uploader_thumbnail_view_description"
                                 android:src="@drawable/buddy"
-                                tools:ignore="RtlHardcoded"/>
+                                tools:ignore="RtlHardcoded" />
 
                             <TextView
                                 android:id="@+id/detail_uploader_text_view"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="15dp"
-                                android:textAppearance="?android:attr/textAppearanceLarge"
-                                android:textSize="@dimen/video_item_detail_uploader_text_size"
-                                android:textStyle="bold"
                                 android:ellipsize="marquee"
                                 android:fadingEdge="horizontal"
                                 android:marqueeRepeatLimit="marquee_forever"
                                 android:scrollHorizontally="true"
                                 android:singleLine="true"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textSize="@dimen/video_item_detail_uploader_text_size"
+                                android:textStyle="bold"
                                 tools:ignore="RtlHardcoded"
-                                tools:text="Uploader"/>
+                                tools:text="Uploader" />
 
                             <!--<Button
                                 android:id="@+id/detail_uploader_subscribe"
@@ -239,10 +248,11 @@
                             android:id="@+id/details_panel"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_alignParentRight="true"
                             android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
                             android:paddingLeft="6dp"
                             android:paddingRight="6dp">
+
                             <TextView
                                 android:id="@+id/detail_view_count_view"
                                 android:layout_width="wrap_content"
@@ -254,7 +264,7 @@
                                 android:textAppearance="?android:attr/textAppearanceLarge"
                                 android:textSize="@dimen/video_item_detail_views_text_size"
                                 tools:ignore="RtlHardcoded"
-                                tools:text="2,816,821,505 views"/>
+                                tools:text="2,816,821,505 views" />
 
                             <ImageView
                                 android:id="@+id/detail_thumbs_up_img_view"
@@ -262,7 +272,7 @@
                                 android:layout_height="@dimen/video_item_detail_like_image_height"
                                 android:layout_below="@id/detail_view_count_view"
                                 android:contentDescription="@string/detail_likes_img_view_description"
-                                android:src="?attr/thumbs_up"/>
+                                android:src="?attr/thumbs_up" />
 
                             <TextView
                                 android:id="@+id/detail_thumbs_up_count_view"
@@ -276,7 +286,7 @@
                                 android:textAppearance="?android:attr/textAppearanceMedium"
                                 android:textSize="@dimen/video_item_detail_likes_text_size"
                                 tools:ignore="RtlHardcoded"
-                                tools:text="12M"/>
+                                tools:text="12M" />
 
                             <ImageView
                                 android:id="@+id/detail_thumbs_down_img_view"
@@ -287,7 +297,7 @@
                                 android:layout_toRightOf="@id/detail_thumbs_up_count_view"
                                 android:contentDescription="@string/detail_dislikes_img_view_description"
                                 android:src="?attr/thumbs_down"
-                                tools:ignore="RtlHardcoded"/>
+                                tools:ignore="RtlHardcoded" />
 
                             <TextView
                                 android:id="@+id/detail_thumbs_down_count_view"
@@ -301,7 +311,7 @@
                                 android:textAppearance="?android:attr/textAppearanceMedium"
                                 android:textSize="@dimen/video_item_detail_likes_text_size"
                                 tools:ignore="RtlHardcoded"
-                                tools:text="10K"/>
+                                tools:text="10K" />
 
                             <TextView
                                 android:id="@+id/detail_thumbs_disabled_view"
@@ -317,7 +327,7 @@
                                 android:textStyle="bold"
                                 android:visibility="gone"
                                 tools:ignore="RtlHardcoded"
-                                tools:visibility="visible"/>
+                                tools:visibility="visible" />
                         </RelativeLayout>
                     </RelativeLayout>
 
@@ -337,14 +347,14 @@
                             android:layout_weight="1"
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:clickable="true"
-                            android:focusable="true"
                             android:contentDescription="@string/append_playlist"
                             android:drawableTop="?attr/ic_playlist_add"
+                            android:focusable="true"
                             android:gravity="center"
                             android:paddingBottom="6dp"
                             android:paddingTop="6dp"
                             android:text="@string/controls_add_to_playlist_title"
-                            android:textSize="12sp"/>
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/detail_controls_background"
@@ -354,14 +364,14 @@
                             android:layout_weight="1"
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:clickable="true"
-                            android:focusable="true"
                             android:contentDescription="@string/play_audio"
                             android:drawableTop="?attr/audio"
+                            android:focusable="true"
                             android:gravity="center"
                             android:paddingBottom="6dp"
                             android:paddingTop="6dp"
                             android:text="@string/controls_background_title"
-                            android:textSize="12sp"/>
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/detail_controls_popup"
@@ -371,14 +381,14 @@
                             android:layout_weight="1"
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:clickable="true"
-                            android:focusable="true"
                             android:contentDescription="@string/open_in_popup_mode"
                             android:drawableTop="?attr/popup"
+                            android:focusable="true"
                             android:gravity="center"
                             android:paddingBottom="6dp"
                             android:paddingTop="6dp"
                             android:text="@string/controls_popup_title"
-                            android:textSize="12sp"/>
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/detail_controls_download"
@@ -388,14 +398,14 @@
                             android:layout_weight="1"
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:clickable="true"
-                            android:focusable="true"
                             android:contentDescription="@string/controls_download_desc"
                             android:drawableTop="?attr/download"
+                            android:focusable="true"
                             android:gravity="center"
                             android:paddingBottom="6dp"
                             android:paddingTop="6dp"
                             android:text="@string/download"
-                            android:textSize="12sp"/>
+                            android:textSize="12sp" />
 
                     </LinearLayout>
 
@@ -404,7 +414,7 @@
                         android:layout_height="1px"
                         android:layout_marginLeft="8dp"
                         android:layout_marginRight="8dp"
-                        android:background="?attr/separator_color"/>
+                        android:background="?attr/separator_color" />
 
                     <!--DESCRIPTIONS-->
                     <LinearLayout
@@ -425,7 +435,7 @@
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textSize="@dimen/video_item_detail_upload_date_text_size"
                             android:textStyle="bold"
-                            tools:text="Published on Oct 2, 2009"/>
+                            tools:text="Published on Oct 2, 2009" />
 
                         <TextView
                             android:id="@+id/detail_description_view"
@@ -438,59 +448,41 @@
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textIsSelectable="true"
                             android:textSize="@dimen/video_item_detail_description_text_size"
-                            tools:text="Description Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a ultricies ex. Integer sit amet sodales risus. Duis non mi et urna pretium bibendum."/>
+                            tools:text="Description Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a ultricies ex. Integer sit amet sodales risus. Duis non mi et urna pretium bibendum." />
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1px"
                             android:layout_marginLeft="8dp"
                             android:layout_marginRight="8dp"
-                            android:background="?attr/separator_color"/>
+                            android:background="?attr/separator_color" />
 
                     </LinearLayout>
 
-                    <!--NEXT AND RELATED VIDEOS-->
-                    <LinearLayout
-                        android:id="@+id/detail_related_streams_root_layout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|bottom"
-                        android:layout_marginTop="14dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/detail_next_stream_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="12dp"
-                            android:text="@string/next_video_title"
-                            android:textAllCaps="true"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textSize="@dimen/video_item_detail_next_text_size"
-                            tools:ignore="RtlHardcoded"/>
-
-                        <LinearLayout
-                            android:id="@+id/detail_related_streams_view"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="2dp"
-                            android:orientation="vertical"
-                            tools:minHeight="50dp"/>
-
-                        <ImageButton
-                            android:id="@+id/detail_related_streams_expand"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="?attr/selectableItemBackground"
-                            android:paddingBottom="10dp"
-                            android:paddingTop="4dp"
-                            android:src="?attr/expand"
-                            android:textAlignment="center"
-                            android:textAllCaps="true"
-                            tools:ignore="ContentDescription"/>
-                    </LinearLayout>
                 </LinearLayout>
             </RelativeLayout>
-        </LinearLayout>
-    </com.nirhart.parallaxscroll.views.ParallaxScrollView>
+
+        </android.support.design.widget.AppBarLayout>
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tablayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:background="@color/transparent_background_color"
+            app:tabBackground="@drawable/tab_selector"
+            app:tabGravity="center"
+            app:tabIndicatorHeight="0dp">
+
+        </android.support.design.widget.TabLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
 </FrameLayout>

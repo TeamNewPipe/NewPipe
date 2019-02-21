@@ -41,6 +41,13 @@
         android:title="@string/download_thumbnail_title"
         android:summary="@string/download_thumbnail_summary"/>
 
+    <SwitchPreference
+        app:iconSpaceReserved="false"
+        android:defaultValue="true"
+        android:key="@string/show_comments_key"
+        android:title="@string/show_comments_title"
+        android:summary="@string/show_comments_summary"/>
+
     <Preference
         app:iconSpaceReserved="false"
         android:summary="@string/import_data_summary"
