@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="background_player_playing_toast">يتم التشغيل في الخلفية</string>
     <string name="cancel">إلغاء</string>
@@ -10,12 +10,12 @@
     <string name="detail_likes_img_view_description">الإعجابات</string>
     <string name="detail_thumbnail_view_description">صور معاينة الفيديو</string>
     <string name="detail_uploader_thumbnail_view_description">الصورة المصغرة الشخصية</string>
-    <string name="did_you_mean">هل تقصد: %1$s ?</string>
+    <string name="did_you_mean">هل تقصد: %1$s\?</string>
     <string name="download">تنزيل</string>
     <string name="download_dialog_title">تنزيل</string>
     <string name="download_path_audio_dialog_title">أدخل مسار تنزيل الملفات الصوتية</string>
-    <string name="download_path_audio_summary">مسار حفظ التنزيلات الصوتية</string>
-    <string name="download_path_audio_title">مسار ملفات الصوت المحفوظة</string>
+    <string name="download_path_audio_summary">يتم تخزين الصوت الذي تم تنزيله هنا</string>
+    <string name="download_path_audio_title">مسار مجلد الصوتيات المحفوظة</string>
     <string name="download_path_dialog_title">أدخل مسار التنزيل لملفات الفيديو</string>
     <string name="download_path_summary">مسار حفظ تنزيلات الفيديو في</string>
     <string name="download_path_title">مسار ملفات الفيديو المحفوظة</string>
@@ -26,7 +26,7 @@
     <string name="light_theme_title">مضيء</string>
     <string name="list_thumbnail_view_description">صور معاينة الفيديو</string>
     <string name="network_error">خطأ في الشبكة</string>
-    <string name="next_video_title">الفيديو التالي</string>
+    <string name="next_video_title">التالى</string>
     <string name="no_player_found">لا يوجد مشغل فيديو. هل تريد تثبيت VLC ؟</string>
     <string name="open_in_browser">افتح في المتصفح</string>
     <string name="play_audio">الصوت</string>
@@ -38,22 +38,22 @@
     <string name="settings">الإعدادات</string>
     <string name="settings_category_appearance_title">المظهر</string>
     <string name="settings_category_other_title">اخرى</string>
-    <string name="settings_category_video_audio_title">الفيديو والصوتيات</string>
+    <string name="settings_category_video_audio_title">الفيديو &amp; الصوتيات</string>
     <string name="share">مشاركة</string>
     <string name="share_dialog_title">مشاركة بواسطة</string>
-    <string name="show_next_and_similar_title">عرض الفديوهات \'التالية\'و\'المماثلة\'</string>
+    <string name="show_next_and_similar_title">عرض مقاطع الفيديو \"التالية\" و \"شبيه\"</string>
     <string name="show_play_with_kodi_summary">عرض خيار لتشغيل الفيديو بواسطة مشغل كودي</string>
     <string name="show_play_with_kodi_title">عرض خيار التشغيل بواسطة كودي</string>
     <string name="theme_title">السمة</string>
     <string name="upload_date_text">تم النشر يوم %1$s</string>
-    <string name="url_not_supported_toast">الرابط غير مدعوم</string>
+    <string name="url_not_supported_toast">رابط غير معتمد URL</string>
     <string name="use_external_audio_player_title">استخدام مشغل صوت خارجي</string>
     <string name="use_external_video_player_title">استخدام مشغل فيديو خارجي</string>
     <string name="use_tor_summary">(إختبارية) إجراء التنزيلات من خلال استخدام بروكسي Tor لزيادة الخصوصية ( تشغيل الفيديو المباشر غير مدعوم حتى الأن ).</string>
     <string name="use_tor_title">استخدام تور</string>
     <string name="view_count_text">مشاهدات %1$s</string>
     <string name="blocked_by_gema">تم حجبه بواسطة GEMA</string>
-    <string name="content_not_available">المحتوى غير متاح</string>
+    <string name="content_not_available">محتوى غير متوفر</string>
     <string name="could_not_load_thumbnails">تعذرت عملية تحميل كافة صور المعاينة</string>
     <string name="general_error">خطأ</string>
     <string name="parsing_error">تعذرت عملية تحليل الموقع</string>
@@ -70,7 +70,7 @@
     <string name="autoplay_by_calling_app_title">تشغيل تلقائي</string>
     <string name="black_theme_title">اسود</string>
     <string name="enable_watch_history_title">التاريخ وذاكرة التخزين المؤقت</string>
-    <string name="settings_category_history_title">التاريخ و التخزين المؤقت</string>
+    <string name="settings_category_history_title">التاريخ &amp; ذاكرة التخزين المؤقت</string>
     <string name="content">المحتوى</string>
     <string name="downloads">التنزيلات</string>
     <string name="downloads_title">التنزيلات</string>
@@ -83,7 +83,7 @@
     <string name="title_activity_history">التاريخ</string>
     <string name="action_history">التاريخ</string>
     <string name="open_in_popup_mode">افتح في وضع النافذة المنبثقة</string>
-    <string name="use_external_video_player_summary">"بعض الخيارات الدقة لن تحتوي على صوت عند تمكين هذا الخيار "</string>
+    <string name="use_external_video_player_summary">يزيل الصوت في بعض القرارات</string>
     <string name="popup_mode_share_menu_title">وضع النوافذ المنبثقة NewPipe</string>
     <string name="channel_unsubscribed">تم إلغاء الاشتراك في القناة</string>
     <string name="subscription_change_failed">تعذر تغيير حالة الاشتراك</string>
@@ -107,7 +107,7 @@
     <string name="enable_watch_history_summary">تتبع مقاطع الفيديو التي تمت مشاهدتها</string>
     <string name="resume_on_audio_focus_gain_title">استئناف عند اكتساب التركيز</string>
     <string name="resume_on_audio_focus_gain_summary">متابعة التشغيل بعد المقاطعات (مثل المكالمات الهاتفية)</string>
-    <string name="show_hold_to_append_title">عرض تلميح \"اضغط للتجاهل\"</string>
+    <string name="show_hold_to_append_title">إظهار التلميحات \"اضغط للتجاهل\"</string>
     <string name="show_hold_to_append_summary">عرض تلميح على صفحة التفاصيل عند استخدام وضع مشغل الخلفية أو النافذة المنبثقة</string>
     <string name="settings_category_player_title">المشغل</string>
     <string name="settings_category_player_behavior_title">السلوك</string>
@@ -115,9 +115,9 @@
     <string name="popup_playing_toast">يتم التشغيل في الوضع المنبثق</string>
     <string name="background_player_append">تم وضعه على قائمة الانتظار في مشغل الخلفية</string>
     <string name="popup_playing_append">تم وضعه على قائمة الانتظار في مشغل النافذة المنبثقة</string>
-    <string name="show_age_restricted_content_title">عرض المحتوى المقيّد بحسب العُمر</string>
-    <string name="video_is_age_restricted">فيديو مقيد بحسب العمر. السماح بهذا المحتوى ممكن عن طريق الإعدادات.</string>
-    <string name="duration_live">مباشر</string>
+    <string name="show_age_restricted_content_title">محتوى مقيد بحسب العمر</string>
+    <string name="video_is_age_restricted">"إظهار الفيديو  المقيد بحسب العمر. يمكن السماح باستخدام هذه المواد من \"الإعدادات\"."</string>
+    <string name="duration_live">بث مباشر</string>
     <string name="error_report_title">تقرير الخطأ</string>
     <string name="playlist">قائمة التشغيل</string>
     <string name="yes">نعم</string>
@@ -132,13 +132,13 @@
     <string name="play_all">تشغيل الكل</string>
 
     <string name="notification_channel_name">تنبيهات NewPipe</string>
-    <string name="notification_channel_description">التنبيهات لمشغل NewPipe للخلفية والنوافذ المنبثقة</string>
+    <string name="notification_channel_description">تنبيهات مشغل NewPipe للخلفية والنوافذ المنبثقة</string>
 
     <string name="unknown_content">[غير معروف]</string>
 
     <string name="light_parsing_error">لا يمكن تحليل الموقع بشكل كلي</string>
     <string name="could_not_setup_download_menu">تعذرت عملية إعداد قائمة التنزيل</string>
-    <string name="live_streams_not_supported">هذا بث مباشر، وهو غير معتمد الآن.</string>
+    <string name="live_streams_not_supported">لبث المباشر غير مدعوم حتى الآن</string>
     <string name="could_not_get_stream">تعذر الحصول على أي بث</string>
     <string name="could_not_load_image">تعذرت عملية تحميل الصورة</string>
     <string name="app_ui_crash">تعطل التطبيق / واجهة المستخدم</string>
@@ -160,7 +160,7 @@
     <string name="report_error">الإبلاغ عن خطأ</string>
     <string name="user_report">تقرير المستخدم</string>
     <string name="search_no_results">لم يتم العثور على نتائج</string>
-    <string name="empty_subscription_feed_subtitle">لا شيء هنا غير صراصير الليل</string>
+    <string name="empty_subscription_feed_subtitle">لا شيء هنا غير الصراصير</string>
 
     <string name="audio">الصوت</string>
     <string name="retry">إعادة المحاولة</string>
@@ -172,18 +172,18 @@
 
     <string name="no_subscribers">ليس هناك مشترِكون</string>
     <plurals name="subscribers">
-	<item quantity="zero">صفر مشترِك</item>
-	<item quantity="one">%s مشترِك</item>
-	<item quantity="two">مشترِكان</item>
-	<item quantity="few">%s مشتركين</item>
-	<item quantity="many">%s مشترك</item>
-	<item quantity="other">%s مشترك</item>
+	<item quantity="zero">%s لا يوجد مشترك</item>
+	<item quantity="one">%s مشترك</item>
+	<item quantity="two">%s اثنتين مشتركين</item>
+	<item quantity="few">%s اشتراكات</item>
+	<item quantity="many">%s مشتركين</item>
+	<item quantity="other">%s مشتركين</item>
 </plurals>
 
     <string name="no_views">دون مشاهدات</string>
     <string name="no_videos">لاتوجد فيديوهات</string>
-    <string name="start">تشغيل</string>
-    <string name="pause">إيقاف</string>
+    <string name="start">ابدأ</string>
+    <string name="pause">إيقاف مؤقت</string>
     <string name="view">شغل</string>
     <string name="delete">حذف</string>
     <string name="checksum">التوقيع</string>
@@ -194,7 +194,7 @@
     <string name="msg_name">اسم الملف</string>
     <string name="msg_threads">التقسيم</string>
     <string name="msg_error">الخطأ</string>
-    <string name="msg_server_unsupported">الخادم غير معتمد</string>
+    <string name="msg_server_unsupported">خادم غير مدعوم</string>
     <string name="msg_exists">الملف موجود مسبقا</string>
     <string name="msg_url_malform">العنوان غير صحيح أو الإنترنت غير متوفر</string>
     <string name="msg_running">يقوم نيوبايب بالتنزيل</string>
@@ -258,7 +258,7 @@
     <string name="play_queue_audio_settings">الإعدادات الصوتية</string>
     <string name="start_here_on_main">تشغيل هنا</string>
     <string name="start_here_on_popup">تشغيل هنا في وضع النافذة المنبثقة</string>
-<string name="reCaptcha_title">تحدي ريكابتشا</string>
+<string name="reCaptcha_title">تحدي الكابتشا</string>
     <string name="hold_to_append">اضغط للإدراج في قائمة الانتظار</string>
     <plurals name="views">
 	<item quantity="zero">بدون مشاهدات</item>
@@ -278,7 +278,7 @@
 	<item quantity="other">%s فيديوهات</item>
 </plurals>
 
-    <string name="recaptcha_request_toast">إعادة طلب كلمة التحقق</string>
+    <string name="recaptcha_request_toast">طلب اختبار الكابتشا مطلوب</string>
 
     <string name="copyright" formatted="true">© %1$sبواسطة%2$sتحت%3$s</string>
     <string name="kiosk_page_summary">صفحة الكشك</string>
@@ -301,10 +301,10 @@
     <string name="just_once">مرة واحدة فقط</string>
 
     <string name="invalid_url_toast">العنوان خاطئ</string>
-    <string name="no_player_found_toast">لم يتم العثور على مشغل الفديو (يمكنك تثبيت VLC لتشغيله)</string>
+    <string name="no_player_found_toast">لم يتم العثور على مشغل تدفق (يمكنك تثبيت VLC وتشغيله).</string>
     <string name="import_data_title">استيراد قاعدة البيانات</string>
     <string name="export_data_title">تصدير قاعدة البيانات</string>
-    <string name="import_data_summary">"سيقوم بالكتابة على سجل التاريخ  والاشتراكات الحالية "</string>
+    <string name="import_data_summary">"الكتابة فوق سجل التاريخ  والاشتراكات الحالية "</string>
     <string name="export_data_summary">تصدير السجل، الإشتراكات وقوائم التشغيل</string>
     <string name="show_info">عرض المعلومات</string>
 
@@ -355,8 +355,8 @@
 
     <string name="live_sync">مُزامَنة</string>
 
-    <string name="controls_download_desc">تنزيل ملف البث.</string>
-    <string name="tab_bookmarks">الإشارات مرجعية</string>
+    <string name="controls_download_desc">تنزيل ملف البث</string>
+    <string name="tab_bookmarks">الإشارات المرجعية</string>
 
     <string name="use_inexact_seek_title">استعمال التقديم السريع الغير دقيق</string>
     <string name="use_inexact_seek_summary">"التقديم الغير دقيق يسمح للمشغل بالإطلاع الى الأماكن بشكل اسرع مع دقة اقل "</string>
@@ -364,8 +364,8 @@
     <string name="thumbnail_cache_wipe_complete_notice">تم إفراغ مساحة ذاكرة التخزين المؤقتة الخاصة بالصور</string>
     <string name="file">الملف</string>
 
-    <string name="invalid_directory">مجلد غير صالح</string>
-    <string name="file_name_empty_error">لا يمكن ترك إسم الملف فارغا</string>
+    <string name="invalid_directory">لا يوجد مثل هذا المجلد</string>
+    <string name="file_name_empty_error">لا يمكن أن يكون اسم الملف فارغا</string>
     <string name="error_occurred_detail">طرأ هناك خطأ: %1$s</string>
     <string name="no_valid_zip_file">ملف مضغوط ZIP غير صالح</string>
     <string name="unbookmark_playlist">إزالة الفواصل المرجعية</string>
@@ -385,12 +385,12 @@
     <string name="import_soundcloud_instructions_hint">"معرفك , soundcloud.com/ الخاص بك  "</string>
 
     <string name="playback_default">إفتراضي</string>
-<string name="download_thumbnail_summary">تعطيل إيقاف جميع الصور المصغرة من تحميل البيانات واستخدام الذاكرة وحفظها. سيؤدي التغيير هذا إلى محو-ذاكرة التخزين المؤقت في الذاكرة-وذاكرة على القرص</string>
+<string name="download_thumbnail_summary">عند إيقاف تحميل أي صور مصغرة ، وتوفير البيانات واستخدام الذاكرة. تعمل التغييرات على محو ذاكرة التخزين المؤقت للصورة الموجودة على الذاكرة أو على القرص.</string>
     <string name="metadata_cache_wipe_title">امسح البيانات الوصفية المخزنة مؤقتًا</string>
     <string name="metadata_cache_wipe_summary">إزالة جميع بيانات صفحات الويب المخزنة مؤقتًا</string>
     <string name="metadata_cache_wipe_complete_notice">تم محو ذاكرة التخزين المؤقت للبيانات الوصفية</string>
     <string name="auto_queue_title">وضع البث القادم تلقائيا في قائمة الإنتظار</string>
-    <string name="auto_queue_summary">رفض البث المشابه في حال كون البث السابق يعمل في حالة عدم التكرار</string>
+    <string name="auto_queue_summary">رفض التدفق-التلقائي المشابه في حال كان التدفق السابق يعمل في-حالة عدم التكرار.</string>
     <string name="set_as_playlist_thumbnail">إضافة صورة مصغرة إلى قائمة التشغيل</string>
 
     <string name="bookmark_playlist">تفضيل قائمة التشغيل</string>
@@ -408,15 +408,15 @@
 
     <string name="clear_views_history_title">محو سجل المشاهدة</string>
     <string name="clear_views_history_summary">احذف سِجل الفيديوهات التي تم تشغيلها</string>
-    <string name="delete_view_history_alert">حذف سجل المشاهدة بالكامل.</string>
+    <string name="delete_view_history_alert">حذف سجل المشاهدة بالكامل\?</string>
     <string name="view_history_deleted">تم حذف سجل المشاهدة.</string>
     <string name="clear_search_history_title">محو سجل البحث</string>
     <string name="clear_search_history_summary">يحذف تاريخ البحث عن الكلمات الرئيسية</string>
-    <string name="delete_search_history_alert">حذف سِجل البحث بالكامل.</string>
+    <string name="delete_search_history_alert">حذف سِجل البحث بالكامل\?</string>
     <string name="search_history_deleted">تم حذف سجل البحث.</string>
     <string name="external_player_unsupported_link_type">المشغل الخارجي لا يدعم هذه الأنواع من الروابط</string>
-    <string name="invalid_source">ملف غير صالح / محتوى غير صالح</string>
-    <string name="invalid_file">الملف غير موجود أو ليس لديك الإذن الكافي للقراءة أو الكتابة فيه</string>
+    <string name="invalid_source">لا يوجد مثل هذا الملف/مصدر المحتوى</string>
+    <string name="invalid_file">الملف غير موجود أو الإذن بالقراءة أو الكتابة إليه غير موجود</string>
     <string name="no_streams_available_download">لا يوجد بث متاح للتنزيل</string>
 
     <string name="one_item_deleted">تم حذف عنصر واحد.</string>

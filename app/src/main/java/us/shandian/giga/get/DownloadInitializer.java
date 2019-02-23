@@ -156,7 +156,6 @@ public class DownloadInitializer extends Thread {
 
                 if (retryCount++ > mMission.maxRetry) {
                     Log.e(TAG, "initializer failed", e);
-                    mMission.running = false;
                     mMission.notifyError(e);
                     return;
                 }

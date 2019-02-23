@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="upload_date_text">%1$s に公開</string>
     <string name="no_player_found">動画プレイヤーが見つかりません｡VLC を入手しますか？</string>
@@ -59,7 +59,7 @@
     <string name="info_dir_created">保存場所 \'%1$s\' を作成しました</string>
     <string name="general_error">エラー</string>
     <string name="could_not_load_thumbnails">全てのサムネイルを読み込むことができません</string>
-    <string name="youtube_signature_decryption_error">動画の URL 署名を復号できませんでした</string>
+    <string name="youtube_signature_decryption_error">動画のURLを復号できませんでした</string>
     <string name="parsing_error">Webサイトを解析できませんでした</string>
     <string name="content_not_available">コンテンツが利用できません</string>
     <string name="blocked_by_gema">GEMA にブロックされました</string>
@@ -78,7 +78,7 @@
     <string name="could_not_get_stream">動画を取得できませんでした</string>
     <string name="sorry_string">申し訳ありません。発生すべきでものではありませんでした。</string>
     <string name="error_report_button_text">メールで不具合を報告</string>
-    <string name="error_snackbar_message">申し訳ありません。いくつかのエラーが発生しました。</string>
+    <string name="error_snackbar_message">申し訳ありません、不具合が発生しました</string>
     <string name="error_snackbar_action">報告</string>
     <string name="what_device_headline">情報:</string>
     <string name="what_happened_headline">何が起こりましたか:</string>
@@ -119,8 +119,8 @@
     <string name="msg_copied">クリップボードにコピーしました</string>
     <string name="no_available_dir">ダウンロードフォルダを選択して下さい</string>
 
-    <string name="downloads">保存</string>
-    <string name="downloads_title">保存</string>
+    <string name="downloads">ダウンロード</string>
+    <string name="downloads_title">ダウンロード</string>
     <string name="error_report_title">不具合報告</string>
 
     <string name="could_not_load_image">画像を読み込みできません</string>
@@ -181,7 +181,7 @@
     <string name="show_search_suggestions_title">検索候補</string>
     <string name="show_search_suggestions_summary">検索時に候補を表示します</string>
 
-<string name="best_resolution">最適な解像度</string>
+<string name="best_resolution">最高の解像度</string>
 
     <string name="title_activity_about">NewPipe について</string>
     <string name="action_settings">設定</string>
@@ -224,7 +224,7 @@
     <string name="undo">元に戻す</string>
     <string name="play_all">すべて再生</string>
 
-    <string name="notification_channel_name">NewPipeの通知</string>
+    <string name="notification_channel_name">通知</string>
     <string name="unknown_content">[不明]</string>
 
     <string name="player_stream_failure">動画の再生ができませんでした</string>
@@ -378,8 +378,8 @@
     <string name="playback_tempo">テンポ</string>
     <string name="playback_pitch">音程</string>
     <string name="playback_default">デフォルト</string>
-<string name="background_player_append">バックグラウンド再生リストに追加されました</string>
-    <string name="popup_playing_append">ポップアップ再生リストに追加されました</string>
+<string name="background_player_append">バックグラウンド再生の順番待ちに追加</string>
+    <string name="popup_playing_append">ポップアップ再生の順番待ちに追加</string>
     <string name="clear_views_history_title">再生履歴を消去</string>
     <string name="clear_views_history_summary">再生した動画の履歴を削除します</string>
     <string name="view_history_deleted">再生履歴を削除しました。</string>
@@ -468,5 +468,22 @@
     <string name="minimize_on_exit_none_description">何もしない</string>
     <string name="minimize_on_exit_background_description">バックグラウンドに変更</string>
     <string name="minimize_on_exit_popup_description">ポップアップに変更</string>
-
+    <string name="enable_leak_canary_title">LeakCanary を有効にする</string>
+    <string name="enable_leak_canary_summary">メモリリークの監視は、ヒープのダンピング時にアプリが無反応になる原因となります</string>
+    <string name="enable_disposed_exceptions_title">ライフサイクルエラーの報告</string>
+    <string name="enable_disposed_exceptions_summary">破棄後のフラグメントまたはアクティビティライフサイクル外の到達不能RX例外を強制的に報告します</string>
+    <string name="import_soundcloud_instructions">URL または ID を入力して SoundCloud プロファイルをインポートします:
+\n
+\n1. Web ブラウザーで \"デスクトップモード\" を有効にします (サイトは携帯デバイスで利用できません)
+\n2. この URL に移動します: %1$s
+\n3. 必要に応じてログインします
+\n4. リダイレクトされたプロファイル URL をコピーします。</string>
+    <string name="import_soundcloud_instructions_hint">あなたのID, soundcloud.com/あなたのid</string>
+    <string name="import_network_expensive_warning">この操作により通信料金が増えることがあることにご注意ください。
+\n
+\n続行しますか\?</string>
+    <string name="playback_speed_control">再生速度制御</string>
+    <string name="unhook_checkbox">リンク解除 (不備が生じる可能性があります)</string>
+    <string name="skip_silence_checkbox">無音の間に早送り</string>
+    <string name="playback_step">ステップ</string>
 </resources>

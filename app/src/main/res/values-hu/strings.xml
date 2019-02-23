@@ -10,7 +10,7 @@
     <string name="download">Letöltés</string>
     <string name="search">Keresés</string>
     <string name="settings">Beállítások</string>
-    <string name="did_you_mean">Erre gondolt: %1$s ?</string>
+    <string name="did_you_mean">Erre gondoltál: %1$s\?</string>
     <string name="share_dialog_title">Megosztás ezzel</string>
     <string name="choose_browser">Válasszon böngészőt</string>
     <string name="screen_rotation">forgatás</string>
@@ -27,8 +27,8 @@
     <string name="webm_description">WebM — szabad formátum</string>
     <string name="m4a_description">M4A — jobb minőség</string>
     <string name="download_dialog_title">Letöltés</string>
-    <string name="next_video_title">Következő videó</string>
-    <string name="url_not_supported_toast">A webcím nem támogatott</string>
+    <string name="next_video_title">Következő</string>
+    <string name="url_not_supported_toast">Nem támogatott webcím</string>
     <string name="use_external_video_player_title">Külső videólejátszó használata</string>
     <string name="use_external_audio_player_title">Külső hanglejátszó használata</string>
 
@@ -45,7 +45,7 @@
     <string name="settings_category_appearance_title">Megjelenés</string>
     <string name="content_language_title">Tartalom preferált nyelve</string>
     <string name="settings_category_other_title">További beállítások</string>
-    <string name="show_next_and_similar_title">Következő hasonló videók mutatása</string>
+    <string name="show_next_and_similar_title">\'Következő\' és \'Hasonló\' videók mutatása</string>
     <string name="dark_theme_title">Sötét</string>
     <string name="light_theme_title">Világos</string>
 
@@ -60,15 +60,15 @@
     <string name="err_dir_create">Nem lehet létrehozni a letöltési mappát \'%1$s\'</string>
     <string name="info_dir_created">Letöltés mappa létrehozása \'%1$s\'</string>
     <string name="content">Tartalom</string>
-    <string name="show_age_restricted_content_title">Korhatáros tartalom mutatása</string>
+    <string name="show_age_restricted_content_title">Korhatáros tartalom</string>
     <string name="general_error">Hiba</string>
     <string name="content_not_available">A tartalom nem elérhető</string>
     <string name="blocked_by_gema">GEMA által blokkolt</string>
     <string name="live_streams_not_supported">Ez egy élő közvetítés, amely még nem támogatott.</string>
     <string name="autoplay_by_calling_app_title">Automatikus lejátszás</string>
     <string name="autoplay_by_calling_app_summary">Videók automatikus lejátszása, ha a NewPipe egy másik alkalmazásból lett indítva</string>
-    <string name="video_is_age_restricted">Korhatáros videó. A megtekintéséhez engedélyezze a korhatáros videókat a Beállításokban.</string>
-    <string name="duration_live">élő</string>
+    <string name="video_is_age_restricted">Korhatáros videó mutatása. Ennek a tartalomnak az engedélyezése a \"Beállítások\"-ban lehetséges.</string>
+    <string name="duration_live">ÉLŐ</string>
 
     <string name="error_snackbar_action">JELENTÉS</string>
     <string name="what_device_headline">Információ:</string>
@@ -120,19 +120,19 @@
     <string name="msg_server_unsupported">Nem támogatott szerver</string>
     <string name="add">Új küldetés</string>
 <string name="channel_unsubscribed">Csatornáról leiratkozva</string>
-    <string name="subscription_change_failed">Nem lehet megváltoztatni a feliratozást</string>
-    <string name="subscription_update_failed">"Nem lehet frissíteni a feliratkozást "</string>
+    <string name="subscription_change_failed">Nem sikerült megváltoztatni a feliratkozást</string>
+    <string name="subscription_update_failed">"Nem sikerült frissíteni a feliratkozást "</string>
     <string name="tab_main">Főoldal</string>
     <string name="tab_subscriptions">Feliratkozások</string>
-    <string name="tab_bookmarks">Könyvjelzők</string>
+    <string name="tab_bookmarks">Könyvjelzőzött lejátszási listák</string>
 
     <string name="fragment_whats_new">Újdonságok</string>
 
     <string name="controls_background_title">Háttér</string>
     <string name="controls_popup_title">Felugró ablak</string>
-    <string name="no_player_found_toast">Nem található lejátszó alkalmazás(Feltelepítheti a VLC a lejátszáshoz)</string>
+    <string name="no_player_found_toast">Nem található stream lejátszó alkalmazás (feltelepítheted a VLC-t a lejátszáshoz).</string>
     <string name="open_in_popup_mode">Megnyitás felugró ablakként</string>
-    <string name="use_external_video_player_summary">Néhány felbontásnál NEM lesz hang ha ez a beállítás be van kapcsolva</string>
+    <string name="use_external_video_player_summary">Néhány felbontásnál eltávolítja a hangot</string>
     <string name="popup_mode_share_menu_title">NewPipe felugró ablak mód</string>
     <string name="subscribe_button_title">Feliratkozás</string>
     <string name="subscribed_button_title">Feliratkozva</string>
@@ -175,13 +175,13 @@
     <string name="just_once">Csak egyszer</string>
 
     <string name="notification_channel_name">NewPipe Értesítés</string>
-    <string name="notification_channel_description">Értesítések a NewPipe Háttér- és felugró ablak lejátszójához</string>
+    <string name="notification_channel_description">Értesítések a NewPipe háttér- és felugró ablak lejátszójához</string>
 
     <string name="unknown_content">[Ismeretlen]</string>
 
     <string name="import_data_title">Adatbázis importálása</string>
     <string name="export_data_title">Adatbázis exportálása</string>
-    <string name="import_data_summary">Felül fogja írni a jelenlegi előzményeket és feliratkozásokat</string>
+    <string name="import_data_summary">Felülírja a jelenlegi előzményeket és feliratkozásokat</string>
     <string name="export_data_summary">Előzmények, feliratkozások és lejátszási listák exportálása</string>
     <string name="could_not_load_image">Kép betöltése sikertelen</string>
     <string name="app_ui_crash">Alkalmazás/Kezelő felület összeomlott</string>
@@ -194,7 +194,7 @@
     <string name="info_labels">Mi:\\nKérés:\\nTartalom nyelve:\\nSzolgáltatás:\\nGMT Idő:\\nCsomag:\\nVerzió:\\nOperációs Rendszer verzió:</string>
     <string name="search_no_results">Nincs találat</string>
     <string name="use_old_player_title">Régi lejátszó használata</string>
-    <string name="controls_download_desc">Adatfolyam fájl letöltése.</string>
+    <string name="controls_download_desc">Adatfolyam fájl letöltése</string>
     <string name="controls_add_to_playlist_title">Hozzáadás</string>
 
     <string name="use_inexact_seek_title">Gyorsabb, de pontatlan tekerés használata</string>
@@ -218,11 +218,11 @@
     <string name="switch_to_popup">Folytatás felugró ablakban</string>
     <string name="clear_views_history_title">Megtekintési előzmények törlése</string>
     <string name="clear_views_history_summary">Eltávolítja a megtekintési előzményeket</string>
-    <string name="delete_view_history_alert">Összes megtekintési előzmény törlése.</string>
+    <string name="delete_view_history_alert">Törlöd az összes megtekintési előzményt\?</string>
     <string name="view_history_deleted">Megtekintési előzmények törölve.</string>
     <string name="clear_search_history_title">Keresési előzmények törlése</string>
     <string name="clear_search_history_summary">Eltávolítja a kereséshez használt kifejezéseket az előzményekből</string>
-    <string name="delete_search_history_alert">Összes keresési előzmény törlése.</string>
+    <string name="delete_search_history_alert">Törlöd az összes keresési előzményt\?</string>
     <string name="search_history_deleted">Keresési előzmények törölve.</string>
     <string name="player_unrecoverable_failure">Lejátszási hiba történt</string>
     <string name="player_recoverable_failure">Lejátszási hiba helyreállítása</string>
@@ -432,4 +432,8 @@
     <string name="minimize_on_exit_background_description">Lejátszás folytatása a háttérben</string>
     <string name="minimize_on_exit_popup_description">Lejátszás folytatása felugró ablakban</string>
 
-</resources>
+<string name="resume_on_audio_focus_gain_title">Lejátszás folytatása a fókusz visszaszerzésekor</string>
+    <string name="show_hold_to_append_title">Mutassa a \"Tartsa lenyomva a hozzáadáshoz\" tippet</string>
+    <string name="background_player_append">Sorba állítva a háttérben lejátszáshoz</string>
+    <string name="toggle_orientation">Elforgatás</string>
+    </resources>
