@@ -26,6 +26,7 @@ import android.util.Log;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.extractor.Info;
+import org.schabi.newpipe.extractor.InfoItem;
 
 import java.util.Map;
 
@@ -52,27 +53,27 @@ public final class InfoCache {
     }
 
     @Nullable
-    public Info getFromKey(int serviceId, @NonNull String url) {
+    public Info getFromKey(int serviceId, @NonNull String url, @NonNull InfoItem.InfoType infoType) {
         if (DEBUG) Log.d(TAG, "getFromKey() called with: serviceId = [" + serviceId + "], url = [" + url + "]");
         synchronized (lruCache) {
-            return getInfo(keyOf(serviceId, url));
+            return getInfo(keyOf(serviceId, url, infoType));
         }
     }
 
-    public void putInfo(int serviceId, @NonNull String url, @NonNull Info info) {
+    public void putInfo(int serviceId, @NonNull String url, @NonNull Info info, @NonNull InfoItem.InfoType infoType) {
         if (DEBUG) Log.d(TAG, "putInfo() called with: info = [" + info + "]");
 
         final long expirationMillis = ServiceHelper.getCacheExpirationMillis(info.getServiceId());
         synchronized (lruCache) {
             final CacheData data = new CacheData(info, expirationMillis);
-            lruCache.put(keyOf(serviceId, url), data);
+            lruCache.put(keyOf(serviceId, url, infoType), data);
         }
     }
 
-    public void removeInfo(int serviceId, @NonNull String url) {
+    public void removeInfo(int serviceId, @NonNull String url, @NonNull InfoItem.InfoType infoType) {
         if (DEBUG) Log.d(TAG, "removeInfo() called with: serviceId = [" + serviceId + "], url = [" + url + "]");
         synchronized (lruCache) {
-            lruCache.remove(keyOf(serviceId, url));
+            lruCache.remove(keyOf(serviceId, url, infoType));
         }
     }
 
@@ -98,8 +99,8 @@ public final class InfoCache {
     }
 
     @NonNull
-    private static String keyOf(final int serviceId, @NonNull final String url) {
-        return serviceId + url;
+    private static String keyOf(final int serviceId, @NonNull final String url, @NonNull InfoItem.InfoType infoType) {
+        return serviceId + url + infoType.toString();
     }
 
     private static void removeStaleCache() {

@@ -138,6 +138,7 @@
     <string name="show_search_suggestions_key" translatable="false">show_search_suggestions</string>
     <string name="show_play_with_kodi_key" translatable="false">show_play_with_kodi</string>
     <string name="show_next_video_key" translatable="false">show_next_video</string>
+    <string name="show_comments_key" translatable="false">show_comments</string>
     <string name="show_hold_to_append_key" translatable="false">show_hold_to_append</string>
     <string name="default_language_value">en</string>
     <string name="default_country_value">GB</string>
