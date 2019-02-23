@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 <string name="main_bg_subtitle">தொடங்குவதற்கு தேடல் பொத்தானை அழுத்தவும்</string>
     <string name="view_count_text">"%1$s  பார்வைகள்"</string>
@@ -14,4 +14,156 @@
     <string name="share_dialog_title">பகிர</string>
     <string name="choose_browser">உலாவியை தேர்ந்தெடு</string>
     <string name="screen_rotation">சுழற்சி</string>
-    </resources>
+    <string name="no_player_found_toast">எந்த ஒரு இயக்கியும் கிடைக்கவில்லை (VLC-ஐ பயன்படுத்தவும்).</string>
+    <string name="open_in_popup_mode">திரைமேல் நிலையில் காணவும்</string>
+    <string name="controls_download_desc">தாரை கோப்பை பதிவிறக்கு</string>
+    <string name="did_you_mean">நீங்கள் கூறியது: %1$s இதுதானா\?</string>
+    <string name="use_external_video_player_title">வெளி காணொலி இயக்கியை பயன்படுத்தவும்</string>
+    <string name="use_external_audio_player_title">வெளி ஒலி இயக்கியை பயன்படுத்தவும்</string>
+    <string name="popup_mode_share_menu_title">NewPipe திரைமேல் நிலை</string>
+    <string name="subscribe_button_title">குழுசேர்</string>
+    <string name="subscribed_button_title">குழு சேர்க்கப்பட்டது</string>
+    <string name="channel_unsubscribed">சேனல் குழுவிளகப்பட்டது</string>
+    <string name="subscription_change_failed">குழுசேர்தலை மாற்ற இயலவில்லை</string>
+    <string name="subscription_update_failed">குழுசேர்தலை புதுப்பிக்க இயலவில்லை</string>
+    <string name="show_info">தகவல் காண்பி</string>
+
+    <string name="tab_main">முதன்மை</string>
+    <string name="tab_subscriptions">குழுசேர்ப்புகள்</string>
+    <string name="tab_bookmarks">குறிக்கப்பட்ட காணொலி பட்டியல்கள்</string>
+
+    <string name="fragment_whats_new">புதிதாக</string>
+
+    <string name="controls_background_title">பின்னால்</string>
+    <string name="controls_popup_title">திரைமேல்</string>
+    <string name="controls_add_to_playlist_title">சேர்</string>
+
+    <string name="download_path_title">காணிலி தரவிறக்கப் பாதை</string>
+    <string name="download_path_summary">தரவிறக்கப்பட்ட காணொலிகளின் சேமிப்புப் பாதை</string>
+    <string name="download_path_dialog_title">காணொலியின் தரவிறக்கப் பாதையை உள்ளிடு</string>
+
+    <string name="download_path_audio_title">ஒலி பதிவிறக்க அடைவு</string>
+    <string name="download_path_audio_summary">தரவிறக்கப்பட்ட ஒலி இங்கே சேமிக்கப்பட்டுள்ளது</string>
+    <string name="download_path_audio_dialog_title">ஒலி கோப்புகளுக்கான தரவிறக்கப் பாதையை உள்ளிடு</string>
+
+    <string name="autoplay_by_calling_app_title">தானே இயக்கு</string>
+    <string name="autoplay_by_calling_app_summary">NewPipe மற்றொரு செயலியில் இருந்து அழைக்கப்படும் போது காணொலியை இயக்கும்</string>
+    <string name="default_resolution_title">முதல் பிரிதிறன்</string>
+    <string name="default_popup_resolution_title">முதல் திரைமேல் நிலை பிரிதிறன்</string>
+    <string name="show_higher_resolutions_title">மேம்பட்ட பிரிதிறன்களைக் காண்பி</string>
+    <string name="play_with_kodi_title">Kodi கொண்டு இயக்கு</string>
+    <string name="kore_not_found">Kore செயலி காணவில்லை. நிறுவலாமா\?</string>
+    <string name="show_play_with_kodi_title">\"Kodi கொண்டு இயக்கு\" இடப்பை காண்பி</string>
+    <string name="play_audio">ஒலி</string>
+    <string name="default_audio_format_title">முதல் ஒலி வடிவம்</string>
+    <string name="default_video_format_title">முதல் காணிலி வடிவம்</string>
+    <string name="m4a_description">M4A - மேம்பட்ட தரம்</string>
+    <string name="theme_title">வார்ப்புரு</string>
+    <string name="light_theme_title">வெளிர்</string>
+    <string name="dark_theme_title">அடர்</string>
+    <string name="black_theme_title">கருப்பு</string>
+    <string name="popup_remember_size_pos_title">திரைமேல் அளவையும் இடத்தையும் நினைவுகொள்</string>
+    <string name="popup_remember_size_pos_summary">திரைமேல் நிலையின் கடைசி அளவையும் இடத்தையும் நினைவுகொள்</string>
+    <string name="download_thumbnail_title">வில்லைப்படத்தைக் காண்பி</string>
+    <string name="thumbnail_cache_wipe_complete_notice">பட பதுக்ககம் அழிக்கப்பட்டது</string>
+    <string name="metadata_cache_wipe_title">மேல்நிலைத்தரவின் பதுக்ககம் அழிக்கப்பட்டது</string>
+    <string name="metadata_cache_wipe_summary">பதுக்ககத்திலிருக்கும் வலைப்பக்கத் தரவு அழிக்கப்பட்டது</string>
+    <string name="metadata_cache_wipe_complete_notice">மேல்நிலைத் தரவு பதுக்ககம் அழிக்கப்பட்டது</string>
+    <string name="show_search_suggestions_title">ஆலோசனைகளை தேடு</string>
+    <string name="enable_search_history_title">தேடல் வரலாறு</string>
+    <string name="enable_watch_history_title">வரலாறு மற்றும் பதுக்ககம்</string>
+    <string name="enable_watch_history_summary">பார்த்த காணொலிகளை குறிப்பிடு</string>
+    <string name="download_dialog_title">தரவிறக்கு</string>
+    <string name="next_video_title">அடுத்து</string>
+    <string name="service_title">சேவை</string>
+    <string name="settings_category_player_title">இயக்கி</string>
+    <string name="settings_category_player_behavior_title">பண்பு</string>
+    <string name="settings_category_video_audio_title">ஒலி மற்றும் காணொலி</string>
+    <string name="settings_category_history_title">வரலாறு மற்றும் பதுக்ககம்</string>
+    <string name="settings_category_popup_title">திரைமேல்</string>
+    <string name="settings_category_appearance_title">தோற்றம்</string>
+    <string name="settings_category_other_title">மற்றவை</string>
+    <string name="background_player_playing_toast">பிண்ணணியில் ஓடுகிறது</string>
+    <string name="popup_playing_toast">திரைமேல் நிலையில் ஓடுகிறது</string>
+    <string name="play_btn_text">இயக்கு</string>
+    <string name="duration_live">நேரடி ஒளிபரப்பு</string>
+    <string name="downloads">தரவிறக்கங்கள்</string>
+    <string name="downloads_title">தரவிறக்கங்கள்</string>
+    <string name="all">அனைத்தும்</string>
+    <string name="playlist">காணொலி பட்டியல்</string>
+    <string name="playlists">காணொலி பட்டியல்கள்</string>
+    <string name="users">பயனர்கள்</string>
+    <string name="yes">ஆம்</string>
+    <string name="later">பின்னர்</string>
+    <string name="clear">நீக்கு</string>
+    <string name="always">எப்பொழுதும்</string>
+    <string name="just_once">ஒரு முறை</string>
+    <string name="file">கோப்பு</string>
+
+    <string name="clear_views_history_title">பார்த்த வரலாற்றை நீக்கு</string>
+    <string name="view_history_deleted">பார்த்த வரலாறு அழிக்கப்பட்டது.</string>
+    <string name="clear_search_history_title">பார்த்த வரலாற்றை நீக்கு</string>
+    <string name="search_history_deleted">தேடல் வரலாறு அழிக்கப்பட்டது.</string>
+    <string name="file_name_empty_error">கோப்பு பெயர் காலியாக இருக்க முடியாது</string>
+    <string name="error_snackbar_message">மன்னியுங்கள். சிறிய பிழை நிகழ்ந்தது.</string>
+    <string name="what_device_headline">தகவல்:</string>
+    <string name="error_details_headline">விவரங்கள்:</string>
+
+
+    <string name="detail_likes_img_view_description">விருப்பங்கள்</string>
+    <string name="use_tor_title">Tor பயன்படுத்து</string>
+    <string name="search_no_results">முடிவுகள் இல்லை</string>
+    <string name="empty_subscription_feed_subtitle">எந்த முடிவுகளும் இல்லை</string>
+    <string name="detail_drag_description">இழுத்து வரிசைமாற்று</string>
+
+    <string name="info_dir_created">தரவிறக்க அடைவு உருவாக்கப்பட்டது \'%1$s\'</string>
+
+    <string name="video">காணொலி</string>
+    <string name="audio">ஒலி</string>
+    <string name="retry">மீண்டும் முயற்சி</string>
+    <string name="use_external_video_player_summary">சில பிரிதிறன்கலில் ஒலி நீக்கப்படும்</string>
+    <string name="show_higher_resolutions_summary">சில சாதனங்கள் மட்டுமெ 2k/4k காணொளிகலை இயக்கும்</string>
+    <string name="show_play_with_kodi_summary">காணொளிகலை Kodi media center கொண்டு இயக்கும் இடப்பை காண்பி</string>
+    <string name="use_inexact_seek_title">வேகமான பொருத்தமற்ற தேடலை பயன்படுத்து</string>
+    <string name="player_gesture_controls_title">இயக்கியின் சைகை கட்டுப்பாடுகள்</string>
+    <string name="player_gesture_controls_summary">"இயைக்கியின்  பிரகாசம் மற்றும் ஒலியினை சைகைமூலம் கட்டுப்படுத்து"</string>
+    <string name="show_search_suggestions_summary">தேடும்போது பரிந்துரைகளை கான்பி</string>
+    <string name="resume_on_audio_focus_gain_summary">"தொலைபேசி அழைப்பு போன்ற குறுக்கீடுகளுக்கு பிறகு தொடரவும் "</string>
+    <string name="show_next_and_similar_title">\'அடுத்து\' மற்றும் \'ஒப்பான\' காணொளிகலை காண்பி</string>
+    <string name="enable_search_history_summary">தேடப்பட்ட வாக்கியத்தை அமைவிடத்தில் சேமிக்கவும்</string>
+    <string name="url_not_supported_toast">ஆதரிக்கப்படாத URL</string>
+    <string name="default_content_country_title">இயல்புநிலை தகவல்களின் நாடு</string>
+    <string name="search_language_title">தகவல்களின் இயல்பு மொழி</string>
+    <string name="settings_category_debug_title">பிழைதிருத்து</string>
+    <string name="content">உள்ளடக்கம்</string>
+    <string name="show_age_restricted_content_title">வயது வரம்புக்கு உட்பட்டது</string>
+    <string name="auto_queue_title">அடுத்த தாரையில் தானாக சேர்</string>
+    <string name="background_player_append">"பின்னணி இயக்கியின் வரிசையில் சேர்க்கப்பட்டது "</string>
+    <string name="video_is_age_restricted">அமைப்புகள் மூலம் வயது வரையறுக்கப்பட்ட வீடியோக்கலை காணலாம்.</string>
+    <string name="error_report_title">பிழை அறிக்கை</string>
+    <string name="channel">சேனல்</string>
+    <string name="channels">சேனல்கள்</string>
+    <string name="disabled">செயலிழக்கச் செய்யப்பட்டுள்ளது</string>
+    <string name="filter">வடிகட்டு</string>
+    <string name="refresh">புதுப்பி</string>
+    <string name="popup_resizing_indicator_title">மறுஅளவாக்கம்</string>
+    <string name="undo">முந்தய நிலைக்குச் செல்</string>
+    <string name="play_all">அனைத்தையும் இயக்கு</string>
+    <string name="notification_channel_name">NewPipe அறிவிப்புகள்</string>
+    <string name="unknown_content">[அறியப்படவில்லை]</string>
+    <string name="toggle_orientation">நோக்குநிலை மாற்று</string>
+    <string name="switch_to_background">பின்னனிக்கு மாறு</string>
+    <string name="show_hold_to_append_title">\"சேர்ப்பதர்க்கு அழுத்தவும்\" அறிவிப்பை காண்பி</string>
+    <string name="import_data_title">தகவல்கலை இறக்குமதி செய்</string>
+    <string name="export_data_title">தகவல்கலை ஏற்றுமதி செய்</string>
+    <string name="import_data_summary">"தற்போதைய வரலாறு மற்றும் சந்தாக்கள் பதிலாக சேர்க்கப்படும் "</string>
+    <string name="export_data_summary">வரலாறு, சந்தாக்கள் மற்றும் பட்டியல்கலை ஏற்றுமதி செய்</string>
+    <string name="delete_view_history_alert">பார்த்த அனைத்து வரலாற்றயும் அழிக்கவா\?</string>
+    <string name="clear_search_history_summary">தேடப்பட்ட வார்த்தைகளின் வரலாற்றை அழி</string>
+    <string name="delete_search_history_alert">அனைத்து வரலாற்றயும் அழிக்கவா\?</string>
+    <string name="general_error">பிழை</string>
+    <string name="best_resolution">சிறந்த திரைத் தெளிவுத்திறன்</string>
+    <string name="popup_playing_append">பாப் அப் இயக்கியின் வரிசையில் சேர்க்கப்பட்டது</string>
+    <string name="notification_channel_description">"NewPipe பின்னனி மற்றும் பாப்அப் இயக்கிகளின்  அறிவிப்புகள்"</string>
+    <string name="switch_to_popup">"பாப்அப் இயக்கிக்கு மாறு  "</string>
+</resources>

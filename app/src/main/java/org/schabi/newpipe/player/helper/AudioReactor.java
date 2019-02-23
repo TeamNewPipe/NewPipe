@@ -131,7 +131,7 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener,
     private void onAudioFocusLossCanDuck() {
         Log.d(TAG, "onAudioFocusLossCanDuck() called");
         // Set the volume to 1/10 on ducking
-        animateAudio(player.getVolume(), DUCK_AUDIO_TO);
+        player.setVolume(DUCK_AUDIO_TO);
     }
 
     private void animateAudio(final float from, final float to) {

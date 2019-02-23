@@ -239,7 +239,7 @@
                     android:focusable="true"
                     android:padding="5dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/list"
+                    android:src="@drawable/ic_list_white_24dp"
                     android:background="?attr/selectableItemBackground"
                     tools:ignore="ContentDescription,RtlHardcoded"/>
 

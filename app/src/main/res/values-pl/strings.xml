@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_bg_subtitle">Dotknij wyszukaj, aby rozpocząć</string>
     <string name="install">Instaluj</string>
@@ -8,7 +8,7 @@
     <string name="download">Pobierz</string>
     <string name="search">Wyszukaj</string>
     <string name="settings">Ustawienia</string>
-    <string name="did_you_mean">Miałeś na myśli: %1$s ?</string>
+    <string name="did_you_mean">Miałeś na myśli: %1$s\?</string>
     <string name="share_dialog_title">Udostępnij przez</string>
     <string name="choose_browser">Wybierz przeglądarkę</string>
     <string name="screen_rotation">obrót</string>
@@ -22,8 +22,8 @@
     <string name="download_path_summary">Ścieżka zapisu pobranych wideo</string>
     <string name="download_path_dialog_title">Podaj ścieżkę zapisu wideo</string>
 
-    <string name="download_path_audio_title">Ścieżka zapisu audio</string>
-    <string name="download_path_audio_summary">Ścieżka zapisu pobranych audio</string>
+    <string name="download_path_audio_title">Folder pobierania audio</string>
+    <string name="download_path_audio_summary">Pobrany dźwięk jest przechowywany tutaj</string>
     <string name="download_path_audio_dialog_title">Podaj ścieżkę zapisu audio</string>
 
     <string name="autoplay_by_calling_app_title">Autoodtwarzanie</string>
@@ -40,7 +40,7 @@
     <string name="light_theme_title">Jasny</string>
 
     <string name="download_dialog_title">Pobrane</string>
-    <string name="next_video_title">Następny film</string>
+    <string name="next_video_title">Następny</string>
     <string name="show_next_and_similar_title">Pokaż \'następne\' i \'podobne\' filmy</string>
     <string name="url_not_supported_toast">URL nieobsługiwany</string>
     <string name="content_language_title">Domyślny język zawartości</string>
@@ -50,8 +50,8 @@
     <string name="background_player_playing_toast">Odtwarzanie w tle</string>
     <string name="play_btn_text">Odtwórz</string>
     <string name="content">Zawartość</string>
-    <string name="show_age_restricted_content_title">Pokaż zawartość z ograniczeniem wieku</string>
-    <string name="video_is_age_restricted">Film z ograniczeniami wiekowymi. Najpierw zezwól na filmy z ograniczeniem wiekowym w ustawieniach.</string>
+    <string name="show_age_restricted_content_title">Treści z ograniczeniem wiekowym</string>
+    <string name="video_is_age_restricted">Pokaż film z ograniczeniami wiekowymi. Dopuszczenie takiego materiału jest możliwe w \"Ustawieniach\".</string>
     <string name="duration_live">Na żywo</string>
     <string name="downloads">Pobrane</string>
     <string name="downloads_title">Pobrane</string>
@@ -66,7 +66,7 @@
     <string name="content_not_available">Zawartość niedostępna</string>
     <string name="blocked_by_gema">Zablokowane przez GEMA</string>
     <string name="could_not_setup_download_menu">Nie można ustawić menu pobierania</string>
-    <string name="live_streams_not_supported">To jest film NA ŻYWO. Te nie są jeszcze wspierane.</string>
+    <string name="live_streams_not_supported">Transmisje na żywo nie są jeszcze obsługiwane</string>
     <string name="could_not_get_stream">Nie można otrzymać żadnego strumienia</string>
     <string name="sorry_string">Przepraszamy, to nie powinno mieć miejsca.</string>
     <string name="error_report_button_text">Zgłoś błąd przez e-mail</string>
@@ -107,7 +107,7 @@
     <string name="msg_name">Nazwa pliku</string>
     <string name="msg_threads">Wątki</string>
     <string name="msg_error">Błąd</string>
-    <string name="msg_server_unsupported">Serwer niewspierany</string>
+    <string name="msg_server_unsupported">Nieobsługiwany serwer</string>
     <string name="msg_exists">Plik już istnieje</string>
     <string name="msg_url_malform">Zniekształcony URL lub brak internetu</string>
     <string name="msg_running">Pobieranie NewPipe</string>
@@ -121,10 +121,10 @@
     <string name="use_tor_summary">(Eksperymentalne) Wymuś pobieranie przez Tora dla zwiększonej prywatności (strumieniowanie wideo nie jest jeszcze wspierane).</string>
     <string name="start">Start</string>
     <string name="reCaptchaActivity">CAPTCHA</string>
-    <string name="reCaptcha_title">Rozwiąż reCAPTCHA</string>
-    <string name="recaptcha_request_toast">Prośba o reCAPTCHA</string>
+    <string name="reCaptcha_title">Wyzwanie reCAPTCHA</string>
+    <string name="recaptcha_request_toast">Wymagane wyzwanie dotyczące reCAPTCHA</string>
 
-    <string name="use_external_video_player_summary">Niektóre rozdzielczości nie będą miały dźwięku, jeśli ta opcja jest włączona</string>
+    <string name="use_external_video_player_summary">Usuwa dźwięk w niektórych rozdzielczościach</string>
     <string name="controls_background_title">W tle</string>
     <string name="default_popup_resolution_title">Domyślna rozdzielczość dla trybu okienkowego</string>
     <string name="show_higher_resolutions_title">Pokaż wyższe rozdzielczości</string>
@@ -150,10 +150,6 @@
     <string name="clear">Wyczyść</string>
     <string name="popup_resizing_indicator_title">Zmiana rozmiaru</string>
 
-    <string name="use_old_player_title">Użyj starego odtwarzacza</string>
-    <string name="use_old_player_summary">Stary odtwarzacz wbudowany w Mediaframework</string>
-
-
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
@@ -178,7 +174,7 @@
     <string name="action_open_website">Otwórz stronę</string>
     <string name="tab_about">O programie</string>
     <string name="tab_licenses">Licencje</string>
-    <string name="app_description">Wolne, lekkie przesyłanie strumieniowania na Androidzie.</string>
+    <string name="app_description">Wolne, lekkie strumieniowanie na Androidzie.</string>
     <string name="view_on_github">Zobacz na GitHubie</string>
     <string name="app_license_title">Licencja NewPipe</string>
     <string name="contribution_encouragement">Jeżeli masz pomysł na tłumaczenie, zmiany w wyglądzie aplikacji, oczyszczenie kodu źródłowego, pomoc jest zawsze mile widziana. Im więcej jest zrobione, tym lepiej!</string>
@@ -192,7 +188,7 @@
     <string name="subscribed_button_title">Subskrybujesz</string>
     <string name="channel_unsubscribed">Anulowano subskrypcję kanału</string>
     <string name="subscription_change_failed">Nie można zmienić subskrypcji</string>
-    <string name="subscription_update_failed">Nie można uaktualnić subskrypcji</string>
+    <string name="subscription_update_failed">Nie można zaktualizować subskrypcji</string>
 
     <string name="tab_main">Główna</string>
     <string name="tab_subscriptions">Subskrypcje</string>
@@ -208,7 +204,7 @@
 
 
     <string name="notification_channel_name">Powiadomienia NewPipe</string>
-    <string name="notification_channel_description">Powiadomienia dla odtwarzacza NewPipe w tle i w okienku</string>
+    <string name="notification_channel_description">Powiadomienia dla graczy w tle i wyskakujących okien NewPipe</string>
 
     <string name="tab_contributors">Współautorzy</string>
     <string name="title_activity_history">Historia</string>
@@ -227,7 +223,7 @@
 
     <string name="search_no_results">Brak wyników</string>
     <string name="no_views">Brak wyświetleń</string>
-    <string name="show_hold_to_append_title">Pokaż wskazówkę „Przytrzymaj, aby dodać”</string>
+    <string name="show_hold_to_append_title">Pokaż wskazówkę \"Przytrzymaj, aby dodać\"</string>
     <string name="show_hold_to_append_summary">Pokaż wskazówkę podczas naciśnięcia odtwarzania na stronie szczegółów filmu</string>
     <string name="background_player_append">W kolejce odtwarzania w tle</string>
     <string name="popup_playing_append">W kolejce odtwarzania okienkowego</string>
@@ -239,7 +235,7 @@
     <string name="player_unrecoverable_failure">Wystąpił nieodwracalny błąd odtwarzacza</string>
     <string name="player_recoverable_failure">Odzyskiwanie po błędzie odtwarzacza</string>
 
-    <string name="empty_subscription_feed_subtitle">Nic tu nie ma. Słychać świerszcze…</string>
+    <string name="empty_subscription_feed_subtitle">Nic tu nie ma. Słychać świerszcze</string>
 
     <string name="no_subscribers">Brak subskrybentów</string>
     <plurals name="subscribers">
@@ -278,14 +274,14 @@
     <string name="feed_page_summary">Strona kanału</string>
     <string name="channel_page_summary">Strona kanału</string>
     <string name="select_a_channel">Wybierz kanał</string>
-    <string name="no_channel_subscribed_yet">Brak subskrybowanych kanałów</string>
+    <string name="no_channel_subscribed_yet">Brak subskrypcji kanałów</string>
     <string name="select_a_kiosk">Wybierz „kiosk”</string>
 
     <string name="kiosk">„Kiosk”</string>
     <string name="trending">Na czasie</string>
     <string name="top_50">50 najlepszych</string>
     <string name="new_and_hot">Nowe i gorące</string>
-    <string name="title_activity_background_player">Odtwarzacz w tle</string>
+    <string name="title_activity_background_player">Odtwarzanie w tle</string>
     <string name="title_activity_popup_player">Odtwarzacz w trybie okienkowym</string>
     <string name="play_queue_remove">Usuń</string>
     <string name="play_queue_stream_detail">Szczegóły</string>
@@ -293,10 +289,10 @@
     <string name="hold_to_append">Przytrzymaj, aby zakolejkować</string>
     <string name="enqueue_on_background">Kolejkuj w tle</string>
     <string name="enqueue_on_popup">Kolejkuj w okienku</string>
-    <string name="start_here_on_main">Odtwórz teraz</string>
+    <string name="start_here_on_main">Zacznij odtwarzać tutaj</string>
     <string name="start_here_on_background">Odtwórz w tle</string>
-    <string name="start_here_on_popup">Odtwórz w okienku</string>
-<string name="no_player_found_toast">Nie znaleziono odtwarzacza strumieniowego (żeby odtworzyć, możesz zainstalować VLC)</string>
+    <string name="start_here_on_popup">Zacznij tutaj w nowym wyskakującym okienku</string>
+<string name="no_player_found_toast">Nie znaleziono odtwarzacza strumieniowego (żeby odtworzyć, możesz zainstalować VLC).</string>
     <string name="default_content_country_title">Domyślny kraj zawartości</string>
     <string name="service_title">Usługa</string>
     <string name="always">Zawsze</string>
@@ -311,16 +307,15 @@
 
     <string name="video_player">Odtwarzacz wideo</string>
     <string name="background_player">Odtwarzacz w tle</string>
-    <string name="always_ask_player">Pytaj za każdym razem</string>
     
     <string name="preferred_player_fetcher_notification_title">Informacje…</string>
     <string name="preferred_player_fetcher_notification_message">Ładowanie żądanej zawartości</string>
-<string name="controls_download_desc">Pobierz plik strumienia.</string>
+<string name="controls_download_desc">Pobierz plik strumienia</string>
     <string name="show_info">Pokaż informacje</string>
 
     <string name="controls_add_to_playlist_title">Dodaj do</string>
 
-    <string name="tab_bookmarks">Zakładki</string>
+    <string name="tab_bookmarks">Ulubione playlisty</string>
 
     <string name="settings_category_debug_title">Debugowanie</string>
     <string name="switch_to_popup">Odtwarzaj w okienku</string>
@@ -328,7 +323,7 @@
 
     <string name="import_data_title">Importuj dane</string>
     <string name="export_data_title">Eksportuj dane</string>
-    <string name="import_data_summary">Nadpisuje bieżącą historię i subskrypcje</string>
+    <string name="import_data_summary">Zastępuje Twoją bieżącą historię i subskrypcje</string>
     <string name="export_data_summary">Eksportuje bieżącą historię, subskrypcje i playlisty</string>
     <string name="detail_drag_description">Przeciągnij, aby zmienić kolejność</string>
 
@@ -343,8 +338,8 @@
     <string name="title_last_played">Ostatnio odtwarzane</string>
     <string name="title_most_played">Najczęściej odtwarzane</string>
 
-    <string name="export_complete_toast">Eksport zakończony</string>
-    <string name="import_complete_toast">Import zakończony</string>
+    <string name="export_complete_toast">Eksportowanie</string>
+    <string name="import_complete_toast">Importowanie</string>
     <string name="no_valid_zip_file">Niepoprawne archiwum ZIP</string>
     <string name="could_not_import_all_files">Ostrzeżenie: Nie udało się zaimportować wszystkich plików.</string>
     <string name="override_current_data">Nadpisuje obecne ustawienia.</string>
@@ -357,9 +352,9 @@
     <string name="popup_player">Odtwarzacz w okienku</string>
     <string name="always_ask_open_action">Zawsze pytaj</string>
     
-    <string name="create_playlist">Utwórz playlistę</string>
-    <string name="delete_playlist">Usuń playlistę</string>
-    <string name="rename_playlist">Zmień nazwę playlisty</string>
+    <string name="create_playlist">Nowa playlista</string>
+    <string name="delete_playlist">Usuń</string>
+    <string name="rename_playlist">Zmień</string>
     <string name="playlist_name_input">Nazwa</string>
     <string name="append_playlist">Dodaj do playlisty</string>
     <string name="set_as_playlist_thumbnail">Ustaw jako miniaturę playlisty</string>
@@ -367,11 +362,11 @@
     <string name="bookmark_playlist">Dodaj do zakładek</string>
     <string name="unbookmark_playlist">Usuń z zakładek</string>
 
-    <string name="delete_playlist_prompt">Czy chcesz usunąć playlistę?</string>
+    <string name="delete_playlist_prompt">Usunąć tę listę odtwarzania\?</string>
     <string name="playlist_creation_success">Playlista utworzona</string>
-    <string name="playlist_add_stream_success">Dodano do playlisty</string>
-    <string name="playlist_thumbnail_change_success">Miniaturka playlisty zmieniona</string>
-    <string name="playlist_delete_failure">Nie można usunąć playlisty</string>
+    <string name="playlist_add_stream_success">Playlista</string>
+    <string name="playlist_thumbnail_change_success">Miniaturka playlisty zmieniona.</string>
+    <string name="playlist_delete_failure">Nie można usunąć playlisty.</string>
 
     <string name="caption_none">Bez napisów</string>
 
@@ -380,36 +375,31 @@
     <string name="resize_zoom">Powiększ</string>
 
     <string name="caption_auto_generated">Wygenerowane automatycznie</string>
-    <string name="caption_font_size_settings_title">Rozmiar czcionki etykiet</string>
-    <string name="smaller_caption_font_size">Mniejszy rozmiar</string>
-    <string name="normal_caption_font_size">Normalny rozmiar</string>
-    <string name="larger_caption_font_size">Większy rozmiar</string>
-
     <string name="enable_leak_canary_title">Włącz LeakCanary</string>
     <string name="enable_leak_canary_summary">Monitorowanie wycieków pamięci może powodować niestabilność aplikacji podczas zrzutu pamięci</string>
 
-    <string name="enable_disposed_exceptions_title">Raportuj błędy Out-of-lifecycle</string>
+    <string name="enable_disposed_exceptions_title">Zgłaszanie błędów poza cyklem życia</string>
     <string name="enable_disposed_exceptions_summary">Wymusza raportowanie niedostarczonych wyjątków Rx poza cyklem życia fragmentu lub aktywności</string>
 
 <string name="use_inexact_seek_title">Użyj szybkiego niedokładnego wyszukiwania</string>
     <string name="use_inexact_seek_summary">Szybkie wyszukiwanie pozwala przeskoczyć do wybranej pozycji szybciej, lecz jest mniej precyzyjne</string>
     <string name="download_thumbnail_title">Załaduj miniatury</string>
-    <string name="download_thumbnail_summary">Wyłącz, by aplikacja nie ściągała miniatur. Oszczędza transfer i pamięć. Zmiana tej opcji spowoduje wyczyszczenie pamięci podręcznej miniatur</string>
+    <string name="download_thumbnail_summary">Po wyłączeniu ładowania bez miniatur, zapisywanie danych i wykorzystanie pamięci. Zmiany usuwają pamięć podręczną zarówno w pamięci, jak i na dysku.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Wyczyszczono pamięć podręczną miniatur</string>
     <string name="metadata_cache_wipe_title">Wyczyść pamięć podręczną metadanych</string>
     <string name="metadata_cache_wipe_summary">Wyczyść pamięć podręczną stron</string>
     <string name="metadata_cache_wipe_complete_notice">Wyczyszczono pamięć podręczną metadanych</string>
     <string name="auto_queue_title">Automatycznie dołącz kolejny stream</string>
-    <string name="auto_queue_summary">Automatycznie dodaj kolejny powiązany stream w momencie rozpoczęcia odtwarzania ostatniego elementu w niezapętlonej kolejce</string>
+    <string name="auto_queue_summary">Automatycznie dodaj kolejny powiązany stream w momencie rozpoczęcia odtwarzania ostatniego elementu w niezapętlonej kolejce.</string>
     <string name="file">Plik</string>
 
-    <string name="invalid_directory">Nieprawidłowy katalog</string>
-    <string name="invalid_source">Nieprawidłowy plik/źródło treści</string>
-    <string name="invalid_file">Plik nie istnieje lub brak wystarczających uprawnień do zapisu/odczytu</string>
+    <string name="invalid_directory">Nie ma takiego folderu</string>
+    <string name="invalid_source">Brak takiego źródła plików/treści</string>
+    <string name="invalid_file">Plik nie istnieje lub brakuje mu uprawnień do odczytu lub zapisu</string>
     <string name="file_name_empty_error">Nazwa pliku nie może być pusta</string>
     <string name="error_occurred_detail">Wystąpił błąd: %1$s</string>
 
-    <string name="import_export_title">Import/Eksport</string>
+    <string name="import_export_title">Import/eksport</string>
     <string name="import_title">Import</string>
     <string name="import_from">Importuj z</string>
     <string name="export_to">Eksportuj do</string>
@@ -435,11 +425,9 @@
     <string name="playback_speed_control">Kontrola prędkości odtwarzania</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Wysokość dźwięku</string>
-    <string name="playback_default">Domyślna</string>
 <string name="import_soundcloud_instructions_hint">twojeID, soundcloud.com/twojeid</string>
 
     <string name="unhook_checkbox">Odczep (może powodować zniekształcenia)</string>
-    <string name="playback_nightcore">Nightcore</string>
     <string name="import_soundcloud_instructions">Aby zaimportować obserwowane z SoundCloud, musisz znać identyfikator lub link do swojego profilu. Jeśli znasz którykolwiek z nich, po prostu wpisz go w polu poniżej. 
 \n 
 \nW przeciwnym wypadku spróbuj poniższych kroków: 
@@ -454,15 +442,15 @@
     <string name="preferred_open_action_settings_summary">Domyślna akcja podczas otwierania materiału - %s</string>
 
     <string name="caption_setting_title">Napisy</string>
-    <string name="caption_setting_description">Zmień kolor tekstu i tła napisów. Wymaga restartu aplikacji</string>
+    <string name="caption_setting_description">Zmodyfikuj skalę tekstu napisów i style tła. Wymaga ponownego uruchomienia aplikacji.</string>
 
     <string name="clear_views_history_title">Wyczyść historię oglądania</string>
     <string name="clear_views_history_summary">Usuwa historię odtworzonych strumieni</string>
-    <string name="delete_view_history_alert">Usuń całą historię oglądania.</string>
+    <string name="delete_view_history_alert">Usunąć całą historię oglądania\?</string>
     <string name="view_history_deleted">Usunięto historię oglądania.</string>
     <string name="clear_search_history_title">Wyczyść historię wyszukiwania</string>
     <string name="clear_search_history_summary">Usuwa historię wyszukiwania słów kluczowych</string>
-    <string name="delete_search_history_alert">Usuń całą historię wyszukiwania.</string>
+    <string name="delete_search_history_alert">Usunąć całą historię wyszukiwania\?</string>
     <string name="search_history_deleted">Usunięto historię wyszukiwania.</string>
     <string name="one_item_deleted">Usunięto jedną pozycję.</string>
 
@@ -471,7 +459,7 @@
     <string name="app_license">NewPipe jest wolnym i bezpłatnym oprogramowaniem: Możesz używać, brać udział oraz udoskonalać je według własnego uznania. W szczególności możesz redystrybuować lub/i modyfikować pod zasadami GNU General Public License opublikowanej przez Free Software Fundation w wersji 3 lub (w zależności od ciebie) dowolnej późniejszej wersji.</string>
     <string name="import_settings">Czy chcesz zaimportować również ustawienia?</string>
 
-    <string name="privacy_policy_title">Polityka prywatności programu NewPipe</string>
+    <string name="privacy_policy_title">Polityka prywatności NewPipe</string>
     <string name="privacy_policy_encouragement">Projekt NewPipe bardzo poważnie traktuję politykę prywatności. Aplikacja nie zbiera żadnych danych bez Twojej zgody. Polityka prywatności programu NewPipe szczegółowo wyjaśnia, jakie dane są zbierane i przesyłane, kiedy wysyłasz raport o błędach aplikacji.</string>
     <string name="read_privacy_policy">Przeczytaj politykę prywatności</string>
     <string name="start_accept_privacy_policy">Ze względu na wprowadzenie Ogólnego Rozporządzenia o ochronie danych (RODO), chcielibyśmy zwrócić Twoją uwagę na politykę prywatności NewPipe. Proszę przeczytać ją uważnie.
@@ -490,7 +478,7 @@
     <string name="playback_reset">Zresetuj</string>
 
     <string name="minimize_on_exit_title">Zminimalizuj podczas przełączenia aplikacji</string>
-    <string name="minimize_on_exit_summary">"Akcja podczas przełączenia  do innej aplikacji z głównego odtwarzacza — %s"</string>
+    <string name="minimize_on_exit_summary">Akcja po przejściu do innej aplikacji z głównego odtwarzacza wideo — %s</string>
     <string name="minimize_on_exit_none_description">Zminimalizuj</string>
     <string name="minimize_on_exit_background_description">Zminimalizuj do odtwarzania w tle</string>
     <string name="minimize_on_exit_popup_description">Zminimalizuj do odtwarzania w okienku</string>

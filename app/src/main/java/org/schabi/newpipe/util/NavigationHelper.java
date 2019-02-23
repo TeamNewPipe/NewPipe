@@ -33,6 +33,7 @@ import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
+import org.schabi.newpipe.fragments.list.comments.CommentsFragment;
 import org.schabi.newpipe.local.bookmark.BookmarkFragment;
 import org.schabi.newpipe.local.feed.FeedFragment;
 import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
@@ -305,6 +306,18 @@ public class NavigationHelper {
         if (name == null) name = "";
         defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, ChannelFragment.getInstance(serviceId, url, name))
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public static void openCommentsFragment(
+            FragmentManager fragmentManager,
+            int serviceId,
+            String url,
+            String name) {
+        if (name == null) name = "";
+        fragmentManager.beginTransaction().setCustomAnimations(R.anim.switch_service_in, R.anim.switch_service_out)
+                .replace(R.id.fragment_holder, CommentsFragment.getInstance(serviceId, url, name))
                 .addToBackStack(null)
                 .commit();
     }

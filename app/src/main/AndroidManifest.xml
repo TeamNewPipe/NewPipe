@@ -35,12 +35,6 @@
             </intent-filter>
         </receiver>
 
-        <activity
-            android:name=".player.old.PlayVideoActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@style/OldVideoPlayerTheme"
-            tools:ignore="UnusedAttribute"/>
-
         <service
             android:name=".player.BackgroundPlayer"
             android:exported="false">
@@ -119,7 +113,6 @@
         <activity
             android:name=".ReCaptchaActivity"
             android:label="@string/reCaptchaActivity"/>
-        <activity android:name=".download.ExtSDDownloadFailedActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -184,6 +177,19 @@
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
 
+                <data android:scheme="http"/>
+                <data android:scheme="https"/>
+                <data android:host="www.youtube-nocookie.com"/>
+                <data android:pathPrefix="/embed/"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
                 <data android:scheme="vnd.youtube"/>
                 <data android:scheme="vnd.youtube.launch"/>
             </intent-filter>
@@ -208,6 +214,29 @@
                 <!-- channel prefix -->
                 <data android:pathPrefix="/channel/"/>
                 <data android:pathPrefix="/user/"/>
+            </intent-filter>
+
+            <!-- Invidious filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data android:scheme="http"/>
+                <data android:scheme="https"/>
+                <data android:host="invidio.us"/>
+                <data android:host="www.invidio.us"/>
+                <!-- video prefix -->
+                <data android:pathPrefix="/embed/"/>
+                <data android:pathPrefix="/watch"/>
+                <!-- channel prefix -->
+                <data android:pathPrefix="/channel/"/>
+                <data android:pathPrefix="/user/"/>
+                <!-- playlist prefix -->
+                <data android:pathPrefix="/playlist"/>
             </intent-filter>
 
             <!-- Soundcloud filter -->
