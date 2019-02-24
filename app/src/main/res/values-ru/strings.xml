@@ -49,7 +49,7 @@
     <string name="download_path_audio_title">Путь загрузки аудио</string>
     <string name="download_path_audio_summary">Папка для хранения загруженных аудио</string>
     <string name="download_path_audio_dialog_title">Введите путь к папке для загрузки аудио</string>
-    <string name="main_bg_subtitle">Начните с поиска</string>
+    <string name="main_bg_subtitle">Коснитесь поиска, чтобы начать</string>
     <string name="msg_wait">Подождите…</string>
     <string name="msg_exists">Файл уже существует</string>
     <string name="msg_threads">Потоки</string>
@@ -141,7 +141,7 @@
     <string name="best_resolution">Лучшее разрешение</string>
     <string name="reCaptcha_title">Запрос reCAPTCHA</string>
     <string name="recaptcha_request_toast">Запрошен ввод reCAPTCHA</string>
-    <string name="show_higher_resolutions_title">Высокие разрешения</string>
+    <string name="show_higher_resolutions_title">Показывать высокие разрешения</string>
     <string name="popup_mode_share_menu_title">NewPipe в окне</string>
     <string name="title_activity_about">О NewPipe</string>
     <string name="action_settings">Настройки</string>
