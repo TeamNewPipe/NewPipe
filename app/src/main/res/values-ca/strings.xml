@@ -464,4 +464,32 @@
     <string name="playlists">Llistes de reproducció</string>
     <string name="tracks">Pistes</string>
     <string name="users">Usuaris</string>
-    </resources>
+    <string name="tab_new">Pestanya nova</string>
+    <string name="tab_choose">Tria una pestanya</string>
+    <string name="volume_gesture_control_title">Control de volum per gestos</string>
+    <string name="volume_gesture_control_summary">Fes servir gestos per controlar el volum del reproductor</string>
+    <string name="brightness_gesture_control_title">Control de brillantor per gestos</string>
+    <string name="brightness_gesture_control_summary">Fes servir gestos per controlar la brillantor del reproductor</string>
+    <string name="settings_category_updates_title">Actualitzacions</string>
+    <string name="file_deleted">S\'ha eliminat el fitxer</string>
+    <string name="download_to_sdcard_error_title">L\'emmagatzematge extern no està disponible</string>
+    <string name="restore_defaults">Reinicialitza els valors per defecte</string>
+    <string name="restore_defaults_confirmation">Voleu reinicialitzar els valors per defecte\?</string>
+    <string name="selection">Selecció</string>
+    <string name="updates_setting_title">Actualitzacions</string>
+    <string name="list">Llista</string>
+    <string name="grid">Quadrícula</string>
+    <string name="auto">Automàtic</string>
+    <string name="switch_view">Canvia la vista</string>
+    <string name="app_update_notification_content_title">Està disponible una nova actualització del NewPipe!</string>
+    <string name="missions_header_pending">A la cua</string>
+    <string name="paused">en pausa</string>
+    <string name="queued">a la cua</string>
+    <string name="enqueue">Afegeix a la cua</string>
+    <string name="generate_unique_name">Genera un nom únic</string>
+    <string name="show_error">Mostra l\'error</string>
+    <string name="label_code">Codi</string>
+    <string name="error_path_creation">No es pot crear el fitxer</string>
+    <string name="error_file_creation">No es pot crear la carpeta de destinació</string>
+    <string name="stop">Atura</string>
+</resources>
