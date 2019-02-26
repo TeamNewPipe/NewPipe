@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
@@ -68,6 +69,8 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
 
     @Override
     protected String doInBackground(Void... voids) {
+        
+        if(isCancelled() || !isConnected()) return null;
 
         // Make a network request to get latest NewPipe data.
         if (client == null) {
@@ -226,5 +229,13 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
     public static boolean isGithubApk() {
 
         return getCertificateSHA1Fingerprint().equals(GITHUB_APK_SHA1);
+    }
+    
+    private boolean isConnected() {
+     
+        ConnectivityManager cm = 
+                (ConnectivityManager) app.getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null
+				&& cm.getActiveNetworkInfo().isConnected();
     }
 }
