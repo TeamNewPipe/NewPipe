@@ -34,14 +34,12 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -73,6 +71,7 @@ import org.schabi.newpipe.fragments.list.videos.RelatedVideosFragment;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
+import org.schabi.newpipe.player.BasePlayer;
 import org.schabi.newpipe.player.MainVideoPlayer;
 import org.schabi.newpipe.player.PopupVideoPlayer;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
@@ -1265,7 +1264,7 @@ public class VideoDetailFragment
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(
                 state -> {
                     final int seconds = (int) (state.getProgressTime() / 1000.f);
-                    if (seconds < info.getDuration() - Constants.SECONDS_MIN_LEFT) {
+                    if (seconds < info.getDuration() - BasePlayer.PLAYBACK_SAVE_THRESHOLD_SECONDS) {
                         positionView.setMax((int) info.getDuration());
                         positionView.setProgress(seconds);
                         detailPositionView.setText(Localization.getDurationString(seconds));

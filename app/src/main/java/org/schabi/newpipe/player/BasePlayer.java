@@ -72,7 +72,6 @@ import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueueAdapter;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
-import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.SerializedCache;
 
@@ -180,6 +179,8 @@ public abstract class BasePlayer implements
     protected final static int PLAY_PREV_ACTIVATION_LIMIT_MILLIS = 5000; // 5 seconds
     protected final static int PROGRESS_LOOP_INTERVAL_MILLIS = 500;
     protected final static int RECOVERY_SKIP_THRESHOLD_MILLIS = 3000; // 3 seconds
+    /** Playback state will not be saved, if time left less than this threshold */
+    public static final int PLAYBACK_SAVE_THRESHOLD_SECONDS = 10;
 
     protected SimpleExoPlayer simpleExoPlayer;
     protected AudioReactor audioReactor;
@@ -882,7 +883,7 @@ public abstract class BasePlayer implements
                     .subscribe(
                             state -> {
                                 if (state.getProgressTime() > 0 &&
-                                        state.getProgressTime() < simpleExoPlayer.getDuration() - Constants.SECONDS_MIN_LEFT * 1000) {
+                                        state.getProgressTime() < simpleExoPlayer.getDuration() - PLAYBACK_SAVE_THRESHOLD_SECONDS * 1000) {
                                     seekTo(state.getProgressTime());
                                     onPositionRestored(state.getProgressTime());
                                 }
