@@ -17,6 +17,7 @@
     <string name="use_external_video_player_key" translatable="false">use_external_video_player</string>
     <string name="use_external_audio_player_key" translatable="false">use_external_audio_player</string>
     <string name="autoplay_through_intent_key" translatable="false">autoplay_through_intent</string>
+    <string name="use_old_player_key" translatable="false">use_oldplayer</string>
 
     <string name="volume_gesture_control_key" translatable="false">volume_gesture_control</string>
     <string name="brightness_gesture_control_key" translatable="false">brightness_gesture_control</string>
@@ -138,6 +139,7 @@
     <string name="show_search_suggestions_key" translatable="false">show_search_suggestions</string>
     <string name="show_play_with_kodi_key" translatable="false">show_play_with_kodi</string>
     <string name="show_next_video_key" translatable="false">show_next_video</string>
+    <string name="show_comments_key" translatable="false">show_comments</string>
     <string name="show_hold_to_append_key" translatable="false">show_hold_to_append</string>
     <string name="default_language_value">en</string>
     <string name="default_country_value">GB</string>
@@ -174,6 +176,24 @@
     </string-array>
 
     <string name="default_file_charset_value" translatable="false">@string/charset_most_special_characters_value</string>
+    
+    <string name="downloads_maximum_retry" translatable="false">downloads_max_retry</string>
+    <string name="downloads_maximum_retry_default" translatable="false">3</string>
+    <string-array name="downloads_maximum_retry_list" translatable="false">
+        <item translatable="true">@string/minimize_on_exit_none_description</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>7</item>
+        <item>10</item>
+        <item>15</item>
+    </string-array>
+
+    <string name="downloads_cross_network" translatable="false">cross_network_downloads</string>
+
+    <string name="default_download_threads" translatable="false">default_download_threads</string>
 
     <!-- Preferred action on open (open from external app) -->
     <string name="preferred_open_action_key" translatable="false">preferred_open_action_key</string>
@@ -203,6 +223,10 @@
         <item>@string/download_key</item>
         <item>@string/always_ask_open_action_key</item>
     </string-array>
+
+    <!-- Updates -->
+    <string name="update_app_key" translatable="false">update_app_key</string>
+    <string name="update_pref_screen_key" translatable="false">update_pref_screen_key</string>
 
     <!-- alternatively, load these from some local android data store -->
     <string-array name="language_codes" translatable="false">

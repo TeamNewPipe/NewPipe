@@ -56,6 +56,7 @@
 			android:layout_toRightOf="@id/item_size"
 			android:padding="6dp"
 			android:singleLine="true"
+			android:textStyle="bold"
 			android:text="0%"
 			android:textColor="@color/white"
 			android:textSize="12sp" />

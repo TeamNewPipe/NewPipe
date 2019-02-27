@@ -131,6 +131,11 @@ public final class BackgroundPlayer extends Service {
     }
 
     @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(AudioServiceLeakFix.preventLeakOf(base));
+    }
+
+    @Override
     public IBinder onBind(Intent intent) {
         return mBinder;
     }

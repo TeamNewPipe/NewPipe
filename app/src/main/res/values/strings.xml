@@ -77,6 +77,8 @@
     <string name="use_inexact_seek_summary">Inexact seek allows the player to seek to positions faster with reduced precision</string>
     <string name="download_thumbnail_title">Load thumbnails</string>
     <string name="download_thumbnail_summary">When off no thumbnails load, saving data and memory usage. Changes clear both in-memory and on-disk image cache.</string>
+    <string name="show_comments_title">Show comments</string>
+    <string name="show_comments_summary">Disable to stop showing comments</string>
     <string name="thumbnail_cache_wipe_complete_notice">Image cache wiped</string>
     <string name="metadata_cache_wipe_title">Wipe cached metadata</string>
     <string name="metadata_cache_wipe_summary">Remove all cached webpage data</string>
@@ -87,6 +89,8 @@
     <string name="volume_gesture_control_summary">Use gestures to control the volume of the player</string>
     <string name="brightness_gesture_control_title">Brightness gesture control</string>
     <string name="brightness_gesture_control_summary">Use gestures to control the brightness of the player</string>
+    <string name="player_gesture_controls_title">Player gesture controls</string>
+    <string name="player_gesture_controls_summary">Use gestures to control the brightness and volume of the player</string>
     <string name="show_search_suggestions_title">Search suggestions</string>
     <string name="show_search_suggestions_summary">Show suggestions when searching</string>
     <string name="enable_search_history_title">Search history</string>
@@ -96,7 +100,8 @@
     <string name="resume_on_audio_focus_gain_title">Resume on focus gain</string>
     <string name="resume_on_audio_focus_gain_summary">Continue playing after interruptions (e.g. phone calls)</string>
     <string name="download_dialog_title">Download</string>
-    <string name="next_video_title">Next</string>
+    <string name="next_video_title">Up next</string>
+    <string name="autoplay_title">Autoplay</string>
     <string name="show_next_and_similar_title">Show \'Next\' and \'Similar\' videos</string>
     <string name="show_hold_to_append_title">Show \"Hold to append\" tip</string>
     <string name="show_hold_to_append_summary">Show tip when background or popup button is pressed on video details page</string>
@@ -112,6 +117,7 @@
     <string name="settings_category_appearance_title">Appearance</string>
     <string name="settings_category_other_title">Other</string>
     <string name="settings_category_debug_title">Debug</string>
+    <string name="settings_category_updates_title">Updates</string>
     <string name="background_player_playing_toast">Playing in background</string>
     <string name="popup_playing_toast">Playing in popup mode</string>
     <string name="background_player_append">Queued on background player</string>
@@ -121,7 +127,7 @@
     <string name="content">Content</string>
     <string name="show_age_restricted_content_title">Age restricted content</string>
     <string name="video_is_age_restricted">Show age Restricted Video. Allowing such material is possible from \"Settings\".</string>
-    <string name="duration_live">live</string>
+    <string name="duration_live">LIVE</string>
     <string name="duration_live_button" translatable="false">LIVE</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
@@ -132,8 +138,10 @@
     <string name="playlist">Playlist</string>
     <string name="playlists">Playlists</string>
     <string name="videos">Videos</string>
+    <string name="comments">Comments</string>
     <string name="tracks">Tracks</string>
     <string name="users">Users</string>
+    <string name="events">Events</string>
     <string name="yes">Yes</string>
     <string name="later">Later</string>
     <string name="disabled">Disabled</string>
@@ -143,6 +151,7 @@
     <string name="popup_resizing_indicator_title">Resizing</string>
     <string name="best_resolution">Best resolution</string>
     <string name="undo">Undo</string>
+    <string name="file_deleted">File deleted</string>
     <string name="play_all">Play All</string>
     <string name="always">Always</string>
     <string name="just_once">Just Once</string>
@@ -151,6 +160,10 @@
     <string name="notification_channel_id" translatable="false">newpipe</string>
     <string name="notification_channel_name">NewPipe Notification</string>
     <string name="notification_channel_description">Notifications for NewPipe background and popup players</string>
+
+    <string name="app_update_notification_channel_id" translatable="false">newpipeAppUpdate</string>
+    <string name="app_update_notification_channel_name">App Update Notification</string>
+    <string name="app_update_notification_channel_description">Notifications for new NewPipe version</string>
 
     <string name="unknown_content">[Unknown]</string>
 
@@ -229,6 +242,7 @@
     <string name="user_report">User report</string>
     <string name="search_no_results">No results</string>
     <string name="empty_view_no_videos" translatable="false">@string/no_videos</string>
+    <string name="empty_view_no_comments" translatable="false">@string/no_comments</string>
     <string name="empty_subscription_feed_subtitle">Nothing here but crickets</string>
     <string name="detail_drag_description">Drag to reorder</string>
 
@@ -262,6 +276,12 @@
     <plurals name="videos">
         <item quantity="one">%s video</item>
         <item quantity="other">%s videos</item>
+    </plurals>
+
+    <string name="no_comments">No comments</string>
+    <plurals name="comments">
+        <item quantity="one">%s comment</item>
+        <item quantity="other">%s comments</item>
     </plurals>
 
     <!-- Missions -->
@@ -382,12 +402,14 @@
     <string name="could_not_import_all_files">Warning: Could not import all files.</string>
     <string name="override_current_data">This will override your current setup.</string>
     <string name="import_settings">Do you want to also import settings?</string>
+    <string name="error_unable_to_load_comments">Could not load comments</string>
 
     <!-- Kiosk Names -->
     <string name="kiosk">Kiosk</string>
     <string name="trending">Trending</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">New &amp; hot</string>
+    <string name="conferences">Conferences</string>
     <string name="service_kiosk_string" translatable="false">%1$s/%2$s</string>
 
     <!-- Play Queue -->
@@ -435,7 +457,7 @@
     <string name="bookmark_playlist">Bookmark Playlist</string>
     <string name="unbookmark_playlist">Remove Bookmark</string>
 
-    <string name="delete_playlist_prompt">Delete this playlist?</string>
+    <string name="delete_playlist_prompt">Delete this playlist\?</string>
     <string name="playlist_creation_success">Playlist created</string>
     <string name="playlist_add_stream_success">Playlisted</string>
     <string name="playlist_thumbnail_change_success">Playlist thumbnail changed.</string>
@@ -516,6 +538,10 @@
     <string name="show_warning_live_stream_on_mobile_summary">Show warning when playing live stream in background on mobile data</string>
     <string name="show_warning_live_stream_on_mobile_title">Live stream in background</string>
 
+    <!-- Updates Settings -->
+    <string name="updates_setting_title">Updates</string>
+    <string name="updates_setting_description">Show a notification to prompt app update when a new version is available</string>
+
     <!-- Minimize to exit action -->
     <string name="minimize_on_exit_title">Minimize on app switch</string>
     <string name="minimize_on_exit_summary">Action when switching to other app from main video player — %s</string>
@@ -527,4 +553,56 @@
     <string name="grid">Grid</string>
 	  <string name="auto">Auto</string>
     <string name="switch_view">Switch View</string>
+
+    <!-- App update notification -->
+    <string name="app_update_notification_content_title">NewPipe Update Available!</string>
+    <string name="app_update_notification_content_text">Tap to download</string>
+
+
+
+    <string name="missions_header_finished">Finished</string>
+    <string name="missions_header_pending">In queue</string>
+
+    <string name="paused">paused</string>
+    <string name="queued">queued</string>
+    <string name="post_processing">post-processing</string>
+
+    <string name="enqueue">Queue</string>
+
+    <string name="permission_denied">Action denied by the system</string>
+
+    <!-- download notifications -->
+    <string name="download_failed">Download failed</string>
+    <string name="download_finished">Download finished</string>
+    <string name="download_finished_more">%s downloads finished</string>
+
+    <!-- dialog about existing downloads -->
+    <string name="generate_unique_name">Generate unique name</string>
+    <string name="overwrite">Overwrite</string>
+    <string name="overwrite_warning">A downloaded file with this name already exists</string>
+    <string name="download_already_running">There is a download in progress with this name</string>
+
+    <!-- message dialog about download error -->
+    <string name="show_error">Show error</string>
+    <string name="label_code">Code</string>
+    <string name="error_path_creation">The file can not be created</string>
+    <string name="error_file_creation">The destination folder can not be created</string>
+    <string name="error_permission_denied">Permission denied by the system</string>
+    <string name="error_ssl_exception">Secure connection failed</string>
+    <string name="error_unknown_host">Can not found the server</string>
+    <string name="error_connect_host">Can not connect to the server</string>
+    <string name="error_http_no_content">The server does not send data</string>
+    <string name="error_http_unsupported_range">The server does not accept multi-threaded downloads, retry with @string/msg_threads = 1</string>
+    <string name="error_http_requested_range_not_satisfiable">Requested Range Not Satisfiable</string>
+    <string name="error_http_not_found">Not found</string>
+    <string name="error_postprocessing_failed">Post-processing failed</string>
+
+    <string name="clear_finished_download">Clear finished downloads</string>
+    <string name="msg_pending_downloads">You have %s pending downloads, goto Downloads to continue</string>
+    <string name="stop">Stop</string>
+    <string name="max_retry_msg">Maximum retry</string>
+    <string name="max_retry_desc">Maximum number of attempts before canceling the download</string>
+    <string name="pause_downloads_on_mobile">Pause on switching to mobile data</string>
+    <string name="pause_downloads_on_mobile_desc">Not all downloads can be suspended, in those cases, will be restarted</string>
+
 </resources>

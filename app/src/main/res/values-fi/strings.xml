@@ -11,7 +11,7 @@
     <string name="download">Lataus</string>
     <string name="search">Haku</string>
     <string name="settings">Asetukset</string>
-    <string name="did_you_mean">Tarkoititko: %1$s ?</string>
+    <string name="did_you_mean">Tarkoititko: %1$s\?</string>
     <string name="share_dialog_title">Jaa</string>
     <string name="choose_browser">Valitse selain</string>
     <string name="screen_rotation">kierto</string>
@@ -232,7 +232,7 @@
     <string name="history_cleared">Historia pyyhitty</string>
     <string name="item_deleted">Poistettu</string>
     <string name="delete_item_search_history">Haluatko poistaa tämän hakuhistoriasta?</string>
-<string name="resume_on_audio_focus_gain_title">Jatka keskeytyksen jälkeen</string>
+<string name="resume_on_audio_focus_gain_title">Jatka toistoa ohjelman palatessa päällimmäiseksi</string>
     <string name="what_device_headline">Info:</string>
     <string name="info_labels">Mikä:\\nPyyntö:\\nSisällön kieli:\\nPalvelu:\\nGMT Aika:\\nPaketti:\\nVersio:\\nOS versio:</string>
     <string name="copyright" formatted="true">© %1$s %2$s %3$s alla</string>
@@ -274,7 +274,7 @@
     <string name="start_here_on_background">Aloita toisto taustalla</string>
     <string name="start_here_on_popup">Aloita toisto ikkunassa</string>
 <string name="donation_title">Lahjoita</string>
-    <string name="donation_encouragement">NewPipe kehitetään vapaaehtoisten toimesta, jotka käyttävät vapaa-aikaansa tuottaakseen parhaan mahdollisen käyttökokemuksen sinulle. Nyt on aika antaa takaisin, jotta kehittäjät voivat tehdä NewPipe:sta vielä paremman nauttiessaan kupin kahvia!</string>
+    <string name="donation_encouragement">NewPipe kehitetään vapaaehtoisten toimesta, jotka käyttävät vapaa-aikaansa tuottaakseen parhaan mahdollisen käyttökokemuksen sinulle. Nyt on aika antaa takaisin, jotta kehittäjät voivat tehdä NewPipe:sta vielä paremman nauttiessaan kupin kahvia.</string>
     <string name="give_back">Anna takaisin</string>
     <string name="website_title">Websivu</string>
     <string name="website_encouragement">Käy verkkosivuillamme saadaksesi lisää tietoa ja uusimmat uutiset NewPipe:stä.</string>
@@ -306,7 +306,7 @@
     <string name="just_once">Vain kerran</string>
     <string name="file">Tiedosto</string>
 
-    <string name="toggle_orientation">Muuta näytön suuntausta</string>
+    <string name="toggle_orientation">Vaihda orientaatio</string>
     <string name="switch_to_background">Vaihda taustalle</string>
     <string name="switch_to_popup">Vaihda ponnahdusikkunatoistoon</string>
     <string name="switch_to_main">Vaihda normaalitoistoon</string>

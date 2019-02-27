@@ -1,9 +1,14 @@
 <LinearLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
 	android:orientation="vertical">
-	
+
+	<include
+		layout="@layout/list_empty_view"
+		android:id="@+id/list_empty_view"
+		android:visibility="gone" />
+
 	<android.support.v7.widget.RecyclerView
 		android:id="@+id/mission_recycler"
 		android:layout_width="match_parent"

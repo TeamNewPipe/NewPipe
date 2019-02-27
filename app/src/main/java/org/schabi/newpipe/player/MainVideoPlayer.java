@@ -241,6 +241,11 @@ public final class MainVideoPlayer extends AppCompatActivity
         isBackPressed = false;
     }
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(AudioServiceLeakFix.preventLeakOf(newBase));
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // State Saving
     //////////////////////////////////////////////////////////////////////////*/
@@ -899,6 +904,11 @@ public final class MainVideoPlayer extends AppCompatActivity
                 @Override
                 public void onMove(int sourceIndex, int targetIndex) {
                     if (playQueue != null) playQueue.move(sourceIndex, targetIndex);
+                }
+
+                @Override
+                public void onSwiped(int index) {
+                    if(index != -1) playQueue.remove(index);
                 }
             };
         }

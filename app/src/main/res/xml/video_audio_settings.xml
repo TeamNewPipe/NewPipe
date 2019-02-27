@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:title="@string/settings_category_video_audio_title">
 
     <ListPreference
+        app:iconSpaceReserved="false"
         android:defaultValue="@string/default_resolution_value"
         android:entries="@array/resolution_list_description"
         android:entryValues="@array/resolution_list_values"
@@ -12,6 +14,7 @@
         android:title="@string/default_resolution_title"/>
 
     <ListPreference
+        app:iconSpaceReserved="false"
         android:defaultValue="@string/default_popup_resolution_value"
         android:entries="@array/resolution_list_description"
         android:entryValues="@array/resolution_list_values"
@@ -20,6 +23,7 @@
         android:title="@string/default_popup_resolution_title"/>
 
     <ListPreference
+        app:iconSpaceReserved="false"
         android:defaultValue="@string/limit_mobile_data_usage_value"
         android:entries="@array/limit_data_usage_description_list"
         android:entryValues="@array/limit_data_usage_values_list"
@@ -28,6 +32,7 @@
         android:title="@string/limit_mobile_data_usage_title" />
 
     <SwitchPreference
+        app:iconSpaceReserved="false"
         android:defaultValue="false"
         android:key="@string/show_higher_resolutions_key"
         android:summary="@string/show_higher_resolutions_summary"
@@ -41,6 +46,7 @@
         />
 
     <ListPreference
+        app:iconSpaceReserved="false"
         android:defaultValue="@string/default_video_format_value"
         android:entries="@array/video_format_description_list"
         android:entryValues="@array/video_format_values_list"
@@ -49,6 +55,7 @@
         android:title="@string/default_video_format_title"/>
 
     <ListPreference
+        app:iconSpaceReserved="false"
         android:defaultValue="@string/default_audio_format_value"
         android:entries="@array/audio_format_description_list"
         android:entryValues="@array/audio_format_values_list"
@@ -57,21 +64,25 @@
         android:title="@string/default_audio_format_title" />
 
     <PreferenceCategory
+        app:iconSpaceReserved="false"
         android:layout="@layout/settings_category_header_layout"
         android:title="@string/settings_category_player_title">
 
         <SwitchPreference
+            app:iconSpaceReserved="false"
             android:defaultValue="false"
             android:key="@string/use_external_video_player_key"
             android:summary="@string/use_external_video_player_summary"
             android:title="@string/use_external_video_player_title"/>
 
         <SwitchPreference
+            app:iconSpaceReserved="false"
             android:defaultValue="false"
             android:key="@string/use_external_audio_player_key"
             android:title="@string/use_external_audio_player_title"/>
 
         <SwitchPreference
+            app:iconSpaceReserved="false"
             android:defaultValue="false"
             android:key="@string/show_play_with_kodi_key"
             android:summary="@string/show_play_with_kodi_summary"
@@ -84,6 +95,7 @@
         android:title="@string/settings_category_player_behavior_title">
 
         <ListPreference
+            app:iconSpaceReserved="false"
             android:defaultValue="@string/preferred_open_action_default"
             android:entries="@array/preferred_open_action_description_list"
             android:entryValues="@array/preferred_open_action_values_list"
@@ -92,6 +104,7 @@
             android:title="@string/preferred_open_action_settings_title"/>
 
         <ListPreference
+            app:iconSpaceReserved="false"
             android:defaultValue="@string/minimize_on_exit_value"
             android:entries="@array/minimize_on_exit_action_description"
             android:entryValues="@array/minimize_on_exit_action_key"
@@ -100,36 +113,42 @@
             android:title="@string/minimize_on_exit_title"/>
 
         <SwitchPreference
+            app:iconSpaceReserved="false"
             android:defaultValue="false"
             android:key="@string/auto_queue_key"
             android:summary="@string/auto_queue_summary"
             android:title="@string/auto_queue_title"/>
 
         <SwitchPreference
+            app:iconSpaceReserved="false"
             android:defaultValue="false"
             android:key="@string/resume_on_audio_focus_gain_key"
             android:summary="@string/resume_on_audio_focus_gain_summary"
             android:title="@string/resume_on_audio_focus_gain_title"/>
 
         <SwitchPreference
+            app:iconSpaceReserved="false"
             android:defaultValue="true"
             android:key="@string/volume_gesture_control_key"
             android:summary="@string/volume_gesture_control_summary"
             android:title="@string/volume_gesture_control_title"/>
 
         <SwitchPreference
+            app:iconSpaceReserved="false"
             android:defaultValue="true"
             android:key="@string/brightness_gesture_control_key"
             android:summary="@string/brightness_gesture_control_summary"
             android:title="@string/brightness_gesture_control_title"/>
 
         <SwitchPreference
+            app:iconSpaceReserved="false"
             android:defaultValue="true"
             android:key="@string/popup_remember_size_pos_key"
             android:summary="@string/popup_remember_size_pos_summary"
             android:title="@string/popup_remember_size_pos_title"/>
 
         <SwitchPreference
+            app:iconSpaceReserved="false"
             android:defaultValue="false"
             android:key="@string/use_inexact_seek_key"
             android:summary="@string/use_inexact_seek_summary"

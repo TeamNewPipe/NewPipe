@@ -10,9 +10,10 @@ import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.MergingMediaSource;
 
 import org.schabi.newpipe.extractor.MediaFormat;
-import org.schabi.newpipe.extractor.Subtitles;
+import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.helper.PlayerHelper;
@@ -93,15 +94,17 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         // Below are auxiliary media sources
 
         // Create subtitle sources
-        for (final Subtitles subtitle : info.getSubtitles()) {
-            final String mimeType = PlayerHelper.mimeTypesOf(subtitle.getFileType());
-            if (mimeType == null) continue;
+        if(info.getSubtitles() != null) {
+            for (final SubtitlesStream subtitle : info.getSubtitles()) {
+                final String mimeType = PlayerHelper.subtitleMimeTypesOf(subtitle.getFormat());
+                if (mimeType == null) continue;
 
-            final Format textFormat = Format.createTextSampleFormat(null, mimeType,
-                    SELECTION_FLAG_AUTOSELECT, PlayerHelper.captionLanguageOf(context, subtitle));
-            final MediaSource textSource = dataSource.getSampleMediaSourceFactory()
-                    .createMediaSource(Uri.parse(subtitle.getURL()), textFormat, TIME_UNSET);
-            mediaSources.add(textSource);
+                final Format textFormat = Format.createTextSampleFormat(null, mimeType,
+                        SELECTION_FLAG_AUTOSELECT, PlayerHelper.captionLanguageOf(context, subtitle));
+                final MediaSource textSource = dataSource.getSampleMediaSourceFactory()
+                        .createMediaSource(Uri.parse(subtitle.getURL()), textFormat, TIME_UNSET);
+                mediaSources.add(textSource);
+            }
         }
 
         if (mediaSources.size() == 1) {

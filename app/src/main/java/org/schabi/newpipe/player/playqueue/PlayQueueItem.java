@@ -25,9 +25,10 @@ public class PlayQueueItem implements Serializable {
     @NonNull final private String uploader;
     @NonNull final private StreamType streamType;
 
+    private boolean isAutoQueued;
+
     private long recoveryPosition;
     private Throwable error;
-
     PlayQueueItem(@NonNull final StreamInfo info) {
         this(info.getName(), info.getUrl(), info.getServiceId(), info.getDuration(),
                 info.getThumbnailUrl(), info.getUploaderName(), info.getStreamType());
@@ -103,6 +104,14 @@ public class PlayQueueItem implements Serializable {
         return ExtractorHelper.getStreamInfo(this.serviceId, this.url, false)
                 .subscribeOn(Schedulers.io())
                 .doOnError(throwable -> error = throwable);
+    }
+
+    public boolean isAutoQueued() {
+        return isAutoQueued;
+    }
+
+    public void setAutoQueued(boolean autoQueued) {
+        isAutoQueued = autoQueued;
     }
 
     ////////////////////////////////////////////////////////////////////////////

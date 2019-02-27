@@ -38,7 +38,7 @@
 				android:layout_centerVertical="true"
 				android:layout_marginRight="1dp"
 				android:src="@drawable/ic_menu_more"
-				android:scaleType="centerInside"
+				android:scaleType="center"
                 android:contentDescription="TODO" />
 			
 		</RelativeLayout>
@@ -61,7 +61,9 @@
 			android:layout_below="@id/item_icon"
 			android:padding="6dp"
 			android:singleLine="true"
-			android:ellipsize="end"
+			android:ellipsize="marquee"
+			android:marqueeRepeatLimit="marquee_forever"
+			android:scrollHorizontally="true"
 			android:text="XXX.xx"
 			android:textSize="16sp"
 			android:textStyle="bold"

@@ -3,18 +3,24 @@ package org.schabi.newpipe;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
+import org.schabi.newpipe.extractor.DownloadRequest;
+import org.schabi.newpipe.extractor.DownloadResponse;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.extractor.utils.Localization;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
@@ -89,7 +95,8 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
                     .build();
             response = client.newCall(request).execute();
 
-            return Long.parseLong(response.header("Content-Length"));
+            String contentLength = response.header("Content-Length");
+            return contentLength == null ? -1 : Long.parseLong(contentLength);
         } catch (NumberFormatException e) {
             throw new IOException("Invalid content length", e);
         } finally {
@@ -138,11 +145,14 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
 
     private ResponseBody getBody(String siteUrl, Map<String, String> customProperties) throws IOException, ReCaptchaException {
         final Request.Builder requestBuilder = new Request.Builder()
-                .method("GET", null).url(siteUrl)
-                .addHeader("User-Agent", USER_AGENT);
+                .method("GET", null).url(siteUrl);
 
         for (Map.Entry<String, String> header : customProperties.entrySet()) {
             requestBuilder.addHeader(header.getKey(), header.getValue());
+        }
+
+        if (!customProperties.containsKey("User-Agent")) {
+            requestBuilder.header("User-Agent", USER_AGENT);
         }
 
         if (!TextUtils.isEmpty(mCookies)) {
@@ -175,5 +185,97 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
     @Override
     public String download(String siteUrl) throws IOException, ReCaptchaException {
         return download(siteUrl, Collections.emptyMap());
+    }
+
+
+    @Override
+    public DownloadResponse get(String siteUrl, DownloadRequest request) throws IOException, ReCaptchaException {
+        final Request.Builder requestBuilder = new Request.Builder()
+                .method("GET", null).url(siteUrl);
+
+        Map<String, List<String>> requestHeaders = request.getRequestHeaders();
+        // set custom headers in request
+        for (Map.Entry<String, List<String>> pair : requestHeaders.entrySet()) {
+            for(String value : pair.getValue()){
+                requestBuilder.addHeader(pair.getKey(), value);
+            }
+        }
+
+        if (!requestHeaders.containsKey("User-Agent")) {
+            requestBuilder.header("User-Agent", USER_AGENT);
+        }
+
+        if (!TextUtils.isEmpty(mCookies)) {
+            requestBuilder.addHeader("Cookie", mCookies);
+        }
+
+        final Request okRequest = requestBuilder.build();
+        final Response response = client.newCall(okRequest).execute();
+        final ResponseBody body = response.body();
+
+        if (response.code() == 429) {
+            throw new ReCaptchaException("reCaptcha Challenge requested");
+        }
+
+        if (body == null) {
+            response.close();
+            return null;
+        }
+
+        return new DownloadResponse(body.string(), response.headers().toMultimap());
+    }
+
+    @Override
+    public DownloadResponse get(String siteUrl) throws IOException, ReCaptchaException {
+        return get(siteUrl, DownloadRequest.emptyRequest);
+    }
+
+    @Override
+    public DownloadResponse post(String siteUrl, DownloadRequest request) throws IOException, ReCaptchaException {
+
+        Map<String, List<String>> requestHeaders = request.getRequestHeaders();
+        if(null == requestHeaders.get("Content-Type") || requestHeaders.get("Content-Type").isEmpty()){
+            // content type header is required. maybe throw an exception here
+            return null;
+        }
+
+        String contentType = requestHeaders.get("Content-Type").get(0);
+
+        RequestBody okRequestBody = null;
+        if(null != request.getRequestBody()){
+            okRequestBody = RequestBody.create(MediaType.parse(contentType), request.getRequestBody());
+        }
+        final Request.Builder requestBuilder = new Request.Builder()
+                .method("POST",  okRequestBody).url(siteUrl);
+
+        // set custom headers in request
+        for (Map.Entry<String, List<String>> pair : requestHeaders.entrySet()) {
+            for(String value : pair.getValue()){
+                requestBuilder.addHeader(pair.getKey(), value);
+            }
+        }
+
+        if (!requestHeaders.containsKey("User-Agent")) {
+            requestBuilder.header("User-Agent", USER_AGENT);
+        }
+
+        if (!TextUtils.isEmpty(mCookies)) {
+            requestBuilder.addHeader("Cookie", mCookies);
+        }
+
+        final Request okRequest = requestBuilder.build();
+        final Response response = client.newCall(okRequest).execute();
+        final ResponseBody body = response.body();
+
+        if (response.code() == 429) {
+            throw new ReCaptchaException("reCaptcha Challenge requested");
+        }
+
+        if (body == null) {
+            response.close();
+            return null;
+        }
+
+        return new DownloadResponse(body.string(), response.headers().toMultimap());
     }
 }

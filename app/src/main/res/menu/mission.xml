@@ -1,33 +1,48 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/start"
+        android:title="@string/start" />
 
-	<item
-		android:id="@+id/start"
-		android:title="@string/start"/>
-	
-	<item
-		android:id="@+id/pause"
-		android:title="@string/pause"/>
+    <item
+        android:id="@+id/pause"
+        android:title="@string/pause" />
 
-	<item
-		android:id="@+id/delete"
-		android:title="@string/delete"/>
-	
-	<item
-		android:id="@+id/checksum"
-		android:title="@string/checksum">
-		
-		<menu>
-			
-			<item
-				android:id="@+id/md5"
-				android:title="@string/md5"/>
-			
-			<item
-				android:id="@+id/sha1"
-				android:title="@string/sha1"/>
-			
-		</menu>
-		
-	</item>
+    <item
+        android:id="@+id/queue"
+        android:title="@string/enqueue"
+        android:checkable="true"/>
 
+    <item
+        android:id="@+id/open"
+        android:title="@string/view" />
+
+    <item
+        android:id="@+id/delete"
+        android:title="@string/delete" />
+
+    <item
+        android:id="@+id/error_message_view"
+        android:title="@string/show_error" />
+
+    <item
+        android:id="@+id/source"
+        android:title="@string/show_info" />
+
+    <item
+        android:id="@+id/checksum"
+        android:title="@string/checksum">
+
+        <menu>
+
+            <item
+                android:id="@+id/md5"
+                android:title="@string/md5" />
+
+            <item
+                android:id="@+id/sha1"
+                android:title="@string/sha1" />
+
+        </menu>
+
+    </item>
 </menu>
