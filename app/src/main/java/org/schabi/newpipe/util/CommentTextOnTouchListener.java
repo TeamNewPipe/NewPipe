@@ -1,17 +1,37 @@
 package org.schabi.newpipe.util;
 
+import android.content.Context;
 import android.text.Layout;
 import android.text.Selection;
 import android.text.Spannable;
 import android.text.Spanned;
 import android.text.style.ClickableSpan;
+import android.text.style.URLSpan;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.exceptions.ParsingException;
+import org.schabi.newpipe.extractor.linkhandler.LinkHandlerFactory;
+import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.player.playqueue.PlayQueue;
+import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import io.reactivex.Single;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+
 public class CommentTextOnTouchListener implements View.OnTouchListener {
 
     public static final CommentTextOnTouchListener INSTANCE = new CommentTextOnTouchListener();
+
+    private static final Pattern timestampPattern = Pattern.compile(".*&t=(\\d+)");
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
@@ -45,7 +65,11 @@ public class CommentTextOnTouchListener implements View.OnTouchListener {
 
                 if (link.length != 0) {
                     if (action == MotionEvent.ACTION_UP) {
-                        link[0].onClick(widget);
+                        boolean handled = false;
+                        if(link[0] instanceof URLSpan){
+                            handled = handleUrl(v.getContext(), (URLSpan) link[0]);
+                        }
+                        if(!handled) link[0].onClick(widget);
                     } else if (action == MotionEvent.ACTION_DOWN) {
                         Selection.setSelection(buffer,
                                 buffer.getSpanStart(link[0]),
@@ -58,5 +82,47 @@ public class CommentTextOnTouchListener implements View.OnTouchListener {
         }
 
         return false;
+    }
+
+    private boolean handleUrl(Context context, URLSpan urlSpan) {
+        String url = urlSpan.getURL();
+        StreamingService service;
+        StreamingService.LinkType linkType;
+        try {
+            service = NewPipe.getServiceByUrl(url);
+            linkType = service.getLinkTypeByUrl(url);
+        } catch (ExtractionException e) {
+            return false;
+        }
+        if(linkType == StreamingService.LinkType.NONE){
+            return false;
+        }
+        Matcher matcher = timestampPattern.matcher(url);
+        if(linkType == StreamingService.LinkType.STREAM && matcher.matches()){
+            int seconds = Integer.parseInt(matcher.group(1));
+            return playOnPopup(context, url, service, seconds);
+        }else{
+            NavigationHelper.openRouterActivity(context, url);
+            return true;
+        }
+    }
+
+    private boolean playOnPopup(Context context, String url, StreamingService service, int seconds) {
+        LinkHandlerFactory factory = service.getStreamLHFactory();
+        String cleanUrl = null;
+        try {
+            cleanUrl = factory.getUrl(factory.getId(url));
+        } catch (ParsingException e) {
+            return false;
+        }
+        Single single = ExtractorHelper.getStreamInfo(service.getServiceId(), cleanUrl, false);
+        single.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(info -> {
+                    PlayQueue playQueue = new SinglePlayQueue((StreamInfo) info);
+                    ((StreamInfo) info).setStartPosition(seconds);
+                    NavigationHelper.enqueueOnPopupPlayer(context, playQueue, true);
+                });
+        return true;
     }
 }

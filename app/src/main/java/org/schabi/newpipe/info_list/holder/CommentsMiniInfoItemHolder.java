@@ -15,6 +15,9 @@ import org.schabi.newpipe.util.CommentTextOnTouchListener;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.NavigationHelper;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CommentsMiniInfoItemHolder extends InfoItemHolder {
@@ -28,7 +31,23 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     private static final int commentExpandedLines = 1000;
 
     private String commentText;
-    private boolean containsLinks = false;
+    private String streamUrl;
+
+    private static final Pattern pattern = Pattern.compile("(\\d+:)?(\\d+)?:(\\d+)");
+
+    private final Linkify.TransformFilter timestampLink = new Linkify.TransformFilter() {
+        @Override
+        public String transformUrl(Matcher match, String url) {
+            int timestamp = 0;
+            String hours = match.group(1);
+            String minutes = match.group(2);
+            String seconds = match.group(3);
+            if(hours != null) timestamp += (Integer.parseInt(hours.replace(":", ""))*3600);
+            if(minutes != null) timestamp += (Integer.parseInt(minutes.replace(":", ""))*60);
+            if(seconds != null) timestamp += (Integer.parseInt(seconds));
+            return streamUrl + url.replace(match.group(0), "&t=" + String.valueOf(timestamp));
+        }
+    };
 
     CommentsMiniInfoItemHolder(InfoItemBuilder infoItemBuilder, int layoutId, ViewGroup parent) {
         super(infoItemBuilder, layoutId, parent);
@@ -70,10 +89,12 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
             }
         });
 
+        streamUrl = item.getUrl();
+
         itemContentView.setMaxLines(commentDefaultLines);
         commentText = item.getCommentText();
         itemContentView.setText(commentText);
-        containsLinks = linkify();
+        linkify();
         itemContentView.setOnTouchListener(CommentTextOnTouchListener.INSTANCE);
 
         if(itemContentView.getLineCount() == 0){
@@ -100,7 +121,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
             int endOfLastLine = itemContentView.getLayout().getLineEnd(commentDefaultLines - 1);
             String newVal = itemContentView.getText().subSequence(0, endOfLastLine - 3) + "...";
             itemContentView.setText(newVal);
-            if(containsLinks) linkify();
+            linkify();
         }
     }
 
@@ -115,12 +136,12 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     private void expand() {
         itemContentView.setMaxLines(commentExpandedLines);
         itemContentView.setText(commentText);
-        if(containsLinks) linkify();
+        linkify();
     }
 
-    private boolean linkify(){
-        boolean res = Linkify.addLinks(itemContentView, Linkify.WEB_URLS);
+    private void linkify(){
+        Linkify.addLinks(itemContentView, Linkify.WEB_URLS);
+        Linkify.addLinks(itemContentView, pattern, null, null, timestampLink);
         itemContentView.setMovementMethod(null);
-        return res;
     }
 }
