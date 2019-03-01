@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">NewPipe</string>
     <string name="main_bg_subtitle">Tap search to get started</string>
@@ -76,9 +76,9 @@
     <string name="use_inexact_seek_title">Use fast inexact seek</string>
     <string name="use_inexact_seek_summary">Inexact seek allows the player to seek to positions faster with reduced precision</string>
     <string name="download_thumbnail_title">Load thumbnails</string>
-    <string name="download_thumbnail_summary">When off no thumbnails load, saving data and memory usage. Changes clear both in-memory and on-disk image cache.</string>
     <string name="show_comments_title">Show comments</string>
     <string name="show_comments_summary">Disable to stop showing comments</string>
+    <string name="download_thumbnail_summary">Turn off to prevent loading thumbnails, saving data and memory usage. Changes clear both in-memory and on-disk image cache.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Image cache wiped</string>
     <string name="metadata_cache_wipe_title">Wipe cached metadata</string>
     <string name="metadata_cache_wipe_summary">Remove all cached webpage data</string>
@@ -126,7 +126,7 @@
     <string name="play_btn_text">Play</string>
     <string name="content">Content</string>
     <string name="show_age_restricted_content_title">Age restricted content</string>
-    <string name="video_is_age_restricted">Show age Restricted Video. Allowing such material is possible from \"Settings\".</string>
+    <string name="video_is_age_restricted">Show age restricted video. Allowing such material is possible from Settings.</string>
     <string name="duration_live">LIVE</string>
     <string name="duration_live_button" translatable="false">LIVE</string>
     <string name="downloads">Downloads</string>
@@ -187,7 +187,7 @@
     <!-- error strings -->
     <string name="general_error">Error</string>
     <string name="download_to_sdcard_error_title">External storage unavailable</string>
-    <string name="download_to_sdcard_error_message">Download to external SD card is not possible yet. Reset download folder location?</string>
+    <string name="download_to_sdcard_error_message">Downloading to external SD card not yet possible. Reset download folder location\?</string>
     <string name="network_error">Network error</string>
     <string name="could_not_load_thumbnails">Could not load all thumbnails</string>
     <string name="youtube_signature_decryption_error">Could not decrypt video URL signature</string>
@@ -274,9 +274,9 @@
 
     <string name="no_videos">No videos</string>
     <plurals name="videos">
-        <item quantity="one">%s video</item>
-        <item quantity="other">%s videos</item>
-    </plurals>
+    <item quantity="one">Video</item>
+    <item quantity="other">Videos</item>
+</plurals>
 
     <string name="no_comments">No comments</string>
     <plurals name="comments">
@@ -589,20 +589,20 @@
     <string name="error_file_creation">The destination folder can not be created</string>
     <string name="error_permission_denied">Permission denied by the system</string>
     <string name="error_ssl_exception">Secure connection failed</string>
-    <string name="error_unknown_host">Can not found the server</string>
+    <string name="error_unknown_host">Could not find the server</string>
     <string name="error_connect_host">Can not connect to the server</string>
     <string name="error_http_no_content">The server does not send data</string>
     <string name="error_http_unsupported_range">The server does not accept multi-threaded downloads, retry with @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">Requested Range Not Satisfiable</string>
+    <string name="error_http_requested_range_not_satisfiable">Requested range not satisfiable</string>
     <string name="error_http_not_found">Not found</string>
     <string name="error_postprocessing_failed">Post-processing failed</string>
 
     <string name="clear_finished_download">Clear finished downloads</string>
-    <string name="msg_pending_downloads">You have %s pending downloads, goto Downloads to continue</string>
+    <string name="msg_pending_downloads">Continue your %s pending transfers from Downloads</string>
     <string name="stop">Stop</string>
-    <string name="max_retry_msg">Maximum retry</string>
+    <string name="max_retry_msg">Maximum retries</string>
     <string name="max_retry_desc">Maximum number of attempts before canceling the download</string>
     <string name="pause_downloads_on_mobile">Pause on switching to mobile data</string>
-    <string name="pause_downloads_on_mobile_desc">Not all downloads can be suspended, in those cases, will be restarted</string>
+    <string name="pause_downloads_on_mobile_desc">Downloads that can not be paused will be restarted</string>
 
 </resources>
