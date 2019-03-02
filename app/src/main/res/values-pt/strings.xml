@@ -65,13 +65,13 @@
 
     <string name="content">Conteúdo</string>
     <string name="show_age_restricted_content_title">Restringir conteúdo por idade</string>
-    <string name="video_is_age_restricted">Restringir vídeos por idade. É possível configurar estas opções nas \'Definições\'.</string>
+    <string name="video_is_age_restricted">Mostrar vídeo com restrição de idade. É possível permitir tal material a nas Opções.</string>
 
     <string name="light_parsing_error">Não foi possível processar totalmente o site</string>
     <string name="could_not_setup_download_menu">Não foi possível configurar o menu de descargas</string>
     <string name="live_streams_not_supported">As emissões em direto ainda não são suportadas</string>
     <string name="could_not_get_stream">Não foi possível obter a emissão</string>
-    <string name="sorry_string">Desculpe, isto não deveria ter acontecido.</string>
+    <string name="sorry_string">Desculpe mas isto não deveria ter acontecido.</string>
     <string name="error_report_button_text">Reportar erro por e-mail</string>
     <string name="error_snackbar_message">Ocorreram alguns erros.</string>
     <string name="error_snackbar_action">Relatório</string>
@@ -158,7 +158,7 @@
     <string name="popup_remember_size_pos_title">Lembrar tamanho e posição do \'popup\'</string>
     <string name="settings_category_popup_title">Popup</string>
     <string name="filter">Filtrar</string>
-    <string name="refresh">Atualizar</string>
+    <string name="refresh">Recarregar</string>
     <string name="clear">Limpar</string>
     <string name="controls_background_title">Segundo plano</string>
     <string name="use_external_video_player_summary">Remove o áudio em algumas resoluções</string>
@@ -166,7 +166,7 @@
 
     <string name="popup_resizing_indicator_title">Redimensionar</string>
 <string name="player_gesture_controls_title">Controlo de reprodução por gestos</string>
-    <string name="player_gesture_controls_summary">Usar gestos para controlar o brilho e o volume do reprodutor</string>
+    <string name="player_gesture_controls_summary">Utilizar gestos para controlar o brilho e o volume do reprodutor</string>
     <string name="show_search_suggestions_title">Sugestões de pesquisa</string>
     <string name="show_search_suggestions_summary">Mostrar sugestões ao pesquisar</string>
 
@@ -231,8 +231,8 @@
 
     <string name="no_videos">Sem vídeos</string>
     <plurals name="videos">
-	<item quantity="one">%s vídeo</item>
-	<item quantity="other">%s vídeos</item>
+    <item quantity="one">vídeo</item>
+    <item quantity="other">vídeos</item>
 </plurals>
 
     <string name="settings_category_downloads_title">Descarregar</string>
@@ -482,5 +482,68 @@
     <string name="minimize_on_exit_none_description">Nenhuma</string>
     <string name="minimize_on_exit_background_description">Ativar o reprodutor em segundo plano</string>
     <string name="minimize_on_exit_popup_description">Ativar o reprodutor \'popup\'</string>
-
+    <string name="unsubscribe">Cancelar subscrição</string>
+    <string name="tab_new">Novo separador</string>
+    <string name="tab_choose">Escolher separador</string>
+    <string name="volume_gesture_control_title">Gestos para controle de volume</string>
+    <string name="volume_gesture_control_summary">Utilizar gestos para controlar o volume do reprodutor</string>
+    <string name="brightness_gesture_control_title">Gestos para controlar o brilho</string>
+    <string name="brightness_gesture_control_summary">Utilizar gestos para controlar o brilho do reprodutor</string>
+    <string name="settings_category_updates_title">Atualizações</string>
+    <string name="file_deleted">Ficheiro apagado</string>
+    <string name="app_update_notification_channel_name">Notificação de atualização</string>
+    <string name="app_update_notification_channel_description">Notificações para uma nova versão do NewPipe</string>
+    <string name="download_to_sdcard_error_title">Armazenamento externo indisponível</string>
+    <string name="download_to_sdcard_error_message">Ainda não é possível descarrgar ao cartão SD. Repor localização da pasta de descargas\?</string>
+    <string name="saved_tabs_invalid_json">Erro ao ler os separadores guardados e serão usados os separadores padrão</string>
+    <string name="restore_defaults">Restaurar predefinições</string>
+    <string name="restore_defaults_confirmation">Deseja restaurar as predefinições\?</string>
+    <string name="subscribers_count_not_available">Número de subscritores não disponível</string>
+    <string name="main_page_content_summary">Separadores a mostrar na página principal</string>
+    <string name="selection">Seleção</string>
+    <string name="updates_setting_title">Atualizações</string>
+    <string name="updates_setting_description">Mostrar uma notificação para pedir a atualização da aplicação se existir uma nova versão</string>
+    <string name="list_view_mode">Modo de exibição de lista</string>
+    <string name="list">Lista</string>
+    <string name="grid">Grelha</string>
+    <string name="auto">Automático</string>
+    <string name="switch_view">Alternar vista</string>
+    <string name="app_update_notification_content_title">Atualização do NewPipe disponível!</string>
+    <string name="app_update_notification_content_text">Toque para descarregar</string>
+    <string name="missions_header_finished">Terminada</string>
+    <string name="missions_header_pending">Na fila</string>
+    <string name="paused">em pausa</string>
+    <string name="queued">na fila</string>
+    <string name="post_processing">pós-processamento</string>
+    <string name="enqueue">Fila</string>
+    <string name="permission_denied">Ação recusada pelo sistema</string>
+    <string name="download_failed">Falha ao descarregar</string>
+    <string name="download_finished">Descarga terminada</string>
+    <string name="download_finished_more">%s descargas terminadas</string>
+    <string name="generate_unique_name">Gerar nome único</string>
+    <string name="overwrite">Sobrescrever</string>
+    <string name="overwrite_warning">Um ficheiro descarregado com este nome já existe</string>
+    <string name="download_already_running">Já existe uma descarga em curso com este nome</string>
+    <string name="show_error">Mostrar erro</string>
+    <string name="label_code">Código</string>
+    <string name="error_path_creation">O ficheiro não pode ser criado</string>
+    <string name="error_file_creation">A pasta de destino não pode ser criada</string>
+    <string name="error_permission_denied">Permissão negada pelo sistema</string>
+    <string name="error_ssl_exception">Ligação segura falhou</string>
+    <string name="error_unknown_host">Não foi possível encontrar o servidor</string>
+    <string name="error_connect_host">Não é possível conectar ao servidor</string>
+    <string name="error_http_no_content">O servidor não envia dados</string>
+    <string name="error_http_unsupported_range">O servidor não aceita descargas multi-threaded, tente novamente com @string/msg_threads = 1</string>
+    <string name="error_http_requested_range_not_satisfiable">Intervalo solicitado não satisfatório</string>
+    <string name="error_http_not_found">Não encontrado</string>
+    <string name="error_postprocessing_failed">Pós-processamento falhado</string>
+    <string name="clear_finished_download">Limpar descargas terminadas</string>
+    <string name="msg_pending_downloads">Continue suas %s transferências pendentes de descarregamentos</string>
+    <string name="stop">Parar</string>
+    <string name="max_retry_msg">Máximo de tentativas</string>
+    <string name="max_retry_desc">Número máximo de tentativas antes de cancelar a descarga</string>
+    <string name="pause_downloads_on_mobile">Pausa na comutação para dados móveis</string>
+    <string name="pause_downloads_on_mobile_desc">Descarregamentos que não podem ser pausados serão reiniciados</string>
+    <string name="events">Eventos</string>
+    <string name="conferences">Conferências</string>
 </resources>
