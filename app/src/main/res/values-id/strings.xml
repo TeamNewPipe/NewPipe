@@ -49,7 +49,7 @@
     <string name="play_btn_text">Putar</string>
     <string name="content">Konten</string>
     <string name="show_age_restricted_content_title">Konten yang dibatasi usia</string>
-    <string name="video_is_age_restricted">Tampilkan Video yang Dibatasi Usia. Membuka akses konten tersebut bisa dilakukan dari \"Pengaturan\".</string>
+    <string name="video_is_age_restricted">Tampilkan video yang dibatasi usia. Membuka akses konten tersebut bisa dilakukan dari Pengaturan.</string>
     <string name="network_error">Galat jaringan</string>
     <string name="could_not_load_thumbnails">Tidak bisa memuat semua thumbnail</string>
     <string name="did_you_mean">Maksud anda: %1$s\?</string>
@@ -61,7 +61,7 @@
 
     <string name="general_error">Galat</string>
     <string name="parsing_error">Tidak bisa mengurai situs web</string>
-    <string name="light_parsing_error">Sama sekali tidak bisa mengurai situs web</string>
+    <string name="light_parsing_error">Tidak dapat menguraikan situs web sepenuhnya</string>
     <string name="content_not_available">Konten tidak tersedia</string>
     <string name="blocked_by_gema">Diblokir oleh GEMA</string>
     <string name="could_not_setup_download_menu">Tidak bisa menyiapkan menu unduh</string>
@@ -218,7 +218,7 @@
     <string name="action_history">Riwayat</string>
     <string name="history_empty">Riwayat kosong</string>
     <string name="download_thumbnail_title">Muat thumbnail</string>
-    <string name="download_thumbnail_summary">Saat mati, thumbnail tidak dimuat, menghemat penggunaan data dan memori. Perubahan menghapus cache gambar baik di memori dan disk.</string>
+    <string name="download_thumbnail_summary">Matikan agar thumbnail tidak dimuat, menghemat penggunaan data dan memori. Perubahan menghapus cache gambar baik di memori dan disk.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache gambar dihapus</string>
     <string name="metadata_cache_wipe_title">Hapus tembolok metadata</string>
     <string name="metadata_cache_wipe_summary">Buang semua data tembolok laman web</string>
@@ -284,7 +284,7 @@
 
     <string name="no_videos">Tidak ada video</string>
     <plurals name="videos">
-	<item quantity="other">%s video</item>
+    <item quantity="other">Video</item>
 </plurals>
 
     <string name="create">Buat</string>
@@ -294,7 +294,7 @@
     <string name="rename">Ubah nama</string>
 
     <string name="donation_title">Donasi</string>
-    <string name="donation_encouragement">NewPipe dikembangkan oleh relawan yang menyisihkan waktu untuk memberi anda pengalaman terbaik. Segala dukungan kepada pengembang akan membuat NewPipe menjadi lebih baik lagi.</string>
+    <string name="donation_encouragement">NewPipe dikembangkan oleh relawan yang menyisihkan waktu untuk memberi anda pengalaman terbaik. Segala dukungan kepada pengembang akan membuat NewPipe menjadi lebih baik sambil menikmati secangkir kopi.</string>
     <string name="give_back">Beri dukungan</string>
     <string name="website_title">Situs Web</string>
     <string name="website_encouragement">Kunjungi situs web NewPipe untuk info dan berita.</string>
@@ -485,5 +485,69 @@
     <string name="minimize_on_exit_none_description">Nihil</string>
     <string name="minimize_on_exit_background_description">Minimalkan ke pemutar latar belakang</string>
     <string name="minimize_on_exit_popup_description">Minimalkan ke pemutar popup</string>
-
+    <string name="unsubscribe">Henti subscribe</string>
+    <string name="tab_new">Tab Baru</string>
+    <string name="tab_choose">Pilih Tab</string>
+    <string name="theme_title">Tema</string>
+    <string name="volume_gesture_control_title">Kontrol gestur volume</string>
+    <string name="volume_gesture_control_summary">Gunakan gestur untuk mengontrol volume pemutar</string>
+    <string name="brightness_gesture_control_title">Kontrol gestur kecerahan</string>
+    <string name="brightness_gesture_control_summary">Gunakan gestur untuk mengontrol kecerahan pemutar</string>
+    <string name="settings_category_updates_title">Pembaruan</string>
+    <string name="events">Acara</string>
+    <string name="file_deleted">Berkas dihapus</string>
+    <string name="app_update_notification_channel_name">Notifikasi Pembaruan Apl</string>
+    <string name="app_update_notification_channel_description">Notifikasi untuk versi NewPipe baru</string>
+    <string name="download_to_sdcard_error_title">Penyimpanan eksternal tidak tersedia</string>
+    <string name="download_to_sdcard_error_message">Belum bisa mengunduh ke kartu SD eksternal. Setel ulang lokasi folder unduhan\?</string>
+    <string name="saved_tabs_invalid_json">Menggunakan tab baku, ralat saat membaca tab yang disimpan</string>
+    <string name="restore_defaults">Kembali ke awal</string>
+    <string name="restore_defaults_confirmation">Apakah anda ingin kembali ke awal\?</string>
+    <string name="subscribers_count_not_available">Jumlah pelanggan tidak tersedia</string>
+    <string name="main_page_content_summary">Tab apa yang ditampilkan di halaman utama</string>
+    <string name="selection">Pilihan</string>
+    <string name="conferences">Konferensi</string>
+    <string name="updates_setting_title">Pembaruan</string>
+    <string name="updates_setting_description">Tampilkan pemberitahuan untuk meminta pembaruan aplikasi saat versi baru tersedia</string>
+    <string name="list_view_mode">Mode tampilan daftar</string>
+    <string name="list">Daftar</string>
+    <string name="grid">Kisi</string>
+    <string name="auto">Otomatis</string>
+    <string name="switch_view">Alihkan Tampilan</string>
+    <string name="app_update_notification_content_title">Pembaruan NewPipe Tersedia!</string>
+    <string name="app_update_notification_content_text">Ketuk untuk mengunduh</string>
+    <string name="missions_header_finished">Selesai</string>
+    <string name="missions_header_pending">Di antrian</string>
+    <string name="paused">dijeda</string>
+    <string name="queued">antri</string>
+    <string name="post_processing">pengolahan-pasca</string>
+    <string name="enqueue">Antre</string>
+    <string name="permission_denied">Tindakan ditolak oleh sistem</string>
+    <string name="download_failed">Pengunduhan gagal</string>
+    <string name="download_finished">Pengunduhan selesai</string>
+    <string name="download_finished_more">%s unduhan selesai</string>
+    <string name="generate_unique_name">Hasilkan nama unik</string>
+    <string name="overwrite">Timpa</string>
+    <string name="overwrite_warning">File yang diunduh dengan nama ini sudah ada</string>
+    <string name="download_already_running">Ada unduhan yang sedang berlangsung dengan nama ini</string>
+    <string name="show_error">Tunjukkan kesalahan</string>
+    <string name="label_code">Kode</string>
+    <string name="error_path_creation">File tidak dapat dibuat</string>
+    <string name="error_file_creation">Folder tujuan tidak dapat dibuat</string>
+    <string name="error_permission_denied">Izin ditolak oleh sistem</string>
+    <string name="error_ssl_exception">Koneksi aman gagal</string>
+    <string name="error_unknown_host">Tidak dapat menemukan server</string>
+    <string name="error_connect_host">Tidak dapat terhubung ke server</string>
+    <string name="error_http_no_content">Server tidak mengirim data</string>
+    <string name="error_http_unsupported_range">Server tidak menerima unduhan multi-utas, coba lagi dengan @string/msg_threads = 1</string>
+    <string name="error_http_requested_range_not_satisfiable">Rentang yang diminta tidak memuaskan</string>
+    <string name="error_http_not_found">Tidak ditemukan</string>
+    <string name="error_postprocessing_failed">Pengolahan-pasca gagal</string>
+    <string name="clear_finished_download">Hapus unduhan yang sudah selesai</string>
+    <string name="msg_pending_downloads">Lanjutkan %s transfer anda yang tertunda dari Unduhan</string>
+    <string name="stop">Berhenti</string>
+    <string name="max_retry_msg">Percobaan maksimum</string>
+    <string name="max_retry_desc">Jumlah upaya maksimum sebelum membatalkan unduhan</string>
+    <string name="pause_downloads_on_mobile">Berhenti ketika beralih ke data seluler</string>
+    <string name="pause_downloads_on_mobile_desc">Unduhan yang tidak dapat dijeda akan dimulai kembali</string>
 </resources>
