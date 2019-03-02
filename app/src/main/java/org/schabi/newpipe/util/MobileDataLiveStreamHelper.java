@@ -8,20 +8,28 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamType;
+import org.schabi.newpipe.player.playqueue.PlayQueue;
+import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 
-public class MobileDataHelper {
+public class MobileDataLiveStreamHelper {
 
-    public static boolean shouldDisplayWarningForMobileData(StreamInfo streamInfo, Context context) {
+    public static boolean shouldDisplayWarningForMobileData(PlayQueue queue, Context context) {
         boolean showWarningPreference = PreferenceManager.getDefaultSharedPreferences(context)
                 .getBoolean(context.getString(R.string.show_warning_live_stream_on_mobile), true);
 
-        return showWarningPreference && isLiveStream(streamInfo) && isMobileDataActive(context);
+        return showWarningPreference && containsLiveStream(queue) && isMobileDataActive(context);
     }
 
-    private static boolean isLiveStream(StreamInfo streamInfo) {
-        return streamInfo.getStreamType().equals(StreamType.LIVE_STREAM);
+    private static boolean containsLiveStream(PlayQueue queue) {
+        for (PlayQueueItem stream : queue.getStreams()) {
+            boolean containsLiveStream = stream.getStreamType().equals(StreamType.LIVE_STREAM);
+            if (containsLiveStream) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private static boolean isMobileDataActive(Context context) {

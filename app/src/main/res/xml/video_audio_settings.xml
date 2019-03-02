@@ -39,6 +39,7 @@
         android:title="@string/show_higher_resolutions_title"/>
 
     <SwitchPreference
+        app:iconSpaceReserved="false"
         android:defaultValue="true"
         android:key="@string/show_warning_live_stream_on_mobile"
         android:summary="@string/show_warning_live_stream_on_mobile_summary"

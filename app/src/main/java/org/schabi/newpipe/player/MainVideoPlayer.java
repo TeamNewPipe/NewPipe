@@ -598,21 +598,12 @@ public final class MainVideoPlayer extends AppCompatActivity
             if (playerImpl.getPlayer() == null) return;
 
             setRecovery();
-            final Intent intent = NavigationHelper.getPlayerIntent(
-                    context,
-                    BackgroundPlayer.class,
-                    this.getPlayQueue(),
-                    this.getRepeatMode(),
-                    this.getPlaybackSpeed(),
-                    this.getPlaybackPitch(),
-                    this.getPlaybackSkipSilence(),
-                    this.getPlaybackQuality()
-            );
-            context.startService(intent);
-
-            ((View) getControlAnimationView().getParent()).setVisibility(View.GONE);
-            destroy();
-            finish();
+            NavigationHelper.playInBackground(getActivity(), getPlayQueue(), false, msg -> {
+                ((View) getControlAnimationView().getParent()).setVisibility(View.GONE);
+                destroy();
+                finish();
+                return true;
+            });
         }
 
 
@@ -980,6 +971,10 @@ public final class MainVideoPlayer extends AppCompatActivity
         public int getMaxGestureLength() {
             return maxGestureLength;
         }
+    }
+
+    private Context getActivity() {
+        return this;
     }
 
     private class PlayerGestureListener extends GestureDetector.SimpleOnGestureListener implements View.OnTouchListener {

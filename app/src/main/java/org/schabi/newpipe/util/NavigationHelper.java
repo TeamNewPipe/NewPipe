@@ -4,9 +4,11 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -127,9 +129,53 @@ public class NavigationHelper {
         startService(context, getPlayerIntent(context, PopupVideoPlayer.class, queue));
     }
 
+    /**
+     * Initiate background playback. Implement {@callback} in the caller method if something needs
+     * to be done after user allowed playing live stream in the background.
+     * @param context context in which a dialog will be shown
+     * @param queue
+     * @param append true if the streams will be queued in the background
+     * @param callback
+     */
+    public static void playInBackground(final Context context, final PlayQueue queue, boolean append, Handler.Callback callback) {
+        if (MobileDataLiveStreamHelper.shouldDisplayWarningForMobileData(queue, context)) {
+            displayWarningForMobileData((dialog, which) -> {
+                if (which == DialogInterface.BUTTON_POSITIVE) {
+                    playOnBackgroundPlayer(context, queue, append);
+                    PreferenceManager.getDefaultSharedPreferences(context).edit()
+                            .putBoolean(context.getResources().getString(R.string.show_warning_live_stream_on_mobile), false)
+                            .apply();
+                    callback.handleMessage(null);
+                }}, context
+            );
+        } else {
+            playOnBackgroundPlayer(context, queue, append);
+        }
+    }
+
+    public static void playOnBackgroundPlayer(final Context context, final PlayQueue queue, final boolean append) {
+        if (append) {
+            enqueueOnBackgroundPlayer(context, queue);
+        } else {
+            startBackgroundPlayer(context, queue);
+        }
+    }
+
     public static void playOnBackgroundPlayer(final Context context, final PlayQueue queue) {
+        playOnBackgroundPlayer(context, queue, false);
+    }
+
+    private static void startBackgroundPlayer(final Context context, final PlayQueue queue) {
         Toast.makeText(context, R.string.background_player_playing_toast, Toast.LENGTH_SHORT).show();
         startService(context, getPlayerIntent(context, BackgroundPlayer.class, queue));
+    }
+
+    private static void displayWarningForMobileData(DialogInterface.OnClickListener listener, Context activity) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setMessage(R.string.mobile_data_live_stream_warning)
+                .setPositiveButton(R.string.disable_warning_mobile_data_live_stream, listener)
+                .setNegativeButton(R.string.cancel, null);
+        builder.create().show();
     }
 
     public static void enqueueOnPopupPlayer(final Context context, final PlayQueue queue) {
