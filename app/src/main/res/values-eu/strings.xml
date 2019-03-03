@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="view_count_text">%1$s ikustaldi</string>
     <string name="upload_date_text">Argitaratze-data: %1$s</string>
@@ -23,7 +23,7 @@
     <string name="play_audio">Audioa</string>
     <string name="default_audio_format_title">Audio formatu lehenetsia</string>
     <string name="download_dialog_title">Deskargatu</string>
-    <string name="next_video_title">Hurrengo bideoa</string>
+    <string name="next_video_title">Hurrengoa</string>
     <string name="show_next_and_similar_title">Erakutsi \'hurrengo\' eta \'antzeko\' bideoak</string>
     <string name="url_not_supported_toast">URLak ez du euskarririk</string>
     <string name="content_language_title">Edukiaren hizkuntz lehenetsia</string>
@@ -43,10 +43,10 @@
     <string name="use_external_audio_player_title">Erabili kanpo audio-erreproduzigailua</string>
     <string name="background_player_playing_toast">Atzeko planoan erreproduzitzen</string>
     <string name="main_bg_subtitle">Ukitu bilaketa hasteko</string>
-    <string name="download_path_audio_title">Audioa deskargatzeko kokapena</string>
+    <string name="download_path_audio_title">Audioa deskargatzeko karpeta</string>
     <string name="download_path_audio_dialog_title">Zehaztu audioa deskargatzeko bide-izena</string>
 
-    <string name="download_path_audio_summary">Deskargatutako audioa gordetzeko bide-izena</string>
+    <string name="download_path_audio_summary">Deskargatutako audioa hemen gordetzen da</string>
     <string name="autoplay_by_calling_app_title">Erreprodukzio automatikoa</string>
     <string name="autoplay_by_calling_app_summary">Bideoa abiatzen du NewPipe beste aplikazio batek deitu badu</string>
     <string name="dark_theme_title">Iluna</string>
@@ -54,7 +54,7 @@
 
     <string name="settings_category_appearance_title">Itxura</string>
 <string name="open_in_popup_mode">Ireki laster-leiho moduan</string>
-    <string name="use_external_video_player_summary">Bereizmen batzuetan ez da audiorik izango aukera hau gaituz gero</string>
+    <string name="use_external_video_player_summary">Audioa kentzen du bereizmen batzuetan</string>
     <string name="popup_mode_share_menu_title">NewPipe laster-leiho modua</string>
     <string name="controls_background_title">Bigarren planoa</string>
     <string name="controls_popup_title">Laster-leihoa</string>
@@ -76,9 +76,9 @@
     <string name="settings_category_other_title">Besteak</string>
     <string name="popup_playing_toast">Laster-leiho moduan erreproduzitzen</string>
     <string name="content">Edukia</string>
-    <string name="show_age_restricted_content_title">Erakutsi adinez mugatutako edukia</string>
-    <string name="video_is_age_restricted">Bideoa adinez mugatuta dago. Ezarpenetan gaitu daiteke eduki mota hau.</string>
-    <string name="duration_live">zuzenean</string>
+    <string name="show_age_restricted_content_title">Adinez mugatutako edukia</string>
+    <string name="video_is_age_restricted">Erakutsi adinez mugatutako bideoa. Ezarpenetan gaitu daiteke eduki mota hau.</string>
+    <string name="duration_live">ZUZENEAN</string>
     <string name="downloads">Deskargak</string>
     <string name="downloads_title">Deskargak</string>
     <string name="error_report_title">Errore-txostena</string>
@@ -102,7 +102,7 @@
     <string name="content_not_available">Edukia ez dago eskuragarri</string>
     <string name="blocked_by_gema">GEMAk blokeatuta</string>
     <string name="could_not_setup_download_menu">Ezin izan da deskargen menua ezarri</string>
-    <string name="live_streams_not_supported">Hau ZUZENEKO JARIO bat da. Ez dago hauentzako euskarririk oraindik.</string>
+    <string name="live_streams_not_supported">Zuzeneko jarioek ez dute euskarririk oraindik</string>
     <string name="could_not_get_stream">Ezin izan da jariorik eskuratu</string>
     <string name="could_not_load_image">Ezin izan da irudia kargatu</string>
     <string name="app_ui_crash">Aplikazioa/interfazea kraskatu da</string>
@@ -207,7 +207,7 @@
     <string name="notification_channel_name">NewPipe jakinarazpena</string>
     <string name="settings_category_player_title">Erreproduzigailua</string>
     <string name="settings_category_player_behavior_title">Portaera</string>
-    <string name="settings_category_history_title">Historiala eta cache-a</string>
+    <string name="settings_category_history_title">Historia eta cache-a</string>
     <string name="playlist">Erreprodukzio-zerrenda</string>
     <string name="undo">Desegin</string>
 
@@ -230,14 +230,14 @@
 
     <string name="no_videos">Bideorik ez</string>
     <plurals name="videos">
-	<item quantity="one">bideo %s</item>
-	<item quantity="other">%s bideo</item>
+    <item quantity="one">Bideoa</item>
+    <item quantity="other">Bideoak</item>
 </plurals>
 
     <string name="title_activity_history">Historiala</string>
     <string name="title_history_search">Bilatuta</string>
     <string name="title_history_view">Ikusita</string>
-    <string name="history_disabled">Historiala desgaituta dago</string>
+    <string name="history_disabled">Historia desgaituta dago</string>
     <string name="action_history">Historiala</string>
     <string name="history_empty">Historiala hutsik dago</string>
     <string name="history_cleared">Historiala garbitu da</string>
@@ -296,7 +296,7 @@
 
     <string name="drawer_open">"Ireki tiradera "</string>
     <string name="drawer_close">Itxi tiradera</string>
-    <string name="no_player_found_toast">Ez da jarioen erreproduzigailurik aurkitu (VLC instalatu dezakezu)</string>
+    <string name="no_player_found_toast">Ez da jarioen erreproduzigailurik aurkitu (VLC instalatu dezakezu).</string>
     <string name="always">Beti</string>
     <string name="just_once">Behin besterik ez</string>
 
@@ -312,10 +312,10 @@
     
     <string name="preferred_player_fetcher_notification_title">Informazioa eskuratzen…</string>
     <string name="preferred_player_fetcher_notification_message">Kargatzen eskatutako edukia</string>
-<string name="controls_download_desc">Deskargatu jario fitxategia.</string>
+<string name="controls_download_desc">Deskargatu jario fitxategia</string>
     <string name="show_info">Erakutsi informazioa</string>
 
-    <string name="tab_bookmarks">Gogokoak</string>
+    <string name="tab_bookmarks">Gogoko erreprodukzio-zerrendak</string>
 
     <string name="controls_add_to_playlist_title">Gehitu hona</string>
 
@@ -326,26 +326,25 @@
     <string name="metadata_cache_wipe_summary">Kendu cache-ko wegbuneen datu guztiak</string>
     <string name="metadata_cache_wipe_complete_notice">Metadatuen cache-a ezabatuta</string>
     <string name="auto_queue_title">Gehitu ilarara hurrengo jarioa</string>
-    <string name="auto_queue_summary">Gehitu erlazionatutako jario bat azken jarioa jo bitartean errepikapenik gabeko ilara batean</string>
+    <string name="auto_queue_summary">Gehitu erlazionatutako jario bat azken jarioa jo bitartean errepikapenik gabeko ilara batean.</string>
     <string name="settings_category_debug_title">Arazketa</string>
     <string name="file">Fitxategia</string>
 
     <string name="import_data_title">Inportatu datu-basea</string>
     <string name="export_data_title">Esportatu datu-basea</string>
-    <string name="import_data_summary">Zure uneko historiala eta harpidetzak gainidatziko ditu</string>
+    <string name="import_data_summary">Zure uneko historiala eta harpidetzak gainidazten ditu</string>
     <string name="export_data_summary">Esportatu historiala, harpidetzak eta erreprodukzio-zerrendak</string>
     <string name="clear_views_history_title">Garbitu ikusitakoaren historiala</string>
     <string name="clear_views_history_summary">Jotako jarioen historiala ezabatzen du</string>
-    <string name="delete_view_history_alert">Ezabatu ikusitakoaren historial osoa.</string>
+    <string name="delete_view_history_alert">Ezabatu ikusitakoaren historia osoa\?</string>
     <string name="view_history_deleted">Ikusitakoaren historiala ezabatuta.</string>
     <string name="clear_search_history_title">Garbitu bilaketa historiala</string>
     <string name="clear_search_history_summary">Ezabatu bilaketa gakoen historiala</string>
-    <string name="delete_search_history_alert">Ezabatu bilaketen historial osoa.</string>
-
+    <string name="delete_search_history_alert">Ezabatu bilaketen historia osoa\?</string>
     <string name="search_history_deleted">Bilaketen historiala ezabatuta.</string>
-    <string name="invalid_directory">Direktorio baliogabea</string>
+    <string name="invalid_directory">Karpeta baliogabea</string>
     <string name="invalid_source">Fitxategi edo edukiaren iturri baliogabea</string>
-    <string name="invalid_file">Fitxategia ez dago edo ez dago baimen nahiko berau irakurri edo idazteko</string>
+    <string name="invalid_file">Fitxategia ez dago edo ez dago baimenik irakurri edo idazteko</string>
     <string name="file_name_empty_error">Fitxategi izena ezin da hutsik egon</string>
     <string name="error_occurred_detail">Errore bat gertatu da: %1$s</string>
     <string name="no_streams_available_download">Ez dago jariorik deskargatzeko eskuragarri</string>
@@ -367,8 +366,8 @@
     <string name="title_last_played">Jotako azkena</string>
     <string name="title_most_played">Ikusiena</string>
 
-    <string name="export_complete_toast">Esportazioa burututa</string>
-    <string name="import_complete_toast">Inportazioa burututa</string>
+    <string name="export_complete_toast">Esportatuta</string>
+    <string name="import_complete_toast">Inportatuta</string>
     <string name="no_valid_zip_file">Ez da baliozko ZIP fitxategia</string>
     <string name="could_not_import_all_files">Ebisua: Ezin izan dira fitxategi guztiak inportatu.</string>
     <string name="override_current_data">Honek oraingo ezarpenak gainidatziko ditu.</string>
@@ -381,9 +380,9 @@
 
     <string name="always_ask_open_action">Galdetu beti</string>
 
-    <string name="create_playlist">Sortu erreprodukzio-zerrenda berria</string>
-    <string name="delete_playlist">Ezabatu erreprodukzio-zerrenda</string>
-    <string name="rename_playlist">Aldatu izena erreprodukzio-zerrendari</string>
+    <string name="create_playlist">Erreprodukzio-zerrenda berria</string>
+    <string name="delete_playlist">Ezabatu</string>
+    <string name="rename_playlist">Aldatu izena</string>
     <string name="playlist_name_input">Izena</string>
     <string name="append_playlist">Gehitu erreprodukzio-zerrendara</string>
     <string name="set_as_playlist_thumbnail">Ezarri erreprodukzio-zerrendaren iruditxo gisa</string>
@@ -391,11 +390,11 @@
     <string name="bookmark_playlist">Gogoko erreprodukzio-zerrenda</string>
     <string name="unbookmark_playlist">Kendu gogokoa</string>
 
-    <string name="delete_playlist_prompt">Erreprodukzio zerrenda hau ezabatu nahi duzu?</string>
+    <string name="delete_playlist_prompt">Erreprodukzio zerrenda hau ezabatu\?</string>
     <string name="playlist_creation_success">Erreprodukzio-zerrenda sortuta</string>
-    <string name="playlist_add_stream_success">Erreprodukzio-zerrendara gehituta</string>
-    <string name="playlist_thumbnail_change_success">Erreprodukzio zerrendaren iruditxoa aldatuta</string>
-    <string name="playlist_delete_failure">Ezin izan da erreprodukzio-zerrenda ezabatu</string>
+    <string name="playlist_add_stream_success">Erreprodukzio-zerrendatua</string>
+    <string name="playlist_thumbnail_change_success">Erreprodukzio zerrendaren iruditxoa aldatuta.</string>
+    <string name="playlist_delete_failure">Ezin izan da erreprodukzio-zerrenda ezabatu.</string>
 
     <string name="caption_none">Azpititulurik ez</string>
 
@@ -406,13 +405,13 @@
     <string name="caption_auto_generated">Automatikoki sortuak</string>
 
     <string name="caption_setting_title">Azpitituluak</string>
-    <string name="caption_setting_description">Aldatu azpitituluen testuaren eskala eta atzealdeko estiloa. Aplikazioa berrabiarazi behar da aldaketak aplikatzeko</string>
+    <string name="caption_setting_description">Aldatu azpitituluen testuaren eskala eta atzealdeko estiloa. Aplikazioa berrabiarazi behar da aldaketak aplikatzeko.</string>
 
     <string name="enable_leak_canary_title">Gaitu LeakCanary</string>
     <string name="enable_leak_canary_summary">Memoria galeren monitorizazioa. Aplikazioak agian ez du erantzungo memoriaren aitortza egin bitartean</string>
 
     <string name="enable_disposed_exceptions_title">Eman bizitza-ziklo kanpoko erroreen berri</string>
-    <string name="import_export_title">Inportatu/Esportatu</string>
+    <string name="import_export_title">Inportatu/esportatu</string>
     <string name="import_title">Inportatu</string>
     <string name="import_from">Inportatu hemendik</string>
     <string name="export_to">Esportatu hona</string>
@@ -452,8 +451,8 @@
 <string name="import_settings">Ezarpenak ere inportatu nahi dituzu?</string>
 
     <string name="use_inexact_seek_summary">Bilaketa ez zehatzak posizioak azkarrago baina prezisio gutxiagoz bilatzea ahalbidetzen du</string>
-    <string name="download_thumbnail_summary">"Desgaitu iruditxoak kargatzea gelditzeko eta datuak eta memoria aurrezteko. Hau aldatzean  memoria eta diskoko irudien cache-ak garbituko dira"</string>
-    <string name="app_license">NewPipe Software Librea eta Copyleft da: Nahi eran erabili, ikertu, partekatu eta hobetu dezakezu. Zehazki, elkarbanatzea eta aldatzea Free Software Foundation-ek argitaratutako GNU General Public License-ren 3. bertsioa edo berriagoren baten terminoen arabera egiteko baimena duzu.</string>
+    <string name="download_thumbnail_summary">Desgaitu koadro txikiak ez kargatzeko, datuak eta memoria aurreztuz. Aldaketak memoria eta diskoko irudien cache-ak garbituko ditu.</string>
+    <string name="app_license">NewPipe Software Librea eta Copyleft da: Erabili, ikertu, partekatu eta hobetu dezakezu. Zehazki, elkarbanatzea eta aldatzea Free Software Foundation-ek argitaratutako GNU General Public License-ren 3. bertsioa edo berriagoren baten terminoen arabera egiteko baimena duzu.</string>
     <string name="enable_disposed_exceptions_summary">Behartu aktibitatearen bizitza ziklotik kanpo baztertu eta gero entregatu ezin diren Rx salbuespenen inguruko txostena</string>
 
     <string name="privacy_policy_title">NewPipe pribatutasun politika</string>
@@ -471,8 +470,8 @@
     <string name="playback_step">Urratsa</string>
     <string name="playback_reset">Leheneratu</string>
 
-    <string name="minimize_on_exit_title">Minimizatu aplikazioa aldatzean</string>
-    <string name="minimize_on_exit_summary">Ekintza bideo erreproduzigailu nagusitik beste aplikazio batera aldatzean — %s</string>
+    <string name="minimize_on_exit_title">Minimizatu app-a aldatzean</string>
+    <string name="minimize_on_exit_summary">Ekintza bideo erreproduzigailu nagusitik beste app batera aldatzean — %s</string>
     <string name="minimize_on_exit_none_description">Bat ere ez</string>
     <string name="minimize_on_exit_background_description">Minimizatu bigarren planoko erreproduzigailura</string>
     <string name="minimize_on_exit_popup_description">Minimizatu laster-liho erreproduzigailura</string>
@@ -481,4 +480,68 @@
     <string name="playlists">Erreprodukzio-zerrendak</string>
     <string name="tracks">Pistak</string>
     <string name="users">Erabiltzaileak</string>
-    </resources>
+    <string name="unsubscribe">Kendu harpidetza</string>
+    <string name="tab_new">Fitxa berria</string>
+    <string name="tab_choose">Hautatu fitxa</string>
+    <string name="volume_gesture_control_title">Keinuen bidezko bolumenaren kontrola</string>
+    <string name="volume_gesture_control_summary">Erabili keinuak erreproduzigailuaren bolumena kontrolatzeko</string>
+    <string name="brightness_gesture_control_title">Keinuen bidezko distiraren kontrola</string>
+    <string name="brightness_gesture_control_summary">Erabili keinuak erreproduzigailuaren distira kontrolatzeko</string>
+    <string name="settings_category_updates_title">Eguneraketak</string>
+    <string name="events">Gertaerak</string>
+    <string name="file_deleted">Fitxategia ezabatu da</string>
+    <string name="app_update_notification_channel_name">Aplikazioaren eguneraketaren jakinarazpena</string>
+    <string name="app_update_notification_channel_description">NewPipe aplikazioaren bertsio berrien jakinarazpena</string>
+    <string name="download_to_sdcard_error_title">Kanpo biltegiratzea ez dago eskuragarri</string>
+    <string name="download_to_sdcard_error_message">Oraindik ezin da SD txartel batera deskargatu. Deskargen karpeta berrezarri\?</string>
+    <string name="saved_tabs_invalid_json">Lehenetsitako fitxak erabiltzen, errorea gordetako fitxak irakurtzean</string>
+    <string name="restore_defaults">Berrezarri lehenetsitakoak</string>
+    <string name="restore_defaults_confirmation">Lehenetsitakoak berrezarri nahi dituzu\?</string>
+    <string name="subscribers_count_not_available">Harpidedunen kontua ez dago eskuragarri</string>
+    <string name="main_page_content_summary">Orri nagusian ikusiko diren fitxak</string>
+    <string name="selection">Hautaketa</string>
+    <string name="conferences">Konferentziak</string>
+    <string name="updates_setting_title">Eguneraketak</string>
+    <string name="updates_setting_description">Erakutsi jakinarazpena aplikazioa eguneratzea eskatuz bertsio berria eskuragarri dagoenean</string>
+    <string name="list_view_mode">Zerrenda ikuspegi modua</string>
+    <string name="list">Zerrenda</string>
+    <string name="grid">Sareta</string>
+    <string name="auto">Automatikoa</string>
+    <string name="switch_view">Aldatu ikuspegia</string>
+    <string name="app_update_notification_content_title">NewPipe eguneraketa eskuragarri!</string>
+    <string name="app_update_notification_content_text">Sakatu deskargatzeko</string>
+    <string name="missions_header_finished">Amaituta</string>
+    <string name="missions_header_pending">Ilaran</string>
+    <string name="paused">pausatuta</string>
+    <string name="queued">ilaran</string>
+    <string name="post_processing">post-prozesua</string>
+    <string name="enqueue">Gehitu ilarara</string>
+    <string name="permission_denied">Ekintza sistemak ukatu du</string>
+    <string name="download_failed">Deskargak huts egin du</string>
+    <string name="download_finished">Deskarga amaitu da</string>
+    <string name="download_finished_more">%s deskarga amaituta</string>
+    <string name="generate_unique_name">Sortu izen bakana</string>
+    <string name="overwrite">Gainidatzi</string>
+    <string name="overwrite_warning">Badago izen bera duen deskargatutako fitxategi bat</string>
+    <string name="download_already_running">Badago izen bera duen deskarga bat abian</string>
+    <string name="show_error">Erakutsi errorea</string>
+    <string name="label_code">Kodea</string>
+    <string name="error_path_creation">Ezin da fitxategia sortu</string>
+    <string name="error_file_creation">Ezin da helburu karpeta sortu</string>
+    <string name="error_permission_denied">Sistemak baimena ukatu du</string>
+    <string name="error_ssl_exception">Konexio seguruak huts egin du</string>
+    <string name="error_unknown_host">Ezin izan da zerbitzaria aurkitu</string>
+    <string name="error_connect_host">Ezin da zerbitzariarekin konektatu</string>
+    <string name="error_http_no_content">Zerbitzariak ez du daturik bidaltzen</string>
+    <string name="error_http_unsupported_range">Zerbitzariak ez ditu hainbat hariko deskargak onartzen, saiatu @string/msg_threads = 1 erabilita</string>
+    <string name="error_http_requested_range_not_satisfiable">Eskatutako barrutia ezin da bete</string>
+    <string name="error_http_not_found">Ez aurkitua</string>
+    <string name="error_postprocessing_failed">Post-prozesuak huts egin du</string>
+    <string name="clear_finished_download">Garbitu amaitutako deskargak</string>
+    <string name="msg_pending_downloads">Berrekin burutzeke dauden %s transferentzia deskargetatik</string>
+    <string name="stop">Gelditu</string>
+    <string name="max_retry_msg">Saiakerak gehienez</string>
+    <string name="max_retry_desc">Deskarga ezeztatu aurretik saiatu beharreko aldi kopurua</string>
+    <string name="pause_downloads_on_mobile">Pausatu datu mugikorretara aldatzean</string>
+    <string name="pause_downloads_on_mobile_desc">Pausatu ezin daitezkeen deskargak berrekingo dira</string>
+</resources>

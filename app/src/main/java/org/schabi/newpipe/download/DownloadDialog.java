@@ -457,7 +457,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
                 break;
             case R.id.subtitle_button:
                 stream = subtitleStreamsAdapter.getItem(selectedSubtitleIndex);
-                location = NewPipeSettings.getVideoDownloadPath(context);// assume that subtitle & video go together
+                location = NewPipeSettings.getVideoDownloadPath(context);// assume that subtitle & video files go together
                 kind = 's';
                 break;
             default:
@@ -477,7 +477,6 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         final String finalFileName = fileName;
 
         DownloadManagerService.checkForRunningMission(context, location, fileName, (listed, finished) -> {
-            // should be safe run the following code without "getActivity().runOnUiThread()"
             if (listed) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle(R.string.download_dialog_title)
@@ -511,11 +510,11 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
 
             if (secondaryStream != null) {
                 secondaryStreamUrl = secondaryStream.getStream().getUrl();
-                psName = selectedStream.getFormat() == MediaFormat.MPEG_4 ? Postprocessing.ALGORITHM_MP4_DASH_MUXER : Postprocessing.ALGORITHM_WEBM_MUXER;
+                psName = selectedStream.getFormat() == MediaFormat.MPEG_4 ? Postprocessing.ALGORITHM_MP4_MUXER : Postprocessing.ALGORITHM_WEBM_MUXER;
                 psArgs = null;
                 long videoSize = wrappedVideoStreams.getSizeInBytes((VideoStream) selectedStream);
 
-                // set nearLength, only, if both sizes are fetched or known. this probably does not work on weak internet connections
+                // set nearLength, only, if both sizes are fetched or known. this probably does not work on slow networks
                 if (secondaryStream.getSizeInBytes() > 0 && videoSize > 0) {
                     nearLength = secondaryStream.getSizeInBytes() + videoSize;
                 }

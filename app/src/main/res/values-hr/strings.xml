@@ -11,7 +11,7 @@
     <string name="download">Preuzimanje</string>
     <string name="search">Pretraživanje</string>
     <string name="settings">Postavke</string>
-    <string name="did_you_mean">Jeste li mislili: %1$s ?</string>
+    <string name="did_you_mean">Jeste li mislili: %1$s\?</string>
     <string name="share_dialog_title">Podijeli putem</string>
     <string name="choose_browser">Izaberi pretraživač</string>
     <string name="screen_rotation">rotacija</string>
@@ -75,7 +75,7 @@
     <string name="download_dialog_title">Preuzmi</string>
 
     <string name="next_video_title">Sljedeći videozapis</string>
-    <string name="show_next_and_similar_title">Prikaži sljedeće i slične videozapise</string>
+    <string name="show_next_and_similar_title">Prikaži \'sljedeće\' i \'slične\' videozapise</string>
     <string name="url_not_supported_toast">URL nije podržan</string>
     <string name="content_language_title">Zadani jezik sadržaja</string>
     <string name="settings_category_video_audio_title">Video i zvuk</string>

@@ -22,6 +22,7 @@ import android.view.View;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
+import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.BaseStateFragment;
@@ -217,6 +218,13 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
                 } catch (Exception e) {
                     ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
                 }
+            }
+        });
+
+        infoListAdapter.setOnCommentsSelectedListener(new OnClickGesture<CommentsInfoItem>() {
+            @Override
+            public void selected(CommentsInfoItem selectedItem) {
+                onItemSelected(selectedItem);
             }
         });
 
