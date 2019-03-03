@@ -85,4 +85,8 @@
 
     <!-- File picker dimensions -->
     <dimen name="file_picker_items_text_size">14sp</dimen>
+
+    <!-- Text Size -->
+    <dimen name="comment_item_title_text_size">12sp</dimen>
+    <dimen name="comment_item_content_text_size">12sp</dimen>
 </resources>
