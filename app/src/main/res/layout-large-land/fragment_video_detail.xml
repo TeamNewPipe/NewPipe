@@ -179,6 +179,7 @@
 					android:id="@+id/detail_content_root_hiding"
 					android:layout_width="match_parent"
 					android:layout_height="match_parent"
+					android:paddingBottom="10dp"
 					android:layout_below="@+id/detail_title_root_layout"
 					android:orientation="vertical"
 					android:visibility="gone"
@@ -492,6 +493,7 @@
         android:id="@+id/relatedStreamsLayout"
 		android:layout_width="0dp"
 		android:layout_height="match_parent"
+		android:layout_marginTop="10dp"
 		android:layout_weight="3">
 
 	</FrameLayout>
