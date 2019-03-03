@@ -65,6 +65,7 @@ import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.BaseStateFragment;
+import org.schabi.newpipe.fragments.EmptyFragment;
 import org.schabi.newpipe.fragments.list.comments.CommentsFragment;
 import org.schabi.newpipe.fragments.list.videos.RelatedVideosFragment;
 import org.schabi.newpipe.info_list.InfoItemDialog;
@@ -179,6 +180,7 @@ public class VideoDetailFragment
 
     private static final String COMMENTS_TAB_TAG = "COMMENTS";
     private static final String RELATED_TAB_TAG = "NEXT VIDEO";
+    private static final String EMPTY_TAB_TAG = "EMPTY TAB";
 
     private AppBarLayout appBarLayout;
     private  ViewPager viewPager;
@@ -822,6 +824,10 @@ public class VideoDetailFragment
         if(showRelatedStreams && null == relatedStreamsLayout){
             //temp empty fragment. will be updated in handleResult
             pageAdapter.addFragment(new Fragment(), RELATED_TAB_TAG);
+        }
+
+        if(pageAdapter.getCount() == 0){
+            pageAdapter.addFragment(new EmptyFragment(), EMPTY_TAB_TAG);
         }
 
         pageAdapter.notifyDataSetUpdate();
