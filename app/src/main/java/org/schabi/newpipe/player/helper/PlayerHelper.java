@@ -70,10 +70,10 @@ public class PlayerHelper {
     ////////////////////////////////////////////////////////////////////////////
 
     public static String getTimeString(int milliSeconds) {
-        long seconds = (milliSeconds % 60000L) / 1000L;
-        long minutes = (milliSeconds % 3600000L) / 60000L;
-        long hours = (milliSeconds % 86400000L) / 3600000L;
-        long days = (milliSeconds % (86400000L * 7L)) / 86400000L;
+        int seconds = (milliSeconds % 60000) / 1000;
+        int minutes = (milliSeconds % 3600000) / 60000;
+        int hours = (milliSeconds % 86400000) / 3600000;
+        int days = (milliSeconds % (86400000 * 7)) / 86400000;
 
         stringBuilder.setLength(0);
         return days > 0 ? stringFormatter.format("%d:%02d:%02d:%02d", days, hours, minutes, seconds).toString()
