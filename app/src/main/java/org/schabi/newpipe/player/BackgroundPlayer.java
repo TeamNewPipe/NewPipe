@@ -275,6 +275,8 @@ public final class BackgroundPlayer extends Service {
     protected class BasePlayerImpl extends BasePlayer {
 
         @NonNull final private AudioPlaybackResolver resolver;
+        private int cachedDuration;
+        private String cachedDurationString;
 
         BasePlayerImpl(Context context) {
             super(context);
@@ -351,8 +353,12 @@ public final class BackgroundPlayer extends Service {
             resetNotification();
             if(Build.VERSION.SDK_INT >= 26 /*Oreo*/) updateNotificationThumbnail();
             if (bigNotRemoteView != null) {
+                if(cachedDuration != duration) {
+                    cachedDuration = duration;
+                    cachedDurationString = getTimeString(duration);
+                }
                 bigNotRemoteView.setProgressBar(R.id.notificationProgressBar, duration, currentProgress, false);
-                bigNotRemoteView.setTextViewText(R.id.notificationTime, getTimeString(currentProgress) + " / " + getTimeString(duration));
+                bigNotRemoteView.setTextViewText(R.id.notificationTime, getTimeString(currentProgress) + " / " + cachedDurationString);
             }
             if (notRemoteView != null) {
                 notRemoteView.setProgressBar(R.id.notificationProgressBar, duration, currentProgress, false);
