@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<string name="main_bg_subtitle">தொடங்குவதற்கு தேடல் பொத்தானை அழுத்தவும்</string>
+    <string name="main_bg_subtitle">தொடங்குவதற்கு தேடல் பொத்தானை அழுத்தவும்</string>
     <string name="view_count_text">"%1$s  பார்வைகள்"</string>
     <string name="upload_date_text">"%1$s   அன்று  வெளியிடப்பட்டது"</string>
     <string name="no_player_found">ஸ்டீரீம் பிளேயர் கண்டறியப்படவில்லை. வில்சி நிருவ வேண்டுமா?</string>
@@ -27,25 +27,19 @@
     <string name="subscription_change_failed">குழுசேர்தலை மாற்ற இயலவில்லை</string>
     <string name="subscription_update_failed">குழுசேர்தலை புதுப்பிக்க இயலவில்லை</string>
     <string name="show_info">தகவல் காண்பி</string>
-
     <string name="tab_main">முதன்மை</string>
     <string name="tab_subscriptions">குழுசேர்ப்புகள்</string>
     <string name="tab_bookmarks">குறிக்கப்பட்ட காணொலி பட்டியல்கள்</string>
-
     <string name="fragment_whats_new">புதிதாக</string>
-
     <string name="controls_background_title">பின்னால்</string>
     <string name="controls_popup_title">திரைமேல்</string>
     <string name="controls_add_to_playlist_title">சேர்</string>
-
     <string name="download_path_title">காணிலி தரவிறக்கப் பாதை</string>
     <string name="download_path_summary">தரவிறக்கப்பட்ட காணொலிகளின் சேமிப்புப் பாதை</string>
     <string name="download_path_dialog_title">காணொலியின் தரவிறக்கப் பாதையை உள்ளிடு</string>
-
     <string name="download_path_audio_title">ஒலி பதிவிறக்க அடைவு</string>
     <string name="download_path_audio_summary">தரவிறக்கப்பட்ட ஒலி இங்கே சேமிக்கப்பட்டுள்ளது</string>
     <string name="download_path_audio_dialog_title">ஒலி கோப்புகளுக்கான தரவிறக்கப் பாதையை உள்ளிடு</string>
-
     <string name="autoplay_by_calling_app_title">தானே இயக்கு</string>
     <string name="autoplay_by_calling_app_summary">NewPipe மற்றொரு செயலியில் இருந்து அழைக்கப்படும் போது காணொலியை இயக்கும்</string>
     <string name="default_resolution_title">முதல் பிரிதிறன்</string>
@@ -99,7 +93,6 @@
     <string name="always">எப்பொழுதும்</string>
     <string name="just_once">ஒரு முறை</string>
     <string name="file">கோப்பு</string>
-
     <string name="clear_views_history_title">பார்த்த வரலாற்றை நீக்கு</string>
     <string name="view_history_deleted">பார்த்த வரலாறு அழிக்கப்பட்டது.</string>
     <string name="clear_search_history_title">பார்த்த வரலாற்றை நீக்கு</string>
@@ -108,16 +101,12 @@
     <string name="error_snackbar_message">மன்னியுங்கள். சிறிய பிழை நிகழ்ந்தது.</string>
     <string name="what_device_headline">தகவல்:</string>
     <string name="error_details_headline">விவரங்கள்:</string>
-
-
     <string name="detail_likes_img_view_description">விருப்பங்கள்</string>
     <string name="use_tor_title">Tor பயன்படுத்து</string>
     <string name="search_no_results">முடிவுகள் இல்லை</string>
     <string name="empty_subscription_feed_subtitle">எந்த முடிவுகளும் இல்லை</string>
     <string name="detail_drag_description">இழுத்து வரிசைமாற்று</string>
-
     <string name="info_dir_created">தரவிறக்க அடைவு உருவாக்கப்பட்டது \'%1$s\'</string>
-
     <string name="video">காணொலி</string>
     <string name="audio">ஒலி</string>
     <string name="retry">மீண்டும் முயற்சி</string>
@@ -166,4 +155,5 @@
     <string name="popup_playing_append">பாப் அப் இயக்கியின் வரிசையில் சேர்க்கப்பட்டது</string>
     <string name="notification_channel_description">"NewPipe பின்னனி மற்றும் பாப்அப் இயக்கிகளின்  அறிவிப்புகள்"</string>
     <string name="switch_to_popup">"பாப்அப் இயக்கிக்கு மாறு  "</string>
+    <string name="unsubscribe">குழுவிலகு</string>
 </resources>

@@ -65,7 +65,7 @@
 
     <string name="content">Inhalt</string>
     <string name="show_age_restricted_content_title">Altersbeschränkte Inhalte</string>
-    <string name="video_is_age_restricted">Altersbeschränktes Video anzeigen. Das Zulassen dieses Materials ist unter \"Einstellungen\" möglich.</string>
+    <string name="video_is_age_restricted">Altersbeschränktes Video anzeigen. Das Zulassen dieses Materials ist von den Einstellungen aus möglich.</string>
 
     <string name="could_not_setup_download_menu">Konnte Download-Menü nicht einrichten</string>
     <string name="live_streams_not_supported">Live-Streams werden noch nicht unterstützt</string>
@@ -244,8 +244,8 @@
 
     <string name="no_videos">Keine Videos</string>
     <plurals name="videos">
-	<item quantity="one">%s Video</item>
-	<item quantity="other">%s Videos</item>
+    <item quantity="one">Video</item>
+    <item quantity="other">Videos</item>
 </plurals>
 
     <string name="charset_most_special_characters">Die meisten Sonderzeichen</string>
@@ -419,7 +419,7 @@
     <string name="unhook_checkbox">Verknüpfung aufheben (kann zu Verzerrungen führen)</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Standard</string>
-<string name="download_thumbnail_summary">Wenn ausgeschaltet, werden keine Miniaturansichten geladen, Daten und Speicherverbrauch sparend. Änderungen löschen die Bilder-Caches sowohl im Arbeitsspeicher als auch auf der SD-Karte.</string>
+<string name="download_thumbnail_summary">Abschalten, um das Laden von Miniaturansichten zu verhindern, was Daten- und Speicherverbrauch spart. Änderungen löschen den Bildzwischenspeicher sowohl im Arbeitsspeicher als auch auf der Festplatte.</string>
     <string name="auto_queue_title">Nächsten Stream automatisch einreihen</string>
     <string name="auto_queue_summary">Automatisches Anhängen eines verwandten Streams beim Abspielen des letzten Streams in einer nicht wiederholten Warteschlange.</string>
     <string name="drawer_header_action_paceholder_text">Hier wird bald etwas stehen ;D</string>
@@ -468,7 +468,7 @@
     <string name="search_history_deleted">Suchverlauf gelöscht.</string>
     <string name="one_item_deleted">1 Element gelöscht.</string>
 
-    <string name="app_license">NewPipe ist freie Copyleft-Software: Du kannst es nach Belieben benutzen, studieren, mit anderen teilen und verbessern. Insbesondere kannst du sie unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder unter Version 3 der Lizenz oder (nach deiner Wahl) jeder späteren Version.</string>
+    <string name="app_license">NewPipe ist freie Copyleft-Software: Du kannst sie nach Belieben benutzen, untersuchen, mit anderen teilen und verbessern. Insbesondere kannst du sie unter den von der Free Software Foundation veröffentlichten Bedingungen der GNU General Public License, in der Version 3 der Lizenz oder (nach deiner Wahl) jeder späteren Version, weitergeben und/oder verändern.</string>
     <string name="import_settings">Möchtest du auch Einstellungen importieren?</string>
 
     <string name="privacy_policy_title">NewPipe-Datenschutzbestimmungen</string>
@@ -495,4 +495,68 @@
     <string name="playlists">Wiedergabelisten</string>
     <string name="tracks">Titel</string>
     <string name="users">Nutzer</string>
-    </resources>
+    <string name="unsubscribe">Deabonnieren</string>
+    <string name="tab_new">Neuer Tab</string>
+    <string name="tab_choose">Tab wählen</string>
+    <string name="volume_gesture_control_title">Gestensteuerung für Lautstärke</string>
+    <string name="volume_gesture_control_summary">Die Lautstärke im Abspieler über Gesten steuern</string>
+    <string name="brightness_gesture_control_title">Gestensteuerung für Helligkeit</string>
+    <string name="brightness_gesture_control_summary">Die Helligkeit im Abspieler über Gesten steuern</string>
+    <string name="settings_category_updates_title">Aktualisierungen</string>
+    <string name="file_deleted">Datei gelöscht</string>
+    <string name="app_update_notification_channel_name">Aktualisierungsbenachrichtigung</string>
+    <string name="app_update_notification_channel_description">Benachrichtigung bei neuer NewPipe-Version</string>
+    <string name="download_to_sdcard_error_title">Kein externer Speicher verfügbar</string>
+    <string name="download_to_sdcard_error_message">Herunterladen auf externe SD-Karte ist noch nicht möglich. Zielverzeichnis zurücksetzen\?</string>
+    <string name="saved_tabs_invalid_json">Fehler beim Lesen der gespeicherten Tabs – es werden die Voreinstellungen benutzt</string>
+    <string name="restore_defaults">Voreinstellungen wiederherstellen</string>
+    <string name="restore_defaults_confirmation">Möchtest du die Voreinstellungen wiederherstellen\?</string>
+    <string name="subscribers_count_not_available">Abonnentenzahl nicht verfügbar</string>
+    <string name="main_page_content_summary">Welche Tabs auf der Hauptseite angezeigt werden</string>
+    <string name="selection">Auswahl</string>
+    <string name="updates_setting_title">Aktualisierungen</string>
+    <string name="updates_setting_description">Per Benachrichtigung zur Aktualisierung der App auffordern, wenn eine neue Version verfügbar ist</string>
+    <string name="list_view_mode">Art der Listenansicht</string>
+    <string name="list">Liste</string>
+    <string name="grid">Gitter</string>
+    <string name="auto">Auto</string>
+    <string name="switch_view">Ansicht wechseln</string>
+    <string name="app_update_notification_content_title">NewPipe-Aktualisierung verfügbar!</string>
+    <string name="app_update_notification_content_text">Zum Herunterladen antippen</string>
+    <string name="missions_header_finished">Fertig</string>
+    <string name="missions_header_pending">In der Warteschlange</string>
+    <string name="paused">pausiert</string>
+    <string name="queued">eingereiht</string>
+    <string name="post_processing">Nachbearbeitung</string>
+    <string name="enqueue">Warteschlange</string>
+    <string name="permission_denied">System verweigert den Zugriff</string>
+    <string name="download_failed">Herunterladen fehlgeschlagen</string>
+    <string name="download_finished">Herunterladen abgeschlossen</string>
+    <string name="download_finished_more">%s heruntergeladen</string>
+    <string name="generate_unique_name">Eindeutigen Namen erzeugen</string>
+    <string name="overwrite">Überschreiben</string>
+    <string name="overwrite_warning">Eine heruntergeladene Datei dieses Namens existiert bereits</string>
+    <string name="download_already_running">Eine Datei dieses Namens wird gerade heruntergeladen</string>
+    <string name="show_error">Fehler anzeigen</string>
+    <string name="label_code">Code</string>
+    <string name="error_path_creation">Die Datei kann nicht erstellt werden</string>
+    <string name="error_file_creation">Der Zielordner kann nicht erstellt werden</string>
+    <string name="error_permission_denied">System verweigert den Zugriff</string>
+    <string name="error_ssl_exception">Sichere Verbindung fehlgeschlagen</string>
+    <string name="error_unknown_host">Der Server konnte nicht gefunden werden</string>
+    <string name="error_connect_host">Kann nicht mit dem Server verbinden</string>
+    <string name="error_http_no_content">Der Server sendet keine Daten</string>
+    <string name="error_http_unsupported_range">Der Server erlaubt kein mehrfädiges Herunterladen – wiederhole mit @string/msg_threads = 1</string>
+    <string name="error_http_requested_range_not_satisfiable">Angefragter Bereich nicht bedienbar</string>
+    <string name="error_http_not_found">Nicht gefunden</string>
+    <string name="error_postprocessing_failed">Nachbearbeitung fehlgeschlagen</string>
+    <string name="clear_finished_download">Um fertige Downloads bereinigen</string>
+    <string name="msg_pending_downloads">Setze deine %s ausstehenden Übertragungen von Downloads fort</string>
+    <string name="stop">Anhalten</string>
+    <string name="max_retry_msg">Maximale Wiederholungen</string>
+    <string name="max_retry_desc">Maximalanzahl der Versuche, bevor der Download abgebrochen wird</string>
+    <string name="pause_downloads_on_mobile">Beim Umschalten auf mobile Daten pausieren</string>
+    <string name="pause_downloads_on_mobile_desc">Downloads, die nicht pausiert werden können, werden wiederholt</string>
+    <string name="conferences">Konferenzen</string>
+    <string name="events">Ereignisse</string>
+</resources>

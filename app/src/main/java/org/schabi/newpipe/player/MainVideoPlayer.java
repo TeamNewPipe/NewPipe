@@ -247,6 +247,11 @@ public final class MainVideoPlayer extends AppCompatActivity
         isBackPressed = false;
     }
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(AudioServiceLeakFix.preventLeakOf(newBase));
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // State Saving
     //////////////////////////////////////////////////////////////////////////*/
