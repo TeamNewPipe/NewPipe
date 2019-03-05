@@ -62,13 +62,14 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
     List<InfoItem> daysList = new ArrayList<>();
     List<InfoItem> weeksList = new ArrayList<>();
 
+    int count = 2;
+
     //offset
     int minuteHoldPos = 0;
     int housrHoldPos  = 0;
     int daysHoldPos   = 0;
     int weekHoldPos   = 0;
 
-    int count = 0;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle
@@ -79,7 +80,7 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
         super.onCreate(savedInstanceState);
         subscriptionService = SubscriptionService.getInstance(activity);
 
-        FEED_LOAD_COUNT = howManyItemsToLoad();
+        FEED_LOAD_COUNT = subscriptionPoolSize;
     }
 
     @Override
@@ -188,8 +189,8 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
             return;
         }
 
-        isLoading.set(true);
-        showLoading();
+//        isLoading.set(true);
+//        showLoading();
         showListFooter(true);
         subscriptionObserver = subscriptionService.getSubscription()
                 .onErrorReturnItem(Collections.emptyList())
@@ -229,15 +230,15 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
                 if (feedSubscriber != null) feedSubscriber.cancel();
                 feedSubscriber = s;
 
-                int requestSize = FEED_LOAD_COUNT - infoListAdapter.getItemsList().size();
-                if (wasLoading.getAndSet(false)) requestSize = FEED_LOAD_COUNT;
+//                int requestSize = FEED_LOAD_COUNT - infoListAdapter.getItemsList().size();
+//                if (wasLoading.getAndSet(false)) requestSize = FEED_LOAD_COUNT;
 
-                boolean hasToLoad = requestSize > 0;
+                boolean hasToLoad = true;
                 if (hasToLoad) {
-                    requestLoadedAtomic.set(infoListAdapter.getItemsList().size());
-                    requestFeed(requestSize);
+                   // requestLoadedAtomic.set(infoListAdapter.getItemsList().size());
+                    requestFeed(subscriptionPoolSize);
                 }
-                isLoading.set(hasToLoad);
+                //isLoading.set(hasToLoad);
             }
 
             @Override
@@ -296,7 +297,7 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
             public void onSubscribe(Disposable d) {
                 observer = d;
                 compositeDisposable.add(d);
-                isLoading.set(true);
+                //isLoading.set(true);
             }
 
             // Called only when response is non-empty
@@ -308,26 +309,25 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
                 }
 
                 for (int i = 0; i < 15; i++) {
+
                     //get atleast 8 relative items of source youtube channel
                     InfoItem infoItem = channelInfo.getRelatedItems().get(i);
                     boolean itemExists = doesItemExist(infoListAdapter.getItemsList(), infoItem);
+
                     //categorize into time
                     if (!itemExists) {
                         if (((StreamInfoItem) infoItem).getUploadDate().contains("minutes ago")) {
                             minutesList.add(infoItem);
                         } else if (((StreamInfoItem) infoItem).getUploadDate().contains("hours ago")) {
                             hoursList.add(infoItem);
-                        } else if (((StreamInfoItem) infoItem).getUploadDate().contains("days ago")) {
-                            daysList.add(infoItem);
-                        } else if (((StreamInfoItem) infoItem).getUploadDate().contains("weeks ago")) {
-                            weeksList.add(infoItem);
                         }
                     }
                 }
                 onDone();
 
                 //when itemsloaded size become equal to count it will repopulate entire infoListAdapter list
-                if (itemsLoaded.size() == count) {
+                if (itemsLoaded.size()  == count) {
+
                     infoListAdapter.addInfoInOrder(minutesList,minuteHoldPos);
                     minuteHoldPos += minutesList.size();
                     infoListAdapter.addInfoInOrder(hoursList,housrHoldPos+minuteHoldPos);
@@ -336,7 +336,9 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
                     daysHoldPos   += daysList.size();
                     infoListAdapter.addInfoInOrder(weeksList,weekHoldPos + daysHoldPos + housrHoldPos + minuteHoldPos);
                     weekHoldPos   += weeksList.size();
-                    count++;
+
+                    count = count +2;
+
                     minutesList.clear();
                     hoursList.clear();
                     daysList.clear();
@@ -368,12 +370,12 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
                 compositeDisposable.remove(observer);
 
                 int loaded = requestLoadedAtomic.incrementAndGet();
-                if (loaded >= Math.min(FEED_LOAD_COUNT, subscriptionPoolSize)) {
+                if (loaded < 7) {
                     requestLoadedAtomic.set(0);
-                    isLoading.set(false);
+                   // isLoading.set(false);
                 }
 
-                if (itemsLoaded.size() == subscriptionPoolSize) {
+                if (itemsLoaded.size() == subscriptionPoolSize-1) {
                     if (DEBUG) Log.d(TAG, "getChannelInfoObserver > All Items Loaded");
                     allItemsLoaded.set(true);
                     showListFooter(false);
@@ -393,7 +395,7 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
         delayHandler.removeCallbacksAndMessages(null);
         // Add a little of a delay when requesting more items because the cache is so fast,
         // that the view seems stuck to the user when he scroll to the bottom
-        delayHandler.postDelayed(() -> requestFeed(FEED_LOAD_COUNT), 300);
+        delayHandler.postDelayed(() -> requestFeed(50), 300);
     }
 
     @Override
