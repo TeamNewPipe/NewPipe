@@ -653,12 +653,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         }
 
         final int shuffleAlpha = shuffled ? 255 : 77;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            shuffleButton.setImageAlpha(shuffleAlpha);
-        } else {
-            //noinspection deprecation
-            shuffleButton.setAlpha(shuffleAlpha);
-        }
+        shuffleButton.setImageAlpha(shuffleAlpha);
     }
 
     private void onPlaybackParameterChanged(final PlaybackParameters parameters) {
