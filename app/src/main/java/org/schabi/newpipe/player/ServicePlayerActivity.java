@@ -656,6 +656,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             shuffleButton.setImageAlpha(shuffleAlpha);
         } else {
+            //noinspection deprecation
             shuffleButton.setAlpha(shuffleAlpha);
         }
     }
