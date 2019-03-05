@@ -351,7 +351,7 @@ public final class BackgroundPlayer extends Service {
 
             if (!shouldUpdateOnProgress) return;
             resetNotification();
-            if(Build.VERSION.SDK_INT >= 26 /*Oreo*/) updateNotificationThumbnail();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O /*Oreo*/) updateNotificationThumbnail();
             if (bigNotRemoteView != null) {
                 if(cachedDuration != duration) {
                     cachedDuration = duration;
