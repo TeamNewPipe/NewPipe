@@ -1268,22 +1268,22 @@ public class VideoDetailFragment
         disposables.add(recordManager.loadStreamState(info).onErrorComplete()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(
-                state -> {
-                    final int seconds = (int) (state.getProgressTime() / 1000.f);
-                    if (seconds < info.getDuration() - BasePlayer.PLAYBACK_SAVE_THRESHOLD_SECONDS) {
-                        positionView.setMax((int) info.getDuration());
-                        positionView.setProgress(seconds);
-                        detailPositionView.setText(Localization.getDurationString(seconds));
-						animateView(positionView, true, 500);
-						animateView(detailPositionView, true, 500);
-                    } else {
-						animateView(positionView, false, 500);
-						animateView(detailPositionView, false, 500);
-                    }
-                },
-                error -> {
-                    Log.e(TAG, "Player resume failure: ", error);
-                }
-        ));
+                        state -> {
+                            final int seconds = (int) (state.getProgressTime() / 1000.f);
+                            if (seconds < info.getDuration() - BasePlayer.PLAYBACK_SAVE_THRESHOLD_SECONDS) {
+                                positionView.setMax((int) info.getDuration());
+                                positionView.setProgress(seconds);
+                                detailPositionView.setText(Localization.getDurationString(seconds));
+                                animateView(positionView, true, 500);
+                                animateView(detailPositionView, true, 500);
+                            } else {
+                                animateView(positionView, false, 500);
+                                animateView(detailPositionView, false, 500);
+                            }
+                        },
+                        error -> {
+                            Log.e(TAG, "Player resume failure: ", error);
+                        }
+                ));
     }
 }
