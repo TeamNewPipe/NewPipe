@@ -509,16 +509,25 @@ public abstract class VideoPlayer extends BasePlayer
 
         // Normalize mismatching language strings
         final String preferredLanguage = trackSelector.getParameters().preferredTextLanguage;
-
         // Build UI
         buildCaptionMenu(availableLanguages);
         if (trackSelector.getParameters().getRendererDisabled(textRenderer) ||
-                preferredLanguage == null || !availableLanguages.contains(preferredLanguage)) {
+                preferredLanguage == null || (!availableLanguages.contains(preferredLanguage)
+                && !containsCaseInsensitive(availableLanguages, preferredLanguage))) {
             captionTextView.setText(R.string.caption_none);
         } else {
             captionTextView.setText(preferredLanguage);
         }
         captionTextView.setVisibility(availableLanguages.isEmpty() ? View.GONE : View.VISIBLE);
+    }
+
+    // workaround to match normalized captions like english to English or deutsch to Deutsch
+    private static boolean containsCaseInsensitive(List<String> list, String toFind) {
+        for(String i : list){
+            if(i.equalsIgnoreCase(toFind))
+                return true;
+        }
+        return false;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
