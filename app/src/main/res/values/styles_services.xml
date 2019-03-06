@@ -9,6 +9,7 @@
 
     <style name="BlackTheme.YouTube" parent="BlackTheme.Switchable">
     </style>
+
     <!-- SoundCloud -->
     <style name="LightTheme.SoundCloud" parent="LightTheme.Switchable">
         <item name="colorPrimary">@color/light_soundcloud_primary_color</item>
@@ -26,6 +27,25 @@
         <item name="colorPrimary">@color/dark_soundcloud_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_soundcloud_dark_color</item>
         <item name="colorAccent">@color/dark_soundcloud_accent_color</item>
+    </style>
+
+    <!-- Media.ccc -->
+    <style name="LightTheme.MediaCCC" parent="LightTheme.Switchable">
+        <item name="colorPrimary">@color/light_media_ccc_primary_color</item>
+        <item name="colorPrimaryDark">@color/light_media_ccc_statusbar_color</item>
+        <item name="colorAccent">@color/light_media_ccc_accent_color</item>
+    </style>
+
+    <style name="DarkTheme.MediaCCC" parent="DarkTheme.Switchable">
+        <item name="colorPrimary">@color/dark_media_ccc_primary_color</item>
+        <item name="colorPrimaryDark">@color/dark_media_ccc_statusbar_color</item>
+        <item name="colorAccent">@color/dark_media_ccc_accent_color</item>
+    </style>
+
+    <style name="BlackTheme.MediaCCC" parent="BlackTheme.Switchable">
+        <item name="colorPrimary">@color/dark_media_ccc_primary_color</item>
+        <item name="colorPrimaryDark">@color/dark_media_ccc_statusbar_color</item>
+        <item name="colorAccent">@color/dark_media_ccc_accent_color</item>
     </style>
 
 </resources>

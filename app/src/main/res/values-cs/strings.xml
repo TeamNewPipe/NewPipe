@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="upload_date_text">Publikováno %1$s</string>
     <string name="no_player_found">Nenalezen žádný přehrávač. Nainstalovat VLC?</string>
@@ -499,5 +499,16 @@ otevření ve vyskakovacím okně</string>
     <string name="minimize_on_exit_none_description">Žádná</string>
     <string name="minimize_on_exit_background_description">Minimalizovat přehrávač na pozadí</string>
     <string name="minimize_on_exit_popup_description">Minimalizovat přehrávač do vyskakovacího okna</string>
-
+    <string name="unsubscribe">Přestat odebírat</string>
+    <string name="tab_new">Nový panel</string>
+    <string name="tab_choose">Zvolit panel</string>
+    <string name="volume_gesture_control_title">Ovládání hlasitosti gesty</string>
+    <string name="volume_gesture_control_summary">Používat gesta pro ovládání hlasitosti přehrávače</string>
+    <string name="brightness_gesture_control_title">Ovládání jasu gesty</string>
+    <string name="brightness_gesture_control_summary">Používat gesta pro kontrolu jasu přehrávače</string>
+    <string name="settings_category_updates_title">Aktualizace</string>
+    <string name="file_deleted">Soubor smazán</string>
+    <string name="app_update_notification_channel_name">Notifikace aktualizace aplikace</string>
+    <string name="app_update_notification_channel_description">Notifikace pro novou verzi NewPipe</string>
+    <string name="download_to_sdcard_error_title">Externí úložiště není k dispozici</string>
 </resources>
