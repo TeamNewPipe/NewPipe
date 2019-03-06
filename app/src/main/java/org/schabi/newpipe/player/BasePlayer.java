@@ -1029,6 +1029,7 @@ public abstract class BasePlayer implements
     }
 
     protected void reload() {
+        savePlaybackState();
         if (playbackManager != null) {
             playbackManager.dispose();
         }
