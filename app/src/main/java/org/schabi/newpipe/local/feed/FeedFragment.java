@@ -62,13 +62,13 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
     List<InfoItem> daysList = new ArrayList<>();
     List<InfoItem> weeksList = new ArrayList<>();
 
-    int count = 2;
+    int count = 1;
 
     //offset
     int minuteHoldPos = 0;
-    int housrHoldPos  = 0;
-    int daysHoldPos   = 0;
-    int weekHoldPos   = 0;
+    int housrHoldPos = 0;
+    int daysHoldPos = 0;
+//  int weekHoldPos = 0;
 
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -86,7 +86,7 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
-        if(!useAsFrontPage) {
+        if (!useAsFrontPage) {
             setTitle(activity.getString(R.string.fragment_whats_new));
         }
         return inflater.inflate(R.layout.fragment_feed, container, false);
@@ -137,7 +137,7 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
 
         ActionBar supportActionBar = activity.getSupportActionBar();
 
-        if(useAsFrontPage) {
+        if (useAsFrontPage) {
             supportActionBar.setDisplayShowTitleEnabled(true);
             //supportActionBar.setDisplayShowTitleEnabled(false);
         }
@@ -235,7 +235,7 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
 
                 boolean hasToLoad = true;
                 if (hasToLoad) {
-                   // requestLoadedAtomic.set(infoListAdapter.getItemsList().size());
+                    // requestLoadedAtomic.set(infoListAdapter.getItemsList().size());
                     requestFeed(subscriptionPoolSize);
                 }
                 //isLoading.set(hasToLoad);
@@ -304,40 +304,44 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
             @Override
             public void onSuccess(final ChannelInfo channelInfo) {
                 if (infoListAdapter == null || channelInfo.getRelatedItems().isEmpty()) {
-                    onDone();
+                    //onDone();
                     return;
                 }
 
                 for (int i = 0; i < 15; i++) {
 
-                    //get atleast 8 relative items of source youtube channel
+                    //get atleast 15 relative items of source youtube channel
                     InfoItem infoItem = channelInfo.getRelatedItems().get(i);
                     boolean itemExists = doesItemExist(infoListAdapter.getItemsList(), infoItem);
 
                     //categorize into time
                     if (!itemExists) {
-                        if (((StreamInfoItem) infoItem).getUploadDate().contains("minutes ago")) {
+                        if (((StreamInfoItem) infoItem).getUploadDate().contains("minutes ago") || ((StreamInfoItem) infoItem).getUploadDate().contains("minutes ago")) {
                             minutesList.add(infoItem);
-                        } else if (((StreamInfoItem) infoItem).getUploadDate().contains("hours ago")) {
+                        } else if (((StreamInfoItem) infoItem).getUploadDate().contains("hours ago") || ((StreamInfoItem) infoItem).getUploadDate().contains("hour ago")) {
                             hoursList.add(infoItem);
+                        } else if (((StreamInfoItem) infoItem).getUploadDate().contains("day ago") || ((StreamInfoItem) infoItem).getUploadDate().contains("days ago")) {
+                            daysList.add(infoItem);
                         }
                     }
                 }
+
+                //to make sure itemloaded size increase by 1 at time
                 onDone();
 
-                //when itemsloaded size become equal to count it will repopulate entire infoListAdapter list
-                if (itemsLoaded.size()  == count) {
+                //when itemsloaded size become equal to count it will repopulate entire infoListAdapter list one by one
+                if (itemsLoaded.size() == count) {
 
-                    infoListAdapter.addInfoInOrder(minutesList,minuteHoldPos);
+                    infoListAdapter.addInfoInOrder(minutesList, minuteHoldPos);
                     minuteHoldPos += minutesList.size();
-                    infoListAdapter.addInfoInOrder(hoursList,housrHoldPos+minuteHoldPos);
-                    housrHoldPos  += hoursList.size();
-                    infoListAdapter.addInfoInOrder(daysList,daysHoldPos + housrHoldPos + minuteHoldPos);
-                    daysHoldPos   += daysList.size();
-                    infoListAdapter.addInfoInOrder(weeksList,weekHoldPos + daysHoldPos + housrHoldPos + minuteHoldPos);
-                    weekHoldPos   += weeksList.size();
+                    infoListAdapter.addInfoInOrder(hoursList, housrHoldPos + minuteHoldPos);
+                    housrHoldPos += hoursList.size();
+                    infoListAdapter.addInfoInOrder(daysList, daysHoldPos + housrHoldPos + minuteHoldPos);
+                    daysHoldPos += daysList.size();
+//                  infoListAdapter.addInfoInOrder(weeksList,weekHoldPos + daysHoldPos + housrHoldPos + minuteHoldPos);
+//                  weekHoldPos   += weeksList.size();
 
-                    count = count +2;
+                    count++;
 
                     minutesList.clear();
                     hoursList.clear();
@@ -369,21 +373,21 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
                 itemsLoaded.add(serviceId + url);
                 compositeDisposable.remove(observer);
 
-                int loaded = requestLoadedAtomic.incrementAndGet();
-                if (loaded < 7) {
-                    requestLoadedAtomic.set(0);
-                   // isLoading.set(false);
-                }
+//                int loaded = requestLoadedAtomic.incrementAndGet();
+//                if (loaded < 7) {
+//                    //requestLoadedAtomic.set(0);
+//                    //isLoading.set(false);
+//                }
 
-                if (itemsLoaded.size() == subscriptionPoolSize-1) {
+                if (itemsLoaded.size() == subscriptionPoolSize) {
                     if (DEBUG) Log.d(TAG, "getChannelInfoObserver > All Items Loaded");
                     allItemsLoaded.set(true);
                     showListFooter(false);
                     isLoading.set(false);
                     hideLoading();
-                    if (infoListAdapter.getItemsList().size() == 0) {
-                        showEmptyState();
-                    }
+//                    if (infoListAdapter.getItemsList().size() == 0) {
+//                        showEmptyState();
+//                    }
                 }
             }
         };
@@ -406,7 +410,8 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
     private final Handler delayHandler = new Handler();
 
     private void requestFeed(final int count) {
-        if (DEBUG) Log.d(TAG, "requestFeed() called with: count = [" + count + "], feedSubscriber = [" + feedSubscriber + "]");
+        if (DEBUG)
+            Log.d(TAG, "requestFeed() called with: count = [" + count + "], feedSubscriber = [" + feedSubscriber + "]");
         if (feedSubscriber == null) return;
 
         isLoading.set(true);
