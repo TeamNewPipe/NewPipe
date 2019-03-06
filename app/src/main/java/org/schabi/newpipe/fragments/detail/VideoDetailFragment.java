@@ -1270,7 +1270,8 @@ public class VideoDetailFragment
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(
                         state -> {
                             final int seconds = (int) (state.getProgressTime() / 1000.f);
-                            if (seconds < info.getDuration() - BasePlayer.PLAYBACK_SAVE_THRESHOLD_SECONDS) {
+                            if (seconds > BasePlayer.PLAYBACK_SAVE_THRESHOLD_START_SECONDS &&
+                                    seconds < info.getDuration() - BasePlayer.PLAYBACK_SAVE_THRESHOLD_END_SECONDS) {
                                 positionView.setMax((int) info.getDuration());
                                 positionView.setProgress(seconds);
                                 detailPositionView.setText(Localization.getDurationString(seconds));

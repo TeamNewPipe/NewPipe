@@ -178,9 +178,12 @@ public abstract class BasePlayer implements
     protected final static int FAST_FORWARD_REWIND_AMOUNT_MILLIS = 10000; // 10 Seconds
     protected final static int PLAY_PREV_ACTIVATION_LIMIT_MILLIS = 5000; // 5 seconds
     protected final static int PROGRESS_LOOP_INTERVAL_MILLIS = 500;
-    protected final static int RECOVERY_SKIP_THRESHOLD_MILLIS = 3000; // 3 seconds
+    /** Playback state will not be saved, if playback time less than this threshold */
+    public static final int PLAYBACK_SAVE_THRESHOLD_START_SECONDS = 5;
+    public static final long PLAYBACK_SAVE_THRESHOLD_START_MILLIS = TimeUnit.SECONDS.toMillis(PLAYBACK_SAVE_THRESHOLD_START_SECONDS);
     /** Playback state will not be saved, if time left less than this threshold */
-    public static final int PLAYBACK_SAVE_THRESHOLD_SECONDS = 10;
+    public static final int PLAYBACK_SAVE_THRESHOLD_END_SECONDS = 10;
+    public static final long PLAYBACK_SAVE_THRESHOLD_END_MILLIS = TimeUnit.SECONDS.toMillis(PLAYBACK_SAVE_THRESHOLD_END_SECONDS);
 
     protected SimpleExoPlayer simpleExoPlayer;
     protected AudioReactor audioReactor;
@@ -882,8 +885,8 @@ public abstract class BasePlayer implements
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
                             state -> {
-                                if (state.getProgressTime() > 0 &&
-                                        state.getProgressTime() < simpleExoPlayer.getDuration() - PLAYBACK_SAVE_THRESHOLD_SECONDS * 1000) {
+                                if (state.getProgressTime() > PLAYBACK_SAVE_THRESHOLD_START_MILLIS &&
+                                        state.getProgressTime() < simpleExoPlayer.getDuration() - PLAYBACK_SAVE_THRESHOLD_END_MILLIS) {
                                     seekTo(state.getProgressTime());
                                     onPositionRestored(state.getProgressTime());
                                 }
@@ -1050,9 +1053,9 @@ public abstract class BasePlayer implements
         if (simpleExoPlayer == null || currentMetadata == null) return;
         final StreamInfo currentInfo = currentMetadata.getMetadata();
 
-        if (simpleExoPlayer.getCurrentPosition() > RECOVERY_SKIP_THRESHOLD_MILLIS &&
+        if (simpleExoPlayer.getCurrentPosition() > PLAYBACK_SAVE_THRESHOLD_START_MILLIS &&
                 simpleExoPlayer.getCurrentPosition() <
-                        simpleExoPlayer.getDuration() - RECOVERY_SKIP_THRESHOLD_MILLIS) {
+                        simpleExoPlayer.getDuration() - PLAYBACK_SAVE_THRESHOLD_END_MILLIS) {
             savePlaybackState(currentInfo, simpleExoPlayer.getCurrentPosition());
         }
     }
