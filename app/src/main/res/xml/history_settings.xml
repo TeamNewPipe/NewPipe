@@ -26,7 +26,10 @@
         android:title="@string/enable_search_history_title"
         app:iconSpaceReserved="false" />
 
-    <PreferenceCategory android:title="@string/settings_category_clear_data_title">
+    <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout"
+        android:title="@string/settings_category_clear_data_title"
+        app:iconSpaceReserved="false">
 
         <Preference
             android:key="@string/metadata_cache_wipe_key"
