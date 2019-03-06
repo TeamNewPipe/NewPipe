@@ -1284,6 +1284,10 @@ public class VideoDetailFragment
                         },
                         error -> {
                             Log.e(TAG, "Player resume failure: ", error);
+                        },
+                        () -> {
+                            animateView(positionView, false, 500);
+                            animateView(detailPositionView, false, 500);
                         }
                 ));
     }

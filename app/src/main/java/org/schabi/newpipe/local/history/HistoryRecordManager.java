@@ -202,6 +202,13 @@ public class HistoryRecordManager {
         })).subscribeOn(Schedulers.io());
     }
 
+    public Maybe<Integer> resetStreamState(@NonNull final StreamInfo info) {
+        return Maybe.fromCallable(() -> database.runInTransaction(() -> {
+            final long streamId = streamTable.upsert(new StreamEntity(info));
+            return streamStateTable.deleteState(streamId);
+        })).subscribeOn(Schedulers.io());
+    }
+
     ///////////////////////////////////////////////////////
     // Utility
     ///////////////////////////////////////////////////////

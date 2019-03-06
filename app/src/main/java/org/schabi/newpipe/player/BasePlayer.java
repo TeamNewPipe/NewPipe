@@ -886,7 +886,8 @@ public abstract class BasePlayer implements
                     .subscribe(
                             state -> {
                                 if (state.getProgressTime() > PLAYBACK_SAVE_THRESHOLD_START_MILLIS &&
-                                        state.getProgressTime() < simpleExoPlayer.getDuration() - PLAYBACK_SAVE_THRESHOLD_END_MILLIS) {
+                                        state.getProgressTime() < simpleExoPlayer.getDuration() -
+                                                PLAYBACK_SAVE_THRESHOLD_END_MILLIS) {
                                     seekTo(state.getProgressTime());
                                     onPositionRestored(state.getProgressTime());
                                 }
@@ -1049,14 +1050,29 @@ public abstract class BasePlayer implements
         databaseUpdateReactor.add(stateSaver);
     }
 
+    protected void resetPlaybackState(final StreamInfo info) {
+        if (info == null) return;
+        final Disposable d = recordManager.resetStreamState(info)
+                .observeOn(AndroidSchedulers.mainThread())
+                .onErrorComplete()
+                .subscribe(
+                        ignored -> {/* successful */},
+                        error -> Log.e(TAG, "savePlaybackState() failure: ", error)
+                );
+        databaseUpdateReactor.add(d);
+    }
+
     protected void savePlaybackState() {
         if (simpleExoPlayer == null || currentMetadata == null) return;
         final StreamInfo currentInfo = currentMetadata.getMetadata();
 
-        if (simpleExoPlayer.getCurrentPosition() > PLAYBACK_SAVE_THRESHOLD_START_MILLIS &&
-                simpleExoPlayer.getCurrentPosition() <
-                        simpleExoPlayer.getDuration() - PLAYBACK_SAVE_THRESHOLD_END_MILLIS) {
-            savePlaybackState(currentInfo, simpleExoPlayer.getCurrentPosition());
+        if (simpleExoPlayer.getCurrentPosition() > PLAYBACK_SAVE_THRESHOLD_START_MILLIS) {
+            if (simpleExoPlayer.getCurrentPosition() < simpleExoPlayer.getDuration() -
+                    PLAYBACK_SAVE_THRESHOLD_END_MILLIS) {
+                savePlaybackState(currentInfo, simpleExoPlayer.getCurrentPosition());
+            } else {
+                resetPlaybackState(currentInfo);
+            }
         }
     }
 
