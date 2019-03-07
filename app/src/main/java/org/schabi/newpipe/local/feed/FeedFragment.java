@@ -60,7 +60,7 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
     List<InfoItem> minutesList = new ArrayList<>();
     List<InfoItem> hoursList = new ArrayList<>();
     List<InfoItem> daysList = new ArrayList<>();
-    List<InfoItem> weeksList = new ArrayList<>();
+//  List<InfoItem> weeksList = new ArrayList<>();
 
     int count = 1;
 
@@ -316,9 +316,9 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
 
                     //categorize into time
                     if (!itemExists) {
-                        if (((StreamInfoItem) infoItem).getUploadDate().contains("minutes ago") || ((StreamInfoItem) infoItem).getUploadDate().contains("minutes ago")) {
+                        if (((StreamInfoItem) infoItem).getUploadDate().contains("minute ago") || ((StreamInfoItem) infoItem).getUploadDate().contains("minutes ago")) {
                             minutesList.add(infoItem);
-                        } else if (((StreamInfoItem) infoItem).getUploadDate().contains("hours ago") || ((StreamInfoItem) infoItem).getUploadDate().contains("hour ago")) {
+                        } else if (((StreamInfoItem) infoItem).getUploadDate().contains("hour ago") || ((StreamInfoItem) infoItem).getUploadDate().contains("hours ago")) {
                             hoursList.add(infoItem);
                         } else if (((StreamInfoItem) infoItem).getUploadDate().contains("day ago") || ((StreamInfoItem) infoItem).getUploadDate().contains("days ago")) {
                             daysList.add(infoItem);
