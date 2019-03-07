@@ -41,6 +41,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -96,7 +97,7 @@ public class RouterActivity extends AppCompatActivity {
             currentUrl = getUrl(getIntent());
 
             if (TextUtils.isEmpty(currentUrl)) {
-                Toast.makeText(this, R.string.invalid_url_toast, Toast.LENGTH_LONG).show();
+                handleText();
                 finish();
             }
         }
@@ -116,7 +117,7 @@ public class RouterActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        
+
         handleUrl(currentUrl);
     }
 
@@ -355,6 +356,15 @@ public class RouterActivity extends AppCompatActivity {
 
         negativeButton.setEnabled(state);
         positiveButton.setEnabled(state);
+    }
+
+    private void handleText(){
+        String searchString = getIntent().getStringExtra(Intent.EXTRA_TEXT);
+        int serviceId = getIntent().getIntExtra(Constants.KEY_SERVICE_ID, 0);
+        Intent intent = new Intent(getThemeWrapperContext(), MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        NavigationHelper.openSearch(getThemeWrapperContext(),serviceId,searchString);
     }
 
     private void handleChoice(final String selectedChoiceKey) {
