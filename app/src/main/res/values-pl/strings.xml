@@ -464,10 +464,10 @@
     <string name="clear_finished_download">Wyczyść ukończone pobieranie</string>
     <string name="msg_pending_downloads">Kontynuuj %s oczekujące transfery z plików do pobrania</string>
     <string name="stop">Zatrzymaj</string>
-    <string name="max_retry_msg">Maksymalna liczba prób</string>
+    <string name="max_retry_msg">Maksymalna liczba powtórzeń</string>
     <string name="max_retry_desc">Maksymalna liczba prób przed anulowaniem pobierania</string>
     <string name="pause_downloads_on_mobile">Przerwij przełączanie na dane mobilne</string>
-    <string name="pause_downloads_on_mobile_desc">Pobierane pliki, których nie można wstrzymać, zostaną ponownie uruchomione</string>
+    <string name="pause_downloads_on_mobile_desc">Pobierane pliki, których nie można wstrzymać, zostaną zrestartowane</string>
     <string name="events">Zdarzenia</string>
     <string name="conferences">Konferencje</string>
 </resources>
