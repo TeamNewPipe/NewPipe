@@ -208,7 +208,7 @@
     <plurals name="subscribers">
         <item quantity="one">%s subskrybent</item>
         <item quantity="few">%s subskrybentów</item>
-        <item quantity="many">%s subskrybentów</item>
+        <item quantity="many">%s subskrybenci</item>
     </plurals>
     <plurals name="views">
         <item quantity="one">%s odtworzenie</item>
@@ -356,7 +356,7 @@
 \n
 \nCzy chcesz kontynuować?</string>
     <string name="playback_speed_control">Kontrola prędkości odtwarzania</string>
-    <string name="playback_tempo">Tempo</string>
+    <string name="playback_tempo">Czas</string>
     <string name="playback_pitch">Wysokość dźwięku</string>
     <string name="import_soundcloud_instructions_hint">twojeID, soundcloud.com/yourid</string>
     <string name="unhook_checkbox">Odłącz (może powodować zniekształcenia)</string>
