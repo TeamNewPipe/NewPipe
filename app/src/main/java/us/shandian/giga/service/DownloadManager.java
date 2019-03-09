@@ -141,15 +141,18 @@ public class DownloadManager {
                     File dl = mis.getDownloadedFile();
                     boolean exists = dl.exists();
 
-                    if (mis.postprocessingRunning && mis.postprocessingThis) {
-                        // Incomplete post-processing results in a corrupted download file
-                        // because the selected algorithm works on the same file to save space.
-                        if (!dl.delete()) {
-                            Log.w(TAG, "Unable to delete incomplete download file: " + sub.getPath());
+                    if (mis.isPsRunning()) {
+                        if (mis.postprocessingThis) {
+                            // Incomplete post-processing results in a corrupted download file
+                            // because the selected algorithm works on the same file to save space.
+                            if (exists && dl.isFile() && !dl.delete())
+                                Log.w(TAG, "Unable to delete incomplete download file: " + sub.getPath());
+
+                            exists = true;
                         }
-                        exists = true;
-                        mis.postprocessingRunning = false;
-                        mis.errCode = DownloadMission.ERROR_POSTPROCESSING_FAILED;
+
+                        mis.postprocessingState = 0;
+                        mis.errCode = DownloadMission.ERROR_POSTPROCESSING;
                         mis.errObject = new RuntimeException("stopped unexpectedly");
                     } else if (exists && !dl.isFile()) {
                         // probably a folder, this should never happens
@@ -332,7 +335,7 @@ public class DownloadManager {
         int count = 0;
         synchronized (this) {
             for (DownloadMission mission : mMissionsPending) {
-                if (mission.running && mission.errCode != DownloadMission.ERROR_POSTPROCESSING_FAILED && !mission.isFinished())
+                if (mission.running && !mission.isFinished() && !mission.isPsFailed())
                     count++;
             }
         }
@@ -471,7 +474,7 @@ public class DownloadManager {
         boolean flag = false;
         synchronized (this) {
             for (DownloadMission mission : mMissionsPending) {
-                if (mission.running && mission.isFinished() && !mission.postprocessingRunning) {
+                if (mission.running && !mission.isFinished() && !mission.isPsRunning()) {
                     flag = true;
                     mission.pause();
                 }
@@ -528,6 +531,8 @@ public class DownloadManager {
         ArrayList<Object> current;
         ArrayList<Mission> hidden;
 
+        boolean hasFinished = false;
+
         private MissionIterator() {
             hidden = new ArrayList<>(2);
             current = null;
@@ -563,6 +568,7 @@ public class DownloadManager {
                     list.addAll(finished);
                 }
 
+                hasFinished = finished.size() > 0;
 
                 return list;
             }
@@ -635,6 +641,10 @@ public class DownloadManager {
 
         public void unHide(Mission mission) {
             hidden.remove(mission);
+        }
+
+        public boolean hasFinishedMissions() {
+            return hasFinished;
         }
 
 

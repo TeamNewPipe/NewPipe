@@ -11,9 +11,7 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
-import org.schabi.newpipe.extractor.services.peertube.PeertubeInstance;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import static org.schabi.newpipe.extractor.ServiceList.SoundCloud;
@@ -30,6 +28,8 @@ public class ServiceHelper {
                 return R.drawable.place_holder_cloud;
             case 2:
                 return R.drawable.place_holder_peertube;
+            case 3:
+                return R.drawable.place_holder_gadse;
             default:
                 return R.drawable.place_holder_circle;
         }
@@ -43,6 +43,8 @@ public class ServiceHelper {
             case "playlists": return c.getString(R.string.playlists);
             case "tracks": return c.getString(R.string.tracks);
             case "users": return c.getString(R.string.users);
+            case "conferences" : return c.getString(R.string.conferences);
+            case "events" : return c.getString(R.string.events);
             default: return filter;
         }
     }
@@ -134,7 +136,7 @@ public class ServiceHelper {
     }
 
     public static void initService(Context context, int serviceId) {
-        if(serviceId == 2){
+        if(serviceId == ServiceList.PeerTube.getServiceId()){
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
             String peerTubeInstanceUrl = sharedPreferences.getString(context.getString(R.string.peertube_instance_url_key), ServiceList.PeerTube.getBaseUrl());
             String peerTubeInstanceName = sharedPreferences.getString(context.getString(R.string.peertube_instance_name_key), ServiceList.PeerTube.getServiceInfo().getName());

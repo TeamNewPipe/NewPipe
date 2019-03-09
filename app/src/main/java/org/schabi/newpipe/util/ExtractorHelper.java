@@ -32,6 +32,7 @@ import org.schabi.newpipe.extractor.Info;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor.InfoItemsPage;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.SuggestionExtractor;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.comments.CommentsInfo;
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
@@ -47,6 +48,7 @@ import org.schabi.newpipe.report.UserAction;
 
 import java.io.IOException;
 import java.io.InterruptedIOException;
+import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.Maybe;
@@ -96,10 +98,13 @@ public final class ExtractorHelper {
     public static Single<List<String>> suggestionsFor(final int serviceId,
                                                       final String query) {
         checkServiceId(serviceId);
-        return Single.fromCallable(() ->
-                NewPipe.getService(serviceId)
-                        .getSuggestionExtractor()
-                        .suggestionList(query));
+        return Single.fromCallable(() -> {
+            SuggestionExtractor extractor = NewPipe.getService(serviceId)
+                    .getSuggestionExtractor();
+            return extractor != null
+                    ? extractor.suggestionList(query)
+                    : Collections.emptyList();
+        });
     }
 
     public static Single<StreamInfo> getStreamInfo(final int serviceId,

@@ -31,6 +31,7 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
+import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
@@ -233,10 +234,10 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                 openRssFeed();
                 break;
             case R.id.menu_item_openInBrowser:
-                openUrlInBrowser(url);
+                openUrlInBrowser(currentInfo.getOriginalUrl());
                 break;
             case R.id.menu_item_share:
-                shareUrl(name, url);
+                shareUrl(name, currentInfo.getOriginalUrl());
                 break;
             default:
                 return super.onOptionsItemSelected(item);
@@ -487,12 +488,16 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     protected boolean onError(Throwable exception) {
         if (super.onError(exception)) return true;
 
-        int errorId = exception instanceof ExtractionException ? R.string.parsing_error : R.string.general_error;
-        onUnrecoverableError(exception,
-                UserAction.REQUESTED_CHANNEL,
-                NewPipe.getNameOfService(serviceId),
-                url,
-                errorId);
+        if(exception instanceof ContentNotAvailableException){
+            showError(getString(R.string.content_not_available), false);
+        }else{
+            int errorId = exception instanceof ExtractionException ? R.string.parsing_error : R.string.general_error;
+            onUnrecoverableError(exception,
+                    UserAction.REQUESTED_CHANNEL,
+                    NewPipe.getNameOfService(serviceId),
+                    url,
+                    errorId);
+        }
         return true;
     }
 

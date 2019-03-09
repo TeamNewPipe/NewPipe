@@ -94,15 +94,17 @@ public class VideoPlaybackResolver implements PlaybackResolver {
         // Below are auxiliary media sources
 
         // Create subtitle sources
-        for (final SubtitlesStream subtitle : info.getSubtitles()) {
-            final String mimeType = PlayerHelper.subtitleMimeTypesOf(subtitle.getFormat());
-            if (mimeType == null) continue;
+        if(info.getSubtitles() != null) {
+            for (final SubtitlesStream subtitle : info.getSubtitles()) {
+                final String mimeType = PlayerHelper.subtitleMimeTypesOf(subtitle.getFormat());
+                if (mimeType == null) continue;
 
-            final Format textFormat = Format.createTextSampleFormat(null, mimeType,
-                    SELECTION_FLAG_AUTOSELECT, PlayerHelper.captionLanguageOf(context, subtitle));
-            final MediaSource textSource = dataSource.getSampleMediaSourceFactory()
-                    .createMediaSource(Uri.parse(subtitle.getURL()), textFormat, TIME_UNSET);
-            mediaSources.add(textSource);
+                final Format textFormat = Format.createTextSampleFormat(null, mimeType,
+                        SELECTION_FLAG_AUTOSELECT, PlayerHelper.captionLanguageOf(context, subtitle));
+                final MediaSource textSource = dataSource.getSampleMediaSourceFactory()
+                        .createMediaSource(Uri.parse(subtitle.getURL()), textFormat, TIME_UNSET);
+                mediaSources.add(textSource);
+            }
         }
 
         if (mediaSources.size() == 1) {

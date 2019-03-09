@@ -33,4 +33,15 @@
     <color name="dark_peertube_accent_color">#FFFFFF</color>
     <color name="dark_peertube_statusbar_color">#f97d46</color>
 
+    <!-- Media.CCC -->
+    <color name="light_media_ccc_primary_color">#9e9e9e</color>
+    <color name="light_media_ccc_dark_color">#616161</color>
+    <color name="light_media_ccc_accent_color">#000000</color>
+    <color name="light_media_ccc_statusbar_color">#afafaf</color>
+
+    <color name="dark_media_ccc_primary_color">#9e9e9e</color>
+    <color name="dark_media_ccc_dark_color">#616161</color>
+    <color name="dark_media_ccc_accent_color">#FFFFFF</color>
+    <color name="dark_media_ccc_statusbar_color">#afafaf</color>
+
 </resources>

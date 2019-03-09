@@ -30,6 +30,7 @@ import android.view.ContextThemeWrapper;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 
@@ -136,15 +137,16 @@ public class ThemeHelper {
         else if (selectedTheme.equals(blackTheme)) themeName = "BlackTheme";
         else if (selectedTheme.equals(darkTheme)) themeName = "DarkTheme";
 
-        switch (serviceId) {
-            case 2:
-                //service name for peertube depends on the instance
-                themeName += ".PeerTube";
-                break;
-            default:
-                themeName += "." + service.getServiceInfo().getName();
+        if(serviceId == ServiceList.PeerTube.getServiceId()){
+            //service name for peertube depends on the instance
+            themeName += ".PeerTube";
+        }else{
+            themeName += "." + service.getServiceInfo().getName();
         }
-        int resourceId = context.getResources().getIdentifier(themeName, "style", context.getPackageName());
+
+        int resourceId = context
+                .getResources()
+                .getIdentifier(themeName, "style", context.getPackageName());
 
         if (resourceId > 0) {
             return resourceId;

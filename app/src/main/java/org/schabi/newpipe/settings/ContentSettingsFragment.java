@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.preference.EditTextPreference;
 import android.support.v7.preference.Preference;
 import android.util.Log;
 import android.widget.Toast;
@@ -16,14 +17,15 @@ import android.widget.Toast;
 import com.nononsenseapps.filepicker.Utils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.utils.Localization;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
+import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ZipHelper;
 
 import java.io.BufferedOutputStream;
@@ -42,6 +44,9 @@ import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
 import io.reactivex.Single;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class ContentSettingsFragment extends BasePreferenceFragment {
@@ -57,6 +62,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     private File newpipe_settings;
 
     private String thumbnailLoadToggleKey;
+
+    private CompositeDisposable disposables = new CompositeDisposable();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -135,30 +142,39 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         peerTubeInstance.setSummary(sharedPreferences.getString(getString(R.string.peertube_instance_url_key), ServiceList.PeerTube.getBaseUrl()));
 
         peerTubeInstance.setOnPreferenceChangeListener((Preference p, Object newInstance) -> {
+            EditTextPreference pEt = (EditTextPreference) p;
             String url = (String) newInstance;
-            if(!url.startsWith("https://")){
+            if (!url.startsWith("https://")) {
                 Toast.makeText(getActivity(), "instance url should start with https://",
                         Toast.LENGTH_SHORT).show();
                 return false;
-            }else{
-                boolean shouldUpdate = Single.fromCallable(() -> {
+            } else {
+                pEt.setSummary("fetching instance details..");
+                Disposable disposable = Single.fromCallable(() -> {
                     ServiceList.PeerTube.setInstance(url);
                     return true;
                 }).subscribeOn(Schedulers.io())
-                        .onErrorReturnItem(false)
-                        .blockingGet();
-
-                if (shouldUpdate) {
-                    p.setSummary(url);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString(getString(R.string.peertube_instance_name_key), ServiceList.PeerTube.getServiceInfo().getName()).apply();
-                    editor.putString(getString(R.string.current_service_key), ServiceList.PeerTube.getServiceInfo().getName()).apply();
-                    editor.putBoolean(Constants.KEY_MAIN_PAGE_CHANGE, true).apply();
-                }else{
-                    Toast.makeText(getActivity(), "unable to update instance",
-                            Toast.LENGTH_SHORT).show();
-                }
-                return shouldUpdate;
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(result -> {
+                            if (result) {
+                                pEt.setSummary(url);
+                                pEt.setText(url);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString(App.getApp().getString(R.string.peertube_instance_name_key), ServiceList.PeerTube.getServiceInfo().getName()).apply();
+                                editor.putString(App.getApp().getString(R.string.current_service_key), ServiceList.PeerTube.getServiceInfo().getName()).apply();
+                                NavigationHelper.openMainActivity(App.getApp());
+                            } else {
+                                pEt.setSummary(ServiceList.PeerTube.getBaseUrl());
+                                Toast.makeText(getActivity(), "unable to update instance",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }, error -> {
+                            pEt.setSummary(ServiceList.PeerTube.getBaseUrl());
+                            Toast.makeText(getActivity(), "unable to update instance",
+                                    Toast.LENGTH_SHORT).show();
+                        });
+                disposables.add(disposable);
+                return false;
             }
         });
     }
@@ -218,7 +234,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 if (output != null) {
                     output.flush();
@@ -242,7 +258,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         } finally {
             try {
                 zipFile.close();
-            } catch (Exception ignored){}
+            } catch (Exception ignored) {
+            }
         }
 
         try {
@@ -265,7 +282,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             }
 
             //If settings file exist, ask if it should be imported.
-            if(ZipHelper.extractFileFromZip(filePath, newpipe_settings.getPath(), "newpipe.settings")) {
+            if (ZipHelper.extractFileFromZip(filePath, newpipe_settings.getPath(), "newpipe.settings")) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
                 alert.setTitle(R.string.import_settings);
 
@@ -320,7 +337,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 if (input != null) {
                     input.close();
@@ -343,4 +360,5 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
                         "none", "", R.string.app_ui_crash));
     }
+
 }

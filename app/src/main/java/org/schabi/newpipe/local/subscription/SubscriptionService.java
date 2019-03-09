@@ -147,11 +147,16 @@ public class SubscriptionService {
     }
 
     private boolean isSubscriptionUpToDate(final ChannelInfo info, final SubscriptionEntity entity) {
-        return info.getUrl().equals(entity.getUrl()) &&
+        return equalsAndNotNull(info.getUrl(), entity.getUrl()) &&
                 info.getServiceId() == entity.getServiceId() &&
                 info.getName().equals(entity.getName()) &&
-                info.getAvatarUrl().equals(entity.getAvatarUrl()) &&
-                info.getDescription().equals(entity.getDescription()) &&
+                equalsAndNotNull(info.getAvatarUrl(), entity.getAvatarUrl()) &&
+                equalsAndNotNull(info.getDescription(), entity.getDescription()) &&
                 info.getSubscriberCount() == entity.getSubscriberCount();
+    }
+
+    private boolean equalsAndNotNull(final Object o1, final Object o2) {
+        return (o1 != null && o2 != null)
+                && o1.equals(o2);
     }
 }

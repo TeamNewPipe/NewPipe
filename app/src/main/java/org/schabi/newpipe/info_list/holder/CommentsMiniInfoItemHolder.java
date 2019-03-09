@@ -1,7 +1,7 @@
 package org.schabi.newpipe.info_list.holder;
 
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
+import android.text.util.Linkify;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -11,8 +11,12 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.report.ErrorActivity;
+import org.schabi.newpipe.util.CommentTextOnTouchListener;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.NavigationHelper;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -25,6 +29,25 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
 
     private static final int commentDefaultLines = 2;
     private static final int commentExpandedLines = 1000;
+
+    private String commentText;
+    private String streamUrl;
+
+    private static final Pattern pattern = Pattern.compile("(\\d+:)?(\\d+)?:(\\d+)");
+
+    private final Linkify.TransformFilter timestampLink = new Linkify.TransformFilter() {
+        @Override
+        public String transformUrl(Matcher match, String url) {
+            int timestamp = 0;
+            String hours = match.group(1);
+            String minutes = match.group(2);
+            String seconds = match.group(3);
+            if(hours != null) timestamp += (Integer.parseInt(hours.replace(":", ""))*3600);
+            if(minutes != null) timestamp += (Integer.parseInt(minutes.replace(":", ""))*60);
+            if(seconds != null) timestamp += (Integer.parseInt(seconds));
+            return streamUrl + url.replace(match.group(0), "&t=" + String.valueOf(timestamp));
+        }
+    };
 
     CommentsMiniInfoItemHolder(InfoItemBuilder infoItemBuilder, int layoutId, ViewGroup parent) {
         super(infoItemBuilder, layoutId, parent);
@@ -66,34 +89,59 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
             }
         });
 
-        // ellipsize if not already ellipsized
-        if (null == itemContentView.getEllipsize()) {
-            itemContentView.setEllipsize(TextUtils.TruncateAt.END);
-            itemContentView.setMaxLines(commentDefaultLines);
+        streamUrl = item.getUrl();
+
+        itemContentView.setMaxLines(commentDefaultLines);
+        commentText = item.getCommentText();
+        itemContentView.setText(commentText);
+        linkify();
+        itemContentView.setOnTouchListener(CommentTextOnTouchListener.INSTANCE);
+
+        if(itemContentView.getLineCount() == 0){
+            itemContentView.post(() -> ellipsize());
+        }else{
+            ellipsize();
         }
 
-        itemContentView.setText(item.getCommentText());
         if (null != item.getLikeCount()) {
             itemLikesCountView.setText(String.valueOf(item.getLikeCount()));
         }
         itemPublishedTime.setText(item.getPublishedTime());
 
         itemView.setOnClickListener(view -> {
-            toggleEllipsize(item.getCommentText());
+            toggleEllipsize();
             if (itemBuilder.getOnCommentsSelectedListener() != null) {
                 itemBuilder.getOnCommentsSelectedListener().selected(item);
             }
         });
     }
 
-    private void toggleEllipsize(String text) {
-        // toggle ellipsize
-        if (null == itemContentView.getEllipsize()) {
-            itemContentView.setEllipsize(TextUtils.TruncateAt.END);
-            itemContentView.setMaxLines(commentDefaultLines);
-        } else {
-            itemContentView.setEllipsize(null);
-            itemContentView.setMaxLines(commentExpandedLines);
+    private void ellipsize() {
+        if (itemContentView.getLineCount() > commentDefaultLines){
+            int endOfLastLine = itemContentView.getLayout().getLineEnd(commentDefaultLines - 1);
+            String newVal = itemContentView.getText().subSequence(0, endOfLastLine - 3) + "...";
+            itemContentView.setText(newVal);
+            linkify();
         }
+    }
+
+    private void toggleEllipsize() {
+        if (itemContentView.getText().toString().equals(commentText)) {
+            ellipsize();
+        } else {
+            expand();
+        }
+    }
+
+    private void expand() {
+        itemContentView.setMaxLines(commentExpandedLines);
+        itemContentView.setText(commentText);
+        linkify();
+    }
+
+    private void linkify(){
+        Linkify.addLinks(itemContentView, Linkify.WEB_URLS);
+        Linkify.addLinks(itemContentView, pattern, null, null, timestampLink);
+        itemContentView.setMovementMethod(null);
     }
 }

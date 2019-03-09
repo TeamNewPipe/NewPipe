@@ -50,7 +50,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.fragments.BackPressable;
@@ -303,6 +302,7 @@ public class MainActivity extends AppCompatActivity {
             drawerItems.getMenu()
                     .add(R.id.menu_services_group, s.getServiceId(), ORDER, title)
                     .setIcon(ServiceHelper.getIcon(s.getServiceId()));
+
         }
         drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
     }
@@ -367,6 +367,7 @@ public class MainActivity extends AppCompatActivity {
             String selectedServiceName = NewPipe.getService(
                     ServiceHelper.getSelectedServiceId(this)).getServiceInfo().getName();
             headerServiceView.setText(selectedServiceName);
+            headerServiceView.post(() -> headerServiceView.setSelected(true));
         } catch (Exception e) {
             ErrorActivity.reportUiError(this, e);
         }
