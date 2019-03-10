@@ -292,7 +292,7 @@
     <string name="could_not_import_all_files">Opgelet: kon niet alle bestanden importeren.</string>
     <string name="override_current_data">Dit zal uw huidige configuratie overschrijven.</string>
     <string name="kiosk">Kiosk</string>
-    <string name="trending">Trending</string>
+    <string name="trending">Populair</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Nieuw en populair</string>
     <string name="title_activity_background_player">Achtergrondspeler</string>
