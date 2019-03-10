@@ -50,6 +50,8 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
 
+        destroyOldFragments();
+
         tabsManager = TabsManager.getManager(activity);
         tabsManager.setSavedTabsListener(() -> {
             if (DEBUG) {
@@ -61,6 +63,17 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
                 hasTabsChanged = true;
             }
         });
+    }
+
+    private void destroyOldFragments() {
+        for (Fragment fragment : getChildFragmentManager().getFragments()) {
+            if (fragment != null) {
+                getChildFragmentManager()
+                        .beginTransaction()
+                        .remove(fragment)
+                        .commitNowAllowingStateLoss();
+            }
+        }
     }
 
     @Override
@@ -177,6 +190,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     }
 
     private class SelectedTabsPagerAdapter extends FragmentPagerAdapter {
+
         private SelectedTabsPagerAdapter(FragmentManager fragmentManager) {
             super(fragmentManager);
         }
