@@ -147,7 +147,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             if (!url.startsWith("https://")) {
                 Toast.makeText(getActivity(), "instance url should start with https://",
                         Toast.LENGTH_SHORT).show();
-                return false;
             } else {
                 pEt.setSummary("fetching instance details..");
                 Disposable disposable = Single.fromCallable(() -> {
@@ -174,8 +173,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                                     Toast.LENGTH_SHORT).show();
                         });
                 disposables.add(disposable);
-                return false;
             }
+            return false;
         });
     }
 
@@ -360,5 +359,4 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
                         "none", "", R.string.app_ui_crash));
     }
-
 }

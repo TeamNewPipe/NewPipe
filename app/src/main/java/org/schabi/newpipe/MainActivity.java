@@ -95,8 +95,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         if (DEBUG) Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
 
-        ServiceHelper.initServices(this);
-
         ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
 
         super.onCreate(savedInstanceState);
@@ -302,7 +300,6 @@ public class MainActivity extends AppCompatActivity {
             drawerItems.getMenu()
                     .add(R.id.menu_services_group, s.getServiceId(), ORDER, title)
                     .setIcon(ServiceHelper.getIcon(s.getServiceId()));
-
         }
         drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
     }
