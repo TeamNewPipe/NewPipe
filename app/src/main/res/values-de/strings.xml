@@ -2,9 +2,11 @@
 <resources>
     <string name="view_count_text">%1$s Aufrufe</string>
     <string name="upload_date_text">Veröffentlicht am %1$s</string>
-    <string name="no_player_found">Keinen Streamplayer gefunden. Möchtest du VLC installieren?</string>
+    <string name="no_player_found">Keinen Streamplayer gefunden. Willst du VLC installieren\?
+\n\t</string>
     <string name="install">Installieren</string>
-    <string name="cancel">Abbrechen</string>
+    <string name="cancel">Abbrechen 
+\n</string>
     <string name="open_in_browser">Im Browser öffnen</string>
     <string name="share">Teilen</string>
     <string name="download">Download</string>
@@ -78,8 +80,8 @@
     <string name="error_snackbar_message">Entschuldigung. Es sind einige Fehler aufgetreten.</string>
     <string name="your_comment">Dein Kommentar (auf englisch):</string>
     <string name="could_not_get_stream">Konnte keinen Stream abrufen</string>
-    <string name="autoplay_by_calling_app_title">Autoplay</string>
-    <string name="autoplay_by_calling_app_summary">Spiele ein Video ab, wenn NewPipe von einer anderen App aufgerufen wurde</string>
+    <string name="autoplay_by_calling_app_title">Automatische Wiedergabe</string>
+    <string name="autoplay_by_calling_app_summary">Spielt ein Video ab, wenn NewPipe von einer anderen App aufgerufen wurde</string>
     <string name="report_error">Einen Fehler melden</string>
     <string name="user_report">Anwenderbericht</string>
     <string name="duration_live">LIVE</string>
