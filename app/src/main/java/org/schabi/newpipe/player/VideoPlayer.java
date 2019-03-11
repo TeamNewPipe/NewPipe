@@ -431,6 +431,7 @@ public abstract class VideoPlayer extends BasePlayer
 
     @Override
     public void onPaused() {
+        super.onPaused();
         if (DEBUG) Log.d(TAG, "onPaused() called");
         showControls(400);
         loadingPanel.setVisibility(View.GONE);

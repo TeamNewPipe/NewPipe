@@ -50,6 +50,8 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.ReCaptchaActivity;
+import org.schabi.newpipe.database.stream.model.StreamEntity;
+import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -96,6 +98,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import icepick.State;
 import io.reactivex.Single;
@@ -1265,9 +1268,12 @@ public class VideoDetailFragment
         if (recordManager == null) {
             recordManager = new HistoryRecordManager(requireContext());
         }
-        disposables.add(recordManager.loadStreamState(info).onErrorComplete()
+        disposables.add(recordManager.loadStreamState(info)
+                .onErrorComplete()
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe(
+                .delaySubscription(500, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
                         state -> {
                             final int seconds = (int) (state.getProgressTime() / 1000.f);
                             if (seconds > BasePlayer.PLAYBACK_SAVE_THRESHOLD_START_SECONDS &&

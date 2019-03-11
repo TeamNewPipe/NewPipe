@@ -28,6 +28,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.preference.PreferenceManager;
+import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -323,6 +324,7 @@ public abstract class BasePlayer implements
 
     public void destroy() {
         if (DEBUG) Log.d(TAG, "destroy() called");
+        savePlaybackState();
         destroyPlayer();
         unregisterBroadcastReceiver();
 
@@ -421,6 +423,7 @@ public abstract class BasePlayer implements
 
     protected int currentState = STATE_PREFLIGHT;
 
+    @CallSuper
     public void changeState(int state) {
         if (DEBUG) Log.d(TAG, "changeState() called with: state = [" + state + "]");
         currentState = state;
@@ -446,11 +449,13 @@ public abstract class BasePlayer implements
         }
     }
 
+    @CallSuper
     public void onBlocked() {
         if (DEBUG) Log.d(TAG, "onBlocked() called");
         if (!isProgressLoopRunning()) startProgressLoop();
     }
 
+    @CallSuper
     public void onPlaying() {
         if (DEBUG) Log.d(TAG, "onPlaying() called");
         if (!isProgressLoopRunning()) startProgressLoop();
@@ -459,15 +464,24 @@ public abstract class BasePlayer implements
     public void onBuffering() {
     }
 
+    @CallSuper
     public void onPaused() {
-        if (isProgressLoopRunning()) stopProgressLoop();
+        if (isProgressLoopRunning()) {
+            stopProgressLoop();
+        } else {
+            savePlaybackState();
+        }
     }
 
     public void onPausedSeek() {
     }
 
+    @CallSuper
     public void onCompleted() {
         if (DEBUG) Log.d(TAG, "onCompleted() called");
+        if (currentMetadata != null) {
+            resetPlaybackState(currentMetadata.getMetadata());
+        }
         if (playQueue.getIndex() < playQueue.size() - 1) playQueue.offsetIndex(+1);
         if (isProgressLoopRunning()) stopProgressLoop();
     }
@@ -1039,8 +1053,9 @@ public abstract class BasePlayer implements
         }
     }
 
-    protected void savePlaybackState(final StreamInfo info, final long progress) {
+    private void savePlaybackState(final StreamInfo info, final long progress) {
         if (info == null) return;
+        Log.d(TAG, "savePlaybackState() called");
         final Disposable stateSaver = recordManager.saveStreamState(info, progress)
                 .observeOn(AndroidSchedulers.mainThread())
                 .onErrorComplete()
@@ -1051,14 +1066,15 @@ public abstract class BasePlayer implements
         databaseUpdateReactor.add(stateSaver);
     }
 
-    protected void resetPlaybackState(final StreamInfo info) {
+    private void resetPlaybackState(final StreamInfo info) {
         if (info == null) return;
+        Log.d(TAG, "resetPlaybackState() called");
         final Disposable d = recordManager.resetStreamState(info)
                 .observeOn(AndroidSchedulers.mainThread())
                 .onErrorComplete()
                 .subscribe(
                         ignored -> {/* successful */},
-                        error -> Log.e(TAG, "savePlaybackState() failure: ", error)
+                        error -> Log.e(TAG, "resetPlaybackState() failure: ", error)
                 );
         databaseUpdateReactor.add(d);
     }
