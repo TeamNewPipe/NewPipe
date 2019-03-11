@@ -1,5 +1,5 @@
 package org.schabi.newpipe.player.mediasource;
-
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -86,21 +86,22 @@ public class ManagedMediaSourcePlaylist {
     /**
      * Invalidates the {@link ManagedMediaSource} at the given index by replacing it
      * with a {@link PlaceholderMediaSource}.
-     * @see #update(int, ManagedMediaSource, Runnable)
+     * @see #update(int, ManagedMediaSource, Handler, Runnable)
      * */
     public synchronized void invalidate(final int index,
+                                        @Nullable final Handler handler,
                                         @Nullable final Runnable finalizingAction) {
         if (get(index) instanceof PlaceholderMediaSource) return;
-        update(index, new PlaceholderMediaSource(), finalizingAction);
+        update(index, new PlaceholderMediaSource(), handler, finalizingAction);
     }
 
     /**
      * Updates the {@link ManagedMediaSource} in {@link ConcatenatingMediaSource}
      * at the given index with a given {@link ManagedMediaSource}.
-     * @see #update(int, ManagedMediaSource, Runnable)
+     * @see #update(int, ManagedMediaSource, Handler, Runnable)
      * */
     public synchronized void update(final int index, @NonNull final ManagedMediaSource source) {
-        update(index, source, /*doNothing=*/null);
+        update(index, source, null, /*doNothing=*/null);
     }
 
     /**
@@ -108,9 +109,10 @@ public class ManagedMediaSourcePlaylist {
      * at the given index with a given {@link ManagedMediaSource}. If the index is out of bound,
      * then the replacement is ignored.
      * @see ConcatenatingMediaSource#addMediaSource
-     * @see ConcatenatingMediaSource#removeMediaSource(int, Runnable)
+     * @see ConcatenatingMediaSource#removeMediaSource(int, Handler, Runnable)
      * */
     public synchronized void update(final int index, @NonNull final ManagedMediaSource source,
+                                    @Nullable final Handler handler,
                                     @Nullable final Runnable finalizingAction) {
         if (index < 0 || index >= internalSource.getSize()) return;
 
@@ -126,6 +128,6 @@ public class ManagedMediaSourcePlaylist {
 
         // Because of the above race condition, it is thus only safe to synchronize the player
         // in the finalizing action AFTER the removal is complete and the timeline has changed.
-        internalSource.removeMediaSource(index, finalizingAction);
+        internalSource.removeMediaSource(index, handler, finalizingAction);
     }
 }
