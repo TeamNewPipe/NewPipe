@@ -1275,7 +1275,6 @@ public class VideoDetailFragment
         disposables.add(recordManager.loadStreamState(info)
                 .onErrorComplete()
                 .subscribeOn(Schedulers.io())
-                .delaySubscription(500, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         state -> {

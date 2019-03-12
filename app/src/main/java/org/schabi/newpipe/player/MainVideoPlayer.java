@@ -165,6 +165,12 @@ public final class MainVideoPlayer extends AppCompatActivity
     }
 
     @Override
+    protected void onPause() {
+        playerImpl.savePlaybackState();
+        super.onPause();
+    }
+
+    @Override
     protected void onResume() {
         if (DEBUG) Log.d(TAG, "onResume() called");
         super.onResume();

@@ -326,7 +326,6 @@ public abstract class BasePlayer implements
 
     public void destroy() {
         if (DEBUG) Log.d(TAG, "destroy() called");
-        savePlaybackState();
         destroyPlayer();
         unregisterBroadcastReceiver();
 
@@ -620,9 +619,9 @@ public abstract class BasePlayer implements
                 break;
             case Player.STATE_READY: //3
                 maybeUpdateCurrentMetadata();
-                maybeCorrectSeekPosition();
                 if (!isPrepared) {
                     isPrepared = true;
+                    maybeCorrectSeekPosition();
                     onPrepared(playWhenReady);
                     break;
                 }
@@ -648,6 +647,23 @@ public abstract class BasePlayer implements
             if (DEBUG) Log.d(TAG, "Playback - Seeking to preset start " +
                     "position=[" + presetStartPositionMillis + "]");
             seekTo(presetStartPositionMillis);
+        } else if (isPlaybackResumeEnabled()) {
+            final Disposable stateLoader = recordManager.loadStreamState(currentMetadata.getMetadata())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                            state -> {
+                                if (state.getProgressTime() > PLAYBACK_SAVE_THRESHOLD_START_MILLIS &&
+                                        state.getProgressTime() < simpleExoPlayer.getDuration() -
+                                                PLAYBACK_SAVE_THRESHOLD_END_MILLIS) {
+                                    seekTo(state.getProgressTime());
+                                    onPositionRestored(state.getProgressTime());
+                                }
+                            },
+                            error -> {
+                                if (DEBUG) Log.e(TAG, "Player resume failure: ", error);
+                            }
+                    );
+            databaseUpdateReactor.add(stateLoader);
         }
     }
 
@@ -899,29 +915,7 @@ public abstract class BasePlayer implements
     public void onPrepared(final boolean playWhenReady) {
         if (DEBUG) Log.d(TAG, "onPrepared() called with: playWhenReady = [" + playWhenReady + "]");
         if (playWhenReady) audioReactor.requestAudioFocus();
-        if (isPlaybackResumeEnabled() && currentMetadata != null) {
-            final Disposable d = recordManager.loadStreamState(currentMetadata.getMetadata())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(
-                            state -> {
-                                if (state.getProgressTime() > PLAYBACK_SAVE_THRESHOLD_START_MILLIS &&
-                                        state.getProgressTime() < simpleExoPlayer.getDuration() -
-                                                PLAYBACK_SAVE_THRESHOLD_END_MILLIS) {
-                                    seekTo(state.getProgressTime());
-                                    onPositionRestored(state.getProgressTime());
-                                }
-                                changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
-                            },
-                            error -> {
-                                if (DEBUG) Log.e(TAG, "Player resume failure: ", error);
-                                changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
-                            },
-                            () -> changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED)
-                    );
-            databaseUpdateReactor.add(d);
-        } else {
-            changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
-        }
+        changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
     }
 
     public void onPositionRestored(long position) {
@@ -1090,7 +1084,7 @@ public abstract class BasePlayer implements
         databaseUpdateReactor.add(d);
     }
 
-    protected void savePlaybackState() {
+    public void savePlaybackState() {
         if (simpleExoPlayer == null || currentMetadata == null) return;
         final StreamInfo currentInfo = currentMetadata.getMetadata();
 

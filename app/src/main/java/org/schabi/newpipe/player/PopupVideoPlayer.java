@@ -325,6 +325,7 @@ public final class PopupVideoPlayer extends Service {
         isPopupClosing = true;
 
         if (playerImpl != null) {
+            playerImpl.savePlaybackState();
             if (playerImpl.getRootView() != null) {
                 windowManager.removeView(playerImpl.getRootView());
             }
