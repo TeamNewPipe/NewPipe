@@ -100,7 +100,9 @@ import static com.google.android.exoplayer2.Player.DISCONTINUITY_REASON_SEEK_ADJ
 public abstract class BasePlayer implements
         Player.EventListener, PlaybackListener, ImageLoadingListener {
 
+    @SuppressWarnings("ConstantConditions")
     public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
+
     @NonNull
     public static final String TAG = "BasePlayer";
 
@@ -353,7 +355,7 @@ public abstract class BasePlayer implements
 
     @Override
     public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-        Log.e(TAG, "Thumbnail - onLoadingFailed() called on imageUri = [" + imageUri + "]",
+        if (DEBUG) Log.e(TAG, "Thumbnail - onLoadingFailed() called on imageUri = [" + imageUri + "]",
                 failReason.getCause());
         currentThumbnail = null;
     }
@@ -388,6 +390,7 @@ public abstract class BasePlayer implements
 
     public void onBroadcastReceived(Intent intent) {
         if (intent == null || intent.getAction() == null) return;
+        //noinspection SwitchStatementWithTooFewBranches
         switch (intent.getAction()) {
             case AudioManager.ACTION_AUDIO_BECOMING_NOISY:
                 onPause();
@@ -405,7 +408,7 @@ public abstract class BasePlayer implements
         try {
             context.unregisterReceiver(broadcastReceiver);
         } catch (final IllegalArgumentException unregisteredException) {
-            Log.w(TAG, "Broadcast receiver already unregistered (" + unregisteredException.getMessage() + ")");
+            if (DEBUG) Log.w(TAG, "Broadcast receiver already unregistered (" + unregisteredException.getMessage() + ")");
         }
     }
 
@@ -546,7 +549,9 @@ public abstract class BasePlayer implements
         return Observable.interval(PROGRESS_LOOP_INTERVAL_MILLIS, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(ignored -> triggerProgressUpdate(),
-                        error -> Log.e(TAG, "Progress update failure: ", error));
+                        error -> {
+                            if (DEBUG) Log.e(TAG, "Progress update failure: ", error);
+                        });
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -817,14 +822,14 @@ public abstract class BasePlayer implements
 
         // Check if on wrong window
         if (currentPlayQueueIndex != playQueue.getIndex()) {
-            Log.e(TAG, "Playback - Play Queue may be desynchronized: item " +
+            if (DEBUG) Log.e(TAG, "Playback - Play Queue may be desynchronized: item " +
                     "index=[" + currentPlayQueueIndex + "], " +
                     "queue index=[" + playQueue.getIndex() + "]");
 
             // Check if bad seek position
         } else if ((currentPlaylistSize > 0 && currentPlayQueueIndex >= currentPlaylistSize) ||
                 currentPlayQueueIndex < 0) {
-            Log.e(TAG, "Playback - Trying to seek to invalid " +
+            if (DEBUG) Log.e(TAG, "Playback - Trying to seek to invalid " +
                     "index=[" + currentPlayQueueIndex + "] with " +
                     "playlist length=[" + currentPlaylistSize + "]");
 
@@ -908,7 +913,7 @@ public abstract class BasePlayer implements
                                 changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
                             },
                             error -> {
-                                Log.e(TAG, "Player resume failure: ", error);
+                                if (DEBUG) Log.e(TAG, "Player resume failure: ", error);
                                 changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED);
                             },
                             () -> changeState(playWhenReady ? STATE_PLAYING : STATE_PAUSED)
@@ -1037,7 +1042,9 @@ public abstract class BasePlayer implements
         final Disposable viewRegister = recordManager.onViewed(currentInfo).onErrorComplete()
                 .subscribe(
                         ignored -> {/* successful */},
-                        error -> Log.e(TAG, "Player onViewed() failure: ", error)
+                        error -> {
+                            if (DEBUG) Log.e(TAG, "Player onViewed() failure: ", error);
+                        }
                 );
         databaseUpdateReactor.add(viewRegister);
     }
@@ -1055,26 +1062,30 @@ public abstract class BasePlayer implements
 
     private void savePlaybackState(final StreamInfo info, final long progress) {
         if (info == null) return;
-        Log.d(TAG, "savePlaybackState() called");
+        if (DEBUG) Log.d(TAG, "savePlaybackState() called");
         final Disposable stateSaver = recordManager.saveStreamState(info, progress)
                 .observeOn(AndroidSchedulers.mainThread())
                 .onErrorComplete()
                 .subscribe(
                         ignored -> {/* successful */},
-                        error -> Log.e(TAG, "savePlaybackState() failure: ", error)
+                        error -> {
+                            if (DEBUG) Log.e(TAG, "savePlaybackState() failure: ", error);
+                        }
                 );
         databaseUpdateReactor.add(stateSaver);
     }
 
     private void resetPlaybackState(final StreamInfo info) {
         if (info == null) return;
-        Log.d(TAG, "resetPlaybackState() called");
+        if (DEBUG) Log.d(TAG, "resetPlaybackState() called");
         final Disposable d = recordManager.resetStreamState(info)
                 .observeOn(AndroidSchedulers.mainThread())
                 .onErrorComplete()
                 .subscribe(
                         ignored -> {/* successful */},
-                        error -> Log.e(TAG, "resetPlaybackState() failure: ", error)
+                        error -> {
+                            if (DEBUG) Log.e(TAG, "resetPlaybackState() failure: ", error);
+                        }
                 );
         databaseUpdateReactor.add(d);
     }
@@ -1188,11 +1199,13 @@ public abstract class BasePlayer implements
         if (simpleExoPlayer == null) return false;
         try {
             return simpleExoPlayer.isCurrentWindowDynamic();
-        } catch (@NonNull IndexOutOfBoundsException ignored) {
+        } catch (@NonNull IndexOutOfBoundsException e) {
             // Why would this even happen =(
             // But lets log it anyway. Save is save
-            if (DEBUG) Log.d(TAG, "Could not update metadata: " + ignored.getMessage());
-            if (DEBUG) ignored.printStackTrace();
+            if (DEBUG) {
+                Log.d(TAG, "Could not update metadata: " + e.getMessage());
+                e.printStackTrace();
+            }
             return false;
         }
     }

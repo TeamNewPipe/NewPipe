@@ -291,10 +291,10 @@ public class VideoDetailFragment
             case ReCaptchaActivity.RECAPTCHA_REQUEST:
                 if (resultCode == Activity.RESULT_OK) {
                     NavigationHelper.openVideoDetailFragment(getFragmentManager(), serviceId, url, name);
-                } else Log.e(TAG, "ReCaptcha failed");
+                } else if (DEBUG) Log.e(TAG, "ReCaptcha failed");
                 break;
             default:
-                Log.e(TAG, "Request code from activity not supported [" + requestCode + "]");
+                if (DEBUG) Log.e(TAG, "Request code from activity not supported [" + requestCode + "]");
                 break;
         }
     }
@@ -387,7 +387,7 @@ public class VideoDetailFragment
                 break;
             case R.id.detail_uploader_root_layout:
                 if (TextUtils.isEmpty(currentInfo.getUploaderUrl())) {
-                    Log.w(TAG, "Can't open channel because we got no channel URL");
+                    if (DEBUG) Log.w(TAG, "Can't open channel because we got no channel URL");
                 } else {
                     try {
                     NavigationHelper.openChannelFragment(
@@ -676,8 +676,10 @@ public class VideoDetailFragment
     }
 
     private void setupActionBarOnError(final String url) {
-        if (DEBUG) Log.d(TAG, "setupActionBarHandlerOnError() called with: url = [" + url + "]");
-        Log.e("-----", "missing code");
+        if (DEBUG) {
+            Log.d(TAG, "setupActionBarHandlerOnError() called with: url = [" + url + "]");
+            Log.e("-----", "missing code");
+        }
     }
 
     private void setupActionBar(final StreamInfo info) {
@@ -728,10 +730,10 @@ public class VideoDetailFragment
         if (stack.size() > 0
                 && stack.peek().getServiceId() == serviceId
                 && stack.peek().getUrl().equals(videoUrl)) {
-            Log.d(TAG, "pushToStack() called with: serviceId == peek.serviceId = ["
+            if (DEBUG) Log.d(TAG, "pushToStack() called with: serviceId == peek.serviceId = ["
                     + serviceId + "], videoUrl == peek.getUrl = [" + videoUrl + "]");
             return;
-        } else {
+        } else if (DEBUG) {
             Log.d(TAG, "pushToStack() wasn't equal");
         }
 
@@ -949,7 +951,9 @@ public class VideoDetailFragment
         disposables.add(recordManager.onViewed(info).onErrorComplete()
                 .subscribe(
                         ignored -> {/* successful */},
-                        error -> Log.e(TAG, "Register view failure: ", error)
+                        error -> {
+                            if (DEBUG) Log.e(TAG, "Register view failure: ", error);
+                        }
                 ));
     }
 
@@ -1289,7 +1293,7 @@ public class VideoDetailFragment
                             }
                         },
                         error -> {
-                            Log.e(TAG, "Player resume failure: ", error);
+                            if (DEBUG) Log.e(TAG, "Player resume failure: ", error);
                         },
                         () -> {
                             animateView(positionView, false, 500);
