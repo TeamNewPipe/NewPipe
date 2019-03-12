@@ -53,4 +53,11 @@
     <attr name="contrast_background_color" format="color"/>
     <attr name="windowBackground" format="color"/>
     <attr name="colorPrimary" format="color"/>
+
+    <!-- For AspectRatioImageView -->
+    <declare-styleable name="AspectRatioRelativeLayout">
+        <attr name="aspectRatio" format="float" />
+        <attr name="aspectRatio_height" format="reference" />
+        <attr name="aspectRatio_width" format="reference" />
+    </declare-styleable>
 </resources>
