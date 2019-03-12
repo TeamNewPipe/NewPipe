@@ -78,6 +78,7 @@ import org.schabi.newpipe.util.SerializedCache;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.util.Queue;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -470,9 +471,8 @@ public abstract class BasePlayer implements
     public void onPaused() {
         if (isProgressLoopRunning()) {
             stopProgressLoop();
-        } else {
-            savePlaybackState();
         }
+        savePlaybackState();
     }
 
     public void onPausedSeek() {
@@ -752,6 +752,9 @@ public abstract class BasePlayer implements
             case DISCONTINUITY_REASON_SEEK_ADJUSTMENT:
             case DISCONTINUITY_REASON_INTERNAL:
                 if (playQueue.getIndex() != newWindowIndex) {
+                    if (currentMetadata != null) {
+                        resetPlaybackState(currentMetadata.getMetadata());
+                    }
                     playQueue.setIndex(newWindowIndex);
                 }
                 break;
@@ -921,6 +924,7 @@ public abstract class BasePlayer implements
     public void onPositionRestored(long position) {
     }
 
+    @CallSuper
     public void onPlay() {
         if (DEBUG) Log.d(TAG, "onPlay() called");
         if (audioReactor == null || playQueue == null || simpleExoPlayer == null) return;
@@ -938,6 +942,7 @@ public abstract class BasePlayer implements
         simpleExoPlayer.setPlayWhenReady(true);
     }
 
+    @CallSuper
     public void onPause() {
         if (DEBUG) Log.d(TAG, "onPause() called");
         if (audioReactor == null || simpleExoPlayer == null) return;
@@ -946,6 +951,7 @@ public abstract class BasePlayer implements
         simpleExoPlayer.setPlayWhenReady(false);
     }
 
+    @CallSuper
     public void onPlayPause() {
         if (DEBUG) Log.d(TAG, "onPlayPause() called");
 
@@ -956,16 +962,19 @@ public abstract class BasePlayer implements
         }
     }
 
+    @CallSuper
     public void onFastRewind() {
         if (DEBUG) Log.d(TAG, "onFastRewind() called");
         seekBy(-FAST_FORWARD_REWIND_AMOUNT_MILLIS);
     }
 
+    @CallSuper
     public void onFastForward() {
         if (DEBUG) Log.d(TAG, "onFastForward() called");
         seekBy(FAST_FORWARD_REWIND_AMOUNT_MILLIS);
     }
 
+    @CallSuper
     public void onPlayPrevious() {
         if (simpleExoPlayer == null || playQueue == null) return;
         if (DEBUG) Log.d(TAG, "onPlayPrevious() called");
@@ -983,6 +992,7 @@ public abstract class BasePlayer implements
         }
     }
 
+    @CallSuper
     public void onPlayNext() {
         if (playQueue == null) return;
         if (DEBUG) Log.d(TAG, "onPlayNext() called");
