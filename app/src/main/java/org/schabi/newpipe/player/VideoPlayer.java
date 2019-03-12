@@ -212,7 +212,6 @@ public abstract class VideoPlayer extends BasePlayer
 
     @Override
     public void initListeners() {
-        super.initListeners();
         playbackSeekBar.setOnSeekBarChangeListener(this);
         playbackSpeedTextView.setOnClickListener(this);
         qualityTextView.setOnClickListener(this);
@@ -306,9 +305,9 @@ public abstract class VideoPlayer extends BasePlayer
             captionItem.setOnMenuItemClickListener(menuItem -> {
                 final int textRendererIndex = getRendererIndex(C.TRACK_TYPE_TEXT);
                 if (textRendererIndex != RENDERER_UNAVAILABLE) {
-                    trackSelector.setPreferredTextLanguage(captionLanguage);
                     trackSelector.setParameters(trackSelector.buildUponParameters()
-                            .setRendererDisabled(textRendererIndex, false));
+                            .setRendererDisabled(textRendererIndex, false)
+                            .setPreferredTextLanguage(captionLanguage));
                 }
                 return true;
             });
@@ -509,17 +508,26 @@ public abstract class VideoPlayer extends BasePlayer
         }
 
         // Normalize mismatching language strings
-        final String preferredLanguage = trackSelector.getPreferredTextLanguage();
-
+        final String preferredLanguage = trackSelector.getParameters().preferredTextLanguage;
         // Build UI
         buildCaptionMenu(availableLanguages);
         if (trackSelector.getParameters().getRendererDisabled(textRenderer) ||
-                preferredLanguage == null || !availableLanguages.contains(preferredLanguage)) {
+                preferredLanguage == null || (!availableLanguages.contains(preferredLanguage)
+                && !containsCaseInsensitive(availableLanguages, preferredLanguage))) {
             captionTextView.setText(R.string.caption_none);
         } else {
             captionTextView.setText(preferredLanguage);
         }
         captionTextView.setVisibility(availableLanguages.isEmpty() ? View.GONE : View.VISIBLE);
+    }
+
+    // workaround to match normalized captions like english to English or deutsch to Deutsch
+    private static boolean containsCaseInsensitive(List<String> list, String toFind) {
+        for(String i : list){
+            if(i.equalsIgnoreCase(toFind))
+                return true;
+        }
+        return false;
     }
 
     /*//////////////////////////////////////////////////////////////////////////

@@ -282,14 +282,9 @@ public final class MainVideoPlayer extends AppCompatActivity
         if (DEBUG) Log.d(TAG, "showSystemUi() called");
         if (playerImpl != null && playerImpl.queueVisible) return;
 
-        final int visibility;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+        final int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                     | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
-        } else {
-            visibility = View.STATUS_BAR_VISIBLE;
-        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             @ColorInt final int systenUiColor =
@@ -358,11 +353,7 @@ public final class MainVideoPlayer extends AppCompatActivity
 
     protected void setShuffleButton(final ImageButton shuffleButton, final boolean shuffled) {
         final int shuffleAlpha = shuffled ? 255 : 77;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            shuffleButton.setImageAlpha(shuffleAlpha);
-        } else {
-            shuffleButton.setAlpha(shuffleAlpha);
-        }
+        shuffleButton.setImageAlpha(shuffleAlpha);
     }
 
     private boolean isInMultiWindow() {
