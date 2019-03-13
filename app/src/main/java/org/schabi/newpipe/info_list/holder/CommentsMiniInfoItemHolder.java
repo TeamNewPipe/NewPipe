@@ -45,7 +45,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
             if(hours != null) timestamp += (Integer.parseInt(hours.replace(":", ""))*3600);
             if(minutes != null) timestamp += (Integer.parseInt(minutes.replace(":", ""))*60);
             if(seconds != null) timestamp += (Integer.parseInt(seconds));
-            return streamUrl + url.replace(match.group(0), "&t=" + String.valueOf(timestamp));
+            return streamUrl + url.replace(match.group(0), "#timestamp=" + String.valueOf(timestamp));
         }
     };
 
