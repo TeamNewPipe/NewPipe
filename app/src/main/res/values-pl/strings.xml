@@ -458,7 +458,7 @@
     <string name="error_connect_host">Nie można połączyć się z serwerem</string>
     <string name="error_http_no_content">Serwer nie wysyła danych</string>
     <string name="error_http_unsupported_range">Serwer nie akceptuje pobierania wielowątkowego, spróbuj ponownie za pomocą @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">Żądany zakres jest niewłaściwy</string>
+    <string name="error_http_requested_range_not_satisfiable">Niewłaściwy zakres</string>
     <string name="error_http_not_found">Nie znaleziono</string>
     <string name="error_postprocessing_failed">Przetwarzanie końcowe nie powiodło się</string>
     <string name="clear_finished_download">Wyczyść ukończone pobieranie</string>
