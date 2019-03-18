@@ -47,7 +47,7 @@
     <string name="play_btn_text">Odtwórz</string>
     <string name="content">Zawartość</string>
     <string name="show_age_restricted_content_title">Treści z ograniczeniem wiekowym</string>
-    <string name="video_is_age_restricted">Pokaż wideo z ograniczeniem wiekowym. Zezwalanie na takie materiały jest możliwe w Ustawieniach.</string>
+    <string name="video_is_age_restricted">Pokaż wideo z ograniczeniami wiekowymi. Dopuszczenie takiego materiału jest możliwe z poziomu Ustawienia.</string>
     <string name="duration_live">Na żywo</string>
     <string name="downloads">Pobrane</string>
     <string name="downloads_title">Pobrane</string>
