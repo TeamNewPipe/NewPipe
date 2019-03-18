@@ -47,7 +47,7 @@
     <string name="play_btn_text">Oynat</string>
     <string name="content">İçerik</string>
     <string name="show_age_restricted_content_title">Yaş kısıtlamalı içerik</string>
-    <string name="video_is_age_restricted">Yaş kısıtlamalı videoyu göster. Bu tür materyallere Ayarlar\'dan izin verilebilir.</string>
+    <string name="video_is_age_restricted">Yaş kısıtlamalı videoyu göster. Bu tür malzemelere Ayarlardan izin vermek mümkündür.</string>
     <string name="duration_live">CANLI</string>
     <string name="downloads">İndirilenler</string>
     <string name="downloads_title">İndirilenler</string>
@@ -464,13 +464,13 @@
     <string name="error_connect_host">Sunucuya bağlanılamıyor</string>
     <string name="error_http_no_content">Sunucu veri göndermiyor</string>
     <string name="error_http_unsupported_range">Sunucu, çok iş parçacıklı indirmeleri kabul etmez, @string/msg_threads = 1 ile yeniden deneyin</string>
-    <string name="error_http_requested_range_not_satisfiable">İstenen aralık karşılanamaz</string>
+    <string name="error_http_requested_range_not_satisfiable">İstenen aralık karşılanamıyor</string>
     <string name="error_http_not_found">Bulunamadı</string>
     <string name="error_postprocessing_failed">İşlem sonrası başarısız</string>
     <string name="clear_finished_download">Tamamlanan indirmeleri temizle</string>
     <string name="msg_pending_downloads">Beklemedeki %s transferinize İndirmeler\'den devam edin</string>
     <string name="stop">Durdur</string>
-    <string name="max_retry_msg">Maksimum deneme sayısı</string>
+    <string name="max_retry_msg">Azami dene sayısı</string>
     <string name="max_retry_desc">İndirmeyi iptal etmeden önce maksimum deneme sayısı</string>
     <string name="pause_downloads_on_mobile">Mobil veriye geçerken duraklat</string>
     <string name="pause_downloads_on_mobile_desc">Duraklatılamayan indirmeler yeniden başlatılacak</string>
