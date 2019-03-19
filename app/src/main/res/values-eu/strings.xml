@@ -171,7 +171,7 @@
     <string name="fragment_whats_new">Zer dago berri</string>
     <string name="resume_on_audio_focus_gain_title">Jarraitu fokua irabaztean</string>
     <string name="resume_on_audio_focus_gain_summary">Jarraitu etenaldiak eta gero (adib. telefono deiak)</string>
-    <string name="settings_category_downloads_title">Deskargatu</string>
+    <string name="settings_category_downloads_title">Deskargak</string>
     <string name="settings_file_charset_title">Fitxategi-izenetan baimendutako karaktereak</string>
     <string name="settings_file_replacement_character_summary">Karaktere baliogabeak balio honekin ordezkatzen dira</string>
     <string name="settings_file_replacement_character_title">Ordezko karakterea</string>
@@ -184,7 +184,7 @@
     <string name="notification_channel_name">NewPipe jakinarazpena</string>
     <string name="settings_category_player_title">Erreproduzigailua</string>
     <string name="settings_category_player_behavior_title">Portaera</string>
-    <string name="settings_category_history_title">Historia eta cache-a</string>
+    <string name="settings_category_history_title">Historia eta cachea</string>
     <string name="playlist">Erreprodukzio-zerrenda</string>
     <string name="undo">Desegin</string>
     <string name="notification_channel_description">Atzeko planoko eta laster-leihoko NewPipe erreproduzigailuen jakinarazpenak</string>
@@ -279,10 +279,10 @@
     <string name="controls_add_to_playlist_title">Gehitu hona</string>
     <string name="use_inexact_seek_title">Erabili bilaketa azkar ez zehatza</string>
     <string name="download_thumbnail_title">Kargatu iruditxoak</string>
-    <string name="thumbnail_cache_wipe_complete_notice">Irudien cache-a ezabatuta</string>
-    <string name="metadata_cache_wipe_title">Ezabatu cache-ko metadatuak</string>
-    <string name="metadata_cache_wipe_summary">Kendu cache-ko wegbuneen datu guztiak</string>
-    <string name="metadata_cache_wipe_complete_notice">Metadatuen cache-a ezabatuta</string>
+    <string name="thumbnail_cache_wipe_complete_notice">Irudien cachea ezabatuta</string>
+    <string name="metadata_cache_wipe_title">Ezabatu cacheko metadatuak</string>
+    <string name="metadata_cache_wipe_summary">Kendu cachetik webguneen datu guztiak</string>
+    <string name="metadata_cache_wipe_complete_notice">Metadatuen cachea ezabatuta</string>
     <string name="auto_queue_title">Gehitu ilarara hurrengo jarioa</string>
     <string name="auto_queue_summary">Gehitu erlazionatutako jario bat azken jarioa jo bitartean errepikapenik gabeko ilara batean.</string>
     <string name="settings_category_debug_title">Arazketa</string>
@@ -382,7 +382,7 @@
     <string name="playback_default">Lehenetsia</string>
     <string name="import_settings">Ezarpenak ere inportatu nahi dituzu?</string>
     <string name="use_inexact_seek_summary">Bilaketa ez zehatzak posizioak azkarrago baina prezisio gutxiagoz bilatzea ahalbidetzen du</string>
-    <string name="download_thumbnail_summary">Desgaitu koadro txikiak ez kargatzeko, datuak eta memoria aurreztuz. Aldaketak memoria eta diskoko irudien cache-ak garbituko ditu.</string>
+    <string name="download_thumbnail_summary">Desgaitu koadro txikiak ez kargatzeko, datuak eta memoria aurreztuz. Aldaketak memoria eta diskoko irudien cacheak garbituko ditu.</string>
     <string name="app_license">NewPipe Software Librea eta Copyleft da: Erabili, ikertu, partekatu eta hobetu dezakezu. Zehazki, elkarbanatzea eta aldatzea Free Software Foundation-ek argitaratutako GNU General Public License-ren 3. bertsioa edo berriagoren baten terminoen arabera egiteko baimena duzu.</string>
     <string name="enable_disposed_exceptions_summary">Behartu aktibitatearen bizitza ziklotik kanpo baztertu eta gero entregatu ezin diren Rx salbuespenen inguruko txostena</string>
     <string name="privacy_policy_title">NewPipe pribatutasun politika</string>
