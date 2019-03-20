@@ -564,7 +564,7 @@
     <string name="max_retry_msg">Tentativi massimi</string>
     <string name="max_retry_desc">Tentativi massimi prima di cancellare il download</string>
     <string name="pause_downloads_on_mobile">Metti in pausa quando si usano i dati mobili</string>
-    <string name="pause_downloads_on_mobile_desc">I download che non possono essere messi in pausa verranno ravviati</string>
+    <string name="pause_downloads_on_mobile_desc">I download che non possono essere messi in pausa verranno riavviati</string>
     <string name="events">Eventi</string>
     <string name="conferences">Conferenze</string>
 </resources>
