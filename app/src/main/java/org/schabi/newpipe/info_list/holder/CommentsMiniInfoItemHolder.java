@@ -91,15 +91,14 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
 
         streamUrl = item.getUrl();
 
-        itemContentView.setMaxLines(commentDefaultLines);
+        itemContentView.setLines(commentDefaultLines);
         commentText = item.getCommentText();
         itemContentView.setText(commentText);
-        linkify();
         itemContentView.setOnTouchListener(CommentTextOnTouchListener.INSTANCE);
 
-        if(itemContentView.getLineCount() == 0){
+        if (itemContentView.getLineCount() == 0) {
             itemContentView.post(() -> ellipsize());
-        }else{
+        } else {
             ellipsize();
         }
 
@@ -119,15 +118,17 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     private void ellipsize() {
         if (itemContentView.getLineCount() > commentDefaultLines){
             int endOfLastLine = itemContentView.getLayout().getLineEnd(commentDefaultLines - 1);
-            String newVal = itemContentView.getText().subSequence(0, endOfLastLine - 3) + "...";
+            int end = itemContentView.getText().toString().lastIndexOf(' ', endOfLastLine -3);
+            if(end == -1) end = Math.max(endOfLastLine -3, 0);
+            String newVal = itemContentView.getText().subSequence(0, end) + "...";
             itemContentView.setText(newVal);
-            linkify();
         }
+        linkify();
     }
 
     private void toggleEllipsize() {
         if (itemContentView.getText().toString().equals(commentText)) {
-            ellipsize();
+            if (itemContentView.getLineCount() > commentDefaultLines) ellipsize();
         } else {
             expand();
         }
