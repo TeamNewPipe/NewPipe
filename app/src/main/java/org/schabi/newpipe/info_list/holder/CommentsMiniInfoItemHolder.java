@@ -118,9 +118,9 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     private void ellipsize() {
         if (itemContentView.getLineCount() > commentDefaultLines){
             int endOfLastLine = itemContentView.getLayout().getLineEnd(commentDefaultLines - 1);
-            int end = itemContentView.getText().toString().lastIndexOf(' ', endOfLastLine -3);
-            if(end == -1) end = Math.max(endOfLastLine -3, 0);
-            String newVal = itemContentView.getText().subSequence(0, end) + "...";
+            int end = itemContentView.getText().toString().lastIndexOf(' ', endOfLastLine -2);
+            if(end == -1) end = Math.max(endOfLastLine -2, 0);
+            String newVal = itemContentView.getText().subSequence(0, end) + " …";
             itemContentView.setText(newVal);
         }
         linkify();
