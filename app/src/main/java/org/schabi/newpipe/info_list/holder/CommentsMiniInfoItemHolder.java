@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.jsoup.helper.StringUtil;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
@@ -76,6 +77,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         itemThumbnailView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(StringUtil.isBlank(item.getAuthorEndpoint())) return;
                 try {
                     final AppCompatActivity activity = (AppCompatActivity) itemBuilder.getContext();
                     NavigationHelper.openChannelFragment(
