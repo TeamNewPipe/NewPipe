@@ -159,7 +159,7 @@ abrir en modo popup</string>
     <string name="contribution_encouragement">Si tienes ideas de; traducción, cambios de diseño, limpieza de código o cambios de código realmente fuertes—la ayuda siempre es bienvenida. Cuanto más se hace, mejor se pone!</string>
     <string name="read_full_license">Leer licencia</string>
     <string name="contribution_title">Contribuir</string>
-    <string name="subscribe_button_title">Suscribirse</string>
+<string name="subscribe_button_title">Suscribirse</string>
     <string name="subscribed_button_title">Suscrito</string>
     <string name="channel_unsubscribed">Canal no suscrito</string>
     <string name="subscription_change_failed">No se pudo cambiar la suscripción</string>
@@ -211,8 +211,8 @@ abrir en modo popup</string>
         <item quantity="other">Vídeos</item>
     </plurals>
     <string name="item_deleted">Elemento eliminado</string>
-    <string name="delete_item_search_history">¿Desea eliminar este elemento del historial de búsqueda?</string>
-    <string name="main_page_content">Contenido de la página principal</string>
+<string name="delete_item_search_history">¿Desea eliminar este elemento del historial de búsqueda?</string>
+<string name="main_page_content">Contenido de la página principal</string>
     <string name="blank_page_summary">Página en blanco</string>
     <string name="kiosk_page_summary">Página del kiosco</string>
     <string name="subscription_page_summary">Página de suscripción</string>
@@ -224,7 +224,7 @@ abrir en modo popup</string>
     <string name="kiosk">Kiosco</string>
     <string name="trending">Tendencias</string>
     <string name="top_50">Top 50</string>
-    <string name="show_hold_to_append_summary">Mostrar sugerencia cuando se presiona el botón de segundo plano o popup en la página de detalles del vídeo</string>
+<string name="show_hold_to_append_summary">Mostrar sugerencia cuando se presiona el botón de segundo plano o popup en la página de detalles del vídeo</string>
     <string name="background_player_append">En cola en el reproductor de fondo</string>
     <string name="popup_playing_append">En cola en el reproductor popup</string>
     <string name="play_all">Reproducir todo</string>
@@ -242,7 +242,7 @@ abrir en modo popup</string>
     <string name="start_here_on_main">Comenzar a reproducir aquí</string>
     <string name="start_here_on_background">Comenzar aquí en segundo plano</string>
     <string name="start_here_on_popup">Comenzar aquí en popup</string>
-    <string name="show_hold_to_append_title">Mostrar consejo \"Mantener para poner en la cola\"</string>
+<string name="show_hold_to_append_title">Mostrar consejo \"Mantener para poner en la cola\"</string>
     <string name="new_and_hot">Nuevo y popular</string>
     <string name="hold_to_append">Mantener para poner en la cola</string>
     <string name="donation_title">Donar</string>
@@ -270,7 +270,7 @@ abrir en modo popup</string>
     <string name="popup_player">Reproductor de popup</string>
     <string name="preferred_player_fetcher_notification_title">Obteniendo información…</string>
     <string name="preferred_player_fetcher_notification_message">Cargando contenido solicitado</string>
-    <string name="import_data_title">Importar base de datos</string>
+<string name="import_data_title">Importar base de datos</string>
     <string name="export_data_title">Exportar base de datos</string>
     <string name="import_data_summary">Reemplazará su historial actual y sus suscripciones</string>
     <string name="export_data_summary">Exportar historial, suscripciones y listas de reproducción</string>
@@ -325,6 +325,7 @@ abrir en modo popup</string>
     <string name="live">DIRECTO</string>
     <string name="live_sync">SINCRONIZAR</string>
     <string name="file">Archivo</string>
+    <string name="missing_file">Archivo movido o eliminado</string>
     <string name="invalid_directory">No existe el directorio</string>
     <string name="invalid_source">No existe la fuente del archivo/contenido</string>
     <string name="invalid_file">El archivo no existe o insuficientes permisos para leerlo o escribir en él</string>
@@ -419,6 +420,8 @@ abrir en modo popup</string>
     <string name="overwrite">Sobrescribir</string>
     <string name="overwrite_warning">Ya existe un archivo descargado con este nombre</string>
     <string name="download_already_running">Hay una descarga en curso con este nombre</string>
+    <string name="download_already_pending">Hay una descarga pendiente con este nombre</string>
+
     <string name="grid">Mostrar como grilla</string>
     <string name="list">Mostrar como lista</string>
     <string name="clear_finished_download">Limpiar descargas finalizadas</string>
@@ -426,8 +429,14 @@ abrir en modo popup</string>
     <string name="stop">Detener</string>
     <string name="max_retry_msg">Intentos máximos</string>
     <string name="max_retry_desc">Cantidad máxima de intentos antes de cancelar la descarga</string>
-    <string name="pause_downloads_on_mobile">Pausar al cambiar a datos moviles</string>
-    <string name="pause_downloads_on_mobile_desc">Las descargas que no se pueden pausar serán reiniciadas</string>
+    <string name="pause_downloads_on_mobile">Interrumpir en redes medidas</string>
+    <string name="pause_downloads_on_mobile_desc">Útil al cambiar a Datos Móviles, solo algunas descargas no se pueden suspender</string>
+    <string name="enable_queue_limit">Limitar cola de descarga</string>
+    <string name="enable_queue_limit_desc">Solo se permitirá una descarga a la vez</string>
+    <string name="start_downloads">Iniciar descargas</string>
+    <string name="pause_downloads">Pausar descargas</string>
+
+
     <!-- message dialog about download error -->
     <string name="show_error">Mostrar error</string>
     <string name="label_code">Codigo</string>
@@ -439,9 +448,12 @@ abrir en modo popup</string>
     <string name="error_connect_host">No se puede conectar con el servidor</string>
     <string name="error_http_no_content">El servidor no devolvio datos</string>
     <string name="error_http_unsupported_range">El servidor no acepta descargas multi-hilos, intente de nuevo con @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">El rango solicitado no se puede satisfacer</string>
+    <string name="error_http_requested_range_not_satisfiable">No se logro obtener el rango solicitado</string>
     <string name="error_http_not_found">No encontrado</string>
     <string name="error_postprocessing_failed">Fallo el post-procesado</string>
+    <string name="error_postprocessing_stopped">NewPipe se cerro mientras se trabajaba en el archivo</string>
+    <string name="error_insufficient_storage">No hay suficiente espacio disponible en el dispositivo</string>
+
     <string name="unsubscribe">Desuscribirse</string>
     <string name="tab_new">Nueva pestaña</string>
     <string name="tab_choose">Elige la pestaña</string>

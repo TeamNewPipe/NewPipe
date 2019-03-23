@@ -1,6 +1,7 @@
 package org.schabi.newpipe.settings;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +12,8 @@ import com.nononsenseapps.filepicker.Utils;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
+
+import java.io.File;
 
 public class DownloadSettingsFragment extends BasePreferenceFragment {
     private static final int REQUEST_DOWNLOAD_PATH = 0x1235;
@@ -45,7 +48,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
     @Override
     public boolean onPreferenceTreeClick(Preference preference) {
         if (DEBUG) {
-             Log.d(TAG, "onPreferenceTreeClick() called with: preference = [" + preference + "]");
+            Log.d(TAG, "onPreferenceTreeClick() called with: preference = [" + preference + "]");
         }
 
         if (preference.getKey().equals(DOWNLOAD_PATH_PREFERENCE)
@@ -78,6 +81,15 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
 
             defaultPreferences.edit().putString(key, path).apply();
             updatePreferencesSummary();
+
+            File target = new File(path);
+            if (!target.canWrite()) {
+                AlertDialog.Builder msg = new AlertDialog.Builder(getContext());
+                msg.setTitle(R.string.download_to_sdcard_error_title);
+                msg.setMessage(R.string.download_to_sdcard_error_message);
+                msg.setPositiveButton(android.R.string.ok, (dialogInterface, i) -> { });
+                msg.show();
+            }
         }
     }
 }

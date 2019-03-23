@@ -14,6 +14,7 @@ import java.io.InputStream;
 
 /**
  * Wrapper for the classic {@link java.io.InputStream}
+ *
  * @author kapodamy
  */
 public class SharpInputStream extends InputStream {
@@ -49,7 +50,8 @@ public class SharpInputStream extends InputStream {
 
     @Override
     public int available() {
-        return base.available();
+        long res = base.available();
+        return res > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int) res;
     }
 
     @Override

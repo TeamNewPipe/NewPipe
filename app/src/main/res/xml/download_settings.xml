@@ -50,4 +50,11 @@
         android:summary="@string/pause_downloads_on_mobile_desc"
         android:title="@string/pause_downloads_on_mobile" />
 
+    <SwitchPreference
+        app:iconSpaceReserved="false"
+        android:defaultValue="true"
+        android:key="@string/downloads_queue_limit"
+        android:summary="@string/enable_queue_limit_desc"
+        android:title="@string/enable_queue_limit" />
+
 </PreferenceScreen>

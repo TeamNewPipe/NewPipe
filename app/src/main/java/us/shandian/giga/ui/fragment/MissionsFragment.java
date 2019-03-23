@@ -35,6 +35,8 @@ public class MissionsFragment extends Fragment {
     private boolean mLinear;
     private MenuItem mSwitch;
     private MenuItem mClear = null;
+    private MenuItem mStart = null;
+    private MenuItem mPause = null;
 
     private RecyclerView mList;
     private View mEmpty;
@@ -54,8 +56,10 @@ public class MissionsFragment extends Fragment {
             mBinder = (DownloadManagerService.DMBinder) binder;
             mBinder.clearDownloadNotifications();
 
-            mAdapter = new MissionAdapter(mContext, mBinder.getDownloadManager(), mClear, mEmpty);
+            mAdapter = new MissionAdapter(mContext, mBinder.getDownloadManager(), mEmpty);
             mAdapter.deleterLoad(mBundle, getView());
+
+            setAdapterButtons();
 
             mBundle = null;
 
@@ -132,7 +136,7 @@ public class MissionsFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
 
-        mContext = activity.getApplicationContext();
+        mContext = activity;
     }
 
 
@@ -154,7 +158,11 @@ public class MissionsFragment extends Fragment {
     public void onPrepareOptionsMenu(Menu menu) {
         mSwitch = menu.findItem(R.id.switch_mode);
         mClear = menu.findItem(R.id.clear_list);
-        if (mAdapter != null) mAdapter.setClearButton(mClear);
+        mStart = menu.findItem(R.id.start_downloads);
+        mPause = menu.findItem(R.id.pause_downloads);
+
+        if (mAdapter != null) setAdapterButtons();
+
         super.onPrepareOptionsMenu(menu);
     }
 
@@ -168,6 +176,14 @@ public class MissionsFragment extends Fragment {
             case R.id.clear_list:
                 mAdapter.clearFinishedDownloads();
                 return true;
+            case R.id.start_downloads:
+                item.setVisible(false);
+                mBinder.getDownloadManager().startAllMissions();
+                return true;
+            case R.id.pause_downloads:
+                item.setVisible(false);
+                mBinder.getDownloadManager().pauseAllMissions(false);
+                mAdapter.ensurePausedMissions();// update items view
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -193,14 +209,21 @@ public class MissionsFragment extends Fragment {
             int icon;
 
             if (mLinear)
-                icon = isLight ? R.drawable.ic_list_black_24dp : R.drawable.ic_list_white_24dp;
-            else
                 icon = isLight ? R.drawable.ic_grid_black_24dp : R.drawable.ic_grid_white_24dp;
+            else
+                icon = isLight ? R.drawable.ic_list_black_24dp : R.drawable.ic_list_white_24dp;
 
             mSwitch.setIcon(icon);
             mSwitch.setTitle(mLinear ? R.string.grid : R.string.list);
             mPrefs.edit().putBoolean("linear", mLinear).apply();
         }
+    }
+
+    private void setAdapterButtons() {
+        if (mClear == null || mStart == null || mPause == null) return;
+
+        mAdapter.setClearButton(mClear);
+        mAdapter.setMasterButtons(mStart, mPause);
     }
 
     @Override

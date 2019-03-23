@@ -40,6 +40,9 @@ public class DownloadMission extends Mission {
     public static final int ERROR_UNKNOWN_HOST = 1005;
     public static final int ERROR_CONNECT_HOST = 1006;
     public static final int ERROR_POSTPROCESSING = 1007;
+    public static final int ERROR_POSTPROCESSING_STOPPED = 1008;
+    public static final int ERROR_POSTPROCESSING_HOLD = 1009;
+    public static final int ERROR_INSUFFICIENT_STORAGE = 1010;
     public static final int ERROR_HTTP_NO_CONTENT = 204;
     public static final int ERROR_HTTP_UNSUPPORTED_RANGE = 206;
 
@@ -83,8 +86,9 @@ public class DownloadMission extends Mission {
      * 0: ready
      * 1: running
      * 2: completed
+     * 3: hold
      */
-    public int postprocessingState;
+    public volatile int postprocessingState;
 
     /**
      * Indicate if the post-processing algorithm works on the same file
@@ -92,19 +96,19 @@ public class DownloadMission extends Mission {
     public boolean postprocessingThis;
 
     /**
-     * The current resource to download {@code urls[current]}
+     * The current resource to download, see {@code urls[current]} and {@code offsets[current]}
      */
     public int current;
 
     /**
      * Metadata where the mission state is saved
      */
-    public File metadata;
+    public transient File metadata;
 
     /**
      * maximum attempts
      */
-    public int maxRetry;
+    public transient int maxRetry;
 
     /**
      * Approximated final length, this represent the sum of all resources sizes
@@ -115,11 +119,11 @@ public class DownloadMission extends Mission {
     boolean fallback;
     private int finishCount;
     public transient boolean running;
-    public transient boolean enqueued = true;
+    public boolean enqueued;
 
     public int errCode = ERROR_NOTHING;
 
-    public transient Exception errObject = null;
+    public Exception errObject = null;
     public transient boolean recovered;
     public transient Handler mHandler;
     private transient boolean mWritingToFile;
@@ -131,7 +135,7 @@ public class DownloadMission extends Mission {
 
     private transient boolean deleted;
     int currentThreadCount;
-    private transient Thread[] threads = new Thread[0];
+    public transient volatile Thread[] threads = new Thread[0];
     private transient Thread init = null;
 
 
@@ -155,6 +159,8 @@ public class DownloadMission extends Mission {
         this.location = location;
         this.kind = kind;
         this.offsets = new long[urls.length];
+        this.enqueued = true;
+        this.maxRetry = 3;
 
         if (postprocessingName != null) {
             Postprocessing algorithm = Postprocessing.getAlgorithm(postprocessingName, null);
@@ -183,6 +189,7 @@ public class DownloadMission extends Mission {
      */
     boolean isBlockPreserved(long block) {
         checkBlock(block);
+        //noinspection ConstantConditions
         return blockState.containsKey(block) ? blockState.get(block) : false;
     }
 
@@ -246,6 +253,12 @@ public class DownloadMission extends Mission {
         URL url = new URL(urls[current]);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setInstanceFollowRedirects(true);
+
+        // BUG workaround: switching between networks can freeze the download forever
+
+        //conn.setRequestProperty("Connection", "close");
+        conn.setConnectTimeout(30000);
+        conn.setReadTimeout(10000);
 
         if (rangeStart >= 0) {
             String req = "bytes=" + rangeStart + "-";
@@ -342,11 +355,32 @@ public class DownloadMission extends Mission {
         }
     }
 
-    synchronized void notifyError(int code, Exception err) {
+    public synchronized void notifyError(int code, Exception err) {
         Log.e(TAG, "notifyError() code = " + code, err);
+
+        if (err instanceof IOException) {
+            if (err.getMessage().contains("Permission denied")) {
+                code = ERROR_PERMISSION_DENIED;
+                err = null;
+            } else if (err.getMessage().contains("write failed: ENOSPC")) {
+                code = ERROR_INSUFFICIENT_STORAGE;
+                err = null;
+            } else {
+                try {
+                    File storage = new File(location);
+                    if (storage.canWrite() && storage.getUsableSpace() < (getLength() - done)) {
+                        code = ERROR_INSUFFICIENT_STORAGE;
+                        err = null;
+                    }
+                } catch (SecurityException e) {
+                    // is a permission error
+                }
+            }
+        }
 
         errCode = code;
         errObject = err;
+        enqueued = false;
 
         pause();
 
@@ -378,6 +412,7 @@ public class DownloadMission extends Mission {
 
             if (!doPostprocessing()) return;
 
+            enqueued = false;
             running = false;
             deleteThisFromFile();
 
@@ -386,21 +421,19 @@ public class DownloadMission extends Mission {
     }
 
     private void notifyPostProcessing(int state) {
-        if (DEBUG) {
-            String action;
-            switch (state) {
-                case 1:
-                    action = "Running";
-                    break;
-                case 2:
-                    action = "Completed";
-                    break;
-                default:
-                    action = "Failed";
-            }
-
-            Log.d(TAG, action + " postprocessing on " + location + File.separator + name);
+        String action;
+        switch (state) {
+            case 1:
+                action = "Running";
+                break;
+            case 2:
+                action = "Completed";
+                break;
+            default:
+                action = "Failed";
         }
+
+        Log.d(TAG, action + " postprocessing on " + location + File.separator + name);
 
         synchronized (blockState) {
             // don't return without fully write the current state
@@ -420,7 +453,6 @@ public class DownloadMission extends Mission {
         if (threads != null)
             for (Thread thread : threads) joinForThread(thread);
 
-        enqueued = false;
         running = true;
         errCode = ERROR_NOTHING;
 
@@ -463,7 +495,7 @@ public class DownloadMission extends Mission {
     }
 
     /**
-     * Pause the mission, does not affect the blocks that are being downloaded.
+     * Pause the mission
      */
     public synchronized void pause() {
         if (!running) return;
@@ -477,7 +509,6 @@ public class DownloadMission extends Mission {
 
         running = false;
         recovered = true;
-        enqueued = false;
 
         if (init != null && Thread.currentThread() != init && init.isAlive()) {
             init.interrupt();
@@ -514,7 +545,7 @@ public class DownloadMission extends Mission {
     }
 
     /**
-     * Removes the file and the meta file
+     * Removes the downloaded file and the meta file
      */
     @Override
     public boolean delete() {
@@ -580,12 +611,21 @@ public class DownloadMission extends Mission {
      * @return true, otherwise, false
      */
     public boolean isPsRunning() {
-        return postprocessingName != null && postprocessingState == 1;
+        return postprocessingName != null && (postprocessingState == 1 || postprocessingState == 3);
+    }
+
+    /**
+     * Indicated if the mission is ready
+     *
+     * @return true, otherwise, false
+     */
+    public boolean isInitialized() {
+        return blocks >= 0; // DownloadMissionInitializer was executed
     }
 
     public long getLength() {
         long calculated;
-        if (postprocessingState == 1) {
+        if (postprocessingState == 1 || postprocessingState == 3) {
             calculated = length;
         } else {
             calculated = offsets[current < offsets.length ? current : (offsets.length - 1)] + length;
@@ -596,13 +636,37 @@ public class DownloadMission extends Mission {
         return calculated > nearLength ? calculated : nearLength;
     }
 
+    /**
+     * set this mission state on the queue
+     *
+     * @param queue true to add to the queue, otherwise, false
+     */
+    public void setEnqueued(boolean queue) {
+        enqueued = queue;
+        runAsync(-2, this::writeThisToFile);
+    }
+
+    /**
+     * Attempts to continue a blocked post-processing
+     *
+     * @param recover {@code true} to retry, otherwise, {@code false} to cancel
+     */
+    public void psContinue(boolean recover) {
+        postprocessingState = 1;
+        errCode = recover ? ERROR_NOTHING : ERROR_POSTPROCESSING;
+        threads[0].interrupt();
+    }
+
     private boolean doPostprocessing() {
         if (postprocessingName == null || postprocessingState == 2) return true;
 
         notifyPostProcessing(1);
         notifyProgress(0);
 
-        Thread.currentThread().setName("[" + TAG + "]  post-processing = " + postprocessingName + "  filename = " + name);
+        if (DEBUG)
+            Thread.currentThread().setName("[" + TAG + "]  post-processing = " + postprocessingName + "  filename = " + name);
+
+        threads = new Thread[]{Thread.currentThread()};
 
         Exception exception = null;
 

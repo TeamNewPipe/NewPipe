@@ -434,7 +434,7 @@
     <string name="permission_denied">系统拒绝该行动</string>
     <string name="download_failed">下载失败</string>
     <string name="download_finished">下载完成</string>
-    <string name="download_finished_more">%已下载完毕</string>
+    <string name="download_finished_more">%s已下载完毕</string>
     <string name="generate_unique_name">生成独特的名字</string>
     <string name="overwrite">覆写</string>
     <string name="overwrite_warning">同名的已下载文件已经存在</string>

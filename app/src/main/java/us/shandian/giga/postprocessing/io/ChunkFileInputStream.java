@@ -94,7 +94,7 @@ public class ChunkFileInputStream extends SharpStream {
     }
 
     @Override
-    public int available() {
+    public long available() {
         return (int) (length - position);
     }
 
@@ -147,7 +147,4 @@ public class ChunkFileInputStream extends SharpStream {
     public void write(byte[] buffer, int offset, int count) {
     }
 
-    @Override
-    public void flush() {
-    }
 }

@@ -164,9 +164,6 @@ public class DownloadInitializer extends Thread {
             }
         }
 
-        // hide marquee in the progress bar
-        mMission.done++;
-
         mMission.start();
     }
 

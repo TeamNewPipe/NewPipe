@@ -15,7 +15,9 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
+import android.net.Network;
 import android.net.NetworkInfo;
+import android.net.NetworkRequest;
 import android.net.Uri;
 import android.os.Binder;
 import android.os.Build;
@@ -24,6 +26,7 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.Builder;
 import android.support.v4.content.PermissionChecker;
@@ -48,7 +51,6 @@ public class DownloadManagerService extends Service {
 
     private static final String TAG = "DownloadManagerService";
 
-    public static final int MESSAGE_RUNNING = 0;
     public static final int MESSAGE_PAUSED = 1;
     public static final int MESSAGE_FINISHED = 2;
     public static final int MESSAGE_PROGRESS = 3;
@@ -76,7 +78,7 @@ public class DownloadManagerService extends Service {
     private Notification mNotification;
     private Handler mHandler;
     private boolean mForeground = false;
-    private NotificationManager notificationManager = null;
+    private NotificationManager mNotificationManager = null;
     private boolean mDownloadNotificationEnable = true;
 
     private int downloadDoneCount = 0;
@@ -85,7 +87,9 @@ public class DownloadManagerService extends Service {
 
     private final ArrayList<Handler> mEchoObservers = new ArrayList<>(1);
 
-    private BroadcastReceiver mNetworkStateListener;
+    private ConnectivityManager mConnectivityManager;
+    private BroadcastReceiver mNetworkStateListener = null;
+    private ConnectivityManager.NetworkCallback mNetworkStateListenerL = null;
 
     private SharedPreferences mPrefs = null;
     private final SharedPreferences.OnSharedPreferenceChangeListener mPrefChangeListener = this::handlePreferenceChange;
@@ -147,25 +151,39 @@ public class DownloadManagerService extends Service {
                 .setContentText(getString(R.string.msg_running_detail));
 
         mNotification = builder.build();
-        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        mNetworkStateListener = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                if (intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false)) {
-                    handleConnectivityChange(null);
-                    return;
+        mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        mConnectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mNetworkStateListenerL = new ConnectivityManager.NetworkCallback() {
+                @Override
+                public void onAvailable(Network network) {
+                    handleConnectivityState(false);
                 }
-                handleConnectivityChange(intent.getParcelableExtra(ConnectivityManager.EXTRA_NETWORK_INFO));
-            }
-        };
-        registerReceiver(mNetworkStateListener, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+
+                @Override
+                public void onLost(Network network) {
+                    handleConnectivityState(false);
+                }
+            };
+            mConnectivityManager.registerNetworkCallback(new NetworkRequest.Builder().build(), mNetworkStateListenerL);
+        } else {
+            mNetworkStateListener = new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    handleConnectivityState(false);
+                }
+            };
+            registerReceiver(mNetworkStateListener, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+        }
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         mPrefs.registerOnSharedPreferenceChangeListener(mPrefChangeListener);
 
         handlePreferenceChange(mPrefs, getString(R.string.downloads_cross_network));
         handlePreferenceChange(mPrefs, getString(R.string.downloads_maximum_retry));
+        handlePreferenceChange(mPrefs, getString(R.string.downloads_queue_limit));
 
         mLock = new LockManager(this);
     }
@@ -173,12 +191,11 @@ public class DownloadManagerService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (DEBUG) {
-            if (intent == null) {
-                Log.d(TAG, "Restarting");
-                return START_NOT_STICKY;
-            }
-            Log.d(TAG, "Starting");
+            Log.d(TAG, intent == null ? "Restarting" : "Starting");
         }
+
+        if (intent == null) return START_NOT_STICKY;
+
         Log.i(TAG, "Got intent: " + intent);
         String action = intent.getAction();
         if (action != null) {
@@ -192,6 +209,8 @@ public class DownloadManagerService extends Service {
                 String[] psArgs = intent.getStringArrayExtra(EXTRA_POSTPROCESSING_ARGS);
                 String source = intent.getStringExtra(EXTRA_SOURCE);
                 long nearLength = intent.getLongExtra(EXTRA_NEAR_LENGTH, 0);
+
+                handleConnectivityState(true);// first check the actual network status
 
                 mHandler.post(() -> mManager.startMission(urls, location, name, kind, threads, source, psName, psArgs, nearLength));
 
@@ -221,21 +240,25 @@ public class DownloadManagerService extends Service {
 
         stopForeground(true);
 
-        if (notificationManager != null && downloadDoneNotification != null) {
+        if (mNotificationManager != null && downloadDoneNotification != null) {
             downloadDoneNotification.setDeleteIntent(null);// prevent NewPipe running when is killed, cleared from recent, etc
-            notificationManager.notify(DOWNLOADS_NOTIFICATION_ID, downloadDoneNotification.build());
+            mNotificationManager.notify(DOWNLOADS_NOTIFICATION_ID, downloadDoneNotification.build());
         }
-
-        mManager.pauseAllMissions();
 
         manageLock(false);
 
-        unregisterReceiver(mNetworkStateListener);
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            mConnectivityManager.unregisterNetworkCallback(mNetworkStateListenerL);
+        else
+            unregisterReceiver(mNetworkStateListener);
+
         mPrefs.unregisterOnSharedPreferenceChangeListener(mPrefChangeListener);
 
         if (icDownloadDone != null) icDownloadDone.recycle();
         if (icDownloadFailed != null) icDownloadFailed.recycle();
         if (icLauncher != null) icLauncher.recycle();
+
+        mManager.pauseAllMissions(true);
     }
 
     @Override
@@ -264,15 +287,16 @@ public class DownloadManagerService extends Service {
                 notifyMediaScanner(mission.getDownloadedFile());
                 notifyFinishedDownload(mission.name);
                 mManager.setFinished(mission);
-                updateForegroundState(mManager.runAnotherMission());
+                handleConnectivityState(false);
+                updateForegroundState(mManager.runMissions());
                 break;
-            case MESSAGE_RUNNING:
             case MESSAGE_PROGRESS:
                 updateForegroundState(true);
                 break;
             case MESSAGE_ERROR:
                 notifyFailedDownload(mission);
-                updateForegroundState(mManager.runAnotherMission());
+                handleConnectivityState(false);
+                updateForegroundState(mManager.runMissions());
                 break;
             case MESSAGE_PAUSED:
                 updateForegroundState(mManager.getRunningMissionsCount() > 0);
@@ -293,36 +317,30 @@ public class DownloadManagerService extends Service {
         }
     }
 
-    private void handleConnectivityChange(NetworkInfo info) {
+    private void handleConnectivityState(boolean updateOnly) {
+        NetworkInfo info = mConnectivityManager.getActiveNetworkInfo();
         NetworkState status;
 
         if (info == null) {
             status = NetworkState.Unavailable;
-            Log.i(TAG, "actual connectivity status is unavailable");
-        } else if (!info.isAvailable() || !info.isConnected()) {
-            status = NetworkState.Unavailable;
-            Log.i(TAG, "actual connectivity status is not available and not connected");
+            Log.i(TAG, "Active network [connectivity is unavailable]");
         } else {
-            int type = info.getType();
-            if (type == ConnectivityManager.TYPE_MOBILE || type == ConnectivityManager.TYPE_MOBILE_DUN) {
-                status = NetworkState.MobileOperating;
-            } else if (type == ConnectivityManager.TYPE_WIFI) {
-                status = NetworkState.WifiOperating;
-            } else if (type == ConnectivityManager.TYPE_WIMAX ||
-                    type == ConnectivityManager.TYPE_ETHERNET ||
-                    type == ConnectivityManager.TYPE_BLUETOOTH) {
-                status = NetworkState.OtherOperating;
-            } else {
+            boolean connected = info.isConnected();
+            boolean metered = mConnectivityManager.isActiveNetworkMetered();
+
+            if (connected)
+                status = metered ? NetworkState.MeteredOperating : NetworkState.Operating;
+            else
                 status = NetworkState.Unavailable;
-            }
-            Log.i(TAG, "actual connectivity status is " + status.name());
+
+            Log.i(TAG, "Active network [connected=" + connected + " metered=" + metered + "] " + info.toString());
         }
 
         if (mManager == null) return;// avoid race-conditions while the service is starting
-        mManager.handleConnectivityChange(status);
+        mManager.handleConnectivityState(status, updateOnly);
     }
 
-    private void handlePreferenceChange(SharedPreferences prefs, String key) {
+    private void handlePreferenceChange(SharedPreferences prefs, @NonNull String key) {
         if (key.equals(getString(R.string.downloads_maximum_retry))) {
             try {
                 String value = prefs.getString(key, getString(R.string.downloads_maximum_retry_default));
@@ -332,7 +350,9 @@ public class DownloadManagerService extends Service {
             }
             mManager.updateMaximumAttempts();
         } else if (key.equals(getString(R.string.downloads_cross_network))) {
-            mManager.mPrefCrossNetwork = prefs.getBoolean(key, false);
+            mManager.mPrefMeteredDownloads = prefs.getBoolean(key, false);
+        } else if (key.equals(getString(R.string.downloads_queue_limit))) {
+            mManager.mPrefQueueLimit = prefs.getBoolean(key, true);
         }
     }
 
@@ -366,19 +386,20 @@ public class DownloadManagerService extends Service {
         context.startService(intent);
     }
 
-    public static void checkForRunningMission(Context context, String location, String name, DMChecker check) {
+    public static void checkForRunningMission(Context context, String location, String name, DMChecker checker) {
         Intent intent = new Intent();
         intent.setClass(context, DownloadManagerService.class);
+        context.startService(intent);
+
         context.bindService(intent, new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName cname, IBinder service) {
                 try {
-                    ((DMBinder) service).getDownloadManager().checkForRunningMission(location, name, check);
+                    ((DMBinder) service).getDownloadManager().checkForRunningMission(location, name, checker);
                 } catch (Exception err) {
                     Log.w(TAG, "checkForRunningMission() callback is defective", err);
                 }
 
-                // TODO: find a efficient way to unbind the service. This destroy the service due idle, but is started again when the user start a download.
                 context.unbindService(this);
             }
 
@@ -389,7 +410,7 @@ public class DownloadManagerService extends Service {
     }
 
     public void notifyFinishedDownload(String name) {
-        if (!mDownloadNotificationEnable || notificationManager == null) {
+        if (!mDownloadNotificationEnable || mNotificationManager == null) {
             return;
         }
 
@@ -428,7 +449,7 @@ public class DownloadManagerService extends Service {
             downloadDoneNotification.setContentText(downloadDoneList);
         }
 
-        notificationManager.notify(DOWNLOADS_NOTIFICATION_ID, downloadDoneNotification.build());
+        mNotificationManager.notify(DOWNLOADS_NOTIFICATION_ID, downloadDoneNotification.build());
         downloadDoneCount++;
     }
 
@@ -458,7 +479,7 @@ public class DownloadManagerService extends Service {
                     .bigText(mission.name));
         }
 
-        notificationManager.notify(id, downloadFailedNotification.build());
+        mNotificationManager.notify(id, downloadFailedNotification.build());
     }
 
     private PendingIntent makePendingIntent(String action) {
@@ -487,7 +508,11 @@ public class DownloadManagerService extends Service {
         mLockAcquired = acquire;
     }
 
-    // Wrapper of DownloadManager
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    // Wrappers for DownloadManager
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
     public class DMBinder extends Binder {
         public DownloadManager getDownloadManager() {
             return mManager;
@@ -502,15 +527,15 @@ public class DownloadManagerService extends Service {
         }
 
         public void clearDownloadNotifications() {
-            if (notificationManager == null) return;
+            if (mNotificationManager == null) return;
             if (downloadDoneNotification != null) {
-                notificationManager.cancel(DOWNLOADS_NOTIFICATION_ID);
+                mNotificationManager.cancel(DOWNLOADS_NOTIFICATION_ID);
                 downloadDoneList.setLength(0);
                 downloadDoneCount = 0;
             }
             if (downloadFailedNotification != null) {
                 for (; downloadFailedNotificationID > DOWNLOADS_NOTIFICATION_ID; downloadFailedNotificationID--) {
-                    notificationManager.cancel(downloadFailedNotificationID);
+                    mNotificationManager.cancel(downloadFailedNotificationID);
                 }
                 mFailedDownloads.clear();
                 downloadFailedNotificationID++;
@@ -524,7 +549,9 @@ public class DownloadManagerService extends Service {
     }
 
     public interface DMChecker {
-        void callback(boolean listed, boolean finished);
+        void callback(MissionCheck result);
     }
+
+    public enum MissionCheck {None, Pending, PendingRunning, Finished}
 
 }

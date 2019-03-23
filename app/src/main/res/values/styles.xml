@@ -41,6 +41,7 @@
         <item name="search_add">@drawable/ic_arrow_top_left_black_24dp</item>
         <item name="options">@drawable/ic_more_vert_black_24dp</item>
         <item name="play">@drawable/ic_play_arrow_black_24dp</item>
+        <item name="pause">@drawable/ic_pause_black_24dp</item>
         <item name="settings">@drawable/ic_settings_black_24dp</item>
         <item name="ic_hot">@drawable/ic_whatshot_black_24dp</item>
         <item name="ic_channel">@drawable/ic_channel_black_24dp</item>
@@ -119,6 +120,7 @@
         <item name="ic_list">@drawable/ic_list_white_24dp</item>
         <item name="ic_grid">@drawable/ic_grid_white_24dp</item>
         <item name="ic_delete">@drawable/ic_delete_white_24dp</item>
+        <item name="pause">@drawable/ic_pause_white_24dp</item>
         <item name="ic_settings_update">@drawable/ic_settings_update_white</item>
 
         <item name="separator_color">@color/dark_separator_color</item>

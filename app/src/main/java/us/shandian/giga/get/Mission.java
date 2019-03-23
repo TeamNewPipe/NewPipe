@@ -47,6 +47,11 @@ public abstract class Mission implements Serializable {
         return new File(location, name);
     }
 
+    /**
+     * Delete the downloaded file
+     *
+     * @return {@code true] if and only if the file is successfully deleted, otherwise, {@code false}
+     */
     public boolean delete() {
         deleted = true;
         return getDownloadedFile().delete();

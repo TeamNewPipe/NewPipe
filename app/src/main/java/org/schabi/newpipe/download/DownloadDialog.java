@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
@@ -52,6 +53,7 @@ import icepick.State;
 import io.reactivex.disposables.CompositeDisposable;
 import us.shandian.giga.postprocessing.Postprocessing;
 import us.shandian.giga.service.DownloadManagerService;
+import us.shandian.giga.service.DownloadManagerService.MissionCheck;
 
 public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheckedChangeListener, AdapterView.OnItemSelectedListener {
     private static final String TAG = "DialogFragment";
@@ -263,7 +265,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         Icepick.saveInstanceState(this, outState);
     }
@@ -476,23 +478,40 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
 
         final String finalFileName = fileName;
 
-        DownloadManagerService.checkForRunningMission(context, location, fileName, (listed, finished) -> {
-            if (listed) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle(R.string.download_dialog_title)
-                        .setMessage(finished ? R.string.overwrite_warning : R.string.download_already_running)
-                        .setPositiveButton(
-                                finished ? R.string.overwrite : R.string.generate_unique_name,
-                                (dialog, which) -> downloadSelected(context, stream, location, finalFileName, kind, threads)
-                        )
-                        .setNegativeButton(android.R.string.cancel, (dialog, which) -> {
-                            dialog.cancel();
-                        })
-                        .create()
-                        .show();
-            } else {
-                downloadSelected(context, stream, location, finalFileName, kind, threads);
+        DownloadManagerService.checkForRunningMission(context, location, fileName, (MissionCheck result) -> {
+            @StringRes int msgBtn;
+            @StringRes int msgBody;
+
+            switch (result) {
+                case Finished:
+                    msgBtn = R.string.overwrite;
+                    msgBody = R.string.overwrite_warning;
+                    break;
+                case Pending:
+                    msgBtn = R.string.overwrite;
+                    msgBody = R.string.download_already_pending;
+                    break;
+                case PendingRunning:
+                    msgBtn = R.string.generate_unique_name;
+                    msgBody = R.string.download_already_running;
+                    break;
+                default:
+                    downloadSelected(context, stream, location, finalFileName, kind, threads);
+                    return;
             }
+
+            // overwrite or unique name actions are done by the download manager
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setTitle(R.string.download_dialog_title)
+                    .setMessage(msgBody)
+                    .setPositiveButton(
+                            msgBtn,
+                            (dialog, which) -> downloadSelected(context, stream, location, finalFileName, kind, threads)
+                    )
+                    .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.cancel())
+                    .create()
+                    .show();
         });
     }
 
@@ -503,14 +522,18 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         String secondaryStreamUrl = null;
         long nearLength = 0;
 
-        if (selectedStream instanceof VideoStream) {
+        if (selectedStream instanceof AudioStream) {
+            if (selectedStream.getFormat() == MediaFormat.M4A) {
+                psName = Postprocessing.ALGORITHM_M4A_NO_DASH;
+            }
+        } else if (selectedStream instanceof VideoStream) {
             SecondaryStreamHelper<AudioStream> secondaryStream = videoStreamsAdapter
                     .getAllSecondary()
                     .get(wrappedVideoStreams.getStreamsList().indexOf(selectedStream));
 
             if (secondaryStream != null) {
                 secondaryStreamUrl = secondaryStream.getStream().getUrl();
-                psName = selectedStream.getFormat() == MediaFormat.MPEG_4 ? Postprocessing.ALGORITHM_MP4_MUXER : Postprocessing.ALGORITHM_WEBM_MUXER;
+                psName = selectedStream.getFormat() == MediaFormat.MPEG_4 ? Postprocessing.ALGORITHM_MP4_FROM_DASH_MUXER : Postprocessing.ALGORITHM_WEBM_MUXER;
                 psArgs = null;
                 long videoSize = wrappedVideoStreams.getSizeInBytes((VideoStream) selectedStream);
 

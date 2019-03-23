@@ -17,7 +17,9 @@ public enum UserAction {
     REQUESTED_KIOSK("requested kiosk"),
     REQUESTED_COMMENTS("requested comments"),
     DELETE_FROM_HISTORY("delete from history"),
-    PLAY_STREAM("Play stream");
+    PLAY_STREAM("Play stream"),
+    DOWNLOAD_POSTPROCESSING("download post-processing"),
+    DOWNLOAD_FAILED("download failed");
 
 
     private final String message;

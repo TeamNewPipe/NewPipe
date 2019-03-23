@@ -196,6 +196,7 @@
     <string name="invalid_url_toast">Invalid URL</string>
     <string name="video_streams_empty">No video streams found</string>
     <string name="audio_streams_empty">No audio streams found</string>
+    <string name="missing_file">File moved or deleted</string>
     <string name="invalid_directory">No such folder</string>
     <string name="invalid_source">No such file/content source</string>
     <string name="invalid_file">The file doesn\'t exist or permission to read or write to it is lacking</string>
@@ -513,6 +514,8 @@
     <string name="overwrite">Overwrite</string>
     <string name="overwrite_warning">A downloaded file with this name already exists</string>
     <string name="download_already_running">There is a download in progress with this name</string>
+    <string name="download_already_pending">There is a pending download with this name</string>
+
     <!-- message dialog about download error -->
     <string name="show_error">Show error</string>
     <string name="label_code">Code</string>
@@ -527,13 +530,20 @@
     <string name="error_http_requested_range_not_satisfiable">Requested range not satisfiable</string>
     <string name="error_http_not_found">Not found</string>
     <string name="error_postprocessing_failed">Post-processing failed</string>
+    <string name="error_postprocessing_stopped">NewPipe was closed while working on the file</string>
+    <string name="error_insufficient_storage">No space left on device</string>
+
     <string name="clear_finished_download">Clear finished downloads</string>
     <string name="msg_pending_downloads">Continue your %s pending transfers from Downloads</string>
     <string name="stop">Stop</string>
     <string name="max_retry_msg">Maximum retries</string>
     <string name="max_retry_desc">Maximum number of attempts before canceling the download</string>
-    <string name="pause_downloads_on_mobile">Pause on switching to mobile data</string>
-    <string name="pause_downloads_on_mobile_desc">Downloads that can not be paused will be restarted</string>
+    <string name="pause_downloads_on_mobile">Interrupt on metered networks</string>
+    <string name="pause_downloads_on_mobile_desc">Useful when switching to mobile data, although some downloads cannot be suspended</string>
     <string name="close">Close</string>
+    <string name="enable_queue_limit">Limit download queue</string>
+    <string name="enable_queue_limit_desc">One download will run at the same time</string>
+    <string name="start_downloads">Start downloads</string>
+    <string name="pause_downloads">Pause downloads</string>
 
 </resources>
