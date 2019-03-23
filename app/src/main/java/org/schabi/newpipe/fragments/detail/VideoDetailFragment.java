@@ -121,6 +121,7 @@ public class VideoDetailFragment
 
     private boolean autoPlayEnabled;
     private boolean showRelatedStreams;
+    private boolean preferRelatedStreams;
     private boolean showComments;
 
     @State
@@ -209,6 +210,9 @@ public class VideoDetailFragment
 
         showRelatedStreams = PreferenceManager.getDefaultSharedPreferences(activity)
                 .getBoolean(getString(R.string.show_next_video_key), true);
+
+        preferRelatedStreams = PreferenceManager.getDefaultSharedPreferences(activity)
+                .getBoolean(getString(R.string.prefer_next_video_key), false);
 
         showComments = PreferenceManager.getDefaultSharedPreferences(activity)
                 .getBoolean(getString(R.string.show_comments_key), true);
@@ -817,13 +821,17 @@ public class VideoDetailFragment
     private void initTabs() {
         pageAdapter.clearAllItems();
 
-        if(shouldShowComments()){
+        if(!preferRelatedStreams && shouldShowComments()){
             pageAdapter.addFragment(CommentsFragment.getInstance(serviceId, url, name), COMMENTS_TAB_TAG);
         }
 
         if(showRelatedStreams && null == relatedStreamsLayout){
             //temp empty fragment. will be updated in handleResult
             pageAdapter.addFragment(new Fragment(), RELATED_TAB_TAG);
+        }
+
+        if(preferRelatedStreams && shouldShowComments()){
+            pageAdapter.addFragment(CommentsFragment.getInstance(serviceId, url, name), COMMENTS_TAB_TAG);
         }
 
         if(pageAdapter.getCount() == 0){

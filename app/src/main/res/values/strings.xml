@@ -103,6 +103,7 @@
     <string name="next_video_title">Up next</string>
     <string name="autoplay_title">Autoplay</string>
     <string name="show_next_and_similar_title">Show \'Next\' and \'Similar\' videos</string>
+    <string name="prefer_next_video_title">Prefer \'Next\' and \'Similar\' videos over \'Comments\'</string>
     <string name="show_hold_to_append_title">Show \"Hold to append\" tip</string>
     <string name="show_hold_to_append_summary">Show tip when background or popup button is pressed on video details page</string>
     <string name="url_not_supported_toast">Unsupported URL</string>

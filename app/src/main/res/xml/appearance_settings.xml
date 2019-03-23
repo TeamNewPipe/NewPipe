@@ -17,7 +17,13 @@
         app:iconSpaceReserved="false"
         android:defaultValue="true"
         android:key="@string/show_next_video_key"
-        android:title="@string/show_next_and_similar_title"/>
+	    android:title="@string/show_next_and_similar_title"/>
+
+    <SwitchPreference
+        app:iconSpaceReserved="false"
+        android:defaultValue="false"
+        android:key="@string/prefer_next_video_key"
+        android:title="@string/prefer_next_video_title"/>
 
     <SwitchPreference
         app:iconSpaceReserved="false"
