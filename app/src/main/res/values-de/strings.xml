@@ -80,7 +80,7 @@
     <string name="your_comment">Dein Kommentar (auf englisch):</string>
     <string name="could_not_get_stream">Konnte keinen Stream abrufen</string>
     <string name="autoplay_by_calling_app_title">Automatische Wiedergabe</string>
-    <string name="autoplay_by_calling_app_summary">Spielt ein Video ab, wenn NewPipe von einer anderen App aufgerufen wurde</string>
+    <string name="autoplay_by_calling_app_summary">Wiedergabe eines Videos, wenn NewPipe von einer anderen App aufgerufen wurde</string>
     <string name="report_error">Einen Fehler melden</string>
     <string name="user_report">Anwenderbericht</string>
     <string name="duration_live">LIVE</string>
@@ -463,7 +463,7 @@
     <string name="error_connect_host">Kann nicht mit dem Server verbinden</string>
     <string name="error_http_no_content">Der Server sendet keine Daten</string>
     <string name="error_http_unsupported_range">Der Server erlaubt kein mehrfädiges Herunterladen – wiederhole mit @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">Angefragter Bereich nicht bedienbar</string>
+    <string name="error_http_requested_range_not_satisfiable">Gewünschter Bereich ist nicht verfügbar</string>
     <string name="error_http_not_found">Nicht gefunden</string>
     <string name="error_postprocessing_failed">Nachbearbeitung fehlgeschlagen</string>
     <string name="clear_finished_download">Um fertige Downloads bereinigen</string>
