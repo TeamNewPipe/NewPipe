@@ -62,7 +62,7 @@
     <string name="live_streams_not_supported">I contenuti in diretta non sono al momento supportati</string>
     <string name="content">Contenuti</string>
     <string name="show_age_restricted_content_title">Contenuti vietati ai minori</string>
-    <string name="video_is_age_restricted">Mostra video riversati a un pubblico maggiorenne. Si possono abilitare dalle Impostazioni.</string>
+    <string name="video_is_age_restricted">Mostra video riservati a un pubblico maggiorenne. Si possono abilitare dalle Impostazioni.</string>
     <string name="main_bg_subtitle">Tocca Cerca per iniziare</string>
     <string name="autoplay_by_calling_app_title">Riproduzione automatica</string>
     <string name="autoplay_by_calling_app_summary">Riproduci i video quando NewPipe viene aperto da un\'altra app</string>
