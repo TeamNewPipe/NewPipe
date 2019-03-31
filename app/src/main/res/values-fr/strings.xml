@@ -318,7 +318,7 @@
     <string name="use_inexact_seek_title">Recherche rapide approximative</string>
     <string name="use_inexact_seek_summary">Permettre au lecteur d\'accéder plus rapidement à une position au détriment de la précision</string>
     <string name="download_thumbnail_title">Charger les miniatures</string>
-    <string name="download_thumbnail_summary">Désactivez pour empêcher le chargement des miniatures afin de réduire l’utilisation de bande passante et de mémoire. Modifier cette option vide le cache d’images en mémoire vive et sur le disque.</string>
+    <string name="download_thumbnail_summary">Désactivez pour empêcher le chargement des miniatures afin de réduire l’utilisation de bande passante et de mémoire. Ce changement vide le cache d’images en mémoire vive et sur le disque.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Images en cache effacées</string>
     <string name="metadata_cache_wipe_title">Effacer les données en cache</string>
     <string name="metadata_cache_wipe_summary">Effacer toutes les pages web mises en cache</string>
@@ -464,4 +464,11 @@
     <string name="clear_finished_download">Effacer les téléchargements terminés</string>
     <string name="pause_downloads_on_mobile">Mettre en pause lors du passage en données mobiles</string>
     <string name="pause_downloads_on_mobile_desc">Les téléchargements qui ne peuvent pas être mis en pause seront redémarrés</string>
+    <string name="list_view_mode">Mode liste</string>
+    <string name="post_processing">post-traitement</string>
+    <string name="enqueue">File d’attente</string>
+    <string name="permission_denied">Action refusée par le système</string>
+    <string name="error_postprocessing_failed">Échec du post-traitement</string>
+    <string name="max_retry_msg">Nombre maximum de tentatives</string>
+    <string name="max_retry_desc">Nombre maximum de tentatives avant d\'annuler le téléchargement</string>
 </resources>
