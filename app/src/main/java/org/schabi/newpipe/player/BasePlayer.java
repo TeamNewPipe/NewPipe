@@ -269,6 +269,18 @@ public abstract class BasePlayer implements
         final boolean playbackSkipSilence = intent.getBooleanExtra(PLAYBACK_SKIP_SILENCE,
                 getPlaybackSkipSilence());
 
+        // seek to timestamp if stream is already playing
+        if (simpleExoPlayer != null
+                && queue.size() == 1
+                && playQueue != null
+                && playQueue.getItem() != null
+                && queue.getItem().getUrl().equals(playQueue.getItem().getUrl())
+                && queue.getItem().getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET
+                ) {
+            simpleExoPlayer.seekTo(playQueue.getIndex(), queue.getItem().getRecoveryPosition());
+            return;
+        }
+
         // Good to go...
         initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence,
                 /*playOnInit=*/true);
