@@ -449,12 +449,12 @@
     <string name="download_finished_more">%s indirme bitti</string>
     <string name="generate_unique_name">Benzersiz ad oluştur</string>
     <string name="overwrite">Üzerine yaz</string>
-    <string name="overwrite_warning">Bu ada sahip indirilen bir dosya zaten var</string>
+    <string name="overwrite_finished_warning">Bu ada sahip indirilen bir dosya zaten var</string>
     <string name="download_already_running">Bu ad ile devam eden bir indirme var</string>
     <string name="show_error">Hatayı göster</string>
     <string name="label_code">Kod</string>
-    <string name="error_path_creation">Dosya oluşturulamıyor</string>
-    <string name="error_file_creation">Hedef klasör oluşturulamıyor</string>
+    <string name="error_file_creation">Dosya oluşturulamıyor</string>
+    <string name="error_path_creation">Hedef klasör oluşturulamıyor</string>
     <string name="error_permission_denied">İzin sistem tarafından reddedildi</string>
     <string name="error_ssl_exception">Güvenli bağlantı başarısız</string>
     <string name="error_unknown_host">Sunucu bulunamadı</string>

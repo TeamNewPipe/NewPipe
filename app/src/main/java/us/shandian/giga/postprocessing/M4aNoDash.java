@@ -6,12 +6,10 @@ import org.schabi.newpipe.streams.io.SharpStream;
 
 import java.io.IOException;
 
-import us.shandian.giga.get.DownloadMission;
-
 public class M4aNoDash extends Postprocessing {
 
-    M4aNoDash(DownloadMission mission) {
-        super(mission, 0, true);
+    M4aNoDash() {
+        super(0, true);
     }
 
     @Override

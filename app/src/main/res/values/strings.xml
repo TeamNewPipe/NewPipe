@@ -176,7 +176,7 @@
     <!-- error strings -->
     <string name="general_error">Error</string>
     <string name="download_to_sdcard_error_title">External storage unavailable</string>
-    <string name="download_to_sdcard_error_message">Downloading to external SD card not yet possible. Reset download folder location\?</string>
+    <string name="download_to_sdcard_error_message">Downloading to external SD card not possible. Reset download folder location\?</string>
     <string name="network_error">Network error</string>
     <string name="could_not_load_thumbnails">Could not load all thumbnails</string>
     <string name="youtube_signature_decryption_error">Could not decrypt video URL signature</string>
@@ -512,15 +512,17 @@
     <!-- dialog about existing downloads -->
     <string name="generate_unique_name">Generate unique name</string>
     <string name="overwrite">Overwrite</string>
-    <string name="overwrite_warning">A downloaded file with this name already exists</string>
+    <string name="overwrite_unrelated_warning">A file with this name already exists</string>
+    <string name="overwrite_finished_warning">A downloaded file with this name already exists</string>
+    <string name="overwrite_failed">cannot overwrite the file</string>
     <string name="download_already_running">There is a download in progress with this name</string>
     <string name="download_already_pending">There is a pending download with this name</string>
 
     <!-- message dialog about download error -->
     <string name="show_error">Show error</string>
     <string name="label_code">Code</string>
-    <string name="error_path_creation">The file can not be created</string>
-    <string name="error_file_creation">The destination folder can not be created</string>
+    <string name="error_file_creation">The file can not be created</string>
+    <string name="error_path_creation">The destination folder can not be created</string>
     <string name="error_permission_denied">Permission denied by the system</string>
     <string name="error_ssl_exception">Secure connection failed</string>
     <string name="error_unknown_host">Could not find the server</string>
@@ -532,6 +534,7 @@
     <string name="error_postprocessing_failed">Post-processing failed</string>
     <string name="error_postprocessing_stopped">NewPipe was closed while working on the file</string>
     <string name="error_insufficient_storage">No space left on device</string>
+    <string name="error_progress_lost">Progress lost, because the file was deleted</string>
 
     <string name="clear_finished_download">Clear finished downloads</string>
     <string name="msg_pending_downloads">Continue your %s pending transfers from Downloads</string>
@@ -545,5 +548,15 @@
     <string name="enable_queue_limit_desc">One download will run at the same time</string>
     <string name="start_downloads">Start downloads</string>
     <string name="pause_downloads">Pause downloads</string>
+
+    <string name="downloads_storage">Storage API</string>
+    <string name="downloads_storage_desc">Select which API use to store the downloads</string>
+
+    <string name="storage_access_framework_description">Storage Access Framework</string>
+    <string name="java_io_description">Java I/O</string>
+
+    <string name="save_as">Save as…</string>
+
+    <string name="download_pick_path">Select the downloads save path</string>
 
 </resources>

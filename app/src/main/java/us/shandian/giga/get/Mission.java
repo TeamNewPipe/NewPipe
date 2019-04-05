@@ -1,12 +1,15 @@
 package us.shandian.giga.get;
 
-import java.io.File;
+import android.net.Uri;
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import us.shandian.giga.io.StoredFileHelper;
+
 public abstract class Mission implements Serializable {
-    private static final long serialVersionUID = 0L;// last bump: 5 october 2018
+    private static final long serialVersionUID = 1L;// last bump: 27 march 2019
 
     /**
      * Source url of the resource
@@ -24,27 +27,22 @@ public abstract class Mission implements Serializable {
     public long timestamp;
 
     /**
-     * The filename
-     */
-    public String name;
-
-    /**
-     * The directory to store the download
-     */
-    public String location;
-
-    /**
      * pre-defined content type
      */
     public char kind;
+
+    /**
+     * The downloaded file
+     */
+    public StoredFileHelper storage;
 
     /**
      * get the target file on the storage
      *
      * @return File object
      */
-    public File getDownloadedFile() {
-        return new File(location, name);
+    public Uri getDownloadedFileUri() {
+        return storage.getUri();
     }
 
     /**
@@ -53,8 +51,8 @@ public abstract class Mission implements Serializable {
      * @return {@code true] if and only if the file is successfully deleted, otherwise, {@code false}
      */
     public boolean delete() {
-        deleted = true;
-        return getDownloadedFile().delete();
+        if (storage != null) return storage.delete();
+        return  true;
     }
 
     /**
@@ -62,10 +60,11 @@ public abstract class Mission implements Serializable {
      */
     public transient boolean deleted = false;
 
+    @NonNull
     @Override
     public String toString() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(timestamp);
-        return "[" + calendar.getTime().toString() + "] " + location + File.separator + name;
+        return "[" + calendar.getTime().toString() + "] " + getDownloadedFileUri().getPath();
     }
 }

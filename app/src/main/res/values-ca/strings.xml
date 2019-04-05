@@ -432,8 +432,8 @@
     <string name="generate_unique_name">Genera un nom únic</string>
     <string name="show_error">Mostra l\'error</string>
     <string name="label_code">Codi</string>
-    <string name="error_path_creation">No es pot crear el fitxer</string>
-    <string name="error_file_creation">No es pot crear la carpeta de destinació</string>
+    <string name="error_file_creation">No es pot crear el fitxer</string>
+    <string name="error_path_creation">No es pot crear la carpeta de destinació</string>
     <string name="stop">Atura</string>
     <string name="events">Esdeveniments</string>
     <string name="app_update_notification_channel_description">Notificacions de noves versions del NewPipe</string>

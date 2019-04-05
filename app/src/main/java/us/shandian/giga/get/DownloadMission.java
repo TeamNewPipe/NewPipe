@@ -2,6 +2,7 @@ package us.shandian.giga.get;
 
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import java.io.File;
@@ -17,6 +18,7 @@ import java.util.List;
 
 import javax.net.ssl.SSLException;
 
+import us.shandian.giga.io.StoredFileHelper;
 import us.shandian.giga.postprocessing.Postprocessing;
 import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.util.Utility;
@@ -24,7 +26,7 @@ import us.shandian.giga.util.Utility;
 import static org.schabi.newpipe.BuildConfig.DEBUG;
 
 public class DownloadMission extends Mission {
-    private static final long serialVersionUID = 3L;// last bump: 8 november 2018
+    private static final long serialVersionUID = 4L;// last bump: 27 march 2019
 
     static final int BUFFER_SIZE = 64 * 1024;
     final static int BLOCK_SIZE = 512 * 1024;
@@ -43,6 +45,7 @@ public class DownloadMission extends Mission {
     public static final int ERROR_POSTPROCESSING_STOPPED = 1008;
     public static final int ERROR_POSTPROCESSING_HOLD = 1009;
     public static final int ERROR_INSUFFICIENT_STORAGE = 1010;
+    public static final int ERROR_PROGRESS_LOST = 1011;
     public static final int ERROR_HTTP_NO_CONTENT = 204;
     public static final int ERROR_HTTP_UNSUPPORTED_RANGE = 206;
 
@@ -72,28 +75,18 @@ public class DownloadMission extends Mission {
     public long[] offsets;
 
     /**
-     * The post-processing algorithm arguments
-     */
-    public String[] postprocessingArgs;
-
-    /**
-     * The post-processing algorithm name
-     */
-    public String postprocessingName;
-
-    /**
      * Indicates if the post-processing state:
      * 0: ready
      * 1: running
      * 2: completed
      * 3: hold
      */
-    public volatile int postprocessingState;
+    public volatile int psState;
 
     /**
-     * Indicate if the post-processing algorithm works on the same file
+     * the post-processing algorithm instance
      */
-    public boolean postprocessingThis;
+    public transient Postprocessing psAlgorithm;
 
     /**
      * The current resource to download, see {@code urls[current]} and {@code offsets[current]}
@@ -138,36 +131,23 @@ public class DownloadMission extends Mission {
     public transient volatile Thread[] threads = new Thread[0];
     private transient Thread init = null;
 
-
     protected DownloadMission() {
 
     }
 
-    public DownloadMission(String url, String name, String location, char kind) {
-        this(new String[]{url}, name, location, kind, null, null);
-    }
-
-    public DownloadMission(String[] urls, String name, String location, char kind, String postprocessingName, String[] postprocessingArgs) {
-        if (name == null) throw new NullPointerException("name is null");
-        if (name.isEmpty()) throw new IllegalArgumentException("name is empty");
+    public DownloadMission(String[] urls, StoredFileHelper storage, char kind, Postprocessing psInstance) {
         if (urls == null) throw new NullPointerException("urls is null");
         if (urls.length < 1) throw new IllegalArgumentException("urls is empty");
-        if (location == null) throw new NullPointerException("location is null");
-        if (location.isEmpty()) throw new IllegalArgumentException("location is empty");
         this.urls = urls;
-        this.name = name;
-        this.location = location;
         this.kind = kind;
         this.offsets = new long[urls.length];
         this.enqueued = true;
         this.maxRetry = 3;
+        this.storage = storage;
 
-        if (postprocessingName != null) {
-            Postprocessing algorithm = Postprocessing.getAlgorithm(postprocessingName, null);
-            this.postprocessingThis = algorithm.worksOnSameFile;
-            this.offsets[0] = algorithm.recommendedReserve;
-            this.postprocessingName = postprocessingName;
-            this.postprocessingArgs = postprocessingArgs;
+        if (psInstance != null) {
+            this.psAlgorithm = psInstance;
+            this.offsets[0] = psInstance.recommendedReserve;
         } else {
             if (DEBUG && urls.length > 1) {
                 Log.w(TAG, "mission created with multiple urls ¿missing post-processing algorithm?");
@@ -359,22 +339,12 @@ public class DownloadMission extends Mission {
         Log.e(TAG, "notifyError() code = " + code, err);
 
         if (err instanceof IOException) {
-            if (err.getMessage().contains("Permission denied")) {
+            if (storage.canWrite() || err.getMessage().contains("Permission denied")) {
                 code = ERROR_PERMISSION_DENIED;
                 err = null;
-            } else if (err.getMessage().contains("write failed: ENOSPC")) {
+            } else if (err.getMessage().contains("ENOSPC")) {
                 code = ERROR_INSUFFICIENT_STORAGE;
                 err = null;
-            } else {
-                try {
-                    File storage = new File(location);
-                    if (storage.canWrite() && storage.getUsableSpace() < (getLength() - done)) {
-                        code = ERROR_INSUFFICIENT_STORAGE;
-                        err = null;
-                    }
-                } catch (SecurityException e) {
-                    // is a permission error
-                }
             }
         }
 
@@ -433,11 +403,11 @@ public class DownloadMission extends Mission {
                 action = "Failed";
         }
 
-        Log.d(TAG, action + " postprocessing on " + location + File.separator + name);
+        Log.d(TAG, action + " postprocessing on " + storage.getName());
 
         synchronized (blockState) {
             // don't return without fully write the current state
-            postprocessingState = state;
+            psState = state;
             Utility.writeToFile(metadata, DownloadMission.this);
         }
     }
@@ -456,7 +426,7 @@ public class DownloadMission extends Mission {
         running = true;
         errCode = ERROR_NOTHING;
 
-        if (current >= urls.length && postprocessingName != null) {
+        if (current >= urls.length && psAlgorithm != null) {
             runAsync(1, () -> {
                 if (doPostprocessing()) {
                     running = false;
@@ -593,7 +563,7 @@ public class DownloadMission extends Mission {
      * @return true, otherwise, false
      */
     public boolean isFinished() {
-        return current >= urls.length && (postprocessingName == null || postprocessingState == 2);
+        return current >= urls.length && (psAlgorithm == null || psState == 2);
     }
 
     /**
@@ -602,7 +572,13 @@ public class DownloadMission extends Mission {
      * @return {@code true} if this mission is unrecoverable
      */
     public boolean isPsFailed() {
-        return postprocessingName != null && errCode == DownloadMission.ERROR_POSTPROCESSING && postprocessingThis;
+        switch (errCode) {
+            case ERROR_POSTPROCESSING:
+            case ERROR_POSTPROCESSING_STOPPED:
+                return psAlgorithm.worksOnSameFile;
+        }
+
+        return false;
     }
 
     /**
@@ -611,7 +587,7 @@ public class DownloadMission extends Mission {
      * @return true, otherwise, false
      */
     public boolean isPsRunning() {
-        return postprocessingName != null && (postprocessingState == 1 || postprocessingState == 3);
+        return psAlgorithm != null && (psState == 1 || psState == 3);
     }
 
     /**
@@ -625,7 +601,7 @@ public class DownloadMission extends Mission {
 
     public long getLength() {
         long calculated;
-        if (postprocessingState == 1 || postprocessingState == 3) {
+        if (psState == 1 || psState == 3) {
             calculated = length;
         } else {
             calculated = offsets[current < offsets.length ? current : (offsets.length - 1)] + length;
@@ -652,38 +628,60 @@ public class DownloadMission extends Mission {
      * @param recover {@code true} to retry, otherwise, {@code false} to cancel
      */
     public void psContinue(boolean recover) {
-        postprocessingState = 1;
+        psState = 1;
         errCode = recover ? ERROR_NOTHING : ERROR_POSTPROCESSING;
         threads[0].interrupt();
     }
 
+    /**
+     * changes the StoredFileHelper for another and saves the changes to the metadata file
+     *
+     * @param newStorage the new StoredFileHelper instance to use
+     */
+    public void changeStorage(@NonNull StoredFileHelper newStorage) {
+        storage = newStorage;
+        // commit changes on the metadata file
+        runAsync(-2, this::writeThisToFile);
+    }
+
+    /**
+     * Indicates whatever the backed storage is invalid
+     *
+     * @return {@code true}, if storage is invalid and cannot be used
+     */
+    public boolean hasInvalidStorage() {
+        return errCode == ERROR_PROGRESS_LOST || storage == null || storage.isInvalid();
+    }
+
+    /**
+     * Indicates whatever is possible to start the mission
+     *
+     * @return {@code true} is this mission is "sane", otherwise, {@code false}
+     */
+    public boolean canDownload() {
+        return !(isPsFailed() || errCode == ERROR_POSTPROCESSING_HOLD) && !isFinished() && !hasInvalidStorage();
+    }
+
     private boolean doPostprocessing() {
-        if (postprocessingName == null || postprocessingState == 2) return true;
+        if (psAlgorithm == null || psState == 2) return true;
 
         notifyPostProcessing(1);
         notifyProgress(0);
 
         if (DEBUG)
-            Thread.currentThread().setName("[" + TAG + "]  post-processing = " + postprocessingName + "  filename = " + name);
+            Thread.currentThread().setName("[" + TAG + "]  ps = " +
+                    psAlgorithm.getClass().getSimpleName() +
+                    "  filename = " + storage.getName()
+            );
 
         threads = new Thread[]{Thread.currentThread()};
 
         Exception exception = null;
 
         try {
-            Postprocessing
-                    .getAlgorithm(postprocessingName, this)
-                    .run();
+            psAlgorithm.run(this);
         } catch (Exception err) {
-            StringBuilder args = new StringBuilder("  ");
-            if (postprocessingArgs != null) {
-                for (String arg : postprocessingArgs) {
-                    args.append(", ");
-                    args.append(arg);
-                }
-                args.delete(0, 1);
-            }
-            Log.e(TAG, String.format("Post-processing failed. algorithm = %s  args = [%s]", postprocessingName, args), err);
+            Log.e(TAG, "Post-processing failed. " + psAlgorithm.toString(), err);
 
             if (errCode == ERROR_NOTHING) errCode = ERROR_POSTPROCESSING;
 
@@ -733,7 +731,7 @@ public class DownloadMission extends Mission {
         //  >=1:     any download thread
 
         if (DEBUG) {
-            who.setName(String.format("%s[%s] %s", TAG, id, name));
+            who.setName(String.format("%s[%s] %s", TAG, id, storage.getName()));
         }
 
         who.start();

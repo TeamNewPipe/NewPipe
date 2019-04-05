@@ -1,7 +1,6 @@
 package us.shandian.giga.ui.fragment;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,18 +18,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.ThemeHelper;
 
+import java.io.IOException;
+
+import us.shandian.giga.get.DownloadMission;
+import us.shandian.giga.io.StoredFileHelper;
 import us.shandian.giga.service.DownloadManager;
 import us.shandian.giga.service.DownloadManagerService;
-import us.shandian.giga.service.DownloadManagerService.DMBinder;
+import us.shandian.giga.service.DownloadManagerService.DownloadManagerBinder;
 import us.shandian.giga.ui.adapter.MissionAdapter;
 
 public class MissionsFragment extends Fragment {
 
     private static final int SPAN_SIZE = 2;
+    private static final int REQUEST_DOWNLOAD_PATH_SAF = 0x1230;
 
     private SharedPreferences mPrefs;
     private boolean mLinear;
@@ -45,23 +51,31 @@ public class MissionsFragment extends Fragment {
     private LinearLayoutManager mLinearManager;
     private Context mContext;
 
-    private DMBinder mBinder;
-    private Bundle mBundle;
+    private DownloadManagerBinder mBinder;
     private boolean mForceUpdate;
+
+    private DownloadMission unsafeMissionTarget = null;
 
     private ServiceConnection mConnection = new ServiceConnection() {
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder binder) {
-            mBinder = (DownloadManagerService.DMBinder) binder;
+            mBinder = (DownloadManagerBinder) binder;
             mBinder.clearDownloadNotifications();
 
             mAdapter = new MissionAdapter(mContext, mBinder.getDownloadManager(), mEmpty);
-            mAdapter.deleterLoad(mBundle, getView());
+            mAdapter.deleterLoad(getView());
+
+            mAdapter.setRecover(mission ->
+                    StoredFileHelper.requestSafWithFileCreation(
+                            MissionsFragment.this,
+                            REQUEST_DOWNLOAD_PATH_SAF,
+                            mission.storage.getName(),
+                            mission.storage.getType()
+                    )
+            );
 
             setAdapterButtons();
-
-            mBundle = null;
 
             mBinder.addMissionEventListener(mAdapter.getMessenger());
             mBinder.enableNotifications(false);
@@ -83,9 +97,6 @@ public class MissionsFragment extends Fragment {
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         mLinear = mPrefs.getBoolean("linear", false);
-
-        //mContext = getActivity().getApplicationContext();
-        mBundle = savedInstanceState;
 
         // Bind the service
         mContext.bindService(new Intent(mContext, DownloadManagerService.class), mConnection, Context.BIND_AUTO_CREATE);
@@ -148,7 +159,7 @@ public class MissionsFragment extends Fragment {
         mBinder.removeMissionEventListener(mAdapter.getMessenger());
         mBinder.enableNotifications(true);
         mContext.unbindService(mConnection);
-        mAdapter.deleterDispose(null);
+        mAdapter.deleterDispose(true);
 
         mBinder = null;
         mAdapter = null;
@@ -178,10 +189,12 @@ public class MissionsFragment extends Fragment {
                 return true;
             case R.id.start_downloads:
                 item.setVisible(false);
+                mPause.setVisible(true);
                 mBinder.getDownloadManager().startAllMissions();
                 return true;
             case R.id.pause_downloads:
                 item.setVisible(false);
+                mStart.setVisible(true);
                 mBinder.getDownloadManager().pauseAllMissions(false);
                 mAdapter.ensurePausedMissions();// update items view
             default:
@@ -231,7 +244,7 @@ public class MissionsFragment extends Fragment {
         super.onSaveInstanceState(outState);
 
         if (mAdapter != null) {
-            mAdapter.deleterDispose(outState);
+            mAdapter.deleterDispose(false);
             mForceUpdate = true;
             mBinder.removeMissionEventListener(mAdapter.getMessenger());
         }
@@ -259,5 +272,23 @@ public class MissionsFragment extends Fragment {
         super.onPause();
         if (mAdapter != null) mAdapter.onPaused();
         if (mBinder != null) mBinder.enableNotifications(true);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode != REQUEST_DOWNLOAD_PATH_SAF || resultCode != Activity.RESULT_OK) return;
+
+        if (unsafeMissionTarget == null || data.getData() == null) {
+            return;// unsafeMissionTarget cannot be null
+        }
+
+        try {
+            StoredFileHelper storage = new StoredFileHelper(mContext, data.getData(), unsafeMissionTarget.storage.getTag());
+            mAdapter.recoverMission(unsafeMissionTarget, storage);
+        } catch (IOException e) {
+            Toast.makeText(mContext, R.string.general_error, Toast.LENGTH_LONG).show();
+        }
     }
 }

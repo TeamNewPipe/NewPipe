@@ -446,12 +446,12 @@
     <string name="download_finished_more">%s deskarga amaituta</string>
     <string name="generate_unique_name">Sortu izen bakana</string>
     <string name="overwrite">Gainidatzi</string>
-    <string name="overwrite_warning">Badago izen bera duen deskargatutako fitxategi bat</string>
+    <string name="overwrite_finished_warning">Badago izen bera duen deskargatutako fitxategi bat</string>
     <string name="download_already_running">Badago izen bera duen deskarga bat abian</string>
     <string name="show_error">Erakutsi errorea</string>
     <string name="label_code">Kodea</string>
-    <string name="error_path_creation">Ezin da fitxategia sortu</string>
-    <string name="error_file_creation">Ezin da helburu karpeta sortu</string>
+    <string name="error_file_creation">Ezin da fitxategia sortu</string>
+    <string name="error_path_creation">Ezin da helburu karpeta sortu</string>
     <string name="error_permission_denied">Sistemak baimena ukatu du</string>
     <string name="error_ssl_exception">Konexio seguruak huts egin du</string>
     <string name="error_unknown_host">Ezin izan da zerbitzaria aurkitu</string>

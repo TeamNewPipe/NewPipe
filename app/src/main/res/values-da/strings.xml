@@ -372,8 +372,8 @@
     <string name="download_already_running">Der er en download i gang med dette navn</string>
     <string name="show_error">Vis fejl</string>
     <string name="label_code">Kode</string>
-    <string name="error_path_creation">Filen kan ikke oprettes</string>
-    <string name="error_file_creation">Destinationsmappen kan ikke oprettes</string>
+    <string name="error_file_creation">Filen kan ikke oprettes</string>
+    <string name="error_path_creation">Destinationsmappen kan ikke oprettes</string>
     <string name="error_permission_denied">Adgang nægtet af systemet</string>
     <string name="error_ssl_exception">Sikker forbindelse fejlede</string>
     <string name="error_unknown_host">Kunne ikke finde serveren</string>

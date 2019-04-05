@@ -70,37 +70,23 @@ public class NewPipeSettings {
         getAudioDownloadFolder(context);
     }
 
-    public static File getVideoDownloadFolder(Context context) {
-        return getDir(context, R.string.download_path_key, Environment.DIRECTORY_MOVIES);
+    private static void getVideoDownloadFolder(Context context) {
+        getDir(context, R.string.download_path_video_key, Environment.DIRECTORY_MOVIES);
     }
 
-    public static String getVideoDownloadPath(Context context) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        final String key = context.getString(R.string.download_path_key);
-        return prefs.getString(key, Environment.DIRECTORY_MOVIES);
+    private static void getAudioDownloadFolder(Context context) {
+        getDir(context, R.string.download_path_audio_key, Environment.DIRECTORY_MUSIC);
     }
 
-    public static File getAudioDownloadFolder(Context context) {
-        return getDir(context, R.string.download_path_audio_key, Environment.DIRECTORY_MUSIC);
-    }
-
-    public static String getAudioDownloadPath(Context context) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        final String key = context.getString(R.string.download_path_audio_key);
-        return prefs.getString(key, Environment.DIRECTORY_MUSIC);
-    }
-
-    private static File getDir(Context context, int keyID, String defaultDirectoryName) {
+    private static void getDir(Context context, int keyID, String defaultDirectoryName) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         final String key = context.getString(keyID);
         String downloadPath = prefs.getString(key, null);
-        if ((downloadPath != null) && (!downloadPath.isEmpty())) return new File(downloadPath.trim());
+        if ((downloadPath != null) && (!downloadPath.isEmpty())) return;
 
-        final File dir = getDir(defaultDirectoryName);
         SharedPreferences.Editor spEditor = prefs.edit();
-        spEditor.putString(key, getNewPipeChildFolderPathForDir(dir));
+        spEditor.putString(key, getNewPipeChildFolderPathForDir(getDir(defaultDirectoryName)));
         spEditor.apply();
-        return dir;
     }
 
     @NonNull
@@ -110,8 +96,13 @@ public class NewPipeSettings {
 
     public static void resetDownloadFolders(Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+        prefs.edit()
+                .putString(context.getString(R.string.downloads_storage_api), context.getString(R.string.downloads_storage_api_default))
+                .apply();
+
         resetDownloadFolder(prefs, context.getString(R.string.download_path_audio_key), Environment.DIRECTORY_MUSIC);
-        resetDownloadFolder(prefs, context.getString(R.string.download_path_key), Environment.DIRECTORY_MOVIES);
+        resetDownloadFolder(prefs, context.getString(R.string.download_path_video_key), Environment.DIRECTORY_MOVIES);
     }
 
     private static void resetDownloadFolder(SharedPreferences prefs, String key, String defaultDirectoryName) {

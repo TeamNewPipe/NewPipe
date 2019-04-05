@@ -3,10 +3,10 @@ package us.shandian.giga.get;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import java.io.File;
+import org.schabi.newpipe.streams.io.SharpStream;
+
 import java.io.IOException;
 import java.io.InterruptedIOException;
-import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
 import java.nio.channels.ClosedByInterruptException;
 
@@ -111,34 +111,10 @@ public class DownloadInitializer extends Thread {
                     if (!mMission.running || Thread.interrupted()) return;
                 }
 
-                File file;
-                if (mMission.current == 0) {
-                    file = new File(mMission.location);
-                    if (!Utility.mkdir(file, true)) {
-                        mMission.notifyError(DownloadMission.ERROR_PATH_CREATION, null);
-                        return;
-                    }
-
-                    file = new File(file, mMission.name);
-
-                    // if the name is used by another process, delete it
-                    if (file.exists() && !file.isFile() && !file.delete()) {
-                        mMission.notifyError(DownloadMission.ERROR_FILE_CREATION, null);
-                        return;
-                    }
-
-                    if (!file.exists() && !file.createNewFile()) {
-                        mMission.notifyError(DownloadMission.ERROR_FILE_CREATION, null);
-                        return;
-                    }
-                } else {
-                    file = new File(mMission.location, mMission.name);
-                }
-
-                RandomAccessFile af = new RandomAccessFile(file, "rw");
-                af.setLength(mMission.offsets[mMission.current] + mMission.length);
-                af.seek(mMission.offsets[mMission.current]);
-                af.close();
+                SharpStream fs = mMission.storage.getStream();
+                fs.setLength(mMission.offsets[mMission.current] + mMission.length);
+                fs.seek(mMission.offsets[mMission.current]);
+                fs.close();
 
                 if (!mMission.running || Thread.interrupted()) return;
 

@@ -442,12 +442,12 @@
     <string name="download_finished_more">%s descargas terminadas</string>
     <string name="generate_unique_name">Gerar nome único</string>
     <string name="overwrite">Sobrescrever</string>
-    <string name="overwrite_warning">Um ficheiro descarregado com este nome já existe</string>
+    <string name="overwrite_finished_warning">Um ficheiro descarregado com este nome já existe</string>
     <string name="download_already_running">Já existe uma descarga em curso com este nome</string>
     <string name="show_error">Mostrar erro</string>
     <string name="label_code">Código</string>
-    <string name="error_path_creation">O ficheiro não pode ser criado</string>
-    <string name="error_file_creation">A pasta de destino não pode ser criada</string>
+    <string name="error_file_creation">O ficheiro não pode ser criado</string>
+    <string name="error_path_creation">A pasta de destino não pode ser criada</string>
     <string name="error_permission_denied">Permissão negada pelo sistema</string>
     <string name="error_ssl_exception">Ligação segura falhou</string>
     <string name="error_unknown_host">Não foi possível encontrar o servidor</string>

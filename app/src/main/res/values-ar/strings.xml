@@ -462,12 +462,12 @@
     <string name="download_finished_more">%s أنتهى التحميل</string>
     <string name="generate_unique_name">إنشاء اسم فريد</string>
     <string name="overwrite">الكتابة فوق</string>
-    <string name="overwrite_warning">يوجد ملف تحميل بهذا الاسم موجود مسبقاً</string>
+    <string name="overwrite_finished_warning">يوجد ملف تحميل بهذا الاسم موجود مسبقاً</string>
     <string name="download_already_running">هنالك تحميل قيد التقدم بهذا الاسم</string>
     <string name="show_error">إظهار خطأ</string>
     <string name="label_code">كود</string>
-    <string name="error_path_creation">لا يمكن إنشاء الملف</string>
-    <string name="error_file_creation">لا يمكن إنشاء المجلد الوجهة</string>
+    <string name="error_file_creation">لا يمكن إنشاء الملف</string>
+    <string name="error_path_creation">لا يمكن إنشاء المجلد الوجهة</string>
     <string name="error_permission_denied">تم رفضها من قبل النظام</string>
     <string name="error_ssl_exception">فشل اتصال الأمن</string>
     <string name="error_unknown_host">تعذر العثور على الخادم</string>

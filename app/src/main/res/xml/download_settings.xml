@@ -4,10 +4,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:title="@string/settings_category_downloads_title">
 
+
+    <Preference
+        app:iconSpaceReserved="false"
+        android:key="saf_test"
+        android:summary="Realiza una prueba del Storage Access Framework de Android"
+        android:title="Probar SAF"/>
+
+    <ListPreference
+        app:iconSpaceReserved="false"
+        android:defaultValue="@string/downloads_storage_api_default"
+        android:entries="@array/downloads_storage_api_description"
+        android:entryValues="@array/downloads_storage_api_values"
+        android:key="@string/downloads_storage_api"
+        android:summary="@string/downloads_storage_desc"
+        android:title="@string/downloads_storage" />
+
     <Preference
         app:iconSpaceReserved="false"
         android:dialogTitle="@string/download_path_dialog_title"
-        android:key="@string/download_path_key"
+        android:key="@string/download_path_video_key"
         android:summary="@string/download_path_summary"
         android:title="@string/download_path_title"/>
 

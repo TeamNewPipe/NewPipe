@@ -437,11 +437,11 @@
     <string name="download_finished_more">%s已下载完毕</string>
     <string name="generate_unique_name">生成独特的名字</string>
     <string name="overwrite">覆写</string>
-    <string name="overwrite_warning">同名的已下载文件已经存在</string>
+    <string name="overwrite_finished_warning">同名的已下载文件已经存在</string>
     <string name="download_already_running">同名下载进行中</string>
     <string name="show_error">显示错误</string>
     <string name="label_code">代码</string>
-    <string name="error_path_creation">无法创建该文件</string>
+    <string name="error_file_creation">无法创建该文件</string>
     <string name="error_permission_denied">系统拒绝此批准</string>
     <string name="error_ssl_exception">安全连接失败</string>
     <string name="error_unknown_host">找不到服务器</string>
@@ -464,7 +464,7 @@
     <string name="grid">网格</string>
     <string name="switch_view">切换视图</string>
     <string name="app_update_notification_content_title">NewPipe 更新可用!</string>
-    <string name="error_file_creation">无法创建目标文件夹</string>
+    <string name="error_path_creation">无法创建目标文件夹</string>
     <string name="error_http_unsupported_range">服务器不接受多线程下载, 请重试使用 @string/msg_threads = 1</string>
     <string name="error_http_requested_range_not_satisfiable">请求范围无法满足</string>
     <string name="msg_pending_downloads">继续进行%s个待下载转移</string>

@@ -12,11 +12,11 @@ import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.streams.io.SharpStream;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -25,7 +25,8 @@ import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Locale;
+
+import us.shandian.giga.io.StoredFileHelper;
 
 public class Utility {
 
@@ -206,7 +207,7 @@ public class Utility {
         Toast.makeText(context, R.string.msg_copied, Toast.LENGTH_SHORT).show();
     }
 
-    public static String checksum(String path, String algorithm) {
+    public static String checksum(StoredFileHelper source, String algorithm) {
         MessageDigest md;
 
         try {
@@ -215,11 +216,11 @@ public class Utility {
             throw new RuntimeException(e);
         }
 
-        FileInputStream i;
+        SharpStream i;
 
         try {
-            i = new FileInputStream(path);
-        } catch (FileNotFoundException e) {
+            i = source.getStream();
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
@@ -247,15 +248,15 @@ public class Utility {
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    public static boolean mkdir(File path, boolean allDirs) {
-        if (path.exists()) return true;
+    public static boolean mkdir(File p, boolean allDirs) {
+        if (p.exists()) return true;
 
         if (allDirs)
-            path.mkdirs();
+            p.mkdirs();
         else
-            path.mkdir();
+            p.mkdir();
 
-        return path.exists();
+        return p.exists();
     }
 
     public static long getContentLength(HttpURLConnection connection) {

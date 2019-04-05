@@ -1,4 +1,4 @@
-package us.shandian.giga.postprocessing.io;
+package us.shandian.giga.io;
 
 import android.support.annotation.NonNull;
 
@@ -7,7 +7,6 @@ import org.schabi.newpipe.streams.io.SharpStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.RandomAccessFile;
 
 public class CircularFileWriter extends SharpStream {
 
@@ -26,7 +25,7 @@ public class CircularFileWriter extends SharpStream {
     private BufferedFile out;
     private BufferedFile aux;
 
-    public CircularFileWriter(File source, File temp, OffsetChecker checker) throws IOException {
+    public CircularFileWriter(SharpStream target, File temp, OffsetChecker checker) throws IOException {
         if (checker == null) {
             throw new NullPointerException("checker is null");
         }
@@ -38,7 +37,7 @@ public class CircularFileWriter extends SharpStream {
         }
 
         aux = new BufferedFile(temp);
-        out = new BufferedFile(source);
+        out = new BufferedFile(target);
 
         callback = checker;
 
@@ -105,7 +104,7 @@ public class CircularFileWriter extends SharpStream {
             out.target.setLength(length);
         }
 
-        dispose();
+        close();
 
         return length;
     }
@@ -114,13 +113,13 @@ public class CircularFileWriter extends SharpStream {
      * Close the file without flushing any buffer
      */
     @Override
-    public void dispose() {
+    public void close() {
         if (out != null) {
-            out.dispose();
+            out.close();
             out = null;
         }
         if (aux != null) {
-            aux.dispose();
+            aux.close();
             aux = null;
         }
     }
@@ -256,7 +255,7 @@ public class CircularFileWriter extends SharpStream {
     }
 
     @Override
-    public boolean isDisposed() {
+    public boolean isClosed() {
         return out == null;
     }
 
@@ -339,30 +338,29 @@ public class CircularFileWriter extends SharpStream {
 
     class BufferedFile {
 
-        protected final RandomAccessFile target;
+        protected final SharpStream target;
 
         private long offset;
         protected long length;
 
-        private byte[] queue;
+        private byte[] queue = new byte[QUEUE_BUFFER_SIZE];
         private int queueSize;
 
         BufferedFile(File file) throws FileNotFoundException {
-            queue = new byte[QUEUE_BUFFER_SIZE];
-            target = new RandomAccessFile(file, "rw");
+            this.target = new FileStream(file);
+        }
+
+        BufferedFile(SharpStream target) {
+            this.target = target;
         }
 
         protected long getOffset() {
             return offset + queueSize;// absolute offset in the file
         }
 
-        protected void dispose() {
-            try {
-                queue = null;
-                target.close();
-            } catch (IOException e) {
-                // nothing to do
-            }
+        protected void close() {
+            queue = null;
+            target.close();
         }
 
         protected void write(byte b[], int off, int len) throws IOException {
@@ -384,7 +382,7 @@ public class CircularFileWriter extends SharpStream {
             }
         }
 
-        protected void flush() throws IOException {
+        void flush() throws IOException {
             writeProof(queue, queueSize);
             offset += queueSize;
             queueSize = 0;
@@ -404,7 +402,7 @@ public class CircularFileWriter extends SharpStream {
             return queue.length - queueSize;
         }
 
-        protected void reset() throws IOException {
+        void reset() throws IOException {
             offset = 0;
             length = 0;
             target.seek(0);
@@ -415,7 +413,7 @@ public class CircularFileWriter extends SharpStream {
             target.seek(absoluteOffset);
         }
 
-        protected void writeProof(byte[] buffer, int length) throws IOException {
+        void writeProof(byte[] buffer, int length) throws IOException {
             if (onWriteError == null) {
                 target.write(buffer, 0, length);
                 return;
@@ -436,14 +434,8 @@ public class CircularFileWriter extends SharpStream {
         @NonNull
         @Override
         public String toString() {
-            String absOffset;
             String absLength;
 
-            try {
-                absOffset = Long.toString(target.getFilePointer());
-            } catch (IOException e) {
-                absOffset = "[" + e.getLocalizedMessage() + "]";
-            }
             try {
                 absLength = Long.toString(target.length());
             } catch (IOException e) {
@@ -451,8 +443,8 @@ public class CircularFileWriter extends SharpStream {
             }
 
             return String.format(
-                    "offset=%s  length=%s queue=%s  absOffset=%s  absLength=%s",
-                    offset, length, queueSize, absOffset, absLength
+                    "offset=%s  length=%s  queue=%s  absLength=%s",
+                    offset, length, queueSize, absLength
             );
         }
     }

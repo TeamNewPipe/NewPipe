@@ -6,11 +6,9 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -21,12 +19,14 @@ import android.net.NetworkRequest;
 import android.net.Uri;
 import android.os.Binder;
 import android.os.Build;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.Builder;
 import android.support.v4.content.PermissionChecker;
@@ -39,9 +39,13 @@ import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.player.helper.LockManager;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import us.shandian.giga.get.DownloadMission;
+import us.shandian.giga.io.StoredDirectoryHelper;
+import us.shandian.giga.io.StoredFileHelper;
+import us.shandian.giga.postprocessing.Postprocessing;
 import us.shandian.giga.service.DownloadManager.NetworkState;
 
 import static org.schabi.newpipe.BuildConfig.APPLICATION_ID;
@@ -61,19 +65,19 @@ public class DownloadManagerService extends Service {
     private static final int DOWNLOADS_NOTIFICATION_ID = 1001;
 
     private static final String EXTRA_URLS = "DownloadManagerService.extra.urls";
-    private static final String EXTRA_NAME = "DownloadManagerService.extra.name";
-    private static final String EXTRA_LOCATION = "DownloadManagerService.extra.location";
+    private static final String EXTRA_PATH = "DownloadManagerService.extra.path";
     private static final String EXTRA_KIND = "DownloadManagerService.extra.kind";
     private static final String EXTRA_THREADS = "DownloadManagerService.extra.threads";
     private static final String EXTRA_POSTPROCESSING_NAME = "DownloadManagerService.extra.postprocessingName";
     private static final String EXTRA_POSTPROCESSING_ARGS = "DownloadManagerService.extra.postprocessingArgs";
     private static final String EXTRA_SOURCE = "DownloadManagerService.extra.source";
     private static final String EXTRA_NEAR_LENGTH = "DownloadManagerService.extra.nearLength";
+    private static final String EXTRA_MAIN_STORAGE_TAG = "DownloadManagerService.extra.tag";
 
     private static final String ACTION_RESET_DOWNLOAD_FINISHED = APPLICATION_ID + ".reset_download_finished";
     private static final String ACTION_OPEN_DOWNLOADS_FINISHED = APPLICATION_ID + ".open_downloads_finished";
 
-    private DMBinder mBinder;
+    private DownloadManagerBinder mBinder;
     private DownloadManager mManager;
     private Notification mNotification;
     private Handler mHandler;
@@ -110,10 +114,10 @@ public class DownloadManagerService extends Service {
     /**
      * notify media scanner on downloaded media file ...
      *
-     * @param file the downloaded file
+     * @param file the downloaded file uri
      */
-    private void notifyMediaScanner(File file) {
-        sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
+    private void notifyMediaScanner(Uri file) {
+        sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, file));
     }
 
     @Override
@@ -124,7 +128,7 @@ public class DownloadManagerService extends Service {
             Log.d(TAG, "onCreate");
         }
 
-        mBinder = new DMBinder();
+        mBinder = new DownloadManagerBinder();
         mHandler = new Handler(Looper.myLooper()) {
             @Override
             public void handleMessage(Message msg) {
@@ -186,10 +190,12 @@ public class DownloadManagerService extends Service {
         handlePreferenceChange(mPrefs, getString(R.string.downloads_queue_limit));
 
         mLock = new LockManager(this);
+
+        setupStorageAPI(true);
     }
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
+    public int onStartCommand(final Intent intent, int flags, int startId) {
         if (DEBUG) {
             Log.d(TAG, intent == null ? "Restarting" : "Starting");
         }
@@ -200,20 +206,7 @@ public class DownloadManagerService extends Service {
         String action = intent.getAction();
         if (action != null) {
             if (action.equals(Intent.ACTION_RUN)) {
-                String[] urls = intent.getStringArrayExtra(EXTRA_URLS);
-                String name = intent.getStringExtra(EXTRA_NAME);
-                String location = intent.getStringExtra(EXTRA_LOCATION);
-                int threads = intent.getIntExtra(EXTRA_THREADS, 1);
-                char kind = intent.getCharExtra(EXTRA_KIND, '?');
-                String psName = intent.getStringExtra(EXTRA_POSTPROCESSING_NAME);
-                String[] psArgs = intent.getStringArrayExtra(EXTRA_POSTPROCESSING_ARGS);
-                String source = intent.getStringExtra(EXTRA_SOURCE);
-                long nearLength = intent.getLongExtra(EXTRA_NEAR_LENGTH, 0);
-
-                handleConnectivityState(true);// first check the actual network status
-
-                mHandler.post(() -> mManager.startMission(urls, location, name, kind, threads, source, psName, psArgs, nearLength));
-
+                mHandler.post(() -> startMission(intent));
             } else if (downloadDoneNotification != null) {
                 if (action.equals(ACTION_RESET_DOWNLOAD_FINISHED) || action.equals(ACTION_OPEN_DOWNLOADS_FINISHED)) {
                     downloadDoneCount = 0;
@@ -264,12 +257,12 @@ public class DownloadManagerService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         int permissionCheck;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-            permissionCheck = PermissionChecker.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
-            if (permissionCheck == PermissionChecker.PERMISSION_DENIED) {
-                Toast.makeText(this, "Permission denied (read)", Toast.LENGTH_SHORT).show();
-            }
-        }
+//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+//            permissionCheck = PermissionChecker.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+//            if (permissionCheck == PermissionChecker.PERMISSION_DENIED) {
+//                Toast.makeText(this, "Permission denied (read)", Toast.LENGTH_SHORT).show();
+//            }
+//        }
 
         permissionCheck = PermissionChecker.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (permissionCheck == PermissionChecker.PERMISSION_DENIED) {
@@ -284,8 +277,8 @@ public class DownloadManagerService extends Service {
 
         switch (msg.what) {
             case MESSAGE_FINISHED:
-                notifyMediaScanner(mission.getDownloadedFile());
-                notifyFinishedDownload(mission.name);
+                notifyMediaScanner(mission.storage.getUri());
+                notifyFinishedDownload(mission.storage.getName());
                 mManager.setFinished(mission);
                 handleConnectivityState(false);
                 updateForegroundState(mManager.runMissions());
@@ -344,7 +337,7 @@ public class DownloadManagerService extends Service {
         if (key.equals(getString(R.string.downloads_maximum_retry))) {
             try {
                 String value = prefs.getString(key, getString(R.string.downloads_maximum_retry_default));
-                mManager.mPrefMaxRetry = Integer.parseInt(value);
+                mManager.mPrefMaxRetry = value == null ? 0 : Integer.parseInt(value);
             } catch (Exception e) {
                 mManager.mPrefMaxRetry = 0;
             }
@@ -353,6 +346,12 @@ public class DownloadManagerService extends Service {
             mManager.mPrefMeteredDownloads = prefs.getBoolean(key, false);
         } else if (key.equals(getString(R.string.downloads_queue_limit))) {
             mManager.mPrefQueueLimit = prefs.getBoolean(key, true);
+        } else if (key.equals(getString(R.string.downloads_storage_api))) {
+            setupStorageAPI(false);
+        } else if (key.equals(getString(R.string.download_path_video_key))) {
+            loadMainStorage(key, DownloadManager.TAG_VIDEO, false);
+        } else if (key.equals(getString(R.string.download_path_audio_key))) {
+            loadMainStorage(key, DownloadManager.TAG_AUDIO, false);
         }
     }
 
@@ -370,43 +369,61 @@ public class DownloadManagerService extends Service {
         mForeground = state;
     }
 
-    public static void startMission(Context context, String urls[], String location, String name, char kind,
+    /**
+     * Start a new download mission
+     *
+     * @param context    the activity context
+     * @param urls       the list of urls to download
+     * @param storage    where the file is saved
+     * @param kind       type of file (a: audio  v: video  s: subtitle ?: file-extension defined)
+     * @param threads    the number of threads maximal used to download chunks of the file.
+     * @param psName     the name of the required post-processing algorithm, or {@code null} to ignore.
+     * @param source     source url of the resource
+     * @param psArgs     the arguments for the post-processing algorithm.
+     * @param nearLength the approximated final length of the file
+     */
+    public static void startMission(Context context, String urls[], StoredFileHelper storage, char kind,
                                     int threads, String source, String psName, String[] psArgs, long nearLength) {
         Intent intent = new Intent(context, DownloadManagerService.class);
         intent.setAction(Intent.ACTION_RUN);
         intent.putExtra(EXTRA_URLS, urls);
-        intent.putExtra(EXTRA_NAME, name);
-        intent.putExtra(EXTRA_LOCATION, location);
+        intent.putExtra(EXTRA_PATH, storage.getUri());
         intent.putExtra(EXTRA_KIND, kind);
         intent.putExtra(EXTRA_THREADS, threads);
         intent.putExtra(EXTRA_SOURCE, source);
         intent.putExtra(EXTRA_POSTPROCESSING_NAME, psName);
         intent.putExtra(EXTRA_POSTPROCESSING_ARGS, psArgs);
         intent.putExtra(EXTRA_NEAR_LENGTH, nearLength);
+        intent.putExtra(EXTRA_MAIN_STORAGE_TAG, storage.getTag());
         context.startService(intent);
     }
 
-    public static void checkForRunningMission(Context context, String location, String name, DMChecker checker) {
-        Intent intent = new Intent();
-        intent.setClass(context, DownloadManagerService.class);
-        context.startService(intent);
+    public void startMission(Intent intent) {
+        String[] urls = intent.getStringArrayExtra(EXTRA_URLS);
+        Uri path = intent.getParcelableExtra(EXTRA_PATH);
+        int threads = intent.getIntExtra(EXTRA_THREADS, 1);
+        char kind = intent.getCharExtra(EXTRA_KIND, '?');
+        String psName = intent.getStringExtra(EXTRA_POSTPROCESSING_NAME);
+        String[] psArgs = intent.getStringArrayExtra(EXTRA_POSTPROCESSING_ARGS);
+        String source = intent.getStringExtra(EXTRA_SOURCE);
+        long nearLength = intent.getLongExtra(EXTRA_NEAR_LENGTH, 0);
+        String tag = intent.getStringExtra(EXTRA_MAIN_STORAGE_TAG);
 
-        context.bindService(intent, new ServiceConnection() {
-            @Override
-            public void onServiceConnected(ComponentName cname, IBinder service) {
-                try {
-                    ((DMBinder) service).getDownloadManager().checkForRunningMission(location, name, checker);
-                } catch (Exception err) {
-                    Log.w(TAG, "checkForRunningMission() callback is defective", err);
-                }
+        StoredFileHelper storage;
+        try {
+            storage = new StoredFileHelper(this, path, tag);
+        } catch (IOException e) {
+            throw new RuntimeException(e);// this never should happen
+        }
 
-                context.unbindService(this);
-            }
+        final DownloadMission mission = new DownloadMission(urls, storage, kind, Postprocessing.getAlgorithm(psName, psArgs));
+        mission.threadCount = threads;
+        mission.source = source;
+        mission.nearLength = nearLength;
 
-            @Override
-            public void onServiceDisconnected(ComponentName name) {
-            }
-        }, Context.BIND_AUTO_CREATE);
+        handleConnectivityState(true);// first check the actual network status
+
+        mManager.startMission(mission);
     }
 
     public void notifyFinishedDownload(String name) {
@@ -471,12 +488,12 @@ public class DownloadManagerService extends Service {
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             downloadFailedNotification.setContentTitle(getString(R.string.app_name));
             downloadFailedNotification.setStyle(new NotificationCompat.BigTextStyle()
-                    .bigText(getString(R.string.download_failed).concat(": ").concat(mission.name)));
+                    .bigText(getString(R.string.download_failed).concat(": ").concat(mission.storage.getName())));
         } else {
             downloadFailedNotification.setContentTitle(getString(R.string.download_failed));
-            downloadFailedNotification.setContentText(mission.name);
+            downloadFailedNotification.setContentText(mission.storage.getName());
             downloadFailedNotification.setStyle(new NotificationCompat.BigTextStyle()
-                    .bigText(mission.name));
+                    .bigText(mission.storage.getName()));
         }
 
         mNotificationManager.notify(id, downloadFailedNotification.build());
@@ -508,14 +525,79 @@ public class DownloadManagerService extends Service {
         mLockAcquired = acquire;
     }
 
+    private void setupStorageAPI(boolean acquire) {
+        loadMainStorage(getString(R.string.download_path_audio_key), DownloadManager.TAG_VIDEO, acquire);
+        loadMainStorage(getString(R.string.download_path_video_key), DownloadManager.TAG_AUDIO, acquire);
+    }
+
+    void loadMainStorage(String prefKey, String tag, boolean acquire) {
+        String path = mPrefs.getString(prefKey, null);
+
+        final String JAVA_IO = getString(R.string.downloads_storage_api_default);
+        boolean useJavaIO = JAVA_IO.equals(mPrefs.getString(getString(R.string.downloads_storage_api), JAVA_IO));
+
+        final String defaultPath;
+        if (tag.equals(DownloadManager.TAG_VIDEO))
+            defaultPath = Environment.DIRECTORY_MOVIES;
+        else// if (tag.equals(DownloadManager.TAG_AUDIO))
+            defaultPath = Environment.DIRECTORY_MUSIC;
+
+        StoredDirectoryHelper mainStorage;
+        if (path == null || path.isEmpty()) {
+            mainStorage = useJavaIO ? new StoredDirectoryHelper(defaultPath, tag) : null;
+        } else {
+
+            if (path.charAt(0) == File.separatorChar) {
+                Log.i(TAG, "Migrating old save path: " + path);
+
+                useJavaIO = true;
+                path = Uri.fromFile(new File(path)).toString();
+
+                mPrefs.edit().putString(prefKey, path).apply();
+            }
+
+            if (useJavaIO) {
+                mainStorage = new StoredDirectoryHelper(path, tag);
+            } else {
+
+                // tree api is not available in older versions
+                if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                    mainStorage = null;
+                } else {
+                    try {
+                        mainStorage = new StoredDirectoryHelper(this, Uri.parse(path), tag);
+                        if (acquire) mainStorage.acquirePermissions();
+                    } catch (IOException e) {
+                        Log.e(TAG, "Failed to load the storage of " + tag + " from path: " + path, e);
+                        mainStorage = null;
+                    }
+                }
+            }
+        }
+
+        if (tag.equals(DownloadManager.TAG_VIDEO))
+            mManager.mMainStorageVideo = mainStorage;
+        else// if (tag.equals(DownloadManager.TAG_AUDIO))
+            mManager.mMainStorageAudio = mainStorage;
+    }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     // Wrappers for DownloadManager
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public class DMBinder extends Binder {
+    public class DownloadManagerBinder extends Binder {
         public DownloadManager getDownloadManager() {
             return mManager;
+        }
+
+        @Nullable
+        public StoredDirectoryHelper getMainStorageVideo() {
+            return mManager.mMainStorageVideo;
+        }
+
+        @Nullable
+        public StoredDirectoryHelper getMainStorageAudio() {
+            return mManager.mMainStorageAudio;
         }
 
         public void addMissionEventListener(Handler handler) {
@@ -547,11 +629,5 @@ public class DownloadManagerService extends Service {
         }
 
     }
-
-    public interface DMChecker {
-        void callback(MissionCheck result);
-    }
-
-    public enum MissionCheck {None, Pending, PendingRunning, Finished}
 
 }

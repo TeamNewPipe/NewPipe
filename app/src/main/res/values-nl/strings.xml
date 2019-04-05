@@ -449,12 +449,12 @@
     <string name="download_finished_more">%s downloads voltooid</string>
     <string name="generate_unique_name">Genereer een unieke naam</string>
     <string name="overwrite">Overschrijven</string>
-    <string name="overwrite_warning">Er bestaat al een gedownload bestand met deze naam</string>
+    <string name="overwrite_finished_warning">Er bestaat al een gedownload bestand met deze naam</string>
     <string name="download_already_running">Er is een download aan de gang met deze naam</string>
     <string name="show_error">Toon foutmelding</string>
     <string name="label_code">Code</string>
-    <string name="error_path_creation">Het bestand kan niet worden gemaakt</string>
-    <string name="error_file_creation">De doelmap kan niet worden gemaakt</string>
+    <string name="error_file_creation">Het bestand kan niet worden gemaakt</string>
+    <string name="error_path_creation">De doelmap kan niet worden gemaakt</string>
     <string name="error_permission_denied">Toestemming door het systeem geweigerd</string>
     <string name="error_ssl_exception">Beveiligde connectie is mislukt</string>
     <string name="error_unknown_host">Kon de server niet vinden</string>

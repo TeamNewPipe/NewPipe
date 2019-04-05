@@ -449,12 +449,12 @@
     <string name="download_finished_more">%s download finiti</string>
     <string name="generate_unique_name">Genera un nome unico</string>
     <string name="overwrite">Sovrascrivi</string>
-    <string name="overwrite_warning">Esiste già un file scaricato con lo stesso nome</string>
+    <string name="overwrite_finished_warning">Esiste già un file scaricato con lo stesso nome</string>
     <string name="download_already_running">C\'è un download in progresso con questo nome</string>
     <string name="show_error">Mostra errore</string>
     <string name="label_code">Codice</string>
-    <string name="error_path_creation">Impossibile creare il file</string>
-    <string name="error_file_creation">Impossibile creare la cartella di destinazione</string>
+    <string name="error_file_creation">Impossibile creare il file</string>
+    <string name="error_path_creation">Impossibile creare la cartella di destinazione</string>
     <string name="error_permission_denied">Permesso negato dal sistema</string>
     <string name="error_ssl_exception">Connessione sicura fallita</string>
     <string name="error_unknown_host">Impossibile trovare il server</string>

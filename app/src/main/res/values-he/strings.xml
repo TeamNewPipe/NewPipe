@@ -451,12 +451,12 @@
     <string name="download_finished_more">%s הורדות הסתיימו</string>
     <string name="generate_unique_name">יצירת שם ייחודי</string>
     <string name="overwrite">שכתוב</string>
-    <string name="overwrite_warning">כבר קיים קובץ בשם הזה</string>
+    <string name="overwrite_finished_warning">כבר קיים קובץ בשם הזה</string>
     <string name="download_already_running">אחת ההורדות הפעילות כבר נושאת את השם הזה</string>
     <string name="show_error">הצגת שגיאה</string>
     <string name="label_code">קוד</string>
-    <string name="error_path_creation">לא ניתן ליצור את הקובץ</string>
-    <string name="error_file_creation">לא ניתן ליצור את תיקיית היעד</string>
+    <string name="error_file_creation">לא ניתן ליצור את הקובץ</string>
+    <string name="error_path_creation">לא ניתן ליצור את תיקיית היעד</string>
     <string name="error_permission_denied">ההרשאה נדחתה על ידי המערכת</string>
     <string name="error_ssl_exception">החיבור המאובטח נכשל</string>
     <string name="error_unknown_host">לא ניתן למצוא את השרת</string>

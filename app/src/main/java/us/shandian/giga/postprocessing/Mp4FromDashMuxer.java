@@ -5,15 +5,13 @@ import org.schabi.newpipe.streams.io.SharpStream;
 
 import java.io.IOException;
 
-import us.shandian.giga.get.DownloadMission;
-
 /**
  * @author kapodamy
  */
 class Mp4FromDashMuxer extends Postprocessing {
 
-    Mp4FromDashMuxer(DownloadMission mission) {
-        super(mission, 2 * 1024 * 1024/* 2 MiB */, true);
+    Mp4FromDashMuxer() {
+        super(2 * 1024 * 1024/* 2 MiB */, true);
     }
 
     @Override

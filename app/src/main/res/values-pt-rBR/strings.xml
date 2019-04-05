@@ -446,12 +446,12 @@ abrir em modo popup</string>
     <string name="download_finished_more">%s downloads terminados</string>
     <string name="generate_unique_name">Gerar nome único</string>
     <string name="overwrite">"Sobrescrever "</string>
-    <string name="overwrite_warning">Um arquivo baixado com esse nome já existe</string>
+    <string name="overwrite_finished_warning">Um arquivo baixado com esse nome já existe</string>
     <string name="download_already_running">Existe um download em progresso com esse nome</string>
     <string name="show_error">Mostrar erro</string>
     <string name="label_code">Código</string>
-    <string name="error_path_creation">O arquivo não pode ser criado</string>
-    <string name="error_file_creation">A pasta de destino não pode ser criada</string>
+    <string name="error_file_creation">O arquivo não pode ser criado</string>
+    <string name="error_path_creation">A pasta de destino não pode ser criada</string>
     <string name="error_permission_denied">Permissão negada pelo sistema</string>
     <string name="error_ssl_exception">"Falha na conexão segura "</string>
     <string name="error_unknown_host">Não foi possível encontrar o servidor</string>

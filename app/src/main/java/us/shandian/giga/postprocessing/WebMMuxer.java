@@ -7,15 +7,13 @@ import org.schabi.newpipe.streams.io.SharpStream;
 
 import java.io.IOException;
 
-import us.shandian.giga.get.DownloadMission;
-
 /**
  * @author kapodamy
  */
 class WebMMuxer extends Postprocessing {
 
-    WebMMuxer(DownloadMission mission) {
-        super(mission, 2048 * 1024/* 2 MiB */, true);
+    WebMMuxer() {
+        super(2048 * 1024/* 2 MiB */, true);
     }
 
     @Override

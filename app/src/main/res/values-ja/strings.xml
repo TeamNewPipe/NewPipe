@@ -365,10 +365,10 @@
     <string name="caption_auto_generated">自動生成</string>
     <string name="caption_setting_description">アプリの再起動後、設定した字幕設定が反映されます</string>
     <string name="empty_subscription_feed_subtitle">何もありません</string>
-    <string name="import_youtube_instructions">保存したエクスポートファイルからYouTubeの購読をインポート: 
-\n 
-\n1. このURLを開きます: %1$s 
-\n2. ログインしていなければログインします 
+    <string name="import_youtube_instructions">保存したエクスポートファイルからYouTubeの購読をインポート:
+\n
+\n1. このURLを開きます: %1$s
+\n2. ログインしていなければログインします
 \n3. ダウンロードが始まります (これがエクスポートファイルです)</string>
     <string name="playback_reset">リセット</string>
     <string name="accept">同意する</string>
@@ -391,8 +391,8 @@
 \n3. 必要に応じてログインします
 \n4. リダイレクトされたプロファイル URL をコピーします。</string>
     <string name="import_soundcloud_instructions_hint">あなたのID, soundcloud.com/あなたのid</string>
-    <string name="import_network_expensive_warning">この操作により通信料金が増えることがあります。ご注意ください。 
-\n 
+    <string name="import_network_expensive_warning">この操作により通信料金が増えることがあります。ご注意ください。
+\n
 \n続行しますか\?</string>
     <string name="playback_speed_control">再生速度を変更</string>
     <string name="unhook_checkbox">速度と音程を連動せずに変更 (歪むかもしれません)</string>

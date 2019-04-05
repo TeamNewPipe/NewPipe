@@ -1,6 +1,7 @@
 package us.shandian.giga.postprocessing;
 
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.schabi.newpipe.streams.io.SharpStream;
@@ -9,9 +10,9 @@ import java.io.File;
 import java.io.IOException;
 
 import us.shandian.giga.get.DownloadMission;
-import us.shandian.giga.postprocessing.io.ChunkFileInputStream;
-import us.shandian.giga.postprocessing.io.CircularFileWriter;
-import us.shandian.giga.postprocessing.io.CircularFileWriter.OffsetChecker;
+import us.shandian.giga.io.ChunkFileInputStream;
+import us.shandian.giga.io.CircularFileWriter;
+import us.shandian.giga.io.CircularFileWriter.OffsetChecker;
 import us.shandian.giga.service.DownloadManagerService;
 
 import static us.shandian.giga.get.DownloadMission.ERROR_NOTHING;
@@ -20,30 +21,41 @@ import static us.shandian.giga.get.DownloadMission.ERROR_UNKNOWN_EXCEPTION;
 
 public abstract class Postprocessing {
 
-    static final byte OK_RESULT = ERROR_NOTHING;
+    static transient final byte OK_RESULT = ERROR_NOTHING;
 
-    public static final String ALGORITHM_TTML_CONVERTER = "ttml";
-    public static final String ALGORITHM_WEBM_MUXER = "webm";
-    public static final String ALGORITHM_MP4_FROM_DASH_MUXER = "mp4D-mp4";
-    public static final String ALGORITHM_M4A_NO_DASH = "mp4D-m4a";
+    public transient static final String ALGORITHM_TTML_CONVERTER = "ttml";
+    public transient static final String ALGORITHM_WEBM_MUXER = "webm";
+    public transient static final String ALGORITHM_MP4_FROM_DASH_MUXER = "mp4D-mp4";
+    public transient static final String ALGORITHM_M4A_NO_DASH = "mp4D-m4a";
 
-    public static Postprocessing getAlgorithm(String algorithmName, DownloadMission mission) {
+    public static Postprocessing getAlgorithm(String algorithmName, String[] args) {
+        Postprocessing instance;
+
         if (null == algorithmName) {
             throw new NullPointerException("algorithmName");
         } else switch (algorithmName) {
             case ALGORITHM_TTML_CONVERTER:
-                return new TtmlConverter(mission);
+                instance = new TtmlConverter();
+                break;
             case ALGORITHM_WEBM_MUXER:
-                return new WebMMuxer(mission);
+                instance = new WebMMuxer();
+                break;
             case ALGORITHM_MP4_FROM_DASH_MUXER:
-                return new Mp4FromDashMuxer(mission);
+                instance = new Mp4FromDashMuxer();
+                break;
             case ALGORITHM_M4A_NO_DASH:
-                return new M4aNoDash(mission);
+                instance = new M4aNoDash();
+                break;
             /*case "example-algorithm":
-                return new ExampleAlgorithm(mission);*/
+                instance = new ExampleAlgorithm(mission);*/
             default:
                 throw new RuntimeException("Unimplemented post-processing algorithm: " + algorithmName);
         }
+
+        instance.args = args;
+        instance.name = algorithmName;
+
+        return instance;
     }
 
     /**
@@ -61,32 +73,38 @@ public abstract class Postprocessing {
     /**
      * the download to post-process
      */
-    protected DownloadMission mission;
+    protected transient DownloadMission mission;
 
-    Postprocessing(DownloadMission mission, int recommendedReserve, boolean worksOnSameFile) {
-        this.mission = mission;
+    public transient File cacheDir;
+
+    private String[] args;
+
+    private String name;
+
+    Postprocessing(int recommendedReserve, boolean worksOnSameFile) {
         this.recommendedReserve = recommendedReserve;
         this.worksOnSameFile = worksOnSameFile;
     }
 
-    public void run() throws IOException {
-        File file = mission.getDownloadedFile();
+    public void run(DownloadMission target) throws IOException {
+        this.mission = target;
+
         File temp = null;
         CircularFileWriter out = null;
         int result;
         long finalLength = -1;
 
         mission.done = 0;
-        mission.length = file.length();
+        mission.length = mission.storage.length();
 
         if (worksOnSameFile) {
             ChunkFileInputStream[] sources = new ChunkFileInputStream[mission.urls.length];
             try {
                 int i = 0;
                 for (; i < sources.length - 1; i++) {
-                    sources[i] = new ChunkFileInputStream(file, mission.offsets[i], mission.offsets[i + 1], "rw");
+                    sources[i] = new ChunkFileInputStream(mission.storage.getStream(), mission.offsets[i], mission.offsets[i + 1]);
                 }
-                sources[i] = new ChunkFileInputStream(file, mission.offsets[i], mission.getDownloadedFile().length(), "rw");
+                sources[i] = new ChunkFileInputStream(mission.storage.getStream(), mission.offsets[i]);
 
                 if (test(sources)) {
                     for (SharpStream source : sources) source.rewind();
@@ -97,7 +115,7 @@ public abstract class Postprocessing {
                              * WARNING: never use rewind() in any chunk after any writing (especially on first chunks)
                              *          or the CircularFileWriter can lead to unexpected results
                              */
-                            if (source.isDisposed() || source.available() < 1) {
+                            if (source.isClosed() || source.available() < 1) {
                                 continue;// the selected source is not used anymore
                             }
 
@@ -107,18 +125,19 @@ public abstract class Postprocessing {
                         return -1;
                     };
 
-                    temp = new File(mission.location, mission.name + ".tmp");
+                    // TODO: use Context.getCache() for this operation
+                    temp = new File(cacheDir, mission.storage.getName() + ".tmp");
 
-                    out = new CircularFileWriter(file, temp, checker);
+                    out = new CircularFileWriter(mission.storage.getStream(), temp, checker);
                     out.onProgress = this::progressReport;
 
                     out.onWriteError = (err) -> {
-                        mission.postprocessingState = 3;
+                        mission.psState = 3;
                         mission.notifyError(ERROR_POSTPROCESSING_HOLD, err);
 
                         try {
                             synchronized (this) {
-                                while (mission.postprocessingState == 3)
+                                while (mission.psState == 3)
                                     wait();
                             }
                         } catch (InterruptedException e) {
@@ -138,12 +157,12 @@ public abstract class Postprocessing {
                 }
             } finally {
                 for (SharpStream source : sources) {
-                    if (source != null && !source.isDisposed()) {
-                        source.dispose();
+                    if (source != null && !source.isClosed()) {
+                        source.close();
                     }
                 }
                 if (out != null) {
-                    out.dispose();
+                    out.close();
                 }
                 if (temp != null) {
                     //noinspection ResultOfMethodCallIgnored
@@ -164,10 +183,9 @@ public abstract class Postprocessing {
             mission.errObject = new RuntimeException("post-processing algorithm returned " + result);
         }
 
-        if (result != OK_RESULT && worksOnSameFile) {
-            //noinspection ResultOfMethodCallIgnored
-            file.delete();
-        }
+        if (result != OK_RESULT && worksOnSameFile) mission.storage.delete();
+
+        this.mission = null;
     }
 
     /**
@@ -192,11 +210,11 @@ public abstract class Postprocessing {
     abstract int process(SharpStream out, SharpStream... sources) throws IOException;
 
     String getArgumentAt(int index, String defaultValue) {
-        if (mission.postprocessingArgs == null || index >= mission.postprocessingArgs.length) {
+        if (args == null || index >= args.length) {
             return defaultValue;
         }
 
-        return mission.postprocessingArgs[index];
+        return args[index];
     }
 
     private void progressReport(long done) {
@@ -208,5 +226,23 @@ public abstract class Postprocessing {
         m.obj = mission;
 
         mission.mHandler.sendMessage(m);
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+
+        str.append("name=").append(name).append('[');
+
+        if (args != null) {
+            for (String arg : args) {
+                str.append(", ");
+                str.append(arg);
+            }
+            str.delete(0, 1);
+        }
+
+        return str.append(']').toString();
     }
 }

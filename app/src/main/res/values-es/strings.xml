@@ -14,7 +14,7 @@
     <string name="share_dialog_title">Compartir con</string>
     <string name="choose_browser">Elegir navegador</string>
     <string name="screen_rotation">rotación</string>
-    <string name="download_path_title">Ruta de descarga de vídeo</string>
+    <string name="download_path_title">Carpeta de descarga de vídeo</string>
     <string name="download_path_summary">Ruta para almacenar los vídeos descargados</string>
     <string name="download_path_dialog_title">Introducir directorio de descargas para vídeos</string>
     <string name="default_resolution_title">Resolución por defecto de vídeo</string>
@@ -40,7 +40,7 @@
     <string name="use_tor_summary">(Experimental) Forzar la descarga a través de Tor para una mayor privacidad (transmisión de vídeos aún no compatible).</string>
     <string name="err_dir_create">No se puede crear la carpeta de descarga \'%1$s\'</string>
     <string name="info_dir_created">Carpeta de descarga creada \'%1$s\'</string>
-    <string name="download_path_audio_summary">Los audios descargados se almacenan aquí</string>
+    <string name="download_path_audio_summary">Ruta para almacenar los audios descargados</string>
     <string name="download_path_audio_dialog_title">Introducir ruta de descarga para archivos de audio</string>
     <string name="blocked_by_gema">Bloqueado por GEMA</string>
     <string name="download_path_audio_title">Carpeta de descarga de audio</string>
@@ -418,7 +418,9 @@ abrir en modo popup</string>
     <!-- dialog about existing downloads -->
     <string name="generate_unique_name">Generar nombre único</string>
     <string name="overwrite">Sobrescribir</string>
-    <string name="overwrite_warning">Ya existe un archivo descargado con este nombre</string>
+    <string name="overwrite_unrelated_warning">Ya existe un archivo con este nombre</string>
+    <string name="overwrite_finished_warning">Ya existe un archivo descargado con este nombre</string>
+    <string name="overwrite_failed">No se puede sobrescribir el archivo</string>
     <string name="download_already_running">Hay una descarga en curso con este nombre</string>
     <string name="download_already_pending">Hay una descarga pendiente con este nombre</string>
 
@@ -440,8 +442,8 @@ abrir en modo popup</string>
     <!-- message dialog about download error -->
     <string name="show_error">Mostrar error</string>
     <string name="label_code">Codigo</string>
-    <string name="error_path_creation">No se puede crear la carpeta de destino</string>
-    <string name="error_file_creation">No se puede crear el archivo</string>
+    <string name="error_file_creation">No se puede crear la carpeta de destino</string>
+    <string name="error_path_creation">No se puede crear el archivo</string>
     <string name="error_permission_denied">Permiso denegado por el sistema</string>
     <string name="error_ssl_exception">Fallo la conexión segura</string>
     <string name="error_unknown_host">No se pudo encontrar el servidor</string>
@@ -453,6 +455,19 @@ abrir en modo popup</string>
     <string name="error_postprocessing_failed">Fallo el post-procesado</string>
     <string name="error_postprocessing_stopped">NewPipe se cerro mientras se trabajaba en el archivo</string>
     <string name="error_insufficient_storage">No hay suficiente espacio disponible en el dispositivo</string>
+    <string name="error_progress_lost">Se perdió el progreso porque el archivo fue eliminado</string>
+
+    <string name="downloads_storage">API de almacenamiento</string>
+    <string name="downloads_storage_desc">Seleccione que API utilizar para almacenar las descargas</string>
+
+    <string name="storage_access_framework_description">Framework de acceso a almacenamiento</string>
+    <string name="java_io_description">Java I/O</string>
+
+    <string name="save_as">Guardar como…</string>
+
+    <string name="download_to_sdcard_error_message">No es posible descargar a una tarjeta SD externa. \¿Restablecer la ubicación de la carpeta de descarga\?</string>
+
+    <string name="download_pick_path">Seleccione los directorios de descarga</string>
 
     <string name="unsubscribe">Desuscribirse</string>
     <string name="tab_new">Nueva pestaña</string>

@@ -2,9 +2,10 @@ package us.shandian.giga.get;
 
 import android.util.Log;
 
-import java.io.FileNotFoundException;
+import org.schabi.newpipe.streams.io.SharpStream;
+
+import java.io.IOException;
 import java.io.InputStream;
-import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
 import java.nio.channels.ClosedByInterruptException;
 
@@ -40,12 +41,12 @@ public class DownloadRunnable extends Thread {
             Log.d(TAG, mId + ":recovered: " + mMission.recovered);
         }
 
-        RandomAccessFile f;
+        SharpStream f;
         InputStream is = null;
 
         try {
-            f = new RandomAccessFile(mMission.getDownloadedFile(), "rw");
-        } catch (FileNotFoundException e) {
+            f = mMission.storage.getStream();
+        } catch (IOException e) {
             mMission.notifyError(e);// this never should happen
             return;
         }

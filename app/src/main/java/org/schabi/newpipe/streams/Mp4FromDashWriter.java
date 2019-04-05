@@ -120,7 +120,7 @@ public class Mp4FromDashWriter {
         parsed = true;
 
         for (SharpStream src : sourceTracks) {
-            src.dispose();
+            src.close();
         }
 
         tracks = null;

@@ -448,12 +448,12 @@
     <string name="download_finished_more">%s heruntergeladen</string>
     <string name="generate_unique_name">Eindeutigen Namen erzeugen</string>
     <string name="overwrite">Überschreiben</string>
-    <string name="overwrite_warning">Eine heruntergeladene Datei dieses Namens existiert bereits</string>
+    <string name="overwrite_finished_warning">Eine heruntergeladene Datei dieses Namens existiert bereits</string>
     <string name="download_already_running">Eine Datei dieses Namens wird gerade heruntergeladen</string>
     <string name="show_error">Fehler anzeigen</string>
     <string name="label_code">Code</string>
-    <string name="error_path_creation">Die Datei kann nicht erstellt werden</string>
-    <string name="error_file_creation">Der Zielordner kann nicht erstellt werden</string>
+    <string name="error_file_creation">Die Datei kann nicht erstellt werden</string>
+    <string name="error_path_creation">Der Zielordner kann nicht erstellt werden</string>
     <string name="error_permission_denied">System verweigert den Zugriff</string>
     <string name="error_ssl_exception">Sichere Verbindung fehlgeschlagen</string>
     <string name="error_unknown_host">Der Server konnte nicht gefunden werden</string>

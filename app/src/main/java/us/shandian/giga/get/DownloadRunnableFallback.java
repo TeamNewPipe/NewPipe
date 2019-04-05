@@ -4,12 +4,12 @@ import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import org.schabi.newpipe.streams.io.SharpStream;
+
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
 import java.nio.channels.ClosedByInterruptException;
-
 
 import us.shandian.giga.util.Utility;
 
@@ -22,11 +22,10 @@ public class DownloadRunnableFallback extends Thread {
     private static final String TAG = "DownloadRunnableFallback";
 
     private final DownloadMission mMission;
-    private final int mId = 1;
 
     private int mRetryCount = 0;
     private InputStream mIs;
-    private RandomAccessFile mF;
+    private SharpStream mF;
     private HttpURLConnection mConn;
 
     DownloadRunnableFallback(@NonNull DownloadMission mission) {
@@ -43,11 +42,7 @@ public class DownloadRunnableFallback extends Thread {
             // nothing to do
         }
 
-        try {
-            if (mF != null) mF.close();
-        } catch (IOException e) {
-            // ¿ejected media storage? ¿file deleted? ¿storage ran out of space?
-        }
+        if (mF != null) mF.close();
     }
 
     @Override
@@ -67,6 +62,7 @@ public class DownloadRunnableFallback extends Thread {
         try {
             long rangeStart = (mMission.unknownLength || start < 1) ? -1 : start;
 
+            int mId = 1;
             mConn = mMission.openConnection(mId, rangeStart, -1);
             mMission.establishConnection(mId, mConn);
 
@@ -81,7 +77,7 @@ public class DownloadRunnableFallback extends Thread {
             if (!mMission.unknownLength)
                 mMission.unknownLength = Utility.getContentLength(mConn) == -1;
 
-            mF = new RandomAccessFile(mMission.getDownloadedFile(), "rw");
+            mF = mMission.storage.getStream();
             mF.seek(mMission.offsets[mMission.current] + start);
 
             mIs = mConn.getInputStream();

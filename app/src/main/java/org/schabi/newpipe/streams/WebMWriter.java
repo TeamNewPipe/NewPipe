@@ -107,7 +107,7 @@ public class WebMWriter {
         parsed = true;
 
         for (SharpStream src : sourceTracks) {
-            src.dispose();
+            src.close();
         }
 
         sourceTracks = null;

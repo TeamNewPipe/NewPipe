@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -49,6 +48,7 @@ import java.util.Collections;
 import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.get.FinishedMission;
 import us.shandian.giga.get.Mission;
+import us.shandian.giga.io.StoredFileHelper;
 import us.shandian.giga.service.DownloadManager;
 import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.ui.common.Deleter;
@@ -69,6 +69,7 @@ import static us.shandian.giga.get.DownloadMission.ERROR_PERMISSION_DENIED;
 import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING;
 import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING_HOLD;
 import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING_STOPPED;
+import static us.shandian.giga.get.DownloadMission.ERROR_PROGRESS_LOST;
 import static us.shandian.giga.get.DownloadMission.ERROR_SSL_EXCEPTION;
 import static us.shandian.giga.get.DownloadMission.ERROR_UNKNOWN_EXCEPTION;
 import static us.shandian.giga.get.DownloadMission.ERROR_UNKNOWN_HOST;
@@ -97,8 +98,9 @@ public class MissionAdapter extends Adapter<ViewHolder> {
     private MenuItem mStartButton;
     private MenuItem mPauseButton;
     private View mEmptyMessage;
+    private RecoverHelper mRecover;
 
-    public MissionAdapter(Context context, DownloadManager downloadManager, View emptyMessage) {
+    public MissionAdapter(Context context, @NonNull DownloadManager downloadManager, View emptyMessage) {
         mContext = context;
         mDownloadManager = downloadManager;
         mDeleter = null;
@@ -156,7 +158,11 @@ public class MissionAdapter extends Adapter<ViewHolder> {
 
         if (h.item.mission instanceof DownloadMission) {
             mPendingDownloadsItems.remove(h);
-            if (mPendingDownloadsItems.size() < 1) setAutoRefresh(false);
+            if (mPendingDownloadsItems.size() < 1) {
+                setAutoRefresh(false);
+                if (mStartButton != null) mStartButton.setVisible(false);
+                if (mPauseButton != null) mPauseButton.setVisible(false);
+            }
         }
 
         h.popupMenu.dismiss();
@@ -189,10 +195,10 @@ public class MissionAdapter extends Adapter<ViewHolder> {
         ViewHolderItem h = (ViewHolderItem) view;
         h.item = item;
 
-        Utility.FileType type = Utility.getFileType(item.mission.kind, item.mission.name);
+        Utility.FileType type = Utility.getFileType(item.mission.kind, item.mission.storage.getName());
 
         h.icon.setImageResource(Utility.getIconForFileType(type));
-        h.name.setText(item.mission.name);
+        h.name.setText(item.mission.storage.getName());
 
         h.progress.setColors(Utility.getBackgroundForFileType(mContext, type), Utility.getForegroundForFileType(mContext, type));
 
@@ -273,7 +279,7 @@ public class MissionAdapter extends Adapter<ViewHolder> {
         long length = mission.getLength();
 
         int state;
-        if (mission.isPsFailed()) {
+        if (mission.isPsFailed() || mission.errCode == ERROR_POSTPROCESSING_HOLD) {
             state = 0;
         } else if (!mission.running) {
             state = mission.enqueued ? 1 : 2;
@@ -334,11 +340,17 @@ public class MissionAdapter extends Adapter<ViewHolder> {
         if (BuildConfig.DEBUG)
             Log.v(TAG, "Mime: " + mimeType + " package: " + BuildConfig.APPLICATION_ID + ".provider");
 
-        Uri uri = FileProvider.getUriForFile(
-                mContext,
-                BuildConfig.APPLICATION_ID + ".provider",
-                mission.getDownloadedFile()
-        );
+        Uri uri;
+
+        if (mission.storage.isDirect()) {
+            uri = FileProvider.getUriForFile(
+                    mContext,
+                    BuildConfig.APPLICATION_ID + ".provider",
+                    mission.storage.getIOFile()
+            );
+        } else {
+            uri = mission.storage.getUri();
+        }
 
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
@@ -366,13 +378,13 @@ public class MissionAdapter extends Adapter<ViewHolder> {
 
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType(resolveMimeType(mission));
-        intent.putExtra(Intent.EXTRA_STREAM, mission.getDownloadedFile().toURI());
+        intent.putExtra(Intent.EXTRA_STREAM, mission.storage.getUri());
 
         mContext.startActivity(Intent.createChooser(intent, null));
     }
 
     private static String resolveMimeType(@NonNull Mission mission) {
-        String ext = Utility.getFileExt(mission.getDownloadedFile().getName());
+        String ext = Utility.getFileExt(mission.storage.getName());
         if (ext == null) return DEFAULT_MIME_TYPE;
 
         String mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(ext.substring(1));
@@ -381,7 +393,7 @@ public class MissionAdapter extends Adapter<ViewHolder> {
     }
 
     private boolean checkInvalidFile(@NonNull Mission mission) {
-        if (mission.getDownloadedFile().exists()) return false;
+        if (mission.storage.existsAsFile()) return false;
 
         Toast.makeText(mContext, R.string.missing_file, Toast.LENGTH_SHORT).show();
         return true;
@@ -462,6 +474,8 @@ public class MissionAdapter extends Adapter<ViewHolder> {
             case ERROR_UNKNOWN_EXCEPTION:
                 showError(mission.errObject, UserAction.DOWNLOAD_FAILED, R.string.general_error);
                 return;
+            case ERROR_PROGRESS_LOST:
+                msg = R.string.error_progress_lost;
             default:
                 if (mission.errCode >= 100 && mission.errCode < 600) {
                     msgEx = "HTTP " + mission.errCode;
@@ -490,7 +504,7 @@ public class MissionAdapter extends Adapter<ViewHolder> {
         }
 
         builder.setNegativeButton(android.R.string.ok, (dialog, which) -> dialog.cancel())
-                .setTitle(mission.name)
+                .setTitle(mission.storage.getName())
                 .create()
                 .show();
     }
@@ -539,6 +553,10 @@ public class MissionAdapter extends Adapter<ViewHolder> {
                     updateProgress(h);
                     return true;
                 case R.id.retry:
+                    if (mission.hasInvalidStorage()) {
+                        mRecover.tryRecover(mission);
+                        return true;
+                    }
                     mission.psContinue(true);
                     return true;
                 case R.id.cancel:
@@ -561,7 +579,7 @@ public class MissionAdapter extends Adapter<ViewHolder> {
                 return true;
             case R.id.md5:
             case R.id.sha1:
-                new ChecksumTask(mContext).execute(h.item.mission.getDownloadedFile().getAbsolutePath(), ALGORITHMS.get(id));
+                new ChecksumTask(mContext).execute(h.item.mission.storage, ALGORITHMS.get(id));
                 return true;
             case R.id.source:
                 /*Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(h.item.mission.source));
@@ -641,17 +659,36 @@ public class MissionAdapter extends Adapter<ViewHolder> {
     }
 
 
-    public void deleterDispose(Bundle bundle) {
-        if (mDeleter != null) mDeleter.dispose(bundle);
+    public void deleterDispose(boolean commitChanges) {
+        if (mDeleter != null) mDeleter.dispose(commitChanges);
     }
 
-    public void deleterLoad(Bundle bundle, View view) {
+    public void deleterLoad(View view) {
         if (mDeleter == null)
-            mDeleter = new Deleter(bundle, view, mContext, this, mDownloadManager, mIterator, mHandler);
+            mDeleter = new Deleter(view, mContext, this, mDownloadManager, mIterator, mHandler);
     }
 
     public void deleterResume() {
         if (mDeleter != null) mDeleter.resume();
+    }
+
+    public void recoverMission(DownloadMission mission, StoredFileHelper newStorage) {
+        for (ViewHolderItem h : mPendingDownloadsItems) {
+            if (mission != h.item.mission) continue;
+
+            mission.changeStorage(newStorage);
+            mission.errCode = DownloadMission.ERROR_NOTHING;
+            mission.errObject = null;
+
+            h.status.setText(UNDEFINED_PROGRESS);
+            h.state = -1;
+            h.size.setText(Utility.formatBytes(mission.getLength()));
+            h.progress.setMarquee(true);
+
+            mDownloadManager.resumeMission(mission);
+            return;
+        }
+
     }
 
 
@@ -693,6 +730,10 @@ public class MissionAdapter extends Adapter<ViewHolder> {
 
     private boolean isNotFinite(Float value) {
         return Float.isNaN(value) || Float.isInfinite(value);
+    }
+
+    public void setRecover(@NonNull RecoverHelper callback) {
+        mRecover = callback;
     }
 
 
@@ -780,7 +821,11 @@ public class MissionAdapter extends Adapter<ViewHolder> {
             DownloadMission mission = item.mission instanceof DownloadMission ? (DownloadMission) item.mission : null;
 
             if (mission != null) {
-                if (mission.isPsRunning()) {
+                if (mission.hasInvalidStorage()) {
+                    retry.setEnabled(true);
+                    delete.setEnabled(true);
+                    showError.setEnabled(true);
+                } else if (mission.isPsRunning()) {
                     switch (mission.errCode) {
                         case ERROR_INSUFFICIENT_STORAGE:
                         case ERROR_POSTPROCESSING_HOLD:
@@ -838,7 +883,7 @@ public class MissionAdapter extends Adapter<ViewHolder> {
     }
 
 
-    static class ChecksumTask extends AsyncTask<String, Void, String> {
+    static class ChecksumTask extends AsyncTask<Object, Void, String> {
         ProgressDialog progressDialog;
         WeakReference<Activity> weakReference;
 
@@ -861,8 +906,8 @@ public class MissionAdapter extends Adapter<ViewHolder> {
         }
 
         @Override
-        protected String doInBackground(String... params) {
-            return Utility.checksum(params[0], params[1]);
+        protected String doInBackground(Object... params) {
+            return Utility.checksum((StoredFileHelper) params[0], (String) params[1]);
         }
 
         @Override
@@ -887,6 +932,10 @@ public class MissionAdapter extends Adapter<ViewHolder> {
                 return activity;
             }
         }
+    }
+
+    public interface RecoverHelper {
+        void tryRecover(DownloadMission mission);
     }
 
 }

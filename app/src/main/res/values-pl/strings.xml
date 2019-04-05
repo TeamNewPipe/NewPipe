@@ -446,12 +446,12 @@
     <string name="download_finished_more">%s pobieranie zostało zakończone</string>
     <string name="generate_unique_name">Wygeneruj unikalną nazwę</string>
     <string name="overwrite">Zastąp</string>
-    <string name="overwrite_warning">Pobrany plik o tej nazwie już istnieje</string>
+    <string name="overwrite_finished_warning">Pobrany plik o tej nazwie już istnieje</string>
     <string name="download_already_running">Trwa pobieranie z tą nazwą</string>
     <string name="show_error">Pokaż błąd</string>
     <string name="label_code">Kod</string>
-    <string name="error_path_creation">Nie można utworzyć pliku</string>
-    <string name="error_file_creation">Nie można utworzyć folderu docelowego</string>
+    <string name="error_file_creation">Nie można utworzyć pliku</string>
+    <string name="error_path_creation">Nie można utworzyć folderu docelowego</string>
     <string name="error_permission_denied">Odmowa dostępu do systemu</string>
     <string name="error_ssl_exception">Bezpieczne połączenie nie powiodło się</string>
     <string name="error_unknown_host">Nie można znaleźć serwera</string>

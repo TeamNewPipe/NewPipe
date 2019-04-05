@@ -447,12 +447,12 @@
     <string name="download_finished_more">%s unduhan selesai</string>
     <string name="generate_unique_name">Hasilkan nama unik</string>
     <string name="overwrite">Timpa</string>
-    <string name="overwrite_warning">File yang diunduh dengan nama ini sudah ada</string>
+    <string name="overwrite_finished_warning">File yang diunduh dengan nama ini sudah ada</string>
     <string name="download_already_running">Ada unduhan yang sedang berlangsung dengan nama ini</string>
     <string name="show_error">Tunjukkan kesalahan</string>
     <string name="label_code">Kode</string>
-    <string name="error_path_creation">File tidak dapat dibuat</string>
-    <string name="error_file_creation">Folder tujuan tidak dapat dibuat</string>
+    <string name="error_file_creation">File tidak dapat dibuat</string>
+    <string name="error_path_creation">Folder tujuan tidak dapat dibuat</string>
     <string name="error_permission_denied">Izin ditolak oleh sistem</string>
     <string name="error_ssl_exception">Koneksi aman gagal</string>
     <string name="error_unknown_host">Tidak dapat menemukan server</string>

@@ -1,11 +1,12 @@
 package org.schabi.newpipe.streams.io;
 
+import java.io.Closeable;
 import java.io.IOException;
 
 /**
  * based on c#
  */
-public abstract class SharpStream {
+public abstract class SharpStream  implements Closeable {
 
     public abstract int read() throws IOException;
 
@@ -19,9 +20,10 @@ public abstract class SharpStream {
 
     public abstract void rewind() throws IOException;
 
-    public abstract void dispose();
+    public abstract boolean isClosed();
 
-    public abstract boolean isDisposed();
+    @Override
+    public abstract void close();
 
     public abstract boolean canRewind();
 
@@ -53,5 +55,9 @@ public abstract class SharpStream {
 
     public void seek(long offset) throws IOException {
         throw new IOException("Not implemented");
+    }
+
+    public long length() throws IOException {
+        throw new UnsupportedOperationException("Unsupported operation");
     }
 }
