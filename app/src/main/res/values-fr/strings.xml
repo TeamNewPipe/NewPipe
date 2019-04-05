@@ -471,4 +471,7 @@
     <string name="error_postprocessing_failed">Échec du post-traitement</string>
     <string name="max_retry_msg">Nombre maximum de tentatives</string>
     <string name="max_retry_desc">Nombre maximum de tentatives avant d\'annuler le téléchargement</string>
+    <string name="saved_tabs_invalid_json">Utilisation des onglets par défaut, erreur lors de la lecture des onglets enregistrés</string>
+    <string name="error_http_unsupported_range">Le serveur n\'accepte pas les téléchargements multi-threads, réessayez avec @string/msg_threads = 1</string>
+    <string name="msg_pending_downloads">Continuer vos %s transferts en attente depuis Téléchargement</string>
 </resources>
