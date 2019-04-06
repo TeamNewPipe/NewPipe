@@ -122,6 +122,7 @@ public class VideoDetailFragment
     private boolean autoPlayEnabled;
     private boolean showRelatedStreams;
     private boolean showComments;
+    private String selectedTabTag;
 
     @State
     protected int serviceId = Constants.NO_SERVICE_ID;
@@ -213,6 +214,9 @@ public class VideoDetailFragment
         showComments = PreferenceManager.getDefaultSharedPreferences(activity)
                 .getBoolean(getString(R.string.show_comments_key), true);
 
+        selectedTabTag = PreferenceManager.getDefaultSharedPreferences(activity)
+                .getString(getString(R.string.stream_info_selected_tab_key), COMMENTS_TAB_TAG);
+
         PreferenceManager.getDefaultSharedPreferences(activity)
                 .registerOnSharedPreferenceChangeListener(this);
     }
@@ -226,6 +230,10 @@ public class VideoDetailFragment
     public void onPause() {
         super.onPause();
         if (currentWorker != null) currentWorker.dispose();
+        PreferenceManager.getDefaultSharedPreferences(getContext())
+                .edit()
+                .putString(getString(R.string.stream_info_selected_tab_key), pageAdapter.getItemTitle(viewPager.getCurrentItem()))
+                .apply();
     }
 
     @Override
@@ -815,6 +823,9 @@ public class VideoDetailFragment
     }
 
     private void initTabs() {
+        if (pageAdapter.getCount() != 0) {
+            selectedTabTag = pageAdapter.getItemTitle(viewPager.getCurrentItem());
+        }
         pageAdapter.clearAllItems();
 
         if(shouldShowComments()){
@@ -835,6 +846,8 @@ public class VideoDetailFragment
         if(pageAdapter.getCount() < 2){
             tabLayout.setVisibility(View.GONE);
         }else{
+            int position = pageAdapter.getItemPositionByTitle(selectedTabTag);
+            if(position != -1) viewPager.setCurrentItem(position);
             tabLayout.setVisibility(View.VISIBLE);
         }
     }
