@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">לחץ על „חיפוש” כדי להתחיל</string>
+    <string name="main_bg_subtitle">יש ללחוץ על „חיפוש” כדי להתחיל</string>
     <string name="view_count_text">%1$s צפיות</string>
     <string name="upload_date_text">פורסם ב־%1$s</string>
     <string name="no_player_found">לא נמצאו נגני צפייה ישירה, להתקין את VLC\?</string>
@@ -100,7 +100,7 @@
     <string name="what_happened_headline">מה קרה:</string>
     <string name="info_labels">מה:\\nבקשה:\\nשפת התוכן:\\nשירות:\\nשעון גריניץ׳:\\nחבילה:\\nגרסה:\\nגרסת מערכת ההפעלה:</string>
     <string name="subscribe_button_title">עריכת מינוי</string>
-    <string name="subscribed_button_title">רשום</string>
+    <string name="subscribed_button_title">נרשמת</string>
     <string name="channel_unsubscribed">ביטול מינוי לערוץ</string>
     <string name="subscription_change_failed">לא הצלחתי לשנות מינוי</string>
     <string name="subscription_update_failed">לא ניתן לעדכן את המינוי</string>
@@ -237,7 +237,7 @@
     <string name="main_page_content">תוכן הדף הראשי</string>
     <string name="blank_page_summary">דף ריק</string>
     <string name="kiosk_page_summary">דף גישה מזדמנת</string>
-    <string name="subscription_page_summary">דף מנוים</string>
+    <string name="subscription_page_summary">דף מינויים</string>
     <string name="feed_page_summary">דף עדכונים</string>
     <string name="channel_page_summary">דף ערוצים</string>
     <string name="select_a_channel">נא לבחור ערוץ</string>
@@ -261,8 +261,8 @@
     <string name="controls_download_desc">הורדת קובץ הזרמה</string>
     <string name="show_info">הצגת מידע</string>
     <string name="tab_bookmarks">רשימות נגינה מסומנות</string>
-    <string name="controls_add_to_playlist_title">הוסף ל</string>
-    <string name="default_content_country_title">מדינת תוכן ברירת המחדל</string>
+    <string name="controls_add_to_playlist_title">הוספה אל</string>
+    <string name="default_content_country_title">מדינת תוכן כבררת מחדל</string>
     <string name="service_title">שירות</string>
     <string name="settings_category_debug_title">ניפוי שגיאות</string>
     <string name="always">תמיד</string>
@@ -276,8 +276,8 @@
     <string name="switch_to_popup">העברה לחלון צף</string>
     <string name="no_player_found_toast">לא נמצא נגן צפייה ישירה (ניתן להתקין את VLC כדי לתקן זאת).</string>
     <string name="thumbnail_cache_wipe_complete_notice">תמונות מטמון נמחקו</string>
-    <string name="metadata_cache_wipe_title">מחק מטא-נתונים במטמון</string>
-    <string name="metadata_cache_wipe_complete_notice">מטא-נתונים במטמון נמחקו</string>
+    <string name="metadata_cache_wipe_title">ניקוי מטמון נתוני העל</string>
+    <string name="metadata_cache_wipe_complete_notice">מטמון נתוני העל התרוקן</string>
     <string name="export_data_summary">ייצוא היסטוריה, מינויים ורשימות נגינה</string>
     <string name="clear_views_history_title">מחיקת היסטוריית הצפייה</string>
     <string name="view_history_deleted">היסטוריית הצפייה נמחקה.</string>
@@ -293,7 +293,7 @@
     <string name="rename">שינוי שם</string>
     <string name="one_item_deleted">פריט אחד נמחק.</string>
     <string name="toast_no_player">לא מותקן יישומון שמתאים לנגינת הקובץ הזה</string>
-    <string name="delete_stream_history_prompt">האם ברצונך למחוק פריט זה מהיסטוריית הצפייה\?</string>
+    <string name="delete_stream_history_prompt">למחוק את הפריט הזה מהיסטוריית הצפייה שלך\?</string>
     <string name="delete_all_history_prompt">למחוק את כל הפריטים מההיסטוריה\?</string>
     <string name="export_complete_toast">הייצוא הסתיים</string>
     <string name="import_complete_toast">הייבוא הסתיים</string>
@@ -302,7 +302,7 @@
     <string name="background_player">נגן רקע</string>
     <string name="popup_player">נגן צף</string>
     <string name="always_ask_open_action">לשאול תמיד</string>
-    <string name="preferred_player_fetcher_notification_title">משיג מידע…</string>
+    <string name="preferred_player_fetcher_notification_title">המידע מתקבל…</string>
     <string name="preferred_player_fetcher_notification_message">התוכן המבוקש בטעינה</string>
     <string name="create_playlist">רשימת נגינה חדשה</string>
     <string name="delete_playlist">מחיקה</string>
@@ -322,8 +322,8 @@
     <string name="import_title">ייבוא</string>
     <string name="import_from">ייבוא מ־</string>
     <string name="export_to">ייצוא אל</string>
-    <string name="import_ongoing">מייבא…</string>
-    <string name="export_ongoing">מייצא…</string>
+    <string name="import_ongoing">מתבצע ייבוא…</string>
+    <string name="export_ongoing">מתבצע ייצוא…</string>
     <string name="import_file_title">ייבוא קובץ</string>
     <string name="previous_export">ייצוא קודם</string>
     <string name="subscriptions_import_unsuccessful">לא ניתן לייבא את המינויים</string>
@@ -335,7 +335,7 @@
 \n3. ההורדה אמורה להתחיל (זה קובץ הייצוא)</string>
     <string name="playback_tempo">קצב</string>
     <string name="playback_default">ברירת מחדל</string>
-    <string name="use_inexact_seek_title">השתמש בחיפוש מהיר, לא מדויק</string>
+    <string name="use_inexact_seek_title">שימוש בחיפוש מהיר ולא מדויק</string>
     <string name="use_inexact_seek_summary">חיפוש גס מאפשר לנגן לחפש נקודת זמן מהר יותר, ברמת דיוק נמוכה יותר</string>
     <string name="download_thumbnail_title">טעינת תמונות ממוזערות</string>
     <string name="download_thumbnail_summary">כיבוי האפשרות מונע את טעינת התמונות הממוזערות, חוסך בתקשורת נתונים ובניצולת הזיכרון. שינויים באפשרות זו מוחקים את המטמון בזיכרון ובכונן.</string>
@@ -367,14 +367,14 @@
     <string name="title_last_played">נוגן אחרון</string>
     <string name="title_most_played">הכי נצפים</string>
     <string name="could_not_import_all_files">אזהרה: לא יכל לייבא את כל הקבצים</string>
-    <string name="override_current_data">פעולה זו תדרוס את ההתקנה הקיימת.</string>
+    <string name="override_current_data">פעולה זו תדרוס את ההגדרות הקיימות.</string>
     <string name="import_settings">לייבא גם הגדרות\?</string>
     <string name="drawer_open">פתיחת מגירה</string>
     <string name="drawer_close">סגירת מגירה</string>
     <string name="drawer_header_action_paceholder_text">משהו יופיע כאן בקרוב ‎;D</string>
     <string name="preferred_open_action_settings_title">פעולת ‚פתיחה’ מועדפת</string>
     <string name="preferred_open_action_settings_summary">פעולת בררת מחדל בעת פתיחת תוכן - %s</string>
-    <string name="set_as_playlist_thumbnail">קבע כתמונה לרשימת השמעה</string>
+    <string name="set_as_playlist_thumbnail">הגדרה כתמונת רשימת הנגינה</string>
     <string name="playlist_delete_failure">לא ניתן למחוק רשימת נגינה.</string>
     <string name="caption_none">אין כתוביות</string>
     <string name="resize_fit">התאמה</string>
@@ -419,7 +419,7 @@
     <string name="selection">בחירה</string>
     <string name="events">אירועים</string>
     <string name="conferences">כנסים</string>
-    <string name="enable_disposed_exceptions_title">דווח על שגיאות שמחוץ למחזור החיים</string>
+    <string name="enable_disposed_exceptions_title">דיווח על שגיאות שמחוץ למחזור החיים</string>
     <string name="enable_disposed_exceptions_summary">אילוץ דיווח על חריגות מחוץ למקטעים או למחזור חיי הפעילות לאחר ההשלכה בתשדורת יוצאת</string>
     <string name="import_soundcloud_instructions">ניתן לייבא פרופיל SoundCloud על ידי הקלדת הכתובת או המזהה שלך:
 \n
