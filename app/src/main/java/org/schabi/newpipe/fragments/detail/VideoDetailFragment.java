@@ -86,6 +86,7 @@ import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
+import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.StreamItemAdapter;
 import org.schabi.newpipe.util.StreamItemAdapter.StreamSizeWrapper;
 
@@ -547,7 +548,7 @@ public class VideoDetailFragment
                     }
                     break;
                 case 3:
-                    shareUrl(item.getName(), item.getUrl());
+                    ShareUtils.shareUrl(this.getContext(), item.getName(), item.getUrl());
                     break;
                 default:
                     break;
@@ -636,13 +637,13 @@ public class VideoDetailFragment
         switch (id) {
             case R.id.menu_item_share: {
                 if (currentInfo != null) {
-                    shareUrl(currentInfo.getName(), currentInfo.getOriginalUrl());
+                    ShareUtils.shareUrl(this.getContext(), currentInfo.getName(), currentInfo.getOriginalUrl());
                 }
                 return true;
             }
             case R.id.menu_item_openInBrowser: {
                 if (currentInfo != null) {
-                    openUrlInBrowser(currentInfo.getOriginalUrl());
+                    ShareUtils.openUrlInBrowser(this.getContext(), currentInfo.getOriginalUrl());
                 }
                 return true;
             }

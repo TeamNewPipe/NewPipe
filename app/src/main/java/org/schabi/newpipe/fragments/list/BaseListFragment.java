@@ -34,6 +34,7 @@ import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
+import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.StateSaver;
 
 import java.util.Collections;
@@ -280,7 +281,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
                     }
                     break;
                 case 4:
-                    shareUrl(item.getName(), item.getUrl());
+                    ShareUtils.shareUrl(this.getContext(), item.getName(), item.getUrl());
                     break;
                 default:
                     break;
