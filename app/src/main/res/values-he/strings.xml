@@ -419,7 +419,7 @@
     <string name="selection">בחירה</string>
     <string name="events">אירועים</string>
     <string name="conferences">כנסים</string>
-    <string name="enable_disposed_exceptions_title">דיווח על שגיאות של חריגה ממחזור חיים</string>
+    <string name="enable_disposed_exceptions_title">דווח על שגיאות שמחוץ למחזור החיים</string>
     <string name="enable_disposed_exceptions_summary">אילוץ דיווח על חריגות מחוץ למקטעים או למחזור חיי הפעילות לאחר ההשלכה בתשדורת יוצאת</string>
     <string name="import_soundcloud_instructions">ניתן לייבא פרופיל SoundCloud על ידי הקלדת הכתובת או המזהה שלך:
 \n
