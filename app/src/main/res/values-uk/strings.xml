@@ -23,10 +23,10 @@
     <string name="download_path_audio_title">Тека для завантаженого аудіо</string>
     <string name="download_path_audio_summary">Завантажене аудіо зберігається тут</string>
     <string name="autoplay_by_calling_app_title">Автоматичне програвання</string>
-    <string name="autoplay_by_calling_app_summary">Програє відео коли NewPipe викликано з іншого додатку</string>
+    <string name="autoplay_by_calling_app_summary">Програє відео коли NewPipe викликано з іншого застосунку</string>
     <string name="default_resolution_title">Типова роздільна здатність</string>
     <string name="play_with_kodi_title">Програти у Kodi</string>
-    <string name="kore_not_found">Додаток Kore не знайдено. Встановити його\?</string>
+    <string name="kore_not_found">Застосунок Kore не знайдено. Встановити його\?</string>
     <string name="show_play_with_kodi_title">Показати опцію \"Програти у Kodi\"</string>
     <string name="show_play_with_kodi_summary">Показати опцію програвання відео у медіацентрі Kodi</string>
     <string name="play_audio">Аудіо</string>
@@ -44,7 +44,7 @@
     <string name="settings_category_other_title">Інше</string>
     <string name="background_player_playing_toast">Програвання у тлі</string>
     <string name="play_btn_text">Програти</string>
-    <string name="storage_permission_denied">В доступі до сховища відмовлено</string>
+    <string name="storage_permission_denied">У доступі до сховища відмовлено</string>
     <string name="content">Контент</string>
     <string name="show_age_restricted_content_title">Контент з віковими обмеженнями</string>
     <string name="video_is_age_restricted">Показувати відео з віковими обмеженнями. Дозволити програвання таких записів можна у Налаштуваннях.</string>
@@ -77,7 +77,7 @@
     <string name="later">Пізніше</string>
     <string name="disabled">Вимкнено</string>
     <string name="could_not_load_image">Не вдалося завантажити зображення</string>
-    <string name="app_ui_crash">Додаток/інтерфейс впав</string>
+    <string name="app_ui_crash">Застосунок/інтерфейс впав</string>
     <string name="your_comment">Ваш коментар (англійською):</string>
     <string name="error_details_headline">Подробиці:</string>
     <string name="list_thumbnail_view_description">Ескіз попереднього перегляду відео</string>
@@ -100,7 +100,7 @@
     <string name="delete">Видалити</string>
     <string name="checksum">Контрольна сума</string>
     <string name="finish">ОК</string>
-    <string name="msg_name">Ім\'я файлу</string>
+    <string name="msg_name">Назва файлу</string>
     <string name="msg_threads">Потоки</string>
     <string name="msg_error">Помилка</string>
     <string name="msg_server_unsupported">Сервер не підтримується</string>
@@ -190,7 +190,7 @@
     <string name="charset_most_special_characters">Більшість спеціальних символів</string>
     <string name="title_activity_about">Про NewPipe</string>
     <string name="action_settings">Налаштування</string>
-    <string name="action_about">Про додаток</string>
+    <string name="action_about">Про застосунок</string>
     <string name="error_unable_to_load_license">Не вдалося завантажити ліцензію</string>
     <string name="tab_licenses">Ліцензії</string>
     <string name="contribution_title">Посприяти</string>
@@ -241,7 +241,7 @@
     <string name="rename">Перейменувати</string>
     <string name="title_licenses">Ліцензії третіх сторін</string>
     <string name="action_open_website">Відкрити веб-сайт</string>
-    <string name="tab_about">Про додаток</string>
+    <string name="tab_about">Про застосунок</string>
     <string name="app_description">Вільне та легке потокове програвання на Android.</string>
     <string name="contribution_encouragement">Які б не були Ваші ідеї: переклад, дизайн, легкий чи глобальний рефакторинг - будь-яка допомога завжди у нагоді. Що більше зроблено, то ліпшим стає NewPipe!</string>
     <string name="settings_category_debug_title">Налагодження</string>
@@ -257,7 +257,7 @@
     <string name="recaptcha_request_toast">Запит на перевірку reCAPTCHA</string>
     <string name="copyright" formatted="true">© %1$s, %2$s під %3$s</string>
     <string name="tab_contributors">Учасники</string>
-    <string name="donation_encouragement">NewPipe розроблений добровольцями, які витрачають власний час заради вашого задоволення. Допоможіть розробникам зробити NewPipe ще кращим, насолоджуючись філіжанкою кави.</string>
+    <string name="donation_encouragement">NewPipe розроблений добровольцями, які витрачають власний час заради вашого задоволення. Допоможіть розробникам зробити NewPipe ще ліпшим, насолоджуючись філіжанкою кави.</string>
     <string name="give_back">Ваша допомога</string>
     <string name="website_encouragement">Завітайте на офіційний сайт NewPipe, аби отримати більше інформації та новин.</string>
     <string name="app_license_title">Ліцензія NewPipe</string>
@@ -319,7 +319,7 @@
     <string name="resize_zoom">Збільшити</string>
     <string name="caption_auto_generated">Створені автоматично</string>
     <string name="enable_leak_canary_title">Увімкнути LeakCanary</string>
-    <string name="enable_leak_canary_summary">Моніторинг втрат пам\'яті може призвести до нереагування додатку під час запису дампу</string>
+    <string name="enable_leak_canary_summary">Моніторинг втрат пам\'яті може призвести до нереагування застосунку під час запису дампу</string>
     <string name="enable_disposed_exceptions_title">Зазвітувати out-of-lifecycle хиби</string>
     <string name="enable_disposed_exceptions_summary">Примусове звітування про неможливість доставлення Rx винятків, які відбуваються за межами фраґменту або діяльності життєвого циклу після усунення</string>
     <string name="use_inexact_seek_title">Використовувати швидкий неточний пошук</string>
@@ -330,7 +330,7 @@
     <string name="invalid_directory">Такої теки не існує</string>
     <string name="invalid_source">Такого джерела файлу/контенту не існує</string>
     <string name="invalid_file">Файл не існує або відсутній дозвіл на його читання або запис</string>
-    <string name="file_name_empty_error">Ім\'я файлу не може бути порожнім</string>
+    <string name="file_name_empty_error">Назва файлу не може бути порожнім</string>
     <string name="error_occurred_detail">Сталася помилка: %1$s</string>
     <string name="import_export_title">Імпортування/експортування</string>
     <string name="import_title">Імпортування</string>
@@ -371,8 +371,8 @@
     <string name="preferred_open_action_settings_title">Бажана дія при відкритті</string>
     <string name="preferred_open_action_settings_summary">Типова дія під час відкриття вмісту — %s</string>
     <string name="caption_setting_title">Субтитри</string>
-    <string name="caption_setting_description">Зміна висоти тексту субтитрів та стилів тла. Потребує перезапуску додатку.</string>
-    <string name="toast_no_player">Не встановлено додаток для програвання цього файлу</string>
+    <string name="caption_setting_description">Зміна висоти тексту субтитрів та стилів тла. Потребує перезапуску застосунку.</string>
+    <string name="toast_no_player">Не встановлено застосунків для програвання цього файлу</string>
     <string name="clear_views_history_title">Очистити історію переглядів</string>
     <string name="clear_views_history_summary">Видаляє історію відтворень</string>
     <string name="delete_view_history_alert">Видалити всю історію переглядів\?</string>
@@ -382,11 +382,11 @@
     <string name="delete_search_history_alert">Видалити всю історію пошуку\?</string>
     <string name="search_history_deleted">Історію пошуку видалено.</string>
     <string name="one_item_deleted">Видалено 1 елемент.</string>
-    <string name="app_license">NewPipe є вільним копілефт додатком: ви можете використовувати, поширювати та вдосконалювати його на власний розсуд. Зокрема, ви можете розповсюджувати та/або змінювати її за умов дотримання вимог GNU General Public License 3-ї версії або (на ваш вибір) будь-якої пізнішої версії, опублікованої Free Software Foundation.</string>
+    <string name="app_license">NewPipe є вільним копілефт застосунком: ви можете використовувати, поширювати та вдосконалювати його на власний розсуд. Зокрема, ви можете розповсюджувати та/або змінювати її за умов дотримання вимог GNU General Public License 3-ї версії або (на ваш вибір) будь-якої пізнішої версії, опублікованої Free Software Foundation.</string>
     <string name="import_settings">Імпортувати разом з налаштуваннями\?</string>
     <string name="privacy_policy_title">Політика приватності NewPipe</string>
-    <string name="privacy_policy_encouragement">Проект NewPipe дуже серйозно ставиться до вашої приватності. Тому додаток не збирає ніяких даних без вашої згоди.
-\nПолітика приватності NewPipe пояснює у деталях, які дані відсилаються та зберігаються, коли ви надсилаєте звіт про падіння додатку.</string>
+    <string name="privacy_policy_encouragement">Проект NewPipe дуже серйозно ставиться до вашої приватності. Тому застосунок не збирає ніяких даних без вашої згоди.
+\nПолітика приватності NewPipe пояснює у деталях, які дані відсилаються та зберігаються, коли ви надсилаєте звіт про падіння застосунку.</string>
     <string name="read_privacy_policy">Читати політику приватності</string>
     <string name="start_accept_privacy_policy">Аби дотриматися Норм загального захисту даних ЄС (General Data Protection Regulation, GDPR), ми просимо звернути вашу увагу на NewPipe\'ову політику приватності. Будь ласка, прочитайте уважно
 \nВи маєте підтвердити її аби надіслати нам баґового звіту.</string>
@@ -419,7 +419,7 @@
     <string name="settings_category_updates_title">Оновлення</string>
     <string name="events">Події</string>
     <string name="file_deleted">Файл видалено</string>
-    <string name="app_update_notification_channel_name">Сповіщення про оновлення додатку</string>
+    <string name="app_update_notification_channel_name">Сповіщення про оновлення застосунку</string>
     <string name="app_update_notification_channel_description">Сповіщення про нову версію NewPipe</string>
     <string name="download_to_sdcard_error_title">Зовнішнє сховище недоступне</string>
     <string name="restore_defaults">Відновити типові налаштування</string>
@@ -433,7 +433,7 @@
     <string name="app_update_notification_content_title">Доступна нова версія NewPipe!</string>
     <string name="app_update_notification_content_text">Натисніть для завантаження</string>
     <string name="missions_header_finished">Завершено</string>
-    <string name="missions_header_pending">В черзі</string>
+    <string name="missions_header_pending">У черзі</string>
     <string name="paused">призупинено</string>
     <string name="queued">додано в чергу</string>
     <string name="post_processing">пост-обробка</string>
@@ -466,7 +466,7 @@
     <string name="download_to_sdcard_error_message">Завантаження до зовнішньої SD-карти поки що неможливе. Скинути розташування теки для завантажень\?</string>
     <string name="saved_tabs_invalid_json">Помилка зчитування збережених вкладок. Використовую типові вкладки.</string>
     <string name="main_page_content_summary">Вкладки, що відображаються на головній сторінці</string>
-    <string name="updates_setting_description">Показувати сповіщення з пропозицією оновити додаток за наявності нової версії</string>
+    <string name="updates_setting_description">Показувати сповіщення з пропозицією оновити застосунок за наявності нової версії</string>
     <string name="error_http_requested_range_not_satisfiable">Запитуваний діапазон неприпустимий</string>
     <string name="msg_pending_downloads">Продовжити ваші %s відкладених переміщень із Завантажень</string>
     <string name="pause_downloads_on_mobile_desc">Завантаження, що не можуть бути призупинені, будуть перезапущені</string>
