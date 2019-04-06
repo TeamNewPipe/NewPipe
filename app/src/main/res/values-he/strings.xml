@@ -366,7 +366,7 @@
     <string name="app_license">NewPipe הוא יישומון חופשי בהתאם לרישיון קופילפט: מותר לך להשתמש, לחקור, לשתף ולשפר בכל דרך שנראית לך. במיוחד מותר לך להפיץ מחדש ו/או לשנות תחת תנאי הרישיון הציבורי הכללי של GNU כפי שמופץ על ידי קרן התכנה החופשית, בין אם גרסה 3 של הרישיון או (לשיקולך) כל גרסה עדכנית יותר שלו.</string>
     <string name="title_last_played">נוגן אחרון</string>
     <string name="title_most_played">הכי נצפים</string>
-    <string name="could_not_import_all_files">אזהרה: לא יכל לייבא את כל הקבצים</string>
+    <string name="could_not_import_all_files">אזהרה: לא יכל לייבא את כל הקבצים.</string>
     <string name="override_current_data">פעולה זו תדרוס את ההגדרות הקיימות.</string>
     <string name="import_settings">לייבא גם הגדרות\?</string>
     <string name="drawer_open">פתיחת מגירה</string>
