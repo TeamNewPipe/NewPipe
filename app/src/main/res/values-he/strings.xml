@@ -99,7 +99,7 @@
     <string name="what_device_headline">מידע:</string>
     <string name="what_happened_headline">מה קרה:</string>
     <string name="info_labels">מה:\\nבקשה:\\nשפת התוכן:\\nשירות:\\nשעון גריניץ׳:\\nחבילה:\\nגרסה:\\nגרסת מערכת ההפעלה:</string>
-    <string name="subscribe_button_title">הירשם</string>
+    <string name="subscribe_button_title">עריכת מינוי</string>
     <string name="subscribed_button_title">רשום</string>
     <string name="channel_unsubscribed">ביטול מינוי לערוץ</string>
     <string name="subscription_change_failed">לא הצלחתי לשנות מינוי</string>
