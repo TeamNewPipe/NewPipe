@@ -357,7 +357,7 @@
     <string name="audio_streams_empty">לא נמצאו תזרימי שמע</string>
     <string name="invalid_directory">אין תיקייה כזו</string>
     <string name="invalid_source">אין מקור תיקייה/תוכן</string>
-    <string name="error_occurred_detail">אירעה שגיאה: %1$s</string>
+    <string name="error_occurred_detail">נתקלנו בבעיה: %1$s</string>
     <string name="no_streams_available_download">אין תזרימים זמינים להורדה</string>
     <string name="privacy_policy_title">מדיניות הפרטיות של NewPipe</string>
     <string name="privacy_policy_encouragement">מיזם NewPipe שומר על הפרטיות שלך בצורה מאוד קפדנית. לפיכך, היישומון אינו אוסף נתונים ללא הסכמתך.
