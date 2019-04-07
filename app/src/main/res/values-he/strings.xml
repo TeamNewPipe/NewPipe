@@ -353,8 +353,8 @@
     <string name="delete_view_history_alert">למחוק את כל היסטוריית הצפייה\?</string>
     <string name="clear_search_history_summary">מחיקת היסטוריית מילות החיפוש</string>
     <string name="delete_search_history_alert">למחוק את כל היסטוריית החיפוש\?</string>
-    <string name="video_streams_empty">לא נמצא תזרימי וידאו</string>
-    <string name="audio_streams_empty">לא נמצא תזרימי שמע</string>
+    <string name="video_streams_empty">לא נמצאו תזרימי וידאו</string>
+    <string name="audio_streams_empty">לא נמצאו תזרימי שמע</string>
     <string name="invalid_directory">אין תיקייה כזו</string>
     <string name="invalid_source">אין מקור תיקייה/תוכן</string>
     <string name="error_occurred_detail">אירעה שגיאה: %1$s</string>
