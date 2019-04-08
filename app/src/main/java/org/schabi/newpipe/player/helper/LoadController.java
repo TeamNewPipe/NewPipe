@@ -2,17 +2,12 @@ package org.schabi.newpipe.player.helper;
 
 import android.content.Context;
 
-import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.LoadControl;
 import com.google.android.exoplayer2.Renderer;
 import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.upstream.Allocator;
-import com.google.android.exoplayer2.upstream.DefaultAllocator;
-
-import static com.google.android.exoplayer2.DefaultLoadControl.DEFAULT_PRIORITIZE_TIME_OVER_SIZE_THRESHOLDS;
-import static com.google.android.exoplayer2.DefaultLoadControl.DEFAULT_TARGET_BUFFER_BYTES;
 
 public class LoadController implements LoadControl {
 
@@ -36,15 +31,10 @@ public class LoadController implements LoadControl {
                            final int optimalPlaybackBufferMs) {
         this.initialPlaybackBufferUs = initialPlaybackBufferMs * 1000;
 
-        final DefaultAllocator allocator = new DefaultAllocator(true,
-                C.DEFAULT_BUFFER_SEGMENT_SIZE);
-
-        internalLoadControl = new DefaultLoadControl(allocator,
-                /*minBufferMs=*/minimumPlaybackbufferMs,
-                /*maxBufferMs=*/optimalPlaybackBufferMs,
-                /*bufferForPlaybackMs=*/initialPlaybackBufferMs,
-                /*bufferForPlaybackAfterRebufferMs=*/initialPlaybackBufferMs,
-                DEFAULT_TARGET_BUFFER_BYTES, DEFAULT_PRIORITIZE_TIME_OVER_SIZE_THRESHOLDS);
+        DefaultLoadControl.Builder builder = new DefaultLoadControl.Builder();
+        builder.setBufferDurationsMs(minimumPlaybackbufferMs, optimalPlaybackBufferMs,
+                initialPlaybackBufferMs, initialPlaybackBufferMs);
+        internalLoadControl = builder.createDefaultLoadControl();
     }
 
     /*//////////////////////////////////////////////////////////////////////////

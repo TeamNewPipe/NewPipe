@@ -47,6 +47,7 @@ import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.source.BehindLiveWindowException;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.TrackGroupArray;
+import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelection;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
@@ -66,7 +67,6 @@ import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.mediasource.FailedMediaSource;
 import org.schabi.newpipe.player.playback.BasePlayerMediaSession;
-import org.schabi.newpipe.player.playback.CustomTrackSelector;
 import org.schabi.newpipe.player.playback.MediaSourceManager;
 import org.schabi.newpipe.player.playback.PlaybackListener;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
@@ -119,7 +119,7 @@ public abstract class BasePlayer implements
     final protected HistoryRecordManager recordManager;
 
     @NonNull
-    final protected CustomTrackSelector trackSelector;
+    final protected DefaultTrackSelector trackSelector;
     @NonNull
     final protected PlayerDataSource dataSource;
 
@@ -218,9 +218,8 @@ public abstract class BasePlayer implements
         final DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
         this.dataSource = new PlayerDataSource(context, userAgent, bandwidthMeter);
 
-        final TrackSelection.Factory trackSelectionFactory =
-                PlayerHelper.getQualitySelector(context, bandwidthMeter);
-        this.trackSelector = new CustomTrackSelector(trackSelectionFactory);
+        final TrackSelection.Factory trackSelectionFactory = PlayerHelper.getQualitySelector(context);
+        this.trackSelector = new DefaultTrackSelector(trackSelectionFactory);
 
         this.loadControl = new LoadController(context);
         this.renderFactory = new DefaultRenderersFactory(context);
@@ -236,7 +235,7 @@ public abstract class BasePlayer implements
     public void initPlayer(final boolean playOnReady) {
         if (DEBUG) Log.d(TAG, "initPlayer() called with: context = [" + context + "]");
 
-        simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(renderFactory, trackSelector, loadControl);
+        simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(context, renderFactory, trackSelector, loadControl);
         simpleExoPlayer.addListener(this);
         simpleExoPlayer.setPlayWhenReady(playOnReady);
         simpleExoPlayer.setSeekParameters(PlayerHelper.getSeekParameters(context));
@@ -280,6 +279,18 @@ public abstract class BasePlayer implements
         final float playbackPitch = intent.getFloatExtra(PLAYBACK_PITCH, getPlaybackPitch());
         final boolean playbackSkipSilence = intent.getBooleanExtra(PLAYBACK_SKIP_SILENCE,
                 getPlaybackSkipSilence());
+
+        // seek to timestamp if stream is already playing
+        if (simpleExoPlayer != null
+                && queue.size() == 1
+                && playQueue != null
+                && playQueue.getItem() != null
+                && queue.getItem().getUrl().equals(playQueue.getItem().getUrl())
+                && queue.getItem().getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET
+                ) {
+            simpleExoPlayer.seekTo(playQueue.getIndex(), queue.getItem().getRecoveryPosition());
+            return;
+        }
 
         // Good to go...
         initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence,

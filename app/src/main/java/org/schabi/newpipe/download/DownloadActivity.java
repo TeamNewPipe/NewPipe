@@ -47,7 +47,7 @@ public class DownloadActivity extends AppCompatActivity {
             @Override
             public void onGlobalLayout() {
                 updateFragments();
-                getWindow().getDecorView().getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                getWindow().getDecorView().getViewTreeObserver().removeOnGlobalLayoutListener(this);
             }
         });
     }

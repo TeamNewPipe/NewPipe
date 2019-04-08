@@ -44,10 +44,10 @@ android {
 
 ext {
     supportLibVersion = '28.0.0'
-    exoPlayerLibVersion = '2.8.4' //2.9.0
+    exoPlayerLibVersion = '2.9.6'
     roomDbLibVersion = '1.1.1'
     leakCanaryLibVersion = '1.5.4' //1.6.1
-    okHttpLibVersion = '3.11.0'
+    okHttpLibVersion = '3.12.1'
     icepickLibVersion = '3.2.0'
     stethoLibVersion = '1.5.0'
 }
