@@ -320,8 +320,8 @@
     <string name="caption_auto_generated">Створені автоматично</string>
     <string name="enable_leak_canary_title">Увімкнути LeakCanary</string>
     <string name="enable_leak_canary_summary">Моніторинг втрат пам\'яті може призвести до нереагування застосунку під час запису дампу</string>
-    <string name="enable_disposed_exceptions_title">Зазвітувати out-of-lifecycle хиби</string>
-    <string name="enable_disposed_exceptions_summary">Примусове звітування про неможливість доставлення Rx винятків, які відбуваються за межами фраґменту або діяльності життєвого циклу після усунення</string>
+    <string name="enable_disposed_exceptions_title">Звітувати про помилки життєвого циклу додатку</string>
+    <string name="enable_disposed_exceptions_summary">Примусове звітування про неможливість доставлення Rx-винятків, які відбуваються за межами фрагменту або діяльності життєвого циклу після усунення</string>
     <string name="use_inexact_seek_title">Використовувати швидкий неточний пошук</string>
     <string name="use_inexact_seek_summary">Неточний пошук дозволяє програвачеві рухатися позиціями швидше, проте з меншою точністю</string>
     <string name="auto_queue_title">Автоматично додавати в чергу наступний запис</string>
@@ -332,38 +332,38 @@
     <string name="invalid_file">Файл не існує або відсутній дозвіл на його читання або запис</string>
     <string name="file_name_empty_error">Назва файлу не може бути порожнім</string>
     <string name="error_occurred_detail">Сталася помилка: %1$s</string>
-    <string name="import_export_title">Імпортування/експортування</string>
-    <string name="import_title">Імпортування</string>
+    <string name="import_export_title">Імпорт/експорт</string>
+    <string name="import_title">Імпорт</string>
     <string name="import_from">Імпортувати з</string>
     <string name="export_to">Експортувати до</string>
     <string name="import_ongoing">Імпортування…</string>
     <string name="export_ongoing">Експортування…</string>
-    <string name="import_file_title">Імпортування файлу</string>
-    <string name="previous_export">Попереднього експортування</string>
-    <string name="subscriptions_import_unsuccessful">Неможливо імпортувати підписання</string>
-    <string name="subscriptions_export_unsuccessful">Неможливо експортувати підписання</string>
-    <string name="import_youtube_instructions">Імпортуйте Ютюбові підписання завантаженням файлу еспортування: 
+    <string name="import_file_title">Імпортувати файл</string>
+    <string name="previous_export">Попереднє експортування</string>
+    <string name="subscriptions_import_unsuccessful">Не вдалося імпортувати підписки</string>
+    <string name="subscriptions_export_unsuccessful">Не вдалося експортувати підписки</string>
+    <string name="import_youtube_instructions">Імпортуйте підписки YouTube, завантаживши файл експорту: 
 \n 
-\n1. Перейдіть за цією ланкою: %1$s 
+\n1. Перейдіть за цією адресою: %1$s 
 \n2. За запитом увійдіть до вашої обліківки 
-\n3. Завантаження має початися (це й є файл еспортування)</string>
-    <string name="import_soundcloud_instructions">Імпортуйте SoundCloud\'овий профайл уписавши його URL, або ваш ID:
-\n
-\n1. Увімкніть режимі \"desktop\" у переглядачівеві (сайт не підтримується мобільними ґаджетами) 
-\n2. Перейдіть за цією ланкою: %1$s 
-\n3. За запитом увійдіть до вашої обліківки 
-\n4. Скопіюйте URL профайлу, до якого вас переспрямує.</string>
-    <string name="import_soundcloud_instructions_hint">вашID, soundcloud.com/вашid</string>
+\n3. Завантаження має початися (це й є файл еспорту)</string>
+    <string name="import_soundcloud_instructions">Імпортуйте профіль SoundCloud, вписавши або URL, або ваш ID:
+\n 
+\n1. Увімкніть режим \"настільний комп\'ютер\" у веб-браузері (сайт не підтримується мобільними пристроями)
+\n2. Перейдіть за цим посиланням: %1$s
+\n3. За запитом увійдіть до вашої обліківки
+\n4. Скопіюйте URL профілю, до якого ви будете переспрямовані.</string>
+    <string name="import_soundcloud_instructions_hint">ваш ID, soundcloud.com/yourid</string>
     <string name="import_network_expensive_warning">Майте на увазі: ця операція може потребувати багато трафіку.
 \n
-\nПродовжуватимете?</string>
+\nБажаєте продовжити\?</string>
     <string name="download_thumbnail_title">Завантажувати ескізи</string>
     <string name="download_thumbnail_summary">Вимкніть для запобігання завантаженню ескізів, що заощадить трафік та внутрішню пам\'ять. Зміни призведуть до очищення кешу зображень.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Кеш зображень стерто</string>
     <string name="metadata_cache_wipe_title">Стерти кеш метаданих</string>
     <string name="metadata_cache_wipe_summary">Видалити всі кешовані дані веб-сторінок</string>
     <string name="metadata_cache_wipe_complete_notice">Кеш метаданих стерто</string>
-    <string name="playback_speed_control">Реґулятори швидкісті відтворення</string>
+    <string name="playback_speed_control">Керування швидкістю відтворення</string>
     <string name="playback_tempo">Темп</string>
     <string name="playback_pitch">Тон</string>
     <string name="unhook_checkbox">Від\'єднати (може спричинити спотворення)</string>
@@ -388,25 +388,25 @@
     <string name="privacy_policy_encouragement">Проект NewPipe дуже серйозно ставиться до вашої приватності. Тому застосунок не збирає ніяких даних без вашої згоди.
 \nПолітика приватності NewPipe пояснює у деталях, які дані відсилаються та зберігаються, коли ви надсилаєте звіт про падіння застосунку.</string>
     <string name="read_privacy_policy">Читати політику приватності</string>
-    <string name="start_accept_privacy_policy">Аби дотриматися Норм загального захисту даних ЄС (General Data Protection Regulation, GDPR), ми просимо звернути вашу увагу на NewPipe\'ову політику приватності. Будь ласка, прочитайте уважно
-\nВи маєте підтвердити її аби надіслати нам баґового звіту.</string>
-    <string name="accept">Ухвалити</string>
+    <string name="start_accept_privacy_policy">З метою дотримання Загального регламенту про захист даних ЄС (General Data Protection Regulation, GDPR) ми звертаємо вашу увагу на політику приватності NewPipe. Будь ласка, прочитайте уважно.
+\nВи маєте прийняти її, аби надіслати нам звіт про помилку.</string>
+    <string name="accept">Прийняти</string>
     <string name="decline">Відхилити</string>
-    <string name="limit_data_usage_none_description">Безмежно</string>
-    <string name="limit_mobile_data_usage_title">Обмеження якості відео (мобільний трафік)</string>
-    <string name="skip_silence_checkbox">Перемотувати підчас тиші</string>
+    <string name="limit_data_usage_none_description">Без обмежень</string>
+    <string name="limit_mobile_data_usage_title">Обмежити роздільну здатність при використанні мобільного трафіку</string>
+    <string name="skip_silence_checkbox">Пропускати тихі проміжки</string>
     <string name="playback_step">Крок</string>
     <string name="playback_reset">Скинути</string>
     <string name="minimize_on_exit_title">Зменшити при перемкненні застосунку</string>
-    <string name="minimize_on_exit_summary">Дія при перемкненні до іншого застосунку з головного відеопрогравача — %s</string>
-    <string name="minimize_on_exit_none_description">Жодних</string>
-    <string name="minimize_on_exit_background_description">До тлового програвача</string>
-    <string name="minimize_on_exit_popup_description">Зменшити до віконного програвачу</string>
+    <string name="minimize_on_exit_summary">Дія при перемиканні до іншого застосунку з головного відеопрогравача — %s</string>
+    <string name="minimize_on_exit_none_description">Нічого</string>
+    <string name="minimize_on_exit_background_description">Зменшити до програвача у тлі</string>
+    <string name="minimize_on_exit_popup_description">Зменшити до програвача у вікні</string>
     <string name="channels">Канали</string>
     <string name="playlists">Списки відтворення</string>
     <string name="tracks">Треки</string>
     <string name="users">Користувачі</string>
-    <string name="list_view_mode">Вигляд списку</string>
+    <string name="list_view_mode">Режим перегляду списком</string>
     <string name="list">Список</string>
     <string name="grid">Сiтка</string>
     <string name="unsubscribe">Відписатися</string>
@@ -441,21 +441,21 @@
     <string name="permission_denied">Дію заборонено системою</string>
     <string name="download_failed">Помилка завантаження</string>
     <string name="download_finished">Завантаження завершено</string>
-    <string name="download_finished_more">Завантажень завершено: %s</string>
-    <string name="generate_unique_name">Створення унікального імені</string>
+    <string name="download_finished_more">%s завантажень завершено</string>
+    <string name="generate_unique_name">Згенерувати унікальне ім\'я</string>
     <string name="overwrite">Перезаписати</string>
-    <string name="overwrite_warning">Файл з таким іменем вже існує</string>
-    <string name="download_already_running">Файл з таким іменем вже завантажується</string>
+    <string name="overwrite_warning">Завантажений файл з таким ім\'ям вже існує</string>
+    <string name="download_already_running">Файл з таким ім\'ям вже завантажується</string>
     <string name="show_error">Показати помилку</string>
     <string name="label_code">Код</string>
-    <string name="error_path_creation">Не можливо створити файл</string>
-    <string name="error_file_creation">Не можливо створити теку призначення</string>
-    <string name="error_permission_denied">Не надано доступу системою</string>
+    <string name="error_path_creation">Файл не може бути створений</string>
+    <string name="error_file_creation">Цільова тека не може бути створена</string>
+    <string name="error_permission_denied">Доступ заборонено системою</string>
     <string name="error_ssl_exception">Захищене з\'єднання не встановлено</string>
     <string name="error_unknown_host">Сервер не знайдено</string>
     <string name="error_connect_host">Не вдалося з\'єднатися із сервером</string>
-    <string name="error_http_no_content">Не вдалося отримати дані з серверу</string>
-    <string name="error_http_unsupported_range">Сервер не підтримує завантаження на декілька потоків, спробуйте з параметром @string/msg_threads = 1</string>
+    <string name="error_http_no_content">Сервер не надсилає дані</string>
+    <string name="error_http_unsupported_range">Сервер не підтримує завантаження у декілька потоків, спробуйте з параметром @string/msg_threads = 1</string>
     <string name="error_http_not_found">Не знайдено</string>
     <string name="error_postprocessing_failed">Невдала пост-обробка</string>
     <string name="clear_finished_download">Очистити завершені завантаження</string>
