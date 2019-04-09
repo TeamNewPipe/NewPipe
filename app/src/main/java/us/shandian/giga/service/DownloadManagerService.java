@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -40,6 +41,7 @@ import org.schabi.newpipe.player.helper.LockManager;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.util.ArrayList;
 
 import us.shandian.giga.get.DownloadMission;
@@ -65,14 +67,15 @@ public class DownloadManagerService extends Service {
     private static final int DOWNLOADS_NOTIFICATION_ID = 1001;
 
     private static final String EXTRA_URLS = "DownloadManagerService.extra.urls";
-    private static final String EXTRA_PATH = "DownloadManagerService.extra.path";
     private static final String EXTRA_KIND = "DownloadManagerService.extra.kind";
     private static final String EXTRA_THREADS = "DownloadManagerService.extra.threads";
     private static final String EXTRA_POSTPROCESSING_NAME = "DownloadManagerService.extra.postprocessingName";
     private static final String EXTRA_POSTPROCESSING_ARGS = "DownloadManagerService.extra.postprocessingArgs";
     private static final String EXTRA_SOURCE = "DownloadManagerService.extra.source";
     private static final String EXTRA_NEAR_LENGTH = "DownloadManagerService.extra.nearLength";
-    private static final String EXTRA_MAIN_STORAGE_TAG = "DownloadManagerService.extra.tag";
+    private static final String EXTRA_PATH = "DownloadManagerService.extra.storagePath";
+    private static final String EXTRA_PARENT_PATH = "DownloadManagerService.extra.storageParentPath";
+    private static final String EXTRA_STORAGE_TAG = "DownloadManagerService.extra.storageTag";
 
     private static final String ACTION_RESET_DOWNLOAD_FINISHED = APPLICATION_ID + ".reset_download_finished";
     private static final String ACTION_OPEN_DOWNLOADS_FINISHED = APPLICATION_ID + ".open_downloads_finished";
@@ -136,7 +139,9 @@ public class DownloadManagerService extends Service {
             }
         };
 
-        mManager = new DownloadManager(this, mHandler);
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        mManager = new DownloadManager(this, mHandler, getVideoStorage(), getAudioStorage());
 
         Intent openDownloadListIntent = new Intent(this, DownloadActivity.class)
                 .setAction(Intent.ACTION_MAIN);
@@ -182,7 +187,6 @@ public class DownloadManagerService extends Service {
             registerReceiver(mNetworkStateListener, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
         }
 
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         mPrefs.registerOnSharedPreferenceChangeListener(mPrefChangeListener);
 
         handlePreferenceChange(mPrefs, getString(R.string.downloads_cross_network));
@@ -190,8 +194,6 @@ public class DownloadManagerService extends Service {
         handlePreferenceChange(mPrefs, getString(R.string.downloads_queue_limit));
 
         mLock = new LockManager(this);
-
-        setupStorageAPI(true);
     }
 
     @Override
@@ -347,11 +349,12 @@ public class DownloadManagerService extends Service {
         } else if (key.equals(getString(R.string.downloads_queue_limit))) {
             mManager.mPrefQueueLimit = prefs.getBoolean(key, true);
         } else if (key.equals(getString(R.string.downloads_storage_api))) {
-            setupStorageAPI(false);
+            mManager.mMainStorageVideo = loadMainStorage(getString(R.string.download_path_video_key), DownloadManager.TAG_VIDEO);
+            mManager.mMainStorageAudio = loadMainStorage(getString(R.string.download_path_audio_key), DownloadManager.TAG_AUDIO);
         } else if (key.equals(getString(R.string.download_path_video_key))) {
-            loadMainStorage(key, DownloadManager.TAG_VIDEO, false);
+            mManager.mMainStorageVideo = loadMainStorage(key, DownloadManager.TAG_VIDEO);
         } else if (key.equals(getString(R.string.download_path_audio_key))) {
-            loadMainStorage(key, DownloadManager.TAG_AUDIO, false);
+            mManager.mMainStorageAudio = loadMainStorage(key, DownloadManager.TAG_AUDIO);
         }
     }
 
@@ -387,36 +390,46 @@ public class DownloadManagerService extends Service {
         Intent intent = new Intent(context, DownloadManagerService.class);
         intent.setAction(Intent.ACTION_RUN);
         intent.putExtra(EXTRA_URLS, urls);
-        intent.putExtra(EXTRA_PATH, storage.getUri());
         intent.putExtra(EXTRA_KIND, kind);
         intent.putExtra(EXTRA_THREADS, threads);
         intent.putExtra(EXTRA_SOURCE, source);
         intent.putExtra(EXTRA_POSTPROCESSING_NAME, psName);
         intent.putExtra(EXTRA_POSTPROCESSING_ARGS, psArgs);
         intent.putExtra(EXTRA_NEAR_LENGTH, nearLength);
-        intent.putExtra(EXTRA_MAIN_STORAGE_TAG, storage.getTag());
+
+        intent.putExtra(EXTRA_PARENT_PATH, storage.getParentUri());
+        intent.putExtra(EXTRA_PATH, storage.getUri());
+        intent.putExtra(EXTRA_STORAGE_TAG, storage.getTag());
+
         context.startService(intent);
     }
 
-    public void startMission(Intent intent) {
+    private void startMission(Intent intent) {
         String[] urls = intent.getStringArrayExtra(EXTRA_URLS);
         Uri path = intent.getParcelableExtra(EXTRA_PATH);
+        Uri parentPath = intent.getParcelableExtra(EXTRA_PARENT_PATH);
         int threads = intent.getIntExtra(EXTRA_THREADS, 1);
         char kind = intent.getCharExtra(EXTRA_KIND, '?');
         String psName = intent.getStringExtra(EXTRA_POSTPROCESSING_NAME);
         String[] psArgs = intent.getStringArrayExtra(EXTRA_POSTPROCESSING_ARGS);
         String source = intent.getStringExtra(EXTRA_SOURCE);
         long nearLength = intent.getLongExtra(EXTRA_NEAR_LENGTH, 0);
-        String tag = intent.getStringExtra(EXTRA_MAIN_STORAGE_TAG);
+        String tag = intent.getStringExtra(EXTRA_STORAGE_TAG);
 
         StoredFileHelper storage;
         try {
-            storage = new StoredFileHelper(this, path, tag);
+            storage = new StoredFileHelper(this, parentPath, path, tag);
         } catch (IOException e) {
             throw new RuntimeException(e);// this never should happen
         }
 
-        final DownloadMission mission = new DownloadMission(urls, storage, kind, Postprocessing.getAlgorithm(psName, psArgs));
+        Postprocessing ps;
+        if (psName == null)
+            ps = null;
+        else
+            ps = Postprocessing.getAlgorithm(psName, psArgs, DownloadManager.pickAvailableCacheDir(this));
+
+        final DownloadMission mission = new DownloadMission(urls, storage, kind, ps);
         mission.threadCount = threads;
         mission.source = source;
         mission.nearLength = nearLength;
@@ -525,60 +538,63 @@ public class DownloadManagerService extends Service {
         mLockAcquired = acquire;
     }
 
-    private void setupStorageAPI(boolean acquire) {
-        loadMainStorage(getString(R.string.download_path_audio_key), DownloadManager.TAG_VIDEO, acquire);
-        loadMainStorage(getString(R.string.download_path_video_key), DownloadManager.TAG_AUDIO, acquire);
+    private StoredDirectoryHelper getVideoStorage() {
+        return loadMainStorage(getString(R.string.download_path_video_key), DownloadManager.TAG_VIDEO);
     }
 
-    void loadMainStorage(String prefKey, String tag, boolean acquire) {
+    private StoredDirectoryHelper getAudioStorage() {
+        return loadMainStorage(getString(R.string.download_path_audio_key), DownloadManager.TAG_AUDIO);
+    }
+
+
+    private StoredDirectoryHelper loadMainStorage(String prefKey, String tag) {
         String path = mPrefs.getString(prefKey, null);
 
         final String JAVA_IO = getString(R.string.downloads_storage_api_default);
         boolean useJavaIO = JAVA_IO.equals(mPrefs.getString(getString(R.string.downloads_storage_api), JAVA_IO));
 
         final String defaultPath;
-        if (tag.equals(DownloadManager.TAG_VIDEO))
-            defaultPath = Environment.DIRECTORY_MOVIES;
-        else// if (tag.equals(DownloadManager.TAG_AUDIO))
-            defaultPath = Environment.DIRECTORY_MUSIC;
-
-        StoredDirectoryHelper mainStorage;
-        if (path == null || path.isEmpty()) {
-            mainStorage = useJavaIO ? new StoredDirectoryHelper(defaultPath, tag) : null;
-        } else {
-
-            if (path.charAt(0) == File.separatorChar) {
-                Log.i(TAG, "Migrating old save path: " + path);
-
-                useJavaIO = true;
-                path = Uri.fromFile(new File(path)).toString();
-
-                mPrefs.edit().putString(prefKey, path).apply();
-            }
-
-            if (useJavaIO) {
-                mainStorage = new StoredDirectoryHelper(path, tag);
-            } else {
-
-                // tree api is not available in older versions
-                if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                    mainStorage = null;
-                } else {
-                    try {
-                        mainStorage = new StoredDirectoryHelper(this, Uri.parse(path), tag);
-                        if (acquire) mainStorage.acquirePermissions();
-                    } catch (IOException e) {
-                        Log.e(TAG, "Failed to load the storage of " + tag + " from path: " + path, e);
-                        mainStorage = null;
-                    }
-                }
-            }
+        switch (tag) {
+            case DownloadManager.TAG_VIDEO:
+                defaultPath = Environment.DIRECTORY_MOVIES;
+                break;
+            case DownloadManager.TAG_AUDIO:
+                defaultPath = Environment.DIRECTORY_MUSIC;
+                break;
+            default:
+                return null;
         }
 
-        if (tag.equals(DownloadManager.TAG_VIDEO))
-            mManager.mMainStorageVideo = mainStorage;
-        else// if (tag.equals(DownloadManager.TAG_AUDIO))
-            mManager.mMainStorageAudio = mainStorage;
+        if (path == null || path.isEmpty()) {
+            return useJavaIO ? new StoredDirectoryHelper(new File(defaultPath).toURI(), tag) : null;
+        }
+
+        if (path.charAt(0) == File.separatorChar) {
+            Log.i(TAG, "Migrating old save path: " + path);
+
+            useJavaIO = true;
+            path = Uri.fromFile(new File(path)).toString();
+
+            mPrefs.edit().putString(prefKey, path).apply();
+        }
+
+        boolean override = path.startsWith(ContentResolver.SCHEME_FILE) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
+        if (useJavaIO || override) {
+            return new StoredDirectoryHelper(URI.create(path), tag);
+        }
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            return null;// SAF Directory API is not available in older versions
+        }
+
+        try {
+            return new StoredDirectoryHelper(this, Uri.parse(path), tag);
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to load the storage of " + tag + " from " + path, e);
+            Toast.makeText(this, R.string.no_available_dir, Toast.LENGTH_LONG).show();
+        }
+
+        return null;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////

@@ -35,7 +35,7 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
     /**
      * The table name of download missions
      */
-    private static final String FINISHED_MISSIONS_TABLE_NAME = "finished_missions";
+    private static final String FINISHED_TABLE_NAME = "finished_missions";
 
     /**
      * The key to the urls of a mission
@@ -58,7 +58,7 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
      * The statement to create the table
      */
     private static final String MISSIONS_CREATE_TABLE =
-            "CREATE TABLE " + FINISHED_MISSIONS_TABLE_NAME + " (" +
+            "CREATE TABLE " + FINISHED_TABLE_NAME + " (" +
                     KEY_PATH + " TEXT NOT NULL, " +
                     KEY_SOURCE + " TEXT NOT NULL, " +
                     KEY_DONE + " INTEGER NOT NULL, " +
@@ -111,7 +111,7 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
                             )
                     ).toString());
 
-                    db.insert(FINISHED_MISSIONS_TABLE_NAME, null, values);
+                    db.insert(FINISHED_TABLE_NAME, null, values);
                 }
                 db.setTransactionSuccessful();
                 db.endTransaction();
@@ -154,10 +154,10 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
         mission.kind = kind.charAt(0);
 
         try {
-            mission.storage = new StoredFileHelper(context, Uri.parse(path), "");
+            mission.storage = new StoredFileHelper(context,null, Uri.parse(path), "");
         } catch (Exception e) {
             Log.e("FinishedMissionStore", "failed to load the storage path of: " + path, e);
-            mission.storage = new StoredFileHelper(path, "", "");
+            mission.storage = new StoredFileHelper(null, path, "", "");
         }
 
         return mission;
@@ -170,7 +170,7 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
 
     public ArrayList<FinishedMission> loadFinishedMissions() {
         SQLiteDatabase database = getReadableDatabase();
-        Cursor cursor = database.query(FINISHED_MISSIONS_TABLE_NAME, null, null,
+        Cursor cursor = database.query(FINISHED_TABLE_NAME, null, null,
                 null, null, null, KEY_TIMESTAMP + " DESC");
 
         int count = cursor.getCount();
@@ -188,33 +188,47 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
         if (downloadMission == null) throw new NullPointerException("downloadMission is null");
         SQLiteDatabase database = getWritableDatabase();
         ContentValues values = getValuesOfMission(downloadMission);
-        database.insert(FINISHED_MISSIONS_TABLE_NAME, null, values);
+        database.insert(FINISHED_TABLE_NAME, null, values);
     }
 
     public void deleteMission(Mission mission) {
         if (mission == null) throw new NullPointerException("mission is null");
-        String path = mission.getDownloadedFileUri().toString();
+        String ts = String.valueOf(mission.timestamp);
 
         SQLiteDatabase database = getWritableDatabase();
 
-        if (mission instanceof FinishedMission)
-            database.delete(FINISHED_MISSIONS_TABLE_NAME, KEY_TIMESTAMP + " = ?, " + KEY_PATH + " = ?", new String[]{path});
-        else
+        if (mission instanceof FinishedMission) {
+            if (mission.storage.isInvalid()) {
+                database.delete(FINISHED_TABLE_NAME, KEY_TIMESTAMP + " = ?", new String[]{ts});
+            } else {
+                database.delete(FINISHED_TABLE_NAME, KEY_TIMESTAMP + " = ? AND " + KEY_PATH + " = ?", new String[]{
+                        ts, mission.storage.getUri().toString()
+                });
+            }
+        } else {
             throw new UnsupportedOperationException("DownloadMission");
+        }
     }
 
     public void updateMission(Mission mission) {
         if (mission == null) throw new NullPointerException("mission is null");
         SQLiteDatabase database = getWritableDatabase();
         ContentValues values = getValuesOfMission(mission);
-        String path = mission.getDownloadedFileUri().toString();
+        String ts = String.valueOf(mission.timestamp);
 
         int rowsAffected;
 
-        if (mission instanceof FinishedMission)
-            rowsAffected = database.update(FINISHED_MISSIONS_TABLE_NAME, values, KEY_PATH + " = ?", new String[]{path});
-        else
+        if (mission instanceof FinishedMission) {
+            if (mission.storage.isInvalid()) {
+                rowsAffected = database.update(FINISHED_TABLE_NAME, values, KEY_TIMESTAMP + " = ?", new String[]{ts});
+            } else {
+                rowsAffected = database.update(FINISHED_TABLE_NAME, values, KEY_PATH + " = ?", new String[]{
+                        mission.storage.getUri().toString()
+                });
+            }
+        } else {
             throw new UnsupportedOperationException("DownloadMission");
+        }
 
         if (rowsAffected != 1) {
             Log.e("FinishedMissionStore", "Expected 1 row to be affected by update but got " + rowsAffected);

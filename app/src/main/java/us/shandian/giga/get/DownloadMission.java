@@ -2,7 +2,6 @@ package us.shandian.giga.get;
 
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import java.io.File;
@@ -86,7 +85,7 @@ public class DownloadMission extends Mission {
     /**
      * the post-processing algorithm instance
      */
-    public transient Postprocessing psAlgorithm;
+    public Postprocessing psAlgorithm;
 
     /**
      * The current resource to download, see {@code urls[current]} and {@code offsets[current]}
@@ -483,7 +482,7 @@ public class DownloadMission extends Mission {
         if (init != null && Thread.currentThread() != init && init.isAlive()) {
             init.interrupt();
             synchronized (blockState) {
-                resetState();
+                resetState(false, true, ERROR_NOTHING);
             }
             return;
         }
@@ -525,10 +524,18 @@ public class DownloadMission extends Mission {
         return res;
     }
 
-    void resetState() {
+
+    /**
+     * Resets the mission state
+     *
+     * @param rollback       {@code true} true to forget all progress, otherwise, {@code false}
+     * @param persistChanges {@code true} to commit changes to the metadata file, otherwise, {@code false}
+     */
+    public void resetState(boolean rollback, boolean persistChanges, int errorCode) {
         done = 0;
         blocks = -1;
-        errCode = ERROR_NOTHING;
+        errCode = errorCode;
+        errObject = null;
         fallback = false;
         unknownLength = false;
         finishCount = 0;
@@ -537,7 +544,10 @@ public class DownloadMission extends Mission {
         blockState.clear();
         threads = new Thread[0];
 
-        Utility.writeToFile(metadata, DownloadMission.this);
+        if (rollback) current = 0;
+
+        if (persistChanges)
+            Utility.writeToFile(metadata, DownloadMission.this);
     }
 
     private void initializer() {
@@ -634,32 +644,21 @@ public class DownloadMission extends Mission {
     }
 
     /**
-     * changes the StoredFileHelper for another and saves the changes to the metadata file
-     *
-     * @param newStorage the new StoredFileHelper instance to use
-     */
-    public void changeStorage(@NonNull StoredFileHelper newStorage) {
-        storage = newStorage;
-        // commit changes on the metadata file
-        runAsync(-2, this::writeThisToFile);
-    }
-
-    /**
      * Indicates whatever the backed storage is invalid
      *
      * @return {@code true}, if storage is invalid and cannot be used
      */
     public boolean hasInvalidStorage() {
-        return errCode == ERROR_PROGRESS_LOST || storage == null || storage.isInvalid();
+        return errCode == ERROR_PROGRESS_LOST || storage == null || storage.isInvalid() || !storage.existsAsFile();
     }
 
     /**
      * Indicates whatever is possible to start the mission
      *
-     * @return {@code true} is this mission is "sane", otherwise, {@code false}
+     * @return {@code true} is this mission its "healthy", otherwise, {@code false}
      */
-    public boolean canDownload() {
-        return !(isPsFailed() || errCode == ERROR_POSTPROCESSING_HOLD) && !isFinished() && !hasInvalidStorage();
+    public boolean isCorrupt() {
+        return (isPsFailed() || errCode == ERROR_POSTPROCESSING_HOLD) || isFinished() || hasInvalidStorage();
     }
 
     private boolean doPostprocessing() {

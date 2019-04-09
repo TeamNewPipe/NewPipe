@@ -41,7 +41,9 @@ import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.NavigationHelper;
 
+import java.io.File;
 import java.lang.ref.WeakReference;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -346,7 +348,7 @@ public class MissionAdapter extends Adapter<ViewHolder> {
             uri = FileProvider.getUriForFile(
                     mContext,
                     BuildConfig.APPLICATION_ID + ".provider",
-                    mission.storage.getIOFile()
+                    new File(URI.create(mission.storage.getUri().toString()))
             );
         } else {
             uri = mission.storage.getUri();
@@ -384,10 +386,18 @@ public class MissionAdapter extends Adapter<ViewHolder> {
     }
 
     private static String resolveMimeType(@NonNull Mission mission) {
+        String mimeType;
+
+        if (!mission.storage.isInvalid()) {
+            mimeType = mission.storage.getType();
+            if (mimeType != null && mimeType.length() > 0 && !mimeType.equals(StoredFileHelper.DEFAULT_MIME))
+                return mimeType;
+        }
+
         String ext = Utility.getFileExt(mission.storage.getName());
         if (ext == null) return DEFAULT_MIME_TYPE;
 
-        String mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(ext.substring(1));
+        mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(ext.substring(1));
 
         return mimeType == null ? DEFAULT_MIME_TYPE : mimeType;
     }
@@ -476,6 +486,7 @@ public class MissionAdapter extends Adapter<ViewHolder> {
                 return;
             case ERROR_PROGRESS_LOST:
                 msg = R.string.error_progress_lost;
+                break;
             default:
                 if (mission.errCode >= 100 && mission.errCode < 600) {
                     msgEx = "HTTP " + mission.errCode;
@@ -554,7 +565,12 @@ public class MissionAdapter extends Adapter<ViewHolder> {
                     return true;
                 case R.id.retry:
                     if (mission.hasInvalidStorage()) {
-                        mRecover.tryRecover(mission);
+                        mDownloadManager.tryRecover(mission);
+                        if (mission.storage.isInvalid())
+                            mRecover.tryRecover(mission);
+                        else
+                            recoverMission(mission);
+
                         return true;
                     }
                     mission.psContinue(true);
@@ -672,13 +688,12 @@ public class MissionAdapter extends Adapter<ViewHolder> {
         if (mDeleter != null) mDeleter.resume();
     }
 
-    public void recoverMission(DownloadMission mission, StoredFileHelper newStorage) {
+    public void recoverMission(DownloadMission mission) {
         for (ViewHolderItem h : mPendingDownloadsItems) {
             if (mission != h.item.mission) continue;
 
-            mission.changeStorage(newStorage);
-            mission.errCode = DownloadMission.ERROR_NOTHING;
             mission.errObject = null;
+            mission.resetState(true, false, DownloadMission.ERROR_NOTHING);
 
             h.status.setText(UNDEFINED_PROGRESS);
             h.state = -1;
@@ -822,9 +837,9 @@ public class MissionAdapter extends Adapter<ViewHolder> {
 
             if (mission != null) {
                 if (mission.hasInvalidStorage()) {
-                    retry.setEnabled(true);
-                    delete.setEnabled(true);
-                    showError.setEnabled(true);
+                    retry.setVisible(true);
+                    delete.setVisible(true);
+                    showError.setVisible(true);
                 } else if (mission.isPsRunning()) {
                     switch (mission.errCode) {
                         case ERROR_INSUFFICIENT_STORAGE:

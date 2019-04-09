@@ -16,6 +16,8 @@ public class DataReader {
     public final static int INTEGER_SIZE = 4;
     public final static int FLOAT_SIZE = 4;
 
+    private final static int BUFFER_SIZE = 128 * 1024;// 128 KiB
+
     private long position = 0;
     private final SharpStream stream;
 
@@ -229,7 +231,7 @@ public class DataReader {
         }
     }
 
-    private final byte[] readBuffer = new byte[8 * 1024];
+    private final byte[] readBuffer = new byte[BUFFER_SIZE];
     private int readOffset;
     private int readCount;
 

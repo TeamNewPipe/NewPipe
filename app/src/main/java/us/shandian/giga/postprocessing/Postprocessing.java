@@ -8,6 +8,7 @@ import org.schabi.newpipe.streams.io.SharpStream;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 
 import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.io.ChunkFileInputStream;
@@ -19,7 +20,7 @@ import static us.shandian.giga.get.DownloadMission.ERROR_NOTHING;
 import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING_HOLD;
 import static us.shandian.giga.get.DownloadMission.ERROR_UNKNOWN_EXCEPTION;
 
-public abstract class Postprocessing {
+public abstract class Postprocessing implements Serializable {
 
     static transient final byte OK_RESULT = ERROR_NOTHING;
 
@@ -28,12 +29,10 @@ public abstract class Postprocessing {
     public transient static final String ALGORITHM_MP4_FROM_DASH_MUXER = "mp4D-mp4";
     public transient static final String ALGORITHM_M4A_NO_DASH = "mp4D-m4a";
 
-    public static Postprocessing getAlgorithm(String algorithmName, String[] args) {
+    public static Postprocessing getAlgorithm(@NonNull String algorithmName, String[] args, @NonNull File cacheDir) {
         Postprocessing instance;
 
-        if (null == algorithmName) {
-            throw new NullPointerException("algorithmName");
-        } else switch (algorithmName) {
+        switch (algorithmName) {
             case ALGORITHM_TTML_CONVERTER:
                 instance = new TtmlConverter();
                 break;
@@ -47,13 +46,14 @@ public abstract class Postprocessing {
                 instance = new M4aNoDash();
                 break;
             /*case "example-algorithm":
-                instance = new ExampleAlgorithm(mission);*/
+                instance = new ExampleAlgorithm();*/
             default:
                 throw new RuntimeException("Unimplemented post-processing algorithm: " + algorithmName);
         }
 
         instance.args = args;
-        instance.name = algorithmName;
+        instance.name = algorithmName;// for debug only, maybe remove this field in the future
+        instance.cacheDir = cacheDir;
 
         return instance;
     }
@@ -125,7 +125,6 @@ public abstract class Postprocessing {
                         return -1;
                     };
 
-                    // TODO: use Context.getCache() for this operation
                     temp = new File(cacheDir, mission.storage.getName() + ".tmp");
 
                     out = new CircularFileWriter(mission.storage.getStream(), temp, checker);

@@ -9,6 +9,7 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.schabi.newpipe.R;
@@ -81,6 +82,7 @@ public class Utility {
             objectInputStream = new ObjectInputStream(new FileInputStream(file));
             object = (T) objectInputStream.readObject();
         } catch (Exception e) {
+            Log.e("Utility", "Failed to deserialize the object", e);
             object = null;
         }
 

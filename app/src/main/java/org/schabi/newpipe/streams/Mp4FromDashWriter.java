@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 
 /**
- *
  * @author kapodamy
  */
 public class Mp4FromDashWriter {
@@ -262,12 +261,12 @@ public class Mp4FromDashWriter {
         final int ftyp_size = make_ftyp();
 
         // reserve moov space in the output stream
-        if (outStream.canSetLength()) {
+        /*if (outStream.canSetLength()) {
             long length = writeOffset + auxSize;
             outStream.setLength(length);
             outSeek(length);
-        } else {
-            // hard way
+        } else {*/
+        if (auxSize > 0) {
             int length = auxSize;
             byte[] buffer = new byte[8 * 1024];// 8 KiB
             while (length > 0) {
@@ -276,6 +275,7 @@ public class Mp4FromDashWriter {
                 length -= count;
             }
         }
+
         if (auxBuffer == null) {
             outSeek(ftyp_size);
         }

@@ -1,6 +1,5 @@
 package us.shandian.giga.get;
 
-import android.net.Uri;
 import android.support.annotation.NonNull;
 
 import java.io.Serializable;
@@ -37,22 +36,13 @@ public abstract class Mission implements Serializable {
     public StoredFileHelper storage;
 
     /**
-     * get the target file on the storage
-     *
-     * @return File object
-     */
-    public Uri getDownloadedFileUri() {
-        return storage.getUri();
-    }
-
-    /**
      * Delete the downloaded file
      *
      * @return {@code true] if and only if the file is successfully deleted, otherwise, {@code false}
      */
     public boolean delete() {
         if (storage != null) return storage.delete();
-        return  true;
+        return true;
     }
 
     /**
@@ -65,6 +55,6 @@ public abstract class Mission implements Serializable {
     public String toString() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(timestamp);
-        return "[" + calendar.getTime().toString() + "] " + getDownloadedFileUri().getPath();
+        return "[" + calendar.getTime().toString() + "] " + (storage.isInvalid() ? storage.getName() : storage.getUri());
     }
 }

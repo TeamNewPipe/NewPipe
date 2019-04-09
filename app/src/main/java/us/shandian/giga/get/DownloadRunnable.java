@@ -137,6 +137,10 @@ public class DownloadRunnable extends Thread {
                     mMission.setThreadBytePosition(mId, total);// download paused, save progress for this block
 
             } catch (Exception e) {
+                if (DEBUG) {
+                    Log.d(TAG, mId + ": position=" + blockPosition + " total=" + total + " stopped due exception", e);
+                }
+
                 mMission.setThreadBytePosition(mId, total);
 
                 if (!mMission.running || e instanceof ClosedByInterruptException) break;
@@ -144,10 +148,6 @@ public class DownloadRunnable extends Thread {
                 if (retryCount++ >= mMission.maxRetry) {
                     mMission.notifyError(e);
                     break;
-                }
-
-                if (DEBUG) {
-                    Log.d(TAG, mId + ":position " + blockPosition + " retrying due exception", e);
                 }
 
                 retry = true;

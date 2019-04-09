@@ -12,7 +12,7 @@ public class CircularFileWriter extends SharpStream {
 
     private final static int QUEUE_BUFFER_SIZE = 8 * 1024;// 8 KiB
     private final static int NOTIFY_BYTES_INTERVAL = 64 * 1024;// 64 KiB
-    private final static int THRESHOLD_AUX_LENGTH = 3 * 1024 * 1024;// 3 MiB
+    private final static int THRESHOLD_AUX_LENGTH = 15 * 1024 * 1024;// 15 MiB
 
     private OffsetChecker callback;
 
@@ -44,39 +44,82 @@ public class CircularFileWriter extends SharpStream {
         reportPosition = NOTIFY_BYTES_INTERVAL;
     }
 
-    private void flushAuxiliar() throws IOException {
+    private void flushAuxiliar(long amount) throws IOException {
         if (aux.length < 1) {
             return;
         }
 
-        boolean underflow = out.getOffset() >= out.length;
-
         out.flush();
         aux.flush();
+
+        boolean underflow = aux.offset < aux.length || out.offset < out.length;
 
         aux.target.seek(0);
         out.target.seek(out.length);
 
-        long length = aux.length;
-        out.length += aux.length;
-
+        long length = amount;
         while (length > 0) {
             int read = (int) Math.min(length, Integer.MAX_VALUE);
             read = aux.target.read(aux.queue, 0, Math.min(read, aux.queue.length));
+
+            if (read < 1) {
+                amount -= length;
+                break;
+            }
 
             out.writeProof(aux.queue, read);
             length -= read;
         }
 
         if (underflow) {
-            out.offset += aux.offset;
-            out.target.seek(out.offset);
+            if (out.offset >= out.length) {
+                // calculate the aux underflow pointer
+                if (aux.offset < amount) {
+                    out.offset += aux.offset;
+                    aux.offset = 0;
+                    out.target.seek(out.offset);
+                } else {
+                    aux.offset -= amount;
+                    out.offset = out.length + amount;
+                }
+            } else {
+                aux.offset = 0;
+            }
         } else {
-            out.offset = out.length;
+            out.offset += amount;
+            aux.offset -= amount;
         }
+
+        out.length += amount;
 
         if (out.length > maxLengthKnown) {
             maxLengthKnown = out.length;
+        }
+
+        if (amount < aux.length) {
+            // move the excess data to the beginning of the file
+            long readOffset = amount;
+            long writeOffset = 0;
+            byte[] buffer = new byte[128 * 1024]; // 128 KiB
+
+            aux.length -= amount;
+            length = aux.length;
+            while (length > 0) {
+                int read = (int) Math.min(length, Integer.MAX_VALUE);
+                read = aux.target.read(buffer, 0, Math.min(read, buffer.length));
+
+                aux.target.seek(writeOffset);
+                aux.writeProof(buffer, read);
+
+                writeOffset += read;
+                readOffset += read;
+                length -= read;
+
+                aux.target.seek(readOffset);
+            }
+
+            aux.target.setLength(aux.length);
+            return;
         }
 
         if (aux.length > THRESHOLD_AUX_LENGTH) {
@@ -94,7 +137,7 @@ public class CircularFileWriter extends SharpStream {
      * @throws IOException if an I/O error occurs
      */
     public long finalizeFile() throws IOException {
-        flushAuxiliar();
+        flushAuxiliar(aux.length);
 
         out.flush();
 
@@ -148,7 +191,7 @@ public class CircularFileWriter extends SharpStream {
         if (end == -1) {
             available = Integer.MAX_VALUE;
         } else if (end < offsetOut) {
-            throw new IOException("The reported offset is invalid: " + String.valueOf(offsetOut));
+            throw new IOException("The reported offset is invalid: " + end + "<" + offsetOut);
         } else {
             available = end - offsetOut;
         }
@@ -167,16 +210,10 @@ public class CircularFileWriter extends SharpStream {
                 length = aux.length + len;
             }
 
-            if (length > available || length < THRESHOLD_AUX_LENGTH) {
-                aux.write(b, off, len);
-            } else {
-                if (underflow) {
-                    aux.write(b, off, len);
-                    flushAuxiliar();
-                } else {
-                    flushAuxiliar();
-                    out.write(b, off, len);// write directly on the output
-                }
+            aux.write(b, off, len);
+
+            if (length >= THRESHOLD_AUX_LENGTH && length <= available) {
+                flushAuxiliar(available);
             }
         } else {
             if (underflow) {
@@ -234,8 +271,13 @@ public class CircularFileWriter extends SharpStream {
     @Override
     public void seek(long offset) throws IOException {
         long total = out.length + aux.length;
+
         if (offset == total) {
-            return;// nothing to do
+            // do not ignore the seek offset if a underflow exists
+            long relativeOffset = out.getOffset() + aux.getOffset();
+            if (relativeOffset == total) {
+                return;
+            }
         }
 
         // flush everything, avoid any underflow
@@ -409,6 +451,9 @@ public class CircularFileWriter extends SharpStream {
         }
 
         protected void seek(long absoluteOffset) throws IOException {
+            if (absoluteOffset == offset) {
+                return;// nothing to do
+            }
             offset = absoluteOffset;
             target.seek(absoluteOffset);
         }

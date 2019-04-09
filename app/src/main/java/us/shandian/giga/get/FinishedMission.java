@@ -12,5 +12,7 @@ public class FinishedMission extends  Mission {
         length = mission.length;// ¿or mission.done?
         timestamp = mission.timestamp;
         kind = mission.kind;
+        storage = mission.storage;
+
     }
 }

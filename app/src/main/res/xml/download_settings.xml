@@ -5,12 +5,6 @@
     android:title="@string/settings_category_downloads_title">
 
 
-    <Preference
-        app:iconSpaceReserved="false"
-        android:key="saf_test"
-        android:summary="Realiza una prueba del Storage Access Framework de Android"
-        android:title="Probar SAF"/>
-
     <ListPreference
         app:iconSpaceReserved="false"
         android:defaultValue="@string/downloads_storage_api_default"

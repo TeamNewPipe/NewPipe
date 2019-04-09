@@ -442,8 +442,8 @@ abrir en modo popup</string>
     <!-- message dialog about download error -->
     <string name="show_error">Mostrar error</string>
     <string name="label_code">Codigo</string>
-    <string name="error_file_creation">No se puede crear la carpeta de destino</string>
-    <string name="error_path_creation">No se puede crear el archivo</string>
+    <string name="error_file_creation">No se puede crear el archivo</string>
+    <string name="error_path_creation">No se puede crear la carpeta de destino</string>
     <string name="error_permission_denied">Permiso denegado por el sistema</string>
     <string name="error_ssl_exception">Fallo la conexión segura</string>
     <string name="error_unknown_host">No se pudo encontrar el servidor</string>

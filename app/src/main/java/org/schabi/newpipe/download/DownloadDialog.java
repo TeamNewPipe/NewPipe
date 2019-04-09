@@ -15,12 +15,13 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.provider.DocumentFile;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.view.menu.ActionMenuItemView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -177,9 +178,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
             return;
         }
 
-        final Context context = getContext();
-        if (context == null)
-            throw new RuntimeException("Context was null");
+        context = getContext();
 
         setStyle(STYLE_NO_TITLE, ThemeHelper.getDialogTheme(context));
         Icepick.restoreInstanceState(this, savedInstanceState);
@@ -321,11 +320,15 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
                 showFailedDialog(R.string.general_error);
                 return;
             }
-            try {
-                continueSelectedDownload(new StoredFileHelper(getContext(), data.getData(), ""));
-            } catch (IOException e) {
-                showErrorActivity(e);
+
+            DocumentFile docFile = DocumentFile.fromSingleUri(context, data.getData());
+            if (docFile == null) {
+                showFailedDialog(R.string.general_error);
+                return;
             }
+
+            // check if the selected file was previously used
+            checkSelectedDownload(null, data.getData(), docFile.getName(), docFile.getType());
         }
     }
 
@@ -337,14 +340,14 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         if (DEBUG) Log.d(TAG, "initToolbar() called with: toolbar = [" + toolbar + "]");
 
         boolean isLight = ThemeHelper.isLightThemeSelected(getActivity());
-        okButton = toolbar.findViewById(R.id.okay);
-        okButton.setEnabled(false);// disable until the download service connection is done
 
         toolbar.setTitle(R.string.download_dialog_title);
         toolbar.setNavigationIcon(isLight ? R.drawable.ic_arrow_back_black_24dp : R.drawable.ic_arrow_back_white_24dp);
         toolbar.inflateMenu(R.menu.dialog_url);
         toolbar.setNavigationOnClickListener(v -> getDialog().dismiss());
 
+        okButton = toolbar.findViewById(R.id.okay);
+        okButton.setEnabled(false);// disable until the download service connection is done
 
         toolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.okay) {
@@ -504,15 +507,17 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     StoredDirectoryHelper mainStorageAudio = null;
     StoredDirectoryHelper mainStorageVideo = null;
     DownloadManager downloadManager = null;
-
-    MenuItem okButton = null;
+    ActionMenuItemView okButton = null;
+    Context context;
 
     private String getNameEditText() {
-        return nameEditText.getText().toString().trim();
+        String str = nameEditText.getText().toString().trim();
+
+        return FilenameUtils.createFilename(context, str.isEmpty() ? currentInfo.getName() : str);
     }
 
     private void showFailedDialog(@StringRes int msg) {
-        new AlertDialog.Builder(getContext())
+        new AlertDialog.Builder(context)
                 .setMessage(msg)
                 .setNegativeButton(android.R.string.ok, null)
                 .create()
@@ -521,7 +526,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
 
     private void showErrorActivity(Exception e) {
         ErrorActivity.reportError(
-                getContext(),
+                context,
                 Collections.singletonList(e),
                 null,
                 null,
@@ -530,18 +535,14 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     }
 
     private void prepareSelectedDownload() {
-        final Context context = getContext();
         StoredDirectoryHelper mainStorage;
         MediaFormat format;
         String mime;
 
         // first, build the filename and get the output folder (if possible)
+        // later, run a very very very large file checking logic
 
-        String filename = getNameEditText() + ".";
-        if (filename.isEmpty()) {
-            filename = FilenameUtils.createFilename(context, currentInfo.getName());
-        }
-        filename += ".";
+        String filename = getNameEditText().concat(".");
 
         switch (radioStreamsGroup.getCheckedRadioButtonId()) {
             case R.id.audio_button:
@@ -567,34 +568,33 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         }
 
         if (mainStorage == null) {
-            // this part is called if...
-            //                          older android version running with SAF preferred
-            //                          save path not defined (via download settings)
+            // This part is called if with SAF preferred:
+            //  * older android version running
+            //  * save path not defined (via download settings)
 
             StoredFileHelper.requestSafWithFileCreation(this, REQUEST_DOWNLOAD_PATH_SAF, filename, mime);
             return;
         }
 
         // check for existing file with the same name
-        Uri result = mainStorage.findFile(filename);
+        checkSelectedDownload(mainStorage, mainStorage.findFile(filename), filename, mime);
+    }
 
-        if (result == null) {
-            // the file does not exists, create
-            StoredFileHelper storage = mainStorage.createFile(filename, mime);
-            if (storage == null || !storage.canWrite()) {
-                showFailedDialog(R.string.error_file_creation);
-                return;
-            }
-
-            continueSelectedDownload(storage);
-            return;
-        }
-
-        // the target filename is already use, try load
+    private void checkSelectedDownload(StoredDirectoryHelper mainStorage, Uri targetFile, String filename, String mime) {
         StoredFileHelper storage;
+
         try {
-            storage = new StoredFileHelper(context, result, mime);
-        } catch (IOException e) {
+            if (mainStorage == null) {
+                // using SAF on older android version
+                storage = new StoredFileHelper(context, null, targetFile, "");
+            } else if (targetFile == null) {
+                // the file does not exist, but it is probably used in a pending download
+                storage = new StoredFileHelper(mainStorage.getUri(), filename, mime, mainStorage.getTag());
+            } else {
+                // the target filename is already use, attempt to use it
+                storage = new StoredFileHelper(context, mainStorage.getUri(), targetFile, mainStorage.getTag());
+            }
+        } catch (Exception e) {
             showErrorActivity(e);
             return;
         }
@@ -618,6 +618,25 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
                 msgBody = R.string.download_already_running;
                 break;
             case None:
+                if (mainStorage == null) {
+                    // This part is called if:
+                    // * using SAF on older android version
+                    // * save path not defined
+                    continueSelectedDownload(storage);
+                    return;
+                } else if (targetFile == null) {
+                    // This part is called if:
+                    // * the filename is not used in a pending/finished download
+                    // * the file does not exists, create
+                    storage = mainStorage.createFile(filename, mime);
+                    if (storage == null || !storage.canWrite()) {
+                        showFailedDialog(R.string.error_file_creation);
+                        return;
+                    }
+
+                    continueSelectedDownload(storage);
+                    return;
+                }
                 msgBtn = R.string.overwrite;
                 msgBody = R.string.overwrite_unrelated_warning;
                 break;
@@ -625,49 +644,73 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
                 return;
         }
 
-        // handle user answer (overwrite or create another file with different name)
-        final String finalFilename = filename;
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(R.string.download_dialog_title)
-                .setMessage(msgBody)
-                .setPositiveButton(msgBtn, (dialog, which) -> {
-                    dialog.dismiss();
 
-                    StoredFileHelper storageNew;
-                    switch (state) {
-                        case Finished:
-                        case Pending:
-                            downloadManager.forgetMission(storage);
-                        case None:
-                            // try take (or steal) the file permissions
-                            try {
-                                storageNew = new StoredFileHelper(context, result, mainStorage.getTag());
-                                if (storageNew.canWrite())
-                                    continueSelectedDownload(storageNew);
-                                else
-                                    showFailedDialog(R.string.error_file_creation);
-                            } catch (IOException e) {
-                                showErrorActivity(e);
-                            }
-                            break;
-                        case PendingRunning:
-                            // FIXME: createUniqueFile() is not tested properly
-                            storageNew = mainStorage.createUniqueFile(finalFilename, mime);
-                            if (storageNew == null)
-                                showFailedDialog(R.string.error_file_creation);
-                            else
-                                continueSelectedDownload(storageNew);
-                            break;
+        AlertDialog.Builder askDialog = new AlertDialog.Builder(context)
+                .setTitle(R.string.download_dialog_title)
+                .setMessage(msgBody)
+                .setNegativeButton(android.R.string.cancel, null);
+        final StoredFileHelper finalStorage = storage;
+
+
+        if (mainStorage == null) {
+            // This part is called if:
+            // * using SAF on older android version
+            // * save path not defined
+            switch (state) {
+                case Pending:
+                case Finished:
+                    askDialog.setPositiveButton(msgBtn, (dialog, which) -> {
+                        dialog.dismiss();
+                        downloadManager.forgetMission(finalStorage);
+                        continueSelectedDownload(finalStorage);
+                    });
+                    break;
+            }
+
+            askDialog.create().show();
+            return;
+        }
+
+        askDialog.setPositiveButton(msgBtn, (dialog, which) -> {
+            dialog.dismiss();
+
+            StoredFileHelper storageNew;
+            switch (state) {
+                case Finished:
+                case Pending:
+                    downloadManager.forgetMission(finalStorage);
+                case None:
+                    if (targetFile == null) {
+                        storageNew = mainStorage.createFile(filename, mime);
+                    } else {
+                        try {
+                            // try take (or steal) the file
+                            storageNew = new StoredFileHelper(context, mainStorage.getUri(), targetFile, mainStorage.getTag());
+                        } catch (IOException e) {
+                            Log.e(TAG, "Failed to take (or steal) the file in " + targetFile.toString());
+                            storageNew = null;
+                        }
                     }
-                })
-                .setNegativeButton(android.R.string.cancel, null)
-                .create()
-                .show();
+
+                    if (storageNew != null && storageNew.canWrite())
+                        continueSelectedDownload(storageNew);
+                    else
+                        showFailedDialog(R.string.error_file_creation);
+                    break;
+                case PendingRunning:
+                    storageNew = mainStorage.createUniqueFile(filename, mime);
+                    if (storageNew == null)
+                        showFailedDialog(R.string.error_file_creation);
+                    else
+                        continueSelectedDownload(storageNew);
+                    break;
+            }
+        });
+
+        askDialog.create().show();
     }
 
     private void continueSelectedDownload(@NonNull StoredFileHelper storage) {
-        final Context context = getContext();
-
         if (!storage.canWrite()) {
             showFailedDialog(R.string.permission_denied);
             return;
@@ -678,7 +721,6 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
             if (storage.length() > 0) storage.truncate();
         } catch (IOException e) {
             Log.e(TAG, "failed to overwrite the file: " + storage.getUri().toString(), e);
-            //showErrorActivity(e);
             showFailedDialog(R.string.overwrite_failed);
             return;
         }
@@ -748,7 +790,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         if (secondaryStreamUrl == null) {
             urls = new String[]{selectedStream.getUrl()};
         } else {
-            urls = new String[]{selectedStream.getUrl(), secondaryStreamUrl};
+            urls = new String[]{secondaryStreamUrl, selectedStream.getUrl()};
         }
 
         DownloadManagerService.startMission(context, urls, storage, kind, threads, currentInfo.getUrl(), psName, psArgs, nearLength);

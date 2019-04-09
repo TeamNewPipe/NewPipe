@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -66,14 +67,7 @@ public class MissionsFragment extends Fragment {
             mAdapter = new MissionAdapter(mContext, mBinder.getDownloadManager(), mEmpty);
             mAdapter.deleterLoad(getView());
 
-            mAdapter.setRecover(mission ->
-                    StoredFileHelper.requestSafWithFileCreation(
-                            MissionsFragment.this,
-                            REQUEST_DOWNLOAD_PATH_SAF,
-                            mission.storage.getName(),
-                            mission.storage.getType()
-                    )
-            );
+            mAdapter.setRecover(MissionsFragment.this::recoverMission);
 
             setAdapterButtons();
 
@@ -92,7 +86,7 @@ public class MissionsFragment extends Fragment {
     };
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.missions, container, false);
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -239,8 +233,18 @@ public class MissionsFragment extends Fragment {
         mAdapter.setMasterButtons(mStart, mPause);
     }
 
+    private void recoverMission(@NonNull DownloadMission mission) {
+        unsafeMissionTarget = mission;
+        StoredFileHelper.requestSafWithFileCreation(
+                MissionsFragment.this,
+                REQUEST_DOWNLOAD_PATH_SAF,
+                mission.storage.getName(),
+                mission.storage.getType()
+        );
+    }
+
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
         if (mAdapter != null) {
@@ -285,8 +289,9 @@ public class MissionsFragment extends Fragment {
         }
 
         try {
-            StoredFileHelper storage = new StoredFileHelper(mContext, data.getData(), unsafeMissionTarget.storage.getTag());
-            mAdapter.recoverMission(unsafeMissionTarget, storage);
+            String tag = unsafeMissionTarget.storage.getTag();
+            unsafeMissionTarget.storage = new StoredFileHelper(mContext, null, data.getData(), tag);
+            mAdapter.recoverMission(unsafeMissionTarget);
         } catch (IOException e) {
             Toast.makeText(mContext, R.string.general_error, Toast.LENGTH_LONG).show();
         }

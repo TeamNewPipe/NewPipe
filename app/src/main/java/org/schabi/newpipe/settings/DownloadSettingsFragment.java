@@ -14,18 +14,23 @@ import android.support.v7.preference.Preference;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.nononsenseapps.filepicker.Utils;
+
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 
 import us.shandian.giga.io.StoredDirectoryHelper;
 
 public class DownloadSettingsFragment extends BasePreferenceFragment {
     private static final int REQUEST_DOWNLOAD_VIDEO_PATH = 0x1235;
     private static final int REQUEST_DOWNLOAD_AUDIO_PATH = 0x1236;
+    public static final boolean IGNORE_RELEASE_OLD_PATH = true;
 
     private String DOWNLOAD_PATH_VIDEO_PREFERENCE;
     private String DOWNLOAD_PATH_AUDIO_PREFERENCE;
@@ -35,47 +40,76 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
 
     private Preference prefPathVideo;
     private Preference prefPathAudio;
-    
+
     private Context ctx;
+
+    private boolean lastAPIJavaIO;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        initKeys();
-        updatePreferencesSummary();
-    }
-
-    @Override
-    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        addPreferencesFromResource(R.xml.download_settings);
+        DOWNLOAD_PATH_VIDEO_PREFERENCE = getString(R.string.download_path_video_key);
+        DOWNLOAD_PATH_AUDIO_PREFERENCE = getString(R.string.download_path_audio_key);
+        DOWNLOAD_STORAGE_API = getString(R.string.downloads_storage_api);
+        DOWNLOAD_STORAGE_API_DEFAULT = getString(R.string.downloads_storage_api_default);
 
         prefPathVideo = findPreference(DOWNLOAD_PATH_VIDEO_PREFERENCE);
         prefPathAudio = findPreference(DOWNLOAD_PATH_AUDIO_PREFERENCE);
 
-        updatePathPickers(usingJavaIO());
+        lastAPIJavaIO = usingJavaIO();
+
+        updatePreferencesSummary();
+        updatePathPickers(lastAPIJavaIO);
 
         findPreference(DOWNLOAD_STORAGE_API).setOnPreferenceChangeListener((preference, value) -> {
             boolean javaIO = DOWNLOAD_STORAGE_API_DEFAULT.equals(value);
 
-            if (!javaIO && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (javaIO == lastAPIJavaIO) return true;
+            lastAPIJavaIO = javaIO;
+
+            boolean res;
+
+            if (javaIO && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                // forget save paths (if necessary)
+                res = forgetPath(DOWNLOAD_PATH_VIDEO_PREFERENCE);
+                res |= forgetPath(DOWNLOAD_PATH_AUDIO_PREFERENCE);
+            } else {
+                res = hasInvalidPath(DOWNLOAD_PATH_VIDEO_PREFERENCE) || hasInvalidPath(DOWNLOAD_PATH_AUDIO_PREFERENCE);
+            }
+
+            if (res) {
                 Toast.makeText(ctx, R.string.download_pick_path, Toast.LENGTH_LONG).show();
-
-                // forget save paths
-                forgetSAFTree(DOWNLOAD_PATH_VIDEO_PREFERENCE);
-                forgetSAFTree(DOWNLOAD_PATH_AUDIO_PREFERENCE);
-
-                defaultPreferences.edit()
-                        .putString(DOWNLOAD_PATH_VIDEO_PREFERENCE, "")
-                        .putString(DOWNLOAD_PATH_AUDIO_PREFERENCE, "")
-                        .apply();
-
                 updatePreferencesSummary();
             }
 
             updatePathPickers(javaIO);
             return true;
         });
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private boolean forgetPath(String prefKey) {
+        String path = defaultPreferences.getString(prefKey, "");
+        if (path == null || path.isEmpty()) return true;
+
+        if (path.startsWith("file://")) return false;
+
+        // forget SAF path (file:// is compatible with the SAF wrapper)
+        forgetSAFTree(getContext(), prefKey);
+        defaultPreferences.edit().putString(prefKey, "").apply();
+
+        return true;
+    }
+
+    private boolean hasInvalidPath(String prefKey) {
+        String value = defaultPreferences.getString(prefKey, null);
+        return value == null || value.isEmpty();
+    }
+
+    @Override
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        addPreferencesFromResource(R.xml.download_settings);
     }
 
     @Override
@@ -91,20 +125,25 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
         findPreference(DOWNLOAD_STORAGE_API).setOnPreferenceChangeListener(null);
     }
 
-    private void initKeys() {
-        DOWNLOAD_PATH_VIDEO_PREFERENCE = getString(R.string.download_path_video_key);
-        DOWNLOAD_PATH_AUDIO_PREFERENCE = getString(R.string.download_path_audio_key);
-        DOWNLOAD_STORAGE_API = getString(R.string.downloads_storage_api);
-        DOWNLOAD_STORAGE_API_DEFAULT = getString(R.string.downloads_storage_api_default);
+    private void updatePreferencesSummary() {
+        showPathInSummary(DOWNLOAD_PATH_VIDEO_PREFERENCE, R.string.download_path_summary, prefPathVideo);
+        showPathInSummary(DOWNLOAD_PATH_AUDIO_PREFERENCE, R.string.download_path_audio_summary, prefPathAudio);
     }
 
-    private void updatePreferencesSummary() {
-        prefPathVideo.setSummary(
-                defaultPreferences.getString(DOWNLOAD_PATH_VIDEO_PREFERENCE, getString(R.string.download_path_summary))
-        );
-        prefPathAudio.setSummary(
-                defaultPreferences.getString(DOWNLOAD_PATH_AUDIO_PREFERENCE, getString(R.string.download_path_audio_summary))
-        );
+    private void showPathInSummary(String prefKey, @StringRes int defaultString, Preference target) {
+        String rawUri = defaultPreferences.getString(prefKey, null);
+        if (rawUri == null || rawUri.isEmpty()) {
+            target.setSummary(getString(defaultString));
+            return;
+        }
+
+        try {
+            rawUri = URLDecoder.decode(rawUri, StandardCharsets.UTF_8.name());
+        } catch (UnsupportedEncodingException e) {
+            // nothing to do
+        }
+
+        target.setSummary(rawUri);
     }
 
     private void updatePathPickers(boolean useJavaIO) {
@@ -119,20 +158,25 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
         );
     }
 
+    // FIXME: after releasing the old path, all downloads created on the folder becomes inaccessible
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    private void forgetSAFTree(String prefKey) {
+    private void forgetSAFTree(Context ctx, String prefKey) {
+        if (IGNORE_RELEASE_OLD_PATH) {
+            return;
+        }
 
         String oldPath = defaultPreferences.getString(prefKey, "");
 
-        if (oldPath != null && !oldPath.isEmpty() && oldPath.charAt(0) != File.separatorChar) {
+        if (oldPath != null && !oldPath.isEmpty() && oldPath.charAt(0) != File.separatorChar && !oldPath.startsWith("file://")) {
             try {
-                StoredDirectoryHelper mainStorage = new StoredDirectoryHelper(ctx, Uri.parse(oldPath), null);
-                if (!mainStorage.isDirect()) {
-                    mainStorage.revokePermissions();
-                    Log.i(TAG, "revokePermissions()  [uri=" + oldPath + "]  ¡success!");
-                }
-            } catch (IOException err) {
-                Log.e(TAG, "Error revoking Tree uri permissions  [uri=" + oldPath + "]", err);
+                Uri uri = Uri.parse(oldPath);
+
+                ctx.getContentResolver().releasePersistableUriPermission(uri, StoredDirectoryHelper.PERMISSION_FLAGS);
+                ctx.revokeUriPermission(uri, StoredDirectoryHelper.PERMISSION_FLAGS);
+
+                Log.i(TAG, "Revoke old path permissions success on " + oldPath);
+            } catch (Exception err) {
+                Log.e(TAG, "Error revoking old path permissions on " + oldPath, err);
             }
         }
     }
@@ -167,7 +211,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
             if (safPick && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 i = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
                         .putExtra("android.content.extra.SHOW_ADVANCED", true)
-                        .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | StoredDirectoryHelper.PERMISSION_FLAGS);
+                        .addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION | StoredDirectoryHelper.PERMISSION_FLAGS);
             } else {
                 i = new Intent(getActivity(), FilePickerActivityHelper.class)
                         .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
@@ -208,27 +252,37 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
 
         if (!usingJavaIO() && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             // steps:
-            //       1. acquire permissions on the new save path
-            //       2. save the new path, if step(1) was successful
+            //       1. revoke permissions on the old save path
+            //       2. acquire permissions on the new save path
+            //       3. save the new path, if step(2) was successful
+            final Context ctx = getContext();
+            if (ctx == null) throw new NullPointerException("getContext()");
+
+            forgetSAFTree(ctx, key);
 
             try {
+                ctx.grantUriPermission(ctx.getPackageName(), uri, StoredDirectoryHelper.PERMISSION_FLAGS);
+
                 StoredDirectoryHelper mainStorage = new StoredDirectoryHelper(ctx, uri, null);
-                mainStorage.acquirePermissions();
-                Log.i(TAG, "acquirePermissions()  [uri=" + uri.toString() + "]  ¡success!");
+                Log.i(TAG, "Acquiring tree success from " + uri.toString());
+
+                if (!mainStorage.canWrite())
+                    throw new IOException("No write permissions on " + uri.toString());
             } catch (IOException err) {
-                Log.e(TAG, "Error acquiring permissions on " + uri.toString());
+                Log.e(TAG, "Error acquiring tree from " + uri.toString(), err);
                 showMessageDialog(R.string.general_error, R.string.no_available_dir);
                 return;
             }
-
-            defaultPreferences.edit().putString(key, uri.toString()).apply();
         } else {
-            defaultPreferences.edit().putString(key, uri.toString()).apply();
-            updatePreferencesSummary();
-
-            File target = new File(URI.create(uri.toString()));
-            if (!target.canWrite())
+            File target = Utils.getFileForUri(data.getData());
+            if (!target.canWrite()) {
                 showMessageDialog(R.string.download_to_sdcard_error_title, R.string.download_to_sdcard_error_message);
+                return;
+            }
+            uri = Uri.fromFile(target);
         }
+
+        defaultPreferences.edit().putString(key, uri.toString()).apply();
+        updatePreferencesSummary();
     }
 }

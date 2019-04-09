@@ -28,7 +28,7 @@ public class DownloadInitializer extends Thread {
 
     @Override
     public void run() {
-        if (mMission.current > 0) mMission.resetState();
+        if (mMission.current > 0) mMission.resetState(false,true, DownloadMission.ERROR_NOTHING);
 
         int retryCount = 0;
         while (true) {

@@ -62,13 +62,15 @@ public class DownloadManager {
      * @param context Context for the data source for finished downloads
      * @param handler Thread required for Messaging
      */
-    DownloadManager(@NonNull Context context, Handler handler) {
+    DownloadManager(@NonNull Context context, Handler handler, StoredDirectoryHelper storageVideo, StoredDirectoryHelper storageAudio) {
         if (DEBUG) {
             Log.d(TAG, "new DownloadManager instance. 0x" + Integer.toHexString(this.hashCode()));
         }
 
         mFinishedMissionStore = new FinishedMissionStore(context);
         mHandler = handler;
+        mMainStorageAudio = storageAudio;
+        mMainStorageVideo = storageVideo;
         mMissionsFinished = loadFinishedMissions();
         mPendingMissionsDir = getPendingDir(context);
 
@@ -129,91 +131,59 @@ public class DownloadManager {
         }
 
         for (File sub : subs) {
-            if (sub.isFile()) {
-                DownloadMission mis = Utility.readFromFile(sub);
+            if (!sub.isFile()) continue;
 
-                if (mis == null) {
-                    //noinspection ResultOfMethodCallIgnored
-                    sub.delete();
-                } else {
-                    if (mis.isFinished()) {
-                        //noinspection ResultOfMethodCallIgnored
-                        sub.delete();
-                        continue;
-                    }
-
-                    boolean exists;
-                    try {
-                        mis.storage = StoredFileHelper.deserialize(mis.storage, ctx);
-                        exists = !mis.storage.isInvalid() && mis.storage.existsAsFile();
-
-                    } catch (Exception ex) {
-                        Log.e(TAG, "Failed to load the file source of " + mis.storage.toString());
-                        mis.storage.invalidate();
-                        exists = false;
-                    }
-
-                    if (mis.isPsRunning()) {
-                        if (mis.psAlgorithm.worksOnSameFile) {
-                            // Incomplete post-processing results in a corrupted download file
-                            // because the selected algorithm works on the same file to save space.
-                            if (exists && !mis.storage.delete())
-                                Log.w(TAG, "Unable to delete incomplete download file: " + sub.getPath());
-
-                            exists = true;
-                        }
-
-                        mis.psState = 0;
-                        mis.errCode = DownloadMission.ERROR_POSTPROCESSING_STOPPED;
-                        mis.errObject = null;
-                    } else if (!exists) {
-
-                        StoredDirectoryHelper mainStorage = getMainStorage(mis.storage.getTag());
-
-                        if (!mis.storage.isInvalid() && !mis.storage.create()) {
-                            // using javaIO cannot recreate the file
-                            // using SAF in older devices (no tree available)
-                            //
-                            // force the user to pick again the save path
-                            mis.storage.invalidate();
-                        } else if (mainStorage != null) {
-                            // if the user has changed the save path before this download, the original save path will be lost
-                            StoredFileHelper newStorage = mainStorage.createFile(mis.storage.getName(), mis.storage.getType());
-                            if (newStorage == null)
-                                mis.storage.invalidate();
-                            else
-                                mis.storage = newStorage;
-                        }
-
-                        if (mis.isInitialized()) {
-                            // the progress is lost, reset mission state
-                            DownloadMission m = new DownloadMission(mis.urls, mis.storage, mis.kind, mis.psAlgorithm);
-                            m.timestamp = mis.timestamp;
-                            m.threadCount = mis.threadCount;
-                            m.source = mis.source;
-                            m.nearLength = mis.nearLength;
-                            m.enqueued = mis.enqueued;
-                            m.errCode = DownloadMission.ERROR_PROGRESS_LOST;
-                            mis = m;
-                        }
-                    }
-
-                    if (mis.psAlgorithm != null) mis.psAlgorithm.cacheDir = ctx.getCacheDir();
-
-                    mis.running = false;
-                    mis.recovered = exists;
-                    mis.metadata = sub;
-                    mis.maxRetry = mPrefMaxRetry;
-                    mis.mHandler = mHandler;
-
-                    mMissionsPending.add(mis);
-                }
+            DownloadMission mis = Utility.readFromFile(sub);
+            if (mis == null || mis.isFinished()) {
+                //noinspection ResultOfMethodCallIgnored
+                sub.delete();
+                continue;
             }
+
+            boolean exists;
+            try {
+                mis.storage = StoredFileHelper.deserialize(mis.storage, ctx);
+                exists = !mis.storage.isInvalid() && mis.storage.existsAsFile();
+            } catch (Exception ex) {
+                Log.e(TAG, "Failed to load the file source of " + mis.storage.toString(), ex);
+                mis.storage.invalidate();
+                exists = false;
+            }
+
+            if (mis.isPsRunning()) {
+                if (mis.psAlgorithm.worksOnSameFile) {
+                    // Incomplete post-processing results in a corrupted download file
+                    // because the selected algorithm works on the same file to save space.
+                    if (exists && !mis.storage.delete())
+                        Log.w(TAG, "Unable to delete incomplete download file: " + sub.getPath());
+
+                    exists = true;
+                }
+
+                mis.psState = 0;
+                mis.errCode = DownloadMission.ERROR_POSTPROCESSING_STOPPED;
+                mis.errObject = null;
+            } else if (!exists) {
+                tryRecover(mis);
+
+                // the progress is lost, reset mission state
+                if (mis.isInitialized())
+                    mis.resetState(true, true, DownloadMission.ERROR_PROGRESS_LOST);
+            }
+
+            if (mis.psAlgorithm != null)
+                mis.psAlgorithm.cacheDir = pickAvailableCacheDir(ctx);
+
+            mis.recovered = exists;
+            mis.metadata = sub;
+            mis.maxRetry = mPrefMaxRetry;
+            mis.mHandler = mHandler;
+
+            mMissionsPending.add(mis);
         }
 
-        if (mMissionsPending.size() > 1) {
+        if (mMissionsPending.size() > 1)
             Collections.sort(mMissionsPending, (mission1, mission2) -> Long.compare(mission1.timestamp, mission2.timestamp));
-        }
     }
 
     /**
@@ -313,6 +283,25 @@ public class DownloadManager {
         }
     }
 
+    public void tryRecover(DownloadMission mission) {
+        StoredDirectoryHelper mainStorage = getMainStorage(mission.storage.getTag());
+
+        if (!mission.storage.isInvalid() && mission.storage.create()) return;
+
+        // using javaIO cannot recreate the file
+        // using SAF in older devices (no tree available)
+        //
+        // force the user to pick again the save path
+        mission.storage.invalidate();
+
+        if (mainStorage == null) return;
+
+        // if the user has changed the save path before this download, the original save path will be lost
+        StoredFileHelper newStorage = mainStorage.createFile(mission.storage.getName(), mission.storage.getType());
+
+        if (newStorage != null) mission.storage = newStorage;
+    }
+
 
     /**
      * Get a pending mission by its path
@@ -392,7 +381,7 @@ public class DownloadManager {
 
         synchronized (this) {
             for (DownloadMission mission : mMissionsPending) {
-                if (mission.running || !mission.canDownload()) continue;
+                if (mission.running || mission.isCorrupt()) continue;
 
                 flag = true;
                 mission.start();
@@ -482,7 +471,7 @@ public class DownloadManager {
         int paused = 0;
         synchronized (this) {
             for (DownloadMission mission : mMissionsPending) {
-                if (!mission.canDownload() || mission.isPsRunning()) continue;
+                if (mission.isCorrupt() || mission.isPsRunning()) continue;
 
                 if (mission.running && isMetered) {
                     paused++;
@@ -540,6 +529,20 @@ public class DownloadManager {
         }
 
         return MissionState.None;
+    }
+
+    private static boolean isDirectoryAvailable(File directory) {
+        return directory != null && directory.canWrite();
+    }
+
+    static File pickAvailableCacheDir(@NonNull Context ctx) {
+        if (isDirectoryAvailable(ctx.getExternalCacheDir()))
+            return ctx.getExternalCacheDir();
+        else if (isDirectoryAvailable(ctx.getCacheDir()))
+            return ctx.getCacheDir();
+
+        // this never should happen
+        return ctx.getDir("tmp", Context.MODE_PRIVATE);
     }
 
     @Nullable
@@ -656,7 +659,7 @@ public class DownloadManager {
 
             synchronized (DownloadManager.this) {
                 for (DownloadMission mission : mMissionsPending) {
-                    if (hidden.contains(mission) || mission.canDownload())
+                    if (hidden.contains(mission) || mission.isCorrupt())
                         continue;
 
                     if (mission.running)

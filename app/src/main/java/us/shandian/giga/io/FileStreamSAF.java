@@ -137,4 +137,9 @@ public class FileStreamSAF extends SharpStream {
     public void seek(long offset) throws IOException {
         channel.position(offset);
     }
+
+    @Override
+    public long length() throws IOException {
+        return channel.size();
+    }
 }
