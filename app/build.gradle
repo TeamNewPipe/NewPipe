@@ -8,8 +8,8 @@ android {
         applicationId "org.schabi.newpipe"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 71
-        versionName "0.15.1"
+        versionCode 720
+        versionName "0.16.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -44,10 +44,10 @@ android {
 
 ext {
     supportLibVersion = '28.0.0'
-    exoPlayerLibVersion = '2.8.4' //2.9.0
+    exoPlayerLibVersion = '2.9.6'
     roomDbLibVersion = '1.1.1'
     leakCanaryLibVersion = '1.5.4' //1.6.1
-    okHttpLibVersion = '3.11.0'
+    okHttpLibVersion = '3.12.1'
     icepickLibVersion = '3.2.0'
     stethoLibVersion = '1.5.0'
 }
@@ -57,7 +57,7 @@ dependencies {
         exclude module: 'support-annotations'
     })
 
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:8de53111d9'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:aa4f03a'
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.23.0'

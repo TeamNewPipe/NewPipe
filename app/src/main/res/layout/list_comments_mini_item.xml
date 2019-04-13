@@ -27,10 +27,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/channel_item_description_to_details_margin"
         android:layout_toRightOf="@+id/itemThumbnailView"
-        android:ellipsize="end"
-        android:lines="2"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="@dimen/video_item_search_uploader_text_size"
+        android:textSize="@dimen/comment_item_content_text_size"
         tools:text="Channel description, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blanditLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique vitae sem vitae blandit" />
 
     <ImageView

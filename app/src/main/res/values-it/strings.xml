@@ -72,7 +72,7 @@
 
     <string name="content">Contenuti</string>
     <string name="show_age_restricted_content_title">Contenuti vietati ai minori</string>
-    <string name="video_is_age_restricted">Mostra video riversati ad un pubblico maggiorenne. Si possono abilitare dalle \"Impostazioni\".</string>
+    <string name="video_is_age_restricted">Mostra video riversati a un pubblico maggiorenne. Si possono abilitare dalle Impostazioni.</string>
 
     <string name="main_bg_subtitle">Tocca Cerca per iniziare</string>
     <string name="autoplay_by_calling_app_title">Riproduzione automatica</string>
@@ -255,8 +255,8 @@
 
     <string name="no_videos">Nessun video</string>
     <plurals name="videos">
-	<item quantity="one">%s video</item>
-	<item quantity="other">%s video</item>
+    <item quantity="one">Video</item>
+    <item quantity="other">Video</item>
 </plurals>
 
     <string name="item_deleted">Elemento eliminato</string>
@@ -314,7 +314,7 @@
     <string name="service_title">Servizio</string>
     <string name="drawer_open">Apri il menu</string>
     <string name="drawer_close">Chiudi il menu</string>
-    <string name="no_player_found_toast">Nessun lettore multimediale trovato (puoi installare VLC per riprodurlo).</string>
+    <string name="no_player_found_toast">Nessun lettore multimediale trovato. Puoi installare VLC per riprodurlo.</string>
     <string name="always">Sempre</string>
     <string name="just_once">Solo una volta</string>
 
@@ -343,7 +343,7 @@
     <string name="controls_download_desc">Scarica il video</string>
     <string name="show_info">Mostra informazioni</string>
 
-    <string name="tab_bookmarks">Scalette preferite</string>
+    <string name="tab_bookmarks">Playlist preferite</string>
 
     <string name="controls_add_to_playlist_title">Aggiungi a</string>
 
@@ -444,7 +444,7 @@
 \n 
 \nVuoi continuare?</string>
 <string name="download_thumbnail_title">Carica miniature</string>
-    <string name="download_thumbnail_summary">Disabilita per interrompere il caricamento delle miniature, la loro archiviazione e l\'utilizzo della memoria. La modifica di questa opzione cancellerà la cache delle immagini in memoria e sul disco.</string>
+    <string name="download_thumbnail_summary">Disabilita il caricamento delle miniature, risparmiando dati e memoria. La modifica dell\'opzione comporta la cancellazione della cache in memoria e sul disco.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Pulizia della cache delle immagini completata</string>
     <string name="metadata_cache_wipe_title">Pulisci la cache dei metadati</string>
     <string name="metadata_cache_wipe_summary">Rimuovi tutti i dati delle pagine web memorizzati nella cache</string>
@@ -503,4 +503,68 @@
     <string name="playlists">Playlist</string>
     <string name="tracks">Tracce</string>
     <string name="users">Utenti</string>
-    </resources>
+    <string name="unsubscribe">Disiscriviti</string>
+    <string name="tab_new">Nuova scheda</string>
+    <string name="tab_choose">Scegli scheda</string>
+    <string name="volume_gesture_control_title">Movimenti per il controllo del volume</string>
+    <string name="volume_gesture_control_summary">Utilizza i movimenti per controllare il volume del riproduttore</string>
+    <string name="brightness_gesture_control_title">Movimenti per la gestione della luminosità</string>
+    <string name="brightness_gesture_control_summary">Utilizza i movimenti per controllare la luminosità del riproduttore</string>
+    <string name="settings_category_updates_title">Aggiornamenti</string>
+    <string name="file_deleted">File eliminato</string>
+    <string name="app_update_notification_channel_name">Notifiche di aggiornamenti dell\'applicazione</string>
+    <string name="app_update_notification_channel_description">Notifiche per una nuova versione di NewPipe</string>
+    <string name="download_to_sdcard_error_title">Archiviazione esterna non disponibile</string>
+    <string name="download_to_sdcard_error_message">Download sulla memoria esterna SD ancora non disponibile. Reimpostare la posizione della cartella di download\?</string>
+    <string name="saved_tabs_invalid_json">Utilizzando le schede predefinite, c\'è stato un errore durante la lettura delle schede salvate</string>
+    <string name="restore_defaults">Ripristina predefiniti</string>
+    <string name="restore_defaults_confirmation">Davvero ripristinare i predefiniti\?</string>
+    <string name="subscribers_count_not_available">Contatore degli iscritti non disponibile</string>
+    <string name="main_page_content_summary">Quali schede sono mostrate nella pagina principale</string>
+    <string name="selection">Selezione</string>
+    <string name="updates_setting_title">Aggiornamenti</string>
+    <string name="updates_setting_description">Mostra una notifica per suggerire l\'aggiornamento dell\'app se una nuova versione è disponibile</string>
+    <string name="list_view_mode">Visualizzazione a lista</string>
+    <string name="list">Lista</string>
+    <string name="grid">Griglia</string>
+    <string name="auto">Automatico</string>
+    <string name="switch_view">Cambia vista</string>
+    <string name="app_update_notification_content_title">Aggiornamento di NewPipe disponibile!</string>
+    <string name="app_update_notification_content_text">Premi per scaricare</string>
+    <string name="missions_header_finished">Finito</string>
+    <string name="missions_header_pending">In coda</string>
+    <string name="paused">in pausa</string>
+    <string name="queued">in coda</string>
+    <string name="post_processing">post-processo</string>
+    <string name="enqueue">Coda</string>
+    <string name="permission_denied">Azione negata dal sistema</string>
+    <string name="download_failed">Download fallito</string>
+    <string name="download_finished">Download finito</string>
+    <string name="download_finished_more">%s download finiti</string>
+    <string name="generate_unique_name">Genera un nome unico</string>
+    <string name="overwrite">Sovrascrivi</string>
+    <string name="overwrite_warning">Esiste già un file scaricato con lo stesso nome</string>
+    <string name="download_already_running">C\'è un download in progresso con questo nome</string>
+    <string name="show_error">Mostra errore</string>
+    <string name="label_code">Codice</string>
+    <string name="error_path_creation">Impossibile creare il file</string>
+    <string name="error_file_creation">Impossibile creare la cartella di destinazione</string>
+    <string name="error_permission_denied">Permesso negato dal sistema</string>
+    <string name="error_ssl_exception">Connessione sicura fallita</string>
+    <string name="error_unknown_host">Impossibile trovare il server</string>
+    <string name="error_connect_host">Impossibile connettersi al server</string>
+    <string name="error_http_no_content">Il server non invia dati</string>
+    <string name="error_http_unsupported_range">Il server non accetta download multipli, riprovare con @string/msg_threads = 1</string>
+    <string name="error_http_requested_range_not_satisfiable">Intervallo richiesto non soddisfatto</string>
+    <string name="error_http_not_found">Non trovato</string>
+    <string name="error_postprocessing_failed">Post-processing fallito</string>
+    <string name="clear_finished_download">Pulisci i download completati</string>
+    <string name="msg_pending_downloads">Continua i %s trasferimenti in corso dai Download</string>
+    <string name="stop">Ferma</string>
+    <string name="max_retry_msg">Tentativi massimi</string>
+    <string name="max_retry_desc">Tentativi massimi prima di cancellare il download</string>
+    <string name="pause_downloads_on_mobile">Metti in pausa quando si usano i dati mobili</string>
+    <string name="pause_downloads_on_mobile_desc">I download che non possono essere messi in pausa verranno ravviati</string>
+    <string name="events">Eventi</string>
+    <string name="conferences">Conferenze</string>
+</resources>

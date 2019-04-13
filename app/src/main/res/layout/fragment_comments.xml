@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:orientation="vertical"
-        android:paddingTop="90dp"
+        android:paddingTop="85dp"
         android:visibility="gone"
         tools:visibility="visible">
 

@@ -76,6 +76,7 @@ import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
+import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.ThemeHelper;
 
@@ -242,6 +243,11 @@ public final class MainVideoPlayer extends AppCompatActivity
         isBackPressed = false;
     }
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(AudioServiceLeakFix.preventLeakOf(newBase));
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // State Saving
     //////////////////////////////////////////////////////////////////////////*/
@@ -278,14 +284,9 @@ public final class MainVideoPlayer extends AppCompatActivity
         if (DEBUG) Log.d(TAG, "showSystemUi() called");
         if (playerImpl != null && playerImpl.queueVisible) return;
 
-        final int visibility;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
-        } else {
-            visibility = View.STATUS_BAR_VISIBLE;
-        }
+        final int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             @ColorInt final int systenUiColor =
@@ -354,11 +355,7 @@ public final class MainVideoPlayer extends AppCompatActivity
 
     protected void setShuffleButton(final ImageButton shuffleButton, final boolean shuffled) {
         final int shuffleAlpha = shuffled ? 255 : 77;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            shuffleButton.setImageAlpha(shuffleAlpha);
-        } else {
-            shuffleButton.setAlpha(shuffleAlpha);
-        }
+        shuffleButton.setImageAlpha(shuffleAlpha);
     }
 
     private boolean isInMultiWindow() {
@@ -408,6 +405,7 @@ public final class MainVideoPlayer extends AppCompatActivity
         private boolean queueVisible;
 
         private ImageButton moreOptionsButton;
+        private ImageButton shareButton;
         private ImageButton toggleOrientationButton;
         private ImageButton switchPopupButton;
         private ImageButton switchBackgroundButton;
@@ -443,6 +441,7 @@ public final class MainVideoPlayer extends AppCompatActivity
 
             this.moreOptionsButton = rootView.findViewById(R.id.moreOptionsButton);
             this.secondaryControls = rootView.findViewById(R.id.secondaryControls);
+            this.shareButton = rootView.findViewById(R.id.share);
             this.toggleOrientationButton = rootView.findViewById(R.id.toggleOrientation);
             this.switchBackgroundButton = rootView.findViewById(R.id.switchBackground);
             this.switchPopupButton = rootView.findViewById(R.id.switchPopup);
@@ -489,6 +488,7 @@ public final class MainVideoPlayer extends AppCompatActivity
             closeButton.setOnClickListener(this);
 
             moreOptionsButton.setOnClickListener(this);
+            shareButton.setOnClickListener(this);
             toggleOrientationButton.setOnClickListener(this);
             switchBackgroundButton.setOnClickListener(this);
             switchPopupButton.setOnClickListener(this);
@@ -639,6 +639,9 @@ public final class MainVideoPlayer extends AppCompatActivity
             } else if (v.getId() == moreOptionsButton.getId()) {
                 onMoreOptionsClicked();
 
+            } else if (v.getId() == shareButton.getId()) {
+                onShareClicked();
+
             } else if (v.getId() == toggleOrientationButton.getId()) {
                 onScreenRotationClicked();
 
@@ -693,6 +696,13 @@ public final class MainVideoPlayer extends AppCompatActivity
             animateView(secondaryControls, SLIDE_AND_ALPHA, !isMoreControlsVisible,
                     DEFAULT_CONTROLS_DURATION);
             showControls(DEFAULT_CONTROLS_DURATION);
+        }
+
+        private void onShareClicked() {
+            // share video at the current time (youtube.com/watch?v=ID&t=SECONDS)
+            ShareUtils.shareUrl(MainVideoPlayer.this,
+                    playerImpl.getVideoTitle(),
+                    playerImpl.getVideoUrl() + "&t=" + String.valueOf(playerImpl.getPlaybackSeekBar().getProgress()/1000));
         }
 
         private void onScreenRotationClicked() {
@@ -861,8 +871,8 @@ public final class MainVideoPlayer extends AppCompatActivity
             if (DEBUG) Log.d(TAG, "hideControls() called with: delay = [" + delay + "]");
             getControlsVisibilityHandler().removeCallbacksAndMessages(null);
             getControlsVisibilityHandler().postDelayed(() ->
-                    animateView(getControlsRoot(), false, duration, 0,
-                            MainVideoPlayer.this::hideSystemUi),
+                            animateView(getControlsRoot(), false, duration, 0,
+                                    MainVideoPlayer.this::hideSystemUi),
                     /*delayMillis=*/delay
             );
         }
@@ -1066,9 +1076,9 @@ public final class MainVideoPlayer extends AppCompatActivity
 
                 final int resId =
                         currentProgressPercent <= 0 ? R.drawable.ic_volume_off_white_72dp
-                        : currentProgressPercent < 0.25 ? R.drawable.ic_volume_mute_white_72dp
-                        : currentProgressPercent < 0.75 ? R.drawable.ic_volume_down_white_72dp
-                        : R.drawable.ic_volume_up_white_72dp;
+                                : currentProgressPercent < 0.25 ? R.drawable.ic_volume_mute_white_72dp
+                                : currentProgressPercent < 0.75 ? R.drawable.ic_volume_down_white_72dp
+                                : R.drawable.ic_volume_up_white_72dp;
 
                 playerImpl.getVolumeImageView().setImageDrawable(
                         AppCompatResources.getDrawable(getApplicationContext(), resId)
@@ -1092,8 +1102,8 @@ public final class MainVideoPlayer extends AppCompatActivity
 
                 final int resId =
                         currentProgressPercent < 0.25 ? R.drawable.ic_brightness_low_white_72dp
-                        : currentProgressPercent < 0.75 ? R.drawable.ic_brightness_medium_white_72dp
-                        : R.drawable.ic_brightness_high_white_72dp;
+                                : currentProgressPercent < 0.75 ? R.drawable.ic_brightness_medium_white_72dp
+                                : R.drawable.ic_brightness_high_white_72dp;
 
                 playerImpl.getBrightnessImageView().setImageDrawable(
                         AppCompatResources.getDrawable(getApplicationContext(), resId)
