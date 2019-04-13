@@ -167,7 +167,10 @@
     <string name="fragment_whats_new">Что нового</string>
     <string name="enable_search_history_title">История поиска</string>
     <string name="enable_search_history_summary">Хранить запросы поиска локально</string>
-    <string name="enable_watch_history_title">История и кэш</string>
+    <string name="enable_watch_history_title">История просмотров</string>
+    <string name="enable_playback_resume_title">Продолжать воспроизведение</string>
+    <string name="enable_playback_resume_summary">Восстанавливать с последней позиции</string>
+    <string name="settings_category_clear_data_title">Очистить данные</string>
     <string name="enable_watch_history_summary">Запоминать воспроизведённые потоки</string>
     <string name="resume_on_audio_focus_gain_title">Возобновить при фокусе</string>
     <string name="resume_on_audio_focus_gain_summary">Возобновлять воспроизведение после перерывов (например, телефонных звонков)</string>

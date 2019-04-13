@@ -153,7 +153,10 @@
     <string name="show_search_suggestions_summary">Показувати пропозиції під час пошуку</string>
     <string name="enable_search_history_title">Історія пошуків</string>
     <string name="enable_search_history_summary">Зберігати пошукові запити локально</string>
-    <string name="enable_watch_history_title">Історія та кеш</string>
+    <string name="enable_watch_history_title">Історія переглядiв</string>
+    <string name="enable_playback_resume_title">Продовживати перегляд</string>
+    <string name="enable_playback_resume_summary">Відновлювати останню позицію</string>
+    <string name="settings_category_clear_data_title">Очистити дані</string>
     <string name="enable_watch_history_summary">Вести облік перегляду відеозаписів</string>
     <string name="resume_on_audio_focus_gain_title">Відновити відтворення</string>
     <string name="resume_on_audio_focus_gain_summary">Продовжувати відтворення опісля переривання (наприклад телефонного дзвінка)</string>

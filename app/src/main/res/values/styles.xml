@@ -65,6 +65,7 @@
         <item name="toolbar_shadow_drawable">@drawable/toolbar_shadow_light</item>
         <item name="selector_drawable">@drawable/light_selector</item>
         <item name="colorControlHighlight">@color/light_ripple_color</item>
+        <item name="progress_horizontal_drawable">@drawable/progress_youtube_horizontal_light</item>
 
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     </style>
@@ -128,6 +129,7 @@
         <item name="toolbar_shadow_drawable">@drawable/toolbar_shadow_dark</item>
         <item name="selector_drawable">@drawable/dark_selector</item>
         <item name="colorControlHighlight">@color/dark_ripple_color</item>
+        <item name="progress_horizontal_drawable">@drawable/progress_youtube_horizontal_dark</item>
 
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     </style>

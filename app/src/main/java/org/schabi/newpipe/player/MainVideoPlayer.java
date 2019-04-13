@@ -247,6 +247,12 @@ public final class MainVideoPlayer extends AppCompatActivity
         super.attachBaseContext(AudioServiceLeakFix.preventLeakOf(newBase));
     }
 
+    @Override
+    protected void onPause() {
+        playerImpl.savePlaybackState();
+        super.onPause();
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // State Saving
     //////////////////////////////////////////////////////////////////////////*/
@@ -579,7 +585,8 @@ public final class MainVideoPlayer extends AppCompatActivity
                     this.getPlaybackSpeed(),
                     this.getPlaybackPitch(),
                     this.getPlaybackSkipSilence(),
-                    this.getPlaybackQuality()
+                    this.getPlaybackQuality(),
+                    false
             );
             context.startService(intent);
 
@@ -601,7 +608,8 @@ public final class MainVideoPlayer extends AppCompatActivity
                     this.getPlaybackSpeed(),
                     this.getPlaybackPitch(),
                     this.getPlaybackSkipSilence(),
-                    this.getPlaybackQuality()
+                    this.getPlaybackQuality(),
+                    false
             );
             context.startService(intent);
 

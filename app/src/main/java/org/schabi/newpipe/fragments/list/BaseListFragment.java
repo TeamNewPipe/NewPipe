@@ -266,13 +266,13 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
         final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
             switch (i) {
                 case 0:
-                    NavigationHelper.playOnBackgroundPlayer(context, new SinglePlayQueue(item));
+                    NavigationHelper.playOnBackgroundPlayer(context, new SinglePlayQueue(item), true);
                     break;
                 case 1:
-                    NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
+                    NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item), true);
                     break;
                 case 2:
-                    NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(item));
+                    NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(item), true);
                     break;
                 case 3:
                     if (getFragmentManager() != null) {

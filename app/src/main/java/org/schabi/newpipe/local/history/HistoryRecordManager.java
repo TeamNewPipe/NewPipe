@@ -37,12 +37,14 @@ import org.schabi.newpipe.database.stream.dao.StreamStateDAO;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.Maybe;
 import io.reactivex.Single;
@@ -80,9 +82,9 @@ public class HistoryRecordManager {
         final Date currentTime = new Date();
         return Maybe.fromCallable(() -> database.runInTransaction(() -> {
             final long streamId = streamTable.upsert(new StreamEntity(info));
-            StreamHistoryEntity latestEntry = streamHistoryTable.getLatestEntry();
+            StreamHistoryEntity latestEntry = streamHistoryTable.getLatestEntry(streamId);
 
-            if (latestEntry != null && latestEntry.getStreamUid() == streamId) {
+            if (latestEntry != null) {
                 streamHistoryTable.delete(latestEntry);
                 latestEntry.setAccessDate(currentTime);
                 latestEntry.setRepeatCount(latestEntry.getRepeatCount() + 1);
@@ -99,7 +101,7 @@ public class HistoryRecordManager {
     }
 
     public Single<Integer> deleteWholeStreamHistory() {
-        return Single.fromCallable(() -> streamHistoryTable.deleteAll())
+        return Single.fromCallable(streamHistoryTable::deleteAll)
                 .subscribeOn(Schedulers.io());
     }
 
@@ -160,7 +162,7 @@ public class HistoryRecordManager {
     }
 
     public Single<Integer> deleteWholeSearchHistory() {
-        return Single.fromCallable(() -> searchHistoryTable.deleteAll())
+        return Single.fromCallable(searchHistoryTable::deleteAll)
                 .subscribeOn(Schedulers.io());
     }
 
@@ -180,18 +182,41 @@ public class HistoryRecordManager {
     // Stream State History
     ///////////////////////////////////////////////////////
 
-    @SuppressWarnings("unused")
-    public Maybe<StreamStateEntity> loadStreamState(final StreamInfo info) {
-        return Maybe.fromCallable(() -> streamTable.upsert(new StreamEntity(info)))
-                .flatMap(streamId -> streamStateTable.getState(streamId).firstElement())
-                .flatMap(states -> states.isEmpty() ? Maybe.empty() : Maybe.just(states.get(0)))
+    public Maybe<StreamHistoryEntity> getStreamHistory(final StreamInfo info) {
+        return Maybe.fromCallable(() -> {
+            final long streamId = streamTable.upsert(new StreamEntity(info));
+            return streamHistoryTable.getLatestEntry(streamId);
+        }).subscribeOn(Schedulers.io());
+    }
+
+    public Maybe<StreamStateEntity> loadStreamState(final PlayQueueItem queueItem) {
+        return queueItem.getStream()
+                .map((info) -> streamTable.upsert(new StreamEntity(info)))
+                .flatMapPublisher(streamStateTable::getState)
+                .firstElement()
+                .flatMap(list -> list.isEmpty() ? Maybe.empty() : Maybe.just(list.get(0)))
+                .filter(state -> state.isValid((int) queueItem.getDuration()))
                 .subscribeOn(Schedulers.io());
     }
 
-    public Maybe<Long> saveStreamState(@NonNull final StreamInfo info, final long progressTime) {
-        return Maybe.fromCallable(() -> database.runInTransaction(() -> {
+    public Maybe<StreamStateEntity> loadStreamState(final StreamInfo info) {
+        return Single.fromCallable(() -> streamTable.upsert(new StreamEntity(info)))
+                .flatMapPublisher(streamStateTable::getState)
+                .firstElement()
+                .flatMap(list -> list.isEmpty() ? Maybe.empty() : Maybe.just(list.get(0)))
+                .filter(state -> state.isValid((int) info.getDuration()))
+                .subscribeOn(Schedulers.io());
+    }
+
+    public Completable saveStreamState(@NonNull final StreamInfo info, final long progressTime) {
+        return Completable.fromAction(() -> database.runInTransaction(() -> {
             final long streamId = streamTable.upsert(new StreamEntity(info));
-            return streamStateTable.upsert(new StreamStateEntity(streamId, progressTime));
+            final StreamStateEntity state = new StreamStateEntity(streamId, progressTime);
+            if (state.isValid((int) info.getDuration())) {
+                streamStateTable.upsert(state);
+            } else {
+                streamStateTable.deleteState(streamId);
+            }
         })).subscribeOn(Schedulers.io());
     }
 

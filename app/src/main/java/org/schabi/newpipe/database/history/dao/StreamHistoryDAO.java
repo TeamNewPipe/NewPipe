@@ -50,6 +50,11 @@ public abstract class StreamHistoryDAO implements HistoryDAO<StreamHistoryEntity
             " ORDER BY " + STREAM_ACCESS_DATE + " DESC")
     public abstract Flowable<List<StreamHistoryEntry>> getHistory();
 
+    @Query("SELECT * FROM " + STREAM_HISTORY_TABLE + " WHERE " + JOIN_STREAM_ID +
+            " = :streamId ORDER BY " + STREAM_ACCESS_DATE + " DESC LIMIT 1")
+    @Nullable
+    public abstract StreamHistoryEntity getLatestEntry(final long streamId);
+
     @Query("DELETE FROM " + STREAM_HISTORY_TABLE + " WHERE " + JOIN_STREAM_ID + " = :streamId")
     public abstract int deleteStreamHistory(final long streamId);
 
