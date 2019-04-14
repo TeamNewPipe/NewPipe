@@ -601,5 +601,6 @@
     <string name="max_retry_desc">Maximum number of attempts before canceling the download</string>
     <string name="pause_downloads_on_mobile">Pause on switching to mobile data</string>
     <string name="pause_downloads_on_mobile_desc">Downloads that can not be paused will be restarted</string>
+    <string name="close">Close</string>
 
 </resources>
