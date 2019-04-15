@@ -103,7 +103,7 @@
     <string name="play_btn_text">Esita</string>
     <string name="content">Sisu</string>
     <string name="show_age_restricted_content_title">Vanusepiiranguga sisu</string>
-    <string name="video_is_age_restricted">Kuva vanusepiiranguga sisu. Sellise materjali saab lubada seadetes.</string>
+    <string name="video_is_age_restricted">Kuva vanusepiiranguga video. Sellist sisu saab lubada seadetes.</string>
     <string name="duration_live">OTSE</string>
     <string name="downloads">Allalaadimised</string>
     <string name="downloads_title">Allalaadimised</string>
@@ -459,13 +459,13 @@
     <string name="error_connect_host">Serveriga ei saadud ühendust</string>
     <string name="error_http_no_content">Server ei saada andmeid</string>
     <string name="error_http_unsupported_range">Server ei toeta mitmelõimelisi allalaadimisi. Proovi uuesti kasutades @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">Mitterahuldav taotletud vahemik</string>
+    <string name="error_http_requested_range_not_satisfiable">Taotletud vahemik ei ole rahuldatav</string>
     <string name="error_http_not_found">Ei leitud</string>
     <string name="error_postprocessing_failed">Järeltöötlemine nurjus</string>
     <string name="clear_finished_download">Eemalda lõpetatud allalaadimised</string>
     <string name="msg_pending_downloads">Jätka %s pooleliolevat allalaadimist</string>
     <string name="stop">Stopp</string>
-    <string name="max_retry_msg">Uusi katseid kuni</string>
+    <string name="max_retry_msg">Korduskatseid</string>
     <string name="max_retry_desc">Suurim katsete arv enne allalaadimise tühistamist</string>
     <string name="pause_downloads_on_mobile">Paus üleminekul mobiilsele andmesidele</string>
     <string name="pause_downloads_on_mobile_desc">Allalaadimised, mida ei saa peatada, taaskäivitatakse</string>
