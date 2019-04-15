@@ -142,6 +142,7 @@
 				android:background="@android:color/transparent"
 				android:progressDrawable="?attr/progress_horizontal_drawable"
 				android:visibility="invisible"
+				app:layout_scrollFlags="scroll"
 				tools:max="100"
 				tools:progress="40"
 				tools:visibility="visible" />
