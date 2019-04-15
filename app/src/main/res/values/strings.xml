@@ -536,6 +536,7 @@
     <string name="error_progress_lost">Progress lost, because the file was deleted</string>
 
     <string name="clear_finished_download">Clear finished downloads</string>
+    <string name="confirm_prompt">Are you sure?</string>
     <string name="msg_pending_downloads">Continue your %s pending transfers from Downloads</string>
     <string name="stop">Stop</string>
     <string name="max_retry_msg">Maximum retries</string>

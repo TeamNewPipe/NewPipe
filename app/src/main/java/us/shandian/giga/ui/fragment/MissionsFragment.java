@@ -1,6 +1,7 @@
 package us.shandian.giga.ui.fragment;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -179,7 +180,12 @@ public class MissionsFragment extends Fragment {
                 updateList();
                 return true;
             case R.id.clear_list:
-                mAdapter.clearFinishedDownloads();
+                AlertDialog.Builder prompt = new AlertDialog.Builder(mContext);
+                prompt.setTitle(R.string.clear_finished_download);
+                prompt.setMessage(R.string.confirm_prompt);
+                prompt.setPositiveButton(android.R.string.ok, (dialog, which) -> mAdapter.clearFinishedDownloads());
+                prompt.setNegativeButton(R.string.cancel, null);
+                prompt.create().show();
                 return true;
             case R.id.start_downloads:
                 item.setVisible(false);

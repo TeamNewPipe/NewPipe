@@ -427,7 +427,8 @@ abrir en modo popup</string>
     <string name="grid">Mostrar como grilla</string>
     <string name="list">Mostrar como lista</string>
     <string name="clear_finished_download">Limpiar descargas finalizadas</string>
-    <string name="msg_pending_downloads">Continúa tus %s transferencias pendientes desde Descargas</string>
+    <string name="confirm_prompt">¿Estas seguro?</string>
+    <string name="msg_pending_downloads">Tienes %s descargas pendientes, ve a Descargas para continuarlas</string>
     <string name="stop">Detener</string>
     <string name="max_retry_msg">Intentos máximos</string>
     <string name="max_retry_desc">Cantidad máxima de intentos antes de cancelar la descarga</string>
