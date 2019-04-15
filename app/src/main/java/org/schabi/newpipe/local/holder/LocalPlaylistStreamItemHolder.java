@@ -1,21 +1,25 @@
 package org.schabi.newpipe.local.holder;
 
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
+import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.local.LocalItemBuilder;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
 
 import java.text.DateFormat;
+import java.util.concurrent.TimeUnit;
 
 public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
 
@@ -24,6 +28,7 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
     public final TextView itemAdditionalDetailsView;
     public final TextView itemDurationView;
     public final View itemHandleView;
+    public final ProgressBar itemProgressView;
 
     LocalPlaylistStreamItemHolder(LocalItemBuilder infoItemBuilder, int layoutId, ViewGroup parent) {
         super(infoItemBuilder, layoutId, parent);
@@ -33,6 +38,7 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
         itemAdditionalDetailsView = itemView.findViewById(R.id.itemAdditionalDetails);
         itemDurationView = itemView.findViewById(R.id.itemDurationView);
         itemHandleView = itemView.findViewById(R.id.itemHandle);
+        itemProgressView = itemView.findViewById(R.id.itemProgressView);
     }
 
     public LocalPlaylistStreamItemHolder(LocalItemBuilder infoItemBuilder, ViewGroup parent) {
@@ -40,7 +46,7 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
     }
 
     @Override
-    public void updateFromItem(final LocalItem localItem, final DateFormat dateFormat) {
+    public void updateFromItem(final LocalItem localItem, @Nullable final StreamStateEntity state, final DateFormat dateFormat) {
         if (!(localItem instanceof PlaylistStreamEntry)) return;
         final PlaylistStreamEntry item = (PlaylistStreamEntry) localItem;
 
@@ -53,6 +59,13 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
             itemDurationView.setBackgroundColor(ContextCompat.getColor(itemBuilder.getContext(),
                     R.color.duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
+            if (state != null) {
+                itemProgressView.setVisibility(View.VISIBLE);
+                itemProgressView.setMax((int) item.duration);
+                itemProgressView.setProgress((int) TimeUnit.MILLISECONDS.toSeconds(state.getProgressTime()));
+            } else {
+                itemProgressView.setVisibility(View.GONE);
+            }
         } else {
             itemDurationView.setVisibility(View.GONE);
         }

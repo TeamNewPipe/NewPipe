@@ -5,17 +5,20 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
+import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.local.LocalItemBuilder;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
 
 import java.text.DateFormat;
+import java.util.concurrent.TimeUnit;
 
 /*
  * Created by Christian Schabesberger on 01.08.16.
@@ -45,6 +48,7 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
     public final TextView itemDurationView;
     @Nullable
     public final TextView itemAdditionalDetails;
+    public final ProgressBar itemProgressView;
 
     public LocalStatisticStreamItemHolder(LocalItemBuilder itemBuilder, ViewGroup parent) {
         this(itemBuilder, R.layout.list_stream_item, parent);
@@ -58,6 +62,7 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
         itemUploaderView = itemView.findViewById(R.id.itemUploaderView);
         itemDurationView = itemView.findViewById(R.id.itemDurationView);
         itemAdditionalDetails = itemView.findViewById(R.id.itemAdditionalDetails);
+        itemProgressView = itemView.findViewById(R.id.itemProgressView);
     }
 
     private String getStreamInfoDetailLine(final StreamStatisticsEntry entry,
@@ -70,7 +75,7 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
     }
 
     @Override
-    public void updateFromItem(final LocalItem localItem, final DateFormat dateFormat) {
+    public void updateFromItem(final LocalItem localItem, @Nullable final StreamStateEntity state, final DateFormat dateFormat) {
         if (!(localItem instanceof StreamStatisticsEntry)) return;
         final StreamStatisticsEntry item = (StreamStatisticsEntry) localItem;
 
@@ -82,8 +87,16 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
             itemDurationView.setBackgroundColor(ContextCompat.getColor(itemBuilder.getContext(),
                     R.color.duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
+            if (state != null) {
+                itemProgressView.setVisibility(View.VISIBLE);
+                itemProgressView.setMax((int) item.duration);
+                itemProgressView.setProgress((int) TimeUnit.MILLISECONDS.toSeconds(state.getProgressTime()));
+            } else {
+                itemProgressView.setVisibility(View.GONE);
+            }
         } else {
             itemDurationView.setVisibility(View.GONE);
+            itemProgressView.setVisibility(View.GONE);
         }
 
         if (itemAdditionalDetails != null) {

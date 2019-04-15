@@ -166,7 +166,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 historyRecordManager.loadStreamState(data)
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(streamStateEntity -> {
-                            addInfoItem(data, streamStateEntity);
+                            addInfoItem(data, streamStateEntity[0]);
                         })
         );
     }

@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.schabi.newpipe.database.LocalItem;
+import org.schabi.newpipe.database.stream.model.StreamStateEntity;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.local.holder.LocalItemHolder;
 import org.schabi.newpipe.local.holder.LocalPlaylistGridItemHolder;
 import org.schabi.newpipe.local.holder.LocalPlaylistItemHolder;
@@ -24,6 +26,9 @@ import org.schabi.newpipe.util.OnClickGesture;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 
 /*
  * Created by Christian Schabesberger on 01.08.16.
@@ -63,7 +68,10 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
 	private static final int REMOTE_PLAYLIST_GRID_HOLDER_TYPE = 0x2004;
 
     private final LocalItemBuilder localItemBuilder;
+    private final HistoryRecordManager historyRecordManager;
     private final ArrayList<LocalItem> localItems;
+    private final ArrayList<StreamStateEntity> states;
+    private final CompositeDisposable stateLoaders;
     private final DateFormat dateFormat;
 
     private boolean showFooter = false;
@@ -73,9 +81,12 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     public LocalItemListAdapter(Activity activity) {
         localItemBuilder = new LocalItemBuilder(activity);
+        historyRecordManager = new HistoryRecordManager(activity);
         localItems = new ArrayList<>();
         dateFormat = DateFormat.getDateInstance(DateFormat.SHORT,
                 Localization.getPreferredLocale(activity));
+        states = new ArrayList<>();
+        stateLoaders = new CompositeDisposable();
     }
 
     public void setSelectedListener(OnClickGesture<LocalItem> listener) {
@@ -87,6 +98,15 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     public void addItems(List<? extends LocalItem> data) {
+        stateLoaders.add(
+                historyRecordManager.loadLocalStreamStateBatch(data)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(streamStateEntities ->
+                                addItems(data, streamStateEntities))
+        );
+    }
+
+    private void addItems(List<? extends LocalItem> data, List<StreamStateEntity> streamStates) {
         if (data != null) {
             if (DEBUG) {
                 Log.d(TAG, "addItems() before > localItems.size() = " +
@@ -95,6 +115,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
 
             int offsetStart = sizeConsideringHeader();
             localItems.addAll(data);
+            states.addAll(streamStates);
 
             if (DEBUG) {
                 Log.d(TAG, "addItems() after > offsetStart = " + offsetStart +
@@ -130,6 +151,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         if (actualFrom >= localItems.size() || actualTo >= localItems.size()) return false;
 
         localItems.add(actualTo, localItems.remove(actualFrom));
+        states.add(actualTo, states.remove(actualFrom));
         notifyItemMoved(fromAdapterPosition, toAdapterPosition);
         return true;
     }
@@ -259,7 +281,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
             // If header isn't null, offset the items by -1
             if (header != null) position--;
 
-            ((LocalItemHolder) holder).updateFromItem(localItems.get(position), dateFormat);
+            ((LocalItemHolder) holder).updateFromItem(localItems.get(position), states.get(position), dateFormat);
         } else if (holder instanceof HeaderFooterHolder && position == 0 && header != null) {
             ((HeaderFooterHolder) holder).view = header;
         } else if (holder instanceof HeaderFooterHolder && position == sizeConsideringHeader()
@@ -276,5 +298,9 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
                 return type == HEADER_TYPE || type == FOOTER_TYPE ? spanCount : 1;
             }
         };
+    }
+
+    public void dispose() {
+        stateLoaders.clear();
     }
 }

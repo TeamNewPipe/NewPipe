@@ -26,11 +26,14 @@ import android.support.annotation.NonNull;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.AppDatabase;
+import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.history.dao.SearchHistoryDAO;
 import org.schabi.newpipe.database.history.dao.StreamHistoryDAO;
 import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
 import org.schabi.newpipe.database.history.model.StreamHistoryEntity;
 import org.schabi.newpipe.database.history.model.StreamHistoryEntry;
+import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
+import org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
 import org.schabi.newpipe.database.stream.dao.StreamDAO;
 import org.schabi.newpipe.database.stream.dao.StreamStateDAO;
@@ -221,17 +224,17 @@ public class HistoryRecordManager {
         })).subscribeOn(Schedulers.io());
     }
 
-    public Single<StreamStateEntity> loadStreamState(final InfoItem info) {
+    public Single<StreamStateEntity[]> loadStreamState(final InfoItem info) {
         return Single.fromCallable(() -> {
             final List<StreamEntity> entities = streamTable.getStream(info.getServiceId(), info.getUrl()).blockingFirst();
             if (entities.isEmpty()) {
-                return null;
+                return new StreamStateEntity[]{null};
             }
             final List<StreamStateEntity> states = streamStateTable.getState(entities.get(0).getUid()).blockingFirst();
             if (states.isEmpty()) {
-                return null;
+                return new StreamStateEntity[]{null};
             }
-            return states.get(0);
+            return new StreamStateEntity[]{states.get(0)};
         }).subscribeOn(Schedulers.io());
     }
 
@@ -245,6 +248,32 @@ public class HistoryRecordManager {
                     continue;
                 }
                 final List<StreamStateEntity> states = streamStateTable.getState(entities.get(0).getUid()).blockingFirst();
+                if (states.isEmpty()) {
+                    result.add(null);
+                    continue;
+                }
+                result.add(states.get(0));
+            }
+            return result;
+        }).subscribeOn(Schedulers.io());
+    }
+
+    public Single<List<StreamStateEntity>> loadLocalStreamStateBatch(final List<? extends LocalItem> items) {
+        return Single.fromCallable(() -> {
+            final List<StreamStateEntity> result = new ArrayList<>(items.size());
+            for (LocalItem item : items) {
+                long streamId;
+                if (item instanceof StreamStatisticsEntry) {
+                    streamId = ((StreamStatisticsEntry) item).streamId;
+                } else if (item instanceof PlaylistStreamEntity) {
+                    streamId = ((PlaylistStreamEntity) item).getStreamUid();
+                } else if (item instanceof PlaylistStreamEntry) {
+                    streamId = ((PlaylistStreamEntry) item).streamId;
+                } else {
+                    result.add(null);
+                    continue;
+                }
+                final List<StreamStateEntity> states = streamStateTable.getState(streamId).blockingFirst();
                 if (states.isEmpty()) {
                     result.add(null);
                     continue;
