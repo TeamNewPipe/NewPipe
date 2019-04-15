@@ -66,6 +66,12 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
     }
 
     @Override
+    public void onDetach() {
+        infoListAdapter.dispose();
+        super.onDetach();
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);

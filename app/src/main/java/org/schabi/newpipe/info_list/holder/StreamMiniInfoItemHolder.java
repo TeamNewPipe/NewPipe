@@ -1,12 +1,15 @@
 package org.schabi.newpipe.info_list.holder;
 
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
@@ -14,12 +17,15 @@ import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
 
+import java.util.concurrent.TimeUnit;
+
 public class StreamMiniInfoItemHolder extends InfoItemHolder {
 
     public final ImageView itemThumbnailView;
     public final TextView itemVideoTitleView;
     public final TextView itemUploaderView;
     public final TextView itemDurationView;
+    public final ProgressBar itemProgressView;
 
     StreamMiniInfoItemHolder(InfoItemBuilder infoItemBuilder, int layoutId, ViewGroup parent) {
         super(infoItemBuilder, layoutId, parent);
@@ -28,6 +34,7 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
         itemVideoTitleView = itemView.findViewById(R.id.itemVideoTitleView);
         itemUploaderView = itemView.findViewById(R.id.itemUploaderView);
         itemDurationView = itemView.findViewById(R.id.itemDurationView);
+        itemProgressView = itemView.findViewById(R.id.itemProgressView);
     }
 
     public StreamMiniInfoItemHolder(InfoItemBuilder infoItemBuilder, ViewGroup parent) {
@@ -35,7 +42,7 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
     }
 
     @Override
-    public void updateFromItem(final InfoItem infoItem) {
+    public void updateFromItem(final InfoItem infoItem, @Nullable final StreamStateEntity state) {
         if (!(infoItem instanceof StreamInfoItem)) return;
         final StreamInfoItem item = (StreamInfoItem) infoItem;
 
@@ -47,13 +54,22 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
             itemDurationView.setBackgroundColor(ContextCompat.getColor(itemBuilder.getContext(),
                     R.color.duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
+            if (state != null) {
+                itemProgressView.setVisibility(View.VISIBLE);
+                itemProgressView.setMax((int) item.getDuration());
+                itemProgressView.setProgress((int) TimeUnit.MILLISECONDS.toSeconds(state.getProgressTime()));
+            } else {
+                itemProgressView.setVisibility(View.GONE);
+            }
         } else if (item.getStreamType() == StreamType.LIVE_STREAM) {
             itemDurationView.setText(R.string.duration_live);
             itemDurationView.setBackgroundColor(ContextCompat.getColor(itemBuilder.getContext(),
                     R.color.live_duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
+            itemProgressView.setVisibility(View.GONE);
         } else {
             itemDurationView.setVisibility(View.GONE);
+            itemProgressView.setVisibility(View.GONE);
         }
 
         // Default thumbnail is shown on error, while loading and if the url is empty

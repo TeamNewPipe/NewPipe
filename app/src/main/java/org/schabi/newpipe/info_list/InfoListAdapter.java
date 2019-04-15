@@ -7,16 +7,17 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.info_list.holder.ChannelGridInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelMiniInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.CommentsInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.CommentsMiniInfoItemHolder;
-import org.schabi.newpipe.info_list.holder.ChannelGridInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.InfoItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistGridInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistInfoItemHolder;
@@ -24,11 +25,15 @@ import org.schabi.newpipe.info_list.holder.PlaylistMiniInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.StreamGridInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.StreamInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.StreamMiniInfoItemHolder;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.FallbackViewHolder;
 import org.schabi.newpipe.util.OnClickGesture;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 
 /*
  * Created by Christian Schabesberger on 01.08.16.
@@ -70,7 +75,10 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static final int COMMENT_HOLDER_TYPE = 0x401;
 
     private final InfoItemBuilder infoItemBuilder;
+    private final HistoryRecordManager historyRecordManager;
     private final ArrayList<InfoItem> infoItemList;
+    private final ArrayList<StreamStateEntity> states;
+    private final CompositeDisposable stateLoaders;
     private boolean useMiniVariant = false;
     private boolean useGridVariant = false;
     private boolean showFooter = false;
@@ -88,7 +96,10 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public InfoListAdapter(Activity a) {
         infoItemBuilder = new InfoItemBuilder(a);
+        historyRecordManager = new HistoryRecordManager(a);
         infoItemList = new ArrayList<>();
+        states = new ArrayList<>();
+        stateLoaders = new CompositeDisposable();
     }
 
     public void setOnStreamSelectedListener(OnClickGesture<StreamInfoItem> listener) {
@@ -115,7 +126,17 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.useGridVariant = useGridVariant;
     }
 
-    public void addInfoItemList(List<InfoItem> data) {
+    public void addInfoItemList(final List<InfoItem> data) {
+        stateLoaders.add(
+                historyRecordManager.loadStreamStateBatch(data)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(streamStateEntities -> {
+                    addInfoItemList(data, streamStateEntities);
+                })
+        );
+    }
+
+    private void addInfoItemList(List<InfoItem> data, List<StreamStateEntity> statesEntities) {
         if (data != null) {
             if (DEBUG) {
                 Log.d(TAG, "addInfoItemList() before > infoItemList.size() = " + infoItemList.size() + ", data.size() = " + data.size());
@@ -123,6 +144,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             int offsetStart = sizeConsideringHeaderOffset();
             infoItemList.addAll(data);
+            states.addAll(statesEntities);
 
             if (DEBUG) {
                 Log.d(TAG, "addInfoItemList() after > offsetStart = " + offsetStart + ", infoItemList.size() = " + infoItemList.size() + ", header = " + header + ", footer = " + footer + ", showFooter = " + showFooter);
@@ -140,6 +162,16 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public void addInfoItem(InfoItem data) {
+        stateLoaders.add(
+                historyRecordManager.loadStreamState(data)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(streamStateEntity -> {
+                            addInfoItem(data, streamStateEntity);
+                        })
+        );
+    }
+
+    private void addInfoItem(InfoItem data, StreamStateEntity state) {
         if (data != null) {
             if (DEBUG) {
                 Log.d(TAG, "addInfoItem() before > infoItemList.size() = " + infoItemList.size() + ", thread = " + Thread.currentThread());
@@ -147,6 +179,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             int positionInserted = sizeConsideringHeaderOffset();
             infoItemList.add(data);
+            states.add(state);
 
             if (DEBUG) {
                 Log.d(TAG, "addInfoItem() after > position = " + positionInserted + ", infoItemList.size() = " + infoItemList.size() + ", header = " + header + ", footer = " + footer + ", showFooter = " + showFooter);
@@ -167,6 +200,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             return;
         }
         infoItemList.clear();
+        states.clear();
         notifyDataSetChanged();
     }
 
@@ -284,7 +318,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             // If header isn't null, offset the items by -1
             if (header != null) position--;
 
-            ((InfoItemHolder) holder).updateFromItem(infoItemList.get(position));
+            ((InfoItemHolder) holder).updateFromItem(infoItemList.get(position), states.get(position));
         } else if (holder instanceof HFHolder && position == 0 && header != null) {
             ((HFHolder) holder).view = header;
         } else if (holder instanceof HFHolder && position == sizeConsideringHeaderOffset() && footer != null && showFooter) {
@@ -300,5 +334,9 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 return type == HEADER_TYPE || type == FOOTER_TYPE ? spanCount : 1;
             }
         };
+    }
+
+    public void dispose() {
+        stateLoaders.clear();
     }
 }

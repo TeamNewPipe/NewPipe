@@ -36,6 +36,7 @@ import org.schabi.newpipe.database.stream.dao.StreamDAO;
 import org.schabi.newpipe.database.stream.dao.StreamStateDAO;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
+import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 
@@ -218,6 +219,40 @@ public class HistoryRecordManager {
                 streamStateTable.deleteState(streamId);
             }
         })).subscribeOn(Schedulers.io());
+    }
+
+    public Single<StreamStateEntity> loadStreamState(final InfoItem info) {
+        return Single.fromCallable(() -> {
+            final List<StreamEntity> entities = streamTable.getStream(info.getServiceId(), info.getUrl()).blockingFirst();
+            if (entities.isEmpty()) {
+                return null;
+            }
+            final List<StreamStateEntity> states = streamStateTable.getState(entities.get(0).getUid()).blockingFirst();
+            if (states.isEmpty()) {
+                return null;
+            }
+            return states.get(0);
+        }).subscribeOn(Schedulers.io());
+    }
+
+    public Single<List<StreamStateEntity>> loadStreamStateBatch(final List<InfoItem> infos) {
+        return Single.fromCallable(() -> {
+            final List<StreamStateEntity> result = new ArrayList<>(infos.size());
+            for (InfoItem info : infos) {
+                final List<StreamEntity> entities = streamTable.getStream(info.getServiceId(), info.getUrl()).blockingFirst();
+                if (entities.isEmpty()) {
+                    result.add(null);
+                    continue;
+                }
+                final List<StreamStateEntity> states = streamStateTable.getState(entities.get(0).getUid()).blockingFirst();
+                if (states.isEmpty()) {
+                    result.add(null);
+                    continue;
+                }
+                result.add(states.get(0));
+            }
+            return result;
+        }).subscribeOn(Schedulers.io());
     }
 
     ///////////////////////////////////////////////////////
