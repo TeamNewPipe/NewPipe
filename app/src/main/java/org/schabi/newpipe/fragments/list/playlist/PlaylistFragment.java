@@ -40,6 +40,7 @@ import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.ArrayList;
@@ -168,7 +169,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                     NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index));
                     break;
                 case 5:
-                    shareUrl(item.getName(), item.getUrl());
+                    ShareUtils.shareUrl(this.getContext(), item.getName(), item.getUrl());
                     break;
                 default:
                     break;
@@ -230,10 +231,10 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_item_openInBrowser:
-                openUrlInBrowser(url);
+                ShareUtils.openUrlInBrowser(this.getContext(), url);
                 break;
             case R.id.menu_item_share:
-                shareUrl(name, url);
+                ShareUtils.shareUrl(this.getContext(), name, url);
                 break;
             case R.id.menu_item_bookmark:
                 onBookmarkClicked();

@@ -34,6 +34,7 @@ import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
+import org.schabi.newpipe.util.ShareUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -555,7 +556,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     deleteItem(item);
                     break;
                 case 7:
-                    shareUrl(item.toStreamInfoItem().getName(), item.toStreamInfoItem().getUrl());
+                    ShareUtils.shareUrl(this.getContext(), item.toStreamInfoItem().getName(), item.toStreamInfoItem().getUrl());
                     break;
                 default:
                     break;
