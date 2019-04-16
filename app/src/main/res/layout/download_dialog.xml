@@ -29,12 +29,31 @@
         android:layout_marginRight="20dp"
         android:inputType="text"
         android:maxLines="1"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/file_name"
+        android:orientation="vertical"
+        android:id="@+id/path">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/path_Location"
+        android:layout_below="@+id/file_name"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/path_Change_Button"
+            android:text="change download location"
+            />
+
+    </LinearLayout>
 
     <RadioGroup
         android:id="@+id/video_audio_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/file_name"
+        android:layout_below="@+id/path"
         android:layout_marginBottom="6dp"
         android:layout_marginLeft="20dp"
         android:gravity="left"
@@ -108,4 +127,5 @@
             android:max="31"
             android:progress="3"/>
     </LinearLayout>
+
 </RelativeLayout>

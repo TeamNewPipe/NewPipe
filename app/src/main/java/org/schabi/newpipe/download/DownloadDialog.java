@@ -1,6 +1,8 @@
 package org.schabi.newpipe.download;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -16,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -23,6 +26,8 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.nononsenseapps.filepicker.Utils;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
@@ -35,6 +40,7 @@ import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.extractor.utils.Localization;
 import org.schabi.newpipe.settings.NewPipeSettings;
+import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.FilenameUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.PermissionHelper;
@@ -83,6 +89,9 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     private RadioGroup radioVideoAudioGroup;
     private TextView threadsCountTextView;
     private SeekBar threadsSeekBar;
+    private TextView pathlocation;
+    private Button pathChange;
+    private int change_Location_Code =101;
 
     private SharedPreferences prefs;
 
@@ -190,9 +199,21 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == change_Location_Code && resultCode == Activity.RESULT_OK){
+            String path = Utils.getFileForUri(data.getData()).getAbsolutePath();
+            pathChange.setText(path);
+        }
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         nameEditText = view.findViewById(R.id.file_name);
+        pathlocation = view.findViewById(R.id.path_Location);
+        pathChange = view.findViewById(R.id.path_Change_Button);
+        pathlocation.setText(NewPipeSettings.getVideoDownloadPath(getContext()));
         nameEditText.setText(FilenameUtils.createFilename(getContext(), currentInfo.getName()));
         selectedAudioIndex = ListHelper.getDefaultAudioFormat(getContext(), currentInfo.getAudioStreams());
 
@@ -209,6 +230,17 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
 
         initToolbar(view.findViewById(R.id.toolbar));
         setupDownloadOptions();
+
+        pathChange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), FilePickerActivityHelper.class)
+                        .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
+                        .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, true)
+                        .putExtra(FilePickerActivityHelper.EXTRA_MODE, FilePickerActivityHelper.MODE_DIR);
+                startActivityForResult(i,change_Location_Code);
+            }
+        });
 
         prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
 
@@ -324,12 +356,15 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
 
         switch (checkedId) {
             case R.id.audio_button:
+                pathlocation.setText(NewPipeSettings.getAudioDownloadPath(getContext()));
                 setupAudioSpinner();
                 break;
             case R.id.video_button:
+                pathlocation.setText(NewPipeSettings.getVideoDownloadPath(getContext()));
                 setupVideoSpinner();
                 break;
             case R.id.subtitle_button:
+                pathlocation.setText(NewPipeSettings.getVideoDownloadPath(getContext()));
                 setupSubtitleSpinner();
                 flag = false;
                 break;
@@ -447,17 +482,17 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         switch (radioVideoAudioGroup.getCheckedRadioButtonId()) {
             case R.id.audio_button:
                 stream = audioStreamsAdapter.getItem(selectedAudioIndex);
-                location = NewPipeSettings.getAudioDownloadPath(context);
+                location = pathlocation.getText().toString();
                 kind = 'a';
                 break;
             case R.id.video_button:
                 stream = videoStreamsAdapter.getItem(selectedVideoIndex);
-                location = NewPipeSettings.getVideoDownloadPath(context);
+                location = pathlocation.getText().toString();
                 kind = 'v';
                 break;
             case R.id.subtitle_button:
                 stream = subtitleStreamsAdapter.getItem(selectedSubtitleIndex);
-                location = NewPipeSettings.getVideoDownloadPath(context);// assume that subtitle & video files go together
+                location = pathlocation.getText().toString();// assume that subtitle & video files go together
                 kind = 's';
                 break;
             default:
