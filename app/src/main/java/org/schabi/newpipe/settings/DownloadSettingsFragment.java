@@ -2,6 +2,7 @@ package org.schabi.newpipe.settings;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -22,6 +23,7 @@ import org.schabi.newpipe.util.FilePickerActivityHelper;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URI;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 
@@ -30,7 +32,7 @@ import us.shandian.giga.io.StoredDirectoryHelper;
 public class DownloadSettingsFragment extends BasePreferenceFragment {
     private static final int REQUEST_DOWNLOAD_VIDEO_PATH = 0x1235;
     private static final int REQUEST_DOWNLOAD_AUDIO_PATH = 0x1236;
-    public static final boolean IGNORE_RELEASE_OLD_PATH = true;
+    public static final boolean IGNORE_RELEASE_ON_OLD_PATH = true;
 
     private String DOWNLOAD_PATH_VIDEO_PREFERENCE;
     private String DOWNLOAD_PATH_AUDIO_PREFERENCE;
@@ -68,43 +70,19 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
             if (javaIO == lastAPIJavaIO) return true;
             lastAPIJavaIO = javaIO;
 
-            boolean res;
-
-            if (javaIO && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                // forget save paths (if necessary)
-                res = forgetPath(DOWNLOAD_PATH_VIDEO_PREFERENCE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                boolean res = forgetPath(DOWNLOAD_PATH_VIDEO_PREFERENCE);
                 res |= forgetPath(DOWNLOAD_PATH_AUDIO_PREFERENCE);
-            } else {
-                res = hasInvalidPath(DOWNLOAD_PATH_VIDEO_PREFERENCE) || hasInvalidPath(DOWNLOAD_PATH_AUDIO_PREFERENCE);
-            }
 
-            if (res) {
-                Toast.makeText(ctx, R.string.download_pick_path, Toast.LENGTH_LONG).show();
-                updatePreferencesSummary();
+                if (res) {
+                    Toast.makeText(ctx, R.string.download_pick_path, Toast.LENGTH_SHORT).show();
+                    updatePreferencesSummary();
+                }
             }
 
             updatePathPickers(javaIO);
             return true;
         });
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    private boolean forgetPath(String prefKey) {
-        String path = defaultPreferences.getString(prefKey, "");
-        if (path == null || path.isEmpty()) return true;
-
-        if (path.startsWith("file://")) return false;
-
-        // forget SAF path (file:// is compatible with the SAF wrapper)
-        forgetSAFTree(getContext(), prefKey);
-        defaultPreferences.edit().putString(prefKey, "").apply();
-
-        return true;
-    }
-
-    private boolean hasInvalidPath(String prefKey) {
-        String value = defaultPreferences.getString(prefKey, null);
-        return value == null || value.isEmpty();
     }
 
     @Override
@@ -137,6 +115,15 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
             return;
         }
 
+        if (rawUri.charAt(0) == File.separatorChar) {
+            target.setSummary(rawUri);
+            return;
+        }
+        if (rawUri.startsWith(ContentResolver.SCHEME_FILE)) {
+            target.setSummary(new File(URI.create(rawUri)).getPath());
+            return;
+        }
+
         try {
             rawUri = URLDecoder.decode(rawUri, StandardCharsets.UTF_8.name());
         } catch (UnsupportedEncodingException e) {
@@ -144,6 +131,24 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
         }
 
         target.setSummary(rawUri);
+    }
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    private boolean forgetPath(String prefKey) {
+        String path = defaultPreferences.getString(prefKey, "");
+        if (path == null || path.isEmpty()) return true;
+
+        // forget SAF path if necessary
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            forgetSAFTree(getContext(), path);
+
+        defaultPreferences.edit().putString(prefKey, "").apply();
+
+        return true;
+    }
+
+    private boolean isFileUri(String path) {
+        return path.charAt(0) == File.separatorChar || path.startsWith(ContentResolver.SCHEME_FILE);
     }
 
     private void updatePathPickers(boolean useJavaIO) {
@@ -159,25 +164,22 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
     }
 
     // FIXME: after releasing the old path, all downloads created on the folder becomes inaccessible
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    private void forgetSAFTree(Context ctx, String prefKey) {
-        if (IGNORE_RELEASE_OLD_PATH) {
+    private void forgetSAFTree(Context ctx, String oldPath) {
+        if (IGNORE_RELEASE_ON_OLD_PATH) {
             return;
         }
 
-        String oldPath = defaultPreferences.getString(prefKey, "");
+        if (oldPath == null || oldPath.isEmpty() || isFileUri(oldPath)) return;
 
-        if (oldPath != null && !oldPath.isEmpty() && oldPath.charAt(0) != File.separatorChar && !oldPath.startsWith("file://")) {
-            try {
-                Uri uri = Uri.parse(oldPath);
+        try {
+            Uri uri = Uri.parse(oldPath);
 
-                ctx.getContentResolver().releasePersistableUriPermission(uri, StoredDirectoryHelper.PERMISSION_FLAGS);
-                ctx.revokeUriPermission(uri, StoredDirectoryHelper.PERMISSION_FLAGS);
+            ctx.getContentResolver().releasePersistableUriPermission(uri, StoredDirectoryHelper.PERMISSION_FLAGS);
+            ctx.revokeUriPermission(uri, StoredDirectoryHelper.PERMISSION_FLAGS);
 
-                Log.i(TAG, "Revoke old path permissions success on " + oldPath);
-            } catch (Exception err) {
-                Log.e(TAG, "Error revoking old path permissions on " + oldPath, err);
-            }
+            Log.i(TAG, "Revoke old path permissions success on " + oldPath);
+        } catch (Exception err) {
+            Log.e(TAG, "Error revoking old path permissions on " + oldPath, err);
         }
     }
 
@@ -258,7 +260,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
             final Context ctx = getContext();
             if (ctx == null) throw new NullPointerException("getContext()");
 
-            forgetSAFTree(ctx, key);
+            forgetSAFTree(ctx, defaultPreferences.getString(key, ""));
 
             try {
                 ctx.grantUriPermission(ctx.getPackageName(), uri, StoredDirectoryHelper.PERMISSION_FLAGS);

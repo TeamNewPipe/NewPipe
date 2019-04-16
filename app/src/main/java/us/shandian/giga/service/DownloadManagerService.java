@@ -566,7 +566,10 @@ public class DownloadManagerService extends Service {
         }
 
         if (path == null || path.isEmpty()) {
-            return useJavaIO ? new StoredDirectoryHelper(new File(defaultPath).toURI(), tag) : null;
+            if (useJavaIO)
+                return new StoredDirectoryHelper(new File(defaultPath).toURI(), tag);
+            else
+                return null;
         }
 
         if (path.charAt(0) == File.separatorChar) {
