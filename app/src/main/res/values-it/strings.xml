@@ -473,4 +473,5 @@
     <string name="pause_downloads_on_mobile_desc">I download che non possono essere messi in pausa verranno riavviati</string>
     <string name="events">Eventi</string>
     <string name="conferences">Conferenze</string>
+    <string name="error_timeout">Connesione finita</string>
 </resources>

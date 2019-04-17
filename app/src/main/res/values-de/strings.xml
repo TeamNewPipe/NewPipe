@@ -472,4 +472,5 @@
     <string name="pause_downloads_on_mobile_desc">Downloads, die nicht pausiert werden können, werden wiederholt</string>
     <string name="conferences">Konferenzen</string>
     <string name="events">Ereignisse</string>
+    <string name="error_timeout">Verbindungszeitüberschreitung</string>
 </resources>

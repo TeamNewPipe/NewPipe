@@ -1,6 +1,5 @@
 package us.shandian.giga.get;
 
-import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -19,7 +18,7 @@ import static org.schabi.newpipe.BuildConfig.DEBUG;
  * Single-threaded fallback mode
  */
 public class DownloadRunnableFallback extends Thread {
-    private static final String TAG = "DownloadRunnableFallback";
+    private static final String TAG = "DownloadRunnableFallbac";
 
     private final DownloadMission mMission;
 
@@ -30,9 +29,6 @@ public class DownloadRunnableFallback extends Thread {
 
     DownloadRunnableFallback(@NonNull DownloadMission mission) {
         mMission = mission;
-        mIs = null;
-        mF = null;
-        mConn = null;
     }
 
     private void dispose() {
@@ -46,7 +42,6 @@ public class DownloadRunnableFallback extends Thread {
     }
 
     @Override
-    @SuppressLint("LongLogTag")
     public void run() {
         boolean done;
 
@@ -104,6 +99,10 @@ public class DownloadRunnableFallback extends Thread {
             if (mRetryCount++ >= mMission.maxRetry) {
                 mMission.notifyError(e);
                 return;
+            }
+
+            if (DEBUG) {
+                Log.e(TAG, "got exception, retrying...", e);
             }
 
             run();// try again

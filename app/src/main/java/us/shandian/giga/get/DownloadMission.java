@@ -4,11 +4,14 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
+import org.schabi.newpipe.Downloader;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.ConnectException;
 import java.net.HttpURLConnection;
+import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -45,6 +48,7 @@ public class DownloadMission extends Mission {
     public static final int ERROR_POSTPROCESSING_HOLD = 1009;
     public static final int ERROR_INSUFFICIENT_STORAGE = 1010;
     public static final int ERROR_PROGRESS_LOST = 1011;
+    public static final int ERROR_TIMEOUT = 1012;
     public static final int ERROR_HTTP_NO_CONTENT = 204;
     public static final int ERROR_HTTP_UNSUPPORTED_RANGE = 206;
 
@@ -232,10 +236,9 @@ public class DownloadMission extends Mission {
         URL url = new URL(urls[current]);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setInstanceFollowRedirects(true);
+        conn.setRequestProperty("User-Agent", Downloader.USER_AGENT);
 
         // BUG workaround: switching between networks can freeze the download forever
-
-        //conn.setRequestProperty("Connection", "close");
         conn.setConnectTimeout(30000);
         conn.setReadTimeout(10000);
 
@@ -329,6 +332,8 @@ public class DownloadMission extends Mission {
             notifyError(ERROR_CONNECT_HOST, null);
         } else if (err instanceof UnknownHostException) {
             notifyError(ERROR_UNKNOWN_HOST, null);
+        } else if (err instanceof SocketTimeoutException) {
+            notifyError(ERROR_TIMEOUT, null);
         } else {
             notifyError(ERROR_UNKNOWN_EXCEPTION, err);
         }
@@ -338,7 +343,7 @@ public class DownloadMission extends Mission {
         Log.e(TAG, "notifyError() code = " + code, err);
 
         if (err instanceof IOException) {
-            if (storage.canWrite() || err.getMessage().contains("Permission denied")) {
+            if (!storage.canWrite() || err.getMessage().contains("Permission denied")) {
                 code = ERROR_PERMISSION_DENIED;
                 err = null;
             } else if (err.getMessage().contains("ENOSPC")) {
@@ -349,7 +354,19 @@ public class DownloadMission extends Mission {
 
         errCode = code;
         errObject = err;
-        enqueued = false;
+
+        switch (code) {
+            case ERROR_SSL_EXCEPTION:
+            case ERROR_UNKNOWN_HOST:
+            case ERROR_CONNECT_HOST:
+            case ERROR_TIMEOUT:
+                // do not change the queue flag for network errors, can be
+                // recovered silently without the user interaction
+                break;
+            default:
+                // also checks for server errors
+                if (code < 500 || code > 599) enqueued = false;
+        }
 
         pause();
 

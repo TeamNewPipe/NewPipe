@@ -469,4 +469,5 @@
     <string name="pause_downloads_on_mobile_desc">無法暫停的下載將會重新開始</string>
     <string name="events">事件</string>
     <string name="conferences">會議</string>
+    <string name="error_timeout">連接超時</string>
 </resources>

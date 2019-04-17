@@ -440,6 +440,7 @@
     <string name="missions_header_pending">Dans la file d\'attente</string>
     <string name="paused">En pause</string>
     <string name="download_failed">Téléchargement échoué</string>
+    <string name="error_timeout">Délai de connection dépassé</string>
     <string name="conferences">Conférences</string>
     <string name="download_finished">Téléchargement terminé</string>
     <string name="download_finished_more">%s téléchargements terminés</string>

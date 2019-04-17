@@ -464,4 +464,6 @@
     <string name="msg_pending_downloads">ダウンロードから %s の保留中の転送を続行します</string>
     <string name="pause_downloads_on_mobile">モバイルデータ通信に切り替え時に休止</string>
     <string name="pause_downloads_on_mobile_desc">休止できないダウンロードが再開されます</string>
+    <string name="missions_header_pending">保留中</string>
+    <string name="error_timeout">接続タイムアウト</string>
 </resources>

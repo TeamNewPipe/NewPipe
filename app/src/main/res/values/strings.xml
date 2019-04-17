@@ -534,6 +534,7 @@
     <string name="error_postprocessing_stopped">NewPipe was closed while working on the file</string>
     <string name="error_insufficient_storage">No space left on device</string>
     <string name="error_progress_lost">Progress lost, because the file was deleted</string>
+    <string name="error_timeout">Connection timeout</string>
 
     <string name="clear_finished_download">Clear finished downloads</string>
     <string name="confirm_prompt">Are you sure?</string>

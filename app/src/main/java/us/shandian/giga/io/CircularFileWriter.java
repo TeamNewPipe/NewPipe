@@ -11,6 +11,7 @@ import java.io.IOException;
 public class CircularFileWriter extends SharpStream {
 
     private final static int QUEUE_BUFFER_SIZE = 8 * 1024;// 8 KiB
+    private final static int COPY_BUFFER_SIZE = 128 * 1024; // 128 KiB
     private final static int NOTIFY_BYTES_INTERVAL = 64 * 1024;// 64 KiB
     private final static int THRESHOLD_AUX_LENGTH = 15 * 1024 * 1024;// 15 MiB
 
@@ -53,6 +54,7 @@ public class CircularFileWriter extends SharpStream {
         aux.flush();
 
         boolean underflow = aux.offset < aux.length || out.offset < out.length;
+        byte[] buffer = new byte[COPY_BUFFER_SIZE];
 
         aux.target.seek(0);
         out.target.seek(out.length);
@@ -60,14 +62,14 @@ public class CircularFileWriter extends SharpStream {
         long length = amount;
         while (length > 0) {
             int read = (int) Math.min(length, Integer.MAX_VALUE);
-            read = aux.target.read(aux.queue, 0, Math.min(read, aux.queue.length));
+            read = aux.target.read(buffer, 0, Math.min(read, buffer.length));
 
             if (read < 1) {
                 amount -= length;
                 break;
             }
 
-            out.writeProof(aux.queue, read);
+            out.writeProof(buffer, read);
             length -= read;
         }
 
@@ -100,7 +102,6 @@ public class CircularFileWriter extends SharpStream {
             // move the excess data to the beginning of the file
             long readOffset = amount;
             long writeOffset = 0;
-            byte[] buffer = new byte[128 * 1024]; // 128 KiB
 
             aux.length -= amount;
             length = aux.length;

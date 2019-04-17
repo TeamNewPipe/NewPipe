@@ -27,7 +27,6 @@ public class DownloadRunnable extends Thread {
         if (mission == null) throw new NullPointerException("mission is null");
         mMission = mission;
         mId = id;
-        mConn = null;
     }
 
     @Override

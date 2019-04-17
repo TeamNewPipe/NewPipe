@@ -73,6 +73,7 @@ import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING_HOLD;
 import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING_STOPPED;
 import static us.shandian.giga.get.DownloadMission.ERROR_PROGRESS_LOST;
 import static us.shandian.giga.get.DownloadMission.ERROR_SSL_EXCEPTION;
+import static us.shandian.giga.get.DownloadMission.ERROR_TIMEOUT;
 import static us.shandian.giga.get.DownloadMission.ERROR_UNKNOWN_EXCEPTION;
 import static us.shandian.giga.get.DownloadMission.ERROR_UNKNOWN_HOST;
 
@@ -486,6 +487,9 @@ public class MissionAdapter extends Adapter<ViewHolder> {
                 return;
             case ERROR_PROGRESS_LOST:
                 msg = R.string.error_progress_lost;
+                break;
+            case ERROR_TIMEOUT:
+                msg = R.string.error_timeout;
                 break;
             default:
                 if (mission.errCode >= 100 && mission.errCode < 600) {

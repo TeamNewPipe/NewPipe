@@ -473,4 +473,5 @@
     <string name="pause_downloads_on_mobile">Останавливать скачивание при переходе на мобильную сеть</string>
     <string name="close">Закрыть</string>
     <string name="missions_header_pending">в ожидании</string>
+    <string name="error_timeout">Время соединения вышло</string>
 </resources>

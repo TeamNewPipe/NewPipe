@@ -468,4 +468,5 @@
     <string name="max_retry_desc">Deskarga ezeztatu aurretik saiatu beharreko aldi kopurua</string>
     <string name="pause_downloads_on_mobile">Pausatu datu mugikorretara aldatzean</string>
     <string name="pause_downloads_on_mobile_desc">Pausatu ezin daitezkeen deskargak berrekingo dira</string>
+    <string name="error_timeout">Konexioaren denbora muga</string>
 </resources>

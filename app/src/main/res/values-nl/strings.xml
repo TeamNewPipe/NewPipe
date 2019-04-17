@@ -473,4 +473,5 @@
     <string name="pause_downloads_on_mobile_desc">Downloads die niet kunnen worden gepauzeerd zullen worden herstart</string>
     <string name="events">Gebeurtenissen</string>
     <string name="conferences">Conferenties</string>
+    <string name="error_timeout">Time-out van verbinding</string>
 </resources>
