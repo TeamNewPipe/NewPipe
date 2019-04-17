@@ -99,7 +99,6 @@
     <string name="parsing_error">無法解析網站</string>
     <string name="light_parsing_error">無法完全解析網站</string>
     <string name="content_not_available">內容無法使用</string>
-    <string name="blocked_by_gema">已被 GEMA 阻擋</string>
     <string name="could_not_setup_download_menu">無法設定下載選單</string>
     <string name="live_streams_not_supported">尚未支援現場串流</string>
     <string name="could_not_get_stream">無法取得串流</string>

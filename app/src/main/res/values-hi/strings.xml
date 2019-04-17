@@ -150,7 +150,6 @@
     <string name="parsing_error">इस website का निरंक्षण नहीं कर सकते</string>
     <string name="light_parsing_error">website का पूरी तरह से निरंक्षण नहीं हो सकता</string>
     <string name="content_not_available">विषय वस्तु उपलब्ध नहीं है</string>
-    <string name="blocked_by_gema">GEMA ने block किया है</string>
     <string name="could_not_setup_download_menu">डाउनलोड मेनू को स्थापित नहीं कर सकते</string>
     <string name="live_streams_not_supported">"सीधे प्रसारण के लिये फिलहाल समर्थन नहीं है "</string>
     <string name="could_not_get_stream">कोई भी विडियो नहीं मिल रहा</string>

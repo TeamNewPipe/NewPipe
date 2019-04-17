@@ -55,7 +55,6 @@
     <string name="youtube_signature_decryption_error">Kan video-URL-ondertekening niet ontsleutelen</string>
     <string name="parsing_error">Kan website niet verwerken</string>
     <string name="content_not_available">Inhoud niet beschikbaar</string>
-    <string name="blocked_by_gema">Geblokkeerd door GEMA</string>
     <string name="could_not_setup_download_menu">Kan downloadmenu niet instellen</string>
     <string name="live_streams_not_supported">Livestreams zijn nog niet ondersteund</string>
     <string name="detail_likes_img_view_description">Vind-ik-leuks</string>

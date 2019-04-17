@@ -12,7 +12,6 @@
     <string name="autoplay_by_calling_app_summary">Reproduz o vídeo quando o NewPipe for aberto a partir de outro aplicativo</string>
     <string name="autoplay_by_calling_app_title">Reproduzir automaticamente</string>
     <string name="black_theme_title">Preto</string>
-    <string name="blocked_by_gema">Bloqueado pelo GEMA</string>
     <string name="cancel">Cancelar</string>
     <string name="checksum">Soma de Verificação</string>
     <string name="choose_browser">Escolher navegador</string>

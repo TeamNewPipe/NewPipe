@@ -60,7 +60,6 @@
     <string name="general_error">Erreur</string>
     <string name="parsing_error">Impossible d\'analyser le site web</string>
     <string name="content_not_available">Contenu non disponible</string>
-    <string name="blocked_by_gema">Bloqué par GEMA</string>
 
     <string name="error_snackbar_message">Désolé, des erreurs se sont produites.</string>
     <string name="content">Contenu</string>

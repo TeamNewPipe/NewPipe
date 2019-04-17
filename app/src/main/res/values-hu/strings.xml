@@ -63,7 +63,6 @@
     <string name="show_age_restricted_content_title">Korhatáros tartalom</string>
     <string name="general_error">Hiba</string>
     <string name="content_not_available">A tartalom nem elérhető</string>
-    <string name="blocked_by_gema">GEMA által blokkolt</string>
     <string name="live_streams_not_supported">Ez egy élő közvetítés, amely még nem támogatott.</string>
     <string name="autoplay_by_calling_app_title">Automatikus lejátszás</string>
     <string name="autoplay_by_calling_app_summary">Videók automatikus lejátszása, ha a NewPipe egy másik alkalmazásból lett indítva</string>

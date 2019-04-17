@@ -192,7 +192,6 @@
     <string name="parsing_error">No s\'ha pogut processar el lloc web</string>
     <string name="light_parsing_error">No s\'ha pogut processar del tot el lloc web</string>
     <string name="content_not_available">Contingut no disponible</string>
-    <string name="blocked_by_gema">Blocat per la GEMA</string>
     <string name="could_not_setup_download_menu">No s\'ha pogut configurar el menú de baixades</string>
     <string name="live_streams_not_supported">Les emissions en directe encara no són compatibles</string>
     <string name="could_not_get_stream">No s\'ha pogut obtenir cap vídeo</string>

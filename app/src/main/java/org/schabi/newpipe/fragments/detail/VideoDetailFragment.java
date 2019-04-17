@@ -1220,9 +1220,7 @@ public class VideoDetailFragment
     protected boolean onError(Throwable exception) {
         if (super.onError(exception)) return true;
 
-        if (exception instanceof YoutubeStreamExtractor.GemaException) {
-            onBlockedByGemaError();
-        } else if (exception instanceof ContentNotAvailableException) {
+        else if (exception instanceof ContentNotAvailableException) {
             showError(getString(R.string.content_not_available), false);
         } else {
             int errorId = exception instanceof YoutubeStreamExtractor.DecryptException
@@ -1240,14 +1238,5 @@ public class VideoDetailFragment
         return true;
     }
 
-    public void onBlockedByGemaError() {
-        thumbnailBackgroundButton.setOnClickListener((View v) -> {
-            Intent intent = new Intent();
-            intent.setAction(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse(getString(R.string.c3s_url)));
-            startActivity(intent);
-        });
 
-        showError(getString(R.string.blocked_by_gema), false, R.drawable.gruese_die_gema);
-    }
 }

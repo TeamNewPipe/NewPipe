@@ -157,7 +157,6 @@
     <string name="parsing_error">Veebilehe töötlemine nurjus</string>
     <string name="light_parsing_error">Veebilehe täielik töötlemine nurjus</string>
     <string name="content_not_available">Sisu pole saadaval</string>
-    <string name="blocked_by_gema">GEMA poolt blokeeritud</string>
     <string name="could_not_setup_download_menu">Allalaadimismenüü seadistamine nurjus</string>
     <string name="live_streams_not_supported">Otsevood ei ole veel toetatud</string>
     <string name="could_not_get_stream">Ühtegi voogu ei leitud</string>

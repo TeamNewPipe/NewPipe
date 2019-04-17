@@ -204,7 +204,6 @@
     <string name="parsing_error">Δεν ήταν δυνατή η ανάλυση του ιστοτόπου</string>
     <string name="light_parsing_error">Δεν ήταν δυνατή η ανάλυση ολόκληρου του ιστοτόπου</string>
     <string name="content_not_available">Το περιεχόμενο δεν είναι διαθέσιμο</string>
-    <string name="blocked_by_gema">"Έχει αποκλειστεί  από την GEMA"</string>
     <string name="could_not_setup_download_menu">Δεν ήταν δυνατή η ρύθμιση του μενού λήψεων</string>
     <string name="live_streams_not_supported">Η Ζωντανή Ροή δεν υποστηρίζεται ακόμα</string>
     <string name="could_not_get_stream">Δεν ήταν δυνατή η λήψη καμίας ροής</string>

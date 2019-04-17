@@ -166,7 +166,6 @@
     <string name="parsing_error">Не атрымалася разабраць вэб-сайт</string>
     <string name="light_parsing_error">Не атрымалася цалкам разабраць вэб-сайт</string>
     <string name="content_not_available">Кантэнт недаступны</string>
-    <string name="blocked_by_gema">Заблакавана GEMA</string>
     <string name="could_not_setup_download_menu">Не атрымалася стварыць меню загрузкі</string>
     <string name="live_streams_not_supported">Гэта прамая трансляцыя, яны пакуль не падтрымліваюцца.</string>
     <string name="could_not_get_stream">Не атрымалася знайсці ні аднаго патока</string>

@@ -175,7 +175,6 @@
     <string name="parsing_error">Kunne ikke indlæse webside</string>
     <string name="light_parsing_error">Kunne ikke indlæse hele websiden</string>
     <string name="content_not_available">Indhold utilgængeligt</string>
-    <string name="blocked_by_gema">Blokeret af GEMA</string>
     <string name="could_not_setup_download_menu">Kunne ikke oprette download menu</string>
     <string name="live_streams_not_supported">"Livestreams er ikke undestøttet endnu "</string>
     <string name="could_not_get_stream">Kunne ikke hente nogen streams</string>

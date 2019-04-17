@@ -63,7 +63,6 @@
     <string name="parsing_error">Tidak bisa mengurai situs web</string>
     <string name="light_parsing_error">Tidak dapat menguraikan situs web sepenuhnya</string>
     <string name="content_not_available">Konten tidak tersedia</string>
-    <string name="blocked_by_gema">Diblokir oleh GEMA</string>
     <string name="could_not_setup_download_menu">Tidak bisa menyiapkan menu unduh</string>
     <string name="live_streams_not_supported">Siaran langsung belum didukung</string>
     <string name="could_not_load_image">Tidak bisa memuat gambar</string>

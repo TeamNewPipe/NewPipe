@@ -194,7 +194,7 @@
     <string name="parsing_error">Could not parse website</string>
     <string name="light_parsing_error">Could not parse website completely</string>
     <string name="content_not_available">Content unavailable</string>
-    <string name="blocked_by_gema">Blocked by GEMA</string>
+
     <string name="could_not_setup_download_menu">Could not set up download menu</string>
     <string name="live_streams_not_supported">Live streams are not supported yet</string>
     <string name="could_not_get_stream">Could not get any stream</string>

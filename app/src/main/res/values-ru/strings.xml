@@ -81,7 +81,6 @@
     <string name="parsing_error">Не удалось разобрать веб-сайт</string>
     <string name="light_parsing_error">Не удалось полностью разобрать веб-сайт</string>
     <string name="content_not_available">Контент недоступен</string>
-    <string name="blocked_by_gema">Заблокировано GEMA</string>
     <string name="could_not_setup_download_menu">Не удалось создать меню загрузки</string>
     <string name="live_streams_not_supported">Это прямая трансляция, пока не поддерживается</string>
     <string name="could_not_load_image">Не удалось загрузить изображение</string>

@@ -62,7 +62,6 @@
     <string name="youtube_signature_decryption_error">動画のURLを復号できませんでした</string>
     <string name="parsing_error">Webサイトを解析できませんでした</string>
     <string name="content_not_available">コンテンツが利用できません</string>
-    <string name="blocked_by_gema">GEMA にブロックされました</string>
 
     <string name="could_not_setup_download_menu">保存メニューを設定できませんでした</string>
 

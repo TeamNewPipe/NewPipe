@@ -46,7 +46,6 @@
     <string name="download_path_audio_summary">Los audios descargados se almacenan aquí</string>
     <string name="download_path_audio_dialog_title">Introducir ruta de descarga para archivos de audio</string>
 
-    <string name="blocked_by_gema">Bloqueado por GEMA</string>
 
     <string name="download_path_audio_title">Carpeta de descarga de audio</string>
     <string name="settings_category_video_audio_title">Vídeo y audio</string>

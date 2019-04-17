@@ -52,7 +52,6 @@
     <string name="youtube_signature_decryption_error">Nepodarilo sa dekódovať URL videa</string>
     <string name="parsing_error">Nemožno analyzovať webovú stránku</string>
     <string name="content_not_available">Obsah nie je dostupný</string>
-    <string name="blocked_by_gema">Obsah blokuje GEMA</string>
 
     <string name="list_thumbnail_view_description">Náhľad videa</string>
     <string name="detail_thumbnail_view_description">Náhľad videa</string>

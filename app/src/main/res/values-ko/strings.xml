@@ -72,7 +72,6 @@
     <string name="parsing_error">웹사이트를 가져올 수 없습니다</string>
     <string name="light_parsing_error">웹사이트를 완전히 가져올 수 없습니다</string>
     <string name="content_not_available">컨텐츠를 사용할 수 없습니다</string>
-    <string name="blocked_by_gema">GEMA에 의해 차단되었습니다</string>
     <string name="could_not_setup_download_menu">다운로드 메뉴를 설정할 수 없습니다</string>
     <string name="live_streams_not_supported">라이브 스트림은 아직 지원하지 않습니다</string>
     <string name="could_not_get_stream">어떠한 스트림도 가져올 수 없습니다</string>
