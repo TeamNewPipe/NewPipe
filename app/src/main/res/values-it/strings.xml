@@ -438,7 +438,7 @@
     <string name="app_update_notification_content_title">Aggiornamento di NewPipe disponibile!</string>
     <string name="app_update_notification_content_text">Premi per scaricare</string>
     <string name="missions_header_finished">Finito</string>
-    <string name="missions_header_pending">In coda</string>
+    <string name="missions_header_pending">In attesa di</string>
     <string name="paused">in pausa</string>
     <string name="queued">in coda</string>
     <string name="post_processing">post-processo</string>

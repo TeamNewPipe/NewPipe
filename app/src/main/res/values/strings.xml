@@ -498,7 +498,7 @@
     <string name="app_update_notification_content_title">NewPipe Update Available!</string>
     <string name="app_update_notification_content_text">Tap to download</string>
     <string name="missions_header_finished">Finished</string>
-    <string name="missions_header_pending">In queue</string>
+    <string name="missions_header_pending">Pending</string>
     <string name="paused">paused</string>
     <string name="queued">queued</string>
     <string name="post_processing">post-processing</string>

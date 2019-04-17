@@ -435,7 +435,6 @@
     <string name="app_update_notification_content_title">Dostępna jest aktualizacja NewPipe!</string>
     <string name="app_update_notification_content_text">Stuknij, aby pobrać</string>
     <string name="missions_header_finished">Gotowe</string>
-    <string name="missions_header_pending">W kolejce</string>
     <string name="paused">wstrzymane</string>
     <string name="queued">w kolejce</string>
     <string name="post_processing">przetwarzanie końcowe</string>
@@ -470,4 +469,5 @@
     <string name="pause_downloads_on_mobile_desc">Pobierane pliki, których nie można wstrzymać, zostaną zrestartowane</string>
     <string name="events">Zdarzenia</string>
     <string name="conferences">Konferencje</string>
+    <string name="missions_header_pending">Oczekuje</string>
 </resources>

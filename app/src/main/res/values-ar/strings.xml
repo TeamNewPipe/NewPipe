@@ -451,7 +451,7 @@
     <string name="app_update_notification_content_title">يتوفر تحديث ل newpipe!</string>
     <string name="app_update_notification_content_text">اضغط لتنزيل</string>
     <string name="missions_header_finished">انتهى</string>
-    <string name="missions_header_pending">في قائمة الانتظار</string>
+    <string name="missions_header_pending">ريثما</string>
     <string name="paused">متوقف</string>
     <string name="queued">في قائمة الانتظار</string>
     <string name="post_processing">قيد المعالجة</string>

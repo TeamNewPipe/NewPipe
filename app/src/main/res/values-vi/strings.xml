@@ -429,7 +429,6 @@
     <string name="app_update_notification_content_title">Đã có bản cập nhật NewPipe!</string>
     <string name="app_update_notification_content_text">Nhấn để tải về</string>
     <string name="missions_header_finished">Xong</string>
-    <string name="missions_header_pending">Trong hàng chờ</string>
     <string name="paused">đã tạm dừng</string>
     <string name="queued">trong hàng đợi</string>
     <string name="post_processing">đang xử lý</string>
@@ -461,6 +460,7 @@
     <string name="max_retry_desc">Số lượt thử lại trước khi hủy tải về</string>
     <string name="pause_downloads_on_mobile">Tạm dừng tải khi chuyển qua dữ liệu di động</string>
     <string name="pause_downloads_on_mobile_desc">Các tải về không thể tạm dừng được sẽ bắt đầu lại từ đầu</string>
+    <string name="missions_header_pending">Đang chờ xử lý</string>
     <string name="conferences">Hội thảo</string>
     <string name="label_code">Mã</string>
 </resources>

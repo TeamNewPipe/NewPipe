@@ -438,7 +438,7 @@
     <string name="app_update_notification_content_title">NewPipe-update beschikbaar!</string>
     <string name="app_update_notification_content_text">Tik om te downloaden</string>
     <string name="missions_header_finished">Voltooid</string>
-    <string name="missions_header_pending">In de wachtrij</string>
+    <string name="missions_header_pending">In afwachting van</string>
     <string name="paused">gepauzeerd</string>
     <string name="queued">aan de wachtrij toegevoegd</string>
     <string name="post_processing">nabewerking</string>

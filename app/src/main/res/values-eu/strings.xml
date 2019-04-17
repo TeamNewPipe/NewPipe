@@ -435,7 +435,7 @@
     <string name="app_update_notification_content_title">NewPipe eguneraketa eskuragarri!</string>
     <string name="app_update_notification_content_text">Sakatu deskargatzeko</string>
     <string name="missions_header_finished">Amaituta</string>
-    <string name="missions_header_pending">Ilaran</string>
+    <string name="missions_header_pending">Zain</string>
     <string name="paused">pausatuta</string>
     <string name="queued">ilaran</string>
     <string name="post_processing">post-prozesua</string>

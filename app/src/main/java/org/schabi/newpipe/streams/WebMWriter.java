@@ -321,9 +321,8 @@ public class WebMWriter {
 
         for (int i = 0; i < clusterSizes.size(); i++) {
             seekTo(out, clusterOffsets.get(i));
-            byte[] size = ByteBuffer.allocate(4).putInt(clusterSizes.get(i) | 0x200000).array();
-            out.write(size, 1, 3);
-            written += 3;
+            byte[] buffer = ByteBuffer.allocate(4).putInt(clusterSizes.get(i) | 0x10000000).array();
+            dump(buffer, out);
         }
     }
 
@@ -451,7 +450,7 @@ public class WebMWriter {
             /* cluster */
             dump(new byte[]{0x1f, 0x43, (byte) 0xb6, 0x75}, stream);
             clusterOffsets.add(written);// warning: max cluster size is 256 MiB
-            dump(new byte[]{0x20, 0x00, 0x00}, stream);
+            dump(new byte[]{0x10, 0x00, 0x00, 0x00}, stream);
 
             startOffset = written;// size for the this cluster
 

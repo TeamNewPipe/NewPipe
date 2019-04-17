@@ -426,7 +426,7 @@
     <string name="auto">自动</string>
     <string name="app_update_notification_content_text">轻按以下载</string>
     <string name="missions_header_finished">已完成</string>
-    <string name="missions_header_pending">于队列中</string>
+    <string name="missions_header_pending">有待</string>
     <string name="paused">已暂停</string>
     <string name="queued">已加入队列</string>
     <string name="post_processing">后处理</string>

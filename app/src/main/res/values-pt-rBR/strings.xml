@@ -435,7 +435,6 @@ abrir em modo popup</string>
     <string name="app_update_notification_content_title">Atualização do NewPipe Disponivel!</string>
     <string name="app_update_notification_content_text">Toque para baixar</string>
     <string name="missions_header_finished">Finalizado</string>
-    <string name="missions_header_pending">Na fila</string>
     <string name="paused">pausado</string>
     <string name="queued">adicionado na fila</string>
     <string name="post_processing">pós processamento</string>
@@ -468,4 +467,5 @@ abrir em modo popup</string>
     <string name="max_retry_desc">Número máximo de tentativas antes de cancelar o download</string>
     <string name="pause_downloads_on_mobile">Pausar quando trocar para dados móveis</string>
     <string name="pause_downloads_on_mobile_desc">Downloads que não puderem ser pausados serão reiniciados</string>
+    <string name="missions_header_pending">Pendente</string>
 </resources>

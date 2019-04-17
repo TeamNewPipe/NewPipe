@@ -515,7 +515,6 @@
     <string name="app_update_notification_content_title">Ny NewPipe-versjon tilgjengelig.</string>
     <string name="app_update_notification_content_text">Trykk for å laste ned</string>
     <string name="missions_header_finished">Fullført</string>
-    <string name="missions_header_pending">I kø</string>
     <string name="paused">pauset</string>
     <string name="queued">i kø</string>
     <string name="post_processing">etterbehandling</string>

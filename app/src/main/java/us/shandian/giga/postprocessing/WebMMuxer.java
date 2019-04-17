@@ -22,16 +22,20 @@ class WebMMuxer extends Postprocessing {
         muxer.parseSources();
 
         // youtube uses a webm with a fake video track that acts as a "cover image"
-        WebMTrack[] tracks = muxer.getTracksFromSource(1);
-        int audioTrackIndex = 0;
-        for (int i = 0; i < tracks.length; i++) {
-            if (tracks[i].kind == TrackKind.Audio) {
-                audioTrackIndex = i;
-                break;
+        int[] indexes = new int[sources.length];
+
+        for (int i = 0; i < sources.length; i++) {
+            WebMTrack[] tracks = muxer.getTracksFromSource(i);
+            for (int j = 0; j < tracks.length; j++) {
+                if (tracks[j].kind == TrackKind.Audio) {
+                    indexes[i] = j;
+                    i = sources.length;
+                    break;
+                }
             }
         }
 
-        muxer.selectTracks(0, audioTrackIndex);
+        muxer.selectTracks(indexes);
         muxer.build(out);
 
         return OK_RESULT;

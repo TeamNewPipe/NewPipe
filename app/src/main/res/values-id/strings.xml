@@ -436,7 +436,7 @@
     <string name="app_update_notification_content_title">Pembaruan NewPipe Tersedia!</string>
     <string name="app_update_notification_content_text">Ketuk untuk mengunduh</string>
     <string name="missions_header_finished">Selesai</string>
-    <string name="missions_header_pending">Di antrian</string>
+    <string name="missions_header_pending">Tertunda</string>
     <string name="paused">dijeda</string>
     <string name="queued">antri</string>
     <string name="post_processing">pengolahan-pasca</string>

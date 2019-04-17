@@ -469,6 +469,7 @@ abrir en modo popup</string>
     <string name="download_to_sdcard_error_message">No es posible descargar a una tarjeta SD externa. \¿Restablecer la ubicación de la carpeta de descarga\?</string>
 
     <string name="download_pick_path">Seleccione los directorios de descarga</string>
+    <string name="missions_header_pending">Pendiente</string>
 
     <string name="unsubscribe">Desuscribirse</string>
     <string name="tab_new">Nueva pestaña</string>

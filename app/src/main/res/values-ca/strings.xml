@@ -425,7 +425,7 @@
     <string name="auto">Automàtic</string>
     <string name="switch_view">Canvia la vista</string>
     <string name="app_update_notification_content_title">Està disponible una nova actualització del NewPipe!</string>
-    <string name="missions_header_pending">A la cua</string>
+    <string name="missions_header_pending">Pendent</string>
     <string name="paused">en pausa</string>
     <string name="queued">a la cua</string>
     <string name="enqueue">Afegeix a la cua</string>

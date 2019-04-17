@@ -438,7 +438,6 @@
     <string name="app_update_notification_content_title">NewPipe Güncellemesi Var!</string>
     <string name="app_update_notification_content_text">İndirmek için dokunun</string>
     <string name="missions_header_finished">Tamamlandı</string>
-    <string name="missions_header_pending">Sırada</string>
     <string name="paused">durdurulmuş</string>
     <string name="queued">sırada</string>
     <string name="post_processing">son işlemler uygulanıyor</string>
@@ -473,4 +472,5 @@
     <string name="pause_downloads_on_mobile_desc">Duraklatılamayan indirmeler yeniden başlatılacak</string>
     <string name="events">Olaylar</string>
     <string name="conferences">Konferanslar</string>
+    <string name="missions_header_pending">Kadar</string>
 </resources>

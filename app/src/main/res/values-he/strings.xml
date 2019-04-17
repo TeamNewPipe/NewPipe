@@ -440,7 +440,6 @@
     <string name="app_update_notification_content_title">יצא עדכון ל־NewPipe!</string>
     <string name="app_update_notification_content_text">יש לגעת כדי להוריד</string>
     <string name="missions_header_finished">הסתיים</string>
-    <string name="missions_header_pending">בתור</string>
     <string name="paused">מושהה</string>
     <string name="queued">בתור</string>
     <string name="post_processing">עיבוד מאוחר</string>
@@ -473,4 +472,5 @@
     <string name="max_retry_desc">מספר הניסיונות החוזרים המרבי בטרם ביטול ההורדה</string>
     <string name="pause_downloads_on_mobile">להשהות בעת מעבר לתקשורת נתונים סלולרית</string>
     <string name="pause_downloads_on_mobile_desc">הורדות שלא ניתן להשהות יופעלו מחדש</string>
+    <string name="missions_header_pending">בהמתנה</string>
 </resources>

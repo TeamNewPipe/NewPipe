@@ -432,7 +432,6 @@
     <string name="app_update_notification_content_title">Kemas kini NewPipe Tersedia!</string>
     <string name="app_update_notification_content_text">Ketik untuk muat turun</string>
     <string name="missions_header_finished">Selesai</string>
-    <string name="missions_header_pending">Dalam barisan</string>
     <string name="paused">dijeda</string>
     <string name="queued">telah beratur</string>
     <string name="post_processing">pemprosesan-pasca</string>
@@ -465,4 +464,5 @@
     <string name="max_retry_desc">Jumlah percubaan maksimum sebelum membatalkan muat turun</string>
     <string name="pause_downloads_on_mobile">Jeda semasa beralih ke data mudah alih</string>
     <string name="pause_downloads_on_mobile_desc">Muat turun yang tidak dapat dihentikan akan dimulakan semula</string>
+    <string name="missions_header_pending">Menunggu</string>
 </resources>

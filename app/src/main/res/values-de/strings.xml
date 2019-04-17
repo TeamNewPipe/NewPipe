@@ -437,7 +437,7 @@
     <string name="app_update_notification_content_title">NewPipe-Aktualisierung verfügbar!</string>
     <string name="app_update_notification_content_text">Zum Herunterladen antippen</string>
     <string name="missions_header_finished">Fertig</string>
-    <string name="missions_header_pending">In der Warteschlange</string>
+    <string name="missions_header_pending">Ausstehend</string>
     <string name="paused">pausiert</string>
     <string name="queued">eingereiht</string>
     <string name="post_processing">Nachbearbeitung</string>

@@ -421,7 +421,7 @@
     <string name="app_update_notification_content_title">NewPipeのアップデートがあります！</string>
     <string name="app_update_notification_content_text">タップでダウンロード</string>
     <string name="missions_header_finished">終了しました</string>
-    <string name="missions_header_pending">順番に処理中</string>
+    <string name="missions_header_pending">保留中</string>
     <string name="paused">一時停止</string>
     <string name="queued">順番待ちに追加しました</string>
     <string name="post_processing">保存処理をしています</string>
@@ -462,6 +462,6 @@
     <string name="main_page_content_summary">メインページに表示されるタブ</string>
     <string name="updates_setting_description">新しいバージョンが利用可能なときにアプリの更新を確認する通知を表示します</string>
     <string name="msg_pending_downloads">ダウンロードから %s の保留中の転送を続行します</string>
-    <string name="pause_downloads_on_mobile">モバイルデータ通信に切替時に、一時停止する</string>
-    <string name="pause_downloads_on_mobile_desc">一時停止できない場合は再開して継続されます</string>
+    <string name="pause_downloads_on_mobile">モバイルデータ通信に切り替え時に休止</string>
+    <string name="pause_downloads_on_mobile_desc">休止できないダウンロードが再開されます</string>
 </resources>

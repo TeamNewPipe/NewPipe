@@ -434,7 +434,7 @@
     <string name="app_update_notification_content_title">有可用的 NewPipe 更新！</string>
     <string name="app_update_notification_content_text">輕觸以下載</string>
     <string name="missions_header_finished">結束</string>
-    <string name="missions_header_pending">在佇列中</string>
+    <string name="missions_header_pending">有待</string>
     <string name="paused">已暫停</string>
     <string name="queued">已排入佇列</string>
     <string name="post_processing">正在後處理</string>

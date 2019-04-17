@@ -453,4 +453,5 @@
     <string name="max_retry_desc">Maksimalt antal forsøg før downloaden opgives</string>
     <string name="pause_downloads_on_mobile">Sæt på pause ved skift til mobildata</string>
     <string name="pause_downloads_on_mobile_desc">Downloads som ikke kan sættes på pause vil blive genstartet</string>
+    <string name="missions_header_pending">Afventning</string>
 </resources>
