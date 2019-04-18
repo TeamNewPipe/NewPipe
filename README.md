@@ -44,6 +44,7 @@ NewPipe does not use any Google framework libraries, nor the YouTube API. Websit
 * Search videos
 * Display general info about videos
 * Watch YouTube videos
+* Show comments
 * Listen to YouTube videos
 * Popup mode (floating player)
 * Select streaming player to watch video with
@@ -72,7 +73,6 @@ NewPipe does not use any Google framework libraries, nor the YouTube API. Websit
 ### Coming Features
 
 * Cast to UPnP and Cast
-* Show comments
 * … and many more
 
 ## Updates
