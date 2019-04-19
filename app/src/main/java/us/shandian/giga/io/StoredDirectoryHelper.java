@@ -10,7 +10,6 @@ import android.os.Build;
 import android.provider.DocumentsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.support.v4.provider.DocumentFile;
 
 import java.io.File;
@@ -33,7 +32,6 @@ public class StoredDirectoryHelper {
 
     private String tag;
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     public StoredDirectoryHelper(@NonNull Context context, @NonNull Uri path, String tag) throws IOException {
         this.tag = tag;
 
@@ -49,6 +47,9 @@ public class StoredDirectoryHelper {
         } catch (Exception e) {
             throw new IOException(e);
         }
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
+            throw new IOException("Storage Access Framework with Directory API is not available");
 
         this.docTree = DocumentFile.fromTreeUri(context, path);
 

@@ -550,14 +550,10 @@
     <string name="start_downloads">Start downloads</string>
     <string name="pause_downloads">Pause downloads</string>
 
-    <string name="downloads_storage">Storage API</string>
-    <string name="downloads_storage_desc">Select which API use to store the downloads</string>
-
-    <string name="storage_access_framework_description">Storage Access Framework</string>
-    <string name="java_io_description">Java I/O</string>
-
-    <string name="save_as">Save as…</string>
-
     <string name="download_pick_path">Select the downloads save path</string>
+
+    <string name="downloads_storage_ask_title">Ask where to download</string>
+    <string name="downloads_storage_ask_summary">You will be asked where to save each download</string>
+    <string name="downloads_storage_ask_summary_kitkat">You will be asked where to save each download.\nEnable this option if you want download to the external SD Card</string>
 
 </resources>

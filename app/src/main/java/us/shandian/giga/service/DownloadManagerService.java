@@ -1,12 +1,12 @@
 package us.shandian.giga.service;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -20,7 +20,6 @@ import android.net.NetworkRequest;
 import android.net.Uri;
 import android.os.Binder;
 import android.os.Build;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
@@ -28,6 +27,7 @@ import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.Builder;
 import android.support.v4.content.PermissionChecker;
@@ -41,7 +41,6 @@ import org.schabi.newpipe.player.helper.LockManager;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 import java.util.ArrayList;
 
 import us.shandian.giga.get.DownloadMission;
@@ -141,7 +140,7 @@ public class DownloadManagerService extends Service {
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        mManager = new DownloadManager(this, mHandler, getVideoStorage(), getAudioStorage());
+        mManager = new DownloadManager(this, mHandler, loadMainVideoStorage(), loadMainAudioStorage());
 
         Intent openDownloadListIntent = new Intent(this, DownloadActivity.class)
                 .setAction(Intent.ACTION_MAIN);
@@ -271,6 +270,33 @@ public class DownloadManagerService extends Service {
             Toast.makeText(this, "Permission denied (write)", Toast.LENGTH_SHORT).show();
         }
 
+        // Check download save paths
+
+        String msg = "";
+        if (mManager.mMainStorageVideo == null)
+            msg += getString(R.string.download_path_title);
+        else if (mManager.mMainStorageAudio == null)
+            msg += getString(R.string.download_path_audio_title);
+
+        if (!msg.isEmpty()) {
+            String title;
+            if (mManager.mMainStorageVideo == null && mManager.mMainStorageAudio == null) {
+                title = getString(R.string.general_error);
+                msg = getString(R.string.no_available_dir) + ":\n" + msg;
+            } else {
+                title = msg;
+                msg = getString(R.string.no_available_dir);
+            }
+
+            new AlertDialog.Builder(this)
+                    .setPositiveButton(android.R.string.ok, null)
+                    .setTitle(title)
+                    .setMessage(msg)
+                    .create()
+                    .show();
+        }
+
+
         return mBinder;
     }
 
@@ -348,13 +374,10 @@ public class DownloadManagerService extends Service {
             mManager.mPrefMeteredDownloads = prefs.getBoolean(key, false);
         } else if (key.equals(getString(R.string.downloads_queue_limit))) {
             mManager.mPrefQueueLimit = prefs.getBoolean(key, true);
-        } else if (key.equals(getString(R.string.downloads_storage_api))) {
-            mManager.mMainStorageVideo = loadMainStorage(getString(R.string.download_path_video_key), DownloadManager.TAG_VIDEO);
-            mManager.mMainStorageAudio = loadMainStorage(getString(R.string.download_path_audio_key), DownloadManager.TAG_AUDIO);
         } else if (key.equals(getString(R.string.download_path_video_key))) {
-            mManager.mMainStorageVideo = loadMainStorage(key, DownloadManager.TAG_VIDEO);
+            mManager.mMainStorageVideo = loadMainVideoStorage();
         } else if (key.equals(getString(R.string.download_path_audio_key))) {
-            mManager.mMainStorageAudio = loadMainStorage(key, DownloadManager.TAG_AUDIO);
+            mManager.mMainStorageAudio = loadMainAudioStorage();
         }
     }
 
@@ -385,7 +408,7 @@ public class DownloadManagerService extends Service {
      * @param psArgs     the arguments for the post-processing algorithm.
      * @param nearLength the approximated final length of the file
      */
-    public static void startMission(Context context, String urls[], StoredFileHelper storage, char kind,
+    public static void startMission(Context context, String[] urls, StoredFileHelper storage, char kind,
                                     int threads, String source, String psName, String[] psArgs, long nearLength) {
         Intent intent = new Intent(context, DownloadManagerService.class);
         intent.setAction(Intent.ACTION_RUN);
@@ -538,56 +561,28 @@ public class DownloadManagerService extends Service {
         mLockAcquired = acquire;
     }
 
-    private StoredDirectoryHelper getVideoStorage() {
-        return loadMainStorage(getString(R.string.download_path_video_key), DownloadManager.TAG_VIDEO);
+    private StoredDirectoryHelper loadMainVideoStorage() {
+        return loadMainStorage(R.string.download_path_video_key, DownloadManager.TAG_VIDEO);
     }
 
-    private StoredDirectoryHelper getAudioStorage() {
-        return loadMainStorage(getString(R.string.download_path_audio_key), DownloadManager.TAG_AUDIO);
+    private StoredDirectoryHelper loadMainAudioStorage() {
+        return loadMainStorage(R.string.download_path_audio_key, DownloadManager.TAG_AUDIO);
     }
 
+    private StoredDirectoryHelper loadMainStorage(@StringRes int prefKey, String tag) {
+        String path = mPrefs.getString(getString(prefKey), null);
 
-    private StoredDirectoryHelper loadMainStorage(String prefKey, String tag) {
-        String path = mPrefs.getString(prefKey, null);
-
-        final String JAVA_IO = getString(R.string.downloads_storage_api_default);
-        boolean useJavaIO = JAVA_IO.equals(mPrefs.getString(getString(R.string.downloads_storage_api), JAVA_IO));
-
-        final String defaultPath;
-        switch (tag) {
-            case DownloadManager.TAG_VIDEO:
-                defaultPath = Environment.DIRECTORY_MOVIES;
-                break;
-            case DownloadManager.TAG_AUDIO:
-                defaultPath = Environment.DIRECTORY_MUSIC;
-                break;
-            default:
-                return null;
-        }
-
-        if (path == null || path.isEmpty()) {
-            if (useJavaIO)
-                return new StoredDirectoryHelper(new File(defaultPath).toURI(), tag);
-            else
-                return null;
-        }
+        if (path == null || path.isEmpty()) return null;
 
         if (path.charAt(0) == File.separatorChar) {
-            Log.i(TAG, "Migrating old save path: " + path);
+            Log.i(TAG, "Old save path style present: " + path);
 
-            useJavaIO = true;
-            path = Uri.fromFile(new File(path)).toString();
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
+                path = Uri.fromFile(new File(path)).toString();
+            else
+                path = "";
 
-            mPrefs.edit().putString(prefKey, path).apply();
-        }
-
-        boolean override = path.startsWith(ContentResolver.SCHEME_FILE) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
-        if (useJavaIO || override) {
-            return new StoredDirectoryHelper(URI.create(path), tag);
-        }
-
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            return null;// SAF Directory API is not available in older versions
+            mPrefs.edit().putString(getString(prefKey), "").apply();
         }
 
         try {
@@ -617,6 +612,13 @@ public class DownloadManagerService extends Service {
         @Nullable
         public StoredDirectoryHelper getMainStorageAudio() {
             return mManager.mMainStorageAudio;
+        }
+
+        public boolean askForSavePath() {
+            return DownloadManagerService.this.mPrefs.getBoolean(
+                    DownloadManagerService.this.getString(R.string.downloads_storage_ask),
+                    false
+            );
         }
 
         public void addMissionEventListener(Handler handler) {

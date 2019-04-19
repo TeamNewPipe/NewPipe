@@ -5,14 +5,12 @@
     android:title="@string/settings_category_downloads_title">
 
 
-    <ListPreference
+    <CheckBoxPreference
         app:iconSpaceReserved="false"
-        android:defaultValue="@string/downloads_storage_api_default"
-        android:entries="@array/downloads_storage_api_description"
-        android:entryValues="@array/downloads_storage_api_values"
-        android:key="@string/downloads_storage_api"
-        android:summary="@string/downloads_storage_desc"
-        android:title="@string/downloads_storage" />
+        android:defaultValue="false"
+        android:key="@string/downloads_storage_ask"
+        android:summary="@string/downloads_storage_ask_summary_kitkat"
+        android:title="@string/downloads_storage_ask_title" />
 
     <Preference
         app:iconSpaceReserved="false"

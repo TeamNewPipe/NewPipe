@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.support.annotation.StringRes;
 import android.support.v7.preference.Preference;
 import android.util.Log;
@@ -37,15 +36,13 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
     private String DOWNLOAD_PATH_VIDEO_PREFERENCE;
     private String DOWNLOAD_PATH_AUDIO_PREFERENCE;
 
-    private String DOWNLOAD_STORAGE_API;
-    private String DOWNLOAD_STORAGE_API_DEFAULT;
+    private String DOWNLOAD_STORAGE_ASK;
 
     private Preference prefPathVideo;
     private Preference prefPathAudio;
+    private Preference prefStorageAsk;
 
     private Context ctx;
-
-    private boolean lastAPIJavaIO;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,34 +50,26 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
 
         DOWNLOAD_PATH_VIDEO_PREFERENCE = getString(R.string.download_path_video_key);
         DOWNLOAD_PATH_AUDIO_PREFERENCE = getString(R.string.download_path_audio_key);
-        DOWNLOAD_STORAGE_API = getString(R.string.downloads_storage_api);
-        DOWNLOAD_STORAGE_API_DEFAULT = getString(R.string.downloads_storage_api_default);
+        DOWNLOAD_STORAGE_ASK = getString(R.string.downloads_storage_ask);
 
         prefPathVideo = findPreference(DOWNLOAD_PATH_VIDEO_PREFERENCE);
         prefPathAudio = findPreference(DOWNLOAD_PATH_AUDIO_PREFERENCE);
-
-        lastAPIJavaIO = usingJavaIO();
+        prefStorageAsk = findPreference(DOWNLOAD_STORAGE_ASK);
 
         updatePreferencesSummary();
-        updatePathPickers(lastAPIJavaIO);
+        updatePathPickers(!defaultPreferences.getBoolean(DOWNLOAD_STORAGE_ASK, false));
 
-        findPreference(DOWNLOAD_STORAGE_API).setOnPreferenceChangeListener((preference, value) -> {
-            boolean javaIO = DOWNLOAD_STORAGE_API_DEFAULT.equals(value);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            prefStorageAsk.setSummary(R.string.downloads_storage_ask_summary);
+        }
 
-            if (javaIO == lastAPIJavaIO) return true;
-            lastAPIJavaIO = javaIO;
+        if (hasInvalidPath(DOWNLOAD_PATH_VIDEO_PREFERENCE) || hasInvalidPath(DOWNLOAD_PATH_AUDIO_PREFERENCE)) {
+            Toast.makeText(ctx, R.string.download_pick_path, Toast.LENGTH_SHORT).show();
+            updatePreferencesSummary();
+        }
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                boolean res = forgetPath(DOWNLOAD_PATH_VIDEO_PREFERENCE);
-                res |= forgetPath(DOWNLOAD_PATH_AUDIO_PREFERENCE);
-
-                if (res) {
-                    Toast.makeText(ctx, R.string.download_pick_path, Toast.LENGTH_SHORT).show();
-                    updatePreferencesSummary();
-                }
-            }
-
-            updatePathPickers(javaIO);
+        prefStorageAsk.setOnPreferenceChangeListener((preference, value) -> {
+            updatePathPickers(!(boolean) value);
             return true;
         });
     }
@@ -100,7 +89,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
     public void onDetach() {
         super.onDetach();
         ctx = null;
-        findPreference(DOWNLOAD_STORAGE_API).setOnPreferenceChangeListener(null);
+        prefStorageAsk.setOnPreferenceChangeListener(null);
     }
 
     private void updatePreferencesSummary() {
@@ -133,34 +122,18 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
         target.setSummary(rawUri);
     }
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    private boolean forgetPath(String prefKey) {
-        String path = defaultPreferences.getString(prefKey, "");
-        if (path == null || path.isEmpty()) return true;
-
-        // forget SAF path if necessary
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-            forgetSAFTree(getContext(), path);
-
-        defaultPreferences.edit().putString(prefKey, "").apply();
-
-        return true;
-    }
-
     private boolean isFileUri(String path) {
         return path.charAt(0) == File.separatorChar || path.startsWith(ContentResolver.SCHEME_FILE);
     }
 
-    private void updatePathPickers(boolean useJavaIO) {
-        boolean enabled = useJavaIO || Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
-        prefPathVideo.setEnabled(enabled);
-        prefPathAudio.setEnabled(enabled);
+    private boolean hasInvalidPath(String prefKey) {
+        String value = defaultPreferences.getString(prefKey, null);
+        return value == null || value.isEmpty();
     }
 
-    private boolean usingJavaIO() {
-        return DOWNLOAD_STORAGE_API_DEFAULT.equals(
-                defaultPreferences.getString(DOWNLOAD_STORAGE_API, DOWNLOAD_STORAGE_API_DEFAULT)
-        );
+    private void updatePathPickers(boolean enabled) {
+        prefPathVideo.setEnabled(enabled);
+        prefPathAudio.setEnabled(enabled);
     }
 
     // FIXME: after releasing the old path, all downloads created on the folder becomes inaccessible
@@ -198,33 +171,31 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
         }
 
         String key = preference.getKey();
+        int request;
 
-        if (key.equals(DOWNLOAD_PATH_VIDEO_PREFERENCE) || key.equals(DOWNLOAD_PATH_AUDIO_PREFERENCE)) {
-            boolean safPick = !usingJavaIO();
-
-            int request = 0;
-            if (key.equals(DOWNLOAD_PATH_VIDEO_PREFERENCE)) {
-                request = REQUEST_DOWNLOAD_VIDEO_PATH;
-            } else if (key.equals(DOWNLOAD_PATH_AUDIO_PREFERENCE)) {
-                request = REQUEST_DOWNLOAD_AUDIO_PATH;
-            }
-
-            Intent i;
-            if (safPick && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                i = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
-                        .putExtra("android.content.extra.SHOW_ADVANCED", true)
-                        .addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION | StoredDirectoryHelper.PERMISSION_FLAGS);
-            } else {
-                i = new Intent(getActivity(), FilePickerActivityHelper.class)
-                        .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
-                        .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, true)
-                        .putExtra(FilePickerActivityHelper.EXTRA_MODE, FilePickerActivityHelper.MODE_DIR);
-            }
-
-            startActivityForResult(i, request);
+        if (key.equals(DOWNLOAD_PATH_VIDEO_PREFERENCE)) {
+            request = REQUEST_DOWNLOAD_VIDEO_PATH;
+        } else if (key.equals(DOWNLOAD_PATH_AUDIO_PREFERENCE)) {
+            request = REQUEST_DOWNLOAD_AUDIO_PATH;
+        } else {
+            return super.onPreferenceTreeClick(preference);
         }
 
-        return super.onPreferenceTreeClick(preference);
+        Intent i;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            i = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
+                    .putExtra("android.content.extra.SHOW_ADVANCED", true)
+                    .addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION | StoredDirectoryHelper.PERMISSION_FLAGS);
+        } else {
+            i = new Intent(getActivity(), FilePickerActivityHelper.class)
+                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
+                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, true)
+                    .putExtra(FilePickerActivityHelper.EXTRA_MODE, FilePickerActivityHelper.MODE_DIR);
+        }
+
+        startActivityForResult(i, request);
+
+        return true;
     }
 
     @Override
@@ -252,7 +223,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
             return;
         }
 
-        if (!usingJavaIO() && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             // steps:
             //       1. revoke permissions on the old save path
             //       2. acquire permissions on the new save path

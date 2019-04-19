@@ -94,24 +94,7 @@ public class NewPipeSettings {
         return new File(Environment.getExternalStorageDirectory(), defaultDirectoryName);
     }
 
-    public static void resetDownloadFolders(Context context) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-
-        prefs.edit()
-                .putString(context.getString(R.string.downloads_storage_api), context.getString(R.string.downloads_storage_api_default))
-                .apply();
-
-        resetDownloadFolder(prefs, context.getString(R.string.download_path_audio_key), Environment.DIRECTORY_MUSIC);
-        resetDownloadFolder(prefs, context.getString(R.string.download_path_video_key), Environment.DIRECTORY_MOVIES);
-    }
-
-    private static void resetDownloadFolder(SharedPreferences prefs, String key, String defaultDirectoryName) {
-        SharedPreferences.Editor spEditor = prefs.edit();
-        spEditor.putString(key, getNewPipeChildFolderPathForDir(getDir(defaultDirectoryName)));
-        spEditor.apply();
-    }
-
     private static String getNewPipeChildFolderPathForDir(File dir) {
-        return new File(dir, "NewPipe").getAbsolutePath();
+        return new File(dir, "NewPipe").toURI().toString();
     }
 }

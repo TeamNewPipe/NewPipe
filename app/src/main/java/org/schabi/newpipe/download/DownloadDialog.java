@@ -212,6 +212,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
                 mainStorageAudio = mgr.getMainStorageAudio();
                 mainStorageVideo = mgr.getMainStorageVideo();
                 downloadManager = mgr.getDownloadManager();
+                askForSavePath = mgr.askForSavePath();
 
                 okButton.setEnabled(true);
 
@@ -509,6 +510,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     DownloadManager downloadManager = null;
     ActionMenuItemView okButton = null;
     Context context;
+    boolean askForSavePath;
 
     private String getNameEditText() {
         String str = nameEditText.getText().toString().trim();
@@ -567,10 +569,11 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
                 throw new RuntimeException("No stream selected");
         }
 
-        if (mainStorage == null) {
+        if (mainStorage == null || askForSavePath) {
             // This part is called if with SAF preferred:
             //  * older android version running
             //  * save path not defined (via download settings)
+            //  * the user as checked the "ask where to download" option
 
             StoredFileHelper.requestSafWithFileCreation(this, REQUEST_DOWNLOAD_PATH_SAF, filename, mime);
             return;

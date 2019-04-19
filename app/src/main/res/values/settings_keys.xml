@@ -160,20 +160,7 @@
     <string name="clear_views_history_key" translatable="false">clear_play_history</string>
     <string name="clear_search_history_key" translatable="false">clear_search_history</string>
 
-    <string name="downloads_storage_api" translatable="false">downloads_storage_api</string>
-
-    <!-- WARNING: changing the default value will require update the code too  -->
-    <string name="downloads_storage_api_default" translatable="false">javaIO</string>
-
-    <string-array name="downloads_storage_api_values" translatable="false">
-        <item translatable="false">SAF</item>
-        <item translatable="false">javaIO</item>
-    </string-array>
-
-    <string-array name="downloads_storage_api_description" translatable="true">
-        <item translatable="true">@string/storage_access_framework_description</item>
-        <item translatable="true">@string/java_io_description</item>
-    </string-array>
+    <string name="downloads_storage_ask" translatable="false">downloads_storage_ask</string>
 
     <!-- FileName Downloads  -->
     <string name="settings_file_charset_key" translatable="false">file_rename_charset</string>

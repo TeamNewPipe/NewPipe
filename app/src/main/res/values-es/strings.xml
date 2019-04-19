@@ -459,18 +459,14 @@ abrir en modo popup</string>
     <string name="error_progress_lost">Se perdió el progreso porque el archivo fue eliminado</string>
     <string name="error_timeout">Tiempo de espera excedido</string>
 
-    <string name="downloads_storage">API de almacenamiento</string>
-    <string name="downloads_storage_desc">Seleccione que API utilizar para almacenar las descargas</string>
-
-    <string name="storage_access_framework_description">Framework de acceso a almacenamiento</string>
-    <string name="java_io_description">Java I/O</string>
-
-    <string name="save_as">Guardar como…</string>
-
     <string name="download_to_sdcard_error_message">No es posible descargar a una tarjeta SD externa. \¿Restablecer la ubicación de la carpeta de descarga\?</string>
 
     <string name="download_pick_path">Seleccione los directorios de descarga</string>
     <string name="missions_header_pending">Pendiente</string>
+
+    <string name="downloads_storage_ask_title">Preguntar dónde descargar</string>
+    <string name="downloads_storage_ask_summary">Se preguntará dónde guardar cada descarga</string>
+    <string name="downloads_storage_ask_summary_kitkat">Se preguntará dónde guardar cada descarga.\nHabilita esta opción si quieres descargar en la tarjeta SD externa</string>
 
     <string name="unsubscribe">Desuscribirse</string>
     <string name="tab_new">Nueva pestaña</string>
