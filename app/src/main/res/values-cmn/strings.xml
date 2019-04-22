@@ -470,7 +470,7 @@
     <string name="app_update_notification_content_title">NewPipe 更新可用!</string>
     <string name="error_file_creation">无法创建目标文件夹</string>
     <string name="error_http_unsupported_range">服务器不接受多线程下载, 请重试使用 @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">请求的范围不满足</string>
+    <string name="error_http_requested_range_not_satisfiable">请求范围无法满足</string>
     <string name="msg_pending_downloads">继续进行%s个待下载转移</string>
-    <string name="pause_downloads_on_mobile_desc">将重新启动无法暂停的下载</string>
+    <string name="pause_downloads_on_mobile_desc">无法暂停的下载将重新开始</string>
 </resources>
