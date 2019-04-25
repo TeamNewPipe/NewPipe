@@ -267,8 +267,7 @@ public class Utility {
         }
 
         try {
-            long length = Long.parseLong(connection.getHeaderField("Content-Length"));
-            if (length >= 0) return length;
+            return Long.parseLong(connection.getHeaderField("Content-Length"));
         } catch (Exception err) {
             // nothing to do
         }

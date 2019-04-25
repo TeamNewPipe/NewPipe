@@ -13,7 +13,7 @@ import java.io.IOException;
 class WebMMuxer extends Postprocessing {
 
     WebMMuxer() {
-        super(5 * 1024 * 1024/* 5 MiB */, true);
+        super(true, true, ALGORITHM_WEBM_MUXER);
     }
 
     @Override

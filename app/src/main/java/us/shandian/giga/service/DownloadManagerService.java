@@ -450,12 +450,15 @@ public class DownloadManagerService extends Service {
         if (psName == null)
             ps = null;
         else
-            ps = Postprocessing.getAlgorithm(psName, psArgs, DownloadManager.pickAvailableCacheDir(this));
+            ps = Postprocessing.getAlgorithm(psName, psArgs);
 
         final DownloadMission mission = new DownloadMission(urls, storage, kind, ps);
         mission.threadCount = threads;
         mission.source = source;
         mission.nearLength = nearLength;
+
+        if (ps != null)
+            ps.setTemporalDir(DownloadManager.pickAvailableTemporalDir(this));
 
         handleConnectivityState(true);// first check the actual network status
 

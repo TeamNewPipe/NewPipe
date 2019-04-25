@@ -17,6 +17,8 @@ import static org.schabi.newpipe.BuildConfig.DEBUG;
 public class DownloadInitializer extends Thread {
     private final static String TAG = "DownloadInitializer";
     final static int mId = 0;
+    private final static int RESERVE_SPACE_DEFAULT = 5 * 1024 * 1024;// 5 MiB
+    private final static int RESERVE_SPACE_MAXIMUM = 150 * 1024 * 1024;// 150 MiB
 
     private DownloadMission mMission;
     private HttpURLConnection mConn;
@@ -35,15 +37,46 @@ public class DownloadInitializer extends Thread {
             try {
                 mMission.currentThreadCount = mMission.threadCount;
 
-                mConn = mMission.openConnection(mId, -1, -1);
-                mMission.establishConnection(mId, mConn);
+                if (mMission.blocks < 0 && mMission.current == 0) {
+                    // calculate the whole size of the mission
+                    long finalLength = 0;
+                    long lowestSize = Long.MAX_VALUE;
 
-                if (!mMission.running || Thread.interrupted()) return;
+                    for (int i = 0; i < mMission.urls.length && mMission.running; i++) {
+                        mConn = mMission.openConnection(mMission.urls[i], mId, -1, -1);
+                        mMission.establishConnection(mId, mConn);
 
-                mMission.length = Utility.getContentLength(mConn);
+                        if (Thread.interrupted()) return;
+                        long length = Utility.getContentLength(mConn);
 
+                        if (i == 0) mMission.length = length;
+                        if (length > 0) finalLength += length;
+                        if (length < lowestSize) lowestSize = length;
+                    }
 
-                if (mMission.length == 0) {
+                    mMission.nearLength = finalLength;
+
+                    // reserve space at the start of the file
+                    if (mMission.psAlgorithm != null && mMission.psAlgorithm.reserveSpace) {
+                        if (lowestSize < 1) {
+                            // the length is unknown use the default size
+                            mMission.offsets[0] = RESERVE_SPACE_DEFAULT;
+                        } else {
+                            // use the smallest resource size to download, otherwise, use the maximum
+                            mMission.offsets[0] = lowestSize < RESERVE_SPACE_MAXIMUM ? lowestSize : RESERVE_SPACE_MAXIMUM;
+                        }
+                    }
+                } else {
+                    // ask for the current resource length
+                    mConn = mMission.openConnection(mId, -1, -1);
+                    mMission.establishConnection(mId, mConn);
+
+                    if (!mMission.running || Thread.interrupted()) return;
+
+                    mMission.length = Utility.getContentLength(mConn);
+                }
+
+                if (mMission.length == 0 || mConn.getResponseCode() == 204) {
                     mMission.notifyError(DownloadMission.ERROR_HTTP_NO_CONTENT, null);
                     return;
                 }

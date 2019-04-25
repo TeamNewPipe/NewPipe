@@ -20,7 +20,7 @@ class TtmlConverter extends Postprocessing {
 
     TtmlConverter() {
         // due how XmlPullParser works, the xml is fully loaded on the ram
-        super(0, true);
+        super(false, true, ALGORITHM_TTML_CONVERTER);
     }
 
     @Override

@@ -6,10 +6,10 @@ import org.schabi.newpipe.streams.io.SharpStream;
 
 import java.io.IOException;
 
-public class M4aNoDash extends Postprocessing {
+class M4aNoDash extends Postprocessing {
 
     M4aNoDash() {
-        super(0, true);
+        super(false, true, ALGORITHM_M4A_NO_DASH);
     }
 
     @Override

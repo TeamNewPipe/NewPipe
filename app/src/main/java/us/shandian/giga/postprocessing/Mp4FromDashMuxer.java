@@ -11,7 +11,7 @@ import java.io.IOException;
 class Mp4FromDashMuxer extends Postprocessing {
 
     Mp4FromDashMuxer() {
-        super(3 * 1024 * 1024/* 3 MiB */, true);
+        super(true, true, ALGORITHM_MP4_FROM_DASH_MUXER);
     }
 
     @Override

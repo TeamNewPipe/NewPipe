@@ -29,7 +29,7 @@ public abstract class Postprocessing implements Serializable {
     public transient static final String ALGORITHM_MP4_FROM_DASH_MUXER = "mp4D-mp4";
     public transient static final String ALGORITHM_M4A_NO_DASH = "mp4D-m4a";
 
-    public static Postprocessing getAlgorithm(@NonNull String algorithmName, String[] args, @NonNull File cacheDir) {
+    public static Postprocessing getAlgorithm(@NonNull String algorithmName, String[] args) {
         Postprocessing instance;
 
         switch (algorithmName) {
@@ -48,13 +48,10 @@ public abstract class Postprocessing implements Serializable {
             /*case "example-algorithm":
                 instance = new ExampleAlgorithm();*/
             default:
-                throw new RuntimeException("Unimplemented post-processing algorithm: " + algorithmName);
+                throw new UnsupportedOperationException("Unimplemented post-processing algorithm: " + algorithmName);
         }
 
         instance.args = args;
-        instance.name = algorithmName;// for debug only, maybe remove this field in the future
-        instance.cacheDir = cacheDir;
-
         return instance;
     }
 
@@ -62,34 +59,47 @@ public abstract class Postprocessing implements Serializable {
      * Get a boolean value that indicate if the given algorithm work on the same
      * file
      */
-    public boolean worksOnSameFile;
+    public final boolean worksOnSameFile;
 
     /**
-     * Get the recommended space to reserve for the given algorithm. The amount
-     * is in bytes
+     * Indicates whether the selected algorithm needs space reserved at the beginning of the file
      */
-    public int recommendedReserve;
+    public final boolean reserveSpace;
 
     /**
-     * the download to post-process
+     * Gets the given algorithm short name
      */
-    protected transient DownloadMission mission;
+    private final String name;
 
-    public transient File cacheDir;
 
     private String[] args;
 
-    private String name;
+    protected transient DownloadMission mission;
 
-    Postprocessing(int recommendedReserve, boolean worksOnSameFile) {
-        this.recommendedReserve = recommendedReserve;
+    private File tempFile;
+
+    Postprocessing(boolean reserveSpace, boolean worksOnSameFile, String algorithmName) {
+        this.reserveSpace = reserveSpace;
         this.worksOnSameFile = worksOnSameFile;
+        this.name = algorithmName;// for debugging only
     }
+
+    public void setTemporalDir(@NonNull File directory) {
+        long rnd = (int) (Math.random() * 100000f);
+        tempFile = new File(directory, rnd + "_" + System.nanoTime() + ".tmp");
+    }
+
+    public void cleanupTemporalDir() {
+        if (tempFile != null && tempFile.exists()) {
+            //noinspection ResultOfMethodCallIgnored
+            tempFile.delete();
+        }
+    }
+
 
     public void run(DownloadMission target) throws IOException {
         this.mission = target;
 
-        File temp = null;
         CircularFileWriter out = null;
         int result;
         long finalLength = -1;
@@ -125,9 +135,7 @@ public abstract class Postprocessing implements Serializable {
                         return -1;
                     };
 
-                    temp = new File(cacheDir, mission.storage.getName() + ".tmp");
-
-                    out = new CircularFileWriter(mission.storage.getStream(), temp, checker);
+                    out = new CircularFileWriter(mission.storage.getStream(), tempFile, checker);
                     out.onProgress = this::progressReport;
 
                     out.onWriteError = (err) -> {
@@ -163,9 +171,10 @@ public abstract class Postprocessing implements Serializable {
                 if (out != null) {
                     out.close();
                 }
-                if (temp != null) {
+                if (tempFile != null) {
                     //noinspection ResultOfMethodCallIgnored
-                    temp.delete();
+                    tempFile.delete();
+                    tempFile = null;
                 }
             }
         } else {

@@ -147,14 +147,10 @@ public class DownloadMission extends Mission {
         this.enqueued = true;
         this.maxRetry = 3;
         this.storage = storage;
+        this.psAlgorithm = psInstance;
 
-        if (psInstance != null) {
-            this.psAlgorithm = psInstance;
-            this.offsets[0] = psInstance.recommendedReserve;
-        } else {
-            if (DEBUG && urls.length > 1) {
-                Log.w(TAG, "mission created with multiple urls ¿missing post-processing algorithm?");
-            }
+        if (DEBUG && psInstance == null && urls.length > 1) {
+            Log.w(TAG, "mission created with multiple urls ¿missing post-processing algorithm?");
         }
     }
 
@@ -233,10 +229,14 @@ public class DownloadMission extends Mission {
      * @throws IOException if an I/O exception occurs.
      */
     HttpURLConnection openConnection(int threadId, long rangeStart, long rangeEnd) throws IOException {
-        URL url = new URL(urls[current]);
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        return openConnection(urls[current], threadId, rangeStart, rangeEnd);
+    }
+
+    HttpURLConnection openConnection(String url, int threadId, long rangeStart, long rangeEnd) throws IOException {
+        HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
         conn.setInstanceFollowRedirects(true);
         conn.setRequestProperty("User-Agent", Downloader.USER_AGENT);
+        conn.setRequestProperty("Accept", "*/*");
 
         // BUG workaround: switching between networks can freeze the download forever
         conn.setConnectTimeout(30000);
@@ -536,8 +536,11 @@ public class DownloadMission extends Mission {
     @Override
     public boolean delete() {
         deleted = true;
+        if (psAlgorithm != null) psAlgorithm.cleanupTemporalDir();
+
         boolean res = deleteThisFromFile();
-        if (!super.delete()) res = false;
+
+        if (!super.delete()) return false;
         return res;
     }
 
@@ -626,6 +629,11 @@ public class DownloadMission extends Mission {
         return blocks >= 0; // DownloadMissionInitializer was executed
     }
 
+    /**
+     * Gets the approximated final length of the file
+     *
+     * @return the length in bytes
+     */
     public long getLength() {
         long calculated;
         if (psState == 1 || psState == 3) {
@@ -680,6 +688,8 @@ public class DownloadMission extends Mission {
 
     private boolean doPostprocessing() {
         if (psAlgorithm == null || psState == 2) return true;
+
+        errObject = null;
 
         notifyPostProcessing(1);
         notifyProgress(0);

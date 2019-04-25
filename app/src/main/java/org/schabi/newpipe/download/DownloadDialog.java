@@ -767,7 +767,8 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
                     psArgs = null;
                     long videoSize = wrappedVideoStreams.getSizeInBytes((VideoStream) selectedStream);
 
-                    // set nearLength, only, if both sizes are fetched or known. this probably does not work on slow networks
+                    // set nearLength, only, if both sizes are fetched or known. This probably
+                    // does not work on slow networks but is later updated in the downloader
                     if (secondaryStream.getSizeInBytes() > 0 && videoSize > 0) {
                         nearLength = secondaryStream.getSizeInBytes() + videoSize;
                     }
@@ -793,7 +794,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         if (secondaryStreamUrl == null) {
             urls = new String[]{selectedStream.getUrl()};
         } else {
-            urls = new String[]{secondaryStreamUrl, selectedStream.getUrl()};
+            urls = new String[]{selectedStream.getUrl(), secondaryStreamUrl};
         }
 
         DownloadManagerService.startMission(context, urls, storage, kind, threads, currentInfo.getUrl(), psName, psArgs, nearLength);

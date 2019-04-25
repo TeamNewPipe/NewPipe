@@ -154,7 +154,9 @@ public class DownloadManager {
                 if (mis.psAlgorithm.worksOnSameFile) {
                     // Incomplete post-processing results in a corrupted download file
                     // because the selected algorithm works on the same file to save space.
-                    if (exists && !mis.storage.delete())
+                    // the file will be deleted if the storage API
+                    // is Java IO (avoid showing the "Save as..." dialog)
+                    if (exists && mis.storage.isDirect() && !mis.storage.delete())
                         Log.w(TAG, "Unable to delete incomplete download file: " + sub.getPath());
 
                     exists = true;
@@ -162,7 +164,6 @@ public class DownloadManager {
 
                 mis.psState = 0;
                 mis.errCode = DownloadMission.ERROR_POSTPROCESSING_STOPPED;
-                mis.errObject = null;
             } else if (!exists) {
                 tryRecover(mis);
 
@@ -171,8 +172,10 @@ public class DownloadManager {
                     mis.resetState(true, true, DownloadMission.ERROR_PROGRESS_LOST);
             }
 
-            if (mis.psAlgorithm != null)
-                mis.psAlgorithm.cacheDir = pickAvailableCacheDir(ctx);
+            if (mis.psAlgorithm != null) {
+                mis.psAlgorithm.cleanupTemporalDir();
+                mis.psAlgorithm.setTemporalDir(pickAvailableTemporalDir(ctx));
+            }
 
             mis.recovered = exists;
             mis.metadata = sub;
@@ -532,14 +535,14 @@ public class DownloadManager {
     }
 
     private static boolean isDirectoryAvailable(File directory) {
-        return directory != null && directory.canWrite();
+        return directory != null && directory.canWrite() && directory.exists();
     }
 
-    static File pickAvailableCacheDir(@NonNull Context ctx) {
-        if (isDirectoryAvailable(ctx.getExternalCacheDir()))
-            return ctx.getExternalCacheDir();
-        else if (isDirectoryAvailable(ctx.getCacheDir()))
-            return ctx.getCacheDir();
+    static File pickAvailableTemporalDir(@NonNull Context ctx) {
+        if (isDirectoryAvailable(ctx.getExternalFilesDir(null)))
+            return ctx.getExternalFilesDir(null);
+        else if (isDirectoryAvailable(ctx.getFilesDir()))
+            return ctx.getFilesDir();
 
         // this never should happen
         return ctx.getDir("tmp", Context.MODE_PRIVATE);
@@ -550,7 +553,7 @@ public class DownloadManager {
         if (tag.equals(TAG_AUDIO)) return mMainStorageAudio;
         if (tag.equals(TAG_VIDEO)) return mMainStorageVideo;
 
-        Log.w(TAG, "Unknown download category, not [audio video]: " + String.valueOf(tag));
+        Log.w(TAG, "Unknown download category, not [audio video]: " + tag);
 
         return null;// this never should happen
     }
