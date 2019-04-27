@@ -6,7 +6,7 @@
     <string name="install">इंस्टॉल करें</string>
     <string name="open_in_browser">ब्राउज़र में खोलें</string>
     <string name="open_in_popup_mode">पॉपअप मोड में खोलें</string>
-    <string name="share">शेयर करें</string>
+    <string name="share">साझा करें</string>
     <string name="download">डाउनलोड</string>
     <string name="search">खोजें</string>
     <string name="settings">सेटिंग्स</string>
@@ -23,7 +23,7 @@
     <string name="play_audio">ऑडियो</string>
     <string name="light_theme_title">हलका</string>
     <string name="black_theme_title">काली</string>
-    <string name="enable_watch_history_title">पूर्व और कैश</string>
+    <string name="enable_watch_history_title">इतिहास व कॅशे</string>
     <string name="download_dialog_title">डाउनलोड</string>
     <string name="next_video_title">अगला</string>
     <string name="settings_category_video_audio_title">वीडियो और ऑडियो</string>
@@ -92,9 +92,9 @@
     <string name="show_search_suggestions_summary">जब कुछ ढूंड रहे हो तो सुझाव दिखाये</string>
     <string name="enable_search_history_title">खोज के इतिहास को देखे</string>
     <string name="enable_search_history_summary">खोज के query को फ़ोन की मेमोरी में ही रखे</string>
-    <string name="enable_watch_history_summary">देखे हुए वीडियोस का रिकॉर्ड रखें</string>
-    <string name="resume_on_audio_focus_gain_title">जब फोकस मिले तो विडियो resume हो</string>
-    <string name="resume_on_audio_focus_gain_summary">रूकावट आने पर भी विडियो को जारी रखे (जैसे - फ़ोन कॉल आये)</string>
+    <string name="enable_watch_history_summary">देखे हुए विडियो की सूची रखे</string>
+    <string name="resume_on_audio_focus_gain_title">फोकस मिलने पर विडियो पुनः आगे चले</string>
+    <string name="resume_on_audio_focus_gain_summary">रूकावट आने पर भी विडियो को जारी रखें (जैसे - फ़ोन कॉल आये)</string>
     <string name="show_next_and_similar_title">\'अगला\' और \'पहले समान\' वीडियो दिखाए</string>
     <string name="show_hold_to_append_title">\"जोड़ने के लिए पकड़ें रहे\" दिखाए</string>
     <string name="show_hold_to_append_summary">जब बैकग्राउंड और पॉपअप बटन विडियो के विवरण पन्ने में दबाई जाए तो tip को दिखाए</string>
