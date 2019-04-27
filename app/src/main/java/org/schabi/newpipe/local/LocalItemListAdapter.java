@@ -26,6 +26,7 @@ import org.schabi.newpipe.util.OnClickGesture;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -134,6 +135,27 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
                         " to " + footerNow);
             }
         }
+    }
+
+    public void updateStates() {
+        if (localItems.isEmpty()) return;
+        stateLoaders.add(
+                historyRecordManager.loadLocalStreamStateBatch(localItems)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe((streamStateEntities) -> {
+                            if (streamStateEntities.size() == states.size()) {
+                                for (int i = 0; i < states.size(); i++) {
+                                    final StreamStateEntity newState = streamStateEntities.get(i);
+                                    if (!Objects.equals(states.get(i), newState)) {
+                                        states.set(i, newState);
+                                        notifyItemChanged(header == null ? i : i + 1);
+                                    }
+                                }
+                            } else {
+                                //oops, something is wrong
+                            }
+                        })
+        );
     }
 
     public void removeItem(final LocalItem data) {

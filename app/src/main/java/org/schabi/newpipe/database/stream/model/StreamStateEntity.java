@@ -4,6 +4,7 @@ package org.schabi.newpipe.database.stream.model;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.support.annotation.Nullable;
 
 import java.util.concurrent.TimeUnit;
 
@@ -61,5 +62,13 @@ public class StreamStateEntity {
         final int seconds = (int) TimeUnit.MILLISECONDS.toSeconds(progressTime);
         return seconds > PLAYBACK_SAVE_THRESHOLD_START_SECONDS
                 && seconds < durationInSeconds - PLAYBACK_SAVE_THRESHOLD_END_SECONDS;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (obj instanceof StreamStateEntity) {
+            return ((StreamStateEntity) obj).streamUid == streamUid
+                    && ((StreamStateEntity) obj).progressTime == progressTime;
+        } else return false;
     }
 }

@@ -76,6 +76,7 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
             }
             updateFlags = 0;
         }
+        itemListAdapter.updateStates();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
