@@ -313,8 +313,25 @@ public class InfoListAdapter extends StateObjectsListAdapter {
     }
 
     @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position, @NonNull List<Object> payloads) {
+        if (!payloads.isEmpty() && holder instanceof InfoItemHolder) {
+            for (Object payload : payloads) {
+                if (payload instanceof StreamStateEntity) {
+                    ((InfoItemHolder) holder).updateState(infoItemList.get(header == null ? position : position - 1),
+                            (StreamStateEntity) payload);
+                } else if (payload instanceof Boolean) {
+                    ((InfoItemHolder) holder).updateState(infoItemList.get(header == null ? position : position - 1),
+                            null);
+                }
+            }
+        } else {
+            onBindViewHolder(holder, position);
+        }
+    }
+
+    @Override
     protected void onItemStateChanged(int position, @Nullable StreamStateEntity state) {
-        notifyItemChanged(header == null ? position : position + 1, state);
+        notifyItemChanged(header == null ? position : position + 1, state != null ? state : false);
     }
 
     public GridLayoutManager.SpanSizeLookup getSpanSizeLookup(final int spanCount) {

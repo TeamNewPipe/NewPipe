@@ -41,4 +41,7 @@ public abstract class LocalItemHolder extends RecyclerView.ViewHolder {
     }
 
     public abstract void updateFromItem(final LocalItem item, @Nullable final StreamStateEntity state, final DateFormat dateFormat);
+
+    public void updateState(final LocalItem localItem, @Nullable final StreamStateEntity state) {
+    }
 }

@@ -153,6 +153,8 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
             }
             updateFlags = 0;
         }
+
+        itemsList.post(infoListAdapter::updateStates);
     }
 
     @Override

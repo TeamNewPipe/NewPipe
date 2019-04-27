@@ -25,8 +25,7 @@ public final class AnimatedProgressBar extends ProgressBar {
 		super(context, attrs, defStyleAttr);
 	}
 
-	@Override
-	public synchronized void setProgress(int progress) {
+	public synchronized void setProgressAnimated(int progress) {
 		cancelAnimation();
 		animation = new ProgressBarAnimation(this, getProgress(), progress);
 		startAnimation(animation);
@@ -38,10 +37,6 @@ public final class AnimatedProgressBar extends ProgressBar {
 			animation = null;
 		}
 		clearAnimation();
-	}
-
-	private void setProgressInternal(int progress) {
-		super.setProgress(progress);
 	}
 
 	private static class ProgressBarAnimation extends Animation {
@@ -63,7 +58,7 @@ public final class AnimatedProgressBar extends ProgressBar {
 		protected void applyTransformation(float interpolatedTime, Transformation t) {
 			super.applyTransformation(interpolatedTime, t);
 			float value = from + (to - from) * interpolatedTime;
-			progressBar.setProgressInternal((int) value);
+			progressBar.setProgress((int) value);
 		}
 	}
 }

@@ -38,4 +38,7 @@ public abstract class InfoItemHolder extends RecyclerView.ViewHolder {
     }
 
     public abstract void updateFromItem(final InfoItem infoItem, @Nullable final StreamStateEntity state);
+
+    public void updateState(final InfoItem infoItem, @Nullable final StreamStateEntity state) {
+    }
 }

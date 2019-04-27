@@ -286,8 +286,25 @@ public class LocalItemListAdapter extends StateObjectsListAdapter {
     }
 
     @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position, @NonNull List<Object> payloads) {
+        if (!payloads.isEmpty() && holder instanceof LocalItemHolder) {
+            for (Object payload : payloads) {
+                if (payload instanceof StreamStateEntity) {
+                    ((LocalItemHolder) holder).updateState(localItems.get(header == null ? position : position - 1),
+                            (StreamStateEntity) payload);
+                } else if (payload instanceof Boolean) {
+                    ((LocalItemHolder) holder).updateState(localItems.get(header == null ? position : position - 1),
+                            null);
+                }
+            }
+        } else {
+            onBindViewHolder(holder, position);
+        }
+    }
+
+    @Override
     protected void onItemStateChanged(int position, @Nullable StreamStateEntity state) {
-        notifyItemChanged(header == null ? position : position + 1, state);
+        notifyItemChanged(header == null ? position : position + 1, state != null ? state : false);
     }
 
     public GridLayoutManager.SpanSizeLookup getSpanSizeLookup(final int spanCount) {

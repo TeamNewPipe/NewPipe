@@ -101,7 +101,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
             updateFlags = 0;
         }
 
-        infoListAdapter.updateStates();
+        itemsList.post(infoListAdapter::updateStates);
     }
 
     /*//////////////////////////////////////////////////////////////////////////

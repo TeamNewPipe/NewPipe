@@ -6,7 +6,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.schabi.newpipe.R;
@@ -15,8 +14,10 @@ import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.local.LocalItemBuilder;
+import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
+import org.schabi.newpipe.views.AnimatedProgressBar;
 
 import java.text.DateFormat;
 import java.util.concurrent.TimeUnit;
@@ -28,7 +29,7 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
     public final TextView itemAdditionalDetailsView;
     public final TextView itemDurationView;
     public final View itemHandleView;
-    public final ProgressBar itemProgressView;
+    public final AnimatedProgressBar itemProgressView;
 
     LocalPlaylistStreamItemHolder(LocalItemBuilder infoItemBuilder, int layoutId, ViewGroup parent) {
         super(infoItemBuilder, layoutId, parent);
@@ -90,6 +91,23 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
 
         itemThumbnailView.setOnTouchListener(getOnTouchListener(item));
         itemHandleView.setOnTouchListener(getOnTouchListener(item));
+    }
+
+    @Override
+    public void updateState(LocalItem localItem, @Nullable StreamStateEntity state) {
+        if (!(localItem instanceof PlaylistStreamEntry)) return;
+        final PlaylistStreamEntry item = (PlaylistStreamEntry) localItem;
+        if (state != null && item.duration > 0) {
+            itemProgressView.setMax((int) item.duration);
+            if (itemProgressView.getVisibility() == View.VISIBLE) {
+                itemProgressView.setProgressAnimated((int) TimeUnit.MILLISECONDS.toSeconds(state.getProgressTime()));
+            } else {
+                itemProgressView.setProgress((int) TimeUnit.MILLISECONDS.toSeconds(state.getProgressTime()));
+                AnimationUtils.animateView(itemProgressView, true, 500);
+            }
+        } else if (itemProgressView.getVisibility() == View.VISIBLE) {
+            AnimationUtils.animateView(itemProgressView, false, 500);
+        }
     }
 
     private View.OnTouchListener getOnTouchListener(final PlaylistStreamEntry item) {

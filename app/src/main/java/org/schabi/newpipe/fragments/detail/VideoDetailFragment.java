@@ -1287,7 +1287,7 @@ public class VideoDetailFragment
                 .subscribe(state -> {
                     final int seconds = (int) TimeUnit.MILLISECONDS.toSeconds(state.getProgressTime());
                     positionView.setMax((int) info.getDuration());
-                    positionView.setProgress(seconds);
+                    positionView.setProgressAnimated(seconds);
                     detailPositionView.setText(Localization.getDurationString(seconds));
                     animateView(positionView, true, 500);
                     animateView(detailPositionView, true, 500);
