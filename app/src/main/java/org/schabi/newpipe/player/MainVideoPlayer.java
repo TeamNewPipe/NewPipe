@@ -46,6 +46,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
@@ -400,6 +401,7 @@ public final class MainVideoPlayer extends AppCompatActivity
         private ImageButton playPauseButton;
         private ImageButton playPreviousButton;
         private ImageButton playNextButton;
+        private Button closeButton;
 
         private RelativeLayout queueLayout;
         private ImageButton itemsListCloseButton;
@@ -441,6 +443,7 @@ public final class MainVideoPlayer extends AppCompatActivity
             this.playPauseButton = rootView.findViewById(R.id.playPauseButton);
             this.playPreviousButton = rootView.findViewById(R.id.playPreviousButton);
             this.playNextButton = rootView.findViewById(R.id.playNextButton);
+            this.closeButton = rootView.findViewById(R.id.closeButton);
 
             this.moreOptionsButton = rootView.findViewById(R.id.moreOptionsButton);
             this.secondaryControls = rootView.findViewById(R.id.secondaryControls);
@@ -488,6 +491,7 @@ public final class MainVideoPlayer extends AppCompatActivity
             playPauseButton.setOnClickListener(this);
             playPreviousButton.setOnClickListener(this);
             playNextButton.setOnClickListener(this);
+            closeButton.setOnClickListener(this);
 
             moreOptionsButton.setOnClickListener(this);
             shareButton.setOnClickListener(this);
@@ -655,6 +659,9 @@ public final class MainVideoPlayer extends AppCompatActivity
             } else if (v.getId() == switchBackgroundButton.getId()) {
                 onPlayBackgroundButtonClicked();
 
+            } else if (v.getId() == closeButton.getId()) {
+                onPlaybackShutdown();
+                return;
             }
 
             if (getCurrentState() != STATE_COMPLETED) {
@@ -788,6 +795,7 @@ public final class MainVideoPlayer extends AppCompatActivity
             super.onBlocked();
             playPauseButton.setImageResource(R.drawable.ic_pause_white);
             animatePlayButtons(false, 100);
+            animateView(closeButton, false, DEFAULT_CONTROLS_DURATION);
             getRootView().setKeepScreenOn(true);
         }
 
@@ -803,6 +811,7 @@ public final class MainVideoPlayer extends AppCompatActivity
             animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 80, 0, () -> {
                 playPauseButton.setImageResource(R.drawable.ic_pause_white);
                 animatePlayButtons(true, 200);
+                animateView(closeButton, false, DEFAULT_CONTROLS_DURATION);
             });
 
             getRootView().setKeepScreenOn(true);
@@ -814,6 +823,7 @@ public final class MainVideoPlayer extends AppCompatActivity
             animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 80, 0, () -> {
                 playPauseButton.setImageResource(R.drawable.ic_play_arrow_white);
                 animatePlayButtons(true, 200);
+                animateView(closeButton, false, DEFAULT_CONTROLS_DURATION);
             });
 
             showSystemUi();
@@ -833,8 +843,8 @@ public final class MainVideoPlayer extends AppCompatActivity
             animateView(playPauseButton, AnimationUtils.Type.SCALE_AND_ALPHA, false, 0, 0, () -> {
                 playPauseButton.setImageResource(R.drawable.ic_replay_white);
                 animatePlayButtons(true, DEFAULT_CONTROLS_DURATION);
+                animateView(closeButton, true, DEFAULT_CONTROLS_DURATION);
             });
-
             getRootView().setKeepScreenOn(false);
             super.onCompleted();
         }
