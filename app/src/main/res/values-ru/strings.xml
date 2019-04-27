@@ -170,6 +170,8 @@
     <string name="enable_watch_history_title">История просмотров</string>
     <string name="enable_playback_resume_title">Продолжать воспроизведение</string>
     <string name="enable_playback_resume_summary">Восстанавливать с последней позиции</string>
+    <string name="enable_playback_state_lists_title">Позиции в списках</string>
+    <string name="enable_playback_state_lists_summary">Отображать индикаторы позиций просмотра в списках</string>
     <string name="settings_category_clear_data_title">Очистить данные</string>
     <string name="enable_watch_history_summary">Запоминать воспроизведённые потоки</string>
     <string name="resume_on_audio_focus_gain_title">Возобновить при фокусе</string>

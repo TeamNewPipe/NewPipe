@@ -21,6 +21,14 @@
 
     <SwitchPreference
         android:defaultValue="true"
+        android:dependency="@string/enable_playback_resume_key"
+        android:key="@string/enable_playback_state_lists_key"
+        android:summary="@string/enable_playback_state_lists_summary"
+        android:title="@string/enable_playback_state_lists_title"
+        app:iconSpaceReserved="false" />
+
+    <SwitchPreference
+        android:defaultValue="true"
         android:key="@string/enable_search_history_key"
         android:summary="@string/enable_search_history_summary"
         android:title="@string/enable_search_history_title"

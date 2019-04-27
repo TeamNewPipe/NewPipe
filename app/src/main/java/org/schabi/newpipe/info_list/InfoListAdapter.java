@@ -1,12 +1,16 @@
 package org.schabi.newpipe.info_list;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
@@ -128,13 +132,19 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public void addInfoItemList(final List<InfoItem> data) {
-        stateLoaders.add(
-                historyRecordManager.loadStreamStateBatch(data)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(streamStateEntities -> {
-                    addInfoItemList(data, streamStateEntities);
-                })
-        );
+        if (isPlaybackStatesVisible()) {
+            stateLoaders.add(
+                    historyRecordManager.loadStreamStateBatch(data)
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(streamStateEntities -> {
+                                addInfoItemList(data, streamStateEntities);
+                            })
+            );
+        } else {
+            final ArrayList<StreamStateEntity> states = new ArrayList<>(data.size());
+            for (int i = data.size(); i > 0; i--) states.add(null);
+            addInfoItemList(data, states);
+        }
     }
 
     private void addInfoItemList(List<InfoItem> data, List<StreamStateEntity> statesEntities) {
@@ -163,13 +173,17 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public void addInfoItem(InfoItem data) {
-        stateLoaders.add(
-                historyRecordManager.loadStreamState(data)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(streamStateEntity -> {
-                            addInfoItem(data, streamStateEntity[0]);
-                        })
-        );
+        if (isPlaybackStatesVisible()) {
+            stateLoaders.add(
+                    historyRecordManager.loadStreamState(data)
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(streamStateEntity -> {
+                                addInfoItem(data, streamStateEntity[0]);
+                            })
+            );
+        } else {
+            addInfoItem(data, null);
+        }
     }
 
     private void addInfoItem(InfoItem data, StreamStateEntity state) {
@@ -200,23 +214,25 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (infoItemList.isEmpty()) {
             return;
         }
-        stateLoaders.add(
-                historyRecordManager.loadStreamStateBatch(infoItemList)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe((streamStateEntities) -> {
-                            if (streamStateEntities.size() == states.size()) {
-                                for (int i = 0; i < states.size(); i++) {
-                                    final StreamStateEntity newState = streamStateEntities.get(i);
-                                    if (!Objects.equals(states.get(i), newState)) {
-                                        states.set(i, newState);
-                                        notifyItemChanged(header == null ? i : i + 1);
+        if (isPlaybackStatesVisible()) {
+            stateLoaders.add(
+                    historyRecordManager.loadStreamStateBatch(infoItemList)
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe((streamStateEntities) -> {
+                                if (streamStateEntities.size() == states.size()) {
+                                    for (int i = 0; i < states.size(); i++) {
+                                        final StreamStateEntity newState = streamStateEntities.get(i);
+                                        if (!Objects.equals(states.get(i), newState)) {
+                                            states.set(i, newState);
+                                            notifyItemChanged(header == null ? i : i + 1);
+                                        }
                                     }
+                                } else {
+                                    //oops, something is wrong
                                 }
-                            } else {
-                                //oops, something is wrong
-                            }
-                        })
-        );
+                            })
+            );
+        }
     }
 
     public void clearStreamItemList() {
@@ -362,5 +378,13 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public void dispose() {
         stateLoaders.clear();
+    }
+
+    private boolean isPlaybackStatesVisible() {
+        final Context context = infoItemBuilder.getContext();
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getBoolean(context.getString(R.string.enable_watch_history_key), true)
+                && prefs.getBoolean(context.getString(R.string.enable_playback_resume_key), true)
+                && prefs.getBoolean(context.getString(R.string.enable_playback_state_lists_key), true);
     }
 }

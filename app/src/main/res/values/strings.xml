@@ -98,6 +98,8 @@
     <string name="enable_watch_history_title">Watch history</string>
     <string name="enable_playback_resume_title">Resume playback</string>
     <string name="enable_playback_resume_summary">Restore last playback position</string>
+    <string name="enable_playback_state_lists_title">Positions in lists</string>
+    <string name="enable_playback_state_lists_summary">Show playback position indicators in lists</string>
     <string name="settings_category_clear_data_title">Clear data</string>
     <string name="enable_watch_history_summary">Keep track of watched videos</string>
     <string name="resume_on_audio_focus_gain_title">Resume on focus gain</string>

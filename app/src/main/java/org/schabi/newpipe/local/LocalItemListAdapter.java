@@ -1,12 +1,16 @@
 package org.schabi.newpipe.local;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
@@ -99,12 +103,18 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     public void addItems(List<? extends LocalItem> data) {
-        stateLoaders.add(
-                historyRecordManager.loadLocalStreamStateBatch(data)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(streamStateEntities ->
-                                addItems(data, streamStateEntities))
-        );
+        if (isPlaybackStatesVisible()) {
+            stateLoaders.add(
+                    historyRecordManager.loadLocalStreamStateBatch(data)
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(streamStateEntities ->
+                                    addItems(data, streamStateEntities))
+            );
+        } else {
+            final ArrayList<StreamStateEntity> states = new ArrayList<>(data.size());
+            for (int i = data.size(); i > 0; i--) states.add(null);
+            addItems(data, states);
+        }
     }
 
     private void addItems(List<? extends LocalItem> data, List<StreamStateEntity> streamStates) {
@@ -138,7 +148,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     public void updateStates() {
-        if (localItems.isEmpty()) return;
+        if (localItems.isEmpty() || !isPlaybackStatesVisible()) return;
         stateLoaders.add(
                 historyRecordManager.loadLocalStreamStateBatch(localItems)
                         .observeOn(AndroidSchedulers.mainThread())
@@ -324,5 +334,13 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     public void dispose() {
         stateLoaders.clear();
+    }
+
+    private boolean isPlaybackStatesVisible() {
+        final Context context = localItemBuilder.getContext();
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getBoolean(context.getString(R.string.enable_watch_history_key), true)
+                && prefs.getBoolean(context.getString(R.string.enable_playback_resume_key), true)
+                && prefs.getBoolean(context.getString(R.string.enable_playback_state_lists_key), true);
     }
 }
