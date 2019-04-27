@@ -57,7 +57,7 @@
     <string name="did_you_mean">क्या आप का मतलब %1$s है?</string>
     <string name="share_dialog_title">शेयर करें</string>
     <string name="use_external_video_player_title">अन्य वीडियो प्लेयर उपयोग करें</string>
-    <string name="use_external_video_player_summary">कुछ रेसोल्युशनस में नहीं आएगी</string>
+    <string name="use_external_video_player_summary">कुछ प्रस्तावों पर ऑडियो निकालता है</string>
     <string name="use_external_audio_player_title">अन्य ऑडियो प्लेयर उपयोग करें</string>
     <string name="tab_main">मुख्य</string>
     <string name="subscription_change_failed">सदस्यता नहीं बदला जा सका</string>
@@ -77,7 +77,7 @@
     <string name="play_with_kodi_title">Kodi से चलाये</string>
     <string name="kore_not_found">Kore एप्प नहीं मिला, इसे इनस्टॉल करें?</string>
     <string name="show_play_with_kodi_title">\"Kodi से चलाये\" वाला विकल्प दिखाए</string>
-    <string name="show_play_with_kodi_summary">उस विकल्प को दिखाए जिसमे Kodi Media Center के जरिये विडियो प्ले किया जाता है</string>
+    <string name="show_play_with_kodi_summary">कोडी मीडिया सेंटर के माध्यम से वीडियो चलाने के लिए एक विकल्प प्रदर्शित करें</string>
     <string name="default_audio_format_title">डिफ़ॉल्ट ऑडियो का फॉर्मेट</string>
     <string name="default_video_format_title">डिफ़ॉल्ट विडियो का फॉर्मेट</string>
     <string name="webm_description">WebM - libre फॉर्मेट</string>
@@ -111,7 +111,7 @@
     <string name="play_btn_text">चलाये</string>
     <string name="content">विषयवस्तु</string>
     <string name="show_age_restricted_content_title">उम्र प्रतिबंधित विषय वस्तु</string>
-    <string name="video_is_age_restricted">उम्र प्रतिबंदित विडियो है .इस प्रकार की विषयवस्तु को अनुमति देने के लिए Setting से संभव है |</string>
+    <string name="video_is_age_restricted">उम्र प्रतिबंदित विडियो है .इस प्रकार की विषयवस्तु को अनुमति देने के लिए सेटिंग से संभव है |</string>
     <string name="duration_live">सीधा प्रसारण</string>
     <string name="downloads">डाउनलोड</string>
     <string name="downloads_title">डाउनलोड</string>
@@ -169,7 +169,7 @@
     <string name="search_no_results">कोई परिणाम नहीं मिला</string>
     <string name="empty_subscription_feed_subtitle">यंहा कुछ नहीं है</string>
     <string name="err_dir_create">"डाउनलोड वाली डायरेक्टरी को बना नहीं सकते  \'%1$s\'"</string>
-    <string name="info_dir_created">डाउनलोड की डायरेक्टरी बना दी गई है \'%1$s\'</string>
+    <string name="info_dir_created">डाउनलोड की निर्देशिका बना दी गई है \'%1$s\'</string>
     <string name="video">विडियो</string>
     <string name="audio">ऑडियो</string>
     <string name="retry">फिर से कोशिश करे</string>
@@ -202,7 +202,7 @@
     <string name="msg_name">फाइल का नाम</string>
     <string name="msg_threads">मेसेज के thread</string>
     <string name="msg_error">त्रुटी</string>
-    <string name="msg_server_unsupported">server ठीक से चल नहीं रहा</string>
+    <string name="msg_server_unsupported">असमर्थित सर्वर</string>
     <string name="msg_exists">फाइल पहले से ही बनी हुई है</string>
     <string name="msg_url_malform">URL सही नहीं है या फिर हो सकता है इन्टरनेट उपलब्ध नहीं है</string>
     <string name="msg_running">न्यूपाइप डाउनलोड हो रहा है</string>
@@ -212,8 +212,8 @@
     <string name="no_available_dir">कृपया उपलब्ध डाउनलोड फोल्डर को चुने</string>
     <string name="msg_popup_permission">पॉपअप के तरीके में खोलने के लिए अनुमति की जरुरत है</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">reCAPTCHA चुनोती</string>
-    <string name="recaptcha_request_toast">reCAPTCHA चुनोती के लिए निवेदन</string>
+    <string name="reCaptcha_title">reCAPTCHA चुनौती</string>
+    <string name="recaptcha_request_toast">reCAPTCHA चुनौती का अनुरोध किया</string>
     <string name="settings_category_downloads_title">डाउनलोड</string>
     <string name="settings_file_charset_title">फाइल के नाम के लिए आवश्यक characters(जैसे - १२३, abc) की अनुमति है</string>
     <string name="settings_file_replacement_character_summary">अमान्य characters इस value से बदल जायेंगे</string>
@@ -238,7 +238,7 @@
     <string name="kiosk">kiosk</string>
     <string name="top_50">टॉप 50</string>
     <string name="new_and_hot">नया और गरम</string>
-    <string name="title_activity_background_player">बैकग्राउंड प्लेयर</string>
+    <string name="title_activity_background_player">पृष्ठभूमि प्लेयर</string>
     <string name="title_activity_popup_player">पॉपअप प्लेयर</string>
     <string name="play_queue_remove">निकाले</string>
     <string name="play_queue_stream_detail">विवरण</string>
@@ -263,12 +263,12 @@
     <string name="switch_to_main">मुख्य पर स्विच करें</string>
     <string name="import_data_title">डेटाबेस आयात करें</string>
     <string name="export_data_title">डेटाबेस निर्यात करें</string>
-    <string name="import_data_summary">आपके वर्तमान इतिहास और सब्सक्रिप्शन को ओवरराइड करेगा</string>
+    <string name="import_data_summary">आपके वर्तमान इतिहास और सब्सक्रिप्शन को अधिभावी करेगा</string>
     <string name="export_data_summary">इतिहास, सब्सक्रिप्शन और प्लेलिस्ट निर्यात करें</string>
     <string name="external_player_unsupported_link_type">एक्सटर्नल प्लेयर इन प्रकार के लिंक सपोर्ट नहीं करता</string>
     <string name="invalid_url_toast">अमान्य URL</string>
     <string name="video_streams_empty">कोई वीडियो स्ट्रीम नहीं मिला</string>
-    <string name="audio_streams_empty">कोई वीडियो स्ट्रीम नहीं मिला</string>
+    <string name="audio_streams_empty">कोई ऑडियो स्ट्रीम नहीं मिली</string>
     <string name="detail_drag_description">फिर से क्रम देने के लिए खींचें</string>
     <string name="create">बनाइये</string>
     <string name="delete_one">एक को हटाएं</string>
@@ -284,8 +284,8 @@
     <string name="delete_all_history_prompt">क्या आप वाकई इतिहास से सभी आइटंस हटाना चाहते हैं?</string>
     <string name="title_last_played">पिछला चलाया गया</string>
     <string name="title_most_played">अधिकतम चलाए गए</string>
-    <string name="export_complete_toast">निर्यात पूर्ण हुआ</string>
-    <string name="import_complete_toast">आयात पूर्ण हुआ</string>
+    <string name="export_complete_toast">निर्यात किए गए</string>
+    <string name="import_complete_toast">आयातित</string>
     <string name="no_valid_zip_file">कोई मांय ज़िप फ़ाइल नहीं</string>
     <string name="could_not_import_all_files">चेतावनी: सभी फ़ाइलों को आयात नहीं किया जा सका।</string>
     <string name="override_current_data">यह आपके वर्तमान सेटअप को ओवरराइड करेगा ।</string>
@@ -344,14 +344,14 @@
     <string name="users">उपभोगता</string>
     <string name="clear_views_history_title">देखे हुए वीडियो की सूची साफ करें</string>
     <string name="clear_views_history_summary">चलाये गए स्ट्रीम का इतिहास साफ करता है</string>
-    <string name="delete_view_history_alert">देखे गए सभी का इतिहास साफ करें।</string>
+    <string name="delete_view_history_alert">देखे गए सभी का इतिहास साफ करें\?</string>
     <string name="view_history_deleted">देखे हुए का इतिहास साफ कर दिया गया।</string>
     <string name="clear_search_history_title">ढूंढने के इतिहास को साफ करें</string>
     <string name="clear_search_history_summary">ढूंढे गए शब्दो का इतिहास साफ करता है</string>
     <string name="delete_search_history_alert">पूरे खोज इतिहास को मिटा दे \?</string>
     <string name="search_history_deleted">ढूंढने के इतिहास को साफ कर दिया।</string>
     <string name="invalid_directory">एसी कोई भी फ़ोल्डर मौजूद नहीं है</string>
-    <string name="invalid_source">अमान्य फाइल/कॉन्टेंट उदभावस्थान</string>
+    <string name="invalid_source">अमान्य फाइल/विषय - वस्तु का स्रोत</string>
     <string name="invalid_file">फ़ाइल मौजूद नहीं है या उसे पढ़ने या लिखने की पर्याप्त अनुमति नही़ं है</string>
     <string name="file_name_empty_error">फ़ाइल का नाम खाली नहीं हो सकता</string>
     <string name="error_occurred_detail">एक भूल हुई: %1$s</string>
@@ -407,4 +407,5 @@
     <string name="tab_new">नया टॅब</string>
     <string name="tab_choose">टॅब चुने</string>
     <string name="volume_gesture_control_title">वॉल्यूम नियंत्रण</string>
+    <string name="enqueue">कतार</string>
 </resources>
