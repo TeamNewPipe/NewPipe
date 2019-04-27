@@ -61,7 +61,7 @@
     <string name="use_external_audio_player_title">अन्य ऑडियो प्लेयर उपयोग करें</string>
     <string name="tab_main">मुख्य</string>
     <string name="subscription_change_failed">सदस्यता नहीं बदला जा सका</string>
-    <string name="subscription_update_failed">सदस्यता का नवीनीकरण नहीं हो सका</string>
+    <string name="subscription_update_failed">सदस्यता का अद्यतन नहीं हो सका</string>
     <string name="fragment_whats_new">देखे की क्या नया है</string>
     <string name="download_path_title">विडियो को डाउनलोड करने के लिए फाइल की जगह</string>
     <string name="download_path_summary">डाउनलोड किए गए विडियो फाइल को रखने की जगह</string>
