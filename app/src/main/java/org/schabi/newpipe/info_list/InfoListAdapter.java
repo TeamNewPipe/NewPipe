@@ -1,16 +1,14 @@
 package org.schabi.newpipe.info_list;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
@@ -29,16 +27,11 @@ import org.schabi.newpipe.info_list.holder.PlaylistMiniInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.StreamGridInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.StreamInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.StreamMiniInfoItemHolder;
-import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.FallbackViewHolder;
 import org.schabi.newpipe.util.OnClickGesture;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
 
 /*
  * Created by Christian Schabesberger on 01.08.16.
@@ -60,7 +53,7 @@ import io.reactivex.disposables.CompositeDisposable;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class InfoListAdapter extends StateObjectsListAdapter {
     private static final String TAG = InfoListAdapter.class.getSimpleName();
     private static final boolean DEBUG = false;
 
@@ -80,10 +73,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static final int COMMENT_HOLDER_TYPE = 0x401;
 
     private final InfoItemBuilder infoItemBuilder;
-    private final HistoryRecordManager historyRecordManager;
     private final ArrayList<InfoItem> infoItemList;
-    private final ArrayList<StreamStateEntity> states;
-    private final CompositeDisposable stateLoaders;
     private boolean useMiniVariant = false;
     private boolean useGridVariant = false;
     private boolean showFooter = false;
@@ -100,11 +90,9 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public InfoListAdapter(Activity a) {
+        super(a.getApplicationContext());
         infoItemBuilder = new InfoItemBuilder(a);
-        historyRecordManager = new HistoryRecordManager(a);
         infoItemList = new ArrayList<>();
-        states = new ArrayList<>();
-        stateLoaders = new CompositeDisposable();
     }
 
     public void setOnStreamSelectedListener(OnClickGesture<StreamInfoItem> listener) {
@@ -131,107 +119,64 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.useGridVariant = useGridVariant;
     }
 
-    public void addInfoItemList(final List<InfoItem> data) {
-        if (isPlaybackStatesVisible()) {
-            stateLoaders.add(
-                    historyRecordManager.loadStreamStateBatch(data)
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(streamStateEntities -> {
-                                addInfoItemList(data, streamStateEntities);
-                            })
-            );
-        } else {
-            final ArrayList<StreamStateEntity> states = new ArrayList<>(data.size());
-            for (int i = data.size(); i > 0; i--) states.add(null);
-            addInfoItemList(data, states);
-        }
-    }
-
-    private void addInfoItemList(List<InfoItem> data, List<StreamStateEntity> statesEntities) {
+    public void addInfoItemList(@Nullable final List<InfoItem> data) {
         if (data != null) {
-            if (DEBUG) {
-                Log.d(TAG, "addInfoItemList() before > infoItemList.size() = " + infoItemList.size() + ", data.size() = " + data.size());
-            }
-
-            int offsetStart = sizeConsideringHeaderOffset();
-            infoItemList.addAll(data);
-            states.addAll(statesEntities);
-
-            if (DEBUG) {
-                Log.d(TAG, "addInfoItemList() after > offsetStart = " + offsetStart + ", infoItemList.size() = " + infoItemList.size() + ", header = " + header + ", footer = " + footer + ", showFooter = " + showFooter);
-            }
-
-            notifyItemRangeInserted(offsetStart, data.size());
-
-            if (footer != null && showFooter) {
-                int footerNow = sizeConsideringHeaderOffset();
-                notifyItemMoved(offsetStart, footerNow);
-
-                if (DEBUG) Log.d(TAG, "addInfoItemList() footer from " + offsetStart + " to " + footerNow);
-            }
+            loadStates(data, infoItemList.size(), () -> addInfoItemListImpl(data));
         }
     }
 
-    public void addInfoItem(InfoItem data) {
-        if (isPlaybackStatesVisible()) {
-            stateLoaders.add(
-                    historyRecordManager.loadStreamState(data)
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(streamStateEntity -> {
-                                addInfoItem(data, streamStateEntity[0]);
-                            })
-            );
-        } else {
-            addInfoItem(data, null);
+    private void addInfoItemListImpl(@NonNull List<InfoItem> data) {
+        if (DEBUG) {
+            Log.d(TAG, "addInfoItemList() before > infoItemList.size() = " + infoItemList.size() + ", data.size() = " + data.size());
+        }
+
+        int offsetStart = sizeConsideringHeaderOffset();
+        infoItemList.addAll(data);
+
+        if (DEBUG) {
+            Log.d(TAG, "addInfoItemList() after > offsetStart = " + offsetStart + ", infoItemList.size() = " + infoItemList.size() + ", header = " + header + ", footer = " + footer + ", showFooter = " + showFooter);
+        }
+
+        notifyItemRangeInserted(offsetStart, data.size());
+
+        if (footer != null && showFooter) {
+            int footerNow = sizeConsideringHeaderOffset();
+            notifyItemMoved(offsetStart, footerNow);
+
+            if (DEBUG) Log.d(TAG, "addInfoItemList() footer from " + offsetStart + " to " + footerNow);
         }
     }
 
-    private void addInfoItem(InfoItem data, StreamStateEntity state) {
+    public void addInfoItem(@Nullable InfoItem data) {
         if (data != null) {
-            if (DEBUG) {
-                Log.d(TAG, "addInfoItem() before > infoItemList.size() = " + infoItemList.size() + ", thread = " + Thread.currentThread());
-            }
+            loadState(data, infoItemList.size(), () -> addInfoItemImpl(data));
+        }
+    }
 
-            int positionInserted = sizeConsideringHeaderOffset();
-            infoItemList.add(data);
-            states.add(state);
+    private void addInfoItemImpl(@NonNull InfoItem data) {
+        if (DEBUG) {
+            Log.d(TAG, "addInfoItem() before > infoItemList.size() = " + infoItemList.size() + ", thread = " + Thread.currentThread());
+        }
 
-            if (DEBUG) {
-                Log.d(TAG, "addInfoItem() after > position = " + positionInserted + ", infoItemList.size() = " + infoItemList.size() + ", header = " + header + ", footer = " + footer + ", showFooter = " + showFooter);
-            }
-            notifyItemInserted(positionInserted);
+        int positionInserted = sizeConsideringHeaderOffset();
+        infoItemList.add(data);
 
-            if (footer != null && showFooter) {
-                int footerNow = sizeConsideringHeaderOffset();
-                notifyItemMoved(positionInserted, footerNow);
+        if (DEBUG) {
+            Log.d(TAG, "addInfoItem() after > position = " + positionInserted + ", infoItemList.size() = " + infoItemList.size() + ", header = " + header + ", footer = " + footer + ", showFooter = " + showFooter);
+        }
+        notifyItemInserted(positionInserted);
 
-                if (DEBUG) Log.d(TAG, "addInfoItem() footer from " + positionInserted + " to " + footerNow);
-            }
+        if (footer != null && showFooter) {
+            int footerNow = sizeConsideringHeaderOffset();
+            notifyItemMoved(positionInserted, footerNow);
+
+            if (DEBUG) Log.d(TAG, "addInfoItem() footer from " + positionInserted + " to " + footerNow);
         }
     }
 
     public void updateStates() {
-        if (infoItemList.isEmpty()) {
-            return;
-        }
-        if (isPlaybackStatesVisible()) {
-            stateLoaders.add(
-                    historyRecordManager.loadStreamStateBatch(infoItemList)
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe((streamStateEntities) -> {
-                                if (streamStateEntities.size() == states.size()) {
-                                    for (int i = 0; i < states.size(); i++) {
-                                        final StreamStateEntity newState = streamStateEntities.get(i);
-                                        if (!Objects.equals(states.get(i), newState)) {
-                                            states.set(i, newState);
-                                            notifyItemChanged(header == null ? i : i + 1);
-                                        }
-                                    }
-                                } else {
-                                    //oops, something is wrong
-                                }
-                            })
-            );
+        if (!infoItemList.isEmpty()) {
+            updateAllStates(infoItemList);
         }
     }
 
@@ -240,7 +185,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             return;
         }
         infoItemList.clear();
-        states.clear();
+        clearStates();
         notifyDataSetChanged();
     }
 
@@ -314,8 +259,9 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int type) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int type) {
         if (DEBUG)
             Log.d(TAG, "onCreateViewHolder() called with: parent = [" + parent + "], type = [" + type + "]");
         switch (type) {
@@ -352,18 +298,23 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (DEBUG) Log.d(TAG, "onBindViewHolder() called with: holder = [" + holder.getClass().getSimpleName() + "], position = [" + position + "]");
         if (holder instanceof InfoItemHolder) {
             // If header isn't null, offset the items by -1
             if (header != null) position--;
 
-            ((InfoItemHolder) holder).updateFromItem(infoItemList.get(position), states.get(position));
+            ((InfoItemHolder) holder).updateFromItem(infoItemList.get(position), getState(position));
         } else if (holder instanceof HFHolder && position == 0 && header != null) {
             ((HFHolder) holder).view = header;
         } else if (holder instanceof HFHolder && position == sizeConsideringHeaderOffset() && footer != null && showFooter) {
             ((HFHolder) holder).view = footer;
         }
+    }
+
+    @Override
+    protected void onItemStateChanged(int position, @Nullable StreamStateEntity state) {
+        notifyItemChanged(header == null ? position : position + 1, state);
     }
 
     public GridLayoutManager.SpanSizeLookup getSpanSizeLookup(final int spanCount) {
@@ -374,17 +325,5 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 return type == HEADER_TYPE || type == FOOTER_TYPE ? spanCount : 1;
             }
         };
-    }
-
-    public void dispose() {
-        stateLoaders.clear();
-    }
-
-    private boolean isPlaybackStatesVisible() {
-        final Context context = infoItemBuilder.getContext();
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getBoolean(context.getString(R.string.enable_watch_history_key), true)
-                && prefs.getBoolean(context.getString(R.string.enable_playback_resume_key), true)
-                && prefs.getBoolean(context.getString(R.string.enable_playback_state_lists_key), true);
     }
 }

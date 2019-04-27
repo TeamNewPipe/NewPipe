@@ -1,19 +1,17 @@
 package org.schabi.newpipe.local;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
-import org.schabi.newpipe.local.history.HistoryRecordManager;
+import org.schabi.newpipe.info_list.StateObjectsListAdapter;
 import org.schabi.newpipe.local.holder.LocalItemHolder;
 import org.schabi.newpipe.local.holder.LocalPlaylistGridItemHolder;
 import org.schabi.newpipe.local.holder.LocalPlaylistItemHolder;
@@ -30,10 +28,6 @@ import org.schabi.newpipe.util.OnClickGesture;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
 
 /*
  * Created by Christian Schabesberger on 01.08.16.
@@ -55,7 +49,7 @@ import io.reactivex.disposables.CompositeDisposable;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class LocalItemListAdapter extends StateObjectsListAdapter {
     
     private static final String TAG = LocalItemListAdapter.class.getSimpleName();
     private static final boolean DEBUG = false;
@@ -73,10 +67,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
 	private static final int REMOTE_PLAYLIST_GRID_HOLDER_TYPE = 0x2004;
 
     private final LocalItemBuilder localItemBuilder;
-    private final HistoryRecordManager historyRecordManager;
     private final ArrayList<LocalItem> localItems;
-    private final ArrayList<StreamStateEntity> states;
-    private final CompositeDisposable stateLoaders;
     private final DateFormat dateFormat;
 
     private boolean showFooter = false;
@@ -85,13 +76,11 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     private View footer = null;
 
     public LocalItemListAdapter(Activity activity) {
+        super(activity.getApplicationContext());
         localItemBuilder = new LocalItemBuilder(activity);
-        historyRecordManager = new HistoryRecordManager(activity);
         localItems = new ArrayList<>();
         dateFormat = DateFormat.getDateInstance(DateFormat.SHORT,
                 Localization.getPreferredLocale(activity));
-        states = new ArrayList<>();
-        stateLoaders = new CompositeDisposable();
     }
 
     public void setSelectedListener(OnClickGesture<LocalItem> listener) {
@@ -102,76 +91,49 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         localItemBuilder.setOnItemSelectedListener(null);
     }
 
-    public void addItems(List<? extends LocalItem> data) {
-        if (isPlaybackStatesVisible()) {
-            stateLoaders.add(
-                    historyRecordManager.loadLocalStreamStateBatch(data)
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(streamStateEntities ->
-                                    addItems(data, streamStateEntities))
-            );
-        } else {
-            final ArrayList<StreamStateEntity> states = new ArrayList<>(data.size());
-            for (int i = data.size(); i > 0; i--) states.add(null);
-            addItems(data, states);
+    public void addItems(@Nullable List<? extends LocalItem> data) {
+        if (data != null) {
+            loadStatesForLocal(data, localItems.size(), () -> addItemsImpl(data));
         }
     }
 
-    private void addItems(List<? extends LocalItem> data, List<StreamStateEntity> streamStates) {
-        if (data != null) {
-            if (DEBUG) {
-                Log.d(TAG, "addItems() before > localItems.size() = " +
-                        localItems.size() + ", data.size() = " + data.size());
-            }
+    private void addItemsImpl(@NonNull List<? extends LocalItem> data) {
+        if (DEBUG) {
+            Log.d(TAG, "addItems() before > localItems.size() = " +
+                    localItems.size() + ", data.size() = " + data.size());
+        }
 
-            int offsetStart = sizeConsideringHeader();
-            localItems.addAll(data);
-            states.addAll(streamStates);
+        int offsetStart = sizeConsideringHeader();
+        localItems.addAll(data);
 
-            if (DEBUG) {
-                Log.d(TAG, "addItems() after > offsetStart = " + offsetStart +
-                        ", localItems.size() = " + localItems.size() +
-                        ", header = " + header + ", footer = " + footer +
-                        ", showFooter = " + showFooter);
-            }
+        if (DEBUG) {
+            Log.d(TAG, "addItems() after > offsetStart = " + offsetStart +
+                    ", localItems.size() = " + localItems.size() +
+                    ", header = " + header + ", footer = " + footer +
+                    ", showFooter = " + showFooter);
+        }
 
-            notifyItemRangeInserted(offsetStart, data.size());
+        notifyItemRangeInserted(offsetStart, data.size());
 
-            if (footer != null && showFooter) {
-                int footerNow = sizeConsideringHeader();
-                notifyItemMoved(offsetStart, footerNow);
+        if (footer != null && showFooter) {
+            int footerNow = sizeConsideringHeader();
+            notifyItemMoved(offsetStart, footerNow);
 
-                if (DEBUG) Log.d(TAG, "addItems() footer from " + offsetStart +
-                        " to " + footerNow);
-            }
+            if (DEBUG) Log.d(TAG, "addItems() footer from " + offsetStart +
+                    " to " + footerNow);
         }
     }
 
     public void updateStates() {
-        if (localItems.isEmpty() || !isPlaybackStatesVisible()) return;
-        stateLoaders.add(
-                historyRecordManager.loadLocalStreamStateBatch(localItems)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe((streamStateEntities) -> {
-                            if (streamStateEntities.size() == states.size()) {
-                                for (int i = 0; i < states.size(); i++) {
-                                    final StreamStateEntity newState = streamStateEntities.get(i);
-                                    if (!Objects.equals(states.get(i), newState)) {
-                                        states.set(i, newState);
-                                        notifyItemChanged(header == null ? i : i + 1);
-                                    }
-                                }
-                            } else {
-                                //oops, something is wrong
-                            }
-                        })
-        );
+        if (!localItems.isEmpty()) {
+            updateAllLocalStates(localItems);
+        }
     }
 
     public void removeItem(final LocalItem data) {
         final int index = localItems.indexOf(data);
-
         localItems.remove(index);
+        removeState(index);
         notifyItemRemoved(index + (header != null ? 1 : 0));
     }
 
@@ -183,7 +145,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         if (actualFrom >= localItems.size() || actualTo >= localItems.size()) return false;
 
         localItems.add(actualTo, localItems.remove(actualFrom));
-        states.add(actualTo, states.remove(actualFrom));
+        moveState(actualFrom, actualTo);
         notifyItemMoved(fromAdapterPosition, toAdapterPosition);
         return true;
     }
@@ -193,6 +155,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
             return;
         }
         localItems.clear();
+        clearStates();
         notifyDataSetChanged();
     }
 
@@ -313,13 +276,18 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
             // If header isn't null, offset the items by -1
             if (header != null) position--;
 
-            ((LocalItemHolder) holder).updateFromItem(localItems.get(position), states.get(position), dateFormat);
+            ((LocalItemHolder) holder).updateFromItem(localItems.get(position), getState(position), dateFormat);
         } else if (holder instanceof HeaderFooterHolder && position == 0 && header != null) {
             ((HeaderFooterHolder) holder).view = header;
         } else if (holder instanceof HeaderFooterHolder && position == sizeConsideringHeader()
                 && footer != null && showFooter) {
             ((HeaderFooterHolder) holder).view = footer;
         }
+    }
+
+    @Override
+    protected void onItemStateChanged(int position, @Nullable StreamStateEntity state) {
+        notifyItemChanged(header == null ? position : position + 1, state);
     }
 
     public GridLayoutManager.SpanSizeLookup getSpanSizeLookup(final int spanCount) {
@@ -330,17 +298,5 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
                 return type == HEADER_TYPE || type == FOOTER_TYPE ? spanCount : 1;
             }
         };
-    }
-
-    public void dispose() {
-        stateLoaders.clear();
-    }
-
-    private boolean isPlaybackStatesVisible() {
-        final Context context = localItemBuilder.getContext();
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getBoolean(context.getString(R.string.enable_watch_history_key), true)
-                && prefs.getBoolean(context.getString(R.string.enable_playback_resume_key), true)
-                && prefs.getBoolean(context.getString(R.string.enable_playback_state_lists_key), true);
     }
 }
