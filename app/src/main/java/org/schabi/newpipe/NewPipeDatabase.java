@@ -23,7 +23,6 @@ public final class NewPipeDatabase {
         return Room
                 .databaseBuilder(context.getApplicationContext(), AppDatabase.class, DATABASE_NAME)
                 .addMigrations(MIGRATION_11_12)
-                .fallbackToDestructiveMigration()
                 .build();
     }
 
