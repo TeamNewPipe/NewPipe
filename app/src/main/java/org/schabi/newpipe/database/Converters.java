@@ -3,6 +3,7 @@ package org.schabi.newpipe.database;
 import androidx.room.TypeConverter;
 
 import org.schabi.newpipe.extractor.stream.StreamType;
+import org.schabi.newpipe.local.subscription.FeedGroupIcon;
 
 import java.util.Date;
 
@@ -36,5 +37,19 @@ public class Converters {
     @TypeConverter
     public static String stringOf(StreamType streamType) {
         return streamType.name();
+    }
+
+    @TypeConverter
+    public static Integer integerOf(FeedGroupIcon feedGroupIcon) {
+        return feedGroupIcon.getId();
+    }
+
+    @TypeConverter
+    public static FeedGroupIcon feedGroupIconOf(Integer id) {
+        for (FeedGroupIcon icon : FeedGroupIcon.values()) {
+            if (icon.getId() == id) return icon;
+        }
+
+        throw new IllegalArgumentException("There's no feed group icon with the id \"" + id + "\"");
     }
 }

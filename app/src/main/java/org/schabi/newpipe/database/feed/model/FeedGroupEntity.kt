@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity.Companion.FEED_GROUP_TABLE
+import org.schabi.newpipe.local.subscription.FeedGroupIcon
 
 @Entity(tableName = FEED_GROUP_TABLE)
 data class FeedGroupEntity(
@@ -15,7 +16,7 @@ data class FeedGroupEntity(
         var name: String,
 
         @ColumnInfo(name = ICON)
-        var iconId: Int
+        var icon: FeedGroupIcon
 ) {
     companion object {
         const val FEED_GROUP_TABLE = "feed_group"

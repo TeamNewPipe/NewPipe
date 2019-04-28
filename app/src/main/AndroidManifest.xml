@@ -74,6 +74,7 @@
 
         <service android:name=".local.subscription.services.SubscriptionsImportService"/>
         <service android:name=".local.subscription.services.SubscriptionsExportService"/>
+        <service android:name=".local.feed.service.FeedLoadService"/>
 
         <activity
             android:name=".PanicResponderActivity"

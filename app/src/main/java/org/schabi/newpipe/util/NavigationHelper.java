@@ -343,9 +343,13 @@ public class NavigationHelper {
                 .commit();
     }
 
-    public static void openWhatsNewFragment(FragmentManager fragmentManager) {
+    public static void openFeedFragment(FragmentManager fragmentManager) {
+        openFeedFragment(fragmentManager, -1, null);
+    }
+
+    public static void openFeedFragment(FragmentManager fragmentManager, long groupId, @Nullable String groupName) {
         defaultTransaction(fragmentManager)
-                .replace(R.id.fragment_holder, new FeedFragment())
+                .replace(R.id.fragment_holder, FeedFragment.newInstance(groupId, groupName))
                 .addToBackStack(null)
                 .commit();
     }

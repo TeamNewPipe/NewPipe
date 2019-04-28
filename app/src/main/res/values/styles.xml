@@ -61,15 +61,53 @@
         <item name="ic_delete">@drawable/ic_delete_black_24dp</item>
         <item name="ic_settings_update">@drawable/ic_settings_update_black</item>
         <item name="ic_done">@drawable/ic_done_black_24dp</item>
+        <item name="ic_refresh">@drawable/ic_refresh_black_24dp</item>
+        <item name="ic_computer">@drawable/ic_computer_black_24dp</item>
+        <item name="ic_videogame">@drawable/ic_videogame_black_24dp</item>
+        <item name="ic_music_note">@drawable/ic_music_note_black_24dp</item>
+        <item name="ic_stars">@drawable/ic_stars_black_24dp</item>
+        <item name="ic_sports">@drawable/ic_sports_black_24dp</item>
+        <item name="ic_money">@drawable/ic_money_black_24dp</item>
+        <item name="ic_person">@drawable/ic_person_black_24dp</item>
+        <item name="ic_people">@drawable/ic_people_black_24dp</item>
+        <item name="ic_heart">@drawable/ic_heart_black_24dp</item>
+        <item name="ic_kids">@drawable/ic_kids_black_24dp</item>
+        <item name="ic_fastfood">@drawable/ic_fastfood_black_24dp</item>
+        <item name="ic_car">@drawable/ic_car_black_24dp</item>
+        <item name="ic_motorcycle">@drawable/ic_motorcycle_black_24dp</item>
+        <item name="ic_trending_up">@drawable/ic_trending_up_black_24dp</item>
+        <item name="ic_school">@drawable/ic_school_black_24dp</item>
+        <item name="ic_asterisk">@drawable/ic_asterisk_black_24dp</item>
+        <item name="ic_smile">@drawable/ic_emoticon_black_24dp</item>
+        <item name="ic_edit">@drawable/ic_edit_black_24dp</item>
+        <item name="ic_explore">@drawable/ic_explore_black_24dp</item>
+        <item name="ic_fitness">@drawable/ic_fitness_black_24dp</item>
+        <item name="ic_restaurant">@drawable/ic_restaurant_black_24dp</item>
+        <item name="ic_mic">@drawable/ic_mic_black_24dp</item>
+        <item name="ic_radio">@drawable/ic_radio_black_24dp</item>
+        <item name="ic_shopping_cart">@drawable/ic_shopping_cart_black_24dp</item>
+        <item name="ic_watch_later">@drawable/ic_watch_later_black_24dp</item>
+        <item name="ic_work">@drawable/ic_work_black_24dp</item>
+        <item name="ic_movie">@drawable/ic_movie_black_24dp</item>
+        <item name="ic_pets">@drawable/ic_pets_black_24dp</item>
+        <item name="ic_world">@drawable/ic_world_black_24dp</item>
+        <item name="ic_sunny">@drawable/ic_sunny_black_24dp</item>
+        <item name="ic_telescope">@drawable/ic_telescope_black_24dp</item>
+        <item name="ic_megaphone">@drawable/ic_megaphone_black_24dp</item>
 
         <item name="separator_color">@color/light_separator_color</item>
         <item name="contrast_background_color">@color/light_contrast_background_color</item>
         <item name="checked_selector_drawable">@drawable/light_checked_selector</item>
+        <item name="focused_selector_drawable">@drawable/light_focused_selector</item>
         <item name="queue_background_color">@color/light_queue_background_color</item>
         <item name="toolbar_shadow_drawable">@drawable/toolbar_shadow_light</item>
         <item name="selector_drawable">@drawable/light_selector</item>
         <item name="colorControlHighlight">@color/light_ripple_color</item>
         <item name="progress_horizontal_drawable">@drawable/progress_youtube_horizontal_light</item>
+        <item name="card_item_background_color">@color/light_card_item_background_color</item>
+        <item name="card_item_contrast_color">@color/light_card_item_contrast_color</item>
+        <item name="border_color">@color/light_border_color</item>
+        <item name="dashed_border_drawable">@drawable/dashed_border_light</item>
 
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     </style>
@@ -127,15 +165,53 @@
         <item name="pause">@drawable/ic_pause_white_24dp</item>
         <item name="ic_settings_update">@drawable/ic_settings_update_white</item>
         <item name="ic_done">@drawable/ic_done_white_24dp</item>
+        <item name="ic_refresh">@drawable/ic_refresh_white_24dp</item>
+        <item name="ic_computer">@drawable/ic_computer_white_24dp</item>
+        <item name="ic_videogame">@drawable/ic_videogame_white_24dp</item>
+        <item name="ic_music_note">@drawable/ic_music_note_white_24dp</item>
+        <item name="ic_stars">@drawable/ic_stars_white_24dp</item>
+        <item name="ic_sports">@drawable/ic_sports_white_24dp</item>
+        <item name="ic_money">@drawable/ic_money_white_24dp</item>
+        <item name="ic_person">@drawable/ic_person_white_24dp</item>
+        <item name="ic_people">@drawable/ic_people_white_24dp</item>
+        <item name="ic_heart">@drawable/ic_heart_white_24dp</item>
+        <item name="ic_kids">@drawable/ic_kids_white_24dp</item>
+        <item name="ic_fastfood">@drawable/ic_fastfood_white_24dp</item>
+        <item name="ic_car">@drawable/ic_car_white_24dp</item>
+        <item name="ic_motorcycle">@drawable/ic_motorcycle_white_24dp</item>
+        <item name="ic_trending_up">@drawable/ic_trending_up_white_24dp</item>
+        <item name="ic_school">@drawable/ic_school_white_24dp</item>
+        <item name="ic_asterisk">@drawable/ic_asterisk_white_24dp</item>
+        <item name="ic_smile">@drawable/ic_emoticon_white_24dp</item>
+        <item name="ic_edit">@drawable/ic_edit_white_24dp</item>
+        <item name="ic_explore">@drawable/ic_explore_white_24dp</item>
+        <item name="ic_fitness">@drawable/ic_fitness_white_24dp</item>
+        <item name="ic_restaurant">@drawable/ic_restaurant_white_24dp</item>
+        <item name="ic_mic">@drawable/ic_mic_white_24dp</item>
+        <item name="ic_radio">@drawable/ic_radio_white_24dp</item>
+        <item name="ic_shopping_cart">@drawable/ic_shopping_cart_white_24dp</item>
+        <item name="ic_watch_later">@drawable/ic_watch_later_white_24dp</item>
+        <item name="ic_work">@drawable/ic_work_white_24dp</item>
+        <item name="ic_movie">@drawable/ic_movie_white_24dp</item>
+        <item name="ic_pets">@drawable/ic_pets_white_24dp</item>
+        <item name="ic_world">@drawable/ic_world_white_24dp</item>
+        <item name="ic_sunny">@drawable/ic_sunny_white_24dp</item>
+        <item name="ic_telescope">@drawable/ic_telescope_white_24dp</item>
+        <item name="ic_megaphone">@drawable/ic_megaphone_white_24dp</item>
 
         <item name="separator_color">@color/dark_separator_color</item>
         <item name="contrast_background_color">@color/dark_contrast_background_color</item>
         <item name="checked_selector_drawable">@drawable/dark_checked_selector</item>
+        <item name="focused_selector_drawable">@drawable/dark_focused_selector</item>
         <item name="queue_background_color">@color/dark_queue_background_color</item>
         <item name="toolbar_shadow_drawable">@drawable/toolbar_shadow_dark</item>
         <item name="selector_drawable">@drawable/dark_selector</item>
         <item name="colorControlHighlight">@color/dark_ripple_color</item>
         <item name="progress_horizontal_drawable">@drawable/progress_youtube_horizontal_dark</item>
+        <item name="card_item_background_color">@color/dark_card_item_background_color</item>
+        <item name="card_item_contrast_color">@color/dark_card_item_contrast_color</item>
+        <item name="border_color">@color/dark_border_color</item>
+        <item name="dashed_border_drawable">@drawable/dashed_border_dark</item>
 
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     </style>
@@ -148,6 +224,11 @@
 
         <item name="separator_color">@color/black_separator_color</item>
         <item name="contrast_background_color">@color/black_contrast_background_color</item>
+
+        <item name="card_item_background_color">@color/black_card_item_background_color</item>
+        <item name="card_item_contrast_color">@color/black_card_item_contrast_color</item>
+        <item name="border_color">@color/black_border_color</item>
+        <item name="dashed_border_drawable">@drawable/dashed_border_black</item>
     </style>
 
     <!-- Dialogs -->
@@ -160,6 +241,22 @@
     </style>
 
     <style name="DarkDialogTheme" parent="Theme.AppCompat.Dialog">
+        <item name="colorPrimary">@color/dark_youtube_primary_color</item>
+        <item name="colorPrimaryDark">@color/dark_youtube_dark_color</item>
+        <item name="colorAccent">@color/dark_youtube_accent_color</item>
+        <item name="android:windowBackground">@color/dark_dialog_background_color</item>
+        <item name="windowBackground">@color/dark_dialog_background_color</item>
+    </style>
+
+    <style name="LightDialogMinWidthTheme" parent="Theme.AppCompat.Light.Dialog.MinWidth">
+        <item name="colorPrimary">@color/light_youtube_primary_color</item>
+        <item name="colorPrimaryDark">@color/light_youtube_dark_color</item>
+        <item name="colorAccent">@color/light_youtube_accent_color</item>
+        <item name="android:windowBackground">@color/light_dialog_background_color</item>
+        <item name="windowBackground">@color/light_dialog_background_color</item>
+    </style>
+
+    <style name="DarkDialogMinWidthTheme" parent="Theme.AppCompat.Dialog.MinWidth">
         <item name="colorPrimary">@color/dark_youtube_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_youtube_dark_color</item>
         <item name="colorAccent">@color/dark_youtube_accent_color</item>

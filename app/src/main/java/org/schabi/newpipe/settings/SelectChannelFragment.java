@@ -18,9 +18,9 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
+import org.schabi.newpipe.local.subscription.SubscriptionManager;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.local.subscription.SubscriptionService;
 
 import java.util.List;
 import java.util.Vector;
@@ -99,8 +99,8 @@ public class SelectChannelFragment extends DialogFragment {
         emptyView.setVisibility(View.GONE);
 
 
-        SubscriptionService subscriptionService = SubscriptionService.getInstance(getContext());
-        subscriptionService.getSubscription().toObservable()
+        SubscriptionManager subscriptionManager = new SubscriptionManager(getContext());
+        subscriptionManager.subscriptions().toObservable()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(getSubscriptionObserver());

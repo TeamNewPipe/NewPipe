@@ -564,7 +564,7 @@
             "notNull": true
           },
           {
-            "fieldPath": "iconId",
+            "fieldPath": "icon",
             "columnName": "icon_id",
             "affinity": "INTEGER",
             "notNull": true

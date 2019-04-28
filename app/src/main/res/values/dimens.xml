@@ -28,6 +28,7 @@
     <dimen name="popup_default_width">180dp</dimen>
     <dimen name="popup_minimum_width">150dp</dimen>
 
+    <dimen name="subscription_import_export_title_height">32dp</dimen>
     <dimen name="subscription_import_export_item_height">42dp</dimen>
     <dimen name="subscription_import_export_item_icon_size">24dp</dimen>
     <!-- (item_height - item_icon_size) / 2-->
@@ -89,4 +90,10 @@
     <!-- Text Size -->
     <dimen name="comment_item_title_text_size">12sp</dimen>
     <dimen name="comment_item_content_text_size">12sp</dimen>
+
+    <!-- Feed Groups dimensions-->
+    <dimen name="feed_group_carousel_start_end_margin">12dp</dimen>
+    <dimen name="feed_group_carousel_top_bottom_margin">2dp</dimen>
+    <dimen name="feed_group_carousel_between_items_margin">4dp</dimen>
+
 </resources>

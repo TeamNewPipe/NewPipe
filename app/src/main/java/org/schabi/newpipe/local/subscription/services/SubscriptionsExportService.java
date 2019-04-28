@@ -29,7 +29,6 @@ import org.reactivestreams.Subscription;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.subscription.SubscriptionItem;
-import org.schabi.newpipe.local.subscription.ImportExportJsonHelper;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -96,7 +95,7 @@ public class SubscriptionsExportService extends BaseImportExportService {
     private void startExport() {
         showToast(R.string.export_ongoing);
 
-        subscriptionService.subscriptionTable()
+        subscriptionManager.subscriptionTable()
                 .getAll()
                 .take(1)
                 .map(subscriptionEntities -> {

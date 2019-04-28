@@ -9,6 +9,7 @@
     <string name="default_service_value" translatable="false">@string/youtube</string>
 
     <string name="saved_tabs_key" translatable="false">saved_tabs_key</string>
+    <string name="feed_last_updated_key" translatable="false">feed_last_updated</string>
 
     <!-- Key values -->
     <string name="download_path_video_key" translatable="false">download_path</string>
