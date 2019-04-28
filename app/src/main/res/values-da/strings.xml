@@ -328,39 +328,39 @@
     <string name="drawer_header_action_paceholder_text">Noget vil dukke op her snart ;D</string>
     <string name="preferred_open_action_settings_title">Foretrukket \'åbn\'-handling</string>
     <string name="video_player">Videoafspiller</string>
-    <string name="background_player">baggrundsafspiller</string>
-    <string name="popup_player">Popup-afspiller</string>
+    <string name="background_player">Baggrundsafspiller</string>
+    <string name="popup_player">Pop op-afspiller</string>
     <string name="always_ask_open_action">Spørg altid</string>
-    <string name="preferred_player_fetcher_notification_title">Henter info…</string>
-    <string name="preferred_player_fetcher_notification_message">Indlæser anmodet indhold</string>
-    <string name="create_playlist">Ny Playliste</string>
+    <string name="preferred_player_fetcher_notification_title">Henter info …</string>
+    <string name="preferred_player_fetcher_notification_message">Indlæser det ønskede indhold</string>
+    <string name="create_playlist">Ny spilleliste</string>
     <string name="delete_playlist">Slet</string>
     <string name="rename_playlist">Omdøb</string>
     <string name="playlist_name_input">Navn</string>
-    <string name="append_playlist">Tilføj Til Playliste</string>
-    <string name="delete_playlist_prompt">Slet denne playliste\?</string>
-    <string name="playlist_creation_success">Playliste oprettet</string>
-    <string name="caption_none">Ingen Undertekster</string>
+    <string name="append_playlist">Føj til spilleliste</string>
+    <string name="delete_playlist_prompt">Slet denne spilleliste\?</string>
+    <string name="playlist_creation_success">Spilleliste oprettet</string>
+    <string name="caption_none">Ingen undertekster</string>
     <string name="resize_fit">Tilpas</string>
     <string name="resize_fill">Udfyld</string>
     <string name="resize_zoom">Zoom</string>
-    <string name="caption_auto_generated">Autogeneret</string>
+    <string name="caption_auto_generated">Autogenereret</string>
     <string name="caption_setting_title">Undertekster</string>
     <string name="export_to">Eksporter til</string>
     <string name="playback_reset">Nulstil</string>
     <string name="accept">Accepter</string>
     <string name="decline">Afvis</string>
     <string name="limit_data_usage_none_description">Ingen begrænsning</string>
-    <string name="limit_mobile_data_usage_title">Begeæns opløsning når der bruges mobil data</string>
+    <string name="limit_mobile_data_usage_title">Begræns opløsning når der bruges mobildata</string>
     <string name="updates_setting_title">Opdateringer</string>
-    <string name="list_view_mode">Liste tilstand</string>
+    <string name="list_view_mode">Listevisning</string>
     <string name="list">Liste</string>
     <string name="grid">Gitter</string>
     <string name="auto">Automatisk</string>
     <string name="app_update_notification_content_text">Tryk for at downloade</string>
     <string name="missions_header_finished">Færdig</string>
-    <string name="missions_header_pending">i kø</string>
-    <string name="post_processing">Efterbehandling</string>
+    <string name="missions_header_pending">I kø</string>
+    <string name="post_processing">efterbehandling</string>
     <string name="enqueue">Kø</string>
     <string name="permission_denied">Handling afvist af systemet</string>
     <string name="download_failed">Download fejlede</string>
@@ -368,19 +368,18 @@
     <string name="download_finished_more">%s downloads færdige</string>
     <string name="generate_unique_name">Generer unikt navn</string>
     <string name="overwrite">Overskriv</string>
-    <string name="overwrite_warning">"En downloadet fil med dette navn eksisterer allerede "</string>
+    <string name="overwrite_warning">En downloadet fil med dette navn eksisterer allerede</string>
     <string name="download_already_running">Der er en download i gang med dette navn</string>
     <string name="show_error">Vis fejl</string>
     <string name="label_code">Kode</string>
     <string name="error_path_creation">Filen kan ikke oprettes</string>
-    <string name="error_file_creation">Destinations mappen kan ikke oprettes</string>
+    <string name="error_file_creation">Destinationsmappen kan ikke oprettes</string>
     <string name="error_permission_denied">Adgang nægtet af systemet</string>
     <string name="error_ssl_exception">Sikker forbindelse fejlede</string>
-    <string name="error_unknown_host">Kan ikke finde serveren</string>
+    <string name="error_unknown_host">Kunne ikke finde serveren</string>
     <string name="error_connect_host">Kan ikke forbinde til serveren</string>
     <string name="error_http_no_content">Serveren sender ikke data</string>
-    <string name="error_http_unsupported_range">Serveren accepterer ikke multitrådede downloads, prøv igen med @string/msg_threads = 1
-\n</string>
+    <string name="error_http_unsupported_range">Serveren accepterer ikke multitrådede downloads; prøv igen med @string/msg_threads = 1</string>
     <string name="error_http_requested_range_not_satisfiable">Det anmodede interval er ikke gyldigt</string>
     <string name="error_http_not_found">Ikke fundet</string>
     <string name="error_postprocessing_failed">Efterbehandling fejlede</string>
@@ -405,4 +404,53 @@
     <string name="start_here_on_popup">Start her ved ny pop op</string>
     <string name="drawer_open">Åbn skuffe</string>
     <string name="drawer_close">Luk skuffe</string>
+    <string name="info_labels">Hvad:\\nForespørgsel:\\nIndholdssprog:\\nTjeneste:\\nGMT-tid:\\nPakke:\\nVersion:\\nOS-version:</string>
+    <string name="preferred_open_action_settings_summary">Standardhandling ved åbning af indhold — %s</string>
+    <string name="set_as_playlist_thumbnail">Angiv som miniaturebillede for spilleliste</string>
+    <string name="bookmark_playlist">Bogmærk spilleliste</string>
+    <string name="unbookmark_playlist">Fjern bogmærke</string>
+    <string name="playlist_add_stream_success">Føjet til spillelisten</string>
+    <string name="playlist_thumbnail_change_success">Miniaturebillede for spilleliste ændret.</string>
+    <string name="playlist_delete_failure">Kunne ikke slette spilleliste.</string>
+    <string name="caption_setting_description">Ændr undertekststørrelse og baggrundsstil. Kræver genstart af appen for at træde i kraft.</string>
+    <string name="enable_leak_canary_title">Aktiver LeakCanary</string>
+    <string name="enable_leak_canary_summary">Monitorering for hukommelseslækager kan få appen til ikke at svare under heap dumping</string>
+    <string name="enable_disposed_exceptions_title">Rapporter out-of-lifecycle-fejl</string>
+    <string name="import_export_title">Importer/eksporter</string>
+    <string name="import_title">Importer</string>
+    <string name="import_from">Importer fra</string>
+    <string name="import_ongoing">Importerer …</string>
+    <string name="export_ongoing">Eksporterer …</string>
+    <string name="import_file_title">Importer fil</string>
+    <string name="previous_export">Forrige eksport</string>
+    <string name="import_youtube_instructions">Importer YouTube-abonnementer ved at downloade eksportfilen:
+\n
+\n1. Gå til denne webadresse: %1$s
+\n2. Log ind når du bliver bedt om det
+\n3. En download bør starte (det er eksportfilen)</string>
+    <string name="import_soundcloud_instructions_hint">ditID, soundcloud.com/ditID</string>
+    <string name="import_network_expensive_warning">Bemærk at denne operation kan kræve meget netværkstrafik.
+\n
+\nVil du fortsætte\?</string>
+    <string name="playback_speed_control">Knapper for afspilningshastighed</string>
+    <string name="playback_tempo">Tempo</string>
+    <string name="playback_pitch">Tonehøjde</string>
+    <string name="skip_silence_checkbox">Spol forbi stilhed</string>
+    <string name="playback_step">Skridt</string>
+    <string name="updates_setting_description">Vis en notifikation for at foreslå opdatering af appen, når en ny version er tilgængelig</string>
+    <string name="minimize_on_exit_title">Minimer ved appskift</string>
+    <string name="minimize_on_exit_summary">Handling når der skiftes til en anden app fra hovedvideoafspilleren — %s</string>
+    <string name="minimize_on_exit_none_description">Ingen</string>
+    <string name="minimize_on_exit_background_description">Minimer til baggrundsafspiller</string>
+    <string name="minimize_on_exit_popup_description">Minimer til pop op-afspiller</string>
+    <string name="switch_view">Skift visning</string>
+    <string name="app_update_notification_content_title">NewPipe-opdatering tilgængelig!</string>
+    <string name="paused">sat på pause</string>
+    <string name="queued">sat i kø</string>
+    <string name="clear_finished_download">Ryd færdige downloads</string>
+    <string name="msg_pending_downloads">Fortsæt dine %s ventende overførsler fra Downloads</string>
+    <string name="max_retry_msg">Maksimalt antal genforsøg</string>
+    <string name="max_retry_desc">Maksimalt antal forsøg før downloaden opgives</string>
+    <string name="pause_downloads_on_mobile">Sæt på pause ved skift til mobildata</string>
+    <string name="pause_downloads_on_mobile_desc">Downloads som ikke kan sættes på pause vil blive genstartet</string>
 </resources>
