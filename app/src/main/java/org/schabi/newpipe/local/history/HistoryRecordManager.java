@@ -269,11 +269,11 @@ public class HistoryRecordManager {
             for (LocalItem item : items) {
                 long streamId;
                 if (item instanceof StreamStatisticsEntry) {
-                    streamId = ((StreamStatisticsEntry) item).streamId;
+                    streamId = ((StreamStatisticsEntry) item).getStreamId();
                 } else if (item instanceof PlaylistStreamEntity) {
                     streamId = ((PlaylistStreamEntity) item).getStreamUid();
                 } else if (item instanceof PlaylistStreamEntry) {
-                    streamId = ((PlaylistStreamEntry) item).streamId;
+                    streamId = ((PlaylistStreamEntry) item).getStreamId();
                 } else {
                     result.add(null);
                     continue;

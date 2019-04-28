@@ -71,9 +71,9 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
     private String getStreamInfoDetailLine(final StreamStatisticsEntry entry,
                                            final DateFormat dateFormat) {
         final String watchCount = Localization.shortViewCount(itemBuilder.getContext(),
-                entry.watchCount);
-        final String uploadDate = dateFormat.format(entry.latestAccessDate);
-        final String serviceName = NewPipe.getNameOfService(entry.serviceId);
+                entry.getWatchCount());
+        final String uploadDate = dateFormat.format(entry.getLatestAccessDate());
+        final String serviceName = NewPipe.getNameOfService(entry.getStreamEntity().getServiceId());
         return Localization.concatenateStrings(watchCount, uploadDate, serviceName);
     }
 
@@ -82,11 +82,11 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
         if (!(localItem instanceof StreamStatisticsEntry)) return;
         final StreamStatisticsEntry item = (StreamStatisticsEntry) localItem;
 
-        itemVideoTitleView.setText(item.title);
-        itemUploaderView.setText(item.uploader);
+        itemVideoTitleView.setText(item.getStreamEntity().getTitle());
+        itemUploaderView.setText(item.getStreamEntity().getUploader());
 
-        if (item.duration > 0) {
-            itemDurationView.setText(Localization.getDurationString(item.duration));
+        if (item.getStreamEntity().getDuration() > 0) {
+            itemDurationView.setText(Localization.getDurationString(item.getStreamEntity().getDuration()));
             itemDurationView.setBackgroundColor(ContextCompat.getColor(itemBuilder.getContext(),
                     R.color.duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
@@ -94,7 +94,7 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
             StreamStateEntity state = historyRecordManager.loadLocalStreamStateBatch(new ArrayList<LocalItem>() {{ add(localItem); }}).blockingGet().get(0);
             if (state != null) {
                 itemProgressView.setVisibility(View.VISIBLE);
-                itemProgressView.setMax((int) item.duration);
+                itemProgressView.setMax((int) item.getStreamEntity().getDuration());
                 itemProgressView.setProgress((int) TimeUnit.MILLISECONDS.toSeconds(state.getProgressTime()));
             } else {
                 itemProgressView.setVisibility(View.GONE);
@@ -109,7 +109,7 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
         }
 
         // Default thumbnail is shown on error, while loading and if the url is empty
-        itemBuilder.displayImage(item.thumbnailUrl, itemThumbnailView,
+        itemBuilder.displayImage(item.getStreamEntity().getThumbnailUrl(), itemThumbnailView,
                 ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
 
         itemView.setOnClickListener(view -> {
@@ -133,8 +133,8 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
         final StreamStatisticsEntry item = (StreamStatisticsEntry) localItem;
 
         StreamStateEntity state = historyRecordManager.loadLocalStreamStateBatch(new ArrayList<LocalItem>() {{ add(localItem); }}).blockingGet().get(0);
-        if (state != null && item.duration > 0) {
-            itemProgressView.setMax((int) item.duration);
+        if (state != null && item.getStreamEntity().getDuration() > 0) {
+            itemProgressView.setMax((int) item.getStreamEntity().getDuration());
             if (itemProgressView.getVisibility() == View.VISIBLE) {
                 itemProgressView.setProgressAnimated((int) TimeUnit.MILLISECONDS.toSeconds(state.getProgressTime()));
             } else {

@@ -23,6 +23,9 @@ public abstract class SubscriptionDAO implements BasicDAO<SubscriptionEntity> {
     @Query("SELECT * FROM " + SUBSCRIPTION_TABLE)
     public abstract Flowable<List<SubscriptionEntity>> getAll();
 
+    @Query("SELECT COUNT(*) FROM subscriptions")
+    public abstract Flowable<Long> rowCount();
+
     @Override
     @Query("DELETE FROM " + SUBSCRIPTION_TABLE)
     public abstract int deleteAll();
