@@ -190,6 +190,9 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
             public void held(StreamInfoItem selectedItem) {
                 showStreamDialog(selectedItem);
             }
+
+            @Override
+            public void twoFingerClick(StreamInfoItem selectedItem) { enqueueStreamOnBackgroundPlayer(selectedItem); }
         });
 
         infoListAdapter.setOnChannelSelectedListener(new OnClickGesture<ChannelInfoItem>() {
@@ -289,6 +292,11 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
         };
 
         new InfoItemDialog(getActivity(), item, commands, actions).show();
+    }
+
+    protected void enqueueStreamOnBackgroundPlayer(final StreamInfoItem item) {
+        final Context context = getContext();
+        NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
     }
 
     /*//////////////////////////////////////////////////////////////////////////
