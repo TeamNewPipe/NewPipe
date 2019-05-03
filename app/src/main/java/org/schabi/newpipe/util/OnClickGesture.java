@@ -13,4 +13,8 @@ public abstract class OnClickGesture<T> {
     public void drag(T selectedItem, RecyclerView.ViewHolder viewHolder) {
         // Optional gesture
     }
+
+    public void twoFingerClick(T selectedItem) {
+        // Optional gesture
+    }
 }

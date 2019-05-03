@@ -1,6 +1,10 @@
 package org.schabi.newpipe.info_list.holder;
 
+import android.annotation.SuppressLint;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.GestureDetectorCompat;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -20,6 +24,8 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
     public final TextView itemVideoTitleView;
     public final TextView itemUploaderView;
     public final TextView itemDurationView;
+
+    private boolean longClickEnabled;
 
     StreamMiniInfoItemHolder(InfoItemBuilder infoItemBuilder, int layoutId, ViewGroup parent) {
         super(infoItemBuilder, layoutId, parent);
@@ -62,9 +68,50 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
                         itemThumbnailView,
                         ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
 
-        itemView.setOnClickListener(view -> {
-            if (itemBuilder.getOnStreamSelectedListener() != null) {
-                itemBuilder.getOnStreamSelectedListener().selected(item);
+        itemView.setOnTouchListener(new View.OnTouchListener() {
+            private GestureDetectorCompat longClickListener = new GestureDetectorCompat(itemView.getContext(), new LongClickListener());
+            private boolean twoFingerClickDetected = false;
+            private boolean longClickDetected = false;
+
+            class LongClickListener extends GestureDetector.SimpleOnGestureListener {
+                @Override
+                public void onLongPress(MotionEvent event) {
+                    if (itemBuilder.getOnStreamSelectedListener() != null) {
+                        itemBuilder.getOnStreamSelectedListener().held(item);
+                    }
+                    longClickDetected = true;
+                }
+            }
+
+
+            @SuppressLint("ClickableViewAccessibility") // calling onTouchEvent instead of performClick
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                v.onTouchEvent(event);
+                if(longClickEnabled) {
+                    longClickListener.onTouchEvent(event);
+                }
+
+                switch (event.getActionMasked()) {
+                    case MotionEvent.ACTION_POINTER_UP:
+                        if (itemBuilder.getOnStreamSelectedListener() != null)
+                            itemBuilder.getOnStreamSelectedListener().twoFingerClick(item);
+                        twoFingerClickDetected = true;
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        if (!twoFingerClickDetected && !longClickDetected) {
+                            if (itemBuilder.getOnStreamSelectedListener() != null) {
+                                itemBuilder.getOnStreamSelectedListener().selected(item);
+                            }
+                        }
+
+                        // reset, since no finger is touching the screen anymore
+                        twoFingerClickDetected = false;
+                        longClickDetected = false;
+                        break;
+                }
+
+                return true;
             }
         });
 
@@ -73,28 +120,13 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
             case VIDEO_STREAM:
             case LIVE_STREAM:
             case AUDIO_LIVE_STREAM:
-                enableLongClick(item);
+                longClickEnabled = true;
                 break;
             case FILE:
             case NONE:
             default:
-                disableLongClick();
+                longClickEnabled = false;
                 break;
         }
-    }
-
-    private void enableLongClick(final StreamInfoItem item) {
-        itemView.setLongClickable(true);
-        itemView.setOnLongClickListener(view -> {
-            if (itemBuilder.getOnStreamSelectedListener() != null) {
-                itemBuilder.getOnStreamSelectedListener().held(item);
-            }
-            return true;
-        });
-    }
-
-    private void disableLongClick() {
-        itemView.setLongClickable(false);
-        itemView.setOnLongClickListener(null);
     }
 }
