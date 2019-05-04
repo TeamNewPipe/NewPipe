@@ -50,6 +50,7 @@ import org.schabi.newpipe.player.resolver.AudioPlaybackResolver;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.util.WallpaperUtils;
 
 import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
 
@@ -286,6 +287,7 @@ public final class BackgroundPlayer extends Service {
         @Override
         public void initPlayer(boolean playOnReady) {
             super.initPlayer(playOnReady);
+            hideLockScreenThumbnail();
         }
 
         @Override
@@ -319,6 +321,7 @@ public final class BackgroundPlayer extends Service {
             super.onLoadingComplete(imageUri, view, loadedImage);
             resetNotification();
             updateNotificationThumbnail();
+            showLockScreenThumbnail();
             updateNotification(-1);
         }
 
@@ -327,8 +330,20 @@ public final class BackgroundPlayer extends Service {
             super.onLoadingFailed(imageUri, view, failReason);
             resetNotification();
             updateNotificationThumbnail();
+            hideLockScreenThumbnail();
             updateNotification(-1);
         }
+
+        private void showLockScreenThumbnail() {
+            WallpaperUtils.showLockScreenThumbnail(
+                    getApplicationContext(),
+                    basePlayerImpl.getThumbnail());
+        }
+
+        private void hideLockScreenThumbnail() {
+            WallpaperUtils.hideLockScreenThumbnail(getApplicationContext());
+        }
+
         /*//////////////////////////////////////////////////////////////////////////
         // States Implementation
         //////////////////////////////////////////////////////////////////////////*/
@@ -381,6 +396,8 @@ public final class BackgroundPlayer extends Service {
         @Override
         public void destroy() {
             super.destroy();
+            hideLockScreenThumbnail();
+
             if (notRemoteView != null) notRemoteView.setImageViewBitmap(R.id.notificationCover, null);
             if (bigNotRemoteView != null) bigNotRemoteView.setImageViewBitmap(R.id.notificationCover, null);
         }
@@ -547,6 +564,7 @@ public final class BackgroundPlayer extends Service {
             resetNotification();
             updateNotificationThumbnail();
             updateNotification(R.drawable.ic_pause_white);
+            showLockScreenThumbnail();
             lockManager.acquireWifiAndCpu();
         }
 
@@ -571,6 +589,7 @@ public final class BackgroundPlayer extends Service {
             }
             updateNotificationThumbnail();
             updateNotification(R.drawable.ic_replay_white);
+            hideLockScreenThumbnail();
             lockManager.releaseWifiAndCpu();
         }
     }

@@ -6,7 +6,6 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
@@ -23,13 +22,13 @@ import org.acra.config.ConfigurationBuilder;
 import org.acra.sender.ReportSenderFactory;
 import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.utils.Localization;
 import org.schabi.newpipe.report.AcraReportSenderFactory;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.StateSaver;
+import org.schabi.newpipe.util.WallpaperUtils;
 
 import java.io.IOException;
 import java.io.InterruptedIOException;
@@ -104,6 +103,15 @@ public class App extends Application {
         ImageLoader.getInstance().init(getImageLoaderConfigurations(10, 50));
 
         configureRxJavaErrorHandler();
+
+        // When setting lockscreen wallpaper and then force stopping the app (or if Android decides
+        // to kill the app), the wallpaper will stay until something else changes it (or clears).
+        // Other apps somehow clear it when force stopped but I have no idea how they are doing it.
+        // I even asked this questing on stackoverflow but, alas, no answer yet.
+        // https://stackoverflow.com/questions/55981675/lockscreen-wallpaper-stays-after-force-stopping-the-app
+        //
+        // We need to at least clear the wallpaper upon the next app start.
+        WallpaperUtils.hideLockScreenThumbnail(getApplicationContext());
 
         // Check for new version
         new CheckForNewAppVersionTask().execute();
