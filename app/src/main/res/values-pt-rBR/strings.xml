@@ -7,7 +7,7 @@
     <string name="what_device_headline">Informações:</string>
     <string name="view_count_text">%1$s visualizações</string>
     <string name="view">Reproduzir</string>
-    <string name="video_is_age_restricted">Mostar vídeo com restrição de idade. Permissão para vídeos com essa restrição podem ser feitas no menu Configurações.</string>
+    <string name="video_is_age_restricted">Mostrar vídeo com restrição de idade. Permissão para vídeos com essa restrição podem ser feitas no menu Configurações.</string>
     <string name="video">Vídeo</string>
     <string name="autoplay_by_calling_app_summary">Reproduz o vídeo quando o NewPipe for aberto a partir de outro aplicativo</string>
     <string name="autoplay_by_calling_app_title">Reproduzir automaticamente</string>
@@ -133,7 +133,7 @@ abrir em modo popup</string>
     <string name="refresh">Atualizar</string>
     <string name="clear">Limpar</string>
     <string name="controls_popup_title">Popup</string>
-    <string name="controls_background_title">Plano de fundo</string>
+    <string name="controls_background_title">Segundo plano</string>
     <string name="popup_remember_size_pos_title">Lembrar tamanho e posição do popup</string>
     <string name="popup_remember_size_pos_summary">Lembrar do último tamanho e posição definido para o popup</string>
     <string name="settings_category_popup_title">Popup</string>
@@ -227,8 +227,8 @@ abrir em modo popup</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Novos e tendências</string>
     <string name="show_hold_to_append_title">Mostrar dica \"Mantenha pressionado para enfileirar\"</string>
-    <string name="show_hold_to_append_summary">Mostrar dica quando o botão de plano de fundo ou de popup for pressionado na página de detalhes do vídeo</string>
-    <string name="background_player_append">Adicionado a fila do reprodutor em plano de fundo</string>
+    <string name="show_hold_to_append_summary">Mostrar dica quando o botão de segundo plano ou de popup for pressionado na página de detalhes do vídeo</string>
+    <string name="background_player_append">Adicionado a fila do reprodutor em segundo plano</string>
     <string name="popup_playing_append">Adicionado a fila no reprodutor popup</string>
     <string name="play_all">Reproduzir tudo</string>
     <string name="player_stream_failure">Não foi possível reproduzir esta stream</string>
@@ -257,7 +257,7 @@ abrir em modo popup</string>
     <string name="always">Sempre</string>
     <string name="just_once">Apenas esta vez</string>
     <string name="toggle_orientation">Alterar a orientação</string>
-    <string name="switch_to_background">Alterar para Plano de Fundo</string>
+    <string name="switch_to_background">Alternar para Segundo Plano</string>
     <string name="switch_to_popup">Alterar para Popup</string>
     <string name="switch_to_main">Alterar para o Principal</string>
     <string name="external_player_unsupported_link_type">Reprodutores externos não suportam estes tipos de links</string>
@@ -458,13 +458,13 @@ abrir em modo popup</string>
     <string name="error_connect_host">Não foi possível conectar ao servidor</string>
     <string name="error_http_no_content">O servidor não envia dados</string>
     <string name="error_http_unsupported_range">"O servidor não aceita downloads em multi-thread, tente com @string/msg_threads = 1 "</string>
-    <string name="error_http_requested_range_not_satisfiable">Intervalo solicitado não satisfazível</string>
+    <string name="error_http_requested_range_not_satisfiable">Intervalo solicitado não aceito.</string>
     <string name="error_http_not_found">Não encontrado</string>
     <string name="error_postprocessing_failed">Falha no pós processamento</string>
     <string name="clear_finished_download">Limpar downloads finalizados</string>
     <string name="msg_pending_downloads">Continuar seus %s downloads pendentes</string>
     <string name="stop">Parar</string>
-    <string name="max_retry_msg">Máximo de tentativas</string>
+    <string name="max_retry_msg">Tentativas máximas</string>
     <string name="max_retry_desc">Número máximo de tentativas antes de cancelar o download</string>
     <string name="pause_downloads_on_mobile">Pausar quando trocar para dados móveis</string>
     <string name="pause_downloads_on_mobile_desc">Downloads que não puderem ser pausados serão reiniciados</string>
