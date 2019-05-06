@@ -6,7 +6,9 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:focusableInTouchMode="true"
-	android:orientation="horizontal">
+	tools:ignore="RtlHardcoded"
+	android:orientation="horizontal"
+	android:baselineAligned="false">
 
 	<android.support.design.widget.CoordinatorLayout
 		android:id="@+id/detail_main_content"
@@ -126,7 +128,6 @@
 						android:textSize="12sp"
 						android:textStyle="bold"
 						android:visibility="gone"
-						tools:ignore="RtlHardcoded"
 						tools:text="12:38"
 						tools:visibility="visible" />
 				</FrameLayout>
@@ -177,7 +178,6 @@
 						android:paddingBottom="8dp"
 						android:textAppearance="?android:attr/textAppearanceLarge"
 						android:textSize="@dimen/video_item_detail_title_text_size"
-						tools:ignore="RtlHardcoded"
 						tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a ultricies ex. Integer sit amet sodales risus. Duis non mi et urna pretium bibendum. Nunc eleifend est quis ipsum porttitor egestas. Sed facilisis, nisl quis eleifend pellentesque, orci metus egestas dolor, at accumsan eros metus quis libero." />
 
 					<ImageView
@@ -187,7 +187,7 @@
 						android:layout_gravity="center_vertical|right"
 						android:layout_marginLeft="5dp"
 						android:src="@drawable/arrow_down"
-						tools:ignore="ContentDescription,RtlHardcoded" />
+						tools:ignore="ContentDescription" />
 
 				</FrameLayout>
 
@@ -253,8 +253,7 @@
 								android:layout_width="@dimen/video_item_detail_uploader_image_size"
 								android:layout_height="@dimen/video_item_detail_uploader_image_size"
 								android:contentDescription="@string/detail_uploader_thumbnail_view_description"
-								android:src="@drawable/buddy"
-								tools:ignore="RtlHardcoded" />
+								android:src="@drawable/buddy" />
 
 							<TextView
 								android:id="@+id/detail_uploader_text_view"
