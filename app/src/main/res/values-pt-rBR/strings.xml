@@ -7,7 +7,7 @@
     <string name="what_device_headline">Informações:</string>
     <string name="view_count_text">%1$s visualizações</string>
     <string name="view">Reproduzir</string>
-    <string name="video_is_age_restricted">Mostrar vídeo com restrição de idade. Permissão para vídeos com essa restrição podem ser feitas no menu Configurações.</string>
+    <string name="video_is_age_restricted">Exibir vídeo com restrições de idade. Permissão para vídeos com essa restrição pode ser dada no menu Configurações.</string>
     <string name="video">Vídeo</string>
     <string name="autoplay_by_calling_app_summary">Reproduz o vídeo quando o NewPipe for aberto a partir de outro aplicativo</string>
     <string name="autoplay_by_calling_app_title">Reproduzir automaticamente</string>
@@ -227,8 +227,8 @@ abrir em modo popup</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Novos e tendências</string>
     <string name="show_hold_to_append_title">Mostrar dica \"Mantenha pressionado para enfileirar\"</string>
-    <string name="show_hold_to_append_summary">Mostrar dica quando o botão de segundo plano ou de popup for pressionado na página de detalhes do vídeo</string>
-    <string name="background_player_append">Adicionado a fila do reprodutor em segundo plano</string>
+    <string name="show_hold_to_append_summary">Exibir dica quando o botão de segundo plano ou de popup for pressionado na página de detalhes do vídeo</string>
+    <string name="background_player_append">Adicionado à fila do reprodutor em segundo plano</string>
     <string name="popup_playing_append">Adicionado a fila no reprodutor popup</string>
     <string name="play_all">Reproduzir tudo</string>
     <string name="player_stream_failure">Não foi possível reproduzir esta stream</string>
