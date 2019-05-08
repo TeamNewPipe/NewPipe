@@ -1,5 +1,7 @@
 package org.schabi.newpipe;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -108,7 +110,6 @@ public class App extends MultiDexApplication {
                 && prefs.getBoolean(getString(R.string.show_image_indicators_key), false));
 
         configureRxJavaErrorHandler();
-
         // Check for new version
         disposable = CheckForNewAppVersion.checkNewVersion(this);
     }
@@ -249,9 +250,20 @@ public class App extends MultiDexApplication {
                 .setDescription(getString(R.string.hash_channel_description))
                 .build();
 
+        final NotificationChannel newStreamsChannel = new NotificationChannel(
+                getString(R.string.streams_notification_channel_id),
+                getString(R.string.streams_notification_channel_name),
+                NotificationManager.IMPORTANCE_DEFAULT
+        );
+        newStreamsChannel.setDescription(
+                getString(R.string.streams_notification_channel_description)
+        );
+        newStreamsChannel.enableVibration(false);
+
         final NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-        notificationManager.createNotificationChannelsCompat(Arrays.asList(mainChannel,
-                appUpdateChannel, hashChannel));
+        notificationManager.createNotificationChannels(
+                Arrays.asList(mainChannel, appUpdateChannel, hashChannel, newStreamsChannel)
+        );
     }
 
     protected boolean isDisposedRxExceptionsReported() {
