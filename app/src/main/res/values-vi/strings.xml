@@ -19,7 +19,7 @@
     <string name="use_external_video_player_summary">Âm thanh có thể không có ở *một vài* độ phân giải video</string>
     <string name="use_external_audio_player_title">Sử dụng trình phát audio bên ngoài</string>
     <string name="popup_mode_share_menu_title">Chế độ popup của NewPipe</string>
-    <string name="controls_popup_title"></string>
+    <string name="controls_popup_title">Trình phát nổi</string>
     <string name="download_path_title">Thư mục tải về video</string>
     <string name="download_path_summary">Đường dẫn để lưu video đã tải về</string>
     <string name="download_path_dialog_title">Nhập đường dẫn tải về cho video</string>
@@ -160,7 +160,7 @@
     <string name="screen_rotation">xoay màn hình</string>
     <string name="content_language_title">Ngôn ngữ nội dung ưu tiên</string>
     <string name="settings_category_video_audio_title">Video &amp; âm thanh</string>
-    <string name="settings_category_popup_title"></string>
+    <string name="settings_category_popup_title">Trình phát nổi</string>
     <string name="enable_watch_history_title">Lịch sử &amp; bộ nhớ cache</string>
     <string name="settings_category_history_title">Lịch sử &amp; bộ nhớ cache</string>
     <string name="playlist">Playlist</string>
@@ -419,7 +419,7 @@
     <string name="subscribers_count_not_available">Số người đăng ký không khả dụng</string>
     <string name="main_page_content_summary">Chọn các tab để hiện trên trang chủ</string>
     <string name="selection">Lựa chọn</string>
-    <string name="top_50"/>
+    <string name="top_50">Top 50 phổ biến</string>
     <string name="import_soundcloud_instructions_hint">Nhập ID SoundCloud hoặc link soundcloud.com/&lt;ID của bạn&gt;</string>
     <string name="updates_setting_title">Cập nhật</string>
     <string name="updates_setting_description">Hiện thông báo khi có bản cập nhật ứng dụng</string>
@@ -453,7 +453,7 @@
     <string name="error_connect_host">Không thế kết nối với máy chủ</string>
     <string name="error_http_no_content">Máy chủ không gửi dữ liệu về</string>
     <string name="error_http_unsupported_range">Máy chủ không chấp nhận tải đa luồng, thử lại với số luồng = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">Không thể đáp ứng dãy đã yêu cầu</string>
+    <string name="error_http_requested_range_not_satisfiable">(HTTP) Không thể đáp ứng khoảng dữ liệu đã yêu cầu</string>
     <string name="error_http_not_found">Không tìm thấy</string>
     <string name="error_postprocessing_failed">Xử lý thất bại</string>
     <string name="clear_finished_download">Dọn các tải về đã hoàn thành</string>
