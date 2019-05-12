@@ -32,8 +32,8 @@
     <string name="settings_category_video_audio_title">Видео и аудио</string>
     <string name="settings_category_appearance_title">Внешний вид</string>
     <string name="settings_category_other_title">Другое</string>
-    <string name="list_thumbnail_view_description">Миниатюра видео-превью</string>
-    <string name="detail_thumbnail_view_description">Миниатюра видео-превью</string>
+    <string name="list_thumbnail_view_description">Изображение видео перед его просмотром</string>
+    <string name="detail_thumbnail_view_description">Изображение видео перед его просмотром</string>
     <string name="detail_uploader_thumbnail_view_description">Миниатюра аватара пользователя</string>
     <string name="detail_dislikes_img_view_description">Не понравилось</string>
     <string name="detail_likes_img_view_description">Понравилось</string>
