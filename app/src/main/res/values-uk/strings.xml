@@ -80,8 +80,8 @@
     <string name="app_ui_crash">Застосунок/інтерфейс впав</string>
     <string name="your_comment">Ваш коментар (англійською):</string>
     <string name="error_details_headline">Подробиці:</string>
-    <string name="list_thumbnail_view_description">Ескіз попереднього перегляду відео</string>
-    <string name="detail_thumbnail_view_description">Ескіз попереднього перегляду відео</string>
+    <string name="list_thumbnail_view_description">Зображення відео перед його переглядом</string>
+    <string name="detail_thumbnail_view_description">Зображення відео перед його переглядом</string>
     <string name="use_tor_title">Використовувати Tor</string>
     <string name="use_tor_summary">(Експериментально) Перенаправляти трафік через Tor для підвищення конфіденційності (трансляція відео ще не підтримується).</string>
     <string name="report_error">Повідомити про помилку</string>
@@ -219,7 +219,7 @@
     <string name="player_unrecoverable_failure">Сталася невиправна помилка програвача</string>
     <string name="external_player_unsupported_link_type">Зовнішні програвачі не підтримують такі види посилань</string>
     <string name="info_labels">Що:\\nЗапит:\\nМова контенту:\\nСервіс:\\nЧас GMT:\\nПакунок:\\nВерсія:\\nВерсія ОС:</string>
-    <string name="detail_uploader_thumbnail_view_description">Ескіз аватару користувача</string>
+    <string name="detail_uploader_thumbnail_view_description">Мініатюрний аватар завантажувача відео</string>
     <string name="detail_likes_img_view_description">Сподобалося</string>
     <string name="detail_dislikes_img_view_description">Не сподобалося</string>
     <string name="search_no_results">Нічого не знайдено</string>
