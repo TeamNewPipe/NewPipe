@@ -37,7 +37,7 @@
     <string name="settings_category_debug_title">Depuració</string>
     <string name="content">Contingut</string>
     <string name="show_age_restricted_content_title">Desactiva les restriccions per edat</string>
-    <string name="video_is_age_restricted">Vídeo restringit per edat. Podeu permetre aquesta mena de continguts des de la configuració.</string>
+    <string name="video_is_age_restricted">Mostra el vídeo restringit per edat. Podeu permetre aquesta mena de continguts des de la configuració.</string>
     <string name="duration_live">EN DIRECTE</string>
     <string name="downloads">Baixades</string>
     <string name="downloads_title">Baixades</string>
@@ -437,4 +437,26 @@
     <string name="error_path_creation">No es pot crear el fitxer</string>
     <string name="error_file_creation">No es pot crear la carpeta de destinació</string>
     <string name="stop">Atura</string>
+    <string name="events">Esdeveniments</string>
+    <string name="app_update_notification_channel_description">Notificacions de noves versions del NewPipe</string>
+    <string name="subscribers_count_not_available">El nombre de subscriptors no està disponible</string>
+    <string name="main_page_content_summary">Quines pestanyes es mostren a la pàgina principal</string>
+    <string name="conferences">Conferències</string>
+    <string name="list_view_mode">Mode de vista de llista</string>
+    <string name="missions_header_finished">Finalitzades</string>
+    <string name="post_processing">post-processament</string>
+    <string name="download_failed">Ha fallat la baixada</string>
+    <string name="download_finished">Baixada finalitzada</string>
+    <string name="download_finished_more">%s baixades finalitzades</string>
+    <string name="overwrite_warning">Ja existeix un fitxer baixat amb aquest nom</string>
+    <string name="download_already_running">Hi ha una baixada en curs amb aquest nom</string>
+    <string name="error_ssl_exception">Ha fallat la connexió segura</string>
+    <string name="error_unknown_host">No s\'ha pogut trobar el servidor</string>
+    <string name="error_connect_host">No s\'ha pogut connectar amb el servidor</string>
+    <string name="error_postprocessing_failed">Ha fallat el post-processament</string>
+    <string name="clear_finished_download">Neteja les baixades finalitzades</string>
+    <string name="max_retry_msg">Intents màxims</string>
+    <string name="max_retry_desc">Nombre màxim d\'intents abans de cancel·lar la baixada</string>
+    <string name="pause_downloads_on_mobile">Pausa en canviar a dades mòbils</string>
+    <string name="pause_downloads_on_mobile_desc">Les baixades que no es puguin pausar es tornaran a iniciar</string>
 </resources>
