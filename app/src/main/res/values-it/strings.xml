@@ -154,7 +154,7 @@
     <string name="tab_about">Informazioni</string>
     <string name="tab_contributors">Contributori</string>
     <string name="tab_licenses">Licenze</string>
-    <string name="app_description">Interfaccia libera e leggera per lo streaming di YouTube su Android.</string>
+    <string name="app_description">Streaming libero e leggero su Android.</string>
     <string name="view_on_github">Mostra su GitHub</string>
     <string name="app_license_title">Licenza di NewPipe</string>
     <string name="contribution_encouragement">Un aiuto è sempre il benvenuto: nuove idee e funzionalità, traduzioni, modifiche al design o cambiamenti radicali del codice rendono l\'applicazione sempre migliore!</string>
@@ -260,7 +260,7 @@
     <string name="service_title">Servizio</string>
     <string name="drawer_open">Apri il menu</string>
     <string name="drawer_close">Chiudi il menu</string>
-    <string name="no_player_found_toast">Nessun lettore multimediale trovato. Puoi installare VLC per riprodurlo.</string>
+    <string name="no_player_found_toast">Nessun lettore multimediale trovato (puoi installare VLC per riprodurlo).</string>
     <string name="always">Sempre</string>
     <string name="just_once">Solo una volta</string>
     <string name="external_player_unsupported_link_type">I lettori multimediali esterni non supportano questa tipologia di collegamenti</string>
@@ -362,7 +362,7 @@
 \n 
 \nVuoi continuare?</string>
     <string name="download_thumbnail_title">Carica miniature</string>
-    <string name="download_thumbnail_summary">Disabilita il caricamento delle miniature, risparmiando dati e memoria. La modifica dell\'opzione comporta la cancellazione della cache in memoria e sul disco.</string>
+    <string name="download_thumbnail_summary">Disabilita per prevenire il caricamento delle miniature, risparmiando dati e memoria. La modifica di questa opzione cancellerà la cache delle immagini in memoria e sul disco.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Pulizia della cache delle immagini completata</string>
     <string name="metadata_cache_wipe_title">Pulisci la cache dei metadati</string>
     <string name="metadata_cache_wipe_summary">Rimuovi tutti i dati delle pagine web memorizzati nella cache</string>
