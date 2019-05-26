@@ -120,8 +120,6 @@
     <string name="your_comment">Yorumunuz (İngilizce):</string>
     <string name="error_details_headline">Ayrıntılar:</string>
     <string name="list_thumbnail_view_description">Video ön izleme küçük resmi</string>
-    <string name="use_old_player_title">Eski oynatıcıyı kullan</string>
-    <string name="use_old_player_summary">Eski içe gömülü Mediaframework oynatıcısı</string>
     <string name="short_thousand">B</string>
     <string name="short_million">M</string>
     <string name="short_billion">MR</string>
@@ -270,7 +268,6 @@
     <string name="video_player">Video oynatıcı</string>
     <string name="background_player">Arka plan oynatıcı</string>
     <string name="popup_player">Açılır oynatıcı</string>
-    <string name="always_ask_player">Her zaman sor</string>
     <string name="preferred_player_fetcher_notification_title">Bilgi alınıyor…</string>
     <string name="preferred_player_fetcher_notification_message">İstenen içerik yükleniyor</string>
     <string name="import_data_title">Veri tabanını içe aktar</string>

@@ -131,8 +131,6 @@
     <string name="audio">Zvuk</string>
     <string name="retry">Ponovno pokušaj</string>
     <string name="storage_permission_denied">Dozvola za pisanje po pohrani je odbijena</string>
-    <string name="use_old_player_title">Koristi stari reproduktor</string>
-    <string name="use_old_player_summary">Stari ugrađeni Mediaframework reproduktor</string>
     <string name="short_thousand">tis</string>
     <string name="short_million">mil</string>
     <string name="short_billion">mlrd</string>

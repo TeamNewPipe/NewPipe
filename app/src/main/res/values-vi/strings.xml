@@ -113,8 +113,6 @@
     <string name="audio">Âm thanh</string>
     <string name="retry">Thử lại</string>
     <string name="storage_permission_denied">Quyền truy cập bộ nhớ đã bị từ chối</string>
-    <string name="use_old_player_title">Sử dụng trình phát cũ</string>
-    <string name="use_old_player_summary">Máy nghe nhạc Mediaframework tích hợp sẵn</string>
     <string name="short_thousand">ngàn</string>
     <string name="short_million">triệu</string>
     <string name="short_billion">tỉ</string>

@@ -123,8 +123,6 @@
 このアクセス許可が必要です</string>
     <string name="popup_mode_share_menu_title">NewPipe ポップアップモード</string>
     <string name="popup_playing_toast">ポップアップモードで再生中</string>
-    <string name="use_old_player_title">古いプレーヤーを使用する</string>
-    <string name="use_old_player_summary">古い内蔵のMediaframeworkプレーヤー</string>
     <string name="disabled">無効</string>
     <string name="default_video_format_title">デフォルトの動画形式</string>
     <string name="default_popup_resolution_title">デフォルトのポップアップ解像度</string>
@@ -253,7 +251,6 @@
     <string name="video_player">動画プレーヤー</string>
     <string name="background_player">バックグラウンドプレーヤー</string>
     <string name="popup_player">ポップアッププレーヤー</string>
-    <string name="always_ask_player">常に尋ねる</string>
     <string name="preferred_player_fetcher_notification_title">情報を取得しています…</string>
     <string name="preferred_player_fetcher_notification_message">コンテンツを読み込んでいます</string>
     <string name="controls_download_desc">動画ファイルをダウンロード</string>

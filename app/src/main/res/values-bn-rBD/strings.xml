@@ -118,8 +118,6 @@
     <string name="audio">অডিও</string>
     <string name="retry">পুনরায় চেষ্টা করো</string>
     <string name="storage_permission_denied">স্টোরেজ অ্যাক্সেস করার অনুমতি অস্বীকার করা হয়েছে</string>
-    <string name="use_old_player_title">পুরানো প্লেয়ার ব্যবহার করো</string>
-    <string name="use_old_player_summary">মিডিয়াফ্রেমওয়ার্ক প্লেয়ারের পুরানো বিল্ড।</string>
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>

@@ -115,8 +115,6 @@
     <string name="audio">音訊</string>
     <string name="retry">重試</string>
     <string name="storage_permission_denied">無法存取儲存空間</string>
-    <string name="use_old_player_title">使用舊式播放器</string>
-    <string name="use_old_player_summary">舊型內建 Mediaframework 播放器</string>
     <string name="short_thousand">千</string>
     <string name="short_million">百萬</string>
     <string name="short_billion">十億</string>
@@ -275,7 +273,6 @@
     <string name="video_player">影片播放器</string>
     <string name="background_player">背景播放器</string>
     <string name="popup_player">懸浮視窗播放器</string>
-    <string name="always_ask_player">總是詢問</string>
     <string name="preferred_player_fetcher_notification_title">正在取得資訊…</string>
     <string name="preferred_player_fetcher_notification_message">正在載入要求的內容</string>
     <string name="controls_download_desc">下載串流檔案</string>
@@ -315,9 +312,6 @@
     <string name="normal_caption_font_size">正常字體</string>
     <string name="larger_caption_font_size">加大字體</string>
     <string name="drawer_header_action_paceholder_text">某些東西即將在此出現 ;D</string>
-    <string name="toggle_leak_canary">監測流失</string>
-    <string name="enable_leak_canary_notice">啟用記憶體流失監測技術，當 heap dump 時，應用程式可能會反應遲鈍</string>
-    <string name="disable_leak_canary_notice">已停用記憶體流失監測</string>
     <string name="settings_category_debug_title">除錯</string>
     <string name="caption_auto_generated">自動產生</string>
     <string name="enable_leak_canary_title">啟用 LeakCanary</string>

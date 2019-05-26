@@ -123,8 +123,6 @@
 \nopenen in pop-upmodus</string>
     <string name="popup_mode_share_menu_title">NewPipe-pop-upmodus</string>
     <string name="popup_playing_toast">Speelt af in pop-upmodus</string>
-    <string name="use_old_player_title">Oude speler gebruiken</string>
-    <string name="use_old_player_summary">Verouderde ingebouwde Mediaframework-speler</string>
     <string name="default_video_format_title">Standaard videoformaat</string>
     <string name="disabled">Uitgeschakeld</string>
     <string name="default_popup_resolution_title">Standaardresolutie van pop-up</string>
@@ -270,7 +268,6 @@
     <string name="video_player">Videospeler</string>
     <string name="background_player">Achtergrondspeler</string>
     <string name="popup_player">Pop-upspeler</string>
-    <string name="always_ask_player">Altijd vragen</string>
     <string name="preferred_player_fetcher_notification_title">Bezig met ophalen van informatie…</string>
     <string name="preferred_player_fetcher_notification_message">Bezig met laden van gevraagde inhoud</string>
     <string name="import_data_title">Databank importeren</string>

@@ -29,8 +29,6 @@
     <string name="show_play_with_kodi_summary">Προβολή μιας επιλογής για αναπαραγωγή με το Kodi media center</string>
     <string name="play_audio">Ήχος</string>
     <string name="default_audio_format_title">Προεπιλεγμένη μορφή ήχου</string>
-    <string name="webm_description">WebM — δωρεάν μορφή</string>
-    <string name="m4a_description">Μ4Α — καλύτερη ποιότητα</string>
     <string name="theme_title">Θέμα</string>
     <string name="dark_theme_title">Σκοτεινό</string>
     <string name="light_theme_title">Φωτεινό</string>
@@ -216,8 +214,6 @@
     <string name="detail_drag_description">Σύρετε για ταξινόμηση</string>
     <string name="retry">Προσπάθεια εκ νέου</string>
     <string name="storage_permission_denied">Δεν δώθηκε άδεια εγγραφής στην εσωτερική μνήμη</string>
-    <string name="use_old_player_title">Χρήση παλαιάς συσκευής αναπαραγωγής</string>
-    <string name="use_old_player_summary">Παλαιά συσκευή αναπαραγωγής Mediaframework</string>
     <string name="short_thousand">χιλ</string>
     <string name="short_million">Εκ</string>
     <string name="no_subscribers">Κανένας εγγεγραμένος χρήστης</string>

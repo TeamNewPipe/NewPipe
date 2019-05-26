@@ -90,7 +90,6 @@
     <string name="video">Відео</string>
     <string name="audio">Аудіо</string>
     <string name="retry">Повторити спробу</string>
-    <string name="use_old_player_title">Використовувати старий програвач</string>
     <string name="short_thousand">тис.</string>
     <string name="short_million">млн.</string>
     <string name="short_billion">млрд.</string>
@@ -245,7 +244,7 @@
     <string name="app_description">Вільне та легке потокове програвання на Android.</string>
     <string name="contribution_encouragement">Які б не були Ваші ідеї: переклад, дизайн, легкий чи глобальний рефакторинг - будь-яка допомога завжди у нагоді. Що більше зроблено, то ліпшим стає NewPipe!</string>
     <string name="settings_category_debug_title">Налагодження</string>
-    <string name="empty_subscription_feed_subtitle">Нічого немає... чути лише цвіркунів</string>
+    <string name="empty_subscription_feed_subtitle">Нічого немає… чути лише цвіркунів</string>
     <string name="no_views">Немає переглядів</string>
     <plurals name="views">
         <item quantity="one">%s перегляд</item>

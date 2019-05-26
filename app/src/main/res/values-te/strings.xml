@@ -102,7 +102,6 @@
     <string name="audio">ఆడియో</string>
     <string name="retry">మళ్ళీ ప్రయత్నించు</string>
     <string name="storage_permission_denied">నిల్వ అనుమతి తిరస్కరించబడింది</string>
-    <string name="use_old_player_title">పాత ఆటగాడు ఉపయోగించండి</string>
     <string name="short_thousand">కె</string>
     <string name="short_million">ఎం</string>
     <string name="short_billion">బి</string>

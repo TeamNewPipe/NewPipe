@@ -122,7 +122,6 @@
     <string name="popup_mode_share_menu_title">Modalità Popup di NewPipe</string>
     <string name="popup_playing_toast">Riproduzione in modalità popup</string>
     <string name="disabled">Disattivato</string>
-    <string name="use_old_player_title">Usa il vecchio lettore multimediale</string>
     <string name="use_external_video_player_summary">Non riproduce l\'audio con ALCUNE risoluzioni</string>
     <string name="controls_background_title">In sottofondo</string>
     <string name="controls_popup_title">Popup</string>
@@ -142,8 +141,7 @@
     <string name="clear">Cancella</string>
     <string name="popup_resizing_indicator_title">Ridimensionamento</string>
     <string name="best_resolution">Risoluzione migliore</string>
-    <string name="use_old_player_summary">Precedente lettore multimediale Mediaframework integrato</string>
-    <string name="msg_popup_permission">Questo permesso è necessario 
+    <string name="msg_popup_permission">Questo permesso è necessario
 \nper riprodurre in modalità popup</string>
     <string name="action_settings">Impostazioni</string>
     <string name="action_about">Informazioni</string>
@@ -270,7 +268,6 @@
     <string name="video_player">Lettore video</string>
     <string name="background_player">Riproduzione in sottofondo</string>
     <string name="popup_player">Riproduzione in modalità popup</string>
-    <string name="always_ask_player">Chiedi sempre</string>
     <string name="preferred_player_fetcher_notification_title">Raccogliendo informazioni…</string>
     <string name="preferred_player_fetcher_notification_message">Caricamento del contenuto richiesto</string>
     <string name="import_data_title">Importa database</string>

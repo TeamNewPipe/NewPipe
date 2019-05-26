@@ -80,8 +80,6 @@
     <string name="show_play_with_kodi_summary">कोडी मीडिया सेंटर के माध्यम से वीडियो चलाने के लिए एक विकल्प प्रदर्शित करें</string>
     <string name="default_audio_format_title">डिफ़ॉल्ट ऑडियो का फॉर्मेट</string>
     <string name="default_video_format_title">डिफ़ॉल्ट विडियो का फॉर्मेट</string>
-    <string name="webm_description">WebM - libre फॉर्मेट</string>
-    <string name="m4a_description">M4A - बेहतर क्वालिटी</string>
     <string name="theme_title">एप्प का नया रूप</string>
     <string name="dark_theme_title">काला</string>
     <string name="popup_remember_size_pos_title">विडियो पॉपअप की आकर और उसकी स्थति को याद रखे</string>
@@ -174,8 +172,6 @@
     <string name="audio">ऑडियो</string>
     <string name="retry">फिर से कोशिश करे</string>
     <string name="storage_permission_denied">स्टोरेज में प्रवेश के लिए अनुमति नहीं मिली</string>
-    <string name="use_old_player_title">पुराना विडियो प्लेयर प्रयोग करे</string>
-    <string name="use_old_player_summary">पुराना Mediaframework Player जो फ़ोन में बना हुआ है</string>
     <string name="short_thousand">हज़ार</string>
     <string name="short_million">करोड़</string>
     <string name="short_billion">अरब</string>
@@ -319,9 +315,6 @@
     <string name="smaller_caption_font_size">छोटे फ़ॉंट</string>
     <string name="normal_caption_font_size">सामांय फ़ॉंट</string>
     <string name="larger_caption_font_size">बड़ा फ़ॉंट</string>
-    <string name="toggle_leak_canary">मॉनिटर लीक</string>
-    <string name="enable_leak_canary_notice">मेमोरी लीक मॉनिटरिंग सक्षम है, हीप डंपिंग के समय ऐप अप्रतिसादी हो सकती है</string>
-    <string name="disable_leak_canary_notice">मेमोरी लीक मॉनिटरिंग अक्षम है</string>
     <string name="settings_category_debug_title">डीबग करें</string>
     <string name="caption_auto_generated">ऑटो-जनरेटेड</string>
     <string name="enable_leak_canary_title">LeakCanary सक्षम करें</string>

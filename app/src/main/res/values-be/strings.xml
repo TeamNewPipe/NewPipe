@@ -54,8 +54,6 @@
     <string name="play_audio">Аўдыё</string>
     <string name="default_audio_format_title">Фармат аўдыё па змаўчанні</string>
     <string name="default_video_format_title">Фармат відэа па змаўчанні</string>
-    <string name="webm_description">WebM - свабодны</string>
-    <string name="m4a_description">M4A - вышэй якасць</string>
     <string name="theme_title">Тэма</string>
     <string name="light_theme_title">Светлая</string>
     <string name="dark_theme_title">Цёмная</string>
@@ -203,8 +201,6 @@
     <string name="audio">Аўдыё</string>
     <string name="retry">Паспрабаваць зноў</string>
     <string name="storage_permission_denied">Няма доступу да носьбіта</string>
-    <string name="use_old_player_title">Стары плэер</string>
-    <string name="use_old_player_summary">Стары убудаваны плэер на Mediaframework</string>
     <string name="short_thousand">тыс.</string>
     <string name="short_million">млн.</string>
     <string name="short_billion">млрд.</string>

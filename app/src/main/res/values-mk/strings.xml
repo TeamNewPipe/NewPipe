@@ -202,8 +202,6 @@
     <string name="audio">Звук</string>
     <string name="retry">Пробај повторно</string>
     <string name="storage_permission_denied">Нема привилегии за пристап</string>
-    <string name="use_old_player_title">Користи го стариот плеер</string>
-    <string name="use_old_player_summary">Користи го стариот Mediaframework плеер</string>
 
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>

@@ -120,13 +120,11 @@
     <string name="all">Alle</string>
     <string name="channel">Kanal</string>
     <string name="disabled">Deaktiviert</string>
-    <string name="use_old_player_title">Alten Player benutzen</string>
     <string name="open_in_popup_mode">Im Pop-up-Modus öffnen</string>
     <string name="default_video_format_title">Bevorzugtes Videoformat</string>
     <string name="popup_playing_toast">Spiele im Pop-up Modus ab</string>
     <string name="popup_mode_share_menu_title">NewPipe-Pop-up-Modus</string>
     <string name="msg_popup_permission">Diese Berechtigung ist für das Öffnen im Pop-up-Modus erforderlich</string>
-    <string name="use_old_player_summary">Alter eingebauter Mediaframework-Player</string>
     <string name="default_popup_resolution_title">Standardauflösung des Pop-ups</string>
     <string name="show_higher_resolutions_title">Höhere Auflösungen anzeigen</string>
     <string name="show_higher_resolutions_summary">Nur manche Geräte unterstützen das Abspielen von 2K-/4K-Videos</string>
@@ -270,7 +268,6 @@
     <string name="video_player">Video-Player</string>
     <string name="background_player">Hintergrund-Player</string>
     <string name="popup_player">Popup-Player</string>
-    <string name="always_ask_player">Immer fragen</string>
     <string name="preferred_player_fetcher_notification_title">Informationen werden abgerufen…</string>
     <string name="preferred_player_fetcher_notification_message">Gewünschten Inhalt laden</string>
     <string name="import_data_title">Datenbank importieren</string>

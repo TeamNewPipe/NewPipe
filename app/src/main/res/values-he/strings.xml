@@ -149,8 +149,6 @@
     <string name="audio">שמע</string>
     <string name="retry">ניסיון חוזר</string>
     <string name="storage_permission_denied">הגישה לאחסון נדחתה</string>
-    <string name="use_old_player_title">השתמש בנגן הישן</string>
-    <string name="use_old_player_summary">השתמש בנגן המובנה Mediaframework</string>
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
