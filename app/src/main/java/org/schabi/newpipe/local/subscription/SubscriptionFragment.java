@@ -391,17 +391,17 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
         if (context == null || context.getResources() == null || getActivity() == null) return;
 
         final String[] commands = new String[]{
-                context.getResources().getString(R.string.share),
-                context.getResources().getString(R.string.unsubscribe)
+                context.getResources().getString(R.string.unsubscribe),
+                context.getResources().getString(R.string.share)
         };
 
         final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
             switch (i) {
                 case 0:
-                    shareChannel(selectedItem);
+                    deleteChannel(selectedItem);
                     break;
                 case 1:
-                    deleteChannel(selectedItem);
+                    shareChannel(selectedItem);
                     break;
                 default:
                     break;
