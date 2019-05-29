@@ -307,7 +307,7 @@ otevření ve vyskakovacím okně</string>
     <string name="playlist_name_input">Jméno</string>
     <string name="append_playlist">Přidat do playlistu</string>
     <string name="set_as_playlist_thumbnail">Nastavit jako náhled playlistu</string>
-    <string name="bookmark_playlist">Založit playlist</string>
+    <string name="bookmark_playlist">Přidat playlist do záložek</string>
     <string name="unbookmark_playlist">Smazat záložku</string>
     <string name="delete_playlist_prompt">Smazat tento playlist\?</string>
     <string name="playlist_creation_success">Playlist vytvořen</string>
@@ -377,7 +377,7 @@ otevření ve vyskakovacím okně</string>
 \nChcete pokračovat?</string>
     <string name="playback_speed_control">Ovládání rychlosti přehrávání</string>
     <string name="playback_tempo">Rychlost</string>
-    <string name="playback_pitch">Stupeň tónu</string>
+    <string name="playback_pitch">Výška tónu</string>
     <string name="unhook_checkbox">Rozpojit (může způsobit zkreslení)</string>
     <string name="playback_nightcore">Nightcore mód</string>
     <string name="playback_default">Výchozí nastavení</string>
