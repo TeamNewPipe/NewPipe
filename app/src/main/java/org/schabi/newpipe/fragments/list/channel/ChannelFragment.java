@@ -159,7 +159,6 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         final String[] commands = new String[]{
                 context.getResources().getString(R.string.enqueue_on_background),
                 context.getResources().getString(R.string.enqueue_on_popup),
-                context.getResources().getString(R.string.start_here_on_main),
                 context.getResources().getString(R.string.start_here_on_background),
                 context.getResources().getString(R.string.start_here_on_popup),
                 context.getResources().getString(R.string.append_playlist),
@@ -176,21 +175,18 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                     NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(item));
                     break;
                 case 2:
-                    NavigationHelper.playOnMainPlayer(context, getPlayQueue(index));
-                    break;
-                case 3:
                     NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index));
                     break;
-                case 4:
+                case 3:
                     NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index));
                     break;
-                case 5:
+                case 4:
                     if (getFragmentManager() != null) {
                         PlaylistAppendDialog.fromStreamInfoItems(Collections.singletonList(item))
                                 .show(getFragmentManager(), TAG);
                     }
                     break;
-                case 6:
+                case 5:
                     ShareUtils.shareUrl(this.getContext(), item.getName(), item.getUrl());
                     break;
                 default:

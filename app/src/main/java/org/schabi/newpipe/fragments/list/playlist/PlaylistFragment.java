@@ -31,6 +31,7 @@ import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.info_list.InfoItemDialog;
+import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue;
@@ -44,6 +45,7 @@ import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -144,9 +146,9 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         final String[] commands = new String[]{
                 context.getResources().getString(R.string.enqueue_on_background),
                 context.getResources().getString(R.string.enqueue_on_popup),
-                context.getResources().getString(R.string.start_here_on_main),
                 context.getResources().getString(R.string.start_here_on_background),
                 context.getResources().getString(R.string.start_here_on_popup),
+                context.getResources().getString(R.string.append_playlist),
                 context.getResources().getString(R.string.share)
         };
 
@@ -160,13 +162,16 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                     NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(item));
                     break;
                 case 2:
-                    NavigationHelper.playOnMainPlayer(context, getPlayQueue(index));
-                    break;
-                case 3:
                     NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index));
                     break;
-                case 4:
+                case 3:
                     NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index));
+                    break;
+                case 4:
+                    if (getFragmentManager() != null) {
+                        PlaylistAppendDialog.fromStreamInfoItems(Collections.singletonList(item))
+                                .show(getFragmentManager(), TAG);
+                    }
                     break;
                 case 5:
                     ShareUtils.shareUrl(this.getContext(), item.getName(), item.getUrl());

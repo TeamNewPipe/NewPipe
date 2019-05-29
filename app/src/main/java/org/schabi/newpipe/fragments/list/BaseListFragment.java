@@ -256,9 +256,10 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
         if (context == null || context.getResources() == null || getActivity() == null) return;
 
         final String[] commands = new String[]{
-                context.getResources().getString(R.string.direct_on_background),
                 context.getResources().getString(R.string.enqueue_on_background),
                 context.getResources().getString(R.string.enqueue_on_popup),
+                context.getResources().getString(R.string.start_here_on_background),
+                context.getResources().getString(R.string.start_here_on_popup),
                 context.getResources().getString(R.string.append_playlist),
                 context.getResources().getString(R.string.share)
         };
@@ -266,21 +267,24 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
         final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
             switch (i) {
                 case 0:
-                    NavigationHelper.playOnBackgroundPlayer(context, new SinglePlayQueue(item));
-                    break;
-                case 1:
                     NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
                     break;
-                case 2:
+                case 1:
                     NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(item));
                     break;
+                case 2:
+                    NavigationHelper.playOnBackgroundPlayer(context, new SinglePlayQueue(item));
+                    break;
                 case 3:
+                    NavigationHelper.playOnPopupPlayer(activity, new SinglePlayQueue(item));
+                    break;
+                case 4:
                     if (getFragmentManager() != null) {
                         PlaylistAppendDialog.fromStreamInfoItems(Collections.singletonList(item))
                                 .show(getFragmentManager(), TAG);
                     }
                     break;
-                case 4:
+                case 5:
                     ShareUtils.shareUrl(this.getContext(), item.getName(), item.getUrl());
                     break;
                 default:

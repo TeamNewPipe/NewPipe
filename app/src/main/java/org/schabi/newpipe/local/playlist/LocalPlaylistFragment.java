@@ -28,6 +28,7 @@ import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.local.BaseLocalListFragment;
 import org.schabi.newpipe.info_list.InfoItemDialog;
+import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.UserAction;
@@ -521,42 +522,43 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         final String[] commands = new String[]{
                 context.getResources().getString(R.string.enqueue_on_background),
                 context.getResources().getString(R.string.enqueue_on_popup),
-                context.getResources().getString(R.string.start_here_on_main),
                 context.getResources().getString(R.string.start_here_on_background),
                 context.getResources().getString(R.string.start_here_on_popup),
                 context.getResources().getString(R.string.set_as_playlist_thumbnail),
                 context.getResources().getString(R.string.delete),
-                context.getResources().getString(R.string.share)
+                context.getResources().getString(R.string.append_playlist),
+                context.getResources().getString(R.string.share),
         };
 
         final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
             final int index = Math.max(itemListAdapter.getItemsList().indexOf(item), 0);
             switch (i) {
                 case 0:
-                    NavigationHelper.enqueueOnBackgroundPlayer(context,
-                            new SinglePlayQueue(infoItem));
+                    NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(infoItem));
                     break;
                 case 1:
-                    NavigationHelper.enqueueOnPopupPlayer(activity, new
-                            SinglePlayQueue(infoItem));
+                    NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(infoItem));
                     break;
                 case 2:
-                    NavigationHelper.playOnMainPlayer(context, getPlayQueue(index));
-                    break;
-                case 3:
                     NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index));
                     break;
-                case 4:
+                case 3:
                     NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index));
                     break;
-                case 5:
+                case 4:
                     changeThumbnailUrl(item.thumbnailUrl);
                     break;
-                case 6:
+                case 5:
                     deleteItem(item);
                     break;
+                case 6:
+                    if (getFragmentManager() != null) {
+                        PlaylistAppendDialog.fromStreamInfoItems(Collections.singletonList(infoItem))
+                                .show(getFragmentManager(), TAG);
+                    }
+                    break;
                 case 7:
-                    ShareUtils.shareUrl(this.getContext(), item.toStreamInfoItem().getName(), item.toStreamInfoItem().getUrl());
+                    ShareUtils.shareUrl(this.getContext(), infoItem.getName(), infoItem.getUrl());
                     break;
                 default:
                     break;
