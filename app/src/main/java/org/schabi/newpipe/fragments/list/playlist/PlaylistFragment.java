@@ -138,53 +138,6 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     }
 
     @Override
-    protected void showStreamDialog(final StreamInfoItem item) {
-        final Context context = getContext();
-        final Activity activity = getActivity();
-        if (context == null || context.getResources() == null || getActivity() == null) return;
-
-        final String[] commands = new String[]{
-                context.getResources().getString(R.string.enqueue_on_background),
-                context.getResources().getString(R.string.enqueue_on_popup),
-                context.getResources().getString(R.string.start_here_on_background),
-                context.getResources().getString(R.string.start_here_on_popup),
-                context.getResources().getString(R.string.append_playlist),
-                context.getResources().getString(R.string.share)
-        };
-
-        final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
-            final int index = Math.max(infoListAdapter.getItemsList().indexOf(item), 0);
-            switch (i) {
-                case 0:
-                    NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
-                    break;
-                case 1:
-                    NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(item));
-                    break;
-                case 2:
-                    NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index));
-                    break;
-                case 3:
-                    NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index));
-                    break;
-                case 4:
-                    if (getFragmentManager() != null) {
-                        PlaylistAppendDialog.fromStreamInfoItems(Collections.singletonList(item))
-                                .show(getFragmentManager(), TAG);
-                    }
-                    break;
-                case 5:
-                    ShareUtils.shareUrl(this.getContext(), item.getName(), item.getUrl());
-                    break;
-                default:
-                    break;
-            }
-        };
-
-        new InfoItemDialog(getActivity(), item, commands, actions).show();
-    }
-
-    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         if (DEBUG) Log.d(TAG, "onCreateOptionsMenu() called with: menu = [" + menu +
                 "], inflater = [" + inflater + "]");
