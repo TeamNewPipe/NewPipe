@@ -522,42 +522,6 @@ public class VideoDetailFragment
         detailControlsPopup.setOnTouchListener(getOnControlsTouchListener());
     }
 
-    private void showStreamDialog(final StreamInfoItem item) {
-        final Context context = getContext();
-        if (context == null || context.getResources() == null || getActivity() == null) return;
-
-        final String[] commands = new String[]{
-                context.getResources().getString(R.string.enqueue_on_background),
-                context.getResources().getString(R.string.enqueue_on_popup),
-                context.getResources().getString(R.string.append_playlist),
-                context.getResources().getString(R.string.share)
-        };
-
-        final DialogInterface.OnClickListener actions = (DialogInterface dialogInterface, int i) -> {
-            switch (i) {
-                case 0:
-                    NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
-                    break;
-                case 1:
-                    NavigationHelper.enqueueOnPopupPlayer(getActivity(), new SinglePlayQueue(item));
-                    break;
-                case 2:
-                    if (getFragmentManager() != null) {
-                        PlaylistAppendDialog.fromStreamInfoItems(Collections.singletonList(item))
-                                .show(getFragmentManager(), TAG);
-                    }
-                    break;
-                case 3:
-                    ShareUtils.shareUrl(this.getContext(), item.getName(), item.getUrl());
-                    break;
-                default:
-                    break;
-            }
-        };
-
-        new InfoItemDialog(getActivity(), item, commands, actions).show();
-    }
-
     private View.OnTouchListener getOnControlsTouchListener() {
         return (View view, MotionEvent motionEvent) -> {
             if (!PreferenceManager.getDefaultSharedPreferences(activity)
