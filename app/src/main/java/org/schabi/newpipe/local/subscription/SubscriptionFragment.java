@@ -57,6 +57,7 @@ import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.ServiceHelper;
+import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.views.CollapsibleView;
 
@@ -425,7 +426,7 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
     }
 
     private void shareChannel (ChannelInfoItem selectedItem) {
-        shareUrl(selectedItem.getName(), selectedItem.getUrl());
+        ShareUtils.shareUrl(this.getContext(), selectedItem.getName(), selectedItem.getUrl());
     }
 
     @SuppressLint("CheckResult")

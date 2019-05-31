@@ -1,12 +1,13 @@
 package org.schabi.newpipe.player.mediasource;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.source.BaseMediaSource;
 import com.google.android.exoplayer2.source.MediaPeriod;
 import com.google.android.exoplayer2.upstream.Allocator;
+import com.google.android.exoplayer2.upstream.TransferListener;
 
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 
@@ -79,7 +80,7 @@ public class FailedMediaSource extends BaseMediaSource implements ManagedMediaSo
     }
 
     @Override
-    public MediaPeriod createPeriod(MediaPeriodId id, Allocator allocator) {
+    public MediaPeriod createPeriod(MediaPeriodId id, Allocator allocator, long startPositionUs) {
         return null;
     }
 
@@ -88,7 +89,7 @@ public class FailedMediaSource extends BaseMediaSource implements ManagedMediaSo
 
 
     @Override
-    protected void prepareSourceInternal(ExoPlayer player, boolean isTopLevelSource) {
+    protected void prepareSourceInternal(@Nullable TransferListener mediaTransferListener) {
         Log.e(TAG, "Loading failed source: ", error);
     }
 

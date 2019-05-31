@@ -175,8 +175,6 @@
     <string name="notification_channel_name">NewPipe 通知</string>
     <string name="notification_channel_description">NewPipe 后台播放和窗口播放器的通知</string>
 
-    <string name="use_old_player_title">使用旧版播放器</string>
-    <string name="use_old_player_summary">旧版本的内置媒体播放器</string>
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>

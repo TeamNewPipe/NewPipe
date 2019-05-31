@@ -141,8 +141,7 @@
     <string name="msg_popup_permission">Toto oprávnění je vyžadováno pro
 otevření ve vyskakovacím okně</string>
 
-    <string name="use_old_player_title">Použít starý přehrávač</string>
-<string name="use_external_video_player_summary">Odstraňuje zvuk v některých rozlišeních</string>
+    <string name="use_external_video_player_summary">Odstraňuje zvuk v některých rozlišeních</string>
     <string name="show_higher_resolutions_title">Zobrazovat vyšší rozlišení</string>
     <string name="show_higher_resolutions_summary">Pouze některá zařízení podporují přehrávání 2K/4K videí</string>
     <string name="default_video_format_title">Výchozí formát videa</string>
@@ -193,8 +192,6 @@ otevření ve vyskakovacím okně</string>
 
     <string name="search_no_results">Žádné výsledky</string>
     <string name="empty_subscription_feed_subtitle">Je tu sranda jak v márnici</string>
-
-    <string name="use_old_player_summary">Starý zabudovaný Mediaframework přehrávač</string>
 
     <string name="short_billion">mld.</string>
 
@@ -327,8 +324,7 @@ otevření ve vyskakovacím okně</string>
     <string name="video_player">Video přehrávač</string>
     <string name="background_player">Přehrávač na pozadí</string>
     <string name="popup_player">Přehrávač v okně</string>
-    <string name="always_ask_player">Vždy se ptát</string>
-    
+
     <string name="preferred_player_fetcher_notification_title">Získávám informace…</string>
     <string name="preferred_player_fetcher_notification_message">Načítání požadovaného obsahu</string>
 <string name="controls_download_desc">Stáhnout soubor streamu</string>
@@ -383,9 +379,6 @@ otevření ve vyskakovacím okně</string>
     <string name="normal_caption_font_size">Normální písmo</string>
     <string name="larger_caption_font_size">Větší písmo</string>
 
-    <string name="toggle_leak_canary">Sledovat únik paměti</string>
-    <string name="disable_leak_canary_notice">Sledování úniku paměti vypnuto</string>
-<string name="enable_leak_canary_notice">Sledování úniku paměti povoleno, aplikace může při zátěži přestat reagovat</string>
     <string name="settings_category_debug_title">Ladění</string>
     <string name="caption_auto_generated">"Automaticky generováno "</string>
     <string name="enable_leak_canary_title">Povolit službu LeakCanary</string>
