@@ -17,16 +17,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentManager;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -35,6 +25,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.fragment.app.FragmentManager;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.nononsenseapps.filepicker.Utils;
 
@@ -48,10 +48,8 @@ import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.info_list.InfoListAdapter;
-import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService;
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService;
-import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -112,7 +110,7 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        PreferenceManager.getDefaultSharedPreferences(activity)
+        PreferenceManager.getDefaultSharedPreferences(getContext())
                 .registerOnSharedPreferenceChangeListener(this);
     }
 
@@ -176,7 +174,7 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
         disposables = null;
         subscriptionService = null;
 
-        PreferenceManager.getDefaultSharedPreferences(activity)
+        PreferenceManager.getDefaultSharedPreferences(getContext())
                 .unregisterOnSharedPreferenceChangeListener(this);
         super.onDestroy();
     }
@@ -305,14 +303,14 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
             if (requestCode == REQUEST_EXPORT_CODE) {
                 final File exportFile = Utils.getFileForUri(data.getData());
                 if (!exportFile.getParentFile().canWrite() || !exportFile.getParentFile().canRead()) {
-                    Toast.makeText(activity, R.string.invalid_directory, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), R.string.invalid_directory, Toast.LENGTH_SHORT).show();
                 } else {
-                    activity.startService(new Intent(activity, SubscriptionsExportService.class)
+                    activity.startService(new Intent(getContext(), SubscriptionsExportService.class)
                             .putExtra(SubscriptionsExportService.KEY_FILE_PATH, exportFile.getAbsolutePath()));
                 }
             } else if (requestCode == REQUEST_IMPORT_CODE) {
                 final String path = Utils.getFileForUri(data.getData()).getAbsolutePath();
-                ImportConfirmationDialog.show(this, new Intent(activity, SubscriptionsImportService.class)
+                ImportConfirmationDialog.show(this, new Intent(getContext(), SubscriptionsImportService.class)
                         .putExtra(KEY_MODE, PREVIOUS_EXPORT_MODE)
                         .putExtra(KEY_VALUE, path));
             }
@@ -437,7 +435,7 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
                 .observeOn(Schedulers.io())
                 .subscribe(getDeleteObserver());
 
-        Toast.makeText(activity, getString(R.string.channel_unsubscribed), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), getString(R.string.channel_unsubscribed), Toast.LENGTH_SHORT).show();
     }
 
 
@@ -582,7 +580,7 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
     }
 
     protected boolean isGridLayout() {
-        final String list_mode = PreferenceManager.getDefaultSharedPreferences(activity).getString(getString(R.string.list_view_mode_key), getString(R.string.list_view_mode_value));
+        final String list_mode = PreferenceManager.getDefaultSharedPreferences(getContext()).getString(getString(R.string.list_view_mode_key), getString(R.string.list_view_mode_value));
         if ("auto".equals(list_mode)) {
             final Configuration configuration = getResources().getConfiguration();
             return configuration.orientation == Configuration.ORIENTATION_LANDSCAPE

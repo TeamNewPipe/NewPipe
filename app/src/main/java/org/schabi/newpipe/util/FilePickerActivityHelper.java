@@ -4,17 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.loader.content.Loader;
-import androidx.recyclerview.widget.SortedList;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.loader.content.Loader;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SortedList;
 
 import com.nononsenseapps.filepicker.AbstractFilePickerFragment;
 import com.nononsenseapps.filepicker.FilePickerFragment;
@@ -101,7 +102,7 @@ public class FilePickerActivityHelper extends com.nononsenseapps.filepicker.File
         public void onClickOk(@NonNull View view) {
             if (mode == MODE_NEW_FILE && getNewFileName().isEmpty()) {
                 if (mToast != null) mToast.cancel();
-                mToast = Toast.makeText(getActivity(), R.string.file_name_empty_error, Toast.LENGTH_SHORT);
+                mToast = Toast.makeText(getContext(), R.string.file_name_empty_error, Toast.LENGTH_SHORT);
                 mToast.show();
                 return;
             }
