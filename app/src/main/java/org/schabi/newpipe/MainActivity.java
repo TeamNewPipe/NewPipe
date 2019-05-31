@@ -62,6 +62,7 @@ import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ServiceHelper;
+import org.schabi.newpipe.util.ShortcutsHelper;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.ThemeHelper;
 
@@ -527,9 +528,13 @@ public class MainActivity extends AppCompatActivity {
     private void initFragments() {
         if (DEBUG) Log.d(TAG, "initFragments() called");
         StateSaver.clearStateFiles();
-        if (getIntent() != null && getIntent().hasExtra(Constants.KEY_LINK_TYPE)) {
-            handleIntent(getIntent());
-        } else NavigationHelper.gotoMainFragment(getSupportFragmentManager());
+        final Intent intent = getIntent();
+        if (intent != null && (ShortcutsHelper.ACTION_OPEN_SHORTCUT.equals(intent.getAction())
+                || intent.hasExtra(Constants.KEY_LINK_TYPE))) {
+            handleIntent(intent);
+        } else {
+            NavigationHelper.gotoMainFragment(getSupportFragmentManager());
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -560,6 +565,10 @@ public class MainActivity extends AppCompatActivity {
     private void handleIntent(Intent intent) {
         try {
             if (DEBUG) Log.d(TAG, "handleIntent() called with: intent = [" + intent + "]");
+
+            if (ShortcutsHelper.ACTION_OPEN_SHORTCUT.equals(intent.getAction())) {
+                intent.putExtra(Constants.KEY_LINK_TYPE,StreamingService.LinkType.CHANNEL);
+            }
 
             if (intent.hasExtra(Constants.KEY_LINK_TYPE)) {
                 String url = intent.getStringExtra(Constants.KEY_URL);
