@@ -3,9 +3,10 @@ package org.schabi.newpipe.settings;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+
 import androidx.annotation.Nullable;
 import androidx.preference.Preference;
-import android.util.Log;
 
 import com.nononsenseapps.filepicker.Utils;
 
@@ -50,7 +51,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
 
         if (preference.getKey().equals(DOWNLOAD_PATH_PREFERENCE)
                 || preference.getKey().equals(DOWNLOAD_PATH_AUDIO_PREFERENCE)) {
-            Intent i = new Intent(getActivity(), FilePickerActivityHelper.class)
+            Intent i = new Intent(getContext(), FilePickerActivityHelper.class)
                     .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
                     .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, true)
                     .putExtra(FilePickerActivityHelper.EXTRA_MODE, FilePickerActivityHelper.MODE_DIR);
