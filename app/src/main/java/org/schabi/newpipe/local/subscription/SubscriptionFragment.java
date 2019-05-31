@@ -22,6 +22,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.content.pm.ShortcutManagerCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -389,11 +390,12 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
         final Activity activity = getActivity();
         if (context == null || context.getResources() == null || getActivity() == null) return;
 
-        final String[] commands = new String[]{
-                context.getResources().getString(R.string.share),
-                context.getResources().getString(R.string.unsubscribe)
-        };
-
+        final ArrayList<String> commands = new ArrayList<>(3);
+        commands.add(context.getResources().getString(R.string.share));
+        commands.add(context.getResources().getString(R.string.unsubscribe));
+        if (ShortcutManagerCompat.isRequestPinShortcutSupported(context)) {
+            commands.add(context.getResources().getString(R.string.create_shortcut));
+        }
         final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
             switch (i) {
                 case 0:
@@ -401,6 +403,9 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
                     break;
                 case 1:
                     deleteChannel(selectedItem);
+                    break;
+                case 2:
+                    ShortcutsHelper.pinShortcut(context, selectedItem);
                     break;
                 default:
                     break;
@@ -418,7 +423,7 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
 
         new AlertDialog.Builder(activity)
                 .setCustomTitle(bannerView)
-                .setItems(commands, actions)
+                .setItems(commands.toArray(new String[0]), actions)
                 .create()
                 .show();
 

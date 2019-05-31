@@ -1,6 +1,7 @@
 package org.schabi.newpipe.util;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ShortcutInfo;
@@ -12,12 +13,14 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
-import android.graphics.drawable.Icon;
 import android.media.ThumbnailUtils;
 import android.os.Build;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
+import android.support.v4.content.pm.ShortcutInfoCompat;
+import android.support.v4.content.pm.ShortcutManagerCompat;
+import android.support.v4.graphics.drawable.IconCompat;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.MainActivity;
@@ -52,16 +55,28 @@ public final class ShortcutsHelper {
 		if (manager == null) {
 			return;
 		}
-		Single.fromCallable(() -> getIcon(context, data.getThumbnailUrl(), manager.getIconMaxWidth(), manager.getIconMaxHeight()))
+		Single.fromCallable(() -> getIcon(context, data.getThumbnailUrl(), manager.getIconMaxWidth(),
+				manager.getIconMaxHeight(), R.drawable.ic_newpipe_triangle_white))
 				.subscribeOn(Schedulers.computation())
 				.map(icon -> new ShortcutInfo.Builder(context, getShortcutId(data))
 						.setShortLabel(data.getName())
 						.setLongLabel(data.getName())
-						.setIcon(icon)
+						.setIcon(icon.toIcon())
 						.setIntent(createIntent(context, data)))
 				.observeOn(AndroidSchedulers.mainThread())
 				.subscribe(builder -> {
-					addOrUpdate(manager, builder, getShortcutId(data));
+					final String id = getShortcutId(data);
+					final List<ShortcutInfo> shortcuts = manager.getDynamicShortcuts();
+					for (int i = 0; i < shortcuts.size(); i++) {
+						final ShortcutInfo shortcut = shortcuts.get(i);
+						if (id.equals(shortcut.getId())) {
+							builder.setRank(shortcut.getRank() + 1);
+							manager.updateShortcuts(Collections.singletonList(builder.build()));
+							return;
+						}
+					}
+					builder.setRank(1);
+					manager.addDynamicShortcuts(Collections.singletonList(builder.build()));
 				}, e -> {
 					if (BuildConfig.DEBUG) {
 						e.printStackTrace();
@@ -69,19 +84,29 @@ public final class ShortcutsHelper {
 				});
 	}
 
-	@RequiresApi(api = Build.VERSION_CODES.N_MR1)
-	private static void addOrUpdate(ShortcutManager manager, ShortcutInfo.Builder builder, String id) {
-		final List<ShortcutInfo> shortcuts = manager.getDynamicShortcuts();
-		for (int i = 0; i < shortcuts.size(); i++) {
-			final ShortcutInfo shortcut = shortcuts.get(i);
-			if (id.equals(shortcut.getId())) {
-				builder.setRank(shortcut.getRank() + 1);
-				manager.updateShortcuts(Collections.singletonList(builder.build()));
-				return;
-			}
+	@SuppressLint("CheckResult")
+	@SuppressWarnings("ResultOfMethodCallIgnored")
+	public static void pinShortcut(@Nullable final Context context, @NonNull final ChannelInfoItem data) {
+		if (context == null) {
+			return;
 		}
-		builder.setRank(1);
-		manager.addDynamicShortcuts(Collections.singletonList(builder.build()));
+		final ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+		final int iconSize = am.getLauncherLargeIconSize();
+		Single.fromCallable(() -> getIcon(context, data.getThumbnailUrl(), iconSize, iconSize, R.mipmap.ic_launcher))
+				.subscribeOn(Schedulers.computation())
+				.map(icon -> new ShortcutInfoCompat.Builder(context, getShortcutId(data))
+						.setShortLabel(data.getName())
+						.setLongLabel(data.getName())
+						.setIcon(icon)
+						.setIntent(createIntent(context, data)))
+				.observeOn(AndroidSchedulers.mainThread())
+				.subscribe(builder -> {
+					ShortcutManagerCompat.requestPinShortcut(context, builder.build(), null);
+				}, e -> {
+					if (BuildConfig.DEBUG) {
+						e.printStackTrace();
+					}
+				});
 	}
 
 	@NonNull
@@ -100,8 +125,8 @@ public final class ShortcutsHelper {
 	}
 
 	@NonNull
-	@RequiresApi(api = Build.VERSION_CODES.M)
-	private static Icon getIcon(@NonNull Context context, final String url, int width, int height) {
+	private static IconCompat getIcon(@NonNull Context context, final String url, int width,
+									  int height, @DrawableRes int defaultIcon) {
 		Bitmap bitmap = null;
 		try {
 			final OkHttpClient client = new OkHttpClient();
@@ -115,14 +140,14 @@ public final class ShortcutsHelper {
 				bitmap = BitmapFactory.decodeStream(inputStream);
 
 				final Bitmap thumb = ThumbnailUtils.extractThumbnail(bitmap, width, height);
-				final Icon icon = Icon.createWithBitmap(createCircleBitmap(thumb));
+				final IconCompat icon = IconCompat.createWithBitmap(createCircleBitmap(thumb));
 				thumb.recycle();
 				return icon;
 			} else {
-				return Icon.createWithResource(context, R.drawable.ic_newpipe_triangle_white);
+				return IconCompat.createWithResource(context, defaultIcon);
 			}
 		} catch (Exception e) {
-			return Icon.createWithResource(context, R.drawable.ic_newpipe_triangle_white);
+			return IconCompat.createWithResource(context, defaultIcon);
 		} finally {
 			if (bitmap != null) {
 				bitmap.recycle();
