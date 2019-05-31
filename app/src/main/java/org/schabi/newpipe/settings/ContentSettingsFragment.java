@@ -7,11 +7,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.Preference;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.nononsenseapps.filepicker.Utils;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -91,7 +92,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
         Preference importDataPreference = findPreference(getString(R.string.import_data));
         importDataPreference.setOnPreferenceClickListener((Preference p) -> {
-            Intent i = new Intent(getActivity(), FilePickerActivityHelper.class)
+            Intent i = new Intent(getContext(), FilePickerActivityHelper.class)
                     .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
                     .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, false)
                     .putExtra(FilePickerActivityHelper.EXTRA_MODE, FilePickerActivityHelper.MODE_FILE);
@@ -101,7 +102,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
         Preference exportDataPreference = findPreference(getString(R.string.export_data));
         exportDataPreference.setOnPreferenceClickListener((Preference p) -> {
-            Intent i = new Intent(getActivity(), FilePickerActivityHelper.class)
+            Intent i = new Intent(getContext(), FilePickerActivityHelper.class)
                     .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
                     .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, true)
                     .putExtra(FilePickerActivityHelper.EXTRA_MODE, FilePickerActivityHelper.MODE_DIR);
@@ -138,7 +139,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
                 exportDatabase(path + "/NewPipeData-" + sdf.format(new Date()) + ".zip");
             } else {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setMessage(R.string.override_current_data)
                         .setPositiveButton(android.R.string.ok,
                                 (DialogInterface d, int id) -> importDatabase(path))
