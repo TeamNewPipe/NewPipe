@@ -1,12 +1,12 @@
 package org.schabi.newpipe.info_list.holder;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.util.Linkify;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.jsoup.helper.StringUtil;
+import androidx.appcompat.app.AppCompatActivity;
+
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
@@ -77,7 +77,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         itemThumbnailView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(StringUtil.isBlank(item.getAuthorEndpoint())) return;
+                if(isBlank(item.getAuthorEndpoint())) return;
                 try {
                     final AppCompatActivity activity = (AppCompatActivity) itemBuilder.getContext();
                     NavigationHelper.openChannelFragment(
@@ -146,5 +146,31 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         Linkify.addLinks(itemContentView, Linkify.WEB_URLS);
         Linkify.addLinks(itemContentView, pattern, null, null, timestampLink);
         itemContentView.setMovementMethod(null);
+    }
+
+    /**
+     * Tests if a string is blank: null, emtpy, or only whitespace (" ", \r\n, \t, etc)
+     * @param string string to test
+     * @return if string is blank
+     */
+    private static boolean isBlank(String string) {
+        if (string == null || string.length() == 0)
+            return true;
+
+        int l = string.length();
+        for (int i = 0; i < l; i++) {
+            if (!isWhitespace(string.codePointAt(i)))
+                return false;
+        }
+        return true;
+    }
+
+    /**
+     * Tests if a code point is "whitespace" as defined in the HTML spec.
+     * @param c code point to test
+     * @return true if code point is whitespace, false otherwise
+     */
+    private static boolean isWhitespace(int c){
+        return c == ' ' || c == '\t' || c == '\n' || c == '\f' || c == '\r';
     }
 }
