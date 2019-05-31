@@ -8,16 +8,17 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.View;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
@@ -69,7 +70,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        PreferenceManager.getDefaultSharedPreferences(activity)
+        PreferenceManager.getDefaultSharedPreferences(getContext())
                 .registerOnSharedPreferenceChangeListener(this);
     }
 
@@ -77,7 +78,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
     public void onDestroy() {
         super.onDestroy();
         StateSaver.onDestroy(savedState);
-        PreferenceManager.getDefaultSharedPreferences(activity)
+        PreferenceManager.getDefaultSharedPreferences(getContext())
                 .unregisterOnSharedPreferenceChangeListener(this);
     }
 
@@ -369,7 +370,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
     }
 
     protected boolean isGridLayout() {
-        final String list_mode = PreferenceManager.getDefaultSharedPreferences(activity).getString(getString(R.string.list_view_mode_key), getString(R.string.list_view_mode_value));
+        final String list_mode = PreferenceManager.getDefaultSharedPreferences(getContext()).getString(getString(R.string.list_view_mode_key), getString(R.string.list_view_mode_value));
         if ("auto".equals(list_mode)) {
             final Configuration configuration = getResources().getConfiguration();
             return configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
