@@ -1,7 +1,7 @@
 package org.schabi.newpipe.player.playqueue;
 
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.ItemTouchHelper;
 
 public abstract class PlayQueueItemTouchCallback extends ItemTouchHelper.SimpleCallback {
     private static final int MINIMUM_INITIAL_DRAG_VELOCITY = 10;

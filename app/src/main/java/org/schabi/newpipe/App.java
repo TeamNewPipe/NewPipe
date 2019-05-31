@@ -7,7 +7,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.Log;
 
 import com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache;

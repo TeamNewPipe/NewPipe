@@ -3,8 +3,8 @@ package org.schabi.newpipe.settings;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.preference.Preference;
+import androidx.annotation.Nullable;
+import androidx.preference.Preference;
 import android.util.Log;
 
 import com.nononsenseapps.filepicker.Utils;
