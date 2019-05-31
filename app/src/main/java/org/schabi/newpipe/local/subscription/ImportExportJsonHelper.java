@@ -19,7 +19,7 @@
 
 package org.schabi.newpipe.local.subscription;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.grack.nanojson.JsonAppendableWriter;
 import com.grack.nanojson.JsonArray;

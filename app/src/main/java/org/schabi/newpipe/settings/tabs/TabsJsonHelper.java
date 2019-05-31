@@ -1,6 +1,6 @@
 package org.schabi.newpipe.settings.tabs;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.grack.nanojson.JsonArray;
 import com.grack.nanojson.JsonObject;

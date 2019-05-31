@@ -103,7 +103,7 @@
                     tools:ignore="HardcodedText"
                     tools:text="300%"/>
 
-                <android.support.v7.widget.AppCompatSeekBar
+                <androidx.appcompat.widget.AppCompatSeekBar
                     android:id="@+id/tempoSeekbar"
                     style="@style/Widget.AppCompat.SeekBar"
                     android:layout_width="match_parent"
@@ -229,7 +229,7 @@
                     tools:ignore="HardcodedText"
                     tools:text="300%"/>
 
-                <android.support.v7.widget.AppCompatSeekBar
+                <androidx.appcompat.widget.AppCompatSeekBar
                     android:id="@+id/pitchSeekbar"
                     style="@style/Widget.AppCompat.SeekBar"
                     android:layout_width="match_parent"

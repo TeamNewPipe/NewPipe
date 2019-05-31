@@ -1,6 +1,6 @@
 package org.schabi.newpipe.info_list.holder;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.util.Linkify;
 import android.view.View;
 import android.view.ViewGroup;

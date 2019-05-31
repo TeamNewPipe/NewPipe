@@ -1,7 +1,7 @@
 package org.schabi.newpipe.player.helper;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.SingleSampleMediaSource;
