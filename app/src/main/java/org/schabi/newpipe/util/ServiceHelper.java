@@ -2,8 +2,8 @@ package org.schabi.newpipe.util;
 
 import android.content.Context;
 import android.preference.PreferenceManager;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.StringRes;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.StringRes;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;

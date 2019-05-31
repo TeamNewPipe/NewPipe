@@ -2,9 +2,9 @@ package org.schabi.newpipe.player.helper;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.media.session.MediaButtonReceiver;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.media.session.MediaButtonReceiver;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.view.KeyEvent;
 
