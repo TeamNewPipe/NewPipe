@@ -189,8 +189,6 @@
     <string name="audio">Geluid</string>
     <string name="retry">Opnieuw proberen</string>
     <string name="storage_permission_denied">Toegang tot opslag geweigerd</string>
-    <string name="use_old_player_title">Gebruik oude speler</string>
-    <string name="use_old_player_summary">Verouderden ingebouwde Mediaframework-speler</string>
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>

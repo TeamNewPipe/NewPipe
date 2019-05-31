@@ -216,8 +216,6 @@
     <string name="info_dir_created">S\'ha creat el directori de baixades «%1$s»</string>
     <string name="retry">Torna a intentar-ho</string>
     <string name="storage_permission_denied">S\'ha denegat el permís d\'accés a l\'emmagatzematge</string>
-    <string name="use_old_player_title">Fes servir el reproductor antic</string>
-    <string name="use_old_player_summary">Antic reproductor integrat de Mediaframework</string>
     <string name="no_subscribers">Sense subscriptors</string>
     <string name="no_views">Sense reproduccions</string>
     <plurals name="views">

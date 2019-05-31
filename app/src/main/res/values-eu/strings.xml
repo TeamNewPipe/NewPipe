@@ -117,8 +117,6 @@
     <string name="audio">Audioa</string>
     <string name="retry">Saiatu berriro</string>
     <string name="storage_permission_denied">Biltegia atzitzeko baimena ukatu da</string>
-    <string name="use_old_player_title">Erabili erreproduzigailu zaharra</string>
-    <string name="use_old_player_summary">Barne Media Framework erreproduzigailu zaharra</string>
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">MM</string>
@@ -270,7 +268,6 @@
     <string name="video_player">Bideo erreproduzigailua</string>
     <string name="background_player">Bigarren planoko erreproduzigailua</string>
     <string name="popup_player">Laster-leiho erreproduzigailua</string>
-    <string name="always_ask_player">Galdetu beti</string>
     <string name="preferred_player_fetcher_notification_title">Informazioa eskuratzen…</string>
     <string name="preferred_player_fetcher_notification_message">Kargatzen eskatutako edukia</string>
     <string name="controls_download_desc">Deskargatu jario fitxategia</string>

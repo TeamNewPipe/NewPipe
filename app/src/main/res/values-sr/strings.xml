@@ -124,7 +124,6 @@
     <string name="popup_mode_share_menu_title">Режим прозорчета</string>
     <string name="popup_playing_toast">Пуштање у режиму прозорчета</string>
     <string name="disabled">Искључено</string>
-    <string name="use_old_player_title">Користи стари плејер</string>
     <string name="default_video_format_title">Пожељни формат видеа</string>
     <string name="default_popup_resolution_title">Резолуција искачућег прозора</string>
     <string name="show_higher_resolutions_title">Прикажи више резолуције</string>
@@ -143,7 +142,6 @@
     <string name="show_search_suggestions_summary">Приказује предлоге током претраге</string>
     <string name="settings_category_popup_title">Искачући прозор</string>
     <string name="popup_resizing_indicator_title">Мењање величине</string>
-    <string name="use_old_player_summary">Стара градња Медијафрејмворк плејера</string>
     <string name="subscribed_button_title">Претплаћен</string>
     <string name="subscribe_button_title">Претплати</string>
     <string name="tab_main">Главно</string>

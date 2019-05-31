@@ -33,14 +33,14 @@ import java.io.File;
 
     public CacheFactory(@NonNull final Context context,
                         @NonNull final String userAgent,
-                        @NonNull final TransferListener<? super DataSource> transferListener) {
+                        @NonNull final TransferListener transferListener) {
         this(context, userAgent, transferListener, PlayerHelper.getPreferredCacheSize(context),
                 PlayerHelper.getPreferredFileSize(context));
     }
 
     private CacheFactory(@NonNull final Context context,
                          @NonNull final String userAgent,
-                         @NonNull final TransferListener<? super DataSource> transferListener,
+                         @NonNull final TransferListener transferListener,
                          final long maxCacheSize,
                          final long maxFileSize) {
         this.maxFileSize = maxFileSize;

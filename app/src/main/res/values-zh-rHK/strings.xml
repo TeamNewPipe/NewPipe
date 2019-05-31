@@ -119,7 +119,6 @@
     <string name="could_not_load_image">無法取得圖片</string>
     <string name="app_ui_crash">應用程式或介面出現問題</string>
     <string name="info_labels">事件：\\n請求：\\n內容語言：\\n服務：\\nGMT 時間：\\nPackage：\\n版本：\\n作業系統版本：</string>
-    <string name="use_old_player_title">使用舊播放器</string>
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
@@ -142,7 +141,6 @@
     <string name="clear">清除</string>
     <string name="best_resolution">最佳解像度</string>
     <string name="popup_resizing_indicator_title">調整大小</string>
-    <string name="use_old_player_summary">使用舊的內置 Mediaframework 播放器</string>
     <string name="short_billion">B</string>
     <string name="title_activity_about">關於 NewPipe</string>
     <string name="action_settings">設定</string>

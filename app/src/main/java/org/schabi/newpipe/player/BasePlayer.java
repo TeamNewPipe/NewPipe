@@ -207,8 +207,7 @@ public abstract class BasePlayer implements
         final DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
         this.dataSource = new PlayerDataSource(context, userAgent, bandwidthMeter);
 
-        final TrackSelection.Factory trackSelectionFactory =
-                PlayerHelper.getQualitySelector(context, bandwidthMeter);
+        final TrackSelection.Factory trackSelectionFactory = PlayerHelper.getQualitySelector(context);
         this.trackSelector = new CustomTrackSelector(trackSelectionFactory);
 
         this.loadControl = new LoadController(context);
@@ -225,7 +224,7 @@ public abstract class BasePlayer implements
     public void initPlayer(final boolean playOnReady) {
         if (DEBUG) Log.d(TAG, "initPlayer() called with: context = [" + context + "]");
 
-        simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(renderFactory, trackSelector, loadControl);
+        simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(context, renderFactory, trackSelector, loadControl);
         simpleExoPlayer.addListener(this);
         simpleExoPlayer.setPlayWhenReady(playOnReady);
         simpleExoPlayer.setSeekParameters(PlayerHelper.getSeekParameters(context));
@@ -269,6 +268,18 @@ public abstract class BasePlayer implements
         final float playbackPitch = intent.getFloatExtra(PLAYBACK_PITCH, getPlaybackPitch());
         final boolean playbackSkipSilence = intent.getBooleanExtra(PLAYBACK_SKIP_SILENCE,
                 getPlaybackSkipSilence());
+
+        // seek to timestamp if stream is already playing
+        if (simpleExoPlayer != null
+                && queue.size() == 1
+                && playQueue != null
+                && playQueue.getItem() != null
+                && queue.getItem().getUrl().equals(playQueue.getItem().getUrl())
+                && queue.getItem().getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET
+                ) {
+            simpleExoPlayer.seekTo(playQueue.getIndex(), queue.getItem().getRecoveryPosition());
+            return;
+        }
 
         // Good to go...
         initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence,

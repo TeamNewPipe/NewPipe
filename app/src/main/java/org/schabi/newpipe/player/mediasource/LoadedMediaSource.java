@@ -2,12 +2,13 @@ package org.schabi.newpipe.player.mediasource;
 
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
-import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.source.MediaPeriod;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.MediaSourceEventListener;
 import com.google.android.exoplayer2.upstream.Allocator;
+import com.google.android.exoplayer2.upstream.TransferListener;
 
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 
@@ -36,9 +37,8 @@ public class LoadedMediaSource implements ManagedMediaSource {
     }
 
     @Override
-    public void prepareSource(ExoPlayer player, boolean isTopLevelSource,
-                              SourceInfoRefreshListener listener) {
-        source.prepareSource(player, isTopLevelSource, listener);
+    public void prepareSource(SourceInfoRefreshListener listener, @Nullable TransferListener mediaTransferListener) {
+        source.prepareSource(listener, mediaTransferListener);
     }
 
     @Override
@@ -47,8 +47,8 @@ public class LoadedMediaSource implements ManagedMediaSource {
     }
 
     @Override
-    public MediaPeriod createPeriod(MediaPeriodId id, Allocator allocator) {
-        return source.createPeriod(id, allocator);
+    public MediaPeriod createPeriod(MediaPeriodId id, Allocator allocator, long startPositionUs) {
+        return source.createPeriod(id, allocator, startPositionUs);
     }
 
     @Override

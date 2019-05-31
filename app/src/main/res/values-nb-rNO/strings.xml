@@ -141,8 +141,6 @@
     <string name="later">Senere</string>
     <string name="disabled">Avskrudd</string>
 
-    <string name="use_old_player_title">Bruk gammel avspiller</string>
-
 
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
@@ -153,8 +151,7 @@
 
     <string name="recaptcha_request_toast">reCAPTCHA-oppgave forespurt</string>
 
-    <string name="use_old_player_summary">Gammel innebygd Mediaframework-avspiller</string>
-<string name="use_external_video_player_summary">Fjerner lyd ved NOEN oppløsninger</string>
+    <string name="use_external_video_player_summary">Fjerner lyd ved NOEN oppløsninger</string>
     <string name="subscribe_button_title">Abonner</string>
     <string name="subscribed_button_title">Abonnert</string>
     <string name="channel_unsubscribed">Kanalabonnent oppsagt</string>
@@ -315,8 +312,7 @@
     <string name="video_player">Videoavspiller</string>
     <string name="background_player">Bakgrunnsavspiller</string>
     <string name="popup_player">Oppsprettsavspiller</string>
-    <string name="always_ask_player">Spør alltid</string>
-    
+
     <string name="preferred_player_fetcher_notification_title">Henter informasjon…</string>
     <string name="preferred_player_fetcher_notification_message">Laster forespurt innhold</string>
 <string name="import_data_title">Importer database</string>

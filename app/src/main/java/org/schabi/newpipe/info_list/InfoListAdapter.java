@@ -9,10 +9,13 @@ import android.view.ViewGroup;
 
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
+import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.info_list.holder.ChannelInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelMiniInfoItemHolder;
+import org.schabi.newpipe.info_list.holder.CommentsInfoItemHolder;
+import org.schabi.newpipe.info_list.holder.CommentsMiniInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.ChannelGridInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.InfoItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistGridInfoItemHolder;
@@ -63,6 +66,8 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static final int MINI_PLAYLIST_HOLDER_TYPE = 0x300;
     private static final int PLAYLIST_HOLDER_TYPE = 0x301;
     private static final int GRID_PLAYLIST_HOLDER_TYPE = 0x302;
+    private static final int MINI_COMMENT_HOLDER_TYPE = 0x400;
+    private static final int COMMENT_HOLDER_TYPE = 0x401;
 
     private final InfoItemBuilder infoItemBuilder;
     private final ArrayList<InfoItem> infoItemList;
@@ -96,6 +101,10 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public void setOnPlaylistSelectedListener(OnClickGesture<PlaylistInfoItem> listener) {
         infoItemBuilder.setOnPlaylistSelectedListener(listener);
+    }
+
+    public void setOnCommentsSelectedListener(OnClickGesture<CommentsInfoItem> listener) {
+        infoItemBuilder.setOnCommentsSelectedListener(listener);
     }
 
     public void useMiniItemVariants(boolean useMiniVariant) {
@@ -223,6 +232,8 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 return useGridVariant ? GRID_CHANNEL_HOLDER_TYPE : useMiniVariant ? MINI_CHANNEL_HOLDER_TYPE : CHANNEL_HOLDER_TYPE;
             case PLAYLIST:
                 return useGridVariant ? GRID_PLAYLIST_HOLDER_TYPE : useMiniVariant ? MINI_PLAYLIST_HOLDER_TYPE : PLAYLIST_HOLDER_TYPE;
+            case COMMENT:
+                return useMiniVariant ? MINI_COMMENT_HOLDER_TYPE : COMMENT_HOLDER_TYPE;
             default:
                 Log.e(TAG, "Trollolo");
                 return -1;
@@ -231,7 +242,8 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int type) {
-        if (DEBUG) Log.d(TAG, "onCreateViewHolder() called with: parent = [" + parent + "], type = [" + type + "]");
+        if (DEBUG)
+            Log.d(TAG, "onCreateViewHolder() called with: parent = [" + parent + "], type = [" + type + "]");
         switch (type) {
             case HEADER_TYPE:
                 return new HFHolder(header);
@@ -255,6 +267,10 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 return new PlaylistInfoItemHolder(infoItemBuilder, parent);
             case GRID_PLAYLIST_HOLDER_TYPE:
                 return new PlaylistGridInfoItemHolder(infoItemBuilder, parent);
+            case MINI_COMMENT_HOLDER_TYPE:
+                return new CommentsMiniInfoItemHolder(infoItemBuilder, parent);
+            case COMMENT_HOLDER_TYPE:
+                return new CommentsInfoItemHolder(infoItemBuilder, parent);
             default:
                 Log.e(TAG, "Trollolo");
                 return new FallbackViewHolder(new View(parent.getContext()));

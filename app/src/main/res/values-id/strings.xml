@@ -29,8 +29,6 @@
     <string name="show_play_with_kodi_summary">Tampilkan opsi untuk memutar video via Kodi</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Format audio</string>
-    <string name="webm_description">WebM — format bebas</string>
-    <string name="m4a_description">M4A — kualitas lebih baik</string>
     <string name="dark_theme_title">Gelap</string>
     <string name="light_theme_title">Terang</string>
     <string name="download_dialog_title">Unduh</string>
@@ -124,8 +122,6 @@
 \nmembuka di mode popup</string>
     <string name="popup_mode_share_menu_title">Mode popup NewPipe</string>
     <string name="popup_playing_toast">Memutar dalam mode popup</string>
-    <string name="use_old_player_title">Gunakan pemutar lama</string>
-    <string name="use_old_player_summary">Pemutar Mediaframework bawaan versi lama</string>
     <string name="disabled">Dinonaktifkan</string>
     <string name="default_video_format_title">Format video</string>
     <string name="default_popup_resolution_title">Resolusi popup</string>

@@ -21,6 +21,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.RouterActivity;
 import org.schabi.newpipe.about.AboutActivity;
 import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -33,11 +34,12 @@ import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
-import org.schabi.newpipe.local.bookmark.BookmarkFragment;
-import org.schabi.newpipe.local.feed.FeedFragment;
+import org.schabi.newpipe.fragments.list.comments.CommentsFragment;
 import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
+import org.schabi.newpipe.local.bookmark.BookmarkFragment;
+import org.schabi.newpipe.local.feed.FeedFragment;
 import org.schabi.newpipe.local.history.StatisticsPlaylistFragment;
 import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionFragment;
@@ -309,6 +311,18 @@ public class NavigationHelper {
                 .commit();
     }
 
+    public static void openCommentsFragment(
+            FragmentManager fragmentManager,
+            int serviceId,
+            String url,
+            String name) {
+        if (name == null) name = "";
+        fragmentManager.beginTransaction().setCustomAnimations(R.anim.switch_service_in, R.anim.switch_service_out)
+                .replace(R.id.fragment_holder, CommentsFragment.getInstance(serviceId, url, name))
+                .addToBackStack(null)
+                .commit();
+    }
+
     public static void openPlaylistFragment(FragmentManager fragmentManager,
                                             int serviceId,
                                             String url,
@@ -406,6 +420,13 @@ public class NavigationHelper {
         Intent mIntent = new Intent(context, MainActivity.class);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         mIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        context.startActivity(mIntent);
+    }
+
+    public static void openRouterActivity(Context context, String url) {
+        Intent mIntent = new Intent(context, RouterActivity.class);
+        mIntent.setData(Uri.parse(url));
+        mIntent.putExtra(RouterActivity.internalRouteKey, true);
         context.startActivity(mIntent);
     }
 

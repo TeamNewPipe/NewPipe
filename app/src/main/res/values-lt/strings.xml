@@ -120,8 +120,6 @@
     <string name="video">Vaizdas</string>
     <string name="audio">Muzika</string>
     <string name="retry">Bandyti iš naujo</string>
-    <string name="use_old_player_title">Naudoti seną grotuvą</string>
-    <string name="use_old_player_summary">Senas įtaisytas media grotuvas</string>
 
     <plurals name="subscribers">
 	<item quantity="one">%s prenumeratorius</item>

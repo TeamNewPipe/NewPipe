@@ -76,6 +76,8 @@
     <string name="use_inexact_seek_title">Use fast inexact seek</string>
     <string name="use_inexact_seek_summary">Inexact seek allows the player to seek to positions faster with reduced precision</string>
     <string name="download_thumbnail_title">Load thumbnails</string>
+    <string name="show_comments_title">Show comments</string>
+    <string name="show_comments_summary">Disable to stop showing comments</string>
     <string name="download_thumbnail_summary">Turn off to prevent loading thumbnails, saving data and memory usage. Changes clear both in-memory and on-disk image cache.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Image cache wiped</string>
     <string name="metadata_cache_wipe_title">Wipe cached metadata</string>
@@ -98,7 +100,8 @@
     <string name="resume_on_audio_focus_gain_title">Resume on focus gain</string>
     <string name="resume_on_audio_focus_gain_summary">Continue playing after interruptions (e.g. phone calls)</string>
     <string name="download_dialog_title">Download</string>
-    <string name="next_video_title">Next</string>
+    <string name="next_video_title">Up next</string>
+    <string name="autoplay_title">Autoplay</string>
     <string name="show_next_and_similar_title">Show \'Next\' and \'Similar\' videos</string>
     <string name="show_hold_to_append_title">Show \"Hold to append\" tip</string>
     <string name="show_hold_to_append_summary">Show tip when background or popup button is pressed on video details page</string>
@@ -135,6 +138,7 @@
     <string name="playlist">Playlist</string>
     <string name="playlists">Playlists</string>
     <string name="videos">Videos</string>
+    <string name="comments">Comments</string>
     <string name="tracks">Tracks</string>
     <string name="users">Users</string>
     <string name="events">Events</string>
@@ -238,6 +242,7 @@
     <string name="user_report">User report</string>
     <string name="search_no_results">No results</string>
     <string name="empty_view_no_videos" translatable="false">@string/no_videos</string>
+    <string name="empty_view_no_comments" translatable="false">@string/no_comments</string>
     <string name="empty_subscription_feed_subtitle">Nothing here but crickets</string>
     <string name="detail_drag_description">Drag to reorder</string>
 
@@ -272,6 +277,12 @@
     <item quantity="one">Video</item>
     <item quantity="other">Videos</item>
 </plurals>
+
+    <string name="no_comments">No comments</string>
+    <plurals name="comments">
+        <item quantity="one">%s comment</item>
+        <item quantity="other">%s comments</item>
+    </plurals>
 
     <!-- Missions -->
     <string name="start">Start</string>
@@ -391,6 +402,7 @@
     <string name="could_not_import_all_files">Warning: Could not import all files.</string>
     <string name="override_current_data">This will override your current setup.</string>
     <string name="import_settings">Do you want to also import settings?</string>
+    <string name="error_unable_to_load_comments">Could not load comments</string>
 
     <!-- Kiosk Names -->
     <string name="kiosk">Kiosk</string>
@@ -407,11 +419,12 @@
     <string name="play_queue_stream_detail">Details</string>
     <string name="play_queue_audio_settings">Audio Settings</string>
     <string name="hold_to_append">Hold To enqueue</string>
-    <string name="enqueue_on_background">Enqueue when backgrounded</string>
-    <string name="enqueue_on_popup">Enqueue on new popup</string>
+    <string name="direct_on_background">Play directly in background</string>
+    <string name="enqueue_on_background">Enqueue in the background</string>
+    <string name="enqueue_on_popup">Enqueue in a new popup</string>
     <string name="start_here_on_main">Start playing here</string>
-    <string name="start_here_on_background">Start here when backgrounded</string>
-    <string name="start_here_on_popup">Start here on new popup</string>
+    <string name="start_here_on_background">Start playing in the background</string>
+    <string name="start_here_on_popup">Start playing in a new popup</string>
 
     <!-- Drawer -->
     <string name="drawer_open">Open Drawer</string>
@@ -588,5 +601,6 @@
     <string name="max_retry_desc">Maximum number of attempts before canceling the download</string>
     <string name="pause_downloads_on_mobile">Pause on switching to mobile data</string>
     <string name="pause_downloads_on_mobile_desc">Downloads that can not be paused will be restarted</string>
+    <string name="close">Close</string>
 
 </resources>

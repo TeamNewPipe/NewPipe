@@ -8,7 +8,11 @@ import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -21,13 +25,16 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
-import org.schabi.newpipe.local.BaseLocalListFragment;
 import org.schabi.newpipe.info_list.InfoItemDialog;
+import org.schabi.newpipe.local.BaseLocalListFragment;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
+import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
+import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.ArrayList;
@@ -104,6 +111,12 @@ public class StatisticsPlaylistFragment
         }
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_history, menu);
+    }
+
     ///////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle - Views
     ///////////////////////////////////////////////////////////////////////////
@@ -153,6 +166,53 @@ public class StatisticsPlaylistFragment
                 }
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_history_clear:
+                new AlertDialog.Builder(activity)
+                        .setTitle(R.string.delete_view_history_alert)
+                        .setNegativeButton(R.string.cancel, ((dialog, which) -> dialog.dismiss()))
+                        .setPositiveButton(R.string.delete, ((dialog, which) -> {
+                            final Disposable onDelete = recordManager.deleteWholeStreamHistory()
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(
+                                            howManyDeleted -> Toast.makeText(getContext(),
+                                                    R.string.view_history_deleted,
+                                                    Toast.LENGTH_SHORT).show(),
+                                            throwable -> ErrorActivity.reportError(getContext(),
+                                                    throwable,
+                                                    SettingsActivity.class, null,
+                                                    ErrorActivity.ErrorInfo.make(
+                                                            UserAction.DELETE_FROM_HISTORY,
+                                                            "none",
+                                                            "Delete view history",
+                                                            R.string.general_error)));
+
+                            final Disposable onClearOrphans = recordManager.removeOrphanedRecords()
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(
+                                            howManyDeleted -> {},
+                                            throwable -> ErrorActivity.reportError(getContext(),
+                                                    throwable,
+                                                    SettingsActivity.class, null,
+                                                    ErrorActivity.ErrorInfo.make(
+                                                            UserAction.DELETE_FROM_HISTORY,
+                                                            "none",
+                                                            "Delete search history",
+                                                            R.string.general_error)));
+                            disposables.add(onClearOrphans);
+                            disposables.add(onDelete);
+                        }))
+                        .create()
+                        .show();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -335,7 +395,7 @@ public class StatisticsPlaylistFragment
                     deleteEntry(index);
                     break;
                 case 6:
-                    shareUrl(item.toStreamInfoItem().getName(), item.toStreamInfoItem().getUrl());
+                    ShareUtils.shareUrl(this.getContext(), item.toStreamInfoItem().getName(), item.toStreamInfoItem().getUrl());
                     break;
                 default:
                     break;

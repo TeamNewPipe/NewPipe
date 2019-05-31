@@ -195,8 +195,6 @@
     <string name="audio">Audio</string>
     <string name="retry">Proovi uuesti</string>
     <string name="storage_permission_denied">Pääsuõigused salvestile puuduvad</string>
-    <string name="use_old_player_title">Kasuta vana pleierit</string>
-    <string name="use_old_player_summary">Vana sisseehitatud mediaframework pleier</string>
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>

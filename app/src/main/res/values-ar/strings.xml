@@ -281,7 +281,6 @@
     <string name="show_info">عرض المعلومات</string>
     <string name="controls_add_to_playlist_title">إضافة إلى</string>
     <string name="settings_category_debug_title">تحليل</string>
-    <string name="live">مٌباشِر</string>
     <string name="video_streams_empty">لم يتم العثور على أي بث مرئي</string>
     <string name="audio_streams_empty">لم يتم العثور على أي بث صوتي</string>
     <string name="detail_drag_description">إسحب للقيام بالترتيب</string>
@@ -398,7 +397,6 @@
     <string name="playback_tempo">سرعة الأداء</string>
     <string name="playback_pitch">تردد الصوت</string>
     <string name="unhook_checkbox">نزع الإرتباط (قد يسبب تشويه)</string>
-    <string name="playback_nightcore">تعديل الايقاع Nightcore</string>
     <string name="import_settings">هل تريد أيضا استيراد الإعدادات؟</string>
     <string name="privacy_policy_title">"سياسة الخصوصية في NewPipe "</string>
     <string name="privacy_policy_encouragement">يأخذ مشروع NewPipe خصوصيتك على محمل الجد. لذلك ، لا يجمع التطبيق أي بيانات دون موافقتك.

@@ -119,8 +119,6 @@
     <string name="later">Plus tard</string>
     <string name="disabled">Désactivé</string>
     <string name="info_labels">Quoi :\\nRequête :\\nLangue du contenu :\\nService :\\nHeure GMT :\\nPaquet :\\nVersion :\\nVersion du système :</string>
-    <string name="use_old_player_title">Utiliser l\'ancien lecteur</string>
-    <string name="use_old_player_summary">Ancienne version du lecteur Mediaframework</string>
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="msg_popup_permission">Cette autorisation est nécessaire pour 
@@ -270,7 +268,6 @@
     <string name="video_player">Lecteur vidéo</string>
     <string name="background_player">Lecteur en arrière-plan</string>
     <string name="popup_player">Lecteur en fenêtré</string>
-    <string name="always_ask_player">Toujours demander</string>
     <string name="preferred_player_fetcher_notification_title">Obtention des infos…</string>
     <string name="preferred_player_fetcher_notification_message">Chargement du contenu</string>
     <string name="import_data_title">Importer les données</string>

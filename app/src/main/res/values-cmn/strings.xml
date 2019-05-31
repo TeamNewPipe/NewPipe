@@ -59,7 +59,6 @@
     <string name="dark_theme_title">酷黑</string>
     <string name="black_theme_title">黑色</string>
     <string name="popup_remember_size_pos_title">记住悬浮窗的尺寸与位置</string>
-    <string name="m4a_description">M4A — 更好的音质</string>
     <string name="popup_remember_size_pos_summary">记住上一次悬浮窗的位置以及大小</string>
     <string name="thumbnail_cache_wipe_complete_notice">已清除图像缓存</string>
     <string name="minimize_on_exit_popup_description">最小化悬浮窗播放器</string>
@@ -108,7 +107,6 @@
     <string name="minimize_on_exit_summary">从主视频播放器切换到其他应用时的操作 - %s</string>
     <string name="minimize_on_exit_none_description">没有</string>
     <string name="minimize_on_exit_background_description">最小化后台播放</string>
-    <string name="webm_description">WebM — 自由视频格式</string>
     <string name="use_inexact_seek_title">使用快速粗略定位</string>
     <string name="use_inexact_seek_summary">粗略定位功能允许播放器以略低的精确度为代价换取更快的定位速度</string>
     <string name="download_thumbnail_title">下载缩略图</string>
@@ -243,8 +241,6 @@
     <string name="audio">音频</string>
     <string name="retry">重试</string>
     <string name="storage_permission_denied">手机存储访问权限被拒绝</string>
-    <string name="use_old_player_title">使用旧的播放器</string>
-    <string name="use_old_player_summary">旧的内置 Mediaframework 播放器</string>
     <string name="short_thousand">千</string>
     <string name="short_million">万</string>
     <string name="short_billion">亿</string>

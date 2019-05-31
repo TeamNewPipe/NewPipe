@@ -268,7 +268,6 @@ abrir en modo popup</string>
     <string name="video_player">Reproductor de vídeo</string>
     <string name="background_player">Reproductor de fondo</string>
     <string name="popup_player">Reproductor de popup</string>
-    <string name="always_ask_player">Preguntar siempre</string>
     <string name="preferred_player_fetcher_notification_title">Obteniendo información…</string>
     <string name="preferred_player_fetcher_notification_message">Cargando contenido solicitado</string>
     <string name="import_data_title">Importar base de datos</string>

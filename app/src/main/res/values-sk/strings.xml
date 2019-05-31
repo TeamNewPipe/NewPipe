@@ -125,8 +125,6 @@
     <string name="default_video_format_title">Preferovaný formát videa</string>
     <string name="popup_playing_toast">Prehrávanie v mini okne</string>
     <string name="disabled">Vypnuté</string>
-    <string name="use_old_player_title">Použiť starší prehrávač</string>
-    <string name="use_old_player_summary">Starý zabudovaný prehrávač Mediaframework</string>
     <string name="default_popup_resolution_title">Predvolená veľkosť mini okna</string>
     <string name="show_higher_resolutions_title">Zobraziť vyššie rozlíšenie</string>
     <string name="show_higher_resolutions_summary">Len niektoré zariadenia podporujú videá 2K/4K</string>

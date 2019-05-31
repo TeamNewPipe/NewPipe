@@ -470,5 +470,6 @@
     <string name="error_connect_host">Не удалось соединиться с сервером</string>
     <string name="error_http_no_content">Не удалось получить данные с сервера</string>
     <string name="error_postprocessing_failed">Пост-обработка не удалась</string>
-    <string name="pause_downloads_on_mobile">Приостановить в мобильной сети</string>
+    <string name="pause_downloads_on_mobile">Останавливать скачивание при переходе на мобильную сеть</string>
+    <string name="close">Закрыть</string>
 </resources>
