@@ -114,7 +114,7 @@
         </RelativeLayout>
 
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/playQueue"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -395,7 +395,7 @@
                     tools:text="1:06:29"/>
 
 
-                <android.support.v7.widget.AppCompatSeekBar
+                <androidx.appcompat.widget.AppCompatSeekBar
                     android:id="@+id/playbackSeekBar"
                     style="@style/Widget.AppCompat.SeekBar"
                     android:layout_width="0dp"
