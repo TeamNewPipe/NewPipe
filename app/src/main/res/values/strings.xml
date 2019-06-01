@@ -32,27 +32,21 @@
     <string name="subscription_change_failed">Could not change subscription</string>
     <string name="subscription_update_failed">Could not update subscription</string>
     <string name="show_info">Show info</string>
-
     <string name="tab_main">Main</string>
     <string name="tab_subscriptions">Subscriptions</string>
     <string name="tab_bookmarks">Bookmarked Playlists</string>
     <string name="tab_new">New Tab</string>
     <string name="tab_choose">Choose Tab</string>
-
     <string name="fragment_whats_new">What\'s New</string>
-
     <string name="controls_background_title">Background</string>
     <string name="controls_popup_title">Popup</string>
     <string name="controls_add_to_playlist_title">Add To</string>
-
     <string name="download_path_title">Video download path</string>
     <string name="download_path_summary">Path to store downloaded videos in</string>
     <string name="download_path_dialog_title">Enter download path for videos</string>
-
     <string name="download_path_audio_title">Audio download folder</string>
     <string name="download_path_audio_summary">Downloaded audio is stored here</string>
     <string name="download_path_audio_dialog_title">Enter download path for audio files</string>
-
     <string name="autoplay_by_calling_app_title">Autoplay</string>
     <string name="autoplay_by_calling_app_summary">Plays a video when NewPipe is called from another app</string>
     <string name="default_resolution_title">Default resolution</string>
@@ -82,7 +76,7 @@
     <string name="metadata_cache_wipe_summary">Remove all cached webpage data</string>
     <string name="metadata_cache_wipe_complete_notice">Metadata cache wiped</string>
     <string name="auto_queue_title">Auto-queue next stream</string>
-    <string name="auto_queue_summary">Auto-append a related stream when playing the last stream in a non-repeating queue.</string>
+    <string name="auto_queue_summary">Auto-append a related stream when playing the last stream in a non-repeating queue</string>
     <string name="volume_gesture_control_title">Volume gesture control</string>
     <string name="volume_gesture_control_summary">Use gestures to control the volume of the player</string>
     <string name="brightness_gesture_control_title">Brightness gesture control</string>
@@ -152,22 +146,17 @@
     <string name="always">Always</string>
     <string name="just_once">Just Once</string>
     <string name="file">File</string>
-
     <string name="notification_channel_id" translatable="false">newpipe</string>
     <string name="notification_channel_name">NewPipe Notification</string>
     <string name="notification_channel_description">Notifications for NewPipe background and popup players</string>
-
     <string name="app_update_notification_channel_id" translatable="false">newpipeAppUpdate</string>
     <string name="app_update_notification_channel_name">App Update Notification</string>
     <string name="app_update_notification_channel_description">Notifications for new NewPipe version</string>
-
     <string name="unknown_content">[Unknown]</string>
-
     <string name="toggle_orientation">Toggle Orientation</string>
     <string name="switch_to_background">Switch to Background</string>
     <string name="switch_to_popup">Switch to Popup</string>
     <string name="switch_to_main">Switch to Main</string>
-
     <string name="import_data_title">Import database</string>
     <string name="export_data_title">Export database</string>
     <string name="import_data_summary">Overrides your current history and subscriptions</string>
@@ -212,7 +201,6 @@
     <string name="saved_tabs_invalid_json">Using default tabs, error while reading saved tabs</string>
     <string name="restore_defaults">Restore defaults</string>
     <string name="restore_defaults_confirmation">Do you want to restore the defaults?</string>
-
     <!-- error activity -->
     <string name="sorry_string">Sorry, that should not have happened.</string>
     <string name="guru_meditation" translatable="false">Guru Meditation.</string>
@@ -224,8 +212,6 @@
     <string name="info_labels">What:\\nRequest:\\nContent Lang:\\nService:\\nGMT Time:\\nPackage:\\nVersion:\\nOS version:</string>
     <string name="your_comment">Your comment (in English):</string>
     <string name="error_details_headline">Details:</string>
-
-
     <!-- Content descriptions (for better accessibility) -->
     <string name="list_thumbnail_view_description">Video preview thumbnail</string>
     <string name="detail_thumbnail_view_description">Video preview thumbnail</string>
@@ -240,19 +226,15 @@
     <string name="empty_view_no_videos" translatable="false">@string/no_videos</string>
     <string name="empty_subscription_feed_subtitle">Nothing here but crickets</string>
     <string name="detail_drag_description">Drag to reorder</string>
-
     <string name="err_dir_create">Cannot create download directory \'%1$s\'</string>
     <string name="info_dir_created">Created download directory \'%1$s\'</string>
-
     <string name="video">Video</string>
     <string name="audio">Audio</string>
     <string name="retry">Retry</string>
     <string name="storage_permission_denied">Storage access permission denied</string>
-
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
-
     <!--Zero don't get selected (in some languages) as it is not a "special case" for android-->
     <string name="no_subscribers">No subscribers</string>
     <plurals name="subscribers">
@@ -260,19 +242,16 @@
         <item quantity="other">%s subscribers</item>
     </plurals>
     <string name="subscribers_count_not_available">Subscribers count not available</string>
-
     <string name="no_views">No views</string>
     <plurals name="views">
         <item quantity="one">%s view</item>
         <item quantity="other">%s views</item>
     </plurals>
-
     <string name="no_videos">No videos</string>
     <plurals name="videos">
-    <item quantity="one">Video</item>
-    <item quantity="other">Videos</item>
-</plurals>
-
+        <item quantity="one">Video</item>
+        <item quantity="other">Videos</item>
+    </plurals>
     <!-- Missions -->
     <string name="start">Start</string>
     <string name="pause">Pause</string>
@@ -284,11 +263,9 @@
     <string name="checksum">Checksum</string>
     <string name="dismiss">Dismiss</string>
     <string name="rename">Rename</string>
-
     <!-- Fragment -->
     <string name="add">New mission</string>
     <string name="finish">OK</string>
-
     <!-- Msg -->
     <string name="msg_name">Filename</string>
     <string name="msg_threads">Threads</string>
@@ -303,29 +280,23 @@
     <string name="no_available_dir">Please select an available download folder</string>
     <string name="msg_popup_permission">This permission is needed to\nopen in popup mode</string>
     <string name="one_item_deleted">1 item deleted.</string>
-
     <!-- Checksum types -->
     <string name="md5" translatable="false">MD5</string>
     <string name="sha1" translatable="false">SHA-1</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">reCAPTCHA challenge</string>
     <string name="recaptcha_request_toast">reCAPTCHA challenge requested</string>
-
     <!-- End of GigaGet's Strings -->
-
     <!-- Downloads -->
     <string name="settings_category_downloads_title">Download</string>
     <string name="settings_file_charset_title">Allowed characters in filenames</string>
     <string name="settings_file_replacement_character_summary">Invalid characters are replaced with this value</string>
     <string name="settings_file_replacement_character_title">Replacement character</string>
-
     <string name="charset_letters_and_digits_value" translatable="false">[^\\w\\d]+</string>
     <string name="charset_most_special_characters_value" translatable="false">[\\n\\r|\\?*&lt;":&gt;/']+</string>
     <string name="charset_letters_and_digits">Letters and digits</string>
     <string name="charset_most_special_characters">Most special characters</string>
-
     <string name="toast_no_player">No app installed to play this file</string>
-
     <!-- About -->
     <string name="title_activity_about">About NewPipe</string>
     <string name="action_settings">Settings</string>
@@ -356,8 +327,6 @@
     <string name="app_license_title">NewPipe\'s License</string>
     <string name="app_license">NewPipe is copyleft libre software: You can use, study share and improve it at will. Specifically you can redistribute and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</string>
     <string name="read_full_license">Read license</string>
-
-
     <!-- History -->
     <string name="title_activity_history">History</string>
     <string name="title_history_search">Searched</string>
@@ -372,7 +341,6 @@
     <string name="delete_all_history_prompt">Are you sure you want to delete all items from history?</string>
     <string name="title_last_played">Last Played</string>
     <string name="title_most_played">Most Played</string>
-
     <!-- Content -->
     <string name="main_page_content">Content of main page</string>
     <string name="main_page_content_summary">What tabs are shown on the main page</string>
@@ -391,7 +359,6 @@
     <string name="could_not_import_all_files">Warning: Could not import all files.</string>
     <string name="override_current_data">This will override your current setup.</string>
     <string name="import_settings">Do you want to also import settings?</string>
-
     <!-- Kiosk Names -->
     <string name="kiosk">Kiosk</string>
     <string name="trending">Trending</string>
@@ -399,7 +366,6 @@
     <string name="new_and_hot">New &amp; hot</string>
     <string name="conferences">Conferences</string>
     <string name="service_kiosk_string" translatable="false">%1$s/%2$s</string>
-
     <!-- Play Queue -->
     <string name="title_activity_background_player">Background player</string>
     <string name="title_activity_popup_player">Popup player</string>
@@ -412,28 +378,22 @@
     <string name="start_here_on_main">Start playing here</string>
     <string name="start_here_on_background">Start here when backgrounded</string>
     <string name="start_here_on_popup">Start here on new popup</string>
-
     <!-- Drawer -->
     <string name="drawer_open">Open Drawer</string>
     <string name="drawer_close">Close Drawer</string>
     <string name="youtube" translatable="false">YouTube</string>
     <string name="soundcloud" translatable="false">SoundCloud</string>
     <string name="drawer_header_action_paceholder_text">Something will appear here soon ;D</string>
-
-
     <!-- Preferred player -->
     <string name="preferred_open_action_share_menu_title" translatable="false">NewPipe</string>
     <string name="preferred_open_action_settings_title">Preferred \'open\' action</string>
     <string name="preferred_open_action_settings_summary">Default action when opening content — %s</string>
-
     <string name="video_player">Video player</string>
     <string name="background_player">Background player</string>
     <string name="popup_player">Popup player</string>
     <string name="always_ask_open_action">Always ask</string>
-
     <string name="preferred_player_fetcher_notification_title">Getting info…</string>
     <string name="preferred_player_fetcher_notification_message">"Loading requested content"</string>
-
     <!-- Local Playlist -->
     <string name="create_playlist">New Playlist</string>
     <string name="delete_playlist">Delete</string>
@@ -441,57 +401,42 @@
     <string name="playlist_name_input">Name</string>
     <string name="append_playlist">Add To Playlist</string>
     <string name="set_as_playlist_thumbnail">Set as Playlist Thumbnail</string>
-
     <string name="bookmark_playlist">Bookmark Playlist</string>
     <string name="unbookmark_playlist">Remove Bookmark</string>
-
     <string name="delete_playlist_prompt">Delete this playlist\?</string>
     <string name="playlist_creation_success">Playlist created</string>
     <string name="playlist_add_stream_success">Playlisted</string>
     <string name="playlist_thumbnail_change_success">Playlist thumbnail changed.</string>
     <string name="playlist_delete_failure">Could not delete playlist.</string>
-
     <!-- Players -->
     <string name="caption_none">No Captions</string>
-
     <string name="resize_fit">Fit</string>
     <string name="resize_fill">Fill</string>
     <string name="resize_zoom">Zoom</string>
-
     <string name="caption_auto_generated">Auto-generated</string>
-
     <!-- Caption Settings -->
     <string name="caption_setting_title">Captions</string>
     <string name="caption_setting_description">Modify player caption text scale and background styles. Requires app restart to take effect.</string>
-
     <!-- Debug Settings -->
     <string name="enable_leak_canary_title">Enable LeakCanary</string>
     <string name="enable_leak_canary_summary">Memory leak monitoring may cause the app to become unresponsive when heap dumping</string>
-
     <string name="enable_disposed_exceptions_title">Report out-of-lifecycle errors</string>
     <string name="enable_disposed_exceptions_summary">Force reporting of undeliverable Rx exceptions outside of fragment or activity lifecycle after disposal</string>
-
     <!-- Subscriptions import/export -->
     <string name="import_export_title">Import/export</string>
     <string name="import_title">Import</string>
     <string name="import_from">Import from</string>
     <string name="export_to">Export to</string>
-
     <string name="import_ongoing">Importing…</string>
     <string name="export_ongoing">Exporting…</string>
-
     <string name="import_file_title">Import file</string>
     <string name="previous_export">Previous export</string>
-
     <string name="subscriptions_import_unsuccessful">Could not import subscriptions</string>
     <string name="subscriptions_export_unsuccessful">Could not export subscriptions</string>
-
     <string name="import_youtube_instructions">Import YouTube subscriptions by downloading the export file:\n\n1. Go to this URL: %1$s\n2. Log in when asked\n3. A download should start (that\'s the export file) </string>
     <string name="import_soundcloud_instructions">Import a SoundCloud profile by typing either the URL or your ID:\n\n1. Enable \"desktop mode\" in a web-browser (the site is not available for mobile devices)\n2. Go to this URL: %1$s\n3. Log in when asked\n4. Copy the profile URL you were redirected to.</string>
     <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/yourid</string>
-
     <string name="import_network_expensive_warning">Keep in mind this operation can be network expensive.\n\nDo you want to continue?</string>
-
     <!-- Playback Parameters -->
     <string name="playback_speed_control">Playback Speed Controls</string>
     <string name="playback_tempo">Tempo</string>
@@ -500,12 +445,10 @@
     <string name="skip_silence_checkbox">Fast-forward during silence</string>
     <string name="playback_step">Step</string>
     <string name="playback_reset">Reset</string>
-
     <!-- GDPR dialog -->
     <string name="start_accept_privacy_policy">In order to comply with the European General Data Protection Regulation (GDPR), we herby draw your attention to NewPipe\'s privacy policy. Please read it carefully.\nYou must accept it to send us the bug report.</string>
     <string name="accept">Accept</string>
     <string name="decline">Decline</string>
-
     <!-- Limit mobile data usage  -->
     <string name="limit_data_usage_none_description">No limit</string>
     <string name="limit_mobile_data_usage_title">Limit resolution when using mobile data</string>
@@ -521,51 +464,39 @@
         <item>240p</item>
         <item>144p</item>
     </string-array>
-
     <!-- Updates Settings -->
     <string name="updates_setting_title">Updates</string>
     <string name="updates_setting_description">Show a notification to prompt app update when a new version is available</string>
-
     <!-- Minimize to exit action -->
     <string name="minimize_on_exit_title">Minimize on app switch</string>
     <string name="minimize_on_exit_summary">Action when switching to other app from main video player — %s</string>
     <string name="minimize_on_exit_none_description">None</string>
     <string name="minimize_on_exit_background_description">Minimize to background player</string>
     <string name="minimize_on_exit_popup_description">Minimize to popup player</string>
-	  <string name="list_view_mode">List view mode</string>
+    <string name="list_view_mode">List view mode</string>
     <string name="list">List</string>
     <string name="grid">Grid</string>
-	  <string name="auto">Auto</string>
+    <string name="auto">Auto</string>
     <string name="switch_view">Switch View</string>
-
     <!-- App update notification -->
     <string name="app_update_notification_content_title">NewPipe Update Available!</string>
     <string name="app_update_notification_content_text">Tap to download</string>
-
-
-
     <string name="missions_header_finished">Finished</string>
     <string name="missions_header_pending">In queue</string>
-
     <string name="paused">paused</string>
     <string name="queued">queued</string>
     <string name="post_processing">post-processing</string>
-
     <string name="enqueue">Queue</string>
-
     <string name="permission_denied">Action denied by the system</string>
-
     <!-- download notifications -->
     <string name="download_failed">Download failed</string>
     <string name="download_finished">Download finished</string>
     <string name="download_finished_more">%s downloads finished</string>
-
     <!-- dialog about existing downloads -->
     <string name="generate_unique_name">Generate unique name</string>
     <string name="overwrite">Overwrite</string>
     <string name="overwrite_warning">A downloaded file with this name already exists</string>
     <string name="download_already_running">There is a download in progress with this name</string>
-
     <!-- message dialog about download error -->
     <string name="show_error">Show error</string>
     <string name="label_code">Code</string>
@@ -580,7 +511,6 @@
     <string name="error_http_requested_range_not_satisfiable">Requested range not satisfiable</string>
     <string name="error_http_not_found">Not found</string>
     <string name="error_postprocessing_failed">Post-processing failed</string>
-
     <string name="clear_finished_download">Clear finished downloads</string>
     <string name="msg_pending_downloads">Continue your %s pending transfers from Downloads</string>
     <string name="stop">Stop</string>
@@ -588,5 +518,4 @@
     <string name="max_retry_desc">Maximum number of attempts before canceling the download</string>
     <string name="pause_downloads_on_mobile">Pause on switching to mobile data</string>
     <string name="pause_downloads_on_mobile_desc">Downloads that can not be paused will be restarted</string>
-
 </resources>
