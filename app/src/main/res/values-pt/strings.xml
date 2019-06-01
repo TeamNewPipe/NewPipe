@@ -344,7 +344,7 @@
     <string name="playback_speed_control">Controlos para velocidade de reprodução</string>
     <string name="playback_tempo">Ritmo</string>
     <string name="clear_views_history_title">Limpar histórico de visualizações</string>
-    <string name="auto_queue_summary">Adicionar automaticamente à fila uma emissão relacionada se em filas não repetíveis.</string>
+    <string name="auto_queue_summary">Auto-aplicar uma emissão relacionada ao reproduzir a último emissão numa fila não repetitiva</string>
     <string name="show_hold_to_append_title">Mostrar dica \"Toque longo para colocar na fila\"</string>
     <string name="show_hold_to_append_summary">Mostrar dica quando o botão de fundo ou de \'popup\' for premido na página de detalhes do vídeo</string>
     <string name="channels">Canais</string>
