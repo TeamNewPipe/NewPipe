@@ -267,8 +267,8 @@
     <string name="settings_category_debug_title">ניפוי שגיאות</string>
     <string name="always">תמיד</string>
     <string name="just_once">חד פעמי</string>
-    <string name="import_data_title">ייבוא מסד נתונים</string>
-    <string name="export_data_title">ייצוא מסד נתונים</string>
+    <string name="import_data_title">ייבוא מאגר מידע</string>
+    <string name="export_data_title">ייצוא מאגר מידע</string>
     <string name="external_player_unsupported_link_type">נגנים חיצוניים לא תומכים בסוגי קישורים כאלה</string>
     <string name="invalid_url_toast">כתובת שגויה</string>
     <string name="file">קובץ</string>
@@ -285,7 +285,7 @@
     <string name="search_history_deleted">היסטוריית החיפוש נמחקה.</string>
     <string name="invalid_file">הקובץ אינו קיים או שחסרה הרשאה לקרוא אותו או לכתוב אליו</string>
     <string name="file_name_empty_error">שם הקובץ אינו יכול להיות ריק</string>
-    <string name="detail_drag_description">ניתן לסדר מחדש בגרירה</string>
+    <string name="detail_drag_description">גרור לשינוי הסדר</string>
     <string name="create">יצירה</string>
     <string name="delete_one">למחוק אחד</string>
     <string name="delete_all">למחוק הכול</string>
