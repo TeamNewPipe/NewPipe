@@ -320,7 +320,7 @@
     <string name="caption_auto_generated">נוצרו אוטומטית</string>
     <string name="import_export_title">ייבוא/ייצוא</string>
     <string name="import_title">יבא</string>
-    <string name="import_from">יבא מ</string>
+    <string name="import_from">ייבוא מ־</string>
     <string name="export_to">יצא ל</string>
     <string name="import_ongoing">מתבצע ייבוא…</string>
     <string name="export_ongoing">מתבצע ייצוא…</string>
