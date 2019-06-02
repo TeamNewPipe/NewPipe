@@ -66,14 +66,21 @@ NewPipe does not use any Google framework libraries, nor the YouTube API. Websit
 * Enqueue videos
 * Local playlists
 * Subtitles
-* Multi-service support (e.g. SoundCloud \[beta\])
 * Livestream support
+* Show comments
 
 ### Coming Features
 
 * Cast to UPnP and Cast
-* Show comments
 * … and many more
+
+### Supported Services
+
+NewPipe supports multiple services. Our [docs](https://teamnewpipe.github.io/documentation/) provide more info on how a new service can be added to the app and the extractor. Please get in touch with us if you intend to add a new one. Currently supported services are:
+
+* YouTube
+* SoundCloud \[beta\]
+* media.ccc.de \[beta\]
 
 ## Updates
 When a change to the NewPipe code occurs (due to either adding features or bug fixing), eventually a release will occur. These are in the format x.xx.x . In order to get this new version, you can:
