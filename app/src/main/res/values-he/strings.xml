@@ -98,7 +98,7 @@
     <string name="error_snackbar_action">דיווח</string>
     <string name="what_device_headline">מידע:</string>
     <string name="what_happened_headline">מה קרה:</string>
-    <string name="info_labels">מה:\\nבקשה:\\nשפת התוכן:\\nשירות:\\nזמן גריניץ\'GMT:\\nחבילה:\\nגרסה:\\nגרסת מערכת ההפעלה:</string>
+    <string name="info_labels">מה:\\nבקשה:\\nשפת התוכן:\\nשירות:\\nשעון גריניץ׳:\\nחבילה:\\nגרסה:\\nגרסת מערכת ההפעלה:</string>
     <string name="subscribe_button_title">עריכת מינוי</string>
     <string name="subscribed_button_title">נרשמת</string>
     <string name="channel_unsubscribed">ביטול מינוי לערוץ</string>
@@ -267,8 +267,8 @@
     <string name="settings_category_debug_title">ניפוי שגיאות</string>
     <string name="always">תמיד</string>
     <string name="just_once">חד פעמי</string>
-    <string name="import_data_title">ייבוא מאגר מידע</string>
-    <string name="export_data_title">ייצוא מאגר מידע</string>
+    <string name="import_data_title">ייבוא מסד נתונים</string>
+    <string name="export_data_title">ייצוא מסד נתונים</string>
     <string name="external_player_unsupported_link_type">נגנים חיצוניים לא תומכים בסוגי קישורים כאלה</string>
     <string name="invalid_url_toast">כתובת שגויה</string>
     <string name="file">קובץ</string>
