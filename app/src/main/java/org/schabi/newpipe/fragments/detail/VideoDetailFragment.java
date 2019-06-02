@@ -86,6 +86,7 @@ import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
+import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.StreamItemAdapter;
 import org.schabi.newpipe.util.StreamItemAdapter.StreamSizeWrapper;
 
@@ -122,6 +123,7 @@ public class VideoDetailFragment
     private boolean autoPlayEnabled;
     private boolean showRelatedStreams;
     private boolean showComments;
+    private String selectedTabTag;
 
     @State
     protected int serviceId = Constants.NO_SERVICE_ID;
@@ -213,6 +215,9 @@ public class VideoDetailFragment
         showComments = PreferenceManager.getDefaultSharedPreferences(activity)
                 .getBoolean(getString(R.string.show_comments_key), true);
 
+        selectedTabTag = PreferenceManager.getDefaultSharedPreferences(activity)
+                .getString(getString(R.string.stream_info_selected_tab_key), COMMENTS_TAB_TAG);
+
         PreferenceManager.getDefaultSharedPreferences(activity)
                 .registerOnSharedPreferenceChangeListener(this);
     }
@@ -226,6 +231,10 @@ public class VideoDetailFragment
     public void onPause() {
         super.onPause();
         if (currentWorker != null) currentWorker.dispose();
+        PreferenceManager.getDefaultSharedPreferences(getContext())
+                .edit()
+                .putString(getString(R.string.stream_info_selected_tab_key), pageAdapter.getItemTitle(viewPager.getCurrentItem()))
+                .apply();
     }
 
     @Override
@@ -539,7 +548,7 @@ public class VideoDetailFragment
                     }
                     break;
                 case 3:
-                    shareUrl(item.getName(), item.getUrl());
+                    ShareUtils.shareUrl(this.getContext(), item.getName(), item.getUrl());
                     break;
                 default:
                     break;
@@ -628,13 +637,13 @@ public class VideoDetailFragment
         switch (id) {
             case R.id.menu_item_share: {
                 if (currentInfo != null) {
-                    shareUrl(currentInfo.getName(), currentInfo.getOriginalUrl());
+                    ShareUtils.shareUrl(this.getContext(), currentInfo.getName(), currentInfo.getOriginalUrl());
                 }
                 return true;
             }
             case R.id.menu_item_openInBrowser: {
                 if (currentInfo != null) {
-                    openUrlInBrowser(currentInfo.getOriginalUrl());
+                    ShareUtils.openUrlInBrowser(this.getContext(), currentInfo.getOriginalUrl());
                 }
                 return true;
             }
@@ -815,6 +824,9 @@ public class VideoDetailFragment
     }
 
     private void initTabs() {
+        if (pageAdapter.getCount() != 0) {
+            selectedTabTag = pageAdapter.getItemTitle(viewPager.getCurrentItem());
+        }
         pageAdapter.clearAllItems();
 
         if(shouldShowComments()){
@@ -835,6 +847,8 @@ public class VideoDetailFragment
         if(pageAdapter.getCount() < 2){
             tabLayout.setVisibility(View.GONE);
         }else{
+            int position = pageAdapter.getItemPositionByTitle(selectedTabTag);
+            if(position != -1) viewPager.setCurrentItem(position);
             tabLayout.setVisibility(View.VISIBLE);
         }
     }

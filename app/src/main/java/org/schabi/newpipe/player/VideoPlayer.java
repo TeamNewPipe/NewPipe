@@ -297,7 +297,6 @@ public abstract class VideoPlayer extends BasePlayer
             return true;
         });
 
-        // Add all available captions
         for (int i = 0; i < availableLanguages.size(); i++) {
             final String captionLanguage = availableLanguages.get(i);
             MenuItem captionItem = captionPopupMenu.getMenu().add(captionPopupMenuGroupId,
@@ -305,16 +304,15 @@ public abstract class VideoPlayer extends BasePlayer
             captionItem.setOnMenuItemClickListener(menuItem -> {
                 final int textRendererIndex = getRendererIndex(C.TRACK_TYPE_TEXT);
                 if (textRendererIndex != RENDERER_UNAVAILABLE) {
+                    trackSelector.setPreferredTextLanguage(captionLanguage);
                     trackSelector.setParameters(trackSelector.buildUponParameters()
-                            .setRendererDisabled(textRendererIndex, false)
-                            .setPreferredTextLanguage(captionLanguage));
+                            .setRendererDisabled(textRendererIndex, false));
                 }
                 return true;
             });
         }
         captionPopupMenu.setOnDismissListener(this);
     }
-
 
     private void updateStreamRelatedViews() {
         if (getCurrentMetadata() == null) return;
