@@ -443,7 +443,8 @@
     <string name="download_finished_more">%s завантажень завершено</string>
     <string name="generate_unique_name">Згенерувати унікальну назву</string>
     <string name="overwrite">Перезаписати</string>
-    <string name="overwrite_warning">Завантажений файл з таким ім\'ям вже існує</string>
+    <string name="overwrite_unrelated_warning">Файл з такою назвою вже існує</string>
+    <string name="overwrite_finished_warning">Завантажений файл з такою назвою вже існує</string>
     <string name="download_already_running">Файл з такою назвою вже завантажується</string>
     <string name="show_error">Показати помилку</string>
     <string name="label_code">Код</string>

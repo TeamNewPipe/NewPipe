@@ -450,7 +450,8 @@
     <string name="download_finished_more">%s 다운로드 완료됨</string>
     <string name="generate_unique_name">별개의 이름 생성</string>
     <string name="overwrite">덮어쓰기</string>
-    <string name="overwrite_warning">해당 이름을 가진 다운로드된 파일이 이미 존재합니다</string>
+    <string name="overwrite_unrelated_warning">이 이름을 가진 파일이 이미 있습니다.</string>
+    <string name="overwrite_finished_warning">이 이름을 가진 다운로드 된 파일이 이미 있습니다.</string>
     <string name="download_already_running">해당 이름을 가진 다운로드가 이미 진행중입니다</string>
     <string name="show_error">오류 표시</string>
     <string name="label_code">코드</string>

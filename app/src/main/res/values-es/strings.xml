@@ -159,7 +159,7 @@ abrir en modo popup</string>
     <string name="contribution_encouragement">Si tienes ideas de; traducción, cambios de diseño, limpieza de código o cambios de código realmente fuertes—la ayuda siempre es bienvenida. Cuanto más se hace, mejor se pone!</string>
     <string name="read_full_license">Leer licencia</string>
     <string name="contribution_title">Contribuir</string>
-<string name="subscribe_button_title">Suscribirse</string>
+    <string name="subscribe_button_title">Suscribirse</string>
     <string name="subscribed_button_title">Suscrito</string>
     <string name="channel_unsubscribed">Canal no suscrito</string>
     <string name="subscription_change_failed">No se pudo cambiar la suscripción</string>
@@ -211,8 +211,8 @@ abrir en modo popup</string>
         <item quantity="other">Vídeos</item>
     </plurals>
     <string name="item_deleted">Elemento eliminado</string>
-<string name="delete_item_search_history">¿Desea eliminar este elemento del historial de búsqueda?</string>
-<string name="main_page_content">Contenido de la página principal</string>
+    <string name="delete_item_search_history">¿Desea eliminar este elemento del historial de búsqueda?</string>
+    <string name="main_page_content">Contenido de la página principal</string>
     <string name="blank_page_summary">Página en blanco</string>
     <string name="kiosk_page_summary">Página del kiosco</string>
     <string name="subscription_page_summary">Página de suscripción</string>
@@ -224,7 +224,7 @@ abrir en modo popup</string>
     <string name="kiosk">Kiosco</string>
     <string name="trending">Tendencias</string>
     <string name="top_50">Top 50</string>
-<string name="show_hold_to_append_summary">Mostrar sugerencia cuando se presiona el botón de segundo plano o popup en la página de detalles del vídeo</string>
+    <string name="show_hold_to_append_summary">Mostrar sugerencia cuando se presiona el botón de segundo plano o popup en la página de detalles del vídeo</string>
     <string name="background_player_append">En cola en el reproductor de fondo</string>
     <string name="popup_playing_append">En cola en el reproductor popup</string>
     <string name="play_all">Reproducir todo</string>
@@ -242,7 +242,7 @@ abrir en modo popup</string>
     <string name="start_here_on_main">Comenzar a reproducir aquí</string>
     <string name="start_here_on_background">Comenzar aquí en segundo plano</string>
     <string name="start_here_on_popup">Comenzar aquí en popup</string>
-<string name="show_hold_to_append_title">Mostrar consejo \"Mantener para poner en la cola\"</string>
+    <string name="show_hold_to_append_title">Mostrar consejo \"Mantener para poner en la cola\"</string>
     <string name="new_and_hot">Nuevo y popular</string>
     <string name="hold_to_append">Mantener para poner en la cola</string>
     <string name="donation_title">Donar</string>
@@ -270,7 +270,7 @@ abrir en modo popup</string>
     <string name="popup_player">Reproductor de popup</string>
     <string name="preferred_player_fetcher_notification_title">Obteniendo información…</string>
     <string name="preferred_player_fetcher_notification_message">Cargando contenido solicitado</string>
-<string name="import_data_title">Importar base de datos</string>
+    <string name="import_data_title">Importar base de datos</string>
     <string name="export_data_title">Exportar base de datos</string>
     <string name="import_data_summary">Reemplazará su historial actual y sus suscripciones</string>
     <string name="export_data_summary">Exportar historial, suscripciones y listas de reproducción</string>
@@ -404,7 +404,7 @@ abrir en modo popup</string>
     <string name="playlists">Listas de reproducción</string>
     <string name="tracks">Pistas</string>
     <string name="missions_header_finished">Finalizadas</string>
-    <string name="missions_header_pending">En cola</string>
+    <string name="missions_header_pending">Pendientes</string>
     <string name="paused">pausado</string>
     <string name="queued">en cola</string>
     <string name="post_processing">post-procesado</string>
@@ -423,12 +423,11 @@ abrir en modo popup</string>
     <string name="overwrite_failed">No se puede sobrescribir el archivo</string>
     <string name="download_already_running">Hay una descarga en curso con este nombre</string>
     <string name="download_already_pending">Hay una descarga pendiente con este nombre</string>
-
     <string name="grid">Mostrar como grilla</string>
     <string name="list">Mostrar como lista</string>
     <string name="clear_finished_download">Limpiar descargas finalizadas</string>
-    <string name="confirm_prompt">¿Estas seguro?</string>
     <string name="msg_pending_downloads">Tienes %s descargas pendientes, ve a Descargas para continuarlas</string>
+    <string name="confirm_prompt">¿Estas seguro?</string>
     <string name="stop">Detener</string>
     <string name="max_retry_msg">Intentos máximos</string>
     <string name="max_retry_desc">Cantidad máxima de intentos antes de cancelar la descarga</string>
@@ -459,11 +458,7 @@ abrir en modo popup</string>
     <string name="error_progress_lost">Se perdió el progreso porque el archivo fue eliminado</string>
     <string name="error_timeout">Tiempo de espera excedido</string>
 
-    <string name="download_to_sdcard_error_message">No es posible descargar a una tarjeta SD externa. \¿Restablecer la ubicación de la carpeta de descarga\?</string>
-
     <string name="download_pick_path">Seleccione los directorios de descarga</string>
-    <string name="missions_header_pending">Pendiente</string>
-
     <string name="downloads_storage_ask_title">Preguntar dónde descargar</string>
     <string name="downloads_storage_ask_summary">Se preguntará dónde guardar cada descarga</string>
     <string name="downloads_storage_ask_summary_kitkat">Se preguntará dónde guardar cada descarga.\nHabilita esta opción si quieres descargar en la tarjeta SD externa</string>
@@ -480,7 +475,7 @@ abrir en modo popup</string>
     <string name="app_update_notification_channel_name">Notificación de actualización de la aplicación</string>
     <string name="app_update_notification_channel_description">Notificaciones para nueva versión de NewPipe</string>
     <string name="download_to_sdcard_error_title">Almacenamiento externo no disponible</string>
-    <string name="download_to_sdcard_error_message">Todavía no es posible descargar a una tarjeta SD externa. ¿Restablecer la ubicación de la carpeta de descarga\?</string>
+    <string name="download_to_sdcard_error_message">No es posible descargar a una tarjeta SD externa. \¿Restablecer la ubicación de la carpeta de descarga\?</string>
     <string name="saved_tabs_invalid_json">Usando las pestañas por defecto, error al leer las pestañas guardadas</string>
     <string name="restore_defaults">Restaurar valores por defecto</string>
     <string name="restore_defaults_confirmation">¿Quieres restaurar los valores por defecto\?</string>

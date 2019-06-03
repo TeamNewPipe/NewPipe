@@ -446,7 +446,8 @@
     <string name="download_failed">Ha fallat la baixada</string>
     <string name="download_finished">Baixada finalitzada</string>
     <string name="download_finished_more">%s baixades finalitzades</string>
-    <string name="overwrite_warning">Ja existeix un fitxer baixat amb aquest nom</string>
+    <string name="overwrite_finished_warning">Ja existeix un fitxer baixat amb aquest nom</string>
+    <string name="overwrite_unrelated_warning">Ja existeix un fitxer amb aquest nom</string>
     <string name="download_already_running">Hi ha una baixada en curs amb aquest nom</string>
     <string name="error_ssl_exception">Ha fallat la connexió segura</string>
     <string name="error_unknown_host">No s\'ha pogut trobar el servidor</string>

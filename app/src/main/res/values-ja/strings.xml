@@ -432,7 +432,8 @@
     <string name="download_finished_more">%s 件のダウンロード終了</string>
     <string name="generate_unique_name">一意の名前を生成します</string>
     <string name="overwrite">上書き</string>
-    <string name="overwrite_warning">同じ名前のファイルが既に存在します</string>
+    <string name="overwrite_unrelated_warning">この名前のファイルは既に存在します</string>
+    <string name="overwrite_finished_warning">この名前のダウンロードファイルは既に存在します</string>
     <string name="download_already_running">同じ名前を持つダウンロードが既に進行中です</string>
     <string name="show_error">エラーを表示する</string>
     <string name="label_code">コード</string>
@@ -464,6 +465,5 @@
     <string name="msg_pending_downloads">ダウンロードから %s の保留中の転送を続行します</string>
     <string name="pause_downloads_on_mobile">モバイルデータ通信に切り替え時に休止</string>
     <string name="pause_downloads_on_mobile_desc">休止できないダウンロードが再開されます</string>
-    <string name="missions_header_pending">保留中</string>
     <string name="error_timeout">接続タイムアウト</string>
 </resources>

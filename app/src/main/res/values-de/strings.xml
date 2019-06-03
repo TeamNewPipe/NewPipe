@@ -448,8 +448,8 @@
     <string name="download_finished_more">%s heruntergeladen</string>
     <string name="generate_unique_name">Eindeutigen Namen erzeugen</string>
     <string name="overwrite">Überschreiben</string>
-    <string name="overwrite_finished_warning">Eine heruntergeladene Datei dieses Namens existiert bereits</string>
-    <string name="download_already_running">Eine Datei dieses Namens wird gerade heruntergeladen</string>
+    <string name="overwrite_unrelated_warning">Eine Datei mit diesem Namen existiert bereits</string>
+    <string name="download_already_running">Eine heruntergeladene Datei mit diesem Namen existiert bereits</string>
     <string name="show_error">Fehler anzeigen</string>
     <string name="label_code">Code</string>
     <string name="error_file_creation">Die Datei kann nicht erstellt werden</string>
