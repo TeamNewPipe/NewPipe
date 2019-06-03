@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
             app:elevation="0dp"
-            app:layout_behavior="android.support.design.widget.FlingBehavior">
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
