@@ -333,7 +333,7 @@
     <string name="drawer_header_action_paceholder_text">Quelque chose va bien bientôt arriver ;D</string>
     <string name="controls_download_desc">Télécharger le fichier de flux</string>
     <string name="auto_queue_title">Vidéo suivante en file d\'attente</string>
-    <string name="auto_queue_summary">Ajout automatique d\'un morceau suggéré lors de la lecture du dernier morceau dans une file d\'attente non bouclée.</string>
+    <string name="auto_queue_summary">Ajout automatique d\'un morceau suggéré lors de la lecture du dernier morceau dans une file d\'attente non bouclée</string>
     <string name="settings_category_debug_title">Débogage</string>
     <string name="resize_fill">Remplir</string>
     <string name="caption_auto_generated">Générés automatiquement</string>
@@ -474,4 +474,5 @@
     <string name="saved_tabs_invalid_json">Utilisation des onglets par défaut, erreur lors de la lecture des onglets enregistrés</string>
     <string name="error_http_unsupported_range">Le serveur n\'accepte pas les téléchargements multi-threads, réessayez avec @string/msg_threads = 1</string>
     <string name="msg_pending_downloads">Continuer vos %s transferts en attente depuis Téléchargement</string>
+    <string name="error_http_requested_range_not_satisfiable">Champs d’en-tête de requête « range » incorrect</string>
 </resources>
