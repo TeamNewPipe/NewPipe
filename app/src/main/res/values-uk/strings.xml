@@ -324,7 +324,7 @@
     <string name="use_inexact_seek_title">Використовувати швидкий неточний пошук</string>
     <string name="use_inexact_seek_summary">Неточний пошук дозволяє програвачеві рухатися позиціями швидше, проте з меншою точністю</string>
     <string name="auto_queue_title">Автоматично додавати в чергу наступний запис</string>
-    <string name="auto_queue_summary">Автоматично додавати пов\'язаний запис під час відтворення останнього у черзі без повторювань.</string>
+    <string name="auto_queue_summary">Автоматично додавати пов\'язаний запис під час відтворення останнього у черзі без повторювань</string>
     <string name="file">Файл</string>
     <string name="invalid_directory">Такої теки не існує</string>
     <string name="invalid_source">Такого джерела файлу/контенту не існує</string>

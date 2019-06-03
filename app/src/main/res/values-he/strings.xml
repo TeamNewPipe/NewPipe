@@ -307,7 +307,7 @@
     <string name="rename_playlist">שינוי שם</string>
     <string name="playlist_name_input">שם</string>
     <string name="append_playlist">הוספה לרשימת נגינה</string>
-    <string name="bookmark_playlist">הוספה רשימת השמעה לסימניות</string>
+    <string name="bookmark_playlist">הוספת רשימת נגינה לסימניות</string>
     <string name="unbookmark_playlist">הסרת סימנייה</string>
     <string name="delete_playlist_prompt">למחוק רשימת נגינה זו\?</string>
     <string name="playlist_creation_success">רשימת הנגינה נוצרה</string>
@@ -339,7 +339,7 @@
     <string name="download_thumbnail_summary">כיבוי האפשרות מונע את טעינת התמונות הממוזערות, חוסך בתקשורת נתונים ובניצולת הזיכרון. שינויים באפשרות זו מוחקים את המטמון בזיכרון ובכונן.</string>
     <string name="metadata_cache_wipe_summary">הסרת כל נתוני העמודים שבמטמון</string>
     <string name="auto_queue_title">הוספת התזרים הבא לרשימת הנגינה אוטומטית</string>
-    <string name="auto_queue_summary">להוסיף אוטומטית תזרים דומה בעת נגינת התזרים האחרון בתור שאינו מחזורי.</string>
+    <string name="auto_queue_summary">להוסיף אוטומטית תזרים דומה בעת נגינת התזרים האחרון בתור שאינו מחזורי</string>
     <string name="toggle_orientation">החלפת כיווניות</string>
     <string name="switch_to_main">העברה לראשי</string>
     <string name="import_data_summary">משכתב את ההיסטוריה והמינויים הנוכחיים שלך</string>
@@ -362,7 +362,7 @@
 \nמדיניות הפרטיות של NewPipe מסבירה בפרטי פרטים אילו נתונים נשלחים ומאוחסנים בעת שליחת דיווח על תקלה.</string>
     <string name="read_privacy_policy">הצגת מדיניות הפרטיות</string>
     <string name="app_license">NewPipe הוא יישומון חופשי בהתאם לרישיון קופילפט: מותר לך להשתמש, לחקור, לשתף ולשפר בכל דרך שנראית לך. במיוחד מותר לך להפיץ מחדש ו/או לשנות תחת תנאי הרישיון הציבורי הכללי של GNU כפי שמופץ על ידי קרן התכנה החופשית, בין אם גרסה 3 של הרישיון או (לשיקולך) כל גרסה עדכנית יותר שלו.</string>
-    <string name="title_last_played">נוגן אחרון</string>
+    <string name="title_last_played">התנגנו אחרונים</string>
     <string name="title_most_played">הכי נצפים</string>
     <string name="could_not_import_all_files">אזהרה: ייבוא חלק מהקבצים נכשל.</string>
     <string name="override_current_data">פעולה זו תדרוס את ההגדרות הקיימות.</string>
