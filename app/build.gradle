@@ -53,7 +53,9 @@ ext {
 }
 
 dependencies {
-    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0')
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
+        exclude module: 'support-annotations'
+    })
 
     implementation 'com.github.TeamNewPipe:NewPipeExtractor:aa4f03a'
 
