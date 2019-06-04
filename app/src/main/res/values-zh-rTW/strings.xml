@@ -30,7 +30,7 @@
     <string name="dark_theme_title">灰暗</string>
     <string name="light_theme_title">明亮</string>
     <string name="download_dialog_title">下載</string>
-    <string name="next_video_title">下一部</string>
+    <string name="next_video_title">接下來</string>
     <string name="show_next_and_similar_title">顯示「下一部」與「相關」的影片</string>
     <string name="url_not_supported_toast">不支援此網址</string>
     <string name="content_language_title">預設內容語言</string>
@@ -261,11 +261,11 @@
     <string name="play_queue_remove">移除</string>
     <string name="play_queue_stream_detail">詳細資訊</string>
     <string name="play_queue_audio_settings">音訊設定</string>
-    <string name="enqueue_on_background">當背景時佇列</string>
-    <string name="enqueue_on_popup">在新懸浮視窗時佇列</string>
+    <string name="enqueue_on_background">在背景加入佇列</string>
+    <string name="enqueue_on_popup">在新的彈出式視窗中加入佇列</string>
     <string name="start_here_on_main">從這裡開始播放</string>
-    <string name="start_here_on_background">當背景時從這裡開始</string>
-    <string name="start_here_on_popup">懸浮視窗時從這裡開始</string>
+    <string name="start_here_on_background">在背景開始播放</string>
+    <string name="start_here_on_popup">在新彈出式視窗中開始播放</string>
     <string name="hold_to_append">長按以新增至佇列</string>
     <string name="donation_encouragement">NewPipe 由志願者所開發，他們耗費時間務求為您帶來最佳體驗。現在是時候回過頭來，讓我們的開發人員能夠在使 NewPipe 更臻完美的同時，享受一杯咖啡。</string>
     <string name="drawer_open">打開抽屜</string>
@@ -469,4 +469,14 @@
     <string name="pause_downloads_on_mobile_desc">無法暫停的下載將會重新開始</string>
     <string name="events">事件</string>
     <string name="conferences">會議</string>
+    <string name="show_comments_title">顯示留言</string>
+    <string name="show_comments_summary">停用以停止顯示留言</string>
+    <string name="autoplay_title">自動播放</string>
+    <plurals name="comments">
+        <item quantity="other">留言</item>
+    </plurals>
+    <string name="no_comments">沒有留言</string>
+    <string name="error_unable_to_load_comments">無法載入留言</string>
+    <string name="direct_on_background">直接在背景播放</string>
+    <string name="close">關閉</string>
 </resources>
