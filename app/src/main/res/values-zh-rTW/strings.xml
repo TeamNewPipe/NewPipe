@@ -327,7 +327,7 @@
     <string name="use_inexact_seek_title">使用粗略但快速的尋找</string>
     <string name="use_inexact_seek_summary">粗略的尋找能讓播放器以降低的精確度更快找到影片的進度位置</string>
     <string name="auto_queue_title">自動將下一部影片新增至佇列</string>
-    <string name="auto_queue_summary">在非重複播放佇列中最後一個串流開始播放時，自動新增相關串流。</string>
+    <string name="auto_queue_summary">在非重複播放佇列中最後一個串流開始播放時，自動新增相關串流</string>
     <string name="live_sync">同步</string>
     <string name="file">檔案</string>
     <string name="invalid_directory">無效的資料夾</string>
