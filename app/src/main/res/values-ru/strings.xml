@@ -482,5 +482,5 @@
     </plurals>
     <string name="no_comments">Нет комментариев</string>
     <string name="error_unable_to_load_comments">Не удалось загрузить комментарии</string>
-    <string name="direct_on_background">Играть вне очереди в фоне</string>
+    <string name="direct_on_background">Играть сейчас в фоне</string>
 </resources>
