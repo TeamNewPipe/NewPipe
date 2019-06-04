@@ -325,7 +325,7 @@
     <string name="use_inexact_seek_title">Hızlı isabetsiz konumlama kullan</string>
     <string name="use_inexact_seek_summary">İsabetsiz konumlama, oynatıcının daha düşük hassasiyetle daha hızlı pozisyon aramasını sağlar</string>
     <string name="auto_queue_title">Sonraki akışı otomatik kuyruğa ekle</string>
-    <string name="auto_queue_summary">Yinelenmeyen bir kuyruktaki son akışı oynatırken ilgili akışı otomatik ekler.</string>
+    <string name="auto_queue_summary">Yinelenmeyen bir kuyruktaki son akışı oynatırken, ilgili bir akışı kendiliğinden ekle</string>
     <string name="live_sync">EŞZAMANLA</string>
     <string name="file">Dosya</string>
     <string name="invalid_directory">Böyle bir dizin yok</string>

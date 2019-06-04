@@ -341,7 +341,7 @@
     <string name="metadata_cache_wipe_summary">إزالة جميع بيانات صفحات الويب المخزنة مؤقتًا</string>
     <string name="metadata_cache_wipe_complete_notice">تم محو ذاكرة التخزين المؤقت للبيانات الوصفية</string>
     <string name="auto_queue_title">وضع البث القادم تلقائيا في قائمة الإنتظار</string>
-    <string name="auto_queue_summary">رفض التدفق-التلقائي المشابه في حال كان التدفق السابق يعمل في-حالة عدم التكرار.</string>
+    <string name="auto_queue_summary">إلحاق التدفق المرتبط تلقائيا عند تشغيل التدفق الأخير في قائمة انتظار مِن دون تكرار</string>
     <string name="set_as_playlist_thumbnail">إضافة صورة مصغرة إلى قائمة التشغيل</string>
     <string name="bookmark_playlist">تفضيل قائمة التشغيل</string>
     <string name="playlist_thumbnail_change_success">تم تغيير الصورة المصغرة لقائمة التشغيل.</string>

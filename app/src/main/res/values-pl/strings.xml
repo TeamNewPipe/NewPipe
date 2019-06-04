@@ -217,9 +217,9 @@
     </plurals>
     <string name="no_videos">Brak filmów</string>
     <plurals name="videos">
-        <item quantity="one">film</item>
-        <item quantity="few">filmy</item>
-        <item quantity="many">filmów</item>
+        <item quantity="one">Film</item>
+        <item quantity="few">Filmy</item>
+        <item quantity="many">Filmów</item>
     </plurals>
     <string name="charset_most_special_characters">Większość znaków specjalnych</string>
     <string name="donation_title">Dotacja</string>
@@ -330,7 +330,7 @@
     <string name="metadata_cache_wipe_summary">Wyczyść pamięć podręczną stron</string>
     <string name="metadata_cache_wipe_complete_notice">Wyczyszczono pamięć podręczną metadanych</string>
     <string name="auto_queue_title">Automatyczne kolejkowanie następnego strumienia</string>
-    <string name="auto_queue_summary">Automatycznie dodaj kolejny powiązany strumień podczas odtwarzania ostatniego strumienia w niezapętlonej kolejce.</string>
+    <string name="auto_queue_summary">Automatycznie dodaj kolejny powiązany strumień podczas odtwarzania ostatniego strumienia w niezapętlonej kolejce</string>
     <string name="file">Plik</string>
     <string name="invalid_directory">Nie ma takiego folderu</string>
     <string name="invalid_source">Nie ma takiego źródła plików/treści</string>

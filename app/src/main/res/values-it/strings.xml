@@ -325,7 +325,7 @@
     <string name="use_inexact_seek_title">Usa la ricerca rapida ma imprecisa</string>
     <string name="use_inexact_seek_summary">La ricerca imprecisa permette al lettore multimediale di spostarsi nelle posizioni più velocemente con una precisione ridotta</string>
     <string name="auto_queue_title">Metti in coda automaticamente il prossimo flusso</string>
-    <string name="auto_queue_summary">Aggiungi automaticamente un flusso correlato quando è in corso la riproduzione dell\'ultimo flusso in una coda non ripetitiva.</string>
+    <string name="auto_queue_summary">Aggiungi automaticamente un flusso correlato quando è in corso la riproduzione dell\'ultimo flusso in una coda non ripetitiva</string>
     <string name="live_sync">SINCRONIZZAZIONE</string>
     <string name="file">File</string>
     <string name="invalid_directory">Nessuna cartella</string>

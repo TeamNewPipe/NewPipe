@@ -40,7 +40,7 @@
     <string name="use_tor_summary">(Experimental) Forzar la descarga a través de Tor para una mayor privacidad (transmisión de vídeos aún no compatible).</string>
     <string name="err_dir_create">No se puede crear la carpeta de descarga \'%1$s\'</string>
     <string name="info_dir_created">Carpeta de descarga creada \'%1$s\'</string>
-    <string name="download_path_audio_summary">Los audios descargados se almacenan aquí</string>
+    <string name="download_path_audio_summary">Aqui se almacena el audio descargado</string>
     <string name="download_path_audio_dialog_title">Introducir ruta de descarga para archivos de audio</string>
     <string name="blocked_by_gema">Bloqueado por GEMA</string>
     <string name="download_path_audio_title">Carpeta de descarga de audio</string>
@@ -61,7 +61,7 @@
     <string name="live_streams_not_supported">Las transmisiones en vivo aún no están soportadas</string>
     <string name="content">Contenido</string>
     <string name="show_age_restricted_content_title">Contenido restringido por edad</string>
-    <string name="video_is_age_restricted">Mostrar vídeo restringido por edad. Se puede permitir este tipo de material desde Ajustes.</string>
+    <string name="video_is_age_restricted">Muestra un vídeo restringido por edad. Se puede guardar esta modificación desde Ajustes.</string>
     <string name="main_bg_subtitle">Toque en buscar para empezar</string>
     <string name="autoplay_by_calling_app_title">Reproducción automática</string>
     <string name="autoplay_by_calling_app_summary">Reproducir un vídeo cuando NewPipe es llamado desde otra app</string>
@@ -162,7 +162,7 @@ abrir en modo popup</string>
     <string name="subscribe_button_title">Suscribirse</string>
     <string name="subscribed_button_title">Suscrito</string>
     <string name="channel_unsubscribed">Canal no suscrito</string>
-    <string name="subscription_change_failed">No se pudo cambiar la suscripción</string>
+    <string name="subscription_change_failed">No se pude cambiar la suscripción</string>
     <string name="subscription_update_failed">No se pudo actualizar la suscripción</string>
     <string name="tab_main">Principal</string>
     <string name="tab_subscriptions">Suscripciones</string>
@@ -242,7 +242,7 @@ abrir en modo popup</string>
     <string name="start_here_on_main">Comenzar a reproducir aquí</string>
     <string name="start_here_on_background">Comenzar aquí en segundo plano</string>
     <string name="start_here_on_popup">Comenzar aquí en popup</string>
-    <string name="show_hold_to_append_title">Mostrar consejo \"Mantener para poner en la cola\"</string>
+    <string name="show_hold_to_append_title">Muestra el consejo \"Manten para poner en la cola\"</string>
     <string name="new_and_hot">Nuevo y popular</string>
     <string name="hold_to_append">Mantener para poner en la cola</string>
     <string name="donation_title">Donar</string>
@@ -321,7 +321,7 @@ abrir en modo popup</string>
     <string name="use_inexact_seek_title">Usar búsqueda rápida inexacta</string>
     <string name="use_inexact_seek_summary">La búsqueda inexacta permite al reproductor buscar posiciones más rápido con menor precisión</string>
     <string name="auto_queue_title">Auto-encolar la siguiente transmisión</string>
-    <string name="auto_queue_summary">Auto-añadir un vídeo relacionado al reproducir el último vídeo en una cola no repetitiva.</string>
+    <string name="auto_queue_summary">Añadir de forma automática un vídeo relacionado con el último vídeo reproducido en una cola no repetitiva.</string>
     <string name="live">DIRECTO</string>
     <string name="live_sync">SINCRONIZAR</string>
     <string name="file">Archivo</string>
@@ -439,7 +439,7 @@ abrir en modo popup</string>
     <string name="error_connect_host">No se puede conectar con el servidor</string>
     <string name="error_http_no_content">El servidor no devolvio datos</string>
     <string name="error_http_unsupported_range">El servidor no acepta descargas multi-hilos, intente de nuevo con @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">El rango solicitado no se puede satisfacer</string>
+    <string name="error_http_requested_range_not_satisfiable">No se puede soicitar el rango.</string>
     <string name="error_http_not_found">No encontrado</string>
     <string name="error_postprocessing_failed">Fallo el post-procesado</string>
     <string name="unsubscribe">Desuscribirse</string>
