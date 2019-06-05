@@ -240,11 +240,11 @@
     <string name="play_queue_audio_settings">Audio-instellingen</string>
     <string name="hold_to_append">Houd ingedrukt om toe te voegen aan wachtrij</string>
     <string name="unknown_content">[Onbekend]</string>
-    <string name="enqueue_on_background">Toevoegen aan wachtrij wanneer in de achtergrond</string>
-    <string name="enqueue_on_popup">Toevoegen aan wachtrij bij nieuwe pop-up</string>
+    <string name="enqueue_on_background">Toevoegen aan wachtrij in de achtergrond</string>
+    <string name="enqueue_on_popup">Toevoegen aan wachtrij in nieuwe pop-up</string>
     <string name="start_here_on_main">Begin hier met afspelen</string>
-    <string name="start_here_on_background">Begin hier met afspelen wanneer op de achtergrond</string>
-    <string name="start_here_on_popup">Begin hier met afspelen in nieuwe pop-up</string>
+    <string name="start_here_on_background">Begin hier met afspelen in de achtergrond</string>
+    <string name="start_here_on_popup">Begin met afspelen in nieuwe pop-up</string>
     <string name="donation_title">Doneren</string>
     <string name="donation_encouragement">NewPipe wordt door vrijwilligers in hun vrije tijd ontwikkeld om jou de beste ervaring te brengen. Geef wat terug zodat onze ontwikkelaars NewPipe nóg beter kunnen maken terwijl ze van hun kopje koffie genieten.</string>
     <string name="give_back">Teruggeven</string>
@@ -325,7 +325,7 @@
     <string name="use_inexact_seek_title">Snelle, minder exact spoelen gebruiken</string>
     <string name="use_inexact_seek_summary">Minder exact spoelen laat de speler sneller posities zoeken met verminderde precisie</string>
     <string name="auto_queue_title">Volgende stream automatisch in wachtrij plaatsen</string>
-    <string name="auto_queue_summary">Automatisch een gerelateerde stream toekennen bij het afspelen van de laatste stream in een niet-herhalende afspeelwachtlijst.</string>
+    <string name="auto_queue_summary">Automatisch een gerelateerde stream toekennen bij het afspelen van de laatste stream in een niet-herhalende afspeelwachtlijst</string>
     <string name="live_sync">SYNCHRONISEREN</string>
     <string name="file">Bestand</string>
     <string name="invalid_directory">Deze map bestaat niet</string>
@@ -473,4 +473,15 @@
     <string name="pause_downloads_on_mobile_desc">Downloads die niet kunnen worden gepauzeerd zullen worden herstart</string>
     <string name="events">Gebeurtenissen</string>
     <string name="conferences">Conferenties</string>
+    <string name="show_comments_title">Reacties tonen</string>
+    <string name="show_comments_summary">Schakel dit uit om reacties niet meer te tonen</string>
+    <string name="autoplay_title">Automatisch afspelen</string>
+    <plurals name="comments">
+        <item quantity="one">Reacties</item>
+        <item quantity="other"></item>
+    </plurals>
+    <string name="no_comments">Geen reacties</string>
+    <string name="error_unable_to_load_comments">Kan reacties niet laden</string>
+    <string name="direct_on_background">Direct spelen in achtergrond</string>
+    <string name="close">Sluiten</string>
 </resources>
