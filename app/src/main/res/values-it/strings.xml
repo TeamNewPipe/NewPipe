@@ -243,8 +243,8 @@
     <string name="enqueue_on_background">In coda in sottofondo</string>
     <string name="enqueue_on_popup">In coda nel riproduttore a comparsa</string>
     <string name="start_here_on_main">Inizia la riproduzione qui</string>
-    <string name="start_here_on_background">Inizia qui in sottofondo</string>
-    <string name="start_here_on_popup">Inizia qui nel riproduttore a comparsa</string>
+    <string name="start_here_on_background">Avvia riproduzione in sottofondo</string>
+    <string name="start_here_on_popup">Avvia riproduzione a comparsa</string>
     <string name="donation_title">Dona</string>
     <string name="website_title">Sito web</string>
     <string name="website_encouragement">Visita il sito web di NewPipe per maggiori informazioni e novità.</string>
@@ -473,4 +473,15 @@
     <string name="pause_downloads_on_mobile_desc">I download che non possono essere messi in pausa verranno riavviati</string>
     <string name="events">Eventi</string>
     <string name="conferences">Conferenze</string>
+    <string name="show_comments_title">Mostra commenti</string>
+    <string name="show_comments_summary">Disattiva per non visualizzare i commenti</string>
+    <string name="autoplay_title">Riproduzione automatica</string>
+    <plurals name="comments">
+        <item quantity="one">Commenti</item>
+        <item quantity="other"></item>
+    </plurals>
+    <string name="no_comments">Non ci sono commenti</string>
+    <string name="error_unable_to_load_comments">Impossibile caricare i commenti</string>
+    <string name="direct_on_background">Riproduci direttamente in sottofondo</string>
+    <string name="close">Chiudi</string>
 </resources>
