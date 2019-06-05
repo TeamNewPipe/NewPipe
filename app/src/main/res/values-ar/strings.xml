@@ -235,7 +235,7 @@
     <string name="play_queue_stream_detail">التفاصيل</string>
     <string name="play_queue_audio_settings">الإعدادات الصوتية</string>
     <string name="start_here_on_main">تشغيل هنا</string>
-    <string name="start_here_on_popup">تشغيل هنا في وضع النافذة المنبثقة</string>
+    <string name="start_here_on_popup">تشغيل في وضع النافذة المنبثقة</string>
     <string name="reCaptcha_title">تحدي الكابتشا</string>
     <string name="hold_to_append">اضغط للإدراج في قائمة الانتظار</string>
     <plurals name="views">
