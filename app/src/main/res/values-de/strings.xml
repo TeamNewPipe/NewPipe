@@ -241,9 +241,9 @@
     <string name="show_hold_to_append_title">\"Gedrückt halten, um hinzuzufügen\" Tipp anzeigen</string>
     <string name="unknown_content">[Unbekannt]</string>
     <string name="enqueue_on_background">In Warteschlange für Hintergrundwiedergabe</string>
-    <string name="enqueue_on_popup">In Warteschlange für Pop-up</string>
+    <string name="enqueue_on_popup">In Warteschlange in neuen Pop-up</string>
     <string name="start_here_on_main">Ab hier wiedergeben</string>
-    <string name="start_here_on_background">Ab hier im Hintergrundmodus</string>
+    <string name="start_here_on_background">Wiedergabe im Hintergrund starten</string>
     <string name="start_here_on_popup">Wiedergabe in einem neuen Pop-up starten</string>
     <string name="donation_title">Spenden</string>
     <string name="give_back">Zurückgeben</string>
