@@ -36,7 +36,7 @@
     <string name="dark_theme_title">Ciemny</string>
     <string name="light_theme_title">Jasny</string>
     <string name="download_dialog_title">Pobrane</string>
-    <string name="next_video_title">Następny</string>
+    <string name="next_video_title">Dalej do góry</string>
     <string name="show_next_and_similar_title">Pokaż \"następne\" i \"podobne\" filmy</string>
     <string name="url_not_supported_toast">Nieobsługiwany adres URL</string>
     <string name="content_language_title">Domyślny język treści</string>
@@ -249,10 +249,10 @@
     <string name="play_queue_audio_settings">Ustawienia dźwięku</string>
     <string name="hold_to_append">Przytrzymaj, aby zakolejkować</string>
     <string name="enqueue_on_background">Kolejkuj w tle</string>
-    <string name="enqueue_on_popup">Kolejkuj w okienku</string>
+    <string name="enqueue_on_popup">Kolejkuj w nowym wyskakującym okienku</string>
     <string name="start_here_on_main">Zacznij odtwarzać tutaj</string>
-    <string name="start_here_on_background">Odtwórz w tle</string>
-    <string name="start_here_on_popup">Zacznij tutaj w nowym wyskakującym okienku</string>
+    <string name="start_here_on_background">Zacznij odtwarzać w tle</string>
+    <string name="start_here_on_popup">Zacznij odtwarzać w nowym wyskakującym okienku</string>
     <string name="no_player_found_toast">Nie znaleziono odtwarzacza strumieniowego (żeby odtworzyć, możesz zainstalować VLC).</string>
     <string name="default_content_country_title">Domyślny kraj treści</string>
     <string name="service_title">Usługa</string>
@@ -470,4 +470,16 @@
     <string name="pause_downloads_on_mobile_desc">Pobierane pliki, których nie można wstrzymać, zostaną zrestartowane</string>
     <string name="events">Zdarzenia</string>
     <string name="conferences">Konferencje</string>
+    <string name="show_comments_title">Pokaż komentarze</string>
+    <string name="show_comments_summary">Wyłącz, aby przestać wyświetlać komentarze</string>
+    <string name="autoplay_title">Automatyczne odtwarzanie</string>
+    <plurals name="comments">
+        <item quantity="one">Komentarze</item>
+        <item quantity="few"></item>
+        <item quantity="many"></item>
+    </plurals>
+    <string name="no_comments">Brak komentarzy</string>
+    <string name="error_unable_to_load_comments">Nie można załadować komentarzy</string>
+    <string name="direct_on_background">Odtwarzaj bezpośrednio w tle</string>
+    <string name="close">Zamknij</string>
 </resources>
