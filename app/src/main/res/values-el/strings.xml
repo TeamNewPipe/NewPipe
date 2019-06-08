@@ -267,7 +267,7 @@
     <string name="error_unable_to_load_license">Δεν ήταν δυνατή η φόρτωση της άδειας</string>
     <string name="tab_about">Περί</string>
     <string name="tab_contributors">Συνεισφέροντες</string>
-    <string name="app_description">Ανοιχτού κώδικα, ελαφριά εφαρμογή του Android, για την αναπαραγωγή πολυμεσων από το ίντερνετ.</string>
+    <string name="app_description">Ανοιχτού κώδικα, ελαφριά εφαρμογή Android, για την αναπαραγωγή πολυμεσων από το διαδίκτυο.</string>
     <string name="contribution_title">Συνεισφέρετε</string>
     <string name="contribution_encouragement">Αν έχετε ιδέες για μετάφραση, αλλαγή σχεδιασμού, εκκαθάριση ή ριζικές αλλαγές κώδικα της εφαρμογής—η βοήθεια σας είναι πάντα ευπρόσδεκτη. Όσο περισσότερη έχουμε, τόσο καλύτεροι γινόμαστε!</string>
     <string name="view_on_github">Δείτε το στο GitHub</string>
