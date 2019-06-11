@@ -492,4 +492,5 @@ otevření ve vyskakovacím okně</string>
     <string name="error_unable_to_load_comments">Nelze načíst komentáře</string>
     <string name="direct_on_background">Přehrát přímo na pozadí</string>
     <string name="close">Zavřít</string>
+    <string name="download_to_sdcard_error_message">Stahování na externí SD kartu ještě není možné. Resetovat umístění složky pro stahování\?</string>
 </resources>
