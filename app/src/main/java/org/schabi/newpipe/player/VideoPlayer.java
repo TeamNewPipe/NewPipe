@@ -297,6 +297,7 @@ public abstract class VideoPlayer extends BasePlayer
             return true;
         });
 
+        // Add all available captions
         for (int i = 0; i < availableLanguages.size(); i++) {
             final String captionLanguage = availableLanguages.get(i);
             MenuItem captionItem = captionPopupMenu.getMenu().add(captionPopupMenuGroupId,
@@ -506,7 +507,7 @@ public abstract class VideoPlayer extends BasePlayer
         }
 
         // Normalize mismatching language strings
-        final String preferredLanguage = trackSelector.getParameters().preferredTextLanguage;
+        final String preferredLanguage = trackSelector.getPreferredTextLanguage();
         // Build UI
         buildCaptionMenu(availableLanguages);
         if (trackSelector.getParameters().getRendererDisabled(textRenderer) ||
