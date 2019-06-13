@@ -889,27 +889,22 @@ public abstract class BasePlayer implements
 
     public void onPlay() {
         if (DEBUG) Log.d(TAG, "onPlay() called");
-        if (audioReactor == null || playQueue == null || simpleExoPlayer == null) return;
 
-        audioReactor.requestAudioFocus();
+        if (audioReactor != null) audioReactor.requestAudioFocus();
 
-        if (getCurrentState() == STATE_COMPLETED) {
+        if (playQueue != null && getCurrentState() == STATE_COMPLETED) {
             if (playQueue.getIndex() == 0) {
                 seekToDefault();
             } else {
                 playQueue.setIndex(0);
             }
         }
-
-        simpleExoPlayer.setPlayWhenReady(true);
     }
 
     public void onPause() {
         if (DEBUG) Log.d(TAG, "onPause() called");
-        if (audioReactor == null || simpleExoPlayer == null) return;
 
-        audioReactor.abandonAudioFocus();
-        simpleExoPlayer.setPlayWhenReady(false);
+        if (audioReactor != null) audioReactor.abandonAudioFocus();
     }
 
     public void onPlayPause() {
