@@ -246,10 +246,10 @@
     <string name="donation_title">Doniraj</string>
     <string name="website_title">Web stranica</string>
     <string name="start_here_on_main">Ovdje započni reprodukciju</string>
-    <string name="start_here_on_background">Ovdje započni repr. u pozadini</string>
+    <string name="start_here_on_background">Započni reprodukciju u pozadini</string>
     <string name="enqueue_on_background">Dodaj na red čekanja u pozadini</string>
     <string name="enqueue_on_popup">Dodaj na red u novom skočnom prozoru</string>
-    <string name="start_here_on_popup">Započni ovdje u Skočnom prozoru</string>
+    <string name="start_here_on_popup">Započni reprodukciju u skočnom prozoru</string>
     <string name="drawer_open">Otvori ladicu</string>
     <string name="drawer_close">Zatvori ladicu</string>
     <string name="drawer_header_action_paceholder_text">Nešto će se uskoro pojaviti :D</string>
@@ -393,7 +393,7 @@
     <string name="metadata_cache_wipe_summary">Uklonite sve podatke iz privremenih web-stranica</string>
     <string name="metadata_cache_wipe_complete_notice">Metapodaci su izbrisani</string>
     <string name="auto_queue_title">Automatski dodaj u red sljedeće strujanje</string>
-    <string name="auto_queue_summary">Automatsko dodavanje povezanog videozapisa tijekom reprodukcije posljednjeg videozapisa u neponavljajućem redu.</string>
+    <string name="auto_queue_summary">Automatsko dodavanje povezanog videozapisa tijekom reprodukcije posljednjeg videozapisa u neponavljajućem redu</string>
     <string name="volume_gesture_control_title">Kontrola glasnoće pomoću gesti</string>
     <string name="volume_gesture_control_summary">Koristi gesture za kontrolu glasnoće</string>
     <string name="brightness_gesture_control_title">Kontrola svjetline pomoću gesti</string>
@@ -468,4 +468,16 @@
     <string name="max_retry_desc">Maksimalni broj pokušaja prije poništavanja preuzimanja</string>
     <string name="pause_downloads_on_mobile">Pauziraj prilikom prebacivanja na mobilne podatke</string>
     <string name="pause_downloads_on_mobile_desc">Preuzimanja koja se ne mogu zaustaviti ponovno će se pokrenuti</string>
+    <string name="show_comments_title">Prikaži komentare</string>
+    <string name="show_comments_summary">Onemogućite da biste prestali prikazivati komentare</string>
+    <string name="autoplay_title">Automatska reprodukcija</string>
+    <plurals name="comments">
+        <item quantity="one">Komentari</item>
+        <item quantity="few"></item>
+        <item quantity="other"></item>
+    </plurals>
+    <string name="no_comments">Nema komentara</string>
+    <string name="error_unable_to_load_comments">Komentare nije moguće učitati</string>
+    <string name="direct_on_background">Sviraj izravno u pozadini</string>
+    <string name="close">Zatvori</string>
 </resources>

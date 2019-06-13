@@ -105,8 +105,8 @@
     <string name="youtube_signature_decryption_error">Не удалось расшифровать подпись URL у видео</string>
     <string name="could_not_get_stream">Не удалось найти ни одного потока</string>
     <string name="view">Воспроизвести</string>
-    <string name="controls_background_title">Фоновое воспроизведение</string>
-    <string name="controls_popup_title">Всплывающее окно</string>
+    <string name="controls_background_title">В фоне</string>
+    <string name="controls_popup_title">В окне</string>
     <string name="show_higher_resolutions_summary">Только некоторые устройства поддерживают видео в 2K/4K</string>
     <string name="default_video_format_title">Формат видео по умолчанию</string>
     <string name="black_theme_title">Чёрная</string>
@@ -358,7 +358,7 @@
 \n 
 \nПродолжить?</string>
     <string name="download_thumbnail_title">Загружать миниатюры</string>
-    <string name="download_thumbnail_summary">Отключите, чтобы не загружать миниатюры и сэкономить трафик и память. Изменение настройки очистит кэш изображений.</string>
+    <string name="download_thumbnail_summary">Отключите, чтобы не загружать миниатюры и сэкономить трафик и память. Изменение настройки очистит кэш изображений</string>
     <string name="thumbnail_cache_wipe_complete_notice">Кэш изображений очищен</string>
     <string name="metadata_cache_wipe_title">Очистить кэш метаданных</string>
     <string name="metadata_cache_wipe_complete_notice">Кэш метаданных очищен</string>
@@ -432,7 +432,7 @@
     <string name="app_update_notification_channel_name">Уведомление об обновлении</string>
     <string name="app_update_notification_channel_description">Уведомления о новой версии NewPipe</string>
     <string name="updates_setting_title">Обновления</string>
-    <string name="updates_setting_description">Показать уведомление с предложением обновить приложение при наличии новой версии</string>
+    <string name="updates_setting_description">Показать уведомление при наличии новой версии</string>
     <string name="app_update_notification_content_title">Доступно обновление NewPipe!</string>
     <string name="app_update_notification_content_text">Нажмите для загрузки</string>
     <string name="missions_header_finished">Завершено</string>
@@ -470,6 +470,17 @@
     <string name="error_connect_host">Не удалось соединиться с сервером</string>
     <string name="error_http_no_content">Не удалось получить данные с сервера</string>
     <string name="error_postprocessing_failed">Пост-обработка не удалась</string>
-    <string name="pause_downloads_on_mobile">Останавливать скачивание при переходе на мобильную сеть</string>
+    <string name="pause_downloads_on_mobile">Приостанавливать скачивание при переходе на мобильную сеть</string>
     <string name="close">Закрыть</string>
+    <string name="show_comments_title">Показать комментарии</string>
+    <string name="show_comments_summary">Отключите, чтобы скрыть комментарии</string>
+    <string name="autoplay_title">Автовоспроизведение</string>
+    <plurals name="comments">
+        <item quantity="one">Комментарии</item>
+        <item quantity="few"/>
+        <item quantity="many"/>
+    </plurals>
+    <string name="no_comments">Нет комментариев</string>
+    <string name="error_unable_to_load_comments">Не удалось загрузить комментарии</string>
+    <string name="direct_on_background">Играть сейчас в фоне</string>
 </resources>

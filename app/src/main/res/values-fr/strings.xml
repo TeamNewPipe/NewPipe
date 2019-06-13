@@ -243,8 +243,8 @@
     <string name="enqueue_on_background">Mettre en file d\'attente en arrière-plan</string>
     <string name="enqueue_on_popup">Mettre en file d\'attente en fenêtré</string>
     <string name="start_here_on_main">Commencer la lecture ici</string>
-    <string name="start_here_on_background">Démarrer ici en arrière-plan</string>
-    <string name="start_here_on_popup">Démarrer ici en fenêtré</string>
+    <string name="start_here_on_background">Commencer à jouer en arrière-plan</string>
+    <string name="start_here_on_popup">Commencer la lecture ici, en fenêtré</string>
     <string name="donation_title">Donner</string>
     <string name="donation_encouragement">NewPipe est développé par des volontaires sur leur temps libre afin de vous proposer la meilleure expérience possible. Vous pouvez leur offrir un café pour les soutenir dans leurs efforts et rendre NewPipe encore meilleur.</string>
     <string name="website_title">Site</string>
@@ -330,7 +330,7 @@
     <string name="drawer_header_action_paceholder_text">Quelque chose va bien bientôt arriver ;D</string>
     <string name="controls_download_desc">Télécharger le fichier de flux</string>
     <string name="auto_queue_title">Vidéo suivante en file d\'attente</string>
-    <string name="auto_queue_summary">Ajout automatique d\'un morceau suggéré lors de la lecture du dernier morceau dans une file d\'attente non bouclée.</string>
+    <string name="auto_queue_summary">Ajout automatique d\'un morceau suggéré lors de la lecture du dernier morceau dans une file d\'attente non bouclée</string>
     <string name="settings_category_debug_title">Débogage</string>
     <string name="resize_fill">Remplir</string>
     <string name="caption_auto_generated">Générés automatiquement</string>
@@ -471,4 +471,16 @@
     <string name="saved_tabs_invalid_json">Utilisation des onglets par défaut, erreur lors de la lecture des onglets enregistrés</string>
     <string name="error_http_unsupported_range">Le serveur n\'accepte pas les téléchargements multi-threads, réessayez avec @string/msg_threads = 1</string>
     <string name="msg_pending_downloads">Continuer vos %s transferts en attente depuis Téléchargement</string>
+    <string name="error_http_requested_range_not_satisfiable">Champs d’en-tête de requête « range » incorrect</string>
+    <string name="show_comments_title">Afficher les commentaires</string>
+    <string name="show_comments_summary">Désactiver l\'affichage des commentaires</string>
+    <string name="autoplay_title">Lecture automatique</string>
+    <plurals name="comments">
+        <item quantity="one">Commentaires</item>
+        <item quantity="other"></item>
+    </plurals>
+    <string name="no_comments">Pas de commentaires</string>
+    <string name="error_unable_to_load_comments">Impossible de charger les commentaires</string>
+    <string name="direct_on_background">Jouer directement en arrière-plan</string>
+    <string name="close">Fermer</string>
 </resources>

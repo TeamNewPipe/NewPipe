@@ -245,7 +245,7 @@
     <string name="override_current_data">これにより、現在の設定が上書きされます。</string>
     <string name="title_activity_background_player">バックグラウンド再生</string>
     <string name="start_here_on_main">ここから再生を開始</string>
-    <string name="start_here_on_background">ここからバックグランド再生を開始</string>
+    <string name="start_here_on_background">バックグランドで再生を開始</string>
     <string name="drawer_open">ドロワーを開く</string>
     <string name="drawer_close">ドロワーを閉じる</string>
     <string name="video_player">動画プレーヤー</string>
@@ -339,7 +339,7 @@
         <item quantity="other">視聴回数 %s 回</item>
     </plurals>
     <plurals name="videos">
-        <item quantity="other">本の動画</item>
+        <item quantity="other">動画</item>
     </plurals>
     <string name="one_item_deleted">1 つのアイテムが削除されました</string>
     <string name="give_back">支援する</string>
@@ -354,9 +354,9 @@
     <string name="notification_channel_description">NewPipe バックグラウンドおよびポップアップのプレーヤーの通知</string>
     <string name="new_and_hot">新着 &amp; 人気</string>
     <string name="hold_to_append">長押ししてキューに入れる</string>
-    <string name="enqueue_on_background">バックグラウンド再生のキューに入れる</string>
-    <string name="enqueue_on_popup">ポップアップ再生のキューに入れる</string>
-    <string name="start_here_on_popup">ポップアップ時にここから開始</string>
+    <string name="enqueue_on_background">バックグラウンドでキューに入れる</string>
+    <string name="enqueue_on_popup">ポップアップでキューに入れる</string>
+    <string name="start_here_on_popup">新しいポップアップで再生を開始</string>
     <string name="drawer_header_action_paceholder_text">すぐにここに表示されます;D</string>
     <string name="preferred_open_action_settings_title">お好みの \'開く\' アクション</string>
     <string name="preferred_open_action_settings_summary">コンテンツを開くときのデフォルト動作 — %s</string>
@@ -464,4 +464,14 @@
     <string name="msg_pending_downloads">ダウンロードから %s の保留中の転送を続行します</string>
     <string name="pause_downloads_on_mobile">モバイルデータ通信に切替時に、一時停止する</string>
     <string name="pause_downloads_on_mobile_desc">一時停止できない場合は再開して継続されます</string>
+    <string name="show_comments_title">コメントを表示</string>
+    <string name="show_comments_summary">無効にするとコメントの表示を停止します</string>
+    <string name="autoplay_title">自動再生</string>
+    <plurals name="comments">
+        <item quantity="other">コメント</item>
+    </plurals>
+    <string name="no_comments">コメントはありません</string>
+    <string name="error_unable_to_load_comments">コメントを読み込めませんでした</string>
+    <string name="direct_on_background">バックグラウンドで直接再生</string>
+    <string name="close">閉じる</string>
 </resources>

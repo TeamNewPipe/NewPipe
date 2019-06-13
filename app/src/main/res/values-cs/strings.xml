@@ -33,7 +33,7 @@
     <string name="dark_theme_title">Tmavé</string>
     <string name="light_theme_title">Světlé</string>
     <string name="download_dialog_title">Stáhnout</string>
-    <string name="next_video_title">Další videa</string>
+    <string name="next_video_title">Příští video</string>
     <string name="show_next_and_similar_title">Zobrazovat \'další\' a \'podobná\' videa</string>
     <string name="url_not_supported_toast">URL není podporováno</string>
     <string name="content_language_title">Preferovaný jazyk obsahu</string>
@@ -246,8 +246,8 @@ otevření ve vyskakovacím okně</string>
     <string name="enqueue_on_background">Do fronty na pozadí</string>
     <string name="enqueue_on_popup">Do fronty v okně</string>
     <string name="start_here_on_main">Začne hrát zde</string>
-    <string name="start_here_on_background">Začne zde, když na pozadí</string>
-    <string name="start_here_on_popup">Začne zde v okně</string>
+    <string name="start_here_on_background">Začít přehrávat na pozadí</string>
+    <string name="start_here_on_popup">Začít přehrávat v okně</string>
     <string name="donation_title">Donate</string>
     <string name="donation_encouragement">NewPipe je vyvíjen dobrovolníky, kteří tráví svůj čas, aby vaše zkušenost s aplikací byla co nejlepší. Vraťte vývojářům něco zpět, aby mohli NewPipe dále zlepšovat a zároveň si vychutnat šálek kávy.</string>
     <string name="give_back">Daruj</string>
@@ -319,7 +319,6 @@ otevření ve vyskakovacím okně</string>
     <string name="smaller_caption_font_size">Menší písmo</string>
     <string name="normal_caption_font_size">Normální písmo</string>
     <string name="larger_caption_font_size">Větší písmo</string>
-
     <string name="toggle_leak_canary">Sledovat únik paměti</string>
     <string name="disable_leak_canary_notice">Sledování úniku paměti vypnuto</string>
     <string name="enable_leak_canary_notice">Sledování úniku paměti povoleno, aplikace může při zátěži přestat reagovat</string>
@@ -338,7 +337,7 @@ otevření ve vyskakovacím okně</string>
     <string name="metadata_cache_wipe_summary">Odebrat všechna data uložená v mezipaměti</string>
     <string name="metadata_cache_wipe_complete_notice">Mezipaměť metadat vymazána</string>
     <string name="auto_queue_title">Automatická fronta dalšího streamu</string>
-    <string name="auto_queue_summary">Automaticky připojí související stream při přehrávání posledního streamu v neopakující se frontě.</string>
+    <string name="auto_queue_summary">Automaticky připojí související stream při přehrávání posledního streamu v neopakující se frontě</string>
     <string name="file">Soubor</string>
     <string name="invalid_directory">Neexistující složka</string>
     <string name="invalid_source">Neexistující zdroj souboru/obsahu</string>
@@ -481,4 +480,17 @@ otevření ve vyskakovacím okně</string>
     <string name="max_retry_desc">Maximální počet pokusů před zrušením stahování</string>
     <string name="pause_downloads_on_mobile">Pozastavit při přepnutí na mobilní data</string>
     <string name="pause_downloads_on_mobile_desc">Stahování, která nelze pozastavit, budou restartována</string>
+    <string name="show_comments_title">Zobrazit komentáře</string>
+    <string name="show_comments_summary">Deaktivovat zobrazování komentářů</string>
+    <string name="autoplay_title">Automatické přehrávání</string>
+    <plurals name="comments">
+        <item quantity="one">Komentáře</item>
+        <item quantity="few"></item>
+        <item quantity="other"></item>
+    </plurals>
+    <string name="no_comments">Žádné komentáře</string>
+    <string name="error_unable_to_load_comments">Nelze načíst komentáře</string>
+    <string name="direct_on_background">Přehrát přímo na pozadí</string>
+    <string name="close">Zavřít</string>
+    <string name="download_to_sdcard_error_message">Stahování na externí SD kartu ještě není možné. Resetovat umístění složky pro stahování\?</string>
 </resources>

@@ -27,7 +27,7 @@
     <string name="play_audio">Áudio</string>
     <string name="default_audio_format_title">Formato áudio padrão</string>
     <string name="download_dialog_title">Descarregar</string>
-    <string name="next_video_title">Seguinte</string>
+    <string name="next_video_title">A seguir</string>
     <string name="show_next_and_similar_title">Mostrar vídeos \'Seguintes\' e \'Semelhantes\'</string>
     <string name="url_not_supported_toast">URL não suportado</string>
     <string name="content_language_title">Idioma padrão do conteúdo</string>
@@ -233,8 +233,8 @@
     <string name="play_queue_stream_detail">Detalhes</string>
     <string name="play_queue_audio_settings">Definições de áudio</string>
     <string name="start_here_on_main">Iniciar reprodução aqui</string>
-    <string name="start_here_on_background">Iniciar aqui se em segundo plano</string>
-    <string name="start_here_on_popup">Iniciar aqui em novo \'pop-up\'</string>
+    <string name="start_here_on_background">Comecar a reproduzir em segundo plano</string>
+    <string name="start_here_on_popup">Comecar a reproduzir num novo popup</string>
     <string name="show_info">Mostrar informação</string>
     <string name="tab_bookmarks">Listas de reprodução favoritas</string>
     <string name="service_title">Serviço</string>
@@ -370,8 +370,8 @@
     <string name="app_license">NewPipe é copyleft libre software: você pode usar, estudar, partilhar e melhorar a aplicação. Especificamente, você pode redistribuir e/ou modificar a aplicação nos termos da GNU General Public License, conforme publicada pela Free Software Foundation, tanto a versão 3 da licença ou (por sua opção) qualquer versão posterior.</string>
     <string name="import_settings">Deseja também importar as definições\?</string>
     <string name="hold_to_append">Toque longo para colocar na fila</string>
-    <string name="enqueue_on_background">Colocar em fila se estiver em segundo plano</string>
-    <string name="enqueue_on_popup">Colocar em novo \'popup\'</string>
+    <string name="enqueue_on_background">Enfileirar em segundo plano</string>
+    <string name="enqueue_on_popup">Enfileirar num novo popup</string>
     <string name="preferred_open_action_settings_title">Ação \'abrir\' preferida</string>
     <string name="preferred_open_action_settings_summary">Ação padrão para abrir o conteúdo — %s</string>
     <string name="set_as_playlist_thumbnail">Definir como miniatura da lista de reprodução</string>
@@ -466,4 +466,15 @@
     <string name="pause_downloads_on_mobile_desc">Descarregamentos que não podem ser pausados serão reiniciados</string>
     <string name="events">Eventos</string>
     <string name="conferences">Conferências</string>
+    <string name="show_comments_title">Mostrar comentários</string>
+    <string name="show_comments_summary">Desativar para parar de mostrar comentários</string>
+    <string name="autoplay_title">Reprodução automática</string>
+    <plurals name="comments">
+        <item quantity="one">Comentários</item>
+        <item quantity="other"></item>
+    </plurals>
+    <string name="no_comments">Sem comentários</string>
+    <string name="error_unable_to_load_comments">Não foi possível carregar comentários</string>
+    <string name="direct_on_background">Reproduzir diretamente no fundo</string>
+    <string name="close">Fechar</string>
 </resources>

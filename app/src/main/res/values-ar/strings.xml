@@ -26,7 +26,7 @@
     <string name="light_theme_title">مضيء</string>
     <string name="list_thumbnail_view_description">صور معاينة الفيديو</string>
     <string name="network_error">خطأ في الشبكة</string>
-    <string name="next_video_title">التالي</string>
+    <string name="next_video_title">إلى التالية</string>
     <string name="no_player_found">لا يوجد مشغل فيديو. هل تريد تثبيت VLC ؟</string>
     <string name="open_in_browser">افتح في المتصفح</string>
     <string name="play_audio">الصوت</string>
@@ -235,7 +235,7 @@
     <string name="play_queue_stream_detail">التفاصيل</string>
     <string name="play_queue_audio_settings">الإعدادات الصوتية</string>
     <string name="start_here_on_main">تشغيل هنا</string>
-    <string name="start_here_on_popup">تشغيل هنا في وضع النافذة المنبثقة</string>
+    <string name="start_here_on_popup">تشغيل في وضع النافذة المنبثقة</string>
     <string name="reCaptcha_title">تحدي الكابتشا</string>
     <string name="hold_to_append">اضغط للإدراج في قائمة الانتظار</string>
     <plurals name="views">
@@ -261,7 +261,7 @@
     <string name="kiosk">الكشك</string>
     <string name="enqueue_on_background">إدراج في قائمة الانتظار في الخلفية</string>
     <string name="enqueue_on_popup">إدراج في قائمة الانتظار على المنبثقة</string>
-    <string name="start_here_on_background">تشغيل في الخلفية</string>
+    <string name="start_here_on_background">ابدأ التشغيل في الخلفية</string>
     <string name="default_content_country_title">المحتوى الإفتراضي حسب البلد</string>
     <string name="toggle_orientation">تغيير الإتجاه</string>
     <string name="switch_to_background">الإنتقال إلى التشغيل في الخلفية</string>
@@ -341,7 +341,7 @@
     <string name="metadata_cache_wipe_summary">إزالة جميع بيانات صفحات الويب المخزنة مؤقتًا</string>
     <string name="metadata_cache_wipe_complete_notice">تم محو ذاكرة التخزين المؤقت للبيانات الوصفية</string>
     <string name="auto_queue_title">وضع البث القادم تلقائيا في قائمة الإنتظار</string>
-    <string name="auto_queue_summary">رفض التدفق-التلقائي المشابه في حال كان التدفق السابق يعمل في-حالة عدم التكرار.</string>
+    <string name="auto_queue_summary">إلحاق التدفق المرتبط تلقائيا عند تشغيل التدفق الأخير في قائمة انتظار مِن دون تكرار</string>
     <string name="set_as_playlist_thumbnail">إضافة صورة مصغرة إلى قائمة التشغيل</string>
     <string name="bookmark_playlist">تفضيل قائمة التشغيل</string>
     <string name="playlist_thumbnail_change_success">تم تغيير الصورة المصغرة لقائمة التشغيل.</string>
@@ -484,4 +484,19 @@
     <string name="max_retry_desc">الحد الأقصى لعدد محاولات قبل إلغاء التحميل</string>
     <string name="pause_downloads_on_mobile">"ايقاف عند التحويل  إلى البيانات المتنقلة"</string>
     <string name="pause_downloads_on_mobile_desc">سيتم إعادة تحميل التنزيلات التي لا يمكن إيقافها</string>
+    <string name="show_comments_title">إظهار التعليقات</string>
+    <string name="show_comments_summary">عطّله لإيقاف عرض التعليقات</string>
+    <string name="autoplay_title">تشغيل تلقائي</string>
+    <plurals name="comments">
+        <item quantity="zero">التعليقات</item>
+        <item quantity="one"></item>
+        <item quantity="two"></item>
+        <item quantity="few"></item>
+        <item quantity="many"></item>
+        <item quantity="other"></item>
+    </plurals>
+    <string name="no_comments">لا توجد تعليقات</string>
+    <string name="error_unable_to_load_comments">تعذر تحميل التعليقات</string>
+    <string name="direct_on_background">التشغيل مباشرة في الخلفية</string>
+    <string name="close">إغلاق</string>
 </resources>

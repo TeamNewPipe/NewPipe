@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="main_bg_subtitle">सुरू गर्न खोज चिन्ह दाब्नुहोस्</string>
+    <string name="view_count_text">%1$s हेराइहरू</string>
+    <string name="upload_date_text">%1$s मा प्रकाशित</string>
+    <string name="no_player_found">कुनै स्ट्रिम प्लेयर फेला परेन। के तपाईं VLC इन्स्टल गर्न चाहनुहुन्छ\?</string>
+    <string name="no_player_found_toast">कुनै स्ट्रीम प्लेयर फेला परेन (तपाइँ यसलाई प्ले गर्न VLC इन्स्टल गर्न सक्नुहुन्छ)।</string>
+    <string name="install">इन्स्टल गर्नुहोस्</string>
+    <string name="cancel">रद्द गर्नुहोस्</string>
+    <string name="open_in_browser">ब्राउजरमा खाेल्नुहाेस्</string>
+    <string name="open_in_popup_mode">पपअप मोडमा खोल्नुहोस्</string>
+    <string name="share">बांडनुहोस्</string>
+    <string name="download">डाउनलोड</string>
+    <string name="controls_download_desc">स्ट्रीम डाउनलोड गर्नुहोस्</string>
+    <string name="search">खोजी</string>
+    <string name="settings">सेटिङ</string>
+    <string name="did_you_mean">के तपाईको मतलब %1$s हो\?</string>
+    <string name="share_dialog_title">बांडनुहोस्</string>
+    <string name="choose_browser">ब्राउजर रोज्नुहोस्</string>
+    <string name="screen_rotation">स्क्रीन रोटेशन</string>
+    <string name="use_external_video_player_title">अन्य भिडियो प्लेयर प्रयोग गर्नुहोस्</string>
+    <string name="use_external_video_player_summary">केही प्रस्तावहरूमा अडियो हटाउँदछ</string>
+    <string name="use_external_audio_player_title">अन्य अडियो प्लेयर प्रयोग गर्नुहोस्</string>
+    <string name="popup_mode_share_menu_title">नयाँ पाइप पपअप मोड</string>
+    <string name="subscribe_button_title">सदस्यता लिनुहोस्</string>
+    <string name="subscribed_button_title">सदस्यता लगिसकेको</string>
+    <string name="unsubscribe">सदस्यता रद्द गर्नुहोस्</string>
+    <string name="channel_unsubscribed">च्यानल सदस्यता रद्द गरियो</string>
+    <string name="subscription_change_failed">सदस्यता परिवर्तन गर्न सकिएन</string>
+</resources>
