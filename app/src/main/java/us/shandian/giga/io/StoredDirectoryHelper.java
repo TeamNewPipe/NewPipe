@@ -144,6 +144,52 @@ public class StoredDirectoryHelper {
         return docTree == null ? ioTree.exists() : docTree.exists();
     }
 
+    /**
+     * Indicates whatever if is possible access using the {@code java.io} API
+     *
+     * @return {@code true} for Java I/O API, otherwise, {@code false} for Storage Access Framework
+     */
+    public boolean isDirect() {
+        return docTree == null;
+    }
+
+    /**
+     * Only using Java I/O. Creates the directory named by this abstract pathname, including any
+     * necessary but nonexistent parent directories.  Note that if this
+     * operation fails it may have succeeded in creating some of the necessary
+     * parent directories.
+     *
+     * @return <code>true</code> if and only if the directory was created,
+     * along with all necessary parent directories or already exists; <code>false</code>
+     * otherwise
+     */
+    public boolean mkdirs() {
+        if (docTree == null) {
+            return ioTree.exists() || ioTree.mkdirs();
+        }
+
+        if (docTree.exists()) return true;
+
+        try {
+            DocumentFile parent;
+            String child = docTree.getName();
+
+            while (true) {
+                parent = docTree.getParentFile();
+                if (parent == null || child == null) break;
+                if (parent.exists()) return true;
+
+                parent.createDirectory(child);
+
+                child = parent.getName();// for the next iteration
+            }
+        } catch (Exception e) {
+            // no more parent directories or unsupported by the storage provider
+        }
+
+        return false;
+    }
+
     public String getTag() {
         return tag;
     }

@@ -270,33 +270,6 @@ public class DownloadManagerService extends Service {
             Toast.makeText(this, "Permission denied (write)", Toast.LENGTH_SHORT).show();
         }
 
-        // Check download save paths
-
-        String msg = "";
-        if (mManager.mMainStorageVideo == null)
-            msg += getString(R.string.download_path_title);
-        else if (mManager.mMainStorageAudio == null)
-            msg += getString(R.string.download_path_audio_title);
-
-        if (!msg.isEmpty()) {
-            String title;
-            if (mManager.mMainStorageVideo == null && mManager.mMainStorageAudio == null) {
-                title = getString(R.string.general_error);
-                msg = getString(R.string.no_available_dir) + ":\n" + msg;
-            } else {
-                title = msg;
-                msg = getString(R.string.no_available_dir);
-            }
-
-            new AlertDialog.Builder(this)
-                    .setPositiveButton(android.R.string.ok, null)
-                    .setTitle(title)
-                    .setMessage(msg)
-                    .create()
-                    .show();
-        }
-
-
         return mBinder;
     }
 

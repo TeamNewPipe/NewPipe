@@ -217,6 +217,32 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
                 okButton.setEnabled(true);
 
                 context.unbindService(this);
+
+                // check of download paths are defined
+                if (!askForSavePath) {
+                    String msg = "";
+                    if (mainStorageVideo == null) msg += getString(R.string.download_path_title);
+                    if (mainStorageAudio == null)
+                        msg += getString(R.string.download_path_audio_title);
+
+                    if (!msg.isEmpty()) {
+                        String title;
+                        if (mainStorageVideo == null && mainStorageAudio == null) {
+                            title = getString(R.string.general_error);
+                            msg = getString(R.string.no_available_dir) + ":\n" + msg;
+                        } else {
+                            title = msg;
+                            msg = getString(R.string.no_available_dir);
+                        }
+
+                        new AlertDialog.Builder(context)
+                                .setPositiveButton(android.R.string.ok, null)
+                                .setTitle(title)
+                                .setMessage(msg)
+                                .create()
+                                .show();
+                    }
+                }
             }
 
             @Override
@@ -520,6 +546,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
 
     private void showFailedDialog(@StringRes int msg) {
         new AlertDialog.Builder(context)
+                .setTitle(R.string.general_error)
                 .setMessage(msg)
                 .setNegativeButton(android.R.string.ok, null)
                 .create()
@@ -631,6 +658,12 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
                     // This part is called if:
                     // * the filename is not used in a pending/finished download
                     // * the file does not exists, create
+
+                    if (!mainStorage.mkdirs()) {
+                        showFailedDialog(R.string.error_path_creation);
+                        return;
+                    }
+
                     storage = mainStorage.createFile(filename, mime);
                     if (storage == null || !storage.canWrite()) {
                         showFailedDialog(R.string.error_file_creation);
