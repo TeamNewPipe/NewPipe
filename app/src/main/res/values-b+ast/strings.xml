@@ -134,8 +134,6 @@
     <string name="later">Más sero</string>
     <string name="disabled">Desactivóse</string>
 
-    <string name="use_old_player_title">Usar reproductor vieyu</string>
-
 
     <string name="short_thousand">M</string>
     <string name="short_million">Mill</string>
@@ -168,8 +166,7 @@
     <string name="settings_category_popup_title">Ventanu emerxente</string>
     <string name="popup_resizing_indicator_title">Redimensionáu</string>
 
-    <string name="use_old_player_summary">Reproductor vieyu integráu de Mediaframework</string>
-<string name="subscribe_button_title">Soscribise</string>
+    <string name="subscribe_button_title">Soscribise</string>
     <string name="subscribed_button_title">Soscribiéstite</string>
     <string name="channel_unsubscribed">Desoscribiéstite de la canal</string>
     <string name="subscription_change_failed">Nun pue camudase la resolución</string>
@@ -325,8 +322,7 @@
     <string name="video_player">Reproductor de videu</string>
     <string name="background_player">Reproductor en segundu planu</string>
     <string name="popup_player">Reproductor en ventanu</string>
-    <string name="always_ask_player">Entrugar siempres</string>
-    
+
     <string name="preferred_player_fetcher_notification_title">Consiguiendo información…</string>
     <string name="preferred_player_fetcher_notification_message">Ta cargando\'l conteníu solicitáu</string>
 <string name="controls_download_desc">Baxa\'l ficheru del fluxu.</string>
