@@ -40,7 +40,7 @@
     <string name="use_tor_summary">(Experimental) Forzar la descarga a través de Tor para una mayor privacidad (transmisión de vídeos aún no compatible).</string>
     <string name="err_dir_create">No se puede crear la carpeta de descarga \'%1$s\'</string>
     <string name="info_dir_created">Carpeta de descarga creada \'%1$s\'</string>
-    <string name="download_path_audio_summary">Aquí se almacena el audio descargado</string>
+    <string name="download_path_audio_summary">El audio descargado se almacena aquí</string>
     <string name="download_path_audio_dialog_title">Introducir ruta de descarga para archivos de audio</string>
     <string name="blocked_by_gema">Bloqueado por GEMA</string>
     <string name="download_path_audio_title">Carpeta de descarga de audio</string>
@@ -51,7 +51,7 @@
     <string name="could_not_load_thumbnails">No se pudo cargar las miniaturas</string>
     <string name="youtube_signature_decryption_error">No se pudo descifrar la URL del vídeo</string>
     <string name="parsing_error">No se pudo analizar el sitio web</string>
-    <string name="show_next_and_similar_title">Mostrar vídeos \'siguientes\' y \'similares\'</string>
+    <string name="show_next_and_similar_title">Mostrar videos \'siguientes\' y \'similares\'</string>
     <string name="content_language_title">Idioma del contenido por defecto</string>
     <string name="list_thumbnail_view_description">Vista previa del vídeo</string>
     <string name="detail_thumbnail_view_description">Vista previa del vídeo</string>
@@ -61,7 +61,7 @@
     <string name="live_streams_not_supported">Las transmisiones en vivo aún no están soportadas</string>
     <string name="content">Contenido</string>
     <string name="show_age_restricted_content_title">Contenido restringido por edad</string>
-    <string name="video_is_age_restricted">Mostrar vídeo restringido por edad. Permitir tal contenido es posible desde Ajustes.</string>
+    <string name="video_is_age_restricted">Mostrar vídeo restringido por edad. Permitir este contenido es posible desde Ajustes.</string>
     <string name="main_bg_subtitle">Toque en buscar para empezar</string>
     <string name="autoplay_by_calling_app_title">Reproducción automática</string>
     <string name="autoplay_by_calling_app_summary">Reproducir un vídeo cuando NewPipe es llamado desde otra app</string>
@@ -101,7 +101,7 @@
     <string name="msg_url_malform">URL mal formada o Internet no disponible</string>
     <string name="msg_running">NewPipe está descargando</string>
     <string name="msg_running_detail">Toque para ver detalles</string>
-    <string name="msg_wait">Espere, por favor...</string>
+    <string name="msg_wait">Por favor espere...</string>
     <string name="msg_copied">Copiado al portapapeles</string>
     <string name="no_available_dir">Por favor, seleccione un directorio de descarga disponible</string>
     <string name="could_not_load_image">No se pudo cargar la imagen</string>
@@ -232,7 +232,7 @@ abrir en modo popup</string>
     <string name="player_unrecoverable_failure">Se produjo un error irrecuperable del reproductor</string>
     <string name="player_recoverable_failure">Recuperándose del error del reproductor</string>
     <string name="title_activity_background_player">Reproductor en segundo plano</string>
-    <string name="title_activity_popup_player">Reproductor popup</string>
+    <string name="title_activity_popup_player">Reproductor emergente</string>
     <string name="play_queue_remove">Quitar</string>
     <string name="play_queue_stream_detail">Detalles</string>
     <string name="play_queue_audio_settings">Ajustes de audio</string>
@@ -279,7 +279,7 @@ abrir en modo popup</string>
     <string name="no_valid_zip_file">Archivo ZIP no válido</string>
     <string name="could_not_import_all_files">ADVERTENCIA: no se pudieron importar todos los archivos.</string>
     <string name="override_current_data">Esto reemplazará su configuración actual.</string>
-    <string name="controls_download_desc">Descargar archivo stream</string>
+    <string name="controls_download_desc">Descargar archivo de stream</string>
     <string name="show_info">Mostrar info</string>
     <string name="tab_bookmarks">"Listas de reproducción en marcadores "</string>
     <string name="controls_add_to_playlist_title">Añadir a</string>
@@ -326,7 +326,7 @@ abrir en modo popup</string>
     <string name="live_sync">SINCRONIZAR</string>
     <string name="file">Archivo</string>
     <string name="invalid_directory">No existe el directorio</string>
-    <string name="invalid_source">No existe la fuente de tal archivo/contenido</string>
+    <string name="invalid_source">No existe la fuente del archivo/contenido</string>
     <string name="invalid_file">El archivo no existe o carece de los permisos para leer o escribir en él</string>
     <string name="file_name_empty_error">El nombre del archivo no puede estar vacío</string>
     <string name="error_occurred_detail">Ocurrió un error: %1$s</string>
@@ -370,7 +370,7 @@ abrir en modo popup</string>
     <string name="preferred_open_action_settings_summary">Acción por defecto al abrir contenido — %s</string>
     <string name="toast_no_player">No hay ninguna app instalada para reproducir este archivo</string>
     <string name="caption_setting_title">Subtítulos</string>
-    <string name="caption_setting_description">Modificar la escala de texto de los subtítulos y los estilos de fondo del reproductor. Requiere el reinicio de la app para que surta efecto.</string>
+    <string name="caption_setting_description">Modificar la escala de texto de los subtítulos y los estilos de fondo. Requiere reiniciar la app para que surta efecto.</string>
     <string name="clear_views_history_title">Borrar historial de reproducciones</string>
     <string name="clear_views_history_summary">Elimina el historial de las transmisiones reproducidas</string>
     <string name="delete_view_history_alert">¿Eliminar todo el historial de reproducciones\?</string>
@@ -394,7 +394,7 @@ abrir en modo popup</string>
     <string name="minimize_on_exit_summary">Acción de cambiar a otra aplicación desde el reproductor principal — %s</string>
     <string name="minimize_on_exit_none_description">Ninguna</string>
     <string name="minimize_on_exit_background_description">Minimizar a reproductor en segundo plano</string>
-    <string name="minimize_on_exit_popup_description">Minimizar al reproductor popup</string>
+    <string name="minimize_on_exit_popup_description">Minimizar al reproductor flotante</string>
     <string name="skip_silence_checkbox">Avance rápido durante el silencio</string>
     <string name="playback_step">Paso</string>
     <string name="playback_reset">Reiniciar</string>
@@ -442,7 +442,7 @@ abrir en modo popup</string>
     <string name="error_http_requested_range_not_satisfiable">Rango solicitado no satisfactorio</string>
     <string name="error_http_not_found">No encontrado</string>
     <string name="error_postprocessing_failed">Fallo el post-procesado</string>
-    <string name="unsubscribe">Desuscribirse</string>
+    <string name="unsubscribe">Cancelar suscripción</string>
     <string name="tab_new">Nueva pestaña</string>
     <string name="tab_choose">Elige la pestaña</string>
     <string name="volume_gesture_control_title">Control de volumen por gestos</string>
@@ -474,7 +474,7 @@ abrir en modo popup</string>
     <string name="autoplay_title">Reproducción automática</string>
     <plurals name="comments">
         <item quantity="one">Comentarios</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="no_comments">Sin comentarios</string>
     <string name="error_unable_to_load_comments">No se pudo cargar comentarios</string>
