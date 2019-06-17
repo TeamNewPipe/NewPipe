@@ -2,9 +2,10 @@ package us.shandian.giga.get;
 
 import android.util.Log;
 
-import java.io.FileNotFoundException;
+import org.schabi.newpipe.streams.io.SharpStream;
+
+import java.io.IOException;
 import java.io.InputStream;
-import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
 import java.nio.channels.ClosedByInterruptException;
 
@@ -26,7 +27,6 @@ public class DownloadRunnable extends Thread {
         if (mission == null) throw new NullPointerException("mission is null");
         mMission = mission;
         mId = id;
-        mConn = null;
     }
 
     @Override
@@ -40,12 +40,12 @@ public class DownloadRunnable extends Thread {
             Log.d(TAG, mId + ":recovered: " + mMission.recovered);
         }
 
-        RandomAccessFile f;
+        SharpStream f;
         InputStream is = null;
 
         try {
-            f = new RandomAccessFile(mMission.getDownloadedFile(), "rw");
-        } catch (FileNotFoundException e) {
+            f = mMission.storage.getStream();
+        } catch (IOException e) {
             mMission.notifyError(e);// this never should happen
             return;
         }
@@ -136,6 +136,10 @@ public class DownloadRunnable extends Thread {
                     mMission.setThreadBytePosition(mId, total);// download paused, save progress for this block
 
             } catch (Exception e) {
+                if (DEBUG) {
+                    Log.d(TAG, mId + ": position=" + blockPosition + " total=" + total + " stopped due exception", e);
+                }
+
                 mMission.setThreadBytePosition(mId, total);
 
                 if (!mMission.running || e instanceof ClosedByInterruptException) break;
@@ -143,10 +147,6 @@ public class DownloadRunnable extends Thread {
                 if (retryCount++ >= mMission.maxRetry) {
                     mMission.notifyError(e);
                     break;
-                }
-
-                if (DEBUG) {
-                    Log.d(TAG, mId + ":position " + blockPosition + " retrying due exception", e);
                 }
 
                 retry = true;

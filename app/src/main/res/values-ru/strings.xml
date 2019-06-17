@@ -442,12 +442,12 @@
     <string name="permission_denied">Действие запрещено системой</string>
     <string name="download_failed">Ошибка загрузки</string>
     <string name="overwrite">Перезаписать</string>
-    <string name="overwrite_warning">Файл с таким именем уже существует</string>
+    <string name="overwrite_finished_warning">Файл с таким именем уже существует</string>
     <string name="download_already_running">Загрузка с таким именем уже выполняется</string>
     <string name="show_error">Показать текст ошибки</string>
     <string name="label_code">Код</string>
-    <string name="error_path_creation">Файл не может быть создан</string>
-    <string name="error_file_creation">Папка назначения не может быть создана</string>
+    <string name="error_path_creation">Папка назначения не может быть создана</string>
+    <string name="error_file_creation">Файл не может быть создан</string>
     <string name="error_permission_denied">Доступ запрещен системой</string>
     <string name="error_unknown_host">Сервер не найден</string>
     <string name="error_http_unsupported_range">"Сервер не поддерживает многопотоковую  загрузку, попробуйте с @string/msg_threads = 1"</string>
@@ -472,4 +472,5 @@
     <string name="error_postprocessing_failed">Пост-обработка не удалась</string>
     <string name="pause_downloads_on_mobile">Останавливать скачивание при переходе на мобильную сеть</string>
     <string name="close">Закрыть</string>
+    <string name="error_timeout">Время соединения вышло</string>
 </resources>

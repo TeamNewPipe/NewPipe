@@ -440,13 +440,15 @@
     <string name="missions_header_pending">Dans la file d\'attente</string>
     <string name="paused">En pause</string>
     <string name="download_failed">Téléchargement échoué</string>
+    <string name="error_timeout">Délai de connection dépassé</string>
     <string name="conferences">Conférences</string>
     <string name="download_finished">Téléchargement terminé</string>
     <string name="download_finished_more">%s téléchargements terminés</string>
     <string name="queued">Ajouté à la file d\'attente</string>
     <string name="generate_unique_name">Générer un nom unique</string>
     <string name="overwrite">Écraser</string>
-    <string name="overwrite_warning">Un fichier téléchargé avec ce nom existe déjà</string>
+    <string name="overwrite_unrelated_warning">Un fichier avec ce nom existe déjà</string>
+    <string name="overwrite_finished_warning">Un fichier téléchargé avec ce nom existe déjà</string>
     <string name="download_already_running">Il y a un téléchargement en cours avec ce nom</string>
     <string name="show_error">Afficher l\'erreur</string>
     <string name="label_code">Code</string>

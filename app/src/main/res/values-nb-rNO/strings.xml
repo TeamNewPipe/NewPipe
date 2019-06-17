@@ -515,7 +515,6 @@
     <string name="app_update_notification_content_title">Ny NewPipe-versjon tilgjengelig.</string>
     <string name="app_update_notification_content_text">Trykk for å laste ned</string>
     <string name="missions_header_finished">Fullført</string>
-    <string name="missions_header_pending">I kø</string>
     <string name="paused">pauset</string>
     <string name="queued">i kø</string>
     <string name="post_processing">etterbehandling</string>
@@ -526,12 +525,12 @@
     <string name="download_finished_more">%s nedlastinger fullført</string>
     <string name="generate_unique_name">Generer unikt navn</string>
     <string name="overwrite">Overskriv</string>
-    <string name="overwrite_warning">Nedlastet fil ved dette navnet finnes allerede</string>
+    <string name="overwrite_finished_warning">Nedlastet fil ved dette navnet finnes allerede</string>
     <string name="download_already_running">Nedlasting med dette navnet underveis allerede</string>
     <string name="show_error">Vis feil</string>
     <string name="label_code">Kode</string>
-    <string name="error_path_creation">Filen kan ikke opprettes</string>
-    <string name="error_file_creation">Målmappen kan ikke opprettes</string>
+    <string name="error_file_creation">Filen kan ikke opprettes</string>
+    <string name="error_path_creation">Målmappen kan ikke opprettes</string>
     <string name="error_permission_denied">Tilgang nektet av systemet</string>
     <string name="error_ssl_exception">Sikker tilkobling mislyktes</string>
     <string name="error_unknown_host">Fant ikke tjeneren</string>

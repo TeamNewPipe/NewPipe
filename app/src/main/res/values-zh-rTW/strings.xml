@@ -434,7 +434,7 @@
     <string name="app_update_notification_content_title">有可用的 NewPipe 更新！</string>
     <string name="app_update_notification_content_text">輕觸以下載</string>
     <string name="missions_header_finished">結束</string>
-    <string name="missions_header_pending">在佇列中</string>
+    <string name="missions_header_pending">有待</string>
     <string name="paused">已暫停</string>
     <string name="queued">已排入佇列</string>
     <string name="post_processing">正在後處理</string>
@@ -445,12 +445,12 @@
     <string name="download_finished_more">%s 個下載已結束</string>
     <string name="generate_unique_name">生成獨特的名稱</string>
     <string name="overwrite">覆寫</string>
-    <string name="overwrite_warning">已有此名稱的已下載檔案</string>
+    <string name="overwrite_finished_warning">已有此名稱的已下載檔案</string>
     <string name="download_already_running">已有此名稱的當案的下載正在進行</string>
     <string name="show_error">顯示錯誤</string>
     <string name="label_code">代碼</string>
-    <string name="error_path_creation">無法建立檔案</string>
-    <string name="error_file_creation">無法建立目的地資料夾</string>
+    <string name="error_file_creation">無法建立檔案</string>
+    <string name="error_path_creation">無法建立目的地資料夾</string>
     <string name="error_permission_denied">被系統拒絕的權限</string>
     <string name="error_ssl_exception">安全連線失敗</string>
     <string name="error_unknown_host">找不到伺服器</string>
@@ -469,4 +469,5 @@
     <string name="pause_downloads_on_mobile_desc">無法暫停的下載將會重新開始</string>
     <string name="events">事件</string>
     <string name="conferences">會議</string>
+    <string name="error_timeout">連接超時</string>
 </resources>

@@ -14,7 +14,7 @@
     <string name="share_dialog_title">Compartir con</string>
     <string name="choose_browser">Elegir navegador</string>
     <string name="screen_rotation">rotación</string>
-    <string name="download_path_title">Ruta de descarga de vídeo</string>
+    <string name="download_path_title">Carpeta de descarga de vídeo</string>
     <string name="download_path_summary">Ruta para almacenar los vídeos descargados</string>
     <string name="download_path_dialog_title">Introducir directorio de descargas para vídeos</string>
     <string name="default_resolution_title">Resolución por defecto de vídeo</string>
@@ -40,7 +40,7 @@
     <string name="use_tor_summary">(Experimental) Forzar la descarga a través de Tor para una mayor privacidad (transmisión de vídeos aún no compatible).</string>
     <string name="err_dir_create">No se puede crear la carpeta de descarga \'%1$s\'</string>
     <string name="info_dir_created">Carpeta de descarga creada \'%1$s\'</string>
-    <string name="download_path_audio_summary">Los audios descargados se almacenan aquí</string>
+    <string name="download_path_audio_summary">Ruta para almacenar los audios descargados</string>
     <string name="download_path_audio_dialog_title">Introducir ruta de descarga para archivos de audio</string>
     <string name="blocked_by_gema">Bloqueado por GEMA</string>
     <string name="download_path_audio_title">Carpeta de descarga de audio</string>
@@ -325,6 +325,7 @@ abrir en modo popup</string>
     <string name="live">DIRECTO</string>
     <string name="live_sync">SINCRONIZAR</string>
     <string name="file">Archivo</string>
+    <string name="missing_file">Archivo movido o eliminado</string>
     <string name="invalid_directory">No existe el directorio</string>
     <string name="invalid_source">No existe la fuente del archivo/contenido</string>
     <string name="invalid_file">El archivo no existe o insuficientes permisos para leerlo o escribir en él</string>
@@ -403,7 +404,7 @@ abrir en modo popup</string>
     <string name="playlists">Listas de reproducción</string>
     <string name="tracks">Pistas</string>
     <string name="missions_header_finished">Finalizadas</string>
-    <string name="missions_header_pending">En cola</string>
+    <string name="missions_header_pending">Pendientes</string>
     <string name="paused">pausado</string>
     <string name="queued">en cola</string>
     <string name="post_processing">post-procesado</string>
@@ -417,31 +418,51 @@ abrir en modo popup</string>
     <!-- dialog about existing downloads -->
     <string name="generate_unique_name">Generar nombre único</string>
     <string name="overwrite">Sobrescribir</string>
-    <string name="overwrite_warning">Ya existe un archivo descargado con este nombre</string>
+    <string name="overwrite_unrelated_warning">Ya existe un archivo con este nombre</string>
+    <string name="overwrite_finished_warning">Ya existe un archivo descargado con este nombre</string>
+    <string name="overwrite_failed">No se puede sobrescribir el archivo</string>
     <string name="download_already_running">Hay una descarga en curso con este nombre</string>
+    <string name="download_already_pending">Hay una descarga pendiente con este nombre</string>
     <string name="grid">Mostrar como grilla</string>
     <string name="list">Mostrar como lista</string>
     <string name="clear_finished_download">Limpiar descargas finalizadas</string>
-    <string name="msg_pending_downloads">Continúa tus %s transferencias pendientes desde Descargas</string>
+    <string name="msg_pending_downloads">Tienes %s descargas pendientes, ve a Descargas para continuarlas</string>
+    <string name="confirm_prompt">¿Estas seguro?</string>
     <string name="stop">Detener</string>
     <string name="max_retry_msg">Intentos máximos</string>
     <string name="max_retry_desc">Cantidad máxima de intentos antes de cancelar la descarga</string>
-    <string name="pause_downloads_on_mobile">Pausar al cambiar a datos moviles</string>
-    <string name="pause_downloads_on_mobile_desc">Las descargas que no se pueden pausar serán reiniciadas</string>
+    <string name="pause_downloads_on_mobile">Interrumpir en redes medidas</string>
+    <string name="pause_downloads_on_mobile_desc">Útil al cambiar a Datos Móviles, solo algunas descargas no se pueden suspender</string>
+    <string name="enable_queue_limit">Limitar cola de descarga</string>
+    <string name="enable_queue_limit_desc">Solo se permitirá una descarga a la vez</string>
+    <string name="start_downloads">Iniciar descargas</string>
+    <string name="pause_downloads">Pausar descargas</string>
+
+
     <!-- message dialog about download error -->
     <string name="show_error">Mostrar error</string>
     <string name="label_code">Codigo</string>
-    <string name="error_path_creation">No se puede crear la carpeta de destino</string>
     <string name="error_file_creation">No se puede crear el archivo</string>
+    <string name="error_path_creation">No se puede crear la carpeta de destino</string>
     <string name="error_permission_denied">Permiso denegado por el sistema</string>
     <string name="error_ssl_exception">Fallo la conexión segura</string>
     <string name="error_unknown_host">No se pudo encontrar el servidor</string>
     <string name="error_connect_host">No se puede conectar con el servidor</string>
     <string name="error_http_no_content">El servidor no devolvio datos</string>
     <string name="error_http_unsupported_range">El servidor no acepta descargas multi-hilos, intente de nuevo con @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">El rango solicitado no se puede satisfacer</string>
+    <string name="error_http_requested_range_not_satisfiable">No se logro obtener el rango solicitado</string>
     <string name="error_http_not_found">No encontrado</string>
     <string name="error_postprocessing_failed">Fallo el post-procesado</string>
+    <string name="error_postprocessing_stopped">NewPipe se cerro mientras se trabajaba en el archivo</string>
+    <string name="error_insufficient_storage">No hay suficiente espacio disponible en el dispositivo</string>
+    <string name="error_progress_lost">Se perdió el progreso porque el archivo fue eliminado</string>
+    <string name="error_timeout">Tiempo de espera excedido</string>
+
+    <string name="download_pick_path">Seleccione los directorios de descarga</string>
+    <string name="downloads_storage_ask_title">Preguntar dónde descargar</string>
+    <string name="downloads_storage_ask_summary">Se preguntará dónde guardar cada descarga</string>
+    <string name="downloads_storage_ask_summary_kitkat">Se preguntará dónde guardar cada descarga.\nHabilita esta opción si quieres descargar en la tarjeta SD externa</string>
+
     <string name="unsubscribe">Desuscribirse</string>
     <string name="tab_new">Nueva pestaña</string>
     <string name="tab_choose">Elige la pestaña</string>
@@ -454,7 +475,7 @@ abrir en modo popup</string>
     <string name="app_update_notification_channel_name">Notificación de actualización de la aplicación</string>
     <string name="app_update_notification_channel_description">Notificaciones para nueva versión de NewPipe</string>
     <string name="download_to_sdcard_error_title">Almacenamiento externo no disponible</string>
-    <string name="download_to_sdcard_error_message">Todavía no es posible descargar a una tarjeta SD externa. ¿Restablecer la ubicación de la carpeta de descarga\?</string>
+    <string name="download_to_sdcard_error_message">No es posible descargar a una tarjeta SD externa. \¿Restablecer la ubicación de la carpeta de descarga\?</string>
     <string name="saved_tabs_invalid_json">Usando las pestañas por defecto, error al leer las pestañas guardadas</string>
     <string name="restore_defaults">Restaurar valores por defecto</string>
     <string name="restore_defaults_confirmation">¿Quieres restaurar los valores por defecto\?</string>

@@ -456,7 +456,8 @@
     <string name="download_finished_more">%s sťahovania skončené</string>
     <string name="generate_unique_name">Vytvoriť jedinečný názov</string>
     <string name="overwrite">Prepísať</string>
-    <string name="overwrite_warning">Stiahnutý súbor s týmto menom už existuje</string>
+    <string name="overwrite_unrelated_warning">Súbor s týmto názvom už existuje</string>
+    <string name="overwrite_finished_warning">Stiahnutý súbor s týmto názvom už existuje</string>
     <string name="download_already_running">Sťahovanie s týmto názvom už prebieha</string>
     <string name="show_error">Zobraziť chybu</string>
     <string name="label_code">Kód</string>

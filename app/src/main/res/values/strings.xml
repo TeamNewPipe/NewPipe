@@ -176,7 +176,7 @@
     <!-- error strings -->
     <string name="general_error">Error</string>
     <string name="download_to_sdcard_error_title">External storage unavailable</string>
-    <string name="download_to_sdcard_error_message">Downloading to external SD card not yet possible. Reset download folder location\?</string>
+    <string name="download_to_sdcard_error_message">Downloading to external SD card not possible. Reset download folder location\?</string>
     <string name="network_error">Network error</string>
     <string name="could_not_load_thumbnails">Could not load all thumbnails</string>
     <string name="youtube_signature_decryption_error">Could not decrypt video URL signature</string>
@@ -196,6 +196,7 @@
     <string name="invalid_url_toast">Invalid URL</string>
     <string name="video_streams_empty">No video streams found</string>
     <string name="audio_streams_empty">No audio streams found</string>
+    <string name="missing_file">File moved or deleted</string>
     <string name="invalid_directory">No such folder</string>
     <string name="invalid_source">No such file/content source</string>
     <string name="invalid_file">The file doesn\'t exist or permission to read or write to it is lacking</string>
@@ -304,8 +305,7 @@
     <string name="settings_file_charset_title">Allowed characters in filenames</string>
     <string name="settings_file_replacement_character_summary">Invalid characters are replaced with this value</string>
     <string name="settings_file_replacement_character_title">Replacement character</string>
-    <string name="charset_letters_and_digits_value" translatable="false">[^\\w\\d]+</string>
-    <string name="charset_most_special_characters_value" translatable="false">[\\n\\r|\\?*&lt;":&gt;/']+</string>
+
     <string name="charset_letters_and_digits">Letters and digits</string>
     <string name="charset_most_special_characters">Most special characters</string>
     <string name="toast_no_player">No app installed to play this file</string>
@@ -498,7 +498,7 @@
     <string name="app_update_notification_content_title">NewPipe Update Available!</string>
     <string name="app_update_notification_content_text">Tap to download</string>
     <string name="missions_header_finished">Finished</string>
-    <string name="missions_header_pending">In queue</string>
+    <string name="missions_header_pending">Pending</string>
     <string name="paused">paused</string>
     <string name="queued">queued</string>
     <string name="post_processing">post-processing</string>
@@ -511,13 +511,17 @@
     <!-- dialog about existing downloads -->
     <string name="generate_unique_name">Generate unique name</string>
     <string name="overwrite">Overwrite</string>
-    <string name="overwrite_warning">A downloaded file with this name already exists</string>
+    <string name="overwrite_unrelated_warning">A file with this name already exists</string>
+    <string name="overwrite_finished_warning">A downloaded file with this name already exists</string>
+    <string name="overwrite_failed">cannot overwrite the file</string>
     <string name="download_already_running">There is a download in progress with this name</string>
+    <string name="download_already_pending">There is a pending download with this name</string>
+
     <!-- message dialog about download error -->
     <string name="show_error">Show error</string>
     <string name="label_code">Code</string>
-    <string name="error_path_creation">The file can not be created</string>
-    <string name="error_file_creation">The destination folder can not be created</string>
+    <string name="error_file_creation">The file can not be created</string>
+    <string name="error_path_creation">The destination folder can not be created</string>
     <string name="error_permission_denied">Permission denied by the system</string>
     <string name="error_ssl_exception">Secure connection failed</string>
     <string name="error_unknown_host">Could not find the server</string>
@@ -527,13 +531,29 @@
     <string name="error_http_requested_range_not_satisfiable">Requested range not satisfiable</string>
     <string name="error_http_not_found">Not found</string>
     <string name="error_postprocessing_failed">Post-processing failed</string>
+    <string name="error_postprocessing_stopped">NewPipe was closed while working on the file</string>
+    <string name="error_insufficient_storage">No space left on device</string>
+    <string name="error_progress_lost">Progress lost, because the file was deleted</string>
+    <string name="error_timeout">Connection timeout</string>
+
     <string name="clear_finished_download">Clear finished downloads</string>
+    <string name="confirm_prompt">Are you sure?</string>
     <string name="msg_pending_downloads">Continue your %s pending transfers from Downloads</string>
     <string name="stop">Stop</string>
     <string name="max_retry_msg">Maximum retries</string>
     <string name="max_retry_desc">Maximum number of attempts before canceling the download</string>
-    <string name="pause_downloads_on_mobile">Pause on switching to mobile data</string>
-    <string name="pause_downloads_on_mobile_desc">Downloads that can not be paused will be restarted</string>
+    <string name="pause_downloads_on_mobile">Interrupt on metered networks</string>
+    <string name="pause_downloads_on_mobile_desc">Useful when switching to mobile data, although some downloads cannot be suspended</string>
     <string name="close">Close</string>
+    <string name="enable_queue_limit">Limit download queue</string>
+    <string name="enable_queue_limit_desc">One download will run at the same time</string>
+    <string name="start_downloads">Start downloads</string>
+    <string name="pause_downloads">Pause downloads</string>
+
+    <string name="download_pick_path">Select the downloads save path</string>
+
+    <string name="downloads_storage_ask_title">Ask where to download</string>
+    <string name="downloads_storage_ask_summary">You will be asked where to save each download</string>
+    <string name="downloads_storage_ask_summary_kitkat">You will be asked where to save each download.\nEnable this option if you want download to the external SD Card</string>
 
 </resources>

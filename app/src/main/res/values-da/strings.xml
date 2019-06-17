@@ -359,7 +359,7 @@
     <string name="auto">Automatisk</string>
     <string name="app_update_notification_content_text">Tryk for at downloade</string>
     <string name="missions_header_finished">Færdig</string>
-    <string name="missions_header_pending">I kø</string>
+    <string name="missions_header_pending">Afventning</string>
     <string name="post_processing">efterbehandling</string>
     <string name="enqueue">Kø</string>
     <string name="permission_denied">Handling afvist af systemet</string>
@@ -368,12 +368,13 @@
     <string name="download_finished_more">%s downloads færdige</string>
     <string name="generate_unique_name">Generer unikt navn</string>
     <string name="overwrite">Overskriv</string>
-    <string name="overwrite_warning">En downloadet fil med dette navn eksisterer allerede</string>
+    <string name="overwrite_unrelated_warning">En fil med dette navn eksisterer allerede</string>
+    <string name="overwrite_finished_warning">En downloadet fil med dette navn eksisterer allerede</string>
     <string name="download_already_running">Der er en download i gang med dette navn</string>
     <string name="show_error">Vis fejl</string>
     <string name="label_code">Kode</string>
-    <string name="error_path_creation">Filen kan ikke oprettes</string>
-    <string name="error_file_creation">Destinationsmappen kan ikke oprettes</string>
+    <string name="error_file_creation">Filen kan ikke oprettes</string>
+    <string name="error_path_creation">Destinationsmappen kan ikke oprettes</string>
     <string name="error_permission_denied">Adgang nægtet af systemet</string>
     <string name="error_ssl_exception">Sikker forbindelse fejlede</string>
     <string name="error_unknown_host">Kunne ikke finde serveren</string>

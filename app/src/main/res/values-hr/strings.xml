@@ -447,7 +447,8 @@
     <string name="download_finished_more">%s preuzimanja dovršeno</string>
     <string name="generate_unique_name">Generirajte jedinstveni naziv</string>
     <string name="overwrite">Piši preko</string>
-    <string name="overwrite_warning">Preuzeta datoteka s tim nazivom već postoji</string>
+    <string name="overwrite_unrelated_warning">Datoteka s tim nazivom već postoji</string>
+    <string name="overwrite_finished_warning">Preuzeta datoteka s tim nazivom već postoji</string>
     <string name="download_already_running">U tijeku je preuzimanje s ovim nazivom</string>
     <string name="label_code">Kod</string>
     <string name="error_path_creation">Datoteku nije moguće izraditi</string>

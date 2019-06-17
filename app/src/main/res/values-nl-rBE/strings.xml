@@ -434,7 +434,6 @@
     <string name="app_update_notification_content_title">NewPipe-update beschikbaar!</string>
     <string name="app_update_notification_content_text">Tikt voor te downloaden</string>
     <string name="missions_header_finished">Voltooid</string>
-    <string name="missions_header_pending">In wachtrij</string>
     <string name="paused">gepauzeerd</string>
     <string name="queued">toegevoegd aan wachtrij</string>
     <string name="post_processing">nabewerking</string>
@@ -445,12 +444,12 @@
     <string name="download_finished_more">%s downloads voltooid</string>
     <string name="generate_unique_name">Unieke naam genereren</string>
     <string name="overwrite">Overschrijven</string>
-    <string name="overwrite_warning">Der bestaat al een gedownload bestand met deze naam</string>
+    <string name="overwrite_finished_warning">Der bestaat al een gedownload bestand met deze naam</string>
     <string name="download_already_running">Der is al een download met deze naam bezig</string>
     <string name="show_error">Foutmelding weergeven</string>
     <string name="label_code">Code</string>
-    <string name="error_path_creation">Het bestand kan niet aangemaakt worden</string>
-    <string name="error_file_creation">De doelmap kan niet aangemaakt worden</string>
+    <string name="error_file_creation">Het bestand kan niet aangemaakt worden</string>
+    <string name="error_path_creation">De doelmap kan niet aangemaakt worden</string>
     <string name="error_permission_denied">Toelating geweigerd door het systeem</string>
     <string name="error_ssl_exception">Beveiligde verbinding is mislukt</string>
     <string name="error_unknown_host">Kon de server niet vinden</string>

@@ -4,10 +4,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:title="@string/settings_category_downloads_title">
 
+
+    <CheckBoxPreference
+        app:iconSpaceReserved="false"
+        android:defaultValue="false"
+        android:key="@string/downloads_storage_ask"
+        android:summary="@string/downloads_storage_ask_summary_kitkat"
+        android:title="@string/downloads_storage_ask_title" />
+
     <Preference
         app:iconSpaceReserved="false"
         android:dialogTitle="@string/download_path_dialog_title"
-        android:key="@string/download_path_key"
+        android:key="@string/download_path_video_key"
         android:summary="@string/download_path_summary"
         android:title="@string/download_path_title"/>
 
@@ -49,5 +57,12 @@
         android:key="@string/downloads_cross_network"
         android:summary="@string/pause_downloads_on_mobile_desc"
         android:title="@string/pause_downloads_on_mobile" />
+
+    <SwitchPreference
+        app:iconSpaceReserved="false"
+        android:defaultValue="true"
+        android:key="@string/downloads_queue_limit"
+        android:summary="@string/enable_queue_limit_desc"
+        android:title="@string/enable_queue_limit" />
 
 </PreferenceScreen>
