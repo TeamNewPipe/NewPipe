@@ -319,7 +319,7 @@ abrir em modo popup</string>
     <string name="use_inexact_seek_title">Usar índice de indexação rápido porém não preciso</string>
     <string name="use_inexact_seek_summary">Usar índice de indexação inexato</string>
     <string name="auto_queue_title">Adicionar a próxima stream à fila automaticamente</string>
-    <string name="auto_queue_summary">Auto anexar uma stream relacionada quando a reprodução iniciar na última stream em uma fila não repetitiva.</string>
+    <string name="auto_queue_summary">Adicionar automaticamente uma stream relacionada quando estiver reproduzindo a última stream da fila e a repetição estiver desligada</string>
     <string name="file">Arquivo</string>
     <string name="invalid_directory">Pasta não encontrada</string>
     <string name="invalid_source">Origem do arquivo/conteúdo não econtrada</string>
@@ -473,7 +473,7 @@ abrir em modo popup</string>
     <string name="autoplay_title">Reprodução automática</string>
     <plurals name="comments">
         <item quantity="one">Comentários</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="no_comments">Não há comentários</string>
     <string name="error_unable_to_load_comments">Não foi possível carregar comentários</string>
