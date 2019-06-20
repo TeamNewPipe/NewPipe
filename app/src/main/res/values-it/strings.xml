@@ -478,9 +478,9 @@
     <string name="autoplay_title">Riproduzione automatica</string>
     <plurals name="comments">
         <item quantity="one">Commenti</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
-    <string name="no_comments">Non ci sono commenti</string>
+    <string name="no_comments">Nessun commento</string>
     <string name="error_unable_to_load_comments">Impossibile caricare i commenti</string>
     <string name="direct_on_background">Riproduci direttamente in sottofondo</string>
     <string name="close">Chiudi</string>
