@@ -35,7 +35,7 @@
     <string name="dark_theme_title">Koyu</string>
     <string name="light_theme_title">Açık</string>
     <string name="download_dialog_title">İndir</string>
-    <string name="next_video_title">"Sonraki "</string>
+    <string name="next_video_title">Sıradaki</string>
     <string name="show_next_and_similar_title">\'Sonraki\' ve \'Benzer\' videoları göster</string>
     <string name="url_not_supported_toast">Desteklenmeyen URL</string>
     <string name="content_language_title">Varsayılan içerik dili</string>
@@ -473,4 +473,7 @@
     <string name="pause_downloads_on_mobile_desc">Duraklatılamayan indirmeler yeniden başlatılacak</string>
     <string name="events">Olaylar</string>
     <string name="conferences">Konferanslar</string>
+    <string name="show_comments_title">Yorumları göster</string>
+    <string name="show_comments_summary">Yorumları göstermeyi durdurmak için devre dışı bırak</string>
+    <string name="autoplay_title">Otomatik oynat</string>
 </resources>
