@@ -319,11 +319,11 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         setVideoCount(itemListAdapter.getItemsList().size());
 
         headerPlayAllButton.setOnClickListener(view ->
-                NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));
+                NavigationHelper.playOnMainPlayer(activity, getPlayQueue(), false));
         headerPopupButton.setOnClickListener(view ->
-                NavigationHelper.playOnPopupPlayer(activity, getPlayQueue()));
+                NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(), false));
         headerBackgroundButton.setOnClickListener(view ->
-                NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue()));
+                NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue(), false));
 
         hideLoading();
     }
@@ -534,20 +534,20 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             switch (i) {
                 case 0:
                     NavigationHelper.enqueueOnBackgroundPlayer(context,
-                            new SinglePlayQueue(infoItem));
+                            new SinglePlayQueue(infoItem), false);
                     break;
                 case 1:
                     NavigationHelper.enqueueOnPopupPlayer(activity, new
-                            SinglePlayQueue(infoItem));
+                            SinglePlayQueue(infoItem), false);
                     break;
                 case 2:
-                    NavigationHelper.playOnMainPlayer(context, getPlayQueue(index));
+                    NavigationHelper.playOnMainPlayer(context, getPlayQueue(index), true);
                     break;
                 case 3:
-                    NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index));
+                    NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index), true);
                     break;
                 case 4:
-                    NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index));
+                    NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index), true);
                     break;
                 case 5:
                     changeThumbnailUrl(item.thumbnailUrl);

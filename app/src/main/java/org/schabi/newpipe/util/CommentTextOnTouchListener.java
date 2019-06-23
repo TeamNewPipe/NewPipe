@@ -124,7 +124,7 @@ public class CommentTextOnTouchListener implements View.OnTouchListener {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(info -> {
                     PlayQueue playQueue = new SinglePlayQueue((StreamInfo) info, seconds*1000);
-                    NavigationHelper.playOnPopupPlayer(context, playQueue);
+                    NavigationHelper.playOnPopupPlayer(context, playQueue, false);
                 });
         return true;
     }

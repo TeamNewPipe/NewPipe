@@ -188,7 +188,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                 this.player.getPlaybackSpeed(),
                 this.player.getPlaybackPitch(),
                 this.player.getPlaybackSkipSilence(),
-                null
+                null,
+                false
         ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     }
 

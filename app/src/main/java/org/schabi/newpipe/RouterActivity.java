@@ -574,7 +574,7 @@ public class RouterActivity extends AppCompatActivity {
                         playQueue = new SinglePlayQueue((StreamInfo) info);
 
                         if (playerChoice.equals(videoPlayerKey)) {
-                            NavigationHelper.playOnMainPlayer(this, playQueue);
+                            NavigationHelper.playOnMainPlayer(this, playQueue, true);
                         } else if (playerChoice.equals(backgroundPlayerKey)) {
                             NavigationHelper.enqueueOnBackgroundPlayer(this, playQueue, true);
                         } else if (playerChoice.equals(popupPlayerKey)) {
@@ -587,11 +587,11 @@ public class RouterActivity extends AppCompatActivity {
                     playQueue = info instanceof ChannelInfo ? new ChannelPlayQueue((ChannelInfo) info) : new PlaylistPlayQueue((PlaylistInfo) info);
 
                     if (playerChoice.equals(videoPlayerKey)) {
-                        NavigationHelper.playOnMainPlayer(this, playQueue);
+                        NavigationHelper.playOnMainPlayer(this, playQueue, true);
                     } else if (playerChoice.equals(backgroundPlayerKey)) {
-                        NavigationHelper.playOnBackgroundPlayer(this, playQueue);
+                        NavigationHelper.playOnBackgroundPlayer(this, playQueue, true);
                     } else if (playerChoice.equals(popupPlayerKey)) {
-                        NavigationHelper.playOnPopupPlayer(this, playQueue);
+                        NavigationHelper.playOnPopupPlayer(this, playQueue, true);
                     }
                 }
             };

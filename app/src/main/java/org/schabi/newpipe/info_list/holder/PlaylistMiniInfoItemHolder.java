@@ -1,10 +1,12 @@
 package org.schabi.newpipe.info_list.holder;
 
+import android.support.annotation.Nullable;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
@@ -30,7 +32,7 @@ public class PlaylistMiniInfoItemHolder extends InfoItemHolder {
     }
 
     @Override
-    public void updateFromItem(final InfoItem infoItem) {
+    public void updateFromItem(final InfoItem infoItem, @Nullable final StreamStateEntity state) {
         if (!(infoItem instanceof PlaylistInfoItem)) return;
         final PlaylistInfoItem item = (PlaylistInfoItem) infoItem;
 
