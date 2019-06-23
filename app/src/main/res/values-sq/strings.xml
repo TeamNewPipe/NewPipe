@@ -48,4 +48,5 @@
     <string name="yes">Po</string>
     <string name="later">Më vonë</string>
     <string name="playback_default">Standard</string>
+    <string name="missions_header_pending">në pritje të</string>
 </resources>

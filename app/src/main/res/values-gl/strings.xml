@@ -59,8 +59,6 @@
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Formato de audio predeterminado</string>
     <string name="default_video_format_title">Formato de vídeo predeterminado</string>
-    <string name="webm_description">WebM — formato libre</string>
-    <string name="m4a_description">M4A — mellor calidade</string>
     <string name="theme_title">Tema</string>
     <string name="light_theme_title">Claro</string>
     <string name="dark_theme_title">Escuro</string>
@@ -218,8 +216,6 @@
     <string name="audio">Audio</string>
     <string name="retry">Tentar de novo</string>
     <string name="storage_permission_denied">A permisión de acceso ao almacenamento foi denegada</string>
-    <string name="use_old_player_title">Usar o reprodutor antigo</string>
-    <string name="use_old_player_summary">Versión interna anticuada do reprodutor Mediaframework</string>
 
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>

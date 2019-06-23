@@ -1210,7 +1210,7 @@ public class VideoDetailFragment
                 downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex);
                 downloadDialog.setSubtitleStreams(currentInfo.getSubtitles());
 
-                downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
+                downloadDialog.show(getActivity().getSupportFragmentManager(), "downloadDialog");
             } catch (Exception e) {
                 ErrorActivity.ErrorInfo info = ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
                         ServiceList.all()

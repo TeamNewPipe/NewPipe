@@ -25,6 +25,7 @@
     <attr name="search_add" format="reference"/>
     <attr name="options" format="reference"/>
     <attr name="play" format="reference"/>
+    <attr name="pause" format="reference"/>
     <attr name="bug" format="reference"/>
     <attr name="settings" format="reference"/>
     <attr name="ic_hot" format="reference"/>

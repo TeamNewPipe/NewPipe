@@ -46,7 +46,6 @@ import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.source.BehindLiveWindowException;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.TrackGroupArray;
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelection;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
@@ -66,6 +65,7 @@ import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.mediasource.FailedMediaSource;
 import org.schabi.newpipe.player.playback.BasePlayerMediaSession;
+import org.schabi.newpipe.player.playback.CustomTrackSelector;
 import org.schabi.newpipe.player.playback.MediaSourceManager;
 import org.schabi.newpipe.player.playback.PlaybackListener;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
@@ -115,7 +115,7 @@ public abstract class BasePlayer implements
     final protected HistoryRecordManager recordManager;
 
     @NonNull
-    final protected DefaultTrackSelector trackSelector;
+    final protected CustomTrackSelector trackSelector;
     @NonNull
     final protected PlayerDataSource dataSource;
 
@@ -212,7 +212,7 @@ public abstract class BasePlayer implements
         this.dataSource = new PlayerDataSource(context, userAgent, bandwidthMeter);
 
         final TrackSelection.Factory trackSelectionFactory = PlayerHelper.getQualitySelector(context);
-        this.trackSelector = new DefaultTrackSelector(trackSelectionFactory);
+        this.trackSelector = new CustomTrackSelector(trackSelectionFactory);
 
         this.loadControl = new LoadController(context);
         this.renderFactory = new DefaultRenderersFactory(context);

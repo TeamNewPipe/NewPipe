@@ -1,6 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-<string name="main_bg_subtitle">ప్రారంభించడానికి శోధనను క్లిక్</string>
+    <string name="main_bg_subtitle">ప్రారంభించడానికి శోధనను క్లిక్</string>
     <string name="view_count_text">%1$s వీక్షణలు</string>
     <string name="upload_date_text">%1$s ప్రచురించబడింది</string>
     <string name="install">ఇన్స్టాల్</string>
@@ -10,35 +10,29 @@
     <string name="download">డౌన్లోడ్</string>
     <string name="search">శోధిచు</string>
     <string name="settings">సెట్టింగ్‌లు</string>
-    <string name="did_you_mean">%1$s ? అంటే నువ్వు అనేది</string>
+    <string name="did_you_mean">అంటే నువ్వు అనేది</string>
     <string name="share_dialog_title">తో పంచు</string>
     <string name="choose_browser">బ్రౌజర్ను ఎంచుకోండి</string>
-    <string name="screen_rotation">భ్రమణ</string>
+    <string name="screen_rotation">రొటేషన్</string>
     <string name="use_external_audio_player_title">బాహ్యట ఆడియో ప్లేయర్ని ఉపయోగించండి</string>
     <string name="popup_mode_share_menu_title">న్యూపైప్ పాపప్ మోడ్
 \n</string>
-    <string name="subscribe_button_title">సభ్యత్వ</string>
+    <string name="subscribe_button_title">"సభ్యత్వం "</string>
     <string name="subscribed_button_title">సబ్ స్క్రైబ్</string>
-    <string name="channel_unsubscribed">అన్ సబ్స్క్రైబ్ చేయబడింది</string>
+    <string name="channel_unsubscribed">అన్ సబ్స్క్రైబ్ చెసిరు</string>
     <string name="subscription_change_failed">సబ్ స్క్రైబ్ సాధ్యం కాలేదు</string>
     <string name="subscription_update_failed">సబ్ స్క్రైబ్ నవీకరించలేరు</string>
-
     <string name="tab_main">ప్రధానంగా</string>
     <string name="tab_subscriptions">సభ్యత్వం</string>
-
     <string name="fragment_whats_new">కొత్తది ఏమిటి</string>
-
     <string name="controls_background_title">వెనకవైపు</string>
     <string name="controls_popup_title">పాపప్</string>
-
     <string name="download_path_title">వీడియో డౌన్లోడ్ మార్గం</string>
     <string name="download_path_summary">డౌన్లోడ్ చేసిన వీడియోలను నిల్వ చేయడానికి మార్గం</string>
     <string name="download_path_dialog_title">వీడియోల కోసం డౌన్లోడ్ మార్గాన్ని నమోదు చేయండి</string>
-
     <string name="download_path_audio_title">ఆడియో డౌన్లోడ్ మార్గం</string>
     <string name="download_path_audio_summary">ఆడియో కోసం డౌన్లోడ్ మార్గాన్ని నమోదు చేయండి</string>
     <string name="download_path_audio_dialog_title">ఆడియో ఫైల్లకు డౌన్లోడ్ మార్గాన్ని ఇవ్వండి</string>
-
     <string name="autoplay_by_calling_app_title">దానంతట అదే ఆడుతుంది</string>
     <string name="play_with_kodi_title">కోడితో ప్లే చేయండి</string>
     <string name="kore_not_found">కోరే అనువర్తనం కనుగొనబడలేదు. దీన్ని ఇన్స్టాల్ చేయండి</string>
@@ -76,7 +70,6 @@
     <string name="later">తర్వాత</string>
     <string name="refresh">రిఫ్రెష్</string>
     <string name="play_all">అన్నింటినీ ప్లే చేయండి</string>
-
     <string name="notification_channel_name">న్యూప్యాప్ నోటిఫికేషన్</string>
     <string name="general_error">లోపం</string>
     <string name="network_error">నెట్వర్క్ లోపం</string>
@@ -89,7 +82,6 @@
     <string name="could_not_load_image">చిత్రాన్ని లోడ్ చేయడం సాధ్యపడలేదు</string>
     <string name="player_stream_failure">ఈ స్ట్రీమ్ని ప్లే చేయడం విఫలమైంది</string>
     <string name="player_recoverable_failure">ఆటగాడు లోపం నుండి పునరుద్ధరించడం</string>
-
     <string name="sorry_string">క్షమించాలి, అది జరగకూడదు</string>
     <string name="error_report_button_text">ఇ-మెయిల్ ద్వారా నివేదన లోపం</string>
     <string name="error_snackbar_message">క్షమించండి, కొన్ని లోపాలు సంభవించాయి</string>
@@ -98,8 +90,6 @@
     <string name="what_happened_headline">ఏం జరిగింది</string>
     <string name="your_comment">మీ వ్యాఖ్య(ఆంగ్లం లో)</string>
     <string name="error_details_headline">వివరాలు</string>
-
-
     <string name="list_thumbnail_view_description">వీడియో ప్రివ్యూ సూక్ష్మచిత్రం</string>
     <string name="detail_thumbnail_view_description">Video preview thumbnail</string>
     <string name="detail_likes_img_view_description">ఇష్టాలు</string>
@@ -112,36 +102,30 @@
     <string name="audio">ఆడియో</string>
     <string name="retry">మళ్ళీ ప్రయత్నించు</string>
     <string name="storage_permission_denied">నిల్వ అనుమతి తిరస్కరించబడింది</string>
-    <string name="use_old_player_title">పాత ఆటగాడు ఉపయోగించండి</string>
     <string name="short_thousand">కె</string>
     <string name="short_million">ఎం</string>
     <string name="short_billion">బి</string>
-
     <string name="no_subscribers">చందాదారులు లేరు</string>
     <plurals name="subscribers">
-	<item quantity="one">%s సబ్స్క్రయిబ్</item>
-	<item quantity="other">%s సబ్స్క్రయిబలు</item>
-</plurals>
-
+        <item quantity="one">%s సబ్స్క్రయిబ్</item>
+        <item quantity="other">%s సబ్స్క్రయిబలు</item>
+    </plurals>
     <string name="no_views">వీక్షణలు లేవు</string>
     <plurals name="views">
-	<item quantity="one">%s వీక్షణ</item>
-	<item quantity="other">%s వీక్షణలు</item>
-</plurals>
-
+        <item quantity="one">%s వీక్షణ</item>
+        <item quantity="other">%s వీక్షణలు</item>
+    </plurals>
     <string name="no_videos">వీడియోలు లేవు</string>
     <plurals name="videos">
-	<item quantity="one">%s వీడియో</item>
-	<item quantity="other">%s వీడియోలు</item>
-</plurals>
-
+        <item quantity="one">%s వీడియో</item>
+        <item quantity="other">%s వీడియోలు</item>
+    </plurals>
     <string name="start">ప్రారంభం</string>
     <string name="pause">ఆపు</string>
     <string name="view">ప్లే</string>
     <string name="delete">తొలగించు</string>
     <string name="add">కొత్త మిషన్</string>
     <string name="finish">అలాగే</string>
-
     <string name="msg_name">ఫైలుపేరు</string>
     <string name="msg_threads">థ్రెడ్లు</string>
     <string name="msg_error">లోపం</string>
@@ -156,7 +140,6 @@
     <string name="settings_file_charset_title">ఫైల్ పేర్లలో అనుమతించిన అక్షరాలు</string>
     <string name="settings_file_replacement_character_summary">చెల్లని అక్షరాలు ఈ విలువతో భర్తీ చేయబడతాయి</string>
     <string name="settings_file_replacement_character_title">ప్రత్యామ్నాయం పాత్ర</string>
-
     <string name="charset_letters_and_digits">లెటర్స్ మరియు అంకెలు</string>
     <string name="title_activity_about">న్యూపిప్ గురించి</string>
     <string name="action_settings">సెట్టింగులు</string>
@@ -172,7 +155,6 @@
     <string name="contribution_encouragement">మీరు ఆలోచనలు ఉన్నాయా లేదో; అనువాదం, డిజైన్ మార్పులు, కోడ్ క్లీనింగ్ లేదా రియల్ భారీ కోడ్ మార్పులు-సహాయం ఎల్లప్పుడూ స్వాగతం. మరింత అది గెట్స్ మంచి జరుగుతుంది</string>
     <string name="read_full_license">లైసెన్స్ చదువు</string>
     <string name="contribution_title">కాంట్రిబ్యూషన్</string>
-
     <string name="title_activity_history">చరిత్ర</string>
     <string name="title_history_search">శోధించింది</string>
     <string name="title_history_view">వీక్షించారు</string>
@@ -182,7 +164,6 @@
     <string name="history_cleared">చరిత్ర క్లియర్ చేయబడింది</string>
     <string name="item_deleted">అంశం తొలగించబడింది</string>
     <string name="delete_item_search_history">మీరు ఈ అంశాన్ని శోధన చరిత్ర నుండి తొలగించాలనుకుంటున్నారా?</string>
-
     <string name="main_page_content">ప్రధాన పేజీ యొక్క కంటెంట్</string>
     <string name="blank_page_summary">ఖాళీ పేజీ</string>
     <string name="subscription_page_summary">చందా పేజీ</string>
@@ -197,8 +178,10 @@
     <string name="play_queue_stream_detail">వివరాలు</string>
     <string name="play_queue_audio_settings">ఆడియో సెట్టింగ్లు</string>
     <string name="hold_to_append">ఎన్క్యూలో పట్టుకోండి</string>
-<string name="no_player_found">"మీదగార వీడియో కి కావాల్సిన ప్లేయర్ లేదు. VLC  ప్లేయర్ ఇన్స్టాల్ చేసుకుంటారా?"</string>
-    <string name="no_player_found_toast">"మీదగార వీడియో కి కావాల్సిన ప్లేయర్ లేదు (మీరు VLC  ఇసన్తాల్ చేసుకోవచ్చు)"</string>
+    <string name="no_player_found">"మీదగార వీడియో కి కావాల్సిన ప్లేయర్ లేదు. VLC  ప్లేయర్ ఇన్స్టాల్ చేసుకుంటారా?"</string>
+    <string name="no_player_found_toast">"మీదగార వీడియో కి కావాల్సిన ప్లేయర్ లేదు (మీరు VLC  ఇసన్తాల్ చేసుకోండి )"</string>
     <string name="open_in_popup_mode">పాపప్ మోడ్ తెరవండి</string>
     <string name="default_popup_resolution_title">డిఫాల్ట్ పాపప్ స్పష్టత</string>
-    </resources>
+    <string name="controls_download_desc">ప్రసార ఫైల్ను డౌన్లోడ్ చేయండి</string>
+    <string name="use_external_video_player_title">బాహ్య వీడియో ప్లేయర్ని ఉపయోగించండి</string>
+</resources>

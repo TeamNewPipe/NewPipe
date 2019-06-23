@@ -11,7 +11,7 @@
     <string name="saved_tabs_key" translatable="false">saved_tabs_key</string>
 
     <!-- Key values -->
-    <string name="download_path_key" translatable="false">download_path</string>
+    <string name="download_path_video_key" translatable="false">download_path</string>
     <string name="download_path_audio_key" translatable="false">download_path_audio</string>
 
     <string name="use_external_video_player_key" translatable="false">use_external_video_player</string>
@@ -162,14 +162,20 @@
     <string name="clear_views_history_key" translatable="false">clear_play_history</string>
     <string name="clear_search_history_key" translatable="false">clear_search_history</string>
 
+    <string name="downloads_storage_ask" translatable="false">downloads_storage_ask</string>
+
     <!-- FileName Downloads  -->
-    <string name="settings_file_charset_key" translatable="false">file_rename</string>
+    <string name="settings_file_charset_key" translatable="false">file_rename_charset</string>
     <string name="settings_file_replacement_character_key" translatable="false">file_replacement_character</string>
     <string name="settings_file_replacement_character_default_value" translatable="false">_</string>
 
+
+    <string name="charset_letters_and_digits_value" translatable="false">CHARSET_LETTERS_AND_DIGITS</string>
+    <string name="charset_most_special_value" translatable="false">CHARSET_MOST_SPECIAL</string>
+
     <string-array name="settings_filename_charset" translatable="false">
         <item>@string/charset_letters_and_digits_value</item>
-        <item>@string/charset_most_special_characters_value</item>
+        <item>@string/charset_most_special_value</item>
     </string-array>
 
     <string-array name="settings_filename_charset_name" translatable="false">
@@ -177,8 +183,8 @@
         <item>@string/charset_most_special_characters</item>
     </string-array>
 
-    <string name="default_file_charset_value" translatable="false">@string/charset_most_special_characters_value</string>
-    
+    <string name="default_file_charset_value" translatable="false">@string/charset_most_special_value</string>
+
     <string name="downloads_maximum_retry" translatable="false">downloads_max_retry</string>
     <string name="downloads_maximum_retry_default" translatable="false">3</string>
     <string-array name="downloads_maximum_retry_list" translatable="false">
@@ -194,6 +200,7 @@
     </string-array>
 
     <string name="downloads_cross_network" translatable="false">cross_network_downloads</string>
+    <string name="downloads_queue_limit" translatable="false">downloads_queue_limit</string>
 
     <string name="default_download_threads" translatable="false">default_download_threads</string>
 
