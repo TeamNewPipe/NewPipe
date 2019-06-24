@@ -1,9 +1,11 @@
 package org.schabi.newpipe.info_list.holder;
 
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 
@@ -35,5 +37,8 @@ public abstract class InfoItemHolder extends RecyclerView.ViewHolder {
         this.itemBuilder = infoItemBuilder;
     }
 
-    public abstract void updateFromItem(final InfoItem infoItem);
+    public abstract void updateFromItem(final InfoItem infoItem, @Nullable final StreamStateEntity state);
+
+    public void updateState(final InfoItem infoItem, @Nullable final StreamStateEntity state) {
+    }
 }

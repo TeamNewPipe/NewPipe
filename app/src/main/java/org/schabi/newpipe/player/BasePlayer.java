@@ -23,9 +23,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.AudioManager;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -144,6 +146,8 @@ public abstract class BasePlayer implements
     public static final String PLAY_QUEUE_KEY = "play_queue_key";
     @NonNull
     public static final String APPEND_ONLY = "append_only";
+    @NonNull
+    public static final String RESUME_PLAYBACK = "resume_playback";
     @NonNull
     public static final String SELECT_ON_APPEND = "select_on_append";
 
@@ -279,8 +283,23 @@ public abstract class BasePlayer implements
                 ) {
             simpleExoPlayer.seekTo(playQueue.getIndex(), queue.getItem().getRecoveryPosition());
             return;
+        } else if (intent.getBooleanExtra(RESUME_PLAYBACK, false) && isPlaybackResumeEnabled()) {
+            final PlayQueueItem item = queue.getItem();
+            if (item != null && item.getRecoveryPosition() == PlayQueueItem.RECOVERY_UNSET && isPlaybackResumeEnabled()) {
+                final Disposable stateLoader = recordManager.loadStreamState(item)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .doFinally(() -> initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence,
+                                /*playOnInit=*/true))
+                        .subscribe(
+                                state -> queue.setRecovery(queue.getIndex(), state.getProgressTime()),
+                                error -> {
+                                    if (DEBUG) error.printStackTrace();
+                                }
+                        );
+                databaseUpdateReactor.add(stateLoader);
+                return;
+            }
         }
-
         // Good to go...
         initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence,
                 /*playOnInit=*/true);
@@ -615,6 +634,9 @@ public abstract class BasePlayer implements
                 break;
             case Player.STATE_ENDED: // 4
                 changeState(STATE_COMPLETED);
+                if (currentMetadata != null) {
+                    resetPlaybackState(currentMetadata.getMetadata());
+                }
                 isPrepared = false;
                 break;
         }
@@ -721,6 +743,7 @@ public abstract class BasePlayer implements
             case DISCONTINUITY_REASON_SEEK_ADJUSTMENT:
             case DISCONTINUITY_REASON_INTERNAL:
                 if (playQueue.getIndex() != newWindowIndex) {
+                    resetPlaybackState(playQueue.getItem());
                     playQueue.setIndex(newWindowIndex);
                 }
                 break;
@@ -750,6 +773,9 @@ public abstract class BasePlayer implements
     @Override
     public void onSeekProcessed() {
         if (DEBUG) Log.d(TAG, "ExoPlayer - onSeekProcessed() called");
+        if (isPrepared) {
+            savePlaybackState();
+        }
     }
     /*//////////////////////////////////////////////////////////////////////////
     // Playback Listener
@@ -1017,27 +1043,40 @@ public abstract class BasePlayer implements
         }
     }
 
-    protected void savePlaybackState(final StreamInfo info, final long progress) {
+    private void savePlaybackState(final StreamInfo info, final long progress) {
         if (info == null) return;
+        if (DEBUG) Log.d(TAG, "savePlaybackState() called");
         final Disposable stateSaver = recordManager.saveStreamState(info, progress)
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnError((e) -> {
+                    if (DEBUG) e.printStackTrace();
+                })
                 .onErrorComplete()
-                .subscribe(
-                        ignored -> {/* successful */},
-                        error -> Log.e(TAG, "savePlaybackState() failure: ", error)
-                );
+                .subscribe();
         databaseUpdateReactor.add(stateSaver);
     }
 
-    private void savePlaybackState() {
+    private void resetPlaybackState(final PlayQueueItem queueItem) {
+        if (queueItem == null) return;
+        final Disposable stateSaver = queueItem.getStream()
+                .flatMapCompletable(info -> recordManager.saveStreamState(info, 0))
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnError((e) -> {
+                    if (DEBUG) e.printStackTrace();
+                })
+                .onErrorComplete()
+                .subscribe();
+        databaseUpdateReactor.add(stateSaver);
+    }
+
+    public void resetPlaybackState(final StreamInfo info) {
+        savePlaybackState(info, 0);
+    }
+
+    public void savePlaybackState() {
         if (simpleExoPlayer == null || currentMetadata == null) return;
         final StreamInfo currentInfo = currentMetadata.getMetadata();
-
-        if (simpleExoPlayer.getCurrentPosition() > RECOVERY_SKIP_THRESHOLD_MILLIS &&
-                simpleExoPlayer.getCurrentPosition() <
-                        simpleExoPlayer.getDuration() - RECOVERY_SKIP_THRESHOLD_MILLIS) {
-            savePlaybackState(currentInfo, simpleExoPlayer.getCurrentPosition());
-        }
+        savePlaybackState(currentInfo, simpleExoPlayer.getCurrentPosition());
     }
 
     private void maybeUpdateCurrentMetadata() {
@@ -1224,5 +1263,11 @@ public abstract class BasePlayer implements
 
     public boolean gotDestroyed() {
         return simpleExoPlayer == null;
+    }
+
+    private boolean isPlaybackResumeEnabled() {
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getBoolean(context.getString(R.string.enable_watch_history_key), true)
+                && prefs.getBoolean(context.getString(R.string.enable_playback_resume_key), true);
     }
 }

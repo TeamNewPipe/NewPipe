@@ -542,6 +542,11 @@ public abstract class VideoPlayer extends BasePlayer
         playbackSpeedTextView.setText(formatSpeed(getPlaybackSpeed()));
 
         super.onPrepared(playWhenReady);
+
+        if (simpleExoPlayer.getCurrentPosition() != 0 && !isControlsVisible()) {
+            controlsVisibilityHandler.removeCallbacksAndMessages(null);
+            controlsVisibilityHandler.postDelayed(this::showControlsThenHide, DEFAULT_CONTROLS_DURATION);
+        }
     }
 
     @Override
