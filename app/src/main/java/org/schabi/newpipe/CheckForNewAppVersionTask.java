@@ -90,9 +90,7 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
             Response response = client.newCall(request).execute();
             return response.body().string();
         } catch (IOException ex) {
-            ErrorActivity.reportError(app, ex, null, null,
-                    ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
-                            "app update API fail", R.string.app_ui_crash));
+            // connectivity problems, do not alarm user and fail silently
         }
 
         return null;
