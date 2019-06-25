@@ -93,8 +93,8 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
             return response.body().string();
         } catch (IOException ex) {
             // connectivity problems, do not alarm user and fail silently
-	    if (DEBUG) Log.w(TAG, Log.getStackTraceString(ex));
-	    Toast.makeText(app, R.string.error_connect_host, Toast.LENGTH_SHORT).show();
+            if (DEBUG) Log.w(TAG, Log.getStackTraceString(ex));
+            Toast.makeText(app, R.string.error_connect_host, Toast.LENGTH_SHORT).show();
         }
 
         return null;
@@ -120,8 +120,8 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
 
             } catch (JSONException ex) {
                 // connectivity problems, do not alarm user and fail silently
-	        if (DEBUG) Log.w(TAG, Log.getStackTraceString(ex));
-		Toast.makeText(app, R.string.error_connect_host, Toast.LENGTH_SHORT).show();
+                if (DEBUG) Log.w(TAG, Log.getStackTraceString(ex));
+                Toast.makeText(app, R.string.error_connect_host, Toast.LENGTH_SHORT).show();
             }
         }
     }
