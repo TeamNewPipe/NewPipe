@@ -1,5 +1,6 @@
 package org.schabi.newpipe.streams;
 
+import org.schabi.newpipe.streams.io.SharpStream;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -11,8 +12,6 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.text.ParseException;
 import java.util.Locale;
-
-import org.schabi.newpipe.streams.io.SharpStream;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -27,11 +26,11 @@ public class SubtitleConverter {
 
     public void dumpTTML(SharpStream in, final SharpStream out, final boolean ignoreEmptyFrames, final boolean detectYoutubeDuplicateLines
     ) throws IOException, ParseException, SAXException, ParserConfigurationException, XPathExpressionException {
-        
+
         final FrameWriter callback = new FrameWriter() {
             int frameIndex = 0;
             final Charset charset = Charset.forName("utf-8");
-            
+
             @Override
             public void yield(SubtitleFrame frame) throws IOException {
                 if (ignoreEmptyFrames && frame.isEmptyText()) {
@@ -48,13 +47,13 @@ public class SubtitleConverter {
                 out.write(NEW_LINE.getBytes(charset));
             }
         };
-        
+
         read_xml_based(in, callback, detectYoutubeDuplicateLines,
                 "tt", "xmlns", "http://www.w3.org/ns/ttml",
                 new String[]{"timedtext", "head", "wp"},
                 new String[]{"body", "div", "p"},
                 "begin", "end", true
-        );                  
+        );
     }
 
     private void read_xml_based(SharpStream source, FrameWriter callback, boolean detectYoutubeDuplicateLines,
@@ -70,7 +69,7 @@ public class SubtitleConverter {
          * Language parsing is not supported
          */
 
-        byte[] buffer = new byte[source.available()];
+        byte[] buffer = new byte[(int) source.available()];
         source.read(buffer);
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -206,7 +205,7 @@ public class SubtitleConverter {
         }
     }
 
-    private static NodeList selectNodes(Document xml, String[] path, String namespaceUri) throws XPathExpressionException {
+    private static NodeList selectNodes(Document xml, String[] path, String namespaceUri) {
         Element ref = xml.getDocumentElement();
 
         for (int i = 0; i < path.length - 1; i++) {

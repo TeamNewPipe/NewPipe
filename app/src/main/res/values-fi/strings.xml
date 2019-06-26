@@ -147,8 +147,6 @@
     <string name="audio">Ääni</string>
     <string name="retry">Toista uudelleen</string>
     <string name="storage_permission_denied">Oikeus tallennustilan hallintaan evätty</string>
-    <string name="use_old_player_title">Käytä vanhaa soitinta</string>
-    <string name="use_old_player_summary">Käytä vanhaa sisäänrakennettua Mediaframework-soitinta</string>
 
     <string name="short_thousand">t.</string>
     <string name="short_million">milj.</string>

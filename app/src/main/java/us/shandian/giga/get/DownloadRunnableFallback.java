@@ -1,15 +1,14 @@
 package us.shandian.giga.get;
 
-import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import org.schabi.newpipe.streams.io.SharpStream;
+
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
 import java.nio.channels.ClosedByInterruptException;
-
 
 import us.shandian.giga.util.Utility;
 
@@ -19,21 +18,17 @@ import static org.schabi.newpipe.BuildConfig.DEBUG;
  * Single-threaded fallback mode
  */
 public class DownloadRunnableFallback extends Thread {
-    private static final String TAG = "DownloadRunnableFallback";
+    private static final String TAG = "DownloadRunnableFallbac";
 
     private final DownloadMission mMission;
-    private final int mId = 1;
 
     private int mRetryCount = 0;
     private InputStream mIs;
-    private RandomAccessFile mF;
+    private SharpStream mF;
     private HttpURLConnection mConn;
 
     DownloadRunnableFallback(@NonNull DownloadMission mission) {
         mMission = mission;
-        mIs = null;
-        mF = null;
-        mConn = null;
     }
 
     private void dispose() {
@@ -43,15 +38,10 @@ public class DownloadRunnableFallback extends Thread {
             // nothing to do
         }
 
-        try {
-            if (mF != null) mF.close();
-        } catch (IOException e) {
-            // ¿ejected media storage? ¿file deleted? ¿storage ran out of space?
-        }
+        if (mF != null) mF.close();
     }
 
     @Override
-    @SuppressLint("LongLogTag")
     public void run() {
         boolean done;
 
@@ -67,6 +57,7 @@ public class DownloadRunnableFallback extends Thread {
         try {
             long rangeStart = (mMission.unknownLength || start < 1) ? -1 : start;
 
+            int mId = 1;
             mConn = mMission.openConnection(mId, rangeStart, -1);
             mMission.establishConnection(mId, mConn);
 
@@ -81,7 +72,7 @@ public class DownloadRunnableFallback extends Thread {
             if (!mMission.unknownLength)
                 mMission.unknownLength = Utility.getContentLength(mConn) == -1;
 
-            mF = new RandomAccessFile(mMission.getDownloadedFile(), "rw");
+            mF = mMission.storage.getStream();
             mF.seek(mMission.offsets[mMission.current] + start);
 
             mIs = mConn.getInputStream();
@@ -108,6 +99,10 @@ public class DownloadRunnableFallback extends Thread {
             if (mRetryCount++ >= mMission.maxRetry) {
                 mMission.notifyError(e);
                 return;
+            }
+
+            if (DEBUG) {
+                Log.e(TAG, "got exception, retrying...", e);
             }
 
             run();// try again

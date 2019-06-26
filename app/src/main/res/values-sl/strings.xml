@@ -152,8 +152,6 @@ odpiranje v pojavnem načinu</string>
     <string name="popup_playing_toast">Predvajanje v pojavnem načinu</string>
     <string name="disabled">Onemogočeno</string>
 
-    <string name="use_old_player_title">Uporabi star predvajalnik</string>
-    <string name="use_old_player_summary">Zastarela različica predvajalnika Mediaframework</string>
     <string name="default_video_format_title">Prednostni zapis video datoteke</string>
     <string name="default_popup_resolution_title">Privzeta ločljivost pojavnega okna</string>
     <string name="show_higher_resolutions_title">Pokaži večje ločljivosti</string>
