@@ -476,4 +476,12 @@
     <string name="show_comments_title">Yorumları göster</string>
     <string name="show_comments_summary">Yorumları göstermeyi durdurmak için devre dışı bırak</string>
     <string name="autoplay_title">Otomatik oynat</string>
+    <plurals name="comments">
+        <item quantity="one">Yorumlar</item>
+        <item quantity="other"></item>
+    </plurals>
+    <string name="no_comments">Yorum yok</string>
+    <string name="error_unable_to_load_comments">Yorumlar yüklenemedi</string>
+    <string name="direct_on_background">Arka planda direkt başlat</string>
+    <string name="close">Kapat</string>
 </resources>
