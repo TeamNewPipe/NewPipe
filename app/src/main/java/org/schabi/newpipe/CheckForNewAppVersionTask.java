@@ -15,7 +15,6 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
-import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -96,7 +95,6 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
         } catch (IOException ex) {
             // connectivity problems, do not alarm user and fail silently
             if (DEBUG) Log.w(TAG, Log.getStackTraceString(ex));
-            Toast.makeText(app, R.string.error_connect_host, Toast.LENGTH_SHORT).show();
         }
 
         return null;
@@ -123,7 +121,6 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
             } catch (JSONException ex) {
                 // connectivity problems, do not alarm user and fail silently
                 if (DEBUG) Log.w(TAG, Log.getStackTraceString(ex));
-                Toast.makeText(app, R.string.error_connect_host, Toast.LENGTH_SHORT).show();
             }
         }
     }
