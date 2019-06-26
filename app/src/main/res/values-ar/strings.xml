@@ -5,7 +5,7 @@
     <string name="choose_browser">اختر المتصفح</string>
     <string name="dark_theme_title">مظلم</string>
     <string name="default_audio_format_title">صيغة الصوت الإفتراضية</string>
-    <string name="default_resolution_title">الدقة الإفتراضية</string>
+    <string name="default_resolution_title">الدقة الافتراضية</string>
     <string name="detail_dislikes_img_view_description">عدم الإعجاب</string>
     <string name="detail_likes_img_view_description">الإعجابات</string>
     <string name="detail_thumbnail_view_description">صور معاينة الفيديو</string>
@@ -69,9 +69,9 @@
     <string name="black_theme_title">اسود</string>
     <string name="enable_watch_history_title">التاريخ وذاكرة التخزين المؤقت</string>
     <string name="settings_category_history_title">التاريخ و ذاكرة التخزين المؤقت</string>
-    <string name="content">المحتوى</string>
+    <string name="content">محتوى</string>
     <string name="downloads">التنزيلات</string>
-    <string name="downloads_title">التنزيلات</string>
+    <string name="downloads_title">التحميل</string>
     <string name="all">الكل</string>
     <string name="channel">القناة</string>
     <string name="video">الفيديو</string>
@@ -80,7 +80,7 @@
     <string name="tab_about">عن التطبيق</string>
     <string name="title_activity_history">التاريخ</string>
     <string name="action_history">التاريخ</string>
-    <string name="open_in_popup_mode">افتح في وضع النافذة المنبثقة</string>
+    <string name="open_in_popup_mode">فتح في وضع منبثق</string>
     <string name="use_external_video_player_summary">يزيل الصوت في بعض الخيارات</string>
     <string name="popup_mode_share_menu_title">وضع النوافذ المنبثقة NewPipe</string>
     <string name="channel_unsubscribed">تم إلغاء الاشتراك في القناة</string>
@@ -89,7 +89,7 @@
     <string name="controls_popup_title">نافذة المنبثقة</string>
     <string name="autoplay_by_calling_app_summary">تشغيل مقطع الفيديو عند إستدعاء NewPipe من تطبيق آخر</string>
     <string name="default_popup_resolution_title">الدقة الافتراضية لنوافذ المنبثقة</string>
-    <string name="show_higher_resolutions_title">"عرض أعلى جودة "</string>
+    <string name="show_higher_resolutions_title">عرض أعلى جودة</string>
     <string name="show_higher_resolutions_summary">بعض الأجهزة فقط تدعم تشغيل مقاطع الفيديو 2K / 4K</string>
     <string name="default_video_format_title">تنسيق الفيديو الافتراضي</string>
     <string name="popup_remember_size_pos_title">تذكر حجم النافذة و وضعها</string>
@@ -108,7 +108,7 @@
     <string name="settings_category_player_title">المشغل</string>
     <string name="settings_category_player_behavior_title">السلوك</string>
     <string name="settings_category_popup_title">الوضع المنبثق</string>
-    <string name="popup_playing_toast">يتم التشغيل في الوضع المنبثق</string>
+    <string name="popup_playing_toast">تشغيل في وضع منبثق</string>
     <string name="background_player_append">تم وضعه على قائمة الانتظار في مشغل الخلفية</string>
     <string name="popup_playing_append">تم وضعه على قائمة الانتظار في مشغل النافذة المنبثقة</string>
     <string name="show_age_restricted_content_title">محتوى مقيد بحسب العمر</string>
@@ -273,7 +273,7 @@
     <string name="always">دائماً</string>
     <string name="just_once">مرة واحدة فقط</string>
     <string name="invalid_url_toast">العنوان خاطئ</string>
-    <string name="no_player_found_toast">لم يتم العثور على مشغل الفيديو (يمكنك تثبيت VLC وتشغيله).</string>
+    <string name="no_player_found_toast">لم يتم العثور على مشغل الفديو (يمكنك تثبيت VLC لتشغيله).</string>
     <string name="import_data_title">استيراد قاعدة البيانات</string>
     <string name="export_data_title">تصدير قاعدة البيانات</string>
     <string name="import_data_summary">"الكتابة فوق سجل التاريخ  والاشتراكات الحالية "</string>
@@ -485,15 +485,15 @@
     <string name="pause_downloads_on_mobile">"ايقاف عند التحويل  إلى البيانات المتنقلة"</string>
     <string name="pause_downloads_on_mobile_desc">سيتم إعادة تحميل التنزيلات التي لا يمكن إيقافها</string>
     <string name="show_comments_title">إظهار التعليقات</string>
-    <string name="show_comments_summary">عطّله لإيقاف عرض التعليقات</string>
+    <string name="show_comments_summary">تعطيل لإيقاف عرض التعليقات</string>
     <string name="autoplay_title">تشغيل تلقائي</string>
     <plurals name="comments">
         <item quantity="zero">التعليقات</item>
-        <item quantity="one"></item>
-        <item quantity="two"></item>
-        <item quantity="few"></item>
-        <item quantity="many"></item>
-        <item quantity="other"></item>
+        <item quantity="one"/>
+        <item quantity="two"/>
+        <item quantity="few"/>
+        <item quantity="many"/>
+        <item quantity="other"/>
     </plurals>
     <string name="no_comments">لا توجد تعليقات</string>
     <string name="error_unable_to_load_comments">تعذر تحميل التعليقات</string>
