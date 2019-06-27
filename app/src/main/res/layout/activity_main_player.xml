@@ -162,7 +162,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:background="@drawable/ic_expand_more_white_24dp" />
+                        android:background="@drawable/ic_arrow_back_white_24dp"
+                        android:padding="10dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:scaleType="fitXY"
+                        android:tint="?attr/colorAccent"
+                        />
 
                     <LinearLayout
                         android:id="@+id/metadataView"
