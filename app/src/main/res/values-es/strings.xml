@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="view_count_text">%1$s de visualizaciones</string>
+    <string name="view_count_text">%1$s vistas</string>
     <string name="upload_date_text">Publicado el %1$s</string>
     <string name="no_player_found">No se encontró ningún reproductor de vídeo. ¿Desea instalar VLC?</string>
     <string name="install">Instalar</string>
@@ -101,7 +101,7 @@
     <string name="msg_url_malform">URL mal formada o Internet no disponible</string>
     <string name="msg_running">NewPipe está descargando</string>
     <string name="msg_running_detail">Toque para ver detalles</string>
-    <string name="msg_wait">Por favor espere...</string>
+    <string name="msg_wait">Por favor espere…</string>
     <string name="msg_copied">Copiado al portapapeles</string>
     <string name="no_available_dir">Por favor, seleccione un directorio de descarga disponible</string>
     <string name="could_not_load_image">No se pudo cargar la imagen</string>
