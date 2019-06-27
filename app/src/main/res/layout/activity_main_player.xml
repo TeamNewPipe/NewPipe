@@ -151,49 +151,61 @@
                 tools:ignore="RtlHardcoded">
 
                 <LinearLayout
-                    android:id="@+id/metadataView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
-                    android:layout_toLeftOf="@+id/qualityTextView"
-                    android:gravity="top"
-                    android:orientation="vertical"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    tools:ignore="RtlHardcoded">
+                    android:layout_toLeftOf="@+id/qualityTextView">
 
-                    <TextView
-                        android:id="@+id/titleTextView"
-                        android:layout_width="match_parent"
+                    <ImageButton
+                        android:id="@+id/showDetailButton"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:ellipsize="marquee"
-                        android:fadingEdge="horizontal"
-                        android:marqueeRepeatLimit="marquee_forever"
-                        android:scrollHorizontally="true"
-                        android:singleLine="true"
-                        android:textColor="@android:color/white"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        android:clickable="true"
-                        android:focusable="true"
-                        tools:ignore="RtlHardcoded"
-                        tools:text="The Video Title LONG very LONG"/>
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/ic_expand_more_white_24dp" />
 
-                    <TextView
-                        android:id="@+id/channelTextView"
-                        android:layout_width="match_parent"
+                    <LinearLayout
+                        android:id="@+id/metadataView"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:ellipsize="marquee"
-                        android:fadingEdge="horizontal"
-                        android:marqueeRepeatLimit="marquee_forever"
-                        android:scrollHorizontally="true"
-                        android:singleLine="true"
-                        android:textColor="@android:color/white"
-                        android:textSize="12sp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        tools:text="The Video Artist  LONG very LONG very Long"/>
+                        android:gravity="top"
+                        android:orientation="vertical"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        tools:ignore="RtlHardcoded">
+
+                        <TextView
+                            android:id="@+id/titleTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="marquee"
+                            android:fadingEdge="horizontal"
+                            android:marqueeRepeatLimit="marquee_forever"
+                            android:scrollHorizontally="true"
+                            android:singleLine="true"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:clickable="true"
+                            android:focusable="true"
+                            tools:ignore="RtlHardcoded"
+                            tools:text="The Video Title LONG very LONG"/>
+
+                        <TextView
+                            android:id="@+id/channelTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="marquee"
+                            android:fadingEdge="horizontal"
+                            android:marqueeRepeatLimit="marquee_forever"
+                            android:scrollHorizontally="true"
+                            android:singleLine="true"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            tools:text="The Video Artist  LONG very LONG very Long"/>
+                    </LinearLayout>
                 </LinearLayout>
 
                 <TextView

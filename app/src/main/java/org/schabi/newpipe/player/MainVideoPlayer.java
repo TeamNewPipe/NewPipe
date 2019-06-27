@@ -388,6 +388,7 @@ public final class MainVideoPlayer extends AppCompatActivity
 
         private TextView titleTextView;
         private TextView channelTextView;
+        private ImageButton showDetailButton;
         private RelativeLayout volumeRelativeLayout;
         private ProgressBar volumeProgressBar;
         private ImageView volumeImageView;
@@ -430,6 +431,7 @@ public final class MainVideoPlayer extends AppCompatActivity
             super.initViews(rootView);
             this.titleTextView = rootView.findViewById(R.id.titleTextView);
             this.channelTextView = rootView.findViewById(R.id.channelTextView);
+            this.showDetailButton = rootView.findViewById(R.id.showDetailButton);
             this.volumeRelativeLayout = rootView.findViewById(R.id.volumeRelativeLayout);
             this.volumeProgressBar = rootView.findViewById(R.id.volumeProgressBar);
             this.volumeImageView = rootView.findViewById(R.id.volumeImageView);
@@ -492,6 +494,7 @@ public final class MainVideoPlayer extends AppCompatActivity
             playPreviousButton.setOnClickListener(this);
             playNextButton.setOnClickListener(this);
             closeButton.setOnClickListener(this);
+            showDetailButton.setOnClickListener(this);
 
             moreOptionsButton.setOnClickListener(this);
             shareButton.setOnClickListener(this);
@@ -562,6 +565,10 @@ public final class MainVideoPlayer extends AppCompatActivity
         public void onPlaybackShutdown() {
             super.onPlaybackShutdown();
             finish();
+        }
+
+        public void onShowDetailClicked() {
+            NavigationHelper.openVideoDetail(context, playQueue.getItem().getServiceId(), playQueue.getItem().getUrl());
         }
 
         /*//////////////////////////////////////////////////////////////////////////
@@ -640,6 +647,9 @@ public final class MainVideoPlayer extends AppCompatActivity
                 return;
             } else if (v.getId() == repeatButton.getId()) {
                 onRepeatClicked();
+                return;
+            } else if (v.getId() == showDetailButton.getId()){
+                onShowDetailClicked();
                 return;
             } else if (v.getId() == shuffleButton.getId()) {
                 onShuffleClicked();
