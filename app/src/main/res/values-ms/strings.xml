@@ -172,7 +172,6 @@
     <string name="parsing_error">Tidak dapat menghuraikan laman web</string>
     <string name="light_parsing_error">Tidak dapat menghuraikan laman web sepenuhnya</string>
     <string name="content_not_available">Kandungan tidak tersedia</string>
-    <string name="blocked_by_gema">Disekat oleh GEMA</string>
     <string name="could_not_setup_download_menu">Tidak dapat menyediakan menu muat turun</string>
     <string name="live_streams_not_supported">Siaran langsung belum disokong</string>
     <string name="could_not_get_stream">Tidak boleh mendapat sebarang strim</string>

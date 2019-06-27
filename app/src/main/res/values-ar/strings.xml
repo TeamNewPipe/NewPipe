@@ -52,7 +52,6 @@
     <string name="use_tor_summary">(إختبارية) إجراء التنزيلات من خلال استخدام بروكسي Tor لزيادة الخصوصية ( تشغيل الفيديو المباشر غير مدعوم حتى الأن ).</string>
     <string name="use_tor_title">استخدام تور</string>
     <string name="view_count_text">مشاهدات %1$s</string>
-    <string name="blocked_by_gema">تم حجبه بواسطة GEMA</string>
     <string name="content_not_available">محتوى غير متوفر</string>
     <string name="could_not_load_thumbnails">تعذرت عملية تحميل كافة صور المعاينة</string>
     <string name="general_error">خطأ</string>

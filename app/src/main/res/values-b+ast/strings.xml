@@ -62,7 +62,6 @@
     <string name="parsing_error">Nun pudo analizase\'l sitiu web</string>
     <string name="light_parsing_error">Nun pudo analizase dafechu\'l sitiu web</string>
     <string name="content_not_available">Conteníu non disponible</string>
-    <string name="blocked_by_gema">Bloquiáu por GEMA</string>
     <string name="could_not_setup_download_menu">Nun pudo configurase\'l menú de descarga</string>
     <string name="live_streams_not_supported">Esto ye una tresmisión de direuto qu\'entá nun se sofita.</string>
     <string name="could_not_get_stream">Nun pudo consiguise tresmisión dala</string>

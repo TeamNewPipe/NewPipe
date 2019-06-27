@@ -88,7 +88,6 @@
     <string name="parsing_error">Negalima apdoroti tinklapio</string>
     <string name="light_parsing_error">Negalima visiškai apdoroti tinklapio</string>
     <string name="content_not_available">Turinys neprieinamas</string>
-    <string name="blocked_by_gema">Užblokavo GEMA</string>
     <string name="could_not_setup_download_menu">Negalima sutvarkyti atsisiuntimų meniu</string>
     <string name="live_streams_not_supported">Tai gyvas srautas. Tokie kol kas nepalaikomi.</string>
     <string name="could_not_get_stream">Negalima gauti jokio srauto</string>

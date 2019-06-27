@@ -57,7 +57,7 @@
     <string name="youtube_signature_decryption_error">Incapaz de descodificar a assinatura do vídeo</string>
     <string name="parsing_error">Incapaz de processar o site</string>
     <string name="content_not_available">Conteúdo não disponível</string>
-    <string name="blocked_by_gema">Bloqueado por GEMA</string>
+
     <string name="content">Conteúdo</string>
     <string name="show_age_restricted_content_title">Restringir conteúdo por idade</string>
     <string name="video_is_age_restricted">Mostrar vídeo com restrição de idade. É possível permitir tal material nas Configurações.</string>
