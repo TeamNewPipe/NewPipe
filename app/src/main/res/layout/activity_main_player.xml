@@ -167,8 +167,7 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:scaleType="fitXY"
-                        android:tint="?attr/colorAccent"
-                        />
+                        android:tint="?attr/colorAccent"/>
 
                     <LinearLayout
                         android:id="@+id/metadataView"

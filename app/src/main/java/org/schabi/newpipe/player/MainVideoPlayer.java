@@ -648,7 +648,7 @@ public final class MainVideoPlayer extends AppCompatActivity
             } else if (v.getId() == repeatButton.getId()) {
                 onRepeatClicked();
                 return;
-            } else if (v.getId() == showDetailButton.getId()){
+            } else if (v.getId() == showDetailButton.getId()) {
                 onShowDetailClicked();
                 return;
             } else if (v.getId() == shuffleButton.getId()) {
