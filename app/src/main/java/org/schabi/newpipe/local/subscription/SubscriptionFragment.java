@@ -130,6 +130,12 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
         subscriptionService = SubscriptionService.getInstance(activity);
     }
 
+    @Override
+    public void onDetach() {
+        infoListAdapter.dispose();
+        super.onDetach();
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -149,6 +155,8 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
             }
             updateFlags = 0;
         }
+
+        itemsList.post(infoListAdapter::updateStates);
     }
 
     @Override

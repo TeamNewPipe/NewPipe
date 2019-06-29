@@ -17,15 +17,12 @@
     <string name="screen_rotation">چرخش</string>
     <string name="use_external_video_player_title">استفاده از پخش‌کنندهٔ ویدیوی خارجی</string>
     <string name="use_external_audio_player_title">استفاده از پخش‌کنندهٔ صدای خارجی</string>
-
     <string name="download_path_title">مسیر بارگیری ویدیو</string>
     <string name="download_path_summary">مسیر ذخیرهٔ ویدیوهای بارگیری شده</string>
     <string name="download_path_dialog_title">مسیر بارگیری را برای ویدیوها وارد کنید</string>
-
     <string name="download_path_audio_title">پوشه بارگیری صدا</string>
     <string name="download_path_audio_summary">صدای بارگیری شده در این‌جا نگه داشته می‌شود</string>
     <string name="download_path_audio_dialog_title">مسیر بارگیری را برای صداها وارد کنید</string>
-
     <string name="autoplay_by_calling_app_title">پخش خودکار</string>
     <string name="autoplay_by_calling_app_summary">هنگامی که نیوپایپ از کارهٔ دیگری فراخوانی می‌شود، ویدیوی به طور خودکار پخش شود</string>
     <string name="default_resolution_title">وضوح پیش‌گزیده</string>
@@ -35,12 +32,9 @@
     <string name="show_play_with_kodi_summary">نمایش گزینه‌ای برای پخش ویدیو با مرکز رسانهٔ کودی</string>
     <string name="play_audio">صدا</string>
     <string name="default_audio_format_title">قالب صدای پیش‌گزیده</string>
-    <string name="webm_description">قالب آزاد — WebM</string>
-    <string name="m4a_description">کیفیت بهتر — M4A</string>
     <string name="theme_title">زمینه</string>
     <string name="dark_theme_title">تیره</string>
     <string name="light_theme_title">روشن</string>
-
     <string name="download_dialog_title">بارگیری</string>
     <string name="next_video_title">بعدی</string>
     <string name="show_next_and_similar_title">نماش ویدیوهای «بعدی» و «مشابه»</string>
@@ -58,7 +52,6 @@
     <string name="downloads">بارگیری‌ها</string>
     <string name="downloads_title">بارگیری‌ها</string>
     <string name="error_report_title">گزارش خطا</string>
-
     <string name="general_error">خطا</string>
     <string name="network_error">خطای شبکه</string>
     <string name="could_not_load_thumbnails">نمی‌توان تمام بندانگشتی‌ها را بار کرد</string>
@@ -66,7 +59,6 @@
     <string name="parsing_error">نمی‌توان پایگاه وب را تجزیه کرد.</string>
     <string name="light_parsing_error">نمی‌توان پایگاه وب را به صورت کامل تجزیه کرد.</string>
     <string name="content_not_available">محتوا در دسترس نیست.</string>
-    <string name="blocked_by_gema">مسدود شده توسّط GEMA.</string>
     <string name="could_not_setup_download_menu">نمی‌توان فهرست بارگیری را برپا ساخت.</string>
     <string name="live_streams_not_supported">این یک جریان زنده است. این جریان‌ها هنوز پشتیبانی نمی‌شوند.</string>
     <string name="could_not_get_stream">نمی‌توان هیچ جریانی را گرفت.</string>
@@ -78,8 +70,6 @@
     <string name="what_happened_headline">چه روی داد:</string>
     <string name="your_comment">توضیح شما (به انگلیسی):</string>
     <string name="error_details_headline">جزییات:</string>
-
-
     <string name="list_thumbnail_view_description">بندانگشتی پیش‌نمایش ویدیو</string>
     <string name="detail_thumbnail_view_description">بندانگشتی پیش‌نمایش ویدیو</string>
     <string name="detail_uploader_thumbnail_view_description">بندانگشتی کاربر بارگذار</string>
@@ -89,24 +79,19 @@
     <string name="use_tor_summary">(آزمایشی) اجبار ترافیک بارگیری از مسیر تور برای محرمانگی بیش‌تر (هنوز پخش جریانی پشتیبانی نمی‌شود).</string>
     <string name="report_error">گزارش یک خطا</string>
     <string name="user_report">گزارش کاربر</string>
-
     <string name="err_dir_create">نمی‌توان شاخهٔ بارگیری «%1$s» را ایجاد کرد</string>
     <string name="info_dir_created">شاخهٔ بارگیری «%1$s» ایجاد شد</string>
-
     <string name="video">ویدیو</string>
     <string name="audio">صدا</string>
     <string name="retry">تلاش دوباره</string>
     <string name="storage_permission_denied">اجازهٔ دسترسی به انبار ذخیره رد شد</string>
-
     <string name="start">شروع</string>
     <string name="pause">مکث</string>
     <string name="view">نمایش</string>
     <string name="delete">حذف</string>
     <string name="checksum">مجموع مقابله‌ای</string>
-
     <string name="add">مآموریت جدید</string>
     <string name="finish">قبول</string>
-
     <string name="msg_name">نام پرونده</string>
     <string name="msg_threads">رشته‌ها</string>
     <string name="msg_error">خطا</string>
@@ -118,8 +103,7 @@
     <string name="msg_wait">لطفاً صبر کنید…</string>
     <string name="msg_copied">در حافظه رونوشت شد.</string>
     <string name="no_available_dir">لطفاً یک شاخهٔ بارگیری موجود را برگزینید.</string>
-
-<string name="no_player_found_toast">هیچ پخش کننده جریانی پیدا نشد (شما می‌توانید برنامه وی‌ال‌سی را برای پخش آن نصب کنید).</string>
+    <string name="no_player_found_toast">هیچ پخش کننده جریانی پیدا نشد (شما می‌توانید برنامه وی‌ال‌سی را برای پخش آن نصب کنید).</string>
     <string name="controls_download_desc">بارگیری پرونده جریان</string>
     <string name="use_external_video_player_summary">حذف صدا در برخی کیفیت‌ها</string>
     <string name="subscribe_button_title">اشتراک</string>
@@ -128,16 +112,12 @@
     <string name="subscription_change_failed">ناتوانی در تغییر وضعیت اشتراک</string>
     <string name="subscription_update_failed">ناتوانی در به‌روزرسانی اشتراک</string>
     <string name="show_info">نمایش اطلاعات</string>
-
     <string name="tab_main">اصلی</string>
     <string name="tab_subscriptions">اشتراک‌ها</string>
     <string name="tab_bookmarks">فهرست‌های پخش دارای نشانک</string>
-
     <string name="fragment_whats_new">موارد جدید</string>
-
     <string name="controls_background_title">پس زمینه</string>
     <string name="controls_add_to_playlist_title">افزودن به</string>
-
     <string name="show_higher_resolutions_title">نمایش کیفیت بالاتر</string>
     <string name="show_higher_resolutions_summary">تنها برخی دستگاه‌ها توانایی پخش ویدئوهای 2K و 4K را دارند</string>
     <string name="default_video_format_title">قالب ویدئوی پیش‌فرض</string>
@@ -168,10 +148,8 @@
     <string name="always">همیشه</string>
     <string name="just_once">فقط یک‌بار</string>
     <string name="file">پرونده</string>
-
     <string name="notification_channel_name">اعلان نیوپایپ</string>
     <string name="unknown_content">[ناشناخته]</string>
-
     <string name="import_data_title">وارد کردن پایگاه‌داده</string>
     <string name="export_data_title">"صادرکردن "</string>
     <string name="import_data_summary">تاریخچه و اشتراک‌های شما بازنویسی خواهند شد</string>
@@ -181,17 +159,13 @@
     <string name="import_title">وارد کردن</string>
     <string name="import_from">وارد کردن از</string>
     <string name="export_to">صادر کردن به</string>
-
     <string name="import_ongoing">در حال وارد کردن…</string>
     <string name="export_ongoing">در حال صدور…</string>
-
     <string name="subscriptions_import_unsuccessful">ناتوانی در ورود اشتراک‌ها</string>
     <string name="subscriptions_export_unsuccessful">ناتوانی در صدور اشتراک‌ها</string>
-
     <string name="playback_speed_control">کنترل‌های سرعت پخش</string>
     <string name="accept">قبول</string>
     <string name="decline">رد</string>
-
     <string name="limit_data_usage_none_description">بدون محدودیت</string>
     <string name="minimize_on_exit_none_description">هیچ</string>
     <string name="best_resolution">بهترین وضوح</string>
@@ -211,47 +185,36 @@
     <string name="file_name_empty_error">نام پرونده نمی‌تواند خالی باشد</string>
     <string name="error_occurred_detail">خطایی رخ داد: %1$s</string>
     <string name="no_streams_available_download">جریانی برای بارگیری در دسترس نیست</string>
-
     <string name="search_no_results">بدون نتیجه</string>
-    <string name="use_old_player_title">استفاده از پخش‌کننده قدیمی</string>
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
-
     <plurals name="subscribers">
-	<item quantity="one">%s مشترک</item>
-	<item quantity="other">%s مشترک</item>
-</plurals>
-
+        <item quantity="one">%s مشترک</item>
+        <item quantity="other">%s مشترک</item>
+    </plurals>
     <string name="no_views">بدون بازدید</string>
     <plurals name="views">
-	<item quantity="one">%s بازدید</item>
-	<item quantity="other">%s بازدید</item>
-</plurals>
-
+        <item quantity="one">%s بازدید</item>
+        <item quantity="other">%s بازدید</item>
+    </plurals>
     <string name="no_videos">بدون ویدئو</string>
     <plurals name="videos">
-    <item quantity="one">ویدئو</item>
-    <item quantity="other">ویدئو</item>
-</plurals>
-
+        <item quantity="one">ویدئو</item>
+        <item quantity="other">ویدئو</item>
+    </plurals>
     <string name="create">ایجاد</string>
     <string name="delete_one">پاک کردن یک مورد</string>
     <string name="delete_all">پاک‌کردن همه</string>
     <string name="dismiss">صرف نظر</string>
     <string name="rename">تغییر نام</string>
-
     <string name="one_item_deleted">یک مورد پاک شد.</string>
-
     <string name="settings_file_charset_title">نویسه‌های مجاز در نام پرونده‌ها</string>
     <string name="settings_file_replacement_character_summary">نویسه‌های نامعتبر با این مقدار جایگزین شدند</string>
     <string name="settings_file_replacement_character_title">نویسه جایگزین</string>
-
     <string name="charset_letters_and_digits">حروف و اعداد</string>
     <string name="charset_most_special_characters">مهم‌ترین نویسه‌های خاص</string>
-
     <string name="toast_no_player">کاره‌ای برای پخش این پرونده نصب نشده است</string>
-
     <string name="title_activity_about">درباره نیوپایپ</string>
     <string name="action_settings">تنظیمات</string>
     <string name="action_about">درباره</string>
@@ -269,8 +232,6 @@
     <string name="read_privacy_policy">خواندن سیاست حریم خصوصی</string>
     <string name="app_license_title">پروانه نیوپایپ</string>
     <string name="read_full_license">خواندن پروانه</string>
-
-
     <string name="title_activity_history">تاریخچه</string>
     <string name="title_history_search">جستجو شده</string>
     <string name="title_history_view">دیده‌شده</string>
@@ -284,7 +245,6 @@
     <string name="delete_all_history_prompt">می‌خواهید همه موارد را از تاریخچه پاک کنید؟</string>
     <string name="title_last_played">آخرین پخش‌شده</string>
     <string name="title_most_played">بیشترین پخش‌شده</string>
-
     <string name="main_page_content">محتوای صفحه اصلی</string>
     <string name="blank_page_summary">صفحه خالی</string>
     <string name="kiosk_page_summary">صفحه کیوسک</string>
@@ -305,25 +265,20 @@
     <string name="video_player">پخش‌کننده ویدئو</string>
     <string name="background_player">پخش‌کننده پس‌زمینه</string>
     <string name="always_ask_open_action">همیشه بپرس</string>
-
     <string name="preferred_player_fetcher_notification_title">در حال دریافت اطلاعات…</string>
     <string name="preferred_player_fetcher_notification_message">بارگذری محتوای درخواستی</string>
-
     <string name="create_playlist">فهرست پخش جدید</string>
     <string name="delete_playlist">پاک‌کردن</string>
     <string name="rename_playlist">تغییر نام</string>
     <string name="playlist_name_input">نام</string>
     <string name="append_playlist">افزودن به فهرست پخش</string>
     <string name="set_as_playlist_thumbnail">استفاده به عنوان تصویر فهرست پخش</string>
-
     <string name="delete_playlist_prompt">این فهرست پخش پاک شود؟</string>
     <string name="playlist_creation_success">فهرست پخش ایجاد شد</string>
     <string name="playlist_add_stream_success">به فهرست پخش افزوده شد</string>
     <string name="playlist_thumbnail_change_success">تصویر فهرست پخش تغییر کرد.</string>
     <string name="playlist_delete_failure">ناتوانی در پاک‌کردن فهرست پخش.</string>
-
     <string name="caption_none">بدون توضیحات</string>
-
     <string name="caption_setting_title">توضحیات</string>
     <string name="unsubscribe">لغو اشتراک</string>
     <string name="tab_new">زبان جدید</string>
@@ -332,4 +287,12 @@
     <string name="settings_category_history_title">تاریخچه و حافظه نهان</string>
     <string name="settings_category_debug_title">اشکال‌زدایی</string>
     <string name="settings_category_updates_title">به‌روزرسانی‌ها</string>
+    <string name="open_in_popup_mode">در پنجره جداگانه باز شود</string>
+    <string name="popup_mode_share_menu_title">حالت پنجره مجزا</string>
+    <string name="default_popup_resolution_title">اندازه پیش فرض پنجره جداگانه</string>
+    <string name="controls_popup_title">پنجره جداگانه</string>
+    <string name="popup_remember_size_pos_title">به یاد داشتن اندازه و موقعیت پنجره جداگانه</string>
+    <string name="popup_remember_size_pos_summary">به یاد داشتن آخرین اندازه و موقعیت قبلی پنجره جداگانه</string>
+    <string name="use_inexact_seek_title">زمان فعلی پخش کننده را به صورت تقریبی و سریع جلو ببر</string>
+    <string name="use_inexact_seek_summary">این گزینه باعث می شود هنگام جلو/عقب کردن زمان تصویر، به جای زمان دقیق انتخاب شده، به زمان غیر دقیق و نزدیک به مکان انتخاب شده برود که این کار سریع تر انجام می شود</string>
 </resources>

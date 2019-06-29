@@ -55,7 +55,6 @@
     <string name="youtube_signature_decryption_error">Kan video-URL-ondertekening niet ontsleutelen</string>
     <string name="parsing_error">Kan website niet verwerken</string>
     <string name="content_not_available">Inhoud niet beschikbaar</string>
-    <string name="blocked_by_gema">Geblokkeerd door GEMA</string>
     <string name="could_not_setup_download_menu">Kan downloadmenu niet instellen</string>
     <string name="live_streams_not_supported">Livestreams zijn nog niet ondersteund</string>
     <string name="detail_likes_img_view_description">Vind-ik-leuks</string>
@@ -123,8 +122,6 @@
 \nopenen in pop-upmodus</string>
     <string name="popup_mode_share_menu_title">NewPipe-pop-upmodus</string>
     <string name="popup_playing_toast">Speelt af in pop-upmodus</string>
-    <string name="use_old_player_title">Oude speler gebruiken</string>
-    <string name="use_old_player_summary">Verouderde ingebouwde Mediaframework-speler</string>
     <string name="default_video_format_title">Standaard videoformaat</string>
     <string name="disabled">Uitgeschakeld</string>
     <string name="default_popup_resolution_title">Standaardresolutie van pop-up</string>
@@ -155,7 +152,7 @@
     <string name="tab_about">Over</string>
     <string name="tab_contributors">Bijdragers</string>
     <string name="tab_licenses">Licenties</string>
-    <string name="app_description">Vrij en lichtgewicht streamen op Android.</string>
+    <string name="app_description">Vrij en licht streamen voor Android.</string>
     <string name="view_on_github">Bekijken op GitHub</string>
     <string name="app_license_title">Licentie van NewPipe</string>
     <string name="contribution_encouragement">Hulp is altijd welkom. Of je nu nieuwe ideeën hebt, vertalingen kan aanleveren, wijzigingen in het ontwerp kan verrichten, code kan opschonen of van grote wijzigingen voorzien. Hoe meer hulp, hoe beter het wordt!</string>
@@ -270,7 +267,6 @@
     <string name="video_player">Videospeler</string>
     <string name="background_player">Achtergrondspeler</string>
     <string name="popup_player">Pop-upspeler</string>
-    <string name="always_ask_player">Altijd vragen</string>
     <string name="preferred_player_fetcher_notification_title">Bezig met ophalen van informatie…</string>
     <string name="preferred_player_fetcher_notification_message">Bezig met laden van gevraagde inhoud</string>
     <string name="import_data_title">Databank importeren</string>
@@ -441,7 +437,7 @@
     <string name="app_update_notification_content_title">NewPipe-update beschikbaar!</string>
     <string name="app_update_notification_content_text">Tik om te downloaden</string>
     <string name="missions_header_finished">Voltooid</string>
-    <string name="missions_header_pending">In de wachtrij</string>
+    <string name="missions_header_pending">In afwachting van</string>
     <string name="paused">gepauzeerd</string>
     <string name="queued">aan de wachtrij toegevoegd</string>
     <string name="post_processing">nabewerking</string>
@@ -452,12 +448,12 @@
     <string name="download_finished_more">%s downloads voltooid</string>
     <string name="generate_unique_name">Genereer een unieke naam</string>
     <string name="overwrite">Overschrijven</string>
-    <string name="overwrite_warning">Er bestaat al een gedownload bestand met deze naam</string>
+    <string name="overwrite_finished_warning">Er bestaat al een gedownload bestand met deze naam</string>
     <string name="download_already_running">Er is een download aan de gang met deze naam</string>
     <string name="show_error">Toon foutmelding</string>
     <string name="label_code">Code</string>
-    <string name="error_path_creation">Het bestand kan niet worden gemaakt</string>
-    <string name="error_file_creation">De doelmap kan niet worden gemaakt</string>
+    <string name="error_file_creation">Het bestand kan niet worden gemaakt</string>
+    <string name="error_path_creation">De doelmap kan niet worden gemaakt</string>
     <string name="error_permission_denied">Toestemming door het systeem geweigerd</string>
     <string name="error_ssl_exception">Beveiligde connectie is mislukt</string>
     <string name="error_unknown_host">Kon de server niet vinden</string>
@@ -476,4 +472,5 @@
     <string name="pause_downloads_on_mobile_desc">Downloads die niet kunnen worden gepauzeerd zullen worden herstart</string>
     <string name="events">Gebeurtenissen</string>
     <string name="conferences">Conferenties</string>
+    <string name="error_timeout">Time-out van verbinding</string>
 </resources>

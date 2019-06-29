@@ -70,7 +70,6 @@
     <string name="parsing_error">Kunne ikke tolke nettside</string>
     <string name="light_parsing_error">Kunne ikke tolke nettside fullstendig</string>
     <string name="content_not_available">Innholdet er ikke tilgjengelig</string>
-    <string name="blocked_by_gema">Blokkert av GEMA</string>
     <string name="could_not_setup_download_menu">Kunne ikke sette opp nedlastingsmeny</string>
     <string name="live_streams_not_supported">Direktesendinger støttes ikke enda.</string>
     <string name="could_not_get_stream">Kunne ikke finne noen strømmer</string>
@@ -141,8 +140,6 @@
     <string name="later">Senere</string>
     <string name="disabled">Avskrudd</string>
 
-    <string name="use_old_player_title">Bruk gammel avspiller</string>
-
 
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
@@ -153,8 +150,7 @@
 
     <string name="recaptcha_request_toast">reCAPTCHA-oppgave forespurt</string>
 
-    <string name="use_old_player_summary">Gammel innebygd Mediaframework-avspiller</string>
-<string name="use_external_video_player_summary">Fjerner lyd ved NOEN oppløsninger</string>
+    <string name="use_external_video_player_summary">Fjerner lyd ved NOEN oppløsninger</string>
     <string name="subscribe_button_title">Abonner</string>
     <string name="subscribed_button_title">Abonnert</string>
     <string name="channel_unsubscribed">Kanalabonnent oppsagt</string>
@@ -315,8 +311,7 @@
     <string name="video_player">Videoavspiller</string>
     <string name="background_player">Bakgrunnsavspiller</string>
     <string name="popup_player">Oppsprettsavspiller</string>
-    <string name="always_ask_player">Spør alltid</string>
-    
+
     <string name="preferred_player_fetcher_notification_title">Henter informasjon…</string>
     <string name="preferred_player_fetcher_notification_message">Laster forespurt innhold</string>
 <string name="import_data_title">Importer database</string>
@@ -519,7 +514,6 @@
     <string name="app_update_notification_content_title">Ny NewPipe-versjon tilgjengelig.</string>
     <string name="app_update_notification_content_text">Trykk for å laste ned</string>
     <string name="missions_header_finished">Fullført</string>
-    <string name="missions_header_pending">I kø</string>
     <string name="paused">pauset</string>
     <string name="queued">i kø</string>
     <string name="post_processing">etterbehandling</string>
@@ -530,12 +524,12 @@
     <string name="download_finished_more">%s nedlastinger fullført</string>
     <string name="generate_unique_name">Generer unikt navn</string>
     <string name="overwrite">Overskriv</string>
-    <string name="overwrite_warning">Nedlastet fil ved dette navnet finnes allerede</string>
+    <string name="overwrite_finished_warning">Nedlastet fil ved dette navnet finnes allerede</string>
     <string name="download_already_running">Nedlasting med dette navnet underveis allerede</string>
     <string name="show_error">Vis feil</string>
     <string name="label_code">Kode</string>
-    <string name="error_path_creation">Filen kan ikke opprettes</string>
-    <string name="error_file_creation">Målmappen kan ikke opprettes</string>
+    <string name="error_file_creation">Filen kan ikke opprettes</string>
+    <string name="error_path_creation">Målmappen kan ikke opprettes</string>
     <string name="error_permission_denied">Tilgang nektet av systemet</string>
     <string name="error_ssl_exception">Sikker tilkobling mislyktes</string>
     <string name="error_unknown_host">Fant ikke tjeneren</string>

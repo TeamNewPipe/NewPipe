@@ -172,7 +172,6 @@
     <string name="parsing_error">Tidak dapat menghuraikan laman web</string>
     <string name="light_parsing_error">Tidak dapat menghuraikan laman web sepenuhnya</string>
     <string name="content_not_available">Kandungan tidak tersedia</string>
-    <string name="blocked_by_gema">Disekat oleh GEMA</string>
     <string name="could_not_setup_download_menu">Tidak dapat menyediakan menu muat turun</string>
     <string name="live_streams_not_supported">Siaran langsung belum disokong</string>
     <string name="could_not_get_stream">Tidak boleh mendapat sebarang strim</string>
@@ -432,7 +431,6 @@
     <string name="app_update_notification_content_title">Kemas kini NewPipe Tersedia!</string>
     <string name="app_update_notification_content_text">Ketik untuk muat turun</string>
     <string name="missions_header_finished">Selesai</string>
-    <string name="missions_header_pending">Dalam barisan</string>
     <string name="paused">dijeda</string>
     <string name="queued">telah beratur</string>
     <string name="post_processing">pemprosesan-pasca</string>
@@ -443,12 +441,12 @@
     <string name="download_finished_more">%s muat turun selesai</string>
     <string name="generate_unique_name">Menjana nama yang unik</string>
     <string name="overwrite">Timpa</string>
-    <string name="overwrite_warning">Fail yang dimuat turun dengan nama ini sudah wujud</string>
+    <string name="overwrite_finished_warning">Fail yang dimuat turun dengan nama ini sudah wujud</string>
     <string name="download_already_running">Terdapat muat turun yang sedang berjalan dengan nama ini</string>
     <string name="show_error">Tunjukkan kesilapan</string>
     <string name="label_code">Kod</string>
-    <string name="error_path_creation">Fail tidak boleh dibuat</string>
-    <string name="error_file_creation">Folder destinasi tidak boleh dibuat</string>
+    <string name="error_file_creation">Fail tidak boleh dibuat</string>
+    <string name="error_path_creation">Folder destinasi tidak boleh dibuat</string>
     <string name="error_permission_denied">Kebenaran ditolak oleh sistem</string>
     <string name="error_ssl_exception">Sambungan selamat gagal</string>
     <string name="error_unknown_host">Tidak dapat mencari server</string>
@@ -465,4 +463,5 @@
     <string name="max_retry_desc">Jumlah percubaan maksimum sebelum membatalkan muat turun</string>
     <string name="pause_downloads_on_mobile">Jeda semasa beralih ke data mudah alih</string>
     <string name="pause_downloads_on_mobile_desc">Muat turun yang tidak dapat dihentikan akan dimulakan semula</string>
+    <string name="missions_header_pending">Menunggu</string>
 </resources>

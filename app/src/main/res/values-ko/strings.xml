@@ -30,7 +30,6 @@
     <string name="url_not_supported_toast">지원하지 않는 URL 입니다</string>
     <string name="content_language_title">기본 컨텐츠 언어</string>
     <string name="settings_category_video_audio_title">비디오 &amp; 오디오</string>
-
     <string name="list_thumbnail_view_description">비디오 미리보기 썸네일</string>
     <string name="detail_thumbnail_view_description">비디오 미리보기 썸네일</string>
     <string name="detail_uploader_thumbnail_view_description">업로더 썸네일</string>
@@ -38,24 +37,19 @@
     <string name="detail_likes_img_view_description">좋아요</string>
     <string name="use_external_video_player_title">외부 비디오 플레이어 사용</string>
     <string name="use_external_audio_player_title">외부 오디오 플레이어 사용</string>
-
     <string name="download_path_audio_title">오디오 다운로드 폴더</string>
     <string name="download_path_audio_summary">다운로드된 오디오는 여기에 저장됩니다</string>
     <string name="download_path_audio_dialog_title">오디오 파일 다운로드 경로를 입력하세요</string>
-
     <string name="theme_title">테마</string>
     <string name="dark_theme_title">어두운 테마</string>
     <string name="light_theme_title">밝은 테마</string>
-
     <string name="settings_category_appearance_title">외관</string>
     <string name="settings_category_other_title">기타</string>
     <string name="background_player_playing_toast">백그라운드에서 재생 중</string>
     <string name="play_btn_text">재생</string>
     <string name="network_error">네트워크 오류</string>
-
     <string name="use_tor_title">Tor 사용</string>
     <string name="use_tor_summary">(실험적) 향상된 프라이버시를 위해 다운로드 트래픽을 강제로 Tor를 통해 전송 (스트리밍 비디오는 아직 지원되지 않습니다).</string>
-
     <string name="err_dir_create">다운로드 디렉토리를 만들 수 없습니다 \'%1$s\'</string>
     <string name="info_dir_created">다운로드 디렉토리를 만들었습니다 \'%1$s\'</string>
     <string name="main_bg_subtitle">검색 버튼을 눌러서 시작하세요</string>
@@ -65,14 +59,12 @@
     <string name="show_age_restricted_content_title">연령 제한 컨텐츠</string>
     <string name="video_is_age_restricted">연령 제한 비디오입니다. 설정 메뉴에서 시청 허용 여부를 변경하실 수 있습니다.</string>
     <string name="duration_live">라이브</string>
-
     <string name="general_error">오류</string>
     <string name="could_not_load_thumbnails">모든 썸네일을 불러올 수 없습니다</string>
     <string name="youtube_signature_decryption_error">비디오 URL 서명을 복호화할 수 없습니다</string>
     <string name="parsing_error">웹사이트를 가져올 수 없습니다</string>
     <string name="light_parsing_error">웹사이트를 완전히 가져올 수 없습니다</string>
     <string name="content_not_available">컨텐츠를 사용할 수 없습니다</string>
-    <string name="blocked_by_gema">GEMA에 의해 차단되었습니다</string>
     <string name="could_not_setup_download_menu">다운로드 메뉴를 설정할 수 없습니다</string>
     <string name="live_streams_not_supported">라이브 스트림은 아직 지원하지 않습니다</string>
     <string name="could_not_get_stream">어떠한 스트림도 가져올 수 없습니다</string>
@@ -84,11 +76,8 @@
     <string name="what_happened_headline">다음이 발생함:</string>
     <string name="your_comment">내용 (영어로 작성):</string>
     <string name="error_details_headline">자세한 사항:</string>
-
-
     <string name="report_error">오류 보고</string>
     <string name="user_report">사용자 보고서</string>
-
     <string name="video">비디오</string>
     <string name="audio">오디오</string>
     <string name="retry">재시도</string>
@@ -99,8 +88,7 @@
     <string name="pause">일시정지</string>
     <string name="delete">삭제</string>
     <string name="checksum">체크섬</string>
-
-<string name="open_in_popup_mode">팝업 모드에서 열기</string>
+    <string name="open_in_popup_mode">팝업 모드에서 열기</string>
     <string name="use_external_video_player_summary">일부 해상도에서 소리가 나지 않습니다</string>
     <string name="popup_mode_share_menu_title">뉴파이프 팝업 모드</string>
     <string name="subscribe_button_title">구독</string>
@@ -108,15 +96,11 @@
     <string name="channel_unsubscribed">채널 구독 해제됨</string>
     <string name="subscription_change_failed">구독 여부를 변경할 수 없음</string>
     <string name="subscription_update_failed">구독을 업데이트할 수 없음</string>
-
     <string name="tab_main">메인 화면</string>
     <string name="tab_subscriptions">구독</string>
-
     <string name="fragment_whats_new">새로운 영상</string>
-
     <string name="controls_background_title">배경</string>
     <string name="controls_popup_title">팝업</string>
-
     <string name="default_popup_resolution_title">기본 팝업 해상도</string>
     <string name="show_higher_resolutions_title">높은 해상도 표시</string>
     <string name="show_higher_resolutions_summary">일부 기기에서만 2K/4K 해상도 재생이 지원됩니다</string>
@@ -157,48 +141,36 @@
     <string name="best_resolution">최대 해상도</string>
     <string name="undo">되돌리기</string>
     <string name="play_all">전부 재생</string>
-
     <string name="notification_channel_name">뉴파이프 알림</string>
     <string name="notification_channel_description">뉴파이프 백그라운드 및 팝업 플레이어 알림</string>
-
     <string name="unknown_content">[알 수 없음]</string>
-
     <string name="could_not_load_image">이미지를 불러올 수 없습니다</string>
     <string name="app_ui_crash">앱/UI 충돌</string>
     <string name="player_stream_failure">이 스트림을 재생할 수 없습니다</string>
     <string name="player_unrecoverable_failure">복구할 수 없는 플레이어 오류가 발생했습니다</string>
     <string name="player_recoverable_failure">플레이어 오류로부터 복구 중</string>
-
     <string name="info_labels">무엇을:\\n요청:\\n컨텐츠 언어:\\n서비스:\\nGMT 기준 시간:\\n패키지:\\n버전:\\n안드로이드 버전:</string>
     <string name="search_no_results">결과 없음</string>
     <string name="empty_subscription_feed_subtitle">구독할 항목을 추가하세요</string>
 
-    <string name="use_old_player_title">구형 플레이어 사용</string>
-    <string name="use_old_player_summary">내장된 구형 Mediaframework 플레이어 사용</string>
-
     <string name="short_thousand">천</string>
     <string name="short_million">백만</string>
     <string name="short_billion">10억</string>
-
     <string name="no_subscribers">구독자 없음</string>
     <plurals name="subscribers">
-	<item quantity="other">%s 구독자</item>
-</plurals>
-
+        <item quantity="other">%s 구독자</item>
+    </plurals>
     <string name="no_views">시청 횟수 없음</string>
     <plurals name="views">
-	<item quantity="other">%s 시청 횟수</item>
-</plurals>
-
+        <item quantity="other">%s 시청 횟수</item>
+    </plurals>
     <string name="no_videos">비디오 없음</string>
     <plurals name="videos">
-    <item quantity="other">비디오</item>
-</plurals>
-
+        <item quantity="other">비디오</item>
+    </plurals>
     <string name="view">재생</string>
     <string name="add">새로운 미션</string>
     <string name="finish">OK</string>
-
     <string name="msg_name">파일명</string>
     <string name="msg_threads">쓰레드</string>
     <string name="msg_error">오류</string>
@@ -212,18 +184,14 @@
     <string name="no_available_dir">다운로드 할 폴더를 선택하세요</string>
     <string name="msg_popup_permission">이 권한은 팝업 모드에서
 \n열기 위해 필요합니다</string>
-
     <string name="reCaptchaActivity">로봇인지 확인 (reCAPTCHA)</string>
     <string name="recaptcha_request_toast">reCAPTCHA challenge 요청됨</string>
-
     <string name="settings_category_downloads_title">다운로드</string>
     <string name="settings_file_charset_title">파일명에 허용되는 문자</string>
     <string name="settings_file_replacement_character_summary">올바르지 않은 문자는 다음 문자로 대체됩니다</string>
     <string name="settings_file_replacement_character_title">대체 문자</string>
-
     <string name="charset_letters_and_digits">문자 및 숫자</string>
     <string name="charset_most_special_characters">가장 특수한 문자</string>
-
     <string name="title_activity_about">뉴파이프에 대해서</string>
     <string name="action_settings">설정</string>
     <string name="action_about">뉴파이프</string>
@@ -245,8 +213,6 @@
     <string name="website_encouragement">뉴파이프에 관한 최신 및 상세 정보를 얻으려면 웹사이트를 방문하세요.</string>
     <string name="app_license_title">뉴파이프가 채택한 라이센스</string>
     <string name="read_full_license">라이센스 읽기</string>
-
-
     <string name="title_activity_history">기록</string>
     <string name="title_history_search">검색함</string>
     <string name="title_history_view">시청함</string>
@@ -256,7 +222,6 @@
     <string name="history_cleared">기록이 삭제되었습니다</string>
     <string name="item_deleted">항목이 삭제되었습니다</string>
     <string name="delete_item_search_history">이 항목을 검색 기록에서 삭제할까요?</string>
-
     <string name="main_page_content">메인 화면의 내용</string>
     <string name="blank_page_summary">빈 페이지</string>
     <string name="kiosk_page_summary">키오스크 페이지</string>
@@ -266,7 +231,6 @@
     <string name="select_a_channel">채널 선택</string>
     <string name="no_channel_subscribed_yet">구독중인 채널이 없습니다</string>
     <string name="select_a_kiosk">키오스크 선택</string>
-
     <string name="kiosk">키오스크</string>
     <string name="trending">인기 급상승</string>
     <string name="top_50">탑 50</string>
@@ -276,20 +240,17 @@
     <string name="play_queue_remove">제거</string>
     <string name="play_queue_stream_detail">상세 정보</string>
     <string name="play_queue_audio_settings">오디오 설정</string>
-    <string name="hold_to_append">눌러서 대기 목록에 추가</string>
-    <string name="enqueue_on_background">백그라운드에 대기</string>
-    <string name="enqueue_on_popup">팝업에 대기</string>
+    <string name="hold_to_append">눌러서 대기열에 추가</string>
+    <string name="enqueue_on_background">백그라운드로 갈 경우 대기</string>
+    <string name="enqueue_on_popup">새 팝업으로 갈 경우 대기</string>
     <string name="start_here_on_main">여기서부터 재생</string>
-    <string name="start_here_on_background">여기서부터 백그라운드에서 재생</string>
-    <string name="start_here_on_popup">여기서부터 팝업에 재생</string>
-<string name="no_player_found_toast">스트리밍 플레이어를 찾을 수 없습니다. VLC를 설치하면 플레이하실 수 있습니다</string>
+    <string name="start_here_on_background">백그라운드로 갈 경우 여기서부터 재생</string>
+    <string name="start_here_on_popup">새 팝업으로 갈 경우 여기서부터 재생</string>
+    <string name="no_player_found_toast">스트리밍 플레이어를 찾을 수 없습니다. VLC를 설치하면 플레이하실 수 있습니다.</string>
     <string name="controls_download_desc">스트리밍 파일 다운로드하기</string>
     <string name="show_info">정보 보기</string>
-
     <string name="tab_bookmarks">플레이리스트 북마크</string>
-
     <string name="controls_add_to_playlist_title">이곳에 추가</string>
-
     <string name="use_inexact_seek_title">정확하지는 않지만 빠른 탐색</string>
     <string name="use_inexact_seek_summary">정확하지 않은 탐색은 빠르게 위치로 탐색할 수 있지만 정확도는 떨어집니다</string>
     <string name="auto_queue_title">다음 스트림을 자동으로 재생열에 추가하기</string>
@@ -300,12 +261,10 @@
     <string name="live">라이브 (LIVE)</string>
     <string name="always">항상</string>
     <string name="just_once">한번만</string>
-
     <string name="toggle_orientation">디바이스 방향 토글</string>
     <string name="switch_to_background">백그라운드로 전환</string>
     <string name="switch_to_popup">팝업으로 전환</string>
     <string name="switch_to_main">기본으로 전환</string>
-
     <string name="import_data_title">데이터베이스 가져오기</string>
     <string name="export_data_title">데이터베이스 내보내기</string>
     <string name="import_data_summary">현재 시청 기록 및 구독 목록을 덮어쓰기 합니다</string>
@@ -314,102 +273,79 @@
     <string name="invalid_url_toast">잘못된 URL</string>
     <string name="video_streams_empty">발견된 비디오 스트림 없음</string>
     <string name="audio_streams_empty">발견된 오디오 스트림 없음</string>
-
     <string name="detail_drag_description">드래그하여 재배열</string>
-
     <string name="create">만들기</string>
     <string name="delete_one">1개 삭제하기</string>
     <string name="delete_all">모두 삭제하기</string>
     <string name="dismiss">취소</string>
     <string name="rename">이름 바꾸기</string>
-
     <string name="reCaptcha_title">로봇인지 확인합니다</string>
     <string name="delete_stream_history_prompt">이 항목을 시청 기록에서 삭제하시겠습니까?</string>
     <string name="delete_all_history_prompt">모든 항목을 시청 기록에서 삭제하시겠습니까?</string>
     <string name="title_last_played">마지막으로 재생</string>
     <string name="title_most_played">가장 많이 재생</string>
-
     <string name="export_complete_toast">내보내기 완료</string>
     <string name="import_complete_toast">가져오기 완료</string>
     <string name="no_valid_zip_file">유효한 ZIP 파일 없음</string>
     <string name="could_not_import_all_files">경고: 모든 파일 가져오기를 실패했습니다.</string>
     <string name="override_current_data">이것은 현재 설정을 덮어쓸 것입니다.</string>
-
     <string name="drawer_open">드로어 열기</string>
     <string name="drawer_close">드로어 닫기</string>
     <string name="drawer_header_action_paceholder_text">여기에 무언가가 추가될 거에요~ :D</string>
-
-
     <string name="video_player">비디오 플레이어</string>
     <string name="background_player">백그라운드 플레이어</string>
     <string name="popup_player">팝업 플레이어</string>
     <string name="always_ask_open_action">항상 묻기</string>
-    
     <string name="preferred_player_fetcher_notification_title">정보 가져오는 중…</string>
     <string name="preferred_player_fetcher_notification_message">요청한 콘텐츠를 로딩 중입니다</string>
-
     <string name="create_playlist">새로운 재생목록</string>
     <string name="delete_playlist">삭제</string>
     <string name="rename_playlist">이름 바꾸기</string>
     <string name="playlist_name_input">이름</string>
     <string name="append_playlist">재생목록에 추가</string>
     <string name="set_as_playlist_thumbnail">재생목록 썸네일로 설정</string>
-
     <string name="bookmark_playlist">재생목록 북마크하기</string>
     <string name="unbookmark_playlist">북마크 제거하기</string>
-
     <string name="delete_playlist_prompt">이 재생목록을 삭제하시겠습니까?</string>
     <string name="playlist_creation_success">재생목록 생성 완료</string>
     <string name="playlist_add_stream_success">재생목록에 추가됨</string>
     <string name="playlist_thumbnail_change_success">재생목록 썸내일이 바뀜.</string>
     <string name="playlist_delete_failure">재생목록을 삭제할 수 없습니다.</string>
-
     <string name="caption_none">자막 없음</string>
-
     <string name="resize_fit">꼭 맞게 하기</string>
     <string name="resize_fill">채우기</string>
     <string name="resize_zoom">확대</string>
-
     <string name="caption_auto_generated">자동 생성됨</string>
     <string name="caption_font_size_settings_title">자막 폰트 크기</string>
     <string name="smaller_caption_font_size">작은 폰트</string>
     <string name="normal_caption_font_size">보통 폰트</string>
     <string name="larger_caption_font_size">큰 폰트</string>
-
     <string name="live_sync">동기화</string>
-
     <string name="enable_leak_canary_title">LeakCanary 할성화</string>
     <string name="enable_leak_canary_summary">힙 덤프 중 메모리 누수 점검으로 앱이 불안정해질 수 있습니다</string>
-
     <string name="enable_disposed_exceptions_title">out-of-lifecycle 오류 보고</string>
     <string name="enable_disposed_exceptions_summary">프래그먼트 또는 버려진 액티비티 주기 밖에서 일어나는 전달할 수 없는 Rx 예외를 강제적으로 보고하기</string>
-
-<string name="file">파일</string>
-
+    <string name="file">파일</string>
     <string name="invalid_directory">폴더가 존재하지 않습니다</string>
-    <string name="invalid_source">잘못된 파일/콘덴츠 소스</string>
+    <string name="invalid_source">잘못된 파일/콘텐츠 소스</string>
     <string name="invalid_file">파일이 존재하지 않거나 읽기/쓰기 권한이 없습니다</string>
     <string name="file_name_empty_error">파일명이 비어 있으면 안됩니다</string>
     <string name="error_occurred_detail">오류 발생: %1$s</string>
-
     <string name="import_export_title">가져오기/내보내기</string>
     <string name="import_title">가져오기</string>
     <string name="import_from">이곳으로부터 가져오기</string>
     <string name="export_to">이곳으로 내보내기</string>
-
     <string name="import_ongoing">가져오는 중.…</string>
     <string name="export_ongoing">내보내는 중…</string>
-
     <string name="import_file_title">파일 가져오기</string>
     <string name="previous_export">이전 내보내기</string>
-
     <string name="subscriptions_import_unsuccessful">구독 목록 가져오기 실패</string>
     <string name="subscriptions_export_unsuccessful">구독 목록 내보내기 실패</string>
-
-    <string name="import_youtube_instructions">YouTube 구독 목록을 가져오려면 내보내기 파일이 필요합니다. 다운로드 하려면
-\n1. 이곳으로 가세요: $1$s
-\n2. 로그인이 필요하면 하세요
-\n3. 다운로드가 곧 시작 됩니다 (이 파일이 내보내기 파일 입니다)</string>
+    <string name="import_youtube_instructions">\'YouTube 구독 파일\'을 다운로드해서 구독 목록을 가져올 수 있습니다:
+\n
+\n1. 이곳으로 가세요: $1$s 
+\n2. 요청에 따라 로그인을 진행합니다
+\n3. 다운로드가 곧 시작 됩니다 (이 파일이 구독 파일입니다)</string>
     <string name="import_soundcloud_instructions">SoundCloud 프로필을 가져오시려면 URL 및 ID를 입력해주세요. 
 \n 
 \n프로필 URL을 찾으시려면 다음 과정을 따라해 주세요.
@@ -418,11 +354,10 @@
 \n3. 로그인이 필요하면 하세요. 
 \n4. 리디렉트된 곳의 URL을 복사하세요. (이 URL이 당신의 프로필 URL 입니다)</string>
     <string name="import_soundcloud_instructions_hint">프로필ID, soundcloud.com/프로필ID</string>
-
     <string name="import_network_expensive_warning">경고: 데이터 소모량이 늘어날 수 있습니다. 
 \n 
 \n계속하시겠습니까?</string>
-<string name="download_thumbnail_title">썸내일 로드하기</string>
+    <string name="download_thumbnail_title">썸내일 로드하기</string>
     <string name="download_thumbnail_summary">동영상 썸네일을 로드하지 않으며, 데이터와 메모리 사용을 최대한 줄입니다. 이 옵션을 
 \n선택 시 모든 메모리 캐시와 저장소 캐시를 삭제합니다.</string>
     <string name="thumbnail_cache_wipe_complete_notice">이미지 캐시 지워짐</string>
@@ -435,16 +370,12 @@
     <string name="unhook_checkbox">영상과 소리 분리 (소리가 깨질 수 있음)</string>
     <string name="playback_nightcore">나이트코어</string>
     <string name="playback_default">기본</string>
-<string name="no_streams_available_download">다운로드 가능한 스트림이 없습니다</string>
-
+    <string name="no_streams_available_download">다운로드 가능한 스트림이 없습니다</string>
     <string name="toast_no_player">이 파일을 재생할 수 있는 플레이어 앱이 없습니다</string>
-
     <string name="preferred_open_action_settings_title">선호하는 열기 동작</string>
     <string name="preferred_open_action_settings_summary">컨텐츠를 열 때 사용할 기본 동작 — %s</string>
-
     <string name="caption_setting_title">자막</string>
     <string name="caption_setting_description">플레이어 자막 텍스트 크기와 배경 스타일을 변경합니다. 효과를 적용하려면 앱을 재시작 해야합니다.</string>
-
     <string name="channels">채널만</string>
     <string name="playlists">재생 목록만</string>
     <string name="clear_views_history_title">시청 기록 삭제하기</string>
@@ -459,15 +390,12 @@
     <string name="privacy_policy_encouragement">뉴파이프 프로젝트는 사용자의 개인 정보 보호를 최우선으로 생각하며, 동의 없이 어떠한 정보도 수집하지 않습니다.
 \n뉴파이프 개인정보 보호 정책에서는 오류 보고 시 어떠한 정보가 수집되고 저장되는지 자세히 명시되어 있습니다.</string>
     <string name="read_privacy_policy">개인정보 보호 정책 읽기</string>
-    <string name="app_license">뉴파이프는 카피레프트 자유 소프트웨어입니다. 사용자는 이 앱을 사용, 공유, 또는 수정하는 것이 가능하고, 수정 후 재배포 시 자유 소프트웨어 재단의 GNU 라이센스 버전
-\n3 또는 그 이상의 버전을 포함해야 합니다.</string>
+    <string name="app_license">뉴파이프는 카피레프트 자유 소프트웨어입니다. 사용자는 이 앱을 사용, 공유, 또는 수정할 수 있고, 수정 후 재배포 시 자유 소프트웨어 재단의 GNU 라이센스 버전 3 또는 그 이상의 버전을 포함해야 합니다.</string>
     <string name="import_settings">앱 설정을 가져오시겠습니까?</string>
-
     <string name="skip_silence_checkbox">무음 구간 스킵</string>
     <string name="start_accept_privacy_policy">유럽 연합 일반 데이터 보호 규정 (GDPR) 에 따라, 사용자는 뉴파이프 개인정보 보호 정책을 읽고 꼼꼼히 확인해야 합니다. 버그 리포트를 보내시려면 개인정보 보호 정책에 동의해주세요.</string>
     <string name="accept">동의</string>
     <string name="decline">동의하지 않음</string>
-
     <string name="limit_data_usage_none_description">데이터 제한 없음</string>
     <string name="limit_mobile_data_usage_title">모바일 데이터 사용 시 화질 제한</string>
     <string name="unsubscribe">구독 해제</string>
@@ -486,4 +414,63 @@
     <string name="app_update_notification_channel_description">새 뉴파이프 버전을 알림</string>
     <string name="download_to_sdcard_error_title">외부 저장소 없음</string>
     <string name="download_to_sdcard_error_message">다운로드할 SD 카드를 찾을 수 없습니다. 다운로드 폴더 경로를 초기화 하시겠습니까\?</string>
+    <string name="one_item_deleted">1개의 항목이 삭제되었습니다.</string>
+    <string name="minimize_on_exit_title">앱 전환시 최소화</string>
+    <string name="minimize_on_exit_summary">비디오 플레이어에서 다른 앱으로 전환 시 다음과 같은 동작 실행 — %s</string>
+    <string name="minimize_on_exit_none_description">없음</string>
+    <string name="minimize_on_exit_background_description">백그라운드 플레이어로 최소화</string>
+    <string name="minimize_on_exit_popup_description">팝업 플레이어로 최소화</string>
+    <string name="playback_step">단계</string>
+    <string name="playback_reset">초기화</string>
+    <string name="saved_tabs_invalid_json">저장된 탭을 읽는 중 오류가 발생하여 기본 탭을 사용합니다</string>
+    <string name="restore_defaults">기본값 복원</string>
+    <string name="restore_defaults_confirmation">기본값을 복원할까요\?</string>
+    <string name="subscribers_count_not_available">구독자 숫자가 없습니다</string>
+    <string name="main_page_content_summary">메인 화면에 표시할 탭</string>
+    <string name="selection">선택</string>
+    <string name="updates_setting_title">업데이트</string>
+    <string name="updates_setting_description">새 버전이 있을 경우 앱을 업데이트하도록 알림 표시</string>
+    <string name="list_view_mode">\'목록으로 보기\' 모드</string>
+    <string name="list">목록</string>
+    <string name="grid">격자</string>
+    <string name="auto">자동</string>
+    <string name="switch_view">보기 방식 전환</string>
+    <string name="app_update_notification_content_title">NewPipe 업데이트가 있습니다!</string>
+    <string name="app_update_notification_content_text">여기를 눌러서 다운로드</string>
+    <string name="missions_header_finished">완료됨</string>
+    <string name="missions_header_pending">대기열에 있음</string>
+    <string name="paused">일시중지됨</string>
+    <string name="queued">대기열에 추가됨</string>
+    <string name="post_processing">후처리 실행 중</string>
+    <string name="enqueue">대기열</string>
+    <string name="permission_denied">시스템에 의해 실행이 거부되었습니다</string>
+    <string name="download_failed">다운로드 실패</string>
+    <string name="download_finished">다운로드 완료</string>
+    <string name="download_finished_more">%s 다운로드 완료됨</string>
+    <string name="generate_unique_name">별개의 이름 생성</string>
+    <string name="overwrite">덮어쓰기</string>
+    <string name="overwrite_unrelated_warning">이 이름을 가진 파일이 이미 있습니다.</string>
+    <string name="overwrite_finished_warning">이 이름을 가진 다운로드 된 파일이 이미 있습니다.</string>
+    <string name="download_already_running">해당 이름을 가진 다운로드가 이미 진행중입니다</string>
+    <string name="show_error">오류 표시</string>
+    <string name="label_code">코드</string>
+    <string name="error_path_creation">파일을 만들 수 없습니다</string>
+    <string name="error_file_creation">지정한 폴더를 만들 수 없습니다</string>
+    <string name="error_permission_denied">시스템에 의해 권한이 거부되었습니다</string>
+    <string name="error_ssl_exception">보안 연결 실패</string>
+    <string name="error_unknown_host">서버를 찾을 수 없습니다</string>
+    <string name="error_connect_host">서버에 접속할 수 없습니다</string>
+    <string name="error_http_no_content">서버가 데이터를 전송하지 않고 있습니다</string>
+    <string name="error_http_unsupported_range">서버가 다중 스레드 다운로드를 받아들이지 않습니다, @string/msg_threads = 1 를 사용해 다시 시도해보세요</string>
+    <string name="error_http_requested_range_not_satisfiable">요청된 HTTP 범위가 충분하지 않습니다</string>
+    <string name="error_http_not_found">HTTP 찾을 수 없습니다</string>
+    <string name="error_postprocessing_failed">후처리 작업이 실패하였습니다</string>
+    <string name="clear_finished_download">완료된 다운로드 비우기</string>
+    <string name="msg_pending_downloads">대기중인 %s 다운로드를 지속하세요</string>
+    <string name="stop">멈추기</string>
+    <string name="max_retry_msg">최대 재시도 횟수</string>
+    <string name="max_retry_desc">다운로드를 취소하기 전까지 다시 시도할 최대 횟수</string>
+    <string name="pause_downloads_on_mobile">모바일 데이터로 전환시 일시정지</string>
+    <string name="pause_downloads_on_mobile_desc">일시정지 할 수 없는 다운로드의 경우에는 다시 시작됩니다</string>
+    <string name="conferences">컨퍼런스</string>
 </resources>

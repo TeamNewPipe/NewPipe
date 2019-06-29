@@ -88,7 +88,6 @@
     <string name="parsing_error">Negalima apdoroti tinklapio</string>
     <string name="light_parsing_error">Negalima visiškai apdoroti tinklapio</string>
     <string name="content_not_available">Turinys neprieinamas</string>
-    <string name="blocked_by_gema">Užblokavo GEMA</string>
     <string name="could_not_setup_download_menu">Negalima sutvarkyti atsisiuntimų meniu</string>
     <string name="live_streams_not_supported">Tai gyvas srautas. Tokie kol kas nepalaikomi.</string>
     <string name="could_not_get_stream">Negalima gauti jokio srauto</string>
@@ -120,8 +119,6 @@
     <string name="video">Vaizdas</string>
     <string name="audio">Muzika</string>
     <string name="retry">Bandyti iš naujo</string>
-    <string name="use_old_player_title">Naudoti seną grotuvą</string>
-    <string name="use_old_player_summary">Senas įtaisytas media grotuvas</string>
 
     <plurals name="subscribers">
 	<item quantity="one">%s prenumeratorius</item>

@@ -88,7 +88,6 @@
     <string name="parsing_error">Det gick inte att analysera webbplatsen</string>
     <string name="light_parsing_error">Det gick inte att analysera webbplatsen helt</string>
     <string name="content_not_available">Innehållet är inte tillgängligt</string>
-    <string name="blocked_by_gema">Blockerat av GEMA</string>
     <string name="could_not_setup_download_menu">Kunde inte ställa in nedladdningsmenyn</string>
     <string name="live_streams_not_supported">Direktsändningar stöds inte än</string>
     <string name="could_not_load_image">Kunde inte ladda Bild</string>

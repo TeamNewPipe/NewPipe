@@ -59,8 +59,6 @@
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Formato de audio predeterminado</string>
     <string name="default_video_format_title">Formato de vídeo predeterminado</string>
-    <string name="webm_description">WebM — formato libre</string>
-    <string name="m4a_description">M4A — mellor calidade</string>
     <string name="theme_title">Tema</string>
     <string name="light_theme_title">Claro</string>
     <string name="dark_theme_title">Escuro</string>
@@ -167,7 +165,6 @@
     <string name="light_parsing_error">Non foi posíbel procesar o sitio web por completo</string>
     <string name="content_not_available">O contido non está dispoñíbel
 \n</string>
-    <string name="blocked_by_gema">Bloqueado pola GEMA</string>
     <string name="could_not_setup_download_menu">Non foi posíbel configurar o menú de descargas</string>
     <string name="live_streams_not_supported">Isto é unha emisión en directo, polo que aínda non está soportado.</string>
     <string name="could_not_get_stream">Non foi posíbel obter unha emisión</string>
@@ -218,8 +215,6 @@
     <string name="audio">Audio</string>
     <string name="retry">Tentar de novo</string>
     <string name="storage_permission_denied">A permisión de acceso ao almacenamento foi denegada</string>
-    <string name="use_old_player_title">Usar o reprodutor antigo</string>
-    <string name="use_old_player_summary">Versión interna anticuada do reprodutor Mediaframework</string>
 
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>

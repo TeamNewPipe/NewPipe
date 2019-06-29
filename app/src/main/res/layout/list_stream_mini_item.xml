@@ -69,4 +69,16 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="@dimen/video_item_search_uploader_text_size"
         tools:text="Uploader" />
+
+    <org.schabi.newpipe.views.AnimatedProgressBar
+        android:id="@+id/itemProgressView"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:progressDrawable="?progress_horizontal_drawable"
+        android:layout_width="wrap_content"
+        android:layout_height="4dp"
+        android:layout_marginTop="-2dp"
+        android:layout_alignStart="@id/itemThumbnailView"
+        android:layout_alignEnd="@id/itemThumbnailView"
+        android:layout_below="@id/itemThumbnailView"/>
+
 </RelativeLayout>
