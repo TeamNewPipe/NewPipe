@@ -76,6 +76,8 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.github.nirhart:ParallaxScroll:dd53d1f9d1'
     implementation 'com.nononsenseapps:filepicker:4.2.1'
+    implementation 'com.grack:nanojson:1.3'
+    implementation 'org.jsoup:jsoup:1.11.3' // TODO helper.StringUtil moved to internal package in 1.12.1
 
     implementation "com.google.android.exoplayer:exoplayer:${exoPlayerLibVersion}"
     implementation "com.google.android.exoplayer:extension-mediasession:${exoPlayerLibVersion}"
