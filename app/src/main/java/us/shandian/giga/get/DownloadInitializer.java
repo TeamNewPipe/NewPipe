@@ -35,9 +35,7 @@ public class DownloadInitializer extends Thread {
         int retryCount = 0;
         while (true) {
             try {
-                mMission.currentThreadCount = mMission.threadCount;
-
-                if (mMission.blocks < 0 && mMission.current == 0) {
+                if (mMission.blocks == null && mMission.current == 0) {
                     // calculate the whole size of the mission
                     long finalLength = 0;
                     long lowestSize = Long.MAX_VALUE;
@@ -83,11 +81,9 @@ public class DownloadInitializer extends Thread {
 
                 // check for dynamic generated content
                 if (mMission.length == -1 && mConn.getResponseCode() == 200) {
-                    mMission.blocks = 0;
+                    mMission.blocks = new int[0];
                     mMission.length = 0;
-                    mMission.fallback = true;
                     mMission.unknownLength = true;
-                    mMission.currentThreadCount = 1;
 
                     if (DEBUG) {
                         Log.d(TAG, "falling back (unknown length)");
@@ -99,24 +95,17 @@ public class DownloadInitializer extends Thread {
 
                     if (!mMission.running || Thread.interrupted()) return;
 
-                    synchronized (mMission.blockState) {
+                    synchronized (mMission.LOCK) {
                         if (mConn.getResponseCode() == 206) {
-                            if (mMission.currentThreadCount > 1) {
-                                mMission.blocks = mMission.length / DownloadMission.BLOCK_SIZE;
 
-                                if (mMission.currentThreadCount > mMission.blocks) {
-                                    mMission.currentThreadCount = (int) mMission.blocks;
-                                }
-                                if (mMission.currentThreadCount <= 0) {
-                                    mMission.currentThreadCount = 1;
-                                }
-                                if (mMission.blocks * DownloadMission.BLOCK_SIZE < mMission.length) {
-                                    mMission.blocks++;
-                                }
+                            if (mMission.threadCount > 1) {
+                                int count = (int) (mMission.length / DownloadMission.BLOCK_SIZE);
+                                if ((count * DownloadMission.BLOCK_SIZE) < mMission.length) count++;
+
+                                mMission.blocks = new int[count];
                             } else {
-                                // if one thread is solicited don't calculate blocks, is useless
-                                mMission.blocks = 1;
-                                mMission.fallback = true;
+                                // if one thread is required don't calculate blocks, is useless
+                                mMission.blocks = new int[0];
                                 mMission.unknownLength = false;
                             }
 
@@ -125,19 +114,12 @@ public class DownloadInitializer extends Thread {
                             }
                         } else {
                             // Fallback to single thread
-                            mMission.blocks = 0;
-                            mMission.fallback = true;
+                            mMission.blocks = new int[0];
                             mMission.unknownLength = false;
-                            mMission.currentThreadCount = 1;
 
                             if (DEBUG) {
                                 Log.d(TAG, "falling back due http response code = " + mConn.getResponseCode());
                             }
-                        }
-
-                        for (long i = 0; i < mMission.currentThreadCount; i++) {
-                            mMission.threadBlockPositions.add(i);
-                            mMission.threadBytePositions.add(0L);
                         }
                     }
 
