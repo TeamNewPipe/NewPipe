@@ -76,7 +76,7 @@
     <string name="audio">Audio</string>
     <string name="retry">Réessayer</string>
     <string name="storage_permission_denied">Autorisation d\'accès au stockage refusée</string>
-    <string name="main_bg_subtitle">Faites une recherche pour commencer</string>
+    <string name="main_bg_subtitle">Appuyez sur recherche pour commencer</string>
     <string name="autoplay_by_calling_app_title">Lecture automatique</string>
     <string name="video_is_age_restricted">Afficher les vidéos soumises à une limite d\'âge. Autoriser ce type de contenu est possible depuis les paramètres.</string>
     <string name="user_report">Rapport utilisateur</string>
@@ -315,7 +315,7 @@
     <string name="use_inexact_seek_title">Recherche rapide approximative</string>
     <string name="use_inexact_seek_summary">Permettre au lecteur d\'accéder plus rapidement à une position au détriment de la précision</string>
     <string name="download_thumbnail_title">Charger les miniatures</string>
-    <string name="download_thumbnail_summary">Désactivez pour empêcher le chargement des miniatures afin de réduire l’utilisation de bande passante et de mémoire. Ce changement vide le cache d’images en mémoire vive et sur le disque.</string>
+    <string name="download_thumbnail_summary">Désactivez pour empêcher le chargement des miniatures, afin de réduire l’utilisation de bande passante et de mémoire. Modifier cette option vide le cache d’images en mémoire vive et sur le disque.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Images en cache effacées</string>
     <string name="metadata_cache_wipe_title">Effacer les données en cache</string>
     <string name="metadata_cache_wipe_summary">Effacer toutes les pages web mises en cache</string>
@@ -477,7 +477,7 @@
     <string name="autoplay_title">Lecture automatique</string>
     <plurals name="comments">
         <item quantity="one">Commentaires</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="no_comments">Pas de commentaires</string>
     <string name="error_unable_to_load_comments">Impossible de charger les commentaires</string>
