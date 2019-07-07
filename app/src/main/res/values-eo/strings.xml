@@ -37,7 +37,6 @@
     <string name="general_error">Eraro</string>
     <string name="network_error">Reteraro</string>
     <string name="content_not_available">Enhavo ne estas disponebla</string>
-    <string name="blocked_by_gema">Blokita de GEMA</string>
 
     <string name="detail_likes_img_view_description">Ŝatoj</string>
     <string name="detail_dislikes_img_view_description">Malŝatoj</string>

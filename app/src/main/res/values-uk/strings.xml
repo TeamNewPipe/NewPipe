@@ -56,7 +56,6 @@
     <string name="parsing_error">Не вдалося проаналізувати веб-сайт</string>
     <string name="light_parsing_error">Не вдалося повністю проаналізувати веб-сайт</string>
     <string name="content_not_available">Контент недоступний</string>
-    <string name="blocked_by_gema">Заблоковано GEMA</string>
     <string name="could_not_setup_download_menu">Не вдалося налаштувати меню завантаження</string>
     <string name="live_streams_not_supported">Трансляції НАЖИВО поки що не підтримуються</string>
     <string name="could_not_get_stream">Не вдалося отримати жодного потоку</string>

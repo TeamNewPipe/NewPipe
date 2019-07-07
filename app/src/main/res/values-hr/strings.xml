@@ -101,7 +101,6 @@
     <string name="parsing_error">Nije moguće dohvatiti stranicu</string>
     <string name="light_parsing_error">Nije moguće u potpunosti dohvatiti stranicu</string>
     <string name="content_not_available">Sadržaj nije dostupan</string>
-    <string name="blocked_by_gema">Blokirano od GEMA-e</string>
     <string name="could_not_setup_download_menu">Nije moguće postaviti izbornik za preuzimanje</string>
     <string name="live_streams_not_supported">Prijenos uživo još nije podržan</string>
     <string name="could_not_get_stream">Nije moguće dobaviti stream</string>

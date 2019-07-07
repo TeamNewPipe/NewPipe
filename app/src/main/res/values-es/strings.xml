@@ -42,7 +42,7 @@
     <string name="info_dir_created">Carpeta de descarga creada \'%1$s\'</string>
     <string name="download_path_audio_summary">Ruta para almacenar los audios descargados</string>
     <string name="download_path_audio_dialog_title">Introducir ruta de descarga para archivos de audio</string>
-    <string name="blocked_by_gema">Bloqueado por GEMA</string>
+
     <string name="download_path_audio_title">Carpeta de descarga de audio</string>
     <string name="settings_category_video_audio_title">Vídeo y audio</string>
     <string name="play_btn_text">Reproducir</string>

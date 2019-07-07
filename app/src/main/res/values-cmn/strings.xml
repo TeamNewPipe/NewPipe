@@ -197,7 +197,6 @@
     <string name="parsing_error">无法解析网站</string>
     <string name="light_parsing_error">无法完全解析网站</string>
     <string name="content_not_available">内容不可用</string>
-    <string name="blocked_by_gema">内容被 GEMA 封锁</string>
     <string name="could_not_setup_download_menu">无法设置下载菜单</string>
     <string name="live_streams_not_supported">目前还不支持观看直播</string>
     <string name="could_not_get_stream">无法获得任何媒体</string>

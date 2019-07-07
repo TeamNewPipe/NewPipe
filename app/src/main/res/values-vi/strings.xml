@@ -83,7 +83,6 @@
     <string name="parsing_error">Không thể phân tích cú pháp trang web</string>
     <string name="light_parsing_error">Không thể phân tích cú pháp hoàn toàn trang web</string>
     <string name="content_not_available">Nội dung không khả dụng</string>
-    <string name="blocked_by_gema">Chặn bởi GEMA</string>
     <string name="could_not_setup_download_menu">Không thể thiết lập menu tải về</string>
     <string name="live_streams_not_supported">Livestream chưa được hỗ trợ</string>
     <string name="could_not_get_stream">Không thể lấy bất kỳ luồng nào</string>

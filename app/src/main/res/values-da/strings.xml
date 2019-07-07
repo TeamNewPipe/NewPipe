@@ -172,7 +172,6 @@
     <string name="parsing_error">Kunne ikke analysere websted</string>
     <string name="light_parsing_error">Kunne ikke analysere webstedet fuldstændig</string>
     <string name="content_not_available">Indhold ikke tilgængeligt</string>
-    <string name="blocked_by_gema">Blokeret af GEMA</string>
     <string name="could_not_setup_download_menu">Kunne ikke oprette downloadmenu</string>
     <string name="live_streams_not_supported">Livestreams er endnu ikke understøttet</string>
     <string name="could_not_get_stream">Kunne ikke hente nogen stream</string>

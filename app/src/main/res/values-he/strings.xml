@@ -86,7 +86,6 @@
     <string name="parsing_error">ניתוח האתר לא התאפשר</string>
     <string name="light_parsing_error">לא הייתה אפשרות לנתח את האתר לחלוטין</string>
     <string name="content_not_available">תוכן אינו זמין</string>
-    <string name="blocked_by_gema">נחסם ע״י GEMA</string>
     <string name="could_not_setup_download_menu">לא הייתה אפשרות להכין את תפריט ההורדה</string>
     <string name="live_streams_not_supported">עדיין אין תמיכה בתזרימים חיים</string>
     <string name="could_not_get_stream">לא הייתה אפשרות לקבל תזרים כלשהו</string>
