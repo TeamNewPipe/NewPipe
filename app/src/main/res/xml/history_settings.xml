@@ -1,40 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:key="general_preferences"
     android:title="@string/settings_category_history_title">
 
     <SwitchPreference
-        app:iconSpaceReserved="false"
         android:defaultValue="true"
         android:key="@string/enable_watch_history_key"
         android:summary="@string/enable_watch_history_summary"
-        android:title="@string/enable_watch_history_title"/>
+        android:title="@string/enable_watch_history_title"
+        app:iconSpaceReserved="false" />
 
     <SwitchPreference
-        app:iconSpaceReserved="false"
+        android:defaultValue="true"
+        android:dependency="@string/enable_watch_history_key"
+        android:key="@string/enable_playback_resume_key"
+        android:summary="@string/enable_playback_resume_summary"
+        android:title="@string/enable_playback_resume_title"
+        app:iconSpaceReserved="false" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:dependency="@string/enable_playback_resume_key"
+        android:key="@string/enable_playback_state_lists_key"
+        android:summary="@string/enable_playback_state_lists_summary"
+        android:title="@string/enable_playback_state_lists_title"
+        app:iconSpaceReserved="false" />
+
+    <SwitchPreference
         android:defaultValue="true"
         android:key="@string/enable_search_history_key"
         android:summary="@string/enable_search_history_summary"
-        android:title="@string/enable_search_history_title"/>
+        android:title="@string/enable_search_history_title"
+        app:iconSpaceReserved="false" />
 
-    <Preference
-        app:iconSpaceReserved="false"
-        android:key="@string/metadata_cache_wipe_key"
-        android:summary="@string/metadata_cache_wipe_summary"
-        android:title="@string/metadata_cache_wipe_title"/>
+    <PreferenceCategory
+        android:layout="@layout/settings_category_header_layout"
+        android:title="@string/settings_category_clear_data_title"
+        app:iconSpaceReserved="false">
 
-    <Preference
-        app:iconSpaceReserved="false"
-        android:key="@string/clear_views_history_key"
-        android:title="@string/clear_views_history_title"
-        android:summary="@string/clear_views_history_summary"/>
+        <Preference
+            android:key="@string/metadata_cache_wipe_key"
+            android:summary="@string/metadata_cache_wipe_summary"
+            android:title="@string/metadata_cache_wipe_title"
+            app:iconSpaceReserved="false" />
 
-    <Preference
-        app:iconSpaceReserved="false"
-        android:key="@string/clear_search_history_key"
-        android:title="@string/clear_search_history_title"
-        android:summary="@string/clear_search_history_summary"/>
+        <Preference
+            android:key="@string/clear_views_history_key"
+            android:summary="@string/clear_views_history_summary"
+            android:title="@string/clear_views_history_title"
+            app:iconSpaceReserved="false" />
+
+        <Preference
+            android:key="@string/clear_search_history_key"
+            android:summary="@string/clear_search_history_summary"
+            android:title="@string/clear_search_history_title"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

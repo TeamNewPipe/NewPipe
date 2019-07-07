@@ -1,9 +1,11 @@
 package org.schabi.newpipe.local.holder;
 
+import android.support.annotation.Nullable;
 import android.view.ViewGroup;
 
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
+import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.local.LocalItemBuilder;
 import org.schabi.newpipe.util.ImageDisplayConstants;
@@ -21,7 +23,7 @@ public class RemotePlaylistItemHolder extends PlaylistItemHolder {
     }
 
     @Override
-    public void updateFromItem(final LocalItem localItem, final DateFormat dateFormat) {
+    public void updateFromItem(final LocalItem localItem, @Nullable final StreamStateEntity state, final DateFormat dateFormat) {
         if (!(localItem instanceof PlaylistRemoteEntity)) return;
         final PlaylistRemoteEntity item = (PlaylistRemoteEntity) localItem;
 
@@ -33,6 +35,6 @@ public class RemotePlaylistItemHolder extends PlaylistItemHolder {
         itemBuilder.displayImage(item.getThumbnailUrl(), itemThumbnailView,
                 ImageDisplayConstants.DISPLAY_PLAYLIST_OPTIONS);
 
-        super.updateFromItem(localItem, dateFormat);
+        super.updateFromItem(localItem, state, dateFormat);
     }
 }

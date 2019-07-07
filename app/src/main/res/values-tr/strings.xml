@@ -47,7 +47,7 @@
     <string name="play_btn_text">Oynat</string>
     <string name="content">İçerik</string>
     <string name="show_age_restricted_content_title">Yaş kısıtlamalı içerik</string>
-    <string name="video_is_age_restricted">Yaş kısıtlamalı videoyu göster. Bu tür materyallere Ayarlar\'dan izin verilebilir.</string>
+    <string name="video_is_age_restricted">Yaş kısıtlamalı videoyu göster. Bu tür malzemelere Ayarlardan izin vermek mümkündür.</string>
     <string name="duration_live">CANLI</string>
     <string name="downloads">İndirilenler</string>
     <string name="downloads_title">İndirilenler</string>
@@ -59,7 +59,6 @@
     <string name="parsing_error">Web sitesi ayrıştırılamadı</string>
     <string name="light_parsing_error">Web sitesi tamamen ayrıştırılamadı</string>
     <string name="content_not_available">İçerik kullanılamıyor</string>
-    <string name="blocked_by_gema">GEMA tarafından engellendi</string>
     <string name="live_streams_not_supported">Canlı akışlar henüz desteklenmiyor</string>
     <string name="could_not_get_stream">Herhangi bir akış alınamadı</string>
     <string name="could_not_load_image">Görüntü yüklenemedi</string>
@@ -120,8 +119,6 @@
     <string name="your_comment">Yorumunuz (İngilizce):</string>
     <string name="error_details_headline">Ayrıntılar:</string>
     <string name="list_thumbnail_view_description">Video ön izleme küçük resmi</string>
-    <string name="use_old_player_title">Eski oynatıcıyı kullan</string>
-    <string name="use_old_player_summary">Eski içe gömülü Mediaframework oynatıcısı</string>
     <string name="short_thousand">B</string>
     <string name="short_million">M</string>
     <string name="short_billion">MR</string>
@@ -270,7 +267,6 @@
     <string name="video_player">Video oynatıcı</string>
     <string name="background_player">Arka plan oynatıcı</string>
     <string name="popup_player">Açılır oynatıcı</string>
-    <string name="always_ask_player">Her zaman sor</string>
     <string name="preferred_player_fetcher_notification_title">Bilgi alınıyor…</string>
     <string name="preferred_player_fetcher_notification_message">İstenen içerik yükleniyor</string>
     <string name="import_data_title">Veri tabanını içe aktar</string>
@@ -441,7 +437,6 @@
     <string name="app_update_notification_content_title">NewPipe Güncellemesi Var!</string>
     <string name="app_update_notification_content_text">İndirmek için dokunun</string>
     <string name="missions_header_finished">Tamamlandı</string>
-    <string name="missions_header_pending">Sırada</string>
     <string name="paused">durdurulmuş</string>
     <string name="queued">sırada</string>
     <string name="post_processing">son işlemler uygulanıyor</string>
@@ -452,28 +447,29 @@
     <string name="download_finished_more">%s indirme bitti</string>
     <string name="generate_unique_name">Benzersiz ad oluştur</string>
     <string name="overwrite">Üzerine yaz</string>
-    <string name="overwrite_warning">Bu ada sahip indirilen bir dosya zaten var</string>
+    <string name="overwrite_finished_warning">Bu ada sahip indirilen bir dosya zaten var</string>
     <string name="download_already_running">Bu ad ile devam eden bir indirme var</string>
     <string name="show_error">Hatayı göster</string>
     <string name="label_code">Kod</string>
-    <string name="error_path_creation">Dosya oluşturulamıyor</string>
-    <string name="error_file_creation">Hedef klasör oluşturulamıyor</string>
+    <string name="error_file_creation">Dosya oluşturulamıyor</string>
+    <string name="error_path_creation">Hedef klasör oluşturulamıyor</string>
     <string name="error_permission_denied">İzin sistem tarafından reddedildi</string>
     <string name="error_ssl_exception">Güvenli bağlantı başarısız</string>
     <string name="error_unknown_host">Sunucu bulunamadı</string>
     <string name="error_connect_host">Sunucuya bağlanılamıyor</string>
     <string name="error_http_no_content">Sunucu veri göndermiyor</string>
     <string name="error_http_unsupported_range">Sunucu, çok iş parçacıklı indirmeleri kabul etmez, @string/msg_threads = 1 ile yeniden deneyin</string>
-    <string name="error_http_requested_range_not_satisfiable">İstenen aralık karşılanamaz</string>
+    <string name="error_http_requested_range_not_satisfiable">İstenen aralık karşılanamıyor</string>
     <string name="error_http_not_found">Bulunamadı</string>
     <string name="error_postprocessing_failed">İşlem sonrası başarısız</string>
     <string name="clear_finished_download">Tamamlanan indirmeleri temizle</string>
     <string name="msg_pending_downloads">Beklemedeki %s transferinize İndirmeler\'den devam edin</string>
     <string name="stop">Durdur</string>
-    <string name="max_retry_msg">Maksimum deneme sayısı</string>
+    <string name="max_retry_msg">Azami dene sayısı</string>
     <string name="max_retry_desc">İndirmeyi iptal etmeden önce maksimum deneme sayısı</string>
     <string name="pause_downloads_on_mobile">Mobil veriye geçerken duraklat</string>
     <string name="pause_downloads_on_mobile_desc">Duraklatılamayan indirmeler yeniden başlatılacak</string>
     <string name="events">Olaylar</string>
     <string name="conferences">Konferanslar</string>
+    <string name="missions_header_pending">Kadar</string>
 </resources>

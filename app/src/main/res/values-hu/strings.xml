@@ -24,8 +24,6 @@
     <string name="show_play_with_kodi_summary">Opció mutatása a videók Kodi médiaközponttal való lejátszására</string>
     <string name="play_audio">Hang</string>
     <string name="default_audio_format_title">Alapértelmezett hang formátum</string>
-    <string name="webm_description">WebM — szabad formátum</string>
-    <string name="m4a_description">M4A — jobb minőség</string>
     <string name="download_dialog_title">Letöltés</string>
     <string name="next_video_title">Következő</string>
     <string name="url_not_supported_toast">Nem támogatott webcím</string>
@@ -63,7 +61,6 @@
     <string name="show_age_restricted_content_title">Korhatáros tartalom</string>
     <string name="general_error">Hiba</string>
     <string name="content_not_available">A tartalom nem elérhető</string>
-    <string name="blocked_by_gema">GEMA által blokkolt</string>
     <string name="live_streams_not_supported">Ez egy élő közvetítés, amely még nem támogatott.</string>
     <string name="autoplay_by_calling_app_title">Automatikus lejátszás</string>
     <string name="autoplay_by_calling_app_summary">Videók automatikus lejátszása, ha a NewPipe egy másik alkalmazásból lett indítva</string>
@@ -193,7 +190,6 @@
 
     <string name="info_labels">Mi:\\nKérés:\\nTartalom nyelve:\\nSzolgáltatás:\\nGMT Idő:\\nCsomag:\\nVerzió:\\nOperációs Rendszer verzió:</string>
     <string name="search_no_results">Nincs találat</string>
-    <string name="use_old_player_title">Régi lejátszó használata</string>
     <string name="controls_download_desc">Adatfolyam fájl letöltése</string>
     <string name="controls_add_to_playlist_title">Hozzáadás</string>
 
@@ -235,8 +231,6 @@
 
     <string name="empty_subscription_feed_subtitle">Itt nincs semmi</string>
     <string name="detail_drag_description">Húzza az átrendezéshez</string>
-
-    <string name="use_old_player_summary">Régi beépített Mediaframework lejátszó</string>
 
     <string name="short_thousand">e</string>
     <string name="short_million">M</string>

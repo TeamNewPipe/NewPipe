@@ -152,7 +152,6 @@
     <string name="parsing_error">Не може да се прочита страната</string>
     <string name="light_parsing_error">Не може целосно да се прочита страната</string>
     <string name="content_not_available">Содржината е недостапна</string>
-    <string name="blocked_by_gema">Блокирано од GEMA</string>
     <string name="could_not_setup_download_menu">Неуспешно поставување на менито за превземања</string>
     <string name="live_streams_not_supported">Ова е пренос ВО ЖИВО, што сеуште не е поддржано.</string>
     <string name="could_not_get_stream">Не е пронајден поток на податоци</string>
@@ -202,8 +201,6 @@
     <string name="audio">Звук</string>
     <string name="retry">Пробај повторно</string>
     <string name="storage_permission_denied">Нема привилегии за пристап</string>
-    <string name="use_old_player_title">Користи го стариот плеер</string>
-    <string name="use_old_player_summary">Користи го стариот Mediaframework плеер</string>
 
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>

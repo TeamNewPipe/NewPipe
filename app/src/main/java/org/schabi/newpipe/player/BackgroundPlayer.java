@@ -151,6 +151,7 @@ public final class BackgroundPlayer extends Service {
             lockManager.releaseWifiAndCpu();
         }
         if (basePlayerImpl != null) {
+            basePlayerImpl.savePlaybackState();
             basePlayerImpl.stopActivityBinding();
             basePlayerImpl.destroy();
         }

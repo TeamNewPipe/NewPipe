@@ -69,12 +69,14 @@ public class NavigationHelper {
     public static Intent getPlayerIntent(@NonNull final Context context,
                                          @NonNull final Class targetClazz,
                                          @NonNull final PlayQueue playQueue,
-                                         @Nullable final String quality) {
+                                         @Nullable final String quality,
+                                         final boolean resumePlayback) {
         Intent intent = new Intent(context, targetClazz);
 
         final String cacheKey = SerializedCache.getInstance().put(playQueue, PlayQueue.class);
         if (cacheKey != null) intent.putExtra(VideoPlayer.PLAY_QUEUE_KEY, cacheKey);
         if (quality != null) intent.putExtra(VideoPlayer.PLAYBACK_QUALITY, quality);
+        intent.putExtra(VideoPlayer.RESUME_PLAYBACK, resumePlayback);
 
         return intent;
     }
@@ -82,16 +84,18 @@ public class NavigationHelper {
     @NonNull
     public static Intent getPlayerIntent(@NonNull final Context context,
                                          @NonNull final Class targetClazz,
-                                         @NonNull final PlayQueue playQueue) {
-        return getPlayerIntent(context, targetClazz, playQueue, null);
+                                         @NonNull final PlayQueue playQueue,
+                                         final boolean resumePlayback) {
+        return getPlayerIntent(context, targetClazz, playQueue, null, resumePlayback);
     }
 
     @NonNull
     public static Intent getPlayerEnqueueIntent(@NonNull final Context context,
                                                 @NonNull final Class targetClazz,
                                                 @NonNull final PlayQueue playQueue,
-                                                final boolean selectOnAppend) {
-        return getPlayerIntent(context, targetClazz, playQueue)
+                                                final boolean selectOnAppend,
+                                                final boolean resumePlayback) {
+        return getPlayerIntent(context, targetClazz, playQueue, resumePlayback)
                 .putExtra(BasePlayer.APPEND_ONLY, true)
                 .putExtra(BasePlayer.SELECT_ON_APPEND, selectOnAppend);
     }
@@ -104,40 +108,41 @@ public class NavigationHelper {
                                          final float playbackSpeed,
                                          final float playbackPitch,
                                          final boolean playbackSkipSilence,
-                                         @Nullable final String playbackQuality) {
-        return getPlayerIntent(context, targetClazz, playQueue, playbackQuality)
+                                         @Nullable final String playbackQuality,
+                                         final boolean resumePlayback) {
+        return getPlayerIntent(context, targetClazz, playQueue, playbackQuality, resumePlayback)
                 .putExtra(BasePlayer.REPEAT_MODE, repeatMode)
                 .putExtra(BasePlayer.PLAYBACK_SPEED, playbackSpeed)
                 .putExtra(BasePlayer.PLAYBACK_PITCH, playbackPitch)
                 .putExtra(BasePlayer.PLAYBACK_SKIP_SILENCE, playbackSkipSilence);
     }
 
-    public static void playOnMainPlayer(final Context context, final PlayQueue queue) {
-        final Intent playerIntent = getPlayerIntent(context, MainVideoPlayer.class, queue);
+    public static void playOnMainPlayer(final Context context, final PlayQueue queue, final boolean resumePlayback) {
+        final Intent playerIntent = getPlayerIntent(context, MainVideoPlayer.class, queue, resumePlayback);
         playerIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(playerIntent);
     }
 
-    public static void playOnPopupPlayer(final Context context, final PlayQueue queue) {
+    public static void playOnPopupPlayer(final Context context, final PlayQueue queue, final boolean resumePlayback) {
         if (!PermissionHelper.isPopupEnabled(context)) {
             PermissionHelper.showPopupEnablementToast(context);
             return;
         }
 
         Toast.makeText(context, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
-        startService(context, getPlayerIntent(context, PopupVideoPlayer.class, queue));
+        startService(context, getPlayerIntent(context, PopupVideoPlayer.class, queue, resumePlayback));
     }
 
-    public static void playOnBackgroundPlayer(final Context context, final PlayQueue queue) {
+    public static void playOnBackgroundPlayer(final Context context, final PlayQueue queue, final boolean resumePlayback) {
         Toast.makeText(context, R.string.background_player_playing_toast, Toast.LENGTH_SHORT).show();
-        startService(context, getPlayerIntent(context, BackgroundPlayer.class, queue));
+        startService(context, getPlayerIntent(context, BackgroundPlayer.class, queue, resumePlayback));
     }
 
-    public static void enqueueOnPopupPlayer(final Context context, final PlayQueue queue) {
-        enqueueOnPopupPlayer(context, queue, false);
+    public static void enqueueOnPopupPlayer(final Context context, final PlayQueue queue, final boolean resumePlayback) {
+        enqueueOnPopupPlayer(context, queue, false, resumePlayback);
     }
 
-    public static void enqueueOnPopupPlayer(final Context context, final PlayQueue queue, boolean selectOnAppend) {
+    public static void enqueueOnPopupPlayer(final Context context, final PlayQueue queue, boolean selectOnAppend, final boolean resumePlayback) {
         if (!PermissionHelper.isPopupEnabled(context)) {
             PermissionHelper.showPopupEnablementToast(context);
             return;
@@ -145,17 +150,17 @@ public class NavigationHelper {
 
         Toast.makeText(context, R.string.popup_playing_append, Toast.LENGTH_SHORT).show();
         startService(context,
-                getPlayerEnqueueIntent(context, PopupVideoPlayer.class, queue, selectOnAppend));
+                getPlayerEnqueueIntent(context, PopupVideoPlayer.class, queue, selectOnAppend, resumePlayback));
     }
 
-    public static void enqueueOnBackgroundPlayer(final Context context, final PlayQueue queue) {
-        enqueueOnBackgroundPlayer(context, queue, false);
+    public static void enqueueOnBackgroundPlayer(final Context context, final PlayQueue queue, final boolean resumePlayback) {
+        enqueueOnBackgroundPlayer(context, queue, false, resumePlayback);
     }
 
-    public static void enqueueOnBackgroundPlayer(final Context context, final PlayQueue queue, boolean selectOnAppend) {
+    public static void enqueueOnBackgroundPlayer(final Context context, final PlayQueue queue, boolean selectOnAppend, final boolean resumePlayback) {
         Toast.makeText(context, R.string.background_player_append, Toast.LENGTH_SHORT).show();
         startService(context,
-                getPlayerEnqueueIntent(context, BackgroundPlayer.class, queue, selectOnAppend));
+                getPlayerEnqueueIntent(context, BackgroundPlayer.class, queue, selectOnAppend, resumePlayback));
     }
 
     public static void startService(@NonNull final Context context, @NonNull final Intent intent) {

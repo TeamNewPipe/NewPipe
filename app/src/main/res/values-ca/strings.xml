@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources><string name="install">Instal·la</string>
+<resources>
+    <string name="install">Instal·la</string>
     <string name="cancel">Cancel·la</string>
     <string name="open_in_browser">Obre al navegador</string>
     <string name="share">Comparteix</string>
@@ -10,12 +11,9 @@
     <string name="subscribe_button_title">Subscriu-t\'hi</string>
     <string name="subscribed_button_title">Subscrit</string>
     <string name="show_info">Mostra la informació</string>
-
     <string name="tab_subscriptions">Subscripcions</string>
     <string name="tab_bookmarks">Llistes de reproducció desades</string>
-
     <string name="fragment_whats_new">Novetats</string>
-
     <string name="download_path_title">Ruta de baixada dels vídeos</string>
     <string name="download_path_audio_title">Carpeta de baixada dels fitxers d\'àudio</string>
     <string name="autoplay_by_calling_app_title">Reproducció automàtica</string>
@@ -39,7 +37,7 @@
     <string name="settings_category_debug_title">Depuració</string>
     <string name="content">Contingut</string>
     <string name="show_age_restricted_content_title">Desactiva les restriccions per edat</string>
-    <string name="video_is_age_restricted">Vídeo restringit per edat. Podeu permetre aquesta mena de continguts des de la configuració.</string>
+    <string name="video_is_age_restricted">Mostra el vídeo restringit per edat. Podeu permetre aquesta mena de continguts des de la configuració.</string>
     <string name="duration_live">EN DIRECTE</string>
     <string name="downloads">Baixades</string>
     <string name="downloads_title">Baixades</string>
@@ -54,9 +52,7 @@
     <string name="always">Sempre</string>
     <string name="just_once">Només una vegada</string>
     <string name="file">Fitxer</string>
-
     <string name="unknown_content">[Desconegut]</string>
-
     <string name="import_data_title">Importa una base de dades</string>
     <string name="export_data_title">Exporta una base de dades</string>
     <string name="export_data_summary">Exporta l\'historial, les subscripcions i les llistes de reproducció</string>
@@ -65,12 +61,10 @@
     <string name="video">Vídeo</string>
     <string name="audio">Àudio</string>
     <plurals name="subscribers">
-	<item quantity="one">%s subscriptor</item>
-	<item quantity="other">%s subscriptors</item>
-</plurals>
-
+        <item quantity="one">%s subscriptor</item>
+        <item quantity="other">%s subscriptors</item>
+    </plurals>
     <string name="finish">D\'acord</string>
-
     <string name="msg_name">Nom de fitxer</string>
     <string name="msg_error">Error</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
@@ -87,8 +81,6 @@
     <string name="website_title">Lloc web</string>
     <string name="app_license_title">Llicència del NewPipe</string>
     <string name="read_full_license">Llegeix la llicència</string>
-
-
     <string name="title_activity_history">Historial</string>
     <string name="history_disabled">L\'historial està desactivat</string>
     <string name="action_history">Historial</string>
@@ -111,7 +103,6 @@
     <string name="background_player">Reproductor en segon pla</string>
     <string name="popup_player">Reproductor emergent</string>
     <string name="always_ask_open_action">Demana-ho sempre</string>
-
     <string name="create_playlist">Crea una llista de reproducció</string>
     <string name="delete_playlist">Elimina</string>
     <string name="rename_playlist">Canvia el nom</string>
@@ -120,13 +111,11 @@
     <string name="import_title">Importa</string>
     <string name="import_from">Importa des de</string>
     <string name="export_to">Exporta a</string>
-
     <string name="import_ongoing">S\'està important…</string>
     <string name="export_ongoing">S\'està exportant…</string>
-
     <string name="import_file_title">Importa un fitxer</string>
     <string name="playback_default">Per defecte</string>
-<string name="view_count_text">%1$s reproduccions</string>
+    <string name="view_count_text">%1$s reproduccions</string>
     <string name="upload_date_text">Publicat el %1$s</string>
     <string name="no_player_found">No s\'ha trobat un reproductor de fluxos. Voleu instal·lar el VLC?</string>
     <string name="no_player_found_toast">No s\'ha trobat cap reproductor de fluxos (podeu instal·lar el VLC per reproduir-lo).</string>
@@ -144,13 +133,10 @@
     <string name="controls_background_title">Segon pla</string>
     <string name="controls_popup_title">Emergent</string>
     <string name="controls_add_to_playlist_title">Afegeix a</string>
-
     <string name="download_path_summary">Ruta on es desaran els vídeos baixats</string>
     <string name="download_path_dialog_title">Introduïu una ruta de baixada per als vídeos</string>
-
     <string name="download_path_audio_summary">Els fitxers d\'àudio baixats es desaran aquí</string>
     <string name="download_path_audio_dialog_title">Introduïu una ruta de baixada per als fitxers d\'àudio</string>
-
     <string name="autoplay_by_calling_app_summary">Reprodueix un vídeo quan el NewPipe s\'executa des d\'una altra aplicació</string>
     <string name="default_popup_resolution_title">Resolució per defecte del mode emergent</string>
     <string name="show_higher_resolutions_title">Mostra resolucions superiors</string>
@@ -186,13 +172,11 @@
     <string name="play_btn_text">Reprodueix</string>
     <string name="notification_channel_name">Notificació del NewPipe</string>
     <string name="notification_channel_description">Notificacions dels reproductors en segon pla o emergents del NewPipe</string>
-
     <string name="could_not_load_thumbnails">No s\'han pogut carregar totes les miniatures</string>
     <string name="youtube_signature_decryption_error">No s\'ha pogut desencriptar la signatura de l\'URL del vídeo</string>
     <string name="parsing_error">No s\'ha pogut processar el lloc web</string>
     <string name="light_parsing_error">No s\'ha pogut processar del tot el lloc web</string>
     <string name="content_not_available">Contingut no disponible</string>
-    <string name="blocked_by_gema">Blocat per la GEMA</string>
     <string name="could_not_setup_download_menu">No s\'ha pogut configurar el menú de baixades</string>
     <string name="live_streams_not_supported">Les emissions en directe encara no són compatibles</string>
     <string name="could_not_get_stream">No s\'ha pogut obtenir cap vídeo</string>
@@ -216,8 +200,6 @@
     <string name="what_happened_headline">Què ha passat:</string>
     <string name="your_comment">Comentari (en anglès):</string>
     <string name="error_details_headline">Detalls:</string>
-
-
     <string name="list_thumbnail_view_description">Miniatura de previsualització del vídeo</string>
     <string name="detail_thumbnail_view_description">Miniatura de previsualització del vídeo</string>
     <string name="detail_uploader_thumbnail_view_description">Miniatura de l\'avatar del propietari</string>
@@ -231,25 +213,19 @@
     <string name="empty_subscription_feed_subtitle">No hi ha res aquí</string>
     <string name="err_dir_create">No s\'ha pogut crear el directori de baixades «%1$s»</string>
     <string name="info_dir_created">S\'ha creat el directori de baixades «%1$s»</string>
-
     <string name="retry">Torna a intentar-ho</string>
     <string name="storage_permission_denied">S\'ha denegat el permís d\'accés a l\'emmagatzematge</string>
-    <string name="use_old_player_title">Fes servir el reproductor antic</string>
-    <string name="use_old_player_summary">Antic reproductor integrat de Mediaframework</string>
-
     <string name="no_subscribers">Sense subscriptors</string>
     <string name="no_views">Sense reproduccions</string>
     <plurals name="views">
-	<item quantity="one">%s reproducció</item>
-	<item quantity="other">%s reproduccions</item>
-</plurals>
-
+        <item quantity="one">%s reproducció</item>
+        <item quantity="other">%s reproduccions</item>
+    </plurals>
     <string name="no_videos">Sense vídeos</string>
     <plurals name="videos">
-	<item quantity="one">%s vídeo</item>
-	<item quantity="other">%s vídeos</item>
-</plurals>
-
+        <item quantity="one">Vídeo</item>
+        <item quantity="other">Vídeos</item>
+    </plurals>
     <string name="pause">Pausa</string>
     <string name="view">Reprodueix</string>
     <string name="create">Crea</string>
@@ -259,7 +235,6 @@
     <string name="checksum">Suma de verificació</string>
     <string name="dismiss">Tanca</string>
     <string name="rename">Canvia el nom</string>
-
     <string name="msg_threads">Fils</string>
     <string name="msg_server_unsupported">Servidor incompatible</string>
     <string name="msg_exists">El fitxer ja existeix</string>
@@ -276,7 +251,6 @@
     <string name="website_encouragement">Per a més informació i notícies, visiteu el nostre lloc web.</string>
     <string name="title_last_played">Última reproducció</string>
     <string name="title_most_played">Més reproduïts</string>
-
     <string name="kiosk_page_summary">Pàgina d\'un quiosc</string>
     <string name="feed_page_summary">Pàgina de novetats</string>
     <string name="channel_page_summary">Pàgina d\'un canal</string>
@@ -284,7 +258,6 @@
     <string name="no_valid_zip_file">El fitxer no té un format ZIP vàlid</string>
     <string name="could_not_import_all_files">Avís: No s\'han pogut importar tots els fitxers.</string>
     <string name="override_current_data">Això sobreescriurà la configuració actual.</string>
-
     <string name="kiosk">Quiosc</string>
     <string name="trending">Tendències</string>
     <string name="top_50">Els millors 50</string>
@@ -297,10 +270,8 @@
     <string name="drawer_close">Tanca el calaix</string>
     <string name="preferred_player_fetcher_notification_title">S\'està obtenint la informació…</string>
     <string name="preferred_player_fetcher_notification_message">S\'està carregant el contingut seleccionat</string>
-
     <string name="delete_playlist_prompt">Voleu eliminar aquesta llista de reproducció?</string>
     <string name="playlist_delete_failure">No s\'ha pogut eliminar la llista de reproducció.</string>
-
     <string name="import_export_title">Importació i exportació</string>
     <string name="playback_speed_control">Controls de la velocitat de reproducció</string>
     <string name="playback_tempo">Tempo</string>
@@ -323,31 +294,24 @@
     <string name="switch_to_background">Canvia al mode en segon pla</string>
     <string name="switch_to_popup">Canvia al mode emergent</string>
     <string name="switch_to_main">Canvia al mode principal</string>
-
     <string name="import_data_summary">Sobreescriu l\'historial i les subscripcions actuals</string>
     <string name="player_recoverable_failure">S\'està recuperant el reproductor després de l\'error</string>
     <string name="sorry_string">Ho sentim, això no hauria d\'haver ocorregut.</string>
     <string name="detail_drag_description">Arrossegueu per a reordenar la llista</string>
-
     <string name="short_thousand">mil</string>
     <string name="short_million">milions</string>
     <string name="short_billion">mil milions</string>
-
     <string name="start">Inicia</string>
     <string name="add">Nova missió</string>
     <string name="msg_url_malform">L\'URL té un format incorrecte o no hi ha connexió a internet</string>
     <string name="msg_running_detail">Toqueu aquí per a més detalls</string>
     <string name="no_available_dir">Trieu una carpeta de baixades disponible</string>
     <string name="msg_popup_permission">Es necessita aquest permís per a obrir el mode emergent</string>
-
     <string name="reCaptcha_title">Camp reCAPTCHA</string>
     <string name="recaptcha_request_toast">S\'ha sol·licitat l\'emplenament d\'un camp reCAPTCHA</string>
-
     <string name="settings_file_replacement_character_summary">Se substituiran els caràcters no vàlids amb aquest valor</string>
     <string name="settings_file_replacement_character_title">Caràcter de substitució</string>
-
     <string name="charset_most_special_characters">Principals caràcters especials</string>
-
     <string name="contribution_encouragement">Ja siguin idees, traduccions, canvis en el disseny, una neteja del codi o canvis importants de programació, la vostra ajuda sempre és benvinguda. Com més feina feta hi hagi, millor!</string>
     <string name="donation_encouragement">El NewPipe està desenvolupat per voluntaris que fan servir el seu temps lliure per a oferir-vos la millor experiència possible. Feu una aportació per assegurar que els nostres desenvolupadors puguin millorar encara més el NewPipe mentre fan un cafè.</string>
     <string name="give_back">Fes la teva aportació</string>
@@ -358,33 +322,25 @@
     <string name="hold_to_append">Manteniu premut per afegir a la cua</string>
     <string name="start_here_on_background">Reprodueix aquí en segon pla</string>
     <string name="start_here_on_popup">Reprodueix aquí en mode emergent</string>
-
     <string name="set_as_playlist_thumbnail">Defineix com a miniatura de la llista de reproducció</string>
-
     <string name="bookmark_playlist">Afegeix la llista de reproducció a les adreces d\'interès</string>
     <string name="unbookmark_playlist">Elimina l\'adreça d\'interès</string>
-
     <string name="playlist_creation_success">S\'ha creat la llista de reproducció</string>
     <string name="playlist_add_stream_success">S\'ha afegit a la llista de reproducció</string>
     <string name="playlist_thumbnail_change_success">S\'ha canviat la miniatura de la llista de reproducció.</string>
     <string name="caption_none">Sense subtítols</string>
-
     <string name="resize_fit">Ajusta</string>
     <string name="resize_fill">Omple</string>
     <string name="resize_zoom">Escala</string>
-
     <string name="caption_auto_generated">Generats automàticament</string>
     <string name="caption_font_size_settings_title">Mida dels subtítols</string>
     <string name="smaller_caption_font_size">Mida més petita</string>
     <string name="normal_caption_font_size">Mida normal</string>
     <string name="larger_caption_font_size">Mida més gran</string>
-
     <string name="enable_leak_canary_title">Habilita el LeakCanary</string>
     <string name="previous_export">Darrera exportació</string>
-
     <string name="subscriptions_import_unsuccessful">No s\'han pogut importar les subscripcions</string>
     <string name="subscriptions_export_unsuccessful">No s\'han pogut exportar les subscripcions</string>
-
     <string name="unhook_checkbox">Desvincula (pot provocar distorsió)</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="metadata_cache_wipe_summary">Elimina totes les dades de llocs web de la memòria cau</string>
@@ -393,16 +349,11 @@
     <string name="show_hold_to_append_summary">Mostra un missatge d\'ajuda quan el botó de mode en segon pla o emergent estigui premut a la pàgina de detalls d\'un vídeo</string>
     <string name="info_labels">Què ha passat:\\nPetició:\\nIdioma del contingut:\\nServei:\\nHora GMT:\\nPaquet:\\nVersió:\\nVersió del SO:</string>
     <string name="drawer_header_action_paceholder_text">Aviat hi haurà novetats aquí ;D</string>
-
-
     <string name="preferred_open_action_settings_title">Acció d\'obertura preferida</string>
     <string name="preferred_open_action_settings_summary">Acció per defecte en obrir continguts — %s</string>
-
     <string name="enable_leak_canary_summary">"La supervisió de fugues de memòria pot fer que l\'aplicació deixi de respondre mentre es bolca la memòria "</string>
-
     <string name="enable_disposed_exceptions_title">Informa d\'errors fora del cicle de vida</string>
     <string name="enable_disposed_exceptions_summary">Força l\'informe d\'excepcions Rx que no es puguin transmetre que tinguin lloc fora del cicle de vida d\'un fragment o activitat després de disposar-los</string>
-
     <string name="import_youtube_instructions">Importeu les vostres subscripcions de YouTube mitjançant el fitxer d\'exportació:
 \n 
 \n1. Aneu a aquesta URL: %1$s 
@@ -415,18 +366,13 @@
 \n3. Inicieu sessió al vostre compte quan se us demani 
 \n4. Copieu l\'URL de la pàgina on se us redireccioni</string>
     <string name="import_soundcloud_instructions_hint">identificador, soundcloud.com/identificador</string>
-
     <string name="import_network_expensive_warning">Tingueu en compte que això pot comportar un ús intensiu de la xarxa.
 \n
 \nVoleu continuar?</string>
-
     <string name="no_streams_available_download">No hi ha vídeos que es puguin baixar</string>
-
     <string name="caption_setting_title">Subtítols</string>
     <string name="caption_setting_description">Modifica la mida del text i el fons dels subtítols. Cal reiniciar l\'aplicació per aplicar els canvis.</string>
-
     <string name="toast_no_player">No s\'ha trobat cap aplicació que pugui reproduir aquest fitxer</string>
-
     <string name="clear_views_history_title">Esborra l\'historial de reproduccions</string>
     <string name="clear_views_history_summary">Esborra l\'historial dels vídeos que s\'han reproduït</string>
     <string name="delete_view_history_alert">Voleu esborrar tot l\'historial de reproduccions\?</string>
@@ -436,10 +382,8 @@
     <string name="delete_search_history_alert">Voleu esborrar tot l\'historial de cerca\?</string>
     <string name="search_history_deleted">S\'ha esborrat l\'historial de cerca.</string>
     <string name="one_item_deleted">S\'ha esborrat 1 element.</string>
-
     <string name="app_license">NewPipe és programari lliure sota llicència copyleft: podeu fer-lo servir, estudiar-lo, compartir-lo i millorar-lo al vostre gust. En concret, podeu redistribuir-lo i/o modificar-lo d\'acord amb els termes de la llicència GNU GPL publicada per la Free Software Foundation, ja sigui la versió 3 o (segons vulgueu) qualsevol altra versió posterior.</string>
     <string name="import_settings">Voleu importar també la configuració?</string>
-
     <string name="privacy_policy_title">Política de privacitat del NewPipe</string>
     <string name="privacy_policy_encouragement">El projecte NewPipe es pren molt seriosament la vostra privacitat. Per aquesta raó, l\'aplicació no emmagatzema cap mena de dades sense el vostre consentiment.
 \nLa política de privacitat del NewPipe descriu detalladament quines dades s\'envien i s\'emmagatzemen quan envieu un informe d\'error.</string>
@@ -448,18 +392,16 @@
 \nSi voleu enviar-nos un informe d\'error, l\'haureu d\'acceptar.</string>
     <string name="accept">Accepta</string>
     <string name="decline">Rebutja</string>
-<string name="limit_data_usage_none_description">Sense restriccions</string>
+    <string name="limit_data_usage_none_description">Sense restriccions</string>
     <string name="limit_mobile_data_usage_title">Restringeix la resolució quan es facin servir dades mòbils</string>
     <string name="minimize_on_exit_title">Minimitza en canviar d\'aplicació</string>
     <string name="minimize_on_exit_summary">Acció en canviar a una altra aplicació des del reproductor de vídeo principal — %s</string>
     <string name="minimize_on_exit_none_description">Cap</string>
     <string name="minimize_on_exit_background_description">Minimitza al reproductor en segon pla</string>
     <string name="minimize_on_exit_popup_description">Minimitza al reproductor emergent</string>
-
-<string name="skip_silence_checkbox">Avança ràpid durant el silenci</string>
+    <string name="skip_silence_checkbox">Avança ràpid durant el silenci</string>
     <string name="playback_step">Pas</string>
     <string name="playback_reset">Reinicialitza</string>
-
     <string name="channels">Canals</string>
     <string name="playlists">Llistes de reproducció</string>
     <string name="tracks">Pistes</string>
@@ -482,14 +424,37 @@
     <string name="auto">Automàtic</string>
     <string name="switch_view">Canvia la vista</string>
     <string name="app_update_notification_content_title">Està disponible una nova actualització del NewPipe!</string>
-    <string name="missions_header_pending">A la cua</string>
+    <string name="missions_header_pending">Pendent</string>
     <string name="paused">en pausa</string>
     <string name="queued">a la cua</string>
     <string name="enqueue">Afegeix a la cua</string>
     <string name="generate_unique_name">Genera un nom únic</string>
     <string name="show_error">Mostra l\'error</string>
     <string name="label_code">Codi</string>
-    <string name="error_path_creation">No es pot crear el fitxer</string>
-    <string name="error_file_creation">No es pot crear la carpeta de destinació</string>
+    <string name="error_file_creation">No es pot crear el fitxer</string>
+    <string name="error_path_creation">No es pot crear la carpeta de destinació</string>
     <string name="stop">Atura</string>
+    <string name="events">Esdeveniments</string>
+    <string name="app_update_notification_channel_description">Notificacions de noves versions del NewPipe</string>
+    <string name="subscribers_count_not_available">El nombre de subscriptors no està disponible</string>
+    <string name="main_page_content_summary">Quines pestanyes es mostren a la pàgina principal</string>
+    <string name="conferences">Conferències</string>
+    <string name="list_view_mode">Mode de vista de llista</string>
+    <string name="missions_header_finished">Finalitzades</string>
+    <string name="post_processing">post-processament</string>
+    <string name="download_failed">Ha fallat la baixada</string>
+    <string name="download_finished">Baixada finalitzada</string>
+    <string name="download_finished_more">%s baixades finalitzades</string>
+    <string name="overwrite_finished_warning">Ja existeix un fitxer baixat amb aquest nom</string>
+    <string name="overwrite_unrelated_warning">Ja existeix un fitxer amb aquest nom</string>
+    <string name="download_already_running">Hi ha una baixada en curs amb aquest nom</string>
+    <string name="error_ssl_exception">Ha fallat la connexió segura</string>
+    <string name="error_unknown_host">No s\'ha pogut trobar el servidor</string>
+    <string name="error_connect_host">No s\'ha pogut connectar amb el servidor</string>
+    <string name="error_postprocessing_failed">Ha fallat el post-processament</string>
+    <string name="clear_finished_download">Neteja les baixades finalitzades</string>
+    <string name="max_retry_msg">Intents màxims</string>
+    <string name="max_retry_desc">Nombre màxim d\'intents abans de cancel·lar la baixada</string>
+    <string name="pause_downloads_on_mobile">Pausa en canviar a dades mòbils</string>
+    <string name="pause_downloads_on_mobile_desc">Les baixades que no es puguin pausar es tornaran a iniciar</string>
 </resources>
