@@ -1,7 +1,7 @@
 package org.schabi.newpipe.player.helper;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 import com.google.android.exoplayer2.upstream.DataSource;

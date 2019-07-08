@@ -1,13 +1,13 @@
 package org.schabi.newpipe.info_list.holder;
 
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.text.util.Linkify;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.jsoup.helper.StringUtil;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.InfoItem;
@@ -79,7 +79,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         itemThumbnailView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(StringUtil.isBlank(item.getAuthorEndpoint())) return;
+                if(isBlank(item.getAuthorEndpoint())) return;
                 try {
                     final AppCompatActivity activity = (AppCompatActivity) itemBuilder.getContext();
                     NavigationHelper.openChannelFragment(
@@ -149,4 +149,36 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         Linkify.addLinks(itemContentView, pattern, null, null, timestampLink);
         itemContentView.setMovementMethod(null);
     }
+
+    /**
+     * Tests if a string is blank: null, empty, or only whitespace (" ", \r\n, \t, etc)
+     * @param string string to test
+     * @return if string is blank
+     * taken from https://github.com/jhy/jsoup/blob/master/src/main/java/org/jsoup/internal/StringUtil.java
+     * on 8.Jul.2019
+     */
+    private static boolean isBlank(String string) {
+        if (string == null)
+            return true;
+
+        int l = string.length();
+        for (int i = 0; i < l; i++) {
+            if (isActuallyWhitespace(string.codePointAt(i)))
+                return false;
+        }
+        return true;
+    }
+
+    /**
+     * Tests if a code point is "whitespace" as defined by what it looks like. Used for Element.text etc.
+     * @param c code point to test
+     * @return true if code point is whitespace, false otherwise
+     * taken from https://github.com/jhy/jsoup/blob/master/src/main/java/org/jsoup/internal/StringUtil.java
+     * on 8.Jul.2019
+     */
+    public static boolean isActuallyWhitespace(int c){
+        return c == ' ' || c == '\t' || c == '\n' || c == '\f' || c == '\r' || c == 160;
+        // 160 is &nbsp; (non-breaking space). Not in the spec but expected.
+    }
+
 }

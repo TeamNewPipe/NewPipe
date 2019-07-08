@@ -8,9 +8,9 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
-import android.support.v7.preference.Preference;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.preference.Preference;
 import android.util.Log;
 import android.widget.Toast;
 

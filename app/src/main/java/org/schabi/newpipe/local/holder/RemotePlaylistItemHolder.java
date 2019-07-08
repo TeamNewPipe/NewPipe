@@ -1,6 +1,6 @@
 package org.schabi.newpipe.local.holder;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.ViewGroup;
 
 import org.schabi.newpipe.database.LocalItem;

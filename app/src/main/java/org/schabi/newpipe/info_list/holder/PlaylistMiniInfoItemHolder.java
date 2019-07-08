@@ -1,6 +1,6 @@
 package org.schabi.newpipe.info_list.holder;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
