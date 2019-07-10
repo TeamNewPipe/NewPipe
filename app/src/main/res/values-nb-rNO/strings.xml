@@ -240,11 +240,11 @@
     <string name="feed_page_summary">Strømside</string>
     <string name="no_channel_subscribed_yet">Abonnerer ikke på noen kanaler enda</string>
     <string name="trending">På vei opp</string>
-    <string name="enqueue_on_background">Legg i kø når henvist til bakgrunnen</string>
-    <string name="enqueue_on_popup">Legg i kø ved nytt oppsprett</string>
+    <string name="enqueue_on_background">Legg i kø i bakgrunnen</string>
+    <string name="enqueue_on_popup">Legg i kø i nytt oppsprett</string>
     <string name="start_here_on_main">Start avspilling her</string>
-    <string name="start_here_on_background">Start her når i bakgrunnen</string>
-    <string name="start_here_on_popup">Start her ved nytt oppsprettsvindu</string>
+    <string name="start_here_on_background">Start avspilling i bakgrunnen</string>
+    <string name="start_here_on_popup">Start avspilling i nytt oppsprettsvindu</string>
     <string name="donation_title">Doner</string>
     <string name="donation_encouragement">NewPipe utvikles av frivillige som bruker deres fritid til å gi deg den beste opplevelsen. Gi tilbake for å hjelpe utviklere å gjøre NewPipe enda bedre, mens de nyter en varm kopp kaffe.</string>
     <string name="give_back">Bidra</string>
