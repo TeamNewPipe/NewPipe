@@ -58,6 +58,7 @@ public class BasePlayerMediaSession implements MediaSessionCallback {
 
         // set additional metadata for A2DP/AVRCP
         Bundle additionalMetadata = new Bundle();
+        additionalMetadata.putString(MediaMetadataCompat.METADATA_KEY_TITLE, item.getTitle());
         additionalMetadata.putString(MediaMetadataCompat.METADATA_KEY_ARTIST, item.getUploader());
         additionalMetadata.putLong(MediaMetadataCompat.METADATA_KEY_DURATION, item.getDuration() * 1000);
         additionalMetadata.putLong(MediaMetadataCompat.METADATA_KEY_TRACK_NUMBER, index + 1);
