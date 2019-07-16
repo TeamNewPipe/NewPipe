@@ -153,7 +153,6 @@
     <string name="info_labels">무엇을:\\n요청:\\n컨텐츠 언어:\\n서비스:\\nGMT 기준 시간:\\n패키지:\\n버전:\\n안드로이드 버전:</string>
     <string name="search_no_results">결과 없음</string>
     <string name="empty_subscription_feed_subtitle">구독할 항목을 추가하세요</string>
-
     <string name="short_thousand">천</string>
     <string name="short_million">백만</string>
     <string name="short_billion">10억</string>
@@ -242,11 +241,11 @@
     <string name="play_queue_stream_detail">상세 정보</string>
     <string name="play_queue_audio_settings">오디오 설정</string>
     <string name="hold_to_append">눌러서 대기열에 추가</string>
-    <string name="enqueue_on_background">백그라운드로 갈 경우 대기</string>
-    <string name="enqueue_on_popup">새 팝업으로 갈 경우 대기</string>
+    <string name="enqueue_on_background">백그라운드로 갈 경우 재생목록에서 제거</string>
+    <string name="enqueue_on_popup">새 팝업으로 갈 경우 재생목록에서 제거</string>
     <string name="start_here_on_main">여기서부터 재생</string>
-    <string name="start_here_on_background">백그라운드로 갈 경우 여기서부터 재생</string>
-    <string name="start_here_on_popup">새 팝업으로 갈 경우 여기서부터 재생</string>
+    <string name="start_here_on_background">백그라운드에서 재생</string>
+    <string name="start_here_on_popup">새 팝업에서 재생</string>
     <string name="no_player_found_toast">스트리밍 플레이어를 찾을 수 없습니다. VLC를 설치하면 플레이하실 수 있습니다.</string>
     <string name="controls_download_desc">스트리밍 파일 다운로드하기</string>
     <string name="show_info">정보 보기</string>
@@ -473,4 +472,14 @@
     <string name="pause_downloads_on_mobile">모바일 데이터로 전환시 일시정지</string>
     <string name="pause_downloads_on_mobile_desc">일시정지 할 수 없는 다운로드의 경우에는 다시 시작됩니다</string>
     <string name="conferences">컨퍼런스</string>
+    <string name="show_comments_title">댓글 보기</string>
+    <string name="show_comments_summary">댓글을 보지 않으려면 비활성화하세요</string>
+    <string name="autoplay_title">자동 재생</string>
+    <plurals name="comments">
+        <item quantity="other">댓글</item>
+    </plurals>
+    <string name="no_comments">댓글 없음</string>
+    <string name="error_unable_to_load_comments">댓글을 불러올 수 없음</string>
+    <string name="direct_on_background">백그라운드에서 바로 재생</string>
+    <string name="close">닫기</string>
 </resources>
