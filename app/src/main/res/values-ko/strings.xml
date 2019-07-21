@@ -65,7 +65,6 @@
     <string name="parsing_error">웹사이트를 가져올 수 없습니다</string>
     <string name="light_parsing_error">웹사이트를 완전히 가져올 수 없습니다</string>
     <string name="content_not_available">컨텐츠를 사용할 수 없습니다</string>
-    <string name="blocked_by_gema">GEMA에 의해 차단되었습니다</string>
     <string name="could_not_setup_download_menu">다운로드 메뉴를 설정할 수 없습니다</string>
     <string name="live_streams_not_supported">라이브 스트림은 아직 지원하지 않습니다</string>
     <string name="could_not_get_stream">어떠한 스트림도 가져올 수 없습니다</string>
@@ -450,7 +449,8 @@
     <string name="download_finished_more">%s 다운로드 완료됨</string>
     <string name="generate_unique_name">별개의 이름 생성</string>
     <string name="overwrite">덮어쓰기</string>
-    <string name="overwrite_warning">해당 이름을 가진 다운로드된 파일이 이미 존재합니다</string>
+    <string name="overwrite_unrelated_warning">이 이름을 가진 파일이 이미 있습니다.</string>
+    <string name="overwrite_finished_warning">이 이름을 가진 다운로드 된 파일이 이미 있습니다.</string>
     <string name="download_already_running">해당 이름을 가진 다운로드가 이미 진행중입니다</string>
     <string name="show_error">오류 표시</string>
     <string name="label_code">코드</string>

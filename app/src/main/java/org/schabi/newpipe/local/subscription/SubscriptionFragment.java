@@ -23,7 +23,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -48,10 +47,8 @@ import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.subscription.SubscriptionExtractor;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.info_list.InfoListAdapter;
-import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.local.subscription.services.SubscriptionsExportService;
 import org.schabi.newpipe.local.subscription.services.SubscriptionsImportService;
-import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -131,6 +128,12 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
         subscriptionService = SubscriptionService.getInstance(activity);
     }
 
+    @Override
+    public void onDetach() {
+        infoListAdapter.dispose();
+        super.onDetach();
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -150,6 +153,8 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
             }
             updateFlags = 0;
         }
+
+        itemsList.post(infoListAdapter::updateStates);
     }
 
     @Override

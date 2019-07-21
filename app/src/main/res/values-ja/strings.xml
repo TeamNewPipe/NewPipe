@@ -57,7 +57,7 @@
     <string name="youtube_signature_decryption_error">動画のURLを復号できませんでした</string>
     <string name="parsing_error">Webサイトを解析できませんでした</string>
     <string name="content_not_available">コンテンツが利用できません</string>
-    <string name="blocked_by_gema">GEMA にブロックされました</string>
+
     <string name="could_not_setup_download_menu">保存メニューを設定できませんでした</string>
     <string name="live_streams_not_supported">生放送にはまだ対応していません</string>
     <string name="content">コンテンツ</string>
@@ -365,10 +365,10 @@
     <string name="caption_auto_generated">自動生成</string>
     <string name="caption_setting_description">アプリの再起動後、設定した字幕設定が反映されます</string>
     <string name="empty_subscription_feed_subtitle">何もありません</string>
-    <string name="import_youtube_instructions">保存したエクスポートファイルからYouTubeの購読をインポート: 
-\n 
-\n1. このURLを開きます: %1$s 
-\n2. ログインしていなければログインします 
+    <string name="import_youtube_instructions">保存したエクスポートファイルからYouTubeの購読をインポート:
+\n
+\n1. このURLを開きます: %1$s
+\n2. ログインしていなければログインします
 \n3. ダウンロードが始まります (これがエクスポートファイルです)</string>
     <string name="playback_reset">リセット</string>
     <string name="accept">同意する</string>
@@ -391,8 +391,8 @@
 \n3. 必要に応じてログインします
 \n4. リダイレクトされたプロファイル URL をコピーします。</string>
     <string name="import_soundcloud_instructions_hint">あなたのID, soundcloud.com/あなたのid</string>
-    <string name="import_network_expensive_warning">この操作により通信料金が増えることがあります。ご注意ください。 
-\n 
+    <string name="import_network_expensive_warning">この操作により通信料金が増えることがあります。ご注意ください。
+\n
 \n続行しますか\?</string>
     <string name="playback_speed_control">再生速度を変更</string>
     <string name="unhook_checkbox">速度と音程を連動せずに変更 (歪むかもしれません)</string>
@@ -421,7 +421,7 @@
     <string name="app_update_notification_content_title">NewPipeのアップデートがあります！</string>
     <string name="app_update_notification_content_text">タップでダウンロード</string>
     <string name="missions_header_finished">終了しました</string>
-    <string name="missions_header_pending">順番に処理中</string>
+    <string name="missions_header_pending">保留中</string>
     <string name="paused">一時停止</string>
     <string name="queued">順番待ちに追加しました</string>
     <string name="post_processing">保存処理をしています</string>
@@ -432,7 +432,8 @@
     <string name="download_finished_more">%s 件のダウンロード終了</string>
     <string name="generate_unique_name">一意の名前を生成します</string>
     <string name="overwrite">上書き</string>
-    <string name="overwrite_warning">同じ名前のファイルが既に存在します</string>
+    <string name="overwrite_unrelated_warning">この名前のファイルは既に存在します</string>
+    <string name="overwrite_finished_warning">この名前のダウンロードファイルは既に存在します</string>
     <string name="download_already_running">同じ名前を持つダウンロードが既に進行中です</string>
     <string name="show_error">エラーを表示する</string>
     <string name="label_code">コード</string>
@@ -462,6 +463,7 @@
     <string name="main_page_content_summary">メインページに表示されるタブ</string>
     <string name="updates_setting_description">新しいバージョンが利用可能なときにアプリの更新を確認する通知を表示します</string>
     <string name="msg_pending_downloads">ダウンロードから %s の保留中の転送を続行します</string>
-    <string name="pause_downloads_on_mobile">モバイルデータ通信に切替時に、一時停止する</string>
-    <string name="pause_downloads_on_mobile_desc">一時停止できない場合は再開して継続されます</string>
+    <string name="pause_downloads_on_mobile">モバイルデータ通信に切り替え時に休止</string>
+    <string name="pause_downloads_on_mobile_desc">休止できないダウンロードが再開されます</string>
+    <string name="error_timeout">接続タイムアウト</string>
 </resources>

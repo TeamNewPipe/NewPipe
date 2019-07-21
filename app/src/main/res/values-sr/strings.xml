@@ -57,7 +57,7 @@
     <string name="youtube_signature_decryption_error">Не могу да дешифрујем потпис видео урл-а</string>
     <string name="parsing_error">Не могу да рашчланим веб-сајт</string>
     <string name="content_not_available">Садржај није доступан</string>
-    <string name="blocked_by_gema">Блокирала ГЕМА</string>
+
     <string name="content">Садржај</string>
     <string name="show_age_restricted_content_title">Прикажи старосно-ограничени садржај</string>
     <string name="video_is_age_restricted">Старосно-ограничени видео. Премошћавање је доступно у поставкама.</string>

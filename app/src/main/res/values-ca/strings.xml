@@ -177,7 +177,6 @@
     <string name="parsing_error">No s\'ha pogut processar el lloc web</string>
     <string name="light_parsing_error">No s\'ha pogut processar del tot el lloc web</string>
     <string name="content_not_available">Contingut no disponible</string>
-    <string name="blocked_by_gema">Blocat per la GEMA</string>
     <string name="could_not_setup_download_menu">No s\'ha pogut configurar el menú de baixades</string>
     <string name="live_streams_not_supported">Les emissions en directe encara no són compatibles</string>
     <string name="could_not_get_stream">No s\'ha pogut obtenir cap vídeo</string>
@@ -425,15 +424,15 @@
     <string name="auto">Automàtic</string>
     <string name="switch_view">Canvia la vista</string>
     <string name="app_update_notification_content_title">Està disponible una nova actualització del NewPipe!</string>
-    <string name="missions_header_pending">A la cua</string>
+    <string name="missions_header_pending">Pendent</string>
     <string name="paused">en pausa</string>
     <string name="queued">a la cua</string>
     <string name="enqueue">Afegeix a la cua</string>
     <string name="generate_unique_name">Genera un nom únic</string>
     <string name="show_error">Mostra l\'error</string>
     <string name="label_code">Codi</string>
-    <string name="error_path_creation">No es pot crear el fitxer</string>
-    <string name="error_file_creation">No es pot crear la carpeta de destinació</string>
+    <string name="error_file_creation">No es pot crear el fitxer</string>
+    <string name="error_path_creation">No es pot crear la carpeta de destinació</string>
     <string name="stop">Atura</string>
     <string name="events">Esdeveniments</string>
     <string name="app_update_notification_channel_description">Notificacions de noves versions del NewPipe</string>
@@ -446,7 +445,8 @@
     <string name="download_failed">Ha fallat la baixada</string>
     <string name="download_finished">Baixada finalitzada</string>
     <string name="download_finished_more">%s baixades finalitzades</string>
-    <string name="overwrite_warning">Ja existeix un fitxer baixat amb aquest nom</string>
+    <string name="overwrite_finished_warning">Ja existeix un fitxer baixat amb aquest nom</string>
+    <string name="overwrite_unrelated_warning">Ja existeix un fitxer amb aquest nom</string>
     <string name="download_already_running">Hi ha una baixada en curs amb aquest nom</string>
     <string name="error_ssl_exception">Ha fallat la connexió segura</string>
     <string name="error_unknown_host">No s\'ha pogut trobar el servidor</string>

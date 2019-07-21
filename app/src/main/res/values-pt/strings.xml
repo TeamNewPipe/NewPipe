@@ -57,7 +57,7 @@
     <string name="youtube_signature_decryption_error">Incapaz de descodificar a assinatura do vídeo</string>
     <string name="parsing_error">Incapaz de processar o site</string>
     <string name="content_not_available">Conteúdo não disponível</string>
-    <string name="blocked_by_gema">Bloqueado por GEMA</string>
+
     <string name="content">Conteúdo</string>
     <string name="show_age_restricted_content_title">Restringir conteúdo por idade</string>
     <string name="video_is_age_restricted">Mostrar vídeo com restrição de idade. É possível permitir tal material nas Configurações.</string>
@@ -431,7 +431,6 @@
     <string name="app_update_notification_content_title">Atualização do NewPipe disponível!</string>
     <string name="app_update_notification_content_text">Toque para descarregar</string>
     <string name="missions_header_finished">Terminada</string>
-    <string name="missions_header_pending">Na fila</string>
     <string name="paused">em pausa</string>
     <string name="queued">na fila</string>
     <string name="post_processing">pós-processamento</string>
@@ -442,12 +441,12 @@
     <string name="download_finished_more">%s descargas terminadas</string>
     <string name="generate_unique_name">Gerar nome único</string>
     <string name="overwrite">Sobrescrever</string>
-    <string name="overwrite_warning">Um ficheiro descarregado com este nome já existe</string>
+    <string name="overwrite_finished_warning">Um ficheiro descarregado com este nome já existe</string>
     <string name="download_already_running">Já existe uma descarga em curso com este nome</string>
     <string name="show_error">Mostrar erro</string>
     <string name="label_code">Código</string>
-    <string name="error_path_creation">O ficheiro não pode ser criado</string>
-    <string name="error_file_creation">A pasta de destino não pode ser criada</string>
+    <string name="error_file_creation">O ficheiro não pode ser criado</string>
+    <string name="error_path_creation">A pasta de destino não pode ser criada</string>
     <string name="error_permission_denied">Permissão negada pelo sistema</string>
     <string name="error_ssl_exception">Ligação segura falhou</string>
     <string name="error_unknown_host">Não foi possível encontrar o servidor</string>
@@ -466,4 +465,5 @@
     <string name="pause_downloads_on_mobile_desc">Descarregamentos que não podem ser pausados serão reiniciados</string>
     <string name="events">Eventos</string>
     <string name="conferences">Conferências</string>
+    <string name="missions_header_pending">Pendente</string>
 </resources>

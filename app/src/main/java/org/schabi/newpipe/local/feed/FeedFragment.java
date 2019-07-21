@@ -21,8 +21,8 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.fragments.list.BaseListFragment;
-import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.local.subscription.SubscriptionService;
+import org.schabi.newpipe.report.UserAction;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -262,7 +262,7 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
      * If chosen feed already displayed, then we request another feed from another
      * subscription, until the subscription table runs out of new items.
      * <p>
-     * This Observer is self-contained and will dispose itself when complete. However, this
+     * This Observer is self-contained and will close itself when complete. However, this
      * does not obey the fragment lifecycle and may continue running in the background
      * until it is complete. This is done due to RxJava2 no longer propagate errors once
      * an observer is unsubscribed while the thread process is still running.

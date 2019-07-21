@@ -386,11 +386,11 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         monitorSubscription(result);
 
         headerPlayAllButton.setOnClickListener(
-                view -> NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));
+                view -> NavigationHelper.playOnMainPlayer(activity, getPlayQueue(), false));
         headerPopupButton.setOnClickListener(
-                view -> NavigationHelper.playOnPopupPlayer(activity, getPlayQueue()));
+                view -> NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(), false));
         headerBackgroundButton.setOnClickListener(
-                view -> NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue()));
+                view -> NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue(), false));
     }
 
     private PlayQueue getPlayQueue() {

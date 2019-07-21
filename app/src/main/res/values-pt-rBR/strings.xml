@@ -12,7 +12,6 @@
     <string name="autoplay_by_calling_app_summary">Reproduz o vídeo quando o NewPipe for aberto a partir de outro aplicativo</string>
     <string name="autoplay_by_calling_app_title">Reproduzir automaticamente</string>
     <string name="black_theme_title">Preto</string>
-    <string name="blocked_by_gema">Bloqueado pelo GEMA</string>
     <string name="cancel">Cancelar</string>
     <string name="checksum">Soma de Verificação</string>
     <string name="choose_browser">Escolher navegador</string>
@@ -435,7 +434,6 @@ abrir em modo popup</string>
     <string name="app_update_notification_content_title">Atualização do NewPipe Disponivel!</string>
     <string name="app_update_notification_content_text">Toque para baixar</string>
     <string name="missions_header_finished">Finalizado</string>
-    <string name="missions_header_pending">Na fila</string>
     <string name="paused">pausado</string>
     <string name="queued">adicionado na fila</string>
     <string name="post_processing">pós processamento</string>
@@ -446,12 +444,12 @@ abrir em modo popup</string>
     <string name="download_finished_more">%s downloads terminados</string>
     <string name="generate_unique_name">Gerar nome único</string>
     <string name="overwrite">"Sobrescrever "</string>
-    <string name="overwrite_warning">Um arquivo baixado com esse nome já existe</string>
+    <string name="overwrite_finished_warning">Um arquivo baixado com esse nome já existe</string>
     <string name="download_already_running">Existe um download em progresso com esse nome</string>
     <string name="show_error">Mostrar erro</string>
     <string name="label_code">Código</string>
-    <string name="error_path_creation">O arquivo não pode ser criado</string>
-    <string name="error_file_creation">A pasta de destino não pode ser criada</string>
+    <string name="error_file_creation">O arquivo não pode ser criado</string>
+    <string name="error_path_creation">A pasta de destino não pode ser criada</string>
     <string name="error_permission_denied">Permissão negada pelo sistema</string>
     <string name="error_ssl_exception">"Falha na conexão segura "</string>
     <string name="error_unknown_host">Não foi possível encontrar o servidor</string>
@@ -468,4 +466,5 @@ abrir em modo popup</string>
     <string name="max_retry_desc">Número máximo de tentativas antes de cancelar o download</string>
     <string name="pause_downloads_on_mobile">Pausar quando trocar para dados móveis</string>
     <string name="pause_downloads_on_mobile_desc">Downloads que não puderem ser pausados serão reiniciados</string>
+    <string name="missions_header_pending">Pendente</string>
 </resources>

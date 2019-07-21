@@ -56,7 +56,6 @@
     <string name="parsing_error">Tidak bisa mengurai situs web</string>
     <string name="light_parsing_error">Tidak dapat menguraikan situs web sepenuhnya</string>
     <string name="content_not_available">Konten tidak tersedia</string>
-    <string name="blocked_by_gema">Diblokir oleh GEMA</string>
     <string name="could_not_setup_download_menu">Tidak bisa menyiapkan menu unduh</string>
     <string name="live_streams_not_supported">Siaran langsung belum didukung</string>
     <string name="could_not_load_image">Tidak bisa memuat gambar</string>
@@ -436,7 +435,7 @@
     <string name="app_update_notification_content_title">Pembaruan NewPipe Tersedia!</string>
     <string name="app_update_notification_content_text">Ketuk untuk mengunduh</string>
     <string name="missions_header_finished">Selesai</string>
-    <string name="missions_header_pending">Di antrian</string>
+    <string name="missions_header_pending">Tertunda</string>
     <string name="paused">dijeda</string>
     <string name="queued">antri</string>
     <string name="post_processing">pengolahan-pasca</string>
@@ -447,12 +446,12 @@
     <string name="download_finished_more">%s unduhan selesai</string>
     <string name="generate_unique_name">Hasilkan nama unik</string>
     <string name="overwrite">Timpa</string>
-    <string name="overwrite_warning">File yang diunduh dengan nama ini sudah ada</string>
+    <string name="overwrite_finished_warning">File yang diunduh dengan nama ini sudah ada</string>
     <string name="download_already_running">Ada unduhan yang sedang berlangsung dengan nama ini</string>
     <string name="show_error">Tunjukkan kesalahan</string>
     <string name="label_code">Kode</string>
-    <string name="error_path_creation">File tidak dapat dibuat</string>
-    <string name="error_file_creation">Folder tujuan tidak dapat dibuat</string>
+    <string name="error_file_creation">File tidak dapat dibuat</string>
+    <string name="error_path_creation">Folder tujuan tidak dapat dibuat</string>
     <string name="error_permission_denied">Izin ditolak oleh sistem</string>
     <string name="error_ssl_exception">Koneksi aman gagal</string>
     <string name="error_unknown_host">Tidak dapat menemukan server</string>

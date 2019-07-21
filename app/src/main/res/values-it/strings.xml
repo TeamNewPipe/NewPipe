@@ -54,7 +54,6 @@
     <string name="could_not_load_thumbnails">Impossibile caricare tutte le miniature</string>
     <string name="youtube_signature_decryption_error">Impossibile decriptare la firma dell\'URL del video</string>
     <string name="content_not_available">Contenuto non disponibile</string>
-    <string name="blocked_by_gema">Bloccato da GEMA</string>
     <string name="use_tor_title">Usa Tor</string>
     <string name="use_tor_summary">(Sperimentale) Forza il download tramite Tor per una maggiore riservatezza (lo streaming dei video non è ancora supportato).</string>
     <string name="parsing_error">Impossibile analizzare il sito web</string>
@@ -438,7 +437,7 @@
     <string name="app_update_notification_content_title">Aggiornamento di NewPipe disponibile!</string>
     <string name="app_update_notification_content_text">Premi per scaricare</string>
     <string name="missions_header_finished">Finito</string>
-    <string name="missions_header_pending">In coda</string>
+    <string name="missions_header_pending">In attesa di</string>
     <string name="paused">in pausa</string>
     <string name="queued">in coda</string>
     <string name="post_processing">post-processo</string>
@@ -449,12 +448,12 @@
     <string name="download_finished_more">%s download finiti</string>
     <string name="generate_unique_name">Genera un nome unico</string>
     <string name="overwrite">Sovrascrivi</string>
-    <string name="overwrite_warning">Esiste già un file scaricato con lo stesso nome</string>
+    <string name="overwrite_finished_warning">Esiste già un file scaricato con lo stesso nome</string>
     <string name="download_already_running">C\'è un download in progresso con questo nome</string>
     <string name="show_error">Mostra errore</string>
     <string name="label_code">Codice</string>
-    <string name="error_path_creation">Impossibile creare il file</string>
-    <string name="error_file_creation">Impossibile creare la cartella di destinazione</string>
+    <string name="error_file_creation">Impossibile creare il file</string>
+    <string name="error_path_creation">Impossibile creare la cartella di destinazione</string>
     <string name="error_permission_denied">Permesso negato dal sistema</string>
     <string name="error_ssl_exception">Connessione sicura fallita</string>
     <string name="error_unknown_host">Impossibile trovare il server</string>
@@ -473,4 +472,5 @@
     <string name="pause_downloads_on_mobile_desc">I download che non possono essere messi in pausa verranno riavviati</string>
     <string name="events">Eventi</string>
     <string name="conferences">Conferenze</string>
+    <string name="error_timeout">Connesione finita</string>
 </resources>

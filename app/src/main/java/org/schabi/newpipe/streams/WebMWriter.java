@@ -1,20 +1,20 @@
 package org.schabi.newpipe.streams;
 
+import android.support.annotation.NonNull;
+
 import org.schabi.newpipe.streams.WebMReader.Cluster;
 import org.schabi.newpipe.streams.WebMReader.Segment;
 import org.schabi.newpipe.streams.WebMReader.SimpleBlock;
 import org.schabi.newpipe.streams.WebMReader.WebMTrack;
+import org.schabi.newpipe.streams.io.SharpStream;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-import org.schabi.newpipe.streams.io.SharpStream;
-
 /**
- *
  * @author kapodamy
  */
 public class WebMWriter {
@@ -94,10 +94,6 @@ public class WebMWriter {
         }
     }
 
-    public long getBytesWritten() {
-        return written;
-    }
-
     public boolean isDone() {
         return done;
     }
@@ -111,7 +107,7 @@ public class WebMWriter {
         parsed = true;
 
         for (SharpStream src : sourceTracks) {
-            src.dispose();
+            src.close();
         }
 
         sourceTracks = null;
@@ -138,42 +134,42 @@ public class WebMWriter {
 
         /* segment */
         listBuffer.add(new byte[]{
-            0x18, 0x53, (byte) 0x80, 0x67, 0x01,
-            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00// segment content size
+                0x18, 0x53, (byte) 0x80, 0x67, 0x01,
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00// segment content size
         });
 
         long baseSegmentOffset = written + listBuffer.get(0).length;
 
         /* seek head */
         listBuffer.add(new byte[]{
-            0x11, 0x4d, (byte) 0x9b, 0x74, (byte) 0xbe,
-            0x4d, (byte) 0xbb, (byte) 0x8b,
-            0x53, (byte) 0xab, (byte) 0x84, 0x15, 0x49, (byte) 0xa9, 0x66, 0x53,
-            (byte) 0xac, (byte) 0x81, /*info offset*/ 0x43,
-            0x4d, (byte) 0xbb, (byte) 0x8b, 0x53, (byte) 0xab,
-            (byte) 0x84, 0x16, 0x54, (byte) 0xae, 0x6b, 0x53, (byte) 0xac, (byte) 0x81,
-            /*tracks offset*/ 0x6a,
-            0x4d, (byte) 0xbb, (byte) 0x8e, 0x53, (byte) 0xab, (byte) 0x84, 0x1f,
-            0x43, (byte) 0xb6, 0x75, 0x53, (byte) 0xac, (byte) 0x84, /*cluster offset [2]*/ 0x00, 0x00, 0x00, 0x00,
-            0x4d, (byte) 0xbb, (byte) 0x8e, 0x53, (byte) 0xab, (byte) 0x84, 0x1c, 0x53,
-            (byte) 0xbb, 0x6b, 0x53, (byte) 0xac, (byte) 0x84, /*cues offset [7]*/ 0x00, 0x00, 0x00, 0x00
+                0x11, 0x4d, (byte) 0x9b, 0x74, (byte) 0xbe,
+                0x4d, (byte) 0xbb, (byte) 0x8b,
+                0x53, (byte) 0xab, (byte) 0x84, 0x15, 0x49, (byte) 0xa9, 0x66, 0x53,
+                (byte) 0xac, (byte) 0x81, /*info offset*/ 0x43,
+                0x4d, (byte) 0xbb, (byte) 0x8b, 0x53, (byte) 0xab,
+                (byte) 0x84, 0x16, 0x54, (byte) 0xae, 0x6b, 0x53, (byte) 0xac, (byte) 0x81,
+                /*tracks offset*/ 0x6a,
+                0x4d, (byte) 0xbb, (byte) 0x8e, 0x53, (byte) 0xab, (byte) 0x84, 0x1f,
+                0x43, (byte) 0xb6, 0x75, 0x53, (byte) 0xac, (byte) 0x84, /*cluster offset [2]*/ 0x00, 0x00, 0x00, 0x00,
+                0x4d, (byte) 0xbb, (byte) 0x8e, 0x53, (byte) 0xab, (byte) 0x84, 0x1c, 0x53,
+                (byte) 0xbb, 0x6b, 0x53, (byte) 0xac, (byte) 0x84, /*cues offset [7]*/ 0x00, 0x00, 0x00, 0x00
         });
 
         /* info */
         listBuffer.add(new byte[]{
-            0x15, 0x49, (byte) 0xa9, 0x66, (byte) 0xa2, 0x2a, (byte) 0xd7, (byte) 0xb1
+                0x15, 0x49, (byte) 0xa9, 0x66, (byte) 0xa2, 0x2a, (byte) 0xd7, (byte) 0xb1
         });
         listBuffer.add(encode(DEFAULT_TIMECODE_SCALE, true));// this value MUST NOT exceed 4 bytes
         listBuffer.add(new byte[]{0x44, (byte) 0x89, (byte) 0x84,
-            0x00, 0x00, 0x00, 0x00,// info.duration
-            
-            /* MuxingApp */
-            0x4d, (byte) 0x80, (byte) 0x87, 0x4E, 
-            0x65, 0x77, 0x50, 0x69, 0x70, 0x65, // "NewPipe" binary string
-            
-            /* WritingApp */ 
-            0x57, 0x41, (byte) 0x87, 0x4E, 
-            0x65, 0x77, 0x50, 0x69, 0x70, 0x65// "NewPipe" binary string
+                0x00, 0x00, 0x00, 0x00,// info.duration
+
+                /* MuxingApp */
+                0x4d, (byte) 0x80, (byte) 0x87, 0x4E,
+                0x65, 0x77, 0x50, 0x69, 0x70, 0x65, // "NewPipe" binary string
+
+                /* WritingApp */
+                0x57, 0x41, (byte) 0x87, 0x4E,
+                0x65, 0x77, 0x50, 0x69, 0x70, 0x65// "NewPipe" binary string
         });
 
         /* tracks */
@@ -200,7 +196,6 @@ public class WebMWriter {
         long nextCueTime = infoTracks[cuesForTrackId].trackType == 1 ? -1 : 0;
         ArrayList<KeyFrame> keyFrames = new ArrayList<>(32);
 
-        //ArrayList<Block> chunks = new ArrayList<>(readers.length);
         ArrayList<Long> clusterOffsets = new ArrayList<>(32);
         ArrayList<Integer> clusterSizes = new ArrayList<>(32);
 
@@ -283,24 +278,21 @@ public class WebMWriter {
 
         long segmentSize = written - offsetSegmentSizeSet - 7;
 
-        // final step write offsets and sizes
-        out.rewind();
-        written = 0;
-
-        skipTo(out, offsetSegmentSizeSet);
+        /* ---- final step write offsets and sizes ---- */
+        seekTo(out, offsetSegmentSizeSet);
         writeLong(out, segmentSize);
 
         if (predefinedDurations[durationFromTrackId] > -1) {
             duration += predefinedDurations[durationFromTrackId];// this value is full-filled in makeTrackEntry() method
         }
-        skipTo(out, offsetInfoDurationSet);
+        seekTo(out, offsetInfoDurationSet);
         writeFloat(out, duration);
 
         firstClusterOffset -= baseSegmentOffset;
-        skipTo(out, offsetClusterSet);
+        seekTo(out, offsetClusterSet);
         writeInt(out, firstClusterOffset);
 
-        skipTo(out, cueReservedOffset);
+        seekTo(out, cueReservedOffset);
 
         /* Cue */
         dump(new byte[]{0x1c, 0x53, (byte) 0xbb, 0x6b, 0x20, 0x00, 0x00}, out);
@@ -321,20 +313,16 @@ public class WebMWriter {
         voidBuffer.putShort((short) (firstClusterOffset - written - 4));
         dump(voidBuffer.array(), out);
 
-        out.rewind();
-        written = 0;
-
-        skipTo(out, offsetCuesSet);
+        seekTo(out, offsetCuesSet);
         writeInt(out, (int) (cueReservedOffset - baseSegmentOffset));
 
-        skipTo(out, cueReservedOffset + 5);
+        seekTo(out, cueReservedOffset + 5);
         writeShort(out, cueSize);
 
         for (int i = 0; i < clusterSizes.size(); i++) {
-            skipTo(out, clusterOffsets.get(i));
-            byte[] size = ByteBuffer.allocate(4).putInt(clusterSizes.get(i) | 0x200000).array();
-            out.write(size, 1, 3);
-            written += 3;
+            seekTo(out, clusterOffsets.get(i));
+            byte[] buffer = ByteBuffer.allocate(4).putInt(clusterSizes.get(i) | 0x10000000).array();
+            dump(buffer, out);
         }
     }
 
@@ -365,20 +353,29 @@ public class WebMWriter {
         bloq.dataSize = (int) res.dataSize;
         bloq.trackNumber = internalTrackId;
         bloq.flags = res.flags;
-        bloq.absoluteTimecode = convertTimecode(res.relativeTimeCode, readersSegment[internalTrackId].info.timecodeScale, DEFAULT_TIMECODE_SCALE);
+        bloq.absoluteTimecode = convertTimecode(res.relativeTimeCode, readersSegment[internalTrackId].info.timecodeScale);
         bloq.absoluteTimecode += readersCluter[internalTrackId].timecode;
 
         return bloq;
     }
 
-    private short convertTimecode(int time, long oldTimeScale, int newTimeScale) {
-        return (short) (time * (newTimeScale / oldTimeScale));
+    private short convertTimecode(int time, long oldTimeScale) {
+        return (short) (time * (DEFAULT_TIMECODE_SCALE / oldTimeScale));
     }
 
-    private void skipTo(SharpStream stream, long absoluteOffset) throws IOException {
-        absoluteOffset -= written;
-        written += absoluteOffset;
-        stream.skip(absoluteOffset);
+    private void seekTo(SharpStream stream, long offset) throws IOException {
+        if (stream.canSeek()) {
+            stream.seek(offset);
+        } else {
+            if (offset > written) {
+                stream.skip(offset - written);
+            } else {
+                stream.rewind();
+                stream.skip(offset);
+            }
+        }
+
+        written = offset;
     }
 
     private void writeLong(SharpStream stream, long number) throws IOException {
@@ -453,7 +450,7 @@ public class WebMWriter {
             /* cluster */
             dump(new byte[]{0x1f, 0x43, (byte) 0xb6, 0x75}, stream);
             clusterOffsets.add(written);// warning: max cluster size is 256 MiB
-            dump(new byte[]{0x20, 0x00, 0x00}, stream);
+            dump(new byte[]{0x10, 0x00, 0x00, 0x00}, stream);
 
             startOffset = written;// size for the this cluster
 
@@ -468,12 +465,12 @@ public class WebMWriter {
     private void makeEBML(SharpStream stream) throws IOException {
         // deafult values
         dump(new byte[]{
-            0x1A, 0x45, (byte) 0xDF, (byte) 0xA3, 0x01, 0x00, 0x00, 0x00,
-            0x00, 0x00, 0x00, 0x1F, 0x42, (byte) 0x86, (byte) 0x81, 0x01,
-            0x42, (byte) 0xF7, (byte) 0x81, 0x01, 0x42, (byte) 0xF2, (byte) 0x81, 0x04,
-            0x42, (byte) 0xF3, (byte) 0x81, 0x08, 0x42, (byte) 0x82, (byte) 0x84, 0x77,
-            0x65, 0x62, 0x6D, 0x42, (byte) 0x87, (byte) 0x81, 0x02,
-            0x42, (byte) 0x85, (byte) 0x81, 0x02
+                0x1A, 0x45, (byte) 0xDF, (byte) 0xA3, 0x01, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, 0x1F, 0x42, (byte) 0x86, (byte) 0x81, 0x01,
+                0x42, (byte) 0xF7, (byte) 0x81, 0x01, 0x42, (byte) 0xF2, (byte) 0x81, 0x04,
+                0x42, (byte) 0xF3, (byte) 0x81, 0x08, 0x42, (byte) 0x82, (byte) 0x84, 0x77,
+                0x65, 0x62, 0x6D, 0x42, (byte) 0x87, (byte) 0x81, 0x02,
+                0x42, (byte) 0x85, (byte) 0x81, 0x02
         }, stream);
     }
 
@@ -618,9 +615,10 @@ public class WebMWriter {
 
         int offset = withLength ? 1 : 0;
         byte[] buffer = new byte[offset + length];
-        long marker = (long) Math.floor((length - 1) / 8);
+        long marker = (long) Math.floor((length - 1f) / 8f);
 
-        for (int i = length - 1, mul = 1; i >= 0; i--, mul *= 0x100) {
+        float mul = 1;
+        for (int i = length - 1; i >= 0; i--, mul *= 0x100) {
             long b = (long) Math.floor(number / mul);
             if (!withLength && i == marker) {
                 b = b | (0x80 >> (length - 1));
@@ -637,11 +635,7 @@ public class WebMWriter {
 
     private ArrayList<byte[]> encode(String value) {
         byte[] str;
-        try {
-            str = value.getBytes("utf-8");
-        } catch (UnsupportedEncodingException err) {
-            str = value.getBytes();
-        }
+        str = value.getBytes(StandardCharsets.UTF_8);// or use "utf-8"
 
         ArrayList<byte[]> buffer = new ArrayList<>(2);
         buffer.add(encode(str.length, false));
@@ -720,9 +714,10 @@ public class WebMWriter {
             return (flags & 0x80) == 0x80;
         }
 
+        @NonNull
         @Override
         public String toString() {
-            return String.format("trackNumber=%s  isKeyFrame=%S  absoluteTimecode=%s", trackNumber, (flags & 0x80) == 0x80, absoluteTimecode);
+            return String.format("trackNumber=%s  isKeyFrame=%S  absoluteTimecode=%s", trackNumber, isKeyframe(), absoluteTimecode);
         }
     }
 }

@@ -252,19 +252,19 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                 .subscribe(getPlaylistBookmarkSubscriber());
 
         headerPlayAllButton.setOnClickListener(view ->
-                NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));
+                NavigationHelper.playOnMainPlayer(activity, getPlayQueue(), false));
         headerPopupButton.setOnClickListener(view ->
-                NavigationHelper.playOnPopupPlayer(activity, getPlayQueue()));
+                NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(), false));
         headerBackgroundButton.setOnClickListener(view ->
-                NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue()));
+                NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue(), false));
 
         headerPopupButton.setOnLongClickListener(view -> {
-            NavigationHelper.enqueueOnPopupPlayer(activity, getPlayQueue());
+            NavigationHelper.enqueueOnPopupPlayer(activity, getPlayQueue(), true);
             return true;
         });
 
         headerBackgroundButton.setOnLongClickListener(view -> {
-            NavigationHelper.enqueueOnBackgroundPlayer(activity, getPlayQueue());
+            NavigationHelper.enqueueOnBackgroundPlayer(activity, getPlayQueue(), true);
             return true;
         });
     }

@@ -86,7 +86,6 @@
     <string name="parsing_error">ניתוח האתר לא התאפשר</string>
     <string name="light_parsing_error">לא הייתה אפשרות לנתח את האתר לחלוטין</string>
     <string name="content_not_available">תוכן אינו זמין</string>
-    <string name="blocked_by_gema">נחסם ע״י GEMA</string>
     <string name="could_not_setup_download_menu">לא הייתה אפשרות להכין את תפריט ההורדה</string>
     <string name="live_streams_not_supported">עדיין אין תמיכה בתזרימים חיים</string>
     <string name="could_not_get_stream">לא הייתה אפשרות לקבל תזרים כלשהו</string>
@@ -440,7 +439,6 @@
     <string name="app_update_notification_content_title">יצא עדכון ל־NewPipe!</string>
     <string name="app_update_notification_content_text">יש לגעת כדי להוריד</string>
     <string name="missions_header_finished">הסתיים</string>
-    <string name="missions_header_pending">בתור</string>
     <string name="paused">מושהה</string>
     <string name="queued">בתור</string>
     <string name="post_processing">עיבוד מאוחר</string>
@@ -451,12 +449,12 @@
     <string name="download_finished_more">%s הורדות הסתיימו</string>
     <string name="generate_unique_name">יצירת שם ייחודי</string>
     <string name="overwrite">שכתוב</string>
-    <string name="overwrite_warning">כבר קיים קובץ בשם הזה</string>
+    <string name="overwrite_finished_warning">כבר קיים קובץ בשם הזה</string>
     <string name="download_already_running">אחת ההורדות הפעילות כבר נושאת את השם הזה</string>
     <string name="show_error">הצגת שגיאה</string>
     <string name="label_code">קוד</string>
-    <string name="error_path_creation">לא ניתן ליצור את הקובץ</string>
-    <string name="error_file_creation">לא ניתן ליצור את תיקיית היעד</string>
+    <string name="error_file_creation">לא ניתן ליצור את הקובץ</string>
+    <string name="error_path_creation">לא ניתן ליצור את תיקיית היעד</string>
     <string name="error_permission_denied">ההרשאה נדחתה על ידי המערכת</string>
     <string name="error_ssl_exception">החיבור המאובטח נכשל</string>
     <string name="error_unknown_host">לא ניתן למצוא את השרת</string>
@@ -473,4 +471,5 @@
     <string name="max_retry_desc">מספר הניסיונות החוזרים המרבי בטרם ביטול ההורדה</string>
     <string name="pause_downloads_on_mobile">להשהות בעת מעבר לתקשורת נתונים סלולרית</string>
     <string name="pause_downloads_on_mobile_desc">הורדות שלא ניתן להשהות יופעלו מחדש</string>
+    <string name="missions_header_pending">בהמתנה</string>
 </resources>

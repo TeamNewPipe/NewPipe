@@ -59,7 +59,6 @@
     <string name="parsing_error">Nie można przetworzyć strony</string>
     <string name="light_parsing_error">Nie można przetworzyć całości strony</string>
     <string name="content_not_available">Zawartość niedostępna</string>
-    <string name="blocked_by_gema">Zablokowane przez GEMA</string>
     <string name="could_not_setup_download_menu">Nie można ustawić menu pobierania</string>
     <string name="live_streams_not_supported">Transmisje na żywo nie są jeszcze obsługiwane</string>
     <string name="could_not_get_stream">Nie można otrzymać żadnego strumienia</string>
@@ -435,7 +434,6 @@
     <string name="app_update_notification_content_title">Dostępna jest aktualizacja NewPipe!</string>
     <string name="app_update_notification_content_text">Stuknij, aby pobrać</string>
     <string name="missions_header_finished">Gotowe</string>
-    <string name="missions_header_pending">W kolejce</string>
     <string name="paused">wstrzymane</string>
     <string name="queued">w kolejce</string>
     <string name="post_processing">przetwarzanie końcowe</string>
@@ -446,12 +444,12 @@
     <string name="download_finished_more">%s pobieranie zostało zakończone</string>
     <string name="generate_unique_name">Wygeneruj unikalną nazwę</string>
     <string name="overwrite">Zastąp</string>
-    <string name="overwrite_warning">Pobrany plik o tej nazwie już istnieje</string>
+    <string name="overwrite_finished_warning">Pobrany plik o tej nazwie już istnieje</string>
     <string name="download_already_running">Trwa pobieranie z tą nazwą</string>
     <string name="show_error">Pokaż błąd</string>
     <string name="label_code">Kod</string>
-    <string name="error_path_creation">Nie można utworzyć pliku</string>
-    <string name="error_file_creation">Nie można utworzyć folderu docelowego</string>
+    <string name="error_file_creation">Nie można utworzyć pliku</string>
+    <string name="error_path_creation">Nie można utworzyć folderu docelowego</string>
     <string name="error_permission_denied">Odmowa dostępu do systemu</string>
     <string name="error_ssl_exception">Bezpieczne połączenie nie powiodło się</string>
     <string name="error_unknown_host">Nie można znaleźć serwera</string>
@@ -470,4 +468,5 @@
     <string name="pause_downloads_on_mobile_desc">Pobierane pliki, których nie można wstrzymać, zostaną zrestartowane</string>
     <string name="events">Zdarzenia</string>
     <string name="conferences">Konferencje</string>
+    <string name="missions_header_pending">Oczekuje</string>
 </resources>

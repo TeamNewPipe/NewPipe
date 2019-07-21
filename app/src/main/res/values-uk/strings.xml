@@ -56,7 +56,6 @@
     <string name="parsing_error">Не вдалося проаналізувати веб-сайт</string>
     <string name="light_parsing_error">Не вдалося повністю проаналізувати веб-сайт</string>
     <string name="content_not_available">Контент недоступний</string>
-    <string name="blocked_by_gema">Заблоковано GEMA</string>
     <string name="could_not_setup_download_menu">Не вдалося налаштувати меню завантаження</string>
     <string name="live_streams_not_supported">Трансляції НАЖИВО поки що не підтримуються</string>
     <string name="could_not_get_stream">Не вдалося отримати жодного потоку</string>
@@ -135,8 +134,13 @@
     <string name="show_search_suggestions_summary">Показувати пропозиції під час пошуку</string>
     <string name="enable_search_history_title">Історія пошуків</string>
     <string name="enable_search_history_summary">Зберігати пошукові запити локально</string>
-    <string name="enable_watch_history_title">Історія та кеш</string>
-    <string name="enable_watch_history_summary">Запам\'ятовувати переглянуті відео</string>
+    <string name="enable_playback_resume_title">Продовживати перегляд</string>
+    <string name="enable_playback_resume_summary">Відновлювати останню позицію</string>
+    <string name="enable_playback_state_lists_title">Позиції у списках</string>
+    <string name="enable_playback_state_lists_summary">Відображати індикатори позицій переглядів у списках</string>
+    <string name="settings_category_clear_data_title">Очистити дані</string>
+    <string name="enable_watch_history_summary">Вести облік перегляду відеозаписів</string>
+    <string name="enable_watch_history_title">Історія переглядів</string>
     <string name="resume_on_audio_focus_gain_title">Відновити програвання при поверненні з тла</string>
     <string name="resume_on_audio_focus_gain_summary">Продовжувати програвання після переривань (наприклад, телефонних дзвінків)</string>
     <string name="show_hold_to_append_title">Показати пораду \"Утримуй, щоб додати\"</string>
@@ -443,7 +447,8 @@
     <string name="download_finished_more">%s завантажень завершено</string>
     <string name="generate_unique_name">Згенерувати унікальну назву</string>
     <string name="overwrite">Перезаписати</string>
-    <string name="overwrite_warning">Завантажений файл з таким ім\'ям вже існує</string>
+    <string name="overwrite_unrelated_warning">Файл з такою назвою вже існує</string>
+    <string name="overwrite_finished_warning">Завантажений файл з такою назвою вже існує</string>
     <string name="download_already_running">Файл з такою назвою вже завантажується</string>
     <string name="show_error">Показати помилку</string>
     <string name="label_code">Код</string>

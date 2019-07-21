@@ -3,8 +3,6 @@ package us.shandian.giga.ui.common;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
-import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -23,8 +21,6 @@ public class Deleter {
     private static final int TIMEOUT = 5000;// ms
     private static final int DELAY = 350;// ms
     private static final int DELAY_RESUME = 400;// ms
-    private static final String BUNDLE_NAMES = "us.shandian.giga.ui.common.deleter.names";
-    private static final String BUNDLE_LOCATIONS = "us.shandian.giga.ui.common.deleter.locations";
 
     private Snackbar snackbar;
     private ArrayList<Mission> items;
@@ -41,7 +37,7 @@ public class Deleter {
     private final Runnable rNext;
     private final Runnable rCommit;
 
-    public Deleter(Bundle b, View v, Context c, MissionAdapter a, DownloadManager d, MissionIterator i, Handler h) {
+    public Deleter(View v, Context c, MissionAdapter a, DownloadManager d, MissionIterator i, Handler h) {
         mView = v;
         mContext = c;
         mAdapter = a;
@@ -55,27 +51,6 @@ public class Deleter {
         rCommit = this::commit;
 
         items = new ArrayList<>(2);
-
-        if (b != null) {
-            String[] names = b.getStringArray(BUNDLE_NAMES);
-            String[] locations = b.getStringArray(BUNDLE_LOCATIONS);
-
-            if (names == null || locations == null) return;
-            if (names.length < 1 || locations.length < 1) return;
-            if (names.length != locations.length) return;
-
-            items.ensureCapacity(names.length);
-
-            for (int j = 0; j < locations.length; j++) {
-                Mission mission = mDownloadManager.getAnyMission(locations[j], names[j]);
-                if (mission == null) continue;
-
-                items.add(mission);
-                mIterator.hide(mission);
-            }
-
-            if (items.size() > 0) resume();
-        }
     }
 
     public void append(Mission item) {
@@ -104,7 +79,7 @@ public class Deleter {
     private void next() {
         if (items.size() < 1) return;
 
-        String msg = mContext.getString(R.string.file_deleted).concat(":\n").concat(items.get(0).name);
+        String msg = mContext.getString(R.string.file_deleted).concat(":\n").concat(items.get(0).storage.getName());
 
         snackbar = Snackbar.make(mView, msg, Snackbar.LENGTH_INDEFINITE);
         snackbar.setAction(R.string.undo, s -> forget());
@@ -125,7 +100,7 @@ public class Deleter {
             mDownloadManager.deleteMission(mission);
 
             if (mission instanceof FinishedMission) {
-                mContext.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(mission.getDownloadedFile())));
+                mContext.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, mission.storage.getUri()));
             }
             break;
         }
@@ -151,27 +126,14 @@ public class Deleter {
         mHandler.postDelayed(rShow, DELAY_RESUME);
     }
 
-    public void dispose(Bundle bundle) {
+    public void dispose(boolean commitChanges) {
         if (items.size() < 1) return;
 
         pause();
 
-        if (bundle == null) {
-            for (Mission mission : items) mDownloadManager.deleteMission(mission);
-            items = null;
-            return;
-        }
+        if (!commitChanges) return;
 
-        String[] names = new String[items.size()];
-        String[] locations = new String[items.size()];
-
-        for (int i = 0; i < items.size(); i++) {
-            Mission mission = items.get(i);
-            names[i] = mission.name;
-            locations[i] = mission.location;
-        }
-
-        bundle.putStringArray(BUNDLE_NAMES, names);
-        bundle.putStringArray(BUNDLE_LOCATIONS, locations);
+        for (Mission mission : items) mDownloadManager.deleteMission(mission);
+        items = null;
     }
 }

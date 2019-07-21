@@ -119,7 +119,6 @@
     <string name="parsing_error">Неуспешно пресъздаване на уебсайта</string>
     <string name="light_parsing_error">Не мога да пресъздам изцяло уебсайта</string>
     <string name="content_not_available">Съдържанието не е налично</string>
-    <string name="blocked_by_gema">Блокирано от „GEMA“</string>
     <string name="could_not_setup_download_menu">Не мога да настроя меню за сваляне</string>
     <string name="live_streams_not_supported">Предаването на живо все още не се поддържа</string>
     <string name="could_not_get_stream">Не мога да достъпя нито един поток</string>
