@@ -540,6 +540,8 @@ public class MissionAdapter extends Adapter<ViewHolder> {
     }
 
     private boolean handlePopupItem(@NonNull ViewHolderItem h, @NonNull MenuItem option) {
+        if (h.item == null) return true;
+
         int id = option.getItemId();
         DownloadMission mission = h.item.mission instanceof DownloadMission ? (DownloadMission) h.item.mission : null;
 
