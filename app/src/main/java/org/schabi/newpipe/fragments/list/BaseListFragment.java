@@ -25,6 +25,7 @@ import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.info_list.InfoItemDialog;
@@ -263,40 +264,49 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
         final Activity activity = getActivity();
         if (context == null || context.getResources() == null || activity == null) return;
 
-        final String[] commands = new String[]{
-                context.getResources().getString(R.string.enqueue_on_background),
-                context.getResources().getString(R.string.enqueue_on_popup),
-                context.getResources().getString(R.string.start_here_on_background),
-                context.getResources().getString(R.string.start_here_on_popup),
-                context.getResources().getString(R.string.append_playlist),
-                context.getResources().getString(R.string.share)
-        };
+        boolean isAudioStream = (item.getStreamType() == StreamType.AUDIO_STREAM);
+
+        final String[] commands;
+        if (isAudioStream) {
+            commands = new String[]{
+                    context.getResources().getString(R.string.enqueue_on_background),
+                    context.getResources().getString(R.string.start_here_on_background),
+                    context.getResources().getString(R.string.append_playlist),
+                    context.getResources().getString(R.string.share)
+            };
+        } else {
+            commands = new String[]{
+                    context.getResources().getString(R.string.enqueue_on_background),
+                    context.getResources().getString(R.string.enqueue_on_popup),
+                    context.getResources().getString(R.string.start_here_on_background),
+                    context.getResources().getString(R.string.start_here_on_popup),
+                    context.getResources().getString(R.string.append_playlist),
+                    context.getResources().getString(R.string.share)
+            };
+        }
 
         final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
-            switch (i) {
-                case 0:
-                    NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item), false);
-                    break;
-                case 1:
-                    NavigationHelper.enqueueOnPopupPlayer(context, new SinglePlayQueue(item), false);
-                    break;
-                case 2:
-                    NavigationHelper.playOnBackgroundPlayer(context, new SinglePlayQueue(item), true);
-                    break;
-                case 3:
-                    NavigationHelper.playOnPopupPlayer(context, new SinglePlayQueue(item), true);
-                    break;
-                case 4:
-                    if (getFragmentManager() != null) {
-                        PlaylistAppendDialog.fromStreamInfoItems(Collections.singletonList(item))
-                                .show(getFragmentManager(), TAG);
-                    }
-                    break;
-                case 5:
-                    ShareUtils.shareUrl(context, item.getName(), item.getUrl());
-                    break;
-                default:
-                    break;
+            if (i == 0) {
+                NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item), false);
+
+            } else if (i == (isAudioStream ? -1 : 1)) { // disabled with audio streams
+                NavigationHelper.enqueueOnPopupPlayer(context, new SinglePlayQueue(item), false);
+
+            } else if (i == (isAudioStream ?  1 : 2)) {
+                NavigationHelper.playOnBackgroundPlayer(context, new SinglePlayQueue(item), true);
+
+            } else if (i == (isAudioStream ? -1 : 3)) { // disabled with audio streams
+                NavigationHelper.playOnPopupPlayer(context, new SinglePlayQueue(item), true);
+
+            } else if (i == (isAudioStream ?  2 : 4)) {
+                if (getFragmentManager() != null) {
+                    PlaylistAppendDialog.fromStreamInfoItems(Collections.singletonList(item))
+                            .show(getFragmentManager(), TAG);
+                }
+
+            } else if (i == (isAudioStream ?  3 : 5)) {
+                ShareUtils.shareUrl(context, item.getName(), item.getUrl());
+
             }
         };
 

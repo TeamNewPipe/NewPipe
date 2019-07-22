@@ -25,6 +25,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.local.BaseLocalListFragment;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
@@ -362,47 +363,59 @@ public class StatisticsPlaylistFragment
         final Context context = getContext();
         final Activity activity = getActivity();
         if (context == null || context.getResources() == null || activity == null) return;
-        final StreamInfoItem infoItem = item.toStreamInfoItem();
 
-        final String[] commands = new String[]{
-                context.getResources().getString(R.string.enqueue_on_background),
-                context.getResources().getString(R.string.enqueue_on_popup),
-                context.getResources().getString(R.string.start_here_on_background),
-                context.getResources().getString(R.string.start_here_on_popup),
-                context.getResources().getString(R.string.delete),
-                context.getResources().getString(R.string.append_playlist),
-                context.getResources().getString(R.string.share)
-        };
+        final StreamInfoItem infoItem = item.toStreamInfoItem();
+        boolean isAudioStream = (infoItem.getStreamType() == StreamType.AUDIO_STREAM);
+
+        final String[] commands;
+        if (isAudioStream) {
+            commands = new String[]{
+                    context.getResources().getString(R.string.enqueue_on_background),
+                    context.getResources().getString(R.string.start_here_on_background),
+                    context.getResources().getString(R.string.delete),
+                    context.getResources().getString(R.string.append_playlist),
+                    context.getResources().getString(R.string.share)
+            };
+        } else {
+            commands = new String[]{
+                    context.getResources().getString(R.string.enqueue_on_background),
+                    context.getResources().getString(R.string.enqueue_on_popup),
+                    context.getResources().getString(R.string.start_here_on_background),
+                    context.getResources().getString(R.string.start_here_on_popup),
+                    context.getResources().getString(R.string.delete),
+                    context.getResources().getString(R.string.append_playlist),
+                    context.getResources().getString(R.string.share)
+            };
+        }
+
 
         final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
             final int index = Math.max(itemListAdapter.getItemsList().indexOf(item), 0);
-            switch (i) {
-                case 0:
-                    NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(infoItem), false);
-                    break;
-                case 1:
-                    NavigationHelper.enqueueOnPopupPlayer(context, new SinglePlayQueue(infoItem), false);
-                    break;
-                case 2:
-                    NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index), true);
-                    break;
-                case 3:
-                    NavigationHelper.playOnPopupPlayer(context, getPlayQueue(index), true);
-                    break;
-                case 4:
-                    deleteEntry(index);
-                    break;
-                case 5:
-                    if (getFragmentManager() != null) {
-                        PlaylistAppendDialog.fromStreamInfoItems(Collections.singletonList(infoItem))
-                                .show(getFragmentManager(), TAG);
-                    }
-                    break;
-                case 6:
-                    ShareUtils.shareUrl(context, infoItem.getName(), infoItem.getUrl());
-                    break;
-                default:
-                    break;
+
+            if (i == 0) {
+                NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(infoItem), false);
+
+            } else if (i == (isAudioStream ? -1 : 1)) { // disabled with audio streams
+                NavigationHelper.enqueueOnPopupPlayer(context, new SinglePlayQueue(infoItem), false);
+
+            } else if (i == (isAudioStream ?  1 : 2)) {
+                NavigationHelper.playOnBackgroundPlayer(context, new SinglePlayQueue(infoItem), true);
+
+            } else if (i == (isAudioStream ? -1 : 3)) { // disabled with audio streams
+                NavigationHelper.playOnPopupPlayer(context, new SinglePlayQueue(infoItem), true);
+
+            } else if (i == (isAudioStream ?  2 : 4)) {
+                deleteEntry(index);
+
+            } else if (i == (isAudioStream ?  3 : 5)) {
+                if (getFragmentManager() != null) {
+                    PlaylistAppendDialog.fromStreamInfoItems(Collections.singletonList(infoItem))
+                            .show(getFragmentManager(), TAG);
+                }
+
+            } else if (i == (isAudioStream ?  4 : 6)) {
+                ShareUtils.shareUrl(context, infoItem.getName(), infoItem.getUrl());
+
             }
         };
 
