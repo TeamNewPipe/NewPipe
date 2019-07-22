@@ -9,15 +9,14 @@ import org.schabi.newpipe.Downloader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
+import javax.annotation.Nullable;
 import javax.net.ssl.SSLException;
 
 import us.shandian.giga.io.StoredFileHelper;
@@ -28,10 +27,13 @@ import us.shandian.giga.util.Utility;
 import static org.schabi.newpipe.BuildConfig.DEBUG;
 
 public class DownloadMission extends Mission {
-    private static final long serialVersionUID = 4L;// last bump: 27 march 2019
+    private static final long serialVersionUID = 5L;// last bump: 30 june 2019
 
     static final int BUFFER_SIZE = 64 * 1024;
-    final static int BLOCK_SIZE = 512 * 1024;
+    static final int BLOCK_SIZE = 512 * 1024;
+
+    @SuppressWarnings("SpellCheckingInspection")
+    private static final String INSUFFICIENT_STORAGE = "ENOSPC";
 
     private static final String TAG = "DownloadMission";
 
@@ -56,11 +58,6 @@ public class DownloadMission extends Mission {
      * The urls of the file to download
      */
     public String[] urls;
-
-    /**
-     * Number of blocks the size of {@link DownloadMission#BLOCK_SIZE}
-     */
-    long blocks = -1;
 
     /**
      * Number of bytes downloaded
@@ -92,7 +89,7 @@ public class DownloadMission extends Mission {
     public Postprocessing psAlgorithm;
 
     /**
-     * The current resource to download, see {@code urls[current]} and {@code offsets[current]}
+     * The current resource to download, {@code urls[current]} and {@code offsets[current]}
      */
     public int current;
 
@@ -111,32 +108,41 @@ public class DownloadMission extends Mission {
      */
     public long nearLength;
 
+    /**
+     * Download blocks, the size is multiple of {@link DownloadMission#BLOCK_SIZE}.
+     * Every entry (block) in this array holds an offset, used to resume the download.
+     * An block offset can be -1 if the block was downloaded successfully.
+     */
+    int[] blocks;
+
+    /**
+     * Download/File resume offset in fallback mode (if applicable) {@link DownloadRunnableFallback}
+     */
+    long fallbackResumeOffset;
+
+    /**
+     * Maximum of download threads running, chosen by the user
+     */
     public int threadCount = 3;
-    boolean fallback;
-    private int finishCount;
+
+    private transient int finishCount;
     public transient boolean running;
     public boolean enqueued;
 
     public int errCode = ERROR_NOTHING;
-
     public Exception errObject = null;
+
     public transient boolean recovered;
     public transient Handler mHandler;
     private transient boolean mWritingToFile;
+    private transient boolean[] blockAcquired;
 
-    @SuppressWarnings("UseSparseArrays")// LongSparseArray is not serializable
-    final HashMap<Long, Boolean> blockState = new HashMap<>();
-    final List<Long> threadBlockPositions = new ArrayList<>();
-    final List<Long> threadBytePositions = new ArrayList<>();
+    final Object LOCK = new Lock();
 
     private transient boolean deleted;
-    int currentThreadCount;
+
     public transient volatile Thread[] threads = new Thread[0];
     private transient Thread init = null;
-
-    protected DownloadMission() {
-
-    }
 
     public DownloadMission(String[] urls, StoredFileHelper storage, char kind, Postprocessing psInstance) {
         if (urls == null) throw new NullPointerException("urls is null");
@@ -154,69 +160,40 @@ public class DownloadMission extends Mission {
         }
     }
 
-    private void checkBlock(long block) {
-        if (block < 0 || block >= blocks) {
-            throw new IllegalArgumentException("illegal block identifier");
+    /**
+     * Acquire a block
+     *
+     * @return the block or {@code null} if no more blocks left
+     */
+    @Nullable
+    Block acquireBlock() {
+        synchronized (LOCK) {
+            for (int i = 0; i < blockAcquired.length; i++) {
+                if (!blockAcquired[i] && blocks[i] >= 0) {
+                    Block block = new Block();
+                    block.position = i;
+                    block.done = blocks[i];
+
+                    blockAcquired[i] = true;
+                    return block;
+                }
+            }
         }
+
+        return null;
     }
 
     /**
-     * Check if a block is reserved
+     * Release an block
      *
-     * @param block the block identifier
-     * @return true if the block is reserved and false if otherwise
+     * @param position the index of the block
+     * @param done     amount of bytes downloaded
      */
-    boolean isBlockPreserved(long block) {
-        checkBlock(block);
-        //noinspection ConstantConditions
-        return blockState.containsKey(block) ? blockState.get(block) : false;
-    }
-
-    void preserveBlock(long block) {
-        checkBlock(block);
-        synchronized (blockState) {
-            blockState.put(block, true);
+    void releaseBlock(int position, int done) {
+        synchronized (LOCK) {
+            blockAcquired[position] = false;
+            blocks[position] = done;
         }
-    }
-
-    /**
-     * Set the block of the file
-     *
-     * @param threadId the identifier of the thread
-     * @param position the block of the thread
-     */
-    void setBlockPosition(int threadId, long position) {
-        threadBlockPositions.set(threadId, position);
-    }
-
-    /**
-     * Get the block of a file
-     *
-     * @param threadId the identifier of the thread
-     * @return the block for the thread
-     */
-    long getBlockPosition(int threadId) {
-        return threadBlockPositions.get(threadId);
-    }
-
-    /**
-     * Save the position of the desired thread
-     *
-     * @param threadId the identifier of the thread
-     * @param position the relative position in bytes or zero
-     */
-    void setThreadBytePosition(int threadId, long position) {
-        threadBytePositions.set(threadId, position);
-    }
-
-    /**
-     * Get position inside of the thread, where thread will be resumed
-     *
-     * @param threadId the identifier of the thread
-     * @return the relative position in bytes or zero
-     */
-    long getThreadBytePosition(int threadId) {
-        return threadBytePositions.get(threadId);
     }
 
     /**
@@ -341,12 +318,11 @@ public class DownloadMission extends Mission {
 
     public synchronized void notifyError(int code, Exception err) {
         Log.e(TAG, "notifyError() code = " + code, err);
-
         if (err instanceof IOException) {
             if (!storage.canWrite() || err.getMessage().contains("Permission denied")) {
                 code = ERROR_PERMISSION_DENIED;
                 err = null;
-            } else if (err.getMessage().contains("ENOSPC")) {
+            } else if (err.getMessage().contains(INSUFFICIENT_STORAGE)) {
                 code = ERROR_INSUFFICIENT_STORAGE;
                 err = null;
             }
@@ -368,9 +344,13 @@ public class DownloadMission extends Mission {
                 if (code < 500 || code > 599) enqueued = false;
         }
 
-        pause();
-
         notify(DownloadManagerService.MESSAGE_ERROR);
+
+        if (running) {
+            running = false;
+            recovered = true;
+            if (threads != null) selfPause();
+        }
     }
 
     synchronized void notifyFinished() {
@@ -378,11 +358,11 @@ public class DownloadMission extends Mission {
 
         finishCount++;
 
-        if (finishCount == currentThreadCount) {
+        if (blocks.length < 1 || threads == null || finishCount == threads.length) {
             if (errCode != ERROR_NOTHING) return;
 
             if (DEBUG) {
-                Log.d(TAG, "onFinish" + (current + 1) + "/" + urls.length);
+                Log.d(TAG, "onFinish: " + (current + 1) + "/" + urls.length);
             }
 
             if ((current + 1) < urls.length) {
@@ -421,7 +401,7 @@ public class DownloadMission extends Mission {
 
         Log.d(TAG, action + " postprocessing on " + storage.getName());
 
-        synchronized (blockState) {
+        synchronized (LOCK) {
             // don't return without fully write the current state
             psState = state;
             Utility.writeToFile(metadata, DownloadMission.this);
@@ -442,39 +422,40 @@ public class DownloadMission extends Mission {
         running = true;
         errCode = ERROR_NOTHING;
 
-        if (current >= urls.length && psAlgorithm != null) {
-            runAsync(1, () -> {
-                if (doPostprocessing()) {
-                    running = false;
-                    deleteThisFromFile();
-
-                    notify(DownloadManagerService.MESSAGE_FINISHED);
-                }
-            });
-
+        if (current >= urls.length) {
+            threads = null;
+            runAsync(1, this::notifyFinished);
             return;
         }
 
-        if (blocks < 0) {
+        if (blocks == null) {
             initializer();
             return;
         }
 
         init = null;
+        finishCount = 0;
+        blockAcquired = new boolean[blocks.length];
 
-        if (threads == null || threads.length < 1) {
-            threads = new Thread[currentThreadCount];
-        }
-
-        if (fallback) {
+        if (blocks.length < 1) {
             if (unknownLength) {
                 done = 0;
                 length = 0;
             }
 
-            threads[0] = runAsync(1, new DownloadRunnableFallback(this));
+            threads = new Thread[]{runAsync(1, new DownloadRunnableFallback(this))};
         } else {
-            for (int i = 0; i < currentThreadCount; i++) {
+            int remainingBlocks = 0;
+            for (int block : blocks) if (block >= 0) remainingBlocks++;
+
+            if (remainingBlocks < 1) {
+                runAsync(1, this::notifyFinished);
+                return;
+            }
+
+            threads = new Thread[Math.min(threadCount, remainingBlocks)];
+
+            for (int i = 0; i < threads.length; i++) {
                 threads[i] = runAsync(i + 1, new DownloadRunnable(this, i));
             }
         }
@@ -483,7 +464,7 @@ public class DownloadMission extends Mission {
     /**
      * Pause the mission
      */
-    public synchronized void pause() {
+    public void pause() {
         if (!running) return;
 
         if (isPsRunning()) {
@@ -496,38 +477,42 @@ public class DownloadMission extends Mission {
         running = false;
         recovered = true;
 
-        if (init != null && Thread.currentThread() != init && init.isAlive()) {
+        if (init != null && init.isAlive()) {
+            // NOTE: if start() method is running ¡will no have effect!
             init.interrupt();
-            synchronized (blockState) {
+            synchronized (LOCK) {
                 resetState(false, true, ERROR_NOTHING);
             }
             return;
         }
 
-        if (DEBUG && blocks == 0) {
+        if (DEBUG && unknownLength) {
             Log.w(TAG, "pausing a download that can not be resumed (range requests not allowed by the server).");
         }
 
-        if (threads == null || Thread.currentThread().isInterrupted()) {
+        // check if the calling thread (alias UI thread) is interrupted
+        if (Thread.currentThread().isInterrupted()) {
             writeThisToFile();
             return;
         }
 
         // wait for all threads are suspended before save the state
-        runAsync(-1, () -> {
-            try {
-                for (Thread thread : threads) {
-                    if (thread.isAlive()) {
-                        thread.interrupt();
-                        thread.join(5000);
-                    }
+        if (threads != null) runAsync(-1, this::selfPause);
+    }
+
+    private void selfPause() {
+        try {
+            for (Thread thread : threads) {
+                if (thread.isAlive()) {
+                    thread.interrupt();
+                    thread.join(5000);
                 }
-            } catch (Exception e) {
-                // nothing to do
-            } finally {
-                writeThisToFile();
             }
-        });
+        } catch (Exception e) {
+            // nothing to do
+        } finally {
+            writeThisToFile();
+        }
     }
 
     /**
@@ -553,16 +538,13 @@ public class DownloadMission extends Mission {
      */
     public void resetState(boolean rollback, boolean persistChanges, int errorCode) {
         done = 0;
-        blocks = -1;
         errCode = errorCode;
         errObject = null;
-        fallback = false;
         unknownLength = false;
-        finishCount = 0;
-        threadBlockPositions.clear();
-        threadBytePositions.clear();
-        blockState.clear();
-        threads = new Thread[0];
+        threads = null;
+        fallbackResumeOffset = 0;
+        blocks = null;
+        blockAcquired = null;
 
         if (rollback) current = 0;
 
@@ -572,7 +554,6 @@ public class DownloadMission extends Mission {
 
     private void initializer() {
         init = runAsync(DownloadInitializer.mId, new DownloadInitializer(this));
-
     }
 
     /**
@@ -580,7 +561,7 @@ public class DownloadMission extends Mission {
      * if no thread is already running.
      */
     private void writeThisToFile() {
-        synchronized (blockState) {
+        synchronized (LOCK) {
             if (deleted) return;
             Utility.writeToFile(metadata, DownloadMission.this);
         }
@@ -626,7 +607,7 @@ public class DownloadMission extends Mission {
      * @return true, otherwise, false
      */
     public boolean isInitialized() {
-        return blocks >= 0; // DownloadMissionInitializer was executed
+        return blocks != null; // DownloadMissionInitializer was executed
     }
 
     /**
@@ -727,7 +708,7 @@ public class DownloadMission extends Mission {
     }
 
     private boolean deleteThisFromFile() {
-        synchronized (blockState) {
+        synchronized (LOCK) {
             return metadata.delete();
         }
     }
@@ -789,7 +770,7 @@ public class DownloadMission extends Mission {
 
 
     static class HttpError extends Exception {
-        int statusCode;
+        final int statusCode;
 
         HttpError(int statusCode) {
             this.statusCode = statusCode;
@@ -797,7 +778,16 @@ public class DownloadMission extends Mission {
 
         @Override
         public String getMessage() {
-            return "HTTP " + String.valueOf(statusCode);
+            return "HTTP " + statusCode;
         }
+    }
+
+    static class Block {
+        int position;
+        int done;
+    }
+
+    private static class Lock implements Serializable {
+        // java.lang.Object cannot be used because is not serializable
     }
 }
