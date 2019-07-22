@@ -158,7 +158,7 @@ public class MediaSourceManager {
      * Dispose the manager and releases all message buses and loaders.
      * */
     public void dispose() {
-        if (DEBUG) Log.d(TAG, "dispose() called.");
+        if (DEBUG) Log.d(TAG, "close() called.");
 
         debouncedSignal.onComplete();
         debouncedLoader.dispose();

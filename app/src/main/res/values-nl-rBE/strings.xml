@@ -143,7 +143,6 @@
     <string name="parsing_error">Kon website niet verwerken</string>
     <string name="light_parsing_error">Kon de website niet volledig inlezen</string>
     <string name="content_not_available">Inhoud niet beschikbaar</string>
-    <string name="blocked_by_gema">Geblokkeerd door GEMA</string>
     <string name="could_not_setup_download_menu">Kon downloadmenu niet instellen</string>
     <string name="live_streams_not_supported">Livestreams worden nog niet ondersteund</string>
     <string name="could_not_get_stream">Kon geen streams vinden</string>
@@ -189,8 +188,6 @@
     <string name="audio">Geluid</string>
     <string name="retry">Opnieuw proberen</string>
     <string name="storage_permission_denied">Toegang tot opslag geweigerd</string>
-    <string name="use_old_player_title">Gebruik oude speler</string>
-    <string name="use_old_player_summary">Verouderden ingebouwde Mediaframework-speler</string>
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
@@ -292,7 +289,7 @@
     <string name="could_not_import_all_files">Opgelet: kon niet alle bestanden importeren.</string>
     <string name="override_current_data">Dit zal uw huidige configuratie overschrijven.</string>
     <string name="kiosk">Kiosk</string>
-    <string name="trending">Trending</string>
+    <string name="trending">Populair</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Nieuw en populair</string>
     <string name="title_activity_background_player">Achtergrondspeler</string>
@@ -436,7 +433,6 @@
     <string name="app_update_notification_content_title">NewPipe-update beschikbaar!</string>
     <string name="app_update_notification_content_text">Tikt voor te downloaden</string>
     <string name="missions_header_finished">Voltooid</string>
-    <string name="missions_header_pending">In wachtrij</string>
     <string name="paused">gepauzeerd</string>
     <string name="queued">toegevoegd aan wachtrij</string>
     <string name="post_processing">nabewerking</string>
@@ -447,12 +443,12 @@
     <string name="download_finished_more">%s downloads voltooid</string>
     <string name="generate_unique_name">Unieke naam genereren</string>
     <string name="overwrite">Overschrijven</string>
-    <string name="overwrite_warning">Der bestaat al een gedownload bestand met deze naam</string>
+    <string name="overwrite_finished_warning">Der bestaat al een gedownload bestand met deze naam</string>
     <string name="download_already_running">Der is al een download met deze naam bezig</string>
     <string name="show_error">Foutmelding weergeven</string>
     <string name="label_code">Code</string>
-    <string name="error_path_creation">Het bestand kan niet aangemaakt worden</string>
-    <string name="error_file_creation">De doelmap kan niet aangemaakt worden</string>
+    <string name="error_file_creation">Het bestand kan niet aangemaakt worden</string>
+    <string name="error_path_creation">De doelmap kan niet aangemaakt worden</string>
     <string name="error_permission_denied">Toelating geweigerd door het systeem</string>
     <string name="error_ssl_exception">Beveiligde verbinding is mislukt</string>
     <string name="error_unknown_host">Kon de server niet vinden</string>

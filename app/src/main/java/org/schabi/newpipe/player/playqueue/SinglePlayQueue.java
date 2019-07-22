@@ -16,6 +16,11 @@ public final class SinglePlayQueue extends PlayQueue {
         super(0, Collections.singletonList(new PlayQueueItem(info)));
     }
 
+    public SinglePlayQueue(final StreamInfo info, final long startPosition) {
+        super(0, Collections.singletonList(new PlayQueueItem(info)));
+        getItem().setRecoveryPosition(startPosition);
+    }
+
     public SinglePlayQueue(final List<StreamInfoItem> items, final int index) {
         super(index, playQueueItemsOf(items));
     }

@@ -64,7 +64,6 @@
     <string name="parsing_error">无法解析网站</string>
     <string name="light_parsing_error">无法完全解析网站</string>
     <string name="content_not_available">内容不可用</string>
-    <string name="blocked_by_gema">已被 GEMA 屏蔽</string>
     <string name="could_not_setup_download_menu">无法设置下载菜单</string>
     <string name="live_streams_not_supported">这是一个在线流媒体，尚不支持。</string>
     <string name="could_not_get_stream">无法获取任何流媒体</string>
@@ -175,8 +174,6 @@
     <string name="notification_channel_name">NewPipe 通知</string>
     <string name="notification_channel_description">NewPipe 后台播放和窗口播放器的通知</string>
 
-    <string name="use_old_player_title">使用旧版播放器</string>
-    <string name="use_old_player_summary">旧版本的内置媒体播放器</string>
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>

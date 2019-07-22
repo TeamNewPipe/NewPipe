@@ -16,15 +16,12 @@
     <string name="screen_rotation">περιστροφή</string>
     <string name="use_external_video_player_title">Χρήση εξωτερικής εφαρμογής αναπαραγωγής βίντεο</string>
     <string name="use_external_audio_player_title">Χρήση εξωτερικής συσκευής αναπαραγωγής ήχου</string>
-
     <string name="download_path_title">Διαδρομή λήψης βίντεο</string>
     <string name="download_path_summary">Διαδρομή για αποθήκευση των βίντεο</string>
     <string name="download_path_dialog_title">Εισάγετε διαδρομή για λήψη των βίντεο</string>
-
     <string name="download_path_audio_title">Διαδρομή λήψης αρχείων ήχου</string>
     <string name="download_path_audio_summary">Αυτή είναι η διαδρομή για την αποθήκευση αρχείων ήχου</string>
     <string name="download_path_audio_dialog_title">Εισάγετε διαδρομή για λήψη αρχείων ήχου</string>
-
     <string name="default_resolution_title">Προεπιλεγμένη ανάλυση</string>
     <string name="play_with_kodi_title">Αναπαραγωγή με το Kodi</string>
     <string name="kore_not_found">Η εφαρμογή Kore δεν βρέθηκε. Εγκατάσταση της;</string>
@@ -32,12 +29,9 @@
     <string name="show_play_with_kodi_summary">Προβολή μιας επιλογής για αναπαραγωγή με το Kodi media center</string>
     <string name="play_audio">Ήχος</string>
     <string name="default_audio_format_title">Προεπιλεγμένη μορφή ήχου</string>
-    <string name="webm_description">WebM — δωρεάν μορφή</string>
-    <string name="m4a_description">Μ4Α — καλύτερη ποιότητα</string>
     <string name="theme_title">Θέμα</string>
     <string name="dark_theme_title">Σκοτεινό</string>
     <string name="light_theme_title">Φωτεινό</string>
-
     <string name="download_dialog_title">Λήψη</string>
     <string name="next_video_title">Επόμενο</string>
     <string name="show_next_and_similar_title">Εμφάνιση \"Επόμενου\" και \"Σχετικών\" βίντεο</string>
@@ -49,7 +43,6 @@
     <string name="background_player_playing_toast">Αναπαραγωγή στο υπόβαθρο</string>
     <string name="play_btn_text">Αναπαραγωγή</string>
     <string name="network_error">Σφάλμα δικτύου</string>
-
     <string name="list_thumbnail_view_description">Μικρογραφία προεπισκόπισης βίντεο</string>
     <string name="detail_thumbnail_view_description">Μικρογραφία προεπισκόπησης βίντεο</string>
     <string name="detail_uploader_thumbnail_view_description">Μικρογραφία εικόνας προφίλ του χρήστη</string>
@@ -57,11 +50,9 @@
     <string name="detail_dislikes_img_view_description">Dislike</string>
     <string name="use_tor_title">Χρήση του Tor</string>
     <string name="use_tor_summary">(Πειραματικό) Αναγκάζει την κίνηση λήψης μέσω Tor για αυξημένη προστασία προσωπικών δεδομένων (η αναπαραγωγή δεν υποστηρίζεται ακόμη).</string>
-
     <string name="err_dir_create">Δεν μπόρεσε να δημιουργηθεί ο φάκελος \'%1$s\'</string>
     <string name="info_dir_created">Δημιουργήθηκε ο φάκελος \'%1$s\'</string>
-<string name="short_billion">Δ</string>
-
+    <string name="short_billion">Δις</string>
     <string name="open_in_popup_mode">Άνοιγμα σε αναδυόμενο παράθυρο</string>
     <string name="subscribe_button_title">Εγγραφή</string>
     <string name="subscribed_button_title">Εγγεγραμμένος</string>
@@ -82,8 +73,6 @@
     <string name="what_happened_headline">Τι συνέβη:</string>
     <string name="your_comment">Το σχόλιό σας (στα Αγγλικά):</string>
     <string name="error_details_headline">Λεπτομέρειες:</string>
-
-
     <string name="report_error">Αναφορά Σφάλματος</string>
     <string name="video">Βίντεο</string>
     <string name="audio">Ήχος</string>
@@ -100,8 +89,7 @@
     <string name="title_activity_history">Ιστορικό</string>
     <string name="action_history">Ιστορικό</string>
     <string name="show_info">Εμφάνιση πληροφοριών</string>
-
-    <string name="main_bg_subtitle">Πατήστε στην αναζήτηση για να ξεκινήσετε</string>
+    <string name="main_bg_subtitle">Πατήστε αναζήτηση για να ξεκινήσετε</string>
     <string name="no_player_found_toast">Δε βρέθηκε πρόγραμμα αναπαραγωγής ροής δεδομένων (μπορείτε να εγκαταστήσετε το VLC για να κάνετε αναπαραγωγή).</string>
     <string name="controls_download_desc">Κατέβασμα του αρχείου ροής</string>
     <string name="use_external_video_player_summary">Αφαίρεση του ήχου από κάποιες αναλύσεις</string>
@@ -110,15 +98,12 @@
     <string name="subscription_change_failed">Αδύνατη η αλλαγή της εγγραφής</string>
     <string name="subscription_update_failed">Αδύνατη η ενημέρωση της εγγραφής</string>
     <string name="tab_main">Κύριο</string>
-    <string name="tab_subscriptions">Εγγραφές</string>
+    <string name="tab_subscriptions">Συνδρομές</string>
     <string name="tab_bookmarks">Αγαπημένες λίστες αναπαραγωγής</string>
-
     <string name="fragment_whats_new">Νέα</string>
-
     <string name="controls_background_title">Στο παρασκήνιο</string>
     <string name="controls_popup_title">Αναδυόμενο παράθυρο</string>
     <string name="controls_add_to_playlist_title">Προσθήκη σε</string>
-
     <string name="autoplay_by_calling_app_title">Αυτόματη αναπαραγωγή</string>
     <string name="autoplay_by_calling_app_summary">Αναπαραγωγή του βίντεο όταν το NewPipe καλείται από άλλη εφαρμογή</string>
     <string name="default_popup_resolution_title">Προεπιλεγμένη ανάλυση αναδυόμενου παραθύρου</string>
@@ -129,7 +114,7 @@
     <string name="use_inexact_seek_title">Χρήση γρήγορης μη-ακριβούς αναζήτησης</string>
     <string name="use_inexact_seek_summary">Η μη-ακριβής αναζήτηση επιτρέπει στην εφαρμογή να αναζητεί θέσεις στο βίντεο γρηγορότερα με μειωμένη ακρίβεια</string>
     <string name="download_thumbnail_title">Φόρτωση thumbnails</string>
-    <string name="download_thumbnail_summary">Αν η επιλογή είναι απενεργοποιημένη δεν φορτώνονται οι μικρογραφίες, χρησιμοποιώντας λιγότερα δεδομένα και μνήμη. Οι αλλαγές σβήνουν την προσωρινή μνήμη των εικόνων.</string>
+    <string name="download_thumbnail_summary">Με την απενεργοποίηση δεν φορτώνονται οι μικρογραφίες, χρησιμοποιώντας λιγότερα δεδομένα και μνήμη. Οι αλλαγές σβήνουν τις προσωρινά αποθηκευμένες εικόνες στην μνήμη.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Εκκαθαρίστηκε η προσωρινή μνήμη εικονών</string>
     <string name="metadata_cache_wipe_title">Εκκαθάριση προσωρινά αποθηκευμένων μεταδεδομένων</string>
     <string name="metadata_cache_wipe_summary">Αφαίρεση όλων των προσωρινά αποθηκευμένων δεδομένων ιστοσελίδων</string>
@@ -158,7 +143,7 @@
     <string name="popup_playing_append">Προστέθηκε στη λίστα αναπαραγωγής αναδυόμενου παραθύρου</string>
     <string name="content">Περιεχόμενο</string>
     <string name="show_age_restricted_content_title">Περιεχόμενο περιορισμένης ηλικίας</string>
-    <string name="video_is_age_restricted">Βίντεο περιορισμένης πρόσβασης. Για να επιτρέπετε περιερχόμενο τέτοιου είδους, ενεργοποιήστε το στις \"Ρυθμίσεις\".</string>
+    <string name="video_is_age_restricted">Βίντεο ηλικιακά περιορισμένης πρόσβασης. Για να επιτρέπετε περιερχόμενο τέτοιου είδους, ενεργοποιήστε το στις \"Ρυθμίσεις\".</string>
     <string name="duration_live">ΖΩΝΤΑΝΑ</string>
     <string name="error_report_title">Αναφορά σφαλμάτων</string>
     <string name="channels">Κανάλια</string>
@@ -176,17 +161,13 @@
     <string name="always">Πάντα</string>
     <string name="just_once">Μόνο μία φορά</string>
     <string name="file">Αρχείο</string>
-
     <string name="notification_channel_name">Ειδοποίηση NewPipe</string>
     <string name="notification_channel_description">Ειδοποιήσεις για την αναπαραγωγή Παρασκηνίου και Αναδυόμενου Παραθύρου</string>
-
     <string name="unknown_content">[Άγνωστο]</string>
-
     <string name="toggle_orientation">Αλλαγή προσανατολισμού</string>
     <string name="switch_to_background">Αλλαγή σε Παρασκήνιο</string>
     <string name="switch_to_popup">Αλλαγή σε Αναδυόμενο Παράθυρο</string>
     <string name="switch_to_main">Αλλαγή σε Κύριο</string>
-
     <string name="import_data_title">Εισαγωγή βάσης δεδομένων</string>
     <string name="export_data_title">Εξαγωγή βάσης δεδομένων</string>
     <string name="import_data_summary">Θα παρακάμψει το τρέχον ιστορικό και εγγραφές σας</string>
@@ -204,7 +185,6 @@
     <string name="parsing_error">Δεν ήταν δυνατή η ανάλυση του ιστοτόπου</string>
     <string name="light_parsing_error">Δεν ήταν δυνατή η ανάλυση ολόκληρου του ιστοτόπου</string>
     <string name="content_not_available">Το περιεχόμενο δεν είναι διαθέσιμο</string>
-    <string name="blocked_by_gema">"Έχει αποκλειστεί  από την GEMA"</string>
     <string name="could_not_setup_download_menu">Δεν ήταν δυνατή η ρύθμιση του μενού λήψεων</string>
     <string name="live_streams_not_supported">Η Ζωντανή Ροή δεν υποστηρίζεται ακόμα</string>
     <string name="could_not_get_stream">Δεν ήταν δυνατή η λήψη καμίας ροής</string>
@@ -223,7 +203,6 @@
     <string name="file_name_empty_error">Το όνομα αρχείου δεν μπορεί να είναι κενό</string>
     <string name="error_occurred_detail">Προέκυψε ένα σφάλμα: %1$s</string>
     <string name="no_streams_available_download">Δεν υπάρχουν διαθέσιμες ροές για λήψη</string>
-
     <string name="sorry_string">Λυπούμαστε, αυτό δεν έπρεπε να έχει συμβεί.</string>
     <string name="error_report_button_text">Αναφορά σφάλματος με ηλεκτρονικό ταχυδρομίο</string>
     <string name="error_snackbar_message">Λυπούμαστε, συνέβησαν κάποια σφάλματα.</string>
@@ -232,32 +211,25 @@
     <string name="search_no_results">Κανένα αποτέλεσμα</string>
     <string name="empty_subscription_feed_subtitle">Δεν υπάρχει τίποτα εδώ</string>
     <string name="detail_drag_description">Σύρετε για ταξινόμηση</string>
-
     <string name="retry">Προσπάθεια εκ νέου</string>
     <string name="storage_permission_denied">Δεν δώθηκε άδεια εγγραφής στην εσωτερική μνήμη</string>
-    <string name="use_old_player_title">Χρήση παλαιάς συσκευής αναπαραγωγής</string>
-    <string name="use_old_player_summary">Παλαιά συσκευή αναπαραγωγής Mediaframework</string>
-
-    <string name="short_thousand">Κ</string>
-    <string name="short_million">Μ</string>
+    <string name="short_thousand">χιλ</string>
+    <string name="short_million">Εκ</string>
     <string name="no_subscribers">Κανένας εγγεγραμένος χρήστης</string>
     <plurals name="subscribers">
-	<item quantity="one">%s εγγεγραμένος χρήστης</item>
-	<item quantity="other">%s εγγεγραμένοι χρήστες</item>
-</plurals>
-
+        <item quantity="one">%s εγγεγραμένος χρήστης</item>
+        <item quantity="other">%s εγγεγραμένοι χρήστες</item>
+    </plurals>
     <string name="no_views">Καμία προβολή</string>
     <plurals name="views">
-	<item quantity="one">%s προβολή</item>
-	<item quantity="other">%s προβολές</item>
-</plurals>
-
+        <item quantity="one">%s προβολή</item>
+        <item quantity="other">%s προβολές</item>
+    </plurals>
     <string name="no_videos">Κανένα βίντεο</string>
     <plurals name="videos">
-	<item quantity="one">%s βίντεο</item>
-	<item quantity="other">"%s βίντεο "</item>
-</plurals>
-
+        <item quantity="one">Βίντεο</item>
+        <item quantity="other">Βίντεο</item>
+    </plurals>
     <string name="start">Εκκίνηση</string>
     <string name="view">Αναπαραγωγή</string>
     <string name="create">Δημιουργία</string>
@@ -266,10 +238,8 @@
     <string name="checksum">Άθροισμα ελέγχου</string>
     <string name="dismiss">Αγνόηση</string>
     <string name="rename">Μετονομασία</string>
-
     <string name="add">Νέα αποστολη</string>
     <string name="finish">ΟΚ</string>
-
     <string name="msg_name">Όνομα αρχείου</string>
     <string name="msg_threads">Νήματα</string>
     <string name="msg_server_unsupported">Ο εξυπηρετητής δεν υποστηρίζεται</string>
@@ -281,19 +251,14 @@
     <string name="msg_popup_permission">Αυτή η άδεια είναι απαραίτητη για
 \nτο άνοιγμα αναδυόμενων παραθύρων</string>
     <string name="one_item_deleted">1 αντικείμενο διαγράφηκε.</string>
-
     <string name="reCaptchaActivity">Αυτόματο τεστ</string>
     <string name="reCaptcha_title">Πρόκληση reCAPTCHA</string>
     <string name="recaptcha_request_toast">Ζητήθηκε πρόκληση reCAPTCHA</string>
-
-    <string name="settings_file_charset_title">Επιτρεπτοί χαρακτήρες σε ονόματα αρχείων</string>
+    <string name="settings_file_charset_title">Επιτρεπόμενοι χαρακτήρες σε ονόματα αρχείων</string>
     <string name="settings_file_replacement_character_summary">Οι μη έγκυροι χαρακτήρες αντικαθίστανται με αυτήν την τιμή</string>
     <string name="settings_file_replacement_character_title">Αντικαταστάτης χαρακτήρας</string>
-
     <string name="charset_most_special_characters">Οι περισσότεροι ειδικοί χαρακτήρες</string>
-
     <string name="toast_no_player">Δεν υπάρχει εφαρμογή εγκατεστημένη για την αναπαραγωγή αυτού του αρχείου</string>
-
     <string name="title_activity_about">Σχετικά με το NewPipe</string>
     <string name="action_about">Περί</string>
     <string name="title_licenses">Άδειες Τρίτων</string>
@@ -317,10 +282,8 @@
     <string name="app_license_title">Η άδεια του NewPipe</string>
     <string name="app_license">Το NewPipe είναι copylelft ελεύθερο λογισμικό: Μπορείτε να το χρησιμοποιήσετε, να το μελετήσετε, να το μοιραστείτε και να το βελτιώσετε κατά βούληση. Ειδικότερα, μπορείτε να το αναδιανείμετε ή/και να το τροποποιήσετε υπό την άδεια GNU General Public Licence όπως αυτή εκδόθηκε από το Free Software Foundation, είτε υπό την έκδοση 3 της Άδειας είτε (προεραιτικά) υπό οποιαδήποτε μεταγενέστερη άδεια.</string>
     <string name="read_full_license">Διαβάστε την άδεια</string>
-
-
-    <string name="title_history_search">Αναζητημένα</string>
-    <string name="title_history_view">Έχει γίνει προβολή</string>
+    <string name="title_history_search">Αναζητήθηκαν</string>
+    <string name="title_history_view">Προβλήθηκαν</string>
     <string name="history_disabled">Το ιστορικό έχει απενεργοποιηθεί</string>
     <string name="history_empty">Το ιστορικό είναι κενό</string>
     <string name="history_cleared">Το ιστορικό εκκαθαρίστηκε</string>
@@ -330,7 +293,6 @@
     <string name="delete_all_history_prompt">Είστε σίγουροι ότι θέλετε να σβήσετε όλα τα αντικείμενα από το ιστορικό;</string>
     <string name="title_last_played">Τελευταία αναπαραγωγή</string>
     <string name="title_most_played">Αναπαράχθηκε περισσότερο</string>
-
     <string name="main_page_content">Περιεχόμενο της κεντρικής σελίδας</string>
     <string name="blank_page_summary">Κενή σελίδα</string>
     <string name="kiosk_page_summary">Σελίδα περιπτέρου</string>
@@ -345,7 +307,6 @@
     <string name="could_not_import_all_files">Προσοχή: Δεν ήταν δυνατή η εισαγωγή όλων των αρχείων.</string>
     <string name="override_current_data">Αυτό θα παρακάμψει τις τρέχουσες ρυθμίσεις σας.</string>
     <string name="import_settings">Θέλετε επίσης να εισάγετε ρυθμίσεις;</string>
-
     <string name="kiosk">Περίπτερο</string>
     <string name="title_activity_background_player">Συσκευή αναπαραγωγής Παρασκηνίου</string>
     <string name="title_activity_popup_player">Συσκευή αναπαραγωγής Αναδυόμενου παραθύρου</string>
@@ -358,71 +319,52 @@
     <string name="start_here_on_main">Εκκίνηση Αναπαραγωγής εδώ</string>
     <string name="start_here_on_background">Εκκίνηση εδώ όταν είναι στο Παρασκήνιο</string>
     <string name="start_here_on_popup">Εκκίνηση εδώ όταν είναι στο Αναδυόμενο Παράθυρο</string>
-
     <string name="drawer_open">Άνοιγμα Συρταριού</string>
     <string name="drawer_close">Κλείσιμο Συρταριού</string>
     <string name="drawer_header_action_paceholder_text">Κάτι θα παιχτεί εδω σύντομα ;D</string>
-
-
     <string name="top_50">Τοπ 50</string>
     <string name="new_and_hot">Καινούρια &amp; δημοφιλή</string>
     <string name="preferred_open_action_settings_title">Προτιμώμενη ενέργεια ανοίγματος</string>
     <string name="preferred_open_action_settings_summary">Προεπιλεγμένη ενέργεια για το άνοιγμα περιεχομένου — %s</string>
-
     <string name="video_player">Συσκευή αναπαραγωγής βίντεο</string>
     <string name="background_player">Αναπαραγωγή Παρασκηνίου</string>
     <string name="popup_player">Αναπαραγωγή σε Αναδυόμενο Παράθυρο</string>
     <string name="always_ask_open_action">Πάντα ερώτηση</string>
-
     <string name="preferred_player_fetcher_notification_title">Γίνεται λήψη πληροφοριών…</string>
     <string name="preferred_player_fetcher_notification_message">Γίνεται φόρτωση του ζητούμενου περιεχομένου</string>
-
     <string name="create_playlist">Νέα Λίστα Αναπαραγωγής</string>
     <string name="delete_playlist">Διαγραφή</string>
     <string name="rename_playlist">Μετονομασία</string>
     <string name="playlist_name_input">Όνομα</string>
     <string name="append_playlist">Προσθήκη στη Λίστα</string>
     <string name="set_as_playlist_thumbnail">Ορισμός ως μικρογραφία λίστας αναπαραγωγής</string>
-
     <string name="bookmark_playlist">Προσθήκη Σελιδοδείκτη στη Λίστα</string>
     <string name="unbookmark_playlist">Διαγραφή Σελιδοδείκτη</string>
-
     <string name="delete_playlist_prompt">Διαγραφή αυτής της λίστας αναπαραγωγής;</string>
     <string name="playlist_creation_success">Η λίστα αναπαραγωγής δημιουργήθηκε</string>
     <string name="playlist_add_stream_success">Προστέθηκε στη λίστα αναπαραγωγής</string>
     <string name="playlist_thumbnail_change_success">Η μικρογραφία της λίστας αναπαραγωγής άλλαξε.</string>
     <string name="playlist_delete_failure">Δεν ήταν δυνατή η διαγραφή της λίστας.</string>
-
-    <string name="caption_none">Δεν υπάρχουν υπότιτλοι</string>
-
+    <string name="caption_none">Χωρίς υπότιτλους</string>
     <string name="resize_fit">Προσαρμογή</string>
     <string name="resize_fill">Γέμισμα</string>
     <string name="resize_zoom">Μεγέθυνση</string>
-
     <string name="caption_auto_generated">Αυτόματοι</string>
-
     <string name="caption_setting_title">Υπότιτλοι</string>
     <string name="caption_setting_description">Τροποποίηση του μεγέθους και του φόντου των υπότιτλων. Απαιτεί επανεκκίνηση της εφαρμογής.</string>
-
     <string name="enable_leak_canary_title">Ενεργοποίηση του LeakCanary</string>
     <string name="enable_leak_canary_summary">Η παρακολούθηση των διαρροών μνήμης μπορεί να προκαλέσει την διακοπή της εφαρμογής</string>
-
     <string name="enable_disposed_exceptions_summary">Υποχρεωτική αναφορά μη παραδοτέων Rx εξαιρέσεων έξω από το κομμάτι ή τον κύκλο δραστηριότητας μετά από απόρριψη</string>
-
     <string name="import_export_title">Εισαγωγή/Εξαγωγή</string>
     <string name="import_title">Εισαγωγή</string>
     <string name="import_from">Εισαγωγή από</string>
     <string name="export_to">Εξαγωγή σε</string>
-
     <string name="import_ongoing">Γίνεται εισαγωγή…</string>
     <string name="export_ongoing">Γίνεται εξαγωγή…</string>
-
     <string name="import_file_title">Εισαγωγή αρχείου</string>
     <string name="previous_export">Προηγούμενη εξαγωγή</string>
-
     <string name="subscriptions_import_unsuccessful">Δεν ήταν δυνατή η εισαγωγή των εγγραφών</string>
     <string name="subscriptions_export_unsuccessful">Δεν ήταν δυνατή η εισαγωγή των εγγραφών</string>
-
     <string name="import_youtube_instructions">Κάντε εισαγωγή των εγγραφών σας στο YouTube κατεβάζοντας το εξής αρχείο:
 \n
 \n1. Πλοηγηθήτε στο: %1$s
@@ -437,7 +379,6 @@
     <string name="import_network_expensive_warning">Αυτή η διαδικασία μπορεί να χρησιμοποιήσει μεγάλο όγκο δεδομένων.
 \n
 \nΕπιθυμείτε να συνεχίσετε;</string>
-
     <string name="playback_speed_control">Έλεγχος ταχύτητας αναπαραγωγής</string>
     <string name="playback_tempo">Τέμπο</string>
     <string name="playback_pitch">Τόνος</string>
@@ -446,22 +387,83 @@
     <string name="trending">Δημοφιλή</string>
     <string name="enable_disposed_exceptions_title">Αναφορά σφαλμάτων εκτός κύκλου ζωής</string>
     <string name="import_soundcloud_instructions_hint">Το όνομα χρήστη σας, soundcloud.com/όνομαχρήστη</string>
-
     <string name="unhook_checkbox">Αποσύνδεση (μπορεί να προκαλέσει παραμόρφωση)</string>
     <string name="skip_silence_checkbox">Επιτάχυνση αναπαραγωγής κατά τη διάρκεια σιωπής</string>
     <string name="playback_step">Βήμα</string>
     <string name="playback_reset">Επαναφορά</string>
-
     <string name="start_accept_privacy_policy">Προς συμμόρφωση με τον Ευρωπαϊκό Γενικό Κανονισμό για την Προστασία Δεδομένων (GDPR), σας επιστούμε την προσοχή στην πολιτική προστασίας προσωπικών δεδομένων του NewPipe. Παραλούμε, διαβάστε την προσεκτικά.
 \nΘα πρέπει να την αποδεχτέιτε προκειμένου να μας αποστείλετε την αναφορά σφάλματος.</string>
     <string name="accept">Αποδοχή</string>
     <string name="decline">Απόρριψη</string>
-
     <string name="limit_data_usage_none_description">Χωρίς όριο</string>
     <string name="limit_mobile_data_usage_title">Περιορισμός της ανάλυσης όταν γίνεται χρήση δεδομένων</string>
     <string name="minimize_on_exit_title">Ελαχιστοποίηση κατά την εναλλαγή εφαρμογών</string>
     <string name="minimize_on_exit_none_description">Καμία</string>
     <string name="minimize_on_exit_background_description">Ελαχιστοποίηση στο παρασκήνιο</string>
     <string name="minimize_on_exit_popup_description">Ελαχιστοποίηση σε αναδυόμενο παράθυρο</string>
-
+    <string name="unsubscribe">Απεγγραφή</string>
+    <string name="tab_new">Νέα Καρτέλα</string>
+    <string name="tab_choose">Επιλογή Καρτέλας</string>
+    <string name="volume_gesture_control_title">Ρυθμίσεις χειρονομιών ήχου</string>
+    <string name="volume_gesture_control_summary">Χρησιμοποιήστε χειρονομίες για τον έλεγχο της έντασης του ήχου</string>
+    <string name="brightness_gesture_control_title">Ρυθμίσεις χειρονομιών φωτεινότητας</string>
+    <string name="brightness_gesture_control_summary">Χρησιμοποιήστε χειρονομίες για τον έλεγχο της φωτεινότητας</string>
+    <string name="settings_category_updates_title">Ενημερώσεις</string>
+    <string name="events">Συμβάντα</string>
+    <string name="file_deleted">Το αρχείο διαγράφηκε</string>
+    <string name="app_update_notification_channel_name">Ειδοποίηση Ενημέρωσης Εφαρμογής</string>
+    <string name="app_update_notification_channel_description">Ειδοποίηση για νεότερη έκδοση του NewPipe</string>
+    <string name="download_to_sdcard_error_title">Εξωτερική μνήμη αποθήκευσης μη διαθέσιμη</string>
+    <string name="download_to_sdcard_error_message">Η αποθήκευση στην εξωτερική μνήμη απέτυχε. Επαναφορά στην αρχική τοποθεσία λήψης;</string>
+    <string name="saved_tabs_invalid_json">Χρήση προεπιλεγμένων καρτέλων, σφάλμα κατα την ανάγνωση των αποθηκευμένων καρτέλων</string>
+    <string name="restore_defaults">Επαναφορά προεπιλεγμένων ρυθμίσεων</string>
+    <string name="restore_defaults_confirmation">Θέλετε να επαναφέρετε τις προεπιλεγμένες ρυθμίσεις;</string>
+    <string name="subscribers_count_not_available">Το πλήθος των συνδρομητών δεν είναι διαθέσιμο</string>
+    <string name="main_page_content_summary">Ποιές καρτέλες θα εμφανίζονται στην αρχική σελίδα</string>
+    <string name="selection">Επιλογή</string>
+    <string name="conferences">Συνέδρια</string>
+    <string name="updates_setting_title">Ενημερώσεις</string>
+    <string name="updates_setting_description">Εμφάνιση ειδοποίησης όταν μια υπάρχει μια νεότερη έκδοση</string>
+    <string name="list_view_mode">Λειτουργία προβολής ως λίστα</string>
+    <string name="list">Λίστα</string>
+    <string name="grid">Πλέγμα</string>
+    <string name="auto">Αυτόματα</string>
+    <string name="switch_view">Αλλαγή τρόπου προβολής</string>
+    <string name="app_update_notification_content_title">Νεά Έκδοση NewPipe Διαθέσιμη!</string>
+    <string name="app_update_notification_content_text">Πατήστε για λήψη</string>
+    <string name="missions_header_finished">Ολοκληρώθηκε</string>
+    <string name="missions_header_pending">Στην ουρά αναμονής</string>
+    <string name="paused">Παύση</string>
+    <string name="queued">στην ουρά</string>
+    <string name="post_processing">Μετεπεξεργασία</string>
+    <string name="enqueue">Ουρά</string>
+    <string name="permission_denied">Η δράση απορρίφθηκε από το σύστημα</string>
+    <string name="download_failed">Η λήψη απέτυχε</string>
+    <string name="download_finished">Η λήψη ολοκληρώθηκε</string>
+    <string name="download_finished_more">%s λήψεις ολοκρηρώθηκαν</string>
+    <string name="generate_unique_name">Δημιουργία μοναδικού ονόματος</string>
+    <string name="overwrite">Αντικατάσταση</string>
+    <string name="overwrite_unrelated_warning">Ένα αρχείο με αυτό το όνομα υπάρχει ήδη</string>
+    <string name="overwrite_finished_warning">Ένα αρχείο που έχει ληφθεί με αυτό το όνομα υπάρχει ήδη</string>
+    <string name="download_already_running">Υπάρχει μια λήψη σε εξέλιξη με αυτό το όνομα</string>
+    <string name="show_error">Εμφάνιση σφάλματος</string>
+    <string name="label_code">Κωδικός</string>
+    <string name="error_path_creation">Το αρχείο δεν μπορεί να δημιουργηθεί</string>
+    <string name="error_file_creation">Αδυναμία δημιουργίας φάκελου προορισμού</string>
+    <string name="error_permission_denied">Η αδειοδότηση απορρίφθηκε απο το σύστημα</string>
+    <string name="error_ssl_exception">Δημιουργία ασφαλής σύνδεσης απέτυχε</string>
+    <string name="error_unknown_host">Αδυναμία εύρεσης του εξυπηρετητή</string>
+    <string name="error_connect_host">Αδυναμία σύνδεσης με τον εξυπηρετητή</string>
+    <string name="error_http_no_content">Ο εξυπηρετητής δεν μπορεί να στείλει τα δεδομένα</string>
+    <string name="error_http_unsupported_range">Ο εξυπηρετητής δέν υποστηρίζει πολυνηματικές λήψεις, ξαναπροσπαθήστε με @string/msg_threads = 1</string>
+    <string name="error_http_requested_range_not_satisfiable">Το ζητούμενο εύρος δεν μπορεί να εξυπηρετηθεί</string>
+    <string name="error_http_not_found">Δεν βρέθηκε</string>
+    <string name="error_postprocessing_failed">Μετεπεξεργασία απέτυχε</string>
+    <string name="clear_finished_download">Εκκαθάριση ολοκληρωμένων λήψεων</string>
+    <string name="msg_pending_downloads">Συνέχιση των %s εκκρεμών σας λήψεων</string>
+    <string name="stop">Διακοπή</string>
+    <string name="max_retry_msg">Μέγιστες επαναπροσπάθειες</string>
+    <string name="max_retry_desc">Μέγιστος αριθμός προσπαθειών προτού γίνει ακύρωση της λήψης</string>
+    <string name="pause_downloads_on_mobile">Παύση με την εναλλαγή του δικτύου σε δεδομένα</string>
+    <string name="pause_downloads_on_mobile_desc">Οι λήψεις που δεν δέχονται παύση θα επανεκκινηθούν</string>
 </resources>

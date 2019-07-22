@@ -46,6 +46,7 @@ import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.ShareUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -169,19 +170,19 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
             final int index = Math.max(infoListAdapter.getItemsList().indexOf(item), 0);
             switch (i) {
                 case 0:
-                    NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
+                    NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item), false);
                     break;
                 case 1:
-                    NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(item));
+                    NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(item), false);
                     break;
                 case 2:
-                    NavigationHelper.playOnMainPlayer(context, getPlayQueue(index));
+                    NavigationHelper.playOnMainPlayer(context, getPlayQueue(index), true);
                     break;
                 case 3:
-                    NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index));
+                    NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index), true);
                     break;
                 case 4:
-                    NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index));
+                    NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index), true);
                     break;
                 case 5:
                     if (getFragmentManager() != null) {
@@ -190,7 +191,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                     }
                     break;
                 case 6:
-                    shareUrl(item.getName(), item.getUrl());
+                    ShareUtils.shareUrl(this.getContext(), item.getName(), item.getUrl());
                     break;
                 default:
                     break;
@@ -233,10 +234,10 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                 openRssFeed();
                 break;
             case R.id.menu_item_openInBrowser:
-                openUrlInBrowser(currentInfo.getOriginalUrl());
+                ShareUtils.openUrlInBrowser(this.getContext(), currentInfo.getOriginalUrl());
                 break;
             case R.id.menu_item_share:
-                shareUrl(name, currentInfo.getOriginalUrl());
+                ShareUtils.shareUrl(this.getContext(), name, currentInfo.getOriginalUrl());
                 break;
             default:
                 return super.onOptionsItemSelected(item);
@@ -439,11 +440,11 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
         monitorSubscription(result);
 
         headerPlayAllButton.setOnClickListener(
-                view -> NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));
+                view -> NavigationHelper.playOnMainPlayer(activity, getPlayQueue(), false));
         headerPopupButton.setOnClickListener(
-                view -> NavigationHelper.playOnPopupPlayer(activity, getPlayQueue()));
+                view -> NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(), false));
         headerBackgroundButton.setOnClickListener(
-                view -> NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue()));
+                view -> NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue(), false));
     }
 
     private PlayQueue getPlayQueue() {

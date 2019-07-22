@@ -2,12 +2,14 @@ package org.schabi.newpipe.info_list;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
@@ -59,13 +61,14 @@ public class InfoItemBuilder {
         this.context = context;
     }
 
-    public View buildView(@NonNull ViewGroup parent, @NonNull final InfoItem infoItem) {
-        return buildView(parent, infoItem, false);
+    public View buildView(@NonNull ViewGroup parent, @NonNull final InfoItem infoItem, @Nullable StreamStateEntity state) {
+        return buildView(parent, infoItem, state, false);
     }
 
-    public View buildView(@NonNull ViewGroup parent, @NonNull final InfoItem infoItem, boolean useMiniVariant) {
+    public View buildView(@NonNull ViewGroup parent, @NonNull final InfoItem infoItem,
+                          @Nullable StreamStateEntity state, boolean useMiniVariant) {
         InfoItemHolder holder = holderFromInfoType(parent, infoItem.getInfoType(), useMiniVariant);
-        holder.updateFromItem(infoItem);
+        holder.updateFromItem(infoItem, state);
         return holder.itemView;
     }
 

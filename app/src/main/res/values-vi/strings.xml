@@ -16,11 +16,11 @@
     <string name="share_dialog_title">Chia sẻ với</string>
     <string name="choose_browser">Chọn trình duyệt</string>
     <string name="use_external_video_player_title">Sử dụng trình phát video bên ngoài</string>
-    <string name="use_external_video_player_summary">Loại bỏ âm thanh ở một vài độ phân giải video</string>
+    <string name="use_external_video_player_summary">Âm thanh có thể không có ở *một vài* độ phân giải video</string>
     <string name="use_external_audio_player_title">Sử dụng trình phát audio bên ngoài</string>
     <string name="popup_mode_share_menu_title">Chế độ popup của NewPipe</string>
-    <string name="controls_popup_title">Popup</string>
-    <string name="download_path_title">Đường dẫn tải về video</string>
+    <string name="controls_popup_title">Trình phát nổi</string>
+    <string name="download_path_title">Thư mục tải về video</string>
     <string name="download_path_summary">Đường dẫn để lưu video đã tải về</string>
     <string name="download_path_dialog_title">Nhập đường dẫn tải về cho video</string>
     <string name="download_path_audio_title">Thư mục tải về audio</string>
@@ -31,14 +31,14 @@
     <string name="default_resolution_title">Độ phân giải mặc định</string>
     <string name="default_popup_resolution_title">Độ phân giải popup mặc định</string>
     <string name="show_higher_resolutions_title">Hiển thị độ phân giải cao hơn</string>
-    <string name="show_higher_resolutions_summary">Chỉ một số thiết bị hỗ trợ chơi các video 2K / 4K</string>
+    <string name="show_higher_resolutions_summary">Chỉ một số thiết bị hỗ trợ phát video 2K/4K</string>
     <string name="play_with_kodi_title">Phát với Kodi</string>
     <string name="kore_not_found">Không tìm thấy ứng dụng Kore. Bạn có muốn cài đặt nó\?</string>
     <string name="show_play_with_kodi_title">Hiển thị tùy chọn \"Phát với Kodi\"</string>
     <string name="show_play_with_kodi_summary">Hiển thị tùy chọn để phát video qua trung tâm media Kodi</string>
     <string name="play_audio">Âm thanh</string>
-    <string name="default_audio_format_title">Định dạng âm thanh mặc định</string>
-    <string name="default_video_format_title">Định dạng video ưa thích</string>
+    <string name="default_audio_format_title">Định dạng audio mặc định</string>
+    <string name="default_video_format_title">Định dạng video mặc định</string>
     <string name="controls_background_title">Nền</string>
     <string name="theme_title">Chủ đề</string>
     <string name="light_theme_title">Sáng</string>
@@ -52,7 +52,7 @@
     <string name="show_search_suggestions_summary">Hiển thị các đề xuất khi tìm kiếm</string>
     <string name="download_dialog_title">Tải về</string>
     <string name="next_video_title">Tiếp</string>
-    <string name="show_next_and_similar_title">Hiển thị video \'Tiếp\' và \'Tương tự\'</string>
+    <string name="show_next_and_similar_title">Hiển thị video \"Tiếp theo\" và \"Tương tự\"</string>
     <string name="url_not_supported_toast">URL không được hỗ trợ</string>
     <string name="settings_category_appearance_title">Hiển thị</string>
     <string name="settings_category_other_title">Khác</string>
@@ -60,7 +60,7 @@
     <string name="popup_playing_toast">Phát ở chế độ popup</string>
     <string name="play_btn_text">Phát</string>
     <string name="content">Nội dung</string>
-    <string name="show_age_restricted_content_title">Nội dung có giới hạn độ tuổi</string>
+    <string name="show_age_restricted_content_title">Cho phép nội dung có giới hạn độ tuổi</string>
     <string name="video_is_age_restricted">Hiện video có giới hạn độ tuổi. Có thể bật cài đặt này trong phần Cài đặt.</string>
     <string name="duration_live">TRỰC TIẾP</string>
     <string name="downloads">Tải xuống</string>
@@ -83,7 +83,6 @@
     <string name="parsing_error">Không thể phân tích cú pháp trang web</string>
     <string name="light_parsing_error">Không thể phân tích cú pháp hoàn toàn trang web</string>
     <string name="content_not_available">Nội dung không khả dụng</string>
-    <string name="blocked_by_gema">Chặn bởi GEMA</string>
     <string name="could_not_setup_download_menu">Không thể thiết lập menu tải về</string>
     <string name="live_streams_not_supported">Livestream chưa được hỗ trợ</string>
     <string name="could_not_get_stream">Không thể lấy bất kỳ luồng nào</string>
@@ -113,8 +112,6 @@
     <string name="audio">Âm thanh</string>
     <string name="retry">Thử lại</string>
     <string name="storage_permission_denied">Quyền truy cập bộ nhớ đã bị từ chối</string>
-    <string name="use_old_player_title">Sử dụng trình phát cũ</string>
-    <string name="use_old_player_summary">Máy nghe nhạc Mediaframework tích hợp sẵn</string>
     <string name="short_thousand">ngàn</string>
     <string name="short_million">triệu</string>
     <string name="short_billion">tỉ</string>
@@ -160,7 +157,7 @@
     <string name="screen_rotation">xoay màn hình</string>
     <string name="content_language_title">Ngôn ngữ nội dung ưu tiên</string>
     <string name="settings_category_video_audio_title">Video &amp; âm thanh</string>
-    <string name="settings_category_popup_title">Popup</string>
+    <string name="settings_category_popup_title">Trình phát nổi</string>
     <string name="enable_watch_history_title">Lịch sử &amp; bộ nhớ cache</string>
     <string name="settings_category_history_title">Lịch sử &amp; bộ nhớ cache</string>
     <string name="playlist">Playlist</string>
@@ -178,8 +175,8 @@
     <string name="tab_bookmarks">Playlist đã đánh dấu</string>
     <string name="fragment_whats_new">Có gì mới</string>
     <string name="controls_add_to_playlist_title">Thêm vào</string>
-    <string name="use_inexact_seek_title">Sử dụng tìm kiếm không chính xác nhanh</string>
-    <string name="use_inexact_seek_summary">Tìm kiếm không chính xác cho phép người chơi tìm kiếm vị trí nhanh hơn với độ chính xác giảm</string>
+    <string name="use_inexact_seek_title">Sử dụng tìm kiếm nhanh không chính xác</string>
+    <string name="use_inexact_seek_summary">Tìm kiếm không chính xác cho phép trình phát tua đến vị trí nhanh hơn với độ chính xác bị hạn chế</string>
     <string name="download_thumbnail_title">Tải hình thu nhỏ</string>
     <string name="download_thumbnail_summary">Tắt để không tải về các hình thu nhỏ, tiết kiệm lưu lượng mạng và bộ nhớ. Thay đổi điều này sẽ xóa bộ nhớ đệm hình ảnh cả trong RAM và trong bộ nhớ.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Đã xóa bộ nhớ cache hình ảnh</string>
@@ -191,7 +188,7 @@
     <string name="enable_search_history_title">Lịch sử tìm kiếm</string>
     <string name="enable_search_history_summary">Lưu trữ truy vấn tìm kiếm cục bộ</string>
     <string name="enable_watch_history_summary">Theo dõi các video đã xem</string>
-    <string name="resume_on_audio_focus_gain_title">Tiếp tục lấy tiêu điểm</string>
+    <string name="resume_on_audio_focus_gain_title">Tiếp tục phát sau khi bị gián đoạn</string>
     <string name="resume_on_audio_focus_gain_summary">Tiếp tục phát sau khi bị gián đoạn (ví dụ: cuộc gọi điện thoại)</string>
     <string name="show_hold_to_append_title">Hiển thị mẹo \"Giữ để nối thêm\"</string>
     <string name="show_hold_to_append_summary">Hiển thị mẹo khi nhấn nút phát trong nền hoặc phát trên popup trong trang chi tiết video</string>
@@ -267,7 +264,7 @@
     <string name="settings_file_charset_title">Các ký tự được cho phép trong tên tệp</string>
     <string name="settings_file_replacement_character_summary">Ký tự không hợp lệ được thay thế bằng giá trị này</string>
     <string name="settings_file_replacement_character_title">Ký tự thay thế</string>
-    <string name="charset_letters_and_digits">Chữ cái và chữ số</string>
+    <string name="charset_letters_and_digits">Chỉ chữ cái và chữ số</string>
     <string name="charset_most_special_characters">Hầu hết các ký tự đặc biệt</string>
     <string name="toast_no_player">Không có ứng dụng nào được cài đặt để phát tệp này</string>
     <string name="donation_title">Đóng góp</string>
@@ -396,16 +393,16 @@
     <string name="limit_mobile_data_usage_title">Giới hạn độ phân giải khi sử dụng dữ liệu di động</string>
     <string name="minimize_on_exit_title">Thu nhỏ khi chuyển qua ứng dụng khác</string>
     <string name="minimize_on_exit_summary">Hành động khi chuyển sang ứng dụng khác từ trình phát chính — %s</string>
-    <string name="minimize_on_exit_none_description">không ai</string>
+    <string name="minimize_on_exit_none_description">Không</string>
     <string name="minimize_on_exit_background_description">Thu nhỏ xuống trình phát nền</string>
     <string name="minimize_on_exit_popup_description">Thu nhỏ vào trình phát popup</string>
     <string name="unsubscribe">Hủy đăng ký</string>
     <string name="tab_new">Tab mới</string>
     <string name="tab_choose">Chọn tab</string>
     <string name="volume_gesture_control_title">Điều khiển âm lượng bằng cử chỉ</string>
-    <string name="volume_gesture_control_summary">Sử dụng cử chỉ để điều khiển âm lượng của trình nghe nhạc</string>
+    <string name="volume_gesture_control_summary">Sử dụng cử chỉ để điều khiển âm lượng của trình phát</string>
     <string name="brightness_gesture_control_title">Điều khiển độ sáng màn hình bằng cử chỉ</string>
-    <string name="brightness_gesture_control_summary">Sử dụng cử chỉ để điều khiển độ sáng màn hình của trình phát nhạc</string>
+    <string name="brightness_gesture_control_summary">Sử dụng cử chỉ để điều khiển độ sáng màn hình của trình phát</string>
     <string name="settings_category_updates_title">Cập nhật</string>
     <string name="events">Sự kiện</string>
     <string name="file_deleted">Đã xóa tập tin</string>
@@ -419,7 +416,7 @@
     <string name="subscribers_count_not_available">Số người đăng ký không khả dụng</string>
     <string name="main_page_content_summary">Chọn các tab để hiện trên trang chủ</string>
     <string name="selection">Lựa chọn</string>
-    <string name="top_50"></string>
+    <string name="top_50">Top 50 phổ biến</string>
     <string name="import_soundcloud_instructions_hint">Nhập ID SoundCloud hoặc link soundcloud.com/&lt;ID của bạn&gt;</string>
     <string name="updates_setting_title">Cập nhật</string>
     <string name="updates_setting_description">Hiện thông báo khi có bản cập nhật ứng dụng</string>
@@ -431,7 +428,6 @@
     <string name="app_update_notification_content_title">Đã có bản cập nhật NewPipe!</string>
     <string name="app_update_notification_content_text">Nhấn để tải về</string>
     <string name="missions_header_finished">Xong</string>
-    <string name="missions_header_pending">Trong hàng chờ</string>
     <string name="paused">đã tạm dừng</string>
     <string name="queued">trong hàng đợi</string>
     <string name="post_processing">đang xử lý</string>
@@ -442,18 +438,18 @@
     <string name="download_finished_more">%s tải về đã xong</string>
     <string name="generate_unique_name">Tạo tên riêng biệt</string>
     <string name="overwrite">Ghi đè</string>
-    <string name="overwrite_warning">Có một tệp đã tải về trùng tên</string>
+    <string name="overwrite_finished_warning">Có một tệp đã tải về trùng tên</string>
     <string name="download_already_running">Có một tệp trùng tên đang tải về</string>
     <string name="show_error">Hiện lỗi</string>
-    <string name="error_path_creation">Không thể tạo tệp</string>
-    <string name="error_file_creation">Không thể tạo thư mục đích</string>
+    <string name="error_file_creation">Không thể tạo tệp</string>
+    <string name="error_path_creation">Không thể tạo thư mục đích</string>
     <string name="error_permission_denied">Quyền bị từ chối bởi hệ thống</string>
     <string name="error_ssl_exception">Không thể tạo kết nối an toàn</string>
     <string name="error_unknown_host">Không thể tìm máy chủ</string>
     <string name="error_connect_host">Không thế kết nối với máy chủ</string>
     <string name="error_http_no_content">Máy chủ không gửi dữ liệu về</string>
     <string name="error_http_unsupported_range">Máy chủ không chấp nhận tải đa luồng, thử lại với số luồng = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">Không thể đáp ứng dãy đã yêu cầu</string>
+    <string name="error_http_requested_range_not_satisfiable">(HTTP) Không thể đáp ứng khoảng dữ liệu đã yêu cầu</string>
     <string name="error_http_not_found">Không tìm thấy</string>
     <string name="error_postprocessing_failed">Xử lý thất bại</string>
     <string name="clear_finished_download">Dọn các tải về đã hoàn thành</string>
@@ -463,4 +459,7 @@
     <string name="max_retry_desc">Số lượt thử lại trước khi hủy tải về</string>
     <string name="pause_downloads_on_mobile">Tạm dừng tải khi chuyển qua dữ liệu di động</string>
     <string name="pause_downloads_on_mobile_desc">Các tải về không thể tạm dừng được sẽ bắt đầu lại từ đầu</string>
+    <string name="missions_header_pending">Đang chờ xử lý</string>
+    <string name="conferences">Hội thảo</string>
+    <string name="label_code">Mã</string>
 </resources>

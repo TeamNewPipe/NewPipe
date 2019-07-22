@@ -55,7 +55,7 @@ public class DownloadActivity extends AppCompatActivity {
     private void updateFragments() {
         MissionsFragment fragment = new MissionsFragment();
 
-        getFragmentManager().beginTransaction()
+        getSupportFragmentManager().beginTransaction()
                 .replace(R.id.frame, fragment, MISSIONS_FRAGMENT_TAG)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit();

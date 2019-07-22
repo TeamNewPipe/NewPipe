@@ -47,7 +47,7 @@
     <string name="play_btn_text">Odtwórz</string>
     <string name="content">Zawartość</string>
     <string name="show_age_restricted_content_title">Treści z ograniczeniem wiekowym</string>
-    <string name="video_is_age_restricted">Pokaż wideo z ograniczeniem wiekowym. Zezwalanie na takie materiały jest możliwe w Ustawieniach.</string>
+    <string name="video_is_age_restricted">Pokaż wideo z ograniczeniami wiekowymi. Dopuszczenie takiego materiału jest możliwe z poziomu Ustawienia.</string>
     <string name="duration_live">Na żywo</string>
     <string name="downloads">Pobrane</string>
     <string name="downloads_title">Pobrane</string>
@@ -59,7 +59,6 @@
     <string name="parsing_error">Nie można przetworzyć strony</string>
     <string name="light_parsing_error">Nie można przetworzyć całości strony</string>
     <string name="content_not_available">Zawartość niedostępna</string>
-    <string name="blocked_by_gema">Zablokowane przez GEMA</string>
     <string name="could_not_setup_download_menu">Nie można ustawić menu pobierania</string>
     <string name="live_streams_not_supported">Transmisje na żywo nie są jeszcze obsługiwane</string>
     <string name="could_not_get_stream">Nie można otrzymać żadnego strumienia</string>
@@ -208,7 +207,7 @@
     <plurals name="subscribers">
         <item quantity="one">%s subskrybent</item>
         <item quantity="few">%s subskrybentów</item>
-        <item quantity="many">%s subskrybentów</item>
+        <item quantity="many">%s subskrybenci</item>
     </plurals>
     <plurals name="views">
         <item quantity="one">%s odtworzenie</item>
@@ -356,7 +355,7 @@
 \n
 \nCzy chcesz kontynuować?</string>
     <string name="playback_speed_control">Kontrola prędkości odtwarzania</string>
-    <string name="playback_tempo">Tempo</string>
+    <string name="playback_tempo">Czas</string>
     <string name="playback_pitch">Wysokość dźwięku</string>
     <string name="import_soundcloud_instructions_hint">twojeID, soundcloud.com/yourid</string>
     <string name="unhook_checkbox">Odłącz (może powodować zniekształcenia)</string>
@@ -435,7 +434,6 @@
     <string name="app_update_notification_content_title">Dostępna jest aktualizacja NewPipe!</string>
     <string name="app_update_notification_content_text">Stuknij, aby pobrać</string>
     <string name="missions_header_finished">Gotowe</string>
-    <string name="missions_header_pending">W kolejce</string>
     <string name="paused">wstrzymane</string>
     <string name="queued">w kolejce</string>
     <string name="post_processing">przetwarzanie końcowe</string>
@@ -446,28 +444,29 @@
     <string name="download_finished_more">%s pobieranie zostało zakończone</string>
     <string name="generate_unique_name">Wygeneruj unikalną nazwę</string>
     <string name="overwrite">Zastąp</string>
-    <string name="overwrite_warning">Pobrany plik o tej nazwie już istnieje</string>
+    <string name="overwrite_finished_warning">Pobrany plik o tej nazwie już istnieje</string>
     <string name="download_already_running">Trwa pobieranie z tą nazwą</string>
     <string name="show_error">Pokaż błąd</string>
     <string name="label_code">Kod</string>
-    <string name="error_path_creation">Nie można utworzyć pliku</string>
-    <string name="error_file_creation">Nie można utworzyć folderu docelowego</string>
+    <string name="error_file_creation">Nie można utworzyć pliku</string>
+    <string name="error_path_creation">Nie można utworzyć folderu docelowego</string>
     <string name="error_permission_denied">Odmowa dostępu do systemu</string>
     <string name="error_ssl_exception">Bezpieczne połączenie nie powiodło się</string>
     <string name="error_unknown_host">Nie można znaleźć serwera</string>
     <string name="error_connect_host">Nie można połączyć się z serwerem</string>
     <string name="error_http_no_content">Serwer nie wysyła danych</string>
     <string name="error_http_unsupported_range">Serwer nie akceptuje pobierania wielowątkowego, spróbuj ponownie za pomocą @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">Żądany zakres jest niewłaściwy</string>
+    <string name="error_http_requested_range_not_satisfiable">Niewłaściwy zakres</string>
     <string name="error_http_not_found">Nie znaleziono</string>
     <string name="error_postprocessing_failed">Przetwarzanie końcowe nie powiodło się</string>
     <string name="clear_finished_download">Wyczyść ukończone pobieranie</string>
     <string name="msg_pending_downloads">Kontynuuj %s oczekujące transfery z plików do pobrania</string>
     <string name="stop">Zatrzymaj</string>
-    <string name="max_retry_msg">Maksymalna liczba prób</string>
+    <string name="max_retry_msg">Maksymalna liczba powtórzeń</string>
     <string name="max_retry_desc">Maksymalna liczba prób przed anulowaniem pobierania</string>
     <string name="pause_downloads_on_mobile">Przerwij przełączanie na dane mobilne</string>
-    <string name="pause_downloads_on_mobile_desc">Pobierane pliki, których nie można wstrzymać, zostaną ponownie uruchomione</string>
+    <string name="pause_downloads_on_mobile_desc">Pobierane pliki, których nie można wstrzymać, zostaną zrestartowane</string>
     <string name="events">Zdarzenia</string>
     <string name="conferences">Konferencje</string>
+    <string name="missions_header_pending">Oczekuje</string>
 </resources>

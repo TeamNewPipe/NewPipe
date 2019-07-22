@@ -14,15 +14,12 @@
     <string name="choose_browser">Pilih peramban</string>
     <string name="use_external_video_player_title">Gunakan pemutar video eksternal</string>
     <string name="use_external_audio_player_title">Gunakan pemutar audio eksternal</string>
-
     <string name="download_path_title">Lokasi unduhan video</string>
     <string name="download_path_summary">Lokasi untuk menyimpan video yang diunduh</string>
     <string name="download_path_dialog_title">Masukkan lokasi unduhan video</string>
-
     <string name="download_path_audio_title">Lokasi unduhan audio</string>
     <string name="download_path_audio_summary">Audio yang diunduh disimpan di sini</string>
     <string name="download_path_audio_dialog_title">Masukkan lokasi unduhan berkas audio</string>
-
     <string name="autoplay_by_calling_app_title">Putar otomatis</string>
     <string name="autoplay_by_calling_app_summary">Putar video ketika NewPipe dijalankan dari aplikasi lain</string>
     <string name="default_resolution_title">Resolusi</string>
@@ -32,11 +29,8 @@
     <string name="show_play_with_kodi_summary">Tampilkan opsi untuk memutar video via Kodi</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Format audio</string>
-    <string name="webm_description">WebM — format bebas</string>
-    <string name="m4a_description">M4A — kualitas lebih baik</string>
     <string name="dark_theme_title">Gelap</string>
     <string name="light_theme_title">Terang</string>
-
     <string name="download_dialog_title">Unduh</string>
     <string name="next_video_title">Berikutnya</string>
     <string name="show_next_and_similar_title">Tampilkan video \'Berikutnya\' dan \'Serupa\'</string>
@@ -58,12 +52,10 @@
     <string name="downloads">Unduhan</string>
     <string name="downloads_title">Unduhan</string>
     <string name="error_report_title">Laporan galat</string>
-
     <string name="general_error">Galat</string>
     <string name="parsing_error">Tidak bisa mengurai situs web</string>
     <string name="light_parsing_error">Tidak dapat menguraikan situs web sepenuhnya</string>
     <string name="content_not_available">Konten tidak tersedia</string>
-    <string name="blocked_by_gema">Diblokir oleh GEMA</string>
     <string name="could_not_setup_download_menu">Tidak bisa menyiapkan menu unduh</string>
     <string name="live_streams_not_supported">Siaran langsung belum didukung</string>
     <string name="could_not_load_image">Tidak bisa memuat gambar</string>
@@ -75,8 +67,6 @@
     <string name="what_happened_headline">Yang terjadi:</string>
     <string name="your_comment">Komentar anda (dalam bahasa Inggris):</string>
     <string name="error_details_headline">Detail:</string>
-
-
     <string name="list_thumbnail_view_description">Thumbnail pratinjau video</string>
     <string name="detail_thumbnail_view_description">Thumbnail pratinjau video</string>
     <string name="detail_likes_img_view_description">Suka</string>
@@ -87,21 +77,17 @@
     <string name="report_error">Laporkan Galat</string>
     <string name="err_dir_create">Tidak bisa membuat direktori unduhan \'%1$s\'</string>
     <string name="info_dir_created">Direktori unduhan dibuat \'%1$s\'</string>
-
     <string name="video">Video</string>
     <string name="audio">Audio</string>
     <string name="retry">Ulangi</string>
     <string name="storage_permission_denied">Izin akses penyimpanan ditolak</string>
-
     <string name="delete">Hapus</string>
     <string name="view">Putar</string>
     <string name="start">Mulai</string>
     <string name="pause">Jeda</string>
     <string name="checksum">Ceksum</string>
-
     <string name="add">Misi baru</string>
     <string name="finish">OK</string>
-
     <string name="msg_name">Nama berkas</string>
     <string name="msg_error">Galat</string>
     <string name="msg_server_unsupported">Server tidak didukung</string>
@@ -112,79 +98,55 @@
     <string name="msg_wait">Mohon tunggu…</string>
     <string name="msg_copied">Disalin ke papan klip</string>
     <string name="no_available_dir">Silakan pilih direktori unduhan yang tersedia</string>
-
     <string name="no_player_found">Pemutar stream tidak ditemukan. Apakah anda ingin memasang VLC\?</string>
     <string name="youtube_signature_decryption_error">Tidak bisa dekripsi tanda tangan URL video</string>
     <string name="app_ui_crash">App/UI rusak</string>
     <string name="could_not_get_stream">Tidak bisa mendapatkan stream apapun</string>
     <string name="info_labels">Apa:\\nPermintaan:\\nBahasa Konten:\\nLayanan:\\nWaktu GMT:\\nPaket:\\nVersi:\\nVersi OS:</string>
     <string name="user_report">Laporan pengguna</string>
-
     <string name="msg_threads">Thread</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">Tantangan reCAPTCHA</string>
-
     <string name="recaptcha_request_toast">Meminta kode reCAPTCHA</string>
-
     <string name="black_theme_title">Hitam</string>
-
     <string name="all">Semua</string>
     <string name="channel">Channel</string>
-
     <string name="short_thousand">R</string>
     <string name="short_million">J</string>
     <string name="short_billion">T</string>
-
-
     <string name="yes">Ya</string>
     <string name="later">Nanti</string>
-
-
     <string name="open_in_popup_mode">Buka di mode popup</string>
     <string name="msg_popup_permission">Izin ini dibutuhkan untuk
 \nmembuka di mode popup</string>
-
     <string name="popup_mode_share_menu_title">Mode popup NewPipe</string>
-
     <string name="popup_playing_toast">Memutar dalam mode popup</string>
-    <string name="use_old_player_title">Gunakan pemutar lama</string>
-    <string name="use_old_player_summary">Pemutar Mediaframework bawaan versi lama</string>
     <string name="disabled">Dinonaktifkan</string>
-
     <string name="default_video_format_title">Format video</string>
-
     <string name="default_popup_resolution_title">Resolusi popup</string>
     <string name="show_higher_resolutions_title">Tampilkan resolusi yang lebih tinggi</string>
     <string name="show_higher_resolutions_summary">Hanya perangkat tertentu yang mendukung pemutaran video 2K/4K</string>
     <string name="controls_background_title">Latar Belakang</string>
     <string name="controls_popup_title">Popup</string>
-
     <string name="refresh">Segarkan</string>
     <string name="clear">Bersihkan</string>
-
     <string name="filter">Filter</string>
     <string name="use_external_video_player_summary">Menghapus audio pada BEBERAPA resolusi</string>
     <string name="popup_remember_size_pos_title">Ingat ukuran dan posisi popup</string>
     <string name="popup_remember_size_pos_summary">Ingat ukuran dan posisi terakhir popup</string>
-
     <string name="settings_category_popup_title">Popup</string>
     <string name="popup_resizing_indicator_title">Ubah ukuran</string>
-
     <string name="player_gesture_controls_title">Kontrol gestur pemutar</string>
     <string name="player_gesture_controls_summary">Gunakan gestur untuk mengontrol kecerahan dan volume pemutar</string>
     <string name="show_search_suggestions_title">Saran pencarian</string>
     <string name="show_search_suggestions_summary">Tampilkan saran ketika mencari</string>
-
-<string name="best_resolution">Resolusi terbaik</string>
-
+    <string name="best_resolution">Resolusi terbaik</string>
     <string name="settings_category_downloads_title">Unduh</string>
     <string name="settings_file_charset_title">Karakter yang diizinkan sebagai nama berkas</string>
     <string name="settings_file_replacement_character_summary">Karakter yang tidak valid akan diganti dengan karakter ini</string>
     <string name="settings_file_replacement_character_title">Karakter pengganti</string>
-
     <string name="charset_letters_and_digits">Huruf dan angka</string>
     <string name="charset_most_special_characters">Karakter spesial umum</string>
-
     <string name="title_activity_about">Tentang NewPipe</string>
     <string name="action_settings">Pengaturan</string>
     <string name="action_about">Tentang</string>
@@ -195,19 +157,17 @@
     <string name="tab_about">Tentang</string>
     <string name="tab_contributors">Kontributor</string>
     <string name="tab_licenses">Lisensi</string>
-    <string name="app_description">Aplikasi streaming libre dan ringan untuk Android.</string>
+    <string name="app_description">Aplikasi streaming bebas dan ringan untuk Android.</string>
     <string name="view_on_github">Lihat di GitHub</string>
     <string name="app_license_title">Lisensi NewPipe</string>
     <string name="contribution_encouragement">Terlepas apakah anda memiliki ide untuk; terjemahan, perubahan desain, pembersihan kode, atau perubahan kode yang signifikan, segala bantuan akan selalu diterima. Semakin banyak akan semakin baik jadinya!</string>
     <string name="read_full_license">Baca lisensi</string>
     <string name="contribution_title">Kontribusi</string>
-<string name="subscribe_button_title">Subscribe</string>
+    <string name="subscribe_button_title">Subscribe</string>
     <string name="subscribed_button_title">Disubscribe</string>
     <string name="fragment_whats_new">Apa Yang Baru</string>
-
     <string name="resume_on_audio_focus_gain_title">Lanjutkan saat fokus</string>
     <string name="resume_on_audio_focus_gain_summary">Lanjutkan pemutaran setelah interupsi (mis. panggilan telepon)</string>
-
     <string name="tab_main">Utama</string>
     <string name="enable_search_history_title">Riwayat pencarian</string>
     <string name="enable_search_history_summary">Simpan pencarian secara lokal</string>
@@ -241,16 +201,12 @@
     <string name="always">Selalu</string>
     <string name="just_once">Hanya Sekali</string>
     <string name="file">Berkas</string>
-
     <string name="notification_channel_description">Notifikasi untuk pemutar latar belakang dan popup NewPipe</string>
-
     <string name="unknown_content">[Tidak diketahui]</string>
-
     <string name="toggle_orientation">Ubah Orientasi</string>
     <string name="switch_to_background">Alihkan ke Latar Belakang</string>
     <string name="switch_to_popup">Alihkan ke Popup</string>
     <string name="switch_to_main">Alihkan ke Utama</string>
-
     <string name="import_data_title">Impor basis data</string>
     <string name="export_data_title">Ekspor basis data</string>
     <string name="import_data_summary">Timpa riwayat dan subscription anda saat ini</string>
@@ -267,32 +223,26 @@
     <string name="invalid_file">Berkas tidak tersedia atau tidak memiliki izin baca atau tulis</string>
     <string name="file_name_empty_error">Nama berkas tidak boleh kosong</string>
     <string name="error_occurred_detail">Telah terjadi galat: %1$s</string>
-
     <string name="search_no_results">Tidak ada hasil</string>
     <string name="empty_subscription_feed_subtitle">Tidak ada apapun disini selain jangkrik</string>
     <string name="detail_drag_description">Geser untuk ubah urutan</string>
-
     <string name="no_subscribers">Tidak ada subscriber</string>
     <plurals name="subscribers">
-    <item quantity="other">%s subscriber</item>
-</plurals>
-
+        <item quantity="other">%s subscriber</item>
+    </plurals>
     <string name="no_views">Belum ditonton</string>
     <plurals name="views">
-    <item quantity="other">%s ditonton</item>
-</plurals>
-
+        <item quantity="other">%s ditonton</item>
+    </plurals>
     <string name="no_videos">Tidak ada video</string>
     <plurals name="videos">
-    <item quantity="other">Video</item>
-</plurals>
-
+        <item quantity="other">Video</item>
+    </plurals>
     <string name="create">Buat</string>
     <string name="delete_one">Hapus Satu</string>
     <string name="delete_all">Hapus Semua</string>
     <string name="dismiss">Abaikan</string>
     <string name="rename">Ubah nama</string>
-
     <string name="donation_title">Donasi</string>
     <string name="donation_encouragement">NewPipe dikembangkan oleh relawan yang menyisihkan waktu untuk memberi anda pengalaman terbaik. Segala dukungan kepada pengembang akan membuat NewPipe menjadi lebih baik sambil menikmati secangkir kopi.</string>
     <string name="give_back">Beri dukungan</string>
@@ -306,7 +256,6 @@
     <string name="delete_all_history_prompt">Apakah Anda yakin ingin menghapus semua item dari riwayat\?</string>
     <string name="title_last_played">Terakhir Diputar</string>
     <string name="title_most_played">Sering Diputar</string>
-
     <string name="main_page_content">Konten laman utama</string>
     <string name="blank_page_summary">Laman Kosong</string>
     <string name="kiosk_page_summary">Laman Kiosk</string>
@@ -321,7 +270,6 @@
     <string name="no_valid_zip_file">Berkas ZIP tidak valid</string>
     <string name="could_not_import_all_files">Perhatian: Tidak bisa mengimpor semua berkas.</string>
     <string name="override_current_data">Ini akan menimpa pengaturan anda saat ini.</string>
-
     <string name="kiosk">Kiosk</string>
     <string name="trending">Trending</string>
     <string name="top_50">Top 50</string>
@@ -337,58 +285,45 @@
     <string name="start_here_on_main">Mulai putar di sini</string>
     <string name="start_here_on_background">Mulai dari sini ketika di latar belakang</string>
     <string name="start_here_on_popup">Mulai dari sini pada popup baru</string>
-
     <string name="drawer_open">Buka Laci</string>
     <string name="drawer_close">Tutup Laci</string>
     <string name="drawer_header_action_paceholder_text">Sesuatu akan segera muncul di sini ;D</string>
-
-
     <string name="video_player">Pemutar video</string>
     <string name="background_player">Pemutar latar belakang</string>
     <string name="popup_player">Pemutar popup</string>
     <string name="always_ask_open_action">Selalu bertanya</string>
-    
     <string name="preferred_player_fetcher_notification_title">Mendapatkan info…</string>
     <string name="preferred_player_fetcher_notification_message">Memuat konten yang diminta</string>
-
     <string name="create_playlist">Playlist Baru</string>
     <string name="delete_playlist">Hapus</string>
     <string name="rename_playlist">Ubah Nama</string>
     <string name="playlist_name_input">Nama</string>
     <string name="append_playlist">Tambahkan Ke Playlist</string>
     <string name="set_as_playlist_thumbnail">Atur sebagai Thumbnail Playlist</string>
-
     <string name="bookmark_playlist">Markah Playlist</string>
     <string name="unbookmark_playlist">Hapus Markah</string>
-
     <string name="delete_playlist_prompt">Hapus playlist ini\?</string>
     <string name="playlist_creation_success">Playlist dibuat</string>
     <string name="playlist_add_stream_success">Diplaylist</string>
     <string name="playlist_thumbnail_change_success">Thumbnail playlist diubah.</string>
     <string name="playlist_delete_failure">Tidak bisa menghapus playlist.</string>
-
     <string name="caption_none">Tidak ada Takarir</string>
-
     <string name="resize_fit">Pas</string>
     <string name="resize_fill">Isi</string>
     <string name="resize_zoom">Perbesar</string>
-
     <string name="caption_auto_generated">Otomatis dibuat</string>
     <string name="caption_font_size_settings_title">Ukuran fon deskripsi</string>
     <string name="smaller_caption_font_size">Fon lebih kecil</string>
     <string name="normal_caption_font_size">Fon normal</string>
     <string name="larger_caption_font_size">Fon lebih besar</string>
-
     <string name="enable_leak_canary_title">Aktifkan LeakCanary</string>
     <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Bawaan</string>
-<string name="no_player_found_toast">Pemutar stream tidak ditemukan (anda bisa memasang VLC untuk memutarnya).</string>
+    <string name="no_player_found_toast">Pemutar stream tidak ditemukan (anda bisa memasang VLC untuk memutarnya).</string>
     <string name="controls_download_desc">Unduh berkas stream</string>
     <string name="subscription_change_failed">Tidak bisa mengubah subscription</string>
     <string name="show_info">Tampilkan info</string>
-
     <string name="controls_add_to_playlist_title">Tambahkan Ke</string>
-
     <string name="clear_views_history_title">Hapus riwayat tontonan</string>
     <string name="clear_views_history_summary">Hapus riwayat stream yang telah diputar</string>
     <string name="delete_view_history_alert">Hapus seluruh riwayat tontonan\?</string>
@@ -398,14 +333,10 @@
     <string name="delete_search_history_alert">Hapus seluruh riwayat pencarian\?</string>
     <string name="search_history_deleted">Riwayat pencarian dihapus.</string>
     <string name="no_streams_available_download">Tidak ada stream yang tersedia untuk diunduh</string>
-
     <string name="one_item_deleted">1 item dihapus.</string>
-
     <string name="toast_no_player">Tidak ada aplikasi terpasang untuk memutar berkas ini</string>
-
     <string name="title_history_view">Ditonton</string>
     <string name="tab_bookmarks">Playlist Disimpan</string>
-
     <string name="auto_queue_title">Antre otomatis stream berikutnya</string>
     <string name="channel_unsubscribed">Channel berhenti disubscribe</string>
     <string name="subscription_update_failed">Tidak bisa memperbarui subscription</string>
@@ -414,32 +345,23 @@
     <string name="use_inexact_seek_summary">Memungkinkan pengguna memilih posisi waktu video dengan cepat tetapi dengan tingkat presisi yang rendah</string>
     <string name="app_license">NewPipe adalah perangkat lunak libre copyleft: Anda bisa menggunakannya, mempelajarinya, berbagi, dan meningkatkannya. Secara khusus anda bisa mendistribusikan ulang dan/atau memodifikasinya dibawah syarat Lisensi Publik Umum GNU yang diterbitkan oleh Free Software Foundation, baik versi 3 dari Lisensi, atau (sesuai pilihan anda) versi yang lebih baru.</string>
     <string name="import_settings">Apakah anda juga ingin mengimpor pengaturan\?</string>
-
     <string name="preferred_open_action_settings_title">Tindakan \'buka\' yang diinginkan</string>
     <string name="preferred_open_action_settings_summary">Tindakan baku ketika membuka konten — %s</string>
-
     <string name="caption_setting_title">Takarir</string>
     <string name="caption_setting_description">Ubah skala teks takarir pemutar dan gaya latar belakang. Perlu memulai ulang apl.</string>
-
     <string name="enable_leak_canary_summary">Pemantauan kebocoran memori dapat menyebabkan apl menjadi tidak responsif saat heap dumping</string>
-
     <string name="enable_disposed_exceptions_title">Laporkan galat out-of-lifecycle</string>
     <string name="enable_disposed_exceptions_summary">Paksa pelaporan eksepsi Rx yang tak terkirim di luar fragmen atau siklus hidup aktivitas setelah dibuang</string>
-
     <string name="import_export_title">Impor/ekspor</string>
     <string name="import_title">Impor</string>
     <string name="import_from">Impor dari</string>
     <string name="export_to">Ekspor ke</string>
-
     <string name="import_ongoing">Mengimpor…</string>
     <string name="export_ongoing">Mengekspor…</string>
-
     <string name="import_file_title">Impor berkas</string>
     <string name="previous_export">Ekspor sebelumnya</string>
-
     <string name="subscriptions_import_unsuccessful">Tidak bisa mengimpor subscription</string>
     <string name="subscriptions_export_unsuccessful">Tidak bisa mengekspor subscription</string>
-
     <string name="import_youtube_instructions">Impor subscription YouTube dengan mengunduh berkas yang diekspor: 
 \n 
 \n1. Kunjungi URL ini: %1$s 
@@ -452,11 +374,9 @@
 \n3. Masuk ketika ditanya
 \n4. Salin URL profil anda ketika dialihkan.</string>
     <string name="import_soundcloud_instructions_hint">idAnda, soundcloud.com/idAnda</string>
-
     <string name="import_network_expensive_warning">Perlu diingat operasi ini membutuhkan bandwidth yang besar.
 \n
 \nApakah anda ingin melanjutkan\?</string>
-
     <string name="playback_speed_control">Kontrol Kecepatan Pemutaran</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Nada</string>
@@ -472,12 +392,10 @@
     <string name="skip_silence_checkbox">Percepat saat diam</string>
     <string name="playback_step">Langkah</string>
     <string name="playback_reset">Atur ulang</string>
-
     <string name="start_accept_privacy_policy">Agar sesuai dengan Regulasi Perlindungan Data Umum Eropa (GDPR), dengan ini kami tarik perhatian anda ke kebijakan privasi NewPipe. Silakan baca dengan seksama.
 \nAnda harus menerimanya untuk mengirimkan laporan bug kepada kami.</string>
     <string name="accept">Setuju</string>
     <string name="decline">Tolak</string>
-
     <string name="limit_data_usage_none_description">Tanpa batas</string>
     <string name="limit_mobile_data_usage_title">Batasi resolusi saat menggunakan data seluler</string>
     <string name="minimize_on_exit_title">Minimalkan saat beralih apl</string>
@@ -517,7 +435,7 @@
     <string name="app_update_notification_content_title">Pembaruan NewPipe Tersedia!</string>
     <string name="app_update_notification_content_text">Ketuk untuk mengunduh</string>
     <string name="missions_header_finished">Selesai</string>
-    <string name="missions_header_pending">Di antrian</string>
+    <string name="missions_header_pending">Tertunda</string>
     <string name="paused">dijeda</string>
     <string name="queued">antri</string>
     <string name="post_processing">pengolahan-pasca</string>
@@ -528,12 +446,12 @@
     <string name="download_finished_more">%s unduhan selesai</string>
     <string name="generate_unique_name">Hasilkan nama unik</string>
     <string name="overwrite">Timpa</string>
-    <string name="overwrite_warning">File yang diunduh dengan nama ini sudah ada</string>
+    <string name="overwrite_finished_warning">File yang diunduh dengan nama ini sudah ada</string>
     <string name="download_already_running">Ada unduhan yang sedang berlangsung dengan nama ini</string>
     <string name="show_error">Tunjukkan kesalahan</string>
     <string name="label_code">Kode</string>
-    <string name="error_path_creation">File tidak dapat dibuat</string>
-    <string name="error_file_creation">Folder tujuan tidak dapat dibuat</string>
+    <string name="error_file_creation">File tidak dapat dibuat</string>
+    <string name="error_path_creation">Folder tujuan tidak dapat dibuat</string>
     <string name="error_permission_denied">Izin ditolak oleh sistem</string>
     <string name="error_ssl_exception">Koneksi aman gagal</string>
     <string name="error_unknown_host">Tidak dapat menemukan server</string>
@@ -549,5 +467,5 @@
     <string name="max_retry_msg">Percobaan maksimum</string>
     <string name="max_retry_desc">Jumlah upaya maksimum sebelum membatalkan unduhan</string>
     <string name="pause_downloads_on_mobile">Berhenti ketika beralih ke data seluler</string>
-    <string name="pause_downloads_on_mobile_desc">Unduhan yang tidak dapat dijeda akan dimulai kembali</string>
+    <string name="pause_downloads_on_mobile_desc">Unduhan yang tidak dapat dijeda akan diulang dari awal</string>
 </resources>

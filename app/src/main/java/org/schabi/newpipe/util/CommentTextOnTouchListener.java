@@ -31,7 +31,7 @@ public class CommentTextOnTouchListener implements View.OnTouchListener {
 
     public static final CommentTextOnTouchListener INSTANCE = new CommentTextOnTouchListener();
 
-    private static final Pattern timestampPattern = Pattern.compile(".*&t=(\\d+)");
+    private static final Pattern timestampPattern = Pattern.compile("(.*)#timestamp=(\\d+)");
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
@@ -86,6 +86,12 @@ public class CommentTextOnTouchListener implements View.OnTouchListener {
 
     private boolean handleUrl(Context context, URLSpan urlSpan) {
         String url = urlSpan.getURL();
+        int seconds = -1;
+        Matcher matcher = timestampPattern.matcher(url);
+        if(matcher.matches()){
+            url = matcher.group(1);
+            seconds = Integer.parseInt(matcher.group(2));
+        }
         StreamingService service;
         StreamingService.LinkType linkType;
         try {
@@ -97,9 +103,7 @@ public class CommentTextOnTouchListener implements View.OnTouchListener {
         if(linkType == StreamingService.LinkType.NONE){
             return false;
         }
-        Matcher matcher = timestampPattern.matcher(url);
-        if(linkType == StreamingService.LinkType.STREAM && matcher.matches()){
-            int seconds = Integer.parseInt(matcher.group(1));
+        if(linkType == StreamingService.LinkType.STREAM && seconds != -1){
             return playOnPopup(context, url, service, seconds);
         }else{
             NavigationHelper.openRouterActivity(context, url);
@@ -119,9 +123,8 @@ public class CommentTextOnTouchListener implements View.OnTouchListener {
         single.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(info -> {
-                    PlayQueue playQueue = new SinglePlayQueue((StreamInfo) info);
-                    ((StreamInfo) info).setStartPosition(seconds);
-                    NavigationHelper.enqueueOnPopupPlayer(context, playQueue, true);
+                    PlayQueue playQueue = new SinglePlayQueue((StreamInfo) info, seconds*1000);
+                    NavigationHelper.playOnPopupPlayer(context, playQueue, false);
                 });
         return true;
     }

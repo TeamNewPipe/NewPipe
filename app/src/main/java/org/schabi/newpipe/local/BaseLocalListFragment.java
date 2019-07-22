@@ -76,6 +76,8 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
             }
             updateFlags = 0;
         }
+
+        itemsList.post(itemListAdapter::updateStates);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -150,6 +152,7 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
     public void onDestroyView() {
         super.onDestroyView();
         itemsList = null;
+        itemListAdapter.dispose();
         itemListAdapter = null;
     }
 

@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/video_item_detail"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:focusableInTouchMode="true"
-	android:orientation="horizontal">
+	tools:ignore="RtlHardcoded"
+	android:orientation="horizontal"
+	android:baselineAligned="false">
 
 	<android.support.design.widget.CoordinatorLayout
 		android:id="@+id/detail_main_content"
@@ -19,6 +21,7 @@
 			android:id="@+id/appbarlayout"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:background="@android:color/transparent"
 			android:fitsSystemWindows="true"
 			app:elevation="0dp"
 			app:layout_behavior="android.support.design.widget.FlingBehavior">
@@ -67,10 +70,10 @@
 						android:layout_height="wrap_content"
 						android:layout_gravity="center"
 						android:background="#64000000"
-						android:paddingBottom="10dp"
 						android:paddingLeft="30dp"
-						android:paddingRight="30dp"
 						android:paddingTop="10dp"
+						android:paddingRight="30dp"
+						android:paddingBottom="10dp"
 						android:text="@string/hold_to_append"
 						android:textColor="@android:color/white"
 						android:textSize="20sp"
@@ -84,17 +87,17 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_gravity="bottom|right"
-						android:layout_marginBottom="8dp"
 						android:layout_marginLeft="12dp"
-						android:layout_marginRight="12dp"
 						android:layout_marginTop="8dp"
+						android:layout_marginRight="12dp"
+						android:layout_marginBottom="8dp"
 						android:alpha=".6"
 						android:background="#23000000"
 						android:gravity="center"
-						android:paddingBottom="2dp"
 						android:paddingLeft="6dp"
-						android:paddingRight="6dp"
 						android:paddingTop="2dp"
+						android:paddingRight="6dp"
+						android:paddingBottom="2dp"
 						android:textAllCaps="true"
 						android:textColor="@android:color/white"
 						android:textSize="12sp"
@@ -103,9 +106,47 @@
 						tools:ignore="RtlHardcoded"
 						tools:text="12:38"
 						tools:visibility="visible" />
+
+					<TextView
+						android:id="@+id/detail_position_view"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="bottom|left"
+						android:layout_marginLeft="12dp"
+						android:layout_marginTop="8dp"
+						android:layout_marginRight="12dp"
+						android:layout_marginBottom="8dp"
+						android:alpha=".6"
+						android:background="?colorPrimary"
+						android:gravity="center"
+						android:paddingLeft="6dp"
+						android:paddingTop="2dp"
+						android:paddingRight="6dp"
+						android:paddingBottom="2dp"
+						android:textAllCaps="true"
+						android:textColor="@android:color/white"
+						android:textSize="12sp"
+						android:textStyle="bold"
+						android:visibility="gone"
+						tools:text="12:38"
+						tools:visibility="visible" />
 				</FrameLayout>
 
 			</android.support.design.widget.CollapsingToolbarLayout>
+
+			<org.schabi.newpipe.views.AnimatedProgressBar
+				android:id="@+id/position_view"
+				style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+				android:layout_width="match_parent"
+				android:layout_height="4dp"
+				android:layout_marginTop="-2dp"
+				android:background="@android:color/transparent"
+				android:progressDrawable="?attr/progress_horizontal_drawable"
+				android:visibility="invisible"
+				app:layout_scrollFlags="scroll"
+				tools:max="100"
+				tools:progress="40"
+				tools:visibility="visible" />
 
 			<!-- CONTENT -->
 			<RelativeLayout
@@ -133,11 +174,10 @@
 						android:layout_marginRight="20dp"
 						android:ellipsize="end"
 						android:maxLines="1"
-						android:paddingBottom="8dp"
 						android:paddingTop="12dp"
+						android:paddingBottom="8dp"
 						android:textAppearance="?android:attr/textAppearanceLarge"
 						android:textSize="@dimen/video_item_detail_title_text_size"
-						tools:ignore="RtlHardcoded"
 						tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a ultricies ex. Integer sit amet sodales risus. Duis non mi et urna pretium bibendum. Nunc eleifend est quis ipsum porttitor egestas. Sed facilisis, nisl quis eleifend pellentesque, orci metus egestas dolor, at accumsan eros metus quis libero." />
 
 					<ImageView
@@ -147,7 +187,7 @@
 						android:layout_gravity="center_vertical|right"
 						android:layout_marginLeft="5dp"
 						android:src="@drawable/arrow_down"
-						tools:ignore="ContentDescription,RtlHardcoded" />
+						tools:ignore="ContentDescription" />
 
 				</FrameLayout>
 
@@ -179,9 +219,9 @@
 					android:id="@+id/detail_content_root_hiding"
 					android:layout_width="match_parent"
 					android:layout_height="match_parent"
-					android:paddingBottom="10dp"
 					android:layout_below="@+id/detail_title_root_layout"
 					android:orientation="vertical"
+					android:paddingBottom="10dp"
 					android:visibility="gone"
 					tools:visibility="visible">
 
@@ -191,8 +231,8 @@
 						android:layout_width="match_parent"
 						android:layout_height="55dp"
 						android:layout_marginLeft="12dp"
-						android:layout_marginRight="12dp"
 						android:layout_marginTop="6dp"
+						android:layout_marginRight="12dp"
 						android:baselineAligned="false"
 						android:orientation="horizontal">
 
@@ -201,8 +241,8 @@
 							android:id="@+id/detail_uploader_root_layout"
 							android:layout_width="match_parent"
 							android:layout_height="match_parent"
-							android:layout_toLeftOf="@id/details_panel"
 							android:layout_toStartOf="@id/details_panel"
+							android:layout_toLeftOf="@id/details_panel"
 							android:background="?attr/selectableItemBackground"
 							android:gravity="center_vertical"
 							android:orientation="horizontal"
@@ -213,8 +253,7 @@
 								android:layout_width="@dimen/video_item_detail_uploader_image_size"
 								android:layout_height="@dimen/video_item_detail_uploader_image_size"
 								android:contentDescription="@string/detail_uploader_thumbnail_view_description"
-								android:src="@drawable/buddy"
-								tools:ignore="RtlHardcoded" />
+								android:src="@drawable/buddy" />
 
 							<TextView
 								android:id="@+id/detail_uploader_text_view"
@@ -261,8 +300,8 @@
 								android:layout_width="wrap_content"
 								android:layout_height="wrap_content"
 								android:layout_centerHorizontal="true"
-								android:layout_marginBottom="6dp"
 								android:layout_marginTop="6dp"
+								android:layout_marginBottom="6dp"
 								android:lines="1"
 								android:textAppearance="?android:attr/textAppearanceLarge"
 								android:textSize="@dimen/video_item_detail_views_text_size"
@@ -354,8 +393,8 @@
 							android:drawableTop="?attr/ic_playlist_add"
 							android:focusable="true"
 							android:gravity="center"
-							android:paddingBottom="6dp"
 							android:paddingTop="6dp"
+							android:paddingBottom="6dp"
 							android:text="@string/controls_add_to_playlist_title"
 							android:textSize="12sp" />
 
@@ -371,8 +410,8 @@
 							android:drawableTop="?attr/audio"
 							android:focusable="true"
 							android:gravity="center"
-							android:paddingBottom="6dp"
 							android:paddingTop="6dp"
+							android:paddingBottom="6dp"
 							android:text="@string/controls_background_title"
 							android:textSize="12sp" />
 
@@ -388,8 +427,8 @@
 							android:drawableTop="?attr/popup"
 							android:focusable="true"
 							android:gravity="center"
-							android:paddingBottom="6dp"
 							android:paddingTop="6dp"
+							android:paddingBottom="6dp"
 							android:text="@string/controls_popup_title"
 							android:textSize="12sp" />
 
@@ -405,8 +444,8 @@
 							android:drawableTop="?attr/download"
 							android:focusable="true"
 							android:gravity="center"
-							android:paddingBottom="6dp"
 							android:paddingTop="6dp"
+							android:paddingBottom="6dp"
 							android:text="@string/download"
 							android:textSize="12sp" />
 
@@ -444,10 +483,10 @@
 							android:id="@+id/detail_description_view"
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"
-							android:layout_marginBottom="8dp"
 							android:layout_marginLeft="12dp"
-							android:layout_marginRight="12dp"
 							android:layout_marginTop="3dp"
+							android:layout_marginRight="12dp"
+							android:layout_marginBottom="8dp"
 							android:textAppearance="?android:attr/textAppearanceMedium"
 							android:textIsSelectable="true"
 							android:textSize="@dimen/video_item_detail_description_text_size"
@@ -490,7 +529,7 @@
 	</android.support.design.widget.CoordinatorLayout>
 
 	<FrameLayout
-        android:id="@+id/relatedStreamsLayout"
+		android:id="@+id/relatedStreamsLayout"
 		android:layout_width="0dp"
 		android:layout_height="match_parent"
 		android:layout_marginTop="10dp"

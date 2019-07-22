@@ -305,16 +305,15 @@ public abstract class VideoPlayer extends BasePlayer
             captionItem.setOnMenuItemClickListener(menuItem -> {
                 final int textRendererIndex = getRendererIndex(C.TRACK_TYPE_TEXT);
                 if (textRendererIndex != RENDERER_UNAVAILABLE) {
+                    trackSelector.setPreferredTextLanguage(captionLanguage);
                     trackSelector.setParameters(trackSelector.buildUponParameters()
-                            .setRendererDisabled(textRendererIndex, false)
-                            .setPreferredTextLanguage(captionLanguage));
+                            .setRendererDisabled(textRendererIndex, false));
                 }
                 return true;
             });
         }
         captionPopupMenu.setOnDismissListener(this);
     }
-
 
     private void updateStreamRelatedViews() {
         if (getCurrentMetadata() == null) return;
@@ -508,7 +507,7 @@ public abstract class VideoPlayer extends BasePlayer
         }
 
         // Normalize mismatching language strings
-        final String preferredLanguage = trackSelector.getParameters().preferredTextLanguage;
+        final String preferredLanguage = trackSelector.getPreferredTextLanguage();
         // Build UI
         buildCaptionMenu(availableLanguages);
         if (trackSelector.getParameters().getRendererDisabled(textRenderer) ||
@@ -543,6 +542,11 @@ public abstract class VideoPlayer extends BasePlayer
         playbackSpeedTextView.setText(formatSpeed(getPlaybackSpeed()));
 
         super.onPrepared(playWhenReady);
+
+        if (simpleExoPlayer.getCurrentPosition() != 0 && !isControlsVisible()) {
+            controlsVisibilityHandler.removeCallbacksAndMessages(null);
+            controlsVisibilityHandler.postDelayed(this::showControlsThenHide, DEFAULT_CONTROLS_DURATION);
+        }
     }
 
     @Override
