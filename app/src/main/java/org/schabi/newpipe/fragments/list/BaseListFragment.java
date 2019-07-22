@@ -261,7 +261,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
     protected void showStreamDialog(final StreamInfoItem item) {
         final Context context = getContext();
         final Activity activity = getActivity();
-        if (context == null || context.getResources() == null || getActivity() == null) return;
+        if (context == null || context.getResources() == null || activity == null) return;
 
         final String[] commands = new String[]{
                 context.getResources().getString(R.string.enqueue_on_background),
@@ -275,16 +275,16 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
         final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
             switch (i) {
                 case 0:
-                    NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
+                    NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item), false);
                     break;
                 case 1:
-                    NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(item));
+                    NavigationHelper.enqueueOnPopupPlayer(context, new SinglePlayQueue(item), false);
                     break;
                 case 2:
-                    NavigationHelper.playOnBackgroundPlayer(context, new SinglePlayQueue(item));
+                    NavigationHelper.playOnBackgroundPlayer(context, new SinglePlayQueue(item), true);
                     break;
                 case 3:
-                    NavigationHelper.playOnPopupPlayer(activity, new SinglePlayQueue(item));
+                    NavigationHelper.playOnPopupPlayer(context, new SinglePlayQueue(item), true);
                     break;
                 case 4:
                     if (getFragmentManager() != null) {
@@ -293,14 +293,14 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
                     }
                     break;
                 case 5:
-                    ShareUtils.shareUrl(this.getContext(), item.getName(), item.getUrl());
+                    ShareUtils.shareUrl(context, item.getName(), item.getUrl());
                     break;
                 default:
                     break;
             }
         };
 
-        new InfoItemDialog(getActivity(), item, commands, actions).show();
+        new InfoItemDialog(activity, item, commands, actions).show();
     }
 
     /*//////////////////////////////////////////////////////////////////////////

@@ -361,7 +361,7 @@ public class StatisticsPlaylistFragment
     private void showStreamDialog(final StreamStatisticsEntry item) {
         final Context context = getContext();
         final Activity activity = getActivity();
-        if (context == null || context.getResources() == null || getActivity() == null) return;
+        if (context == null || context.getResources() == null || activity == null) return;
         final StreamInfoItem infoItem = item.toStreamInfoItem();
 
         final String[] commands = new String[]{
@@ -381,13 +381,13 @@ public class StatisticsPlaylistFragment
                     NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(infoItem), false);
                     break;
                 case 1:
-                    NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(infoItem), false);
+                    NavigationHelper.enqueueOnPopupPlayer(context, new SinglePlayQueue(infoItem), false);
                     break;
                 case 2:
-                    NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index));
+                    NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index), true);
                     break;
                 case 3:
-                    NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index));
+                    NavigationHelper.playOnPopupPlayer(context, getPlayQueue(index), true);
                     break;
                 case 4:
                     deleteEntry(index);
@@ -399,14 +399,14 @@ public class StatisticsPlaylistFragment
                     }
                     break;
                 case 6:
-                    ShareUtils.shareUrl(this.getContext(), infoItem.getName(), infoItem.getUrl());
+                    ShareUtils.shareUrl(context, infoItem.getName(), infoItem.getUrl());
                     break;
                 default:
                     break;
             }
         };
 
-        new InfoItemDialog(getActivity(), infoItem, commands, actions).show();
+        new InfoItemDialog(activity, infoItem, commands, actions).show();
     }
 
     private void deleteEntry(final int index) {

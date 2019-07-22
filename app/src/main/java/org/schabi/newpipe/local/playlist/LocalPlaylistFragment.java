@@ -515,7 +515,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     protected void showStreamItemDialog(final PlaylistStreamEntry item) {
         final Context context = getContext();
         final Activity activity = getActivity();
-        if (context == null || context.getResources() == null || getActivity() == null) return;
+        if (context == null || context.getResources() == null || activity == null) return;
 
         final StreamInfoItem infoItem = item.toStreamInfoItem();
 
@@ -534,16 +534,16 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             final int index = Math.max(itemListAdapter.getItemsList().indexOf(item), 0);
             switch (i) {
                 case 0:
-                    NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(infoItem));
+                    NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(infoItem), false);
                     break;
                 case 1:
-                    NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(infoItem));
+                    NavigationHelper.enqueueOnPopupPlayer(context, new SinglePlayQueue(infoItem), false);
                     break;
                 case 2:
-                    NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index));
+                    NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index), true);
                     break;
                 case 3:
-                    NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index));
+                    NavigationHelper.playOnPopupPlayer(context, getPlayQueue(index), true);
                     break;
                 case 4:
                     changeThumbnailUrl(item.thumbnailUrl);
@@ -558,14 +558,14 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     }
                     break;
                 case 7:
-                    ShareUtils.shareUrl(this.getContext(), infoItem.getName(), infoItem.getUrl());
+                    ShareUtils.shareUrl(context, infoItem.getName(), infoItem.getUrl());
                     break;
                 default:
                     break;
             }
         };
 
-        new InfoItemDialog(getActivity(), infoItem, commands, actions).show();
+        new InfoItemDialog(activity, infoItem, commands, actions).show();
     }
 
     private void setInitialData(long playlistId, String name) {
