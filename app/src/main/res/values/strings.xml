@@ -384,6 +384,7 @@
     <string name="new_and_hot">New &amp; hot</string>
     <string name="conferences">Conferences</string>
     <string name="service_kiosk_string" translatable="false">%1$s/%2$s</string>
+    <string name="jedentageinset" translatable="false">jedentageinset.de</string>
     <!-- Play Queue -->
     <string name="title_activity_background_player">Background player</string>
     <string name="title_activity_popup_player">Popup player</string>

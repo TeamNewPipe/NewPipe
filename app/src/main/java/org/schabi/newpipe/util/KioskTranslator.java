@@ -33,6 +33,8 @@ public class KioskTranslator {
                 return c.getString(R.string.new_and_hot);
             case "conferences":
                 return c.getString(R.string.conferences);
+            case "jedentageinset":
+                return c.getString(R.string.jedentageinset);
             default:
                 return kioskId;
         }
@@ -48,6 +50,8 @@ public class KioskTranslator {
                 return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_hot);
             case "conferences":
                 return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_hot);
+            case "jedentageinset":
+                return ThemeHelper.resolveResourceIdFromAttr(c, R.attr.ic_jedentageinset);
             default:
                 return 0;
         }
