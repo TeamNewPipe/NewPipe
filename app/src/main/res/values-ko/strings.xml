@@ -85,7 +85,7 @@
     <string name="storage_permission_denied">저장소에 접근할 권한이 거부되었습니다</string>
     <string name="downloads">다운로드</string>
     <string name="downloads_title">다운로드</string>
-    <string name="start">시작</string>
+    <string name="start">재생</string>
     <string name="pause">일시정지</string>
     <string name="delete">삭제</string>
     <string name="checksum">체크섬</string>
