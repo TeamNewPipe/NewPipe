@@ -254,7 +254,7 @@
     <string name="use_inexact_seek_title">정확하지는 않지만 빠른 탐색</string>
     <string name="use_inexact_seek_summary">정확하지 않은 탐색은 빠르게 위치로 탐색할 수 있지만 정확도는 떨어집니다</string>
     <string name="auto_queue_title">다음 스트림을 자동으로 재생열에 추가하기</string>
-    <string name="auto_queue_summary">이전 스트림이 무한 반복 재생 큐가 아닐 경우, 관련 스트림을 자동 재생합니다.</string>
+    <string name="auto_queue_summary">이전 스트림이 무한 반복 재생 큐가 아닐 경우, 관련 스트림을 자동 재생합니다</string>
     <string name="default_content_country_title">기본 콘텐츠 국가</string>
     <string name="service_title">서비스</string>
     <string name="settings_category_debug_title">디버그</string>
@@ -348,11 +348,12 @@
 \n3. 다운로드가 곧 시작 됩니다 (이 파일이 구독 파일입니다)</string>
     <string name="import_soundcloud_instructions">SoundCloud 프로필을 가져오시려면 URL 및 ID를 입력해주세요. 
 \n 
-\n프로필 URL을 찾으시려면 다음 과정을 따라해 주세요.
-\n
+\n프로필 URL을 찾으시려면 다음 과정을 따라해 주세요. 
+\n 
+\n1. 웹 브라우저의 \"데스크톱 모드\" 를 활성화하세요
 \n2. 이 주소로 가세요: %1$s 
 \n3. 로그인이 필요하면 하세요. 
-\n4. 리디렉트된 곳의 URL을 복사하세요. (이 URL이 당신의 프로필 URL 입니다)</string>
+\n4. 리디렉트된 프로필 URL을 복사하세요.</string>
     <string name="import_soundcloud_instructions_hint">프로필ID, soundcloud.com/프로필ID</string>
     <string name="import_network_expensive_warning">경고: 데이터 소모량이 늘어날 수 있습니다. 
 \n 
@@ -411,7 +412,7 @@
     <string name="events">이벤트</string>
     <string name="file_deleted">파일 삭제됨</string>
     <string name="app_update_notification_channel_name">앱 업데이트 알림</string>
-    <string name="app_update_notification_channel_description">새 뉴파이프 버전을 알림</string>
+    <string name="app_update_notification_channel_description">새 뉴파이프 버전 알림</string>
     <string name="download_to_sdcard_error_title">외부 저장소 없음</string>
     <string name="download_to_sdcard_error_message">다운로드할 SD 카드를 찾을 수 없습니다. 다운로드 폴더 경로를 초기화 하시겠습니까\?</string>
     <string name="one_item_deleted">1개의 항목이 삭제되었습니다.</string>
