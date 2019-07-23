@@ -424,7 +424,7 @@
     <string name="playback_step">단계</string>
     <string name="playback_reset">초기화</string>
     <string name="saved_tabs_invalid_json">저장된 탭을 읽는 중 오류가 발생하여 기본 탭을 사용합니다</string>
-    <string name="restore_defaults">기본값 복원</string>
+    <string name="restore_defaults">초기화</string>
     <string name="restore_defaults_confirmation">기본값을 복원할까요\?</string>
     <string name="subscribers_count_not_available">구독자 숫자가 없습니다</string>
     <string name="main_page_content_summary">메인 화면에 표시할 탭</string>
