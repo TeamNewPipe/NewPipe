@@ -9,7 +9,10 @@ import android.support.v4.app.Fragment;
 import com.grack.nanojson.JsonObject;
 import com.grack.nanojson.JsonSink;
 
+import org.jsoup.helper.StringUtil;
+import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.fragments.BlankFragment;
 import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
@@ -19,6 +22,7 @@ import org.schabi.newpipe.local.feed.FeedFragment;
 import org.schabi.newpipe.local.history.StatisticsPlaylistFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionFragment;
 import org.schabi.newpipe.util.KioskTranslator;
+import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 public abstract class Tab {
@@ -111,6 +115,12 @@ public abstract class Tab {
                     return new KioskTab(jsonObject);
                 case CHANNEL:
                     return new ChannelTab(jsonObject);
+                case DEFAULT_KIOSK:
+                    DefaultKioskTab tab = new DefaultKioskTab();
+                    if(!StringUtil.isBlank(tab.getKioskId())){
+                        return tab;
+                    }
+                    return null;
             }
         }
 
@@ -128,7 +138,8 @@ public abstract class Tab {
         BOOKMARKS(new BookmarksTab()),
         HISTORY(new HistoryTab()),
         KIOSK(new KioskTab()),
-        CHANNEL(new ChannelTab());
+        CHANNEL(new ChannelTab()),
+        DEFAULT_KIOSK(new DefaultKioskTab());
 
         private Tab tab;
 
@@ -411,6 +422,57 @@ public abstract class Tab {
 
         public String getChannelName() {
             return channelName;
+        }
+    }
+
+    public static class DefaultKioskTab extends Tab {
+        public static final int ID = 7;
+
+        private int kioskServiceId;
+        private String kioskId;
+
+        protected DefaultKioskTab() {
+            initKiosk();
+        }
+
+        public void initKiosk() {
+            this.kioskServiceId = ServiceHelper.getSelectedServiceId(App.getApp());
+            try {
+                this.kioskId = NewPipe.getService(this.kioskServiceId).getKioskList().getDefaultKioskId();
+            } catch (ExtractionException e) {
+                this.kioskId = "";
+            }
+        }
+
+        @Override
+        public int getTabId() {
+            return ID;
+        }
+
+        @Override
+        public String getTabName(Context context) {
+            return KioskTranslator.getTranslatedKioskName(kioskId, context);
+        }
+
+        @DrawableRes
+        @Override
+        public int getTabIconRes(Context context) {
+            final int kioskIcon = KioskTranslator.getKioskIcons(kioskId, context);
+
+            if (kioskIcon <= 0) {
+                throw new IllegalStateException("Kiosk ID is not valid: \"" + kioskId + "\"");
+            }
+
+            return kioskIcon;
+        }
+
+        @Override
+        public KioskFragment getFragment() throws ExtractionException {
+            return KioskFragment.getInstance(kioskServiceId, kioskId);
+        }
+
+        public String getKioskId() {
+            return kioskId;
         }
     }
 }
