@@ -11,9 +11,9 @@ import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import java.util.Collections;
 
 public enum StreamDialogEntry {
-    //////////////////////////////
-    // enum values with actions //
-    //////////////////////////////
+    //////////////////////////////////////
+    // enum values with DEFAULT actions //
+    //////////////////////////////////////
 
     enqueue_on_background(R.string.enqueue_on_background, (fragment, item) ->
             NavigationHelper.enqueueOnBackgroundPlayer(fragment.getContext(), new SinglePlayQueue(item), false)),
@@ -50,7 +50,8 @@ public enum StreamDialogEntry {
     }
 
     private final int resource;
-    private StreamDialogEntryAction action;
+    private final StreamDialogEntryAction action;
+    private StreamDialogEntryAction customAction;
 
     private static StreamDialogEntry[] enabledEntries;
 
@@ -62,10 +63,14 @@ public enum StreamDialogEntry {
     StreamDialogEntry(final int resource, StreamDialogEntryAction action) {
         this.resource = resource;
         this.action = action;
+        this.customAction = null;
     }
 
-    public void setAction(StreamDialogEntryAction action) {
-        this.action = action;
+    /**
+     * Can be used after {@link #setEnabledEntries(StreamDialogEntry...)} has been called
+     */
+    public void setCustomAction(StreamDialogEntryAction action) {
+        this.customAction = action;
     }
 
 
@@ -73,7 +78,15 @@ public enum StreamDialogEntry {
     // static methods that act on enabled entries //
     ////////////////////////////////////////////////
 
+    /**
+     * To be called before using {@link #setCustomAction(StreamDialogEntryAction)}
+     */
     public static void setEnabledEntries(StreamDialogEntry... entries) {
+        // cleanup from last time StreamDialogEntry was used
+        for (StreamDialogEntry streamDialogEntry : values()) {
+            streamDialogEntry.customAction = null;
+        }
+
         enabledEntries = entries;
     }
 
@@ -87,6 +100,10 @@ public enum StreamDialogEntry {
     }
 
     public static void clickOn(int which, Fragment fragment, StreamInfoItem infoItem) {
-        enabledEntries[which].action.onClick(fragment, infoItem);
+        if (enabledEntries[which].customAction == null) {
+            enabledEntries[which].action.onClick(fragment, infoItem);
+        } else {
+            enabledEntries[which].customAction.onClick(fragment, infoItem);
+        }
     }
 }

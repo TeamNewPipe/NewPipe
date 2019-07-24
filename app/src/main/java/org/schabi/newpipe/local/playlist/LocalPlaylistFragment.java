@@ -2,7 +2,6 @@ package org.schabi.newpipe.local.playlist;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
@@ -29,14 +28,12 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.local.BaseLocalListFragment;
 import org.schabi.newpipe.info_list.InfoItemDialog;
-import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
-import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.StreamDialogEntry;
 
 import java.util.ArrayList;
@@ -540,9 +537,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     StreamDialogEntry.share);
         }
 
-        StreamDialogEntry.set_as_playlist_thumbnail.setAction(
+        StreamDialogEntry.set_as_playlist_thumbnail.setCustomAction(
                 (fragment, infoItemDuplicate) -> changeThumbnailUrl(item.thumbnailUrl));
-        StreamDialogEntry.delete.setAction(
+        StreamDialogEntry.delete.setCustomAction(
                 (fragment, infoItemDuplicate) -> deleteItem(item));
 
         new InfoItemDialog(activity, infoItem, StreamDialogEntry.getCommands(context), (dialog, which) ->
