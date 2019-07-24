@@ -50,7 +50,7 @@ public enum StreamDialogEntry {
     }
 
     private final int resource;
-    private final StreamDialogEntryAction action;
+    private final StreamDialogEntryAction defaultAction;
     private StreamDialogEntryAction customAction;
 
     private static StreamDialogEntry[] enabledEntries;
@@ -60,9 +60,9 @@ public enum StreamDialogEntry {
     // non-static methods to initialize and edit entries //
     ///////////////////////////////////////////////////////
 
-    StreamDialogEntry(final int resource, StreamDialogEntryAction action) {
+    StreamDialogEntry(final int resource, StreamDialogEntryAction defaultAction) {
         this.resource = resource;
-        this.action = action;
+        this.defaultAction = defaultAction;
         this.customAction = null;
     }
 
@@ -101,7 +101,7 @@ public enum StreamDialogEntry {
 
     public static void clickOn(int which, Fragment fragment, StreamInfoItem infoItem) {
         if (enabledEntries[which].customAction == null) {
-            enabledEntries[which].action.onClick(fragment, infoItem);
+            enabledEntries[which].defaultAction.onClick(fragment, infoItem);
         } else {
             enabledEntries[which].customAction.onClick(fragment, infoItem);
         }
