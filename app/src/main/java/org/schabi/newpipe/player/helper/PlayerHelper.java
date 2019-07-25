@@ -14,7 +14,6 @@ import com.google.android.exoplayer2.text.CaptionStyleCompat;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.TrackSelection;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
-import com.google.android.exoplayer2.upstream.BandwidthMeter;
 import com.google.android.exoplayer2.util.MimeTypes;
 
 import org.schabi.newpipe.R;
@@ -70,10 +69,10 @@ public class PlayerHelper {
     ////////////////////////////////////////////////////////////////////////////
 
     public static String getTimeString(int milliSeconds) {
-        long seconds = (milliSeconds % 60000L) / 1000L;
-        long minutes = (milliSeconds % 3600000L) / 60000L;
-        long hours = (milliSeconds % 86400000L) / 3600000L;
-        long days = (milliSeconds % (86400000L * 7L)) / 86400000L;
+        int seconds = (milliSeconds % 60000) / 1000;
+        int minutes = (milliSeconds % 3600000) / 60000;
+        int hours = (milliSeconds % 86400000) / 3600000;
+        int days = (milliSeconds % (86400000 * 7)) / 86400000;
 
         stringBuilder.setLength(0);
         return days > 0 ? stringFormatter.format("%d:%02d:%02d:%02d", days, hours, minutes, seconds).toString()
@@ -244,9 +243,8 @@ public class PlayerHelper {
         return 60000;
     }
 
-    public static TrackSelection.Factory getQualitySelector(@NonNull final Context context,
-                                                            @NonNull final BandwidthMeter meter) {
-        return new AdaptiveTrackSelection.Factory(meter,
+    public static TrackSelection.Factory getQualitySelector(@NonNull final Context context) {
+        return new AdaptiveTrackSelection.Factory(
                 /*bufferDurationRequiredForQualityIncrease=*/1000,
                 AdaptiveTrackSelection.DEFAULT_MAX_DURATION_FOR_QUALITY_DECREASE_MS,
                 AdaptiveTrackSelection.DEFAULT_MIN_DURATION_TO_RETAIN_AFTER_DISCARD_MS,

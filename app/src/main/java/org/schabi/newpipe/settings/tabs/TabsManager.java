@@ -44,7 +44,7 @@ public class TabsManager {
     }
 
     public List<Tab> getDefaultTabs() {
-        return TabsJsonHelper.FALLBACK_INITIAL_TABS_LIST;
+        return TabsJsonHelper.getDefaultTabs();
     }
 
     /*//////////////////////////////////////////////////////////////////////////

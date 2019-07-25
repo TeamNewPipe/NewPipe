@@ -7,6 +7,18 @@
         android:title="@string/grid"
         app:showAsAction="ifRoom" />
 
+    <item android:id="@+id/start_downloads"
+        android:visible="false"
+        android:icon="?attr/play"
+        android:title="@string/start_downloads"
+        app:showAsAction="ifRoom" />
+
+    <item android:id="@+id/pause_downloads"
+        android:visible="false"
+        android:icon="?attr/pause"
+        android:title="@string/pause_downloads"
+        app:showAsAction="ifRoom" />
+
     <item android:id="@+id/clear_list"
         android:visible="false"
         android:icon="?attr/ic_delete"

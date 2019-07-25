@@ -62,7 +62,6 @@
     <string name="youtube_signature_decryption_error">Ni mogoče odšifrirati podpisa naslova URL videa</string>
     <string name="parsing_error">Ni mogoče razčleniti spletišča.</string>
     <string name="content_not_available">Vsebina ni na voljo.</string>
-    <string name="blocked_by_gema">Blokirano zaradi pripomb GEMA.</string>
 
     <string name="could_not_setup_download_menu">Ni mogoče nastaviti menija za prejem datotek.</string>
 
@@ -153,8 +152,6 @@ odpiranje v pojavnem načinu</string>
     <string name="popup_playing_toast">Predvajanje v pojavnem načinu</string>
     <string name="disabled">Onemogočeno</string>
 
-    <string name="use_old_player_title">Uporabi star predvajalnik</string>
-    <string name="use_old_player_summary">Zastarela različica predvajalnika Mediaframework</string>
     <string name="default_video_format_title">Prednostni zapis video datoteke</string>
     <string name="default_popup_resolution_title">Privzeta ločljivost pojavnega okna</string>
     <string name="show_higher_resolutions_title">Pokaži večje ločljivosti</string>

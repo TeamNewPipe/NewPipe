@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="view_count_text">%1$s pozretí</string>
     <string name="upload_date_text">Zverejnené %1$s</string>
@@ -16,14 +16,11 @@
     <string name="screen_rotation">otočenie</string>
     <string name="use_external_video_player_title">Použiť externý prehrávač videa</string>
     <string name="use_external_audio_player_title">Použiť externý prehrávač zvuku</string>
-
     <string name="download_path_title">Prevzaté video ukladať do</string>
     <string name="download_path_summary">Cesta kam sa budú ukladať prevzaté videá</string>
     <string name="download_path_dialog_title">Vložte cestu kam sa budú ukladať videá</string>
-
     <string name="download_path_audio_title">Prevzaté audio ukladať do</string>
     <string name="download_path_audio_dialog_title">Vložte cestu kam sa budú ukladať zvukové súbory</string>
-
     <string name="download_path_audio_summary">Cesta kam sa bude ukladať prevzaté audio</string>
     <string name="default_resolution_title">Štandardné rozlíšenie</string>
     <string name="play_with_kodi_title">Prehrať cez Kodi</string>
@@ -35,10 +32,9 @@
     <string name="theme_title">Téma</string>
     <string name="dark_theme_title">Tmavá</string>
     <string name="light_theme_title">Svetlá</string>
-
     <string name="download_dialog_title">Prevziať</string>
-    <string name="next_video_title">Ďalšie video</string>
-    <string name="show_next_and_similar_title">Ukázať \'ďalšie\' a \'podobné\' videá</string>
+    <string name="next_video_title">Ďalšie</string>
+    <string name="show_next_and_similar_title">Ukázať \'Ďalšie\' a \'Podobné\' videá</string>
     <string name="url_not_supported_toast">URL nie je podporovaná</string>
     <string name="content_language_title">Preferovaný jazyk obsahu</string>
     <string name="settings_category_video_audio_title">Video &amp; Zvuk</string>
@@ -52,7 +48,6 @@
     <string name="youtube_signature_decryption_error">Nepodarilo sa dekódovať URL videa</string>
     <string name="parsing_error">Nemožno analyzovať webovú stránku</string>
     <string name="content_not_available">Obsah nie je dostupný</string>
-    <string name="blocked_by_gema">Obsah blokuje GEMA</string>
 
     <string name="list_thumbnail_view_description">Náhľad videa</string>
     <string name="detail_thumbnail_view_description">Náhľad videa</string>
@@ -61,7 +56,6 @@
     <string name="detail_dislikes_img_view_description">Dislajky</string>
     <string name="use_tor_title">Použiť Tor</string>
     <string name="use_tor_summary">(Experimentálne) Vyžadovať preberanie cez Tor pre väčšie súkromie (streamovanie videa momentálne nie je podporované).</string>
-
     <string name="err_dir_create">Nemožno vytvoriť adresár na preberanie \'%1$s\'</string>
     <string name="info_dir_created">Adresár na preberanie bol vytvorený \'%1$s\'</string>
     <string name="main_bg_subtitle">Začnite vyhľadaním obsahu</string>
@@ -71,7 +65,6 @@
     <string name="show_age_restricted_content_title">Zobraziť vekovo obmedzený obsah</string>
     <string name="video_is_age_restricted">Toto video je vekovo obmedzené. Povoľte zobrazenie obsahu v nastavení.</string>
     <string name="duration_live">naživo</string>
-
     <string name="light_parsing_error">Nemožno kompletne zanalyzovať web</string>
     <string name="could_not_setup_download_menu">Nemožno nastaviť menu preberania</string>
     <string name="live_streams_not_supported">Toto je ŽIVÉ VYSIELANIE, ktoré ešte nie je podporované.</string>
@@ -84,11 +77,8 @@
     <string name="what_happened_headline">Čo sa stalo:</string>
     <string name="your_comment">Váš komentár (v Angličtine):</string>
     <string name="error_details_headline">Detaily:</string>
-
-
     <string name="report_error">Nahlásiť chybu</string>
     <string name="user_report">Hlásenie používateľa</string>
-
     <string name="video">Video</string>
     <string name="audio">Zvuk</string>
     <string name="retry">Znova</string>
@@ -98,11 +88,8 @@
     <string name="view">Prehrať</string>
     <string name="delete">Zmazať</string>
     <string name="checksum">Kontrolný súčet</string>
-
     <string name="add">Nová misia</string>
     <string name="finish">OK</string>
-
-
     <string name="msg_name">Názov súboru</string>
     <string name="msg_threads">Vlákna</string>
     <string name="msg_error">Chyba</string>
@@ -114,99 +101,70 @@
     <string name="msg_wait">Čakajte prosím…</string>
     <string name="msg_copied">Skopírované do schránky</string>
     <string name="no_available_dir">Vyberte si dostupný adresár na preberanie</string>
-
     <string name="downloads">Prevzaté</string>
     <string name="downloads_title">Prevzaté</string>
     <string name="error_report_title">Hlásenie o chybe</string>
-
     <string name="could_not_load_image">Nemožno načítať obrázok</string>
     <string name="app_ui_crash">Aplikácia/UP zlyhalo</string>
     <string name="info_labels">Čo:\\nPožiadavka:\\nJazyk obsahu:\\nSlužba:\\nČas v GMT:\\nBalík:\\nVerzia:\\nVerzia OS:</string>
-
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">Výzva reCAPTCHA</string>
-
     <string name="black_theme_title">Čierna</string>
-
     <string name="all">Všetko</string>
     <string name="channel">Kanál</string>
-
-
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
-
     <string name="recaptcha_request_toast">Požiadavka reCAPTCHA</string>
-
     <string name="yes">Áno</string>
     <string name="later">Neskôr</string>
-
-
     <string name="open_in_popup_mode">Spustiť v okne</string>
     <string name="msg_popup_permission">Tieto práva sú potrebné pre
 \nprehrávanie v mini okne</string>
-
     <string name="popup_mode_share_menu_title">NewPipe v okne</string>
-
     <string name="default_video_format_title">Preferovaný formát videa</string>
     <string name="popup_playing_toast">Prehrávanie v mini okne</string>
     <string name="disabled">Vypnuté</string>
-
-    <string name="use_old_player_title">Použiť starší prehrávač</string>
-    <string name="use_old_player_summary">Starý zabudovaný prehrávač Mediaframework</string>
-
     <string name="default_popup_resolution_title">Predvolená veľkosť mini okna</string>
     <string name="show_higher_resolutions_title">Zobraziť vyššie rozlíšenie</string>
     <string name="show_higher_resolutions_summary">Len niektoré zariadenia podporujú videá 2K/4K</string>
     <string name="controls_background_title">Na pozadí</string>
     <string name="controls_popup_title">V okne</string>
-
     <string name="filter">Filter</string>
     <string name="refresh">Obnoviť</string>
     <string name="clear">Vyčistiť</string>
-
-<string name="use_external_video_player_summary">Po zapnutí tejto funkcie niektoré formáty NEBUDÚ obsahovať zvukovú stopu</string>
+    <string name="use_external_video_player_summary">Odoberie audio pri NIEKTORÝCH rozlíšeniach</string>
     <string name="popup_remember_size_pos_title">Zapamätať si veľkosť a pozíciu mini okna</string>
     <string name="popup_remember_size_pos_summary">Zapamätať si posledné nastavenie veľkosti a pozície mini okna</string>
     <string name="player_gesture_controls_title">Ovládanie prehrávača gestami</string>
     <string name="player_gesture_controls_summary">Používať gestá pre kontrolu jasu a hlasitosti prehrávača</string>
     <string name="show_search_suggestions_title">Hľadať návrhy</string>
     <string name="show_search_suggestions_summary">Zobrazovať návrhy pri vyhľadávaní</string>
-
     <string name="settings_category_popup_title">Mini okno</string>
     <string name="popup_resizing_indicator_title">Zmena veľkosti</string>
     <string name="best_resolution">Najlepšie rozlíšenie</string>
-
     <string name="subscribe_button_title">Odber</string>
     <string name="subscribed_button_title">Odoberané</string>
     <string name="channel_unsubscribed">Odber zrušený</string>
     <string name="subscription_change_failed">Nemožno zmeniť odber</string>
     <string name="subscription_update_failed">Nemožno aktualizovať odber</string>
-
     <string name="tab_main">Hlavné</string>
     <string name="tab_subscriptions">Odbery</string>
-
     <string name="fragment_whats_new">Čo je nové</string>
-
     <string name="enable_search_history_title">Hľadať v histórií</string>
     <string name="enable_search_history_summary">Hľadané výrazy ukladať lokálne</string>
     <string name="enable_watch_history_title">História a vyrovnávacia pamäť</string>
     <string name="enable_watch_history_summary">Ukladať históriu pozretých videí</string>
     <string name="resume_on_audio_focus_gain_title">Pokračovať po prepnutí zobrazenia</string>
     <string name="resume_on_audio_focus_gain_summary">Pokračovať po prerušeniach (napr. hlasový hovor)</string>
-
-
     <string name="notification_channel_name">NewPipe notifikácie</string>
     <string name="notification_channel_description">Notifikácie pre NewPipe na pozadí a v mini okne</string>
-
     <string name="settings_category_downloads_title">Preberanie</string>
     <string name="settings_file_charset_title">Povolené znaky v názvoch súborov</string>
     <string name="settings_file_replacement_character_summary">Neplatné znaky budú nahradené týmito znakmi</string>
     <string name="settings_file_replacement_character_title">Náhradný znak</string>
-
     <string name="charset_letters_and_digits">Písmená a číslice</string>
     <string name="charset_most_special_characters">Väčšina špeciálnych znakov</string>
-
     <string name="title_activity_about">O NewPipe</string>
     <string name="action_settings">Nastavenia</string>
     <string name="action_about">O</string>
@@ -223,7 +181,6 @@
     <string name="contribution_encouragement">Či už máte nápady, prekladáte, spravíte zmenu dizajnu, čistenie kódu alebo skutočné ťažké zmeny v kóde, pomoc je vždy vítaná. Čím viac, tým lepšie!</string>
     <string name="read_full_license">Prečítať licencie</string>
     <string name="contribution_title">Zapojiť sa</string>
-
     <string name="title_activity_history">História</string>
     <string name="title_history_search">Vyhľadávané</string>
     <string name="title_history_view">Pozreté</string>
@@ -231,46 +188,37 @@
     <string name="action_history">História</string>
     <string name="history_empty">História je prázdna</string>
     <string name="history_cleared">História bola vyčistená</string>
-
-<string name="settings_category_player_title">Prehrávač</string>
+    <string name="settings_category_player_title">Prehrávač</string>
     <string name="settings_category_player_behavior_title">Správanie</string>
     <string name="settings_category_history_title">História a vyrovnávacia pamäť</string>
     <string name="playlist">Zoznam</string>
     <string name="undo">Vrátiť</string>
-
     <string name="search_no_results">Žiadne výsledky</string>
     <string name="empty_subscription_feed_subtitle">Zatiaľ je tu ticho ako v hrobe</string>
-
     <string name="no_subscribers">Žiadni odberatelia</string>
     <plurals name="subscribers">
-	<item quantity="one">%s odberateľ</item>
-	<item quantity="few">%s odberatelia</item>
-	<item quantity="other">%s odberateľov</item>
-</plurals>
-
+        <item quantity="one">%s odberateľ</item>
+        <item quantity="few">%s odberatelia</item>
+        <item quantity="other">%s odberateľov</item>
+    </plurals>
     <string name="no_views">Žiadne pozretia</string>
     <plurals name="views">
-	<item quantity="one">%s pozriete</item>
-	<item quantity="few">%s pozretia</item>
-	<item quantity="other">%s pozretí</item>
-</plurals>
-
+        <item quantity="one">%s pozriete</item>
+        <item quantity="few">%s pozretia</item>
+        <item quantity="other">%s pozretí</item>
+    </plurals>
     <string name="no_videos">Žiadne videá</string>
     <plurals name="videos">
-	<item quantity="one">%s video</item>
-	<item quantity="few">%s videá</item>
-	<item quantity="other">%s videí</item>
-</plurals>
-
+        <item quantity="one">%s video</item>
+        <item quantity="few">%s videá</item>
+        <item quantity="other">%s videí</item>
+    </plurals>
     <string name="item_deleted">Položka bola odstránená</string>
-<string name="no_player_found_toast">Nebol nájdený žiadny prehrávač pre stream (môžete si nainštalovať napr. VLC)</string>
-    <string name="controls_download_desc">Stiahnuť súbor stream.</string>
+    <string name="no_player_found_toast">Nebol nájdený žiadny prehrávač pre stream (môžete si nainštalovať napr. VLC)</string>
+    <string name="controls_download_desc">Stiahnuť súbor stream</string>
     <string name="show_info">Zobraziť info</string>
-
-    <string name="tab_bookmarks">Záložky</string>
-
+    <string name="tab_bookmarks">Uložené zoznamy</string>
     <string name="controls_add_to_playlist_title">Pridať do</string>
-
     <string name="show_hold_to_append_title">Zobrazovať tip \"Pridať podržaním\"</string>
     <string name="show_hold_to_append_summary">Zobraziť tip pre stlačenie tlačidiel \"Pozadie\" alebo \"V okne\" na stránke videa</string>
     <string name="default_content_country_title">Predvolený obsah pre krajinu</string>
@@ -280,14 +228,11 @@
     <string name="play_all">Prehrať všetko</string>
     <string name="always">Vždy</string>
     <string name="just_once">Iba raz</string>
-
     <string name="unknown_content">[Neznámy]</string>
-
     <string name="toggle_orientation">Prehodiť orientáciu</string>
     <string name="switch_to_background">Prepnúť na pozadie</string>
     <string name="switch_to_popup">Prepnúť do mini okna</string>
     <string name="switch_to_main">Prepnúť na Video</string>
-
     <string name="import_data_title">Importovať databázu</string>
     <string name="export_data_title">Exportovať databázu</string>
     <string name="import_data_summary">Prepíše aktuálnu históriu pozretí a odberov</string>
@@ -299,15 +244,12 @@
     <string name="invalid_url_toast">Neplatná URL adresa</string>
     <string name="video_streams_empty">Neboli nájdené žiadne video streamy</string>
     <string name="audio_streams_empty">Neboli nájdené žiadne audio streamy</string>
-
     <string name="detail_drag_description">Potiahnutím zmeniť poradie</string>
-
     <string name="create">Vytvoriť</string>
     <string name="delete_one">Odstrániť jeden</string>
     <string name="delete_all">Odstrániť všetko</string>
     <string name="dismiss">Zrušiť</string>
     <string name="rename">Premenovať</string>
-
     <string name="donation_title">Prispieť</string>
     <string name="donation_encouragement">Aplikácia NewPipe je vyvíjaná dobrovoľníkmi vo voľnom čase. Ak sa vám aplikácia páči, odmeňte vývojárov aby mohli NewPipe naďalej vylepšovať. Určite ich poteší napríklad šálka dobrej kávy.</string>
     <string name="give_back">Daruj</string>
@@ -318,7 +260,6 @@
     <string name="delete_all_history_prompt">Ste si istý, že chcete vymazať všetky položky z histórie?</string>
     <string name="title_last_played">Naposledy prehrávané</string>
     <string name="title_most_played">Najprehrávanejšie</string>
-
     <string name="main_page_content">Obsah na hlavnej stránke</string>
     <string name="blank_page_summary">Prázdna strana</string>
     <string name="kiosk_page_summary">Kiosk</string>
@@ -333,7 +274,6 @@
     <string name="no_valid_zip_file">Neplatný ZIP súbor</string>
     <string name="could_not_import_all_files">Upozornenie: Nemožno importovať všetky súbory.</string>
     <string name="override_current_data">Toto prepíše vaše aktuálne nastavenie.</string>
-
     <string name="kiosk">Kiosky</string>
     <string name="trending">Trendy</string>
     <string name="top_50">Top 50</string>
@@ -349,45 +289,36 @@
     <string name="start_here_on_main">Video odtiaľto</string>
     <string name="start_here_on_background">Zvuk odtiaľto</string>
     <string name="start_here_on_popup">Mini okno odtiaľto</string>
-
     <string name="drawer_open">Otvoriť zásuvku</string>
     <string name="drawer_close">Zavrieť zásuvku</string>
-
     <string name="video_player">Prehrávač videa</string>
     <string name="background_player">Zvuk na pozadí</string>
     <string name="popup_player">Mini okno</string>
     <string name="always_ask_open_action">Vždy sa opýtať</string>
-    
     <string name="preferred_player_fetcher_notification_title">Získavajú sa informácie…</string>
     <string name="preferred_player_fetcher_notification_message">Načítanie požadované obsahu</string>
-
     <string name="create_playlist">Vytvoriť nový zoznam skladieb</string>
     <string name="delete_playlist">Vymazať zoznam skladieb</string>
     <string name="rename_playlist">Premenovať zoznam skladieb</string>
     <string name="playlist_name_input">Názov</string>
     <string name="append_playlist">Pridať do zoznamu skladieb</string>
     <string name="set_as_playlist_thumbnail">Nastaviť ako miniatúru zoznamu skladieb</string>
-
     <string name="bookmark_playlist">Záložka zoznamu skladieb</string>
     <string name="unbookmark_playlist">Odstrániť Záložku</string>
-
     <string name="delete_playlist_prompt">Chcete odstrániť tento zoznam skladieb?</string>
     <string name="playlist_creation_success">Zoznam skladieb vytvorený</string>
     <string name="playlist_add_stream_success">Pridané do zoznamu skladieb</string>
     <string name="playlist_thumbnail_change_success">Miniatúra zoznamu skladieb bola zmenená</string>
     <string name="playlist_delete_failure">Nemožno odstrániť zoznam skladieb</string>
-
     <string name="caption_none">Bez titulkov</string>
-
     <string name="resize_fit">Prispôsobiť</string>
     <string name="resize_fill">Vyplniť</string>
     <string name="resize_zoom">Zväčšiť</string>
-
     <string name="caption_font_size_settings_title">Veľkosť písma titulkov</string>
     <string name="smaller_caption_font_size">Menšie Písmo</string>
     <string name="normal_caption_font_size">Normálne Písmo</string>
     <string name="larger_caption_font_size">Väčšie Písmo</string>
-<string name="use_inexact_seek_title">Používať rýchly posun</string>
+    <string name="use_inexact_seek_title">Používať rýchly posun</string>
     <string name="use_inexact_seek_summary">Rýchly posun umožňuje prejsť na novú pozíciu rýchlejšie, ale s menšou presnosťou</string>
     <string name="download_thumbnail_title">Načítanie miniatúr</string>
     <string name="download_thumbnail_summary">Vypnutím tejto funkcie sa nebudú vytvárať miniatúry a tým sa ušetrí miesto a pamäť. Zmena nastavení spôsobuje vyčistenie vyrovnávacej pamäte</string>
@@ -399,33 +330,23 @@
     <string name="auto_queue_summary">Automaticky zaradí súvisiaci stream, keď prehrávanie začne na poslednom streame v neopakujúcich sa zoznamoch prehrávania</string>
     <string name="settings_category_debug_title">Ladenie</string>
     <string name="file">Súbor</string>
-
     <string name="invalid_directory">Neplatný adresár</string>
     <string name="invalid_source">Neplatný zdroj súboru/obsahu</string>
     <string name="invalid_file">Súbor buď neexistuje alebo nemáte dostatočné práva na je čítanie či zápis</string>
     <string name="file_name_empty_error">Názov súboru nesme byť prázdny</string>
     <string name="error_occurred_detail">Nastala chyba: %1$s</string>
     <string name="no_streams_available_download">Žiadne streamy nie sú k dispozícii na prevzatie</string>
-
     <string name="toast_no_player">Prehrávač pre daný typ súboru nebol nájdený</string>
-
     <string name="drawer_header_action_paceholder_text">Čoskoro sa tu niečo objaví ;D</string>
-
-
     <string name="preferred_open_action_settings_title">Preferovaná akcia \'otvoriť\'</string>
     <string name="preferred_open_action_settings_summary">Predvolená akcia pri otváraní obsahu — %s</string>
-
     <string name="caption_auto_generated">Automaticky vygenerované</string>
-
     <string name="caption_setting_title">Titulky</string>
     <string name="caption_setting_description">Upravte mierku textu titulkov a štýly pozadia. Vyžaduje reštart prehrávača</string>
-
     <string name="enable_leak_canary_title">Povoliť službu LeakCanary</string>
     <string name="enable_leak_canary_summary">Monitorovanie pretečenia pamäte môže spôsobiť, že aplikácia nebude reagovať</string>
-
     <string name="enable_disposed_exceptions_title">Nahlásiť mimo-cyklické chyby</string>
     <string name="enable_disposed_exceptions_summary">Vynútiť hlásenie výnimiek nedoručiteľných Rx mimo časového cyklu fragmentov alebo aktivity po zneškodnení</string>
-
     <string name="import_export_title">Import/Export
 \n</string>
     <string name="import_title">Import
@@ -433,16 +354,12 @@
     <string name="import_from">Importovať z
 \n</string>
     <string name="export_to">Exportovať do</string>
-
     <string name="import_ongoing">Importovanie…</string>
     <string name="export_ongoing">Exportovanie…</string>
-
     <string name="import_file_title">Import súboru</string>
     <string name="previous_export">Predchádzajúci export</string>
-
     <string name="subscriptions_import_unsuccessful">Nemožno importovať odbery</string>
     <string name="subscriptions_export_unsuccessful">Nemožno exportovať odbery</string>
-
     <string name="import_youtube_instructions">Import odberov služby YouTube pomocou exportovaného zoznamu
 \n 
 \n1. Prejdite na túto adresu URL: %1$s 
@@ -456,18 +373,16 @@
 \n3. Po výzve sa prihláste do svojho účtu 
 \n4. Skopírujte adresu URL, na ktorú ste boli presmerovaní. "</string>
     <string name="import_soundcloud_instructions_hint">vašeID, soundcloud.com/vašeid</string>
-
     <string name="import_network_expensive_warning">Operácia môže byť náročná na počet prenesených dát.
 \n
 \nChcete pokračovať?</string>
-
     <string name="playback_speed_control">Ovládanie rýchlosti prehrávania</string>
     <string name="playback_tempo">Rýchlosť</string>
     <string name="playback_pitch">Výška</string>
     <string name="unhook_checkbox">"Spomalenie  (môže spôsobovať skreslenie)"</string>
     <string name="playback_nightcore">Nightcore režim</string>
     <string name="playback_default">Predvolené</string>
-<string name="clear_views_history_title">Vymazať históriu pozretí</string>
+    <string name="clear_views_history_title">Vymazať históriu pozretí</string>
     <string name="clear_views_history_summary">Odstráni históriu prehrávaných streamov</string>
     <string name="delete_view_history_alert">Vymazať celú históriu pozretí.</string>
     <string name="view_history_deleted">História pozretí bola vymazaná.</string>
@@ -476,18 +391,15 @@
     <string name="delete_search_history_alert">Vymazať celú históriu vyhľadávania.</string>
     <string name="search_history_deleted">História vyhľadávaní bola vymazaná.</string>
     <string name="one_item_deleted">1 položka bola vymazaná.</string>
-
     <string name="app_license">"NewPipe je slobodný softvér pod licenciou copyleft. Môžete ho používať, študovať a vylepšovať ako len chcete.  Konkrétne ho môžete šíriť a/alebo upravovať pod podmienkami Všeobecnej verejnej licencie GNU, ako ju publikuje Free Software Foundation, buď verzia 3 licencie, alebo (podľa vašej voľby) ktorákoľvek neskoršia verzia."</string>
     <string name="privacy_policy_title">Ochrana osobných údajov v NewPipe</string>
     <string name="privacy_policy_encouragement">NewPipe projekt berie vaše súkromie vážne. Preto aplikácia nezhromažďuje žiadne údaje bez vášho súhlasu.
 \nNewPipe v ochrane súkromia podrobne vysvetľuje, aké údaje budú odoslané a uložené pri hlásení o páde.</string>
     <string name="read_privacy_policy">Prečítajte si pravidlá ochrany osobných údajov</string>
     <string name="import_settings">Chcete zároveň importovať aj nastavenia?</string>
-
     <string name="start_accept_privacy_policy">V súlade s Európskym Všeobecným Nariadením o Ochrane Údajov (GDPR), chceme upriamiť vašu pozornosť na ochranu osobných údajov v NewPipe. Starostlivo si ich prečítajte. Musíte ich prijať pred nahlásením chyby.</string>
     <string name="accept">Prijať</string>
     <string name="decline">Odmietnuť</string>
-
     <string name="limit_data_usage_none_description">Bez limitu</string>
     <string name="limit_mobile_data_usage_title">Limitovať rozlíšenie pri použití mobilných dát</string>
     <string name="channels">Kanály</string>
@@ -497,11 +409,74 @@
     <string name="skip_silence_checkbox">Pretáčať tiché pasáže</string>
     <string name="playback_step">Krok</string>
     <string name="playback_reset">Vynulovať</string>
-
     <string name="minimize_on_exit_title">Minimalizovať pri prepnutí aplikácie</string>
     <string name="minimize_on_exit_summary">Akcia pri prepnutí na inú aplikáciu z hlavného prehrávača videa — %s</string>
     <string name="minimize_on_exit_none_description">Nič</string>
     <string name="minimize_on_exit_background_description">Prehrávať na pozadí</string>
     <string name="minimize_on_exit_popup_description">Prehrávať v okne</string>
-
+    <string name="unsubscribe">Zrušiť odber</string>
+    <string name="tab_new">Nový panel</string>
+    <string name="tab_choose">Zvoliť panel</string>
+    <string name="volume_gesture_control_title">Ovládanie hlasitosti gestom</string>
+    <string name="volume_gesture_control_summary">Používať gestá pre ovládanie hlasitosti</string>
+    <string name="brightness_gesture_control_title">Ovládanie jasu gestom</string>
+    <string name="brightness_gesture_control_summary">Použivať gestá pre ovládanie jasu</string>
+    <string name="settings_category_updates_title">Aktualizácie</string>
+    <string name="events">Udalosti</string>
+    <string name="file_deleted">Súbor vymazaný</string>
+    <string name="app_update_notification_channel_name">Oznámenie o aktualizácii aplikácie</string>
+    <string name="app_update_notification_channel_description">Upozornenia na novú verziu NewPipe</string>
+    <string name="download_to_sdcard_error_title">Externé úložisko je nedostupné</string>
+    <string name="download_to_sdcard_error_message">Sťahovanie na externú SD kartu ešte nie je možné. Obnoviť umiestnenie priečinka na prevzatie\?</string>
+    <string name="saved_tabs_invalid_json">Chyba pri načítavaní uložených kariet, použijú sa predvolené</string>
+    <string name="restore_defaults">Obnoviť predvolené nastavenia</string>
+    <string name="restore_defaults_confirmation">Chcete obnoviť predvolené hodnoty\?</string>
+    <string name="subscribers_count_not_available">Počet účastníkov nie je k dispozícii</string>
+    <string name="main_page_content_summary">Karty, ktoré sa zobrazujú na hlavnej stránke</string>
+    <string name="selection">Výber</string>
+    <string name="conferences">Konferencie</string>
+    <string name="updates_setting_title">Aktualizácie</string>
+    <string name="updates_setting_description">Zobrazí sa výzva na aktualizáciu aplikácie, keď je k dispozícii nová verzia</string>
+    <string name="list_view_mode">Režim zobrazenia zoznamu</string>
+    <string name="list">Zoznam</string>
+    <string name="grid">Mriežka</string>
+    <string name="auto">Auto</string>
+    <string name="switch_view">Prepnúť zobrazenie</string>
+    <string name="app_update_notification_content_title">Aktualizácia NewPipe je k dispozícii!</string>
+    <string name="app_update_notification_content_text">Ťuknite a stiahnite</string>
+    <string name="missions_header_finished">Ukončené</string>
+    <string name="missions_header_pending">Vo fronte</string>
+    <string name="paused">pozastavené</string>
+    <string name="queued">vo fronte</string>
+    <string name="post_processing">následné spracovanie</string>
+    <string name="enqueue">Fronta</string>
+    <string name="permission_denied">Akcia odmietnutá systémom</string>
+    <string name="download_failed">Sťahovanie zlyhalo</string>
+    <string name="download_finished">Sťahovanie ukončené</string>
+    <string name="download_finished_more">%s sťahovania skončené</string>
+    <string name="generate_unique_name">Vytvoriť jedinečný názov</string>
+    <string name="overwrite">Prepísať</string>
+    <string name="overwrite_unrelated_warning">Súbor s týmto názvom už existuje</string>
+    <string name="overwrite_finished_warning">Stiahnutý súbor s týmto názvom už existuje</string>
+    <string name="download_already_running">Sťahovanie s týmto názvom už prebieha</string>
+    <string name="show_error">Zobraziť chybu</string>
+    <string name="label_code">Kód</string>
+    <string name="error_path_creation">Súbor sa nedá vytvoriť</string>
+    <string name="error_file_creation">Cieľový priečinok nie je možné vytvoriť</string>
+    <string name="error_permission_denied">Povolenie odmietnuté systémom</string>
+    <string name="error_ssl_exception">Bezpečnostné pripojenie zlyhalo</string>
+    <string name="error_unknown_host">Server sa nepodarilo nájsť</string>
+    <string name="error_connect_host">Nepodarilo sa pripojiť k serveru</string>
+    <string name="error_http_no_content">Server neposiela údaje</string>
+    <string name="error_http_unsupported_range">Server neakceptuje preberanie viacerých vlákien, zopakujte s @string/msg_threads = 1</string>
+    <string name="error_http_requested_range_not_satisfiable">Požadovaný rozsah nie je uspokojivý</string>
+    <string name="error_http_not_found">Nenájdené</string>
+    <string name="error_postprocessing_failed">Post-spracovanie zlyhalo</string>
+    <string name="clear_finished_download">Vyčistiť dokončené sťahovania</string>
+    <string name="msg_pending_downloads">Pokračujte v preberaní %s zo súborov na prevzatie</string>
+    <string name="stop">Stop</string>
+    <string name="max_retry_msg">Maximum opakovaní</string>
+    <string name="max_retry_desc">Maximálny počet pokusov pred zrušením stiahnutia</string>
+    <string name="pause_downloads_on_mobile">Pozastaviť pri prechode na mobilné dáta</string>
+    <string name="pause_downloads_on_mobile_desc">Preberania, ktoré nie je možné pozastaviť, budú reštartované</string>
 </resources>

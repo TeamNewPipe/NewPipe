@@ -40,6 +40,7 @@ import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.ArrayList;
@@ -153,22 +154,22 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
             final int index = Math.max(infoListAdapter.getItemsList().indexOf(item), 0);
             switch (i) {
                 case 0:
-                    NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
+                    NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item), false);
                     break;
                 case 1:
-                    NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(item));
+                    NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(item), false);
                     break;
                 case 2:
-                    NavigationHelper.playOnMainPlayer(context, getPlayQueue(index));
+                    NavigationHelper.playOnMainPlayer(context, getPlayQueue(index), true);
                     break;
                 case 3:
-                    NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index));
+                    NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index), true);
                     break;
                 case 4:
-                    NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index));
+                    NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index), true);
                     break;
                 case 5:
-                    shareUrl(item.getName(), item.getUrl());
+                    ShareUtils.shareUrl(requireContext(), item.getName(), item.getUrl());
                     break;
                 default:
                     break;
@@ -230,10 +231,10 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_item_openInBrowser:
-                openUrlInBrowser(url);
+                ShareUtils.openUrlInBrowser(this.getContext(), url);
                 break;
             case R.id.menu_item_share:
-                shareUrl(name, url);
+                ShareUtils.shareUrl(this.getContext(), name, url);
                 break;
             case R.id.menu_item_bookmark:
                 onBookmarkClicked();
@@ -300,11 +301,21 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                 .subscribe(getPlaylistBookmarkSubscriber());
 
         headerPlayAllButton.setOnClickListener(view ->
-                NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));
+                NavigationHelper.playOnMainPlayer(activity, getPlayQueue(), false));
         headerPopupButton.setOnClickListener(view ->
-                NavigationHelper.playOnPopupPlayer(activity, getPlayQueue()));
+                NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(), false));
         headerBackgroundButton.setOnClickListener(view ->
-                NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue()));
+                NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue(), false));
+
+        headerPopupButton.setOnLongClickListener(view -> {
+            NavigationHelper.enqueueOnPopupPlayer(activity, getPlayQueue(), true);
+            return true;
+        });
+
+        headerBackgroundButton.setOnLongClickListener(view -> {
+            NavigationHelper.enqueueOnBackgroundPlayer(activity, getPlayQueue(), true);
+            return true;
+        });
     }
 
     private PlayQueue getPlayQueue() {

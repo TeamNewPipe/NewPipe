@@ -2,16 +2,19 @@ package org.schabi.newpipe;
 
 import android.app.Application;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,6 +48,8 @@ import okhttp3.Response;
  */
 public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
 
+    private static final boolean DEBUG = MainActivity.DEBUG;
+    private static final String TAG = CheckForNewAppVersionTask.class.getSimpleName();
     private static final Application app = App.getApp();
     private static final String GITHUB_APK_SHA1 = "B0:2E:90:7C:1C:D6:FC:57:C3:35:F0:88:D0:8F:50:5F:94:E4:D2:15";
     private static final String newPipeApiUrl = "https://newpipe.schabi.org/api/data.json";
@@ -68,6 +73,8 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
 
     @Override
     protected String doInBackground(Void... voids) {
+        
+        if(isCancelled() || !isConnected()) return null;
 
         // Make a network request to get latest NewPipe data.
         if (client == null) {
@@ -86,9 +93,8 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
             Response response = client.newCall(request).execute();
             return response.body().string();
         } catch (IOException ex) {
-            ErrorActivity.reportError(app, ex, null, null,
-                    ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
-                            "app update API fail", R.string.app_ui_crash));
+            // connectivity problems, do not alarm user and fail silently
+            if (DEBUG) Log.w(TAG, Log.getStackTraceString(ex));
         }
 
         return null;
@@ -113,9 +119,8 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
                 compareAppVersionAndShowNotification(versionName, apkLocationUrl, versionCode);
 
             } catch (JSONException ex) {
-                ErrorActivity.reportError(app, ex, null, null,
-                        ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
-                        "could not parse app update JSON data", R.string.app_ui_crash));
+                // connectivity problems, do not alarm user and fail silently
+                if (DEBUG) Log.w(TAG, Log.getStackTraceString(ex));
             }
         }
     }
@@ -226,5 +231,13 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
     public static boolean isGithubApk() {
 
         return getCertificateSHA1Fingerprint().equals(GITHUB_APK_SHA1);
+    }
+    
+    private boolean isConnected() {
+     
+        ConnectivityManager cm = 
+                (ConnectivityManager) app.getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null
+				&& cm.getActiveNetworkInfo().isConnected();
     }
 }

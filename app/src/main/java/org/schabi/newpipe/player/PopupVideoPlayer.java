@@ -326,6 +326,7 @@ public final class PopupVideoPlayer extends Service {
         isPopupClosing = true;
 
         if (playerImpl != null) {
+            playerImpl.savePlaybackState();
             if (playerImpl.getRootView() != null) {
                 windowManager.removeView(playerImpl.getRootView());
             }
@@ -586,7 +587,8 @@ public final class PopupVideoPlayer extends Service {
                     this.getPlaybackSpeed(),
                     this.getPlaybackPitch(),
                     this.getPlaybackSkipSilence(),
-                    this.getPlaybackQuality()
+                    this.getPlaybackQuality(),
+                    false
             );
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);

@@ -47,7 +47,7 @@ public class DownloadActivity extends AppCompatActivity {
             @Override
             public void onGlobalLayout() {
                 updateFragments();
-                getWindow().getDecorView().getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                getWindow().getDecorView().getViewTreeObserver().removeOnGlobalLayoutListener(this);
             }
         });
     }
@@ -55,7 +55,7 @@ public class DownloadActivity extends AppCompatActivity {
     private void updateFragments() {
         MissionsFragment fragment = new MissionsFragment();
 
-        getFragmentManager().beginTransaction()
+        getSupportFragmentManager().beginTransaction()
                 .replace(R.id.frame, fragment, MISSIONS_FRAGMENT_TAG)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit();

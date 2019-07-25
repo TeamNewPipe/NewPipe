@@ -2,13 +2,17 @@ package us.shandian.giga.get;
 
 import android.util.Log;
 
-import java.io.FileNotFoundException;
+import org.schabi.newpipe.streams.io.SharpStream;
+
+import java.io.IOException;
 import java.io.InputStream;
-import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
 import java.nio.channels.ClosedByInterruptException;
 
+import us.shandian.giga.get.DownloadMission.Block;
+
 import static org.schabi.newpipe.BuildConfig.DEBUG;
+
 
 /**
  * Runnable to download blocks of a file until the file is completely downloaded,
@@ -26,89 +30,85 @@ public class DownloadRunnable extends Thread {
         if (mission == null) throw new NullPointerException("mission is null");
         mMission = mission;
         mId = id;
-        mConn = null;
+    }
+
+    private void releaseBlock(Block block, long remain) {
+        // set the block offset to -1 if it is completed
+        mMission.releaseBlock(block.position, remain < 0 ? -1 : block.done);
     }
 
     @Override
     public void run() {
-        boolean retry = mMission.recovered;
-        long blockPosition = mMission.getBlockPosition(mId);
+        boolean retry = false;
+        Block block = null;
+
         int retryCount = 0;
 
         if (DEBUG) {
-            Log.d(TAG, mId + ":default pos " + blockPosition);
             Log.d(TAG, mId + ":recovered: " + mMission.recovered);
         }
 
-        RandomAccessFile f;
+        SharpStream f;
         InputStream is = null;
 
         try {
-            f = new RandomAccessFile(mMission.getDownloadedFile(), "rw");
-        } catch (FileNotFoundException e) {
+            f = mMission.storage.getStream();
+        } catch (IOException e) {
             mMission.notifyError(e);// this never should happen
             return;
         }
 
-        while (mMission.running && mMission.errCode == DownloadMission.ERROR_NOTHING && blockPosition < mMission.blocks) {
-
-            if (DEBUG && retry) {
-                Log.d(TAG, mId + ":retry is true. Resuming at " + blockPosition);
+        while (mMission.running && mMission.errCode == DownloadMission.ERROR_NOTHING) {
+            if (!retry) {
+                block = mMission.acquireBlock();
             }
 
-            // Wait for an unblocked position
-            while (!retry && blockPosition < mMission.blocks && mMission.isBlockPreserved(blockPosition)) {
-
-                if (DEBUG) {
-                    Log.d(TAG, mId + ":position " + blockPosition + " preserved, passing");
-                }
-
-                blockPosition++;
-            }
-
-            retry = false;
-
-            if (blockPosition >= mMission.blocks) {
+            if (block == null) {
+                if (DEBUG) Log.d(TAG, mId + ":no more blocks left, exiting");
                 break;
             }
 
             if (DEBUG) {
-                Log.d(TAG, mId + ":preserving position " + blockPosition);
+                if (retry)
+                    Log.d(TAG, mId + ":retry block at position=" + block.position + " from the start");
+                else
+                    Log.d(TAG, mId + ":acquired block at position=" + block.position + " done=" + block.done);
             }
 
-            mMission.preserveBlock(blockPosition);
-            mMission.setBlockPosition(mId, blockPosition);
-
-            long start = blockPosition * DownloadMission.BLOCK_SIZE;
+            long start = block.position * DownloadMission.BLOCK_SIZE;
             long end = start + DownloadMission.BLOCK_SIZE - 1;
-            long offset = mMission.getThreadBytePosition(mId);
 
-            start += offset;
+            start += block.done;
 
             if (end >= mMission.length) {
                 end = mMission.length - 1;
             }
-
-            long total = 0;
 
             try {
                 mConn = mMission.openConnection(mId, start, end);
                 mMission.establishConnection(mId, mConn);
 
                 // check if the download can be resumed
-                if (mConn.getResponseCode() == 416 && offset > 0) {
-                    retryCount--;
+                if (mConn.getResponseCode() == 416) {
+                    if (block.done > 0) {
+                        // try again from the start (of the block)
+                        block.done = 0;
+                        retry = true;
+                        mConn.disconnect();
+                        continue;
+                    }
+
                     throw new DownloadMission.HttpError(416);
                 }
 
+                retry = false;
+
                 // The server may be ignoring the range request
                 if (mConn.getResponseCode() != 206) {
-                    mMission.notifyError(new DownloadMission.HttpError(mConn.getResponseCode()));
-
                     if (DEBUG) {
                         Log.e(TAG, mId + ":Unsupported " + mConn.getResponseCode());
                     }
-
+                    mMission.notifyError(new DownloadMission.HttpError(mConn.getResponseCode()));
                     break;
                 }
 
@@ -122,22 +122,14 @@ public class DownloadRunnable extends Thread {
                 while (start < end && mMission.running && (len = is.read(buf, 0, buf.length)) != -1) {
                     f.write(buf, 0, len);
                     start += len;
-                    total += len;
+                    block.done += len;
                     mMission.notifyProgress(len);
                 }
 
                 if (DEBUG && mMission.running) {
-                    Log.d(TAG, mId + ":position " + blockPosition + " finished, " + total + " bytes downloaded");
+                    Log.d(TAG, mId + ":position " + block.position + " stopped " + start + "/" + end);
                 }
-
-                if (mMission.running)
-                    mMission.setThreadBytePosition(mId, 0L);// clear byte position for next block
-                else
-                    mMission.setThreadBytePosition(mId, total);// download paused, save progress for this block
-
             } catch (Exception e) {
-                mMission.setThreadBytePosition(mId, total);
-
                 if (!mMission.running || e instanceof ClosedByInterruptException) break;
 
                 if (retryCount++ >= mMission.maxRetry) {
@@ -145,11 +137,9 @@ public class DownloadRunnable extends Thread {
                     break;
                 }
 
-                if (DEBUG) {
-                    Log.d(TAG, mId + ":position " + blockPosition + " retrying due exception", e);
-                }
-
                 retry = true;
+            } finally {
+                if (!retry) releaseBlock(block, end - start);
             }
         }
 

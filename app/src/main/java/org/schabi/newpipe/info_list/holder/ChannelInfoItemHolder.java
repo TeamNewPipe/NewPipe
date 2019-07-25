@@ -1,9 +1,11 @@
 package org.schabi.newpipe.info_list.holder;
 
+import android.support.annotation.Nullable;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
@@ -38,8 +40,8 @@ public class ChannelInfoItemHolder extends ChannelMiniInfoItemHolder {
     }
 
     @Override
-    public void updateFromItem(final InfoItem infoItem) {
-        super.updateFromItem(infoItem);
+    public void updateFromItem(final InfoItem infoItem, @Nullable final StreamStateEntity state) {
+        super.updateFromItem(infoItem, state);
 
         if (!(infoItem instanceof ChannelInfoItem)) return;
         final ChannelInfoItem item = (ChannelInfoItem) infoItem;
