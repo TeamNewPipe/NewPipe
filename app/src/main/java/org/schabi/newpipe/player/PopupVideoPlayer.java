@@ -40,6 +40,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.NotificationCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -485,6 +486,24 @@ public final class PopupVideoPlayer extends Service {
         popupLayoutParams.flags = flags;
         windowManager.updateViewLayout(playerImpl.getRootView(), popupLayoutParams);
     }
+
+    public int getToolbarHeight() {
+        int toolbarHeight = 0;
+        final TypedValue typedValue = new TypedValue();
+    
+        if (getTheme().resolveAttribute(android.R.attr.actionBarSize, typedValue, true)) {
+            toolbarHeight = TypedValue.complexToDimensionPixelSize(typedValue.data, getResources().getDisplayMetrics());
+        }
+
+        if (DEBUG) Log.d(TAG, "getToolbarHeight() called, returning: toolbarHeight = [" + toolbarHeight + "]");
+    
+        return toolbarHeight;
+    }
+
+    public Context getContext(){
+        return (Context) this;
+    }
+
     ///////////////////////////////////////////////////////////////////////////
 
     protected class VideoPlayerImpl extends VideoPlayer implements View.OnLayoutChangeListener {
@@ -889,6 +908,19 @@ public final class PopupVideoPlayer extends Service {
         public View getClosingOverlayView() {
             return closingOverlayView;
         }
+
+        public int getToolbarHeight() {
+            int toolbarHeight = 0;
+            final TypedValue typedValue = new TypedValue();
+            if (getTheme().resolveAttribute(android.R.attr.actionBarSize, typedValue, true)) {
+                toolbarHeight = TypedValue.complexToDimensionPixelSize(typedValue.data, getResources().getDisplayMetrics());
+            }
+            
+            if (DEBUG) Log.d(TAG, "getToolbarHeight() called, returning: toolbarHeight = [" + toolbarHeight + "]");
+
+            return toolbarHeight;
+        }
+
     }
 
     private class PopupWindowGestureListener extends GestureDetector.SimpleOnGestureListener implements View.OnTouchListener {
@@ -944,6 +976,7 @@ public final class PopupVideoPlayer extends Service {
         @Override
         public void onLongPress(MotionEvent e) {
             if (DEBUG) Log.d(TAG, "onLongPress() called with: e = [" + e + "]");
+            if (PlayerHelper.isMovePopupBelowNavbar(getContext())) popupLayoutParams.y = getToolbarHeight();           
             updateScreenSize();
             checkPopupPositionBounds();
             updatePopupSize((int) screenWidth, -1);
