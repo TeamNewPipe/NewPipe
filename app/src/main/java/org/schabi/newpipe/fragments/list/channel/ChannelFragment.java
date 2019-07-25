@@ -1,8 +1,6 @@
 package org.schabi.newpipe.fragments.list.channel;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;

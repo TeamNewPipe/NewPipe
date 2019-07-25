@@ -60,7 +60,6 @@ import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeStreamExt
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
-import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.BackPressable;
@@ -68,7 +67,6 @@ import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.EmptyFragment;
 import org.schabi.newpipe.fragments.list.comments.CommentsFragment;
 import org.schabi.newpipe.fragments.list.videos.RelatedVideosFragment;
-import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.MainVideoPlayer;
@@ -93,7 +91,6 @@ import org.schabi.newpipe.views.AnimatedProgressBar;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
