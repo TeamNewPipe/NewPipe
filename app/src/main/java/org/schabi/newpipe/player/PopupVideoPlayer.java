@@ -342,6 +342,9 @@ public final class PopupVideoPlayer extends Service {
         animateOverlayAndFinishService();
     }
 
+    public void snapOntoActionBar() {
+        popupLayoutParams.y = getActionBarHeight();
+    }
     private void animateOverlayAndFinishService() {
         final int targetTranslationY = (int) (closeOverlayButton.getRootView().getHeight() - closeOverlayButton.getY());
 
@@ -487,16 +490,15 @@ public final class PopupVideoPlayer extends Service {
         windowManager.updateViewLayout(playerImpl.getRootView(), popupLayoutParams);
     }
 
-    public int getToolbarHeight() {
+    public int getActionBarHeight() {
         int toolbarHeight = 0;
         final TypedValue typedValue = new TypedValue();
-    
+
         if (getTheme().resolveAttribute(android.R.attr.actionBarSize, typedValue, true)) {
             toolbarHeight = TypedValue.complexToDimensionPixelSize(typedValue.data, getResources().getDisplayMetrics());
         }
 
-        if (DEBUG) Log.d(TAG, "getToolbarHeight() called, returning: toolbarHeight = [" + toolbarHeight + "]");
-    
+        if (DEBUG) Log.d(TAG, "getActionBarHeight() called, returning: toolbarHeight = [" + toolbarHeight + "]");
         return toolbarHeight;
     }
 
@@ -916,7 +918,7 @@ public final class PopupVideoPlayer extends Service {
                 toolbarHeight = TypedValue.complexToDimensionPixelSize(typedValue.data, getResources().getDisplayMetrics());
             }
             
-            if (DEBUG) Log.d(TAG, "getToolbarHeight() called, returning: toolbarHeight = [" + toolbarHeight + "]");
+            if (DEBUG) Log.d(TAG, "getActionBarHeight() called, returning: toolbarHeight = [" + toolbarHeight + "]");
 
             return toolbarHeight;
         }
@@ -927,6 +929,7 @@ public final class PopupVideoPlayer extends Service {
         private int initialPopupX, initialPopupY;
         private boolean isMoving;
         private boolean isResizing;
+        private boolean isSnappedOntoActionBar;
 
         @Override
         public boolean onDoubleTap(MotionEvent e) {
@@ -976,7 +979,6 @@ public final class PopupVideoPlayer extends Service {
         @Override
         public void onLongPress(MotionEvent e) {
             if (DEBUG) Log.d(TAG, "onLongPress() called with: e = [" + e + "]");
-            if (PlayerHelper.isMovePopupBelowNavbar(getContext())) popupLayoutParams.y = getToolbarHeight();           
             updateScreenSize();
             checkPopupPositionBounds();
             updatePopupSize((int) screenWidth, -1);
@@ -1013,6 +1015,19 @@ public final class PopupVideoPlayer extends Service {
                 if (closingOverlayView.getVisibility() == View.VISIBLE) {
                     animateView(closingOverlayView, false, 0);
                 }
+            }
+
+            if (PlayerHelper.isMovePopupBelowNavbar(getContext())) {
+                if (isInsideMagneticField(posY)) {
+                    if(isSnappedOntoActionBar) {
+                        // do nothing, while inside the magneticFieldRadius/'snap-range'
+                        return true;
+                    } else {
+                        onScrollEnd(movingEvent);
+                        snapOntoActionBar();
+                        isSnappedOntoActionBar = true;
+                    }
+                } else isSnappedOntoActionBar = false;
             }
 
             //noinspection PointlessBooleanExpression
@@ -1065,6 +1080,7 @@ public final class PopupVideoPlayer extends Service {
 
         @Override
         public boolean onTouch(View v, MotionEvent event) {
+            Log.d("onTouch", v.toString());
             popupGestureDetector.onTouchEvent(event);
             if (playerImpl == null) return false;
             if (event.getPointerCount() == 2 && !isResizing) {
@@ -1152,6 +1168,16 @@ public final class PopupVideoPlayer extends Service {
 
         private boolean isInsideClosingRadius(MotionEvent popupMotionEvent) {
             return distanceFromCloseButton(popupMotionEvent) <= getClosingRadius();
+        }
+
+        private float getMagneticFieldRadius() {
+            // 10% of the actionbarHeight seems to be a suitable radius
+            return getActionBarHeight() / 10f;
+        }
+
+        private boolean isInsideMagneticField(float posY) {
+            float distanceFromActionBar = Math.abs(getActionBarHeight() - posY);
+            return distanceFromActionBar < getMagneticFieldRadius();
         }
     }
 }
