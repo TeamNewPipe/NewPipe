@@ -288,8 +288,11 @@ public abstract class BasePlayer implements
             if (item != null && item.getRecoveryPosition() == PlayQueueItem.RECOVERY_UNSET && isPlaybackResumeEnabled()) {
                 final Disposable stateLoader = recordManager.loadStreamState(item)
                         .observeOn(AndroidSchedulers.mainThread())
-                        .doFinally(() -> initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence,
-                                /*playOnInit=*/true))
+                        .doFinally(() -> {
+                            if (simpleExoPlayer == null) return; // doFinally called while closing
+                            initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence,
+                                    /*playOnInit=*/true);
+                        })
                         .subscribe(
                                 state -> queue.setRecovery(queue.getIndex(), state.getProgressTime()),
                                 error -> {
@@ -331,6 +334,7 @@ public abstract class BasePlayer implements
             simpleExoPlayer.removeListener(this);
             simpleExoPlayer.stop();
             simpleExoPlayer.release();
+            simpleExoPlayer = null;
         }
         if (isProgressLoopRunning()) stopProgressLoop();
         if (playQueue != null) playQueue.dispose();
