@@ -179,8 +179,8 @@ public class PlayerHelper {
         return isBrightnessGestureEnabled(context, true);
     }
 
-    public static boolean isMovePopupBelowNavbar(@NonNull final Context context) {
-        return isMovePopupBelowNavbar(context, false);
+    public static boolean isMagneticActionBar(@NonNull final Context context) {
+        return isMagneticActionBar(context, false);
     }
 
     public static boolean isRememberingPopupDimensions(@NonNull final Context context) {
@@ -320,8 +320,8 @@ public class PlayerHelper {
         return getPreferences(context).getBoolean(context.getString(R.string.brightness_gesture_control_key), b);
     }
     
-    private static boolean isMovePopupBelowNavbar(@NonNull final Context context, final boolean b) {
-        return getPreferences(context).getBoolean(context.getString(R.string.popup_move_below_navbar_key), b);
+    private static boolean isMagneticActionBar(@NonNull final Context context, final boolean b) {
+        return getPreferences(context).getBoolean(context.getString(R.string.popup_magnetic_actionbar_key), b);
     }
 
     private static boolean isRememberingPopupDimensions(@NonNull final Context context, final boolean b) {

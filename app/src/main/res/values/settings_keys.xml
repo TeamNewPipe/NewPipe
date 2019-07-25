@@ -22,7 +22,7 @@
     <string name="volume_gesture_control_key" translatable="false">volume_gesture_control</string>
     <string name="brightness_gesture_control_key" translatable="false">brightness_gesture_control</string>
     <string name="resume_on_audio_focus_gain_key" translatable="false">resume_on_audio_focus_gain</string>
-    <string name="popup_move_below_navbar_key" translatable="false">popup_move_below_navbar_key</string>
+    <string name="popup_magnetic_actionbar_key" translatable="false">popup_magnetic_actionbar_key</string>
     <string name="popup_remember_size_pos_key" translatable="false">popup_remember_size_pos_key</string>
     <string name="use_inexact_seek_key" translatable="false">use_inexact_seek_key</string>
     <string name="auto_queue_key" translatable="false">auto_queue_key</string>

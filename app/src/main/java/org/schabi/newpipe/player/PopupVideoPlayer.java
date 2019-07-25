@@ -1017,7 +1017,7 @@ public final class PopupVideoPlayer extends Service {
                 }
             }
 
-            if (PlayerHelper.isMovePopupBelowNavbar(getContext())) {
+            if (PlayerHelper.isMagneticActionBar(getContext())) {
                 if (isInsideMagneticField(posY)) {
                     if(isSnappedOntoActionBar) {
                         // do nothing, while inside the magneticFieldRadius/'snap-range'

@@ -143,9 +143,9 @@
         <SwitchPreference
             app:iconSpaceReserved="false"
             android:defaultValue="false"
-            android:key="@string/popup_move_below_navbar_key"
-            android:summary="@string/popup_move_below_navbar_summary"
-            android:title="@string/popup_move_below_navbar_title"/>
+            android:key="@string/popup_magnetic_actionbar_key"
+            android:summary="@string/popup_magnetic_actionbar_summary"
+            android:title="@string/popup_magnetic_actionbar_title"/>
 
         <SwitchPreference
             app:iconSpaceReserved="false"
