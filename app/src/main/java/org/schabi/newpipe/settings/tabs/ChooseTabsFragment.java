@@ -229,6 +229,12 @@ public class ChooseTabsFragment extends Fragment {
                     returnList.add(new ChooseTabListItem(tab.getTabId(), getString(R.string.channel_page_summary),
                             tab.getTabIconRes(context)));
                     break;
+                case DEFAULT_KIOSK:
+                    if (!tabList.contains(tab)) {
+                        returnList.add(new ChooseTabListItem(tab.getTabId(), "Default Kiosk",
+                                ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_hot)));
+                    }
+                    break;
                 default:
                     if (!tabList.contains(tab)) {
                         returnList.add(new ChooseTabListItem(context, tab));
@@ -309,6 +315,9 @@ public class ChooseTabsFragment extends Fragment {
                         break;
                     case CHANNEL:
                         tabName = NewPipe.getNameOfService(((Tab.ChannelTab) tab).getChannelServiceId()) + "/" + tabName;
+                        break;
+                    case DEFAULT_KIOSK:
+                        tabName = "Default Kiosk";
                         break;
                 }
 

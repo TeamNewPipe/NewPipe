@@ -41,17 +41,25 @@ public class DownloadRunnableFallback extends Thread {
         if (mF != null) mF.close();
     }
 
+    private long loadPosition() {
+        synchronized (mMission.LOCK) {
+            return mMission.fallbackResumeOffset;
+        }
+    }
+
+    private void savePosition(long position) {
+        synchronized (mMission.LOCK) {
+            mMission.fallbackResumeOffset = position;
+        }
+    }
+
     @Override
     public void run() {
         boolean done;
+        long start = loadPosition();
 
-        long start = 0;
-
-        if (!mMission.unknownLength) {
-            start = mMission.getThreadBytePosition(0);
-            if (DEBUG && start > 0) {
-                Log.i(TAG, "Resuming a single-thread download at " + start);
-            }
+        if (DEBUG && !mMission.unknownLength && start > 0) {
+            Log.i(TAG, "Resuming a single-thread download at " + start);
         }
 
         try {
@@ -91,8 +99,7 @@ public class DownloadRunnableFallback extends Thread {
         } catch (Exception e) {
             dispose();
 
-            // save position
-            mMission.setThreadBytePosition(0, start);
+            savePosition(start);
 
             if (!mMission.running || e instanceof ClosedByInterruptException) return;
 
@@ -114,7 +121,7 @@ public class DownloadRunnableFallback extends Thread {
         if (done) {
             mMission.notifyFinished();
         } else {
-            mMission.setThreadBytePosition(0, start);
+            savePosition(start);
         }
     }
 
