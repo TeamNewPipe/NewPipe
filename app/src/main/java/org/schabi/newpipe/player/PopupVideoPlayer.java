@@ -32,6 +32,8 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
+import android.graphics.Point;
+import android.graphics.PointF;
 import android.os.Build;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
@@ -296,9 +298,7 @@ public final class PopupVideoPlayer extends Service {
                 .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setContent(notRemoteView);
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-            builder.setPriority(NotificationCompat.PRIORITY_MAX);
-        }
+        builder.setPriority(NotificationCompat.PRIORITY_MAX);
         return builder;
     }
 
@@ -897,6 +897,8 @@ public final class PopupVideoPlayer extends Service {
         private int initialPopupX, initialPopupY;
         private boolean isMoving;
         private boolean isResizing;
+        private double resizeStartDist = 0f;
+        private float resizeStartWidth = 0;
 
         @Override
         public boolean onDoubleTap(MotionEvent e) {
@@ -1045,6 +1047,8 @@ public final class PopupVideoPlayer extends Service {
                 animateView(playerImpl.getCurrentDisplaySeek(), false, 0, 0);
                 animateView(playerImpl.getResizingIndicator(), true, 200, 0);
                 isResizing = true;
+                resizeStartDist = pointersDistance(event);
+                resizeStartWidth = popupWidth;
             }
 
             if (event.getAction() == MotionEvent.ACTION_MOVE && !isMoving && isResizing) {
@@ -1078,23 +1082,18 @@ public final class PopupVideoPlayer extends Service {
         private boolean handleMultiDrag(final MotionEvent event) {
             if (event.getPointerCount() != 2) return false;
 
-            final float firstPointerX = event.getX(0);
-            final float secondPointerX = event.getX(1);
+            final double dist = pointersDistance(event);
+            final double diff = dist - resizeStartDist;
+            final int newWidth = (int) Math.max(Math.min(screenWidth, (resizeStartWidth + diff)), minimumWidth);
+            final int newHeight = (int) getMinimumVideoHeight(newWidth);
 
-            final float diff = Math.abs(firstPointerX - secondPointerX);
-            if (firstPointerX > secondPointerX) {
-                // second pointer is the anchor (the leftmost pointer)
-                popupLayoutParams.x = (int) (event.getRawX() - diff);
-            } else {
-                // first pointer is the anchor
-                popupLayoutParams.x = (int) event.getRawX();
-            }
+            popupLayoutParams.x += (popupWidth - newWidth) / 2f;
+            popupLayoutParams.y += (popupHeight - newHeight) / 2f;
 
             checkPopupPositionBounds();
             updateScreenSize();
 
-            final int width = (int) Math.min(screenWidth, diff);
-            updatePopupSize(width, -1);
+            updatePopupSize(newWidth, -1);
 
             return true;
         }
@@ -1121,6 +1120,12 @@ public final class PopupVideoPlayer extends Service {
 
         private boolean isInsideClosingRadius(MotionEvent popupMotionEvent) {
             return distanceFromCloseButton(popupMotionEvent) <= getClosingRadius();
+        }
+
+        private double pointersDistance(MotionEvent event) {
+            float x = event.getX(0) - event.getX(1);
+            float y = event.getY(0) - event.getY(1);
+            return Math.sqrt(x * x + y * y);
         }
     }
 }
