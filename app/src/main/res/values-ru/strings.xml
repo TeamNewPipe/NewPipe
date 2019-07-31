@@ -32,8 +32,8 @@
     <string name="settings_category_video_audio_title">Видео и аудио</string>
     <string name="settings_category_appearance_title">Внешний вид</string>
     <string name="settings_category_other_title">Другое</string>
-    <string name="list_thumbnail_view_description">Изображение видео перед его просмотром</string>
-    <string name="detail_thumbnail_view_description">Изображение видео перед его просмотром</string>
+    <string name="list_thumbnail_view_description">Миниатюра видео-превью</string>
+    <string name="detail_thumbnail_view_description">Миниатюра видео-превью</string>
     <string name="detail_uploader_thumbnail_view_description">Миниатюра аватара пользователя</string>
     <string name="detail_dislikes_img_view_description">Не понравилось</string>
     <string name="detail_likes_img_view_description">Понравилось</string>
@@ -66,9 +66,9 @@
     <string name="msg_running_detail">Подробнее</string>
     <string name="msg_copied">Скопировано в буфер обмена</string>
     <string name="no_available_dir">Выберите доступную папку для загрузки</string>
-    <string name="show_age_restricted_content_title">Ограниченный контент</string>
+    <string name="show_age_restricted_content_title">Контент 18+</string>
     <string name="general_error">Ошибка</string>
-    <string name="your_comment">Ваш комментарий (по Английски):</string>
+    <string name="your_comment">Ваш комментарий (English):</string>
     <string name="err_dir_create">Не удалось создать папку для загрузки \"%1$s\"</string>
     <string name="autoplay_by_calling_app_title">Автовоспроизведение</string>
     <string name="autoplay_by_calling_app_summary">Воспроизводить видео при вызове NewPipe из другого приложения</string>
@@ -82,7 +82,7 @@
     <string name="light_parsing_error">Не удалось полностью разобрать веб-сайт</string>
     <string name="content_not_available">Контент недоступен</string>
     <string name="could_not_setup_download_menu">Не удалось создать меню загрузки</string>
-    <string name="live_streams_not_supported">Прямые трансляции пока не поддерживается</string>
+    <string name="live_streams_not_supported">Прямые трансляции пока не поддерживаются</string>
     <string name="could_not_load_image">Не удалось загрузить изображение</string>
     <string name="app_ui_crash">Приложение упало</string>
     <string name="sorry_string">Простите, это не должно было произойти.</string>
@@ -104,8 +104,8 @@
     <string name="youtube_signature_decryption_error">Не удалось расшифровать подпись URL у видео</string>
     <string name="could_not_get_stream">Не удалось найти ни одного потока</string>
     <string name="view">Воспроизвести</string>
-    <string name="controls_background_title">Фоновое воспроизведение</string>
-    <string name="controls_popup_title">Всплывающее окно</string>
+    <string name="controls_background_title">В фоне</string>
+    <string name="controls_popup_title">В окне</string>
     <string name="show_higher_resolutions_summary">Только некоторые устройства поддерживают видео в 2K/4K</string>
     <string name="default_video_format_title">Формат видео по умолчанию</string>
     <string name="black_theme_title">Чёрная</string>
@@ -229,8 +229,8 @@
     <string name="trending">Тренды</string>
     <string name="top_50">Топ 50</string>
     <string name="new_and_hot">Новое и горячее</string>
-    <string name="background_player_append">Добавлено в очередь на фоновое воспроизведение</string>
-    <string name="popup_playing_append">Добавлено в очередь во всплывающем окне</string>
+    <string name="background_player_append">Добавлено в очередь в фоне</string>
+    <string name="popup_playing_append">Добавлено в очередь в окне</string>
     <string name="play_all">Играть всё</string>
     <string name="player_stream_failure">Не удалось воспроизвести этот поток</string>
     <string name="play_queue_stream_detail">Сведения</string>
@@ -284,7 +284,7 @@
     <string name="use_inexact_seek_title">Быстрый поиск позиции</string>
     <string name="use_inexact_seek_summary">Позволяет искать позицию быстрее, но с меньшей точностью</string>
     <string name="auto_queue_title">Автодополнение очереди</string>
-    <string name="auto_queue_summary">Добавляет похожие потоки в очередь при воспроизведении последнего потока, если не включён повтор</string>
+    <string name="auto_queue_summary">Добавлять похожие потоки в очередь при воспроизведении последнего потока, если не включён повтор</string>
     <string name="settings_category_debug_title">Отладка</string>
     <string name="file">Файл</string>
     <string name="import_data_title">Импорт данных</string>
@@ -362,7 +362,7 @@
 \n 
 \nПродолжить?</string>
     <string name="download_thumbnail_title">Загружать миниатюры</string>
-    <string name="download_thumbnail_summary">Отключите, чтобы не загружать миниатюры и сэкономить трафик и память. Изменение настройки очистит кэш изображений.</string>
+    <string name="download_thumbnail_summary">Отключите, чтобы не загружать миниатюры и сэкономить трафик и память. Изменение настройки очистит кэш изображений</string>
     <string name="thumbnail_cache_wipe_complete_notice">Кэш изображений очищен</string>
     <string name="metadata_cache_wipe_title">Очистить кэш метаданных</string>
     <string name="metadata_cache_wipe_complete_notice">Кэш метаданных очищен</string>
@@ -421,7 +421,7 @@
     <string name="download_to_sdcard_error_title">Внешний накопитель недоступен</string>
     <string name="main_page_content_summary">Вкладки, видимые на главной странице</string>
     <string name="restore_defaults">Восстановить значения по умолчанию</string>
-    <string name="restore_defaults_confirmation">Хотите восстановить значения по умолчанию\?</string>
+    <string name="restore_defaults_confirmation">Восстановить значения по умолчанию\?</string>
     <string name="saved_tabs_invalid_json">Ошибка чтения сохранённых вкладок. Используются вкладки по умолчанию</string>
     <string name="selection">Выбор</string>
     <string name="subscribers_count_not_available">Количество подписчиков недоступно</string>
@@ -436,7 +436,7 @@
     <string name="app_update_notification_channel_name">Уведомление об обновлении</string>
     <string name="app_update_notification_channel_description">Уведомления о новой версии NewPipe</string>
     <string name="updates_setting_title">Обновления</string>
-    <string name="updates_setting_description">Показать уведомление с предложением обновить приложение при наличии новой версии</string>
+    <string name="updates_setting_description">Показать уведомление при наличии новой версии</string>
     <string name="app_update_notification_content_title">Доступно обновление NewPipe!</string>
     <string name="app_update_notification_content_text">Нажмите для загрузки</string>
     <string name="missions_header_finished">Завершено</string>
@@ -474,7 +474,18 @@
     <string name="error_connect_host">Не удалось соединиться с сервером</string>
     <string name="error_http_no_content">Не удалось получить данные с сервера</string>
     <string name="error_postprocessing_failed">Пост-обработка не удалась</string>
-    <string name="pause_downloads_on_mobile">Останавливать скачивание при переходе на мобильную сеть</string>
+    <string name="pause_downloads_on_mobile">Приостанавливать скачивание при переходе на мобильную сеть</string>
     <string name="close">Закрыть</string>
     <string name="error_timeout">Время соединения вышло</string>
+    <string name="show_comments_title">Показать комментарии</string>
+    <string name="show_comments_summary">Отключите, чтобы скрыть комментарии</string>
+    <string name="autoplay_title">Автовоспроизведение</string>
+    <plurals name="comments">
+        <item quantity="one">Комментарии</item>
+        <item quantity="few"/>
+        <item quantity="many"/>
+    </plurals>
+    <string name="no_comments">Нет комментариев</string>
+    <string name="error_unable_to_load_comments">Не удалось загрузить комментарии</string>
+    <string name="direct_on_background">Играть сейчас в фоне</string>
 </resources>

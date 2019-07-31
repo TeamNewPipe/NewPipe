@@ -3,7 +3,7 @@
     <string name="main_bg_subtitle">Başlamak için aramaya dokun</string>
     <string name="view_count_text">%1$s görüntüleme</string>
     <string name="upload_date_text">Yayınlanma: %1$s</string>
-    <string name="no_player_found">Akış oynatıcısı bulunamadı. VLC\'yi yüklemek istiyor musunuz\?</string>
+    <string name="no_player_found">Akış oynatıcısı bulunamadı. VLC\'yi yüklemek ister misiniz\?</string>
     <string name="install">Yükle</string>
     <string name="cancel">İptal et</string>
     <string name="open_in_browser">Tarayıcıda aç</string>
@@ -35,7 +35,7 @@
     <string name="dark_theme_title">Koyu</string>
     <string name="light_theme_title">Açık</string>
     <string name="download_dialog_title">İndir</string>
-    <string name="next_video_title">"Sonraki "</string>
+    <string name="next_video_title">Sıradaki</string>
     <string name="show_next_and_similar_title">\'Sonraki\' ve \'Benzer\' videoları göster</string>
     <string name="url_not_supported_toast">Desteklenmeyen URL</string>
     <string name="content_language_title">Varsayılan içerik dili</string>
@@ -240,10 +240,10 @@
     <string name="play_queue_audio_settings">Ses Ayarları</string>
     <string name="hold_to_append">Kuyruğa eklemek için basılı tutun</string>
     <string name="enqueue_on_background">Arka planda kuyruğa ekle</string>
-    <string name="enqueue_on_popup">Yeni açılan oynatıcıda kuyruğa al</string>
+    <string name="enqueue_on_popup">Yeni oynatıcıda kuyruğa al</string>
     <string name="start_here_on_main">Burada oynatmaya başla</string>
-    <string name="start_here_on_background">Burada arka planda başlat</string>
-    <string name="start_here_on_popup">Burada yeni açılır oynatıcıda başlat</string>
+    <string name="start_here_on_background">Arka planda oynatmayı başlat</string>
+    <string name="start_here_on_popup">Yeni açılır oynatıcıda başlat</string>
     <string name="donation_title">Bağış yapın</string>
     <string name="donation_encouragement">NewPipe, size en iyi deneyimi getiren zaman harcama gönüllüler tarafından geliştirilmiştir. Bir fincan kahvenin tadını çıkarırken geliştiricilerin New Pipe\'ı daha iyi hale getirmelerine yardımcı olun.</string>
     <string name="give_back">Bağış yap</string>
@@ -257,7 +257,7 @@
     <string name="switch_to_main">Ana görünüme geç</string>
     <string name="drawer_open">Çekmeceyi aç</string>
     <string name="drawer_close">Çekmeceyi kapat</string>
-    <string name="no_player_found_toast">Akış oynatıcı bulunamadı (Bunu oynamak için VLC yükleyebilirsiniz).</string>
+    <string name="no_player_found_toast">Akış oynatıcı bulunamadı (Oynamak için VLC yükleyebilirsiniz).</string>
     <string name="always">Her Zaman</string>
     <string name="just_once">Yalnızca Bir Kez</string>
     <string name="external_player_unsupported_link_type">Harici oynatıcılar bu tür bağlantıları desteklemez</string>
@@ -324,7 +324,7 @@
     <string name="use_inexact_seek_title">Hızlı isabetsiz konumlama kullan</string>
     <string name="use_inexact_seek_summary">İsabetsiz konumlama, oynatıcının daha düşük hassasiyetle daha hızlı pozisyon aramasını sağlar</string>
     <string name="auto_queue_title">Sonraki akışı otomatik kuyruğa ekle</string>
-    <string name="auto_queue_summary">Yinelenmeyen bir kuyruktaki son akışı oynatırken ilgili akışı otomatik ekler.</string>
+    <string name="auto_queue_summary">Yinelenmeyen bir kuyruktaki son akışı oynatırken, ilgili bir akışı kendiliğinden ekle</string>
     <string name="live_sync">EŞZAMANLA</string>
     <string name="file">Dosya</string>
     <string name="invalid_directory">Böyle bir dizin yok</string>
@@ -472,4 +472,15 @@
     <string name="events">Olaylar</string>
     <string name="conferences">Konferanslar</string>
     <string name="missions_header_pending">Kadar</string>
+    <string name="show_comments_title">Yorumları göster</string>
+    <string name="show_comments_summary">Yorumları göstermeyi durdurmak için devre dışı bırak</string>
+    <string name="autoplay_title">Otomatik oynat</string>
+    <plurals name="comments">
+        <item quantity="one">Yorumlar</item>
+        <item quantity="other"/>
+    </plurals>
+    <string name="no_comments">Yorum yok</string>
+    <string name="error_unable_to_load_comments">Yorumlar yüklenemedi</string>
+    <string name="direct_on_background">Arka planda direkt başlat</string>
+    <string name="close">Kapat</string>
 </resources>

@@ -28,7 +28,7 @@
     <string name="play_with_kodi_title">Програти у Kodi</string>
     <string name="kore_not_found">Застосунок Kore не знайдено. Встановити його\?</string>
     <string name="show_play_with_kodi_title">Показати опцію \"Програти у Kodi\"</string>
-    <string name="show_play_with_kodi_summary">Показати опцію програвання відео у медіацентрі Kodi</string>
+    <string name="show_play_with_kodi_summary">Показати опцію програвання відео у Kodi</string>
     <string name="play_audio">Аудіо</string>
     <string name="default_audio_format_title">Типовий формат аудіо</string>
     <string name="theme_title">Тема</string>
@@ -294,11 +294,11 @@
     <string name="title_activity_popup_player">Програвач у вікні</string>
     <string name="play_queue_remove">Видалити</string>
     <string name="hold_to_append">Утримуйте, щоб додати до черги</string>
-    <string name="enqueue_on_background">Додати до черги при програванні у тлі</string>
-    <string name="enqueue_on_popup">Додати до черги при програванні у вікні</string>
+    <string name="enqueue_on_background">Додати до фону</string>
+    <string name="enqueue_on_popup">Додати до вікна</string>
     <string name="start_here_on_main">Розпочати програвання звідси</string>
-    <string name="start_here_on_background">Розпочати звідси при програванні у тлі</string>
-    <string name="start_here_on_popup">Розпочати звідси при програванні у вікні</string>
+    <string name="start_here_on_background">Розпочати програвання на фоні</string>
+    <string name="start_here_on_popup">Розпочати програванні у вікні</string>
     <string name="drawer_open">Відкрити бічну панель</string>
     <string name="drawer_close">Закрити бічну панель</string>
     <string name="drawer_header_action_paceholder_text">Незабаром тут щось з\'явиться ;D</string>
@@ -474,4 +474,16 @@
     <string name="error_http_requested_range_not_satisfiable">Запитуваний діапазон неприпустимий</string>
     <string name="msg_pending_downloads">Продовжити ваші %s відкладених переміщень із Завантажень</string>
     <string name="pause_downloads_on_mobile_desc">Завантаження, що не можуть бути призупинені, будуть перезапущені</string>
+    <string name="show_comments_title">Показувати коментарі</string>
+    <string name="show_comments_summary">Вимнути відображення дописів</string>
+    <string name="autoplay_title">Автопрогравання</string>
+    <plurals name="comments">
+        <item quantity="one">Коментарі</item>
+        <item quantity="few"></item>
+        <item quantity="many"></item>
+    </plurals>
+    <string name="no_comments">Коментарі відсутні</string>
+    <string name="error_unable_to_load_comments">Не вдалося підвантажити коментарів</string>
+    <string name="direct_on_background">Програвати у фоні</string>
+    <string name="close">Закрити</string>
 </resources>

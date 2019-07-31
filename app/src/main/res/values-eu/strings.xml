@@ -253,8 +253,8 @@
     <string name="enqueue_on_background">Jarri ilaran bigarren planoan</string>
     <string name="enqueue_on_popup">Jarri ilaran laster-leihoan</string>
     <string name="start_here_on_main">Hasi hemen erreproduzitzen</string>
-    <string name="start_here_on_background">Hasi hemen bigarren planoan</string>
-    <string name="start_here_on_popup">Hasi hemen laster-leihoan</string>
+    <string name="start_here_on_background">Hasi erreproduzitzen bigarren planoan</string>
+    <string name="start_here_on_popup">Hasi erreproduzitzen laster-leihoan</string>
     <string name="drawer_open">"Ireki tiradera "</string>
     <string name="drawer_close">Itxi tiradera</string>
     <string name="no_player_found_toast">Ez da jarioen erreproduzigailurik aurkitu (VLC instalatu dezakezu).</string>
@@ -280,7 +280,7 @@
     <string name="metadata_cache_wipe_summary">Kendu cachetik webguneen datu guztiak</string>
     <string name="metadata_cache_wipe_complete_notice">Metadatuen cachea ezabatuta</string>
     <string name="auto_queue_title">Gehitu ilarara hurrengo jarioa</string>
-    <string name="auto_queue_summary">Gehitu erlazionatutako jario bat azken jarioa jo bitartean errepikapenik gabeko ilara batean.</string>
+    <string name="auto_queue_summary">Gehitu erlazionatutako jario bat azken jarioa jo bitartean errepikapenik gabeko ilara batean</string>
     <string name="settings_category_debug_title">Arazketa</string>
     <string name="file">Fitxategia</string>
     <string name="import_data_title">Inportatu datu-basea</string>
@@ -468,4 +468,15 @@
     <string name="pause_downloads_on_mobile">Pausatu datu mugikorretara aldatzean</string>
     <string name="pause_downloads_on_mobile_desc">Pausatu ezin daitezkeen deskargak berrekingo dira</string>
     <string name="error_timeout">Konexioaren denbora muga</string>
+    <string name="show_comments_title">Erakutsi iruzkinak</string>
+    <string name="show_comments_summary">Desgaitu iruzkinak erakusteari erakusteko</string>
+    <string name="autoplay_title">Erreprodukzio automatikoa</string>
+    <plurals name="comments">
+        <item quantity="one">Iruzkinak</item>
+        <item quantity="other"></item>
+    </plurals>
+    <string name="no_comments">Iruzkinik ez</string>
+    <string name="error_unable_to_load_comments">Ezin izan dira iruzkinak kargatu</string>
+    <string name="direct_on_background">Erreproduzitu zuzenean bigarren planoan</string>
+    <string name="close">Itxi</string>
 </resources>

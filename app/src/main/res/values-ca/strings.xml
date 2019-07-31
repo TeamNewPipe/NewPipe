@@ -320,8 +320,8 @@
     <string name="no_channel_subscribed_yet">Encara no us heu subscrit a cap canal</string>
     <string name="new_and_hot">Novetats</string>
     <string name="hold_to_append">Manteniu premut per afegir a la cua</string>
-    <string name="start_here_on_background">Reprodueix aquí en segon pla</string>
-    <string name="start_here_on_popup">Reprodueix aquí en mode emergent</string>
+    <string name="start_here_on_background">Comença a reproduir en segon pla</string>
+    <string name="start_here_on_popup">Comença a reproduir en mode emergent</string>
     <string name="set_as_playlist_thumbnail">Defineix com a miniatura de la llista de reproducció</string>
     <string name="bookmark_playlist">Afegeix la llista de reproducció a les adreces d\'interès</string>
     <string name="unbookmark_playlist">Elimina l\'adreça d\'interès</string>
@@ -457,4 +457,14 @@
     <string name="max_retry_desc">Nombre màxim d\'intents abans de cancel·lar la baixada</string>
     <string name="pause_downloads_on_mobile">Pausa en canviar a dades mòbils</string>
     <string name="pause_downloads_on_mobile_desc">Les baixades que no es puguin pausar es tornaran a iniciar</string>
+    <string name="unsubscribe">Elimina la subscripció</string>
+    <string name="overwrite">Sobreescriu</string>
+    <string name="error_http_not_found">No s\'ha trobat</string>
+    <string name="show_comments_title">Mostra els comentaris</string>
+    <string name="show_comments_summary">Desactiva-ho per deixar de mostrar els comentaris</string>
+    <string name="autoplay_title">Reproducció automàtica</string>
+    <string name="no_comments">No hi ha comentaris</string>
+    <string name="error_unable_to_load_comments">No s\'han pogut carregar els comentaris</string>
+    <string name="direct_on_background">Reprodueix directament en segon pla</string>
+    <string name="close">Tanca</string>
 </resources>

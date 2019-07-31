@@ -240,11 +240,11 @@ abrir em modo popup</string>
     <string name="play_queue_audio_settings">Configurações de Áudio</string>
     <string name="hold_to_append">Mantenha pressionado para colocar na fila</string>
     <string name="unknown_content">[Desconhecido]</string>
-    <string name="enqueue_on_background">Adicionar a fila em Plano de Fundo</string>
-    <string name="enqueue_on_popup">Adicionar a fila em Popup</string>
+    <string name="enqueue_on_background">Adicionar à fila em Plano de Fundo</string>
+    <string name="enqueue_on_popup">Adicionar à fila em nova Popup</string>
     <string name="start_here_on_main">Iniciar a reproduzir à partir daqui</string>
-    <string name="start_here_on_background">Iniciar aqui quando estiver em Plano de Fundo</string>
-    <string name="start_here_on_popup">Iniciar aqui em novo popup</string>
+    <string name="start_here_on_background">Iniciar a reprodução quando estiver em Plano de Fundo</string>
+    <string name="start_here_on_popup">Reproduzir em uma nova popup</string>
     <string name="donation_title">Doar</string>
     <string name="donation_encouragement">NewPipe é desenvolvido por voluntários que usam seu tempo para trazer a melhor experiência para você. Retribua para ajudar os desenvolvedores a tornarem o NewPipe ainda melhor enquanto desfrutam uma xícara de café.</string>
     <string name="give_back">Retribuir</string>
@@ -318,7 +318,7 @@ abrir em modo popup</string>
     <string name="use_inexact_seek_title">Usar índice de indexação rápido porém não preciso</string>
     <string name="use_inexact_seek_summary">Usar índice de indexação inexato</string>
     <string name="auto_queue_title">Adicionar a próxima stream à fila automaticamente</string>
-    <string name="auto_queue_summary">Auto anexar uma stream relacionada quando a reprodução iniciar na última stream em uma fila não repetitiva.</string>
+    <string name="auto_queue_summary">Adicionar automaticamente uma stream relacionada quando estiver reproduzindo a última stream da fila e a repetição estiver desligada</string>
     <string name="file">Arquivo</string>
     <string name="invalid_directory">Pasta não encontrada</string>
     <string name="invalid_source">Origem do arquivo/conteúdo não econtrada</string>
@@ -467,4 +467,15 @@ abrir em modo popup</string>
     <string name="pause_downloads_on_mobile">Pausar quando trocar para dados móveis</string>
     <string name="pause_downloads_on_mobile_desc">Downloads que não puderem ser pausados serão reiniciados</string>
     <string name="missions_header_pending">Pendente</string>
+    <string name="show_comments_title">Exibir comentários</string>
+    <string name="show_comments_summary">Desabilitar para parar de exibir comentários</string>
+    <string name="autoplay_title">Reprodução automática</string>
+    <plurals name="comments">
+        <item quantity="one">Comentários</item>
+        <item quantity="other"/>
+    </plurals>
+    <string name="no_comments">Não há comentários</string>
+    <string name="error_unable_to_load_comments">Não foi possível carregar comentários</string>
+    <string name="direct_on_background">Reproduzir diretamente em segundo plano</string>
+    <string name="close">Fechar</string>
 </resources>

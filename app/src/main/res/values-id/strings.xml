@@ -183,7 +183,7 @@
     <string name="metadata_cache_wipe_title">Hapus tembolok metadata</string>
     <string name="metadata_cache_wipe_summary">Buang semua data tembolok laman web</string>
     <string name="metadata_cache_wipe_complete_notice">Cache metadata dihapus</string>
-    <string name="auto_queue_summary">Otomatis tambahkan stream terkait ketika memutar stream terakhir dalam antrean tanpa perulangan.</string>
+    <string name="auto_queue_summary">Otomatis tambahkan stream terkait ketika memutar stream terakhir dalam antrean tanpa perulangan</string>
     <string name="enable_watch_history_summary">Simpan daftar video yang telah ditonton</string>
     <string name="show_hold_to_append_title">Tampilkan tip \"Tahan untuk menambahkan\"</string>
     <string name="show_hold_to_append_summary">Tampilkan tip ketika tombol latar belakang atau popup disentuh pada halaman detail video</string>
@@ -280,11 +280,11 @@
     <string name="play_queue_stream_detail">Detail</string>
     <string name="play_queue_audio_settings">Pengaturan Audio</string>
     <string name="hold_to_append">Tahan untuk mengantre</string>
-    <string name="enqueue_on_background">Antre saat di latar belakang</string>
+    <string name="enqueue_on_background">Antre di latar belakang</string>
     <string name="enqueue_on_popup">Antre di popup baru</string>
     <string name="start_here_on_main">Mulai putar di sini</string>
-    <string name="start_here_on_background">Mulai dari sini ketika di latar belakang</string>
-    <string name="start_here_on_popup">Mulai dari sini pada popup baru</string>
+    <string name="start_here_on_background">Mulai putar di latar belakang</string>
+    <string name="start_here_on_popup">Mulai putar di popup baru</string>
     <string name="drawer_open">Buka Laci</string>
     <string name="drawer_close">Tutup Laci</string>
     <string name="drawer_header_action_paceholder_text">Sesuatu akan segera muncul di sini ;D</string>
@@ -468,4 +468,14 @@
     <string name="max_retry_desc">Jumlah upaya maksimum sebelum membatalkan unduhan</string>
     <string name="pause_downloads_on_mobile">Berhenti ketika beralih ke data seluler</string>
     <string name="pause_downloads_on_mobile_desc">Unduhan yang tidak dapat dijeda akan diulang dari awal</string>
+    <string name="show_comments_title">Tampilkan komentar</string>
+    <string name="show_comments_summary">Nonaktifkan untuk berhenti menampilkan komentar</string>
+    <string name="autoplay_title">Otomatis putar</string>
+    <plurals name="comments">
+        <item quantity="other">Komentar</item>
+    </plurals>
+    <string name="no_comments">Tidak ada komentar</string>
+    <string name="error_unable_to_load_comments">Tidak bisa memuat komentar</string>
+    <string name="direct_on_background">Putar di latar belakang</string>
+    <string name="close">Tutup</string>
 </resources>

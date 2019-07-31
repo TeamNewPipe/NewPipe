@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">தொடங்குவதற்கு தேடல் பொத்தானை அழுத்தவும்</string>
-    <string name="view_count_text">"%1$s  பார்வைகள்"</string>
-    <string name="upload_date_text">"%1$s   அன்று  வெளியிடப்பட்டது"</string>
-    <string name="no_player_found">ஸ்டீரீம் பிளேயர் கண்டறியப்படவில்லை. வில்சி நிருவ வேண்டுமா?</string>
-    <string name="install">நிறுவ</string>
+    <string name="main_bg_subtitle">தொடங்க தேடலை அழுத்தவும்</string>
+    <string name="view_count_text">%1$s பார்வைகள்</string>
+    <string name="upload_date_text">%1$s அன்று வெளியிடப்பட்டது</string>
+    <string name="no_player_found">நிகழ்பட ஓட்டி கண்டறியப்படவில்லை. VLC நிறுவ வேண்டுமா\?</string>
+    <string name="install">நிறுவு</string>
     <string name="cancel">ரத்துசெய்</string>
-    <string name="open_in_browser">உலாவியில் திறக்க</string>
+    <string name="open_in_browser">உலாவியில் திற</string>
     <string name="share">பகிர்</string>
-    <string name="download">பதிவிறக்க</string>
-    <string name="search">தேடல்</string>
+    <string name="download">பதிவிறக்கு</string>
+    <string name="search">தேடு</string>
     <string name="settings">அமைப்புகள்</string>
-    <string name="share_dialog_title">பகிர</string>
+    <string name="share_dialog_title">இதனுடன் பகிர்</string>
     <string name="choose_browser">உலாவியை தேர்ந்தெடு</string>
     <string name="screen_rotation">சுழற்சி</string>
-    <string name="no_player_found_toast">எந்த ஒரு இயக்கியும் கிடைக்கவில்லை (VLC-ஐ பயன்படுத்தவும்).</string>
-    <string name="open_in_popup_mode">திரைமேல் நிலையில் காணவும்</string>
-    <string name="controls_download_desc">தாரை கோப்பை பதிவிறக்கு</string>
-    <string name="did_you_mean">நீங்கள் கூறியது: %1$s இதுதானா\?</string>
-    <string name="use_external_video_player_title">வெளி காணொலி இயக்கியை பயன்படுத்தவும்</string>
-    <string name="use_external_audio_player_title">வெளி ஒலி இயக்கியை பயன்படுத்தவும்</string>
+    <string name="no_player_found_toast">நிகழ்பட ஓட்டி கிடைக்கவில்லை (தாங்கள் VLC-ஐ பயன்படுத்தலாம்).</string>
+    <string name="open_in_popup_mode">திரைமேல் நிலையில் காட்டவும்</string>
+    <string name="controls_download_desc">நிகழ்பட கோப்பை பதிவிறக்கு</string>
+    <string name="did_you_mean">நீங்கள் கூறியது: %1$s\?</string>
+    <string name="use_external_video_player_title">வேறு நிகழ்பட ஓட்டியை பயன்படுத்தவும்</string>
+    <string name="use_external_audio_player_title">வேறு ஒலி இயக்கியை பயன்படுத்தவும்</string>
     <string name="popup_mode_share_menu_title">NewPipe திரைமேல் நிலை</string>
     <string name="subscribe_button_title">குழுசேர்</string>
     <string name="subscribed_button_title">குழு சேர்க்கப்பட்டது</string>
@@ -105,7 +105,7 @@
     <string name="search_no_results">முடிவுகள் இல்லை</string>
     <string name="empty_subscription_feed_subtitle">எந்த முடிவுகளும் இல்லை</string>
     <string name="detail_drag_description">இழுத்து வரிசைமாற்று</string>
-    <string name="info_dir_created">தரவிறக்க அடைவு உருவாக்கப்பட்டது \'%1$s\'</string>
+    <string name="info_dir_created">\'%1$s\'-ல் தரவிறக்க அடைவு உருவாக்கப்பட்டது</string>
     <string name="video">காணொலி</string>
     <string name="audio">ஒலி</string>
     <string name="retry">மீண்டும் முயற்சி</string>
@@ -155,4 +155,5 @@
     <string name="notification_channel_description">"NewPipe பின்னனி மற்றும் பாப்அப் இயக்கிகளின்  அறிவிப்புகள்"</string>
     <string name="switch_to_popup">"பாப்அப் இயக்கிக்கு மாறு  "</string>
     <string name="unsubscribe">குழுவிலகு</string>
+    <string name="enqueue">வரிசை</string>
 </resources>

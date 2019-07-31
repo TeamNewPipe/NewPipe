@@ -5,7 +5,7 @@
     <string name="no_player_found">Δεν βρέθηκε πρόγραμμα αναπαραγωγής. Θα θέλατε να εγκαταστήσετε το VLC;</string>
     <string name="install">Εγκατάσταση</string>
     <string name="cancel">Ακύρωση</string>
-    <string name="open_in_browser">Άνοιγμα στον browser</string>
+    <string name="open_in_browser">Άνοιγμα στο πρόγραμμα περιήγησης ιστού</string>
     <string name="share">Κοινοποίηση</string>
     <string name="download">Λήψη</string>
     <string name="search">Αναζήτηση</string>
@@ -120,7 +120,7 @@
     <string name="metadata_cache_wipe_summary">Αφαίρεση όλων των προσωρινά αποθηκευμένων δεδομένων ιστοσελίδων</string>
     <string name="metadata_cache_wipe_complete_notice">Η προσωρινή μνήμη μεταδεδομένων εκκαθαρίστηκε</string>
     <string name="auto_queue_title">Αυτόματη πρόσθεση της επόμενης ροής στην ουρά</string>
-    <string name="auto_queue_summary">Αυτόματη πρόσθεση μιας σχετικής ροής όταν αναπαράγεται η προηγούμενη ροή σε μια μη-επαναλαμβανόμενη ουρά.</string>
+    <string name="auto_queue_summary">Αυτόματη πρόσθεση μιας σχετικής ροής όταν αναπαράγεται η προηγούμενη ροή σε μια μη-επαναλαμβανόμενη ουρά</string>
     <string name="player_gesture_controls_title">Έλεγχος αναπαραγωγής με χειρονομίες</string>
     <string name="player_gesture_controls_summary">Χρήση χειρονομιών για τον έλεγχο της φωτεινότητας και της έντασης ήχου της εφαρμογής</string>
     <string name="show_search_suggestions_summary">Εμφάνιση υποδείξεων ενώ κάνετε αναζήτηση</string>
@@ -266,7 +266,7 @@
     <string name="error_unable_to_load_license">Δεν ήταν δυνατή η φόρτωση της άδειας</string>
     <string name="tab_about">Περί</string>
     <string name="tab_contributors">Συνεισφέροντες</string>
-    <string name="app_description">Ανοιχτού κώδικα, ελαφριά εφαρμογή του Android, για την αναπαραγωγή πολυμεσων από το ίντερνετ.</string>
+    <string name="app_description">Ανοιχτού κώδικα, ελαφριά εφαρμογή Android, για την αναπαραγωγή πολυμέσων από το διαδίκτυο.</string>
     <string name="contribution_title">Συνεισφέρετε</string>
     <string name="contribution_encouragement">Αν έχετε ιδέες για μετάφραση, αλλαγή σχεδιασμού, εκκαθάριση ή ριζικές αλλαγές κώδικα της εφαρμογής—η βοήθεια σας είναι πάντα ευπρόσδεκτη. Όσο περισσότερη έχουμε, τόσο καλύτεροι γινόμαστε!</string>
     <string name="view_on_github">Δείτε το στο GitHub</string>
@@ -314,11 +314,11 @@
     <string name="play_queue_stream_detail">Λεπτομέρειες</string>
     <string name="play_queue_audio_settings">Ρυθμίσεις ήχου</string>
     <string name="hold_to_append">Πιέστε παρατεταμένα για να προστεθεί στην ουρά</string>
-    <string name="enqueue_on_background">Προσθήκη στην ουρά όταν είναι στο παρασκήνιο</string>
-    <string name="enqueue_on_popup">Προσθήκη στην ουρά νέου Αναδυόμενου παραθύρου</string>
+    <string name="enqueue_on_background">"Προσθήκη στη λίστα αναπαραγωγής  του παρασκήνιου"</string>
+    <string name="enqueue_on_popup">Προσθήκη στη λίστα αναπαραγωγής νέου Αναδυόμενου παραθύρου</string>
     <string name="start_here_on_main">Εκκίνηση Αναπαραγωγής εδώ</string>
-    <string name="start_here_on_background">Εκκίνηση εδώ όταν είναι στο Παρασκήνιο</string>
-    <string name="start_here_on_popup">Εκκίνηση εδώ όταν είναι στο Αναδυόμενο Παράθυρο</string>
+    <string name="start_here_on_background">Εκκίνηση αναπαραγωγής στο παρασκήνιο</string>
+    <string name="start_here_on_popup">Εκκίνηση αναπαραγωγής στο Αναδυόμενο Παράθυρο</string>
     <string name="drawer_open">Άνοιγμα Συρταριού</string>
     <string name="drawer_close">Κλείσιμο Συρταριού</string>
     <string name="drawer_header_action_paceholder_text">Κάτι θα παιχτεί εδω σύντομα ;D</string>
@@ -466,4 +466,15 @@
     <string name="max_retry_desc">Μέγιστος αριθμός προσπαθειών προτού γίνει ακύρωση της λήψης</string>
     <string name="pause_downloads_on_mobile">Παύση με την εναλλαγή του δικτύου σε δεδομένα</string>
     <string name="pause_downloads_on_mobile_desc">Οι λήψεις που δεν δέχονται παύση θα επανεκκινηθούν</string>
+    <string name="show_comments_title">Προβολή σχολίων</string>
+    <string name="show_comments_summary">Απενεργοποίηση για διακοπή της εμφάνιση σχολίων</string>
+    <string name="autoplay_title">Αυτόματη αναπαραγωγή</string>
+    <plurals name="comments">
+        <item quantity="one">Σχόλια</item>
+        <item quantity="other"/>
+    </plurals>
+    <string name="no_comments">Χωρίς σχόλια</string>
+    <string name="error_unable_to_load_comments">Δεν ήταν δυνατή η φόρτωση σχολίων</string>
+    <string name="direct_on_background">Αναπαραγωγή απευθείας στο παρασκήνιο</string>
+    <string name="close">Κλείσιμο</string>
 </resources>
