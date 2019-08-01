@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
@@ -138,6 +139,7 @@ public class MissionsFragment extends Fragment {
      * deprecated in API level 23,
      * but must remain to allow compatibility with api<23
      */
+    @SuppressWarnings("deprecation")
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -168,6 +170,15 @@ public class MissionsFragment extends Fragment {
         mPause = menu.findItem(R.id.pause_downloads);
 
         if (mAdapter != null) setAdapterButtons();
+
+        int max = getMaxActionButtons() - 1 /* grid button */;
+        if (max >= 2) {
+            // show start/pause downloads buttons in pair to avoid confusions
+            mStart.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+            mPause.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+            if (max > 3) mClear.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        }
 
         super.onPrepareOptionsMenu(menu);
     }
@@ -249,6 +260,23 @@ public class MissionsFragment extends Fragment {
         );
     }
 
+    public int getMaxActionButtons() {
+        Configuration configuration = mContext.getResources().getConfiguration();
+        int widthDp = configuration.screenWidthDp;
+        int heightDp = configuration.screenHeightDp;
+        int smallest = configuration.smallestScreenWidthDp;
+
+        if (smallest > 600 || widthDp > 600) {
+            return 5;
+        } else if (widthDp >= 500 || widthDp > 480 && heightDp > 640) {
+            return 4;
+        } else if (widthDp >= 360) {
+            return 3;
+        } else {
+            return 2;
+        }
+    }
+
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -273,6 +301,7 @@ public class MissionsFragment extends Fragment {
             }
 
             mBinder.addMissionEventListener(mAdapter.getMessenger());
+            mAdapter.checkMasterButtonsVisibility();
         }
         if (mBinder != null) mBinder.enableNotifications(false);
     }
