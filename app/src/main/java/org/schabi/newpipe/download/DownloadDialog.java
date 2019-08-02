@@ -773,7 +773,6 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         // more download logic: select muxer, subtitle converter, etc.
         switch (radioStreamsGroup.getCheckedRadioButtonId()) {
             case R.id.audio_button:
-                threads = 1;// use unique thread for subtitles due small file size
                 kind = 'a';
                 selectedStream = audioStreamsAdapter.getItem(selectedAudioIndex);
 
@@ -808,6 +807,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
                 }
                 break;
             case R.id.subtitle_button:
+                threads = 1;// use unique thread for subtitles due small file size
                 kind = 's';
                 selectedStream = subtitleStreamsAdapter.getItem(selectedSubtitleIndex);
 

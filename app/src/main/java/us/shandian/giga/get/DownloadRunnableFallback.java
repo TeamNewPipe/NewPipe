@@ -94,7 +94,7 @@ public class DownloadRunnableFallback extends Thread {
                 mMission.notifyProgress(len);
             }
 
-            // if thread goes interrupted check if the last part mIs written. This avoid re-download the whole file
+            // if thread goes interrupted check if the last part is written. This avoid re-download the whole file
             done = len == -1;
         } catch (Exception e) {
             dispose();
