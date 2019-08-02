@@ -15,7 +15,7 @@
     <string name="choose_browser">Выбор браузера</string>
     <string name="screen_rotation">поворот</string>
     <string name="download_path_title">Путь для скачанного видео</string>
-    <string name="download_path_summary">Путь для сохранения скачанного видео</string>
+    <string name="download_path_summary">Папка для хранения загруженных видео</string>
     <string name="download_path_dialog_title">Введите путь к папке для скачивания видео</string>
     <string name="default_resolution_title">Разрешение по умолчанию</string>
     <string name="play_with_kodi_title">Воспроизвести в Kodi</string>
@@ -27,7 +27,7 @@
     <string name="download_dialog_title">Скачать</string>
     <string name="next_video_title">Следующее</string>
     <string name="url_not_supported_toast">URL не поддерживается</string>
-    <string name="show_next_and_similar_title">Показывать \"Следующее\" и \"Похожие\" видео</string>
+    <string name="show_next_and_similar_title">\"Следующее\" и \"Похожие\" видео</string>
     <string name="content_language_title">Язык контента по умолчанию</string>
     <string name="settings_category_video_audio_title">Видео и аудио</string>
     <string name="settings_category_appearance_title">Внешний вид</string>
@@ -235,8 +235,8 @@
     <string name="play_queue_remove">Удалить</string>
     <string name="subscribed_button_title">Вы подписаны</string>
     <string name="channel_unsubscribed">Подписка отменена</string>
-    <string name="show_hold_to_append_title">Показывать \"Зажмите, чтобы добавить\"</string>
-    <string name="show_hold_to_append_summary">Показывать подсказку при нажатии кнопок всплывающего окна или фонового воспроизведения на странице сведений о видео</string>
+    <string name="show_hold_to_append_title">\"Зажмите, чтобы добавить\"</string>
+    <string name="show_hold_to_append_summary">Показать подсказку при нажатии \"В окне\" или \"В фоне\" на странице сведений о видео</string>
     <string name="unknown_content">[Неизвестно]</string>
     <string name="player_recoverable_failure">Восстановление после ошибки плеера</string>
     <string name="title_activity_background_player">В фоне</string>
