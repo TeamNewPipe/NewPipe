@@ -49,7 +49,6 @@ public class DownloadRunnable extends Thread {
         }
 
         SharpStream f;
-        InputStream is = null;
 
         try {
             f = mMission.storage.getStream();
@@ -114,16 +113,16 @@ public class DownloadRunnable extends Thread {
 
                 f.seek(mMission.offsets[mMission.current] + start);
 
-                is = mConn.getInputStream();
+                try (InputStream is = mConn.getInputStream()) {
+                    byte[] buf = new byte[DownloadMission.BUFFER_SIZE];
+                    int len;
 
-                byte[] buf = new byte[DownloadMission.BUFFER_SIZE];
-                int len;
-
-                while (start < end && mMission.running && (len = is.read(buf, 0, buf.length)) != -1) {
-                    f.write(buf, 0, len);
-                    start += len;
-                    block.done += len;
-                    mMission.notifyProgress(len);
+                    while (start < end && mMission.running && (len = is.read(buf, 0, buf.length)) != -1) {
+                        f.write(buf, 0, len);
+                        start += len;
+                        block.done += len;
+                        mMission.notifyProgress(len);
+                    }
                 }
 
                 if (DEBUG && mMission.running) {
@@ -141,12 +140,6 @@ public class DownloadRunnable extends Thread {
             } finally {
                 if (!retry) releaseBlock(block, end - start);
             }
-        }
-
-        try {
-            if (is != null) is.close();
-        } catch (Exception err) {
-            // nothing to do
         }
 
         try {

@@ -12,7 +12,6 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v7.preference.Preference;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.nononsenseapps.filepicker.Utils;
 
@@ -64,7 +63,6 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
         }
 
         if (hasInvalidPath(DOWNLOAD_PATH_VIDEO_PREFERENCE) || hasInvalidPath(DOWNLOAD_PATH_AUDIO_PREFERENCE)) {
-            Toast.makeText(ctx, R.string.download_pick_path, Toast.LENGTH_SHORT).show();
             updatePreferencesSummary();
         }
 

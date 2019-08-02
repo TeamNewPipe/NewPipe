@@ -103,7 +103,7 @@
     <string name="msg_running_detail">Toque para ver detalles</string>
     <string name="msg_wait">Por favor espere…</string>
     <string name="msg_copied">Copiado al portapapeles</string>
-    <string name="no_available_dir">Por favor, seleccione un directorio de descarga disponible</string>
+    <string name="no_available_dir">Por favor, defina un directorio de descarga mas tarde en ajustes</string>
     <string name="could_not_load_image">No se pudo cargar la imagen</string>
     <string name="app_ui_crash">La interfaz de la app dejó de funcionar</string>
     <string name="info_labels">Lo sucedido:\\nPetición:\\nIdioma del contenido:\\nServicio:\\nHora GMT:\\nPaquete:\\nVersión:\\nVersión del SO:</string>
@@ -458,7 +458,6 @@ abrir en modo popup</string>
     <string name="error_progress_lost">Se perdió el progreso porque el archivo fue eliminado</string>
     <string name="error_timeout">Tiempo de espera excedido</string>
 
-    <string name="download_pick_path">Seleccione los directorios de descarga</string>
     <string name="downloads_storage_ask_title">Preguntar dónde descargar</string>
     <string name="downloads_storage_ask_summary">Se preguntará dónde guardar cada descarga</string>
     <string name="downloads_storage_ask_summary_kitkat">Se preguntará dónde guardar cada descarga.\nHabilita esta opción si quieres descargar en la tarjeta SD externa</string>

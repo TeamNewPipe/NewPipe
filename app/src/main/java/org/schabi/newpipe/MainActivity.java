@@ -60,7 +60,6 @@ import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -421,17 +420,6 @@ public class MainActivity extends AppCompatActivity {
             if (i == PackageManager.PERMISSION_DENIED){
                 return;
             }
-        }
-        switch (requestCode) {
-            case PermissionHelper.DOWNLOADS_REQUEST_CODE:
-                NavigationHelper.openDownloads(this);
-                break;
-            case PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE:
-                Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
-                if (fragment instanceof VideoDetailFragment) {
-                    ((VideoDetailFragment) fragment).openDownloadDialog();
-                }
-                break;
         }
     }
 

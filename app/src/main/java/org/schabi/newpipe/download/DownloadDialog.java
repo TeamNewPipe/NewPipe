@@ -47,7 +47,6 @@ import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.FilenameUtils;
 import org.schabi.newpipe.util.ListHelper;
-import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.SecondaryStreamHelper;
 import org.schabi.newpipe.util.StreamItemAdapter;
 import org.schabi.newpipe.util.StreamItemAdapter.StreamSizeWrapper;
@@ -173,10 +172,6 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         super.onCreate(savedInstanceState);
         if (DEBUG)
             Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
-        if (!PermissionHelper.checkStoragePermissions(getActivity(), PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE)) {
-            getDialog().dismiss();
-            return;
-        }
 
         context = getContext();
 
@@ -217,32 +212,6 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
                 okButton.setEnabled(true);
 
                 context.unbindService(this);
-
-                // check of download paths are defined
-                if (!askForSavePath) {
-                    String msg = "";
-                    if (mainStorageVideo == null) msg += getString(R.string.download_path_title);
-                    if (mainStorageAudio == null)
-                        msg += getString(R.string.download_path_audio_title);
-
-                    if (!msg.isEmpty()) {
-                        String title;
-                        if (mainStorageVideo == null && mainStorageAudio == null) {
-                            title = getString(R.string.general_error);
-                            msg = getString(R.string.no_available_dir) + ":\n" + msg;
-                        } else {
-                            title = msg;
-                            msg = getString(R.string.no_available_dir);
-                        }
-
-                        new AlertDialog.Builder(context)
-                                .setPositiveButton(android.R.string.ok, null)
-                                .setTitle(title)
-                                .setMessage(msg)
-                                .create()
-                                .show();
-                    }
-                }
             }
 
             @Override
@@ -602,6 +571,9 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
             //  * save path not defined (via download settings)
             //  * the user as checked the "ask where to download" option
 
+            if (!askForSavePath)
+                Toast.makeText(context, getString(R.string.no_available_dir), Toast.LENGTH_LONG).show();
+
             StoredFileHelper.requestSafWithFileCreation(this, REQUEST_DOWNLOAD_PATH_SAF, filename, mime);
             return;
         }
@@ -773,7 +745,6 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         // more download logic: select muxer, subtitle converter, etc.
         switch (radioStreamsGroup.getCheckedRadioButtonId()) {
             case R.id.audio_button:
-                threads = 1;// use unique thread for subtitles due small file size
                 kind = 'a';
                 selectedStream = audioStreamsAdapter.getItem(selectedAudioIndex);
 
@@ -808,6 +779,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
                 }
                 break;
             case R.id.subtitle_button:
+                threads = 1;// use unique thread for subtitles due small file size
                 kind = 's';
                 selectedStream = subtitleStreamsAdapter.getItem(selectedSubtitleIndex);
 
