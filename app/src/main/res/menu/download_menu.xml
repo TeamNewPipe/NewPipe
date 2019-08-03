@@ -7,7 +7,7 @@
         android:icon="?attr/ic_grid"
         android:title="@string/grid"
         tools:ignore="AlwaysShowAction"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 
     <item android:id="@+id/start_downloads"
         android:visible="false"
