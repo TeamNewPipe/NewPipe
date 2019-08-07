@@ -385,7 +385,7 @@
     <string name="clear_views_history_title">Vymazať históriu pozretí</string>
     <string name="clear_views_history_summary">Odstráni históriu prehrávaných streamov</string>
     <string name="delete_view_history_alert">Vymazať celú históriu pozretí.</string>
-    <string name="view_history_deleted">História pozretí bola vymazaná.</string>
+    <string name="watch_history_deleted">História pozretí bola vymazaná.</string>
     <string name="clear_search_history_title">Vymazať históriu vyhľadávania</string>
     <string name="clear_search_history_summary">Vymaže históriu vyhľadávania kľúčových slov</string>
     <string name="delete_search_history_alert">Vymazať celú históriu vyhľadávania.</string>

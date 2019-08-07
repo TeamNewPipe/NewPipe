@@ -337,7 +337,7 @@
     <string name="clear_views_history_title">देखे हुए वीडियो की सूची साफ करें</string>
     <string name="clear_views_history_summary">चलाये गए स्ट्रीम का इतिहास साफ करता है</string>
     <string name="delete_view_history_alert">देखे गए सभी का इतिहास साफ करें\?</string>
-    <string name="view_history_deleted">देखे हुए का इतिहास साफ कर दिया गया।</string>
+    <string name="watch_history_deleted">देखे हुए का इतिहास साफ कर दिया गया।</string>
     <string name="clear_search_history_title">ढूंढने के इतिहास को साफ करें</string>
     <string name="clear_search_history_summary">ढूंढे गए शब्दो का इतिहास साफ करता है</string>
     <string name="delete_search_history_alert">पूरे खोज इतिहास को मिटा दे \?</string>

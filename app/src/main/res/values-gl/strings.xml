@@ -152,7 +152,7 @@
     <string name="clear_views_history_title">Limpar historial de reproducións</string>
     <string name="clear_views_history_summary">Elimina o historial de emisións reproducidas</string>
     <string name="delete_view_history_alert">Elimina todo o historial de reproducións.</string>
-    <string name="view_history_deleted">O historial de reproducións foi eliminado.</string>
+    <string name="watch_history_deleted">O historial de reproducións foi eliminado.</string>
     <string name="clear_search_history_title">Limpar o historial de procura</string>
     <string name="clear_search_history_summary">Elimina o historial de termos procurados</string>
     <string name="delete_search_history_alert">Elimina todo o historial de procura.</string>

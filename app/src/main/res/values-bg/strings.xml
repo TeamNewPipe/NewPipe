@@ -216,7 +216,7 @@
     <string name="export_data_summary">Експортиране на историята, абонаментите и плейлистите</string>
     <string name="clear_views_history_title">Изтрий историята с изгледани</string>
     <string name="delete_view_history_alert">Изтрий цялата история с изгледани\?</string>
-    <string name="view_history_deleted">Историята с изгледани е изтрита.</string>
+    <string name="watch_history_deleted">Историята с изгледани е изтрита.</string>
     <string name="clear_search_history_title">Изтрий историята на търсенията</string>
     <string name="clear_search_history_summary">Изтрива историята с въвежданите за търсене ключови думи</string>
     <string name="delete_search_history_alert">Изтрий цялата история на търсенията\?</string>

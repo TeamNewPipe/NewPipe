@@ -215,7 +215,7 @@
     <string name="clear_views_history_title">Megtekintési előzmények törlése</string>
     <string name="clear_views_history_summary">Eltávolítja a megtekintési előzményeket</string>
     <string name="delete_view_history_alert">Törlöd az összes megtekintési előzményt\?</string>
-    <string name="view_history_deleted">Megtekintési előzmények törölve.</string>
+    <string name="watch_history_deleted">Megtekintési előzmények törölve.</string>
     <string name="clear_search_history_title">Keresési előzmények törlése</string>
     <string name="clear_search_history_summary">Eltávolítja a kereséshez használt kifejezéseket az előzményekből</string>
     <string name="delete_search_history_alert">Törlöd az összes keresési előzményt\?</string>

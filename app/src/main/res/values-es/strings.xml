@@ -375,7 +375,7 @@ abrir en modo popup</string>
     <string name="clear_views_history_title">Borrar historial de reproducciones</string>
     <string name="clear_views_history_summary">Elimina el historial de las transmisiones reproducidas</string>
     <string name="delete_view_history_alert">¿Eliminar todo el historial de reproducciones\?</string>
-    <string name="view_history_deleted">Historial de reproducciones eliminado.</string>
+    <string name="watch_history_deleted">Historial de reproducciones eliminado.</string>
     <string name="clear_search_history_title">Borrar historial de búsqueda</string>
     <string name="clear_search_history_summary">Elimina el historial de palabras clave de búsqueda</string>
     <string name="delete_search_history_alert">¿Eliminar todo el historial de búsqueda\?</string>

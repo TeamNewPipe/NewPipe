@@ -371,7 +371,7 @@ abrir em modo popup</string>
     <string name="clear_views_history_title">"Limpar histórico de já assistidos "</string>
     <string name="clear_views_history_summary">Deleta o histórico de videos já reproduzidos</string>
     <string name="delete_view_history_alert">Deletar todo o histórico de já reproduzidos\?</string>
-    <string name="view_history_deleted">Histórico de já assistidos deletado.</string>
+    <string name="watch_history_deleted">Histórico de já assistidos deletado.</string>
     <string name="clear_search_history_title">Limpar histórico de pesquisa</string>
     <string name="clear_search_history_summary">Deleta histórico de palavras chave pesquisadas</string>
     <string name="delete_search_history_alert">Deletar todo o histórico de pesquisa\?</string>

@@ -327,7 +327,7 @@
     <string name="clear_views_history_title">Hapus riwayat tontonan</string>
     <string name="clear_views_history_summary">Hapus riwayat stream yang telah diputar</string>
     <string name="delete_view_history_alert">Hapus seluruh riwayat tontonan\?</string>
-    <string name="view_history_deleted">Riwayat tontonan dihapus.</string>
+    <string name="watch_history_deleted">Riwayat tontonan dihapus.</string>
     <string name="clear_search_history_title">Hapus riwayat pencarian</string>
     <string name="clear_search_history_summary">Hapus riwayat lema pencarian</string>
     <string name="delete_search_history_alert">Hapus seluruh riwayat pencarian\?</string>

@@ -93,7 +93,7 @@
     <string name="just_once">ஒரு முறை</string>
     <string name="file">கோப்பு</string>
     <string name="clear_views_history_title">பார்த்த வரலாற்றை நீக்கு</string>
-    <string name="view_history_deleted">பார்த்த வரலாறு அழிக்கப்பட்டது.</string>
+    <string name="watch_history_deleted">பார்த்த வரலாறு அழிக்கப்பட்டது.</string>
     <string name="clear_search_history_title">பார்த்த வரலாற்றை நீக்கு</string>
     <string name="search_history_deleted">தேடல் வரலாறு அழிக்கப்பட்டது.</string>
     <string name="file_name_empty_error">கோப்பு பெயர் காலியாக இருக்க முடியாது</string>

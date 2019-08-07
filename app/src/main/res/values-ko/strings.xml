@@ -381,7 +381,7 @@
     <string name="clear_views_history_title">시청 기록 삭제하기</string>
     <string name="clear_views_history_summary">동영상 시청 기록을 삭제합니다</string>
     <string name="delete_view_history_alert">모든 시청 기록을 삭제하시겠습니까\?</string>
-    <string name="view_history_deleted">동영상 시청 기록이 삭제되었습니다.</string>
+    <string name="watch_history_deleted">동영상 시청 기록이 삭제되었습니다.</string>
     <string name="clear_search_history_title">검색 기록 삭제</string>
     <string name="clear_search_history_summary">검색 기록을 모두 삭제합니다</string>
     <string name="delete_search_history_alert">모든 검색 기록을 삭제하시겠습니까\?</string>

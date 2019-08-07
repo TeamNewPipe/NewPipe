@@ -277,7 +277,7 @@
     <string name="metadata_cache_wipe_complete_notice">מטמון נתוני העל התרוקן</string>
     <string name="export_data_summary">ייצוא היסטוריה, מינויים ורשימות נגינה</string>
     <string name="clear_views_history_title">מחיקת היסטוריית הצפייה</string>
-    <string name="view_history_deleted">היסטוריית הצפייה נמחקה.</string>
+    <string name="watch_history_deleted">היסטוריית הצפייה נמחקה.</string>
     <string name="clear_search_history_title">מחיקת היסטוריית החיפוש</string>
     <string name="search_history_deleted">היסטוריית החיפוש נמחקה.</string>
     <string name="invalid_file">הקובץ אינו קיים או שחסרה הרשאה לקרוא אותו או לכתוב אליו</string>

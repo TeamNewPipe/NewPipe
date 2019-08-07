@@ -312,7 +312,7 @@
     <string name="popup_playing_append">ポップアップ再生の順番待ちに追加</string>
     <string name="clear_views_history_title">再生履歴を消去</string>
     <string name="clear_views_history_summary">再生した動画の履歴を削除します</string>
-    <string name="view_history_deleted">再生履歴を削除しました。</string>
+    <string name="watch_history_deleted">再生履歴を削除しました。</string>
     <string name="clear_search_history_title">検索履歴を消去</string>
     <string name="clear_search_history_summary">検索キーワードの履歴を削除します</string>
     <string name="search_history_deleted">検索履歴を削除しました。</string>

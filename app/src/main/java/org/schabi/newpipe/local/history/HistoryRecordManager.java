@@ -51,6 +51,7 @@ import java.util.List;
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.Maybe;
+import io.reactivex.Scheduler;
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 
@@ -106,6 +107,11 @@ public class HistoryRecordManager {
 
     public Single<Integer> deleteWholeStreamHistory() {
         return Single.fromCallable(streamHistoryTable::deleteAll)
+                .subscribeOn(Schedulers.io());
+    }
+
+    public Single<Integer> deleteCompelteStreamStateHistory() {
+        return Single.fromCallable(streamStateTable::deleteAll)
                 .subscribeOn(Schedulers.io());
     }
 
@@ -165,7 +171,7 @@ public class HistoryRecordManager {
                 .subscribeOn(Schedulers.io());
     }
 
-    public Single<Integer> deleteWholeSearchHistory() {
+    public Single<Integer> deleteCompleteSearchHistory() {
         return Single.fromCallable(searchHistoryTable::deleteAll)
                 .subscribeOn(Schedulers.io());
     }
@@ -291,4 +297,5 @@ public class HistoryRecordManager {
     public Single<Integer> removeOrphanedRecords() {
         return Single.fromCallable(streamTable::deleteOrphans).subscribeOn(Schedulers.io());
     }
+
 }

@@ -436,7 +436,7 @@
     <string name="clear_views_history_title">清除观看记录</string>
     <string name="clear_views_history_summary">删除视频观看记录</string>
     <string name="delete_view_history_alert">删除全部观看记录。</string>
-    <string name="view_history_deleted">观看记录已删除。</string>
+    <string name="watch_history_deleted">观看记录已删除。</string>
     <string name="clear_search_history_title">清除搜索记录</string>
     <string name="clear_search_history_summary">删除搜索关键词记录</string>
     <string name="delete_search_history_alert">删除全部搜索记录。</string>

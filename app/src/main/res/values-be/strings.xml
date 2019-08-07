@@ -143,7 +143,7 @@
     <string name="clear_views_history_title">Ачысціць гісторыю праглядаў</string>
     <string name="clear_views_history_summary">Выдаліць гісторыю прайграных патокаў</string>
     <string name="delete_view_history_alert">Выдаліць усю гісторыю праглядаў.</string>
-    <string name="view_history_deleted">Гісторыя праглядаў выдалена.</string>
+    <string name="watch_history_deleted">Гісторыя праглядаў выдалена.</string>
     <string name="clear_search_history_title">Ачысціць гісторыю пошуку</string>
     <string name="clear_search_history_summary">Выдаліць гісторыю пошукавых запытаў</string>
     <string name="delete_search_history_alert">Выдаліць усю гісторыю пошуку.</string>

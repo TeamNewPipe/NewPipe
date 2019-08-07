@@ -307,7 +307,7 @@
     <string name="clear_views_history_title">Očisti povijest gledanja</string>
     <string name="clear_views_history_summary">Briše povijest reproduciranih streamova</string>
     <string name="delete_view_history_alert">Obriši cijelu povijest gledanja\?</string>
-    <string name="view_history_deleted">Povijest gledanja izbrisana.</string>
+    <string name="watch_history_deleted">Povijest gledanja izbrisana.</string>
     <string name="clear_search_history_title">Obriši povijest pretraživanja</string>
     <string name="delete_search_history_alert">Obriši cijelu povijest pretraživanja\?</string>
     <string name="search_history_deleted">Povijest pretraživanja obrisana.</string>

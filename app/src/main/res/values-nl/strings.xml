@@ -378,7 +378,7 @@
     <string name="clear_views_history_title">Kijkgeschiedenis wissen</string>
     <string name="clear_views_history_summary">Verwijdert de geschiedenis van afgespeelde streams</string>
     <string name="delete_view_history_alert">De gehele kijkgeschiedenis wissen\?</string>
-    <string name="view_history_deleted">Kijkgeschiedenis gewist.</string>
+    <string name="watch_history_deleted">Kijkgeschiedenis gewist.</string>
     <string name="clear_search_history_title">Zoekgeschiedenis wissen</string>
     <string name="clear_search_history_summary">Verwijdert de gebruikte zoektermen</string>
     <string name="delete_search_history_alert">De gehele zoekgeschiedenis wissen\?</string>

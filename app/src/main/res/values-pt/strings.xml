@@ -353,7 +353,7 @@
     <string name="users">Utilizadores</string>
     <string name="clear_views_history_summary">Apaga o histórico dos vídeos reproduzidos</string>
     <string name="delete_view_history_alert">Apagar todo o histórico de visualizações\?</string>
-    <string name="view_history_deleted">Histórico de vídeos apagado.</string>
+    <string name="watch_history_deleted">Histórico de vídeos apagado.</string>
     <string name="clear_search_history_title">Apagar histórico de pesquisas</string>
     <string name="clear_search_history_summary">Apaga o histórico de palavras-chave pesquisadas</string>
     <string name="delete_search_history_alert">Apagar todo o histórico de pesquisa\?</string>

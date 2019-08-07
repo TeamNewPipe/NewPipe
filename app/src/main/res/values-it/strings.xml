@@ -378,7 +378,7 @@
     <string name="clear_views_history_title">Pulisci cronologia visualizzazioni</string>
     <string name="clear_views_history_summary">Elimina la cronologia dei flussi riprodotti</string>
     <string name="delete_view_history_alert">Elimina l\'intera cronologia delle visualizzazioni\?</string>
-    <string name="view_history_deleted">Cronologia visualizzazioni eliminata.</string>
+    <string name="watch_history_deleted">Cronologia visualizzazioni eliminata.</string>
     <string name="clear_search_history_title">Pulisci cronologia delle ricerche</string>
     <string name="clear_search_history_summary">Cancella la cronologia dei termini di ricerca</string>
     <string name="delete_search_history_alert">Elimina l\'intera cronologia delle ricerche\?</string>

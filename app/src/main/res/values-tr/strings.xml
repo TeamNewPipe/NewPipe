@@ -378,7 +378,7 @@
     <string name="clear_views_history_title">İzleme geçmişini temizle</string>
     <string name="clear_views_history_summary">Oynatılan akışların geçmişini siler</string>
     <string name="delete_view_history_alert">İzleme geçmişinin tamamı silinsin mi\?</string>
-    <string name="view_history_deleted">İzleme geçmişi silindi.</string>
+    <string name="watch_history_deleted">İzleme geçmişi silindi.</string>
     <string name="clear_search_history_title">Arama geçmişini temizle</string>
     <string name="clear_search_history_summary">Aramada kullanılan anahtar kelimelerin geçmişini siler</string>
     <string name="delete_search_history_alert">Tüm arama geçmişi silinsin mi\?</string>
