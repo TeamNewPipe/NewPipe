@@ -75,17 +75,14 @@ public abstract class StateObjectsListAdapter extends RecyclerView.Adapter<Recyc
 
 	protected void loadStates(List<InfoItem> list, int offset, Runnable callback) {
 		if (isPlaybackStatesVisible()) {
-			stateLoaders.add(
-					recordManager.loadStreamStateBatch(list)
-							.observeOn(AndroidSchedulers.mainThread())
-							.subscribe(streamStateEntities -> {
-								appendStates(streamStateEntities, offset);
-								callback.run();
-							}, throwable -> {
-								if (BuildConfig.DEBUG) throwable.printStackTrace();
-								callback.run();
-							})
-			);
+			List<StreamStateEntity> streamStateEntities = null;
+			try {
+				streamStateEntities = recordManager.loadStreamStateBatch(list).blockingGet();
+			} catch (Exception e) {
+				if (BuildConfig.DEBUG) e.printStackTrace();
+			}
+			if(streamStateEntities != null) appendStates(streamStateEntities, offset);
+			callback.run();
 		} else {
 			callback.run();
 		}
@@ -93,17 +90,14 @@ public abstract class StateObjectsListAdapter extends RecyclerView.Adapter<Recyc
 
 	protected void loadState(InfoItem item, int offset, Runnable callback) {
 		if (isPlaybackStatesVisible()) {
-			stateLoaders.add(
-					recordManager.loadStreamState(item)
-							.observeOn(AndroidSchedulers.mainThread())
-							.subscribe(streamStateEntities -> {
-								appendState(streamStateEntities[0], offset);
-								callback.run();
-							}, throwable -> {
-								if (BuildConfig.DEBUG) throwable.printStackTrace();
-								callback.run();
-							})
-			);
+			StreamStateEntity[] streamStateEntities = null;
+			try {
+				streamStateEntities = recordManager.loadStreamState(item).blockingGet();
+			} catch (Exception e) {
+				if (BuildConfig.DEBUG) e.printStackTrace();
+			}
+			if(streamStateEntities != null && streamStateEntities.length > 0) appendState(streamStateEntities[0], offset);
+			callback.run();
 		} else {
 			callback.run();
 		}
@@ -111,17 +105,14 @@ public abstract class StateObjectsListAdapter extends RecyclerView.Adapter<Recyc
 
 	protected void loadStatesForLocal(List<? extends LocalItem> list, int offset, Runnable callback) {
 		if (isPlaybackStatesVisible()) {
-			stateLoaders.add(
-					recordManager.loadLocalStreamStateBatch(list)
-							.observeOn(AndroidSchedulers.mainThread())
-							.subscribe(streamStateEntities -> {
-								appendStates(streamStateEntities, offset);
-								callback.run();
-							}, throwable -> {
-								if (BuildConfig.DEBUG) throwable.printStackTrace();
-								callback.run();
-							})
-			);
+			List<StreamStateEntity> streamStateEntities = null;
+			try {
+				streamStateEntities = recordManager.loadLocalStreamStateBatch(list).blockingGet();
+			} catch (Exception e) {
+				if (BuildConfig.DEBUG) e.printStackTrace();
+			}
+			if(streamStateEntities != null) appendStates(streamStateEntities, offset);
+			callback.run();
 		} else {
 			callback.run();
 		}
