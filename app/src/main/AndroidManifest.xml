@@ -228,6 +228,7 @@
                 <data android:scheme="http"/>
                 <data android:scheme="https"/>
                 <data android:host="invidio.us"/>
+                <data android:host="dev.invidio.us"/>
                 <data android:host="www.invidio.us"/>
                 <data android:host="invidious.snopyta.org"/>
                 <data android:host="de.invidious.snopyta.org"/>
