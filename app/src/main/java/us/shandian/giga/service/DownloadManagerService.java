@@ -1,7 +1,5 @@
 package us.shandian.giga.service;
 
-import android.Manifest;
-import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -30,7 +28,6 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.Builder;
-import android.support.v4.content.PermissionChecker;
 import android.util.Log;
 import android.util.SparseArray;
 import android.widget.Toast;
@@ -257,18 +254,20 @@ public class DownloadManagerService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
+        /*
         int permissionCheck;
-//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-//            permissionCheck = PermissionChecker.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
-//            if (permissionCheck == PermissionChecker.PERMISSION_DENIED) {
-//                Toast.makeText(this, "Permission denied (read)", Toast.LENGTH_SHORT).show();
-//            }
-//        }
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+            permissionCheck = PermissionChecker.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+            if (permissionCheck == PermissionChecker.PERMISSION_DENIED) {
+                Toast.makeText(this, "Permission denied (read)", Toast.LENGTH_SHORT).show();
+            }
+        }
 
         permissionCheck = PermissionChecker.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (permissionCheck == PermissionChecker.PERMISSION_DENIED) {
             Toast.makeText(this, "Permission denied (write)", Toast.LENGTH_SHORT).show();
         }
+        */
 
         return mBinder;
     }

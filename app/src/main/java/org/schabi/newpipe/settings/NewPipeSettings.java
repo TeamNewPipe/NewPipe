@@ -22,6 +22,7 @@ package org.schabi.newpipe.settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -66,8 +67,10 @@ public class NewPipeSettings {
         PreferenceManager.setDefaultValues(context, R.xml.video_audio_settings, true);
         PreferenceManager.setDefaultValues(context, R.xml.debug_settings, true);
 
-        getVideoDownloadFolder(context);
-        getAudioDownloadFolder(context);
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            getVideoDownloadFolder(context);
+            getAudioDownloadFolder(context);
+        }
     }
 
     private static void getVideoDownloadFolder(Context context) {

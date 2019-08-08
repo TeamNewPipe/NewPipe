@@ -382,10 +382,8 @@ public class RouterActivity extends AppCompatActivity {
         }
 
         if (selectedChoiceKey.equals(getString(R.string.download_key))) {
-            if (PermissionHelper.checkStoragePermissions(this, PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE)) {
-                selectionIsDownload = true;
-                openDownloadDialog();
-            }
+            selectionIsDownload = true;
+            openDownloadDialog();
             return;
         }
 
@@ -452,9 +450,6 @@ public class RouterActivity extends AppCompatActivity {
                 finish();
                 return;
             }
-        }
-        if (requestCode == PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE) {
-            openDownloadDialog();
         }
     }
 

@@ -28,11 +28,21 @@ public class DownloadInitializer extends Thread {
         mConn = null;
     }
 
+    private static void safeClose(HttpURLConnection con) {
+        try {
+            con.getInputStream().close();
+        } catch (Exception e) {
+            // nothing to do
+        }
+    }
+
     @Override
     public void run() {
         if (mMission.current > 0) mMission.resetState(false, true, DownloadMission.ERROR_NOTHING);
 
         int retryCount = 0;
+        int httpCode = 204;
+
         while (true) {
             try {
                 if (mMission.blocks == null && mMission.current == 0) {
@@ -43,11 +53,16 @@ public class DownloadInitializer extends Thread {
                     for (int i = 0; i < mMission.urls.length && mMission.running; i++) {
                         mConn = mMission.openConnection(mMission.urls[i], mId, -1, -1);
                         mMission.establishConnection(mId, mConn);
+                        safeClose(mConn);
 
                         if (Thread.interrupted()) return;
                         long length = Utility.getContentLength(mConn);
 
-                        if (i == 0) mMission.length = length;
+                        if (i == 0) {
+                            httpCode = mConn.getResponseCode();
+                            mMission.length = length;
+                        }
+
                         if (length > 0) finalLength += length;
                         if (length < lowestSize) lowestSize = length;
                     }
@@ -68,13 +83,15 @@ public class DownloadInitializer extends Thread {
                     // ask for the current resource length
                     mConn = mMission.openConnection(mId, -1, -1);
                     mMission.establishConnection(mId, mConn);
+                    safeClose(mConn);
 
                     if (!mMission.running || Thread.interrupted()) return;
 
+                    httpCode = mConn.getResponseCode();
                     mMission.length = Utility.getContentLength(mConn);
                 }
 
-                if (mMission.length == 0 || mConn.getResponseCode() == 204) {
+                if (mMission.length == 0 || httpCode == 204) {
                     mMission.notifyError(DownloadMission.ERROR_HTTP_NO_CONTENT, null);
                     return;
                 }
@@ -92,6 +109,7 @@ public class DownloadInitializer extends Thread {
                     // Open again
                     mConn = mMission.openConnection(mId, mMission.length - 10, mMission.length);
                     mMission.establishConnection(mId, mConn);
+                    safeClose(mConn);
 
                     if (!mMission.running || Thread.interrupted()) return;
 

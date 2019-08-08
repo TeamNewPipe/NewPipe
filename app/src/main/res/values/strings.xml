@@ -294,7 +294,7 @@
     <string name="msg_running_detail">Tap for details</string>
     <string name="msg_wait">Please wait…</string>
     <string name="msg_copied">Copied to clipboard</string>
-    <string name="no_available_dir">Please select an available download folder</string>
+    <string name="no_available_dir">Please define an download folder later in settings</string>
     <string name="msg_popup_permission">This permission is needed to\nopen in popup mode</string>
     <string name="one_item_deleted">1 item deleted.</string>
     <!-- Checksum types -->
@@ -552,8 +552,6 @@
     <string name="enable_queue_limit_desc">One download will run at the same time</string>
     <string name="start_downloads">Start downloads</string>
     <string name="pause_downloads">Pause downloads</string>
-
-    <string name="download_pick_path">Select the downloads save path</string>
 
     <string name="downloads_storage_ask_title">Ask where to download</string>
     <string name="downloads_storage_ask_summary">You will be asked where to save each download</string>
