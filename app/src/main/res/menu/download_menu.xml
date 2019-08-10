@@ -7,25 +7,25 @@
         android:icon="?attr/ic_grid"
         android:title="@string/grid"
         tools:ignore="AlwaysShowAction"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
     <item android:id="@+id/start_downloads"
         android:visible="false"
         android:icon="?attr/play"
         android:title="@string/start_downloads"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
 
     <item android:id="@+id/pause_downloads"
         android:visible="false"
         android:icon="?attr/pause"
         android:title="@string/pause_downloads"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
 
     <item android:id="@+id/clear_list"
         android:visible="false"
         android:icon="?attr/ic_delete"
         android:title="@string/clear_finished_download"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
 
     <item android:id="@+id/action_settings"
         android:title="@string/settings"
