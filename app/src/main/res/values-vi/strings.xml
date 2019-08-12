@@ -222,7 +222,7 @@
     <string name="clear_views_history_title">Xóa lịch sử xem</string>
     <string name="clear_views_history_summary">Xóa lịch sử của các luồng đã phát</string>
     <string name="delete_view_history_alert">Xóa toàn bộ lịch sử xem\?</string>
-    <string name="view_history_deleted">Đã xóa lịch sử xem.</string>
+    <string name="watch_history_deleted">Đã xóa lịch sử xem.</string>
     <string name="clear_search_history_title">Xóa lịch sử tìm kiếm</string>
     <string name="clear_search_history_summary">Xóa lịch sử của từ khóa tìm kiếm</string>
     <string name="delete_search_history_alert">Xóa toàn bộ lịch sử tìm kiếm\?</string>

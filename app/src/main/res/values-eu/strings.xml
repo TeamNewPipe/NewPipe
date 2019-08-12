@@ -290,7 +290,7 @@
     <string name="clear_views_history_title">Garbitu ikusitakoaren historiala</string>
     <string name="clear_views_history_summary">Jotako jarioen historiala ezabatzen du</string>
     <string name="delete_view_history_alert">Ezabatu ikusitakoaren historia osoa\?</string>
-    <string name="view_history_deleted">Ikusitakoaren historiala ezabatuta.</string>
+    <string name="watch_history_deleted">Ikusitakoaren historiala ezabatuta.</string>
     <string name="clear_search_history_title">Garbitu bilaketa historiala</string>
     <string name="clear_search_history_summary">Ezabatu bilaketa gakoen historiala</string>
     <string name="delete_search_history_alert">Ezabatu bilaketen historia osoa\?</string>

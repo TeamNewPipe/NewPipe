@@ -170,7 +170,7 @@
     <string name="minimize_on_exit_none_description">هیچ</string>
     <string name="best_resolution">بهترین وضوح</string>
     <string name="delete_view_history_alert">تمام تاریخچه نمایش پاک شود؟</string>
-    <string name="view_history_deleted">تاریخچه نمایش پاک شد.</string>
+    <string name="watch_history_deleted">تاریخچه نمایش پاک شد.</string>
     <string name="clear_search_history_title">پاک‌کردن تاریخچه جستجو</string>
     <string name="clear_search_history_summary">تاریخچه کلیدواژه‌های جستجو را پاک می‌کند</string>
     <string name="delete_search_history_alert">تمام تاریخچه جستجو پاک شود؟</string>

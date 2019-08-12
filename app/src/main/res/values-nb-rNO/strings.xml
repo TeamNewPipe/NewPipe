@@ -353,7 +353,7 @@
     <string name="clear_views_history_title">Tøm avspillingshistorikk</string>
     <string name="clear_views_history_summary">Slett historikken for avspilte strømmer</string>
     <string name="delete_view_history_alert">Slett hele visningshistorikken\?</string>
-    <string name="view_history_deleted">Visningshistorikk slettet.</string>
+    <string name="watch_history_deleted">Visningshistorikk slettet.</string>
     <string name="clear_search_history_title">Tøm søkehistorikk</string>
     <string name="clear_search_history_summary">Sletter historikken for søkte nøkkelord</string>
     <string name="delete_search_history_alert">Slett hele søkehistorikken\?</string>

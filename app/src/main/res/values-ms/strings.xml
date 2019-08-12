@@ -158,7 +158,7 @@
     <string name="clear_views_history_title">Hapuskan sejarah tontonan</string>
     <string name="clear_views_history_summary">Hapuskan sejarah strim yang telah dimain</string>
     <string name="delete_view_history_alert">Padamkan seluruh sejarah tontonan\?</string>
-    <string name="view_history_deleted">Sejarah tontonan dipadamkan.</string>
+    <string name="watch_history_deleted">Sejarah tontonan dipadamkan.</string>
     <string name="clear_search_history_title">Hapuskan sejarah carian</string>
     <string name="clear_search_history_summary">Padamkan sejarah kata kunci carian</string>
     <string name="delete_search_history_alert">Padamkan seluruh sejarah carian\?</string>

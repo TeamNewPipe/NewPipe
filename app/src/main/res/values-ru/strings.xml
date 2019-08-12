@@ -378,7 +378,7 @@
     <string name="caption_setting_description">Изменить размер текста и стиль титров. Нужен перезапуск</string>
     <string name="clear_views_history_title">Очистить историю просмотров</string>
     <string name="delete_view_history_alert">Удалить всю историю просмотров\?</string>
-    <string name="view_history_deleted">История просмотров удалена</string>
+    <string name="watch_history_deleted">История просмотров удалена</string>
     <string name="clear_search_history_title">Очистить историю поиска</string>
     <string name="clear_search_history_summary">Удалить историю запросов поиска</string>
     <string name="clear_views_history_summary">Удалить историю воспроизведённых потоков</string>

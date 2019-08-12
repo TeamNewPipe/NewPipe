@@ -180,7 +180,7 @@ public class StatisticsPlaylistFragment
                                     .observeOn(AndroidSchedulers.mainThread())
                                     .subscribe(
                                             howManyDeleted -> Toast.makeText(getContext(),
-                                                    R.string.view_history_deleted,
+                                                    R.string.watch_history_deleted,
                                                     Toast.LENGTH_SHORT).show(),
                                             throwable -> ErrorActivity.reportError(getContext(),
                                                     throwable,

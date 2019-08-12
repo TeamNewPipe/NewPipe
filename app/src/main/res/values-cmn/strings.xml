@@ -188,7 +188,7 @@
     <string name="export_data_summary">导出历史记录、订阅和播放列表</string>
     <string name="clear_views_history_summary">删除播放过的媒体历史记录</string>
     <string name="delete_view_history_alert">确定要清除所有观看历史记录吗？</string>
-    <string name="view_history_deleted">观看历史记录已清除。</string>
+    <string name="watch_history_deleted">观看历史记录已清除。</string>
     <string name="clear_search_history_title">清除搜索历史记录</string>
     <string name="clear_search_history_summary">清除搜索关键词的历史记录</string>
     <string name="delete_search_history_alert">确定要清除所有搜索历史记录吗？</string>

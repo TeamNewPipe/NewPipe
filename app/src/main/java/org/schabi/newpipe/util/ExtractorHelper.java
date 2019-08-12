@@ -228,6 +228,10 @@ public final class ExtractorHelper {
         });
     }
 
+    public static boolean isCached(final int serviceId, final String url, InfoItem.InfoType infoType) {
+        return null != loadFromCache(serviceId, url, infoType).blockingGet();
+    }
+
     /**
      * A simple and general error handler that show a Toast for known exceptions, and for others, opens the report error activity with the (optional) error message.
      */

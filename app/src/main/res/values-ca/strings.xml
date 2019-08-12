@@ -376,7 +376,7 @@
     <string name="clear_views_history_title">Esborra l\'historial de reproduccions</string>
     <string name="clear_views_history_summary">Esborra l\'historial dels vídeos que s\'han reproduït</string>
     <string name="delete_view_history_alert">Voleu esborrar tot l\'historial de reproduccions\?</string>
-    <string name="view_history_deleted">S\'ha esborrat l\'historial de reproduccions.</string>
+    <string name="watch_history_deleted">S\'ha esborrat l\'historial de reproduccions.</string>
     <string name="clear_search_history_title">Esborra l\'historial de cerca</string>
     <string name="clear_search_history_summary">Esborra l\'historial de paraules cercades</string>
     <string name="delete_search_history_alert">Voleu esborrar tot l\'historial de cerca\?</string>

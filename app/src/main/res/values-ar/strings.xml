@@ -354,7 +354,7 @@
     <string name="clear_views_history_title">محو سجل المشاهدة</string>
     <string name="clear_views_history_summary">احذف سِجل الفيديوهات التي تم تشغيلها</string>
     <string name="delete_view_history_alert">حذف سجل المشاهدة بالكامل\?</string>
-    <string name="view_history_deleted">تم حذف سجل المشاهدة.</string>
+    <string name="watch_history_deleted">تم حذف سجل المشاهدة.</string>
     <string name="clear_search_history_title">محو سجل البحث</string>
     <string name="clear_search_history_summary">يحذف تاريخ البحث عن الكلمات الرئيسية</string>
     <string name="delete_search_history_alert">حذف سِجل البحث بالكامل\?</string>

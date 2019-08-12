@@ -378,7 +378,7 @@
     <string name="clear_views_history_title">Wiedergabeverlauf löschen</string>
     <string name="clear_views_history_summary">Löscht den Verlauf der abgespielten Streams</string>
     <string name="delete_view_history_alert">Den ganzen Wiedergabeverlauf löschen\?</string>
-    <string name="view_history_deleted">Wiedergabeverlauf gelöscht.</string>
+    <string name="watch_history_deleted">Wiedergabeverlauf gelöscht.</string>
     <string name="clear_search_history_title">Suchverlauf löschen</string>
     <string name="clear_search_history_summary">Löscht den Verlauf der Suchbegriffe</string>
     <string name="delete_search_history_alert">Den gesamten Suchverlauf löschen\?</string>
