@@ -484,6 +484,5 @@
     </plurals>
     <string name="no_comments">Коментарі відсутні</string>
     <string name="error_unable_to_load_comments">Не вдалося підвантажити коментарів</string>
-    <string name="direct_on_background">Програвати у фоні</string>
     <string name="close">Закрити</string>
 </resources>

@@ -479,6 +479,5 @@
     </plurals>
     <string name="no_comments">Brak komentarzy</string>
     <string name="error_unable_to_load_comments">Nie można załadować komentarzy</string>
-    <string name="direct_on_background">Odtwarzaj bezpośrednio w tle</string>
     <string name="close">Zamknij</string>
 </resources>

@@ -331,7 +331,6 @@
     <string name="resize_fill">Заполнить</string>
     <string name="resize_zoom">Приблизить</string>
     <string name="caption_auto_generated">Созданы автоматически</string>
-    <string name="live_sync">Синхронизировать</string>
     <string name="enable_leak_canary_title">Включить LeakCanary</string>
     <string name="enable_leak_canary_summary">Мониторинг утечки памяти может привести к зависанию приложения</string>
     <string name="enable_disposed_exceptions_title">Сообщать об ошибках жизненного цикла</string>
@@ -487,5 +486,4 @@
     </plurals>
     <string name="no_comments">Нет комментариев</string>
     <string name="error_unable_to_load_comments">Не удалось загрузить комментарии</string>
-    <string name="direct_on_background">Играть сейчас в фоне</string>
 </resources>

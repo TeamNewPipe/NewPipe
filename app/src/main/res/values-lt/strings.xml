@@ -362,10 +362,6 @@
     <string name="resize_zoom">Priartinti</string>
 
     <string name="caption_auto_generated">Automatiškai sugeneruotas</string>
-    <string name="caption_font_size_settings_title">Antraštės šrifto dydis</string>
-    <string name="smaller_caption_font_size">Mažesnis šriftas</string>
-    <string name="normal_caption_font_size">Normalus šriftas</string>
-    <string name="larger_caption_font_size">Didesnis šriftas</string>
 
     <string name="enable_leak_canary_title">Įjungti LeakCanary</string>
     <string name="enable_leak_canary_summary">Atminties nutekėjimo stebėjimas gali padaryti programėlę nestabilią</string>

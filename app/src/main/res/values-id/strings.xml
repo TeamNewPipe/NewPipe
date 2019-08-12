@@ -312,12 +312,7 @@
     <string name="resize_fill">Isi</string>
     <string name="resize_zoom">Perbesar</string>
     <string name="caption_auto_generated">Otomatis dibuat</string>
-    <string name="caption_font_size_settings_title">Ukuran fon deskripsi</string>
-    <string name="smaller_caption_font_size">Fon lebih kecil</string>
-    <string name="normal_caption_font_size">Fon normal</string>
-    <string name="larger_caption_font_size">Fon lebih besar</string>
     <string name="enable_leak_canary_title">Aktifkan LeakCanary</string>
-    <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Bawaan</string>
     <string name="no_player_found_toast">Pemutar stream tidak ditemukan (anda bisa memasang VLC untuk memutarnya).</string>
     <string name="controls_download_desc">Unduh berkas stream</string>
@@ -476,6 +471,5 @@
     </plurals>
     <string name="no_comments">Tidak ada komentar</string>
     <string name="error_unable_to_load_comments">Tidak bisa memuat komentar</string>
-    <string name="direct_on_background">Putar di latar belakang</string>
     <string name="close">Tutup</string>
 </resources>

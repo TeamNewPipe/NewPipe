@@ -294,7 +294,6 @@
     <string name="playlist_thumbnail_change_success">プレイリストのサムネイルを変更しました。</string>
     <string name="playlist_delete_failure">プレイリストを削除できませんでした。</string>
     <string name="caption_none">字幕表示なし</string>
-    <string name="caption_font_size_settings_title">字幕の文字サイズ</string>
     <string name="import_export_title">インポート/エクスポート</string>
     <string name="import_title">インポート</string>
     <string name="import_from">インポート元</string>
@@ -473,7 +472,6 @@
     </plurals>
     <string name="no_comments">コメントはありません</string>
     <string name="error_unable_to_load_comments">コメントを読み込めませんでした</string>
-    <string name="direct_on_background">バックグラウンドで直接再生</string>
     <string name="close">閉じる</string>
     <string name="error_timeout">接続タイムアウト</string>
 </resources>

@@ -482,6 +482,5 @@
     </plurals>
     <string name="no_comments">אין תגובות</string>
     <string name="error_unable_to_load_comments">לא ניתן לטעון תגובות</string>
-    <string name="direct_on_background">לנגן ישירות ברקע</string>
     <string name="close">סגירה</string>
 </resources>

@@ -333,16 +333,11 @@
     <string name="resize_fill">Omple</string>
     <string name="resize_zoom">Escala</string>
     <string name="caption_auto_generated">Generats automàticament</string>
-    <string name="caption_font_size_settings_title">Mida dels subtítols</string>
-    <string name="smaller_caption_font_size">Mida més petita</string>
-    <string name="normal_caption_font_size">Mida normal</string>
-    <string name="larger_caption_font_size">Mida més gran</string>
     <string name="enable_leak_canary_title">Habilita el LeakCanary</string>
     <string name="previous_export">Darrera exportació</string>
     <string name="subscriptions_import_unsuccessful">No s\'han pogut importar les subscripcions</string>
     <string name="subscriptions_export_unsuccessful">No s\'han pogut exportar les subscripcions</string>
     <string name="unhook_checkbox">Desvincula (pot provocar distorsió)</string>
-    <string name="playback_nightcore">Nightcore</string>
     <string name="metadata_cache_wipe_summary">Elimina totes les dades de llocs web de la memòria cau</string>
     <string name="auto_queue_summary">Afegeix a la cua un vídeo relacionat quan es reprodueix l\'últim vídeo en una cua sense repetició</string>
     <string name="show_hold_to_append_title">Mostra els missatges d\'ajuda</string>
@@ -465,7 +460,6 @@
     <string name="autoplay_title">Reproducció automàtica</string>
     <string name="no_comments">No hi ha comentaris</string>
     <string name="error_unable_to_load_comments">No s\'han pogut carregar els comentaris</string>
-    <string name="direct_on_background">Reprodueix directament en segon pla</string>
     <string name="close">Tanca</string>
     <string name="saved_tabs_invalid_json">S\'estan utilitzant les pestanyes per defecte, s\'ha produït un error en llegir les pestanyes desades</string>
     <string name="updates_setting_description">Mostra una notificació per demanar l\'actualització de l\'aplicació si hi ha una nova versió disponible</string>

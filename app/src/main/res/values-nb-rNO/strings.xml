@@ -310,10 +310,6 @@
     <string name="resize_fit">Tilpass</string>
     <string name="resize_fill">Fyll</string>
     <string name="resize_zoom">Forstørr</string>
-    <string name="caption_font_size_settings_title">Bildetekstens størrelse</string>
-    <string name="smaller_caption_font_size">Mindre skrift</string>
-    <string name="normal_caption_font_size">Normal skrift</string>
-    <string name="larger_caption_font_size">Større skrift</string>
     <string name="use_inexact_seek_title">Bruk raskt unøyaktig blafring</string>
     <string name="settings_category_debug_title">Feilretting</string>
     <string name="file">Fil</string>
@@ -383,7 +379,6 @@
     <string name="enable_disposed_exceptions_title">Rapporter feil som opptrer utenfor sin levetid</string>
     <string name="enable_disposed_exceptions_summary">Tving rapportering av uleverbare Rx-unntak utenom fragment eller aktivitetslevetid etter forkastelse</string>
     <string name="unhook_checkbox">Avhekt (kan forårsake forvrenging)</string>
-    <string name="playback_nightcore">Nightcore</string>
     <string name="privacy_policy_title">NewPipes personvernspraksis</string>
     <string name="privacy_policy_encouragement">NewPipe-prosjektet tar ditt personvern veldig alvorlig. Derfor samler ikke programmet inn data uten ditt samtykke.
 \nNewPipes personvernspraksis forklarer i detalj hvilken deta som sendes og lagres når du sender en kræsjrapport.</string>
@@ -478,6 +473,5 @@
     </plurals>
     <string name="no_comments">Ingen kommenterer</string>
     <string name="error_unable_to_load_comments">Kunne ikke laste inn kommentarer</string>
-    <string name="direct_on_background">Spill direkte i bakgrunnen</string>
     <string name="close">Lukk</string>
 </resources>

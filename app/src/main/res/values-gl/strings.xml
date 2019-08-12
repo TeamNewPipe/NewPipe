@@ -93,7 +93,6 @@
     <string name="url_not_supported_toast">Este URL non está soportado</string>
     <string name="default_content_country_title">País predeterminado para o contido</string>
     <string name="service_title">Servizo</string>
-    <string name="search_language_title">Idioma predeterminado do contido</string>
     <string name="settings_category_player_title">Reprodutor</string>
     <string name="settings_category_player_behavior_title">Comportamento</string>
     <string name="settings_category_video_audio_title">Vídeo e audio</string>

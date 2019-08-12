@@ -306,10 +306,6 @@
     <string name="resize_fit">合適的</string>
     <string name="resize_fill">填滿</string>
     <string name="resize_zoom">縮放</string>
-    <string name="caption_font_size_settings_title">標題字體大小</string>
-    <string name="smaller_caption_font_size">縮小字體</string>
-    <string name="normal_caption_font_size">正常字體</string>
-    <string name="larger_caption_font_size">加大字體</string>
     <string name="drawer_header_action_paceholder_text">某些東西即將在此出現 ;D</string>
     <string name="settings_category_debug_title">除錯</string>
     <string name="caption_auto_generated">自動產生</string>
@@ -321,7 +317,6 @@
     <string name="use_inexact_seek_summary">粗略的尋找能讓播放器以降低的精確度更快找到影片的進度位置</string>
     <string name="auto_queue_title">自動將下一部影片新增至佇列</string>
     <string name="auto_queue_summary">在非重複播放佇列中最後一個串流開始播放時，自動新增相關串流</string>
-    <string name="live_sync">同步</string>
     <string name="file">檔案</string>
     <string name="invalid_directory">無效的資料夾</string>
     <string name="invalid_source">無效的檔案/內容來源</string>
@@ -363,7 +358,6 @@
     <string name="playback_tempo">節奏</string>
     <string name="playback_pitch">音高</string>
     <string name="unhook_checkbox">解除連結（可能導致失真）</string>
-    <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">預設</string>
     <string name="preferred_open_action_settings_title">偏好的「開啟」動作</string>
     <string name="preferred_open_action_settings_summary">開啟內容時的預設動作 — %s</string>
@@ -477,6 +471,5 @@
     </plurals>
     <string name="no_comments">沒有留言</string>
     <string name="error_unable_to_load_comments">無法載入留言</string>
-    <string name="direct_on_background">直接在背景播放</string>
     <string name="close">關閉</string>
 </resources>

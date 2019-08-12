@@ -134,7 +134,6 @@
     <string name="url_not_supported_toast">不支持该网址</string>
     <string name="default_content_country_title">默认内容的国家</string>
     <string name="service_title">服务</string>
-    <string name="search_language_title">默认内容的语言</string>
     <string name="settings_category_player_title">播放器</string>
     <string name="settings_category_player_behavior_title">行为</string>
     <string name="settings_category_video_audio_title">视频与音频</string>

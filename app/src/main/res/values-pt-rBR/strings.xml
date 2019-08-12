@@ -476,6 +476,5 @@ abrir em modo popup</string>
     </plurals>
     <string name="no_comments">Não há comentários</string>
     <string name="error_unable_to_load_comments">Não foi possível carregar comentários</string>
-    <string name="direct_on_background">Reproduzir diretamente em segundo plano</string>
     <string name="close">Fechar</string>
 </resources>

@@ -475,6 +475,5 @@
     </plurals>
     <string name="no_comments">Χωρίς σχόλια</string>
     <string name="error_unable_to_load_comments">Δεν ήταν δυνατή η φόρτωση σχολίων</string>
-    <string name="direct_on_background">Αναπαραγωγή απευθείας στο παρασκήνιο</string>
     <string name="close">Κλείσιμο</string>
 </resources>

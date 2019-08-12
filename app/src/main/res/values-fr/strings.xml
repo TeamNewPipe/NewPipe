@@ -308,10 +308,6 @@
     <string name="caption_none">Aucuns sous-titres</string>
     <string name="resize_fit">Ajuster</string>
     <string name="resize_zoom">Zoom</string>
-    <string name="caption_font_size_settings_title">Taille des sous-titres</string>
-    <string name="smaller_caption_font_size">Petite</string>
-    <string name="normal_caption_font_size">Normale</string>
-    <string name="larger_caption_font_size">Grande</string>
     <string name="use_inexact_seek_title">Recherche rapide approximative</string>
     <string name="use_inexact_seek_summary">Permettre au lecteur d\'accéder plus rapidement à une position au détriment de la précision</string>
     <string name="download_thumbnail_title">Charger les miniatures</string>
@@ -373,7 +369,6 @@
     <string name="caption_setting_title">Sous-titres</string>
     <string name="caption_setting_description">Modifier la taille du texte et les styles d\'arrière-plan du lecteur. Redémarrage requis pour prendre effet.</string>
     <string name="playback_pitch">Ton</string>
-    <string name="playback_nightcore">Nightcore</string>
     <string name="toast_no_player">Aucune application installée pour lire ce fichier</string>
     <string name="clear_views_history_title">Effacer l\'historique</string>
     <string name="clear_views_history_summary">Supprimer l\'historique des flux regardés</string>
@@ -483,6 +478,5 @@
     </plurals>
     <string name="no_comments">Pas de commentaires</string>
     <string name="error_unable_to_load_comments">Impossible de charger les commentaires</string>
-    <string name="direct_on_background">Jouer directement en arrière-plan</string>
     <string name="close">Fermer</string>
 </resources>

@@ -276,10 +276,6 @@
     <string name="resize_fill">Ispuniti</string>
     <string name="resize_zoom">Povećaj</string>
     <string name="caption_auto_generated">Auto generirano</string>
-    <string name="caption_font_size_settings_title">Veličina fonta naslova</string>
-    <string name="smaller_caption_font_size">Manji font</string>
-    <string name="normal_caption_font_size">Normalni font</string>
-    <string name="larger_caption_font_size">Veći font</string>
     <string name="enable_leak_canary_title">Omogući \"LeakCanary\"</string>
     <string name="enable_leak_canary_summary">Monitoring curenja memorije može uzrokovati greške u radu aplikacije prilikom odlaganje gomile</string>
     <string name="enable_disposed_exceptions_title">Izvijestite o pogreškama izvan životnog ciklusa</string>
@@ -478,7 +474,6 @@
     </plurals>
     <string name="no_comments">Nema komentara</string>
     <string name="error_unable_to_load_comments">Komentare nije moguće učitati</string>
-    <string name="direct_on_background">Sviraj izravno u pozadini</string>
     <string name="close">Zatvori</string>
     <string name="app_license">NewPipe je copyleft libre software: možete ga koristiti, proučavati i poboljšavati po volji. Konkretno, možete ga redistribuirati i / ili modificirati pod uvjetima GNU opće javne licence koju je objavila Free Software Foundation, bilo verzije 3 Licence, ili (po vašem izboru) bilo koje kasnije verzije.</string>
     <string name="privacy_policy_encouragement">"Projekt NewPipe ozbiljno shvaća vašu privatnost. Stoga aplikacija ne prikuplja nikakve podatke bez vašeg pristanka.
