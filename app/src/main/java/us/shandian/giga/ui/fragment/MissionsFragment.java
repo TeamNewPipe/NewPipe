@@ -138,6 +138,7 @@ public class MissionsFragment extends Fragment {
      * deprecated in API level 23,
      * but must remain to allow compatibility with api<23
      */
+    @SuppressWarnings("deprecation")
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -273,6 +274,7 @@ public class MissionsFragment extends Fragment {
             }
 
             mBinder.addMissionEventListener(mAdapter.getMessenger());
+            mAdapter.checkMasterButtonsVisibility();
         }
         if (mBinder != null) mBinder.enableNotifications(false);
     }
