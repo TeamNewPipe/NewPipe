@@ -471,7 +471,6 @@
     <string name="max_retry_desc">מספר הניסיונות החוזרים המרבי בטרם ביטול ההורדה</string>
     <string name="pause_downloads_on_mobile">להשהות בעת מעבר לתקשורת נתונים סלולרית</string>
     <string name="pause_downloads_on_mobile_desc">הורדות שלא ניתן להשהות יופעלו מחדש</string>
-    <string name="missions_header_pending">בהמתנה</string>
     <string name="show_comments_title">הצגת תגובות</string>
     <string name="show_comments_summary">יש להשבית כדי להפסיק הצגת תגובות</string>
     <string name="autoplay_title">ניגון אוטומטי</string>

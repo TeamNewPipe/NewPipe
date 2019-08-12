@@ -463,9 +463,9 @@
     <string name="main_page_content_summary">メインページに表示されるタブ</string>
     <string name="updates_setting_description">新しいバージョンが利用可能なときにアプリの更新を確認する通知を表示します</string>
     <string name="msg_pending_downloads">ダウンロードから %s の保留中の転送を続行します</string>
-    <string name="pause_downloads_on_mobile">モバイルデータ通信に切り替え時に休止</string>
-    <string name="pause_downloads_on_mobile_desc">休止できないダウンロードが再開されます</string>
-    <string name="error_timeout">接続タイムアウト</string>
+    <string name="pause_downloads_on_mobile">モバイルデータ通信に切替時に、一時停止する</string>
+    <string name="pause_downloads_on_mobile_desc">一時停止できない場合は再開して継続されます</string>
+    <string name="show_comments_title">コメントを表示</string>
     <string name="show_comments_summary">無効にするとコメントの表示を停止します</string>
     <string name="autoplay_title">自動再生</string>
     <plurals name="comments">
@@ -475,5 +475,5 @@
     <string name="error_unable_to_load_comments">コメントを読み込めませんでした</string>
     <string name="direct_on_background">バックグラウンドで直接再生</string>
     <string name="close">閉じる</string>
-    <string name="show_comments_title">コメントを表示</string>
+    <string name="error_timeout">接続タイムアウト</string>
 </resources>
