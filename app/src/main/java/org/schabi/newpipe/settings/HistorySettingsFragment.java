@@ -18,7 +18,7 @@ import io.reactivex.disposables.Disposable;
 
 public class HistorySettingsFragment extends BasePreferenceFragment {
     private String cacheWipeKey;
-    private String viewsHistroyClearKey;
+    private String viewsHistoryClearKey;
     private String searchHistoryClearKey;
     private HistoryRecordManager recordManager;
     private CompositeDisposable disposables;
@@ -27,7 +27,7 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         cacheWipeKey = getString(R.string.metadata_cache_wipe_key);
-        viewsHistroyClearKey = getString(R.string.clear_views_history_key);
+        viewsHistoryClearKey = getString(R.string.clear_views_history_key);
         searchHistoryClearKey = getString(R.string.clear_search_history_key);
         recordManager = new HistoryRecordManager(getActivity());
         disposables = new CompositeDisposable();
@@ -46,7 +46,7 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
                     Toast.LENGTH_SHORT).show();
         }
 
-        if (preference.getKey().equals(viewsHistroyClearKey)) {
+        if (preference.getKey().equals(viewsHistoryClearKey)) {
             new AlertDialog.Builder(getActivity())
                     .setTitle(R.string.delete_view_history_alert)
                     .setNegativeButton(R.string.cancel, ((dialog, which) -> dialog.dismiss()))
