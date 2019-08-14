@@ -71,7 +71,7 @@
     <string name="settings_category_history_title">التاريخ و ذاكرة التخزين المؤقت</string>
     <string name="content">محتوى</string>
     <string name="downloads">التنزيلات</string>
-    <string name="downloads_title">التحميل</string>
+    <string name="downloads_title">عنوان التنزيلات</string>
     <string name="all">الكل</string>
     <string name="channel">القناة</string>
     <string name="video">الفيديو</string>
@@ -114,11 +114,11 @@
     <string name="show_age_restricted_content_title">محتوى مقيد بحسب العمر</string>
     <string name="video_is_age_restricted">"إظهار الفيديو  المقيد بحسب العمر. يمكن السماح باستخدام هذه المواد من \"الإعدادات\"."</string>
     <string name="duration_live">بث مباشر</string>
-    <string name="error_report_title">تقرير الخطأ</string>
+    <string name="error_report_title">عنوان تقرير الخطأ</string>
     <string name="playlist">قائمة التشغيل</string>
     <string name="yes">نعم</string>
     <string name="later">لاحقاً</string>
-    <string name="disabled">مُعطل</string>
+    <string name="disabled">تعطيل</string>
     <string name="filter">فلتر</string>
     <string name="refresh">تحديث</string>
     <string name="clear">تنظيف</string>
