@@ -228,8 +228,9 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
     }
 
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int type) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int type) {
         if (DEBUG) Log.d(TAG, "onCreateViewHolder() called with: parent = [" +
                 parent + "], type = [" + type + "]");
         switch (type) {
@@ -260,7 +261,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (DEBUG) Log.d(TAG, "onBindViewHolder() called with: holder = [" +
                 holder.getClass().getSimpleName() + "], position = [" + position + "]");
 
