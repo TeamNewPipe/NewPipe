@@ -113,7 +113,6 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
         super.onDestroyView();
         if (playlistReactor != null) playlistReactor.dispose();
         if (playlistAdapter != null) {
-            playlistAdapter.dispose();
             playlistAdapter.unsetSelectedListener();
         }
 

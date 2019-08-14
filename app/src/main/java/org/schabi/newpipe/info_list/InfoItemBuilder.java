@@ -24,6 +24,7 @@ import org.schabi.newpipe.info_list.holder.PlaylistInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistMiniInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.StreamInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.StreamMiniInfoItemHolder;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.OnClickGesture;
 
 /*
@@ -61,14 +62,14 @@ public class InfoItemBuilder {
         this.context = context;
     }
 
-    public View buildView(@NonNull ViewGroup parent, @NonNull final InfoItem infoItem, @Nullable StreamStateEntity state) {
-        return buildView(parent, infoItem, state, false);
+    public View buildView(@NonNull ViewGroup parent, @NonNull final InfoItem infoItem, final HistoryRecordManager historyRecordManager) {
+        return buildView(parent, infoItem, historyRecordManager, false);
     }
 
     public View buildView(@NonNull ViewGroup parent, @NonNull final InfoItem infoItem,
-                          @Nullable StreamStateEntity state, boolean useMiniVariant) {
+                          final HistoryRecordManager historyRecordManager, boolean useMiniVariant) {
         InfoItemHolder holder = holderFromInfoType(parent, infoItem.getInfoType(), useMiniVariant);
-        holder.updateFromItem(infoItem, state);
+        holder.updateFromItem(infoItem, historyRecordManager);
         return holder.itemView;
     }
 

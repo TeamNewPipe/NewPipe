@@ -9,6 +9,7 @@ import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 
 /*
  * Created by Christian Schabesberger on 12.02.17.
@@ -41,8 +42,8 @@ public class CommentsInfoItemHolder extends CommentsMiniInfoItemHolder {
     }
 
     @Override
-    public void updateFromItem(final InfoItem infoItem, @Nullable final StreamStateEntity state) {
-        super.updateFromItem(infoItem, state);
+    public void updateFromItem(final InfoItem infoItem, final HistoryRecordManager historyRecordManager) {
+        super.updateFromItem(infoItem, historyRecordManager);
 
         if (!(infoItem instanceof CommentsInfoItem)) return;
         final CommentsInfoItem item = (CommentsInfoItem) infoItem;

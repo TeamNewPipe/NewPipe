@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.local.LocalItemBuilder;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 
 import java.text.DateFormat;
 
@@ -40,8 +41,8 @@ public abstract class LocalItemHolder extends RecyclerView.ViewHolder {
         this.itemBuilder = itemBuilder;
     }
 
-    public abstract void updateFromItem(final LocalItem item, @Nullable final StreamStateEntity state, final DateFormat dateFormat);
+    public abstract void updateFromItem(final LocalItem item, HistoryRecordManager historyRecordManager, final DateFormat dateFormat);
 
-    public void updateState(final LocalItem localItem, @Nullable final StreamStateEntity state) {
+    public void updateState(final LocalItem localItem, HistoryRecordManager historyRecordManager) {
     }
 }

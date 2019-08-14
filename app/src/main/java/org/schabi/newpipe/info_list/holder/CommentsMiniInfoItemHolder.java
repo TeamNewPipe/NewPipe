@@ -13,6 +13,7 @@ import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.CommentTextOnTouchListener;
 import org.schabi.newpipe.util.ImageDisplayConstants;
@@ -67,7 +68,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     }
 
     @Override
-    public void updateFromItem(final InfoItem infoItem, @Nullable final StreamStateEntity state) {
+    public void updateFromItem(final InfoItem infoItem, final HistoryRecordManager historyRecordManager) {
         if (!(infoItem instanceof CommentsInfoItem)) return;
         final CommentsInfoItem item = (CommentsInfoItem) infoItem;
 
@@ -76,20 +77,17 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
                         itemThumbnailView,
                         ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
 
-        itemThumbnailView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(StringUtil.isBlank(item.getAuthorEndpoint())) return;
-                try {
-                    final AppCompatActivity activity = (AppCompatActivity) itemBuilder.getContext();
-                    NavigationHelper.openChannelFragment(
-                            activity.getSupportFragmentManager(),
-                            item.getServiceId(),
-                            item.getAuthorEndpoint(),
-                            item.getAuthorName());
-                } catch (Exception e) {
-                    ErrorActivity.reportUiError((AppCompatActivity) itemBuilder.getContext(), e);
-                }
+        itemThumbnailView.setOnClickListener(view -> {
+            if(StringUtil.isBlank(item.getAuthorEndpoint())) return;
+            try {
+                final AppCompatActivity activity = (AppCompatActivity) itemBuilder.getContext();
+                NavigationHelper.openChannelFragment(
+                        activity.getSupportFragmentManager(),
+                        item.getServiceId(),
+                        item.getAuthorEndpoint(),
+                        item.getAuthorName());
+            } catch (Exception e) {
+                ErrorActivity.reportUiError((AppCompatActivity) itemBuilder.getContext(), e);
             }
         });
 

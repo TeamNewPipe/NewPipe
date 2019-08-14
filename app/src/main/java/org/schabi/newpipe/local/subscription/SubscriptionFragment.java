@@ -130,7 +130,6 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
 
     @Override
     public void onDetach() {
-        infoListAdapter.dispose();
         super.onDetach();
     }
 
@@ -153,8 +152,6 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
             }
             updateFlags = 0;
         }
-
-        itemsList.post(infoListAdapter::updateStates);
     }
 
     @Override

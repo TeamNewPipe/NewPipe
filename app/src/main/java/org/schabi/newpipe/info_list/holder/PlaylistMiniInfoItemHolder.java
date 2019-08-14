@@ -10,6 +10,7 @@ import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 
 public class PlaylistMiniInfoItemHolder extends InfoItemHolder {
@@ -32,7 +33,7 @@ public class PlaylistMiniInfoItemHolder extends InfoItemHolder {
     }
 
     @Override
-    public void updateFromItem(final InfoItem infoItem, @Nullable final StreamStateEntity state) {
+    public void updateFromItem(final InfoItem infoItem, final HistoryRecordManager historyRecordManager) {
         if (!(infoItem instanceof PlaylistInfoItem)) return;
         final PlaylistInfoItem item = (PlaylistInfoItem) infoItem;
 

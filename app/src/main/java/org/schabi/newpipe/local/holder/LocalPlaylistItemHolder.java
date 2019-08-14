@@ -8,6 +8,7 @@ import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.local.LocalItemBuilder;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 
 import java.text.DateFormat;
@@ -23,7 +24,7 @@ public class LocalPlaylistItemHolder extends PlaylistItemHolder {
     }
 
     @Override
-    public void updateFromItem(final LocalItem localItem, @Nullable final StreamStateEntity state, final DateFormat dateFormat) {
+    public void updateFromItem(final LocalItem localItem, HistoryRecordManager historyRecordManager, final DateFormat dateFormat) {
         if (!(localItem instanceof PlaylistMetadataEntry)) return;
         final PlaylistMetadataEntry item = (PlaylistMetadataEntry) localItem;
 
@@ -34,6 +35,6 @@ public class LocalPlaylistItemHolder extends PlaylistItemHolder {
         itemBuilder.displayImage(item.thumbnailUrl, itemThumbnailView,
                 ImageDisplayConstants.DISPLAY_PLAYLIST_OPTIONS);
 
-        super.updateFromItem(localItem, state, dateFormat);
+        super.updateFromItem(localItem, historyRecordManager, dateFormat);
     }
 }

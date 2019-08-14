@@ -14,12 +14,14 @@ import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.local.LocalItemBuilder;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.views.AnimatedProgressBar;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
@@ -47,7 +49,7 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
     }
 
     @Override
-    public void updateFromItem(final LocalItem localItem, @Nullable final StreamStateEntity state, final DateFormat dateFormat) {
+    public void updateFromItem(final LocalItem localItem, HistoryRecordManager historyRecordManager, final DateFormat dateFormat) {
         if (!(localItem instanceof PlaylistStreamEntry)) return;
         final PlaylistStreamEntry item = (PlaylistStreamEntry) localItem;
 
@@ -60,6 +62,8 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
             itemDurationView.setBackgroundColor(ContextCompat.getColor(itemBuilder.getContext(),
                     R.color.duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
+
+            StreamStateEntity state = historyRecordManager.loadLocalStreamStateBatch(new ArrayList<LocalItem>() {{ add(localItem); }}).blockingGet().get(0);
             if (state != null) {
                 itemProgressView.setVisibility(View.VISIBLE);
                 itemProgressView.setMax((int) item.duration);
@@ -94,9 +98,11 @@ public class LocalPlaylistStreamItemHolder extends LocalItemHolder {
     }
 
     @Override
-    public void updateState(LocalItem localItem, @Nullable StreamStateEntity state) {
+    public void updateState(LocalItem localItem, HistoryRecordManager historyRecordManager) {
         if (!(localItem instanceof PlaylistStreamEntry)) return;
         final PlaylistStreamEntry item = (PlaylistStreamEntry) localItem;
+
+        StreamStateEntity state = historyRecordManager.loadLocalStreamStateBatch(new ArrayList<LocalItem>() {{ add(localItem); }}).blockingGet().get(0);
         if (state != null && item.duration > 0) {
             itemProgressView.setMax((int) item.duration);
             if (itemProgressView.getVisibility() == View.VISIBLE) {
