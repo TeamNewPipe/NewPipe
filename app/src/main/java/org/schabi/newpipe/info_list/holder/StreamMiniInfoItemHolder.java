@@ -1,6 +1,5 @@
 package org.schabi.newpipe.info_list.holder;
 
-import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +12,7 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
@@ -43,7 +43,7 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
     }
 
     @Override
-    public void updateFromItem(final InfoItem infoItem, @Nullable final StreamStateEntity state) {
+    public void updateFromItem(final InfoItem infoItem, final HistoryRecordManager historyRecordManager) {
         if (!(infoItem instanceof StreamInfoItem)) return;
         final StreamInfoItem item = (StreamInfoItem) infoItem;
 
@@ -55,10 +55,12 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
             itemDurationView.setBackgroundColor(ContextCompat.getColor(itemBuilder.getContext(),
                     R.color.duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
-            if (state != null) {
+
+            StreamStateEntity state2 = historyRecordManager.loadStreamState(infoItem).blockingGet()[0];
+            if (state2 != null) {
                 itemProgressView.setVisibility(View.VISIBLE);
                 itemProgressView.setMax((int) item.getDuration());
-                itemProgressView.setProgress((int) TimeUnit.MILLISECONDS.toSeconds(state.getProgressTime()));
+                itemProgressView.setProgress((int) TimeUnit.MILLISECONDS.toSeconds(state2.getProgressTime()));
             } else {
                 itemProgressView.setVisibility(View.GONE);
             }
@@ -101,8 +103,10 @@ public class StreamMiniInfoItemHolder extends InfoItemHolder {
     }
 
     @Override
-    public void updateState(final InfoItem infoItem, @Nullable final StreamStateEntity state) {
+    public void updateState(final InfoItem infoItem, final HistoryRecordManager historyRecordManager) {
         final StreamInfoItem item = (StreamInfoItem) infoItem;
+
+        StreamStateEntity state = historyRecordManager.loadStreamState(infoItem).blockingGet()[0];
         if (state != null && item.getDuration() > 0 && item.getStreamType() != StreamType.LIVE_STREAM) {
             itemProgressView.setMax((int) item.getDuration());
             if (itemProgressView.getVisibility() == View.VISIBLE) {
