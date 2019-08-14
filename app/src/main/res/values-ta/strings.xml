@@ -93,7 +93,7 @@
     <string name="just_once">ஒரு முறை</string>
     <string name="file">கோப்பு</string>
     <string name="clear_views_history_title">பார்த்த வரலாற்றை நீக்கு</string>
-    <string name="view_history_deleted">பார்த்த வரலாறு அழிக்கப்பட்டது.</string>
+    <string name="watch_history_deleted">பார்த்த வரலாறு அழிக்கப்பட்டது.</string>
     <string name="clear_search_history_title">பார்த்த வரலாற்றை நீக்கு</string>
     <string name="search_history_deleted">தேடல் வரலாறு அழிக்கப்பட்டது.</string>
     <string name="file_name_empty_error">கோப்பு பெயர் காலியாக இருக்க முடியாது</string>
@@ -121,7 +121,6 @@
     <string name="enable_search_history_summary">தேடப்பட்ட வாக்கியத்தை அமைவிடத்தில் சேமிக்கவும்</string>
     <string name="url_not_supported_toast">ஆதரிக்கப்படாத URL</string>
     <string name="default_content_country_title">இயல்புநிலை தகவல்களின் நாடு</string>
-    <string name="search_language_title">தகவல்களின் இயல்பு மொழி</string>
     <string name="settings_category_debug_title">பிழைதிருத்து</string>
     <string name="content">உள்ளடக்கம்</string>
     <string name="show_age_restricted_content_title">வயது வரம்புக்கு உட்பட்டது</string>

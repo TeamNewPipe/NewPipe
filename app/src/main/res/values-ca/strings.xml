@@ -333,18 +333,13 @@
     <string name="resize_fill">Omple</string>
     <string name="resize_zoom">Escala</string>
     <string name="caption_auto_generated">Generats automàticament</string>
-    <string name="caption_font_size_settings_title">Mida dels subtítols</string>
-    <string name="smaller_caption_font_size">Mida més petita</string>
-    <string name="normal_caption_font_size">Mida normal</string>
-    <string name="larger_caption_font_size">Mida més gran</string>
     <string name="enable_leak_canary_title">Habilita el LeakCanary</string>
     <string name="previous_export">Darrera exportació</string>
     <string name="subscriptions_import_unsuccessful">No s\'han pogut importar les subscripcions</string>
     <string name="subscriptions_export_unsuccessful">No s\'han pogut exportar les subscripcions</string>
     <string name="unhook_checkbox">Desvincula (pot provocar distorsió)</string>
-    <string name="playback_nightcore">Nightcore</string>
     <string name="metadata_cache_wipe_summary">Elimina totes les dades de llocs web de la memòria cau</string>
-    <string name="auto_queue_summary">Afegeix a la cua un vídeo relacionat quan es reprodueix l\'últim vídeo en una cua sense repetició.</string>
+    <string name="auto_queue_summary">Afegeix a la cua un vídeo relacionat quan es reprodueix l\'últim vídeo en una cua sense repetició</string>
     <string name="show_hold_to_append_title">Mostra els missatges d\'ajuda</string>
     <string name="show_hold_to_append_summary">Mostra un missatge d\'ajuda quan el botó de mode en segon pla o emergent estigui premut a la pàgina de detalls d\'un vídeo</string>
     <string name="info_labels">Què ha passat:\\nPetició:\\nIdioma del contingut:\\nServei:\\nHora GMT:\\nPaquet:\\nVersió:\\nVersió del SO:</string>
@@ -376,7 +371,7 @@
     <string name="clear_views_history_title">Esborra l\'historial de reproduccions</string>
     <string name="clear_views_history_summary">Esborra l\'historial dels vídeos que s\'han reproduït</string>
     <string name="delete_view_history_alert">Voleu esborrar tot l\'historial de reproduccions\?</string>
-    <string name="view_history_deleted">S\'ha esborrat l\'historial de reproduccions.</string>
+    <string name="watch_history_deleted">S\'ha esborrat l\'historial de reproduccions.</string>
     <string name="clear_search_history_title">Esborra l\'historial de cerca</string>
     <string name="clear_search_history_summary">Esborra l\'historial de paraules cercades</string>
     <string name="delete_search_history_alert">Voleu esborrar tot l\'historial de cerca\?</string>
@@ -465,6 +460,13 @@
     <string name="autoplay_title">Reproducció automàtica</string>
     <string name="no_comments">No hi ha comentaris</string>
     <string name="error_unable_to_load_comments">No s\'han pogut carregar els comentaris</string>
-    <string name="direct_on_background">Reprodueix directament en segon pla</string>
     <string name="close">Tanca</string>
+    <string name="saved_tabs_invalid_json">S\'estan utilitzant les pestanyes per defecte, s\'ha produït un error en llegir les pestanyes desades</string>
+    <string name="updates_setting_description">Mostra una notificació per demanar l\'actualització de l\'aplicació si hi ha una nova versió disponible</string>
+    <string name="app_update_notification_content_text">Toca per baixar</string>
+    <string name="error_http_no_content">El servidor no està enviant dades</string>
+    <plurals name="comments">
+        <item quantity="one">Comentaris</item>
+        <item quantity="other"></item>
+    </plurals>
 </resources>

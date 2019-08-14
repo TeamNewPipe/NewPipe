@@ -22,6 +22,7 @@ import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
+import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
@@ -180,7 +181,7 @@ public class StatisticsPlaylistFragment
                                     .observeOn(AndroidSchedulers.mainThread())
                                     .subscribe(
                                             howManyDeleted -> Toast.makeText(getContext(),
-                                                    R.string.view_history_deleted,
+                                                    R.string.watch_history_deleted,
                                                     Toast.LENGTH_SHORT).show(),
                                             throwable -> ErrorActivity.reportError(getContext(),
                                                     throwable,
@@ -357,6 +358,10 @@ public class StatisticsPlaylistFragment
         startLoading(true);
     }
 
+    private PlayQueue getPlayQueueStartingAt(StreamStatisticsEntry infoItem) {
+        return getPlayQueue(Math.max(itemListAdapter.getItemsList().indexOf(infoItem), 0));
+    }
+
     private void showStreamDialog(final StreamStatisticsEntry item) {
         final Context context = getContext();
         final Activity activity = getActivity();
@@ -379,8 +384,13 @@ public class StatisticsPlaylistFragment
                     StreamDialogEntry.delete,
                     StreamDialogEntry.append_playlist,
                     StreamDialogEntry.share);
+
+            StreamDialogEntry.start_here_on_popup.setCustomAction(
+                    (fragment, infoItemDuplicate) -> NavigationHelper.playOnPopupPlayer(context, getPlayQueueStartingAt(item), true));
         }
 
+        StreamDialogEntry.start_here_on_background.setCustomAction(
+                (fragment, infoItemDuplicate) -> NavigationHelper.playOnBackgroundPlayer(context, getPlayQueueStartingAt(item), true));
         StreamDialogEntry.delete.setCustomAction((fragment, infoItemDuplicate) ->
             deleteEntry(Math.max(itemListAdapter.getItemsList().indexOf(item), 0)));
 

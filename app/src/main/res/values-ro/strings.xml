@@ -358,7 +358,7 @@ pentru a deschide în mod pop-up</string>
     <string name="file_deleted">Fișier șters</string>
     <string name="app_update_notification_channel_name">Notificare actualizare aplicație</string>
     <string name="app_update_notification_channel_description">Notificări pentru noi versiuni NewPipe</string>
-    <string name="view_history_deleted">Afișare istoric șters.</string>
+    <string name="watch_history_deleted">Afișare istoric șters.</string>
     <string name="clear_search_history_title">Șterge istoric căutare</string>
     <string name="clear_search_history_summary">Ștergere istoric căutare cuvinte cheie</string>
     <string name="delete_search_history_alert">Șterge întregul istoric căutare\?</string>

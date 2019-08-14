@@ -307,11 +307,6 @@
     <string name="playlist_delete_failure">لا يمكن حذف قائمة التشغيل.</string>
     <string name="resize_fill">ملئ الشاشة</string>
     <string name="resize_zoom">تكبير</string>
-    <string name="caption_font_size_settings_title">حجم خط التسمية</string>
-    <string name="smaller_caption_font_size">أصغر خط</string>
-    <string name="normal_caption_font_size">خط عادي</string>
-    <string name="larger_caption_font_size">خط ذو حجم كبير</string>
-    <string name="live_sync">مُزامَنة</string>
     <string name="controls_download_desc">تنزيل ملف البث</string>
     <string name="tab_bookmarks">الإشارات المرجعية</string>
     <string name="use_inexact_seek_title">استعمال التقديم السريع الغير دقيق</string>
@@ -354,7 +349,7 @@
     <string name="clear_views_history_title">محو سجل المشاهدة</string>
     <string name="clear_views_history_summary">احذف سِجل الفيديوهات التي تم تشغيلها</string>
     <string name="delete_view_history_alert">حذف سجل المشاهدة بالكامل\?</string>
-    <string name="view_history_deleted">تم حذف سجل المشاهدة.</string>
+    <string name="watch_history_deleted">تم حذف سجل المشاهدة.</string>
     <string name="clear_search_history_title">محو سجل البحث</string>
     <string name="clear_search_history_summary">يحذف تاريخ البحث عن الكلمات الرئيسية</string>
     <string name="delete_search_history_alert">حذف سِجل البحث بالكامل\?</string>
@@ -496,6 +491,5 @@
     </plurals>
     <string name="no_comments">لا توجد تعليقات</string>
     <string name="error_unable_to_load_comments">تعذر تحميل التعليقات</string>
-    <string name="direct_on_background">التشغيل مباشرة في الخلفية</string>
     <string name="close">إغلاق</string>
 </resources>

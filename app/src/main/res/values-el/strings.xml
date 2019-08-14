@@ -175,7 +175,7 @@
     <string name="clear_views_history_title">Εκκαθάριση ιστορικού προβολής</string>
     <string name="clear_views_history_summary">Διαγράφει το ιστορικό των ροών που έχουν αναπαραχθεί</string>
     <string name="delete_view_history_alert">Διαγραφή ολόκληρου του ιστορικού προβολής;</string>
-    <string name="view_history_deleted">Το στορικό προβολής διαγράφηκε.</string>
+    <string name="watch_history_deleted">Το στορικό προβολής διαγράφηκε.</string>
     <string name="clear_search_history_title">Διαγραφή ιστορικού αναζητήσεων</string>
     <string name="clear_search_history_summary">Διαγράφει το ιστορικό αναζητήσεών σας</string>
     <string name="delete_search_history_alert">Διαγραφή ολόκληρου του ιστορικού αναζητήσεων;</string>
@@ -475,6 +475,5 @@
     </plurals>
     <string name="no_comments">Χωρίς σχόλια</string>
     <string name="error_unable_to_load_comments">Δεν ήταν δυνατή η φόρτωση σχολίων</string>
-    <string name="direct_on_background">Αναπαραγωγή απευθείας στο παρασκήνιο</string>
     <string name="close">Κλείσιμο</string>
 </resources>

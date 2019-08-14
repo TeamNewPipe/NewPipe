@@ -375,7 +375,7 @@
     <string name="clear_views_history_title">Wyczyść historię oglądania</string>
     <string name="clear_views_history_summary">Usuwa historię odtworzonych strumieni</string>
     <string name="delete_view_history_alert">Usunąć całą historię oglądania\?</string>
-    <string name="view_history_deleted">Usunięto historię oglądania.</string>
+    <string name="watch_history_deleted">Usunięto historię oglądania.</string>
     <string name="clear_search_history_title">Wyczyść historię wyszukiwania</string>
     <string name="clear_search_history_summary">Usuwa historię wyszukiwania słów kluczowych</string>
     <string name="delete_search_history_alert">Usunąć całą historię wyszukiwania\?</string>
@@ -479,6 +479,5 @@
     </plurals>
     <string name="no_comments">Brak komentarzy</string>
     <string name="error_unable_to_load_comments">Nie można załadować komentarzy</string>
-    <string name="direct_on_background">Odtwarzaj bezpośrednio w tle</string>
     <string name="close">Zamknij</string>
 </resources>

@@ -379,7 +379,7 @@
     <string name="clear_views_history_title">Очистити історію переглядів</string>
     <string name="clear_views_history_summary">Видаляє історію відтворень</string>
     <string name="delete_view_history_alert">Видалити всю історію переглядів\?</string>
-    <string name="view_history_deleted">Історію переглядів видалено.</string>
+    <string name="watch_history_deleted">Історію переглядів видалено.</string>
     <string name="clear_search_history_title">Очистити історію пошуку</string>
     <string name="clear_search_history_summary">Видаляє історію пошукових ключових слів</string>
     <string name="delete_search_history_alert">Видалити всю історію пошуку\?</string>
@@ -484,6 +484,5 @@
     </plurals>
     <string name="no_comments">Коментарі відсутні</string>
     <string name="error_unable_to_load_comments">Не вдалося підвантажити коментарів</string>
-    <string name="direct_on_background">Програвати у фоні</string>
     <string name="close">Закрити</string>
 </resources>

@@ -75,7 +75,6 @@ import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ImageDisplayConstants;
@@ -963,7 +962,7 @@ public class VideoDetailFragment
     }
 
     private void showContent() {
-        AnimationUtils.slideUp(contentRootLayoutHiding,120, 96, 0.06f);
+        contentRootLayoutHiding.setVisibility(View.VISIBLE);
     }
 
     protected void setInitialData(int serviceId, String url, String name) {
@@ -996,9 +995,14 @@ public class VideoDetailFragment
 
     @Override
     public void showLoading() {
+
         super.showLoading();
 
-        contentRootLayoutHiding.setVisibility(View.INVISIBLE);
+        //if data is already cached, transition from VISIBLE -> INVISIBLE -> VISIBLE is not required
+        if(!ExtractorHelper.isCached(serviceId, url, InfoItem.InfoType.STREAM)){
+            contentRootLayoutHiding.setVisibility(View.INVISIBLE);
+        }
+
         animateView(spinnerToolbar, false, 200);
         animateView(thumbnailPlayButton, false, 50);
         animateView(detailDurationView, false, 100);

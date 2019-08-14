@@ -274,7 +274,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 else if (v instanceof String)
                     prefEdit.putString(key, ((String) v));
             }
-            prefEdit.apply();
+            prefEdit.commit();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

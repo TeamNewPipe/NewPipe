@@ -666,9 +666,9 @@ public class DownloadManager {
                         continue;
 
                     if (mission.running)
-                        paused = true;
-                    else
                         running = true;
+                    else
+                        paused = true;
                 }
             }
 

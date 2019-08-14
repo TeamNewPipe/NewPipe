@@ -316,13 +316,7 @@ otevření ve vyskakovacím okně</string>
     <string name="resize_fit">Přizpůsobit</string>
     <string name="resize_fill">Vyplnit</string>
     <string name="resize_zoom">Zvětšit</string>
-    <string name="caption_font_size_settings_title">Velikost písma nadpisu</string>
-    <string name="smaller_caption_font_size">Menší písmo</string>
-    <string name="normal_caption_font_size">Normální písmo</string>
-    <string name="larger_caption_font_size">Větší písmo</string>
     <string name="toggle_leak_canary">Sledovat únik paměti</string>
-    <string name="disable_leak_canary_notice">Sledování úniku paměti vypnuto</string>
-    <string name="enable_leak_canary_notice">Sledování úniku paměti povoleno, aplikace může při zátěži přestat reagovat</string>
     <string name="settings_category_debug_title">Ladění</string>
     <string name="caption_auto_generated">"Automaticky generováno "</string>
     <string name="enable_leak_canary_title">Povolit službu LeakCanary</string>
@@ -377,7 +371,6 @@ otevření ve vyskakovacím okně</string>
     <string name="playback_tempo">Rychlost</string>
     <string name="playback_pitch">Výška tónu</string>
     <string name="unhook_checkbox">Rozpojit (může způsobit zkreslení)</string>
-    <string name="playback_nightcore">Nightcore mód</string>
     <string name="playback_default">Výchozí nastavení</string>
     <string name="no_streams_available_download">Ke stažení nejsou dostupné žádné streamy</string>
     <string name="preferred_open_action_settings_title">Preferovaná \'otevřít\' akce</string>
@@ -388,7 +381,7 @@ otevření ve vyskakovacím okně</string>
     <string name="clear_views_history_title">Vymazat historii sledování</string>
     <string name="clear_views_history_summary">Vymaže historii přehrávaných streamů</string>
     <string name="delete_view_history_alert">Vymazat celkovou historii sledování\?</string>
-    <string name="view_history_deleted">Historie sledování smazána.</string>
+    <string name="watch_history_deleted">Historie sledování smazána.</string>
     <string name="clear_search_history_title">Vymazat historii vyhledávání</string>
     <string name="clear_search_history_summary">Vymaže historii vyhledávaných klíčových slov</string>
     <string name="delete_search_history_alert">Vymazat celkovou historii vyhledávání\?</string>
@@ -492,7 +485,6 @@ otevření ve vyskakovacím okně</string>
     </plurals>
     <string name="no_comments">Žádné komentáře</string>
     <string name="error_unable_to_load_comments">Nelze načíst komentáře</string>
-    <string name="direct_on_background">Přehrát přímo na pozadí</string>
     <string name="close">Zavřít</string>
     <string name="download_to_sdcard_error_message">Stahování na externí SD kartu ještě není možné. Resetovat umístění složky pro stahování\?</string>
 </resources>

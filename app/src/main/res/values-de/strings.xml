@@ -302,9 +302,7 @@
     <string name="playlist_thumbnail_change_success">Vorschaubild der Wiedergabeliste geändert.</string>
     <string name="playlist_delete_failure">Konnte Wiedergabeliste nicht löschen.</string>
     <string name="caption_none">Keine Untertitel</string>
-    <string name="caption_font_size_settings_title">Schriftgröße der Untertitel</string>
     <string name="dismiss">Abbrechen</string>
-    <string name="normal_caption_font_size">Normale Schriftgröße</string>
     <string name="controls_download_desc">Stream-Datei herunterladen</string>
     <string name="use_inexact_seek_title">Schnelle, ungenaue Suche verwenden</string>
     <string name="use_inexact_seek_summary">Mit ungenauem Suchen kann die Abspielposition schneller erreicht werden, aber auf Kosten der Genauigkeit</string>
@@ -314,8 +312,6 @@
     <string name="file_name_empty_error">Dateiname darf nicht leer sein</string>
     <string name="error_occurred_detail">Ein Fehler ist aufgetreten: %1$s</string>
     <string name="caption_auto_generated">Automatisch erzeugt</string>
-    <string name="smaller_caption_font_size">Kleinere Schrift</string>
-    <string name="larger_caption_font_size">Größere Schrift</string>
     <string name="enable_leak_canary_title">LeakCanary aktivieren</string>
     <string name="import_from">Import von</string>
     <string name="export_to">Export nach</string>
@@ -344,7 +340,6 @@
     <string name="playback_tempo">Geschwindigkeit</string>
     <string name="playback_pitch">Tonhöhe</string>
     <string name="unhook_checkbox">Verknüpfung aufheben (kann zu Verzerrungen führen)</string>
-    <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Standard</string>
     <string name="download_thumbnail_summary">Abschalten, um das Laden von Miniaturansichten zu verhindern, was Daten- und Speicherverbrauch spart. Änderungen löschen den Bildzwischenspeicher sowohl im Arbeitsspeicher als auch auf dem internen Speicher.</string>
     <string name="auto_queue_title">Nächsten Stream automatisch einreihen</string>
@@ -378,7 +373,7 @@
     <string name="clear_views_history_title">Wiedergabeverlauf löschen</string>
     <string name="clear_views_history_summary">Löscht den Verlauf der abgespielten Streams</string>
     <string name="delete_view_history_alert">Den ganzen Wiedergabeverlauf löschen\?</string>
-    <string name="view_history_deleted">Wiedergabeverlauf gelöscht.</string>
+    <string name="watch_history_deleted">Wiedergabeverlauf gelöscht.</string>
     <string name="clear_search_history_title">Suchverlauf löschen</string>
     <string name="clear_search_history_summary">Löscht den Verlauf der Suchbegriffe</string>
     <string name="delete_search_history_alert">Den gesamten Suchverlauf löschen\?</string>
@@ -482,6 +477,5 @@
     </plurals>
     <string name="no_comments">Keine Kommentare</string>
     <string name="error_unable_to_load_comments">Kommentare konnten nicht geladen werden</string>
-    <string name="direct_on_background">Direkt im Hintergrund wiedergeben</string>
     <string name="close">Schließen</string>
 </resources>

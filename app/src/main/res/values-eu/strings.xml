@@ -290,7 +290,7 @@
     <string name="clear_views_history_title">Garbitu ikusitakoaren historiala</string>
     <string name="clear_views_history_summary">Jotako jarioen historiala ezabatzen du</string>
     <string name="delete_view_history_alert">Ezabatu ikusitakoaren historia osoa\?</string>
-    <string name="view_history_deleted">Ikusitakoaren historiala ezabatuta.</string>
+    <string name="watch_history_deleted">Ikusitakoaren historiala ezabatuta.</string>
     <string name="clear_search_history_title">Garbitu bilaketa historiala</string>
     <string name="clear_search_history_summary">Ezabatu bilaketa gakoen historiala</string>
     <string name="delete_search_history_alert">Ezabatu bilaketen historia osoa\?</string>
@@ -374,7 +374,6 @@
     <string name="playback_tempo">Tempoa</string>
     <string name="playback_pitch">Tonua</string>
     <string name="unhook_checkbox">Deslotu (distortsioa sor lezake)</string>
-    <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Lehenetsia</string>
     <string name="import_settings">Ezarpenak ere inportatu nahi dituzu?</string>
     <string name="use_inexact_seek_summary">Bilaketa ez zehatzak posizioak azkarrago baina prezisio gutxiagoz bilatzea ahalbidetzen du</string>
@@ -477,6 +476,5 @@
     </plurals>
     <string name="no_comments">Iruzkinik ez</string>
     <string name="error_unable_to_load_comments">Ezin izan dira iruzkinak kargatu</string>
-    <string name="direct_on_background">Erreproduzitu zuzenean bigarren planoan</string>
     <string name="close">Itxi</string>
 </resources>

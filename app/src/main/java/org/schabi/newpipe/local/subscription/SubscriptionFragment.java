@@ -130,7 +130,6 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
 
     @Override
     public void onDetach() {
-        infoListAdapter.dispose();
         super.onDetach();
     }
 
@@ -153,8 +152,6 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
             }
             updateFlags = 0;
         }
-
-        itemsList.post(infoListAdapter::updateStates);
     }
 
     @Override
@@ -382,7 +379,6 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
 
         });
 
-        //noinspection ConstantConditions
         whatsNewItemListHeader.setOnClickListener(v -> {
             FragmentManager fragmentManager = getFM();
             NavigationHelper.openWhatsNewFragment(fragmentManager);
@@ -430,12 +426,12 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
 
     }
 
-    private void shareChannel (ChannelInfoItem selectedItem) {
-        ShareUtils.shareUrl(this.getContext(), selectedItem.getName(), selectedItem.getUrl());
+    private void shareChannel(ChannelInfoItem selectedItem) {
+        ShareUtils.shareUrl(getContext(), selectedItem.getName(), selectedItem.getUrl());
     }
 
     @SuppressLint("CheckResult")
-    private void deleteChannel (ChannelInfoItem selectedItem) {
+    private void deleteChannel(ChannelInfoItem selectedItem) {
         subscriptionService.subscriptionTable()
                 .getSubscription(selectedItem.getServiceId(), selectedItem.getUrl())
                 .toObservable()
@@ -447,7 +443,7 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
 
 
 
-    private Observer<List<SubscriptionEntity>> getDeleteObserver(){
+    private Observer<List<SubscriptionEntity>> getDeleteObserver() {
         return new Observer<List<SubscriptionEntity>>() {
             @Override
             public void onSubscribe(Disposable d) {

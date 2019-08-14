@@ -315,7 +315,7 @@
     <string name="clear_views_history_title">Poista katseluhistoria</string>
     <string name="clear_views_history_summary">Poistaa toistohistorian</string>
     <string name="delete_view_history_alert">Poista koko katseluhistoria.</string>
-    <string name="view_history_deleted">Katseluhistoria onnistuneesti poistettu.</string>
+    <string name="watch_history_deleted">Katseluhistoria onnistuneesti poistettu.</string>
     <string name="clear_search_history_title">Poista hakuhistoria</string>
     <string name="clear_search_history_summary">Poistaa historian haetuista videoista</string>
     <string name="delete_search_history_alert">Poista koko hakuhistoria.</string>

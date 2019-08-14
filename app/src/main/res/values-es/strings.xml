@@ -322,8 +322,6 @@ abrir en modo popup</string>
     <string name="use_inexact_seek_summary">La búsqueda inexacta permite al reproductor buscar posiciones más rápido con menor precisión</string>
     <string name="auto_queue_title">Auto-encolar la siguiente transmisión</string>
     <string name="auto_queue_summary">Añadir de forma automática un vídeo relacionado con el último vídeo reproducido en una cola no repetitiva</string>
-    <string name="live">DIRECTO</string>
-    <string name="live_sync">SINCRONIZAR</string>
     <string name="file">Archivo</string>
     <string name="missing_file">Archivo movido o eliminado</string>
     <string name="invalid_directory">No existe el directorio</string>
@@ -375,7 +373,7 @@ abrir en modo popup</string>
     <string name="clear_views_history_title">Borrar historial de reproducciones</string>
     <string name="clear_views_history_summary">Elimina el historial de las transmisiones reproducidas</string>
     <string name="delete_view_history_alert">¿Eliminar todo el historial de reproducciones\?</string>
-    <string name="view_history_deleted">Historial de reproducciones eliminado.</string>
+    <string name="watch_history_deleted">Historial de reproducciones eliminado.</string>
     <string name="clear_search_history_title">Borrar historial de búsqueda</string>
     <string name="clear_search_history_summary">Elimina el historial de palabras clave de búsqueda</string>
     <string name="delete_search_history_alert">¿Eliminar todo el historial de búsqueda\?</string>
@@ -498,6 +496,5 @@ abrir en modo popup</string>
     </plurals>
     <string name="no_comments">Sin comentarios</string>
     <string name="error_unable_to_load_comments">No se pudo cargar comentarios</string>
-    <string name="direct_on_background">Reproducir directamente en segundo plano</string>
     <string name="close">Cerrar</string>
 </resources>
