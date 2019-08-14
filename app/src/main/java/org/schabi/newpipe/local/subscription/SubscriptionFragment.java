@@ -427,12 +427,12 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
 
     }
 
-    private void shareChannel (ChannelInfoItem selectedItem) {
-        ShareUtils.shareUrl(this.getContext(), selectedItem.getName(), selectedItem.getUrl());
+    private void shareChannel(ChannelInfoItem selectedItem) {
+        ShareUtils.shareUrl(getContext(), selectedItem.getName(), selectedItem.getUrl());
     }
 
     @SuppressLint("CheckResult")
-    private void deleteChannel (ChannelInfoItem selectedItem) {
+    private void deleteChannel(ChannelInfoItem selectedItem) {
         subscriptionService.subscriptionTable()
                 .getSubscription(selectedItem.getServiceId(), selectedItem.getUrl())
                 .toObservable()
@@ -444,7 +444,7 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
 
 
 
-    private Observer<List<SubscriptionEntity>> getDeleteObserver(){
+    private Observer<List<SubscriptionEntity>> getDeleteObserver() {
         return new Observer<List<SubscriptionEntity>>() {
             @Override
             public void onSubscribe(Disposable d) {

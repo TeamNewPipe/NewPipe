@@ -1,6 +1,5 @@
 package org.schabi.newpipe.local.holder;
 
-import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.view.MotionEvent;
 import android.view.View;

@@ -1,6 +1,5 @@
 package org.schabi.newpipe.info_list;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;

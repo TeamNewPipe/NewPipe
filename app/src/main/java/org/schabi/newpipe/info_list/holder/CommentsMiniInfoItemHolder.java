@@ -1,15 +1,12 @@
 package org.schabi.newpipe.info_list.holder;
 
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.util.Linkify;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.jsoup.helper.StringUtil;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
@@ -99,7 +96,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         itemContentView.setOnTouchListener(CommentTextOnTouchListener.INSTANCE);
 
         if (itemContentView.getLineCount() == 0) {
-            itemContentView.post(() -> ellipsize());
+            itemContentView.post(this::ellipsize);
         } else {
             ellipsize();
         }
