@@ -21,7 +21,10 @@
 package org.schabi.newpipe.settings;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Build;
 import android.os.Environment;
 import android.preference.PreferenceManager;
@@ -30,6 +33,7 @@ import android.support.annotation.NonNull;
 import org.schabi.newpipe.R;
 
 import java.io.File;
+import java.util.List;
 
 /**
  * Helper for global settings
@@ -58,6 +62,20 @@ public class NewPipeSettings {
     private NewPipeSettings() {
     }
 
+    /**
+     * Indicates if is possible pick a directory though the Storage Access Framework.
+     * {@code true} if at least one provider can handle {@link Intent#ACTION_OPEN_DOCUMENT_TREE}
+     * otherwise {@code false}
+     */
+    public static boolean hasOpenDocumentTreeSupport = false;
+
+    /**
+     * Indicates if is possible create a file though the Storage Access Framework.
+     * {@code true} if at least one provider can handle {@link Intent#ACTION_CREATE_DOCUMENT}
+     * otherwise {@code false}
+     */
+    public static boolean hasCreateDocumentSupport = false;
+
     public static void initSettings(Context context) {
         PreferenceManager.setDefaultValues(context, R.xml.appearance_settings, true);
         PreferenceManager.setDefaultValues(context, R.xml.content_settings, true);
@@ -67,7 +85,14 @@ public class NewPipeSettings {
         PreferenceManager.setDefaultValues(context, R.xml.video_audio_settings, true);
         PreferenceManager.setDefaultValues(context, R.xml.debug_settings, true);
 
-        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            hasOpenDocumentTreeSupport = testFor(context, Intent.ACTION_OPEN_DOCUMENT_TREE);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            hasCreateDocumentSupport = testFor(context, Intent.ACTION_CREATE_DOCUMENT);
+        }
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP || !hasOpenDocumentTreeSupport) {
             getVideoDownloadFolder(context);
             getAudioDownloadFolder(context);
         }
@@ -99,5 +124,20 @@ public class NewPipeSettings {
 
     private static String getNewPipeChildFolderPathForDir(File dir) {
         return new File(dir, "NewPipe").toURI().toString();
+    }
+
+    private static boolean testFor(@NonNull Context ctx, @NonNull String intentAction) {
+        Intent queryIntent = new Intent(intentAction);
+        queryIntent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+
+        List<ResolveInfo> infoList = ctx.getPackageManager()
+                .queryIntentActivities(queryIntent, PackageManager.MATCH_DEFAULT_ONLY);
+
+        int availableProviders = 0;
+        for (ResolveInfo info : infoList) {
+            if (info.activityInfo.exported) availableProviders++;
+        }
+
+        return availableProviders > 0;
     }
 }

@@ -569,7 +569,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
             // This part is called if with SAF preferred:
             //  * older android version running
             //  * save path not defined (via download settings)
-            //  * the user as checked the "ask where to download" option
+            //  * the user checked the "ask where to download" option
 
             if (!askForSavePath)
                 Toast.makeText(context, getString(R.string.no_available_dir), Toast.LENGTH_LONG).show();
@@ -728,7 +728,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         try {
             if (storage.length() > 0) storage.truncate();
         } catch (IOException e) {
-            Log.e(TAG, "failed to overwrite the file: " + storage.getUri().toString(), e);
+            Log.e(TAG, "failed to truncate the file: " + storage.getUri().toString(), e);
             showFailedDialog(R.string.overwrite_failed);
             return;
         }
