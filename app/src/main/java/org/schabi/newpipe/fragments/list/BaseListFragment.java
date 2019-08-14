@@ -64,7 +64,6 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
 
     @Override
     public void onDetach() {
-        infoListAdapter.dispose();
         super.onDetach();
     }
 
@@ -97,8 +96,6 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
             }
             updateFlags = 0;
         }
-
-        itemsList.post(infoListAdapter::updateStates);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
