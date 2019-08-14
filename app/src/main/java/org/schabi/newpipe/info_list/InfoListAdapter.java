@@ -76,6 +76,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private final InfoItemBuilder infoItemBuilder;
     private final ArrayList<InfoItem> infoItemList;
     private final HistoryRecordManager recordManager;
+
     private boolean useMiniVariant = false;
     private boolean useGridVariant = false;
     private boolean showFooter = false;
@@ -122,57 +123,52 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public void addInfoItemList(@Nullable final List<InfoItem> data) {
-        if (data != null) {
-            addInfoItemListImpl(data);
+        if (data == null) {
+            return;
         }
-    }
-
-    private void addInfoItemListImpl(@NonNull List<InfoItem> data) {
-        if (DEBUG) {
-            Log.d(TAG, "addInfoItemList() before > infoItemList.size() = " + infoItemList.size() + ", data.size() = " + data.size());
-        }
+        if (DEBUG) Log.d(TAG, "addInfoItemList() before > infoItemList.size() = " +
+                infoItemList.size() + ", data.size() = " + data.size());
 
         int offsetStart = sizeConsideringHeaderOffset();
         infoItemList.addAll(data);
 
-        if (DEBUG) {
-            Log.d(TAG, "addInfoItemList() after > offsetStart = " + offsetStart + ", infoItemList.size() = " + infoItemList.size() + ", header = " + header + ", footer = " + footer + ", showFooter = " + showFooter);
-        }
-
+        if (DEBUG) Log.d(TAG, "addInfoItemList() after > offsetStart = " + offsetStart +
+                ", infoItemList.size() = " + infoItemList.size() +
+                ", header = " + header + ", footer = " + footer +
+                ", showFooter = " + showFooter);
         notifyItemRangeInserted(offsetStart, data.size());
 
         if (footer != null && showFooter) {
             int footerNow = sizeConsideringHeaderOffset();
             notifyItemMoved(offsetStart, footerNow);
 
-            if (DEBUG) Log.d(TAG, "addInfoItemList() footer from " + offsetStart + " to " + footerNow);
+            if (DEBUG) Log.d(TAG, "addInfoItemList() footer from " + offsetStart +
+                    " to " + footerNow);
         }
     }
 
     public void addInfoItem(@Nullable InfoItem data) {
-        if (data != null) {
-            addInfoItemImpl(data);
+        if (data == null) {
+            return;
         }
-    }
-
-    private void addInfoItemImpl(@NonNull InfoItem data) {
-        if (DEBUG) {
-            Log.d(TAG, "addInfoItem() before > infoItemList.size() = " + infoItemList.size() + ", thread = " + Thread.currentThread());
-        }
+        if (DEBUG) Log.d(TAG, "addInfoItem() before > infoItemList.size() = " +
+                infoItemList.size() + ", thread = " + Thread.currentThread());
 
         int positionInserted = sizeConsideringHeaderOffset();
         infoItemList.add(data);
 
-        if (DEBUG) {
-            Log.d(TAG, "addInfoItem() after > position = " + positionInserted + ", infoItemList.size() = " + infoItemList.size() + ", header = " + header + ", footer = " + footer + ", showFooter = " + showFooter);
-        }
+        if (DEBUG) Log.d(TAG, "addInfoItem() after > position = " + positionInserted +
+                ", infoItemList.size() = " + infoItemList.size() +
+                ", header = " + header + ", footer = " + footer +
+                ", showFooter = " + showFooter);
         notifyItemInserted(positionInserted);
 
         if (footer != null && showFooter) {
             int footerNow = sizeConsideringHeaderOffset();
             notifyItemMoved(positionInserted, footerNow);
 
-            if (DEBUG) Log.d(TAG, "addInfoItem() footer from " + positionInserted + " to " + footerNow);
+            if (DEBUG) Log.d(TAG, "addInfoItem() footer from " + positionInserted +
+                    " to " + footerNow);
         }
     }
 

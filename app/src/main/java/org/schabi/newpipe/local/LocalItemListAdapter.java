@@ -93,27 +93,19 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     public void addItems(@Nullable List<? extends LocalItem> data) {
-        if (data != null) {
-            addItemsImpl(data);
+        if (data == null) {
+            return;
         }
-    }
-
-    private void addItemsImpl(@NonNull List<? extends LocalItem> data) {
-        if (DEBUG) {
-            Log.d(TAG, "addItems() before > localItems.size() = " +
-                    localItems.size() + ", data.size() = " + data.size());
-        }
+        if (DEBUG) Log.d(TAG, "addItems() before > localItems.size() = " +
+                localItems.size() + ", data.size() = " + data.size());
 
         int offsetStart = sizeConsideringHeader();
         localItems.addAll(data);
 
-        if (DEBUG) {
-            Log.d(TAG, "addItems() after > offsetStart = " + offsetStart +
-                    ", localItems.size() = " + localItems.size() +
-                    ", header = " + header + ", footer = " + footer +
-                    ", showFooter = " + showFooter);
-        }
-
+        if (DEBUG) Log.d(TAG, "addItems() after > offsetStart = " + offsetStart +
+                ", localItems.size() = " + localItems.size() +
+                ", header = " + header + ", footer = " + footer +
+                ", showFooter = " + showFooter);
         notifyItemRangeInserted(offsetStart, data.size());
 
         if (footer != null && showFooter) {
