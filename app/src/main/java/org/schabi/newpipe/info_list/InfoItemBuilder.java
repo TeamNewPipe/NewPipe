@@ -82,7 +82,6 @@ public class InfoItemBuilder {
             case COMMENT:
                 return useMiniVariant ? new CommentsMiniInfoItemHolder(this, parent) : new CommentsInfoItemHolder(this, parent);
             default:
-                Log.e(TAG, "Trollolo");
                 throw new RuntimeException("InfoType not expected = " + infoType.name());
         }
     }

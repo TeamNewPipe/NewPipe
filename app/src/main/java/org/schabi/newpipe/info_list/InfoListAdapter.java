@@ -249,7 +249,6 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             case COMMENT:
                 return useMiniVariant ? MINI_COMMENT_HOLDER_TYPE : COMMENT_HOLDER_TYPE;
             default:
-                Log.e(TAG, "Trollolo");
                 return -1;
         }
     }
@@ -287,7 +286,6 @@ public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             case COMMENT_HOLDER_TYPE:
                 return new CommentsInfoItemHolder(infoItemBuilder, parent);
             default:
-                Log.e(TAG, "Trollolo");
                 return new FallbackViewHolder(new View(parent.getContext()));
         }
     }
