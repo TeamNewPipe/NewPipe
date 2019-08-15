@@ -2,13 +2,13 @@ package org.schabi.newpipe.download;
 
 import android.app.Activity;
 import android.content.ComponentName;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.annotation.IdRes;
@@ -34,6 +34,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nononsenseapps.filepicker.Utils;
+
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
@@ -50,6 +52,7 @@ import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.FilenameUtils;
 import org.schabi.newpipe.util.ListHelper;
+import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.SecondaryStreamHelper;
 import org.schabi.newpipe.util.StreamItemAdapter;
 import org.schabi.newpipe.util.StreamItemAdapter.StreamSizeWrapper;
@@ -57,7 +60,6 @@ import org.schabi.newpipe.util.ThemeHelper;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -177,6 +179,11 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         super.onCreate(savedInstanceState);
         if (DEBUG)
             Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
+
+        if (!PermissionHelper.checkStoragePermissions(getActivity(), PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE)) {
+            getDialog().dismiss();
+            return;
+        }
 
         context = getContext();
 
@@ -322,9 +329,9 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
                 return;
             }
 
-            if (ContentResolver.SCHEME_FILE.equals(data.getData().getScheme())) {
-                File file = new File(URI.create(data.getData().toString()));
-                checkSelectedDownload(null, data.getData(), file.getName(), StoredFileHelper.DEFAULT_MIME);
+            if (data.getData().getAuthority() != null && data.getData().getAuthority().startsWith(context.getPackageName())) {
+                File file = Utils.getFileForUri(data.getData());
+                checkSelectedDownload(null, Uri.fromFile(file), file.getName(), StoredFileHelper.DEFAULT_MIME);
                 return;
             }
 
@@ -585,10 +592,21 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
             if (!askForSavePath)
                 Toast.makeText(context, getString(R.string.no_available_dir), Toast.LENGTH_LONG).show();
 
-            if (NewPipeSettings.hasCreateDocumentSupport)
+            if (NewPipeSettings.hasCreateDocumentSupport) {
                 StoredFileHelper.requestSafWithFileCreation(this, REQUEST_DOWNLOAD_SAVE_AS, filename, mime);
-            else
-                startActivityForResult(FilePickerActivityHelper.chooseFileToSave(context, filename), REQUEST_DOWNLOAD_SAVE_AS);
+            } else {
+                File initialSavePath;
+                if (radioStreamsGroup.getCheckedRadioButtonId() == R.id.audio_button)
+                    initialSavePath = NewPipeSettings.getDir(Environment.DIRECTORY_MUSIC);
+                else
+                    initialSavePath = NewPipeSettings.getDir(Environment.DIRECTORY_MOVIES);
+
+                initialSavePath = new File(initialSavePath, filename);
+                startActivityForResult(
+                        FilePickerActivityHelper.chooseFileToSave(context, initialSavePath.getAbsolutePath()),
+                        REQUEST_DOWNLOAD_SAVE_AS
+                );
+            }
 
             return;
         }
@@ -639,6 +657,11 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
                     // This part is called if:
                     // * using SAF on older android version
                     // * save path not defined
+                    // * if the file exists overwrite it, is not necessary ask
+                    if (!storage.existsAsFile() && !storage.create()) {
+                        showFailedDialog(R.string.error_file_creation);
+                        return;
+                    }
                     continueSelectedDownload(storage);
                     return;
                 } else if (targetFile == null) {

@@ -86,10 +86,10 @@ public class NewPipeSettings {
         PreferenceManager.setDefaultValues(context, R.xml.debug_settings, true);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            hasOpenDocumentTreeSupport = testFor(context, Intent.ACTION_OPEN_DOCUMENT_TREE);
+            hasOpenDocumentTreeSupport = testFor(context, Intent.ACTION_OPEN_DOCUMENT_TREE, false);
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            hasCreateDocumentSupport = testFor(context, Intent.ACTION_CREATE_DOCUMENT);
+            hasCreateDocumentSupport = testFor(context, Intent.ACTION_CREATE_DOCUMENT, true);
         }
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP || !hasOpenDocumentTreeSupport) {
@@ -118,7 +118,7 @@ public class NewPipeSettings {
     }
 
     @NonNull
-    private static File getDir(String defaultDirectoryName) {
+    public static File getDir(String defaultDirectoryName) {
         return new File(Environment.getExternalStorageDirectory(), defaultDirectoryName);
     }
 
@@ -126,9 +126,14 @@ public class NewPipeSettings {
         return new File(dir, "NewPipe").toURI().toString();
     }
 
-    private static boolean testFor(@NonNull Context ctx, @NonNull String intentAction) {
-        Intent queryIntent = new Intent(intentAction);
-        queryIntent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+    private static boolean testFor(@NonNull Context ctx, @NonNull String intentAction, boolean isFile) {
+        Intent queryIntent = new Intent(intentAction)
+                .addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+
+        if (isFile) {
+            queryIntent.setType("*/*");
+            queryIntent.addCategory(Intent.CATEGORY_OPENABLE);
+        }
 
         List<ResolveInfo> infoList = ctx.getPackageManager()
                 .queryIntentActivities(queryIntent, PackageManager.MATCH_DEFAULT_ONLY);
