@@ -2,6 +2,7 @@ package org.schabi.newpipe.download;
 
 import android.app.Activity;
 import android.content.ComponentName;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -45,6 +46,8 @@ import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.extractor.utils.Localization;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.settings.NewPipeSettings;
+import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.FilenameUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.SecondaryStreamHelper;
@@ -52,7 +55,9 @@ import org.schabi.newpipe.util.StreamItemAdapter;
 import org.schabi.newpipe.util.StreamItemAdapter.StreamSizeWrapper;
 import org.schabi.newpipe.util.ThemeHelper;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -72,7 +77,7 @@ import us.shandian.giga.service.MissionState;
 public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheckedChangeListener, AdapterView.OnItemSelectedListener {
     private static final String TAG = "DialogFragment";
     private static final boolean DEBUG = MainActivity.DEBUG;
-    private static final int REQUEST_DOWNLOAD_PATH_SAF = 0x1230;
+    private static final int REQUEST_DOWNLOAD_SAVE_AS = 0x1230;
 
     @State
     protected StreamInfo currentInfo;
@@ -311,9 +316,15 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == REQUEST_DOWNLOAD_PATH_SAF && resultCode == Activity.RESULT_OK) {
+        if (requestCode == REQUEST_DOWNLOAD_SAVE_AS && resultCode == Activity.RESULT_OK) {
             if (data.getData() == null) {
                 showFailedDialog(R.string.general_error);
+                return;
+            }
+
+            if (ContentResolver.SCHEME_FILE.equals(data.getData().getScheme())) {
+                File file = new File(URI.create(data.getData().toString()));
+                checkSelectedDownload(null, data.getData(), file.getName(), StoredFileHelper.DEFAULT_MIME);
                 return;
             }
 
@@ -574,7 +585,11 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
             if (!askForSavePath)
                 Toast.makeText(context, getString(R.string.no_available_dir), Toast.LENGTH_LONG).show();
 
-            StoredFileHelper.requestSafWithFileCreation(this, REQUEST_DOWNLOAD_PATH_SAF, filename, mime);
+            if (NewPipeSettings.hasCreateDocumentSupport)
+                StoredFileHelper.requestSafWithFileCreation(this, REQUEST_DOWNLOAD_SAVE_AS, filename, mime);
+            else
+                startActivityForResult(FilePickerActivityHelper.chooseFileToSave(context, filename), REQUEST_DOWNLOAD_SAVE_AS);
+
             return;
         }
 
