@@ -68,7 +68,6 @@ public class App extends Application {
     protected static final String TAG = App.class.toString();
     private RefWatcher refWatcher;
     private static App app;
-    private Context context;
 
     @SuppressWarnings("unchecked")
     private static final Class<? extends ReportSenderFactory>[]
@@ -84,9 +83,8 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        this.context = this;
 
-        ThemeHelper.init(context);
+        ThemeHelper.init(this);
         if (LeakCanary.isInAnalyzerProcess(this)) {
             // This process is dedicated to LeakCanary for heap analysis.
             // You should not init your app in this process.
