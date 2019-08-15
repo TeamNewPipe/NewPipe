@@ -182,6 +182,11 @@ public final class PopupVideoPlayer extends Service {
     }
 
     @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(AudioServiceLeakFix.preventLeakOf(base));
+    }
+
+    @Override
     public IBinder onBind(Intent intent) {
         return mBinder;
     }
@@ -320,6 +325,7 @@ public final class PopupVideoPlayer extends Service {
         isPopupClosing = true;
 
         if (playerImpl != null) {
+            playerImpl.savePlaybackState();
             if (playerImpl.getRootView() != null) {
                 windowManager.removeView(playerImpl.getRootView());
             }
@@ -560,7 +566,8 @@ public final class PopupVideoPlayer extends Service {
                     this.getPlaybackSpeed(),
                     this.getPlaybackPitch(),
                     this.getPlaybackSkipSilence(),
-                    this.getPlaybackQuality()
+                    this.getPlaybackQuality(),
+                    false
             );
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
@@ -626,6 +633,7 @@ public final class PopupVideoPlayer extends Service {
         @Override
         public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
             super.onLoadingComplete(imageUri, view, loadedImage);
+            if (playerImpl == null) return;
             // rebuild notification here since remote view does not release bitmaps,
             // causing memory leaks
             resetNotification();

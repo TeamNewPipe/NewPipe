@@ -163,7 +163,9 @@ public class ThemeHelper {
         else if (selectedTheme.equals(terminalTheme)) themeName = "TerminalTheme";
 
         themeName += "." + service.getServiceInfo().getName();
-        int resourceId = context.getResources().getIdentifier(themeName, "style", context.getPackageName());
+        int resourceId = context
+                .getResources()
+                .getIdentifier(themeName, "style", context.getPackageName());
 
         if (resourceId > 0) {
             return resourceId;

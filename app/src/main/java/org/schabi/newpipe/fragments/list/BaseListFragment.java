@@ -2,7 +2,6 @@ package org.schabi.newpipe.fragments.list;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -22,20 +21,20 @@ import android.view.View;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
+import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.fragments.BaseStateFragment;
 import org.schabi.newpipe.fragments.OnScrollBelowItemsListener;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.info_list.InfoListAdapter;
-import org.schabi.newpipe.local.dialog.PlaylistAppendDialog;
-import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.StateSaver;
+import org.schabi.newpipe.util.StreamDialogEntry;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Queue;
 
@@ -61,6 +60,11 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
     public void onAttach(Context context) {
         super.onAttach(context);
         infoListAdapter = new InfoListAdapter(activity);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
     }
 
     @Override
@@ -220,6 +224,13 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
             }
         });
 
+        infoListAdapter.setOnCommentsSelectedListener(new OnClickGesture<CommentsInfoItem>() {
+            @Override
+            public void selected(CommentsInfoItem selectedItem) {
+                onItemSelected(selectedItem);
+            }
+        });
+
         itemsList.clearOnScrollListeners();
         itemsList.addOnScrollListener(new OnScrollBelowItemsListener() {
             @Override
@@ -241,41 +252,32 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
         }
     }
 
+
+
+
     protected void showStreamDialog(final StreamInfoItem item) {
         final Context context = getContext();
         final Activity activity = getActivity();
-        if (context == null || context.getResources() == null || getActivity() == null) return;
+        if (context == null || context.getResources() == null || activity == null) return;
 
-        final String[] commands = new String[]{
-                context.getResources().getString(R.string.enqueue_on_background),
-                context.getResources().getString(R.string.enqueue_on_popup),
-                context.getResources().getString(R.string.append_playlist),
-                context.getResources().getString(R.string.share)
-        };
+        if (item.getStreamType() == StreamType.AUDIO_STREAM) {
+            StreamDialogEntry.setEnabledEntries(
+                    StreamDialogEntry.enqueue_on_background,
+                    StreamDialogEntry.start_here_on_background,
+                    StreamDialogEntry.append_playlist,
+                    StreamDialogEntry.share);
+        } else {
+            StreamDialogEntry.setEnabledEntries(
+                    StreamDialogEntry.enqueue_on_background,
+                    StreamDialogEntry.enqueue_on_popup,
+                    StreamDialogEntry.start_here_on_background,
+                    StreamDialogEntry.start_here_on_popup,
+                    StreamDialogEntry.append_playlist,
+                    StreamDialogEntry.share);
+        }
 
-        final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
-            switch (i) {
-                case 0:
-                    NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
-                    break;
-                case 1:
-                    NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(item));
-                    break;
-                case 2:
-                    if (getFragmentManager() != null) {
-                        PlaylistAppendDialog.fromStreamInfoItems(Collections.singletonList(item))
-                                .show(getFragmentManager(), TAG);
-                    }
-                    break;
-                case 3:
-                    shareUrl(item.getName(), item.getUrl());
-                    break;
-                default:
-                    break;
-            }
-        };
-
-        new InfoItemDialog(getActivity(), item, commands, actions).show();
+        new InfoItemDialog(activity, item, StreamDialogEntry.getCommands(context), (dialog, which) ->
+            StreamDialogEntry.clickOn(which, this, item)).show();
     }
 
     /*//////////////////////////////////////////////////////////////////////////

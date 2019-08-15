@@ -1,6 +1,8 @@
 package org.schabi.newpipe.local;
 
-import android.app.Activity;
+import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -8,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.schabi.newpipe.database.LocalItem;
+import org.schabi.newpipe.database.stream.model.StreamStateEntity;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.local.holder.LocalItemHolder;
 import org.schabi.newpipe.local.holder.LocalPlaylistGridItemHolder;
 import org.schabi.newpipe.local.holder.LocalPlaylistItemHolder;
@@ -64,6 +68,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     private final LocalItemBuilder localItemBuilder;
     private final ArrayList<LocalItem> localItems;
+    private final HistoryRecordManager recordManager;
     private final DateFormat dateFormat;
 
     private boolean showFooter = false;
@@ -71,11 +76,12 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     private View header = null;
     private View footer = null;
 
-    public LocalItemListAdapter(Activity activity) {
-        localItemBuilder = new LocalItemBuilder(activity);
+    public LocalItemListAdapter(Context context) {
+        recordManager = new HistoryRecordManager(context);
+        localItemBuilder = new LocalItemBuilder(context);
         localItems = new ArrayList<>();
         dateFormat = DateFormat.getDateInstance(DateFormat.SHORT,
-                Localization.getPreferredLocale(activity));
+                Localization.getPreferredLocale(context));
     }
 
     public void setSelectedListener(OnClickGesture<LocalItem> listener) {
@@ -86,38 +92,33 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         localItemBuilder.setOnItemSelectedListener(null);
     }
 
-    public void addItems(List<? extends LocalItem> data) {
-        if (data != null) {
-            if (DEBUG) {
-                Log.d(TAG, "addItems() before > localItems.size() = " +
-                        localItems.size() + ", data.size() = " + data.size());
-            }
+    public void addItems(@Nullable List<? extends LocalItem> data) {
+        if (data == null) {
+            return;
+        }
+        if (DEBUG) Log.d(TAG, "addItems() before > localItems.size() = " +
+                localItems.size() + ", data.size() = " + data.size());
 
-            int offsetStart = sizeConsideringHeader();
-            localItems.addAll(data);
+        int offsetStart = sizeConsideringHeader();
+        localItems.addAll(data);
 
-            if (DEBUG) {
-                Log.d(TAG, "addItems() after > offsetStart = " + offsetStart +
-                        ", localItems.size() = " + localItems.size() +
-                        ", header = " + header + ", footer = " + footer +
-                        ", showFooter = " + showFooter);
-            }
+        if (DEBUG) Log.d(TAG, "addItems() after > offsetStart = " + offsetStart +
+                ", localItems.size() = " + localItems.size() +
+                ", header = " + header + ", footer = " + footer +
+                ", showFooter = " + showFooter);
+        notifyItemRangeInserted(offsetStart, data.size());
 
-            notifyItemRangeInserted(offsetStart, data.size());
+        if (footer != null && showFooter) {
+            int footerNow = sizeConsideringHeader();
+            notifyItemMoved(offsetStart, footerNow);
 
-            if (footer != null && showFooter) {
-                int footerNow = sizeConsideringHeader();
-                notifyItemMoved(offsetStart, footerNow);
-
-                if (DEBUG) Log.d(TAG, "addItems() footer from " + offsetStart +
-                        " to " + footerNow);
-            }
+            if (DEBUG) Log.d(TAG, "addItems() footer from " + offsetStart +
+                    " to " + footerNow);
         }
     }
 
     public void removeItem(final LocalItem data) {
         final int index = localItems.indexOf(data);
-
         localItems.remove(index);
         notifyItemRemoved(index + (header != null ? 1 : 0));
     }
@@ -219,8 +220,9 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
     }
 
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int type) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int type) {
         if (DEBUG) Log.d(TAG, "onCreateViewHolder() called with: parent = [" +
                 parent + "], type = [" + type + "]");
         switch (type) {
@@ -251,7 +253,7 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (DEBUG) Log.d(TAG, "onBindViewHolder() called with: holder = [" +
                 holder.getClass().getSimpleName() + "], position = [" + position + "]");
 
@@ -259,12 +261,27 @@ public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.View
             // If header isn't null, offset the items by -1
             if (header != null) position--;
 
-            ((LocalItemHolder) holder).updateFromItem(localItems.get(position), dateFormat);
+            ((LocalItemHolder) holder).updateFromItem(localItems.get(position), recordManager, dateFormat);
         } else if (holder instanceof HeaderFooterHolder && position == 0 && header != null) {
             ((HeaderFooterHolder) holder).view = header;
         } else if (holder instanceof HeaderFooterHolder && position == sizeConsideringHeader()
                 && footer != null && showFooter) {
             ((HeaderFooterHolder) holder).view = footer;
+        }
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position, @NonNull List<Object> payloads) {
+        if (!payloads.isEmpty() && holder instanceof LocalItemHolder) {
+            for (Object payload : payloads) {
+                if (payload instanceof StreamStateEntity) {
+                    ((LocalItemHolder) holder).updateState(localItems.get(header == null ? position : position - 1), recordManager);
+                } else if (payload instanceof Boolean) {
+                    ((LocalItemHolder) holder).updateState(localItems.get(header == null ? position : position - 1), recordManager);
+                }
+            }
+        } else {
+            onBindViewHolder(holder, position);
         }
     }
 

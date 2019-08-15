@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="install">安裝</string>
     <string name="cancel">取消</string>
@@ -25,7 +25,6 @@
     <string name="theme_title">主題</string>
     <string name="dark_theme_title">黑暗</string>
     <string name="light_theme_title">明亮</string>
-
     <string name="download_dialog_title">下載</string>
     <string name="next_video_title">下一部影片</string>
     <string name="show_next_and_similar_title">顯示下一部及相關的影片</string>
@@ -37,7 +36,6 @@
     <string name="background_player_playing_toast">背景播放</string>
     <string name="play_btn_text">播放</string>
     <string name="network_error">網絡問題</string>
-
     <string name="list_thumbnail_view_description">影片預覽縮圖</string>
     <string name="detail_thumbnail_view_description">影片預覽縮圖</string>
     <string name="detail_uploader_thumbnail_view_description">上載者的個人頭像縮圖</string>
@@ -52,10 +50,8 @@
     <string name="download_path_audio_title">聲音下載路徑</string>
     <string name="download_path_audio_summary">已下載的聲音之存放路徑</string>
     <string name="download_path_audio_dialog_title">請輸入聲音檔案的下載路徑</string>
-
     <string name="err_dir_create">未能建立下載路徑「%1$s」</string>
     <string name="info_dir_created">已建立下載路徑「%1$s」</string>
-    <string name="blocked_by_gema">內容被 GEMA 封鎖</string>
     <string name="main_bg_subtitle">按一下搜尋按鈕以開始操作</string>
     <string name="autoplay_by_calling_app_title">自動撥放</string>
     <string name="autoplay_by_calling_app_summary">當其他應用程式要求播放影片時，NewPipe 將會自動播放</string>
@@ -63,7 +59,6 @@
     <string name="show_age_restricted_content_title">顯示已設年齡限制的影片</string>
     <string name="video_is_age_restricted">此影片設有年齡限制。若要觀看，請先在設定中解除年齡限制。</string>
     <string name="duration_live">直播</string>
-
     <string name="general_error">問題</string>
     <string name="could_not_load_thumbnails">無法載入全部縮圖</string>
     <string name="youtube_signature_decryption_error">無法為影片地址的簽署解碼。</string>
@@ -80,31 +75,23 @@
     <string name="what_happened_headline">事發經過：</string>
     <string name="your_comment">您的意見（請以英文輸入）：</string>
     <string name="error_details_headline">詳情：</string>
-
-
     <string name="report_error">報告問題</string>
     <string name="user_report">用戶報告</string>
-
     <string name="video">影片</string>
     <string name="audio">聲音</string>
     <string name="retry">重試</string>
     <string name="downloads">下載</string>
     <string name="downloads_title">下載</string>
     <string name="error_report_title">問題報告</string>
-
     <string name="content_not_available">未能提供內容。</string>
     <string name="storage_permission_denied">存取儲存空間的權限被拒</string>
-
     <string name="start">開始</string>
     <string name="pause">暫停</string>
     <string name="view">觀看</string>
     <string name="delete">刪除</string>
     <string name="checksum">校驗和</string>
-
     <string name="add">新任務</string>
     <string name="finish">好</string>
-
-
     <string name="msg_name">檔案名稱</string>
     <string name="msg_threads">線程</string>
     <string name="msg_error">錯誤</string>
@@ -116,16 +103,13 @@
     <string name="msg_wait">請稍候…</string>
     <string name="msg_copied">已複製至剪貼板</string>
     <string name="no_available_dir">請選擇下載資料夾。</string>
-
     <string name="open_in_popup_mode">在畫中畫模式開啟</string>
     <string name="popup_mode_share_menu_title">NewPipe 畫中畫模式</string>
-
     <string name="default_popup_resolution_title">預設畫中畫解像度</string>
     <string name="show_higher_resolutions_title">顯示更高解像度</string>
     <string name="show_higher_resolutions_summary">只有某些裝置能夠播放 2K 或 4K 影片</string>
     <string name="default_video_format_title">預設影片檔案格式</string>
     <string name="black_theme_title">純黑</string>
-
     <string name="popup_playing_toast">以畫中畫模式播放</string>
     <string name="all">所有</string>
     <string name="channel">頻道</string>
@@ -134,40 +118,29 @@
     <string name="could_not_load_image">無法取得圖片</string>
     <string name="app_ui_crash">應用程式或介面出現問題</string>
     <string name="info_labels">事件：\\n請求：\\n內容語言：\\n服務：\\nGMT 時間：\\nPackage：\\n版本：\\n作業系統版本：</string>
-    <string name="use_old_player_title">使用舊播放器</string>
-
-
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
-
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">reCAPTCHA 挑戰</string>
     <string name="msg_popup_permission">畫中畫模式需要此權限</string>
-
     <string name="recaptcha_request_toast">需完成 reCAPTCHA 挑戰</string>
-
-<string name="use_external_video_player_summary">啟用此選項將導致某些解像度的影片失去聲音</string>
+    <string name="use_external_video_player_summary">啟用此選項將導致某些解像度的影片失去聲音</string>
     <string name="controls_background_title">背景播放</string>
     <string name="controls_popup_title">畫中畫播放</string>
-
     <string name="popup_remember_size_pos_title">記住畫中畫大小及位置</string>
     <string name="popup_remember_size_pos_summary">記住最近設定的畫中畫大小及位置</string>
     <string name="player_gesture_controls_title">以動作控制播放器</string>
     <string name="player_gesture_controls_summary">使用動作以控制播放器的亮度及音量</string>
     <string name="show_search_suggestions_title">搜尋建議</string>
     <string name="show_search_suggestions_summary">進行搜尋時顯示建議</string>
-
     <string name="settings_category_popup_title">畫中畫</string>
     <string name="filter">過濾</string>
     <string name="disabled">不適用</string>
     <string name="refresh">重新整理</string>
     <string name="clear">清除</string>
     <string name="best_resolution">最佳解像度</string>
-
     <string name="popup_resizing_indicator_title">調整大小</string>
-    <string name="use_old_player_summary">使用舊的內置 Mediaframework 播放器</string>
     <string name="short_billion">B</string>
-
     <string name="title_activity_about">關於 NewPipe</string>
     <string name="action_settings">設定</string>
     <string name="action_about">關於</string>
@@ -184,5 +157,17 @@
     <string name="contribution_encouragement">無論您僅想分享您對 NewPipe 的一些構思，還是願意設計和翻譯程式介面，甚至想幫我們整理或重新編寫原始碼，我們都無任歡迎。貢獻更多，應用程式便會變得更好！</string>
     <string name="read_full_license">檢閱特許</string>
     <string name="contribution_title">貢獻</string>
-<string name="clear_views_history_title">清除觀看歷史</string>
-    </resources>
+    <string name="clear_views_history_title">清除觀看歷史</string>
+    <string name="no_player_found_toast">找不到串流播放器 （您可以安裝並使用VLC播放）。</string>
+    <string name="controls_download_desc">下載串流檔案</string>
+    <string name="subscribe_button_title">訂閱</string>
+    <string name="subscribed_button_title">已訂閱</string>
+    <string name="unsubscribe">取消訂閱</string>
+    <string name="channel_unsubscribed">已成功取消訂閱頻道</string>
+    <string name="subscription_change_failed">無法變更訂閱</string>
+    <string name="subscription_update_failed">無法更新訂閱</string>
+    <string name="show_info">顯示資訊</string>
+    <string name="tab_main">首頁</string>
+    <string name="tab_subscriptions">訂閱項目</string>
+    <string name="tab_bookmarks">已收藏播放清單</string>
+</resources>

@@ -1,399 +1,486 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">לחץ \"חפש\" כדי להתחיל</string>
+    <string name="main_bg_subtitle">יש ללחוץ על „חיפוש” כדי להתחיל</string>
     <string name="view_count_text">%1$s צפיות</string>
-    <string name="upload_date_text">פורסם ב:-%1$s</string>
-    <string name="no_player_found">לא נמצאו נגני רשת, האם תרצה להתקין את VLC?</string>
-    <string name="install">התקן</string>
-    <string name="cancel">בטל</string>
-    <string name="open_in_browser">פתח בדפדפן</string>
-    <string name="open_in_popup_mode">פתח במצב חלון צץ</string>
-    <string name="share">שתף</string>
-    <string name="download">הורד</string>
-    <string name="search">חפש</string>
+    <string name="upload_date_text">פורסם ב־%1$s</string>
+    <string name="no_player_found">לא נמצאו נגני צפייה ישירה, להתקין את VLC\?</string>
+    <string name="install">התקנה</string>
+    <string name="cancel">ביטול</string>
+    <string name="open_in_browser">פתיחה בדפדפן</string>
+    <string name="open_in_popup_mode">פתיחה בחלון צף</string>
+    <string name="share">שיתוף</string>
+    <string name="download">הורדה</string>
+    <string name="search">חיפוש</string>
     <string name="settings">הגדרות</string>
-    <string name="did_you_mean">האם התכוונת ל-%1$s ?</string>
-    <string name="share_dialog_title">שתף עם</string>
-    <string name="choose_browser">בחר דפדפן</string>
-    <string name="screen_rotation">סיבוב</string>
-    <string name="use_external_video_player_title">השתמש בנגן סרטים חיצוני</string>
-    <string name="use_external_video_player_summary">לחלק מהסרטונים עם רזולוציה גבוהה לא יהיה שמע כאשר אפשרות זו פועלת</string>
-    <string name="use_external_audio_player_title">השתמש בנגן סרטים חיצוני</string>
-    <string name="popup_mode_share_menu_title">מצב חלון צץ (NewPipe)</string>
+    <string name="did_you_mean">כוונתך הייתה: %1$s\?</string>
+    <string name="share_dialog_title">שיתוף עם</string>
+    <string name="choose_browser">בחירת דפדפן</string>
+    <string name="screen_rotation">הטייה</string>
+    <string name="use_external_video_player_title">שימוש בנגן סרטונים חיצוני</string>
+    <string name="use_external_video_player_summary">בחלק מהרזולוציות השמע יוסר</string>
+    <string name="use_external_audio_player_title">שימוש בנגן סרטונים חיצוני</string>
+    <string name="popup_mode_share_menu_title">מצב חלון צף של NewPipe</string>
     <string name="controls_background_title">רקע</string>
-    <string name="controls_popup_title">חלון צץ</string>
-
-    <string name="download_path_title">נתיב הורדה לסרטונים</string>
-    <string name="download_path_summary">נתיב לשמירת סרטונים</string>
-    <string name="download_path_dialog_title">הכנס נתיב לשמירת סרטונים</string>
-
-    <string name="download_path_audio_title">נתיב לשמירת שמע</string>
-    <string name="download_path_audio_summary">נתיב לשמירת שמע</string>
-    <string name="download_path_audio_dialog_title">הכנס נתיב לשמירת קבצי שמע</string>
-
-    <string name="autoplay_by_calling_app_title">נגן אוטומטית</string>
-    <string name="autoplay_by_calling_app_summary">מנגן סרטון כאשר NewPipe נפתח דרך אפליקציה אחרת</string>
-    <string name="default_resolution_title">רזולוציית ברירת המחדל</string>
-    <string name="default_popup_resolution_title">רזולוציית ברירת המחדל לחלון צץ</string>
-    <string name="show_higher_resolutions_title">הצג רזולוציות גבוהות יותר</string>
-    <string name="show_higher_resolutions_summary">רק חלק מהמכשירים תומכים בצפייה בסרטונים ב-2k/4k</string>
-    <string name="play_with_kodi_title">נגן ב-Kodi</string>
-    <string name="kore_not_found">האפליקציה Kore לא נמצאה. להתקין אותה?</string>
-    <string name="show_play_with_kodi_title">הצג את האפשרות לניגון עם Kodi</string>
-    <string name="show_play_with_kodi_summary">הראה אפשרות לנגן סרטון דרך \"Kodi media center\"</string>
+    <string name="controls_popup_title">חלון צף</string>
+    <string name="download_path_title">נתיב להורדת סרטונים</string>
+    <string name="download_path_summary">נתיב מיקום לאחסון סרטונים</string>
+    <string name="download_path_dialog_title">נא להקליד נתיב לשמירת סרטונים</string>
+    <string name="download_path_audio_title">תיקיית הורדות שמע</string>
+    <string name="download_path_audio_summary">הורדות שמע נשמרות כאן</string>
+    <string name="download_path_audio_dialog_title">נא להקליד נתיב לשמירת קובצי שמע</string>
+    <string name="autoplay_by_calling_app_title">ניגון אוטומטי</string>
+    <string name="autoplay_by_calling_app_summary">מנגן סרטון כאשר NewPipe נפתח דרך יישומון אחר</string>
+    <string name="default_resolution_title">רזולוציית בררת המחדל</string>
+    <string name="default_popup_resolution_title">רזולוציית בררת המחדל לחלון צף</string>
+    <string name="show_higher_resolutions_title">הצגת רזולוציות גבוהות יותר</string>
+    <string name="show_higher_resolutions_summary">רק חלק מהמכשירים תומכים בצפייה בסרטונים ב־2K/4K</string>
+    <string name="play_with_kodi_title">נגינה ב־Kodi</string>
+    <string name="kore_not_found">היישומון Kore לא נמצא. להתקין אותו\?</string>
+    <string name="show_play_with_kodi_title">הצגת האפשרות לניגון עם Kodi</string>
+    <string name="show_play_with_kodi_summary">הצגת אפשרות לנגן סרטון דרך מרכז המדיה Kodi</string>
     <string name="play_audio">שמע</string>
-    <string name="default_audio_format_title">תבנית ברירת המחדל לשמע</string>
-    <string name="default_video_format_title">תבנית סרט ברירת מחדל</string>
+    <string name="default_audio_format_title">תבנית שמע כבררת מחדל</string>
+    <string name="default_video_format_title">תבנית סרטון כבררת מחדל</string>
     <string name="theme_title">ערכת נושא</string>
-    <string name="light_theme_title">מואר</string>
-    <string name="dark_theme_title">חשוך</string>
+    <string name="light_theme_title">בהיר</string>
+    <string name="dark_theme_title">כהה</string>
     <string name="black_theme_title">שחור</string>
-    <string name="popup_remember_size_pos_title">זכור את מיקומו וגודלו של החלון הצץ</string>
-    <string name="popup_remember_size_pos_summary">זכור את המיקום והגודל האחרונים של החלון הצץ</string>
+    <string name="popup_remember_size_pos_title">שמירת מיקומו וגודלו של החלון הצף</string>
+    <string name="popup_remember_size_pos_summary">שמירת המיקום והגודל האחרונים של החלון הצף</string>
     <string name="player_gesture_controls_title">מחוות מגע לשליטה בנגן</string>
-    <string name="player_gesture_controls_summary">השתמש במחוות כדי לשלוט בבהירות ובעוצמת השמע של הנגן</string>
+    <string name="player_gesture_controls_summary">שימוש במחוות כדי לשלוט בבהירות ובעצמת השמע של הנגן</string>
     <string name="show_search_suggestions_title">הצעות חיפוש</string>
-    <string name="show_search_suggestions_summary">הצג הצעות כשמחפשים</string>
-
-    <string name="download_dialog_title">הורד</string>
-    <string name="next_video_title">הסרטון הבא</string>
-    <string name="show_next_and_similar_title">הראה את הסרטונים הבאים וסרטונים דומים</string>
-    <string name="url_not_supported_toast">כתובת URL לא נתמכת</string>
+    <string name="show_search_suggestions_summary">הצגת הצעות בעת החיפוש</string>
+    <string name="download_dialog_title">הורדה</string>
+    <string name="next_video_title">הבא בתור</string>
+    <string name="show_next_and_similar_title">להציג סרטונים דומים ובאים בתור</string>
+    <string name="url_not_supported_toast">כתובת לא נתמכת</string>
     <string name="content_language_title">שפת התוכן המועדפת</string>
-    <string name="settings_category_video_audio_title">סרטים ושמע</string>
-    <string name="settings_category_popup_title">חלון צץ</string>
+    <string name="settings_category_video_audio_title">סרטונים ושמע</string>
+    <string name="settings_category_popup_title">חלון צף</string>
     <string name="settings_category_appearance_title">תצוגה</string>
-    <string name="settings_category_other_title">אחרים</string>
-    <string name="background_player_playing_toast">מנגן ברקע</string>
-    <string name="popup_playing_toast">מנגן במצב חלון צץ</string>
-    <string name="play_btn_text">נגן</string>
+    <string name="settings_category_other_title">אחר</string>
+    <string name="background_player_playing_toast">מתנגן ברקע</string>
+    <string name="popup_playing_toast">מתנגן בחלון צף</string>
+    <string name="play_btn_text">נגינה</string>
     <string name="content">תוכן</string>
-    <string name="show_age_restricted_content_title">הראה תוכן בעל הגבלת גיל</string>
-    <string name="video_is_age_restricted">לסרטון קיימת הגבלת גיל. ניתן לאפשר צפייה בסרטונים אלו ע\"י שינוי ממסך ההגדרות.</string>
+    <string name="show_age_restricted_content_title">תוכן עם הגבלת גיל</string>
+    <string name="video_is_age_restricted">הצגת סרטונים עם הגבלת גיל. ניתן לאפשר תכנים שכאלו דרך ההגדרות.</string>
     <string name="duration_live">חי</string>
     <string name="downloads">הורדות</string>
     <string name="downloads_title">הורדות</string>
-    <string name="error_report_title">דו\"ח שגיאה</string>
-    <string name="all">הכל</string>
+    <string name="error_report_title">דוח שגיאה</string>
+    <string name="all">הכול</string>
     <string name="channel">ערוץ</string>
     <string name="yes">כן</string>
     <string name="later">מאוחר יותר</string>
-    <string name="disabled">לא פעיל</string>
-    <string name="filter">סינון</string>
-    <string name="refresh">רענן</string>
-    <string name="clear">נקה</string>
+    <string name="disabled">מושבת</string>
+    <string name="filter">מסנן</string>
+    <string name="refresh">רענון</string>
+    <string name="clear">פינוי</string>
     <string name="popup_resizing_indicator_title">שינוי גודל</string>
-
     <string name="general_error">שגיאה</string>
-    <string name="network_error">שגיאת אינטרנט</string>
+    <string name="network_error">שגיאת רשת</string>
     <string name="could_not_load_thumbnails">אין אפשרות לטעון את כל התמונות הממוזערות</string>
-    <string name="youtube_signature_decryption_error">לא הייתה אפשרות לפענח את חתימת ה-URL של הסרט</string>
-    <string name="parsing_error">לא הייתה אפשרות לנתח את האתר</string>
+    <string name="youtube_signature_decryption_error">לא ניתן לפענח את חתימת כתובת הסרטון</string>
+    <string name="parsing_error">ניתוח האתר לא התאפשר</string>
     <string name="light_parsing_error">לא הייתה אפשרות לנתח את האתר לחלוטין</string>
     <string name="content_not_available">תוכן אינו זמין</string>
-    <string name="blocked_by_gema">חסום ע\"י GEMA</string>
-    <string name="could_not_setup_download_menu">לא הייתה אפשרות להכין את תפריט ההורדות</string>
-    <string name="live_streams_not_supported">זהו שידור ישיר. שידורים ישירים עדיין לא נתמכים.</string>
-    <string name="could_not_get_stream">לא הייתה אפשרות להזרים סרטון</string>
-    <string name="could_not_load_image">לא הייתה אפשרות לטעון את התמונה</string>
-    <string name="app_ui_crash">האפליקציה או ממשק המשתמש קרסו</string>
-    <string name="sorry_string">מצטערים, זה לא היה אמור לקרות.</string>
-    <string name="error_report_button_text">דווח על השגיאה דרך הדוא\"ל</string>
-    <string name="error_snackbar_message">מצטערים, אירעו כמה שגיאות.</string>
-    <string name="error_snackbar_action">דווח</string>
+    <string name="could_not_setup_download_menu">לא הייתה אפשרות להכין את תפריט ההורדה</string>
+    <string name="live_streams_not_supported">עדיין אין תמיכה בתזרימים חיים</string>
+    <string name="could_not_get_stream">לא הייתה אפשרות לקבל תזרים כלשהו</string>
+    <string name="could_not_load_image">טעינת התמונה לא הצליחה</string>
+    <string name="app_ui_crash">היישומון או מנשק המשתמש קרסו</string>
+    <string name="sorry_string">זה לא אמור היה לקרות, עמך הסליחה.</string>
+    <string name="error_report_button_text">דיווח על השגיאה דרך דוא״ל</string>
+    <string name="error_snackbar_message">אירעו מספר שגיאות, עמך הסליחה.</string>
+    <string name="error_snackbar_action">דיווח</string>
     <string name="what_device_headline">מידע:</string>
     <string name="what_happened_headline">מה קרה:</string>
-    <string name="info_labels">מה:\\nבקשה:\\nשפת התוכן:\\nשירות:\\nזמן GMT:\\nחבילה:\\nגרסה:\\nגרסת מערכת ההפעלה:</string>
-<string name="subscribe_button_title">הירשם כמנוי</string>
-    <string name="subscribed_button_title">רשום כמנוי</string>
-    <string name="channel_unsubscribed">ביטול מנוי לערוץ</string>
-    <string name="subscription_change_failed">אין אפשרות לשנות מנוי</string>
-    <string name="subscription_update_failed">אין אפשרות לעדכן מנוי</string>
-
+    <string name="info_labels">מה:\\nבקשה:\\nשפת התוכן:\\nשירות:\\nשעון גריניץ׳:\\nחבילה:\\nגרסה:\\nגרסת מערכת ההפעלה:</string>
+    <string name="subscribe_button_title">עריכת מינוי</string>
+    <string name="subscribed_button_title">נרשמת</string>
+    <string name="channel_unsubscribed">ביטול מינוי לערוץ</string>
+    <string name="subscription_change_failed">לא הצלחתי לשנות מינוי</string>
+    <string name="subscription_update_failed">לא ניתן לעדכן את המינוי</string>
     <string name="tab_main">ראשי</string>
-    <string name="tab_subscriptions">מנויים</string>
-
+    <string name="tab_subscriptions">מינויים</string>
     <string name="fragment_whats_new">מה חדש</string>
-
-    <string name="enable_search_history_title">היסטוריית חיפושים</string>
-    <string name="enable_search_history_summary">שמור חיפושים מקומית</string>
+    <string name="enable_search_history_title">היסטוריית חיפוש</string>
+    <string name="enable_search_history_summary">שמירת שאילתות החיפוש מקומית</string>
     <string name="enable_watch_history_title">היסטוריה ומטמון</string>
-    <string name="enable_watch_history_summary">המשך לעקוב אחר סרטונים שנצפו</string>
-    <string name="resume_on_audio_focus_gain_title">המשך לנגן בעת חזרת המיקוד ליישום</string>
-    <string name="resume_on_audio_focus_gain_summary">המשך לנגן לאחר הפרעות (לדוגמה: שיחות טלפון)</string>
-    <string name="show_hold_to_append_title">הצג עצה \"לחיצה ממושכת תוסיף לרשימה\"</string>
-    <string name="show_hold_to_append_summary">הצג עצה כאשר כפתור רקע או חלון צץ נלחץ במסך נגן הסרטים</string>
+    <string name="enable_watch_history_summary">תיעוד הסרטונים שנצפו</string>
+    <string name="resume_on_audio_focus_gain_title">להמשיך את הניגון עם החזרת המיקוד</string>
+    <string name="resume_on_audio_focus_gain_summary">להמשיך לנגן לאחר הפרעות (למשל: שיחות טלפון)</string>
+    <string name="show_hold_to_append_title">להציג את העצה „להחזיק כדי להוסיף לרשימת נגינה”</string>
+    <string name="show_hold_to_append_summary">להציג עצה בעת לחיצה על כפתור בנגן רקע או צף בעמוד פרטי סרטון</string>
     <string name="settings_category_player_title">נגן</string>
     <string name="settings_category_player_behavior_title">התנהגות</string>
     <string name="settings_category_history_title">היסטוריה ומטמון</string>
-    <string name="background_player_append">נוסף לתור של הנגן ברקע</string>
-    <string name="popup_playing_append">נוסף לתור של הנגן הצץ</string>
-    <string name="playlist">רשימת ניגון</string>
+    <string name="background_player_append">נוסף לתור של נגן הרקע</string>
+    <string name="popup_playing_append">נוסף לתור של הנגן הצף</string>
+    <string name="playlist">רשימת נגינה</string>
     <string name="best_resolution">רזולוציה מיטבית</string>
-    <string name="undo">בטל</string>
-    <string name="play_all">נגן הכל</string>
-
-    <string name="notification_channel_name">הודעה מ-NewPipe</string>
-    <string name="notification_channel_description">התראות עבור נגן הרקע והנגן הצץ של NewPipe</string>
-
+    <string name="undo">ביטול</string>
+    <string name="play_all">לנגן הכול</string>
+    <string name="notification_channel_name">התראה מ־NewPipe</string>
+    <string name="notification_channel_description">התראות עבור נגן הרקע והנגן הצף של NewPipe</string>
     <string name="unknown_content">[לא ידוע]</string>
-
-    <string name="player_stream_failure">נכשל בניגון הסרט הנוכחי</string>
-    <string name="player_unrecoverable_failure">תקלה בלתי ניתנת לשחזור אירעה בנגן</string>
-    <string name="player_recoverable_failure">מחלים מתקלה שאירעה לנגן</string>
-
+    <string name="player_stream_failure">נגינת התזרים לא הצליחה</string>
+    <string name="player_unrecoverable_failure">אירעה תקלה בנגן ממנה לא ניתן להשתקם</string>
+    <string name="player_recoverable_failure">מתבצעת החלמה משגיאת נגן</string>
     <string name="your_comment">ההערה שלך (באנגלית):</string>
     <string name="error_details_headline">פרטים:</string>
-
-
-    <string name="list_thumbnail_view_description">תמונות ממוזערות לתצוגה המקדמת של הסרטון</string>
-    <string name="detail_thumbnail_view_description">תמונות ממוזערות לתצוגה המקדמת של הסרטון</string>
-    <string name="detail_uploader_thumbnail_view_description">תמונה של המשתמש המפרסם</string>
+    <string name="list_thumbnail_view_description">תמונה ממוזערת לתצוגה המקדימה של הסרטון</string>
+    <string name="detail_thumbnail_view_description">תמונות ממוזערות לתצוגה המקדימה של הסרטון</string>
+    <string name="detail_uploader_thumbnail_view_description">תמונה ייצוגית של המפרסם</string>
     <string name="detail_likes_img_view_description">אהבו</string>
     <string name="detail_dislikes_img_view_description">לא אהבו</string>
-    <string name="use_tor_title">השתמש ב-Tor</string>
-    <string name="use_tor_summary">(ניסיוני) השתמש בתעבורת ההורדה דרך Tor להגברת הפרטיות (ניגון סרטים בהזרמה ישירה אינו נתמך עדיין).</string>
-    <string name="report_error">דווח על שגיאה</string>
-    <string name="user_report">דיווח משתמש</string>
+    <string name="use_tor_title">שימוש ב־Tor</string>
+    <string name="use_tor_summary">(ניסיוני) אילוץ העברת תעבורת ההורדה דרך Tor לשיפור הפרטיות (אין עדיין תמיכה בהזרמת סרטונים).</string>
+    <string name="report_error">דיווח על שגיאה</string>
+    <string name="user_report">דוח משתמש</string>
     <string name="search_no_results">אין תוצאות</string>
     <string name="empty_subscription_feed_subtitle">אין כאן כלום מלבד צרצרים</string>
-
-    <string name="err_dir_create">לא ניתן ליצור את תיקיית ההורדות \'%1$s\'</string>
-    <string name="info_dir_created">תיקיית ההורדות נוצרה \'%1$s\'</string>
-
-    <string name="video">סרט</string>
+    <string name="err_dir_create">לא ניתן ליצור את תיקיית ההורדות ‚%1$s’</string>
+    <string name="info_dir_created">תיקיית ההורדות ‚%1$s’ נוצרה</string>
+    <string name="video">סרטון</string>
     <string name="audio">שמע</string>
-    <string name="retry">נסה שנית</string>
+    <string name="retry">ניסיון חוזר</string>
     <string name="storage_permission_denied">הגישה לאחסון נדחתה</string>
-    <string name="use_old_player_title">השתמש בנגן הישן</string>
-    <string name="use_old_player_summary">השתמש בנגן המובנה Mediaframework</string>
-
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
-
-    <string name="no_subscribers">אין עוקבים</string>
+    <string name="no_subscribers">אין מנויים</string>
     <plurals name="subscribers">
-	<item quantity="one">מנוי אחד</item>
-	<item quantity="two">שני מנויים</item>
-	<item quantity="many">%s מנויים</item>
-	<item quantity="other">%s מנויים</item>
-</plurals>
-
-    <string name="no_views">אין תצוגות</string>
+        <item quantity="one">מנוי אחד</item>
+        <item quantity="two">שני מנויים</item>
+        <item quantity="many">%s מנויים</item>
+        <item quantity="other">%s מנויים</item>
+    </plurals>
+    <string name="no_views">אין צפיות</string>
     <plurals name="views">
-	<item quantity="one">צפייה אחת</item>
-	<item quantity="two">שתי צפיות</item>
-	<item quantity="many">%s צפיות</item>
-	<item quantity="other">%s צפיות</item>
-</plurals>
-
+        <item quantity="one">צפייה אחת</item>
+        <item quantity="two">שתי צפיות</item>
+        <item quantity="many">%s צפיות</item>
+        <item quantity="other">%s צפיות</item>
+    </plurals>
     <string name="no_videos">אין סרטונים</string>
     <plurals name="videos">
-	<item quantity="one">סרטון אחד</item>
-	<item quantity="two">שני סרטונים</item>
-	<item quantity="many">%s סרטונים</item>
-	<item quantity="other">%s סרטונים</item>
-</plurals>
-
-    <string name="start">התחל</string>
-    <string name="pause">השהה</string>
-    <string name="view">נגן</string>
-    <string name="delete">מחק</string>
-    <string name="checksum">בדיקה</string>
-
+        <item quantity="one">סרטון</item>
+        <item quantity="two">שני סרטונים</item>
+        <item quantity="many">%s סרטונים</item>
+        <item quantity="other">%s סרטונים</item>
+    </plurals>
+    <string name="start">התחלה</string>
+    <string name="pause">השהיה</string>
+    <string name="view">נגינה</string>
+    <string name="delete">מחיקה</string>
+    <string name="checksum">גיבוב לאימות</string>
     <string name="add">משימה חדשה</string>
-    <string name="finish">בסדר</string>
-
+    <string name="finish">אישור</string>
     <string name="msg_name">שם קובץ</string>
-    <string name="msg_threads">אשכולות</string>
+    <string name="msg_threads">תת־דיונים</string>
     <string name="msg_error">שגיאה</string>
-    <string name="msg_server_unsupported">שרת לא נתמך</string>
+    <string name="msg_server_unsupported">שרת בלתי נתמך</string>
     <string name="msg_exists">קובץ כבר קיים</string>
-    <string name="msg_url_malform">URL לא תקין או שאין אינטרנט זמין</string>
-    <string name="msg_running">NewPipe מוריד</string>
-    <string name="msg_running_detail">לחץ לפרטים נוספים</string>
-    <string name="msg_wait">אנא המתן…</string>
+    <string name="msg_url_malform">כתובת שגויה או שהאינטרנט לא זמין</string>
+    <string name="msg_running">NewPipe בהורדה</string>
+    <string name="msg_running_detail">יש לגעת לפרטים נוספים</string>
+    <string name="msg_wait">נא להמתין…</string>
     <string name="msg_copied">הועתק ללוח</string>
-    <string name="no_available_dir">אנא בחר בתיקיית הורדות זמינה</string>
-    <string name="msg_popup_permission">הרשאה זו נדרשת עבור
-\nפתח במצב חלון צץ</string>
-
+    <string name="no_available_dir">נא לבחור תיקיית הורדה זמינה</string>
+    <string name="msg_popup_permission">הרשאה זו נדרשת לטובת 
+\nפתיחה בחלון צף</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">אתגר reCAPTCHA</string>
-    <string name="recaptcha_request_toast">נתבקש אתגר reCAPTCHA</string>
-
+    <string name="recaptcha_request_toast">התקבלה בקשה לאתגר reCAPTCHA</string>
     <string name="settings_category_downloads_title">הורדה</string>
     <string name="settings_file_charset_title">רשימת תווים אפשרית בשמות קבצים</string>
-    <string name="settings_file_replacement_character_summary">תווים לא נתמכים מוחלפים עם הערך הזה</string>
+    <string name="settings_file_replacement_character_summary">תווים לא נתמכים מוחלפים בערך הזה</string>
     <string name="settings_file_replacement_character_title">תו חלופי</string>
-
     <string name="charset_letters_and_digits">אותיות וספרות</string>
-    <string name="charset_most_special_characters">רוב התווים הייחודיים</string>
-
-    <string name="title_activity_about">אודות NewPipe</string>
+    <string name="charset_most_special_characters">רוב התווים המיוחדים</string>
+    <string name="title_activity_about">על אודות NewPipe</string>
     <string name="action_settings">הגדרות</string>
-    <string name="action_about">אודות</string>
-    <string name="title_licenses">רישיונות צד ג\'</string>
-    <string name="copyright" formatted="true">© %1$s ע\"י %2$s תחת %3$s</string>
+    <string name="action_about">על אודות</string>
+    <string name="title_licenses">רישיונות צד שלישי</string>
+    <string name="copyright" formatted="true">© %1$s ע״י %2$s תחת %3$s</string>
     <string name="error_unable_to_load_license">לא ניתן לטעון רישיון</string>
-    <string name="action_open_website">פתח אתר</string>
-    <string name="tab_about">אודות</string>
+    <string name="action_open_website">פתיחת האתר</string>
+    <string name="tab_about">על אודות</string>
     <string name="tab_contributors">תורמים</string>
     <string name="tab_licenses">רישיונות</string>
-    <string name="app_description">נגן קל וחופשי לYouTube עבור אנדרואיד.</string>
-    <string name="contribution_title">תורם</string>
-    <string name="contribution_encouragement">בכל עת שיש לך רעיון ל: תרגום, עיצוב מחדש, ניקוי קוד, או תיקוני קוד משמעותיים—עזרה תמיד תתקבל בברכה. ככל שיותר מבוצע זה נעשה טוב יותר!</string>
-    <string name="view_on_github">הצג ב-GitHub</string>
-    <string name="donation_title">תרום</string>
-    <string name="donation_encouragement">NewPipe מפותח ע\"י מתנדבים אשר תורמים מזמנם להביא את החוויה המושלמת עבורך. עכשיו זה הזמן לתת להם חזרה כדי לדאוג לכך ש-NewPipe תמשיך לצמוח!</string>
+    <string name="app_description">נגן קל וחופשי להזרמת מדיה עבור Android.</string>
+    <string name="contribution_title">התנדבות</string>
+    <string name="contribution_encouragement">אם יש לך רעיון כלשהו בנוגע לתרגום, שינויי עיצוב, ניקוי הקוד או שינויים מהותיים בקוד - אנו תמיד שמחים לקבל עזרה. ככל שיותר דברים מתבצעים כך היישומון משתפר!</string>
+    <string name="view_on_github">הצגה ב־GitHub</string>
+    <string name="donation_title">תרומה</string>
+    <string name="donation_encouragement">הפיתוח של NewPipe נערך ע״י מתנדבים שמשקיעים את זמנם כדי להגיש לך את החוויה הטובה ביותר. באפשרותך להעניק בחזרה כדי לסייע למפתחים לשפר את NewPipe בעודם נהנים מכוס קפה.</string>
     <string name="give_back">לתרום בחזרה</string>
     <string name="website_title">אתר הבית</string>
-    <string name="website_encouragement">לקבלת מידע נוסף ועדכונים אחרונים עבור NewPipe אנא בקר באתרנו.</string>
-    <string name="app_license_title">רישיון NewPipe</string>
-    <string name="read_full_license">קרא רישיון</string>
-
-
+    <string name="website_encouragement">מומלץ לבקר באתר של NewPipe לפרטים נוספים ולחדשות.</string>
+    <string name="app_license_title">הרישיון של NewPipe</string>
+    <string name="read_full_license">הצגת הרישיון</string>
     <string name="title_activity_history">היסטוריה</string>
-    <string name="title_history_search">חופש בעבר</string>
-    <string name="title_history_view">נצפה בעבר</string>
-    <string name="history_disabled">היסטוריה אינה פעילה</string>
+    <string name="title_history_search">נשלח כחיפוש</string>
+    <string name="title_history_view">נצפו</string>
+    <string name="history_disabled">ההיסטוריה כבויה</string>
     <string name="action_history">היסטוריה</string>
     <string name="history_empty">ההיסטוריה ריקה</string>
-    <string name="history_cleared">היסטוריה נוקתה</string>
+    <string name="history_cleared">ההיסטוריה התרוקנה</string>
     <string name="item_deleted">פריט נמחק</string>
-    <string name="delete_item_search_history">האם ברצונך למחוק את הפריט הזה מהיסטורית החיפושים?</string>
-
+    <string name="delete_item_search_history">למחוק את הפריט הזה מהיסטוריית החיפושים\?</string>
     <string name="main_page_content">תוכן הדף הראשי</string>
     <string name="blank_page_summary">דף ריק</string>
-    <string name="kiosk_page_summary">דף קיוסק</string>
-    <string name="subscription_page_summary">דף עוקבים</string>
+    <string name="kiosk_page_summary">דף גישה מזדמנת</string>
+    <string name="subscription_page_summary">דף מינויים</string>
     <string name="feed_page_summary">דף עדכונים</string>
-    <string name="channel_page_summary">דף ערוץ</string>
-    <string name="select_a_channel">בחר ערוץ</string>
-    <string name="no_channel_subscribed_yet">אף ערוץ אינו ברשימת המעקב עדיין</string>
-    <string name="select_a_kiosk">בחר קיוסק</string>
-
-    <string name="kiosk">קיוסק</string>
+    <string name="channel_page_summary">דף ערוצים</string>
+    <string name="select_a_channel">נא לבחור ערוץ</string>
+    <string name="no_channel_subscribed_yet">אין עדיין מינויים לערוצים</string>
+    <string name="select_a_kiosk">נא לבחור סוג גישה מזדמנת</string>
+    <string name="kiosk">גישה מזדמנת</string>
     <string name="trending">החמים</string>
-    <string name="top_50">50 הנצפים ביותר</string>
-    <string name="new_and_hot">חדש &amp; חם</string>
+    <string name="top_50">50 המובילים</string>
+    <string name="new_and_hot">חדש וחם</string>
     <string name="title_activity_background_player">נגן רקע</string>
-    <string name="title_activity_popup_player">נגן צץ</string>
-    <string name="play_queue_remove">הסר</string>
+    <string name="title_activity_popup_player">נגן צף</string>
+    <string name="play_queue_remove">הסרה</string>
     <string name="play_queue_stream_detail">פרטים</string>
     <string name="play_queue_audio_settings">אפשרויות שמע</string>
-    <string name="hold_to_append">החזק להוספה לרשימת ניגון</string>
-    <string name="enqueue_on_background">נוסף לרשימת הניגון ברקע</string>
-    <string name="enqueue_on_popup">נוסף לרשימת הניגון בנגן הצץ</string>
-    <string name="start_here_on_main">התחל לנגן כאן</string>
-    <string name="start_here_on_background">התחל כאן בנגן הרקע</string>
-    <string name="start_here_on_popup">התחל כאן בנגן הצץ</string>
-<string name="controls_download_desc">הורדת קובץ הזרמה.</string>
+    <string name="hold_to_append">להחזיק כדי להוסיף לרשימת נגינה</string>
+    <string name="enqueue_on_background">להוסיף לרשימת הנגינה ברקע</string>
+    <string name="enqueue_on_popup">הוספה לתור בנגן צף חדש</string>
+    <string name="start_here_on_main">להתחיל לנגן מכאן</string>
+    <string name="start_here_on_background">להתחיל לנגן ברקע</string>
+    <string name="start_here_on_popup">להתחיל לנגן בחלון צף חדש</string>
+    <string name="controls_download_desc">הורדת קובץ הזרמה</string>
     <string name="show_info">הצגת מידע</string>
-
-    <string name="tab_bookmarks">סימניות</string>
-
+    <string name="tab_bookmarks">רשימות נגינה מסומנות</string>
     <string name="controls_add_to_playlist_title">הוספה אל</string>
-
     <string name="default_content_country_title">מדינת תוכן כבררת מחדל</string>
     <string name="service_title">שירות</string>
     <string name="settings_category_debug_title">ניפוי שגיאות</string>
     <string name="always">תמיד</string>
     <string name="just_once">חד פעמי</string>
-
-    <string name="import_data_title">יבוא מסד נתונים</string>
-    <string name="export_data_title">יצוא מסד נתונים</string>
-    <string name="external_player_unsupported_link_type">נגנים חיצוניים לא תומכים בסוגי קישורים אלה</string>
+    <string name="import_data_title">ייבוא מסד נתונים</string>
+    <string name="export_data_title">ייצוא מסד נתונים</string>
+    <string name="external_player_unsupported_link_type">נגנים חיצוניים לא תומכים בסוגי קישורים כאלה</string>
     <string name="invalid_url_toast">כתובת שגויה</string>
     <string name="file">קובץ</string>
-
     <string name="switch_to_background">העברה לרקע</string>
-    <string name="switch_to_popup">העברה לחלון צץ</string>
-    <string name="no_player_found_toast">לא נמצא נגן לצפייה ישירה (באפשרותך להתקין VLC כדי לתקן זאת)</string>
-    <string name="thumbnail_cache_wipe_complete_notice">מטמון התמונות נוקה</string>
-    <string name="metadata_cache_wipe_title">נקה מטמון מטא-דאטה</string>
-    <string name="metadata_cache_wipe_complete_notice">מטמון המטא-דאטא נוקה</string>
-    <string name="export_data_summary">יצא היסטוריה, רישומים ורשימות השמעה.</string>
-    <string name="clear_views_history_title">ניקוי היסטוריית הצפייה</string>
-    <string name="view_history_deleted">היסטוריית הצפייה נמחקה.</string>
-    <string name="clear_search_history_title">ניקוי היסטוריית החיפוש</string>
-    <string name="search_history_deleted">היסטורית החיפוש נמחקה.</string>
-    <string name="invalid_file">הקובץ אינו קיים או שאין ברשותך הרשאות מתאימות לקריאתו/כתיבתו</string>
+    <string name="switch_to_popup">העברה לחלון צף</string>
+    <string name="no_player_found_toast">לא נמצא נגן צפייה ישירה (ניתן להתקין את VLC כדי לתקן זאת).</string>
+    <string name="thumbnail_cache_wipe_complete_notice">תמונות מטמון נמחקו</string>
+    <string name="metadata_cache_wipe_title">ניקוי מטמון נתוני העל</string>
+    <string name="metadata_cache_wipe_complete_notice">מטמון נתוני העל התרוקן</string>
+    <string name="export_data_summary">ייצוא היסטוריה, מינויים ורשימות נגינה</string>
+    <string name="clear_views_history_title">מחיקת היסטוריית הצפייה</string>
+    <string name="watch_history_deleted">היסטוריית הצפייה נמחקה.</string>
+    <string name="clear_search_history_title">מחיקת היסטוריית החיפוש</string>
+    <string name="search_history_deleted">היסטוריית החיפוש נמחקה.</string>
+    <string name="invalid_file">הקובץ אינו קיים או שחסרה הרשאה לקרוא אותו או לכתוב אליו</string>
     <string name="file_name_empty_error">שם הקובץ אינו יכול להיות ריק</string>
-    <string name="detail_drag_description">גרור כדי לסדר מחדש</string>
-
-    <string name="create">צור</string>
-    <string name="delete_one">מחק אחד</string>
-    <string name="delete_all">מחק הכל</string>
-    <string name="dismiss">סלק</string>
-    <string name="rename">שנה שם</string>
-
+    <string name="detail_drag_description">ניתן לסדר מחדש בגרירה</string>
+    <string name="create">יצירה</string>
+    <string name="delete_one">למחוק אחד</string>
+    <string name="delete_all">למחוק הכול</string>
+    <string name="dismiss">התעלמות</string>
+    <string name="rename">שינוי שם</string>
     <string name="one_item_deleted">פריט אחד נמחק.</string>
-
-    <string name="toast_no_player">לא נמצא נגן מתאים לקובץ זה</string>
-
-    <string name="delete_stream_history_prompt">האם ברצונך למחוק פריט זה מהיסטוריית הצפייה שלך?</string>
-    <string name="delete_all_history_prompt">האם אתה בטוח שברצונך למחוק את כל הפריטים מההיסטוריה?</string>
-    <string name="export_complete_toast">יצוא הושלם</string>
-    <string name="import_complete_toast">יבוא הושלם</string>
-    <string name="no_valid_zip_file">אין קובץ ZIP תקף</string>
-    <string name="video_player">נגן וידאו</string>
+    <string name="toast_no_player">לא מותקן יישומון שמתאים לנגינת הקובץ הזה</string>
+    <string name="delete_stream_history_prompt">למחוק את הפריט הזה מהיסטוריית הצפייה שלך\?</string>
+    <string name="delete_all_history_prompt">למחוק את כל הפריטים מההיסטוריה\?</string>
+    <string name="export_complete_toast">הייצוא הסתיים</string>
+    <string name="import_complete_toast">הייבוא הסתיים</string>
+    <string name="no_valid_zip_file">אין קובץ ZIP תקין</string>
+    <string name="video_player">נגן סרטונים</string>
     <string name="background_player">נגן רקע</string>
-    <string name="popup_player">נגן קופץ</string>
-    <string name="always_ask_open_action">שאל תמיד</string>
-
-    <string name="preferred_player_fetcher_notification_title">משיג מידע…</string>
+    <string name="popup_player">נגן צף</string>
+    <string name="always_ask_open_action">לשאול תמיד</string>
+    <string name="preferred_player_fetcher_notification_title">המידע מתקבל…</string>
     <string name="preferred_player_fetcher_notification_message">התוכן המבוקש בטעינה</string>
-
-    <string name="create_playlist">צור רשימת השמעה חדשה</string>
-    <string name="delete_playlist">מחק רשימת השמעה</string>
-    <string name="rename_playlist">שנה שם רשימת השמעה</string>
+    <string name="create_playlist">רשימת נגינה חדשה</string>
+    <string name="delete_playlist">מחיקה</string>
+    <string name="rename_playlist">שינוי שם</string>
     <string name="playlist_name_input">שם</string>
-    <string name="append_playlist">הוסף לרשימת השמעה</string>
-    <string name="bookmark_playlist">הוסף רשימת השמעה למועדפים</string>
-    <string name="unbookmark_playlist">הסרת מועדף</string>
-
-    <string name="delete_playlist_prompt">האם ברצונך למחוק רשימת השמעה זו?</string>
-    <string name="playlist_creation_success">רשימת ההשמעה נוצרה בהצלחה</string>
-    <string name="playlist_add_stream_success">נוסף לרשימת ההשמעה</string>
-    <string name="playlist_thumbnail_change_success">תמונת רשימת ההשמעה שונתה</string>
-    <string name="resize_fill">מלא</string>
-    <string name="resize_zoom">הגדל</string>
-
-    <string name="caption_auto_generated">נוצר אוטומטית</string>
-
-    <string name="import_export_title">יבוא/יצוא</string>
-    <string name="import_title">יבוא</string>
-    <string name="import_from">יבוא מ</string>
-    <string name="export_to">יצוא ל</string>
-
-    <string name="import_ongoing">מייבא…</string>
-    <string name="export_ongoing">מייצא…</string>
-
-    <string name="import_file_title">יבא קובץ</string>
-    <string name="previous_export">יצוא קודם</string>
-
-    <string name="subscriptions_import_unsuccessful">יבוא רשומים נכשל</string>
-    <string name="subscriptions_export_unsuccessful">יצוא רשומים נכשל</string>
-
-    <string name="import_youtube_instructions">כדי לייבא את הערוצים אליהם אתה רשום מיוטיוב אתה תזדקק לקובץ היצוא, אותו ניתן להוריד כך:
-\n
-\n1. היכנס ללינק הזה: %1$s
-\n2. התחבר לחשבונך כשתתבקש
-\n3. ההורדה אמורה להתחיל (זהו קובץ היצוא)</string>
+    <string name="append_playlist">הוספה לרשימת נגינה</string>
+    <string name="bookmark_playlist">הוספת רשימת נגינה לסימניות</string>
+    <string name="unbookmark_playlist">הסרת סימנייה</string>
+    <string name="delete_playlist_prompt">למחוק רשימת נגינה זו\?</string>
+    <string name="playlist_creation_success">רשימת הנגינה נוצרה</string>
+    <string name="playlist_add_stream_success">נוסף לרשימת הנגינה</string>
+    <string name="playlist_thumbnail_change_success">תמונת רשימת הנגינה הוחלפה.</string>
+    <string name="resize_fill">מילוי</string>
+    <string name="resize_zoom">תקריב</string>
+    <string name="caption_auto_generated">נוצרו אוטומטית</string>
+    <string name="import_export_title">ייבוא/ייצוא</string>
+    <string name="import_title">ייבוא</string>
+    <string name="import_from">ייבוא מ־</string>
+    <string name="export_to">ייצוא אל</string>
+    <string name="import_ongoing">מתבצע ייבוא…</string>
+    <string name="export_ongoing">מתבצע ייצוא…</string>
+    <string name="import_file_title">ייבוא קובץ</string>
+    <string name="previous_export">ייצוא קודם</string>
+    <string name="subscriptions_import_unsuccessful">לא ניתן לייבא את המינויים</string>
+    <string name="subscriptions_export_unsuccessful">לא ניתן לייצא את המינויים</string>
+    <string name="import_youtube_instructions">כדי לייבא את רשימת המינויים שלך מ־YouTube עליך להוריד את קובץ הייצוא:
+\n 
+\n1. לעבור לכתובת הזו: %1$s
+\n2. להיכנס אם נתבקשת
+\n3. ההורדה אמורה להתחיל (זה קובץ הייצוא)</string>
     <string name="playback_tempo">קצב</string>
     <string name="playback_default">ברירת מחדל</string>
-<string name="use_inexact_seek_title">השתמש בחיפוש מהיר שאינו מדויק</string>
-    <string name="use_inexact_seek_summary">חיפוש לא מדויק מאפשר לנגן לחפש נקודת זמן מהר יותר, עם דיוק מופחת</string>
-    <string name="download_thumbnail_title">טען תמונות ממוזערות</string>
-    <string name="download_thumbnail_summary">"השבת כדי לעצור את טעינת כל התמונות הממוזערות וחסוך בשימוש בנתונים ובזכרון. השינוי ימחק את המטמון בזכרון ובדיסק. "</string>
-    <string name="metadata_cache_wipe_summary">הסר את כל נתוני העמודים במטמון</string>
-    <string name="auto_queue_title">אוטומטית הכנס לתור את ההזרמה הבאה</string>
-    <string name="auto_queue_summary">"אוטומטית הוסף הזרמה קשורה כאשר ההזרמה האחרונה לא נמצאת במצב  הזרמה חוזרת של התור. "</string>
-    <string name="toggle_orientation">כפתור כיוון</string>
-    <string name="switch_to_main">החלף לראשי</string>
-
-    <string name="import_data_summary">פעולה זו תדרוס את ההיסטוריה ורשימת המנויים הקיימת.</string>
-    <string name="clear_views_history_summary">"מחק הסטוריה של ניגונים קודמים. "</string>
-    </resources>
+    <string name="use_inexact_seek_title">שימוש בחיפוש מהיר ולא מדויק</string>
+    <string name="use_inexact_seek_summary">חיפוש גס מאפשר לנגן לחפש נקודת זמן מהר יותר, ברמת דיוק נמוכה יותר</string>
+    <string name="download_thumbnail_title">טעינת תמונות ממוזערות</string>
+    <string name="download_thumbnail_summary">כיבוי האפשרות מונע את טעינת התמונות הממוזערות, חוסך בתקשורת נתונים ובניצולת הזיכרון. שינויים באפשרות זו מוחקים את המטמון בזיכרון ובכונן.</string>
+    <string name="metadata_cache_wipe_summary">הסרת כל נתוני העמודים שבמטמון</string>
+    <string name="auto_queue_title">הוספת התזרים הבא לרשימת הנגינה אוטומטית</string>
+    <string name="auto_queue_summary">להוסיף אוטומטית תזרים דומה בעת נגינת התזרים האחרון בתור שאינו מחזורי</string>
+    <string name="toggle_orientation">החלפת כיווניות</string>
+    <string name="switch_to_main">העברה לראשי</string>
+    <string name="import_data_summary">משכתב את ההיסטוריה והמינויים הנוכחיים שלך</string>
+    <string name="clear_views_history_summary">מחיקת היסטוריית התזרימים שהתנגנו</string>
+    <string name="channels">ערוצים</string>
+    <string name="playlists">רשימות נגינה</string>
+    <string name="tracks">רצועות</string>
+    <string name="users">משתמשים</string>
+    <string name="delete_view_history_alert">למחוק את כל היסטוריית הצפייה\?</string>
+    <string name="clear_search_history_summary">מחיקת היסטוריית מילות החיפוש</string>
+    <string name="delete_search_history_alert">למחוק את כל היסטוריית החיפוש\?</string>
+    <string name="video_streams_empty">לא נמצאו תזרימי וידאו</string>
+    <string name="audio_streams_empty">לא נמצאו תזרימי שמע</string>
+    <string name="invalid_directory">אין תיקייה כזו</string>
+    <string name="invalid_source">אין מקור תיקייה/תוכן</string>
+    <string name="error_occurred_detail">אירעה שגיאה: %1$s</string>
+    <string name="no_streams_available_download">אין תזרימים זמינים להורדה</string>
+    <string name="privacy_policy_title">מדיניות הפרטיות של NewPipe</string>
+    <string name="privacy_policy_encouragement">מיזם NewPipe שומר על הפרטיות שלך בצורה מאוד קפדנית. לפיכך, היישומון אינו אוסף נתונים ללא הסכמתך.
+\nמדיניות הפרטיות של NewPipe מסבירה בפרטי פרטים אילו נתונים נשלחים ומאוחסנים בעת שליחת דיווח על תקלה.</string>
+    <string name="read_privacy_policy">הצגת מדיניות הפרטיות</string>
+    <string name="app_license">NewPipe הוא יישומון חופשי בהתאם לרישיון קופילפט: מותר לך להשתמש, לחקור, לשתף ולשפר בכל דרך שנראית לך. במיוחד מותר לך להפיץ מחדש ו/או לשנות תחת תנאי הרישיון הציבורי הכללי של GNU כפי שמופץ על ידי קרן התכנה החופשית, בין אם גרסה 3 של הרישיון או (לשיקולך) כל גרסה עדכנית יותר שלו.</string>
+    <string name="title_last_played">התנגנו אחרונים</string>
+    <string name="title_most_played">הכי נצפים</string>
+    <string name="could_not_import_all_files">אזהרה: ייבוא חלק מהקבצים נכשל.</string>
+    <string name="override_current_data">פעולה זו תדרוס את ההגדרות הקיימות.</string>
+    <string name="import_settings">לייבא גם הגדרות\?</string>
+    <string name="drawer_open">פתיחת מגירה</string>
+    <string name="drawer_close">סגירת מגירה</string>
+    <string name="drawer_header_action_paceholder_text">משהו יופיע כאן בקרוב ‎;D</string>
+    <string name="preferred_open_action_settings_title">פעולת ‚פתיחה’ מועדפת</string>
+    <string name="preferred_open_action_settings_summary">פעולת בררת מחדל בעת פתיחת תוכן - %s</string>
+    <string name="set_as_playlist_thumbnail">הגדרה כתמונת רשימת הנגינה</string>
+    <string name="playlist_delete_failure">לא ניתן למחוק רשימת נגינה.</string>
+    <string name="caption_none">אין כתוביות</string>
+    <string name="resize_fit">התאמה</string>
+    <string name="caption_setting_title">כתוביות</string>
+    <string name="caption_setting_description">שינוי גודל כותרת הנגן וסגנונות הרקע. נדרשת הפעלה מחדש כדי ששינויים אלה יכנסו לתוקף.</string>
+    <string name="enable_leak_canary_title">הפעלת LeakCanary</string>
+    <string name="enable_leak_canary_summary">מעקב אחר זליגת זיכרון עשויה לגרום ליישומון להיות בלתי זמין בזמן העתקת תוכן הזיכרון לקובץ</string>
+    <string name="import_soundcloud_instructions_hint">המזהה שלך, soundcloud.com/המזהה שלך</string>
+    <string name="import_network_expensive_warning">נא לשים לב כי פעולה זו עשויה להעמיס על תקשורת הנתונים. 
+\n 
+\nלהמשיך\?</string>
+    <string name="unhook_checkbox">ניתוק קישור (עלול ליצור עיוות)</string>
+    <string name="skip_silence_checkbox">להאיץ קדימה כאשר שקט</string>
+    <string name="playback_step">צעד</string>
+    <string name="playback_reset">איפוס</string>
+    <string name="accept">קבלה</string>
+    <string name="decline">דחייה</string>
+    <string name="limit_data_usage_none_description">ללא מגבלה</string>
+    <string name="minimize_on_exit_title">מזעור בעת מעבר בין יישומונים</string>
+    <string name="minimize_on_exit_summary">הפעולה לביצוע בעת מעבר ליישומון אחר מנגן הווידאו הראשי — %s</string>
+    <string name="minimize_on_exit_none_description">כלום</string>
+    <string name="minimize_on_exit_background_description">מזעור לנגן הרקע</string>
+    <string name="minimize_on_exit_popup_description">הקטנה לנגן צף</string>
+    <string name="unsubscribe">ביטול מינוי</string>
+    <string name="tab_new">לשונית חדשה</string>
+    <string name="tab_choose">בחירת לשונית</string>
+    <string name="volume_gesture_control_title">מחוות בקרת עצמת שמע</string>
+    <string name="volume_gesture_control_summary">ניתן להשתמש במחוות כדי לשלוט בעצמת השמע של הנגן</string>
+    <string name="brightness_gesture_control_title">מחוות בקרת בהירות</string>
+    <string name="brightness_gesture_control_summary">ניתן להשתמש במחוות כדי לשלוט בבהירות הנגן</string>
+    <string name="settings_category_updates_title">עדכונים</string>
+    <string name="file_deleted">נמחק קובץ</string>
+    <string name="app_update_notification_channel_name">התראת עדכון יישומון</string>
+    <string name="app_update_notification_channel_description">התראות על גרסה חדשה של NewPipe</string>
+    <string name="download_to_sdcard_error_title">האחסון החיצוני אינו זמין</string>
+    <string name="download_to_sdcard_error_message">אין עדיין אפשרות להוריד לכרטיס SD. לאפס את מיקום תיקיית ההורדה\?</string>
+    <string name="saved_tabs_invalid_json">נעשה שימוש בלשוניות בררת המחדל, אירעה שגיאה בעת קריאת הלשוניות שנשמרו</string>
+    <string name="restore_defaults">שחזור בררות מחדל</string>
+    <string name="restore_defaults_confirmation">לשחזר את בררות המחדל\?</string>
+    <string name="subscribers_count_not_available">מספר המנויים אינו זמין</string>
+    <string name="main_page_content_summary">אילו לשוניות תופענה בעמוד הראשי</string>
+    <string name="selection">בחירה</string>
+    <string name="events">אירועים</string>
+    <string name="conferences">כנסים</string>
+    <string name="enable_disposed_exceptions_title">דיווח על שגיאות שמחוץ למחזור החיים</string>
+    <string name="enable_disposed_exceptions_summary">אילוץ דיווח על חריגות מחוץ למקטעים או למחזור חיי הפעילות לאחר ההשלכה בתשדורת יוצאת</string>
+    <string name="import_soundcloud_instructions">ניתן לייבא פרופיל SoundCloud על ידי הקלדת הכתובת או המזהה שלך:
+\n
+\n1. עליך להפעיל „מצב שולחן עבודה” בדפדפן שלך (האתר לא זמין למכשירים ניידים)
+\n2. לעבור לכתובת הזו: %1$s
+\n3. להיכנס אם נתבקשת
+\n4. להעתיק את כתובת הפרופיל אליו הועברת.</string>
+    <string name="playback_speed_control">בקרי מהירות נגינה</string>
+    <string name="playback_pitch">גובה צליל</string>
+    <string name="limit_mobile_data_usage_title">הגבלת הרזולוציה בעת שימוש בנתונים סלולריים</string>
+    <string name="start_accept_privacy_policy">כדי לעמוד בדרישות האסדרה הכללית להגנה על מידע (GDPR), אנו מפנים את תשומת לבך למדיניות הפרטיות של NewPipe. נא לקרוא אותה בעיון רב.
+\nעליך לאשר את הסכמתך למדיניות כדי לשלוח לנו דיווחים על תקלות.</string>
+    <string name="updates_setting_title">עדכונים</string>
+    <string name="updates_setting_description">הצגת התראה כדי להודיע על עדכון ליישומון כשיוצאת גרסה חדשה לאור</string>
+    <string name="list_view_mode">מצב תצוגת רשימה</string>
+    <string name="list">רשימה</string>
+    <string name="grid">טבלה</string>
+    <string name="auto">אוטומטית</string>
+    <string name="switch_view">החלפת תצוגה</string>
+    <string name="app_update_notification_content_title">יצא עדכון ל־NewPipe!</string>
+    <string name="app_update_notification_content_text">יש לגעת כדי להוריד</string>
+    <string name="missions_header_finished">הסתיים</string>
+    <string name="paused">מושהה</string>
+    <string name="queued">בתור</string>
+    <string name="post_processing">עיבוד מאוחר</string>
+    <string name="enqueue">תור</string>
+    <string name="permission_denied">הפעולה נדחתה על ידי המערכת</string>
+    <string name="download_failed">ההורדה נכשלה</string>
+    <string name="download_finished">ההורדה הסתיימה</string>
+    <string name="download_finished_more">%s הורדות הסתיימו</string>
+    <string name="generate_unique_name">יצירת שם ייחודי</string>
+    <string name="overwrite">שכתוב</string>
+    <string name="overwrite_finished_warning">כבר קיים קובץ בשם הזה</string>
+    <string name="download_already_running">אחת ההורדות הפעילות כבר נושאת את השם הזה</string>
+    <string name="show_error">הצגת שגיאה</string>
+    <string name="label_code">קוד</string>
+    <string name="error_file_creation">לא ניתן ליצור את הקובץ</string>
+    <string name="error_path_creation">לא ניתן ליצור את תיקיית היעד</string>
+    <string name="error_permission_denied">ההרשאה נדחתה על ידי המערכת</string>
+    <string name="error_ssl_exception">החיבור המאובטח נכשל</string>
+    <string name="error_unknown_host">לא ניתן למצוא את השרת</string>
+    <string name="error_connect_host">לא ניתן להתחבר לשרת</string>
+    <string name="error_http_no_content">השרת לא שולח נתונים</string>
+    <string name="error_http_unsupported_range">"השרת לא מקבל הורדות רב ערוציות, מוטב לנסות שוב עם ‎@string/msg_threads = 1 "</string>
+    <string name="error_http_requested_range_not_satisfiable">הטווח המבוקש לא מתאים</string>
+    <string name="error_http_not_found">לא נמצא</string>
+    <string name="error_postprocessing_failed">העיבוד המאוחר נכשל</string>
+    <string name="clear_finished_download">פינוי ההורדות שהסתיימו</string>
+    <string name="msg_pending_downloads">ניתן להמשיך את %s ההורדות הממתינות שלך דרך ההורדות</string>
+    <string name="stop">עצירה</string>
+    <string name="max_retry_msg">מספר הניסיונות החוזרים המרבי</string>
+    <string name="max_retry_desc">מספר הניסיונות החוזרים המרבי בטרם ביטול ההורדה</string>
+    <string name="pause_downloads_on_mobile">להשהות בעת מעבר לתקשורת נתונים סלולרית</string>
+    <string name="pause_downloads_on_mobile_desc">הורדות שלא ניתן להשהות יופעלו מחדש</string>
+    <string name="show_comments_title">הצגת תגובות</string>
+    <string name="show_comments_summary">יש להשבית כדי להפסיק הצגת תגובות</string>
+    <string name="autoplay_title">ניגון אוטומטי</string>
+    <plurals name="comments">
+        <item quantity="one">תגובות</item>
+        <item quantity="two"></item>
+        <item quantity="many"></item>
+        <item quantity="other"></item>
+    </plurals>
+    <string name="no_comments">אין תגובות</string>
+    <string name="error_unable_to_load_comments">לא ניתן לטעון תגובות</string>
+    <string name="close">סגירה</string>
+</resources>

@@ -1,35 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:key="general_preferences"
     android:title="@string/settings">
 
     <PreferenceScreen
+        app:iconSpaceReserved="false"
         android:fragment="org.schabi.newpipe.settings.VideoAudioSettingsFragment"
         android:icon="?attr/audio"
         android:title="@string/settings_category_video_audio_title"/>
 
     <PreferenceScreen
+        app:iconSpaceReserved="false"
         android:fragment="org.schabi.newpipe.settings.DownloadSettingsFragment"
         android:icon="?attr/download"
         android:title="@string/settings_category_downloads_title"/>
 
     <PreferenceScreen
+        app:iconSpaceReserved="false"
         android:fragment="org.schabi.newpipe.settings.AppearanceSettingsFragment"
         android:icon="?attr/palette"
         android:title="@string/settings_category_appearance_title"/>
 
     <PreferenceScreen
+        app:iconSpaceReserved="false"
         android:fragment="org.schabi.newpipe.settings.HistorySettingsFragment"
         android:icon="?attr/history"
         android:title="@string/settings_category_history_title"/>
 
     <PreferenceScreen
+        app:iconSpaceReserved="false"
         android:fragment="org.schabi.newpipe.settings.ContentSettingsFragment"
         android:icon="?attr/language"
         android:title="@string/content"/>
 
     <PreferenceScreen
+        app:iconSpaceReserved="false"
+        android:fragment="org.schabi.newpipe.settings.UpdateSettingsFragment"
+        android:icon="?attr/ic_settings_update"
+        android:title="@string/settings_category_updates_title"
+        android:key="update_pref_screen_key"/>
+
+    <PreferenceScreen
+        app:iconSpaceReserved="false"
         android:fragment="org.schabi.newpipe.settings.DebugSettingsFragment"
         android:icon="?attr/bug"
         android:title="@string/settings_category_debug_title"

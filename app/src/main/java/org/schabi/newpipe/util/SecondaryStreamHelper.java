@@ -36,10 +36,9 @@ public class SecondaryStreamHelper<T extends Stream> {
      * @return selected audio stream or null if a candidate was not found
      */
     public static AudioStream getAudioStreamFor(@NonNull List<AudioStream> audioStreams, @NonNull VideoStream videoStream) {
-        // TODO: check if m4v and m4a selected streams are DASH compliant
         switch (videoStream.getFormat()) {
             case WEBM:
-            case MPEG_4:
+            case MPEG_4:// ¿is mpeg-4 DASH?
                 break;
             default:
                 return null;

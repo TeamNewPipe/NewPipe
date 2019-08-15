@@ -53,7 +53,7 @@ public class DownloadActivity extends AppCompatActivity {
             @Override
             public void onGlobalLayout() {
                 updateFragments();
-                getWindow().getDecorView().getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                getWindow().getDecorView().getViewTreeObserver().removeOnGlobalLayoutListener(this);
             }
         });
     }
@@ -61,12 +61,13 @@ public class DownloadActivity extends AppCompatActivity {
     private void updateFragments() {
         MissionsFragment fragment = new MissionsFragment();
 
-        getFragmentManager().beginTransaction()
+        getSupportFragmentManager().beginTransaction()
                 .replace(R.id.frame, fragment, MISSIONS_FRAGMENT_TAG)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit();
     }
 
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
@@ -91,10 +92,5 @@ public class DownloadActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    @Override
-    public void onRestoreInstanceState(Bundle inState){
-        super.onRestoreInstanceState(inState);
     }
 }

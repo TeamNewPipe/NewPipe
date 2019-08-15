@@ -15,7 +15,7 @@
     <dimen name="video_item_grid_thumbnail_image_width">164dp</dimen>
     <dimen name="video_item_grid_thumbnail_image_height">92dp</dimen>
     <!-- Calculated: 2*video_item_search_padding + video_item_search_thumbnail_image_height -->
-    <dimen name="video_item_search_height">94dp</dimen>
+    <dimen name="video_item_search_height">96dp</dimen>
     <!-- Paddings & Margins -->
     <dimen name="video_item_search_padding">12dp</dimen>
     <dimen name="video_item_search_image_right_margin">6dp</dimen>
@@ -85,4 +85,8 @@
 
     <!-- File picker dimensions -->
     <dimen name="file_picker_items_text_size">14sp</dimen>
+
+    <!-- Text Size -->
+    <dimen name="comment_item_title_text_size">12sp</dimen>
+    <dimen name="comment_item_content_text_size">12sp</dimen>
 </resources>
