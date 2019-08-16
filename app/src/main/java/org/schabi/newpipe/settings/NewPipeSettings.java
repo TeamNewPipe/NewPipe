@@ -140,7 +140,9 @@ public class NewPipeSettings {
 
         int availableProviders = 0;
         for (ResolveInfo info : infoList) {
-            if (info.activityInfo.exported) availableProviders++;
+            if (info.activityInfo != null && info.activityInfo.enabled && info.activityInfo.exported) {
+                availableProviders++;
+            }
         }
 
         return availableProviders > 0;
