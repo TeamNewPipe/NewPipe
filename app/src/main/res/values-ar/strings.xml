@@ -20,7 +20,7 @@
     <string name="download_path_summary">مسار حفظ تنزيلات الفيديو في</string>
     <string name="download_path_title">مسار ملفات الفيديو المحفوظة</string>
     <string name="err_dir_create">"لا يمكن إنشاء مجلد للتنزيلات في '%1$s'"</string>
-    <string name="info_dir_created">"تم إنشاء مجلد تنزيلات في '%1$s'"</string>
+    <string name="info_dir_created">إنشاء دليل التنزيل \'%1$s\'</string>
     <string name="install">تثبيت</string>
     <string name="kore_not_found">تطبيق Kore غير موجود. هل تريد تثبيته ؟</string>
     <string name="light_theme_title">مضيء</string>
@@ -42,7 +42,7 @@
     <string name="share">مشاركة</string>
     <string name="share_dialog_title">مشاركة بواسطة</string>
     <string name="show_next_and_similar_title">عرض مقاطع الفيديو \"التالية\" و \"المشابهة\"</string>
-    <string name="show_play_with_kodi_summary">عرض خيار لتشغيل الفيديو بواسطة مشغل كودي</string>
+    <string name="show_play_with_kodi_summary">عرض خيار تشغيل الفيديو عبر مركز وسائط Kodi</string>
     <string name="show_play_with_kodi_title">عرض خيار التشغيل بواسطة كودي</string>
     <string name="theme_title">السمة</string>
     <string name="upload_date_text">تم النشر يوم %1$s</string>
@@ -66,11 +66,11 @@
     <string name="controls_background_title">في الخلفية</string>
     <string name="autoplay_by_calling_app_title">تشغيل تلقائي</string>
     <string name="black_theme_title">اسود</string>
-    <string name="enable_watch_history_title">التاريخ وذاكرة التخزين المؤقت</string>
+    <string name="enable_watch_history_title">مراقبة السجل</string>
     <string name="settings_category_history_title">التاريخ و ذاكرة التخزين المؤقت</string>
     <string name="content">محتوى</string>
-    <string name="downloads">التنزيلات</string>
-    <string name="downloads_title">عنوان التنزيلات</string>
+    <string name="downloads">التحميلات</string>
+    <string name="downloads_title">التحميلات</string>
     <string name="all">الكل</string>
     <string name="channel">القناة</string>
     <string name="video">الفيديو</string>
@@ -80,7 +80,7 @@
     <string name="title_activity_history">التاريخ</string>
     <string name="action_history">التاريخ</string>
     <string name="open_in_popup_mode">فتح في وضع منبثق</string>
-    <string name="use_external_video_player_summary">يزيل الصوت في بعض الخيارات</string>
+    <string name="use_external_video_player_summary">"يزيل الصوت  في بعض قرارات الدقة"</string>
     <string name="popup_mode_share_menu_title">وضع النوافذ المنبثقة NewPipe</string>
     <string name="channel_unsubscribed">تم إلغاء الاشتراك في القناة</string>
     <string name="subscription_change_failed">تعذر تغيير حالة الاشتراك</string>
@@ -113,11 +113,11 @@
     <string name="show_age_restricted_content_title">محتوى مقيد بحسب العمر</string>
     <string name="video_is_age_restricted">"إظهار الفيديو  المقيد بحسب العمر. يمكن السماح باستخدام هذه المواد من \"الإعدادات\"."</string>
     <string name="duration_live">بث مباشر</string>
-    <string name="error_report_title">عنوان تقرير الخطأ</string>
+    <string name="error_report_title">أبلغ عن خطأ</string>
     <string name="playlist">قائمة التشغيل</string>
     <string name="yes">نعم</string>
     <string name="later">لاحقاً</string>
-    <string name="disabled">تعطيل</string>
+    <string name="disabled">معطل</string>
     <string name="filter">فلتر</string>
     <string name="refresh">تحديث</string>
     <string name="clear">تنظيف</string>
@@ -158,11 +158,11 @@
     <string name="short_billion">بليون</string>
     <string name="no_subscribers">ليس هناك مشترِكون</string>
     <plurals name="subscribers">
-        <item quantity="zero">%s لا يوجد مشترك</item>
+        <item quantity="zero">%s لا يوجد مشارك</item>
         <item quantity="one">%s مشترك</item>
-        <item quantity="two">%s اثنتين مشتركين</item>
+        <item quantity="two">"%s  مشتركتين"</item>
         <item quantity="few">%s اشتراكات</item>
-        <item quantity="many">%s مشتركين</item>
+        <item quantity="many">%s مشاركين</item>
         <item quantity="other">%s مشتركون</item>
     </plurals>
     <string name="no_views">دون مشاهدات</string>
@@ -184,7 +184,7 @@
     <string name="msg_running_detail">انقر للحصول على التفاصيل</string>
     <string name="msg_wait">يُرجى الإنتظار…</string>
     <string name="msg_copied">تم نسخه إلى الحافظة</string>
-    <string name="no_available_dir">الرجاء تحديد مجلد لحفظ التنزيلات</string>
+    <string name="no_available_dir">يرجى تحديد مجلد التنزيل لاحقًا في الإعدادات</string>
     <string name="msg_popup_permission">هذا الإذن مطلوب
 \nللفتح في وضع النافذة المنبثقة</string>
     <string name="reCaptchaActivity">اختبار reCAPTCHA</string>
@@ -200,7 +200,7 @@
     <string name="action_open_website">فتح الموقع</string>
     <string name="tab_contributors">المساهمون</string>
     <string name="tab_licenses">التراخيص</string>
-    <string name="app_description">تطبيق حُر و خفيف لتشغيل اليوتيوب على نظام الأندرويد.</string>
+    <string name="app_description">تطبيق مجاني خفيف الوزن وبث حي على نظام أندرويد.</string>
     <string name="contribution_title">ساهم</string>
     <string name="contribution_encouragement">إذا كانت لديك أفكار؛ أو ترجمة، أو تغييرات تخص التصميم، أو تنظيف و تحسين الشفرة البرمجية ، أو تعديلات عميقة عليها، فتذكر أنّ مساعدتك دائما موضع ترحيب. وكلما أتممنا شيئا كلما كان ذلك أفضل !</string>
     <string name="view_on_github">عرض على GitHub</string>
@@ -234,7 +234,7 @@
     <string name="play_queue_stream_detail">التفاصيل</string>
     <string name="play_queue_audio_settings">الإعدادات الصوتية</string>
     <string name="start_here_on_main">تشغيل هنا</string>
-    <string name="start_here_on_popup">تشغيل في وضع النافذة المنبثقة</string>
+    <string name="start_here_on_popup">تشغيل في وضع نافذة منبثقة</string>
     <string name="reCaptcha_title">تحدي الكابتشا</string>
     <string name="hold_to_append">اضغط للإدراج في قائمة الانتظار</string>
     <plurals name="views">
@@ -425,11 +425,11 @@
     <string name="app_update_notification_channel_name">تتبيه تحديث التطبيق</string>
     <string name="volume_gesture_control_title">إيماءة التحكم بالصوت</string>
     <string name="events">الأحداث</string>
-    <string name="app_update_notification_channel_description">التنبيه بإصدارات newpipe الجديدة</string>
-    <string name="download_to_sdcard_error_title">ذاكرة التخزين الخارجي غير متوفرة</string>
-    <string name="download_to_sdcard_error_message">التحميل إلى بطاقة الذاكرة الخارجية ليس متاحا حتى الآن. إعادة تعيين موقع مجلد التحميل؟</string>
-    <string name="saved_tabs_invalid_json">باستخدام علامات الجدولة الافتراضية، حدث خطأ أثناء قراءة علامات التبويب المحفوظة</string>
-    <string name="restore_defaults">استعادة الافتراضيات</string>
+    <string name="app_update_notification_channel_description">الإخطارات عند تواجد إصدار newpipe جديد</string>
+    <string name="download_to_sdcard_error_title">وحدة التخزين الخارجية غير متوفرة</string>
+    <string name="download_to_sdcard_error_message">"التنزيل على بطاقة SD الخارجية غير ممكن.  إعادة تعيين موقع مجلد التحميل؟"</string>
+    <string name="saved_tabs_invalid_json">عند إستخدام علامات التبويب الافتراضية ، وقع خطأ أثناء قراءة علامات التبويب المحفوظة</string>
+    <string name="restore_defaults">استعادة الضبط الافتراضي</string>
     <string name="restore_defaults_confirmation">هل تريد استعادة الإعدادات الافتراضية؟</string>
     <string name="subscribers_count_not_available">عدد المشتركين غير متاح</string>
     <string name="main_page_content_summary">ما هي التبويبات التي تظهر على الصفحة الرئيسية</string>
@@ -476,8 +476,8 @@
     <string name="stop">توقف</string>
     <string name="max_retry_msg">أقصى عدد للمحاولات</string>
     <string name="max_retry_desc">الحد الأقصى لعدد محاولات قبل إلغاء التحميل</string>
-    <string name="pause_downloads_on_mobile">"ايقاف عند التحويل  إلى البيانات المتنقلة"</string>
-    <string name="pause_downloads_on_mobile_desc">سيتم إعادة تحميل التنزيلات التي لا يمكن إيقافها</string>
+    <string name="pause_downloads_on_mobile">"إنقطع الإتصال بالشبكة عند التحويل  إلى البيانات المتنقلة"</string>
+    <string name="pause_downloads_on_mobile_desc">مفيد عند التبديل إلى بيانات الجوال ، على الرغم من أنه لا يمكن تعليق بعض التنزيلات</string>
     <string name="show_comments_title">إظهار التعليقات</string>
     <string name="show_comments_summary">تعطيل لإيقاف عرض التعليقات</string>
     <string name="autoplay_title">تشغيل تلقائي</string>
@@ -492,4 +492,27 @@
     <string name="no_comments">لا توجد تعليقات</string>
     <string name="error_unable_to_load_comments">تعذر تحميل التعليقات</string>
     <string name="close">إغلاق</string>
+    <string name="enable_playback_resume_title">استئناف التشغيل</string>
+    <string name="enable_playback_resume_summary">استعادة آخر موقف التشغيل</string>
+    <string name="enable_playback_state_lists_title">واضع القوائم</string>
+    <string name="enable_playback_state_lists_summary">إظهار مؤشرات وضع التشغيل في القوائم</string>
+    <string name="settings_category_clear_data_title">امسح البيانات</string>
+    <string name="watch_history_states_deleted">تم حذف وضع التشغيل.</string>
+    <string name="missing_file">نقل الملف أو حذفه</string>
+    <string name="overwrite_unrelated_warning">يوجد ملف بهذا الاسم مسبقاً</string>
+    <string name="overwrite_failed">لا يمكن الكتابة فوق الملف</string>
+    <string name="download_already_pending">هناك تنزيل معلق بهذا الاسم</string>
+    <string name="error_postprocessing_stopped">تم إغلاق NewPipe أثناء العمل على الملف</string>
+    <string name="error_insufficient_storage">لم يتبقى مساحة في الجهاز</string>
+    <string name="error_progress_lost">تم فقد التقدم بسبب حذف الملف</string>
+    <string name="error_timeout">انتهى وقت الاتصال</string>
+    <string name="confirm_prompt">هل أنت واثق؟</string>
+    <string name="enable_queue_limit">حد قائمة انتظار التنزيل</string>
+    <string name="enable_queue_limit_desc">سيتم تشغيل تنزيل واحد في نفس الوقت</string>
+    <string name="start_downloads">بدء التنزيلات</string>
+    <string name="pause_downloads">إيقاف التحميل مؤقتا</string>
+    <string name="downloads_storage_ask_title">اسأل عن مكان التنزيل</string>
+    <string name="downloads_storage_ask_summary">سيُطلب منك مكان حفظ كل تنزيل</string>
+    <string name="downloads_storage_ask_summary_kitkat">سوف يطلب منك مكان حفظ كل تحميل.
+\nقم بتشغيل هذا إذا كنت تريد التنزيل إلى بطاقة SD خارجية.</string>
 </resources>
