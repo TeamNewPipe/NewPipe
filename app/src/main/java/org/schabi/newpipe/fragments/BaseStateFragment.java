@@ -180,7 +180,7 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
         }
 
         if (exception instanceof ReCaptchaException) {
-            onReCaptchaException();
+            onReCaptchaException((ReCaptchaException) exception);
             return true;
         } else if (exception instanceof IOException) {
             showError(getString(R.string.network_error), true);
@@ -190,11 +190,13 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
         return false;
     }
 
-    public void onReCaptchaException() {
+    public void onReCaptchaException(ReCaptchaException exception) {
         if (DEBUG) Log.d(TAG, "onReCaptchaException() called");
         Toast.makeText(activity, R.string.recaptcha_request_toast, Toast.LENGTH_LONG).show();
         // Starting ReCaptcha Challenge Activity
-        startActivityForResult(new Intent(activity, ReCaptchaActivity.class), ReCaptchaActivity.RECAPTCHA_REQUEST);
+        Intent intent = new Intent(activity, ReCaptchaActivity.class);
+        intent.putExtra(ReCaptchaActivity.RECAPTCHA_URL_EXTRA, exception.getUrl());
+        startActivityForResult(intent, ReCaptchaActivity.RECAPTCHA_REQUEST);
 
         showError(getString(R.string.recaptcha_request_toast), false);
     }
