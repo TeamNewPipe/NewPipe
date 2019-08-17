@@ -458,7 +458,9 @@ abrir en modo popup</string>
 
     <string name="downloads_storage_ask_title">Preguntar dónde descargar</string>
     <string name="downloads_storage_ask_summary">Se preguntará dónde guardar cada descarga</string>
-    <string name="downloads_storage_ask_summary_kitkat">Se preguntará dónde guardar cada descarga.\nHabilita esta opción si quieres descargar en la tarjeta SD externa</string>
+    <string name="downloads_storage_ask_summary_kitkat">Se preguntará dónde guardar cada descarga.\nHabilita esta opción junto con SAF si quieres descargar en la tarjeta SD externa</string>
+    <string name="downloads_storage_use_saf_title">Usar SAF</string>
+    <string name="downloads_storage_use_saf_summary">El Framework de Acceso al Almacenamiento permite descargar en la tarjeta SD externa.\nNota: Algunos los dispositivos no son compatibles</string>
 
     <string name="unsubscribe">Desuscribirse</string>
     <string name="tab_new">Nueva pestaña</string>

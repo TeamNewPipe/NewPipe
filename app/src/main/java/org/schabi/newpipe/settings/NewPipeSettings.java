@@ -22,7 +22,6 @@ package org.schabi.newpipe.settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -67,10 +66,8 @@ public class NewPipeSettings {
         PreferenceManager.setDefaultValues(context, R.xml.video_audio_settings, true);
         PreferenceManager.setDefaultValues(context, R.xml.debug_settings, true);
 
-        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            getVideoDownloadFolder(context);
-            getAudioDownloadFolder(context);
-        }
+        getVideoDownloadFolder(context);
+        getAudioDownloadFolder(context);
     }
 
     private static void getVideoDownloadFolder(Context context) {
@@ -93,11 +90,19 @@ public class NewPipeSettings {
     }
 
     @NonNull
-    private static File getDir(String defaultDirectoryName) {
+    public static File getDir(String defaultDirectoryName) {
         return new File(Environment.getExternalStorageDirectory(), defaultDirectoryName);
     }
 
     private static String getNewPipeChildFolderPathForDir(File dir) {
         return new File(dir, "NewPipe").toURI().toString();
     }
+
+    public static boolean useStorageAccessFramework(Context context) {
+        final String key = context.getString(R.string.storage_use_saf);
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+        return prefs.getBoolean(key, false);
+    }
+
 }
