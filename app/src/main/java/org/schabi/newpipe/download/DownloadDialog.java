@@ -329,7 +329,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
                 return;
             }
 
-            if (data.getData().getAuthority() != null && data.getData().getAuthority().startsWith(context.getPackageName())) {
+            if (FilePickerActivityHelper.isOwnFileUri(context, data.getData())) {
                 File file = Utils.getFileForUri(data.getData());
                 checkSelectedDownload(null, Uri.fromFile(file), file.getName(), StoredFileHelper.DEFAULT_MIME);
                 return;
@@ -592,7 +592,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
             if (!askForSavePath)
                 Toast.makeText(context, getString(R.string.no_available_dir), Toast.LENGTH_LONG).show();
 
-            if (NewPipeSettings.hasCreateDocumentSupport) {
+            if (NewPipeSettings.useStorageAccessFramework(context)) {
                 StoredFileHelper.requestSafWithFileCreation(this, REQUEST_DOWNLOAD_SAVE_AS, filename, mime);
             } else {
                 File initialSavePath;

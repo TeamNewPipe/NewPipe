@@ -178,7 +178,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
         }
 
         Intent i;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && NewPipeSettings.hasOpenDocumentTreeSupport) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && NewPipeSettings.useStorageAccessFramework(ctx)) {
             i = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
                     .putExtra("android.content.extra.SHOW_ADVANCED", true)
                     .addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION | StoredDirectoryHelper.PERMISSION_FLAGS);
@@ -226,7 +226,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
 
         forgetSAFTree(ctx, defaultPreferences.getString(key, ""));
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && NewPipeSettings.hasOpenDocumentTreeSupport) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && !FilePickerActivityHelper.isOwnFileUri(ctx, uri)) {
             // steps to acquire the selected path:
             //     1. acquire permissions on the new save path
             //     2. save the new path, if step(2) was successful
@@ -244,7 +244,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
                 return;
             }
         } else {
-            File target = Utils.getFileForUri(data.getData());
+            File target = Utils.getFileForUri(uri);
             if (!target.canWrite()) {
                 showMessageDialog(R.string.download_to_sdcard_error_title, R.string.download_to_sdcard_error_message);
                 return;

@@ -7,7 +7,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -22,9 +24,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.nononsenseapps.filepicker.Utils;
+
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.settings.NewPipeSettings;
+import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
+import java.io.File;
 import java.io.IOException;
 
 import us.shandian.giga.get.DownloadMission;
@@ -37,7 +44,7 @@ import us.shandian.giga.ui.adapter.MissionAdapter;
 public class MissionsFragment extends Fragment {
 
     private static final int SPAN_SIZE = 2;
-    private static final int REQUEST_DOWNLOAD_PATH_SAF = 0x1230;
+    private static final int REQUEST_DOWNLOAD_SAVE_AS = 0x1230;
 
     private SharedPreferences mPrefs;
     private boolean mLinear;
@@ -242,12 +249,28 @@ public class MissionsFragment extends Fragment {
 
     private void recoverMission(@NonNull DownloadMission mission) {
         unsafeMissionTarget = mission;
-        StoredFileHelper.requestSafWithFileCreation(
-                MissionsFragment.this,
-                REQUEST_DOWNLOAD_PATH_SAF,
-                mission.storage.getName(),
-                mission.storage.getType()
-        );
+
+        if (NewPipeSettings.useStorageAccessFramework(mContext)) {
+            StoredFileHelper.requestSafWithFileCreation(
+                    MissionsFragment.this,
+                    REQUEST_DOWNLOAD_SAVE_AS,
+                    mission.storage.getName(),
+                    mission.storage.getType()
+            );
+
+        } else {
+            File initialSavePath;
+            if (DownloadManager.TAG_VIDEO.equals(mission.storage.getType()))
+                initialSavePath = NewPipeSettings.getDir(Environment.DIRECTORY_MOVIES);
+            else
+                initialSavePath = NewPipeSettings.getDir(Environment.DIRECTORY_MUSIC);
+
+            initialSavePath = new File(initialSavePath, mission.storage.getName());
+            startActivityForResult(
+                    FilePickerActivityHelper.chooseFileToSave(mContext, initialSavePath.getAbsolutePath()),
+                    REQUEST_DOWNLOAD_SAVE_AS
+            );
+        }
     }
 
     @Override
@@ -290,15 +313,20 @@ public class MissionsFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode != REQUEST_DOWNLOAD_PATH_SAF || resultCode != Activity.RESULT_OK) return;
+        if (requestCode != REQUEST_DOWNLOAD_SAVE_AS || resultCode != Activity.RESULT_OK) return;
 
         if (unsafeMissionTarget == null || data.getData() == null) {
-            return;// unsafeMissionTarget cannot be null
+            return;
         }
 
         try {
+            Uri fileUri = data.getData();
+            if (fileUri.getAuthority() != null && FilePickerActivityHelper.isOwnFileUri(mContext, fileUri)) {
+                fileUri = Uri.fromFile(Utils.getFileForUri(fileUri));
+            }
+
             String tag = unsafeMissionTarget.storage.getTag();
-            unsafeMissionTarget.storage = new StoredFileHelper(mContext, null, data.getData(), tag);
+            unsafeMissionTarget.storage = new StoredFileHelper(mContext, null, fileUri, tag);
             mAdapter.recoverMission(unsafeMissionTarget);
         } catch (IOException e) {
             Toast.makeText(mContext, R.string.general_error, Toast.LENGTH_LONG).show();

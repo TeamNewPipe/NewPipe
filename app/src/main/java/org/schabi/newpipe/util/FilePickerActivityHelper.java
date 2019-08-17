@@ -2,6 +2,7 @@ package org.schabi.newpipe.util;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
@@ -29,7 +30,7 @@ public class FilePickerActivityHelper extends com.nononsenseapps.filepicker.File
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        if(ThemeHelper.isLightThemeSelected(this)) {
+        if (ThemeHelper.isLightThemeSelected(this)) {
             this.setTheme(R.style.FilePickerThemeLight);
         } else {
             this.setTheme(R.style.FilePickerThemeDark);
@@ -71,6 +72,11 @@ public class FilePickerActivityHelper extends com.nononsenseapps.filepicker.File
                 .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_EXISTING_FILE, true)
                 .putExtra(FilePickerActivityHelper.EXTRA_START_PATH, startPath)
                 .putExtra(FilePickerActivityHelper.EXTRA_MODE, FilePickerActivityHelper.MODE_NEW_FILE);
+    }
+
+    public static boolean isOwnFileUri(@NonNull Context context, @NonNull Uri uri) {
+        if (uri.getAuthority() == null) return false;
+        return uri.getAuthority().startsWith(context.getPackageName());
     }
 
     /*//////////////////////////////////////////////////////////////////////////
