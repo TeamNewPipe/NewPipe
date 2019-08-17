@@ -58,7 +58,6 @@
     <string name="youtube_signature_decryption_error">Konnte Video-URL-Signatur nicht entschlüsseln</string>
     <string name="parsing_error">Konnte Webseite nicht analysieren</string>
     <string name="content_not_available">Inhalt nicht verfügbar</string>
-
     <string name="content">Inhalt</string>
     <string name="show_age_restricted_content_title">Altersbeschränkte Inhalte</string>
     <string name="video_is_age_restricted">Altersbeschränktes Video anzeigen. Das Zulassen dieses Materials ist von den Einstellungen aus möglich.</string>
@@ -98,7 +97,7 @@
     <string name="msg_exists">Datei existiert bereits</string>
     <string name="msg_wait">Bitte warten…</string>
     <string name="msg_copied">In Zwischenablage kopiert</string>
-    <string name="no_available_dir">Bitte wähle ein verfügbares Downloadverzeichnis</string>
+    <string name="no_available_dir">Bitte gib später in den Einstellungen einen Downloadverzeichnis an</string>
     <string name="start">Starten</string>
     <string name="pause">Pause</string>
     <string name="view">Abspielen</string>
@@ -166,12 +165,12 @@
     <string name="charset_letters_and_digits">Buchstaben und Zahlen</string>
     <string name="subscribe_button_title">Abonnieren</string>
     <string name="subscribed_button_title">Abonniert</string>
-    <string name="channel_unsubscribed">Abonnement beendet</string>
+    <string name="channel_unsubscribed">Kanal abbestellt</string>
     <string name="tab_subscriptions">Abos</string>
     <string name="fragment_whats_new">Neuigkeiten</string>
     <string name="enable_search_history_title">Suchverlauf</string>
     <string name="enable_search_history_summary">Suchanfragen lokal speichern</string>
-    <string name="enable_watch_history_title">Verlauf &amp; Cache</string>
+    <string name="enable_watch_history_title">Verlauf ansehen</string>
     <string name="enable_watch_history_summary">Speichere den Wiedergabeverlauf</string>
     <string name="title_activity_history">Verlauf</string>
     <string name="title_history_search">Gesucht</string>
@@ -403,7 +402,7 @@
     <string name="playlists">Wiedergabelisten</string>
     <string name="tracks">Titel</string>
     <string name="users">Benutzer</string>
-    <string name="unsubscribe">Deabonnieren</string>
+    <string name="unsubscribe">Abmelden</string>
     <string name="tab_new">Neuer Tab</string>
     <string name="tab_choose">Tab wählen</string>
     <string name="volume_gesture_control_title">Gestensteuerung für Lautstärke</string>
@@ -415,7 +414,7 @@
     <string name="app_update_notification_channel_name">Aktualisierungsbenachrichtigung</string>
     <string name="app_update_notification_channel_description">Benachrichtigung bei neuer NewPipe-Version</string>
     <string name="download_to_sdcard_error_title">Kein externer Speicher verfügbar</string>
-    <string name="download_to_sdcard_error_message">Herunterladen auf externe SD-Karte ist noch nicht möglich. Zielverzeichnis zurücksetzen\?</string>
+    <string name="download_to_sdcard_error_message">Herunterladen auf externe SD-Karte ist nicht möglich. Downloadverzeichnis zurücksetzen\?</string>
     <string name="saved_tabs_invalid_json">Fehler beim Lesen der gespeicherten Tabs – es werden die Voreinstellungen benutzt</string>
     <string name="restore_defaults">Voreinstellungen wiederherstellen</string>
     <string name="restore_defaults_confirmation">Möchtest du die Voreinstellungen wiederherstellen\?</string>
@@ -448,7 +447,7 @@
     <string name="show_error">Fehler anzeigen</string>
     <string name="label_code">Code</string>
     <string name="error_file_creation">Die Datei kann nicht erstellt werden</string>
-    <string name="error_path_creation">Der Zielordner kann nicht erstellt werden</string>
+    <string name="error_path_creation">Das Zielverzeichnis kann nicht erstellt werden</string>
     <string name="error_permission_denied">System verweigert den Zugriff</string>
     <string name="error_ssl_exception">Sichere Verbindung fehlgeschlagen</string>
     <string name="error_unknown_host">Der Server konnte nicht gefunden werden</string>
@@ -463,8 +462,8 @@
     <string name="stop">Anhalten</string>
     <string name="max_retry_msg">Maximale Wiederholungen</string>
     <string name="max_retry_desc">Maximalanzahl der Versuche, bevor der Download abgebrochen wird</string>
-    <string name="pause_downloads_on_mobile">Beim Umschalten auf mobile Daten pausieren</string>
-    <string name="pause_downloads_on_mobile_desc">Downloads, die nicht pausiert werden können, werden wiederholt</string>
+    <string name="pause_downloads_on_mobile">Unterbrechen bei kostenpflichtigen Netzwerken</string>
+    <string name="pause_downloads_on_mobile_desc">Nützlich beim Wechsel zu mobilen Daten, obwohl einige Downloads nicht unterbrochen werden können</string>
     <string name="conferences">Konferenzen</string>
     <string name="events">Ereignisse</string>
     <string name="error_timeout">Verbindungszeitüberschreitung</string>
@@ -473,9 +472,31 @@
     <string name="autoplay_title">Autoplay</string>
     <plurals name="comments">
         <item quantity="one">Kommentare</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="no_comments">Keine Kommentare</string>
     <string name="error_unable_to_load_comments">Kommentare konnten nicht geladen werden</string>
     <string name="close">Schließen</string>
+    <string name="enable_playback_resume_title">Wiedergabe fortsetzen</string>
+    <string name="enable_playback_resume_summary">Wiederherstellen der letzten Wiedergabeposition</string>
+    <string name="enable_playback_state_lists_title">Positionen in Listen</string>
+    <string name="enable_playback_state_lists_summary">Wiedergabepositionsanzeigen in Listen anzeigen</string>
+    <string name="settings_category_clear_data_title">Daten löschen</string>
+    <string name="watch_history_states_deleted">Wiedergabeposition gelöscht.</string>
+    <string name="missing_file">Datei verschoben oder gelöscht</string>
+    <string name="overwrite_finished_warning">Eine heruntergeladene Datei mit diesem Namen existiert bereits</string>
+    <string name="overwrite_failed">kann die Datei nicht überschreiben</string>
+    <string name="download_already_pending">Es gibt einen ausstehenden Download mit diesem Namen</string>
+    <string name="error_postprocessing_stopped">NewPipe wurde während der Verarbeitung der Datei geschlossen</string>
+    <string name="error_insufficient_storage">Kein Speicherplatz mehr auf dem Gerät</string>
+    <string name="error_progress_lost">Vorgang abgebrochen, da die Datei gelöscht wurde</string>
+    <string name="confirm_prompt">Bist du sicher\?</string>
+    <string name="enable_queue_limit">Downloadwarteschlange begrenzen</string>
+    <string name="enable_queue_limit_desc">Ein Download wird zur gleichen Zeit ausgeführt</string>
+    <string name="start_downloads">Downloads starten</string>
+    <string name="pause_downloads">Downloads anhalten</string>
+    <string name="downloads_storage_ask_title">Frage, wohin heruntergeladen werden soll</string>
+    <string name="downloads_storage_ask_summary">Du wirst gefragt, wohin du jeden Download speichern willst</string>
+    <string name="downloads_storage_ask_summary_kitkat">Du wirst gefragt, wohin du jeden Download speichern willst.
+\nAktiviere diese Option, wenn du auf die externe SD-Karte herunterladen möchtest</string>
 </resources>
