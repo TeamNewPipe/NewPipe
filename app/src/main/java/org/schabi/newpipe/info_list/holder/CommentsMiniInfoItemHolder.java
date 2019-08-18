@@ -34,7 +34,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     private String commentText;
     private String streamUrl;
 
-    private static final Pattern pattern = Pattern.compile("(\\d+:)?(\\d+)?:(\\d+)");
+    private static final Pattern pattern = Pattern.compile("(\\d+:)?(\\d+):(\\d+)");
 
     private final Linkify.TransformFilter timestampLink = new Linkify.TransformFilter() {
         @Override
@@ -43,9 +43,9 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
             String hours = match.group(1);
             String minutes = match.group(2);
             String seconds = match.group(3);
-            if(hours != null) timestamp += (Integer.parseInt(hours.replace(":", ""))*3600);
-            if(minutes != null) timestamp += (Integer.parseInt(minutes.replace(":", ""))*60);
-            if(seconds != null) timestamp += (Integer.parseInt(seconds));
+            if(hours != null) timestamp += Integer.parseInt(hours.replace(":", ""))*3600;
+            if(minutes != null) timestamp += Integer.parseInt(minutes)*60;
+            if(seconds != null) timestamp += Integer.parseInt(seconds);
             return streamUrl + url.replace(match.group(0), "#timestamp=" + timestamp);
         }
     };
