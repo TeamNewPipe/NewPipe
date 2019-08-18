@@ -266,7 +266,7 @@
     <string name="msg_url_malform">错误的网址或网络不可用</string>
     <string name="msg_running_detail">点按以查看详细信息</string>
     <string name="msg_copied">复制到剪贴板</string>
-    <string name="no_available_dir">请稍后在设置中定义下载文件夹</string>
+    <string name="no_available_dir">请稍后在设置中定义一个下载文件夹</string>
     <string name="msg_popup_permission">在悬浮窗模式打开
 \n需要此权限</string>
     <string name="one_item_deleted">已删除一个项目。</string>
@@ -463,10 +463,10 @@
     <string name="switch_view">切换视图</string>
     <string name="app_update_notification_content_title">NewPipe 更新可用!</string>
     <string name="error_path_creation">无法创建目标文件夹</string>
-    <string name="error_http_unsupported_range">服务器不接受多线程下载, 请重试使用 @string/msg_threads = 1</string>
+    <string name="error_http_unsupported_range">服务器不接受多线程下载, 请使用 @string/msg_threads = 1重试</string>
     <string name="error_http_requested_range_not_satisfiable">请求范围无法满足</string>
     <string name="msg_pending_downloads">继续进行%s个待下载转移</string>
-    <string name="pause_downloads_on_mobile_desc">无法暂停的下载将重新开始。</string>
+    <string name="pause_downloads_on_mobile_desc">切换至移动数据时有用，尽管一些下载无法被暂停</string>
     <string name="show_comments_title">显示评论</string>
     <string name="show_comments_summary">禁用停止显示评论</string>
     <string name="autoplay_title">自动播放</string>
