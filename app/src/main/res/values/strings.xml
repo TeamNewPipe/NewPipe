@@ -260,7 +260,7 @@
     </plurals>
     <string name="no_videos">No videos</string>
     <plurals name="videos">
-        <item quantity="one">Video</item>
+        <item quantity="one">Videos</item>
         <item quantity="other">Videos</item>
     </plurals>
     <string name="no_comments">No comments</string>
