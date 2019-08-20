@@ -500,4 +500,5 @@ abrir em modo popup</string>
     <string name="downloads_storage_ask_summary">Você será questionado onde salvar o arquivo a cada download</string>
     <string name="downloads_storage_ask_summary_kitkat">Você será questionado onde salvar o arquivo a cada download
 \nAtive esta opção caso queira fazer o download para um cartão de memória SD externo.</string>
+    <string name="downloads_storage_use_saf_title">Usar SAF</string>
 </resources>
