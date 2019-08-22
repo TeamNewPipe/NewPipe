@@ -103,9 +103,6 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
         // Start fetching remaining channels, if any
         startLoading(false);
 
-        // Start item list UI update scheduler
-        delayHandler.postDelayed(this::updateItemsList, 3200);
-
         itemsList.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
@@ -193,18 +190,17 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
         subscriptionObserver = subscriptionService.getSubscription()
                 .onErrorReturnItem(Collections.emptyList())
                 .observeOn(Schedulers.newThread())
-                .subscribe(this::handleResult, this::onError);
+                .subscribe(this::handleResult, this::handleError);
     }
 
     @Override
     public void handleResult(@android.support.annotation.NonNull List<SubscriptionEntity> result) {
-        super.handleResult(result);
-
         if (result.isEmpty()) {
-            setLoadingState(false);
-
-            infoListAdapter.clearStreamItemList();
-            showEmptyState();
+            delayHandler.post(() -> {
+                setLoadingState(false);
+                infoListAdapter.clearStreamItemList();
+                showEmptyState();
+            });
             return;
         }
 
@@ -219,7 +215,10 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
         compositeDisposable.add(
             Flowable.fromIterable(filteredResult)
                 .observeOn(Schedulers.newThread())
-                .subscribe(this::handleReceiveSubscriptionEntity, this::onError));
+                .subscribe(this::handleReceiveSubscriptionEntity, this::handleError));
+
+        // Start item list UI update scheduler
+        delayHandler.postDelayed(this::updateItemsList, 3200);
     }
 
     private void handleReceiveSubscriptionEntity(SubscriptionEntity subscriptionEntity) {
@@ -272,6 +271,10 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
 
     private Consumer<Throwable> getFetchChannelInfoErrorHandler(int serviceId, String url) {
         return ex -> showSnackBarError(ex, UserAction.SUBSCRIPTION, NewPipe.getNameOfService(serviceId), url, 0);
+    }
+
+    private void handleError(Throwable ex) {
+        delayHandler.post(() -> this.onError(ex));
     }
 
     @Override
