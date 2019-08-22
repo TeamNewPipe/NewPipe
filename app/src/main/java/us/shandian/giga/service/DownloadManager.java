@@ -35,8 +35,8 @@ public class DownloadManager {
     public final static int SPECIAL_PENDING = 1;
     public final static int SPECIAL_FINISHED = 2;
 
-    static final String TAG_AUDIO = "audio";
-    static final String TAG_VIDEO = "video";
+    public static final String TAG_AUDIO = "audio";
+    public static final String TAG_VIDEO = "video";
 
     private final FinishedMissionStore mFinishedMissionStore;
 
@@ -666,9 +666,9 @@ public class DownloadManager {
                         continue;
 
                     if (mission.running)
-                        paused = true;
-                    else
                         running = true;
+                    else
+                        paused = true;
                 }
             }
 

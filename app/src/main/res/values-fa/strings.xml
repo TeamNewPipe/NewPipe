@@ -55,10 +55,10 @@
     <string name="general_error">خطا</string>
     <string name="network_error">خطای شبکه</string>
     <string name="could_not_load_thumbnails">نمی‌توان تمام بندانگشتی‌ها را بار کرد</string>
-    <string name="youtube_signature_decryption_error">نمی‌توان امضای نشانی اینترنتی ویدیو را رمزگشایی کرد.</string>
-    <string name="parsing_error">نمی‌توان پایگاه وب را تجزیه کرد.</string>
-    <string name="light_parsing_error">نمی‌توان پایگاه وب را به صورت کامل تجزیه کرد.</string>
-    <string name="content_not_available">محتوا در دسترس نیست.</string>
+    <string name="youtube_signature_decryption_error">نمی‌توان امضای نشانی اینترنتی ویدیو را رمزگشایی کرد</string>
+    <string name="parsing_error">نمی‌توان پایگاه وب را تجزیه کرد</string>
+    <string name="light_parsing_error">نمی‌توان پایگاه وب را به صورت کامل تجزیه کرد</string>
+    <string name="content_not_available">محتوا در دسترس نیست</string>
     <string name="could_not_setup_download_menu">نمی‌توان فهرست بارگیری را برپا ساخت.</string>
     <string name="live_streams_not_supported">جریان‌های زنده هنوز پشتیبانی نمی‌شوند</string>
     <string name="could_not_get_stream">نمی‌توان هیچ جریانی را گرفت</string>

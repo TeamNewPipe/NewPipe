@@ -446,6 +446,9 @@ public class NavigationHelper {
     }
 
     public static boolean openDownloads(Activity activity) {
+        if (!PermissionHelper.checkStoragePermissions(activity, PermissionHelper.DOWNLOADS_REQUEST_CODE)) {
+            return false;
+        }
         Intent intent = new Intent(activity, DownloadActivity.class);
         activity.startActivity(intent);
         return true;

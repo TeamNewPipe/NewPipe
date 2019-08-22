@@ -163,6 +163,7 @@
     <string name="clear_search_history_key" translatable="false">clear_search_history</string>
 
     <string name="downloads_storage_ask" translatable="false">downloads_storage_ask</string>
+    <string name="storage_use_saf" translatable="false">storage_use_saf</string>
 
     <!-- FileName Downloads  -->
     <string name="settings_file_charset_key" translatable="false">file_rename_charset</string>

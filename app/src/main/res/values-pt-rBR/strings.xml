@@ -96,7 +96,7 @@
     <string name="msg_exists">Arquivo já existe</string>
     <string name="msg_threads">Threads</string>
     <string name="msg_url_malform">URL inválida ou internet indisponível</string>
-    <string name="no_available_dir">Selecione uma pasta para download</string>
+    <string name="no_available_dir">Selecione uma pasta para download posteriormente nas configurações</string>
     <string name="no_player_found">Nenhum player de stream encontrado. Deseja instalar o VLC?</string>
     <string name="parsing_error">Não foi possível interpretar o site</string>
     <string name="play_audio">Áudio</string>
@@ -177,7 +177,7 @@ abrir em modo popup</string>
     <string name="resume_on_audio_focus_gain_summary">Continuar reproduzindo depois de interrupções (exemplo: ligações)</string>
     <string name="enable_search_history_title">Histórico de pesquisas</string>
     <string name="enable_search_history_summary">Armazenar histórico de pesquisa localmente</string>
-    <string name="enable_watch_history_title">Histórico &amp; Cache</string>
+    <string name="enable_watch_history_title">Histórico de visualização</string>
     <string name="enable_watch_history_summary">Armazenar histórico de vídeos assistidos</string>
     <string name="title_activity_history">Histórico</string>
     <string name="title_history_search">Pesquisado</string>
@@ -416,7 +416,7 @@ abrir em modo popup</string>
     <string name="app_update_notification_channel_name">Notificação de Atualização do Aplicativo</string>
     <string name="app_update_notification_channel_description">Notificações para a versão do NewPipe</string>
     <string name="download_to_sdcard_error_title">Armazenamento externo indisponível</string>
-    <string name="download_to_sdcard_error_message">Baixar para o cartão SD externo ainda não é possivel. Resetar o local da pasta de download\?</string>
+    <string name="download_to_sdcard_error_message">Não é possivel baixar para o cartão SD externo . Resetar o local da pasta de download\?</string>
     <string name="saved_tabs_invalid_json">Usando abas padrão, erro ao ler abas salvas</string>
     <string name="restore_defaults">Restaurar padrões</string>
     <string name="restore_defaults_confirmation">Deseja restaurar os padrões\?</string>
@@ -465,7 +465,7 @@ abrir em modo popup</string>
     <string name="max_retry_msg">Tentativas máximas</string>
     <string name="max_retry_desc">Número máximo de tentativas antes de cancelar o download</string>
     <string name="pause_downloads_on_mobile">Pausar quando trocar para dados móveis</string>
-    <string name="pause_downloads_on_mobile_desc">Downloads que não puderem ser pausados serão reiniciados</string>
+    <string name="pause_downloads_on_mobile_desc">Útil quando trocar para dados móveis, porém alguns downloads não podem ser suspensos</string>
     <string name="missions_header_pending">Pendente</string>
     <string name="show_comments_title">Exibir comentários</string>
     <string name="show_comments_summary">Desabilitar para parar de exibir comentários</string>
@@ -476,6 +476,28 @@ abrir em modo popup</string>
     </plurals>
     <string name="no_comments">Não há comentários</string>
     <string name="error_unable_to_load_comments">Não foi possível carregar comentários</string>
-    <string name="direct_on_background">Reproduzir diretamente em segundo plano</string>
     <string name="close">Fechar</string>
+    <string name="enable_playback_resume_title">Retomar a reprodução</string>
+    <string name="enable_playback_resume_summary">Restaurar para a última posição da reprodução</string>
+    <string name="enable_playback_state_lists_title">Posições em listas</string>
+    <string name="enable_playback_state_lists_summary">Mostrar indicadoers de posição da reprodução nas listas</string>
+    <string name="settings_category_clear_data_title">Limpar dados</string>
+    <string name="watch_history_states_deleted">Posições da reprodução apagadas.</string>
+    <string name="missing_file">Arquivo movido ou apagado</string>
+    <string name="overwrite_unrelated_warning">Já existe um arquivo com este nome</string>
+    <string name="overwrite_failed">não é possível sobrescrever o arquivo</string>
+    <string name="download_already_pending">Existe um download pendente com este nome</string>
+    <string name="error_postprocessing_stopped">NewPipe foi fechado enquanto manipulava o arquivo</string>
+    <string name="error_insufficient_storage">Não há espaço disponível no dispositivo</string>
+    <string name="error_progress_lost">Progresso perdido devido ao arquivo ter sido apagado</string>
+    <string name="error_timeout">Tempo limite de conexão</string>
+    <string name="confirm_prompt">Tem certeza\?</string>
+    <string name="enable_queue_limit">Limitar tamanho da fila de download</string>
+    <string name="enable_queue_limit_desc">Um download será executado ao mesmo tempo</string>
+    <string name="start_downloads">Iniciar downloads</string>
+    <string name="pause_downloads">Pausar downloads</string>
+    <string name="downloads_storage_ask_title">Perguntar onde salvar o arquivo do download</string>
+    <string name="downloads_storage_ask_summary">Você será questionado onde salvar o arquivo a cada download</string>
+    <string name="downloads_storage_ask_summary_kitkat">Você será questionado onde salvar o arquivo a cada download
+\nAtive esta opção caso queira fazer o download para um cartão de memória SD externo.</string>
 </resources>

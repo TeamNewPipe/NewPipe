@@ -35,8 +35,6 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
     private String DOWNLOAD_PATH_VIDEO_PREFERENCE;
     private String DOWNLOAD_PATH_AUDIO_PREFERENCE;
 
-    private String DOWNLOAD_STORAGE_ASK;
-
     private Preference prefPathVideo;
     private Preference prefPathAudio;
     private Preference prefStorageAsk;
@@ -49,14 +47,14 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
 
         DOWNLOAD_PATH_VIDEO_PREFERENCE = getString(R.string.download_path_video_key);
         DOWNLOAD_PATH_AUDIO_PREFERENCE = getString(R.string.download_path_audio_key);
-        DOWNLOAD_STORAGE_ASK = getString(R.string.downloads_storage_ask);
+        final String downloadStorageAsk = getString(R.string.downloads_storage_ask);
 
         prefPathVideo = findPreference(DOWNLOAD_PATH_VIDEO_PREFERENCE);
         prefPathAudio = findPreference(DOWNLOAD_PATH_AUDIO_PREFERENCE);
-        prefStorageAsk = findPreference(DOWNLOAD_STORAGE_ASK);
+        prefStorageAsk = findPreference(downloadStorageAsk);
 
         updatePreferencesSummary();
-        updatePathPickers(!defaultPreferences.getBoolean(DOWNLOAD_STORAGE_ASK, false));
+        updatePathPickers(!defaultPreferences.getBoolean(downloadStorageAsk, false));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             prefStorageAsk.setSummary(R.string.downloads_storage_ask_summary);
@@ -180,7 +178,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
         }
 
         Intent i;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && NewPipeSettings.useStorageAccessFramework(ctx)) {
             i = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
                     .putExtra("android.content.extra.SHOW_ADVANCED", true)
                     .addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION | StoredDirectoryHelper.PERMISSION_FLAGS);
@@ -221,16 +219,17 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
             return;
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            // steps:
-            //       1. revoke permissions on the old save path
-            //       2. acquire permissions on the new save path
-            //       3. save the new path, if step(2) was successful
-            final Context ctx = getContext();
-            if (ctx == null) throw new NullPointerException("getContext()");
 
-            forgetSAFTree(ctx, defaultPreferences.getString(key, ""));
+        // revoke permissions on the old save path (required for SAF only)
+        final Context ctx = getContext();
+        if (ctx == null) throw new NullPointerException("getContext()");
 
+        forgetSAFTree(ctx, defaultPreferences.getString(key, ""));
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && !FilePickerActivityHelper.isOwnFileUri(ctx, uri)) {
+            // steps to acquire the selected path:
+            //     1. acquire permissions on the new save path
+            //     2. save the new path, if step(2) was successful
             try {
                 ctx.grantUriPermission(ctx.getPackageName(), uri, StoredDirectoryHelper.PERMISSION_FLAGS);
 
@@ -245,7 +244,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
                 return;
             }
         } else {
-            File target = Utils.getFileForUri(data.getData());
+            File target = Utils.getFileForUri(uri);
             if (!target.canWrite()) {
                 showMessageDialog(R.string.download_to_sdcard_error_title, R.string.download_to_sdcard_error_message);
                 return;

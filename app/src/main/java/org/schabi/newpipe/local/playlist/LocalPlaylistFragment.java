@@ -511,6 +511,10 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
+    private PlayQueue getPlayQueueStartingAt(PlaylistStreamEntry infoItem) {
+        return getPlayQueue(Math.max(itemListAdapter.getItemsList().indexOf(infoItem), 0));
+    }
+
     protected void showStreamItemDialog(final PlaylistStreamEntry item) {
         final Context context = getContext();
         final Activity activity = getActivity();
@@ -535,8 +539,13 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                     StreamDialogEntry.delete,
                     StreamDialogEntry.append_playlist,
                     StreamDialogEntry.share);
+
+            StreamDialogEntry.start_here_on_popup.setCustomAction(
+                    (fragment, infoItemDuplicate) -> NavigationHelper.playOnPopupPlayer(context, getPlayQueueStartingAt(item), true));
         }
 
+        StreamDialogEntry.start_here_on_background.setCustomAction(
+                (fragment, infoItemDuplicate) -> NavigationHelper.playOnBackgroundPlayer(context, getPlayQueueStartingAt(item), true));
         StreamDialogEntry.set_as_playlist_thumbnail.setCustomAction(
                 (fragment, infoItemDuplicate) -> changeThumbnailUrl(item.thumbnailUrl));
         StreamDialogEntry.delete.setCustomAction(

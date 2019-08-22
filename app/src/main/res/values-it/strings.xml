@@ -310,10 +310,6 @@
     <string name="resize_fit">Rientrato</string>
     <string name="resize_fill">Pieno</string>
     <string name="resize_zoom">Ingrandito</string>
-    <string name="caption_font_size_settings_title">Dimensione dei caratteri dei sottotitoli</string>
-    <string name="smaller_caption_font_size">Carattere più piccolo</string>
-    <string name="normal_caption_font_size">Carattere normale</string>
-    <string name="larger_caption_font_size">Carattere più grande</string>
     <string name="drawer_header_action_paceholder_text">A breve qualcosa apparirà qui ;D</string>
     <string name="settings_category_debug_title">Debug</string>
     <string name="caption_auto_generated">Generato automaticamente</string>
@@ -325,7 +321,6 @@
     <string name="use_inexact_seek_summary">La ricerca imprecisa permette al lettore multimediale di spostarsi nelle posizioni più velocemente con una precisione ridotta</string>
     <string name="auto_queue_title">Metti in coda automaticamente il prossimo flusso</string>
     <string name="auto_queue_summary">Aggiungi automaticamente uno stream correlato raggiunta la fine della coda se la ripetizione è disattivata</string>
-    <string name="live_sync">SINCRONIZZAZIONE</string>
     <string name="file">File</string>
     <string name="invalid_directory">Nessuna cartella</string>
     <string name="invalid_source">Nessun file o cartella che contiene sorgenti</string>
@@ -367,7 +362,6 @@
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Tono</string>
     <string name="unhook_checkbox">Scollega (può causare distorsione)</string>
-    <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Valore predefinito</string>
     <string name="no_streams_available_download">Nessun flusso disponibile per il download</string>
     <string name="preferred_open_action_settings_title">\'Apri\' preferibilmente con</string>
@@ -482,6 +476,5 @@
     </plurals>
     <string name="no_comments">Nessun commento</string>
     <string name="error_unable_to_load_comments">Impossibile caricare i commenti</string>
-    <string name="direct_on_background">Riproduci direttamente in sottofondo</string>
     <string name="close">Chiudi</string>
 </resources>

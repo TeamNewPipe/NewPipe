@@ -305,7 +305,7 @@
     <string name="add">Nova missió</string>
     <string name="msg_url_malform">L\'URL té un format incorrecte o no hi ha connexió a internet</string>
     <string name="msg_running_detail">Toqueu aquí per a més detalls</string>
-    <string name="no_available_dir">Trieu una carpeta de baixades disponible</string>
+    <string name="no_available_dir">Definiu una carpeta de baixades més endavant a la configuració</string>
     <string name="msg_popup_permission">Es necessita aquest permís per a obrir el mode emergent</string>
     <string name="reCaptcha_title">Camp reCAPTCHA</string>
     <string name="recaptcha_request_toast">S\'ha sol·licitat l\'emplenament d\'un camp reCAPTCHA</string>
@@ -333,18 +333,13 @@
     <string name="resize_fill">Omple</string>
     <string name="resize_zoom">Escala</string>
     <string name="caption_auto_generated">Generats automàticament</string>
-    <string name="caption_font_size_settings_title">Mida dels subtítols</string>
-    <string name="smaller_caption_font_size">Mida més petita</string>
-    <string name="normal_caption_font_size">Mida normal</string>
-    <string name="larger_caption_font_size">Mida més gran</string>
     <string name="enable_leak_canary_title">Habilita el LeakCanary</string>
     <string name="previous_export">Darrera exportació</string>
     <string name="subscriptions_import_unsuccessful">No s\'han pogut importar les subscripcions</string>
     <string name="subscriptions_export_unsuccessful">No s\'han pogut exportar les subscripcions</string>
     <string name="unhook_checkbox">Desvincula (pot provocar distorsió)</string>
-    <string name="playback_nightcore">Nightcore</string>
     <string name="metadata_cache_wipe_summary">Elimina totes les dades de llocs web de la memòria cau</string>
-    <string name="auto_queue_summary">Afegeix a la cua un vídeo relacionat quan es reprodueix l\'últim vídeo en una cua sense repetició.</string>
+    <string name="auto_queue_summary">Afegeix a la cua un vídeo relacionat quan es reprodueix l\'últim vídeo en una cua sense repetició</string>
     <string name="show_hold_to_append_title">Mostra els missatges d\'ajuda</string>
     <string name="show_hold_to_append_summary">Mostra un missatge d\'ajuda quan el botó de mode en segon pla o emergent estigui premut a la pàgina de detalls d\'un vídeo</string>
     <string name="info_labels">Què ha passat:\\nPetició:\\nIdioma del contingut:\\nServei:\\nHora GMT:\\nPaquet:\\nVersió:\\nVersió del SO:</string>
@@ -456,7 +451,7 @@
     <string name="max_retry_msg">Intents màxims</string>
     <string name="max_retry_desc">Nombre màxim d\'intents abans de cancel·lar la baixada</string>
     <string name="pause_downloads_on_mobile">Pausa en canviar a dades mòbils</string>
-    <string name="pause_downloads_on_mobile_desc">Les baixades que no es puguin pausar es tornaran a iniciar</string>
+    <string name="pause_downloads_on_mobile_desc">Útil en canviar a les dades mòbils, tot i que algunes baixades no es poden aturar</string>
     <string name="unsubscribe">Elimina la subscripció</string>
     <string name="overwrite">Sobreescriu</string>
     <string name="error_http_not_found">No s\'ha trobat</string>
@@ -465,6 +460,25 @@
     <string name="autoplay_title">Reproducció automàtica</string>
     <string name="no_comments">No hi ha comentaris</string>
     <string name="error_unable_to_load_comments">No s\'han pogut carregar els comentaris</string>
-    <string name="direct_on_background">Reprodueix directament en segon pla</string>
     <string name="close">Tanca</string>
+    <string name="saved_tabs_invalid_json">S\'estan utilitzant les pestanyes per defecte, s\'ha produït un error en llegir les pestanyes desades</string>
+    <string name="updates_setting_description">Mostra una notificació per demanar l\'actualització de l\'aplicació si hi ha una nova versió disponible</string>
+    <string name="app_update_notification_content_text">Toca per baixar</string>
+    <string name="error_http_no_content">El servidor no està enviant dades</string>
+    <plurals name="comments">
+        <item quantity="one">Comentaris</item>
+        <item quantity="other"/>
+    </plurals>
+    <string name="app_update_notification_channel_name">Notificació d\'actualització de l\'aplicació</string>
+    <string name="enable_playback_resume_title">Reprèn la reproducció</string>
+    <string name="overwrite_failed">No es pot sobreescriure el fitxer</string>
+    <string name="download_already_pending">Hi ha una baixada pendent amb aquest nom</string>
+    <string name="error_insufficient_storage">No hi ha espai disponible al dispositiu</string>
+    <string name="error_progress_lost">S\'ha perdut el progrés perquè s\'ha eliminat el fitxer</string>
+    <string name="error_timeout">S\'ha excedit el temps d\'espera de la connexió</string>
+    <string name="confirm_prompt">Segur\?</string>
+    <string name="enable_queue_limit">Limita la cua de baixades</string>
+    <string name="start_downloads">Inicia les baixades</string>
+    <string name="pause_downloads">Pausa les baixades</string>
+    <string name="downloads_storage_ask_summary">Se us demanarà la ubicació de cada baixada</string>
 </resources>

@@ -1,6 +1,6 @@
 package org.schabi.newpipe.info_list;
 
-import android.app.Activity;
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -27,6 +27,7 @@ import org.schabi.newpipe.info_list.holder.PlaylistMiniInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.StreamGridInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.StreamInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.StreamMiniInfoItemHolder;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.FallbackViewHolder;
 import org.schabi.newpipe.util.OnClickGesture;
 
@@ -53,7 +54,7 @@ import java.util.List;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class InfoListAdapter extends StateObjectsListAdapter {
+public class InfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final String TAG = InfoListAdapter.class.getSimpleName();
     private static final boolean DEBUG = false;
 
@@ -74,6 +75,8 @@ public class InfoListAdapter extends StateObjectsListAdapter {
 
     private final InfoItemBuilder infoItemBuilder;
     private final ArrayList<InfoItem> infoItemList;
+    private final HistoryRecordManager recordManager;
+
     private boolean useMiniVariant = false;
     private boolean useGridVariant = false;
     private boolean showFooter = false;
@@ -89,9 +92,9 @@ public class InfoListAdapter extends StateObjectsListAdapter {
         }
     }
 
-    public InfoListAdapter(Activity a) {
-        super(a.getApplicationContext());
-        infoItemBuilder = new InfoItemBuilder(a);
+    public InfoListAdapter(Context context) {
+        this.recordManager = new HistoryRecordManager(context);
+        infoItemBuilder = new InfoItemBuilder(context);
         infoItemList = new ArrayList<>();
     }
 
@@ -120,63 +123,52 @@ public class InfoListAdapter extends StateObjectsListAdapter {
     }
 
     public void addInfoItemList(@Nullable final List<InfoItem> data) {
-        if (data != null) {
-            loadStates(data, infoItemList.size(), () -> addInfoItemListImpl(data));
+        if (data == null) {
+            return;
         }
-    }
-
-    private void addInfoItemListImpl(@NonNull List<InfoItem> data) {
-        if (DEBUG) {
-            Log.d(TAG, "addInfoItemList() before > infoItemList.size() = " + infoItemList.size() + ", data.size() = " + data.size());
-        }
+        if (DEBUG) Log.d(TAG, "addInfoItemList() before > infoItemList.size() = " +
+                infoItemList.size() + ", data.size() = " + data.size());
 
         int offsetStart = sizeConsideringHeaderOffset();
         infoItemList.addAll(data);
 
-        if (DEBUG) {
-            Log.d(TAG, "addInfoItemList() after > offsetStart = " + offsetStart + ", infoItemList.size() = " + infoItemList.size() + ", header = " + header + ", footer = " + footer + ", showFooter = " + showFooter);
-        }
-
+        if (DEBUG) Log.d(TAG, "addInfoItemList() after > offsetStart = " + offsetStart +
+                ", infoItemList.size() = " + infoItemList.size() +
+                ", header = " + header + ", footer = " + footer +
+                ", showFooter = " + showFooter);
         notifyItemRangeInserted(offsetStart, data.size());
 
         if (footer != null && showFooter) {
             int footerNow = sizeConsideringHeaderOffset();
             notifyItemMoved(offsetStart, footerNow);
 
-            if (DEBUG) Log.d(TAG, "addInfoItemList() footer from " + offsetStart + " to " + footerNow);
+            if (DEBUG) Log.d(TAG, "addInfoItemList() footer from " + offsetStart +
+                    " to " + footerNow);
         }
     }
 
     public void addInfoItem(@Nullable InfoItem data) {
-        if (data != null) {
-            loadState(data, infoItemList.size(), () -> addInfoItemImpl(data));
+        if (data == null) {
+            return;
         }
-    }
-
-    private void addInfoItemImpl(@NonNull InfoItem data) {
-        if (DEBUG) {
-            Log.d(TAG, "addInfoItem() before > infoItemList.size() = " + infoItemList.size() + ", thread = " + Thread.currentThread());
-        }
+        if (DEBUG) Log.d(TAG, "addInfoItem() before > infoItemList.size() = " +
+                infoItemList.size() + ", thread = " + Thread.currentThread());
 
         int positionInserted = sizeConsideringHeaderOffset();
         infoItemList.add(data);
 
-        if (DEBUG) {
-            Log.d(TAG, "addInfoItem() after > position = " + positionInserted + ", infoItemList.size() = " + infoItemList.size() + ", header = " + header + ", footer = " + footer + ", showFooter = " + showFooter);
-        }
+        if (DEBUG) Log.d(TAG, "addInfoItem() after > position = " + positionInserted +
+                ", infoItemList.size() = " + infoItemList.size() +
+                ", header = " + header + ", footer = " + footer +
+                ", showFooter = " + showFooter);
         notifyItemInserted(positionInserted);
 
         if (footer != null && showFooter) {
             int footerNow = sizeConsideringHeaderOffset();
             notifyItemMoved(positionInserted, footerNow);
 
-            if (DEBUG) Log.d(TAG, "addInfoItem() footer from " + positionInserted + " to " + footerNow);
-        }
-    }
-
-    public void updateStates() {
-        if (!infoItemList.isEmpty()) {
-            updateAllStates(infoItemList);
+            if (DEBUG) Log.d(TAG, "addInfoItem() footer from " + positionInserted +
+                    " to " + footerNow);
         }
     }
 
@@ -185,7 +177,6 @@ public class InfoListAdapter extends StateObjectsListAdapter {
             return;
         }
         infoItemList.clear();
-        clearStates();
         notifyDataSetChanged();
     }
 
@@ -254,7 +245,6 @@ public class InfoListAdapter extends StateObjectsListAdapter {
             case COMMENT:
                 return useMiniVariant ? MINI_COMMENT_HOLDER_TYPE : COMMENT_HOLDER_TYPE;
             default:
-                Log.e(TAG, "Trollolo");
                 return -1;
         }
     }
@@ -292,7 +282,6 @@ public class InfoListAdapter extends StateObjectsListAdapter {
             case COMMENT_HOLDER_TYPE:
                 return new CommentsInfoItemHolder(infoItemBuilder, parent);
             default:
-                Log.e(TAG, "Trollolo");
                 return new FallbackViewHolder(new View(parent.getContext()));
         }
     }
@@ -304,7 +293,7 @@ public class InfoListAdapter extends StateObjectsListAdapter {
             // If header isn't null, offset the items by -1
             if (header != null) position--;
 
-            ((InfoItemHolder) holder).updateFromItem(infoItemList.get(position), getState(position));
+            ((InfoItemHolder) holder).updateFromItem(infoItemList.get(position), recordManager);
         } else if (holder instanceof HFHolder && position == 0 && header != null) {
             ((HFHolder) holder).view = header;
         } else if (holder instanceof HFHolder && position == sizeConsideringHeaderOffset() && footer != null && showFooter) {
@@ -317,21 +306,14 @@ public class InfoListAdapter extends StateObjectsListAdapter {
         if (!payloads.isEmpty() && holder instanceof InfoItemHolder) {
             for (Object payload : payloads) {
                 if (payload instanceof StreamStateEntity) {
-                    ((InfoItemHolder) holder).updateState(infoItemList.get(header == null ? position : position - 1),
-                            (StreamStateEntity) payload);
+                    ((InfoItemHolder) holder).updateState(infoItemList.get(header == null ? position : position - 1), recordManager);
                 } else if (payload instanceof Boolean) {
-                    ((InfoItemHolder) holder).updateState(infoItemList.get(header == null ? position : position - 1),
-                            null);
+                    ((InfoItemHolder) holder).updateState(infoItemList.get(header == null ? position : position - 1), recordManager);
                 }
             }
         } else {
             onBindViewHolder(holder, position);
         }
-    }
-
-    @Override
-    protected void onItemStateChanged(int position, @Nullable StreamStateEntity state) {
-        notifyItemChanged(header == null ? position : position + 1, state != null ? state : false);
     }
 
     public GridLayoutManager.SpanSizeLookup getSpanSizeLookup(final int spanCount) {

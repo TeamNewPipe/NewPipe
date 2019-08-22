@@ -310,10 +310,6 @@
     <string name="resize_fit">Inpassen</string>
     <string name="resize_fill">Opvullen</string>
     <string name="resize_zoom">Inzoomen</string>
-    <string name="caption_font_size_settings_title">Lettergrootte van bijschrift</string>
-    <string name="smaller_caption_font_size">Kleiner lettertype</string>
-    <string name="normal_caption_font_size">Normaal lettertype</string>
-    <string name="larger_caption_font_size">Groter lettertype</string>
     <string name="drawer_header_action_paceholder_text">Hier zal binnenkort iets verschijnen ;D</string>
     <string name="settings_category_debug_title">Foutopsporing</string>
     <string name="caption_auto_generated">Automatisch gegenereerd</string>
@@ -325,7 +321,6 @@
     <string name="use_inexact_seek_summary">Minder exact spoelen laat de speler sneller posities zoeken met verminderde precisie</string>
     <string name="auto_queue_title">Volgende stream automatisch in wachtrij plaatsen</string>
     <string name="auto_queue_summary">Automatisch een gerelateerde stream toekennen bij het afspelen van de laatste stream in een niet-herhalende afspeelwachtlijst</string>
-    <string name="live_sync">SYNCHRONISEREN</string>
     <string name="file">Bestand</string>
     <string name="invalid_directory">Deze map bestaat niet</string>
     <string name="invalid_source">Bestand/Inhoudsbron bestaat niet</string>
@@ -367,7 +362,6 @@
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Toon</string>
     <string name="unhook_checkbox">Ontlinken (kan ruis veroorzaken)</string>
-    <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Standaard</string>
     <string name="preferred_open_action_settings_title">Voorkeursactie voor openen</string>
     <string name="preferred_open_action_settings_summary">Standaardactie bij openen van inhoud — %s</string>
@@ -482,6 +476,5 @@
     </plurals>
     <string name="no_comments">Geen reacties</string>
     <string name="error_unable_to_load_comments">Kan reacties niet laden</string>
-    <string name="direct_on_background">Direct spelen in achtergrond</string>
     <string name="close">Sluiten</string>
 </resources>

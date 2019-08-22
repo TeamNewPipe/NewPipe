@@ -57,7 +57,6 @@
     <string name="youtube_signature_decryption_error">動画のURLを復号できませんでした</string>
     <string name="parsing_error">Webサイトを解析できませんでした</string>
     <string name="content_not_available">コンテンツが利用できません</string>
-
     <string name="could_not_setup_download_menu">保存メニューを設定できませんでした</string>
     <string name="live_streams_not_supported">生放送にはまだ対応していません</string>
     <string name="content">コンテンツ</string>
@@ -100,7 +99,7 @@
     <string name="msg_running_detail">タップして詳細を表示</string>
     <string name="msg_wait">お待ちください…</string>
     <string name="msg_copied">クリップボードにコピーしました</string>
-    <string name="no_available_dir">ダウンロードフォルダを選択して下さい</string>
+    <string name="no_available_dir">後ほど設定でダウンロードフォルダを定義してください</string>
     <string name="downloads">ダウンロード</string>
     <string name="downloads_title">ダウンロード</string>
     <string name="error_report_title">不具合報告</string>
@@ -169,7 +168,7 @@
     <string name="fragment_whats_new">新着</string>
     <string name="enable_search_history_title">検索履歴</string>
     <string name="enable_search_history_summary">検索した履歴を記憶します</string>
-    <string name="enable_watch_history_title">再生履歴とキャッシュ</string>
+    <string name="enable_watch_history_title">視聴履歴</string>
     <string name="enable_watch_history_summary">再生した履歴を記憶します</string>
     <string name="resume_on_audio_focus_gain_title">オーディオフォーカス復帰で再開する</string>
     <string name="resume_on_audio_focus_gain_summary">電話などによる中断の後、再生を再開します</string>
@@ -294,7 +293,6 @@
     <string name="playlist_thumbnail_change_success">プレイリストのサムネイルを変更しました。</string>
     <string name="playlist_delete_failure">プレイリストを削除できませんでした。</string>
     <string name="caption_none">字幕表示なし</string>
-    <string name="caption_font_size_settings_title">字幕の文字サイズ</string>
     <string name="import_export_title">インポート/エクスポート</string>
     <string name="import_title">インポート</string>
     <string name="import_from">インポート元</string>
@@ -437,8 +435,8 @@
     <string name="download_already_running">同じ名前を持つダウンロードが既に進行中です</string>
     <string name="show_error">エラーを表示する</string>
     <string name="label_code">コード</string>
-    <string name="error_path_creation">ファイルを作成できません</string>
-    <string name="error_file_creation">宛先フォルダを作成できません</string>
+    <string name="error_path_creation">宛先のフォルダーを作成できません</string>
+    <string name="error_file_creation">ファイルを作成できません</string>
     <string name="error_permission_denied">権限がシステムによって拒否されました</string>
     <string name="error_ssl_exception">安全な接続に失敗しました</string>
     <string name="error_unknown_host">サーバが見つかりませんでした</string>
@@ -458,14 +456,14 @@
     <string name="brightness_gesture_control_summary">ジェスチャーを使用して、プレーヤーの明るさを制御します</string>
     <string name="file_deleted">ファイルを削除しました</string>
     <string name="app_update_notification_channel_name">アプリの更新通知</string>
-    <string name="download_to_sdcard_error_message">まだ外部 SD カードにダウンロードできません。ダウンロードフォルダーの場所をリセットしますか\?</string>
+    <string name="download_to_sdcard_error_message">外部 SD カードにダウンロードできません。ダウンロードフォルダーの場所をリセットしますか\?</string>
     <string name="saved_tabs_invalid_json">デフォルトのタブを使用します。保存されたタブの読み込みエラーが発生しました</string>
     <string name="main_page_content_summary">メインページに表示されるタブ</string>
     <string name="updates_setting_description">新しいバージョンが利用可能なときにアプリの更新を確認する通知を表示します</string>
     <string name="msg_pending_downloads">ダウンロードから %s の保留中の転送を続行します</string>
-    <string name="pause_downloads_on_mobile">モバイルデータ通信に切り替え時に休止</string>
-    <string name="pause_downloads_on_mobile_desc">休止できないダウンロードが再開されます</string>
-    <string name="error_timeout">接続タイムアウト</string>
+    <string name="pause_downloads_on_mobile">従量制課金ネットワークの割り込み</string>
+    <string name="pause_downloads_on_mobile_desc">モバイルデータ通信に切り替える場合に便利ですが、一部のダウンロードは一時停止できません</string>
+    <string name="show_comments_title">コメントを表示</string>
     <string name="show_comments_summary">無効にするとコメントの表示を停止します</string>
     <string name="autoplay_title">自動再生</string>
     <plurals name="comments">
@@ -473,7 +471,27 @@
     </plurals>
     <string name="no_comments">コメントはありません</string>
     <string name="error_unable_to_load_comments">コメントを読み込めませんでした</string>
-    <string name="direct_on_background">バックグラウンドで直接再生</string>
     <string name="close">閉じる</string>
-    <string name="show_comments_title">コメントを表示</string>
+    <string name="error_timeout">接続タイムアウト</string>
+    <string name="enable_playback_resume_title">再生を再開</string>
+    <string name="enable_playback_resume_summary">最後に再生した位置を復元します</string>
+    <string name="enable_playback_state_lists_title">リスト内の位置</string>
+    <string name="enable_playback_state_lists_summary">リストに再生位置インジケーターを表示します</string>
+    <string name="settings_category_clear_data_title">データをクリア</string>
+    <string name="watch_history_states_deleted">再生位置を削除しました。</string>
+    <string name="missing_file">ファイルが移動または削除されました</string>
+    <string name="overwrite_failed">ファイルを上書きできません</string>
+    <string name="download_already_pending">この名前の保留中のダウンロードがあります</string>
+    <string name="error_postprocessing_stopped">ファイルの作業中に NewPipe が閉じられました</string>
+    <string name="error_insufficient_storage">デバイスに空き容量がありません</string>
+    <string name="error_progress_lost">ファイルが削除されたため、進行状況が失われました</string>
+    <string name="confirm_prompt">よろしいですか\?</string>
+    <string name="enable_queue_limit">ダウンロード キューの制限</string>
+    <string name="enable_queue_limit_desc">同時に１つのダウンロードが実行されます</string>
+    <string name="start_downloads">ダウンロードの開始</string>
+    <string name="pause_downloads">ダウンロードの一時停止</string>
+    <string name="downloads_storage_ask_title">ダウンロード先を尋ねる</string>
+    <string name="downloads_storage_ask_summary">ダウンロードのたびに保存する場所を尋ねます</string>
+    <string name="downloads_storage_ask_summary_kitkat">ダウンロードのたびに保存する場所を尋ねます。
+\n外部 SD カードにダウンロードする場合は、このオプションをオンにしてください。</string>
 </resources>

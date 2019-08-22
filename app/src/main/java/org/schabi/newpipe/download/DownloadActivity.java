@@ -61,6 +61,7 @@ public class DownloadActivity extends AppCompatActivity {
                 .commit();
     }
 
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
@@ -85,10 +86,5 @@ public class DownloadActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    @Override
-    public void onRestoreInstanceState(Bundle inState){
-        super.onRestoreInstanceState(inState);
     }
 }

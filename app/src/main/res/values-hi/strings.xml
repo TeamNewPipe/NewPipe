@@ -310,10 +310,6 @@
     <string name="resize_fit">फिट</string>
     <string name="resize_fill">भरें</string>
     <string name="resize_zoom">ज़ूम करें</string>
-    <string name="caption_font_size_settings_title">कैप्शन फ़ॉंट आकार</string>
-    <string name="smaller_caption_font_size">छोटे फ़ॉंट</string>
-    <string name="normal_caption_font_size">सामांय फ़ॉंट</string>
-    <string name="larger_caption_font_size">बड़ा फ़ॉंट</string>
     <string name="settings_category_debug_title">डीबग करें</string>
     <string name="caption_auto_generated">ऑटो-जनरेटेड</string>
     <string name="enable_leak_canary_title">LeakCanary सक्षम करें</string>

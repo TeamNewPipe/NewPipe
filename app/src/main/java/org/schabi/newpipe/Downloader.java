@@ -164,7 +164,7 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
         final ResponseBody body = response.body();
 
         if (response.code() == 429) {
-            throw new ReCaptchaException("reCaptcha Challenge requested");
+            throw new ReCaptchaException("reCaptcha Challenge requested", siteUrl);
         }
 
         if (body == null) {
@@ -214,7 +214,7 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
         final ResponseBody body = response.body();
 
         if (response.code() == 429) {
-            throw new ReCaptchaException("reCaptcha Challenge requested");
+            throw new ReCaptchaException("reCaptcha Challenge requested", siteUrl);
         }
 
         if (body == null) {
@@ -268,7 +268,7 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
         final ResponseBody body = response.body();
 
         if (response.code() == 429) {
-            throw new ReCaptchaException("reCaptcha Challenge requested");
+            throw new ReCaptchaException("reCaptcha Challenge requested", siteUrl);
         }
 
         if (body == null) {

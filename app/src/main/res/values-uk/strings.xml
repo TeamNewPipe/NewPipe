@@ -107,7 +107,7 @@
     <string name="msg_running_detail">Подробиці</string>
     <string name="msg_wait">Зачекайте…</string>
     <string name="msg_copied">Скопійовано до буферу обміну</string>
-    <string name="no_available_dir">Оберіть доступну теку для завантажень</string>
+    <string name="no_available_dir">Вкажіть теку для завантажень пізніше у налаштуваннях</string>
     <string name="no_player_found_toast">Програвач потокового відео не знайдений (ви можете встановити VLC для програвання).</string>
     <string name="open_in_popup_mode">Відкрити у віконному режимі</string>
     <string name="use_external_video_player_summary">Прибирає звук при ПЕВНИХ роздільних здатностях</string>
@@ -436,7 +436,7 @@
     <string name="app_update_notification_content_title">Доступна нова версія NewPipe!</string>
     <string name="app_update_notification_content_text">Натисніть для завантаження</string>
     <string name="missions_header_finished">Завершено</string>
-    <string name="missions_header_pending">У черзі</string>
+    <string name="missions_header_pending">Очікує</string>
     <string name="paused">призупинено</string>
     <string name="queued">додано в чергу</string>
     <string name="post_processing">пост-обробка</string>
@@ -452,8 +452,8 @@
     <string name="download_already_running">Файл з такою назвою вже завантажується</string>
     <string name="show_error">Показати помилку</string>
     <string name="label_code">Код</string>
-    <string name="error_path_creation">Файл не може бути створений</string>
-    <string name="error_file_creation">Цільова тека не може бути створена</string>
+    <string name="error_path_creation">Цільова тека не може бути створена</string>
+    <string name="error_file_creation">Файл не може бути створений</string>
     <string name="error_permission_denied">Доступ заборонено системою</string>
     <string name="error_ssl_exception">Захищене з\'єднання не встановлено</string>
     <string name="error_unknown_host">Сервер не знайдено</string>
@@ -466,24 +466,40 @@
     <string name="stop">Зупинити</string>
     <string name="max_retry_msg">Максимум спроб</string>
     <string name="max_retry_desc">Максимальна кількість спроб перед скасуванням завантаження</string>
-    <string name="pause_downloads_on_mobile">Призупиняти завантаження при переході на стільникові дані</string>
-    <string name="download_to_sdcard_error_message">Завантаження до зовнішньої SD-карти поки що неможливе. Скинути розташування теки для завантажень\?</string>
+    <string name="pause_downloads_on_mobile">Переривати завантаження на небезлімітних з\'єднаннях</string>
+    <string name="download_to_sdcard_error_message">Завантаження до зовнішньої SD-карти неможливе. Скинути розташування теки для завантажень\?</string>
     <string name="saved_tabs_invalid_json">Помилка зчитування збережених вкладок. Використовую типові вкладки.</string>
     <string name="main_page_content_summary">Вкладки, що відображаються на головній сторінці</string>
     <string name="updates_setting_description">Показувати сповіщення з пропозицією оновити застосунок за наявності нової версії</string>
     <string name="error_http_requested_range_not_satisfiable">Запитуваний діапазон неприпустимий</string>
     <string name="msg_pending_downloads">Продовжити ваші %s відкладених переміщень із Завантажень</string>
-    <string name="pause_downloads_on_mobile_desc">Завантаження, що не можуть бути призупинені, будуть перезапущені</string>
+    <string name="pause_downloads_on_mobile_desc">Корисно під час переходу на мобільні дані, хоча деякі завантаження не можуть бути призупинені</string>
     <string name="show_comments_title">Показувати коментарі</string>
     <string name="show_comments_summary">Вимнути відображення дописів</string>
     <string name="autoplay_title">Автопрогравання</string>
     <plurals name="comments">
         <item quantity="one">Коментарі</item>
-        <item quantity="few"></item>
-        <item quantity="many"></item>
+        <item quantity="few"/>
+        <item quantity="many"/>
     </plurals>
     <string name="no_comments">Коментарі відсутні</string>
     <string name="error_unable_to_load_comments">Не вдалося підвантажити коментарів</string>
-    <string name="direct_on_background">Програвати у фоні</string>
     <string name="close">Закрити</string>
+    <string name="watch_history_states_deleted">Позиції відтворення видалено.</string>
+    <string name="missing_file">Файл переміщено або видалено</string>
+    <string name="overwrite_failed">не можу перезаписати файл</string>
+    <string name="download_already_pending">Завантаження з таким ім\'ям вже є в черзі</string>
+    <string name="error_postprocessing_stopped">NewPipe був закритий під час роботи над файлом</string>
+    <string name="error_insufficient_storage">На пристрої не залишилося вільного місця</string>
+    <string name="error_progress_lost">Прогрес втрачено через видалення файлу</string>
+    <string name="error_timeout">Час очікування з\'єднання вичерпано</string>
+    <string name="confirm_prompt">Ви впевнені\?</string>
+    <string name="enable_queue_limit">Обмежити чергу завантажень</string>
+    <string name="enable_queue_limit_desc">В кожен момент часу виконуватиметься одне завантаження</string>
+    <string name="start_downloads">Почати завантаження</string>
+    <string name="pause_downloads">Призупинити завантаження</string>
+    <string name="downloads_storage_ask_title">Запитувати, куди завантажувати</string>
+    <string name="downloads_storage_ask_summary">Вас питатимуть, куди зберігати кожне завантаження</string>
+    <string name="downloads_storage_ask_summary_kitkat">Вас питатимуть, куди зберігати кожне завантаження.
+\nУвімкніть цю опцію, якщо бажаєте завантажувати на зовнішню SD-картку</string>
 </resources>

@@ -383,10 +383,6 @@
     <string name="resize_zoom">放大填充</string>
 
     <string name="caption_auto_generated">自动生成</string>
-    <string name="caption_font_size_settings_title">字幕字体大小</string>
-    <string name="smaller_caption_font_size">小字体</string>
-    <string name="normal_caption_font_size">中等字体</string>
-    <string name="larger_caption_font_size">大字体</string>
 
     <string name="enable_leak_canary_title">启用 LeakCanary</string>
     <string name="enable_leak_canary_summary">内存泄露监测可能会在heap dumping时导致应用失去响应</string>
@@ -426,7 +422,6 @@
     <string name="playback_tempo">速度</string>
     <string name="playback_pitch">音调</string>
     <string name="unhook_checkbox">Unhook（可能导致失真）</string>
-    <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">默认</string>
 <string name="toast_no_player">未安装能播放此文件的应用</string>
 
