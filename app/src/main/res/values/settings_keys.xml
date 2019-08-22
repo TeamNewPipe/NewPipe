@@ -153,8 +153,8 @@
     <string name="enable_playback_resume_key" translatable="false">enable_playback_resume</string>
     <string name="enable_playback_state_lists_key" translatable="false">enable_playback_state_lists</string>
 
-    <string name="import_data">import_data</string>
-    <string name="export_data">export_data</string>
+    <string name="import_data" translatable="false">import_data</string>
+    <string name="export_data" translatable="false">export_data</string>
 
     <string name="download_thumbnail_key" translatable="false">download_thumbnail_key</string>
 
