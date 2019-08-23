@@ -494,4 +494,7 @@
     <string name="downloads_storage_ask_summary">ダウンロードのたびに保存する場所を尋ねます</string>
     <string name="downloads_storage_ask_summary_kitkat">ダウンロードのたびに保存する場所を尋ねます。
 \n外部 SD カードにダウンロードする場合は、このオプションをオンにしてください。</string>
+    <string name="downloads_storage_use_saf_title">SAF を使用する</string>
+    <string name="downloads_storage_use_saf_summary">ストレージアクセスフレームワークは、外部 SD カードへのダウンロードが可能です。
+\n注: 一部のデバイスは互換性がありません</string>
 </resources>
