@@ -474,10 +474,30 @@
     <string name="autoplay_title">Automatyczne odtwarzanie</string>
     <plurals name="comments">
         <item quantity="one">Komentarze</item>
-        <item quantity="few"></item>
-        <item quantity="many"></item>
+        <item quantity="few"/>
+        <item quantity="many"/>
     </plurals>
     <string name="no_comments">Brak komentarzy</string>
     <string name="error_unable_to_load_comments">Nie można załadować komentarzy</string>
     <string name="close">Zamknij</string>
+    <string name="enable_playback_resume_title">Wznów odtwarzanie</string>
+    <string name="enable_playback_resume_summary">Przywróć pozycję odtwarzania</string>
+    <string name="enable_playback_state_lists_title">Pozycje na liście</string>
+    <string name="enable_playback_state_lists_summary">Pokaż wskaźniki pozycji odtwarzania na listach</string>
+    <string name="settings_category_clear_data_title">Wyczyść dane</string>
+    <string name="watch_history_states_deleted">Usunięto pozycję odtwarzania.</string>
+    <string name="missing_file">Plik przeniesiony lub usunięty</string>
+    <string name="overwrite_unrelated_warning">Plik o takiej nazwie już istnieje</string>
+    <string name="overwrite_failed">Nie można nadpisać tego pliku</string>
+    <string name="download_already_pending">Pobieranie pliku z tą nazwą jest już w kolejce</string>
+    <string name="error_postprocessing_stopped">NewPipe został zamknięty w czasie pracy nad plikiem</string>
+    <string name="error_insufficient_storage">Brak wystarczającej ilości miejsca na urządzeniu</string>
+    <string name="error_progress_lost">Utracono postęp ponieważ plik został usunięty</string>
+    <string name="confirm_prompt">Czy jesteś pewien\?</string>
+    <string name="enable_queue_limit">Ogranicz kolejkę pobierania</string>
+    <string name="enable_queue_limit_desc">Tylko jedno pobieranie będzie realizowane w danej chwili</string>
+    <string name="start_downloads">Rozpocznij pobieranie</string>
+    <string name="pause_downloads">Wstrzymaj pobieranie</string>
+    <string name="downloads_storage_ask_title">Zapytaj gdzie pobrać</string>
+    <string name="downloads_storage_ask_summary">Będziesz pytany o lokalizację dla każdego pobierania</string>
 </resources>
