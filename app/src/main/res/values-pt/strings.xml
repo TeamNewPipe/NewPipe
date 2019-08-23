@@ -397,7 +397,7 @@
     <string name="limit_data_usage_none_description">Ilimitado</string>
     <string name="limit_mobile_data_usage_title">Limitar resolução se estiver a usar dados móveis</string>
     <string name="minimize_on_exit_title">Minimizar ao trocar de aplicação</string>
-    <string name="minimize_on_exit_summary">Ação a executar ao trocar para outra aplicação a partir do menu principal - % s</string>
+    <string name="minimize_on_exit_summary">Ação a executar ao trocar para outra aplicação a partir do menu principal - %s</string>
     <string name="minimize_on_exit_none_description">Nenhuma</string>
     <string name="minimize_on_exit_background_description">Ativar o reprodutor em segundo plano</string>
     <string name="minimize_on_exit_popup_description">Ativar o reprodutor \'popup\'</string>
