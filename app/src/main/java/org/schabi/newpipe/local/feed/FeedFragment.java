@@ -52,6 +52,7 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
     private AtomicInteger numLoadedChunks = new AtomicInteger(1);
     private AtomicInteger numChannels = new AtomicInteger(0);
     private AtomicInteger numLoadedChannels = new AtomicInteger(0);
+    private AtomicBoolean hasStartedLoading = new AtomicBoolean(false);
 
     private SubscriptionService subscriptionService;
     private static YoutubeStreamLinkHandlerFactory youtubeStreamLinkHandler =
@@ -98,22 +99,8 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
     @Override
     public void onResume() {
         super.onResume();
-        if (wasLoading.get()) doInitialLoadLogic();
-
         // Start fetching remaining channels, if any
         startLoading(false);
-
-        itemsList.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    delayHandler.postDelayed(() -> isScrolling.set(false), 200);
-                } else {
-                    isScrolling.set(true);
-                }
-            }
-        });
     }
 
     @Override
@@ -160,6 +147,22 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
         super.reloadContent();
     }
 
+    @Override
+    protected void initListeners() {
+        super.initListeners();
+        itemsList.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    delayHandler.postDelayed(() -> isScrolling.set(false), 200);
+                } else {
+                    isScrolling.set(true);
+                }
+            }
+        });
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // StateSaving
     //////////////////////////////////////////////////////////////////////////*/
@@ -168,6 +171,9 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
     public void writeTo(Queue<Object> objectsToSave) {
         super.writeTo(objectsToSave);
         objectsToSave.add(loadedSubscriptionEntities);
+        objectsToSave.add(videoIds);
+        objectsToSave.add(videoIsoTimeStrLookup);
+        objectsToSave.add(videoItems);
     }
 
     @Override
@@ -175,6 +181,9 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
     public void readFrom(@NonNull Queue<Object> savedObjects) throws Exception {
         super.readFrom(savedObjects);
         loadedSubscriptionEntities = (Set<String>) savedObjects.poll();
+        videoIds = (Set<String>) savedObjects.poll();
+        videoIsoTimeStrLookup = (Map<String, String>) savedObjects.poll();
+        videoItems = (List<InfoItem>) savedObjects.poll();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -184,13 +193,17 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
     @Override
     public void startLoading(boolean forceLoad) {
         if (DEBUG) Log.d(TAG, "startLoading() called with: forceLoad = [" + forceLoad + "]");
-        if (subscriptionObserver != null) subscriptionObserver.dispose();
 
-        setLoadingState(true);
-        subscriptionObserver = subscriptionService.getSubscription()
+        if (!hasStartedLoading.get() || forceLoad) {
+            if (subscriptionObserver != null) subscriptionObserver.dispose();
+
+            setLoadingState(true);
+            subscriptionObserver = subscriptionService.getSubscription()
                 .onErrorReturnItem(Collections.emptyList())
                 .observeOn(Schedulers.newThread())
                 .subscribe(this::handleResult, this::handleError);
+            hasStartedLoading.set(true);
+        }
     }
 
     @Override
@@ -363,6 +376,7 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
     private void disposeEverything() {
         if (subscriptionObserver != null) subscriptionObserver.dispose();
         if (compositeDisposable != null) compositeDisposable.clear();
+        hasStartedLoading.set(false);
     }
 
     private int howManyItemsToLoad() {
