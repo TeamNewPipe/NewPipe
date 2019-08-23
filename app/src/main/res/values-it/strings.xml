@@ -497,4 +497,9 @@
     <string name="downloads_storage_ask_title">Chiedi dove scaricare</string>
     <string name="downloads_storage_ask_summary">Ti sarà chiesto dove salvare i file ogni volta</string>
     <string name="downloads_storage_use_saf_title">Utilizza SAF</string>
+    <string name="enable_queue_limit">Limita la coda dei download</string>
+    <string name="downloads_storage_ask_summary_kitkat">Ti verrà chiesto dove salvare ogni download.
+\nScegli SAF se vuoi scaricare su una scheda SD esterna</string>
+    <string name="downloads_storage_use_saf_summary">Lo Storage Access Framework permette scaricamenti su una scheda SD esterna.
+\nNota: alcuni dispositivi non sono compatibili</string>
 </resources>
