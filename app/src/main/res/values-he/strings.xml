@@ -505,6 +505,9 @@
     <string name="pause_downloads">השהיית הורדות</string>
     <string name="downloads_storage_ask_title">לשאול לאן להוריד</string>
     <string name="downloads_storage_ask_summary">תופיע שאלה לאן לשמור כל הורדה</string>
-    <string name="downloads_storage_ask_summary_kitkat">תוצג שאלה היכן לשמור כל הורדה.
-\nיש להפעיל זאת אם ברצונך להוריד לכרטיס SD חיצוני.</string>
+    <string name="downloads_storage_ask_summary_kitkat">תוצג שאלה היכן לשמור כל הורדה. 
+\nיש להפעיל זאת אם ברצונך להוריד לכרטיס SD חיצוני</string>
+    <string name="downloads_storage_use_saf_title">שימוש ב־SAF</string>
+    <string name="downloads_storage_use_saf_summary">תשתית גישה לאחסון מאפשרת הורדות לכרטיס SD חיוני.
+\nלתשומת לבך: חלק מהמכשירים אינם נתמכים</string>
 </resources>

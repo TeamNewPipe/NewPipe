@@ -65,7 +65,7 @@
     <string name="msg_url_malform">Неверный URL или нет доступа к интернету</string>
     <string name="msg_running_detail">Подробнее</string>
     <string name="msg_copied">Скопировано в буфер обмена</string>
-    <string name="no_available_dir">Выберите доступную папку для загрузки</string>
+    <string name="no_available_dir">Выберите папку для загрузки позже в настройках</string>
     <string name="show_age_restricted_content_title">Контент 18+</string>
     <string name="general_error">Ошибка</string>
     <string name="your_comment">Ваш комментарий (English):</string>
@@ -416,7 +416,7 @@
     <string name="auto">Автоматически</string>
     <string name="brightness_gesture_control_summary">Менять яркость плеера жестом</string>
     <string name="brightness_gesture_control_title">Жест яркости</string>
-    <string name="download_to_sdcard_error_message">Загрузка на внешний накопитель пока невозможна. Сбросить расположение папки загрузки\?</string>
+    <string name="download_to_sdcard_error_message">Загрузка на внешний накопитель невозможна. Сбросить расположение папки загрузки\?</string>
     <string name="download_to_sdcard_error_title">Внешний накопитель недоступен</string>
     <string name="main_page_content_summary">Вкладки, видимые на главной странице</string>
     <string name="restore_defaults">Восстановить значения по умолчанию</string>
@@ -468,12 +468,12 @@
     <string name="msg_pending_downloads">Возобновить приостановленные загрузки (%s)</string>
     <string name="max_retry_msg">Максимум попыток</string>
     <string name="max_retry_desc">Максимальное число попыток перед отменой загрузки</string>
-    <string name="pause_downloads_on_mobile_desc">Загрузки, которые невозможно приостановить, будут перезапущены</string>
+    <string name="pause_downloads_on_mobile_desc">Полезно при переключении на мобильную сеть, хотя некоторые загрузки не могут быть приостановлены</string>
     <string name="error_ssl_exception">Не удалось установить защищённое соединение</string>
     <string name="error_connect_host">Не удалось соединиться с сервером</string>
     <string name="error_http_no_content">Не удалось получить данные с сервера</string>
     <string name="error_postprocessing_failed">Пост-обработка не удалась</string>
-    <string name="pause_downloads_on_mobile">Приостанавливать скачивание при переходе на мобильную сеть</string>
+    <string name="pause_downloads_on_mobile">Прервать в тарифицируемых сетях</string>
     <string name="close">Закрыть</string>
     <string name="error_timeout">Время соединения вышло</string>
     <string name="show_comments_title">Показать комментарии</string>
@@ -486,4 +486,24 @@
     </plurals>
     <string name="no_comments">Нет комментариев</string>
     <string name="error_unable_to_load_comments">Не удалось загрузить комментарии</string>
+    <string name="watch_history_states_deleted">Позиции воспроизведения удалены</string>
+    <string name="missing_file">Файл перемещён или удалён</string>
+    <string name="overwrite_unrelated_warning">Файл с таким именем уже существует</string>
+    <string name="overwrite_failed">не удаётся перезаписать файл</string>
+    <string name="download_already_pending">В очереди уже есть загрузка с таким именем</string>
+    <string name="error_postprocessing_stopped">NewPipe была закрыта во время работы над файлом</string>
+    <string name="error_insufficient_storage">Закончилось свободное место на устройстве</string>
+    <string name="error_progress_lost">Прогресс потерян, так как файл был удалён</string>
+    <string name="confirm_prompt">Вы уверены\?</string>
+    <string name="enable_queue_limit">Ограничить очередь загрузки</string>
+    <string name="enable_queue_limit_desc">Только одна одновременная загрузка</string>
+    <string name="start_downloads">Начать загрузку</string>
+    <string name="pause_downloads">Приостановить загрузку</string>
+    <string name="downloads_storage_ask_title">Запрашивать папку загрузки</string>
+    <string name="downloads_storage_ask_summary">Для каждой загрузки запрашивать папку для сохранения</string>
+    <string name="downloads_storage_ask_summary_kitkat">Для каждой загрузки запрашивать папку для сохранения.
+\nИспользуйте SAF для загрузки на внешний накопитель</string>
+    <string name="downloads_storage_use_saf_title">Использовать SAF</string>
+    <string name="downloads_storage_use_saf_summary">Storage Access Framework позволяет сохранять файлы на внешнем накопителе.
+\nПоддерживается не всеми устройствами</string>
 </resources>

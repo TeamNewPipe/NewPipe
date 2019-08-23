@@ -26,7 +26,7 @@
     <string name="light_theme_title">مضيء</string>
     <string name="list_thumbnail_view_description">صور معاينة الفيديو</string>
     <string name="network_error">خطأ في الشبكة</string>
-    <string name="next_video_title">إلى التالية</string>
+    <string name="next_video_title">التالي</string>
     <string name="no_player_found">لا يوجد مشغل فيديو. هل تريد تثبيت VLC ؟</string>
     <string name="open_in_browser">افتح في المتصفح</string>
     <string name="play_audio">الصوت</string>
@@ -42,7 +42,7 @@
     <string name="share">مشاركة</string>
     <string name="share_dialog_title">مشاركة بواسطة</string>
     <string name="show_next_and_similar_title">عرض مقاطع الفيديو \"التالية\" و \"المشابهة\"</string>
-    <string name="show_play_with_kodi_summary">عرض خيار تشغيل الفيديو عبر مركز وسائط Kodi</string>
+    <string name="show_play_with_kodi_summary">اعرض خيارًا لتشغيل الفيديو عبر مركز وسائط Kodi</string>
     <string name="show_play_with_kodi_title">عرض خيار التشغيل بواسطة كودي</string>
     <string name="theme_title">السمة</string>
     <string name="upload_date_text">تم النشر يوم %1$s</string>
@@ -80,7 +80,7 @@
     <string name="title_activity_history">التاريخ</string>
     <string name="action_history">التاريخ</string>
     <string name="open_in_popup_mode">فتح في وضع منبثق</string>
-    <string name="use_external_video_player_summary">"يزيل الصوت  في بعض قرارات الدقة"</string>
+    <string name="use_external_video_player_summary">يزيل الصوت في بعض القرارات</string>
     <string name="popup_mode_share_menu_title">وضع النوافذ المنبثقة NewPipe</string>
     <string name="channel_unsubscribed">تم إلغاء الاشتراك في القناة</string>
     <string name="subscription_change_failed">تعذر تغيير حالة الاشتراك</string>
@@ -158,7 +158,7 @@
     <string name="short_billion">بليون</string>
     <string name="no_subscribers">ليس هناك مشترِكون</string>
     <plurals name="subscribers">
-        <item quantity="zero">%s لا يوجد مشارك</item>
+        <item quantity="zero">%s لا يوجد مشاركين</item>
         <item quantity="one">%s مشترك</item>
         <item quantity="two">"%s  مشتركتين"</item>
         <item quantity="few">%s اشتراكات</item>
@@ -184,7 +184,7 @@
     <string name="msg_running_detail">انقر للحصول على التفاصيل</string>
     <string name="msg_wait">يُرجى الإنتظار…</string>
     <string name="msg_copied">تم نسخه إلى الحافظة</string>
-    <string name="no_available_dir">يرجى تحديد مجلد التنزيل لاحقًا في الإعدادات</string>
+    <string name="no_available_dir">يرجى تحديد مجلد التنزيل لاحقا في الإعدادات</string>
     <string name="msg_popup_permission">هذا الإذن مطلوب
 \nللفتح في وضع النافذة المنبثقة</string>
     <string name="reCaptchaActivity">اختبار reCAPTCHA</string>
@@ -246,12 +246,12 @@
         <item quantity="other">%s مشاهدين</item>
     </plurals>
     <plurals name="videos">
-        <item quantity="zero">%s فيديو</item>
+        <item quantity="zero">%s لا يوجد فيديو</item>
         <item quantity="one">%s فيديو</item>
-        <item quantity="two">%s فيديوهان</item>
-        <item quantity="few">%s فيديو</item>
+        <item quantity="two">%s فيديوان</item>
+        <item quantity="few">%s فيديوات</item>
         <item quantity="many">%s فيديوهات</item>
-        <item quantity="other">%s فيديو</item>
+        <item quantity="other">%s مزيد من الفيديوات</item>
     </plurals>
     <string name="recaptcha_request_toast">طلب اختبار الكابتشا مطلوب</string>
     <string name="copyright" formatted="true">© %1$sبواسطة%2$sتحت%3$s</string>
@@ -513,6 +513,8 @@
     <string name="pause_downloads">إيقاف التحميل مؤقتا</string>
     <string name="downloads_storage_ask_title">اسأل عن مكان التنزيل</string>
     <string name="downloads_storage_ask_summary">سيُطلب منك مكان حفظ كل تنزيل</string>
-    <string name="downloads_storage_ask_summary_kitkat">سوف يطلب منك مكان حفظ كل تحميل.
-\nقم بتشغيل هذا إذا كنت تريد التنزيل إلى بطاقة SD خارجية.</string>
+    <string name="downloads_storage_ask_summary_kitkat">سيُطلب منك مكان حفظ كل تنزيل. اختر SAF إذا كنت تريد التنزيل على بطاقة SD خارجية</string>
+    <string name="downloads_storage_use_saf_title">استخدام آمن</string>
+    <string name="downloads_storage_use_saf_summary">يسمح إطار الوصول إلى التخزين بالتنزيلات على بطاقة SD خارجية.
+\nملاحظة: بعض الأجهزة غير متوافقة</string>
 </resources>
