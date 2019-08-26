@@ -153,7 +153,7 @@
     <string name="tab_about">О приложении</string>
     <string name="tab_contributors">Участники</string>
     <string name="read_full_license">Прочитать лицензию</string>
-    <string name="app_description">Свободное легковесное потоковое воспроизведение на Android.</string>
+    <string name="app_description">Свободное и легковесное потоковое воспроизведение на Android.</string>
     <string name="view_on_github">Открыть на GitHub</string>
     <string name="contribution_encouragement">Приветствуется всё — идеи, перевод, изменения дизайна, чистка кода или огромные изменения в коде. Чем больше сделано, тем лучше!</string>
     <string name="copyright" formatted="true">© %1$s %2$s под лицензией %3$s</string>
@@ -266,7 +266,7 @@
     <string name="video_streams_empty">Видеопотоки не найдены</string>
     <string name="audio_streams_empty">Аудиопотоки не найдены</string>
     <string name="donation_title">Пожертвовать</string>
-    <string name="donation_encouragement">Разработчики NewPipe ценой своего свободного времени делают вашу жизнь чуть удобнее. Отплатите им тем же — наслаждаясь чашечкой кофе, они смогут сделать NewPipe ещё лучше.</string>
+    <string name="donation_encouragement">Разработчики NewPipe ценой своего свободного времени делают вашу жизнь чуть удобнее. Отплатите им тем же — наслаждаясь чашечкой кофе, они смогут сделать NewPipe ещё круче.</string>
     <string name="give_back">Воздать должное</string>
     <string name="website_title">Веб-сайт</string>
     <string name="website_encouragement">Для получения более подробной информации и последних новостей о NewPipe посетите наш веб-сайт.</string>
@@ -279,10 +279,10 @@
     <string name="preferred_player_fetcher_notification_message">Загрузка запрошенного контента</string>
     <string name="controls_download_desc">Скачать файл прямой трансляции</string>
     <string name="show_info">Показать сведения</string>
-    <string name="tab_bookmarks">Закладки</string>
+    <string name="tab_bookmarks">Плейлисты</string>
     <string name="controls_add_to_playlist_title">Добавить к</string>
     <string name="use_inexact_seek_title">Быстрый поиск позиции</string>
-    <string name="use_inexact_seek_summary">Позволяет искать позицию быстрее, но с меньшей точностью</string>
+    <string name="use_inexact_seek_summary">Выполняется быстрее, но с меньшей точностью</string>
     <string name="auto_queue_title">Автодополнение очереди</string>
     <string name="auto_queue_summary">Добавлять похожие потоки в очередь при воспроизведении последнего потока, если не включён повтор</string>
     <string name="settings_category_debug_title">Отладка</string>
@@ -467,7 +467,7 @@
     <string name="generate_unique_name">Создать уникальное имя</string>
     <string name="msg_pending_downloads">Возобновить приостановленные загрузки (%s)</string>
     <string name="max_retry_msg">Максимум попыток</string>
-    <string name="max_retry_desc">Максимальное число попыток перед отменой загрузки</string>
+    <string name="max_retry_desc">Количество попыток перед отменой загрузки</string>
     <string name="pause_downloads_on_mobile_desc">Полезно при переключении на мобильную сеть, хотя некоторые загрузки не могут быть приостановлены</string>
     <string name="error_ssl_exception">Не удалось установить защищённое соединение</string>
     <string name="error_connect_host">Не удалось соединиться с сервером</string>
