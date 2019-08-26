@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
                 .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_channel));
         drawerItems.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_FEED, ORDER, R.string.fragment_whats_new)
-                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.rss));
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_update));
         drawerItems.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_BOOKMARKS, ORDER, R.string.tab_bookmarks)
                 .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_bookmark));
@@ -325,7 +325,7 @@ public class MainActivity extends AppCompatActivity {
                 .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_channel));
         drawerItems.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_FEED, ORDER, R.string.fragment_whats_new)
-                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.rss));
+                .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_update));
         drawerItems.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_BOOKMARKS, ORDER, R.string.tab_bookmarks)
                 .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_bookmark));

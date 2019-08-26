@@ -24,7 +24,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
-            android:src="?attr/rss"
+            android:src="?attr/ic_update"
             tools:ignore="ContentDescription,RtlHardcoded"/>
 
         <TextView
