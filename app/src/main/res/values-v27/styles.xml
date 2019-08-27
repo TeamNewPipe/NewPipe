@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="BlackTheme" parent="DarkTheme">
+        <item name="android:windowBackground">@color/black_background_color</item>
+        <item name="windowBackground">@color/black_background_color</item>
+        <item name="android:navigationBarColor">@android:color/black</item>
+        <item name="android:windowLightNavigationBar">false</item>
+
+        <item name="separator_color">@color/black_separator_color</item>
+        <item name="contrast_background_color">@color/black_contrast_background_color</item>
+    </style>
+</resources>
