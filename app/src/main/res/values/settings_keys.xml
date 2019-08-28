@@ -153,13 +153,14 @@
     <string name="enable_playback_resume_key" translatable="false">enable_playback_resume</string>
     <string name="enable_playback_state_lists_key" translatable="false">enable_playback_state_lists</string>
 
-    <string name="import_data">import_data</string>
-    <string name="export_data">export_data</string>
+    <string name="import_data" translatable="false">import_data</string>
+    <string name="export_data" translatable="false">export_data</string>
 
     <string name="download_thumbnail_key" translatable="false">download_thumbnail_key</string>
 
     <string name="metadata_cache_wipe_key" translatable="false">cache_wipe_key</string>
     <string name="clear_views_history_key" translatable="false">clear_play_history</string>
+    <string name="clear_playback_states_key" translatable="false">clear_playback_states</string>
     <string name="clear_search_history_key" translatable="false">clear_search_history</string>
 
     <string name="downloads_storage_ask" translatable="false">downloads_storage_ask</string>
