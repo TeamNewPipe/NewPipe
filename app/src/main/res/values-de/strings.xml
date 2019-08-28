@@ -499,4 +499,7 @@
     <string name="downloads_storage_ask_summary">Du wirst gefragt, wohin du jeden Download speichern willst</string>
     <string name="downloads_storage_ask_summary_kitkat">Du wirst gefragt, wohin du jeden Download speichern willst.
 \nAktiviere diese Option, wenn du auf die externe SD-Karte herunterladen möchtest</string>
+    <string name="downloads_storage_use_saf_title">SAF verwenden</string>
+    <string name="downloads_storage_use_saf_summary">Das Storage Access Framework erlaubt Downloads auf eine externe SD-Karte.
+\nHinweis: Manche Geräte sind nicht kompatibel</string>
 </resources>
