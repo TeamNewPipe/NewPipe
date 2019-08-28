@@ -69,9 +69,9 @@
     <string name="enable_watch_history_title">مراقبة السجل</string>
     <string name="settings_category_history_title">التاريخ و ذاكرة التخزين المؤقت</string>
     <string name="content">محتوى</string>
-    <string name="downloads">التحميلات</string>
-    <string name="downloads_title">التحميلات</string>
-    <string name="all">الكل</string>
+    <string name="downloads">التنزيلات</string>
+    <string name="downloads_title">التنزيلات</string>
+    <string name="all">الجميع</string>
     <string name="channel">القناة</string>
     <string name="video">الفيديو</string>
     <string name="settings_category_downloads_title">التنزيل</string>
@@ -113,7 +113,7 @@
     <string name="show_age_restricted_content_title">محتوى مقيد بحسب العمر</string>
     <string name="video_is_age_restricted">"إظهار الفيديو  المقيد بحسب العمر. يمكن السماح باستخدام هذه المواد من \"الإعدادات\"."</string>
     <string name="duration_live">بث مباشر</string>
-    <string name="error_report_title">أبلغ عن خطأ</string>
+    <string name="error_report_title">تقرير عن خطأ</string>
     <string name="playlist">قائمة التشغيل</string>
     <string name="yes">نعم</string>
     <string name="later">لاحقاً</string>
@@ -425,7 +425,7 @@
     <string name="app_update_notification_channel_name">تتبيه تحديث التطبيق</string>
     <string name="volume_gesture_control_title">إيماءة التحكم بالصوت</string>
     <string name="events">الأحداث</string>
-    <string name="app_update_notification_channel_description">الإخطارات عند تواجد إصدار newpipe جديد</string>
+    <string name="app_update_notification_channel_description">تنبيه عند تواجد إصدار جديد من newpipe</string>
     <string name="download_to_sdcard_error_title">وحدة التخزين الخارجية غير متوفرة</string>
     <string name="download_to_sdcard_error_message">"التنزيل على بطاقة SD الخارجية غير ممكن.  إعادة تعيين موقع مجلد التحميل؟"</string>
     <string name="saved_tabs_invalid_json">عند إستخدام علامات التبويب الافتراضية ، وقع خطأ أثناء قراءة علامات التبويب المحفوظة</string>
