@@ -455,7 +455,7 @@
     <string name="error_http_no_content">Le serveur n’envoie pas de données</string>
     <string name="error_http_not_found">Introuvable</string>
     <string name="clear_finished_download">Effacer les téléchargements terminés</string>
-    <string name="pause_downloads_on_mobile">Mettre en pause lors du passage en données mobiles</string>
+    <string name="pause_downloads_on_mobile">Interrompre sur les réseaux payants</string>
     <string name="pause_downloads_on_mobile_desc">Utile lors du passage aux données mobiles, bien que certains téléchargements ne peuvent pas être suspendus</string>
     <string name="list_view_mode">Mode liste</string>
     <string name="post_processing">post-traitement</string>
@@ -493,6 +493,13 @@
     <string name="pause_downloads">Mettre en pause les téléchargements</string>
     <string name="downloads_storage_ask_title">Demander où télécharger</string>
     <string name="downloads_storage_ask_summary">On vous demandera où enregistrer chaque téléchargement</string>
-    <string name="downloads_storage_ask_summary_kitkat">On vous demandera où enregistrer chaque téléchargement.
-\nActivez cette option si vous voulez télécharger sur la carte SD externe</string>
+    <string name="downloads_storage_ask_summary_kitkat">On vous demandera où enregistrer chaque téléchargement. 
+\nActivez SAF si vous voulez télécharger sur la carte SD externe</string>
+    <string name="enable_playback_resume_summary">Rétablir la précédente position de lecture</string>
+    <string name="enable_playback_state_lists_title">Positions dans les listes</string>
+    <string name="enable_playback_state_lists_summary">Afficher la position de lecture dans les listes</string>
+    <string name="watch_history_states_deleted">Position de lecture supprimée.</string>
+    <string name="downloads_storage_use_saf_title">Utiliser SAF</string>
+    <string name="downloads_storage_use_saf_summary">Le \"Storage Access Framework\" permet de télécharger sur une carte SD externe.
+\nNote : certains appareils ne sont pas compatibles</string>
 </resources>
