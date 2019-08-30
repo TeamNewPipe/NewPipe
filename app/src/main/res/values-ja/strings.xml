@@ -112,9 +112,9 @@
     <string name="black_theme_title">ブラック</string>
     <string name="all">すべて</string>
     <string name="channel">チャンネル</string>
-    <string name="short_thousand">K</string>
+    <string name="short_thousand">k</string>
     <string name="short_million">M</string>
-    <string name="short_billion">B</string>
+    <string name="short_billion">G</string>
     <string name="yes">はい</string>
     <string name="later">後で</string>
     <string name="open_in_popup_mode">ポップアップモードで開く</string>
@@ -309,7 +309,7 @@
     <string name="background_player_append">バックグラウンド再生の順番待ちに追加</string>
     <string name="popup_playing_append">ポップアップ再生の順番待ちに追加</string>
     <string name="clear_views_history_title">再生履歴を消去</string>
-    <string name="clear_views_history_summary">再生した動画の履歴を削除します</string>
+    <string name="clear_views_history_summary">再生したストリームの履歴と再生位置を削除します</string>
     <string name="watch_history_deleted">再生履歴を削除しました。</string>
     <string name="clear_search_history_title">検索履歴を消去</string>
     <string name="clear_search_history_summary">検索キーワードの履歴を削除します</string>
@@ -497,4 +497,7 @@
     <string name="downloads_storage_use_saf_title">SAF を使用する</string>
     <string name="downloads_storage_use_saf_summary">ストレージアクセスフレームワークは、外部 SD カードへのダウンロードが可能です。
 \n注: 一部のデバイスは互換性がありません</string>
+    <string name="clear_playback_states_title">再生位置の削除</string>
+    <string name="clear_playback_states_summary">すべての再生位置を削除します</string>
+    <string name="delete_playback_states_alert">すべての再生位置を削除しますか\?</string>
 </resources>
