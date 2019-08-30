@@ -133,9 +133,9 @@
     <string name="refresh">Odśwież</string>
     <string name="clear">Wyczyść</string>
     <string name="popup_resizing_indicator_title">Zmiana rozmiaru</string>
-    <string name="short_thousand">K</string>
+    <string name="short_thousand">k</string>
     <string name="short_million">M</string>
-    <string name="short_billion">B</string>
+    <string name="short_billion">G</string>
     <string name="msg_popup_permission">To pozwolenie jest wymagane, aby 
 \notworzyć w trybie okienkowym</string>
     <string name="open_in_popup_mode">Odtwórz w trybie okienkowym</string>
@@ -373,7 +373,7 @@
     <string name="caption_setting_title">Napisy</string>
     <string name="caption_setting_description">Zmodyfikuj skalę tekstu napisów i style tła. Wymaga ponownego uruchomienia aplikacji.</string>
     <string name="clear_views_history_title">Wyczyść historię oglądania</string>
-    <string name="clear_views_history_summary">Usuwa historię odtworzonych strumieni</string>
+    <string name="clear_views_history_summary">Usuwa historię odtwarzanych strumieni i pozycje odtwarzania</string>
     <string name="delete_view_history_alert">Usunąć całą historię oglądania\?</string>
     <string name="watch_history_deleted">Usunięto historię oglądania.</string>
     <string name="clear_search_history_title">Wyczyść historię wyszukiwania</string>
@@ -506,4 +506,7 @@
     <string name="downloads_storage_use_saf_title">Użyj SAF</string>
     <string name="downloads_storage_use_saf_summary">Struktura dostępu do pamięci masowej umożliwia pobieranie danych na zewnętrzną kartę SD.
 \nUwaga: niektóre urządzenia nie są kompatybilne</string>
+    <string name="clear_playback_states_title">Usuń pozycje odtwarzania</string>
+    <string name="clear_playback_states_summary">Usuwa wszystkie pozycje odtwarzania</string>
+    <string name="delete_playback_states_alert">Usunąć wszystkie pozycje odtwarzania\?</string>
 </resources>
