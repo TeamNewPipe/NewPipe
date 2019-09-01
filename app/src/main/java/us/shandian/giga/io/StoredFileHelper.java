@@ -251,6 +251,7 @@ public class StoredFileHelper implements Serializable {
     public boolean existsAsFile() {
         if (source == null) return false;
 
+        // WARNING: DocumentFile.exists() and DocumentFile.isFile() methods are slow
         boolean exists = docFile == null ? ioFile.exists() : docFile.exists();
         boolean isFile = docFile == null ? ioFile.isFile() : docFile.isFile();// ¿docFile.isVirtual() means is no-physical?
 
