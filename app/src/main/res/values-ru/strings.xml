@@ -131,9 +131,9 @@
     <string name="disabled">Отключено</string>
     <string name="popup_resizing_indicator_title">Изменение размера</string>
     <string name="use_external_video_player_summary">Убирает звук в НЕКОТОРЫХ разрешениях</string>
-    <string name="short_million"> млн.</string>
-    <string name="short_billion"> млрд.</string>
-    <string name="short_thousand"> тыс.</string>
+    <string name="short_million">млн</string>
+    <string name="short_billion">млрд</string>
+    <string name="short_thousand">тыс.</string>
     <string name="default_popup_resolution_title">Разрешение очереди всплывающего окна</string>
     <string name="popup_remember_size_pos_summary">Помнить последние размер и позицию всплывающего окна</string>
     <string name="show_search_suggestions_title">Поисковые предложения</string>
@@ -168,10 +168,10 @@
     <string name="enable_search_history_summary">Хранить запросы поиска локально</string>
     <string name="enable_watch_history_title">История просмотров</string>
     <string name="enable_playback_resume_title">Продолжать воспроизведение</string>
-    <string name="enable_playback_resume_summary">Восстанавливать с последней позиции</string>
+    <string name="enable_playback_resume_summary">Восстанавливать последнюю позицию</string>
     <string name="enable_playback_state_lists_title">Позиции в списках</string>
     <string name="enable_playback_state_lists_summary">Отображать индикаторы позиций просмотра в списках</string>
-    <string name="settings_category_clear_data_title">Очистить данные</string>
+    <string name="settings_category_clear_data_title">Очистка данных</string>
     <string name="enable_watch_history_summary">Запоминать воспроизведённые потоки</string>
     <string name="resume_on_audio_focus_gain_title">Возобновить при фокусе</string>
     <string name="resume_on_audio_focus_gain_summary">Возобновлять воспроизведение после перерывов (например, телефонных звонков)</string>
@@ -380,7 +380,7 @@
     <string name="watch_history_deleted">История просмотров удалена</string>
     <string name="clear_search_history_title">Очистить историю поиска</string>
     <string name="clear_search_history_summary">Удалить историю запросов поиска</string>
-    <string name="clear_views_history_summary">Удалить историю воспроизведённых потоков</string>
+    <string name="clear_views_history_summary">Удалить историю воспроизведённых потоков и позиции воспроизведения</string>
     <string name="delete_search_history_alert">Удалить всю историю поиска\?</string>
     <string name="search_history_deleted">История поиска удалена</string>
     <string name="one_item_deleted">1 элемент удалён.</string>
@@ -419,7 +419,7 @@
     <string name="download_to_sdcard_error_message">Загрузка на внешний накопитель невозможна. Сбросить расположение папки загрузки\?</string>
     <string name="download_to_sdcard_error_title">Внешний накопитель недоступен</string>
     <string name="main_page_content_summary">Вкладки, видимые на главной странице</string>
-    <string name="restore_defaults">Восстановить значения по умолчанию</string>
+    <string name="restore_defaults">Значения по умолчанию</string>
     <string name="restore_defaults_confirmation">Восстановить значения по умолчанию\?</string>
     <string name="saved_tabs_invalid_json">Ошибка чтения сохранённых вкладок. Используются вкладки по умолчанию</string>
     <string name="selection">Выбор</string>
@@ -468,12 +468,12 @@
     <string name="msg_pending_downloads">Возобновить приостановленные загрузки (%s)</string>
     <string name="max_retry_msg">Максимум попыток</string>
     <string name="max_retry_desc">Количество попыток перед отменой загрузки</string>
-    <string name="pause_downloads_on_mobile_desc">Полезно при переключении на мобильную сеть, хотя некоторые загрузки не могут быть приостановлены</string>
+    <string name="pause_downloads_on_mobile_desc">Некоторые загрузки могут быть перезапущены с начала</string>
     <string name="error_ssl_exception">Не удалось установить защищённое соединение</string>
     <string name="error_connect_host">Не удалось соединиться с сервером</string>
     <string name="error_http_no_content">Не удалось получить данные с сервера</string>
     <string name="error_postprocessing_failed">Пост-обработка не удалась</string>
-    <string name="pause_downloads_on_mobile">Прервать в тарифицируемых сетях</string>
+    <string name="pause_downloads_on_mobile">Прервать в мобильной сети</string>
     <string name="close">Закрыть</string>
     <string name="error_timeout">Время соединения вышло</string>
     <string name="show_comments_title">Показать комментарии</string>
@@ -506,4 +506,7 @@
     <string name="downloads_storage_use_saf_title">Использовать SAF</string>
     <string name="downloads_storage_use_saf_summary">Storage Access Framework позволяет сохранять файлы на внешнем накопителе.
 \nПоддерживается не всеми устройствами</string>
+    <string name="clear_playback_states_title">Очистить позиции воспроизведения</string>
+    <string name="clear_playback_states_summary">Удалить все позиции воспроизведения</string>
+    <string name="delete_playback_states_alert">Удалить все позиции воспроизведения\?</string>
 </resources>
