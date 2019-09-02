@@ -181,7 +181,7 @@ pentru a deschide în mod pop-up</string>
     <plurals name="videos">
         <item quantity="one">%s videoclip</item>
         <item quantity="few">%s videoclipuri</item>
-        <item quantity="other">%s videoclipuri</item>
+        <item quantity="other">%s de videoclipuri</item>
     </plurals>
     <string name="settings_category_downloads_title">Descarcă</string>
     <string name="settings_file_charset_title">Caractere permise în numele fișierelor</string>
@@ -329,7 +329,7 @@ pentru a deschide în mod pop-up</string>
     <string name="tracks">Titluri</string>
     <string name="clear_views_history_title">Șterge istoricul vizionărilor
 \n</string>
-    <string name="clear_views_history_summary">Șterge istoricul stream-urilor redate</string>
+    <string name="clear_views_history_summary">Șterge istoricul stream-urilor redate și pozițiile memorate</string>
     <string name="delete_view_history_alert">Șterge întregul istoric al vizionărilor\?</string>
     <string name="one_item_deleted">1 element șters.</string>
     <string name="create_playlist">Playlist nou</string>
@@ -396,8 +396,8 @@ pentru a deschide în mod pop-up</string>
     <string name="autoplay_title">Redare automată</string>
     <plurals name="comments">
         <item quantity="one">Comentarii</item>
-        <item quantity="few"></item>
-        <item quantity="other"></item>
+        <item quantity="few"/>
+        <item quantity="other"/>
     </plurals>
     <string name="no_comments">Niciun comentariu</string>
     <string name="error_unable_to_load_comments">Nu s-au putut încărca comentariile</string>
@@ -408,4 +408,5 @@ pentru a deschide în mod pop-up</string>
     <string name="settings_category_clear_data_title">Eliminare date</string>
     <string name="watch_history_states_deleted">Pozițiile de redare șterse.</string>
     <string name="missing_file">Fișier mutat sau șters</string>
+    <string name="clear_playback_states_title">Șterge pozițiile de redare memorate</string>
 </resources>
