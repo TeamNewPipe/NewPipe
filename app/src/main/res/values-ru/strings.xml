@@ -467,7 +467,7 @@
     <string name="generate_unique_name">Создать уникальное имя</string>
     <string name="msg_pending_downloads">Возобновить приостановленные загрузки (%s)</string>
     <string name="max_retry_msg">Максимум попыток</string>
-    <string name="max_retry_desc">Максимальное число попыток перед отменой скачивания</string>
+    <string name="max_retry_desc">Количество попыток перед отменой загрузки</string>
     <string name="pause_downloads_on_mobile_desc">Некоторые загрузки не поддерживают докачку и начнутся с начала</string>
     <string name="error_ssl_exception">Не удалось установить защищённое соединение</string>
     <string name="error_connect_host">Не удалось соединиться с сервером</string>
