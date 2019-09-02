@@ -140,7 +140,7 @@
     <string name="best_resolution">Лучшее разрешение</string>
     <string name="reCaptcha_title">Запрос reCAPTCHA</string>
     <string name="recaptcha_request_toast">Запрошен ввод reCAPTCHA</string>
-    <string name="show_higher_resolutions_title">Показывать разрешения 2K и 4K</string>
+    <string name="show_higher_resolutions_title">Высокие разрешения</string>
     <string name="popup_mode_share_menu_title">NewPipe во всплывающем окне</string>
     <string name="title_activity_about">О NewPipe</string>
     <string name="action_settings">Настройки</string>
@@ -463,7 +463,7 @@
     <string name="post_processing">пост-обработка</string>
     <string name="missions_header_pending">В очереди</string>
     <string name="download_finished">Загрузка завершена</string>
-    <string name="download_finished_more">" %s загрузок завершено"</string>
+    <string name="download_finished_more">%s загрузок завершено</string>
     <string name="generate_unique_name">Создать уникальное имя</string>
     <string name="msg_pending_downloads">Возобновить приостановленные загрузки (%s)</string>
     <string name="max_retry_msg">Максимум попыток</string>
