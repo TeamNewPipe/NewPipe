@@ -14,7 +14,7 @@
     <string name="share_dialog_title">Поделиться в</string>
     <string name="choose_browser">Выбор браузера</string>
     <string name="screen_rotation">поворот</string>
-    <string name="download_path_title">Путь для скачанного видео</string>
+    <string name="download_path_title">Папка для скачанного видео</string>
     <string name="download_path_summary">Папка для хранения загруженных видео</string>
     <string name="download_path_dialog_title">Введите путь к папке для скачивания видео</string>
     <string name="default_resolution_title">Разрешение по умолчанию</string>
@@ -46,7 +46,7 @@
     <string name="play_btn_text">Воспроизвести</string>
     <string name="network_error">Ошибка сети</string>
     <string name="use_tor_title">Использовать Tor</string>
-    <string name="download_path_audio_title">Путь для скачанного аудио</string>
+    <string name="download_path_audio_title">Папка для скачанного аудио</string>
     <string name="download_path_audio_summary">Папка для хранения скачанного аудио</string>
     <string name="download_path_audio_dialog_title">Введите путь к папке для скачанного аудио</string>
     <string name="main_bg_subtitle">Начните с поиска</string>
