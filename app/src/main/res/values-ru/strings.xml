@@ -140,7 +140,7 @@
     <string name="best_resolution">Лучшее разрешение</string>
     <string name="reCaptcha_title">Запрос reCAPTCHA</string>
     <string name="recaptcha_request_toast">Запрошен ввод reCAPTCHA</string>
-    <string name="show_higher_resolutions_title">Высокие разрешения</string>
+    <string name="show_higher_resolutions_title">Показывать разрешения выше</string>
     <string name="popup_mode_share_menu_title">NewPipe во всплывающем окне</string>
     <string name="title_activity_about">О NewPipe</string>
     <string name="action_settings">Настройки</string>
