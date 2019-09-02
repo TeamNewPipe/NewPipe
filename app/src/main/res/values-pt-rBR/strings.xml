@@ -122,9 +122,9 @@
     <string name="yes">Sim</string>
     <string name="later">Depois</string>
     <string name="disabled">Desativado</string>
-    <string name="short_thousand">K</string>
+    <string name="short_thousand">k</string>
     <string name="short_million">M</string>
-    <string name="short_billion">B</string>
+    <string name="short_billion">G</string>
     <string name="msg_popup_permission">Essa permissão é necessária para
 abrir em modo popup</string>
     <string name="popup_mode_share_menu_title">Modo de popup NewPipe</string>
@@ -256,7 +256,7 @@ abrir em modo popup</string>
     <string name="always">Sempre</string>
     <string name="just_once">Uma vez</string>
     <string name="toggle_orientation">Alterar orientação</string>
-    <string name="switch_to_background">Trocar para segundo plano</string>
+    <string name="switch_to_background">Alterar para segundo plano</string>
     <string name="switch_to_popup">Trocar para popup</string>
     <string name="switch_to_main">Trocar para principal</string>
     <string name="external_player_unsupported_link_type">Players externos não suportam estes tipos de links</string>
@@ -377,7 +377,7 @@ abrir em modo popup</string>
     <string name="caption_setting_description">Altere o tamanho da legenda e o estilo da tela de fundo. É necessário reiniciar o aplicativo para ter efeito.</string>
     <string name="toast_no_player">Nenhum player instalado para reproduzir este arquivo</string>
     <string name="clear_views_history_title">Limpar histórico de reproduções</string>
-    <string name="clear_views_history_summary">Apaga o histórico de vídeos assistidos</string>
+    <string name="clear_views_history_summary">Apaga o histórico de vídeos assistidos e a lista de reprodução</string>
     <string name="delete_view_history_alert">Apagar todo o histórico de reproduções\?</string>
     <string name="watch_history_deleted">Histórico de reproduções limpo.</string>
     <string name="clear_search_history_title">Limpar histórico de pesquisas</string>
@@ -469,7 +469,7 @@ abrir em modo popup</string>
     <string name="clear_finished_download">Limpar downloads finalizados</string>
     <string name="msg_pending_downloads">Continuar seus %s downloads pendentes</string>
     <string name="stop">Parar</string>
-    <string name="max_retry_msg">Tentativas máximas</string>
+    <string name="max_retry_msg">Tentativas Máximas</string>
     <string name="max_retry_desc">Número máximo de tentativas antes de cancelar o download</string>
     <string name="pause_downloads_on_mobile">Pausar quando trocar para dados móveis</string>
     <string name="pause_downloads_on_mobile_desc">Útil ao trocar para dados móveis, porém alguns downloads não podem ser suspensos</string>
@@ -510,4 +510,7 @@ abrir em modo popup</string>
     <string name="downloads_storage_use_saf_title">Usar SAF</string>
     <string name="downloads_storage_use_saf_summary">A Estrutura de Acesso ao Armazenamento permite baixar para um cartão SD.
 \nAviso: alguns dispositivos não são compatíveis</string>
+    <string name="clear_playback_states_title">Apagar lista de reprodução</string>
+    <string name="clear_playback_states_summary">Deletar todo o histórico de reprodução</string>
+    <string name="delete_playback_states_alert">Deletar todo o histórico de reprodução\?</string>
 </resources>
