@@ -115,7 +115,7 @@
     <string name="no_player_found_toast">Nem található stream lejátszó alkalmazás (feltelepítheted a VLC-t a lejátszáshoz).</string>
     <string name="open_in_popup_mode">Megnyitás felugró ablakként</string>
     <string name="use_external_video_player_summary">Néhány felbontásnál eltávolítja a hangot</string>
-    <string name="popup_mode_share_menu_title">NewPipe felugró ablak mód</string>
+    <string name="popup_mode_share_menu_title">NewPipe felugró ablak</string>
     <string name="subscribe_button_title">Feliratkozás</string>
     <string name="subscribed_button_title">Feliratkozva</string>
     <string name="show_info">Több infó</string>
@@ -140,7 +140,7 @@
     <string name="settings_category_debug_title">Hibaelhárítás</string>
     <string name="popup_playing_toast">Lejátszás felugró ablakban</string>
     <string name="popup_playing_append">Felugró ablak várólistájához adva</string>
-    <string name="all">Mind</string>
+    <string name="all">Összes</string>
     <string name="channel">Csatorna</string>
     <string name="playlist">Lejátszási lista</string>
     <string name="yes">Igen</string>
@@ -172,7 +172,7 @@
     <string name="info_labels">Mi:\\nKérés:\\nTartalom nyelve:\\nSzolgáltatás:\\nGMT Idő:\\nCsomag:\\nVerzió:\\nOperációs Rendszer verzió:</string>
     <string name="search_no_results">Nincs találat</string>
     <string name="controls_download_desc">Adatfolyam fájl letöltése</string>
-    <string name="controls_add_to_playlist_title">Hozzáadás</string>
+    <string name="controls_add_to_playlist_title">Hozzáadás ehhez</string>
     <string name="use_inexact_seek_title">Gyorsabb, de pontatlan tekerés használata</string>
     <string name="use_inexact_seek_summary">A pontatlan tekerés lehetővé teszi, hogy gyorsabban ugorjon a pozíciókra, de kevesebb pontossággal</string>
     <string name="download_thumbnail_title">Bélyegképek betöltése</string>
@@ -370,7 +370,7 @@
     <string name="minimize_on_exit_popup_description">Lejátszás folytatása felugró ablakban</string>
     <string name="resume_on_audio_focus_gain_title">Lejátszás folytatása a fókusz visszaszerzésekor</string>
     <string name="show_hold_to_append_title">Mutassa a \"Tartsa lenyomva a hozzáadáshoz\" tippet</string>
-    <string name="background_player_append">Sorba állítva a háttérben lejátszáshoz</string>
+    <string name="background_player_append">Várólistához adva a háttérben</string>
     <string name="toggle_orientation">Elforgatás</string>
     <string name="unsubscribe">Leiratkozás</string>
     <string name="tab_new">Új fül</string>
