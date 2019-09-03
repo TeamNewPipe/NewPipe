@@ -12,13 +12,13 @@ import android.os.Handler;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.NavUtils;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.core.app.NavUtils;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -308,7 +308,7 @@ public class ErrorActivity extends AppCompatActivity {
         if (checkedReturnActivity == null) {
             super.onBackPressed();
         } else {
-            Intent intent = new Intent(this, checkedReturnActivity);
+            Intent intent = new Intent((Context) this, checkedReturnActivity);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             NavUtils.navigateUpTo(this, intent);
         }
@@ -374,7 +374,7 @@ public class ErrorActivity extends AppCompatActivity {
     }
 
     private String getContentLangString() {
-        return PreferenceManager.getDefaultSharedPreferences(this)
+        return PreferenceManager.getDefaultSharedPreferences((Context) this)
                 .getString(this.getString(R.string.content_country_key), "none");
     }
 

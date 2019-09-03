@@ -1,7 +1,7 @@
 package org.schabi.newpipe.local.subscription;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 import org.schabi.newpipe.MainActivity;
@@ -93,7 +93,7 @@ public class SubscriptionService {
      * in the cooldown interval, only the latest changes are emitted to the subscribers.
      * This reduces the amount of observations caused by frequent updates to the database.
      */
-    @android.support.annotation.NonNull
+    @androidx.annotation.Nullable
     public Flowable<List<SubscriptionEntity>> getSubscription() {
         return subscription;
     }

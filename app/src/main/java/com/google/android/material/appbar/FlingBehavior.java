@@ -1,11 +1,14 @@
-package android.support.design.widget;
+package com.google.android.material.appbar;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.design.animation.AnimationUtils;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.google.android.material.animation.AnimationUtils;
+
+import androidx.annotation.NonNull;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 // check this https://github.com/ToDou/appbarlayout-spring-behavior/blob/master/appbarspring/src/main/java/android/support/design/widget/AppBarFlingFixBehavior.java
 public final class FlingBehavior extends AppBarLayout.Behavior {

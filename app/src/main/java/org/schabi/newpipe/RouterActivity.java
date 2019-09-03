@@ -9,12 +9,12 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.NotificationCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -55,6 +55,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 
+import androidx.fragment.app.FragmentManager;
 import icepick.Icepick;
 import icepick.State;
 import io.reactivex.Observable;
@@ -433,7 +434,7 @@ public class RouterActivity extends AppCompatActivity {
                     int selectedVideoStreamIndex = ListHelper.getDefaultResolutionIndex(this,
                             sortedVideoStreams);
 
-                    android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+                    FragmentManager fm = getSupportFragmentManager();
                     DownloadDialog downloadDialog = DownloadDialog.newInstance(result);
                     downloadDialog.setVideoStreams(sortedVideoStreams);
                     downloadDialog.setAudioStreams(result.getAudioStreams());

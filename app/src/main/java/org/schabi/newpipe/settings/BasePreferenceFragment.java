@@ -3,10 +3,10 @@ package org.schabi.newpipe.settings;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.preference.PreferenceFragmentCompat;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceFragmentCompat;
 import android.view.View;
 
 import org.schabi.newpipe.MainActivity;
@@ -19,7 +19,7 @@ public abstract class BasePreferenceFragment extends PreferenceFragmentCompat {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        defaultPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        defaultPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
         super.onCreate(savedInstanceState);
     }
 

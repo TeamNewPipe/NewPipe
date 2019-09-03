@@ -6,13 +6,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.TooltipCompat;
-import android.support.v7.widget.helper.ItemTouchHelper;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.TooltipCompat;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -73,7 +73,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
 
-import static android.support.v7.widget.helper.ItemTouchHelper.Callback.makeMovementFlags;
+import static androidx.recyclerview.widget.ItemTouchHelper.Callback.makeMovementFlags;
 import static java.util.Arrays.asList;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
@@ -101,7 +101,7 @@ public class SearchFragment
 
     @State
     protected int serviceId = Constants.NO_SERVICE_ID;
-    
+
     // this three represet the current search query
     @State
     protected String searchString;
@@ -114,11 +114,11 @@ public class SearchFragment
     protected String[] contentFilter = new String[0];
     @State
     protected String sortFilter;
-    
+
     // these represtent the last search
     @State
     protected String lastSearchedString;
-    
+
     @State
     protected boolean wasSearchFocused = false;
 
@@ -177,7 +177,7 @@ public class SearchFragment
         super.onAttach(context);
 
         suggestionListAdapter = new SuggestionListAdapter(activity);
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
         boolean isSearchHistoryEnabled = preferences.getBoolean(getString(R.string.enable_search_history_key), true);
         suggestionListAdapter.setShowSuggestionHistory(isSearchHistoryEnabled);
 
@@ -188,7 +188,7 @@ public class SearchFragment
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
         isSuggestionsEnabled = preferences.getBoolean(getString(R.string.show_search_suggestions_key), true);
         contentCountry = preferences.getString(getString(R.string.content_country_key), getString(R.string.default_country_value));
     }

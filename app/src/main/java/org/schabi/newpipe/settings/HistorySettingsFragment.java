@@ -1,9 +1,9 @@
 package org.schabi.newpipe.settings;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.preference.Preference;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.preference.Preference;
 import android.widget.Toast;
 
 import org.schabi.newpipe.R;
@@ -138,7 +138,7 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
                         final Disposable onDelete = recordManager.deleteCompleteSearchHistory()
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(
-                                        howManyDeleted -> Toast.makeText(getActivity(),
+                                        howManyDeleted -> Toast.makeText(requireContext(),
                                                 R.string.search_history_deleted,
                                                 Toast.LENGTH_SHORT).show(),
                                         throwable -> ErrorActivity.reportError(getContext(),

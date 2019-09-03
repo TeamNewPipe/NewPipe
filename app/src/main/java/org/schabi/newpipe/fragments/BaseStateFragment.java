@@ -3,8 +3,8 @@ package org.schabi.newpipe.fragments;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -192,7 +192,7 @@ public abstract class BaseStateFragment<I> extends BaseFragment implements ViewC
 
     public void onReCaptchaException(ReCaptchaException exception) {
         if (DEBUG) Log.d(TAG, "onReCaptchaException() called");
-        Toast.makeText(activity, R.string.recaptcha_request_toast, Toast.LENGTH_LONG).show();
+        Toast.makeText(requireContext(), R.string.recaptcha_request_toast, Toast.LENGTH_LONG).show();
         // Starting ReCaptcha Challenge Activity
         Intent intent = new Intent(activity, ReCaptchaActivity.class);
         intent.putExtra(ReCaptchaActivity.RECAPTCHA_URL_EXTRA, exception.getUrl());

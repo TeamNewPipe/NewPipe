@@ -1,11 +1,11 @@
 package org.schabi.newpipe.settings;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.preference.Preference;
 
-import org.schabi.newpipe.CheckForNewAppVersionTask;
 import org.schabi.newpipe.R;
+
+import androidx.annotation.Nullable;
+import androidx.preference.Preference;
 
 public class UpdateSettingsFragment extends BasePreferenceFragment {
 

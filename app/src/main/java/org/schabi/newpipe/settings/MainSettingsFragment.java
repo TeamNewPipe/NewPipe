@@ -1,11 +1,12 @@
 package org.schabi.newpipe.settings;
 
 import android.os.Bundle;
-import android.support.v7.preference.Preference;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.CheckForNewAppVersionTask;
 import org.schabi.newpipe.R;
+
+import androidx.preference.Preference;
 
 public class MainSettingsFragment extends BasePreferenceFragment {
     public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");

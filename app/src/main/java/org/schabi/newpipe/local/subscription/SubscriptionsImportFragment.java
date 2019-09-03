@@ -3,11 +3,11 @@ package org.schabi.newpipe.local.subscription;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
-import android.support.v4.text.util.LinkifyCompat;
-import android.support.v7.app.ActionBar;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.core.text.util.LinkifyCompat;
+import androidx.appcompat.app.ActionBar;
 import android.text.TextUtils;
 import android.text.util.Linkify;
 import android.view.LayoutInflater;
@@ -158,7 +158,7 @@ public class SubscriptionsImportFragment extends BaseFragment {
     }
 
     public void onImportUrl(String value) {
-        ImportConfirmationDialog.show(this, new Intent(activity, SubscriptionsImportService.class)
+        ImportConfirmationDialog.show(this, new Intent(requireContext(), SubscriptionsImportService.class)
                 .putExtra(KEY_MODE, CHANNEL_URL_MODE)
                 .putExtra(KEY_VALUE, value)
                 .putExtra(Constants.KEY_SERVICE_ID, currentServiceId));
@@ -175,7 +175,7 @@ public class SubscriptionsImportFragment extends BaseFragment {
 
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_IMPORT_FILE_CODE && data.getData() != null) {
             final String path = Utils.getFileForUri(data.getData()).getAbsolutePath();
-            ImportConfirmationDialog.show(this, new Intent(activity, SubscriptionsImportService.class)
+            ImportConfirmationDialog.show(this, new Intent(requireContext(), SubscriptionsImportService.class)
                     .putExtra(KEY_MODE, INPUT_STREAM_MODE)
                     .putExtra(KEY_VALUE, path)
                     .putExtra(Constants.KEY_SERVICE_ID, currentServiceId));

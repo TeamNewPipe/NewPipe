@@ -1,7 +1,5 @@
 package org.schabi.newpipe.streams;
 
-import android.support.annotation.NonNull;
-
 import org.schabi.newpipe.streams.WebMReader.Cluster;
 import org.schabi.newpipe.streams.WebMReader.Segment;
 import org.schabi.newpipe.streams.WebMReader.SimpleBlock;
@@ -13,6 +11,8 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
 
 /**
  * @author kapodamy

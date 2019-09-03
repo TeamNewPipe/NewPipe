@@ -8,9 +8,9 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.DocumentsContract;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.provider.DocumentFile;
+import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.documentfile.provider.DocumentFile;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,7 +20,6 @@ import java.util.Collections;
 
 import static android.provider.DocumentsContract.Document.COLUMN_DISPLAY_NAME;
 import static android.provider.DocumentsContract.Root.COLUMN_DOCUMENT_ID;
-
 
 public class StoredDirectoryHelper {
     public final static int PERMISSION_FLAGS = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
@@ -244,7 +243,7 @@ public class StoredDirectoryHelper {
      * @param context  The context
      * @param tree     Directory where search
      * @param filename Target filename
-     * @return A {@link android.support.v4.provider.DocumentFile} contain the reference, otherwise, null
+     * @return A {@link androidx.documentfile.provider.DocumentFile} contain the reference, otherwise, null
      */
     static DocumentFile findFileSAFHelper(@Nullable Context context, DocumentFile tree, String filename) {
         if (context == null || Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {

@@ -1,11 +1,5 @@
 package org.schabi.newpipe.database.stream.model;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Ignore;
-import android.arch.persistence.room.Index;
-import android.arch.persistence.room.PrimaryKey;
-
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
@@ -13,6 +7,12 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.util.Constants;
 
 import java.io.Serializable;
+
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
 
 import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_SERVICE_ID;
 import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_TABLE;

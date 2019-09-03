@@ -5,11 +5,11 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.ActionBar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -53,14 +53,14 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        PreferenceManager.getDefaultSharedPreferences(activity)
+        PreferenceManager.getDefaultSharedPreferences(requireContext())
                 .registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        PreferenceManager.getDefaultSharedPreferences(activity)
+        PreferenceManager.getDefaultSharedPreferences(requireContext())
                 .unregisterOnSharedPreferenceChangeListener(this);
     }
 
@@ -227,7 +227,7 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
     }
 
     protected boolean isGridLayout() {
-        final String list_mode = PreferenceManager.getDefaultSharedPreferences(activity).getString(getString(R.string.list_view_mode_key), getString(R.string.list_view_mode_value));
+        final String list_mode = PreferenceManager.getDefaultSharedPreferences(requireContext()).getString(getString(R.string.list_view_mode_key), getString(R.string.list_view_mode_value));
         if ("auto".equals(list_mode)) {
             final Configuration configuration = getResources().getConfiguration();
             return configuration.orientation == Configuration.ORIENTATION_LANDSCAPE

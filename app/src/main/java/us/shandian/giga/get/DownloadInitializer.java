@@ -1,6 +1,5 @@
 package us.shandian.giga.get;
 
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.schabi.newpipe.streams.io.SharpStream;
@@ -10,6 +9,7 @@ import java.io.InterruptedIOException;
 import java.net.HttpURLConnection;
 import java.nio.channels.ClosedByInterruptException;
 
+import androidx.annotation.NonNull;
 import us.shandian.giga.util.Utility;
 
 import static org.schabi.newpipe.BuildConfig.DEBUG;

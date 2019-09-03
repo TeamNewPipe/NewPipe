@@ -19,8 +19,6 @@
 
 package org.schabi.newpipe.local.subscription;
 
-import android.support.annotation.Nullable;
-
 import com.grack.nanojson.JsonAppendableWriter;
 import com.grack.nanojson.JsonArray;
 import com.grack.nanojson.JsonObject;
@@ -36,6 +34,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.Nullable;
 
 /**
  * A JSON implementation capable of importing and exporting subscriptions, it has the advantage

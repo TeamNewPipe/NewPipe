@@ -1,11 +1,11 @@
 package org.schabi.newpipe.database.history.model;
 
-import android.arch.persistence.room.ColumnInfo;
-
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.extractor.stream.StreamType;
 
 import java.util.Date;
+
+import androidx.room.ColumnInfo;
 
 public class StreamHistoryEntry {
     @ColumnInfo(name = StreamEntity.STREAM_ID)

@@ -1,6 +1,5 @@
 package org.schabi.newpipe.player.playback;
 
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Pair;
 
@@ -12,6 +11,8 @@ import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.FixedTrackSelection;
 import com.google.android.exoplayer2.trackselection.TrackSelection;
 import com.google.android.exoplayer2.util.Assertions;
+
+import androidx.annotation.NonNull;
 
 /**
  * This class allows irregular text language labels for use when selecting text captions and

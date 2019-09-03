@@ -1,12 +1,12 @@
 package us.shandian.giga.io;
 
-import android.support.annotation.NonNull;
-
 import org.schabi.newpipe.streams.io.SharpStream;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import androidx.annotation.NonNull;
 
 public class CircularFileWriter extends SharpStream {
 

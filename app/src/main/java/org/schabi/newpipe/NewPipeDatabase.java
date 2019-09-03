@@ -1,10 +1,11 @@
 package org.schabi.newpipe;
 
-import android.arch.persistence.room.Room;
 import android.content.Context;
-import android.support.annotation.NonNull;
 
 import org.schabi.newpipe.database.AppDatabase;
+
+import androidx.annotation.NonNull;
+import androidx.room.Room;
 
 import static org.schabi.newpipe.database.AppDatabase.DATABASE_NAME;
 import static org.schabi.newpipe.database.Migrations.MIGRATION_11_12;

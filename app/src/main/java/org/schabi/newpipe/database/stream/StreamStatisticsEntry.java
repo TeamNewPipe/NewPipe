@@ -1,7 +1,5 @@
 package org.schabi.newpipe.database.stream;
 
-import android.arch.persistence.room.ColumnInfo;
-
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.history.model.StreamHistoryEntity;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
@@ -9,6 +7,8 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 
 import java.util.Date;
+
+import androidx.room.ColumnInfo;
 
 public class StreamStatisticsEntry implements LocalItem {
     final public static String STREAM_LATEST_DATE = "latestAccess";

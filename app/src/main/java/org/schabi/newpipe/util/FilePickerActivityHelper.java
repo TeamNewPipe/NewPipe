@@ -5,11 +5,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.content.Loader;
-import android.support.v7.util.SortedList;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.loader.content.Loader;
+import androidx.recyclerview.widget.SortedList;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -107,7 +107,7 @@ public class FilePickerActivityHelper extends com.nononsenseapps.filepicker.File
         public void onClickOk(@NonNull View view) {
             if (mode == MODE_NEW_FILE && getNewFileName().isEmpty()) {
                 if (mToast != null) mToast.cancel();
-                mToast = Toast.makeText(getActivity(), R.string.file_name_empty_error, Toast.LENGTH_SHORT);
+                mToast = Toast.makeText(requireContext(), R.string.file_name_empty_error, Toast.LENGTH_SHORT);
                 mToast.show();
                 return;
             }

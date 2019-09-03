@@ -3,9 +3,9 @@ package org.schabi.newpipe.local.bookmark;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -258,7 +258,7 @@ public final class BookmarkFragment
     private void showDeleteDialog(final String name, final Single<Integer> deleteReactor) {
         if (activity == null || disposables == null) return;
 
-        new AlertDialog.Builder(activity)
+        new AlertDialog.Builder(requireContext())
                 .setTitle(name)
                 .setMessage(R.string.delete_playlist_prompt)
                 .setCancelable(true)

@@ -3,7 +3,6 @@ package us.shandian.giga.io;
 import android.content.ContentResolver;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.schabi.newpipe.streams.io.SharpStream;
@@ -12,6 +11,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
+
+import androidx.annotation.NonNull;
 
 public class FileStreamSAF extends SharpStream {
 

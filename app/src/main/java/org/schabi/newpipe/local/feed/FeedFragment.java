@@ -2,9 +2,9 @@ package org.schabi.newpipe.local.feed;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.ActionBar;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -31,6 +31,7 @@ import java.util.Queue;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import androidx.appcompat.app.ActionBar;
 import io.reactivex.Flowable;
 import io.reactivex.MaybeObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -183,7 +184,7 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
     }
 
     @Override
-    public void handleResult(@android.support.annotation.NonNull List<SubscriptionEntity> result) {
+    public void handleResult(@NonNull List<SubscriptionEntity> result) {
         super.handleResult(result);
 
         if (result.isEmpty()) {

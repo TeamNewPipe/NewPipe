@@ -4,9 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.annotation.PluralsRes;
-import android.support.annotation.StringRes;
 import android.text.TextUtils;
 
 import org.schabi.newpipe.R;
@@ -19,6 +16,10 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.PluralsRes;
+import androidx.annotation.StringRes;
 
 /*
  * Created by chschtsch on 12/29/15.
@@ -123,10 +124,9 @@ public class Localization {
 
     public static String localizeDate(Context context, String date) {
         Resources res = context.getResources();
-        String dateString = res.getString(R.string.upload_date_text);
 
         String formattedDate = formatDate(context, date);
-        return String.format(dateString, formattedDate);
+        return res.getString(R.string.upload_date_text, formattedDate);
     }
 
     public static String localizeViewCount(Context context, long viewCount) {

@@ -24,15 +24,16 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
 import android.content.res.ColorStateList;
-import android.support.annotation.ColorInt;
-import android.support.annotation.FloatRange;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import org.schabi.newpipe.MainActivity;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.FloatRange;
+import androidx.core.view.ViewCompat;
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 public class AnimationUtils {
     private static final String TAG = "AnimationUtils";

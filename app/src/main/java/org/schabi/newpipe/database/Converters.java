@@ -1,10 +1,10 @@
 package org.schabi.newpipe.database;
 
-import android.arch.persistence.room.TypeConverter;
-
 import org.schabi.newpipe.extractor.stream.StreamType;
 
 import java.util.Date;
+
+import androidx.room.TypeConverter;
 
 public class Converters {
 

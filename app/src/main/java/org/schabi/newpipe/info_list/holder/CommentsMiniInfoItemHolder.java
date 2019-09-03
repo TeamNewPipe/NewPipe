@@ -1,11 +1,10 @@
 package org.schabi.newpipe.info_list.holder;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.util.Linkify;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.jsoup.helper.StringUtil;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
@@ -15,6 +14,7 @@ import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.CommentTextOnTouchListener;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.StringUtil;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

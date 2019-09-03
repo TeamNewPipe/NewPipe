@@ -1,6 +1,6 @@
 package org.schabi.newpipe;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.text.TextUtils;
 
 import org.schabi.newpipe.extractor.DownloadRequest;
