@@ -377,4 +377,8 @@
     <string name="tab_choose">Válassz fület</string>
     <string name="show_comments_title">Kommentek mutatása</string>
     <string name="show_comments_summary">Kapcsold ki, hogy ne mutassa a kommenteket</string>
+    <string name="default_content_country_title">Tartalmak alapértelmezett országa</string>
+    <string name="switch_to_main">Folytatás főnézetben</string>
+    <string name="dismiss">Figyelmen kívül hagy</string>
+    <string name="bookmark_playlist">Lejátszási lista könyvjelzők közé</string>
 </resources>
