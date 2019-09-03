@@ -111,9 +111,9 @@
     <string name="black_theme_title">Nero</string>
     <string name="all">Tutto</string>
     <string name="channel">Canale</string>
-    <string name="short_thousand">K</string>
+    <string name="short_thousand">k</string>
     <string name="short_million">M</string>
-    <string name="short_billion">B</string>
+    <string name="short_billion">G</string>
     <string name="recaptcha_request_toast">È richiesta la risoluzione del reCAPTCHA</string>
     <string name="yes">Sì</string>
     <string name="later">Più tardi</string>
@@ -370,7 +370,7 @@
     <string name="caption_setting_description">Modifica la dimensione e gli stili di sfondo dei sottotitoli. Per applicare le modifiche è richesto un riavvio.</string>
     <string name="toast_no_player">Nessuna app installata per riprodurre questo file</string>
     <string name="clear_views_history_title">Pulisci cronologia visualizzazioni</string>
-    <string name="clear_views_history_summary">Elimina la cronologia dei flussi riprodotti</string>
+    <string name="clear_views_history_summary">Elimina la cronologia dei flussi riprodotti e la posizione di riproduzione</string>
     <string name="delete_view_history_alert">Elimina l\'intera cronologia delle visualizzazioni\?</string>
     <string name="watch_history_deleted">Cronologia visualizzazioni eliminata.</string>
     <string name="clear_search_history_title">Pulisci cronologia delle ricerche</string>
@@ -502,4 +502,7 @@
 \nScegli SAF se vuoi scaricare su una scheda SD esterna</string>
     <string name="downloads_storage_use_saf_summary">Lo Storage Access Framework permette scaricamenti su una scheda SD esterna.
 \nNota: alcuni dispositivi non sono compatibili</string>
+    <string name="clear_playback_states_title">Elimina posizioni di riproduzione</string>
+    <string name="clear_playback_states_summary">Elimina tutte le posizioni di riproduzione</string>
+    <string name="delete_playback_states_alert">Eliminare tutte le posizioni di riproduzione\?</string>
 </resources>
