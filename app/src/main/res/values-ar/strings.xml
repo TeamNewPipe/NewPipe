@@ -113,7 +113,7 @@
     <string name="show_age_restricted_content_title">محتوى مقيد بحسب العمر</string>
     <string name="video_is_age_restricted">"إظهار الفيديو  المقيد بحسب العمر. يمكن السماح باستخدام هذه المواد من \"الإعدادات\"."</string>
     <string name="duration_live">بث مباشر</string>
-    <string name="error_report_title">تقرير عن خطأ</string>
+    <string name="error_report_title">الإبلاغ عن خطأ</string>
     <string name="playlist">قائمة التشغيل</string>
     <string name="yes">نعم</string>
     <string name="later">لاحقاً</string>
@@ -153,9 +153,9 @@
     <string name="audio">الصوت</string>
     <string name="retry">إعادة المحاولة</string>
     <string name="storage_permission_denied">تم رفض إذن الوصول إلى التخزين</string>
-    <string name="short_thousand">ألف</string>
+    <string name="short_thousand">ك</string>
     <string name="short_million">مليون</string>
-    <string name="short_billion">بليون</string>
+    <string name="short_billion">ج</string>
     <string name="no_subscribers">ليس هناك مشترِكون</string>
     <plurals name="subscribers">
         <item quantity="zero">%s لا يوجد مشاركين</item>
@@ -347,7 +347,7 @@
     <string name="enable_disposed_exceptions_title">تقرير الأخطاء خارج دورة الحياة</string>
     <string name="enable_disposed_exceptions_summary">فرض الإبلاغ عن استثناءات Rx غير القابلة للتسليم خارج دورة حياة الجزء أو النشاط بعد التخلص منها</string>
     <string name="clear_views_history_title">محو سجل المشاهدة</string>
-    <string name="clear_views_history_summary">احذف سِجل الفيديوهات التي تم تشغيلها</string>
+    <string name="clear_views_history_summary">حذف محفوظات التدفقات التي تم تشغيلها ومواقف التشغيل</string>
     <string name="delete_view_history_alert">حذف سجل المشاهدة بالكامل\?</string>
     <string name="watch_history_deleted">تم حذف سجل المشاهدة.</string>
     <string name="clear_search_history_title">محو سجل البحث</string>
@@ -517,4 +517,7 @@
     <string name="downloads_storage_use_saf_title">استخدام آمن</string>
     <string name="downloads_storage_use_saf_summary">يسمح إطار الوصول إلى التخزين بالتنزيلات على بطاقة SD خارجية.
 \nملاحظة: بعض الأجهزة غير متوافقة</string>
+    <string name="clear_playback_states_title">حذف مواقف التشغيل</string>
+    <string name="clear_playback_states_summary">حذف كل مواقف التشغيل</string>
+    <string name="delete_playback_states_alert">حذف كل مواقف التشغيل؟</string>
 </resources>
