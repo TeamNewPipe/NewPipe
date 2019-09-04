@@ -449,7 +449,7 @@ otevření ve vyskakovacím okně</string>
     <string name="permission_denied">Akce odmítnuta systémem</string>
     <string name="download_failed">Stahování se nezdařilo</string>
     <string name="download_finished">Stahování dokončeno</string>
-    <string name="download_finished_more">% s stahování dokončeno</string>
+    <string name="download_finished_more">%s stahování dokončeno</string>
     <string name="generate_unique_name">Vytvořit jedinečný název</string>
     <string name="overwrite">Přepsat</string>
     <string name="overwrite_unrelated_warning">Stažený soubor s tímto názvem již existuje</string>

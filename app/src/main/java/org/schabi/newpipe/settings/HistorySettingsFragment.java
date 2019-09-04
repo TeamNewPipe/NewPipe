@@ -19,6 +19,7 @@ import io.reactivex.disposables.Disposable;
 public class HistorySettingsFragment extends BasePreferenceFragment {
     private String cacheWipeKey;
     private String viewsHistoryClearKey;
+    private String playbackStatesClearKey;
     private String searchHistoryClearKey;
     private HistoryRecordManager recordManager;
     private CompositeDisposable disposables;
@@ -28,6 +29,7 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
         super.onCreate(savedInstanceState);
         cacheWipeKey = getString(R.string.metadata_cache_wipe_key);
         viewsHistoryClearKey = getString(R.string.clear_views_history_key);
+        playbackStatesClearKey = getString(R.string.clear_playback_states_key);
         searchHistoryClearKey = getString(R.string.clear_search_history_key);
         recordManager = new HistoryRecordManager(getActivity());
         disposables = new CompositeDisposable();
@@ -63,7 +65,7 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
                                                 ErrorActivity.ErrorInfo.make(
                                                         UserAction.DELETE_FROM_HISTORY,
                                                         "none",
-                                                        "Delete view history",
+                                                        "Delete playback states",
                                                         R.string.general_error)));
 
                         final Disposable onDelete = recordManager.deleteWholeStreamHistory()
@@ -96,6 +98,33 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
                         disposables.add(onDeletePlaybackStates);
                         disposables.add(onClearOrphans);
                         disposables.add(onDelete);
+                    }))
+                    .create()
+                    .show();
+        }
+
+        if (preference.getKey().equals(playbackStatesClearKey)) {
+            new AlertDialog.Builder(getActivity())
+                    .setTitle(R.string.delete_playback_states_alert)
+                    .setNegativeButton(R.string.cancel, ((dialog, which) -> dialog.dismiss()))
+                    .setPositiveButton(R.string.delete, ((dialog, which) -> {
+
+                        final Disposable onDeletePlaybackStates = recordManager.deleteCompelteStreamStateHistory()
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(
+                                        howManyDeleted -> Toast.makeText(getActivity(),
+                                                R.string.watch_history_states_deleted,
+                                                Toast.LENGTH_SHORT).show(),
+                                        throwable -> ErrorActivity.reportError(getContext(),
+                                                throwable,
+                                                SettingsActivity.class, null,
+                                                ErrorActivity.ErrorInfo.make(
+                                                        UserAction.DELETE_FROM_HISTORY,
+                                                        "none",
+                                                        "Delete playback states",
+                                                        R.string.general_error)));
+
+                        disposables.add(onDeletePlaybackStates);
                     }))
                     .create()
                     .show();

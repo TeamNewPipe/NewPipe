@@ -276,7 +276,7 @@
     <string name="no_valid_zip_file">Keine gültige ZIP-Datei</string>
     <string name="could_not_import_all_files">Warnung: Nicht alle Dateien konnten importiert werden.</string>
     <string name="override_current_data">Dies wird deine aktuellen Einstellungen überschreiben.</string>
-    <string name="show_info">Info anzeigen</string>
+    <string name="show_info">Infos anzeigen</string>
     <string name="tab_bookmarks">Lesezeichen für Wiedergabelisten</string>
     <string name="controls_add_to_playlist_title">Hinzufügen zu</string>
     <string name="detail_drag_description">Zum Neuordnen ziehen</string>
@@ -402,7 +402,7 @@
     <string name="playlists">Wiedergabelisten</string>
     <string name="tracks">Titel</string>
     <string name="users">Benutzer</string>
-    <string name="unsubscribe">Abmelden</string>
+    <string name="unsubscribe">Abbestellen</string>
     <string name="tab_new">Neuer Tab</string>
     <string name="tab_choose">Tab wählen</string>
     <string name="volume_gesture_control_title">Gestensteuerung für Lautstärke</string>
