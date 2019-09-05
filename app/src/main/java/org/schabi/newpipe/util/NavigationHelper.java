@@ -17,16 +17,19 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.SparseArray;
 import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.RouterActivity;
 import org.schabi.newpipe.about.AboutActivity;
 import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.download.DownloadSetting;
+import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
@@ -38,11 +41,12 @@ import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
-import org.schabi.newpipe.local.bookmark.BookmarkFragment;
-import org.schabi.newpipe.local.feed.FeedFragment;
+import org.schabi.newpipe.fragments.list.comments.CommentsFragment;
 import org.schabi.newpipe.fragments.list.kiosk.KioskFragment;
 import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
+import org.schabi.newpipe.local.bookmark.BookmarkFragment;
+import org.schabi.newpipe.local.feed.FeedFragment;
 import org.schabi.newpipe.local.history.StatisticsPlaylistFragment;
 import org.schabi.newpipe.local.playlist.LocalPlaylistFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionFragment;
@@ -59,6 +63,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.StreamItemAdapter.StreamSizeWrapper;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -68,6 +73,10 @@ import io.reactivex.Completable;
 import io.reactivex.CompletableEmitter;
 import io.reactivex.CompletableOnSubscribe;
 import io.reactivex.functions.Consumer;
+import us.shandian.giga.io.StoredDirectoryHelper;
+import us.shandian.giga.io.StoredFileHelper;
+import us.shandian.giga.postprocessing.Postprocessing;
+import us.shandian.giga.service.DownloadManagerService;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class NavigationHelper {
@@ -82,12 +91,14 @@ public class NavigationHelper {
     public static Intent getPlayerIntent(@NonNull final Context context,
                                          @NonNull final Class targetClazz,
                                          @NonNull final PlayQueue playQueue,
-                                         @Nullable final String quality) {
+                                         @Nullable final String quality,
+                                         final boolean resumePlayback) {
         Intent intent = new Intent(context, targetClazz);
 
         final String cacheKey = SerializedCache.getInstance().put(playQueue, PlayQueue.class);
         if (cacheKey != null) intent.putExtra(VideoPlayer.PLAY_QUEUE_KEY, cacheKey);
         if (quality != null) intent.putExtra(VideoPlayer.PLAYBACK_QUALITY, quality);
+        intent.putExtra(VideoPlayer.RESUME_PLAYBACK, resumePlayback);
 
         return intent;
     }
@@ -95,16 +106,18 @@ public class NavigationHelper {
     @NonNull
     public static Intent getPlayerIntent(@NonNull final Context context,
                                          @NonNull final Class targetClazz,
-                                         @NonNull final PlayQueue playQueue) {
-        return getPlayerIntent(context, targetClazz, playQueue, null);
+                                         @NonNull final PlayQueue playQueue,
+                                         final boolean resumePlayback) {
+        return getPlayerIntent(context, targetClazz, playQueue, null, resumePlayback);
     }
 
     @NonNull
     public static Intent getPlayerEnqueueIntent(@NonNull final Context context,
                                                 @NonNull final Class targetClazz,
                                                 @NonNull final PlayQueue playQueue,
-                                                final boolean selectOnAppend) {
-        return getPlayerIntent(context, targetClazz, playQueue)
+                                                final boolean selectOnAppend,
+                                                final boolean resumePlayback) {
+        return getPlayerIntent(context, targetClazz, playQueue, resumePlayback)
                 .putExtra(BasePlayer.APPEND_ONLY, true)
                 .putExtra(BasePlayer.SELECT_ON_APPEND, selectOnAppend);
     }
@@ -117,33 +130,34 @@ public class NavigationHelper {
                                          final float playbackSpeed,
                                          final float playbackPitch,
                                          final boolean playbackSkipSilence,
-                                         @Nullable final String playbackQuality) {
-        return getPlayerIntent(context, targetClazz, playQueue, playbackQuality)
+                                         @Nullable final String playbackQuality,
+                                         final boolean resumePlayback) {
+        return getPlayerIntent(context, targetClazz, playQueue, playbackQuality, resumePlayback)
                 .putExtra(BasePlayer.REPEAT_MODE, repeatMode)
                 .putExtra(BasePlayer.PLAYBACK_SPEED, playbackSpeed)
                 .putExtra(BasePlayer.PLAYBACK_PITCH, playbackPitch)
                 .putExtra(BasePlayer.PLAYBACK_SKIP_SILENCE, playbackSkipSilence);
     }
 
-    public static void playOnMainPlayer(final Context context, final PlayQueue queue) {
-        final Intent playerIntent = getPlayerIntent(context, MainVideoPlayer.class, queue);
+    public static void playOnMainPlayer(final Context context, final PlayQueue queue, final boolean resumePlayback) {
+        final Intent playerIntent = getPlayerIntent(context, MainVideoPlayer.class, queue, resumePlayback);
         playerIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(playerIntent);
     }
 
-    public static void playOnPopupPlayer(final Context context, final PlayQueue queue) {
+    public static void playOnPopupPlayer(final Context context, final PlayQueue queue, final boolean resumePlayback) {
         if (!PermissionHelper.isPopupEnabled(context)) {
             PermissionHelper.showPopupEnablementToast(context);
             return;
         }
 
         Toast.makeText(context, R.string.popup_playing_toast, Toast.LENGTH_SHORT).show();
-        startService(context, getPlayerIntent(context, PopupVideoPlayer.class, queue));
+        startService(context, getPlayerIntent(context, PopupVideoPlayer.class, queue, resumePlayback));
     }
 
-    public static void playOnBackgroundPlayer(final Context context, final PlayQueue queue) {
+    public static void playOnBackgroundPlayer(final Context context, final PlayQueue queue, final boolean resumePlayback) {
         Toast.makeText(context, R.string.background_player_playing_toast, Toast.LENGTH_SHORT).show();
-        startService(context, getPlayerIntent(context, BackgroundPlayer.class, queue));
+        startService(context, getPlayerIntent(context, BackgroundPlayer.class, queue, resumePlayback));
     }
 
     public static void downloadPlaylist(final PlaylistFragment context, final PlayQueue queue) {
@@ -159,7 +173,7 @@ public class NavigationHelper {
                                               DownloadSetting downloadSetting) {
         if (downloadSetting != null) {
             Completable.create(emitter -> {
-                while(itemIterator.hasNext()) {
+                while (itemIterator.hasNext()) {
                     PlayQueueItem queueItem = itemIterator.next();
                     queueItem.getStream().subscribe(streamInfo -> startDownloadFromDownloadSetting(activity,
                             downloadSetting, streamInfo), activity::onError);
@@ -184,67 +198,167 @@ public class NavigationHelper {
 
     /**
      * Starts downloading video without invoking the {@link DownloadDialog}
+     *
      * @param activity
      * @param downloadSetting
      * @param streamInfo
      */
     private static void startDownloadFromDownloadSetting(PlaylistFragment activity, DownloadSetting downloadSetting, StreamInfo streamInfo) {
-        Stream finalStream = null;
+
+        DownloadManagerService.startMission(activity.getContext(), refactorDownloadSetting(activity, downloadSetting, streamInfo));
+    }
+
+    /**
+     * Refactors the download setting for the new stream info
+     *
+     * @param activity
+     * @param downloadSetting
+     * @param streamInfo
+     * @return
+     */
+    private static DownloadSetting refactorDownloadSetting(PlaylistFragment activity, DownloadSetting downloadSetting,
+                                                           StreamInfo streamInfo) {
+        Stream selectedStream;
+        String[] urls;
+        String psName = null;
+        String[] psArgs = null;
+        String secondaryStreamUrl = null;
+        long nearLength = 0;
+        String fileName = streamInfo.getName().concat(".");
+        String mime;
+
 
         List<VideoStream> sortedVideoStream = ListHelper.getSortedStreamVideosList(activity.getActivity(),
                 streamInfo.getVideoStreams(), streamInfo.getVideoOnlyStreams(), false);
 
-        switch (downloadSetting.getSetting()) {
-            case DownloadSetting.SETTING_AUDIO:
-                for(AudioStream stream : streamInfo.getAudioStreams()) {
-                    if (stream.getFormat().getName().equals(downloadSetting.getStream().getFormat().getName())) {
-                        finalStream = stream;
-                    }
-                }
-                if (finalStream == null) {
-                    finalStream = streamInfo.getAudioStreams().get(ListHelper.getDefaultAudioFormat(activity.getContext(),
-                            streamInfo.getAudioStreams()));
-                }
-                break;
-            case DownloadSetting.SETTING_VIDEO:
-                for(VideoStream stream : sortedVideoStream) {
-                    if (stream.getFormat().getName().equals(
-                            downloadSetting.getStream().getFormat().getName())) {
-                        finalStream = stream;
-                    }
-                }
-                if (finalStream == null) {
-                    finalStream = sortedVideoStream.get(ListHelper.getDefaultResolutionIndex(activity.getContext(),
-                            sortedVideoStream));
-                }
-                break;
-            case DownloadSetting.SETTING_SUBTITLES:
-                for(SubtitlesStream stream : streamInfo.getSubtitles()) {
-                    if (stream.getFormat().getName().equals(downloadSetting.getStream().getFormat().getName())) {
-                        finalStream = stream;
-                    }
-                }
-                if (finalStream == null) {
-                    finalStream = streamInfo.getSubtitles().get(activity.getDefaultSubtitleStreamIndex(streamInfo.getSubtitles()));
-                }
-                break;
-            default:
-                return;
-        }
-
         StreamItemAdapter.StreamSizeWrapper<VideoStream> wrappedVideoStreams = new StreamSizeWrapper<>(sortedVideoStream, activity.getContext());
         StreamItemAdapter.StreamSizeWrapper<AudioStream> wrappedAudioStreams = new StreamSizeWrapper<>(streamInfo.getAudioStreams(), activity.getContext());
-        StreamItemAdapter<VideoStream, AudioStream> videoStreamsAdapter = new StreamItemAdapter<>(activity.getContext(),
-                wrappedVideoStreams, activity.getSecondaryStream(wrappedVideoStreams, wrappedAudioStreams));
-        activity.downloadSelected(activity.getContext(), streamInfo.getUrl(), finalStream,
-                downloadSetting.getLocation(), streamInfo, "",
-                downloadSetting.getSetting().charAt(0), downloadSetting.getThreadCount(),
-                videoStreamsAdapter, wrappedVideoStreams
-        );
+        StreamItemAdapter.StreamSizeWrapper<SubtitlesStream> wrappedSubtitleStreams = new StreamSizeWrapper<>(streamInfo.getSubtitles(), activity.getContext());
+
+        SparseArray<SecondaryStreamHelper<AudioStream>> secondaryAudioStreams = new SparseArray<>(4);
+        for (int i = 0; i < sortedVideoStream.size(); i++) {
+            if (!sortedVideoStream.get(i).isVideoOnly()) continue;
+            AudioStream audioStream = SecondaryStreamHelper.getAudioStreamFor(wrappedAudioStreams.getStreamsList(), sortedVideoStream.get(i));
+
+            if (audioStream != null) {
+                secondaryAudioStreams.append(i, new SecondaryStreamHelper<>(wrappedAudioStreams, audioStream));
+            }
+        }
+
+        StreamItemAdapter<AudioStream, Stream> audioStreamsAdapter = new StreamItemAdapter<>(activity.getActivity(),
+                wrappedAudioStreams);
+        StreamItemAdapter<VideoStream, AudioStream> videoStreamsAdapter = new StreamItemAdapter<>(activity.getActivity(),
+                wrappedVideoStreams, secondaryAudioStreams);
+        StreamItemAdapter<SubtitlesStream, Stream> subtitleStreamsAdapter = new StreamItemAdapter<>(activity.getActivity(),
+                wrappedSubtitleStreams);
+
+        switch (downloadSetting.getKind()) {
+            case 'a':
+                AudioStream audioStream = null;
+                for (AudioStream currentStream : audioStreamsAdapter.getAll()) {
+                    if (currentStream.getAverageBitrate() == downloadSetting.getAudioBitRate()) {
+                        audioStream = currentStream;
+                        break;
+                    }
+                }
+                if (audioStream == null) {
+                    audioStream = audioStreamsAdapter.getItem(0);
+                }
+                if (audioStream.getFormat() == MediaFormat.M4A) {
+                    psName = Postprocessing.ALGORITHM_M4A_NO_DASH;
+                }
+                fileName += audioStream.getFormat().getSuffix();
+                mime = audioStream.getFormat().getMimeType();
+                selectedStream = audioStream;
+                break;
+            case 'v':
+                VideoStream videoStream = null;
+                for (VideoStream currentStream : sortedVideoStream) {
+                    if (currentStream.getResolution().equals(downloadSetting.getVideoResolution())) {
+                        videoStream = currentStream;
+                        break;
+                    }
+                }
+                if (videoStream == null) {
+                    videoStream = sortedVideoStream.get(0);
+                }
+                SecondaryStreamHelper<AudioStream> secondaryStream = videoStreamsAdapter
+                        .getAllSecondary()
+                        .get(wrappedVideoStreams.getStreamsList().indexOf(videoStream));
+                if (secondaryStream != null) {
+                    secondaryStreamUrl = secondaryStream.getStream().getUrl();
+
+                    if (videoStream.getFormat() == MediaFormat.MPEG_4)
+                        psName = Postprocessing.ALGORITHM_MP4_FROM_DASH_MUXER;
+                    else
+                        psName = Postprocessing.ALGORITHM_WEBM_MUXER;
+
+                    psArgs = null;
+                    long videoSize = wrappedVideoStreams.getSizeInBytes(videoStream);
+
+                    // set nearLength, only, if both sizes are fetched or known. This probably
+                    // does not work on slow networks but is later updated in the downloader
+                    if (secondaryStream.getSizeInBytes() > 0 && videoSize > 0) {
+                        nearLength = secondaryStream.getSizeInBytes() + videoSize;
+                    }
+                }
+                fileName += videoStream.getFormat().getSuffix();
+                mime = videoStream.getFormat().getMimeType();
+                selectedStream = videoStream;
+                break;
+            case 's':
+                SubtitlesStream subtitlesStream = null;
+                for (SubtitlesStream currentStream : subtitleStreamsAdapter.getAll()) {
+                    if (currentStream.getLocale().equals(downloadSetting.getSubtitleLocale())) {
+                        subtitlesStream = currentStream;
+                        break;
+                    }
+                }
+                if (subtitlesStream == null) {
+                    subtitlesStream = subtitleStreamsAdapter.getItem(0);
+                }
+                if (subtitlesStream.getFormat() == MediaFormat.TTML) {
+                    psName = Postprocessing.ALGORITHM_TTML_CONVERTER;
+                    psArgs = new String[]{
+                            subtitlesStream.getFormat().getSuffix(),
+                            "false",// ignore empty frames
+                            "false",// detect youtube duplicate lines
+                    };
+                }
+                fileName += subtitlesStream.getFormat() == MediaFormat.TTML ? MediaFormat.SRT.suffix :
+                        subtitlesStream.getFormat().suffix;
+                mime = subtitlesStream.getFormat().getMimeType();
+                selectedStream = subtitlesStream;
+                break;
+            default:
+                return null;
+        }
+
+        if (secondaryStreamUrl == null) {
+            urls = new String[]{selectedStream.getUrl()};
+        } else {
+            urls = new String[]{selectedStream.getUrl(), secondaryStreamUrl};
+        }
+        StoredFileHelper storedFileHelper = downloadSetting.getStoredFileHelper();
+        try {
+            StoredDirectoryHelper storedDirectoryHelper = new StoredDirectoryHelper(activity.getContext(),
+                    storedFileHelper.getParentUri(), storedFileHelper.getTag());
+            StoredFileHelper storedFileHelperNew = storedDirectoryHelper.createFile(fileName, mime);
+            DownloadSetting downloadSettingNew = new DownloadSetting(storedFileHelperNew, downloadSetting.getThreadCount(),
+                    urls, streamInfo.getUrl(), downloadSetting.getKind(), psName, psArgs,
+                    nearLength, downloadSetting.getVideoResolution(), downloadSetting.getAudioBitRate(),
+                    downloadSetting.getSubtitleLocale());
+            return downloadSettingNew;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+
     }
 
     /**
      * Invokes the {@link DownloadDialog} for each play queue item
+     *
      * @param activity
      * @param streamInfo
      * @param itemIterator
@@ -264,11 +378,11 @@ public class NavigationHelper {
         downloadDialog.show(activity.getActivity().getSupportFragmentManager(), "downloadDialog");
     }
 
-    public static void enqueueOnPopupPlayer(final Context context, final PlayQueue queue) {
-        enqueueOnPopupPlayer(context, queue, false);
+    public static void enqueueOnPopupPlayer(final Context context, final PlayQueue queue, final boolean resumePlayback) {
+        enqueueOnPopupPlayer(context, queue, false, resumePlayback);
     }
 
-    public static void enqueueOnPopupPlayer(final Context context, final PlayQueue queue, boolean selectOnAppend) {
+    public static void enqueueOnPopupPlayer(final Context context, final PlayQueue queue, boolean selectOnAppend, final boolean resumePlayback) {
         if (!PermissionHelper.isPopupEnabled(context)) {
             PermissionHelper.showPopupEnablementToast(context);
             return;
@@ -276,17 +390,17 @@ public class NavigationHelper {
 
         Toast.makeText(context, R.string.popup_playing_append, Toast.LENGTH_SHORT).show();
         startService(context,
-                getPlayerEnqueueIntent(context, PopupVideoPlayer.class, queue, selectOnAppend));
+                getPlayerEnqueueIntent(context, PopupVideoPlayer.class, queue, selectOnAppend, resumePlayback));
     }
 
-    public static void enqueueOnBackgroundPlayer(final Context context, final PlayQueue queue) {
-        enqueueOnBackgroundPlayer(context, queue, false);
+    public static void enqueueOnBackgroundPlayer(final Context context, final PlayQueue queue, final boolean resumePlayback) {
+        enqueueOnBackgroundPlayer(context, queue, false, resumePlayback);
     }
 
-    public static void enqueueOnBackgroundPlayer(final Context context, final PlayQueue queue, boolean selectOnAppend) {
+    public static void enqueueOnBackgroundPlayer(final Context context, final PlayQueue queue, boolean selectOnAppend, final boolean resumePlayback) {
         Toast.makeText(context, R.string.background_player_append, Toast.LENGTH_SHORT).show();
         startService(context,
-                getPlayerEnqueueIntent(context, BackgroundPlayer.class, queue, selectOnAppend));
+                getPlayerEnqueueIntent(context, BackgroundPlayer.class, queue, selectOnAppend, resumePlayback));
     }
 
     public static void startService(@NonNull final Context context, @NonNull final Intent intent) {
@@ -442,6 +556,18 @@ public class NavigationHelper {
                 .commit();
     }
 
+    public static void openCommentsFragment(
+            FragmentManager fragmentManager,
+            int serviceId,
+            String url,
+            String name) {
+        if (name == null) name = "";
+        fragmentManager.beginTransaction().setCustomAnimations(R.anim.switch_service_in, R.anim.switch_service_out)
+                .replace(R.id.fragment_holder, CommentsFragment.getInstance(serviceId, url, name))
+                .addToBackStack(null)
+                .commit();
+    }
+
     public static void openPlaylistFragment(FragmentManager fragmentManager,
                                             int serviceId,
                                             String url,
@@ -542,6 +668,13 @@ public class NavigationHelper {
         context.startActivity(mIntent);
     }
 
+    public static void openRouterActivity(Context context, String url) {
+        Intent mIntent = new Intent(context, RouterActivity.class);
+        mIntent.setData(Uri.parse(url));
+        mIntent.putExtra(RouterActivity.internalRouteKey, true);
+        context.startActivity(mIntent);
+    }
+
     public static void openAbout(Context context) {
         Intent intent = new Intent(context, AboutActivity.class);
         context.startActivity(intent);
@@ -639,6 +772,7 @@ public class NavigationHelper {
 
     /**
      * Start an activity to install Kore
+     *
      * @param context the context
      */
     public static void installKore(Context context) {
@@ -647,13 +781,13 @@ public class NavigationHelper {
 
     /**
      * Start Kore app to show a video on Kodi
-     *
+     * <p>
      * For a list of supported urls see the
      * <a href="https://github.com/xbmc/Kore/blob/master/app/src/main/AndroidManifest.xml">
-     *     Kore source code
+     * Kore source code
      * </a>.
      *
-     * @param context the context to use
+     * @param context  the context to use
      * @param videoURL the url to the video
      */
     public static void playWithKore(Context context, Uri videoURL) {

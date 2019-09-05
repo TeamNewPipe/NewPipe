@@ -2,6 +2,7 @@ package org.schabi.newpipe.player.playback;
 
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
+import android.util.Pair;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.Format;
@@ -17,7 +18,7 @@ import com.google.android.exoplayer2.util.Assertions;
  * is mostly a copy-paste from {@link DefaultTrackSelector}.
  *
  * This is a hack and should be removed once ExoPlayer fixes language normalization to accept
- * a broader set of languages. 
+ * a broader set of languages.
  * */
 public class CustomTrackSelector extends DefaultTrackSelector {
     private static final int WITHIN_RENDERER_CAPABILITIES_BONUS = 1000;
@@ -52,8 +53,8 @@ public class CustomTrackSelector extends DefaultTrackSelector {
 
     /** @see DefaultTrackSelector#selectTextTrack(TrackGroupArray, int[][], Parameters) */
     @Override
-    protected TrackSelection selectTextTrack(TrackGroupArray groups, int[][] formatSupport,
-                                             Parameters params) {
+    protected Pair<TrackSelection, Integer> selectTextTrack(TrackGroupArray groups, int[][] formatSupport,
+                                                            Parameters params) {
         TrackGroup selectedGroup = null;
         int selectedTrackIndex = 0;
         int selectedTrackScore = 0;
@@ -106,7 +107,9 @@ public class CustomTrackSelector extends DefaultTrackSelector {
                 }
             }
         }
-        return selectedGroup == null ? null
-                : new FixedTrackSelection(selectedGroup, selectedTrackIndex);
+        return selectedGroup == null
+                ? null
+                : Pair.create(
+                new FixedTrackSelection(selectedGroup, selectedTrackIndex), selectedTrackScore);
     }
 }

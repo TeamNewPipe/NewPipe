@@ -36,12 +36,12 @@ import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
-import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.playqueue.ChannelPlayQueue;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -74,16 +74,22 @@ import static org.schabi.newpipe.util.ThemeHelper.resolveResourceIdFromAttr;
  */
 public class RouterActivity extends AppCompatActivity {
 
-    @State protected int currentServiceId = -1;
+    @State
+    protected int currentServiceId = -1;
     private StreamingService currentService;
-    @State protected LinkType currentLinkType;
-    @State protected int selectedRadioPosition = -1;
+    @State
+    protected LinkType currentLinkType;
+    @State
+    protected int selectedRadioPosition = -1;
     protected int selectedPreviously = -1;
 
     protected String currentUrl;
+    protected boolean internalRoute = false;
     protected final CompositeDisposable disposables = new CompositeDisposable();
 
     private boolean selectionIsDownload = false;
+
+    public static final String internalRouteKey = "internalRoute";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,10 +100,12 @@ public class RouterActivity extends AppCompatActivity {
             currentUrl = getUrl(getIntent());
 
             if (TextUtils.isEmpty(currentUrl)) {
-                Toast.makeText(this, R.string.invalid_url_toast, Toast.LENGTH_LONG).show();
+                handleText();
                 finish();
             }
         }
+
+        internalRoute = getIntent().getBooleanExtra(internalRouteKey, false);
 
         setTheme(ThemeHelper.isLightThemeSelected(this)
                 ? R.style.RouterActivityThemeLight : R.style.RouterActivityThemeDark);
@@ -112,7 +120,7 @@ public class RouterActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        
+
         handleUrl(currentUrl);
     }
 
@@ -252,7 +260,7 @@ public class RouterActivity extends AppCompatActivity {
                 .setNegativeButton(R.string.just_once, dialogButtonsClickListener)
                 .setPositiveButton(R.string.always, dialogButtonsClickListener)
                 .setOnDismissListener((dialog) -> {
-                    if(!selectionIsDownload) finish();
+                    if (!selectionIsDownload) finish();
                 })
                 .create();
 
@@ -353,6 +361,15 @@ public class RouterActivity extends AppCompatActivity {
         positiveButton.setEnabled(state);
     }
 
+    private void handleText() {
+        String searchString = getIntent().getStringExtra(Intent.EXTRA_TEXT);
+        int serviceId = getIntent().getIntExtra(Constants.KEY_SERVICE_ID, 0);
+        Intent intent = new Intent(getThemeWrapperContext(), MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        NavigationHelper.openSearch(getThemeWrapperContext(), serviceId, searchString);
+    }
+
     private void handleChoice(final String selectedChoiceKey) {
         final List<String> validChoicesList = Arrays.asList(getResources().getStringArray(R.array.preferred_open_action_values_list));
         if (validChoicesList.contains(selectedChoiceKey)) {
@@ -383,8 +400,10 @@ public class RouterActivity extends AppCompatActivity {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(intent -> {
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        if (!internalRoute) {
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        }
                         startActivity(intent);
 
                         finish();
@@ -431,8 +450,8 @@ public class RouterActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        for (int i: grantResults){
-            if (i == PackageManager.PERMISSION_DENIED){
+        for (int i : grantResults) {
+            if (i == PackageManager.PERMISSION_DENIED) {
                 finish();
                 return;
             }
@@ -444,7 +463,8 @@ public class RouterActivity extends AppCompatActivity {
 
     private static class AdapterChoiceItem {
         final String description, key;
-        @DrawableRes final int icon;
+        @DrawableRes
+        final int icon;
 
         AdapterChoiceItem(String key, String description, int icon) {
             this.description = description;
@@ -542,7 +562,8 @@ public class RouterActivity extends AppCompatActivity {
 
                 final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
                 boolean isExtVideoEnabled = preferences.getBoolean(getString(R.string.use_external_video_player_key), false);
-                boolean isExtAudioEnabled = preferences.getBoolean(getString(R.string.use_external_audio_player_key), false);;
+                boolean isExtAudioEnabled = preferences.getBoolean(getString(R.string.use_external_audio_player_key), false);
+                ;
 
                 PlayQueue playQueue;
                 String playerChoice = choice.playerChoice;
@@ -558,7 +579,7 @@ public class RouterActivity extends AppCompatActivity {
                         playQueue = new SinglePlayQueue((StreamInfo) info);
 
                         if (playerChoice.equals(videoPlayerKey)) {
-                            NavigationHelper.playOnMainPlayer(this, playQueue);
+                            NavigationHelper.playOnMainPlayer(this, playQueue, true);
                         } else if (playerChoice.equals(backgroundPlayerKey)) {
                             NavigationHelper.enqueueOnBackgroundPlayer(this, playQueue, true);
                         } else if (playerChoice.equals(popupPlayerKey)) {
@@ -571,11 +592,11 @@ public class RouterActivity extends AppCompatActivity {
                     playQueue = info instanceof ChannelInfo ? new ChannelPlayQueue((ChannelInfo) info) : new PlaylistPlayQueue((PlaylistInfo) info);
 
                     if (playerChoice.equals(videoPlayerKey)) {
-                        NavigationHelper.playOnMainPlayer(this, playQueue);
+                        NavigationHelper.playOnMainPlayer(this, playQueue, true);
                     } else if (playerChoice.equals(backgroundPlayerKey)) {
-                        NavigationHelper.playOnBackgroundPlayer(this, playQueue);
+                        NavigationHelper.playOnBackgroundPlayer(this, playQueue, true);
                     } else if (playerChoice.equals(popupPlayerKey)) {
-                        NavigationHelper.playOnPopupPlayer(this, playQueue);
+                        NavigationHelper.playOnPopupPlayer(this, playQueue, true);
                     }
                 }
             };

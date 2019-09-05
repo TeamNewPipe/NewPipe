@@ -11,7 +11,7 @@
     <string name="saved_tabs_key" translatable="false">saved_tabs_key</string>
 
     <!-- Key values -->
-    <string name="download_path_key" translatable="false">download_path</string>
+    <string name="download_path_video_key" translatable="false">download_path</string>
     <string name="download_path_audio_key" translatable="false">download_path_audio</string>
 
     <string name="use_external_video_player_key" translatable="false">use_external_video_player</string>
@@ -138,6 +138,8 @@
     <string name="show_search_suggestions_key" translatable="false">show_search_suggestions</string>
     <string name="show_play_with_kodi_key" translatable="false">show_play_with_kodi</string>
     <string name="show_next_video_key" translatable="false">show_next_video</string>
+    <string name="show_comments_key" translatable="false">show_comments</string>
+    <string name="stream_info_selected_tab_key" translatable="false">stream_info_selected_tab</string>
     <string name="show_hold_to_append_key" translatable="false">show_hold_to_append</string>
     <string name="default_language_value">en</string>
     <string name="default_country_value">GB</string>
@@ -148,24 +150,34 @@
     <string name="enable_search_history_key" translatable="false">enable_search_history</string>
     <string name="enable_watch_history_key" translatable="false">enable_watch_history</string>
     <string name="main_page_content_key" translatable="false">main_page_content</string>
+    <string name="enable_playback_resume_key" translatable="false">enable_playback_resume</string>
+    <string name="enable_playback_state_lists_key" translatable="false">enable_playback_state_lists</string>
 
-    <string name="import_data">import_data</string>
-    <string name="export_data">export_data</string>
+    <string name="import_data" translatable="false">import_data</string>
+    <string name="export_data" translatable="false">export_data</string>
 
     <string name="download_thumbnail_key" translatable="false">download_thumbnail_key</string>
 
     <string name="metadata_cache_wipe_key" translatable="false">cache_wipe_key</string>
     <string name="clear_views_history_key" translatable="false">clear_play_history</string>
+    <string name="clear_playback_states_key" translatable="false">clear_playback_states</string>
     <string name="clear_search_history_key" translatable="false">clear_search_history</string>
 
+    <string name="downloads_storage_ask" translatable="false">downloads_storage_ask</string>
+    <string name="storage_use_saf" translatable="false">storage_use_saf</string>
+
     <!-- FileName Downloads  -->
-    <string name="settings_file_charset_key" translatable="false">file_rename</string>
+    <string name="settings_file_charset_key" translatable="false">file_rename_charset</string>
     <string name="settings_file_replacement_character_key" translatable="false">file_replacement_character</string>
     <string name="settings_file_replacement_character_default_value" translatable="false">_</string>
 
+
+    <string name="charset_letters_and_digits_value" translatable="false">CHARSET_LETTERS_AND_DIGITS</string>
+    <string name="charset_most_special_value" translatable="false">CHARSET_MOST_SPECIAL</string>
+
     <string-array name="settings_filename_charset" translatable="false">
         <item>@string/charset_letters_and_digits_value</item>
-        <item>@string/charset_most_special_characters_value</item>
+        <item>@string/charset_most_special_value</item>
     </string-array>
 
     <string-array name="settings_filename_charset_name" translatable="false">
@@ -173,8 +185,8 @@
         <item>@string/charset_most_special_characters</item>
     </string-array>
 
-    <string name="default_file_charset_value" translatable="false">@string/charset_most_special_characters_value</string>
-    
+    <string name="default_file_charset_value" translatable="false">@string/charset_most_special_value</string>
+
     <string name="downloads_maximum_retry" translatable="false">downloads_max_retry</string>
     <string name="downloads_maximum_retry_default" translatable="false">3</string>
     <string-array name="downloads_maximum_retry_list" translatable="false">
@@ -190,6 +202,7 @@
     </string-array>
 
     <string name="downloads_cross_network" translatable="false">cross_network_downloads</string>
+    <string name="downloads_queue_limit" translatable="false">downloads_queue_limit</string>
 
     <string name="default_download_threads" translatable="false">default_download_threads</string>
 
@@ -221,6 +234,10 @@
         <item>@string/download_key</item>
         <item>@string/always_ask_open_action_key</item>
     </string-array>
+
+    <!-- Updates -->
+    <string name="update_app_key" translatable="false">update_app_key</string>
+    <string name="update_pref_screen_key" translatable="false">update_pref_screen_key</string>
 
     <!-- alternatively, load these from some local android data store -->
     <string-array name="language_codes" translatable="false">

@@ -1,64 +1,80 @@
 package org.schabi.newpipe.download;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import java.util.Locale;
 
-import org.schabi.newpipe.extractor.stream.Stream;
+import us.shandian.giga.io.StoredFileHelper;
 
 public class DownloadSetting {
 
-    private Stream videoStream = null;
-    private Stream audioStream = null;
-    private Stream subtitlesStream = null;
-    private String location;
-    private String setting;
-    private int threadCount = -1;
+    private StoredFileHelper storedFileHelper;
+    private int threadCount;
+    private String[] urls;
+    private char kind;
+    private String psName;
+    private String[] psArgs;
+    private Long nearLength;
+    private String source;
+    private String videoResolution;
+    private int audioBitRate;
+    private Locale subtitleLocale;
 
-    public static final String SETTING_VIDEO = "v";
-    public static final String SETTING_AUDIO = "a";
-    public static final String SETTING_SUBTITLES = "s";
-
-    public DownloadSetting(String setting, String location, Stream quality, int threadCount) {
-        this.setting = setting;
-        this.location = location;
+    public DownloadSetting(StoredFileHelper storedFileHelper, int threadCount, String[] urls,
+                           String source, char kind, String psName, String[] psArgs, Long nearLength,
+                           String videoResolution, int audioBitRate, Locale subtitleLocale) {
+        this.storedFileHelper = storedFileHelper;
         this.threadCount = threadCount;
-        switch (setting) {
-            case SETTING_AUDIO:
-                audioStream = quality;
-                break;
-            case SETTING_VIDEO:
-                videoStream = quality;
-                break;
-            case SETTING_SUBTITLES:
-                subtitlesStream = quality;
-                break;
-            default:
-                break;
-        }
+        this.urls = urls;
+        this.kind = kind;
+        this.psName = psName;
+        this.psArgs = psArgs;
+        this.nearLength = nearLength;
+        this.source = source;
+        this.videoResolution = videoResolution;
+        this.audioBitRate = audioBitRate;
+        this.subtitleLocale = subtitleLocale;
     }
 
-    public String getSetting() {
-        return setting;
+    public StoredFileHelper getStoredFileHelper() {
+        return storedFileHelper;
     }
 
     public int getThreadCount() {
         return threadCount;
     }
 
-    public String getLocation() {
-        return location;
+    public String[] getUrls() {
+        return urls;
     }
 
-    public Stream getStream() {
-        switch (setting) {
-            case SETTING_AUDIO:
-                return audioStream;
-            case SETTING_VIDEO:
-                return videoStream;
-            case SETTING_SUBTITLES:
-                return subtitlesStream;
-            default:
-                return null;
-        }
+    public char getKind() {
+        return this.kind;
+    }
+
+    public String getPsName() {
+        return this.psName;
+    }
+
+    public String[] getPsArgs() {
+        return this.psArgs;
+    }
+
+    public Long getNearLength() {
+        return this.nearLength;
+    }
+
+    public String getSource() {
+        return this.source;
+    }
+
+    public String getVideoResolution() {
+        return this.videoResolution;
+    }
+
+    public int getAudioBitRate() {
+        return this.audioBitRate;
+    }
+
+    public Locale getSubtitleLocale() {
+        return this.subtitleLocale;
     }
 }

@@ -1,7 +1,9 @@
 package org.schabi.newpipe.player.playback;
 
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.media.MediaDescriptionCompat;
+import android.support.v4.media.MediaMetadataCompat;
 
 import org.schabi.newpipe.player.BasePlayer;
 import org.schabi.newpipe.player.mediasession.MediaSessionCallback;
@@ -53,6 +55,15 @@ public class BasePlayerMediaSession implements MediaSessionCallback {
                 .setMediaId(String.valueOf(index))
                 .setTitle(item.getTitle())
                 .setSubtitle(item.getUploader());
+
+        // set additional metadata for A2DP/AVRCP
+        Bundle additionalMetadata = new Bundle();
+        additionalMetadata.putString(MediaMetadataCompat.METADATA_KEY_TITLE, item.getTitle());
+        additionalMetadata.putString(MediaMetadataCompat.METADATA_KEY_ARTIST, item.getUploader());
+        additionalMetadata.putLong(MediaMetadataCompat.METADATA_KEY_DURATION, item.getDuration() * 1000);
+        additionalMetadata.putLong(MediaMetadataCompat.METADATA_KEY_TRACK_NUMBER, index + 1);
+        additionalMetadata.putLong(MediaMetadataCompat.METADATA_KEY_NUM_TRACKS, player.getPlayQueue().size());
+        descriptionBuilder.setExtras(additionalMetadata);
 
         final Uri thumbnailUri = Uri.parse(item.getThumbnailUrl());
         if (thumbnailUri != null) descriptionBuilder.setIconUri(thumbnailUri);

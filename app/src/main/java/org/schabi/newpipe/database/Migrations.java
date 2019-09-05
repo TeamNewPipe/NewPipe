@@ -3,15 +3,24 @@ package org.schabi.newpipe.database;
 import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.migration.Migration;
 import android.support.annotation.NonNull;
+import android.util.Log;
+
+import org.schabi.newpipe.BuildConfig;
 
 public class Migrations {
 
     public static final int DB_VER_11_0 = 1;
     public static final int DB_VER_12_0 = 2;
 
+    public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
+    private static final String TAG = Migrations.class.getName();
+
     public static final Migration MIGRATION_11_12 = new Migration(DB_VER_11_0, DB_VER_12_0) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
+            if(DEBUG) {
+                Log.d(TAG, "Start migrating database");
+            }
             /*
             * Unfortunately these queries must be hardcoded due to the possibility of
             * schema and names changing at a later date, thus invalidating the older migration
@@ -56,6 +65,10 @@ public class Migrations {
                     "ORDER BY creation_date DESC");
 
             database.execSQL("DROP TABLE IF EXISTS watch_history");
+
+            if(DEBUG) {
+                Log.d(TAG, "Stop migrating database");
+            }
         }
     };
 }

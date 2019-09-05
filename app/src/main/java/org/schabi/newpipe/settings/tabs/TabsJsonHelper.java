@@ -9,26 +9,17 @@ import com.grack.nanojson.JsonParserException;
 import com.grack.nanojson.JsonStringWriter;
 import com.grack.nanojson.JsonWriter;
 
-import org.schabi.newpipe.settings.tabs.Tab.Type;
+import org.jsoup.helper.StringUtil;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
-import static org.schabi.newpipe.extractor.ServiceList.YouTube;
 
 /**
  * Class to get a JSON representation of a list of tabs, and the other way around.
  */
 public class TabsJsonHelper {
     private static final String JSON_TABS_ARRAY_KEY = "tabs";
-
-    protected static final List<Tab> FALLBACK_INITIAL_TABS_LIST = Collections.unmodifiableList(Arrays.asList(
-            new Tab.KioskTab(YouTube.getServiceId(), "Trending"),
-            Type.SUBSCRIPTIONS.getTab(),
-            Type.BOOKMARKS.getTab()
-    ));
 
     public static class InvalidJsonException extends Exception {
         private InvalidJsonException() {
@@ -48,7 +39,7 @@ public class TabsJsonHelper {
      * Try to reads the passed JSON and returns the list of tabs if no error were encountered.
      * <p>
      * If the JSON is null or empty, or the list of tabs that it represents is empty, the
-     * {@link #FALLBACK_INITIAL_TABS_LIST fallback list} will be returned.
+     * {@link #getDefaultTabs fallback list} will be returned.
      * <p>
      * Tabs with invalid ids (i.e. not in the {@link Tab.Type} enum) will be ignored.
      *
@@ -58,7 +49,7 @@ public class TabsJsonHelper {
      */
     public static List<Tab> getTabsFromJson(@Nullable String tabsJson) throws InvalidJsonException {
         if (tabsJson == null || tabsJson.isEmpty()) {
-            return FALLBACK_INITIAL_TABS_LIST;
+            return getDefaultTabs();
         }
 
         final List<Tab> returnTabs = new ArrayList<>();
@@ -86,12 +77,22 @@ public class TabsJsonHelper {
         }
 
         if (returnTabs.isEmpty()) {
-            return FALLBACK_INITIAL_TABS_LIST;
+            return getDefaultTabs();
         }
 
         return returnTabs;
     }
 
+    public static List<Tab> getDefaultTabs(){
+        List<Tab> tabs = new ArrayList<>();
+        Tab.DefaultKioskTab tab = new Tab.DefaultKioskTab();
+        if(!StringUtil.isBlank(tab.getKioskId())){
+            tabs.add(tab);
+        }
+        tabs.add(Tab.Type.SUBSCRIPTIONS.getTab());
+        tabs.add(Tab.Type.BOOKMARKS.getTab());
+        return Collections.unmodifiableList(tabs);
+    }
     /**
      * Get a JSON representation from a list of tabs.
      *

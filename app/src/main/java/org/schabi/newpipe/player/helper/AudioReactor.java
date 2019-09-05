@@ -12,13 +12,11 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.google.android.exoplayer2.Format;
 import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.audio.AudioRendererEventListener;
-import com.google.android.exoplayer2.decoder.DecoderCounters;
+import com.google.android.exoplayer2.analytics.AnalyticsListener;
 
 public class AudioReactor implements AudioManager.OnAudioFocusChangeListener,
-        AudioRendererEventListener {
+        AnalyticsListener {
 
     private static final String TAG = "AudioFocusReactor";
 
@@ -42,7 +40,7 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener,
         this.player = player;
         this.context = context;
         this.audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-        player.addAudioDebugListener(this);
+        player.addAnalyticsListener(this);
 
         if (SHOULD_BUILD_FOCUS_REQUEST) {
             request = new AudioFocusRequest.Builder(FOCUS_GAIN_TYPE)
@@ -57,7 +55,7 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener,
 
     public void dispose() {
         abandonAudioFocus();
-        player.removeAudioDebugListener(this);
+        player.removeAnalyticsListener(this);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -131,7 +129,7 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener,
     private void onAudioFocusLossCanDuck() {
         Log.d(TAG, "onAudioFocusLossCanDuck() called");
         // Set the volume to 1/10 on ducking
-        animateAudio(player.getVolume(), DUCK_AUDIO_TO);
+        player.setVolume(DUCK_AUDIO_TO);
     }
 
     private void animateAudio(final float from, final float to) {
@@ -164,29 +162,12 @@ public class AudioReactor implements AudioManager.OnAudioFocusChangeListener,
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onAudioSessionId(int i) {
+    public void onAudioSessionId(EventTime eventTime, int audioSessionId) {
         if (!PlayerHelper.isUsingDSP(context)) return;
 
         final Intent intent = new Intent(AudioEffect.ACTION_OPEN_AUDIO_EFFECT_CONTROL_SESSION);
-        intent.putExtra(AudioEffect.EXTRA_AUDIO_SESSION, i);
+        intent.putExtra(AudioEffect.EXTRA_AUDIO_SESSION, audioSessionId);
         intent.putExtra(AudioEffect.EXTRA_PACKAGE_NAME, context.getPackageName());
         context.sendBroadcast(intent);
     }
-
-    @Override
-    public void onAudioEnabled(DecoderCounters decoderCounters) {}
-
-    @Override
-    public void onAudioDecoderInitialized(String s, long l, long l1) {}
-
-    @Override
-    public void onAudioInputFormatChanged(Format format) {}
-
-    @Override
-    public void onAudioSinkUnderrun(int bufferSize,
-                                    long bufferSizeMs,
-                                    long elapsedSinceLastFeedMs) {}
-
-    @Override
-    public void onAudioDisabled(DecoderCounters decoderCounters) {}
 }

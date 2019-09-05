@@ -7,6 +7,7 @@ import android.widget.TextView;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.local.LocalItemBuilder;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 
 import java.text.DateFormat;
 
@@ -31,7 +32,7 @@ public abstract class PlaylistItemHolder extends LocalItemHolder {
     }
 
     @Override
-    public void updateFromItem(final LocalItem localItem, final DateFormat dateFormat) {
+    public void updateFromItem(final LocalItem localItem, HistoryRecordManager historyRecordManager, final DateFormat dateFormat) {
         itemView.setOnClickListener(view -> {
             if (itemBuilder.getOnItemSelectedListener() != null) {
                 itemBuilder.getOnItemSelectedListener().selected(localItem);

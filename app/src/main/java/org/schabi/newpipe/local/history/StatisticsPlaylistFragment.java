@@ -2,13 +2,16 @@ package org.schabi.newpipe.local.history;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -19,15 +22,20 @@ import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
+import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
-import org.schabi.newpipe.local.BaseLocalListFragment;
+import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.info_list.InfoItemDialog;
+import org.schabi.newpipe.local.BaseLocalListFragment;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
+import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
+import org.schabi.newpipe.util.StreamDialogEntry;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.ArrayList;
@@ -104,6 +112,12 @@ public class StatisticsPlaylistFragment
         }
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_history, menu);
+    }
+
     ///////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle - Views
     ///////////////////////////////////////////////////////////////////////////
@@ -153,6 +167,53 @@ public class StatisticsPlaylistFragment
                 }
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_history_clear:
+                new AlertDialog.Builder(activity)
+                        .setTitle(R.string.delete_view_history_alert)
+                        .setNegativeButton(R.string.cancel, ((dialog, which) -> dialog.dismiss()))
+                        .setPositiveButton(R.string.delete, ((dialog, which) -> {
+                            final Disposable onDelete = recordManager.deleteWholeStreamHistory()
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(
+                                            howManyDeleted -> Toast.makeText(getContext(),
+                                                    R.string.watch_history_deleted,
+                                                    Toast.LENGTH_SHORT).show(),
+                                            throwable -> ErrorActivity.reportError(getContext(),
+                                                    throwable,
+                                                    SettingsActivity.class, null,
+                                                    ErrorActivity.ErrorInfo.make(
+                                                            UserAction.DELETE_FROM_HISTORY,
+                                                            "none",
+                                                            "Delete view history",
+                                                            R.string.general_error)));
+
+                            final Disposable onClearOrphans = recordManager.removeOrphanedRecords()
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(
+                                            howManyDeleted -> {},
+                                            throwable -> ErrorActivity.reportError(getContext(),
+                                                    throwable,
+                                                    SettingsActivity.class, null,
+                                                    ErrorActivity.ErrorInfo.make(
+                                                            UserAction.DELETE_FROM_HISTORY,
+                                                            "none",
+                                                            "Delete search history",
+                                                            R.string.general_error)));
+                            disposables.add(onClearOrphans);
+                            disposables.add(onDelete);
+                        }))
+                        .create()
+                        .show();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -250,11 +311,11 @@ public class StatisticsPlaylistFragment
         }
 
         headerPlayAllButton.setOnClickListener(view ->
-                NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));
+                NavigationHelper.playOnMainPlayer(activity, getPlayQueue(), false));
         headerPopupButton.setOnClickListener(view ->
-                NavigationHelper.playOnPopupPlayer(activity, getPlayQueue()));
+                NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(), false));
         headerBackgroundButton.setOnClickListener(view ->
-                NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue()));
+                NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue(), false));
         sortButton.setOnClickListener(view -> toggleSortMode());
 
         hideLoading();
@@ -297,52 +358,44 @@ public class StatisticsPlaylistFragment
         startLoading(true);
     }
 
+    private PlayQueue getPlayQueueStartingAt(StreamStatisticsEntry infoItem) {
+        return getPlayQueue(Math.max(itemListAdapter.getItemsList().indexOf(infoItem), 0));
+    }
+
     private void showStreamDialog(final StreamStatisticsEntry item) {
         final Context context = getContext();
         final Activity activity = getActivity();
-        if (context == null || context.getResources() == null || getActivity() == null) return;
+        if (context == null || context.getResources() == null || activity == null) return;
         final StreamInfoItem infoItem = item.toStreamInfoItem();
 
-        final String[] commands = new String[]{
-                context.getResources().getString(R.string.enqueue_on_background),
-                context.getResources().getString(R.string.enqueue_on_popup),
-                context.getResources().getString(R.string.start_here_on_main),
-                context.getResources().getString(R.string.start_here_on_background),
-                context.getResources().getString(R.string.start_here_on_popup),
-                context.getResources().getString(R.string.delete),
-                context.getResources().getString(R.string.share)
-        };
+        if (infoItem.getStreamType() == StreamType.AUDIO_STREAM) {
+            StreamDialogEntry.setEnabledEntries(
+                    StreamDialogEntry.enqueue_on_background,
+                    StreamDialogEntry.start_here_on_background,
+                    StreamDialogEntry.delete,
+                    StreamDialogEntry.append_playlist,
+                    StreamDialogEntry.share);
+        } else {
+            StreamDialogEntry.setEnabledEntries(
+                    StreamDialogEntry.enqueue_on_background,
+                    StreamDialogEntry.enqueue_on_popup,
+                    StreamDialogEntry.start_here_on_background,
+                    StreamDialogEntry.start_here_on_popup,
+                    StreamDialogEntry.delete,
+                    StreamDialogEntry.append_playlist,
+                    StreamDialogEntry.share);
 
-        final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
-            final int index = Math.max(itemListAdapter.getItemsList().indexOf(item), 0);
-            switch (i) {
-                case 0:
-                    NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(infoItem));
-                    break;
-                case 1:
-                    NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(infoItem));
-                    break;
-                case 2:
-                    NavigationHelper.playOnMainPlayer(context, getPlayQueue(index));
-                    break;
-                case 3:
-                    NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index));
-                    break;
-                case 4:
-                    NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index));
-                    break;
-                case 5:
-                    deleteEntry(index);
-                    break;
-                case 6:
-                    shareUrl(item.toStreamInfoItem().getName(), item.toStreamInfoItem().getUrl());
-                    break;
-                default:
-                    break;
-            }
-        };
+            StreamDialogEntry.start_here_on_popup.setCustomAction(
+                    (fragment, infoItemDuplicate) -> NavigationHelper.playOnPopupPlayer(context, getPlayQueueStartingAt(item), true));
+        }
 
-        new InfoItemDialog(getActivity(), infoItem, commands, actions).show();
+        StreamDialogEntry.start_here_on_background.setCustomAction(
+                (fragment, infoItemDuplicate) -> NavigationHelper.playOnBackgroundPlayer(context, getPlayQueueStartingAt(item), true));
+        StreamDialogEntry.delete.setCustomAction((fragment, infoItemDuplicate) ->
+            deleteEntry(Math.max(itemListAdapter.getItemsList().indexOf(item), 0)));
+
+        new InfoItemDialog(activity, infoItem, StreamDialogEntry.getCommands(context), (dialog, which) ->
+                StreamDialogEntry.clickOn(which, this, infoItem)).show();
     }
 
     private void deleteEntry(final int index) {

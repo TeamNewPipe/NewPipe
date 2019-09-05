@@ -2,7 +2,6 @@ package org.schabi.newpipe.fragments.list.playlist;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,42 +16,36 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
-import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.download.DownloadSetting;
-import org.schabi.newpipe.download.IDownloadVideo;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
-import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
-import org.schabi.newpipe.extractor.stream.VideoStream;
+import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
-import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.playqueue.PlaylistPlayQueue;
-import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
-import org.schabi.newpipe.util.StreamItemAdapter;
+import org.schabi.newpipe.util.ShareUtils;
+import org.schabi.newpipe.util.StreamDialogEntry;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -65,7 +58,7 @@ import io.reactivex.disposables.Disposables;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
-public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> implements IDownloadVideo {
+public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
     private CompositeDisposable disposables;
     private Subscription bookmarkReactor;
@@ -145,48 +138,40 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> impleme
         infoListAdapter.useMiniItemVariants(true);
     }
 
+    private PlayQueue getPlayQueueStartingAt(StreamInfoItem infoItem) {
+        return getPlayQueue(Math.max(infoListAdapter.getItemsList().indexOf(infoItem), 0));
+    }
+
     @Override
-    protected void showStreamDialog(final StreamInfoItem item) {
+    protected void showStreamDialog(StreamInfoItem item) {
         final Context context = getContext();
         final Activity activity = getActivity();
-        if (context == null || context.getResources() == null || getActivity() == null) return;
+        if (context == null || context.getResources() == null || activity == null) return;
 
-        final String[] commands = new String[]{
-                context.getResources().getString(R.string.enqueue_on_background),
-                context.getResources().getString(R.string.enqueue_on_popup),
-                context.getResources().getString(R.string.start_here_on_main),
-                context.getResources().getString(R.string.start_here_on_background),
-                context.getResources().getString(R.string.start_here_on_popup),
-                context.getResources().getString(R.string.share)
-        };
+        if (item.getStreamType() == StreamType.AUDIO_STREAM) {
+            StreamDialogEntry.setEnabledEntries(
+                    StreamDialogEntry.enqueue_on_background,
+                    StreamDialogEntry.start_here_on_background,
+                    StreamDialogEntry.append_playlist,
+                    StreamDialogEntry.share);
+        } else {
+            StreamDialogEntry.setEnabledEntries(
+                    StreamDialogEntry.enqueue_on_background,
+                    StreamDialogEntry.enqueue_on_popup,
+                    StreamDialogEntry.start_here_on_background,
+                    StreamDialogEntry.start_here_on_popup,
+                    StreamDialogEntry.append_playlist,
+                    StreamDialogEntry.share);
 
-        final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
-            final int index = Math.max(infoListAdapter.getItemsList().indexOf(item), 0);
-            switch (i) {
-                case 0:
-                    NavigationHelper.enqueueOnBackgroundPlayer(context, new SinglePlayQueue(item));
-                    break;
-                case 1:
-                    NavigationHelper.enqueueOnPopupPlayer(activity, new SinglePlayQueue(item));
-                    break;
-                case 2:
-                    NavigationHelper.playOnMainPlayer(context, getPlayQueue(index));
-                    break;
-                case 3:
-                    NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index));
-                    break;
-                case 4:
-                    NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index));
-                    break;
-                case 5:
-                    shareUrl(item.getName(), item.getUrl());
-                    break;
-                default:
-                    break;
-            }
-        };
+            StreamDialogEntry.start_here_on_popup.setCustomAction(
+                    (fragment, infoItem) -> NavigationHelper.playOnPopupPlayer(context, getPlayQueueStartingAt(infoItem), true));
+        }
 
-        new InfoItemDialog(getActivity(), item, commands, actions).show();
+        StreamDialogEntry.start_here_on_background.setCustomAction(
+                (fragment, infoItem) -> NavigationHelper.playOnBackgroundPlayer(context, getPlayQueueStartingAt(infoItem), true));
+
+        new InfoItemDialog(activity, item, StreamDialogEntry.getCommands(context), (dialog, which) ->
+                StreamDialogEntry.clickOn(which, this, item)).show();
     }
 
     @Override
@@ -241,10 +226,10 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> impleme
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_item_openInBrowser:
-                openUrlInBrowser(url);
+                ShareUtils.openUrlInBrowser(this.getContext(), url);
                 break;
             case R.id.menu_item_share:
-                shareUrl(name, url);
+                ShareUtils.shareUrl(this.getContext(), name, url);
                 break;
             case R.id.menu_item_bookmark:
                 onBookmarkClicked();
@@ -311,15 +296,26 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> impleme
                 .subscribe(getPlaylistBookmarkSubscriber());
 
         headerPlayAllButton.setOnClickListener(view ->
-                NavigationHelper.playOnMainPlayer(activity, getPlayQueue()));
+                NavigationHelper.playOnMainPlayer(activity, getPlayQueue(), false));
         headerPopupButton.setOnClickListener(view ->
-                NavigationHelper.playOnPopupPlayer(activity, getPlayQueue()));
+                NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(), false));
         headerBackgroundButton.setOnClickListener(view ->
-                NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue()));
+                NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue(), false));
+
+        headerPopupButton.setOnLongClickListener(view -> {
+            NavigationHelper.enqueueOnPopupPlayer(activity, getPlayQueue(), true);
+            return true;
+        });
+
         headerDownloadAllButton.setOnClickListener(view -> {
             if (PermissionHelper.checkStoragePermissions(activity, PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE)) {
                 NavigationHelper.downloadPlaylist(this, getPlayQueue());
             }
+        });
+
+        headerBackgroundButton.setOnLongClickListener(view -> {
+            NavigationHelper.enqueueOnBackgroundPlayer(activity, getPlayQueue(), true);
+            return true;
         });
     }
 

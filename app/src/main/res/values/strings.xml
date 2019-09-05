@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">NewPipe</string>
     <string name="main_bg_subtitle">Tap search to get started</string>
@@ -32,27 +32,21 @@
     <string name="subscription_change_failed">Could not change subscription</string>
     <string name="subscription_update_failed">Could not update subscription</string>
     <string name="show_info">Show info</string>
-
     <string name="tab_main">Main</string>
     <string name="tab_subscriptions">Subscriptions</string>
     <string name="tab_bookmarks">Bookmarked Playlists</string>
     <string name="tab_new">New Tab</string>
     <string name="tab_choose">Choose Tab</string>
-
     <string name="fragment_whats_new">What\'s New</string>
-
     <string name="controls_background_title">Background</string>
     <string name="controls_popup_title">Popup</string>
     <string name="controls_add_to_playlist_title">Add To</string>
-
     <string name="download_path_title">Video download path</string>
     <string name="download_path_summary">Path to store downloaded videos in</string>
     <string name="download_path_dialog_title">Enter download path for videos</string>
-
     <string name="download_path_audio_title">Audio download folder</string>
     <string name="download_path_audio_summary">Downloaded audio is stored here</string>
     <string name="download_path_audio_dialog_title">Enter download path for audio files</string>
-
     <string name="autoplay_by_calling_app_title">Autoplay</string>
     <string name="autoplay_by_calling_app_summary">Plays a video when NewPipe is called from another app</string>
     <string name="default_resolution_title">Default resolution</string>
@@ -76,27 +70,37 @@
     <string name="use_inexact_seek_title">Use fast inexact seek</string>
     <string name="use_inexact_seek_summary">Inexact seek allows the player to seek to positions faster with reduced precision</string>
     <string name="download_thumbnail_title">Load thumbnails</string>
-    <string name="download_thumbnail_summary">When off no thumbnails load, saving data and memory usage. Changes clear both in-memory and on-disk image cache.</string>
+    <string name="show_comments_title">Show comments</string>
+    <string name="show_comments_summary">Disable to stop showing comments</string>
+    <string name="download_thumbnail_summary">Turn off to prevent loading thumbnails, saving data and memory usage. Changes clear both in-memory and on-disk image cache.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Image cache wiped</string>
     <string name="metadata_cache_wipe_title">Wipe cached metadata</string>
     <string name="metadata_cache_wipe_summary">Remove all cached webpage data</string>
     <string name="metadata_cache_wipe_complete_notice">Metadata cache wiped</string>
     <string name="auto_queue_title">Auto-queue next stream</string>
-    <string name="auto_queue_summary">Auto-append a related stream when playing the last stream in a non-repeating queue.</string>
+    <string name="auto_queue_summary">Auto-append a related stream when playing the last stream in a non-repeating queue</string>
     <string name="volume_gesture_control_title">Volume gesture control</string>
     <string name="volume_gesture_control_summary">Use gestures to control the volume of the player</string>
     <string name="brightness_gesture_control_title">Brightness gesture control</string>
     <string name="brightness_gesture_control_summary">Use gestures to control the brightness of the player</string>
+    <string name="player_gesture_controls_title">Player gesture controls</string>
+    <string name="player_gesture_controls_summary">Use gestures to control the brightness and volume of the player</string>
     <string name="show_search_suggestions_title">Search suggestions</string>
     <string name="show_search_suggestions_summary">Show suggestions when searching</string>
     <string name="enable_search_history_title">Search history</string>
     <string name="enable_search_history_summary">Store search queries locally</string>
-    <string name="enable_watch_history_title">History &amp; Cache</string>
+    <string name="enable_watch_history_title">Watch history</string>
+    <string name="enable_playback_resume_title">Resume playback</string>
+    <string name="enable_playback_resume_summary">Restore last playback position</string>
+    <string name="enable_playback_state_lists_title">Positions in lists</string>
+    <string name="enable_playback_state_lists_summary">Show playback position indicators in lists</string>
+    <string name="settings_category_clear_data_title">Clear data</string>
     <string name="enable_watch_history_summary">Keep track of watched videos</string>
     <string name="resume_on_audio_focus_gain_title">Resume on focus gain</string>
     <string name="resume_on_audio_focus_gain_summary">Continue playing after interruptions (e.g. phone calls)</string>
     <string name="download_dialog_title">Download</string>
     <string name="next_video_title">Next</string>
+    <string name="autoplay_title">Autoplay</string>
     <string name="show_next_and_similar_title">Show \'Next\' and \'Similar\' videos</string>
     <string name="show_hold_to_append_title">Show \"Hold to append\" tip</string>
     <string name="show_hold_to_append_summary">Show tip when background or popup button is pressed on video details page</string>
@@ -112,6 +116,7 @@
     <string name="settings_category_appearance_title">Appearance</string>
     <string name="settings_category_other_title">Other</string>
     <string name="settings_category_debug_title">Debug</string>
+    <string name="settings_category_updates_title">Updates</string>
     <string name="background_player_playing_toast">Playing in background</string>
     <string name="popup_playing_toast">Playing in popup mode</string>
     <string name="background_player_append">Queued on background player</string>
@@ -120,8 +125,8 @@
     <string name="play_btn_text">Play</string>
     <string name="content">Content</string>
     <string name="show_age_restricted_content_title">Age restricted content</string>
-    <string name="video_is_age_restricted">Show age Restricted Video. Allowing such material is possible from \"Settings\".</string>
-    <string name="duration_live">live</string>
+    <string name="video_is_age_restricted">Show age restricted video. Allowing such material is possible from Settings.</string>
+    <string name="duration_live">LIVE</string>
     <string name="duration_live_button" translatable="false">LIVE</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
@@ -132,8 +137,10 @@
     <string name="playlist">Playlist</string>
     <string name="playlists">Playlists</string>
     <string name="videos">Videos</string>
+    <string name="comments">Comments</string>
     <string name="tracks">Tracks</string>
     <string name="users">Users</string>
+    <string name="events">Events</string>
     <string name="yes">Yes</string>
     <string name="later">Later</string>
     <string name="disabled">Disabled</string>
@@ -148,26 +155,29 @@
     <string name="always">Always</string>
     <string name="just_once">Just Once</string>
     <string name="file">File</string>
-
     <string name="notification_channel_id" translatable="false">newpipe</string>
     <string name="notification_channel_name">NewPipe Notification</string>
     <string name="notification_channel_description">Notifications for NewPipe background and popup players</string>
-
+    <string name="app_update_notification_channel_id" translatable="false">newpipeAppUpdate</string>
+    <string name="app_update_notification_channel_name">App Update Notification</string>
+    <string name="app_update_notification_channel_description">Notifications for new NewPipe version</string>
     <string name="unknown_content">[Unknown]</string>
-
     <string name="toggle_orientation">Toggle Orientation</string>
     <string name="switch_to_background">Switch to Background</string>
     <string name="switch_to_popup">Switch to Popup</string>
     <string name="switch_to_main">Switch to Main</string>
-
     <string name="import_data_title">Import database</string>
     <string name="export_data_title">Export database</string>
     <string name="import_data_summary">Overrides your current history and subscriptions</string>
     <string name="export_data_summary">Export history, subscriptions and playlists</string>
     <string name="clear_views_history_title">Clear watch history</string>
-    <string name="clear_views_history_summary">Deletes the history of played streams</string>
+    <string name="clear_views_history_summary">Deletes the history of played streams and the playback positions</string>
     <string name="delete_view_history_alert">Delete entire watch history?</string>
-    <string name="view_history_deleted">Watch history deleted.</string>
+    <string name="watch_history_deleted">Watch history deleted.</string>
+    <string name="clear_playback_states_title">Delete playback positions</string>
+    <string name="clear_playback_states_summary">Deletes all playback positions</string>
+    <string name="delete_playback_states_alert">Delete all playback positions?</string>
+    <string name="watch_history_states_deleted">Playback positions deleted.</string>
     <string name="clear_search_history_title">Clear search history</string>
     <string name="clear_search_history_summary">Deletes history of search keywords</string>
     <string name="delete_search_history_alert">Delete entire search history?</string>
@@ -175,14 +185,13 @@
     <!-- error strings -->
     <string name="general_error">Error</string>
     <string name="download_to_sdcard_error_title">External storage unavailable</string>
-    <string name="download_to_sdcard_error_message">Download to external SD card is not possible yet. Reset download folder location?</string>
+    <string name="download_to_sdcard_error_message">Downloading to external SD card not possible. Reset download folder location\?</string>
     <string name="network_error">Network error</string>
     <string name="could_not_load_thumbnails">Could not load all thumbnails</string>
     <string name="youtube_signature_decryption_error">Could not decrypt video URL signature</string>
     <string name="parsing_error">Could not parse website</string>
     <string name="light_parsing_error">Could not parse website completely</string>
     <string name="content_not_available">Content unavailable</string>
-    <string name="blocked_by_gema">Blocked by GEMA</string>
     <string name="could_not_setup_download_menu">Could not set up download menu</string>
     <string name="live_streams_not_supported">Live streams are not supported yet</string>
     <string name="could_not_get_stream">Could not get any stream</string>
@@ -195,6 +204,7 @@
     <string name="invalid_url_toast">Invalid URL</string>
     <string name="video_streams_empty">No video streams found</string>
     <string name="audio_streams_empty">No audio streams found</string>
+    <string name="missing_file">File moved or deleted</string>
     <string name="invalid_directory">No such folder</string>
     <string name="invalid_source">No such file/content source</string>
     <string name="invalid_file">The file doesn\'t exist or permission to read or write to it is lacking</string>
@@ -204,7 +214,6 @@
     <string name="saved_tabs_invalid_json">Using default tabs, error while reading saved tabs</string>
     <string name="restore_defaults">Restore defaults</string>
     <string name="restore_defaults_confirmation">Do you want to restore the defaults?</string>
-
     <!-- error activity -->
     <string name="sorry_string">Sorry, that should not have happened.</string>
     <string name="guru_meditation" translatable="false">Guru Meditation.</string>
@@ -216,8 +225,6 @@
     <string name="info_labels">What:\\nRequest:\\nContent Lang:\\nService:\\nGMT Time:\\nPackage:\\nVersion:\\nOS version:</string>
     <string name="your_comment">Your comment (in English):</string>
     <string name="error_details_headline">Details:</string>
-
-
     <!-- Content descriptions (for better accessibility) -->
     <string name="list_thumbnail_view_description">Video preview thumbnail</string>
     <string name="detail_thumbnail_view_description">Video preview thumbnail</string>
@@ -230,21 +237,18 @@
     <string name="user_report">User report</string>
     <string name="search_no_results">No results</string>
     <string name="empty_view_no_videos" translatable="false">@string/no_videos</string>
+    <string name="empty_view_no_comments" translatable="false">@string/no_comments</string>
     <string name="empty_subscription_feed_subtitle">Nothing here but crickets</string>
     <string name="detail_drag_description">Drag to reorder</string>
-
     <string name="err_dir_create">Cannot create download directory \'%1$s\'</string>
     <string name="info_dir_created">Created download directory \'%1$s\'</string>
-
     <string name="video">Video</string>
     <string name="audio">Audio</string>
     <string name="retry">Retry</string>
     <string name="storage_permission_denied">Storage access permission denied</string>
-
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
-
     <!--Zero don't get selected (in some languages) as it is not a "special case" for android-->
     <string name="no_subscribers">No subscribers</string>
     <plurals name="subscribers">
@@ -252,19 +256,21 @@
         <item quantity="other">%s subscribers</item>
     </plurals>
     <string name="subscribers_count_not_available">Subscribers count not available</string>
-
     <string name="no_views">No views</string>
     <plurals name="views">
         <item quantity="one">%s view</item>
         <item quantity="other">%s views</item>
     </plurals>
-
     <string name="no_videos">No videos</string>
     <plurals name="videos">
-        <item quantity="one">%s video</item>
-        <item quantity="other">%s videos</item>
+        <item quantity="one">Videos</item>
+        <item quantity="other">Videos</item>
     </plurals>
-
+    <string name="no_comments">No comments</string>
+    <plurals name="comments">
+        <item quantity="one">%s comment</item>
+        <item quantity="other">%s comments</item>
+    </plurals>
     <!-- Missions -->
     <string name="start">Start</string>
     <string name="pause">Pause</string>
@@ -276,11 +282,9 @@
     <string name="checksum">Checksum</string>
     <string name="dismiss">Dismiss</string>
     <string name="rename">Rename</string>
-
     <!-- Fragment -->
     <string name="add">New mission</string>
     <string name="finish">OK</string>
-
     <!-- Msg -->
     <string name="msg_name">Filename</string>
     <string name="msg_threads">Threads</string>
@@ -292,32 +296,24 @@
     <string name="msg_running_detail">Tap for details</string>
     <string name="msg_wait">Please wait…</string>
     <string name="msg_copied">Copied to clipboard</string>
-    <string name="no_available_dir">Please select an available download folder</string>
+    <string name="no_available_dir">Please define a download folder later in settings</string>
     <string name="msg_popup_permission">This permission is needed to\nopen in popup mode</string>
     <string name="one_item_deleted">1 item deleted.</string>
-
     <!-- Checksum types -->
     <string name="md5" translatable="false">MD5</string>
     <string name="sha1" translatable="false">SHA-1</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">reCAPTCHA challenge</string>
     <string name="recaptcha_request_toast">reCAPTCHA challenge requested</string>
-
     <!-- End of GigaGet's Strings -->
-
     <!-- Downloads -->
     <string name="settings_category_downloads_title">Download</string>
     <string name="settings_file_charset_title">Allowed characters in filenames</string>
     <string name="settings_file_replacement_character_summary">Invalid characters are replaced with this value</string>
     <string name="settings_file_replacement_character_title">Replacement character</string>
-
-    <string name="charset_letters_and_digits_value" translatable="false">[^\\w\\d]+</string>
-    <string name="charset_most_special_characters_value" translatable="false">[\\n\\r|\\?*&lt;":&gt;/']+</string>
     <string name="charset_letters_and_digits">Letters and digits</string>
     <string name="charset_most_special_characters">Most special characters</string>
-
     <string name="toast_no_player">No app installed to play this file</string>
-
     <!-- About -->
     <string name="title_activity_about">About NewPipe</string>
     <string name="action_settings">Settings</string>
@@ -348,8 +344,6 @@
     <string name="app_license_title">NewPipe\'s License</string>
     <string name="app_license">NewPipe is copyleft libre software: You can use, study share and improve it at will. Specifically you can redistribute and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</string>
     <string name="read_full_license">Read license</string>
-
-
     <!-- History -->
     <string name="title_activity_history">History</string>
     <string name="title_history_search">Searched</string>
@@ -364,7 +358,6 @@
     <string name="delete_all_history_prompt">Are you sure you want to delete all items from history?</string>
     <string name="title_last_played">Last Played</string>
     <string name="title_most_played">Most Played</string>
-
     <!-- Content -->
     <string name="main_page_content">Content of main page</string>
     <string name="main_page_content_summary">What tabs are shown on the main page</string>
@@ -383,14 +376,14 @@
     <string name="could_not_import_all_files">Warning: Could not import all files.</string>
     <string name="override_current_data">This will override your current setup.</string>
     <string name="import_settings">Do you want to also import settings?</string>
-
+    <string name="error_unable_to_load_comments">Could not load comments</string>
     <!-- Kiosk Names -->
     <string name="kiosk">Kiosk</string>
     <string name="trending">Trending</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">New &amp; hot</string>
+    <string name="conferences">Conferences</string>
     <string name="service_kiosk_string" translatable="false">%1$s/%2$s</string>
-
     <!-- Play Queue -->
     <string name="title_activity_background_player">Background player</string>
     <string name="title_activity_popup_player">Popup player</string>
@@ -398,33 +391,27 @@
     <string name="play_queue_stream_detail">Details</string>
     <string name="play_queue_audio_settings">Audio Settings</string>
     <string name="hold_to_append">Hold To enqueue</string>
-    <string name="enqueue_on_background">Enqueue when backgrounded</string>
-    <string name="enqueue_on_popup">Enqueue on new popup</string>
+    <string name="enqueue_on_background">Enqueue in the background</string>
+    <string name="enqueue_on_popup">Enqueue in a new popup</string>
     <string name="start_here_on_main">Start playing here</string>
-    <string name="start_here_on_background">Start here when backgrounded</string>
-    <string name="start_here_on_popup">Start here on new popup</string>
-
+    <string name="start_here_on_background">Start playing in the background</string>
+    <string name="start_here_on_popup">Start playing in a new popup</string>
     <!-- Drawer -->
     <string name="drawer_open">Open Drawer</string>
     <string name="drawer_close">Close Drawer</string>
     <string name="youtube" translatable="false">YouTube</string>
     <string name="soundcloud" translatable="false">SoundCloud</string>
     <string name="drawer_header_action_paceholder_text">Something will appear here soon ;D</string>
-
-
     <!-- Preferred player -->
     <string name="preferred_open_action_share_menu_title" translatable="false">NewPipe</string>
     <string name="preferred_open_action_settings_title">Preferred \'open\' action</string>
     <string name="preferred_open_action_settings_summary">Default action when opening content — %s</string>
-
     <string name="video_player">Video player</string>
     <string name="background_player">Background player</string>
     <string name="popup_player">Popup player</string>
     <string name="always_ask_open_action">Always ask</string>
-
     <string name="preferred_player_fetcher_notification_title">Getting info…</string>
     <string name="preferred_player_fetcher_notification_message">"Loading requested content"</string>
-
     <!-- Local Playlist -->
     <string name="create_playlist">New Playlist</string>
     <string name="delete_playlist">Delete</string>
@@ -432,57 +419,42 @@
     <string name="playlist_name_input">Name</string>
     <string name="append_playlist">Add To Playlist</string>
     <string name="set_as_playlist_thumbnail">Set as Playlist Thumbnail</string>
-
     <string name="bookmark_playlist">Bookmark Playlist</string>
     <string name="unbookmark_playlist">Remove Bookmark</string>
-
-    <string name="delete_playlist_prompt">Delete this playlist?</string>
+    <string name="delete_playlist_prompt">Delete this playlist\?</string>
     <string name="playlist_creation_success">Playlist created</string>
     <string name="playlist_add_stream_success">Playlisted</string>
     <string name="playlist_thumbnail_change_success">Playlist thumbnail changed.</string>
     <string name="playlist_delete_failure">Could not delete playlist.</string>
-
     <!-- Players -->
     <string name="caption_none">No Captions</string>
-
     <string name="resize_fit">Fit</string>
     <string name="resize_fill">Fill</string>
     <string name="resize_zoom">Zoom</string>
-
     <string name="caption_auto_generated">Auto-generated</string>
-
     <!-- Caption Settings -->
     <string name="caption_setting_title">Captions</string>
     <string name="caption_setting_description">Modify player caption text scale and background styles. Requires app restart to take effect.</string>
-
     <!-- Debug Settings -->
     <string name="enable_leak_canary_title">Enable LeakCanary</string>
     <string name="enable_leak_canary_summary">Memory leak monitoring may cause the app to become unresponsive when heap dumping</string>
-
     <string name="enable_disposed_exceptions_title">Report out-of-lifecycle errors</string>
     <string name="enable_disposed_exceptions_summary">Force reporting of undeliverable Rx exceptions outside of fragment or activity lifecycle after disposal</string>
-
     <!-- Subscriptions import/export -->
     <string name="import_export_title">Import/export</string>
     <string name="import_title">Import</string>
     <string name="import_from">Import from</string>
     <string name="export_to">Export to</string>
-
     <string name="import_ongoing">Importing…</string>
     <string name="export_ongoing">Exporting…</string>
-
     <string name="import_file_title">Import file</string>
     <string name="previous_export">Previous export</string>
-
     <string name="subscriptions_import_unsuccessful">Could not import subscriptions</string>
     <string name="subscriptions_export_unsuccessful">Could not export subscriptions</string>
-
     <string name="import_youtube_instructions">Import YouTube subscriptions by downloading the export file:\n\n1. Go to this URL: %1$s\n2. Log in when asked\n3. A download should start (that\'s the export file) </string>
     <string name="import_soundcloud_instructions">Import a SoundCloud profile by typing either the URL or your ID:\n\n1. Enable \"desktop mode\" in a web-browser (the site is not available for mobile devices)\n2. Go to this URL: %1$s\n3. Log in when asked\n4. Copy the profile URL you were redirected to.</string>
     <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/yourid</string>
-
     <string name="import_network_expensive_warning">Keep in mind this operation can be network expensive.\n\nDo you want to continue?</string>
-
     <!-- Playback Parameters -->
     <string name="playback_speed_control">Playback Speed Controls</string>
     <string name="playback_tempo">Tempo</string>
@@ -491,12 +463,10 @@
     <string name="skip_silence_checkbox">Fast-forward during silence</string>
     <string name="playback_step">Step</string>
     <string name="playback_reset">Reset</string>
-
     <!-- GDPR dialog -->
     <string name="start_accept_privacy_policy">In order to comply with the European General Data Protection Regulation (GDPR), we herby draw your attention to NewPipe\'s privacy policy. Please read it carefully.\nYou must accept it to send us the bug report.</string>
     <string name="accept">Accept</string>
     <string name="decline">Decline</string>
-
     <!-- Limit mobile data usage  -->
     <string name="limit_data_usage_none_description">No limit</string>
     <string name="limit_mobile_data_usage_title">Limit resolution when using mobile data</string>
@@ -512,63 +482,76 @@
         <item>240p</item>
         <item>144p</item>
     </string-array>
-
+    <!-- Updates Settings -->
+    <string name="updates_setting_title">Updates</string>
+    <string name="updates_setting_description">Show a notification to prompt app update when a new version is available</string>
     <!-- Minimize to exit action -->
     <string name="minimize_on_exit_title">Minimize on app switch</string>
     <string name="minimize_on_exit_summary">Action when switching to other app from main video player — %s</string>
     <string name="minimize_on_exit_none_description">None</string>
     <string name="minimize_on_exit_background_description">Minimize to background player</string>
     <string name="minimize_on_exit_popup_description">Minimize to popup player</string>
-	  <string name="list_view_mode">List view mode</string>
+    <string name="list_view_mode">List view mode</string>
     <string name="list">List</string>
     <string name="grid">Grid</string>
-	  <string name="auto">Auto</string>
+    <string name="auto">Auto</string>
     <string name="switch_view">Switch View</string>
-
-
+    <!-- App update notification -->
+    <string name="app_update_notification_content_title">NewPipe Update Available!</string>
+    <string name="app_update_notification_content_text">Tap to download</string>
     <string name="missions_header_finished">Finished</string>
-    <string name="missions_header_pending">In queue</string>
-    
+    <string name="missions_header_pending">Pending</string>
     <string name="paused">paused</string>
     <string name="queued">queued</string>
     <string name="post_processing">post-processing</string>
-    
     <string name="enqueue">Queue</string>
-    
     <string name="permission_denied">Action denied by the system</string>
-
     <!-- download notifications -->
     <string name="download_failed">Download failed</string>
     <string name="download_finished">Download finished</string>
     <string name="download_finished_more">%s downloads finished</string>
-
     <!-- dialog about existing downloads -->
     <string name="generate_unique_name">Generate unique name</string>
     <string name="overwrite">Overwrite</string>
-    <string name="overwrite_warning">A downloaded file with this name already exists</string>
+    <string name="overwrite_unrelated_warning">A file with this name already exists</string>
+    <string name="overwrite_finished_warning">A downloaded file with this name already exists</string>
+    <string name="overwrite_failed">cannot overwrite the file</string>
     <string name="download_already_running">There is a download in progress with this name</string>
-
+    <string name="download_already_pending">There is a pending download with this name</string>
     <!-- message dialog about download error -->
     <string name="show_error">Show error</string>
     <string name="label_code">Code</string>
-    <string name="error_path_creation">The file can not be created</string>
-    <string name="error_file_creation">The destination folder can not be created</string>
+    <string name="error_file_creation">The file can not be created</string>
+    <string name="error_path_creation">The destination folder can not be created</string>
     <string name="error_permission_denied">Permission denied by the system</string>
     <string name="error_ssl_exception">Secure connection failed</string>
-    <string name="error_unknown_host">Can not found the server</string>
+    <string name="error_unknown_host">Could not find the server</string>
     <string name="error_connect_host">Can not connect to the server</string>
     <string name="error_http_no_content">The server does not send data</string>
     <string name="error_http_unsupported_range">The server does not accept multi-threaded downloads, retry with @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">Requested Range Not Satisfiable</string>
+    <string name="error_http_requested_range_not_satisfiable">Requested range not satisfiable</string>
     <string name="error_http_not_found">Not found</string>
     <string name="error_postprocessing_failed">Post-processing failed</string>
-
+    <string name="error_postprocessing_stopped">NewPipe was closed while working on the file</string>
+    <string name="error_insufficient_storage">No space left on device</string>
+    <string name="error_progress_lost">Progress lost, because the file was deleted</string>
+    <string name="error_timeout">Connection timeout</string>
     <string name="clear_finished_download">Clear finished downloads</string>
-    <string name="msg_pending_downloads">You have %s pending downloads, goto Downloads to continue</string>
+    <string name="confirm_prompt">Are you sure?</string>
+    <string name="msg_pending_downloads">Continue your %s pending transfers from Downloads</string>
     <string name="stop">Stop</string>
-    <string name="max_retry_msg">Maximum retry</string>
+    <string name="max_retry_msg">Maximum retries</string>
     <string name="max_retry_desc">Maximum number of attempts before canceling the download</string>
-    <string name="pause_downloads_on_mobile">Pause on switching to mobile data</string>
-    <string name="pause_downloads_on_mobile_desc">Not all downloads can be suspended, in those cases, will be restarted</string>
-
+    <string name="pause_downloads_on_mobile">Interrupt on metered networks</string>
+    <string name="pause_downloads_on_mobile_desc">Useful when switching to mobile data, although some downloads cannot be suspended</string>
+    <string name="close">Close</string>
+    <string name="enable_queue_limit">Limit download queue</string>
+    <string name="enable_queue_limit_desc">One download will run at the same time</string>
+    <string name="start_downloads">Start downloads</string>
+    <string name="pause_downloads">Pause downloads</string>
+    <string name="downloads_storage_ask_title">Ask where to download</string>
+    <string name="downloads_storage_ask_summary">You will be asked where to save each download</string>
+    <string name="downloads_storage_ask_summary_kitkat">You will be asked where to save each download.\nChoose SAF if you want to download to an external SD card</string>
+    <string name="downloads_storage_use_saf_title">Use SAF</string>
+    <string name="downloads_storage_use_saf_summary">The Storage Access Framework allows downloads to an external SD card.\nNote: some devices are not compatible</string>
 </resources>

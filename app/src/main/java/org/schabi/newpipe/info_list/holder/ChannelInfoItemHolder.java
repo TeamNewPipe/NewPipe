@@ -7,6 +7,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.Localization;
 
 /*
@@ -38,8 +39,8 @@ public class ChannelInfoItemHolder extends ChannelMiniInfoItemHolder {
     }
 
     @Override
-    public void updateFromItem(final InfoItem infoItem) {
-        super.updateFromItem(infoItem);
+    public void updateFromItem(final InfoItem infoItem, final HistoryRecordManager historyRecordManager) {
+        super.updateFromItem(infoItem, historyRecordManager);
 
         if (!(infoItem instanceof ChannelInfoItem)) return;
         final ChannelInfoItem item = (ChannelInfoItem) infoItem;
