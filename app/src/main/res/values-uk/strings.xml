@@ -35,7 +35,7 @@
     <string name="dark_theme_title">Темна</string>
     <string name="light_theme_title">Світла</string>
     <string name="download_dialog_title">Завантажити</string>
-    <string name="next_video_title">Наступне відео</string>
+    <string name="next_video_title">Наступне</string>
     <string name="show_next_and_similar_title">Показувати \"Наступне\" і \"Схожі\" відео</string>
     <string name="url_not_supported_toast">URL не підтримується</string>
     <string name="content_language_title">Переважна мова контенту</string>
@@ -89,9 +89,9 @@
     <string name="video">Відео</string>
     <string name="audio">Аудіо</string>
     <string name="retry">Повторити спробу</string>
-    <string name="short_thousand">тис.</string>
+    <string name="short_thousand">к</string>
     <string name="short_million">млн.</string>
-    <string name="short_billion">млрд.</string>
+    <string name="short_billion">Г</string>
     <string name="start">Почати</string>
     <string name="pause">Пауза</string>
     <string name="view">Грати</string>
@@ -377,7 +377,7 @@
     <string name="caption_setting_description">Зміна висоти тексту субтитрів та стилів тла. Потребує перезапуску застосунку.</string>
     <string name="toast_no_player">Не встановлено застосунків для програвання цього файлу</string>
     <string name="clear_views_history_title">Очистити історію переглядів</string>
-    <string name="clear_views_history_summary">Видаляє історію відтворень</string>
+    <string name="clear_views_history_summary">Видаляє історію відтворень і запам\'ятованих позицій</string>
     <string name="delete_view_history_alert">Видалити всю історію переглядів\?</string>
     <string name="watch_history_deleted">Історію переглядів видалено.</string>
     <string name="clear_search_history_title">Очистити історію пошуку</string>
@@ -500,6 +500,12 @@
     <string name="pause_downloads">Призупинити завантаження</string>
     <string name="downloads_storage_ask_title">Запитувати, куди завантажувати</string>
     <string name="downloads_storage_ask_summary">Вас питатимуть, куди зберігати кожне завантаження</string>
-    <string name="downloads_storage_ask_summary_kitkat">Вас питатимуть, куди зберігати кожне завантаження.
-\nУвімкніть цю опцію, якщо бажаєте завантажувати на зовнішню SD-картку</string>
+    <string name="downloads_storage_ask_summary_kitkat">Вас питатимуть, куди зберігати кожне завантаження. 
+\nОберіть SAF, якщо бажаєте завантажувати на зовнішню SD-картку</string>
+    <string name="downloads_storage_use_saf_title">Використовувати SAF</string>
+    <string name="downloads_storage_use_saf_summary">Storage Access Framework дає можливість завантажувати на зовнішню SD-карту.
+\nЗверніть увагу: деякі пристрої є несумісними</string>
+    <string name="clear_playback_states_title">Видалити запам\'ятовані позиції</string>
+    <string name="clear_playback_states_summary">Видаляє усі запам\'ятовані позиції</string>
+    <string name="delete_playback_states_alert">Видалити усі запам\'ятовані позиції\?</string>
 </resources>
