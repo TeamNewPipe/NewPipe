@@ -112,9 +112,9 @@
     <string name="channel">Canais</string>
     <string name="yes">Sim</string>
     <string name="later">Depois</string>
-    <string name="short_thousand">K</string>
+    <string name="short_thousand">k</string>
     <string name="short_million">M</string>
-    <string name="short_billion">MM</string>
+    <string name="short_billion">G</string>
     <string name="msg_popup_permission">Esta permissão é necessária 
 \npara o modo \'popup\'</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
@@ -350,7 +350,7 @@
     <string name="playlists">Listas de reprodução</string>
     <string name="tracks">Faixas</string>
     <string name="users">Utilizadores</string>
-    <string name="clear_views_history_summary">Apaga o histórico dos vídeos reproduzidos</string>
+    <string name="clear_views_history_summary">Apaga o histórico dos vídeos reproduzidos e as posições de reprodução</string>
     <string name="delete_view_history_alert">Apagar todo o histórico de visualizações\?</string>
     <string name="watch_history_deleted">Histórico de vídeos apagado.</string>
     <string name="clear_search_history_title">Apagar histórico de pesquisas</string>
@@ -496,6 +496,12 @@
     <string name="pause_downloads">Pausa descarregamentos</string>
     <string name="downloads_storage_ask_title">Perguntar para onde descarregar</string>
     <string name="downloads_storage_ask_summary">Você será perguntado para onde gravar cada descarregamento</string>
-    <string name="downloads_storage_ask_summary_kitkat">Você será perguntado para onde gravar cada descarregamento.
-\nAtive-o se pretender descarregar para um cartão SD externo.</string>
+    <string name="downloads_storage_ask_summary_kitkat">Você será perguntado para onde gravar cada descarregamento. 
+\nAtive-o se pretender descarregar para um cartão SD externo</string>
+    <string name="downloads_storage_use_saf_title">Usar SAF</string>
+    <string name="downloads_storage_use_saf_summary">A estrutura de acesso ao armazenamento permite descarregamentos para um cartão SD externo.
+\nNota: alguns aparelhos não são compatíveis</string>
+    <string name="clear_playback_states_title">Apagar posições de reprodução</string>
+    <string name="clear_playback_states_summary">Apaga todas as posições de reprodução</string>
+    <string name="delete_playback_states_alert">Apagar todas as posições de reprodução\?</string>
 </resources>
