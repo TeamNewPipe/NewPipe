@@ -325,8 +325,8 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
     private PlayQueue getPlayQueue(final int index) {
         final List<StreamInfoItem> infoItems = new ArrayList<>();
-        for(InfoItem i : infoListAdapter.getItemsList()) {
-            if(i instanceof StreamInfoItem) {
+        for (InfoItem i : infoListAdapter.getItemsList()) {
+            if (i instanceof StreamInfoItem) {
                 infoItems.add((StreamInfoItem) i);
             }
         }
@@ -342,8 +342,9 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     public interface PlaylistDownloadCallback {
         /**
          * Callback for next item in playlist queue to invoke download dialog for next item
+         *
          * @param downloadSetting if smart download checkbox was checked, in which case,
-         *                      we should skip presenting the dialog for each video
+         *                        we should skip presenting the dialog for each video
          */
         void accept(DownloadSetting downloadSetting);
     }
