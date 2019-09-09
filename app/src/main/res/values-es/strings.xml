@@ -17,6 +17,7 @@
     <string name="download_path_title">Carpeta de descarga de vídeo</string>
     <string name="download_path_summary">Ruta para almacenar los vídeos descargados</string>
     <string name="download_path_dialog_title">Introducir directorio de descargas para vídeos</string>
+    <string name="download_choose_new_path">Cambie las carpetas de descarga para que tenga efecto</string>
     <string name="default_resolution_title">Resolución por defecto de vídeo</string>
     <string name="play_with_kodi_title">Reproducir con Kodi</string>
     <string name="kore_not_found">Aplicación Kore no encontrada. ¿Instalarla?</string>

@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -77,7 +76,7 @@ import static us.shandian.giga.get.DownloadMission.ERROR_TIMEOUT;
 import static us.shandian.giga.get.DownloadMission.ERROR_UNKNOWN_EXCEPTION;
 import static us.shandian.giga.get.DownloadMission.ERROR_UNKNOWN_HOST;
 
-public class MissionAdapter extends Adapter<ViewHolder> {
+public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callback {
     private static final SparseArray<String> ALGORITHMS = new SparseArray<>();
     private static final String TAG = "MissionAdapter";
     private static final String UNDEFINED_PROGRESS = "--.-%";
@@ -111,21 +110,7 @@ public class MissionAdapter extends Adapter<ViewHolder> {
         mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mLayout = R.layout.mission_item;
 
-        mHandler = new Handler(Looper.myLooper()) {
-            @Override
-            public void handleMessage(Message msg) {
-                switch (msg.what) {
-                    case DownloadManagerService.MESSAGE_PROGRESS:
-                    case DownloadManagerService.MESSAGE_ERROR:
-                    case DownloadManagerService.MESSAGE_FINISHED:
-                        onServiceMessage(msg);
-                        break;
-                }
-
-                if (mStartButton != null && mPauseButton != null)
-                    checkMasterButtonsVisibility();
-            }
-        };
+        mHandler = new Handler(context.getMainLooper());
 
         mEmptyMessage = emptyMessage;
 
@@ -403,29 +388,40 @@ public class MissionAdapter extends Adapter<ViewHolder> {
         return true;
     }
 
-    public Handler getMessenger() {
-        return mHandler;
-    }
-
-    private void onServiceMessage(@NonNull Message msg) {
-        if (msg.what == DownloadManagerService.MESSAGE_PROGRESS) {
-            setAutoRefresh(true);
-            return;
+    @Override
+    public boolean handleMessage(@NonNull Message msg) {
+        if (mStartButton != null && mPauseButton != null) {
+            checkMasterButtonsVisibility();
         }
 
-        for (int i = 0; i < mPendingDownloadsItems.size(); i++) {
-            ViewHolderItem h = mPendingDownloadsItems.get(i);
+        switch (msg.what) {
+            case DownloadManagerService.MESSAGE_PROGRESS:
+            case DownloadManagerService.MESSAGE_ERROR:
+            case DownloadManagerService.MESSAGE_FINISHED:
+                break;
+            default:
+                return false;
+        }
+
+        if (msg.what == DownloadManagerService.MESSAGE_PROGRESS) {
+            setAutoRefresh(true);
+            return true;
+        }
+
+        for (ViewHolderItem h : mPendingDownloadsItems) {
             if (h.item.mission != msg.obj) continue;
 
             if (msg.what == DownloadManagerService.MESSAGE_FINISHED) {
                 // DownloadManager should mark the download as finished
                 applyChanges();
-                return;
+                return true;
             }
 
             updateProgress(h);
-            return;
+            return true;
         }
+
+        return false;
     }
 
     private void showError(@NonNull DownloadMission mission) {
@@ -563,16 +559,15 @@ public class MissionAdapter extends Adapter<ViewHolder> {
                     updateProgress(h);
                     return true;
                 case R.id.retry:
-                    if (mission.hasInvalidStorage()) {
+                    if (mission.isPsRunning()) {
+                        mission.psContinue(true);
+                    } else {
                         mDownloadManager.tryRecover(mission);
                         if (mission.storage.isInvalid())
                             mRecover.tryRecover(mission);
                         else
                             recoverMission(mission);
-
-                        return true;
                     }
-                    mission.psContinue(true);
                     return true;
                 case R.id.cancel:
                     mission.psContinue(false);
@@ -659,9 +654,13 @@ public class MissionAdapter extends Adapter<ViewHolder> {
 
     public void checkMasterButtonsVisibility() {
         boolean[] state = mIterator.hasValidPendingMissions();
+        setButtonVisible(mPauseButton, state[0]);
+        setButtonVisible(mStartButton, state[1]);
+    }
 
-        mPauseButton.setVisible(state[0]);
-        mStartButton.setVisible(state[1]);
+    private static void setButtonVisible(MenuItem button, boolean visible) {
+        if (button.isVisible() != visible)
+            button.setVisible(visible);
     }
 
     public void ensurePausedMissions() {

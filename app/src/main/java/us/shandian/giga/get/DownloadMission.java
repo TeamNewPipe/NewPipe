@@ -1,7 +1,6 @@
 package us.shandian.giga.get;
 
 import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 
 import org.schabi.newpipe.Downloader;
@@ -264,11 +263,7 @@ public class DownloadMission extends Mission {
 
 
     private void notify(int what) {
-        Message m = new Message();
-        m.what = what;
-        m.obj = this;
-
-        mHandler.sendMessage(m);
+        mHandler.obtainMessage(what, this).sendToTarget();
     }
 
     synchronized void notifyProgress(long deltaLen) {
@@ -408,6 +403,7 @@ public class DownloadMission extends Mission {
         }
     }
 
+
     /**
      * Start downloading with multiple threads.
      */
@@ -416,14 +412,20 @@ public class DownloadMission extends Mission {
 
         // ensure that the previous state is completely paused.
         joinForThread(init);
-        if (threads != null)
+        if (threads != null) {
             for (Thread thread : threads) joinForThread(thread);
+            threads = null;
+        }
 
         running = true;
         errCode = ERROR_NOTHING;
 
+        if (hasInvalidStorage()) {
+            notifyError(ERROR_FILE_CREATION, null);
+            return;
+        }
+
         if (current >= urls.length) {
-            threads = null;
             runAsync(1, this::notifyFinished);
             return;
         }
@@ -664,7 +666,7 @@ public class DownloadMission extends Mission {
      * @return {@code true} is this mission its "healthy", otherwise, {@code false}
      */
     public boolean isCorrupt() {
-        return (isPsFailed() || errCode == ERROR_POSTPROCESSING_HOLD) || isFinished() || hasInvalidStorage();
+        return (isPsFailed() || errCode == ERROR_POSTPROCESSING_HOLD) || isFinished();
     }
 
     private boolean doPostprocessing() {
