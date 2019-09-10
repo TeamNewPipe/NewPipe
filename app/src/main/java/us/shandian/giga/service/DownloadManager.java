@@ -424,10 +424,12 @@ public class DownloadManager {
 
             boolean flag = false;
             for (DownloadMission mission : mMissionsPending) {
-                if (mission.running || !mission.enqueued || mission.isFinished() || mission.hasInvalidStorage())
+                if (mission.running || !mission.enqueued || mission.isFinished())
                     continue;
 
                 resumeMission(mission);
+                if (mission.errCode != DownloadMission.ERROR_NOTHING) continue;
+
                 if (mPrefQueueLimit) return true;
                 flag = true;
             }

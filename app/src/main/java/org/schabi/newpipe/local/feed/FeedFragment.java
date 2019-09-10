@@ -200,7 +200,7 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
             setLoadingState(true);
             subscriptionObserver = subscriptionService.getSubscription()
                 .onErrorReturnItem(Collections.emptyList())
-                .observeOn(Schedulers.newThread())
+                .observeOn(Schedulers.io())
                 .subscribe(this::handleResult, this::handleError);
             hasStartedLoading.set(true);
         }
@@ -227,7 +227,7 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
         numChannels.set(filteredResult.size());
         compositeDisposable.add(
             Flowable.fromIterable(filteredResult)
-                .observeOn(Schedulers.newThread())
+                .observeOn(Schedulers.io())
                 .subscribe(this::handleReceiveSubscriptionEntity, this::handleError));
 
         // Start item list UI update scheduler
@@ -237,7 +237,7 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
     private void handleReceiveSubscriptionEntity(SubscriptionEntity subscriptionEntity) {
         compositeDisposable.add(
             subscriptionService.getChannelInfo(subscriptionEntity)
-                .observeOn(Schedulers.newThread())
+                .observeOn(Schedulers.io())
                 .onErrorComplete((@io.reactivex.annotations.NonNull Throwable throwable) -> FeedFragment.super.onError(
                     throwable))
                 .subscribe(this.getReceiveChannelInfoHandler(subscriptionEntity.getUrl()),

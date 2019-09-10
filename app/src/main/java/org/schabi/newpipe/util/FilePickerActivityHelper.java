@@ -115,6 +115,12 @@ public class FilePickerActivityHelper extends com.nononsenseapps.filepicker.File
             super.onClickOk(view);
         }
 
+        @Override
+        protected boolean isItemVisible(@NonNull File file) {
+            if (file.isDirectory() && file.isHidden()) return true;
+            return super.isItemVisible(file);
+        }
+
         public File getBackTop() {
             if (getArguments() == null) return Environment.getExternalStorageDirectory();
 

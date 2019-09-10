@@ -47,6 +47,7 @@
     <string name="download_path_audio_title">Audio download folder</string>
     <string name="download_path_audio_summary">Downloaded audio is stored here</string>
     <string name="download_path_audio_dialog_title">Enter download path for audio files</string>
+    <string name="download_choose_new_path">Change the download folders to take effect</string>
     <string name="autoplay_by_calling_app_title">Autoplay</string>
     <string name="autoplay_by_calling_app_summary">Plays a video when NewPipe is called from another app</string>
     <string name="default_resolution_title">Default resolution</string>
@@ -171,9 +172,12 @@
     <string name="import_data_summary">Overrides your current history and subscriptions</string>
     <string name="export_data_summary">Export history, subscriptions and playlists</string>
     <string name="clear_views_history_title">Clear watch history</string>
-    <string name="clear_views_history_summary">Deletes the history of played streams</string>
+    <string name="clear_views_history_summary">Deletes the history of played streams and the playback positions</string>
     <string name="delete_view_history_alert">Delete entire watch history?</string>
     <string name="watch_history_deleted">Watch history deleted.</string>
+    <string name="clear_playback_states_title">Delete playback positions</string>
+    <string name="clear_playback_states_summary">Deletes all playback positions</string>
+    <string name="delete_playback_states_alert">Delete all playback positions?</string>
     <string name="watch_history_states_deleted">Playback positions deleted.</string>
     <string name="clear_search_history_title">Clear search history</string>
     <string name="clear_search_history_summary">Deletes history of search keywords</string>
