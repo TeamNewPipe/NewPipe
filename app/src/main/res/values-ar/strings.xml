@@ -515,9 +515,10 @@
     <string name="downloads_storage_ask_summary">سيُطلب منك مكان حفظ كل تنزيل</string>
     <string name="downloads_storage_ask_summary_kitkat">سيُطلب منك مكان حفظ كل تنزيل. اختر SAF إذا كنت تريد التنزيل على بطاقة SD خارجية</string>
     <string name="downloads_storage_use_saf_title">استخدام آمن</string>
-    <string name="downloads_storage_use_saf_summary">يسمح إطار الوصول إلى التخزين بالتنزيلات على بطاقة SD خارجية.
+    <string name="downloads_storage_use_saf_summary">إطار وصول التخزين يسمح لتنزيلات على بطاقة SD الخارجية.
 \nملاحظة: بعض الأجهزة غير متوافقة</string>
     <string name="clear_playback_states_title">حذف مواقف التشغيل</string>
     <string name="clear_playback_states_summary">حذف كل مواقف التشغيل</string>
     <string name="delete_playback_states_alert">حذف كل مواقف التشغيل؟</string>
+    <string name="download_choose_new_path">تغيير مجلدات التنزيل إلى حيز التنفيذ‮‮‮</string>
 </resources>
