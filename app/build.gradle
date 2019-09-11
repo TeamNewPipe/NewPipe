@@ -8,8 +8,8 @@ android {
         applicationId "org.schabi.newpipe"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 760
-        versionName "0.17.1"
+        versionCode 770
+        versionName "0.17.2"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -57,7 +57,7 @@ dependencies {
         exclude module: 'support-annotations'
     })
 
-    implementation 'com.github.teamnewpipe:NewPipeExtractor:cfc72d8dc9d'
+    implementation 'com.github.teamnewpipe:NewPipeExtractor:ec3554a2ea6aa20'
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.23.0'
