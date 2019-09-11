@@ -467,7 +467,7 @@
     <string name="saved_tabs_invalid_json">Utilisation des onglets par défaut, erreur lors de la lecture des onglets enregistrés</string>
     <string name="error_http_unsupported_range">Le serveur n’accepte pas les téléchargements multi-fils, veuillez réessayer avec @string/msg_threads = 1</string>
     <string name="msg_pending_downloads">Continuer vos %s transferts en attente depuis Téléchargement</string>
-    <string name="error_http_requested_range_not_satisfiable">Champs d’en-tête de requête « range » non satisfiable</string>
+    <string name="error_http_requested_range_not_satisfiable">Le domaine désiré n\'est pas disponible</string>
     <string name="show_comments_title">Afficher les commentaires</string>
     <string name="show_comments_summary">Désactiver pour ne pas afficher les commentaires</string>
     <string name="autoplay_title">Lecture automatique</string>
@@ -505,4 +505,5 @@
     <string name="clear_playback_states_title">Supprimer les positions de reprise</string>
     <string name="clear_playback_states_summary">Supprimer toutes les positions de reprise</string>
     <string name="delete_playback_states_alert">Voulez-vous supprimer toutes les positions de reprise \?</string>
+    <string name="download_choose_new_path">Changez les dossier de téléchargement pour activer</string>
 </resources>
