@@ -296,7 +296,7 @@
     <string name="rename_playlist">Renommer</string>
     <string name="playlist_name_input">Nom</string>
     <string name="append_playlist">Ajouter à la liste de lecture</string>
-    <string name="set_as_playlist_thumbnail">Régler en liste de lecture de miniatures</string>
+    <string name="set_as_playlist_thumbnail">Définir comme miniature de la liste de lecture</string>
     <string name="bookmark_playlist">Enregister la liste de lecture</string>
     <string name="unbookmark_playlist">Retirer le signet</string>
     <string name="delete_playlist_prompt">Voulez-vous supprimer cette liste de lecture \?</string>
