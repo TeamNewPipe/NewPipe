@@ -509,4 +509,5 @@
     <string name="clear_playback_states_title">Очистить позиции воспроизведения</string>
     <string name="clear_playback_states_summary">Удалить все позиции воспроизведения</string>
     <string name="delete_playback_states_alert">Удалить все позиции воспроизведения\?</string>
+    <string name="download_choose_new_path">Измените папки загрузки для вступления в силу</string>
 </resources>
