@@ -148,9 +148,9 @@
     <string name="audio">שמע</string>
     <string name="retry">ניסיון חוזר</string>
     <string name="storage_permission_denied">הגישה לאחסון נדחתה</string>
-    <string name="short_thousand">K</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">B</string>
+    <string name="short_thousand">ק׳</string>
+    <string name="short_million">מ׳</string>
+    <string name="short_billion">ג׳</string>
     <string name="no_subscribers">אין מנויים</string>
     <plurals name="subscribers">
         <item quantity="one">מנוי אחד</item>
@@ -513,4 +513,5 @@
     <string name="clear_playback_states_title">מחיקת מיקומי נגינה</string>
     <string name="clear_playback_states_summary">מחיקת כל מיקומי הנגינה</string>
     <string name="delete_playback_states_alert">למחוק את מיקומי הנגינה\?</string>
+    <string name="download_choose_new_path">יש להחליף את תיקיות ההורדה כדי שייכנס לתוקף</string>
 </resources>
