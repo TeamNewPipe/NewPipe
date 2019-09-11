@@ -33,7 +33,7 @@
     <string name="dark_theme_title">Tmavé</string>
     <string name="light_theme_title">Světlé</string>
     <string name="download_dialog_title">Stáhnout</string>
-    <string name="next_video_title">Příští video</string>
+    <string name="next_video_title">Další</string>
     <string name="show_next_and_similar_title">Zobrazovat \'další\' a \'podobná\' videa</string>
     <string name="url_not_supported_toast">URL není podporováno</string>
     <string name="content_language_title">Preferovaný jazyk obsahu</string>
@@ -48,8 +48,6 @@
     <string name="youtube_signature_decryption_error">Nebylo možné dekódovat URL videa</string>
     <string name="parsing_error">Nebylo možné analyzovat stránku</string>
     <string name="content_not_available">Obsah není k dispozici</string>
-
-
     <string name="list_thumbnail_view_description">Náhled videa</string>
     <string name="detail_thumbnail_view_description">Náhled videa</string>
     <string name="detail_uploader_thumbnail_view_description">Náhled avataru uploadera</string>
@@ -109,7 +107,7 @@
     <string name="recaptcha_request_toast">Požadována výzva reCAPTCHA</string>
     <string name="black_theme_title">Černé</string>
     <string name="checksum">Kontrolní součet</string>
-    <string name="no_available_dir">Prosím vyberte dostupnou složku pro stahování</string>
+    <string name="no_available_dir">Určete prosím složku pro stahování později v nastavení</string>
     <string name="user_report">Hlášení uživatele</string>
     <string name="info_labels">Co:\\nŽádost:\\nJazyk obsahu:\\nSlužba:\\nČas GMT:\\nBalíček:\\nVerze:\\nVerze OS:</string>
     <string name="all">Vše</string>
@@ -145,7 +143,7 @@ otevření ve vyskakovacím okně</string>
     <string name="show_search_suggestions_summary">Zobrazovat návrhy při vyhledávání</string>
     <string name="enable_search_history_title">Historie vyhledávání</string>
     <string name="enable_search_history_summary">Hledané výrazy lokálně uchovávat</string>
-    <string name="enable_watch_history_title">Historie &amp; mezipaměť</string>
+    <string name="enable_watch_history_title">Historie zhlédnutí</string>
     <string name="enable_watch_history_summary">Evidovat zhlédnutá videa</string>
     <string name="resume_on_audio_focus_gain_title">Přehrávat po přechodu do popředí</string>
     <string name="resume_on_audio_focus_gain_summary">Pokračovat v přehrávání po přerušení (např. hovor)</string>
@@ -257,7 +255,7 @@ otevření ve vyskakovacím okně</string>
     <string name="default_content_country_title">Země výchozího obsahu</string>
     <string name="service_title">Služba</string>
     <string name="toggle_orientation">Změna orientaci</string>
-    <string name="switch_to_background">Na pozadí</string>
+    <string name="switch_to_background">Přepnout na pozadí</string>
     <string name="switch_to_popup">Do okna</string>
     <string name="switch_to_main">Přepnout na hlavní</string>
     <string name="drawer_open">Otevřít Drawer</string>
@@ -441,7 +439,7 @@ otevření ve vyskakovacím okně</string>
     <string name="app_update_notification_content_title">K dispozici je aktualizace aplikace NewPipe!</string>
     <string name="app_update_notification_content_text">Klepněte pro stažení</string>
     <string name="missions_header_finished">Hotovo</string>
-    <string name="missions_header_pending">Ve frontě</string>
+    <string name="missions_header_pending">Vyčkávání</string>
     <string name="paused">Pozastaveno</string>
     <string name="queued">ve frontě</string>
     <string name="post_processing">post-processing</string>
@@ -457,8 +455,8 @@ otevření ve vyskakovacím okně</string>
     <string name="download_already_running">Stahování s tímto názvem již probíhá</string>
     <string name="show_error">Zobrazit chybu</string>
     <string name="label_code">Kód</string>
-    <string name="error_path_creation">Soubor nelze vytvořit</string>
-    <string name="error_file_creation">Cílovou složku nelze vytvořit</string>
+    <string name="error_path_creation">Cílovou složku nelze vytvořit</string>
+    <string name="error_file_creation">Soubor nelze vytvořit</string>
     <string name="error_permission_denied">Oprávnění odepřeno systémem</string>
     <string name="error_ssl_exception">Zabezpečené připojení selhalo</string>
     <string name="error_unknown_host">Server se nepodařilo najít</string>
@@ -474,17 +472,39 @@ otevření ve vyskakovacím okně</string>
     <string name="max_retry_msg">Maximální počet pokusů o opakování</string>
     <string name="max_retry_desc">Maximální počet pokusů před zrušením stahování</string>
     <string name="pause_downloads_on_mobile">Pozastavit při přepnutí na mobilní data</string>
-    <string name="pause_downloads_on_mobile_desc">Stahování, která nelze pozastavit, budou restartována</string>
+    <string name="pause_downloads_on_mobile_desc">Užitečné při přepnutí na mobilní data, některá stahování ale nelze přerušit</string>
     <string name="show_comments_title">Zobrazit komentáře</string>
     <string name="show_comments_summary">Deaktivovat zobrazování komentářů</string>
     <string name="autoplay_title">Automatické přehrávání</string>
     <plurals name="comments">
         <item quantity="one">Komentáře</item>
-        <item quantity="few"></item>
-        <item quantity="other"></item>
+        <item quantity="few"/>
+        <item quantity="other"/>
     </plurals>
     <string name="no_comments">Žádné komentáře</string>
     <string name="error_unable_to_load_comments">Nelze načíst komentáře</string>
     <string name="close">Zavřít</string>
-    <string name="download_to_sdcard_error_message">Stahování na externí SD kartu ještě není možné. Resetovat umístění složky pro stahování\?</string>
+    <string name="download_to_sdcard_error_message">Stahování na externí SD kartu není možné. Resetovat umístění složky pro stahování\?</string>
+    <string name="enable_playback_resume_title">Pokračovat v přehrávání</string>
+    <string name="enable_playback_resume_summary">Obnovit poslední přehrávanou pozici</string>
+    <string name="enable_playback_state_lists_title">Pořadí v seznamech</string>
+    <string name="settings_category_clear_data_title">Vymazat data</string>
+    <string name="missing_file">Soubor přemístěn nebo smazán</string>
+    <string name="overwrite_failed">soubor nelze přepsat</string>
+    <string name="download_already_pending">Soubor s tímto názvem již čeká na stažení</string>
+    <string name="error_postprocessing_stopped">NewPipe byl ukončen v průběhu zpracovávání souboru</string>
+    <string name="error_insufficient_storage">V zařízení nezbývá žádné místo</string>
+    <string name="error_progress_lost">Postup ztracen, protože soubor byl smazán</string>
+    <string name="confirm_prompt">Jste si jisti\?</string>
+    <string name="enable_queue_limit">Omezit frontu stahování</string>
+    <string name="enable_queue_limit_desc">Najednou se bude stahovat pouze jeden soubor</string>
+    <string name="start_downloads">Začít stahování</string>
+    <string name="pause_downloads">Pozastavit stahování</string>
+    <string name="downloads_storage_ask_title">Zeptat se na složku pro stahování</string>
+    <string name="downloads_storage_ask_summary">Budete dotázáni, kam jednotlivé soubory stáhnout</string>
+    <string name="downloads_storage_ask_summary_kitkat">Budete dotázáni, kam jednotlivé soubory stáhnout.
+\nZvolte SAF, pokud si přejete stahovat na externí SD kartu</string>
+    <string name="downloads_storage_use_saf_title">Použít SAF</string>
+    <string name="downloads_storage_use_saf_summary">Storage Access Framework umožňuje stahovat na externí SD kartu.
+\nUpozornění: některá zařízení jsou nekompatibilní</string>
 </resources>

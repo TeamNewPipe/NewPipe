@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="view_count_text">%1$s megtekintés</string>
     <string name="upload_date_text">Közzétéve: %1$s</string>
@@ -29,15 +29,11 @@
     <string name="url_not_supported_toast">Nem támogatott webcím</string>
     <string name="use_external_video_player_title">Külső videólejátszó használata</string>
     <string name="use_external_audio_player_title">Külső hanglejátszó használata</string>
-
     <string name="download_path_audio_dialog_title">Add meg a hangfájlok letöltési helyét</string>
-
     <string name="use_tor_title">Tor használata</string>
     <string name="use_tor_summary">(Kísérleti) Adatforgalom Tor-on keresztüli kényszerítése a biztonság fokozása érdekében (a videó stream-elés még nem támogatott).</string>
-
     <string name="play_btn_text">Lejátszás</string>
     <string name="network_error">Hálózati hiba</string>
-
     <string name="background_player_playing_toast">Lejátszás háttérben</string>
     <string name="settings_category_video_audio_title">Videó és audio</string>
     <string name="settings_category_appearance_title">Megjelenés</string>
@@ -46,10 +42,9 @@
     <string name="show_next_and_similar_title">\'Következő\' és \'Hasonló\' videók mutatása</string>
     <string name="dark_theme_title">Sötét</string>
     <string name="light_theme_title">Világos</string>
-
     <string name="theme_title">Téma</string>
     <string name="download_path_audio_title">Hangfájlok letöltési helye</string>
-    <string name="download_path_audio_summary">Útvonal a letöltött hangfájlok tárolásához</string>
+    <string name="download_path_audio_summary">Letöltött hangfájlok itt találhatók</string>
     <string name="detail_likes_img_view_description">Tetszik</string>
     <string name="detail_dislikes_img_view_description">Nem tetszik</string>
     <string name="list_thumbnail_view_description">Előnézeti kép</string>
@@ -66,14 +61,11 @@
     <string name="autoplay_by_calling_app_summary">Videók automatikus lejátszása, ha a NewPipe egy másik alkalmazásból lett indítva</string>
     <string name="video_is_age_restricted">Korhatáros videó mutatása. Ennek a tartalomnak az engedélyezése a \"Beállítások\"-ban lehetséges.</string>
     <string name="duration_live">ÉLŐ</string>
-
     <string name="error_snackbar_action">JELENTÉS</string>
     <string name="what_device_headline">Információ:</string>
     <string name="what_happened_headline">Ez történt:</string>
     <string name="your_comment">Megjegyzésed (angolul):</string>
     <string name="error_details_headline">Részletek:</string>
-
-
     <string name="error_snackbar_message">Sajnos hiba történt.</string>
     <string name="sorry_string">Elnézést, ennek nem kellett volna megtörténnie.</string>
     <string name="error_report_button_text">Hibajelentés e-mailben</string>
@@ -84,7 +76,6 @@
     <string name="retry">Újra</string>
     <string name="report_error">Hibajelentés</string>
     <string name="user_report">Felhasználói jelentés</string>
-
     <string name="video">Videó</string>
     <string name="audio">Audio</string>
     <string name="main_bg_subtitle">A kezdéshez koppints a keresésre</string>
@@ -94,15 +85,12 @@
     <string name="downloads">Letöltések</string>
     <string name="downloads_title">Letöltések</string>
     <string name="error_report_title">Hibabejelentés</string>
-
     <string name="start">Indít</string>
     <string name="pause">Szünet</string>
     <string name="view">Lejátszás</string>
     <string name="delete">Törlés</string>
     <string name="checksum">Ellenőrző összeg</string>
-
     <string name="finish">Rendben</string>
-
     <string name="msg_name">Fájlnév</string>
     <string name="msg_threads">Threadek</string>
     <string name="msg_error">Hiba</string>
@@ -111,41 +99,38 @@
     <string name="msg_running">NewPipe letöltés folyamatban</string>
     <string name="msg_running_detail">Katt a részletekért</string>
     <string name="msg_wait">Kérlek várj…</string>
-    <string name="msg_copied">Vágólapra másolva.</string>
+    <string name="msg_copied">Vágólapra másolva</string>
     <string name="no_available_dir">Kérlek válassz egy létező könyvtárat a letöltésekhez.</string>
-
     <string name="msg_server_unsupported">Nem támogatott szerver</string>
     <string name="add">Új küldetés</string>
-<string name="channel_unsubscribed">Csatornáról leiratkozva</string>
+    <string name="channel_unsubscribed">Csatornáról leiratkozva</string>
     <string name="subscription_change_failed">Nem sikerült megváltoztatni a feliratkozást</string>
     <string name="subscription_update_failed">"Nem sikerült frissíteni a feliratkozást "</string>
     <string name="tab_main">Főoldal</string>
     <string name="tab_subscriptions">Feliratkozások</string>
     <string name="tab_bookmarks">Könyvjelzőzött lejátszási listák</string>
-
     <string name="fragment_whats_new">Újdonságok</string>
-
     <string name="controls_background_title">Háttér</string>
     <string name="controls_popup_title">Felugró ablak</string>
     <string name="no_player_found_toast">Nem található stream lejátszó alkalmazás (feltelepítheted a VLC-t a lejátszáshoz).</string>
     <string name="open_in_popup_mode">Megnyitás felugró ablakként</string>
     <string name="use_external_video_player_summary">Néhány felbontásnál eltávolítja a hangot</string>
-    <string name="popup_mode_share_menu_title">NewPipe felugró ablak mód</string>
+    <string name="popup_mode_share_menu_title">NewPipe felugró ablak</string>
     <string name="subscribe_button_title">Feliratkozás</string>
     <string name="subscribed_button_title">Feliratkozva</string>
     <string name="show_info">Több infó</string>
-
     <string name="default_popup_resolution_title">Alapértelmezett felugró ablak felbontása</string>
     <string name="show_higher_resolutions_title">Mutassa a magasabb felbontásokat</string>
     <string name="show_higher_resolutions_summary">Csak néhány eszköz támogatja a 2K/4K videók lejátszását</string>
     <string name="default_video_format_title">Alapértelmezett videó formátum</string>
-    <string name="black_theme_title">Fekete</string>
+    <string name="black_theme_title">Fekete
+\n</string>
     <string name="popup_remember_size_pos_title">Jegyezze meg a felugró ablak helyét és méretét</string>
     <string name="popup_remember_size_pos_summary">Jegyezze meg a felugró ablak előző helyét és méretét</string>
     <string name="show_search_suggestions_title">Keresési javaslatok</string>
     <string name="show_search_suggestions_summary">Mutasson javaslatokat keresés közben</string>
     <string name="enable_search_history_title">Keresési előzmények</string>
-    <string name="enable_watch_history_title">Előzmények és gyorsítótár</string>
+    <string name="enable_watch_history_title">Előzmények</string>
     <string name="enable_watch_history_summary">Megnézett videók nyomon követése</string>
     <string name="resume_on_audio_focus_gain_summary">"Lejátszás folytatása félbeszakítás után (pl.: telefonhívás) "</string>
     <string name="settings_category_player_title">Lejátszó</string>
@@ -155,7 +140,7 @@
     <string name="settings_category_debug_title">Hibaelhárítás</string>
     <string name="popup_playing_toast">Lejátszás felugró ablakban</string>
     <string name="popup_playing_append">Felugró ablak várólistájához adva</string>
-    <string name="all">Mind</string>
+    <string name="all">Összes</string>
     <string name="channel">Csatorna</string>
     <string name="playlist">Lejátszási lista</string>
     <string name="yes">Igen</string>
@@ -170,12 +155,9 @@
     <string name="play_all">Összes lejátszása</string>
     <string name="always">Mindig</string>
     <string name="just_once">Csak egyszer</string>
-
     <string name="notification_channel_name">NewPipe Értesítés</string>
     <string name="notification_channel_description">Értesítések a NewPipe háttér- és felugró ablak lejátszójához</string>
-
     <string name="unknown_content">[Ismeretlen]</string>
-
     <string name="import_data_title">Adatbázis importálása</string>
     <string name="export_data_title">Adatbázis exportálása</string>
     <string name="import_data_summary">Felülírja a jelenlegi előzményeket és feliratkozásokat</string>
@@ -187,16 +169,14 @@
     <string name="invalid_url_toast">Hibás cím</string>
     <string name="video_streams_empty">Nem található videó formátum</string>
     <string name="audio_streams_empty">Nem található hang csatorna</string>
-
     <string name="info_labels">Mi:\\nKérés:\\nTartalom nyelve:\\nSzolgáltatás:\\nGMT Idő:\\nCsomag:\\nVerzió:\\nOperációs Rendszer verzió:</string>
     <string name="search_no_results">Nincs találat</string>
     <string name="controls_download_desc">Adatfolyam fájl letöltése</string>
-    <string name="controls_add_to_playlist_title">Hozzáadás</string>
-
+    <string name="controls_add_to_playlist_title">Hozzáadás ehhez</string>
     <string name="use_inexact_seek_title">Gyorsabb, de pontatlan tekerés használata</string>
     <string name="use_inexact_seek_summary">A pontatlan tekerés lehetővé teszi, hogy gyorsabban ugorjon a pozíciókra, de kevesebb pontossággal</string>
     <string name="download_thumbnail_title">Bélyegképek betöltése</string>
-    <string name="download_thumbnail_summary">Kapcsold ki, hogy a bélyegképek ne legyenek betöltve és mentve, így csökkentve az adat és memória használatot. Ennek az értéknek a megváltoztatása törli a memóriában és a meghajtón lévő bélyegkép gyorsítótárat</string>
+    <string name="download_thumbnail_summary">Kapcsold ki, hogy a megelőzzed bélyegképek betöltését, így csökkentve az adat és memória használatot. Ennek az értéknek a megváltoztatása törli a memóriában és a meghajtón lévő bélyegkép gyorsítótárat.</string>
     <string name="thumbnail_cache_wipe_complete_notice">A bélyegkép gyorsítótár törölve</string>
     <string name="metadata_cache_wipe_title">Gyorsítótárazott metaadat törlése</string>
     <string name="metadata_cache_wipe_summary">Minden gyorsítótárazott weboldal adat törlése</string>
@@ -209,7 +189,6 @@
     <string name="tracks">Zeneszámok</string>
     <string name="users">Felhasználók</string>
     <string name="file">Fájl</string>
-
     <string name="switch_to_background">Folytatás a háttérben</string>
     <string name="switch_to_popup">Folytatás felugró ablakban</string>
     <string name="clear_views_history_title">Megtekintési előzmények törlése</string>
@@ -228,54 +207,42 @@
     <string name="file_name_empty_error">A fájl neve nem lehet üres</string>
     <string name="error_occurred_detail">Hiba történt: %1$s</string>
     <string name="no_streams_available_download">Nincs letölthető adatforrás</string>
-
     <string name="empty_subscription_feed_subtitle">Itt nincs semmi</string>
     <string name="detail_drag_description">Húzza az átrendezéshez</string>
-
     <string name="short_thousand">e</string>
     <string name="short_million">M</string>
     <string name="short_billion">Mrd</string>
-
     <string name="no_subscribers">Nincs feliratkozó</string>
     <plurals name="subscribers">
-	<item quantity="one">%s feliratkozó</item>
-	<item quantity="other">%s feliratkozó</item>
-</plurals>
-
+        <item quantity="one">%s feliratkozó</item>
+        <item quantity="other">%s feliratkozó</item>
+    </plurals>
     <string name="no_views">Nincs megtekintés</string>
     <plurals name="views">
-	<item quantity="one">%s megtekintés</item>
-	<item quantity="other">%s megtekintés</item>
-</plurals>
-
+        <item quantity="one">%s megtekintés</item>
+        <item quantity="other">%s megtekintés</item>
+    </plurals>
     <string name="no_videos">Nincs videó</string>
     <plurals name="videos">
-	<item quantity="one">%s videó</item>
-	<item quantity="other">%s videó</item>
-</plurals>
-
+        <item quantity="one">Videó</item>
+        <item quantity="other">Videók</item>
+    </plurals>
     <string name="create">Létrehozás</string>
     <string name="delete_one">Egy törlése</string>
     <string name="delete_all">Összes törlése</string>
     <string name="rename">Átnevezés</string>
-
     <string name="msg_popup_permission">Ez az engedély szükséges a felugró ablakban történő megnyitáshoz</string>
     <string name="one_item_deleted">1 elem törölve.</string>
-
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">reCAPTCHA rejtvény</string>
     <string name="recaptcha_request_toast">reCAPTCHA rejtvény igényelve</string>
-
     <string name="settings_category_downloads_title">Letöltés</string>
     <string name="settings_file_charset_title">Fájlnevekben engedélyezett karakterek</string>
     <string name="settings_file_replacement_character_summary">Érvénytelen karakterek ezzel az értékkel kerülnek helyettesítésre</string>
     <string name="settings_file_replacement_character_title">Csere karakter</string>
-
     <string name="charset_letters_and_digits">Betűk és számok</string>
     <string name="charset_most_special_characters">Legtöbb speciális karakter</string>
-
     <string name="toast_no_player">Nincs a fájl lejátszásához szükséges alkalmazás telepítve</string>
-
     <string name="title_activity_about">A NewPipe alkalmazásról</string>
     <string name="action_settings">Beállítások</string>
     <string name="action_about">Az alkalmazásról</string>
@@ -299,8 +266,6 @@
     <string name="read_privacy_policy">Az adatvédelmi irányelvek elolvasása</string>
     <string name="app_license_title">A NewPipe engedélye</string>
     <string name="read_full_license">Engedély elolvasása</string>
-
-
     <string name="title_activity_history">Előzmények</string>
     <string name="title_history_search">Keresési előzmények</string>
     <string name="title_history_view">Megtekintési előzmények</string>
@@ -314,7 +279,6 @@
     <string name="delete_all_history_prompt">Biztosan törölni kíván minden elemet az előzmények közül\?</string>
     <string name="title_last_played">Utoljára lejátszott</string>
     <string name="title_most_played">Legtöbbet lejátszott</string>
-
     <string name="main_page_content">Főoldal tartalma</string>
     <string name="blank_page_summary">Üres oldal</string>
     <string name="kiosk_page_summary">Újságárus oldal</string>
@@ -330,7 +294,6 @@
     <string name="could_not_import_all_files">Figyelmeztetés: nem sikerült az összes fájl importálása.</string>
     <string name="override_current_data">Ez felül fogja írni a jelenlegi beállításokat.</string>
     <string name="import_settings">A beállításokat is importálni kívánja\?</string>
-
     <string name="kiosk">Újságárus</string>
     <string name="trending">Felkapott</string>
     <string name="top_50">Top 50</string>
@@ -340,59 +303,43 @@
     <string name="play_queue_stream_detail">Részletek</string>
     <string name="play_queue_audio_settings">Hang beállítások</string>
     <string name="drawer_header_action_paceholder_text">Itt hamarosan megjelenik valami :)</string>
-
-
     <string name="preferred_open_action_settings_summary">Alapértelmezett tevékenység „%s” típusú tartalom megnyitásakor</string>
-
     <string name="video_player">Videólejátszó</string>
     <string name="background_player">Lejátszás háttérben</string>
     <string name="popup_player">Felugró ablakos lejátszás</string>
     <string name="always_ask_open_action">Mindig kérdezz rá</string>
-
     <string name="preferred_player_fetcher_notification_title">Információk gyűjtése…</string>
     <string name="preferred_player_fetcher_notification_message">Kért tartalom betöltése</string>
-
     <string name="create_playlist">Új lejátszási lista létrehozása</string>
     <string name="delete_playlist">Lejátszási lista törlése</string>
     <string name="rename_playlist">Lejátszási lista átnevezése</string>
     <string name="playlist_name_input">Név</string>
     <string name="append_playlist">Lejátszási listához adás</string>
     <string name="set_as_playlist_thumbnail">Beállítás lejátszási lista előképeként</string>
-
     <string name="unbookmark_playlist">Könyvjelző törlése</string>
-
     <string name="delete_playlist_prompt">Kívánja törölni ezt a lejátszási listát\?</string>
     <string name="playlist_creation_success">Lejátszási listsa létrehozva</string>
     <string name="playlist_add_stream_success">Lejátszási listához hozzáadva</string>
     <string name="playlist_thumbnail_change_success">Lejátszási lista előképe megváltozott</string>
     <string name="playlist_delete_failure">Nem sikerült a lejátszási lista törlése</string>
-
     <string name="caption_none">Felirat kikapcsolva</string>
-
     <string name="resize_fit">Illeszkedés</string>
     <string name="resize_fill">Kitöltés</string>
     <string name="resize_zoom">Közelítés</string>
-
     <string name="caption_auto_generated">Automatikusan létrehozott</string>
-
     <string name="caption_setting_title">Feliratok</string>
     <string name="caption_setting_description">Feliratok méretének és hátterének stílusbeli módosítása. A módosítások életbelépésehez az alkalmazás újraindítása szükséges.</string>
-
     <string name="enable_leak_canary_title">LeakCanary bekapcsolása</string>
     <string name="import_export_title">Import/Export</string>
     <string name="import_title">Import</string>
     <string name="import_from">Importálás a következőből</string>
     <string name="export_to">Exportálás a következőbe</string>
-
     <string name="import_ongoing">Importálás…</string>
     <string name="export_ongoing">Exportálás…</string>
-
     <string name="import_file_title">Fájl importálása</string>
     <string name="previous_export">Előző exportálás</string>
-
     <string name="subscriptions_import_unsuccessful">Sikertelen a feliratkozások importálása</string>
     <string name="subscriptions_export_unsuccessful">Sikertelen a feliratkozások exportálása</string>
-
     <string name="import_youtube_instructions">Importálja YouTube feliratkozásait az export fájl letöltésével:
 \n
 \n1. Navigáljon erre az oldalra: %1$s
@@ -405,29 +352,33 @@
 \n3. Jelentkezzen be
 \n4. Másolja ki a profil URL-t, ahova át lett irányítva.</string>
     <string name="import_soundcloud_instructions_hint">azonosítód, soundcloud.com/azonosítód</string>
-
     <string name="import_network_expensive_warning">Ez a művelet adatforgalom igényes lehet.
 \n
 \nFolytatni kívánja\?</string>
-
     <string name="playback_tempo">Ütem</string>
     <string name="playback_pitch">Hangmagasság</string>
     <string name="skip_silence_checkbox">Előrepörgetés csend alatt</string>
     <string name="playback_step">Lépés</string>
     <string name="playback_reset">Helyreállítás</string>
-
     <string name="accept">Elfogadás</string>
     <string name="decline">Elutasítás</string>
-
     <string name="limit_data_usage_none_description">Nincs korlát</string>
     <string name="limit_mobile_data_usage_title">Felbontás korlátozása mobilinternet használata esetén</string>
     <string name="minimize_on_exit_summary">Művelet alkalmazás váltásakor a fő videólejátszóról — %s</string>
     <string name="minimize_on_exit_none_description">Ne tegyen semmit</string>
     <string name="minimize_on_exit_background_description">Lejátszás folytatása a háttérben</string>
     <string name="minimize_on_exit_popup_description">Lejátszás folytatása felugró ablakban</string>
-
-<string name="resume_on_audio_focus_gain_title">Lejátszás folytatása a fókusz visszaszerzésekor</string>
+    <string name="resume_on_audio_focus_gain_title">Lejátszás folytatása a fókusz visszaszerzésekor</string>
     <string name="show_hold_to_append_title">Mutassa a \"Tartsa lenyomva a hozzáadáshoz\" tippet</string>
-    <string name="background_player_append">Sorba állítva a háttérben lejátszáshoz</string>
+    <string name="background_player_append">Várólistához adva a háttérben</string>
     <string name="toggle_orientation">Elforgatás</string>
-    </resources>
+    <string name="unsubscribe">Leiratkozás</string>
+    <string name="tab_new">Új fül</string>
+    <string name="tab_choose">Válassz fület</string>
+    <string name="show_comments_title">Kommentek mutatása</string>
+    <string name="show_comments_summary">Kapcsold ki, hogy ne mutassa a kommenteket</string>
+    <string name="default_content_country_title">Tartalmak alapértelmezett országa</string>
+    <string name="switch_to_main">Folytatás főnézetben</string>
+    <string name="dismiss">Figyelmen kívül hagy</string>
+    <string name="bookmark_playlist">Lejátszási lista könyvjelzők közé</string>
+</resources>
