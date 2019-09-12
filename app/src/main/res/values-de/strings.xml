@@ -2,7 +2,7 @@
 <resources>
     <string name="view_count_text">%1$s Aufrufe</string>
     <string name="upload_date_text">Veröffentlicht am %1$s</string>
-    <string name="no_player_found">Keinen Stream-Player gefunden. Möchtest Du VLC installieren\?</string>
+    <string name="no_player_found">Keinen Stream-Player gefunden. Möchtest du VLC installieren\?</string>
     <string name="install">Installieren</string>
     <string name="cancel">Abbrechen 
 \n</string>
@@ -406,9 +406,9 @@
     <string name="tab_new">Neuer Tab</string>
     <string name="tab_choose">Tab wählen</string>
     <string name="volume_gesture_control_title">Gestensteuerung für Lautstärke</string>
-    <string name="volume_gesture_control_summary">Die Lautstärke im Abspieler über Gesten steuern</string>
+    <string name="volume_gesture_control_summary">Die Player-Lautstärke über Gesten steuern</string>
     <string name="brightness_gesture_control_title">Gestensteuerung für Helligkeit</string>
-    <string name="brightness_gesture_control_summary">Die Helligkeit im Abspieler über Gesten steuern</string>
+    <string name="brightness_gesture_control_summary">Die Player-Helligkeit über Gesten steuern</string>
     <string name="settings_category_updates_title">Aktualisierungen</string>
     <string name="file_deleted">Datei gelöscht</string>
     <string name="app_update_notification_channel_name">App Update-Benachrichtigung</string>
