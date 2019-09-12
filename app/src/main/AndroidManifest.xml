@@ -228,7 +228,20 @@
                 <data android:scheme="http"/>
                 <data android:scheme="https"/>
                 <data android:host="invidio.us"/>
+                <data android:host="dev.invidio.us"/>
                 <data android:host="www.invidio.us"/>
+                <data android:host="invidious.snopyta.org"/>
+                <data android:host="de.invidious.snopyta.org"/>
+                <data android:host="fi.invidious.snopyta.org"/>
+                <data android:host="vid.wxzm.sx"/>
+                <data android:host="invidious.kabi.tk"/>
+                <data android:host="invidiou.sh"/>
+                <data android:host="www.invidiou.sh"/>
+                <data android:host="no.invidiou.sh"/>
+                <data android:host="invidious.enkirton.net"/>
+                <data android:host="tube.poal.co"/>
+                <data android:host="invidious.13ad.de"/>
+                <data android:host="yt.elukerio.org"/>
                 <!-- video prefix -->
                 <data android:pathPrefix="/embed/"/>
                 <data android:pathPrefix="/watch"/>
