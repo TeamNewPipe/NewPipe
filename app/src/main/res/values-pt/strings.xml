@@ -504,4 +504,5 @@
     <string name="clear_playback_states_title">Eliminar as posições de reprodução</string>
     <string name="clear_playback_states_summary">Elimina todas as posições de reprodução</string>
     <string name="delete_playback_states_alert">Eliminar todas as posições de reprodução\?</string>
+    <string name="download_choose_new_path">Alterar as pastas de descarregamento para que tenham efeito</string>
 </resources>
