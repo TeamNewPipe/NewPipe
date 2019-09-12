@@ -56,8 +56,8 @@ dependencies {
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.2', {
         exclude module: 'support-annotations'
     })
-
-    implementation 'com.github.teamnewpipe:NewPipeExtractor:cfc72d8dc9d'
+    
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:bfa6b4d14bf'
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.23.0'
