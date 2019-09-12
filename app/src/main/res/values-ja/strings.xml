@@ -500,4 +500,5 @@
     <string name="clear_playback_states_title">再生位置の削除</string>
     <string name="clear_playback_states_summary">すべての再生位置を削除します</string>
     <string name="delete_playback_states_alert">すべての再生位置を削除しますか\?</string>
+    <string name="download_choose_new_path">ダウンロードフォルダーを変更して有効にします</string>
 </resources>
