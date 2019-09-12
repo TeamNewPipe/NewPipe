@@ -17,6 +17,7 @@
     <string name="download_path_title">Carpeta de descarga de vídeo</string>
     <string name="download_path_summary">Ruta para almacenar los vídeos descargados</string>
     <string name="download_path_dialog_title">Introducir directorio de descargas para vídeos</string>
+    <string name="download_choose_new_path">Cambie las carpetas de descarga para que tenga efecto</string>
     <string name="default_resolution_title">Resolución por defecto de vídeo</string>
     <string name="play_with_kodi_title">Reproducir con Kodi</string>
     <string name="kore_not_found">Aplicación Kore no encontrada. ¿Instalarla?</string>
@@ -458,7 +459,9 @@ abrir en modo popup</string>
 
     <string name="downloads_storage_ask_title">Preguntar dónde descargar</string>
     <string name="downloads_storage_ask_summary">Se preguntará dónde guardar cada descarga</string>
-    <string name="downloads_storage_ask_summary_kitkat">Se preguntará dónde guardar cada descarga.\nHabilita esta opción si quieres descargar en la tarjeta SD externa</string>
+    <string name="downloads_storage_ask_summary_kitkat">Se preguntará dónde guardar cada descarga.\nHabilita esta opción junto con SAF si quieres descargar en la tarjeta SD externa</string>
+    <string name="downloads_storage_use_saf_title">Usar SAF</string>
+    <string name="downloads_storage_use_saf_summary">El Framework de Acceso al Almacenamiento permite descargar en la tarjeta SD externa.\nNota: Algunos los dispositivos no son compatibles</string>
 
     <string name="unsubscribe">Desuscribirse</string>
     <string name="tab_new">Nueva pestaña</string>

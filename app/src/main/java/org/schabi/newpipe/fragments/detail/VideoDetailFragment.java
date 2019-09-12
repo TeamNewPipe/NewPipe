@@ -384,7 +384,10 @@ public class VideoDetailFragment
                 }
                 break;
             case R.id.detail_controls_download:
-                this.openDownloadDialog();
+                if (PermissionHelper.checkStoragePermissions(activity,
+                        PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE)) {
+                    this.openDownloadDialog();
+                }
                 break;
             case R.id.detail_uploader_root_layout:
                 if (TextUtils.isEmpty(currentInfo.getUploaderUrl())) {
@@ -481,7 +484,6 @@ public class VideoDetailFragment
         videoDescriptionView.setMovementMethod(LinkMovementMethod.getInstance());
         videoDescriptionView.setAutoLinkMask(Linkify.WEB_URLS);
 
-        //thumbsRootLayout = rootView.findViewById(R.id.detail_thumbs_root_layout);
         thumbsUpTextView = rootView.findViewById(R.id.detail_thumbs_up_count_view);
         thumbsUpImageView = rootView.findViewById(R.id.detail_thumbs_up_img_view);
         thumbsDownTextView = rootView.findViewById(R.id.detail_thumbs_down_count_view);

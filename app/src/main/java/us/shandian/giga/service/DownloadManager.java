@@ -35,8 +35,8 @@ public class DownloadManager {
     public final static int SPECIAL_PENDING = 1;
     public final static int SPECIAL_FINISHED = 2;
 
-    static final String TAG_AUDIO = "audio";
-    static final String TAG_VIDEO = "video";
+    public static final String TAG_AUDIO = "audio";
+    public static final String TAG_VIDEO = "video";
 
     private final FinishedMissionStore mFinishedMissionStore;
 
@@ -424,10 +424,12 @@ public class DownloadManager {
 
             boolean flag = false;
             for (DownloadMission mission : mMissionsPending) {
-                if (mission.running || !mission.enqueued || mission.isFinished() || mission.hasInvalidStorage())
+                if (mission.running || !mission.enqueued || mission.isFinished())
                     continue;
 
                 resumeMission(mission);
+                if (mission.errCode != DownloadMission.ERROR_NOTHING) continue;
+
                 if (mPrefQueueLimit) return true;
                 flag = true;
             }

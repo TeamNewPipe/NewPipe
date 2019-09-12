@@ -97,7 +97,7 @@
     <string name="msg_running_detail">Sentuh untuk detail</string>
     <string name="msg_wait">Mohon tunggu…</string>
     <string name="msg_copied">Disalin ke papan klip</string>
-    <string name="no_available_dir">Silakan pilih direktori unduhan yang tersedia</string>
+    <string name="no_available_dir">Silakan pilih folder unduhan di pengaturan</string>
     <string name="no_player_found">Pemutar stream tidak ditemukan. Apakah anda ingin memasang VLC\?</string>
     <string name="youtube_signature_decryption_error">Tidak bisa dekripsi tanda tangan URL video</string>
     <string name="app_ui_crash">App/UI rusak</string>
@@ -171,7 +171,7 @@
     <string name="tab_main">Utama</string>
     <string name="enable_search_history_title">Riwayat pencarian</string>
     <string name="enable_search_history_summary">Simpan pencarian secara lokal</string>
-    <string name="enable_watch_history_title">Riwayat &amp; Cache</string>
+    <string name="enable_watch_history_title">Riwayat tontonan</string>
     <string name="notification_channel_name">Notifikasi NewPipe</string>
     <string name="title_activity_history">Riwayat</string>
     <string name="history_disabled">Riwayat dinonaktifkan</string>
@@ -412,7 +412,7 @@
     <string name="app_update_notification_channel_name">Notifikasi Pembaruan Apl</string>
     <string name="app_update_notification_channel_description">Notifikasi untuk versi NewPipe baru</string>
     <string name="download_to_sdcard_error_title">Penyimpanan eksternal tidak tersedia</string>
-    <string name="download_to_sdcard_error_message">Belum bisa mengunduh ke kartu SD eksternal. Setel ulang lokasi folder unduhan\?</string>
+    <string name="download_to_sdcard_error_message">Tidak bisa mengunduh ke kartu SD eksternal. Atur ulang lokasi folder unduhan\?</string>
     <string name="saved_tabs_invalid_json">Menggunakan tab baku, ralat saat membaca tab yang disimpan</string>
     <string name="restore_defaults">Kembali ke awal</string>
     <string name="restore_defaults_confirmation">Apakah anda ingin kembali ke awal\?</string>
@@ -461,8 +461,8 @@
     <string name="stop">Berhenti</string>
     <string name="max_retry_msg">Percobaan maksimum</string>
     <string name="max_retry_desc">Jumlah upaya maksimum sebelum membatalkan unduhan</string>
-    <string name="pause_downloads_on_mobile">Berhenti ketika beralih ke data seluler</string>
-    <string name="pause_downloads_on_mobile_desc">Unduhan yang tidak dapat dijeda akan diulang dari awal</string>
+    <string name="pause_downloads_on_mobile">Berhenti pada jaringan terbatas</string>
+    <string name="pause_downloads_on_mobile_desc">Berguna saat beralih ke data seluler, walaupun beberapa unduhan tidak bisa ditangguhkan</string>
     <string name="show_comments_title">Tampilkan komentar</string>
     <string name="show_comments_summary">Nonaktifkan untuk berhenti menampilkan komentar</string>
     <string name="autoplay_title">Otomatis putar</string>
@@ -472,4 +472,26 @@
     <string name="no_comments">Tidak ada komentar</string>
     <string name="error_unable_to_load_comments">Tidak bisa memuat komentar</string>
     <string name="close">Tutup</string>
+    <string name="enable_playback_resume_title">Lanjutkan pemutaran</string>
+    <string name="enable_playback_resume_summary">Pulihkan posisi pemutaran terakhir</string>
+    <string name="enable_playback_state_lists_title">Posisi dalam daftar</string>
+    <string name="enable_playback_state_lists_summary">Tampilkan indikator posisi pemutaran di dalam daftar</string>
+    <string name="settings_category_clear_data_title">Hapus data</string>
+    <string name="watch_history_states_deleted">Posisi pemutaran dihapus.</string>
+    <string name="missing_file">Berkas dipindah atau dihapus</string>
+    <string name="overwrite_unrelated_warning">Berkas dengan nama yang sama sudah ada</string>
+    <string name="overwrite_failed">tidak bisa menimpa ulang berkas</string>
+    <string name="download_already_pending">Ada unduhan yang dijeda dengan nama ini</string>
+    <string name="error_postprocessing_stopped">NewPipe telah ditutup saat sedang memproses berkas</string>
+    <string name="error_insufficient_storage">Tidak ada ruang kosong tersisa pada perangkat</string>
+    <string name="error_progress_lost">Kehilangan laju, karena berkas telah dihapus</string>
+    <string name="confirm_prompt">Apakah anda yakin\?</string>
+    <string name="enable_queue_limit">Batasi antrean unduhan</string>
+    <string name="enable_queue_limit_desc">Satu unduhan akan berjalan pada waktu yang bersamaan</string>
+    <string name="start_downloads">Mulai unduh</string>
+    <string name="pause_downloads">Jeda unduh</string>
+    <string name="downloads_storage_ask_title">Tanyakan lokasi unduhan</string>
+    <string name="downloads_storage_ask_summary">Anda akan ditanya lokasi penyimpanan berkas unduhan</string>
+    <string name="downloads_storage_ask_summary_kitkat">Anda akan ditanya lokasi penyimpanan berkas unduhan.
+\nAktifkan opsi ini jika anda ingin mengunduh ke kartu SD eksternal</string>
 </resources>

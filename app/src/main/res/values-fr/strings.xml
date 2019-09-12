@@ -55,7 +55,6 @@
     <string name="general_error">Erreur</string>
     <string name="parsing_error">Impossible d\'analyser le site web</string>
     <string name="content_not_available">Contenu non disponible</string>
-
     <string name="error_snackbar_message">Désolé, des erreurs se sont produites.</string>
     <string name="content">Contenu</string>
     <string name="show_age_restricted_content_title">Contenu avec limite d\'âge</string>
@@ -103,7 +102,7 @@
     <string name="msg_running_detail">Appuyer pour plus de détails</string>
     <string name="msg_wait">Veuillez patienter…</string>
     <string name="msg_copied">Copié dans le presse-papiers</string>
-    <string name="no_available_dir">Sélectionner un dossier de téléchargement disponible</string>
+    <string name="no_available_dir">Veuillez définir un dossier de téléchargement plus tard dans les paramètres</string>
     <string name="could_not_load_image">Impossible de charger l\'image</string>
     <string name="app_ui_crash">L’application a crashé</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
@@ -175,7 +174,7 @@
     <string name="settings_file_replacement_character_title">Caractère de remplacement</string>
     <string name="enable_search_history_title">Historique de recherche</string>
     <string name="enable_search_history_summary">Conserver les recherches sur l\'appareil</string>
-    <string name="enable_watch_history_title">Historique et cache</string>
+    <string name="enable_watch_history_title">Voir l \'historique</string>
     <string name="title_activity_history">Historique</string>
     <string name="title_history_search">Recherché</string>
     <string name="title_history_view">Regardé</string>
@@ -421,7 +420,7 @@
     <string name="selection">Sélection</string>
     <string name="stop">Arrêter</string>
     <string name="events">Événements</string>
-    <string name="download_to_sdcard_error_message">Télécharger vers la carte SD n\'est pas encore possible. Voulez-vous réinitialiser l\'emplacement du dossier \?</string>
+    <string name="download_to_sdcard_error_message">Télécharger vers la carte SD n\'est pas possible. Voulez-vous réinitialiser l\'emplacement du dossier \?</string>
     <string name="main_page_content_summary">Quels onglets seront visibles sur la page principale</string>
     <string name="updates_setting_title">Mises à jour</string>
     <string name="updates_setting_description">Afficher une notification pour proposer une mise à jour de l\'application lorsqu\'une nouvelle version est disponible</string>
@@ -432,7 +431,7 @@
     <string name="app_update_notification_content_title">Une mise à jour de NewPipe disponible !</string>
     <string name="app_update_notification_content_text">Appuyez pour télécharger</string>
     <string name="missions_header_finished">Terminé</string>
-    <string name="missions_header_pending">Dans la file d\'attente</string>
+    <string name="missions_header_pending">En attente</string>
     <string name="paused">En pause</string>
     <string name="download_failed">Téléchargement échoué</string>
     <string name="error_timeout">Délai de connection dépassé</string>
@@ -447,8 +446,8 @@
     <string name="download_already_running">Il y a un téléchargement en cours avec ce nom</string>
     <string name="show_error">Afficher l\'erreur</string>
     <string name="label_code">Code</string>
-    <string name="error_path_creation">Le fichier ne peut pas être créé</string>
-    <string name="error_file_creation">Le dossier de destination ne peut pas être créé</string>
+    <string name="error_path_creation">Le dossier de destination ne peut pas être créé</string>
+    <string name="error_file_creation">Le fichier ne peut pas être créé</string>
     <string name="error_permission_denied">Autorisation refusée par le système</string>
     <string name="error_ssl_exception">Échoué de la connexion sécurisée</string>
     <string name="error_unknown_host">Le serveur est introuvable</string>
@@ -457,7 +456,7 @@
     <string name="error_http_not_found">Introuvable</string>
     <string name="clear_finished_download">Effacer les téléchargements terminés</string>
     <string name="pause_downloads_on_mobile">Mettre en pause lors du passage en données mobiles</string>
-    <string name="pause_downloads_on_mobile_desc">Les téléchargements qui ne peuvent pas être mis en pause seront redémarrés</string>
+    <string name="pause_downloads_on_mobile_desc">Utile lors du passage aux données mobiles, bien que certains téléchargements ne peuvent pas être suspendus</string>
     <string name="list_view_mode">Mode liste</string>
     <string name="post_processing">post-traitement</string>
     <string name="enqueue">File d’attente</string>
@@ -479,4 +478,21 @@
     <string name="no_comments">Pas de commentaires</string>
     <string name="error_unable_to_load_comments">Impossible de charger les commentaires</string>
     <string name="close">Fermer</string>
+    <string name="enable_playback_resume_title">Reprendre la lecture</string>
+    <string name="settings_category_clear_data_title">Effacer les données</string>
+    <string name="missing_file">Fichier déplacé ou supprimé</string>
+    <string name="overwrite_failed">ne peut pas remplacer le fichier</string>
+    <string name="download_already_pending">Il y a déjà un téléchargement en attente avec ce nom</string>
+    <string name="error_postprocessing_stopped">NewPipe a été fermé alors qu\'il travaillait sur le fichier</string>
+    <string name="error_insufficient_storage">Aucun espace disponible sur le périphérique</string>
+    <string name="error_progress_lost">Progression perdue, car le fichier a été effacé</string>
+    <string name="confirm_prompt">Êtes-vous certain \?</string>
+    <string name="enable_queue_limit">Limiter la file d\'attente de téléchargement</string>
+    <string name="enable_queue_limit_desc">Un téléchargement s\'exécutera en même temps</string>
+    <string name="start_downloads">Démarrer les téléchargements</string>
+    <string name="pause_downloads">Mettre en pause les téléchargements</string>
+    <string name="downloads_storage_ask_title">Demander où télécharger</string>
+    <string name="downloads_storage_ask_summary">On vous demandera où enregistrer chaque téléchargement</string>
+    <string name="downloads_storage_ask_summary_kitkat">On vous demandera où enregistrer chaque téléchargement.
+\nActivez cette option si vous voulez télécharger sur la carte SD externe</string>
 </resources>
