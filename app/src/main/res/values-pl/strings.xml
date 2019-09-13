@@ -509,4 +509,5 @@
     <string name="clear_playback_states_title">Usuń pozycje odtwarzania</string>
     <string name="clear_playback_states_summary">Usuwa wszystkie pozycje odtwarzania</string>
     <string name="delete_playback_states_alert">Usunąć wszystkie pozycje odtwarzania\?</string>
+    <string name="download_choose_new_path">Zmień folder pobierania</string>
 </resources>
