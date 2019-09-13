@@ -570,10 +570,10 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         }
 
         // this will make shure progressCurrentTime has the same width as progressEndTime
-        final ViewGroup.LayoutParams endTimeParams = progressEndTime.getLayoutParams();
+       /* final ViewGroup.LayoutParams endTimeParams = progressEndTime.getLayoutParams();
         final ViewGroup.LayoutParams currentTimeParams = progressCurrentTime.getLayoutParams();
         currentTimeParams.width = progressEndTime.getWidth();
-        progressCurrentTime.setLayoutParams(currentTimeParams);
+        progressCurrentTime.setLayoutParams(currentTimeParams);*/
     }
 
     @Override
