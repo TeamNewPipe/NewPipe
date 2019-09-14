@@ -37,7 +37,7 @@
     <string name="show_next_and_similar_title">Ukázať \'Ďalšie\' a \'Podobné\' videá</string>
     <string name="url_not_supported_toast">URL nie je podporovaná</string>
     <string name="content_language_title">Preferovaný jazyk obsahu</string>
-    <string name="settings_category_video_audio_title">Video &amp; Zvuk</string>
+    <string name="settings_category_video_audio_title">Video &amp; zvuk</string>
     <string name="settings_category_appearance_title">Vzhľad</string>
     <string name="settings_category_other_title">Iné</string>
     <string name="background_player_playing_toast">Prehrávanie na pozadí</string>
@@ -48,7 +48,6 @@
     <string name="youtube_signature_decryption_error">Nepodarilo sa dekódovať URL videa</string>
     <string name="parsing_error">Nemožno analyzovať webovú stránku</string>
     <string name="content_not_available">Obsah nie je dostupný</string>
-
     <string name="list_thumbnail_view_description">Náhľad videa</string>
     <string name="detail_thumbnail_view_description">Náhľad videa</string>
     <string name="detail_uploader_thumbnail_view_description">Náhľad avataru uploadera</string>
@@ -62,9 +61,9 @@
     <string name="autoplay_by_calling_app_title">Automatické prehrávanie</string>
     <string name="autoplay_by_calling_app_summary">Prehrá video pri zavolaní NewPipe inou aplikáciou</string>
     <string name="content">Obsah</string>
-    <string name="show_age_restricted_content_title">Zobraziť vekovo obmedzený obsah</string>
+    <string name="show_age_restricted_content_title">Vekovo obmedzený obsah</string>
     <string name="video_is_age_restricted">Toto video je vekovo obmedzené. Povoľte zobrazenie obsahu v nastavení.</string>
-    <string name="duration_live">naživo</string>
+    <string name="duration_live">NAŽIVO</string>
     <string name="light_parsing_error">Nemožno kompletne zanalyzovať web</string>
     <string name="could_not_setup_download_menu">Nemožno nastaviť menu preberania</string>
     <string name="live_streams_not_supported">Toto je ŽIVÉ VYSIELANIE, ktoré ešte nie je podporované.</string>
@@ -153,7 +152,7 @@
     <string name="fragment_whats_new">Čo je nové</string>
     <string name="enable_search_history_title">Hľadať v histórií</string>
     <string name="enable_search_history_summary">Hľadané výrazy ukladať lokálne</string>
-    <string name="enable_watch_history_title">História a vyrovnávacia pamäť</string>
+    <string name="enable_watch_history_title">História pozretí</string>
     <string name="enable_watch_history_summary">Ukladať históriu pozretých videí</string>
     <string name="resume_on_audio_focus_gain_title">Pokračovať po prepnutí zobrazenia</string>
     <string name="resume_on_audio_focus_gain_summary">Pokračovať po prerušeniach (napr. hlasový hovor)</string>
@@ -209,9 +208,9 @@
     </plurals>
     <string name="no_videos">Žiadne videá</string>
     <plurals name="videos">
-        <item quantity="one">%s video</item>
-        <item quantity="few">%s videá</item>
-        <item quantity="other">%s videí</item>
+        <item quantity="one">Video</item>
+        <item quantity="few">Videá</item>
+        <item quantity="other">Videí</item>
     </plurals>
     <string name="item_deleted">Položka bola odstránená</string>
     <string name="no_player_found_toast">Nebol nájdený žiadny prehrávač pre stream (môžete si nainštalovať napr. VLC)</string>
@@ -474,4 +473,43 @@
     <string name="max_retry_desc">Maximálny počet pokusov pred zrušením stiahnutia</string>
     <string name="pause_downloads_on_mobile">Pozastaviť pri prechode na mobilné dáta</string>
     <string name="pause_downloads_on_mobile_desc">Preberania, ktoré nie je možné pozastaviť, budú reštartované</string>
+    <string name="show_comments_title">Zobraziť komentáre</string>
+    <string name="show_comments_summary">Vypnutím tejto funkcie sa nebudú zobrazovať komentáre</string>
+    <string name="autoplay_title">Automatické prehrávanie</string>
+    <plurals name="comments">
+        <item quantity="one">Komentáre</item>
+        <item quantity="few"/>
+        <item quantity="other"/>
+    </plurals>
+    <string name="no_comments">Žiadne komentáre</string>
+    <string name="error_unable_to_load_comments">Nemožno načítať komentáre</string>
+    <string name="close">Zatvoriť</string>
+    <string name="enable_playback_resume_title">Pokračovať v prehrávaní</string>
+    <string name="enable_playback_resume_summary">Obnovenie poslednej pozície prehrávania</string>
+    <string name="enable_playback_state_lists_title">Poradie v zoznamoch</string>
+    <string name="enable_playback_state_lists_summary">Zobraziť indikátory polohy prehrávania v zoznamoch</string>
+    <string name="settings_category_clear_data_title">Vymazať údaje</string>
+    <string name="watch_history_states_deleted">Pozície prehrávania boli odstránené.</string>
+    <string name="missing_file">Súbor bol presunutý alebo odstránený</string>
+    <string name="overwrite_failed">súbor nemožno prepísať</string>
+    <string name="download_already_pending">Súbor s rovnakým názvom už čaká na stiahnutie</string>
+    <string name="error_postprocessing_stopped">NewPipe bol ukončený počas spracovávania súboru</string>
+    <string name="error_insufficient_storage">Máš plnú pamäť</string>
+    <string name="error_progress_lost">Nemožno pokračovať, súbor bol vymazaný</string>
+    <string name="error_timeout">Spojenie vypršalo</string>
+    <string name="confirm_prompt">Ste si istý\?</string>
+    <string name="enable_queue_limit">Limitovať počet položiek pri sťahovaní</string>
+    <string name="enable_queue_limit_desc">Súbory sa budú sťahovať jeden po druhom</string>
+    <string name="start_downloads">Spustite sťahovanie</string>
+    <string name="pause_downloads">Pozastaviť sťahovanie</string>
+    <string name="downloads_storage_ask_title">Pýtať sa na adresár sťahovania</string>
+    <string name="downloads_storage_ask_summary">Pri každom sťahovaní súboru sa bude vyžadovať zadanie cieľového adresára</string>
+    <string name="downloads_storage_ask_summary_kitkat">Pri každom sťahovaní súboru sa bude vyžadovať zadanie cieľového adresára
+\nZvoľte SAF pokiaľ chcete ukladať na externé úložisko</string>
+    <string name="downloads_storage_use_saf_title">Použiť SAF</string>
+    <string name="downloads_storage_use_saf_summary">Storage Access Framework umožňuje sťahovanie na externú SD kartu.
+\nPoznámka: Niektoré zariadenia nie sú kompatibilné</string>
+    <string name="clear_playback_states_title">Odstrániť pozície prehrávania</string>
+    <string name="clear_playback_states_summary">Odstráni všetky pozície prehrávania</string>
+    <string name="delete_playback_states_alert">Odstrániť všetky pozície prehrávania\?</string>
 </resources>

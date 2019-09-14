@@ -30,7 +30,7 @@
     <string name="dark_theme_title">灰暗</string>
     <string name="light_theme_title">明亮</string>
     <string name="download_dialog_title">下載</string>
-    <string name="next_video_title">接下來</string>
+    <string name="next_video_title">下一個</string>
     <string name="show_next_and_similar_title">顯示「下一部」與「相關」的影片</string>
     <string name="url_not_supported_toast">不支援此網址</string>
     <string name="content_language_title">預設內容語言</string>
@@ -134,7 +134,7 @@
     <string name="msg_running_detail">輕觸以顯示詳細資訊</string>
     <string name="msg_wait">請稍候…</string>
     <string name="msg_copied">已複製至剪貼簿</string>
-    <string name="no_available_dir">請選擇下載資料夾</string>
+    <string name="no_available_dir">稍後請在設定中選擇下載資料夾</string>
     <string name="msg_popup_permission">使用懸浮視窗模式需要此權限</string>
     <string name="reCaptchaActivity">reCAPTCHA 驗證</string>
     <string name="reCaptcha_title">reCAPTCHA 驗證</string>
@@ -151,7 +151,7 @@
     <string name="fragment_whats_new">新鮮事</string>
     <string name="enable_search_history_title">搜尋紀錄</string>
     <string name="enable_search_history_summary">在本機儲存搜尋紀錄</string>
-    <string name="enable_watch_history_title">歷史紀錄與快取</string>
+    <string name="enable_watch_history_title">檢視歷史</string>
     <string name="enable_watch_history_summary">記錄觀看過的影片</string>
     <string name="resume_on_audio_focus_gain_title">取得視窗焦點時繼續播放</string>
     <string name="resume_on_audio_focus_gain_summary">在干擾結束後繼續播放（例如有來電）</string>
@@ -366,7 +366,7 @@
     <string name="caption_setting_description">調整播放器字幕文字大小與背景樣式。必須重新啟動應用程式才會生效。</string>
     <string name="toast_no_player">未安裝可播放此檔案的應用程式</string>
     <string name="clear_views_history_title">清除觀看歷史</string>
-    <string name="clear_views_history_summary">刪除播放過的串流歷史</string>
+    <string name="clear_views_history_summary">刪除播放過的串流與播放位置歷史</string>
     <string name="delete_view_history_alert">刪除所有觀看歷史記錄？</string>
     <string name="watch_history_deleted">觀看歷史已刪除。</string>
     <string name="clear_search_history_title">清除搜尋歷史</string>
@@ -410,7 +410,7 @@
     <string name="app_update_notification_channel_name">應用程式更新通知</string>
     <string name="app_update_notification_channel_description">新 NewPipe 版本通知</string>
     <string name="download_to_sdcard_error_title">外部儲存不可用</string>
-    <string name="download_to_sdcard_error_message">目前無法下載到外部 SD 卡。重設下載資料夾位置？</string>
+    <string name="download_to_sdcard_error_message">無法下載到外部 SD 卡。重設下載資料夾位置？</string>
     <string name="saved_tabs_invalid_json">使用預設分頁，讀取已儲存的分頁時發生錯誤</string>
     <string name="restore_defaults">恢復預設值</string>
     <string name="restore_defaults_confirmation">您想要恢復預設值嗎？</string>
@@ -458,8 +458,8 @@
     <string name="stop">停止</string>
     <string name="max_retry_msg">最大重試次數</string>
     <string name="max_retry_desc">在取消下載前的最大嘗試數</string>
-    <string name="pause_downloads_on_mobile">切換到行動數據時暫停</string>
-    <string name="pause_downloads_on_mobile_desc">無法暫停的下載將會重新開始</string>
+    <string name="pause_downloads_on_mobile">在計量收費網路上時中斷</string>
+    <string name="pause_downloads_on_mobile_desc">在切換到行動數據時很有用（雖然某些下載無法暫停）</string>
     <string name="events">事件</string>
     <string name="conferences">會議</string>
     <string name="error_timeout">連接超時</string>
@@ -472,4 +472,32 @@
     <string name="no_comments">沒有留言</string>
     <string name="error_unable_to_load_comments">無法載入留言</string>
     <string name="close">關閉</string>
+    <string name="enable_playback_resume_title">恢復播放</string>
+    <string name="enable_playback_resume_summary">回復到上一次播放的位置</string>
+    <string name="enable_playback_state_lists_title">清單中的位置</string>
+    <string name="enable_playback_state_lists_summary">在清單中顯示播放位置指示器</string>
+    <string name="settings_category_clear_data_title">清除資料</string>
+    <string name="watch_history_states_deleted">播放位置已刪除。</string>
+    <string name="missing_file">檔案已移動或已刪除</string>
+    <string name="overwrite_unrelated_warning">與此同名的檔案已存在</string>
+    <string name="overwrite_failed">無法覆寫檔案</string>
+    <string name="download_already_pending">有同名的擱置中下載</string>
+    <string name="error_postprocessing_stopped">NewPipe 在處理檔案時被關閉</string>
+    <string name="error_insufficient_storage">裝置上沒有剩餘的空間</string>
+    <string name="error_progress_lost">進度遺失，因為檔案已被刪除</string>
+    <string name="confirm_prompt">您確定？</string>
+    <string name="enable_queue_limit">限制下載佇列</string>
+    <string name="enable_queue_limit_desc">一次執行一個下載</string>
+    <string name="start_downloads">開始下載</string>
+    <string name="pause_downloads">暫停下載</string>
+    <string name="downloads_storage_ask_title">詢問要下載到哪裡</string>
+    <string name="downloads_storage_ask_summary">每次下載您都會被詢問要下載到哪裡</string>
+    <string name="downloads_storage_ask_summary_kitkat">每次下載您都會被詢問要下載到哪裡。
+\n如果您想要下載到外部的 SD 卡的話，請選擇 SAF</string>
+    <string name="downloads_storage_use_saf_title">使用 SAF</string>
+    <string name="downloads_storage_use_saf_summary">儲存存取框架讓您可以下載到外部的 SD 卡。
+\n注意：可能與某些裝置不相容</string>
+    <string name="clear_playback_states_title">刪除播放位置</string>
+    <string name="clear_playback_states_summary">刪除所有播放位置</string>
+    <string name="delete_playback_states_alert">刪除所有播放位置？</string>
 </resources>

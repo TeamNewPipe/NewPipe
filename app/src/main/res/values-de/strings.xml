@@ -2,7 +2,7 @@
 <resources>
     <string name="view_count_text">%1$s Aufrufe</string>
     <string name="upload_date_text">Veröffentlicht am %1$s</string>
-    <string name="no_player_found">Keinen Stream-Player gefunden. Möchtest Du VLC installieren\?</string>
+    <string name="no_player_found">Keinen Stream-Player gefunden. Möchtest du VLC installieren\?</string>
     <string name="install">Installieren</string>
     <string name="cancel">Abbrechen 
 \n</string>
@@ -38,9 +38,9 @@
     <string name="detail_likes_img_view_description">Gefällt</string>
     <string name="use_external_video_player_title">Externen Video-Player verwenden</string>
     <string name="use_external_audio_player_title">Externen Audio-Player verwenden</string>
-    <string name="background_player_playing_toast">Spiele im Hintergrund ab</string>
+    <string name="background_player_playing_toast">Im Hintergrund abspielen</string>
     <string name="play_btn_text">Abspielen</string>
-    <string name="use_tor_title">Benutze Tor</string>
+    <string name="use_tor_title">Tor benutzen</string>
     <string name="use_tor_summary">(Experimentell) Erzwinge das Herunterladen über Tor für verbesserte Privatsphäre (Videostream werden noch nicht unterstützt).</string>
     <string name="network_error">Netzwerkfehler</string>
     <string name="download_path_audio_title">Downloadverzeichnis für Audiodateien</string>
@@ -121,7 +121,7 @@
     <string name="disabled">Deaktiviert</string>
     <string name="open_in_popup_mode">Im Pop-up-Modus öffnen</string>
     <string name="default_video_format_title">Bevorzugtes Videoformat</string>
-    <string name="popup_playing_toast">Spiele im Pop-up Modus ab</string>
+    <string name="popup_playing_toast">Im Pop-up Modus abspielen</string>
     <string name="popup_mode_share_menu_title">NewPipe-Pop-up-Modus</string>
     <string name="msg_popup_permission">Diese Berechtigung ist für das Öffnen im Pop-up-Modus erforderlich</string>
     <string name="default_popup_resolution_title">Standardauflösung des Pop-ups</string>
@@ -210,9 +210,9 @@
     <string name="resume_on_audio_focus_gain_title">Fortsetzen bei erneutem Fokussieren</string>
     <string name="settings_category_player_title">Player</string>
     <string name="empty_subscription_feed_subtitle">Nichts hier außer das Zirpen der Grillen</string>
-    <string name="delete_item_search_history">Möchtest du dieses Element aus dem Suchverlauf löschen?</string>
+    <string name="delete_item_search_history">Möchtest Du dieses Element aus dem Suchverlauf löschen\?</string>
     <string name="blank_page_summary">Leere Seite</string>
-    <string name="select_a_channel">Wähle einen Kanal aus</string>
+    <string name="select_a_channel">Einen Kanal auswählen</string>
     <string name="no_channel_subscribed_yet">Noch keine Kanalabonnements vorhanden</string>
     <string name="trending">Trends</string>
     <string name="popup_playing_append">In der Warteschlange der Pop-up-Wiedergabe</string>
@@ -284,8 +284,8 @@
     <string name="delete_one">Einen löschen</string>
     <string name="delete_all">Alle löschen</string>
     <string name="rename">Umbenennen</string>
-    <string name="delete_stream_history_prompt">Möchtest du dieses Element aus dem Wiedergabeverlauf löschen?</string>
-    <string name="delete_all_history_prompt">Bist du sicher, dass du alle Elemente aus dem Verlauf löschen möchtest?</string>
+    <string name="delete_stream_history_prompt">Möchtest Du dieses Element aus dem Wiedergabeverlauf löschen\?</string>
+    <string name="delete_all_history_prompt">Bist Du sicher, dass Du alle Elemente aus dem Verlauf löschen möchtest\?</string>
     <string name="title_last_played">Zuletzt wiedergegeben</string>
     <string name="title_most_played">Am häufigsten wiedergegeben</string>
     <string name="always_ask_open_action">Immer fragen</string>
@@ -320,7 +320,7 @@
     <string name="previous_export">Vorheriger Export</string>
     <string name="import_network_expensive_warning">Beachte, dass diese Aktion das Netzwerk stark belasten kann. 
 \n 
-\nMöchtest du fortfahren?</string>
+\nMöchtest Du fortfahren\?</string>
     <string name="download_thumbnail_title">Vorschaubilder laden</string>
     <string name="thumbnail_cache_wipe_complete_notice">Bilder-Cache gelöscht</string>
     <string name="metadata_cache_wipe_title">Zwischengespeicherte Metadaten löschen</string>
@@ -348,20 +348,20 @@
     <string name="resize_fit">Anpassen</string>
     <string name="resize_fill">Füllen</string>
     <string name="resize_zoom">Vergrößern</string>
-    <string name="enable_leak_canary_summary">Speicherlecküberwachung kann dazu führen, dass die App beim Heap-Dumping nicht mehr reagiert</string>
+    <string name="enable_leak_canary_summary">Die Überwachung von Speicherlecks kann dazu führen, dass die App beim Heap-Dumping nicht mehr reagiert</string>
     <string name="enable_disposed_exceptions_title">Fehler außerhalb des Lebenszyklus melden</string>
     <string name="enable_disposed_exceptions_summary">Erzwingen der Meldung unzustellbarer Rx-Ausnahmen außerhalb des Lebenszyklus von Fragmenten oder Aktivitäten nach der Entsorgung</string>
     <string name="import_youtube_instructions">Importiere YouTube-Abonnements, indem du die Exportdatei herunterlädst: 
 \n 
 \n1. Gehe zu dieser URL: %1$s 
-\n2. Melde dich an, falls du dazu aufgefordert wirst. 
+\n2. Melde dich an, falls Du dazu aufgefordert wirst. 
 \n3. Der Ladevorgang sollte beginnen (das ist die Exportdatei)</string>
     <string name="import_soundcloud_instructions">Importiere ein SoundCloud-Profil, indem du entweder die URL oder deine ID eingibst: 
 \n 
 \n1. Aktiviere den \"Desktop-Modus\" in einem Web-Browser (die Seite ist für mobile Geräte nicht verfügbar) 
 \n2. Gehe zu dieser URL: %1$s 
-\n3. Melden dich an, falls du dazu aufgefordert wirst 
-\n4. Kopiere die Profil-URL, zu der du weitergeleitet wurdest.</string>
+\n3. Melden dich an, falls Du dazu aufgefordert wirst 
+\n4. Kopiere die Profil-URL, zu der Du weitergeleitet wurdest.</string>
     <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/yourid</string>
     <string name="no_streams_available_download">Keine Streams zum Download verfügbar</string>
     <string name="preferred_open_action_settings_title">Bevorzugte \'Öffnen\' Aktion</string>
@@ -370,16 +370,16 @@
     <string name="caption_setting_description">Textgröße und Hintergrund der Untertitel im Player anpassen. Wird erst nach Neustart der App wirksam.</string>
     <string name="toast_no_player">Keine App zum Abspielen dieser Datei installiert</string>
     <string name="clear_views_history_title">Wiedergabeverlauf löschen</string>
-    <string name="clear_views_history_summary">Löscht den Verlauf der abgespielten Streams</string>
+    <string name="clear_views_history_summary">Den Verlauf der abgespielten Streams und die Wiedergabepositionen löschen.</string>
     <string name="delete_view_history_alert">Den ganzen Wiedergabeverlauf löschen\?</string>
     <string name="watch_history_deleted">Wiedergabeverlauf gelöscht.</string>
     <string name="clear_search_history_title">Suchverlauf löschen</string>
-    <string name="clear_search_history_summary">Löscht den Verlauf der Suchbegriffe</string>
+    <string name="clear_search_history_summary">Den Verlauf der Suchbegriffe löschen</string>
     <string name="delete_search_history_alert">Den gesamten Suchverlauf löschen\?</string>
     <string name="search_history_deleted">Suchverlauf gelöscht.</string>
     <string name="one_item_deleted">1 Element gelöscht.</string>
     <string name="app_license">NewPipe ist freie Copyleft-Software: Du kannst sie nach Belieben benutzen, untersuchen, mit anderen teilen und verbessern. Insbesondere kannst du sie unter den von der Free Software Foundation veröffentlichten Bedingungen der GNU General Public License, in der Version 3 der Lizenz oder (nach deiner Wahl) jeder späteren Version, weitergeben und/oder verändern.</string>
-    <string name="import_settings">Möchtest du auch Einstellungen importieren?</string>
+    <string name="import_settings">Möchtest Du auch Einstellungen importieren\?</string>
     <string name="privacy_policy_title">NewPipe-Datenschutzbestimmungen</string>
     <string name="privacy_policy_encouragement">Dem NewPipe-Projekt ist Datenschutz sehr wichtig. Deshalb sammelt diese App keine Daten ohne deine Zustimmung.
 \nNewPipes Datenschutzbestimmungen erklären im Detail, welche Daten beim Absenden eines Absturzberichtes verschickt und gespeichert werden.</string>
@@ -406,29 +406,29 @@
     <string name="tab_new">Neuer Tab</string>
     <string name="tab_choose">Tab wählen</string>
     <string name="volume_gesture_control_title">Gestensteuerung für Lautstärke</string>
-    <string name="volume_gesture_control_summary">Die Lautstärke im Abspieler über Gesten steuern</string>
+    <string name="volume_gesture_control_summary">Die Player-Lautstärke über Gesten steuern</string>
     <string name="brightness_gesture_control_title">Gestensteuerung für Helligkeit</string>
-    <string name="brightness_gesture_control_summary">Die Helligkeit im Abspieler über Gesten steuern</string>
+    <string name="brightness_gesture_control_summary">Die Player-Helligkeit über Gesten steuern</string>
     <string name="settings_category_updates_title">Aktualisierungen</string>
     <string name="file_deleted">Datei gelöscht</string>
-    <string name="app_update_notification_channel_name">Aktualisierungsbenachrichtigung</string>
+    <string name="app_update_notification_channel_name">App Update-Benachrichtigung</string>
     <string name="app_update_notification_channel_description">Benachrichtigung bei neuer NewPipe-Version</string>
     <string name="download_to_sdcard_error_title">Kein externer Speicher verfügbar</string>
     <string name="download_to_sdcard_error_message">Herunterladen auf externe SD-Karte ist nicht möglich. Downloadverzeichnis zurücksetzen\?</string>
     <string name="saved_tabs_invalid_json">Fehler beim Lesen der gespeicherten Tabs – es werden die Voreinstellungen benutzt</string>
-    <string name="restore_defaults">Voreinstellungen wiederherstellen</string>
-    <string name="restore_defaults_confirmation">Möchtest du die Voreinstellungen wiederherstellen\?</string>
+    <string name="restore_defaults">Standardwerte wiederherstellen</string>
+    <string name="restore_defaults_confirmation">Möchtest Du die Standardwerte wiederherstellen\?</string>
     <string name="subscribers_count_not_available">Abonnentenzahl nicht verfügbar</string>
     <string name="main_page_content_summary">Welche Tabs auf der Hauptseite angezeigt werden</string>
     <string name="selection">Auswahl</string>
-    <string name="updates_setting_title">Aktualisierungen</string>
+    <string name="updates_setting_title">Updates</string>
     <string name="updates_setting_description">Per Benachrichtigung zur Aktualisierung der App auffordern, wenn eine neue Version verfügbar ist</string>
     <string name="list_view_mode">Art der Listenansicht</string>
     <string name="list">Liste</string>
     <string name="grid">Gitter</string>
     <string name="auto">Auto</string>
     <string name="switch_view">Ansicht wechseln</string>
-    <string name="app_update_notification_content_title">NewPipe-Aktualisierung verfügbar!</string>
+    <string name="app_update_notification_content_title">NewPipe-Update verfügbar!</string>
     <string name="app_update_notification_content_text">Zum Herunterladen antippen</string>
     <string name="missions_header_finished">Fertig</string>
     <string name="missions_header_pending">Ausstehend</string>
@@ -471,14 +471,14 @@
     <string name="show_comments_summary">Deaktivieren, um die Anzeige von Kommentaren zu beenden</string>
     <string name="autoplay_title">Autoplay</string>
     <plurals name="comments">
-        <item quantity="one">Kommentare</item>
-        <item quantity="other"/>
+        <item quantity="one">Kommentar</item>
+        <item quantity="other">Kommentare</item>
     </plurals>
     <string name="no_comments">Keine Kommentare</string>
     <string name="error_unable_to_load_comments">Kommentare konnten nicht geladen werden</string>
     <string name="close">Schließen</string>
     <string name="enable_playback_resume_title">Wiedergabe fortsetzen</string>
-    <string name="enable_playback_resume_summary">Wiederherstellen der letzten Wiedergabeposition</string>
+    <string name="enable_playback_resume_summary">Letzte Wiedergabeposition wiederherstellen</string>
     <string name="enable_playback_state_lists_title">Positionen in Listen</string>
     <string name="enable_playback_state_lists_summary">Wiedergabepositionsanzeigen in Listen anzeigen</string>
     <string name="settings_category_clear_data_title">Daten löschen</string>
@@ -490,13 +490,19 @@
     <string name="error_postprocessing_stopped">NewPipe wurde während der Verarbeitung der Datei geschlossen</string>
     <string name="error_insufficient_storage">Kein Speicherplatz mehr auf dem Gerät</string>
     <string name="error_progress_lost">Vorgang abgebrochen, da die Datei gelöscht wurde</string>
-    <string name="confirm_prompt">Bist du sicher\?</string>
+    <string name="confirm_prompt">Bist Du sicher\?</string>
     <string name="enable_queue_limit">Downloadwarteschlange begrenzen</string>
     <string name="enable_queue_limit_desc">Ein Download wird zur gleichen Zeit ausgeführt</string>
     <string name="start_downloads">Downloads starten</string>
     <string name="pause_downloads">Downloads anhalten</string>
     <string name="downloads_storage_ask_title">Frage, wohin heruntergeladen werden soll</string>
-    <string name="downloads_storage_ask_summary">Du wirst gefragt, wohin du jeden Download speichern willst</string>
-    <string name="downloads_storage_ask_summary_kitkat">Du wirst gefragt, wohin du jeden Download speichern willst.
-\nAktiviere diese Option, wenn du auf die externe SD-Karte herunterladen möchtest</string>
+    <string name="downloads_storage_ask_summary">Du wirst gefragt, wohin Du jeden Download speichern willst</string>
+    <string name="downloads_storage_ask_summary_kitkat">Du wirst gefragt, wohin Du jeden Download speichern willst. 
+\nAktiviere diese Option, wenn Du auf die externe SD-Karte herunterladen möchtest</string>
+    <string name="downloads_storage_use_saf_title">SAF verwenden</string>
+    <string name="downloads_storage_use_saf_summary">Das Storage Access Framework erlaubt Downloads auf eine externe SD-Karte.
+\nHinweis: Manche Geräte sind nicht kompatibel</string>
+    <string name="clear_playback_states_title">Wiedergabepositionen löschen</string>
+    <string name="clear_playback_states_summary">Alle Wiedergabepositionen löschen</string>
+    <string name="delete_playback_states_alert">Alle Wiedergabepositionen löschen\?</string>
 </resources>
