@@ -325,6 +325,16 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         headerBackgroundButton.setOnClickListener(view ->
                 NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue(), false));
 
+        headerPopupButton.setOnLongClickListener(view -> {
+            NavigationHelper.enqueueOnPopupPlayer(activity, getPlayQueue(), true);
+            return true;
+        });
+
+        headerBackgroundButton.setOnLongClickListener(view -> {
+            NavigationHelper.enqueueOnBackgroundPlayer(activity, getPlayQueue(), true);
+            return true;
+        });
+
         hideLoading();
     }
 
