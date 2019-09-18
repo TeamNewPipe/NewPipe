@@ -117,7 +117,7 @@ public class DownloadRunnable extends Thread {
                     byte[] buf = new byte[DownloadMission.BUFFER_SIZE];
                     int len;
 
-                    while (start < end && mMission.running && (len = is.read(buf, 0, buf.length)) != -1) {
+                    while (start <= end && mMission.running && (len = is.read(buf, 0, buf.length)) != -1) {
                         f.write(buf, 0, len);
                         start += len;
                         block.done += len;
