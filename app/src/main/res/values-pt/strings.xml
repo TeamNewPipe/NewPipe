@@ -368,7 +368,7 @@
     <string name="auto_queue_title">Colocar emissão seguinte na fila</string>
     <string name="app_license">NewPipe é um software livre \"copyleft\": pode utilizar, estudar, partilhar e melhorar a aplicação. Especificamente, pode redistribuir e/ou modificar a aplicação nos termos da Licença Pública Geral GNU, conforme publicada pela Fundação de Software Livre, tanto a versão 3 da licença ou (por sua opção) qualquer versão superior.</string>
     <string name="import_settings">Também deseja importar as definições\?</string>
-    <string name="hold_to_append">Toque longo para colocar na fila</string>
+    <string name="hold_to_append">Toque longo para enfileirar</string>
     <string name="enqueue_on_background">Colocar em fila em segundo plano</string>
     <string name="enqueue_on_popup">Colocar em fila num nova janela</string>
     <string name="preferred_open_action_settings_title">Ação de \'abrir\' preferida</string>
