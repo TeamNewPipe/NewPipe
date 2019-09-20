@@ -20,6 +20,7 @@
 
 package org.schabi.newpipe;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -29,6 +30,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -59,6 +62,7 @@ import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.Constants;
+import org.schabi.newpipe.util.FireTvUtils;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
@@ -408,12 +412,19 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (DEBUG) Log.d(TAG, "onBackPressed() called");
 
+        if (FireTvUtils.isFireTv()) {
+            View drawerPanel = findViewById(R.id.navigation_layout);
+            if (drawer.isDrawerOpen(drawerPanel)) {
+                drawer.closeDrawers();
+                return;
+            }
+        }
+
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
         // If current fragment implements BackPressable (i.e. can/wanna handle back press) delegate the back press to it
         if (fragment instanceof BackPressable) {
             if (((BackPressable) fragment).onBackPressed()) return;
         }
-
 
         if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
             finish();
