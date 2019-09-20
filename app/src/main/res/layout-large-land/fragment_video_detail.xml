@@ -490,6 +490,7 @@
 							android:textAppearance="?android:attr/textAppearanceMedium"
 							android:textIsSelectable="true"
 							android:textSize="@dimen/video_item_detail_description_text_size"
+							android:focusable="true"
 							tools:text="Description Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a ultricies ex. Integer sit amet sodales risus. Duis non mi et urna pretium bibendum." />
 
 						<View
