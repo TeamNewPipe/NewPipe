@@ -34,6 +34,7 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.StreamDialogEntry;
+import org.schabi.newpipe.views.SuperScrollLayoutManager;
 
 import java.util.List;
 import java.util.Queue;
@@ -147,7 +148,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
     }
 
     protected RecyclerView.LayoutManager getListLayoutManager() {
-        return new LinearLayoutManager(activity);
+        return new SuperScrollLayoutManager(activity);
     }
 
     protected RecyclerView.LayoutManager getGridLayoutManager() {

@@ -1,10 +1,13 @@
 package com.google.android.material.appbar;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.OverScroller;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
@@ -13,8 +16,44 @@ import java.lang.reflect.Field;
 // check this https://stackoverflow.com/questions/56849221/recyclerview-fling-causes-laggy-while-appbarlayout-is-scrolling/57997489#57997489
 public final class FlingBehavior extends AppBarLayout.Behavior {
 
+    private final Rect focusScrollRect = new Rect();
+
     public FlingBehavior(Context context, AttributeSet attrs) {
         super(context, attrs);
+    }
+
+    @Override
+    public boolean onRequestChildRectangleOnScreen(@NonNull CoordinatorLayout coordinatorLayout, @NonNull AppBarLayout child, @NonNull Rect rectangle, boolean immediate) {
+        focusScrollRect.set(rectangle);
+
+        coordinatorLayout.offsetDescendantRectToMyCoords(child, focusScrollRect);
+
+        int height = coordinatorLayout.getHeight();
+
+        if (focusScrollRect.top <= 0 && focusScrollRect.bottom >= height) {
+            // the child is too big to fit inside ourselves completely, ignore request
+            return false;
+        }
+
+        int offset = getTopAndBottomOffset();
+
+        int dy;
+
+        if (focusScrollRect.bottom > height) {
+            dy =  focusScrollRect.top;
+        } else if (focusScrollRect.top < 0) {
+            // scrolling up
+            dy = -(height - focusScrollRect.bottom);
+        } else {
+            // nothing to do
+            return false;
+        }
+
+        //int newOffset = offset + dy;
+
+        int consumed = scroll(coordinatorLayout, child, dy, getMaxDragOffset(child), 0);
+
+        return consumed == dy;
     }
 
     @Override
