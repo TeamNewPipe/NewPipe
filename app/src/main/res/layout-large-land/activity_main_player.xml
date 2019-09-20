@@ -401,7 +401,7 @@
                     tools:text="1:06:29"/>
 
 
-                <androidx.appcompat.widget.AppCompatSeekBar
+                <org.schabi.newpipe.views.FocusAwareSeekBar
                     android:id="@+id/playbackSeekBar"
                     style="@style/Widget.AppCompat.SeekBar"
                     android:layout_width="0dp"
