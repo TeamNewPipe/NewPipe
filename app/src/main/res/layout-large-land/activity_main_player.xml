@@ -178,7 +178,6 @@
                         android:textSize="15sp"
                         android:textStyle="bold"
                         android:clickable="true"
-                        android:focusable="true"
                         tools:ignore="RtlHardcoded"
                         tools:text="The Video Title LONG very LONG"/>
 
@@ -194,7 +193,6 @@
                         android:textColor="@android:color/white"
                         android:textSize="12sp"
                         android:clickable="true"
-                        android:focusable="true"
                         tools:text="The Video Artist  LONG very LONG very Long"/>
                 </LinearLayout>
 
