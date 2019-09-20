@@ -152,7 +152,7 @@
     <string name="tab_about">このアプリについて</string>
     <string name="tab_contributors">貢献者</string>
     <string name="tab_licenses">ライセンス</string>
-    <string name="app_description">Android 向けの自由で軽量なプレイヤー</string>
+    <string name="app_description">Android 向けの自由で軽量なストリーミング。</string>
     <string name="view_on_github">GitHub で表示</string>
     <string name="app_license_title">NewPipe のライセンス</string>
     <string name="contribution_encouragement">翻訳、デザインの変更、コードの整理、動作の重いコードの変更など、アイデアをお持ちではありませんか？ヘルプはいつでも歓迎します。より良いものを一緒に作り上げましょう！</string>
@@ -339,7 +339,7 @@
     <plurals name="videos">
         <item quantity="other">動画</item>
     </plurals>
-    <string name="one_item_deleted">1 つのアイテムが削除されました</string>
+    <string name="one_item_deleted">1 つのアイテムが削除されました。</string>
     <string name="give_back">支援する</string>
     <string name="privacy_policy_encouragement">NewPipe プロジェクトはあなたのプライバシーを非常に大切にしています。あなたの同意がない限り、アプリはいかなるデータも収集しません。NewPipe のプライバシー・ポリシーでは、クラッシュリポート送信時にどのような種類のデータが送信・記録されるかを詳細に説明しています。</string>
     <string name="app_license">NewPipe は著作権が自由のソフトウェアです。あなたは自由にそれを使用し、研究し、そして改善することができます。あなたは、GNU フリーソフトウェア財団が公開する GNU General Public ライセンス バージョン3以降の下に、自由に再配布・修正を行うことができます。</string>
@@ -361,7 +361,7 @@
     <string name="resize_fit">フィット</string>
     <string name="resize_fill">全画面</string>
     <string name="caption_auto_generated">自動生成</string>
-    <string name="caption_setting_description">アプリの再起動後、設定した字幕設定が反映されます</string>
+    <string name="caption_setting_description">プレーヤーのキャプションテキストの縮尺と背景スタイルを変更します。有効にするには、アプリの再起動が必要です。</string>
     <string name="empty_subscription_feed_subtitle">何もありません</string>
     <string name="import_youtube_instructions">保存したエクスポートファイルからYouTubeの購読をインポート:
 \n
@@ -492,8 +492,8 @@
     <string name="pause_downloads">ダウンロードの一時停止</string>
     <string name="downloads_storage_ask_title">ダウンロード先を尋ねる</string>
     <string name="downloads_storage_ask_summary">ダウンロードのたびに保存する場所を尋ねます</string>
-    <string name="downloads_storage_ask_summary_kitkat">ダウンロードのたびに保存する場所を尋ねます。
-\n外部 SD カードにダウンロードする場合は、このオプションをオンにしてください。</string>
+    <string name="downloads_storage_ask_summary_kitkat">ダウンロードのたびに保存する場所を尋ねられます。
+\n外部 SD カードにダウンロードする場合は SAF を選択してください</string>
     <string name="downloads_storage_use_saf_title">SAF を使用する</string>
     <string name="downloads_storage_use_saf_summary">ストレージアクセスフレームワークは、外部 SD カードへのダウンロードが可能です。
 \n注: 一部のデバイスは互換性がありません</string>
