@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
+<org.schabi.newpipe.views.FocusAwareDrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
@@ -24,4 +24,4 @@
 
     <include layout="@layout/drawer_layout"/>
 
-</androidx.drawerlayout.widget.DrawerLayout>
+</org.schabi.newpipe.views.FocusAwareDrawerLayout>
