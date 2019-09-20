@@ -112,9 +112,9 @@
     <string name="black_theme_title">ブラック</string>
     <string name="all">すべて</string>
     <string name="channel">チャンネル</string>
-    <string name="short_thousand">K</string>
+    <string name="short_thousand">k</string>
     <string name="short_million">M</string>
-    <string name="short_billion">B</string>
+    <string name="short_billion">G</string>
     <string name="yes">はい</string>
     <string name="later">後で</string>
     <string name="open_in_popup_mode">ポップアップモードで開く</string>
@@ -137,8 +137,8 @@
     <string name="settings_category_popup_title">ポップアップ</string>
     <string name="popup_resizing_indicator_title">サイズを変更</string>
     <string name="use_external_video_player_summary">一部の解像度では音声がありません</string>
-    <string name="player_gesture_controls_title">プレーヤーのジェスチャー制御</string>
-    <string name="player_gesture_controls_summary">ジェスチャーを使用してプレーヤーの明るさと音量をコントロールする</string>
+    <string name="player_gesture_controls_title">プレイヤーのジェスチャー制御</string>
+    <string name="player_gesture_controls_summary">ジェスチャーを使用してプレイヤーの明るさと音量をコントロールする</string>
     <string name="show_search_suggestions_title">検索候補の表示</string>
     <string name="show_search_suggestions_summary">検索時に候補を表示します</string>
     <string name="best_resolution">最高の解像度</string>
@@ -172,7 +172,7 @@
     <string name="enable_watch_history_summary">再生した履歴を記憶します</string>
     <string name="resume_on_audio_focus_gain_title">オーディオフォーカス復帰で再開する</string>
     <string name="resume_on_audio_focus_gain_summary">電話などによる中断の後、再生を再開します</string>
-    <string name="settings_category_player_title">プレーヤー</string>
+    <string name="settings_category_player_title">プレイヤー</string>
     <string name="show_hold_to_append_summary">動画の詳細ページで、背景またはポップアップボタンが押されたときにヒントを表示する</string>
     <string name="settings_category_player_behavior_title">動作</string>
     <string name="settings_category_history_title">履歴とキャッシュ</string>
@@ -235,7 +235,7 @@
     <string name="import_data_summary">既存の履歴と購読リストは上書きされます</string>
     <string name="export_data_summary">履歴や購読リスト、プレイリストをエクスポートします</string>
     <string name="player_recoverable_failure">再生エラーからの回復中</string>
-    <string name="external_player_unsupported_link_type">外部プレーヤーは、これらのタイプのリンクをサポートしていません</string>
+    <string name="external_player_unsupported_link_type">外部プレイヤーは、これらのタイプのリンクをサポートしていません</string>
     <string name="invalid_url_toast">無効なURL</string>
     <string name="export_complete_toast">エクスポートしました</string>
     <string name="import_complete_toast">インポートしました</string>
@@ -247,9 +247,9 @@
     <string name="start_here_on_background">バックグランドで再生を開始</string>
     <string name="drawer_open">ドロワーを開く</string>
     <string name="drawer_close">ドロワーを閉じる</string>
-    <string name="video_player">動画プレーヤー</string>
-    <string name="background_player">バックグラウンドプレーヤー</string>
-    <string name="popup_player">ポップアッププレーヤー</string>
+    <string name="video_player">動画プレイヤー</string>
+    <string name="background_player">バックグラウンドプレイヤー</string>
+    <string name="popup_player">ポップアッププレイヤー</string>
     <string name="preferred_player_fetcher_notification_title">情報を取得しています…</string>
     <string name="preferred_player_fetcher_notification_message">コンテンツを読み込んでいます</string>
     <string name="controls_download_desc">動画ファイルをダウンロード</string>
@@ -309,7 +309,7 @@
     <string name="background_player_append">バックグラウンド再生の順番待ちに追加</string>
     <string name="popup_playing_append">ポップアップ再生の順番待ちに追加</string>
     <string name="clear_views_history_title">再生履歴を消去</string>
-    <string name="clear_views_history_summary">再生した動画の履歴を削除します</string>
+    <string name="clear_views_history_summary">再生したストリームの履歴と再生位置を削除します</string>
     <string name="watch_history_deleted">再生履歴を削除しました。</string>
     <string name="clear_search_history_title">検索履歴を消去</string>
     <string name="clear_search_history_summary">検索キーワードの履歴を削除します</string>
@@ -349,7 +349,7 @@
     <string name="controls_add_to_playlist_title">プレイリスト</string>
     <string name="show_hold_to_append_title">「長押しして追加」のヒントを表示する</string>
     <string name="tracks">トラック</string>
-    <string name="notification_channel_description">NewPipe バックグラウンドおよびポップアップのプレーヤーの通知</string>
+    <string name="notification_channel_description">NewPipe バックグラウンドおよびポップアップのプレイヤーの通知</string>
     <string name="new_and_hot">新着 &amp; 人気</string>
     <string name="hold_to_append">長押ししてキューに入れる</string>
     <string name="enqueue_on_background">バックグラウンドでキューに入れる</string>
@@ -374,7 +374,7 @@
     <string name="limit_data_usage_none_description">制限なし</string>
     <string name="limit_mobile_data_usage_title">モバイルデータ使用時の解像度の制限</string>
     <string name="minimize_on_exit_title">アプリ切り替え時の最小化</string>
-    <string name="minimize_on_exit_summary">プレーヤーから他のアプリに切り替え時の動作 — %s</string>
+    <string name="minimize_on_exit_summary">プレイヤーから他のアプリに切り替え時の動作 — %s</string>
     <string name="minimize_on_exit_none_description">何もしない</string>
     <string name="minimize_on_exit_background_description">バックグラウンドに変更</string>
     <string name="minimize_on_exit_popup_description">ポップアップに変更</string>
@@ -451,9 +451,9 @@
     <string name="max_retry_msg">最大再試行回数</string>
     <string name="max_retry_desc">ダウンロードを中止するまでの最大再試行回数</string>
     <string name="volume_gesture_control_title">音量のジェスチャー制御</string>
-    <string name="volume_gesture_control_summary">ジェスチャーを使用して、プレーヤーの音量を制御します</string>
+    <string name="volume_gesture_control_summary">ジェスチャーを使用して、プレイヤーの音量を制御します</string>
     <string name="brightness_gesture_control_title">明るさのジェスチャー制御</string>
-    <string name="brightness_gesture_control_summary">ジェスチャーを使用して、プレーヤーの明るさを制御します</string>
+    <string name="brightness_gesture_control_summary">ジェスチャーを使用して、プレイヤーの明るさを制御します</string>
     <string name="file_deleted">ファイルを削除しました</string>
     <string name="app_update_notification_channel_name">アプリの更新通知</string>
     <string name="download_to_sdcard_error_message">外部 SD カードにダウンロードできません。ダウンロードフォルダーの場所をリセットしますか\?</string>
@@ -494,4 +494,11 @@
     <string name="downloads_storage_ask_summary">ダウンロードのたびに保存する場所を尋ねます</string>
     <string name="downloads_storage_ask_summary_kitkat">ダウンロードのたびに保存する場所を尋ねます。
 \n外部 SD カードにダウンロードする場合は、このオプションをオンにしてください。</string>
+    <string name="downloads_storage_use_saf_title">SAF を使用する</string>
+    <string name="downloads_storage_use_saf_summary">ストレージアクセスフレームワークは、外部 SD カードへのダウンロードが可能です。
+\n注: 一部のデバイスは互換性がありません</string>
+    <string name="clear_playback_states_title">再生位置の削除</string>
+    <string name="clear_playback_states_summary">すべての再生位置を削除します</string>
+    <string name="delete_playback_states_alert">すべての再生位置を削除しますか\?</string>
+    <string name="download_choose_new_path">ダウンロードフォルダーを変更して有効にします</string>
 </resources>

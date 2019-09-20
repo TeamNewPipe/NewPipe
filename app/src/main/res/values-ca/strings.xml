@@ -481,4 +481,7 @@
     <string name="start_downloads">Inicia les baixades</string>
     <string name="pause_downloads">Pausa les baixades</string>
     <string name="downloads_storage_ask_summary">Se us demanarà la ubicació de cada baixada</string>
+    <string name="enable_playback_state_lists_title">Posicions a les llistes</string>
+    <string name="enable_playback_state_lists_summary">Mostra els indicadors de posició de reproducció a les llistes</string>
+    <string name="settings_category_clear_data_title">Neteja les dades</string>
 </resources>

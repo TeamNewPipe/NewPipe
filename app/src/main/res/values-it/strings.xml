@@ -102,7 +102,7 @@
     <string name="msg_running_detail">Tocca per maggiori dettagli</string>
     <string name="msg_wait">Attendi…</string>
     <string name="msg_copied">Copiato negli appunti</string>
-    <string name="no_available_dir">Seleziona una cartella per il salvataggio dei download</string>
+    <string name="no_available_dir">Seleziona una cartella per i downloads</string>
     <string name="could_not_load_image">Impossibile caricare l\'immagine</string>
     <string name="app_ui_crash">L\'app/UI si è interrotta</string>
     <string name="info_labels">Cosa:\\nRichiesta:\\nLingua contenuto:\\nServizio:\\nOrario GMT:\\nPacchetto:\\nVersione:\\nVersione SO:</string>
@@ -111,9 +111,9 @@
     <string name="black_theme_title">Nero</string>
     <string name="all">Tutto</string>
     <string name="channel">Canale</string>
-    <string name="short_thousand">K</string>
+    <string name="short_thousand">k</string>
     <string name="short_million">M</string>
-    <string name="short_billion">B</string>
+    <string name="short_billion">G</string>
     <string name="recaptcha_request_toast">È richiesta la risoluzione del reCAPTCHA</string>
     <string name="yes">Sì</string>
     <string name="later">Più tardi</string>
@@ -167,7 +167,7 @@
     <string name="fragment_whats_new">Novità</string>
     <string name="enable_search_history_title">Cronologia ricerche</string>
     <string name="enable_search_history_summary">Salva le ricerche</string>
-    <string name="enable_watch_history_title">Cronologia &amp; Cache</string>
+    <string name="enable_watch_history_title">Visualizza storico</string>
     <string name="enable_watch_history_summary">Salva la cronologia dei video visualizzati</string>
     <string name="resume_on_audio_focus_gain_title">Riprendi tornando in primo piano</string>
     <string name="resume_on_audio_focus_gain_summary">Continua a riprodurre dopo le interruzioni (es. chiamate)</string>
@@ -370,7 +370,7 @@
     <string name="caption_setting_description">Modifica la dimensione e gli stili di sfondo dei sottotitoli. Per applicare le modifiche è richesto un riavvio.</string>
     <string name="toast_no_player">Nessuna app installata per riprodurre questo file</string>
     <string name="clear_views_history_title">Pulisci cronologia visualizzazioni</string>
-    <string name="clear_views_history_summary">Elimina la cronologia dei flussi riprodotti</string>
+    <string name="clear_views_history_summary">Elimina la cronologia dei flussi riprodotti e la posizione di riproduzione</string>
     <string name="delete_view_history_alert">Elimina l\'intera cronologia delle visualizzazioni\?</string>
     <string name="watch_history_deleted">Cronologia visualizzazioni eliminata.</string>
     <string name="clear_search_history_title">Pulisci cronologia delle ricerche</string>
@@ -414,7 +414,7 @@
     <string name="app_update_notification_channel_name">Notifiche di aggiornamenti dell\'applicazione</string>
     <string name="app_update_notification_channel_description">Notifiche per una nuova versione di NewPipe</string>
     <string name="download_to_sdcard_error_title">Archiviazione esterna non disponibile</string>
-    <string name="download_to_sdcard_error_message">Download sulla memoria esterna SD ancora non disponibile. Reimpostare la posizione della cartella di download\?</string>
+    <string name="download_to_sdcard_error_message">Impossibile effettuare il download sulla memoria esterna SD. Reimpostare la posizione della cartella di download\?</string>
     <string name="saved_tabs_invalid_json">Utilizzando le schede predefinite, c\'è stato un errore durante la lettura delle schede salvate</string>
     <string name="restore_defaults">Ripristina predefiniti</string>
     <string name="restore_defaults_confirmation">Davvero ripristinare i predefiniti\?</string>
@@ -462,8 +462,8 @@
     <string name="stop">Ferma</string>
     <string name="max_retry_msg">Tentativi massimi</string>
     <string name="max_retry_desc">Tentativi massimi prima di cancellare il download</string>
-    <string name="pause_downloads_on_mobile">Metti in pausa quando si usano i dati mobili</string>
-    <string name="pause_downloads_on_mobile_desc">I download che non possono essere messi in pausa verranno riavviati</string>
+    <string name="pause_downloads_on_mobile">Interrompi con le connessioni a consumo</string>
+    <string name="pause_downloads_on_mobile_desc">Utile quando si passa alla connessione dati mobile, altrimenti alcuni download potrebbero essere sospesi</string>
     <string name="events">Eventi</string>
     <string name="conferences">Conferenze</string>
     <string name="error_timeout">Connesione finita</string>
@@ -477,4 +477,32 @@
     <string name="no_comments">Nessun commento</string>
     <string name="error_unable_to_load_comments">Impossibile caricare i commenti</string>
     <string name="close">Chiudi</string>
+    <string name="enable_playback_resume_title">Recupera riproduzione</string>
+    <string name="enable_playback_resume_summary">Recupera l\'ultima posizione di riproduzione</string>
+    <string name="enable_playback_state_lists_title">Posizioni nelle liste</string>
+    <string name="enable_playback_state_lists_summary">Mostra l indicatore di posizione di riproduzione nelle liste</string>
+    <string name="settings_category_clear_data_title">Pulisci dati</string>
+    <string name="watch_history_states_deleted">Posizione di riproduzione eliminata.</string>
+    <string name="missing_file">File spostato o cancellato</string>
+    <string name="overwrite_unrelated_warning">Esiste già un file con questo nome</string>
+    <string name="overwrite_failed">impossibile sovrascrivere il file</string>
+    <string name="download_already_pending">C\'è un download in corso con questo nome</string>
+    <string name="error_postprocessing_stopped">NewPipe è stato chiuso mentre lavorava sul file</string>
+    <string name="error_insufficient_storage">Spazio insufficiente sul dispositivo</string>
+    <string name="error_progress_lost">Progresso perso poiché il file è stato eliminato</string>
+    <string name="confirm_prompt">Sei sicuro\?</string>
+    <string name="enable_queue_limit_desc">Un download si avvierà allo stesso tempo</string>
+    <string name="start_downloads">Avvia downloads</string>
+    <string name="pause_downloads">Metti in pausa i downloads</string>
+    <string name="downloads_storage_ask_title">Chiedi dove scaricare</string>
+    <string name="downloads_storage_ask_summary">Ti sarà chiesto dove salvare i file ogni volta</string>
+    <string name="downloads_storage_use_saf_title">Utilizza SAF</string>
+    <string name="enable_queue_limit">Limita la coda dei download</string>
+    <string name="downloads_storage_ask_summary_kitkat">Ti verrà chiesto dove salvare ogni download.
+\nScegli SAF se vuoi scaricare su una scheda SD esterna</string>
+    <string name="downloads_storage_use_saf_summary">Lo Storage Access Framework permette scaricamenti su una scheda SD esterna.
+\nNota: alcuni dispositivi non sono compatibili</string>
+    <string name="clear_playback_states_title">Elimina posizioni di riproduzione</string>
+    <string name="clear_playback_states_summary">Elimina tutte le posizioni di riproduzione</string>
+    <string name="delete_playback_states_alert">Eliminare tutte le posizioni di riproduzione\?</string>
 </resources>
