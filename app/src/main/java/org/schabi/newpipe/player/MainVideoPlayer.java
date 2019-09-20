@@ -1,5 +1,6 @@
 /*
  * Copyright 2017 Mauricio Colli <mauriciocolli@outlook.com>
+ * Copyright 2019 Eltex ltd <eltex@eltex-co.ru>
  * MainVideoPlayer.java is part of NewPipe
  *
  * License: GPL-3.0+
@@ -45,6 +46,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.GestureDetector;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -75,6 +77,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
 import org.schabi.newpipe.util.AnimationUtils;
+import org.schabi.newpipe.util.FireTvUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
@@ -89,6 +92,7 @@ import java.util.UUID;
 import static org.schabi.newpipe.player.BasePlayer.STATE_PLAYING;
 import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_DURATION;
 import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME;
+import static org.schabi.newpipe.player.VideoPlayer.DPAD_CONTROLS_HIDE_TIME;
 import static org.schabi.newpipe.util.AnimationUtils.Type.SCALE_AND_ALPHA;
 import static org.schabi.newpipe.util.AnimationUtils.Type.SLIDE_AND_ALPHA;
 import static org.schabi.newpipe.util.AnimationUtils.animateRotation;
@@ -185,6 +189,40 @@ public final class MainVideoPlayer extends AppCompatActivity
             playerState = null;
             playerImpl.handleIntent(intent);
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (event.getKeyCode()) {
+            default:
+                break;
+            case KeyEvent.KEYCODE_BACK:
+                if (FireTvUtils.isFireTv() && playerImpl.isControlsVisible()) {
+                    playerImpl.hideControls(0, 0);
+                    hideSystemUi();
+                    return true;
+                }
+                break;
+            case KeyEvent.KEYCODE_DPAD_UP:
+            case KeyEvent.KEYCODE_DPAD_LEFT:
+            case KeyEvent.KEYCODE_DPAD_DOWN:
+            case KeyEvent.KEYCODE_DPAD_RIGHT:
+            case KeyEvent.KEYCODE_DPAD_CENTER:
+                if (playerImpl.getCurrentState() == BasePlayer.STATE_BLOCKED) {
+                    return true;
+                }
+
+                if (!playerImpl.isControlsVisible()) {
+                    playerImpl.showControlsThenHide();
+                    showSystemUi();
+                    return true;
+                } else {
+                    playerImpl.hideControls(DEFAULT_CONTROLS_DURATION, DPAD_CONTROLS_HIDE_TIME);
+                }
+                break;
+        }
+
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override
@@ -692,7 +730,7 @@ public final class MainVideoPlayer extends AppCompatActivity
                 getControlsVisibilityHandler().removeCallbacksAndMessages(null);
                 animateView(getControlsRoot(), true, DEFAULT_CONTROLS_DURATION, 0, () -> {
                     if (getCurrentState() == STATE_PLAYING && !isSomePopupMenuVisible()) {
-                        hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
+                        safeHideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
                     }
                 });
             }
@@ -899,6 +937,18 @@ public final class MainVideoPlayer extends AppCompatActivity
         }
 
         @Override
+        public void safeHideControls(long duration, long delay) {
+            if (DEBUG) Log.d(TAG, "safeHideControls() called with: delay = [" + delay + "]");
+
+            View controlsRoot = getControlsRoot();
+            if (controlsRoot.isInTouchMode()) {
+                getControlsVisibilityHandler().removeCallbacksAndMessages(null);
+                getControlsVisibilityHandler().postDelayed(
+                        () -> animateView(controlsRoot, false, duration, 0, MainVideoPlayer.this::hideSystemUi), delay);
+            }
+        }
+
+        @Override
         public void hideControls(final long duration, long delay) {
             if (DEBUG) Log.d(TAG, "hideControls() called with: delay = [" + delay + "]");
             getControlsVisibilityHandler().removeCallbacksAndMessages(null);
@@ -1058,6 +1108,7 @@ public final class MainVideoPlayer extends AppCompatActivity
                 playerImpl.showControlsThenHide();
                 showSystemUi();
             }
+
             return true;
         }
 
