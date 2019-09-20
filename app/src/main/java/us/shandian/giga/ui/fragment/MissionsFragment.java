@@ -30,6 +30,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.views.FixedGridLayoutManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -108,7 +109,7 @@ public class MissionsFragment extends Fragment {
         mList = v.findViewById(R.id.mission_recycler);
 
         // Init layouts managers
-        mGridManager = new GridLayoutManager(getActivity(), SPAN_SIZE);
+        mGridManager = new FixedGridLayoutManager(getActivity(), SPAN_SIZE);
         mGridManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
