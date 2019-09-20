@@ -196,8 +196,9 @@
                         tools:text="The Video Artist  LONG very LONG very Long"/>
                 </LinearLayout>
 
-                <TextView
+                <Button
                     android:id="@+id/qualityTextView"
+                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_marginLeft="2dp"
@@ -208,11 +209,13 @@
                     android:text="720p"
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
-                    android:background="?attr/selectableItemBackground"
+                    android:textAllCaps="false"
+                    android:padding="5dp"
                     tools:ignore="HardcodedText,RtlHardcoded"/>
 
-                <TextView
+                <Button
                     android:id="@+id/playbackSpeed"
+                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="2dp"
@@ -222,7 +225,8 @@
                     android:minWidth="40dp"
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
-                    android:background="?attr/selectableItemBackground"
+                    android:textAllCaps="false"
+                    android:padding="5dp"
                     tools:ignore="RtlHardcoded,RtlSymmetry"
                     tools:text="1x" />
 
@@ -268,8 +272,9 @@
                 tools:ignore="RtlHardcoded"
                 tools:visibility="visible">
 
-                <TextView
+                <Button
                     android:id="@+id/resizeTextView"
+                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_marginLeft="8dp"
@@ -279,11 +284,13 @@
                     android:minWidth="50dp"
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
+                    android:textAllCaps="false"
                     android:background="?attr/selectableItemBackground"
                     tools:ignore="HardcodedText,RtlHardcoded"
                     tools:text="FIT"/>
 
-                <TextView
+                <Button
+                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:id="@+id/captionTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -298,6 +305,7 @@
                     android:paddingRight="2dp"
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
+                    android:textAllCaps="false"
                     android:background="?attr/selectableItemBackground"
                     tools:ignore="RelativeOverlap,RtlHardcoded"
                     tools:text="English" />
