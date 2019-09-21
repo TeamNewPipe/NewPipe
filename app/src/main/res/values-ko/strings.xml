@@ -500,4 +500,6 @@
     <string name="clear_playback_states_title">재생 위치 삭제</string>
     <string name="clear_playback_states_summary">모든 재생 위치를 삭제</string>
     <string name="delete_playback_states_alert">모든 재생 위치를 삭제하시겠습니까\?</string>
+    <string name="downloads_storage_ask_summary_kitkat">매 다운로드 마다 저장경로를 묻습니다.
+\n외장 SD카드에 다운로드 하고자 한다면 SAF를 선택하십시오</string>
 </resources>

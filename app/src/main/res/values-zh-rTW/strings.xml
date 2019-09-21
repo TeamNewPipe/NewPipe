@@ -114,9 +114,9 @@
     <string name="audio">音訊</string>
     <string name="retry">重試</string>
     <string name="storage_permission_denied">無法存取儲存空間</string>
-    <string name="short_thousand">千</string>
+    <string name="short_thousand">k</string>
     <string name="short_million">百萬</string>
-    <string name="short_billion">十億</string>
+    <string name="short_billion">G</string>
     <string name="start">開始</string>
     <string name="pause">暫停</string>
     <string name="view">播放</string>
@@ -500,4 +500,5 @@
     <string name="clear_playback_states_title">刪除播放位置</string>
     <string name="clear_playback_states_summary">刪除所有播放位置</string>
     <string name="delete_playback_states_alert">刪除所有播放位置？</string>
+    <string name="download_choose_new_path">變更下載資料夾以使其生效</string>
 </resources>
