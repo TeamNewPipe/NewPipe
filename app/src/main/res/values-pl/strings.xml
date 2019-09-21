@@ -17,12 +17,12 @@
     <string name="view_count_text">%1$s wyświetleń</string>
     <string name="upload_date_text">Opublikowano %1$s</string>
     <string name="no_player_found">Nie znaleziono odtwarzacza strumieni. Czy chcesz zainstalować VLC\?</string>
-    <string name="download_path_title">Ścieżka pobierania filmów</string>
-    <string name="download_path_summary">Ścieżka do przechowywania pobranych filmów</string>
-    <string name="download_path_dialog_title">Podaj ścieżkę pobierania filmów</string>
+    <string name="download_path_title">Folder pobierania wideo</string>
+    <string name="download_path_summary">Pobrane pliki wideo są przechowywane tutaj</string>
+    <string name="download_path_dialog_title">Wybierz folder pobierania plików wideo</string>
     <string name="download_path_audio_title">Ścieżka pobierania dźwięków</string>
-    <string name="download_path_audio_summary">Pobrany dźwięk jest przechowywany tutaj</string>
-    <string name="download_path_audio_dialog_title">Podaj ścieżkę zapisu dźwięku</string>
+    <string name="download_path_audio_summary">Pobrane pliki wideo są przechowywane tutaj</string>
+    <string name="download_path_audio_dialog_title">Wybierz folder pobierania plików audio</string>
     <string name="autoplay_by_calling_app_title">Autoodtwarzanie</string>
     <string name="autoplay_by_calling_app_summary">Odtwórz wideo, kiedy NewPipe zostanie wywołany z innej aplikacji</string>
     <string name="default_resolution_title">Domyślna rozdzielczość</string>
@@ -509,5 +509,5 @@
     <string name="clear_playback_states_title">Usuń pozycje odtwarzania</string>
     <string name="clear_playback_states_summary">Usuwa wszystkie pozycje odtwarzania</string>
     <string name="delete_playback_states_alert">Usunąć wszystkie pozycje odtwarzania\?</string>
-    <string name="download_choose_new_path">Zmień folder pobierania</string>
+    <string name="download_choose_new_path">Zmień foldey pobierania, aby zostały uwzględnione</string>
 </resources>
