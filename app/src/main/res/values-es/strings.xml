@@ -15,8 +15,8 @@
     <string name="choose_browser">Elegir navegador</string>
     <string name="screen_rotation">rotación</string>
     <string name="download_path_title">Carpeta de descarga de vídeo</string>
-    <string name="download_path_summary">Ruta para almacenar los vídeos descargados</string>
-    <string name="download_path_dialog_title">Introducir directorio de descargas para vídeos</string>
+    <string name="download_path_summary">Aquí se almacenan los vídeos descargados</string>
+    <string name="download_path_dialog_title">Elegir carpeta de descarga para vídeos</string>
     <string name="download_choose_new_path">Cambie las carpetas de descarga para que tenga efecto</string>
     <string name="default_resolution_title">Resolución por defecto de vídeo</string>
     <string name="play_with_kodi_title">Reproducir con Kodi</string>
@@ -41,8 +41,8 @@
     <string name="use_tor_summary">(Experimental) Forzar la descarga a través de Tor para una mayor privacidad (transmisión de vídeos aún no compatible).</string>
     <string name="err_dir_create">No se puede crear la carpeta de descarga \'%1$s\'</string>
     <string name="info_dir_created">Carpeta de descarga creada \'%1$s\'</string>
-    <string name="download_path_audio_summary">Ruta para almacenar los audios descargados</string>
-    <string name="download_path_audio_dialog_title">Introducir ruta de descarga para archivos de audio</string>
+    <string name="download_path_audio_summary">Los archivos de audio descargados se guardarán aquí</string>
+    <string name="download_path_audio_dialog_title">Elegir carpeta de descarga para archivos de audio</string>
     <string name="download_path_audio_title">Carpeta de descarga de audio</string>
     <string name="settings_category_video_audio_title">Vídeo y audio</string>
     <string name="play_btn_text">Reproducir</string>
@@ -244,7 +244,7 @@ abrir en modo popup</string>
     <string name="start_here_on_popup">Comenzar a reproducir en un popup nuevo</string>
     <string name="show_hold_to_append_title">Muestra el consejo \"Manten para poner en la cola\"</string>
     <string name="new_and_hot">Nuevo y popular</string>
-    <string name="hold_to_append">Mantener para poner en la cola</string>
+    <string name="hold_to_append">Mantener presionado para agregar a la cola</string>
     <string name="donation_title">Donar</string>
     <string name="donation_encouragement">NewPipe es desarrollado por voluntarios que emplean su tiempo para brindarte la mejor experiencia. Devuelve el favor para ayudar a los desarrolladores a crear un NewPipe aún mejor mientras disfrutan de una taza de café.</string>
     <string name="give_back">Donar</string>
@@ -459,7 +459,7 @@ abrir en modo popup</string>
 \nHabilite esta opción junto con SAF si quiere descargar en la tarjeta SD</string>
     <string name="downloads_storage_use_saf_title">Usar SAF</string>
     <string name="downloads_storage_use_saf_summary">El Framework de Acceso al Almacenamiento permite descargar en la tarjeta SD externa.\nNota: Algunos los dispositivos no son compatibles</string>
-    <string name="unsubscribe">Desuscribirse</string>
+    <string name="unsubscribe">Cancelar suscripción</string>
     <string name="tab_new">Nueva pestaña</string>
     <string name="tab_choose">Elige la pestaña</string>
     <string name="volume_gesture_control_title">Control de volumen por gestos</string>
