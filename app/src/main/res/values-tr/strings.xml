@@ -17,12 +17,12 @@
     <string name="screen_rotation">döndürme</string>
     <string name="use_external_video_player_title">Harici video oynatıcı kullanın</string>
     <string name="use_external_audio_player_title">Harici ses oynatıcı kullanın</string>
-    <string name="download_path_title">Video indirme konumu</string>
-    <string name="download_path_summary">İndirilen videoları saklamak için konum</string>
-    <string name="download_path_dialog_title">Video indirme konumunu giriniz</string>
+    <string name="download_path_title">Video indirme dizini</string>
+    <string name="download_path_summary">İndirilen video dosyaları burada depolanır</string>
+    <string name="download_path_dialog_title">Video dosyaları için indirme dizinini seçin</string>
     <string name="download_path_audio_title">Ses indirme dizini</string>
-    <string name="download_path_audio_summary">İndirilen sesler burada depolanır</string>
-    <string name="download_path_audio_dialog_title">Ses dosyaları için indirme konumunu giriniz</string>
+    <string name="download_path_audio_summary">İndirilen ses dosyaları burada depolanır</string>
+    <string name="download_path_audio_dialog_title">Ses dosyaları için indirme dizinini seçin</string>
     <string name="autoplay_by_calling_app_title">Otomatik oynat</string>
     <string name="autoplay_by_calling_app_summary">NewPipe başka bir uygulamadan çağrıldığında bir video oynatır</string>
     <string name="default_resolution_title">Varsayılan çözünürlük</string>
