@@ -32,7 +32,7 @@
     <string name="settings_category_video_audio_title">Video &amp; Audio</string>
     <string name="content_language_title">Bevorzugte Sprache des Inhalts</string>
     <string name="list_thumbnail_view_description">Video-Vorschaubild</string>
-    <string name="detail_thumbnail_view_description">Video-Vorschaubild</string>
+    <string name="detail_thumbnail_view_description">Video abspielen, dauer</string>
     <string name="detail_uploader_thumbnail_view_description">Nutzerbild</string>
     <string name="detail_dislikes_img_view_description">Gefällt nicht</string>
     <string name="detail_likes_img_view_description">Gefällt</string>

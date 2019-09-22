@@ -228,7 +228,7 @@
     <string name="error_details_headline">Details:</string>
     <!-- Content descriptions (for better accessibility) -->
     <string name="list_thumbnail_view_description">Video preview thumbnail</string>
-    <string name="detail_thumbnail_view_description">Video preview thumbnail</string>
+    <string name="detail_thumbnail_view_description">Play video, duration:</string>
     <string name="detail_uploader_thumbnail_view_description">Uploader\'s avatar thumbnail</string>
     <string name="detail_likes_img_view_description">Likes</string>
     <string name="detail_dislikes_img_view_description">Dislikes</string>
