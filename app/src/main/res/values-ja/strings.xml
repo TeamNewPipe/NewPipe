@@ -13,9 +13,9 @@
     <string name="share_dialog_title">共有</string>
     <string name="choose_browser">ブラウザを選択</string>
     <string name="screen_rotation">回転</string>
-    <string name="download_path_title">動画を保存する場所</string>
-    <string name="download_path_summary">動画を保存する場所</string>
-    <string name="download_path_dialog_title">動画を保存する場所を入力して下さい</string>
+    <string name="download_path_title">動画を保存するフォルダー</string>
+    <string name="download_path_summary">ダウンロードした動画をここに保存します</string>
+    <string name="download_path_dialog_title">動画ファイルをダウンロードするフォルダーを選択して下さい</string>
     <string name="default_resolution_title">デフォルトの解像度</string>
     <string name="play_with_kodi_title">Kodi で再生</string>
     <string name="kore_not_found">Koreが見つかりません｡Kore を入手しますか？</string>
@@ -48,8 +48,8 @@
     <string name="settings_category_other_title">その他</string>
     <string name="network_error">ネットワークエラー</string>
     <string name="download_path_audio_title">音声を保存する場所</string>
-    <string name="download_path_audio_summary">ダウンロードした音楽をここに保存します</string>
-    <string name="download_path_audio_dialog_title">音楽ファイルをダウンロードする場所を入力して下さい｡</string>
+    <string name="download_path_audio_summary">ダウンロードした音楽ファイルをここに保存します</string>
+    <string name="download_path_audio_dialog_title">音楽ファイルをダウンロードするフォルダーを選択して下さい</string>
     <string name="err_dir_create">保存場所 \'%1$s\' を作成できません</string>
     <string name="info_dir_created">保存場所 \'%1$s\' を作成しました</string>
     <string name="general_error">エラー</string>
