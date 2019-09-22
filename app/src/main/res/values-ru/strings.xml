@@ -15,7 +15,7 @@
     <string name="choose_browser">Выбор браузера</string>
     <string name="screen_rotation">поворот</string>
     <string name="download_path_title">Папка для скачанного видео</string>
-    <string name="download_path_summary">Папка для хранения загруженных видео</string>
+    <string name="download_path_summary">Папка для скачанного видео</string>
     <string name="download_path_dialog_title">Введите путь к папке для скачивания видео</string>
     <string name="default_resolution_title">Разрешение по умолчанию</string>
     <string name="play_with_kodi_title">Воспроизвести в Kodi</string>
