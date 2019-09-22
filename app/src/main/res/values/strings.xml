@@ -250,6 +250,7 @@
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
+    <string name="drawer_header_description">Toggle service, currently selected:</string>
     <!--Zero don't get selected (in some languages) as it is not a "special case" for android-->
     <string name="no_subscribers">No subscribers</string>
     <plurals name="subscribers">
