@@ -84,6 +84,7 @@ import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.views.FocusOverlayView;
 
 import java.util.List;
 import java.util.Queue;
@@ -141,6 +142,11 @@ public final class MainVideoPlayer extends AppCompatActivity
 
         hideSystemUi();
         setContentView(R.layout.activity_main_player);
+
+        if (FireTvUtils.isFireTv()) {
+            FocusOverlayView.setupFocusObserver(this);
+        }
+
         playerImpl = new  VideoPlayerImpl(this);
         playerImpl.setup(findViewById(android.R.id.content));
 
