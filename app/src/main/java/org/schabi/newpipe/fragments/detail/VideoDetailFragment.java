@@ -505,7 +505,7 @@ public class VideoDetailFragment
 
         setHeightThumbnail();
 
-
+        thumbnailBackgroundButton.requestFocus();
     }
 
     @Override
