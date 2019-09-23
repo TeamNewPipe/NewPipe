@@ -69,6 +69,7 @@ import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.views.FocusOverlayView;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -120,6 +121,10 @@ public class MainActivity extends AppCompatActivity {
             setupDrawer();
         } catch (Exception e) {
             ErrorActivity.reportUiError(this, e);
+        }
+
+        if (FireTvUtils.isFireTv()) {
+            FocusOverlayView.setupFocusObserver(this);
         }
     }
 
