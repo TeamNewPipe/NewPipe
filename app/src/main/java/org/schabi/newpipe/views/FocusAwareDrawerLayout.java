@@ -17,8 +17,10 @@
  */
 package org.schabi.newpipe.views;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -65,5 +67,36 @@ public final class FocusAwareDrawerLayout extends DrawerLayout {
         if (content != null && !hasOpenPanels) {
             content.addFocusables(views, direction, focusableMode);
         }
+    }
+
+    // this override isn't strictly necessary, but it is helpful when DrawerLayout isn't the topmost
+    // view in hierarchy (such as when system or builtin appcompat ActionBar is used)
+    @Override
+    @SuppressLint("RtlHardcoded")
+    public void openDrawer(@NonNull View drawerView, boolean animate) {
+        super.openDrawer(drawerView, animate);
+
+        LayoutParams params = (LayoutParams) drawerView.getLayoutParams();
+
+        int gravity = GravityCompat.getAbsoluteGravity(params.gravity, ViewCompat.getLayoutDirection(this));
+
+        int direction = 0;
+
+        switch (gravity) {
+            case Gravity.LEFT:
+                direction = FOCUS_LEFT;
+                break;
+            case Gravity.RIGHT:
+                direction = FOCUS_RIGHT;
+                break;
+            case Gravity.TOP:
+                direction = FOCUS_UP;
+                break;
+            case Gravity.BOTTOM:
+                direction = FOCUS_DOWN;
+                break;
+        }
+
+        drawerView.requestFocus(direction);
     }
 }
