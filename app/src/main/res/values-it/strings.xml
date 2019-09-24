@@ -14,9 +14,9 @@
     <string name="share_dialog_title">Condividi con</string>
     <string name="choose_browser">Scegli browser</string>
     <string name="screen_rotation">rotazione</string>
-    <string name="download_path_title">Percorso dei video scaricati</string>
-    <string name="download_path_summary">Cartella in cui salvare i video scaricati</string>
-    <string name="download_path_dialog_title">Inserisci il percorso per i video scaricati</string>
+    <string name="download_path_title">Cartella dei video scaricati</string>
+    <string name="download_path_summary">I video scaricati saranno salvati qui</string>
+    <string name="download_path_dialog_title">Scegli la cartella per i video scaricati</string>
     <string name="default_resolution_title">Risoluzione predefinita</string>
     <string name="play_with_kodi_title">Riproduci con Kodi</string>
     <string name="kore_not_found">L\'applicazione Kore non è stata trovata. Vuoi installarla?</string>
@@ -40,8 +40,8 @@
     <string name="use_external_video_player_title">Usa un lettore video esterno</string>
     <string name="use_external_audio_player_title">Usa un lettore audio esterno</string>
     <string name="download_path_audio_title">Cartella degli audio scaricati</string>
-    <string name="download_path_audio_summary">Cartella in cui salvare gli audio scaricati</string>
-    <string name="download_path_audio_dialog_title">Inserisci la cartella per gli audio scaricati</string>
+    <string name="download_path_audio_summary">Gli audio scaricati saranno salvati qui</string>
+    <string name="download_path_audio_dialog_title">Scegli la cartella per gli audio scaricati</string>
     <string name="theme_title">Tema</string>
     <string name="dark_theme_title">Scuro</string>
     <string name="light_theme_title">Chiaro</string>
