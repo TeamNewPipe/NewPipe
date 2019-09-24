@@ -16,9 +16,9 @@
     <string name="screen_rotation">旋轉</string>
     <string name="use_external_video_player_title">使用外部影片播放器</string>
     <string name="use_external_audio_player_title">使用外部音訊播放器</string>
-    <string name="download_path_title">影片下載路徑</string>
-    <string name="download_path_summary">已下載影片的存放路徑</string>
-    <string name="download_path_dialog_title">輸入影片下載路徑</string>
+    <string name="download_path_title">影片下載資料夾</string>
+    <string name="download_path_summary">已下載的影片檔案會儲存在這裡</string>
+    <string name="download_path_dialog_title">選擇影片檔的下載資料夾</string>
     <string name="default_resolution_title">預設解析度</string>
     <string name="play_with_kodi_title">用 Kodi 播放</string>
     <string name="show_play_with_kodi_summary">顯示用 Kodi 媒體中心播放影片的選項</string>
@@ -48,8 +48,8 @@
     <string name="use_tor_title">使用 Tor</string>
     <string name="use_tor_summary">(實驗性) 強迫下載流量繞經 Tor 以加強隱私 (暫未支援串流影片)。</string>
     <string name="download_path_audio_title">音訊下載資料夾</string>
-    <string name="download_path_audio_summary">已下載的音訊存放存儲在這裡\t</string>
-    <string name="download_path_audio_dialog_title">輸入音訊檔案的下載路徑</string>
+    <string name="download_path_audio_summary">已下載的音訊檔案會儲存在這裡</string>
+    <string name="download_path_audio_dialog_title">選擇音訊檔的下載資料夾</string>
     <string name="err_dir_create">無法建立下載目錄「%1$s」</string>
     <string name="info_dir_created">已建立下載目錄「%1$s」</string>
     <string name="main_bg_subtitle">輕觸搜尋按鈕開始使用 NewPipe</string>
