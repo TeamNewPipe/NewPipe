@@ -114,7 +114,7 @@
     <string name="show_search_suggestions_summary">검색 중에 제안을 표시합니다</string>
     <string name="enable_search_history_title">검색 기록</string>
     <string name="enable_search_history_summary">검색 기록을 기기에 저장합니다</string>
-    <string name="enable_watch_history_title">기록 및 캐시 관리</string>
+    <string name="enable_watch_history_title">기록 보기</string>
     <string name="enable_watch_history_summary">시청했던 비디오 기록을 저장</string>
     <string name="resume_on_audio_focus_gain_title">초점 복원시 재생 재개</string>
     <string name="resume_on_audio_focus_gain_summary">전화 통화 등으로 인해 재생이 중단된 이후에 다시 재생을 시작합니다</string>
@@ -180,7 +180,7 @@
     <string name="msg_running_detail">터치해서 상세 정보 확인</string>
     <string name="msg_wait">잠시만 기다려주십시오…</string>
     <string name="msg_copied">클립보드에 복사됨</string>
-    <string name="no_available_dir">다운로드 할 폴더를 선택하세요</string>
+    <string name="no_available_dir">다운로드 할 폴더를 설정에서 지정하십시오</string>
     <string name="msg_popup_permission">이 권한은 팝업 모드에서
 \n열기 위해 필요합니다</string>
     <string name="reCaptchaActivity">로봇인지 확인 (reCAPTCHA)</string>
@@ -372,7 +372,7 @@
     <string name="channels">채널만</string>
     <string name="playlists">재생 목록만</string>
     <string name="clear_views_history_title">시청 기록 삭제하기</string>
-    <string name="clear_views_history_summary">동영상 시청 기록을 삭제합니다</string>
+    <string name="clear_views_history_summary">동영상 시청 기록과 저장된 재생 위치를 삭제합니다</string>
     <string name="delete_view_history_alert">모든 시청 기록을 삭제하시겠습니까\?</string>
     <string name="watch_history_deleted">동영상 시청 기록이 삭제되었습니다.</string>
     <string name="clear_search_history_title">검색 기록 삭제</string>
@@ -406,7 +406,7 @@
     <string name="app_update_notification_channel_name">앱 업데이트 알림</string>
     <string name="app_update_notification_channel_description">새 뉴파이프 버전 알림</string>
     <string name="download_to_sdcard_error_title">외부 저장소 없음</string>
-    <string name="download_to_sdcard_error_message">다운로드할 SD 카드를 찾을 수 없습니다. 다운로드 폴더 경로를 초기화 하시겠습니까\?</string>
+    <string name="download_to_sdcard_error_message">SD 카드로 다운로드 할 수 없습니다. 다운로드 폴더 경로를 초기화 하시겠습니까\?</string>
     <string name="one_item_deleted">1개의 항목이 삭제되었습니다.</string>
     <string name="minimize_on_exit_title">앱 전환시 최소화</string>
     <string name="minimize_on_exit_summary">비디오 플레이어에서 다른 앱으로 전환 시 다음과 같은 동작 실행 — %s</string>
@@ -442,13 +442,13 @@
     <string name="download_finished_more">%s 다운로드 완료됨</string>
     <string name="generate_unique_name">별개의 이름 생성</string>
     <string name="overwrite">덮어쓰기</string>
-    <string name="overwrite_unrelated_warning">이 이름을 가진 파일이 이미 있습니다.</string>
-    <string name="overwrite_finished_warning">이 이름을 가진 다운로드 된 파일이 이미 있습니다.</string>
+    <string name="overwrite_unrelated_warning">이 이름을 가진 파일이 이미 있습니다</string>
+    <string name="overwrite_finished_warning">이 이름을 가진 다운로드 된 파일이 이미 있습니다</string>
     <string name="download_already_running">해당 이름을 가진 다운로드가 이미 진행중입니다</string>
     <string name="show_error">오류 표시</string>
     <string name="label_code">코드</string>
-    <string name="error_path_creation">파일을 만들 수 없습니다</string>
-    <string name="error_file_creation">지정한 폴더를 만들 수 없습니다</string>
+    <string name="error_path_creation">지정한 폴더를 만들 수 없습니다</string>
+    <string name="error_file_creation">파일을 만들 수 없습니다</string>
     <string name="error_permission_denied">시스템에 의해 권한이 거부되었습니다</string>
     <string name="error_ssl_exception">보안 연결 실패</string>
     <string name="error_unknown_host">서버를 찾을 수 없습니다</string>
@@ -463,8 +463,8 @@
     <string name="stop">멈추기</string>
     <string name="max_retry_msg">최대 재시도 횟수</string>
     <string name="max_retry_desc">다운로드를 취소하기 전까지 다시 시도할 최대 횟수</string>
-    <string name="pause_downloads_on_mobile">모바일 데이터로 전환시 일시정지</string>
-    <string name="pause_downloads_on_mobile_desc">일시정지 할 수 없는 다운로드의 경우에는 다시 시작됩니다</string>
+    <string name="pause_downloads_on_mobile">종량제 네트워크에서 일시정지</string>
+    <string name="pause_downloads_on_mobile_desc">모바일 데이터로 전환될 때, 일부 다운로드는 정지되지 않습니다</string>
     <string name="conferences">컨퍼런스</string>
     <string name="show_comments_title">댓글 보기</string>
     <string name="show_comments_summary">댓글을 보지 않으려면 비활성화하세요</string>
@@ -475,4 +475,29 @@
     <string name="no_comments">댓글 없음</string>
     <string name="error_unable_to_load_comments">댓글을 불러올 수 없음</string>
     <string name="close">닫기</string>
+    <string name="enable_playback_resume_title">재생 재개</string>
+    <string name="enable_playback_resume_summary">마지막 재생 위치부터 재생</string>
+    <string name="enable_playback_state_lists_title">리스트내 위치</string>
+    <string name="enable_playback_state_lists_summary">리스트에서 재생위치 인디케이터를 표시합니다</string>
+    <string name="settings_category_clear_data_title">데이터 삭제</string>
+    <string name="watch_history_states_deleted">재생위치 삭제완료.</string>
+    <string name="missing_file">파일이 이동되거나 삭제되었습니다</string>
+    <string name="overwrite_failed">파일을 덮어쓰기할 수 없습니다</string>
+    <string name="download_already_pending">해당 이름으로 대기된 다운로드가 있습니다</string>
+    <string name="error_postprocessing_stopped">파일 작업 중에 Newpipe가 종료되었습니다</string>
+    <string name="error_insufficient_storage">남은 저장공간이 없습니다</string>
+    <string name="error_progress_lost">파일이 삭제되어 진행이 중지되었습니다</string>
+    <string name="error_timeout">연결시간 초과</string>
+    <string name="confirm_prompt">확실합니까\?</string>
+    <string name="enable_queue_limit">다운로드 대기 제한</string>
+    <string name="start_downloads">다운로드 시작</string>
+    <string name="pause_downloads">다운로드 일시정지</string>
+    <string name="downloads_storage_ask_title">다운로드 위치를 물음</string>
+    <string name="downloads_storage_ask_summary">다운로드 할때 마다 저장위치를 물을 것 입니다</string>
+    <string name="downloads_storage_use_saf_title">SAF 사용</string>
+    <string name="downloads_storage_use_saf_summary">스토리지 액세스 프레임워크(SAF)는 외장 SD카드에 다운로드 할 수 있도록 해줍니다. 
+\n주석: 일부 기기와 호환되지 않을 수 있습니다</string>
+    <string name="clear_playback_states_title">재생 위치 삭제</string>
+    <string name="clear_playback_states_summary">모든 재생 위치를 삭제</string>
+    <string name="delete_playback_states_alert">모든 재생 위치를 삭제하시겠습니까\?</string>
 </resources>

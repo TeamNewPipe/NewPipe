@@ -26,7 +26,7 @@
     <string name="light_theme_title">مضيء</string>
     <string name="list_thumbnail_view_description">صور معاينة الفيديو</string>
     <string name="network_error">خطأ في الشبكة</string>
-    <string name="next_video_title">إلى التالية</string>
+    <string name="next_video_title">التالي</string>
     <string name="no_player_found">لا يوجد مشغل فيديو. هل تريد تثبيت VLC ؟</string>
     <string name="open_in_browser">افتح في المتصفح</string>
     <string name="play_audio">الصوت</string>
@@ -42,7 +42,7 @@
     <string name="share">مشاركة</string>
     <string name="share_dialog_title">مشاركة بواسطة</string>
     <string name="show_next_and_similar_title">عرض مقاطع الفيديو \"التالية\" و \"المشابهة\"</string>
-    <string name="show_play_with_kodi_summary">عرض خيار تشغيل الفيديو عبر مركز وسائط Kodi</string>
+    <string name="show_play_with_kodi_summary">اعرض خيارًا لتشغيل الفيديو عبر مركز وسائط Kodi</string>
     <string name="show_play_with_kodi_title">عرض خيار التشغيل بواسطة كودي</string>
     <string name="theme_title">السمة</string>
     <string name="upload_date_text">تم النشر يوم %1$s</string>
@@ -69,9 +69,9 @@
     <string name="enable_watch_history_title">مراقبة السجل</string>
     <string name="settings_category_history_title">التاريخ و ذاكرة التخزين المؤقت</string>
     <string name="content">محتوى</string>
-    <string name="downloads">التحميلات</string>
-    <string name="downloads_title">التحميلات</string>
-    <string name="all">الكل</string>
+    <string name="downloads">التنزيلات</string>
+    <string name="downloads_title">التنزيلات</string>
+    <string name="all">الجميع</string>
     <string name="channel">القناة</string>
     <string name="video">الفيديو</string>
     <string name="settings_category_downloads_title">التنزيل</string>
@@ -80,7 +80,7 @@
     <string name="title_activity_history">التاريخ</string>
     <string name="action_history">التاريخ</string>
     <string name="open_in_popup_mode">فتح في وضع منبثق</string>
-    <string name="use_external_video_player_summary">"يزيل الصوت  في بعض قرارات الدقة"</string>
+    <string name="use_external_video_player_summary">يزيل الصوت في بعض القرارات</string>
     <string name="popup_mode_share_menu_title">وضع النوافذ المنبثقة NewPipe</string>
     <string name="channel_unsubscribed">تم إلغاء الاشتراك في القناة</string>
     <string name="subscription_change_failed">تعذر تغيير حالة الاشتراك</string>
@@ -113,7 +113,7 @@
     <string name="show_age_restricted_content_title">محتوى مقيد بحسب العمر</string>
     <string name="video_is_age_restricted">"إظهار الفيديو  المقيد بحسب العمر. يمكن السماح باستخدام هذه المواد من \"الإعدادات\"."</string>
     <string name="duration_live">بث مباشر</string>
-    <string name="error_report_title">أبلغ عن خطأ</string>
+    <string name="error_report_title">الإبلاغ عن خطأ</string>
     <string name="playlist">قائمة التشغيل</string>
     <string name="yes">نعم</string>
     <string name="later">لاحقاً</string>
@@ -153,12 +153,12 @@
     <string name="audio">الصوت</string>
     <string name="retry">إعادة المحاولة</string>
     <string name="storage_permission_denied">تم رفض إذن الوصول إلى التخزين</string>
-    <string name="short_thousand">ألف</string>
+    <string name="short_thousand">ك</string>
     <string name="short_million">مليون</string>
-    <string name="short_billion">بليون</string>
+    <string name="short_billion">ج</string>
     <string name="no_subscribers">ليس هناك مشترِكون</string>
     <plurals name="subscribers">
-        <item quantity="zero">%s لا يوجد مشارك</item>
+        <item quantity="zero">%s لا يوجد مشاركين</item>
         <item quantity="one">%s مشترك</item>
         <item quantity="two">"%s  مشتركتين"</item>
         <item quantity="few">%s اشتراكات</item>
@@ -184,7 +184,7 @@
     <string name="msg_running_detail">انقر للحصول على التفاصيل</string>
     <string name="msg_wait">يُرجى الإنتظار…</string>
     <string name="msg_copied">تم نسخه إلى الحافظة</string>
-    <string name="no_available_dir">يرجى تحديد مجلد التنزيل لاحقًا في الإعدادات</string>
+    <string name="no_available_dir">يرجى تحديد مجلد التنزيل لاحقا في الإعدادات</string>
     <string name="msg_popup_permission">هذا الإذن مطلوب
 \nللفتح في وضع النافذة المنبثقة</string>
     <string name="reCaptchaActivity">اختبار reCAPTCHA</string>
@@ -246,12 +246,12 @@
         <item quantity="other">%s مشاهدين</item>
     </plurals>
     <plurals name="videos">
-        <item quantity="zero">%s فيديو</item>
+        <item quantity="zero">%s لا يوجد فيديو</item>
         <item quantity="one">%s فيديو</item>
-        <item quantity="two">%s فيديوهان</item>
-        <item quantity="few">%s فيديو</item>
+        <item quantity="two">%s فيديوان</item>
+        <item quantity="few">%s فيديوات</item>
         <item quantity="many">%s فيديوهات</item>
-        <item quantity="other">%s فيديو</item>
+        <item quantity="other">%s مزيد من الفيديوات</item>
     </plurals>
     <string name="recaptcha_request_toast">طلب اختبار الكابتشا مطلوب</string>
     <string name="copyright" formatted="true">© %1$sبواسطة%2$sتحت%3$s</string>
@@ -347,7 +347,7 @@
     <string name="enable_disposed_exceptions_title">تقرير الأخطاء خارج دورة الحياة</string>
     <string name="enable_disposed_exceptions_summary">فرض الإبلاغ عن استثناءات Rx غير القابلة للتسليم خارج دورة حياة الجزء أو النشاط بعد التخلص منها</string>
     <string name="clear_views_history_title">محو سجل المشاهدة</string>
-    <string name="clear_views_history_summary">احذف سِجل الفيديوهات التي تم تشغيلها</string>
+    <string name="clear_views_history_summary">حذف محفوظات التدفقات التي تم تشغيلها ومواقف التشغيل</string>
     <string name="delete_view_history_alert">حذف سجل المشاهدة بالكامل\?</string>
     <string name="watch_history_deleted">تم حذف سجل المشاهدة.</string>
     <string name="clear_search_history_title">محو سجل البحث</string>
@@ -425,7 +425,7 @@
     <string name="app_update_notification_channel_name">تتبيه تحديث التطبيق</string>
     <string name="volume_gesture_control_title">إيماءة التحكم بالصوت</string>
     <string name="events">الأحداث</string>
-    <string name="app_update_notification_channel_description">الإخطارات عند تواجد إصدار newpipe جديد</string>
+    <string name="app_update_notification_channel_description">تنبيه عند تواجد إصدار جديد من newpipe</string>
     <string name="download_to_sdcard_error_title">وحدة التخزين الخارجية غير متوفرة</string>
     <string name="download_to_sdcard_error_message">"التنزيل على بطاقة SD الخارجية غير ممكن.  إعادة تعيين موقع مجلد التحميل؟"</string>
     <string name="saved_tabs_invalid_json">عند إستخدام علامات التبويب الافتراضية ، وقع خطأ أثناء قراءة علامات التبويب المحفوظة</string>
@@ -513,6 +513,12 @@
     <string name="pause_downloads">إيقاف التحميل مؤقتا</string>
     <string name="downloads_storage_ask_title">اسأل عن مكان التنزيل</string>
     <string name="downloads_storage_ask_summary">سيُطلب منك مكان حفظ كل تنزيل</string>
-    <string name="downloads_storage_ask_summary_kitkat">سوف يطلب منك مكان حفظ كل تحميل.
-\nقم بتشغيل هذا إذا كنت تريد التنزيل إلى بطاقة SD خارجية.</string>
+    <string name="downloads_storage_ask_summary_kitkat">سيُطلب منك مكان حفظ كل تنزيل. اختر SAF إذا كنت تريد التنزيل على بطاقة SD خارجية</string>
+    <string name="downloads_storage_use_saf_title">استخدام آمن</string>
+    <string name="downloads_storage_use_saf_summary">إطار وصول التخزين يسمح لتنزيلات على بطاقة SD الخارجية.
+\nملاحظة: بعض الأجهزة غير متوافقة</string>
+    <string name="clear_playback_states_title">حذف مواقف التشغيل</string>
+    <string name="clear_playback_states_summary">حذف كل مواقف التشغيل</string>
+    <string name="delete_playback_states_alert">حذف كل مواقف التشغيل؟</string>
+    <string name="download_choose_new_path">تغيير مجلدات التنزيل إلى حيز التنفيذ‮‮‮</string>
 </resources>

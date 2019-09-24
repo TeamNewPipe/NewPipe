@@ -209,7 +209,7 @@
     </plurals>
     <string name="no_videos">ਕੋਈ ਵੀਡੀਓ ਨਹੀਂ</string>
     <plurals name="videos">
-        <item quantity="one">ਵੀਡੀਓ</item>
+        <item quantity="one">ਵੀਡੀਓਜ਼</item>
         <item quantity="other">ਵੀਡੀਓਜ਼</item>
     </plurals>
     <string name="start">ਸ਼ੁਰੂ ਕਰੋ</string>
@@ -467,7 +467,7 @@
     <string name="autoplay_title">ਆਟੋ-ਪਲੇ</string>
     <plurals name="comments">
         <item quantity="one">ਟਿਪਣੀਆਂ</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="no_comments">ਕੋਈ ਟਿੱਪਣੀ ਨਹੀਂ ਕੀਤੀ ਗਈ</string>
     <string name="error_unable_to_load_comments">ਟਿੱਪਣੀਆਂ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕੀਆਂ</string>
@@ -495,6 +495,9 @@
     <string name="pause_downloads">ਡਾਊਨਲੋਡਸ ਰੋਕੋ</string>
     <string name="downloads_storage_ask_title">ਪੁੱਛੋ ਕਿੱਥੇ ਡਾਊਨਲੋਡ ਕਰਨਾ ਹੈ</string>
     <string name="downloads_storage_ask_summary">ਤੁਹਾਨੂੰ ਪੁੱਛਿਆ ਜਾਵੇਗਾ ਕਿ ਹਰ ਡਾਉਨਲੋਡ ਨੂੰ ਕਿੱਥੇ save ਕਰਨਾ ਹੈ</string>
-    <string name="downloads_storage_ask_summary_kitkat">ਤੁਹਾਨੂੰ ਪੁੱਛਿਆ ਜਾਵੇਗਾ ਕਿ ਹਰ ਡਾਉਨਲੋਡ ਨੂੰ ਕਿੱਥੇ save ਕਰਨਾ ਹੈ.
-\nਜੇ ਤੁਸੀਂ ਬਾਹਰੀ SD ਕਾਰਡ ਤੇ ਡਾਊਨਲੋਡ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ ਤਾਂ ਇਸ ਨੂੰ ਚਾਲੂ ਕਰੋ.</string>
+    <string name="downloads_storage_ask_summary_kitkat">ਤੁਹਾਨੂੰ ਪੁੱਛਿਆ ਜਾਵੇਗਾ ਕਿ ਹਰ ਡਾਉਨਲੋਡ ਨੂੰ ਕਿੱਥੇ save ਕਰਨਾ ਹੈ. 
+\nਜੇ ਤੁਸੀਂ ਬਾਹਰੀ SD ਕਾਰਡ ਤੇ ਡਾਊਨਲੋਡ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ ਤਾਂ ਇਸ ਨੂੰ ਚਾਲੂ ਕਰੋ</string>
+    <string name="downloads_storage_use_saf_title">SAF ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
+    <string name="downloads_storage_use_saf_summary">ਸਟੋਰੇਜ਼ ਐਕਸੈਸ ਫਰੇਮਵਰਕ ਬਾਹਰੀ SD ਕਾਰਡ ਵਿੱਚ ਡਾਊਨਲੋਡ ਕਰਨ ਦੀ ਆਗਿਆ ਦਿੰਦਾ ਹੈ.
+\nਨੋਟ: ਕੁਝ ਉਪਕਰਣ ਅਨੁਕੂਲ ਨਹੀਂ ਹਨ</string>
 </resources>

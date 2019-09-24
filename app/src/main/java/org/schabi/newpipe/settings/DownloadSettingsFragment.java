@@ -12,6 +12,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v7.preference.Preference;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.nononsenseapps.filepicker.Utils;
 
@@ -34,6 +35,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
 
     private String DOWNLOAD_PATH_VIDEO_PREFERENCE;
     private String DOWNLOAD_PATH_AUDIO_PREFERENCE;
+    private String STORAGE_USE_SAF_PREFERENCE;
 
     private Preference prefPathVideo;
     private Preference prefPathAudio;
@@ -47,6 +49,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
 
         DOWNLOAD_PATH_VIDEO_PREFERENCE = getString(R.string.download_path_video_key);
         DOWNLOAD_PATH_AUDIO_PREFERENCE = getString(R.string.download_path_audio_key);
+        STORAGE_USE_SAF_PREFERENCE = getString(R.string.storage_use_saf);
         final String downloadStorageAsk = getString(R.string.downloads_storage_ask);
 
         prefPathVideo = findPreference(DOWNLOAD_PATH_VIDEO_PREFERENCE);
@@ -169,7 +172,10 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
         String key = preference.getKey();
         int request;
 
-        if (key.equals(DOWNLOAD_PATH_VIDEO_PREFERENCE)) {
+        if (key.equals(STORAGE_USE_SAF_PREFERENCE)) {
+            Toast.makeText(getContext(), R.string.download_choose_new_path, Toast.LENGTH_LONG).show();
+            return true;
+        } else if (key.equals(DOWNLOAD_PATH_VIDEO_PREFERENCE)) {
             request = REQUEST_DOWNLOAD_VIDEO_PATH;
         } else if (key.equals(DOWNLOAD_PATH_AUDIO_PREFERENCE)) {
             request = REQUEST_DOWNLOAD_AUDIO_PATH;
