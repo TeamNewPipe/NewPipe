@@ -561,7 +561,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
                 mainStorage = mainStorageVideo;
                 format = videoStreamsAdapter.getItem(selectedVideoIndex).getFormat();
                 mime = format.mimeType;
-                filename += format.suffix;
+                filename += format == MediaFormat.OPUS ? "ogg" : format.suffix;
                 break;
             case R.id.subtitle_button:
                 mainStorage = mainStorageVideo;// subtitle & video files go together
@@ -778,6 +778,8 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
 
                 if (selectedStream.getFormat() == MediaFormat.M4A) {
                     psName = Postprocessing.ALGORITHM_M4A_NO_DASH;
+                } else if (selectedStream.getFormat() == MediaFormat.OPUS) {
+                    psName = Postprocessing.ALGORITHM_OGG_FROM_WEBM_DEMUXER;
                 }
                 break;
             case R.id.video_button:

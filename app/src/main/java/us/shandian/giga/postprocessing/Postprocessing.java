@@ -28,6 +28,7 @@ public abstract class Postprocessing implements Serializable {
     public transient static final String ALGORITHM_WEBM_MUXER = "webm";
     public transient static final String ALGORITHM_MP4_FROM_DASH_MUXER = "mp4D-mp4";
     public transient static final String ALGORITHM_M4A_NO_DASH = "mp4D-m4a";
+    public transient static final String ALGORITHM_OGG_FROM_WEBM_DEMUXER = "webm-ogg-d";
 
     public static Postprocessing getAlgorithm(@NonNull String algorithmName, String[] args) {
         Postprocessing instance;
@@ -44,6 +45,9 @@ public abstract class Postprocessing implements Serializable {
                 break;
             case ALGORITHM_M4A_NO_DASH:
                 instance = new M4aNoDash();
+                break;
+            case ALGORITHM_OGG_FROM_WEBM_DEMUXER:
+                instance = new OggFromWebmDemuxer();
                 break;
             /*case "example-algorithm":
                 instance = new ExampleAlgorithm();*/
@@ -212,7 +216,7 @@ public abstract class Postprocessing implements Serializable {
      *
      * @param out     output stream
      * @param sources files to be processed
-     * @return a error code, 0 means the operation was successful
+     * @return an error code, {@code OK_RESULT} means the operation was successful
      * @throws IOException if an I/O error occurs.
      */
     abstract int process(SharpStream out, SharpStream... sources) throws IOException;
