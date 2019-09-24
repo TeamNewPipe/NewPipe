@@ -41,12 +41,12 @@
     <string name="controls_background_title">Background</string>
     <string name="controls_popup_title">Popup</string>
     <string name="controls_add_to_playlist_title">Add To</string>
-    <string name="download_path_title">Video download path</string>
-    <string name="download_path_summary">Path to store downloaded videos in</string>
-    <string name="download_path_dialog_title">Enter download path for videos</string>
+    <string name="download_path_title">Video download folder</string>
+    <string name="download_path_summary">Downloaded video files are stored here</string>
+    <string name="download_path_dialog_title">Choose the download folder for video files</string>
     <string name="download_path_audio_title">Audio download folder</string>
-    <string name="download_path_audio_summary">Downloaded audio is stored here</string>
-    <string name="download_path_audio_dialog_title">Enter download path for audio files</string>
+    <string name="download_path_audio_summary">Downloaded audio files are stored here</string>
+    <string name="download_path_audio_dialog_title">Choose the download folder for audio files</string>
     <string name="download_choose_new_path">Change the download folders to take effect</string>
     <string name="autoplay_by_calling_app_title">Autoplay</string>
     <string name="autoplay_by_calling_app_summary">Plays a video when NewPipe is called from another app</string>
