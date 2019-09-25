@@ -150,7 +150,7 @@
     <string name="storage_permission_denied">הגישה לאחסון נדחתה</string>
     <string name="short_thousand">ק׳</string>
     <string name="short_million">מ׳</string>
-    <string name="short_billion">ג׳</string>
+    <string name="short_billion">ב׳</string>
     <string name="no_subscribers">אין מנויים</string>
     <plurals name="subscribers">
         <item quantity="one">מנוי אחד</item>
