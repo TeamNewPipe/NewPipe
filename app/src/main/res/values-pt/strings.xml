@@ -112,9 +112,9 @@
     <string name="channel">Canais</string>
     <string name="yes">Sim</string>
     <string name="later">Depois</string>
-    <string name="short_thousand">k</string>
+    <string name="short_thousand">K</string>
     <string name="short_million">M</string>
-    <string name="short_billion">G</string>
+    <string name="short_billion">B</string>
     <string name="msg_popup_permission">Esta permissão é necessária 
 \npara o modo de janela</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
