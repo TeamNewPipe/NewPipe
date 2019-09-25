@@ -11,7 +11,7 @@ import java.nio.ByteBuffer;
 class OggFromWebmDemuxer extends Postprocessing {
 
     OggFromWebmDemuxer() {
-        super(false, true, ALGORITHM_OGG_FROM_WEBM_DEMUXER);
+        super(true, true, ALGORITHM_OGG_FROM_WEBM_DEMUXER);
     }
 
     @Override
@@ -24,7 +24,7 @@ class OggFromWebmDemuxer extends Postprocessing {
 
         switch (buffer.getInt()) {
             case 0x1a45dfa3:
-                return true;// webm
+                return true;// webm/mkv
             case 0x4F676753:
                 return false;// ogg
         }
