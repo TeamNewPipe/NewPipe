@@ -118,7 +118,7 @@
     <string name="later">Plus tard</string>
     <string name="disabled">Désactivé</string>
     <string name="info_labels">Quoi :\\nRequête :\\nLangue du contenu :\\nService :\\nHeure UTC :\\nPaquet :\\nVersion :\\nVersion du système d’exploitation :</string>
-    <string name="short_thousand">k</string>
+    <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="msg_popup_permission">Cette autorisation est nécessaire pour
 \nutiliser le mode flottant</string>
@@ -135,7 +135,7 @@
     <string name="refresh">Rafraîchir</string>
     <string name="clear">Effacer</string>
     <string name="popup_resizing_indicator_title">Redimensionner</string>
-    <string name="short_billion">G</string>
+    <string name="short_billion">B</string>
     <string name="use_external_video_player_summary">Retire l’audio à CERTAINES définitions</string>
     <string name="player_gesture_controls_summary">Utiliser les gestes pour contrôler la luminosité et le volume du lecteur</string>
     <string name="show_search_suggestions_title">Suggestions de recherche</string>
