@@ -89,9 +89,9 @@
     <string name="video">Відео</string>
     <string name="audio">Аудіо</string>
     <string name="retry">Повторити спробу</string>
-    <string name="short_thousand">к</string>
+    <string name="short_thousand">тис.</string>
     <string name="short_million">млн.</string>
-    <string name="short_billion">Г</string>
+    <string name="short_billion">млрд</string>
     <string name="start">Почати</string>
     <string name="pause">Пауза</string>
     <string name="view">Грати</string>
