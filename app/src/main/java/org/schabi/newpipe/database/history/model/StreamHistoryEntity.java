@@ -5,6 +5,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
+import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
 import org.schabi.newpipe.database.stream.model.StreamEntity;
@@ -12,14 +13,12 @@ import org.schabi.newpipe.database.stream.model.StreamEntity;
 import java.util.Date;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
-import static org.schabi.newpipe.database.history.model.StreamHistoryEntity.STREAM_HISTORY_TABLE;
 import static org.schabi.newpipe.database.history.model.StreamHistoryEntity.JOIN_STREAM_ID;
 import static org.schabi.newpipe.database.history.model.StreamHistoryEntity.STREAM_ACCESS_DATE;
+import static org.schabi.newpipe.database.history.model.StreamHistoryEntity.STREAM_HISTORY_TABLE;
 
 @Entity(tableName = STREAM_HISTORY_TABLE,
-        primaryKeys = {JOIN_STREAM_ID, STREAM_ACCESS_DATE},
-        // No need to index for timestamp as they will almost always be unique
-        indices = {@Index(value = {JOIN_STREAM_ID})},
+        indices = {@Index(value = {JOIN_STREAM_ID, STREAM_ACCESS_DATE}, unique = true)},
         foreignKeys = {
                 @ForeignKey(entity = StreamEntity.class,
                         parentColumns = StreamEntity.STREAM_ID,
@@ -28,9 +27,14 @@ import static org.schabi.newpipe.database.history.model.StreamHistoryEntity.STRE
         })
 public class StreamHistoryEntity {
     final public static String STREAM_HISTORY_TABLE = "stream_history";
+    final public static String STREAM_HISTORY_ID    = "uid";
     final public static String JOIN_STREAM_ID       = "stream_id";
     final public static String STREAM_ACCESS_DATE   = "access_date";
     final public static String STREAM_REPEAT_COUNT  = "repeat_count";
+
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = STREAM_HISTORY_ID)
+    private long uid;
 
     @ColumnInfo(name = JOIN_STREAM_ID)
     private long streamUid;
@@ -51,6 +55,14 @@ public class StreamHistoryEntity {
     @Ignore
     public StreamHistoryEntity(long streamUid, @NonNull Date accessDate) {
         this(streamUid, accessDate, 1);
+    }
+
+    public long getUid() {
+        return uid;
+    }
+
+    public void setUid(long uid) {
+        this.uid = uid;
     }
 
     public long getStreamUid() {

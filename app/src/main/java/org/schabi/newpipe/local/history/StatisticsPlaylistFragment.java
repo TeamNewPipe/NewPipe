@@ -7,6 +7,7 @@ import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,9 +21,11 @@ import android.widget.Toast;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
+import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.database.Database;
 import org.schabi.newpipe.database.LocalItem;
-import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
+import org.schabi.newpipe.database.RemoteDatabase;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
@@ -48,7 +51,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
 public class StatisticsPlaylistFragment
-        extends BaseLocalListFragment<List<StreamStatisticsEntry>, Void> {
+        extends BaseLocalListFragment<List<StreamStatisticsEntry>, Void> implements SwipeRefreshLayout.OnRefreshListener {
 
     private View headerPlayAllButton;
     private View headerPopupButton;
@@ -57,6 +60,7 @@ public class StatisticsPlaylistFragment
     private View sortButton;
     private ImageView sortButtonIcon;
     private TextView sortButtonText;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @State
     protected Parcelable itemsListState;
@@ -65,6 +69,22 @@ public class StatisticsPlaylistFragment
     private Subscription databaseSubscription;
     private HistoryRecordManager recordManager;
     private final CompositeDisposable disposables = new CompositeDisposable();
+
+    @Override
+    public void onRefresh() {
+        Database db = NewPipeDatabase.getInstance(getContext().getApplicationContext());
+        if(db instanceof RemoteDatabase){
+            Disposable disposable = ((RemoteDatabase) db).refreshHistory().observeOn(AndroidSchedulers.mainThread()).subscribe(() -> {
+                swipeRefreshLayout.setRefreshing(false);
+            }, (e) -> {
+                swipeRefreshLayout.setRefreshing(false);
+                Toast.makeText(getContext(), "Failed to refresh content", Toast.LENGTH_SHORT).show();
+            });
+            disposables.add(disposable);
+        }else{
+            swipeRefreshLayout.setRefreshing(false);
+        }
+    }
 
     private enum StatisticSortMode {
         LAST_PLAYED,
@@ -125,6 +145,7 @@ public class StatisticsPlaylistFragment
     @Override
     protected void initViews(View rootView, Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
+        swipeRefreshLayout = rootView.findViewById(R.id.swipeToRefresh);
         if(!useAsFrontPage) {
             setTitle(getString(R.string.title_last_played));
         }
@@ -167,6 +188,8 @@ public class StatisticsPlaylistFragment
                 }
             }
         });
+
+        swipeRefreshLayout.setOnRefreshListener(this);
     }
 
     @Override

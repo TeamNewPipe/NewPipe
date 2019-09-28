@@ -9,14 +9,22 @@ import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
 import org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity;
 
+import java.util.Collection;
 import java.util.List;
 
 import io.reactivex.Flowable;
 
 import static org.schabi.newpipe.database.playlist.PlaylistMetadataEntry.PLAYLIST_STREAM_COUNT;
-import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.*;
-import static org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity.*;
-import static org.schabi.newpipe.database.stream.model.StreamEntity.*;
+import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_ID;
+import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_NAME;
+import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_TABLE;
+import static org.schabi.newpipe.database.playlist.model.PlaylistEntity.PLAYLIST_THUMBNAIL_URL;
+import static org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity.JOIN_INDEX;
+import static org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity.JOIN_PLAYLIST_ID;
+import static org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity.JOIN_STREAM_ID;
+import static org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity.PLAYLIST_STREAM_JOIN_TABLE;
+import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_ID;
+import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_TABLE;
 
 @Dao
 public abstract class PlaylistStreamDAO implements BasicDAO<PlaylistStreamEntity> {
@@ -55,14 +63,21 @@ public abstract class PlaylistStreamDAO implements BasicDAO<PlaylistStreamEntity
     public abstract Flowable<List<PlaylistStreamEntry>> getOrderedStreamsOf(long playlistId);
 
     @Transaction
-    @Query("SELECT " + PLAYLIST_ID + ", " + PLAYLIST_NAME + ", " +
+    @Query("SELECT " + PLAYLIST_TABLE + "." + PLAYLIST_ID + ", " + PLAYLIST_NAME + ", " +
             PLAYLIST_THUMBNAIL_URL + ", " +
             "COALESCE(COUNT(" + JOIN_PLAYLIST_ID + "), 0) AS " + PLAYLIST_STREAM_COUNT +
 
             " FROM " + PLAYLIST_TABLE +
             " LEFT JOIN " + PLAYLIST_STREAM_JOIN_TABLE +
-            " ON " + PLAYLIST_ID + " = " + JOIN_PLAYLIST_ID +
-            " GROUP BY " + JOIN_PLAYLIST_ID +
+            " ON " + PLAYLIST_TABLE + "." + PLAYLIST_ID + " = " + JOIN_PLAYLIST_ID +
+            " GROUP BY " + PLAYLIST_TABLE + "." + PLAYLIST_ID +
             " ORDER BY " + PLAYLIST_NAME + " COLLATE NOCASE ASC")
     public abstract Flowable<List<PlaylistMetadataEntry>> getPlaylistMetadata();
+
+    @Override
+    @Transaction
+    public void destroyAndRefill(Collection<PlaylistStreamEntity> entities) {
+        deleteAll();
+        insertAll(entities);
+    }
 }

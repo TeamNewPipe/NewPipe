@@ -32,6 +32,7 @@ import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.MainFragment;
+import org.schabi.newpipe.fragments.auth.LoginFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.channel.ChannelFragment;
 import org.schabi.newpipe.fragments.list.comments.CommentsFragment;
@@ -258,6 +259,14 @@ public class NavigationHelper {
         defaultTransaction(fragmentManager)
                 .replace(R.id.fragment_holder, new MainFragment())
                 .addToBackStack(MAIN_FRAGMENT_TAG)
+                .commit();
+    }
+
+    public static void openLoginFragment(FragmentManager fragmentManager) {
+
+        defaultTransaction(fragmentManager)
+                .replace(R.id.fragment_holder, new LoginFragment())
+                .addToBackStack(null)
                 .commit();
     }
 

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -22,7 +23,9 @@ import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.database.Database;
 import org.schabi.newpipe.database.LocalItem;
+import org.schabi.newpipe.database.RemoteDatabase;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
@@ -51,7 +54,7 @@ import io.reactivex.subjects.PublishSubject;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
-public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistStreamEntry>, Void> {
+public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistStreamEntry>, Void> implements SwipeRefreshLayout.OnRefreshListener {
 
     // Save the list 10 seconds after the last change occurred
     private static final long SAVE_DEBOUNCE_MILLIS = 10000;
@@ -65,6 +68,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private View headerPlayAllButton;
     private View headerPopupButton;
     private View headerBackgroundButton;
+
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @State
     protected Long playlistId;
@@ -132,6 +137,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     protected void initViews(View rootView, Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
         setTitle(name);
+        swipeRefreshLayout = rootView.findViewById(R.id.swipeToRefresh);
     }
 
     @Override
@@ -183,6 +189,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 if (itemTouchHelper != null) itemTouchHelper.startDrag(viewHolder);
             }
         });
+        swipeRefreshLayout.setOnRefreshListener(this);
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -583,6 +590,22 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             }
         }
         return new SinglePlayQueue(streamInfoItems, index);
+    }
+
+    @Override
+    public void onRefresh() {
+        Database db = NewPipeDatabase.getInstance(getContext().getApplicationContext());
+        if(db instanceof RemoteDatabase){
+            Disposable disposable = ((RemoteDatabase) db).refreshPlaylists().observeOn(AndroidSchedulers.mainThread()).subscribe(() -> {
+                swipeRefreshLayout.setRefreshing(false);
+            }, (e) -> {
+                swipeRefreshLayout.setRefreshing(false);
+                Toast.makeText(getContext(), "Failed to refresh content", Toast.LENGTH_SHORT).show();
+            });
+            disposables.add(disposable);
+        }else{
+            swipeRefreshLayout.setRefreshing(false);
+        }
     }
 }
 

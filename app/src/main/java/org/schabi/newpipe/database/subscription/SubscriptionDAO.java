@@ -8,6 +8,7 @@ import android.arch.persistence.room.Transaction;
 
 import org.schabi.newpipe.database.BasicDAO;
 
+import java.util.Collection;
 import java.util.List;
 
 import io.reactivex.Flowable;
@@ -65,5 +66,12 @@ public abstract class SubscriptionDAO implements BasicDAO<SubscriptionEntity> {
         }
 
         return entities;
+    }
+
+    @Override
+    @Transaction
+    public void destroyAndRefill(Collection<SubscriptionEntity> subscriptionEntities) {
+        deleteAll();
+        insertAll(subscriptionEntities);
     }
 }

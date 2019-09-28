@@ -22,6 +22,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -37,7 +38,10 @@ import android.widget.Toast;
 
 import com.nononsenseapps.filepicker.Utils;
 
+import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.database.Database;
+import org.schabi.newpipe.database.RemoteDatabase;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -67,6 +71,7 @@ import java.util.List;
 import java.util.Locale;
 
 import icepick.State;
+import io.reactivex.Completable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -79,11 +84,13 @@ import static org.schabi.newpipe.local.subscription.services.SubscriptionsImport
 import static org.schabi.newpipe.util.AnimationUtils.animateRotation;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
-public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEntity>> implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEntity>> implements SharedPreferences.OnSharedPreferenceChangeListener, SwipeRefreshLayout.OnRefreshListener {
     private static final int REQUEST_EXPORT_CODE = 666;
     private static final int REQUEST_IMPORT_CODE = 667;
 
     private RecyclerView itemsList;
+    private SwipeRefreshLayout swipeRefreshLayout;
+
     @State
     protected Parcelable itemsListState;
     private InfoListAdapter infoListAdapter;
@@ -353,6 +360,10 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
 
         importExportOptions.addListener(getExpandIconSyncListener(headerRootLayout.findViewById(R.id.import_export_expand_icon)));
         importExportOptions.ready();
+
+        swipeRefreshLayout = rootView.findViewById(R.id.swipeToRefresh);
+
+
     }
 
     private CollapsibleView.StateListener getExpandIconSyncListener(final ImageView iconView) {
@@ -384,6 +395,8 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
             NavigationHelper.openWhatsNewFragment(fragmentManager);
         });
         importExportListHeader.setOnClickListener(v -> importExportOptions.switchState());
+
+        swipeRefreshLayout.setOnRefreshListener(this);
     }
 
     private void showLongTapDialog(ChannelInfoItem selectedItem) {
@@ -590,6 +603,22 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
                     && configuration.isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE);
         } else {
             return "grid".equals(list_mode);
+        }
+    }
+
+    @Override
+    public void onRefresh() {
+        Database db = NewPipeDatabase.getInstance(getContext().getApplicationContext());
+        if(db instanceof RemoteDatabase){
+            Disposable disposable = ((RemoteDatabase) db).refreshSubscriptions().observeOn(AndroidSchedulers.mainThread()).subscribe(() -> {
+                swipeRefreshLayout.setRefreshing(false);
+            }, (e) -> {
+                swipeRefreshLayout.setRefreshing(false);
+                Toast.makeText(getContext(), "Failed to refresh content", Toast.LENGTH_SHORT).show();
+            });
+            disposables.add(disposable);
+        }else{
+            swipeRefreshLayout.setRefreshing(false);
         }
     }
 }

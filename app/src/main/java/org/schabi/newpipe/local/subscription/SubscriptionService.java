@@ -6,7 +6,6 @@ import android.util.Log;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.NewPipeDatabase;
-import org.schabi.newpipe.database.AppDatabase;
 import org.schabi.newpipe.database.subscription.SubscriptionDAO;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
@@ -55,13 +54,13 @@ public class SubscriptionService {
     private static final int SUBSCRIPTION_DEBOUNCE_INTERVAL = 500;
     private static final int SUBSCRIPTION_THREAD_POOL_SIZE = 4;
 
-    private final AppDatabase db;
+    private final Context context;
     private final Flowable<List<SubscriptionEntity>> subscription;
 
     private final Scheduler subscriptionScheduler;
 
     private SubscriptionService(Context context) {
-        db = NewPipeDatabase.getInstance(context.getApplicationContext());
+        this.context = context.getApplicationContext();
         subscription = getSubscriptionInfos();
 
         final Executor subscriptionExecutor = Executors.newFixedThreadPool(SUBSCRIPTION_THREAD_POOL_SIZE);
@@ -110,7 +109,7 @@ public class SubscriptionService {
      * Returns the database access interface for subscription table.
      */
     public SubscriptionDAO subscriptionTable() {
-        return db.subscriptionDAO();
+        return NewPipeDatabase.getInstance(context).subscriptionDAO();
     }
 
     public Completable updateChannelInfo(final ChannelInfo info) {

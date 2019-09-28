@@ -14,15 +14,15 @@ import static org.schabi.newpipe.database.history.model.SearchHistoryEntry.SEARC
         indices = {@Index(value = SEARCH)})
 public class SearchHistoryEntry {
 
-    public static final String ID = "id";
     public static final String TABLE_NAME = "search_history";
+    public static final String SEARCH_HISTORY_ID = "uid";
     public static final String SERVICE_ID = "service_id";
     public static final String CREATION_DATE = "creation_date";
     public static final String SEARCH = "search";
 
-    @ColumnInfo(name = ID)
+    @ColumnInfo(name = SEARCH_HISTORY_ID)
     @PrimaryKey(autoGenerate = true)
-    private long id;
+    private long uid;
 
     @ColumnInfo(name = CREATION_DATE)
     private Date creationDate;
@@ -39,12 +39,12 @@ public class SearchHistoryEntry {
         this.search = search;
     }
 
-    public long getId() {
-        return id;
+    public long getUid() {
+        return uid;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setUid(long uid) {
+        this.uid = uid;
     }
 
     public Date getCreationDate() {

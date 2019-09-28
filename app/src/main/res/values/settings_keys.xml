@@ -156,6 +156,11 @@
     <string name="import_data" translatable="false">import_data</string>
     <string name="export_data" translatable="false">export_data</string>
 
+    <string name="sync_server_url_key" translatable="false">sync_server_url_key</string>
+    <string name="username_key" translatable="false">username_key</string>
+    <string name="sync_key" translatable="false">sync_key</string>
+    <string name="logout_key" translatable="false">logout_key</string>
+
     <string name="download_thumbnail_key" translatable="false">download_thumbnail_key</string>
 
     <string name="metadata_cache_wipe_key" translatable="false">cache_wipe_key</string>

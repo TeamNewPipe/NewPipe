@@ -7,6 +7,7 @@ import android.arch.persistence.room.Transaction;
 import org.schabi.newpipe.database.BasicDAO;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
 
+import java.util.Collection;
 import java.util.List;
 
 import io.reactivex.Flowable;
@@ -57,4 +58,11 @@ public abstract class PlaylistRemoteDAO implements BasicDAO<PlaylistRemoteEntity
     @Query("DELETE FROM " + REMOTE_PLAYLIST_TABLE +
             " WHERE " + REMOTE_PLAYLIST_ID + " = :playlistId")
     public abstract int deletePlaylist(final long playlistId);
+
+    @Override
+    @Transaction
+    public void destroyAndRefill(Collection<PlaylistRemoteEntity> entities) {
+        deleteAll();
+        insertAll(entities);
+    }
 }

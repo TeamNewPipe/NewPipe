@@ -6,16 +6,19 @@ import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.database.AppDatabase;
+import org.schabi.newpipe.database.Database;
 import org.schabi.newpipe.database.LocalItem;
+import org.schabi.newpipe.database.RemoteDatabase;
 import org.schabi.newpipe.database.playlist.PlaylistLocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
@@ -35,12 +38,15 @@ import io.reactivex.Flowable;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 public final class BookmarkFragment
-        extends BaseLocalListFragment<List<PlaylistLocalItem>, Void> {
+        extends BaseLocalListFragment<List<PlaylistLocalItem>, Void> implements SwipeRefreshLayout.OnRefreshListener {
 
     @State
     protected Parcelable itemsListState;
+
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     private Subscription databaseSubscription;
     private CompositeDisposable disposables = new CompositeDisposable();
@@ -55,7 +61,7 @@ public final class BookmarkFragment
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (activity == null) return;
-        final AppDatabase database = NewPipeDatabase.getInstance(activity);
+        final Database database = NewPipeDatabase.getInstance(activity);
         localPlaylistManager = new LocalPlaylistManager(database);
         remotePlaylistManager = new RemotePlaylistManager(database);
         disposables = new CompositeDisposable();
@@ -89,6 +95,8 @@ public final class BookmarkFragment
     @Override
     protected void initViews(View rootView, Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
+
+        swipeRefreshLayout = rootView.findViewById(R.id.swipeToRefresh);
     }
 
     @Override
@@ -125,6 +133,8 @@ public final class BookmarkFragment
                 }
             }
         });
+
+        swipeRefreshLayout.setOnRefreshListener(this);
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -282,6 +292,23 @@ public final class BookmarkFragment
                 left.getOrderingName().compareToIgnoreCase(right.getOrderingName()));
 
         return items;
+    }
+
+    @Override
+    public void onRefresh() {
+        Database db = NewPipeDatabase.getInstance(getContext().getApplicationContext());
+        if(db instanceof RemoteDatabase){
+            Disposable disposable = ((RemoteDatabase) db).refreshPlaylists().observeOn(AndroidSchedulers.mainThread()).subscribe(() -> {
+                swipeRefreshLayout.setRefreshing(false);
+            }, (e) -> {
+                swipeRefreshLayout.setRefreshing(false);
+                Toast.makeText(getContext(), "Failed to refresh content", Toast.LENGTH_SHORT).show();
+            });
+            disposables.add(disposable);
+        }else{
+            swipeRefreshLayout.setRefreshing(false);
+        }
+
     }
 }
 

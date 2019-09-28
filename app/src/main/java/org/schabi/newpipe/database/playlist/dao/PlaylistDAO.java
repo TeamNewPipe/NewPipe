@@ -2,10 +2,13 @@ package org.schabi.newpipe.database.playlist.dao;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Transaction;
 
 import org.schabi.newpipe.database.BasicDAO;
 import org.schabi.newpipe.database.playlist.model.PlaylistEntity;
+import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 
+import java.util.Collection;
 import java.util.List;
 
 import io.reactivex.Flowable;
@@ -33,4 +36,11 @@ public abstract class PlaylistDAO implements BasicDAO<PlaylistEntity> {
 
     @Query("DELETE FROM " + PLAYLIST_TABLE + " WHERE " + PLAYLIST_ID + " = :playlistId")
     public abstract int deletePlaylist(final long playlistId);
+
+    @Override
+    @Transaction
+    public void destroyAndRefill(Collection<PlaylistEntity> entities) {
+        deleteAll();
+        insertAll(entities);
+    }
 }

@@ -43,4 +43,6 @@ public interface BasicDAO<Entity> {
 
     @Update
     void update(final Collection<Entity> entities);
+
+    void destroyAndRefill(final Collection<Entity> entities);
 }

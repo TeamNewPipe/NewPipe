@@ -37,6 +37,12 @@
 
     <PreferenceScreen
         app:iconSpaceReserved="false"
+        android:fragment="org.schabi.newpipe.settings.AccountSettingsFragment"
+        android:icon="?attr/account"
+        android:title="@string/account"/>
+
+    <PreferenceScreen
+        app:iconSpaceReserved="false"
         android:fragment="org.schabi.newpipe.settings.UpdateSettingsFragment"
         android:icon="?attr/ic_settings_update"
         android:title="@string/settings_category_updates_title"

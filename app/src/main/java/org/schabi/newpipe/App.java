@@ -6,9 +6,9 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -21,9 +21,10 @@ import org.acra.config.ACRAConfiguration;
 import org.acra.config.ACRAConfigurationException;
 import org.acra.config.ConfigurationBuilder;
 import org.acra.sender.ReportSenderFactory;
+import org.schabi.newpipe.database.Database;
+import org.schabi.newpipe.database.RemoteDatabase;
 import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.utils.Localization;
 import org.schabi.newpipe.report.AcraReportSenderFactory;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
@@ -37,6 +38,7 @@ import java.net.SocketException;
 import java.util.Collections;
 import java.util.List;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.exceptions.CompositeException;
 import io.reactivex.exceptions.MissingBackpressureException;
@@ -107,6 +109,14 @@ public class App extends Application {
 
         // Check for new version
         new CheckForNewAppVersionTask().execute();
+
+        Database database = NewPipeDatabase.getInstance(this);
+        if(database instanceof RemoteDatabase){
+            ((RemoteDatabase) database).sync().observeOn(AndroidSchedulers.mainThread()).subscribe(() -> {}, e -> {
+                Toast.makeText(this, "Failed to sync data from server", Toast.LENGTH_SHORT).show();
+            });
+        }
+
     }
 
     protected Downloader getDownloader() {

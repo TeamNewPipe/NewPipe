@@ -11,6 +11,7 @@ public class Migrations {
 
     public static final int DB_VER_11_0 = 1;
     public static final int DB_VER_12_0 = 2;
+    public static final int DB_VER_13_0 = 3;
 
     public static final boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
     private static final String TAG = Migrations.class.getName();
@@ -65,6 +66,65 @@ public class Migrations {
                     "ORDER BY creation_date DESC");
 
             database.execSQL("DROP TABLE IF EXISTS watch_history");
+
+            if(DEBUG) {
+                Log.d(TAG, "Stop migrating database");
+            }
+        }
+    };
+
+    public static final Migration MIGRATION_12_13 = new Migration(DB_VER_12_0, DB_VER_13_0) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            if(DEBUG) {
+                Log.d(TAG, "Start migrating database");
+            }
+            /*
+             * Unfortunately these queries must be hardcoded due to the possibility of
+             * schema and names changing at a later date, thus invalidating the older migration
+             * scripts if they are not hardcoded.
+             * */
+
+            // update stream_state table
+            database.execSQL("CREATE TABLE IF NOT EXISTS `new_stream_state` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `stream_id` INTEGER NOT NULL, `progress_time` INTEGER NOT NULL, FOREIGN KEY(`stream_id`) REFERENCES `streams`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE )");
+            database.execSQL("CREATE UNIQUE INDEX `index_stream_state_stream_id` ON `new_stream_state` (`stream_id`)");
+
+            database.execSQL("INSERT INTO new_stream_state (stream_id, progress_time) SELECT stream_id, progress_time FROM stream_state");
+
+            database.execSQL("DROP TABLE IF EXISTS stream_state");
+            database.execSQL("ALTER TABLE new_stream_state RENAME TO stream_state");
+
+
+            // update stream_history table
+            database.execSQL("CREATE TABLE IF NOT EXISTS `new_stream_history` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `stream_id` INTEGER NOT NULL, `access_date` INTEGER NOT NULL, `repeat_count` INTEGER NOT NULL, FOREIGN KEY(`stream_id`) REFERENCES `streams`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE )");
+            database.execSQL("CREATE UNIQUE INDEX `index_stream_history_stream_id_access_date` ON `new_stream_history` (`stream_id`, `access_date`)");
+
+            database.execSQL("INSERT INTO new_stream_history (stream_id, access_date, repeat_count) SELECT stream_id, access_date, repeat_count FROM stream_history");
+
+            database.execSQL("DROP TABLE IF EXISTS stream_history");
+            database.execSQL("ALTER TABLE new_stream_history RENAME TO stream_history");
+
+            // update search_history table
+            database.execSQL("CREATE TABLE IF NOT EXISTS `new_search_history` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `search` TEXT, `creation_date` INTEGER, `service_id` INTEGER NOT NULL)");
+            database.execSQL("DROP INDEX IF EXISTS `index_search_history_search`");
+            database.execSQL("CREATE INDEX `index_search_history_search` ON `new_search_history` (`search`)");
+
+            database.execSQL("INSERT INTO new_search_history (search, creation_date, service_id) SELECT search, creation_date, service_id FROM search_history");
+
+            database.execSQL("DROP TABLE IF EXISTS search_history");
+            database.execSQL("ALTER TABLE new_search_history RENAME TO search_history");
+
+            // update playlist_stream_join table
+            database.execSQL("CREATE TABLE IF NOT EXISTS `new_playlist_stream_join` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `playlist_id` INTEGER NOT NULL, `stream_id` INTEGER NOT NULL, `join_index` INTEGER NOT NULL, FOREIGN KEY(`playlist_id`) REFERENCES `playlists`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED, FOREIGN KEY(`stream_id`) REFERENCES `streams`(`uid`) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED)");
+            database.execSQL("DROP INDEX IF EXISTS `index_playlist_stream_join_playlist_id_join_index`");
+            database.execSQL("CREATE UNIQUE INDEX `index_playlist_stream_join_playlist_id_join_index` ON `new_playlist_stream_join` (`playlist_id`, `join_index`)");
+            database.execSQL("DROP INDEX IF EXISTS `index_playlist_stream_join_stream_id`");
+            database.execSQL("CREATE INDEX `index_playlist_stream_join_stream_id` ON `new_playlist_stream_join` (`stream_id`)");
+
+            database.execSQL("INSERT INTO new_playlist_stream_join (playlist_id, stream_id, join_index) SELECT playlist_id, stream_id, join_index FROM playlist_stream_join");
+
+            database.execSQL("DROP TABLE IF EXISTS playlist_stream_join");
+            database.execSQL("ALTER TABLE new_playlist_stream_join RENAME TO playlist_stream_join");
 
             if(DEBUG) {
                 Log.d(TAG, "Stop migrating database");

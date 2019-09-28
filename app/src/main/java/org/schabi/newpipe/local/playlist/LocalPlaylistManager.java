@@ -2,7 +2,7 @@ package org.schabi.newpipe.local.playlist;
 
 import android.support.annotation.Nullable;
 
-import org.schabi.newpipe.database.AppDatabase;
+import org.schabi.newpipe.database.Database;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
 import org.schabi.newpipe.database.playlist.dao.PlaylistDAO;
@@ -23,12 +23,12 @@ import io.reactivex.schedulers.Schedulers;
 
 public class LocalPlaylistManager {
 
-    private final AppDatabase database;
+    private final Database database;
     private final StreamDAO streamTable;
     private final PlaylistDAO playlistTable;
     private final PlaylistStreamDAO playlistStreamTable;
 
-    public LocalPlaylistManager(final AppDatabase db) {
+    public LocalPlaylistManager(final Database db) {
         database = db;
         streamTable = db.streamDAO();
         playlistTable = db.playlistDAO();
@@ -42,18 +42,17 @@ public class LocalPlaylistManager {
         final PlaylistEntity newPlaylist =
                 new PlaylistEntity(name, defaultStream.getThumbnailUrl());
 
-        return Maybe.fromCallable(() -> database.runInTransaction(() ->
-                upsertStreams(playlistTable.insert(newPlaylist), streams, 0))
+        return Maybe.fromCallable(() -> upsertStreams(playlistTable.insert(newPlaylist), streams, 0)
         ).subscribeOn(Schedulers.io());
     }
 
     public Maybe<List<Long>> appendToPlaylist(final long playlistId,
                                               final List<StreamEntity> streams) {
+
         return playlistStreamTable.getMaximumIndexOf(playlistId)
                 .firstElement()
-                .map(maxJoinIndex -> database.runInTransaction(() ->
-                        upsertStreams(playlistId, streams, maxJoinIndex + 1))
-                ).subscribeOn(Schedulers.io());
+                .map(maxJoinIndex ->
+                        upsertStreams(playlistId, streams, maxJoinIndex + 1)).subscribeOn(Schedulers.io());
     }
 
     private List<Long> upsertStreams(final long playlistId,
@@ -75,10 +74,10 @@ public class LocalPlaylistManager {
             joinEntities.add(new PlaylistStreamEntity(playlistId, streamIds.get(i), i));
         }
 
-        return Completable.fromRunnable(() -> database.runInTransaction(() -> {
+        return Completable.fromRunnable(() -> {
             playlistStreamTable.deleteBatch(playlistId);
             playlistStreamTable.insertAll(joinEntities);
-        })).subscribeOn(Schedulers.io());
+        }).subscribeOn(Schedulers.io());
     }
 
     public Flowable<List<PlaylistMetadataEntry>> getPlaylists() {

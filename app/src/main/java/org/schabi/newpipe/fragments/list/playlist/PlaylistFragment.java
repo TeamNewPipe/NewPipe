@@ -5,7 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -57,7 +57,7 @@ import io.reactivex.disposables.Disposables;
 
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
 
-public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
+public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> implements SwipeRefreshLayout.OnRefreshListener {
 
     private CompositeDisposable disposables;
     private Subscription bookmarkReactor;
@@ -82,6 +82,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     private View headerBackgroundButton;
 
     private MenuItem playlistBookmarkButton;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     public static PlaylistFragment getInstance(int serviceId, String url, String name) {
         PlaylistFragment instance = new PlaylistFragment();
@@ -134,6 +135,13 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         super.initViews(rootView, savedInstanceState);
 
         infoListAdapter.useMiniItemVariants(true);
+        swipeRefreshLayout = rootView.findViewById(R.id.swipeToRefresh);
+    }
+
+    @Override
+    protected void initListeners() {
+        super.initListeners();
+        swipeRefreshLayout.setOnRefreshListener(this);
     }
 
     private PlayQueue getPlayQueueStartingAt(StreamInfoItem infoItem) {
@@ -444,5 +452,10 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
         playlistBookmarkButton.setIcon(ThemeHelper.resolveResourceIdFromAttr(activity, iconAttr));
         playlistBookmarkButton.setTitle(titleRes);
+    }
+
+    @Override
+    public void onRefresh() {
+        swipeRefreshLayout.setRefreshing(false);
     }
 }

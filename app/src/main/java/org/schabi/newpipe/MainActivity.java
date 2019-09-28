@@ -49,6 +49,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.schabi.newpipe.auth.AuthService;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
@@ -529,7 +530,14 @@ public class MainActivity extends AppCompatActivity {
         StateSaver.clearStateFiles();
         if (getIntent() != null && getIntent().hasExtra(Constants.KEY_LINK_TYPE)) {
             handleIntent(getIntent());
-        } else NavigationHelper.gotoMainFragment(getSupportFragmentManager());
+        } else {
+            AuthService authService = AuthService.getInstance(getApplicationContext());
+            if(!authService.isLoggedIn() && !authService.skipLogin()){
+                NavigationHelper.openLoginFragment(getSupportFragmentManager());
+            }else{
+                NavigationHelper.gotoMainFragment(getSupportFragmentManager());
+            }
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////

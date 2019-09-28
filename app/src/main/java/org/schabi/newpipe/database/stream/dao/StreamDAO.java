@@ -7,21 +7,22 @@ import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Transaction;
 
 import org.schabi.newpipe.database.BasicDAO;
+import org.schabi.newpipe.database.history.model.StreamHistoryEntity;
 import org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
-import org.schabi.newpipe.database.history.model.StreamHistoryEntity;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import io.reactivex.Flowable;
 
+import static org.schabi.newpipe.database.history.model.StreamHistoryEntity.STREAM_HISTORY_TABLE;
 import static org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity.PLAYLIST_STREAM_JOIN_TABLE;
 import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_ID;
 import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_SERVICE_ID;
 import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_TABLE;
 import static org.schabi.newpipe.database.stream.model.StreamEntity.STREAM_URL;
-import static org.schabi.newpipe.database.history.model.StreamHistoryEntity.STREAM_HISTORY_TABLE;
 
 @Dao
 public abstract class StreamDAO implements BasicDAO<StreamEntity> {
@@ -84,15 +85,23 @@ public abstract class StreamDAO implements BasicDAO<StreamEntity> {
 
     @Query("DELETE FROM " + STREAM_TABLE + " WHERE " + STREAM_ID +
             " NOT IN " +
-            "(SELECT DISTINCT " + STREAM_ID + " FROM " + STREAM_TABLE +
+            "(SELECT DISTINCT " + STREAM_TABLE + "." + STREAM_ID + " FROM " + STREAM_TABLE +
 
             " LEFT JOIN " + STREAM_HISTORY_TABLE +
-            " ON " + STREAM_ID + " = " +
+            " ON " + STREAM_TABLE + "." + STREAM_ID + " = " +
             StreamHistoryEntity.STREAM_HISTORY_TABLE + "." + StreamHistoryEntity.JOIN_STREAM_ID +
 
             " LEFT JOIN " + PLAYLIST_STREAM_JOIN_TABLE +
-            " ON " + STREAM_ID + " = " +
+            " ON " + STREAM_TABLE + "." + STREAM_ID + " = " +
             PlaylistStreamEntity.PLAYLIST_STREAM_JOIN_TABLE + "." + PlaylistStreamEntity.JOIN_STREAM_ID +
             ")")
     public abstract int deleteOrphans();
+
+
+    @Override
+    @Transaction
+    public void destroyAndRefill(Collection<StreamEntity> entities) {
+        deleteAll();
+        insertAll(entities);
+    }
 }

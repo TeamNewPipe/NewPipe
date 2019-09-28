@@ -4,6 +4,7 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Index;
+import android.arch.persistence.room.PrimaryKey;
 
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 
@@ -14,7 +15,6 @@ import static org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity.JO
 import static org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity.PLAYLIST_STREAM_JOIN_TABLE;
 
 @Entity(tableName = PLAYLIST_STREAM_JOIN_TABLE,
-        primaryKeys = {JOIN_PLAYLIST_ID, JOIN_INDEX},
         indices = {
                 @Index(value = {JOIN_PLAYLIST_ID, JOIN_INDEX}, unique = true),
                 @Index(value = {JOIN_STREAM_ID})
@@ -32,9 +32,14 @@ import static org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity.PL
 public class PlaylistStreamEntity {
 
     final public static String PLAYLIST_STREAM_JOIN_TABLE   = "playlist_stream_join";
+    final public static String PLAYLIST_STREAM_ID           = "uid";
     final public static String JOIN_PLAYLIST_ID             = "playlist_id";
     final public static String JOIN_STREAM_ID               = "stream_id";
     final public static String JOIN_INDEX                   = "join_index";
+
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = PLAYLIST_STREAM_ID)
+    private long uid;
 
     @ColumnInfo(name = JOIN_PLAYLIST_ID)
     private long playlistUid;
@@ -49,6 +54,14 @@ public class PlaylistStreamEntity {
         this.playlistUid = playlistUid;
         this.streamUid = streamUid;
         this.index = index;
+    }
+
+    public long getUid() {
+        return uid;
+    }
+
+    public void setUid(long uid) {
+        this.uid = uid;
     }
 
     public long getPlaylistUid() {

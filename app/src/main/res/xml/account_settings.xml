@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:key="general_preferences"
+    android:title="@string/account">
+
+    <EditTextPreference
+        android:key="sync_server_url_key"
+        app:iconSpaceReserved="false"
+        android:enabled="true"
+        android:title="Server instance"
+        android:defaultValue="https://65d3af6c-9704-4d26-b936-47b59dda70b0.pub.cloud.scaleway.com/api"/>
+
+    <Preference
+        android:key="username_key"
+        app:iconSpaceReserved="false"
+        android:persistent="false"
+        android:title="Login"
+        android:enabled="true"
+        android:summary="Log in to your account"/>
+
+    <Preference
+        android:key="sync_key"
+        app:iconSpaceReserved="false"
+        android:persistent="false"
+        android:enabled="false"
+        android:title="Sync"
+        android:summary="Update data for your account"/>
+
+    <Preference
+        android:key="logout_key"
+        app:iconSpaceReserved="false"
+        android:persistent="false"
+        android:enabled="false"
+        android:title="Logout"
+        android:summary="Log out from your account"/>
+
+</PreferenceScreen>

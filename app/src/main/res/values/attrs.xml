@@ -19,6 +19,7 @@
     <attr name="clear_history" format="reference" />
     <attr name="palette" format="reference"/>
     <attr name="language" format="reference"/>
+    <attr name="account" format="reference"/>
     <attr name="history" format="reference"/>
     <attr name="drag_handle" format="reference"/>
     <attr name="selected" format="reference"/>

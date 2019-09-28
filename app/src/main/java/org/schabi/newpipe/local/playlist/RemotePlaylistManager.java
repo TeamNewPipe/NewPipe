@@ -1,6 +1,6 @@
 package org.schabi.newpipe.local.playlist;
 
-import org.schabi.newpipe.database.AppDatabase;
+import org.schabi.newpipe.database.Database;
 import org.schabi.newpipe.database.playlist.dao.PlaylistRemoteDAO;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
@@ -15,7 +15,7 @@ public class RemotePlaylistManager {
 
     private final PlaylistRemoteDAO playlistRemoteTable;
 
-    public RemotePlaylistManager(final AppDatabase db) {
+    public RemotePlaylistManager(final Database db) {
         playlistRemoteTable = db.playlistRemoteDAO();
     }
 

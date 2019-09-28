@@ -7,8 +7,10 @@ import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Transaction;
 
 import org.schabi.newpipe.database.BasicDAO;
+import org.schabi.newpipe.database.history.model.StreamHistoryEntity;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 
+import java.util.Collection;
 import java.util.List;
 
 import io.reactivex.Flowable;
@@ -44,5 +46,12 @@ public abstract class StreamStateDAO implements BasicDAO<StreamStateEntity> {
     public long upsert(StreamStateEntity stream) {
         silentInsertInternal(stream);
         return update(stream);
+    }
+
+    @Override
+    @Transaction
+    public void destroyAndRefill(Collection<StreamStateEntity> entities) {
+        deleteAll();
+        insertAll(entities);
     }
 }
