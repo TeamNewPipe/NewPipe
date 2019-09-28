@@ -454,7 +454,6 @@
     <string name="error_connect_host">Kan geen verbinding maken met de server</string>
     <string name="error_http_no_content">De server verzendt geen gegevens</string>
     <string name="error_http_unsupported_range">De server aanvaardt geen meerdradige downloads, probeert het opnieuw met @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">Gevraagd bereik niet beschikbaar</string>
     <string name="error_http_not_found">Niet gevonden</string>
     <string name="error_postprocessing_failed">Nabewerking mislukt</string>
     <string name="clear_finished_download">Voltooide downloads wissen</string>

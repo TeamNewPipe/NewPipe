@@ -450,7 +450,6 @@
     <string name="error_connect_host">Tidak dapat menyambung ke server</string>
     <string name="error_http_no_content">Server tidak menghantar data</string>
     <string name="error_http_unsupported_range">Server tidak menerima muat turun berbilang thread, cuba lagi dengan @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">Julat yang diminta tidak memuaskan</string>
     <string name="error_http_not_found">Tidak ditemui</string>
     <string name="error_postprocessing_failed">Pemprosesan-pasca gagal</string>
     <string name="clear_finished_download">Hapuskan senarai muat turun yang selesai</string>

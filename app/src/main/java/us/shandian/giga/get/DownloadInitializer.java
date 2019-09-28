@@ -1,6 +1,7 @@
 package us.shandian.giga.get;
 
 import androidx.annotation.NonNull;
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.schabi.newpipe.streams.io.SharpStream;
@@ -150,6 +151,20 @@ public class DownloadInitializer extends Thread {
                 fs.close();
 
                 if (!mMission.running || Thread.interrupted()) return;
+
+                if (!mMission.unknownLength && mMission.recoveryInfo != null) {
+                    String entityTag = mConn.getHeaderField("ETAG");
+                    String lastModified = mConn.getHeaderField("Last-Modified");
+                    MissionRecoveryInfo recovery = mMission.recoveryInfo[mMission.current];
+
+                    if (!TextUtils.isEmpty(entityTag)) {
+                        recovery.validateCondition = entityTag;
+                    } else if (!TextUtils.isEmpty(lastModified)) {
+                        recovery.validateCondition = lastModified;// Note: this is less precise
+                    } else {
+                        recovery.validateCondition = null;
+                    }
+                }
 
                 mMission.running = false;
                 break;

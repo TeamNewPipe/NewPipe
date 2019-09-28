@@ -27,7 +27,7 @@ import us.shandian.giga.util.Utility;
 import static org.schabi.newpipe.BuildConfig.DEBUG;
 
 public class DownloadMission extends Mission {
-    private static final long serialVersionUID = 5L;// last bump: 30 june 2019
+    private static final long serialVersionUID = 6L;// last bump: 28 september 2019
 
     static final int BUFFER_SIZE = 64 * 1024;
     static final int BLOCK_SIZE = 512 * 1024;
@@ -51,8 +51,9 @@ public class DownloadMission extends Mission {
     public static final int ERROR_INSUFFICIENT_STORAGE = 1010;
     public static final int ERROR_PROGRESS_LOST = 1011;
     public static final int ERROR_TIMEOUT = 1012;
+    public static final int ERROR_RESOURCE_GONE = 1013;
     public static final int ERROR_HTTP_NO_CONTENT = 204;
-    public static final int ERROR_HTTP_UNSUPPORTED_RANGE = 206;
+    static final int ERROR_HTTP_FORBIDDEN = 403;
 
     /**
      * The urls of the file to download
@@ -125,6 +126,11 @@ public class DownloadMission extends Mission {
      */
     public int threadCount = 3;
 
+    /**
+     * information required to recover a download
+     */
+    public MissionRecoveryInfo[] recoveryInfo;
+
     private transient int finishCount;
     public transient boolean running;
     public boolean enqueued;
@@ -132,7 +138,6 @@ public class DownloadMission extends Mission {
     public int errCode = ERROR_NOTHING;
     public Exception errObject = null;
 
-    public transient boolean recovered;
     public transient Handler mHandler;
     private transient boolean mWritingToFile;
     private transient boolean[] blockAcquired;
@@ -197,9 +202,9 @@ public class DownloadMission extends Mission {
     }
 
     /**
-     * Open connection
+     * Opens a connection
      *
-     * @param threadId   id of the calling thread, used only for debug
+     * @param threadId   id of the calling thread, used only for debugging
      * @param rangeStart range start
      * @param rangeEnd   range end
      * @return a {@link java.net.URLConnection URLConnection} linking to the URL.
@@ -251,7 +256,7 @@ public class DownloadMission extends Mission {
             case 204:
             case 205:
             case 207:
-                throw new HttpError(conn.getResponseCode());
+                throw new HttpError(statusCode);
             case 416:
                 return;// let the download thread handle this error
             default:
@@ -269,10 +274,6 @@ public class DownloadMission extends Mission {
 
     synchronized void notifyProgress(long deltaLen) {
         if (!running) return;
-
-        if (recovered) {
-            recovered = false;
-        }
 
         if (unknownLength) {
             length += deltaLen;// Update length before proceeding
@@ -344,7 +345,6 @@ public class DownloadMission extends Mission {
 
         if (running) {
             running = false;
-            recovered = true;
             if (threads != null) selfPause();
         }
     }
@@ -409,12 +409,13 @@ public class DownloadMission extends Mission {
      * Start downloading with multiple threads.
      */
     public void start() {
-        if (running || isFinished()) return;
+        if (running || isFinished() || urls.length < 1) return;
 
         // ensure that the previous state is completely paused.
-        joinForThread(init);
+        int maxWait = 10000;// 10 seconds
+        joinForThread(init, maxWait);
         if (threads != null) {
-            for (Thread thread : threads) joinForThread(thread);
+            for (Thread thread : threads) joinForThread(thread, maxWait);
             threads = null;
         }
 
@@ -428,6 +429,11 @@ public class DownloadMission extends Mission {
 
         if (current >= urls.length) {
             runAsync(1, this::notifyFinished);
+            return;
+        }
+
+        if (urls[current] == null) {
+            doRecover(null);
             return;
         }
 
@@ -478,7 +484,6 @@ public class DownloadMission extends Mission {
         }
 
         running = false;
-        recovered = true;
 
         if (init != null && init.isAlive()) {
             // NOTE: if start() method is running ¡will no have effect!
@@ -563,7 +568,7 @@ public class DownloadMission extends Mission {
      * Write this {@link DownloadMission} to the meta file asynchronously
      * if no thread is already running.
      */
-    private void writeThisToFile() {
+    void writeThisToFile() {
         synchronized (LOCK) {
             if (deleted) return;
             Utility.writeToFile(metadata, DownloadMission.this);
@@ -667,6 +672,7 @@ public class DownloadMission extends Mission {
      * @return {@code true} is this mission its "healthy", otherwise, {@code false}
      */
     public boolean isCorrupt() {
+        if (urls.length < 1) return false;
         return (isPsFailed() || errCode == ERROR_POSTPROCESSING_HOLD) || isFinished();
     }
 
@@ -710,6 +716,48 @@ public class DownloadMission extends Mission {
         return true;
     }
 
+    /**
+     * Attempts to recover the download
+     *
+     * @param fromError exception which require update the url from the source
+     */
+    void doRecover(Exception fromError) {
+        Log.i(TAG, "Attempting to recover the mission: " + storage.getName());
+
+        if (recoveryInfo == null) {
+            if (fromError == null)
+                notifyError(ERROR_RESOURCE_GONE, null);
+            else
+                notifyError(fromError);
+
+            urls = new String[0];// mark this mission as dead
+            return;
+        }
+
+        if (threads != null) {
+            for (Thread thread : threads) {
+                if (thread == Thread.currentThread()) continue;
+                thread.interrupt();
+                joinForThread(thread, 0);
+            }
+        }
+
+        // set the current download url to null in case if the recovery
+        // process is canceled. Next time start() method is called the
+        // recovery will be executed, saving time
+        urls[current] = null;
+
+        if (recoveryInfo[current].attempts >= maxRetry) {
+            recoveryInfo[current].attempts = 0;
+            notifyError(fromError);
+            return;
+        }
+
+        threads = new Thread[]{
+                runAsync(DownloadMissionRecover.mID, new DownloadMissionRecover(this, fromError))
+        };
+    }
+
     private boolean deleteThisFromFile() {
         synchronized (LOCK) {
             return metadata.delete();
@@ -749,7 +797,13 @@ public class DownloadMission extends Mission {
         return who;
     }
 
-    private void joinForThread(Thread thread) {
+    /**
+     * Waits at most {@code millis} milliseconds for the thread to die
+     *
+     * @param thread the desired thread
+     * @param millis the time to wait in milliseconds
+     */
+    private void joinForThread(Thread thread, int millis) {
         if (thread == null || !thread.isAlive()) return;
         if (thread == Thread.currentThread()) return;
 
@@ -764,7 +818,7 @@ public class DownloadMission extends Mission {
         //      start() method called quickly after pause()
 
         try {
-            thread.join(10000);
+            thread.join(millis);
         } catch (InterruptedException e) {
             Log.d(TAG, "timeout on join : " + thread.getName());
             throw new RuntimeException("A thread is still running:\n" + thread.getName());
@@ -785,9 +839,9 @@ public class DownloadMission extends Mission {
         }
     }
 
-    static class Block {
-        int position;
-        int done;
+    public static class Block {
+        public int position;
+        public int done;
     }
 
     private static class Lock implements Serializable {

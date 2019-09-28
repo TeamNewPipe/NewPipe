@@ -23,6 +23,7 @@ import android.os.Handler;
 import android.os.Handler.Callback;
 import android.os.IBinder;
 import android.os.Message;
+import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -40,8 +41,11 @@ import org.schabi.newpipe.player.helper.LockManager;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 import us.shandian.giga.get.DownloadMission;
+import us.shandian.giga.get.MissionRecoveryInfo;
 import us.shandian.giga.io.StoredDirectoryHelper;
 import us.shandian.giga.io.StoredFileHelper;
 import us.shandian.giga.postprocessing.Postprocessing;
@@ -73,6 +77,7 @@ public class DownloadManagerService extends Service {
     private static final String EXTRA_PATH = "DownloadManagerService.extra.storagePath";
     private static final String EXTRA_PARENT_PATH = "DownloadManagerService.extra.storageParentPath";
     private static final String EXTRA_STORAGE_TAG = "DownloadManagerService.extra.storageTag";
+    private static final String EXTRA_RECOVERY_INFO = "DownloadManagerService.extra.recoveryInfo";
 
     private static final String ACTION_RESET_DOWNLOAD_FINISHED = APPLICATION_ID + ".reset_download_finished";
     private static final String ACTION_OPEN_DOWNLOADS_FINISHED = APPLICATION_ID + ".open_downloads_finished";
@@ -364,18 +369,20 @@ public class DownloadManagerService extends Service {
     /**
      * Start a new download mission
      *
-     * @param context    the activity context
-     * @param urls       the list of urls to download
-     * @param storage    where the file is saved
-     * @param kind       type of file (a: audio  v: video  s: subtitle ?: file-extension defined)
-     * @param threads    the number of threads maximal used to download chunks of the file.
-     * @param psName     the name of the required post-processing algorithm, or {@code null} to ignore.
-     * @param source     source url of the resource
-     * @param psArgs     the arguments for the post-processing algorithm.
-     * @param nearLength the approximated final length of the file
+     * @param context      the activity context
+     * @param urls         array of urls to download
+     * @param storage      where the file is saved
+     * @param kind         type of file (a: audio  v: video  s: subtitle ?: file-extension defined)
+     * @param threads      the number of threads maximal used to download chunks of the file.
+     * @param psName       the name of the required post-processing algorithm, or {@code null} to ignore.
+     * @param source       source url of the resource
+     * @param psArgs       the arguments for the post-processing algorithm.
+     * @param nearLength   the approximated final length of the file
+     * @param recoveryInfo array of MissionRecoveryInfo, in case is required recover the download
      */
-    public static void startMission(Context context, String[] urls, StoredFileHelper storage, char kind,
-                                    int threads, String source, String psName, String[] psArgs, long nearLength) {
+    public static void startMission(Context context, String[] urls, StoredFileHelper storage,
+                                    char kind, int threads, String source, String psName,
+                                    String[] psArgs, long nearLength, MissionRecoveryInfo[] recoveryInfo) {
         Intent intent = new Intent(context, DownloadManagerService.class);
         intent.setAction(Intent.ACTION_RUN);
         intent.putExtra(EXTRA_URLS, urls);
@@ -385,6 +392,7 @@ public class DownloadManagerService extends Service {
         intent.putExtra(EXTRA_POSTPROCESSING_NAME, psName);
         intent.putExtra(EXTRA_POSTPROCESSING_ARGS, psArgs);
         intent.putExtra(EXTRA_NEAR_LENGTH, nearLength);
+        intent.putExtra(EXTRA_RECOVERY_INFO, recoveryInfo);
 
         intent.putExtra(EXTRA_PARENT_PATH, storage.getParentUri());
         intent.putExtra(EXTRA_PATH, storage.getUri());
@@ -404,6 +412,7 @@ public class DownloadManagerService extends Service {
         String source = intent.getStringExtra(EXTRA_SOURCE);
         long nearLength = intent.getLongExtra(EXTRA_NEAR_LENGTH, 0);
         String tag = intent.getStringExtra(EXTRA_STORAGE_TAG);
+        Parcelable[] parcelRecovery = intent.getParcelableArrayExtra(EXTRA_RECOVERY_INFO);
 
         StoredFileHelper storage;
         try {
@@ -418,10 +427,15 @@ public class DownloadManagerService extends Service {
         else
             ps = Postprocessing.getAlgorithm(psName, psArgs);
 
+        MissionRecoveryInfo[] recovery = new MissionRecoveryInfo[parcelRecovery.length];
+        for (int i = 0; i < parcelRecovery.length; i++)
+            recovery[i] = (MissionRecoveryInfo) parcelRecovery[i];
+
         final DownloadMission mission = new DownloadMission(urls, storage, kind, ps);
         mission.threadCount = threads;
         mission.source = source;
         mission.nearLength = nearLength;
+        mission.recoveryInfo = recovery;
 
         if (ps != null)
             ps.setTemporalDir(DownloadManager.pickAvailableTemporalDir(this));

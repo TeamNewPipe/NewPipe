@@ -456,7 +456,6 @@
     <string name="error_connect_host">Ezin da zerbitzariarekin konektatu</string>
     <string name="error_http_no_content">Zerbitzariak ez du daturik bidaltzen</string>
     <string name="error_http_unsupported_range">Zerbitzariak ez ditu hainbat hariko deskargak onartzen, saiatu @string/msg_threads = 1 erabilita</string>
-    <string name="error_http_requested_range_not_satisfiable">Eskatutako barrutia ezin da bete</string>
     <string name="error_http_not_found">Ez aurkitua</string>
     <string name="error_postprocessing_failed">Post-prozesuak huts egin du</string>
     <string name="clear_finished_download">Garbitu amaitutako deskargak</string>

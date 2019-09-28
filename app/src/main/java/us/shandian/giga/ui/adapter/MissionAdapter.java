@@ -62,7 +62,6 @@ import static android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION;
 import static us.shandian.giga.get.DownloadMission.ERROR_CONNECT_HOST;
 import static us.shandian.giga.get.DownloadMission.ERROR_FILE_CREATION;
 import static us.shandian.giga.get.DownloadMission.ERROR_HTTP_NO_CONTENT;
-import static us.shandian.giga.get.DownloadMission.ERROR_HTTP_UNSUPPORTED_RANGE;
 import static us.shandian.giga.get.DownloadMission.ERROR_INSUFFICIENT_STORAGE;
 import static us.shandian.giga.get.DownloadMission.ERROR_NOTHING;
 import static us.shandian.giga.get.DownloadMission.ERROR_PATH_CREATION;
@@ -71,6 +70,7 @@ import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING;
 import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING_HOLD;
 import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING_STOPPED;
 import static us.shandian.giga.get.DownloadMission.ERROR_PROGRESS_LOST;
+import static us.shandian.giga.get.DownloadMission.ERROR_RESOURCE_GONE;
 import static us.shandian.giga.get.DownloadMission.ERROR_SSL_EXCEPTION;
 import static us.shandian.giga.get.DownloadMission.ERROR_TIMEOUT;
 import static us.shandian.giga.get.DownloadMission.ERROR_UNKNOWN_EXCEPTION;
@@ -430,7 +430,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
 
         switch (mission.errCode) {
             case 416:
-                msg = R.string.error_http_requested_range_not_satisfiable;
+                msg = R.string.error_http_unsupported_range;
                 break;
             case 404:
                 msg = R.string.error_http_not_found;
@@ -442,9 +442,6 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                 break;
             case ERROR_HTTP_NO_CONTENT:
                 msg = R.string.error_http_no_content;
-                break;
-            case ERROR_HTTP_UNSUPPORTED_RANGE:
-                msg = R.string.error_http_unsupported_range;
                 break;
             case ERROR_PATH_CREATION:
                 msg = R.string.error_path_creation;
@@ -479,6 +476,9 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                 break;
             case ERROR_TIMEOUT:
                 msg = R.string.error_timeout;
+                break;
+            case ERROR_RESOURCE_GONE:
+                msg = R.string.error_download_resource_gone;
                 break;
             default:
                 if (mission.errCode >= 100 && mission.errCode < 600) {
@@ -859,7 +859,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
 
                         delete.setVisible(true);
 
-                        boolean flag = !mission.isPsFailed();
+                        boolean flag = !mission.isPsFailed() && mission.urls.length > 0;
                         start.setVisible(flag);
                         queue.setVisible(flag);
                     }

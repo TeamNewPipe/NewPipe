@@ -10,8 +10,10 @@ import java.net.HttpURLConnection;
 import java.nio.channels.ClosedByInterruptException;
 
 import us.shandian.giga.get.DownloadMission.Block;
+import us.shandian.giga.get.DownloadMission.HttpError;
 
 import static org.schabi.newpipe.BuildConfig.DEBUG;
+import static us.shandian.giga.get.DownloadMission.ERROR_HTTP_FORBIDDEN;
 
 
 /**
@@ -19,7 +21,7 @@ import static org.schabi.newpipe.BuildConfig.DEBUG;
  * an error occurs or the process is stopped.
  */
 public class DownloadRunnable extends Thread {
-    private static final String TAG = DownloadRunnable.class.getSimpleName();
+    private static final String TAG = "DownloadRunnable";
 
     private final DownloadMission mMission;
     private final int mId;
@@ -41,13 +43,7 @@ public class DownloadRunnable extends Thread {
     public void run() {
         boolean retry = false;
         Block block = null;
-
         int retryCount = 0;
-
-        if (DEBUG) {
-            Log.d(TAG, mId + ":recovered: " + mMission.recovered);
-        }
-
         SharpStream f;
 
         try {
@@ -133,6 +129,17 @@ public class DownloadRunnable extends Thread {
             } catch (Exception e) {
                 if (!mMission.running || e instanceof ClosedByInterruptException) break;
 
+                if (e instanceof HttpError && ((HttpError) e).statusCode == ERROR_HTTP_FORBIDDEN) {
+                    // for youtube streams. The url has expired, recover
+                    f.close();
+
+                    if (mId == 1) {
+                        // only the first thread will execute the recovery procedure
+                        mMission.doRecover(e);
+                    }
+                    return;
+                }
+
                 if (retryCount++ >= mMission.maxRetry) {
                     mMission.notifyError(e);
                     break;
@@ -144,11 +151,7 @@ public class DownloadRunnable extends Thread {
             }
         }
 
-        try {
-            f.close();
-        } catch (Exception err) {
-            // ¿ejected media storage?  ¿file deleted?  ¿storage ran out of space?
-        }
+        f.close();
 
         if (DEBUG) {
             Log.d(TAG, "thread " + mId + " exited from main download loop");

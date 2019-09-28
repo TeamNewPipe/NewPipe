@@ -10,9 +10,11 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.nio.channels.ClosedByInterruptException;
 
+import us.shandian.giga.get.DownloadMission.HttpError;
 import us.shandian.giga.util.Utility;
 
 import static org.schabi.newpipe.BuildConfig.DEBUG;
+import static us.shandian.giga.get.DownloadMission.ERROR_HTTP_FORBIDDEN;
 
 /**
  * Single-threaded fallback mode
@@ -85,7 +87,7 @@ public class DownloadRunnableFallback extends Thread {
 
             mIs = mConn.getInputStream();
 
-            byte[] buf = new byte[64 * 1024];
+            byte[] buf = new byte[DownloadMission.BUFFER_SIZE];
             int len = 0;
 
             while (mMission.running && (len = mIs.read(buf, 0, buf.length)) != -1) {
@@ -102,6 +104,13 @@ public class DownloadRunnableFallback extends Thread {
             savePosition(start);
 
             if (!mMission.running || e instanceof ClosedByInterruptException) return;
+
+            if (e instanceof HttpError && ((HttpError) e).statusCode == ERROR_HTTP_FORBIDDEN) {
+                // for youtube streams. The url has expired, recover
+                mMission.doRecover(e);
+                dispose();
+                return;
+            }
 
             if (mRetryCount++ >= mMission.maxRetry) {
                 mMission.notifyError(e);

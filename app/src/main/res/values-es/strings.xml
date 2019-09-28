@@ -351,8 +351,8 @@
 \n3. Inicie sesión cuando se le pida 
 \n4. Copie la URL del perfil a la que fue redireccionado.</string>
     <string name="import_soundcloud_instructions_hint">suID, soundcloud.com/suID</string>
-    <string name="import_network_expensive_warning">Observe que esta operación puede causar un uso intensivo de la red. 
-\n 
+    <string name="import_network_expensive_warning">Observe que esta operación puede causar un uso intensivo de la red.
+\n
 \n¿Quiere continuar\?</string>
     <string name="download_thumbnail_title">Cargar miniaturas</string>
     <string name="download_thumbnail_summary">Desactívela para evitar la carga de miniaturas y ahorrar datos y memoria. Se vaciará la antememoria de imágenes en la memoria volátil y en el disco.</string>
@@ -444,8 +444,8 @@
     <string name="error_ssl_exception">Fallo la conexión segura</string>
     <string name="error_unknown_host">No se pudo encontrar el servidor</string>
     <string name="error_connect_host">No se puede conectar con el servidor</string>
-    <string name="error_http_no_content">El servidor no está enviando datos</string>
-    <string name="error_http_unsupported_range">El servidor no acepta descargas multiproceso; intente de nuevo con @string/msg_threads = 1</string>
+    <string name="error_http_no_content">El servidor no devolvio datos</string>
+    <string name="error_http_unsupported_range">El servidor no acepta descargas multi-hilos, intente de nuevo con @string/msg_threads = 1</string>
     <string name="error_http_requested_range_not_satisfiable">No se puede satisfacer el intervalo seleccionado</string>
     <string name="error_http_not_found">No encontrado</string>
     <string name="error_postprocessing_failed">Falló el posprocesamiento</string>
@@ -453,6 +453,7 @@
     <string name="error_insufficient_storage">No hay suficiente espacio disponible en el dispositivo</string>
     <string name="error_progress_lost">Se perdió el progreso porque el archivo fue eliminado</string>
     <string name="error_timeout">Tiempo de espera excedido</string>
+    <string name="error_download_resource_gone">El recurso solicitado ya no esta disponible</string>
     <string name="downloads_storage_ask_title">Preguntar dónde descargar</string>
     <string name="downloads_storage_ask_summary">Se preguntará dónde guardar cada descarga</string>
     <string name="downloads_storage_ask_summary_kitkat">Se le preguntará dónde guardar cada descarga.

@@ -451,7 +451,6 @@
     <string name="error_connect_host">서버에 접속할 수 없습니다</string>
     <string name="error_http_no_content">서버가 데이터를 전송하지 않고 있습니다</string>
     <string name="error_http_unsupported_range">서버가 다중 스레드 다운로드를 받아들이지 않습니다, @string/msg_threads = 1 를 사용해 다시 시도해보세요</string>
-    <string name="error_http_requested_range_not_satisfiable">요청된 HTTP 범위가 충분하지 않습니다</string>
     <string name="error_http_not_found">HTTP 찾을 수 없습니다</string>
     <string name="error_postprocessing_failed">후처리 작업이 실패하였습니다</string>
     <string name="clear_finished_download">완료된 다운로드 비우기</string>

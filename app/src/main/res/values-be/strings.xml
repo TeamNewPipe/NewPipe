@@ -455,7 +455,6 @@
     <string name="error_connect_host">Немагчыма злучыцца з серверам</string>
     <string name="error_http_no_content">Не атрымалася атрымаць дадзеныя з сервера</string>
     <string name="error_http_unsupported_range">Сервер не падтрымлівае шматструменную загрузку, паспрабуйце з @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">Запытаны дыяпазон недапушчальны</string>
     <string name="error_http_not_found">Не знойдзена</string>
     <string name="error_postprocessing_failed">Пасляапрацоўка не ўдалася</string>
     <string name="clear_finished_download">Ачысціць завершаныя</string>
