@@ -462,7 +462,6 @@
     <string name="error_connect_host">Nepodarilo sa pripojiť k serveru</string>
     <string name="error_http_no_content">Server neposiela údaje</string>
     <string name="error_http_unsupported_range">Server neakceptuje preberanie viacerých vlákien, zopakujte s @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">Požadovaný rozsah nie je uspokojivý</string>
     <string name="error_http_not_found">Nenájdené</string>
     <string name="error_postprocessing_failed">Post-spracovanie zlyhalo</string>
     <string name="clear_finished_download">Vyčistiť dokončené sťahovania</string>

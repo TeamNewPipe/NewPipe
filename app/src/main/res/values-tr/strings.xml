@@ -449,7 +449,6 @@
     <string name="error_connect_host">Sunucuya bağlanılamıyor</string>
     <string name="error_http_no_content">Sunucu veri göndermiyor</string>
     <string name="error_http_unsupported_range">Sunucu, çok iş parçacıklı indirmeleri kabul etmez, @string/msg_threads = 1 ile yeniden deneyin</string>
-    <string name="error_http_requested_range_not_satisfiable">İstenen aralık karşılanamıyor</string>
     <string name="error_http_not_found">Bulunamadı</string>
     <string name="error_postprocessing_failed">İşlem sonrası başarısız</string>
     <string name="clear_finished_download">Tamamlanan indirmeleri temizle</string>

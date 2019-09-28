@@ -454,7 +454,6 @@
     <string name="error_connect_host">Nije moguće povezati se s serverom</string>
     <string name="error_http_no_content">Server ne šalje podatke</string>
     <string name="error_http_unsupported_range">Poslužitelj ne prihvaća preuzimanja s više niti, pokušaj ponovo s @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">Traženi raspon nije zadovoljavajući</string>
     <string name="error_http_not_found">Nije pronađeno</string>
     <string name="error_postprocessing_failed">Naknadna obrada nije uspjela</string>
     <string name="clear_finished_download">Obriši završena preuzimanja</string>

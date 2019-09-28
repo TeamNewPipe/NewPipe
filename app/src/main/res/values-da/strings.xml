@@ -380,7 +380,6 @@
     <string name="error_connect_host">Kan ikke forbinde til serveren</string>
     <string name="error_http_no_content">Serveren sender ikke data</string>
     <string name="error_http_unsupported_range">Serveren accepterer ikke multitrådede downloads; prøv igen med @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">Det anmodede interval er ikke gyldigt</string>
     <string name="error_http_not_found">Ikke fundet</string>
     <string name="error_postprocessing_failed">Efterbehandling fejlede</string>
     <string name="stop">Stop</string>

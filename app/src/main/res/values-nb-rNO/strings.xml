@@ -496,7 +496,7 @@
     <string name="pause_downloads">Sett nedlastinger på pause</string>
     <string name="downloads_storage_ask_title">Spør om hvor ting skal lastes ned til</string>
     <string name="downloads_storage_ask_summary">Du vil bli spurt om hvor hver nedlasting skal plasseres</string>
-    <string name="downloads_storage_ask_summary_kitkat">Du vil bli spurt om hvor hver nedlasting skal plasseres. 
+    <string name="downloads_storage_ask_summary_kitkat">Du vil bli spurt om hvor hver nedlasting skal plasseres.
 \nSkru på SAF hvis du vil laste ned til eksternt SD-kort</string>
     <string name="downloads_storage_use_saf_title">Bruk SAF</string>
     <string name="downloads_storage_use_saf_summary">Lagringstilgangsrammeverk (SAF) tillater nedlastinger til eksternt SD-kort.

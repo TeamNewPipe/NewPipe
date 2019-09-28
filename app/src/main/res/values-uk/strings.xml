@@ -471,7 +471,6 @@
     <string name="saved_tabs_invalid_json">Помилка зчитування збережених вкладок. Використовую типові вкладки.</string>
     <string name="main_page_content_summary">Вкладки, що відображаються на головній сторінці</string>
     <string name="updates_setting_description">Показувати сповіщення з пропозицією оновити застосунок за наявності нової версії</string>
-    <string name="error_http_requested_range_not_satisfiable">Запитуваний діапазон неприпустимий</string>
     <string name="msg_pending_downloads">Продовжити ваші %s відкладених переміщень із Завантажень</string>
     <string name="pause_downloads_on_mobile_desc">Корисно під час переходу на мобільні дані, хоча деякі завантаження не можуть бути призупинені</string>
     <string name="show_comments_title">Показувати коментарі</string>

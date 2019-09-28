@@ -440,7 +440,6 @@
     <string name="error_connect_host">サーバに接続できません</string>
     <string name="error_http_no_content">サーバがデータを送信していません</string>
     <string name="error_http_unsupported_range">サーバが同時接続ダウンロードを受け付けません。再試行してください @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">必要な範囲が満たされていません</string>
     <string name="error_http_not_found">見つかりません</string>
     <string name="error_postprocessing_failed">保存処理に失敗しました</string>
     <string name="clear_finished_download">完了済みを一覧から削除します</string>

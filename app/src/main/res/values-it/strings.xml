@@ -454,7 +454,6 @@
     <string name="error_connect_host">Impossibile connettersi al server</string>
     <string name="error_http_no_content">Il server non invia dati</string>
     <string name="error_http_unsupported_range">Il server non accetta download multipli, riprovare con @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">Intervallo richiesto non soddisfatto</string>
     <string name="error_http_not_found">Non trovato</string>
     <string name="error_postprocessing_failed">Post-processing fallito</string>
     <string name="clear_finished_download">Pulisci i download completati</string>

@@ -452,7 +452,6 @@
     <string name="error_connect_host">Não é possível ligar ao servidor</string>
     <string name="error_http_no_content">O servidor não envia dados</string>
     <string name="error_http_unsupported_range">O servidor não aceita transferências de vários processos, tente novamente com @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">Intervalo solicitado não satisfatório</string>
     <string name="error_http_not_found">Não encontrado</string>
     <string name="error_postprocessing_failed">Pós-processamento falhado</string>
     <string name="clear_finished_download">Limpar transferências concluídas</string>

@@ -177,7 +177,6 @@ public class DownloadManager {
                 mis.psAlgorithm.setTemporalDir(pickAvailableTemporalDir(ctx));
             }
 
-            mis.recovered = exists;
             mis.metadata = sub;
             mis.maxRetry = mPrefMaxRetry;
             mis.mHandler = mHandler;
