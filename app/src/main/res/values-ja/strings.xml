@@ -112,9 +112,9 @@
     <string name="black_theme_title">ブラック</string>
     <string name="all">すべて</string>
     <string name="channel">チャンネル</string>
-    <string name="short_thousand">k</string>
+    <string name="short_thousand">K</string>
     <string name="short_million">M</string>
-    <string name="short_billion">G</string>
+    <string name="short_billion">B</string>
     <string name="yes">はい</string>
     <string name="later">後で</string>
     <string name="open_in_popup_mode">ポップアップモードで開く</string>
