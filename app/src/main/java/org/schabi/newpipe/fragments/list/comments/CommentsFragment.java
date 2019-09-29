@@ -93,7 +93,7 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfo> {
     public void handleResult(@NonNull CommentsInfo result) {
         super.handleResult(result);
 
-        AnimationUtils.slideUp(getView(),120, 96, 0.06f);
+        AnimationUtils.slideUp(getView(),120, 150, 0.06f);
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(), UserAction.REQUESTED_COMMENTS, NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);
