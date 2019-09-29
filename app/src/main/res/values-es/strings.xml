@@ -26,7 +26,7 @@
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Formato de audio por defecto</string>
     <string name="download_dialog_title">Descargar</string>
-    <string name="next_video_title">A continuación</string>
+    <string name="next_video_title">Siguiente</string>
     <string name="url_not_supported_toast">URL no soportada</string>
     <string name="use_external_video_player_title">Usar reproductor de vídeo externo</string>
     <string name="use_external_audio_player_title">Usar reproductor de audio externo</string>
@@ -43,7 +43,6 @@
     <string name="info_dir_created">Carpeta de descarga creada \'%1$s\'</string>
     <string name="download_path_audio_summary">Ruta para almacenar los audios descargados</string>
     <string name="download_path_audio_dialog_title">Introducir ruta de descarga para archivos de audio</string>
-
     <string name="download_path_audio_title">Carpeta de descarga de audio</string>
     <string name="settings_category_video_audio_title">Vídeo y audio</string>
     <string name="play_btn_text">Reproducir</string>
@@ -104,7 +103,7 @@
     <string name="msg_running_detail">Toque para ver detalles</string>
     <string name="msg_wait">Por favor espere…</string>
     <string name="msg_copied">Copiado al portapapeles</string>
-    <string name="no_available_dir">Por favor, defina un directorio de descarga mas tarde en ajustes</string>
+    <string name="no_available_dir">Por favor, defina un directorio de descarga más tarde en los ajustes</string>
     <string name="could_not_load_image">No se pudo cargar la imagen</string>
     <string name="app_ui_crash">La interfaz de la app dejó de funcionar</string>
     <string name="info_labels">Lo sucedido:\\nPetición:\\nIdioma del contenido:\\nServicio:\\nHora GMT:\\nPaquete:\\nVersión:\\nVersión del SO:</string>
@@ -113,7 +112,7 @@
     <string name="channel">Canal</string>
     <string name="yes">Sí</string>
     <string name="later">Después</string>
-    <string name="short_thousand">K</string>
+    <string name="short_thousand">k</string>
     <string name="short_million">M</string>
     <string name="short_billion">MM</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
@@ -178,7 +177,7 @@ abrir en modo popup</string>
     <string name="charset_most_special_characters">La mayoría de caracteres especiales</string>
     <string name="enable_search_history_title">Historial de búsqueda</string>
     <string name="enable_search_history_summary">Almacenar búsquedas localmente</string>
-    <string name="enable_watch_history_title">Historial y caché</string>
+    <string name="enable_watch_history_title">Historial de vistas</string>
     <string name="enable_watch_history_summary">Almacenar historial de vídeos vistos</string>
     <string name="title_activity_history">Historial</string>
     <string name="title_history_search">Buscado</string>
@@ -372,7 +371,7 @@ abrir en modo popup</string>
     <string name="caption_setting_title">Subtítulos</string>
     <string name="caption_setting_description">Modificar la escala de texto de los subtítulos y los estilos de fondo. Requiere reiniciar la app para que surta efecto.</string>
     <string name="clear_views_history_title">Borrar historial de reproducciones</string>
-    <string name="clear_views_history_summary">Elimina el historial de las transmisiones reproducidas</string>
+    <string name="clear_views_history_summary">Elimina el historial de contenido visto y posiciones de reproducción</string>
     <string name="delete_view_history_alert">¿Eliminar todo el historial de reproducciones\?</string>
     <string name="watch_history_deleted">Historial de reproducciones eliminado.</string>
     <string name="clear_search_history_title">Borrar historial de búsqueda</string>
@@ -436,8 +435,6 @@ abrir en modo popup</string>
     <string name="enable_queue_limit_desc">Solo se permitirá una descarga a la vez</string>
     <string name="start_downloads">Iniciar descargas</string>
     <string name="pause_downloads">Pausar descargas</string>
-
-
     <!-- message dialog about download error -->
     <string name="show_error">Mostrar error</string>
     <string name="label_code">Codigo</string>
@@ -456,13 +453,12 @@ abrir en modo popup</string>
     <string name="error_insufficient_storage">No hay suficiente espacio disponible en el dispositivo</string>
     <string name="error_progress_lost">Se perdió el progreso porque el archivo fue eliminado</string>
     <string name="error_timeout">Tiempo de espera excedido</string>
-
     <string name="downloads_storage_ask_title">Preguntar dónde descargar</string>
     <string name="downloads_storage_ask_summary">Se preguntará dónde guardar cada descarga</string>
-    <string name="downloads_storage_ask_summary_kitkat">Se preguntará dónde guardar cada descarga.\nHabilita esta opción junto con SAF si quieres descargar en la tarjeta SD externa</string>
+    <string name="downloads_storage_ask_summary_kitkat">Se le preguntará dónde guardar cada descarga.
+\nHabilite esta opción junto con SAF si quiere descargar en la tarjeta SD</string>
     <string name="downloads_storage_use_saf_title">Usar SAF</string>
     <string name="downloads_storage_use_saf_summary">El Framework de Acceso al Almacenamiento permite descargar en la tarjeta SD externa.\nNota: Algunos los dispositivos no son compatibles</string>
-
     <string name="unsubscribe">Desuscribirse</string>
     <string name="tab_new">Nueva pestaña</string>
     <string name="tab_choose">Elige la pestaña</string>
@@ -500,4 +496,13 @@ abrir en modo popup</string>
     <string name="no_comments">Sin comentarios</string>
     <string name="error_unable_to_load_comments">No se pudo cargar comentarios</string>
     <string name="close">Cerrar</string>
+    <string name="enable_playback_resume_title">Continuar reproducción</string>
+    <string name="enable_playback_resume_summary">Restaurar última posición de la reproducción</string>
+    <string name="enable_playback_state_lists_title">Posiciones en listas</string>
+    <string name="enable_playback_state_lists_summary">Mostrar indicador de posición en listas de reproducción</string>
+    <string name="settings_category_clear_data_title">Borrar datos</string>
+    <string name="watch_history_states_deleted">Posiciones de reproducción borradas.</string>
+    <string name="clear_playback_states_title">Borrar posiciones de reproducción</string>
+    <string name="clear_playback_states_summary">Elimina todas las posiciones de reproducción</string>
+    <string name="delete_playback_states_alert">¿Borrar todas las posiciones de reproducción\?</string>
 </resources>
