@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_bg_subtitle">برای شروع، جست‌وجو را بزنید</string>
-    <string name="view_count_text">‫%1$s مشاهده</string>
+    <string name="view_count_text">‫%1$s مشاهده ها</string>
     <string name="upload_date_text">منتشر شده در %1$s</string>
     <string name="no_player_found">هیچ پخش‌کنندهٔ جریانی پیدا نشد. مایلید وی‌ال‌سی نصب شود؟</string>
     <string name="install">نصب</string>
