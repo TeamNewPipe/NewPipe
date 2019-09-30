@@ -492,4 +492,8 @@
     <string name="clear_playback_states_title">حذف موقعیت‌های پخش</string>
     <string name="clear_playback_states_summary">حذف تمام موقعیت‌های پخش</string>
     <string name="delete_playback_states_alert">همه موقعیت‌های پخش حذف شوند؟</string>
+    <string name="enable_leak_canary_summary">نظارت بر نشت حافظه ممکن است باعث عدم پاسخگویی نرم افزار در زمان اندوختن حافظه \"هیپ\" شود.</string>
+    <string name="enable_disposed_exceptions_title">گزارش کردن خطاهای \"خارج از چرخه حیات\"</string>
+    <string name="metadata_cache_wipe_summary">حذف حافظه کش شده همه صفحات وب</string>
+    <string name="minimize_on_exit_background_description">کوچک کردن پخش کننده به پس زمینه</string>
 </resources>
