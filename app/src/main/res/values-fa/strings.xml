@@ -19,7 +19,7 @@
     <string name="use_external_audio_player_title">استفاده از پخش‌کنندهٔ صدای خارجی</string>
     <string name="download_path_title">پوشه بارگیری ویدیو</string>
     <string name="download_path_summary">ویدیوهای بارگیری شده اینجا ذخیره می‌شوند</string>
-    <string name="download_path_dialog_title">پوشه بارگیری را برای ویدیوها انتخاب کنید</string>
+    <string name="download_path_dialog_title">پوشه بارگیری ویدیوها را انتخاب کنید</string>
     <string name="download_path_audio_title">پوشه بارگیری صدا</string>
     <string name="download_path_audio_summary">صداهای بارگیری شده در این‌جا ذخیره می‌شوند</string>
     <string name="download_path_audio_dialog_title">پوشه بارگیری صداها را انتخاب کنید</string>
@@ -348,4 +348,8 @@
     <string name="enable_playback_state_lists_summary">نمایش شاخص موقعیت پخش در فهرست‌ها</string>
     <string name="settings_category_clear_data_title">پاک کردن داده‌ها</string>
     <string name="download_choose_new_path">برای اثرگذاری، پوشه بارگیری را تغییر دهید</string>
+    <string name="resume_on_audio_focus_gain_summary">ادامه پخش بعد از قطع ناگهانی (مثل برقراری تماس)</string>
+    <string name="show_hold_to_append_title">نمایش نکته «برای افزودن، نگه‌دارید»</string>
+    <string name="show_hold_to_append_summary">نمایش نکته‌ها زمانی که در صفحه جزئیات ویدئو، دکمه تصویر در تصویر یا پخش در پس‌زمینه فشرده شود</string>
+    <string name="hold_to_append">برای در صف قرار دادن، نگه دارید</string>
 </resources>
