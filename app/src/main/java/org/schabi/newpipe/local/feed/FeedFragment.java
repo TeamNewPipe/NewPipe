@@ -238,7 +238,7 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
         compositeDisposable.add(
             subscriptionService.getChannelInfo(subscriptionEntity)
                 .observeOn(Schedulers.io())
-                .onErrorComplete((@io.reactivex.annotations.NonNull Throwable throwable) -> FeedFragment.super.onError(
+                .onErrorComplete((@NonNull Throwable throwable) -> FeedFragment.super.onError(
                     throwable))
                 .subscribe(this.getReceiveChannelInfoHandler(subscriptionEntity.getUrl()),
                     getFetchChannelInfoErrorHandler(subscriptionEntity.getServiceId(), subscriptionEntity.getUrl())));
@@ -389,12 +389,20 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
         return Math.max(MIN_ITEMS_INITIAL_LOAD, items);
     }
 
+    @Nullable
     private String tryRetrieveVideoIdFromUrl(String url) {
         try {
             return youtubeStreamLinkHandler.getId(url);
         } catch (Exception ex) {
             if (DEBUG)
                 Log.d(TAG, "Failed to retrieve video ID from \"" + url + "\"", ex);
+
+            showSnackBarError(ex,
+                UserAction.SOMETHING_ELSE,
+                "none",
+                "",
+                R.string.general_error);
+
             return null;
         }
     }
