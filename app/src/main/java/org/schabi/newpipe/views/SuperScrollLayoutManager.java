@@ -21,6 +21,7 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.view.FocusFinder;
 import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -49,5 +50,22 @@ public final class SuperScrollLayoutManager extends LinearLayoutManager {
         }
 
         return super.requestChildRectangleOnScreen(parent, child, rect, immediate, focusedChildVisible);
+    }
+
+    @Override
+    public View onFocusSearchFailed(View focused, int focusDirection, RecyclerView.Recycler recycler, RecyclerView.State state) {
+        FocusFinder ff = FocusFinder.getInstance();
+
+        View result = ff.findNextFocus((ViewGroup) focused.getParent(), focused, focusDirection);
+        if (result != null) {
+            return super.onFocusSearchFailed(focused, focusDirection, recycler, state);
+        }
+
+        if (focusDirection == View.FOCUS_DOWN) {
+            scrollVerticallyBy(10, recycler, state);
+            return null;
+        }
+
+        return super.onFocusSearchFailed(focused, focusDirection, recycler, state);
     }
 }
