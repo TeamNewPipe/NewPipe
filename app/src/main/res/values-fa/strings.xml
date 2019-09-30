@@ -358,4 +358,6 @@
     <string name="volume_gesture_control_summary">"برای کنترلصدای  پخش کننده از اشارات استفاده کنید"</string>
     <string name="brightness_gesture_control_title">کنترل روشنایی اشاره ای</string>
     <string name="brightness_gesture_control_summary">از اشارات برای کنترل روشنایی صفحه استفاده کنید</string>
+    <string name="undo">بازگردانی</string>
+    <string name="background_player_append">در صف پخش کننده پس‌زمینه قرار گرفت</string>
 </resources>
