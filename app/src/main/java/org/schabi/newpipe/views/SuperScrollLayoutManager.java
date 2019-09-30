@@ -19,15 +19,20 @@ package org.schabi.newpipe.views;
 
 import android.content.Context;
 import android.graphics.Rect;
-import android.view.FocusFinder;
 import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 public final class SuperScrollLayoutManager extends LinearLayoutManager {
     private final Rect handy = new Rect();
+
+    private final ArrayList<View> focusables = new ArrayList<>();
 
     public SuperScrollLayoutManager(Context context) {
         super(context);
@@ -49,5 +54,108 @@ public final class SuperScrollLayoutManager extends LinearLayoutManager {
         }
 
         return super.requestChildRectangleOnScreen(parent, child, rect, immediate, focusedChildVisible);
+    }
+
+    @Nullable
+    @Override
+    public View onInterceptFocusSearch(@NonNull View focused, int direction) {
+        View focusedItem = findContainingItemView(focused);
+        if (focusedItem == null) {
+            return super.onInterceptFocusSearch(focused, direction);
+        }
+
+        int listDirection = getAbsoluteDirection(direction);
+        if (listDirection == 0) {
+            return super.onInterceptFocusSearch(focused, direction);
+        }
+
+        // FocusFinder has an oddity: it considers size of Views more important
+        // than closeness to source View. This means, that big Views far away from current item
+        // are preferred to smaller sub-View of closer item. Setting focusability of closer item
+        // to FOCUS_AFTER_DESCENDANTS does not solve this, because ViewGroup#addFocusables omits
+        // such parent itself from list, if any of children are focusable.
+        // Fortunately we can intercept focus search and implement our own logic, based purely
+        // on position along the LinearLayoutManager axis
+
+        ViewGroup recycler = (ViewGroup) focusedItem.getParent();
+
+        int sourcePosition = getPosition(focusedItem);
+        if (sourcePosition == 0 && listDirection < 0) {
+            return super.onInterceptFocusSearch(focused, direction);
+        }
+
+        View preferred = null;
+
+        int distance = Integer.MAX_VALUE;
+
+        focusables.clear();
+
+        recycler.addFocusables(focusables, direction, recycler.isInTouchMode() ? View.FOCUSABLES_TOUCH_MODE : View.FOCUSABLES_ALL);
+
+        try {
+            for (View view : focusables) {
+                if (view == focused || view == recycler) {
+                    continue;
+                }
+
+                int candidate = getDistance(sourcePosition, view, listDirection);
+                if (candidate < 0) {
+                    continue;
+                }
+
+                if (candidate < distance) {
+                    distance = candidate;
+                    preferred = view;
+                }
+            }
+        } finally {
+            focusables.clear();
+        }
+
+        return preferred;
+    }
+
+    private int getAbsoluteDirection(int direction) {
+        switch (direction) {
+            default:
+                break;
+            case View.FOCUS_FORWARD:
+                return 1;
+            case View.FOCUS_BACKWARD:
+                return -1;
+        }
+
+        if (getOrientation() == RecyclerView.HORIZONTAL) {
+            switch (direction) {
+                default:
+                    break;
+                case View.FOCUS_LEFT:
+                    return getReverseLayout() ? 1 : -1;
+                case View.FOCUS_RIGHT:
+                    return getReverseLayout() ? -1 : 1;
+            }
+        } else {
+            switch (direction) {
+                default:
+                    break;
+                case View.FOCUS_UP:
+                    return getReverseLayout() ? 1 : -1;
+                case View.FOCUS_DOWN:
+                    return getReverseLayout() ? -1 : 1;
+            }
+        }
+
+        return 0;
+    }
+
+    private int getDistance(int sourcePosition, View candidate, int direction) {
+        View itemView = findContainingItemView(candidate);
+        if (itemView == null) {
+            return -1;
+        }
+
+        int position = getPosition(itemView);
+
+        return direction * (position - sourcePosition);
     }
 }
