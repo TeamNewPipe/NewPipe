@@ -17,12 +17,12 @@
     <string name="screen_rotation">چرخش</string>
     <string name="use_external_video_player_title">استفاده از پخش‌کنندهٔ ویدیوی خارجی</string>
     <string name="use_external_audio_player_title">استفاده از پخش‌کنندهٔ صدای خارجی</string>
-    <string name="download_path_title">مسیر بارگیری ویدیو</string>
-    <string name="download_path_summary">مسیر ذخیرهٔ ویدیوهای بارگیری شده</string>
-    <string name="download_path_dialog_title">مسیر بارگیری را برای ویدیوها وارد کنید</string>
+    <string name="download_path_title">پوشه بارگیری ویدیو</string>
+    <string name="download_path_summary">ویدیوهای بارگیری شده اینجا ذخیره می‌شوند</string>
+    <string name="download_path_dialog_title">پوشه بارگیری را برای ویدیوها انتخاب کنید</string>
     <string name="download_path_audio_title">پوشه بارگیری صدا</string>
-    <string name="download_path_audio_summary">صدای بارگیری شده در این‌جا نگه داشته می‌شود</string>
-    <string name="download_path_audio_dialog_title">مسیر بارگیری را برای صداها وارد کنید</string>
+    <string name="download_path_audio_summary">صداهای بارگیری شده در این‌جا ذخیره می‌شوند</string>
+    <string name="download_path_audio_dialog_title">پوشه بارگیری صداها را انتخاب کنید</string>
     <string name="autoplay_by_calling_app_title">پخش خودکار</string>
     <string name="autoplay_by_calling_app_summary">هنگامی که نیوپایپ از کارهٔ دیگری فراخوانی می‌شود، ویدیوی به طور خودکار پخش شود</string>
     <string name="default_resolution_title">وضوح پیش‌گزیده</string>
@@ -47,7 +47,7 @@
     <string name="play_btn_text">پخش</string>
     <string name="content">محتوا</string>
     <string name="show_age_restricted_content_title">محتوای محدود شده بر اساس سن</string>
-    <string name="video_is_age_restricted">نمایش ویدیوهای محدود شده بر اساس سن. اجازه دادن به چنین محتوای از بخش «تنظیمات» ممکن است.</string>
+    <string name="video_is_age_restricted">نمایش ویدیوهای دارای محدودیت سنی. اجازه دادن به چنین محتوای از بخش تنظیمات ممکن است.</string>
     <string name="duration_live">زنده</string>
     <string name="downloads">بارگیری‌ها</string>
     <string name="downloads_title">بارگیری‌ها</string>
@@ -62,7 +62,7 @@
     <string name="could_not_setup_download_menu">نمی‌توان فهرست بارگیری را برپا ساخت.</string>
     <string name="live_streams_not_supported">جریان‌های زنده هنوز پشتیبانی نمی‌شوند</string>
     <string name="could_not_get_stream">نمی‌توان هیچ جریانی را گرفت</string>
-    <string name="sorry_string">ببخشید. نباید این اتّفاق می‌افتاد.</string>
+    <string name="sorry_string">ببخشید! نباید این اتّفاق زخ می‌داد.</string>
     <string name="error_report_button_text">گزارش خطا با رایانامه</string>
     <string name="error_snackbar_message">ببخشید، چند مشکل رخ داد.</string>
     <string name="error_snackbar_action">گزارش</string>
@@ -84,7 +84,7 @@
     <string name="video">ویدیو</string>
     <string name="audio">صدا</string>
     <string name="retry">تلاش دوباره</string>
-    <string name="storage_permission_denied">اجازهٔ دسترسی به انبار ذخیره رد شد</string>
+    <string name="storage_permission_denied">اجازهٔ دسترسی به فضای ذخیره رد شد</string>
     <string name="start">شروع</string>
     <string name="pause">مکث</string>
     <string name="view">پخش</string>
@@ -102,7 +102,7 @@
     <string name="msg_running_detail">برای جزییات، ضربه بزنید</string>
     <string name="msg_wait">لطفاً صبر کنید…</string>
     <string name="msg_copied">در حافظه رونوشت شد</string>
-    <string name="no_available_dir">لطفاً یک شاخهٔ بارگیری موجود را برگزینید</string>
+    <string name="no_available_dir">پوشه بارگیری را بعدا در تنظیمات مشخص کنید</string>
     <string name="no_player_found_toast">هیچ پخش کننده جریانی پیدا نشد (شما می‌توانید برنامه وی‌ال‌سی را برای پخش آن نصب کنید).</string>
     <string name="controls_download_desc">بارگیری پرونده جریان</string>
     <string name="use_external_video_player_summary">حذف صدا در برخی کیفیت‌ها</string>
@@ -283,7 +283,7 @@
     <string name="unsubscribe">لغو اشتراک</string>
     <string name="tab_new">زبان جدید</string>
     <string name="tab_choose">انتخاب زبانه</string>
-    <string name="enable_watch_history_title">تاریخچه و حافظه نهان</string>
+    <string name="enable_watch_history_title">تاریخچه تماشا</string>
     <string name="settings_category_history_title">تاریخچه و حافظه نهان</string>
     <string name="settings_category_debug_title">اشکال‌زدایی</string>
     <string name="settings_category_updates_title">به‌روزرسانی‌ها</string>
@@ -334,8 +334,18 @@
     <string name="autoplay_title">پخش خودکار</string>
     <plurals name="comments">
         <item quantity="one">نظرات</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="no_comments">بدون نظر</string>
     <string name="error_unable_to_load_comments">ناتوانی در دریافت نظرات</string>
+    <string name="resume_on_audio_focus_gain_title">ادامه پخش به محض فعال شدن</string>
+    <string name="enable_search_history_summary">ذخیره محلی نتایج جستجو</string>
+    <string name="auto_queue_summary">زمانی که صف پخش در حال پخش تکراری نیست، حین پخش آخرین جریان، یک جریان مرتبط به طور خودکار اضافه شود</string>
+    <string name="download_thumbnail_summary">برای جلوگیری از بارگیری تصاویر بندانگشتی و ذخیره فضای ذخیره‌سازی و مصرف داده، خاموش کنید. تغییرات باعث پاک شدن حافظه نهان تصاویر روی حافظه می‌شود.</string>
+    <string name="enable_playback_resume_title">ادامه پخش</string>
+    <string name="enable_playback_resume_summary">بازگرداندن آخرین موقعیت پخش</string>
+    <string name="enable_playback_state_lists_title">موقعیت در فهرست‌ها</string>
+    <string name="enable_playback_state_lists_summary">نمایش شاخص موقعیت پخش در فهرست‌ها</string>
+    <string name="settings_category_clear_data_title">پاک کردن داده‌ها</string>
+    <string name="download_choose_new_path">برای اثرگذاری، پوشه بارگیری را تغییر دهید</string>
 </resources>
