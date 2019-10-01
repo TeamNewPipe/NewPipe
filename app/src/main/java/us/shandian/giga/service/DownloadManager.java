@@ -75,10 +75,6 @@ public class DownloadManager {
         mMissionsFinished = loadFinishedMissions();
         mPendingMissionsDir = getPendingDir(context);
 
-        if (!Utility.mkdir(mPendingMissionsDir, false)) {
-            throw new RuntimeException("failed to create " + DOWNLOADS_METADATA_FOLDER + " directory");
-        }
-
         loadPendingMissions(context);
     }
 
@@ -96,6 +92,11 @@ public class DownloadManager {
         if (dir == null) return false;
 
         try {
+            if (!Utility.mkdir(dir, false)) {
+                Log.e(TAG, "testDir() cannot create the directory in path: " + dir.getAbsolutePath());
+                return false;
+            }
+
             File tmp = new File(dir, ".tmp");
             if (!tmp.createNewFile()) return false;
             return tmp.delete();// if the file was created, SHOULD BE deleted too
