@@ -12,8 +12,6 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.ArrayList;
-import java.util.Random;
 
 import javax.annotation.Nullable;
 
@@ -23,14 +21,12 @@ import javax.annotation.Nullable;
 public class OggFromWebMWriter implements Closeable {
 
     private static final byte FLAG_UNSET = 0x00;
-    private static final byte FLAG_CONTINUED = 0x01;
+    //private static final byte FLAG_CONTINUED = 0x01;
     private static final byte FLAG_FIRST = 0x02;
     private static final byte FLAG_LAST = 0x04;
 
     private final static byte HEADER_CHECKSUM_OFFSET = 22;
     private final static byte HEADER_SIZE = 27;
-
-    private final static short BUFFER_SIZE = 8 * 1024;// 8KiB
 
     private final static int TIME_SCALE_NS = 1000000000;
 
@@ -43,7 +39,6 @@ public class OggFromWebMWriter implements Closeable {
     private int sequence_count = 0;
     private final int STREAM_ID;
     private byte packet_flag = FLAG_FIRST;
-    private int track_index = 0;
 
     private WebMReader webm = null;
     private WebMTrack webm_track = null;
@@ -71,7 +66,7 @@ public class OggFromWebMWriter implements Closeable {
         this.source = source;
         this.output = target;
 
-        this.STREAM_ID = (new Random(System.currentTimeMillis())).nextInt();
+        this.STREAM_ID = (int) System.currentTimeMillis();
 
         populate_crc32_table();
     }
@@ -130,7 +125,6 @@ public class OggFromWebMWriter implements Closeable {
 
         try {
             webm_track = webm.selectTrack(trackIndex);
-            track_index = trackIndex;
         } finally {
             parsed = true;
         }
@@ -154,8 +148,11 @@ public class OggFromWebMWriter implements Closeable {
 
     public void build() throws IOException {
         float resolution;
-        int read;
-        byte[] buffer;
+        SimpleBlock bloq;
+        ByteBuffer header = ByteBuffer.allocate(27 + (255 * 255));
+        ByteBuffer page = ByteBuffer.allocate(64 * 1024);
+
+        header.order(ByteOrder.LITTLE_ENDIAN);
 
         /* step 1: get the amount of frames per seconds */
         switch (webm_track.kind) {
@@ -176,57 +173,32 @@ public class OggFromWebMWriter implements Closeable {
                 throw new RuntimeException("not implemented");
         }
 
-        /* step 2a: create packet with code init data */
-        ArrayList<byte[]> data_extra = new ArrayList<>(4);
-
+        /* step 2: create packet with code init data */
         if (webm_track.codecPrivate != null) {
             addPacketSegment(webm_track.codecPrivate.length);
-            ByteBuffer buff = byte_buffer(HEADER_SIZE + segment_table_size + webm_track.codecPrivate.length);
-
-            make_packetHeader(0x00, buff, webm_track.codecPrivate);
-            data_extra.add(buff.array());
+            make_packetHeader(0x00, header, webm_track.codecPrivate);
+            write(header);
+            output.write(webm_track.codecPrivate);
         }
 
-        /* step 2b: create packet with metadata */
-        buffer = make_metadata();
+        /* step 3: create packet with metadata */
+        byte[] buffer = make_metadata();
         if (buffer != null) {
             addPacketSegment(buffer.length);
-            ByteBuffer buff = byte_buffer(HEADER_SIZE + segment_table_size + buffer.length);
-
-            make_packetHeader(0x00, buff, buffer);
-            data_extra.add(buff.array());
+            make_packetHeader(0x00, header, buffer);
+            write(header);
+            output.write(buffer);
         }
 
-
-        /* step 3: calculate amount of packets */
-        SimpleBlock bloq;
-        int reserve_header = 0;
-        int headers_amount = 0;
-
+        /* step 4: calculate amount of packets */
         while (webm_segment != null) {
             bloq = getNextBlock();
 
-            if (addPacketSegment(bloq)) {
-                continue;
-            }
-
-            reserve_header += HEADER_SIZE + segment_table_size;// header size
-            clearSegmentTable();
-            webm_block = bloq;
-            headers_amount++;
-        }
-
-        /* step 4: create packet headers */
-        rewind_source();
-
-        ByteBuffer headers = byte_buffer(reserve_header);
-        short[] headers_size = new short[headers_amount];
-        int header_index = 0;
-
-        while (webm_segment != null) {
-            bloq = getNextBlock();
-
-            if (addPacketSegment(bloq)) {
+            if (bloq != null && addPacketSegment(bloq)) {
+                int pos = page.position();
+                //noinspection ResultOfMethodCallIgnored
+                bloq.data.read(page.array(), pos, bloq.dataSize);
+                page.position(pos + bloq.dataSize);
                 continue;
             }
 
@@ -251,75 +223,21 @@ public class OggFromWebMWriter implements Closeable {
             elapsed_ns = elapsed_ns / TIME_SCALE_NS;
             elapsed_ns = Math.ceil(elapsed_ns * resolution);
 
-            // create header
-            headers_size[header_index++] = make_packetHeader((long) elapsed_ns, headers, null);
+            // create header and calculate page checksum
+            int checksum = make_packetHeader((long) elapsed_ns, header, null);
+            checksum = calc_crc32(checksum, page.array(), page.position());
+
+            header.putInt(HEADER_CHECKSUM_OFFSET, checksum);
+
+            // dump data
+            write(header);
+            write(page);
+
             webm_block = bloq;
-        }
-
-
-        /* step 5: calculate checksums */
-        rewind_source();
-
-        int offset = 0;
-        buffer = new byte[BUFFER_SIZE];
-
-        for (header_index = 0; header_index < headers_size.length; header_index++) {
-            int checksum_offset = offset + HEADER_CHECKSUM_OFFSET;
-            int checksum = headers.getInt(checksum_offset);
-
-            while (webm_segment != null) {
-                bloq = getNextBlock();
-
-                if (!addPacketSegment(bloq)) {
-                    clearSegmentTable();
-                    webm_block = bloq;
-                    break;
-                }
-
-                // calculate page checksum
-                while ((read = bloq.data.read(buffer)) > 0) {
-                    checksum = calc_crc32(checksum, buffer, 0, read);
-                }
-            }
-
-            headers.putInt(checksum_offset, checksum);
-            offset += headers_size[header_index];
-        }
-
-        /* step 6: write extra headers */
-        rewind_source();
-
-        for (byte[] buff : data_extra) {
-            output.write(buff);
-        }
-
-        /* step 7: write stream packets */
-        byte[] headers_buffers = headers.array();
-        offset = 0;
-        buffer = new byte[BUFFER_SIZE];
-
-        for (header_index = 0; header_index < headers_size.length; header_index++) {
-            output.write(headers_buffers, offset, headers_size[header_index]);
-            offset += headers_size[header_index];
-
-            while (webm_segment != null) {
-                bloq = getNextBlock();
-
-                if (addPacketSegment(bloq)) {
-                    while ((read = bloq.data.read(buffer)) > 0) {
-                        output.write(buffer, 0, read);
-                    }
-                } else {
-                    clearSegmentTable();
-                    webm_block = bloq;
-                    break;
-                }
-            }
         }
     }
 
-    private short make_packetHeader(long gran_pos, ByteBuffer buffer, byte[] immediate_page) {
-        int offset = buffer.position();
+    private int make_packetHeader(long gran_pos, @NonNull ByteBuffer buffer, byte[] immediate_page) {
         short length = HEADER_SIZE;
 
         buffer.putInt(0x5367674f);// "OggS" binary string in little-endian
@@ -340,17 +258,15 @@ public class OggFromWebMWriter implements Closeable {
 
         clearSegmentTable();// clear segment table for next header
 
-        int checksum_crc32 = calc_crc32(0x00, buffer.array(), offset, length);
+        int checksum_crc32 = calc_crc32(0x00, buffer.array(), length);
 
         if (immediate_page != null) {
-            checksum_crc32 = calc_crc32(checksum_crc32, immediate_page, 0, immediate_page.length);
-            System.arraycopy(immediate_page, 0, buffer.array(), length, immediate_page.length);
+            checksum_crc32 = calc_crc32(checksum_crc32, immediate_page, immediate_page.length);
+            buffer.putInt(HEADER_CHECKSUM_OFFSET, checksum_crc32);
             segment_table_next_timestamp -= TIME_SCALE_NS;
         }
 
-        buffer.putInt(offset + HEADER_CHECKSUM_OFFSET, checksum_crc32);
-
-        return length;
+        return checksum_crc32;
     }
 
     @Nullable
@@ -358,7 +274,7 @@ public class OggFromWebMWriter implements Closeable {
         if ("A_OPUS".equals(webm_track.codecId)) {
             return new byte[]{
                     0x4F, 0x70, 0x75, 0x73, 0x54, 0x61, 0x67, 0x73,// "OpusTags" binary string
-                    0x07, 0x00, 0x00, 0x00,// writing application string size
+                    0x07, 0x00, 0x00, 0x00,// writting application string size
                     0x4E, 0x65, 0x77, 0x50, 0x69, 0x70, 0x65,// "NewPipe" binary string
                     0x00, 0x00, 0x00, 0x00// additional tags count (zero means no tags)
             };
@@ -366,7 +282,7 @@ public class OggFromWebMWriter implements Closeable {
             return new byte[]{
                     0x03,// ????????
                     0x76, 0x6f, 0x72, 0x62, 0x69, 0x73,// "vorbis" binary string
-                    0x07, 0x00, 0x00, 0x00,// writing application string size
+                    0x07, 0x00, 0x00, 0x00,// writting application string size
                     0x4E, 0x65, 0x77, 0x50, 0x69, 0x70, 0x65,// "NewPipe" binary string
                     0x01, 0x00, 0x00, 0x00,// additional tags count (zero means no tags)
 
@@ -387,22 +303,9 @@ public class OggFromWebMWriter implements Closeable {
         return null;
     }
 
-    private void rewind_source() throws IOException {
-        source.rewind();
-
-        webm = new WebMReader(source);
-        webm.parse();
-        webm_track = webm.selectTrack(track_index);
-        webm_segment = webm.getNextSegment();
-        webm_cluster = null;
-        webm_block = null;
-        webm_block_last_timecode = 0L;
-
-        segment_table_next_timestamp = TIME_SCALE_NS;
-    }
-
-    private ByteBuffer byte_buffer(int size) {
-        return ByteBuffer.allocate(size).order(ByteOrder.LITTLE_ENDIAN);
+    private void write(ByteBuffer buffer) throws IOException {
+        output.write(buffer.array(), 0, buffer.position());
+        buffer.position(0);
     }
 
     //<editor-fold defaultstate="collapsed" desc="WebM track handling">
@@ -460,41 +363,32 @@ public class OggFromWebMWriter implements Closeable {
 
     //<editor-fold defaultstate="collapsed" desc="Segment table writing">
     private void clearSegmentTable() {
-        if (packet_flag != FLAG_CONTINUED) {
-            segment_table_next_timestamp += TIME_SCALE_NS;
-            packet_flag = FLAG_UNSET;
-        }
+        segment_table_next_timestamp += TIME_SCALE_NS;
+        packet_flag = FLAG_UNSET;
         segment_table_size = 0;
     }
 
     private boolean addPacketSegment(SimpleBlock block) {
-        if (block == null) {
-            return false;
-        }
-
         long timestamp = block.absoluteTimeCodeNs + webm_track.codecDelay;
 
         if (timestamp >= segment_table_next_timestamp) {
             return false;
         }
 
-        boolean result = addPacketSegment((int) block.dataSize);
-
-        if (!result && segment_table_next_timestamp < timestamp) {
-            // WARNING: ¡¡¡¡ not implemented (lack of documentation) !!!!
-            packet_flag = FLAG_CONTINUED;
-        }
-
-        return result;
+        return addPacketSegment(block.dataSize);
     }
 
     private boolean addPacketSegment(int size) {
+        if (size > 65025) {
+            throw new UnsupportedOperationException("page size cannot be larger than 65025");
+        }
+
         int available = (segment_table.length - segment_table_size) * 255;
-        boolean extra = size == 255;
+        boolean extra = (size % 255) == 0;
 
         if (extra) {
             // add a zero byte entry in the table
-            // required to indicate the sample size is exactly 255
+            // required to indicate the sample size is multiple of 255
             available -= 255;
         }
 
@@ -528,12 +422,10 @@ public class OggFromWebMWriter implements Closeable {
         }
     }
 
-    private int calc_crc32(int initial_crc, byte[] buffer, int offset, int size) {
-        size += offset;
-
-        for (; offset < size; offset++) {
+    private int calc_crc32(int initial_crc, byte[] buffer, int size) {
+        for (int i = 0; i < size; i++) {
             int reg = (initial_crc >>> 24) & 0xff;
-            initial_crc = (initial_crc << 8) ^ crc32_table[reg ^ (buffer[offset] & 0xff)];
+            initial_crc = (initial_crc << 8) ^ crc32_table[reg ^ (buffer[i] & 0xff)];
         }
 
         return initial_crc;

@@ -35,7 +35,11 @@ public class DownloadRunnableFallback extends Thread {
 
     private void dispose() {
         try {
-            if (mIs != null) mIs.close();
+            try {
+                if (mIs != null) mIs.close();
+            } finally {
+                mConn.disconnect();
+            }
         } catch (IOException e) {
             // nothing to do
         }
@@ -68,7 +72,13 @@ public class DownloadRunnableFallback extends Thread {
             long rangeStart = (mMission.unknownLength || start < 1) ? -1 : start;
 
             int mId = 1;
-            mConn = mMission.openConnection(mId, rangeStart, -1);
+            mConn = mMission.openConnection(false, rangeStart, -1);
+
+            if (mRetryCount == 0 && rangeStart == -1) {
+                // workaround: bypass android connection pool
+                mConn.setRequestProperty("Range", "bytes=0-");
+            }
+
             mMission.establishConnection(mId, mConn);
 
             // check if the download can be resumed
@@ -96,6 +106,8 @@ public class DownloadRunnableFallback extends Thread {
                 mMission.notifyProgress(len);
             }
 
+            dispose();
+
             // if thread goes interrupted check if the last part is written. This avoid re-download the whole file
             done = len == -1;
         } catch (Exception e) {
@@ -107,8 +119,8 @@ public class DownloadRunnableFallback extends Thread {
 
             if (e instanceof HttpError && ((HttpError) e).statusCode == ERROR_HTTP_FORBIDDEN) {
                 // for youtube streams. The url has expired, recover
-                mMission.doRecover(e);
                 dispose();
+                mMission.doRecover(e);
                 return;
             }
 
@@ -124,8 +136,6 @@ public class DownloadRunnableFallback extends Thread {
             run();// try again
             return;
         }
-
-        dispose();
 
         if (done) {
             mMission.notifyFinished();

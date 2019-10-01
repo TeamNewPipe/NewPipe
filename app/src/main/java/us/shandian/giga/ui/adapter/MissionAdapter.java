@@ -36,6 +36,7 @@ import android.widget.Toast;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -44,11 +45,11 @@ import java.io.File;
 import java.lang.ref.WeakReference;
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Collections;
 
 import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.get.FinishedMission;
 import us.shandian.giga.get.Mission;
+import us.shandian.giga.get.MissionRecoveryInfo;
 import us.shandian.giga.io.StoredFileHelper;
 import us.shandian.giga.service.DownloadManager;
 import us.shandian.giga.service.DownloadManagerService;
@@ -234,7 +235,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         // hide on error
         // show if current resource length is not fetched
         // show if length is unknown
-        h.progress.setMarquee(!hasError && (!mission.isInitialized() || mission.unknownLength));
+        h.progress.setMarquee(mission.isRecovering() || !hasError && (!mission.isInitialized() || mission.unknownLength));
 
         float progress;
         if (mission.unknownLength) {
@@ -463,13 +464,13 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                 break;
             case ERROR_POSTPROCESSING:
             case ERROR_POSTPROCESSING_HOLD:
-                showError(mission.errObject, UserAction.DOWNLOAD_POSTPROCESSING, R.string.error_postprocessing_failed);
+                showError(mission, UserAction.DOWNLOAD_POSTPROCESSING, R.string.error_postprocessing_failed);
                 return;
             case ERROR_INSUFFICIENT_STORAGE:
                 msg = R.string.error_insufficient_storage;
                 break;
             case ERROR_UNKNOWN_EXCEPTION:
-                showError(mission.errObject, UserAction.DOWNLOAD_FAILED, R.string.general_error);
+                showError(mission, UserAction.DOWNLOAD_FAILED, R.string.general_error);
                 return;
             case ERROR_PROGRESS_LOST:
                 msg = R.string.error_progress_lost;
@@ -486,7 +487,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                 } else if (mission.errObject == null) {
                     msgEx = "(not_decelerated_error_code)";
                 } else {
-                    showError(mission.errObject, UserAction.DOWNLOAD_FAILED, msg);
+                    showError(mission, UserAction.DOWNLOAD_FAILED, msg);
                     return;
                 }
                 break;
@@ -503,7 +504,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         if (mission.errObject != null && (mission.errCode < 100 || mission.errCode >= 600)) {
             @StringRes final int mMsg = msg;
             builder.setPositiveButton(R.string.error_report_title, (dialog, which) ->
-                    showError(mission.errObject, UserAction.DOWNLOAD_FAILED, mMsg)
+                    showError(mission, UserAction.DOWNLOAD_FAILED, mMsg)
             );
         }
 
@@ -513,13 +514,30 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                 .show();
     }
 
-    private void showError(Exception exception, UserAction action, @StringRes int reason) {
+    private void showError(DownloadMission mission, UserAction action, @StringRes int reason) {
+        StringBuilder request = new StringBuilder(256);
+        request.append(mission.source);
+
+        request.append(" [");
+        if (mission.recoveryInfo != null) {
+            for (MissionRecoveryInfo recovery : mission.recoveryInfo)
+                request.append(" {").append(recovery.toString()).append("} ");
+        }
+        request.append("]");
+
+        String service;
+        try {
+            service = NewPipe.getServiceByUrl(mission.source).getServiceInfo().getName();
+        } catch (Exception e) {
+            service = "-";
+        }
+
         ErrorActivity.reportError(
                 mContext,
-                Collections.singletonList(exception),
+                mission.errObject,
                 null,
                 null,
-                ErrorActivity.ErrorInfo.make(action, "-", "-", reason)
+                ErrorActivity.ErrorInfo.make(action, service, request.toString(), reason)
         );
     }
 

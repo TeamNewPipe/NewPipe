@@ -204,21 +204,23 @@ public class DownloadMission extends Mission {
     /**
      * Opens a connection
      *
-     * @param threadId   id of the calling thread, used only for debugging
-     * @param rangeStart range start
-     * @param rangeEnd   range end
+     * @param headRequest {@code true} for use {@code HEAD} request method, otherwise, {@code GET} is used
+     * @param rangeStart  range start
+     * @param rangeEnd    range end
      * @return a {@link java.net.URLConnection URLConnection} linking to the URL.
      * @throws IOException if an I/O exception occurs.
      */
-    HttpURLConnection openConnection(int threadId, long rangeStart, long rangeEnd) throws IOException {
-        return openConnection(urls[current], threadId, rangeStart, rangeEnd);
+    HttpURLConnection openConnection(boolean headRequest, long rangeStart, long rangeEnd) throws IOException {
+        return openConnection(urls[current], headRequest, rangeStart, rangeEnd);
     }
 
-    HttpURLConnection openConnection(String url, int threadId, long rangeStart, long rangeEnd) throws IOException {
+    HttpURLConnection openConnection(String url, boolean headRequest, long rangeStart, long rangeEnd) throws IOException {
         HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
         conn.setInstanceFollowRedirects(true);
         conn.setRequestProperty("User-Agent", DownloaderImpl.USER_AGENT);
         conn.setRequestProperty("Accept", "*/*");
+
+        if (headRequest) conn.setRequestMethod("HEAD");
 
         // BUG workaround: switching between networks can freeze the download forever
         conn.setConnectTimeout(30000);
@@ -229,10 +231,6 @@ public class DownloadMission extends Mission {
             if (rangeEnd > 0) req += rangeEnd;
 
             conn.setRequestProperty("Range", req);
-
-            if (DEBUG) {
-                Log.d(TAG, threadId + ":" + conn.getRequestProperty("Range"));
-            }
         }
 
         return conn;
@@ -245,12 +243,13 @@ public class DownloadMission extends Mission {
      * @throws HttpError   if the HTTP Status-Code is not satisfiable
      */
     void establishConnection(int threadId, HttpURLConnection conn) throws IOException, HttpError {
-        conn.connect();
         int statusCode = conn.getResponseCode();
 
         if (DEBUG) {
+            Log.d(TAG, threadId + ":Range=" + conn.getRequestProperty("Range"));
             Log.d(TAG, threadId + ":Content-Length=" + conn.getContentLength() + " Code:" + statusCode);
         }
+
 
         switch (statusCode) {
             case 204:
@@ -676,6 +675,15 @@ public class DownloadMission extends Mission {
         return (isPsFailed() || errCode == ERROR_POSTPROCESSING_HOLD) || isFinished();
     }
 
+    /**
+     * Indicates if mission urls has expired and there an attempt to renovate them
+     *
+     * @return {@code true} if the mission is running a recovery procedure, otherwise, {@code false}
+     */
+    public boolean isRecovering() {
+        return threads != null && threads.length > 0 && threads[0] instanceof DownloadRunnable && threads[0].isAlive();
+    }
+
     private boolean doPostprocessing() {
         if (psAlgorithm == null || psState == 2) return true;
 
@@ -742,10 +750,8 @@ public class DownloadMission extends Mission {
             }
         }
 
-        // set the current download url to null in case if the recovery
-        // process is canceled. Next time start() method is called the
-        // recovery will be executed, saving time
-        urls[current] = null;
+        errCode = ERROR_NOTHING;
+        errObject = null;
 
         if (recoveryInfo[current].attempts >= maxRetry) {
             recoveryInfo[current].attempts = 0;
