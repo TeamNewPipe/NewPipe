@@ -14,7 +14,7 @@
     <string name="tab_subscriptions">Subscripcions</string>
     <string name="tab_bookmarks">Llistes de reproducció desades</string>
     <string name="fragment_whats_new">Novetats</string>
-    <string name="download_path_title">Ruta de baixada dels vídeos</string>
+    <string name="download_path_title">Carpeta de baixada dels vídeos</string>
     <string name="download_path_audio_title">Carpeta de baixada dels fitxers d\'àudio</string>
     <string name="autoplay_by_calling_app_title">Reproducció automàtica</string>
     <string name="default_resolution_title">Resolució per defecte</string>
@@ -25,7 +25,7 @@
     <string name="light_theme_title">Clar</string>
     <string name="dark_theme_title">Fosc</string>
     <string name="black_theme_title">Negre</string>
-    <string name="enable_watch_history_title">Historial i memòria cau</string>
+    <string name="enable_watch_history_title">Historial de reproduccions</string>
     <string name="download_dialog_title">Baixa</string>
     <string name="service_title">Servei</string>
     <string name="settings_category_player_title">Reproductor</string>
@@ -133,10 +133,10 @@
     <string name="controls_background_title">Segon pla</string>
     <string name="controls_popup_title">Emergent</string>
     <string name="controls_add_to_playlist_title">Afegeix a</string>
-    <string name="download_path_summary">Ruta on es desaran els vídeos baixats</string>
-    <string name="download_path_dialog_title">Introduïu una ruta de baixada per als vídeos</string>
-    <string name="download_path_audio_summary">Els fitxers d\'àudio baixats es desaran aquí</string>
-    <string name="download_path_audio_dialog_title">Introduïu una ruta de baixada per als fitxers d\'àudio</string>
+    <string name="download_path_summary">Els fitxers de vídeo baixats s\'emmagatzemen aquí</string>
+    <string name="download_path_dialog_title">Tria la carpeta de baixades per als fitxers de vídeo</string>
+    <string name="download_path_audio_summary">Els fitxers d\'àudio baixats es desen aquí</string>
+    <string name="download_path_audio_dialog_title">Tria la carpeta de baixada per als fitxers d\'àudio</string>
     <string name="autoplay_by_calling_app_summary">Reprodueix un vídeo quan el NewPipe s\'executa des d\'una altra aplicació</string>
     <string name="default_popup_resolution_title">Resolució per defecte del mode emergent</string>
     <string name="show_higher_resolutions_title">Mostra resolucions superiors</string>
@@ -249,7 +249,7 @@
     <string name="view_on_github">Visualitza a GitHub</string>
     <string name="donation_title">Fes una donació</string>
     <string name="website_encouragement">Per a més informació i notícies, visiteu el nostre lloc web.</string>
-    <string name="title_last_played">Última reproducció</string>
+    <string name="title_last_played">Últimes reproduccions</string>
     <string name="title_most_played">Més reproduïts</string>
     <string name="kiosk_page_summary">Pàgina d\'un quiosc</string>
     <string name="feed_page_summary">Pàgina de novetats</string>
@@ -305,7 +305,7 @@
     <string name="add">Nova missió</string>
     <string name="msg_url_malform">L\'URL té un format incorrecte o no hi ha connexió a internet</string>
     <string name="msg_running_detail">Toqueu aquí per a més detalls</string>
-    <string name="no_available_dir">Definiu una carpeta de baixades més endavant a la configuració</string>
+    <string name="no_available_dir">Defineix una carpeta de baixades més endavant als paràmetres</string>
     <string name="msg_popup_permission">Es necessita aquest permís per a obrir el mode emergent</string>
     <string name="reCaptcha_title">Camp reCAPTCHA</string>
     <string name="recaptcha_request_toast">S\'ha sol·licitat l\'emplenament d\'un camp reCAPTCHA</string>
@@ -319,7 +319,7 @@
     <string name="title_history_view">Reproduccions</string>
     <string name="no_channel_subscribed_yet">Encara no us heu subscrit a cap canal</string>
     <string name="new_and_hot">Novetats</string>
-    <string name="hold_to_append">Manteniu premut per afegir a la cua</string>
+    <string name="hold_to_append">Mantén premut per afegir a la cua</string>
     <string name="start_here_on_background">Comença a reproduir en segon pla</string>
     <string name="start_here_on_popup">Comença a reproduir en mode emergent</string>
     <string name="set_as_playlist_thumbnail">Defineix com a miniatura de la llista de reproducció</string>
@@ -369,7 +369,7 @@
     <string name="caption_setting_description">Modifica la mida del text i el fons dels subtítols. Cal reiniciar l\'aplicació per aplicar els canvis.</string>
     <string name="toast_no_player">No s\'ha trobat cap aplicació que pugui reproduir aquest fitxer</string>
     <string name="clear_views_history_title">Esborra l\'historial de reproduccions</string>
-    <string name="clear_views_history_summary">Esborra l\'historial dels vídeos que s\'han reproduït</string>
+    <string name="clear_views_history_summary">Esborra l\'historial dels vídeos reproduïts i les posicions de reproducció</string>
     <string name="delete_view_history_alert">Voleu esborrar tot l\'historial de reproduccions\?</string>
     <string name="watch_history_deleted">S\'ha esborrat l\'historial de reproduccions.</string>
     <string name="clear_search_history_title">Esborra l\'historial de cerca</string>
@@ -450,7 +450,7 @@
     <string name="clear_finished_download">Neteja les baixades finalitzades</string>
     <string name="max_retry_msg">Intents màxims</string>
     <string name="max_retry_desc">Nombre màxim d\'intents abans de cancel·lar la baixada</string>
-    <string name="pause_downloads_on_mobile">Pausa en canviar a dades mòbils</string>
+    <string name="pause_downloads_on_mobile">Interromp en connexions limitades</string>
     <string name="pause_downloads_on_mobile_desc">Útil en canviar a les dades mòbils, tot i que algunes baixades no es poden aturar</string>
     <string name="unsubscribe">Elimina la subscripció</string>
     <string name="overwrite">Sobreescriu</string>
