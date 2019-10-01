@@ -125,7 +125,7 @@
     <string name="player_gesture_controls_summary">Χρήση χειρονομιών για τον έλεγχο της φωτεινότητας και της έντασης ήχου της εφαρμογής</string>
     <string name="show_search_suggestions_summary">Εμφάνιση υποδείξεων ενώ κάνετε αναζήτηση</string>
     <string name="enable_search_history_summary">Αποθήκευση αναζητήσεων στη συσκευή</string>
-    <string name="enable_watch_history_title">Ιστορικό &amp; Προσωρινή Αποθήκευση</string>
+    <string name="enable_watch_history_title">Προβολή Ιστορικού</string>
     <string name="enable_watch_history_summary">Κρατήστε ιστορικό των βίντεο που έχετε δει</string>
     <string name="resume_on_audio_focus_gain_title">Συνέχεια όταν η εφαρμογή έρθει σε πρώτο πλάνο</string>
     <string name="resume_on_audio_focus_gain_summary">Συνέχιση της αναπαραγωγής έπειτα από διακοπές (π.χ.: κλήσεις)</string>
@@ -247,7 +247,7 @@
     <string name="msg_running">Λήψη NewPipe</string>
     <string name="msg_wait">Παρακαλώ περιμένετε…</string>
     <string name="msg_copied">Αντιγράφηκε στο πρόχειρο</string>
-    <string name="no_available_dir">Παρακαλώ επιλέξτε έναν διαθέσιμο φάκελο λήψεων</string>
+    <string name="no_available_dir">Παρακαλώ ορίστε έναν διαθέσιμο φάκελο λήψεων αργότερα στις ρυθμίσεις</string>
     <string name="msg_popup_permission">Αυτή η άδεια είναι απαραίτητη για
 \nτο άνοιγμα αναδυόμενων παραθύρων</string>
     <string name="one_item_deleted">1 αντικείμενο διαγράφηκε.</string>
@@ -414,7 +414,7 @@
     <string name="app_update_notification_channel_name">Ειδοποίηση Ενημέρωσης Εφαρμογής</string>
     <string name="app_update_notification_channel_description">Ειδοποίηση για νεότερη έκδοση του NewPipe</string>
     <string name="download_to_sdcard_error_title">Εξωτερική μνήμη αποθήκευσης μη διαθέσιμη</string>
-    <string name="download_to_sdcard_error_message">Η αποθήκευση στην εξωτερική μνήμη απέτυχε. Επαναφορά στην αρχική τοποθεσία λήψης;</string>
+    <string name="download_to_sdcard_error_message">Η αποθήκευση στην SD κάρτα δεν είναι δυνατή. Επαναφορά στην αρχική τοποθεσία λήψης;</string>
     <string name="saved_tabs_invalid_json">Χρήση προεπιλεγμένων καρτέλων, σφάλμα κατα την ανάγνωση των αποθηκευμένων καρτέλων</string>
     <string name="restore_defaults">Επαναφορά προεπιλεγμένων ρυθμίσεων</string>
     <string name="restore_defaults_confirmation">Θέλετε να επαναφέρετε τις προεπιλεγμένες ρυθμίσεις;</string>
@@ -432,7 +432,7 @@
     <string name="app_update_notification_content_title">Νεά Έκδοση NewPipe Διαθέσιμη!</string>
     <string name="app_update_notification_content_text">Πατήστε για λήψη</string>
     <string name="missions_header_finished">Ολοκληρώθηκε</string>
-    <string name="missions_header_pending">Στην ουρά αναμονής</string>
+    <string name="missions_header_pending">Εκκρεμεί</string>
     <string name="paused">Παύση</string>
     <string name="queued">στην ουρά</string>
     <string name="post_processing">Μετεπεξεργασία</string>
@@ -448,8 +448,8 @@
     <string name="download_already_running">Υπάρχει μια λήψη σε εξέλιξη με αυτό το όνομα</string>
     <string name="show_error">Εμφάνιση σφάλματος</string>
     <string name="label_code">Κωδικός</string>
-    <string name="error_path_creation">Το αρχείο δεν μπορεί να δημιουργηθεί</string>
-    <string name="error_file_creation">Αδυναμία δημιουργίας φάκελου προορισμού</string>
+    <string name="error_path_creation">Δεν είναι δυνατή η δημιουργία του φακέλου προορισμού</string>
+    <string name="error_file_creation">Δεν είναι δυνατή η δημιουργία του αρχείου</string>
     <string name="error_permission_denied">Η αδειοδότηση απορρίφθηκε απο το σύστημα</string>
     <string name="error_ssl_exception">Δημιουργία ασφαλής σύνδεσης απέτυχε</string>
     <string name="error_unknown_host">Αδυναμία εύρεσης του εξυπηρετητή</string>
@@ -464,8 +464,8 @@
     <string name="stop">Διακοπή</string>
     <string name="max_retry_msg">Μέγιστες επαναπροσπάθειες</string>
     <string name="max_retry_desc">Μέγιστος αριθμός προσπαθειών προτού γίνει ακύρωση της λήψης</string>
-    <string name="pause_downloads_on_mobile">Παύση με την εναλλαγή του δικτύου σε δεδομένα</string>
-    <string name="pause_downloads_on_mobile_desc">Οι λήψεις που δεν δέχονται παύση θα επανεκκινηθούν</string>
+    <string name="pause_downloads_on_mobile">Διακοπή σε δίκτυα με ογκοχρέωση</string>
+    <string name="pause_downloads_on_mobile_desc">Χρήσιμο κατά τη μετάβαση σε δεδομένα κινητής τηλεφωνίας, αν και ορισμένες λήψεις δεν μπορούν να ανασταλούν</string>
     <string name="show_comments_title">Προβολή σχολίων</string>
     <string name="show_comments_summary">Απενεργοποίηση για διακοπή της εμφάνιση σχολίων</string>
     <string name="autoplay_title">Αυτόματη αναπαραγωγή</string>
@@ -476,4 +476,33 @@
     <string name="no_comments">Χωρίς σχόλια</string>
     <string name="error_unable_to_load_comments">Δεν ήταν δυνατή η φόρτωση σχολίων</string>
     <string name="close">Κλείσιμο</string>
+    <string name="enable_playback_resume_title">Συνέχιση αναπαραγωγής</string>
+    <string name="enable_playback_resume_summary">Επαναφορά της τελευταίας θέσης αναπαραγωγής</string>
+    <string name="enable_playback_state_lists_title">Θέσεις στις λίστες</string>
+    <string name="enable_playback_state_lists_summary">Εμφάνιση ενδείξεων θέσης αναπαραγωγής στις λίστες</string>
+    <string name="settings_category_clear_data_title">Εκκαθάριση δεδομένων</string>
+    <string name="watch_history_states_deleted">Οι θέσεις αναπαραγωγής διαγράφηκαν.</string>
+    <string name="missing_file">Το αρχείο μετακινήθηκε ή διαγράφηκε</string>
+    <string name="overwrite_failed">δεν είναι δυνατή η αντικατάσταση του αρχείου</string>
+    <string name="download_already_pending">Υπάρχει μια εκκρεμή λήψη με αυτό το όνομα</string>
+    <string name="error_postprocessing_stopped">Το NewPipe έκλεισε, ενώ εργάζονται στο αρχείο</string>
+    <string name="error_insufficient_storage">Δεν είναι αρκετός ο χώρος στη συσκευή</string>
+    <string name="error_progress_lost">Η πρόοδος χάθηκε, επειδή το αρχείο διαγράφηκε</string>
+    <string name="error_timeout">Λήξη χρονικού ορίου σύνδεσης</string>
+    <string name="confirm_prompt">Είστε σίγουρος;</string>
+    <string name="enable_queue_limit">Περιορισμός ουράς λήψης</string>
+    <string name="enable_queue_limit_desc">Μια λήψη θα εκτελεστεί ταυτόχρονα</string>
+    <string name="start_downloads">Έναρξη λήψεων</string>
+    <string name="pause_downloads">Παύση λήψεων</string>
+    <string name="downloads_storage_ask_title">"Ερώτηση που να γίνει η  λήψη"</string>
+    <string name="downloads_storage_ask_summary">Θα ερωτηθείτε πού να αποθηκεύσετε κάθε λήψη</string>
+    <string name="downloads_storage_ask_summary_kitkat">Θα σας ζητηθεί πού να αποθηκεύσετε κάθε λήψη.
+\nΕπιλέξτε SAF αν θέλετε να κατεβάσετε σε μια εξωτερική κάρτα SD</string>
+    <string name="downloads_storage_use_saf_title">Χρήση SAF</string>
+    <string name="downloads_storage_use_saf_summary">Το \"Πλαίσιο Πρόσβασης Αποθήκευσης\" (SAF) επιτρέπει λήψεις σε μια εξωτερική κάρτα SD.
+\nΣημείωση: ορισμένες συσκευές δεν είναι συμβατές</string>
+    <string name="clear_playback_states_title">Διαγραφή θέσεων αναπαραγωγής</string>
+    <string name="clear_playback_states_summary">Διαγράφει όλες τις θέσεις αναπαραγωγής</string>
+    <string name="delete_playback_states_alert">Να διαγραφούν όλες οι θέσεις αναπαραγωγής;</string>
+    <string name="download_choose_new_path">Αλλαγή των φακέλων λήψης για να τεθούν σε ισχύ</string>
 </resources>

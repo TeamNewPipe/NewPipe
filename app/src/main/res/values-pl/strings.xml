@@ -36,7 +36,7 @@
     <string name="dark_theme_title">Ciemny</string>
     <string name="light_theme_title">Jasny</string>
     <string name="download_dialog_title">Pobrane</string>
-    <string name="next_video_title">Dalej do góry</string>
+    <string name="next_video_title">Dalej</string>
     <string name="show_next_and_similar_title">Pokaż \"następne\" i \"podobne\" filmy</string>
     <string name="url_not_supported_toast">Nieobsługiwany adres URL</string>
     <string name="content_language_title">Domyślny język treści</string>
@@ -101,7 +101,7 @@
     <string name="msg_running_detail">Dotknij, aby zobaczyć szczegóły</string>
     <string name="msg_wait">Proszę czekać…</string>
     <string name="msg_copied">Skopiowano do schowka</string>
-    <string name="no_available_dir">Proszę wybrać dostępny katalog pobierania</string>
+    <string name="no_available_dir">Proszę później zdefiniować katalog pobierania w ustawieniach</string>
     <string name="could_not_load_image">Nie można załadować obrazu</string>
     <string name="app_ui_crash">Awaria aplikacji/interfejsu</string>
     <string name="use_tor_summary">(Eksperymentalne) Wymuś pobieranie przez Tora w celu zwiększenia prywatności (strumieniowe wideo nie jest jeszcze obsługiwane).</string>
@@ -133,9 +133,9 @@
     <string name="refresh">Odśwież</string>
     <string name="clear">Wyczyść</string>
     <string name="popup_resizing_indicator_title">Zmiana rozmiaru</string>
-    <string name="short_thousand">K</string>
+    <string name="short_thousand">k</string>
     <string name="short_million">M</string>
-    <string name="short_billion">B</string>
+    <string name="short_billion">G</string>
     <string name="msg_popup_permission">To pozwolenie jest wymagane, aby 
 \notworzyć w trybie okienkowym</string>
     <string name="open_in_popup_mode">Odtwórz w trybie okienkowym</string>
@@ -172,7 +172,7 @@
     <string name="fragment_whats_new">Co nowego</string>
     <string name="enable_search_history_title">Historia wyszukiwania</string>
     <string name="enable_search_history_summary">Zapisuj lokalnie historię wyszukiwania</string>
-    <string name="enable_watch_history_title">Historia i pamięć podręczna</string>
+    <string name="enable_watch_history_title">Historia oglądanych</string>
     <string name="enable_watch_history_summary">Zapisuj historię oglądania</string>
     <string name="resume_on_audio_focus_gain_title">Wznów gdy na pierwszym planie</string>
     <string name="resume_on_audio_focus_gain_summary">Kontynuuj odtwarzanie po przerwaniu (np. po rozmowie telefonicznej)</string>
@@ -373,7 +373,7 @@
     <string name="caption_setting_title">Napisy</string>
     <string name="caption_setting_description">Zmodyfikuj skalę tekstu napisów i style tła. Wymaga ponownego uruchomienia aplikacji.</string>
     <string name="clear_views_history_title">Wyczyść historię oglądania</string>
-    <string name="clear_views_history_summary">Usuwa historię odtworzonych strumieni</string>
+    <string name="clear_views_history_summary">Usuwa historię odtwarzanych strumieni i pozycje odtwarzania</string>
     <string name="delete_view_history_alert">Usunąć całą historię oglądania\?</string>
     <string name="watch_history_deleted">Usunięto historię oglądania.</string>
     <string name="clear_search_history_title">Wyczyść historię wyszukiwania</string>
@@ -417,7 +417,7 @@
     <string name="app_update_notification_channel_name">Powiadomienie o aktualizacji aplikacji</string>
     <string name="app_update_notification_channel_description">Powiadomienia o nowej wersji NewPipe</string>
     <string name="download_to_sdcard_error_title">Pamięć zewnętrzna jest niedostępna</string>
-    <string name="download_to_sdcard_error_message">Pobieranie na zewnętrzną kartę SD nie jest jeszcze możliwe. Zresetować lokalizację folderu pobierania\?</string>
+    <string name="download_to_sdcard_error_message">Pobieranie na zewnętrzną kartę SD nie jest możliwe. Zresetować lokalizację folderu pobierania\?</string>
     <string name="saved_tabs_invalid_json">Korzystanie z domyślnych kart, błąd podczas czytania zapisanych kart</string>
     <string name="restore_defaults">Przywróć domyślne</string>
     <string name="restore_defaults_confirmation">Czy chcesz przywrócić ustawienia domyślne\?</string>
@@ -464,8 +464,8 @@
     <string name="stop">Zatrzymaj</string>
     <string name="max_retry_msg">Maksymalna liczba powtórzeń</string>
     <string name="max_retry_desc">Maksymalna liczba prób przed anulowaniem pobierania</string>
-    <string name="pause_downloads_on_mobile">Przerwij przełączanie na dane mobilne</string>
-    <string name="pause_downloads_on_mobile_desc">Pobierane pliki, których nie można wstrzymać, zostaną zrestartowane</string>
+    <string name="pause_downloads_on_mobile">Przerwij przy ograniczonym transferze</string>
+    <string name="pause_downloads_on_mobile_desc">Pomocne przy przełączaniu na dane mobilne, ale niektóre transfery nie mogą być wstrzymywane</string>
     <string name="events">Zdarzenia</string>
     <string name="conferences">Konferencje</string>
     <string name="missions_header_pending">Oczekuje</string>
@@ -474,10 +474,40 @@
     <string name="autoplay_title">Automatyczne odtwarzanie</string>
     <plurals name="comments">
         <item quantity="one">Komentarze</item>
-        <item quantity="few"></item>
-        <item quantity="many"></item>
+        <item quantity="few"/>
+        <item quantity="many"/>
     </plurals>
     <string name="no_comments">Brak komentarzy</string>
     <string name="error_unable_to_load_comments">Nie można załadować komentarzy</string>
     <string name="close">Zamknij</string>
+    <string name="enable_playback_resume_title">Wznów odtwarzanie</string>
+    <string name="enable_playback_resume_summary">Przywróć pozycję odtwarzania</string>
+    <string name="enable_playback_state_lists_title">Pozycje na liście</string>
+    <string name="enable_playback_state_lists_summary">Pokaż wskaźniki pozycji odtwarzania na listach</string>
+    <string name="settings_category_clear_data_title">Wyczyść dane</string>
+    <string name="watch_history_states_deleted">Usunięto pozycję odtwarzania.</string>
+    <string name="missing_file">Plik przeniesiony lub usunięty</string>
+    <string name="overwrite_unrelated_warning">Plik o takiej nazwie już istnieje</string>
+    <string name="overwrite_failed">Nie można nadpisać tego pliku</string>
+    <string name="download_already_pending">Pobieranie pliku z tą nazwą jest już w kolejce</string>
+    <string name="error_postprocessing_stopped">NewPipe został zamknięty w czasie pracy nad plikiem</string>
+    <string name="error_insufficient_storage">Brak wystarczającej ilości miejsca na urządzeniu</string>
+    <string name="error_progress_lost">Utracono postęp ponieważ plik został usunięty</string>
+    <string name="confirm_prompt">Czy jesteś pewien\?</string>
+    <string name="enable_queue_limit">Ogranicz kolejkę pobierania</string>
+    <string name="enable_queue_limit_desc">Tylko jedno pobieranie będzie realizowane w danej chwili</string>
+    <string name="start_downloads">Rozpocznij pobieranie</string>
+    <string name="pause_downloads">Wstrzymaj pobieranie</string>
+    <string name="downloads_storage_ask_title">Zapytaj gdzie pobrać</string>
+    <string name="downloads_storage_ask_summary">Będziesz pytany o lokalizację dla każdego pobierania</string>
+    <string name="error_timeout">Połączenie uległo przedawnieniu</string>
+    <string name="downloads_storage_ask_summary_kitkat">Zostaniesz zapytany, gdzie zapisać każde pobranie.
+\nWybierz SAF, jeśli chcesz pobrać na zewnętrzną kartę SD</string>
+    <string name="downloads_storage_use_saf_title">Użyj SAF</string>
+    <string name="downloads_storage_use_saf_summary">Struktura dostępu do pamięci masowej umożliwia pobieranie danych na zewnętrzną kartę SD.
+\nUwaga: niektóre urządzenia nie są kompatybilne</string>
+    <string name="clear_playback_states_title">Usuń pozycje odtwarzania</string>
+    <string name="clear_playback_states_summary">Usuwa wszystkie pozycje odtwarzania</string>
+    <string name="delete_playback_states_alert">Usunąć wszystkie pozycje odtwarzania\?</string>
+    <string name="download_choose_new_path">Zmień folder pobierania</string>
 </resources>

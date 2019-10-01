@@ -35,7 +35,7 @@
     <string name="light_theme_title">Luminos</string>
     <string name="download_dialog_title">Descărcați</string>
     <string name="next_video_title">Următorul</string>
-    <string name="show_next_and_similar_title">Arată videoclipurile care urmează</string>
+    <string name="show_next_and_similar_title">Arată videoclipurile care urmează și similare</string>
     <string name="url_not_supported_toast">URL nesuportat</string>
     <string name="content_language_title">Limba dorită a conținutului</string>
     <string name="settings_category_video_audio_title">Video &amp; Audio</string>
@@ -102,13 +102,13 @@
     <string name="msg_running_detail">Apasă pentru detalii</string>
     <string name="msg_wait">Vă rugăm așteptați…</string>
     <string name="msg_copied">Copiat în clipboard</string>
-    <string name="no_available_dir">Vă rugăm alegeți un folder pentru descărcări</string>
+    <string name="no_available_dir">Definiți un dosar de descărcare mai târziu în setări</string>
     <string name="open_in_popup_mode">Deschide in modul popup</string>
     <string name="msg_popup_permission">Aceasta permisiune este necesara
 pentru a deschide în mod pop-up</string>
     <string name="reCaptchaActivity">ReCAPTCHA</string>
-    <string name="reCaptcha_title">reCAPTCHA noua</string>
-    <string name="recaptcha_request_toast">reCAPTCHA noua ceruta</string>
+    <string name="reCaptcha_title">Provocare reCAPTCHA</string>
+    <string name="recaptcha_request_toast">reCAPTCHA nouă cerută</string>
     <string name="popup_mode_share_menu_title">NewPipe mod pop-up</string>
     <string name="default_popup_resolution_title">"Rezoluție pop-up inițială "</string>
     <string name="show_higher_resolutions_title">Afișează rezoluții mai mari</string>
@@ -152,7 +152,7 @@ pentru a deschide în mod pop-up</string>
     <string name="fragment_whats_new">Ce este nou</string>
     <string name="enable_search_history_title">Istoric de căutări</string>
     <string name="enable_search_history_summary">Stochează local căutările</string>
-    <string name="enable_watch_history_title">Istoric și cache</string>
+    <string name="enable_watch_history_title">Istoric vizualizări.</string>
     <string name="enable_watch_history_summary">Reține videoclipurile vizionate</string>
     <string name="resume_on_audio_focus_gain_title">Reluați la refocalizare</string>
     <string name="resume_on_audio_focus_gain_summary">Continuă redarea după întreruperi (ex. după apeluri)</string>
@@ -181,7 +181,7 @@ pentru a deschide în mod pop-up</string>
     <plurals name="videos">
         <item quantity="one">%s videoclip</item>
         <item quantity="few">%s videoclipuri</item>
-        <item quantity="other">%s videoclipuri</item>
+        <item quantity="other">%s de videoclipuri</item>
     </plurals>
     <string name="settings_category_downloads_title">Descarcă</string>
     <string name="settings_file_charset_title">Caractere permise în numele fișierelor</string>
@@ -238,13 +238,13 @@ pentru a deschide în mod pop-up</string>
     <string name="use_inexact_seek_title">Folosește parcurgerea inexactă</string>
     <string name="use_inexact_seek_summary">Derularea inexactă permite player-ului să fie poziţionat mai rapid dar cu o precizie mai redusă</string>
     <string name="download_thumbnail_title">Încarcă miniaturi</string>
-    <string name="download_thumbnail_summary">Dezactivați pentru a opri încărcarea și salvarea tuturor thumbnail-urilor, pentru a economisi consumul de date și de memorie. Schimbarea acestei opțiuni va curăța tot cache-ul din memorie și de pe disc.</string>
+    <string name="download_thumbnail_summary">Dezactivați pentru a opri încărcarea miniaturilor, reduce utilizarea datelor și a memoriei. Schimbarea va curăța tot cache-ul din memorie și de pe disc.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache-ul de imagini a fost curățat</string>
     <string name="metadata_cache_wipe_title">Șterge cache-ul pentru metadata</string>
     <string name="metadata_cache_wipe_summary">Șterge cache-ul pentru datele de pagini web</string>
     <string name="metadata_cache_wipe_complete_notice">Cache pentru metadata șters</string>
     <string name="auto_queue_title">Adaugă următorul stream în coadă automat</string>
-    <string name="auto_queue_summary">Adaugă automat un stream asociat când se redă ultimul stream într-o coadă non-repetitivă.</string>
+    <string name="auto_queue_summary">Adaugă automat un stream asociat când se redă ultimul stream într-o coadă non-repetitivă</string>
     <string name="show_hold_to_append_title">Arată sfatul „Țineți apăsat pentru a adăuga”</string>
     <string name="show_hold_to_append_summary">Arată sfatul când butonul de background sau de popup este apăsat în pagina de informații a videoclipului</string>
     <string name="default_content_country_title">Țara implicită pentru conținut</string>
@@ -270,7 +270,7 @@ pentru a deschide în mod pop-up</string>
     <string name="video_streams_empty">Niciun stream video găsit</string>
     <string name="audio_streams_empty">Niciun stream audio găsit</string>
     <string name="invalid_directory">Director Invalid</string>
-    <string name="invalid_source">Sursă de conținut sau fișier invalidă</string>
+    <string name="invalid_source">Nu există o astfel de sursă de fișier/conținut</string>
     <string name="invalid_file">Fișierul nu există, sau nu dețineți suficiente permisiuni pentru a îl citi sau scrie</string>
     <string name="file_name_empty_error">Numele fișierului nu poate fi gol</string>
     <string name="error_occurred_detail">O eroare a apărut: %1$s</string>
@@ -296,8 +296,8 @@ pentru a deschide în mod pop-up</string>
     <string name="enqueue_on_background">Adăugaţi în fundal</string>
     <string name="enqueue_on_popup">Adăugaţi în Popup</string>
     <string name="start_here_on_main">Începeţi să redaţi de aici</string>
-    <string name="start_here_on_background">Începeţi de aici în Fundal</string>
-    <string name="start_here_on_popup">Începeţi de aici în popup</string>
+    <string name="start_here_on_background">Începe redarea în fundal</string>
+    <string name="start_here_on_popup">Începe redarea în popup</string>
     <string name="drawer_open">Deschdeţi sertarul</string>
     <string name="drawer_close">Închideţi sertarul</string>
     <string name="preferred_open_action_settings_title">Opţiunea de deschidere preferată</string>
@@ -313,7 +313,7 @@ pentru a deschide în mod pop-up</string>
     <string name="delete_all">Ştergeţi toate elementele</string>
     <string name="dismiss">Ignoraţi</string>
     <string name="rename">"Redenumiţi "</string>
-    <string name="toast_no_player">Niciun player a fost găsit pentru acest fişier</string>
+    <string name="toast_no_player">Nu este instalată nicio aplicație pentru a reda acest fișier</string>
     <string name="donation_title">Donaţi</string>
     <string name="drawer_header_action_paceholder_text">Ceva va apărea aici în curând ;D</string>
     <string name="import_settings">De asemenea, doriți să importați setări?</string>
@@ -329,7 +329,7 @@ pentru a deschide în mod pop-up</string>
     <string name="tracks">Titluri</string>
     <string name="clear_views_history_title">Șterge istoricul vizionărilor
 \n</string>
-    <string name="clear_views_history_summary">Șterge istoricul stream-urilor redate</string>
+    <string name="clear_views_history_summary">Șterge istoricul stream-urilor redate și pozițiile memorate</string>
     <string name="delete_view_history_alert">Șterge întregul istoric al vizionărilor\?</string>
     <string name="one_item_deleted">1 element șters.</string>
     <string name="create_playlist">Playlist nou</string>
@@ -364,5 +364,49 @@ pentru a deschide în mod pop-up</string>
     <string name="delete_search_history_alert">Șterge întregul istoric căutare\?</string>
     <string name="search_history_deleted">Istoric căutare șters</string>
     <string name="download_to_sdcard_error_title">Stocare externă indisponibilă</string>
-    <string name="download_to_sdcard_error_message">Descărcarea pe cardul SD extern nu este încă posibilă. Se resetează locația directorului de descărcări\?</string>
+    <string name="download_to_sdcard_error_message">Descărcarea pe cardul SD extern nu este posibilă. Se resetează locația directorului de descărcări\?</string>
+    <string name="preferred_player_fetcher_notification_title">Obținerea informațiilor…</string>
+    <string name="preferred_player_fetcher_notification_message">Se încarcă conținutul solicitat</string>
+    <string name="rename_playlist">Redenumire</string>
+    <string name="set_as_playlist_thumbnail">Setați ca miniatură a listei de redare</string>
+    <string name="delete_playlist_prompt">Ștergeți această listă de redare\?</string>
+    <string name="playlist_thumbnail_change_success">Miniatura listei de redare a fost modificată.</string>
+    <string name="playlist_delete_failure">Nu s-a putut șterge lista de redare.</string>
+    <string name="caption_none">Fără subtitrări</string>
+    <string name="resize_fit">Potrivire</string>
+    <string name="resize_fill">Umplere</string>
+    <string name="resize_zoom">Mărire</string>
+    <string name="import_export_title">Import/export</string>
+    <string name="caption_setting_title">Subtitre</string>
+    <string name="caption_setting_description">Modificați scala textului și stilurile de fundal. Necesită repornirea aplicației.</string>
+    <string name="app_license">NewPipe este un software copyleft gratuit: îl puteți utiliza, studia, distribui și îl puteți îmbunătăți după bunul plac. În mod special, îl puteți redistribui și/sau modifica în condițiile Licenței publice generale GNU, publicată de Free Software Foundation, fie versiunea 3 a Licenței, fie (la opțiunea dvs.) orice versiune ulterioară.</string>
+    <string name="privacy_policy_title">Politica de confidențialitate a NewPipe</string>
+    <string name="privacy_policy_encouragement">Proiectul NewPipe ia confidențialitatea în serios. Prin urmare, aplicația nu colectează date fără consimțământul dumneavoastră.
+\nPolitica de confidențialitate a NewPipe explică în detaliu ce date sunt trimise și stocate atunci când trimiteți un raport de avarie.</string>
+    <string name="read_privacy_policy">Citiți politica de confidențialitate</string>
+    <string name="saved_tabs_invalid_json">Se folosesc filele implicite, eroare la citirea filelor salvate</string>
+    <string name="restore_defaults">Restabilire valori implicite</string>
+    <string name="restore_defaults_confirmation">Doriți să restaurați setările implicite\?</string>
+    <string name="subscribers_count_not_available">Numărul abonaților nu este disponibil</string>
+    <string name="main_page_content_summary">Ce file sunt afișate pe pagina principală</string>
+    <string name="selection">Selecție</string>
+    <string name="conferences">Conferințe</string>
+    <string name="show_comments_title">Afișare comentarii</string>
+    <string name="show_comments_summary">Dezactivează pentru oprirea afișării comentariilor</string>
+    <string name="autoplay_title">Redare automată</string>
+    <plurals name="comments">
+        <item quantity="one">Comentarii</item>
+        <item quantity="few"/>
+        <item quantity="other"/>
+    </plurals>
+    <string name="no_comments">Niciun comentariu</string>
+    <string name="error_unable_to_load_comments">Nu s-au putut încărca comentariile</string>
+    <string name="enable_playback_resume_title">Reluare redare</string>
+    <string name="enable_playback_resume_summary">Se restabilește ultima poziție de redare</string>
+    <string name="enable_playback_state_lists_title">Poziții în liste</string>
+    <string name="enable_playback_state_lists_summary">Afișează indicatorii de poziție de redare în liste</string>
+    <string name="settings_category_clear_data_title">Eliminare date</string>
+    <string name="watch_history_states_deleted">Pozițiile de redare șterse.</string>
+    <string name="missing_file">Fișier mutat sau șters</string>
+    <string name="clear_playback_states_title">Șterge pozițiile de redare memorate</string>
 </resources>

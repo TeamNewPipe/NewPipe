@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="main_bg_subtitle">شروع کرنے کیلئے تلاش کو ٹپ کریں</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="main_bg_subtitle">شروع کرنے کیلئے تلاش کو ٹپ کریں</string>
     <string name="view_count_text">ملاحظات</string>
     <string name="upload_date_text">کوشائع ہوا</string>
     <string name="install">انسٹال</string>
@@ -7,16 +8,21 @@
     <string name="share">بانٹیں</string>
     <string name="download">ڈاؤن لوڈکریں</string>
     <string name="search">تلاش کریں</string>
-    <string name="did_you_mean">کیا آپ کا مطلب تھا</string>
+    <string name="did_you_mean">کیا آپ کا مطلب تھا: %1$s \?</string>
     <string name="open_in_browser">انٹرنیٹ میں کھولیں</string>
     <string name="settings">ترتیبات</string>
     <string name="no_player_found">کوئیstream پلیئر نہیں ملا.کیا آپ VLC انسٹال کرنا چاہتے ہیں؟</string>
-    <string name="no_player_found_toast">کوئیstream پلیئر نہیں ملا.(آپ VLC انسٹال کر سکتے ہیے)</string>
+    <string name="no_player_found_toast">کوئیstream پلیئر نہیں ملا(آپ VLC انسٹال کر سکتے ہیے)۔</string>
     <string name="open_in_popup_mode">PopUp موڈ میں کھولیں</string>
-    <string name="controls_download_desc">سٹریم فائل ڈاؤن لوڈ کریں.</string>
+    <string name="controls_download_desc">سٹریم فائل ڈاؤن لوڈ کریں</string>
     <string name="share_dialog_title">کے ساتھ بانٹیں</string>
     <string name="choose_browser">Internet Browser منتخب کریں
 \n</string>
     <string name="screen_rotation">rotation کرو</string>
     <string name="use_external_video_player_title">external video player استعمال کریں</string>
-    </resources>
+    <string name="use_external_video_player_summary">SOME قرارداد پر آواز ہٹا دے گا</string>
+    <string name="use_external_audio_player_title">بیرونی سوتی عامل ایپ استعمال کریں</string>
+    <string name="popup_mode_share_menu_title">NewPipe ابھاری اسلوب</string>
+    <string name="subscribe_button_title">سبسکرائیب کریں</string>
+    <string name="subscribed_button_title">سبسکرائیب کر لیا</string>
+</resources>

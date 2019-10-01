@@ -105,7 +105,7 @@
     <string name="start">Start</string>
     <string name="add">Nytt mål</string>
     <string name="msg_url_malform">Feilaktig nettadresse eller manglende internettilknytning</string>
-    <string name="no_available_dir">Velg ei tilgjengelig nedlastingsmappe</string>
+    <string name="no_available_dir">Velg nedlastingsmappe senere i innstillingene</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">reCAPTCHA-oppgave</string>
     <string name="open_in_popup_mode">Åpne i oppsprettsmodus</string>
@@ -121,7 +121,7 @@
     <string name="yes">Ja</string>
     <string name="later">Senere</string>
     <string name="disabled">Avskrudd</string>
-    <string name="short_thousand">K</string>
+    <string name="short_thousand">k</string>
     <string name="short_million">M</string>
     <string name="short_billion">Mrd.</string>
     <string name="msg_popup_permission">Denne tilgangen trengs for
@@ -143,7 +143,7 @@
     <string name="show_search_suggestions_summary">Vis søkeforslag ved søk</string>
     <string name="enable_search_history_title">Søkehistorikk</string>
     <string name="enable_search_history_summary">Lagre søkemønster lokalt</string>
-    <string name="enable_watch_history_title">Historikk og mellomlagring</string>
+    <string name="enable_watch_history_title">Visningshistorikk</string>
     <string name="enable_watch_history_summary">Lagre visningshistorikk</string>
     <string name="settings_category_popup_title">Oppsprett</string>
     <string name="filter">Filter</string>
@@ -347,7 +347,7 @@
     <string name="playback_pitch">Tonehøyde</string>
     <string name="playback_default">Forvalg</string>
     <string name="clear_views_history_title">Tøm avspillingshistorikk</string>
-    <string name="clear_views_history_summary">Slett historikken for avspilte strømmer</string>
+    <string name="clear_views_history_summary">Slett historikken og posisjon for avspilte strømmer</string>
     <string name="delete_view_history_alert">Slett hele visningshistorikken\?</string>
     <string name="watch_history_deleted">Visningshistorikk slettet.</string>
     <string name="clear_search_history_title">Tøm søkehistorikk</string>
@@ -414,7 +414,7 @@
     <string name="app_update_notification_channel_name">Programoppgraderingsmerknad</string>
     <string name="app_update_notification_channel_description">Merknader for nye NewPipe-versjoner</string>
     <string name="download_to_sdcard_error_title">Ekstern lagring utilgjengelig</string>
-    <string name="download_to_sdcard_error_message">Nedlasting til eksternt SD-kort er ikke mulig enda. Tilbakestill plassering av nedlastingsmappe\?</string>
+    <string name="download_to_sdcard_error_message">Nedlasting til eksternt SD-kort er ikke mulig. Tilbakestill plassering av nedlastingsmappe\?</string>
     <string name="saved_tabs_invalid_json">Bruker forvalgte faner, feil under lagring av lagrede faner.</string>
     <string name="restore_defaults">Gjenopprett forvalg</string>
     <string name="restore_defaults_confirmation">Ønsker du å gjenopprette alt til forvalgene\?</string>
@@ -462,8 +462,8 @@
     <string name="stop">Stopp</string>
     <string name="max_retry_msg">Maksimalt antall forsøk</string>
     <string name="max_retry_desc">Maksimalt antall tilkoblingsforsøk før nedlastingen avblåses</string>
-    <string name="pause_downloads_on_mobile">Pause ved veksling til mobildata</string>
-    <string name="pause_downloads_on_mobile_desc">Nedlastinger som ikke kan pauses vil bli startet på nytt</string>
+    <string name="pause_downloads_on_mobile">Pause ved veksling til kvotebasert nett</string>
+    <string name="pause_downloads_on_mobile_desc">Nyttig ved veksling til mobildata, selv om noen nedlastinger ikke kan settes på pause</string>
     <string name="show_comments_title">Vis kommentarer</string>
     <string name="show_comments_summary">Skru av for å stoppe visning i kommentarer</string>
     <string name="autoplay_title">Spill av automatisk</string>
@@ -474,4 +474,34 @@
     <string name="no_comments">Ingen kommenterer</string>
     <string name="error_unable_to_load_comments">Kunne ikke laste inn kommentarer</string>
     <string name="close">Lukk</string>
+    <string name="missions_header_pending">Venter</string>
+    <string name="enable_playback_resume_title">Gjenoppta avspilling</string>
+    <string name="enable_playback_resume_summary">Fortsett der du slapp</string>
+    <string name="enable_playback_state_lists_title">Posisjon i lister</string>
+    <string name="enable_playback_state_lists_summary">Vis avspillingsposisjonsindikator i lister</string>
+    <string name="settings_category_clear_data_title">Tøm data</string>
+    <string name="watch_history_states_deleted">Avspillingsposisjon slettet</string>
+    <string name="missing_file">Fil flyttet eller slettet</string>
+    <string name="overwrite_unrelated_warning">En fil ved dette navnet finnes allerede</string>
+    <string name="overwrite_failed">Kan ikke overskrive filen</string>
+    <string name="download_already_pending">Det finnes en ventende nedlasting ved dette navnet</string>
+    <string name="error_postprocessing_stopped">NewPipe ble lukket under arbeid med filen</string>
+    <string name="error_insufficient_storage">Ingen ledig plass på enheten</string>
+    <string name="error_progress_lost">Framdrift gikk tapt, fordi filen ble slettet</string>
+    <string name="error_timeout">Tilkoblingsavbrudd</string>
+    <string name="confirm_prompt">Er du sikker\?</string>
+    <string name="enable_queue_limit">Begrens nedlastingskø</string>
+    <string name="enable_queue_limit_desc">Én nedlasting av gangen</string>
+    <string name="start_downloads">Start nedlastinger</string>
+    <string name="pause_downloads">Sett nedlastinger på pause</string>
+    <string name="downloads_storage_ask_title">Spør om hvor ting skal lastes ned til</string>
+    <string name="downloads_storage_ask_summary">Du vil bli spurt om hvor hver nedlasting skal plasseres</string>
+    <string name="downloads_storage_ask_summary_kitkat">Du vil bli spurt om hvor hver nedlasting skal plasseres.
+\nSkru på dette valget hvis du vil laste ned til eksternt SD-kort.</string>
+    <string name="downloads_storage_use_saf_title">Bruk SAF</string>
+    <string name="downloads_storage_use_saf_summary">Lagringstilgangsrammeverk (SAF) tillater nedlastinger til eksternt SD-kort.
+\nMerk: Noen enheter er ikke kompatible.</string>
+    <string name="clear_playback_states_title">Slett avspillingsposisjoner</string>
+    <string name="clear_playback_states_summary">Sletter alle avspillingsposisjoner</string>
+    <string name="delete_playback_states_alert">Slett alle avspillingsposisjoner\?</string>
 </resources>
