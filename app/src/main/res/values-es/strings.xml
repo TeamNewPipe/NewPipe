@@ -453,7 +453,7 @@
     <string name="error_insufficient_storage">No hay suficiente espacio disponible en el dispositivo</string>
     <string name="error_progress_lost">Se perdió el progreso porque el archivo fue eliminado</string>
     <string name="error_timeout">Tiempo de espera excedido</string>
-    <string name="error_download_resource_gone">El recurso solicitado ya no esta disponible</string>
+    <string name="error_download_resource_gone">No se puede recuperar esta descarga</string>
     <string name="downloads_storage_ask_title">Preguntar dónde descargar</string>
     <string name="downloads_storage_ask_summary">Se preguntará dónde guardar cada descarga</string>
     <string name="downloads_storage_ask_summary_kitkat">Se le preguntará dónde guardar cada descarga.

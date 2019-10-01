@@ -368,7 +368,7 @@ public class WebMReader {
         obj.trackNumber = readEncodedNumber();
         obj.relativeTimeCode = stream.readShort();
         obj.flags = (byte) stream.read();
-        obj.dataSize = (ref.offset + ref.size) - stream.position();
+        obj.dataSize = (int) ((ref.offset + ref.size) - stream.position());
         obj.createdFromBlock = ref.type == ID_Block;
 
         // NOTE: lacing is not implemented, and will be mixed with the stream data
@@ -465,7 +465,7 @@ public class WebMReader {
         public short relativeTimeCode;
         public long absoluteTimeCodeNs;
         public byte flags;
-        public long dataSize;
+        public int dataSize;
         private final Element ref;
 
         public boolean isKeyframe() {

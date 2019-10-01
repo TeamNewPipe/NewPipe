@@ -10,10 +10,12 @@ import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 
 import java.io.IOException;
+import java.io.InterruptedIOException;
 import java.net.HttpURLConnection;
 import java.nio.channels.ClosedByInterruptException;
 import java.util.List;
 
+import static us.shandian.giga.get.DownloadMission.ERROR_NOTHING;
 import static us.shandian.giga.get.DownloadMission.ERROR_RESOURCE_GONE;
 
 public class DownloadMissionRecover extends Thread {
@@ -21,14 +23,17 @@ public class DownloadMissionRecover extends Thread {
     static final int mID = -3;
 
     private final DownloadMission mMission;
-    private final MissionRecoveryInfo mRecovery;
     private final Exception mFromError;
+    private final boolean notInitialized;
+
     private HttpURLConnection mConn;
+    private MissionRecoveryInfo mRecovery;
+    private StreamExtractor mExtractor;
 
     DownloadMissionRecover(DownloadMission mission, Exception originError) {
         mMission = mission;
         mFromError = originError;
-        mRecovery = mission.recoveryInfo[mission.current];
+        notInitialized = mission.blocks == null && mission.current == 0;
     }
 
     @Override
@@ -38,28 +43,78 @@ public class DownloadMissionRecover extends Thread {
             return;
         }
 
+        /*if (mMission.source.startsWith(MissionRecoveryInfo.DIRECT_SOURCE)) {
+            resolve(mMission.source.substring(MissionRecoveryInfo.DIRECT_SOURCE.length()));
+            return;
+        }*/
+
         try {
-            /*if (mMission.source.startsWith(MissionRecoveryInfo.DIRECT_SOURCE)) {
-                resolve(mMission.source.substring(MissionRecoveryInfo.DIRECT_SOURCE.length()));
-                return;
-            }*/
-
             StreamingService svr = NewPipe.getServiceByUrl(mMission.source);
-
-            if (svr == null) {
-                throw new RuntimeException("Unknown source service");
-            }
-
-            StreamExtractor extractor = svr.getStreamExtractor(mMission.source);
-            extractor.fetchPage();
-
+            mExtractor = svr.getStreamExtractor(mMission.source);
+            mExtractor.fetchPage();
+        } catch (InterruptedIOException | ClosedByInterruptException e) {
+            return;
+        } catch (Exception e) {
             if (!mMission.running || super.isInterrupted()) return;
+            mMission.notifyError(e);
+            return;
+        }
 
+        // maybe the following check is redundant
+        if (!mMission.running || super.isInterrupted()) return;
+
+        if (!notInitialized) {
+            // set the current download url to null in case if the recovery
+            // process is canceled. Next time start() method is called the
+            // recovery will be executed, saving time
+            mMission.urls[mMission.current] = null;
+
+            mRecovery = mMission.recoveryInfo[mMission.current];
+            resolveStream();
+            return;
+        }
+
+        Log.w(TAG, "mission is not fully initialized, this will take a while");
+
+        try {
+            for (; mMission.current < mMission.urls.length; mMission.current++) {
+                mRecovery = mMission.recoveryInfo[mMission.current];
+
+                if (test()) continue;
+                if (!mMission.running) return;
+
+                resolveStream();
+                if (!mMission.running) return;
+
+                // before continue, check if the current stream was resolved
+                if (mMission.urls[mMission.current] == null || mMission.errCode != ERROR_NOTHING) {
+                    break;
+                }
+            }
+        } finally {
+            mMission.current = 0;
+        }
+
+        mMission.writeThisToFile();
+
+        if (!mMission.running || super.isInterrupted()) return;
+
+        mMission.running = false;
+        mMission.start();
+    }
+
+    private void resolveStream() {
+        if (mExtractor.getErrorMessage() != null) {
+            mMission.notifyError(mFromError);
+            return;
+        }
+
+        try {
             String url = null;
 
-            switch (mMission.kind) {
+            switch (mRecovery.kind) {
                 case 'a':
-                    for (AudioStream audio : extractor.getAudioStreams()) {
+                    for (AudioStream audio : mExtractor.getAudioStreams()) {
                         if (audio.average_bitrate == mRecovery.desiredBitrate && audio.getFormat() == mRecovery.format) {
                             url = audio.getUrl();
                             break;
@@ -69,9 +124,9 @@ public class DownloadMissionRecover extends Thread {
                 case 'v':
                     List<VideoStream> videoStreams;
                     if (mRecovery.desired2)
-                        videoStreams = extractor.getVideoOnlyStreams();
+                        videoStreams = mExtractor.getVideoOnlyStreams();
                     else
-                        videoStreams = extractor.getVideoStreams();
+                        videoStreams = mExtractor.getVideoStreams();
                     for (VideoStream video : videoStreams) {
                         if (video.resolution.equals(mRecovery.desired) && video.getFormat() == mRecovery.format) {
                             url = video.getUrl();
@@ -80,7 +135,7 @@ public class DownloadMissionRecover extends Thread {
                     }
                     break;
                 case 's':
-                    for (SubtitlesStream subtitles : extractor.getSubtitles(mRecovery.format)) {
+                    for (SubtitlesStream subtitles : mExtractor.getSubtitles(mRecovery.format)) {
                         String tag = subtitles.getLanguageTag();
                         if (tag.equals(mRecovery.desired) && subtitles.isAutoGenerated() == mRecovery.desired2) {
                             url = subtitles.getURL();
@@ -114,7 +169,7 @@ public class DownloadMissionRecover extends Thread {
         ////// Validate the http resource doing a range request
         /////////////////////
         try {
-            mConn = mMission.openConnection(url, mID, mMission.length - 10, mMission.length);
+            mConn = mMission.openConnection(url, true, mMission.length - 10, mMission.length);
             mConn.setRequestProperty("If-Range", mRecovery.validateCondition);
             mMission.establishConnection(mID, mConn);
 
@@ -140,22 +195,24 @@ public class DownloadMissionRecover extends Thread {
             if (!mMission.running || e instanceof ClosedByInterruptException) return;
             throw e;
         } finally {
-            this.interrupt();
+            disconnect();
         }
     }
 
     private void recover(String url, boolean stale) {
         Log.i(TAG,
-                String.format("download recovered  name=%s  isStale=%s  url=%s", mMission.storage.getName(), stale, url)
+                String.format("recover()  name=%s  isStale=%s  url=%s", mMission.storage.getName(), stale, url)
         );
+
+        mMission.urls[mMission.current] = url;
+        mRecovery.attempts = 0;
 
         if (url == null) {
             mMission.notifyError(ERROR_RESOURCE_GONE, null);
             return;
         }
 
-        mMission.urls[mMission.current] = url;
-        mRecovery.attempts = 0;
+        if (notInitialized) return;
 
         if (stale) {
             mMission.resetState(false, false, DownloadMission.ERROR_NOTHING);
@@ -208,15 +265,40 @@ public class DownloadMissionRecover extends Thread {
         return range;
     }
 
+    private boolean test() {
+        if (mMission.urls[mMission.current] == null) return false;
+
+        try {
+            mConn = mMission.openConnection(mMission.urls[mMission.current], true, -1, -1);
+            mMission.establishConnection(mID, mConn);
+
+            if (mConn.getResponseCode() == 200) return true;
+        } catch (Exception e) {
+            // nothing to do
+        } finally {
+            disconnect();
+        }
+
+        return false;
+    }
+
+    private void disconnect() {
+        try {
+            try {
+                mConn.getInputStream().close();
+            } finally {
+                mConn.disconnect();
+            }
+        } catch (Exception e) {
+            // nothing to do
+        } finally {
+            mConn = null;
+        }
+    }
+
     @Override
     public void interrupt() {
         super.interrupt();
-        if (mConn != null) {
-            try {
-                mConn.disconnect();
-            } catch (Exception e) {
-                // nothing to do
-            }
-        }
+        if (mConn != null) disconnect();
     }
 }

@@ -80,7 +80,7 @@ public class DownloadRunnable extends Thread {
             }
 
             try {
-                mConn = mMission.openConnection(mId, start, end);
+                mConn = mMission.openConnection(false, start, end);
                 mMission.establishConnection(mId, mConn);
 
                 // check if the download can be resumed
