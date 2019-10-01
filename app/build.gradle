@@ -69,6 +69,10 @@ dependencies {
     implementation "com.android.support:cardview-v7:${supportLibVersion}"
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 
+    // Originally in NewPipeExtractor
+    implementation 'com.grack:nanojson:1.1'
+    implementation 'org.jsoup:jsoup:1.9.2'
+
     implementation 'ch.acra:acra:4.9.2' //4.11
 
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
