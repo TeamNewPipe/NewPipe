@@ -37,6 +37,7 @@ public class DownloadManager {
 
     public static final String TAG_AUDIO = "audio";
     public static final String TAG_VIDEO = "video";
+    private static final String DOWNLOADS_METADATA_FOLDER = "pending_downloads";
 
     private final FinishedMissionStore mFinishedMissionStore;
 
@@ -75,24 +76,33 @@ public class DownloadManager {
         mPendingMissionsDir = getPendingDir(context);
 
         if (!Utility.mkdir(mPendingMissionsDir, false)) {
-            throw new RuntimeException("failed to create pending_downloads in data directory");
+            throw new RuntimeException("failed to create " + DOWNLOADS_METADATA_FOLDER + " directory");
         }
 
         loadPendingMissions(context);
     }
 
     private static File getPendingDir(@NonNull Context context) {
-        //File dir = new File(ContextCompat.getDataDir(context), "pending_downloads");
-        File dir = context.getExternalFilesDir("pending_downloads");
+        File dir = context.getExternalFilesDir(DOWNLOADS_METADATA_FOLDER);
+        if (testDir(dir)) return dir;
 
-        if (dir == null) {
-            // One of the following paths are not accessible ¿unmounted internal memory?
-            //        /storage/emulated/0/Android/data/org.schabi.newpipe[.debug]/pending_downloads
-            //        /sdcard/Android/data/org.schabi.newpipe[.debug]/pending_downloads
-            Log.w(TAG, "path to pending downloads are not accessible");
+        dir = new File(context.getFilesDir(), DOWNLOADS_METADATA_FOLDER);
+        if (testDir(dir)) return dir;
+
+        throw new RuntimeException("path to pending downloads are not accessible");
+    }
+
+    private static boolean testDir(@Nullable File dir) {
+        if (dir == null) return false;
+
+        try {
+            File tmp = new File(dir, ".tmp");
+            if (!tmp.createNewFile()) return false;
+            return tmp.delete();// if the file was created, SHOULD BE deleted too
+        } catch (Exception e) {
+            Log.e(TAG, "testDir() failed: " + dir.getAbsolutePath(), e);
+            return false;
         }
-
-        return dir;
     }
 
     /**
@@ -132,6 +142,7 @@ public class DownloadManager {
 
         for (File sub : subs) {
             if (!sub.isFile()) continue;
+            if (sub.getName().equals(".tmp")) continue;
 
             DownloadMission mis = Utility.readFromFile(sub);
             if (mis == null || mis.isFinished()) {
