@@ -249,7 +249,7 @@ public class WebMWriter implements Closeable {
                             nextCueTime += DEFAULT_CUES_EACH_MS;
                         }
                         keyFrames.add(
-                                new KeyFrame(baseSegmentOffset, currentClusterOffset - 7, written, bTimecode.length, bloq.absoluteTimecode)
+                                new KeyFrame(baseSegmentOffset, currentClusterOffset - 8, written, bTimecode.length, bloq.absoluteTimecode)
                         );
                     }
                 }
