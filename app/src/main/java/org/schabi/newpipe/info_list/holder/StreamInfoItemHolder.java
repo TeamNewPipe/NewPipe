@@ -1,15 +1,14 @@
 package org.schabi.newpipe.info_list.holder;
 
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.Localization;
 
 /*
@@ -42,8 +41,8 @@ public class StreamInfoItemHolder extends StreamMiniInfoItemHolder {
     }
 
     @Override
-    public void updateFromItem(final InfoItem infoItem, @Nullable final StreamStateEntity state) {
-        super.updateFromItem(infoItem, state);
+    public void updateFromItem(final InfoItem infoItem, final HistoryRecordManager historyRecordManager) {
+        super.updateFromItem(infoItem, historyRecordManager);
 
         if (!(infoItem instanceof StreamInfoItem)) return;
         final StreamInfoItem item = (StreamInfoItem) infoItem;

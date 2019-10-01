@@ -8,6 +8,7 @@ import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.annotation.IdRes;
@@ -33,6 +34,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nononsenseapps.filepicker.Utils;
+
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
@@ -45,6 +48,8 @@ import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.extractor.utils.Localization;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.settings.NewPipeSettings;
+import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.FilenameUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.PermissionHelper;
@@ -53,6 +58,7 @@ import org.schabi.newpipe.util.StreamItemAdapter;
 import org.schabi.newpipe.util.StreamItemAdapter.StreamSizeWrapper;
 import org.schabi.newpipe.util.ThemeHelper;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -73,7 +79,7 @@ import us.shandian.giga.service.MissionState;
 public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheckedChangeListener, AdapterView.OnItemSelectedListener {
     private static final String TAG = "DialogFragment";
     private static final boolean DEBUG = MainActivity.DEBUG;
-    private static final int REQUEST_DOWNLOAD_PATH_SAF = 0x1230;
+    private static final int REQUEST_DOWNLOAD_SAVE_AS = 0x1230;
 
     @State
     protected StreamInfo currentInfo;
@@ -173,6 +179,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         super.onCreate(savedInstanceState);
         if (DEBUG)
             Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
+
         if (!PermissionHelper.checkStoragePermissions(getActivity(), PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE)) {
             getDialog().dismiss();
             return;
@@ -217,32 +224,6 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
                 okButton.setEnabled(true);
 
                 context.unbindService(this);
-
-                // check of download paths are defined
-                if (!askForSavePath) {
-                    String msg = "";
-                    if (mainStorageVideo == null) msg += getString(R.string.download_path_title);
-                    if (mainStorageAudio == null)
-                        msg += getString(R.string.download_path_audio_title);
-
-                    if (!msg.isEmpty()) {
-                        String title;
-                        if (mainStorageVideo == null && mainStorageAudio == null) {
-                            title = getString(R.string.general_error);
-                            msg = getString(R.string.no_available_dir) + ":\n" + msg;
-                        } else {
-                            title = msg;
-                            msg = getString(R.string.no_available_dir);
-                        }
-
-                        new AlertDialog.Builder(context)
-                                .setPositiveButton(android.R.string.ok, null)
-                                .setTitle(title)
-                                .setMessage(msg)
-                                .create()
-                                .show();
-                    }
-                }
             }
 
             @Override
@@ -342,9 +323,15 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == REQUEST_DOWNLOAD_PATH_SAF && resultCode == Activity.RESULT_OK) {
+        if (requestCode == REQUEST_DOWNLOAD_SAVE_AS && resultCode == Activity.RESULT_OK) {
             if (data.getData() == null) {
                 showFailedDialog(R.string.general_error);
+                return;
+            }
+
+            if (FilePickerActivityHelper.isOwnFileUri(context, data.getData())) {
+                File file = Utils.getFileForUri(data.getData());
+                checkSelectedDownload(null, Uri.fromFile(file), file.getName(), StoredFileHelper.DEFAULT_MIME);
                 return;
             }
 
@@ -600,9 +587,27 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
             // This part is called if with SAF preferred:
             //  * older android version running
             //  * save path not defined (via download settings)
-            //  * the user as checked the "ask where to download" option
+            //  * the user checked the "ask where to download" option
 
-            StoredFileHelper.requestSafWithFileCreation(this, REQUEST_DOWNLOAD_PATH_SAF, filename, mime);
+            if (!askForSavePath)
+                Toast.makeText(context, getString(R.string.no_available_dir), Toast.LENGTH_LONG).show();
+
+            if (NewPipeSettings.useStorageAccessFramework(context)) {
+                StoredFileHelper.requestSafWithFileCreation(this, REQUEST_DOWNLOAD_SAVE_AS, filename, mime);
+            } else {
+                File initialSavePath;
+                if (radioStreamsGroup.getCheckedRadioButtonId() == R.id.audio_button)
+                    initialSavePath = NewPipeSettings.getDir(Environment.DIRECTORY_MUSIC);
+                else
+                    initialSavePath = NewPipeSettings.getDir(Environment.DIRECTORY_MOVIES);
+
+                initialSavePath = new File(initialSavePath, filename);
+                startActivityForResult(
+                        FilePickerActivityHelper.chooseFileToSave(context, initialSavePath.getAbsolutePath()),
+                        REQUEST_DOWNLOAD_SAVE_AS
+                );
+            }
+
             return;
         }
 
@@ -652,6 +657,11 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
                     // This part is called if:
                     // * using SAF on older android version
                     // * save path not defined
+                    // * if the file exists overwrite it, is not necessary ask
+                    if (!storage.existsAsFile() && !storage.create()) {
+                        showFailedDialog(R.string.error_file_creation);
+                        return;
+                    }
                     continueSelectedDownload(storage);
                     return;
                 } else if (targetFile == null) {
@@ -756,7 +766,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         try {
             if (storage.length() > 0) storage.truncate();
         } catch (IOException e) {
-            Log.e(TAG, "failed to overwrite the file: " + storage.getUri().toString(), e);
+            Log.e(TAG, "failed to truncate the file: " + storage.getUri().toString(), e);
             showFailedDialog(R.string.overwrite_failed);
             return;
         }
@@ -773,7 +783,6 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         // more download logic: select muxer, subtitle converter, etc.
         switch (radioStreamsGroup.getCheckedRadioButtonId()) {
             case R.id.audio_button:
-                threads = 1;// use unique thread for subtitles due small file size
                 kind = 'a';
                 selectedStream = audioStreamsAdapter.getItem(selectedAudioIndex);
 
@@ -808,6 +817,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
                 }
                 break;
             case R.id.subtitle_button:
+                threads = 1;// use unique thread for subtitles due small file size
                 kind = 's';
                 selectedStream = subtitleStreamsAdapter.getItem(selectedSubtitleIndex);
 

@@ -69,7 +69,7 @@
     <string name="metadata_cache_wipe_summary">Alle gecachete webpagina-gegevens wissen</string>
     <string name="metadata_cache_wipe_complete_notice">Metagegevens-cache gewist</string>
     <string name="auto_queue_title">Volgende stream automatisch in wachtrij plaatsen</string>
-    <string name="auto_queue_summary">Automatisch ne gerelateerde stream toekennen bij het afspelen van de laatste stream in een niet-herhalende wachtlijst.</string>
+    <string name="auto_queue_summary">Automatisch ne gerelateerde stream toekennen bij het afspelen van de laatste stream in een niet-herhalende wachtlijst</string>
     <string name="player_gesture_controls_title">Veegbesturing</string>
     <string name="player_gesture_controls_summary">Gebruikt vegen voor de helderheid en het volume van de speler aan te passen</string>
     <string name="show_search_suggestions_title">Zoeksuggesties</string>
@@ -298,11 +298,11 @@
     <string name="play_queue_stream_detail">Details</string>
     <string name="play_queue_audio_settings">Audio-instellingen</string>
     <string name="hold_to_append">Houdt ingedrukt voor toe te voegen aan wachtrij</string>
-    <string name="enqueue_on_background">Toevoegen aan wachtrij wanneer op de achtergrond</string>
-    <string name="enqueue_on_popup">Toevoegen aan wachtrij bij nieuwe pop-up</string>
+    <string name="enqueue_on_background">Toevoegen aan wachtrij in de achtergrond</string>
+    <string name="enqueue_on_popup">Toevoegen aan wachtrij in nieuwe pop-up</string>
     <string name="start_here_on_main">Begint hier met afspelen</string>
-    <string name="start_here_on_background">Begint hier met afspelen wanneer op de achtergrond</string>
-    <string name="start_here_on_popup">Begint hier met afspelen in nieuwe pop-up</string>
+    <string name="start_here_on_background">Begint met afspelen in de achtergrond</string>
+    <string name="start_here_on_popup">Begint met afspelen in nieuwe pop-up</string>
     <string name="drawer_open">Menu openen</string>
     <string name="drawer_close">Menu sluiten</string>
     <string name="drawer_header_action_paceholder_text">Hier zal der binnenkort iets verschijnen ;D</string>
@@ -367,12 +367,11 @@
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Toon</string>
     <string name="unhook_checkbox">Ontkoppelen (kan ruis veroorzaken)</string>
-    <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Standaard</string>
     <string name="clear_views_history_title">Kijkgeschiedenis wissen</string>
     <string name="clear_views_history_summary">Verwijdert de geschiedenis van afgespeelde streams</string>
     <string name="delete_view_history_alert">De ganse kijkgeschiedenis verwijderen\?</string>
-    <string name="view_history_deleted">Kijkgeschiedenis verwijderd.</string>
+    <string name="watch_history_deleted">Kijkgeschiedenis verwijderd.</string>
     <string name="clear_search_history_title">Zoekgeschiedenis wissen</string>
     <string name="clear_search_history_summary">Verwijdert de gebruikte zoektermen</string>
     <string name="delete_search_history_alert">De ganse zoekgeschiedenis verwijderen\?</string>
@@ -465,4 +464,14 @@
     <string name="max_retry_desc">Maximaal aantal pogingen vooraleer dat den download wordt geannuleerd</string>
     <string name="pause_downloads_on_mobile">Pauzeren bij overschakelen naar mobiele gegevens</string>
     <string name="pause_downloads_on_mobile_desc">Downloads die dat niet kunnen gepauzeerd worden gaan herstart worden</string>
+    <string name="show_comments_title">Commentaren weergeven</string>
+    <string name="show_comments_summary">Schakelt dit uit voor reacties niet meer weer te geven</string>
+    <string name="autoplay_title">Automatisch afspelen</string>
+    <plurals name="comments">
+        <item quantity="one">Commentaren</item>
+        <item quantity="other"></item>
+    </plurals>
+    <string name="no_comments">Geen commentaren</string>
+    <string name="error_unable_to_load_comments">Kan commentaren niet laden</string>
+    <string name="close">Sluiten</string>
 </resources>

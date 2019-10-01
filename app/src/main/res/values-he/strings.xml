@@ -108,7 +108,7 @@
     <string name="fragment_whats_new">מה חדש</string>
     <string name="enable_search_history_title">היסטוריית חיפוש</string>
     <string name="enable_search_history_summary">שמירת שאילתות החיפוש מקומית</string>
-    <string name="enable_watch_history_title">היסטוריה ומטמון</string>
+    <string name="enable_watch_history_title">היסטוריית צפייה</string>
     <string name="enable_watch_history_summary">תיעוד הסרטונים שנצפו</string>
     <string name="resume_on_audio_focus_gain_title">להמשיך את הניגון עם החזרת המיקוד</string>
     <string name="resume_on_audio_focus_gain_summary">להמשיך לנגן לאחר הפרעות (למשל: שיחות טלפון)</string>
@@ -148,9 +148,9 @@
     <string name="audio">שמע</string>
     <string name="retry">ניסיון חוזר</string>
     <string name="storage_permission_denied">הגישה לאחסון נדחתה</string>
-    <string name="short_thousand">K</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">B</string>
+    <string name="short_thousand">ק׳</string>
+    <string name="short_million">מ׳</string>
+    <string name="short_billion">ג׳</string>
     <string name="no_subscribers">אין מנויים</string>
     <plurals name="subscribers">
         <item quantity="one">מנוי אחד</item>
@@ -168,9 +168,9 @@
     <string name="no_videos">אין סרטונים</string>
     <plurals name="videos">
         <item quantity="one">סרטון</item>
-        <item quantity="two">שני סרטונים</item>
-        <item quantity="many">%s סרטונים</item>
-        <item quantity="other">%s סרטונים</item>
+        <item quantity="two">סרטונים</item>
+        <item quantity="many">סרטונים</item>
+        <item quantity="other">סרטונים</item>
     </plurals>
     <string name="start">התחלה</string>
     <string name="pause">השהיה</string>
@@ -189,7 +189,7 @@
     <string name="msg_running_detail">יש לגעת לפרטים נוספים</string>
     <string name="msg_wait">נא להמתין…</string>
     <string name="msg_copied">הועתק ללוח</string>
-    <string name="no_available_dir">נא לבחור תיקיית הורדה זמינה</string>
+    <string name="no_available_dir">נא לציין תיקיית הורדה בהגדרות בהמשך</string>
     <string name="msg_popup_permission">הרשאה זו נדרשת לטובת 
 \nפתיחה בחלון צף</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
@@ -250,11 +250,11 @@
     <string name="play_queue_stream_detail">פרטים</string>
     <string name="play_queue_audio_settings">אפשרויות שמע</string>
     <string name="hold_to_append">להחזיק כדי להוסיף לרשימת נגינה</string>
-    <string name="enqueue_on_background">להוסיף לרשימת הנגינה בעת נגינת רקע</string>
-    <string name="enqueue_on_popup">הוספה לרשימת הנגינה בנגן הצף</string>
+    <string name="enqueue_on_background">להוסיף לרשימת הנגינה ברקע</string>
+    <string name="enqueue_on_popup">הוספה לתור בנגן צף חדש</string>
     <string name="start_here_on_main">להתחיל לנגן מכאן</string>
-    <string name="start_here_on_background">"להתחיל מכאן  כאשר נגן הרקע מופעל"</string>
-    <string name="start_here_on_popup">להתחיל כאן בנגן הצף</string>
+    <string name="start_here_on_background">להתחיל לנגן ברקע</string>
+    <string name="start_here_on_popup">להתחיל לנגן בחלון צף חדש</string>
     <string name="controls_download_desc">הורדת קובץ הזרמה</string>
     <string name="show_info">הצגת מידע</string>
     <string name="tab_bookmarks">רשימות נגינה מסומנות</string>
@@ -277,7 +277,7 @@
     <string name="metadata_cache_wipe_complete_notice">מטמון נתוני העל התרוקן</string>
     <string name="export_data_summary">ייצוא היסטוריה, מינויים ורשימות נגינה</string>
     <string name="clear_views_history_title">מחיקת היסטוריית הצפייה</string>
-    <string name="view_history_deleted">היסטוריית הצפייה נמחקה.</string>
+    <string name="watch_history_deleted">היסטוריית הצפייה נמחקה.</string>
     <string name="clear_search_history_title">מחיקת היסטוריית החיפוש</string>
     <string name="search_history_deleted">היסטוריית החיפוש נמחקה.</string>
     <string name="invalid_file">הקובץ אינו קיים או שחסרה הרשאה לקרוא אותו או לכתוב אליו</string>
@@ -342,7 +342,7 @@
     <string name="toggle_orientation">החלפת כיווניות</string>
     <string name="switch_to_main">העברה לראשי</string>
     <string name="import_data_summary">משכתב את ההיסטוריה והמינויים הנוכחיים שלך</string>
-    <string name="clear_views_history_summary">מחיקת היסטוריית התזרימים שהתנגנו</string>
+    <string name="clear_views_history_summary">מחיקת היסטוריית התזרימים שהתנגנו ומיקומי הנגינה</string>
     <string name="channels">ערוצים</string>
     <string name="playlists">רשימות נגינה</string>
     <string name="tracks">רצועות</string>
@@ -407,7 +407,7 @@
     <string name="app_update_notification_channel_name">התראת עדכון יישומון</string>
     <string name="app_update_notification_channel_description">התראות על גרסה חדשה של NewPipe</string>
     <string name="download_to_sdcard_error_title">האחסון החיצוני אינו זמין</string>
-    <string name="download_to_sdcard_error_message">אין עדיין אפשרות להוריד לכרטיס SD. לאפס את מיקום תיקיית ההורדה\?</string>
+    <string name="download_to_sdcard_error_message">אין אפשרות להוריד לכרטיס SD. לאפס את מיקום תיקיית ההורדה\?</string>
     <string name="saved_tabs_invalid_json">נעשה שימוש בלשוניות בררת המחדל, אירעה שגיאה בעת קריאת הלשוניות שנשמרו</string>
     <string name="restore_defaults">שחזור בררות מחדל</string>
     <string name="restore_defaults_confirmation">לשחזר את בררות המחדל\?</string>
@@ -469,7 +469,49 @@
     <string name="stop">עצירה</string>
     <string name="max_retry_msg">מספר הניסיונות החוזרים המרבי</string>
     <string name="max_retry_desc">מספר הניסיונות החוזרים המרבי בטרם ביטול ההורדה</string>
-    <string name="pause_downloads_on_mobile">להשהות בעת מעבר לתקשורת נתונים סלולרית</string>
-    <string name="pause_downloads_on_mobile_desc">הורדות שלא ניתן להשהות יופעלו מחדש</string>
+    <string name="pause_downloads_on_mobile">לייצר הפרעה ברשתות מדודות</string>
+    <string name="pause_downloads_on_mobile_desc">שימושי בעת מעבר לחיבור רשת סלולרית, למרות שישנן הורדות שלא ניתן להשהות</string>
+    <string name="show_comments_title">הצגת תגובות</string>
+    <string name="show_comments_summary">יש להשבית כדי להפסיק הצגת תגובות</string>
+    <string name="autoplay_title">ניגון אוטומטי</string>
+    <plurals name="comments">
+        <item quantity="one">תגובות</item>
+        <item quantity="two"/>
+        <item quantity="many"/>
+        <item quantity="other"/>
+    </plurals>
+    <string name="no_comments">אין תגובות</string>
+    <string name="error_unable_to_load_comments">לא ניתן לטעון תגובות</string>
+    <string name="close">סגירה</string>
     <string name="missions_header_pending">בהמתנה</string>
+    <string name="enable_playback_resume_title">להמשיך בנגינה</string>
+    <string name="enable_playback_resume_summary">לשחזר את מיקום הנגינה האחרון</string>
+    <string name="enable_playback_state_lists_title">מיקומים ברשימות</string>
+    <string name="enable_playback_state_lists_summary">להציג מחווני מיקומי נגינה ברשימות</string>
+    <string name="settings_category_clear_data_title">לנקות את הנתונים</string>
+    <string name="watch_history_states_deleted">מיקומי הנגינה נמחקו.</string>
+    <string name="missing_file">הקובץ הועבר או נמחק</string>
+    <string name="overwrite_unrelated_warning">כבר קיים קובץ בשם הזה</string>
+    <string name="overwrite_failed">לא ניתן לשכתב על הקובץ</string>
+    <string name="download_already_pending">כבר יש הורדה ממתינה בשם הזה</string>
+    <string name="error_postprocessing_stopped">NewPipe נסגר בזמן העבודה על הקובץ</string>
+    <string name="error_insufficient_storage">לא נשאר מקום במכשיר</string>
+    <string name="error_progress_lost">התהליך אבד כיוון שהקובץ נמחק</string>
+    <string name="error_timeout">החיבור המתין זמן רב מדי</string>
+    <string name="confirm_prompt">בוודאות\?</string>
+    <string name="enable_queue_limit">הגבלת תור ההורדה</string>
+    <string name="enable_queue_limit_desc">רק הורדה אחת תרוץ בו־זמנית</string>
+    <string name="start_downloads">התחלת הורדות</string>
+    <string name="pause_downloads">השהיית הורדות</string>
+    <string name="downloads_storage_ask_title">לשאול לאן להוריד</string>
+    <string name="downloads_storage_ask_summary">תופיע שאלה לאן לשמור כל הורדה</string>
+    <string name="downloads_storage_ask_summary_kitkat">תוצג שאלה היכן לשמור כל הורדה. 
+\nיש להפעיל זאת אם ברצונך להוריד לכרטיס SD חיצוני</string>
+    <string name="downloads_storage_use_saf_title">שימוש ב־SAF</string>
+    <string name="downloads_storage_use_saf_summary">תשתית גישה לאחסון מאפשרת הורדות לכרטיס SD חיוני.
+\nלתשומת לבך: חלק מהמכשירים אינם נתמכים</string>
+    <string name="clear_playback_states_title">מחיקת מיקומי נגינה</string>
+    <string name="clear_playback_states_summary">מחיקת כל מיקומי הנגינה</string>
+    <string name="delete_playback_states_alert">למחוק את מיקומי הנגינה\?</string>
+    <string name="download_choose_new_path">יש להחליף את תיקיות ההורדה כדי שייכנס לתוקף</string>
 </resources>

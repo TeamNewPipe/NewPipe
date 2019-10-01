@@ -320,7 +320,7 @@
     <string name="clear_views_history_title">Rensa visningshistorik</string>
     <string name="clear_views_history_summary">Tar bort historiken för spelade videoklipp</string>
     <string name="delete_view_history_alert">Ta bort hela visningshistoriken\?</string>
-    <string name="view_history_deleted">Visningshistorik borttagen.</string>
+    <string name="watch_history_deleted">Visningshistorik borttagen.</string>
     <string name="clear_search_history_title">Rensa sökhistorik</string>
     <string name="clear_search_history_summary">Tar bort historiken för sökta nyckelord</string>
     <string name="delete_search_history_alert">Ta bort hela sökhistoriken\?</string>

@@ -37,14 +37,23 @@ import android.webkit.WebViewClient;
  */
 public class ReCaptchaActivity extends AppCompatActivity {
     public static final int RECAPTCHA_REQUEST = 10;
+    public static final String RECAPTCHA_URL_EXTRA = "recaptcha_url_extra";
 
     public static final String TAG = ReCaptchaActivity.class.toString();
     public static final String YT_URL = "https://www.youtube.com";
+
+    private String url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recaptcha);
+
+        url = getIntent().getStringExtra(RECAPTCHA_URL_EXTRA);
+        if (url == null || url.isEmpty()) {
+            url = YT_URL;
+        }
+
 
         // Set return to Cancel by default
         setResult(RESULT_CANCELED);
@@ -73,15 +82,12 @@ public class ReCaptchaActivity extends AppCompatActivity {
         myWebView.clearHistory();
         android.webkit.CookieManager cookieManager = CookieManager.getInstance();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            cookieManager.removeAllCookies(new ValueCallback<Boolean>() {
-                @Override
-                public void onReceiveValue(Boolean aBoolean) {}
-            });
+            cookieManager.removeAllCookies(aBoolean -> {});
         } else {
             cookieManager.removeAllCookie();
         }
 
-        myWebView.loadUrl(YT_URL);
+        myWebView.loadUrl(url);
     }
 
     private class ReCaptchaWebViewClient extends WebViewClient {

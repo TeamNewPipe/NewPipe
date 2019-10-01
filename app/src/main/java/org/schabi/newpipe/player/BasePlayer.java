@@ -187,6 +187,7 @@ public abstract class BasePlayer implements
     protected MediaSessionManager mediaSessionManager;
 
     private boolean isPrepared = false;
+    private Disposable stateLoader;
 
     //////////////////////////////////////////////////////////////////////////*/
 
@@ -283,10 +284,11 @@ public abstract class BasePlayer implements
                 ) {
             simpleExoPlayer.seekTo(playQueue.getIndex(), queue.getItem().getRecoveryPosition());
             return;
+
         } else if (intent.getBooleanExtra(RESUME_PLAYBACK, false) && isPlaybackResumeEnabled()) {
             final PlayQueueItem item = queue.getItem();
-            if (item != null && item.getRecoveryPosition() == PlayQueueItem.RECOVERY_UNSET && isPlaybackResumeEnabled()) {
-                final Disposable stateLoader = recordManager.loadStreamState(item)
+            if (item != null && item.getRecoveryPosition() == PlayQueueItem.RECOVERY_UNSET) {
+                stateLoader = recordManager.loadStreamState(item)
                         .observeOn(AndroidSchedulers.mainThread())
                         .doFinally(() -> initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence,
                                 /*playOnInit=*/true))
@@ -337,6 +339,7 @@ public abstract class BasePlayer implements
         if (audioReactor != null) audioReactor.dispose();
         if (playbackManager != null) playbackManager.dispose();
         if (mediaSessionManager != null) mediaSessionManager.dispose();
+        if (stateLoader != null) stateLoader.dispose();
 
         if (playQueueAdapter != null) {
             playQueueAdapter.unsetSelectedListener();
@@ -1046,27 +1049,33 @@ public abstract class BasePlayer implements
     private void savePlaybackState(final StreamInfo info, final long progress) {
         if (info == null) return;
         if (DEBUG) Log.d(TAG, "savePlaybackState() called");
-        final Disposable stateSaver = recordManager.saveStreamState(info, progress)
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnError((e) -> {
-                    if (DEBUG) e.printStackTrace();
-                })
-                .onErrorComplete()
-                .subscribe();
-        databaseUpdateReactor.add(stateSaver);
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        if (prefs.getBoolean(context.getString(R.string.enable_watch_history_key), true)) {
+            final Disposable stateSaver = recordManager.saveStreamState(info, progress)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnError((e) -> {
+                        if (DEBUG) e.printStackTrace();
+                    })
+                    .onErrorComplete()
+                    .subscribe();
+            databaseUpdateReactor.add(stateSaver);
+        }
     }
 
     private void resetPlaybackState(final PlayQueueItem queueItem) {
         if (queueItem == null) return;
-        final Disposable stateSaver = queueItem.getStream()
-                .flatMapCompletable(info -> recordManager.saveStreamState(info, 0))
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnError((e) -> {
-                    if (DEBUG) e.printStackTrace();
-                })
-                .onErrorComplete()
-                .subscribe();
-        databaseUpdateReactor.add(stateSaver);
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        if (prefs.getBoolean(context.getString(R.string.enable_watch_history_key), true)) {
+            final Disposable stateSaver = queueItem.getStream()
+                    .flatMapCompletable(info -> recordManager.saveStreamState(info, 0))
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnError((e) -> {
+                        if (DEBUG) e.printStackTrace();
+                    })
+                    .onErrorComplete()
+                    .subscribe();
+            databaseUpdateReactor.add(stateSaver);
+        }
     }
 
     public void resetPlaybackState(final StreamInfo info) {
