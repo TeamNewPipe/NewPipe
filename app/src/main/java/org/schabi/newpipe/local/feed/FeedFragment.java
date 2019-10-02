@@ -19,7 +19,6 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
-import org.schabi.newpipe.extractor.services.youtube.linkHandler.YoutubeStreamLinkHandlerFactory;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionService;
@@ -55,15 +54,13 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
     private AtomicBoolean hasStartedLoading = new AtomicBoolean(false);
 
     private SubscriptionService subscriptionService;
-    private static YoutubeStreamLinkHandlerFactory youtubeStreamLinkHandler =
-        YoutubeStreamLinkHandlerFactory.getInstance();
 
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
     private Disposable subscriptionObserver;
 
-    private Set<String> videoIds = new HashSet<>();
-    private Map<String, String> videoIsoTimeStrLookup = new HashMap<>();
-    private List<InfoItem> videoItems = new ArrayList<>();
+    private Set<String> itemIds = new HashSet<>();
+    private Map<String, String> isoTimeStrLookup = new HashMap<>();
+    private List<StreamInfoItem> listItems = new ArrayList<>();
     private Set<String> loadedSubscriptionEntities = new HashSet<>();
 
     private AtomicBoolean shouldSkipUpdate = new AtomicBoolean(false);
@@ -171,9 +168,9 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
     public void writeTo(Queue<Object> objectsToSave) {
         super.writeTo(objectsToSave);
         objectsToSave.add(loadedSubscriptionEntities);
-        objectsToSave.add(videoIds);
-        objectsToSave.add(videoIsoTimeStrLookup);
-        objectsToSave.add(videoItems);
+        objectsToSave.add(itemIds);
+        objectsToSave.add(isoTimeStrLookup);
+        objectsToSave.add(listItems);
     }
 
     @Override
@@ -181,9 +178,9 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
     public void readFrom(@NonNull Queue<Object> savedObjects) throws Exception {
         super.readFrom(savedObjects);
         loadedSubscriptionEntities = (Set<String>) savedObjects.poll();
-        videoIds = (Set<String>) savedObjects.poll();
-        videoIsoTimeStrLookup = (Map<String, String>) savedObjects.poll();
-        videoItems = (List<InfoItem>) savedObjects.poll();
+        itemIds = (Set<String>) savedObjects.poll();
+        isoTimeStrLookup = (Map<String, String>) savedObjects.poll();
+        listItems = (List<StreamInfoItem>) savedObjects.poll();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -246,20 +243,18 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
 
     private Consumer<ChannelInfo> getReceiveChannelInfoHandler(String url) {
         return channelInfo -> {
-            addVideoIsoTimeStrsToLookup(channelInfo.getPublishIsoTimeStrLookup());
+            addIsoTimeStrsToLookup(channelInfo.getPublishIsoTimeStrLookup());
 
             List<StreamInfoItem> relatedItems = channelInfo.getRelatedItems();
 
-            for (InfoItem item : relatedItems) {
-                String videoId = tryRetrieveVideoIdFromUrl(item.getUrl());
+            for (StreamInfoItem item : relatedItems) {
+                String itemId = item.getId();
+                if (itemId == null || itemIds.contains(itemId)) continue;
 
-                if (videoId == null || videoIds.contains(videoId)) continue;
-
-                String isoTimeStr = videoIsoTimeStrLookup.get(videoId);
-
+                String isoTimeStr = isoTimeStrLookup.get(itemId);
                 if (isoTimeStr == null) continue;
 
-                insertVideoItem(videoId, isoTimeStr, item);
+                insertItem(itemId, isoTimeStr, item);
             }
 
             numLoadedChannels.incrementAndGet();
@@ -267,19 +262,19 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
         };
     }
 
-    private synchronized void addVideoIsoTimeStrsToLookup(Map<String, String> lookup) {
-        videoIsoTimeStrLookup.putAll(lookup);
+    private synchronized void addIsoTimeStrsToLookup(Map<String, String> lookup) {
+        isoTimeStrLookup.putAll(lookup);
     }
 
-    private synchronized void insertVideoItem(String videoId, String isoTimeStr, InfoItem item) {
-        videoIds.add(videoId);
+    private synchronized void insertItem(String itemId, String isoTimeStr, StreamInfoItem item) {
+        itemIds.add(itemId);
 
         int insertPosition = ListUtils.binarySearchUpperBound(
-            videoItems,
+            listItems,
             isoTimeStr,
-            x -> videoIsoTimeStrLookup.get(tryRetrieveVideoIdFromUrl(x.getUrl())),
+            x -> isoTimeStrLookup.get(x.getId()),
             (a, b) -> b.compareTo(a));
-        videoItems.add(insertPosition, item);
+        listItems.add(insertPosition, item);
     }
 
     private Consumer<Throwable> getFetchChannelInfoErrorHandler(int serviceId, String url) {
@@ -301,7 +296,7 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
 
     @Override
     protected boolean hasMoreItems() {
-        return videoItems.size() > getNumVisibleItems();
+        return listItems.size() > getNumVisibleItems();
     }
 
     private void updateItemsList() {
@@ -315,16 +310,16 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
             boolean isDirty = false;
 
             for (int i = 0; i < numVisibleItems; i++) {
-                InfoItem videoItem = videoItems.get(i);
+                InfoItem infoItem = listItems.get(i);
 
                 if (i < viewItemSize) {
                     // Just do shallow comparison, since this is cheaper
-                    if (videoItem != viewItemsList.get(i)) {
-                        viewItemsList.set(i, videoItem);
+                    if (infoItem != viewItemsList.get(i)) {
+                        viewItemsList.set(i, infoItem);
                         isDirty = true;
                     }
                 } else {
-                    viewItemsList.add(i, videoItem);
+                    viewItemsList.add(i, infoItem);
                     isDirty = true;
                 }
 
@@ -389,26 +384,8 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
         return Math.max(MIN_ITEMS_INITIAL_LOAD, items);
     }
 
-    @Nullable
-    private String tryRetrieveVideoIdFromUrl(String url) {
-        try {
-            return youtubeStreamLinkHandler.getId(url);
-        } catch (Exception ex) {
-            if (DEBUG)
-                Log.d(TAG, "Failed to retrieve video ID from \"" + url + "\"", ex);
-
-            showSnackBarError(ex,
-                UserAction.SOMETHING_ELSE,
-                "none",
-                "",
-                R.string.general_error);
-
-            return null;
-        }
-    }
-
     private int getNumVisibleItems() {
-        return Math.min(videoItems.size(), numLoadedChunks.get() * FEED_LOAD_COUNT);
+        return Math.min(listItems.size(), numLoadedChunks.get() * FEED_LOAD_COUNT);
     }
 
     private void setLoadingState(boolean isLoading) {
