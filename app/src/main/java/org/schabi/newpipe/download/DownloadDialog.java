@@ -562,7 +562,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
                 mainStorage = mainStorageVideo;
                 format = videoStreamsAdapter.getItem(selectedVideoIndex).getFormat();
                 mime = format.mimeType;
-                filename += format == MediaFormat.OPUS ? "ogg" : format.suffix;
+                filename += format.suffix;
                 break;
             case R.id.subtitle_button:
                 mainStorage = mainStorageVideo;// subtitle & video files go together
