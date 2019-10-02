@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawer = null;
     private NavigationView drawerItems = null;
     private TextView headerServiceView = null;
+    private Button toggleServiceButton = null;
 
     private boolean servicesShown = false;
     private ImageView serviceArrow;
@@ -266,8 +267,8 @@ public class MainActivity extends AppCompatActivity {
 
         serviceArrow = hView.findViewById(R.id.drawer_arrow);
         headerServiceView = hView.findViewById(R.id.drawer_header_service_view);
-        Button action = hView.findViewById(R.id.drawer_header_action_button);
-        action.setOnClickListener(view -> {
+        toggleServiceButton = hView.findViewById(R.id.drawer_header_action_button);
+        toggleServiceButton.setOnClickListener(view -> {
             toggleServices();
         });
     }
@@ -278,6 +279,7 @@ public class MainActivity extends AppCompatActivity {
         drawerItems.getMenu().removeGroup(R.id.menu_services_group);
         drawerItems.getMenu().removeGroup(R.id.menu_tabs_group);
         drawerItems.getMenu().removeGroup(R.id.menu_options_about_group);
+
 
         if(servicesShown) {
             showServices();
@@ -364,6 +366,8 @@ public class MainActivity extends AppCompatActivity {
             String selectedServiceName = NewPipe.getService(
                     ServiceHelper.getSelectedServiceId(this)).getServiceInfo().getName();
             headerServiceView.setText(selectedServiceName);
+            toggleServiceButton.setContentDescription(
+                    getString(R.string.drawer_header_description) + selectedServiceName);
         } catch (Exception e) {
             ErrorActivity.reportUiError(this, e);
         }
@@ -555,6 +559,14 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             toolbar.setNavigationOnClickListener(v -> onHomeButtonPressed());
         }
+    }
+
+    private void updateDrawerHeaderString(String content) {
+        NavigationView navigationView = findViewById(R.id.navigation);
+        View hView =  navigationView.getHeaderView(0);
+        Button action = hView.findViewById(R.id.drawer_header_action_button);
+
+        action.setContentDescription(content);
     }
 
     private void handleIntent(Intent intent) {

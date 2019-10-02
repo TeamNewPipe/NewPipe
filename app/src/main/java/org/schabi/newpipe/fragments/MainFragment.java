@@ -159,6 +159,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
         viewPager.setOffscreenPageLimit(pagerAdapter.getCount());
         updateTabsIcon();
+        updateTabsContentDescription();
         updateCurrentTitle();
     }
 
@@ -167,6 +168,17 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             final TabLayout.Tab tabToSet = tabLayout.getTabAt(i);
             if (tabToSet != null) {
                 tabToSet.setIcon(tabsList.get(i).getTabIconRes(activity));
+            }
+        }
+    }
+
+    private void updateTabsContentDescription() {
+        for (int i = 0; i < tabsList.size(); i++) {
+            final TabLayout.Tab tabToSet = tabLayout.getTabAt(i);
+            if (tabToSet != null) {
+                final Tab t = tabsList.get(i);
+                tabToSet.setIcon(t.getTabIconRes(activity));
+                tabToSet.setContentDescription(t.getTabName(activity));
             }
         }
     }
