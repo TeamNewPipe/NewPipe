@@ -128,22 +128,21 @@
 						tools:text="12:38"
 						tools:visibility="visible" />
 
+					<org.schabi.newpipe.views.AnimatedProgressBar
+						android:id="@+id/position_view"
+						style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+						android:layout_width="match_parent"
+						android:layout_height="2dp"
+						android:layout_gravity="bottom"
+						android:progressDrawable="?attr/progress_horizontal_drawable"
+						android:visibility="invisible"
+						tools:max="100"
+						tools:progress="40"
+						tools:visibility="visible" />
+
 				</FrameLayout>
 
 			</android.support.design.widget.CollapsingToolbarLayout>
-
-			<org.schabi.newpipe.views.AnimatedProgressBar
-				android:id="@+id/position_view"
-				style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-				android:layout_width="match_parent"
-				android:layout_height="4dp"
-				android:layout_marginTop="-2dp"
-				android:progressDrawable="?attr/progress_horizontal_drawable"
-				android:visibility="invisible"
-				app:layout_scrollFlags="scroll"
-				tools:max="100"
-				tools:progress="40"
-				tools:visibility="visible" />
 
 			<!-- CONTENT -->
 			<RelativeLayout
