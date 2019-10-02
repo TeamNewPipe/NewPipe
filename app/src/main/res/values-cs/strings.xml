@@ -16,15 +16,15 @@
     <string name="use_external_video_player_title">Použít externí video přehrávač</string>
     <string name="use_external_audio_player_title">Použít externí audio přehrávač</string>
     <string name="download_path_audio_summary">Stažené audio je uloženo zde</string>
-    <string name="download_path_audio_dialog_title">Zadejte umístění pro stažené audio soubory</string>
+    <string name="download_path_audio_dialog_title">Zvolte adresář pro stažené audio soubory</string>
     <string name="download_path_audio_title">Složka pro stažené audio</string>
     <string name="default_resolution_title">Výchozí rozlišení</string>
     <string name="play_with_kodi_title">Přehrát pomocí Kodi</string>
     <string name="kore_not_found">Aplikace Kore nenalezena. Chcete ji nainstalovat?</string>
     <string name="view_count_text">%1$s zhlédnutí</string>
-    <string name="download_path_title">Umístění pro stažené video</string>
-    <string name="download_path_summary">Cesta, kam se uloží stažené video</string>
-    <string name="download_path_dialog_title">Zadejte umístění pro stažená videa</string>
+    <string name="download_path_title">Adresář pro stažená videa</string>
+    <string name="download_path_summary">Stažená videa jsou uložena tady</string>
+    <string name="download_path_dialog_title">Zvolte adresář pro stažená videa</string>
     <string name="show_play_with_kodi_title">Zobrazit možnost \"Přehrát pomocí Kodi\"</string>
     <string name="show_play_with_kodi_summary">Zobrazit možnost přehrání videa pomocí multimediálního centra Kodi</string>
     <string name="play_audio">Zvuk</string>
@@ -377,7 +377,7 @@ otevření ve vyskakovacím okně</string>
     <string name="caption_setting_description">Upravuje velikost textu titulků a styly pozadí. Změny se projeví po restartu aplikace.</string>
     <string name="toast_no_player">K přehrání tohoto souboru chybí vhodná aplikace</string>
     <string name="clear_views_history_title">Vymazat historii sledování</string>
-    <string name="clear_views_history_summary">Vymaže historii přehrávaných streamů</string>
+    <string name="clear_views_history_summary">Vymaže historii přehraných streamů pozic playbacku</string>
     <string name="delete_view_history_alert">Vymazat celkovou historii sledování\?</string>
     <string name="watch_history_deleted">Historie sledování smazána.</string>
     <string name="clear_search_history_title">Vymazat historii vyhledávání</string>
@@ -471,7 +471,7 @@ otevření ve vyskakovacím okně</string>
     <string name="stop">Zastavit</string>
     <string name="max_retry_msg">Maximální počet pokusů o opakování</string>
     <string name="max_retry_desc">Maximální počet pokusů před zrušením stahování</string>
-    <string name="pause_downloads_on_mobile">Pozastavit při přepnutí na mobilní data</string>
+    <string name="pause_downloads_on_mobile">Přerušit na mobilních sítích</string>
     <string name="pause_downloads_on_mobile_desc">Užitečné při přepnutí na mobilní data, některá stahování ale nelze přerušit</string>
     <string name="show_comments_title">Zobrazit komentáře</string>
     <string name="show_comments_summary">Deaktivovat zobrazování komentářů</string>
@@ -507,4 +507,11 @@ otevření ve vyskakovacím okně</string>
     <string name="downloads_storage_use_saf_title">Použít SAF</string>
     <string name="downloads_storage_use_saf_summary">Storage Access Framework umožňuje stahovat na externí SD kartu.
 \nUpozornění: některá zařízení jsou nekompatibilní</string>
+    <string name="enable_playback_state_lists_summary">Ukázat poziční indikátory playbacku v seznamech</string>
+    <string name="watch_history_states_deleted">Pozice playbacku smazány.</string>
+    <string name="error_timeout">Timeout spojení</string>
+    <string name="clear_playback_states_title">Smazat pozice playbacku</string>
+    <string name="clear_playback_states_summary">Smazat všechny pozice playbacku</string>
+    <string name="delete_playback_states_alert">Smazat všechny pozice playbacku\?</string>
+    <string name="download_choose_new_path">Změnit adresář pro stažené soubory</string>
 </resources>
