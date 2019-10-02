@@ -359,6 +359,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         toolbar.setNavigationIcon(isLight ? R.drawable.ic_arrow_back_black_24dp : R.drawable.ic_arrow_back_white_24dp);
         toolbar.inflateMenu(R.menu.dialog_url);
         toolbar.setNavigationOnClickListener(v -> getDialog().dismiss());
+        toolbar.setNavigationContentDescription(R.string.cancel);
 
         okButton = toolbar.findViewById(R.id.okay);
         okButton.setEnabled(false);// disable until the download service connection is done
