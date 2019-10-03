@@ -31,7 +31,7 @@
     <string name="settings_category_video_audio_title">動画と音声</string>
     <string name="view_count_text">%1$s ビュー</string>
     <string name="list_thumbnail_view_description">動画 プレビュー サムネイル</string>
-    <string name="detail_thumbnail_view_description">動画 プレビュー サムネイル</string>
+    <string name="detail_thumbnail_view_description">ビデオ再生、時間:</string>
     <string name="detail_uploader_thumbnail_view_description">投稿者アイコンのサムネイル</string>
     <string name="detail_dislikes_img_view_description">低評価</string>
     <string name="detail_likes_img_view_description">高評価</string>
@@ -501,4 +501,5 @@
     <string name="clear_playback_states_summary">すべての再生位置を削除します</string>
     <string name="delete_playback_states_alert">すべての再生位置を削除しますか\?</string>
     <string name="download_choose_new_path">ダウンロードフォルダーを変更して有効にします</string>
+    <string name="drawer_header_description">サービスの切り替え、現在の選択:</string>
 </resources>
