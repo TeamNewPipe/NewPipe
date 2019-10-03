@@ -41,7 +41,7 @@
     <string name="play_btn_text">播放</string>
     <string name="network_error">網路錯誤</string>
     <string name="list_thumbnail_view_description">影片預覽縮圖</string>
-    <string name="detail_thumbnail_view_description">影片預覽縮圖</string>
+    <string name="detail_thumbnail_view_description">播放影片，持續時間：</string>
     <string name="detail_uploader_thumbnail_view_description">發佈者的個人頭像縮圖</string>
     <string name="detail_likes_img_view_description">喜歡</string>
     <string name="detail_dislikes_img_view_description">不喜歡</string>
@@ -501,4 +501,5 @@
     <string name="clear_playback_states_summary">刪除所有播放位置</string>
     <string name="delete_playback_states_alert">刪除所有播放位置？</string>
     <string name="download_choose_new_path">變更下載資料夾以使其生效</string>
+    <string name="drawer_header_description">切換服務，目前已選取：</string>
 </resources>
