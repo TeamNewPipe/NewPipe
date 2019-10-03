@@ -31,7 +31,7 @@
     <string name="content_language_title">Lingua predefinita per i contenuti</string>
     <string name="settings_category_video_audio_title">Video e Audio</string>
     <string name="list_thumbnail_view_description">Miniatura anteprima video</string>
-    <string name="detail_thumbnail_view_description">Miniatura anteprima video</string>
+    <string name="detail_thumbnail_view_description">Riproduci video, durata:</string>
     <string name="detail_uploader_thumbnail_view_description">Miniatura dell\'immagine di profilo dell\'utente</string>
     <string name="detail_dislikes_img_view_description">Non mi piace</string>
     <string name="detail_likes_img_view_description">Mi piace</string>
@@ -506,4 +506,5 @@
     <string name="clear_playback_states_summary">Elimina tutte le posizioni di riproduzione</string>
     <string name="delete_playback_states_alert">Eliminare tutte le posizioni di riproduzione\?</string>
     <string name="download_choose_new_path">Cambia le cartelle di download per renderlo effettivo</string>
+    <string name="drawer_header_description">Attiva/disattiva il servizio, attualmente selezionato:</string>
 </resources>
