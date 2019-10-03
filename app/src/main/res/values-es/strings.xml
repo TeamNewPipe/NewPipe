@@ -54,7 +54,7 @@
     <string name="show_next_and_similar_title">Mostrar videos \'siguientes\' y \'similares\'</string>
     <string name="content_language_title">Idioma del contenido por defecto</string>
     <string name="list_thumbnail_view_description">Vista previa del vídeo</string>
-    <string name="detail_thumbnail_view_description">Vista previa del vídeo</string>
+    <string name="detail_thumbnail_view_description">Reproducir vídeo, duración:</string>
     <string name="detail_likes_img_view_description">Me gusta</string>
     <string name="detail_dislikes_img_view_description">No me gusta</string>
     <string name="detail_uploader_thumbnail_view_description">Miniatura del avatar del usuario</string>
@@ -112,7 +112,7 @@
     <string name="channel">Canal</string>
     <string name="yes">Sí</string>
     <string name="later">Después</string>
-    <string name="short_thousand">k</string>
+    <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">MM</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
