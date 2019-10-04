@@ -505,4 +505,5 @@ abrir en modo popup</string>
     <string name="clear_playback_states_title">Borrar posiciones de reproducción</string>
     <string name="clear_playback_states_summary">Elimina todas las posiciones de reproducción</string>
     <string name="delete_playback_states_alert">¿Borrar todas las posiciones de reproducción\?</string>
+    <string name="drawer_header_description">Activar/desactivar servicio, seleccionados actualmente:</string>
 </resources>
