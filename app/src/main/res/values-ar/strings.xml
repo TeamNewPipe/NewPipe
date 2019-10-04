@@ -8,7 +8,7 @@
     <string name="default_resolution_title">الدقة الافتراضية</string>
     <string name="detail_dislikes_img_view_description">عدم الإعجاب</string>
     <string name="detail_likes_img_view_description">الإعجابات</string>
-    <string name="detail_thumbnail_view_description">صور معاينة الفيديو</string>
+    <string name="detail_thumbnail_view_description">مدة, تشغيل الفيديو:</string>
     <string name="detail_uploader_thumbnail_view_description">الصورة المصغرة الشخصية</string>
     <string name="did_you_mean">هل تقصد: %1$s\?</string>
     <string name="download">تنزيل</string>
@@ -521,4 +521,5 @@
     <string name="clear_playback_states_summary">حذف كل مواقف التشغيل</string>
     <string name="delete_playback_states_alert">حذف كل مواقف التشغيل؟</string>
     <string name="download_choose_new_path">تغيير مجلدات التنزيل إلى حيز التنفيذ‮‮‮</string>
+    <string name="drawer_header_description">تبديل الخدمة ، المحدد حاليًا:</string>
 </resources>
