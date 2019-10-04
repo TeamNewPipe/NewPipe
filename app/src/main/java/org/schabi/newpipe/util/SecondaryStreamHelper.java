@@ -1,6 +1,6 @@
 package org.schabi.newpipe.util;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.AudioStream;

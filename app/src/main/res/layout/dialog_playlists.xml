@@ -44,7 +44,7 @@
         android:layout_marginRight="@dimen/video_item_search_padding"
         android:background="?attr/separator_color"/>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/playlist_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

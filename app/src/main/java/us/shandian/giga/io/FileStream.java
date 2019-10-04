@@ -1,6 +1,6 @@
 package us.shandian.giga.io;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.schabi.newpipe.streams.io.SharpStream;
 

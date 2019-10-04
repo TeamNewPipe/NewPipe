@@ -1,7 +1,7 @@
 package org.schabi.newpipe.util;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
