@@ -1,0 +1,42 @@
+package org.schabi.newpipe.util;
+
+import android.graphics.Bitmap;
+import android.support.annotation.Nullable;
+
+public class BitmapUtils {
+
+    @Nullable
+    public static Bitmap centerCrop(Bitmap inputBitmap, int newWidth, int newHeight) {
+        if (inputBitmap == null || inputBitmap.isRecycled()) {
+            return null;
+        }
+
+        float sourceWidth = inputBitmap.getWidth();
+        float sourceHeight = inputBitmap.getHeight();
+
+        float xScale = newWidth / sourceWidth;
+        float yScale = newHeight / sourceHeight;
+
+        float newXScale;
+        float newYScale;
+
+        if (yScale > xScale) {
+            newXScale = (1.0f / yScale) * xScale;
+            newYScale = 1.0f;
+        } else {
+            newXScale = 1.0f;
+            newYScale = (1.0f / xScale) * yScale;
+        }
+
+        float scaledWidth = newXScale * sourceWidth;
+        float scaledHeight = newYScale * sourceHeight;
+
+        int left = (int) ((sourceWidth - scaledWidth) / 2);
+        int top = (int) ((sourceHeight - scaledHeight) / 2);
+        int width = (int) scaledWidth;
+        int height = (int) scaledHeight;
+
+        return Bitmap.createBitmap(inputBitmap, left, top, width, height);
+    }
+
+}
