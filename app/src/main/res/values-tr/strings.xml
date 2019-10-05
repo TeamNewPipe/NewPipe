@@ -70,7 +70,7 @@
     <string name="what_device_headline">Bilgi:</string>
     <string name="what_happened_headline">Ne oldu:</string>
     <string name="info_labels">Ne:\\nİstek:\\nİçerik Dili:\\nHizmet:\\nGMT Zamanı:\\nPaket:\\nSürüm:\\nİşletim sistemi sürümü:</string>
-    <string name="detail_thumbnail_view_description">Video ön izleme küçük resmi</string>
+    <string name="detail_thumbnail_view_description">Videoyu oynat, süre:</string>
     <string name="detail_uploader_thumbnail_view_description">Yükleyicinin avatar küçük resmi</string>
     <string name="detail_likes_img_view_description">Beğeni</string>
     <string name="detail_dislikes_img_view_description">Beğenmeme</string>
@@ -506,4 +506,5 @@
     <string name="clear_playback_states_summary">Tüm oynatım konumlarını siler</string>
     <string name="delete_playback_states_alert">Tüm oynatım konumları silinsin mi\?</string>
     <string name="download_choose_new_path">Etkili olması için indirme dizinlerini değiştirin</string>
+    <string name="drawer_header_description">Hizmeti değiştir, şu anda seçili olan:</string>
 </resources>
