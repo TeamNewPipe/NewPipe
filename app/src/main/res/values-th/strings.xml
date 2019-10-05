@@ -174,7 +174,6 @@
     <string name="parsing_error">ไม่สามารถแยกวิเคราะห์เว็บไซต์</string>
     <string name="light_parsing_error">ไม่สามารถแยกวิเคราะห์เว็บไซต์ได้อย่างสมบูรณ์</string>
     <string name="content_not_available">เนื้อหาไม่พร้อมใช้งาน</string>
-    <string name="blocked_by_gema">ถูกบล็อกโดย GEMA</string>
     <string name="could_not_setup_download_menu">ไม่สามารถตั้งค่าเมนูดาวน์โหลด</string>
     <string name="live_streams_not_supported">ยังไม่รองรับสตรีมแบบสดในขณะนี้</string>
     <string name="could_not_get_stream">ไม่สามารถรับสตรีมใดๆ</string>
