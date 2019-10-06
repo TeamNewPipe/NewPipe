@@ -10,23 +10,23 @@
 	android:orientation="horizontal"
 	android:baselineAligned="false">
 
-	<android.support.design.widget.CoordinatorLayout
+	<androidx.coordinatorlayout.widget.CoordinatorLayout
 		android:id="@+id/detail_main_content"
 		android:layout_width="0dp"
 		android:layout_height="match_parent"
 		android:layout_weight="5"
 		android:fitsSystemWindows="true">
 
-		<android.support.design.widget.AppBarLayout
+		<com.google.android.material.appbar.AppBarLayout
 			android:id="@+id/appbarlayout"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:background="@android:color/transparent"
 			android:fitsSystemWindows="true"
 			app:elevation="0dp"
-			app:layout_behavior="android.support.design.widget.FlingBehavior">
+			app:layout_behavior="com.google.android.material.appbar.FlingBehavior">
 
-			<android.support.design.widget.CollapsingToolbarLayout
+			<com.google.android.material.appbar.CollapsingToolbarLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				app:layout_scrollFlags="scroll">
@@ -146,7 +146,7 @@
 
 				</FrameLayout>
 
-			</android.support.design.widget.CollapsingToolbarLayout>
+			</com.google.android.material.appbar.CollapsingToolbarLayout>
 
 			<!-- CONTENT -->
 			<RelativeLayout
@@ -504,17 +504,17 @@
 				</LinearLayout>
 			</RelativeLayout>
 
-		</android.support.design.widget.AppBarLayout>
+		</com.google.android.material.appbar.AppBarLayout>
 
 
-		<android.support.v4.view.ViewPager
+		<androidx.viewpager.widget.ViewPager
 			android:id="@+id/viewpager"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
-		<android.support.design.widget.TabLayout
+		<com.google.android.material.tabs.TabLayout
 			android:id="@+id/tablayout"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
@@ -524,9 +524,9 @@
 			app:tabGravity="center"
 			app:tabIndicatorHeight="0dp">
 
-		</android.support.design.widget.TabLayout>
+		</com.google.android.material.tabs.TabLayout>
 
-	</android.support.design.widget.CoordinatorLayout>
+	</androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 	<FrameLayout
 		android:id="@+id/relatedStreamsLayout"

@@ -1,10 +1,12 @@
-package android.support.design.widget;
+package com.google.android.material.appbar;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.OverScroller;
+
+import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import java.lang.reflect.Field;
 

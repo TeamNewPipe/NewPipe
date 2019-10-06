@@ -1,6 +1,6 @@
 package org.schabi.newpipe.info_list.holder;
 
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
