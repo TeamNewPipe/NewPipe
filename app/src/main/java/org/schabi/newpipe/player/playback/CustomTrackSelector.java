@@ -68,7 +68,7 @@ public class CustomTrackSelector extends DefaultTrackSelector {
                     TextTrackScore trackScore =
                             new TextTrackScore(
                                     format, params, trackFormatSupport[trackIndex], selectedAudioLanguage);
-                    if(formatHasLanguage(format, preferredTextLanguage)) {
+                    if (formatHasLanguage(format, preferredTextLanguage)) {
                         selectedGroup = trackGroup;
                         selectedTrackIndex = trackIndex;
                         selectedTrackScore = trackScore;

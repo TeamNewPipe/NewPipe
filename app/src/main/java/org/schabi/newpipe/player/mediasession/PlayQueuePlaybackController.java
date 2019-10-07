@@ -13,7 +13,7 @@ public class PlayQueuePlaybackController extends DefaultControlDispatcher {
 
     @Override
     public boolean dispatchSetPlayWhenReady(Player player, boolean playWhenReady) {
-        if(playWhenReady) {
+        if (playWhenReady) {
             callback.onPlay();
         } else {
             callback.onPause();
