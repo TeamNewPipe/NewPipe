@@ -1194,10 +1194,7 @@ public abstract class BasePlayer implements
     }
 
     public boolean isPlaying() {
-        if (simpleExoPlayer == null) return false;
-        final int state = simpleExoPlayer.getPlaybackState();
-        return (state == Player.STATE_READY || state == Player.STATE_BUFFERING)
-                && simpleExoPlayer.getPlayWhenReady();
+        return simpleExoPlayer != null && simpleExoPlayer.isPlaying();
     }
 
     @Player.RepeatMode
