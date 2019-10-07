@@ -1,9 +1,11 @@
 package org.schabi.newpipe.player.helper;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.exoplayer2.database.ExoDatabaseProvider;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
@@ -54,7 +56,7 @@ import java.io.File;
 
         if (cache == null) {
             final LeastRecentlyUsedCacheEvictor evictor = new LeastRecentlyUsedCacheEvictor(maxCacheSize);
-            cache = new SimpleCache(cacheDir, evictor);
+            cache = new SimpleCache(cacheDir, evictor, new ExoDatabaseProvider(context));
         }
     }
 

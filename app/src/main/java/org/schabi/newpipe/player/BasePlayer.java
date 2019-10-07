@@ -28,11 +28,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.preference.PreferenceManager;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlaybackException;
@@ -209,7 +210,7 @@ public abstract class BasePlayer implements
         this.databaseUpdateReactor = new CompositeDisposable();
 
         final String userAgent = Downloader.USER_AGENT;
-        final DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
+        final DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter.Builder(context).build();
         this.dataSource = new PlayerDataSource(context, userAgent, bandwidthMeter);
 
         final TrackSelection.Factory trackSelectionFactory = PlayerHelper.getQualitySelector(context);
