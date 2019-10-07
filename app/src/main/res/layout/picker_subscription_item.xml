@@ -16,8 +16,7 @@
         android:gravity="center"
         android:minWidth="72dp"
         android:orientation="vertical"
-        android:padding="4dp"
-        tools:layout_width="wrap_content">
+        android:padding="4dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/thumbnail_view"
@@ -49,8 +48,10 @@
         tools:visibility="visible">
 
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="4dp"
+            android:layout_gravity="top|center_horizontal"
             android:scaleType="centerInside"
             app:srcCompat="@drawable/ic_done_white_24dp"
             tools:ignore="ContentDescription"/>
