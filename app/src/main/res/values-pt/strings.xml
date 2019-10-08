@@ -16,9 +16,9 @@
     <string name="screen_rotation">rotação</string>
     <string name="use_external_video_player_title">Usar reprodutor de vídeo externo</string>
     <string name="use_external_audio_player_title">Utilizar reprodutor de áudio externo</string>
-    <string name="download_path_title">Caminho para transferir o vídeo</string>
-    <string name="download_path_summary">Caminho para guardar os vídeos transferidos</string>
-    <string name="download_path_dialog_title">Digite o caminho para os vídeos</string>
+    <string name="download_path_title">"Pasta  para descarregar o vídeo"</string>
+    <string name="download_path_summary">Os ficheiros de vídeo descarregados são armazenados aqui</string>
+    <string name="download_path_dialog_title">Escolha a pasta de descarregamento para ficheiros de vídeo</string>
     <string name="default_resolution_title">Resolução predefinida</string>
     <string name="play_with_kodi_title">Reproduzir no Kodi</string>
     <string name="kore_not_found">Aplicação Kore não encontrada. Instalar?</string>
@@ -48,8 +48,8 @@
     <string name="use_tor_title">Usar Tor</string>
     <string name="use_tor_summary">(Experimental) Forçar o tráfego de transferência via Tor para aumentar a privacidade (ainda não é suportada a emissão de vídeos).</string>
     <string name="download_path_audio_title">Pasta de transferências de áudio</string>
-    <string name="download_path_audio_summary">O áudio transferido é guardado aqui</string>
-    <string name="download_path_audio_dialog_title">Digite o caminho de transferência para os ficheiros de áudio</string>
+    <string name="download_path_audio_summary">Ficheiros de áudio descarregados são armazenados aqui</string>
+    <string name="download_path_audio_dialog_title">Escolha a pasta de descarregamento para ficheiros de áudio</string>
     <string name="err_dir_create">Não é possível criar a diretoria \'%1$s\'</string>
     <string name="info_dir_created">Criada a diretoria de transferência \'%1$s\'</string>
     <string name="general_error">Erro</string>
@@ -112,9 +112,9 @@
     <string name="channel">Canais</string>
     <string name="yes">Sim</string>
     <string name="later">Depois</string>
-    <string name="short_thousand">k</string>
+    <string name="short_thousand">K</string>
     <string name="short_million">M</string>
-    <string name="short_billion">G</string>
+    <string name="short_billion">B</string>
     <string name="msg_popup_permission">Esta permissão é necessária 
 \npara o modo de janela</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
@@ -368,7 +368,7 @@
     <string name="auto_queue_title">Colocar emissão seguinte na fila</string>
     <string name="app_license">NewPipe é um software livre \"copyleft\": pode utilizar, estudar, partilhar e melhorar a aplicação. Especificamente, pode redistribuir e/ou modificar a aplicação nos termos da Licença Pública Geral GNU, conforme publicada pela Fundação de Software Livre, tanto a versão 3 da licença ou (por sua opção) qualquer versão superior.</string>
     <string name="import_settings">Também deseja importar as definições\?</string>
-    <string name="hold_to_append">Toque longo para colocar na fila</string>
+    <string name="hold_to_append">Toque longo para enfileirar</string>
     <string name="enqueue_on_background">Colocar em fila em segundo plano</string>
     <string name="enqueue_on_popup">Colocar em fila num nova janela</string>
     <string name="preferred_open_action_settings_title">Ação de \'abrir\' preferida</string>

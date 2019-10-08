@@ -14,9 +14,9 @@
     <string name="share_dialog_title">다음으로 공유</string>
     <string name="choose_browser">브라우저 선택</string>
     <string name="screen_rotation">회전</string>
-    <string name="download_path_title">비디오 다운로드 위치</string>
-    <string name="download_path_summary">다운로드된 비디오가 저장될 경로를 선택하세요</string>
-    <string name="download_path_dialog_title">비디오 다운로드 경로 입력</string>
+    <string name="download_path_title">비디오 다운로드 폴더</string>
+    <string name="download_path_summary">다운로드된 비디오 파일이 이 곳에 저장 됩니다</string>
+    <string name="download_path_dialog_title">비디오 파일을 다운로드 받을 폴더를 선택하세요</string>
     <string name="default_resolution_title">기본 해상도</string>
     <string name="play_with_kodi_title">Kodi로 재생</string>
     <string name="kore_not_found">Kore 앱이 발견되지 않았습니다. Kore를 설치할까요?</string>
@@ -38,8 +38,8 @@
     <string name="use_external_video_player_title">외부 비디오 플레이어 사용</string>
     <string name="use_external_audio_player_title">외부 오디오 플레이어 사용</string>
     <string name="download_path_audio_title">오디오 다운로드 폴더</string>
-    <string name="download_path_audio_summary">다운로드된 오디오는 여기에 저장됩니다</string>
-    <string name="download_path_audio_dialog_title">오디오 파일 다운로드 경로를 입력하세요</string>
+    <string name="download_path_audio_summary">다운로드된 오디오 파일은 여기에 저장됩니다</string>
+    <string name="download_path_audio_dialog_title">오디오 파일을 다운로드할 폴더를 선택하세요</string>
     <string name="theme_title">테마</string>
     <string name="dark_theme_title">어두운 테마</string>
     <string name="light_theme_title">밝은 테마</string>
@@ -500,4 +500,6 @@
     <string name="clear_playback_states_title">재생 위치 삭제</string>
     <string name="clear_playback_states_summary">모든 재생 위치를 삭제</string>
     <string name="delete_playback_states_alert">모든 재생 위치를 삭제하시겠습니까\?</string>
+    <string name="downloads_storage_ask_summary_kitkat">매 다운로드 마다 저장경로를 묻습니다.
+\n외장 SD카드에 다운로드 하고자 한다면 SAF를 선택하십시오</string>
 </resources>

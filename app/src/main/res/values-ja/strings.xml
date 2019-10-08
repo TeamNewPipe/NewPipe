@@ -13,9 +13,9 @@
     <string name="share_dialog_title">共有</string>
     <string name="choose_browser">ブラウザを選択</string>
     <string name="screen_rotation">回転</string>
-    <string name="download_path_title">動画を保存する場所</string>
-    <string name="download_path_summary">動画を保存する場所</string>
-    <string name="download_path_dialog_title">動画を保存する場所を入力して下さい</string>
+    <string name="download_path_title">動画を保存するフォルダー</string>
+    <string name="download_path_summary">ダウンロードした動画をここに保存します</string>
+    <string name="download_path_dialog_title">動画ファイルをダウンロードするフォルダーを選択して下さい</string>
     <string name="default_resolution_title">デフォルトの解像度</string>
     <string name="play_with_kodi_title">Kodi で再生</string>
     <string name="kore_not_found">Koreが見つかりません｡Kore を入手しますか？</string>
@@ -31,7 +31,7 @@
     <string name="settings_category_video_audio_title">動画と音声</string>
     <string name="view_count_text">%1$s ビュー</string>
     <string name="list_thumbnail_view_description">動画 プレビュー サムネイル</string>
-    <string name="detail_thumbnail_view_description">動画 プレビュー サムネイル</string>
+    <string name="detail_thumbnail_view_description">ビデオ再生、時間:</string>
     <string name="detail_uploader_thumbnail_view_description">投稿者アイコンのサムネイル</string>
     <string name="detail_dislikes_img_view_description">低評価</string>
     <string name="detail_likes_img_view_description">高評価</string>
@@ -48,8 +48,8 @@
     <string name="settings_category_other_title">その他</string>
     <string name="network_error">ネットワークエラー</string>
     <string name="download_path_audio_title">音声を保存する場所</string>
-    <string name="download_path_audio_summary">ダウンロードした音楽をここに保存します</string>
-    <string name="download_path_audio_dialog_title">音楽ファイルをダウンロードする場所を入力して下さい｡</string>
+    <string name="download_path_audio_summary">ダウンロードした音楽ファイルをここに保存します</string>
+    <string name="download_path_audio_dialog_title">音楽ファイルをダウンロードするフォルダーを選択して下さい</string>
     <string name="err_dir_create">保存場所 \'%1$s\' を作成できません</string>
     <string name="info_dir_created">保存場所 \'%1$s\' を作成しました</string>
     <string name="general_error">エラー</string>
@@ -112,9 +112,9 @@
     <string name="black_theme_title">ブラック</string>
     <string name="all">すべて</string>
     <string name="channel">チャンネル</string>
-    <string name="short_thousand">k</string>
+    <string name="short_thousand">K</string>
     <string name="short_million">M</string>
-    <string name="short_billion">G</string>
+    <string name="short_billion">B</string>
     <string name="yes">はい</string>
     <string name="later">後で</string>
     <string name="open_in_popup_mode">ポップアップモードで開く</string>
@@ -152,7 +152,7 @@
     <string name="tab_about">このアプリについて</string>
     <string name="tab_contributors">貢献者</string>
     <string name="tab_licenses">ライセンス</string>
-    <string name="app_description">Android 向けの自由で軽量なプレイヤー</string>
+    <string name="app_description">Android 向けの自由で軽量なストリーミング。</string>
     <string name="view_on_github">GitHub で表示</string>
     <string name="app_license_title">NewPipe のライセンス</string>
     <string name="contribution_encouragement">翻訳、デザインの変更、コードの整理、動作の重いコードの変更など、アイデアをお持ちではありませんか？ヘルプはいつでも歓迎します。より良いものを一緒に作り上げましょう！</string>
@@ -339,7 +339,7 @@
     <plurals name="videos">
         <item quantity="other">動画</item>
     </plurals>
-    <string name="one_item_deleted">1 つのアイテムが削除されました</string>
+    <string name="one_item_deleted">1 つのアイテムが削除されました。</string>
     <string name="give_back">支援する</string>
     <string name="privacy_policy_encouragement">NewPipe プロジェクトはあなたのプライバシーを非常に大切にしています。あなたの同意がない限り、アプリはいかなるデータも収集しません。NewPipe のプライバシー・ポリシーでは、クラッシュリポート送信時にどのような種類のデータが送信・記録されるかを詳細に説明しています。</string>
     <string name="app_license">NewPipe は著作権が自由のソフトウェアです。あなたは自由にそれを使用し、研究し、そして改善することができます。あなたは、GNU フリーソフトウェア財団が公開する GNU General Public ライセンス バージョン3以降の下に、自由に再配布・修正を行うことができます。</string>
@@ -361,7 +361,7 @@
     <string name="resize_fit">フィット</string>
     <string name="resize_fill">全画面</string>
     <string name="caption_auto_generated">自動生成</string>
-    <string name="caption_setting_description">アプリの再起動後、設定した字幕設定が反映されます</string>
+    <string name="caption_setting_description">プレーヤーのキャプションテキストの縮尺と背景スタイルを変更します。有効にするには、アプリの再起動が必要です。</string>
     <string name="empty_subscription_feed_subtitle">何もありません</string>
     <string name="import_youtube_instructions">保存したエクスポートファイルからYouTubeの購読をインポート:
 \n
@@ -492,8 +492,8 @@
     <string name="pause_downloads">ダウンロードの一時停止</string>
     <string name="downloads_storage_ask_title">ダウンロード先を尋ねる</string>
     <string name="downloads_storage_ask_summary">ダウンロードのたびに保存する場所を尋ねます</string>
-    <string name="downloads_storage_ask_summary_kitkat">ダウンロードのたびに保存する場所を尋ねます。
-\n外部 SD カードにダウンロードする場合は、このオプションをオンにしてください。</string>
+    <string name="downloads_storage_ask_summary_kitkat">ダウンロードのたびに保存する場所を尋ねられます。
+\n外部 SD カードにダウンロードする場合は SAF を選択してください</string>
     <string name="downloads_storage_use_saf_title">SAF を使用する</string>
     <string name="downloads_storage_use_saf_summary">ストレージアクセスフレームワークは、外部 SD カードへのダウンロードが可能です。
 \n注: 一部のデバイスは互換性がありません</string>
@@ -501,4 +501,5 @@
     <string name="clear_playback_states_summary">すべての再生位置を削除します</string>
     <string name="delete_playback_states_alert">すべての再生位置を削除しますか\?</string>
     <string name="download_choose_new_path">ダウンロードフォルダーを変更して有効にします</string>
+    <string name="drawer_header_description">サービスの切り替え、現在の選択:</string>
 </resources>

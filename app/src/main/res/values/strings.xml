@@ -392,7 +392,7 @@
     <string name="play_queue_remove">Remove</string>
     <string name="play_queue_stream_detail">Details</string>
     <string name="play_queue_audio_settings">Audio Settings</string>
-    <string name="hold_to_append">Hold To enqueue</string>
+    <string name="hold_to_append">Hold to enqueue</string>
     <string name="enqueue_on_background">Enqueue in the background</string>
     <string name="enqueue_on_popup">Enqueue in a new popup</string>
     <string name="start_here_on_main">Start playing here</string>

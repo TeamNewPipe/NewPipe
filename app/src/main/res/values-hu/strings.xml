@@ -381,4 +381,5 @@
     <string name="switch_to_main">Folytatás főnézetben</string>
     <string name="dismiss">Figyelmen kívül hagy</string>
     <string name="bookmark_playlist">Lejátszási lista könyvjelzők közé</string>
+    <string name="auto_queue_summary">Hasonló videó beadása az utolsó videó után egy nem ismétlődő sorban</string>
 </resources>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_bg_subtitle">แตะที่ปุ่มค้นหาเพื่อเริ่มต้น</string>
-    <string name="view_count_text">%1$s วิว</string>
+    <string name="view_count_text">%1$s ครั้ง</string>
     <string name="upload_date_text">เผยแพร่เมื่อ %1$s</string>
     <string name="no_player_found">ไม่พบแอปที่สามารถสตรีมสื่อวีดีโอได้ คุณต้องการติดตั้ง VLC หรือไม่\?</string>
     <string name="no_player_found_toast">ไม่พบแอปที่สามารถสตรีมสื่อวีดีโอได้ (คุณสามารถติดตั้ง VLC เพื่อดูวีดีโอ)</string>
@@ -21,15 +21,15 @@
     <string name="use_external_video_player_title">ใช้แอปเล่นวีดีโอภายนอก</string>
     <string name="use_external_audio_player_title">ใช้แอปเล่นเสียงภายนอก</string>
     <string name="popup_mode_share_menu_title">NewPipe โหมดป๊อปอัพ</string>
-    <string name="subscribe_button_title">บอกรับ</string>
-    <string name="subscribed_button_title">บอกรับแล้ว</string>
-    <string name="unsubscribe">ยกเลิกการบอกรับ</string>
-    <string name="channel_unsubscribed">ยกเลิกการบอกรับช่องแล้ว</string>
-    <string name="subscription_change_failed">ไม่สามารถเปลี่ยนสถานะการบอกรับได้</string>
-    <string name="subscription_update_failed">ไม่สามารถอัปเดตการบอกรับข้อมูล</string>
+    <string name="subscribe_button_title">ติดตาม</string>
+    <string name="subscribed_button_title">ติดตามแล้ว</string>
+    <string name="unsubscribe">ยกเลิกการติดตาม</string>
+    <string name="channel_unsubscribed">ยกเลิกการติดตามช่องแล้ว</string>
+    <string name="subscription_change_failed">ไม่สามารถเปลี่ยนสถานะการติดตามได้</string>
+    <string name="subscription_update_failed">ไม่สามารถอัปเดตการติดตาม</string>
     <string name="show_info">แสดงข้อมูล</string>
     <string name="tab_main">หน้าหลัก</string>
-    <string name="tab_subscriptions">การสมัครรับข้อมูล</string>
+    <string name="tab_subscriptions">การติดตาม</string>
     <string name="tab_bookmarks">เพลย์ลิสต์ที่เก็บไว้</string>
     <string name="tab_new">แท็บใหม่</string>
     <string name="tab_choose">เลือกแท็บ</string>
@@ -54,8 +54,8 @@
     <string name="show_play_with_kodi_title">แสดงตัวเลือก \"เปิดด้วย Kodi\"</string>
     <string name="show_play_with_kodi_summary">แสดงตัวเลือกในการเล่นวิดีโอผ่าน Kodi media center</string>
     <string name="play_audio">เสียง</string>
-    <string name="default_audio_format_title">ฟอร์แมตเสียงเริ่มต้น</string>
-    <string name="default_video_format_title">ฟอร์แมตวีดีโอเริ่มต้น</string>
+    <string name="default_audio_format_title">รูปแบบเสียงเริ่มต้น</string>
+    <string name="default_video_format_title">รูปแบบวีดีโอเริ่มต้น</string>
     <string name="theme_title">ธีม</string>
     <string name="light_theme_title">สว่าง</string>
     <string name="dark_theme_title">มืด</string>
@@ -82,8 +82,8 @@
     <string name="show_search_suggestions_summary">แสดงคำแนะนำเมื่อทำการค้นหา</string>
     <string name="enable_search_history_title">ประวัติการค้นหา</string>
     <string name="enable_search_history_summary">จัดเก็บคำที่เคยค้นหาไว้ในเครื่อง</string>
-    <string name="enable_watch_history_title">ประวัติและแคช</string>
-    <string name="enable_watch_history_summary">ติดตามวิดีโอที่ดคยดู</string>
+    <string name="enable_watch_history_title">ประวัติการดู</string>
+    <string name="enable_watch_history_summary">เก็บประวัติการเข้าดูวีดิโอไว้</string>
     <string name="resume_on_audio_focus_gain_summary">เล่นต่อหลังการขัดจังหวะ (เช่น การรับโทรศัพท์)</string>
     <string name="download_dialog_title">ดาวน์โหลด</string>
     <string name="next_video_title">วีดีโอถัดไป</string>
@@ -102,8 +102,8 @@
     <string name="settings_category_popup_title">ป๊อปอัพ</string>
     <string name="settings_category_appearance_title">ลักษณะ</string>
     <string name="settings_category_other_title">อื่นๆ</string>
-    <string name="settings_category_debug_title">แก้จุดบกพร่อง</string>
-    <string name="settings_category_updates_title">อัพเดท</string>
+    <string name="settings_category_debug_title">แก้ข้อบกพร่อง</string>
+    <string name="settings_category_updates_title">อัพเดต</string>
     <string name="background_player_playing_toast">กำลังเล่นในโหมดพื้นหลัง</string>
     <string name="popup_playing_toast">กำลังเล่นในโหมดป๊อปอัพ</string>
     <string name="background_player_append">จัดคิวลงในการเล่นโหมดพื้นหลังแล้ว</string>
@@ -443,4 +443,12 @@
     <string name="pause_downloads_on_mobile">หยุดชั่วคราวเมื่อเปลี่ยนเป็นข้อมูลมือถือ</string>
     <string name="pause_downloads_on_mobile_desc">การดาวน์โหลดที่ไม่สามารถหยุดพักได้จะเริ่มต้นใหม่</string>
     <string name="close">ปิด</string>
+    <string name="use_external_video_player_summary">บางความละเอียดอาจไม่มีเสียง</string>
+    <string name="metadata_cache_wipe_complete_notice">แคช metadate ถูกลบแล้ว</string>
+    <string name="resume_on_audio_focus_gain_title">เล่นต่อหลังจากการขัดจังหวะ</string>
+    <string name="enable_playback_resume_title">เล่นต่อ</string>
+    <string name="enable_playback_resume_summary">เล่นต่อจากที่เคยเล่นครั้งล่าสุด</string>
+    <string name="enable_playback_state_lists_title">ตำแหน่งวีดิโอในรายการ</string>
+    <string name="enable_playback_state_lists_summary">แสดงตำแหน่งวีดิโอที่เล่นในรายการ</string>
+    <string name="settings_category_clear_data_title">ล้างข้อมูล</string>
 </resources>
