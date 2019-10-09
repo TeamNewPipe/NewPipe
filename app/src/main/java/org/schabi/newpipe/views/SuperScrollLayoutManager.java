@@ -62,10 +62,39 @@ public final class SuperScrollLayoutManager extends LinearLayoutManager {
         }
 
         if (focusDirection == View.FOCUS_DOWN) {
-            scrollVerticallyBy(10, recycler, state);
+            int scrollAmount = 1 + getScrollExtra(focused);
+            scrollVerticallyBy(scrollAmount, recycler, state);
             return null;
         }
 
         return super.onFocusSearchFailed(focused, focusDirection, recycler, state);
+    }
+
+    private int getScrollExtra(View focused) {
+        if (focused == null) {
+            return 0;
+        }
+
+        View container = findContainingItemView(focused);
+        if (container == focused) {
+            return 0;
+        }
+
+        if (!(container instanceof ViewGroup)) {
+            return 0;
+        }
+
+        ViewGroup vg = (ViewGroup) container;
+
+        Rect rect = new Rect();
+
+        focused.getHitRect(rect);
+
+        ViewGroup parent = (ViewGroup) focused.getParent();
+        if (container != parent) {
+            vg.offsetDescendantRectToMyCoords(parent, rect);
+        }
+
+        return container.getHeight() - rect.bottom;
     }
 }
