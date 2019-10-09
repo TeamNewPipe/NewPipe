@@ -1,6 +1,9 @@
 package org.schabi.newpipe.info_list.holder;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.text.method.LinkMovementMethod;
+import android.text.style.URLSpan;
 import android.text.util.Linkify;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -122,15 +125,35 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         });
     }
 
+    private void allowLinkFocus() {
+        if (itemView.isInTouchMode()) {
+             return;
+        }
+
+        URLSpan[] urls = itemContentView.getUrls();
+
+        if (urls != null && urls.length != 0) {
+            itemContentView.setMovementMethod(LinkMovementMethod.getInstance());
+        }
+    }
+
     private void ellipsize() {
+        boolean hasEllipsis = false;
+
         if (itemContentView.getLineCount() > commentDefaultLines){
             int endOfLastLine = itemContentView.getLayout().getLineEnd(commentDefaultLines - 1);
             int end = itemContentView.getText().toString().lastIndexOf(' ', endOfLastLine -2);
             if(end == -1) end = Math.max(endOfLastLine -2, 0);
             String newVal = itemContentView.getText().subSequence(0, end) + " …";
             itemContentView.setText(newVal);
+            hasEllipsis = true;
         }
+
         linkify();
+
+        if (!hasEllipsis) {
+            allowLinkFocus();
+        }
     }
 
     private void toggleEllipsize() {
@@ -145,11 +168,13 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         itemContentView.setMaxLines(commentExpandedLines);
         itemContentView.setText(commentText);
         linkify();
+        allowLinkFocus();
     }
 
     private void linkify(){
         Linkify.addLinks(itemContentView, Linkify.WEB_URLS);
         Linkify.addLinks(itemContentView, pattern, null, null, timestampLink);
+
         itemContentView.setMovementMethod(null);
     }
 }
