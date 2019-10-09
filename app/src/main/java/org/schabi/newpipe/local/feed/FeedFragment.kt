@@ -111,7 +111,12 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
 
     override fun onDestroyOptionsMenu() {
         super.onDestroyOptionsMenu()
-        activity.supportActionBar?.subtitle = null
+        activity?.supportActionBar?.subtitle = null
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        activity?.supportActionBar?.subtitle = null
     }
 
     ///////////////////////////////////////////////////////////////////////////
