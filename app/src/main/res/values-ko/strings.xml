@@ -454,7 +454,6 @@
     <string name="error_http_not_found">HTTP 찾을 수 없습니다</string>
     <string name="error_postprocessing_failed">후처리 작업이 실패하였습니다</string>
     <string name="clear_finished_download">완료된 다운로드 비우기</string>
-    <string name="msg_pending_downloads">대기중인 %s 다운로드를 지속하세요</string>
     <string name="stop">멈추기</string>
     <string name="max_retry_msg">최대 재시도 횟수</string>
     <string name="max_retry_desc">다운로드를 취소하기 전까지 다시 시도할 최대 횟수</string>

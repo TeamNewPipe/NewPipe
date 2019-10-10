@@ -174,12 +174,12 @@ public class CircularFileWriter extends SharpStream {
     }
 
     @Override
-    public void write(byte b[]) throws IOException {
+    public void write(byte[] b) throws IOException {
         write(b, 0, b.length);
     }
 
     @Override
-    public void write(byte b[], int off, int len) throws IOException {
+    public void write(byte[] b, int off, int len) throws IOException {
         if (len == 0) {
             return;
         }
@@ -261,7 +261,7 @@ public class CircularFileWriter extends SharpStream {
     @Override
     public void rewind() throws IOException {
         if (onProgress != null) {
-            onProgress.report(-out.length - aux.length);// rollback the whole progress
+            onProgress.report(0);// rollback the whole progress
         }
 
         seek(0);
@@ -357,16 +357,6 @@ public class CircularFileWriter extends SharpStream {
         long check();
     }
 
-    public interface ProgressReport {
-
-        /**
-         * Report the size of the new file
-         *
-         * @param progress the new size
-         */
-        void report(long progress);
-    }
-
     public interface WriteErrorHandle {
 
         /**
@@ -381,10 +371,10 @@ public class CircularFileWriter extends SharpStream {
 
     class BufferedFile {
 
-        protected final SharpStream target;
+        final SharpStream target;
 
         private long offset;
-        protected long length;
+        long length;
 
         private byte[] queue = new byte[QUEUE_BUFFER_SIZE];
         private int queueSize;
@@ -397,16 +387,16 @@ public class CircularFileWriter extends SharpStream {
             this.target = target;
         }
 
-        protected long getOffset() {
+        long getOffset() {
             return offset + queueSize;// absolute offset in the file
         }
 
-        protected void close() {
+        void close() {
             queue = null;
             target.close();
         }
 
-        protected void write(byte b[], int off, int len) throws IOException {
+        void write(byte[] b, int off, int len) throws IOException {
             while (len > 0) {
                 // if the queue is full, the method available() will flush the queue
                 int read = Math.min(available(), len);
@@ -436,7 +426,7 @@ public class CircularFileWriter extends SharpStream {
             target.seek(0);
         }
 
-        protected int available() throws IOException {
+        int available() throws IOException {
             if (queueSize >= queue.length) {
                 flush();
                 return queue.length;
@@ -451,7 +441,7 @@ public class CircularFileWriter extends SharpStream {
             target.seek(0);
         }
 
-        protected void seek(long absoluteOffset) throws IOException {
+        void seek(long absoluteOffset) throws IOException {
             if (absoluteOffset == offset) {
                 return;// nothing to do
             }

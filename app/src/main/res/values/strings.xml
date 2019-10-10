@@ -526,6 +526,7 @@
     <string name="paused">paused</string>
     <string name="queued">queued</string>
     <string name="post_processing">post-processing</string>
+    <string name="recovering">recovering</string>
     <string name="enqueue">Queue</string>
     <string name="permission_denied">Action denied by the system</string>
     <!-- download notifications -->
@@ -560,7 +561,6 @@
     <string name="error_download_resource_gone">Cannot recover this download</string>
     <string name="clear_finished_download">Clear finished downloads</string>
     <string name="confirm_prompt">Are you sure?</string>
-    <string name="msg_pending_downloads">Continue your %s pending transfers from Downloads</string>
     <string name="stop">Stop</string>
     <string name="max_retry_msg">Maximum retries</string>
     <string name="max_retry_desc">Maximum number of attempts before canceling the download</string>

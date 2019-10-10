@@ -1,6 +1,6 @@
 package us.shandian.giga.postprocessing;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.schabi.newpipe.streams.OggFromWebMWriter;
 import org.schabi.newpipe.streams.io.SharpStream;

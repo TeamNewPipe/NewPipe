@@ -1,8 +1,9 @@
 package us.shandian.giga.get;
 
-import androidx.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import org.schabi.newpipe.streams.io.SharpStream;
 
@@ -177,7 +178,7 @@ public class DownloadInitializer extends Thread {
                 if (e instanceof DownloadMission.HttpError && ((DownloadMission.HttpError) e).statusCode == ERROR_HTTP_FORBIDDEN) {
                     // for youtube streams. The url has expired
                     interrupt();
-                    mMission.doRecover(e);
+                    mMission.doRecover(ERROR_HTTP_FORBIDDEN);
                     return;
                 }
 

@@ -457,7 +457,6 @@
     <string name="error_http_not_found">Niet gevonden</string>
     <string name="error_postprocessing_failed">Nabewerking mislukt</string>
     <string name="clear_finished_download">Voltooide downloads wissen</string>
-    <string name="msg_pending_downloads">Zet uw %s wachtende downloads verder via Downloads</string>
     <string name="stop">Stoppen</string>
     <string name="max_retry_msg">Maximaal aantal pogingen</string>
     <string name="max_retry_desc">Maximaal aantal pogingen vooraleer dat den download wordt geannuleerd</string>

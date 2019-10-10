@@ -453,7 +453,6 @@
     <string name="error_http_not_found">Tidak ditemui</string>
     <string name="error_postprocessing_failed">Pemprosesan-pasca gagal</string>
     <string name="clear_finished_download">Hapuskan senarai muat turun yang selesai</string>
-    <string name="msg_pending_downloads">Teruskan %s pemindahan anda yang menunggu dari muat turun</string>
     <string name="stop">Berhenti</string>
     <string name="max_retry_msg">Percubaan maksimum</string>
     <string name="max_retry_desc">Jumlah percubaan maksimum sebelum membatalkan muat turun</string>

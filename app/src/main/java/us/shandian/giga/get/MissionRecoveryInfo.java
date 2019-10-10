@@ -2,7 +2,8 @@ package us.shandian.giga.get;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.AudioStream;
@@ -22,8 +23,6 @@ public class MissionRecoveryInfo implements Serializable, Parcelable {
     int desiredBitrate;
     byte kind;
     String validateCondition = null;
-
-    transient int attempts = 0;
 
     public MissionRecoveryInfo(@NonNull Stream stream) {
         if (stream instanceof AudioStream) {
@@ -51,7 +50,7 @@ public class MissionRecoveryInfo implements Serializable, Parcelable {
     public String toString() {
         String info;
         StringBuilder str = new StringBuilder();
-        str.append("type=");
+        str.append("{type=");
         switch (kind) {
             case 'a':
                 str.append("audio");
@@ -73,7 +72,8 @@ public class MissionRecoveryInfo implements Serializable, Parcelable {
         str.append(" format=")
                 .append(format.getName())
                 .append(' ')
-                .append(info);
+                .append(info)
+                .append('}');
 
         return str.toString();
     }

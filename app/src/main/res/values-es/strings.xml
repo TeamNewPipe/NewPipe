@@ -406,6 +406,7 @@
     <string name="paused">pausado</string>
     <string name="queued">en cola</string>
     <string name="post_processing">posprocesamiento</string>
+    <string name="recovering">recuperando</string>
     <string name="enqueue">Añadir a cola</string>
     <string name="permission_denied">Acción denegada por el sistema</string>
     <string name="file_deleted">Se eliminó el archivo</string>
@@ -424,7 +425,6 @@
     <string name="grid">Mostrar como grilla</string>
     <string name="list">Mostrar como lista</string>
     <string name="clear_finished_download">Limpiar descargas finalizadas</string>
-    <string name="msg_pending_downloads">Tienes %s descargas pendientes, ve a Descargas para continuarlas</string>
     <string name="confirm_prompt">¿Lo confirma\?</string>
     <string name="stop">Detener</string>
     <string name="max_retry_msg">Intentos máximos</string>

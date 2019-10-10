@@ -25,14 +25,15 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
+import android.util.Log;
+import android.util.SparseArray;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationCompat.Builder;
-import android.util.Log;
-import android.util.SparseArray;
-import android.widget.Toast;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.download.DownloadActivity;
@@ -41,8 +42,6 @@ import org.schabi.newpipe.player.helper.LockManager;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
 import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.get.MissionRecoveryInfo;
@@ -58,11 +57,11 @@ public class DownloadManagerService extends Service {
 
     private static final String TAG = "DownloadManagerService";
 
+    public static final int MESSAGE_RUNNING = 0;
     public static final int MESSAGE_PAUSED = 1;
     public static final int MESSAGE_FINISHED = 2;
-    public static final int MESSAGE_PROGRESS = 3;
-    public static final int MESSAGE_ERROR = 4;
-    public static final int MESSAGE_DELETED = 5;
+    public static final int MESSAGE_ERROR = 3;
+    public static final int MESSAGE_DELETED = 4;
 
     private static final int FOREGROUND_NOTIFICATION_ID = 1000;
     private static final int DOWNLOADS_NOTIFICATION_ID = 1001;
@@ -217,9 +216,11 @@ public class DownloadManagerService extends Service {
                             .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     );
                 }
+                return START_NOT_STICKY;
             }
         }
-        return START_NOT_STICKY;
+
+        return START_STICKY;
     }
 
     @Override
@@ -250,6 +251,7 @@ public class DownloadManagerService extends Service {
         if (icDownloadFailed != null) icDownloadFailed.recycle();
         if (icLauncher != null) icLauncher.recycle();
 
+        mHandler = null;
         mManager.pauseAllMissions(true);
     }
 
@@ -274,6 +276,8 @@ public class DownloadManagerService extends Service {
     }
 
     private boolean handleMessage(@NonNull Message msg) {
+        if (mHandler == null) return true;
+
         DownloadMission mission = (DownloadMission) msg.obj;
 
         switch (msg.what) {
@@ -284,7 +288,7 @@ public class DownloadManagerService extends Service {
                 handleConnectivityState(false);
                 updateForegroundState(mManager.runMissions());
                 break;
-            case MESSAGE_PROGRESS:
+            case MESSAGE_RUNNING:
                 updateForegroundState(true);
                 break;
             case MESSAGE_ERROR:
@@ -300,11 +304,8 @@ public class DownloadManagerService extends Service {
         if (msg.what != MESSAGE_ERROR)
             mFailedDownloads.delete(mFailedDownloads.indexOfValue(mission));
 
-        synchronized (mEchoObservers) {
-            for (Callback observer : mEchoObservers) {
-                observer.handleMessage(msg);
-            }
-        }
+        for (Callback observer : mEchoObservers)
+            observer.handleMessage(msg);
 
         return true;
     }
@@ -523,16 +524,6 @@ public class DownloadManagerService extends Service {
         return PendingIntent.getService(this, intent.hashCode(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
-    private void manageObservers(Callback handler, boolean add) {
-        synchronized (mEchoObservers) {
-            if (add) {
-                mEchoObservers.add(handler);
-            } else {
-                mEchoObservers.remove(handler);
-            }
-        }
-    }
-
     private void manageLock(boolean acquire) {
         if (acquire == mLockAcquired) return;
 
@@ -605,11 +596,11 @@ public class DownloadManagerService extends Service {
         }
 
         public void addMissionEventListener(Callback handler) {
-            manageObservers(handler, true);
+            mEchoObservers.add(handler);
         }
 
         public void removeMissionEventListener(Callback handler) {
-            manageObservers(handler, false);
+            mEchoObservers.remove(handler);
         }
 
         public void clearDownloadNotifications() {

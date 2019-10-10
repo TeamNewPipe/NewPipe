@@ -465,7 +465,6 @@
     <string name="error_http_not_found">Nenájdené</string>
     <string name="error_postprocessing_failed">Post-spracovanie zlyhalo</string>
     <string name="clear_finished_download">Vyčistiť dokončené sťahovania</string>
-    <string name="msg_pending_downloads">Pokračujte v preberaní %s zo súborov na prevzatie</string>
     <string name="stop">Stop</string>
     <string name="max_retry_msg">Maximum opakovaní</string>
     <string name="max_retry_desc">Maximálny počet pokusov pred zrušením stiahnutia</string>

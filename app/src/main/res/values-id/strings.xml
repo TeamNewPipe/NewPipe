@@ -453,7 +453,6 @@
     <string name="error_http_not_found">Tidak ditemukan</string>
     <string name="error_postprocessing_failed">Pengolahan-pasca gagal</string>
     <string name="clear_finished_download">Hapus unduhan yang sudah selesai</string>
-    <string name="msg_pending_downloads">Lanjutkan %s transfer anda yang tertunda dari Unduhan</string>
     <string name="stop">Berhenti</string>
     <string name="max_retry_msg">Percobaan maksimum</string>
     <string name="max_retry_desc">Jumlah upaya maksimum sebelum membatalkan unduhan</string>

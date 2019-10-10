@@ -459,7 +459,6 @@
     <string name="error_http_not_found">Ez aurkitua</string>
     <string name="error_postprocessing_failed">Post-prozesuak huts egin du</string>
     <string name="clear_finished_download">Garbitu amaitutako deskargak</string>
-    <string name="msg_pending_downloads">Berrekin burutzeke dauden %s transferentzia deskargetatik</string>
     <string name="stop">Gelditu</string>
     <string name="max_retry_msg">Gehienezko saiakerak</string>
     <string name="max_retry_desc">Deskarga ezeztatu aurretik saiatu beharreko aldi kopurua</string>

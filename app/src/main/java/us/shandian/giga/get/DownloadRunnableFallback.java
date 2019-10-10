@@ -1,7 +1,8 @@
 package us.shandian.giga.get;
 
-import androidx.annotation.NonNull;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import org.schabi.newpipe.streams.io.SharpStream;
 
@@ -47,22 +48,10 @@ public class DownloadRunnableFallback extends Thread {
         if (mF != null) mF.close();
     }
 
-    private long loadPosition() {
-        synchronized (mMission.LOCK) {
-            return mMission.fallbackResumeOffset;
-        }
-    }
-
-    private void savePosition(long position) {
-        synchronized (mMission.LOCK) {
-            mMission.fallbackResumeOffset = position;
-        }
-    }
-
     @Override
     public void run() {
         boolean done;
-        long start = loadPosition();
+        long start = mMission.fallbackResumeOffset;
 
         if (DEBUG && !mMission.unknownLength && start > 0) {
             Log.i(TAG, "Resuming a single-thread download at " + start);
@@ -83,6 +72,7 @@ public class DownloadRunnableFallback extends Thread {
 
             // check if the download can be resumed
             if (mConn.getResponseCode() == 416 && start > 0) {
+                mMission.notifyProgress(-start);
                 start = 0;
                 mRetryCount--;
                 throw new DownloadMission.HttpError(416);
@@ -91,6 +81,11 @@ public class DownloadRunnableFallback extends Thread {
             // secondary check for the file length
             if (!mMission.unknownLength)
                 mMission.unknownLength = Utility.getContentLength(mConn) == -1;
+
+            if (mMission.unknownLength || mConn.getResponseCode() == 200) {
+                // restart amount of bytes downloaded
+                mMission.done = mMission.offsets[mMission.current] - mMission.offsets[0];
+            }
 
             mF = mMission.storage.getStream();
             mF.seek(mMission.offsets[mMission.current] + start);
@@ -113,14 +108,14 @@ public class DownloadRunnableFallback extends Thread {
         } catch (Exception e) {
             dispose();
 
-            savePosition(start);
+            mMission.fallbackResumeOffset = start;
 
             if (!mMission.running || e instanceof ClosedByInterruptException) return;
 
             if (e instanceof HttpError && ((HttpError) e).statusCode == ERROR_HTTP_FORBIDDEN) {
                 // for youtube streams. The url has expired, recover
                 dispose();
-                mMission.doRecover(e);
+                mMission.doRecover(ERROR_HTTP_FORBIDDEN);
                 return;
             }
 
@@ -140,7 +135,7 @@ public class DownloadRunnableFallback extends Thread {
         if (done) {
             mMission.notifyFinished();
         } else {
-            savePosition(start);
+            mMission.fallbackResumeOffset = start;
         }
     }
 
