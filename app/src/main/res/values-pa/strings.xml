@@ -453,7 +453,6 @@
     <string name="error_http_not_found">ਨਹੀਂ ਲਭਿਆ</string>
     <string name="error_postprocessing_failed">Post-processing ਫੇਲ੍ਹ</string>
     <string name="clear_finished_download">ਮੁਕੰਮਲ ਹੋਈਆਂ ਡਾਊਨਲੋਡ ਸਾਫ਼ ਕਰੋ</string>
-    <string name="msg_pending_downloads">ਡਾਉਨਲੋਡਸ ਤੋਂ ਆਪਣੀਆਂ %s ਬਕਾਇਆ ਟ੍ਰਾਂਸਫਰ ਜਾਰੀ ਰੱਖੋ</string>
     <string name="stop">ਰੁੱਕੋ</string>
     <string name="max_retry_msg">ਵੱਧ ਤੋਂ ਵੱਧ ਕੋਸ਼ਿਸ਼ਾਂ</string>
     <string name="max_retry_desc">ਡਾਉਨਲੋਡ ਰੱਦ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਵੱਧ ਤੋਂ ਵੱਧ ਕੋਸ਼ਿਸ਼ਾਂ</string>

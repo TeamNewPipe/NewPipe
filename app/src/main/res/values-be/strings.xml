@@ -458,7 +458,6 @@
     <string name="error_http_not_found">Не знойдзена</string>
     <string name="error_postprocessing_failed">Пасляапрацоўка не ўдалася</string>
     <string name="clear_finished_download">Ачысціць завершаныя</string>
-    <string name="msg_pending_downloads">Аднавіць прыпыненыя загрузкі (%s)</string>
     <string name="stop">Спыніць</string>
     <string name="max_retry_msg">Максімум спробаў</string>
     <string name="max_retry_desc">Колькасць спробаў перад адменай загрузкі</string>

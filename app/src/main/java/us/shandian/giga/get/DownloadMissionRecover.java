@@ -4,6 +4,7 @@ import android.util.Log;
 
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
+import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamExtractor;
 import org.schabi.newpipe.extractor.stream.SubtitlesStream;
@@ -15,7 +16,8 @@ import java.net.HttpURLConnection;
 import java.nio.channels.ClosedByInterruptException;
 import java.util.List;
 
-import static us.shandian.giga.get.DownloadMission.ERROR_NOTHING;
+import us.shandian.giga.get.DownloadMission.HttpError;
+
 import static us.shandian.giga.get.DownloadMission.ERROR_RESOURCE_GONE;
 
 public class DownloadMissionRecover extends Thread {
@@ -23,47 +25,67 @@ public class DownloadMissionRecover extends Thread {
     static final int mID = -3;
 
     private final DownloadMission mMission;
-    private final Exception mFromError;
-    private final boolean notInitialized;
+    private final boolean mNotInitialized;
+
+    private final int mErrCode;
 
     private HttpURLConnection mConn;
     private MissionRecoveryInfo mRecovery;
     private StreamExtractor mExtractor;
 
-    DownloadMissionRecover(DownloadMission mission, Exception originError) {
+    DownloadMissionRecover(DownloadMission mission, int errCode) {
         mMission = mission;
-        mFromError = originError;
-        notInitialized = mission.blocks == null && mission.current == 0;
+        mNotInitialized = mission.blocks == null && mission.current == 0;
+        mErrCode = errCode;
     }
 
     @Override
     public void run() {
         if (mMission.source == null) {
-            mMission.notifyError(mFromError);
+            mMission.notifyError(mErrCode, null);
             return;
         }
 
+        Exception err = null;
+        int attempt = 0;
+
+        while (attempt++ < mMission.maxRetry) {
+            try {
+                tryRecover();
+                return;
+            } catch (InterruptedIOException | ClosedByInterruptException e) {
+                return;
+            } catch (Exception e) {
+                if (!mMission.running || super.isInterrupted()) return;
+                err = e;
+            }
+        }
+
+        // give up
+        mMission.notifyError(mErrCode, err);
+    }
+
+    private void tryRecover() throws ExtractionException, IOException, HttpError {
         /*if (mMission.source.startsWith(MissionRecoveryInfo.DIRECT_SOURCE)) {
             resolve(mMission.source.substring(MissionRecoveryInfo.DIRECT_SOURCE.length()));
             return;
         }*/
 
-        try {
-            StreamingService svr = NewPipe.getServiceByUrl(mMission.source);
-            mExtractor = svr.getStreamExtractor(mMission.source);
-            mExtractor.fetchPage();
-        } catch (InterruptedIOException | ClosedByInterruptException e) {
-            return;
-        } catch (Exception e) {
-            if (!mMission.running || super.isInterrupted()) return;
-            mMission.notifyError(e);
-            return;
+        if (mExtractor == null) {
+            try {
+                StreamingService svr = NewPipe.getServiceByUrl(mMission.source);
+                mExtractor = svr.getStreamExtractor(mMission.source);
+                mExtractor.fetchPage();
+            } catch (ExtractionException e) {
+                mExtractor = null;
+                throw e;
+            }
         }
 
         // maybe the following check is redundant
         if (!mMission.running || super.isInterrupted()) return;
 
-        if (!notInitialized) {
+        if (!mNotInitialized) {
             // set the current download url to null in case if the recovery
             // process is canceled. Next time start() method is called the
             // recovery will be executed, saving time
@@ -87,7 +109,7 @@ public class DownloadMissionRecover extends Thread {
                 if (!mMission.running) return;
 
                 // before continue, check if the current stream was resolved
-                if (mMission.urls[mMission.current] == null || mMission.errCode != ERROR_NOTHING) {
+                if (mMission.urls[mMission.current] == null) {
                     break;
                 }
             }
@@ -103,59 +125,54 @@ public class DownloadMissionRecover extends Thread {
         mMission.start();
     }
 
-    private void resolveStream() {
-        if (mExtractor.getErrorMessage() != null) {
-            mMission.notifyError(mFromError);
+    private void resolveStream() throws IOException, ExtractionException, HttpError {
+        // FIXME: this getErrorMessage() always returns "video is unavailable"
+        /*if (mExtractor.getErrorMessage() != null) {
+            mMission.notifyError(mErrCode, new ExtractionException(mExtractor.getErrorMessage()));
             return;
+        }*/
+
+        String url = null;
+
+        switch (mRecovery.kind) {
+            case 'a':
+                for (AudioStream audio : mExtractor.getAudioStreams()) {
+                    if (audio.average_bitrate == mRecovery.desiredBitrate && audio.getFormat() == mRecovery.format) {
+                        url = audio.getUrl();
+                        break;
+                    }
+                }
+                break;
+            case 'v':
+                List<VideoStream> videoStreams;
+                if (mRecovery.desired2)
+                    videoStreams = mExtractor.getVideoOnlyStreams();
+                else
+                    videoStreams = mExtractor.getVideoStreams();
+                for (VideoStream video : videoStreams) {
+                    if (video.resolution.equals(mRecovery.desired) && video.getFormat() == mRecovery.format) {
+                        url = video.getUrl();
+                        break;
+                    }
+                }
+                break;
+            case 's':
+                for (SubtitlesStream subtitles : mExtractor.getSubtitles(mRecovery.format)) {
+                    String tag = subtitles.getLanguageTag();
+                    if (tag.equals(mRecovery.desired) && subtitles.isAutoGenerated() == mRecovery.desired2) {
+                        url = subtitles.getURL();
+                        break;
+                    }
+                }
+                break;
+            default:
+                throw new RuntimeException("Unknown stream type");
         }
 
-        try {
-            String url = null;
-
-            switch (mRecovery.kind) {
-                case 'a':
-                    for (AudioStream audio : mExtractor.getAudioStreams()) {
-                        if (audio.average_bitrate == mRecovery.desiredBitrate && audio.getFormat() == mRecovery.format) {
-                            url = audio.getUrl();
-                            break;
-                        }
-                    }
-                    break;
-                case 'v':
-                    List<VideoStream> videoStreams;
-                    if (mRecovery.desired2)
-                        videoStreams = mExtractor.getVideoOnlyStreams();
-                    else
-                        videoStreams = mExtractor.getVideoStreams();
-                    for (VideoStream video : videoStreams) {
-                        if (video.resolution.equals(mRecovery.desired) && video.getFormat() == mRecovery.format) {
-                            url = video.getUrl();
-                            break;
-                        }
-                    }
-                    break;
-                case 's':
-                    for (SubtitlesStream subtitles : mExtractor.getSubtitles(mRecovery.format)) {
-                        String tag = subtitles.getLanguageTag();
-                        if (tag.equals(mRecovery.desired) && subtitles.isAutoGenerated() == mRecovery.desired2) {
-                            url = subtitles.getURL();
-                            break;
-                        }
-                    }
-                    break;
-                default:
-                    throw new RuntimeException("Unknown stream type");
-            }
-
-            resolve(url);
-        } catch (Exception e) {
-            if (!mMission.running || e instanceof ClosedByInterruptException) return;
-            mRecovery.attempts++;
-            mMission.notifyError(e);
-        }
+        resolve(url);
     }
 
-    private void resolve(String url) throws IOException, DownloadMission.HttpError {
+    private void resolve(String url) throws IOException, HttpError {
         if (mRecovery.validateCondition == null) {
             Log.w(TAG, "validation condition not defined, the resource can be stale");
         }
@@ -190,10 +207,7 @@ public class DownloadMissionRecover extends Thread {
                     return;
             }
 
-            throw new DownloadMission.HttpError(code);
-        } catch (Exception e) {
-            if (!mMission.running || e instanceof ClosedByInterruptException) return;
-            throw e;
+            throw new HttpError(code);
         } finally {
             disconnect();
         }
@@ -205,14 +219,14 @@ public class DownloadMissionRecover extends Thread {
         );
 
         mMission.urls[mMission.current] = url;
-        mRecovery.attempts = 0;
 
         if (url == null) {
+            mMission.urls = new String[0];
             mMission.notifyError(ERROR_RESOURCE_GONE, null);
             return;
         }
 
-        if (notInitialized) return;
+        if (mNotInitialized) return;
 
         if (stale) {
             mMission.resetState(false, false, DownloadMission.ERROR_NOTHING);

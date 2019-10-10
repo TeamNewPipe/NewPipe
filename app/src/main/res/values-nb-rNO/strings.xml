@@ -458,7 +458,6 @@
     <string name="error_http_not_found">Ikke funnet</string>
     <string name="error_postprocessing_failed">Etterbehandling mislyktes</string>
     <string name="clear_finished_download">Tøm fullførte nedlastinger</string>
-    <string name="msg_pending_downloads">Fortsett dine %s ventende overføringer fra Nedlastinger</string>
     <string name="stop">Stopp</string>
     <string name="max_retry_msg">Maksimalt antall forsøk</string>
     <string name="max_retry_desc">Maksimalt antall tilkoblingsforsøk før nedlastingen avblåses</string>

@@ -457,7 +457,6 @@
     <string name="error_http_not_found">Non trovato</string>
     <string name="error_postprocessing_failed">Post-processing fallito</string>
     <string name="clear_finished_download">Pulisci i download completati</string>
-    <string name="msg_pending_downloads">Continua i %s trasferimenti in corso dai Download</string>
     <string name="stop">Ferma</string>
     <string name="max_retry_msg">Tentativi massimi</string>
     <string name="max_retry_desc">Tentativi massimi prima di cancellare il download</string>

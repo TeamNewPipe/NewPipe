@@ -452,7 +452,6 @@
     <string name="error_http_not_found">Bulunamadı</string>
     <string name="error_postprocessing_failed">İşlem sonrası başarısız</string>
     <string name="clear_finished_download">Tamamlanan indirmeleri temizle</string>
-    <string name="msg_pending_downloads">Beklemedeki %s transferinize İndirmeler\'den devam edin</string>
     <string name="stop">Durdur</string>
     <string name="max_retry_msg">Azami deneme sayısı</string>
     <string name="max_retry_desc">İndirmeyi iptal etmeden önce maksimum deneme sayısı</string>

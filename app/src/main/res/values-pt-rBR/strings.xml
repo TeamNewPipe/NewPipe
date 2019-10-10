@@ -466,7 +466,6 @@ abrir em modo popup</string>
     <string name="error_http_not_found">Não encontrado</string>
     <string name="error_postprocessing_failed">Falha no pós processamento</string>
     <string name="clear_finished_download">Limpar downloads finalizados</string>
-    <string name="msg_pending_downloads">Continuar seus %s downloads pendentes</string>
     <string name="stop">Parar</string>
     <string name="max_retry_msg">Tentativas Máximas</string>
     <string name="max_retry_desc">Número máximo de tentativas antes de cancelar o download</string>

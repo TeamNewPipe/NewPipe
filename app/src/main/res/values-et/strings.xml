@@ -460,7 +460,6 @@
     <string name="error_http_not_found">Ei leitud</string>
     <string name="error_postprocessing_failed">Järeltöötlemine nurjus</string>
     <string name="clear_finished_download">Eemalda lõpetatud allalaadimised</string>
-    <string name="msg_pending_downloads">Jätka %s pooleliolevat allalaadimist</string>
     <string name="stop">Stopp</string>
     <string name="max_retry_msg">Korduskatseid</string>
     <string name="max_retry_desc">Suurim katsete arv enne allalaadimise tühistamist</string>

@@ -464,7 +464,6 @@
     <string name="error_http_not_found">לא נמצא</string>
     <string name="error_postprocessing_failed">העיבוד המאוחר נכשל</string>
     <string name="clear_finished_download">פינוי ההורדות שהסתיימו</string>
-    <string name="msg_pending_downloads">ניתן להמשיך את %s ההורדות הממתינות שלך דרך ההורדות</string>
     <string name="stop">עצירה</string>
     <string name="max_retry_msg">מספר הניסיונות החוזרים המרבי</string>
     <string name="max_retry_desc">מספר הניסיונות החוזרים המרבי בטרם ביטול ההורדה</string>

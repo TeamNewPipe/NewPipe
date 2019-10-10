@@ -2,13 +2,11 @@ package us.shandian.giga.service;
 
 import android.content.Context;
 import android.os.Handler;
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DiffUtil;
-import android.util.Log;
-import android.widget.Toast;
-
-import org.schabi.newpipe.R;
 
 import java.io.File;
 import java.io.IOException;
@@ -152,6 +150,8 @@ public class DownloadManager {
                 continue;
             }
 
+            mis.threads = new Thread[0];
+
             boolean exists;
             try {
                 mis.storage = StoredFileHelper.deserialize(mis.storage, ctx);
@@ -170,8 +170,6 @@ public class DownloadManager {
                     // is Java IO (avoid showing the "Save as..." dialog)
                     if (exists && mis.storage.isDirect() && !mis.storage.delete())
                         Log.w(TAG, "Unable to delete incomplete download file: " + sub.getPath());
-
-                    exists = true;
                 }
 
                 mis.psState = 0;
@@ -243,7 +241,6 @@ public class DownloadManager {
             boolean start = !mPrefQueueLimit || getRunningMissionsCount() < 1;
 
             if (canDownloadInCurrentNetwork() && start) {
-                mHandler.sendEmptyMessage(DownloadManagerService.MESSAGE_PROGRESS);
                 mission.start();
             }
         }
@@ -252,7 +249,6 @@ public class DownloadManager {
 
     public void resumeMission(DownloadMission mission) {
         if (!mission.running) {
-            mHandler.sendEmptyMessage(DownloadManagerService.MESSAGE_PROGRESS);
             mission.start();
         }
     }
@@ -261,7 +257,6 @@ public class DownloadManager {
         if (mission.running) {
             mission.setEnqueued(false);
             mission.pause();
-            mHandler.sendEmptyMessage(DownloadManagerService.MESSAGE_PAUSED);
         }
     }
 
@@ -274,7 +269,6 @@ public class DownloadManager {
                 mFinishedMissionStore.deleteMission(mission);
             }
 
-            mHandler.sendEmptyMessage(DownloadManagerService.MESSAGE_DELETED);
             mission.delete();
         }
     }
@@ -291,7 +285,6 @@ public class DownloadManager {
                 mFinishedMissionStore.deleteMission(mission);
             }
 
-            mHandler.sendEmptyMessage(DownloadManagerService.MESSAGE_DELETED);
             mission.storage = null;
             mission.delete();
         }
@@ -374,35 +367,29 @@ public class DownloadManager {
     }
 
     public void pauseAllMissions(boolean force) {
-        boolean flag = false;
-
         synchronized (this) {
             for (DownloadMission mission : mMissionsPending) {
                 if (!mission.running || mission.isPsRunning() || mission.isFinished()) continue;
 
-                if (force) mission.threads = null;// avoid waiting for threads
+                if (force) {
+                    // avoid waiting for threads
+                    mission.init = null;
+                    mission.threads = new Thread[0];
+                }
 
                 mission.pause();
-                flag = true;
             }
         }
-
-        if (flag) mHandler.sendEmptyMessage(DownloadManagerService.MESSAGE_PAUSED);
     }
 
     public void startAllMissions() {
-        boolean flag = false;
-
         synchronized (this) {
             for (DownloadMission mission : mMissionsPending) {
                 if (mission.running || mission.isCorrupt()) continue;
 
-                flag = true;
                 mission.start();
             }
         }
-
-        if (flag) mHandler.sendEmptyMessage(DownloadManagerService.MESSAGE_PROGRESS);
     }
 
     /**
@@ -483,50 +470,24 @@ public class DownloadManager {
 
         boolean isMetered = mPrefMeteredDownloads && mLastNetworkStatus == NetworkState.MeteredOperating;
 
-        int running = 0;
-        int paused = 0;
         synchronized (this) {
             for (DownloadMission mission : mMissionsPending) {
                 if (mission.isCorrupt() || mission.isPsRunning()) continue;
 
                 if (mission.running && isMetered) {
-                    paused++;
                     mission.pause();
                 } else if (!mission.running && !isMetered && mission.enqueued) {
-                    running++;
                     mission.start();
                     if (mPrefQueueLimit) break;
                 }
             }
         }
-
-        if (running > 0) {
-            mHandler.sendEmptyMessage(DownloadManagerService.MESSAGE_PROGRESS);
-            return;
-        }
-        if (paused > 0) mHandler.sendEmptyMessage(DownloadManagerService.MESSAGE_PAUSED);
     }
 
     void updateMaximumAttempts() {
         synchronized (this) {
             for (DownloadMission mission : mMissionsPending) mission.maxRetry = mPrefMaxRetry;
         }
-    }
-
-    /**
-     * Fast check for pending downloads. If exists, the user will be notified
-     * TODO: call this method in somewhere
-     *
-     * @param context the application context
-     */
-    public static void notifyUserPendingDownloads(Context context) {
-        int pending = getPendingDir(context).list().length;
-        if (pending < 1) return;
-
-        Toast.makeText(context, context.getString(
-                R.string.msg_pending_downloads,
-                String.valueOf(pending)
-        ), Toast.LENGTH_LONG).show();
     }
 
     public MissionState checkForExistingMission(StoredFileHelper storage) {

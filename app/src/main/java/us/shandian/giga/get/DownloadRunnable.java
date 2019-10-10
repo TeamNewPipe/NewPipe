@@ -87,6 +87,7 @@ public class DownloadRunnable extends Thread {
                 if (mConn.getResponseCode() == 416) {
                     if (block.done > 0) {
                         // try again from the start (of the block)
+                        mMission.notifyProgress(-block.done);
                         block.done = 0;
                         retry = true;
                         mConn.disconnect();
@@ -114,7 +115,7 @@ public class DownloadRunnable extends Thread {
                     int len;
 
                     // use always start <= end
-                    // fixes a deadlock in DownloadRunnable because youtube is sending one byte alone after downloading 26MiB exactly
+                    // fixes a deadlock because in some videos, youtube is sending one byte alone
                     while (start <= end && mMission.running && (len = is.read(buf, 0, buf.length)) != -1) {
                         f.write(buf, 0, len);
                         start += len;
@@ -135,7 +136,7 @@ public class DownloadRunnable extends Thread {
 
                     if (mId == 1) {
                         // only the first thread will execute the recovery procedure
-                        mMission.doRecover(e);
+                        mMission.doRecover(ERROR_HTTP_FORBIDDEN);
                     }
                     return;
                 }

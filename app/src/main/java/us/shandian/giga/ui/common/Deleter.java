@@ -4,8 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
-import com.google.android.material.snackbar.Snackbar;
 import android.view.View;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import org.schabi.newpipe.R;
 
@@ -113,7 +114,7 @@ public class Deleter {
         show();
     }
 
-    private void pause() {
+    public void pause() {
         running = false;
         mHandler.removeCallbacks(rNext);
         mHandler.removeCallbacks(rShow);
@@ -126,12 +127,10 @@ public class Deleter {
         mHandler.postDelayed(rShow, DELAY_RESUME);
     }
 
-    public void dispose(boolean commitChanges) {
+    public void dispose() {
         if (items.size() < 1) return;
 
         pause();
-
-        if (!commitChanges) return;
 
         for (Mission mission : items) mDownloadManager.deleteMission(mission);
         items = null;
