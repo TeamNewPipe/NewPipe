@@ -17,10 +17,10 @@
     <string name="use_external_video_player_title">Folosește un player video extern</string>
     <string name="use_external_audio_player_title">Folosește un player audio extern</string>
     <string name="download_path_title">Locația videoclipurilor descărcate</string>
-    <string name="download_path_summary">Locul în care se vor descărca videoclipurile</string>
-    <string name="download_path_dialog_title">Introduceți locația în care se vor descărca videoclipurile</string>
+    <string name="download_path_summary">Videoclipurile descărcate vor fi salvate aici</string>
+    <string name="download_path_dialog_title">Introduceți locația unde se vor descărca videoclipurile</string>
     <string name="download_path_audio_title">Directorul audio-ului descărcat</string>
-    <string name="download_path_audio_summary">Locul în care se va descărca audio-ul</string>
+    <string name="download_path_audio_summary">Locul în care se vor descărca fișierele audio</string>
     <string name="download_path_audio_dialog_title">Introduceți locația în care se va descărca fişierele audio</string>
     <string name="default_resolution_title">Rezoluție implicită</string>
     <string name="play_with_kodi_title">Redați folosind Kodi</string>
@@ -409,4 +409,5 @@ pentru a deschide în mod pop-up</string>
     <string name="watch_history_states_deleted">Pozițiile de redare șterse.</string>
     <string name="missing_file">Fișier mutat sau șters</string>
     <string name="clear_playback_states_title">Șterge pozițiile de redare memorate</string>
+    <string name="download_choose_new_path">Schimbați folderul de descărcări pentru ca setările să aiba efect</string>
 </resources>

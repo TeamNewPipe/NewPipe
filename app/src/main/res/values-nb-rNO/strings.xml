@@ -504,4 +504,5 @@
     <string name="clear_playback_states_title">Slett avspillingsposisjoner</string>
     <string name="clear_playback_states_summary">Sletter alle avspillingsposisjoner</string>
     <string name="delete_playback_states_alert">Slett alle avspillingsposisjoner\?</string>
+    <string name="download_choose_new_path">Endre nedlastingsmapper for å benytte dette</string>
 </resources>

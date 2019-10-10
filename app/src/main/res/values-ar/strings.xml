@@ -8,17 +8,17 @@
     <string name="default_resolution_title">الدقة الافتراضية</string>
     <string name="detail_dislikes_img_view_description">عدم الإعجاب</string>
     <string name="detail_likes_img_view_description">الإعجابات</string>
-    <string name="detail_thumbnail_view_description">صور معاينة الفيديو</string>
+    <string name="detail_thumbnail_view_description">مدة, تشغيل الفيديو:</string>
     <string name="detail_uploader_thumbnail_view_description">الصورة المصغرة الشخصية</string>
     <string name="did_you_mean">هل تقصد: %1$s\?</string>
     <string name="download">تنزيل</string>
     <string name="download_dialog_title">تنزيل</string>
-    <string name="download_path_audio_dialog_title">أدخل مسار تنزيل الملفات الصوتية</string>
-    <string name="download_path_audio_summary">يتم تخزين الصوت الذي تم تنزيله هنا</string>
+    <string name="download_path_audio_dialog_title">اختر مجلد التنزيل لملفات الصوت</string>
+    <string name="download_path_audio_summary">يتم تخزين الملفات الصوتية التي تم تنزيلها هنا</string>
     <string name="download_path_audio_title">مسار مجلد الصوتيات المحفوظة</string>
-    <string name="download_path_dialog_title">أدخل مسار التنزيل لملفات الفيديو</string>
-    <string name="download_path_summary">مسار حفظ تنزيلات الفيديو في</string>
-    <string name="download_path_title">مسار ملفات الفيديو المحفوظة</string>
+    <string name="download_path_dialog_title">اختر مجلد التنزيل لملفات الفيديو</string>
+    <string name="download_path_summary">يتم تخزين ملفات الفيديو التي تم تنزيلها هنا</string>
+    <string name="download_path_title">مجلد تحميل الفيديو</string>
     <string name="err_dir_create">"لا يمكن إنشاء مجلد للتنزيلات في '%1$s'"</string>
     <string name="info_dir_created">إنشاء دليل التنزيل \'%1$s\'</string>
     <string name="install">تثبيت</string>
@@ -42,7 +42,7 @@
     <string name="share">مشاركة</string>
     <string name="share_dialog_title">مشاركة بواسطة</string>
     <string name="show_next_and_similar_title">عرض مقاطع الفيديو \"التالية\" و \"المشابهة\"</string>
-    <string name="show_play_with_kodi_summary">اعرض خيارًا لتشغيل الفيديو عبر مركز وسائط Kodi</string>
+    <string name="show_play_with_kodi_summary">عرض خيار تشغيل الفيديو عبر وسائط Kodi</string>
     <string name="show_play_with_kodi_title">عرض خيار التشغيل بواسطة كودي</string>
     <string name="theme_title">السمة</string>
     <string name="upload_date_text">تم النشر يوم %1$s</string>
@@ -69,8 +69,8 @@
     <string name="enable_watch_history_title">مراقبة السجل</string>
     <string name="settings_category_history_title">التاريخ و ذاكرة التخزين المؤقت</string>
     <string name="content">محتوى</string>
-    <string name="downloads">التنزيلات</string>
-    <string name="downloads_title">التنزيلات</string>
+    <string name="downloads">التحميلات</string>
+    <string name="downloads_title">التحميلات</string>
     <string name="all">الجميع</string>
     <string name="channel">القناة</string>
     <string name="video">الفيديو</string>
@@ -80,7 +80,7 @@
     <string name="title_activity_history">التاريخ</string>
     <string name="action_history">التاريخ</string>
     <string name="open_in_popup_mode">فتح في وضع منبثق</string>
-    <string name="use_external_video_player_summary">يزيل الصوت في بعض القرارات</string>
+    <string name="use_external_video_player_summary">يزيل الصوت في بعض مستوى الدقة</string>
     <string name="popup_mode_share_menu_title">وضع النوافذ المنبثقة NewPipe</string>
     <string name="channel_unsubscribed">تم إلغاء الاشتراك في القناة</string>
     <string name="subscription_change_failed">تعذر تغيير حالة الاشتراك</string>
@@ -113,11 +113,11 @@
     <string name="show_age_restricted_content_title">محتوى مقيد بحسب العمر</string>
     <string name="video_is_age_restricted">"إظهار الفيديو  المقيد بحسب العمر. يمكن السماح باستخدام هذه المواد من \"الإعدادات\"."</string>
     <string name="duration_live">بث مباشر</string>
-    <string name="error_report_title">الإبلاغ عن خطأ</string>
+    <string name="error_report_title">تقرير خطأ</string>
     <string name="playlist">قائمة التشغيل</string>
     <string name="yes">نعم</string>
     <string name="later">لاحقاً</string>
-    <string name="disabled">معطل</string>
+    <string name="disabled">تعطيل</string>
     <string name="filter">فلتر</string>
     <string name="refresh">تحديث</string>
     <string name="clear">تنظيف</string>
@@ -153,9 +153,9 @@
     <string name="audio">الصوت</string>
     <string name="retry">إعادة المحاولة</string>
     <string name="storage_permission_denied">تم رفض إذن الوصول إلى التخزين</string>
-    <string name="short_thousand">ك</string>
+    <string name="short_thousand">K</string>
     <string name="short_million">مليون</string>
-    <string name="short_billion">ج</string>
+    <string name="short_billion">G</string>
     <string name="no_subscribers">ليس هناك مشترِكون</string>
     <plurals name="subscribers">
         <item quantity="zero">%s لا يوجد مشاركين</item>
@@ -236,7 +236,7 @@
     <string name="start_here_on_main">تشغيل هنا</string>
     <string name="start_here_on_popup">تشغيل في وضع نافذة منبثقة</string>
     <string name="reCaptcha_title">تحدي الكابتشا</string>
-    <string name="hold_to_append">اضغط للإدراج في قائمة الانتظار</string>
+    <string name="hold_to_append">ضغط مطول للإدراج الى قائمة الانتظار</string>
     <plurals name="views">
         <item quantity="zero">بدون مشاهدات</item>
         <item quantity="one">%s مشاهدة</item>
@@ -425,10 +425,10 @@
     <string name="app_update_notification_channel_name">تتبيه تحديث التطبيق</string>
     <string name="volume_gesture_control_title">إيماءة التحكم بالصوت</string>
     <string name="events">الأحداث</string>
-    <string name="app_update_notification_channel_description">تنبيه عند تواجد إصدار جديد من newpipe</string>
-    <string name="download_to_sdcard_error_title">وحدة التخزين الخارجية غير متوفرة</string>
+    <string name="app_update_notification_channel_description">إخطارات NewPipe جديدة  الإصدار</string>
+    <string name="download_to_sdcard_error_title">ذاكرة التخزين الخارجية غير متوفرة</string>
     <string name="download_to_sdcard_error_message">"التنزيل على بطاقة SD الخارجية غير ممكن.  إعادة تعيين موقع مجلد التحميل؟"</string>
-    <string name="saved_tabs_invalid_json">عند إستخدام علامات التبويب الافتراضية ، وقع خطأ أثناء قراءة علامات التبويب المحفوظة</string>
+    <string name="saved_tabs_invalid_json">استخدام خطأ علامات التبويب الافتراضية, أثناء قراءة علامات التبويب المحفوظة</string>
     <string name="restore_defaults">استعادة الضبط الافتراضي</string>
     <string name="restore_defaults_confirmation">هل تريد استعادة الإعدادات الافتراضية؟</string>
     <string name="subscribers_count_not_available">عدد المشتركين غير متاح</string>
@@ -521,4 +521,5 @@
     <string name="clear_playback_states_summary">حذف كل مواقف التشغيل</string>
     <string name="delete_playback_states_alert">حذف كل مواقف التشغيل؟</string>
     <string name="download_choose_new_path">تغيير مجلدات التنزيل إلى حيز التنفيذ‮‮‮</string>
+    <string name="drawer_header_description">تبديل الخدمة ، المحدد حاليًا:</string>
 </resources>

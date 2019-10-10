@@ -20,12 +20,12 @@
     <string name="use_external_audio_player_title">Sử dụng trình phát audio bên ngoài</string>
     <string name="popup_mode_share_menu_title">Chế độ popup của NewPipe</string>
     <string name="controls_popup_title">Trình phát nổi</string>
-    <string name="download_path_title">Thư mục tải về video</string>
-    <string name="download_path_summary">Đường dẫn để lưu video đã tải về</string>
-    <string name="download_path_dialog_title">Nhập đường dẫn tải về cho video</string>
+    <string name="download_path_title">Thư mục video tải về</string>
+    <string name="download_path_summary">Video đã tải về được lưu ở đây</string>
+    <string name="download_path_dialog_title">Chọn vị trí lưu video tải về</string>
     <string name="download_path_audio_title">Thư mục tải về audio</string>
     <string name="download_path_audio_summary">Audio đã tải về được lưu ở đây</string>
-    <string name="download_path_audio_dialog_title">Nhập đường dẫn tải về cho audio</string>
+    <string name="download_path_audio_dialog_title">Chọn vị trí lưu audio tải về</string>
     <string name="autoplay_by_calling_app_title">Tự động phát</string>
     <string name="autoplay_by_calling_app_summary">Phát video khi NewPipe được gọi từ một ứng dụng khác</string>
     <string name="default_resolution_title">Độ phân giải mặc định</string>
@@ -220,7 +220,7 @@
     <string name="import_data_summary">Ghi đè lịch sử và danh sách đăng ký hiện tại của bạn</string>
     <string name="export_data_summary">Xuất lịch sử, đăng ký và playlist</string>
     <string name="clear_views_history_title">Xóa lịch sử xem</string>
-    <string name="clear_views_history_summary">Xóa lịch sử của các luồng đã phát</string>
+    <string name="clear_views_history_summary">Xóa lịch sử các luồng đã phát và vị trí phát</string>
     <string name="delete_view_history_alert">Xóa toàn bộ lịch sử xem\?</string>
     <string name="watch_history_deleted">Đã xóa lịch sử xem.</string>
     <string name="clear_search_history_title">Xóa lịch sử tìm kiếm</string>
@@ -494,4 +494,8 @@
     <string name="downloads_storage_ask_summary">Bạn sẽ được hỏi vị trí lưu mỗi lần tải xuống</string>
     <string name="downloads_storage_ask_summary_kitkat">Bạn sẽ được hỏi vị trí lưu mỗi lần tải xuống.
 \nBật tính năng này nếu bạn muốn tải xuống sang thẻ SD ngoài.</string>
+    <string name="clear_playback_states_title">Xóa vị trí phát</string>
+    <string name="clear_playback_states_summary">Xóa toàn bộ vị trí phát</string>
+    <string name="delete_playback_states_alert">Xác nhận xóa toàn bộ vị trí phát\?</string>
+    <string name="download_choose_new_path">Thay đổi vị trí lưu để áp dụng</string>
 </resources>
