@@ -3,7 +3,7 @@ package org.schabi.newpipe.local.subscription.item
 import android.content.Context
 import com.nostra13.universalimageloader.core.ImageLoader
 import com.xwray.groupie.kotlinandroidextensions.Item
-import com.xwray.groupie.kotlinandroidextensions.ViewHolder
+import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import kotlinx.android.synthetic.main.list_channel_item.*
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
@@ -29,7 +29,7 @@ class ChannelItem(
         ItemVersion.GRID -> R.layout.list_channel_grid_item
     }
 
-    override fun bind(viewHolder: ViewHolder, position: Int) {
+    override fun bind(viewHolder: GroupieViewHolder, position: Int) {
         viewHolder.itemTitleView.text = infoItem.name
         viewHolder.itemAdditionalDetails.text = getDetailLine(viewHolder.root.context)
         if (itemVersion == ItemVersion.NORMAL) viewHolder.itemChannelDescriptionView.text = infoItem.description

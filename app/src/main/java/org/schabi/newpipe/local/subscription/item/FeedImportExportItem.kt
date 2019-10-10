@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.DrawableRes
+import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import com.xwray.groupie.kotlinandroidextensions.Item
-import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import kotlinx.android.synthetic.main.feed_import_export_group.*
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.NewPipe
@@ -28,7 +28,7 @@ class FeedImportExportItem(
         const val REFRESH_EXPANDED_STATUS = 123
     }
 
-    override fun bind(viewHolder: ViewHolder, position: Int, payloads: MutableList<Any>) {
+    override fun bind(viewHolder: GroupieViewHolder, position: Int, payloads: MutableList<Any>) {
         if (payloads.contains(REFRESH_EXPANDED_STATUS)) {
             viewHolder.import_export_options.apply { if (isExpanded) expand() else collapse() }
             return
@@ -39,7 +39,7 @@ class FeedImportExportItem(
 
     override fun getLayout(): Int = R.layout.feed_import_export_group
 
-    override fun bind(viewHolder: ViewHolder, position: Int) {
+    override fun bind(viewHolder: GroupieViewHolder, position: Int) {
         if (viewHolder.import_from_options.childCount == 0) setupImportFromItems(viewHolder.import_from_options)
         if (viewHolder.export_to_options.childCount == 0) setupExportToItems(viewHolder.export_to_options)
 
@@ -60,9 +60,9 @@ class FeedImportExportItem(
         }
     }
 
-    override fun unbind(holder: ViewHolder) {
-        super.unbind(holder)
-        expandIconListener?.let { holder.import_export_options.removeListener(it) }
+    override fun unbind(viewHolder: GroupieViewHolder) {
+        super.unbind(viewHolder)
+        expandIconListener?.let { viewHolder.import_export_options.removeListener(it) }
         expandIconListener = null
     }
 

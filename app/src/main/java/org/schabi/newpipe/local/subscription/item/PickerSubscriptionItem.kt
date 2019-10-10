@@ -4,7 +4,7 @@ import android.view.View
 import com.nostra13.universalimageloader.core.DisplayImageOptions
 import com.nostra13.universalimageloader.core.ImageLoader
 import com.xwray.groupie.kotlinandroidextensions.Item
-import com.xwray.groupie.kotlinandroidextensions.ViewHolder
+import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import kotlinx.android.synthetic.main.picker_subscription_item.*
 import org.schabi.newpipe.R
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
@@ -21,7 +21,7 @@ data class PickerSubscriptionItem(val subscriptionEntity: SubscriptionEntity, va
 
     override fun getLayout(): Int = R.layout.picker_subscription_item
 
-    override fun bind(viewHolder: ViewHolder, position: Int, payloads: MutableList<Any>) {
+    override fun bind(viewHolder: GroupieViewHolder, position: Int, payloads: MutableList<Any>) {
         if (payloads.contains(UPDATE_SELECTED)) {
             animateView(viewHolder.selected_highlight, AnimationUtils.Type.LIGHT_SCALE_AND_ALPHA, isSelected, 150)
             return
@@ -30,14 +30,14 @@ data class PickerSubscriptionItem(val subscriptionEntity: SubscriptionEntity, va
         super.bind(viewHolder, position, payloads)
     }
 
-    override fun bind(viewHolder: ViewHolder, position: Int) {
+    override fun bind(viewHolder: GroupieViewHolder, position: Int) {
         ImageLoader.getInstance().displayImage(subscriptionEntity.avatarUrl, viewHolder.thumbnail_view, IMAGE_LOADING_OPTIONS)
 
         viewHolder.title_view.text = subscriptionEntity.name
         viewHolder.selected_highlight.visibility = if (isSelected) View.VISIBLE else View.GONE
     }
 
-    override fun unbind(viewHolder: ViewHolder) {
+    override fun unbind(viewHolder: GroupieViewHolder) {
         super.unbind(viewHolder)
 
         viewHolder.selected_highlight.animate().setListener(null).cancel()

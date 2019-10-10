@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
-import com.xwray.groupie.kotlinandroidextensions.ViewHolder
+import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import icepick.Icepick
 import icepick.State
 import kotlinx.android.synthetic.main.dialog_feed_group_create.*
@@ -180,7 +180,7 @@ class FeedGroupDialog : DialogFragment() {
         this.selectedSubscriptions.addAll(selectedSubscriptions)
         val useGridLayout = subscriptions.isNotEmpty()
 
-        val groupAdapter = GroupAdapter<ViewHolder>()
+        val groupAdapter = GroupAdapter<GroupieViewHolder>()
         groupAdapter.spanCount = if (useGridLayout) 4 else 1
 
         val selectedCountText = getString(R.string.feed_group_dialog_selection_count, this.selectedSubscriptions.size)
@@ -250,7 +250,7 @@ class FeedGroupDialog : DialogFragment() {
     }
 
     private fun setupIconPicker() {
-        val groupAdapter = GroupAdapter<ViewHolder>()
+        val groupAdapter = GroupAdapter<GroupieViewHolder>()
         groupAdapter.addAll(FeedGroupIcon.values().map { PickerIconItem(requireContext(), it) })
 
         icon_selector.apply {

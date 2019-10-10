@@ -7,12 +7,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.kotlinandroidextensions.Item
-import com.xwray.groupie.kotlinandroidextensions.ViewHolder
+import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import kotlinx.android.synthetic.main.feed_item_carousel.*
 import org.schabi.newpipe.R
 import org.schabi.newpipe.local.subscription.decoration.FeedGroupCarouselDecoration
 
-class FeedGroupCarouselItem(context: Context, private val carouselAdapter: GroupAdapter<ViewHolder>) : Item() {
+class FeedGroupCarouselItem(context: Context, private val carouselAdapter: GroupAdapter<GroupieViewHolder>) : Item() {
     private val feedGroupCarouselDecoration = FeedGroupCarouselDecoration(context)
 
     private var linearLayoutManager: LinearLayoutManager? = null
@@ -30,7 +30,7 @@ class FeedGroupCarouselItem(context: Context, private val carouselAdapter: Group
         listState = state
     }
 
-    override fun createViewHolder(itemView: View): ViewHolder {
+    override fun createViewHolder(itemView: View): GroupieViewHolder {
         val viewHolder = super.createViewHolder(itemView)
 
         linearLayoutManager = LinearLayoutManager(itemView.context, RecyclerView.HORIZONTAL, false)
@@ -44,12 +44,12 @@ class FeedGroupCarouselItem(context: Context, private val carouselAdapter: Group
         return viewHolder
     }
 
-    override fun bind(viewHolder: ViewHolder, position: Int) {
+    override fun bind(viewHolder: GroupieViewHolder, position: Int) {
         viewHolder.recycler_view.apply { adapter = carouselAdapter }
         linearLayoutManager?.onRestoreInstanceState(listState)
     }
 
-    override fun unbind(viewHolder: ViewHolder) {
+    override fun unbind(viewHolder: GroupieViewHolder) {
         super.unbind(viewHolder)
 
         listState = linearLayoutManager?.onSaveInstanceState()

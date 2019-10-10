@@ -16,7 +16,7 @@ import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.Section
-import com.xwray.groupie.kotlinandroidextensions.ViewHolder
+import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import icepick.State
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.dialog_title.view.*
@@ -49,7 +49,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
 
     private var subscriptionBroadcastReceiver: BroadcastReceiver? = null
 
-    private val groupAdapter = GroupAdapter<ViewHolder>()
+    private val groupAdapter = GroupAdapter<GroupieViewHolder>()
     private val feedGroupsSection = Section()
     private var feedGroupsCarousel: FeedGroupCarouselItem? = null
     private lateinit var importExportItem: FeedImportExportItem
@@ -189,7 +189,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
 
     private fun setupInitialLayout() {
         Section().apply {
-            val carouselAdapter = GroupAdapter<ViewHolder>()
+            val carouselAdapter = GroupAdapter<GroupieViewHolder>()
 
             carouselAdapter.add(FeedGroupCardItem(-1, getString(R.string.all), FeedGroupIcon.ALL))
             carouselAdapter.add(feedGroupsSection)
