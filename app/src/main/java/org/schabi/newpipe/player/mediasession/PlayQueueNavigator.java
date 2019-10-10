@@ -2,10 +2,12 @@ package org.schabi.newpipe.player.mediasession;
 
 import android.os.Bundle;
 import android.os.ResultReceiver;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.support.v4.media.session.MediaSessionCompat;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.google.android.exoplayer2.ControlDispatcher;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 import com.google.android.exoplayer2.util.Util;
@@ -63,17 +65,17 @@ public class PlayQueueNavigator implements MediaSessionConnector.QueueNavigator 
     }
 
     @Override
-    public void onSkipToPrevious(Player player) {
+    public void onSkipToPrevious(Player player, ControlDispatcher controlDispatcher) {
         callback.onSkipToPrevious();
     }
 
     @Override
-    public void onSkipToQueueItem(Player player, long id) {
+    public void onSkipToQueueItem(Player player, ControlDispatcher controlDispatcher, long id) {
         callback.onSkipToIndex((int) id);
     }
 
     @Override
-    public void onSkipToNext(Player player) {
+    public void onSkipToNext(Player player, ControlDispatcher controlDispatcher) {
         callback.onSkipToNext();
     }
 
@@ -100,12 +102,7 @@ public class PlayQueueNavigator implements MediaSessionConnector.QueueNavigator 
     }
 
     @Override
-    public String[] getCommands() {
-        return new String[0];
-    }
-
-    @Override
-    public void onCommand(Player player, String command, Bundle extras, ResultReceiver cb) {
-
+    public boolean onCommand(Player player, ControlDispatcher controlDispatcher, String command, Bundle extras, ResultReceiver cb) {
+        return false;
     }
 }

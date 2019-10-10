@@ -1,10 +1,11 @@
 package org.schabi.newpipe.fragments.list;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+
+import androidx.annotation.NonNull;
 
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.ListInfo;
@@ -61,8 +62,10 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (currentWorker != null) currentWorker.dispose();
-        currentWorker = null;
+        if (currentWorker != null) {
+            currentWorker.dispose();
+            currentWorker = null;
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
