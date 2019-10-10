@@ -57,7 +57,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
 
     @State @JvmField var itemsListState: Parcelable? = null
     @State @JvmField var feedGroupsListState: Parcelable? = null
-    @State @JvmField var importExportItemExpandedState: Boolean = false
+    @State @JvmField var importExportItemExpandedState: Boolean? = null
 
     init {
         setHasOptionsMenu(true)
@@ -221,7 +221,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
                 { onImportPreviousSelected() },
                 { onImportFromServiceSelected(it) },
                 { onExportSelected() },
-                importExportItemExpandedState)
+                importExportItemExpandedState ?: false)
         groupAdapter.add(Section(importExportItem, listOf(subscriptionsSection)))
 
     }
@@ -306,6 +306,13 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
 
                 subscriptionsSection.update(result.subscriptions)
                 subscriptionsSection.setHideWhenEmpty(false)
+
+                if (result.subscriptions.isEmpty() && importExportItemExpandedState == null) {
+                    items_list.post {
+                        importExportItem.isExpanded = true
+                        importExportItem.notifyChanged(FeedImportExportItem.REFRESH_EXPANDED_STATUS)
+                    }
+                }
 
                 if (itemsListState != null) {
                     items_list.layoutManager?.onRestoreInstanceState(itemsListState)
