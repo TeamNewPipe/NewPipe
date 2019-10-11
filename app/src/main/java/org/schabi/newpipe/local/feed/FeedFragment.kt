@@ -27,8 +27,6 @@ import android.view.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import icepick.State
-import io.reactivex.Completable
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.error_retry.*
 import kotlinx.android.synthetic.main.fragment_feed.*
 import org.schabi.newpipe.R
@@ -105,7 +103,7 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        activity.supportActionBar?.setTitle(R.string.fragment_whats_new)
+        activity.supportActionBar?.setTitle(R.string.fragment_feed_title)
         activity.supportActionBar?.subtitle = groupName
     }
 

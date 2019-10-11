@@ -105,7 +105,7 @@
     <string name="subscription_update_failed">לא ניתן לעדכן את המינוי</string>
     <string name="tab_main">ראשי</string>
     <string name="tab_subscriptions">מינויים</string>
-    <string name="fragment_whats_new">מה חדש</string>
+    <string name="fragment_feed_title">מה חדש</string>
     <string name="enable_search_history_title">היסטוריית חיפוש</string>
     <string name="enable_search_history_summary">שמירת שאילתות החיפוש מקומית</string>
     <string name="enable_watch_history_title">היסטוריית צפייה</string>

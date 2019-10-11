@@ -191,7 +191,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
         Section().apply {
             val carouselAdapter = GroupAdapter<GroupieViewHolder>()
 
-            carouselAdapter.add(FeedGroupCardItem(-1, getString(R.string.all), FeedGroupIcon.ALL))
+            carouselAdapter.add(FeedGroupCardItem(-1, getString(R.string.all), FeedGroupIcon.RSS))
             carouselAdapter.add(feedGroupsSection)
             carouselAdapter.add(FeedGroupAddItem())
 
@@ -209,7 +209,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
             }
 
             feedGroupsCarousel = FeedGroupCarouselItem(requireContext(), carouselAdapter)
-            add(Section(HeaderItem(getString(R.string.fragment_whats_new)), listOf(feedGroupsCarousel)))
+            add(Section(HeaderItem(getString(R.string.feed_groups_header_title)), listOf(feedGroupsCarousel)))
 
             groupAdapter.add(this)
         }

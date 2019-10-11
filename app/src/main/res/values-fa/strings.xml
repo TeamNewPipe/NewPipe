@@ -115,7 +115,7 @@
     <string name="tab_main">اصلی</string>
     <string name="tab_subscriptions">اشتراک‌ها</string>
     <string name="tab_bookmarks">فهرست‌های پخش دارای نشانک</string>
-    <string name="fragment_whats_new">موارد جدید</string>
+    <string name="fragment_feed_title">موارد جدید</string>
     <string name="controls_background_title">پس زمینه</string>
     <string name="controls_add_to_playlist_title">افزودن به</string>
     <string name="show_higher_resolutions_title">نمایش کیفیت بالاتر</string>

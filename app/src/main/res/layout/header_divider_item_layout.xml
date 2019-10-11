@@ -20,7 +20,7 @@
         android:layout_marginStart="16dp"
         android:textSize="14sp"
         android:textStyle="bold"
-        tools:text="@string/fragment_whats_new"/>
+        tools:text="@string/fragment_feed_title"/>
 
     <View
         android:layout_width="wrap_content"

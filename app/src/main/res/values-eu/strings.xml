@@ -165,7 +165,7 @@
     <string name="subscription_update_failed">Ezin izan da harpidetza eguneratu</string>
     <string name="tab_main">Nagusia</string>
     <string name="tab_subscriptions">Harpidetzak</string>
-    <string name="fragment_whats_new">Zer dago berri</string>
+    <string name="fragment_feed_title">Zer dago berri</string>
     <string name="resume_on_audio_focus_gain_title">Jarraitu erreprodukzioa</string>
     <string name="resume_on_audio_focus_gain_summary">Jarraitu etenaldiak eta gero (adib. telefono deiak)</string>
     <string name="settings_category_downloads_title">Deskargak</string>

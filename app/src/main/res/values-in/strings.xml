@@ -165,7 +165,7 @@
     <string name="contribution_title">Kontribusi</string>
     <string name="subscribe_button_title">Subscribe</string>
     <string name="subscribed_button_title">Disubscribe</string>
-    <string name="fragment_whats_new">Apa Yang Baru</string>
+    <string name="fragment_feed_title">Apa Yang Baru</string>
     <string name="resume_on_audio_focus_gain_title">Lanjutkan pemutaran</string>
     <string name="resume_on_audio_focus_gain_summary">Melanjutkan pemutaran setelah interupsi (mis. panggilan telepon)</string>
     <string name="tab_main">Utama</string>

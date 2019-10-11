@@ -164,7 +164,7 @@
     <string name="subscription_change_failed">Impossibile cambiare l\'iscrizione</string>
     <string name="subscription_update_failed">Impossibile aggiornare l\'iscrizione</string>
     <string name="tab_subscriptions">Iscrizioni</string>
-    <string name="fragment_whats_new">Novità</string>
+    <string name="fragment_feed_title">Novità</string>
     <string name="enable_search_history_title">Cronologia Ricerche</string>
     <string name="enable_search_history_summary">Salva le ricerche localmente</string>
     <string name="enable_watch_history_title">Cronologia Visualizzazioni</string>
@@ -381,7 +381,7 @@
     <string name="app_license">NewPipe è un software libero con licenza copyleft: si può utilizzare, studiare, condividere e migliorare a proprio piacimento. In particolare, è possibile ridistribuirlo e/o modificarlo secondo i termini della GNU General Public License (Free Software Foundation), nella versione 3 o successiva, a propria discrezione.</string>
     <string name="import_settings">Vuoi anche importare le impostazioni?</string>
     <string name="privacy_policy_title">Informativa sulla Privacy</string>
-    <string name="privacy_policy_encouragement">Il progetto NewPipe tiene molto alla tua privacy. Perciò, l\'app non raccoglie alcun dato senza il tuo consenso. 
+    <string name="privacy_policy_encouragement">Il progetto NewPipe tiene molto alla tua privacy. Perciò, l\'app non raccoglie alcun dato senza il tuo consenso.
 \nL\'informativa sulla privacy spiega nel dettaglio quali dati vengono trattati e memorizzati durante l\'invio di segnalazioni per arresti anomali.</string>
     <string name="read_privacy_policy">Leggi l\'informativa sulla privacy</string>
     <string name="start_accept_privacy_policy">Per rispettare il regolamento europeo sulla protezione dei dati (GDPR), attiriamo la vostra attenzione riguardo l\'informativa sulla privacy di NewPipe. Si prega di leggerla attentamente.
@@ -496,9 +496,9 @@
     <string name="downloads_storage_ask_summary">Ogni volta verrà chiesta la destinazione dei file</string>
     <string name="downloads_storage_use_saf_title">Utilizza SAF</string>
     <string name="enable_queue_limit">Limita Coda Download</string>
-    <string name="downloads_storage_ask_summary_kitkat">Ogni volta verrà chiesta la destinazione dei file. 
+    <string name="downloads_storage_ask_summary_kitkat">Ogni volta verrà chiesta la destinazione dei file.
 \nScegli SAF se vuoi scaricare su una scheda SD esterna</string>
-    <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" consente di salvare file su una memoria esterna. 
+    <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" consente di salvare file su una memoria esterna.
 \nAlcuni dispositivi non sono compatibili</string>
     <string name="clear_playback_states_title">Elimina posizioni di riproduzione</string>
     <string name="clear_playback_states_summary">Elimina tutte le posizioni di riproduzione</string>

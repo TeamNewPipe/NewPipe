@@ -27,7 +27,7 @@
     <string name="tab_subscriptions">Abunəliklər</string>
     <string name="tab_bookmarks">Əlfəcinlər</string>
 
-    <string name="fragment_whats_new">Yeni nə var</string>
+    <string name="fragment_feed_title">Yeni nə var</string>
 
     <string name="controls_background_title">Arxa fon</string>
     <string name="download_path_title">Video yükləmə ünvanı</string>

@@ -147,7 +147,7 @@
     <string name="channel_unsubscribed">Désabonné de la chaîne</string>
     <string name="tab_main">Principal</string>
     <string name="tab_subscriptions">Abonnements</string>
-    <string name="fragment_whats_new">Nouveautés</string>
+    <string name="fragment_feed_title">Nouveautés</string>
     <string name="settings_category_downloads_title">Téléchargement</string>
     <string name="action_settings">Paramètres</string>
     <string name="action_about">À propos</string>

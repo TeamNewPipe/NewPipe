@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
                 .add(R.id.menu_tabs_group, ITEM_ID_SUBSCRIPTIONS, ORDER, R.string.tab_subscriptions)
                 .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_channel));
         drawerItems.getMenu()
-                .add(R.id.menu_tabs_group, ITEM_ID_FEED, ORDER, R.string.fragment_whats_new)
+                .add(R.id.menu_tabs_group, ITEM_ID_FEED, ORDER, R.string.fragment_feed_title)
                 .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.rss));
         drawerItems.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_BOOKMARKS, ORDER, R.string.tab_bookmarks)
@@ -389,7 +389,7 @@ public class MainActivity extends AppCompatActivity {
                 .add(R.id.menu_tabs_group, ITEM_ID_SUBSCRIPTIONS, ORDER, R.string.tab_subscriptions)
                 .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.ic_channel));
         drawerItems.getMenu()
-                .add(R.id.menu_tabs_group, ITEM_ID_FEED, ORDER, R.string.fragment_whats_new)
+                .add(R.id.menu_tabs_group, ITEM_ID_FEED, ORDER, R.string.fragment_feed_title)
                 .setIcon(ThemeHelper.resolveResourceIdFromAttr(this, R.attr.rss));
         drawerItems.getMenu()
                 .add(R.id.menu_tabs_group, ITEM_ID_BOOKMARKS, ORDER, R.string.tab_bookmarks)

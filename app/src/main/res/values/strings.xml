@@ -599,8 +599,8 @@
     </plurals>
 
     <!-- Feed -->
-    <string name="fragment_whats_new">What\'s New</string>
-    <string name="feed_whats_new_header_subtitle">Check out your feed groups</string>
+    <string name="fragment_feed_title">What\'s New</string>
+    <string name="feed_groups_header_title">Feed groups</string>
     <string name="feed_last_updated">Last updated: %s</string>
     <string name="feed_notification_loading">Loading feed…</string>
     <string name="feed_processing_message">Processing feed…</string>

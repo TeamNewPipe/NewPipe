@@ -106,7 +106,7 @@
     <string name="subscription_update_failed">Kunde inte uppdatera prenumeration</string>
     <string name="tab_main">Hem</string>
     <string name="tab_subscriptions">Prenumerationer</string>
-    <string name="fragment_whats_new">Vad är nytt</string>
+    <string name="fragment_feed_title">Vad är nytt</string>
     <string name="autoplay_by_calling_app_title">Spela upp automatiskt</string>
     <string name="enable_search_history_title">Sökhistorik</string>
     <string name="enable_search_history_summary">Spara sökfrågor lokalt</string>

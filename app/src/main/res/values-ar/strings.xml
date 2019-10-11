@@ -62,7 +62,7 @@
     <string name="subscribed_button_title">مشترك</string>
     <string name="tab_main">الرئيسية</string>
     <string name="tab_subscriptions">الاشتراكات</string>
-    <string name="fragment_whats_new">ما الجديد</string>
+    <string name="fragment_feed_title">ما الجديد</string>
     <string name="controls_background_title">في الخلفية</string>
     <string name="autoplay_by_calling_app_title">تشغيل تلقائي</string>
     <string name="black_theme_title">اسود</string>

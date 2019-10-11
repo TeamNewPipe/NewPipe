@@ -62,7 +62,7 @@
     <string name="tab_main">मुख्य</string>
     <string name="subscription_change_failed">सदस्यता नहीं बदला जा सका</string>
     <string name="subscription_update_failed">सदस्यता का अद्यतन नहीं हो सका</string>
-    <string name="fragment_whats_new">देखे की क्या नया है</string>
+    <string name="fragment_feed_title">देखे की क्या नया है</string>
     <string name="download_path_title">वीडियो डाउनलोड फ़ोल्डर</string>
     <string name="download_path_summary">डाउनलोड की गई वीडियो फ़ाइलें यहां संग्रहीत हैं</string>
     <string name="download_path_dialog_title">वीडियो फ़ाइलों के लिए डाउनलोड फ़ोल्डर चुनें</string>

@@ -149,7 +149,7 @@ pentru a deschide în mod pop-up</string>
     <string name="subscription_update_failed">Nu s-a putut actualiza abonamentul</string>
     <string name="tab_main">Principal</string>
     <string name="tab_subscriptions">Abonamente</string>
-    <string name="fragment_whats_new">Ce este nou</string>
+    <string name="fragment_feed_title">Ce este nou</string>
     <string name="enable_search_history_title">Istoric de căutări</string>
     <string name="enable_search_history_summary">Stochează local căutările</string>
     <string name="enable_watch_history_title">Istoric vizualizări.</string>

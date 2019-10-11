@@ -53,7 +53,8 @@ enum class FeedGroupIcon(
     PETS(33, R.attr.ic_pets),
     WORLD(34, R.attr.ic_world),
     STAR(35, R.attr.ic_stars),
-    SUN(36, R.attr.ic_sunny);
+    SUN(36, R.attr.ic_sunny),
+    RSS(37, R.attr.rss);
 
     @DrawableRes
     fun getDrawableRes(context: Context): Int {
