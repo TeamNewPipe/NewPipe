@@ -1,2 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="main_bg_subtitle">点击搜索按钮即可开始使用</string>
+    <string name="view_count_text">%1$s 次观看</string>
+    <string name="upload_date_text">发布于 %1$s</string>
+    <string name="open_in_browser">在浏览器中打开</string>
+    <string name="open_in_popup_mode">在悬浮窗模式下打开</string>
+    <string name="did_you_mean">您是不是要找：%1$s？</string>
+    <string name="no_player_found_toast">找不到串流播放器 （您可以安裝並使用VLC播放）。</string>
+    <string name="controls_download_desc">下载媒体文件</string>
+</resources>
