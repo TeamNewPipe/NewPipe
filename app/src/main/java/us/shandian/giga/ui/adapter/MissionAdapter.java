@@ -566,8 +566,9 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                     mContext.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, mission.storage.getUri()));
                 }
             }
+        } else if (!delete) {
+            mDownloadManager.forgetFinishedDownloads();
         }
-        mDownloadManager.forgetFinishedDownloads();
         applyChanges();
     }
 
