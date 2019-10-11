@@ -224,8 +224,8 @@
     </plurals>
     <string name="no_videos">Nincs videó</string>
     <plurals name="videos">
-        <item quantity="one">Videó</item>
-        <item quantity="other">Videók</item>
+        <item quantity="one">%s videó</item>
+        <item quantity="other">%s videók</item>
     </plurals>
     <string name="create">Létrehozás</string>
     <string name="delete_one">Egy törlése</string>

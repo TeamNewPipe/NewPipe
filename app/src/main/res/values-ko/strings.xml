@@ -164,9 +164,6 @@
         <item quantity="other">%s 시청 횟수</item>
     </plurals>
     <string name="no_videos">비디오 없음</string>
-    <plurals name="videos">
-        <item quantity="other">비디오</item>
-    </plurals>
     <string name="view">재생</string>
     <string name="add">새로운 미션</string>
     <string name="finish">OK</string>

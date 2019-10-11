@@ -227,8 +227,8 @@
     </plurals>
     <string name="no_videos">Κανένα βίντεο</string>
     <plurals name="videos">
-        <item quantity="one">Βίντεο</item>
-        <item quantity="other">Βίντεο</item>
+        <item quantity="one">%s Βίντεο</item>
+        <item quantity="other">%s Βίντεο</item>
     </plurals>
     <string name="start">Εκκίνηση</string>
     <string name="view">Αναπαραγωγή</string>

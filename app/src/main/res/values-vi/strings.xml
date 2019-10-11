@@ -252,7 +252,7 @@
     </plurals>
     <string name="no_videos">Không có video nào</string>
     <plurals name="videos">
-        <item quantity="other">Videos</item>
+        <item quantity="other">%s video</item>
     </plurals>
     <string name="create">Tạo nên</string>
     <string name="delete_one">Xóa một</string>

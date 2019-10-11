@@ -209,8 +209,8 @@
     </plurals>
     <string name="no_videos">ਕੋਈ ਵੀਡੀਓ ਨਹੀਂ</string>
     <plurals name="videos">
-        <item quantity="one">ਵੀਡੀਓਜ਼</item>
-        <item quantity="other">ਵੀਡੀਓਜ਼</item>
+        <item quantity="one">%s ਵੀਡੀਓ ਹੈ</item>
+        <item quantity="other">%s ਵੀਡੀਓ ਹਨ</item>
     </plurals>
     <string name="start">ਸ਼ੁਰੂ ਕਰੋ</string>
     <string name="pause">ਰੋਕੋ</string>

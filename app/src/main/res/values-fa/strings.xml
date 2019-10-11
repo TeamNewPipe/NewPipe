@@ -200,8 +200,8 @@
     </plurals>
     <string name="no_videos">بدون ویدئو</string>
     <plurals name="videos">
-        <item quantity="one">ویدئو</item>
-        <item quantity="other">ویدئو</item>
+        <item quantity="one">%s ویدئو</item>
+        <item quantity="other">%s ویدئو</item>
     </plurals>
     <string name="create">ایجاد</string>
     <string name="delete_one">پاک کردن یک مورد</string>

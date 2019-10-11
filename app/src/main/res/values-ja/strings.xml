@@ -336,9 +336,6 @@
     <plurals name="views">
         <item quantity="other">視聴回数 %s 回</item>
     </plurals>
-    <plurals name="videos">
-        <item quantity="other">動画</item>
-    </plurals>
     <string name="one_item_deleted">1 つのアイテムが削除されました。</string>
     <string name="give_back">支援する</string>
     <string name="privacy_policy_encouragement">NewPipe プロジェクトはあなたのプライバシーを非常に大切にしています。あなたの同意がない限り、アプリはいかなるデータも収集しません。NewPipe のプライバシー・ポリシーでは、クラッシュリポート送信時にどのような種類のデータが送信・記録されるかを詳細に説明しています。</string>

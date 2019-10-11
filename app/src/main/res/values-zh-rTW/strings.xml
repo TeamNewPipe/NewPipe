@@ -173,9 +173,6 @@
         <item quantity="other">%s 次觀看</item>
     </plurals>
     <string name="no_videos">沒有影片</string>
-    <plurals name="videos">
-        <item quantity="other">影片</item>
-    </plurals>
     <string name="settings_category_downloads_title">下載</string>
     <string name="settings_file_charset_title">檔案名稱中允許的字元</string>
     <string name="settings_file_replacement_character_summary">不符合設定的字元將會被替換為此字串</string>
