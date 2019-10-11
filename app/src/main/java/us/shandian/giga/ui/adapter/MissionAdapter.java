@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -557,7 +558,16 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         );
     }
 
-    public void clearFinishedDownloads() {
+    public void clearFinishedDownloads(boolean delete) {
+        if (delete && mIterator.hasFinishedMissions()) {
+            for(int i=0; i<mIterator.getOldListSize(); i++) {
+                FinishedMission mission = mIterator.getItem(i).mission instanceof FinishedMission ? (FinishedMission) mIterator.getItem(i).mission : null;
+                if (mission != null) {
+                    mDownloadManager.deleteMission(mission);
+                    mContext.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, mission.storage.getUri()));
+                }
+            }
+        }
         mDownloadManager.forgetFinishedDownloads();
         applyChanges();
     }

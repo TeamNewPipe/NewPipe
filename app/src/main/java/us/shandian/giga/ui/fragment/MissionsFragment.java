@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -189,9 +190,14 @@ public class MissionsFragment extends Fragment {
                 return true;
             case R.id.clear_list:
                 AlertDialog.Builder prompt = new AlertDialog.Builder(mContext);
+                View checkBoxView = View.inflate(this.getContext(), R.layout.delete_files_checkbox, null);
                 prompt.setTitle(R.string.clear_finished_download);
                 prompt.setMessage(R.string.confirm_prompt);
-                prompt.setPositiveButton(android.R.string.ok, (dialog, which) -> mAdapter.clearFinishedDownloads());
+                prompt.setView(checkBoxView);
+                prompt.setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                    CheckBox checkBox = checkBoxView.findViewById(R.id.delete_files_checkbox);
+                    mAdapter.clearFinishedDownloads(checkBox.isChecked());
+                });
                 prompt.setNegativeButton(R.string.cancel, null);
                 prompt.create().show();
                 return true;
