@@ -503,4 +503,8 @@
     <string name="delete_playback_states_alert">Tüm oynatım konumları silinsin mi\?</string>
     <string name="download_choose_new_path">Etkili olması için indirme dizinlerini değiştirin</string>
     <string name="drawer_header_description">Hizmeti değiştir, şu anda seçili olan:</string>
+    <plurals name="videos">
+        <item quantity="one">Videolar</item>
+        <item quantity="other"></item>
+    </plurals>
 </resources>
