@@ -223,8 +223,8 @@
     </plurals>
     <string name="no_videos">Sense vídeos</string>
     <plurals name="videos">
-        <item quantity="one">Vídeo</item>
-        <item quantity="other">Vídeos</item>
+        <item quantity="one">%s vídeo</item>
+        <item quantity="other">%s vídeos</item>
     </plurals>
     <string name="pause">Pausa</string>
     <string name="view">Reprodueix</string>

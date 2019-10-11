@@ -203,8 +203,8 @@
     </plurals>
     <string name="no_videos">Geen video’s</string>
     <plurals name="videos">
-        <item quantity="one">Video</item>
-        <item quantity="other">Video’s</item>
+        <item quantity="one">%s video</item>
+        <item quantity="other">%s video’s</item>
     </plurals>
     <string name="start">Begin</string>
     <string name="pause">Pauzeren</string>

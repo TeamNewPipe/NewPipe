@@ -198,10 +198,6 @@
         <item quantity="other">%s görüntüleme</item>
     </plurals>
     <string name="no_videos">Video yok</string>
-    <plurals name="videos">
-        <item quantity="one">Video</item>
-        <item quantity="other">Videolar</item>
-    </plurals>
     <string name="title_activity_history">Geçmiş</string>
     <string name="title_history_search">Aranan</string>
     <string name="title_history_view">İzlenen</string>

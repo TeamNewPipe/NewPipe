@@ -235,9 +235,6 @@
         <item quantity="other">%s ditonton</item>
     </plurals>
     <string name="no_videos">Tidak ada video</string>
-    <plurals name="videos">
-        <item quantity="other">Video</item>
-    </plurals>
     <string name="create">Buat</string>
     <string name="delete_one">Hapus Satu</string>
     <string name="delete_all">Hapus Semua</string>

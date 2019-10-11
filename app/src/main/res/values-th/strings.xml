@@ -121,12 +121,6 @@
     <string name="channels">ช่อง</string>
     <string name="playlist">เพลย์ลิสต์</string>
     <string name="playlists">เพลย์ลิสต์</string>
-    <plurals name="videos">
-        <item quantity="other">วิดีโอ</item>
-    </plurals>
-    <plurals name="comments">
-        <item quantity="other">ความคิดเห็น</item>
-    </plurals>
     <string name="tracks">แทร็ค</string>
     <string name="users">ผู้ใช้</string>
     <string name="events">เหตุการณ์</string>

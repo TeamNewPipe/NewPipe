@@ -233,9 +233,9 @@
         <item quantity="many">%s підписників</item>
     </plurals>
     <plurals name="videos">
-        <item quantity="one">Відео</item>
-        <item quantity="few">Відео</item>
-        <item quantity="many">Відео</item>
+        <item quantity="one">%s Відео</item>
+        <item quantity="few">%s Відео</item>
+        <item quantity="many">%s Відео</item>
     </plurals>
     <string name="create">Створити</string>
     <string name="delete_one">Видалити одне</string>

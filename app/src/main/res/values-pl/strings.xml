@@ -216,9 +216,9 @@
     </plurals>
     <string name="no_videos">Brak filmów</string>
     <plurals name="videos">
-        <item quantity="one">Film</item>
-        <item quantity="few">Filmy</item>
-        <item quantity="many">Filmów</item>
+        <item quantity="one">%s film</item>
+        <item quantity="few">%s filmy</item>
+        <item quantity="many">%s filmów</item>
     </plurals>
     <string name="charset_most_special_characters">Większość znaków specjalnych</string>
     <string name="donation_title">Dotacja</string>

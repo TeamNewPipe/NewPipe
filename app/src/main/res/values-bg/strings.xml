@@ -153,8 +153,8 @@
     </plurals>
     <string name="no_videos">Няма клипове</string>
     <plurals name="videos">
-        <item quantity="one">Клип</item>
-        <item quantity="other">Клипове</item>
+        <item quantity="one">%s Клип</item>
+        <item quantity="other">%s Клипове</item>
     </plurals>
     <string name="pause">Пауза</string>
     <string name="view">Начало</string>

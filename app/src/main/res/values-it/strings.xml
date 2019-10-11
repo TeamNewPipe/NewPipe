@@ -205,8 +205,8 @@
     </plurals>
     <string name="no_videos">Nessun video</string>
     <plurals name="videos">
-        <item quantity="one">Video</item>
-        <item quantity="other">Video</item>
+        <item quantity="one">%s video</item>
+        <item quantity="other">%s video</item>
     </plurals>
     <string name="item_deleted">Elemento eliminato</string>
     <string name="empty_subscription_feed_subtitle">Nulla da mostrare</string>

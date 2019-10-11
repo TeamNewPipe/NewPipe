@@ -253,10 +253,6 @@
         <item quantity="other"/>
     </plurals>
     <string name="no_videos">没有视频</string>
-    <plurals name="videos">
-        <item quantity="one">部视频</item>
-        <item quantity="other"/>
-    </plurals>
     <string name="delete_one">删除</string>
     <string name="checksum">校验</string>
     <string name="dismiss">退出</string>

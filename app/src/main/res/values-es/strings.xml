@@ -207,8 +207,8 @@ abrir en modo popup</string>
     </plurals>
     <string name="no_videos">Sin vídeos</string>
     <plurals name="videos">
-        <item quantity="one">Vídeo</item>
-        <item quantity="other">Vídeos</item>
+        <item quantity="one">%s vídeo</item>
+        <item quantity="other">%s vídeos</item>
     </plurals>
     <string name="item_deleted">Elemento eliminado</string>
     <string name="delete_item_search_history">¿Desea eliminar este elemento del historial de búsqueda?</string>

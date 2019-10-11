@@ -208,9 +208,9 @@
     </plurals>
     <string name="no_videos">Žiadne videá</string>
     <plurals name="videos">
-        <item quantity="one">Video</item>
-        <item quantity="few">Videá</item>
-        <item quantity="other">Videí</item>
+        <item quantity="one">%s video</item>
+        <item quantity="few">%s videá</item>
+        <item quantity="other">%s videí</item>
     </plurals>
     <string name="item_deleted">Položka bola odstránená</string>
     <string name="no_player_found_toast">Nebol nájdený žiadny prehrávač pre stream (môžete si nainštalovať napr. VLC)</string>

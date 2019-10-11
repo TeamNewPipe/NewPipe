@@ -193,8 +193,8 @@
     </plurals>
     <string name="no_videos">Sem vídeos</string>
     <plurals name="videos">
-        <item quantity="one">Vídeo</item>
-        <item quantity="other">Vídeos</item>
+        <item quantity="one">%s vídeo</item>
+        <item quantity="other">%s vídeos</item>
     </plurals>
     <string name="settings_category_downloads_title">Transferir</string>
     <string name="settings_file_charset_title">Carateres permitidos nos nomes de ficheiros</string>
