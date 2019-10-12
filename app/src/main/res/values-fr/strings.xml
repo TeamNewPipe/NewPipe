@@ -31,7 +31,7 @@
     <string name="settings_category_video_audio_title">Vidéo &amp; audio</string>
     <string name="settings_category_other_title">Autre</string>
     <string name="list_thumbnail_view_description">Miniature d’aperçu vidéo</string>
-    <string name="detail_thumbnail_view_description">Miniature d’aperçu vidéo</string>
+    <string name="detail_thumbnail_view_description">Lecture vidéo, durée :</string>
     <string name="detail_dislikes_img_view_description">Je n’aime pas</string>
     <string name="detail_likes_img_view_description">J’aime</string>
     <string name="content_language_title">Langue du contenu par défaut</string>
@@ -506,4 +506,5 @@
     <string name="clear_playback_states_summary">Supprimer toutes les positions de reprise</string>
     <string name="delete_playback_states_alert">Voulez-vous supprimer toutes les positions de reprise \?</string>
     <string name="download_choose_new_path">Changez les dossier de téléchargement pour activer</string>
+    <string name="drawer_header_description">Activer/Désactiver le service, actuellement sélectionné :</string>
 </resources>
