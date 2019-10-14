@@ -74,6 +74,15 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
 
     @Ignore
     public boolean isIdenticalTo(final PlaylistInfo info) {
+        // Returns boolean comparing the online playlist and the local copy.
+        // (False if info changed such as playlist name or track count)
+        // [Note that we don't check if the playlist creator changed:
+        //    getUploader().equals(info.getUploaderName())
+        //  because this would crash the app on playlists that are auto-generated with no creator,
+        //  and the creator can not change to my knowledge.
+        //  if you need this functionality back please use
+        //    getUploader() == info.getUploaderName()
+        //  instead as it will work with blank names (Null value if I remember correctly).
         return getServiceId() == info.getServiceId() && getName().equals(info.getName()) &&
                 getStreamCount() == info.getStreamCount() && getUrl().equals(info.getUrl()) &&
                 getThumbnailUrl().equals(info.getThumbnailUrl());
