@@ -16,8 +16,6 @@ import static org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity.RE
 import static org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity.REMOTE_PLAYLIST_TABLE;
 import static org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity.REMOTE_PLAYLIST_URL;
 
-import android.text.TextUtils;
-
 @Entity(tableName = REMOTE_PLAYLIST_TABLE,
         indices = {
                 @Index(value = {REMOTE_PLAYLIST_NAME}),
@@ -74,18 +72,10 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
 
     @Ignore
     public boolean isIdenticalTo(final PlaylistInfo info) {
-        boolean returnMe;
-        if (!TextUtils.isEmpty(getUploader())) { // If the playlist has an uploader
-            returnMe = getServiceId() == info.getServiceId() && getName().equals(info.getName()) &&
+        return getServiceId() == info.getServiceId() && getName().equals(info.getName()) &&
                 getStreamCount() == info.getStreamCount() && getUrl().equals(info.getUrl()) &&
                 getThumbnailUrl().equals(info.getThumbnailUrl()) &&
                 getUploader().equals(info.getUploaderName());
-        } else { // Else ignore uploader
-            returnMe = getServiceId() == info.getServiceId() && getName().equals(info.getName()) &&
-                    getStreamCount() == info.getStreamCount() && getUrl().equals(info.getUrl()) &&
-                    getThumbnailUrl().equals(info.getThumbnailUrl());
-        }
-        return returnMe;
     }
 
     public long getUid() {
