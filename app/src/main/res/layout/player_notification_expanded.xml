@@ -117,6 +117,22 @@
             tools:ignore="ContentDescription"/>
 
         <ImageButton
+            android:id="@+id/notificationRestartTrack"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@+id/notificationFRewind"
+            android:background="#00000000"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="2dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/exo_controls_previous"
+            android:visibility="gone"
+            tools:ignore="ContentDescription"/>
+
+        <ImageButton
             android:id="@+id/notificationFRewind"
             android:layout_width="40dp"
             android:layout_height="match_parent"
