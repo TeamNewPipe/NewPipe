@@ -68,7 +68,7 @@
     <string name="your_comment">Komentar anda (dalam bahasa Inggris):</string>
     <string name="error_details_headline">Detail:</string>
     <string name="list_thumbnail_view_description">Thumbnail pratinjau video</string>
-    <string name="detail_thumbnail_view_description">Thumbnail pratinjau video</string>
+    <string name="detail_thumbnail_view_description">Putar video, durasi:</string>
     <string name="detail_likes_img_view_description">Suka</string>
     <string name="detail_uploader_thumbnail_view_description">Thumbnail avatar pengunggah</string>
     <string name="detail_dislikes_img_view_description">Tidak suka</string>
@@ -111,7 +111,7 @@
     <string name="black_theme_title">Hitam</string>
     <string name="all">Semua</string>
     <string name="channel">Channel</string>
-    <string name="short_thousand">r</string>
+    <string name="short_thousand">R</string>
     <string name="short_million">J</string>
     <string name="short_billion">T</string>
     <string name="yes">Ya</string>
@@ -499,4 +499,8 @@
     <string name="clear_playback_states_summary">Hapus semua posisi pemutaran</string>
     <string name="delete_playback_states_alert">Hapus semua posisi pemutaran\?</string>
     <string name="download_choose_new_path">Ubah folder unduhan</string>
+    <plurals name="videos">
+        <item quantity="other">Video</item>
+    </plurals>
+    <string name="drawer_header_description">Aktif/Nonaktifkan layanan, saat ini aktif:</string>
 </resources>
