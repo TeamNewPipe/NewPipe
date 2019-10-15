@@ -83,17 +83,10 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
          * (False if info changed such as playlist name or track count)
          */
         boolean returnMe = true;
-        String uploaderAction = "";
-        if (!TextUtils.isEmpty(getUploader()) || !TextUtils.isEmpty(info.getUploaderName())) { // We have an uploader, add it to the comparison
-            returnMe &= getUploader().equals(info.getUploaderName()); // Use .equals for uploader names
-            uploaderAction = "compared uploaders: "+returnMe;
-        } else {
-            uploaderAction = "no uploader";
-        }
         returnMe &= getServiceId() == info.getServiceId() && getName().equals(info.getName()) &&
                 getStreamCount() == info.getStreamCount() && getUrl().equals(info.getUrl()) &&
-                getThumbnailUrl().equals(info.getThumbnailUrl());
-        if (DEBUG) Log.d(TAG, TAG+"() called with result: returnMe = "+returnMe+". and uploaderAction: "+uploaderAction);
+                getThumbnailUrl().equals(info.getThumbnailUrl()) && TextUtils.equals(getUploader(), info.getUploaderName());
+        if (DEBUG) Log.d(TAG, TAG+"() called with result: returnMe = "+returnMe);
         return returnMe;
     }
 
