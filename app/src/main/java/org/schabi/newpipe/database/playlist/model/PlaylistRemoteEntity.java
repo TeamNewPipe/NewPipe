@@ -13,7 +13,6 @@ import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.database.playlist.PlaylistLocalItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.util.Constants;
-import org.w3c.dom.Text;
 
 import static org.schabi.newpipe.database.LocalItem.LocalItemType.PLAYLIST_REMOTE_ITEM;
 import static org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity.REMOTE_PLAYLIST_NAME;
@@ -87,14 +86,14 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
         String uploaderAction = "";
         if (!TextUtils.isEmpty(getUploader()) || !TextUtils.isEmpty(info.getUploaderName())) { // We have an uploader, add it to the comparison
             returnMe &= getUploader().equals(info.getUploaderName()); // Use .equals for uploader names
-            uploaderAction = "We compared uploaders: "+returnMe;
+            uploaderAction = "compared uploaders: "+returnMe;
         } else {
-            uploaderAction = "No Uploader";
+            uploaderAction = "no uploader";
         }
         returnMe &= getServiceId() == info.getServiceId() && getName().equals(info.getName()) &&
                 getStreamCount() == info.getStreamCount() && getUrl().equals(info.getUrl()) &&
                 getThumbnailUrl().equals(info.getThumbnailUrl());
-        if (DEBUG) Log.d(TAG, TAG+" Called With Result: "+returnMe+". And Uploader Action: "+uploaderAction);
+        if (DEBUG) Log.d(TAG, TAG+"() called with result: returnMe = "+returnMe+". and uploaderAction: "+uploaderAction);
         return returnMe;
     }
 
