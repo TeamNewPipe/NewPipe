@@ -76,18 +76,18 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
 
     @Ignore
     public boolean isIdenticalTo(final PlaylistInfo info) {
-        String TAG = "isIdenticalTo";
-        boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
+        //String TAG = "isIdenticalTo";
+        //boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
         /*
          * Returns boolean comparing the online playlist and the local copy.
          * (False if info changed such as playlist name or track count)
          */
-        boolean returnMe = true;
-        returnMe &= getServiceId() == info.getServiceId() && getName().equals(info.getName()) &&
+        //boolean returnMe = true;
+        return getServiceId() == info.getServiceId() && getName().equals(info.getName()) &&
                 getStreamCount() == info.getStreamCount() && getUrl().equals(info.getUrl()) &&
                 getThumbnailUrl().equals(info.getThumbnailUrl()) && TextUtils.equals(getUploader(), info.getUploaderName());
-        if (DEBUG) Log.d(TAG, TAG+"() called with result: returnMe = "+returnMe);
-        return returnMe;
+        //if (DEBUG) Log.d(TAG, TAG+"() called with result: returnMe = "+returnMe);
+        //return returnMe;
     }
 
     public long getUid() {
