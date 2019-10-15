@@ -16,8 +16,6 @@ import static org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity.RE
 import static org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity.REMOTE_PLAYLIST_TABLE;
 import static org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity.REMOTE_PLAYLIST_URL;
 
-import android.text.TextUtils;
-
 @Entity(tableName = REMOTE_PLAYLIST_TABLE,
         indices = {
                 @Index(value = {REMOTE_PLAYLIST_NAME}),
@@ -75,19 +73,18 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
     @Ignore
     public boolean isIdenticalTo(final PlaylistInfo info) {
         /*
-        // Returns boolean comparing the online playlist and the local copy.
-        // (False if info changed such as playlist name or track count)
-        // [Note that we don't check if the playlist creator changed:
-        //    getUploader().equals(info.getUploaderName())
-        //  because this would crash the app on playlists that are auto-generated with no creator,
-        //  and the creator can not change to my knowledge.
-        //  if you need this functionality back please use
-        //    getUploader() == info.getUploaderName()
-        //  instead as it will work with blank names (Null value if I remember correctly).
+         * Returns boolean comparing the online playlist and the local copy.
+         * (False if info changed such as playlist name or track count)
+         * [Note that
+         *    getUploader().equals(info.getUploaderName())
+         *  crashes  the app on playlists that are auto-generated with no creator,
+         *  please use
+         *    getUploader() == info.getUploaderName()
+         *  instead as it will work with blank names (Null value if I remember correctly).
         */
         return getServiceId() == info.getServiceId() && getName().equals(info.getName()) &&
                 getStreamCount() == info.getStreamCount() && getUrl().equals(info.getUrl()) &&
-                getThumbnailUrl().equals(info.getThumbnailUrl());
+                getThumbnailUrl().equals(info.getThumbnailUrl()) && getUploader() == info.getUploaderName();
     }
 
     public long getUid() {
