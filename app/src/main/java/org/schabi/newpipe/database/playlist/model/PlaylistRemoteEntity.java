@@ -1,14 +1,19 @@
 package org.schabi.newpipe.database.playlist.model;
 
+import android.text.TextUtils;
+import android.util.Log;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.database.playlist.PlaylistLocalItem;
 import org.schabi.newpipe.extractor.playlist.PlaylistInfo;
 import org.schabi.newpipe.util.Constants;
+import org.w3c.dom.Text;
 
 import static org.schabi.newpipe.database.LocalItem.LocalItemType.PLAYLIST_REMOTE_ITEM;
 import static org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity.REMOTE_PLAYLIST_NAME;
@@ -72,19 +77,25 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
 
     @Ignore
     public boolean isIdenticalTo(final PlaylistInfo info) {
+        String TAG = "isIdenticalTo";
+        boolean DEBUG = !BuildConfig.BUILD_TYPE.equals("release");
         /*
          * Returns boolean comparing the online playlist and the local copy.
          * (False if info changed such as playlist name or track count)
-         * [Note that
-         *    getUploader().equals(info.getUploaderName())
-         *  crashes  the app on playlists that are auto-generated with no creator,
-         *  please use
-         *    getUploader() == info.getUploaderName()
-         *  instead as it will work with blank names (Null value if I remember correctly).
          */
-        return getServiceId() == info.getServiceId() && getName().equals(info.getName()) &&
+        boolean returnMe = true;
+        String uploaderAction = "";
+        if (!TextUtils.isEmpty(getUploader()) || !TextUtils.isEmpty(info.getUploaderName())) { // We have an uploader, add it to the comparison
+            returnMe &= getUploader().equals(info.getUploaderName()); // Use .equals for uploader names
+            uploaderAction = "We compared uploaders: "+returnMe;
+        } else {
+            uploaderAction = "No Uploader";
+        }
+        returnMe &= getServiceId() == info.getServiceId() && getName().equals(info.getName()) &&
                 getStreamCount() == info.getStreamCount() && getUrl().equals(info.getUrl()) &&
-                getThumbnailUrl().equals(info.getThumbnailUrl()) && getUploader() == info.getUploaderName();
+                getThumbnailUrl().equals(info.getThumbnailUrl());
+        if (DEBUG) Log.d(TAG, TAG+" Called With Result: "+returnMe+". And Uploader Action: "+uploaderAction);
+        return returnMe;
     }
 
     public long getUid() {
