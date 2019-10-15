@@ -83,9 +83,12 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
          * (False if info changed such as playlist name or track count)
          */
         //boolean returnMe = true;
-        return getServiceId() == info.getServiceId() && getName().equals(info.getName()) &&
-                getStreamCount() == info.getStreamCount() && getUrl().equals(info.getUrl()) &&
-                getThumbnailUrl().equals(info.getThumbnailUrl()) && TextUtils.equals(getUploader(), info.getUploaderName());
+        return getServiceId() == info.getServiceId()
+                && getStreamCount() == info.getStreamCount()
+                && TextUtils.equals(getName(), info.getName())
+                && TextUtils.equals(getUrl(), info.getUrl())
+                && TextUtils.equals(getThumbnailUrl(), info.getThumbnailUrl())
+                && TextUtils.equals(getUploader(), info.getUploaderName());
         //if (DEBUG) Log.d(TAG, TAG+"() called with result: returnMe = "+returnMe);
         //return returnMe;
     }
