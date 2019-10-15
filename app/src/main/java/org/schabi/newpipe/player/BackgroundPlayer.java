@@ -229,7 +229,7 @@ public final class BackgroundPlayer extends Service {
             remoteViews.setOnClickPendingIntent(R.id.notificationFForward,
                     PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_NEXT), PendingIntent.FLAG_UPDATE_CURRENT));
             // We dont need a restart track button (skip track backwards)
-            remoteViews.setViewVisibility(R.id.notificationRestartTrack, View.INVISIBLE);
+            remoteViews.setViewVisibility(R.id.notificationRestartTrack, View.GONE);
         } else { // But if we only have one song
             // Use time skipping for fastforward/rewind
             remoteViews.setInt(R.id.notificationFRewind, SET_IMAGE_RESOURCE_METHOD, R.drawable.exo_controls_rewind);
@@ -242,7 +242,7 @@ public final class BackgroundPlayer extends Service {
             remoteViews.setViewVisibility(R.id.notificationRestartTrack, View.VISIBLE);
             remoteViews.setOnClickPendingIntent(R.id.notificationRestartTrack,
                     PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_PREVIOUS), PendingIntent.FLAG_UPDATE_CURRENT));
-
+            
         }
 
         setRepeatModeIcon(remoteViews, basePlayerImpl.getRepeatMode());
