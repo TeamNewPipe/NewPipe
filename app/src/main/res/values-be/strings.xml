@@ -217,9 +217,9 @@
     </plurals>
     <string name="no_videos">Няма відэа</string>
     <plurals name="videos">
-        <item quantity="one">Відэа</item>
-        <item quantity="few">відэа</item>
-        <item quantity="many">відэа</item>
+        <item quantity="one">%s Відэа</item>
+        <item quantity="few">%s відэа</item>
+        <item quantity="many">%s відэа</item>
     </plurals>
     <string name="start">Пачаць</string>
     <string name="pause">Паўза</string>

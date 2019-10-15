@@ -176,10 +176,6 @@
         <item quantity="other">%s visualizaciones</item>
     </plurals>
     <string name="no_videos"/>
-    <plurals name="videos">
-        <item quantity="one">Vídeos</item>
-        <item quantity="other"></item>
-    </plurals>
     <string name="settings_category_downloads_title">Descarga</string>
     <string name="settings_file_charset_title"/>
     <string name="settings_file_replacement_character_summary"/>

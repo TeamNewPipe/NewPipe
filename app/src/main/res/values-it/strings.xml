@@ -14,9 +14,9 @@
     <string name="share_dialog_title">Condividi con</string>
     <string name="choose_browser">Scegli browser</string>
     <string name="screen_rotation">rotazione</string>
-    <string name="download_path_title">Percorso dei video scaricati</string>
-    <string name="download_path_summary">Cartella in cui salvare i video scaricati</string>
-    <string name="download_path_dialog_title">Inserisci il percorso per i video scaricati</string>
+    <string name="download_path_title">Cartella dei video scaricati</string>
+    <string name="download_path_summary">I video scaricati saranno salvati qui</string>
+    <string name="download_path_dialog_title">Scegli la cartella per i video scaricati</string>
     <string name="default_resolution_title">Risoluzione predefinita</string>
     <string name="play_with_kodi_title">Riproduci con Kodi</string>
     <string name="kore_not_found">L\'applicazione Kore non è stata trovata. Vuoi installarla?</string>
@@ -31,7 +31,7 @@
     <string name="content_language_title">Lingua predefinita per i contenuti</string>
     <string name="settings_category_video_audio_title">Video e Audio</string>
     <string name="list_thumbnail_view_description">Miniatura anteprima video</string>
-    <string name="detail_thumbnail_view_description">Miniatura anteprima video</string>
+    <string name="detail_thumbnail_view_description">Riproduci video, durata:</string>
     <string name="detail_uploader_thumbnail_view_description">Miniatura dell\'immagine di profilo dell\'utente</string>
     <string name="detail_dislikes_img_view_description">Non mi piace</string>
     <string name="detail_likes_img_view_description">Mi piace</string>
@@ -40,8 +40,8 @@
     <string name="use_external_video_player_title">Usa un lettore video esterno</string>
     <string name="use_external_audio_player_title">Usa un lettore audio esterno</string>
     <string name="download_path_audio_title">Cartella degli audio scaricati</string>
-    <string name="download_path_audio_summary">Cartella in cui salvare gli audio scaricati</string>
-    <string name="download_path_audio_dialog_title">Inserisci la cartella per gli audio scaricati</string>
+    <string name="download_path_audio_summary">Gli audio scaricati saranno salvati qui</string>
+    <string name="download_path_audio_dialog_title">Scegli la cartella per gli audio scaricati</string>
     <string name="theme_title">Tema</string>
     <string name="dark_theme_title">Scuro</string>
     <string name="light_theme_title">Chiaro</string>
@@ -111,9 +111,9 @@
     <string name="black_theme_title">Nero</string>
     <string name="all">Tutto</string>
     <string name="channel">Canale</string>
-    <string name="short_thousand">k</string>
+    <string name="short_thousand">K</string>
     <string name="short_million">M</string>
-    <string name="short_billion">G</string>
+    <string name="short_billion">B</string>
     <string name="recaptcha_request_toast">È richiesta la risoluzione del reCAPTCHA</string>
     <string name="yes">Sì</string>
     <string name="later">Più tardi</string>
@@ -205,8 +205,8 @@
     </plurals>
     <string name="no_videos">Nessun video</string>
     <plurals name="videos">
-        <item quantity="one">Video</item>
-        <item quantity="other">Video</item>
+        <item quantity="one">%s video</item>
+        <item quantity="other">%s video</item>
     </plurals>
     <string name="item_deleted">Elemento eliminato</string>
     <string name="empty_subscription_feed_subtitle">Nulla da mostrare</string>
@@ -505,4 +505,6 @@
     <string name="clear_playback_states_title">Elimina posizioni di riproduzione</string>
     <string name="clear_playback_states_summary">Elimina tutte le posizioni di riproduzione</string>
     <string name="delete_playback_states_alert">Eliminare tutte le posizioni di riproduzione\?</string>
+    <string name="download_choose_new_path">Cambia le cartelle di download per renderlo effettivo</string>
+    <string name="drawer_header_description">Attiva/disattiva il servizio, attualmente selezionato:</string>
 </resources>

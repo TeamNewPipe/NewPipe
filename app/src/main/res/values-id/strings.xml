@@ -14,12 +14,12 @@
     <string name="choose_browser">Pilih peramban</string>
     <string name="use_external_video_player_title">Gunakan pemutar video eksternal</string>
     <string name="use_external_audio_player_title">Gunakan pemutar audio eksternal</string>
-    <string name="download_path_title">Lokasi unduhan video</string>
-    <string name="download_path_summary">Lokasi untuk menyimpan video yang diunduh</string>
-    <string name="download_path_dialog_title">Masukkan lokasi unduhan video</string>
+    <string name="download_path_title">Folder unduhan video</string>
+    <string name="download_path_summary">Berkas video yang diunduh disimpan di sini</string>
+    <string name="download_path_dialog_title">Pilih folder unduhan untuk berkas video</string>
     <string name="download_path_audio_title">Lokasi unduhan audio</string>
-    <string name="download_path_audio_summary">Audio yang diunduh disimpan di sini</string>
-    <string name="download_path_audio_dialog_title">Masukkan lokasi unduhan berkas audio</string>
+    <string name="download_path_audio_summary">Berkas audio yang diunduh disimpan di sini</string>
+    <string name="download_path_audio_dialog_title">Pilih folder unduhan untuk berkas audio</string>
     <string name="autoplay_by_calling_app_title">Putar otomatis</string>
     <string name="autoplay_by_calling_app_summary">Putar video ketika NewPipe dijalankan dari aplikasi lain</string>
     <string name="default_resolution_title">Resolusi</string>
@@ -235,9 +235,6 @@
         <item quantity="other">%s ditonton</item>
     </plurals>
     <string name="no_videos">Tidak ada video</string>
-    <plurals name="videos">
-        <item quantity="other">Video</item>
-    </plurals>
     <string name="create">Buat</string>
     <string name="delete_one">Hapus Satu</string>
     <string name="delete_all">Hapus Semua</string>

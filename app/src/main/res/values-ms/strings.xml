@@ -122,9 +122,6 @@
     <string name="channels">Saluran</string>
     <string name="playlist">Senarai main</string>
     <string name="playlists">Senarai main</string>
-    <plurals name="videos">
-    <item quantity="other">Video</item>
-</plurals>
     <string name="tracks">Trek</string>
     <string name="users">Pengguna</string>
     <string name="events">Peristiwa</string>

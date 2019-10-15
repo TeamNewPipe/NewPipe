@@ -15,9 +15,9 @@
     <string name="share_dialog_title">Teilen mit</string>
     <string name="choose_browser">Browser auswählen</string>
     <string name="screen_rotation">Drehen des Geräts</string>
-    <string name="download_path_title">Downloadverzeichnis für Videos</string>
-    <string name="download_path_summary">Verzeichnis für heruntergeladene Videos</string>
-    <string name="download_path_dialog_title">Downloadverzeichnis für Videos angeben</string>
+    <string name="download_path_title">Downloadordner für Videos</string>
+    <string name="download_path_summary">Heruntergeladene Videodateien werden hier gespeichert</string>
+    <string name="download_path_dialog_title">Wähle den Downloadordner für Videodateien aus</string>
     <string name="default_resolution_title">Standardauflösung</string>
     <string name="play_with_kodi_title">Mit Kodi abspielen</string>
     <string name="kore_not_found">Kore App wurde nicht gefunden. Kore jetzt installieren?</string>
@@ -32,7 +32,7 @@
     <string name="settings_category_video_audio_title">Video &amp; Audio</string>
     <string name="content_language_title">Bevorzugte Sprache des Inhalts</string>
     <string name="list_thumbnail_view_description">Video-Vorschaubild</string>
-    <string name="detail_thumbnail_view_description">Video abspielen, dauer</string>
+    <string name="detail_thumbnail_view_description">Video abspielen, Dauer:</string>
     <string name="detail_uploader_thumbnail_view_description">Nutzerbild</string>
     <string name="detail_dislikes_img_view_description">Gefällt nicht</string>
     <string name="detail_likes_img_view_description">Gefällt</string>
@@ -43,9 +43,9 @@
     <string name="use_tor_title">Tor benutzen</string>
     <string name="use_tor_summary">(Experimentell) Erzwinge das Herunterladen über Tor für verbesserte Privatsphäre (Videostream werden noch nicht unterstützt).</string>
     <string name="network_error">Netzwerkfehler</string>
-    <string name="download_path_audio_title">Downloadverzeichnis für Audiodateien</string>
+    <string name="download_path_audio_title">Downloadordner für Audiodateien</string>
     <string name="download_path_audio_summary">Heruntergeladene Audiodateien werden hier gespeichert</string>
-    <string name="download_path_audio_dialog_title">Downloadverzeichnis für Audiodateien angeben</string>
+    <string name="download_path_audio_dialog_title">Wähle den Downloadordner für Audiodateien aus</string>
     <string name="theme_title">Design</string>
     <string name="dark_theme_title">Dunkel</string>
     <string name="light_theme_title">Hell</string>
@@ -202,8 +202,8 @@
     </plurals>
     <string name="no_videos">Keine Videos</string>
     <plurals name="videos">
-        <item quantity="one">Video</item>
-        <item quantity="other">Videos</item>
+        <item quantity="one">%s Video</item>
+        <item quantity="other">%s Videos</item>
     </plurals>
     <string name="charset_most_special_characters">Die meisten Sonderzeichen</string>
     <string name="item_deleted">Element gelöscht</string>
@@ -306,7 +306,7 @@
     <string name="use_inexact_seek_title">Schnelle, ungenaue Suche verwenden</string>
     <string name="use_inexact_seek_summary">Mit ungenauem Suchen kann die Abspielposition schneller erreicht werden, aber auf Kosten der Genauigkeit</string>
     <string name="file">Datei</string>
-    <string name="invalid_directory">Verzeichnis existiert nicht</string>
+    <string name="invalid_directory">Ordner existiert nicht</string>
     <string name="invalid_file">Die Datei existiert nicht oder die Rechte zum Lesen oder Schreiben fehlen</string>
     <string name="file_name_empty_error">Dateiname darf nicht leer sein</string>
     <string name="error_occurred_detail">Ein Fehler ist aufgetreten: %1$s</string>
@@ -370,7 +370,7 @@
     <string name="caption_setting_description">Textgröße und Hintergrund der Untertitel im Player anpassen. Wird erst nach Neustart der App wirksam.</string>
     <string name="toast_no_player">Keine App zum Abspielen dieser Datei installiert</string>
     <string name="clear_views_history_title">Wiedergabeverlauf löschen</string>
-    <string name="clear_views_history_summary">Den Verlauf der abgespielten Streams und die Wiedergabepositionen löschen.</string>
+    <string name="clear_views_history_summary">Den Verlauf der wiedergegebenen Streams und die Wiedergabepositionen löschen</string>
     <string name="delete_view_history_alert">Den ganzen Wiedergabeverlauf löschen\?</string>
     <string name="watch_history_deleted">Wiedergabeverlauf gelöscht.</string>
     <string name="clear_search_history_title">Suchverlauf löschen</string>
@@ -505,4 +505,6 @@
     <string name="clear_playback_states_title">Wiedergabepositionen löschen</string>
     <string name="clear_playback_states_summary">Alle Wiedergabepositionen löschen</string>
     <string name="delete_playback_states_alert">Alle Wiedergabepositionen löschen\?</string>
+    <string name="download_choose_new_path">Ändere die Downloadordner, damit sie wirksam werden</string>
+    <string name="drawer_header_description">Dienst umschalten, aktuell ausgewählt:</string>
 </resources>

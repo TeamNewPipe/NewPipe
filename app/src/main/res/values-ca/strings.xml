@@ -6,7 +6,7 @@
     <string name="share">Comparteix</string>
     <string name="download">Baixa</string>
     <string name="search">Cerca</string>
-    <string name="settings">Configuració</string>
+    <string name="settings">Paràmetres</string>
     <string name="choose_browser">Tria un navegador</string>
     <string name="subscribe_button_title">Subscriu-t\'hi</string>
     <string name="subscribed_button_title">Subscrit</string>
@@ -14,7 +14,7 @@
     <string name="tab_subscriptions">Subscripcions</string>
     <string name="tab_bookmarks">Llistes de reproducció desades</string>
     <string name="fragment_whats_new">Novetats</string>
-    <string name="download_path_title">Ruta de baixada dels vídeos</string>
+    <string name="download_path_title">Carpeta de baixada dels vídeos</string>
     <string name="download_path_audio_title">Carpeta de baixada dels fitxers d\'àudio</string>
     <string name="autoplay_by_calling_app_title">Reproducció automàtica</string>
     <string name="default_resolution_title">Resolució per defecte</string>
@@ -25,7 +25,7 @@
     <string name="light_theme_title">Clar</string>
     <string name="dark_theme_title">Fosc</string>
     <string name="black_theme_title">Negre</string>
-    <string name="enable_watch_history_title">Historial i memòria cau</string>
+    <string name="enable_watch_history_title">Historial de reproduccions</string>
     <string name="download_dialog_title">Baixa</string>
     <string name="service_title">Servei</string>
     <string name="settings_category_player_title">Reproductor</string>
@@ -37,7 +37,7 @@
     <string name="settings_category_debug_title">Depuració</string>
     <string name="content">Contingut</string>
     <string name="show_age_restricted_content_title">Desactiva les restriccions per edat</string>
-    <string name="video_is_age_restricted">Mostra el vídeo restringit per edat. Podeu permetre aquesta mena de continguts des de la configuració.</string>
+    <string name="video_is_age_restricted">Mostra el vídeo restringit per edat. Pots permetre aquesta mena de continguts des dels paràmetres.</string>
     <string name="duration_live">EN DIRECTE</string>
     <string name="downloads">Baixades</string>
     <string name="downloads_title">Baixades</string>
@@ -69,7 +69,7 @@
     <string name="msg_error">Error</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="settings_category_downloads_title">Baixades</string>
-    <string name="action_settings">Configuració</string>
+    <string name="action_settings">Paràmetres</string>
     <string name="action_about">Quant a</string>
     <string name="title_licenses">Llicències de tercers</string>
     <string name="error_unable_to_load_license">No s\'ha pogut carregar la llicència</string>
@@ -87,9 +87,9 @@
     <string name="history_empty">L\'historial és buit</string>
     <string name="history_cleared">S\'ha esborrat l\'historial</string>
     <string name="item_deleted">S\'ha eliminat l\'element</string>
-    <string name="delete_item_search_history">Voleu eliminar aquest element de l\'historial de cerca?</string>
-    <string name="delete_stream_history_prompt">Voleu eliminar aquest element de l\'historial de reproduccions?</string>
-    <string name="delete_all_history_prompt">Segur que voleu eliminar tots els elements de l\'historial?</string>
+    <string name="delete_item_search_history">Vols eliminar aquest element de l\'historial de cerca\?</string>
+    <string name="delete_stream_history_prompt">Vols eliminar aquest element de l\'historial de reproduccions\?</string>
+    <string name="delete_all_history_prompt">Segur que vols eliminar tots els elements de l\'historial\?</string>
     <string name="main_page_content">Contingut de la pàgina principal</string>
     <string name="blank_page_summary">Pàgina en blanc</string>
     <string name="subscription_page_summary">Pàgina de subscripcions</string>
@@ -98,7 +98,7 @@
     <string name="import_complete_toast">S\'ha completat la importació</string>
     <string name="play_queue_remove">Elimina</string>
     <string name="play_queue_stream_detail">Detalls</string>
-    <string name="play_queue_audio_settings">Configuració d\'àudio</string>
+    <string name="play_queue_audio_settings">Paràmetres d\'àudio</string>
     <string name="video_player">Reproductor de vídeo</string>
     <string name="background_player">Reproductor en segon pla</string>
     <string name="popup_player">Reproductor emergent</string>
@@ -117,32 +117,32 @@
     <string name="playback_default">Per defecte</string>
     <string name="view_count_text">%1$s reproduccions</string>
     <string name="upload_date_text">Publicat el %1$s</string>
-    <string name="no_player_found">No s\'ha trobat un reproductor de fluxos. Voleu instal·lar el VLC?</string>
-    <string name="no_player_found_toast">No s\'ha trobat cap reproductor de fluxos (podeu instal·lar el VLC per reproduir-lo).</string>
+    <string name="no_player_found">No s\'ha trobat un reproductor de fluxos. Vols instal·lar el VLC\?</string>
+    <string name="no_player_found_toast">No s\'ha trobat cap reproductor de fluxos (pots instal·lar el VLC per reproduir-lo).</string>
     <string name="open_in_popup_mode">Obre en mode emergent</string>
     <string name="controls_download_desc">Baixa el fitxer de vídeo</string>
-    <string name="did_you_mean">Volíeu dir: %1$s?</string>
+    <string name="did_you_mean">Volies dir: %1$s\?</string>
     <string name="share_dialog_title">Comparteix-ho amb</string>
     <string name="screen_rotation">rotació</string>
     <string name="use_external_video_player_title">Reproductor de vídeo extern</string>
     <string name="popup_mode_share_menu_title">Mode emergent del NewPipe</string>
-    <string name="channel_unsubscribed">Heu eliminat la subscripció d\'aquest canal</string>
+    <string name="channel_unsubscribed">Has eliminat la subscripció d\'aquest canal</string>
     <string name="subscription_change_failed">No s\'ha pogut modificar la subscripció</string>
     <string name="subscription_update_failed">No s\'ha pogut actualitzar la subscripció</string>
     <string name="tab_main">Principal</string>
     <string name="controls_background_title">Segon pla</string>
     <string name="controls_popup_title">Emergent</string>
     <string name="controls_add_to_playlist_title">Afegeix a</string>
-    <string name="download_path_summary">Ruta on es desaran els vídeos baixats</string>
-    <string name="download_path_dialog_title">Introduïu una ruta de baixada per als vídeos</string>
-    <string name="download_path_audio_summary">Els fitxers d\'àudio baixats es desaran aquí</string>
-    <string name="download_path_audio_dialog_title">Introduïu una ruta de baixada per als fitxers d\'àudio</string>
+    <string name="download_path_summary">Els fitxers de vídeo baixats s\'emmagatzemen aquí</string>
+    <string name="download_path_dialog_title">Tria la carpeta de baixades per als fitxers de vídeo</string>
+    <string name="download_path_audio_summary">Els fitxers d\'àudio baixats es desen aquí</string>
+    <string name="download_path_audio_dialog_title">Tria la carpeta de baixada per als fitxers d\'àudio</string>
     <string name="autoplay_by_calling_app_summary">Reprodueix un vídeo quan el NewPipe s\'executa des d\'una altra aplicació</string>
     <string name="default_popup_resolution_title">Resolució per defecte del mode emergent</string>
     <string name="show_higher_resolutions_title">Mostra resolucions superiors</string>
     <string name="show_higher_resolutions_summary">Només alguns dispositius són compatibles amb la reproducció de vídeos en 2K/4K</string>
     <string name="play_with_kodi_title">Reprodueix amb Kodi</string>
-    <string name="kore_not_found">No s\'ha trobat l\'aplicació Kodi. Voleu instal·lar-la?</string>
+    <string name="kore_not_found">No s\'ha trobat l\'aplicació Kodi. Vols instal·lar-la\?</string>
     <string name="show_play_with_kodi_title">Activa «Reprodueix amb Kodi»</string>
     <string name="show_play_with_kodi_summary">Mostra una opció per reproduir un vídeo amb el centre multimèdia Kodi</string>
     <string name="popup_remember_size_pos_title">Reproductor emergent intel·ligent</string>
@@ -223,8 +223,8 @@
     </plurals>
     <string name="no_videos">Sense vídeos</string>
     <plurals name="videos">
-        <item quantity="one">Vídeo</item>
-        <item quantity="other">Vídeos</item>
+        <item quantity="one">%s vídeo</item>
+        <item quantity="other">%s vídeos</item>
     </plurals>
     <string name="pause">Pausa</string>
     <string name="view">Reprodueix</string>
@@ -239,7 +239,7 @@
     <string name="msg_server_unsupported">Servidor incompatible</string>
     <string name="msg_exists">El fitxer ja existeix</string>
     <string name="msg_running">Baixada del NewPipe activa</string>
-    <string name="msg_wait">Espereu…</string>
+    <string name="msg_wait">Espera…</string>
     <string name="msg_copied">S\'ha copiat al porta-retalls</string>
     <string name="settings_file_charset_title">Caràcters permesos als noms de fitxer</string>
     <string name="charset_letters_and_digits">Lletres i dígits</string>
@@ -248,8 +248,8 @@
     <string name="app_description">Reprodueix transmissions de manera lliure i lleugera a l\'Android.</string>
     <string name="view_on_github">Visualitza a GitHub</string>
     <string name="donation_title">Fes una donació</string>
-    <string name="website_encouragement">Per a més informació i notícies, visiteu el nostre lloc web.</string>
-    <string name="title_last_played">Última reproducció</string>
+    <string name="website_encouragement">Per a més informació i notícies, visita el nostre lloc web.</string>
+    <string name="title_last_played">Últimes reproduccions</string>
     <string name="title_most_played">Més reproduïts</string>
     <string name="kiosk_page_summary">Pàgina d\'un quiosc</string>
     <string name="feed_page_summary">Pàgina de novetats</string>
@@ -257,7 +257,7 @@
     <string name="select_a_kiosk">Tria un quiosc</string>
     <string name="no_valid_zip_file">El fitxer no té un format ZIP vàlid</string>
     <string name="could_not_import_all_files">Avís: No s\'han pogut importar tots els fitxers.</string>
-    <string name="override_current_data">Això sobreescriurà la configuració actual.</string>
+    <string name="override_current_data">Això sobreescriurà els paràmetres actuals.</string>
     <string name="kiosk">Quiosc</string>
     <string name="trending">Tendències</string>
     <string name="top_50">Els millors 50</string>
@@ -270,16 +270,16 @@
     <string name="drawer_close">Tanca el calaix</string>
     <string name="preferred_player_fetcher_notification_title">S\'està obtenint la informació…</string>
     <string name="preferred_player_fetcher_notification_message">S\'està carregant el contingut seleccionat</string>
-    <string name="delete_playlist_prompt">Voleu eliminar aquesta llista de reproducció?</string>
+    <string name="delete_playlist_prompt">Vols eliminar aquesta llista de reproducció\?</string>
     <string name="playlist_delete_failure">No s\'ha pogut eliminar la llista de reproducció.</string>
     <string name="import_export_title">Importació i exportació</string>
     <string name="playback_speed_control">Controls de la velocitat de reproducció</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">To</string>
-    <string name="main_bg_subtitle">Toqueu el botó de cerca per començar</string>
+    <string name="main_bg_subtitle">Toca el botó de cerca per començar</string>
     <string name="use_external_video_player_summary">Elimina l\'àudio en algunes resolucions</string>
     <string name="use_external_audio_player_title">Reproductor d\'àudio extern</string>
-    <string name="download_thumbnail_summary">Desactiveu-ho per evitar que es carreguin les miniatures i estalviar dades i memòria. Si canvieu aquesta opció, s\'esborrarà la memòria cau d\'imatges tant de la memòria com de l\'emmagatzematge.</string>
+    <string name="download_thumbnail_summary">Desactiva-ho per evitar que es carreguin les miniatures i estalviar dades i memòria. Si canvies aquesta opció, s\'esborrarà la memòria cau d\'imatges tant de la memòria com de l\'emmagatzematge.</string>
     <string name="enable_search_history_summary">Emmagatzema les cerques localment</string>
     <string name="enable_watch_history_summary">Registra els vídeos visualitzats</string>
     <string name="resume_on_audio_focus_gain_title">Reprèn automàticament</string>
@@ -297,29 +297,29 @@
     <string name="import_data_summary">Sobreescriu l\'historial i les subscripcions actuals</string>
     <string name="player_recoverable_failure">S\'està recuperant el reproductor després de l\'error</string>
     <string name="sorry_string">Ho sentim, això no hauria d\'haver ocorregut.</string>
-    <string name="detail_drag_description">Arrossegueu per a reordenar la llista</string>
+    <string name="detail_drag_description">Arrossega per a reordenar la llista</string>
     <string name="short_thousand">mil</string>
     <string name="short_million">milions</string>
     <string name="short_billion">mil milions</string>
     <string name="start">Inicia</string>
     <string name="add">Nova missió</string>
     <string name="msg_url_malform">L\'URL té un format incorrecte o no hi ha connexió a internet</string>
-    <string name="msg_running_detail">Toqueu aquí per a més detalls</string>
-    <string name="no_available_dir">Definiu una carpeta de baixades més endavant a la configuració</string>
+    <string name="msg_running_detail">Toca aquí per a més detalls</string>
+    <string name="no_available_dir">Defineix una carpeta de baixades més endavant als paràmetres</string>
     <string name="msg_popup_permission">Es necessita aquest permís per a obrir el mode emergent</string>
     <string name="reCaptcha_title">Camp reCAPTCHA</string>
     <string name="recaptcha_request_toast">S\'ha sol·licitat l\'emplenament d\'un camp reCAPTCHA</string>
     <string name="settings_file_replacement_character_summary">Se substituiran els caràcters no vàlids amb aquest valor</string>
     <string name="settings_file_replacement_character_title">Caràcter de substitució</string>
     <string name="charset_most_special_characters">Principals caràcters especials</string>
-    <string name="contribution_encouragement">Ja siguin idees, traduccions, canvis en el disseny, una neteja del codi o canvis importants de programació, la vostra ajuda sempre és benvinguda. Com més feina feta hi hagi, millor!</string>
-    <string name="donation_encouragement">El NewPipe està desenvolupat per voluntaris que fan servir el seu temps lliure per a oferir-vos la millor experiència possible. Feu una aportació per assegurar que els nostres desenvolupadors puguin millorar encara més el NewPipe mentre fan un cafè.</string>
+    <string name="contribution_encouragement">Ja siguin idees, traduccions, canvis en el disseny, una neteja del codi o canvis importants de programació, la teva ajuda sempre és benvinguda. Com més feina feta hi hagi, millor!</string>
+    <string name="donation_encouragement">El NewPipe està desenvolupat per voluntaris que fan servir el seu temps lliure per a oferir-te la millor experiència possible. Fes una aportació per assegurar que els nostres desenvolupadors puguin millorar encara més el NewPipe mentre fan un cafè.</string>
     <string name="give_back">Fes la teva aportació</string>
     <string name="title_history_search">Cerques</string>
     <string name="title_history_view">Reproduccions</string>
-    <string name="no_channel_subscribed_yet">Encara no us heu subscrit a cap canal</string>
+    <string name="no_channel_subscribed_yet">Encara no t\'has subscrit a cap canal</string>
     <string name="new_and_hot">Novetats</string>
-    <string name="hold_to_append">Manteniu premut per afegir a la cua</string>
+    <string name="hold_to_append">Mantén premut per afegir a la cua</string>
     <string name="start_here_on_background">Comença a reproduir en segon pla</string>
     <string name="start_here_on_popup">Comença a reproduir en mode emergent</string>
     <string name="set_as_playlist_thumbnail">Defineix com a miniatura de la llista de reproducció</string>
@@ -349,42 +349,42 @@
     <string name="enable_leak_canary_summary">"La supervisió de fugues de memòria pot fer que l\'aplicació deixi de respondre mentre es bolca la memòria "</string>
     <string name="enable_disposed_exceptions_title">Informa d\'errors fora del cicle de vida</string>
     <string name="enable_disposed_exceptions_summary">Força l\'informe d\'excepcions Rx que no es puguin transmetre que tinguin lloc fora del cicle de vida d\'un fragment o activitat després de disposar-los</string>
-    <string name="import_youtube_instructions">Importeu les vostres subscripcions de YouTube mitjançant el fitxer d\'exportació:
+    <string name="import_youtube_instructions">Importa les teves subscripcions de YouTube mitjançant el fitxer d\'exportació: 
 \n 
-\n1. Aneu a aquesta URL: %1$s 
-\n2. Inicieu sessió quan se us demani 
+\n1. Vés a aquesta URL: %1$s 
+\n2. Inicia la sessió quan se\'t demani 
 \n3. S\'hauria d\'iniciar una baixada (el fitxer d\'exportació)</string>
-    <string name="import_soundcloud_instructions">Importeu un perfil de SoundCloud mitjançant l\'URL o l\'identificador del vostre perfil: 
+    <string name="import_soundcloud_instructions">Importa un perfil de SoundCloud mitjançant l\'URL o l\'identificador del teu perfil: 
 \n 
-\n1. Activeu el «Mode d\'ordinador» en un navegador (el lloc web no està disponible per a dispositius mòbils) 
-\n2. Aneu a aquesta URL: %1$s 
-\n3. Inicieu sessió al vostre compte quan se us demani 
-\n4. Copieu l\'URL de la pàgina on se us redireccioni</string>
+\n1. Activa el «Mode d\'ordinador» en un navegador (el lloc web no està disponible per a dispositius mòbils) 
+\n2. Vés a aquesta URL: %1$s 
+\n3. Inicia la sessió al teu compte quan se\'t demani 
+\n4. Copia l\'URL de la pàgina on se\'t redireccioni</string>
     <string name="import_soundcloud_instructions_hint">identificador, soundcloud.com/identificador</string>
-    <string name="import_network_expensive_warning">Tingueu en compte que això pot comportar un ús intensiu de la xarxa.
-\n
-\nVoleu continuar?</string>
+    <string name="import_network_expensive_warning">Tingues en compte que això pot comportar un ús intensiu de la xarxa. 
+\n 
+\nVols continuar\?</string>
     <string name="no_streams_available_download">No hi ha vídeos que es puguin baixar</string>
     <string name="caption_setting_title">Subtítols</string>
     <string name="caption_setting_description">Modifica la mida del text i el fons dels subtítols. Cal reiniciar l\'aplicació per aplicar els canvis.</string>
     <string name="toast_no_player">No s\'ha trobat cap aplicació que pugui reproduir aquest fitxer</string>
     <string name="clear_views_history_title">Esborra l\'historial de reproduccions</string>
-    <string name="clear_views_history_summary">Esborra l\'historial dels vídeos que s\'han reproduït</string>
-    <string name="delete_view_history_alert">Voleu esborrar tot l\'historial de reproduccions\?</string>
+    <string name="clear_views_history_summary">Esborra l\'historial dels vídeos reproduïts i les posicions de reproducció</string>
+    <string name="delete_view_history_alert">Vols esborrar tot l\'historial de reproduccions\?</string>
     <string name="watch_history_deleted">S\'ha esborrat l\'historial de reproduccions.</string>
     <string name="clear_search_history_title">Esborra l\'historial de cerca</string>
     <string name="clear_search_history_summary">Esborra l\'historial de paraules cercades</string>
-    <string name="delete_search_history_alert">Voleu esborrar tot l\'historial de cerca\?</string>
+    <string name="delete_search_history_alert">Vols esborrar tot l\'historial de cerca\?</string>
     <string name="search_history_deleted">S\'ha esborrat l\'historial de cerca.</string>
     <string name="one_item_deleted">S\'ha esborrat 1 element.</string>
-    <string name="app_license">NewPipe és programari lliure sota llicència copyleft: podeu fer-lo servir, estudiar-lo, compartir-lo i millorar-lo al vostre gust. En concret, podeu redistribuir-lo i/o modificar-lo d\'acord amb els termes de la llicència GNU GPL publicada per la Free Software Foundation, ja sigui la versió 3 o (segons vulgueu) qualsevol altra versió posterior.</string>
-    <string name="import_settings">Voleu importar també la configuració?</string>
+    <string name="app_license">NewPipe és programari lliure sota llicència copyleft: pots fer-lo servir, estudiar-lo, compartir-lo i millorar-lo al teu gust. En concret, pots redistribuir-lo i/o modificar-lo d\'acord amb els termes de la llicència GNU GPL publicada per la Free Software Foundation, ja sigui la versió 3 o (segons vulguis) qualsevol altra versió posterior.</string>
+    <string name="import_settings">Vols importar també els paràmetres\?</string>
     <string name="privacy_policy_title">Política de privacitat del NewPipe</string>
-    <string name="privacy_policy_encouragement">El projecte NewPipe es pren molt seriosament la vostra privacitat. Per aquesta raó, l\'aplicació no emmagatzema cap mena de dades sense el vostre consentiment.
-\nLa política de privacitat del NewPipe descriu detalladament quines dades s\'envien i s\'emmagatzemen quan envieu un informe d\'error.</string>
+    <string name="privacy_policy_encouragement">El projecte NewPipe es pren molt seriosament la teva privacitat. Per aquesta raó, l\'aplicació no emmagatzema cap mena de dades sense el teu consentiment. 
+\nLa política de privacitat del NewPipe descriu detalladament quines dades s\'envien i s\'emmagatzemen quan envies un informe d\'error.</string>
     <string name="read_privacy_policy">Llegeix la política de privacitat</string>
-    <string name="start_accept_privacy_policy">Per tal de complir amb el Reglament General de Protecció de Dades europeu (GDPR), us demanem que poseu atenció a la política de privacitat del NewPipe. Llegiu-la detingudament.
-\nSi voleu enviar-nos un informe d\'error, l\'haureu d\'acceptar.</string>
+    <string name="start_accept_privacy_policy">Per tal de complir amb el Reglament General de Protecció de Dades europeu (GDPR), et demanem que posis atenció a la política de privacitat del NewPipe. Llegeix-la detingudament. 
+\nSi vols enviar-nos un informe d\'error, l\'hauràs d\'acceptar.</string>
     <string name="accept">Accepta</string>
     <string name="decline">Rebutja</string>
     <string name="limit_data_usage_none_description">Sense restriccions</string>
@@ -411,7 +411,7 @@
     <string name="file_deleted">S\'ha eliminat el fitxer</string>
     <string name="download_to_sdcard_error_title">L\'emmagatzematge extern no està disponible</string>
     <string name="restore_defaults">Reinicialitza els valors per defecte</string>
-    <string name="restore_defaults_confirmation">Voleu reinicialitzar els valors per defecte\?</string>
+    <string name="restore_defaults_confirmation">Vols reinicialitzar els valors per defecte\?</string>
     <string name="selection">Selecció</string>
     <string name="updates_setting_title">Actualitzacions</string>
     <string name="list">Llista</string>
@@ -450,7 +450,7 @@
     <string name="clear_finished_download">Neteja les baixades finalitzades</string>
     <string name="max_retry_msg">Intents màxims</string>
     <string name="max_retry_desc">Nombre màxim d\'intents abans de cancel·lar la baixada</string>
-    <string name="pause_downloads_on_mobile">Pausa en canviar a dades mòbils</string>
+    <string name="pause_downloads_on_mobile">Interromp en connexions limitades</string>
     <string name="pause_downloads_on_mobile_desc">Útil en canviar a les dades mòbils, tot i que algunes baixades no es poden aturar</string>
     <string name="unsubscribe">Elimina la subscripció</string>
     <string name="overwrite">Sobreescriu</string>
@@ -484,4 +484,9 @@
     <string name="enable_playback_state_lists_title">Posicions a les llistes</string>
     <string name="enable_playback_state_lists_summary">Mostra els indicadors de posició de reproducció a les llistes</string>
     <string name="settings_category_clear_data_title">Neteja les dades</string>
+    <string name="permission_denied">El sistema ha denegat l\'acció</string>
+    <string name="msg_pending_downloads">Reprèn les teves %s baixades pendents des de Baixades</string>
+    <string name="error_postprocessing_stopped">S\'ha tancat el NewPipe mentre es treballava en el fitxer</string>
+    <string name="downloads_storage_ask_title">Pregunta on baixar</string>
+    <string name="download_choose_new_path">Canvia les carpetes de baixada perquè tingui efecte</string>
 </resources>

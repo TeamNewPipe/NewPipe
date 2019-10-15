@@ -16,12 +16,12 @@
     <string name="screen_rotation">обертання</string>
     <string name="use_external_video_player_title">Використовувати зовнішній відеопрогравач</string>
     <string name="use_external_audio_player_title">Використовувати зовнішній аудіопрогравач</string>
-    <string name="download_path_title">Місце збереження відеозаписів</string>
-    <string name="download_path_dialog_title">Вкажіть шлях до теки для завантаження відео</string>
-    <string name="download_path_audio_dialog_title">Вкажіть шлях до теки для завантаження аудіо</string>
-    <string name="download_path_summary">Шлях до теки, де зберігатимуться завантажені відео</string>
-    <string name="download_path_audio_title">Тека для завантаженого аудіо</string>
-    <string name="download_path_audio_summary">Завантажене аудіо зберігається тут</string>
+    <string name="download_path_title">Папка для завантаження відео</string>
+    <string name="download_path_dialog_title">Виберіть папку для завантаження відеофайлів</string>
+    <string name="download_path_audio_dialog_title">Виберіть папку для завантаження аудіофайлів</string>
+    <string name="download_path_summary">Шлях до папки з завантаженим відео</string>
+    <string name="download_path_audio_title">Папка для завантаження аудіо</string>
+    <string name="download_path_audio_summary">Завантажені аудіофайли зберігаються тут</string>
     <string name="autoplay_by_calling_app_title">Автоматичне програвання</string>
     <string name="autoplay_by_calling_app_summary">Програє відео коли NewPipe викликано з іншого застосунку</string>
     <string name="default_resolution_title">Типова роздільна здатність</string>
@@ -39,7 +39,7 @@
     <string name="show_next_and_similar_title">Показувати \"Наступне\" і \"Схожі\" відео</string>
     <string name="url_not_supported_toast">URL не підтримується</string>
     <string name="content_language_title">Переважна мова контенту</string>
-    <string name="settings_category_video_audio_title">Відео та Авдіо</string>
+    <string name="settings_category_video_audio_title">Відео та Аудіо</string>
     <string name="settings_category_appearance_title">Зовнішній вигляд</string>
     <string name="settings_category_other_title">Інше</string>
     <string name="background_player_playing_toast">Програвання у тлі</string>
@@ -80,7 +80,7 @@
     <string name="your_comment">Ваш коментар (англійською):</string>
     <string name="error_details_headline">Подробиці:</string>
     <string name="list_thumbnail_view_description">Зображення відео перед його переглядом</string>
-    <string name="detail_thumbnail_view_description">Зображення відео перед його переглядом</string>
+    <string name="detail_thumbnail_view_description">Відтворити відео, тривалість:</string>
     <string name="use_tor_title">Використовувати Tor</string>
     <string name="use_tor_summary">(Експериментально) Перенаправляти трафік через Tor для підвищення конфіденційності (трансляція відео ще не підтримується).</string>
     <string name="report_error">Повідомити про помилку</string>
@@ -89,9 +89,9 @@
     <string name="video">Відео</string>
     <string name="audio">Аудіо</string>
     <string name="retry">Повторити спробу</string>
-    <string name="short_thousand">к</string>
+    <string name="short_thousand">тис.</string>
     <string name="short_million">млн.</string>
-    <string name="short_billion">Г</string>
+    <string name="short_billion">млрд</string>
     <string name="start">Почати</string>
     <string name="pause">Пауза</string>
     <string name="view">Грати</string>
@@ -233,9 +233,9 @@
         <item quantity="many">%s підписників</item>
     </plurals>
     <plurals name="videos">
-        <item quantity="one">Відео</item>
-        <item quantity="few">Відео</item>
-        <item quantity="many">Відео</item>
+        <item quantity="one">%s Відео</item>
+        <item quantity="few">%s Відео</item>
+        <item quantity="many">%s Відео</item>
     </plurals>
     <string name="create">Створити</string>
     <string name="delete_one">Видалити одне</string>
@@ -293,7 +293,7 @@
     <string name="title_activity_background_player">Програвач у тлі</string>
     <string name="title_activity_popup_player">Програвач у вікні</string>
     <string name="play_queue_remove">Видалити</string>
-    <string name="hold_to_append">Утримуйте, щоб додати до черги</string>
+    <string name="hold_to_append">Утримуйте, щоб додати в чергу</string>
     <string name="enqueue_on_background">Додати до фону</string>
     <string name="enqueue_on_popup">Додати до вікна</string>
     <string name="start_here_on_main">Розпочати програвання звідси</string>
@@ -508,4 +508,6 @@
     <string name="clear_playback_states_title">Видалити запам\'ятовані позиції</string>
     <string name="clear_playback_states_summary">Видаляє усі запам\'ятовані позиції</string>
     <string name="delete_playback_states_alert">Видалити усі запам\'ятовані позиції\?</string>
+    <string name="download_choose_new_path">Змініть папки завантаження для ефективності</string>
+    <string name="drawer_header_description">Перемкнути службу, наразі обрано:</string>
 </resources>

@@ -194,8 +194,8 @@
     </plurals>
     <string name="no_videos">Ingen videoer</string>
     <plurals name="videos">
-        <item quantity="one">Video</item>
-        <item quantity="other">Videoer</item>
+        <item quantity="one">Én video</item>
+        <item quantity="other">%s videoer</item>
     </plurals>
     <string name="view_on_github">Vis på GitHub</string>
     <string name="app_license_title">NewPipe sin lisens</string>
@@ -504,4 +504,5 @@
     <string name="clear_playback_states_title">Slett avspillingsposisjoner</string>
     <string name="clear_playback_states_summary">Sletter alle avspillingsposisjoner</string>
     <string name="delete_playback_states_alert">Slett alle avspillingsposisjoner\?</string>
+    <string name="download_choose_new_path">Endre nedlastingsmapper for å benytte dette</string>
 </resources>

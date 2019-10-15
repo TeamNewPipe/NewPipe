@@ -1,6 +1,6 @@
 package us.shandian.giga.get;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.io.Serializable;
 import java.util.Calendar;

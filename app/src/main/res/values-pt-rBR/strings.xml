@@ -205,8 +205,8 @@ abrir em modo popup</string>
     </plurals>
     <string name="no_videos">Nenhum vídeo</string>
     <plurals name="videos">
-        <item quantity="one">Vídeo</item>
-        <item quantity="other">Vídeos</item>
+        <item quantity="one">%s vídeo</item>
+        <item quantity="other">%s vídeos</item>
     </plurals>
     <string name="item_deleted">Item excluído</string>
     <string name="settings_category_player_title">Player</string>

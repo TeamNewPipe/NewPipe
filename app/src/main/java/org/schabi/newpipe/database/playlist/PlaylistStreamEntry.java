@@ -1,6 +1,6 @@
 package org.schabi.newpipe.database.playlist;
 
-import android.arch.persistence.room.ColumnInfo;
+import androidx.room.ColumnInfo;
 
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.model.PlaylistStreamEntity;
