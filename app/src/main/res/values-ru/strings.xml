@@ -132,7 +132,7 @@
     <string name="popup_resizing_indicator_title">Изменение размера</string>
     <string name="use_external_video_player_summary">Убирает звук в НЕКОТОРЫХ разрешениях</string>
     <string name="short_million">млн</string>
-    <string name="short_billion">млрд.</string>
+    <string name="short_billion">млрд</string>
     <string name="short_thousand">тыс.</string>
     <string name="default_popup_resolution_title">Разрешение очереди всплывающего окна</string>
     <string name="popup_remember_size_pos_summary">Помнить последние размер и позицию всплывающего окна</string>
@@ -378,8 +378,8 @@
     <string name="clear_views_history_title">Очистить историю</string>
     <string name="delete_view_history_alert">Удалить всю историю просмотров\?</string>
     <string name="watch_history_deleted">История просмотров удалена</string>
-    <string name="clear_search_history_title">Очистить историю поиска</string>
-    <string name="clear_search_history_summary">Удалить историю запросов поиска</string>
+    <string name="clear_search_history_title">Очистить запросы поиска</string>
+    <string name="clear_search_history_summary">Удалить все запросы поиска</string>
     <string name="clear_views_history_summary">Удалить историю воспроизведённых потоков и позиции воспроизведения</string>
     <string name="delete_search_history_alert">Удалить всю историю поиска\?</string>
     <string name="search_history_deleted">История поиска удалена</string>
@@ -387,7 +387,7 @@
     <string name="app_license">NewPipe — свободное программное обеспечение: вы можете использовать, изучать и улучшать его по своему усмотрению. В частности, вы можете распространять и/или изменять его в соответствии с условиями GNU General Public License, опубликованной Free Software Foundation, либо версии 3, либо (по вашему выбору) любой более поздней версии.</string>
     <string name="preferred_open_action_settings_title">При открытии ссылки</string>
     <string name="import_settings">Хотите импортировать настройки?</string>
-    <string name="privacy_policy_title">Политика конфиденциальности NewPipe</string>
+    <string name="privacy_policy_title">Политика конфиденциальности</string>
     <string name="privacy_policy_encouragement">Проект NewPipe очень серьёзно относится к вашей конфиденциальности. Поэтому приложение не собирает никаких данных без вашего согласия.
 \nПолитика конфиденциальности NewPipe подробно объясняет, какие данные отправляются и хранятся при отправке отчёта о сбоях.</string>
     <string name="read_privacy_policy">Прочитать политику</string>
