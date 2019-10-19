@@ -386,21 +386,15 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
                     getResources().getString(R.string.playlist) + ")");
             MenuItem menuItem = toolbar.getMenu().findItem(R.id.skip);
             menuItem.setVisible(true);
-        } else
+        } else {
             toolbar.setTitle(R.string.download_dialog_title);
+        }
 
         toolbar.setOnMenuItemClickListener(item -> {
 
             if (item.getItemId() == R.id.okay) {
                 prepareSelectedDownload();
 
-                if (playlistDownloadCallback != null) {
-                    if (smartDownloadCheckbox.isChecked() && downloadSetting != null) {
-                        playlistDownloadCallback.accept(downloadSetting);
-                    } else {
-                        playlistDownloadCallback.accept(null);
-                    }
-                }
             } else if (item.getItemId() == R.id.skip) {
                 if (playlistDownloadCallback != null) {
 
@@ -892,6 +886,14 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         this.downloadSetting = new DownloadSetting(storage, threads, urls, currentInfo.getUrl(), kind, psName, psArgs,
                 nearLength, videoResolution, audioBitrate, subtitleLocale);
         DownloadManagerService.startMission(context, downloadSetting);
+
+        if (playlistDownloadCallback != null) {
+            if (smartDownloadCheckbox.isChecked() && downloadSetting != null) {
+                playlistDownloadCallback.accept(downloadSetting);
+            } else {
+                playlistDownloadCallback.accept(null);
+            }
+        }
 
         dismiss();
     }

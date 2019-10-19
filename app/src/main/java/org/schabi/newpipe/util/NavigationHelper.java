@@ -67,6 +67,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import io.reactivex.Completable;
+import io.reactivex.functions.Predicate;
 import us.shandian.giga.io.StoredDirectoryHelper;
 import us.shandian.giga.io.StoredFileHelper;
 import us.shandian.giga.postprocessing.Postprocessing;
@@ -169,7 +170,8 @@ public class NavigationHelper {
             Completable.create(emitter -> {
                 while (itemIterator.hasNext()) {
                     PlayQueueItem queueItem = itemIterator.next();
-                    queueItem.getStream().subscribe(streamInfo -> startDownloadFromDownloadSetting(activity,
+                    queueItem.getStream().filter(streamInfo ->
+                            streamInfo != null).subscribe(streamInfo -> startDownloadFromDownloadSetting(activity,
                             downloadSetting, streamInfo), activity::onError);
                 }
                 emitter.onComplete();
@@ -199,7 +201,11 @@ public class NavigationHelper {
      */
     private static void startDownloadFromDownloadSetting(PlaylistFragment activity, DownloadSetting downloadSetting, StreamInfo streamInfo) {
 
-        DownloadManagerService.startMission(activity.getContext(), refactorDownloadSetting(activity, downloadSetting, streamInfo));
+        DownloadSetting downloadSettingNew = refactorDownloadSetting(activity, downloadSetting, streamInfo);
+
+        if (downloadSettingNew == null) return;
+
+        DownloadManagerService.startMission(activity.getContext(), downloadSettingNew);
     }
 
     /**
@@ -338,6 +344,9 @@ public class NavigationHelper {
             StoredDirectoryHelper storedDirectoryHelper = new StoredDirectoryHelper(activity.getContext(),
                     storedFileHelper.getParentUri(), storedFileHelper.getTag());
             StoredFileHelper storedFileHelperNew = storedDirectoryHelper.createFile(fileName, mime);
+            if(storedFileHelperNew == null) {
+                return null;
+            }
             DownloadSetting downloadSettingNew = new DownloadSetting(storedFileHelperNew, downloadSetting.getThreadCount(),
                     urls, streamInfo.getUrl(), downloadSetting.getKind(), psName, psArgs,
                     nearLength, downloadSetting.getVideoResolution(), downloadSetting.getAudioBitRate(),
@@ -345,9 +354,8 @@ public class NavigationHelper {
             return downloadSettingNew;
         } catch (IOException e) {
             e.printStackTrace();
+            return null;
         }
-        return null;
-
     }
 
     /**
