@@ -54,7 +54,7 @@
     <string name="info_dir_created">Répertoire de téléchargement « %1$s » créé</string>
     <string name="general_error">Erreur</string>
     <string name="parsing_error">Impossible d’analyser le site web</string>
-    <string name="content_not_available">Contenu non disponible</string>
+    <string name="content_not_available">Contenu indisponible</string>
     <string name="error_snackbar_message">Désolé, des erreurs sont survenues.</string>
     <string name="content">Contenu</string>
     <string name="show_age_restricted_content_title">Contenu avec limite d’âge</string>
@@ -217,7 +217,7 @@
     <string name="feed_page_summary">Fil de syndication</string>
     <string name="channel_page_summary">Chaîne</string>
     <string name="select_a_channel">Sélectionner une chaîne</string>
-    <string name="trending">Populaires</string>
+    <string name="trending">Tendances</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Nouveau &amp; populaire</string>
     <string name="background_player_append">En file d’attente sur le lecteur en arrière-plan</string>
@@ -493,14 +493,14 @@
     <string name="pause_downloads">Mettre en pause les téléchargements</string>
     <string name="downloads_storage_ask_title">Demander où télécharger</string>
     <string name="downloads_storage_ask_summary">Vous allez être interrogé sur l’emplacement d’enregistrement de chaque téléchargement</string>
-    <string name="downloads_storage_ask_summary_kitkat">Vous allez être interrogé sur l’emplacement de téléchargement de chaque téléchargement.
-\nVeuillez choisir SAF si vous voulez télécharger sur une carte mémoire externe</string>
+    <string name="downloads_storage_ask_summary_kitkat">Vous allez être interrogé sur l’emplacement de téléchargement de chaque téléchargement. 
+\nVeuillez choisir ILAF si vous voulez télécharger sur une carte mémoire externe</string>
     <string name="enable_playback_resume_summary">Rétablir la précédente position de lecture</string>
     <string name="enable_playback_state_lists_title">Positions dans les listes</string>
     <string name="enable_playback_state_lists_summary">Afficher les indicateurs de position de lecture dans les listes</string>
     <string name="watch_history_states_deleted">Positions de reprise supprimées.</string>
-    <string name="downloads_storage_use_saf_title">Utiliser SAF</string>
-    <string name="downloads_storage_use_saf_summary">Le « Storage Access Framework » permet de télécharger sur une carte mémoire externe.
+    <string name="downloads_storage_use_saf_title">Utiliser ILAF</string>
+    <string name="downloads_storage_use_saf_summary">L\'Infrastructure Logicielle d\'Accès au Stockage permet de télécharger sur une carte mémoire externe. 
 \nNote : certains appareils ne sont pas compatibles</string>
     <string name="clear_playback_states_title">Supprimer les positions de lecture</string>
     <string name="clear_playback_states_summary">Supprimer toutes les positions de reprise</string>
