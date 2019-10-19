@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Sentuh pencarian untuk memulai</string>
+    <string name="main_bg_subtitle">Ketuk pencarian untuk memulai</string>
     <string name="view_count_text">%1$s ditonton</string>
     <string name="upload_date_text">Dipublikasikan tanggal %1$s</string>
     <string name="install">Pasang</string>
@@ -14,12 +14,12 @@
     <string name="choose_browser">Pilih peramban</string>
     <string name="use_external_video_player_title">Gunakan pemutar video eksternal</string>
     <string name="use_external_audio_player_title">Gunakan pemutar audio eksternal</string>
-    <string name="download_path_title">Lokasi unduhan video</string>
-    <string name="download_path_summary">Lokasi untuk menyimpan video yang diunduh</string>
-    <string name="download_path_dialog_title">Masukkan lokasi unduhan video</string>
+    <string name="download_path_title">Folder unduhan video</string>
+    <string name="download_path_summary">Berkas video yang diunduh disimpan di sini</string>
+    <string name="download_path_dialog_title">Pilih folder unduhan untuk berkas video</string>
     <string name="download_path_audio_title">Lokasi unduhan audio</string>
-    <string name="download_path_audio_summary">Audio yang diunduh disimpan di sini</string>
-    <string name="download_path_audio_dialog_title">Masukkan lokasi unduhan berkas audio</string>
+    <string name="download_path_audio_summary">Berkas audio yang diunduh disimpan di sini</string>
+    <string name="download_path_audio_dialog_title">Pilih folder unduhan untuk berkas audio</string>
     <string name="autoplay_by_calling_app_title">Putar otomatis</string>
     <string name="autoplay_by_calling_app_summary">Putar video ketika NewPipe dijalankan dari aplikasi lain</string>
     <string name="default_resolution_title">Resolusi</string>
@@ -111,7 +111,7 @@
     <string name="black_theme_title">Hitam</string>
     <string name="all">Semua</string>
     <string name="channel">Channel</string>
-    <string name="short_thousand">R</string>
+    <string name="short_thousand">r</string>
     <string name="short_million">J</string>
     <string name="short_billion">T</string>
     <string name="yes">Ya</string>
@@ -235,9 +235,6 @@
         <item quantity="other">%s ditonton</item>
     </plurals>
     <string name="no_videos">Tidak ada video</string>
-    <plurals name="videos">
-        <item quantity="other">Video</item>
-    </plurals>
     <string name="create">Buat</string>
     <string name="delete_one">Hapus Satu</string>
     <string name="delete_all">Hapus Semua</string>
@@ -320,7 +317,7 @@
     <string name="show_info">Tampilkan info</string>
     <string name="controls_add_to_playlist_title">Tambahkan Ke</string>
     <string name="clear_views_history_title">Hapus riwayat tontonan</string>
-    <string name="clear_views_history_summary">Hapus riwayat stream yang telah diputar</string>
+    <string name="clear_views_history_summary">Hapus riwayat stream yang diputar dan posisi pemutaran</string>
     <string name="delete_view_history_alert">Hapus seluruh riwayat tontonan\?</string>
     <string name="watch_history_deleted">Riwayat tontonan dihapus.</string>
     <string name="clear_search_history_title">Hapus riwayat pencarian</string>
@@ -493,5 +490,13 @@
     <string name="downloads_storage_ask_title">Tanyakan lokasi unduhan</string>
     <string name="downloads_storage_ask_summary">Anda akan ditanya lokasi penyimpanan berkas unduhan</string>
     <string name="downloads_storage_ask_summary_kitkat">Anda akan ditanya lokasi penyimpanan berkas unduhan.
-\nAktifkan opsi ini jika anda ingin mengunduh ke kartu SD eksternal</string>
+\nPilih SAF jika anda ingin mengunduh ke kartu SD eksternal</string>
+    <string name="error_timeout">Batas waktu koneksi</string>
+    <string name="downloads_storage_use_saf_title">Gunakan SAF</string>
+    <string name="downloads_storage_use_saf_summary">Storage Access Framework memungkinkan mengunduh ke kartu SD eksternal.
+\nCatatan: beberapa perangkat tidak kompatibel</string>
+    <string name="clear_playback_states_title">Hapus posisi pemutaran</string>
+    <string name="clear_playback_states_summary">Hapus semua posisi pemutaran</string>
+    <string name="delete_playback_states_alert">Hapus semua posisi pemutaran\?</string>
+    <string name="download_choose_new_path">Ubah folder unduhan</string>
 </resources>

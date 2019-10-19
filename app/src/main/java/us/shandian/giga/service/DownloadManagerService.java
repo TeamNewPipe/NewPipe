@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
@@ -19,15 +20,15 @@ import android.net.Uri;
 import android.os.Binder;
 import android.os.Build;
 import android.os.Handler;
+import android.os.Handler.Callback;
 import android.os.IBinder;
-import android.os.Looper;
 import android.os.Message;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationCompat.Builder;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationCompat.Builder;
 import android.util.Log;
 import android.util.SparseArray;
 import android.widget.Toast;
@@ -89,14 +90,14 @@ public class DownloadManagerService extends Service {
     private Builder downloadDoneNotification = null;
     private StringBuilder downloadDoneList = null;
 
-    private final ArrayList<Handler> mEchoObservers = new ArrayList<>(1);
+    private final ArrayList<Callback> mEchoObservers = new ArrayList<>(1);
 
     private ConnectivityManager mConnectivityManager;
     private BroadcastReceiver mNetworkStateListener = null;
     private ConnectivityManager.NetworkCallback mNetworkStateListenerL = null;
 
     private SharedPreferences mPrefs = null;
-    private final SharedPreferences.OnSharedPreferenceChangeListener mPrefChangeListener = this::handlePreferenceChange;
+    private final OnSharedPreferenceChangeListener mPrefChangeListener = this::handlePreferenceChange;
 
     private boolean mLockAcquired = false;
     private LockManager mLock = null;
@@ -129,12 +130,7 @@ public class DownloadManagerService extends Service {
         }
 
         mBinder = new DownloadManagerBinder();
-        mHandler = new Handler(Looper.myLooper()) {
-            @Override
-            public void handleMessage(Message msg) {
-                DownloadManagerService.this.handleMessage(msg);
-            }
-        };
+        mHandler = new Handler(this::handleMessage);
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -273,7 +269,7 @@ public class DownloadManagerService extends Service {
         return mBinder;
     }
 
-    public void handleMessage(Message msg) {
+    private boolean handleMessage(@NonNull Message msg) {
         DownloadMission mission = (DownloadMission) msg.obj;
 
         switch (msg.what) {
@@ -301,14 +297,12 @@ public class DownloadManagerService extends Service {
             mFailedDownloads.delete(mFailedDownloads.indexOfValue(mission));
 
         synchronized (mEchoObservers) {
-            for (Handler handler : mEchoObservers) {
-                Message echo = new Message();
-                echo.what = msg.what;
-                echo.obj = msg.obj;
-
-                handler.sendMessage(echo);
+            for (Callback observer : mEchoObservers) {
+                observer.handleMessage(msg);
             }
         }
+
+        return true;
     }
 
     private void handleConnectivityState(boolean updateOnly) {
@@ -508,7 +502,7 @@ public class DownloadManagerService extends Service {
         return PendingIntent.getService(this, intent.hashCode(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
-    private void manageObservers(Handler handler, boolean add) {
+    private void manageObservers(Callback handler, boolean add) {
         synchronized (mEchoObservers) {
             if (add) {
                 mEchoObservers.add(handler);
@@ -589,11 +583,11 @@ public class DownloadManagerService extends Service {
             );
         }
 
-        public void addMissionEventListener(Handler handler) {
+        public void addMissionEventListener(Callback handler) {
             manageObservers(handler, true);
         }
 
-        public void removeMissionEventListener(Handler handler) {
+        public void removeMissionEventListener(Callback handler) {
             manageObservers(handler, false);
         }
 

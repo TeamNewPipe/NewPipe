@@ -10,7 +10,7 @@
     <string name="download">డౌన్లోడ్</string>
     <string name="search">శోధిచు</string>
     <string name="settings">సెట్టింగ్‌లు</string>
-    <string name="did_you_mean">అంటే నువ్వు అనేది</string>
+    <string name="did_you_mean">అంటే నువ్వు అనేది: %1$s\?</string>
     <string name="share_dialog_title">తో పంచు</string>
     <string name="choose_browser">బ్రౌజర్ను ఎంచుకోండి</string>
     <string name="screen_rotation">రొటేషన్</string>

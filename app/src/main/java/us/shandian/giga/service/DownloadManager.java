@@ -2,9 +2,9 @@ package us.shandian.giga.service;
 
 import android.content.Context;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.util.DiffUtil;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.DiffUtil;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -424,10 +424,12 @@ public class DownloadManager {
 
             boolean flag = false;
             for (DownloadMission mission : mMissionsPending) {
-                if (mission.running || !mission.enqueued || mission.isFinished() || mission.hasInvalidStorage())
+                if (mission.running || !mission.enqueued || mission.isFinished())
                     continue;
 
                 resumeMission(mission);
+                if (mission.errCode != DownloadMission.ERROR_NOTHING) continue;
+
                 if (mPrefQueueLimit) return true;
                 flag = true;
             }

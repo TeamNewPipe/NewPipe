@@ -199,8 +199,8 @@
     </plurals>
     <string name="no_videos">Bideorik ez</string>
     <plurals name="videos">
-        <item quantity="one">Bideoa</item>
-        <item quantity="other">Bideoak</item>
+        <item quantity="one">%s Bideoa</item>
+        <item quantity="other">%s Bideoak</item>
     </plurals>
     <string name="title_activity_history">Historiala</string>
     <string name="title_history_search">Bilatuta</string>

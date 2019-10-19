@@ -11,15 +11,15 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
-import android.support.annotation.IdRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.provider.DocumentFile;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.view.menu.ActionMenuItemView;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.fragment.app.DialogFragment;
+import androidx.documentfile.provider.DocumentFile;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.view.menu.ActionMenuItemView;
+import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -377,6 +377,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         toolbar.setNavigationIcon(isLight ? R.drawable.ic_arrow_back_black_24dp : R.drawable.ic_arrow_back_white_24dp);
         toolbar.inflateMenu(R.menu.dialog_url);
         toolbar.setNavigationOnClickListener(v -> getDialog().dismiss());
+        toolbar.setNavigationContentDescription(R.string.cancel);
 
         okButton = toolbar.findViewById(R.id.okay);
         okButton.setEnabled(false);// disable until the download service connection is done

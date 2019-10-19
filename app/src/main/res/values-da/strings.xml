@@ -123,8 +123,8 @@
     <string name="playlist">Playliste</string>
     <string name="playlists">Playlister</string>
     <plurals name="videos">
-        <item quantity="one">Video</item>
-        <item quantity="other">Videoer</item>
+        <item quantity="one">Én video</item>
+        <item quantity="other">%s videoer</item>
     </plurals>
     <string name="tracks">Numre</string>
     <string name="users">Brugere</string>

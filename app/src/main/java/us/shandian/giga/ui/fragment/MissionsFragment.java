@@ -12,11 +12,11 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -79,7 +79,7 @@ public class MissionsFragment extends Fragment {
 
             setAdapterButtons();
 
-            mBinder.addMissionEventListener(mAdapter.getMessenger());
+            mBinder.addMissionEventListener(mAdapter);
             mBinder.enableNotifications(false);
 
             updateList();
@@ -159,7 +159,7 @@ public class MissionsFragment extends Fragment {
         super.onDestroy();
         if (mBinder == null || mAdapter == null) return;
 
-        mBinder.removeMissionEventListener(mAdapter.getMessenger());
+        mBinder.removeMissionEventListener(mAdapter);
         mBinder.enableNotifications(true);
         mContext.unbindService(mConnection);
         mAdapter.deleterDispose(true);
@@ -197,12 +197,10 @@ public class MissionsFragment extends Fragment {
                 return true;
             case R.id.start_downloads:
                 item.setVisible(false);
-                mPause.setVisible(true);
                 mBinder.getDownloadManager().startAllMissions();
                 return true;
             case R.id.pause_downloads:
                 item.setVisible(false);
-                mStart.setVisible(true);
                 mBinder.getDownloadManager().pauseAllMissions(false);
                 mAdapter.ensurePausedMissions();// update items view
             default:
@@ -280,7 +278,7 @@ public class MissionsFragment extends Fragment {
         if (mAdapter != null) {
             mAdapter.deleterDispose(false);
             mForceUpdate = true;
-            mBinder.removeMissionEventListener(mAdapter.getMessenger());
+            mBinder.removeMissionEventListener(mAdapter);
         }
     }
 
@@ -296,7 +294,7 @@ public class MissionsFragment extends Fragment {
                 mAdapter.forceUpdate();
             }
 
-            mBinder.addMissionEventListener(mAdapter.getMessenger());
+            mBinder.addMissionEventListener(mAdapter);
             mAdapter.checkMasterButtonsVisibility();
         }
         if (mBinder != null) mBinder.enableNotifications(false);

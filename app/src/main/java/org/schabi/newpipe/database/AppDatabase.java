@@ -1,8 +1,8 @@
 package org.schabi.newpipe.database;
 
-import android.arch.persistence.room.Database;
-import android.arch.persistence.room.RoomDatabase;
-import android.arch.persistence.room.TypeConverters;
+import androidx.room.Database;
+import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 
 import org.schabi.newpipe.database.history.dao.SearchHistoryDAO;
 import org.schabi.newpipe.database.history.dao.StreamHistoryDAO;

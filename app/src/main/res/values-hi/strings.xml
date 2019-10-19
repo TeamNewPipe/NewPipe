@@ -23,7 +23,7 @@
     <string name="play_audio">ऑडियो</string>
     <string name="light_theme_title">हलका</string>
     <string name="black_theme_title">काली</string>
-    <string name="enable_watch_history_title">इतिहास व कॅशे</string>
+    <string name="enable_watch_history_title">देखे हुए वीडियो की सूची</string>
     <string name="download_dialog_title">डाउनलोड</string>
     <string name="next_video_title">अगला</string>
     <string name="settings_category_video_audio_title">वीडियो और ऑडियो</string>
@@ -63,12 +63,12 @@
     <string name="subscription_change_failed">सदस्यता नहीं बदला जा सका</string>
     <string name="subscription_update_failed">सदस्यता का अद्यतन नहीं हो सका</string>
     <string name="fragment_whats_new">देखे की क्या नया है</string>
-    <string name="download_path_title">विडियो को डाउनलोड करने के लिए फाइल की जगह</string>
-    <string name="download_path_summary">डाउनलोड किए गए विडियो फाइल को रखने की जगह</string>
-    <string name="download_path_dialog_title">वीडियो के लिए डाउनलोड पथ दर्ज करें</string>
+    <string name="download_path_title">वीडियो डाउनलोड फ़ोल्डर</string>
+    <string name="download_path_summary">डाउनलोड की गई वीडियो फ़ाइलें यहां संग्रहीत हैं</string>
+    <string name="download_path_dialog_title">वीडियो फ़ाइलों के लिए डाउनलोड फ़ोल्डर चुनें</string>
     <string name="download_path_audio_title">ऑडियो डाउनलोड फ़ोल्डर</string>
-    <string name="download_path_audio_summary">डाउनलोड किये गए ऑडियो यहाँ है</string>
-    <string name="download_path_audio_dialog_title">ऑडियो फाइल डाउनलोड करने के लिए जगह दर्ज करें</string>
+    <string name="download_path_audio_summary">डाउनलोड की गई वीडियो फ़ाइलें यहां संग्रहीत हैं</string>
+    <string name="download_path_audio_dialog_title">ऑडियो फ़ाइलों के लिए डाउनलोड फ़ोल्डर चुनें</string>
     <string name="autoplay_by_calling_app_summary">अन्य अप्प के द्वारा NewPipe के आह्वान पर वीडियो तुरंत चले</string>
     <string name="default_resolution_title">वीडियो का डिफ़ॉल्ट रिज़ॉल्यूशन</string>
     <string name="default_popup_resolution_title">विडियो पॉपअप का डिफ़ॉल्ट रिज़ॉल्यूशन</string>
@@ -110,7 +110,7 @@
     <string name="content">विषयवस्तु</string>
     <string name="show_age_restricted_content_title">उम्र प्रतिबंधित विषय वस्तु</string>
     <string name="video_is_age_restricted">उम्र प्रतिबंदित विडियो है .इस प्रकार की विषयवस्तु को अनुमति देने के लिए सेटिंग से संभव है |</string>
-    <string name="duration_live">सीधा प्रसारण</string>
+    <string name="duration_live">लाइव</string>
     <string name="downloads">डाउनलोड</string>
     <string name="downloads_title">डाउनलोड</string>
     <string name="error_report_title">त्रुटी की रिपोर्ट</string>
@@ -184,8 +184,8 @@
         <item quantity="other">%s दर्शके</item>
     </plurals>
     <plurals name="videos">
-        <item quantity="one">%s विडियो</item>
-        <item quantity="other">%s वीडियो</item>
+        <item quantity="one">वीडियो</item>
+        <item quantity="other">वीडियोस</item>
     </plurals>
     <string name="start">शुरू</string>
     <string name="pause">रोके</string>
@@ -328,7 +328,7 @@
     <string name="file">फाइल</string>
     <string name="channels">चेनल्स</string>
     <string name="playlists">सूची</string>
-    <string name="tracks">ट्रेक</string>
+    <string name="tracks">क्स</string>
     <string name="users">उपभोगता</string>
     <string name="clear_views_history_title">देखे हुए वीडियो की सूची साफ करें</string>
     <string name="clear_views_history_summary">चलाये गए स्ट्रीम का इतिहास साफ करता है</string>
