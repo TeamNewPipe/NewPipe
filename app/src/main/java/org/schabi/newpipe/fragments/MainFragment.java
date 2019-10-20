@@ -147,7 +147,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         viewPager.setOffscreenPageLimit(tabsList.size());
 
         updateTabsIconAndDescription();
-        updateCurrentTitle();
+        updateTitleForTab(viewPager.getCurrentItem());
 
         hasTabsChanged = false;
     }
@@ -163,14 +163,14 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         }
     }
 
-    private void updateCurrentTitle() {
-        setTitle(tabsList.get(viewPager.getCurrentItem()).getTabName(requireContext()));
+    private void updateTitleForTab(int tabPosition) {
+        setTitle(tabsList.get(tabPosition).getTabName(requireContext()));
     }
 
     @Override
     public void onTabSelected(TabLayout.Tab selectedTab) {
         if (DEBUG) Log.d(TAG, "onTabSelected() called with: selectedTab = [" + selectedTab + "]");
-        updateCurrentTitle();
+        updateTitleForTab(selectedTab.getPosition());
     }
 
     @Override
@@ -180,7 +180,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
         if (DEBUG) Log.d(TAG, "onTabReselected() called with: tab = [" + tab + "]");
-        updateCurrentTitle();
+        updateTitleForTab(tab.getPosition());
     }
 
     private static class SelectedTabsPagerAdapter extends FragmentStatePagerAdapter {
