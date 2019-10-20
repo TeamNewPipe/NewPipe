@@ -28,6 +28,8 @@ import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
+import java.util.Objects;
+
 public abstract class Tab {
     Tab() {
     }
@@ -47,6 +49,8 @@ public abstract class Tab {
 
     @Override
     public boolean equals(Object obj) {
+        if (obj == this) return true;
+
         return obj instanceof Tab && obj.getClass().equals(this.getClass())
                 && ((Tab) obj).getTabId() == this.getTabId();
     }
@@ -340,6 +344,13 @@ public abstract class Tab {
             kioskId = jsonObject.getString(JSON_KIOSK_ID_KEY, "<no-id>");
         }
 
+        @Override
+        public boolean equals(Object obj) {
+            return super.equals(obj) &&
+                    kioskServiceId == ((KioskTab) obj).kioskServiceId
+                    && Objects.equals(kioskId, ((KioskTab) obj).kioskId);
+        }
+
         public int getKioskServiceId() {
             return kioskServiceId;
         }
@@ -407,6 +418,14 @@ public abstract class Tab {
             channelServiceId = jsonObject.getInt(JSON_CHANNEL_SERVICE_ID_KEY, -1);
             channelUrl = jsonObject.getString(JSON_CHANNEL_URL_KEY, "<no-url>");
             channelName = jsonObject.getString(JSON_CHANNEL_NAME_KEY, "<no-name>");
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            return super.equals(obj) &&
+                    channelServiceId == ((ChannelTab) obj).channelServiceId
+                    && Objects.equals(channelUrl, ((ChannelTab) obj).channelUrl)
+                    && Objects.equals(channelName, ((ChannelTab) obj).channelName);
         }
 
         public int getChannelServiceId() {
