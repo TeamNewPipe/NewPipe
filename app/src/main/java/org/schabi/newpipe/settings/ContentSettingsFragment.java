@@ -17,6 +17,7 @@ import com.nononsenseapps.filepicker.Utils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
 import org.schabi.newpipe.extractor.localization.Localization;
 import org.schabi.newpipe.report.ErrorActivity;
@@ -128,6 +129,8 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         if (!selectedLocalization.equals(initialSelectedLocalization)
                 || !selectedContentCountry.equals(initialSelectedContentCountry)) {
             Toast.makeText(requireContext(), R.string.localization_changes_requires_app_restart, Toast.LENGTH_LONG).show();
+
+            NewPipe.setupLocalization(selectedLocalization, selectedContentCountry);
         }
     }
 
