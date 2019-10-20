@@ -159,27 +159,17 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
         pagerAdapter.notifyDataSetChanged();
 
         viewPager.setOffscreenPageLimit(pagerAdapter.getCount());
-        updateTabsIcon();
-        updateTabsContentDescription();
+        updateTabsIconAndDescription();
         updateCurrentTitle();
     }
 
-    private void updateTabsIcon() {
+    private void updateTabsIconAndDescription() {
         for (int i = 0; i < tabsList.size(); i++) {
             final TabLayout.Tab tabToSet = tabLayout.getTabAt(i);
             if (tabToSet != null) {
-                tabToSet.setIcon(tabsList.get(i).getTabIconRes(activity));
-            }
-        }
-    }
-
-    private void updateTabsContentDescription() {
-        for (int i = 0; i < tabsList.size(); i++) {
-            final TabLayout.Tab tabToSet = tabLayout.getTabAt(i);
-            if (tabToSet != null) {
-                final Tab t = tabsList.get(i);
-                tabToSet.setIcon(t.getTabIconRes(activity));
-                tabToSet.setContentDescription(t.getTabName(activity));
+                final Tab tab = tabsList.get(i);
+                tabToSet.setIcon(tab.getTabIconRes(requireContext()));
+                tabToSet.setContentDescription(tab.getTabName(requireContext()));
             }
         }
     }
@@ -217,7 +207,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             Throwable throwable = null;
             Fragment fragment = null;
             try {
-                fragment = tab.getFragment();
+                fragment = tab.getFragment(requireContext());
             } catch (ExtractionException e) {
                 throwable = e;
             }
