@@ -30,7 +30,7 @@ public class ShareUtils {
     private static String getShareUrl(SharedPreferences prefs, String url) {
         if (prefs.getBoolean("use_custom_share_website", false)) {
             return prefs.getString("custom_share_website", "https://youtube.com")
-                + extractWatchParameter(url);
+                + "/" + extractWatchParameter(url);
         } else {
             return url;
         }

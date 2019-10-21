@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Patterns;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.EditTextPreference;
@@ -94,10 +95,19 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         EditTextPreference shareWebsitePreference = (EditTextPreference) findPreference("custom_share_website");
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         shareWebsitePreference.setSummary(prefs.getString("custom_share_website", "Not set"));
-        shareWebsitePreference.setOnPreferenceChangeListener(((preference, newValue) -> {
-            preference.setSummary((String) newValue);
-            return true;
-        }));
+        shareWebsitePreference.setOnPreferenceChangeListener((preference, newValue) -> {
+            if (Patterns.WEB_URL.matcher((String) newValue).matches()) {
+                preference.setSummary((String) newValue);
+                return true;
+            } else {
+                Toast toast = Toast.makeText(
+                    getContext(),
+                    getContext().getString(R.string.custom_share_website_invalid_url),
+                    Toast.LENGTH_SHORT);
+                toast.show();
+                return false;
+            }
+        });
 
         Preference importDataPreference = findPreference(getString(R.string.import_data));
         importDataPreference.setOnPreferenceClickListener((Preference p) -> {
