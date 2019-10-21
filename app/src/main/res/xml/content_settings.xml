@@ -48,6 +48,23 @@
         android:title="@string/show_comments_title"
         android:summary="@string/show_comments_summary"/>
 
+    <SwitchPreference
+      app:iconSpaceReserved="false"
+      android:defaultValue="false"
+      android:key="@string/use_custom_share_website_key"
+      android:title="@string/use_custom_share_website_title"
+      android:summary="Links created by share function will use the provided website"/>
+
+    <EditTextPreference
+      app:iconSpaceReserved="false"
+      android:defaultValue="@string/default_invidio_url"
+      android:key="@string/custom_share_website_key"
+      android:title="@string/custom_share_website_title"
+      android:summary="@string/default_invidio_url"
+      android:dependency="@string/use_custom_share_website_key"
+      android:dialogLayout="@layout/preference_url_edit_text"
+      />
+
     <Preference
         app:iconSpaceReserved="false"
         android:summary="@string/import_data_summary"

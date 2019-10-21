@@ -379,6 +379,9 @@
     <string name="override_current_data">This will override your current setup.</string>
     <string name="import_settings">Do you want to also import settings?</string>
     <string name="error_unable_to_load_comments">Could not load comments</string>
+    <string name="custom_share_website_title">Custom share Website</string>
+    <string name="use_custom_share_website_title">Use custom share website</string>
+    <string name="default_invidio_url" translatable="false">https://invidio.us/</string>
     <!-- Kiosk Names -->
     <string name="kiosk">Kiosk</string>
     <string name="trending">Trending</string>
