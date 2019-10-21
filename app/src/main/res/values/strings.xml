@@ -382,6 +382,7 @@
     <string name="custom_share_website_title">Custom share Website</string>
     <string name="use_custom_share_website_title">Use custom share website</string>
     <string name="default_invidio_url" translatable="false">https://invidio.us/</string>
+    <string name="use_custom_share_website_summary">Links created by share function will use the provided website</string>
     <!-- Kiosk Names -->
     <string name="kiosk">Kiosk</string>
     <string name="trending">Trending</string>
