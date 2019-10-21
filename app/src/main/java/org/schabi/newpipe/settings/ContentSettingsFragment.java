@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
 import android.util.Log;
 import android.widget.Toast;
@@ -88,6 +89,15 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         newpipe_settings.delete();
 
         addPreferencesFromResource(R.xml.content_settings);
+
+        //Display currently set website as summary and update it when changed
+        EditTextPreference shareWebsitePreference = (EditTextPreference) findPreference("custom_share_website");
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+        shareWebsitePreference.setSummary(prefs.getString("custom_share_website", "Not set"));
+        shareWebsitePreference.setOnPreferenceChangeListener(((preference, newValue) -> {
+            preference.setSummary((String) newValue);
+            return true;
+        }));
 
         Preference importDataPreference = findPreference(getString(R.string.import_data));
         importDataPreference.setOnPreferenceClickListener((Preference p) -> {
