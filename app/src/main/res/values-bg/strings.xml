@@ -60,7 +60,7 @@
     <string name="show_search_suggestions_summary">Показвай предложения за търсене</string>
     <string name="enable_search_history_title">История на търсенията</string>
     <string name="enable_search_history_summary">Съхранявай заявките за търсене локално</string>
-    <string name="enable_watch_history_title">История и кеш-памет</string>
+    <string name="enable_watch_history_title">История на гледане</string>
     <string name="enable_watch_history_summary">Запаметявай кои видеота са гледани</string>
     <string name="resume_on_audio_focus_gain_title">Възобнови при връщане на фокус</string>
     <string name="resume_on_audio_focus_gain_summary">Продължавай възпроизвеждането след прекъсване (например телефонно обаждане)</string>
@@ -254,7 +254,7 @@
     <string name="no_player_found_toast">Липсва стрийм плейър (можете да изтеглите VLC, за да пуснете стрийма).</string>
     <string name="download_thumbnail_summary">Изключете, за да спрете зареждането на всички миниатюри, спестявайки трафик и памет. При промяна на тази настройка, текущата кеш-памет на изображенията ще бъде изтрита.</string>
     <string name="show_hold_to_append_summary">Показвай подсказка, когато е избран фонов режим или режим в прозорец на страницата с детайли на съответния клип</string>
-    <string name="clear_views_history_summary">Изтрива историята на възпроизвежданите стриймове</string>
+    <string name="clear_views_history_summary">Изтрива историята на възпроизвежданите стриймове и позицията на възпроизвеждането</string>
     <string name="video_streams_empty">Не са намерени видео стриймове</string>
     <string name="audio_streams_empty">Не са намерени аудио стриймове</string>
     <string name="info_labels">Какво:\\nЗаявка:\\nЕзик на съдържанието:\\nУслуга:\\nВреме по GMT:\\nПакет:\\nВерсия:\\nОС версия:</string>
@@ -413,6 +413,11 @@
     <string name="autoplay_title">Автоматично пускане</string>
     <plurals name="comments">
         <item quantity="one">Коментари</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
+    <string name="tab_new">Нов раздел</string>
+    <string name="tab_choose">Избери раздел</string>
+    <string name="settings_category_updates_title">Промени</string>
+    <string name="enable_playback_resume_title">Продължи възпроизвеждане</string>
+    <string name="settings_category_clear_data_title">Изтрии данни</string>
 </resources>

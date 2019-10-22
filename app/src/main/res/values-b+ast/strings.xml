@@ -195,7 +195,7 @@
     <string name="app_description"/>
     <string name="view_on_github">Ver en GitHub</string>
     <string name="app_license_title">Llicencia de NewPipe</string>
-    <string name="contribution_encouragement"/>
+    <string name="contribution_encouragement">Si sabes traducir, quies encuriosar el códigu, amestar carauteríques o proponer cambeos nel diseñu, vamos agradecételo siempres. ¡Cuánto más, meyor!</string>
     <string name="read_full_license">Lleer la llicencia</string>
     <string name="contribution_title">Collaboración</string>
     <string name="title_activity_history">Historial</string>
@@ -254,10 +254,10 @@
     <string name="switch_to_background"/>
     <string name="switch_to_popup"/>
     <string name="switch_to_main"/>
-    <string name="import_data_title"/>
-    <string name="export_data_title"/>
+    <string name="import_data_title">Importar una base de datos</string>
+    <string name="export_data_title">Esportar la base de datos</string>
     <string name="import_data_summary">Anula l\'historial y les soscripciones actuales</string>
-    <string name="export_data_summary"/>
+    <string name="export_data_summary">Esporta l\'historial, les soscripciones y les llistes de reproducción.</string>
     <string name="external_player_unsupported_link_type"/>
     <string name="invalid_url_toast">URL nun ye válida</string>
     <string name="video_streams_empty"/>
@@ -354,8 +354,14 @@
     <string name="caption_setting_title">Sotítulos</string>
     <string name="accept">Aceutar</string>
     <string name="restore_defaults_confirmation">¿Quies reafitar los valores\?</string>
-    <string name="error_unknown_host"></string>
+    <string name="error_unknown_host"/>
     <string name="error_http_unsupported_range">El sirvidor nun aceuta descargues multifilu, volvi probar con @string/msg_threads = 1</string>
     <string name="no_comments">Nun hai comentarios</string>
     <string name="settings_category_clear_data_title">Llimpieza de datos</string>
+    <plurals name="videos">
+        <item quantity="one">Vídeos</item>
+        <item quantity="other"></item>
+    </plurals>
+    <string name="show_comments_title">Amosar comentarios</string>
+    <string name="show_comments_summary">Toca p\'alternar la so des/activación</string>
 </resources>

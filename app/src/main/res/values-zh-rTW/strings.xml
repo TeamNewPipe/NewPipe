@@ -499,4 +499,7 @@
     <string name="delete_playback_states_alert">刪除所有播放位置？</string>
     <string name="download_choose_new_path">變更下載資料夾以使其生效</string>
     <string name="drawer_header_description">切換服務，目前已選取：</string>
+    <plurals name="videos">
+        <item quantity="other">影片</item>
+    </plurals>
 </resources>

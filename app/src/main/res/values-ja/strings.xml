@@ -499,4 +499,7 @@
     <string name="delete_playback_states_alert">すべての再生位置を削除しますか\?</string>
     <string name="download_choose_new_path">ダウンロードフォルダーを変更して有効にします</string>
     <string name="drawer_header_description">サービスの切り替え、現在の選択:</string>
+    <plurals name="videos">
+        <item quantity="other">動画</item>
+    </plurals>
 </resources>
