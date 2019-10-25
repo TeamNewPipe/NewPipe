@@ -87,7 +87,7 @@
     <string name="delete">Desaniciar</string>
     <string name="checksum">Suma de comprobación</string>
     <string name="add">Misión nueva</string>
-    <string name="finish"/>
+    <string name="finish">Aceutar</string>
     <string name="msg_name"/>
     <string name="msg_threads">Filos</string>
     <string name="msg_error">Fallu</string>
@@ -286,7 +286,7 @@
     <string name="dismiss">Escartar</string>
     <string name="rename"/>
     <string name="delete_stream_history_prompt"/>
-    <string name="delete_all_history_prompt"/>
+    <string name="delete_all_history_prompt">¿De xuru que quies desaniciar tolos elementos del historial\?</string>
     <string name="title_most_played"/>
     <string name="drawer_header_action_paceholder_text">Equí va apaecer dalgo ceo ;D</string>
     <string name="always_ask_open_action"/>
@@ -360,8 +360,15 @@
     <string name="settings_category_clear_data_title">Llimpieza de datos</string>
     <plurals name="videos">
         <item quantity="one">Vídeos</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="show_comments_title">Amosar comentarios</string>
     <string name="show_comments_summary">Toca p\'alternar la so des/activación</string>
+    <string name="delete_search_history_alert">¿Desaniciar tol historial de gueta\?</string>
+    <string name="start_accept_privacy_policy">Pa cumplir cola GDPR (Regulación Xeneral de Proteición de Datos) europea, pidímoste que revises la política de privacidá de NewPipe. Lléila con procuru
+\n.Has aceutala unviándonos un informe de fallos.</string>
+    <string name="minimize_on_exit_summary">Aición al cambiar a otra aplicación dende\'l reproductor de vídeos principal — %s</string>
+    <string name="max_retry_desc">El númberu máximu d\'intentos enantes d\'encaboxar la descarga</string>
+    <string name="enable_playback_state_lists_title">Posiciones nes llistes</string>
+    <string name="confirm_prompt">¿De xuru\?</string>
 </resources>
