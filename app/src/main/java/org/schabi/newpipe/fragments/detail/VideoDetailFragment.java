@@ -608,13 +608,13 @@ public class VideoDetailFragment
         switch (id) {
             case R.id.menu_item_share: {
                 if (currentInfo != null) {
-                    ShareUtils.shareUrl(this.getContext(), currentInfo.getName(), currentInfo.getOriginalUrl());
+                    ShareUtils.shareUrl(this.getContext(), currentInfo.getName(), currentInfo.getUrl());
                 }
                 return true;
             }
             case R.id.menu_item_openInBrowser: {
                 if (currentInfo != null) {
-                    ShareUtils.openUrlInBrowser(this.getContext(), currentInfo.getOriginalUrl());
+                    ShareUtils.openUrlInBrowser(this.getContext(), currentInfo.getUrl());
                 }
                 return true;
             }
