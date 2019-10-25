@@ -79,7 +79,7 @@
     <string name="notification_channel_name">Avisu de NewPipe</string>
     <string name="search_no_results">Nun hai resultaos</string>
     <string name="empty_subscription_feed_subtitle">Equí nun hai más que grillos</string>
-     <plurals name="subscribers">
+    <plurals name="subscribers">
         <item quantity="one">%s soscriptor</item>
         <item quantity="other">%s soscriptores</item>
     </plurals>
