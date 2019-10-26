@@ -397,23 +397,18 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
 
         final ArrayList<String> commands = new ArrayList<>(3);
         commands.add(context.getResources().getString(R.string.unsubscribe));
-        commands.add(context.getResources().getString(R.string.share));
         if (ShortcutManagerCompat.isRequestPinShortcutSupported(context)) {
             commands.add(context.getResources().getString(R.string.create_shortcut));
         }
+        commands.add(context.getResources().getString(R.string.share));
         final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
-            switch (i) {
-                case 0:
-                    deleteChannel(selectedItem);
-                    break;
-                case 1:
-                    shareChannel(selectedItem);
-                    break;
-                case 2:
-                    ShortcutsHelper.pinShortcut(context, selectedItem);
-                    break;
-                default:
-                    break;
+            final int lastIndex = commands.size() -1;
+            if (i == 0) {
+                deleteChannel(selectedItem);
+            } else if (i == lastIndex) {
+                shareChannel(selectedItem);
+            } else {
+                ShortcutsHelper.pinShortcut(context, selectedItem);
             }
         };
 

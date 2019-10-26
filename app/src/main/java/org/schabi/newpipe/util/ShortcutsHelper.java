@@ -68,15 +68,21 @@ public final class ShortcutsHelper {
 				.subscribe(builder -> {
 					final String id = getShortcutId(data);
 					final List<ShortcutInfo> shortcuts = manager.getDynamicShortcuts();
+					final int limit = manager.getMaxShortcutCountPerActivity();
 					for (int i = 0; i < shortcuts.size(); i++) {
 						final ShortcutInfo shortcut = shortcuts.get(i);
 						if (id.equals(shortcut.getId())) {
+							// if shortcut already exists - increase rank and update it
 							builder.setRank(shortcut.getRank() + 1);
 							manager.updateShortcuts(Collections.singletonList(builder.build()));
 							return;
 						}
 					}
 					builder.setRank(1);
+					if (!shortcuts.isEmpty() && shortcuts.size() >= limit) {
+						// we will get an exception if shortcuts count exceed the limit
+						manager.removeDynamicShortcuts(Collections.singletonList(shortcuts.get(shortcuts.size() - 1).getId()));
+					}
 					manager.addDynamicShortcuts(Collections.singletonList(builder.build()));
 				}, e -> {
 					if (BuildConfig.DEBUG) {
@@ -92,6 +98,9 @@ public final class ShortcutsHelper {
 			return;
 		}
 		final ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+		if (am == null) {
+			return;
+		}
 		final int iconSize = am.getLauncherLargeIconSize();
 		Single.fromCallable(() -> getIcon(context, data.getThumbnailUrl(), iconSize, iconSize, R.mipmap.ic_launcher))
 				.subscribeOn(Schedulers.computation())
@@ -101,9 +110,7 @@ public final class ShortcutsHelper {
 						.setIcon(icon)
 						.setIntent(createIntent(context, data)))
 				.observeOn(AndroidSchedulers.mainThread())
-				.subscribe(builder -> {
-					ShortcutManagerCompat.requestPinShortcut(context, builder.build(), null);
-				}, e -> {
+				.subscribe(builder -> ShortcutManagerCompat.requestPinShortcut(context, builder.build(), null), e -> {
 					if (BuildConfig.DEBUG) {
 						e.printStackTrace();
 					}
