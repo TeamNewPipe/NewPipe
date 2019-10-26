@@ -21,7 +21,7 @@ package org.schabi.newpipe.local.history;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
@@ -109,6 +109,11 @@ public class HistoryRecordManager {
                 .subscribeOn(Schedulers.io());
     }
 
+    public Single<Integer> deleteCompelteStreamStateHistory() {
+        return Single.fromCallable(streamStateTable::deleteAll)
+                .subscribeOn(Schedulers.io());
+    }
+
     public Flowable<List<StreamHistoryEntry>> getStreamHistory() {
         return streamHistoryTable.getHistory().subscribeOn(Schedulers.io());
     }
@@ -165,7 +170,7 @@ public class HistoryRecordManager {
                 .subscribeOn(Schedulers.io());
     }
 
-    public Single<Integer> deleteWholeSearchHistory() {
+    public Single<Integer> deleteCompleteSearchHistory() {
         return Single.fromCallable(searchHistoryTable::deleteAll)
                 .subscribeOn(Schedulers.io());
     }
@@ -291,4 +296,5 @@ public class HistoryRecordManager {
     public Single<Integer> removeOrphanedRecords() {
         return Single.fromCallable(streamTable::deleteOrphans).subscribeOn(Schedulers.io());
     }
+
 }

@@ -136,7 +136,7 @@
     <string name="msg_running_detail">Ukitu xehetasunetarako</string>
     <string name="msg_wait">Itxaron mesedez…</string>
     <string name="msg_copied">Arbelera kopiatuta</string>
-    <string name="no_available_dir">Aukeratu eskuragarri dagoen karpeta bat deskargetarako</string>
+    <string name="no_available_dir">Ezarri deskargetarako karpeta bat ezarpenetan geroago</string>
     <string name="msg_popup_permission">Baimen hau beharrezkoa da
 \nlaster-leiho moduan irekitzeko</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
@@ -176,7 +176,7 @@
     <string name="charset_most_special_characters">Karaktere berezi gehienak</string>
     <string name="enable_search_history_title">Bilaketa historiala</string>
     <string name="enable_search_history_summary">Gorde bilaketak lokalki</string>
-    <string name="enable_watch_history_title">Historiala eta katxea</string>
+    <string name="enable_watch_history_title">Ikustaldien historiala</string>
     <string name="enable_watch_history_summary">Gorde ikusitako bideoen historiala</string>
     <string name="notification_channel_name">NewPipe jakinarazpena</string>
     <string name="settings_category_player_title">Erreproduzigailua</string>
@@ -199,8 +199,8 @@
     </plurals>
     <string name="no_videos">Bideorik ez</string>
     <plurals name="videos">
-        <item quantity="one">Bideoa</item>
-        <item quantity="other">Bideoak</item>
+        <item quantity="one">%s Bideoa</item>
+        <item quantity="other">%s Bideoak</item>
     </plurals>
     <string name="title_activity_history">Historiala</string>
     <string name="title_history_search">Bilatuta</string>
@@ -253,8 +253,8 @@
     <string name="enqueue_on_background">Jarri ilaran bigarren planoan</string>
     <string name="enqueue_on_popup">Jarri ilaran laster-leihoan</string>
     <string name="start_here_on_main">Hasi hemen erreproduzitzen</string>
-    <string name="start_here_on_background">Hasi hemen bigarren planoan</string>
-    <string name="start_here_on_popup">Hasi hemen laster-leihoan</string>
+    <string name="start_here_on_background">Hasi erreproduzitzen bigarren planoan</string>
+    <string name="start_here_on_popup">Hasi erreproduzitzen laster-leihoan</string>
     <string name="drawer_open">"Ireki tiradera "</string>
     <string name="drawer_close">Itxi tiradera</string>
     <string name="no_player_found_toast">Ez da jarioen erreproduzigailurik aurkitu (VLC instalatu dezakezu).</string>
@@ -280,7 +280,7 @@
     <string name="metadata_cache_wipe_summary">Kendu cachetik webguneen datu guztiak</string>
     <string name="metadata_cache_wipe_complete_notice">Metadatuen cachea ezabatuta</string>
     <string name="auto_queue_title">Gehitu ilarara hurrengo jarioa</string>
-    <string name="auto_queue_summary">Gehitu erlazionatutako jario bat azken jarioa jo bitartean errepikapenik gabeko ilara batean.</string>
+    <string name="auto_queue_summary">Gehitu erlazionatutako jario bat azken jarioa jo bitartean errepikapenik gabeko ilara batean</string>
     <string name="settings_category_debug_title">Arazketa</string>
     <string name="file">Fitxategia</string>
     <string name="import_data_title">Inportatu datu-basea</string>
@@ -290,7 +290,7 @@
     <string name="clear_views_history_title">Garbitu ikusitakoaren historiala</string>
     <string name="clear_views_history_summary">Jotako jarioen historiala ezabatzen du</string>
     <string name="delete_view_history_alert">Ezabatu ikusitakoaren historia osoa\?</string>
-    <string name="view_history_deleted">Ikusitakoaren historiala ezabatuta.</string>
+    <string name="watch_history_deleted">Ikusitakoaren historiala ezabatuta.</string>
     <string name="clear_search_history_title">Garbitu bilaketa historiala</string>
     <string name="clear_search_history_summary">Ezabatu bilaketa gakoen historiala</string>
     <string name="delete_search_history_alert">Ezabatu bilaketen historia osoa\?</string>
@@ -374,7 +374,6 @@
     <string name="playback_tempo">Tempoa</string>
     <string name="playback_pitch">Tonua</string>
     <string name="unhook_checkbox">Deslotu (distortsioa sor lezake)</string>
-    <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Lehenetsia</string>
     <string name="import_settings">Ezarpenak ere inportatu nahi dituzu?</string>
     <string name="use_inexact_seek_summary">Bilaketa ez zehatzak posizioak azkarrago baina prezisio gutxiagoz bilatzea ahalbidetzen du</string>
@@ -416,7 +415,7 @@
     <string name="app_update_notification_channel_name">Aplikazioaren eguneraketaren jakinarazpena</string>
     <string name="app_update_notification_channel_description">NewPipe aplikazioaren bertsio berrien jakinarazpena</string>
     <string name="download_to_sdcard_error_title">Kanpo biltegiratzea ez dago eskuragarri</string>
-    <string name="download_to_sdcard_error_message">Oraindik ezin da SD txartel batera deskargatu. Deskargen karpeta berrezarri\?</string>
+    <string name="download_to_sdcard_error_message">Ezin da SD txartel batera deskargatu. Deskargen karpeta berrezarri nahi duzu\?</string>
     <string name="saved_tabs_invalid_json">Lehenetsitako fitxak erabiltzen, errorea gordetako fitxak irakurtzean</string>
     <string name="restore_defaults">Berrezarri lehenetsitakoak</string>
     <string name="restore_defaults_confirmation">Lehenetsitakoak berrezarri nahi dituzu\?</string>
@@ -465,7 +464,39 @@
     <string name="stop">Gelditu</string>
     <string name="max_retry_msg">Gehienezko saiakerak</string>
     <string name="max_retry_desc">Deskarga ezeztatu aurretik saiatu beharreko aldi kopurua</string>
-    <string name="pause_downloads_on_mobile">Pausatu datu mugikorretara aldatzean</string>
-    <string name="pause_downloads_on_mobile_desc">Pausatu ezin daitezkeen deskargak berrekingo dira</string>
+    <string name="pause_downloads_on_mobile">Eten sare neurtuetan</string>
+    <string name="pause_downloads_on_mobile_desc">Erabilgarria datu mugikorretara aldatzean, hala ere deskarga batzuk ezin dira pausatu</string>
     <string name="error_timeout">Konexioaren denbora muga</string>
+    <string name="show_comments_title">Erakutsi iruzkinak</string>
+    <string name="show_comments_summary">Desgaitu iruzkinak erakusteari erakusteko</string>
+    <string name="autoplay_title">Erreprodukzio automatikoa</string>
+    <plurals name="comments">
+        <item quantity="one">Iruzkinak</item>
+        <item quantity="other"/>
+    </plurals>
+    <string name="no_comments">Iruzkinik ez</string>
+    <string name="error_unable_to_load_comments">Ezin izan dira iruzkinak kargatu</string>
+    <string name="close">Itxi</string>
+    <string name="enable_playback_resume_title">Berrekin erreprodukzioa</string>
+    <string name="enable_playback_resume_summary">Berrezarri azken erreprodukzio-posizioa</string>
+    <string name="enable_playback_state_lists_title">Posizioak zerrendetan</string>
+    <string name="enable_playback_state_lists_summary">Erakutsi erreprodukzio-posizioen adierazleak zerrendetan</string>
+    <string name="settings_category_clear_data_title">Garbitu datuak</string>
+    <string name="watch_history_states_deleted">Erreprodukzio-posizioak ezabatuta.</string>
+    <string name="missing_file">Fitxategia lekuz aldatu edo ezabatu da</string>
+    <string name="overwrite_unrelated_warning">Badago izen bereko fitxategi bat</string>
+    <string name="overwrite_failed">ezin da fitxategia gainidatzi</string>
+    <string name="download_already_pending">Badago izen bereko deskarga bat burutzeke</string>
+    <string name="error_postprocessing_stopped">NewPipe itxi egin da fitxategian lanean zegoela</string>
+    <string name="error_insufficient_storage">Ez dago lekurik gailuan</string>
+    <string name="error_progress_lost">Progresioa galdu da, fitxategia ezabatu delako</string>
+    <string name="confirm_prompt">Ziur al zaude\?</string>
+    <string name="enable_queue_limit">Mugatu deskargen ilara</string>
+    <string name="enable_queue_limit_desc">Deskarga bakarra aldi berean</string>
+    <string name="start_downloads">Hasi deskargak</string>
+    <string name="pause_downloads">Pausatu deskargak</string>
+    <string name="downloads_storage_ask_title">Galdetu non deskargatu</string>
+    <string name="downloads_storage_ask_summary">Non gorde galdetuko zaizu deskarga bakoitzean</string>
+    <string name="downloads_storage_ask_summary_kitkat">Non gorde galdetuko zaizu deskarga bakoitzean.
+\nGaitu aukera hau kanpo SD txartelean gorde nahi baduzu</string>
 </resources>

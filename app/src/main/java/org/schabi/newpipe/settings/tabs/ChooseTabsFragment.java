@@ -4,18 +4,18 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.content.res.AppCompatResources;
-import android.support.v7.widget.AppCompatImageView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -229,6 +229,12 @@ public class ChooseTabsFragment extends Fragment {
                     returnList.add(new ChooseTabListItem(tab.getTabId(), getString(R.string.channel_page_summary),
                             tab.getTabIconRes(context)));
                     break;
+                case DEFAULT_KIOSK:
+                    if (!tabList.contains(tab)) {
+                        returnList.add(new ChooseTabListItem(tab.getTabId(), "Default Kiosk",
+                                ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_hot)));
+                    }
+                    break;
                 default:
                     if (!tabList.contains(tab)) {
                         returnList.add(new ChooseTabListItem(context, tab));
@@ -309,6 +315,9 @@ public class ChooseTabsFragment extends Fragment {
                         break;
                     case CHANNEL:
                         tabName = NewPipe.getNameOfService(((Tab.ChannelTab) tab).getChannelServiceId()) + "/" + tabName;
+                        break;
+                    case DEFAULT_KIOSK:
+                        tabName = "Default Kiosk";
                         break;
                 }
 

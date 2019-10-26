@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Sentuh pencarian untuk memulai</string>
+    <string name="main_bg_subtitle">Ketuk pencarian untuk memulai</string>
     <string name="view_count_text">%1$s ditonton</string>
     <string name="upload_date_text">Dipublikasikan tanggal %1$s</string>
     <string name="install">Pasang</string>
@@ -14,12 +14,12 @@
     <string name="choose_browser">Pilih peramban</string>
     <string name="use_external_video_player_title">Gunakan pemutar video eksternal</string>
     <string name="use_external_audio_player_title">Gunakan pemutar audio eksternal</string>
-    <string name="download_path_title">Lokasi unduhan video</string>
-    <string name="download_path_summary">Lokasi untuk menyimpan video yang diunduh</string>
-    <string name="download_path_dialog_title">Masukkan lokasi unduhan video</string>
+    <string name="download_path_title">Folder unduhan video</string>
+    <string name="download_path_summary">Berkas video yang diunduh disimpan di sini</string>
+    <string name="download_path_dialog_title">Pilih folder unduhan untuk berkas video</string>
     <string name="download_path_audio_title">Lokasi unduhan audio</string>
-    <string name="download_path_audio_summary">Audio yang diunduh disimpan di sini</string>
-    <string name="download_path_audio_dialog_title">Masukkan lokasi unduhan berkas audio</string>
+    <string name="download_path_audio_summary">Berkas audio yang diunduh disimpan di sini</string>
+    <string name="download_path_audio_dialog_title">Pilih folder unduhan untuk berkas audio</string>
     <string name="autoplay_by_calling_app_title">Putar otomatis</string>
     <string name="autoplay_by_calling_app_summary">Putar video ketika NewPipe dijalankan dari aplikasi lain</string>
     <string name="default_resolution_title">Resolusi</string>
@@ -97,7 +97,7 @@
     <string name="msg_running_detail">Sentuh untuk detail</string>
     <string name="msg_wait">Mohon tunggu…</string>
     <string name="msg_copied">Disalin ke papan klip</string>
-    <string name="no_available_dir">Silakan pilih direktori unduhan yang tersedia</string>
+    <string name="no_available_dir">Silakan pilih folder unduhan di pengaturan</string>
     <string name="no_player_found">Pemutar stream tidak ditemukan. Apakah anda ingin memasang VLC\?</string>
     <string name="youtube_signature_decryption_error">Tidak bisa dekripsi tanda tangan URL video</string>
     <string name="app_ui_crash">App/UI rusak</string>
@@ -111,7 +111,7 @@
     <string name="black_theme_title">Hitam</string>
     <string name="all">Semua</string>
     <string name="channel">Channel</string>
-    <string name="short_thousand">R</string>
+    <string name="short_thousand">r</string>
     <string name="short_million">J</string>
     <string name="short_billion">T</string>
     <string name="yes">Ya</string>
@@ -171,7 +171,7 @@
     <string name="tab_main">Utama</string>
     <string name="enable_search_history_title">Riwayat pencarian</string>
     <string name="enable_search_history_summary">Simpan pencarian secara lokal</string>
-    <string name="enable_watch_history_title">Riwayat &amp; Cache</string>
+    <string name="enable_watch_history_title">Riwayat tontonan</string>
     <string name="notification_channel_name">Notifikasi NewPipe</string>
     <string name="title_activity_history">Riwayat</string>
     <string name="history_disabled">Riwayat dinonaktifkan</string>
@@ -183,7 +183,7 @@
     <string name="metadata_cache_wipe_title">Hapus tembolok metadata</string>
     <string name="metadata_cache_wipe_summary">Buang semua data tembolok laman web</string>
     <string name="metadata_cache_wipe_complete_notice">Cache metadata dihapus</string>
-    <string name="auto_queue_summary">Otomatis tambahkan stream terkait ketika memutar stream terakhir dalam antrean tanpa perulangan.</string>
+    <string name="auto_queue_summary">Otomatis tambahkan stream terkait ketika memutar stream terakhir dalam antrean tanpa perulangan</string>
     <string name="enable_watch_history_summary">Simpan daftar video yang telah ditonton</string>
     <string name="show_hold_to_append_title">Tampilkan tip \"Tahan untuk menambahkan\"</string>
     <string name="show_hold_to_append_summary">Tampilkan tip ketika tombol latar belakang atau popup disentuh pada halaman detail video</string>
@@ -235,9 +235,6 @@
         <item quantity="other">%s ditonton</item>
     </plurals>
     <string name="no_videos">Tidak ada video</string>
-    <plurals name="videos">
-        <item quantity="other">Video</item>
-    </plurals>
     <string name="create">Buat</string>
     <string name="delete_one">Hapus Satu</string>
     <string name="delete_all">Hapus Semua</string>
@@ -280,11 +277,11 @@
     <string name="play_queue_stream_detail">Detail</string>
     <string name="play_queue_audio_settings">Pengaturan Audio</string>
     <string name="hold_to_append">Tahan untuk mengantre</string>
-    <string name="enqueue_on_background">Antre saat di latar belakang</string>
+    <string name="enqueue_on_background">Antre di latar belakang</string>
     <string name="enqueue_on_popup">Antre di popup baru</string>
     <string name="start_here_on_main">Mulai putar di sini</string>
-    <string name="start_here_on_background">Mulai dari sini ketika di latar belakang</string>
-    <string name="start_here_on_popup">Mulai dari sini pada popup baru</string>
+    <string name="start_here_on_background">Mulai putar di latar belakang</string>
+    <string name="start_here_on_popup">Mulai putar di popup baru</string>
     <string name="drawer_open">Buka Laci</string>
     <string name="drawer_close">Tutup Laci</string>
     <string name="drawer_header_action_paceholder_text">Sesuatu akan segera muncul di sini ;D</string>
@@ -312,12 +309,7 @@
     <string name="resize_fill">Isi</string>
     <string name="resize_zoom">Perbesar</string>
     <string name="caption_auto_generated">Otomatis dibuat</string>
-    <string name="caption_font_size_settings_title">Ukuran fon deskripsi</string>
-    <string name="smaller_caption_font_size">Fon lebih kecil</string>
-    <string name="normal_caption_font_size">Fon normal</string>
-    <string name="larger_caption_font_size">Fon lebih besar</string>
     <string name="enable_leak_canary_title">Aktifkan LeakCanary</string>
-    <string name="playback_nightcore">Nightcore</string>
     <string name="playback_default">Bawaan</string>
     <string name="no_player_found_toast">Pemutar stream tidak ditemukan (anda bisa memasang VLC untuk memutarnya).</string>
     <string name="controls_download_desc">Unduh berkas stream</string>
@@ -325,9 +317,9 @@
     <string name="show_info">Tampilkan info</string>
     <string name="controls_add_to_playlist_title">Tambahkan Ke</string>
     <string name="clear_views_history_title">Hapus riwayat tontonan</string>
-    <string name="clear_views_history_summary">Hapus riwayat stream yang telah diputar</string>
+    <string name="clear_views_history_summary">Hapus riwayat stream yang diputar dan posisi pemutaran</string>
     <string name="delete_view_history_alert">Hapus seluruh riwayat tontonan\?</string>
-    <string name="view_history_deleted">Riwayat tontonan dihapus.</string>
+    <string name="watch_history_deleted">Riwayat tontonan dihapus.</string>
     <string name="clear_search_history_title">Hapus riwayat pencarian</string>
     <string name="clear_search_history_summary">Hapus riwayat lema pencarian</string>
     <string name="delete_search_history_alert">Hapus seluruh riwayat pencarian\?</string>
@@ -417,7 +409,7 @@
     <string name="app_update_notification_channel_name">Notifikasi Pembaruan Apl</string>
     <string name="app_update_notification_channel_description">Notifikasi untuk versi NewPipe baru</string>
     <string name="download_to_sdcard_error_title">Penyimpanan eksternal tidak tersedia</string>
-    <string name="download_to_sdcard_error_message">Belum bisa mengunduh ke kartu SD eksternal. Setel ulang lokasi folder unduhan\?</string>
+    <string name="download_to_sdcard_error_message">Tidak bisa mengunduh ke kartu SD eksternal. Atur ulang lokasi folder unduhan\?</string>
     <string name="saved_tabs_invalid_json">Menggunakan tab baku, ralat saat membaca tab yang disimpan</string>
     <string name="restore_defaults">Kembali ke awal</string>
     <string name="restore_defaults_confirmation">Apakah anda ingin kembali ke awal\?</string>
@@ -466,6 +458,45 @@
     <string name="stop">Berhenti</string>
     <string name="max_retry_msg">Percobaan maksimum</string>
     <string name="max_retry_desc">Jumlah upaya maksimum sebelum membatalkan unduhan</string>
-    <string name="pause_downloads_on_mobile">Berhenti ketika beralih ke data seluler</string>
-    <string name="pause_downloads_on_mobile_desc">Unduhan yang tidak dapat dijeda akan diulang dari awal</string>
+    <string name="pause_downloads_on_mobile">Berhenti pada jaringan terbatas</string>
+    <string name="pause_downloads_on_mobile_desc">Berguna saat beralih ke data seluler, walaupun beberapa unduhan tidak bisa ditangguhkan</string>
+    <string name="show_comments_title">Tampilkan komentar</string>
+    <string name="show_comments_summary">Nonaktifkan untuk berhenti menampilkan komentar</string>
+    <string name="autoplay_title">Otomatis putar</string>
+    <plurals name="comments">
+        <item quantity="other">Komentar</item>
+    </plurals>
+    <string name="no_comments">Tidak ada komentar</string>
+    <string name="error_unable_to_load_comments">Tidak bisa memuat komentar</string>
+    <string name="close">Tutup</string>
+    <string name="enable_playback_resume_title">Lanjutkan pemutaran</string>
+    <string name="enable_playback_resume_summary">Pulihkan posisi pemutaran terakhir</string>
+    <string name="enable_playback_state_lists_title">Posisi dalam daftar</string>
+    <string name="enable_playback_state_lists_summary">Tampilkan indikator posisi pemutaran di dalam daftar</string>
+    <string name="settings_category_clear_data_title">Hapus data</string>
+    <string name="watch_history_states_deleted">Posisi pemutaran dihapus.</string>
+    <string name="missing_file">Berkas dipindah atau dihapus</string>
+    <string name="overwrite_unrelated_warning">Berkas dengan nama yang sama sudah ada</string>
+    <string name="overwrite_failed">tidak bisa menimpa ulang berkas</string>
+    <string name="download_already_pending">Ada unduhan yang dijeda dengan nama ini</string>
+    <string name="error_postprocessing_stopped">NewPipe telah ditutup saat sedang memproses berkas</string>
+    <string name="error_insufficient_storage">Tidak ada ruang kosong tersisa pada perangkat</string>
+    <string name="error_progress_lost">Kehilangan laju, karena berkas telah dihapus</string>
+    <string name="confirm_prompt">Apakah anda yakin\?</string>
+    <string name="enable_queue_limit">Batasi antrean unduhan</string>
+    <string name="enable_queue_limit_desc">Satu unduhan akan berjalan pada waktu yang bersamaan</string>
+    <string name="start_downloads">Mulai unduh</string>
+    <string name="pause_downloads">Jeda unduh</string>
+    <string name="downloads_storage_ask_title">Tanyakan lokasi unduhan</string>
+    <string name="downloads_storage_ask_summary">Anda akan ditanya lokasi penyimpanan berkas unduhan</string>
+    <string name="downloads_storage_ask_summary_kitkat">Anda akan ditanya lokasi penyimpanan berkas unduhan.
+\nPilih SAF jika anda ingin mengunduh ke kartu SD eksternal</string>
+    <string name="error_timeout">Batas waktu koneksi</string>
+    <string name="downloads_storage_use_saf_title">Gunakan SAF</string>
+    <string name="downloads_storage_use_saf_summary">Storage Access Framework memungkinkan mengunduh ke kartu SD eksternal.
+\nCatatan: beberapa perangkat tidak kompatibel</string>
+    <string name="clear_playback_states_title">Hapus posisi pemutaran</string>
+    <string name="clear_playback_states_summary">Hapus semua posisi pemutaran</string>
+    <string name="delete_playback_states_alert">Hapus semua posisi pemutaran\?</string>
+    <string name="download_choose_new_path">Ubah folder unduhan</string>
 </resources>

@@ -7,9 +7,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.preference.Preference;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.preference.Preference;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -274,7 +274,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 else if (v instanceof String)
                     prefEdit.putString(key, ((String) v));
             }
-            prefEdit.apply();
+            prefEdit.commit();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

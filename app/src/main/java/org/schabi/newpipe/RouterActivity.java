@@ -9,12 +9,12 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.NotificationCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -25,6 +25,8 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import androidx.fragment.app.FragmentManager;
 
 import org.schabi.newpipe.download.DownloadDialog;
 import org.schabi.newpipe.extractor.Info;
@@ -74,10 +76,13 @@ import static org.schabi.newpipe.util.ThemeHelper.resolveResourceIdFromAttr;
  */
 public class RouterActivity extends AppCompatActivity {
 
-    @State protected int currentServiceId = -1;
+    @State
+    protected int currentServiceId = -1;
     private StreamingService currentService;
-    @State protected LinkType currentLinkType;
-    @State protected int selectedRadioPosition = -1;
+    @State
+    protected LinkType currentLinkType;
+    @State
+    protected int selectedRadioPosition = -1;
     protected int selectedPreviously = -1;
 
     protected String currentUrl;
@@ -257,7 +262,7 @@ public class RouterActivity extends AppCompatActivity {
                 .setNegativeButton(R.string.just_once, dialogButtonsClickListener)
                 .setPositiveButton(R.string.always, dialogButtonsClickListener)
                 .setOnDismissListener((dialog) -> {
-                    if(!selectionIsDownload) finish();
+                    if (!selectionIsDownload) finish();
                 })
                 .create();
 
@@ -358,13 +363,13 @@ public class RouterActivity extends AppCompatActivity {
         positiveButton.setEnabled(state);
     }
 
-    private void handleText(){
+    private void handleText() {
         String searchString = getIntent().getStringExtra(Intent.EXTRA_TEXT);
         int serviceId = getIntent().getIntExtra(Constants.KEY_SERVICE_ID, 0);
         Intent intent = new Intent(getThemeWrapperContext(), MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-        NavigationHelper.openSearch(getThemeWrapperContext(),serviceId,searchString);
+        NavigationHelper.openSearch(getThemeWrapperContext(), serviceId, searchString);
     }
 
     private void handleChoice(final String selectedChoiceKey) {
@@ -397,7 +402,7 @@ public class RouterActivity extends AppCompatActivity {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(intent -> {
-                        if(!internalRoute){
+                        if (!internalRoute) {
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         }
@@ -430,7 +435,7 @@ public class RouterActivity extends AppCompatActivity {
                     int selectedVideoStreamIndex = ListHelper.getDefaultResolutionIndex(this,
                             sortedVideoStreams);
 
-                    android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+                    FragmentManager fm = getSupportFragmentManager();
                     DownloadDialog downloadDialog = DownloadDialog.newInstance(result);
                     downloadDialog.setVideoStreams(sortedVideoStreams);
                     downloadDialog.setAudioStreams(result.getAudioStreams());
@@ -447,8 +452,8 @@ public class RouterActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        for (int i: grantResults){
-            if (i == PackageManager.PERMISSION_DENIED){
+        for (int i : grantResults) {
+            if (i == PackageManager.PERMISSION_DENIED) {
                 finish();
                 return;
             }
@@ -460,7 +465,8 @@ public class RouterActivity extends AppCompatActivity {
 
     private static class AdapterChoiceItem {
         final String description, key;
-        @DrawableRes final int icon;
+        @DrawableRes
+        final int icon;
 
         AdapterChoiceItem(String key, String description, int icon) {
             this.description = description;
@@ -558,7 +564,8 @@ public class RouterActivity extends AppCompatActivity {
 
                 final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
                 boolean isExtVideoEnabled = preferences.getBoolean(getString(R.string.use_external_video_player_key), false);
-                boolean isExtAudioEnabled = preferences.getBoolean(getString(R.string.use_external_audio_player_key), false);;
+                boolean isExtAudioEnabled = preferences.getBoolean(getString(R.string.use_external_audio_player_key), false);
+                ;
 
                 PlayQueue playQueue;
                 String playerChoice = choice.playerChoice;

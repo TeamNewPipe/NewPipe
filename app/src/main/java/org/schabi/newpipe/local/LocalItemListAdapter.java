@@ -1,17 +1,17 @@
 package org.schabi.newpipe.local;
 
-import android.app.Activity;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.content.Context;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.stream.model.StreamStateEntity;
-import org.schabi.newpipe.info_list.StateObjectsListAdapter;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.local.holder.LocalItemHolder;
 import org.schabi.newpipe.local.holder.LocalPlaylistGridItemHolder;
 import org.schabi.newpipe.local.holder.LocalPlaylistItemHolder;
@@ -49,7 +49,7 @@ import java.util.List;
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class LocalItemListAdapter extends StateObjectsListAdapter {
+public class LocalItemListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     
     private static final String TAG = LocalItemListAdapter.class.getSimpleName();
     private static final boolean DEBUG = false;
@@ -68,6 +68,7 @@ public class LocalItemListAdapter extends StateObjectsListAdapter {
 
     private final LocalItemBuilder localItemBuilder;
     private final ArrayList<LocalItem> localItems;
+    private final HistoryRecordManager recordManager;
     private final DateFormat dateFormat;
 
     private boolean showFooter = false;
@@ -75,12 +76,12 @@ public class LocalItemListAdapter extends StateObjectsListAdapter {
     private View header = null;
     private View footer = null;
 
-    public LocalItemListAdapter(Activity activity) {
-        super(activity.getApplicationContext());
-        localItemBuilder = new LocalItemBuilder(activity);
+    public LocalItemListAdapter(Context context) {
+        recordManager = new HistoryRecordManager(context);
+        localItemBuilder = new LocalItemBuilder(context);
         localItems = new ArrayList<>();
         dateFormat = DateFormat.getDateInstance(DateFormat.SHORT,
-                Localization.getPreferredLocale(activity));
+                Localization.getPreferredLocale(context));
     }
 
     public void setSelectedListener(OnClickGesture<LocalItem> listener) {
@@ -92,27 +93,19 @@ public class LocalItemListAdapter extends StateObjectsListAdapter {
     }
 
     public void addItems(@Nullable List<? extends LocalItem> data) {
-        if (data != null) {
-            loadStatesForLocal(data, localItems.size(), () -> addItemsImpl(data));
+        if (data == null) {
+            return;
         }
-    }
-
-    private void addItemsImpl(@NonNull List<? extends LocalItem> data) {
-        if (DEBUG) {
-            Log.d(TAG, "addItems() before > localItems.size() = " +
-                    localItems.size() + ", data.size() = " + data.size());
-        }
+        if (DEBUG) Log.d(TAG, "addItems() before > localItems.size() = " +
+                localItems.size() + ", data.size() = " + data.size());
 
         int offsetStart = sizeConsideringHeader();
         localItems.addAll(data);
 
-        if (DEBUG) {
-            Log.d(TAG, "addItems() after > offsetStart = " + offsetStart +
-                    ", localItems.size() = " + localItems.size() +
-                    ", header = " + header + ", footer = " + footer +
-                    ", showFooter = " + showFooter);
-        }
-
+        if (DEBUG) Log.d(TAG, "addItems() after > offsetStart = " + offsetStart +
+                ", localItems.size() = " + localItems.size() +
+                ", header = " + header + ", footer = " + footer +
+                ", showFooter = " + showFooter);
         notifyItemRangeInserted(offsetStart, data.size());
 
         if (footer != null && showFooter) {
@@ -124,16 +117,9 @@ public class LocalItemListAdapter extends StateObjectsListAdapter {
         }
     }
 
-    public void updateStates() {
-        if (!localItems.isEmpty()) {
-            updateAllLocalStates(localItems);
-        }
-    }
-
     public void removeItem(final LocalItem data) {
         final int index = localItems.indexOf(data);
         localItems.remove(index);
-        removeState(index);
         notifyItemRemoved(index + (header != null ? 1 : 0));
     }
 
@@ -145,7 +131,6 @@ public class LocalItemListAdapter extends StateObjectsListAdapter {
         if (actualFrom >= localItems.size() || actualTo >= localItems.size()) return false;
 
         localItems.add(actualTo, localItems.remove(actualFrom));
-        moveState(actualFrom, actualTo);
         notifyItemMoved(fromAdapterPosition, toAdapterPosition);
         return true;
     }
@@ -155,7 +140,6 @@ public class LocalItemListAdapter extends StateObjectsListAdapter {
             return;
         }
         localItems.clear();
-        clearStates();
         notifyDataSetChanged();
     }
 
@@ -236,8 +220,9 @@ public class LocalItemListAdapter extends StateObjectsListAdapter {
         }
     }
 
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int type) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int type) {
         if (DEBUG) Log.d(TAG, "onCreateViewHolder() called with: parent = [" +
                 parent + "], type = [" + type + "]");
         switch (type) {
@@ -268,7 +253,7 @@ public class LocalItemListAdapter extends StateObjectsListAdapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (DEBUG) Log.d(TAG, "onBindViewHolder() called with: holder = [" +
                 holder.getClass().getSimpleName() + "], position = [" + position + "]");
 
@@ -276,7 +261,7 @@ public class LocalItemListAdapter extends StateObjectsListAdapter {
             // If header isn't null, offset the items by -1
             if (header != null) position--;
 
-            ((LocalItemHolder) holder).updateFromItem(localItems.get(position), getState(position), dateFormat);
+            ((LocalItemHolder) holder).updateFromItem(localItems.get(position), recordManager, dateFormat);
         } else if (holder instanceof HeaderFooterHolder && position == 0 && header != null) {
             ((HeaderFooterHolder) holder).view = header;
         } else if (holder instanceof HeaderFooterHolder && position == sizeConsideringHeader()
@@ -290,21 +275,14 @@ public class LocalItemListAdapter extends StateObjectsListAdapter {
         if (!payloads.isEmpty() && holder instanceof LocalItemHolder) {
             for (Object payload : payloads) {
                 if (payload instanceof StreamStateEntity) {
-                    ((LocalItemHolder) holder).updateState(localItems.get(header == null ? position : position - 1),
-                            (StreamStateEntity) payload);
+                    ((LocalItemHolder) holder).updateState(localItems.get(header == null ? position : position - 1), recordManager);
                 } else if (payload instanceof Boolean) {
-                    ((LocalItemHolder) holder).updateState(localItems.get(header == null ? position : position - 1),
-                            null);
+                    ((LocalItemHolder) holder).updateState(localItems.get(header == null ? position : position - 1), recordManager);
                 }
             }
         } else {
             onBindViewHolder(holder, position);
         }
-    }
-
-    @Override
-    protected void onItemStateChanged(int position, @Nullable StreamStateEntity state) {
-        notifyItemChanged(header == null ? position : position + 1, state != null ? state : false);
     }
 
     public GridLayoutManager.SpanSizeLookup getSpanSizeLookup(final int spanCount) {

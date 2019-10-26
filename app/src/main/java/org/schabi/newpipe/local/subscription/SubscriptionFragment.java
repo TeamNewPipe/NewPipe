@@ -17,16 +17,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.content.LocalBroadcastManager;
-import android.support.v4.content.pm.ShortcutManagerCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -35,6 +25,17 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.core.content.pm.ShortcutManagerCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.nononsenseapps.filepicker.Utils;
 
@@ -132,7 +133,6 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
 
     @Override
     public void onDetach() {
-        infoListAdapter.dispose();
         super.onDetach();
     }
 
@@ -155,8 +155,6 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
             }
             updateFlags = 0;
         }
-
-        itemsList.post(infoListAdapter::updateStates);
     }
 
     @Override
@@ -385,7 +383,6 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
 
         });
 
-        //noinspection ConstantConditions
         whatsNewItemListHeader.setOnClickListener(v -> {
             FragmentManager fragmentManager = getFM();
             NavigationHelper.openWhatsNewFragment(fragmentManager);
@@ -399,18 +396,18 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
         if (context == null || context.getResources() == null || getActivity() == null) return;
 
         final ArrayList<String> commands = new ArrayList<>(3);
-        commands.add(context.getResources().getString(R.string.share));
         commands.add(context.getResources().getString(R.string.unsubscribe));
+        commands.add(context.getResources().getString(R.string.share));
         if (ShortcutManagerCompat.isRequestPinShortcutSupported(context)) {
             commands.add(context.getResources().getString(R.string.create_shortcut));
         }
         final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
             switch (i) {
                 case 0:
-                    shareChannel(selectedItem);
+                    deleteChannel(selectedItem);
                     break;
                 case 1:
-                    deleteChannel(selectedItem);
+                    shareChannel(selectedItem);
                     break;
                 case 2:
                     ShortcutsHelper.pinShortcut(context, selectedItem);
@@ -437,12 +434,12 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
 
     }
 
-    private void shareChannel (ChannelInfoItem selectedItem) {
-        ShareUtils.shareUrl(this.getContext(), selectedItem.getName(), selectedItem.getUrl());
+    private void shareChannel(ChannelInfoItem selectedItem) {
+        ShareUtils.shareUrl(getContext(), selectedItem.getName(), selectedItem.getUrl());
     }
 
     @SuppressLint("CheckResult")
-    private void deleteChannel (ChannelInfoItem selectedItem) {
+    private void deleteChannel(ChannelInfoItem selectedItem) {
         subscriptionService.subscriptionTable()
                 .getSubscription(selectedItem.getServiceId(), selectedItem.getUrl())
                 .toObservable()
@@ -454,7 +451,7 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
 
 
 
-    private Observer<List<SubscriptionEntity>> getDeleteObserver(){
+    private Observer<List<SubscriptionEntity>> getDeleteObserver() {
         return new Observer<List<SubscriptionEntity>>() {
             @Override
             public void onSubscribe(Disposable d) {

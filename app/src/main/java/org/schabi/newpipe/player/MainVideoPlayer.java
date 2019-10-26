@@ -24,21 +24,23 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.database.ContentObserver;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.content.res.AppCompatResources;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
@@ -113,6 +115,8 @@ public final class MainVideoPlayer extends AppCompatActivity
     private boolean isInMultiWindow;
     private boolean isBackPressed;
 
+    private ContentObserver rotationObserver;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Activity LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
@@ -147,6 +151,23 @@ public final class MainVideoPlayer extends AppCompatActivity
             Toast.makeText(this, R.string.general_error, Toast.LENGTH_SHORT).show();
             finish();
         }
+
+        rotationObserver = new ContentObserver(new Handler()) {
+            @Override
+            public void onChange(boolean selfChange) {
+                super.onChange(selfChange);
+                if (globalScreenOrientationLocked()) {
+                    final boolean lastOrientationWasLandscape = defaultPreferences.getBoolean(
+                            getString(R.string.last_orientation_landscape_key), false);
+                    setLandscape(lastOrientationWasLandscape);
+                } else {
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+                }
+            }
+        };
+        getContentResolver().registerContentObserver(
+                Settings.System.getUriFor(Settings.System.ACCELEROMETER_ROTATION),
+                false, rotationObserver);
     }
 
     @Override
@@ -238,6 +259,9 @@ public final class MainVideoPlayer extends AppCompatActivity
         }
         playerState = createPlayerState();
         playerImpl.destroy();
+
+        if (rotationObserver != null)
+            getContentResolver().unregisterContentObserver(rotationObserver);
 
         isInMultiWindow = false;
         isBackPressed = false;

@@ -137,7 +137,7 @@
     <string name="clear_views_history_title">Puhasta vaatamiste ajalugu</string>
     <string name="clear_views_history_summary">Kustutab vaadatud voogude ajaloo</string>
     <string name="delete_view_history_alert">Kas kustutada kogu vaatamiste ajalugu\?</string>
-    <string name="view_history_deleted">Vaatamiste ajalugu kustutati.</string>
+    <string name="watch_history_deleted">Vaatamiste ajalugu kustutati.</string>
     <string name="clear_search_history_title">Kustuta otsinguajalugu</string>
     <string name="clear_search_history_summary">Kustutab otsisõnade ajaloo</string>
     <string name="delete_search_history_alert">Kas kustutada kogu otsinguajalugu\?</string>

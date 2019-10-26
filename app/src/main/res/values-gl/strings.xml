@@ -93,7 +93,6 @@
     <string name="url_not_supported_toast">Este URL non está soportado</string>
     <string name="default_content_country_title">País predeterminado para o contido</string>
     <string name="service_title">Servizo</string>
-    <string name="search_language_title">Idioma predeterminado do contido</string>
     <string name="settings_category_player_title">Reprodutor</string>
     <string name="settings_category_player_behavior_title">Comportamento</string>
     <string name="settings_category_video_audio_title">Vídeo e audio</string>
@@ -152,7 +151,7 @@
     <string name="clear_views_history_title">Limpar historial de reproducións</string>
     <string name="clear_views_history_summary">Elimina o historial de emisións reproducidas</string>
     <string name="delete_view_history_alert">Elimina todo o historial de reproducións.</string>
-    <string name="view_history_deleted">O historial de reproducións foi eliminado.</string>
+    <string name="watch_history_deleted">O historial de reproducións foi eliminado.</string>
     <string name="clear_search_history_title">Limpar o historial de procura</string>
     <string name="clear_search_history_summary">Elimina o historial de termos procurados</string>
     <string name="delete_search_history_alert">Elimina todo o historial de procura.</string>

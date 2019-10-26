@@ -181,7 +181,7 @@
                 tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry"
                 tools:text="1:06:29"/>
 
-            <android.support.v7.widget.AppCompatSeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/playbackSeekBar"
                 style="@style/Widget.AppCompat.SeekBar"
                 android:layout_width="0dp"

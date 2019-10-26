@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -20,7 +20,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical">
 
-        <android.support.v7.widget.AppCompatImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/tabIcon"
             android:layout_width="24dp"
             android:layout_height="24dp"
@@ -46,7 +46,7 @@
             tools:ignore="RtlHardcoded"
             tools:text="Lorem ipsum dolor sit amet"/>
 
-        <android.support.v7.widget.AppCompatImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/handle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,4 +59,4 @@
             android:src="?attr/drag_handle"
             tools:ignore="ContentDescription,RtlHardcoded"/>
     </RelativeLayout>
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

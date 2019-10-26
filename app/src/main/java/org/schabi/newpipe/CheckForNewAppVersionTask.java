@@ -12,21 +12,18 @@ import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 
-import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateEncodingException;
@@ -37,7 +34,6 @@ import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
@@ -47,6 +43,8 @@ import okhttp3.Response;
  */
 public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
 
+    private static final boolean DEBUG = MainActivity.DEBUG;
+    private static final String TAG = CheckForNewAppVersionTask.class.getSimpleName();
     private static final Application app = App.getApp();
     private static final String GITHUB_APK_SHA1 = "B0:2E:90:7C:1C:D6:FC:57:C3:35:F0:88:D0:8F:50:5F:94:E4:D2:15";
     private static final String newPipeApiUrl = "https://newpipe.schabi.org/api/data.json";
@@ -90,9 +88,8 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
             Response response = client.newCall(request).execute();
             return response.body().string();
         } catch (IOException ex) {
-            ErrorActivity.reportError(app, ex, null, null,
-                    ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
-                            "app update API fail", R.string.app_ui_crash));
+            // connectivity problems, do not alarm user and fail silently
+            if (DEBUG) Log.w(TAG, Log.getStackTraceString(ex));
         }
 
         return null;
@@ -117,9 +114,8 @@ public class CheckForNewAppVersionTask extends AsyncTask<Void, Void, String> {
                 compareAppVersionAndShowNotification(versionName, apkLocationUrl, versionCode);
 
             } catch (JSONException ex) {
-                ErrorActivity.reportError(app, ex, null, null,
-                        ErrorActivity.ErrorInfo.make(UserAction.SOMETHING_ELSE, "none",
-                        "could not parse app update JSON data", R.string.app_ui_crash));
+                // connectivity problems, do not alarm user and fail silently
+                if (DEBUG) Log.w(TAG, Log.getStackTraceString(ex));
             }
         }
     }

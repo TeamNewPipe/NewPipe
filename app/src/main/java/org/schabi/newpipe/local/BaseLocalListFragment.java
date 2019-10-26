@@ -5,11 +5,11 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.ActionBar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -76,8 +76,6 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
             }
             updateFlags = 0;
         }
-
-        itemsList.post(itemListAdapter::updateStates);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -152,7 +150,6 @@ public abstract class BaseLocalListFragment<I, N> extends BaseStateFragment<I>
     public void onDestroyView() {
         super.onDestroyView();
         itemsList = null;
-        itemListAdapter.dispose();
         itemListAdapter = null;
     }
 

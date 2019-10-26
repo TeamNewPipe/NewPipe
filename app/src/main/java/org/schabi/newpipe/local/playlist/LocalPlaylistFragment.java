@@ -2,14 +2,13 @@ package org.schabi.newpipe.local.playlist;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,15 +25,16 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
-import org.schabi.newpipe.local.BaseLocalListFragment;
+import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.info_list.InfoItemDialog;
+import org.schabi.newpipe.local.BaseLocalListFragment;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
-import org.schabi.newpipe.util.ShareUtils;
+import org.schabi.newpipe.util.StreamDialogEntry;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -511,59 +511,48 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     // Utils
     //////////////////////////////////////////////////////////////////////////*/
 
+    private PlayQueue getPlayQueueStartingAt(PlaylistStreamEntry infoItem) {
+        return getPlayQueue(Math.max(itemListAdapter.getItemsList().indexOf(infoItem), 0));
+    }
+
     protected void showStreamItemDialog(final PlaylistStreamEntry item) {
         final Context context = getContext();
         final Activity activity = getActivity();
-        if (context == null || context.getResources() == null || getActivity() == null) return;
-
+        if (context == null || context.getResources() == null || activity == null) return;
         final StreamInfoItem infoItem = item.toStreamInfoItem();
 
-        final String[] commands = new String[]{
-                context.getResources().getString(R.string.enqueue_on_background),
-                context.getResources().getString(R.string.enqueue_on_popup),
-                context.getResources().getString(R.string.start_here_on_main),
-                context.getResources().getString(R.string.start_here_on_background),
-                context.getResources().getString(R.string.start_here_on_popup),
-                context.getResources().getString(R.string.set_as_playlist_thumbnail),
-                context.getResources().getString(R.string.delete),
-                context.getResources().getString(R.string.share)
-        };
+        if (infoItem.getStreamType() == StreamType.AUDIO_STREAM) {
+            StreamDialogEntry.setEnabledEntries(
+                    StreamDialogEntry.enqueue_on_background,
+                    StreamDialogEntry.start_here_on_background,
+                    StreamDialogEntry.set_as_playlist_thumbnail,
+                    StreamDialogEntry.delete,
+                    StreamDialogEntry.append_playlist,
+                    StreamDialogEntry.share);
+        } else {
+            StreamDialogEntry.setEnabledEntries(
+                    StreamDialogEntry.enqueue_on_background,
+                    StreamDialogEntry.enqueue_on_popup,
+                    StreamDialogEntry.start_here_on_background,
+                    StreamDialogEntry.start_here_on_popup,
+                    StreamDialogEntry.set_as_playlist_thumbnail,
+                    StreamDialogEntry.delete,
+                    StreamDialogEntry.append_playlist,
+                    StreamDialogEntry.share);
 
-        final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
-            final int index = Math.max(itemListAdapter.getItemsList().indexOf(item), 0);
-            switch (i) {
-                case 0:
-                    NavigationHelper.enqueueOnBackgroundPlayer(context,
-                            new SinglePlayQueue(infoItem), false);
-                    break;
-                case 1:
-                    NavigationHelper.enqueueOnPopupPlayer(activity, new
-                            SinglePlayQueue(infoItem), false);
-                    break;
-                case 2:
-                    NavigationHelper.playOnMainPlayer(context, getPlayQueue(index), true);
-                    break;
-                case 3:
-                    NavigationHelper.playOnBackgroundPlayer(context, getPlayQueue(index), true);
-                    break;
-                case 4:
-                    NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(index), true);
-                    break;
-                case 5:
-                    changeThumbnailUrl(item.thumbnailUrl);
-                    break;
-                case 6:
-                    deleteItem(item);
-                    break;
-                case 7:
-                    ShareUtils.shareUrl(this.getContext(), item.toStreamInfoItem().getName(), item.toStreamInfoItem().getUrl());
-                    break;
-                default:
-                    break;
-            }
-        };
+            StreamDialogEntry.start_here_on_popup.setCustomAction(
+                    (fragment, infoItemDuplicate) -> NavigationHelper.playOnPopupPlayer(context, getPlayQueueStartingAt(item), true));
+        }
 
-        new InfoItemDialog(getActivity(), infoItem, commands, actions).show();
+        StreamDialogEntry.start_here_on_background.setCustomAction(
+                (fragment, infoItemDuplicate) -> NavigationHelper.playOnBackgroundPlayer(context, getPlayQueueStartingAt(item), true));
+        StreamDialogEntry.set_as_playlist_thumbnail.setCustomAction(
+                (fragment, infoItemDuplicate) -> changeThumbnailUrl(item.thumbnailUrl));
+        StreamDialogEntry.delete.setCustomAction(
+                (fragment, infoItemDuplicate) -> deleteItem(item));
+
+        new InfoItemDialog(activity, infoItem, StreamDialogEntry.getCommands(context), (dialog, which) ->
+                StreamDialogEntry.clickOn(which, this, infoItem)).show();
     }
 
     private void setInitialData(long playlistId, String name) {

@@ -1,6 +1,6 @@
 package org.schabi.newpipe;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.text.TextUtils;
 
 import org.schabi.newpipe.extractor.DownloadRequest;
@@ -10,7 +10,6 @@ import org.schabi.newpipe.extractor.utils.Localization;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -164,7 +163,7 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
         final ResponseBody body = response.body();
 
         if (response.code() == 429) {
-            throw new ReCaptchaException("reCaptcha Challenge requested");
+            throw new ReCaptchaException("reCaptcha Challenge requested", siteUrl);
         }
 
         if (body == null) {
@@ -214,7 +213,7 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
         final ResponseBody body = response.body();
 
         if (response.code() == 429) {
-            throw new ReCaptchaException("reCaptcha Challenge requested");
+            throw new ReCaptchaException("reCaptcha Challenge requested", siteUrl);
         }
 
         if (body == null) {
@@ -268,7 +267,7 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
         final ResponseBody body = response.body();
 
         if (response.code() == 429) {
-            throw new ReCaptchaException("reCaptcha Challenge requested");
+            throw new ReCaptchaException("reCaptcha Challenge requested", siteUrl);
         }
 
         if (body == null) {

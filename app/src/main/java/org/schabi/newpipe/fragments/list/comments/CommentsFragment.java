@@ -2,8 +2,8 @@ package org.schabi.newpipe.fragments.list.comments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -93,7 +93,7 @@ public class CommentsFragment extends BaseListInfoFragment<CommentsInfo> {
     public void handleResult(@NonNull CommentsInfo result) {
         super.handleResult(result);
 
-        AnimationUtils.slideUp(getView(),120, 96, 0.06f);
+        AnimationUtils.slideUp(getView(),120, 150, 0.06f);
 
         if (!result.getErrors().isEmpty()) {
             showSnackBarError(result.getErrors(), UserAction.REQUESTED_COMMENTS, NewPipe.getNameOfService(result.getServiceId()), result.getUrl(), 0);

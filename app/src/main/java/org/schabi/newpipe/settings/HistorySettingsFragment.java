@@ -1,9 +1,9 @@
 package org.schabi.newpipe.settings;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.preference.Preference;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.preference.Preference;
 import android.widget.Toast;
 
 import org.schabi.newpipe.R;
@@ -18,7 +18,8 @@ import io.reactivex.disposables.Disposable;
 
 public class HistorySettingsFragment extends BasePreferenceFragment {
     private String cacheWipeKey;
-    private String viewsHistroyClearKey;
+    private String viewsHistoryClearKey;
+    private String playbackStatesClearKey;
     private String searchHistoryClearKey;
     private HistoryRecordManager recordManager;
     private CompositeDisposable disposables;
@@ -27,7 +28,8 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         cacheWipeKey = getString(R.string.metadata_cache_wipe_key);
-        viewsHistroyClearKey = getString(R.string.clear_views_history_key);
+        viewsHistoryClearKey = getString(R.string.clear_views_history_key);
+        playbackStatesClearKey = getString(R.string.clear_playback_states_key);
         searchHistoryClearKey = getString(R.string.clear_search_history_key);
         recordManager = new HistoryRecordManager(getActivity());
         disposables = new CompositeDisposable();
@@ -46,16 +48,31 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
                     Toast.LENGTH_SHORT).show();
         }
 
-        if (preference.getKey().equals(viewsHistroyClearKey)) {
+        if (preference.getKey().equals(viewsHistoryClearKey)) {
             new AlertDialog.Builder(getActivity())
                     .setTitle(R.string.delete_view_history_alert)
                     .setNegativeButton(R.string.cancel, ((dialog, which) -> dialog.dismiss()))
                     .setPositiveButton(R.string.delete, ((dialog, which) -> {
+                        final Disposable onDeletePlaybackStates = recordManager.deleteCompelteStreamStateHistory()
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(
+                                        howManyDeleted -> Toast.makeText(getActivity(),
+                                                R.string.watch_history_states_deleted,
+                                                Toast.LENGTH_SHORT).show(),
+                                        throwable -> ErrorActivity.reportError(getContext(),
+                                                throwable,
+                                                SettingsActivity.class, null,
+                                                ErrorActivity.ErrorInfo.make(
+                                                        UserAction.DELETE_FROM_HISTORY,
+                                                        "none",
+                                                        "Delete playback states",
+                                                        R.string.general_error)));
+
                         final Disposable onDelete = recordManager.deleteWholeStreamHistory()
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(
                                         howManyDeleted -> Toast.makeText(getActivity(),
-                                                R.string.view_history_deleted,
+                                                R.string.watch_history_deleted,
                                                 Toast.LENGTH_SHORT).show(),
                                         throwable -> ErrorActivity.reportError(getContext(),
                                                 throwable,
@@ -78,8 +95,36 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
                                                         "none",
                                                         "Delete search history",
                                                         R.string.general_error)));
+                        disposables.add(onDeletePlaybackStates);
                         disposables.add(onClearOrphans);
                         disposables.add(onDelete);
+                    }))
+                    .create()
+                    .show();
+        }
+
+        if (preference.getKey().equals(playbackStatesClearKey)) {
+            new AlertDialog.Builder(getActivity())
+                    .setTitle(R.string.delete_playback_states_alert)
+                    .setNegativeButton(R.string.cancel, ((dialog, which) -> dialog.dismiss()))
+                    .setPositiveButton(R.string.delete, ((dialog, which) -> {
+
+                        final Disposable onDeletePlaybackStates = recordManager.deleteCompelteStreamStateHistory()
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(
+                                        howManyDeleted -> Toast.makeText(getActivity(),
+                                                R.string.watch_history_states_deleted,
+                                                Toast.LENGTH_SHORT).show(),
+                                        throwable -> ErrorActivity.reportError(getContext(),
+                                                throwable,
+                                                SettingsActivity.class, null,
+                                                ErrorActivity.ErrorInfo.make(
+                                                        UserAction.DELETE_FROM_HISTORY,
+                                                        "none",
+                                                        "Delete playback states",
+                                                        R.string.general_error)));
+
+                        disposables.add(onDeletePlaybackStates);
                     }))
                     .create()
                     .show();
@@ -90,7 +135,7 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
                     .setTitle(R.string.delete_search_history_alert)
                     .setNegativeButton(R.string.cancel, ((dialog, which) -> dialog.dismiss()))
                     .setPositiveButton(R.string.delete, ((dialog, which) -> {
-                        final Disposable onDelete = recordManager.deleteWholeSearchHistory()
+                        final Disposable onDelete = recordManager.deleteCompleteSearchHistory()
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(
                                         howManyDeleted -> Toast.makeText(getActivity(),

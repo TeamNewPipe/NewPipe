@@ -28,17 +28,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -48,6 +38,17 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+
+import com.google.android.material.navigation.NavigationView;
 
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawer = null;
     private NavigationView drawerItems = null;
     private TextView headerServiceView = null;
+    private Button toggleServiceButton = null;
 
     private boolean servicesShown = false;
     private ImageView serviceArrow;
@@ -267,8 +269,8 @@ public class MainActivity extends AppCompatActivity {
 
         serviceArrow = hView.findViewById(R.id.drawer_arrow);
         headerServiceView = hView.findViewById(R.id.drawer_header_service_view);
-        Button action = hView.findViewById(R.id.drawer_header_action_button);
-        action.setOnClickListener(view -> {
+        toggleServiceButton = hView.findViewById(R.id.drawer_header_action_button);
+        toggleServiceButton.setOnClickListener(view -> {
             toggleServices();
         });
     }
@@ -279,6 +281,7 @@ public class MainActivity extends AppCompatActivity {
         drawerItems.getMenu().removeGroup(R.id.menu_services_group);
         drawerItems.getMenu().removeGroup(R.id.menu_tabs_group);
         drawerItems.getMenu().removeGroup(R.id.menu_options_about_group);
+
 
         if(servicesShown) {
             showServices();
@@ -360,11 +363,13 @@ public class MainActivity extends AppCompatActivity {
 
         // close drawer on return, and don't show animation, so its looks like the drawer isn't open
         // when the user returns to MainActivity
-        drawer.closeDrawer(Gravity.START, false);
+        drawer.closeDrawer(GravityCompat.START, false);
         try {
             String selectedServiceName = NewPipe.getService(
                     ServiceHelper.getSelectedServiceId(this)).getServiceInfo().getName();
             headerServiceView.setText(selectedServiceName);
+            toggleServiceButton.setContentDescription(
+                    getString(R.string.drawer_header_description) + selectedServiceName);
         } catch (Exception e) {
             ErrorActivity.reportUiError(this, e);
         }
@@ -560,6 +565,14 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             toolbar.setNavigationOnClickListener(v -> onHomeButtonPressed());
         }
+    }
+
+    private void updateDrawerHeaderString(String content) {
+        NavigationView navigationView = findViewById(R.id.navigation);
+        View hView =  navigationView.getHeaderView(0);
+        Button action = hView.findViewById(R.id.drawer_header_action_button);
+
+        action.setContentDescription(content);
     }
 
     private void handleIntent(Intent intent) {

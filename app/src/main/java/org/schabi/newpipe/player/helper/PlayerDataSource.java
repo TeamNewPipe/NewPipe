@@ -1,9 +1,10 @@
 package org.schabi.newpipe.player.helper;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 
-import com.google.android.exoplayer2.source.ExtractorMediaSource;
+import androidx.annotation.NonNull;
+
+import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.source.SingleSampleMediaSource;
 import com.google.android.exoplayer2.source.dash.DashMediaSource;
 import com.google.android.exoplayer2.source.dash.DefaultDashChunkSource;
@@ -64,12 +65,12 @@ public class PlayerDataSource {
                 cacheDataSourceFactory), cacheDataSourceFactory);
     }
 
-    public ExtractorMediaSource.Factory getExtractorMediaSourceFactory() {
-        return new ExtractorMediaSource.Factory(cacheDataSourceFactory)
+    public ProgressiveMediaSource.Factory getExtractorMediaSourceFactory() {
+        return new ProgressiveMediaSource.Factory(cacheDataSourceFactory)
                 .setLoadErrorHandlingPolicy(new DefaultLoadErrorHandlingPolicy(EXTRACTOR_MINIMUM_RETRY));
     }
 
-    public ExtractorMediaSource.Factory getExtractorMediaSourceFactory(@NonNull final String key) {
+    public ProgressiveMediaSource.Factory getExtractorMediaSourceFactory(@NonNull final String key) {
         return getExtractorMediaSourceFactory().setCustomCacheKey(key);
     }
 

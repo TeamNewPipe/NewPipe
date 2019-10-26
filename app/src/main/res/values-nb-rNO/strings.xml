@@ -16,15 +16,12 @@
     <string name="screen_rotation">sideoppsett</string>
     <string name="use_external_video_player_title">Bruk ekstern videoavspiller</string>
     <string name="use_external_audio_player_title">Bruk ekstern lydavspiller</string>
-
     <string name="download_path_title">Videoens nedlastingssti</string>
     <string name="download_path_summary">Mappe lagrede nedlastinger skal puttes i</string>
     <string name="download_path_dialog_title">Skriv inn nedlastingssti for videoer</string>
-
     <string name="download_path_audio_title">Nedlastingsmappe for lyd</string>
     <string name="download_path_audio_summary">Nedlastet lyd lagres her</string>
     <string name="download_path_audio_dialog_title">Skriv inn nedlastingssti for lydfiler</string>
-
     <string name="default_resolution_title">Forvalgt oppløsning</string>
     <string name="play_with_kodi_title">Spill av med Kodi</string>
     <string name="kore_not_found">Kore-programmet ble ikke funnet. Installer det?</string>
@@ -35,7 +32,6 @@
     <string name="theme_title">Drakt</string>
     <string name="dark_theme_title">Mørk</string>
     <string name="light_theme_title">Lys</string>
-
     <string name="download_dialog_title">Last ned</string>
     <string name="next_video_title">Neste</string>
     <string name="show_next_and_similar_title">Vis \"Neste\" og \"Lignende\" -videoer</string>
@@ -47,7 +43,6 @@
     <string name="background_player_playing_toast">Spiller i bakgrunnen</string>
     <string name="play_btn_text">Spill av</string>
     <string name="network_error">Nettverksfeil</string>
-
     <string name="list_thumbnail_view_description">Video-forhåndsvisning i miniatyrbilde</string>
     <string name="detail_thumbnail_view_description">Miniatyrbilde for video-forhåndsvisning</string>
     <string name="detail_uploader_thumbnail_view_description">Opplasterens avatar</string>
@@ -55,7 +50,6 @@
     <string name="detail_dislikes_img_view_description">Nesetrekk</string>
     <string name="use_tor_title">Bruk Tor</string>
     <string name="use_tor_summary">(Eksperimentelt) Tving nedlasting av trafikk gjennom Tor for forbedret personvern (strømming av videoer støttes ikke enda).</string>
-
     <string name="err_dir_create">Kan ikke opprette nedlastingsmappe \'%1$s\'</string>
     <string name="info_dir_created">Opprettet nedlastingsmappen \'%1$s\'</string>
     <string name="main_bg_subtitle">Trykk for å komme i gang</string>
@@ -63,13 +57,13 @@
     <string name="autoplay_by_calling_app_summary">Spiller en video når NewPipe blir forespurt av et annet program</string>
     <string name="content">Innhold</string>
     <string name="show_age_restricted_content_title">Aldersbegrenset innhold</string>
-    <string name="video_is_age_restricted">Vis aldersbegrenset video. Å tillate slikt materiale kan gjøres fra innstillingene.</string>
+    <string name="video_is_age_restricted">Vis aldersbegrenset video. Å tillate slikt materiale kan gjøres via innstillingene.</string>
     <string name="general_error">Feil</string>
     <string name="could_not_load_thumbnails">Kunne ikke laste inn alle miniatyrbilder</string>
     <string name="youtube_signature_decryption_error">Kunne ikke dekryptere signaturen til videoens nettadresse</string>
     <string name="parsing_error">Kunne ikke tolke nettside</string>
     <string name="light_parsing_error">Kunne ikke tolke nettside fullstendig</string>
-    <string name="content_not_available">Innholdet er ikke tilgjengelig</string>
+    <string name="content_not_available">Innholdet er utilgjengelig</string>
     <string name="could_not_setup_download_menu">Kunne ikke sette opp nedlastingsmeny</string>
     <string name="live_streams_not_supported">Direktesendinger støttes ikke enda.</string>
     <string name="could_not_get_stream">Kunne ikke finne noen strømmer</string>
@@ -81,31 +75,23 @@
     <string name="what_happened_headline">Hva skjedde:</string>
     <string name="your_comment">Din kommentar (på Engelsk):</string>
     <string name="error_details_headline">Detaljer:</string>
-
-
     <string name="report_error">Rapporter en feil</string>
     <string name="user_report">Brukerrapport</string>
-
     <string name="video">Video</string>
     <string name="audio">Audio</string>
     <string name="retry">Prøv igjen</string>
     <string name="storage_permission_denied">Tilgang til lagring nektet</string>
-    <string name="duration_live">Direkteoverført</string>
-
+    <string name="duration_live">DIREKTE</string>
     <string name="downloads">Nedlastinger</string>
     <string name="downloads_title">Nedlastinger</string>
     <string name="error_report_title">Feilrapport</string>
-
     <string name="could_not_load_image">Kunne ikke laste bilde</string>
     <string name="app_ui_crash">Program/brukergrensesnitt kræsjet</string>
     <string name="pause">Pause</string>
     <string name="view">Spill</string>
     <string name="delete">Slett</string>
     <string name="checksum">Sjekksum</string>
-
     <string name="finish">OK</string>
-
-
     <string name="msg_name">Filnavn</string>
     <string name="msg_threads">Tråder</string>
     <string name="msg_error">Feil</string>
@@ -119,58 +105,45 @@
     <string name="start">Start</string>
     <string name="add">Nytt mål</string>
     <string name="msg_url_malform">Feilaktig nettadresse eller manglende internettilknytning</string>
-    <string name="no_available_dir">Velg ei tilgjengelig nedlastingsmappe</string>
-
+    <string name="no_available_dir">Velg nedlastingsmappe senere i innstillingene</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">reCAPTCHA-oppgave</string>
-
     <string name="open_in_popup_mode">Åpne i oppsprettsmodus</string>
     <string name="popup_mode_share_menu_title">NewPipe oppsprettsmodus</string>
-
     <string name="default_popup_resolution_title">Forvalgt oppsprettsoppløsning</string>
     <string name="show_higher_resolutions_title">Vis høyere oppløsninger</string>
     <string name="show_higher_resolutions_summary">Det er bare noen enheter som støtter avspilling av 2K-/4K-videoer</string>
     <string name="default_video_format_title">Forvalgt videoformat</string>
     <string name="black_theme_title">Svart</string>
-
     <string name="popup_playing_toast">Spiller av i oppsprettsmodus</string>
     <string name="all">Alle</string>
     <string name="channel">Kanal</string>
     <string name="yes">Ja</string>
     <string name="later">Senere</string>
     <string name="disabled">Avskrudd</string>
-
-
-    <string name="short_thousand">K</string>
+    <string name="short_thousand">k</string>
     <string name="short_million">M</string>
     <string name="short_billion">Mrd.</string>
-
     <string name="msg_popup_permission">Denne tilgangen trengs for
 åpning i oppsprettsmodus</string>
-
     <string name="recaptcha_request_toast">reCAPTCHA-oppgave forespurt</string>
-
     <string name="use_external_video_player_summary">Fjerner lyd ved NOEN oppløsninger</string>
     <string name="subscribe_button_title">Abonner</string>
     <string name="subscribed_button_title">Abonnert</string>
     <string name="channel_unsubscribed">Kanalabonnent oppsagt</string>
     <string name="subscription_change_failed">Klarte ikke å endre abonnement</string>
     <string name="subscription_update_failed">Klarte ikke å oppdatere abonnement</string>
-
     <string name="tab_subscriptions">Abonnementer</string>
-
     <string name="fragment_whats_new">Hva er nytt</string>
-
     <string name="controls_background_title">Bakgrunn</string>
     <string name="controls_popup_title">Oppsprett</string>
-
     <string name="popup_remember_size_pos_title">Husk oppsprettsstørrelse og posisjon</string>
     <string name="popup_remember_size_pos_summary">Husk siste størrelse og posisjon for oppsprettsvinduet</string>
     <string name="show_search_suggestions_title">Søkeforslag</string>
     <string name="show_search_suggestions_summary">Vis søkeforslag ved søk</string>
     <string name="enable_search_history_title">Søkehistorikk</string>
     <string name="enable_search_history_summary">Lagre søkemønster lokalt</string>
-    <string name="enable_watch_history_title">Historikk og mellomlagring</string>
+    <string name="enable_watch_history_title">Visningshistorikk</string>
     <string name="enable_watch_history_summary">Lagre visningshistorikk</string>
     <string name="settings_category_popup_title">Oppsprett</string>
     <string name="filter">Filter</string>
@@ -178,18 +151,14 @@
     <string name="clear">Tøm</string>
     <string name="popup_resizing_indicator_title">Endrer størrelse</string>
     <string name="best_resolution">Beste oppløsning</string>
-
     <string name="notification_channel_name">NewPipe-merknad</string>
     <string name="notification_channel_description">Merknad for NewPipe-bakgrunn og oppsprettsspillere</string>
-
     <string name="settings_category_downloads_title">Last ned</string>
     <string name="settings_file_charset_title">Tillate tegn i filnavn</string>
     <string name="settings_file_replacement_character_summary">Ugyldige tegn erstattes av denne verdien</string>
     <string name="settings_file_replacement_character_title">Erstatningstegn</string>
-
     <string name="charset_letters_and_digits">Bokstaver og tall</string>
     <string name="charset_most_special_characters">De fleste spesialtegn</string>
-
     <string name="title_activity_about">Om NewPipe</string>
     <string name="action_settings">Innstillinger</string>
     <string name="action_about">Om</string>
@@ -211,34 +180,28 @@
     <string name="settings_category_history_title">Historikk og mellomlagring</string>
     <string name="playlist">Spilleliste</string>
     <string name="undo">Angre</string>
-
     <string name="search_no_results">Ingen resultater</string>
     <string name="empty_subscription_feed_subtitle">Bare ufisk her</string>
-
     <string name="no_subscribers">Ingen abonnenter</string>
     <plurals name="subscribers">
-	<item quantity="one">%s abonnent</item>
-	<item quantity="other">%s abonnenter</item>
-</plurals>
-
+        <item quantity="one">%s abonnent</item>
+        <item quantity="other">%s abonnenter</item>
+    </plurals>
     <string name="no_views">Ingen visninger</string>
     <plurals name="views">
-	<item quantity="one">%s visning</item>
-	<item quantity="other">%s visninger</item>
-</plurals>
-
+        <item quantity="one">%s visning</item>
+        <item quantity="other">%s visninger</item>
+    </plurals>
     <string name="no_videos">Ingen videoer</string>
     <plurals name="videos">
-    <item quantity="one">video</item>
-    <item quantity="other">videoer</item>
-</plurals>
-
+        <item quantity="one">Én video</item>
+        <item quantity="other">%s videoer</item>
+    </plurals>
     <string name="view_on_github">Vis på GitHub</string>
     <string name="app_license_title">NewPipe sin lisens</string>
     <string name="contribution_encouragement">Hvorvidt du har idéer vedrørende oversettelser, designendringer, koderenskning, eller tunge kodeendringer—hjelp er alltids kjærkommen. Desto mer som gjøres, desto bedre blir det!</string>
     <string name="read_full_license">Les lisensen</string>
     <string name="contribution_title">Bidra</string>
-
     <string name="title_activity_history">Historikk</string>
     <string name="title_history_search">Søk</string>
     <string name="title_history_view">Sett</string>
@@ -247,9 +210,8 @@
     <string name="history_empty">Historikken er tom</string>
     <string name="history_cleared">Historikk tømt</string>
     <string name="item_deleted">Element slettet</string>
-<string name="delete_item_search_history">Ønsker du å slette dette elementet fra søkehistorikken?</string>
-<string name="play_all">Spill av alle</string>
-
+    <string name="delete_item_search_history">Ønsker du å slette dette elementet fra søkehistorikken?</string>
+    <string name="play_all">Spill av alle</string>
     <string name="player_stream_failure">Kunne ikke spille av denne strømmen</string>
     <string name="player_unrecoverable_failure">Uopprettelig avspillerfeil oppstod</string>
     <string name="blank_page_summary">Blank side</string>
@@ -258,7 +220,6 @@
     <string name="channel_page_summary">Kanalside</string>
     <string name="select_a_channel">Velg en kanal</string>
     <string name="select_a_kiosk">Velg en kiosk</string>
-
     <string name="kiosk">Kiosk</string>
     <string name="top_50">Topp 50</string>
     <string name="new_and_hot">Nytt og hett</string>
@@ -268,24 +229,22 @@
     <string name="play_queue_stream_detail">Detaljer</string>
     <string name="play_queue_audio_settings">Lydinnstillinger</string>
     <string name="hold_to_append">Hold for å legge i kø</string>
-<string name="show_hold_to_append_title">Vis \"Hold for å legge til\" -tips</string>
+    <string name="show_hold_to_append_title">Vis \"Hold for å legge til\" -tips</string>
     <string name="show_hold_to_append_summary">Vis tips når bakgrunns- eller oppsårettsknapp trykkes på siden for videodetaljer</string>
     <string name="background_player_append">Lagt i kø for bakgrunnsavspiller</string>
     <string name="popup_playing_append">Lagt i kø for oppsprettsspiller</string>
     <string name="unknown_content">[Ukjent]</string>
-
     <string name="player_recoverable_failure">Gjenoppretter fra spillerfeil</string>
-
     <string name="main_page_content">Hovedsidens innhold</string>
     <string name="feed_page_summary">Strømside</string>
     <string name="no_channel_subscribed_yet">Abonnerer ikke på noen kanaler enda</string>
     <string name="trending">På vei opp</string>
-    <string name="enqueue_on_background">Legg i kø når henvist til bakgrunnen</string>
-    <string name="enqueue_on_popup">Legg i kø ved nytt oppsprett</string>
+    <string name="enqueue_on_background">Legg i kø i bakgrunnen</string>
+    <string name="enqueue_on_popup">Legg i kø i nytt oppsprett</string>
     <string name="start_here_on_main">Start avspilling her</string>
-    <string name="start_here_on_background">Start her når i bakgrunnen</string>
-    <string name="start_here_on_popup">Start her ved nytt oppsprettsvindu</string>
-<string name="donation_title">Doner</string>
+    <string name="start_here_on_background">Start avspilling i bakgrunnen</string>
+    <string name="start_here_on_popup">Start avspilling i nytt oppsprettsvindu</string>
+    <string name="donation_title">Doner</string>
     <string name="donation_encouragement">NewPipe utvikles av frivillige som bruker deres fritid til å gi deg den beste opplevelsen. Gi tilbake for å hjelpe utviklere å gjøre NewPipe enda bedre, mens de nyter en varm kopp kaffe.</string>
     <string name="give_back">Bidra</string>
     <string name="website_title">Nettside</string>
@@ -296,25 +255,21 @@
     <string name="switch_to_background">Bytt til bakgrunnsmodus</string>
     <string name="switch_to_popup">Bytt til oppsprettsmodus</string>
     <string name="switch_to_main">Bytt til hovedmodus</string>
-
     <string name="drawer_open">Åpne skuff</string>
     <string name="drawer_close">Lukk skuff</string>
     <string name="no_player_found_toast">Ingen strømmespiller installert (du kan installere VLC for å spille den).</string>
     <string name="always">Alltid</string>
     <string name="just_once">Kun én gang</string>
-
     <string name="external_player_unsupported_link_type">Eksterne avspillere kan ikke spille lenker av disse typene</string>
     <string name="invalid_url_toast">Ugyldig nettadresse</string>
     <string name="video_streams_empty">Fant ingen videostrømmer</string>
     <string name="audio_streams_empty">Fant ingen lydstrømmer</string>
-
     <string name="video_player">Videoavspiller</string>
     <string name="background_player">Bakgrunnsavspiller</string>
     <string name="popup_player">Oppsprettsavspiller</string>
-
     <string name="preferred_player_fetcher_notification_title">Henter informasjon…</string>
     <string name="preferred_player_fetcher_notification_message">Laster forespurt innhold</string>
-<string name="import_data_title">Importer database</string>
+    <string name="import_data_title">Importer database</string>
     <string name="export_data_title">Eksporter database</string>
     <string name="import_data_summary">Overstyrer din nåværende historikk og abonnementsliste</string>
     <string name="export_data_summary">Eksporter historikk, abonnementer og spillelister</string>
@@ -323,77 +278,55 @@
     <string name="no_valid_zip_file">Ingen gyldig ZIP-fil</string>
     <string name="could_not_import_all_files">ADVARSEL: Kunne ikke importere alle filer.</string>
     <string name="override_current_data">Dette vil overskrive ditt nåværende oppsett.</string>
-
     <string name="controls_download_desc">Last ned strøm-fil</string>
     <string name="show_info">Vis info</string>
-
     <string name="tab_bookmarks">Bokmerkede spillelister</string>
-
     <string name="controls_add_to_playlist_title">Legg til i</string>
-
     <string name="detail_drag_description">Dra for å omorganisere</string>
-
     <string name="create">Opprett</string>
     <string name="delete_one">Slett én</string>
     <string name="delete_all">Slett alle</string>
     <string name="dismiss">Forkast</string>
     <string name="rename">Gi nytt navn</string>
-
     <string name="delete_stream_history_prompt">Ønsker du å slette dette elementet fra oppsynshistorikken?</string>
     <string name="delete_all_history_prompt">Er du sikker på at du ønsker å slette alle elementene fra historikken?</string>
     <string name="title_last_played">Sist spilt</string>
     <string name="title_most_played">Mest spilt</string>
-
     <string name="always_ask_open_action">Alltid spør</string>
-    
     <string name="create_playlist">Ny spilleliste</string>
     <string name="delete_playlist">Slett</string>
     <string name="rename_playlist">Gi nytt navn</string>
     <string name="playlist_name_input">Navn</string>
     <string name="append_playlist">Legg til i spilleliste</string>
     <string name="set_as_playlist_thumbnail">Sett som miniatyrbilde for spilleliste</string>
-
     <string name="bookmark_playlist">Bokmerk spilleliste</string>
     <string name="unbookmark_playlist">Fjern bokmerke</string>
-
     <string name="delete_playlist_prompt">Slett denne spillelisten\?</string>
     <string name="playlist_creation_success">Spilleliste opprettet</string>
     <string name="playlist_add_stream_success">Lagt til i spilleliste</string>
     <string name="playlist_thumbnail_change_success">Miniatyrbilde for spilleliste endret.</string>
     <string name="playlist_delete_failure">Kunne ikke slette spilleliste.</string>
-
     <string name="caption_none">Ingen bildetekster</string>
-
     <string name="resize_fit">Tilpass</string>
     <string name="resize_fill">Fyll</string>
     <string name="resize_zoom">Forstørr</string>
-
-    <string name="caption_font_size_settings_title">Bildetekstens størrelse</string>
-    <string name="smaller_caption_font_size">Mindre skrift</string>
-    <string name="normal_caption_font_size">Normal skrift</string>
-    <string name="larger_caption_font_size">Større skrift</string>
-<string name="use_inexact_seek_title">Bruk raskt unøyaktig blafring</string>
+    <string name="use_inexact_seek_title">Bruk raskt unøyaktig blafring</string>
     <string name="settings_category_debug_title">Feilretting</string>
     <string name="file">Fil</string>
-
     <string name="invalid_directory">Ingen slik mappe</string>
     <string name="invalid_source">Ingen slik fil/innholdskilde</string>
     <string name="invalid_file">Filen finnes ikke eller så har du ikke tilgang til å lese eller skrive til den</string>
-    <string name="file_name_empty_error">Filnavn kan ikke være tomt.</string>
+    <string name="file_name_empty_error">Filnavn kan ikke være tomt</string>
     <string name="error_occurred_detail">En feil inntraff: %1$s</string>
-
     <string name="caption_auto_generated">Auto-generert</string>
     <string name="enable_leak_canary_title">Skru på LeakCanary</string>
     <string name="import_title">Importer</string>
     <string name="import_from">Importer fra</string>
     <string name="export_to">Eksporter til</string>
-
     <string name="import_ongoing">Importerer…</string>
     <string name="export_ongoing">Eksporterer…</string>
-
     <string name="import_file_title">Importer fil</string>
     <string name="previous_export">Forrige eksport</string>
-
     <string name="download_thumbnail_title">Last miniatyrbilder</string>
     <string name="thumbnail_cache_wipe_complete_notice">Bildehurtiglager tømt</string>
     <string name="metadata_cache_wipe_title">Tøm hurtiglagret metadata</string>
@@ -401,45 +334,34 @@
     <string name="metadata_cache_wipe_complete_notice">Metadatahurtiglager tømt</string>
     <string name="auto_queue_title">Sett neste strøm i kø automatisk</string>
     <string name="no_streams_available_download">Ingen strømmer tilgjengelige for nedlasting</string>
-
     <string name="drawer_header_action_paceholder_text">Noe vil bli presentert her snart ;D</string>
-
-
     <string name="preferred_open_action_settings_title">Foretrukket åpningshandling</string>
     <string name="preferred_open_action_settings_summary">Forvalgt handling ved åpning av innhold — %s</string>
-
     <string name="import_export_title">Importer/eksporter</string>
     <string name="import_soundcloud_instructions_hint">din-ID, soundcloud.com/dinid</string>
-
     <string name="import_network_expensive_warning">Husk at denne handlingen kan belaste nettverket tungt.
 \n
 \nØnsker du å fortsette?</string>
-
     <string name="playback_speed_control">Fartskontroller for avspilling</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Tonehøyde</string>
     <string name="playback_default">Forvalg</string>
-<string name="clear_views_history_title">Tøm avspillingshistorikk</string>
-    <string name="clear_views_history_summary">Slett historikken for avspilte strømmer</string>
+    <string name="clear_views_history_title">Tøm avspillingshistorikk</string>
+    <string name="clear_views_history_summary">Slett historikken og posisjon for avspilte strømmer</string>
     <string name="delete_view_history_alert">Slett hele visningshistorikken\?</string>
-    <string name="view_history_deleted">Visningshistorikk slettet.</string>
+    <string name="watch_history_deleted">Visningshistorikk slettet.</string>
     <string name="clear_search_history_title">Tøm søkehistorikk</string>
     <string name="clear_search_history_summary">Sletter historikken for søkte nøkkelord</string>
     <string name="delete_search_history_alert">Slett hele søkehistorikken\?</string>
     <string name="search_history_deleted">Søkehistorikk slettet.</string>
     <string name="one_item_deleted">Ett element slettet.</string>
-
     <string name="toast_no_player">Inget program installert for avspilling av denne filen</string>
-
     <string name="caption_setting_title">Undertekster</string>
     <string name="caption_setting_description">Endre undertekststørrelse og bakgrunnsstiler. Krever omstart av programmet for å tre i effekt.</string>
-
     <string name="app_license">NewPipe er copyleft, fri programvare: Du kan bruke, studere og forbedre etter egen vilje. Spesifikt kan du redistribuere og/eller modifisere det i henhold til vilkårene gitt i GNU General Public-lisensen, som publisert av Free Software Foundation, enten versjon 3 av lisensen, eller (etter eget ønske) enhver senere versjon.</string>
     <string name="import_settings">Ønsker du også å importere innstillinger?</string>
-
     <string name="subscriptions_import_unsuccessful">Kunne ikke importere abonnementer</string>
     <string name="subscriptions_export_unsuccessful">Kunne ikke eksportere abonnementer</string>
-
     <string name="import_youtube_instructions">Importer YoutTube-abonnementer ved å laste ned eksportfilen:
 \n
 \n1. Gå til denne nettadressen: %1$s
@@ -452,14 +374,11 @@
 \n4. Kopier profil-nettadressen du ble videresendt til.</string>
     <string name="use_inexact_seek_summary">Unøyaktig blafring tillater spilleren å blafre til posisjoner raskere med redusert nøyaktighet</string>
     <string name="download_thumbnail_summary">Skru av for å stoppe innlasting av miniatyrbilder, noe som sparer data- og minnebruk. Endring av dette vil tømme både disk- og minne-hurtiglager.</string>
-    <string name="auto_queue_summary">Legg til en relatert strøm ved avspilling av forrige strøm i ikke-repeterende kø.</string>
+    <string name="auto_queue_summary">Legg til en relatert strøm ved avspilling av forrige strøm i ikke-repeterende kø</string>
     <string name="enable_leak_canary_summary">Minnelekkasjeoppsyn kan forårsake programmet å opptre uresponsivt under haugdumping</string>
-
     <string name="enable_disposed_exceptions_title">Rapporter feil som opptrer utenfor sin levetid</string>
     <string name="enable_disposed_exceptions_summary">Tving rapportering av uleverbare Rx-unntak utenom fragment eller aktivitetslevetid etter forkastelse</string>
-
     <string name="unhook_checkbox">Avhekt (kan forårsake forvrenging)</string>
-    <string name="playback_nightcore">Nightcore</string>
     <string name="privacy_policy_title">NewPipes personvernspraksis</string>
     <string name="privacy_policy_encouragement">NewPipe-prosjektet tar ditt personvern veldig alvorlig. Derfor samler ikke programmet inn data uten ditt samtykke.
 \nNewPipes personvernspraksis forklarer i detalj hvilken deta som sendes og lagres når du sender en kræsjrapport.</string>
@@ -468,15 +387,14 @@
 \nDu må godta den for å sende oss feilrapporten.</string>
     <string name="accept">Godta</string>
     <string name="decline">Avslå</string>
-<string name="limit_data_usage_none_description">Ubegrenset</string>
+    <string name="limit_data_usage_none_description">Ubegrenset</string>
     <string name="limit_mobile_data_usage_title">Begrens oppløsning når mobildata brukes</string>
     <string name="minimize_on_exit_title">Minimer ved programbytte</string>
     <string name="minimize_on_exit_summary">Handling ved bytting til annet program fra hovedspiller — %s</string>
     <string name="minimize_on_exit_none_description">Ingen</string>
     <string name="minimize_on_exit_background_description">Minimer til bakgrunnsspiller</string>
     <string name="minimize_on_exit_popup_description">Minimer til oppsprettsspiller</string>
-
-<string name="channels">Kanaler</string>
+    <string name="channels">Kanaler</string>
     <string name="playlists">Spillelister</string>
     <string name="tracks">Spor</string>
     <string name="users">Brukere</string>
@@ -496,7 +414,7 @@
     <string name="app_update_notification_channel_name">Programoppgraderingsmerknad</string>
     <string name="app_update_notification_channel_description">Merknader for nye NewPipe-versjoner</string>
     <string name="download_to_sdcard_error_title">Ekstern lagring utilgjengelig</string>
-    <string name="download_to_sdcard_error_message">Nedlasting til eksternt SD-kort er ikke mulig enda. Tilbakestill plassering av nedlastingsmappe\?</string>
+    <string name="download_to_sdcard_error_message">Nedlasting til eksternt SD-kort er ikke mulig. Tilbakestill plassering av nedlastingsmappe\?</string>
     <string name="saved_tabs_invalid_json">Bruker forvalgte faner, feil under lagring av lagrede faner.</string>
     <string name="restore_defaults">Gjenopprett forvalg</string>
     <string name="restore_defaults_confirmation">Ønsker du å gjenopprette alt til forvalgene\?</string>
@@ -544,6 +462,47 @@
     <string name="stop">Stopp</string>
     <string name="max_retry_msg">Maksimalt antall forsøk</string>
     <string name="max_retry_desc">Maksimalt antall tilkoblingsforsøk før nedlastingen avblåses</string>
-    <string name="pause_downloads_on_mobile">Pause ved veksling til mobildata</string>
-    <string name="pause_downloads_on_mobile_desc">Nedlastinger som ikke kan pauses vil bli startet på nytt</string>
+    <string name="pause_downloads_on_mobile">Pause ved veksling til kvotebasert nett</string>
+    <string name="pause_downloads_on_mobile_desc">Nyttig ved veksling til mobildata, selv om noen nedlastinger ikke kan settes på pause</string>
+    <string name="show_comments_title">Vis kommentarer</string>
+    <string name="show_comments_summary">Skru av for å stoppe visning i kommentarer</string>
+    <string name="autoplay_title">Spill av automatisk</string>
+    <plurals name="comments">
+        <item quantity="one">Kommentarer</item>
+        <item quantity="other"/>
+    </plurals>
+    <string name="no_comments">Ingen kommenterer</string>
+    <string name="error_unable_to_load_comments">Kunne ikke laste inn kommentarer</string>
+    <string name="close">Lukk</string>
+    <string name="missions_header_pending">Venter</string>
+    <string name="enable_playback_resume_title">Gjenoppta avspilling</string>
+    <string name="enable_playback_resume_summary">Fortsett der du slapp</string>
+    <string name="enable_playback_state_lists_title">Posisjon i lister</string>
+    <string name="enable_playback_state_lists_summary">Vis avspillingsposisjonsindikator i lister</string>
+    <string name="settings_category_clear_data_title">Tøm data</string>
+    <string name="watch_history_states_deleted">Avspillingsposisjon slettet</string>
+    <string name="missing_file">Fil flyttet eller slettet</string>
+    <string name="overwrite_unrelated_warning">En fil ved dette navnet finnes allerede</string>
+    <string name="overwrite_failed">Kan ikke overskrive filen</string>
+    <string name="download_already_pending">Det finnes en ventende nedlasting ved dette navnet</string>
+    <string name="error_postprocessing_stopped">NewPipe ble lukket under arbeid med filen</string>
+    <string name="error_insufficient_storage">Ingen ledig plass på enheten</string>
+    <string name="error_progress_lost">Framdrift gikk tapt, fordi filen ble slettet</string>
+    <string name="error_timeout">Tilkoblingsavbrudd</string>
+    <string name="confirm_prompt">Er du sikker\?</string>
+    <string name="enable_queue_limit">Begrens nedlastingskø</string>
+    <string name="enable_queue_limit_desc">Én nedlasting av gangen</string>
+    <string name="start_downloads">Start nedlastinger</string>
+    <string name="pause_downloads">Sett nedlastinger på pause</string>
+    <string name="downloads_storage_ask_title">Spør om hvor ting skal lastes ned til</string>
+    <string name="downloads_storage_ask_summary">Du vil bli spurt om hvor hver nedlasting skal plasseres</string>
+    <string name="downloads_storage_ask_summary_kitkat">Du vil bli spurt om hvor hver nedlasting skal plasseres.
+\nSkru på dette valget hvis du vil laste ned til eksternt SD-kort.</string>
+    <string name="downloads_storage_use_saf_title">Bruk SAF</string>
+    <string name="downloads_storage_use_saf_summary">Lagringstilgangsrammeverk (SAF) tillater nedlastinger til eksternt SD-kort.
+\nMerk: Noen enheter er ikke kompatible.</string>
+    <string name="clear_playback_states_title">Slett avspillingsposisjoner</string>
+    <string name="clear_playback_states_summary">Sletter alle avspillingsposisjoner</string>
+    <string name="delete_playback_states_alert">Slett alle avspillingsposisjoner\?</string>
+    <string name="download_choose_new_path">Endre nedlastingsmapper for å benytte dette</string>
 </resources>
