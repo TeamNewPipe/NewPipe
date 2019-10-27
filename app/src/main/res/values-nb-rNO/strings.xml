@@ -121,9 +121,9 @@
     <string name="yes">Ja</string>
     <string name="later">Senere</string>
     <string name="disabled">Avskrudd</string>
-    <string name="short_thousand">K</string>
+    <string name="short_thousand">k</string>
     <string name="short_million">M</string>
-    <string name="short_billion">B</string>
+    <string name="short_billion">Mrd.</string>
     <string name="msg_popup_permission">Denne tilgangen trengs for
 åpning i oppsprettsmodus</string>
     <string name="recaptcha_request_toast">reCAPTCHA-oppgave forespurt</string>
@@ -415,7 +415,7 @@
     <string name="app_update_notification_channel_description">Merknader for nye NewPipe-versjoner</string>
     <string name="download_to_sdcard_error_title">Ekstern lagring utilgjengelig</string>
     <string name="download_to_sdcard_error_message">Nedlasting til eksternt SD-kort er ikke mulig. Tilbakestill plassering av nedlastingsmappe\?</string>
-    <string name="saved_tabs_invalid_json">Bruker standard faner, feil under lesing av lagrede faner</string>
+    <string name="saved_tabs_invalid_json">Bruker forvalgte faner, feil under lesing av lagrede faner.</string>
     <string name="restore_defaults">Gjenopprett forvalg</string>
     <string name="restore_defaults_confirmation">Ønsker du å gjenopprette alt til forvalgene\?</string>
     <string name="subscribers_count_not_available">Abonnementsantall ikke tilgjengelig</string>
@@ -423,13 +423,13 @@
     <string name="selection">Utvalg</string>
     <string name="conferences">Konferanser</string>
     <string name="updates_setting_title">Oppdatering</string>
-    <string name="updates_setting_description">Vis et varsel for å be om appoppdatering når en ny versjon er tilgjengelig</string>
+    <string name="updates_setting_description">Varsle om programoppdatering når en ny versjon er tilgjengelig</string>
     <string name="list_view_mode">Listevisningmodus</string>
     <string name="list">Liste</string>
     <string name="grid">Rutenett</string>
     <string name="auto">Auto</string>
     <string name="switch_view">Veksle visning</string>
-    <string name="app_update_notification_content_title">NewPipe-oppdatering tilgjengelig!</string>
+    <string name="app_update_notification_content_title">Ny NewPipe-versjon tilgjengelig.</string>
     <string name="app_update_notification_content_text">Trykk for å laste ned</string>
     <string name="missions_header_finished">Fullført</string>
     <string name="paused">pauset</string>
