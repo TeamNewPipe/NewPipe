@@ -35,6 +35,7 @@ import android.widget.Toast;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.download.DownloadActivity;
+import org.schabi.newpipe.download.DownloadSetting;
 import org.schabi.newpipe.player.helper.LockManager;
 
 import java.io.File;
@@ -364,31 +365,23 @@ public class DownloadManagerService extends Service {
     /**
      * Start a new download mission
      *
-     * @param context    the activity context
-     * @param urls       the list of urls to download
-     * @param storage    where the file is saved
-     * @param kind       type of file (a: audio  v: video  s: subtitle ?: file-extension defined)
-     * @param threads    the number of threads maximal used to download chunks of the file.
-     * @param psName     the name of the required post-processing algorithm, or {@code null} to ignore.
-     * @param source     source url of the resource
-     * @param psArgs     the arguments for the post-processing algorithm.
-     * @param nearLength the approximated final length of the file
+     * @param context         the activity context
+     * @param downloadSetting downloadSetting
      */
-    public static void startMission(Context context, String[] urls, StoredFileHelper storage, char kind,
-                                    int threads, String source, String psName, String[] psArgs, long nearLength) {
+    public static void startMission(Context context, DownloadSetting downloadSetting) {
         Intent intent = new Intent(context, DownloadManagerService.class);
         intent.setAction(Intent.ACTION_RUN);
-        intent.putExtra(EXTRA_URLS, urls);
-        intent.putExtra(EXTRA_KIND, kind);
-        intent.putExtra(EXTRA_THREADS, threads);
-        intent.putExtra(EXTRA_SOURCE, source);
-        intent.putExtra(EXTRA_POSTPROCESSING_NAME, psName);
-        intent.putExtra(EXTRA_POSTPROCESSING_ARGS, psArgs);
-        intent.putExtra(EXTRA_NEAR_LENGTH, nearLength);
+        intent.putExtra(EXTRA_URLS, downloadSetting.getUrls());
+        intent.putExtra(EXTRA_KIND, downloadSetting.getKind());
+        intent.putExtra(EXTRA_THREADS, downloadSetting.getThreadCount());
+        intent.putExtra(EXTRA_SOURCE, downloadSetting.getSource());
+        intent.putExtra(EXTRA_POSTPROCESSING_NAME, downloadSetting.getPsName());
+        intent.putExtra(EXTRA_POSTPROCESSING_ARGS, downloadSetting.getPsArgs());
+        intent.putExtra(EXTRA_NEAR_LENGTH, downloadSetting.getNearLength());
 
-        intent.putExtra(EXTRA_PARENT_PATH, storage.getParentUri());
-        intent.putExtra(EXTRA_PATH, storage.getUri());
-        intent.putExtra(EXTRA_STORAGE_TAG, storage.getTag());
+        intent.putExtra(EXTRA_PARENT_PATH, downloadSetting.getStoredFileHelper().getParentUri());
+        intent.putExtra(EXTRA_PATH, downloadSetting.getStoredFileHelper().getUri());
+        intent.putExtra(EXTRA_STORAGE_TAG, downloadSetting.getStoredFileHelper().getTag());
 
         context.startService(intent);
     }

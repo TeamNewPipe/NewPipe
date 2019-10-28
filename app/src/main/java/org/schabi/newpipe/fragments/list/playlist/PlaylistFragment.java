@@ -3,9 +3,6 @@ package org.schabi.newpipe.fragments.list.playlist;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,11 +14,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
+import org.schabi.newpipe.download.DownloadSetting;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -39,6 +41,7 @@ import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.StreamDialogEntry;
 import org.schabi.newpipe.util.ThemeHelper;
@@ -79,6 +82,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     private View headerPlayAllButton;
     private View headerPopupButton;
     private View headerBackgroundButton;
+    private View headerDownloadAllButton;
 
     private MenuItem playlistBookmarkButton;
 
@@ -123,7 +127,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
         headerPlayAllButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_all_button);
         headerPopupButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_popup_button);
         headerBackgroundButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_bg_button);
-
+        headerDownloadAllButton = headerRootLayout.findViewById(R.id.playlist_ctrl_download_all_button);
 
         return headerRootLayout;
     }
@@ -308,6 +312,12 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
             return true;
         });
 
+        headerDownloadAllButton.setOnClickListener(view -> {
+            if (PermissionHelper.checkStoragePermissions(activity, PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE)) {
+                NavigationHelper.downloadPlaylist(this, getPlayQueue());
+            }
+        });
+
         headerBackgroundButton.setOnLongClickListener(view -> {
             NavigationHelper.enqueueOnBackgroundPlayer(activity, getPlayQueue(), true);
             return true;
@@ -320,8 +330,8 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
 
     private PlayQueue getPlayQueue(final int index) {
         final List<StreamInfoItem> infoItems = new ArrayList<>();
-        for(InfoItem i : infoListAdapter.getItemsList()) {
-            if(i instanceof StreamInfoItem) {
+        for (InfoItem i : infoListAdapter.getItemsList()) {
+            if (i instanceof StreamInfoItem) {
                 infoItems.add((StreamInfoItem) i);
             }
         }
@@ -332,6 +342,16 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                 infoItems,
                 index
         );
+    }
+
+    public interface PlaylistDownloadCallback {
+        /**
+         * Callback for next item in playlist queue to invoke download dialog for next item
+         *
+         * @param downloadSetting if smart download checkbox was checked, in which case,
+         *                        we should skip presenting the dialog for each video
+         */
+        void accept(DownloadSetting downloadSetting);
     }
 
     @Override
@@ -349,7 +369,7 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    protected boolean onError(Throwable exception) {
+    public boolean onError(Throwable exception) {
         if (super.onError(exception)) return true;
 
         int errorId = exception instanceof ExtractionException ? R.string.parsing_error : R.string.general_error;
