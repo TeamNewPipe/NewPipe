@@ -1168,7 +1168,7 @@ public class VideoDetailFragment
 
     public void openDownloadDialog() {
             try {
-                DownloadDialog downloadDialog = DownloadDialog.newInstance(currentInfo);
+                DownloadDialog downloadDialog = DownloadDialog.newInstance(currentInfo, null);
                 downloadDialog.setVideoStreams(sortedVideoStreams);
                 downloadDialog.setAudioStreams(currentInfo.getAudioStreams());
                 downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex);

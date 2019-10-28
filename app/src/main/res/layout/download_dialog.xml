@@ -61,11 +61,24 @@
             android:text="@string/caption_setting_title"/>
     </RadioGroup>
 
+    <android.support.v7.widget.AppCompatCheckBox
+        android:id="@+id/dialog_download_checkbox_intelligent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/video_audio_group"
+        android:layout_marginBottom="6dp"
+        android:layout_marginLeft="20dp"
+        android:gravity="left"
+        android:checked="false"
+        android:visibility="gone"
+        android:text="@string/auto"
+        />
+
     <Spinner
         android:id="@+id/quality_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/video_audio_group"
+        android:layout_below="@+id/dialog_download_checkbox_intelligent"
         android:layout_marginBottom="12dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"

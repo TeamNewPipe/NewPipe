@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:layout_toLeftOf="@id/playlist_stream_count"
         android:layout_marginTop="6dp"
         android:ellipsize="end"
         android:maxLines="2"
@@ -38,7 +39,7 @@
             android:padding="2dp"
             android:visibility="gone"
             tools:ignore="RtlHardcoded"
-            tools:visibility="visible">
+            tools:visibility="gone">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/uploader_avatar_view"
@@ -70,13 +71,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/playlist_title_view"
-        android:layout_alignBottom="@+id/playlist_meta"
-        android:layout_alignTop="@+id/playlist_meta"
+        android:layout_alignBottom="@+id/playlist_title_view"
+        android:layout_alignTop="@+id/playlist_title_view"
         android:layout_alignParentRight="true"
         android:layout_marginRight="6dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="4dp"
         android:ellipsize="end"
-        android:gravity="right|center_vertical"
+        android:gravity="right|top"
         android:maxLines="1"
         android:textSize="@dimen/playlist_detail_subtext_size"
         tools:ignore="RtlHardcoded"
@@ -85,7 +86,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/playlist_meta">
+        android:layout_below="@id/playlist_title_view">
 
         <include layout="@layout/playlist_control"/>
     </LinearLayout>
