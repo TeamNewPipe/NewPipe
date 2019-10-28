@@ -109,8 +109,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         }
 
         if (item.getPublishedTime() != null) {
-            itemPublishedTime.setText(Localization
-                    .formatDate(item.getPublishedTime().date().getTime()));
+            itemPublishedTime.setText(Localization.relativeTime(item.getPublishedTime().date()));
         } else {
             itemPublishedTime.setText(item.getTextualPublishedTime());
         }

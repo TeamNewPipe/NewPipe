@@ -94,6 +94,7 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
     implementation 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
+    implementation 'org.ocpsoft.prettytime:prettytime:4.0.1.Final'
 
     implementation "androidx.room:room-runtime:${roomDbLibVersion}"
     implementation "androidx.room:room-rxjava2:${roomDbLibVersion}"

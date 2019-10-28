@@ -1,5 +1,6 @@
 package org.schabi.newpipe.info_list.holder;
 
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -11,6 +12,8 @@ import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.Localization;
+
+import static org.schabi.newpipe.MainActivity.DEBUG;
 
 /*
  * Created by Christian Schabesberger on 01.08.16.
@@ -62,13 +65,30 @@ public class StreamInfoItemHolder extends StreamMiniInfoItemHolder {
                 viewsAndDate = Localization.shortViewCount(itemBuilder.getContext(), infoItem.getViewCount());
             }
         }
-        if (!TextUtils.isEmpty(infoItem.getTextualUploadDate())) {
+
+        final String uploadDate = getFormattedRelativeUploadDate(infoItem);
+        if (!TextUtils.isEmpty(uploadDate)) {
             if (viewsAndDate.isEmpty()) {
-                viewsAndDate = infoItem.getTextualUploadDate();
-            } else {
-                viewsAndDate += " • " + infoItem.getTextualUploadDate();
+                return uploadDate;
             }
+
+            return Localization.concatenateStrings(viewsAndDate, uploadDate);
         }
+
         return viewsAndDate;
+    }
+
+    private String getFormattedRelativeUploadDate(final StreamInfoItem infoItem) {
+        if (infoItem.getUploadDate() != null) {
+            String formattedRelativeTime = Localization.relativeTime(infoItem.getUploadDate().date());
+
+            if (DEBUG && PreferenceManager.getDefaultSharedPreferences(itemBuilder.getContext())
+                    .getBoolean(itemBuilder.getContext().getString(R.string.show_original_time_ago_key), false)) {
+                formattedRelativeTime += " (" + infoItem.getTextualUploadDate() + ")";
+            }
+            return formattedRelativeTime;
+        } else {
+            return infoItem.getTextualUploadDate();
+        }
     }
 }

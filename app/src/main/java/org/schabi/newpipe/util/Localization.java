@@ -2,24 +2,25 @@ package org.schabi.newpipe.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.preference.PreferenceManager;
-import androidx.annotation.NonNull;
-import androidx.annotation.PluralsRes;
-import androidx.annotation.StringRes;
 import android.text.TextUtils;
 
+import org.ocpsoft.prettytime.PrettyTime;
+import org.ocpsoft.prettytime.units.Decade;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
 
 import java.text.DateFormat;
 import java.text.NumberFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.PluralsRes;
+import androidx.annotation.StringRes;
 
 /*
  * Created by chschtsch on 12/29/15.
@@ -43,9 +44,14 @@ import java.util.Locale;
 
 public class Localization {
 
-    public final static String DOT_SEPARATOR = " • ";
+    private static PrettyTime prettyTime;
+    private static final String DOT_SEPARATOR = " • ";
 
     private Localization() {
+    }
+
+    public static void init() {
+        initPrettyTime();
     }
 
     @NonNull
@@ -187,5 +193,27 @@ public class Localization {
             output = String.format(Locale.US, "%d:%02d", minutes, seconds);
         }
         return output;
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Pretty Time
+    //////////////////////////////////////////////////////////////////////////*/
+
+    private static void initPrettyTime() {
+        prettyTime = new PrettyTime(Locale.getDefault());
+        // Do not use decades as YouTube doesn't either.
+        prettyTime.removeUnit(Decade.class);
+    }
+
+    private static PrettyTime getPrettyTime() {
+        // If pretty time's Locale is different, init again with the new one.
+        if (!prettyTime.getLocale().equals(Locale.getDefault())) {
+            initPrettyTime();
+        }
+        return prettyTime;
+    }
+
+    public static String relativeTime(Calendar calendarTime) {
+        return getPrettyTime().formatUnrounded(calendarTime);
     }
 }

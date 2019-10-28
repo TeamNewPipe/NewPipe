@@ -458,6 +458,10 @@
     <string name="enable_leak_canary_summary">Memory leak monitoring may cause the app to become unresponsive when heap dumping</string>
     <string name="enable_disposed_exceptions_title">Report out-of-lifecycle errors</string>
     <string name="enable_disposed_exceptions_summary">Force reporting of undeliverable Rx exceptions outside of fragment or activity lifecycle after disposal</string>
+
+    <string name="show_original_time_ago_title" translatable="false">Show original time ago on items</string>
+    <string name="show_original_time_ago_summary" translatable="false">Original texts from services will be visible in stream items</string>
+
     <!-- Subscriptions import/export -->
     <string name="import_export_title">Import/export</string>
     <string name="import_title">Import</string>
