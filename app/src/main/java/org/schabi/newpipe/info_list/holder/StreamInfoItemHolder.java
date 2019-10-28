@@ -7,6 +7,7 @@ import android.widget.TextView;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.Localization;
@@ -53,7 +54,13 @@ public class StreamInfoItemHolder extends StreamMiniInfoItemHolder {
     private String getStreamInfoDetailLine(final StreamInfoItem infoItem) {
         String viewsAndDate = "";
         if (infoItem.getViewCount() >= 0) {
-            viewsAndDate = Localization.shortViewCount(itemBuilder.getContext(), infoItem.getViewCount());
+            if (infoItem.getStreamType().equals(StreamType.AUDIO_LIVE_STREAM)) {
+                viewsAndDate = Localization.listeningCount(itemBuilder.getContext(), infoItem.getViewCount());
+            } else if (infoItem.getStreamType().equals(StreamType.LIVE_STREAM)) {
+                viewsAndDate = Localization.watchingCount(itemBuilder.getContext(), infoItem.getViewCount());
+            } else {
+                viewsAndDate = Localization.shortViewCount(itemBuilder.getContext(), infoItem.getViewCount());
+            }
         }
         if (!TextUtils.isEmpty(infoItem.getTextualUploadDate())) {
             if (viewsAndDate.isEmpty()) {

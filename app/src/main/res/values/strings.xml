@@ -263,6 +263,19 @@
         <item quantity="one">%s view</item>
         <item quantity="other">%s views</item>
     </plurals>
+
+    <string name="no_one_watching">No one is watching</string>
+    <plurals name="watching">
+        <item quantity="one">%s watching</item>
+        <item quantity="other">%s watching</item>
+    </plurals>
+
+    <string name="no_one_listening">No one is listening</string>
+    <plurals name="listening">
+        <item quantity="one">%s listener</item>
+        <item quantity="other">%s listeners</item>
+    </plurals>
+
     <string name="no_videos">No videos</string>
     <plurals name="videos">
         <item quantity="one">%s video</item>

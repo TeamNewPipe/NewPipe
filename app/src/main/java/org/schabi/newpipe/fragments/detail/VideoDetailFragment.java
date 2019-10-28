@@ -1067,7 +1067,13 @@ public class VideoDetailFragment
         uploaderThumb.setImageDrawable(ContextCompat.getDrawable(activity, R.drawable.buddy));
 
         if (info.getViewCount() >= 0) {
-            videoCountView.setText(Localization.localizeViewCount(activity, info.getViewCount()));
+            if (info.getStreamType().equals(StreamType.AUDIO_LIVE_STREAM)) {
+                videoCountView.setText(Localization.listeningCount(activity, info.getViewCount()));
+            } else if (info.getStreamType().equals(StreamType.LIVE_STREAM)) {
+                videoCountView.setText(Localization.watchingCount(activity, info.getViewCount()));
+            } else {
+                videoCountView.setText(Localization.localizeViewCount(activity, info.getViewCount()));
+            }
             videoCountView.setVisibility(View.VISIBLE);
         } else {
             videoCountView.setVisibility(View.GONE);

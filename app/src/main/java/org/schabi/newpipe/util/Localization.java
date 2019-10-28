@@ -141,6 +141,14 @@ public class Localization {
         }
     }
 
+    public static String listeningCount(Context context, long listeningCount) {
+        return getQuantity(context, R.plurals.listening, R.string.no_one_listening, listeningCount, shortCount(context, listeningCount));
+    }
+
+    public static String watchingCount(Context context, long watchingCount) {
+        return getQuantity(context, R.plurals.watching, R.string.no_one_watching, watchingCount, shortCount(context, watchingCount));
+    }
+
     public static String shortViewCount(Context context, long viewCount) {
         return getQuantity(context, R.plurals.views, R.string.no_views, viewCount, shortCount(context, viewCount));
     }
