@@ -226,13 +226,20 @@ public final class BackgroundPlayer extends Service {
                     PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_PREVIOUS), PendingIntent.FLAG_UPDATE_CURRENT));
             remoteViews.setOnClickPendingIntent(R.id.notificationFForward,
                     PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_NEXT), PendingIntent.FLAG_UPDATE_CURRENT));
-        } else {
+            // We dont need a restart track button (skip track backwards)
+            remoteViews.setViewVisibility(R.id.notificationRestartTrack, View.GONE);
+        } else { // But if we only have one song
+            // Use time skipping for fastforward/rewind
             remoteViews.setInt(R.id.notificationFRewind, SET_IMAGE_RESOURCE_METHOD, R.drawable.exo_controls_rewind);
             remoteViews.setInt(R.id.notificationFForward, SET_IMAGE_RESOURCE_METHOD, R.drawable.exo_controls_fastforward);
             remoteViews.setOnClickPendingIntent(R.id.notificationFRewind,
                     PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_FAST_REWIND), PendingIntent.FLAG_UPDATE_CURRENT));
             remoteViews.setOnClickPendingIntent(R.id.notificationFForward,
                     PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_FAST_FORWARD), PendingIntent.FLAG_UPDATE_CURRENT));
+            // Add a restart track button (skip track backwards)
+            remoteViews.setViewVisibility(R.id.notificationRestartTrack, View.VISIBLE);
+            remoteViews.setOnClickPendingIntent(R.id.notificationRestartTrack,
+                    PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_PLAY_PREVIOUS), PendingIntent.FLAG_UPDATE_CURRENT));
         }
 
         setRepeatModeIcon(remoteViews, basePlayerImpl.getRepeatMode());
