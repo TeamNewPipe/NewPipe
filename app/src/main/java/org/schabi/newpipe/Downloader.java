@@ -221,7 +221,7 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
             return null;
         }
 
-        return new DownloadResponse(body.string(), response.headers().toMultimap());
+        return new DownloadResponse(response.code(), body.string(), response.headers().toMultimap());
     }
 
     @Override
@@ -241,7 +241,7 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
         String contentType = requestHeaders.get("Content-Type").get(0);
 
         RequestBody okRequestBody = null;
-        if(null != request.getRequestBody()){
+        if (null != request.getRequestBody()) {
             okRequestBody = RequestBody.create(MediaType.parse(contentType), request.getRequestBody());
         }
         final Request.Builder requestBuilder = new Request.Builder()
@@ -275,6 +275,22 @@ public class Downloader implements org.schabi.newpipe.extractor.Downloader {
             return null;
         }
 
-        return new DownloadResponse(body.string(), response.headers().toMultimap());
+        return new DownloadResponse(response.code(), body.string(), response.headers().toMultimap());
     }
+
+    @Override
+    public DownloadResponse head(String siteUrl) throws IOException, ReCaptchaException {
+        final Request request = new Request.Builder()
+                .head().url(siteUrl)
+                .addHeader("User-Agent", USER_AGENT)
+                .build();
+        final Response response = client.newCall(request).execute();
+
+        if (response.code() == 429) {
+            throw new ReCaptchaException("reCaptcha Challenge requested", siteUrl);
+        }
+
+        return new DownloadResponse(response.code(), null, response.headers().toMultimap());
+    }
+
 }
