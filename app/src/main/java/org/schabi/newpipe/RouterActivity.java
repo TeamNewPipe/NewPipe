@@ -436,7 +436,7 @@ public class RouterActivity extends AppCompatActivity {
                             sortedVideoStreams);
 
                     FragmentManager fm = getSupportFragmentManager();
-                    DownloadDialog downloadDialog = DownloadDialog.newInstance(result);
+                    DownloadDialog downloadDialog = DownloadDialog.newInstance(result, null);
                     downloadDialog.setVideoStreams(sortedVideoStreams);
                     downloadDialog.setAudioStreams(result.getAudioStreams());
                     downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex);

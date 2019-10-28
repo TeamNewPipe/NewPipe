@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AlertDialog;
 import android.util.Log;
+import android.util.SparseArray;
 import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -24,12 +25,16 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.RouterActivity;
 import org.schabi.newpipe.about.AboutActivity;
 import org.schabi.newpipe.download.DownloadActivity;
+import org.schabi.newpipe.download.DownloadDialog;
+import org.schabi.newpipe.download.DownloadSetting;
+import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
+import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
@@ -52,9 +57,21 @@ import org.schabi.newpipe.player.PopupVideoPlayer;
 import org.schabi.newpipe.player.PopupVideoPlayerActivity;
 import org.schabi.newpipe.player.VideoPlayer;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
+import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.settings.SettingsActivity;
+import org.schabi.newpipe.util.StreamItemAdapter.StreamSizeWrapper;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import io.reactivex.Completable;
+import io.reactivex.functions.Predicate;
+import us.shandian.giga.io.StoredDirectoryHelper;
+import us.shandian.giga.io.StoredFileHelper;
+import us.shandian.giga.postprocessing.Postprocessing;
+import us.shandian.giga.service.DownloadManagerService;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class NavigationHelper {
@@ -136,6 +153,231 @@ public class NavigationHelper {
     public static void playOnBackgroundPlayer(final Context context, final PlayQueue queue, final boolean resumePlayback) {
         Toast.makeText(context, R.string.background_player_playing_toast, Toast.LENGTH_SHORT).show();
         startService(context, getPlayerIntent(context, BackgroundPlayer.class, queue, resumePlayback));
+    }
+
+    public static void downloadPlaylist(final PlaylistFragment context, final PlayQueue queue) {
+        List<PlayQueueItem> events = queue.getStreams();
+        Iterator<PlayQueueItem> eventsIterator = events.listIterator();
+        if (eventsIterator.hasNext()) {
+            startDownloadPlaylist(context, eventsIterator, null);
+        }
+    }
+
+    private static void startDownloadPlaylist(final PlaylistFragment activity,
+                                              final Iterator<PlayQueueItem> itemIterator,
+                                              DownloadSetting downloadSetting) {
+        if (downloadSetting != null) {
+            Completable.create(emitter -> {
+                while (itemIterator.hasNext()) {
+                    PlayQueueItem queueItem = itemIterator.next();
+                    queueItem.getStream().filter(streamInfo ->
+                            streamInfo != null).subscribe(streamInfo -> startDownloadFromDownloadSetting(activity,
+                            downloadSetting, streamInfo), activity::onError);
+                }
+                emitter.onComplete();
+            }).subscribe();
+        } else {
+            try {
+                if (itemIterator.hasNext()) {
+                    PlayQueueItem item = itemIterator.next();
+                    item.getStream().subscribe(streamInfo -> startDownloadFromStreamInfo(activity, streamInfo, itemIterator),
+                            activity::onError);
+                }
+            } catch (Exception e) {
+                Toast.makeText(activity.getActivity(),
+                        R.string.could_not_setup_download_menu,
+                        Toast.LENGTH_LONG).show();
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Starts downloading video without invoking the {@link DownloadDialog}
+     *
+     * @param activity
+     * @param downloadSetting
+     * @param streamInfo
+     */
+    private static void startDownloadFromDownloadSetting(PlaylistFragment activity, DownloadSetting downloadSetting, StreamInfo streamInfo) {
+
+        DownloadSetting downloadSettingNew = refactorDownloadSetting(activity, downloadSetting, streamInfo);
+
+        if (downloadSettingNew == null) return;
+
+        DownloadManagerService.startMission(activity.getContext(), downloadSettingNew);
+    }
+
+    /**
+     * Refactors the download setting for the new stream info
+     *
+     * @param activity
+     * @param downloadSetting
+     * @param streamInfo
+     * @return
+     */
+    private static DownloadSetting refactorDownloadSetting(PlaylistFragment activity, DownloadSetting downloadSetting,
+                                                           StreamInfo streamInfo) {
+        Stream selectedStream;
+        String[] urls;
+        String psName = null;
+        String[] psArgs = null;
+        String secondaryStreamUrl = null;
+        long nearLength = 0;
+        String fileName = streamInfo.getName().concat(".");
+        String mime;
+
+
+        List<VideoStream> sortedVideoStream = ListHelper.getSortedStreamVideosList(activity.getActivity(),
+                streamInfo.getVideoStreams(), streamInfo.getVideoOnlyStreams(), false);
+
+        StreamItemAdapter.StreamSizeWrapper<VideoStream> wrappedVideoStreams = new StreamSizeWrapper<>(sortedVideoStream, activity.getContext());
+        StreamItemAdapter.StreamSizeWrapper<AudioStream> wrappedAudioStreams = new StreamSizeWrapper<>(streamInfo.getAudioStreams(), activity.getContext());
+        StreamItemAdapter.StreamSizeWrapper<SubtitlesStream> wrappedSubtitleStreams = new StreamSizeWrapper<>(streamInfo.getSubtitles(), activity.getContext());
+
+        SparseArray<SecondaryStreamHelper<AudioStream>> secondaryAudioStreams = new SparseArray<>(4);
+        for (int i = 0; i < sortedVideoStream.size(); i++) {
+            if (!sortedVideoStream.get(i).isVideoOnly()) continue;
+            AudioStream audioStream = SecondaryStreamHelper.getAudioStreamFor(wrappedAudioStreams.getStreamsList(), sortedVideoStream.get(i));
+
+            if (audioStream != null) {
+                secondaryAudioStreams.append(i, new SecondaryStreamHelper<>(wrappedAudioStreams, audioStream));
+            }
+        }
+
+        StreamItemAdapter<AudioStream, Stream> audioStreamsAdapter = new StreamItemAdapter<>(activity.getActivity(),
+                wrappedAudioStreams);
+        StreamItemAdapter<VideoStream, AudioStream> videoStreamsAdapter = new StreamItemAdapter<>(activity.getActivity(),
+                wrappedVideoStreams, secondaryAudioStreams);
+        StreamItemAdapter<SubtitlesStream, Stream> subtitleStreamsAdapter = new StreamItemAdapter<>(activity.getActivity(),
+                wrappedSubtitleStreams);
+
+        switch (downloadSetting.getKind()) {
+            case 'a':
+                AudioStream audioStream = null;
+                for (AudioStream currentStream : audioStreamsAdapter.getAll()) {
+                    if (currentStream.getAverageBitrate() == downloadSetting.getAudioBitRate()) {
+                        audioStream = currentStream;
+                        break;
+                    }
+                }
+                if (audioStream == null) {
+                    audioStream = audioStreamsAdapter.getItem(0);
+                }
+                if (audioStream.getFormat() == MediaFormat.M4A) {
+                    psName = Postprocessing.ALGORITHM_M4A_NO_DASH;
+                }
+                fileName += audioStream.getFormat().getSuffix();
+                mime = audioStream.getFormat().getMimeType();
+                selectedStream = audioStream;
+                break;
+            case 'v':
+                VideoStream videoStream = null;
+                for (VideoStream currentStream : sortedVideoStream) {
+                    if (currentStream.getResolution().equals(downloadSetting.getVideoResolution())) {
+                        videoStream = currentStream;
+                        break;
+                    }
+                }
+                if (videoStream == null) {
+                    videoStream = sortedVideoStream.get(0);
+                }
+                SecondaryStreamHelper<AudioStream> secondaryStream = videoStreamsAdapter
+                        .getAllSecondary()
+                        .get(wrappedVideoStreams.getStreamsList().indexOf(videoStream));
+                if (secondaryStream != null) {
+                    secondaryStreamUrl = secondaryStream.getStream().getUrl();
+
+                    if (videoStream.getFormat() == MediaFormat.MPEG_4)
+                        psName = Postprocessing.ALGORITHM_MP4_FROM_DASH_MUXER;
+                    else
+                        psName = Postprocessing.ALGORITHM_WEBM_MUXER;
+
+                    psArgs = null;
+                    long videoSize = wrappedVideoStreams.getSizeInBytes(videoStream);
+
+                    // set nearLength, only, if both sizes are fetched or known. This probably
+                    // does not work on slow networks but is later updated in the downloader
+                    if (secondaryStream.getSizeInBytes() > 0 && videoSize > 0) {
+                        nearLength = secondaryStream.getSizeInBytes() + videoSize;
+                    }
+                }
+                fileName += videoStream.getFormat().getSuffix();
+                mime = videoStream.getFormat().getMimeType();
+                selectedStream = videoStream;
+                break;
+            case 's':
+                SubtitlesStream subtitlesStream = null;
+                for (SubtitlesStream currentStream : subtitleStreamsAdapter.getAll()) {
+                    if (currentStream.getLocale().equals(downloadSetting.getSubtitleLocale())) {
+                        subtitlesStream = currentStream;
+                        break;
+                    }
+                }
+                if (subtitlesStream == null) {
+                    subtitlesStream = subtitleStreamsAdapter.getItem(0);
+                }
+                if (subtitlesStream.getFormat() == MediaFormat.TTML) {
+                    psName = Postprocessing.ALGORITHM_TTML_CONVERTER;
+                    psArgs = new String[]{
+                            subtitlesStream.getFormat().getSuffix(),
+                            "false",// ignore empty frames
+                            "false",// detect youtube duplicate lines
+                    };
+                }
+                fileName += subtitlesStream.getFormat() == MediaFormat.TTML ? MediaFormat.SRT.suffix :
+                        subtitlesStream.getFormat().suffix;
+                mime = subtitlesStream.getFormat().getMimeType();
+                selectedStream = subtitlesStream;
+                break;
+            default:
+                return null;
+        }
+
+        if (secondaryStreamUrl == null) {
+            urls = new String[]{selectedStream.getUrl()};
+        } else {
+            urls = new String[]{selectedStream.getUrl(), secondaryStreamUrl};
+        }
+        StoredFileHelper storedFileHelper = downloadSetting.getStoredFileHelper();
+        try {
+            StoredDirectoryHelper storedDirectoryHelper = new StoredDirectoryHelper(activity.getContext(),
+                    storedFileHelper.getParentUri(), storedFileHelper.getTag());
+            StoredFileHelper storedFileHelperNew = storedDirectoryHelper.createFile(fileName, mime);
+            if(storedFileHelperNew == null) {
+                return null;
+            }
+            DownloadSetting downloadSettingNew = new DownloadSetting(storedFileHelperNew, downloadSetting.getThreadCount(),
+                    urls, streamInfo.getUrl(), downloadSetting.getKind(), psName, psArgs,
+                    nearLength, downloadSetting.getVideoResolution(), downloadSetting.getAudioBitRate(),
+                    downloadSetting.getSubtitleLocale());
+            return downloadSettingNew;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * Invokes the {@link DownloadDialog} for each play queue item
+     *
+     * @param activity
+     * @param streamInfo
+     * @param itemIterator
+     */
+    private static void startDownloadFromStreamInfo(PlaylistFragment activity, StreamInfo streamInfo, Iterator<PlayQueueItem> itemIterator) {
+        DownloadDialog downloadDialog = DownloadDialog.newInstance(streamInfo, smartDownload -> {
+            if (itemIterator.hasNext())
+                startDownloadPlaylist(activity, itemIterator, smartDownload);
+        });
+        List<VideoStream> sortedVideoStream = ListHelper.getSortedStreamVideosList(activity.getActivity(),
+                streamInfo.getVideoStreams(), streamInfo.getVideoOnlyStreams(), false);
+        downloadDialog.setVideoStreams(sortedVideoStream);
+        downloadDialog.setAudioStreams(streamInfo.getAudioStreams());
+        downloadDialog.setSelectedVideoStream(ListHelper.getDefaultResolutionIndex(activity.getActivity(), streamInfo.getVideoStreams()));
+        downloadDialog.setSubtitleStreams(streamInfo.getSubtitles());
+
+        downloadDialog.show(activity.getActivity().getSupportFragmentManager(), "downloadDialog");
     }
 
     public static void enqueueOnPopupPlayer(final Context context, final PlayQueue queue, final boolean resumePlayback) {
@@ -499,7 +741,7 @@ public class NavigationHelper {
             case STREAM:
                 rIntent.putExtra(VideoDetailFragment.AUTO_PLAY,
                         PreferenceManager.getDefaultSharedPreferences(context)
-                        .getBoolean(context.getString(R.string.autoplay_through_intent_key), false));
+                                .getBoolean(context.getString(R.string.autoplay_through_intent_key), false));
                 break;
         }
 
@@ -532,6 +774,7 @@ public class NavigationHelper {
 
     /**
      * Start an activity to install Kore
+     *
      * @param context the context
      */
     public static void installKore(Context context) {
@@ -540,13 +783,12 @@ public class NavigationHelper {
 
     /**
      * Start Kore app to show a video on Kodi
-     *
      * For a list of supported urls see the
      * <a href="https://github.com/xbmc/Kore/blob/master/app/src/main/AndroidManifest.xml">
-     *     Kore source code
+     * Kore source code
      * </a>.
      *
-     * @param context the context to use
+     * @param context  the context to use
      * @param videoURL the url to the video
      */
     public static void playWithKore(Context context, Uri videoURL) {

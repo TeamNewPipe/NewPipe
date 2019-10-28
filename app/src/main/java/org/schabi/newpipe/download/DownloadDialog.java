@@ -23,9 +23,11 @@ import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -46,6 +48,7 @@ import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.extractor.utils.Localization;
+import org.schabi.newpipe.fragments.list.playlist.PlaylistFragment;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.settings.NewPipeSettings;
@@ -76,7 +79,8 @@ import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.service.DownloadManagerService.DownloadManagerBinder;
 import us.shandian.giga.service.MissionState;
 
-public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheckedChangeListener, AdapterView.OnItemSelectedListener {
+public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheckedChangeListener,
+        AdapterView.OnItemSelectedListener {
     private static final String TAG = "DialogFragment";
     private static final boolean DEBUG = MainActivity.DEBUG;
     private static final int REQUEST_DOWNLOAD_SAVE_AS = 0x1230;
@@ -107,21 +111,27 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     private RadioGroup radioStreamsGroup;
     private TextView threadsCountTextView;
     private SeekBar threadsSeekBar;
+    private CheckBox smartDownloadCheckbox;
+    private DownloadSetting downloadSetting;
+
+    @Nullable
+    private PlaylistFragment.PlaylistDownloadCallback playlistDownloadCallback;
 
     private SharedPreferences prefs;
 
-    public static DownloadDialog newInstance(StreamInfo info) {
+    public static DownloadDialog newInstance(StreamInfo info, @Nullable PlaylistFragment.PlaylistDownloadCallback callback) {
         DownloadDialog dialog = new DownloadDialog();
         dialog.setInfo(info);
+        dialog.setPlaylistCallback(callback);
         return dialog;
     }
 
-    public static DownloadDialog newInstance(Context context, StreamInfo info) {
+    public static DownloadDialog newInstance(Context context, StreamInfo info, @Nullable PlaylistFragment.PlaylistDownloadCallback callback) {
         final ArrayList<VideoStream> streamsList = new ArrayList<>(ListHelper.getSortedStreamVideosList(context,
                 info.getVideoStreams(), info.getVideoOnlyStreams(), false));
         final int selectedStreamIndex = ListHelper.getDefaultResolutionIndex(context, streamsList);
 
-        final DownloadDialog instance = newInstance(info);
+        final DownloadDialog instance = newInstance(info, callback);
         instance.setVideoStreams(streamsList);
         instance.setSelectedVideoStream(selectedStreamIndex);
         instance.setAudioStreams(info.getAudioStreams());
@@ -160,6 +170,10 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
 
     public void setSelectedVideoStream(int selectedVideoIndex) {
         this.selectedVideoIndex = selectedVideoIndex;
+    }
+
+    public void setPlaylistCallback(PlaylistFragment.PlaylistDownloadCallback callback) {
+        this.playlistDownloadCallback = callback;
     }
 
     public void setSelectedAudioStream(int selectedAudioIndex) {
@@ -257,6 +271,10 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
 
         radioStreamsGroup = view.findViewById(R.id.video_audio_group);
         radioStreamsGroup.setOnCheckedChangeListener(this);
+
+        smartDownloadCheckbox = view.findViewById(R.id.dialog_download_checkbox_intelligent);
+        if (playlistDownloadCallback != null)
+            smartDownloadCheckbox.setVisibility(View.VISIBLE);
 
         initToolbar(view.findViewById(R.id.toolbar));
         setupDownloadOptions();
@@ -364,12 +382,29 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         okButton = toolbar.findViewById(R.id.okay);
         okButton.setEnabled(false);// disable until the download service connection is done
 
+        if (playlistDownloadCallback != null) {
+            toolbar.setTitle(getResources().getString(R.string.download) + " (" +
+                    getResources().getString(R.string.playlist) + ")");
+            MenuItem menuItem = toolbar.getMenu().findItem(R.id.skip);
+            menuItem.setVisible(true);
+        } else {
+            toolbar.setTitle(R.string.download_dialog_title);
+        }
+
         toolbar.setOnMenuItemClickListener(item -> {
+
             if (item.getItemId() == R.id.okay) {
                 prepareSelectedDownload();
-                return true;
+
+            } else if (item.getItemId() == R.id.skip) {
+                if (playlistDownloadCallback != null) {
+
+                    playlistDownloadCallback.accept(null);
+                }
             }
-            return false;
+
+            getDialog().dismiss();
+            return true;
         });
     }
 
@@ -780,12 +815,17 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         String[] psArgs = null;
         String secondaryStreamUrl = null;
         long nearLength = 0;
+        String videoResolution = null;
+        int audioBitrate = -1;
+        Locale subtitleLocale = null;
 
         // more download logic: select muxer, subtitle converter, etc.
         switch (radioStreamsGroup.getCheckedRadioButtonId()) {
             case R.id.audio_button:
                 kind = 'a';
-                selectedStream = audioStreamsAdapter.getItem(selectedAudioIndex);
+                AudioStream audioStream = audioStreamsAdapter.getItem(selectedAudioIndex);
+                audioBitrate = audioStream.getAverageBitrate();
+                selectedStream = audioStream;
 
                 if (selectedStream.getFormat() == MediaFormat.M4A) {
                     psName = Postprocessing.ALGORITHM_M4A_NO_DASH;
@@ -793,7 +833,9 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
                 break;
             case R.id.video_button:
                 kind = 'v';
-                selectedStream = videoStreamsAdapter.getItem(selectedVideoIndex);
+                VideoStream videoStream = videoStreamsAdapter.getItem(selectedVideoIndex);
+                videoResolution = videoStream.getResolution();
+                selectedStream = videoStream;
 
                 SecondaryStreamHelper<AudioStream> secondaryStream = videoStreamsAdapter
                         .getAllSecondary()
@@ -820,7 +862,9 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
             case R.id.subtitle_button:
                 threads = 1;// use unique thread for subtitles due small file size
                 kind = 's';
-                selectedStream = subtitleStreamsAdapter.getItem(selectedSubtitleIndex);
+                SubtitlesStream subtitlesStream = subtitleStreamsAdapter.getItem(selectedSubtitleIndex);
+                subtitleLocale = subtitlesStream.getLocale();
+                selectedStream = subtitlesStream;
 
                 if (selectedStream.getFormat() == MediaFormat.TTML) {
                     psName = Postprocessing.ALGORITHM_TTML_CONVERTER;
@@ -840,8 +884,17 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         } else {
             urls = new String[]{selectedStream.getUrl(), secondaryStreamUrl};
         }
+        this.downloadSetting = new DownloadSetting(storage, threads, urls, currentInfo.getUrl(), kind, psName, psArgs,
+                nearLength, videoResolution, audioBitrate, subtitleLocale);
+        DownloadManagerService.startMission(context, downloadSetting);
 
-        DownloadManagerService.startMission(context, urls, storage, kind, threads, currentInfo.getUrl(), psName, psArgs, nearLength);
+        if (playlistDownloadCallback != null) {
+            if (smartDownloadCheckbox.isChecked() && downloadSetting != null) {
+                playlistDownloadCallback.accept(downloadSetting);
+            } else {
+                playlistDownloadCallback.accept(null);
+            }
+        }
 
         dismiss();
     }

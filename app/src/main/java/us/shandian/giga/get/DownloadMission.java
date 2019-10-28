@@ -3,6 +3,8 @@ package us.shandian.giga.get;
 import android.os.Handler;
 import android.util.Log;
 
+import androidx.annotation.Nullable;
+
 import org.schabi.newpipe.Downloader;
 
 import java.io.File;
@@ -15,7 +17,6 @@ import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.UnknownHostException;
 
-import javax.annotation.Nullable;
 import javax.net.ssl.SSLException;
 
 import us.shandian.giga.io.StoredFileHelper;
