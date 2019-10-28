@@ -10,6 +10,7 @@ import androidx.annotation.StringRes;
 import android.text.TextUtils;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.localization.ContentCountry;
 
 import java.text.DateFormat;
 import java.text.NumberFormat;
@@ -69,16 +70,18 @@ public class Localization {
         return stringBuilder.toString();
     }
 
-    public static org.schabi.newpipe.extractor.utils.Localization getPreferredExtractorLocal(Context context) {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+    public static org.schabi.newpipe.extractor.localization.Localization getPreferredLocalization(final Context context) {
+        final String contentLanguage = PreferenceManager
+                .getDefaultSharedPreferences(context)
+                .getString(context.getString(R.string.content_language_key), context.getString(R.string.default_language_value));
+        return org.schabi.newpipe.extractor.localization.Localization.fromLocalizationCode(contentLanguage);
+    }
 
-        String languageCode = sp.getString(context.getString(R.string.content_language_key),
-                context.getString(R.string.default_language_value));
-
-        String countryCode = sp.getString(context.getString(R.string.content_country_key),
-                context.getString(R.string.default_country_value));
-
-        return new org.schabi.newpipe.extractor.utils.Localization(countryCode, languageCode);
+    public static ContentCountry getPreferredContentCountry(final Context context) {
+        final String contentCountry = PreferenceManager
+                .getDefaultSharedPreferences(context)
+                .getString(context.getString(R.string.content_country_key), context.getString(R.string.default_country_value));
+        return new ContentCountry(contentCountry);
     }
 
     public static Locale getPreferredLocale(Context context) {
@@ -106,27 +109,12 @@ public class Localization {
         return nf.format(number);
     }
 
-    private static String formatDate(Context context, String date) {
-        Locale locale = getPreferredLocale(context);
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date datum = null;
-        try {
-            datum = formatter.parse(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM, locale);
-
-        return df.format(datum);
+    public static String formatDate(Date date) {
+        return DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault()).format(date);
     }
 
-    public static String localizeDate(Context context, String date) {
-        Resources res = context.getResources();
-        String dateString = res.getString(R.string.upload_date_text);
-
-        String formattedDate = formatDate(context, date);
-        return String.format(dateString, formattedDate);
+    public static String localizeUploadDate(Context context, Date date) {
+        return context.getString(R.string.upload_date_text, formatDate(date));
     }
 
     public static String localizeViewCount(Context context, long viewCount) {

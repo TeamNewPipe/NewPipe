@@ -21,13 +21,14 @@ import org.acra.config.ACRAConfiguration;
 import org.acra.config.ACRAConfigurationException;
 import org.acra.config.ConfigurationBuilder;
 import org.acra.sender.ReportSenderFactory;
-import org.schabi.newpipe.extractor.Downloader;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.downloader.Downloader;
 import org.schabi.newpipe.report.AcraReportSenderFactory;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.ExtractorHelper;
+import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.StateSaver;
 
 import java.io.IOException;
@@ -95,7 +96,9 @@ public class App extends Application {
         SettingsActivity.initSettings(this);
 
         NewPipe.init(getDownloader(),
-                org.schabi.newpipe.util.Localization.getPreferredExtractorLocal(this));
+                Localization.getPreferredLocalization(this),
+                Localization.getPreferredContentCountry(this));
+
         StateSaver.init(this);
         initNotificationChannel();
 
@@ -109,7 +112,7 @@ public class App extends Application {
     }
 
     protected Downloader getDownloader() {
-        return org.schabi.newpipe.Downloader.init(null);
+        return DownloaderImpl.init(null);
     }
 
     private void configureRxJavaErrorHandler() {

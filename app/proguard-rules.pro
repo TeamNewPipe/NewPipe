@@ -17,6 +17,8 @@
 #}
 
 -dontobfuscate
+-keep class org.schabi.newpipe.extractor.timeago.patterns.** { *; }
+
 -keep class org.mozilla.javascript.** { *; }
 
 -keep class org.mozilla.classfile.ClassFileWriter

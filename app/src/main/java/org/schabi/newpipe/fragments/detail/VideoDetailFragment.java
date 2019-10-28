@@ -1120,9 +1120,15 @@ public class VideoDetailFragment
         videoTitleToggleArrow.setVisibility(View.VISIBLE);
         videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
         videoDescriptionRootLayout.setVisibility(View.GONE);
-        if (!TextUtils.isEmpty(info.getUploadDate())) {
-            videoUploadDateView.setText(Localization.localizeDate(activity, info.getUploadDate()));
+
+        if (info.getUploadDate() != null) {
+            videoUploadDateView.setText(Localization.localizeUploadDate(activity, info.getUploadDate().date().getTime()));
+            videoUploadDateView.setVisibility(View.VISIBLE);
+        } else {
+            videoUploadDateView.setText(null);
+            videoUploadDateView.setVisibility(View.GONE);
         }
+
         prepareDescription(info.getDescription());
         updateProgressInfo(info);
 

@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.schabi.newpipe.Downloader;
+import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.Stream;
@@ -182,7 +182,7 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
                         continue;
                     }
 
-                    final long contentLength = Downloader.getInstance().getContentLength(stream.getUrl());
+                    final long contentLength = DownloaderImpl.getInstance().getContentLength(stream.getUrl());
                     streamsWrapper.setSize(stream, contentLength);
                     hasChanged = true;
                 }

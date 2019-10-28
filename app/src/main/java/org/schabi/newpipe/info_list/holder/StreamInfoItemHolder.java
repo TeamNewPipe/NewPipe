@@ -55,11 +55,11 @@ public class StreamInfoItemHolder extends StreamMiniInfoItemHolder {
         if (infoItem.getViewCount() >= 0) {
             viewsAndDate = Localization.shortViewCount(itemBuilder.getContext(), infoItem.getViewCount());
         }
-        if (!TextUtils.isEmpty(infoItem.getUploadDate())) {
+        if (!TextUtils.isEmpty(infoItem.getTextualUploadDate())) {
             if (viewsAndDate.isEmpty()) {
-                viewsAndDate = infoItem.getUploadDate();
+                viewsAndDate = infoItem.getTextualUploadDate();
             } else {
-                viewsAndDate += " • " + infoItem.getUploadDate();
+                viewsAndDate += " • " + infoItem.getTextualUploadDate();
             }
         }
         return viewsAndDate;
