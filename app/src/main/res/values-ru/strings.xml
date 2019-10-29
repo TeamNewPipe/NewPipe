@@ -309,8 +309,8 @@
     <string name="export_complete_toast">Экспорт завершён</string>
     <string name="import_complete_toast">Импорт завершён</string>
     <string name="no_valid_zip_file">Нет верного Zip-файла</string>
-    <string name="could_not_import_all_files">Внимание: не все файлы были импортированы.</string>
-    <string name="override_current_data">Текущие данные будут заменены.</string>
+    <string name="could_not_import_all_files">Внимание: не все файлы были импортированы</string>
+    <string name="override_current_data">Текущие данные будут заменены</string>
     <string name="drawer_header_action_paceholder_text">Скоро здесь кое-что появится ;D</string>
     <string name="always_ask_open_action">Всегда спрашивать</string>
     <string name="create_playlist">Создать плейлист</string>
