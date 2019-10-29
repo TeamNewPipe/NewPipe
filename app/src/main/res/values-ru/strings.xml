@@ -131,9 +131,9 @@
     <string name="disabled">Отключено</string>
     <string name="popup_resizing_indicator_title">Изменение размера</string>
     <string name="use_external_video_player_summary">Убирает звук в НЕКОТОРЫХ разрешениях</string>
-    <string name="short_million">\\u0020млн</string>
-    <string name="short_billion">\\u0020млрд</string>
-    <string name="short_thousand">\\u0020тыс.</string>
+    <string name="short_million">" млн"</string>
+    <string name="short_billion">" млрд"</string>
+    <string name="short_thousand">" тыс."</string>
     <string name="default_popup_resolution_title">Разрешение очереди всплывающего окна</string>
     <string name="popup_remember_size_pos_summary">Помнить последние размер и позицию всплывающего окна</string>
     <string name="show_search_suggestions_title">Поисковые предложения</string>
