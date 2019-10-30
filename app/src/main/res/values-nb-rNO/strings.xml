@@ -121,7 +121,7 @@
     <string name="yes">Ja</string>
     <string name="later">Senere</string>
     <string name="disabled">Avskrudd</string>
-    <string name="short_thousand">K</string>
+    <string name="short_thousand">k</string>
     <string name="short_million">M</string>
     <string name="short_billion">Mrd.</string>
     <string name="msg_popup_permission">Denne tilgangen trengs for
@@ -194,8 +194,8 @@
     </plurals>
     <string name="no_videos">Ingen videoer</string>
     <plurals name="videos">
-        <item quantity="one">Video</item>
-        <item quantity="other">Videoer</item>
+        <item quantity="one">Én video</item>
+        <item quantity="other">%s videoer</item>
     </plurals>
     <string name="view_on_github">Vis på GitHub</string>
     <string name="app_license_title">NewPipe sin lisens</string>
@@ -347,7 +347,7 @@
     <string name="playback_pitch">Tonehøyde</string>
     <string name="playback_default">Forvalg</string>
     <string name="clear_views_history_title">Tøm avspillingshistorikk</string>
-    <string name="clear_views_history_summary">Slett historikken for avspilte strømmer</string>
+    <string name="clear_views_history_summary">Slett historikken og posisjon for avspilte strømmer</string>
     <string name="delete_view_history_alert">Slett hele visningshistorikken\?</string>
     <string name="watch_history_deleted">Visningshistorikk slettet.</string>
     <string name="clear_search_history_title">Tøm søkehistorikk</string>
@@ -498,4 +498,11 @@
     <string name="downloads_storage_ask_summary">Du vil bli spurt om hvor hver nedlasting skal plasseres</string>
     <string name="downloads_storage_ask_summary_kitkat">Du vil bli spurt om hvor hver nedlasting skal plasseres.
 \nSkru på dette valget hvis du vil laste ned til eksternt SD-kort.</string>
+    <string name="downloads_storage_use_saf_title">Bruk SAF</string>
+    <string name="downloads_storage_use_saf_summary">Lagringstilgangsrammeverk (SAF) tillater nedlastinger til eksternt SD-kort.
+\nMerk: Noen enheter er ikke kompatible.</string>
+    <string name="clear_playback_states_title">Slett avspillingsposisjoner</string>
+    <string name="clear_playback_states_summary">Sletter alle avspillingsposisjoner</string>
+    <string name="delete_playback_states_alert">Slett alle avspillingsposisjoner\?</string>
+    <string name="download_choose_new_path">Endre nedlastingsmapper for å benytte dette</string>
 </resources>

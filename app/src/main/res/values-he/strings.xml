@@ -22,12 +22,12 @@
     <string name="popup_mode_share_menu_title">מצב חלון צף של NewPipe</string>
     <string name="controls_background_title">רקע</string>
     <string name="controls_popup_title">חלון צף</string>
-    <string name="download_path_title">נתיב להורדת סרטונים</string>
-    <string name="download_path_summary">נתיב מיקום לאחסון סרטונים</string>
-    <string name="download_path_dialog_title">נא להקליד נתיב לשמירת סרטונים</string>
+    <string name="download_path_title">תיקייה להורדת סרטונים</string>
+    <string name="download_path_summary">קובצי וידאו שהורדת מאוחסנים כאן</string>
+    <string name="download_path_dialog_title">נא לבחור תיקייה לשמירת קובצי סרטונים</string>
     <string name="download_path_audio_title">תיקיית הורדות שמע</string>
-    <string name="download_path_audio_summary">הורדות שמע נשמרות כאן</string>
-    <string name="download_path_audio_dialog_title">נא להקליד נתיב לשמירת קובצי שמע</string>
+    <string name="download_path_audio_summary">קובצי שמע שהורדת מאוחסנים כאן</string>
+    <string name="download_path_audio_dialog_title">נא לבחור תיקייה לשמירת קובצי שמע</string>
     <string name="autoplay_by_calling_app_title">ניגון אוטומטי</string>
     <string name="autoplay_by_calling_app_summary">מנגן סרטון כאשר NewPipe נפתח דרך יישומון אחר</string>
     <string name="default_resolution_title">רזולוציית בררת המחדל</string>
@@ -132,7 +132,7 @@
     <string name="your_comment">ההערה שלך (באנגלית):</string>
     <string name="error_details_headline">פרטים:</string>
     <string name="list_thumbnail_view_description">תמונה ממוזערת לתצוגה המקדימה של הסרטון</string>
-    <string name="detail_thumbnail_view_description">תמונות ממוזערות לתצוגה המקדימה של הסרטון</string>
+    <string name="detail_thumbnail_view_description">נגינת סרטון, משך:</string>
     <string name="detail_uploader_thumbnail_view_description">תמונה ייצוגית של המפרסם</string>
     <string name="detail_likes_img_view_description">אהבו</string>
     <string name="detail_dislikes_img_view_description">לא אהבו</string>
@@ -148,9 +148,9 @@
     <string name="audio">שמע</string>
     <string name="retry">ניסיון חוזר</string>
     <string name="storage_permission_denied">הגישה לאחסון נדחתה</string>
-    <string name="short_thousand">K</string>
-    <string name="short_million">M</string>
-    <string name="short_billion">B</string>
+    <string name="short_thousand">ק׳</string>
+    <string name="short_million">מ׳</string>
+    <string name="short_billion">ב׳</string>
     <string name="no_subscribers">אין מנויים</string>
     <plurals name="subscribers">
         <item quantity="one">מנוי אחד</item>
@@ -167,10 +167,10 @@
     </plurals>
     <string name="no_videos">אין סרטונים</string>
     <plurals name="videos">
-        <item quantity="one">סרטון</item>
-        <item quantity="two">סרטונים</item>
-        <item quantity="many">סרטונים</item>
-        <item quantity="other">סרטונים</item>
+        <item quantity="one">%s סרטון</item>
+        <item quantity="two">%s סרטונים</item>
+        <item quantity="many">%s סרטונים</item>
+        <item quantity="other">%s סרטונים</item>
     </plurals>
     <string name="start">התחלה</string>
     <string name="pause">השהיה</string>
@@ -342,7 +342,7 @@
     <string name="toggle_orientation">החלפת כיווניות</string>
     <string name="switch_to_main">העברה לראשי</string>
     <string name="import_data_summary">משכתב את ההיסטוריה והמינויים הנוכחיים שלך</string>
-    <string name="clear_views_history_summary">מחיקת היסטוריית התזרימים שהתנגנו</string>
+    <string name="clear_views_history_summary">מחיקת היסטוריית התזרימים שהתנגנו ומיקומי הנגינה</string>
     <string name="channels">ערוצים</string>
     <string name="playlists">רשימות נגינה</string>
     <string name="tracks">רצועות</string>
@@ -505,6 +505,14 @@
     <string name="pause_downloads">השהיית הורדות</string>
     <string name="downloads_storage_ask_title">לשאול לאן להוריד</string>
     <string name="downloads_storage_ask_summary">תופיע שאלה לאן לשמור כל הורדה</string>
-    <string name="downloads_storage_ask_summary_kitkat">תוצג שאלה היכן לשמור כל הורדה.
-\nיש להפעיל זאת אם ברצונך להוריד לכרטיס SD חיצוני.</string>
+    <string name="downloads_storage_ask_summary_kitkat">תוצג שאלה היכן לשמור כל הורדה. 
+\nיש להפעיל זאת אם ברצונך להוריד לכרטיס SD חיצוני</string>
+    <string name="downloads_storage_use_saf_title">שימוש ב־SAF</string>
+    <string name="downloads_storage_use_saf_summary">תשתית גישה לאחסון מאפשרת הורדות לכרטיס SD חיוני.
+\nלתשומת לבך: חלק מהמכשירים אינם נתמכים</string>
+    <string name="clear_playback_states_title">מחיקת מיקומי נגינה</string>
+    <string name="clear_playback_states_summary">מחיקת כל מיקומי הנגינה</string>
+    <string name="delete_playback_states_alert">למחוק את מיקומי הנגינה\?</string>
+    <string name="download_choose_new_path">יש להחליף את תיקיות ההורדה כדי שייכנס לתוקף</string>
+    <string name="drawer_header_description">הפעלה/כיבוי שירות, בחירה נוכחית:</string>
 </resources>

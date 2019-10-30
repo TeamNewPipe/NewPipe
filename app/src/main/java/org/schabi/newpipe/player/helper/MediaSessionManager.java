@@ -2,11 +2,12 @@ package org.schabi.newpipe.player.helper;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.media.session.MediaButtonReceiver;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.view.KeyEvent;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.media.session.MediaButtonReceiver;
 
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
@@ -27,10 +28,10 @@ public class MediaSessionManager {
         this.mediaSession = new MediaSessionCompat(context, TAG);
         this.mediaSession.setActive(true);
 
-        this.sessionConnector = new MediaSessionConnector(mediaSession,
-                new PlayQueuePlaybackController(callback));
+        this.sessionConnector = new MediaSessionConnector(mediaSession);
+        this.sessionConnector.setControlDispatcher(new PlayQueuePlaybackController(callback));
         this.sessionConnector.setQueueNavigator(new PlayQueueNavigator(mediaSession, callback));
-        this.sessionConnector.setPlayer(player, null);
+        this.sessionConnector.setPlayer(player);
     }
 
     @Nullable
@@ -43,7 +44,7 @@ public class MediaSessionManager {
      * Should be called on player destruction to prevent leakage.
      * */
     public void dispose() {
-        this.sessionConnector.setPlayer(null, null);
+        this.sessionConnector.setPlayer(null);
         this.sessionConnector.setQueueNavigator(null);
         this.mediaSession.setActive(false);
         this.mediaSession.release();

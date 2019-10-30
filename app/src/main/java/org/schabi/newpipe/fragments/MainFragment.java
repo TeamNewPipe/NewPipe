@@ -1,15 +1,6 @@
 package org.schabi.newpipe.fragments;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,6 +8,17 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.tabs.TabLayout;
 
 import org.schabi.newpipe.BaseFragment;
 import org.schabi.newpipe.R;
@@ -111,8 +113,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
     public void onDestroy() {
         super.onDestroy();
         tabsManager.unsetSavedTabsListener();
-        pagerAdapter = null;
-        viewPager.setAdapter(pagerAdapter);
+        if (viewPager != null) viewPager.setAdapter(null);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -159,6 +160,7 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
 
         viewPager.setOffscreenPageLimit(pagerAdapter.getCount());
         updateTabsIcon();
+        updateTabsContentDescription();
         updateCurrentTitle();
     }
 
@@ -167,6 +169,17 @@ public class MainFragment extends BaseFragment implements TabLayout.OnTabSelecte
             final TabLayout.Tab tabToSet = tabLayout.getTabAt(i);
             if (tabToSet != null) {
                 tabToSet.setIcon(tabsList.get(i).getTabIconRes(activity));
+            }
+        }
+    }
+
+    private void updateTabsContentDescription() {
+        for (int i = 0; i < tabsList.size(); i++) {
+            final TabLayout.Tab tabToSet = tabLayout.getTabAt(i);
+            if (tabToSet != null) {
+                final Tab t = tabsList.get(i);
+                tabToSet.setIcon(t.getTabIconRes(activity));
+                tabToSet.setContentDescription(t.getTabName(activity));
             }
         }
     }

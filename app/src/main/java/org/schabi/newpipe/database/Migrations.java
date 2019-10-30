@@ -1,8 +1,8 @@
 package org.schabi.newpipe.database;
 
-import android.arch.persistence.db.SupportSQLiteDatabase;
-import android.arch.persistence.room.migration.Migration;
-import android.support.annotation.NonNull;
+import androidx.sqlite.db.SupportSQLiteDatabase;
+import androidx.room.migration.Migration;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 import org.schabi.newpipe.BuildConfig;

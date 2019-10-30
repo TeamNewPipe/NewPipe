@@ -8,9 +8,9 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.DocumentsContract;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.provider.DocumentFile;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.documentfile.provider.DocumentFile;
 
 import java.io.File;
 import java.io.IOException;
@@ -244,7 +244,7 @@ public class StoredDirectoryHelper {
      * @param context  The context
      * @param tree     Directory where search
      * @param filename Target filename
-     * @return A {@link android.support.v4.provider.DocumentFile} contain the reference, otherwise, null
+     * @return A {@link DocumentFile} contain the reference, otherwise, null
      */
     static DocumentFile findFileSAFHelper(@Nullable Context context, DocumentFile tree, String filename) {
         if (context == null || Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
