@@ -122,7 +122,7 @@
     <string name="yes">Sim</string>
     <string name="later">Depois</string>
     <string name="disabled">Desativado</string>
-    <string name="short_thousand">M</string>
+    <string name="short_thousand">k</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
     <string name="msg_popup_permission">Essa permissão é necessária para
