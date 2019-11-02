@@ -31,7 +31,7 @@
     <string name="content_language_title">기본 컨텐츠 언어</string>
     <string name="settings_category_video_audio_title">비디오 &amp; 오디오</string>
     <string name="list_thumbnail_view_description">비디오 미리보기 썸네일</string>
-    <string name="detail_thumbnail_view_description">비디오 미리보기 썸네일</string>
+    <string name="detail_thumbnail_view_description">비디오 재생, 구간:</string>
     <string name="detail_uploader_thumbnail_view_description">업로더 썸네일</string>
     <string name="detail_dislikes_img_view_description">싫어요</string>
     <string name="detail_likes_img_view_description">좋아요</string>
@@ -501,4 +501,7 @@
     <plurals name="videos">
         <item quantity="other">동영상만</item>
     </plurals>
+    <string name="enable_queue_limit_desc">하나의 다운로드가 동시에 진행됩니다</string>
+    <string name="download_choose_new_path">적용하려면 다운로드 폴더를 변경하세요</string>
+    <string name="drawer_header_description">서비스 토글, 현재 선택된 서비스:</string>
 </resources>
