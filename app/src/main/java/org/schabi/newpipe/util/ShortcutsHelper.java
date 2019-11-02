@@ -26,6 +26,7 @@ import com.nostra13.universalimageloader.core.assist.ImageSize;
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 
 import java.util.Collections;
@@ -57,14 +58,14 @@ public final class ShortcutsHelper {
         return Single.fromCallable(() -> getIcon(context, data.getThumbnailUrl(), manager.getIconMaxWidth(),
                 manager.getIconMaxHeight(), R.drawable.ic_newpipe_triangle_white))
                 .subscribeOn(Schedulers.io())
-                .map(icon -> new ShortcutInfo.Builder(context, getShortcutId(data))
+                .map(icon -> new ShortcutInfo.Builder(context, getShortcutId(data.getUrl()))
                         .setShortLabel(data.getName())
                         .setLongLabel(data.getName())
                         .setIcon(icon.toIcon())
                         .setIntent(createIntent(context, data)))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(builder -> {
-                    final String id = getShortcutId(data);
+                    final String id = getShortcutId(data.getUrl());
                     final List<ShortcutInfo> shortcuts = manager.getDynamicShortcuts();
                     final int limit = manager.getMaxShortcutCountPerActivity();
                     for (int i = 0; i < shortcuts.size(); i++) {
@@ -89,6 +90,18 @@ public final class ShortcutsHelper {
                 });
     }
 
+    public static void removeShortcut(@Nullable final Context context, @NonNull SubscriptionEntity subscription) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N_MR1 || context == null) {
+            return;
+        }
+        final ShortcutManager manager = (ShortcutManager) context.getSystemService(Context.SHORTCUT_SERVICE);
+        if (manager == null) {
+            return;
+        }
+        final String shortcutId = getShortcutId(subscription.getUrl());
+        manager.removeDynamicShortcuts(Collections.singletonList(shortcutId));
+    }
+
     @Nullable
     @CheckReturnValue
     public static Disposable pinShortcut(@Nullable final Context context, @NonNull final ChannelInfoItem data) {
@@ -102,7 +115,7 @@ public final class ShortcutsHelper {
         final int iconSize = am.getLauncherLargeIconSize();
         return Single.fromCallable(() -> getIcon(context, data.getThumbnailUrl(), iconSize, iconSize, R.mipmap.ic_launcher))
                 .subscribeOn(Schedulers.io())
-                .map(icon -> new ShortcutInfoCompat.Builder(context, getShortcutId(data))
+                .map(icon -> new ShortcutInfoCompat.Builder(context, getShortcutId(data.getUrl()))
                         .setShortLabel(data.getName())
                         .setLongLabel(data.getName())
                         .setIcon(icon)
@@ -126,8 +139,8 @@ public final class ShortcutsHelper {
     }
 
     @NonNull
-    private static String getShortcutId(@NonNull ChannelInfoItem channel) {
-        return "s_" + channel.getUrl().hashCode();
+    private static String getShortcutId(@NonNull String channelUrl) {
+        return "s_" + channelUrl.hashCode();
     }
 
     @NonNull
