@@ -85,7 +85,7 @@
     <string name="start">開始</string>
     <string name="pause">一時停止</string>
     <string name="view">再生</string>
-    <string name="delete">削除する</string>
+    <string name="delete">削除</string>
     <string name="checksum">チェックサム</string>
     <string name="add">新しいミッション</string>
     <string name="finish">OK</string>
@@ -244,7 +244,7 @@
     <string name="override_current_data">これにより、現在の設定が上書きされます。</string>
     <string name="title_activity_background_player">バックグラウンド再生</string>
     <string name="start_here_on_main">ここから再生を開始</string>
-    <string name="start_here_on_background">バックグランドで再生を開始</string>
+    <string name="start_here_on_background">バックグランドで連続再生を開始</string>
     <string name="drawer_open">ドロワーを開く</string>
     <string name="drawer_close">ドロワーを閉じる</string>
     <string name="video_player">動画プレイヤー</string>
@@ -284,7 +284,7 @@
     <string name="rename_playlist">変更</string>
     <string name="playlist_name_input">プレイリスト名</string>
     <string name="append_playlist">プレイリストに追加</string>
-    <string name="set_as_playlist_thumbnail">プレイリストのサムネイルとして設定</string>
+    <string name="set_as_playlist_thumbnail">プレイリストのサムネイルに設定</string>
     <string name="bookmark_playlist">プレイリストをブックマーク</string>
     <string name="unbookmark_playlist">ブックマークを削除</string>
     <string name="delete_playlist_prompt">このプレイリストを削除しますか？</string>
@@ -348,10 +348,10 @@
     <string name="tracks">トラック</string>
     <string name="notification_channel_description">NewPipe バックグラウンドおよびポップアップのプレイヤーの通知</string>
     <string name="new_and_hot">新着 &amp; 人気</string>
-    <string name="hold_to_append">長押ししてキューに入れる</string>
-    <string name="enqueue_on_background">バックグラウンドでキューに入れる</string>
-    <string name="enqueue_on_popup">ポップアップでキューに入れる</string>
-    <string name="start_here_on_popup">新しいポップアップで再生を開始</string>
+    <string name="hold_to_append">長押ししてキューに追加</string>
+    <string name="enqueue_on_background">バックグラウンドのキューに追加</string>
+    <string name="enqueue_on_popup">ポップアップのキューに追加</string>
+    <string name="start_here_on_popup">ポップアップで連続再生を開始</string>
     <string name="drawer_header_action_paceholder_text">すぐにここに表示されます;D</string>
     <string name="preferred_open_action_settings_title">お好みの \'開く\' アクション</string>
     <string name="preferred_open_action_settings_summary">コンテンツを開くときのデフォルト動作 — %s</string>
