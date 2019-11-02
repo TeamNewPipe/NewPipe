@@ -1,6 +1,5 @@
 package org.schabi.newpipe.util;
 
-import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
@@ -34,6 +33,8 @@ import java.util.List;
 
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.CheckReturnValue;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public final class ShortcutsHelper {
@@ -43,17 +44,17 @@ public final class ShortcutsHelper {
     private ShortcutsHelper() {
     }
 
-    @SuppressLint("CheckResult")
-    @SuppressWarnings("ResultOfMethodCallIgnored")
-    public static void addShortcut(@Nullable final Context context, @NonNull final ChannelInfoItem data) {
+    @Nullable
+    @CheckReturnValue
+    public static Disposable addShortcut(@Nullable final Context context, @NonNull final ChannelInfoItem data) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N_MR1 || context == null) {
-            return;
+            return null;
         }
         final ShortcutManager manager = (ShortcutManager) context.getSystemService(Context.SHORTCUT_SERVICE);
         if (manager == null) {
-            return;
+            return null;
         }
-        Single.fromCallable(() -> getIcon(context, data.getThumbnailUrl(), manager.getIconMaxWidth(),
+        return Single.fromCallable(() -> getIcon(context, data.getThumbnailUrl(), manager.getIconMaxWidth(),
                 manager.getIconMaxHeight(), R.drawable.ic_newpipe_triangle_white))
                 .subscribeOn(Schedulers.io())
                 .map(icon -> new ShortcutInfo.Builder(context, getShortcutId(data))
@@ -88,18 +89,18 @@ public final class ShortcutsHelper {
                 });
     }
 
-    @SuppressLint("CheckResult")
-    @SuppressWarnings("ResultOfMethodCallIgnored")
-    public static void pinShortcut(@Nullable final Context context, @NonNull final ChannelInfoItem data) {
+    @Nullable
+    @CheckReturnValue
+    public static Disposable pinShortcut(@Nullable final Context context, @NonNull final ChannelInfoItem data) {
         if (context == null) {
-            return;
+            return null;
         }
         final ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         if (am == null) {
-            return;
+            return null;
         }
         final int iconSize = am.getLauncherLargeIconSize();
-        Single.fromCallable(() -> getIcon(context, data.getThumbnailUrl(), iconSize, iconSize, R.mipmap.ic_launcher))
+        return Single.fromCallable(() -> getIcon(context, data.getThumbnailUrl(), iconSize, iconSize, R.mipmap.ic_launcher))
                 .subscribeOn(Schedulers.io())
                 .map(icon -> new ShortcutInfoCompat.Builder(context, getShortcutId(data))
                         .setShortLabel(data.getName())

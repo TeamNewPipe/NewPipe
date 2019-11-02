@@ -374,7 +374,10 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
                         selectedItem.getServiceId(),
                         selectedItem.getUrl(),
                         selectedItem.getName());
-                ShortcutsHelper.addShortcut(getContext(), selectedItem);
+                final Disposable d = ShortcutsHelper.addShortcut(getContext(), selectedItem);
+                if (d != null) {
+                    disposables.add(d);
+                }
             }
 
             public void held(ChannelInfoItem selectedItem) {
@@ -408,7 +411,10 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
             } else if (i == lastIndex) {
                 shareChannel(selectedItem);
             } else {
-                ShortcutsHelper.pinShortcut(context, selectedItem);
+                final Disposable d = ShortcutsHelper.pinShortcut(context, selectedItem);
+                if (d != null) {
+                    disposables.add(d);
+                }
             }
         };
 
