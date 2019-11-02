@@ -386,7 +386,7 @@
     <string name="limit_data_usage_none_description">असीमित</string>
     <string name="limit_mobile_data_usage_title">मोबाइल डेटा उपयोग करते समय रेसॉल्युसेन को सिमित करे</string>
     <string name="minimize_on_exit_title">ऐप बदलते समय मिनिमाइज करे</string>
-    <string name="minimize_on_exit_summary">"मुख्य वीडियो चालक से दूसरी ऐप पर जाने पर  — %s"</string>
+    <string name="minimize_on_exit_summary">मुख्य वीडियो चालक से दूसरी ऐप पर जाने पर — %s</string>
     <string name="minimize_on_exit_none_description">कोई नही</string>
     <string name="minimize_on_exit_background_description">पृष्ठभूमि प्लेयर में बदले</string>
     <string name="minimize_on_exit_popup_description">पॉप अप प्लेयर में बदले</string>
@@ -451,7 +451,7 @@
     <string name="autoplay_title">ऑटोप्ले</string>
     <plurals name="comments">
         <item quantity="one">टिप्पणियाँ</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="no_comments">कोई टिपण्णी नहीं</string>
     <string name="error_unable_to_load_comments">टिप्पणियाँ लोड नहीं कर सका</string>
