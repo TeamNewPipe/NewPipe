@@ -7,13 +7,11 @@ import android.content.Intent;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
-import android.media.ThumbnailUtils;
 import android.os.Build;
 
 import androidx.annotation.DrawableRes;
@@ -23,21 +21,20 @@ import androidx.core.content.pm.ShortcutInfoCompat;
 import androidx.core.content.pm.ShortcutManagerCompat;
 import androidx.core.graphics.drawable.IconCompat;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.ImageSize;
+
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem;
 
-import java.io.InputStream;
 import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public final class ShortcutsHelper {
 
@@ -58,7 +55,7 @@ public final class ShortcutsHelper {
         }
         Single.fromCallable(() -> getIcon(context, data.getThumbnailUrl(), manager.getIconMaxWidth(),
                 manager.getIconMaxHeight(), R.drawable.ic_newpipe_triangle_white))
-                .subscribeOn(Schedulers.computation())
+                .subscribeOn(Schedulers.io())
                 .map(icon -> new ShortcutInfo.Builder(context, getShortcutId(data))
                         .setShortLabel(data.getName())
                         .setLongLabel(data.getName())
@@ -103,7 +100,7 @@ public final class ShortcutsHelper {
         }
         final int iconSize = am.getLauncherLargeIconSize();
         Single.fromCallable(() -> getIcon(context, data.getThumbnailUrl(), iconSize, iconSize, R.mipmap.ic_launcher))
-                .subscribeOn(Schedulers.computation())
+                .subscribeOn(Schedulers.io())
                 .map(icon -> new ShortcutInfoCompat.Builder(context, getShortcutId(data))
                         .setShortLabel(data.getName())
                         .setLongLabel(data.getName())
@@ -135,36 +132,14 @@ public final class ShortcutsHelper {
     @NonNull
     private static IconCompat getIcon(@NonNull Context context, final String url, int width,
                                       int height, @DrawableRes int defaultIcon) {
-        Bitmap bitmap = null;
-        try {
-            final OkHttpClient client = new OkHttpClient();
-            final Request request = new Request.Builder()
-                    .url(url)
-                    .get()
-                    .build();
-            final Response response = client.newCall(request).execute();
-            if (response.isSuccessful()) {
-                final InputStream inputStream = response.body().byteStream();
-                bitmap = BitmapFactory.decodeStream(inputStream);
-
-                final Bitmap thumb = ThumbnailUtils.extractThumbnail(bitmap, width, height);
-                final IconCompat icon = IconCompat.createWithBitmap(createCircleBitmap(thumb));
-                thumb.recycle();
-                return icon;
-            } else {
-                return IconCompat.createWithResource(context, defaultIcon);
-            }
-        } catch (Exception e) {
-            return IconCompat.createWithResource(context, defaultIcon);
-        } finally {
-            if (bitmap != null) {
-                bitmap.recycle();
-            }
-        }
+        Bitmap bitmap = ImageLoader.getInstance().loadImageSync(url, new ImageSize(width, height),
+                ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
+        return bitmap != null ? IconCompat.createWithBitmap(createCircleBitmap(bitmap, true)) :
+                IconCompat.createWithResource(context, defaultIcon);
     }
 
     @NonNull
-    private static Bitmap createCircleBitmap(@NonNull final Bitmap bitmap) {
+    private static Bitmap createCircleBitmap(@NonNull final Bitmap bitmap, boolean recycleInput) {
         final Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
                 bitmap.getHeight(), Bitmap.Config.ARGB_8888);
         final Canvas canvas = new Canvas(output);
@@ -180,6 +155,9 @@ public final class ShortcutsHelper {
                 bitmap.getWidth() / 2, paint);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         canvas.drawBitmap(bitmap, rect, rect, paint);
+        if (recycleInput) {
+            bitmap.recycle();
+        }
         return output;
     }
 }
