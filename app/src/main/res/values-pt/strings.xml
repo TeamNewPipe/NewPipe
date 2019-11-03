@@ -33,7 +33,7 @@
     <string name="content_language_title">Idioma do conteúdo predefinido</string>
     <string name="settings_category_video_audio_title">Vídeo e áudio</string>
     <string name="list_thumbnail_view_description">Miniatura de pré-visualização de vídeo</string>
-    <string name="detail_thumbnail_view_description">Miniatura de pré-visualização de vídeo</string>
+    <string name="detail_thumbnail_view_description">Reproduzir vídeo, duração:</string>
     <string name="detail_uploader_thumbnail_view_description">Miniatura do avatar do canal</string>
     <string name="detail_dislikes_img_view_description">Não gostar</string>
     <string name="detail_likes_img_view_description">Gostos</string>
@@ -112,7 +112,7 @@
     <string name="channel">Canais</string>
     <string name="yes">Sim</string>
     <string name="later">Depois</string>
-    <string name="short_thousand">K</string>
+    <string name="short_thousand">k</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
     <string name="msg_popup_permission">Esta permissão é necessária 
@@ -505,4 +505,5 @@
     <string name="clear_playback_states_summary">Elimina todas as posições de reprodução</string>
     <string name="delete_playback_states_alert">Eliminar todas as posições de reprodução\?</string>
     <string name="download_choose_new_path">Alterar as pastas de descarregamento para que tenham efeito</string>
+    <string name="drawer_header_description">Alternar serviço, agora selecionado:</string>
 </resources>

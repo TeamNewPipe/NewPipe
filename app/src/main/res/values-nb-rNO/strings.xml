@@ -16,12 +16,12 @@
     <string name="screen_rotation">sideoppsett</string>
     <string name="use_external_video_player_title">Bruk ekstern videoavspiller</string>
     <string name="use_external_audio_player_title">Bruk ekstern lydavspiller</string>
-    <string name="download_path_title">Videoens nedlastingssti</string>
-    <string name="download_path_summary">Mappe lagrede nedlastinger skal puttes i</string>
-    <string name="download_path_dialog_title">Skriv inn nedlastingssti for videoer</string>
+    <string name="download_path_title">Video nedlasting mappe</string>
+    <string name="download_path_summary">Nedlastede videofiler lagres her</string>
+    <string name="download_path_dialog_title">Velg nedlastingsmappe for videofiler</string>
     <string name="download_path_audio_title">Nedlastingsmappe for lyd</string>
-    <string name="download_path_audio_summary">Nedlastet lyd lagres her</string>
-    <string name="download_path_audio_dialog_title">Skriv inn nedlastingssti for lydfiler</string>
+    <string name="download_path_audio_summary">Nedlastede lydfiler lagres her</string>
+    <string name="download_path_audio_dialog_title">Velg nedlastingsmappe for lydfiler</string>
     <string name="default_resolution_title">Forvalgt oppløsning</string>
     <string name="play_with_kodi_title">Spill av med Kodi</string>
     <string name="kore_not_found">Kore-programmet ble ikke funnet. Installer det?</string>
@@ -44,7 +44,7 @@
     <string name="play_btn_text">Spill av</string>
     <string name="network_error">Nettverksfeil</string>
     <string name="list_thumbnail_view_description">Video-forhåndsvisning i miniatyrbilde</string>
-    <string name="detail_thumbnail_view_description">Miniatyrbilde for video-forhåndsvisning</string>
+    <string name="detail_thumbnail_view_description">Spill av video, varighet:</string>
     <string name="detail_uploader_thumbnail_view_description">Opplasterens avatar</string>
     <string name="detail_likes_img_view_description">Nikk</string>
     <string name="detail_dislikes_img_view_description">Nesetrekk</string>
@@ -105,7 +105,7 @@
     <string name="start">Start</string>
     <string name="add">Nytt mål</string>
     <string name="msg_url_malform">Feilaktig nettadresse eller manglende internettilknytning</string>
-    <string name="no_available_dir">Velg nedlastingsmappe senere i innstillingene</string>
+    <string name="no_available_dir">Definer en nedlastingsmappe senere i innstillingene</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">reCAPTCHA-oppgave</string>
     <string name="open_in_popup_mode">Åpne i oppsprettsmodus</string>
@@ -415,7 +415,7 @@
     <string name="app_update_notification_channel_description">Merknader for nye NewPipe-versjoner</string>
     <string name="download_to_sdcard_error_title">Ekstern lagring utilgjengelig</string>
     <string name="download_to_sdcard_error_message">Nedlasting til eksternt SD-kort er ikke mulig. Tilbakestill plassering av nedlastingsmappe\?</string>
-    <string name="saved_tabs_invalid_json">Bruker forvalgte faner, feil under lagring av lagrede faner.</string>
+    <string name="saved_tabs_invalid_json">Bruker forvalgte faner, feil under lesing av lagrede faner.</string>
     <string name="restore_defaults">Gjenopprett forvalg</string>
     <string name="restore_defaults_confirmation">Ønsker du å gjenopprette alt til forvalgene\?</string>
     <string name="subscribers_count_not_available">Abonnementsantall ikke tilgjengelig</string>
@@ -423,7 +423,7 @@
     <string name="selection">Utvalg</string>
     <string name="conferences">Konferanser</string>
     <string name="updates_setting_title">Oppdatering</string>
-    <string name="updates_setting_description">Vis en merknad for spørring om programoppdatering når en ny versjon er tilgjengelig</string>
+    <string name="updates_setting_description">Varsle om programoppdatering når en ny versjon er tilgjengelig</string>
     <string name="list_view_mode">Listevisningmodus</string>
     <string name="list">Liste</string>
     <string name="grid">Rutenett</string>
@@ -504,5 +504,6 @@
     <string name="clear_playback_states_title">Slett avspillingsposisjoner</string>
     <string name="clear_playback_states_summary">Sletter alle avspillingsposisjoner</string>
     <string name="delete_playback_states_alert">Slett alle avspillingsposisjoner\?</string>
-    <string name="download_choose_new_path">Endre nedlastingsmapper for å benytte dette</string>
+    <string name="download_choose_new_path">Endre nedlastingsmappene for å tre i kraft</string>
+    <string name="drawer_header_description">Skru tjeneste av/på, for tiden er dette status:</string>
 </resources>

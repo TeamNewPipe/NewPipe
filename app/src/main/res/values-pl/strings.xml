@@ -72,7 +72,7 @@
     <string name="your_comment">Twój komentarz (po angielsku):</string>
     <string name="error_details_headline">Szczegóły:</string>
     <string name="list_thumbnail_view_description">Miniatura filmu</string>
-    <string name="detail_thumbnail_view_description">Miniatura filmu</string>
+    <string name="detail_thumbnail_view_description">Odtwarzane wideo, czas trwania:</string>
     <string name="detail_uploader_thumbnail_view_description">Miniatura zdjęcia wysyłającego</string>
     <string name="detail_likes_img_view_description">Polubienia</string>
     <string name="detail_dislikes_img_view_description">Łapka w dół</string>
@@ -133,7 +133,7 @@
     <string name="refresh">Odśwież</string>
     <string name="clear">Wyczyść</string>
     <string name="popup_resizing_indicator_title">Zmiana rozmiaru</string>
-    <string name="short_thousand">K</string>
+    <string name="short_thousand">k</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
     <string name="msg_popup_permission">To pozwolenie jest wymagane, aby 
