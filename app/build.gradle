@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
@@ -53,6 +56,8 @@ ext {
 }
 
 dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
     androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
         exclude module: 'support-annotations'
     })
@@ -92,10 +97,10 @@ dependencies {
 
     implementation "androidx.room:room-runtime:${roomDbLibVersion}"
     implementation "androidx.room:room-rxjava2:${roomDbLibVersion}"
-    annotationProcessor "androidx.room:room-compiler:${roomDbLibVersion}"
+    kapt "androidx.room:room-compiler:${roomDbLibVersion}"
 
     implementation "frankiesardo:icepick:${icepickLibVersion}"
-    annotationProcessor "frankiesardo:icepick-processor:${icepickLibVersion}"
+    kapt "frankiesardo:icepick-processor:${icepickLibVersion}"
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:${leakCanaryLibVersion}"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${leakCanaryLibVersion}"
