@@ -27,7 +27,7 @@
     <string name="default_audio_format_title">Formato de audio predeterminado</string>
     <string name="download_dialog_title">Descargar</string>
     <string name="next_video_title">Siguiente</string>
-    <string name="url_not_supported_toast">No se admite el URL</string>
+    <string name="url_not_supported_toast">No se admite la dirección URL</string>
     <string name="use_external_video_player_title">Usar reproductor de vídeo externo</string>
     <string name="use_external_audio_player_title">Usar reproductor de audio externo</string>
     <string name="theme_title">Tema</string>
@@ -98,7 +98,7 @@
     <string name="msg_error">Error</string>
     <string name="msg_server_unsupported">Servidor incompatible</string>
     <string name="msg_exists">El archivo ya existe</string>
-    <string name="msg_url_malform">URL mal escrito o Internet no disponible</string>
+    <string name="msg_url_malform">Dirección URL mal escrita o Internet no disponible</string>
     <string name="msg_running">NewPipe está descargando</string>
     <string name="msg_running_detail">Toque para ver detalles</string>
     <string name="msg_wait">Espere…</string>
