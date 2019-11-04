@@ -1,16 +1,17 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="main_bg_subtitle">Стисни на пребарување за да почнеш</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="main_bg_subtitle">Стисни на пребарување за да почнеш</string>
     <string name="view_count_text">%1$s прегледи</string>
     <string name="upload_date_text">Објавено на %1$s</string>
     <string name="no_player_found">Не е најден плеер за стримови. Инсталирај VLC?</string>
-    <string name="no_player_found_toast">Не е најден плеер за стримови (можеш да инсталираш VLC)</string>
+    <string name="no_player_found_toast">Не е пронајден плеер за стримови (можеш да инсталираш VLC)</string>
     <string name="install">Инсталирај</string>
     <string name="cancel">Откажи</string>
     <string name="open_in_browser">Отвори во пребарувач</string>
     <string name="open_in_popup_mode">Отвори во прозорче</string>
     <string name="share">Сподели</string>
     <string name="download">Превземи</string>
-    <string name="controls_download_desc">Превземи стрим датотека.</string>
+    <string name="controls_download_desc">Превземи датотека за стрим</string>
     <string name="search">Пребарај</string>
     <string name="settings">Поставки</string>
     <string name="did_you_mean">Мислеше на: %1$s\?</string>
@@ -18,7 +19,7 @@
     <string name="choose_browser">Одбери пребарувач</string>
     <string name="screen_rotation">ротација</string>
     <string name="use_external_video_player_title">Користи надворешен видео плеер</string>
-    <string name="use_external_video_player_summary">Некои резолуции НЕМААТ звук со оваа опција</string>
+    <string name="use_external_video_player_summary">Отстранува звук на НЕКОИ резолуции</string>
     <string name="use_external_audio_player_title">Користи надворешен аудио плеер</string>
     <string name="popup_mode_share_menu_title">NewPipe мало прозорче</string>
     <string name="subscribe_button_title">Зачлени се</string>
@@ -27,25 +28,19 @@
     <string name="subscription_change_failed">Не може да се промени членството</string>
     <string name="subscription_update_failed">Не може да се освежи членството</string>
     <string name="show_info">Покажи информации</string>
-
     <string name="tab_main">Почетна</string>
     <string name="tab_subscriptions">Членства</string>
-    <string name="tab_bookmarks">Обележани</string>
-
+    <string name="tab_bookmarks">Обележани плејлисти</string>
     <string name="fragment_whats_new">Новости</string>
-
     <string name="controls_background_title">Позадина</string>
     <string name="controls_popup_title">Подпрозорче</string>
     <string name="controls_add_to_playlist_title">Додај на</string>
-
     <string name="download_path_title">Локација за зачувување на видеата</string>
     <string name="download_path_summary">Локација за зачувување на видеата</string>
     <string name="download_path_dialog_title">Внеси локација за зачувување на видеата</string>
-
     <string name="download_path_audio_title">Локација за зачувување аудио</string>
     <string name="download_path_audio_summary">Локација за зачувување аудио</string>
     <string name="download_path_audio_dialog_title">Внеси локација за зачувување аудио</string>
-
     <string name="autoplay_by_calling_app_title">Автоматско пуштање</string>
     <string name="autoplay_by_calling_app_summary">Пушта видео кога NewPipe е повикана од друга апликација</string>
     <string name="default_resolution_title">Стандардна резолуција</string>
@@ -130,17 +125,13 @@
     <string name="always">Секогаш</string>
     <string name="just_once">Само еднаш</string>
     <string name="file">Датотека</string>
-
     <string name="notification_channel_name">Известување од NewPipe</string>
     <string name="notification_channel_description">NewPipe Известувања за подпрозорчето и заднинското пуштање</string>
-
     <string name="unknown_content">[Непознато]</string>
-
     <string name="toggle_orientation">Смени ориентација</string>
     <string name="switch_to_background">Пушти во позадина</string>
     <string name="switch_to_popup">Пушти во подпрозорче</string>
     <string name="switch_to_main">Пушти во главната апликација</string>
-
     <string name="import_data_title">Внеси датабаза</string>
     <string name="export_data_title">Изнеси база на податоци</string>
     <string name="import_data_summary">Ќе ги избрише моменталните членства и историја</string>
@@ -169,7 +160,6 @@
     <string name="invalid_file">Датотеката не постои или се потребни привилегии за достапност</string>
     <string name="file_name_empty_error">Датотеката не може да биде празна</string>
     <string name="error_occurred_detail">Настана проблем: %1$s</string>
-
     <string name="sorry_string">Извинете, не требаше да се случи тоа.</string>
     <string name="error_report_button_text">Извести за грешката по е-пошта</string>
     <string name="error_snackbar_message">Извинете, настана проблем.</string>
@@ -179,8 +169,6 @@
     <string name="info_labels">Што:\\nБарање:\\nЈазик на Содрж.:\\nУслуга:\\nGMT Час:\\nПакет:\\nВерзија:\\nВерз. на ОС:</string>
     <string name="your_comment">Ваш коментар (на Англиски):</string>
     <string name="error_details_headline">Детали:</string>
-
-
     <string name="list_thumbnail_view_description">Сликичка за преглед на видеото</string>
     <string name="detail_thumbnail_view_description">Сликичка за преглед на видеото</string>
     <string name="detail_uploader_thumbnail_view_description">Икона од аватарот на објавителот</string>
@@ -193,37 +181,30 @@
     <string name="search_no_results">Нема резултати</string>
     <string name="empty_subscription_feed_subtitle">Тука Е Празно :(</string>
     <string name="detail_drag_description">Влечи за да разместиш</string>
-
     <string name="err_dir_create">Не може да се создаде локација \'%1$s\'</string>
     <string name="info_dir_created">Создадена локација \'%1$s\'</string>
-
     <string name="video">Видео</string>
     <string name="audio">Звук</string>
     <string name="retry">Пробај повторно</string>
     <string name="storage_permission_denied">Нема привилегии за пристап</string>
-
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
-
     <string name="no_subscribers">Нема зачленети</string>
     <plurals name="subscribers">
-	<item quantity="one">%s зачленет</item>
-	<item quantity="other">%s зачленети</item>
-</plurals>
-
+        <item quantity="one">%s зачленет</item>
+        <item quantity="other">%s зачленети</item>
+    </plurals>
     <string name="no_views">Нула прегледи</string>
     <plurals name="views">
-	<item quantity="one">%s преглед</item>
-	<item quantity="other">%s прегледи</item>
-</plurals>
-
+        <item quantity="one">%s преглед</item>
+        <item quantity="other">%s прегледи</item>
+    </plurals>
     <string name="no_videos">Нема видеа</string>
     <plurals name="videos">
-	<item quantity="one">%s видео</item>
-	<item quantity="other">%s видеа</item>
-</plurals>
-
+        <item quantity="one">%s видео</item>
+        <item quantity="other">%s видеа</item>
+    </plurals>
     <string name="start">Започни</string>
     <string name="pause">Пауза</string>
     <string name="view">Пушти</string>
@@ -234,10 +215,8 @@
     <string name="checksum">Чексума</string>
     <string name="dismiss">Отфрли</string>
     <string name="rename">Прекрсти</string>
-
     <string name="add">Нова мисија</string>
     <string name="finish">Готово</string>
-
     <string name="msg_name">Име на датотека</string>
     <string name="msg_threads">Нишки</string>
     <string name="msg_error">Грешка</string>
@@ -251,19 +230,15 @@
     <string name="no_available_dir">Одберете достапна локација за превземања</string>
     <string name="msg_popup_permission">Оваа привилегија е потребна за
 \nотворање во подпрозорче</string>
-
     <string name="reCaptchaActivity">„reCAPTCHA“</string>
     <string name="reCaptcha_title">reCAPTCHA Предизвик</string>
     <string name="recaptcha_request_toast">Потребен е reCAPTCHA предизвик</string>
-
     <string name="settings_category_downloads_title">Превземања</string>
     <string name="settings_file_charset_title">Дозволени знаци во имињата на датотеките</string>
     <string name="settings_file_replacement_character_summary">Невалидните знаци се менуваат со оваа вредност</string>
     <string name="settings_file_replacement_character_title">Знак за замена</string>
-
     <string name="charset_letters_and_digits">Букви и броеви</string>
     <string name="charset_most_special_characters">Повеќето посебни знаци</string>
-
     <string name="title_activity_about">За NewPipe</string>
     <string name="action_settings">Поставки</string>
     <string name="action_about">За апликацијата</string>
@@ -285,8 +260,6 @@
     <string name="website_encouragement">За повеќе информации и новости за NewPipe посети ја вебстраната.</string>
     <string name="app_license_title">"Лиценцата на NewPipe "</string>
     <string name="read_full_license">Прочитај лиценца</string>
-
-
     <string name="title_activity_history">Историја</string>
     <string name="title_history_search">Пребарано</string>
     <string name="title_history_view">Гледано</string>
@@ -300,7 +273,6 @@
     <string name="delete_all_history_prompt">Сигурно сакаш да ја избришеш целата историја?</string>
     <string name="title_last_played">Последно пуштено</string>
     <string name="title_most_played">Најгледани</string>
-
     <string name="main_page_content">Содржина</string>
     <string name="blank_page_summary">Празна страна</string>
     <string name="kiosk_page_summary">Киоск</string>
@@ -315,7 +287,6 @@
     <string name="no_valid_zip_file">Нема валиден ZIP фајл</string>
     <string name="could_not_import_all_files">Предупредување: Не се внесени сите датотеки.</string>
     <string name="override_current_data">Ова ќе ги избрише моменталните поставки.</string>
-
     <string name="kiosk">Киоск</string>
     <string name="trending">Популарни</string>
     <string name="top_50">Топ 50</string>
@@ -331,64 +302,47 @@
     <string name="start_here_on_main">Пушти тука</string>
     <string name="start_here_on_background">Пушти тука во позадина</string>
     <string name="start_here_on_popup">Пушти тука во прозорче</string>
-
     <string name="drawer_open">Отвори картон</string>
     <string name="drawer_close">Затвори картон</string>
     <string name="drawer_header_action_paceholder_text">Нешто спремаме за тука ;D</string>
-
-
     <string name="video_player">Видео плеер</string>
     <string name="background_player">Позадински плеер</string>
     <string name="popup_player">Пушти во прозорче</string>
     <string name="always_ask_open_action">Секогаш прашај</string>
-    
     <string name="preferred_player_fetcher_notification_title">Чекање информации…</string>
     <string name="preferred_player_fetcher_notification_message">Одбраната содржина се чита</string>
-
     <string name="create_playlist">Создај нова плејлиста</string>
     <string name="delete_playlist">Избриши плејлиста</string>
     <string name="rename_playlist">Прекрсти плејлиста</string>
     <string name="playlist_name_input">Име</string>
     <string name="append_playlist">Додај во плејлиста</string>
     <string name="set_as_playlist_thumbnail">Постави како икона на плејлистата</string>
-
     <string name="bookmark_playlist">Обележи ја плејлистата</string>
     <string name="unbookmark_playlist">Избриши ја белешката</string>
-
     <string name="delete_playlist_prompt">Сакаш да ја избришеш плејлистата?</string>
     <string name="playlist_creation_success">Листата е создадена</string>
     <string name="playlist_add_stream_success">Додадено во плејлиста</string>
     <string name="playlist_thumbnail_change_success">Се смени иконата на плејлистата</string>
     <string name="playlist_delete_failure">Неуспешно бришење на листата</string>
-
     <string name="caption_none">Без превод</string>
-
     <string name="resize_fit">Вклопи</string>
     <string name="resize_fill">Исполни</string>
     <string name="resize_zoom">Зумирај</string>
-
     <string name="caption_auto_generated">Автоматски создадено</string>
-
     <string name="enable_leak_canary_title">Вклучи LeakCanary</string>
     <string name="enable_leak_canary_summary">Следењето на мемориските грешки може да ја прикочува апликацијата</string>
-
     <string name="enable_disposed_exceptions_title">Пријави Out-of-lifecycle грешки</string>
     <string name="enable_disposed_exceptions_summary">Секогаш пријавувај неуспешни Rx исклучоци кои настануваат надвор од fragment или activity циклусот по отстранување</string>
-
     <string name="import_export_title">Внеси/Изнеси</string>
     <string name="import_title">Внеси</string>
     <string name="import_from">Внеси од</string>
     <string name="export_to">Изнеси до</string>
-
     <string name="import_ongoing">Внесување…</string>
     <string name="export_ongoing">Изнесување…</string>
-
     <string name="import_file_title">Внеси датотека</string>
     <string name="previous_export">Претходно изнесување</string>
-
     <string name="subscriptions_import_unsuccessful">Неуспешно внесување членства</string>
     <string name="subscriptions_export_unsuccessful">Неуспешно изнесување членства</string>
-
     <string name="import_youtube_instructions">Внеси YouTube членства, преку симнување на извозен фајл: 
 \n 
 \n1. Оди на оваа врска: %1$s 
@@ -401,17 +355,15 @@
 \n3. Пријавете се на вашиот профил 
 \n4. Копирајте го URL-то на кое бевте пренасочени (тоа е URL-то на вашиот профил).</string>
     <string name="import_soundcloud_instructions_hint">korisnickoime, soundcloud.com/korisnickoime</string>
-
     <string name="import_network_expensive_warning">Треба да знаеш дека оваа операција троши многу интернет.
 \n
 \nСакаш да продолжиш?</string>
-
     <string name="playback_speed_control">Контрола на брзината на траката</string>
     <string name="playback_tempo">Темпо</string>
     <string name="playback_pitch">Тон</string>
     <string name="unhook_checkbox">Откачи (може да создаде мутации)</string>
     <string name="playback_default">Стандардно</string>
-<string name="clear_views_history_title">Избриши историја на гледаност</string>
+    <string name="clear_views_history_title">Избриши историја на гледаност</string>
     <string name="clear_views_history_summary">Ја брише историјата на пуштени видеа</string>
     <string name="delete_view_history_alert">Избриши ја целата историја на гледаност.</string>
     <string name="watch_history_deleted">Избришана е историјата на гледаност.</string>
@@ -420,20 +372,14 @@
     <string name="delete_search_history_alert">Избриши ја целата историја на пребарувања.</string>
     <string name="search_history_deleted">Избришана е историјата на пребарувања.</string>
     <string name="no_streams_available_download">Нема стримови за симнување</string>
-
     <string name="one_item_deleted">1 ставка избришана.</string>
-
     <string name="toast_no_player">Нема апликација за пуштање на овој фајл</string>
-
     <string name="app_license">NewPipe е „copyleft“ слободен софтвер: Можеш да ја користиш, истражуваш и подобруваш по твоја желба. Можеш да ја редистрибуираш и/или да ја промениш под условите на GNU GPL лиценцата, публикувана од фондацијата FSF - или верзија 3 од лиценцата, или (по можност) понова верзија.</string>
     <string name="import_settings">Дали сакаш да се внесат и подесувањата?</string>
-
     <string name="preferred_open_action_settings_title">Претпочитана акција за „отворање“</string>
     <string name="preferred_open_action_settings_summary">Стандардна акција при отворање видеа — %s</string>
-
     <string name="caption_setting_title">Преводи</string>
     <string name="caption_setting_description">Смени ја големината и стилот на преводот. Потребен е рестарт за промена</string>
-
     <string name="privacy_policy_title">NewPipe - политика за приватност</string>
     <string name="privacy_policy_encouragement">Проектот NewPipe сериозно ја сфаќа вашата приватност. Затоа апликацијата не собира ваши податоци без ваша дозвола.
 \nПолитиката за приватност на NewPipe детално објаснува кои податоци се зачувани и пратени кога праќате извештај за грешка во апликацијата.</string>
@@ -442,7 +388,6 @@
 \nВе молиме прочитајте ја внимателно. Мора да ја прифатите за да ни го испратите извештајот за грешка во апликацијата.</string>
     <string name="accept">Прифати</string>
     <string name="decline">Отфрли</string>
-
     <string name="limit_data_usage_none_description">Неограничено</string>
     <string name="limit_mobile_data_usage_title">Ограничи резолуција при користење мобилен интернет</string>
     <string name="channels">Канали</string>
@@ -452,11 +397,12 @@
     <string name="skip_silence_checkbox">Прескокни ја тишината</string>
     <string name="playback_step">Скокни</string>
     <string name="playback_reset">Почни одново</string>
-
     <string name="minimize_on_exit_title">Скриј при промена на апликацијата</string>
     <string name="minimize_on_exit_summary">Пушти во заднина при промена на апликацијата од видео плеерот — %s</string>
     <string name="minimize_on_exit_none_description">Никое</string>
     <string name="minimize_on_exit_background_description">Смали го во позадина</string>
     <string name="minimize_on_exit_popup_description">Смали го во прозорче</string>
-
+    <string name="unsubscribe">Откажи членство</string>
+    <string name="tab_new">Ново јазиче</string>
+    <string name="tab_choose">Одбери јазиче</string>
 </resources>

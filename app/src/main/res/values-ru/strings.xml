@@ -134,7 +134,7 @@
     <string name="short_million">" млн"</string>
     <string name="short_billion">" млрд"</string>
     <string name="short_thousand">" тыс."</string>
-    <string name="default_popup_resolution_title">Разрешение очереди всплывающего окна</string>
+    <string name="default_popup_resolution_title">Разрешение очереди \"В окне\"</string>
     <string name="popup_remember_size_pos_summary">Помнить последние размер и позицию всплывающего окна</string>
     <string name="show_search_suggestions_title">Поисковые предложения</string>
     <string name="best_resolution">Лучшее разрешение</string>
@@ -246,9 +246,9 @@
     <string name="title_activity_background_player">В фоне</string>
     <string name="title_activity_popup_player">В окне</string>
     <string name="hold_to_append">Зажмите, чтобы добавить в очередь</string>
-    <string name="enqueue_on_background">Добавить в очередь \"В фоне\"</string>
-    <string name="enqueue_on_popup">Добавить в очередь \"В окне\"</string>
-    <string name="start_here_on_main">Начать отсюда в плеере</string>
+    <string name="enqueue_on_background">В очередь \"В фоне\"</string>
+    <string name="enqueue_on_popup">В очередь \"В окне\"</string>
+    <string name="start_here_on_main">Играть отсюда в плеере</string>
     <string name="start_here_on_background">Играть отсюда в фоне</string>
     <string name="start_here_on_popup">Играть отсюда в окне</string>
     <string name="no_player_found_toast">Потоковый плеер не найден (можно установить VLC)</string>
@@ -317,7 +317,7 @@
     <string name="delete_playlist">Удалить</string>
     <string name="rename_playlist">Переименовать</string>
     <string name="playlist_name_input">Имя</string>
-    <string name="append_playlist">Добавить в плейлист</string>
+    <string name="append_playlist">В плейлист</string>
     <string name="set_as_playlist_thumbnail">На миниатюру плейлиста</string>
     <string name="bookmark_playlist">Сохранить плейлист</string>
     <string name="unbookmark_playlist">Удалить закладку</string>
