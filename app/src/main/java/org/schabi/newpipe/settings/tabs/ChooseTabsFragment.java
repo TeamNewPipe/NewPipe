@@ -231,7 +231,7 @@ public class ChooseTabsFragment extends Fragment {
                     break;
                 case DEFAULT_KIOSK:
                     if (!tabList.contains(tab)) {
-                        returnList.add(new ChooseTabListItem(tab.getTabId(), "Default Kiosk",
+                        returnList.add(new ChooseTabListItem(tab.getTabId(), getString(R.string.default_kiosk_page_sumatry),
                                 ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_hot)));
                     }
                     break;
@@ -317,7 +317,7 @@ public class ChooseTabsFragment extends Fragment {
                         tabName = NewPipe.getNameOfService(((Tab.ChannelTab) tab).getChannelServiceId()) + "/" + tabName;
                         break;
                     case DEFAULT_KIOSK:
-                        tabName = "Default Kiosk";
+                        tabName = requireContext().getString(R.string.default_kiosk_page_sumatry);
                         break;
                 }
 
