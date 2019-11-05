@@ -507,4 +507,5 @@
     <string name="delete_playback_states_alert">Alle Wiedergabepositionen löschen\?</string>
     <string name="download_choose_new_path">Ändere die Downloadordner, damit sie wirksam werden</string>
     <string name="drawer_header_description">Dienst umschalten, aktuell ausgewählt:</string>
+    <string name="default_kiosk_page_sumatry">Quiosque Predefinido</string>
 </resources>
