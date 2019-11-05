@@ -51,7 +51,7 @@
     <string name="could_not_load_thumbnails">No se pudo cargar las miniaturas</string>
     <string name="youtube_signature_decryption_error">No se pudo descifrar la URL del vídeo</string>
     <string name="parsing_error">No se pudo analizar el sitio web</string>
-    <string name="show_next_and_similar_title">Mostrar videos «siguientes» y «similares»</string>
+    <string name="show_next_and_similar_title">Mostrar vídeos «siguientes» y «similares»</string>
     <string name="content_language_title">Idioma predeterminado del contenido</string>
     <string name="list_thumbnail_view_description">Miniatura de previsualización del vídeo</string>
     <string name="detail_thumbnail_view_description">Reproducir vídeo; duración:</string>
@@ -242,7 +242,7 @@
     <string name="start_here_on_main">Comenzar a reproducir aquí</string>
     <string name="start_here_on_background">Comenzar a reproducir en segundo plano</string>
     <string name="start_here_on_popup">Comenzar a reproducir en un popup nuevo</string>
-    <string name="show_hold_to_append_title">Mostrar consejo «Mantener pulsado para añadir»</string>
+    <string name="show_hold_to_append_title">Mostrar consejo «Mantener presionado para agregar»</string>
     <string name="new_and_hot">Nuevo y popular</string>
     <string name="hold_to_append">Mantener presionado para agregar a la cola</string>
     <string name="donation_title">Donar</string>
@@ -459,7 +459,7 @@
 \nHabilite esta opción junto con SAF si quiere descargar en la tarjeta SD</string>
     <string name="downloads_storage_use_saf_title">Usar SAF</string>
     <string name="downloads_storage_use_saf_summary">El Framework de Acceso al Almacenamiento permite descargar en la tarjeta SD externa.\nNota: Algunos los dispositivos no son compatibles</string>
-    <string name="unsubscribe">Cancelar suscripción</string>
+    <string name="unsubscribe">Cancelar la suscripción</string>
     <string name="tab_new">Pestaña nueva</string>
     <string name="tab_choose">Elija la pestaña</string>
     <string name="volume_gesture_control_title">Control de volumen por gestos</string>
@@ -506,4 +506,5 @@
     <string name="clear_playback_states_summary">Elimina todas las posiciones de reproducción</string>
     <string name="delete_playback_states_alert">¿Quiere eliminar todas las posiciones de reproducción\?</string>
     <string name="drawer_header_description">Activar/desactivar servicio, seleccionados actualmente:</string>
+    <string name="default_kiosk_page_sumatry">kiosco predeterminado</string>
 </resources>
