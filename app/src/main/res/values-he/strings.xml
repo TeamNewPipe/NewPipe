@@ -515,4 +515,5 @@
     <string name="delete_playback_states_alert">למחוק את מיקומי הנגינה\?</string>
     <string name="download_choose_new_path">יש להחליף את תיקיות ההורדה כדי שייכנס לתוקף</string>
     <string name="drawer_header_description">הפעלה/כיבוי שירות, בחירה נוכחית:</string>
+    <string name="default_kiosk_page_sumatry">קיוסק בררת מחדל</string>
 </resources>
