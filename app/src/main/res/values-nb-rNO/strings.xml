@@ -376,7 +376,7 @@
     <string name="download_thumbnail_summary">Skru av for å stoppe innlasting av miniatyrbilder, noe som sparer data- og minnebruk. Endring av dette vil tømme både disk- og minne-hurtiglager.</string>
     <string name="auto_queue_summary">Legg til en relatert strøm ved avspilling av forrige strøm i ikke-repeterende kø</string>
     <string name="enable_leak_canary_summary">Minnelekkasjeoppsyn kan forårsake programmet å opptre uresponsivt under haugdumping</string>
-    <string name="enable_disposed_exceptions_title">Rapporter feil som opptrer utenfor sin levetid</string>
+    <string name="enable_disposed_exceptions_title">Rapporter feil utenfor livssyklusen</string>
     <string name="enable_disposed_exceptions_summary">Tving rapportering av uleverbare Rx-unntak utenom fragment eller aktivitetslevetid etter forkastelse</string>
     <string name="unhook_checkbox">Avhekt (kan forårsake forvrenging)</string>
     <string name="privacy_policy_title">NewPipes personvernspraksis</string>
@@ -433,7 +433,7 @@
     <string name="app_update_notification_content_text">Trykk for å laste ned</string>
     <string name="missions_header_finished">Fullført</string>
     <string name="paused">pauset</string>
-    <string name="queued">i kø</string>
+    <string name="queued">I kø</string>
     <string name="post_processing">etterbehandling</string>
     <string name="enqueue">Kø</string>
     <string name="permission_denied">Handling avvist av systemet</string>
@@ -454,7 +454,7 @@
     <string name="error_connect_host">Kan ikke koble til tjeneren</string>
     <string name="error_http_no_content">Tjeneren sender ikke data</string>
     <string name="error_http_unsupported_range">"Tjeneren godtar ikke flertrådede nedlastinger, prøv igjen med @string/msg_threads = 1 "</string>
-    <string name="error_http_requested_range_not_satisfiable">Forespurt nummerområde kan ikke innvilges</string>
+    <string name="error_http_requested_range_not_satisfiable">Forespurt rekkevidde er ikke tilfredsstillende</string>
     <string name="error_http_not_found">Ikke funnet</string>
     <string name="error_postprocessing_failed">Etterbehandling mislyktes</string>
     <string name="clear_finished_download">Tøm fullførte nedlastinger</string>
@@ -496,15 +496,15 @@
     <string name="pause_downloads">Sett nedlastinger på pause</string>
     <string name="downloads_storage_ask_title">Spør om hvor ting skal lastes ned til</string>
     <string name="downloads_storage_ask_summary">Du vil bli spurt om hvor hver nedlasting skal plasseres</string>
-    <string name="downloads_storage_ask_summary_kitkat">Du vil bli spurt om hvor hver nedlasting skal plasseres.
-\nSkru på dette valget hvis du vil laste ned til eksternt SD-kort.</string>
+    <string name="downloads_storage_ask_summary_kitkat">Du vil bli spurt om hvor hver nedlasting skal plasseres. 
+\nSkru på SAF hvis du vil laste ned til eksternt SD-kort</string>
     <string name="downloads_storage_use_saf_title">Bruk SAF</string>
     <string name="downloads_storage_use_saf_summary">Lagringstilgangsrammeverk (SAF) tillater nedlastinger til eksternt SD-kort.
-\nMerk: Noen enheter er ikke kompatible.</string>
+\nMerk: Noen enheter er ikke kompatible</string>
     <string name="clear_playback_states_title">Slett avspillingsposisjoner</string>
     <string name="clear_playback_states_summary">Sletter alle avspillingsposisjoner</string>
     <string name="delete_playback_states_alert">Slett alle avspillingsposisjoner\?</string>
     <string name="download_choose_new_path">Endre nedlastingsmappene for å tre i kraft</string>
     <string name="drawer_header_description">Skru tjeneste av/på, for tiden er dette status:</string>
-    <string name="default_kiosk_page_sumatry">Forvalgt kiosk</string>
+    <string name="default_kiosk_page_sumatry">Standard kiosk</string>
 </resources>
