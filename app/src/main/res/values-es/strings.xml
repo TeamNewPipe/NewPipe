@@ -27,7 +27,7 @@
     <string name="default_audio_format_title">Formato de audio predeterminado</string>
     <string name="download_dialog_title">Descargar</string>
     <string name="next_video_title">Siguiente</string>
-    <string name="url_not_supported_toast">No se admite la dirección URL</string>
+    <string name="url_not_supported_toast">No se admite el URL</string>
     <string name="use_external_video_player_title">Usar reproductor de vídeo externo</string>
     <string name="use_external_audio_player_title">Usar reproductor de audio externo</string>
     <string name="theme_title">Tema</string>
@@ -98,7 +98,7 @@
     <string name="msg_error">Error</string>
     <string name="msg_server_unsupported">Servidor incompatible</string>
     <string name="msg_exists">El archivo ya existe</string>
-    <string name="msg_url_malform">Dirección URL mal escrita o Internet no disponible</string>
+    <string name="msg_url_malform">URL mal escrito o Internet no disponible</string>
     <string name="msg_running">NewPipe está descargando</string>
     <string name="msg_running_detail">Toque para ver detalles</string>
     <string name="msg_wait">Espere…</string>
@@ -223,7 +223,7 @@
     <string name="select_a_kiosk">Seleccione un kiosco</string>
     <string name="kiosk">Kiosco</string>
     <string name="trending">Tendencias</string>
-    <string name="top_50">Top 50</string>
+    <string name="top_50">50 mejores</string>
     <string name="show_hold_to_append_summary">Mostrar sugerencia cuando se presiona el botón de 2.º plano o emergente en la página de detalles del vídeo</string>
     <string name="background_player_append">En cola en el reproductor de 2.º plano</string>
     <string name="popup_playing_append">En cola en el reproductor emergente</string>
@@ -238,12 +238,12 @@
     <string name="play_queue_audio_settings">Ajustes de audio</string>
     <string name="unknown_content">[Desconocido]</string>
     <string name="enqueue_on_background">Añadir a cola en segundo plano</string>
-    <string name="enqueue_on_popup">Añadir a cola en un popup nuevo</string>
+    <string name="enqueue_on_popup">Añadir a cola en reproductor emergente</string>
     <string name="start_here_on_main">Comenzar a reproducir aquí</string>
     <string name="start_here_on_background">Comenzar a reproducir en segundo plano</string>
     <string name="start_here_on_popup">Comenzar a reproducir en un popup nuevo</string>
     <string name="show_hold_to_append_title">Mostrar consejo «Mantener presionado para agregar»</string>
-    <string name="new_and_hot">Nuevo y popular</string>
+    <string name="new_and_hot">Novedades</string>
     <string name="hold_to_append">Mantener presionado para agregar a la cola</string>
     <string name="donation_title">Donar</string>
     <string name="donation_encouragement">NewPipe es desarrollado por voluntarios que emplean su tiempo libre para brindarle la mejor experiencia. Haga una aportación para ayudarlos a crear un NewPipe aún mejor mientras disfrutan de una taza de café.</string>
@@ -302,7 +302,7 @@
     <string name="set_as_playlist_thumbnail">Definir como miniatura de lista de reproducción</string>
     <string name="bookmark_playlist">Marcar lista de reproducción</string>
     <string name="unbookmark_playlist">Eliminar marcador</string>
-    <string name="delete_playlist_prompt">¿Borrar esta lista de reproducción\?</string>
+    <string name="delete_playlist_prompt">¿Quiere eliminar esta lista\?</string>
     <string name="playlist_creation_success">Lista de reproducción creada</string>
     <string name="playlist_add_stream_success">Añadido a la lista de reproducción</string>
     <string name="playlist_thumbnail_change_success">Miniatura de lista de reproducción cambiada.</string>
@@ -459,7 +459,7 @@
 \nHabilite esta opción junto con SAF si quiere descargar en la tarjeta SD</string>
     <string name="downloads_storage_use_saf_title">Usar SAF</string>
     <string name="downloads_storage_use_saf_summary">El Framework de Acceso al Almacenamiento permite descargar en la tarjeta SD externa.\nNota: Algunos los dispositivos no son compatibles</string>
-    <string name="unsubscribe">Cancelar la suscripción</string>
+    <string name="unsubscribe">Cancelar suscripción</string>
     <string name="tab_new">Pestaña nueva</string>
     <string name="tab_choose">Elija la pestaña</string>
     <string name="volume_gesture_control_title">Control de volumen por gestos</string>
