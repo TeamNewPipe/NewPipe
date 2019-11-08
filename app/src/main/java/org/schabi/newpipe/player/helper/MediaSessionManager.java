@@ -5,15 +5,16 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.MediaMetadata;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.NotificationCompat;
 import android.support.v4.media.MediaMetadataCompat;
-import android.support.v4.media.session.MediaButtonReceiver;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.view.KeyEvent;
-import android.support.v4.media.app.NotificationCompat.MediaStyle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.core.app.NotificationCompat;
+import androidx.media.session.MediaButtonReceiver;
+import androidx.media.app.NotificationCompat.MediaStyle;
 
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
@@ -25,8 +26,10 @@ import org.schabi.newpipe.player.mediasession.PlayQueuePlaybackController;
 public class MediaSessionManager {
     private static final String TAG = "MediaSessionManager";
 
-    @NonNull private final MediaSessionCompat mediaSession;
-    @NonNull private final MediaSessionConnector sessionConnector;
+    @NonNull
+    private final MediaSessionCompat mediaSession;
+    @NonNull
+    private final MediaSessionConnector sessionConnector;
 
     public MediaSessionManager(@NonNull final Context context,
                                @NonNull final Player player,
@@ -72,7 +75,7 @@ public class MediaSessionManager {
     }
 
     /**
-     * Should be called on player destruction to prevent leakage.
+     * Should be called on player destruction to prevent leakage.BitmapUtils
      */
     public void dispose() {
         this.sessionConnector.setPlayer(null);
