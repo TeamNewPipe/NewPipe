@@ -1,7 +1,8 @@
 package org.schabi.newpipe.util;
 
 import android.graphics.Bitmap;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.Nullable;
 
 public class BitmapUtils {
 
