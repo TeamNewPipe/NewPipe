@@ -35,7 +35,6 @@ import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.StreamDialogEntry;
 import org.schabi.newpipe.views.SuperScrollLayoutManager;
-import org.schabi.newpipe.views.FixedGridLayoutManager;
 
 import java.util.List;
 import java.util.Queue;
@@ -157,7 +156,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
         int width = resources.getDimensionPixelSize(R.dimen.video_item_grid_thumbnail_image_width);
         width += (24 * resources.getDisplayMetrics().density);
         final int spanCount = (int) Math.floor(resources.getDisplayMetrics().widthPixels / (double)width);
-        final GridLayoutManager lm = new FixedGridLayoutManager(activity, spanCount);
+        final GridLayoutManager lm = new GridLayoutManager(activity, spanCount);
         lm.setSpanSizeLookup(infoListAdapter.getSpanSizeLookup(spanCount));
         return lm;
     }

@@ -57,7 +57,6 @@ import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.views.CollapsibleView;
-import org.schabi.newpipe.views.FixedGridLayoutManager;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -193,7 +192,7 @@ public class SubscriptionFragment extends BaseStateFragment<List<SubscriptionEnt
         int width = resources.getDimensionPixelSize(R.dimen.video_item_grid_thumbnail_image_width);
         width += (24 * resources.getDisplayMetrics().density);
         final int spanCount = (int) Math.floor(resources.getDisplayMetrics().widthPixels / (double)width);
-        final GridLayoutManager lm = new FixedGridLayoutManager(activity, spanCount);
+        final GridLayoutManager lm = new GridLayoutManager(activity, spanCount);
         lm.setSpanSizeLookup(infoListAdapter.getSpanSizeLookup(spanCount));
         return lm;
     }
