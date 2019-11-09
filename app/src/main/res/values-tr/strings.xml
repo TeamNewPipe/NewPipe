@@ -507,4 +507,5 @@
         <item quantity="one">Videolar</item>
         <item quantity="other"/>
     </plurals>
+    <string name="default_kiosk_page_sumatry">Varsayılan Kiosk</string>
 </resources>

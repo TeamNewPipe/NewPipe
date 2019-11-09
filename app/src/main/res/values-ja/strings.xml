@@ -502,4 +502,5 @@
     <plurals name="videos">
         <item quantity="other">動画</item>
     </plurals>
+    <string name="default_kiosk_page_sumatry">デフォルトのキオスク</string>
 </resources>

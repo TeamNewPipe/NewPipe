@@ -297,8 +297,8 @@
     <string name="preferred_player_fetcher_notification_title">Získavajú sa informácie…</string>
     <string name="preferred_player_fetcher_notification_message">Načítanie požadované obsahu</string>
     <string name="create_playlist">Vytvoriť nový zoznam skladieb</string>
-    <string name="delete_playlist">Vymazať zoznam skladieb</string>
-    <string name="rename_playlist">Premenovať zoznam skladieb</string>
+    <string name="delete_playlist">Vymazať</string>
+    <string name="rename_playlist">Premenovať</string>
     <string name="playlist_name_input">Názov</string>
     <string name="append_playlist">Pridať do zoznamu skladieb</string>
     <string name="set_as_playlist_thumbnail">Nastaviť ako miniatúru zoznamu skladieb</string>
@@ -342,8 +342,7 @@
     <string name="enable_leak_canary_summary">Monitorovanie pretečenia pamäte môže spôsobiť, že aplikácia nebude reagovať</string>
     <string name="enable_disposed_exceptions_title">Nahlásiť mimo-cyklické chyby</string>
     <string name="enable_disposed_exceptions_summary">Vynútiť hlásenie výnimiek nedoručiteľných Rx mimo časového cyklu fragmentov alebo aktivity po zneškodnení</string>
-    <string name="import_export_title">Import/Export
-\n</string>
+    <string name="import_export_title">Import/Export</string>
     <string name="import_title">Import
 \n</string>
     <string name="import_from">Importovať z
@@ -512,4 +511,7 @@
     <string name="clear_playback_states_title">Odstrániť pozície prehrávania</string>
     <string name="clear_playback_states_summary">Odstráni všetky pozície prehrávania</string>
     <string name="delete_playback_states_alert">Odstrániť všetky pozície prehrávania\?</string>
+    <string name="download_choose_new_path">Zmeniť miesto pre stiahnuté súbory</string>
+    <string name="drawer_header_description">Prepnúť službu, práve vybraté:</string>
+    <string name="default_kiosk_page_sumatry">Predvolený kiosk</string>
 </resources>

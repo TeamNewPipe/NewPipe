@@ -502,4 +502,5 @@
     <plurals name="videos">
         <item quantity="other">影片</item>
     </plurals>
+    <string name="default_kiosk_page_sumatry">預設 Kiosk</string>
 </resources>
