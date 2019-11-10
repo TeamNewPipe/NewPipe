@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="view_count_text">%1$s vidoj</string>
+    <string name="view_count_text">%1$s spektaĵoj</string>
     <string name="upload_date_text">Eldonita je %1$s</string>
     <string name="install">Instali</string>
     <string name="cancel">Nuligi</string>
@@ -58,12 +58,12 @@
     <string name="download_path_dialog_title">Elektu lokon por konservi elŝutitajn filmetojn</string>
     <string name="download_path_audio_dialog_title">Elektu lokon por konservi elŝutitajn muzikojn</string>
     <string name="content">Enhavo</string>
-    <string name="error_report_button_text">Raporti eraron per retpoŝto</string>
-    <string name="error_snackbar_action">RAPORTI</string>
+    <string name="error_report_button_text">Signali eraron per retpoŝto</string>
+    <string name="error_snackbar_action">SIGNALI</string>
     <string name="what_device_headline">Informoj:</string>
     <string name="your_comment">Via komento (en la angla):</string>
     <string name="error_details_headline">Detaloj:</string>
-    <string name="report_error">Raporti eraron</string>
+    <string name="report_error">Signali eraron</string>
     <string name="video">Filmeto</string>
     <string name="retry">Reprovi</string>
     <string name="main_bg_subtitle">Premu serĉo por komenci</string>
@@ -106,7 +106,7 @@
     <string name="duration_live">NUNA</string>
     <string name="downloads">Elŝutoj</string>
     <string name="downloads_title">Elŝutoj</string>
-    <string name="error_report_title">Raporto de eraro</string>
+    <string name="error_report_title">Erarosignalo</string>
     <string name="could_not_load_image">Ne povis ŝarĝi bildon</string>
     <string name="app_ui_crash">Apo kraŝis</string>
     <string name="reCaptchaActivity">reCAPTCHA</string>
@@ -115,8 +115,8 @@
     <string name="all">Ĉiuj</string>
     <string name="channel">Kanalo</string>
     <plurals name="videos">
-        <item quantity="one">Filmetoj</item>
-        <item quantity="other"></item>
+        <item quantity="one">%s filmeto</item>
+        <item quantity="other">%s filmetoj</item>
     </plurals>
     <string name="yes">Jes</string>
     <string name="later">Poste</string>
@@ -203,7 +203,7 @@
     <string name="playlist_add_stream_success">Ludlistita</string>
     <string name="playlist_thumbnail_change_success">Bildeto de ludlisto ŝanĝiĝita.</string>
     <string name="playlist_delete_failure">Ne povis forigi ludlisto.</string>
-    <string name="settings_category_debug_title">Sencimigi</string>
+    <string name="settings_category_debug_title">Malcimigi</string>
     <string name="auto_queue_title">Auto-vico sekva fluo</string>
     <string name="auto_queue_summary">Aŭto-aldoni rilatan enhavon kiam leganta la lasta enhavo en malrepetita atendovico</string>
     <string name="file">Dosiero</string>
@@ -216,10 +216,10 @@
 \n1. Iru ĉe tie retpaĝo : %1$s
 \n2. Ensalutu kiam oni petas vin
 \n3. Elŝuto devus komenci (ĝi estas la dosiero de eksporto)</string>
-    <string name="import_soundcloud_instructions">Importu Soundcloud-n profilon per elŝuti la dosieron de eksporto :
-\n
-\n1. Ebligu komputilon modon en krozilo (la retejo ne estas havebla por poŝtelefonoj)
-\n2. Iru al tie retpaĝo : %1$s
+    <string name="import_soundcloud_instructions">Importu Soundcloud-n profilon per elŝuti la dosieron de eksporto : 
+\n 
+\n1. Ebligu komputilon modon en krozilo (la retejo malhaveblas por poŝtelefonoj) 
+\n2. Iru al tie retpaĝo : %1$s 
 \n3. Ensalutu kiam oni petas vin 
 \n4. Kopiu la ligilon de profilo ke oni kondikis vin.</string>
     <string name="download_thumbnail_summary">Malŝaltu por malebligi ŝarĝajn bildetojn, konservi datumojn kaj uzadon de memoro. Ŝanĝoj forviŝas ambaŭ en-memoro kaj sur-disko bildo kaŝmemoro.</string>
@@ -237,7 +237,7 @@
     <string name="delete_search_history_alert">Ĉu vi volas forviŝi la totalon de la historio de serĉo \?</string>
     <string name="search_history_deleted">Historio de serĉo forviŝita.</string>
     <string name="limit_mobile_data_usage_title">Limigi distingivo kiam uzanta moveblan datumon</string>
-    <string name="minimize_on_exit_popup_description">Minimumigu al ŝprucfenestro ludilo</string>
+    <string name="minimize_on_exit_popup_description">Minimumigi al ŝprucfenestro ludilo</string>
     <string name="channels">Kanaloj</string>
     <string name="playlists">Ludlistoj</string>
     <string name="tracks">Spuroj</string>
@@ -250,11 +250,11 @@
     <string name="brightness_gesture_control_title">Kontrolo de gesto de brilo</string>
     <string name="brightness_gesture_control_summary">Uzu gestojn por kontroli la brilon de la ludilo</string>
     <string name="settings_category_updates_title">Ĝisdatigoj</string>
-    <string name="file_deleted">Dosiero forigita</string>
+    <string name="file_deleted">Dosiero forviŝita</string>
     <string name="app_update_notification_channel_name">Sciigo por ĝisdatigi apon</string>
     <string name="app_update_notification_channel_description">Sciigo por nova versio de Newpipe</string>
     <string name="download_to_sdcard_error_title">Ekstera konservejo malhavebla</string>
-    <string name="download_to_sdcard_error_message">Elŝuti al ekstera SD-karto ne eblas. Ĉu vi volas rekomencigi la elŝutan dosierujon \?</string>
+    <string name="download_to_sdcard_error_message">Elŝuti al ekstera SD-karto ne eblas. Ĉu vi volas restarigi la elŝutan dosierujon \?</string>
     <string name="queued">viciĝita</string>
     <string name="enqueue">Atendovico</string>
     <string name="stop">Halti</string>
@@ -268,18 +268,18 @@
     <string name="autoplay_title">Aŭtolego</string>
     <plurals name="comments">
         <item quantity="one">Komentoj</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="error_unable_to_load_comments">Ne povis ŝarĝi komentojn</string>
     <string name="close">Fermi</string>
-    <string name="enable_playback_resume_title">Repreni la legon</string>
-    <string name="enable_playback_resume_summary">Restaŭri la lastan legan pozicion</string>
+    <string name="enable_playback_resume_title">Repreni la ludon</string>
+    <string name="enable_playback_resume_summary">Restaŭri la lastan ludan pozicion</string>
     <string name="enable_playback_state_lists_title">Pozicioj en listoj</string>
-    <string name="enable_playback_state_lists_summary">Montri la indikilojn de pozicion lega en listoj</string>
+    <string name="enable_playback_state_lists_summary">Montri la indikilojn de pozicioj de ludoj en listoj</string>
     <string name="settings_category_clear_data_title">Forviŝi datumojn</string>
     <string name="watch_history_deleted">Historio forviŝita.</string>
     <string name="watch_history_states_deleted">Ludaj pozicioj forviŝitaj.</string>
-    <string name="missing_file">Dosiero movita aŭ foviŝita</string>
+    <string name="missing_file">Dosiero movita aŭ forviŝita</string>
     <string name="overwrite_failed">ne povas dispremi la dosieron</string>
     <string name="confirm_prompt">Ĉu vi certas\?</string>
     <string name="enable_queue_limit">Limigi la elŝutan atendovicon</string>
@@ -297,4 +297,214 @@
     <string name="clear_playback_states_summary">Forviŝi la totalon de ludaj pozicioj</string>
     <string name="delete_playback_states_alert">Ĉu vi volas forviŝi ĉiujn ludajn poziciojn \?</string>
     <string name="download_choose_new_path">Ŝanĝu la elŝutojn dosierujojn por efekti</string>
+    <string name="sorry_string">Pardonu, eraro okazis.</string>
+    <string name="error_snackbar_message">Pardonu, kelkaj eraroj okazis.</string>
+    <string name="what_happened_headline">Kio okazis:</string>
+    <string name="info_labels">Kio:\\nPeto:\\nEnhavlingvo:\\nServo:\\nGMT Horo:\\nPako:\\nVersio:\\nOperaciumo versio:</string>
+    <string name="audio">Aŭdio</string>
+    <string name="storage_permission_denied">Permeso por atingi la konservon rifuzita</string>
+    <string name="user_report">Uzantosignalo</string>
+    <string name="start">Komenci</string>
+    <string name="pause">Paŭzigi</string>
+    <string name="view">Ludi</string>
+    <string name="delete">Forigi</string>
+    <string name="checksum">Kontrolsumo</string>
+    <string name="add">Nova misio</string>
+    <string name="finish">Bone</string>
+    <string name="msg_name">Dosiernomo</string>
+    <string name="msg_threads">Fadenoj</string>
+    <string name="msg_error">Eraro</string>
+    <string name="msg_server_unsupported">Nesubtenata servilo</string>
+    <string name="msg_exists">Dosiero jam ekzistas</string>
+    <string name="msg_url_malform">Malformita ligilo aŭ interreto malhavebla</string>
+    <string name="msg_running">NewPipe estas elŝutanta</string>
+    <string name="msg_running_detail">Premu por detaladoj</string>
+    <string name="msg_wait">Bonvolu atendi…</string>
+    <string name="msg_copied">Enpoŝigita</string>
+    <string name="no_available_dir">Bonvolu difini elŝutan dosierujon poste en agordoj</string>
+    <plurals name="views">
+        <item quantity="one">%s spektaĵo</item>
+        <item quantity="other">%s spektaĵoj</item>
+    </plurals>
+    <string name="short_thousand">k</string>
+    <string name="short_million">M</string>
+    <string name="short_billion">B</string>
+    <string name="title_activity_about">Pri NewPipe</string>
+    <string name="action_settings">Agordoj</string>
+    <string name="action_about">Pri</string>
+    <string name="title_licenses">Eksteraj permesiloj</string>
+    <string name="copyright" formatted="true">© %1$s de %2$s sub %3$s</string>
+    <string name="error_unable_to_load_license">Ne povis ŝargi permisilon</string>
+    <string name="action_open_website">Malfermi la retejon</string>
+    <string name="tab_about">Pri</string>
+    <string name="tab_contributors">Kontribuintoj</string>
+    <string name="tab_licenses">Permesiloj</string>
+    <string name="view_on_github">Rigardu ĉe GitHub</string>
+    <string name="app_license_title">Permesilo de NewPipe</string>
+    <string name="contribution_encouragement">Ĉu vi havas ideojn pri; traduko, desegnaĵoj ŝanĝoj, purigado de kodo, aŭ realaj masivaj ŝanĝoj—helpo estas ĉiam bonvena. Ju pli oni faras, des pli bonas!</string>
+    <string name="read_full_license">Legu permesilon</string>
+    <string name="contribution_title">Kontribui</string>
+    <string name="settings_file_charset_title">Permesitaj karakteroj en dosiernomoj</string>
+    <string name="settings_file_replacement_character_summary">Nevalidaj karakteroj estas anstataŭigita kun ĉi tiu valoro</string>
+    <string name="settings_file_replacement_character_title">Anstataŭa karaktero</string>
+    <string name="title_activity_history">Historio</string>
+    <string name="title_history_search">Serĉita</string>
+    <string name="title_history_view">Spektita</string>
+    <string name="history_disabled">La historio estas malŝatita</string>
+    <string name="action_history">Historio</string>
+    <string name="history_empty">La historio estas malplena</string>
+    <string name="history_cleared">Historio vakigita</string>
+    <string name="search_no_results">Neniuj rezultoj</string>
+    <string name="empty_subscription_feed_subtitle">Neniu enhavo</string>
+    <string name="no_subscribers">Neniuj abonantoj</string>
+    <plurals name="subscribers">
+        <item quantity="one">%s abonanto</item>
+        <item quantity="other">%s abonantoj</item>
+    </plurals>
+    <string name="no_views">Neniuj spektaĵoj</string>
+    <string name="no_videos">Neniu filmeto</string>
+    <string name="item_deleted">Ero forviŝita</string>
+    <string name="delete_item_search_history">Ĉu vi volas forviŝi tion eron el la historio de serĉo \?</string>
+    <string name="main_page_content">Enhavo de la ĉefpaĝo</string>
+    <string name="blank_page_summary">Malplena Paĝo</string>
+    <string name="kiosk_page_summary">Kioska Paĝo</string>
+    <string name="subscription_page_summary">Abonpaĝo</string>
+    <string name="feed_page_summary">Paĝo de la fluo</string>
+    <string name="channel_page_summary">Kanala Paĝo</string>
+    <string name="select_a_channel">Elekti kanalon</string>
+    <string name="no_channel_subscribed_yet">Neniuj kanalaj abonoj ankoraŭ</string>
+    <string name="select_a_kiosk">Elekti kioskon</string>
+    <string name="start_here_on_main">Komenci ludi ĉi tie</string>
+    <string name="start_here_on_background">Komenci ludi en la fono</string>
+    <string name="donation_title">Donaci</string>
+    <string name="donation_encouragement">NewPipe estas programada par volontuoj, elspezante tempo por alporti vin la plej bona sperto. Redonu por helpi programistojn plibonigi NewPipe dum ĝuante tason da kafo.</string>
+    <string name="give_back">Redoni</string>
+    <string name="website_title">Retejo</string>
+    <string name="website_encouragement">Vizitu la retejon de NewPipe por pli da informoj kaj novaĵoj.</string>
+    <string name="drawer_open">Malfermi la tirkeston</string>
+    <string name="drawer_close">Fermi la tirtekston</string>
+    <string name="external_player_unsupported_link_type">Ekstaraj ludantoj ne suportas tiajn ligilojn</string>
+    <string name="video_player">Filmetoludilo</string>
+    <string name="background_player">Fona ludilo</string>
+    <string name="preferred_player_fetcher_notification_title">Akiranta informoj…</string>
+    <string name="preferred_player_fetcher_notification_message">Ŝarĝante petita enhavo</string>
+    <string name="export_complete_toast">Eksportita</string>
+    <string name="import_complete_toast">Importita</string>
+    <string name="no_valid_zip_file">Neniu valida ZIP-dosiero</string>
+    <string name="could_not_import_all_files">Averto: Ne povis importi ĉiujn dosierojn.</string>
+    <string name="override_current_data">Ĉi tio nuligos vian nunan aranĝon.</string>
+    <string name="detail_drag_description">Trenu por reorgidi</string>
+    <string name="create">Krei</string>
+    <string name="delete_one">Forigi Unu</string>
+    <string name="delete_all">Forigi ĉiujn</string>
+    <string name="dismiss">Rezigni</string>
+    <string name="rename">Alinomi</string>
+    <string name="delete_stream_history_prompt">Ĉu vi volas forviŝi tion eron el la spekta historio \?</string>
+    <string name="delete_all_history_prompt">Ĉu vi certas, ke vi volas forviŝi ĉiujn erojn el la historio\?</string>
+    <string name="title_last_played">Lasta Ludado</string>
+    <string name="title_most_played">Plej ludataj filmetoj</string>
+    <string name="caption_none">Neniuj Subtitoloj</string>
+    <string name="resize_fit">Alĝustigi</string>
+    <string name="resize_fill">Plenigi</string>
+    <string name="resize_zoom">Zomi</string>
+    <string name="drawer_header_action_paceholder_text">Io aperos ĉi tie baldaŭ ;D</string>
+    <string name="caption_auto_generated">Aŭtomate generita</string>
+    <string name="enable_leak_canary_title">Ebligi LeakCanary</string>
+    <string name="enable_leak_canary_summary">La monitorado de la memorlikadoj povas frostigi la apon dum la hejta dumpingo</string>
+    <string name="enable_disposed_exceptions_title">Signali ekster-vivciklajn erarojn</string>
+    <string name="enable_disposed_exceptions_summary">Perforti signalante neenretigaj Rx esceptoj eksere la fragmento aŭ aktiveco vivciklo post dispono</string>
+    <string name="invalid_file">La dosiero ne ekzistas aŭ la legopermeso mankas</string>
+    <string name="import_export_title">Importi/eksporti</string>
+    <string name="import_title">Importi</string>
+    <string name="import_from">Importi el</string>
+    <string name="export_to">Eksporti al</string>
+    <string name="import_ongoing">Importante …</string>
+    <string name="export_ongoing">Eksportante…</string>
+    <string name="import_file_title">Importi la dosieron</string>
+    <string name="previous_export">Antaŭa eksportaĵo</string>
+    <string name="subscriptions_import_unsuccessful">Ne povis importi abonojn</string>
+    <string name="subscriptions_export_unsuccessful">Ne povis eksporti abonojn</string>
+    <string name="import_soundcloud_instructions_hint">via salutnomo, soundcloud.com/salutnomo</string>
+    <string name="import_network_expensive_warning">"Memoru, ke ĉi tiu operacio povas esti multekosta en la reto.
+\n
+\nĈu vi  volas daŭrigi\?"</string>
+    <string name="playback_speed_control">Kontroloj de rapideco de ludo</string>
+    <string name="playback_tempo">Tempoindiko</string>
+    <string name="playback_pitch">Ludkampo</string>
+    <string name="unhook_checkbox">Malligi (povas kaŭzi distordon)</string>
+    <string name="preferred_open_action_settings_title">Preferita \'malfermi\' ago</string>
+    <string name="preferred_open_action_settings_summary">Defaŭlta ago malfermante enhavo — %s</string>
+    <string name="caption_setting_title">Subtitoloj</string>
+    <string name="caption_setting_description">Modifi la dimension de la teksto kaj la fonajn stilojn de la subtitoloj de la ludilo. Ĝi bezonas restarto de la apo por efektiviĝi.</string>
+    <string name="one_item_deleted">1 ero forviŝita.</string>
+    <string name="app_license">NewPipe estas programaro sub rajtoceda permesilo: Vi povas uzi, studi, komuniki kaj plibonigi ĝin kiel vi volas. Precize, vi povas redistribui kaj/aŭ modifi ĝin sub la kondiĉojn de la Ĝenerala Publika Permesilo de GNU, kiel publikigita per la Free Software Foundation, ĉu en la versio 3, ĉu (se vi volas) ajna posta versio.</string>
+    <string name="import_settings">Ĉu vi volas ankaŭ importi agordojn\?</string>
+    <string name="privacy_policy_title">Privateca politiko de NewPipe</string>
+    <string name="privacy_policy_encouragement">La NewPipe projekto respektas vian privatecon serioze. Konsekvence, la apo ne kolektas ajnan datumo sen via konsento.
+\nLa privateco politiko de Newpipe detale eksplikas kion datumon estas sendita kaj stokita kiam vi sendas falegosignalon.</string>
+    <string name="read_privacy_policy">Legi la privatecan politikon</string>
+    <string name="start_accept_privacy_policy">Por konformiĝi al la Ĝenerala Datum-Protekta Regularon (GDPR), ni allogas vian atento al la privateca politiko de NewPipe. Bonvolu legi ĝin atentive.
+\nVi devas akcepti ĝin por sendi nin la cimsignalo.</string>
+    <string name="accept">Akcepti</string>
+    <string name="decline">Rifuzi</string>
+    <string name="limit_data_usage_none_description">Neniu limo</string>
+    <string name="minimize_on_exit_title">Minimumigi dum la apo ŝanĝo</string>
+    <string name="minimize_on_exit_summary">Ago dum ŝanĝante al alia apo el la ĉefa filmetludilo</string>
+    <string name="minimize_on_exit_none_description">Neniu</string>
+    <string name="minimize_on_exit_background_description">Minimumigi por ludi fone</string>
+    <string name="skip_silence_checkbox">Plirapidigi dum silentoj</string>
+    <string name="playback_step">Paŝo</string>
+    <string name="playback_reset">Restarigi</string>
+    <string name="saved_tabs_invalid_json">Uzante defaŭltajn ongletojn, eraro dum leganta savajn ongletojn</string>
+    <string name="restore_defaults">Restaŭri la defaŭltojn</string>
+    <string name="restore_defaults_confirmation">Ĉu vi volas restaŭri la defaŭltojn \?</string>
+    <string name="subscribers_count_not_available">Kalkulo de abonantoj malhavebla</string>
+    <string name="main_page_content_summary">Kioj ongletoj estas montritaj en la ĉefpaĝo</string>
+    <string name="selection">Elektaĵo</string>
+    <string name="updates_setting_title">Ĝisdatigoj</string>
+    <string name="updates_setting_description">Montri sciigon por proponi ĝisdatigon de la apo kiam nova versio estas havebla</string>
+    <string name="list_view_mode">Lista vido maniero</string>
+    <string name="list">Listo</string>
+    <string name="grid">Krado</string>
+    <string name="auto">Aŭto</string>
+    <string name="switch_view">Ŝanĝi vidon</string>
+    <string name="app_update_notification_content_title">Ĝisdatigo de NewPipe havebla !</string>
+    <string name="app_update_notification_content_text">Premu por elŝuti</string>
+    <string name="missions_header_finished">Finita</string>
+    <string name="missions_header_pending">Pritraktata</string>
+    <string name="paused">Paŭzigita</string>
+    <string name="post_processing">postprocesado</string>
+    <string name="permission_denied">Ago rifuzita kaŭze de la sistemon</string>
+    <string name="download_failed">Elŝuto fiaskis!</string>
+    <string name="download_finished">Elŝuto finita</string>
+    <string name="download_finished_more">%s elĝutoj finitaj</string>
+    <string name="generate_unique_name">Generu unikan nomon</string>
+    <string name="overwrite">Anstataŭigi</string>
+    <string name="download_already_running">Estas elŝuto en progreso kun ĉi tiu nomo</string>
+    <string name="show_error">Montri la eraron</string>
+    <string name="label_code">Kodo</string>
+    <string name="error_path_creation">La celloko-dosierujo ne povas esti kreita</string>
+    <string name="error_file_creation">La dosiero ne povas esti kreita</string>
+    <string name="error_permission_denied">Permeso rifuzita kaŭze de la sistemo</string>
+    <string name="error_ssl_exception">Sekura konekto malsukcesis</string>
+    <string name="error_unknown_host">Ne povis trovi la servilon</string>
+    <string name="error_connect_host">Ne povas konektiĝi al la servilo</string>
+    <string name="error_http_no_content">La servilo ne sendas datumojn</string>
+    <string name="error_http_unsupported_range">La servilo ne akceptas plurfadenajn elŝutojn, reprovu kun @string/msg_threads = 1</string>
+    <string name="error_http_requested_range_not_satisfiable">Petita kampo ne estas havebla</string>
+    <string name="error_http_not_found">Ne trovita</string>
+    <string name="error_postprocessing_failed">Postprocesado malsukcesis</string>
+    <string name="clear_finished_download">Forviŝi la finitajn elŝutojn</string>
+    <string name="msg_pending_downloads">Daŭrigi viajn %s pritraktajn delokigojn el Elŝutoj</string>
+    <string name="pause_downloads_on_mobile_desc">Utila dum la ŝanĝo al poŝdatumoj, kvankam kelkaj elŝutoj ne povas esti interrompitaj</string>
+    <string name="no_comments">Neniu komento</string>
+    <string name="overwrite_unrelated_warning">Dosiero kun ĉi tiu nomo jam ekzistas</string>
+    <string name="overwrite_finished_warning">Elŝutita dosieron kun ĉi tiu nomo jam ekzistas</string>
+    <string name="download_already_pending">Estas pritraktata elŝuto kun ĉi tiu nomo</string>
+    <string name="error_postprocessing_stopped">NewPipe estis fermita dum laborante sur la dosiero</string>
+    <string name="error_insufficient_storage">Neniu spaco havebla sur la aparato</string>
+    <string name="error_progress_lost">Progreso perdita, ĉar la dosiero estis forviŝita</string>
+    <string name="error_timeout">Eltempiĝo de Konekto</string>
+    <string name="drawer_header_description">Ŝangi la servon, nuntempe elektita:</string>
+    <string name="default_kiosk_page_sumatry">Defaŭlta Kiosko</string>
 </resources>
