@@ -86,7 +86,7 @@
     <string name="downloads_title">Téléchargements</string>
     <string name="error_report_title">Rapport d’erreur</string>
     <string name="start">Démarrer</string>
-    <string name="pause">Pause</string>
+    <string name="pause">Mettre en pause</string>
     <string name="view">Lire</string>
     <string name="delete">Supprimer</string>
     <string name="checksum">Somme de contrôle</string>
@@ -490,7 +490,7 @@
     <string name="enable_queue_limit">Limiter la file d’attente de téléchargement</string>
     <string name="enable_queue_limit_desc">Un téléchargement s’exécutera en même temps</string>
     <string name="start_downloads">Démarrer les téléchargements</string>
-    <string name="pause_downloads">Mettre en pause les téléchargements</string>
+    <string name="pause_downloads">Mettre les téléchargements en pause</string>
     <string name="downloads_storage_ask_title">Demander où télécharger</string>
     <string name="downloads_storage_ask_summary">Vous allez être interrogé sur l’emplacement d’enregistrement de chaque téléchargement</string>
     <string name="downloads_storage_ask_summary_kitkat">Vous allez être interrogé sur l’emplacement de téléchargement de chaque téléchargement. 
@@ -507,4 +507,5 @@
     <string name="delete_playback_states_alert">Voulez-vous supprimer toutes les positions de reprise \?</string>
     <string name="download_choose_new_path">Changez les dossier de téléchargement pour activer</string>
     <string name="drawer_header_description">Activer/Désactiver le service, actuellement sélectionné :</string>
+    <string name="default_kiosk_page_sumatry">Kiosque par défaut</string>
 </resources>
