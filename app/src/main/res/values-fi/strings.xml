@@ -17,7 +17,7 @@
     <string name="choose_browser">Valitse selain</string>
     <string name="screen_rotation">kierto</string>
     <string name="use_external_video_player_title">Käytä ulkoista videosoitinta</string>
-    <string name="use_external_video_player_summary">Joillain resoluutioilla EI ole ääntä, kun tämä on valittuna</string>
+    <string name="use_external_video_player_summary">Poistaa äänen JOILLAIN resoluutioilla</string>
     <string name="use_external_audio_player_title">Käytä ulkoista äänisoitinta</string>
     <string name="popup_mode_share_menu_title">NewPipe ponnahdusikkuna</string>
     <string name="subscribe_button_title">Tilaa</string>
@@ -397,4 +397,5 @@
     <string name="minimize_on_exit_none_description">Ei koskaan</string>
     <string name="minimize_on_exit_background_description">Pienennä taustasoittimeksi</string>
     <string name="minimize_on_exit_popup_description">Muuta ponnahdusikkunaksi</string>
+    <string name="unsubscribe">Peru tilaus</string>
 </resources>
