@@ -500,7 +500,7 @@
     <string name="download_choose_new_path">變更下載資料夾以使其生效</string>
     <string name="drawer_header_description">切換服務，目前已選取：</string>
     <plurals name="videos">
-        <item quantity="other">影片</item>
+        <item quantity="other">%s 影片</item>
     </plurals>
     <string name="default_kiosk_page_sumatry">預設 Kiosk</string>
 </resources>
