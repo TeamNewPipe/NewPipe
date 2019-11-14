@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.ListInfo;
 import org.schabi.newpipe.util.Constants;
+import org.schabi.newpipe.views.NewPipeRecyclerView;
 
 import java.util.Queue;
 
@@ -17,6 +18,8 @@ import icepick.State;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public abstract class BaseListInfoFragment<I extends ListInfo>
@@ -136,9 +139,13 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
         isLoading.set(true);
 
         if (currentWorker != null) currentWorker.dispose();
+
+        forbidDownwardFocusScroll();
+
         currentWorker = loadMoreItemsLogic()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doFinally(this::allowDownwardFocusScroll)
                 .subscribe((@io.reactivex.annotations.NonNull ListExtractor.InfoItemsPage InfoItemsPage) -> {
                     isLoading.set(false);
                     handleNextItems(InfoItemsPage);
@@ -146,6 +153,18 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
                     isLoading.set(false);
                     onError(throwable);
                 });
+    }
+
+    private void forbidDownwardFocusScroll() {
+        if (itemsList instanceof NewPipeRecyclerView) {
+            ((NewPipeRecyclerView) itemsList).setFocusScrollAllowed(false);
+        }
+    }
+
+    private void allowDownwardFocusScroll() {
+        if (itemsList instanceof NewPipeRecyclerView) {
+            ((NewPipeRecyclerView) itemsList).setFocusScrollAllowed(true);
+        }
     }
 
     @Override
