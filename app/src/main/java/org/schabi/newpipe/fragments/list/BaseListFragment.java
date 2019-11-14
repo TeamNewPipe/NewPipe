@@ -34,6 +34,7 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.OnClickGesture;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.StreamDialogEntry;
+import org.schabi.newpipe.views.NewPipeRecyclerView;
 import org.schabi.newpipe.views.SuperScrollLayoutManager;
 
 import java.util.List;
@@ -50,6 +51,7 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
     protected InfoListAdapter infoListAdapter;
     protected RecyclerView itemsList;
     private int updateFlags = 0;
+    private int focusedPosition = -1;
 
     private static final int LIST_MODE_UPDATE_FLAG = 0x32;
 
@@ -111,9 +113,22 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
         return "." + infoListAdapter.getItemsList().size() + ".list";
     }
 
+    private int getFocusedPosition() {
+        View focusedItem = itemsList.getFocusedChild();
+        if (focusedItem != null) {
+            RecyclerView.ViewHolder itemHolder = itemsList.findContainingViewHolder(focusedItem);
+            if (itemHolder != null) {
+                return itemHolder.getAdapterPosition();
+            }
+        }
+
+        return -1;
+    }
+
     @Override
     public void writeTo(Queue<Object> objectsToSave) {
         objectsToSave.add(infoListAdapter.getItemsList());
+        objectsToSave.add(getFocusedPosition());
     }
 
     @Override
@@ -121,6 +136,20 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
     public void readFrom(@NonNull Queue<Object> savedObjects) throws Exception {
         infoListAdapter.getItemsList().clear();
         infoListAdapter.getItemsList().addAll((List<InfoItem>) savedObjects.poll());
+        restoreFocus((Integer) savedObjects.poll());
+    }
+
+    private void restoreFocus(Integer position) {
+        if (position == null || position < 0) {
+            return;
+        }
+
+        itemsList.post(() -> {
+            RecyclerView.ViewHolder focusedHolder = itemsList.findViewHolderForAdapterPosition(position);
+            if (focusedHolder != null) {
+                focusedHolder.itemView.requestFocus();
+            }
+        });
     }
 
     @Override
@@ -133,6 +162,18 @@ public abstract class BaseListFragment<I, N> extends BaseStateFragment<I> implem
     protected void onRestoreInstanceState(@NonNull Bundle bundle) {
         super.onRestoreInstanceState(bundle);
         savedState = StateSaver.tryToRestore(bundle, this);
+    }
+
+    @Override
+    public void onStop() {
+        focusedPosition = getFocusedPosition();
+        super.onStop();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        restoreFocus(focusedPosition);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
