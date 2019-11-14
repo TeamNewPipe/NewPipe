@@ -87,6 +87,7 @@ import org.schabi.newpipe.util.ShareUtils;
 import org.schabi.newpipe.util.StreamItemAdapter;
 import org.schabi.newpipe.util.StreamItemAdapter.StreamSizeWrapper;
 import org.schabi.newpipe.views.AnimatedProgressBar;
+import org.schabi.newpipe.views.LargeTextMovementMethod;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -441,10 +442,13 @@ public class VideoDetailFragment
         if (videoDescriptionRootLayout.getVisibility() == View.VISIBLE) {
             videoTitleTextView.setMaxLines(1);
             videoDescriptionRootLayout.setVisibility(View.GONE);
+            videoDescriptionView.setFocusable(false);
             videoTitleToggleArrow.setImageResource(R.drawable.arrow_down);
         } else {
             videoTitleTextView.setMaxLines(10);
             videoDescriptionRootLayout.setVisibility(View.VISIBLE);
+            videoDescriptionView.setFocusable(true);
+            videoDescriptionView.setMovementMethod(new LargeTextMovementMethod());
             videoTitleToggleArrow.setImageResource(R.drawable.arrow_up);
         }
     }
@@ -481,7 +485,6 @@ public class VideoDetailFragment
         videoDescriptionRootLayout = rootView.findViewById(R.id.detail_description_root_layout);
         videoUploadDateView = rootView.findViewById(R.id.detail_upload_date_view);
         videoDescriptionView = rootView.findViewById(R.id.detail_description_view);
-        videoDescriptionView.setMovementMethod(LinkMovementMethod.getInstance());
         videoDescriptionView.setAutoLinkMask(Linkify.WEB_URLS);
 
         thumbsUpTextView = rootView.findViewById(R.id.detail_thumbs_up_count_view);
