@@ -126,14 +126,28 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     }
 
     private void allowLinkFocus() {
+        itemContentView.setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
+    private void denyLinkFocus() {
+        itemContentView.setMovementMethod(null);
+    }
+
+    private boolean shouldFocusLinks() {
         if (itemView.isInTouchMode()) {
-             return;
+            return false;
         }
 
         URLSpan[] urls = itemContentView.getUrls();
 
-        if (urls != null && urls.length != 0) {
-            itemContentView.setMovementMethod(LinkMovementMethod.getInstance());
+        return urls != null && urls.length != 0;
+    }
+
+    private void determineLinkFocus() {
+        if (shouldFocusLinks()) {
+            allowLinkFocus();
+        } else {
+            denyLinkFocus();
         }
     }
 
@@ -151,8 +165,10 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
 
         linkify();
 
-        if (!hasEllipsis) {
-            allowLinkFocus();
+        if (hasEllipsis) {
+            denyLinkFocus();
+        } else {
+            determineLinkFocus();
         }
     }
 
@@ -168,13 +184,11 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         itemContentView.setMaxLines(commentExpandedLines);
         itemContentView.setText(commentText);
         linkify();
-        allowLinkFocus();
+        determineLinkFocus();
     }
 
     private void linkify(){
         Linkify.addLinks(itemContentView, Linkify.WEB_URLS);
         Linkify.addLinks(itemContentView, pattern, null, null, timestampLink);
-
-        itemContentView.setMovementMethod(null);
     }
 }
