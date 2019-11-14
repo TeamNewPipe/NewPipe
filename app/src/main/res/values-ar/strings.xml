@@ -246,12 +246,12 @@
         <item quantity="other">%s شاهدو</item>
     </plurals>
     <plurals name="videos">
-        <item quantity="zero">%s لا يوجد فيديو</item>
-        <item quantity="one">%s فيديو</item>
-        <item quantity="two">%s فيديوان</item>
-        <item quantity="few">%s فيديوات</item>
-        <item quantity="many">%s فيديوهات</item>
-        <item quantity="other">%s مزيد من الفيديوات</item>
+        <item quantity="zero">فيديو%s video</item>
+        <item quantity="one">%s videosفيديوهات</item>
+        <item quantity="two">%s videosفيديوهات</item>
+        <item quantity="few">%s videosفيديوهات</item>
+        <item quantity="many">%s videosفيديوهات</item>
+        <item quantity="other">%s videosفيديوهات</item>
     </plurals>
     <string name="recaptcha_request_toast">طلب اختبار الكابتشا مطلوب</string>
     <string name="copyright" formatted="true">© %1$sبواسطة%2$sتحت%3$s</string>
