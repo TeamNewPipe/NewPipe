@@ -379,6 +379,8 @@
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:orientation="horizontal"
+						android:focusable="true"
+						android:descendantFocusability="afterDescendants"
 						android:padding="6dp">
 
 						<!-- CONTROLS -->
@@ -467,6 +469,8 @@
 						android:layout_marginTop="5dp"
 						android:orientation="vertical"
 						android:visibility="gone"
+						android:focusable="true"
+						android:descendantFocusability="afterDescendants"
 						tools:visibility="visible">
 
 						<TextView
@@ -482,6 +486,7 @@
 
 						<TextView
 							android:id="@+id/detail_description_view"
+							android:nextFocusUp="@+id/detail_control_panel"
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"
 							android:layout_marginLeft="12dp"
@@ -491,7 +496,7 @@
 							android:textAppearance="?android:attr/textAppearanceMedium"
 							android:textIsSelectable="true"
 							android:textSize="@dimen/video_item_detail_description_text_size"
-							android:focusable="true"
+							android:focusable="false"
 							tools:text="Description Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a ultricies ex. Integer sit amet sodales risus. Duis non mi et urna pretium bibendum." />
 
 						<View
