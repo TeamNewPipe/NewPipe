@@ -398,4 +398,6 @@
     <string name="minimize_on_exit_background_description">Pienennä taustasoittimeksi</string>
     <string name="minimize_on_exit_popup_description">Muuta ponnahdusikkunaksi</string>
     <string name="unsubscribe">Peru tilaus</string>
+    <string name="tab_new">Uusi välilehti</string>
+    <string name="tab_choose">Valitse välilehti</string>
 </resources>
