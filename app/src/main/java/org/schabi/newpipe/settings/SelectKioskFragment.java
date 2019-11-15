@@ -3,10 +3,10 @@ package org.schabi.newpipe.settings;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.fragment.app.DialogFragment;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +16,6 @@ import android.widget.TextView;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
@@ -124,9 +123,6 @@ public class SelectKioskFragment extends DialogFragment {
                 throws Exception {
 
             for(StreamingService service : NewPipe.getServices()) {
-                //TODO: Multi-service support
-                if (service.getServiceId() != ServiceList.YouTube.getServiceId() && !DEBUG) continue;
-
                 for(String kioskId : service.getKioskList().getAvailableKiosks()) {
                     String name = String.format(getString(R.string.service_kiosk_string),
                             service.getServiceInfo().getName(),

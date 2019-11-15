@@ -1,8 +1,8 @@
 package org.schabi.newpipe.player.playback;
-
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.util.ArraySet;
+import android.os.Handler;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.collection.ArraySet;
 import android.util.Log;
 
 import com.google.android.exoplayer2.source.MediaSource;
@@ -103,6 +103,8 @@ public class MediaSourceManager {
 
     @NonNull private ManagedMediaSourcePlaylist playlist;
 
+    private Handler removeMediaSourceHandler = new Handler();
+
     public MediaSourceManager(@NonNull final PlaybackListener listener,
                               @NonNull final PlayQueue playQueue) {
         this(listener, playQueue, /*loadDebounceMillis=*/400L,
@@ -156,7 +158,7 @@ public class MediaSourceManager {
      * Dispose the manager and releases all message buses and loaders.
      * */
     public void dispose() {
-        if (DEBUG) Log.d(TAG, "dispose() called.");
+        if (DEBUG) Log.d(TAG, "close() called.");
 
         debouncedSignal.onComplete();
         debouncedLoader.dispose();
@@ -395,7 +397,7 @@ public class MediaSourceManager {
         if (isCorrectionNeeded(item)) {
             if (DEBUG) Log.d(TAG, "MediaSource - Updating index=[" + itemIndex + "] with " +
                     "title=[" + item.getTitle() + "] at url=[" + item.getUrl() + "]");
-            playlist.update(itemIndex, mediaSource, this::maybeSynchronizePlayer);
+            playlist.update(itemIndex, mediaSource, removeMediaSourceHandler, this::maybeSynchronizePlayer);
         }
     }
 
@@ -441,7 +443,7 @@ public class MediaSourceManager {
 
         if (DEBUG) Log.d(TAG, "MediaSource - Reloading currently playing, " +
                 "index=[" + currentIndex + "], item=[" + currentItem.getTitle() + "]");
-        playlist.invalidate(currentIndex, this::loadImmediate);
+        playlist.invalidate(currentIndex, removeMediaSourceHandler, this::loadImmediate);
     }
 
     private void maybeClearLoaders() {

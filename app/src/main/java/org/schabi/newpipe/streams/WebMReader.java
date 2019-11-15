@@ -1,12 +1,13 @@
 package org.schabi.newpipe.streams;
 
+import org.schabi.newpipe.streams.io.SharpStream;
+
 import java.io.EOFException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
-import java.util.Objects;
-
-import org.schabi.newpipe.streams.io.SharpStream;
 
 /**
  *
@@ -121,7 +122,7 @@ public class WebMReader {
     }
 
     private String readString(Element parent) throws IOException {
-        return new String(readBlob(parent), "utf-8");
+        return new String(readBlob(parent), StandardCharsets.UTF_8);// or use "utf-8"
     }
 
     private byte[] readBlob(Element parent) throws IOException {
@@ -193,6 +194,7 @@ public class WebMReader {
                     return elem;
                 }
             }
+
             ensure(elem);
         }
 
@@ -306,7 +308,7 @@ public class WebMReader {
                         entry.trackNumber = readNumber(elem);
                         break;
                     case ID_TrackType:
-                        entry.trackType = (int)readNumber(elem);
+                        entry.trackType = (int) readNumber(elem);
                         break;
                     case ID_CodecID:
                         entry.codecId = readString(elem);
@@ -445,7 +447,7 @@ public class WebMReader {
 
     public class SimpleBlock {
 
-        public TrackDataChunk data;
+        public InputStream data;
 
         SimpleBlock(Element ref) {
             this.ref = ref;
@@ -492,7 +494,7 @@ public class WebMReader {
 
                 currentSimpleBlock = readSimpleBlock(elem);
                 if (currentSimpleBlock.trackNumber == tracks[selectedTrack].trackNumber) {
-                    currentSimpleBlock.data = new TrackDataChunk(stream, (int) currentSimpleBlock.dataSize);
+                    currentSimpleBlock.data = stream.getView((int) currentSimpleBlock.dataSize);
                     return currentSimpleBlock;
                 }
 

@@ -1,7 +1,7 @@
 package org.schabi.newpipe.local.holder;
 
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -10,12 +10,18 @@ import android.widget.TextView;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
 import org.schabi.newpipe.database.stream.StreamStatisticsEntry;
+import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.local.LocalItemBuilder;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
+import org.schabi.newpipe.util.AnimationUtils;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
+import org.schabi.newpipe.views.AnimatedProgressBar;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 /*
  * Created by Christian Schabesberger on 01.08.16.
@@ -45,6 +51,7 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
     public final TextView itemDurationView;
     @Nullable
     public final TextView itemAdditionalDetails;
+    public final AnimatedProgressBar itemProgressView;
 
     public LocalStatisticStreamItemHolder(LocalItemBuilder itemBuilder, ViewGroup parent) {
         this(itemBuilder, R.layout.list_stream_item, parent);
@@ -58,6 +65,7 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
         itemUploaderView = itemView.findViewById(R.id.itemUploaderView);
         itemDurationView = itemView.findViewById(R.id.itemDurationView);
         itemAdditionalDetails = itemView.findViewById(R.id.itemAdditionalDetails);
+        itemProgressView = itemView.findViewById(R.id.itemProgressView);
     }
 
     private String getStreamInfoDetailLine(final StreamStatisticsEntry entry,
@@ -70,7 +78,7 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
     }
 
     @Override
-    public void updateFromItem(final LocalItem localItem, final DateFormat dateFormat) {
+    public void updateFromItem(final LocalItem localItem, HistoryRecordManager historyRecordManager, final DateFormat dateFormat) {
         if (!(localItem instanceof StreamStatisticsEntry)) return;
         final StreamStatisticsEntry item = (StreamStatisticsEntry) localItem;
 
@@ -82,8 +90,18 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
             itemDurationView.setBackgroundColor(ContextCompat.getColor(itemBuilder.getContext(),
                     R.color.duration_background_color));
             itemDurationView.setVisibility(View.VISIBLE);
+
+            StreamStateEntity state = historyRecordManager.loadLocalStreamStateBatch(new ArrayList<LocalItem>() {{ add(localItem); }}).blockingGet().get(0);
+            if (state != null) {
+                itemProgressView.setVisibility(View.VISIBLE);
+                itemProgressView.setMax((int) item.duration);
+                itemProgressView.setProgress((int) TimeUnit.MILLISECONDS.toSeconds(state.getProgressTime()));
+            } else {
+                itemProgressView.setVisibility(View.GONE);
+            }
         } else {
             itemDurationView.setVisibility(View.GONE);
+            itemProgressView.setVisibility(View.GONE);
         }
 
         if (itemAdditionalDetails != null) {
@@ -107,5 +125,24 @@ public class LocalStatisticStreamItemHolder extends LocalItemHolder {
             }
             return true;
         });
+    }
+
+    @Override
+    public void updateState(LocalItem localItem, HistoryRecordManager historyRecordManager) {
+        if (!(localItem instanceof StreamStatisticsEntry)) return;
+        final StreamStatisticsEntry item = (StreamStatisticsEntry) localItem;
+
+        StreamStateEntity state = historyRecordManager.loadLocalStreamStateBatch(new ArrayList<LocalItem>() {{ add(localItem); }}).blockingGet().get(0);
+        if (state != null && item.duration > 0) {
+            itemProgressView.setMax((int) item.duration);
+            if (itemProgressView.getVisibility() == View.VISIBLE) {
+                itemProgressView.setProgressAnimated((int) TimeUnit.MILLISECONDS.toSeconds(state.getProgressTime()));
+            } else {
+                itemProgressView.setProgress((int) TimeUnit.MILLISECONDS.toSeconds(state.getProgressTime()));
+                AnimationUtils.animateView(itemProgressView, true, 500);
+            }
+        } else if (itemProgressView.getVisibility() == View.VISIBLE) {
+            AnimationUtils.animateView(itemProgressView, false, 500);
+        }
     }
 }

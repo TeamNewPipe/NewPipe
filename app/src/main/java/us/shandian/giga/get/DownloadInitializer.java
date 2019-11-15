@@ -1,12 +1,12 @@
 package us.shandian.giga.get;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
-import java.io.File;
+import org.schabi.newpipe.streams.io.SharpStream;
+
 import java.io.IOException;
 import java.io.InterruptedIOException;
-import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
 import java.nio.channels.ClosedByInterruptException;
 
@@ -17,6 +17,8 @@ import static org.schabi.newpipe.BuildConfig.DEBUG;
 public class DownloadInitializer extends Thread {
     private final static String TAG = "DownloadInitializer";
     final static int mId = 0;
+    private final static int RESERVE_SPACE_DEFAULT = 5 * 1024 * 1024;// 5 MiB
+    private final static int RESERVE_SPACE_MAXIMUM = 150 * 1024 * 1024;// 150 MiB
 
     private DownloadMission mMission;
     private HttpURLConnection mConn;
@@ -26,35 +28,79 @@ public class DownloadInitializer extends Thread {
         mConn = null;
     }
 
+    private static void safeClose(HttpURLConnection con) {
+        try {
+            con.getInputStream().close();
+        } catch (Exception e) {
+            // nothing to do
+        }
+    }
+
     @Override
     public void run() {
-        if (mMission.current > 0) mMission.resetState();
+        if (mMission.current > 0) mMission.resetState(false, true, DownloadMission.ERROR_NOTHING);
 
         int retryCount = 0;
+        int httpCode = 204;
+
         while (true) {
             try {
-                mMission.currentThreadCount = mMission.threadCount;
+                if (mMission.blocks == null && mMission.current == 0) {
+                    // calculate the whole size of the mission
+                    long finalLength = 0;
+                    long lowestSize = Long.MAX_VALUE;
 
-                mConn = mMission.openConnection(mId, -1, -1);
-                mMission.establishConnection(mId, mConn);
+                    for (int i = 0; i < mMission.urls.length && mMission.running; i++) {
+                        mConn = mMission.openConnection(mMission.urls[i], mId, -1, -1);
+                        mMission.establishConnection(mId, mConn);
+                        safeClose(mConn);
 
-                if (!mMission.running || Thread.interrupted()) return;
+                        if (Thread.interrupted()) return;
+                        long length = Utility.getContentLength(mConn);
 
-                mMission.length = Utility.getContentLength(mConn);
+                        if (i == 0) {
+                            httpCode = mConn.getResponseCode();
+                            mMission.length = length;
+                        }
 
+                        if (length > 0) finalLength += length;
+                        if (length < lowestSize) lowestSize = length;
+                    }
 
-                if (mMission.length == 0) {
+                    mMission.nearLength = finalLength;
+
+                    // reserve space at the start of the file
+                    if (mMission.psAlgorithm != null && mMission.psAlgorithm.reserveSpace) {
+                        if (lowestSize < 1) {
+                            // the length is unknown use the default size
+                            mMission.offsets[0] = RESERVE_SPACE_DEFAULT;
+                        } else {
+                            // use the smallest resource size to download, otherwise, use the maximum
+                            mMission.offsets[0] = lowestSize < RESERVE_SPACE_MAXIMUM ? lowestSize : RESERVE_SPACE_MAXIMUM;
+                        }
+                    }
+                } else {
+                    // ask for the current resource length
+                    mConn = mMission.openConnection(mId, -1, -1);
+                    mMission.establishConnection(mId, mConn);
+                    safeClose(mConn);
+
+                    if (!mMission.running || Thread.interrupted()) return;
+
+                    httpCode = mConn.getResponseCode();
+                    mMission.length = Utility.getContentLength(mConn);
+                }
+
+                if (mMission.length == 0 || httpCode == 204) {
                     mMission.notifyError(DownloadMission.ERROR_HTTP_NO_CONTENT, null);
                     return;
                 }
 
                 // check for dynamic generated content
                 if (mMission.length == -1 && mConn.getResponseCode() == 200) {
-                    mMission.blocks = 0;
+                    mMission.blocks = new int[0];
                     mMission.length = 0;
-                    mMission.fallback = true;
                     mMission.unknownLength = true;
-                    mMission.currentThreadCount = 1;
 
                     if (DEBUG) {
                         Log.d(TAG, "falling back (unknown length)");
@@ -63,27 +109,21 @@ public class DownloadInitializer extends Thread {
                     // Open again
                     mConn = mMission.openConnection(mId, mMission.length - 10, mMission.length);
                     mMission.establishConnection(mId, mConn);
+                    safeClose(mConn);
 
                     if (!mMission.running || Thread.interrupted()) return;
 
-                    synchronized (mMission.blockState) {
+                    synchronized (mMission.LOCK) {
                         if (mConn.getResponseCode() == 206) {
-                            if (mMission.currentThreadCount > 1) {
-                                mMission.blocks = mMission.length / DownloadMission.BLOCK_SIZE;
 
-                                if (mMission.currentThreadCount > mMission.blocks) {
-                                    mMission.currentThreadCount = (int) mMission.blocks;
-                                }
-                                if (mMission.currentThreadCount <= 0) {
-                                    mMission.currentThreadCount = 1;
-                                }
-                                if (mMission.blocks * DownloadMission.BLOCK_SIZE < mMission.length) {
-                                    mMission.blocks++;
-                                }
+                            if (mMission.threadCount > 1) {
+                                int count = (int) (mMission.length / DownloadMission.BLOCK_SIZE);
+                                if ((count * DownloadMission.BLOCK_SIZE) < mMission.length) count++;
+
+                                mMission.blocks = new int[count];
                             } else {
-                                // if one thread is solicited don't calculate blocks, is useless
-                                mMission.blocks = 1;
-                                mMission.fallback = true;
+                                // if one thread is required don't calculate blocks, is useless
+                                mMission.blocks = new int[0];
                                 mMission.unknownLength = false;
                             }
 
@@ -92,53 +132,22 @@ public class DownloadInitializer extends Thread {
                             }
                         } else {
                             // Fallback to single thread
-                            mMission.blocks = 0;
-                            mMission.fallback = true;
+                            mMission.blocks = new int[0];
                             mMission.unknownLength = false;
-                            mMission.currentThreadCount = 1;
 
                             if (DEBUG) {
                                 Log.d(TAG, "falling back due http response code = " + mConn.getResponseCode());
                             }
-                        }
-
-                        for (long i = 0; i < mMission.currentThreadCount; i++) {
-                            mMission.threadBlockPositions.add(i);
-                            mMission.threadBytePositions.add(0L);
                         }
                     }
 
                     if (!mMission.running || Thread.interrupted()) return;
                 }
 
-                File file;
-                if (mMission.current == 0) {
-                    file = new File(mMission.location);
-                    if (!Utility.mkdir(file, true)) {
-                        mMission.notifyError(DownloadMission.ERROR_PATH_CREATION, null);
-                        return;
-                    }
-
-                    file = new File(file, mMission.name);
-
-                    // if the name is used by another process, delete it
-                    if (file.exists() && !file.isFile() && !file.delete()) {
-                        mMission.notifyError(DownloadMission.ERROR_FILE_CREATION, null);
-                        return;
-                    }
-
-                    if (!file.exists() && !file.createNewFile()) {
-                        mMission.notifyError(DownloadMission.ERROR_FILE_CREATION, null);
-                        return;
-                    }
-                } else {
-                    file = new File(mMission.location, mMission.name);
-                }
-
-                RandomAccessFile af = new RandomAccessFile(file, "rw");
-                af.setLength(mMission.offsets[mMission.current] + mMission.length);
-                af.seek(mMission.offsets[mMission.current]);
-                af.close();
+                SharpStream fs = mMission.storage.getStream();
+                fs.setLength(mMission.offsets[mMission.current] + mMission.length);
+                fs.seek(mMission.offsets[mMission.current]);
+                fs.close();
 
                 if (!mMission.running || Thread.interrupted()) return;
 
@@ -163,9 +172,6 @@ public class DownloadInitializer extends Thread {
                 Log.e(TAG, "initializer failed, retrying", e);
             }
         }
-
-        // hide marquee in the progress bar
-        mMission.done++;
 
         mMission.start();
     }

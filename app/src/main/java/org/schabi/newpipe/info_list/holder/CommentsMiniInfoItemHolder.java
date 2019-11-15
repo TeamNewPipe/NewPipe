@@ -1,15 +1,16 @@
 package org.schabi.newpipe.info_list.holder;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.util.Linkify;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.jsoup.helper.StringUtil;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.CommentTextOnTouchListener;
 import org.schabi.newpipe.util.ImageDisplayConstants;
@@ -45,7 +46,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
             if(hours != null) timestamp += (Integer.parseInt(hours.replace(":", ""))*3600);
             if(minutes != null) timestamp += (Integer.parseInt(minutes.replace(":", ""))*60);
             if(seconds != null) timestamp += (Integer.parseInt(seconds));
-            return streamUrl + url.replace(match.group(0), "&t=" + String.valueOf(timestamp));
+            return streamUrl + url.replace(match.group(0), "#timestamp=" + timestamp);
         }
     };
 
@@ -64,7 +65,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     }
 
     @Override
-    public void updateFromItem(final InfoItem infoItem) {
+    public void updateFromItem(final InfoItem infoItem, final HistoryRecordManager historyRecordManager) {
         if (!(infoItem instanceof CommentsInfoItem)) return;
         final CommentsInfoItem item = (CommentsInfoItem) infoItem;
 
@@ -73,33 +74,30 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
                         itemThumbnailView,
                         ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
 
-        itemThumbnailView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    final AppCompatActivity activity = (AppCompatActivity) itemBuilder.getContext();
-                    NavigationHelper.openChannelFragment(
-                            activity.getSupportFragmentManager(),
-                            item.getServiceId(),
-                            item.getAuthorEndpoint(),
-                            item.getAuthorName());
-                } catch (Exception e) {
-                    ErrorActivity.reportUiError((AppCompatActivity) itemBuilder.getContext(), e);
-                }
+        itemThumbnailView.setOnClickListener(view -> {
+            if(StringUtil.isBlank(item.getAuthorEndpoint())) return;
+            try {
+                final AppCompatActivity activity = (AppCompatActivity) itemBuilder.getContext();
+                NavigationHelper.openChannelFragment(
+                        activity.getSupportFragmentManager(),
+                        item.getServiceId(),
+                        item.getAuthorEndpoint(),
+                        item.getAuthorName());
+            } catch (Exception e) {
+                ErrorActivity.reportUiError((AppCompatActivity) itemBuilder.getContext(), e);
             }
         });
 
         streamUrl = item.getUrl();
 
-        itemContentView.setMaxLines(commentDefaultLines);
+        itemContentView.setLines(commentDefaultLines);
         commentText = item.getCommentText();
         itemContentView.setText(commentText);
-        linkify();
         itemContentView.setOnTouchListener(CommentTextOnTouchListener.INSTANCE);
 
-        if(itemContentView.getLineCount() == 0){
-            itemContentView.post(() -> ellipsize());
-        }else{
+        if (itemContentView.getLineCount() == 0) {
+            itemContentView.post(this::ellipsize);
+        } else {
             ellipsize();
         }
 
@@ -119,15 +117,17 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     private void ellipsize() {
         if (itemContentView.getLineCount() > commentDefaultLines){
             int endOfLastLine = itemContentView.getLayout().getLineEnd(commentDefaultLines - 1);
-            String newVal = itemContentView.getText().subSequence(0, endOfLastLine - 3) + "...";
+            int end = itemContentView.getText().toString().lastIndexOf(' ', endOfLastLine -2);
+            if(end == -1) end = Math.max(endOfLastLine -2, 0);
+            String newVal = itemContentView.getText().subSequence(0, end) + " …";
             itemContentView.setText(newVal);
-            linkify();
         }
+        linkify();
     }
 
     private void toggleEllipsize() {
         if (itemContentView.getText().toString().equals(commentText)) {
-            ellipsize();
+            if (itemContentView.getLineCount() > commentDefaultLines) ellipsize();
         } else {
             expand();
         }

@@ -228,6 +228,10 @@ public final class ExtractorHelper {
         });
     }
 
+    public static boolean isCached(final int serviceId, final String url, InfoItem.InfoType infoType) {
+        return null != loadFromCache(serviceId, url, infoType).blockingGet();
+    }
+
     /**
      * A simple and general error handler that show a Toast for known exceptions, and for others, opens the report error activity with the (optional) error message.
      */
@@ -243,8 +247,6 @@ public final class ExtractorHelper {
                 context.startActivity(intent);
             } else if (exception instanceof IOException) {
                 Toast.makeText(context, R.string.network_error, Toast.LENGTH_LONG).show();
-            } else if (exception instanceof YoutubeStreamExtractor.GemaException) {
-                Toast.makeText(context, R.string.blocked_by_gema, Toast.LENGTH_LONG).show();
             } else if (exception instanceof ContentNotAvailableException) {
                 Toast.makeText(context, R.string.content_not_available, Toast.LENGTH_LONG).show();
             } else {

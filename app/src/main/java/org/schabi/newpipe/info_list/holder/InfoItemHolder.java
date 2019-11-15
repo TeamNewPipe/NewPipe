@@ -1,11 +1,12 @@
 package org.schabi.newpipe.info_list.holder;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 
 /*
  * Created by Christian Schabesberger on 12.02.17.
@@ -35,5 +36,8 @@ public abstract class InfoItemHolder extends RecyclerView.ViewHolder {
         this.itemBuilder = infoItemBuilder;
     }
 
-    public abstract void updateFromItem(final InfoItem infoItem);
+    public abstract void updateFromItem(final InfoItem infoItem, final HistoryRecordManager historyRecordManager);
+
+    public void updateState(final InfoItem infoItem, final HistoryRecordManager historyRecordManager) {
+    }
 }

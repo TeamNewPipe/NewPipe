@@ -35,9 +35,9 @@ import android.graphics.PixelFormat;
 import android.os.Build;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.NotificationCompat;
+import androidx.annotation.NonNull;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.core.app.NotificationCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -325,6 +325,7 @@ public final class PopupVideoPlayer extends Service {
         isPopupClosing = true;
 
         if (playerImpl != null) {
+            playerImpl.savePlaybackState();
             if (playerImpl.getRootView() != null) {
                 windowManager.removeView(playerImpl.getRootView());
             }
@@ -565,7 +566,8 @@ public final class PopupVideoPlayer extends Service {
                     this.getPlaybackSpeed(),
                     this.getPlaybackPitch(),
                     this.getPlaybackSkipSilence(),
-                    this.getPlaybackQuality()
+                    this.getPlaybackQuality(),
+                    false
             );
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);

@@ -1,8 +1,9 @@
 package org.schabi.newpipe.fragments.detail;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
@@ -59,6 +60,18 @@ public class TabAdaptor extends FragmentPagerAdapter {
     public int getItemPosition(Object object) {
         if (mFragmentList.contains(object)) return mFragmentList.indexOf(object);
         else return POSITION_NONE;
+    }
+
+    public int getItemPositionByTitle(String title) {
+        return mFragmentTitleList.indexOf(title);
+    }
+
+    @Nullable
+    public String getItemTitle(int position) {
+        if (position < 0 || position >= mFragmentTitleList.size()) {
+            return null;
+        }
+        return mFragmentTitleList.get(position);
     }
 
     public void notifyDataSetUpdate(){

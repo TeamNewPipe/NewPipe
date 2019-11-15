@@ -1,4 +1,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/retry"
+        android:title="@string/retry" />
+
+    <item
+        android:id="@+id/cancel"
+        android:title="@string/cancel" />
+
     <item
         android:id="@+id/start"
         android:title="@string/start" />
@@ -13,8 +22,8 @@
         android:checkable="true"/>
 
     <item
-        android:id="@+id/open"
-        android:title="@string/view" />
+        android:id="@+id/menu_item_share"
+        android:title="@string/share" />
 
     <item
         android:id="@+id/delete"

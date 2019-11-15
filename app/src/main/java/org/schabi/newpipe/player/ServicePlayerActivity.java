@@ -3,15 +3,14 @@ package org.schabi.newpipe.player;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.support.v7.widget.helper.ItemTouchHelper;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -189,7 +188,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                 this.player.getPlaybackSpeed(),
                 this.player.getPlaybackPitch(),
                 this.player.getPlaybackSkipSilence(),
-                null
+                null,
+                false
         ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     }
 
@@ -653,11 +653,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         }
 
         final int shuffleAlpha = shuffled ? 255 : 77;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            shuffleButton.setImageAlpha(shuffleAlpha);
-        } else {
-            shuffleButton.setAlpha(shuffleAlpha);
-        }
+        shuffleButton.setImageAlpha(shuffleAlpha);
     }
 
     private void onPlaybackParameterChanged(final PlaybackParameters parameters) {

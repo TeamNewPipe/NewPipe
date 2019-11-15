@@ -152,7 +152,6 @@
     <string name="parsing_error">Не може да се прочита страната</string>
     <string name="light_parsing_error">Не може целосно да се прочита страната</string>
     <string name="content_not_available">Содржината е недостапна</string>
-    <string name="blocked_by_gema">Блокирано од GEMA</string>
     <string name="could_not_setup_download_menu">Неуспешно поставување на менито за превземања</string>
     <string name="live_streams_not_supported">Ова е пренос ВО ЖИВО, што сеуште не е поддржано.</string>
     <string name="could_not_get_stream">Не е пронајден поток на податоци</string>
@@ -202,8 +201,6 @@
     <string name="audio">Звук</string>
     <string name="retry">Пробај повторно</string>
     <string name="storage_permission_denied">Нема привилегии за пристап</string>
-    <string name="use_old_player_title">Користи го стариот плеер</string>
-    <string name="use_old_player_summary">Користи го стариот Mediaframework плеер</string>
 
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
@@ -371,10 +368,6 @@
     <string name="resize_zoom">Зумирај</string>
 
     <string name="caption_auto_generated">Автоматски создадено</string>
-    <string name="caption_font_size_settings_title">Големина на преводот</string>
-    <string name="smaller_caption_font_size">Помал фонт</string>
-    <string name="normal_caption_font_size">Нормален фонт</string>
-    <string name="larger_caption_font_size">Поголем фонт</string>
 
     <string name="enable_leak_canary_title">Вклучи LeakCanary</string>
     <string name="enable_leak_canary_summary">Следењето на мемориските грешки може да ја прикочува апликацијата</string>
@@ -417,12 +410,11 @@
     <string name="playback_tempo">Темпо</string>
     <string name="playback_pitch">Тон</string>
     <string name="unhook_checkbox">Откачи (може да создаде мутации)</string>
-    <string name="playback_nightcore">„Nightcore“</string>
     <string name="playback_default">Стандардно</string>
 <string name="clear_views_history_title">Избриши историја на гледаност</string>
     <string name="clear_views_history_summary">Ја брише историјата на пуштени видеа</string>
     <string name="delete_view_history_alert">Избриши ја целата историја на гледаност.</string>
-    <string name="view_history_deleted">Избришана е историјата на гледаност.</string>
+    <string name="watch_history_deleted">Избришана е историјата на гледаност.</string>
     <string name="clear_search_history_title">Избриши историја на пребарувања</string>
     <string name="clear_search_history_summary">Ја брише историјата на пребарувања</string>
     <string name="delete_search_history_alert">Избриши ја целата историја на пребарувања.</string>

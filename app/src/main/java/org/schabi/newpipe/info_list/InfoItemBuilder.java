@@ -1,8 +1,7 @@
 package org.schabi.newpipe.info_list;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.util.Log;
+import androidx.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -22,6 +21,7 @@ import org.schabi.newpipe.info_list.holder.PlaylistInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.PlaylistMiniInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.StreamInfoItemHolder;
 import org.schabi.newpipe.info_list.holder.StreamMiniInfoItemHolder;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.OnClickGesture;
 
 /*
@@ -59,13 +59,14 @@ public class InfoItemBuilder {
         this.context = context;
     }
 
-    public View buildView(@NonNull ViewGroup parent, @NonNull final InfoItem infoItem) {
-        return buildView(parent, infoItem, false);
+    public View buildView(@NonNull ViewGroup parent, @NonNull final InfoItem infoItem, final HistoryRecordManager historyRecordManager) {
+        return buildView(parent, infoItem, historyRecordManager, false);
     }
 
-    public View buildView(@NonNull ViewGroup parent, @NonNull final InfoItem infoItem, boolean useMiniVariant) {
+    public View buildView(@NonNull ViewGroup parent, @NonNull final InfoItem infoItem,
+                          final HistoryRecordManager historyRecordManager, boolean useMiniVariant) {
         InfoItemHolder holder = holderFromInfoType(parent, infoItem.getInfoType(), useMiniVariant);
-        holder.updateFromItem(infoItem);
+        holder.updateFromItem(infoItem, historyRecordManager);
         return holder.itemView;
     }
 
@@ -80,7 +81,6 @@ public class InfoItemBuilder {
             case COMMENT:
                 return useMiniVariant ? new CommentsMiniInfoItemHolder(this, parent) : new CommentsInfoItemHolder(this, parent);
             default:
-                Log.e(TAG, "Trollolo");
                 throw new RuntimeException("InfoType not expected = " + infoType.name());
         }
     }

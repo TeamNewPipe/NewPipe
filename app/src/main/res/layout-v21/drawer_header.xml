@@ -9,6 +9,7 @@
         android:id="@+id/drawer_header_action_button"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@string/drawer_header_description"
         android:background="?android:attr/selectableItemBackground" />
 
     <ImageView

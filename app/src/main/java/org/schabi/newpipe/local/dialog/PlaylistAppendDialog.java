@@ -1,11 +1,10 @@
 package org.schabi.newpipe.local.dialog;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +27,7 @@ import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
+import io.reactivex.disposables.CompositeDisposable;
 
 public final class PlaylistAppendDialog extends PlaylistDialog {
     private static final String TAG = PlaylistAppendDialog.class.getCanonicalName();
@@ -36,7 +35,7 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
     private RecyclerView playlistRecyclerView;
     private LocalItemListAdapter playlistAdapter;
 
-    private Disposable playlistReactor;
+    private CompositeDisposable playlistDisposables = new CompositeDisposable();
 
     public static PlaylistAppendDialog fromStreamInfo(final StreamInfo info) {
         PlaylistAppendDialog dialog = new PlaylistAppendDialog();
@@ -99,9 +98,9 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
         final View newPlaylistButton = view.findViewById(R.id.newPlaylist);
         newPlaylistButton.setOnClickListener(ignored -> openCreatePlaylistDialog());
 
-        playlistReactor = playlistManager.getPlaylists()
+        playlistDisposables.add(playlistManager.getPlaylists()
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::onPlaylistsReceived);
+                .subscribe(this::onPlaylistsReceived));
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -111,10 +110,12 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (playlistReactor != null) playlistReactor.dispose();
-        if (playlistAdapter != null) playlistAdapter.unsetSelectedListener();
+        playlistDisposables.dispose();
+        if (playlistAdapter != null) {
+            playlistAdapter.unsetSelectedListener();
+        }
 
-        playlistReactor = null;
+        playlistDisposables.clear();
         playlistRecyclerView = null;
         playlistAdapter = null;
     }
@@ -148,13 +149,12 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
                                     @NonNull List<StreamEntity> streams) {
         if (getStreams() == null) return;
 
-        @SuppressLint("ShowToast")
         final Toast successToast = Toast.makeText(getContext(),
                 R.string.playlist_add_stream_success, Toast.LENGTH_SHORT);
 
-        manager.appendToPlaylist(playlist.uid, streams)
+        playlistDisposables.add(manager.appendToPlaylist(playlist.uid, streams)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(ignored -> successToast.show());
+                .subscribe(ignored -> successToast.show()));
 
         getDialog().dismiss();
     }

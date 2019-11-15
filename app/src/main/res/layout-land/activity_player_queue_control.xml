@@ -8,14 +8,14 @@
     android:fitsSystemWindows="true"
     tools:context="org.schabi.newpipe.player.BackgroundPlayerActivity">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar">
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -24,9 +24,9 @@
             app:layout_scrollFlags="scroll|enterAlways"
             app:title="@string/app_name"/>
 
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/play_queue"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -276,7 +276,7 @@
             tools:ignore="HardcodedText"
             tools:text="1:06:29"/>
 
-        <android.support.v7.widget.AppCompatSeekBar
+        <androidx.appcompat.widget.AppCompatSeekBar
             android:id="@+id/seek_bar"
             style="@style/Widget.AppCompat.SeekBar"
             android:layout_width="0dp"

@@ -28,9 +28,9 @@ import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.IBinder;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.NotificationCompat;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -150,6 +150,7 @@ public final class BackgroundPlayer extends Service {
             lockManager.releaseWifiAndCpu();
         }
         if (basePlayerImpl != null) {
+            basePlayerImpl.savePlaybackState();
             basePlayerImpl.stopActivityBinding();
             basePlayerImpl.destroy();
         }

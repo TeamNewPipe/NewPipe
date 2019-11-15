@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.preference.PreferenceManager;
-import android.support.annotation.StringRes;
+import androidx.annotation.StringRes;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
@@ -430,24 +430,26 @@ public final class ListHelper {
      */
     private static String getResolutionLimit(Context context) {
         String resolutionLimit = null;
-        if (!isWifiActive(context)) {
+        if (isMeteredNetwork(context)) {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
             String defValue = context.getString(R.string.limit_data_usage_none_key);
             String value = preferences.getString(
                     context.getString(R.string.limit_mobile_data_usage_key), defValue);
-            resolutionLimit = value.equals(defValue) ? null : value;
+            resolutionLimit = defValue.equals(value) ? null : value;
         }
         return resolutionLimit;
     }
 
     /**
-     * Are we connected to wifi?
+     * The current network is metered (like mobile data)?
      * @param context App context
-     * @return {@code true} if connected to wifi
+     * @return {@code true} if connected to a metered network
      */
-    private static boolean isWifiActive(Context context)
+    private static boolean isMeteredNetwork(Context context)
     {
         ConnectivityManager manager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        return manager != null && manager.getActiveNetworkInfo() != null && manager.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI;
+        if (manager == null || manager.getActiveNetworkInfo() == null) return false;
+
+        return manager.isActiveNetworkMetered();
     }
 }

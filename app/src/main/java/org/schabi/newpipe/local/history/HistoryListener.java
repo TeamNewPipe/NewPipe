@@ -1,6 +1,6 @@
 package org.schabi.newpipe.local.history;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;

@@ -8,9 +8,9 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
+import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import android.view.Gravity;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,10 +21,9 @@ public class PermissionHelper {
     public static final int DOWNLOAD_DIALOG_REQUEST_CODE = 778;
     public static final int DOWNLOADS_REQUEST_CODE = 777;
 
-
     public static boolean checkStoragePermissions(Activity activity, int requestCode) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            if(!checkReadStoragePermissions(activity, requestCode)) return false;
+            if (!checkReadStoragePermissions(activity, requestCode)) return false;
         }
         return checkWriteStoragePermissions(activity, requestCode);
     }
@@ -92,7 +91,7 @@ public class PermissionHelper {
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(i);
             return false;
-        }else return true;
+        } else return true;
     }
 
     public static boolean isPopupEnabled(Context context) {
