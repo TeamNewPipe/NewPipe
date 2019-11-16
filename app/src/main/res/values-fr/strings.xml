@@ -18,10 +18,10 @@
     <string name="settings">Paramètres</string>
     <string name="share">Partager</string>
     <string name="share_dialog_title">Partager avec</string>
-    <string name="show_play_with_kodi_summary">Afficher une option pour lire une vidéo avec Kodi</string>
+    <string name="show_play_with_kodi_summary">Affiche une option pour lire une vidéo avec Kodi</string>
     <string name="show_play_with_kodi_title">Afficher l’option « Lire avec Kodi »</string>
     <string name="upload_date_text">Publiée le %1$s</string>
-    <string name="view_count_text">%1$s vues</string>
+    <string name="view_count_text">%1$s vues</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Format audio par défaut</string>
     <string name="download_dialog_title">Télécharger</string>
@@ -129,7 +129,7 @@
     <string name="show_higher_resolutions_summary">Seuls certains appareils prennent en charge les vidéos 2K et 4K</string>
     <string name="default_video_format_title">Format vidéo par défaut</string>
     <string name="popup_remember_size_pos_title">Mémoriser les taille et position de la fenêtre flottante</string>
-    <string name="popup_remember_size_pos_summary">Mémoriser les dernières taille et position de la fenêtre flottante</string>
+    <string name="popup_remember_size_pos_summary">Mémorise les dernières taille et position de la fenêtre flottante</string>
     <string name="settings_category_popup_title">Fenêtre flottante</string>
     <string name="filter">Filtre</string>
     <string name="refresh">Rafraîchir</string>
@@ -257,7 +257,7 @@
     <string name="service_title">Service</string>
     <string name="drawer_open">Ouvrir le menu</string>
     <string name="drawer_close">Fermer le menu</string>
-    <string name="no_player_found_toast">Aucun lecteur de flux trouvé (vous pouvez installer VLC pour le lire).</string>
+    <string name="no_player_found_toast">Aucun lecteur de flux multimédias trouvé (vous pouvez installer VLC pour le lire).</string>
     <string name="always">Toujours</string>
     <string name="just_once">Une seule fois</string>
     <string name="external_player_unsupported_link_type">Les lecteurs externes ne prennent pas en charge ces types de liens</string>
@@ -308,7 +308,7 @@
     <string name="resize_fit">Ajuster</string>
     <string name="resize_zoom">Zoomer</string>
     <string name="use_inexact_seek_title">Utiliser la recherche rapide approximative</string>
-    <string name="use_inexact_seek_summary">Permettre au lecteur d’accéder plus rapidement à une position au détriment de la précision</string>
+    <string name="use_inexact_seek_summary">Permet au lecteur d’accéder plus rapidement à une position au détriment de la précision</string>
     <string name="download_thumbnail_title">Charger les miniatures</string>
     <string name="download_thumbnail_summary">Désactiver pour empêcher le chargement des miniatures, afin de réduire l’utilisation de bande passante et de mémoire. Modifier cette option vide les caches d’image en mémoire vive et sur le disque.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Images en cache effacées</string>
@@ -505,7 +505,7 @@
     <string name="clear_playback_states_title">Supprimer les positions de lecture</string>
     <string name="clear_playback_states_summary">Supprimer toutes les positions de reprise</string>
     <string name="delete_playback_states_alert">Voulez-vous supprimer toutes les positions de reprise \?</string>
-    <string name="download_choose_new_path">Changez les dossier de téléchargement pour activer</string>
+    <string name="download_choose_new_path">Changez les dossiers de téléchargement pour que cela prenne effet</string>
     <string name="drawer_header_description">Activer/Désactiver le service, actuellement sélectionné :</string>
     <string name="default_kiosk_page_sumatry">Kiosque par défaut</string>
 </resources>
