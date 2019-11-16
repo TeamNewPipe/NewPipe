@@ -164,13 +164,14 @@ public final class MainVideoPlayer extends AppCompatActivity
                 super.onChange(selfChange);
                 if (globalScreenOrientationLocked()) {
                     final boolean lastOrientationWasLandscape = defaultPreferences.getBoolean(
-                            getString(R.string.last_orientation_landscape_key), false);
+                            getString(R.string.last_orientation_landscape_key), FireTvUtils.isFireTv());
                     setLandscape(lastOrientationWasLandscape);
                 } else {
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
                 }
             }
         };
+
         getContentResolver().registerContentObserver(
                 Settings.System.getUriFor(Settings.System.ACCELEROMETER_ROTATION),
                 false, rotationObserver);
@@ -238,7 +239,7 @@ public final class MainVideoPlayer extends AppCompatActivity
 
         if (globalScreenOrientationLocked()) {
             boolean lastOrientationWasLandscape = defaultPreferences.getBoolean(
-                    getString(R.string.last_orientation_landscape_key), false);
+                    getString(R.string.last_orientation_landscape_key), FireTvUtils.isFireTv());
             setLandscape(lastOrientationWasLandscape);
         }
 
