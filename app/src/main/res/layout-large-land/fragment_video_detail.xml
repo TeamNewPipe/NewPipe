@@ -23,6 +23,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:background="@android:color/transparent"
+			android:touchscreenBlocksFocus="false"
 			android:fitsSystemWindows="true"
 			app:elevation="0dp"
 			app:layout_behavior="com.google.android.material.appbar.FlingBehavior">
