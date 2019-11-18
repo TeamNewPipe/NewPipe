@@ -40,7 +40,7 @@ public class ImageDownloader extends BaseImageDownloader {
     }
 
     protected InputStream getStreamFromNetwork(String imageUri, Object extra) throws IOException {
-        final Downloader downloader = (Downloader) NewPipe.getDownloader();
+        final DownloaderImpl downloader = (DownloaderImpl) NewPipe.getDownloader();
         return downloader.stream(imageUri);
     }
 }

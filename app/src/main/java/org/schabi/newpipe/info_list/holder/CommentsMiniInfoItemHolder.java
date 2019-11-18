@@ -14,6 +14,7 @@ import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.CommentTextOnTouchListener;
 import org.schabi.newpipe.util.ImageDisplayConstants;
+import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 
 import java.util.regex.Matcher;
@@ -101,10 +102,17 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
             ellipsize();
         }
 
-        if (null != item.getLikeCount()) {
+        if (item.getLikeCount() >= 0) {
             itemLikesCountView.setText(String.valueOf(item.getLikeCount()));
+        } else {
+            itemLikesCountView.setText("-");
         }
-        itemPublishedTime.setText(item.getPublishedTime());
+
+        if (item.getPublishedTime() != null) {
+            itemPublishedTime.setText(Localization.relativeTime(item.getPublishedTime().date()));
+        } else {
+            itemPublishedTime.setText(item.getTextualPublishedTime());
+        }
 
         itemView.setOnClickListener(view -> {
             toggleEllipsize();

@@ -111,8 +111,8 @@
     <!-- DEBUG ONLY -->
     <string name="debug_pref_screen_key" translatable="false">debug_pref_screen_key</string>
     <string name="allow_heap_dumping_key" translatable="false">allow_heap_dumping_key</string>
-
     <string name="allow_disposed_exceptions_key" translatable="false">allow_disposed_exceptions_key</string>
+    <string name="show_original_time_ago_key" translatable="false">show_original_time_ago_text_key</string>
 
     <!-- THEMES -->
     <string name="theme_key" translatable="false">theme</string>
