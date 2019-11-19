@@ -233,9 +233,9 @@
         <item quantity="many">%s підписників</item>
     </plurals>
     <plurals name="videos">
-        <item quantity="one">%s Відео</item>
-        <item quantity="few">%s Відео</item>
-        <item quantity="many">%s Відео</item>
+        <item quantity="one">%s відео</item>
+        <item quantity="few">%s відео</item>
+        <item quantity="many">%s відео</item>
     </plurals>
     <string name="create">Створити</string>
     <string name="delete_one">Видалити одне</string>
@@ -510,4 +510,5 @@
     <string name="delete_playback_states_alert">Видалити усі запам\'ятовані позиції\?</string>
     <string name="download_choose_new_path">Змініть папки завантаження для ефективності</string>
     <string name="drawer_header_description">Перемкнути службу, наразі обрано:</string>
+    <string name="default_kiosk_page_sumatry">Кіоск за замовчуванням</string>
 </resources>

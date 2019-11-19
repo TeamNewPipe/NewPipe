@@ -212,7 +212,7 @@ abrir em modo popup</string>
     <string name="settings_category_player_title">Player</string>
     <string name="empty_subscription_feed_subtitle">Não há nada aqui</string>
     <string name="delete_item_search_history">Deseja apagar este item do seu histórico de pesquisas\?</string>
-    <string name="main_page_content">Conteúdo</string>
+    <string name="main_page_content">Conteúdo da página principal</string>
     <string name="blank_page_summary">Página em branco</string>
     <string name="kiosk_page_summary">Página de banca</string>
     <string name="subscription_page_summary">Página de inscrição</string>
@@ -515,4 +515,5 @@ abrir em modo popup</string>
     <string name="delete_playback_states_alert">Deletar todo o histórico de reprodução\?</string>
     <string name="download_choose_new_path">Mude as pastas de download para surtir efeito</string>
     <string name="drawer_header_description">Alterar serviço, selecionados:</string>
+    <string name="default_kiosk_page_sumatry">Quiosque Padrão</string>
 </resources>

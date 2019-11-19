@@ -128,7 +128,7 @@
     <string name="undo">वापस जाए</string>
     <string name="play_all">सारे प्ले करे</string>
     <string name="notification_channel_name">NewPipe की अधिसूचना</string>
-    <string name="notification_channel_description">NewPipe के बैकग्राउंड में चल रहे विडियो और पॉपअप विडियो के लिए अधिसूचना</string>
+    <string name="notification_channel_description">न्यूपाइप के बैकग्राउंड में चल रहे विडियो और पॉपअप विडियो के लिए अधिसूचना</string>
     <string name="unknown_content">[नहीं जानते]</string>
     <string name="general_error">त्रुटी</string>
     <string name="network_error">नेटवर्क में त्रुटी</string>
@@ -184,8 +184,8 @@
         <item quantity="other">%s दर्शके</item>
     </plurals>
     <plurals name="videos">
-        <item quantity="one">वीडियो</item>
-        <item quantity="other">वीडियोस</item>
+        <item quantity="one">%s वीडियो</item>
+        <item quantity="other">%s वीडियो</item>
     </plurals>
     <string name="start">शुरू</string>
     <string name="pause">रोके</string>
@@ -306,7 +306,7 @@
     <string name="playlist_add_stream_success">प्लेलिस्ट में जोड़ा गया</string>
     <string name="playlist_thumbnail_change_success">प्लेलिस्ट का थंबनेल बदल दिया गया है।</string>
     <string name="playlist_delete_failure">सूची हटाने में असफल।</string>
-    <string name="caption_none">कोई कैप्शन नहीं है</string>
+    <string name="caption_none">कोई अनुशीर्षक नहीं है</string>
     <string name="resize_fit">फिट</string>
     <string name="resize_fill">भरें</string>
     <string name="resize_zoom">ज़ूम करें</string>
@@ -318,7 +318,7 @@
     <string name="download_thumbnail_title">छायाप्रारुप लोड करें</string>
     <string name="use_inexact_seek_title">तेजी से अचूक तलाश का प्रयोग करें</string>
     <string name="use_inexact_seek_summary">अचूक खोज प्लेयर को कम परिशुद्धता के साथ तेजी से पदों की तलाश करने की अनुमति देता है</string>
-    <string name="download_thumbnail_summary">लोडिंग थंबनेल, डेटा और मेमोरी उपयोग को रोकने के लिए बंद करें। इन-मेमोरी और ऑन-डिस्क छवि कैश दोनों को बदलता है</string>
+    <string name="download_thumbnail_summary">थंबनेल लोड करने, डेटा और मेमोरी उपयोग को रोकने के लिए बंद करें। इन-मेमोरी और ऑन-डिस्क छवि कैश दोनों को बदलता है|</string>
     <string name="thumbnail_cache_wipe_complete_notice">छवि कैश मिटा दिया</string>
     <string name="metadata_cache_wipe_title">कैश मेटाडेटा वाइप करें</string>
     <string name="metadata_cache_wipe_summary">सभी कैश किए गए वेबपृष्ठ डेटा हटाएं</string>
@@ -353,8 +353,8 @@
     <string name="import_settings">क्या आप सेटिंग्स भी आयात करना चाहते है?</string>
     <string name="preferred_open_action_settings_title">पसंदीदा \'खोलने\' कि प्रक्रिया</string>
     <string name="preferred_open_action_settings_summary">सामग्री खोलते समय डिफ़ॉल्ट कारवाही — %s</string>
-    <string name="caption_setting_title">केप्सन</string>
-    <string name="caption_setting_description">प्लेयर केप्शन के शब्दों का परिमाण और पृष्ठभूमि शैलियो को बदले। लागू करने के लिए ऐप को पुनः प्रारम्भ करना जरूरी है।</string>
+    <string name="caption_setting_title">अनुशीर्षक</string>
+    <string name="caption_setting_description">प्लेयर अनुशीर्षक के शब्दों का परिमाण और पृष्ठभूमि शैलियो को बदले। लागू करने के लिए ऐप को पुनः प्रारम्भ करना जरूरी है।</string>
     <string name="import_export_title">आयात/निर्यात</string>
     <string name="import_title">आयात</string>
     <string name="import_from">से आयात करे</string>
@@ -370,7 +370,7 @@
 \n1. इस URL पर जाए: %1$s
 \n2. जब कहा जाए, लॉगिन करे
 \n3. एक डाउनलोड शुरू होना चाहिए (यही निर्यात की गई फाइल है)</string>
-    <string name="import_soundcloud_instructions_hint">आपका आई डी, soundcloud.com/yourid</string>
+    <string name="import_soundcloud_instructions_hint">आपका आई डी, soundcloud.com/(आपका आई डी)</string>
     <string name="import_network_expensive_warning">ध्यान रखे, यह तरीका नेटवर्क साधनो के लिए मंहगा हो सकता है।
 \n
 \nक्या आप आगे बढ़ना चाहते है?</string>
@@ -385,7 +385,7 @@
     <string name="decline">अस्वीकार करे</string>
     <string name="limit_data_usage_none_description">असीमित</string>
     <string name="limit_mobile_data_usage_title">मोबाइल डेटा उपयोग करते समय रेसॉल्युसेन को सिमित करे</string>
-    <string name="minimize_on_exit_title">ऐप बदलते समय मिनिमाइज करे</string>
+    <string name="minimize_on_exit_title">ऐप बदलते समय उसे मिनिमाइज करे</string>
     <string name="minimize_on_exit_summary">मुख्य वीडियो चालक से दूसरी ऐप पर जाने पर — %s</string>
     <string name="minimize_on_exit_none_description">कोई नही</string>
     <string name="minimize_on_exit_background_description">पृष्ठभूमि प्लेयर में बदले</string>
@@ -461,7 +461,7 @@
     <string name="enable_playback_state_lists_title">सूचियों में स्थान</string>
     <string name="enable_playback_state_lists_summary">प्लेबैक स्थान निशान सूचियों में दिखाए</string>
     <string name="settings_category_clear_data_title">डाटा मिटायें</string>
-    <string name="watch_history_states_deleted">प्लेबैक स्थान मिटा दिए गए</string>
+    <string name="watch_history_states_deleted">प्लेबैक स्थान मिटा दिए गए|</string>
     <string name="missing_file">फाइल की जगह बदली गयी या फिर फाइल मिटा दी गयी</string>
     <string name="overwrite_unrelated_warning">इस नाम की कोई फ़ाइल पहले से मौजूद है</string>
     <string name="overwrite_finished_warning">इस नाम की एक डाउनलोड की गई फ़ाइल पहले से मौजूद है</string>
@@ -483,4 +483,26 @@
     <string name="clear_playback_states_summary">सारे प्लेबैक स्थानों को मिटाये</string>
     <string name="delete_playback_states_alert">सारे प्लेबैक स्थानों को मिटाये\?</string>
     <string name="download_choose_new_path">प्रभावी होने के लिए डाउनलोड फ़ोल्डर बदलें</string>
+    <string name="enable_disposed_exceptions_summary">फ्रेगमेंट या एक्टिविटी लाइफसाइकिल के बाद Rx सन्देश ना पहुँचाया जा सके तोह ज़रूर कोशिश करे</string>
+    <string name="import_soundcloud_instructions">SoundCloud प्रोफाइल निर्यात करने के लिए आईडी या युआरएल दीजिये:
+\n१ अपने वेब ब्राउज़र मैं \"डेस्कटॉप मोड\" चालू करे (वेबसाइट मोबाइल उपकरणों के लिए उपलब्ध नहीं है)
+\n२ इस युआरएल को खोले:% 1 $ s 
+\n३ लोग इन करे
+\n४ आप जिस प्रोफाइल युआरएल पे भेजे जाते है उसे कॉपी करे|</string>
+    <string name="start_accept_privacy_policy">यूरोप के जनरल डाटा प्रोटेक्शन रेगुलेशन (जी डी पी आर) का पालन करने के लिए, हम आपका ध्यान न्यूपाइप की नयी प्राइवेसी पालिसी पी डालना चाहते है।इसे बारीकी से पढ़िए।
+\nआपको अगर हमें किसी मुसीबत का सन्देश भेजना हो तो इसे स्वीकार करे।</string>
+    <string name="saved_tabs_invalid_json">सामान्य टैब्स का इस्तेमाल, सहेजे टैब्स को पढ़ने में रूकावट</string>
+    <string name="updates_setting_description">जब इस ऐप के लिए अपडेट उपलब्ध हो, अधिसूचना दिखाई जाये</string>
+    <string name="list_view_mode">सूचि देखने वाला ढंग</string>
+    <string name="grid">ग्रिड</string>
+    <string name="auto">ऑटो</string>
+    <string name="show_error">मुसीबत दिखाए</string>
+    <string name="error_http_unsupported_range">सर्वर मल्टी थ्रेडेड डाउनलोड स्वीकार नहीं करता, पुनः कोशिश करे @string/msg_threads = 1 के साथ</string>
+    <string name="msg_pending_downloads">आपके %s रुके हुए कामों को डौन्लोडस में पुनः से शुरू करे</string>
+    <string name="downloads_storage_ask_summary_kitkat">आपको डाउनलोड कहाँ सहेजना है हर डाउनलोड पर पूछा जायेगा 
+\nअगर आपको एक्सटर्नल एस डी कार्ड पर डाउनलोड करना हो तो एस ऐ ऍफ़ चुनिए</string>
+    <string name="downloads_storage_use_saf_summary">स्टोरेज एक्सेस फ्रेमवर्क (एस ऐ ऍफ़) आपको एस डी कार्ड पर डाउनलोड करने देता है 
+\nसुचना - कुछ उपकरणों पर ये नहीं चलता</string>
+    <string name="drawer_header_description">सेवा चुने, वर्तमान चुनाव :</string>
+    <string name="default_kiosk_page_sumatry">सामान्य कीओस्क</string>
 </resources>
