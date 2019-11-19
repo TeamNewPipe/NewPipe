@@ -202,8 +202,8 @@
     </plurals>
     <string name="no_videos">Keine Videos</string>
     <plurals name="videos">
-        <item quantity="one">Video</item>
-        <item quantity="other">Videos</item>
+        <item quantity="one">%s video</item>
+        <item quantity="other">%s videos</item>
     </plurals>
     <string name="charset_most_special_characters">Die meisten Sonderzeichen</string>
     <string name="item_deleted">Element gelöscht</string>
