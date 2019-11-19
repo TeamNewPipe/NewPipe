@@ -202,8 +202,8 @@
     </plurals>
     <string name="no_videos">Keine Videos</string>
     <plurals name="videos">
-        <item quantity="one">%s Video</item>
-        <item quantity="other">%s Videos</item>
+        <item quantity="one">Video</item>
+        <item quantity="other">Videos</item>
     </plurals>
     <string name="charset_most_special_characters">Die meisten Sonderzeichen</string>
     <string name="item_deleted">Element gelöscht</string>
@@ -508,4 +508,15 @@
     <string name="download_choose_new_path">Ändere die Downloadordner, damit sie wirksam werden</string>
     <string name="drawer_header_description">Dienst umschalten, aktuell ausgewählt:</string>
     <string name="default_kiosk_page_sumatry">Quiosque Predefinido</string>
+    <string name="no_one_watching">Niemand schaut zu</string>
+    <plurals name="watching">
+        <item quantity="one">%s Zuschauer</item>
+        <item quantity="other">%s Zuschauer</item>
+    </plurals>
+    <string name="no_one_listening">Niemand hört zu</string>
+    <plurals name="listening">
+        <item quantity="one">%s Zuhörer</item>
+        <item quantity="other">%s Zuhörer</item>
+    </plurals>
+    <string name="localization_changes_requires_app_restart">Änderungen der Lokalisierung werden erst nach einem Neustart der App wirksam</string>
 </resources>
