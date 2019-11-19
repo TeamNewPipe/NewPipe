@@ -328,7 +328,7 @@
     </plurals>
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
-    <string name="short_billion">B</string>
+    <string name="short_billion">Mrd</string>
     <string name="title_activity_about">Pri NewPipe</string>
     <string name="action_settings">Agordoj</string>
     <string name="action_about">Pri</string>
