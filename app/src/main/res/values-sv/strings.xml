@@ -163,8 +163,8 @@
     </plurals>
     <string name="no_videos">Inga videor</string>
     <plurals name="videos">
-        <item quantity="one">Videor</item>
-        <item quantity="other">Videor</item>
+        <item quantity="one">%s video</item>
+        <item quantity="other">%s videor</item>
     </plurals>
     <string name="start">Start</string>
     <string name="pause">Pausa</string>
@@ -402,4 +402,61 @@
     <string name="unsubscribe">Avsluta prenumeration</string>
     <string name="tab_new">Ny flik</string>
     <string name="tab_choose">Välj flik</string>
+    <string name="volume_gesture_control_title">Gestkontroll för volym</string>
+    <string name="volume_gesture_control_summary">Använd gester för att justera spelarens volym</string>
+    <string name="brightness_gesture_control_title">Gestkontroll för ljusstyrka</string>
+    <string name="brightness_gesture_control_summary">Använd gester för att justera ljusstyrkan</string>
+    <string name="settings_category_updates_title">Uppdateringar</string>
+    <string name="file_deleted">Fil raderad</string>
+    <string name="app_update_notification_channel_name">Appuppdateringsnotifikation</string>
+    <string name="app_update_notification_channel_description">Notifikationer för nya NewPipe versioner</string>
+    <string name="download_to_sdcard_error_title">Extern lagring otillgänglig</string>
+    <string name="saved_tabs_invalid_json">Fel vid läsning av sparade flikar, använder standard flikar istället</string>
+    <string name="restore_defaults">Återställ default</string>
+    <string name="restore_defaults_confirmation">Vill du återställa default\?</string>
+    <string name="subscribers_count_not_available">Antalet prenumeranter är otillgängligt</string>
+    <string name="main_page_content_summary">Vilka flikar visas på Huvudsidan</string>
+    <string name="selection">Markering</string>
+    <string name="updates_setting_title">Uppdateringar</string>
+    <string name="updates_setting_description">Visa notifikation för att uppdatera appen när en ny version finns tillgänglig</string>
+    <string name="list_view_mode">Listvy</string>
+    <string name="list">Lista</string>
+    <string name="grid">Rutnät</string>
+    <string name="auto">Auto</string>
+    <string name="switch_view">Växla vy</string>
+    <string name="app_update_notification_content_title">NewPipe uppdatering tillgänglig!</string>
+    <string name="app_update_notification_content_text">Tryck för att ladda ned</string>
+    <string name="missions_header_finished">Färdig</string>
+    <string name="paused">pausad</string>
+    <string name="queued">köad</string>
+    <string name="post_processing">efterbehandling</string>
+    <string name="enqueue">Kö</string>
+    <string name="permission_denied">Åtgärd som nekas av systemet</string>
+    <string name="download_failed">Nedladdningen misslyckades</string>
+    <string name="download_finished">Nedladdningen är färdig</string>
+    <string name="download_finished_more">%s nedladdningar är färdiga</string>
+    <string name="generate_unique_name">Generera unikt namn</string>
+    <string name="overwrite">Skriv över</string>
+    <string name="download_already_running">Det finns en pågående nedladdning med det här namnet</string>
+    <string name="show_error">Visa fel</string>
+    <string name="label_code">Kod</string>
+    <string name="error_ssl_exception">Säker anslutning misslyckades</string>
+    <string name="error_unknown_host">Kunde inte hitta servern</string>
+    <string name="error_connect_host">Kunde inte ansluta till servern</string>
+    <string name="error_http_no_content">Servern skickar ingen data</string>
+    <string name="error_http_unsupported_range">Servern accepterar inte flertrådade nedladdningar, försök igen med @string/msg_threads = 1</string>
+    <string name="error_http_not_found">Hittades inte</string>
+    <string name="error_postprocessing_failed">Efterbehandling misslyckades</string>
+    <string name="clear_finished_download">Töm färdiga nedladdningar</string>
+    <string name="msg_pending_downloads">Fortsätt med %s väntande överföringar från Nedladdningar</string>
+    <string name="stop">Stanna</string>
+    <string name="max_retry_msg">Max försök</string>
+    <string name="max_retry_desc">Max antal försök tills nedladdning avbryts</string>
+    <string name="events">Händelser</string>
+    <string name="conferences">Konferenser</string>
+    <string name="show_comments_title">Visa kommentarer</string>
+    <plurals name="comments">
+        <item quantity="one">Kommentarer</item>
+        <item quantity="other"></item>
+    </plurals>
 </resources>

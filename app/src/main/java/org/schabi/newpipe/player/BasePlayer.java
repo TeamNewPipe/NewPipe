@@ -55,7 +55,7 @@ import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import org.schabi.newpipe.BuildConfig;
-import org.schabi.newpipe.Downloader;
+import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
@@ -209,7 +209,7 @@ public abstract class BasePlayer implements
         this.progressUpdateReactor = new SerialDisposable();
         this.databaseUpdateReactor = new CompositeDisposable();
 
-        final String userAgent = Downloader.USER_AGENT;
+        final String userAgent = DownloaderImpl.USER_AGENT;
         final DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter.Builder(context).build();
         this.dataSource = new PlayerDataSource(context, userAgent, bandwidthMeter);
 

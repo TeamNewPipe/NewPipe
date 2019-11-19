@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="view_count_text">조회수 %1$s</string>
+    <string name="view_count_text">조회수 %1$s회</string>
     <string name="upload_date_text">%1$s에 업로드됨</string>
-    <string name="no_player_found">스트리밍 플레이어가 발견되지 않았습니다. VLC를 설치할까요?</string>
+    <string name="no_player_found">스트림 플레이어가 발견되지 않았습니다. VLC를 설치할까요\?</string>
     <string name="install">설치</string>
     <string name="cancel">취소</string>
-    <string name="open_in_browser">브라우저에서 열기</string>
+    <string name="open_in_browser">브라우저로 열기</string>
     <string name="share">공유</string>
     <string name="download">다운로드</string>
     <string name="search">검색</string>
     <string name="settings">설정</string>
-    <string name="did_you_mean">혹시 이것을 검색하셨습니까\?: %1$s\?</string>
+    <string name="did_you_mean">%1$s를 찾으셨나요\?</string>
     <string name="share_dialog_title">다음으로 공유</string>
     <string name="choose_browser">브라우저 선택</string>
     <string name="screen_rotation">회전</string>
@@ -26,7 +26,7 @@
     <string name="default_audio_format_title">기본 오디오 형식</string>
     <string name="download_dialog_title">다운로드</string>
     <string name="next_video_title">다음</string>
-    <string name="show_next_and_similar_title">다음 및 유사한 비디오 표시</string>
+    <string name="show_next_and_similar_title">다음/유사한 비디오 표시</string>
     <string name="url_not_supported_toast">지원하지 않는 URL입니다</string>
     <string name="content_language_title">기본 컨텐츠 언어</string>
     <string name="settings_category_video_audio_title">비디오 &amp; 오디오</string>
@@ -53,8 +53,8 @@
     <string name="err_dir_create">다운로드 디렉토리를 만들 수 없습니다 \'%1$s\'</string>
     <string name="info_dir_created">다운로드 디렉토리를 만들었습니다 \'%1$s\'</string>
     <string name="main_bg_subtitle">검색 버튼을 눌러서 시작하세요</string>
-    <string name="autoplay_by_calling_app_title">자동으로 재생</string>
-    <string name="autoplay_by_calling_app_summary">NewPipe가 다른 앱으로부터 호출되었을 때 동영상을 재생합니다</string>
+    <string name="autoplay_by_calling_app_title">자동재생</string>
+    <string name="autoplay_by_calling_app_summary">NewPipe가 다른 앱에서 호출되었을 때 동영상을 재생합니다</string>
     <string name="content">컨텐츠</string>
     <string name="show_age_restricted_content_title">연령 제한 컨텐츠</string>
     <string name="video_is_age_restricted">연령 제한 비디오입니다. 설정 메뉴에서 시청 허용 여부를 변경하실 수 있습니다.</string>
@@ -88,18 +88,18 @@
     <string name="pause">일시정지</string>
     <string name="delete">삭제</string>
     <string name="checksum">체크섬</string>
-    <string name="open_in_popup_mode">팝업 모드에서 열기</string>
+    <string name="open_in_popup_mode">팝업 모드로 열기</string>
     <string name="use_external_video_player_summary">일부 해상도에서 소리가 나지 않을 수 있습니다</string>
     <string name="popup_mode_share_menu_title">NewPipe 팝업 모드</string>
     <string name="subscribe_button_title">구독</string>
-    <string name="subscribed_button_title">구독됨</string>
-    <string name="channel_unsubscribed">구독 해제됨</string>
+    <string name="subscribed_button_title">구독중</string>
+    <string name="channel_unsubscribed">구독 취소됨</string>
     <string name="subscription_change_failed">구독 여부를 변경할 수 없음</string>
     <string name="subscription_update_failed">구독을 업데이트할 수 없음</string>
     <string name="tab_main">메인 화면</string>
     <string name="tab_subscriptions">구독</string>
     <string name="fragment_whats_new">새로운 영상</string>
-    <string name="controls_background_title">배경</string>
+    <string name="controls_background_title">백그라운드</string>
     <string name="controls_popup_title">팝업</string>
     <string name="default_popup_resolution_title">기본 팝업 해상도</string>
     <string name="show_higher_resolutions_title">높은 해상도 표시</string>
@@ -108,8 +108,8 @@
     <string name="black_theme_title">검은 테마</string>
     <string name="popup_remember_size_pos_title">팝업 크기 및 위치 기억</string>
     <string name="popup_remember_size_pos_summary">마지막으로 사용한 팝업 위치 및 크기를 기억합니다</string>
-    <string name="player_gesture_controls_title">제스쳐로 재생 조작</string>
-    <string name="player_gesture_controls_summary">제스쳐를 사용해 화면 밝기와 음량을 조절합니다</string>
+    <string name="player_gesture_controls_title">제스처 재생 조작</string>
+    <string name="player_gesture_controls_summary">제스처를 사용해 화면 밝기와 음량을 조절합니다</string>
     <string name="show_search_suggestions_title">검색 제안</string>
     <string name="show_search_suggestions_summary">검색 중에 제안을 표시합니다</string>
     <string name="enable_search_history_title">검색 기록</string>
@@ -119,10 +119,10 @@
     <string name="resume_on_audio_focus_gain_title">자동으로 다시 재생</string>
     <string name="resume_on_audio_focus_gain_summary">전화 통화 등으로 인해 재생이 중단된 이후에 다시 재생을 시작합니다</string>
     <string name="show_hold_to_append_title">\"길게 눌러 대기열에 추가하기\" 팁 표시</string>
-    <string name="show_hold_to_append_summary">비디오 상세 정보 페이지에서 백그라운드 재생 또는 팝업 버튼을 누를 경우 팁을 표시합니다</string>
+    <string name="show_hold_to_append_summary">비디오 상세 정보 페이지에서 백그라운드/팝업 재생 버튼을 누를 경우 팁을 표시합니다</string>
     <string name="settings_category_player_title">플레이어</string>
     <string name="settings_category_player_behavior_title">동작</string>
-    <string name="settings_category_history_title">기록과 캐시</string>
+    <string name="settings_category_history_title">기록 &amp; 캐시</string>
     <string name="settings_category_popup_title">팝업</string>
     <string name="popup_playing_toast">팝업 모드에서 재생 중</string>
     <string name="background_player_append">백그라운드 플레이어에 대기됨</string>
@@ -157,11 +157,11 @@
     <string name="short_billion">십억</string>
     <string name="no_subscribers">구독자 없음</string>
     <plurals name="subscribers">
-        <item quantity="other">%s 구독자</item>
+        <item quantity="other">구독자 %s명</item>
     </plurals>
-    <string name="no_views">시청 횟수 없음</string>
+    <string name="no_views">조회수 없음</string>
     <plurals name="views">
-        <item quantity="other">%s 시청 횟수</item>
+        <item quantity="other">조회수 %s회</item>
     </plurals>
     <string name="no_videos">비디오 없음</string>
     <string name="view">재생</string>
@@ -175,13 +175,13 @@
     <string name="msg_url_malform">올바르지 않은 URL이거나 인터넷에 접속할 수 없음</string>
     <string name="msg_running">NewPipe 다운로드 중</string>
     <string name="msg_running_detail">터치해서 상세 정보 확인</string>
-    <string name="msg_wait">잠시만 기다려주십시오…</string>
+    <string name="msg_wait">잠시만 기다리세요…</string>
     <string name="msg_copied">클립보드에 복사됨</string>
-    <string name="no_available_dir">다운로드 할 폴더를 설정에서 지정하십시오</string>
+    <string name="no_available_dir">다운로드 할 폴더를 설정에서 지정하세요</string>
     <string name="msg_popup_permission">이 권한은 팝업 모드에서
 \n열기 위해 필요합니다</string>
-    <string name="reCaptchaActivity">로봇인지 확인 (reCAPTCHA)</string>
-    <string name="recaptcha_request_toast">reCAPTCHA challenge 요청됨</string>
+    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="recaptcha_request_toast">reCAPTCHA 확인 요청됨</string>
     <string name="settings_category_downloads_title">다운로드</string>
     <string name="settings_file_charset_title">파일명에 허용되는 문자</string>
     <string name="settings_file_replacement_character_summary">올바르지 않은 문자는 다음 문자로 대체됩니다</string>
@@ -200,7 +200,7 @@
     <string name="tab_licenses">라이센스</string>
     <string name="app_description">가볍고 빠른 자유 안드로이드 스트리밍 앱입니다.</string>
     <string name="contribution_title">기여</string>
-    <string name="contribution_encouragement">번역, 디자인, 코딩 등 다양한 기여를 언제나 환영합니다. 향상에 참여해주세요!</string>
+    <string name="contribution_encouragement">번역, 디자인, 코딩 등 다양한 기여를 언제나 환영합니다. 더 나아지도록 도와주세요!</string>
     <string name="view_on_github">GitHub에서 보기</string>
     <string name="donation_title">기부</string>
     <string name="donation_encouragement">여러분들의 더 나은 경험을 위해 많은 사람들이 NewPipe를 개발하는데 노력을 기울이고 있습니다. NewPipe에 참여하는 개발자들이 커피 한 잔을 즐길 수 있도록 기부해주세요.</string>
@@ -212,7 +212,7 @@
     <string name="title_activity_history">기록</string>
     <string name="title_history_search">검색함</string>
     <string name="title_history_view">시청함</string>
-    <string name="history_disabled">기록을 사용하지 않습니다</string>
+    <string name="history_disabled">기록 기능이 꺼져 있습니다</string>
     <string name="action_history">기록</string>
     <string name="history_empty">기록이 없습니다</string>
     <string name="history_cleared">기록이 삭제되었습니다</string>
@@ -237,20 +237,20 @@
     <string name="play_queue_stream_detail">상세 정보</string>
     <string name="play_queue_audio_settings">오디오 설정</string>
     <string name="hold_to_append">눌러서 대기열에 추가</string>
-    <string name="enqueue_on_background">백그라운드로 갈 경우 재생목록에서 제거</string>
-    <string name="enqueue_on_popup">새 팝업으로 갈 경우 재생목록에서 제거</string>
+    <string name="enqueue_on_background">백그라운드 대기열에 추가</string>
+    <string name="enqueue_on_popup">새 팝업으로 대기열에 추가</string>
     <string name="start_here_on_main">여기서부터 재생</string>
     <string name="start_here_on_background">백그라운드에서 재생</string>
     <string name="start_here_on_popup">새 팝업에서 재생</string>
-    <string name="no_player_found_toast">스트리밍 플레이어를 찾을 수 없습니다. VLC를 설치하여 동영상을 재생할 수 있습니다.</string>
-    <string name="controls_download_desc">스트리밍 파일 다운로드하기</string>
+    <string name="no_player_found_toast">스트림 플레이어를 찾을 수 없습니다 (VLC를 설치하여 동영상을 재생할 수 있습니다).</string>
+    <string name="controls_download_desc">스트림 파일 다운로드하기</string>
     <string name="show_info">정보 보기</string>
-    <string name="tab_bookmarks">플레이리스트 북마크</string>
+    <string name="tab_bookmarks">재생목록 북마크</string>
     <string name="controls_add_to_playlist_title">이곳에 추가</string>
     <string name="use_inexact_seek_title">정확하지는 않지만 빠른 탐색</string>
     <string name="use_inexact_seek_summary">정확하지 않은 탐색은 더 빠르게 위치를 탐색할 수 있지만 정확도는 떨어집니다</string>
-    <string name="auto_queue_title">다음 스트림을 자동으로 재생열에 추가하기</string>
-    <string name="auto_queue_summary">이전 스트림이 무한 반복 재생 큐가 아닐 경우, 관련 스트림을 자동 재생합니다</string>
+    <string name="auto_queue_title">다음 스트림을 자동으로 대기열에 추가하기</string>
+    <string name="auto_queue_summary">이전 스트림이 반복 재생 대기열이 아닐 경우, 관련 스트림을 자동 재생합니다</string>
     <string name="default_content_country_title">기본 콘텐츠 국가</string>
     <string name="service_title">서비스</string>
     <string name="settings_category_debug_title">디버그</string>
@@ -270,11 +270,11 @@
     <string name="audio_streams_empty">발견된 오디오 스트림 없음</string>
     <string name="detail_drag_description">드래그하여 재배열</string>
     <string name="create">만들기</string>
-    <string name="delete_one">1개 삭제하기</string>
+    <string name="delete_one">하나 삭제하기</string>
     <string name="delete_all">모두 삭제하기</string>
     <string name="dismiss">취소</string>
     <string name="rename">이름 바꾸기</string>
-    <string name="reCaptcha_title">로봇인지 확인합니다</string>
+    <string name="reCaptcha_title">reCAPTCHA 확인</string>
     <string name="delete_stream_history_prompt">이 항목을 시청 기록에서 삭제하시겠습니까?</string>
     <string name="delete_all_history_prompt">모든 항목을 시청 기록에서 삭제하시겠습니까?</string>
     <string name="title_last_played">마지막으로 재생</string>
@@ -282,7 +282,7 @@
     <string name="export_complete_toast">내보내기 완료</string>
     <string name="import_complete_toast">가져오기 완료</string>
     <string name="no_valid_zip_file">유효한 ZIP 파일 없음</string>
-    <string name="could_not_import_all_files">경고: 모든 파일 가져오기를 실패했습니다.</string>
+    <string name="could_not_import_all_files">경고: 파일을 전부 가져오지 못했습니다.</string>
     <string name="override_current_data">이것은 현재 설정을 덮어쓸 것입니다.</string>
     <string name="drawer_open">드로어 열기</string>
     <string name="drawer_close">드로어 닫기</string>
@@ -292,7 +292,7 @@
     <string name="popup_player">팝업 플레이어</string>
     <string name="always_ask_open_action">항상 묻기</string>
     <string name="preferred_player_fetcher_notification_title">정보 가져오는 중…</string>
-    <string name="preferred_player_fetcher_notification_message">요청한 콘텐츠를 로딩 중입니다</string>
+    <string name="preferred_player_fetcher_notification_message">요청한 콘텐츠를 로드 중입니다</string>
     <string name="create_playlist">새로운 재생목록</string>
     <string name="delete_playlist">삭제</string>
     <string name="rename_playlist">이름 바꾸기</string>
@@ -304,15 +304,15 @@
     <string name="delete_playlist_prompt">이 재생목록을 삭제하시겠습니까?</string>
     <string name="playlist_creation_success">재생목록 생성 완료</string>
     <string name="playlist_add_stream_success">재생목록에 추가됨</string>
-    <string name="playlist_thumbnail_change_success">재생목록 썸내일이 바뀜.</string>
+    <string name="playlist_thumbnail_change_success">재생목록 썸네일 변경 완료.</string>
     <string name="playlist_delete_failure">재생목록을 삭제할 수 없습니다.</string>
     <string name="caption_none">자막 없음</string>
     <string name="resize_fit">꼭 맞게 하기</string>
     <string name="resize_fill">채우기</string>
     <string name="resize_zoom">확대</string>
     <string name="caption_auto_generated">자동 생성됨</string>
-    <string name="enable_leak_canary_title">LeakCanary 할성화</string>
-    <string name="enable_leak_canary_summary">힙 덤프 중 메모리 누수 점검으로 앱이 불안정해질 수 있습니다</string>
+    <string name="enable_leak_canary_title">LeakCanary 활성화</string>
+    <string name="enable_leak_canary_summary">메모리 누수 감시를 사용할 시 힙 덤프로 인해 앱이 반응하지 않을 수 있습니다</string>
     <string name="enable_disposed_exceptions_title">out-of-lifecycle 오류 보고</string>
     <string name="enable_disposed_exceptions_summary">프래그먼트 또는 버려진 액티비티 주기 밖에서 일어나는 전달할 수 없는 Rx 예외를 강제적으로 보고하기</string>
     <string name="file">파일</string>
@@ -345,9 +345,9 @@
 \n3. 로그인이 필요하면 하세요. 
 \n4. 리디렉트된 프로필 URL을 복사하세요.</string>
     <string name="import_soundcloud_instructions_hint">프로필ID, soundcloud.com/프로필ID</string>
-    <string name="import_network_expensive_warning">경고: 데이터 소모량이 늘어날 수 있습니다. 
+    <string name="import_network_expensive_warning">경고: 데이터가 많이 소모될 수 있습니다. 
 \n 
-\n계속하시겠습니까?</string>
+\n계속하시겠습니까\?</string>
     <string name="download_thumbnail_title">썸네일 로드하기</string>
     <string name="download_thumbnail_summary">동영상 썸네일을 로드하지 않으며, 데이터와 메모리 사용을 최대한 줄입니다. 이 옵션을 선택 시 모든 메모리 캐시와 저장소 캐시를 삭제합니다.</string>
     <string name="thumbnail_cache_wipe_complete_notice">이미지 캐시 지워짐</string>
@@ -364,9 +364,9 @@
     <string name="preferred_open_action_settings_title">선호하는 열기 동작</string>
     <string name="preferred_open_action_settings_summary">컨텐츠를 열 때 사용할 기본 동작 — %s</string>
     <string name="caption_setting_title">자막</string>
-    <string name="caption_setting_description">플레이어 자막 텍스트 크기와 배경 스타일을 변경합니다. 효과를 적용하려면 앱을 재시작 해야합니다.</string>
-    <string name="channels">채널만</string>
-    <string name="playlists">재생 목록만</string>
+    <string name="caption_setting_description">플레이어 자막 글자 크기와 배경 스타일을 변경합니다. 이를 적용하려면 앱을 재시작 해야 합니다.</string>
+    <string name="channels">채널</string>
+    <string name="playlists">재생목록</string>
     <string name="clear_views_history_title">시청 기록 삭제하기</string>
     <string name="clear_views_history_summary">동영상 시청 기록과 저장된 재생 위치를 삭제합니다</string>
     <string name="delete_view_history_alert">모든 시청 기록을 삭제하시겠습니까\?</string>
@@ -380,19 +380,19 @@
 \nNewPipe 개인정보 보호 정책에서는 오류 보고 시 어떠한 정보가 수집되고 저장되는지 자세히 명시되어 있습니다.</string>
     <string name="read_privacy_policy">개인정보 보호 정책 읽기</string>
     <string name="app_license">NewPipe는 카피레프트 자유 소프트웨어입니다. 사용자는 이 앱을 사용, 공유, 또는 수정할 수 있고, 수정 후 재배포 시 자유 소프트웨어 재단의 GNU 라이센스 버전 3 또는 그 이상의 버전을 포함해야 합니다.</string>
-    <string name="import_settings">앱 설정을 가져오시겠습니까?</string>
-    <string name="skip_silence_checkbox">무음 구간 스킵</string>
+    <string name="import_settings">설정도 가져오시겠습니까\?</string>
+    <string name="skip_silence_checkbox">무음 구간 빨리 감기</string>
     <string name="start_accept_privacy_policy">유럽 연합 일반 데이터 보호 규정 (GDPR) 에 따라, 사용자는 NewPipe 개인정보 보호 정책을 읽고 꼼꼼히 확인해야 합니다. 버그 리포트를 보내시려면 개인정보 보호 정책에 동의해주세요.</string>
     <string name="accept">동의</string>
     <string name="decline">동의하지 않음</string>
     <string name="limit_data_usage_none_description">데이터 제한 없음</string>
     <string name="limit_mobile_data_usage_title">모바일 데이터 사용 시 화질 제한</string>
-    <string name="unsubscribe">구독 해제</string>
+    <string name="unsubscribe">구독 취소</string>
     <string name="tab_new">새 탭</string>
     <string name="tab_choose">탭 선택</string>
-    <string name="volume_gesture_control_title">제스처로 음량 조작</string>
-    <string name="volume_gesture_control_summary">제스처를 사용해 플레이어의 음량을 조작 합니다</string>
-    <string name="brightness_gesture_control_title">제스처로 밝기 조작</string>
+    <string name="volume_gesture_control_title">제스처 음량 조작</string>
+    <string name="volume_gesture_control_summary">제스처를 사용해 플레이어의 음량을 조작합니다</string>
+    <string name="brightness_gesture_control_title">제스처 밝기 조작</string>
     <string name="brightness_gesture_control_summary">제스처를 사용해 화면 밝기를 조작합니다</string>
     <string name="settings_category_updates_title">업데이트</string>
     <string name="tracks">트랙</string>
@@ -414,8 +414,8 @@
     <string name="saved_tabs_invalid_json">저장된 탭을 읽는 중 오류가 발생하여 기본 탭을 사용합니다</string>
     <string name="restore_defaults">초기화</string>
     <string name="restore_defaults_confirmation">초기 설정으로 복원하시겠습니까\?</string>
-    <string name="subscribers_count_not_available">구독자 숫자가 없습니다</string>
-    <string name="main_page_content_summary">메인 화면에 표시할 탭</string>
+    <string name="subscribers_count_not_available">구독자 수를 가져올 수 없습니다</string>
+    <string name="main_page_content_summary">메인 화면에 표시할 탭을 설정합니다</string>
     <string name="selection">선택</string>
     <string name="updates_setting_title">업데이트</string>
     <string name="updates_setting_description">새 버전이 있을 경우 앱을 업데이트하도록 알림 표시</string>
@@ -473,7 +473,7 @@
     <string name="close">닫기</string>
     <string name="enable_playback_resume_title">재생 재개</string>
     <string name="enable_playback_resume_summary">마지막 재생 위치부터 재생</string>
-    <string name="enable_playback_state_lists_title">리스트 내 위치</string>
+    <string name="enable_playback_state_lists_title">리스트 내 위치 표시</string>
     <string name="enable_playback_state_lists_summary">리스트에서 재생 위치를 표시합니다</string>
     <string name="settings_category_clear_data_title">데이터 삭제</string>
     <string name="watch_history_states_deleted">재생위치 삭제완료.</string>
@@ -488,7 +488,7 @@
     <string name="enable_queue_limit">다운로드 대기 제한</string>
     <string name="start_downloads">다운로드 시작</string>
     <string name="pause_downloads">다운로드 일시정지</string>
-    <string name="downloads_storage_ask_title">다운로드 위치를 물음</string>
+    <string name="downloads_storage_ask_title">다운로드 위치를 묻기</string>
     <string name="downloads_storage_ask_summary">다운로드 할때 마다 저장위치를 물을 것 입니다</string>
     <string name="downloads_storage_use_saf_title">SAF 사용</string>
     <string name="downloads_storage_use_saf_summary">스토리지 액세스 프레임워크(SAF)는 외장 SD카드에 다운로드 할 수 있도록 해줍니다. 
@@ -499,9 +499,10 @@
     <string name="downloads_storage_ask_summary_kitkat">매 다운로드 마다 저장경로를 묻습니다.
 \n외장 SD카드에 다운로드 하고자 한다면 SAF를 선택하십시오</string>
     <plurals name="videos">
-        <item quantity="other">동영상만</item>
+        <item quantity="other">%s개의 동영상</item>
     </plurals>
     <string name="enable_queue_limit_desc">하나의 다운로드가 동시에 진행됩니다</string>
     <string name="download_choose_new_path">적용하려면 다운로드 폴더를 변경하세요</string>
     <string name="drawer_header_description">서비스 토글, 현재 선택된 서비스:</string>
+    <string name="default_kiosk_page_sumatry">기본 키오스크</string>
 </resources>

@@ -500,6 +500,7 @@
     <string name="download_choose_new_path">ダウンロードフォルダーを変更して有効にします</string>
     <string name="drawer_header_description">サービスの切り替え、現在の選択:</string>
     <plurals name="videos">
-        <item quantity="other">動画</item>
+        <item quantity="other">%s 動画</item>
     </plurals>
+    <string name="default_kiosk_page_sumatry">デフォルトのキオスク</string>
 </resources>

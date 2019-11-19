@@ -5,15 +5,6 @@
     android:title="@string/content">
     <ListPreference
         app:iconSpaceReserved="false"
-        android:defaultValue="@string/default_country_value"
-        android:entries="@array/country_names"
-        android:entryValues="@array/country_codes"
-        android:key="@string/content_country_key"
-        android:summary="%s"
-        android:title="@string/default_content_country_title"/>
-
-    <ListPreference
-        app:iconSpaceReserved="false"
         android:defaultValue="@string/default_language_value"
         android:entries="@array/language_names"
         android:entryValues="@array/language_codes"
@@ -27,6 +18,15 @@
         android:key="@string/peertube_instance_url_key"
         android:title="@string/peertube_instance_url_title"
         android:inputType="textUri" />
+
+    <ListPreference
+        app:iconSpaceReserved="false"
+        android:defaultValue="@string/default_country_value"
+        android:entries="@array/country_names"
+        android:entryValues="@array/country_codes"
+        android:key="@string/content_country_key"
+        android:summary="%s"
+        android:title="@string/default_content_country_title"/>
 
     <SwitchPreference
         app:iconSpaceReserved="false"

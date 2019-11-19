@@ -47,7 +47,7 @@ android {
 
 ext {
     androidxLibVersion = '1.0.0'
-    exoPlayerLibVersion = '2.10.7'
+    exoPlayerLibVersion = '2.10.8'
     roomDbLibVersion = '2.1.0'
     leakCanaryLibVersion = '1.5.4' //1.6.1
     okHttpLibVersion = '3.12.6'
@@ -62,7 +62,7 @@ dependencies {
         exclude module: 'support-annotations'
     })
 
-    implementation 'com.github.yausername:NewPipeExtractor:318f600'
+    implementation 'com.github.yausername:NewPipeExtractor:f3a59a6'
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.23.0'
@@ -95,6 +95,7 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
     implementation 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
+    implementation 'org.ocpsoft.prettytime:prettytime:4.0.1.Final'
 
     implementation "androidx.room:room-runtime:${roomDbLibVersion}"
     implementation "androidx.room:room-rxjava2:${roomDbLibVersion}"

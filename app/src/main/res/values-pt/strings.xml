@@ -506,4 +506,5 @@
     <string name="delete_playback_states_alert">Eliminar todas as posições de reprodução\?</string>
     <string name="download_choose_new_path">Alterar as pastas de descarregamento para que tenham efeito</string>
     <string name="drawer_header_description">Alternar serviço, agora selecionado:</string>
+    <string name="default_kiosk_page_sumatry">Quiosque Predefinição</string>
 </resources>

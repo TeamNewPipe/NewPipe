@@ -510,4 +510,6 @@
     <string name="clear_playback_states_summary">Usuwa wszystkie pozycje odtwarzania</string>
     <string name="delete_playback_states_alert">Usunąć wszystkie pozycje odtwarzania\?</string>
     <string name="download_choose_new_path">Zmień foldey pobierania, aby zostały uwzględnione</string>
+    <string name="drawer_header_description">Przełączanie usługi, aktualnie wybranej:</string>
+    <string name="default_kiosk_page_sumatry">Domyślny Kiosk</string>
 </resources>

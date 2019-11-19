@@ -7,21 +7,22 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.nononsenseapps.filepicker.Utils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.ServiceList;
-import org.schabi.newpipe.extractor.utils.Localization;
+import org.schabi.newpipe.extractor.localization.ContentCountry;
+import org.schabi.newpipe.extractor.localization.Localization;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
@@ -63,12 +64,18 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
     private String thumbnailLoadToggleKey;
 
+    private Localization initialSelectedLocalization;
+    private ContentCountry initialSelectedContentCountry;
+
     private CompositeDisposable disposables = new CompositeDisposable();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         thumbnailLoadToggleKey = getString(R.string.download_thumbnail_key);
+
+        initialSelectedLocalization = org.schabi.newpipe.util.Localization.getPreferredLocalization(requireContext());
+        initialSelectedContentCountry = org.schabi.newpipe.util.Localization.getPreferredContentCountry(requireContext());
     }
 
     @Override
@@ -121,21 +128,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             return true;
         });
 
-        Preference setPreferredLanguage = findPreference(getString(R.string.content_language_key));
-        setPreferredLanguage.setOnPreferenceChangeListener((Preference p, Object newLanguage) -> {
-            Localization oldLocal = org.schabi.newpipe.util.Localization.getPreferredExtractorLocal(getActivity());
-            NewPipe.setLocalization(new Localization(oldLocal.getCountry(), (String) newLanguage));
-            return true;
-        });
-
-        Preference setPreferredCountry = findPreference(getString(R.string.content_country_key));
-        setPreferredCountry.setOnPreferenceChangeListener((Preference p, Object newCountry) -> {
-            Localization oldLocal = org.schabi.newpipe.util.Localization.getPreferredExtractorLocal(getActivity());
-            NewPipe.setLocalization(new Localization((String) newCountry, oldLocal.getLanguage()));
-            return true;
-        });
-
-
         Preference peerTubeInstance = findPreference(getString(R.string.peertube_instance_url_key));
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         peerTubeInstance.setDefaultValue(sharedPreferences.getString(getString(R.string.peertube_instance_url_key), ServiceList.PeerTube.getBaseUrl()));
@@ -176,6 +168,21 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             }
             return false;
         });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        final Localization selectedLocalization = org.schabi.newpipe.util.Localization
+                .getPreferredLocalization(requireContext());
+        final ContentCountry selectedContentCountry = org.schabi.newpipe.util.Localization
+                .getPreferredContentCountry(requireContext());
+
+        if (!selectedLocalization.equals(initialSelectedLocalization)
+                || !selectedContentCountry.equals(initialSelectedContentCountry)) {
+            Toast.makeText(requireContext(), R.string.localization_changes_requires_app_restart, Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
