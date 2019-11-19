@@ -135,7 +135,7 @@
     <string name="refresh">Rafraîchir</string>
     <string name="clear">Effacer</string>
     <string name="popup_resizing_indicator_title">Redimensionner</string>
-    <string name="short_billion">B</string>
+    <string name="short_billion">Mrd</string>
     <string name="use_external_video_player_summary">Retire l’audio à CERTAINES définitions</string>
     <string name="player_gesture_controls_summary">Utiliser des gestes pour contrôler la luminosité et le volume du lecteur</string>
     <string name="show_search_suggestions_title">Suggestions de recherche</string>
