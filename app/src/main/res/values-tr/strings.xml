@@ -504,7 +504,7 @@
     <string name="download_choose_new_path">Etkili olması için indirme dizinlerini değiştirin</string>
     <string name="drawer_header_description">Hizmeti değiştir, şu anda seçili olan:</string>
     <plurals name="videos">
-        <item quantity="one">Video</item>
+        <item quantity="one">Videolar</item>
         <item quantity="other">Videolar</item>
     </plurals>
     <string name="default_kiosk_page_sumatry">Varsayılan Kiosk</string>
