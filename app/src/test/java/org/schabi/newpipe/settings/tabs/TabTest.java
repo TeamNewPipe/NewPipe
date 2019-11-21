@@ -1,6 +1,5 @@
 package org.schabi.newpipe.settings.tabs;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.HashSet;
@@ -9,7 +8,6 @@ import java.util.Set;
 import static org.junit.Assert.assertTrue;
 
 public class TabTest {
-    @Ignore
     @Test
     public void checkIdDuplication() {
         final Set<Integer> usedIds = new HashSet<>();
