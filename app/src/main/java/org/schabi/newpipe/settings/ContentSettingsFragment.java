@@ -235,7 +235,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
+        }finally {
             try {
                 if (output != null) {
                     output.flush();
@@ -259,8 +259,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         } finally {
             try {
                 zipFile.close();
-            } catch (Exception ignored) {
-            }
+            } catch (Exception ignored){}
         }
 
         try {
@@ -283,7 +282,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             }
 
             //If settings file exist, ask if it should be imported.
-            if (ZipHelper.extractFileFromZip(filePath, newpipe_settings.getPath(), "newpipe.settings")) {
+            if(ZipHelper.extractFileFromZip(filePath, newpipe_settings.getPath(), "newpipe.settings")) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
                 alert.setTitle(R.string.import_settings);
 
@@ -338,7 +337,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        } finally {
+        }finally {
             try {
                 if (input != null) {
                     input.close();
