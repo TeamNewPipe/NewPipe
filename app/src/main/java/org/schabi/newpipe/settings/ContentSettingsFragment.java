@@ -24,6 +24,7 @@ import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
 import org.schabi.newpipe.extractor.localization.Localization;
+import org.schabi.newpipe.extractor.services.peertube.PeertubeInstance;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
@@ -45,9 +46,8 @@ import java.util.Map;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
-import io.reactivex.Single;
+import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
@@ -67,8 +67,6 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
     private Localization initialSelectedLocalization;
     private ContentCountry initialSelectedContentCountry;
-
-    private CompositeDisposable disposables = new CompositeDisposable();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -142,30 +140,24 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                         Toast.LENGTH_SHORT).show();
             } else {
                 pEt.setSummary("fetching instance details..");
-                Disposable disposable = Single.fromCallable(() -> {
-                    ServiceList.PeerTube.setInstance(url);
-                    return true;
+                Disposable disposable = Completable.fromAction(() -> {
+                    PeertubeInstance instance = new PeertubeInstance(url);
+                    instance.fetchInstanceMetaData();
+                    ServiceList.PeerTube.setInstance(instance);
                 }).subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(result -> {
-                            if (result) {
-                                pEt.setSummary(url);
-                                pEt.setText(url);
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putString(App.getApp().getString(R.string.peertube_instance_name_key), ServiceList.PeerTube.getServiceInfo().getName()).apply();
-                                editor.putString(App.getApp().getString(R.string.current_service_key), ServiceList.PeerTube.getServiceInfo().getName()).apply();
-                                NavigationHelper.openMainActivity(App.getApp());
-                            } else {
-                                pEt.setSummary(ServiceList.PeerTube.getBaseUrl());
-                                Toast.makeText(getActivity(), "unable to update instance",
-                                        Toast.LENGTH_SHORT).show();
-                            }
+                        .subscribe(() -> {
+                            pEt.setSummary(url);
+                            pEt.setText(url);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString(App.getApp().getString(R.string.peertube_instance_name_key), ServiceList.PeerTube.getServiceInfo().getName()).apply();
+                            editor.putString(App.getApp().getString(R.string.current_service_key), ServiceList.PeerTube.getServiceInfo().getName()).apply();
+                            NavigationHelper.openMainActivity(App.getApp());
                         }, error -> {
                             pEt.setSummary(ServiceList.PeerTube.getBaseUrl());
                             Toast.makeText(getActivity(), "unable to update instance",
                                     Toast.LENGTH_SHORT).show();
                         });
-                disposables.add(disposable);
             }
             return false;
         });

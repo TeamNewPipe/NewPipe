@@ -23,13 +23,13 @@
     <color name="dark_soundcloud_statusbar_color">#ff9100</color>
 
     <!-- PeerTube -->
-    <color name="light_peertube_primary_color">#e65100</color>
-    <color name="light_peertube_dark_color">#ac1900</color>
+    <color name="light_peertube_primary_color">#ff6f00</color>
+    <color name="light_peertube_dark_color">#c43e00</color>
     <color name="light_peertube_accent_color">#000000</color>
     <color name="light_peertube_statusbar_color">#ff833a</color>
 
-    <color name="dark_peertube_primary_color">#e65100</color>
-    <color name="dark_peertube_dark_color">#ac1900</color>
+    <color name="dark_peertube_primary_color">#ff6f00</color>
+    <color name="dark_peertube_dark_color">#c43e00</color>
     <color name="dark_peertube_accent_color">#FFFFFF</color>
     <color name="dark_peertube_statusbar_color">#ff833a</color>
 

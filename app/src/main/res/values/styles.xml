@@ -44,8 +44,8 @@
         <item name="pause">@drawable/ic_pause_black_24dp</item>
         <item name="settings">@drawable/ic_settings_black_24dp</item>
         <item name="ic_hot">@drawable/ic_whatshot_black_24dp</item>
-        <item name="ic_kiosk_local">@drawable/ic_kiosklocal_black_24dp</item>
-        <item name="ic_kiosk_recent">@drawable/ic_kioskrecent_black_24dp</item>
+        <item name="ic_kiosk_local">@drawable/ic_kiosk_local_black_24dp</item>
+        <item name="ic_kiosk_recent">@drawable/ic_kiosk_recent_black_24dp</item>
         <item name="ic_channel">@drawable/ic_channel_black_24dp</item>
         <item name="ic_bookmark">@drawable/ic_bookmark_black_24dp</item>
         <item name="ic_playlist_add">@drawable/ic_playlist_add_black_24dp</item>
@@ -110,8 +110,8 @@
         <item name="play">@drawable/ic_play_arrow_white_24dp</item>
         <item name="settings">@drawable/ic_settings_white_24dp</item>
         <item name="ic_hot">@drawable/ic_whatshot_white_24dp</item>
-        <item name="ic_kiosk_local">@drawable/ic_kiosklocal_white_24dp</item>
-        <item name="ic_kiosk_recent">@drawable/ic_kioskrecent_white_24dp</item>
+        <item name="ic_kiosk_local">@drawable/ic_kiosk_local_white_24dp</item>
+        <item name="ic_kiosk_recent">@drawable/ic_kiosk_recent_white_24dp</item>
         <item name="ic_channel">@drawable/ic_channel_white_24dp</item>
         <item name="ic_bookmark">@drawable/ic_bookmark_white_24dp</item>
         <item name="ic_playlist_add">@drawable/ic_playlist_add_white_24dp</item>

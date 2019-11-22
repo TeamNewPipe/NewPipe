@@ -145,7 +145,6 @@
     <string name="default_country_value">GB</string>
     <string name="content_language_key" translatable="false">content_language</string>
     <string name="peertube_instance_url_key" translatable="false">peertube_instance_url</string>
-    <string name="peertube_instance_url_help" translatable="true">Find the instance that best suits you on https://instances.joinpeertube.org</string>
     <string name="peertube_instance_name_key" translatable="false">peertube_instance_name</string>
     <string name="content_country_key" translatable="false">content_country</string>
     <string name="show_age_restricted_content" translatable="false">show_age_restricted_content</string>

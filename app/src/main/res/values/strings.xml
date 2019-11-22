@@ -110,6 +110,7 @@
     <string name="service_title">Service</string>
     <string name="content_language_title">Default content language</string>
     <string name="peertube_instance_url_title">PeerTube instance</string>
+    <string name="peertube_instance_url_help">Find the instance that best suits you on https://instances.joinpeertube.org</string>
     <string name="settings_category_player_title">Player</string>
     <string name="settings_category_player_behavior_title">Behavior</string>
     <string name="settings_category_video_audio_title">Video &amp; audio</string>
