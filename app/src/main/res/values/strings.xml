@@ -380,7 +380,7 @@
     <string name="selection">Selection</string>
     <string name="blank_page_summary">Blank Page</string>
     <string name="kiosk_page_summary">Kiosk Page</string>
-    <string name="default_kiosk_page_sumatry">Default Kiosk</string>
+    <string name="default_kiosk_page_summary">Default Kiosk</string>
     <string name="subscription_page_summary">Subscription Page</string>
     <string name="feed_page_summary">Feed Page</string>
     <string name="channel_page_summary">Channel Page</string>

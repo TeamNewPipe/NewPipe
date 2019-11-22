@@ -107,6 +107,7 @@ public abstract class BaseFragment extends Fragment {
         if (DEBUG) Log.d(TAG, "setTitle() called with: title = [" + title + "]");
         if((!useAsFrontPage || mIsVisibleToUser)
             && (activity != null && activity.getSupportActionBar() != null)) {
+            activity.getSupportActionBar().setDisplayShowTitleEnabled(true);
             activity.getSupportActionBar().setTitle(title);
         }
     }
