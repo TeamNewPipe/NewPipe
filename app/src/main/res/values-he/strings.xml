@@ -531,4 +531,5 @@
         <item quantity="other">%s מאזינים</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">השפה תוחלף עם הפעלת היישומון מחדש.</string>
+    <string name="default_kiosk_page_summary">קיוסק בררת מחדל</string>
 </resources>
