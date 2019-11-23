@@ -500,7 +500,16 @@
     <string name="download_choose_new_path">ダウンロードフォルダーを変更して有効にします</string>
     <string name="drawer_header_description">サービスの切り替え、現在の選択:</string>
     <plurals name="videos">
-        <item quantity="other">%s 動画</item>
+        <item quantity="other">動画</item>
     </plurals>
     <string name="default_kiosk_page_sumatry">デフォルトのキオスク</string>
+    <string name="no_one_watching">誰も見ていません</string>
+    <plurals name="watching">
+        <item quantity="other">%s 見ています</item>
+    </plurals>
+    <string name="no_one_listening">誰も聞いていません</string>
+    <plurals name="listening">
+        <item quantity="other">%s リスナー</item>
+    </plurals>
+    <string name="localization_changes_requires_app_restart">アプリを再起動すると、言語が変更されます。</string>
 </resources>
