@@ -472,9 +472,12 @@
     <string name="autoplay_title">Automatisch afspelen</string>
     <plurals name="comments">
         <item quantity="one">Reacties</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="no_comments">Geen reacties</string>
     <string name="error_unable_to_load_comments">Kan reacties niet laden</string>
     <string name="close">Sluiten</string>
+    <string name="downloads_storage_use_saf_summary">Het Storage Acces Framework laat downloads naar een externe SD kaart toe.
+\n
+\nNota: niet alle toestellen zijn compatibel</string>
 </resources>
