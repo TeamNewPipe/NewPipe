@@ -471,7 +471,7 @@
     <string name="show_comments_summary">禁用，以停止显示评论</string>
     <plurals name="comments">
         <item quantity="one">评论</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="error_unable_to_load_comments">无法加载评论</string>
     <string name="close">关闭</string>
@@ -509,12 +509,13 @@
     <string name="no_one_watching">没有人在看</string>
     <plurals name="watching">
         <item quantity="one">%s 观看</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="no_one_listening">没人在听</string>
     <plurals name="listening">
         <item quantity="one">％s个听众</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="localization_changes_requires_app_restart">重新启动应用后，语言将更改。</string>
+    <string name="default_kiosk_page_summary">『时下流行』页-默认</string>
 </resources>
