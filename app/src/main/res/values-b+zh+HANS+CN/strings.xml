@@ -385,10 +385,10 @@
     <string name="import_network_expensive_warning">该操作消耗大量流量，
 \n你想继续吗？</string>
     <string name="download_thumbnail_summary">关闭可防止加载缩略图，节已省数据和内存使用。（若现在更改会清除内存和储存中缓存）</string>
-    <string name="thumbnail_cache_wipe_complete_notice">清除图像缓存成功</string>
+    <string name="thumbnail_cache_wipe_complete_notice">清空图像缓存成功</string>
     <string name="metadata_cache_wipe_title">清空已缓存元数据</string>
-    <string name="metadata_cache_wipe_summary">清除所有已缓存的网页数据</string>
-    <string name="metadata_cache_wipe_complete_notice">元数据缓存已擦除</string>
+    <string name="metadata_cache_wipe_summary">清空已缓存的网页数据</string>
+    <string name="metadata_cache_wipe_complete_notice">清空元数据缓存成功</string>
     <string name="playback_speed_control">播放速度控制</string>
     <string name="playback_tempo">节奏</string>
     <string name="playback_pitch">音调</string>
