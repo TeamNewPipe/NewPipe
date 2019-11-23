@@ -519,4 +519,5 @@
         <item quantity="other">%s dinleyici</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">Uygulama yeniden başlatıldıktan sonra dil değişecektir.</string>
+    <string name="default_kiosk_page_summary">Varsayılan Kiosk</string>
 </resources>
