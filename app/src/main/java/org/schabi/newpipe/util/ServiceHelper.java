@@ -37,7 +37,7 @@ public class ServiceHelper {
     }
 
     public static String getTranslatedFilterString(String filter, Context c) {
-        switch(filter) {
+        switch (filter) {
             case "all": return c.getString(R.string.all);
             case "videos": return c.getString(R.string.videos);
             case "channels": return c.getString(R.string.channels);
@@ -130,14 +130,14 @@ public class ServiceHelper {
     }
 
     public static boolean isBeta(final StreamingService s) {
-        switch(s.getServiceInfo().getName()) {
+        switch (s.getServiceInfo().getName()) {
             case "YouTube": return false;
             default: return true;
         }
     }
 
     public static void initService(Context context, int serviceId) {
-        if(serviceId == ServiceList.PeerTube.getServiceId()){
+        if (serviceId == ServiceList.PeerTube.getServiceId()) {
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
             String peerTubeInstanceUrl = sharedPreferences.getString(context.getString(R.string.peertube_instance_url_key), ServiceList.PeerTube.getBaseUrl());
             String peerTubeInstanceName = sharedPreferences.getString(context.getString(R.string.peertube_instance_name_key), ServiceList.PeerTube.getServiceInfo().getName());
@@ -146,8 +146,8 @@ public class ServiceHelper {
         }
     }
 
-    public static void initServices(Context context){
-        for(StreamingService s : ServiceList.all()){
+    public static void initServices(Context context) {
+        for (StreamingService s : ServiceList.all()) {
             initService(context, s.getServiceId());
         }
     }
