@@ -1036,7 +1036,7 @@ public final class PopupVideoPlayer extends Service {
         public boolean onTouch(View v, MotionEvent event) {
             popupGestureDetector.onTouchEvent(event);
             if (playerImpl == null) return false;
-            if (event.getPointerCount() == 2 && !isResizing) {
+            if (event.getPointerCount() == 2 && !isMoving && !isResizing) {
                 if (DEBUG) Log.d(TAG, "onTouch() 2 finger pointer detected, enabling resizing.");
                 playerImpl.showAndAnimateControl(-1, true);
                 playerImpl.getLoadingPanel().setVisibility(View.GONE);
