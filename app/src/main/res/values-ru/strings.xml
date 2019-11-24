@@ -468,7 +468,7 @@
     <string name="msg_pending_downloads">Возобновить приостановленные загрузки (%s)</string>
     <string name="max_retry_msg">Максимум попыток</string>
     <string name="max_retry_desc">Количество попыток перед отменой загрузки</string>
-    <string name="pause_downloads_on_mobile_desc">Некоторые загрузки не поддерживают докачку и начнутся с начала</string>
+    <string name="pause_downloads_on_mobile_desc">Некоторые загрузки не поддерживают докачку и начнутся сначала</string>
     <string name="error_ssl_exception">Не удалось установить защищённое соединение</string>
     <string name="error_connect_host">Не удалось соединиться с сервером</string>
     <string name="error_http_no_content">Не удалось получить данные с сервера</string>
