@@ -12,12 +12,12 @@
         android:summary="%s"
         android:title="@string/content_language_title"/>
 
-    <EditTextPreference
+    <PreferenceScreen
         app:iconSpaceReserved="false"
-        android:dialogMessage="@string/peertube_instance_url_help"
-        android:key="@string/peertube_instance_url_key"
+        android:fragment="org.schabi.newpipe.settings.PeertubeInstanceListFragment"
+        android:key="@string/peertube_instance_setup_key"
         android:title="@string/peertube_instance_url_title"
-        android:inputType="textUri" />
+        android:summary="@string/peertube_instance_url_summary"/>
 
     <ListPreference
         app:iconSpaceReserved="false"

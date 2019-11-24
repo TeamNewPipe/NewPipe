@@ -144,8 +144,9 @@
     <string name="default_language_value">en</string>
     <string name="default_country_value">GB</string>
     <string name="content_language_key" translatable="false">content_language</string>
-    <string name="peertube_instance_url_key" translatable="false">peertube_instance_url</string>
-    <string name="peertube_instance_name_key" translatable="false">peertube_instance_name</string>
+    <string name="peertube_instance_setup_key" translatable="false">peertube_instance_setup</string>
+    <string name="peertube_selected_instance_key" translatable="false">peertube_selected_instance</string>
+    <string name="peertube_instance_list_key" translatable="false">peertube_instance_list</string>
     <string name="content_country_key" translatable="false">content_country</string>
     <string name="show_age_restricted_content" translatable="false">show_age_restricted_content</string>
     <string name="use_tor_key" translatable="false">use_tor</string>

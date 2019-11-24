@@ -3,8 +3,13 @@ package org.schabi.newpipe.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+
 import androidx.annotation.DrawableRes;
 import androidx.annotation.StringRes;
+
+import com.grack.nanojson.JsonObject;
+import com.grack.nanojson.JsonParser;
+import com.grack.nanojson.JsonParserException;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -137,11 +142,22 @@ public class ServiceHelper {
     }
 
     public static void initService(Context context, int serviceId) {
-        if(serviceId == ServiceList.PeerTube.getServiceId()){
+        if (serviceId == ServiceList.PeerTube.getServiceId()) {
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-            String peerTubeInstanceUrl = sharedPreferences.getString(context.getString(R.string.peertube_instance_url_key), ServiceList.PeerTube.getBaseUrl());
-            String peerTubeInstanceName = sharedPreferences.getString(context.getString(R.string.peertube_instance_name_key), ServiceList.PeerTube.getServiceInfo().getName());
-            PeertubeInstance instance = new PeertubeInstance(peerTubeInstanceUrl, peerTubeInstanceName);
+            String json = sharedPreferences.getString(context.getString(R.string.peertube_selected_instance_key), null);
+            if (null == json) {
+                return;
+            }
+
+            JsonObject jsonObject = null;
+            try {
+                jsonObject = JsonParser.object().from(json);
+            } catch (JsonParserException e) {
+                return;
+            }
+            String name = jsonObject.getString("name");
+            String url = jsonObject.getString("url");
+            PeertubeInstance instance = new PeertubeInstance(url, name);
             ServiceList.PeerTube.setInstance(instance);
         }
     }

@@ -12,23 +12,18 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
 
 import com.nononsenseapps.filepicker.Utils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import org.schabi.newpipe.App;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
 import org.schabi.newpipe.extractor.localization.Localization;
-import org.schabi.newpipe.extractor.services.peertube.PeertubeInstance;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
-import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ZipHelper;
 
 import java.io.BufferedOutputStream;
@@ -45,11 +40,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
-
-import io.reactivex.Completable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
 public class ContentSettingsFragment extends BasePreferenceFragment {
 
@@ -127,41 +117,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             return true;
         });
 
-        Preference peerTubeInstance = findPreference(getString(R.string.peertube_instance_url_key));
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        peerTubeInstance.setDefaultValue(sharedPreferences.getString(getString(R.string.peertube_instance_url_key), ServiceList.PeerTube.getBaseUrl()));
-        peerTubeInstance.setSummary(sharedPreferences.getString(getString(R.string.peertube_instance_url_key), ServiceList.PeerTube.getBaseUrl()));
-
-        peerTubeInstance.setOnPreferenceChangeListener((Preference p, Object newInstance) -> {
-            EditTextPreference pEt = (EditTextPreference) p;
-            String url = (String) newInstance;
-            if (!url.startsWith("https://")) {
-                Toast.makeText(getActivity(), "instance url should start with https://",
-                        Toast.LENGTH_SHORT).show();
-            } else {
-                pEt.setSummary("fetching instance details..");
-                Disposable disposable = Completable.fromAction(() -> {
-                    PeertubeInstance instance = new PeertubeInstance(url);
-                    instance.fetchInstanceMetaData();
-                    ServiceList.PeerTube.setInstance(instance);
-                }).subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(() -> {
-                            pEt.setSummary(url);
-                            pEt.setText(url);
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putString(App.getApp().getString(R.string.peertube_instance_name_key), ServiceList.PeerTube.getServiceInfo().getName()).apply();
-                            editor.putString(App.getApp().getString(R.string.current_service_key), ServiceList.PeerTube.getServiceInfo().getName()).apply();
-                            NavigationHelper.openMainActivity(App.getApp());
-                        }, error -> {
-                            pEt.setSummary(ServiceList.PeerTube.getBaseUrl());
-                            Toast.makeText(getActivity(), "unable to update instance",
-                                    Toast.LENGTH_SHORT).show();
-                        });
-            }
-            return false;
-        });
-    }
+   }
 
     @Override
     public void onDestroy() {
