@@ -1,6 +1,9 @@
 package us.shandian.giga.get;
 
+import android.os.Build;
 import android.os.Handler;
+import android.system.ErrnoException;
+import android.system.OsConstants;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -34,9 +37,6 @@ public class DownloadMission extends Mission {
 
     static final int BUFFER_SIZE = 64 * 1024;
     static final int BLOCK_SIZE = 512 * 1024;
-
-    @SuppressWarnings("SpellCheckingInspection")
-    private static final String INSUFFICIENT_STORAGE = "ENOSPC";
 
     private static final String TAG = "DownloadMission";
 
@@ -315,12 +315,28 @@ public class DownloadMission extends Mission {
 
     public synchronized void notifyError(int code, Exception err) {
         Log.e(TAG, "notifyError() code = " + code, err);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (err.getCause() instanceof ErrnoException) {
+                int errno = ((ErrnoException) err.getCause()).errno;
+                if (errno == OsConstants.ENOSPC) {
+                    code = ERROR_INSUFFICIENT_STORAGE;
+                    err = null;
+                } else if (errno == OsConstants.EACCES) {
+                    code = ERROR_PERMISSION_DENIED;
+                    err = null;
+                }
+            }
+        }
+
         if (err instanceof IOException) {
-            if (!storage.canWrite() || err.getMessage().contains("Permission denied")) {
+            if (err.getMessage().contains("Permission denied")) {
                 code = ERROR_PERMISSION_DENIED;
                 err = null;
-            } else if (err.getMessage().contains(INSUFFICIENT_STORAGE)) {
+            } else if (err.getMessage().contains("ENOSPC")) {
                 code = ERROR_INSUFFICIENT_STORAGE;
+                err = null;
+            } else if (!storage.canWrite()) {
+                code = ERROR_FILE_CREATION;
                 err = null;
             }
         }
