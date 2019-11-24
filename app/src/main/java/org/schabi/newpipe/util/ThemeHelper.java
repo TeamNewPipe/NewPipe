@@ -30,7 +30,6 @@ import android.view.ContextThemeWrapper;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 
@@ -138,7 +137,6 @@ public class ThemeHelper {
         else if (selectedTheme.equals(darkTheme)) themeName = "DarkTheme";
 
         themeName += "." + service.getServiceInfo().getName();
-
         int resourceId = context
                 .getResources()
                 .getIdentifier(themeName, "style", context.getPackageName());
