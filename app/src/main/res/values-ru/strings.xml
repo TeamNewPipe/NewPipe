@@ -282,7 +282,7 @@
     <string name="tab_bookmarks">Плейлисты</string>
     <string name="controls_add_to_playlist_title">В плейлист</string>
     <string name="use_inexact_seek_title">Быстрый поиск позиции</string>
-    <string name="use_inexact_seek_summary">Выполняется быстрее, но с меньшей точностью</string>
+    <string name="use_inexact_seek_summary">Выполняется быстрее, но менее точно</string>
     <string name="auto_queue_title">Автодополнение очереди</string>
     <string name="auto_queue_summary">Добавлять похожие потоки в очередь при воспроизведении последнего потока, если не включён повтор</string>
     <string name="settings_category_debug_title">Отладка</string>
