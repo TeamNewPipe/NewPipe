@@ -42,7 +42,7 @@ public class ServiceHelper {
     }
 
     public static String getTranslatedFilterString(String filter, Context c) {
-        switch(filter) {
+        switch (filter) {
             case "all": return c.getString(R.string.all);
             case "videos": return c.getString(R.string.videos);
             case "channels": return c.getString(R.string.channels);
@@ -135,7 +135,7 @@ public class ServiceHelper {
     }
 
     public static boolean isBeta(final StreamingService s) {
-        switch(s.getServiceInfo().getName()) {
+        switch (s.getServiceInfo().getName()) {
             case "YouTube": return false;
             default: return true;
         }
@@ -162,8 +162,8 @@ public class ServiceHelper {
         }
     }
 
-    public static void initServices(Context context){
-        for(StreamingService s : ServiceList.all()){
+    public static void initServices(Context context) {
+        for (StreamingService s : ServiceList.all()) {
             initService(context, s.getServiceId());
         }
     }
