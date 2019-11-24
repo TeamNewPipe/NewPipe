@@ -525,4 +525,5 @@
         <item quantity="many">%s słuchaczy</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">Język zmieni się po ponownym uruchomieniu aplikacji.</string>
+    <string name="default_kiosk_page_summary">Domyślny Kiosk</string>
 </resources>
