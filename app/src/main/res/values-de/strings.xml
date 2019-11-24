@@ -519,4 +519,5 @@
         <item quantity="other">%s Zuhörer</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">Die Sprache ändert sich, sobald die App neu gestartet wird.</string>
+    <string name="default_kiosk_page_summary">Standard-Kiosk</string>
 </resources>
