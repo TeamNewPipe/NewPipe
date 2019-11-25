@@ -954,14 +954,12 @@ public abstract class BasePlayer implements
 
     public void onFastRewind() {
         if (DEBUG) Log.d(TAG, "onFastRewind() called");
-        final int duration = getSeekDuration();
-        seekBy(-duration);
+        seekBy(-getSeekDuration());
     }
 
     public void onFastForward() {
         if (DEBUG) Log.d(TAG, "onFastForward() called");
-        final int duration = getSeekDuration();
-        seekBy(duration);
+        seekBy(getSeekDuration());
     }
 
     private int getSeekDuration() {
