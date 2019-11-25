@@ -954,20 +954,21 @@ public abstract class BasePlayer implements
 
     public void onFastRewind() {
         if (DEBUG) Log.d(TAG, "onFastRewind() called");
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        final String key = context.getString(R.string.seek_duration_key);
-        final String value = prefs.getString(key, FAST_FORWARD_REWIND_DEFAULT_AMOUNT_MILLIS);
-        final int duration = Integer.parseInt(value);
+        final int duration = getSeekDuration();
         seekBy(-duration);
     }
 
     public void onFastForward() {
         if (DEBUG) Log.d(TAG, "onFastForward() called");
+        final int duration = getSeekDuration();
+        seekBy(duration);
+    }
+
+    private int getSeekDuration() {
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         final String key = context.getString(R.string.seek_duration_key);
         final String value = prefs.getString(key, FAST_FORWARD_REWIND_DEFAULT_AMOUNT_MILLIS);
-        final int duration = Integer.parseInt(value);
-        seekBy(duration);
+        return Integer.parseInt(value);
     }
 
     public void onPlayPrevious() {
