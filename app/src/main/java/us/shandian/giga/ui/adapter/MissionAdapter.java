@@ -308,10 +308,10 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
                 etaStr = "";
             } else {
                 long eta = (long) Math.ceil((length - done) / averageSpeed);
-                etaStr = "  @ ".concat(Utility.stringifySeconds(eta));
+                etaStr = Utility.formatBytes((long) done) + "/" + Utility.stringifySeconds(eta) + "  ";
             }
 
-            h.size.setText(sizeStr.concat(speedStr).concat(etaStr));
+            h.size.setText(sizeStr.concat(etaStr).concat(speedStr));
 
             h.lastTimestamp = now;
             h.lastDone = done;

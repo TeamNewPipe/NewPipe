@@ -228,7 +228,6 @@ public class DownloadMission extends Mission {
 
         // BUG workaround: switching between networks can freeze the download forever
         conn.setConnectTimeout(30000);
-        conn.setReadTimeout(10000);
 
         if (rangeStart >= 0) {
             String req = "bytes=" + rangeStart + "-";
@@ -316,7 +315,7 @@ public class DownloadMission extends Mission {
     public synchronized void notifyError(int code, Exception err) {
         Log.e(TAG, "notifyError() code = " + code, err);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if (err.getCause() instanceof ErrnoException) {
+            if (err != null && err.getCause() instanceof ErrnoException) {
                 int errno = ((ErrnoException) err.getCause()).errno;
                 if (errno == OsConstants.ENOSPC) {
                     code = ERROR_INSUFFICIENT_STORAGE;
