@@ -507,4 +507,15 @@
     <string name="delete_playback_states_alert">¿Quiere eliminar todas las posiciones de reproducción\?</string>
     <string name="drawer_header_description">Activar/desactivar servicio, seleccionados actualmente:</string>
     <string name="default_kiosk_page_sumatry">kiosco predeterminado</string>
+    <string name="no_one_watching">Nadie está viendo</string>
+    <plurals name="watching">
+        <item quantity="one">%s viendo</item>
+        <item quantity="other">%s viendo</item>
+    </plurals>
+    <string name="no_one_listening">Nadie está escuchando</string>
+    <plurals name="listening">
+        <item quantity="one">%s escucha</item>
+        <item quantity="other">%s escuchas</item>
+    </plurals>
+    <string name="localization_changes_requires_app_restart">El idioma cambiará luego de que la app sea reiniciada.</string>
 </resources>
