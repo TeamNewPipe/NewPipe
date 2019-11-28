@@ -490,8 +490,8 @@
     <string name="show_comments_summary">Desactívela para ocultar los comentarios</string>
     <string name="autoplay_title">Reproducción automática</string>
     <plurals name="comments">
-        <item quantity="one">Comentarios</item>
-        <item quantity="other"/>
+        <item quantity="one">Comentario</item>
+        <item quantity="other">Comentarios</item>
     </plurals>
     <string name="no_comments">Sin comentarios</string>
     <string name="error_unable_to_load_comments">No se pudo cargar comentarios</string>
