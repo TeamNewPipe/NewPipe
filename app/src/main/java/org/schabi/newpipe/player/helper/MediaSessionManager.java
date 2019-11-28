@@ -74,6 +74,20 @@ public class MediaSessionManager {
         builder.setStyle(mediaStyle);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public void clearLockScreenArt(NotificationCompat.Builder builder) {
+        mediaSession.setMetadata(
+                new MediaMetadataCompat.Builder()
+                        .putBitmap(MediaMetadata.METADATA_KEY_ALBUM_ART, null)
+                        .build()
+        );
+
+        MediaStyle mediaStyle = new MediaStyle()
+                .setMediaSession(mediaSession.getSessionToken());
+
+        builder.setStyle(mediaStyle);
+    }
+
     /**
      * Should be called on player destruction to prevent leakage.BitmapUtils
      */

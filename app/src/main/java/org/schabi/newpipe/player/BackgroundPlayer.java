@@ -25,13 +25,17 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.IBinder;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
+
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -77,6 +81,7 @@ public final class BackgroundPlayer extends Service {
 
     private BasePlayerImpl basePlayerImpl;
     private LockManager lockManager;
+    private SharedPreferences sharedPreferences;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Service-Activity Binder
@@ -109,6 +114,7 @@ public final class BackgroundPlayer extends Service {
         if (DEBUG) Log.d(TAG, "onCreate() called");
         notificationManager = ((NotificationManager) getSystemService(NOTIFICATION_SERVICE));
         lockManager = new LockManager(this);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         ThemeHelper.setTheme(this);
         basePlayerImpl = new BasePlayerImpl(this);
@@ -203,16 +209,30 @@ public final class BackgroundPlayer extends Service {
         builder.setCustomBigContentView(bigNotRemoteView);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            basePlayerImpl.mediaSessionManager.setLockScreenArt(
-                    builder,
-                    getCenteredThumbnailBitmap()
-            );
+            setLockScreenThumbnail(builder);
         }
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
             builder.setPriority(NotificationCompat.PRIORITY_MAX);
         }
         return builder;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private void setLockScreenThumbnail(NotificationCompat.Builder builder) {
+        boolean isLockScreenThumbnailEnabled = sharedPreferences.getBoolean(
+                getString(R.string.enable_lock_screen_video_thumbnail_key),
+                true
+        );
+
+        if (isLockScreenThumbnailEnabled) {
+            basePlayerImpl.mediaSessionManager.setLockScreenArt(
+                    builder,
+                    getCenteredThumbnailBitmap()
+            );
+        } else {
+            basePlayerImpl.mediaSessionManager.clearLockScreenArt(builder);
+        }
     }
 
     @Nullable
