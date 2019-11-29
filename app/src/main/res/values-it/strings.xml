@@ -102,7 +102,7 @@
     <string name="msg_running_detail">Tocca per maggiori dettagli</string>
     <string name="msg_wait">Attendi…</string>
     <string name="msg_copied">Copiato negli appunti</string>
-    <string name="no_available_dir">Seleziona una cartella per i downloads</string>
+    <string name="no_available_dir">Seleziona dopo nelle impostazioni una cartella per i downloads</string>
     <string name="could_not_load_image">Impossibile caricare l\'immagine</string>
     <string name="app_ui_crash">L\'app/UI si è interrotta</string>
     <string name="info_labels">Cosa:\\nRichiesta:\\nLingua contenuto:\\nServizio:\\nOrario GMT:\\nPacchetto:\\nVersione:\\nVersione SO:</string>
@@ -111,9 +111,9 @@
     <string name="black_theme_title">Nero</string>
     <string name="all">Tutto</string>
     <string name="channel">Canale</string>
-    <string name="short_thousand">K</string>
+    <string name="short_thousand">k</string>
     <string name="short_million">M</string>
-    <string name="short_billion">B</string>
+    <string name="short_billion">Mrd</string>
     <string name="recaptcha_request_toast">È richiesta la risoluzione del reCAPTCHA</string>
     <string name="yes">Sì</string>
     <string name="later">Più tardi</string>
@@ -435,7 +435,7 @@
     <string name="paused">in pausa</string>
     <string name="queued">in coda</string>
     <string name="post_processing">post-processo</string>
-    <string name="enqueue">Coda</string>
+    <string name="enqueue">Accoda</string>
     <string name="permission_denied">Azione negata dal sistema</string>
     <string name="download_failed">Download fallito</string>
     <string name="download_finished">Download finito</string>
@@ -507,4 +507,16 @@
     <string name="delete_playback_states_alert">Eliminare tutte le posizioni di riproduzione\?</string>
     <string name="download_choose_new_path">Cambia le cartelle di download per renderlo effettivo</string>
     <string name="drawer_header_description">Attiva/disattiva il servizio, attualmente selezionato:</string>
+    <string name="no_one_watching">Nessuno sta guardando</string>
+    <plurals name="watching">
+        <item quantity="one">%s sta guardando</item>
+        <item quantity="other">%s stanno guardando</item>
+    </plurals>
+    <string name="no_one_listening">Nessuno sta ascoltando</string>
+    <plurals name="listening">
+        <item quantity="one">%s ascoltatore</item>
+        <item quantity="other">%s ascoltatori</item>
+    </plurals>
+    <string name="localization_changes_requires_app_restart">La lingua verrà cambiata al riavvio dell\'applicazione.</string>
+    <string name="default_kiosk_page_summary">Pagina predefinita</string>
 </resources>
