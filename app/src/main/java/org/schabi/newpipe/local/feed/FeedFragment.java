@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
@@ -48,6 +49,8 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
     private static final int OFF_SCREEN_ITEMS_COUNT = 3;
     private static final int MIN_ITEMS_INITIAL_LOAD = 8;
     private int FEED_LOAD_COUNT = MIN_ITEMS_INITIAL_LOAD;
+
+    private ProgressBar progressBar = null;
 
     private AtomicInteger numLoadedChunks = new AtomicInteger(1);
     private AtomicInteger numChannels = new AtomicInteger(0);
@@ -85,7 +88,10 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
         if(!useAsFrontPage) {
             setTitle(activity.getString(R.string.fragment_whats_new));
         }
-        return inflater.inflate(R.layout.fragment_feed, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_feed, container, false);
+        progressBar = rootView.findViewById(R.id.feed_progress);
+
+        return rootView;
     }
 
     @Override
@@ -228,6 +234,10 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
                 .observeOn(Schedulers.io())
                 .subscribe(this::handleReceiveSubscriptionEntity, this::handleError));
 
+        delayHandler.post(() -> {
+            if (numChannels.get() - numLoadedChannels.get() > 0) progressBar.setVisibility(View.VISIBLE);
+        });
+
         // Start item list UI update scheduler
         delayHandler.postDelayed(this::updateItemsList, 3200);
     }
@@ -260,6 +270,8 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
 
             numLoadedChannels.incrementAndGet();
             loadedSubscriptionEntities.add(url);
+
+            updateProgress();
         };
     }
 
@@ -279,7 +291,11 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
     }
 
     private Consumer<Throwable> getFetchChannelInfoErrorHandler(int serviceId, String url) {
-        return ex -> showSnackBarError(ex, UserAction.SUBSCRIPTION, NewPipe.getNameOfService(serviceId), url, 0);
+        return ex -> {
+            numLoadedChannels.incrementAndGet();
+            updateProgress();
+            showSnackBarError(ex, UserAction.SUBSCRIPTION, NewPipe.getNameOfService(serviceId), url, 0);
+        };
     }
 
     private void handleError(Throwable ex) {
@@ -402,6 +418,14 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
             hideLoading();
         }
         showListFooter(isLoading);
+    }
+
+    private void updateProgress() {
+        if (progressBar != null) {
+            double progress = 100 * (double)numLoadedChannels.get() / (double)numChannels.get();
+            progressBar.setProgress((int)progress);
+            if (progress == 100) delayHandler.post(() -> progressBar.setVisibility(View.GONE));
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
