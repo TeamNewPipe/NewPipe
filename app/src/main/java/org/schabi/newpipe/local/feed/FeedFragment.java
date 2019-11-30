@@ -304,6 +304,7 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
         List<InfoItem> viewItemsList = infoListAdapter.getItemsList();
         int viewItemSize = viewItemsList.size();
         int numVisibleItems = getNumVisibleItems();
+        boolean isFirstBatch = viewItemsList.size() == 0;
 
         if (!shouldSkipUpdate.getAndSet(false) && !isScrolling.get()) {
             int minDirtyIndex = Integer.MAX_VALUE;
@@ -337,7 +338,11 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
 
             // Notify the infoListAdapter the range of changes only if the item list has been modified
             if (minDirtyIndex < maxDirtyIndex) {
-                infoListAdapter.notifyItemRangeChanged(minDirtyIndex, maxDirtyIndex - minDirtyIndex + 1);
+                if (isFirstBatch) {
+                    infoListAdapter.notifyDataSetChanged();
+                } else {
+                    infoListAdapter.notifyItemRangeChanged(minDirtyIndex, maxDirtyIndex - minDirtyIndex + 1);
+                }
             }
 
             setLoadingState(false);
