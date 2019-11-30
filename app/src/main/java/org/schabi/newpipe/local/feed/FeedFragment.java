@@ -5,37 +5,44 @@ import android.os.Handler;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.subscription.SubscriptionEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListFragment;
 import org.schabi.newpipe.local.subscription.SubscriptionService;
 import org.schabi.newpipe.report.UserAction;
+import org.schabi.newpipe.util.ListUtils;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import io.reactivex.Flowable;
-import io.reactivex.MaybeObserver;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Void> {
 
@@ -43,17 +50,25 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
     private static final int MIN_ITEMS_INITIAL_LOAD = 8;
     private int FEED_LOAD_COUNT = MIN_ITEMS_INITIAL_LOAD;
 
-    private int subscriptionPoolSize;
+    private ProgressBar progressBar = null;
+
+    private AtomicInteger numLoadedChunks = new AtomicInteger(1);
+    private AtomicInteger numChannels = new AtomicInteger(0);
+    private AtomicInteger numLoadedChannels = new AtomicInteger(0);
+    private AtomicBoolean hasStartedLoading = new AtomicBoolean(false);
 
     private SubscriptionService subscriptionService;
 
-    private AtomicBoolean allItemsLoaded = new AtomicBoolean(false);
-    private HashSet<String> itemsLoaded = new HashSet<>();
-    private final AtomicInteger requestLoadedAtomic = new AtomicInteger();
-
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
     private Disposable subscriptionObserver;
-    private Subscription feedSubscriber;
+
+    private Set<String> itemIds = new HashSet<>();
+    private Map<String, String> isoTimeStrLookup = new HashMap<>();
+    private List<StreamInfoItem> listItems = new ArrayList<>();
+    private Set<String> loadedSubscriptionEntities = new HashSet<>();
+
+    private AtomicBoolean shouldSkipUpdate = new AtomicBoolean(false);
+    private AtomicBoolean isScrolling = new AtomicBoolean(false);
 
     /*//////////////////////////////////////////////////////////////////////////
     // Fragment LifeCycle
@@ -73,7 +88,10 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
         if(!useAsFrontPage) {
             setTitle(activity.getString(R.string.fragment_whats_new));
         }
-        return inflater.inflate(R.layout.fragment_feed, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_feed, container, false);
+        progressBar = rootView.findViewById(R.id.feed_progress);
+
+        return rootView;
     }
 
     @Override
@@ -85,7 +103,8 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
     @Override
     public void onResume() {
         super.onResume();
-        if (wasLoading.get()) doInitialLoadLogic();
+        // Start fetching remaining channels, if any
+        startLoading(false);
     }
 
     @Override
@@ -96,7 +115,6 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
         subscriptionService = null;
         compositeDisposable = null;
         subscriptionObserver = null;
-        feedSubscriber = null;
     }
 
     @Override
@@ -133,6 +151,22 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
         super.reloadContent();
     }
 
+    @Override
+    protected void initListeners() {
+        super.initListeners();
+        itemsList.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    delayHandler.postDelayed(() -> isScrolling.set(false), 200);
+                } else {
+                    isScrolling.set(true);
+                }
+            }
+        });
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // StateSaving
     //////////////////////////////////////////////////////////////////////////*/
@@ -140,16 +174,20 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
     @Override
     public void writeTo(Queue<Object> objectsToSave) {
         super.writeTo(objectsToSave);
-        objectsToSave.add(allItemsLoaded);
-        objectsToSave.add(itemsLoaded);
+        objectsToSave.add(loadedSubscriptionEntities);
+        objectsToSave.add(itemIds);
+        objectsToSave.add(isoTimeStrLookup);
+        objectsToSave.add(listItems);
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public void readFrom(@NonNull Queue<Object> savedObjects) throws Exception {
         super.readFrom(savedObjects);
-        allItemsLoaded = (AtomicBoolean) savedObjects.poll();
-        itemsLoaded = (HashSet<String>) savedObjects.poll();
+        loadedSubscriptionEntities = (Set<String>) savedObjects.poll();
+        itemIds = (Set<String>) savedObjects.poll();
+        isoTimeStrLookup = (Map<String, String>) savedObjects.poll();
+        listItems = (List<StreamInfoItem>) savedObjects.poll();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -159,219 +197,185 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
     @Override
     public void startLoading(boolean forceLoad) {
         if (DEBUG) Log.d(TAG, "startLoading() called with: forceLoad = [" + forceLoad + "]");
-        if (subscriptionObserver != null) subscriptionObserver.dispose();
 
-        if (allItemsLoaded.get()) {
-            if (infoListAdapter.getItemsList().size() == 0) {
-                showEmptyState();
-            } else {
-                showListFooter(false);
-                hideLoading();
-            }
+        if (!hasStartedLoading.get() || forceLoad) {
+            if (subscriptionObserver != null) subscriptionObserver.dispose();
 
-            isLoading.set(false);
-            return;
-        }
-
-        isLoading.set(true);
-        showLoading();
-        showListFooter(true);
-        subscriptionObserver = subscriptionService.getSubscription()
+            setLoadingState(true);
+            subscriptionObserver = subscriptionService.getSubscription()
                 .onErrorReturnItem(Collections.emptyList())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::handleResult, this::onError);
+                .observeOn(Schedulers.io())
+                .subscribe(this::handleResult, this::handleError);
+            hasStartedLoading.set(true);
+        }
     }
 
     @Override
-    public void handleResult(@androidx.annotation.NonNull List<SubscriptionEntity> result) {
-        super.handleResult(result);
-
+    public void handleResult(@NonNull List<SubscriptionEntity> result) {
         if (result.isEmpty()) {
-            infoListAdapter.clearStreamItemList();
-            showEmptyState();
+            delayHandler.post(() -> {
+                setLoadingState(false);
+                infoListAdapter.clearStreamItemList();
+                showEmptyState();
+            });
             return;
         }
 
-        subscriptionPoolSize = result.size();
-        Flowable.fromIterable(result)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getSubscriptionObserver());
+        List<SubscriptionEntity> filteredResult = new ArrayList<>();
+
+        for (SubscriptionEntity subscriptionEntity: result) {
+            if (loadedSubscriptionEntities.contains(subscriptionEntity.getUrl())) continue;
+            filteredResult.add(subscriptionEntity);
+        }
+
+        numChannels.set(filteredResult.size());
+        compositeDisposable.add(
+            Flowable.fromIterable(filteredResult)
+                .observeOn(Schedulers.io())
+                .subscribe(this::handleReceiveSubscriptionEntity, this::handleError));
+
+        delayHandler.post(() -> {
+            if (numChannels.get() - numLoadedChannels.get() > 0) progressBar.setVisibility(View.VISIBLE);
+        });
+
+        // Start item list UI update scheduler
+        delayHandler.postDelayed(this::updateItemsList, 3200);
     }
 
-    /**
-     * Responsible for reacting to user pulling request and starting a request for new feed stream.
-     * <p>
-     * On initialization, it automatically requests the amount of feed needed to display
-     * a minimum amount required (FEED_LOAD_SIZE).
-     * <p>
-     * Upon receiving a user pull, it creates a Single Observer to fetch the ChannelInfo
-     * containing the feed streams.
-     **/
-    private Subscriber<SubscriptionEntity> getSubscriptionObserver() {
-        return new Subscriber<SubscriptionEntity>() {
-            @Override
-            public void onSubscribe(Subscription s) {
-                if (feedSubscriber != null) feedSubscriber.cancel();
-                feedSubscriber = s;
+    private void handleReceiveSubscriptionEntity(SubscriptionEntity subscriptionEntity) {
+        compositeDisposable.add(
+            subscriptionService.getChannelInfo(subscriptionEntity)
+                .observeOn(Schedulers.io())
+                .onErrorComplete((@NonNull Throwable throwable) -> FeedFragment.super.onError(
+                    throwable))
+                .subscribe(this.getReceiveChannelInfoHandler(subscriptionEntity.getUrl()),
+                    getFetchChannelInfoErrorHandler(subscriptionEntity.getServiceId(), subscriptionEntity.getUrl())));
+    }
 
-                int requestSize = FEED_LOAD_COUNT - infoListAdapter.getItemsList().size();
-                if (wasLoading.getAndSet(false)) requestSize = FEED_LOAD_COUNT;
+    private Consumer<ChannelInfo> getReceiveChannelInfoHandler(String url) {
+        return channelInfo -> {
+            addIsoTimeStrsToLookup(channelInfo.getPublishIsoTimeStrLookup());
 
-                boolean hasToLoad = requestSize > 0;
-                if (hasToLoad) {
-                    requestLoadedAtomic.set(infoListAdapter.getItemsList().size());
-                    requestFeed(requestSize);
-                }
-                isLoading.set(hasToLoad);
+            List<StreamInfoItem> relatedItems = channelInfo.getRelatedItems();
+
+            for (StreamInfoItem item : relatedItems) {
+                String itemId = item.getId();
+                if (itemId == null || itemIds.contains(itemId)) continue;
+
+                String isoTimeStr = isoTimeStrLookup.get(itemId);
+                if (isoTimeStr == null) continue;
+
+                insertItem(itemId, isoTimeStr, item);
             }
 
-            @Override
-            public void onNext(SubscriptionEntity subscriptionEntity) {
-                if (!itemsLoaded.contains(subscriptionEntity.getServiceId() + subscriptionEntity.getUrl())) {
-                    subscriptionService.getChannelInfo(subscriptionEntity)
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .onErrorComplete(
-                                    (@io.reactivex.annotations.NonNull Throwable throwable) ->
-                                            FeedFragment.super.onError(throwable))
-                            .subscribe(
-                                    getChannelInfoObserver(subscriptionEntity.getServiceId(),
-                                            subscriptionEntity.getUrl()));
-                } else {
-                    requestFeed(1);
-                }
-            }
+            numLoadedChannels.incrementAndGet();
+            loadedSubscriptionEntities.add(url);
 
-            @Override
-            public void onError(Throwable exception) {
-                FeedFragment.this.onError(exception);
-            }
-
-            @Override
-            public void onComplete() {
-                if (DEBUG) Log.d(TAG, "getSubscriptionObserver > onComplete() called");
-            }
+            updateProgress();
         };
     }
 
-    /**
-     * On each request, a subscription item from the updated table is transformed
-     * into a ChannelInfo, containing the latest streams from the channel.
-     * <p>
-     * Currently, the feed uses the first into from the list of streams.
-     * <p>
-     * If chosen feed already displayed, then we request another feed from another
-     * subscription, until the subscription table runs out of new items.
-     * <p>
-     * This Observer is self-contained and will close itself when complete. However, this
-     * does not obey the fragment lifecycle and may continue running in the background
-     * until it is complete. This is done due to RxJava2 no longer propagate errors once
-     * an observer is unsubscribed while the thread process is still running.
-     * <p>
-     * To solve the above issue, we can either set a global RxJava Error Handler, or
-     * manage exceptions case by case. This should be done if the current implementation is
-     * too costly when dealing with larger subscription sets.
-     *
-     * @param url + serviceId to put in {@link #allItemsLoaded} to signal that this specific entity has been loaded.
-     */
-    private MaybeObserver<ChannelInfo> getChannelInfoObserver(final int serviceId, final String url) {
-        return new MaybeObserver<ChannelInfo>() {
-            private Disposable observer;
+    private synchronized void addIsoTimeStrsToLookup(Map<String, String> lookup) {
+        isoTimeStrLookup.putAll(lookup);
+    }
 
-            @Override
-            public void onSubscribe(Disposable d) {
-                observer = d;
-                compositeDisposable.add(d);
-                isLoading.set(true);
-            }
+    private synchronized void insertItem(String itemId, String isoTimeStr, StreamInfoItem item) {
+        itemIds.add(itemId);
 
-            // Called only when response is non-empty
-            @Override
-            public void onSuccess(final ChannelInfo channelInfo) {
-                if (infoListAdapter == null || channelInfo.getRelatedItems().isEmpty()) {
-                    onDone();
-                    return;
-                }
+        int insertPosition = ListUtils.binarySearchUpperBound(
+            listItems,
+            isoTimeStr,
+            x -> isoTimeStrLookup.get(x.getId()),
+            (a, b) -> b.compareTo(a));
+        listItems.add(insertPosition, item);
+    }
 
-                final InfoItem item = channelInfo.getRelatedItems().get(0);
-                // Keep requesting new items if the current one already exists
-                boolean itemExists = doesItemExist(infoListAdapter.getItemsList(), item);
-                if (!itemExists) {
-                    infoListAdapter.addInfoItem(item);
-                    //updateSubscription(channelInfo);
-                } else {
-                    requestFeed(1);
-                }
-                onDone();
-            }
-
-            @Override
-            public void onError(Throwable exception) {
-                showSnackBarError(exception,
-                        UserAction.SUBSCRIPTION,
-                        NewPipe.getNameOfService(serviceId),
-                        url, 0);
-                requestFeed(1);
-                onDone();
-            }
-
-            // Called only when response is empty
-            @Override
-            public void onComplete() {
-                onDone();
-            }
-
-            private void onDone() {
-                if (observer.isDisposed()) {
-                    return;
-                }
-
-                itemsLoaded.add(serviceId + url);
-                compositeDisposable.remove(observer);
-
-                int loaded = requestLoadedAtomic.incrementAndGet();
-                if (loaded >= Math.min(FEED_LOAD_COUNT, subscriptionPoolSize)) {
-                    requestLoadedAtomic.set(0);
-                    isLoading.set(false);
-                }
-
-                if (itemsLoaded.size() == subscriptionPoolSize) {
-                    if (DEBUG) Log.d(TAG, "getChannelInfoObserver > All Items Loaded");
-                    allItemsLoaded.set(true);
-                    showListFooter(false);
-                    isLoading.set(false);
-                    hideLoading();
-                    if (infoListAdapter.getItemsList().size() == 0) {
-                        showEmptyState();
-                    }
-                }
-            }
+    private Consumer<Throwable> getFetchChannelInfoErrorHandler(int serviceId, String url) {
+        return ex -> {
+            numLoadedChannels.incrementAndGet();
+            updateProgress();
+            showSnackBarError(ex, UserAction.SUBSCRIPTION, NewPipe.getNameOfService(serviceId), url, 0);
         };
+    }
+
+    private void handleError(Throwable ex) {
+        delayHandler.post(() -> this.onError(ex));
     }
 
     @Override
     protected void loadMoreItems() {
-        isLoading.set(true);
-        delayHandler.removeCallbacksAndMessages(null);
-        // Add a little of a delay when requesting more items because the cache is so fast,
-        // that the view seems stuck to the user when he scroll to the bottom
-        delayHandler.postDelayed(() -> requestFeed(FEED_LOAD_COUNT), 300);
+        if (!isLoading.get()) {
+            setLoadingState(true);
+            shouldSkipUpdate.set(true);
+            numLoadedChunks.incrementAndGet();
+        }
     }
 
     @Override
     protected boolean hasMoreItems() {
-        return !allItemsLoaded.get();
+        return listItems.size() > getNumVisibleItems();
+    }
+
+    private void updateItemsList() {
+        List<InfoItem> viewItemsList = infoListAdapter.getItemsList();
+        int viewItemSize = viewItemsList.size();
+        int numVisibleItems = getNumVisibleItems();
+        boolean isFirstBatch = viewItemsList.size() == 0;
+
+        if (!shouldSkipUpdate.getAndSet(false) && !isScrolling.get()) {
+            int minDirtyIndex = Integer.MAX_VALUE;
+            int maxDirtyIndex = Integer.MIN_VALUE;
+            boolean isDirty = false;
+
+            for (int i = 0; i < numVisibleItems; i++) {
+                InfoItem infoItem = listItems.get(i);
+
+                if (i < viewItemSize) {
+                    // Just do shallow comparison, since this is cheaper
+                    if (infoItem != viewItemsList.get(i)) {
+                        viewItemsList.set(i, infoItem);
+                        isDirty = true;
+                    }
+                } else {
+                    viewItemsList.add(i, infoItem);
+                    isDirty = true;
+                }
+
+                // Update minDirtyIndex and maxDirtyIndex only if the item list has been modified
+                if (isDirty) {
+                    if (i < minDirtyIndex) {
+                        minDirtyIndex = i;
+                    }
+                    if (i > maxDirtyIndex) {
+                        maxDirtyIndex = i;
+                    }
+                }
+            }
+
+            // Notify the infoListAdapter the range of changes only if the item list has been modified
+            if (minDirtyIndex < maxDirtyIndex) {
+                if (isFirstBatch) {
+                    infoListAdapter.notifyDataSetChanged();
+                } else {
+                    infoListAdapter.notifyItemRangeChanged(minDirtyIndex, maxDirtyIndex - minDirtyIndex + 1);
+                }
+            }
+
+            setLoadingState(false);
+        }
+
+        // Schedule next item list UI update
+        if (isScrolling.get()) {
+            delayHandler.postDelayed(this::updateItemsList, 200);
+        } else if (numLoadedChannels.get() < numChannels.get()) {
+            // Schedule next task with longer delay if the background thread is still fetching recent videos
+            delayHandler.postDelayed(this::updateItemsList, 1000);
+        } else if (hasMoreItems()) {
+            delayHandler.postDelayed(this::updateItemsList, 300);
+        }
     }
 
     private final Handler delayHandler = new Handler();
-
-    private void requestFeed(final int count) {
-        if (DEBUG) Log.d(TAG, "requestFeed() called with: count = [" + count + "], feedSubscriber = [" + feedSubscriber + "]");
-        if (feedSubscriber == null) return;
-
-        isLoading.set(true);
-        delayHandler.removeCallbacksAndMessages(null);
-        feedSubscriber.request(count);
-    }
 
     /*//////////////////////////////////////////////////////////////////////////
     // Utils
@@ -383,28 +387,13 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
         if (compositeDisposable != null) compositeDisposable.clear();
         if (infoListAdapter != null) infoListAdapter.clearStreamItemList();
 
-        delayHandler.removeCallbacksAndMessages(null);
-        requestLoadedAtomic.set(0);
-        allItemsLoaded.set(false);
         showListFooter(false);
-        itemsLoaded.clear();
     }
 
     private void disposeEverything() {
         if (subscriptionObserver != null) subscriptionObserver.dispose();
         if (compositeDisposable != null) compositeDisposable.clear();
-        if (feedSubscriber != null) feedSubscriber.cancel();
-        delayHandler.removeCallbacksAndMessages(null);
-    }
-
-    private boolean doesItemExist(final List<InfoItem> items, final InfoItem item) {
-        for (final InfoItem existingItem : items) {
-            if (existingItem.getInfoType() == item.getInfoType() &&
-                    existingItem.getServiceId() == item.getServiceId() &&
-                    existingItem.getName().equals(item.getName()) &&
-                    existingItem.getUrl().equals(item.getUrl())) return true;
-        }
-        return false;
+        hasStartedLoading.set(false);
     }
 
     private int howManyItemsToLoad() {
@@ -415,6 +404,28 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
                 ? heightPixels / itemHeightPixels + OFF_SCREEN_ITEMS_COUNT
                 : MIN_ITEMS_INITIAL_LOAD;
         return Math.max(MIN_ITEMS_INITIAL_LOAD, items);
+    }
+
+    private int getNumVisibleItems() {
+        return Math.min(listItems.size(), numLoadedChunks.get() * FEED_LOAD_COUNT);
+    }
+
+    private void setLoadingState(boolean isLoading) {
+        this.isLoading.set(isLoading);
+        if (isLoading) {
+            showLoading();
+        } else {
+            hideLoading();
+        }
+        showListFooter(isLoading);
+    }
+
+    private void updateProgress() {
+        if (progressBar != null) {
+            double progress = 100 * (double)numLoadedChannels.get() / (double)numChannels.get();
+            progressBar.setProgress((int)progress);
+            if (progress == 100) delayHandler.post(() -> progressBar.setVisibility(View.GONE));
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////

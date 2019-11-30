@@ -62,7 +62,8 @@ dependencies {
         exclude module: 'support-annotations'
     })
 
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:5c420340ceb39'
+    implementation 'com.github.timfbfbfbfb:NewPipeExtractor:036fe2f6b8869'
+
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.23.0'
 
