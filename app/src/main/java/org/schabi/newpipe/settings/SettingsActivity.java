@@ -12,7 +12,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.util.FireTvUtils;
 import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.views.FocusOverlayView;
 
 
 /*
@@ -55,6 +57,10 @@ public class SettingsActivity extends AppCompatActivity implements BasePreferenc
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_holder, new MainSettingsFragment())
                     .commit();
+        }
+
+        if (FireTvUtils.isFireTv()) {
+            FocusOverlayView.setupFocusObserver(this);
         }
     }
 

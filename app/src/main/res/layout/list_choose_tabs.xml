@@ -12,6 +12,7 @@
     android:layout_marginTop="3dp"
     android:minHeight="?listPreferredItemHeightSmall"
     android:orientation="horizontal"
+    android:focusable="true"
     app:cardCornerRadius="5dp"
     app:cardElevation="4dp">
 
