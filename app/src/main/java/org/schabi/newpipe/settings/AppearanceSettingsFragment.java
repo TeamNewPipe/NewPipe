@@ -1,9 +1,11 @@
 package org.schabi.newpipe.settings;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.preference.Preference;
 
@@ -42,7 +44,11 @@ public class AppearanceSettingsFragment extends BasePreferenceFragment {
     @Override
     public boolean onPreferenceTreeClick(Preference preference) {
         if (preference.getKey().equals(captionSettingsKey) && CAPTIONING_SETTINGS_ACCESSIBLE) {
-            startActivity(new Intent(Settings.ACTION_CAPTIONING_SETTINGS));
+            try {
+                startActivity(new Intent(Settings.ACTION_CAPTIONING_SETTINGS));
+            } catch (ActivityNotFoundException e) {
+                Toast.makeText(getActivity(), R.string.general_error, Toast.LENGTH_SHORT).show();
+            }
         }
 
         return super.onPreferenceTreeClick(preference);
