@@ -12,9 +12,9 @@
     <string name="share_dialog_title">Partekatu honekin</string>
     <string name="choose_browser">Nabigatzailea aukeratu</string>
     <string name="screen_rotation">biratzea</string>
-    <string name="download_path_title">Bideoak deskargatzeko kokapena</string>
-    <string name="download_path_summary">Deskargatutako bideoak gordetzeko bide-izena</string>
-    <string name="download_path_dialog_title">Zehaztu bideoak deskargatzeko kokapena</string>
+    <string name="download_path_title">Bideoak deskargatzeko karpeta</string>
+    <string name="download_path_summary">Deskargatutako bideoak hemen gordeko dira</string>
+    <string name="download_path_dialog_title">Hautatu bideoak deskargatzeko karpeta</string>
     <string name="default_resolution_title">Lehenetsitako bereizmena</string>
     <string name="play_with_kodi_title">Jo Kodirekin</string>
     <string name="kore_not_found">Ez da aurkitu Kore aplikazioa. Kore instalatu?</string>
@@ -30,7 +30,7 @@
     <string name="settings_category_video_audio_title">Bideoa eta Audioa</string>
     <string name="play_btn_text">Erreproduzitu</string>
     <string name="list_thumbnail_view_description">Bideoaren aurreikuspen argazkitxoa</string>
-    <string name="detail_thumbnail_view_description">Bideoaren aurreikuspen argazkitxoa</string>
+    <string name="detail_thumbnail_view_description">Erreproduzitu bideoa, iraupena:</string>
     <string name="detail_uploader_thumbnail_view_description">Igotzailearen abatarraren iruditxoa</string>
     <string name="detail_dislikes_img_view_description">Ez dute gustoko</string>
     <string name="detail_likes_img_view_description">Gustoko dute</string>
@@ -43,8 +43,8 @@
     <string name="background_player_playing_toast">Atzeko planoan erreproduzitzen</string>
     <string name="main_bg_subtitle">Ukitu bilaketa hasteko</string>
     <string name="download_path_audio_title">Audioa deskargatzeko karpeta</string>
-    <string name="download_path_audio_dialog_title">Zehaztu audioa deskargatzeko bide-izena</string>
-    <string name="download_path_audio_summary">Deskargatutako audioa hemen gordetzen da</string>
+    <string name="download_path_audio_dialog_title">Hautatu audio fitxategiak deskargatzeko karpeta</string>
+    <string name="download_path_audio_summary">Deskargatutako audio fitxategiak hemen gordetzen dira</string>
     <string name="autoplay_by_calling_app_title">Erreprodukzio automatikoa</string>
     <string name="autoplay_by_calling_app_summary">Bideoa abiatzen du NewPipe beste aplikazio batek deitu badu</string>
     <string name="dark_theme_title">Iluna</string>
@@ -116,7 +116,7 @@
     <string name="audio">Audioa</string>
     <string name="retry">Saiatu berriro</string>
     <string name="storage_permission_denied">Biltegia atzitzeko baimena ukatu da</string>
-    <string name="short_thousand">K</string>
+    <string name="short_thousand">k</string>
     <string name="short_million">M</string>
     <string name="short_billion">MM</string>
     <string name="start">Hasi</string>
@@ -199,8 +199,8 @@
     </plurals>
     <string name="no_videos">Bideorik ez</string>
     <plurals name="videos">
-        <item quantity="one">%s Bideoa</item>
-        <item quantity="other">%s Bideoak</item>
+        <item quantity="one">Bideoa</item>
+        <item quantity="other">Bideoak</item>
     </plurals>
     <string name="title_activity_history">Historiala</string>
     <string name="title_history_search">Bilatuta</string>
@@ -288,7 +288,7 @@
     <string name="import_data_summary">Zure uneko historiala eta harpidetzak gainidazten ditu</string>
     <string name="export_data_summary">Esportatu historiala, harpidetzak eta erreprodukzio-zerrendak</string>
     <string name="clear_views_history_title">Garbitu ikusitakoaren historiala</string>
-    <string name="clear_views_history_summary">Jotako jarioen historiala ezabatzen du</string>
+    <string name="clear_views_history_summary">Jotako jarioen historiala eta erreprodukzio puntuak ezabatzen ditu</string>
     <string name="delete_view_history_alert">Ezabatu ikusitakoaren historia osoa\?</string>
     <string name="watch_history_deleted">Ikusitakoaren historiala ezabatuta.</string>
     <string name="clear_search_history_title">Garbitu bilaketa historiala</string>
@@ -497,6 +497,17 @@
     <string name="pause_downloads">Pausatu deskargak</string>
     <string name="downloads_storage_ask_title">Galdetu non deskargatu</string>
     <string name="downloads_storage_ask_summary">Non gorde galdetuko zaizu deskarga bakoitzean</string>
-    <string name="downloads_storage_ask_summary_kitkat">Non gorde galdetuko zaizu deskarga bakoitzean.
-\nGaitu aukera hau kanpo SD txartelean gorde nahi baduzu</string>
+    <string name="downloads_storage_ask_summary_kitkat">Non gorde galdetuko zaizu deskarga bakoitzean. 
+\nHautatu SAF kanpo SD txartelean gorde nahi baduzu</string>
+    <string name="download_choose_new_path">Aldatu deskargen karpetak indarrean jartzeko</string>
+    <string name="no_one_watching">Ez dago inor ikusten</string>
+    <plurals name="watching">
+        <item quantity="one">%s ikusten</item>
+        <item quantity="other">%s ikusten</item>
+    </plurals>
+    <string name="no_one_listening">Ez dago inor entzuten</string>
+    <plurals name="listening">
+        <item quantity="one">%s entzuten</item>
+        <item quantity="other">%s entzuten</item>
+    </plurals>
 </resources>
