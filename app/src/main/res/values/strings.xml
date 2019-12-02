@@ -405,6 +405,9 @@
     <string name="trending">Trending</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">New &amp; hot</string>
+    <string name="local">Local</string>
+    <string name="recently_added">Recently added</string>
+    <string name="most_liked">Most liked</string>
     <string name="conferences">Conferences</string>
     <string name="service_kiosk_string" translatable="false">%1$s/%2$s</string>
     <!-- Play Queue -->
