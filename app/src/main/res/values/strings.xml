@@ -111,7 +111,7 @@
     <string name="content_language_title">Default content language</string>
     <string name="peertube_instance_url_title">PeerTube instances</string>
     <string name="peertube_instance_url_summary">Set your favorite peertube instances</string>
-    <string name="peertube_instance_url_help">Find the instance that best suits you on https://instances.joinpeertube.org</string>
+    <string name="peertube_instance_url_help">Find the instances that best suit you on https://instances.joinpeertube.org</string>
     <string name="peertube_instance_add_title">Add instance</string>
     <string name="peertube_instance_add_help">enter instance url</string>
     <string name="settings_category_player_title">Player</string>
