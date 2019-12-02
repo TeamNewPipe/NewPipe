@@ -413,10 +413,24 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         disposables.add(disposable);
     }
 
+    private void updateThumbnailUrl() {
+        String newThumbnailUrl;
+
+        if(!itemListAdapter.getItemsList().isEmpty()){
+            newThumbnailUrl = ((PlaylistStreamEntry)itemListAdapter.getItemsList().get(0)).thumbnailUrl;
+        }
+        else newThumbnailUrl = "https://i.ytimg.com/";
+
+        changeThumbnailUrl(newThumbnailUrl);
+    }
+
     private void deleteItem(final PlaylistStreamEntry item) {
         if (itemListAdapter == null) return;
 
         itemListAdapter.removeItem(item);
+        if(playlistManager.getPlaylistThumbnail(playlistId).equals(item.thumbnailUrl)) // If yes change for the first thumbnail of the list
+            updateThumbnailUrl();
+
         setVideoCount(itemListAdapter.getItemsList().size());
         saveChanges();
     }
