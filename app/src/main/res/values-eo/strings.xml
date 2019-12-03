@@ -518,4 +518,5 @@
         <item quantity="other">%s aŭskultantoj</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">La lingvo ŝanĝos kiam la apo restartos.</string>
+    <string name="default_kiosk_page_summary">Defaŭlta Kiosko</string>
 </resources>
