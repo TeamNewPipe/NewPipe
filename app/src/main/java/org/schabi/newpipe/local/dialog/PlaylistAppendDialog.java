@@ -152,7 +152,7 @@ public final class PlaylistAppendDialog extends PlaylistDialog {
         final Toast successToast = Toast.makeText(getContext(),
                 R.string.playlist_add_stream_success, Toast.LENGTH_SHORT);
 
-        if(playlist.thumbnailUrl.equals("https://i.ytimg.com/")){   //empty playlist
+        if(playlist.thumbnailUrl.equals("https://i.ytimg.com/")){   
             playlistDisposables.add(manager.createPlaylist(playlist.name, streams)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(ignored -> successToast.show()));
