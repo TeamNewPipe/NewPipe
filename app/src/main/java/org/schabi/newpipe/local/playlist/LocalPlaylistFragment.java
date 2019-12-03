@@ -428,7 +428,7 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         if (itemListAdapter == null) return;
 
         itemListAdapter.removeItem(item);
-        if(playlistManager.getPlaylistThumbnail(playlistId).equals(item.thumbnailUrl)) // If yes change for the first thumbnail of the list
+        if(playlistManager.getPlaylistThumbnail(playlistId).equals(item.thumbnailUrl)) 
             updateThumbnailUrl();
 
         setVideoCount(itemListAdapter.getItemsList().size());
