@@ -235,11 +235,9 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
                 .subscribe(this::handleReceiveSubscriptionEntity, this::handleError));
 
         delayHandler.post(() -> {
-            if (numChannels.get() - numLoadedChannels.get() > 0) progressBar.setVisibility(View.VISIBLE);
+            if (numChannels.get() > numLoadedChannels.get()) progressBar.setVisibility(View.VISIBLE);
+            updateItemsList();  // Start item list UI update scheduler
         });
-
-        // Start item list UI update scheduler
-        delayHandler.postDelayed(this::updateItemsList, 3200);
     }
 
     private void handleReceiveSubscriptionEntity(SubscriptionEntity subscriptionEntity) {
@@ -356,12 +354,15 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
             if (minDirtyIndex < maxDirtyIndex) {
                 if (isFirstBatch) {
                     infoListAdapter.notifyDataSetChanged();
+                    delayHandler.post(() -> {
+                        if (infoListAdapter.getItemsList().size() > 0) {
+                            setLoadingState(false);
+                        }
+                    });
                 } else {
                     infoListAdapter.notifyItemRangeChanged(minDirtyIndex, maxDirtyIndex - minDirtyIndex + 1);
                 }
             }
-
-            setLoadingState(false);
         }
 
         // Schedule next item list UI update
@@ -372,6 +373,9 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
             delayHandler.postDelayed(this::updateItemsList, 1000);
         } else if (hasMoreItems()) {
             delayHandler.postDelayed(this::updateItemsList, 300);
+        } else if (viewItemSize == 0) {
+            setLoadingState(false);
+            showEmptyState();
         }
     }
 
