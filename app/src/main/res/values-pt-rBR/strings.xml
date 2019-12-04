@@ -288,7 +288,7 @@ abrir em modo popup</string>
     <string name="dismiss">Dispensar</string>
     <string name="rename">Renomear</string>
     <string name="delete_stream_history_prompt">Deseja apagar este item do seu histórico de assistidos\?</string>
-    <string name="delete_all_history_prompt">Tem certeza que deseja apagar todos itens do histórico?</string>
+    <string name="delete_all_history_prompt">Tem certeza de que deseja apagar todos itens do histórico\?</string>
     <string name="title_last_played">Reproduzido anteriormente</string>
     <string name="title_most_played">Mais reproduzido</string>
     <string name="always_ask_open_action">Sempre perguntar</string>
