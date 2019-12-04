@@ -231,7 +231,7 @@ public class PeertubeInstanceListFragment extends Fragment {
             add(instance);
         }, e -> {
             progressBar.setVisibility(View.GONE);
-            Toast.makeText(getActivity(), "failed to validate instance", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.peertube_instance_add_fail, Toast.LENGTH_SHORT).show();
         });
         disposables.add(disposable);
     }
