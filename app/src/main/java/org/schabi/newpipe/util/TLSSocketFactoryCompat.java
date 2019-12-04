@@ -21,14 +21,15 @@ import javax.net.ssl.TrustManager;
 public class TLSSocketFactoryCompat extends SSLSocketFactory {
 
 
-    private static TLSSocketFactoryCompat instance=null;
+    private static TLSSocketFactoryCompat instance = null;
 
     private SSLSocketFactory internalSSLSocketFactory;
 
     public static TLSSocketFactoryCompat getInstance() throws NoSuchAlgorithmException, KeyManagementException {
-        if(instance!=null)
+        if (instance != null) {
             return instance;
-        return instance=new TLSSocketFactoryCompat();
+        }
+        return instance = new TLSSocketFactoryCompat();
     }
 
 
@@ -93,7 +94,7 @@ public class TLSSocketFactoryCompat extends SSLSocketFactory {
     }
 
     private Socket enableTLSOnSocket(Socket socket) {
-        if(socket != null && (socket instanceof SSLSocket)) {
+        if (socket != null && (socket instanceof SSLSocket)) {
             /*
             //Create list of supported protocols
             ArrayList<String> supportedProtocols = new ArrayList<>();
@@ -119,7 +120,7 @@ public class TLSSocketFactoryCompat extends SSLSocketFactory {
             //((SSLSocket)socket).setEnabledProtocols(protocolArray);
             */
             // OR: only enable TLS 1.1 and 1.2!
-            ((SSLSocket)socket).setEnabledProtocols(new String[] {"TLSv1.1", "TLSv1.2"});
+            ((SSLSocket) socket).setEnabledProtocols(new String[]{"TLSv1.1", "TLSv1.2"});
 
         }
         return socket;

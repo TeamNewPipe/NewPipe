@@ -109,9 +109,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         if (DEBUG) Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
 
-        //enable TLS1.1/1.2 for kitkat devices, to fix download and play for mediaCCC sources
-        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT)
+        // enable TLS1.1/1.2 for kitkat devices, to fix download and play for mediaCCC sources
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
             TLSSocketFactoryCompat.setAsDefault();
+        }
 
         ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
 

@@ -173,12 +173,14 @@ public class DownloaderImpl extends Downloader {
     /**
      * Enable TLS 1.2 and 1.1 on Android Kitkat. This function is mostly taken from the documentation of
      * OkHttpClient.Builder.sslSocketFactory(_,_)
+     * <p>
+     * If there is an error, the function will safely fall back to doing nothing and printing the error to the console.
      *
-     * If there is an error, It will safely fall back to doing nothing and printing the Error to the console.
      * @param builder The HTTPClient Builder on which TLS is enabled on (will be modified in-place)
      */
     private static void enableModernTLS(OkHttpClient.Builder builder) {
         try {
+            // get the default TrustManager
             TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(
                     TrustManagerFactory.getDefaultAlgorithm());
             trustManagerFactory.init((KeyStore) null);
@@ -189,9 +191,7 @@ public class DownloaderImpl extends Downloader {
             }
             X509TrustManager trustManager = (X509TrustManager) trustManagers[0];
 
-            SSLContext sslContext = SSLContext.getInstance("TLS");
-            sslContext.init(null, new TrustManager[] { trustManager }, null);
-            //SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
+            // insert our own TLSSocketFactory
             SSLSocketFactory sslSocketFactory = TLSSocketFactoryCompat.getInstance();
 
             builder.sslSocketFactory(sslSocketFactory, trustManager);
