@@ -510,4 +510,13 @@
         <item quantity="one">%s entzuten</item>
         <item quantity="other">%s entzuten</item>
     </plurals>
+    <string name="downloads_storage_use_saf_title">SAF erabili</string>
+    <string name="downloads_storage_use_saf_summary">Biltegian Sartzeko Armazoiak kanpoko SD txartel betera jaitsierak egitea ahalbidetzen du.
+\nOharra: gailu batzuk ez dira bateragarriak</string>
+    <string name="clear_playback_states_title">Ezabatu erreprodukziorako kokapenak</string>
+    <string name="clear_playback_states_summary">Erreprodukziorako kokapen guztiak ezabatzen ditu</string>
+    <string name="delete_playback_states_alert">Ezabatu erreprodukziorako kokapen guztiak\?</string>
+    <string name="drawer_header_description">Aktibatu zerbitzua, orain hautatua:</string>
+    <string name="localization_changes_requires_app_restart">Hizkuntza aldatuko da aplikazioa berrabiarazterakoan.</string>
+    <string name="default_kiosk_page_summary">Kiosko Lehenetsia</string>
 </resources>
