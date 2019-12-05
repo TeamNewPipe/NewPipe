@@ -66,11 +66,6 @@ public class DownloadMissionRecover extends Thread {
     }
 
     private void tryRecover() throws ExtractionException, IOException, HttpError {
-        /*if (mMission.source.startsWith(MissionRecoveryInfo.DIRECT_SOURCE)) {
-            resolve(mMission.source.substring(MissionRecoveryInfo.DIRECT_SOURCE.length()));
-            return;
-        }*/
-
         if (mExtractor == null) {
             try {
                 StreamingService svr = NewPipe.getServiceByUrl(mMission.source);

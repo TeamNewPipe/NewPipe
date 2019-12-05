@@ -15,7 +15,6 @@ import java.io.Serializable;
 
 public class MissionRecoveryInfo implements Serializable, Parcelable {
     private static final long serialVersionUID = 0L;
-    //public static final String DIRECT_SOURCE = "direct-source://";
 
     MediaFormat format;
     String desired;
