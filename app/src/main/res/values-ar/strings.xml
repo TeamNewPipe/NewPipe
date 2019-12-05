@@ -234,7 +234,7 @@
     <string name="play_queue_stream_detail">التفاصيل</string>
     <string name="play_queue_audio_settings">الإعدادات الصوتية</string>
     <string name="start_here_on_main">تشغيل هنا</string>
-    <string name="start_here_on_popup">تشغيل في وضع نافذة منبثقة</string>
+    <string name="start_here_on_popup">بدأ التشغيل في نافذة منبثقة جديدة</string>
     <string name="reCaptcha_title">تحدي الكابتشا</string>
     <string name="hold_to_append">ضغط مطول للإدراج الى قائمة الانتظار</string>
     <plurals name="views">
@@ -425,10 +425,10 @@
     <string name="app_update_notification_channel_name">تتبيه تحديث التطبيق</string>
     <string name="volume_gesture_control_title">إيماءة التحكم بالصوت</string>
     <string name="events">الأحداث</string>
-    <string name="app_update_notification_channel_description">إخطارات NewPipe جديدة  الإصدار</string>
-    <string name="download_to_sdcard_error_title">ذاكرة التخزين الخارجية غير متوفرة</string>
+    <string name="app_update_notification_channel_description">"تنبيه عند تواجد إصدار جديد newpipe "</string>
+    <string name="download_to_sdcard_error_title">وحدة التخزين الخارجية غير متاحة</string>
     <string name="download_to_sdcard_error_message">"التنزيل على بطاقة SD الخارجية غير ممكن.  إعادة تعيين موقع مجلد التحميل؟"</string>
-    <string name="saved_tabs_invalid_json">استخدام خطأ علامات التبويب الافتراضية, أثناء قراءة علامات التبويب المحفوظة</string>
+    <string name="saved_tabs_invalid_json">باستخدام علامات التبويب الافتراضية ، خطأ أثناء قراءة علامات التبويب المحفوظة</string>
     <string name="restore_defaults">استعادة الضبط الافتراضي</string>
     <string name="restore_defaults_confirmation">هل تريد استعادة الإعدادات الافتراضية؟</string>
     <string name="subscribers_count_not_available">عدد المشتركين غير متاح</string>
