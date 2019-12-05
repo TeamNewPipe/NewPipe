@@ -6,9 +6,9 @@
     android:layout_width="wrap_content"
     android:layout_gravity="start"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="false"
     android:clickable="true"
-    android:focusable="true"
-    >
+    android:focusable="true">
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation"
