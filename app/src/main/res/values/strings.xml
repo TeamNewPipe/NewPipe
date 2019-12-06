@@ -247,7 +247,7 @@
     <string name="audio">Audio</string>
     <string name="retry">Retry</string>
     <string name="storage_permission_denied">Storage access permission denied</string>
-    <string name="short_thousand">K</string>
+    <string name="short_thousand">k</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
     <string name="drawer_header_description">Toggle service, currently selected:</string>
@@ -263,6 +263,19 @@
         <item quantity="one">%s view</item>
         <item quantity="other">%s views</item>
     </plurals>
+
+    <string name="no_one_watching">No one is watching</string>
+    <plurals name="watching">
+        <item quantity="one">%s watching</item>
+        <item quantity="other">%s watching</item>
+    </plurals>
+
+    <string name="no_one_listening">No one is listening</string>
+    <plurals name="listening">
+        <item quantity="one">%s listener</item>
+        <item quantity="other">%s listeners</item>
+    </plurals>
+
     <string name="no_videos">No videos</string>
     <plurals name="videos">
         <item quantity="one">%s video</item>
@@ -304,7 +317,7 @@
     <!-- Checksum types -->
     <string name="md5" translatable="false">MD5</string>
     <string name="sha1" translatable="false">SHA-1</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="reCaptchaActivity" translatable="false">reCAPTCHA</string>
     <string name="reCaptcha_title">reCAPTCHA challenge</string>
     <string name="recaptcha_request_toast">reCAPTCHA challenge requested</string>
     <!-- End of GigaGet's Strings -->
@@ -366,6 +379,7 @@
     <string name="selection">Selection</string>
     <string name="blank_page_summary">Blank Page</string>
     <string name="kiosk_page_summary">Kiosk Page</string>
+    <string name="default_kiosk_page_summary">Default Kiosk</string>
     <string name="subscription_page_summary">Subscription Page</string>
     <string name="feed_page_summary">Feed Page</string>
     <string name="channel_page_summary">Channel Page</string>
@@ -379,6 +393,8 @@
     <string name="override_current_data">This will override your current setup.</string>
     <string name="import_settings">Do you want to also import settings?</string>
     <string name="error_unable_to_load_comments">Could not load comments</string>
+    <string name="localization_changes_requires_app_restart">Localization changes will not take effect until the app is restarted</string>
+
     <!-- Kiosk Names -->
     <string name="kiosk">Kiosk</string>
     <string name="trending">Trending</string>
@@ -443,6 +459,10 @@
     <string name="enable_leak_canary_summary">Memory leak monitoring may cause the app to become unresponsive when heap dumping</string>
     <string name="enable_disposed_exceptions_title">Report out-of-lifecycle errors</string>
     <string name="enable_disposed_exceptions_summary">Force reporting of undeliverable Rx exceptions outside of fragment or activity lifecycle after disposal</string>
+
+    <string name="show_original_time_ago_title" translatable="false">Show original time ago on items</string>
+    <string name="show_original_time_ago_summary" translatable="false">Original texts from services will be visible in stream items</string>
+
     <!-- Subscriptions import/export -->
     <string name="import_export_title">Import/export</string>
     <string name="import_title">Import</string>

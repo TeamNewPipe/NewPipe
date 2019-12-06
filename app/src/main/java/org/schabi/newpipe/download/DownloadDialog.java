@@ -40,12 +40,12 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.localization.Localization;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
-import org.schabi.newpipe.extractor.utils.Localization;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.settings.NewPipeSettings;
@@ -488,35 +488,24 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     }
 
     private int getSubtitleIndexBy(List<SubtitlesStream> streams) {
-        Localization loc = NewPipe.getPreferredLocalization();
+        final Localization preferredLocalization = NewPipe.getPreferredLocalization();
 
+        int candidate = 0;
         for (int i = 0; i < streams.size(); i++) {
-            Locale streamLocale = streams.get(i).getLocale();
-            String tag = streamLocale.getLanguage().concat("-").concat(streamLocale.getCountry());
-            if (tag.equalsIgnoreCase(loc.getLanguage())) {
-                return i;
+            final Locale streamLocale = streams.get(i).getLocale();
+
+            final boolean languageEquals = streamLocale.getLanguage() != null && preferredLocalization.getLanguageCode() != null &&
+                    streamLocale.getLanguage().equals(new Locale(preferredLocalization.getLanguageCode()).getLanguage());
+            final boolean countryEquals = streamLocale.getCountry() != null && streamLocale.getCountry().equals(preferredLocalization.getCountryCode());
+
+            if (languageEquals) {
+                if (countryEquals) return i;
+
+                candidate = i;
             }
         }
 
-        // fallback
-        // 1st loop match country & language
-        // 2nd loop match language only
-        int index = loc.getLanguage().indexOf("-");
-        String lang = index > 0 ? loc.getLanguage().substring(0, index) : loc.getLanguage();
-
-        for (int j = 0; j < 2; j++) {
-            for (int i = 0; i < streams.size(); i++) {
-                Locale streamLocale = streams.get(i).getLocale();
-
-                if (streamLocale.getLanguage().equalsIgnoreCase(lang)) {
-                    if (j > 0 || streamLocale.getCountry().equalsIgnoreCase(loc.getCountry())) {
-                        return i;
-                    }
-                }
-            }
-        }
-
-        return 0;
+        return candidate;
     }
 
     StoredDirectoryHelper mainStorageAudio = null;

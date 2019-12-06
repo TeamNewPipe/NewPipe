@@ -7,7 +7,7 @@
     <string name="what_device_headline">Informações:</string>
     <string name="view_count_text">%1$s visualizações</string>
     <string name="view">Reproduzir</string>
-    <string name="video_is_age_restricted">Mostra vídeo com restrições de idade. Permissão para vídeos com essa restrição pode ser dada no menu Configurações.</string>
+    <string name="video_is_age_restricted">Contém vídeo com restrição de idade. É possível permitir vídeos com essa restrição em Configurações &gt; Conteúdo.</string>
     <string name="video">Vídeo</string>
     <string name="autoplay_by_calling_app_summary">Reproduz um vídeo quando o NewPipe for aberto a partir de outro aplicativo</string>
     <string name="autoplay_by_calling_app_title">Reprodução automática</string>
@@ -80,13 +80,13 @@
     <string name="app_ui_crash">A interface do aplicativo parou</string>
     <string name="background_player_playing_toast">Reproduzindo em segundo plano</string>
     <string name="could_not_setup_download_menu">Não foi possível configurar o menu de download</string>
-    <string name="detail_thumbnail_view_description">Capa do vídeo</string>
+    <string name="detail_thumbnail_view_description">Reproduzir vídeo, duração:</string>
     <string name="detail_uploader_thumbnail_view_description">Miniatura do usuário que enviou o vídeo</string>
-    <string name="download_path_audio_dialog_title">Informe a pasta de download de áudios</string>
-    <string name="download_path_audio_summary">Pasta para salvar áudios baixados</string>
+    <string name="download_path_audio_dialog_title">Escolha a pasta de download para áudios</string>
+    <string name="download_path_audio_summary">Os áudios baixados serão salvos aqui</string>
     <string name="download_path_audio_title">Pasta para áudios baixados</string>
-    <string name="download_path_dialog_title">Informe a pasta de download de vídeos</string>
-    <string name="download_path_summary">Pasta para salvar vídeos baixados</string>
+    <string name="download_path_dialog_title">Escolha a pasta de download para vídeos</string>
+    <string name="download_path_summary">Os vídeos baixados serão salvos aqui</string>
     <string name="download_path_title">Pasta para vídeos baixados</string>
     <string name="kore_not_found">Aplicativo Kore não instalado. Instalar?</string>
     <string name="light_parsing_error">Não foi possível interpretar completamente o site</string>
@@ -124,7 +124,7 @@
     <string name="disabled">Desativado</string>
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
-    <string name="short_billion">G</string>
+    <string name="short_billion">B</string>
     <string name="msg_popup_permission">Essa permissão é necessária para
 abrir em modo popup</string>
     <string name="popup_mode_share_menu_title">Modo de popup NewPipe</string>
@@ -177,7 +177,7 @@ abrir em modo popup</string>
     <string name="resume_on_audio_focus_gain_summary">Ative para continuar reproduzindo depois de interrupções (por exemplo: ligações)</string>
     <string name="enable_search_history_title">Histórico de pesquisas</string>
     <string name="enable_search_history_summary">Armazena histórico de pesquisas feitas</string>
-    <string name="enable_watch_history_title">Histórico de visualizações</string>
+    <string name="enable_watch_history_title">Histórico de assistidos</string>
     <string name="enable_watch_history_summary">Armazena histórico de vídeos assistidos</string>
     <string name="title_activity_history">Histórico</string>
     <string name="title_history_search">Pesquisado</string>
@@ -212,7 +212,7 @@ abrir em modo popup</string>
     <string name="settings_category_player_title">Player</string>
     <string name="empty_subscription_feed_subtitle">Não há nada aqui</string>
     <string name="delete_item_search_history">Deseja apagar este item do seu histórico de pesquisas\?</string>
-    <string name="main_page_content">Conteúdo</string>
+    <string name="main_page_content">Conteúdo da página principal</string>
     <string name="blank_page_summary">Página em branco</string>
     <string name="kiosk_page_summary">Página de banca</string>
     <string name="subscription_page_summary">Página de inscrição</string>
@@ -238,7 +238,7 @@ abrir em modo popup</string>
     <string name="play_queue_remove">Remover</string>
     <string name="play_queue_stream_detail">Detalhes</string>
     <string name="play_queue_audio_settings">Configurações de áudio</string>
-    <string name="hold_to_append">Mantenha pressionado para colocar na fila</string>
+    <string name="hold_to_append">Segure para adicionar à fila</string>
     <string name="unknown_content">[Desconhecido]</string>
     <string name="enqueue_on_background">Adicionar à fila em segundo plano</string>
     <string name="enqueue_on_popup">Adicionar à fila em novo popup</string>
@@ -287,7 +287,7 @@ abrir em modo popup</string>
     <string name="delete_all">Excluir todos</string>
     <string name="dismiss">Dispensar</string>
     <string name="rename">Renomear</string>
-    <string name="delete_stream_history_prompt">Deseja apagar este item do seu histórico de visualizações?</string>
+    <string name="delete_stream_history_prompt">Deseja apagar este item do seu histórico de assistidos\?</string>
     <string name="delete_all_history_prompt">Tem certeza que deseja apagar todos itens do histórico?</string>
     <string name="title_last_played">Reproduzido anteriormente</string>
     <string name="title_most_played">Mais reproduzido</string>
@@ -318,7 +318,7 @@ abrir em modo popup</string>
     <string name="use_inexact_seek_title">Usar pesquisa rápida</string>
     <string name="use_inexact_seek_summary">A pesquisa rápida permite que o player procure resultados mais rapidamente porém com precisão reduzida</string>
     <string name="auto_queue_title">Adicionar o próximo vídeo à fila automaticamente</string>
-    <string name="auto_queue_summary">Adicionar automaticamente um vídeo relacionado ao último vídeo reproduzido quando a repetição estiver desativada</string>
+    <string name="auto_queue_summary">Adicionar automaticamente um vídeo relacionado ao último da lista quando a repetição estiver desativada</string>
     <string name="file">Arquivo</string>
     <string name="invalid_directory">Pasta não encontrada</string>
     <string name="invalid_source">Origem do arquivo/conteúdo não encontrada</string>
@@ -376,10 +376,10 @@ abrir em modo popup</string>
     <string name="caption_setting_title">Legendas</string>
     <string name="caption_setting_description">Altere o tamanho da legenda e o estilo da tela de fundo. É necessário reiniciar o aplicativo para ter efeito.</string>
     <string name="toast_no_player">Nenhum player instalado para reproduzir este arquivo</string>
-    <string name="clear_views_history_title">Limpar histórico de reproduções</string>
+    <string name="clear_views_history_title">Limpar histórico de assistidos</string>
     <string name="clear_views_history_summary">Apaga o histórico de vídeos assistidos e a lista de reprodução</string>
-    <string name="delete_view_history_alert">Apagar todo o histórico de reproduções\?</string>
-    <string name="watch_history_deleted">Histórico de reproduções limpo.</string>
+    <string name="delete_view_history_alert">Apagar todo o histórico de assistidos\?</string>
+    <string name="watch_history_deleted">Histórico de assistidos limpo.</string>
     <string name="clear_search_history_title">Limpar histórico de pesquisas</string>
     <string name="clear_search_history_summary">Apaga o histórico de pesquisas feitas</string>
     <string name="delete_search_history_alert">Apagar todo o histórico de pesquisas\?</string>
@@ -513,4 +513,7 @@ abrir em modo popup</string>
     <string name="clear_playback_states_title">Apagar lista de reprodução</string>
     <string name="clear_playback_states_summary">Deletar todo o histórico de reprodução</string>
     <string name="delete_playback_states_alert">Deletar todo o histórico de reprodução\?</string>
+    <string name="download_choose_new_path">Mude as pastas de download para surtir efeito</string>
+    <string name="drawer_header_description">Alterar serviço, selecionados:</string>
+    <string name="default_kiosk_page_sumatry">Quiosque Padrão</string>
 </resources>

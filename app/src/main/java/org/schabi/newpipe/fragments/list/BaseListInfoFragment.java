@@ -111,6 +111,8 @@ public abstract class BaseListInfoFragment<I extends ListInfo>
         super.startLoading(forceLoad);
 
         showListFooter(false);
+        infoListAdapter.clearStreamItemList();
+
         currentInfo = null;
         if (currentWorker != null) currentWorker.dispose();
         currentWorker = loadResult(forceLoad)

@@ -3,7 +3,9 @@ package us.shandian.giga.get;
 import android.os.Handler;
 import android.util.Log;
 
-import org.schabi.newpipe.Downloader;
+import androidx.annotation.Nullable;
+
+import org.schabi.newpipe.DownloaderImpl;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,7 +17,6 @@ import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.UnknownHostException;
 
-import javax.annotation.Nullable;
 import javax.net.ssl.SSLException;
 
 import us.shandian.giga.io.StoredFileHelper;
@@ -211,7 +212,7 @@ public class DownloadMission extends Mission {
     HttpURLConnection openConnection(String url, int threadId, long rangeStart, long rangeEnd) throws IOException {
         HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
         conn.setInstanceFollowRedirects(true);
-        conn.setRequestProperty("User-Agent", Downloader.USER_AGENT);
+        conn.setRequestProperty("User-Agent", DownloaderImpl.USER_AGENT);
         conn.setRequestProperty("Accept", "*/*");
 
         // BUG workaround: switching between networks can freeze the download forever

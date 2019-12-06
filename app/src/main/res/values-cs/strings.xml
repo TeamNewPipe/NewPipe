@@ -49,7 +49,7 @@
     <string name="parsing_error">Nebylo možné analyzovat stránku</string>
     <string name="content_not_available">Obsah není k dispozici</string>
     <string name="list_thumbnail_view_description">Náhled videa</string>
-    <string name="detail_thumbnail_view_description">Náhled videa</string>
+    <string name="detail_thumbnail_view_description">Přehrát video, délka:</string>
     <string name="detail_uploader_thumbnail_view_description">Náhled avataru uploadera</string>
     <string name="detail_likes_img_view_description">To se mi líbí</string>
     <string name="detail_dislikes_img_view_description">To se mi nelíbí</string>
@@ -514,4 +514,5 @@ otevření ve vyskakovacím okně</string>
     <string name="clear_playback_states_summary">Smazat všechny pozice playbacku</string>
     <string name="delete_playback_states_alert">Smazat všechny pozice playbacku\?</string>
     <string name="download_choose_new_path">Změnit adresář pro stažené soubory</string>
+    <string name="drawer_header_description">Přepnout službu, právě vybráno:</string>
 </resources>

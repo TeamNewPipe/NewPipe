@@ -114,7 +114,7 @@
     <string name="audio">音訊</string>
     <string name="retry">重試</string>
     <string name="storage_permission_denied">無法存取儲存空間</string>
-    <string name="short_thousand">K</string>
+    <string name="short_thousand">k</string>
     <string name="short_million">百萬</string>
     <string name="short_billion">B</string>
     <string name="start">開始</string>
@@ -499,4 +499,8 @@
     <string name="delete_playback_states_alert">刪除所有播放位置？</string>
     <string name="download_choose_new_path">變更下載資料夾以使其生效</string>
     <string name="drawer_header_description">切換服務，目前已選取：</string>
+    <plurals name="videos">
+        <item quantity="other">%s 影片</item>
+    </plurals>
+    <string name="default_kiosk_page_sumatry">預設 Kiosk</string>
 </resources>
