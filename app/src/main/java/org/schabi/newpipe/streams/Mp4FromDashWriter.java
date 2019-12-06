@@ -161,7 +161,7 @@ public class Mp4FromDashWriter {
 
         boolean singleChunk = tracks.length == 1 && tracks[0].kind == TrackKind.Audio;
 
-        //<editor-fold defaultstate="expanded" desc="calculate stbl sample tables size and required moov values">
+
         for (int i = 0; i < readers.length; i++) {
             int samplesSize = 0;
             int sampleSizeChanges = 0;
@@ -255,7 +255,7 @@ public class Mp4FromDashWriter {
                 tracks[i].trak.tkhd.duration = sampleExtra[i];// this never should happen
             }
         }
-        //</editor-fold>
+
 
         boolean is64 = read > THRESHOLD_FOR_CO64;
 
@@ -426,7 +426,7 @@ public class Mp4FromDashWriter {
         }
     }
 
-    // <editor-fold defaultstate="expanded" desc="Stbl handling">
+
     private int writeEntry64(int offset, long value) throws IOException {
         outBackup();
 
@@ -469,9 +469,9 @@ public class Mp4FromDashWriter {
             lastWriteOffset = -1;
         }
     }
-    // </editor-fold>
 
-    // <editor-fold defaultstate="expanded" desc="Utils">
+
+
     private void outWrite(byte[] buffer) throws IOException {
         outWrite(buffer, buffer.length);
     }
@@ -581,9 +581,9 @@ public class Mp4FromDashWriter {
     private int auxOffset() {
         return auxBuffer == null ? (int) writeOffset : auxBuffer.position();
     }
-    // </editor-fold>
 
-    // <editor-fold defaultstate="expanded" desc="Box makers">
+
+
     private int make_ftyp() throws IOException {
         byte[] buffer = new byte[]{
                 0x00, 0x00, 0x00, 0x1C, 0x66, 0x74, 0x79, 0x70,// ftyp
@@ -815,7 +815,7 @@ public class Mp4FromDashWriter {
 
         return buffer.array();
     }
-    //</editor-fold>
+
 
     class TablesInfo {
 

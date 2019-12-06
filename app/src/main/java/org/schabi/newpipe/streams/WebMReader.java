@@ -15,7 +15,6 @@ import java.util.NoSuchElementException;
  */
 public class WebMReader {
 
-    //<editor-fold defaultstate="collapsed" desc="constants">
     private final static int ID_EMBL = 0x0A45DFA3;
     private final static int ID_EMBLReadVersion = 0x02F7;
     private final static int ID_EMBLDocType = 0x0282;
@@ -44,7 +43,7 @@ public class WebMReader {
     private final static int ID_SimpleBlock = 0x23;
     private final static int ID_Block = 0x21;
     private final static int ID_GroupBlock = 0x20;
-//</editor-fold>
+
 
     public enum TrackKind {
         Audio/*2*/, Video/*1*/, Other
@@ -110,7 +109,8 @@ public class WebMReader {
         return segment;
     }
 
-    //<editor-fold defaultstate="collapsed" desc="utils">
+
+
     private long readNumber(Element parent) throws IOException {
         int length = (int) parent.contentSize;
         long value = 0;
@@ -225,9 +225,9 @@ public class WebMReader {
 
         stream.skipBytes(skip);
     }
-//</editor-fold>
 
-    //<editor-fold defaultState="collapsed" desc="elements readers">
+
+
     private boolean readEbml(Element ref, int minReadVersion, int minDocTypeVersion) throws IOException {
         Element elem = untilElement(ref, ID_EMBLReadVersion);
         if (elem == null) {
@@ -389,9 +389,9 @@ public class WebMReader {
 
         return obj;
     }
-//</editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc="class helpers">
+
+
     class Element {
 
         int type;
@@ -536,5 +536,5 @@ public class WebMReader {
         }
 
     }
-//</editor-fold>
+
 }

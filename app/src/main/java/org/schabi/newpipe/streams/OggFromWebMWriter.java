@@ -308,7 +308,8 @@ public class OggFromWebMWriter implements Closeable {
         buffer.position(0);
     }
 
-    //<editor-fold defaultstate="collapsed" desc="WebM track handling">
+
+
     @Nullable
     private SimpleBlock getNextBlock() throws IOException {
         SimpleBlock res;
@@ -359,9 +360,7 @@ public class OggFromWebMWriter implements Closeable {
 
         return 0f;
     }
-    //</editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc="Segment table writing">
     private void clearSegmentTable() {
         segment_table_next_timestamp += TIME_SCALE_NS;
         packet_flag = FLAG_UNSET;
@@ -407,9 +406,7 @@ public class OggFromWebMWriter implements Closeable {
 
         return true;
     }
-    //</editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc="Checksum CRC32">
     private void populate_crc32_table() {
         for (int i = 0; i < 0x100; i++) {
             int crc = i << 24;
@@ -430,5 +427,5 @@ public class OggFromWebMWriter implements Closeable {
 
         return initial_crc;
     }
-    //</editor-fold>
+
 }
