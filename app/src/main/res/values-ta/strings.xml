@@ -155,4 +155,69 @@
     <string name="switch_to_popup">"பாப்அப் இயக்கிக்கு மாறு  "</string>
     <string name="unsubscribe">குழுவிலகு</string>
     <string name="enqueue">வரிசை</string>
+    <string name="network_error">நெட்வொர்க் பிழை</string>
+    <string name="could_not_load_image">படத்தை காண்பிக்க முடியவில்லை</string>
+    <string name="app_ui_crash">செயலி நிறுத்தப்பட்டது</string>
+    <string name="sorry_string">மன்னிக்கவும்.</string>
+    <string name="error_report_button_text">மின்னஞ்சல் மூலம் பிழையை தெரிவிக்கவும்</string>
+    <string name="what_happened_headline">என்ன நடந்தது:</string>
+    <string name="your_comment">உங்கள் கருத்து:</string>
+    <string name="list_thumbnail_view_description">காணொளி முன்தோற்றம்</string>
+    <string name="detail_dislikes_img_view_description">வெறுப்புகள்</string>
+    <string name="report_error">ஒரு பிழையை பதிவுசெய்</string>
+    <string name="user_report">பயனர் அறிக்கை</string>
+    <string name="err_dir_create">\'%1$s\' தரவிறக்க அடைவை உருவாக்க இயலவில்லை</string>
+    <string name="storage_permission_denied">சேமிப்பிற்க்கான அனுமதி இல்லை</string>
+    <string name="no_subscribers">பின் தொடர்பவர்கள் இல்லை</string>
+    <plurals name="subscribers">
+        <item quantity="one">%s பின் தொடர்பவர்</item>
+        <item quantity="other">%s பின் தொடர்பவர்கள்</item>
+    </plurals>
+    <string name="no_views">யாரும் பார்க்கவில்லை</string>
+    <plurals name="views">
+        <item quantity="one">%s பார்வை</item>
+        <item quantity="other">%s பார்வைகள்</item>
+    </plurals>
+    <plurals name="videos">
+        <item quantity="one">காணொளிகள்</item>
+        <item quantity="other"></item>
+    </plurals>
+    <string name="switch_to_main">முதற்பக்கத்துக்கு மாற்று</string>
+    <string name="invalid_url_toast">சரியில்லாத URL</string>
+    <string name="video_streams_empty">எந்த காணொலியும் இல்லை</string>
+    <string name="audio_streams_empty">எந்த ஒலியோடையும் இல்லை</string>
+    <string name="invalid_directory">அப்படியொரு அடைவுகள் இல்லை</string>
+    <string name="invalid_source">அப்படியொரு கோப்பு இல்லை</string>
+    <string name="error_occurred_detail">ஒரு பிழை நிகழ்ந்தது: %1$s</string>
+    <string name="tracks">காணொளிக் கோப்புகள்</string>
+    <string name="tab_new">புதிய பக்கம்</string>
+    <string name="tab_choose">பக்கத்தை தேர்வு செய்</string>
+    <string name="volume_gesture_control_title">சத்தக் கட்டுப்பாடு செய்கை</string>
+    <string name="volume_gesture_control_summary">Player-ன் சத்தத்தைக் கட்டுப்படுத்த செய்கையை பயன்படுத்து</string>
+    <string name="brightness_gesture_control_title">வெளிச்ச கட்டுப்பாடு செய்கை</string>
+    <string name="brightness_gesture_control_summary">Player-ன் வெளிச்சத்தைக் கட்டுப்படுத்த செய்கையை பயன்படுத்து</string>
+    <string name="settings_category_updates_title">புதுப்பித்தல்கள்</string>
+    <string name="file_deleted">கோப்பு அழிக்கப்பட்டது</string>
+    <string name="app_update_notification_channel_name">செயலி புதுப்பித்தல் அறிவிப்பு</string>
+    <string name="app_update_notification_channel_description">புதிய NewPipe பதிப்புக்கு அறிவிப்பு</string>
+    <string name="download_to_sdcard_error_title">வெளி சேமிப்பு இயலாது</string>
+    <string name="subscribers_count_not_available">பின்தொடர்பவர்கள் எண்ணிக்கை இல்லை</string>
+    <string name="events">நிகழ்வுகள்</string>
+    <string name="show_comments_title">கருத்துக்களை காண்பி</string>
+    <string name="show_comments_summary">கருத்துக்களை காண்பிப்பதை நிறுத்துதலை செயலிழக்கசெய்</string>
+    <string name="autoplay_title">தானாக ஓட்டு</string>
+    <plurals name="comments">
+        <item quantity="one">கருத்துக்கள்</item>
+        <item quantity="other"></item>
+    </plurals>
+    <string name="enable_playback_resume_title">திரையிடலை தொடங்கு</string>
+    <string name="enable_playback_state_lists_title">பட்டியலில் இடங்கள்</string>
+    <string name="settings_category_clear_data_title">தரவை நீக்கு</string>
+    <string name="missing_file">கோப்பு மாற்ற அல்லது நீக்கப்பட்டது</string>
+    <string name="download_choose_new_path">தரவிறக்க அடைவுகளை தேர்வு செய்</string>
+    <string name="no_one_watching">யாரும் பார்க்கவில்லை</string>
+    <plurals name="watching">
+        <item quantity="one">%s பார்க்கிறார்</item>
+        <item quantity="other">%s பார்க்கிறார்கள்</item>
+    </plurals>
 </resources>
