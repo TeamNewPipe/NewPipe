@@ -31,7 +31,10 @@ public class RemotePlaylistItemHolder extends PlaylistItemHolder {
         // Here is where the uploader name is set in the bookmarked playlists library
         itemUploaderView.setText(Localization.concatenateStrings(item.getUploader(),
                 NewPipe.getNameOfService(item.getServiceId())));
-        if (item.getUploader() == null) {
+        if (item.getUploader() != null) {
+            itemUploaderView.setText(Localization.concatenateStrings(item.getUploader(),
+                NewPipe.getNameOfService(item.getServiceId())));
+        } else {
             itemUploaderView.setText(NewPipe.getNameOfService(item.getServiceId()));
         }
 
