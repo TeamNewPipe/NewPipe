@@ -275,7 +275,6 @@ public class PlaylistFragment extends BaseListInfoFragment<PlaylistInfo> {
                 });
             }
         } else { // Else : hide the uploader section
-            //headerUploaderLayout.setVisibility(View.INVISIBLE);
             headerUploaderName.setText(R.string.playlist_no_uploader);
         }
 
