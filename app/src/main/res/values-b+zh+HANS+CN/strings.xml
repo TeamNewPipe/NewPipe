@@ -38,8 +38,8 @@
     <string name="later">稍后</string>
     <string name="network_error">网络错误</string>
     <plurals name="videos">
-        <item quantity="one">%s 个视频</item>
-        <item quantity="other"/>
+        <item quantity="one">视频</item>
+        <item quantity="other"></item>
     </plurals>
     <string name="disabled">禁用</string>
     <string name="controls_background_title">背景</string>
@@ -124,7 +124,7 @@
     <string name="tab_licenses">许可证</string>
     <string name="settings_category_downloads_title">下载</string>
     <string name="settings_file_charset_title">文件名中允许的字符</string>
-    <string name="settings_file_replacement_character_summary">无效字符将会替换为此字符</string>
+    <string name="settings_file_replacement_character_summary">无效字符将会被替换为此</string>
     <string name="charset_letters_and_digits">字母和数字</string>
     <string name="charset_most_special_characters">最特殊字符</string>
     <string name="search_no_results">没有结果</string>
@@ -160,7 +160,7 @@
     <string name="use_external_video_player_title">使用第三方视频播放器</string>
     <string name="use_external_audio_player_title">使用第三方视频播放器</string>
     <string name="download_path_audio_title">音频下载文件夹</string>
-    <string name="autoplay_by_calling_app_summary">从其他应用调用 NewPipe 时播放视频</string>
+    <string name="autoplay_by_calling_app_summary">从其他应用打开 NewPipe 时就播放视频</string>
     <string name="default_resolution_title">默认分辨率</string>
     <string name="kore_not_found">找不到Kore。是否安装？</string>
     <string name="show_play_with_kodi_title">显示“用Kodi播放”选项</string>
@@ -204,7 +204,7 @@
     <string name="short_billion">字节</string>
     <string name="msg_url_malform">错误的 URL 或未联网</string>
     <string name="msg_running">NewPipe下载中</string>
-    <string name="no_available_dir">请在稍后的设置中定义下载文件夹</string>
+    <string name="no_available_dir">请稍后在设置中设定下载目录</string>
     <string name="msg_popup_permission">用悬浮窗模式
 \n需要此权限</string>
     <string name="reCaptcha_title">reCAPTCHA验证</string>
@@ -254,7 +254,7 @@
     <string name="default_video_format_title">默认视频格式</string>
     <string name="settings_category_player_behavior_title">行为</string>
     <string name="empty_subscription_feed_subtitle">空空如也...</string>
-    <string name="no_views">无观看次数</string>
+    <string name="no_views">0次观看</string>
     <string name="item_deleted">项目已删除</string>
     <string name="delete_item_search_history">是否要从搜索历史记录中删除此项目？</string>
     <string name="main_page_content">显示在主页面内容</string>
@@ -282,10 +282,10 @@
     <string name="play_queue_remove">移除</string>
     <string name="play_queue_stream_detail">详情</string>
     <string name="play_queue_audio_settings">音频设置</string>
-    <string name="hold_to_append">长按加入队列</string>
+    <string name="hold_to_append">长按队列</string>
     <string name="unknown_content">[未知]</string>
     <string name="enqueue_on_background">添加到后台部分队列</string>
-    <string name="enqueue_on_popup">添加到新悬浮窗的队列</string>
+    <string name="enqueue_on_popup">添加至新悬浮窗列表</string>
     <string name="start_here_on_main">开始在此处开始播放</string>
     <string name="start_here_on_background">开始后台播放</string>
     <string name="start_here_on_popup">开始在新悬浮窗中播放</string>
@@ -353,10 +353,10 @@
     <string name="enable_disposed_exceptions_summary">强制报告处理后的未送达的Activity或Fragment生命周期之外的Rx异常</string>
     <string name="use_inexact_seek_title">使用快速不精确搜索</string>
     <string name="use_inexact_seek_summary">粗略定位播放：允许播放器以略低的精确度为代价换取更快的定位速度</string>
-    <string name="auto_queue_title">为下一个串流自动排队</string>
+    <string name="auto_queue_title">自动播放下一个</string>
     <string name="auto_queue_summary">当播放完非循环列表中的最后一个视频时，自动加入一个相关视频到播放列表</string>
     <string name="invalid_directory">没有此文件夹</string>
-    <string name="invalid_source">没有此类文件/内容源</string>
+    <string name="invalid_source">无相似文件/内容源</string>
     <string name="invalid_file">该文件不存在 或 缺少读写该文件的权限</string>
     <string name="file_name_empty_error">文件名不能为空</string>
     <string name="error_occurred_detail">发生错误： %1$s</string>
@@ -395,7 +395,7 @@
     <string name="unhook_checkbox">解除关联（可能导致失真）</string>
     <string name="preferred_open_action_settings_title">首选“打开”操作</string>
     <string name="preferred_open_action_settings_summary">打开内容时默认操作： = %s</string>
-    <string name="no_streams_available_download">没有可供下载的串流</string>
+    <string name="no_streams_available_download">无可下载的串流内容</string>
     <string name="caption_setting_title">字幕</string>
     <string name="caption_setting_description">修改播放器字幕比例和背景样式。需要重新启动应用程序才能生效。</string>
     <string name="clear_views_history_summary">删除串流的播放历史和播放位置</string>
@@ -416,8 +416,8 @@
     <string name="decline">拒绝</string>
     <string name="limit_data_usage_none_description">无限制</string>
     <string name="limit_mobile_data_usage_title">使用移动数据时限制分辨率</string>
-    <string name="minimize_on_exit_title">最小化应用程序</string>
-    <string name="minimize_on_exit_summary">从主视频播放器切换到其他应用时的操作 - %s</string>
+    <string name="minimize_on_exit_title">切换应用时最小化</string>
+    <string name="minimize_on_exit_summary">从主播放器切换到其他应用时的操作 - %s</string>
     <string name="skip_silence_checkbox">静音时快进</string>
     <string name="playback_step">滑块[比例尺]</string>
     <string name="playback_reset">重 置</string>
@@ -455,7 +455,7 @@
     <string name="error_unknown_host">找不到服务器</string>
     <string name="error_connect_host">无法连接到服务器</string>
     <string name="error_http_no_content">服务器未发送数据</string>
-    <string name="error_http_requested_range_not_satisfiable">请求范围不符合要求</string>
+    <string name="error_http_requested_range_not_satisfiable">请求范围无法满足</string>
     <string name="error_http_not_found">找不到 NOT FOUND</string>
     <string name="error_postprocessing_failed">后期处理失败</string>
     <string name="clear_finished_download">清除已完成的下载</string>
@@ -504,12 +504,12 @@
     <string name="clear_playback_states_title">删除播放位置记录</string>
     <string name="clear_playback_states_summary">删除所有播放位置记录</string>
     <string name="delete_playback_states_alert">删除所有播放位置记录？</string>
-    <string name="download_choose_new_path">更改下载文件夹以生效</string>
+    <string name="download_choose_new_path">更改下载目录让内容生效</string>
     <string name="default_kiosk_page_sumatry">『时下流行』页-默认</string>
-    <string name="no_one_watching">没有人在看</string>
+    <string name="no_one_watching">无人在线观看</string>
     <plurals name="watching">
-        <item quantity="one">%s 观看</item>
-        <item quantity="other"/>
+        <item quantity="one">%s 人在观看</item>
+        <item quantity="other"></item>
     </plurals>
     <string name="no_one_listening">没人在听</string>
     <plurals name="listening">
