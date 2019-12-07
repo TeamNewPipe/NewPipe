@@ -52,10 +52,12 @@ public class SecondaryStreamHelper<T extends Stream> {
             }
         }
 
+        if (m4v) return null;
+
         // retry, but this time in reverse order
         for (int i = audioStreams.size() - 1; i >= 0; i--) {
             AudioStream audio = audioStreams.get(i);
-            if (audio.getFormat() == (m4v ? MediaFormat.MP3 : MediaFormat.OPUS)) {
+            if (audio.getFormat() == MediaFormat.WEBMA_OPUS) {
                 return audio;
             }
         }
