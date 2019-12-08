@@ -1,20 +1,32 @@
 package org.schabi.newpipe;
 
+import android.os.Build;
 import android.text.TextUtils;
 
 import org.schabi.newpipe.extractor.downloader.Downloader;
 import org.schabi.newpipe.extractor.downloader.Request;
 import org.schabi.newpipe.extractor.downloader.Response;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
+import org.schabi.newpipe.util.TLSSocketFactoryCompat;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.KeyManagementException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import androidx.annotation.NonNull;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.TrustManagerFactory;
+import javax.net.ssl.X509TrustManager;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import okhttp3.OkHttpClient;
@@ -29,6 +41,9 @@ public class DownloaderImpl extends Downloader {
     private OkHttpClient client;
 
     private DownloaderImpl(OkHttpClient.Builder builder) {
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
+            enableModernTLS(builder);
+        }
         this.client = builder
                 .readTimeout(30, TimeUnit.SECONDS)
                 //.cache(new Cache(new File(context.getExternalCacheDir(), "okhttp"), 16 * 1024 * 1024))
@@ -153,5 +168,35 @@ public class DownloaderImpl extends Downloader {
         }
 
         return new Response(response.code(), response.message(), response.headers().toMultimap(), responseBodyToReturn);
+    }
+
+    /**
+     * Enable TLS 1.2 and 1.1 on Android Kitkat. This function is mostly taken from the documentation of
+     * OkHttpClient.Builder.sslSocketFactory(_,_)
+     *
+     * If there is an error, It will safely fall back to doing nothing and printing the Error to the console.
+     * @param builder The HTTPClient Builder on which TLS is enabled on (will be modified in-place)
+     */
+    private static void enableModernTLS(OkHttpClient.Builder builder) {
+        try {
+            TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(
+                    TrustManagerFactory.getDefaultAlgorithm());
+            trustManagerFactory.init((KeyStore) null);
+            TrustManager[] trustManagers = trustManagerFactory.getTrustManagers();
+            if (trustManagers.length != 1 || !(trustManagers[0] instanceof X509TrustManager)) {
+                throw new IllegalStateException("Unexpected default trust managers:"
+                        + Arrays.toString(trustManagers));
+            }
+            X509TrustManager trustManager = (X509TrustManager) trustManagers[0];
+
+            SSLContext sslContext = SSLContext.getInstance("TLS");
+            sslContext.init(null, new TrustManager[] { trustManager }, null);
+            //SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
+            SSLSocketFactory sslSocketFactory = TLSSocketFactoryCompat.getInstance();
+
+            builder.sslSocketFactory(sslSocketFactory, trustManager);
+        } catch (KeyManagementException | NoSuchAlgorithmException | KeyStoreException e) {
+            e.printStackTrace();
+        }
     }
 }
