@@ -447,11 +447,9 @@
     <string name="error_connect_host">無法連線到伺服器</string>
     <string name="error_http_no_content">伺服器沒有傳送資料</string>
     <string name="error_http_unsupported_range">伺服器不接受多執行緒下載，請以 @string/msg_threads = 1 重試</string>
-    <string name="error_http_requested_range_not_satisfiable">請求範圍無法滿足</string>
     <string name="error_http_not_found">找不到</string>
     <string name="error_postprocessing_failed">後處理失敗</string>
     <string name="clear_finished_download">清除已結束的下載</string>
-    <string name="msg_pending_downloads">繼續從您所擱置中的下載 %s 傳輸</string>
     <string name="stop">停止</string>
     <string name="max_retry_msg">最大重試次數</string>
     <string name="max_retry_desc">在取消下載前的最大嘗試數</string>

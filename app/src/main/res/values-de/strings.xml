@@ -454,11 +454,9 @@
     <string name="error_connect_host">Kann nicht mit dem Server verbinden</string>
     <string name="error_http_no_content">Der Server sendet keine Daten</string>
     <string name="error_http_unsupported_range">Der Server erlaubt kein mehrfädiges Herunterladen – wiederhole mit @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">Gewünschter Bereich ist nicht verfügbar</string>
     <string name="error_http_not_found">Nicht gefunden</string>
     <string name="error_postprocessing_failed">Nachbearbeitung fehlgeschlagen</string>
     <string name="clear_finished_download">Um fertige Downloads bereinigen</string>
-    <string name="msg_pending_downloads">Setze deine %s ausstehenden Übertragungen von Downloads fort</string>
     <string name="stop">Anhalten</string>
     <string name="max_retry_msg">Maximale Wiederholungen</string>
     <string name="max_retry_desc">Maximalanzahl der Versuche, bevor der Download abgebrochen wird</string>

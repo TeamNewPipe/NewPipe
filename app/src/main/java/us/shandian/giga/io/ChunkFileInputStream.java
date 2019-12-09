@@ -5,21 +5,23 @@ import org.schabi.newpipe.streams.io.SharpStream;
 import java.io.IOException;
 
 public class ChunkFileInputStream extends SharpStream {
+    private static final int REPORT_INTERVAL = 256 * 1024;
 
     private SharpStream source;
     private final long offset;
     private final long length;
     private long position;
 
-    public ChunkFileInputStream(SharpStream target, long start) throws IOException {
-        this(target, start, target.length());
-    }
+    private long progressReport;
+    private final ProgressReport onProgress;
 
-    public ChunkFileInputStream(SharpStream target, long start, long end) throws IOException {
+    public ChunkFileInputStream(SharpStream target, long start, long end, ProgressReport callback) throws IOException {
         source = target;
         offset = start;
         length = end - start;
         position = 0;
+        onProgress = callback;
+        progressReport = REPORT_INTERVAL;
 
         if (length < 1) {
             source.close();
@@ -60,12 +62,12 @@ public class ChunkFileInputStream extends SharpStream {
     }
 
     @Override
-    public int read(byte b[]) throws IOException {
+    public int read(byte[] b) throws IOException {
         return read(b, 0, b.length);
     }
 
     @Override
-    public int read(byte b[], int off, int len) throws IOException {
+    public int read(byte[] b, int off, int len) throws IOException {
         if ((position + len) > length) {
             len = (int) (length - position);
         }
@@ -75,6 +77,11 @@ public class ChunkFileInputStream extends SharpStream {
 
         int res = source.read(b, off, len);
         position += res;
+
+        if (onProgress != null && position > progressReport) {
+            onProgress.report(position);
+            progressReport = position + REPORT_INTERVAL;
+        }
 
         return res;
     }

@@ -1,7 +1,9 @@
 package us.shandian.giga.get;
 
-import androidx.annotation.NonNull;
+import android.text.TextUtils;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import org.schabi.newpipe.streams.io.SharpStream;
 
@@ -13,6 +15,7 @@ import java.nio.channels.ClosedByInterruptException;
 import us.shandian.giga.util.Utility;
 
 import static org.schabi.newpipe.BuildConfig.DEBUG;
+import static us.shandian.giga.get.DownloadMission.ERROR_HTTP_FORBIDDEN;
 
 public class DownloadInitializer extends Thread {
     private final static String TAG = "DownloadInitializer";
@@ -28,9 +31,9 @@ public class DownloadInitializer extends Thread {
         mConn = null;
     }
 
-    private static void safeClose(HttpURLConnection con) {
+    private void dispose() {
         try {
-            con.getInputStream().close();
+            mConn.getInputStream().close();
         } catch (Exception e) {
             // nothing to do
         }
@@ -51,9 +54,9 @@ public class DownloadInitializer extends Thread {
                     long lowestSize = Long.MAX_VALUE;
 
                     for (int i = 0; i < mMission.urls.length && mMission.running; i++) {
-                        mConn = mMission.openConnection(mMission.urls[i], mId, -1, -1);
+                        mConn = mMission.openConnection(mMission.urls[i], true, -1, -1);
                         mMission.establishConnection(mId, mConn);
-                        safeClose(mConn);
+                        dispose();
 
                         if (Thread.interrupted()) return;
                         long length = Utility.getContentLength(mConn);
@@ -81,9 +84,9 @@ public class DownloadInitializer extends Thread {
                     }
                 } else {
                     // ask for the current resource length
-                    mConn = mMission.openConnection(mId, -1, -1);
+                    mConn = mMission.openConnection(true, -1, -1);
                     mMission.establishConnection(mId, mConn);
-                    safeClose(mConn);
+                    dispose();
 
                     if (!mMission.running || Thread.interrupted()) return;
 
@@ -107,9 +110,9 @@ public class DownloadInitializer extends Thread {
                     }
                 } else {
                     // Open again
-                    mConn = mMission.openConnection(mId, mMission.length - 10, mMission.length);
+                    mConn = mMission.openConnection(true, mMission.length - 10, mMission.length);
                     mMission.establishConnection(mId, mConn);
-                    safeClose(mConn);
+                    dispose();
 
                     if (!mMission.running || Thread.interrupted()) return;
 
@@ -151,12 +154,33 @@ public class DownloadInitializer extends Thread {
 
                 if (!mMission.running || Thread.interrupted()) return;
 
+                if (!mMission.unknownLength && mMission.recoveryInfo != null) {
+                    String entityTag = mConn.getHeaderField("ETAG");
+                    String lastModified = mConn.getHeaderField("Last-Modified");
+                    MissionRecoveryInfo recovery = mMission.recoveryInfo[mMission.current];
+
+                    if (!TextUtils.isEmpty(entityTag)) {
+                        recovery.validateCondition = entityTag;
+                    } else if (!TextUtils.isEmpty(lastModified)) {
+                        recovery.validateCondition = lastModified;// Note: this is less precise
+                    } else {
+                        recovery.validateCondition = null;
+                    }
+                }
+
                 mMission.running = false;
                 break;
             } catch (InterruptedIOException | ClosedByInterruptException e) {
                 return;
             } catch (Exception e) {
-                if (!mMission.running) return;
+                if (!mMission.running || super.isInterrupted()) return;
+
+                if (e instanceof DownloadMission.HttpError && ((DownloadMission.HttpError) e).statusCode == ERROR_HTTP_FORBIDDEN) {
+                    // for youtube streams. The url has expired
+                    interrupt();
+                    mMission.doRecover(ERROR_HTTP_FORBIDDEN);
+                    return;
+                }
 
                 if (e instanceof IOException && e.getMessage().contains("Permission denied")) {
                     mMission.notifyError(DownloadMission.ERROR_PERMISSION_DENIED, e);
@@ -179,13 +203,6 @@ public class DownloadInitializer extends Thread {
     @Override
     public void interrupt() {
         super.interrupt();
-
-        if (mConn != null) {
-            try {
-                mConn.disconnect();
-            } catch (Exception e) {
-                // nothing to do
-            }
-        }
+        if (mConn != null) dispose();
     }
 }

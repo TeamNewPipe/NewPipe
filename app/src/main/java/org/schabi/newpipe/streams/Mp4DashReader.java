@@ -15,7 +15,6 @@ import java.util.NoSuchElementException;
  */
 public class Mp4DashReader {
 
-    // <editor-fold defaultState="collapsed" desc="Constants">
     private static final int ATOM_MOOF = 0x6D6F6F66;
     private static final int ATOM_MFHD = 0x6D666864;
     private static final int ATOM_TRAF = 0x74726166;
@@ -50,7 +49,7 @@ public class Mp4DashReader {
     private static final int HANDLER_VIDE = 0x76696465;
     private static final int HANDLER_SOUN = 0x736F756E;
     private static final int HANDLER_SUBT = 0x73756274;
-    // </editor-fold>
+
 
     private final DataReader stream;
 
@@ -293,7 +292,8 @@ public class Mp4DashReader {
         return null;
     }
 
-    // <editor-fold defaultState="collapsed" desc="Utils">
+
+
     private long readUint() throws IOException {
         return stream.readInt() & 0xffffffffL;
     }
@@ -392,9 +392,7 @@ public class Mp4DashReader {
         return readBox();
     }
 
-    // </editor-fold>
 
-    // <editor-fold defaultState="collapsed" desc="Box readers">
 
     private Moof parse_moof(Box ref, int trackId) throws IOException {
         Moof obj = new Moof();
@@ -795,9 +793,8 @@ public class Mp4DashReader {
         return readFullBox(b);
     }
 
-    // </editor-fold>
 
-    // <editor-fold defaultState="collapsed" desc="Helper classes">
+
     class Box {
 
         int type;
@@ -1013,5 +1010,5 @@ public class Mp4DashReader {
         public TrunEntry info;
         public byte[] data;
     }
-//</editor-fold>
+
 }
