@@ -15,7 +15,6 @@ import java.util.NoSuchElementException;
  */
 public class WebMReader {
 
-    //<editor-fold defaultState="collapsed" desc="constants">
     private final static int ID_EMBL = 0x0A45DFA3;
     private final static int ID_EMBLReadVersion = 0x02F7;
     private final static int ID_EMBLDocType = 0x0282;
@@ -37,11 +36,14 @@ public class WebMReader {
     private final static int ID_Audio = 0x61;
     private final static int ID_DefaultDuration = 0x3E383;
     private final static int ID_FlagLacing = 0x1C;
+    private final static int ID_CodecDelay = 0x16AA;
 
     private final static int ID_Cluster = 0x0F43B675;
     private final static int ID_Timecode = 0x67;
     private final static int ID_SimpleBlock = 0x23;
-//</editor-fold>
+    private final static int ID_Block = 0x21;
+    private final static int ID_GroupBlock = 0x20;
+
 
     public enum TrackKind {
         Audio/*2*/, Video/*1*/, Other
@@ -96,7 +98,7 @@ public class WebMReader {
         }
 
         ensure(segment.ref);
-
+        // WARNING: track cannot be the same or have different index in new segments
         Element elem = untilElement(null, ID_Segment);
         if (elem == null) {
             done = true;
@@ -107,7 +109,8 @@ public class WebMReader {
         return segment;
     }
 
-    //<editor-fold defaultstate="collapsed" desc="utils">
+
+
     private long readNumber(Element parent) throws IOException {
         int length = (int) parent.contentSize;
         long value = 0;
@@ -189,6 +192,9 @@ public class WebMReader {
         Element elem;
         while (ref == null ? stream.available() : (stream.position() < (ref.offset + ref.size))) {
             elem = readElement();
+            if (expected.length < 1) {
+                return elem;
+            }
             for (int type : expected) {
                 if (elem.type == type) {
                     return elem;
@@ -219,9 +225,9 @@ public class WebMReader {
 
         stream.skipBytes(skip);
     }
-//</editor-fold>
 
-    //<editor-fold defaultState="collapsed" desc="elements readers">
+
+
     private boolean readEbml(Element ref, int minReadVersion, int minDocTypeVersion) throws IOException {
         Element elem = untilElement(ref, ID_EMBLReadVersion);
         if (elem == null) {
@@ -300,9 +306,7 @@ public class WebMReader {
             WebMTrack entry = new WebMTrack();
             boolean drop = false;
             Element elem;
-            while ((elem = untilElement(elem_trackEntry,
-                    ID_TrackNumber, ID_TrackType, ID_CodecID, ID_CodecPrivate, ID_FlagLacing, ID_DefaultDuration, ID_Audio, ID_Video
-            )) != null) {
+            while ((elem = untilElement(elem_trackEntry)) != null) {
                 switch (elem.type) {
                     case ID_TrackNumber:
                         entry.trackNumber = readNumber(elem);
@@ -326,8 +330,9 @@ public class WebMReader {
                     case ID_FlagLacing:
                         drop = readNumber(elem) != lacingExpected;
                         break;
+                    case ID_CodecDelay:
+                        entry.codecDelay = readNumber(elem);
                     default:
-                        System.out.println();
                         break;
                 }
                 ensure(elem);
@@ -360,12 +365,13 @@ public class WebMReader {
 
     private SimpleBlock readSimpleBlock(Element ref) throws IOException {
         SimpleBlock obj = new SimpleBlock(ref);
-        obj.dataSize = stream.position();
         obj.trackNumber = readEncodedNumber();
         obj.relativeTimeCode = stream.readShort();
         obj.flags = (byte) stream.read();
-        obj.dataSize = (ref.offset + ref.size) - stream.position();
+        obj.dataSize = (int) ((ref.offset + ref.size) - stream.position());
+        obj.createdFromBlock = ref.type == ID_Block;
 
+        // NOTE: lacing is not implemented, and will be mixed with the stream data
         if (obj.dataSize < 0) {
             throw new IOException(String.format("Unexpected SimpleBlock element size, missing %s bytes", -obj.dataSize));
         }
@@ -383,9 +389,9 @@ public class WebMReader {
 
         return obj;
     }
-//</editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc="class helpers">
+
+
     class Element {
 
         int type;
@@ -409,6 +415,7 @@ public class WebMReader {
         public byte[] bMetadata;
         public TrackKind kind;
         public long defaultDuration;
+        public long codecDelay;
     }
 
     public class Segment {
@@ -448,6 +455,7 @@ public class WebMReader {
     public class SimpleBlock {
 
         public InputStream data;
+        public boolean createdFromBlock;
 
         SimpleBlock(Element ref) {
             this.ref = ref;
@@ -455,8 +463,9 @@ public class WebMReader {
 
         public long trackNumber;
         public short relativeTimeCode;
+        public long absoluteTimeCodeNs;
         public byte flags;
-        public long dataSize;
+        public int dataSize;
         private final Element ref;
 
         public boolean isKeyframe() {
@@ -468,33 +477,55 @@ public class WebMReader {
 
         Element ref;
         SimpleBlock currentSimpleBlock = null;
+        Element currentBlockGroup = null;
         public long timecode;
 
         Cluster(Element ref) {
             this.ref = ref;
         }
 
-        boolean check() {
+        boolean insideClusterBounds() {
             return stream.position() >= (ref.offset + ref.size);
         }
 
         public SimpleBlock getNextSimpleBlock() throws IOException {
-            if (check()) {
+            if (insideClusterBounds()) {
                 return null;
             }
-            if (currentSimpleBlock != null) {
+
+            if (currentBlockGroup != null) {
+                ensure(currentBlockGroup);
+                currentBlockGroup = null;
+                currentSimpleBlock = null;
+            } else if (currentSimpleBlock != null) {
                 ensure(currentSimpleBlock.ref);
             }
 
-            while (!check()) {
-                Element elem = untilElement(ref, ID_SimpleBlock);
+            while (!insideClusterBounds()) {
+                Element elem = untilElement(ref, ID_SimpleBlock, ID_GroupBlock);
                 if (elem == null) {
                     return null;
+                }
+
+                if (elem.type == ID_GroupBlock) {
+                    currentBlockGroup = elem;
+                    elem = untilElement(currentBlockGroup, ID_Block);
+
+                    if (elem == null) {
+                        ensure(currentBlockGroup);
+                        currentBlockGroup = null;
+                        continue;
+                    }
                 }
 
                 currentSimpleBlock = readSimpleBlock(elem);
                 if (currentSimpleBlock.trackNumber == tracks[selectedTrack].trackNumber) {
                     currentSimpleBlock.data = stream.getView((int) currentSimpleBlock.dataSize);
+
+                    // calculate the timestamp in nanoseconds
+                    currentSimpleBlock.absoluteTimeCodeNs = currentSimpleBlock.relativeTimeCode + this.timecode;
+                    currentSimpleBlock.absoluteTimeCodeNs *= segment.info.timecodeScale;
+
                     return currentSimpleBlock;
                 }
 
@@ -505,5 +536,5 @@ public class WebMReader {
         }
 
     }
-//</editor-fold>
+
 }
