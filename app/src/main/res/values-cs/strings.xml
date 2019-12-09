@@ -463,11 +463,9 @@ otevření ve vyskakovacím okně</string>
     <string name="error_connect_host">Nelze se připojit k serveru</string>
     <string name="error_http_no_content">Server neposílá data</string>
     <string name="error_http_unsupported_range">Server neakceptuje vícevláknové stahování, opakujte akci s @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">Požadovaný rozsah nelze splnit</string>
     <string name="error_http_not_found">Nenalezeno</string>
     <string name="error_postprocessing_failed">Post-processing selhal</string>
     <string name="clear_finished_download">Vyčistit dokončená stahování</string>
-    <string name="msg_pending_downloads">Pokračovat ve stahování %s souborů, čekajících na stažení</string>
     <string name="stop">Zastavit</string>
     <string name="max_retry_msg">Maximální počet pokusů o opakování</string>
     <string name="max_retry_desc">Maximální počet pokusů před zrušením stahování</string>

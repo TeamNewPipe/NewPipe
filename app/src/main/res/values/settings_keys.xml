@@ -133,6 +133,7 @@
 
     <!-- Caption Size -->
     <string name="caption_settings_key" translatable="false">caption_settings_key</string>
+    <string name="caption_user_set_key" translatable="false">caption_user_set_key</string>
 
     <!-- Content & History -->
     <string name="show_search_suggestions_key" translatable="false">show_search_suggestions</string>
