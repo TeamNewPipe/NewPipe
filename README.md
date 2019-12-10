@@ -81,6 +81,7 @@ NewPipe supports multiple services. Our [docs](https://teamnewpipe.github.io/doc
 * YouTube
 * SoundCloud \[beta\]
 * media.ccc.de \[beta\]
+* PeerTube instances \[beta\]
 
 ## Updates
 When a change to the NewPipe code occurs (due to either adding features or bug fixing), eventually a release will occur. These are in the format x.xx.x . In order to get this new version, you can:
