@@ -454,7 +454,6 @@
     <string name="error_permission_denied">Доступ запрещён системой</string>
     <string name="error_unknown_host">Сервер не найден</string>
     <string name="error_http_unsupported_range">Сервер не принимает многопоточные загрузки, повторная попытка с @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">Запрашиваемый диапазон недопустим</string>
     <string name="error_http_not_found">Не найдено</string>
     <string name="clear_finished_download">Очистить завершённые</string>
     <string name="stop">Остановить</string>
@@ -465,7 +464,6 @@
     <string name="download_finished">Загрузка завершена</string>
     <string name="download_finished_more">%s загрузок завершено</string>
     <string name="generate_unique_name">Создать уникальное имя</string>
-    <string name="msg_pending_downloads">Возобновить приостановленные загрузки (%s)</string>
     <string name="max_retry_msg">Максимум попыток</string>
     <string name="max_retry_desc">Количество попыток перед отменой загрузки</string>
     <string name="pause_downloads_on_mobile_desc">Некоторые загрузки не поддерживают докачку и начнутся с начала</string>

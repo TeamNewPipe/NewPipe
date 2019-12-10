@@ -461,11 +461,9 @@
     <string name="error_connect_host">לא ניתן להתחבר לשרת</string>
     <string name="error_http_no_content">השרת לא שולח נתונים</string>
     <string name="error_http_unsupported_range">"השרת לא מקבל הורדות רב ערוציות, מוטב לנסות שוב עם ‎@string/msg_threads = 1 "</string>
-    <string name="error_http_requested_range_not_satisfiable">הטווח המבוקש לא מתאים</string>
     <string name="error_http_not_found">לא נמצא</string>
     <string name="error_postprocessing_failed">העיבוד המאוחר נכשל</string>
     <string name="clear_finished_download">פינוי ההורדות שהסתיימו</string>
-    <string name="msg_pending_downloads">ניתן להמשיך את %s ההורדות הממתינות שלך דרך ההורדות</string>
     <string name="stop">עצירה</string>
     <string name="max_retry_msg">מספר הניסיונות החוזרים המרבי</string>
     <string name="max_retry_desc">מספר הניסיונות החוזרים המרבי בטרם ביטול ההורדה</string>

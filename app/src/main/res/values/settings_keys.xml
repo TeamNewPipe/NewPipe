@@ -133,6 +133,7 @@
 
     <!-- Caption Size -->
     <string name="caption_settings_key" translatable="false">caption_settings_key</string>
+    <string name="caption_user_set_key" translatable="false">caption_user_set_key</string>
 
     <!-- Content & History -->
     <string name="show_search_suggestions_key" translatable="false">show_search_suggestions</string>
@@ -144,6 +145,9 @@
     <string name="default_language_value">en</string>
     <string name="default_country_value">GB</string>
     <string name="content_language_key" translatable="false">content_language</string>
+    <string name="peertube_instance_setup_key" translatable="false">peertube_instance_setup</string>
+    <string name="peertube_selected_instance_key" translatable="false">peertube_selected_instance</string>
+    <string name="peertube_instance_list_key" translatable="false">peertube_instance_list</string>
     <string name="content_country_key" translatable="false">content_country</string>
     <string name="show_age_restricted_content" translatable="false">show_age_restricted_content</string>
     <string name="use_tor_key" translatable="false">use_tor</string>

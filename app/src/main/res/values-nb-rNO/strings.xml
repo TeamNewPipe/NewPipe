@@ -458,7 +458,6 @@
     <string name="error_http_not_found">Ikke funnet</string>
     <string name="error_postprocessing_failed">Etterbehandling mislyktes</string>
     <string name="clear_finished_download">Tøm fullførte nedlastinger</string>
-    <string name="msg_pending_downloads">Fortsett dine %s ventende overføringer fra Nedlastinger</string>
     <string name="stop">Stopp</string>
     <string name="max_retry_msg">Maksimalt antall forsøk</string>
     <string name="max_retry_desc">Maksimalt antall tilkoblingsforsøk før nedlastingen avblåses</string>
@@ -496,7 +495,7 @@
     <string name="pause_downloads">Sett nedlastinger på pause</string>
     <string name="downloads_storage_ask_title">Spør om hvor ting skal lastes ned til</string>
     <string name="downloads_storage_ask_summary">Du vil bli spurt om hvor hver nedlasting skal plasseres</string>
-    <string name="downloads_storage_ask_summary_kitkat">Du vil bli spurt om hvor hver nedlasting skal plasseres. 
+    <string name="downloads_storage_ask_summary_kitkat">Du vil bli spurt om hvor hver nedlasting skal plasseres.
 \nSkru på SAF hvis du vil laste ned til eksternt SD-kort</string>
     <string name="downloads_storage_use_saf_title">Bruk SAF</string>
     <string name="downloads_storage_use_saf_summary">Lagringstilgangsrammeverk (SAF) tillater nedlastinger til eksternt SD-kort.

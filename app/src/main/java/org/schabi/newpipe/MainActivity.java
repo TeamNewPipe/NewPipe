@@ -32,14 +32,18 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -50,12 +54,15 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.navigation.NavigationView;
 
 import org.schabi.newpipe.extractor.NewPipe;
+import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.services.peertube.PeertubeInstance;
 import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
@@ -65,11 +72,15 @@ import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.FireTvUtils;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.PeertubeHelper;
 import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.views.FocusOverlayView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -309,11 +320,55 @@ public class MainActivity extends AppCompatActivity {
             final String title = s.getServiceInfo().getName() +
                     (ServiceHelper.isBeta(s) ? " (beta)" : "");
 
-            drawerItems.getMenu()
+            MenuItem menuItem = drawerItems.getMenu()
                     .add(R.id.menu_services_group, s.getServiceId(), ORDER, title)
                     .setIcon(ServiceHelper.getIcon(s.getServiceId()));
+
+            // peertube specifics
+            if(s.getServiceId() == 3){
+                enhancePeertubeMenu(s, menuItem);
+            }
         }
         drawerItems.getMenu().getItem(ServiceHelper.getSelectedServiceId(this)).setChecked(true);
+    }
+
+    private void enhancePeertubeMenu(StreamingService s, MenuItem menuItem) {
+        PeertubeInstance currentInstace = PeertubeHelper.getCurrentInstance();
+        menuItem.setTitle(currentInstace.getName() + (ServiceHelper.isBeta(s) ? " (beta)" : ""));
+        Spinner spinner = (Spinner) LayoutInflater.from(this).inflate(R.layout.instance_spinner_layout, null);
+        List<PeertubeInstance> instances = PeertubeHelper.getInstanceList(this);
+        List<String> items = new ArrayList<>();
+        int defaultSelect = 0;
+        for(PeertubeInstance instance: instances){
+            items.add(instance.getName());
+            if(instance.getUrl().equals(currentInstace.getUrl())){
+                defaultSelect = items.size()-1;
+            }
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.instance_spinner_item, items);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setSelection(defaultSelect, false);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                PeertubeInstance newInstance = instances.get(position);
+                if(newInstance.getUrl().equals(PeertubeHelper.getCurrentInstance().getUrl())) return;
+                PeertubeHelper.selectInstance(newInstance, getApplicationContext());
+                changeService(menuItem);
+                drawer.closeDrawers();
+                new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                    getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    recreate();
+                }, 300);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        menuItem.setActionView(spinner);
     }
 
     private void showTabs() throws ExtractionException {
@@ -376,6 +431,7 @@ public class MainActivity extends AppCompatActivity {
             String selectedServiceName = NewPipe.getService(
                     ServiceHelper.getSelectedServiceId(this)).getServiceInfo().getName();
             headerServiceView.setText(selectedServiceName);
+            headerServiceView.post(() -> headerServiceView.setSelected(true));
             toggleServiceButton.setContentDescription(
                     getString(R.string.drawer_header_description) + selectedServiceName);
         } catch (Exception e) {
