@@ -6,9 +6,9 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
-import android.util.Log;
 
 import com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -29,6 +29,7 @@ import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.Localization;
+import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
 
 import java.io.IOException;
@@ -102,6 +103,8 @@ public class App extends Application {
 
         StateSaver.init(this);
         initNotificationChannel();
+
+        ServiceHelper.initServices(this);
 
         // Initialize image loader
         ImageLoader.getInstance().init(getImageLoaderConfigurations(10, 50));
