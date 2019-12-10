@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_bg_subtitle">برای شروع، جست‌وجو را بزنید</string>
-    <string name="view_count_text">‫%1$s مشاهده</string>
+    <string name="view_count_text">‫%1$s مشاهده ها</string>
     <string name="upload_date_text">منتشر شده در %1$s</string>
     <string name="no_player_found">هیچ پخش‌کنندهٔ جریانی پیدا نشد. مایلید وی‌ال‌سی نصب شود؟</string>
     <string name="install">نصب</string>
@@ -17,12 +17,12 @@
     <string name="screen_rotation">چرخش</string>
     <string name="use_external_video_player_title">استفاده از پخش‌کنندهٔ ویدیوی خارجی</string>
     <string name="use_external_audio_player_title">استفاده از پخش‌کنندهٔ صدای خارجی</string>
-    <string name="download_path_title">مسیر بارگیری ویدیو</string>
-    <string name="download_path_summary">مسیر ذخیرهٔ ویدیوهای بارگیری شده</string>
-    <string name="download_path_dialog_title">مسیر بارگیری را برای ویدیوها وارد کنید</string>
+    <string name="download_path_title">پوشه بارگیری ویدیو</string>
+    <string name="download_path_summary">ویدیوهای بارگیری شده اینجا ذخیره می‌شوند</string>
+    <string name="download_path_dialog_title">پوشه بارگیری ویدیوها را انتخاب کنید</string>
     <string name="download_path_audio_title">پوشه بارگیری صدا</string>
-    <string name="download_path_audio_summary">صدای بارگیری شده در این‌جا نگه داشته می‌شود</string>
-    <string name="download_path_audio_dialog_title">مسیر بارگیری را برای صداها وارد کنید</string>
+    <string name="download_path_audio_summary">صداهای بارگیری شده در این‌جا ذخیره می‌شوند</string>
+    <string name="download_path_audio_dialog_title">پوشه بارگیری صداها را انتخاب کنید</string>
     <string name="autoplay_by_calling_app_title">پخش خودکار</string>
     <string name="autoplay_by_calling_app_summary">هنگامی که نیوپایپ از کارهٔ دیگری فراخوانی می‌شود، ویدیوی به طور خودکار پخش شود</string>
     <string name="default_resolution_title">وضوح پیش‌گزیده</string>
@@ -38,7 +38,7 @@
     <string name="download_dialog_title">بارگیری</string>
     <string name="next_video_title">بعدی</string>
     <string name="show_next_and_similar_title">نماش ویدیوهای «بعدی» و «مشابه»</string>
-    <string name="url_not_supported_toast">نشانی اینترنتی پشتیبانی نمی‌شود</string>
+    <string name="url_not_supported_toast">نشانی پشتیبانی نشده</string>
     <string name="content_language_title">زبان محتوای ترجیحی</string>
     <string name="settings_category_video_audio_title">ویدیو و صدا</string>
     <string name="settings_category_appearance_title">ظاهر</string>
@@ -47,7 +47,7 @@
     <string name="play_btn_text">پخش</string>
     <string name="content">محتوا</string>
     <string name="show_age_restricted_content_title">محتوای محدود شده بر اساس سن</string>
-    <string name="video_is_age_restricted">نمایش ویدیوهای محدود شده بر اساس سن. اجازه دادن به چنین محتوای از بخش «تنظیمات» ممکن است.</string>
+    <string name="video_is_age_restricted">نمایش ویدیوهای دارای محدودیت سنی. اجازه دادن به چنین محتوای از بخش تنظیمات ممکن است.</string>
     <string name="duration_live">زنده</string>
     <string name="downloads">بارگیری‌ها</string>
     <string name="downloads_title">بارگیری‌ها</string>
@@ -55,24 +55,24 @@
     <string name="general_error">خطا</string>
     <string name="network_error">خطای شبکه</string>
     <string name="could_not_load_thumbnails">نمی‌توان تمام بندانگشتی‌ها را بار کرد</string>
-    <string name="youtube_signature_decryption_error">نمی‌توان امضای نشانی اینترنتی ویدیو را رمزگشایی کرد.</string>
-    <string name="parsing_error">نمی‌توان پایگاه وب را تجزیه کرد.</string>
-    <string name="light_parsing_error">نمی‌توان پایگاه وب را به صورت کامل تجزیه کرد.</string>
-    <string name="content_not_available">محتوا در دسترس نیست.</string>
-    <string name="could_not_setup_download_menu">نمی‌توان فهرست بارگیری را برپا ساخت.</string>
-    <string name="live_streams_not_supported">این یک جریان زنده است. این جریان‌ها هنوز پشتیبانی نمی‌شوند.</string>
-    <string name="could_not_get_stream">نمی‌توان هیچ جریانی را گرفت.</string>
-    <string name="sorry_string">ببخشید. نباید این اتّفاق می‌افتاد.</string>
-    <string name="error_report_button_text">گزارش خطا با نامه</string>
-    <string name="error_snackbar_message">ببخشید. چند مشکل رخ داد.</string>
+    <string name="youtube_signature_decryption_error">نمی‌توان امضای نشانی اینترنتی ویدیو را رمزگشایی کرد</string>
+    <string name="parsing_error">نمی‌توان پایگاه وب را تجزیه کرد</string>
+    <string name="light_parsing_error">نمی‌توان پایگاه وب را به صورت کامل تجزیه کرد</string>
+    <string name="content_not_available">محتوا در دسترس نیست</string>
+    <string name="could_not_setup_download_menu">نمی‌توان فهرست بارگیری را برپا ساخت</string>
+    <string name="live_streams_not_supported">جریان‌های زنده هنوز پشتیبانی نمی‌شوند</string>
+    <string name="could_not_get_stream">نمی‌توان هیچ جریانی را گرفت</string>
+    <string name="sorry_string">ببخشید! نباید این اتّفاق زخ می‌داد.</string>
+    <string name="error_report_button_text">گزارش خطا با رایانامه</string>
+    <string name="error_snackbar_message">ببخشید، چند مشکل رخ داد.</string>
     <string name="error_snackbar_action">گزارش</string>
     <string name="what_device_headline">اطّلاعات:</string>
     <string name="what_happened_headline">چه روی داد:</string>
     <string name="your_comment">توضیح شما (به انگلیسی):</string>
     <string name="error_details_headline">جزییات:</string>
     <string name="list_thumbnail_view_description">بندانگشتی پیش‌نمایش ویدیو</string>
-    <string name="detail_thumbnail_view_description">بندانگشتی پیش‌نمایش ویدیو</string>
-    <string name="detail_uploader_thumbnail_view_description">بندانگشتی کاربر بارگذار</string>
+    <string name="detail_thumbnail_view_description">پخش ویدیو، مدت زمان:</string>
+    <string name="detail_uploader_thumbnail_view_description">بندانگشتی کاربر بارگذاری کننده</string>
     <string name="detail_likes_img_view_description">پسندها</string>
     <string name="detail_dislikes_img_view_description">نپسندیدن‌ها</string>
     <string name="use_tor_title">استفاده از تور</string>
@@ -84,10 +84,10 @@
     <string name="video">ویدیو</string>
     <string name="audio">صدا</string>
     <string name="retry">تلاش دوباره</string>
-    <string name="storage_permission_denied">اجازهٔ دسترسی به انبار ذخیره رد شد</string>
+    <string name="storage_permission_denied">اجازهٔ دسترسی به فضای ذخیره رد شد</string>
     <string name="start">شروع</string>
     <string name="pause">مکث</string>
-    <string name="view">نمایش</string>
+    <string name="view">پخش</string>
     <string name="delete">حذف</string>
     <string name="checksum">مجموع مقابله‌ای</string>
     <string name="add">مآموریت جدید</string>
@@ -101,8 +101,8 @@
     <string name="msg_running">نیوپایپ در حال بارگیری است</string>
     <string name="msg_running_detail">برای جزییات، ضربه بزنید</string>
     <string name="msg_wait">لطفاً صبر کنید…</string>
-    <string name="msg_copied">در حافظه رونوشت شد.</string>
-    <string name="no_available_dir">لطفاً یک شاخهٔ بارگیری موجود را برگزینید.</string>
+    <string name="msg_copied">در حافظه رونوشت شد</string>
+    <string name="no_available_dir">پوشه بارگیری را بعدا در تنظیمات مشخص کنید</string>
     <string name="no_player_found_toast">هیچ پخش کننده جریانی پیدا نشد (شما می‌توانید برنامه وی‌ال‌سی را برای پخش آن نصب کنید).</string>
     <string name="controls_download_desc">بارگیری پرونده جریان</string>
     <string name="use_external_video_player_summary">حذف صدا در برخی کیفیت‌ها</string>
@@ -170,7 +170,7 @@
     <string name="minimize_on_exit_none_description">هیچ</string>
     <string name="best_resolution">بهترین وضوح</string>
     <string name="delete_view_history_alert">تمام تاریخچه نمایش پاک شود؟</string>
-    <string name="view_history_deleted">تاریخچه نمایش پاک شد.</string>
+    <string name="watch_history_deleted">تاریخچه نمایش پاک شد.</string>
     <string name="clear_search_history_title">پاک‌کردن تاریخچه جستجو</string>
     <string name="clear_search_history_summary">تاریخچه کلیدواژه‌های جستجو را پاک می‌کند</string>
     <string name="delete_search_history_alert">تمام تاریخچه جستجو پاک شود؟</string>
@@ -200,8 +200,8 @@
     </plurals>
     <string name="no_videos">بدون ویدئو</string>
     <plurals name="videos">
-        <item quantity="one">ویدئو</item>
-        <item quantity="other">ویدئو</item>
+        <item quantity="one">%s ویدئو</item>
+        <item quantity="other">%s ویدئو</item>
     </plurals>
     <string name="create">ایجاد</string>
     <string name="delete_one">پاک کردن یک مورد</string>
@@ -283,7 +283,7 @@
     <string name="unsubscribe">لغو اشتراک</string>
     <string name="tab_new">زبان جدید</string>
     <string name="tab_choose">انتخاب زبانه</string>
-    <string name="enable_watch_history_title">تاریخچه و حافظه نهان</string>
+    <string name="enable_watch_history_title">تاریخچه تماشا</string>
     <string name="settings_category_history_title">تاریخچه و حافظه نهان</string>
     <string name="settings_category_debug_title">اشکال‌زدایی</string>
     <string name="settings_category_updates_title">به‌روزرسانی‌ها</string>
@@ -295,4 +295,208 @@
     <string name="popup_remember_size_pos_summary">به یاد داشتن آخرین اندازه و موقعیت قبلی پنجره جداگانه</string>
     <string name="use_inexact_seek_title">زمان فعلی پخش کننده را به صورت تقریبی و سریع جلو ببر</string>
     <string name="use_inexact_seek_summary">این گزینه باعث می شود هنگام جلو/عقب کردن زمان تصویر، به جای زمان دقیق انتخاب شده، به زمان غیر دقیق و نزدیک به مکان انتخاب شده برود که این کار سریع تر انجام می شود</string>
+    <string name="app_ui_crash">کاره یا رابط کاربری با خطا مواجه شد</string>
+    <string name="reCaptchaActivity">ریکپچا</string>
+    <string name="settings_category_downloads_title">بارگیری</string>
+    <string name="toggle_orientation">تغییر جهت</string>
+    <string name="switch_to_background">تغییر وضعیت به پس‌زمینه</string>
+    <string name="switch_to_main">تغییر وضعیت به اصلی</string>
+    <string name="service_title">خدمت</string>
+    <string name="detail_drag_description">برای تغییر ترتیب، بکشید</string>
+    <string name="thumbnail_cache_wipe_complete_notice">حافظه نهان تصویر پاک شد</string>
+    <string name="import_settings">می‌خواهید تنظیمات را نیز وارد کنید؟</string>
+    <string name="playback_step">گام</string>
+    <string name="file_deleted">پرونده پاک شد</string>
+    <string name="app_update_notification_channel_name">اعلان به‌روزرسانی کاره</string>
+    <string name="app_update_notification_channel_description">اعلان‌ها برای نسخه جدید نیوپایپ</string>
+    <string name="restore_defaults">بازنشانی پیش‌فرض‌ها</string>
+    <string name="restore_defaults_confirmation">می‌خواهید پیش‌فرض‌ها را بازنشانی کنید؟</string>
+    <string name="selection">گلچین</string>
+    <string name="updates_setting_title">به‌روزرسانی‌ها</string>
+    <string name="list_view_mode">حالت نمایش سیاهه</string>
+    <string name="list">سیاهه</string>
+    <string name="grid">شبکه</string>
+    <string name="auto">خودکار</string>
+    <string name="switch_view">تغییر نمایش</string>
+    <string name="app_update_notification_content_title">به‌روزرسانی برای نیوپایپ موجود است!</string>
+    <string name="app_update_notification_content_text">برای بارگیری، لمس کنید</string>
+    <string name="missions_header_finished">تمام</string>
+    <string name="missions_header_pending">در انتظار</string>
+    <string name="enqueue">صف</string>
+    <string name="download_failed">بارگیری ناموفق بود</string>
+    <string name="download_finished">بارگیری پایان یافت</string>
+    <string name="error_http_not_found">یافت نشد</string>
+    <string name="error_postprocessing_failed">شکست در پساپردازش</string>
+    <string name="max_retry_desc">بیشینه تعداد تلاش‌ها پیش از لغو بارگیری</string>
+    <string name="events">رویدادها</string>
+    <string name="show_comments_title">نمایش نظرات</string>
+    <string name="show_comments_summary">غیرفعال کنید تا نمایش نظرات متوقف شود</string>
+    <string name="autoplay_title">پخش خودکار</string>
+    <plurals name="comments">
+        <item quantity="one">نظرات</item>
+        <item quantity="other"/>
+    </plurals>
+    <string name="no_comments">بدون نظر</string>
+    <string name="error_unable_to_load_comments">ناتوانی در دریافت نظرات</string>
+    <string name="resume_on_audio_focus_gain_title">ادامه پخش به محض فعال شدن</string>
+    <string name="enable_search_history_summary">ذخیره محلی نتایج جستجو</string>
+    <string name="auto_queue_summary">زمانی که صف پخش در حال پخش تکراری نیست، حین پخش آخرین جریان، یک جریان مرتبط به طور خودکار اضافه شود</string>
+    <string name="download_thumbnail_summary">برای جلوگیری از بارگیری تصاویر بندانگشتی و ذخیره فضای ذخیره‌سازی و مصرف داده، خاموش کنید. تغییرات باعث پاک شدن حافظه نهان تصاویر روی حافظه می‌شود.</string>
+    <string name="enable_playback_resume_title">ادامه پخش</string>
+    <string name="enable_playback_resume_summary">بازگرداندن آخرین موقعیت پخش</string>
+    <string name="enable_playback_state_lists_title">موقعیت در فهرست‌ها</string>
+    <string name="enable_playback_state_lists_summary">نمایش شاخص موقعیت پخش در فهرست‌ها</string>
+    <string name="settings_category_clear_data_title">پاک کردن داده‌ها</string>
+    <string name="download_choose_new_path">برای اثرگذاری، پوشه بارگیری را تغییر دهید</string>
+    <string name="resume_on_audio_focus_gain_summary">ادامه پخش بعد از قطع ناگهانی (مثل برقراری تماس)</string>
+    <string name="show_hold_to_append_title">نمایش نکته «برای افزودن، نگه‌دارید»</string>
+    <string name="show_hold_to_append_summary">نمایش نکته‌ها زمانی که در صفحه جزئیات ویدئو، دکمه تصویر در تصویر یا پخش در پس‌زمینه فشرده شود</string>
+    <string name="hold_to_append">برای در صف قرار دادن، نگه دارید</string>
+    <string name="player_gesture_controls_title">کنترل های اشاره ای پخش کننده</string>
+    <string name="player_gesture_controls_summary">از اشارات برای کنترل روشنایی و صدای پخش کننده استفاده کنید</string>
+    <string name="volume_gesture_control_title">کنترل اشاره ای صدا</string>
+    <string name="volume_gesture_control_summary">"برای کنترلصدای  پخش کننده از اشارات استفاده کنید"</string>
+    <string name="brightness_gesture_control_title">کنترل روشنایی اشاره ای</string>
+    <string name="brightness_gesture_control_summary">از اشارات برای کنترل روشنایی صفحه استفاده کنید</string>
+    <string name="undo">بازگردانی</string>
+    <string name="background_player_append">در صف پخش کننده پس‌زمینه قرار گرفت</string>
+    <string name="info_labels">چه:\\nدرخواست:\\nزبان درخواست:\\nخدمت:\\nزمان GMT:\\nنگارش:\\nنگارش س.ع:\\nبازه آی‌پی:</string>
+    <string name="reCaptcha_title">چالش ری‌کپچا</string>
+    <string name="recaptcha_request_toast">نیاز به چالش ری‌کپچا است</string>
+    <string name="msg_popup_permission">این مجوز مورد نیاز است
+\nتا بتوان به حالت تصویر در تصویر رفت</string>
+    <string name="popup_playing_toast">نمایش به صورت تصویر در تصویر</string>
+    <string name="settings_category_popup_title">تصویر در تصویر</string>
+    <string name="title_licenses">پروانه‌های شخص سوم</string>
+    <string name="copyright" formatted="true">© %1$s توسط %2$s تحت %3$s</string>
+    <string name="contribution_encouragement">اگر ایده‌ای برای ترجمه، تغییر طراحی، پاک‌سازی کد و یا تغییرات واقعا سنگین کدنویسی دارید، از کمک‌تان همواره استقبال می‌کنیم. هر چه بیشتر کار کنیم، نتایج بهتری می‌گیریم!</string>
+    <string name="notification_channel_description">اعلان برای پخش‌کننده تصویر در تصویر و پس‌زمینه نیوپایپ</string>
+    <string name="empty_subscription_feed_subtitle">چیزی جز کریکت اینجا نیست</string>
+    <string name="no_subscribers">فاقد مشترک</string>
+    <string name="popup_playing_append">قرار دادن در صف پخش به صورت تصویر در تصویر</string>
+    <string name="player_unrecoverable_failure">خطای عدم احیای پخش‌کننده رخ داد</string>
+    <string name="player_recoverable_failure">در حال احیا از خطای پخش‌کننده</string>
+    <string name="title_activity_popup_player">پخش‌کننده تصویر در تصویر</string>
+    <string name="enqueue_on_background">در صف پخش پس‌زمینه قرار بده</string>
+    <string name="enqueue_on_popup">در صف پخش تصویر در تصویر قرار بده</string>
+    <string name="start_here_on_main">شروع پخش در اینجا</string>
+    <string name="start_here_on_background">شروع پخش در پس‌زمینه</string>
+    <string name="start_here_on_popup">شروع پخش در حالت تصویر در تصویر</string>
+    <string name="donation_encouragement">نیوپایپ توسط داوطلبانی توسعه داده می‌شود که با صرف زمان، بهترین تجربه را برای شما به ارمغان می‌آورند. حمایت از توسعه‌دهندگان، به آنها کمک می‌کند تا حین نوشیدن یک فنجان قهوه، نیوپایپ را به مراتب بهتر کنند.</string>
+    <string name="give_back">حمایت</string>
+    <string name="website_encouragement">برای اطلاعات و اخبار بیشتر، به وب‌سایت نیوپایپ سر بزنید.</string>
+    <string name="switch_to_popup">تغییر وضعیت به تصویر در تصویر</string>
+    <string name="drawer_open">باز کردن کشو</string>
+    <string name="drawer_close">بستن کشو</string>
+    <string name="external_player_unsupported_link_type">پخش‌کننده خارجی، این نوع پیونده‌ها را پشتیبانی نمی‌کند</string>
+    <string name="popup_player">پخش‌کننده تصویر در تصویر</string>
+    <string name="export_complete_toast">صادر شد</string>
+    <string name="import_complete_toast">وارد شد</string>
+    <string name="no_valid_zip_file">پرونده zip معتبر نیست</string>
+    <string name="could_not_import_all_files">هشدار: ناتوانی در وارد کردن همه پرونده‌ها.</string>
+    <string name="override_current_data">این اقدام، همه تنظمات شما را بازنویسی می‌کند.</string>
+    <string name="bookmark_playlist">نشان‌گذاری سیاههٔ پخش</string>
+    <string name="unbookmark_playlist">حذف نشان</string>
+    <string name="resize_fit">اندازه‌کردن</string>
+    <string name="resize_fill">پر کردن</string>
+    <string name="resize_zoom">بزرگ‌نمایی</string>
+    <string name="drawer_header_action_paceholder_text">به زودی چیزی در اینجا نمایان خواهد شد :)</string>
+    <string name="caption_auto_generated">تولیدشدهٔ خودکار</string>
+    <string name="invalid_file">پرونده موجود نیست و یا مجوز خواندن یا نوشتن روی آن وجود ندارد</string>
+    <string name="import_file_title">وارد کردن پرونده</string>
+    <string name="previous_export">صادرکردن قبلی</string>
+    <string name="import_youtube_instructions">وارد کردن اشتراک‌های یوتیوب با بارگیری پرونده صادرشده:
+\n
+\n۱. به این نشانی بروید: %1$s
+\n۲. در صورت نیاز، وارد شوید
+\n۳. بارگیری باید شروع شده شود (این، همان پرونده صادر شده است)</string>
+    <string name="import_soundcloud_instructions">وارد کردن نمایه ساندکلاد با وارد کردن نشانی یا ID شما:
+\n
+\n۱. حالت میزکار را در مرورگر وب فعال کنید (سایت برای دستگاه‌های همراه در دسترس نیست)
+\n۲. به این نشانی بروید: %1$s
+\n۳. در صورت لزوم، وارد شوید
+\n۴. نشانی نمایه‌ای که به آن هدایت شده‌اید را کپی کنید.</string>
+    <string name="import_network_expensive_warning">در نظر داشته باشید که این عملیات می‌تواند داده زیادی مصرف کند.
+\n
+\nادامه می‌دهید؟</string>
+    <string name="metadata_cache_wipe_title">پاک کردن فرادادهٔ کش شده</string>
+    <string name="metadata_cache_wipe_complete_notice">فراداده‌های کش شده پاکش شدند</string>
+    <string name="playback_tempo">تندا</string>
+    <string name="playback_pitch">زیر و بمی</string>
+    <string name="unhook_checkbox">قطع پیوند (ممکن است باعث اعوجاج شود)</string>
+    <string name="preferred_open_action_settings_title">تریجیح کنش «باز کردن»</string>
+    <string name="preferred_open_action_settings_summary">کنش پیش‌فرض در زمان باز کردن محتوا — %s</string>
+    <string name="caption_setting_description">سبک پس‌زمینه و اندازه متن توضیحات پخش‌کننده را تغییر بده. برای تاثیرگذاری، نیازمند بازراه‌اندازی برنامه است.</string>
+    <string name="clear_views_history_summary">پاک کردن تاریخچه جریان‌های پخش شه و موقعیت‌های پخش</string>
+    <string name="app_license">نیوپایپ، یک نرم‌افزار آزاد کپی‌لِفت است: شما می‌توانید از آن استفاده، آن را بررسی کرده و به دیگران بدهید و اگر مایل باشید، بهترش کنید. به طور خاص، شما می‌توانید آن را تحت پروانه عمومی همگانی گنو نسخه ۳ و یا در صورت تمایل بالاتر، که توسط بنیاد نرم‌افزار آزاد منتشر شده تغییر داده و بازنشر دهید.</string>
+    <string name="privacy_policy_encouragement">حریم شخصی شما برای پروژه نیویایپ بسیاری جدی است. در نتیجه، این برنامه هیچ اطلاعاتی را بدون رضایت شما گردآوری نمی‌کند.
+\nسیاست‌های حریم شخصی نیوپایپ با جزئیات توضیح می‌دهد که وقتی گزارش یک خطا را می‌فرستید، چه داده‌هایی ذخیره و فرستاده می‌شود.</string>
+    <string name="start_accept_privacy_policy">به منظور هماهنگی با مقررات حفاظت داده عمومی اروپا (GDPR) در اینجا توجه شما را به سیاست حریم شخصی نیوپایپ جلب می‌کنیم. لطفا آن را به دقت مطالعه کنید.
+\nبرای فرستادن گزارش مشکل، باید این سیاست را بپذیرید.</string>
+    <string name="limit_mobile_data_usage_title">کیفیت را در زمان استفاده از داده همراه محدود کن</string>
+    <string name="skip_silence_checkbox">پرش به جلو حین سکوت</string>
+    <string name="playback_reset">بازنشانی</string>
+    <string name="download_to_sdcard_error_title">فضای ذخیره‌سازی خارجی در دسترس نیست</string>
+    <string name="download_to_sdcard_error_message">بارگیری روی کارت SD خارجی ممکن نیست. مایلید محل پوشه بارگیری را دوباره تعیین کنید؟</string>
+    <string name="saved_tabs_invalid_json">استفاده از برگه‌های پیش‌فرض، خطا حین خواندن برگه‌های ذخیره شده</string>
+    <string name="subscribers_count_not_available">تعداد مشترک‌شدگان دردسترس نیست</string>
+    <string name="main_page_content_summary">چه برگه‌هایی در صفحه اصلی نمایش پیدا کنند</string>
+    <string name="updates_setting_description">زمانی که نسخه جدید برنامه دردسرس است، اعلانی برای به‌روزرسانی نمایش بده</string>
+    <string name="paused">متوقف</string>
+    <string name="queued">در صف</string>
+    <string name="post_processing">در حال پساپردازش</string>
+    <string name="permission_denied">این کنش توسط سیستم متوقف شد</string>
+    <string name="download_finished_more">%s بارگیری پایان یافت</string>
+    <string name="generate_unique_name">تولید نام یگانه</string>
+    <string name="overwrite">بازنویسی</string>
+    <string name="download_already_running">یک بارگیری دیگر با همین نام در جریان است</string>
+    <string name="show_error">نمایش خطا</string>
+    <string name="label_code">کد</string>
+    <string name="error_path_creation">پوشه مقصد نمی‌تواند ساخته شود</string>
+    <string name="error_file_creation">پرونده نمی‌تواند ساخته شود</string>
+    <string name="error_permission_denied">مجوز از سوی سیستم رد شد</string>
+    <string name="error_ssl_exception">شکست در برقرار ارتباط امن</string>
+    <string name="error_unknown_host">ناتوانی در پیدا کردن کارساز</string>
+    <string name="error_connect_host">ناتوانی در اتصال به کارساز</string>
+    <string name="error_http_no_content">کارساز داده‌ای نمی‌فرستد</string>
+    <string name="error_http_unsupported_range">کارساز، بارگیری‌های چندرشته‌ای را قبول نمی‌کند، تلاش مجدد با ‎@string/msg_threads = 1</string>
+    <string name="error_http_requested_range_not_satisfiable">بازهٔ درخواست شده قابل قبول نیست</string>
+    <string name="clear_finished_download">پاک کردن بارگیری‌های تمام شده</string>
+    <string name="stop">توقف</string>
+    <string name="max_retry_msg">بیشینه تلاش مجدد</string>
+    <string name="pause_downloads_on_mobile_desc">این ویژگی زمانی که ارتباط را به داده همراه تغییر می‌دهید مفید است هرچند برخی بارگیری‌ها نمی‌توانند تعلیق شوند</string>
+    <string name="conferences">کنفرانس‌ها</string>
+    <string name="close">بستن</string>
+    <string name="watch_history_states_deleted">موقعیت‌های پخش حذف شدند.</string>
+    <string name="missing_file">پزونده حذف یا جابجا شده است</string>
+    <string name="overwrite_unrelated_warning">پرونده‌ای با همین نام وجود دارد</string>
+    <string name="overwrite_finished_warning">یک پرونده بارگیری شده با همین نام وجود دارد</string>
+    <string name="overwrite_failed">ناتوانی در بازنویسی پرونده</string>
+    <string name="download_already_pending">یک بارگیری دیگر با همین نام در صف قرار دارد</string>
+    <string name="error_postprocessing_stopped">نیوپایپ در خلال کار روی پرونده، بسته شد</string>
+    <string name="error_insufficient_storage">فضایی روی دستگاه باقی نمانده است</string>
+    <string name="error_progress_lost">پیشرفت کار متوفق شد زیرا پرونده پاک شده است</string>
+    <string name="error_timeout">پایان زمان اتصال</string>
+    <string name="confirm_prompt">مطمئنید؟</string>
+    <string name="enable_queue_limit">محدود کردن صف بارگیری</string>
+    <string name="enable_queue_limit_desc">یک بارگیری در هر زمان اجرا شود</string>
+    <string name="start_downloads">شروع بارگیری‌ها</string>
+    <string name="pause_downloads">مکث بارگیری‌ها</string>
+    <string name="downloads_storage_ask_title">محل بارگیری را سوال کن</string>
+    <string name="downloads_storage_ask_summary">برای هر بارگیری از شما پرسیده خواهد شد که کجا ذخیره شود</string>
+    <string name="downloads_storage_ask_summary_kitkat">از شما پرسیده خواهد شد که هر بارگیری کجا ذخیره شود.
+\nاگر می‌خواهید بارگیری در کارت SD خارجی ذخیره شود، گزینه SAF را انتخاب کنید</string>
+    <string name="downloads_storage_use_saf_title">استفاده از SAF</string>
+    <string name="downloads_storage_use_saf_summary">چارچوب دسترسی حافظه اجازه دخیره بارگیری‌ها در کارت SD خارجی را می‌دهد.
+\nنکته: برخی دستگاه‌ها با این قابلیت سازگاری ندارند</string>
+    <string name="clear_playback_states_title">حذف موقعیت‌های پخش</string>
+    <string name="clear_playback_states_summary">حذف تمام موقعیت‌های پخش</string>
+    <string name="delete_playback_states_alert">همه موقعیت‌های پخش حذف شوند؟</string>
+    <string name="enable_leak_canary_summary">نظارت بر نشت حافظه ممکن است باعث عدم پاسخگویی نرم افزار در زمان اندوختن حافظه \"هیپ\" شود.</string>
+    <string name="enable_disposed_exceptions_title">گزارش کردن خطاهای \"خارج از چرخه حیات\"</string>
+    <string name="metadata_cache_wipe_summary">حذف حافظه کش شده همه صفحات وب</string>
+    <string name="minimize_on_exit_background_description">کوچک کردن پخش کننده به پس زمینه</string>
+    <string name="import_soundcloud_instructions_hint">آی‌دی شما، soundcloud.com/yourid</string>
+    <string name="minimize_on_exit_summary">عملکرد هنگام تغییر به برنامه دیگر از پخش‌کننده اصلی فیلم — %s</string>
+    <string name="tracks">آهنگ‌ها</string>
 </resources>

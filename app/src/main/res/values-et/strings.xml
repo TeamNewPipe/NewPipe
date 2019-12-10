@@ -137,7 +137,7 @@
     <string name="clear_views_history_title">Puhasta vaatamiste ajalugu</string>
     <string name="clear_views_history_summary">Kustutab vaadatud voogude ajaloo</string>
     <string name="delete_view_history_alert">Kas kustutada kogu vaatamiste ajalugu\?</string>
-    <string name="view_history_deleted">Vaatamiste ajalugu kustutati.</string>
+    <string name="watch_history_deleted">Vaatamiste ajalugu kustutati.</string>
     <string name="clear_search_history_title">Kustuta otsinguajalugu</string>
     <string name="clear_search_history_summary">Kustutab otsisõnade ajaloo</string>
     <string name="delete_search_history_alert">Kas kustutada kogu otsinguajalugu\?</string>
@@ -457,11 +457,9 @@
     <string name="error_connect_host">Serveriga ei saadud ühendust</string>
     <string name="error_http_no_content">Server ei saada andmeid</string>
     <string name="error_http_unsupported_range">Server ei toeta mitmelõimelisi allalaadimisi. Proovi uuesti kasutades @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">Taotletud vahemik ei ole rahuldatav</string>
     <string name="error_http_not_found">Ei leitud</string>
     <string name="error_postprocessing_failed">Järeltöötlemine nurjus</string>
     <string name="clear_finished_download">Eemalda lõpetatud allalaadimised</string>
-    <string name="msg_pending_downloads">Jätka %s pooleliolevat allalaadimist</string>
     <string name="stop">Stopp</string>
     <string name="max_retry_msg">Korduskatseid</string>
     <string name="max_retry_desc">Suurim katsete arv enne allalaadimise tühistamist</string>

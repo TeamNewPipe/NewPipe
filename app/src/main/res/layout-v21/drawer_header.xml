@@ -9,6 +9,7 @@
         android:id="@+id/drawer_header_action_button"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@string/drawer_header_description"
         android:background="?android:attr/selectableItemBackground" />
 
     <ImageView
@@ -46,15 +47,22 @@
 
     <TextView
         android:id="@+id/drawer_header_service_view"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="100dp"
         android:layout_alignLeft="@id/drawer_header_np_text_view"
         android:layout_alignStart="@id/drawer_header_np_text_view"
         android:layout_below="@id/drawer_header_np_text_view"
+        android:layout_toLeftOf="@id/drawer_arrow"
+        android:layout_marginRight="5dp"
         android:text="YouTube"
         android:textSize="18sp"
         android:textColor="@color/drawer_header_font_color"
-        android:textStyle="italic" />
+        android:textStyle="italic"
+        android:ellipsize="marquee"
+        android:fadingEdge="horizontal"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:singleLine="true" />
 
     <ImageView
         android:id="@+id/drawer_arrow"

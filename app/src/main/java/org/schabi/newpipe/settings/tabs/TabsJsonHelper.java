@@ -1,7 +1,5 @@
 package org.schabi.newpipe.settings.tabs;
 
-import android.support.annotation.Nullable;
-
 import com.grack.nanojson.JsonArray;
 import com.grack.nanojson.JsonObject;
 import com.grack.nanojson.JsonParser;
@@ -9,17 +7,24 @@ import com.grack.nanojson.JsonParserException;
 import com.grack.nanojson.JsonStringWriter;
 import com.grack.nanojson.JsonWriter;
 
-import org.jsoup.helper.StringUtil;
-
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import androidx.annotation.Nullable;
 
 /**
  * Class to get a JSON representation of a list of tabs, and the other way around.
  */
 public class TabsJsonHelper {
     private static final String JSON_TABS_ARRAY_KEY = "tabs";
+
+    private static final List<Tab> FALLBACK_INITIAL_TABS_LIST = Collections.unmodifiableList(Arrays.asList(
+            Tab.Type.DEFAULT_KIOSK.getTab(),
+            Tab.Type.SUBSCRIPTIONS.getTab(),
+            Tab.Type.BOOKMARKS.getTab()
+    ));
 
     public static class InvalidJsonException extends Exception {
         private InvalidJsonException() {
@@ -83,16 +88,6 @@ public class TabsJsonHelper {
         return returnTabs;
     }
 
-    public static List<Tab> getDefaultTabs(){
-        List<Tab> tabs = new ArrayList<>();
-        Tab.DefaultKioskTab tab = new Tab.DefaultKioskTab();
-        if(!StringUtil.isBlank(tab.getKioskId())){
-            tabs.add(tab);
-        }
-        tabs.add(Tab.Type.SUBSCRIPTIONS.getTab());
-        tabs.add(Tab.Type.BOOKMARKS.getTab());
-        return Collections.unmodifiableList(tabs);
-    }
     /**
      * Get a JSON representation from a list of tabs.
      *
@@ -111,5 +106,9 @@ public class TabsJsonHelper {
 
         jsonWriter.end();
         return jsonWriter.done();
+    }
+
+    public static List<Tab> getDefaultTabs(){
+        return FALLBACK_INITIAL_TABS_LIST;
     }
 }

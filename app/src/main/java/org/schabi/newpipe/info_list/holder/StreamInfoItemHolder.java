@@ -1,16 +1,19 @@
 package org.schabi.newpipe.info_list.holder;
 
-import android.support.annotation.Nullable;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
+import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.Localization;
+
+import static org.schabi.newpipe.MainActivity.DEBUG;
 
 /*
  * Created by Christian Schabesberger on 01.08.16.
@@ -42,8 +45,8 @@ public class StreamInfoItemHolder extends StreamMiniInfoItemHolder {
     }
 
     @Override
-    public void updateFromItem(final InfoItem infoItem, @Nullable final StreamStateEntity state) {
-        super.updateFromItem(infoItem, state);
+    public void updateFromItem(final InfoItem infoItem, final HistoryRecordManager historyRecordManager) {
+        super.updateFromItem(infoItem, historyRecordManager);
 
         if (!(infoItem instanceof StreamInfoItem)) return;
         final StreamInfoItem item = (StreamInfoItem) infoItem;
@@ -54,15 +57,38 @@ public class StreamInfoItemHolder extends StreamMiniInfoItemHolder {
     private String getStreamInfoDetailLine(final StreamInfoItem infoItem) {
         String viewsAndDate = "";
         if (infoItem.getViewCount() >= 0) {
-            viewsAndDate = Localization.shortViewCount(itemBuilder.getContext(), infoItem.getViewCount());
-        }
-        if (!TextUtils.isEmpty(infoItem.getUploadDate())) {
-            if (viewsAndDate.isEmpty()) {
-                viewsAndDate = infoItem.getUploadDate();
+            if (infoItem.getStreamType().equals(StreamType.AUDIO_LIVE_STREAM)) {
+                viewsAndDate = Localization.listeningCount(itemBuilder.getContext(), infoItem.getViewCount());
+            } else if (infoItem.getStreamType().equals(StreamType.LIVE_STREAM)) {
+                viewsAndDate = Localization.watchingCount(itemBuilder.getContext(), infoItem.getViewCount());
             } else {
-                viewsAndDate += " • " + infoItem.getUploadDate();
+                viewsAndDate = Localization.shortViewCount(itemBuilder.getContext(), infoItem.getViewCount());
             }
         }
+
+        final String uploadDate = getFormattedRelativeUploadDate(infoItem);
+        if (!TextUtils.isEmpty(uploadDate)) {
+            if (viewsAndDate.isEmpty()) {
+                return uploadDate;
+            }
+
+            return Localization.concatenateStrings(viewsAndDate, uploadDate);
+        }
+
         return viewsAndDate;
+    }
+
+    private String getFormattedRelativeUploadDate(final StreamInfoItem infoItem) {
+        if (infoItem.getUploadDate() != null) {
+            String formattedRelativeTime = Localization.relativeTime(infoItem.getUploadDate().date());
+
+            if (DEBUG && PreferenceManager.getDefaultSharedPreferences(itemBuilder.getContext())
+                    .getBoolean(itemBuilder.getContext().getString(R.string.show_original_time_ago_key), false)) {
+                formattedRelativeTime += " (" + infoItem.getTextualUploadDate() + ")";
+            }
+            return formattedRelativeTime;
+        } else {
+            return infoItem.getTextualUploadDate();
+        }
     }
 }

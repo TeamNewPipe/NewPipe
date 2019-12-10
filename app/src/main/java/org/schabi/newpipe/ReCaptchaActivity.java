@@ -5,13 +5,12 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.core.app.NavUtils;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 import android.webkit.CookieManager;
-import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -37,14 +36,23 @@ import android.webkit.WebViewClient;
  */
 public class ReCaptchaActivity extends AppCompatActivity {
     public static final int RECAPTCHA_REQUEST = 10;
+    public static final String RECAPTCHA_URL_EXTRA = "recaptcha_url_extra";
 
     public static final String TAG = ReCaptchaActivity.class.toString();
     public static final String YT_URL = "https://www.youtube.com";
+
+    private String url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recaptcha);
+
+        url = getIntent().getStringExtra(RECAPTCHA_URL_EXTRA);
+        if (url == null || url.isEmpty()) {
+            url = YT_URL;
+        }
+
 
         // Set return to Cancel by default
         setResult(RESULT_CANCELED);
@@ -73,15 +81,12 @@ public class ReCaptchaActivity extends AppCompatActivity {
         myWebView.clearHistory();
         android.webkit.CookieManager cookieManager = CookieManager.getInstance();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            cookieManager.removeAllCookies(new ValueCallback<Boolean>() {
-                @Override
-                public void onReceiveValue(Boolean aBoolean) {}
-            });
+            cookieManager.removeAllCookies(aBoolean -> {});
         } else {
             cookieManager.removeAllCookie();
         }
 
-        myWebView.loadUrl(YT_URL);
+        myWebView.loadUrl(url);
     }
 
     private class ReCaptchaWebViewClient extends WebViewClient {
@@ -107,7 +112,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
             // find cookies : s_gl & goojf and Add cookies to Downloader
             if (find_access_cookies(cookies)) {
                 // Give cookies to Downloader class
-                Downloader.getInstance().setCookies(mCookies);
+                DownloaderImpl.getInstance().setCookies(mCookies);
 
                 // Closing activity and return to parent
                 setResult(RESULT_OK);

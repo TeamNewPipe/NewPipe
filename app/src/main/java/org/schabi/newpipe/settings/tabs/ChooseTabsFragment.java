@@ -4,18 +4,18 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.content.res.AppCompatResources;
-import android.support.v7.widget.AppCompatImageView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -231,7 +231,7 @@ public class ChooseTabsFragment extends Fragment {
                     break;
                 case DEFAULT_KIOSK:
                     if (!tabList.contains(tab)) {
-                        returnList.add(new ChooseTabListItem(tab.getTabId(), "Default Kiosk",
+                        returnList.add(new ChooseTabListItem(tab.getTabId(), getString(R.string.default_kiosk_page_summary),
                                 ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_hot)));
                     }
                     break;
@@ -305,22 +305,24 @@ public class ChooseTabsFragment extends Fragment {
                     return;
                 }
 
-                String tabName = tab.getTabName(requireContext());
+                final String tabName;
                 switch (type) {
                     case BLANK:
-                        tabName = requireContext().getString(R.string.blank_page_summary);
-                        break;
-                    case KIOSK:
-                        tabName = NewPipe.getNameOfService(((Tab.KioskTab) tab).getKioskServiceId()) + "/" + tabName;
-                        break;
-                    case CHANNEL:
-                        tabName = NewPipe.getNameOfService(((Tab.ChannelTab) tab).getChannelServiceId()) + "/" + tabName;
+                        tabName = getString(R.string.blank_page_summary);
                         break;
                     case DEFAULT_KIOSK:
-                        tabName = "Default Kiosk";
+                        tabName = getString(R.string.default_kiosk_page_summary);
+                        break;
+                    case KIOSK:
+                        tabName = NewPipe.getNameOfService(((Tab.KioskTab) tab).getKioskServiceId()) + "/" + tab.getTabName(requireContext());
+                        break;
+                    case CHANNEL:
+                        tabName = NewPipe.getNameOfService(((Tab.ChannelTab) tab).getChannelServiceId()) + "/" + tab.getTabName(requireContext());
+                        break;
+                    default:
+                        tabName = tab.getTabName(requireContext());
                         break;
                 }
-
 
                 tabNameView.setText(tabName);
                 tabIconView.setImageResource(tab.getTabIconRes(requireContext()));

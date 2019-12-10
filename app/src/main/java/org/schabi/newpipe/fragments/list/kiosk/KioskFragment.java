@@ -1,9 +1,11 @@
 package org.schabi.newpipe.fragments.list.kiosk;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.ActionBar;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,10 +19,12 @@ import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.kiosk.KioskInfo;
 import org.schabi.newpipe.extractor.linkhandler.ListLinkHandlerFactory;
+import org.schabi.newpipe.extractor.localization.ContentCountry;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.KioskTranslator;
+import org.schabi.newpipe.util.Localization;
 
 import icepick.State;
 import io.reactivex.Single;
@@ -52,6 +56,8 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
     @State
     protected String kioskId = "";
     protected String kioskTranslatedName;
+    @State
+    protected ContentCountry contentCountry;
 
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -87,6 +93,7 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
 
         kioskTranslatedName = KioskTranslator.getTranslatedKioskName(kioskId, activity);
         name = kioskTranslatedName;
+        contentCountry = Localization.getPreferredContentCountry(requireContext());
     }
 
     @Override
@@ -108,6 +115,15 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
         return inflater.inflate(R.layout.fragment_kiosk, container, false);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (!Localization.getPreferredContentCountry(requireContext()).equals(contentCountry)) {
+            reloadContent();
+        }
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Menu
     //////////////////////////////////////////////////////////////////////////*/
@@ -127,6 +143,7 @@ public class KioskFragment extends BaseListInfoFragment<KioskInfo> {
 
     @Override
     public Single<KioskInfo> loadResult(boolean forceReload) {
+        contentCountry = Localization.getPreferredContentCountry(requireContext());
         return ExtractorHelper.getKioskInfo(serviceId,
                 url,
                 forceReload);

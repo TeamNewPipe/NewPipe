@@ -22,9 +22,9 @@ package org.schabi.newpipe.util;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.preference.PreferenceManager;
-import android.support.annotation.AttrRes;
-import android.support.annotation.StyleRes;
-import android.support.v4.content.ContextCompat;
+import androidx.annotation.AttrRes;
+import androidx.annotation.StyleRes;
+import androidx.core.content.ContextCompat;
 import android.util.TypedValue;
 import android.view.ContextThemeWrapper;
 

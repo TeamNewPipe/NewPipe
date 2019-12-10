@@ -112,8 +112,8 @@
     <!-- DEBUG ONLY -->
     <string name="debug_pref_screen_key" translatable="false">debug_pref_screen_key</string>
     <string name="allow_heap_dumping_key" translatable="false">allow_heap_dumping_key</string>
-
     <string name="allow_disposed_exceptions_key" translatable="false">allow_disposed_exceptions_key</string>
+    <string name="show_original_time_ago_key" translatable="false">show_original_time_ago_text_key</string>
 
     <!-- THEMES -->
     <string name="theme_key" translatable="false">theme</string>
@@ -134,6 +134,7 @@
 
     <!-- Caption Size -->
     <string name="caption_settings_key" translatable="false">caption_settings_key</string>
+    <string name="caption_user_set_key" translatable="false">caption_user_set_key</string>
 
     <!-- Content & History -->
     <string name="show_search_suggestions_key" translatable="false">show_search_suggestions</string>
@@ -145,6 +146,9 @@
     <string name="default_language_value">en</string>
     <string name="default_country_value">GB</string>
     <string name="content_language_key" translatable="false">content_language</string>
+    <string name="peertube_instance_setup_key" translatable="false">peertube_instance_setup</string>
+    <string name="peertube_selected_instance_key" translatable="false">peertube_selected_instance</string>
+    <string name="peertube_instance_list_key" translatable="false">peertube_instance_list</string>
     <string name="content_country_key" translatable="false">content_country</string>
     <string name="show_age_restricted_content" translatable="false">show_age_restricted_content</string>
     <string name="use_tor_key" translatable="false">use_tor</string>
@@ -154,16 +158,18 @@
     <string name="enable_playback_resume_key" translatable="false">enable_playback_resume</string>
     <string name="enable_playback_state_lists_key" translatable="false">enable_playback_state_lists</string>
 
-    <string name="import_data">import_data</string>
-    <string name="export_data">export_data</string>
+    <string name="import_data" translatable="false">import_data</string>
+    <string name="export_data" translatable="false">export_data</string>
 
     <string name="download_thumbnail_key" translatable="false">download_thumbnail_key</string>
 
     <string name="metadata_cache_wipe_key" translatable="false">cache_wipe_key</string>
     <string name="clear_views_history_key" translatable="false">clear_play_history</string>
+    <string name="clear_playback_states_key" translatable="false">clear_playback_states</string>
     <string name="clear_search_history_key" translatable="false">clear_search_history</string>
 
     <string name="downloads_storage_ask" translatable="false">downloads_storage_ask</string>
+    <string name="storage_use_saf" translatable="false">storage_use_saf</string>
 
     <!-- FileName Downloads  -->
     <string name="settings_file_charset_key" translatable="false">file_rename_charset</string>

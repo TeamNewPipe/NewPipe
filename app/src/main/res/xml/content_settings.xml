@@ -5,6 +5,15 @@
     android:title="@string/content">
     <ListPreference
         app:iconSpaceReserved="false"
+        android:defaultValue="@string/default_language_value"
+        android:entries="@array/language_names"
+        android:entryValues="@array/language_codes"
+        android:key="@string/content_language_key"
+        android:summary="%s"
+        android:title="@string/content_language_title"/>
+
+    <ListPreference
+        app:iconSpaceReserved="false"
         android:defaultValue="@string/default_country_value"
         android:entries="@array/country_names"
         android:entryValues="@array/country_codes"
@@ -12,14 +21,12 @@
         android:summary="%s"
         android:title="@string/default_content_country_title"/>
 
-    <ListPreference
+    <PreferenceScreen
         app:iconSpaceReserved="false"
-        android:defaultValue="@string/default_language_value"
-        android:entries="@array/language_names"
-        android:entryValues="@array/language_codes"
-        android:key="@string/content_language_key"
-        android:summary="%s"
-        android:title="@string/content_language_title"/>
+        android:fragment="org.schabi.newpipe.settings.PeertubeInstanceListFragment"
+        android:key="@string/peertube_instance_setup_key"
+        android:title="@string/peertube_instance_url_title"
+        android:summary="@string/peertube_instance_url_summary"/>
 
     <SwitchPreference
         app:iconSpaceReserved="false"

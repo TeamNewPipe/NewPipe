@@ -2,13 +2,14 @@ package org.schabi.newpipe.util;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.content.Loader;
-import android.support.v7.util.SortedList;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.loader.content.Loader;
+import androidx.recyclerview.widget.SortedList;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +30,7 @@ public class FilePickerActivityHelper extends com.nononsenseapps.filepicker.File
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        if(ThemeHelper.isLightThemeSelected(this)) {
+        if (ThemeHelper.isLightThemeSelected(this)) {
             this.setTheme(R.style.FilePickerThemeLight);
         } else {
             this.setTheme(R.style.FilePickerThemeDark);
@@ -73,6 +74,11 @@ public class FilePickerActivityHelper extends com.nononsenseapps.filepicker.File
                 .putExtra(FilePickerActivityHelper.EXTRA_MODE, FilePickerActivityHelper.MODE_NEW_FILE);
     }
 
+    public static boolean isOwnFileUri(@NonNull Context context, @NonNull Uri uri) {
+        if (uri.getAuthority() == null) return false;
+        return uri.getAuthority().startsWith(context.getPackageName());
+    }
+
     /*//////////////////////////////////////////////////////////////////////////
     // Internal
     //////////////////////////////////////////////////////////////////////////*/
@@ -107,6 +113,12 @@ public class FilePickerActivityHelper extends com.nononsenseapps.filepicker.File
             }
 
             super.onClickOk(view);
+        }
+
+        @Override
+        protected boolean isItemVisible(@NonNull File file) {
+            if (file.isDirectory() && file.isHidden()) return true;
+            return super.isItemVisible(file);
         }
 
         public File getBackTop() {

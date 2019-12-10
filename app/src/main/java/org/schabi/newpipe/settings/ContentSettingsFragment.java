@@ -7,9 +7,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.preference.Preference;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.preference.Preference;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -18,7 +18,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.utils.Localization;
+import org.schabi.newpipe.extractor.localization.ContentCountry;
+import org.schabi.newpipe.extractor.localization.Localization;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.FilePickerActivityHelper;
@@ -53,10 +54,16 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
     private String thumbnailLoadToggleKey;
 
+    private Localization initialSelectedLocalization;
+    private ContentCountry initialSelectedContentCountry;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         thumbnailLoadToggleKey = getString(R.string.download_thumbnail_key);
+
+        initialSelectedLocalization = org.schabi.newpipe.util.Localization.getPreferredLocalization(requireContext());
+        initialSelectedContentCountry = org.schabi.newpipe.util.Localization.getPreferredContentCountry(requireContext());
     }
 
     @Override
@@ -108,20 +115,23 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             startActivityForResult(i, REQUEST_EXPORT_PATH);
             return true;
         });
+    }
 
-        Preference setPreferredLanguage = findPreference(getString(R.string.content_language_key));
-        setPreferredLanguage.setOnPreferenceChangeListener((Preference p, Object newLanguage) -> {
-            Localization oldLocal = org.schabi.newpipe.util.Localization.getPreferredExtractorLocal(getActivity());
-            NewPipe.setLocalization(new Localization(oldLocal.getCountry(), (String) newLanguage));
-            return true;
-        });
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
 
-        Preference setPreferredCountry = findPreference(getString(R.string.content_country_key));
-        setPreferredCountry.setOnPreferenceChangeListener((Preference p, Object newCountry) -> {
-            Localization oldLocal = org.schabi.newpipe.util.Localization.getPreferredExtractorLocal(getActivity());
-            NewPipe.setLocalization(new Localization((String) newCountry, oldLocal.getLanguage()));
-            return true;
-        });
+        final Localization selectedLocalization = org.schabi.newpipe.util.Localization
+                .getPreferredLocalization(requireContext());
+        final ContentCountry selectedContentCountry = org.schabi.newpipe.util.Localization
+                .getPreferredContentCountry(requireContext());
+
+        if (!selectedLocalization.equals(initialSelectedLocalization)
+                || !selectedContentCountry.equals(initialSelectedContentCountry)) {
+            Toast.makeText(requireContext(), R.string.localization_changes_requires_app_restart, Toast.LENGTH_LONG).show();
+
+            NewPipe.setupLocalization(selectedLocalization, selectedContentCountry);
+        }
     }
 
     @Override
@@ -274,7 +284,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 else if (v instanceof String)
                     prefEdit.putString(key, ((String) v));
             }
-            prefEdit.apply();
+            prefEdit.commit();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

@@ -35,9 +35,9 @@ import android.graphics.PixelFormat;
 import android.os.Build;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.NotificationCompat;
+import androidx.annotation.NonNull;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.core.app.NotificationCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
@@ -1085,7 +1085,7 @@ public final class PopupVideoPlayer extends Service {
             Log.d("onTouch", v.toString());
             popupGestureDetector.onTouchEvent(event);
             if (playerImpl == null) return false;
-            if (event.getPointerCount() == 2 && !isResizing) {
+            if (event.getPointerCount() == 2 && !isMoving && !isResizing) {
                 if (DEBUG) Log.d(TAG, "onTouch() 2 finger pointer detected, enabling resizing.");
                 playerImpl.showAndAnimateControl(-1, true);
                 playerImpl.getLoadingPanel().setVisibility(View.GONE);

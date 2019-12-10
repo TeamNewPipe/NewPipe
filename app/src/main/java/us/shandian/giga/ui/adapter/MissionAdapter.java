@@ -9,18 +9,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
-import android.support.v4.content.FileProvider;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.util.DiffUtil;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.Adapter;
-import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.HapticFeedbackConstants;
@@ -35,8 +24,20 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.FileProvider;
+import androidx.core.view.ViewCompat;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView.Adapter;
+import androidx.recyclerview.widget.RecyclerView.ViewHolder;
+
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -45,11 +46,11 @@ import java.io.File;
 import java.lang.ref.WeakReference;
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Collections;
 
 import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.get.FinishedMission;
 import us.shandian.giga.get.Mission;
+import us.shandian.giga.get.MissionRecoveryInfo;
 import us.shandian.giga.io.StoredFileHelper;
 import us.shandian.giga.service.DownloadManager;
 import us.shandian.giga.service.DownloadManagerService;
@@ -63,7 +64,6 @@ import static android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION;
 import static us.shandian.giga.get.DownloadMission.ERROR_CONNECT_HOST;
 import static us.shandian.giga.get.DownloadMission.ERROR_FILE_CREATION;
 import static us.shandian.giga.get.DownloadMission.ERROR_HTTP_NO_CONTENT;
-import static us.shandian.giga.get.DownloadMission.ERROR_HTTP_UNSUPPORTED_RANGE;
 import static us.shandian.giga.get.DownloadMission.ERROR_INSUFFICIENT_STORAGE;
 import static us.shandian.giga.get.DownloadMission.ERROR_NOTHING;
 import static us.shandian.giga.get.DownloadMission.ERROR_PATH_CREATION;
@@ -72,16 +72,18 @@ import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING;
 import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING_HOLD;
 import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING_STOPPED;
 import static us.shandian.giga.get.DownloadMission.ERROR_PROGRESS_LOST;
+import static us.shandian.giga.get.DownloadMission.ERROR_RESOURCE_GONE;
 import static us.shandian.giga.get.DownloadMission.ERROR_SSL_EXCEPTION;
 import static us.shandian.giga.get.DownloadMission.ERROR_TIMEOUT;
 import static us.shandian.giga.get.DownloadMission.ERROR_UNKNOWN_EXCEPTION;
 import static us.shandian.giga.get.DownloadMission.ERROR_UNKNOWN_HOST;
 
-public class MissionAdapter extends Adapter<ViewHolder> {
+public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callback {
     private static final SparseArray<String> ALGORITHMS = new SparseArray<>();
     private static final String TAG = "MissionAdapter";
     private static final String UNDEFINED_PROGRESS = "--.-%";
     private static final String DEFAULT_MIME_TYPE = "*/*";
+    private static final String UNDEFINED_ETA = "--:--";
 
 
     static {
@@ -103,41 +105,25 @@ public class MissionAdapter extends Adapter<ViewHolder> {
     private View mEmptyMessage;
     private RecoverHelper mRecover;
 
-    public MissionAdapter(Context context, @NonNull DownloadManager downloadManager, View emptyMessage) {
+    private final Runnable rUpdater = this::updater;
+
+    public MissionAdapter(Context context, @NonNull DownloadManager downloadManager, View emptyMessage, View root) {
         mContext = context;
         mDownloadManager = downloadManager;
-        mDeleter = null;
 
         mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mLayout = R.layout.mission_item;
 
-        mHandler = new Handler(Looper.myLooper()) {
-            @Override
-            public void handleMessage(Message msg) {
-                switch (msg.what) {
-                    case DownloadManagerService.MESSAGE_PROGRESS:
-                    case DownloadManagerService.MESSAGE_ERROR:
-                    case DownloadManagerService.MESSAGE_FINISHED:
-                        onServiceMessage(msg);
-                        break;
-                }
-
-                if (mStartButton != null && mPauseButton != null) switch (msg.what) {
-                    case DownloadManagerService.MESSAGE_DELETED:
-                    case DownloadManagerService.MESSAGE_ERROR:
-                    case DownloadManagerService.MESSAGE_FINISHED:
-                    case DownloadManagerService.MESSAGE_PAUSED:
-                        checkMasterButtonsVisibility();
-                        break;
-                }
-            }
-        };
+        mHandler = new Handler(context.getMainLooper());
 
         mEmptyMessage = emptyMessage;
 
         mIterator = downloadManager.getIterator();
 
+        mDeleter = new Deleter(root, mContext, this, mDownloadManager, mIterator, mHandler);
+
         checkEmptyMessageVisibility();
+        onResume();
     }
 
     @Override
@@ -162,18 +148,13 @@ public class MissionAdapter extends Adapter<ViewHolder> {
         if (h.item.mission instanceof DownloadMission) {
             mPendingDownloadsItems.remove(h);
             if (mPendingDownloadsItems.size() < 1) {
-                setAutoRefresh(false);
-                if (mStartButton != null) mStartButton.setVisible(false);
-                if (mPauseButton != null) mPauseButton.setVisible(false);
+                checkMasterButtonsVisibility();
             }
         }
 
         h.popupMenu.dismiss();
         h.item = null;
-        h.lastTimeStamp = -1;
-        h.lastDone = -1;
-        h.lastCurrent = -1;
-        h.state = 0;
+        h.resetSpeedMeasure();
     }
 
     @Override
@@ -212,7 +193,6 @@ public class MissionAdapter extends Adapter<ViewHolder> {
 
             h.size.setText(length);
             h.pause.setTitle(mission.unknownLength ? R.string.stop : R.string.pause);
-            h.lastCurrent = mission.current;
             updateProgress(h);
             mPendingDownloadsItems.add(h);
         } else {
@@ -237,40 +217,27 @@ public class MissionAdapter extends Adapter<ViewHolder> {
     private void updateProgress(ViewHolderItem h) {
         if (h == null || h.item == null || h.item.mission instanceof FinishedMission) return;
 
-        long now = System.currentTimeMillis();
         DownloadMission mission = (DownloadMission) h.item.mission;
-
-        if (h.lastCurrent != mission.current) {
-            h.lastCurrent = mission.current;
-            h.lastTimeStamp = now;
-            h.lastDone = 0;
-        } else {
-            if (h.lastTimeStamp == -1) h.lastTimeStamp = now;
-            if (h.lastDone == -1) h.lastDone = mission.done;
-        }
-
-        long deltaTime = now - h.lastTimeStamp;
-        long deltaDone = mission.done - h.lastDone;
+        double done = mission.done;
+        long length = mission.getLength();
+        long now = System.currentTimeMillis();
         boolean hasError = mission.errCode != ERROR_NOTHING;
 
         // hide on error
         // show if current resource length is not fetched
         // show if length is unknown
-        h.progress.setMarquee(!hasError && (!mission.isInitialized() || mission.unknownLength));
+        h.progress.setMarquee(mission.isRecovering() || !hasError && (!mission.isInitialized() || mission.unknownLength));
 
-        float progress;
+        double progress;
         if (mission.unknownLength) {
-            progress = Float.NaN;
+            progress = Double.NaN;
             h.progress.setProgress(0f);
         } else {
-            progress = (float) ((double) mission.done / mission.length);
-            if (mission.urls.length > 1 && mission.current < mission.urls.length) {
-                progress = (progress / mission.urls.length) + ((float) mission.current / mission.urls.length);
-            }
+            progress = done / length;
         }
 
         if (hasError) {
-            h.progress.setProgress(isNotFinite(progress) ? 1f : progress);
+            h.progress.setProgress(isNotFinite(progress) ? 1d : progress);
             h.status.setText(R.string.msg_error);
         } else if (isNotFinite(progress)) {
             h.status.setText(UNDEFINED_PROGRESS);
@@ -279,59 +246,78 @@ public class MissionAdapter extends Adapter<ViewHolder> {
             h.progress.setProgress(progress);
         }
 
-        long length = mission.getLength();
+        @StringRes int state;
+        String sizeStr = Utility.formatBytes(length).concat("  ");
 
-        int state;
         if (mission.isPsFailed() || mission.errCode == ERROR_POSTPROCESSING_HOLD) {
-            state = 0;
+            h.size.setText(sizeStr);
+            return;
         } else if (!mission.running) {
-            state = mission.enqueued ? 1 : 2;
+            state = mission.enqueued ? R.string.queued : R.string.paused;
         } else if (mission.isPsRunning()) {
-            state = 3;
+            state = R.string.post_processing;
+        } else if (mission.isRecovering()) {
+            state = R.string.recovering;
         } else {
             state = 0;
         }
 
         if (state != 0) {
             // update state without download speed
-            if (h.state != state) {
-                String statusStr;
-                h.state = state;
+            h.size.setText(sizeStr.concat("(").concat(mContext.getString(state)).concat(")"));
+            h.resetSpeedMeasure();
+            return;
+        }
 
-                switch (state) {
-                    case 1:
-                        statusStr = mContext.getString(R.string.queued);
-                        break;
-                    case 2:
-                        statusStr = mContext.getString(R.string.paused);
-                        break;
-                    case 3:
-                        statusStr = mContext.getString(R.string.post_processing);
-                        break;
-                    default:
-                        statusStr = "?";
-                        break;
-                }
+        if (h.lastTimestamp < 0) {
+            h.size.setText(sizeStr);
+            h.lastTimestamp = now;
+            h.lastDone = done;
+            return;
+        }
 
-                h.size.setText(Utility.formatBytes(length).concat("  (").concat(statusStr).concat(")"));
-            } else if (deltaDone > 0) {
-                h.lastTimeStamp = now;
-                h.lastDone = mission.done;
-            }
+        long deltaTime = now - h.lastTimestamp;
+        double deltaDone = done - h.lastDone;
 
+        if (h.lastDone > done) {
+            h.lastDone = done;
+            h.size.setText(sizeStr);
             return;
         }
 
         if (deltaDone > 0 && deltaTime > 0) {
-            float speed = (deltaDone * 1000f) / deltaTime;
+            float speed = (float) ((deltaDone * 1000d) / deltaTime);
+            float averageSpeed = speed;
 
-            String speedStr = Utility.formatSpeed(speed);
-            String sizeStr = Utility.formatBytes(length);
+            if (h.lastSpeedIdx < 0) {
+                for (int i = 0; i < h.lastSpeed.length; i++) {
+                    h.lastSpeed[i] = speed;
+                }
+                h.lastSpeedIdx = 0;
+            } else {
+                for (int i = 0; i < h.lastSpeed.length; i++) {
+                    averageSpeed += h.lastSpeed[i];
+                }
+                averageSpeed /= h.lastSpeed.length + 1f;
+            }
 
-            h.size.setText(sizeStr.concat(" ").concat(speedStr));
+            String speedStr = Utility.formatSpeed(averageSpeed);
+            String etaStr;
 
-            h.lastTimeStamp = now;
-            h.lastDone = mission.done;
+            if (mission.unknownLength) {
+                etaStr = "";
+            } else {
+                long eta = (long) Math.ceil((length - done) / averageSpeed);
+                etaStr = Utility.formatBytes((long) done) + "/" + Utility.stringifySeconds(eta) + "  ";
+            }
+
+            h.size.setText(sizeStr.concat(etaStr).concat(speedStr));
+
+            h.lastTimestamp = now;
+            h.lastDone = done;
+            h.lastSpeed[h.lastSpeedIdx++] = speed;
+
+            if (h.lastSpeedIdx >= h.lastSpeed.length) h.lastSpeedIdx = 0;
         }
     }
 
@@ -410,29 +396,42 @@ public class MissionAdapter extends Adapter<ViewHolder> {
         return true;
     }
 
-    public Handler getMessenger() {
-        return mHandler;
+    private ViewHolderItem getViewHolder(Object mission) {
+        for (ViewHolderItem h : mPendingDownloadsItems) {
+            if (h.item.mission == mission) return h;
+        }
+        return null;
     }
 
-    private void onServiceMessage(@NonNull Message msg) {
-        if (msg.what == DownloadManagerService.MESSAGE_PROGRESS) {
-            setAutoRefresh(true);
-            return;
+    @Override
+    public boolean handleMessage(@NonNull Message msg) {
+        if (mStartButton != null && mPauseButton != null) {
+            checkMasterButtonsVisibility();
         }
 
-        for (int i = 0; i < mPendingDownloadsItems.size(); i++) {
-            ViewHolderItem h = mPendingDownloadsItems.get(i);
-            if (h.item.mission != msg.obj) continue;
+        switch (msg.what) {
+            case DownloadManagerService.MESSAGE_ERROR:
+            case DownloadManagerService.MESSAGE_FINISHED:
+            case DownloadManagerService.MESSAGE_DELETED:
+            case DownloadManagerService.MESSAGE_PAUSED:
+                break;
+            default:
+                return false;
+        }
 
-            if (msg.what == DownloadManagerService.MESSAGE_FINISHED) {
+        ViewHolderItem h = getViewHolder(msg.obj);
+        if (h == null) return false;
+
+        switch (msg.what) {
+            case DownloadManagerService.MESSAGE_FINISHED:
+            case DownloadManagerService.MESSAGE_DELETED:
                 // DownloadManager should mark the download as finished
                 applyChanges();
-                return;
-            }
-
-            updateProgress(h);
-            return;
+                return true;
         }
+
+        updateProgress(h);
+        return true;
     }
 
     private void showError(@NonNull DownloadMission mission) {
@@ -441,7 +440,7 @@ public class MissionAdapter extends Adapter<ViewHolder> {
 
         switch (mission.errCode) {
             case 416:
-                msg = R.string.error_http_requested_range_not_satisfiable;
+                msg = R.string.error_http_unsupported_range;
                 break;
             case 404:
                 msg = R.string.error_http_not_found;
@@ -453,9 +452,6 @@ public class MissionAdapter extends Adapter<ViewHolder> {
                 break;
             case ERROR_HTTP_NO_CONTENT:
                 msg = R.string.error_http_no_content;
-                break;
-            case ERROR_HTTP_UNSUPPORTED_RANGE:
-                msg = R.string.error_http_unsupported_range;
                 break;
             case ERROR_PATH_CREATION:
                 msg = R.string.error_path_creation;
@@ -477,19 +473,27 @@ public class MissionAdapter extends Adapter<ViewHolder> {
                 break;
             case ERROR_POSTPROCESSING:
             case ERROR_POSTPROCESSING_HOLD:
-                showError(mission.errObject, UserAction.DOWNLOAD_POSTPROCESSING, R.string.error_postprocessing_failed);
+                showError(mission, UserAction.DOWNLOAD_POSTPROCESSING, R.string.error_postprocessing_failed);
                 return;
             case ERROR_INSUFFICIENT_STORAGE:
                 msg = R.string.error_insufficient_storage;
                 break;
             case ERROR_UNKNOWN_EXCEPTION:
-                showError(mission.errObject, UserAction.DOWNLOAD_FAILED, R.string.general_error);
-                return;
+                if (mission.errObject != null) {
+                    showError(mission, UserAction.DOWNLOAD_FAILED, R.string.general_error);
+                    return;
+                } else {
+                    msg = R.string.msg_error;
+                    break;
+                }
             case ERROR_PROGRESS_LOST:
                 msg = R.string.error_progress_lost;
                 break;
             case ERROR_TIMEOUT:
                 msg = R.string.error_timeout;
+                break;
+            case ERROR_RESOURCE_GONE:
+                msg = R.string.error_download_resource_gone;
                 break;
             default:
                 if (mission.errCode >= 100 && mission.errCode < 600) {
@@ -497,7 +501,7 @@ public class MissionAdapter extends Adapter<ViewHolder> {
                 } else if (mission.errObject == null) {
                     msgEx = "(not_decelerated_error_code)";
                 } else {
-                    showError(mission.errObject, UserAction.DOWNLOAD_FAILED, msg);
+                    showError(mission, UserAction.DOWNLOAD_FAILED, msg);
                     return;
                 }
                 break;
@@ -514,7 +518,7 @@ public class MissionAdapter extends Adapter<ViewHolder> {
         if (mission.errObject != null && (mission.errCode < 100 || mission.errCode >= 600)) {
             @StringRes final int mMsg = msg;
             builder.setPositiveButton(R.string.error_report_title, (dialog, which) ->
-                    showError(mission.errObject, UserAction.DOWNLOAD_FAILED, mMsg)
+                    showError(mission, UserAction.DOWNLOAD_FAILED, mMsg)
             );
         }
 
@@ -524,13 +528,32 @@ public class MissionAdapter extends Adapter<ViewHolder> {
                 .show();
     }
 
-    private void showError(Exception exception, UserAction action, @StringRes int reason) {
+    private void showError(DownloadMission mission, UserAction action, @StringRes int reason) {
+        StringBuilder request = new StringBuilder(256);
+        request.append(mission.source);
+
+        request.append(" [");
+        if (mission.recoveryInfo != null) {
+            for (MissionRecoveryInfo recovery : mission.recoveryInfo)
+                request.append(' ')
+                        .append(recovery.toString())
+                        .append(' ');
+        }
+        request.append("]");
+
+        String service;
+        try {
+            service = NewPipe.getServiceByUrl(mission.source).getServiceInfo().getName();
+        } catch (Exception e) {
+            service = "-";
+        }
+
         ErrorActivity.reportError(
                 mContext,
-                Collections.singletonList(exception),
+                mission.errObject,
                 null,
                 null,
-                ErrorActivity.ErrorInfo.make(action, "-", "-", reason)
+                ErrorActivity.ErrorInfo.make(action, service, request.toString(), reason)
         );
     }
 
@@ -549,16 +572,10 @@ public class MissionAdapter extends Adapter<ViewHolder> {
             switch (id) {
                 case R.id.start:
                     h.status.setText(UNDEFINED_PROGRESS);
-                    h.state = -1;
-                    h.size.setText(Utility.formatBytes(mission.getLength()));
                     mDownloadManager.resumeMission(mission);
                     return true;
                 case R.id.pause:
-                    h.state = -1;
                     mDownloadManager.pauseMission(mission);
-                    updateProgress(h);
-                    h.lastTimeStamp = -1;
-                    h.lastDone = -1;
                     return true;
                 case R.id.error_message_view:
                     showError(mission);
@@ -570,16 +587,15 @@ public class MissionAdapter extends Adapter<ViewHolder> {
                     updateProgress(h);
                     return true;
                 case R.id.retry:
-                    if (mission.hasInvalidStorage()) {
+                    if (mission.isPsRunning()) {
+                        mission.psContinue(true);
+                    } else {
                         mDownloadManager.tryRecover(mission);
                         if (mission.storage.isInvalid())
                             mRecover.tryRecover(mission);
                         else
                             recoverMission(mission);
-
-                        return true;
                     }
-                    mission.psContinue(true);
                     return true;
                 case R.id.cancel:
                     mission.psContinue(false);
@@ -592,12 +608,9 @@ public class MissionAdapter extends Adapter<ViewHolder> {
                 shareFile(h.item.mission);
                 return true;
             case R.id.delete:
-                if (mDeleter == null) {
-                    mDownloadManager.deleteMission(h.item.mission);
-                } else {
-                    mDeleter.append(h.item.mission);
-                }
+                mDeleter.append(h.item.mission);
                 applyChanges();
+                checkMasterButtonsVisibility();
                 return true;
             case R.id.md5:
             case R.id.sha1:
@@ -633,7 +646,7 @@ public class MissionAdapter extends Adapter<ViewHolder> {
         mIterator.end();
 
         for (ViewHolderItem item : mPendingDownloadsItems) {
-            item.lastTimeStamp = -1;
+            item.resetSpeedMeasure();
         }
 
         notifyDataSetChanged();
@@ -664,93 +677,69 @@ public class MissionAdapter extends Adapter<ViewHolder> {
         if (mEmptyMessage.getVisibility() != flag) mEmptyMessage.setVisibility(flag);
     }
 
-    private void checkMasterButtonsVisibility() {
+    public void checkMasterButtonsVisibility() {
         boolean[] state = mIterator.hasValidPendingMissions();
-
-        mStartButton.setVisible(state[0]);
-        mPauseButton.setVisible(state[1]);
+        Log.d(TAG, "checkMasterButtonsVisibility() running=" + state[0] + " paused=" + state[1]);
+        setButtonVisible(mPauseButton, state[0]);
+        setButtonVisible(mStartButton, state[1]);
     }
 
-    public void ensurePausedMissions() {
+    private static void setButtonVisible(MenuItem button, boolean visible) {
+        if (button.isVisible() != visible)
+            button.setVisible(visible);
+    }
+
+    public void refreshMissionItems() {
         for (ViewHolderItem h : mPendingDownloadsItems) {
             if (((DownloadMission) h.item.mission).running) continue;
             updateProgress(h);
-            h.lastTimeStamp = -1;
-            h.lastDone = -1;
+            h.resetSpeedMeasure();
         }
     }
 
 
-    public void deleterDispose(boolean commitChanges) {
-        if (mDeleter != null) mDeleter.dispose(commitChanges);
+    public void onDestroy() {
+        mDeleter.dispose();
     }
 
-    public void deleterLoad(View view) {
-        if (mDeleter == null)
-            mDeleter = new Deleter(view, mContext, this, mDownloadManager, mIterator, mHandler);
+    public void onResume() {
+        mDeleter.resume();
+        mHandler.post(rUpdater);
     }
-
-    public void deleterResume() {
-        if (mDeleter != null) mDeleter.resume();
-    }
-
-    public void recoverMission(DownloadMission mission) {
-        for (ViewHolderItem h : mPendingDownloadsItems) {
-            if (mission != h.item.mission) continue;
-
-            mission.errObject = null;
-            mission.resetState(true, false, DownloadMission.ERROR_NOTHING);
-
-            h.status.setText(UNDEFINED_PROGRESS);
-            h.state = -1;
-            h.size.setText(Utility.formatBytes(mission.getLength()));
-            h.progress.setMarquee(true);
-
-            mDownloadManager.resumeMission(mission);
-            return;
-        }
-
-    }
-
-
-    private boolean mUpdaterRunning = false;
-    private final Runnable rUpdater = this::updater;
 
     public void onPaused() {
-        setAutoRefresh(false);
+        mDeleter.pause();
+        mHandler.removeCallbacks(rUpdater);
     }
 
-    private void setAutoRefresh(boolean enabled) {
-        if (enabled && !mUpdaterRunning) {
-            mUpdaterRunning = true;
-            updater();
-        } else if (!enabled && mUpdaterRunning) {
-            mUpdaterRunning = false;
-            mHandler.removeCallbacks(rUpdater);
-        }
+
+    public void recoverMission(DownloadMission mission) {
+        ViewHolderItem h = getViewHolder(mission);
+        if (h == null) return;
+
+        mission.errObject = null;
+        mission.resetState(true, false, DownloadMission.ERROR_NOTHING);
+
+        h.status.setText(UNDEFINED_PROGRESS);
+        h.size.setText(Utility.formatBytes(mission.getLength()));
+        h.progress.setMarquee(true);
+
+        mDownloadManager.resumeMission(mission);
     }
 
     private void updater() {
-        if (!mUpdaterRunning) return;
-
-        boolean running = false;
         for (ViewHolderItem h : mPendingDownloadsItems) {
             // check if the mission is running first
             if (!((DownloadMission) h.item.mission).running) continue;
 
             updateProgress(h);
-            running = true;
         }
 
-        if (running) {
-            mHandler.postDelayed(rUpdater, 1000);
-        } else {
-            mUpdaterRunning = false;
-        }
+        mHandler.postDelayed(rUpdater, 1000);
     }
 
-    private boolean isNotFinite(Float value) {
-        return Float.isNaN(value) || Float.isInfinite(value);
+    private boolean isNotFinite(double value) {
+        return Double.isNaN(value) || Double.isInfinite(value);
     }
 
     public void setRecover(@NonNull RecoverHelper callback) {
@@ -779,10 +768,11 @@ public class MissionAdapter extends Adapter<ViewHolder> {
         MenuItem source;
         MenuItem checksum;
 
-        long lastTimeStamp = -1;
-        long lastDone = -1;
-        int lastCurrent = -1;
-        int state = 0;
+        long lastTimestamp = -1;
+        double lastDone;
+        int lastSpeedIdx;
+        float[] lastSpeed = new float[3];
+        String estimatedTimeArrival = UNDEFINED_ETA;
 
         ViewHolderItem(View view) {
             super(view);
@@ -867,7 +857,7 @@ public class MissionAdapter extends Adapter<ViewHolder> {
 
                         delete.setVisible(true);
 
-                        boolean flag = !mission.isPsFailed();
+                        boolean flag = !mission.isPsFailed() && mission.urls.length > 0;
                         start.setVisible(flag);
                         queue.setVisible(flag);
                     }
@@ -891,6 +881,12 @@ public class MissionAdapter extends Adapter<ViewHolder> {
             popup.setOnMenuItemClickListener(option -> handlePopupItem(this, option));
 
             return popup;
+        }
+
+        private void resetSpeedMeasure() {
+            estimatedTimeArrival = UNDEFINED_ETA;
+            lastTimestamp = -1;
+            lastSpeedIdx = -1;
         }
     }
 

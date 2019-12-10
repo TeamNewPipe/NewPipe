@@ -1,15 +1,22 @@
 package org.schabi.newpipe.util;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.StringRes;
+
+import androidx.annotation.DrawableRes;
+import androidx.annotation.StringRes;
+
+import com.grack.nanojson.JsonObject;
+import com.grack.nanojson.JsonParser;
+import com.grack.nanojson.JsonParserException;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.services.peertube.PeertubeInstance;
 
 import java.util.concurrent.TimeUnit;
 
@@ -27,13 +34,15 @@ public class ServiceHelper {
                 return R.drawable.place_holder_cloud;
             case 2:
                 return R.drawable.place_holder_gadse;
+            case 3:
+                return R.drawable.place_holder_peertube;
             default:
                 return R.drawable.place_holder_circle;
         }
     }
 
     public static String getTranslatedFilterString(String filter, Context c) {
-        switch(filter) {
+        switch (filter) {
             case "all": return c.getString(R.string.all);
             case "videos": return c.getString(R.string.videos);
             case "channels": return c.getString(R.string.channels);
@@ -126,9 +135,36 @@ public class ServiceHelper {
     }
 
     public static boolean isBeta(final StreamingService s) {
-        switch(s.getServiceInfo().getName()) {
+        switch (s.getServiceInfo().getName()) {
             case "YouTube": return false;
             default: return true;
+        }
+    }
+
+    public static void initService(Context context, int serviceId) {
+        if (serviceId == ServiceList.PeerTube.getServiceId()) {
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+            String json = sharedPreferences.getString(context.getString(R.string.peertube_selected_instance_key), null);
+            if (null == json) {
+                return;
+            }
+
+            JsonObject jsonObject = null;
+            try {
+                jsonObject = JsonParser.object().from(json);
+            } catch (JsonParserException e) {
+                return;
+            }
+            String name = jsonObject.getString("name");
+            String url = jsonObject.getString("url");
+            PeertubeInstance instance = new PeertubeInstance(url, name);
+            ServiceList.PeerTube.setInstance(instance);
+        }
+    }
+
+    public static void initServices(Context context) {
+        for (StreamingService s : ServiceList.all()) {
+            initService(context, s.getServiceId());
         }
     }
 }

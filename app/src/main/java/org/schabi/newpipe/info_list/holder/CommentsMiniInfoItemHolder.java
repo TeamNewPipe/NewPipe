@@ -1,21 +1,20 @@
 package org.schabi.newpipe.info_list.holder;
 
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.util.Linkify;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.jsoup.helper.StringUtil;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.database.stream.model.StreamStateEntity;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 import org.schabi.newpipe.info_list.InfoItemBuilder;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.CommentTextOnTouchListener;
 import org.schabi.newpipe.util.ImageDisplayConstants;
+import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 
 import java.util.regex.Matcher;
@@ -48,7 +47,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
             if(hours != null) timestamp += (Integer.parseInt(hours.replace(":", ""))*3600);
             if(minutes != null) timestamp += (Integer.parseInt(minutes.replace(":", ""))*60);
             if(seconds != null) timestamp += (Integer.parseInt(seconds));
-            return streamUrl + url.replace(match.group(0), "#timestamp=" + String.valueOf(timestamp));
+            return streamUrl + url.replace(match.group(0), "#timestamp=" + timestamp);
         }
     };
 
@@ -67,7 +66,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
     }
 
     @Override
-    public void updateFromItem(final InfoItem infoItem, @Nullable final StreamStateEntity state) {
+    public void updateFromItem(final InfoItem infoItem, final HistoryRecordManager historyRecordManager) {
         if (!(infoItem instanceof CommentsInfoItem)) return;
         final CommentsInfoItem item = (CommentsInfoItem) infoItem;
 
@@ -76,20 +75,17 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
                         itemThumbnailView,
                         ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS);
 
-        itemThumbnailView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(StringUtil.isBlank(item.getAuthorEndpoint())) return;
-                try {
-                    final AppCompatActivity activity = (AppCompatActivity) itemBuilder.getContext();
-                    NavigationHelper.openChannelFragment(
-                            activity.getSupportFragmentManager(),
-                            item.getServiceId(),
-                            item.getAuthorEndpoint(),
-                            item.getAuthorName());
-                } catch (Exception e) {
-                    ErrorActivity.reportUiError((AppCompatActivity) itemBuilder.getContext(), e);
-                }
+        itemThumbnailView.setOnClickListener(view -> {
+            if(StringUtil.isBlank(item.getAuthorEndpoint())) return;
+            try {
+                final AppCompatActivity activity = (AppCompatActivity) itemBuilder.getContext();
+                NavigationHelper.openChannelFragment(
+                        activity.getSupportFragmentManager(),
+                        item.getServiceId(),
+                        item.getAuthorEndpoint(),
+                        item.getAuthorName());
+            } catch (Exception e) {
+                ErrorActivity.reportUiError((AppCompatActivity) itemBuilder.getContext(), e);
             }
         });
 
@@ -101,15 +97,22 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
         itemContentView.setOnTouchListener(CommentTextOnTouchListener.INSTANCE);
 
         if (itemContentView.getLineCount() == 0) {
-            itemContentView.post(() -> ellipsize());
+            itemContentView.post(this::ellipsize);
         } else {
             ellipsize();
         }
 
-        if (null != item.getLikeCount()) {
+        if (item.getLikeCount() >= 0) {
             itemLikesCountView.setText(String.valueOf(item.getLikeCount()));
+        } else {
+            itemLikesCountView.setText("-");
         }
-        itemPublishedTime.setText(item.getPublishedTime());
+
+        if (item.getPublishedTime() != null) {
+            itemPublishedTime.setText(Localization.relativeTime(item.getPublishedTime().date()));
+        } else {
+            itemPublishedTime.setText(item.getTextualPublishedTime());
+        }
 
         itemView.setOnClickListener(view -> {
             toggleEllipsize();

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_bg_subtitle">শুরু করতে অনুসন্ধান এ আলতো চাপ</string>
-    <string name="view_count_text">%1$s বার দেখা হয়েছে</string>
+    <string name="view_count_text">"%1$s জন  দেখছে"</string>
     <string name="upload_date_text">প্রকাশকাল %1$s</string>
     <string name="no_player_found">কোন স্ট্রিম প্লেয়ার পাওয়া যায়নি। তুমি কি VLC ইনস্টল করতে চাও?</string>
     <string name="install">ইনস্টল</string>
-    <string name="cancel">"বাদ দিন "</string>
+    <string name="cancel">বাদ দিন</string>
     <!--     <string name="fdroid_vlc_url" translatable="false">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string> -->
-    <string name="open_in_browser">"ব্রাউজারে ওপেন করো "</string>
-    <string name="open_in_popup_mode">"পপ-আপ মোডে ওপেন করো "</string>
+    <string name="open_in_browser">ব্রাউজারে ওপেন করো</string>
+    <string name="open_in_popup_mode">পপ-আপ মোডে ওপেন করো</string>
     <string name="share">শেয়ার</string>
     <string name="download">ডাউনলোউড</string>
     <string name="search">খুঁজুন</string>

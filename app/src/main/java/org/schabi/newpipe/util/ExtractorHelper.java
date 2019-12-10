@@ -32,7 +32,7 @@ import org.schabi.newpipe.extractor.Info;
 import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor.InfoItemsPage;
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.SuggestionExtractor;
+import org.schabi.newpipe.extractor.suggestion.SuggestionExtractor;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
 import org.schabi.newpipe.extractor.comments.CommentsInfo;
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
@@ -226,6 +226,10 @@ public final class ExtractorHelper {
 
             return Maybe.empty();
         });
+    }
+
+    public static boolean isCached(final int serviceId, final String url, InfoItem.InfoType infoType) {
+        return null != loadFromCache(serviceId, url, infoType).blockingGet();
     }
 
     /**

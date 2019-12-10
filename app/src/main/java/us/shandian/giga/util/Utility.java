@@ -4,13 +4,14 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Build;
-import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.streams.io.SharpStream;
@@ -26,6 +27,7 @@ import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
 
 import us.shandian.giga.io.StoredFileHelper;
 
@@ -39,26 +41,28 @@ public class Utility {
     }
 
     public static String formatBytes(long bytes) {
+        Locale locale = Locale.getDefault();
         if (bytes < 1024) {
-            return String.format("%d B", bytes);
+            return String.format(locale, "%d B", bytes);
         } else if (bytes < 1024 * 1024) {
-            return String.format("%.2f kB", bytes / 1024d);
+            return String.format(locale, "%.2f kB", bytes / 1024d);
         } else if (bytes < 1024 * 1024 * 1024) {
-            return String.format("%.2f MB", bytes / 1024d / 1024d);
+            return String.format(locale, "%.2f MB", bytes / 1024d / 1024d);
         } else {
-            return String.format("%.2f GB", bytes / 1024d / 1024d / 1024d);
+            return String.format(locale, "%.2f GB", bytes / 1024d / 1024d / 1024d);
         }
     }
 
-    public static String formatSpeed(float speed) {
+    public static String formatSpeed(double speed) {
+        Locale locale = Locale.getDefault();
         if (speed < 1024) {
-            return String.format("%.2f B/s", speed);
+            return String.format(locale, "%.2f B/s", speed);
         } else if (speed < 1024 * 1024) {
-            return String.format("%.2f kB/s", speed / 1024);
+            return String.format(locale, "%.2f kB/s", speed / 1024);
         } else if (speed < 1024 * 1024 * 1024) {
-            return String.format("%.2f MB/s", speed / 1024 / 1024);
+            return String.format(locale, "%.2f MB/s", speed / 1024 / 1024);
         } else {
-            return String.format("%.2f GB/s", speed / 1024 / 1024 / 1024);
+            return String.format(locale, "%.2f GB/s", speed / 1024 / 1024 / 1024);
         }
     }
 
@@ -188,12 +192,11 @@ public class Utility {
         switch (type) {
             case MUSIC:
                 return R.drawable.music;
+            default:
             case VIDEO:
                 return R.drawable.video;
             case SUBTITLE:
                 return R.drawable.subtitle;
-            default:
-                return R.drawable.video;
         }
     }
 
@@ -273,5 +276,26 @@ public class Utility {
         }
 
         return -1;
+    }
+
+    private static String pad(int number) {
+        return number < 10 ? ("0" + number) : String.valueOf(number);
+    }
+
+    public static String stringifySeconds(double seconds) {
+        int h = (int) Math.floor(seconds / 3600);
+        int m = (int) Math.floor((seconds - (h * 3600)) / 60);
+        int s = (int) (seconds - (h * 3600) - (m * 60));
+
+        String str = "";
+
+        if (h < 1 && m < 1) {
+            str = "00:";
+        } else {
+            if (h > 0) str = pad(h) + ":";
+            if (m > 0) str += pad(m) + ":";
+        }
+
+        return str + pad(s);
     }
 }

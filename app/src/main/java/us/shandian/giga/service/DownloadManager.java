@@ -2,13 +2,11 @@ package us.shandian.giga.service;
 
 import android.content.Context;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.util.DiffUtil;
 import android.util.Log;
-import android.widget.Toast;
 
-import org.schabi.newpipe.R;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.DiffUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,8 +33,9 @@ public class DownloadManager {
     public final static int SPECIAL_PENDING = 1;
     public final static int SPECIAL_FINISHED = 2;
 
-    static final String TAG_AUDIO = "audio";
-    static final String TAG_VIDEO = "video";
+    public static final String TAG_AUDIO = "audio";
+    public static final String TAG_VIDEO = "video";
+    private static final String DOWNLOADS_METADATA_FOLDER = "pending_downloads";
 
     private final FinishedMissionStore mFinishedMissionStore;
 
@@ -74,25 +73,35 @@ public class DownloadManager {
         mMissionsFinished = loadFinishedMissions();
         mPendingMissionsDir = getPendingDir(context);
 
-        if (!Utility.mkdir(mPendingMissionsDir, false)) {
-            throw new RuntimeException("failed to create pending_downloads in data directory");
-        }
-
         loadPendingMissions(context);
     }
 
     private static File getPendingDir(@NonNull Context context) {
-        //File dir = new File(ContextCompat.getDataDir(context), "pending_downloads");
-        File dir = context.getExternalFilesDir("pending_downloads");
+        File dir = context.getExternalFilesDir(DOWNLOADS_METADATA_FOLDER);
+        if (testDir(dir)) return dir;
 
-        if (dir == null) {
-            // One of the following paths are not accessible ¿unmounted internal memory?
-            //        /storage/emulated/0/Android/data/org.schabi.newpipe[.debug]/pending_downloads
-            //        /sdcard/Android/data/org.schabi.newpipe[.debug]/pending_downloads
-            Log.w(TAG, "path to pending downloads are not accessible");
+        dir = new File(context.getFilesDir(), DOWNLOADS_METADATA_FOLDER);
+        if (testDir(dir)) return dir;
+
+        throw new RuntimeException("path to pending downloads are not accessible");
+    }
+
+    private static boolean testDir(@Nullable File dir) {
+        if (dir == null) return false;
+
+        try {
+            if (!Utility.mkdir(dir, false)) {
+                Log.e(TAG, "testDir() cannot create the directory in path: " + dir.getAbsolutePath());
+                return false;
+            }
+
+            File tmp = new File(dir, ".tmp");
+            if (!tmp.createNewFile()) return false;
+            return tmp.delete();// if the file was created, SHOULD BE deleted too
+        } catch (Exception e) {
+            Log.e(TAG, "testDir() failed: " + dir.getAbsolutePath(), e);
+            return false;
         }
-
-        return dir;
     }
 
     /**
@@ -132,6 +141,7 @@ public class DownloadManager {
 
         for (File sub : subs) {
             if (!sub.isFile()) continue;
+            if (sub.getName().equals(".tmp")) continue;
 
             DownloadMission mis = Utility.readFromFile(sub);
             if (mis == null || mis.isFinished()) {
@@ -139,6 +149,8 @@ public class DownloadManager {
                 sub.delete();
                 continue;
             }
+
+            mis.threads = new Thread[0];
 
             boolean exists;
             try {
@@ -158,8 +170,6 @@ public class DownloadManager {
                     // is Java IO (avoid showing the "Save as..." dialog)
                     if (exists && mis.storage.isDirect() && !mis.storage.delete())
                         Log.w(TAG, "Unable to delete incomplete download file: " + sub.getPath());
-
-                    exists = true;
                 }
 
                 mis.psState = 0;
@@ -177,7 +187,6 @@ public class DownloadManager {
                 mis.psAlgorithm.setTemporalDir(pickAvailableTemporalDir(ctx));
             }
 
-            mis.recovered = exists;
             mis.metadata = sub;
             mis.maxRetry = mPrefMaxRetry;
             mis.mHandler = mHandler;
@@ -232,7 +241,6 @@ public class DownloadManager {
             boolean start = !mPrefQueueLimit || getRunningMissionsCount() < 1;
 
             if (canDownloadInCurrentNetwork() && start) {
-                mHandler.sendEmptyMessage(DownloadManagerService.MESSAGE_PROGRESS);
                 mission.start();
             }
         }
@@ -241,7 +249,6 @@ public class DownloadManager {
 
     public void resumeMission(DownloadMission mission) {
         if (!mission.running) {
-            mHandler.sendEmptyMessage(DownloadManagerService.MESSAGE_PROGRESS);
             mission.start();
         }
     }
@@ -250,7 +257,6 @@ public class DownloadManager {
         if (mission.running) {
             mission.setEnqueued(false);
             mission.pause();
-            mHandler.sendEmptyMessage(DownloadManagerService.MESSAGE_PAUSED);
         }
     }
 
@@ -263,7 +269,6 @@ public class DownloadManager {
                 mFinishedMissionStore.deleteMission(mission);
             }
 
-            mHandler.sendEmptyMessage(DownloadManagerService.MESSAGE_DELETED);
             mission.delete();
         }
     }
@@ -280,7 +285,6 @@ public class DownloadManager {
                 mFinishedMissionStore.deleteMission(mission);
             }
 
-            mHandler.sendEmptyMessage(DownloadManagerService.MESSAGE_DELETED);
             mission.storage = null;
             mission.delete();
         }
@@ -363,35 +367,29 @@ public class DownloadManager {
     }
 
     public void pauseAllMissions(boolean force) {
-        boolean flag = false;
-
         synchronized (this) {
             for (DownloadMission mission : mMissionsPending) {
                 if (!mission.running || mission.isPsRunning() || mission.isFinished()) continue;
 
-                if (force) mission.threads = null;// avoid waiting for threads
+                if (force) {
+                    // avoid waiting for threads
+                    mission.init = null;
+                    mission.threads = new Thread[0];
+                }
 
                 mission.pause();
-                flag = true;
             }
         }
-
-        if (flag) mHandler.sendEmptyMessage(DownloadManagerService.MESSAGE_PAUSED);
     }
 
     public void startAllMissions() {
-        boolean flag = false;
-
         synchronized (this) {
             for (DownloadMission mission : mMissionsPending) {
                 if (mission.running || mission.isCorrupt()) continue;
 
-                flag = true;
                 mission.start();
             }
         }
-
-        if (flag) mHandler.sendEmptyMessage(DownloadManagerService.MESSAGE_PROGRESS);
     }
 
     /**
@@ -424,10 +422,12 @@ public class DownloadManager {
 
             boolean flag = false;
             for (DownloadMission mission : mMissionsPending) {
-                if (mission.running || !mission.enqueued || mission.isFinished() || mission.hasInvalidStorage())
+                if (mission.running || !mission.enqueued || mission.isFinished())
                     continue;
 
                 resumeMission(mission);
+                if (mission.errCode != DownloadMission.ERROR_NOTHING) continue;
+
                 if (mPrefQueueLimit) return true;
                 flag = true;
             }
@@ -470,50 +470,24 @@ public class DownloadManager {
 
         boolean isMetered = mPrefMeteredDownloads && mLastNetworkStatus == NetworkState.MeteredOperating;
 
-        int running = 0;
-        int paused = 0;
         synchronized (this) {
             for (DownloadMission mission : mMissionsPending) {
                 if (mission.isCorrupt() || mission.isPsRunning()) continue;
 
                 if (mission.running && isMetered) {
-                    paused++;
                     mission.pause();
                 } else if (!mission.running && !isMetered && mission.enqueued) {
-                    running++;
                     mission.start();
                     if (mPrefQueueLimit) break;
                 }
             }
         }
-
-        if (running > 0) {
-            mHandler.sendEmptyMessage(DownloadManagerService.MESSAGE_PROGRESS);
-            return;
-        }
-        if (paused > 0) mHandler.sendEmptyMessage(DownloadManagerService.MESSAGE_PAUSED);
     }
 
     void updateMaximumAttempts() {
         synchronized (this) {
             for (DownloadMission mission : mMissionsPending) mission.maxRetry = mPrefMaxRetry;
         }
-    }
-
-    /**
-     * Fast check for pending downloads. If exists, the user will be notified
-     * TODO: call this method in somewhere
-     *
-     * @param context the application context
-     */
-    public static void notifyUserPendingDownloads(Context context) {
-        int pending = getPendingDir(context).list().length;
-        if (pending < 1) return;
-
-        Toast.makeText(context, context.getString(
-                R.string.msg_pending_downloads,
-                String.valueOf(pending)
-        ), Toast.LENGTH_LONG).show();
     }
 
     public MissionState checkForExistingMission(StoredFileHelper storage) {
@@ -666,9 +640,9 @@ public class DownloadManager {
                         continue;
 
                     if (mission.running)
-                        paused = true;
-                    else
                         running = true;
+                    else
+                        paused = true;
                 }
             }
 

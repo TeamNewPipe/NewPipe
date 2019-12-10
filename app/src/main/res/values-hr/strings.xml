@@ -245,10 +245,10 @@
     <string name="donation_title">Doniraj</string>
     <string name="website_title">Web stranica</string>
     <string name="start_here_on_main">Ovdje započni reprodukciju</string>
-    <string name="start_here_on_background">Ovdje započni repr. u pozadini</string>
+    <string name="start_here_on_background">Započni reprodukciju u pozadini</string>
     <string name="enqueue_on_background">Dodaj na red čekanja u pozadini</string>
     <string name="enqueue_on_popup">Dodaj na red u novom skočnom prozoru</string>
-    <string name="start_here_on_popup">Započni ovdje u Skočnom prozoru</string>
+    <string name="start_here_on_popup">Započni reprodukciju u skočnom prozoru</string>
     <string name="drawer_open">Otvori ladicu</string>
     <string name="drawer_close">Zatvori ladicu</string>
     <string name="drawer_header_action_paceholder_text">Nešto će se uskoro pojaviti :D</string>
@@ -276,10 +276,6 @@
     <string name="resize_fill">Ispuniti</string>
     <string name="resize_zoom">Povećaj</string>
     <string name="caption_auto_generated">Auto generirano</string>
-    <string name="caption_font_size_settings_title">Veličina fonta naslova</string>
-    <string name="smaller_caption_font_size">Manji font</string>
-    <string name="normal_caption_font_size">Normalni font</string>
-    <string name="larger_caption_font_size">Veći font</string>
     <string name="enable_leak_canary_title">Omogući \"LeakCanary\"</string>
     <string name="enable_leak_canary_summary">Monitoring curenja memorije može uzrokovati greške u radu aplikacije prilikom odlaganje gomile</string>
     <string name="enable_disposed_exceptions_title">Izvijestite o pogreškama izvan životnog ciklusa</string>
@@ -307,7 +303,7 @@
     <string name="clear_views_history_title">Očisti povijest gledanja</string>
     <string name="clear_views_history_summary">Briše povijest reproduciranih streamova</string>
     <string name="delete_view_history_alert">Obriši cijelu povijest gledanja\?</string>
-    <string name="view_history_deleted">Povijest gledanja izbrisana.</string>
+    <string name="watch_history_deleted">Povijest gledanja izbrisana.</string>
     <string name="clear_search_history_title">Obriši povijest pretraživanja</string>
     <string name="delete_search_history_alert">Obriši cijelu povijest pretraživanja\?</string>
     <string name="search_history_deleted">Povijest pretraživanja obrisana.</string>
@@ -392,7 +388,7 @@
     <string name="metadata_cache_wipe_summary">Uklonite sve podatke iz privremenih web-stranica</string>
     <string name="metadata_cache_wipe_complete_notice">Metapodaci su izbrisani</string>
     <string name="auto_queue_title">Automatski dodaj u red sljedeće strujanje</string>
-    <string name="auto_queue_summary">Automatsko dodavanje povezanog videozapisa tijekom reprodukcije posljednjeg videozapisa u neponavljajućem redu.</string>
+    <string name="auto_queue_summary">Automatsko dodavanje povezanog videozapisa tijekom reprodukcije posljednjeg videozapisa u neponavljajućem redu</string>
     <string name="volume_gesture_control_title">Kontrola glasnoće pomoću gesti</string>
     <string name="volume_gesture_control_summary">Koristi gesture za kontrolu glasnoće</string>
     <string name="brightness_gesture_control_title">Kontrola svjetline pomoću gesti</string>
@@ -427,7 +423,7 @@
 \n2. Idite na ovaj URL: %1$s
 \n3. Ulogirajte se
 \n4. Kopirajte URL profila na koji ste preusmjereni.</string>
-    <string name="playback_tempo">Tempo</string>
+    <string name="playback_tempo">brzina</string>
     <string name="playback_pitch">Visina tona</string>
     <string name="unhook_checkbox">Prekini vezu (može uzrokovati izobličenje)</string>
     <string name="minimize_on_exit_title">Minimiziraj prilikom mjenjanje aplikacija</string>
@@ -458,14 +454,27 @@
     <string name="error_connect_host">Nije moguće povezati se s serverom</string>
     <string name="error_http_no_content">Server ne šalje podatke</string>
     <string name="error_http_unsupported_range">Poslužitelj ne prihvaća preuzimanja s više niti, pokušaj ponovo s @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">Traženi raspon nije zadovoljavajući</string>
     <string name="error_http_not_found">Nije pronađeno</string>
     <string name="error_postprocessing_failed">Naknadna obrada nije uspjela</string>
     <string name="clear_finished_download">Obriši završena preuzimanja</string>
-    <string name="msg_pending_downloads">Nastavite s prijenosima na čekanju za %s s preuzimanja</string>
     <string name="stop">Stop</string>
     <string name="max_retry_msg">Maksimalnih ponovnih pokušaja</string>
     <string name="max_retry_desc">Maksimalni broj pokušaja prije poništavanja preuzimanja</string>
     <string name="pause_downloads_on_mobile">Pauziraj prilikom prebacivanja na mobilne podatke</string>
     <string name="pause_downloads_on_mobile_desc">Preuzimanja koja se ne mogu zaustaviti ponovno će se pokrenuti</string>
+    <string name="show_comments_title">Prikaži komentare</string>
+    <string name="show_comments_summary">Onemogućite da biste prestali prikazivati komentare</string>
+    <string name="autoplay_title">Automatska reprodukcija</string>
+    <plurals name="comments">
+        <item quantity="one">Komentari</item>
+        <item quantity="few"/>
+        <item quantity="other"/>
+    </plurals>
+    <string name="no_comments">Nema komentara</string>
+    <string name="error_unable_to_load_comments">Komentare nije moguće učitati</string>
+    <string name="close">Zatvori</string>
+    <string name="app_license">NewPipe je copyleft libre software: možete ga koristiti, proučavati i poboljšavati po volji. Konkretno, možete ga redistribuirati i / ili modificirati pod uvjetima GNU opće javne licence koju je objavila Free Software Foundation, bilo verzije 3 Licence, ili (po vašem izboru) bilo koje kasnije verzije.</string>
+    <string name="privacy_policy_encouragement">"Projekt NewPipe ozbiljno shvaća vašu privatnost. Stoga aplikacija ne prikuplja nikakve podatke bez vašeg pristanka.
+\nNewPipe  pravila o privatnosti detaljno objašnjavaju koji se podaci šalju i pohranjuju kada šaljete izvješće o padu aplikacije."</string>
+    <string name="start_accept_privacy_policy">Kako bismo se uskladili s Europskom općom uredbom o zaštiti podataka (GDPR), upozoravamo vas na politiku privatnosti tvrtke NewPipe. Pažljivo ga pročitajte. Morate ga prihvatiti da nam pošaljete izvješća o pogreškama.</string>
 </resources>

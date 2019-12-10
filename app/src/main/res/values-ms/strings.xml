@@ -122,9 +122,6 @@
     <string name="channels">Saluran</string>
     <string name="playlist">Senarai main</string>
     <string name="playlists">Senarai main</string>
-    <plurals name="videos">
-    <item quantity="other">Video</item>
-</plurals>
     <string name="tracks">Trek</string>
     <string name="users">Pengguna</string>
     <string name="events">Peristiwa</string>
@@ -158,7 +155,7 @@
     <string name="clear_views_history_title">Hapuskan sejarah tontonan</string>
     <string name="clear_views_history_summary">Hapuskan sejarah strim yang telah dimain</string>
     <string name="delete_view_history_alert">Padamkan seluruh sejarah tontonan\?</string>
-    <string name="view_history_deleted">Sejarah tontonan dipadamkan.</string>
+    <string name="watch_history_deleted">Sejarah tontonan dipadamkan.</string>
     <string name="clear_search_history_title">Hapuskan sejarah carian</string>
     <string name="clear_search_history_summary">Padamkan sejarah kata kunci carian</string>
     <string name="delete_search_history_alert">Padamkan seluruh sejarah carian\?</string>
@@ -453,11 +450,9 @@
     <string name="error_connect_host">Tidak dapat menyambung ke server</string>
     <string name="error_http_no_content">Server tidak menghantar data</string>
     <string name="error_http_unsupported_range">Server tidak menerima muat turun berbilang thread, cuba lagi dengan @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">Julat yang diminta tidak memuaskan</string>
     <string name="error_http_not_found">Tidak ditemui</string>
     <string name="error_postprocessing_failed">Pemprosesan-pasca gagal</string>
     <string name="clear_finished_download">Hapuskan senarai muat turun yang selesai</string>
-    <string name="msg_pending_downloads">Teruskan %s pemindahan anda yang menunggu dari muat turun</string>
     <string name="stop">Berhenti</string>
     <string name="max_retry_msg">Percubaan maksimum</string>
     <string name="max_retry_desc">Jumlah percubaan maksimum sebelum membatalkan muat turun</string>
