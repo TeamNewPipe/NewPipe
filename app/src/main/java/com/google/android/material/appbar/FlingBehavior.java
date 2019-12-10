@@ -1,6 +1,5 @@
 package com.google.android.material.appbar;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Rect;
 import android.util.AttributeSet;
@@ -35,8 +34,6 @@ public final class FlingBehavior extends AppBarLayout.Behavior {
             return false;
         }
 
-        int offset = getTopAndBottomOffset();
-
         int dy;
 
         if (focusScrollRect.bottom > height) {
@@ -48,8 +45,6 @@ public final class FlingBehavior extends AppBarLayout.Behavior {
             // nothing to do
             return false;
         }
-
-        //int newOffset = offset + dy;
 
         int consumed = scroll(coordinatorLayout, child, dy, getMaxDragOffset(child), 0);
 
