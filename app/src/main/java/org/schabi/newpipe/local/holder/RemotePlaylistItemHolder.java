@@ -10,6 +10,8 @@ import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.Localization;
 
+import android.text.TextUtils;
+
 import java.text.DateFormat;
 
 public class RemotePlaylistItemHolder extends PlaylistItemHolder {
@@ -29,7 +31,7 @@ public class RemotePlaylistItemHolder extends PlaylistItemHolder {
         itemTitleView.setText(item.getName());
         itemStreamCountView.setText(String.valueOf(item.getStreamCount()));
         // Here is where the uploader name is set in the bookmarked playlists library
-        if (!TextUtils.isEmpty(item.getUploader)) {
+        if (!TextUtils.isEmpty(item.getUploader())) {
             itemUploaderView.setText(Localization.concatenateStrings(item.getUploader(),
                 NewPipe.getNameOfService(item.getServiceId())));
         } else {
