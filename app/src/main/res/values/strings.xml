@@ -111,10 +111,12 @@
     <string name="content_language_title">Default content language</string>
     <string name="peertube_instance_url_title">PeerTube instances</string>
     <string name="peertube_instance_url_summary">Set your favorite peertube instances</string>
-    <string name="peertube_instance_url_help">Find the instances that best suit you on https://instances.joinpeertube.org</string>
+    <string name="peertube_instance_url_help">Find the instances that best suit you on https://joinpeertube.org/instances#instances-list</string>
     <string name="peertube_instance_add_title">Add instance</string>
-    <string name="peertube_instance_add_help">enter instance url</string>
+    <string name="peertube_instance_add_help">Enter instance url</string>
     <string name="peertube_instance_add_fail">Failed to validate instance</string>
+    <string name="peertube_instance_add_https_only">Only https urls are supported</string>
+    <string name="peertube_instance_add_exists">Instance already exists</string>
     <string name="settings_category_player_title">Player</string>
     <string name="settings_category_player_behavior_title">Behavior</string>
     <string name="settings_category_video_audio_title">Video &amp; audio</string>

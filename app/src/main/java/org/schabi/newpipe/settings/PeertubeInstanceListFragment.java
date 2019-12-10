@@ -36,7 +36,6 @@ import com.grack.nanojson.JsonStringWriter;
 import com.grack.nanojson.JsonWriter;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.services.peertube.PeertubeInstance;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.PeertubeHelper;
@@ -219,7 +218,7 @@ public class PeertubeInstanceListFragment extends Fragment {
     }
 
     private void addInstance(String url) {
-        String cleanUrl = verifyUrl(url);
+        String cleanUrl = cleanUrl(url);
         if(null == cleanUrl) return;
         progressBar.setVisibility(View.VISIBLE);
         Disposable disposable = Single.fromCallable(() -> {
@@ -237,7 +236,7 @@ public class PeertubeInstanceListFragment extends Fragment {
     }
 
     @Nullable
-    private String verifyUrl(String url){
+    private String cleanUrl(String url){
         // if protocol not present, add https
         if(!url.startsWith("http")){
             url = "https://" + url;
@@ -246,13 +245,13 @@ public class PeertubeInstanceListFragment extends Fragment {
         url = url.replaceAll("/$", "");
         // only allow https
         if (!url.startsWith("https://")) {
-            Toast.makeText(getActivity(), "instance url should start with https://", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.peertube_instance_add_https_only, Toast.LENGTH_SHORT).show();
             return null;
         }
         // only allow if not already exists
         for (PeertubeInstance instance : instanceList) {
             if (instance.getUrl().equals(url)) {
-                Toast.makeText(getActivity(), "instance already exists", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.peertube_instance_add_exists, Toast.LENGTH_SHORT).show();
                 return null;
             }
         }
