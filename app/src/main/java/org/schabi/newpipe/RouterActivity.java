@@ -119,6 +119,14 @@ public class RouterActivity extends AppCompatActivity {
         Icepick.saveInstanceState(this, outState);
     }
 
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+        currentUrl = getUrl(intent);
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
