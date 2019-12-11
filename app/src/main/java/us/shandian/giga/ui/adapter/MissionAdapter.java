@@ -559,7 +559,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
 
     public void clearFinishedDownloads(boolean delete) {
         if (delete && mIterator.hasFinishedMissions()) {
-            for(int i=0; i<mIterator.getOldListSize(); i++) {
+            for (int i = 0; i < mIterator.getOldListSize(); i++) {
                 FinishedMission mission = mIterator.getItem(i).mission instanceof FinishedMission ? (FinishedMission) mIterator.getItem(i).mission : null;
                 if (mission != null) {
                     mDownloadManager.deleteMission(mission);
