@@ -28,12 +28,13 @@ import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.IBinder;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.NotificationCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
@@ -44,7 +45,6 @@ import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.player.event.PlayerEventListener;
-import org.schabi.newpipe.player.helper.LockManager;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.resolver.AudioPlaybackResolver;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
@@ -74,7 +74,6 @@ public final class BackgroundPlayer extends Service {
     public static final String SET_IMAGE_RESOURCE_METHOD = "setImageResource";
 
     private BasePlayerImpl basePlayerImpl;
-    private LockManager lockManager;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Service-Activity Binder
@@ -103,7 +102,6 @@ public final class BackgroundPlayer extends Service {
     public void onCreate() {
         if (DEBUG) Log.d(TAG, "onCreate() called");
         notificationManager = ((NotificationManager) getSystemService(NOTIFICATION_SERVICE));
-        lockManager = new LockManager(this);
 
         ThemeHelper.setTheme(this);
         basePlayerImpl = new BasePlayerImpl(this);
@@ -146,9 +144,6 @@ public final class BackgroundPlayer extends Service {
     private void onClose() {
         if (DEBUG) Log.d(TAG, "onClose() called");
 
-        if (lockManager != null) {
-            lockManager.releaseWifiAndCpu();
-        }
         if (basePlayerImpl != null) {
             basePlayerImpl.savePlaybackState();
             basePlayerImpl.stopActivityBinding();
@@ -157,7 +152,6 @@ public final class BackgroundPlayer extends Service {
         if (notificationManager != null) notificationManager.cancel(NOTIFICATION_ID);
         mBinder = null;
         basePlayerImpl = null;
-        lockManager = null;
 
         stopForeground(true);
         stopSelf();
@@ -194,10 +188,8 @@ public final class BackgroundPlayer extends Service {
                 .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setCustomContentView(notRemoteView)
-                .setCustomBigContentView(bigNotRemoteView);
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-            builder.setPriority(NotificationCompat.PRIORITY_MAX);
-        }
+                .setCustomBigContentView(bigNotRemoteView)
+                .setPriority(NotificationCompat.PRIORITY_MAX);
         return builder;
     }
 
@@ -548,7 +540,6 @@ public final class BackgroundPlayer extends Service {
             resetNotification();
             updateNotificationThumbnail();
             updateNotification(R.drawable.ic_pause_white);
-            lockManager.acquireWifiAndCpu();
         }
 
         @Override
@@ -557,7 +548,6 @@ public final class BackgroundPlayer extends Service {
             resetNotification();
             updateNotificationThumbnail();
             updateNotification(R.drawable.ic_play_arrow_white);
-            lockManager.releaseWifiAndCpu();
         }
 
         @Override
@@ -572,7 +562,6 @@ public final class BackgroundPlayer extends Service {
             }
             updateNotificationThumbnail();
             updateNotification(R.drawable.ic_replay_white);
-            lockManager.releaseWifiAndCpu();
         }
     }
 }

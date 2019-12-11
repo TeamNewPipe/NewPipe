@@ -37,8 +37,8 @@ public class LoadedMediaSource implements ManagedMediaSource {
     }
 
     @Override
-    public void prepareSource(SourceInfoRefreshListener listener, @Nullable TransferListener mediaTransferListener) {
-        source.prepareSource(listener, mediaTransferListener);
+    public void prepareSource(MediaSourceCaller caller, @Nullable TransferListener mediaTransferListener) {
+        source.prepareSource(caller, mediaTransferListener);
     }
 
     @Override
@@ -57,8 +57,8 @@ public class LoadedMediaSource implements ManagedMediaSource {
     }
 
     @Override
-    public void releaseSource(SourceInfoRefreshListener listener) {
-        source.releaseSource(listener);
+    public void releaseSource(MediaSourceCaller caller) {
+        source.releaseSource(caller);
     }
 
     @Override
@@ -80,5 +80,15 @@ public class LoadedMediaSource implements ManagedMediaSource {
     @Override
     public boolean isStreamEqual(@NonNull PlayQueueItem stream) {
         return this.stream == stream;
+    }
+
+    @Override
+    public void enable(MediaSourceCaller caller) {
+        source.enable(caller);
+    }
+
+    @Override
+    public void disable(MediaSourceCaller caller) {
+        source.disable(caller);
     }
 }

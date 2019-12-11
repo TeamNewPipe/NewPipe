@@ -1,5 +1,6 @@
 package org.schabi.newpipe.player.playback;
 
+import android.content.Context;
 import android.text.TextUtils;
 import android.util.Pair;
 
@@ -9,6 +10,7 @@ import androidx.annotation.Nullable;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.Format;
+import com.google.android.exoplayer2.RendererCapabilities.Capabilities;
 import com.google.android.exoplayer2.source.TrackGroup;
 import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
@@ -26,8 +28,8 @@ public class CustomTrackSelector extends DefaultTrackSelector {
 
     private String preferredTextLanguage;
 
-    public CustomTrackSelector(TrackSelection.Factory adaptiveTrackSelectionFactory) {
-        super(adaptiveTrackSelectionFactory);
+    public CustomTrackSelector(Context context, TrackSelection.Factory adaptiveTrackSelectionFactory) {
+        super(context, adaptiveTrackSelectionFactory);
     }
 
     public String getPreferredTextLanguage() {
@@ -50,17 +52,16 @@ public class CustomTrackSelector extends DefaultTrackSelector {
     @Nullable
     protected Pair<TrackSelection.Definition, TextTrackScore> selectTextTrack(
             TrackGroupArray groups,
-            int[][] formatSupport,
+            @Capabilities int[][] formatSupport,
             Parameters params,
             @Nullable String selectedAudioLanguage)
             throws ExoPlaybackException {
         TrackGroup selectedGroup = null;
         int selectedTrackIndex = C.INDEX_UNSET;
-        int newPipeTrackScore = 0;
         TextTrackScore selectedTrackScore = null;
         for (int groupIndex = 0; groupIndex < groups.length; groupIndex++) {
             TrackGroup trackGroup = groups.get(groupIndex);
-            int[] trackFormatSupport = formatSupport[groupIndex];
+            @Capabilities int[] trackFormatSupport = formatSupport[groupIndex];
             for (int trackIndex = 0; trackIndex < trackGroup.length; trackIndex++) {
                 if (isSupported(trackFormatSupport[trackIndex],
                         params.exceedRendererCapabilitiesIfNecessary)) {

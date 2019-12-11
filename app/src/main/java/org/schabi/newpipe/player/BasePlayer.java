@@ -37,8 +37,6 @@ import androidx.annotation.Nullable;
 
 import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlaybackException;
-import com.google.android.exoplayer2.ExoPlayerFactory;
-import com.google.android.exoplayer2.LoadControl;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.RenderersFactory;
@@ -60,7 +58,6 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.helper.AudioReactor;
-import org.schabi.newpipe.player.helper.LoadController;
 import org.schabi.newpipe.player.helper.MediaSessionManager;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.helper.PlayerHelper;
@@ -120,8 +117,6 @@ public abstract class BasePlayer implements
     @NonNull
     final protected PlayerDataSource dataSource;
 
-    @NonNull
-    final private LoadControl loadControl;
     @NonNull
     final private RenderersFactory renderFactory;
 
@@ -214,9 +209,8 @@ public abstract class BasePlayer implements
         this.dataSource = new PlayerDataSource(context, userAgent, bandwidthMeter);
 
         final TrackSelection.Factory trackSelectionFactory = PlayerHelper.getQualitySelector(context);
-        this.trackSelector = new CustomTrackSelector(trackSelectionFactory);
+        this.trackSelector = new CustomTrackSelector(context, trackSelectionFactory);
 
-        this.loadControl = new LoadController(context);
         this.renderFactory = new DefaultRenderersFactory(context);
     }
 
@@ -230,10 +224,13 @@ public abstract class BasePlayer implements
     public void initPlayer(final boolean playOnReady) {
         if (DEBUG) Log.d(TAG, "initPlayer() called with: context = [" + context + "]");
 
-        simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(context, renderFactory, trackSelector, loadControl);
+        simpleExoPlayer = new SimpleExoPlayer.Builder(context, renderFactory)
+                .setTrackSelector(trackSelector).build();
         simpleExoPlayer.addListener(this);
         simpleExoPlayer.setPlayWhenReady(playOnReady);
         simpleExoPlayer.setSeekParameters(PlayerHelper.getSeekParameters(context));
+        simpleExoPlayer.setHandleWakeLock(true);
+        simpleExoPlayer.setHandleAudioBecomingNoisy(true);
 
         audioReactor = new AudioReactor(context, simpleExoPlayer);
         mediaSessionManager = new MediaSessionManager(context, simpleExoPlayer,
@@ -567,12 +564,15 @@ public abstract class BasePlayer implements
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
-    public void onTimelineChanged(Timeline timeline, Object manifest,
-                                  @Player.TimelineChangeReason final int reason) {
-        if (DEBUG) Log.d(TAG, "ExoPlayer - onTimelineChanged() called with " +
-                (manifest == null ? "no manifest" : "available manifest") + ", " +
-                "timeline size = [" + timeline.getWindowCount() + "], " +
-                "reason = [" + reason + "]");
+    public void onTimelineChanged(Timeline timeline, @Player.TimelineChangeReason final int reason) {
+
+        if (DEBUG) {
+            Object manifest = simpleExoPlayer.getCurrentManifest();
+            Log.d(TAG, "ExoPlayer - onTimelineChanged() called with " +
+                    (manifest == null ? "no manifest" : "available manifest") + ", " +
+                    "timeline size = [" + timeline.getWindowCount() + "], " +
+                    "reason = [" + reason + "]");
+        }
 
         maybeUpdateCurrentMetadata();
     }
