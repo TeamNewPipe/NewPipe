@@ -184,8 +184,8 @@
         <item quantity="other">%s दर्शके</item>
     </plurals>
     <plurals name="videos">
-        <item quantity="one">%s वीडियो</item>
-        <item quantity="other">%s वीडियो</item>
+        <item quantity="one">वीडियो</item>
+        <item quantity="other">वीडियो</item>
     </plurals>
     <string name="start">शुरू</string>
     <string name="pause">रोके</string>
@@ -505,4 +505,16 @@
 \nसुचना - कुछ उपकरणों पर ये नहीं चलता</string>
     <string name="drawer_header_description">सेवा चुने, वर्तमान चुनाव :</string>
     <string name="default_kiosk_page_sumatry">सामान्य कीओस्क</string>
+    <string name="no_one_watching">कोई नहीं देख रहा है</string>
+    <plurals name="watching">
+        <item quantity="one">% s आदमी देख रहा है</item>
+        <item quantity="other">% s आदमी देख रहे है</item>
+    </plurals>
+    <string name="no_one_listening">कोई नहीं सुन रहा है</string>
+    <plurals name="listening">
+        <item quantity="one">% s श्रोता</item>
+        <item quantity="other">% s श्रोता</item>
+    </plurals>
+    <string name="localization_changes_requires_app_restart">ऐप के पुनः आरंभ होने के बाद भाषा बदल जाएगी।</string>
+    <string name="default_kiosk_page_summary">सामान्य कीओस्क</string>
 </resources>
