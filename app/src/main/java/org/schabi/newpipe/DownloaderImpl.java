@@ -15,12 +15,12 @@ import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
@@ -29,6 +29,8 @@ import javax.net.ssl.X509TrustManager;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import okhttp3.CipherSuite;
+import okhttp3.ConnectionSpec;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -195,6 +197,19 @@ public class DownloaderImpl extends Downloader {
             SSLSocketFactory sslSocketFactory = TLSSocketFactoryCompat.getInstance();
 
             builder.sslSocketFactory(sslSocketFactory, trustManager);
+
+            // This will try to enable all modern CipherSuites(+2 more) that are supported on the device.
+            // Necessary because some servers (e.g. Framatube.org) don't support the old cipher suites.
+            // https://github.com/square/okhttp/issues/4053#issuecomment-402579554
+            List<CipherSuite> cipherSuites = new ArrayList<>();
+            cipherSuites.addAll(ConnectionSpec.MODERN_TLS.cipherSuites());
+            cipherSuites.add(CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA);
+            cipherSuites.add(CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA);
+            ConnectionSpec legacyTLS = new ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS)
+                    .cipherSuites(cipherSuites.toArray(new CipherSuite[0]))
+                    .build();
+
+            builder.connectionSpecs(Arrays.asList(legacyTLS, ConnectionSpec.CLEARTEXT));
         } catch (KeyManagementException | NoSuchAlgorithmException | KeyStoreException e) {
             e.printStackTrace();
         }
