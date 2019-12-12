@@ -1,9 +1,14 @@
 package org.schabi.newpipe.player.mediasource;
+
 import android.os.Handler;
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.android.exoplayer2.source.ConcatenatingMediaSource;
+import com.google.android.exoplayer2.source.MaskingMediaSource;
+import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.ShuffleOrder;
 
 public class ManagedMediaSourcePlaylist {
@@ -28,8 +33,13 @@ public class ManagedMediaSourcePlaylist {
      * */
     @Nullable
     public ManagedMediaSource get(final int index) {
-        return (index < 0 || index >= size()) ?
-                null : (ManagedMediaSource) internalSource.getMediaSource(index);
+        MediaSource result = (index < 0 || index >= size()) ?
+                null : internalSource.getMediaSource(index);
+        if(result instanceof MaskingMediaSource) {
+            Log.e("MediaSourceManager", "unexpected MaskingMediaSource");
+            result = new ManagedMaskingMediaSource((MaskingMediaSource)result);
+        }
+        return (ManagedMediaSource) result;
     }
 
     @NonNull
