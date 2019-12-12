@@ -37,6 +37,7 @@ import androidx.annotation.Nullable;
 
 import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlaybackException;
+import com.google.android.exoplayer2.LoadControl;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.RenderersFactory;
@@ -58,6 +59,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.helper.AudioReactor;
+import org.schabi.newpipe.player.helper.LoadController;
 import org.schabi.newpipe.player.helper.MediaSessionManager;
 import org.schabi.newpipe.player.helper.PlayerDataSource;
 import org.schabi.newpipe.player.helper.PlayerHelper;
@@ -117,6 +119,8 @@ public abstract class BasePlayer implements
     @NonNull
     final protected PlayerDataSource dataSource;
 
+    @NonNull
+    final private LoadControl loadControl;
     @NonNull
     final private RenderersFactory renderFactory;
 
@@ -211,6 +215,7 @@ public abstract class BasePlayer implements
         final TrackSelection.Factory trackSelectionFactory = PlayerHelper.getQualitySelector(context);
         this.trackSelector = new CustomTrackSelector(context, trackSelectionFactory);
 
+        this.loadControl = new LoadController(context);
         this.renderFactory = new DefaultRenderersFactory(context);
     }
 
@@ -225,7 +230,7 @@ public abstract class BasePlayer implements
         if (DEBUG) Log.d(TAG, "initPlayer() called with: context = [" + context + "]");
 
         simpleExoPlayer = new SimpleExoPlayer.Builder(context, renderFactory)
-                .setTrackSelector(trackSelector).build();
+                .setTrackSelector(trackSelector).setLoadControl(loadControl).build();
         simpleExoPlayer.addListener(this);
         simpleExoPlayer.setPlayWhenReady(playOnReady);
         simpleExoPlayer.setSeekParameters(PlayerHelper.getSeekParameters(context));
