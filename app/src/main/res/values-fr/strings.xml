@@ -505,7 +505,7 @@
     <string name="delete_playback_states_alert">Voulez-vous supprimer toutes les positions de reprise de lecture \?</string>
     <string name="download_choose_new_path">Changez les dossiers de téléchargement pour que cela prenne effet</string>
     <string name="drawer_header_description">Activer/Désactiver le service, actuellement sélectionné :</string>
-    <string name="default_kiosk_page_sumatry">Kiosque par défaut</string>
+    <string name="default_kiosk_page_summary">Kiosque par défaut</string>
     <string name="no_one_watching">Personne ne regarde</string>
     <plurals name="watching">
         <item quantity="one">%s regarde</item>
@@ -517,5 +517,4 @@
         <item quantity="other">%s auditeurs</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">La langue changera lors du redémarrage de l\'application.</string>
-    <string name="default_kiosk_page_summary">Kiosque par défaut</string>
 </resources>

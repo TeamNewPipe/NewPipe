@@ -509,7 +509,7 @@
     <string name="delete_playback_states_alert">Usunąć wszystkie pozycje odtwarzania\?</string>
     <string name="download_choose_new_path">Zmień foldey pobierania, aby zostały uwzględnione</string>
     <string name="drawer_header_description">Przełączanie usługi, aktualnie wybranej:</string>
-    <string name="default_kiosk_page_sumatry">Domyślny Kiosk</string>
+    <string name="default_kiosk_page_summary">Domyślny Kiosk</string>
     <string name="no_one_watching">Nikt nie ogląda</string>
     <plurals name="watching">
         <item quantity="one">%s obserwujący</item>
@@ -523,5 +523,4 @@
         <item quantity="many">%s słuchaczy</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">Język zmieni się po ponownym uruchomieniu aplikacji.</string>
-    <string name="default_kiosk_page_summary">Domyślny Kiosk</string>
 </resources>

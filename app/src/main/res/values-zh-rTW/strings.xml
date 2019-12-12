@@ -501,7 +501,7 @@
         <item quantity="one">影片</item>
         <item quantity="other"/>
     </plurals>
-    <string name="default_kiosk_page_sumatry">預設 Kiosk</string>
+    <string name="default_kiosk_page_summary">預設 Kiosk</string>
     <string name="no_one_watching">沒有人在看</string>
     <plurals name="watching">
         <item quantity="one">%s 個觀眾</item>
@@ -513,5 +513,4 @@
         <item quantity="other"/>
     </plurals>
     <string name="localization_changes_requires_app_restart">語言將會在重新啟動應用程式後變更。</string>
-    <string name="default_kiosk_page_summary">預設 Kiosk</string>
 </resources>

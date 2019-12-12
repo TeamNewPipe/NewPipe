@@ -513,7 +513,7 @@ abrir em modo popup</string>
     <string name="delete_playback_states_alert">Deletar todo o histórico de reprodução\?</string>
     <string name="download_choose_new_path">Mude as pastas de download para surtir efeito</string>
     <string name="drawer_header_description">Alterar serviço, selecionados:</string>
-    <string name="default_kiosk_page_sumatry">Quiosque Padrão</string>
+    <string name="default_kiosk_page_summary">Quiosque Padrão</string>
     <string name="no_one_watching">Ninguém está assistindo</string>
     <plurals name="watching">
         <item quantity="one">%s assistindo</item>
@@ -525,5 +525,4 @@ abrir em modo popup</string>
         <item quantity="other">%s ouvintes</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">O idioma será atualizado assim que o aplicativo for reiniciado.</string>
-    <string name="default_kiosk_page_summary">Quiosque padrão</string>
 </resources>

@@ -520,9 +520,8 @@
     <string name="delete_playback_states_alert">حذف كل مواقف التشغيل؟</string>
     <string name="download_choose_new_path">تغيير مجلدات التنزيل إلى حيز التنفيذ‮‮‮</string>
     <string name="drawer_header_description">تبديل الخدمة ، المحدد حاليًا:</string>
-    <string name="default_kiosk_page_sumatry">الكشك الافتراضي</string>
+    <string name="default_kiosk_page_summary">الكشك الافتراضي</string>
     <string name="no_one_watching">لاتوجد مشاهدة</string>
     <string name="no_one_listening">لا أحد يستمع</string>
     <string name="localization_changes_requires_app_restart">ستتغير اللغة بمجرد إعادة تشغيل التطبيق.</string>
-    <string name="default_kiosk_page_summary">الكشك الافتراضي</string>
 </resources>

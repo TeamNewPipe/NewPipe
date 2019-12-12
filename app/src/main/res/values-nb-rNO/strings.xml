@@ -505,7 +505,6 @@
     <string name="delete_playback_states_alert">Slett alle avspillingsposisjoner\?</string>
     <string name="download_choose_new_path">Endre nedlastingsmappene for å tre i kraft</string>
     <string name="drawer_header_description">Skru tjeneste av/på, for tiden er dette status:</string>
-    <string name="default_kiosk_page_sumatry">Standard kiosk</string>
     <string name="no_one_watching">Ingen ser på</string>
     <plurals name="watching">
         <item quantity="one">%s seer</item>
