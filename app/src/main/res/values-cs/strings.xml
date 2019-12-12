@@ -314,7 +314,6 @@ otevření ve vyskakovacím okně</string>
     <string name="resize_fit">Přizpůsobit</string>
     <string name="resize_fill">Vyplnit</string>
     <string name="resize_zoom">Zvětšit</string>
-    <string name="toggle_leak_canary">Sledovat únik paměti</string>
     <string name="settings_category_debug_title">Ladění</string>
     <string name="caption_auto_generated">"Automaticky generováno "</string>
     <string name="enable_leak_canary_title">Povolit službu LeakCanary</string>
