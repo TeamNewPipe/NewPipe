@@ -20,7 +20,7 @@
     <string name="download_path_summary">يتم تخزين ملفات الفيديو التي تم تنزيلها هنا</string>
     <string name="download_path_title">مجلد تحميل الفيديو</string>
     <string name="err_dir_create">"لا يمكن إنشاء مجلد للتنزيلات في '%1$s'"</string>
-    <string name="info_dir_created">إنشاء دليل التنزيل \'%1$s\'</string>
+    <string name="info_dir_created">دليل التنزيل الذي تم إنشاؤه \'%1$s\'</string>
     <string name="install">تثبيت</string>
     <string name="kore_not_found">تطبيق Kore غير موجود. هل تريد تثبيته ؟</string>
     <string name="light_theme_title">مضيء</string>
@@ -42,7 +42,7 @@
     <string name="share">مشاركة</string>
     <string name="share_dialog_title">مشاركة بواسطة</string>
     <string name="show_next_and_similar_title">عرض مقاطع الفيديو \"التالية\" و \"المشابهة\"</string>
-    <string name="show_play_with_kodi_summary">عرض خيار تشغيل الفيديو عبر مركز وسائط كودي</string>
+    <string name="show_play_with_kodi_summary">عرض خيارات تشغيل الفيديو من خلال مركز كودي ميديا</string>
     <string name="show_play_with_kodi_title">عرض خيار التشغيل بواسطة كودي</string>
     <string name="theme_title">السمة</string>
     <string name="upload_date_text">تم النشر يوم %1$s</string>
@@ -200,7 +200,7 @@
     <string name="action_open_website">فتح الموقع</string>
     <string name="tab_contributors">المساهمون</string>
     <string name="tab_licenses">التراخيص</string>
-    <string name="app_description">مجاني خفيف الوزن بث حي على أندرويد.</string>
+    <string name="app_description">تطبيق مجاني خفيف الوزن وبث حي على نظام أندرويد.</string>
     <string name="contribution_title">ساهم</string>
     <string name="contribution_encouragement">إذا كانت لديك أفكار؛ أو ترجمة، أو تغييرات تخص التصميم، أو تنظيف و تحسين الشفرة البرمجية ، أو تعديلات عميقة عليها، فتذكر أنّ مساعدتك دائما موضع ترحيب. وكلما أتممنا شيئا كلما كان ذلك أفضل !</string>
     <string name="view_on_github">عرض على GitHub</string>
@@ -234,7 +234,7 @@
     <string name="play_queue_stream_detail">التفاصيل</string>
     <string name="play_queue_audio_settings">الإعدادات الصوتية</string>
     <string name="start_here_on_main">تشغيل هنا</string>
-    <string name="start_here_on_popup">تشغيل في وضع نافذة منبثقة</string>
+    <string name="start_here_on_popup">بدأ التشغيل في نافذة منبثقة جديدة</string>
     <string name="reCaptcha_title">تحدي الكابتشا</string>
     <string name="hold_to_append">ضغط مطول للإدراج الى قائمة الانتظار</string>
     <plurals name="views">
@@ -425,10 +425,10 @@
     <string name="app_update_notification_channel_name">تتبيه تحديث التطبيق</string>
     <string name="volume_gesture_control_title">إيماءة التحكم بالصوت</string>
     <string name="events">الأحداث</string>
-    <string name="app_update_notification_channel_description">إخطارات NewPipe جديدة  الإصدار</string>
-    <string name="download_to_sdcard_error_title">ذاكرة التخزين الخارجية غير متوفرة</string>
+    <string name="app_update_notification_channel_description">"تنبيه عند تواجد إصدار جديد newpipe "</string>
+    <string name="download_to_sdcard_error_title">وحدة التخزين الخارجية غير متاحة</string>
     <string name="download_to_sdcard_error_message">"التنزيل على بطاقة SD الخارجية غير ممكن.  إعادة تعيين موقع مجلد التحميل؟"</string>
-    <string name="saved_tabs_invalid_json">استخدام خطأ علامات التبويب الافتراضية, أثناء قراءة علامات التبويب المحفوظة</string>
+    <string name="saved_tabs_invalid_json">باستخدام علامات التبويب الافتراضية ، خطأ أثناء قراءة علامات التبويب المحفوظة</string>
     <string name="restore_defaults">استعادة الضبط الافتراضي</string>
     <string name="restore_defaults_confirmation">هل تريد استعادة الإعدادات الافتراضية؟</string>
     <string name="subscribers_count_not_available">عدد المشتركين غير متاح</string>
@@ -449,7 +449,7 @@
     <string name="paused">متوقف</string>
     <string name="queued">في قائمة الانتظار</string>
     <string name="post_processing">قيد المعالجة</string>
-    <string name="enqueue">قائمة الانتظار</string>
+    <string name="enqueue">قائمه انتظار</string>
     <string name="permission_denied">تم رفضها من قبل النظام</string>
     <string name="download_failed">فشل التنزيل</string>
     <string name="download_finished">تم الانتهاء من التحميل</string>
@@ -521,4 +521,8 @@
     <string name="download_choose_new_path">تغيير مجلدات التنزيل إلى حيز التنفيذ‮‮‮</string>
     <string name="drawer_header_description">تبديل الخدمة ، المحدد حاليًا:</string>
     <string name="default_kiosk_page_sumatry">الكشك الافتراضي</string>
+    <string name="no_one_watching">لاتوجد مشاهدة</string>
+    <string name="no_one_listening">لا أحد يستمع</string>
+    <string name="localization_changes_requires_app_restart">ستتغير اللغة بمجرد إعادة تشغيل التطبيق.</string>
+    <string name="default_kiosk_page_summary">الكشك الافتراضي</string>
 </resources>

@@ -271,19 +271,16 @@
         <item quantity="one">%s view</item>
         <item quantity="other">%s views</item>
     </plurals>
-
     <string name="no_one_watching">No one is watching</string>
     <plurals name="watching">
         <item quantity="one">%s watching</item>
         <item quantity="other">%s watching</item>
     </plurals>
-
     <string name="no_one_listening">No one is listening</string>
     <plurals name="listening">
         <item quantity="one">%s listener</item>
         <item quantity="other">%s listeners</item>
     </plurals>
-
     <string name="no_videos">No videos</string>
     <plurals name="videos">
         <item quantity="one">%s video</item>
@@ -401,8 +398,7 @@
     <string name="override_current_data">This will override your current setup.</string>
     <string name="import_settings">Do you want to also import settings?</string>
     <string name="error_unable_to_load_comments">Could not load comments</string>
-    <string name="localization_changes_requires_app_restart">Localization changes will not take effect until the app is restarted</string>
-
+    <string name="localization_changes_requires_app_restart">The language will change once the app is restarted.</string>
     <!-- Kiosk Names -->
     <string name="kiosk">Kiosk</string>
     <string name="trending">Trending</string>
@@ -470,10 +466,8 @@
     <string name="enable_leak_canary_summary">Memory leak monitoring may cause the app to become unresponsive when heap dumping</string>
     <string name="enable_disposed_exceptions_title">Report out-of-lifecycle errors</string>
     <string name="enable_disposed_exceptions_summary">Force reporting of undeliverable Rx exceptions outside of fragment or activity lifecycle after disposal</string>
-
     <string name="show_original_time_ago_title" translatable="false">Show original time ago on items</string>
     <string name="show_original_time_ago_summary" translatable="false">Original texts from services will be visible in stream items</string>
-
     <!-- Subscriptions import/export -->
     <string name="import_export_title">Import/export</string>
     <string name="import_title">Import</string>

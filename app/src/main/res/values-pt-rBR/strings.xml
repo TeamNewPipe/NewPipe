@@ -205,8 +205,8 @@ abrir em modo popup</string>
     </plurals>
     <string name="no_videos">Nenhum vídeo</string>
     <plurals name="videos">
-        <item quantity="one">%s vídeo</item>
-        <item quantity="other">%s vídeos</item>
+        <item quantity="one">%s Vídeo</item>
+        <item quantity="other">%s Vídeos</item>
     </plurals>
     <string name="item_deleted">Item excluído</string>
     <string name="settings_category_player_title">Player</string>
@@ -214,7 +214,7 @@ abrir em modo popup</string>
     <string name="delete_item_search_history">Deseja apagar este item do seu histórico de pesquisas\?</string>
     <string name="main_page_content">Conteúdo da página principal</string>
     <string name="blank_page_summary">Página em branco</string>
-    <string name="kiosk_page_summary">Página de banca</string>
+    <string name="kiosk_page_summary">Página do Quiosque</string>
     <string name="subscription_page_summary">Página de inscrição</string>
     <string name="feed_page_summary">Página de feed</string>
     <string name="channel_page_summary">Página de canais</string>
@@ -288,7 +288,7 @@ abrir em modo popup</string>
     <string name="dismiss">Dispensar</string>
     <string name="rename">Renomear</string>
     <string name="delete_stream_history_prompt">Deseja apagar este item do seu histórico de assistidos\?</string>
-    <string name="delete_all_history_prompt">Tem certeza que deseja apagar todos itens do histórico?</string>
+    <string name="delete_all_history_prompt">Tem certeza de que deseja apagar todos itens do histórico\?</string>
     <string name="title_last_played">Reproduzido anteriormente</string>
     <string name="title_most_played">Mais reproduzido</string>
     <string name="always_ask_open_action">Sempre perguntar</string>
@@ -514,4 +514,16 @@ abrir em modo popup</string>
     <string name="download_choose_new_path">Mude as pastas de download para surtir efeito</string>
     <string name="drawer_header_description">Alterar serviço, selecionados:</string>
     <string name="default_kiosk_page_sumatry">Quiosque Padrão</string>
+    <string name="no_one_watching">Ninguém está assistindo</string>
+    <plurals name="watching">
+        <item quantity="one">%s assistindo</item>
+        <item quantity="other">%s estão assistindo</item>
+    </plurals>
+    <string name="no_one_listening">Ninguém está ouvindo</string>
+    <plurals name="listening">
+        <item quantity="one">%s ouvinte</item>
+        <item quantity="other">%s ouvintes</item>
+    </plurals>
+    <string name="localization_changes_requires_app_restart">O idioma será atualizado assim que o aplicativo for reiniciado.</string>
+    <string name="default_kiosk_page_summary">Quiosque padrão</string>
 </resources>

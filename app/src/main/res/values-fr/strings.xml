@@ -135,7 +135,7 @@
     <string name="refresh">Rafraîchir</string>
     <string name="clear">Effacer</string>
     <string name="popup_resizing_indicator_title">Redimensionner</string>
-    <string name="short_billion">B</string>
+    <string name="short_billion">Mrd</string>
     <string name="use_external_video_player_summary">Retire l’audio à CERTAINES définitions</string>
     <string name="player_gesture_controls_summary">Utiliser des gestes pour contrôler la luminosité et le volume du lecteur</string>
     <string name="show_search_suggestions_title">Suggestions de recherche</string>
@@ -205,8 +205,8 @@
     </plurals>
     <string name="no_videos">Aucune vidéo</string>
     <plurals name="videos">
-        <item quantity="one">%s vidéo</item>
-        <item quantity="other">%s vidéos</item>
+        <item quantity="one">Vidéo</item>
+        <item quantity="other">Vidéos</item>
     </plurals>
     <string name="charset_most_special_characters">Caractères spéciaux</string>
     <string name="item_deleted">Élément supprimé</string>
@@ -506,4 +506,16 @@
     <string name="download_choose_new_path">Changez les dossiers de téléchargement pour que cela prenne effet</string>
     <string name="drawer_header_description">Activer/Désactiver le service, actuellement sélectionné :</string>
     <string name="default_kiosk_page_sumatry">Kiosque par défaut</string>
+    <string name="no_one_watching">Personne ne regarde</string>
+    <plurals name="watching">
+        <item quantity="one">%s regarde</item>
+        <item quantity="other">%s regardent</item>
+    </plurals>
+    <string name="no_one_listening">Personne n\'écoute</string>
+    <plurals name="listening">
+        <item quantity="one">%s auditeur</item>
+        <item quantity="other">%s auditeurs</item>
+    </plurals>
+    <string name="localization_changes_requires_app_restart">La langue changera lors du redémarrage de l\'application.</string>
+    <string name="default_kiosk_page_summary">Kiosque par défaut</string>
 </resources>
