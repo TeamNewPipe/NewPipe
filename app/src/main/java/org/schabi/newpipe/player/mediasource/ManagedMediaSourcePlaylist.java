@@ -34,7 +34,7 @@ public class ManagedMediaSourcePlaylist {
     public ManagedMediaSource get(final int index) {
         MediaSource result = (index < 0 || index >= size()) ?
                 null : internalSource.getMediaSource(index);
-        if(result instanceof MaskingMediaSource) {
+        if (result instanceof MaskingMediaSource) {
             result = new UnpreparedMediaSource(result);
         }
         return (ManagedMediaSource) result;
