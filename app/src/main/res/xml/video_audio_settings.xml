@@ -149,7 +149,7 @@
 
         <ListPreference
           app:iconSpaceReserved="false"
-          android:defaultValue="@string/seek_duration_default_key"
+          android:defaultValue="@string/seek_duration_default_value"
           android:entries="@array/seek_duration_description"
           android:entryValues="@array/seek_duration_value"
           android:key="@string/seek_duration_key"

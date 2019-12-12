@@ -178,7 +178,6 @@ public abstract class BasePlayer implements
     // Player
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected final static String FAST_FORWARD_REWIND_DEFAULT_AMOUNT_MILLIS = "10000"; // 10 seconds
     protected final static int PLAY_PREV_ACTIVATION_LIMIT_MILLIS = 5000; // 5 seconds
     protected final static int PROGRESS_LOOP_INTERVAL_MILLIS = 500;
     protected final static int RECOVERY_SKIP_THRESHOLD_MILLIS = 3000; // 3 seconds
@@ -965,7 +964,7 @@ public abstract class BasePlayer implements
     private int getSeekDuration() {
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         final String key = context.getString(R.string.seek_duration_key);
-        final String value = prefs.getString(key, FAST_FORWARD_REWIND_DEFAULT_AMOUNT_MILLIS);
+        final String value = prefs.getString(key, context.getString(R.string.seek_duration_default_value));
         return Integer.parseInt(value);
     }
 
