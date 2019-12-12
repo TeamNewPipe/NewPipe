@@ -1,7 +1,6 @@
 package org.schabi.newpipe.player.mediasource;
 
 import android.os.Handler;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -36,8 +35,7 @@ public class ManagedMediaSourcePlaylist {
         MediaSource result = (index < 0 || index >= size()) ?
                 null : internalSource.getMediaSource(index);
         if(result instanceof MaskingMediaSource) {
-            Log.e("MediaSourceManager", "unexpected MaskingMediaSource");
-            result = new ManagedMaskingMediaSource((MaskingMediaSource)result);
+            result = new UnpreparedMediaSource(result);
         }
         return (ManagedMediaSource) result;
     }
