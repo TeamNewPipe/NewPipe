@@ -154,7 +154,6 @@
     <string name="clear_views_history_title">ล้างประวัติการดู</string>
     <string name="clear_views_history_summary">ลบประวัติของวีดีโอที่เคยเล่น</string>
     <string name="delete_view_history_alert">ลบประวัติการดูทั้งหมดหรือไม่\?</string>
-    <string name="view_history_deleted">ลบประวัติการดูแล้ว</string>
     <string name="clear_search_history_title">ล้างประวัติการค้นหา</string>
     <string name="clear_search_history_summary">ลบประวัติของคำที่เคยค้นหา</string>
     <string name="delete_search_history_alert">ลบประวัติการค้นหาทั้งหมดหรือไม่\?</string>
