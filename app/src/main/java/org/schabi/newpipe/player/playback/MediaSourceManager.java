@@ -148,7 +148,7 @@ public class MediaSourceManager {
         this.debouncedSignal = PublishSubject.create();
         this.debouncedLoader = getDebouncedLoader();
         this.mediaSourceManagerHandler = new ReactiveReplaceHandler();
-        this.mediaSourceManagerHandler.sendEmptyMessageDelayed(0, playbackNearEndGapMillis);
+        this.mediaSourceManagerHandler.sendEmptyMessageDelayed(0, progressUpdateIntervalMillis);
 
         this.playQueueReactor = EmptySubscription.INSTANCE;
         this.loaderReactor = new CompositeDisposable();
