@@ -448,7 +448,6 @@
     <string name="error_http_not_found">Hittades inte</string>
     <string name="error_postprocessing_failed">Efterbehandling misslyckades</string>
     <string name="clear_finished_download">Töm färdiga nedladdningar</string>
-    <string name="msg_pending_downloads">Fortsätt med %s väntande överföringar från Nedladdningar</string>
     <string name="stop">Stanna</string>
     <string name="max_retry_msg">Max försök</string>
     <string name="max_retry_desc">Max antal försök tills nedladdning avbryts</string>

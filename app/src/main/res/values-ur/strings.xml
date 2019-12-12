@@ -454,7 +454,6 @@
     <string name="error_http_not_found">نہیں ملا</string>
     <string name="error_postprocessing_failed">پوسٹ پروسیسنگ ناکام</string>
     <string name="clear_finished_download">ختم شدہ ڈاؤن لوڈ صاف کریں</string>
-    <string name="msg_pending_downloads">اپنے% s زیر التوا منتقلیوں کو ڈاؤن لوڈز سے جاری رکھیں</string>
     <string name="stop">رکو</string>
     <string name="max_retry_msg">زیادہ سے زیادہ دوبارہ کوشش کریں</string>
     <string name="max_retry_desc">ڈاؤن لوڈ منسوخ کرنے سے پہلے کوششوں کی زیادہ سے زیادہ تعداد</string>

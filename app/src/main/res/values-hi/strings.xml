@@ -497,8 +497,7 @@
     <string name="auto">ऑटो</string>
     <string name="show_error">मुसीबत दिखाए</string>
     <string name="error_http_unsupported_range">सर्वर मल्टी थ्रेडेड डाउनलोड स्वीकार नहीं करता, पुनः कोशिश करे @string/msg_threads = 1 के साथ</string>
-    <string name="msg_pending_downloads">आपके %s रुके हुए कामों को डौन्लोडस में पुनः से शुरू करे</string>
-    <string name="downloads_storage_ask_summary_kitkat">आपको डाउनलोड कहाँ सहेजना है हर डाउनलोड पर पूछा जायेगा 
+    <string name="downloads_storage_ask_summary_kitkat">आपको डाउनलोड कहाँ सहेजना है हर डाउनलोड पर पूछा जायेगा
 \nअगर आपको एक्सटर्नल एस डी कार्ड पर डाउनलोड करना हो तो एस ऐ ऍफ़ चुनिए</string>
     <string name="downloads_storage_use_saf_summary">स्टोरेज एक्सेस फ्रेमवर्क (एस ऐ ऍफ़) आपको एस डी कार्ड पर डाउनलोड करने देता है 
 \nसुचना - कुछ उपकरणों पर ये नहीं चलता</string>

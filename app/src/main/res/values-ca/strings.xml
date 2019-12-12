@@ -485,7 +485,6 @@
     <string name="enable_playback_state_lists_summary">Mostra els indicadors de posició de reproducció a les llistes</string>
     <string name="settings_category_clear_data_title">Neteja les dades</string>
     <string name="permission_denied">El sistema ha denegat l\'acció</string>
-    <string name="msg_pending_downloads">Reprèn les %s baixades pendents des de Baixades</string>
     <string name="error_postprocessing_stopped">S\'ha tancat el NewPipe mentre es treballava en el fitxer</string>
     <string name="downloads_storage_ask_title">Demana on baixar</string>
     <string name="download_choose_new_path">Canvia les carpetes de baixada perquè tingui efecte</string>

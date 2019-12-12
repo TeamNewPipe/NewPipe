@@ -458,7 +458,6 @@
     <string name="error_http_not_found">找不到 NOT FOUND</string>
     <string name="error_postprocessing_failed">后期处理失败</string>
     <string name="clear_finished_download">清除已完成的下载</string>
-    <string name="msg_pending_downloads">继续已暂停的下载</string>
     <string name="stop">停止</string>
     <string name="max_retry_msg">最大重试次数</string>
     <string name="max_retry_desc">取消下载前的最多尝试次数</string>
