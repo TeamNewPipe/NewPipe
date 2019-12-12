@@ -446,7 +446,6 @@
     <string name="error_connect_host">No se puede conectar con el servidor</string>
     <string name="error_http_no_content">El servidor no devolvio datos</string>
     <string name="error_http_unsupported_range">El servidor no acepta descargas multi-hilos, intente de nuevo con @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">No se puede satisfacer el intervalo seleccionado</string>
     <string name="error_http_not_found">No encontrado</string>
     <string name="error_postprocessing_failed">Falló el posprocesamiento</string>
     <string name="error_postprocessing_stopped">NewPipe se cerró mientras se trabajaba en el archivo</string>

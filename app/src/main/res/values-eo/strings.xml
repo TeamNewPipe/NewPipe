@@ -491,7 +491,6 @@
     <string name="error_connect_host">Ne povas konektiĝi al la servilo</string>
     <string name="error_http_no_content">La servilo ne sendas datumojn</string>
     <string name="error_http_unsupported_range">La servilo ne akceptas plurfadenajn elŝutojn, reprovu kun @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">Petita kampo ne estas havebla</string>
     <string name="error_http_not_found">Ne trovita</string>
     <string name="error_postprocessing_failed">Postprocesado malsukcesis</string>
     <string name="clear_finished_download">Forviŝi la finitajn elŝutojn</string>

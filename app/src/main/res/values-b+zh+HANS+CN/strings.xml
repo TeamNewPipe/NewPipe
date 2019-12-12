@@ -455,7 +455,6 @@
     <string name="error_unknown_host">找不到服务器</string>
     <string name="error_connect_host">无法连接到服务器</string>
     <string name="error_http_no_content">服务器未发送数据</string>
-    <string name="error_http_requested_range_not_satisfiable">请求范围无法满足</string>
     <string name="error_http_not_found">找不到 NOT FOUND</string>
     <string name="error_postprocessing_failed">后期处理失败</string>
     <string name="clear_finished_download">清除已完成的下载</string>

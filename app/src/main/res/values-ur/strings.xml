@@ -451,7 +451,6 @@
     <string name="error_connect_host">سرور سے متصل نہیں ہوسکتا</string>
     <string name="error_http_no_content">سرور ڈیٹا نہیں بھیجتا ہے</string>
     <string name="error_http_unsupported_range">سرور ملٹی تھریڈڈ ڈاؤن لوڈز کو قبول نہیں کرتا ہے ، @ سٹرنگ / msg_threads = 1 کے ساتھ دوبارہ کوشش کریں</string>
-    <string name="error_http_requested_range_not_satisfiable">درخواست کی گئی حد قابل اطمینان نہیں ہے</string>
     <string name="error_http_not_found">نہیں ملا</string>
     <string name="error_postprocessing_failed">پوسٹ پروسیسنگ ناکام</string>
     <string name="clear_finished_download">ختم شدہ ڈاؤن لوڈ صاف کریں</string>

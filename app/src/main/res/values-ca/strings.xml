@@ -492,7 +492,6 @@
     <string name="download_to_sdcard_error_message">No es pot desar a la targeta externa. Voleu restablir la carpeta de baixades\?</string>
     <string name="error_permission_denied">Permís denegat pel sistema</string>
     <string name="error_http_unsupported_range">El servidor no accepta baixades simultànies. Proveu amb @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">No es pot satisfer el rang seleccionat</string>
     <string name="enable_playback_resume_summary">Restaura la darrera posició de la reproducció</string>
     <string name="watch_history_states_deleted">S\'ha suprimit les posicions de reproducció.</string>
     <string name="missing_file">El fitxer s\'ha mogut o suprimit</string>

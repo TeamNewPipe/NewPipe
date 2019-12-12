@@ -435,7 +435,6 @@
     <string name="error_unknown_host">सर्वर नहीं ढूँढ सका</string>
     <string name="error_connect_host">सर्वर से जुड़ नहीं सकता</string>
     <string name="error_http_no_content">सर्वर डेटा नहीं भेजता है</string>
-    <string name="error_http_requested_range_not_satisfiable">अनुरोधित सीमा संतोषजनक नहीं है</string>
     <string name="error_http_not_found">नहीं मिला</string>
     <string name="error_postprocessing_failed">प्रक्रिया के बाद का कार्य विफल रहा</string>
     <string name="clear_finished_download">समाप्त डाउनलोड साफ़ करें</string>
