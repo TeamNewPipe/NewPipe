@@ -416,7 +416,6 @@
     <string name="download_finished_more">%s การดาวน์โหลดเสร็จสิ้น</string>
     <string name="generate_unique_name">สร้างชื่อเฉพาะ</string>
     <string name="overwrite">เขียนทับ</string>
-    <string name="overwrite_warning">ไฟล์ที่ดาวน์โหลดด้วยชื่อนี้มีอยู่แล้ว</string>
     <string name="download_already_running">มีการดาวน์โหลดที่กำลังดำเนินการอยู่ด้วยไฟล์ชื่อนี้อยู่แล้ว</string>
     <string name="show_error">แสดงข้อผิดพลาด</string>
     <string name="label_code">โค้ด</string>
