@@ -1,9 +1,11 @@
 package org.schabi.newpipe.player.playback;
 import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.collection.ArraySet;
-import android.util.Log;
 
 import com.google.android.exoplayer2.source.MediaSource;
 
@@ -28,7 +30,6 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import io.reactivex.Observable;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -60,17 +61,16 @@ public class MediaSourceManager {
 
     /**
      * Determines the gap time between the playback position and the playback duration which
-     * the {@link #getEdgeIntervalSignal()} begins to request loading.
+     * the ReactiveReplaceHandler begins to request loading.
      *
      * @see #progressUpdateIntervalMillis
      * */
     private final long playbackNearEndGapMillis;
     /**
-     * Determines the interval which the {@link #getEdgeIntervalSignal()} waits for between
+     * Determines the interval which the ReactiveReplaceHandler waits for between
      * each request for loading, once {@link #playbackNearEndGapMillis} has reached.
      * */
     private final long progressUpdateIntervalMillis;
-    @NonNull private final Observable<Long> nearEndIntervalSignal;
 
     /**
      * Process only the last load order when receiving a stream of load orders (lessens I/O).
@@ -103,7 +103,19 @@ public class MediaSourceManager {
 
     @NonNull private ManagedMediaSourcePlaylist playlist;
 
-    private Handler removeMediaSourceHandler = new Handler();
+    private Handler mediaSourceManagerHandler;
+
+    private class ReactiveReplaceHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            switch(msg.what) {
+                case 0:
+                    playbackListener.isApproachingPlaybackEdge(playbackNearEndGapMillis);
+                    mediaSourceManagerHandler.sendEmptyMessageDelayed(0, progressUpdateIntervalMillis);
+                    break;
+            }
+        }
+    }
 
     public MediaSourceManager(@NonNull final PlaybackListener listener,
                               @NonNull final PlayQueue playQueue) {
@@ -131,11 +143,12 @@ public class MediaSourceManager {
 
         this.playbackNearEndGapMillis = playbackNearEndGapMillis;
         this.progressUpdateIntervalMillis = progressUpdateIntervalMillis;
-        this.nearEndIntervalSignal = getEdgeIntervalSignal();
 
         this.loadDebounceMillis = loadDebounceMillis;
         this.debouncedSignal = PublishSubject.create();
         this.debouncedLoader = getDebouncedLoader();
+        this.mediaSourceManagerHandler = new ReactiveReplaceHandler();
+        this.mediaSourceManagerHandler.sendEmptyMessageDelayed(0, playbackNearEndGapMillis);
 
         this.playQueueReactor = EmptySubscription.INSTANCE;
         this.loaderReactor = new CompositeDisposable();
@@ -165,6 +178,8 @@ public class MediaSourceManager {
 
         playQueueReactor.cancel();
         loaderReactor.dispose();
+
+        mediaSourceManagerHandler.removeMessages(0);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -317,15 +332,8 @@ public class MediaSourceManager {
     // MediaSource Loading
     //////////////////////////////////////////////////////////////////////////*/
 
-    private Observable<Long> getEdgeIntervalSignal() {
-        return Observable.interval(progressUpdateIntervalMillis, TimeUnit.MILLISECONDS)
-                .filter(ignored ->
-                        playbackListener.isApproachingPlaybackEdge(playbackNearEndGapMillis));
-    }
-
     private Disposable getDebouncedLoader() {
-        return debouncedSignal.mergeWith(nearEndIntervalSignal)
-                .debounce(loadDebounceMillis, TimeUnit.MILLISECONDS)
+        return debouncedSignal.debounce(loadDebounceMillis, TimeUnit.MILLISECONDS)
                 .subscribeOn(Schedulers.single())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(timestamp -> loadImmediate());
@@ -397,7 +405,7 @@ public class MediaSourceManager {
         if (isCorrectionNeeded(item)) {
             if (DEBUG) Log.d(TAG, "MediaSource - Updating index=[" + itemIndex + "] with " +
                     "title=[" + item.getTitle() + "] at url=[" + item.getUrl() + "]");
-            playlist.update(itemIndex, mediaSource, removeMediaSourceHandler, this::maybeSynchronizePlayer);
+            playlist.update(itemIndex, mediaSource, mediaSourceManagerHandler, this::maybeSynchronizePlayer);
         }
     }
 
@@ -443,7 +451,7 @@ public class MediaSourceManager {
 
         if (DEBUG) Log.d(TAG, "MediaSource - Reloading currently playing, " +
                 "index=[" + currentIndex + "], item=[" + currentItem.getTitle() + "]");
-        playlist.invalidate(currentIndex, removeMediaSourceHandler, this::loadImmediate);
+        playlist.invalidate(currentIndex, mediaSourceManagerHandler, this::loadImmediate);
     }
 
     private void maybeClearLoaders() {
