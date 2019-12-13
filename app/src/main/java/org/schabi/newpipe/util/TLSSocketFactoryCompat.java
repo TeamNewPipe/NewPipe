@@ -13,6 +13,8 @@ import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 
+import static org.schabi.newpipe.MainActivity.DEBUG;
+
 
 /**
  * This is an extension of the SSLSocketFactory which enables TLS 1.2 and 1.1.
@@ -49,7 +51,7 @@ public class TLSSocketFactoryCompat extends SSLSocketFactory {
         try {
             HttpsURLConnection.setDefaultSSLSocketFactory(getInstance());
         } catch (NoSuchAlgorithmException | KeyManagementException e) {
-            e.printStackTrace();
+            if (DEBUG) e.printStackTrace();
         }
     }
 
@@ -95,33 +97,7 @@ public class TLSSocketFactoryCompat extends SSLSocketFactory {
 
     private Socket enableTLSOnSocket(Socket socket) {
         if (socket != null && (socket instanceof SSLSocket)) {
-            /*
-            //Create list of supported protocols
-            ArrayList<String> supportedProtocols = new ArrayList<>();
-            for (String protocol : ((SSLSocket)socket).getEnabledProtocols()) {
-
-                //Log.d("TLSSocketFactory", "Supported protocol:" + protocol);
-                //Only add TLS protocols (don't want ot support older SSL versions)
-                if (protocol.toUpperCase().contains("TLS")) {
-                    supportedProtocols.add(protocol);
-                }
-            }
-            //Force add TLSv1.1 and 1.2 if not already added
-            if (!supportedProtocols.contains("TLSv1.1")) {
-                supportedProtocols.add("TLSv1.1");
-            }
-            if (!supportedProtocols.contains("TLSv1.2")) {
-                supportedProtocols.add("TLSv1.2");
-            }
-
-            String[] protocolArray = supportedProtocols.toArray(new String[supportedProtocols.size()]);
-
-            //enable protocols in our list
-            //((SSLSocket)socket).setEnabledProtocols(protocolArray);
-            */
-            // OR: only enable TLS 1.1 and 1.2!
             ((SSLSocket) socket).setEnabledProtocols(new String[]{"TLSv1.1", "TLSv1.2"});
-
         }
         return socket;
     }

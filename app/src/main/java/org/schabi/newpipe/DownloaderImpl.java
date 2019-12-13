@@ -35,6 +35,8 @@ import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 
+import static org.schabi.newpipe.MainActivity.DEBUG;
+
 public class DownloaderImpl extends Downloader {
     public static final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0";
 
@@ -211,7 +213,7 @@ public class DownloaderImpl extends Downloader {
 
             builder.connectionSpecs(Arrays.asList(legacyTLS, ConnectionSpec.CLEARTEXT));
         } catch (KeyManagementException | NoSuchAlgorithmException | KeyStoreException e) {
-            e.printStackTrace();
+            if (DEBUG) e.printStackTrace();
         }
     }
 }
