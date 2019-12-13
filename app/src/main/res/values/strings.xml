@@ -570,7 +570,7 @@
     <string name="error_timeout">Connection timeout</string>
     <string name="error_download_resource_gone">Cannot recover this download</string>
     <string name="clear_finished_download">Clear finished downloads</string>
-    <string name="confirm_prompt">Are you sure?</string>
+    <string name="confirm_prompt">Do you want to clear your download history or delete all downloaded files?</string>
     <string name="stop">Stop</string>
     <string name="max_retry_msg">Maximum retries</string>
     <string name="max_retry_desc">Maximum number of attempts before canceling the download</string>
