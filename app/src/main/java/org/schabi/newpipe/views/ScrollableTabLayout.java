@@ -14,6 +14,7 @@ import com.google.android.material.tabs.TabLayout.Tab;
 
 /**
  * A TabLayout that is scrollable when tabs exceed its width.
+ * Hides when there are less than 2 tabs.
  */
 public class ScrollableTabLayout extends TabLayout {
     private static final String TAG = ScrollableTabLayout.class.getSimpleName();
@@ -60,6 +61,13 @@ public class ScrollableTabLayout extends TabLayout {
     }
 
     private void resetMode() {
+        if (getTabCount() < 2) {
+            setVisibility(View.GONE);
+            return;
+        } else {
+            setVisibility(View.VISIBLE);
+        }
+
         if (getTabCount() == 0 || getTabAt(0).view == null) return;
         setTabMode(TabLayout.MODE_FIXED);
 
