@@ -25,18 +25,21 @@ public class ScrollableTabLayout extends TabLayout {
 
     public ScrollableTabLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
+        setTabMode(TabLayout.MODE_FIXED);
     }
 
     public ScrollableTabLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        setTabMode(TabLayout.MODE_FIXED);
     }
 
     @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
 
-        setTabMode(TabLayout.MODE_FIXED);
-        resetMode();
+        if (changed) {
+            resetMode();
+        }
     }
 
     @Override
@@ -68,21 +71,15 @@ public class ScrollableTabLayout extends TabLayout {
             setVisibility(View.VISIBLE);
         }
 
-        if (getTabCount() == 0 || getTabAt(0).view == null) return;
+        int layoutWidth = getWidth();
+        if (layoutWidth == 0) return;
+
         setTabMode(TabLayout.MODE_FIXED);
 
-        int layoutWidth = getWidth();
-        int minimumWidth = ((View) getTabAt(0).view).getMinimumWidth();
-        if (minimumWidth * getTabCount() > layoutWidth) {
-            setTabMode(TabLayout.MODE_SCROLLABLE);
-            return;
-        }
-
-        int actualWidth = 0;
+        int tabsRequestedWidth = 0;
         for (int i = 0; i < getTabCount(); ++i) {
-            if (getTabAt(i).view == null) return;
-            actualWidth += ((View) getTabAt(i).view).getWidth();
-            if (actualWidth > layoutWidth) {
+            tabsRequestedWidth += ((View) getTabAt(i).view).getMinimumWidth();
+            if (tabsRequestedWidth > layoutWidth) {
                 setTabMode(TabLayout.MODE_SCROLLABLE);
                 return;
             }
