@@ -102,5 +102,13 @@
             android:entryValues="@array/feed_update_threshold_values"
             android:title="@string/feed_update_threshold_title"
             android:summary="@string/feed_update_threshold_summary"/>
+
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            android:defaultValue="false"
+            android:key="@string/feed_use_dedicated_fetch_method_key"
+            android:title="@string/feed_use_dedicated_fetch_method_title"
+            android:summary="@string/feed_use_dedicated_fetch_method_summary"/>
+
     </PreferenceCategory>
 </PreferenceScreen>

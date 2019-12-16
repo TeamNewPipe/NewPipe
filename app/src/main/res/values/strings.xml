@@ -616,4 +616,6 @@
     <string name="feed_update_threshold_title">Feed update threshold</string>
     <string name="feed_update_threshold_summary">Time after last update before a subscription is considered outdated — %s</string>
     <string name="feed_update_threshold_option_always_update">Always update</string>
+    <string name="feed_use_dedicated_fetch_method_title">Fetch from dedicated feed when available</string>
+    <string name="feed_use_dedicated_fetch_method_summary">Available in some services, it is usually much faster but may return a limited amount of items and often incomplete information (e.g. no duration, item type, no live status).</string>
 </resources>

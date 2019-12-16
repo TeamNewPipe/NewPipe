@@ -7,7 +7,10 @@ import io.reactivex.schedulers.Schedulers
 import org.schabi.newpipe.NewPipeDatabase
 import org.schabi.newpipe.database.subscription.SubscriptionDAO
 import org.schabi.newpipe.database.subscription.SubscriptionEntity
+import org.schabi.newpipe.extractor.ListInfo
 import org.schabi.newpipe.extractor.channel.ChannelInfo
+import org.schabi.newpipe.extractor.feed.FeedInfo
+import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
 
 class SubscriptionManager(context: Context) {
@@ -40,9 +43,14 @@ class SubscriptionManager(context: Context) {
                 }
             }
 
-    fun updateFromInfo(subscriptionId: Long, info: ChannelInfo) {
+    fun updateFromInfo(subscriptionId: Long, info: ListInfo<StreamInfoItem>) {
         val subscriptionEntity = subscriptionTable.getSubscription(subscriptionId)
-        subscriptionEntity.setData(info.name, info.avatarUrl, info.description, info.subscriberCount)
+
+        if (info is FeedInfo) {
+            subscriptionEntity.name = info.name
+        } else if (info is ChannelInfo) {
+            subscriptionEntity.setData(info.name, info.avatarUrl, info.description, info.subscriberCount)
+        }
 
         subscriptionTable.update(subscriptionEntity)
     }

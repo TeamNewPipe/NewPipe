@@ -40,8 +40,9 @@ import org.reactivestreams.Subscriber
 import org.reactivestreams.Subscription
 import org.schabi.newpipe.MainActivity.DEBUG
 import org.schabi.newpipe.R
-import org.schabi.newpipe.extractor.channel.ChannelInfo
+import org.schabi.newpipe.extractor.ListInfo
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException
+import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.FeedDatabaseManager
 import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.*
 import org.schabi.newpipe.local.feed.service.FeedEventManager.postEvent
@@ -109,11 +110,14 @@ class FeedLoadService : Service() {
         val defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
         val groupId = intent.getLongExtra(EXTRA_GROUP_ID, -1)
+        val useFeedExtractor = defaultSharedPreferences
+                .getBoolean(getString(R.string.feed_use_dedicated_fetch_method_key), false)
+
         val thresholdOutdatedMinutesString = defaultSharedPreferences
                 .getString(getString(R.string.feed_update_threshold_key), getString(R.string.feed_update_threshold_default_value))
         val thresholdOutdatedMinutes = thresholdOutdatedMinutesString!!.toInt()
 
-        startLoading(groupId, thresholdOutdatedMinutes)
+        startLoading(groupId, useFeedExtractor, thresholdOutdatedMinutes)
 
         return START_NOT_STICKY
     }
@@ -142,7 +146,7 @@ class FeedLoadService : Service() {
 
     private class RequestException(val subscriptionId: Long, message: String, cause: Throwable) : Exception(message, cause) {
         companion object {
-            fun wrapList(subscriptionId: Long, info: ChannelInfo): List<Throwable> {
+            fun wrapList(subscriptionId: Long, info: ListInfo<StreamInfoItem>): List<Throwable> {
                 val toReturn = ArrayList<Throwable>(info.errors.size)
                 for (error in info.errors) {
                     toReturn.add(RequestException(subscriptionId, info.serviceId.toString() + ":" + info.url, error))
@@ -152,7 +156,7 @@ class FeedLoadService : Service() {
         }
     }
 
-    private fun startLoading(groupId: Long = -1, thresholdOutdatedMinutes: Int) {
+    private fun startLoading(groupId: Long = -1, useFeedExtractor: Boolean, thresholdOutdatedMinutes: Int) {
         feedResultsHolder = ResultsHolder()
 
         val outdatedThreshold = Calendar.getInstance().apply {
@@ -187,14 +191,21 @@ class FeedLoadService : Service() {
                 .runOn(Schedulers.io())
                 .map { subscriptionEntity ->
                     try {
-                        val channelInfo = ExtractorHelper
-                                .getChannelInfo(subscriptionEntity.serviceId, subscriptionEntity.url, true)
-                                .blockingGet()
-                        return@map Notification.createOnNext(Pair(subscriptionEntity.uid, channelInfo))
+                        val listInfo = if (useFeedExtractor) {
+                            ExtractorHelper
+                                    .getFeedInfoFallbackToChannelInfo(subscriptionEntity.serviceId, subscriptionEntity.url)
+                                    .blockingGet()
+                        } else {
+                            ExtractorHelper
+                                    .getChannelInfo(subscriptionEntity.serviceId, subscriptionEntity.url, true)
+                                    .blockingGet()
+                        } as ListInfo<StreamInfoItem>
+
+                        return@map Notification.createOnNext(Pair(subscriptionEntity.uid, listInfo))
                     } catch (e: Throwable) {
                         val request = "${subscriptionEntity.serviceId}:${subscriptionEntity.url}"
                         val wrapper = RequestException(subscriptionEntity.uid, request, e)
-                        return@map Notification.createOnError<Pair<Long, ChannelInfo>>(wrapper)
+                        return@map Notification.createOnError<Pair<Long, ListInfo<StreamInfoItem>>>(wrapper)
                     }
                 }
                 .sequential()
@@ -219,14 +230,14 @@ class FeedLoadService : Service() {
     }
 
     private val resultSubscriber
-        get() = object : Subscriber<List<Notification<Pair<Long, ChannelInfo>>>> {
+        get() = object : Subscriber<List<Notification<Pair<Long, ListInfo<StreamInfoItem>>>>> {
 
             override fun onSubscribe(s: Subscription) {
                 loadingSubscription = s
                 s.request(java.lang.Long.MAX_VALUE)
             }
 
-            override fun onNext(notification: List<Notification<Pair<Long, ChannelInfo>>>) {
+            override fun onNext(notification: List<Notification<Pair<Long, ListInfo<StreamInfoItem>>>>) {
                 if (DEBUG) Log.v(TAG, "onNext() → $notification")
             }
 
@@ -271,7 +282,7 @@ class FeedLoadService : Service() {
             }
         }
 
-    private val databaseConsumer: Consumer<List<Notification<Pair<Long, ChannelInfo>>>>
+    private val databaseConsumer: Consumer<List<Notification<Pair<Long, ListInfo<StreamInfoItem>>>>>
         get() = Consumer {
             feedDatabaseManager.database().runInTransaction {
                 for (notification in it) {
@@ -300,7 +311,8 @@ class FeedLoadService : Service() {
             }
         }
 
-    private val errorHandlingConsumer: Consumer<Notification<Pair<Long, ChannelInfo>>>
+
+    private val errorHandlingConsumer: Consumer<Notification<Pair<Long, ListInfo<StreamInfoItem>>>>
         get() = Consumer {
             if (it.isOnError) {
                 var error = it.error!!
@@ -317,7 +329,7 @@ class FeedLoadService : Service() {
             }
         }
 
-    private val notificationsConsumer: Consumer<Notification<Pair<Long, ChannelInfo>>>
+    private val notificationsConsumer: Consumer<Notification<Pair<Long, ListInfo<StreamInfoItem>>>>
         get() = Consumer { onItemCompleted(it.value?.second?.name) }
 
     private fun onItemCompleted(updateDescription: String?) {

@@ -202,6 +202,7 @@
         <item>720</item>
         <item>1440</item>
     </string-array>
+    <string name="feed_use_dedicated_fetch_method_key" translatable="false">feed_use_dedicated_fetch_method</string>
 
     <string name="import_data" translatable="false">import_data</string>
     <string name="export_data" translatable="false">export_data</string>
