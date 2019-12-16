@@ -50,7 +50,10 @@ data class StreamEntity(
         var textualUploadDate: String? = null,
 
         @ColumnInfo(name = STREAM_UPLOAD_DATE)
-        var uploadDate: Date? = null
+        var uploadDate: Date? = null,
+
+        @ColumnInfo(name = STREAM_IS_UPLOAD_DATE_APPROXIMATION)
+        var isUploadDateApproximation: Boolean? = null
 ) : Serializable {
 
     @Ignore
@@ -58,7 +61,8 @@ data class StreamEntity(
             serviceId = item.serviceId, url = item.url, title = item.name,
             streamType = item.streamType, duration = item.duration, uploader = item.uploaderName,
             thumbnailUrl = item.thumbnailUrl, viewCount = item.viewCount,
-            textualUploadDate = item.textualUploadDate, uploadDate = item.uploadDate?.date()?.time
+            textualUploadDate = item.textualUploadDate, uploadDate = item.uploadDate?.date()?.time,
+            isUploadDateApproximation = item.uploadDate?.isApproximation
     )
 
     @Ignore
@@ -66,7 +70,8 @@ data class StreamEntity(
             serviceId = info.serviceId, url = info.url, title = info.name,
             streamType = info.streamType, duration = info.duration, uploader = info.uploaderName,
             thumbnailUrl = info.thumbnailUrl, viewCount = info.viewCount,
-            textualUploadDate = info.textualUploadDate, uploadDate = info.uploadDate?.date()?.time
+            textualUploadDate = info.textualUploadDate, uploadDate = info.uploadDate?.date()?.time,
+            isUploadDateApproximation = info.uploadDate?.isApproximation
     )
 
     @Ignore
@@ -84,7 +89,9 @@ data class StreamEntity(
 
         if (viewCount != null) item.viewCount = viewCount as Long
         item.textualUploadDate = textualUploadDate
-        item.uploadDate = uploadDate?.let { DateWrapper(Calendar.getInstance().apply { time = it }) }
+        item.uploadDate = uploadDate?.let {
+            DateWrapper(Calendar.getInstance().apply { time = it }, isUploadDateApproximation ?: false)
+        }
 
         return item
     }
@@ -103,5 +110,6 @@ data class StreamEntity(
         const val STREAM_VIEWS = "view_count"
         const val STREAM_TEXTUAL_UPLOAD_DATE = "textual_upload_date"
         const val STREAM_UPLOAD_DATE = "upload_date"
+        const val STREAM_IS_UPLOAD_DATE_APPROXIMATION = "is_upload_date_approximation"
     }
 }

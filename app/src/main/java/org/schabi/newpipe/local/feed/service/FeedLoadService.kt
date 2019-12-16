@@ -23,6 +23,7 @@ import android.app.Service
 import android.content.Intent
 import android.os.Build
 import android.os.IBinder
+import android.preference.PreferenceManager
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -71,6 +72,8 @@ class FeedLoadService : Service() {
          * Number of items to buffer to mass-insert in the database.
          */
         private const val BUFFER_COUNT_BEFORE_INSERT = 20
+
+        const val EXTRA_GROUP_ID: String = "FeedLoadService.EXTRA_GROUP_ID"
     }
 
     private var loadingSubscription: Subscription? = null
@@ -103,7 +106,15 @@ class FeedLoadService : Service() {
         }
 
         setupNotification()
-        startLoading()
+        val defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+
+        val groupId = intent.getLongExtra(EXTRA_GROUP_ID, -1)
+        val thresholdOutdatedMinutesString = defaultSharedPreferences
+                .getString(getString(R.string.feed_update_threshold_key), getString(R.string.feed_update_threshold_default_value))
+        val thresholdOutdatedMinutes = thresholdOutdatedMinutesString!!.toInt()
+
+        startLoading(groupId, thresholdOutdatedMinutes)
+
         return START_NOT_STICKY
     }
 
@@ -129,23 +140,31 @@ class FeedLoadService : Service() {
     // Loading & Handling
     ///////////////////////////////////////////////////////////////////////////
 
-    private class RequestException(message: String, cause: Throwable) : Exception(message, cause) {
+    private class RequestException(val subscriptionId: Long, message: String, cause: Throwable) : Exception(message, cause) {
         companion object {
-            fun wrapList(info: ChannelInfo): List<Throwable> {
+            fun wrapList(subscriptionId: Long, info: ChannelInfo): List<Throwable> {
                 val toReturn = ArrayList<Throwable>(info.errors.size)
                 for (error in info.errors) {
-                    toReturn.add(RequestException(info.serviceId.toString() + ":" + info.url, error))
+                    toReturn.add(RequestException(subscriptionId, info.serviceId.toString() + ":" + info.url, error))
                 }
                 return toReturn
             }
         }
     }
 
-    private fun startLoading() {
+    private fun startLoading(groupId: Long = -1, thresholdOutdatedMinutes: Int) {
         feedResultsHolder = ResultsHolder()
 
-        subscriptionManager
-                .subscriptions()
+        val outdatedThreshold = Calendar.getInstance().apply {
+            add(Calendar.MINUTE, -thresholdOutdatedMinutes)
+        }.time
+
+        val subscriptions = when (groupId) {
+            -1L -> feedDatabaseManager.outdatedSubscriptions(outdatedThreshold)
+            else -> feedDatabaseManager.outdatedSubscriptionsForGroup(groupId, outdatedThreshold)
+        }
+
+        subscriptions
                 .limit(1)
 
                 .doOnNext {
@@ -174,7 +193,7 @@ class FeedLoadService : Service() {
                         return@map Notification.createOnNext(Pair(subscriptionEntity.uid, channelInfo))
                     } catch (e: Throwable) {
                         val request = "${subscriptionEntity.serviceId}:${subscriptionEntity.url}"
-                        val wrapper = RequestException(request, e)
+                        val wrapper = RequestException(subscriptionEntity.uid, request, e)
                         return@map Notification.createOnError<Pair<Long, ChannelInfo>>(wrapper)
                     }
                 }
@@ -235,7 +254,6 @@ class FeedLoadService : Service() {
 
                             postEvent(ProgressEvent(R.string.feed_processing_message))
                             feedDatabaseManager.removeOrphansOrOlderStreams()
-                            feedDatabaseManager.setLastUpdated(this@FeedLoadService, feedResultsHolder.lastUpdated)
 
                             postEvent(SuccessResultEvent(feedResultsHolder.itemsErrors))
                             true
@@ -266,11 +284,17 @@ class FeedLoadService : Service() {
                         subscriptionManager.updateFromInfo(subscriptionId, info)
 
                         if (info.errors.isNotEmpty()) {
-                            feedResultsHolder.addErrors(RequestException.wrapList(info))
+                            feedResultsHolder.addErrors(RequestException.wrapList(subscriptionId, info))
+                            feedDatabaseManager.markAsOutdated(subscriptionId)
                         }
 
                     } else if (notification.isOnError) {
-                        feedResultsHolder.addError(notification.error!!)
+                        val error = notification.error!!
+                        feedResultsHolder.addError(error)
+
+                        if (error is RequestException) {
+                            feedDatabaseManager.markAsOutdated(error.subscriptionId)
+                        }
                     }
                 }
             }
@@ -372,11 +396,6 @@ class FeedLoadService : Service() {
 
     class ResultsHolder {
         /**
-         * The time the items have been loaded.
-         */
-        internal lateinit var lastUpdated: Calendar
-
-        /**
          * List of errors that may have happen during loading.
          */
         internal lateinit var itemsErrors: List<Throwable>
@@ -393,7 +412,6 @@ class FeedLoadService : Service() {
 
         fun ready() {
             itemsErrors = itemsErrorsHolder.toList()
-            lastUpdated = Calendar.getInstance()
         }
     }
 }

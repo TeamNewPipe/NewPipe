@@ -601,7 +601,8 @@
     <!-- Feed -->
     <string name="fragment_feed_title">What\'s New</string>
     <string name="feed_groups_header_title">Feed groups</string>
-    <string name="feed_last_updated">Last updated: %s</string>
+    <string name="feed_oldest_subscription_update">Oldest subscription update: %s</string>
+    <string name="feed_subscription_not_loaded_count">Not loaded: %d</string>
     <string name="feed_notification_loading">Loading feed…</string>
     <string name="feed_processing_message">Processing feed…</string>
     <string name="feed_group_dialog_select_subscriptions">Select subscriptions</string>
@@ -610,4 +611,9 @@
     <string name="feed_group_dialog_empty_name">Empty group name</string>
     <string name="feed_group_dialog_name_input">Name</string>
     <string name="feed_create_new_group_button_title">New</string>
+
+    <string name="settings_category_feed_title">Feed</string>
+    <string name="feed_update_threshold_title">Feed update threshold</string>
+    <string name="feed_update_threshold_summary">Time after last update before a subscription is considered outdated — %s</string>
+    <string name="feed_update_threshold_option_always_update">Always update</string>
 </resources>

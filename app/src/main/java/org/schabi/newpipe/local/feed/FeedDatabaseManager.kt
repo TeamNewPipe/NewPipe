@@ -1,7 +1,6 @@
 package org.schabi.newpipe.local.feed
 
 import android.content.Context
-import android.preference.PreferenceManager
 import android.util.Log
 import io.reactivex.Completable
 import io.reactivex.Flowable
@@ -10,9 +9,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.schabi.newpipe.MainActivity.DEBUG
 import org.schabi.newpipe.NewPipeDatabase
-import org.schabi.newpipe.R
 import org.schabi.newpipe.database.feed.model.FeedEntity
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
+import org.schabi.newpipe.database.feed.model.FeedLastUpdatedEntity
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
@@ -55,6 +54,22 @@ class FeedDatabaseManager(context: Context) {
         }
     }
 
+    fun outdatedSubscriptions(outdatedThreshold: Date) = feedTable.getAllOutdated(outdatedThreshold)
+
+    fun notLoadedCount(groupId: Long = -1): Flowable<Long> {
+        return if (groupId != -1L) {
+            feedTable.notLoadedCountForGroup(groupId)
+        } else {
+            feedTable.notLoadedCount()
+        }
+    }
+
+    fun outdatedSubscriptionsForGroup(groupId: Long = -1, outdatedThreshold: Date) =
+            feedTable.getAllOutdatedForGroup(groupId, outdatedThreshold)
+
+    fun markAsOutdated(subscriptionId: Long) = feedTable
+            .setLastUpdatedForSubscription(FeedLastUpdatedEntity(subscriptionId, null))
+
     fun upsertAll(subscriptionId: Long, items: List<StreamInfoItem>,
                   oldestAllowedDate: Date = FEED_OLDEST_ALLOWED_DATE.time) {
         val itemsToInsert = ArrayList<StreamInfoItem>()
@@ -77,24 +92,8 @@ class FeedDatabaseManager(context: Context) {
 
             feedTable.insertAll(feedEntities)
         }
-    }
 
-    fun getLastUpdated(context: Context): Calendar? {
-        val lastUpdatedMillis = PreferenceManager.getDefaultSharedPreferences(context)
-                .getLong(context.getString(R.string.feed_last_updated_key), -1)
-
-        val calendar = Calendar.getInstance()
-        if (lastUpdatedMillis > 0) {
-            calendar.timeInMillis = lastUpdatedMillis
-            return calendar
-        }
-
-        return null
-    }
-
-    fun setLastUpdated(context: Context, lastUpdated: Calendar?) {
-        PreferenceManager.getDefaultSharedPreferences(context).edit()
-                .putLong(context.getString(R.string.feed_last_updated_key), lastUpdated?.timeInMillis ?: -1).apply()
+        feedTable.setLastUpdatedForSubscription(FeedLastUpdatedEntity(subscriptionId, Calendar.getInstance().time))
     }
 
     fun removeOrphansOrOlderStreams(oldestAllowedDate: Date = FEED_OLDEST_ALLOWED_DATE.time) {
@@ -146,5 +145,14 @@ class FeedDatabaseManager(context: Context) {
         return Completable.fromCallable { feedGroupTable.delete(groupId) }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    fun oldestSubscriptionUpdate(groupId: Long): Flowable<List<Date>> {
+        return if (groupId == -1L) {
+            feedTable.oldestSubscriptionUpdateFromAll()
+        } else {
+            feedTable.oldestSubscriptionUpdate(groupId)
+        }
+
     }
 }

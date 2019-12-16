@@ -78,6 +78,7 @@
         android:layout_toStartOf="@id/itemHandle"
         android:layout_toRightOf="@+id/itemThumbnailView"
         android:layout_toEndOf="@+id/itemThumbnailView"
+        android:ellipsize="end"
         android:lines="1"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="@dimen/video_item_search_uploader_text_size"

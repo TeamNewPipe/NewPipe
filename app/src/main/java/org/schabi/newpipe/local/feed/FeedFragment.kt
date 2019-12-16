@@ -35,14 +35,15 @@ import org.schabi.newpipe.local.feed.service.FeedLoadService
 import org.schabi.newpipe.report.UserAction
 import org.schabi.newpipe.util.AnimationUtils.animateView
 import org.schabi.newpipe.util.Localization
+import java.util.*
 
 class FeedFragment : BaseListFragment<FeedState, Unit>() {
     private lateinit var viewModel: FeedViewModel
-    private lateinit var feedDatabaseManager: FeedDatabaseManager
     @State @JvmField var listState: Parcelable? = null
 
     private var groupId = -1L
     private var groupName = ""
+    private var oldestSubscriptionUpdate: Calendar? = null
 
     init {
         setHasOptionsMenu(true)
@@ -54,11 +55,6 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
 
         groupId = arguments?.getLong(KEY_GROUP_ID, -1) ?: -1
         groupName = arguments?.getString(KEY_GROUP_NAME) ?: ""
-
-        feedDatabaseManager = FeedDatabaseManager(requireContext())
-        if (feedDatabaseManager.getLastUpdated(requireContext()) == null) {
-            triggerUpdate()
-        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -193,11 +189,7 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
 
         loading_progress_bar.isIndeterminate = isIndeterminate ||
                 (progressState.maxProgress > 0 && progressState.currentProgress == 0)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            loading_progress_bar?.setProgress(progressState.currentProgress, true)
-        } else {
-            loading_progress_bar.progress = progressState.currentProgress
-        }
+        loading_progress_bar.progress = progressState.currentProgress
 
         loading_progress_bar.max = progressState.maxProgress
     }
@@ -209,9 +201,18 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
             listState = null
         }
 
-        if (!loadedState.itemsErrors.isEmpty()) {
+        oldestSubscriptionUpdate = loadedState.oldestUpdate
+
+        if (loadedState.notLoadedCount > 0) {
+            refresh_subtitle_text.visibility = View.VISIBLE
+            refresh_subtitle_text.text = getString(R.string.feed_subscription_not_loaded_count, loadedState.notLoadedCount)
+        } else {
+            refresh_subtitle_text.visibility = View.GONE
+        }
+
+        if (loadedState.itemsErrors.isNotEmpty()) {
             showSnackBarError(loadedState.itemsErrors, UserAction.REQUESTED_FEED,
-                    "none", "Loading feed", R.string.general_error);
+                    "none", "Loading feed", R.string.general_error)
         }
 
         if (loadedState.items.isEmpty()) {
@@ -237,13 +238,12 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
     }
 
     private fun updateRefreshViewState() {
-        val lastUpdated = feedDatabaseManager.getLastUpdated(requireContext())
-        val updatedAt = when {
-            lastUpdated != null -> Localization.relativeTime(lastUpdated)
+        val oldestSubscriptionUpdateText = when {
+            oldestSubscriptionUpdate != null -> Localization.relativeTime(oldestSubscriptionUpdate!!)
             else -> "—"
         }
 
-        refresh_text?.text = getString(R.string.feed_last_updated, updatedAt)
+        refresh_text?.text = getString(R.string.feed_oldest_subscription_update, oldestSubscriptionUpdateText)
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -256,7 +256,9 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
     override fun hasMoreItems() = false
 
     private fun triggerUpdate() {
-        getActivity()?.startService(Intent(requireContext(), FeedLoadService::class.java))
+        getActivity()?.startService(Intent(requireContext(), FeedLoadService::class.java).apply {
+            putExtra(FeedLoadService.EXTRA_GROUP_ID, groupId)
+        })
         listState = null
     }
 

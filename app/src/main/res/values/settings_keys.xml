@@ -181,6 +181,28 @@
     <string name="app_language_key" translatable="false">app_language_key</string>
     <string name="enable_lock_screen_video_thumbnail_key" translatable="false">enable_lock_screen_video_thumbnail</string>
 
+    <string name="feed_update_threshold_key" translatable="false">feed_update_threshold_key</string>
+    <string name="feed_update_threshold_default_value" translatable="false">5</string>
+
+    <string-array name="feed_update_threshold_options" translatable="false">
+        <item>@string/feed_update_threshold_option_always_update</item>
+        <item>5 minutes</item>
+        <item>15 minutes</item>
+        <item>1 hour</item>
+        <item>6 hours</item>
+        <item>12 hours</item>
+        <item>1 day</item>
+    </string-array>
+    <string-array name="feed_update_threshold_values" translatable="false">
+        <item>0</item>
+        <item>5</item>
+        <item>15</item>
+        <item>60</item>
+        <item>360</item>
+        <item>720</item>
+        <item>1440</item>
+    </string-array>
+
     <string name="import_data" translatable="false">import_data</string>
     <string name="export_data" translatable="false">export_data</string>
 

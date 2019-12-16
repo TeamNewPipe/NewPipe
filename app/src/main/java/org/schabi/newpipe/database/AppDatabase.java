@@ -9,6 +9,7 @@ import org.schabi.newpipe.database.feed.dao.FeedGroupDAO;
 import org.schabi.newpipe.database.feed.model.FeedEntity;
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity;
 import org.schabi.newpipe.database.feed.model.FeedGroupSubscriptionEntity;
+import org.schabi.newpipe.database.feed.model.FeedLastUpdatedEntity;
 import org.schabi.newpipe.database.history.dao.SearchHistoryDAO;
 import org.schabi.newpipe.database.history.dao.StreamHistoryDAO;
 import org.schabi.newpipe.database.history.model.SearchHistoryEntry;
@@ -34,7 +35,8 @@ import static org.schabi.newpipe.database.Migrations.DB_VER_3;
                 SubscriptionEntity.class, SearchHistoryEntry.class,
                 StreamEntity.class, StreamHistoryEntity.class, StreamStateEntity.class,
                 PlaylistEntity.class, PlaylistStreamEntity.class, PlaylistRemoteEntity.class,
-                FeedEntity.class, FeedGroupEntity.class, FeedGroupSubscriptionEntity.class
+                FeedEntity.class, FeedGroupEntity.class, FeedGroupSubscriptionEntity.class,
+                FeedLastUpdatedEntity.class
         },
         version = DB_VER_3
 )

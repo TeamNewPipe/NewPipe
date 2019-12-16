@@ -6,7 +6,8 @@ import org.schabi.newpipe.database.BasicDAO
 import org.schabi.newpipe.database.stream.model.StreamEntity
 import org.schabi.newpipe.database.stream.model.StreamEntity.Companion.STREAM_ID
 import org.schabi.newpipe.extractor.stream.StreamType
-import org.schabi.newpipe.extractor.stream.StreamType.*
+import org.schabi.newpipe.extractor.stream.StreamType.AUDIO_LIVE_STREAM
+import org.schabi.newpipe.extractor.stream.StreamType.LIVE_STREAM
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -31,8 +32,8 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
     internal abstract fun silentInsertAllInternal(streams: List<StreamEntity>): List<Long>
 
     @Query("""
-        SELECT uid, stream_type, textual_upload_date, upload_date FROM streams
-        WHERE url = :url AND service_id = :serviceId
+        SELECT uid, stream_type, textual_upload_date, upload_date, is_upload_date_approximation, duration 
+        FROM streams WHERE url = :url AND service_id = :serviceId
         """)
     internal abstract fun getMinimalStreamForCompare(serviceId: Int, url: String): StreamCompareFeed?
 
@@ -79,8 +80,16 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
 
         val isNewerStreamLive = newerStream.streamType == AUDIO_LIVE_STREAM || newerStream.streamType == LIVE_STREAM
         if (!isNewerStreamLive) {
-            if (existentMinimalStream.uploadDate != null) newerStream.uploadDate = existentMinimalStream.uploadDate
-            if (existentMinimalStream.textualUploadDate != null) newerStream.textualUploadDate = existentMinimalStream.textualUploadDate
+            if (existentMinimalStream.uploadDate != null && existentMinimalStream.isUploadDateApproximation != true) {
+                newerStream.uploadDate = existentMinimalStream.uploadDate
+                newerStream.textualUploadDate = existentMinimalStream.textualUploadDate
+                newerStream.isUploadDateApproximation = existentMinimalStream.isUploadDateApproximation
+            }
+
+            if (existentMinimalStream.duration > 0 && newerStream.duration < 0) {
+                newerStream.duration = existentMinimalStream.duration
+            }
+
         }
     }
 
@@ -105,12 +114,18 @@ abstract class StreamDAO : BasicDAO<StreamEntity> {
             @ColumnInfo(name = STREAM_ID)
             var uid: Long = 0,
 
-            @field:ColumnInfo(name = StreamEntity.STREAM_TYPE)
+            @ColumnInfo(name = StreamEntity.STREAM_TYPE)
             var streamType: StreamType,
 
-            @field:ColumnInfo(name = StreamEntity.STREAM_TEXTUAL_UPLOAD_DATE)
+            @ColumnInfo(name = StreamEntity.STREAM_TEXTUAL_UPLOAD_DATE)
             var textualUploadDate: String? = null,
 
-            @field:ColumnInfo(name = StreamEntity.STREAM_UPLOAD_DATE)
-            var uploadDate: Date? = null)
+            @ColumnInfo(name = StreamEntity.STREAM_UPLOAD_DATE)
+            var uploadDate: Date? = null,
+
+            @ColumnInfo(name = StreamEntity.STREAM_IS_UPLOAD_DATE_APPROXIMATION)
+            var isUploadDateApproximation: Boolean? = null,
+
+            @ColumnInfo(name = StreamEntity.STREAM_DURATION)
+            var duration: Long)
 }
