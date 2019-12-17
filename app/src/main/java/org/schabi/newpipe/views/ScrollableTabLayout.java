@@ -5,7 +5,6 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 
 import androidx.annotation.NonNull;
 
@@ -19,70 +18,111 @@ import com.google.android.material.tabs.TabLayout.Tab;
 public class ScrollableTabLayout extends TabLayout {
     private static final String TAG = ScrollableTabLayout.class.getSimpleName();
 
+    private int layoutWidth = 0;
+    private int prevVisibility = View.GONE;
+
     public ScrollableTabLayout(Context context) {
         super(context);
     }
 
     public ScrollableTabLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setTabMode(TabLayout.MODE_FIXED);
     }
 
     public ScrollableTabLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        setTabMode(TabLayout.MODE_FIXED);
     }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
 
-        if (changed) {
-            resetMode();
-        }
+        remeasureTabs();
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
 
-        resetMode();
+        layoutWidth = w;
     }
 
     @Override
     public void addTab(@NonNull Tab tab, int position, boolean setSelected) {
         super.addTab(tab, position, setSelected);
 
-        resetMode();
+        hasMultipleTabs();
+
+        // Adding a tab won't decrease total tabs' width so tabMode won't have to change to FIXED
+        if (getTabMode() != MODE_SCROLLABLE) {
+            remeasureTabs();
+        }
     }
 
     @Override
     public void removeTabAt(int position) {
         super.removeTabAt(position);
 
-        resetMode();
+        hasMultipleTabs();
+
+        // Removing a tab won't increase total tabs' width so tabMode won't have to change to SCROLLABLE
+        if (getTabMode() != MODE_FIXED) {
+            remeasureTabs();
+        }
     }
 
-    private void resetMode() {
-        if (getTabCount() < 2) {
-            setVisibility(View.GONE);
-            return;
-        } else {
-            setVisibility(View.VISIBLE);
-        }
+    @Override
+    protected void onVisibilityChanged(View changedView, int visibility) {
+        super.onVisibilityChanged(changedView, visibility);
 
-        int layoutWidth = getWidth();
+        // Recheck content width in case some tabs have been added or removed while ScrollableTabLayout was invisible
+        // We don't have to check if it was GONE because then requestLayout() will be called
+        if (changedView == this) {
+            if (prevVisibility == View.INVISIBLE) {
+                remeasureTabs();
+            }
+            prevVisibility = visibility;
+        }
+    }
+
+    private void setMode(int mode) {
+        if (mode == getTabMode()) return;
+
+        setTabMode(mode);
+    }
+
+    /**
+     * Make ScrollableTabLayout not visible if there are less than two tabs
+     */
+    private void hasMultipleTabs() {
+        if (getTabCount() > 1) {
+            setVisibility(View.VISIBLE);
+        } else {
+            setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * Calculate minimal width required by tabs and set tabMode accordingly
+     */
+    private void remeasureTabs() {
+        if (getVisibility() != View.VISIBLE) return;
         if (layoutWidth == 0) return;
 
-        setTabMode(TabLayout.MODE_FIXED);
-
-        int tabsRequestedWidth = 0;
-        for (int i = 0; i < getTabCount(); ++i) {
-            tabsRequestedWidth += ((View) getTabAt(i).view).getMinimumWidth();
-            if (tabsRequestedWidth > layoutWidth) {
-                setTabMode(TabLayout.MODE_SCROLLABLE);
-                return;
+        final int count = getTabCount();
+        int contentWidth = 0;
+        for (int i = 0; i < count; i++) {
+            View child = getTabAt(i).view;
+            if (child.getVisibility() == View.VISIBLE) {
+                // Use tab's minimum requested width should actual content be too small
+                contentWidth += Math.max(child.getMinimumWidth(), child.getMeasuredWidth());
             }
+        }
+
+        if (contentWidth > layoutWidth) {
+            setMode(TabLayout.MODE_SCROLLABLE);
+        } else {
+            setMode(TabLayout.MODE_FIXED);
         }
     }
 }
