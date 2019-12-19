@@ -163,8 +163,8 @@
     </plurals>
     <string name="no_videos">Inga videor</string>
     <plurals name="videos">
-        <item quantity="one">%s video</item>
-        <item quantity="other">%s videor</item>
+        <item quantity="one">Video</item>
+        <item quantity="other">Videor</item>
     </plurals>
     <string name="start">Start</string>
     <string name="pause">Pausa</string>
@@ -448,7 +448,6 @@
     <string name="error_http_not_found">Hittades inte</string>
     <string name="error_postprocessing_failed">Efterbehandling misslyckades</string>
     <string name="clear_finished_download">Töm färdiga nedladdningar</string>
-    <string name="msg_pending_downloads">Fortsätt med %s väntande överföringar från Nedladdningar</string>
     <string name="stop">Stanna</string>
     <string name="max_retry_msg">Max försök</string>
     <string name="max_retry_desc">Max antal försök tills nedladdning avbryts</string>
@@ -457,6 +456,11 @@
     <string name="show_comments_title">Visa kommentarer</string>
     <plurals name="comments">
         <item quantity="one">Kommentarer</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
+    <string name="show_comments_summary">Inaktivera för att sluta visa kommentarer</string>
+    <string name="enable_playback_resume_title">Återuppta uppspelning</string>
+    <string name="enable_playback_resume_summary">Återställ den senaste uppspelningspositionen</string>
+    <string name="enable_playback_state_lists_title">Positioner i listor</string>
+    <string name="download_choose_new_path">Ändra nedladdningsmapp för att träda i kraft</string>
 </resources>

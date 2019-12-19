@@ -1,5 +1,7 @@
 package org.schabi.newpipe.database.playlist.model;
 
+import android.text.TextUtils;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
@@ -72,10 +74,16 @@ public class PlaylistRemoteEntity implements PlaylistLocalItem {
 
     @Ignore
     public boolean isIdenticalTo(final PlaylistInfo info) {
-        return getServiceId() == info.getServiceId() && getName().equals(info.getName()) &&
-                getStreamCount() == info.getStreamCount() && getUrl().equals(info.getUrl()) &&
-                getThumbnailUrl().equals(info.getThumbnailUrl()) &&
-                getUploader().equals(info.getUploaderName());
+        /*
+         * Returns boolean comparing the online playlist and the local copy.
+         * (False if info changed such as playlist name or track count)
+         */
+        return getServiceId() == info.getServiceId()
+                && getStreamCount() == info.getStreamCount()
+                && TextUtils.equals(getName(), info.getName())
+                && TextUtils.equals(getUrl(), info.getUrl())
+                && TextUtils.equals(getThumbnailUrl(), info.getThumbnailUrl())
+                && TextUtils.equals(getUploader(), info.getUploaderName());
     }
 
     public long getUid() {

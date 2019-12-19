@@ -16,7 +16,8 @@
         android:layout_height="wrap_content"
         app:elevation="0dp"
         android:background="?attr/android:windowBackground"
-        app:headerLayout="@layout/drawer_header"/>
+        app:headerLayout="@layout/drawer_header"
+        android:theme="@style/NavViewTextStyle"/>
         <!-- app:menu="@menu/drawer_items" -->
 
     <LinearLayout

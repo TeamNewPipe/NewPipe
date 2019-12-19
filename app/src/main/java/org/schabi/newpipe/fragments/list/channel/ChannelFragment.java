@@ -29,6 +29,7 @@ import org.schabi.newpipe.extractor.InfoItem;
 import org.schabi.newpipe.extractor.ListExtractor;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.channel.ChannelInfo;
+import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.fragments.list.BaseListInfoFragment;
@@ -98,7 +99,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if(activity != null
+        if (activity != null
                 && useAsFrontPage
                 && isVisibleToUser) {
             setTitle(currentInfo != null ? currentInfo.getName() : name);
@@ -152,7 +153,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         ActionBar supportActionBar = activity.getSupportActionBar();
-        if(useAsFrontPage && supportActionBar != null) {
+        if (useAsFrontPage && supportActionBar != null) {
             supportActionBar.setDisplayHomeAsUpEnabled(false);
         } else {
             inflater.inflate(R.menu.menu_channel, menu);
@@ -165,7 +166,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
 
     private void openRssFeed() {
         final ChannelInfo info = currentInfo;
-        if(info != null) {
+        if (info != null) {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(info.getFeedUrl()));
             startActivity(intent);
         }
@@ -178,10 +179,14 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                 openRssFeed();
                 break;
             case R.id.menu_item_openInBrowser:
-                ShareUtils.openUrlInBrowser(this.getContext(), currentInfo.getOriginalUrl());
+                if (currentInfo != null) {
+                    ShareUtils.openUrlInBrowser(this.getContext(), currentInfo.getOriginalUrl());
+                }
                 break;
             case R.id.menu_item_share:
-                ShareUtils.shareUrl(this.getContext(), name, currentInfo.getOriginalUrl());
+                if (currentInfo != null) {
+                    ShareUtils.shareUrl(this.getContext(), name, currentInfo.getOriginalUrl());
+                }
                 break;
             default:
                 return super.onOptionsItemSelected(item);
@@ -218,7 +223,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
                 .debounce(100, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe((List<SubscriptionEntity> subscriptionEntities) ->
-                        updateSubscribeButton(!subscriptionEntities.isEmpty())
+                                updateSubscribeButton(!subscriptionEntities.isEmpty())
                         , onError));
 
     }
@@ -359,9 +364,9 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
 
         headerRootLayout.setVisibility(View.VISIBLE);
         imageLoader.displayImage(result.getBannerUrl(), headerChannelBanner,
-        		ImageDisplayConstants.DISPLAY_BANNER_OPTIONS);
+                ImageDisplayConstants.DISPLAY_BANNER_OPTIONS);
         imageLoader.displayImage(result.getAvatarUrl(), headerAvatarView,
-        		ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
+                ImageDisplayConstants.DISPLAY_AVATAR_OPTIONS);
 
         headerSubscribersTextView.setVisibility(View.VISIBLE);
         if (result.getSubscriberCount() >= 0) {
@@ -397,8 +402,8 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
 
     private PlayQueue getPlayQueue(final int index) {
         final List<StreamInfoItem> streamItems = new ArrayList<>();
-        for(InfoItem i : infoListAdapter.getItemsList()) {
-            if(i instanceof StreamInfoItem) {
+        for (InfoItem i : infoListAdapter.getItemsList()) {
+            if (i instanceof StreamInfoItem) {
                 streamItems.add((StreamInfoItem) i);
             }
         }
@@ -432,12 +437,16 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
     protected boolean onError(Throwable exception) {
         if (super.onError(exception)) return true;
 
-        int errorId = exception instanceof ExtractionException ? R.string.parsing_error : R.string.general_error;
-        onUnrecoverableError(exception,
-                UserAction.REQUESTED_CHANNEL,
-                NewPipe.getNameOfService(serviceId),
-                url,
-                errorId);
+        if (exception instanceof ContentNotAvailableException) {
+            showError(getString(R.string.content_not_available), false);
+        } else {
+            int errorId = exception instanceof ExtractionException ? R.string.parsing_error : R.string.general_error;
+            onUnrecoverableError(exception,
+                    UserAction.REQUESTED_CHANNEL,
+                    NewPipe.getNameOfService(serviceId),
+                    url,
+                    errorId);
+        }
         return true;
     }
 
