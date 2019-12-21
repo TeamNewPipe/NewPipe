@@ -20,7 +20,7 @@
     <string name="download_path_summary">يتم تخزين ملفات الفيديو التي تم تنزيلها هنا</string>
     <string name="download_path_title">مجلد تحميل الفيديو</string>
     <string name="err_dir_create">"لا يمكن إنشاء مجلد للتنزيلات في '%1$s'"</string>
-    <string name="info_dir_created">إنشاء دليل التنزيل \'%1$s\'</string>
+    <string name="info_dir_created">دليل التنزيل الذي تم إنشاؤه \'%1$s\'</string>
     <string name="install">تثبيت</string>
     <string name="kore_not_found">تطبيق Kore غير موجود. هل تريد تثبيته ؟</string>
     <string name="light_theme_title">مضيء</string>
@@ -42,7 +42,7 @@
     <string name="share">مشاركة</string>
     <string name="share_dialog_title">مشاركة بواسطة</string>
     <string name="show_next_and_similar_title">عرض مقاطع الفيديو \"التالية\" و \"المشابهة\"</string>
-    <string name="show_play_with_kodi_summary">عرض خيار تشغيل الفيديو عبر وسائط Kodi</string>
+    <string name="show_play_with_kodi_summary">عرض خيارات تشغيل الفيديو من خلال مركز كودي ميديا</string>
     <string name="show_play_with_kodi_title">عرض خيار التشغيل بواسطة كودي</string>
     <string name="theme_title">السمة</string>
     <string name="upload_date_text">تم النشر يوم %1$s</string>
@@ -80,7 +80,7 @@
     <string name="title_activity_history">التاريخ</string>
     <string name="action_history">التاريخ</string>
     <string name="open_in_popup_mode">فتح في وضع منبثق</string>
-    <string name="use_external_video_player_summary">يزيل الصوت في بعض مستوى الدقة</string>
+    <string name="use_external_video_player_summary">إزالة الصوت في بعض مستوى الدقة</string>
     <string name="popup_mode_share_menu_title">وضع النوافذ المنبثقة NewPipe</string>
     <string name="channel_unsubscribed">تم إلغاء الاشتراك في القناة</string>
     <string name="subscription_change_failed">تعذر تغيير حالة الاشتراك</string>
@@ -153,17 +153,17 @@
     <string name="audio">الصوت</string>
     <string name="retry">إعادة المحاولة</string>
     <string name="storage_permission_denied">تم رفض إذن الوصول إلى التخزين</string>
-    <string name="short_thousand">K</string>
+    <string name="short_thousand">ألف</string>
     <string name="short_million">مليون</string>
     <string name="short_billion">G</string>
     <string name="no_subscribers">ليس هناك مشترِكون</string>
     <plurals name="subscribers">
         <item quantity="zero">%s لا يوجد مشاركين</item>
         <item quantity="one">%s مشترك</item>
-        <item quantity="two">"%s  مشتركتين"</item>
+        <item quantity="two">%s مشاريكان</item>
         <item quantity="few">%s اشتراكات</item>
-        <item quantity="many">%s مشاركين</item>
-        <item quantity="other">%s مشتركون</item>
+        <item quantity="many">%s مشاركون</item>
+        <item quantity="other">%s اشتراك</item>
     </plurals>
     <string name="no_views">دون مشاهدات</string>
     <string name="no_videos">لاتوجد فيديوهات</string>
@@ -234,24 +234,24 @@
     <string name="play_queue_stream_detail">التفاصيل</string>
     <string name="play_queue_audio_settings">الإعدادات الصوتية</string>
     <string name="start_here_on_main">تشغيل هنا</string>
-    <string name="start_here_on_popup">تشغيل في وضع نافذة منبثقة</string>
+    <string name="start_here_on_popup">بدأ التشغيل في نافذة منبثقة جديدة</string>
     <string name="reCaptcha_title">تحدي الكابتشا</string>
     <string name="hold_to_append">ضغط مطول للإدراج الى قائمة الانتظار</string>
     <plurals name="views">
-        <item quantity="zero">بدون مشاهدات</item>
-        <item quantity="one">%s مشاهدة</item>
-        <item quantity="two">%s مشاهدتين</item>
-        <item quantity="few">%s مشاهدون</item>
-        <item quantity="many">%s مشاهدات</item>
-        <item quantity="other">%s مشاهدين</item>
+        <item quantity="zero">%s بدون مشهد</item>
+        <item quantity="one">%s شاهد</item>
+        <item quantity="two">%s مشاهدتان</item>
+        <item quantity="few">%s مشاهدات</item>
+        <item quantity="many">%s مشاهدون</item>
+        <item quantity="other">%s شاهدو</item>
     </plurals>
     <plurals name="videos">
-        <item quantity="zero">%s لا يوجد فيديو</item>
-        <item quantity="one">%s فيديو</item>
-        <item quantity="two">%s فيديوان</item>
-        <item quantity="few">%s فيديوات</item>
-        <item quantity="many">%s فيديوهات</item>
-        <item quantity="other">%s مزيد من الفيديوات</item>
+        <item quantity="zero">فيديو%s video</item>
+        <item quantity="one">%s videosفيديوهات</item>
+        <item quantity="two">%s videosفيديوهات</item>
+        <item quantity="few">%s videosفيديوهات</item>
+        <item quantity="many">%s videosفيديوهات</item>
+        <item quantity="other">%s videosفيديوهات</item>
     </plurals>
     <string name="recaptcha_request_toast">طلب اختبار الكابتشا مطلوب</string>
     <string name="copyright" formatted="true">© %1$sبواسطة%2$sتحت%3$s</string>
@@ -425,10 +425,10 @@
     <string name="app_update_notification_channel_name">تتبيه تحديث التطبيق</string>
     <string name="volume_gesture_control_title">إيماءة التحكم بالصوت</string>
     <string name="events">الأحداث</string>
-    <string name="app_update_notification_channel_description">إخطارات NewPipe جديدة  الإصدار</string>
-    <string name="download_to_sdcard_error_title">ذاكرة التخزين الخارجية غير متوفرة</string>
+    <string name="app_update_notification_channel_description">"تنبيه عند تواجد إصدار جديد newpipe "</string>
+    <string name="download_to_sdcard_error_title">وحدة التخزين الخارجية غير متاحة</string>
     <string name="download_to_sdcard_error_message">"التنزيل على بطاقة SD الخارجية غير ممكن.  إعادة تعيين موقع مجلد التحميل؟"</string>
-    <string name="saved_tabs_invalid_json">استخدام خطأ علامات التبويب الافتراضية, أثناء قراءة علامات التبويب المحفوظة</string>
+    <string name="saved_tabs_invalid_json">باستخدام علامات التبويب الافتراضية ، خطأ أثناء قراءة علامات التبويب المحفوظة</string>
     <string name="restore_defaults">استعادة الضبط الافتراضي</string>
     <string name="restore_defaults_confirmation">هل تريد استعادة الإعدادات الافتراضية؟</string>
     <string name="subscribers_count_not_available">عدد المشتركين غير متاح</string>
@@ -449,7 +449,7 @@
     <string name="paused">متوقف</string>
     <string name="queued">في قائمة الانتظار</string>
     <string name="post_processing">قيد المعالجة</string>
-    <string name="enqueue">قائمة الانتظار</string>
+    <string name="enqueue">قائمه انتظار</string>
     <string name="permission_denied">تم رفضها من قبل النظام</string>
     <string name="download_failed">فشل التنزيل</string>
     <string name="download_finished">تم الانتهاء من التحميل</string>
@@ -468,11 +468,9 @@
     <string name="error_connect_host">لا يمكن الاتصال بالخادم</string>
     <string name="error_http_no_content">الخادم لايقوم بإرسال البيانات</string>
     <string name="error_http_unsupported_range">الخادم لا يقبل التنزيل المتعدد، إعادة المحاولة مع @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">عدم استيفاء النطاق المطلوب</string>
     <string name="error_http_not_found">غير موجود</string>
     <string name="error_postprocessing_failed">فشلت المعالجة الاولية</string>
     <string name="clear_finished_download">حذف التنزيلات المنتهية</string>
-    <string name="msg_pending_downloads">"قم بإستكمال  %s حيثما  يتم التحويل من التنزيلات"</string>
     <string name="stop">توقف</string>
     <string name="max_retry_msg">أقصى عدد للمحاولات</string>
     <string name="max_retry_desc">الحد الأقصى لعدد محاولات قبل إلغاء التحميل</string>
@@ -522,4 +520,8 @@
     <string name="delete_playback_states_alert">حذف كل مواقف التشغيل؟</string>
     <string name="download_choose_new_path">تغيير مجلدات التنزيل إلى حيز التنفيذ‮‮‮</string>
     <string name="drawer_header_description">تبديل الخدمة ، المحدد حاليًا:</string>
+    <string name="default_kiosk_page_summary">الكشك الافتراضي</string>
+    <string name="no_one_watching">لاتوجد مشاهدة</string>
+    <string name="no_one_listening">لا أحد يستمع</string>
+    <string name="localization_changes_requires_app_restart">ستتغير اللغة بمجرد إعادة تشغيل التطبيق.</string>
 </resources>

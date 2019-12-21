@@ -114,7 +114,7 @@
     <string name="audio">音訊</string>
     <string name="retry">重試</string>
     <string name="storage_permission_denied">無法存取儲存空間</string>
-    <string name="short_thousand">K</string>
+    <string name="short_thousand">k</string>
     <string name="short_million">百萬</string>
     <string name="short_billion">B</string>
     <string name="start">開始</string>
@@ -447,11 +447,9 @@
     <string name="error_connect_host">無法連線到伺服器</string>
     <string name="error_http_no_content">伺服器沒有傳送資料</string>
     <string name="error_http_unsupported_range">伺服器不接受多執行緒下載，請以 @string/msg_threads = 1 重試</string>
-    <string name="error_http_requested_range_not_satisfiable">請求範圍無法滿足</string>
     <string name="error_http_not_found">找不到</string>
     <string name="error_postprocessing_failed">後處理失敗</string>
     <string name="clear_finished_download">清除已結束的下載</string>
-    <string name="msg_pending_downloads">繼續從您所擱置中的下載 %s 傳輸</string>
     <string name="stop">停止</string>
     <string name="max_retry_msg">最大重試次數</string>
     <string name="max_retry_desc">在取消下載前的最大嘗試數</string>
@@ -499,4 +497,20 @@
     <string name="delete_playback_states_alert">刪除所有播放位置？</string>
     <string name="download_choose_new_path">變更下載資料夾以使其生效</string>
     <string name="drawer_header_description">切換服務，目前已選取：</string>
+    <plurals name="videos">
+        <item quantity="one">影片</item>
+        <item quantity="other"/>
+    </plurals>
+    <string name="default_kiosk_page_summary">預設 Kiosk</string>
+    <string name="no_one_watching">沒有人在看</string>
+    <plurals name="watching">
+        <item quantity="one">%s 個觀眾</item>
+        <item quantity="other"/>
+    </plurals>
+    <string name="no_one_listening">沒有人正在聽</string>
+    <plurals name="listening">
+        <item quantity="one">%s 個聽眾</item>
+        <item quantity="other"/>
+    </plurals>
+    <string name="localization_changes_requires_app_restart">語言將會在重新啟動應用程式後變更。</string>
 </resources>

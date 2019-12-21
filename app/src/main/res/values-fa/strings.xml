@@ -71,7 +71,7 @@
     <string name="your_comment">توضیح شما (به انگلیسی):</string>
     <string name="error_details_headline">جزییات:</string>
     <string name="list_thumbnail_view_description">بندانگشتی پیش‌نمایش ویدیو</string>
-    <string name="detail_thumbnail_view_description">بندانگشتی پیش‌نمایش ویدیو</string>
+    <string name="detail_thumbnail_view_description">پخش ویدیو، مدت زمان:</string>
     <string name="detail_uploader_thumbnail_view_description">بندانگشتی کاربر بارگذاری کننده</string>
     <string name="detail_likes_img_view_description">پسندها</string>
     <string name="detail_dislikes_img_view_description">نپسندیدن‌ها</string>
@@ -460,7 +460,6 @@
     <string name="error_connect_host">ناتوانی در اتصال به کارساز</string>
     <string name="error_http_no_content">کارساز داده‌ای نمی‌فرستد</string>
     <string name="error_http_unsupported_range">کارساز، بارگیری‌های چندرشته‌ای را قبول نمی‌کند، تلاش مجدد با ‎@string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">بازهٔ درخواست شده قابل قبول نیست</string>
     <string name="clear_finished_download">پاک کردن بارگیری‌های تمام شده</string>
     <string name="stop">توقف</string>
     <string name="max_retry_msg">بیشینه تلاش مجدد</string>
@@ -496,4 +495,7 @@
     <string name="enable_disposed_exceptions_title">گزارش کردن خطاهای \"خارج از چرخه حیات\"</string>
     <string name="metadata_cache_wipe_summary">حذف حافظه کش شده همه صفحات وب</string>
     <string name="minimize_on_exit_background_description">کوچک کردن پخش کننده به پس زمینه</string>
+    <string name="import_soundcloud_instructions_hint">آی‌دی شما، soundcloud.com/yourid</string>
+    <string name="minimize_on_exit_summary">عملکرد هنگام تغییر به برنامه دیگر از پخش‌کننده اصلی فیلم — %s</string>
+    <string name="tracks">آهنگ‌ها</string>
 </resources>

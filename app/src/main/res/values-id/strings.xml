@@ -68,7 +68,7 @@
     <string name="your_comment">Komentar anda (dalam bahasa Inggris):</string>
     <string name="error_details_headline">Detail:</string>
     <string name="list_thumbnail_view_description">Thumbnail pratinjau video</string>
-    <string name="detail_thumbnail_view_description">Thumbnail pratinjau video</string>
+    <string name="detail_thumbnail_view_description">Putar video, durasi:</string>
     <string name="detail_likes_img_view_description">Suka</string>
     <string name="detail_uploader_thumbnail_view_description">Thumbnail avatar pengunggah</string>
     <string name="detail_dislikes_img_view_description">Tidak suka</string>
@@ -450,11 +450,9 @@
     <string name="error_connect_host">Tidak dapat terhubung ke server</string>
     <string name="error_http_no_content">Server tidak mengirim data</string>
     <string name="error_http_unsupported_range">Server tidak menerima unduhan multi-utas, coba lagi dengan @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">Rentang yang diminta tidak memuaskan</string>
     <string name="error_http_not_found">Tidak ditemukan</string>
     <string name="error_postprocessing_failed">Pengolahan-pasca gagal</string>
     <string name="clear_finished_download">Hapus unduhan yang sudah selesai</string>
-    <string name="msg_pending_downloads">Lanjutkan %s transfer anda yang tertunda dari Unduhan</string>
     <string name="stop">Berhenti</string>
     <string name="max_retry_msg">Percobaan maksimum</string>
     <string name="max_retry_desc">Jumlah upaya maksimum sebelum membatalkan unduhan</string>
@@ -499,4 +497,17 @@
     <string name="clear_playback_states_summary">Hapus semua posisi pemutaran</string>
     <string name="delete_playback_states_alert">Hapus semua posisi pemutaran\?</string>
     <string name="download_choose_new_path">Ubah folder unduhan</string>
+    <plurals name="videos">
+        <item quantity="other">Video</item>
+    </plurals>
+    <string name="drawer_header_description">Aktif/Nonaktifkan layanan, saat ini aktif:</string>
+    <string name="no_one_watching">Tidak ada yang menonton</string>
+    <plurals name="watching">
+        <item quantity="other">%s menonton</item>
+    </plurals>
+    <string name="no_one_listening">Tidak ada yang mendengarkan</string>
+    <plurals name="listening">
+        <item quantity="other">%s mendengarkan</item>
+    </plurals>
+    <string name="localization_changes_requires_app_restart">Bahasa akan diterapkan setelah aplikasi dimulai ulang.</string>
 </resources>

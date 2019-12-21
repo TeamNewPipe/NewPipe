@@ -18,4 +18,11 @@
         android:key="@string/allow_disposed_exceptions_key"
         android:title="@string/enable_disposed_exceptions_title"
         android:summary="@string/enable_disposed_exceptions_summary"/>
+
+    <SwitchPreference
+        app:iconSpaceReserved="false"
+        android:defaultValue="false"
+        android:key="@string/show_original_time_ago_key"
+        android:title="@string/show_original_time_ago_title"
+        android:summary="@string/show_original_time_ago_summary"/>
 </PreferenceScreen>

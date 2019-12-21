@@ -49,7 +49,7 @@
     <string name="parsing_error">Nebylo možné analyzovat stránku</string>
     <string name="content_not_available">Obsah není k dispozici</string>
     <string name="list_thumbnail_view_description">Náhled videa</string>
-    <string name="detail_thumbnail_view_description">Náhled videa</string>
+    <string name="detail_thumbnail_view_description">Přehrát video, délka:</string>
     <string name="detail_uploader_thumbnail_view_description">Náhled avataru uploadera</string>
     <string name="detail_likes_img_view_description">To se mi líbí</string>
     <string name="detail_dislikes_img_view_description">To se mi nelíbí</string>
@@ -314,7 +314,6 @@ otevření ve vyskakovacím okně</string>
     <string name="resize_fit">Přizpůsobit</string>
     <string name="resize_fill">Vyplnit</string>
     <string name="resize_zoom">Zvětšit</string>
-    <string name="toggle_leak_canary">Sledovat únik paměti</string>
     <string name="settings_category_debug_title">Ladění</string>
     <string name="caption_auto_generated">"Automaticky generováno "</string>
     <string name="enable_leak_canary_title">Povolit službu LeakCanary</string>
@@ -463,11 +462,9 @@ otevření ve vyskakovacím okně</string>
     <string name="error_connect_host">Nelze se připojit k serveru</string>
     <string name="error_http_no_content">Server neposílá data</string>
     <string name="error_http_unsupported_range">Server neakceptuje vícevláknové stahování, opakujte akci s @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">Požadovaný rozsah nelze splnit</string>
     <string name="error_http_not_found">Nenalezeno</string>
     <string name="error_postprocessing_failed">Post-processing selhal</string>
     <string name="clear_finished_download">Vyčistit dokončená stahování</string>
-    <string name="msg_pending_downloads">Pokračovat ve stahování %s souborů, čekajících na stažení</string>
     <string name="stop">Zastavit</string>
     <string name="max_retry_msg">Maximální počet pokusů o opakování</string>
     <string name="max_retry_desc">Maximální počet pokusů před zrušením stahování</string>
@@ -514,4 +511,19 @@ otevření ve vyskakovacím okně</string>
     <string name="clear_playback_states_summary">Smazat všechny pozice playbacku</string>
     <string name="delete_playback_states_alert">Smazat všechny pozice playbacku\?</string>
     <string name="download_choose_new_path">Změnit adresář pro stažené soubory</string>
+    <string name="drawer_header_description">Přepnout službu, právě vybráno:</string>
+    <string name="no_one_watching">Nikdo nesleduje</string>
+    <plurals name="watching">
+        <item quantity="one">%s sleduje</item>
+        <item quantity="few">%s sledují</item>
+        <item quantity="other">%s sleduje</item>
+    </plurals>
+    <string name="no_one_listening">Nikdo neposlouchá</string>
+    <plurals name="listening">
+        <item quantity="one">%s posluchač</item>
+        <item quantity="few">%s posluchači</item>
+        <item quantity="other">%s posluchačů</item>
+    </plurals>
+    <string name="localization_changes_requires_app_restart">Ke změně jazyka dojde po restartu aplikace.</string>
+    <string name="default_kiosk_page_summary">Výchozí kiosek</string>
 </resources>

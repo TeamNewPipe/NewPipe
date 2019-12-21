@@ -28,6 +28,25 @@
     <string name="screen_brightness_key" translatable="false">screen_brightness_key</string>
     <string name="screen_brightness_timestamp_key" translatable="false">screen_brightness_timestamp_key</string>
 
+    <string name="seek_duration_key" translatable="false">seek_duration</string>
+    <string name="seek_duration_default_value" translatable="false">10000</string>
+    <string-array name="seek_duration_description" translatable="false">
+      <item>5 seconds</item>
+      <item>10 seconds</item>
+      <item>15 seconds</item>
+      <item>20 seconds</item>
+      <item>25 seconds</item>
+      <item>30 seconds</item>
+    </string-array>
+    <string-array name="seek_duration_value" translatable="false">
+      <item>5000</item>
+      <item>10000</item>
+      <item>15000</item>
+      <item>20000</item>
+      <item>25000</item>
+      <item>30000</item>
+    </string-array>
+
     <string name="minimize_on_exit_key" translatable="false">minimize_on_exit_key</string>
     <string name="minimize_on_exit_value" translatable="false">@string/minimize_on_exit_none_key</string>
     <string name="minimize_on_exit_none_key" translatable="false">minimize_on_exit_none_key</string>
@@ -111,8 +130,8 @@
     <!-- DEBUG ONLY -->
     <string name="debug_pref_screen_key" translatable="false">debug_pref_screen_key</string>
     <string name="allow_heap_dumping_key" translatable="false">allow_heap_dumping_key</string>
-
     <string name="allow_disposed_exceptions_key" translatable="false">allow_disposed_exceptions_key</string>
+    <string name="show_original_time_ago_key" translatable="false">show_original_time_ago_text_key</string>
 
     <!-- THEMES -->
     <string name="theme_key" translatable="false">theme</string>
@@ -133,6 +152,7 @@
 
     <!-- Caption Size -->
     <string name="caption_settings_key" translatable="false">caption_settings_key</string>
+    <string name="caption_user_set_key" translatable="false">caption_user_set_key</string>
 
     <!-- Content & History -->
     <string name="show_search_suggestions_key" translatable="false">show_search_suggestions</string>
@@ -144,6 +164,9 @@
     <string name="default_language_value">en</string>
     <string name="default_country_value">GB</string>
     <string name="content_language_key" translatable="false">content_language</string>
+    <string name="peertube_instance_setup_key" translatable="false">peertube_instance_setup</string>
+    <string name="peertube_selected_instance_key" translatable="false">peertube_selected_instance</string>
+    <string name="peertube_instance_list_key" translatable="false">peertube_instance_list</string>
     <string name="content_country_key" translatable="false">content_country</string>
     <string name="show_age_restricted_content" translatable="false">show_age_restricted_content</string>
     <string name="use_tor_key" translatable="false">use_tor</string>

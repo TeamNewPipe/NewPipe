@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
@@ -8,8 +11,8 @@ android {
         applicationId "org.schabi.newpipe"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 790
-        versionName "0.17.4"
+        versionCode 800
+        versionName "0.18.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -44,7 +47,7 @@ android {
 
 ext {
     androidxLibVersion = '1.0.0'
-    exoPlayerLibVersion = '2.10.6'
+    exoPlayerLibVersion = '2.10.8'
     roomDbLibVersion = '2.1.0'
     leakCanaryLibVersion = '1.5.4' //1.6.1
     okHttpLibVersion = '3.12.6'
@@ -53,11 +56,14 @@ ext {
 }
 
 dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
     androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
         exclude module: 'support-annotations'
     })
 
-    implementation 'com.github.teamnewpipe:NewPipeExtractor:v0.17.4'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:8cb3250'
+
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.23.0'
 
@@ -89,13 +95,14 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
     implementation 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
+    implementation 'org.ocpsoft.prettytime:prettytime:4.0.1.Final'
 
     implementation "androidx.room:room-runtime:${roomDbLibVersion}"
     implementation "androidx.room:room-rxjava2:${roomDbLibVersion}"
-    annotationProcessor "androidx.room:room-compiler:${roomDbLibVersion}"
+    kapt "androidx.room:room-compiler:${roomDbLibVersion}"
 
     implementation "frankiesardo:icepick:${icepickLibVersion}"
-    annotationProcessor "frankiesardo:icepick-processor:${icepickLibVersion}"
+    kapt "frankiesardo:icepick-processor:${icepickLibVersion}"
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:${leakCanaryLibVersion}"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${leakCanaryLibVersion}"

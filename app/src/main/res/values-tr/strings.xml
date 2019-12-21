@@ -119,7 +119,7 @@
     <string name="your_comment">Yorumunuz (İngilizce):</string>
     <string name="error_details_headline">Ayrıntılar:</string>
     <string name="list_thumbnail_view_description">Video ön izleme küçük resmi</string>
-    <string name="short_thousand">K</string>
+    <string name="short_thousand">b</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
     <string name="msg_popup_permission">Bu izin, açılır pencere modunda 
@@ -449,11 +449,9 @@
     <string name="error_connect_host">Sunucuya bağlanılamıyor</string>
     <string name="error_http_no_content">Sunucu veri göndermiyor</string>
     <string name="error_http_unsupported_range">Sunucu, çok iş parçacıklı indirmeleri kabul etmez, @string/msg_threads = 1 ile yeniden deneyin</string>
-    <string name="error_http_requested_range_not_satisfiable">İstenen aralık karşılanamıyor</string>
     <string name="error_http_not_found">Bulunamadı</string>
     <string name="error_postprocessing_failed">İşlem sonrası başarısız</string>
     <string name="clear_finished_download">Tamamlanan indirmeleri temizle</string>
-    <string name="msg_pending_downloads">Beklemedeki %s transferinize İndirmeler\'den devam edin</string>
     <string name="stop">Durdur</string>
     <string name="max_retry_msg">Azami deneme sayısı</string>
     <string name="max_retry_desc">İndirmeyi iptal etmeden önce maksimum deneme sayısı</string>
@@ -503,4 +501,20 @@
     <string name="delete_playback_states_alert">Tüm oynatım konumları silinsin mi\?</string>
     <string name="download_choose_new_path">Etkili olması için indirme dizinlerini değiştirin</string>
     <string name="drawer_header_description">Hizmeti değiştir, şu anda seçili olan:</string>
+    <plurals name="videos">
+        <item quantity="one">Videolar</item>
+        <item quantity="other">Videolar</item>
+    </plurals>
+    <string name="default_kiosk_page_summary">Varsayılan Kiosk</string>
+    <string name="no_one_watching">Kimse izlemiyor</string>
+    <plurals name="watching">
+        <item quantity="one">%s izliyor</item>
+        <item quantity="other">%s izliyor</item>
+    </plurals>
+    <string name="no_one_listening">Kimse dinlemiyor</string>
+    <plurals name="listening">
+        <item quantity="one">%s dinleyici</item>
+        <item quantity="other">%s dinleyici</item>
+    </plurals>
+    <string name="localization_changes_requires_app_restart">Uygulama yeniden başlatıldıktan sonra dil değişecektir.</string>
 </resources>

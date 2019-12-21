@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="main_bg_subtitle">Tryck på sök för att komma igång</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="main_bg_subtitle">Tryck på sök för att komma igång</string>
     <string name="upload_date_text">Publicerad den %1$s</string>
     <string name="no_player_found">Ingen strömspelare hittades. Vill du installera VLC?</string>
     <string name="install">Installera</string>
@@ -20,15 +21,12 @@
     <string name="popup_mode_share_menu_title">NewPipe popup-läge</string>
     <string name="controls_background_title">Bakgrund</string>
     <string name="controls_popup_title">Extrafönster</string>
-
-    <string name="download_path_title">Sökväg för nerladdning av video</string>
-    <string name="download_path_summary">Sökväg för lagring av nerladdade videor</string>
-    <string name="download_path_dialog_title">Ange sökväg för nedladdning av videor</string>
-
+    <string name="download_path_title">Mapp för nerladdning av video</string>
+    <string name="download_path_summary">Nedladdade videofiler lagras här</string>
+    <string name="download_path_dialog_title">Välj nedladdningsmappen för videofiler</string>
     <string name="download_path_audio_title">Sökväg för nerladdning av ljud</string>
-    <string name="download_path_audio_summary">Nedladdat ljud lagras här</string>
-    <string name="download_path_audio_dialog_title">Ange sökväg för nedladdning av ljudfiler</string>
-
+    <string name="download_path_audio_summary">Nedladdade ljudfiler lagras här</string>
+    <string name="download_path_audio_dialog_title">Välj nedladdningsmapp för ljudfiler</string>
     <string name="autoplay_by_calling_app_summary">Spelar automatiskt upp videon när NewPipe öppnas av en annan app</string>
     <string name="default_resolution_title">Standardupplösning</string>
     <string name="default_popup_resolution_title">Standardupplösning för popup</string>
@@ -51,9 +49,7 @@
     <string name="player_gesture_controls_summary">Använd gester för att kontrollera spelarens ljusstyrka och volym</string>
     <string name="show_search_suggestions_title">Sökförslag</string>
     <string name="show_search_suggestions_summary">Visa förslag i samband med sökning</string>
-
     <string name="download_dialog_title">Ladda ned</string>
-
     <string name="next_video_title">Nästa</string>
     <string name="show_next_and_similar_title">Visa \'Nästa\' och \'Liknande\' videor</string>
     <string name="url_not_supported_toast">Webbadressen stöds inte</string>
@@ -67,7 +63,7 @@
     <string name="play_btn_text">Spela upp</string>
     <string name="content">Innehåll</string>
     <string name="show_age_restricted_content_title">Åldersbegränsat innehåll</string>
-    <string name="video_is_age_restricted">Videon är åldersbegränsad. Du kan aktivera åldersbegränsade videor i \"inställningar\".</string>
+    <string name="video_is_age_restricted">Videon är åldersbegränsad. Du kan aktivera åldersbegränsade videor i inställningar.</string>
     <string name="duration_live">LIVE</string>
     <string name="downloads">Nedladdningar</string>
     <string name="downloads_title">Nedladdningar</string>
@@ -81,7 +77,6 @@
     <string name="refresh">Uppdatera</string>
     <string name="clear">Rensa</string>
     <string name="best_resolution">Bästa upplösningen</string>
-
     <string name="general_error">Fel</string>
     <string name="network_error">Nätverksfel</string>
     <string name="could_not_load_thumbnails">Kunde inte ladda alla miniatyrbilder</string>
@@ -99,8 +94,6 @@
     <string name="what_happened_headline">Vad som skedde:</string>
     <string name="your_comment">Din kommentar (på Engelska):</string>
     <string name="error_details_headline">Detaljer:</string>
-
-
     <string name="detail_likes_img_view_description">Gillar</string>
     <string name="detail_dislikes_img_view_description">Ogillar</string>
     <string name="use_tor_title">Använd Tor</string>
@@ -111,16 +104,13 @@
     <string name="channel_unsubscribed">Prenumeration avslutad</string>
     <string name="subscription_change_failed">Kunde inte ändra prenumeration</string>
     <string name="subscription_update_failed">Kunde inte uppdatera prenumeration</string>
-
     <string name="tab_main">Hem</string>
     <string name="tab_subscriptions">Prenumerationer</string>
-
     <string name="fragment_whats_new">Vad är nytt</string>
-
     <string name="autoplay_by_calling_app_title">Spela upp automatiskt</string>
     <string name="enable_search_history_title">Sökhistorik</string>
     <string name="enable_search_history_summary">Spara sökfrågor lokalt</string>
-    <string name="enable_watch_history_title">Historik &amp; Cacheminne</string>
+    <string name="enable_watch_history_title">Visningshistorik</string>
     <string name="enable_watch_history_summary">Håll koll på videor som du tittat på</string>
     <string name="resume_on_audio_focus_gain_title">Återuppta när fokus återfås</string>
     <string name="resume_on_audio_focus_gain_summary">Fortsätta spela efter avbrott (t.ex. telefonsamtal)</string>
@@ -135,67 +125,54 @@
     <string name="popup_resizing_indicator_title">Storleksändring</string>
     <string name="undo">Ångra</string>
     <string name="play_all">Spela Alla</string>
-
     <string name="notification_channel_name">NewPipe Avisering</string>
     <string name="notification_channel_description">Aviseringar för NewPipe bakgrunds och popup-spelare</string>
-
     <string name="unknown_content">[Okänd]</string>
-
     <string name="youtube_signature_decryption_error">Kunde inte dekryptera video URL signatur</string>
     <string name="could_not_get_stream">Kunde inte hitta någon ström</string>
     <string name="player_stream_failure">Misslyckades med att spela denna ström</string>
     <string name="player_unrecoverable_failure">Allvarligt spelarfel inträffade</string>
     <string name="player_recoverable_failure">Återhämtar sig från spelarfel</string>
-
     <string name="error_report_button_text">Rapportera fel via e-post</string>
     <string name="info_labels">Vad:\\nBegäran:\\nInnehållsspråk:\\nTjänst:\\nGMT Tid:\\nPaket:\\nVersion:\\nOS-version:</string>
     <string name="list_thumbnail_view_description">Videons miniatyrbild</string>
-    <string name="detail_thumbnail_view_description">Videons miniatyrbild</string>
+    <string name="detail_thumbnail_view_description">Spela video, längd:</string>
     <string name="detail_uploader_thumbnail_view_description">Uppladdarens avatar miniatyrbild</string>
     <string name="use_tor_summary">(Experimentellt) Tvinga nedladdningstrafiken via Tor för ökad integritet (videostreaming stöds inte än).</string>
     <string name="user_report">Användarrapport</string>
     <string name="search_no_results">Inga resultat</string>
     <string name="empty_subscription_feed_subtitle">Här va\' det tomt</string>
-
     <string name="err_dir_create">Kunde inte skapa nedladdnings katalog \'%1$s\'</string>
     <string name="info_dir_created">Skapa nedladdnings katalog \'%1$s\'</string>
-
     <string name="video">Video</string>
     <string name="audio">Ljud</string>
     <string name="retry">Försök igen</string>
     <string name="storage_permission_denied">Tillgång till lagringsområde nekades</string>
-
-    <string name="short_thousand">k</string>
+    <string name="short_thousand">K</string>
     <string name="short_million">mn</string>
-    <string name="short_billion">md</string>
-
+    <string name="short_billion">B</string>
     <string name="no_subscribers">Inga prenumeranter</string>
     <plurals name="subscribers">
-	<item quantity="one">%s prenumerant</item>
-	<item quantity="other">%s prenumeranter</item>
-</plurals>
-
+        <item quantity="one">%s prenumerant</item>
+        <item quantity="other">%s prenumeranter</item>
+    </plurals>
     <string name="no_views">Inga visningar</string>
     <plurals name="views">
-	<item quantity="one">%s visning</item>
-	<item quantity="other">%s visningar</item>
-</plurals>
-
+        <item quantity="one">%s visning</item>
+        <item quantity="other">%s visningar</item>
+    </plurals>
     <string name="no_videos">Inga videor</string>
     <plurals name="videos">
-	<item quantity="one">%s video</item>
-	<item quantity="other">%s videor</item>
-</plurals>
-
+        <item quantity="one">Video</item>
+        <item quantity="other">Videor</item>
+    </plurals>
     <string name="start">Start</string>
     <string name="pause">Pausa</string>
     <string name="view">Spela</string>
     <string name="delete">Ta bort</string>
     <string name="checksum">Kontrollsumma</string>
-
     <string name="add">Nytt uppdrag</string>
     <string name="finish">Ok</string>
-
     <string name="msg_name">Filnamn</string>
     <string name="msg_threads">Trådar</string>
     <string name="msg_error">Fel</string>
@@ -206,22 +183,18 @@
     <string name="msg_running_detail">Tryck för detaljer</string>
     <string name="msg_wait">Vänta…</string>
     <string name="msg_copied">Kopierat till urklipp</string>
-    <string name="no_available_dir">Välj en tillgänglig nedladdningsmapp</string>
+    <string name="no_available_dir">Ange en hämtningsmapp senare i inställningar</string>
     <string name="msg_popup_permission">Denna tillåtelse behövs för att
 \nöppna i popup-läge</string>
-
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">reCAPTCHA utmaning</string>
     <string name="recaptcha_request_toast">reCAPTCHA utmaning begärd</string>
-
     <string name="settings_category_downloads_title">Nedladdning</string>
     <string name="settings_file_charset_title">Tillåtna tecken i filnamn</string>
     <string name="settings_file_replacement_character_summary">Ogiltiga tecken ersätts med detta värde</string>
     <string name="settings_file_replacement_character_title">Ersättningstecknet</string>
-
     <string name="charset_letters_and_digits">Bokstäver och siffror</string>
     <string name="charset_most_special_characters">De flesta specialtecken</string>
-
     <string name="title_activity_about">Om NewPipe</string>
     <string name="action_settings">Inställningar</string>
     <string name="action_about">Om</string>
@@ -238,7 +211,6 @@
     <string name="contribution_encouragement">Vad du än har för idéer; översättningar, designändringar, kodstädning eller riktiga stora kodändringar—hjälp är alltid välkommen. Ju mer som görs desto bättre blir det!</string>
     <string name="read_full_license">Läs hela licensen</string>
     <string name="contribution_title">Bidra</string>
-
     <string name="title_activity_history">Historik</string>
     <string name="title_history_search">Sökt</string>
     <string name="title_history_view">Tittade</string>
@@ -248,7 +220,6 @@
     <string name="history_cleared">Historiken har rensats</string>
     <string name="item_deleted">Objektet bortaget</string>
     <string name="delete_item_search_history">Vill du ta bort det här objektet från sökhistoriken?</string>
-
     <string name="main_page_content">Huvudsidans innehåll</string>
     <string name="blank_page_summary">Tom sida</string>
     <string name="kiosk_page_summary">Kiosk sida</string>
@@ -258,7 +229,6 @@
     <string name="select_a_channel">Välj en kanal</string>
     <string name="no_channel_subscribed_yet">Inga kanal prenumerationer ännu</string>
     <string name="select_a_kiosk">Välj en kiosk</string>
-
     <string name="kiosk">Kiosk</string>
     <string name="trending">Trend</string>
     <string name="top_50">Topp 50</string>
@@ -272,29 +242,25 @@
     <string name="enqueue_on_background">Placera i bakgrunds-kön</string>
     <string name="enqueue_on_popup">Placera i popup-kön</string>
     <string name="start_here_on_main">Börja spela här</string>
-    <string name="start_here_on_background">Börja här i bakgrunden</string>
-    <string name="start_here_on_popup">Börja här i popup</string>
-<string name="donation_title">Donera</string>
+    <string name="start_here_on_background">Börja spela i bakgrunden</string>
+    <string name="start_here_on_popup">Börja spela i en ny popup</string>
+    <string name="donation_title">Donera</string>
     <string name="donation_encouragement">NewPipe utvecklas av frivilliga som spenderar sin fritid på att ge dig den bästa användarupplevelsen. Nu är det tid att ge tillbaka för att säkerställa att utvecklarna kan göra NewPipe ännu bättre medan de njuter av en kopp kaffe.</string>
     <string name="give_back">Ge tillbaka</string>
     <string name="website_title">Webbplats</string>
     <string name="website_encouragement">För att få mer information och de senaste nyheterna om NewPipe, besök vår webbplats.</string>
     <string name="show_info">Visa info</string>
-
     <string name="tab_bookmarks">Bokmärkta Spellistor</string>
-
     <string name="controls_add_to_playlist_title">Lägg till</string>
-
     <string name="use_inexact_seek_title">Använd snabb inexakt sökning</string>
     <string name="download_thumbnail_title">Ladda miniatyrbilder</string>
-    <string name="download_thumbnail_summary">Inaktivera för att stänga av laddning av miniatyrbilder, sparar data och minnesanvändning. Förändringar kommer att rensa cache-minnet.</string>
+    <string name="download_thumbnail_summary">Stäng av för att hindra laddning av miniatyrbilder, spara data och minnesanvändning. Förändringar kommer att rensa cache-minnet.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Bild cacheminnet rensad</string>
     <string name="service_title">Tjänst</string>
     <string name="settings_category_debug_title">Debug</string>
     <string name="always">Alltid</string>
     <string name="just_once">Bara en gång</string>
     <string name="file">Fil</string>
-
     <string name="toggle_orientation">Växla orienteringen</string>
     <string name="metadata_cache_wipe_title">Rensa metadatan i cacheminnet</string>
     <string name="no_player_found_toast">Ingen strömspelare hittades (du kan installera VLC för att spela upp).</string>
@@ -303,7 +269,7 @@
     <string name="metadata_cache_wipe_summary">Ta bort alla cachade webbsidor</string>
     <string name="metadata_cache_wipe_complete_notice">Metadata cache rensad</string>
     <string name="auto_queue_title">"Köa nästa ström automatiskt "</string>
-    <string name="auto_queue_summary">Lägg automatiskt till en relaterad ström när du spelar den sista strömmen i en ej upprepad kö.</string>
+    <string name="auto_queue_summary">Lägg automatiskt till en relaterad ström när du spelar den sista strömmen i en ej upprepad kö</string>
     <string name="default_content_country_title">Standard innehållsland</string>
     <string name="channels">Kanaler</string>
     <string name="playlists">Spellistor</string>
@@ -312,13 +278,12 @@
     <string name="switch_to_background">Växla till Bakgrunden</string>
     <string name="switch_to_popup">Växla till popup</string>
     <string name="switch_to_main">Växla till main</string>
-
     <string name="import_data_title">Importera databas</string>
     <string name="export_data_title">Exportera databas</string>
     <string name="import_data_summary">Skriver över din nuvarande historik och prenumerationer</string>
     <string name="export_data_summary">Exportera historik, prenumerationer och spellistor</string>
     <string name="clear_views_history_title">Rensa visningshistorik</string>
-    <string name="clear_views_history_summary">Tar bort historiken för spelade videoklipp</string>
+    <string name="clear_views_history_summary">Tar bort historiken för spelade videoklipp och uppspelningspositioner</string>
     <string name="delete_view_history_alert">Ta bort hela visningshistoriken\?</string>
     <string name="watch_history_deleted">Visningshistorik borttagen.</string>
     <string name="clear_search_history_title">Rensa sökhistorik</string>
@@ -329,25 +294,20 @@
     <string name="invalid_url_toast">Ogiltig URL</string>
     <string name="video_streams_empty">Inga videoströmmar hittades</string>
     <string name="audio_streams_empty">Inga ljudspår hittades</string>
-    <string name="invalid_directory">Ogiltig katalog</string>
-    <string name="invalid_source">Ogiltig fil/innehålls källa</string>
+    <string name="invalid_directory">Ingen sådan mapp</string>
+    <string name="invalid_source">Ingen sådan fil/innehållskälla</string>
     <string name="invalid_file">Filen finns inte eller behörighet att läsa eller skriva till den saknas</string>
     <string name="file_name_empty_error">Filnamnet får inte vara tomt</string>
     <string name="error_occurred_detail">Ett fel uppstod: %1$s</string>
     <string name="no_streams_available_download">Inga strömmar är tillgängliga för nedladdning</string>
-
     <string name="detail_drag_description">Dra för att ändra ordning</string>
-
     <string name="create">Skapa</string>
     <string name="delete_one">Ta bort en</string>
     <string name="delete_all">Ta bort alla</string>
     <string name="dismiss">Avfärda</string>
     <string name="rename">Byt namn</string>
-
     <string name="one_item_deleted">1 objekt borttaget.</string>
-
     <string name="toast_no_player">Ingen app installerad för att spela upp filen</string>
-
     <string name="privacy_policy_title">NewPipes Sekretesspolicy</string>
     <string name="privacy_policy_encouragement">NewPipe projektet tar din integritet på största allvar. Appen samlar därför inte in några uppgifter utan ditt medgivande. NewPipes Sekretesspolicy förklarar i detalj vad för data som skickas och lagras när du skickar en kraschrapport.</string>
     <string name="read_privacy_policy">Läs sekretesspolicy</string>
@@ -356,77 +316,57 @@
     <string name="delete_all_history_prompt">Är du säker du vill ta bort alla föremål från historiken?</string>
     <string name="title_last_played">Senast spelade</string>
     <string name="title_most_played">Mest spelade</string>
-
     <string name="export_complete_toast">Exporterad</string>
     <string name="import_complete_toast">Importerad</string>
     <string name="no_valid_zip_file">Ogiltig ZIP-fil</string>
     <string name="could_not_import_all_files">Varning: det gick inte att importera alla filer.</string>
     <string name="override_current_data">Det här kommer skriva över dina nuvarande inställningar.</string>
     <string name="import_settings">Vill du också importera inställningar?</string>
-
     <string name="drawer_open">Öppna navigationspanelen</string>
     <string name="drawer_close">Stäng navigationspanelen</string>
     <string name="drawer_header_action_paceholder_text">Något kommer att visas här snart ;D</string>
-
-
     <string name="preferred_open_action_settings_title">Föredragen \'öppna\' åtgärd</string>
     <string name="preferred_open_action_settings_summary">Standardåtgärden när du öppnar innehåll — %s</string>
-
     <string name="video_player">Videospelare</string>
     <string name="background_player">Bakgrundsspelare</string>
     <string name="popup_player">Popup-spelare</string>
     <string name="always_ask_open_action">Fråga alltid</string>
-
     <string name="preferred_player_fetcher_notification_title">Hämtar information…</string>
     <string name="preferred_player_fetcher_notification_message">Laddar begärt innehåll</string>
-
     <string name="create_playlist">Ny spellista</string>
     <string name="delete_playlist">Radera</string>
     <string name="rename_playlist">Byt namn</string>
     <string name="playlist_name_input">Namn</string>
     <string name="append_playlist">Lägg till i spellistan</string>
     <string name="set_as_playlist_thumbnail">Använd som spellistans miniatyrbild</string>
-
     <string name="bookmark_playlist">Bokmärk spellistan</string>
     <string name="unbookmark_playlist">Ta bort bokmärke</string>
-
     <string name="delete_playlist_prompt">Ta bort spellista\?</string>
     <string name="playlist_creation_success">Spellistan skapades</string>
     <string name="playlist_add_stream_success">Tillagad i spellistan</string>
     <string name="playlist_thumbnail_change_success">Spellistans miniatyrbild förändrades.</string>
     <string name="playlist_delete_failure">Kunde inte ta bort spellistan.</string>
-
     <string name="caption_none">Ingen textning</string>
-
     <string name="resize_fit">Passa</string>
     <string name="resize_fill">Fyll</string>
     <string name="resize_zoom">Zoom</string>
-
     <string name="caption_auto_generated">Autogenererade</string>
-
     <string name="caption_setting_title">Textning</string>
     <string name="caption_setting_description">Ändra spelarens textskala och bakgrundsstil. Kräver att appen startar om för att träder i kraft.</string>
-
     <string name="enable_leak_canary_title">Aktivera LeakCanary</string>
     <string name="enable_leak_canary_summary">Minnesläcka övervakning kan orsaka att appen inte svarar under heap dumpning</string>
-
     <string name="enable_disposed_exceptions_title">Rapportera out-of-lifecycle fel</string>
     <string name="enable_disposed_exceptions_summary">Tvinga rapportering av otillåtna Rx-undantag utanför fragment eller aktivitetslivscykel efter uppstädning</string>
-
     <string name="import_export_title">Importera/exportera</string>
     <string name="import_title">Importera</string>
     <string name="import_from">Importera från</string>
     <string name="export_to">Exportera till</string>
-
     <string name="import_ongoing">Importera…</string>
     <string name="export_ongoing">Exporterar…</string>
-
     <string name="import_file_title">Importera fil</string>
     <string name="previous_export">Föregående export</string>
-
     <string name="subscriptions_import_unsuccessful">Kunde inte importera prenumerationer</string>
     <string name="subscriptions_export_unsuccessful">kunde inte exportera prenumerationer</string>
-
     <string name="import_youtube_instructions">Importera YouTube-prenumerationer genom att hämta export-filen:
 \n
 \n1. Gå till följande webbadress: %1$s
@@ -439,11 +379,9 @@
 \n3. Logga in när du blir tillfrågad
 \n4. Kopiera profilens webbadress som du blev omdirigerad till.</string>
     <string name="import_soundcloud_instructions_hint">dittID, soundcloud.com/dittid</string>
-
     <string name="import_network_expensive_warning">Tänk på att operationer kan vara nätverks intensiv.
 \n
 \nVill du fortsätta?</string>
-
     <string name="playback_speed_control">Uppspelningshastighet Kontroller</string>
     <string name="playback_tempo">Tempo</string>
     <string name="playback_pitch">Tonhöjd</string>
@@ -451,11 +389,9 @@
     <string name="skip_silence_checkbox">Snabbspola vid frånvaro av ljud</string>
     <string name="playback_step">Steg</string>
     <string name="playback_reset">Återställ</string>
-
     <string name="start_accept_privacy_policy">För att uppfylla den Europeiska dataskyddsförordningen (GDPR), uppmärksammar vi NewPipes sekretesspolicy. Läs den noggrant. Du måste acceptera det om du vill skicka felrapporten.</string>
     <string name="accept">Acceptera</string>
     <string name="decline">Avböj</string>
-
     <string name="limit_data_usage_none_description">Ingen gräns</string>
     <string name="limit_mobile_data_usage_title">Begränsa upplösningen när du använder mobil data</string>
     <string name="minimize_on_exit_title">"Minimera vid växling av applikationen "</string>
@@ -463,5 +399,68 @@
     <string name="minimize_on_exit_none_description">Ingen</string>
     <string name="minimize_on_exit_background_description">Minimera till Bakgrunds-spelare</string>
     <string name="minimize_on_exit_popup_description">Minimera till popup-spelare</string>
-
+    <string name="unsubscribe">Avsluta prenumeration</string>
+    <string name="tab_new">Ny flik</string>
+    <string name="tab_choose">Välj flik</string>
+    <string name="volume_gesture_control_title">Gestkontroll för volym</string>
+    <string name="volume_gesture_control_summary">Använd gester för att justera spelarens volym</string>
+    <string name="brightness_gesture_control_title">Gestkontroll för ljusstyrka</string>
+    <string name="brightness_gesture_control_summary">Använd gester för att justera ljusstyrkan</string>
+    <string name="settings_category_updates_title">Uppdateringar</string>
+    <string name="file_deleted">Fil raderad</string>
+    <string name="app_update_notification_channel_name">Appuppdateringsnotifikation</string>
+    <string name="app_update_notification_channel_description">Notifikationer för nya NewPipe versioner</string>
+    <string name="download_to_sdcard_error_title">Extern lagring otillgänglig</string>
+    <string name="saved_tabs_invalid_json">Fel vid läsning av sparade flikar, använder standard flikar istället</string>
+    <string name="restore_defaults">Återställ default</string>
+    <string name="restore_defaults_confirmation">Vill du återställa default\?</string>
+    <string name="subscribers_count_not_available">Antalet prenumeranter är otillgängligt</string>
+    <string name="main_page_content_summary">Vilka flikar visas på Huvudsidan</string>
+    <string name="selection">Markering</string>
+    <string name="updates_setting_title">Uppdateringar</string>
+    <string name="updates_setting_description">Visa notifikation för att uppdatera appen när en ny version finns tillgänglig</string>
+    <string name="list_view_mode">Listvy</string>
+    <string name="list">Lista</string>
+    <string name="grid">Rutnät</string>
+    <string name="auto">Auto</string>
+    <string name="switch_view">Växla vy</string>
+    <string name="app_update_notification_content_title">NewPipe uppdatering tillgänglig!</string>
+    <string name="app_update_notification_content_text">Tryck för att ladda ned</string>
+    <string name="missions_header_finished">Färdig</string>
+    <string name="paused">pausad</string>
+    <string name="queued">köad</string>
+    <string name="post_processing">efterbehandling</string>
+    <string name="enqueue">Kö</string>
+    <string name="permission_denied">Åtgärd som nekas av systemet</string>
+    <string name="download_failed">Nedladdningen misslyckades</string>
+    <string name="download_finished">Nedladdningen är färdig</string>
+    <string name="download_finished_more">%s nedladdningar är färdiga</string>
+    <string name="generate_unique_name">Generera unikt namn</string>
+    <string name="overwrite">Skriv över</string>
+    <string name="download_already_running">Det finns en pågående nedladdning med det här namnet</string>
+    <string name="show_error">Visa fel</string>
+    <string name="label_code">Kod</string>
+    <string name="error_ssl_exception">Säker anslutning misslyckades</string>
+    <string name="error_unknown_host">Kunde inte hitta servern</string>
+    <string name="error_connect_host">Kunde inte ansluta till servern</string>
+    <string name="error_http_no_content">Servern skickar ingen data</string>
+    <string name="error_http_unsupported_range">Servern accepterar inte flertrådade nedladdningar, försök igen med @string/msg_threads = 1</string>
+    <string name="error_http_not_found">Hittades inte</string>
+    <string name="error_postprocessing_failed">Efterbehandling misslyckades</string>
+    <string name="clear_finished_download">Töm färdiga nedladdningar</string>
+    <string name="stop">Stanna</string>
+    <string name="max_retry_msg">Max försök</string>
+    <string name="max_retry_desc">Max antal försök tills nedladdning avbryts</string>
+    <string name="events">Händelser</string>
+    <string name="conferences">Konferenser</string>
+    <string name="show_comments_title">Visa kommentarer</string>
+    <plurals name="comments">
+        <item quantity="one">Kommentarer</item>
+        <item quantity="other"/>
+    </plurals>
+    <string name="show_comments_summary">Inaktivera för att sluta visa kommentarer</string>
+    <string name="enable_playback_resume_title">Återuppta uppspelning</string>
+    <string name="enable_playback_resume_summary">Återställ den senaste uppspelningspositionen</string>
+    <string name="enable_playback_state_lists_title">Positioner i listor</string>
+    <string name="download_choose_new_path">Ändra nedladdningsmapp för att träda i kraft</string>
 </resources>

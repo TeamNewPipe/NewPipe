@@ -55,7 +55,7 @@ import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import org.schabi.newpipe.BuildConfig;
-import org.schabi.newpipe.Downloader;
+import org.schabi.newpipe.DownloaderImpl;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
@@ -178,7 +178,6 @@ public abstract class BasePlayer implements
     // Player
     //////////////////////////////////////////////////////////////////////////*/
 
-    protected final static int FAST_FORWARD_REWIND_AMOUNT_MILLIS = 10000; // 10 Seconds
     protected final static int PLAY_PREV_ACTIVATION_LIMIT_MILLIS = 5000; // 5 seconds
     protected final static int PROGRESS_LOOP_INTERVAL_MILLIS = 500;
     protected final static int RECOVERY_SKIP_THRESHOLD_MILLIS = 3000; // 3 seconds
@@ -209,7 +208,7 @@ public abstract class BasePlayer implements
         this.progressUpdateReactor = new SerialDisposable();
         this.databaseUpdateReactor = new CompositeDisposable();
 
-        final String userAgent = Downloader.USER_AGENT;
+        final String userAgent = DownloaderImpl.USER_AGENT;
         final DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter.Builder(context).build();
         this.dataSource = new PlayerDataSource(context, userAgent, bandwidthMeter);
 
@@ -954,12 +953,19 @@ public abstract class BasePlayer implements
 
     public void onFastRewind() {
         if (DEBUG) Log.d(TAG, "onFastRewind() called");
-        seekBy(-FAST_FORWARD_REWIND_AMOUNT_MILLIS);
+        seekBy(-getSeekDuration());
     }
 
     public void onFastForward() {
         if (DEBUG) Log.d(TAG, "onFastForward() called");
-        seekBy(FAST_FORWARD_REWIND_AMOUNT_MILLIS);
+        seekBy(getSeekDuration());
+    }
+
+    private int getSeekDuration() {
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        final String key = context.getString(R.string.seek_duration_key);
+        final String value = prefs.getString(key, context.getString(R.string.seek_duration_default_value));
+        return Integer.parseInt(value);
     }
 
     public void onPlayPrevious() {

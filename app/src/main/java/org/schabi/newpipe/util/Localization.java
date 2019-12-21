@@ -2,23 +2,25 @@ package org.schabi.newpipe.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.preference.PreferenceManager;
-import androidx.annotation.NonNull;
-import androidx.annotation.PluralsRes;
-import androidx.annotation.StringRes;
 import android.text.TextUtils;
 
+import org.ocpsoft.prettytime.PrettyTime;
+import org.ocpsoft.prettytime.units.Decade;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.extractor.localization.ContentCountry;
 
 import java.text.DateFormat;
 import java.text.NumberFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.PluralsRes;
+import androidx.annotation.StringRes;
 
 /*
  * Created by chschtsch on 12/29/15.
@@ -42,9 +44,14 @@ import java.util.Locale;
 
 public class Localization {
 
-    public final static String DOT_SEPARATOR = " • ";
+    private static PrettyTime prettyTime;
+    private static final String DOT_SEPARATOR = " • ";
 
     private Localization() {
+    }
+
+    public static void init() {
+        initPrettyTime();
     }
 
     @NonNull
@@ -69,16 +76,18 @@ public class Localization {
         return stringBuilder.toString();
     }
 
-    public static org.schabi.newpipe.extractor.utils.Localization getPreferredExtractorLocal(Context context) {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+    public static org.schabi.newpipe.extractor.localization.Localization getPreferredLocalization(final Context context) {
+        final String contentLanguage = PreferenceManager
+                .getDefaultSharedPreferences(context)
+                .getString(context.getString(R.string.content_language_key), context.getString(R.string.default_language_value));
+        return org.schabi.newpipe.extractor.localization.Localization.fromLocalizationCode(contentLanguage);
+    }
 
-        String languageCode = sp.getString(context.getString(R.string.content_language_key),
-                context.getString(R.string.default_language_value));
-
-        String countryCode = sp.getString(context.getString(R.string.content_country_key),
-                context.getString(R.string.default_country_value));
-
-        return new org.schabi.newpipe.extractor.utils.Localization(countryCode, languageCode);
+    public static ContentCountry getPreferredContentCountry(final Context context) {
+        final String contentCountry = PreferenceManager
+                .getDefaultSharedPreferences(context)
+                .getString(context.getString(R.string.content_country_key), context.getString(R.string.default_country_value));
+        return new ContentCountry(contentCountry);
     }
 
     public static Locale getPreferredLocale(Context context) {
@@ -106,27 +115,12 @@ public class Localization {
         return nf.format(number);
     }
 
-    private static String formatDate(Context context, String date) {
-        Locale locale = getPreferredLocale(context);
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date datum = null;
-        try {
-            datum = formatter.parse(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM, locale);
-
-        return df.format(datum);
+    public static String formatDate(Date date) {
+        return DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault()).format(date);
     }
 
-    public static String localizeDate(Context context, String date) {
-        Resources res = context.getResources();
-        String dateString = res.getString(R.string.upload_date_text);
-
-        String formattedDate = formatDate(context, date);
-        return String.format(dateString, formattedDate);
+    public static String localizeUploadDate(Context context, Date date) {
+        return context.getString(R.string.upload_date_text, formatDate(date));
     }
 
     public static String localizeViewCount(Context context, long viewCount) {
@@ -151,6 +145,14 @@ public class Localization {
         } else {
             return Long.toString(count);
         }
+    }
+
+    public static String listeningCount(Context context, long listeningCount) {
+        return getQuantity(context, R.plurals.listening, R.string.no_one_listening, listeningCount, shortCount(context, listeningCount));
+    }
+
+    public static String watchingCount(Context context, long watchingCount) {
+        return getQuantity(context, R.plurals.watching, R.string.no_one_watching, watchingCount, shortCount(context, watchingCount));
     }
 
     public static String shortViewCount(Context context, long viewCount) {
@@ -191,5 +193,27 @@ public class Localization {
             output = String.format(Locale.US, "%d:%02d", minutes, seconds);
         }
         return output;
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
+    // Pretty Time
+    //////////////////////////////////////////////////////////////////////////*/
+
+    private static void initPrettyTime() {
+        prettyTime = new PrettyTime(Locale.getDefault());
+        // Do not use decades as YouTube doesn't either.
+        prettyTime.removeUnit(Decade.class);
+    }
+
+    private static PrettyTime getPrettyTime() {
+        // If pretty time's Locale is different, init again with the new one.
+        if (!prettyTime.getLocale().equals(Locale.getDefault())) {
+            initPrettyTime();
+        }
+        return prettyTime;
+    }
+
+    public static String relativeTime(Calendar calendarTime) {
+        return getPrettyTime().formatUnrounded(calendarTime);
     }
 }

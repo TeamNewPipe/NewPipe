@@ -85,7 +85,7 @@
     <string name="start">開始</string>
     <string name="pause">一時停止</string>
     <string name="view">再生</string>
-    <string name="delete">削除する</string>
+    <string name="delete">削除</string>
     <string name="checksum">チェックサム</string>
     <string name="add">新しいミッション</string>
     <string name="finish">OK</string>
@@ -112,7 +112,7 @@
     <string name="black_theme_title">ブラック</string>
     <string name="all">すべて</string>
     <string name="channel">チャンネル</string>
-    <string name="short_thousand">K</string>
+    <string name="short_thousand">k</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
     <string name="yes">はい</string>
@@ -244,7 +244,7 @@
     <string name="override_current_data">これにより、現在の設定が上書きされます。</string>
     <string name="title_activity_background_player">バックグラウンド再生</string>
     <string name="start_here_on_main">ここから再生を開始</string>
-    <string name="start_here_on_background">バックグランドで再生を開始</string>
+    <string name="start_here_on_background">バックグランドで連続再生を開始</string>
     <string name="drawer_open">ドロワーを開く</string>
     <string name="drawer_close">ドロワーを閉じる</string>
     <string name="video_player">動画プレイヤー</string>
@@ -284,7 +284,7 @@
     <string name="rename_playlist">変更</string>
     <string name="playlist_name_input">プレイリスト名</string>
     <string name="append_playlist">プレイリストに追加</string>
-    <string name="set_as_playlist_thumbnail">プレイリストのサムネイルとして設定</string>
+    <string name="set_as_playlist_thumbnail">プレイリストのサムネイルに設定</string>
     <string name="bookmark_playlist">プレイリストをブックマーク</string>
     <string name="unbookmark_playlist">ブックマークを削除</string>
     <string name="delete_playlist_prompt">このプレイリストを削除しますか？</string>
@@ -348,10 +348,10 @@
     <string name="tracks">トラック</string>
     <string name="notification_channel_description">NewPipe バックグラウンドおよびポップアップのプレイヤーの通知</string>
     <string name="new_and_hot">新着 &amp; 人気</string>
-    <string name="hold_to_append">長押ししてキューに入れる</string>
-    <string name="enqueue_on_background">バックグラウンドでキューに入れる</string>
-    <string name="enqueue_on_popup">ポップアップでキューに入れる</string>
-    <string name="start_here_on_popup">新しいポップアップで再生を開始</string>
+    <string name="hold_to_append">長押ししてキューに追加</string>
+    <string name="enqueue_on_background">バックグラウンドのキューに追加</string>
+    <string name="enqueue_on_popup">ポップアップのキューに追加</string>
+    <string name="start_here_on_popup">ポップアップで連続再生を開始</string>
     <string name="drawer_header_action_paceholder_text">すぐにここに表示されます;D</string>
     <string name="preferred_open_action_settings_title">お好みの \'開く\' アクション</string>
     <string name="preferred_open_action_settings_summary">コンテンツを開くときのデフォルト動作 — %s</string>
@@ -440,7 +440,6 @@
     <string name="error_connect_host">サーバに接続できません</string>
     <string name="error_http_no_content">サーバがデータを送信していません</string>
     <string name="error_http_unsupported_range">サーバが同時接続ダウンロードを受け付けません。再試行してください @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">必要な範囲が満たされていません</string>
     <string name="error_http_not_found">見つかりません</string>
     <string name="error_postprocessing_failed">保存処理に失敗しました</string>
     <string name="clear_finished_download">完了済みを一覧から削除します</string>
@@ -457,7 +456,6 @@
     <string name="saved_tabs_invalid_json">デフォルトのタブを使用します。保存されたタブの読み込みエラーが発生しました</string>
     <string name="main_page_content_summary">メインページに表示されるタブ</string>
     <string name="updates_setting_description">新しいバージョンが利用可能なときにアプリの更新を確認する通知を表示します</string>
-    <string name="msg_pending_downloads">ダウンロードから %s の保留中の転送を続行します</string>
     <string name="pause_downloads_on_mobile">従量制課金ネットワークの割り込み</string>
     <string name="pause_downloads_on_mobile_desc">モバイルデータ通信に切り替える場合に便利ですが、一部のダウンロードは一時停止できません</string>
     <string name="show_comments_title">コメントを表示</string>
@@ -499,4 +497,17 @@
     <string name="delete_playback_states_alert">すべての再生位置を削除しますか\?</string>
     <string name="download_choose_new_path">ダウンロードフォルダーを変更して有効にします</string>
     <string name="drawer_header_description">サービスの切り替え、現在の選択:</string>
+    <plurals name="videos">
+        <item quantity="other">動画</item>
+    </plurals>
+    <string name="default_kiosk_page_summary">デフォルトのキオスク</string>
+    <string name="no_one_watching">誰も見ていません</string>
+    <plurals name="watching">
+        <item quantity="other">%s 見ています</item>
+    </plurals>
+    <string name="no_one_listening">誰も聞いていません</string>
+    <plurals name="listening">
+        <item quantity="other">%s リスナー</item>
+    </plurals>
+    <string name="localization_changes_requires_app_restart">アプリを再起動すると、言語が変更されます。</string>
 </resources>

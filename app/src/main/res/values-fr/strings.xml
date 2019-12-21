@@ -18,20 +18,20 @@
     <string name="settings">Paramètres</string>
     <string name="share">Partager</string>
     <string name="share_dialog_title">Partager avec</string>
-    <string name="show_play_with_kodi_summary">Afficher une option pour lire une vidéo avec Kodi</string>
+    <string name="show_play_with_kodi_summary">Affiche une option pour lire une vidéo via Kodi</string>
     <string name="show_play_with_kodi_title">Afficher l’option « Lire avec Kodi »</string>
     <string name="upload_date_text">Publiée le %1$s</string>
-    <string name="view_count_text">%1$s vues</string>
+    <string name="view_count_text">%1$s vues</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Format audio par défaut</string>
     <string name="download_dialog_title">Télécharger</string>
     <string name="next_video_title">Suivant</string>
     <string name="show_next_and_similar_title">Afficher les vidéos « Suivantes » et « Similaires »</string>
     <string name="url_not_supported_toast">URL non pris en charge</string>
-    <string name="settings_category_video_audio_title">Vidéo &amp; audio</string>
+    <string name="settings_category_video_audio_title">Vidéo et audio</string>
     <string name="settings_category_other_title">Autre</string>
     <string name="list_thumbnail_view_description">Miniature d’aperçu vidéo</string>
-    <string name="detail_thumbnail_view_description">Miniature d’aperçu vidéo</string>
+    <string name="detail_thumbnail_view_description">Lecture vidéo, durée :</string>
     <string name="detail_dislikes_img_view_description">Je n’aime pas</string>
     <string name="detail_likes_img_view_description">J’aime</string>
     <string name="content_language_title">Langue du contenu par défaut</string>
@@ -54,7 +54,7 @@
     <string name="info_dir_created">Répertoire de téléchargement « %1$s » créé</string>
     <string name="general_error">Erreur</string>
     <string name="parsing_error">Impossible d’analyser le site web</string>
-    <string name="content_not_available">Contenu non disponible</string>
+    <string name="content_not_available">Contenu indisponible</string>
     <string name="error_snackbar_message">Désolé, des erreurs sont survenues.</string>
     <string name="content">Contenu</string>
     <string name="show_age_restricted_content_title">Contenu avec limite d’âge</string>
@@ -77,7 +77,7 @@
     <string name="storage_permission_denied">Autorisation d’accès au stockage refusée</string>
     <string name="main_bg_subtitle">Appuyer sur la loupe pour commencer</string>
     <string name="autoplay_by_calling_app_title">Lecture automatique</string>
-    <string name="video_is_age_restricted">Afficher les vidéos soumises à une limite d’âge. Autoriser ce type de contenu est possible depuis les paramètres.</string>
+    <string name="video_is_age_restricted">Affiche les vidéos soumises à une limite d’âge. Autoriser ce type de contenu est possible depuis les paramètres.</string>
     <string name="user_report">Rapport utilisateur</string>
     <string name="error_snackbar_action">RAPPORTER</string>
     <string name="could_not_setup_download_menu">Impossible de configurer le menu de téléchargement</string>
@@ -86,7 +86,7 @@
     <string name="downloads_title">Téléchargements</string>
     <string name="error_report_title">Rapport d’erreur</string>
     <string name="start">Démarrer</string>
-    <string name="pause">Pause</string>
+    <string name="pause">Mettre en pause</string>
     <string name="view">Lire</string>
     <string name="delete">Supprimer</string>
     <string name="checksum">Somme de contrôle</string>
@@ -118,7 +118,7 @@
     <string name="later">Plus tard</string>
     <string name="disabled">Désactivé</string>
     <string name="info_labels">Quoi :\\nRequête :\\nLangue du contenu :\\nService :\\nHeure UTC :\\nPaquet :\\nVersion :\\nVersion du système d’exploitation :</string>
-    <string name="short_thousand">K</string>
+    <string name="short_thousand">k</string>
     <string name="short_million">M</string>
     <string name="msg_popup_permission">Cette autorisation est nécessaire pour
 \nutiliser le mode flottant</string>
@@ -129,17 +129,17 @@
     <string name="show_higher_resolutions_summary">Seuls certains appareils prennent en charge les vidéos 2K et 4K</string>
     <string name="default_video_format_title">Format vidéo par défaut</string>
     <string name="popup_remember_size_pos_title">Mémoriser les taille et position de la fenêtre flottante</string>
-    <string name="popup_remember_size_pos_summary">Mémoriser les dernières taille et position de la fenêtre flottante</string>
+    <string name="popup_remember_size_pos_summary">Mémorise les dernières taille et position de la fenêtre flottante</string>
     <string name="settings_category_popup_title">Fenêtre flottante</string>
     <string name="filter">Filtre</string>
     <string name="refresh">Rafraîchir</string>
     <string name="clear">Effacer</string>
     <string name="popup_resizing_indicator_title">Redimensionner</string>
-    <string name="short_billion">B</string>
+    <string name="short_billion">Mrd</string>
     <string name="use_external_video_player_summary">Retire l’audio à CERTAINES définitions</string>
-    <string name="player_gesture_controls_summary">Utiliser les gestes pour contrôler la luminosité et le volume du lecteur</string>
+    <string name="player_gesture_controls_summary">Utiliser des gestes pour contrôler la luminosité et le volume du lecteur</string>
     <string name="show_search_suggestions_title">Suggestions de recherche</string>
-    <string name="show_search_suggestions_summary">Afficher les suggestions lors d’une recherche</string>
+    <string name="show_search_suggestions_summary">Affiche les suggestions lors d’une recherche</string>
     <string name="player_gesture_controls_title">Contrôles gestuels de la lecture</string>
     <string name="best_resolution">Meilleure définition</string>
     <string name="subscribe_button_title">S’abonner</string>
@@ -168,12 +168,12 @@
     <string name="contribution_encouragement">Que ce soit pour des idées de traductions, de changements de design, de nettoyage de code ou de gros changements de code, une aide est toujours la bienvenue. Plus on contribue, meilleur il devient !</string>
     <string name="subscription_change_failed">Impossible de modifier l’abonnement</string>
     <string name="subscription_update_failed">Impossible d’actualiser l’abonnement</string>
-    <string name="resume_on_audio_focus_gain_summary">Continuer la lecture après les interruptions (ex : appels téléphoniques)</string>
+    <string name="resume_on_audio_focus_gain_summary">Continue la lecture après les interruptions (ex : appels téléphoniques)</string>
     <string name="settings_file_charset_title">Caractères autorisés dans les noms de fichier</string>
     <string name="settings_file_replacement_character_summary">Les caractères invalides sont remplacés par cette valeur</string>
     <string name="settings_file_replacement_character_title">Caractère de remplacement</string>
     <string name="enable_search_history_title">Historique de recherche</string>
-    <string name="enable_search_history_summary">Stocker l’historique de recheche sur l’appareil</string>
+    <string name="enable_search_history_summary">Stocke l’historique de recheche sur l’appareil</string>
     <string name="enable_watch_history_title">Voir l’historique</string>
     <string name="title_activity_history">Historique</string>
     <string name="title_history_search">Recherché</string>
@@ -184,11 +184,11 @@
     <string name="history_cleared">Historique supprimé</string>
     <string name="notification_channel_name">Notification NewPipe</string>
     <string name="undo">Annuler</string>
-    <string name="enable_watch_history_summary">Garder un suivi des vidéos vues</string>
+    <string name="enable_watch_history_summary">Garde un suivi des vidéos vues</string>
     <string name="resume_on_audio_focus_gain_title">Reprendre à l’obtention de la cible de saisie</string>
     <string name="settings_category_player_title">Lecteur</string>
     <string name="settings_category_player_behavior_title">Comportement</string>
-    <string name="settings_category_history_title">Historique &amp; cache</string>
+    <string name="settings_category_history_title">Historique et cache</string>
     <string name="playlist">Liste de lecture</string>
     <string name="notification_channel_description">Notifications pour les lecteurs en arrière-plan et en mode flottant de NewPipe</string>
     <string name="search_no_results">Aucun résultat</string>
@@ -205,8 +205,8 @@
     </plurals>
     <string name="no_videos">Aucune vidéo</string>
     <plurals name="videos">
-        <item quantity="one">%s vidéo</item>
-        <item quantity="other">%s vidéos</item>
+        <item quantity="one">Vidéo</item>
+        <item quantity="other">Vidéos</item>
     </plurals>
     <string name="charset_most_special_characters">Caractères spéciaux</string>
     <string name="item_deleted">Élément supprimé</string>
@@ -217,7 +217,7 @@
     <string name="feed_page_summary">Fil de syndication</string>
     <string name="channel_page_summary">Chaîne</string>
     <string name="select_a_channel">Sélectionner une chaîne</string>
-    <string name="trending">Populaires</string>
+    <string name="trending">Tendances</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">Nouveau &amp; populaire</string>
     <string name="background_player_append">En file d’attente sur le lecteur en arrière-plan</string>
@@ -232,7 +232,7 @@
     <string name="play_queue_stream_detail">Détails</string>
     <string name="play_queue_audio_settings">Paramètres audios</string>
     <string name="show_hold_to_append_title">Afficher l’astuce « Maintenir pour ajouter »</string>
-    <string name="show_hold_to_append_summary">Afficher l’astuce lors de l’appui du bouton « Arrière-plan » ou « Mode flottant » sur la page de détails d’une vidéo</string>
+    <string name="show_hold_to_append_summary">Affiche l’astuce lors de l’appui du bouton « Arrière-plan » ou « Mode flottant » sur la page de détails d’une vidéo</string>
     <string name="unknown_content">[Inconnu]</string>
     <string name="player_recoverable_failure">Récupération depuis l’erreur du lecteur</string>
     <string name="kiosk_page_summary">Kiosque</string>
@@ -251,13 +251,13 @@
     <string name="give_back">Donner en retour</string>
     <string name="default_content_country_title">Pays du contenu par défaut</string>
     <string name="toggle_orientation">Rotation</string>
-    <string name="switch_to_background">Passer en arrière-plan</string>
-    <string name="switch_to_popup">Passer en flottant</string>
-    <string name="switch_to_main">Passer en principal</string>
+    <string name="switch_to_background">Basculer en arrière-plan</string>
+    <string name="switch_to_popup">Basculer en mode flottant</string>
+    <string name="switch_to_main">Basculer en principal</string>
     <string name="service_title">Service</string>
     <string name="drawer_open">Ouvrir le menu</string>
     <string name="drawer_close">Fermer le menu</string>
-    <string name="no_player_found_toast">Aucun lecteur de flux trouvé (vous pouvez installer VLC pour le lire).</string>
+    <string name="no_player_found_toast">Aucun lecteur de flux multimédias trouvé (vous pouvez installer VLC pour le lire).</string>
     <string name="always">Toujours</string>
     <string name="just_once">Une seule fois</string>
     <string name="external_player_unsupported_link_type">Les lecteurs externes ne prennent pas en charge ces types de liens</string>
@@ -272,7 +272,7 @@
     <string name="import_data_title">Importer la base de données</string>
     <string name="export_data_title">Exporter la base de données</string>
     <string name="import_data_summary">Remplace votre historique et vos abonnements actuels</string>
-    <string name="export_data_summary">Exporter l’historique, les abonnements et les listes de lecture</string>
+    <string name="export_data_summary">Exporte l’historique, les abonnements et les listes de lecture</string>
     <string name="export_complete_toast">Exporté</string>
     <string name="import_complete_toast">Importé</string>
     <string name="no_valid_zip_file">Aucun fichier ZIP valide</string>
@@ -308,12 +308,12 @@
     <string name="resize_fit">Ajuster</string>
     <string name="resize_zoom">Zoomer</string>
     <string name="use_inexact_seek_title">Utiliser la recherche rapide approximative</string>
-    <string name="use_inexact_seek_summary">Permettre au lecteur d’accéder plus rapidement à une position au détriment de la précision</string>
+    <string name="use_inexact_seek_summary">Permet au lecteur d’accéder plus rapidement à une position au détriment de la précision</string>
     <string name="download_thumbnail_title">Charger les miniatures</string>
-    <string name="download_thumbnail_summary">Désactiver pour empêcher le chargement des miniatures, afin de réduire l’utilisation de bande passante et de mémoire. Modifier cette option vide les caches d’image en mémoire vive et sur le disque.</string>
+    <string name="download_thumbnail_summary">Désactiver pour empêcher le chargement des miniatures, afin de réduire l’utilisation de la bande passante et de la mémoire. Modifier cette option vide les caches d’image en mémoire vive et sur le disque.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Images en cache effacées</string>
     <string name="metadata_cache_wipe_title">Effacer les métadonnées en cache</string>
-    <string name="metadata_cache_wipe_summary">Effacer toutes les pages web mises en cache</string>
+    <string name="metadata_cache_wipe_summary">Efface toutes les données de pages Web en cache</string>
     <string name="metadata_cache_wipe_complete_notice">Métadonnées en cache effacées</string>
     <string name="file">Fichier</string>
     <string name="invalid_directory">Aucun dossier de ce type</string>
@@ -325,7 +325,7 @@
     <string name="drawer_header_action_paceholder_text">Quelque chose va bientôt apparaître ici ;D</string>
     <string name="controls_download_desc">Télécharger le fichier de flux</string>
     <string name="auto_queue_title">Vidéo suivante en file d’attente</string>
-    <string name="auto_queue_summary">Ajout automatique d’un morceau suggéré lors de la lecture du dernier morceau dans une file d’attente non bouclée</string>
+    <string name="auto_queue_summary">Ajoute automatiquement un flux lié lors de la lecture du dernier flux dans une file d’attente sans répétition</string>
     <string name="settings_category_debug_title">Débogage</string>
     <string name="resize_fill">Remplir</string>
     <string name="caption_auto_generated">Générés automatiquement</string>
@@ -370,11 +370,11 @@
     <string name="playback_pitch">Ton</string>
     <string name="toast_no_player">Aucune application installée pour lire ce fichier</string>
     <string name="clear_views_history_title">Effacer l’historique des vues</string>
-    <string name="clear_views_history_summary">Supprimer l’historique des flux lus et des positions de reprise</string>
-    <string name="delete_view_history_alert">Voulez-vous supprimer tout l’historique des vues \?</string>
+    <string name="clear_views_history_summary">Supprime l’historique des flux lus et des positions de reprise de lecture</string>
+    <string name="delete_view_history_alert">Voulez-vous supprimer entièrement l’historique des vues \?</string>
     <string name="watch_history_deleted">Historique des vues supprimé.</string>
     <string name="clear_search_history_title">Supprimer l’historique de recherche</string>
-    <string name="clear_search_history_summary">Supprimer l’historique de recherche par mots-clés</string>
+    <string name="clear_search_history_summary">Supprime l’historique des mots-clés de recherche</string>
     <string name="delete_search_history_alert">Voulez-vous supprimer entièrement l’historique de recherche \?</string>
     <string name="search_history_deleted">Historique de recherche supprimé.</string>
     <string name="one_item_deleted">1 élément supprimé.</string>
@@ -392,7 +392,7 @@
     <string name="limit_mobile_data_usage_title">Limiter la définition lors de l’utilisation des données mobiles</string>
     <string name="channels">Chaînes</string>
     <string name="playlists">Listes de lecture</string>
-    <string name="tracks">Pistes</string>
+    <string name="tracks">Morceaux</string>
     <string name="users">Utilisateurs</string>
     <string name="skip_silence_checkbox">Accélérer pendant les silences</string>
     <string name="playback_step">Étape</string>
@@ -466,8 +466,6 @@
     <string name="max_retry_desc">Nombre maximum de tentatives avant d’annuler le téléchargement</string>
     <string name="saved_tabs_invalid_json">Utilisation des onglets par défaut, erreur lors de la lecture des onglets enregistrés</string>
     <string name="error_http_unsupported_range">Le serveur n’accepte pas les téléchargements multi-fils, veuillez réessayer avec @string/msg_threads = 1</string>
-    <string name="msg_pending_downloads">Continuer vos %s transferts en attente depuis Téléchargement</string>
-    <string name="error_http_requested_range_not_satisfiable">Le domaine désiré n\'est pas disponible</string>
     <string name="show_comments_title">Afficher les commentaires</string>
     <string name="show_comments_summary">Désactiver pour ne pas afficher les commentaires</string>
     <string name="autoplay_title">Lecture automatique</string>
@@ -490,20 +488,33 @@
     <string name="enable_queue_limit">Limiter la file d’attente de téléchargement</string>
     <string name="enable_queue_limit_desc">Un téléchargement s’exécutera en même temps</string>
     <string name="start_downloads">Démarrer les téléchargements</string>
-    <string name="pause_downloads">Mettre en pause les téléchargements</string>
+    <string name="pause_downloads">Mettre les téléchargements en pause</string>
     <string name="downloads_storage_ask_title">Demander où télécharger</string>
     <string name="downloads_storage_ask_summary">Vous allez être interrogé sur l’emplacement d’enregistrement de chaque téléchargement</string>
-    <string name="downloads_storage_ask_summary_kitkat">Vous allez être interrogé sur l’emplacement de téléchargement de chaque téléchargement.
-\nVeuillez choisir SAF si vous voulez télécharger sur une carte mémoire externe</string>
-    <string name="enable_playback_resume_summary">Rétablir la précédente position de lecture</string>
+    <string name="downloads_storage_ask_summary_kitkat">Vous allez être interrogé sur l’emplacement de téléchargement de chaque téléchargement. 
+\nVeuillez choisir ILAF si vous voulez télécharger sur une carte mémoire externe</string>
+    <string name="enable_playback_resume_summary">Reprend la lecture à la dernière position</string>
     <string name="enable_playback_state_lists_title">Positions dans les listes</string>
     <string name="enable_playback_state_lists_summary">Afficher les indicateurs de position de lecture dans les listes</string>
-    <string name="watch_history_states_deleted">Positions de reprise supprimées.</string>
-    <string name="downloads_storage_use_saf_title">Utiliser SAF</string>
-    <string name="downloads_storage_use_saf_summary">Le « Storage Access Framework » permet de télécharger sur une carte mémoire externe.
+    <string name="watch_history_states_deleted">Positions de reprise de lecture supprimées.</string>
+    <string name="downloads_storage_use_saf_title">Utiliser ILAF</string>
+    <string name="downloads_storage_use_saf_summary">L\'Infrastructure Logicielle d\'Accès au Stockage permet de télécharger sur une carte mémoire externe. 
 \nNote : certains appareils ne sont pas compatibles</string>
-    <string name="clear_playback_states_title">Supprimer les positions de lecture</string>
-    <string name="clear_playback_states_summary">Supprimer toutes les positions de reprise</string>
-    <string name="delete_playback_states_alert">Voulez-vous supprimer toutes les positions de reprise \?</string>
-    <string name="download_choose_new_path">Changez les dossier de téléchargement pour activer</string>
+    <string name="clear_playback_states_title">Supprimer les positions de reprise de lecture</string>
+    <string name="clear_playback_states_summary">Supprime toutes les positions de reprise de lecture</string>
+    <string name="delete_playback_states_alert">Voulez-vous supprimer toutes les positions de reprise de lecture \?</string>
+    <string name="download_choose_new_path">Changez les dossiers de téléchargement pour que cela prenne effet</string>
+    <string name="drawer_header_description">Activer/Désactiver le service, actuellement sélectionné :</string>
+    <string name="default_kiosk_page_summary">Kiosque par défaut</string>
+    <string name="no_one_watching">Personne ne regarde</string>
+    <plurals name="watching">
+        <item quantity="one">%s regarde</item>
+        <item quantity="other">%s regardent</item>
+    </plurals>
+    <string name="no_one_listening">Personne n\'écoute</string>
+    <plurals name="listening">
+        <item quantity="one">%s auditeur</item>
+        <item quantity="other">%s auditeurs</item>
+    </plurals>
+    <string name="localization_changes_requires_app_restart">La langue changera lors du redémarrage de l\'application.</string>
 </resources>

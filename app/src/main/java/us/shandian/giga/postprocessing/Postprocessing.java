@@ -1,8 +1,8 @@
 package us.shandian.giga.postprocessing;
 
-import android.os.Message;
-import androidx.annotation.NonNull;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import org.schabi.newpipe.streams.io.SharpStream;
 
@@ -14,11 +14,11 @@ import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.io.ChunkFileInputStream;
 import us.shandian.giga.io.CircularFileWriter;
 import us.shandian.giga.io.CircularFileWriter.OffsetChecker;
-import us.shandian.giga.service.DownloadManagerService;
+import us.shandian.giga.io.ProgressReport;
 
 import static us.shandian.giga.get.DownloadMission.ERROR_NOTHING;
+import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING;
 import static us.shandian.giga.get.DownloadMission.ERROR_POSTPROCESSING_HOLD;
-import static us.shandian.giga.get.DownloadMission.ERROR_UNKNOWN_EXCEPTION;
 
 public abstract class Postprocessing implements Serializable {
 
@@ -28,6 +28,7 @@ public abstract class Postprocessing implements Serializable {
     public transient static final String ALGORITHM_WEBM_MUXER = "webm";
     public transient static final String ALGORITHM_MP4_FROM_DASH_MUXER = "mp4D-mp4";
     public transient static final String ALGORITHM_M4A_NO_DASH = "mp4D-m4a";
+    public transient static final String ALGORITHM_OGG_FROM_WEBM_DEMUXER = "webm-ogg-d";
 
     public static Postprocessing getAlgorithm(@NonNull String algorithmName, String[] args) {
         Postprocessing instance;
@@ -45,6 +46,9 @@ public abstract class Postprocessing implements Serializable {
             case ALGORITHM_M4A_NO_DASH:
                 instance = new M4aNoDash();
                 break;
+            case ALGORITHM_OGG_FROM_WEBM_DEMUXER:
+                instance = new OggFromWebmDemuxer();
+                break;
             /*case "example-algorithm":
                 instance = new ExampleAlgorithm();*/
             default:
@@ -59,22 +63,22 @@ public abstract class Postprocessing implements Serializable {
      * Get a boolean value that indicate if the given algorithm work on the same
      * file
      */
-    public final boolean worksOnSameFile;
+    public boolean worksOnSameFile;
 
     /**
      * Indicates whether the selected algorithm needs space reserved at the beginning of the file
      */
-    public final boolean reserveSpace;
+    public boolean reserveSpace;
 
     /**
      * Gets the given algorithm short name
      */
-    private final String name;
+    private String name;
 
 
     private String[] args;
 
-    protected transient DownloadMission mission;
+    private transient DownloadMission mission;
 
     private File tempFile;
 
@@ -105,16 +109,24 @@ public abstract class Postprocessing implements Serializable {
         long finalLength = -1;
 
         mission.done = 0;
-        mission.length = mission.storage.length();
+
+        long length = mission.storage.length() - mission.offsets[0];
+        mission.length = length > mission.nearLength ? length : mission.nearLength;
+
+        final ProgressReport readProgress = (long position) -> {
+            position -= mission.offsets[0];
+            if (position > mission.done) mission.done = position;
+        };
 
         if (worksOnSameFile) {
             ChunkFileInputStream[] sources = new ChunkFileInputStream[mission.urls.length];
             try {
-                int i = 0;
-                for (; i < sources.length - 1; i++) {
-                    sources[i] = new ChunkFileInputStream(mission.storage.getStream(), mission.offsets[i], mission.offsets[i + 1]);
+                for (int i = 0, j = 1; i < sources.length; i++, j++) {
+                    SharpStream source = mission.storage.getStream();
+                    long end = j < sources.length ? mission.offsets[j] : source.length();
+
+                    sources[i] = new ChunkFileInputStream(source, mission.offsets[i], end, readProgress);
                 }
-                sources[i] = new ChunkFileInputStream(mission.storage.getStream(), mission.offsets[i]);
 
                 if (test(sources)) {
                     for (SharpStream source : sources) source.rewind();
@@ -136,7 +148,7 @@ public abstract class Postprocessing implements Serializable {
                     };
 
                     out = new CircularFileWriter(mission.storage.getStream(), tempFile, checker);
-                    out.onProgress = this::progressReport;
+                    out.onProgress = (long position) -> mission.done = position;
 
                     out.onWriteError = (err) -> {
                         mission.psState = 3;
@@ -183,11 +195,10 @@ public abstract class Postprocessing implements Serializable {
 
         if (result == OK_RESULT) {
             if (finalLength != -1) {
-                mission.done = finalLength;
                 mission.length = finalLength;
             }
         } else {
-            mission.errCode = ERROR_UNKNOWN_EXCEPTION;
+            mission.errCode = ERROR_POSTPROCESSING;
             mission.errObject = new RuntimeException("post-processing algorithm returned " + result);
         }
 
@@ -212,7 +223,7 @@ public abstract class Postprocessing implements Serializable {
      *
      * @param out     output stream
      * @param sources files to be processed
-     * @return a error code, 0 means the operation was successful
+     * @return an error code, {@code OK_RESULT} means the operation was successful
      * @throws IOException if an I/O error occurs.
      */
     abstract int process(SharpStream out, SharpStream... sources) throws IOException;
@@ -225,23 +236,12 @@ public abstract class Postprocessing implements Serializable {
         return args[index];
     }
 
-    private void progressReport(long done) {
-        mission.done = done;
-        if (mission.length < mission.done) mission.length = mission.done;
-
-        Message m = new Message();
-        m.what = DownloadManagerService.MESSAGE_PROGRESS;
-        m.obj = mission;
-
-        mission.mHandler.sendMessage(m);
-    }
-
     @NonNull
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
 
-        str.append("name=").append(name).append('[');
+        str.append("{ name=").append(name).append('[');
 
         if (args != null) {
             for (String arg : args) {
@@ -251,6 +251,6 @@ public abstract class Postprocessing implements Serializable {
             str.delete(0, 1);
         }
 
-        return str.append(']').toString();
+        return str.append("] }").toString();
     }
 }

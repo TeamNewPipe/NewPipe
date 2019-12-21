@@ -16,12 +16,12 @@
     <string name="screen_rotation">περιστροφή</string>
     <string name="use_external_video_player_title">Χρήση εξωτερικής εφαρμογής αναπαραγωγής βίντεο</string>
     <string name="use_external_audio_player_title">Χρήση εξωτερικής συσκευής αναπαραγωγής ήχου</string>
-    <string name="download_path_title">Διαδρομή λήψης βίντεο</string>
-    <string name="download_path_summary">Διαδρομή για αποθήκευση των βίντεο</string>
-    <string name="download_path_dialog_title">Εισάγετε διαδρομή για λήψη των βίντεο</string>
+    <string name="download_path_title">Φάκελος λήψης βίντεο</string>
+    <string name="download_path_summary">Τα ληφθέντα αρχεία βίντεο αποθηκεύονται εδώ</string>
+    <string name="download_path_dialog_title">Επιλέξτε το φάκελο λήψης για αρχεία βίντεο</string>
     <string name="download_path_audio_title">Διαδρομή λήψης αρχείων ήχου</string>
-    <string name="download_path_audio_summary">Αυτή είναι η διαδρομή για την αποθήκευση αρχείων ήχου</string>
-    <string name="download_path_audio_dialog_title">Εισάγετε διαδρομή για λήψη αρχείων ήχου</string>
+    <string name="download_path_audio_summary">Τα ληφθέντα αρχεία ήχου αποθηκεύονται εδώ</string>
+    <string name="download_path_audio_dialog_title">Επιλέξτε το φάκελο λήψης για αρχεία ήχου</string>
     <string name="default_resolution_title">Προεπιλεγμένη ανάλυση</string>
     <string name="play_with_kodi_title">Αναπαραγωγή με το Kodi</string>
     <string name="kore_not_found">Η εφαρμογή Kore δεν βρέθηκε. Εγκατάσταση της;</string>
@@ -40,11 +40,11 @@
     <string name="settings_category_video_audio_title">Βίντεο &amp; Ήχος</string>
     <string name="settings_category_appearance_title">Εμφάνιση</string>
     <string name="settings_category_other_title">Άλλα</string>
-    <string name="background_player_playing_toast">Αναπαραγωγή στο υπόβαθρο</string>
+    <string name="background_player_playing_toast">Αναπαραγωγή στο παρασκήνιο</string>
     <string name="play_btn_text">Αναπαραγωγή</string>
     <string name="network_error">Σφάλμα δικτύου</string>
     <string name="list_thumbnail_view_description">Μικρογραφία προεπισκόπισης βίντεο</string>
-    <string name="detail_thumbnail_view_description">Μικρογραφία προεπισκόπησης βίντεο</string>
+    <string name="detail_thumbnail_view_description">Αναπαραγωγή βίντεο, διάρκεια:</string>
     <string name="detail_uploader_thumbnail_view_description">Μικρογραφία εικόνας προφίλ του χρήστη</string>
     <string name="detail_likes_img_view_description">Like</string>
     <string name="detail_dislikes_img_view_description">Dislike</string>
@@ -313,7 +313,7 @@
     <string name="play_queue_remove">Αφαίρεση</string>
     <string name="play_queue_stream_detail">Λεπτομέρειες</string>
     <string name="play_queue_audio_settings">Ρυθμίσεις ήχου</string>
-    <string name="hold_to_append">Πιέστε παρατεταμένα για να προστεθεί στην ουρά</string>
+    <string name="hold_to_append">Πιέστε για να προστεθεί στην ουρά</string>
     <string name="enqueue_on_background">"Προσθήκη στη λίστα αναπαραγωγής  του παρασκήνιου"</string>
     <string name="enqueue_on_popup">Προσθήκη στη λίστα αναπαραγωγής νέου Αναδυόμενου παραθύρου</string>
     <string name="start_here_on_main">Εκκίνηση Αναπαραγωγής εδώ</string>
@@ -456,11 +456,9 @@
     <string name="error_connect_host">Αδυναμία σύνδεσης με τον εξυπηρετητή</string>
     <string name="error_http_no_content">Ο εξυπηρετητής δεν μπορεί να στείλει τα δεδομένα</string>
     <string name="error_http_unsupported_range">Ο εξυπηρετητής δέν υποστηρίζει πολυνηματικές λήψεις, ξαναπροσπαθήστε με @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">Το ζητούμενο εύρος δεν μπορεί να εξυπηρετηθεί</string>
     <string name="error_http_not_found">Δεν βρέθηκε</string>
     <string name="error_postprocessing_failed">Μετεπεξεργασία απέτυχε</string>
     <string name="clear_finished_download">Εκκαθάριση ολοκληρωμένων λήψεων</string>
-    <string name="msg_pending_downloads">Συνέχιση των %s εκκρεμών σας λήψεων</string>
     <string name="stop">Διακοπή</string>
     <string name="max_retry_msg">Μέγιστες επαναπροσπάθειες</string>
     <string name="max_retry_desc">Μέγιστος αριθμός προσπαθειών προτού γίνει ακύρωση της λήψης</string>
@@ -505,4 +503,17 @@
     <string name="clear_playback_states_summary">Διαγράφει όλες τις θέσεις αναπαραγωγής</string>
     <string name="delete_playback_states_alert">Να διαγραφούν όλες οι θέσεις αναπαραγωγής;</string>
     <string name="download_choose_new_path">Αλλαγή των φακέλων λήψης για να τεθούν σε ισχύ</string>
+    <string name="drawer_header_description">Εναλλαγή υπηρεσιών, επιλεγμένη αυτήν τη στιγμή:</string>
+    <string name="no_one_watching">Κανείς δεν παρακολουθεί</string>
+    <plurals name="watching">
+        <item quantity="one">%s παρακολουθεί</item>
+        <item quantity="other">%s παρακολουθούν</item>
+    </plurals>
+    <string name="no_one_listening">Κανείς δεν ακούει</string>
+    <plurals name="listening">
+        <item quantity="one">%s ακροατής</item>
+        <item quantity="other">%s ακροατές</item>
+    </plurals>
+    <string name="localization_changes_requires_app_restart">Η γλώσσα θα αλλάξει μόλις θα επανεκκινηθεί η εφαρμογή.</string>
+    <string name="default_kiosk_page_summary">Προεπιλεγμένο περίπτερο</string>
 </resources>

@@ -231,7 +231,7 @@ public class ChooseTabsFragment extends Fragment {
                     break;
                 case DEFAULT_KIOSK:
                     if (!tabList.contains(tab)) {
-                        returnList.add(new ChooseTabListItem(tab.getTabId(), "Default Kiosk",
+                        returnList.add(new ChooseTabListItem(tab.getTabId(), getString(R.string.default_kiosk_page_summary),
                                 ThemeHelper.resolveResourceIdFromAttr(context, R.attr.ic_hot)));
                     }
                     break;
@@ -305,22 +305,24 @@ public class ChooseTabsFragment extends Fragment {
                     return;
                 }
 
-                String tabName = tab.getTabName(requireContext());
+                final String tabName;
                 switch (type) {
                     case BLANK:
-                        tabName = requireContext().getString(R.string.blank_page_summary);
-                        break;
-                    case KIOSK:
-                        tabName = NewPipe.getNameOfService(((Tab.KioskTab) tab).getKioskServiceId()) + "/" + tabName;
-                        break;
-                    case CHANNEL:
-                        tabName = NewPipe.getNameOfService(((Tab.ChannelTab) tab).getChannelServiceId()) + "/" + tabName;
+                        tabName = getString(R.string.blank_page_summary);
                         break;
                     case DEFAULT_KIOSK:
-                        tabName = "Default Kiosk";
+                        tabName = getString(R.string.default_kiosk_page_summary);
+                        break;
+                    case KIOSK:
+                        tabName = NewPipe.getNameOfService(((Tab.KioskTab) tab).getKioskServiceId()) + "/" + tab.getTabName(requireContext());
+                        break;
+                    case CHANNEL:
+                        tabName = NewPipe.getNameOfService(((Tab.ChannelTab) tab).getChannelServiceId()) + "/" + tab.getTabName(requireContext());
+                        break;
+                    default:
+                        tabName = tab.getTabName(requireContext());
                         break;
                 }
-
 
                 tabNameView.setText(tabName);
                 tabIconView.setImageResource(tab.getTabIconRes(requireContext()));

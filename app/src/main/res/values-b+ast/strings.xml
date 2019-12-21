@@ -22,6 +22,7 @@
     <string name="content_language_title">Llingua predeterminada del conteníu</string>
     <string name="settings_category_video_audio_title">Videu y audiu</string>
     <string name="settings_category_appearance_title">Aspeutu</string>
+    <string name="content">Conteníu</string>
     <string name="show_age_restricted_content_title">Conteníu torgáu pola edá</string>
     <string name="duration_live">EN DIREUTO</string>
     <string name="general_error">Fallu</string>
@@ -60,6 +61,7 @@
     <string name="reCaptchaActivity">reCAPTCHA</string>
     <string name="reCaptcha_title">Retu de reCAPTCHA</string>
     <string name="recaptcha_request_toast">Solicitóse\'l retu de reCAPTCHA</string>
+    <string name="controls_background_title">En segundu planu</string>
     <string name="controls_popup_title">Ventanu</string>
     <string name="default_popup_resolution_title">Resolución predeterminada del ventanu</string>
     <string name="show_higher_resolutions_title">Amosar resoluciones más altes</string>
@@ -67,9 +69,13 @@
     <string name="clear">Llimpiar</string>
     <string name="use_external_video_player_summary">Quita l\'audiu en DALGUNES resoluciones</string>
     <string name="player_gesture_controls_summary">Usa xestos pa controlar el brilléu y volume del reproductor</string>
+    <string name="show_search_suggestions_title">Guetar suxerencies</string>
+    <string name="show_search_suggestions_summary">Amuesa suxerencies al guetar</string>
+    <string name="subscribe_button_title">Soscribise</string>
     <string name="subscription_update_failed">Nun pudo anovase la soscripción</string>
     <string name="tab_subscriptions">Soscripciones</string>
     <string name="fragment_whats_new">Qué hai nuevo</string>
+    <string name="enable_search_history_title">Historial de gueta</string>
     <string name="resume_on_audio_focus_gain_title">Siguir al recuperar el focu</string>
     <string name="resume_on_audio_focus_gain_summary">Sigue cola reproducción dempués de les interrupciones (llamaes telefóniques, por exemplu)</string>
     <string name="settings_category_player_title">Reproductor</string>
@@ -89,6 +95,7 @@
         <item quantity="other">%s visualizaciones</item>
     </plurals>
     <string name="settings_category_downloads_title">Descarga</string>
+    <string name="settings_file_charset_title">Caráuteres almitíos nos nomes de ficheros</string>
     <string name="charset_letters_and_digits">Lletres y díxitos</string>
     <string name="charset_most_special_characters">La mayoría de caráuteres especiales</string>
     <string name="title_activity_about">Tocante a NewPipe</string>
@@ -109,13 +116,19 @@
     <string name="title_history_view">Vióse</string>
     <string name="action_history">Historial</string>
     <string name="history_empty">L\'historial ta baleru</string>
+    <string name="delete_item_search_history">¿Quies desaniciar esti elementu del historial de gueta\?</string>
+    <string name="play_all">Reproducir too</string>
     <string name="player_stream_failure">Nun pudo reproducise esti fluxu</string>
     <string name="player_unrecoverable_failure">Asocedió un fallu irrecuperable del reproductor</string>
     <string name="main_page_content">Conteníu de la páxina principal</string>
     <string name="blank_page_summary">Páxina balera</string>
+    <string name="select_a_kiosk">Esbilla d\'un quioscu</string>
     <string name="kiosk">Quioscu</string>
     <string name="trending">Tendencies</string>
+    <string name="top_50">Destácase</string>
     <string name="play_queue_stream_detail">Detalles</string>
+    <string name="new_and_hot">Novedaes</string>
+    <string name="unknown_content">[Desconozse]</string>
     <string name="start_here_on_background">Reproducir en segundu planu</string>
     <string name="start_here_on_popup">Reproducir nun ventanu</string>
     <string name="donation_title">Donación</string>
@@ -132,11 +145,14 @@
     <string name="invalid_url_toast">URL nun ye válida</string>
     <string name="override_current_data">Esto va anular la configuración actual.</string>
     <string name="show_info">Amosar la información</string>
-    <string name="tab_bookmarks">Llistes de reproducción en marcadores</string>
+    <string name="tab_bookmarks">Llistes de reproducción</string>
+    <string name="create">Crear</string>
     <string name="dismiss">Escartar</string>
     <string name="delete_all_history_prompt">¿De xuru que quies desaniciar tolos elementos del historial\?</string>
     <string name="drawer_header_action_paceholder_text">Equí va apaecer dalgo ceo ;D</string>
+    <string name="create_playlist">Llista nueva de repoducción</string>
     <string name="playlist_name_input">Nome</string>
+    <string name="append_playlist">Amestar a una llista de repoducción</string>
     <string name="delete_playlist_prompt">¿Desaniciar esta llista de reproducción\?</string>
     <string name="playlist_delete_failure">Nun pudo desaniciase la llista de reproducción.</string>
     <string name="caption_none">Ensin sotítulos</string>
@@ -160,7 +176,7 @@
     <string name="tab_new">Llingüeta nueva</string>
     <string name="volume_gesture_control_summary">Usa xestos pa controlar el volume del reproductor</string>
     <string name="brightness_gesture_control_summary">Usa xestos pa controlar el brilléu del reproductor</string>
-    <string name="restore_defaults">Valores predeterminaos</string>
+    <string name="restore_defaults">Reafitar</string>
     <string name="subscribers_count_not_available">El númberu de soscriptores nun ta disponible</string>
     <string name="selection">Esbilla</string>
     <string name="updates_setting_title">Anovamientos</string>
@@ -190,19 +206,41 @@
     <string name="caption_setting_title">Sotítulos</string>
     <string name="accept">Aceutar</string>
     <string name="restore_defaults_confirmation">¿Quies reafitar los valores\?</string>
+    <string name="error_unknown_host"></string>
     <string name="error_http_unsupported_range">El sirvidor nun aceuta descargues multifilu, volvi probar con @string/msg_threads = 1</string>
     <string name="no_comments">Nun hai comentarios</string>
     <string name="settings_category_clear_data_title">Llimpieza de datos</string>
-    <plurals name="videos">
-        <item quantity="one">Vídeos</item>
-    </plurals>
     <string name="show_comments_title">Amosar comentarios</string>
     <string name="show_comments_summary">Toca p\'alternar la so des/activación</string>
+    <string name="start_accept_privacy_policy">Pa cumplir cola GDPR (Regulación Xeneral de Proteición de Datos) europea, pidímoste que revises la política de privacidá de NewPipe. Lléila con procuru.
     <string name="delete_search_history_alert">¿Desaniciar tol historial de gueta\?</string>
-    <string name="start_accept_privacy_policy">Pa cumplir cola GDPR (Regulación Xeneral de Proteición de Datos) europea, pidímoste que revises la política de privacidá de NewPipe. Lléila con procuru
-\n.Has aceutala unviándonos un informe de fallos.</string>
-    <string name="minimize_on_exit_summary">Aición al cambiar a otra aplicación dende\'l reproductor principal de videu — %s</string>
+\nHas aceutala unviándonos un informe de fallos.</string>
+    <string name="minimize_on_exit_summary">Aición al cambiar a otra aplicación dende\'l reproductor de vídeos principal — %s</string>
     <string name="max_retry_desc">El númberu máximu d\'intentos enantes d\'encaboxar la descarga</string>
     <string name="enable_playback_state_lists_title">Posiciones nes llistes</string>
     <string name="confirm_prompt">¿De xuru\?</string>
+    <string name="previous_export">Esportación anterior</string>
+    <string name="import_file_title">Importar el ficheru</string>
+    <string name="import_youtube_instructions">Importa les soscripciones de YouTube baxando\'l ficheru d\'esportación:
+\n
+\n1.- Vete a esta URL: %1$s
+\n2.- Anicia sesión cuando se te pida
+\n3.- Debería aniciar una descarga (que ye\'l ficheru d\'esportación)</string>
+    <string name="import_soundcloud_instructions">Importa un perfil de SoundCloud teclexando la URL o la ID de to:
+\n1.- Activa\'l mou escritoriu nun restolador web (el sitiu nun ta disponible pa móviles)
+\n
+\n3.- Anicia sesión cuando se te pida
+\n2.- Vete a esta URL: %1$s
+    <string name="import_soundcloud_instructions_hint">LaToID, soundcloud.com/latoid</string>
+\n4.- Copia la URL del perfil al que se te redirixa.</string>
+    <string name="download_thumbnail_title">Cargar miniatures</string>
+    <string name="download_thumbnail_summary">Desactiva esta opción pa evitar la carga de miniatures, aforrar datos y usu de la memoria. Los cambeos van llimpiar la memoria y la caché d\'imáxenes.</string>
+    <string name="minimize_on_exit_title">Minimizar al cambiar a otra aplicación</string>
+    <string name="minimize_on_exit_background_description">Minimizar al reproductor en segundu planu</string>
+    <string name="minimize_on_exit_popup_description">Minimizar al reproductor en ventanu</string>
+    <string name="unsubscribe">Desoscribise</string>
+    <string name="tab_choose">Escoyeta d\'una llingüeta</string>
+    <string name="enable_playback_resume_title">Siguir cola reproducción</string>
+    <string name="main_page_content_summary">Les llingüetes que s\'amuesen na páxina principal</string>
+    <string name="downloads_storage_ask_title">Entrugar ánde baxar</string>
 </resources>
