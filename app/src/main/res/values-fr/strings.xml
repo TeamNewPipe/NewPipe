@@ -93,7 +93,7 @@
     <string name="add">Nouvelle mission</string>
     <string name="finish">OK</string>
     <string name="msg_name">Nom du fichier</string>
-    <string name="msg_threads">Fils de discussion</string>
+    <string name="msg_threads">Nombre de connexions simultanées</string>
     <string name="msg_error">Erreur</string>
     <string name="msg_server_unsupported">Serveur non pris en charge</string>
     <string name="msg_exists">Fichier déjà existant</string>
