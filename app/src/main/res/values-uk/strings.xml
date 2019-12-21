@@ -508,5 +508,5 @@
     <string name="delete_playback_states_alert">Видалити усі запам\'ятовані позиції\?</string>
     <string name="download_choose_new_path">Змініть папки завантаження для ефективності</string>
     <string name="drawer_header_description">Перемкнути службу, наразі обрано:</string>
-    <string name="default_kiosk_page_sumatry">Кіоск за замовчуванням</string>
+    <string name="default_kiosk_page_summary">Кіоск за замовчуванням</string>
 </resources>

@@ -154,7 +154,6 @@
     <string name="clear_views_history_title">ล้างประวัติการดู</string>
     <string name="clear_views_history_summary">ลบประวัติของวีดีโอที่เคยเล่น</string>
     <string name="delete_view_history_alert">ลบประวัติการดูทั้งหมดหรือไม่\?</string>
-    <string name="view_history_deleted">ลบประวัติการดูแล้ว</string>
     <string name="clear_search_history_title">ล้างประวัติการค้นหา</string>
     <string name="clear_search_history_summary">ลบประวัติของคำที่เคยค้นหา</string>
     <string name="delete_search_history_alert">ลบประวัติการค้นหาทั้งหมดหรือไม่\?</string>
@@ -318,7 +317,6 @@
     <string name="play_queue_stream_detail">รายละเอียด</string>
     <string name="play_queue_audio_settings">การตั้งค่าเสียง</string>
     <string name="hold_to_append">กดค้างไว้เพื่อเพิ่มลงในคิว</string>
-    <string name="direct_on_background">เล่นโดยตรงในโหมดพื้นหลัง</string>
     <string name="enqueue_on_background">เพิ่มคิวในโหมดพื้นหลัง</string>
     <string name="enqueue_on_popup">เพิ่มคิวในโหมดป๊อปอัพ</string>
     <string name="start_here_on_main">เริ่มเล่นจากตรงนี้</string>
@@ -417,7 +415,6 @@
     <string name="download_finished_more">%s การดาวน์โหลดเสร็จสิ้น</string>
     <string name="generate_unique_name">สร้างชื่อเฉพาะ</string>
     <string name="overwrite">เขียนทับ</string>
-    <string name="overwrite_warning">ไฟล์ที่ดาวน์โหลดด้วยชื่อนี้มีอยู่แล้ว</string>
     <string name="download_already_running">มีการดาวน์โหลดที่กำลังดำเนินการอยู่ด้วยไฟล์ชื่อนี้อยู่แล้ว</string>
     <string name="show_error">แสดงข้อผิดพลาด</string>
     <string name="label_code">โค้ด</string>

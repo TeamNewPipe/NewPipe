@@ -502,5 +502,5 @@
     <string name="enable_queue_limit_desc">하나의 다운로드가 동시에 진행됩니다</string>
     <string name="download_choose_new_path">적용하려면 다운로드 폴더를 변경하세요</string>
     <string name="drawer_header_description">서비스 토글, 현재 선택된 서비스:</string>
-    <string name="default_kiosk_page_sumatry">기본 키오스크</string>
+    <string name="default_kiosk_page_summary">기본 키오스크</string>
 </resources>

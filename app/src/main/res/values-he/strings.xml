@@ -150,7 +150,7 @@
     <string name="storage_permission_denied">הגישה לאחסון נדחתה</string>
     <string name="short_thousand">ק׳</string>
     <string name="short_million">מ׳</string>
-    <string name="short_billion">ב׳</string>
+    <string name="short_billion">מיליארד</string>
     <string name="no_subscribers">אין מנויים</string>
     <plurals name="subscribers">
         <item quantity="one">מנוי אחד</item>
@@ -167,7 +167,7 @@
     </plurals>
     <string name="no_videos">אין סרטונים</string>
     <plurals name="videos">
-        <item quantity="one">%s סרטון</item>
+        <item quantity="one">סרטון %s</item>
         <item quantity="two">%s סרטונים</item>
         <item quantity="many">%s סרטונים</item>
         <item quantity="other">%s סרטונים</item>
@@ -513,5 +513,20 @@
     <string name="delete_playback_states_alert">למחוק את מיקומי הנגינה\?</string>
     <string name="download_choose_new_path">יש להחליף את תיקיות ההורדה כדי שייכנס לתוקף</string>
     <string name="drawer_header_description">הפעלה/כיבוי שירות, בחירה נוכחית:</string>
-    <string name="default_kiosk_page_sumatry">קיוסק בררת מחדל</string>
+    <string name="no_one_watching">אין צופים</string>
+    <plurals name="watching">
+        <item quantity="one">צופה %s</item>
+        <item quantity="two">%s צופים</item>
+        <item quantity="many">%s צופים</item>
+        <item quantity="other">%s צופים</item>
+    </plurals>
+    <string name="no_one_listening">אין מאזינים</string>
+    <plurals name="listening">
+        <item quantity="one">מאזין %s</item>
+        <item quantity="two">%s מאזינים</item>
+        <item quantity="many">%s מאזינים</item>
+        <item quantity="other">%s מאזינים</item>
+    </plurals>
+    <string name="localization_changes_requires_app_restart">השפה תוחלף עם הפעלת היישומון מחדש.</string>
+    <string name="default_kiosk_page_summary">קיוסק בררת מחדל</string>
 </resources>

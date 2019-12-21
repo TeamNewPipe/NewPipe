@@ -37,7 +37,7 @@
     <string name="detail_uploader_thumbnail_view_description">Gebruikersafbeelding van uploader</string>
     <string name="detail_dislikes_img_view_description">Vind-ik-niet-leuks</string>
     <string name="download_path_audio_title">Downloadfolder voor audio</string>
-    <string name="download_path_audio_summary">Gedownloade muziek is hier opgeslagen</string>
+    <string name="download_path_audio_summary">Gedownloade muziek wordt hier opgeslagen</string>
     <string name="download_path_audio_dialog_title">Voer downloadlocatie voor audiobestanden in</string>
     <string name="theme_title">Thema</string>
     <string name="dark_theme_title">Donker</string>
@@ -470,9 +470,14 @@
     <string name="autoplay_title">Automatisch afspelen</string>
     <plurals name="comments">
         <item quantity="one">Reacties</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="no_comments">Geen reacties</string>
     <string name="error_unable_to_load_comments">Kan reacties niet laden</string>
     <string name="close">Sluiten</string>
+    <string name="downloads_storage_use_saf_summary">Het Storage Acces Framework laat downloads naar een externe SD kaart toe.
+\n
+\nNota: niet alle toestellen zijn compatibel</string>
+    <string name="settings_category_clear_data_title">Wis data</string>
+    <string name="download_choose_new_path">Verander de downloadmappen om effect te bekomen</string>
 </resources>
