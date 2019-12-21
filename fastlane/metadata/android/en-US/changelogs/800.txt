@@ -20,6 +20,7 @@ Fixed
 • Allow playlists missing an uploader and fix crashes related to this problem #2724, TeamNewPipe/NewPipeExtractor#219
 • Enabling TLS1.1/1.2 on Android 4.4 devices (API 19/KitKat) to fix TLS handshake with MediaCCC and some PeerTube instances  #2792
 • [SoundCloud] Fixed client_id extraction TeamNewPipe/NewPipeExtractor#217
+• [SoundCloud] Fix audio stream extraction
 
 Development
 • Update ExoPlayer to 2.10.8 #2791, #2816
