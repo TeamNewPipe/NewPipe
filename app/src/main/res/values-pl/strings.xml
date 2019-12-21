@@ -495,7 +495,7 @@
     <string name="error_progress_lost">Postęp został utracony ze wzgledu na usunięcie pliku</string>
     <string name="confirm_prompt">Czy jesteś pewien\?</string>
     <string name="enable_queue_limit">Ogranicz kolejkę pobierania</string>
-    <string name="enable_queue_limit_desc">Tylko jedno pobieranie będzie realizowane w danej chwili</string>
+    <string name="enable_queue_limit_desc">Tylko jedno pobieranie będzie realizowane jednocześnie</string>
     <string name="start_downloads">Rozpocznij pobieranie</string>
     <string name="pause_downloads">Wstrzymaj pobieranie</string>
     <string name="downloads_storage_ask_title">Zapytaj gdzie pobrać</string>
