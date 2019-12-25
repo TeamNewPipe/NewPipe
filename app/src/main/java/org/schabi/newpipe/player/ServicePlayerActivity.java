@@ -1,16 +1,12 @@
 package org.schabi.newpipe.player;
 
+import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,6 +18,13 @@ import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
@@ -42,7 +45,10 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatPitch;
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
@@ -115,6 +121,11 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     ////////////////////////////////////////////////////////////////////////////
 
     @Override
+    public void openOptionsMenu() {
+        super.openOptionsMenu();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ThemeHelper.setTheme(this);
@@ -169,9 +180,55 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                 getApplicationContext().sendBroadcast(getPlayerShutdownIntent());
                 getApplicationContext().startActivity(getSwitchIntent(MainVideoPlayer.class));
                 return true;
+            case R.id.action_set_timer:
+                setTimer(this);
+                return true;
         }
         return onPlayerOptionSelected(item) || super.onOptionsItemSelected(item);
     }
+
+    private void setTimer(ServicePlayerActivity servicePlayerActivity) {
+        String[] listItems = {"5 Minutes", "10 Minutes", "20 Minutes", "30 Minutes", "1 Hour"};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(servicePlayerActivity);
+        builder.setTitle("Choose item");
+
+        builder.setItems(listItems, (dialog, which) -> {
+            long time = getTimerTime(which);
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    runOnUiThread(() -> player.onPause());
+                }
+            }, time);
+            Date d = new Date();
+            d.setTime(System.currentTimeMillis() + time);
+            Toast.makeText(servicePlayerActivity, "Player will pause after : " + listItems[which] + " at : " + d, Toast.LENGTH_LONG).show();
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+    }
+
+    protected long getTimerTime(int index) {
+        switch (index) {
+            case 0:
+                return 5 * 60 * 1000;
+            case 1:
+                return 10 * 60 * 1000;
+            case 2:
+                return 20 * 60 * 1000;
+            case 3:
+                return 30 * 60 * 1000;
+            case 4:
+                return 60 * 60 * 1000;
+            default:
+                return 1000;
+        }
+    }
+
 
     @Override
     protected void onDestroy() {
