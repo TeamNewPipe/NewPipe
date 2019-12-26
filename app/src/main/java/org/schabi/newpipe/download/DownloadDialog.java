@@ -369,7 +369,7 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         toolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.okay) {
                 prepareSelectedDownload();
-                if (getActivity() instanceof RouterActivity){
+                if (getActivity() instanceof RouterActivity) {
                     getActivity().finish();
                 }
                 return true;
