@@ -1,16 +1,13 @@
 package org.schabi.newpipe.player;
 
+import android.app.AlertDialog;
+import android.app.TimePickerDialog;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,6 +19,13 @@ import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
@@ -91,6 +95,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     private TextView playbackSpeedButton;
     private TextView playbackPitchButton;
 
+
     ////////////////////////////////////////////////////////////////////////////
     // Abstracts
     ////////////////////////////////////////////////////////////////////////////
@@ -113,6 +118,11 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     ////////////////////////////////////////////////////////////////////////////
     // Activity Lifecycle
     ////////////////////////////////////////////////////////////////////////////
+
+    @Override
+    public void openOptionsMenu() {
+        super.openOptionsMenu();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -169,9 +179,39 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                 getApplicationContext().sendBroadcast(getPlayerShutdownIntent());
                 getApplicationContext().startActivity(getSwitchIntent(MainVideoPlayer.class));
                 return true;
+            case R.id.action_set_timer:
+                try {
+                    setTimer(this);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), getString(R.string.ERROR_SETTING_TIMER), Toast.LENGTH_SHORT).show();
+                }
+                return true;
         }
         return onPlayerOptionSelected(item) || super.onOptionsItemSelected(item);
     }
+
+    private void setTimer(ServicePlayerActivity servicePlayerActivity) {
+
+        if (player.getHourOfDay() != 0 || player.getMinutes() != 0) {
+            AlertDialog dialog = new AlertDialog.Builder(servicePlayerActivity)
+                    .setTitle(R.string.ALREADY_SCHEDULED_TITLE)
+                    .setMessage(String.format(getString(R.string.ALREADY_SCHEDULED_MESSAGE), player.getHourOfDay() * 60 + player.getMinutes()))
+                    .setNegativeButton("Yes", (dialog1, which) -> updateTimer(servicePlayerActivity)
+                    ).setNegativeButton("No", ((dialog1, which) -> {
+                    })).create();
+            dialog.show();
+        } else {
+            updateTimer(servicePlayerActivity);
+        }
+
+    }
+
+    private void updateTimer(ServicePlayerActivity servicePlayerActivity) {
+        TimePickerDialog dialog = new TimePickerDialog(servicePlayerActivity, (view, hourOfDay, minute) -> player.setTimer(hourOfDay, minute), player.getHourOfDay(), player.getMinutes(), true);
+        dialog.show();
+    }
+
 
     @Override
     protected void onDestroy() {

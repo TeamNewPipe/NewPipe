@@ -27,13 +27,17 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.os.Build;
+import android.os.Handler;
 import android.os.IBinder;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.NotificationCompat;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
@@ -50,6 +54,10 @@ import org.schabi.newpipe.player.resolver.AudioPlaybackResolver;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
+
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
 
@@ -195,7 +203,7 @@ public final class BackgroundPlayer extends Service {
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setCustomContentView(notRemoteView)
                 .setCustomBigContentView(bigNotRemoteView);
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             builder.setPriority(NotificationCompat.PRIORITY_MAX);
         }
         return builder;
@@ -278,6 +286,10 @@ public final class BackgroundPlayer extends Service {
         @NonNull final private AudioPlaybackResolver resolver;
         private int cachedDuration;
         private String cachedDurationString;
+
+        private Timer timer = new Timer();
+        private int timerHour = 0;
+        private int timerMinute = 0;
 
         BasePlayerImpl(Context context) {
             super(context);
@@ -573,6 +585,49 @@ public final class BackgroundPlayer extends Service {
             updateNotificationThumbnail();
             updateNotification(R.drawable.ic_replay_white);
             lockManager.releaseWifiAndCpu();
+        }
+
+        @Override
+        public void setTimer(int hourOfDay, int minute) {
+            long time = ((hourOfDay * 60) + minute) * 60 * 1000;
+            if (time == 0) {
+                Toast.makeText(getApplicationContext(), "Please select an appropriate time.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            timer.cancel();
+            timer.purge();
+            timerHour = hourOfDay;
+            timerMinute = minute;
+            timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    new Handler(Looper.getMainLooper()).post(() -> {
+                        Log.d("TimerTest", "Stopping the player");
+                        onPause();
+                    });
+
+                }
+            }, time);
+            Date d = new Date();
+            d.setTime(System.currentTimeMillis() + time);
+            Toast.makeText(getApplicationContext(), "Player will at " + d, Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void cancelTimer() {
+            timer.cancel();
+            timer.purge();
+        }
+
+        @Override
+        public int getHourOfDay() {
+            return this.timerHour;
+        }
+
+        @Override
+        public int getMinutes() {
+            return this.timerMinute;
         }
     }
 }
