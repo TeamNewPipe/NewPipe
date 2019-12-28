@@ -4,13 +4,13 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 28
     buildToolsVersion '28.0.3'
 
     defaultConfig {
         applicationId "org.schabi.newpipe"
         minSdkVersion 19
-        targetSdkVersion 29
+        targetSdkVersion 28
         versionCode 790
         versionName "0.17.4"
 
@@ -48,7 +48,7 @@ android {
 ext {
     androidxLibVersion = '1.0.0'
     exoPlayerLibVersion = '2.10.8'
-    roomDbLibVersion = '2.2.3'
+    roomDbLibVersion = '2.1.0'
     leakCanaryLibVersion = '1.5.4' //1.6.1
     okHttpLibVersion = '3.12.6'
     icepickLibVersion = '3.2.0'
@@ -70,7 +70,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation "androidx.legacy:legacy-support-v4:${androidxLibVersion}"
     implementation "com.google.android.material:material:${androidxLibVersion}"
-    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    implementation "androidx.recyclerview:recyclerview:${androidxLibVersion}"
     implementation "androidx.legacy:legacy-preference-v14:${androidxLibVersion}"
     implementation "androidx.cardview:cardview:${androidxLibVersion}"
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
@@ -92,7 +92,7 @@ dependencies {
     debugImplementation "com.facebook.stetho:stetho-urlconnection:${stethoLibVersion}"
     debugImplementation 'androidx.multidex:multidex:2.0.1'
 
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.9'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
     implementation 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
     implementation 'org.ocpsoft.prettytime:prettytime:4.0.1.Final'
