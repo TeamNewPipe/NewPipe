@@ -478,7 +478,6 @@ public abstract class VideoPlayer extends BasePlayer
         super.onCompleted();
 
         showControls(500);
-        animateView(endScreen, true, 800);
         animateView(currentDisplaySeek, AnimationUtils.Type.SCALE_AND_ALPHA, false, 200);
         loadingPanel.setVisibility(View.GONE);
 
@@ -575,11 +574,6 @@ public abstract class VideoPlayer extends BasePlayer
         playbackSpeedTextView.setText(formatSpeed(getPlaybackSpeed()));
 
         super.onPrepared(playWhenReady);
-
-        if (simpleExoPlayer.getCurrentPosition() != 0 && !isControlsVisible()) {
-            controlsVisibilityHandler.removeCallbacksAndMessages(null);
-            controlsVisibilityHandler.postDelayed(this::showControlsThenHide, DEFAULT_CONTROLS_DURATION);
-        }
     }
 
     @Override
@@ -615,7 +609,7 @@ public abstract class VideoPlayer extends BasePlayer
         if (loadedImage != null) endScreen.setImageBitmap(loadedImage);
     }
 
-    protected void onFullScreenButtonClicked() {
+    protected void toggleFullscreen() {
         changeState(STATE_BLOCKED);
     }
 
@@ -724,7 +718,7 @@ public abstract class VideoPlayer extends BasePlayer
         showControls(DEFAULT_CONTROLS_DURATION);
     }
 
-    private void onResizeClicked() {
+    void onResizeClicked() {
         if (getAspectRatioFrameLayout() != null) {
             final int currentResizeMode = getAspectRatioFrameLayout().getResizeMode();
             final int newResizeMode = nextResizeMode(currentResizeMode);
@@ -888,6 +882,9 @@ public abstract class VideoPlayer extends BasePlayer
             animateView(controlsRoot, false,duration);
         };
     }
+
+    public abstract void hideSystemUIIfNeeded();
+
     /*//////////////////////////////////////////////////////////////////////////
     // Getters and Setters
     //////////////////////////////////////////////////////////////////////////*/

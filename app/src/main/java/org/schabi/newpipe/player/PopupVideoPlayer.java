@@ -285,7 +285,7 @@ public final class PopupVideoPlayer extends Service {
                 PendingIntent.getBroadcast(this, NOTIFICATION_ID, new Intent(ACTION_REPEAT), PendingIntent.FLAG_UPDATE_CURRENT));
 
         // Starts popup player activity -- attempts to unlock lockscreen
-        final Intent intent = NavigationHelper.getPopupPlayerActivityIntent(this);
+        final Intent intent = NavigationHelper.getBackgroundPlayerActivityIntent(this);
         notRemoteView.setOnClickPendingIntent(R.id.notificationContent,
                 PendingIntent.getActivity(this, NOTIFICATION_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT));
 
@@ -513,7 +513,7 @@ public final class PopupVideoPlayer extends Service {
             super.initViews(rootView);
             resizingIndicator = rootView.findViewById(R.id.resizing_indicator);
             fullScreenButton = rootView.findViewById(R.id.fullScreenButton);
-            fullScreenButton.setOnClickListener(v -> onFullScreenButtonClicked());
+            fullScreenButton.setOnClickListener(v -> toggleFullscreen());
             videoPlayPause = rootView.findViewById(R.id.videoPlayPause);
 
             extraOptionsView = rootView.findViewById(R.id.extraOptionsView);
@@ -552,8 +552,8 @@ public final class PopupVideoPlayer extends Service {
         }
 
         @Override
-        public void onFullScreenButtonClicked() {
-            super.onFullScreenButtonClicked();
+        public void toggleFullscreen() {
+            super.toggleFullscreen();
 
             if (DEBUG) Log.d(TAG, "onFullScreenButtonClicked() called");
 
@@ -866,6 +866,9 @@ public final class PopupVideoPlayer extends Service {
         public void hideControls(final long duration, long delay) {
             super.hideControlsAndButton(duration, delay, videoPlayPause);
         }
+
+        @Override
+        public void hideSystemUIIfNeeded() { }
 
         /*//////////////////////////////////////////////////////////////////////////
         // Utils

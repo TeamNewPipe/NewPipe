@@ -2,9 +2,10 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black"
     android:gravity="center">
 
     <com.google.android.exoplayer2.ui.AspectRatioFrameLayout
@@ -49,9 +50,9 @@
     <RelativeLayout
         android:id="@+id/playQueuePanel"
         android:layout_width="380dp"
-        android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:layout_height="match_parent"
         android:visibility="invisible"
         android:background="?attr/queue_background_color"
         tools:visibility="visible">
@@ -120,7 +121,7 @@
             android:layout_height="match_parent"
             android:layout_below="@id/playQueueControl"
             android:scrollbars="vertical"
-            app:layoutManager="LinearLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/play_queue_item"/>
 
     </RelativeLayout>
@@ -133,37 +134,46 @@
         android:visibility="gone"
         tools:visibility="visible">
 
+        <!-- All top controls in this layout -->
         <RelativeLayout
             android:id="@+id/playbackWindowRoot"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true">
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/topControls"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:background="@drawable/player_top_controls_bg"
+                android:orientation="vertical"
                 android:gravity="top"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
+                android:baselineAligned="false"
+                android:layout_toStartOf="@id/fullScreenButton">
+
+            <LinearLayout
+                android:id="@+id/primaryControls"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:gravity="top"
+                android:paddingTop="4dp"
+                android:paddingBottom="7dp"
+                android:paddingLeft="2dp"
+                android:paddingRight="6dp"
                 tools:ignore="RtlHardcoded">
 
                 <LinearLayout
                     android:id="@+id/metadataView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_toLeftOf="@+id/qualityTextView"
                     android:gravity="top"
                     android:orientation="vertical"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
-                    tools:ignore="RtlHardcoded">
+                    tools:ignore="RtlHardcoded"
+                    android:layout_weight="1">
 
                     <TextView
                         android:id="@+id/titleTextView"
@@ -204,13 +214,13 @@
                     android:layout_height="35dp"
                     android:layout_marginLeft="2dp"
                     android:layout_marginRight="2dp"
-                    android:layout_toLeftOf="@+id/playbackSpeed"
                     android:gravity="center"
                     android:minWidth="50dp"
                     android:text="720p"
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
                     android:background="?attr/selectableItemBackground"
+                    android:visibility="visible"
                     tools:ignore="HardcodedText,RtlHardcoded"/>
 
                 <TextView
@@ -218,7 +228,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="2dp"
-                    android:layout_toLeftOf="@+id/queueButton"
                     android:gravity="center"
                     android:minHeight="35dp"
                     android:minWidth="40dp"
@@ -226,7 +235,7 @@
                     android:textStyle="bold"
                     android:background="?attr/selectableItemBackground"
                     tools:ignore="RtlHardcoded,RtlSymmetry"
-                    tools:text="1x" />
+                    tools:text="1x"/>
 
                 <ImageButton
                     android:id="@+id/queueButton"
@@ -234,20 +243,19 @@
                     android:layout_height="35dp"
                     android:layout_marginLeft="2dp"
                     android:layout_marginRight="2dp"
-                    android:layout_toLeftOf="@+id/moreOptionsButton"
                     android:clickable="true"
                     android:focusable="true"
                     android:padding="5dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_list_white_24dp"
                     android:background="?attr/selectableItemBackground"
-                    tools:ignore="ContentDescription,RtlHardcoded"/>
+                    tools:ignore="ContentDescription,RtlHardcoded"
+                    android:visibility="gone"/>
 
                 <ImageButton
                     android:id="@+id/moreOptionsButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
                     android:layout_marginLeft="2dp"
                     android:padding="5dp"
                     android:clickable="true"
@@ -256,16 +264,18 @@
                     android:src="@drawable/ic_expand_more_white_24dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     tools:ignore="ContentDescription,RtlHardcoded"/>
-            </RelativeLayout>
 
-            <RelativeLayout
+                </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/secondaryControls"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/topControls"
                 android:gravity="top"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="7dp"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
                 android:visibility="invisible"
                 tools:ignore="RtlHardcoded"
                 tools:visibility="visible">
@@ -274,9 +284,7 @@
                     android:id="@+id/resizeTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
-                    android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
-                    android:layout_alignParentLeft="true"
                     android:gravity="center"
                     android:minWidth="50dp"
                     android:textColor="@android:color/white"
@@ -291,18 +299,50 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
-                    android:layout_toLeftOf="@id/switchBackground"
-                    android:layout_toRightOf="@id/resizeTextView"
                     android:gravity="center|left"
                     android:minHeight="35dp"
-                    android:minWidth="40dp"
-                    android:paddingLeft="2dp"
-                    android:paddingRight="2dp"
+                    android:minWidth="50dp"
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
                     android:background="?attr/selectableItemBackground"
                     tools:ignore="RelativeOverlap,RtlHardcoded"
-                    tools:text="English" />
+                    tools:text="English"/>
+
+                <Space
+                    android:id="@+id/spaceBeforeButton"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"/>
+
+                <ImageButton
+                    android:id="@+id/playWithKodi"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="2dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_channel_white_24dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:contentDescription="@string/play_with_kodi_title"
+                    tools:ignore="RtlHardcoded"/>
+
+                <ImageButton
+                    android:id="@+id/openInBrowser"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="2dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_language_white_24dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:contentDescription="@string/open_in_browser"
+                    tools:ignore="RtlHardcoded"/>
 
                 <ImageButton
                     android:id="@+id/share"
@@ -310,8 +350,6 @@
                     android:layout_height="30dp"
                     android:layout_marginLeft="4dp"
                     android:layout_marginRight="2dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
                     android:clickable="true"
                     android:focusable="true"
                     android:padding="5dp"
@@ -321,56 +359,25 @@
                     android:contentDescription="@string/share"
                     tools:ignore="RtlHardcoded"/>
 
-                <ImageButton
-                    android:id="@+id/toggleOrientation"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:layout_toLeftOf="@id/share"
-                    android:layout_centerVertical="true"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:padding="5dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/ic_screen_rotation_white"
-                    android:background="?attr/selectableItemBackground"
-                    android:contentDescription="@string/toggle_orientation"
-                    tools:ignore="RtlHardcoded"/>
+                </LinearLayout>
+
+            </LinearLayout>
 
                 <ImageButton
-                    android:id="@+id/switchPopup"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="4dp"
+                    android:id="@+id/fullScreenButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_marginRight="4dp"
-                    android:layout_toLeftOf="@id/toggleOrientation"
-                    android:layout_centerVertical="true"
+                    android:padding="4dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/player_top_controls_bg"
                     android:clickable="true"
                     android:focusable="true"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/ic_fullscreen_exit_white"
-                    android:background="?attr/selectableItemBackground"
-                    android:contentDescription="@string/switch_to_popup"
-                    tools:ignore="RtlHardcoded"/>
-
-                <ImageButton
-                    android:id="@+id/switchBackground"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:layout_toLeftOf="@id/switchPopup"
-                    android:layout_centerVertical="true"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:padding="5dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/ic_headset_white_24dp"
-                    android:background="?attr/selectableItemBackground"
-                    android:contentDescription="@string/switch_to_background"
-                    tools:ignore="RtlHardcoded"/>
-            </RelativeLayout>
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_fullscreen_white"
+                    tools:ignore="ContentDescription,RtlHardcoded"
+                    android:visibility="gone"
+                    tools:visibility="visible"/>
 
             <LinearLayout
                 android:id="@+id/bottomControls"
@@ -380,6 +387,7 @@
                 android:background="@drawable/player_controls_bg"
                 android:gravity="center"
                 android:orientation="horizontal"
+                android:paddingBottom="2dp"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp">
 
@@ -388,7 +396,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:minHeight="40dp"
+                    android:minHeight="30dp"
                     android:text="-:--:--"
                     android:textColor="@android:color/white"
                     tools:ignore="HardcodedText"
@@ -433,65 +441,52 @@
             </LinearLayout>
         </RelativeLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="5.5">
+            <!--tools:visibility="gone">-->
+
         <ImageButton
-            android:id="@+id/playPauseButton"
-            android:layout_width="100dp"
+            android:id="@+id/playPreviousButton"
+            android:layout_width="0dp"
             android:layout_height="100dp"
-            android:layout_centerInParent="true"
+            android:layout_weight="1"
+            android:layout_marginEnd="30dp"
             android:clickable="true"
             android:focusable="true"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:scaleType="fitXY"
+            android:scaleType="fitCenter"
+            android:src="@drawable/exo_controls_previous"
+            tools:ignore="ContentDescription"/>
+
+
+        <ImageButton
+            android:id="@+id/playPauseButton"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitCenter"
             android:src="@drawable/ic_pause_white"
             tools:ignore="ContentDescription"/>
 
         <ImageButton
-            android:id="@+id/playPreviousButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_centerInParent="true"
-            android:layout_toLeftOf="@id/playPauseButton"
-            android:layout_toStartOf="@id/playPauseButton"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:scaleType="fitXY"
-            android:src="@drawable/exo_controls_previous"
-            tools:ignore="ContentDescription"/>
-
-        <ImageButton
             android:id="@+id/playNextButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
             android:layout_marginStart="30dp"
-            android:layout_centerInParent="true"
-            android:layout_toRightOf="@id/playPauseButton"
-            android:layout_toEndOf="@id/playPauseButton"
             android:clickable="true"
             android:focusable="true"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:scaleType="fitXY"
+            android:scaleType="fitCenter"
             android:src="@drawable/exo_controls_next"
             tools:ignore="ContentDescription"/>
 
-        <Button
-            android:id="@+id/closeButton"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/playPauseButton"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="10dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="@string/close"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:visibility="invisible" />
+        </LinearLayout>
 
     </RelativeLayout>
 
@@ -533,10 +528,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
         android:layout_gravity="center"
-        android:layout_toEndOf="@+id/loading_panel"
-        android:layout_toRightOf="@+id/loading_panel"
         tools:ignore="RtlHardcoded">
 
         <RelativeLayout
@@ -610,5 +602,43 @@
             tools:text="1:06:29"
             tools:visibility="visible" />
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/resizing_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|top"
+        android:background="#6e000000"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="@string/popup_resizing_indicator_title"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        tools:ignore="RtlHardcoded"
+        tools:visibility="gone" />
+
+    <View
+        android:id="@+id/closingOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#AAFF0000"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/closeButton"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/close"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:visibility="gone" />
 
 </RelativeLayout>

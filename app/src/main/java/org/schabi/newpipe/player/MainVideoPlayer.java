@@ -546,7 +546,7 @@ public final class MainVideoPlayer extends AppCompatActivity
                     onPlayBackgroundButtonClicked();
                     break;
                 case PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_POPUP:
-                    onFullScreenButtonClicked();
+                    toggleFullscreen();
                     break;
                 case PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_NONE:
                 default:
@@ -593,8 +593,8 @@ public final class MainVideoPlayer extends AppCompatActivity
         //////////////////////////////////////////////////////////////////////////*/
 
         @Override
-        public void onFullScreenButtonClicked() {
-            super.onFullScreenButtonClicked();
+        public void toggleFullscreen() {
+            super.toggleFullscreen();
 
             if (DEBUG) Log.d(TAG, "onFullScreenButtonClicked() called");
             if (simpleExoPlayer == null) return;
@@ -678,7 +678,7 @@ public final class MainVideoPlayer extends AppCompatActivity
                 onScreenRotationClicked();
 
             } else if (v.getId() == switchPopupButton.getId()) {
-                onFullScreenButtonClicked();
+                toggleFullscreen();
 
             } else if (v.getId() == switchBackgroundButton.getId()) {
                 onPlayBackgroundButtonClicked();
@@ -746,7 +746,7 @@ public final class MainVideoPlayer extends AppCompatActivity
         @Override
         public void onPlaybackSpeedClicked() {
             PlaybackParameterDialog
-                    .newInstance(getPlaybackSpeed(), getPlaybackPitch(), getPlaybackSkipSilence())
+                    .newInstance(getPlaybackSpeed(), getPlaybackPitch(), getPlaybackSkipSilence(), MainVideoPlayer.this)
                     .show(getSupportFragmentManager(), TAG);
         }
 
@@ -908,6 +908,9 @@ public final class MainVideoPlayer extends AppCompatActivity
                     /*delayMillis=*/delay
             );
         }
+
+        @Override
+        public void hideSystemUIIfNeeded() { }
 
         private void updatePlaybackButtons() {
             if (repeatButton == null || shuffleButton == null ||

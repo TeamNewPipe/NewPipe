@@ -80,8 +80,10 @@ public class PlaybackParameterDialog extends DialogFragment {
 
     public static PlaybackParameterDialog newInstance(final double playbackTempo,
                                                       final double playbackPitch,
-                                                      final boolean playbackSkipSilence) {
+                                                      final boolean playbackSkipSilence,
+                                                      Callback callback) {
         PlaybackParameterDialog dialog = new PlaybackParameterDialog();
+        dialog.callback = callback;
         dialog.initialTempo = playbackTempo;
         dialog.initialPitch = playbackPitch;
 
@@ -99,9 +101,9 @@ public class PlaybackParameterDialog extends DialogFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context != null && context instanceof Callback) {
+        if (context instanceof Callback) {
             callback = (Callback) context;
-        } else {
+        } else if (callback == null) {
             dismiss();
         }
     }

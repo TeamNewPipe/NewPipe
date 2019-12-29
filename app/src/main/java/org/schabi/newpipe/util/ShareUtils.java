@@ -17,6 +17,6 @@ public class ShareUtils {
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_SUBJECT, subject);
         intent.putExtra(Intent.EXTRA_TEXT, url);
-        context.startActivity(Intent.createChooser(intent, context.getString(R.string.share_dialog_title)));
+        context.startActivity(Intent.createChooser(intent, context.getString(R.string.share_dialog_title)).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 }

@@ -1,6 +1,7 @@
 package org.schabi.newpipe.player;
 
 import android.content.Intent;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import org.schabi.newpipe.R;
@@ -50,13 +51,18 @@ public final class PopupVideoPlayerActivity extends ServicePlayerActivity {
         if (item.getItemId() == R.id.action_switch_background) {
             this.player.setRecovery();
             getApplicationContext().sendBroadcast(getPlayerShutdownIntent());
-            getApplicationContext().startService(getSwitchIntent(BackgroundPlayer.class));
+            getApplicationContext().startService(getSwitchIntent(MainPlayer.class, MainPlayer.PlayerType.AUDIO));
             return true;
         }
         return false;
     }
 
     @Override
+    public void setupMenu(Menu menu) {
+
+    }
+
+    //@Override
     public Intent getPlayerShutdownIntent() {
         return new Intent(ACTION_CLOSE);
     }

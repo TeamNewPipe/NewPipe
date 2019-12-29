@@ -43,6 +43,14 @@
             </intent-filter>
         </service>
 
+        <service
+                android:name=".player.MainPlayer"
+                android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+        </service>
+
         <activity
             android:name=".player.BackgroundPlayerActivity"
             android:launchMode="singleTask"

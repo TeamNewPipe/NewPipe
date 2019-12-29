@@ -151,6 +151,8 @@ public abstract class BasePlayer implements
     public static final String RESUME_PLAYBACK = "resume_playback";
     @NonNull
     public static final String SELECT_ON_APPEND = "select_on_append";
+    @NonNull
+    public static final String PLAYER_TYPE = "player_type";
 
     /*//////////////////////////////////////////////////////////////////////////
     // Playback
@@ -181,6 +183,10 @@ public abstract class BasePlayer implements
     protected final static int PLAY_PREV_ACTIVATION_LIMIT_MILLIS = 5000; // 5 seconds
     protected final static int PROGRESS_LOOP_INTERVAL_MILLIS = 500;
     protected final static int RECOVERY_SKIP_THRESHOLD_MILLIS = 3000; // 3 seconds
+
+    public final static int PLAYER_TYPE_VIDEO = 0;
+    public final static int PLAYER_TYPE_AUDIO = 1;
+    public final static int PLAYER_TYPE_POPUP = 2;
 
     protected SimpleExoPlayer simpleExoPlayer;
     protected AudioReactor audioReactor;
@@ -290,12 +296,24 @@ public abstract class BasePlayer implements
             if (item != null && item.getRecoveryPosition() == PlayQueueItem.RECOVERY_UNSET) {
                 stateLoader = recordManager.loadStreamState(item)
                         .observeOn(AndroidSchedulers.mainThread())
-                        .doFinally(() -> initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence,
-                                /*playOnInit=*/true))
+                        // Do not place initPlayback() in doFinally() because it restarts playback after destroy()
+                        //.doFinally()
                         .subscribe(
-                                state -> queue.setRecovery(queue.getIndex(), state.getProgressTime()),
+                                state -> {
+                                    queue.setRecovery(queue.getIndex(), state.getProgressTime());
+                                    initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence,
+                                            /*playOnInit=*/true);
+                                },
                                 error -> {
                                     if (DEBUG) error.printStackTrace();
+                                    // In case any error we can start playback without history
+                                    initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence,
+                                            /*playOnInit=*/true);
+                                },
+                                () -> {
+                                    // Completed but not found in history
+                                    initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence,
+                                            /*playOnInit=*/true);
                                 }
                         );
                 databaseUpdateReactor.add(stateLoader);
@@ -354,7 +372,7 @@ public abstract class BasePlayer implements
 
         databaseUpdateReactor.clear();
         progressUpdateReactor.set(null);
-
+        ImageLoader.getInstance().stop();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -931,6 +949,7 @@ public abstract class BasePlayer implements
         }
 
         simpleExoPlayer.setPlayWhenReady(true);
+        savePlaybackState();
     }
 
     public void onPause() {
@@ -939,6 +958,7 @@ public abstract class BasePlayer implements
 
         audioReactor.abandonAudioFocus();
         simpleExoPlayer.setPlayWhenReady(false);
+        savePlaybackState();
     }
 
     public void onPlayPause() {

@@ -20,8 +20,7 @@
 
 package org.schabi.newpipe;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.*;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,19 +28,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.TextView;
+import android.view.*;
+import android.widget.*;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -53,6 +41,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.navigation.NavigationView;
 
 import org.schabi.newpipe.extractor.NewPipe;
@@ -64,16 +53,10 @@ import org.schabi.newpipe.fragments.BackPressable;
 import org.schabi.newpipe.fragments.MainFragment;
 import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
+import org.schabi.newpipe.player.VideoPlayer;
+import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.report.ErrorActivity;
-import org.schabi.newpipe.util.Constants;
-import org.schabi.newpipe.util.KioskTranslator;
-import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.PeertubeHelper;
-import org.schabi.newpipe.util.PermissionHelper;
-import org.schabi.newpipe.util.ServiceHelper;
-import org.schabi.newpipe.util.StateSaver;
-import org.schabi.newpipe.util.TLSSocketFactoryCompat;
-import org.schabi.newpipe.util.ThemeHelper;
+import org.schabi.newpipe.util.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -470,12 +453,25 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (DEBUG) Log.d(TAG, "onBackPressed() called");
 
-        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
-        // If current fragment implements BackPressable (i.e. can/wanna handle back press) delegate the back press to it
-        if (fragment instanceof BackPressable) {
-            if (((BackPressable) fragment).onBackPressed()) return;
-        }
+        FrameLayout bottomSheetLayout = findViewById(R.id.fragment_player_holder);
+        BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(bottomSheetLayout);
 
+        if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_HIDDEN || bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_COLLAPSED) {
+            Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
+            // If current fragment implements BackPressable (i.e. can/wanna handle back press) delegate the back press to it
+            if (fragment instanceof BackPressable) {
+                if (((BackPressable) fragment).onBackPressed()) return;
+            }
+
+        } else {
+            Fragment fragmentPlayer = getSupportFragmentManager().findFragmentById(R.id.fragment_player_holder);
+            // If current fragment implements BackPressable (i.e. can/wanna handle back press) delegate the back press to it
+            if (fragmentPlayer instanceof BackPressable) {
+                if (!((BackPressable) fragmentPlayer).onBackPressed())
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                return;
+            }
+        }
 
         if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
             finish();
@@ -494,7 +490,7 @@ public class MainActivity extends AppCompatActivity {
                 NavigationHelper.openDownloads(this);
                 break;
             case PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE:
-                Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_holder);
+                Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_player_holder);
                 if (fragment instanceof VideoDetailFragment) {
                     ((VideoDetailFragment) fragment).openDownloadDialog();
                 }
@@ -595,6 +591,11 @@ public class MainActivity extends AppCompatActivity {
         if (DEBUG) Log.d(TAG, "initFragments() called");
         StateSaver.clearStateFiles();
         if (getIntent() != null && getIntent().hasExtra(Constants.KEY_LINK_TYPE)) {
+            // When user watch a video inside popup and then tries to open the video in main player while the app is closed
+            // he will see a blank fragment on place of kiosk. Let's open it first
+            if (getSupportFragmentManager().getBackStackEntryCount() == 0)
+                NavigationHelper.openMainFragment(getSupportFragmentManager());
+
             handleIntent(getIntent());
         } else NavigationHelper.gotoMainFragment(getSupportFragmentManager());
     }
@@ -643,7 +644,9 @@ public class MainActivity extends AppCompatActivity {
                 switch (((StreamingService.LinkType) intent.getSerializableExtra(Constants.KEY_LINK_TYPE))) {
                     case STREAM:
                         boolean autoPlay = intent.getBooleanExtra(VideoDetailFragment.AUTO_PLAY, false);
-                        NavigationHelper.openVideoDetailFragment(getSupportFragmentManager(), serviceId, url, title, autoPlay);
+                        final String intentCacheKey = intent.getStringExtra(VideoPlayer.PLAY_QUEUE_KEY);
+                        final PlayQueue playQueue = intentCacheKey != null ? SerializedCache.getInstance().take(intentCacheKey, PlayQueue.class) : null;
+                        NavigationHelper.openVideoDetailFragment(getSupportFragmentManager(), serviceId, url, title, autoPlay, playQueue);
                         break;
                     case CHANNEL:
                         NavigationHelper.openChannelFragment(getSupportFragmentManager(),
