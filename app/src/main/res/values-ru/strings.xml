@@ -522,4 +522,20 @@
         <item quantity="many">%s слушателей</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">Язык будет изменён после перезапуска</string>
+    <string name="seek_duration_title">Шаг перемотки вперёд/назад</string>
+    <string name="peertube_instance_url_title">Серверы PeerTube</string>
+    <string name="peertube_instance_url_summary">Настройте предпочтительные серверы PeerTube</string>
+    <string name="peertube_instance_url_help">Выберите подходящие серверы на https://joinpeertube.org/instances#instances-list</string>
+    <string name="peertube_instance_add_title">Новый сервер</string>
+    <string name="peertube_instance_add_help">URL сервера</string>
+    <string name="peertube_instance_add_fail">Не удалось проверить сервер</string>
+    <string name="peertube_instance_add_https_only">Поддерживается только https</string>
+    <string name="peertube_instance_add_exists">Сервер уже существует</string>
+    <string name="local">Локальное</string>
+    <string name="recently_added">Новое</string>
+    <string name="most_liked">Популярное</string>
+    <string name="playlist_no_uploader">Создан автоматически (автор не найден)</string>
+    <string name="recovering">восстановление</string>
+    <string name="error_download_resource_gone">Не удалось восстановить загрузку</string>
+    <string name="choose_instance_prompt">Выберите сервер</string>
 </resources>
