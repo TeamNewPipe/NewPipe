@@ -529,4 +529,20 @@
     </plurals>
     <string name="localization_changes_requires_app_restart">השפה תוחלף עם הפעלת היישומון מחדש.</string>
     <string name="default_kiosk_page_summary">קיוסק בררת מחדל</string>
+    <string name="seek_duration_title">משך קפיצה מהירה קדימה/אחורה</string>
+    <string name="peertube_instance_url_title">מופעים של PeerTube</string>
+    <string name="peertube_instance_url_summary">נא להגדיר את מופעי ה־peertube המועדפים עליך</string>
+    <string name="peertube_instance_url_help">איתור המופעים שהכי מתאימים לך תחת https://joinpeertube.org/instances#instances-list</string>
+    <string name="peertube_instance_add_title">הוספת מופע</string>
+    <string name="peertube_instance_add_help">נא להכניס כתובת מופע</string>
+    <string name="peertube_instance_add_fail">אימות המופע נכשל</string>
+    <string name="peertube_instance_add_https_only">יש תמיכה בכתובות https בלבד</string>
+    <string name="peertube_instance_add_exists">המופע כבר קיים</string>
+    <string name="local">מקומי</string>
+    <string name="recently_added">נוספו לאחרונה</string>
+    <string name="most_liked">האהובים ביותר</string>
+    <string name="playlist_no_uploader">נוצרה אוטומטית (לא נמצא מעלה)</string>
+    <string name="recovering">בשחזור</string>
+    <string name="error_download_resource_gone">לא ניתן לשחזר את ההורדה הזאת</string>
+    <string name="choose_instance_prompt">נא לבחור מופע</string>
 </resources>
