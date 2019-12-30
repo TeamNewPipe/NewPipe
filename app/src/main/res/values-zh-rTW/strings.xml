@@ -513,4 +513,20 @@
         <item quantity="other"/>
     </plurals>
     <string name="localization_changes_requires_app_restart">語言將會在重新啟動應用程式後變更。</string>
+    <string name="seek_duration_title">快轉／快退搜尋持續時間</string>
+    <string name="peertube_instance_url_title">PeerTube 站臺</string>
+    <string name="peertube_instance_url_summary">設定您最愛的 PeerTube 站臺</string>
+    <string name="peertube_instance_url_help">在 https://joinpeertube.org/instances#instances-list 上找到最適合您的站臺</string>
+    <string name="peertube_instance_add_title">新增站臺</string>
+    <string name="peertube_instance_add_help">輸入站臺 URL</string>
+    <string name="peertube_instance_add_fail">驗證站臺失敗</string>
+    <string name="peertube_instance_add_https_only">僅支援 https URL</string>
+    <string name="peertube_instance_add_exists">站臺已存在</string>
+    <string name="local">本機</string>
+    <string name="recently_added">最近新增</string>
+    <string name="most_liked">最喜歡</string>
+    <string name="playlist_no_uploader">自動生成（未找到上傳者）</string>
+    <string name="recovering">正在恢復</string>
+    <string name="error_download_resource_gone">無法復原此下載</string>
+    <string name="choose_instance_prompt">選擇一個站臺</string>
 </resources>
