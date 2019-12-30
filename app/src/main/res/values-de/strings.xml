@@ -527,4 +527,6 @@
     <string name="recently_added">Kürzlich hinzugefügt</string>
     <string name="playlist_no_uploader">Auto-generiert (kein Uploader gefunden)</string>
     <string name="choose_instance_prompt">Wähle eine Instanz</string>
+    <string name="peertube_instance_url_summary">Bevorzugte Peertube-Instanzen festlegen</string>
+    <string name="peertube_instance_add_https_only">Es werden nur https-Adressen unterstützt</string>
 </resources>
