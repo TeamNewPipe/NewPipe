@@ -299,7 +299,8 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
     private boolean onDownInPopup(MotionEvent e) {
         // Fix popup position when the user touch it, it may have the wrong one
         // because the soft input is visible (the draggable area is currently resized).
-        playerImpl.checkPopupPositionBounds(playerImpl.getCloseOverlayView().getWidth(), playerImpl.getCloseOverlayView().getHeight());
+        playerImpl.updateScreenSize();
+        playerImpl.checkPopupPositionBounds();
 
         initialPopupX = playerImpl.getPopupLayoutParams().x;
         initialPopupY = playerImpl.getPopupLayoutParams().y;

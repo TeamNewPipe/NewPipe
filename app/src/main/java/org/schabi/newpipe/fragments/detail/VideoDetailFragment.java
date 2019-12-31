@@ -1040,6 +1040,9 @@ public class VideoDetailFragment
         boolean useExternalAudioPlayer = PreferenceManager.getDefaultSharedPreferences(activity)
                 .getBoolean(activity.getString(R.string.use_external_audio_player_key), false);
 
+        //  If a user watched video inside fullscreen mode and than chose another player return to non-fullscreen mode
+        if (player != null && player.isInFullscreen()) player.toggleFullscreen();
+
         if (!useExternalAudioPlayer && android.os.Build.VERSION.SDK_INT >= 16) {
             openNormalBackgroundPlayer(append);
         } else {
@@ -1055,6 +1058,9 @@ public class VideoDetailFragment
 
         // See UI changes while remote playQueue changes
         if (!bounded) startService(false);
+
+        //  If a user watched video inside fullscreen mode and than chose another player return to non-fullscreen mode
+        if (player != null && player.isInFullscreen()) player.toggleFullscreen();
 
         PlayQueue queue = setupPlayQueueForIntent(append);
         if (append) {
@@ -1181,17 +1187,7 @@ public class VideoDetailFragment
 
         // Check if viewHolder already contains a child
         if (player.getRootView() != viewHolder) removeVideoPlayerView();
-
-        final int newHeight;
-        if (player.isInFullscreen())
-            newHeight = activity.getWindow().getDecorView().getHeight();
-        else
-            newHeight = FrameLayout.LayoutParams.MATCH_PARENT;
-
-        if (viewHolder.getLayoutParams().height != newHeight) {
-            viewHolder.getLayoutParams().height = newHeight;
-            viewHolder.requestLayout();
-        }
+        setHeightThumbnail();
 
         // Prevent from re-adding a view multiple times
         if (player.getRootView().getParent() == null) viewHolder.addView(player.getRootView());
@@ -1242,9 +1238,15 @@ public class VideoDetailFragment
     private void setHeightThumbnail() {
         final DisplayMetrics metrics = getResources().getDisplayMetrics();
         boolean isPortrait = metrics.heightPixels > metrics.widthPixels;
-        int height = isPortrait
-                ? (int) (metrics.widthPixels / (16.0f / 9.0f))
-                : (int) (metrics.heightPixels / 2f);
+
+        int height;
+        if (player != null && player.isInFullscreen())
+            height = activity.getWindow().getDecorView().getHeight();
+        else
+            height = isPortrait
+                    ? (int) (metrics.widthPixels / (16.0f / 9.0f))
+                    : (int) (metrics.heightPixels / 2f);;
+
         thumbnailImageView.setLayoutParams(
                 new FrameLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, height));
         thumbnailImageView.setMinimumHeight(height);
@@ -1334,8 +1336,6 @@ public class VideoDetailFragment
 
     @Override
     public void onSettingsChanged() {
-        if (player == null) return;
-
         if(!globalScreenOrientationLocked())
             getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
     }

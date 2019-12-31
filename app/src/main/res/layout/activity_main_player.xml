@@ -51,7 +51,7 @@
         android:id="@+id/playQueuePanel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible"
+        android:visibility="gone"
         android:background="?attr/queue_background_color"
         tools:visibility="visible">
 

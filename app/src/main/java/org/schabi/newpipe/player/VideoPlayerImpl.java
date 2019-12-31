@@ -1329,7 +1329,7 @@ public class VideoPlayerImpl extends VideoPlayer
     public void updatePopupSize(int width, int height) {
         if (DEBUG) Log.d(TAG, "updatePopupSize() called with: width = [" + width + "], height = [" + height + "]");
 
-        if (popupLayoutParams == null || windowManager == null || !popupPlayerSelected() || getRootView().getParent() == null)
+        if (popupLayoutParams == null || windowManager == null || getParentActivity() != null || getRootView().getParent() == null)
             return;
 
         width = (int) (width > maximumWidth ? maximumWidth : width < minimumWidth ? minimumWidth : width);
@@ -1347,7 +1347,7 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     private void updateWindowFlags(final int flags) {
-        if (popupLayoutParams == null || windowManager == null || !popupPlayerSelected() || getRootView().getParent() == null)
+        if (popupLayoutParams == null || windowManager == null || getParentActivity() != null || getRootView().getParent() == null)
             return;
 
         popupLayoutParams.flags = flags;
