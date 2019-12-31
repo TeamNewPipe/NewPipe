@@ -39,7 +39,7 @@
     <string name="network_error">网络错误</string>
     <plurals name="videos">
         <item quantity="one">视频</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="disabled">禁用</string>
     <string name="controls_background_title">背景</string>
@@ -160,7 +160,7 @@
     <string name="use_external_video_player_title">使用第三方视频播放器</string>
     <string name="use_external_audio_player_title">使用第三方视频播放器</string>
     <string name="download_path_audio_title">音频下载文件夹</string>
-    <string name="autoplay_by_calling_app_summary">从其他应用打开 NewPipe 时就播放视频</string>
+    <string name="autoplay_by_calling_app_summary">从其他应用调用 NewPipe 时播放视频</string>
     <string name="default_resolution_title">默认分辨率</string>
     <string name="kore_not_found">找不到Kore。是否安装？</string>
     <string name="show_play_with_kodi_title">显示“用Kodi播放”选项</string>
@@ -507,7 +507,7 @@
     <string name="no_one_watching">无人在线观看</string>
     <plurals name="watching">
         <item quantity="one">%s 人在观看</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="no_one_listening">没人在听</string>
     <plurals name="listening">
@@ -515,4 +515,19 @@
         <item quantity="other"/>
     </plurals>
     <string name="localization_changes_requires_app_restart">重新启动应用后，语言将更改。</string>
+    <string name="peertube_instance_url_title">PeerTube 服务器</string>
+    <string name="peertube_instance_url_summary">设置自己喜欢的peertube服务器</string>
+    <string name="peertube_instance_url_help">查找最适合你的服务器https://joinpeertube.org/instances#instances-list</string>
+    <string name="peertube_instance_add_title">添加服务器</string>
+    <string name="peertube_instance_add_help">输入服务器网址</string>
+    <string name="peertube_instance_add_fail">无法验证服务器</string>
+    <string name="peertube_instance_add_https_only">仅支持 https URL</string>
+    <string name="peertube_instance_add_exists">该服务器已存在</string>
+    <string name="local">本地</string>
+    <string name="recently_added">最近添加</string>
+    <string name="most_liked">最喜欢的</string>
+    <string name="playlist_no_uploader">自动生成的（未找到上传者）</string>
+    <string name="recovering">正在恢复</string>
+    <string name="error_download_resource_gone">无法恢复此下载</string>
+    <string name="choose_instance_prompt">选择一个服务器</string>
 </resources>
