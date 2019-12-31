@@ -311,7 +311,6 @@ public class VideoDetailFragment
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
 
-        ThemeHelper.setTheme(getContext());
         // Let's play all streams automatically
         setAutoplay(true);
 
@@ -953,14 +952,14 @@ public class VideoDetailFragment
         showLoading();
         initTabs();
 
-        if (scrollToTop) appBarLayout.setExpanded(true, true);
+        if (scrollToTop) scrollToTop();
         handleResult(info);
         showContent();
 
     }
 
     protected void prepareAndLoadInfo() {
-        appBarLayout.setExpanded(true, true);
+        scrollToTop();
         startLoading(false);
     }
 
@@ -1027,6 +1026,10 @@ public class VideoDetailFragment
         } catch (ExtractionException e) {
             return false;
         }
+    }
+
+    public void scrollToTop() {
+        appBarLayout.setExpanded(true, true);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1862,6 +1865,8 @@ public class VideoDetailFragment
                         // Disable click because overlay buttons located on top of buttons from the player
                         setOverlayElementsClickable(false);
                         hideSystemUIIfNeeded();
+                        if (isLandscape() && player != null && player.isPlaying() && !player.isInFullscreen())
+                            player.toggleFullscreen();
                         break;
                     case BottomSheetBehavior.STATE_COLLAPSED:
                         // Re-enable clicks

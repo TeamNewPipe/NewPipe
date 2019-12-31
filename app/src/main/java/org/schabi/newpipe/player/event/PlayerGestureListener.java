@@ -292,7 +292,6 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
             playerImpl.showControlsThenHide();
 
         }
-        playerImpl.onPlayPause();
         return true;
     }
 

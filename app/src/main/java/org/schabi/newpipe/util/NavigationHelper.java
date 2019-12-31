@@ -301,6 +301,7 @@ public class NavigationHelper {
             VideoDetailFragment detailFragment = (VideoDetailFragment) fragment;
             detailFragment.setAutoplay(autoPlay);
             detailFragment.selectAndLoadVideo(serviceId, url, title, playQueue);
+            detailFragment.scrollToTop();
             return;
         }
 

@@ -346,7 +346,8 @@ public class VideoPlayerImpl extends VideoPlayer
                 // Use smaller value to be consistent between screen orientations
                 // (and to make usage easier)
                 int width = r - l, height = b - t;
-                maxGestureLength = (int) (Math.min(width, height) * MAX_GESTURE_LENGTH);
+                int min = Math.min(width, height);
+                maxGestureLength = (int) (min * MAX_GESTURE_LENGTH);
 
                 if (DEBUG) Log.d(TAG, "maxGestureLength = " + maxGestureLength);
 
@@ -354,6 +355,7 @@ public class VideoPlayerImpl extends VideoPlayer
                 brightnessProgressBar.setMax(maxGestureLength);
 
                 setInitialGestureValues();
+                queueLayout.getLayoutParams().height = min - queueLayout.getTop();
             }
         });
     }
@@ -620,8 +622,6 @@ public class VideoPlayerImpl extends VideoPlayer
                 DEFAULT_CONTROLS_DURATION);
 
         itemsList.scrollToPosition(playQueue.getIndex());
-
-        if (playQueue.getStreams().size() > 4 && !isInFullscreen()) toggleFullscreen();
     }
 
     private void onQueueClosed() {
