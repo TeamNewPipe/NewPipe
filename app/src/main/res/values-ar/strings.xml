@@ -543,7 +543,6 @@
     <string name="seek_duration_title">تسريع إلى الأمام/-ترجيع وقت البحث</string>
     <string name="peertube_instance_url_title">نموذج بيرتوب</string>
     <string name="peertube_instance_url_summary">تعيين حالات بيرتوب المفضلة لديك</string>
-    <string name="peertube_instance_url_help">ابحث عن النموذج التي يناسبك على https://joinpeertube.org/instances#instances-list</string>
     <string name="peertube_instance_add_title">إضافة نموذج</string>
     <string name="peertube_instance_add_help">أدخل رابط نموذج</string>
     <string name="peertube_instance_add_fail">فشل في التحقق من النموذج</string>
