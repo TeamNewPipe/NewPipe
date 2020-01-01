@@ -111,8 +111,8 @@
     <string name="enable_watch_history_title">היסטוריית צפייה</string>
     <string name="enable_watch_history_summary">תיעוד הסרטונים שנצפו</string>
     <string name="resume_on_audio_focus_gain_title">להמשיך את הניגון עם החזרת המיקוד</string>
-    <string name="resume_on_audio_focus_gain_summary">להמשיך לנגן לאחר הפרעות (למשל: שיחות טלפון)</string>
-    <string name="show_hold_to_append_title">להציג את העצה „להחזיק כדי להוסיף לרשימת נגינה”</string>
+    <string name="resume_on_audio_focus_gain_summary">המשך לנגן לאחר הפרעות (למשל: שיחות טלפון)</string>
+    <string name="show_hold_to_append_title">הצג את העצה „החזק כדי להוסיף לרשימת נגינה”</string>
     <string name="show_hold_to_append_summary">להציג עצה בעת לחיצה על כפתור בנגן רקע או צף בעמוד פרטי סרטון</string>
     <string name="settings_category_player_title">נגן</string>
     <string name="settings_category_player_behavior_title">התנהגות</string>
@@ -122,7 +122,7 @@
     <string name="playlist">רשימת נגינה</string>
     <string name="best_resolution">רזולוציה מיטבית</string>
     <string name="undo">ביטול</string>
-    <string name="play_all">לנגן הכול</string>
+    <string name="play_all">נגן הכול</string>
     <string name="notification_channel_name">התראה מ־NewPipe</string>
     <string name="notification_channel_description">התראות עבור נגן הרקע והנגן הצף של NewPipe</string>
     <string name="unknown_content">[לא ידוע]</string>
@@ -249,12 +249,12 @@
     <string name="play_queue_remove">הסרה</string>
     <string name="play_queue_stream_detail">פרטים</string>
     <string name="play_queue_audio_settings">אפשרויות שמע</string>
-    <string name="hold_to_append">להחזיק כדי להוסיף לרשימת נגינה</string>
-    <string name="enqueue_on_background">להוסיף לרשימת הנגינה ברקע</string>
+    <string name="hold_to_append">החזק כדי להוסיף לרשימת נגינה</string>
+    <string name="enqueue_on_background">הוסף לרשימת הנגינה ברקע</string>
     <string name="enqueue_on_popup">הוספה לתור בנגן צף חדש</string>
-    <string name="start_here_on_main">להתחיל לנגן מכאן</string>
-    <string name="start_here_on_background">להתחיל לנגן ברקע</string>
-    <string name="start_here_on_popup">להתחיל לנגן בחלון צף חדש</string>
+    <string name="start_here_on_main">התחל לנגן מכאן</string>
+    <string name="start_here_on_background">התחל לנגן ברקע</string>
+    <string name="start_here_on_popup">התחל לנגן בחלון צף חדש</string>
     <string name="controls_download_desc">הורדת קובץ הזרמה</string>
     <string name="show_info">הצגת מידע</string>
     <string name="tab_bookmarks">רשימות נגינה מסומנות</string>
@@ -338,7 +338,7 @@
     <string name="download_thumbnail_summary">כיבוי האפשרות מונע את טעינת התמונות הממוזערות, חוסך בתקשורת נתונים ובניצולת הזיכרון. שינויים באפשרות זו מוחקים את המטמון בזיכרון ובכונן.</string>
     <string name="metadata_cache_wipe_summary">הסרת כל נתוני העמודים שבמטמון</string>
     <string name="auto_queue_title">הוספת התזרים הבא לרשימת הנגינה אוטומטית</string>
-    <string name="auto_queue_summary">להוסיף אוטומטית תזרים דומה בעת נגינת התזרים האחרון בתור שאינו מחזורי</string>
+    <string name="auto_queue_summary">הוסף אוטומטית תזרים דומה בעת נגינת התזרים האחרון בתור שאינו מחזורי</string>
     <string name="toggle_orientation">החלפת כיווניות</string>
     <string name="switch_to_main">העברה לראשי</string>
     <string name="import_data_summary">משכתב את ההיסטוריה והמינויים הנוכחיים שלך</string>
@@ -393,7 +393,7 @@
     <string name="minimize_on_exit_title">מזעור בעת מעבר בין יישומונים</string>
     <string name="minimize_on_exit_summary">הפעולה לביצוע בעת מעבר ליישומון אחר מנגן הווידאו הראשי — %s</string>
     <string name="minimize_on_exit_none_description">כלום</string>
-    <string name="minimize_on_exit_background_description">מזעור לנגן הרקע</string>
+    <string name="minimize_on_exit_background_description">מזער לנגן הרקע</string>
     <string name="minimize_on_exit_popup_description">הקטנה לנגן צף</string>
     <string name="unsubscribe">ביטול מינוי</string>
     <string name="tab_new">לשונית חדשה</string>
@@ -490,7 +490,7 @@
     <string name="watch_history_states_deleted">מיקומי הנגינה נמחקו.</string>
     <string name="missing_file">הקובץ הועבר או נמחק</string>
     <string name="overwrite_unrelated_warning">כבר קיים קובץ בשם הזה</string>
-    <string name="overwrite_failed">לא ניתן לשכתב על הקובץ</string>
+    <string name="overwrite_failed">לא ניתן לשכתב את הקובץ</string>
     <string name="download_already_pending">כבר יש הורדה ממתינה בשם הזה</string>
     <string name="error_postprocessing_stopped">NewPipe נסגר בזמן העבודה על הקובץ</string>
     <string name="error_insufficient_storage">לא נשאר מקום במכשיר</string>
