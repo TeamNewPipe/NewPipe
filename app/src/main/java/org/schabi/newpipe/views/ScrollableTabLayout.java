@@ -106,7 +106,7 @@ public class ScrollableTabLayout extends TabLayout {
      * Calculate minimal width required by tabs and set tabMode accordingly
      */
     private void remeasureTabs() {
-        if (getVisibility() != View.VISIBLE) return;
+        if (prevVisibility != View.VISIBLE) return;
         if (layoutWidth == 0) return;
 
         final int count = getTabCount();
