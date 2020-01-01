@@ -511,5 +511,5 @@
     <string name="delete_playback_states_alert">Odstrániť všetky pozície prehrávania\?</string>
     <string name="download_choose_new_path">Zmeniť miesto pre stiahnuté súbory</string>
     <string name="drawer_header_description">Prepnúť službu, práve vybraté:</string>
-    <string name="default_kiosk_page_sumatry">Predvolený kiosk</string>
+    <string name="default_kiosk_page_summary">Predvolený kiosk</string>
 </resources>

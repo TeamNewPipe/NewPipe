@@ -93,7 +93,7 @@
     <string name="add">Nouvelle mission</string>
     <string name="finish">OK</string>
     <string name="msg_name">Nom du fichier</string>
-    <string name="msg_threads">Fils de discussion</string>
+    <string name="msg_threads">Nombre de connexions simultanées</string>
     <string name="msg_error">Erreur</string>
     <string name="msg_server_unsupported">Serveur non pris en charge</string>
     <string name="msg_exists">Fichier déjà existant</string>
@@ -130,12 +130,12 @@
     <string name="default_video_format_title">Format vidéo par défaut</string>
     <string name="popup_remember_size_pos_title">Mémoriser les taille et position de la fenêtre flottante</string>
     <string name="popup_remember_size_pos_summary">Mémorise les dernières taille et position de la fenêtre flottante</string>
-    <string name="settings_category_popup_title">Fenêtre flottante</string>
+    <string name="settings_category_popup_title">Fenêtré</string>
     <string name="filter">Filtre</string>
     <string name="refresh">Rafraîchir</string>
     <string name="clear">Effacer</string>
     <string name="popup_resizing_indicator_title">Redimensionner</string>
-    <string name="short_billion">B</string>
+    <string name="short_billion">Mrd</string>
     <string name="use_external_video_player_summary">Retire l’audio à CERTAINES définitions</string>
     <string name="player_gesture_controls_summary">Utiliser des gestes pour contrôler la luminosité et le volume du lecteur</string>
     <string name="show_search_suggestions_title">Suggestions de recherche</string>
@@ -205,8 +205,8 @@
     </plurals>
     <string name="no_videos">Aucune vidéo</string>
     <plurals name="videos">
-        <item quantity="one">%s vidéo</item>
-        <item quantity="other">%s vidéos</item>
+        <item quantity="one">Vidéo</item>
+        <item quantity="other">Vidéos</item>
     </plurals>
     <string name="charset_most_special_characters">Caractères spéciaux</string>
     <string name="item_deleted">Élément supprimé</string>
@@ -275,8 +275,8 @@
     <string name="export_data_summary">Exporte l’historique, les abonnements et les listes de lecture</string>
     <string name="export_complete_toast">Exporté</string>
     <string name="import_complete_toast">Importé</string>
-    <string name="no_valid_zip_file">Aucun fichier ZIP valide</string>
-    <string name="could_not_import_all_files">Avertissement : impossible d’importer tous les fichiers.</string>
+    <string name="no_valid_zip_file">Fichier ZIP non valide</string>
+    <string name="could_not_import_all_files">Avertissement : Impossible d\'importer tous les fichiers.</string>
     <string name="override_current_data">Cela effacera vos paramètres actuels.</string>
     <string name="show_info">Afficher les infos</string>
     <string name="tab_bookmarks">Listes de lecture enregistrées</string>
@@ -310,7 +310,7 @@
     <string name="use_inexact_seek_title">Utiliser la recherche rapide approximative</string>
     <string name="use_inexact_seek_summary">Permet au lecteur d’accéder plus rapidement à une position au détriment de la précision</string>
     <string name="download_thumbnail_title">Charger les miniatures</string>
-    <string name="download_thumbnail_summary">Désactiver pour empêcher le chargement des miniatures, afin de réduire l’utilisation de la bande passante et de la mémoire. Modifier cette option vide les caches d’image en mémoire vive et sur le disque.</string>
+    <string name="download_thumbnail_summary">Désactiver pour empêcher le chargement des miniatures afin d\'économiser vos données. Modifier cette option vide le cache en mémoire vive et sur le disque.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Images en cache effacées</string>
     <string name="metadata_cache_wipe_title">Effacer les métadonnées en cache</string>
     <string name="metadata_cache_wipe_summary">Efface toutes les données de pages Web en cache</string>
@@ -325,7 +325,7 @@
     <string name="drawer_header_action_paceholder_text">Quelque chose va bientôt apparaître ici ;D</string>
     <string name="controls_download_desc">Télécharger le fichier de flux</string>
     <string name="auto_queue_title">Vidéo suivante en file d’attente</string>
-    <string name="auto_queue_summary">Ajoute automatiquement un flux lié lors de la lecture du dernier flux dans une file d’attente sans répétition</string>
+    <string name="auto_queue_summary">Lecture automatique après la file d\'attente</string>
     <string name="settings_category_debug_title">Débogage</string>
     <string name="resize_fill">Remplir</string>
     <string name="caption_auto_generated">Générés automatiquement</string>
@@ -381,7 +381,7 @@
     <string name="app_license">NewPipe est un logiciel sous licence libre copyleft : vous pouvez l’utiliser, l’étudier, le partager et l’améliorer comme bon vous semble. Plus précisément, vous pouvez le redistribuer ou le modifier sous les termes de la licence générale publique GNU, comme publiée par la Free Software Foundation, dans sa version 3, ou, à votre convenance, dans une version quelconque version ultérieure.</string>
     <string name="privacy_policy_title">Politique de confidentialité de NewPipe</string>
     <string name="read_privacy_policy">Lire la politique de confidentialité</string>
-    <string name="import_settings">Voulez-vous également importer des paramètres \?</string>
+    <string name="import_settings">Voulez-vous également importer les paramètres \?</string>
     <string name="accept">Accepter</string>
     <string name="decline">Refuser</string>
     <string name="privacy_policy_encouragement">Le projet NewPipe prend votre vie privée très à cœur. Par conséquent, l’application n’envoie aucune donnée sans votre consentement.
@@ -401,7 +401,7 @@
     <string name="minimize_on_exit_summary">Action lors du basculement à une autre application depuis le lecteur vidéo — %s</string>
     <string name="minimize_on_exit_none_description">Aucune</string>
     <string name="minimize_on_exit_background_description">Minimiser pour lire en arrière-plan</string>
-    <string name="minimize_on_exit_popup_description">Minimiser pour lire en mode flottant</string>
+    <string name="minimize_on_exit_popup_description">Basculer vers le mode fenêtré</string>
     <string name="unsubscribe">Se désabonner</string>
     <string name="tab_new">Nouvel onglet</string>
     <string name="tab_choose">Sélectionner un onglet</string>
@@ -421,14 +421,14 @@
     <string name="stop">Arrêter</string>
     <string name="events">Évènements</string>
     <string name="download_to_sdcard_error_message">Impossible de télécharger dans la carte mémoire externe. Voulez-vous réinitialiser l’emplacement du dossier de téléchargement \?</string>
-    <string name="main_page_content_summary">Sélection des onglets à afficher sur la page principale</string>
+    <string name="main_page_content_summary">Choisir quels onglets seront visibles sur la page principale</string>
     <string name="updates_setting_title">Mises à jour</string>
     <string name="updates_setting_description">Afficher une notification pour proposer une mise à jour de l’application lorsqu’une nouvelle version est disponible</string>
     <string name="list">Liste</string>
     <string name="grid">Grille</string>
     <string name="auto">Auto</string>
     <string name="switch_view">Changer de vue</string>
-    <string name="app_update_notification_content_title">Une mise à jour de NewPipe disponible !</string>
+    <string name="app_update_notification_content_title">Une mise à jour de NewPipe est disponible !</string>
     <string name="app_update_notification_content_text">Appuyer pour télécharger</string>
     <string name="missions_header_finished">Terminé</string>
     <string name="missions_header_pending">En attente</string>
@@ -443,7 +443,7 @@
     <string name="overwrite">Écraser</string>
     <string name="overwrite_unrelated_warning">Un fichier avec ce nom existe déjà</string>
     <string name="overwrite_finished_warning">Un fichier téléchargé avec ce nom existe déjà</string>
-    <string name="download_already_running">Il y a un téléchargement en cours avec ce nom</string>
+    <string name="download_already_running">Il y a déjà un téléchargement en cours avec ce nom</string>
     <string name="show_error">Afficher l’erreur</string>
     <string name="label_code">Code</string>
     <string name="error_path_creation">Le dossier de destination ne peut pas être créé</string>
@@ -464,7 +464,7 @@
     <string name="error_postprocessing_failed">Le post-traitement a échoué</string>
     <string name="max_retry_msg">Nombre maximum de tentatives</string>
     <string name="max_retry_desc">Nombre maximum de tentatives avant d’annuler le téléchargement</string>
-    <string name="saved_tabs_invalid_json">Utilisation des onglets par défaut, erreur lors de la lecture des onglets enregistrés</string>
+    <string name="saved_tabs_invalid_json">En utilisation les onglets par défaut, une erreur est survenue en lisant les onglets sauvegardés</string>
     <string name="error_http_unsupported_range">Le serveur n’accepte pas les téléchargements multi-fils, veuillez réessayer avec @string/msg_threads = 1</string>
     <string name="show_comments_title">Afficher les commentaires</string>
     <string name="show_comments_summary">Désactiver pour ne pas afficher les commentaires</string>
@@ -505,5 +505,16 @@
     <string name="delete_playback_states_alert">Voulez-vous supprimer toutes les positions de reprise de lecture \?</string>
     <string name="download_choose_new_path">Changez les dossiers de téléchargement pour que cela prenne effet</string>
     <string name="drawer_header_description">Activer/Désactiver le service, actuellement sélectionné :</string>
-    <string name="default_kiosk_page_sumatry">Kiosque par défaut</string>
+    <string name="default_kiosk_page_summary">Kiosque par défaut</string>
+    <string name="no_one_watching">Personne ne regarde</string>
+    <plurals name="watching">
+        <item quantity="one">%s regarde</item>
+        <item quantity="other">%s regardent</item>
+    </plurals>
+    <string name="no_one_listening">Personne n\'écoute</string>
+    <plurals name="listening">
+        <item quantity="one">%s auditeur</item>
+        <item quantity="other">%s auditeurs</item>
+    </plurals>
+    <string name="localization_changes_requires_app_restart">La langue changera lors du redémarrage de l\'application.</string>
 </resources>

@@ -328,7 +328,7 @@
     </plurals>
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
-    <string name="short_billion">B</string>
+    <string name="short_billion">Mrd</string>
     <string name="title_activity_about">Pri NewPipe</string>
     <string name="action_settings">Agordoj</string>
     <string name="action_about">Pri</string>
@@ -425,9 +425,9 @@
     <string name="subscriptions_import_unsuccessful">Ne povis importi abonojn</string>
     <string name="subscriptions_export_unsuccessful">Ne povis eksporti abonojn</string>
     <string name="import_soundcloud_instructions_hint">via salutnomo, soundcloud.com/salutnomo</string>
-    <string name="import_network_expensive_warning">"Memoru, ke ĉi tiu operacio povas esti multekosta en la reto.
+    <string name="import_network_expensive_warning">Memoru, ke ĉi tiu operacio povas esti multekosta en la reto.
 \n
-\nĈu vi  volas daŭrigi\?"</string>
+\nĈu vi volas daŭrigi\?</string>
     <string name="playback_speed_control">Kontroloj de rapideco de ludo</string>
     <string name="playback_tempo">Tempoindiko</string>
     <string name="playback_pitch">Ludkampo</string>
@@ -491,11 +491,9 @@
     <string name="error_connect_host">Ne povas konektiĝi al la servilo</string>
     <string name="error_http_no_content">La servilo ne sendas datumojn</string>
     <string name="error_http_unsupported_range">La servilo ne akceptas plurfadenajn elŝutojn, reprovu kun @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">Petita kampo ne estas havebla</string>
     <string name="error_http_not_found">Ne trovita</string>
     <string name="error_postprocessing_failed">Postprocesado malsukcesis</string>
     <string name="clear_finished_download">Forviŝi la finitajn elŝutojn</string>
-    <string name="msg_pending_downloads">Daŭrigi viajn %s pritraktajn delokigojn el Elŝutoj</string>
     <string name="pause_downloads_on_mobile_desc">Utila dum la ŝanĝo al poŝdatumoj, kvankam kelkaj elŝutoj ne povas esti interrompitaj</string>
     <string name="no_comments">Neniu komento</string>
     <string name="overwrite_unrelated_warning">Dosiero kun ĉi tiu nomo jam ekzistas</string>
@@ -506,5 +504,16 @@
     <string name="error_progress_lost">Progreso perdita, ĉar la dosiero estis forviŝita</string>
     <string name="error_timeout">Eltempiĝo de Konekto</string>
     <string name="drawer_header_description">Ŝangi la servon, nuntempe elektita:</string>
-    <string name="default_kiosk_page_sumatry">Defaŭlta Kiosko</string>
+    <string name="default_kiosk_page_summary">Defaŭlta Kiosko</string>
+    <string name="no_one_watching">Neniu spektas</string>
+    <plurals name="watching">
+        <item quantity="one">%s spektanta</item>
+        <item quantity="other">%s spektanta</item>
+    </plurals>
+    <string name="no_one_listening">Neniu aŭskultas</string>
+    <plurals name="listening">
+        <item quantity="one">%s aŭskultanto</item>
+        <item quantity="other">%s aŭskultantoj</item>
+    </plurals>
+    <string name="localization_changes_requires_app_restart">La lingvo ŝanĝos kiam la apo restartos.</string>
 </resources>

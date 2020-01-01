@@ -446,7 +446,6 @@
     <string name="error_connect_host">No se puede conectar con el servidor</string>
     <string name="error_http_no_content">El servidor no devolvio datos</string>
     <string name="error_http_unsupported_range">El servidor no acepta descargas multi-hilos, intente de nuevo con @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">No se puede satisfacer el intervalo seleccionado</string>
     <string name="error_http_not_found">No encontrado</string>
     <string name="error_postprocessing_failed">Falló el posprocesamiento</string>
     <string name="error_postprocessing_stopped">NewPipe se cerró mientras se trabajaba en el archivo</string>
@@ -491,8 +490,8 @@
     <string name="show_comments_summary">Desactívela para ocultar los comentarios</string>
     <string name="autoplay_title">Reproducción automática</string>
     <plurals name="comments">
-        <item quantity="one">Comentarios</item>
-        <item quantity="other"/>
+        <item quantity="one">Comentario</item>
+        <item quantity="other">Comentarios</item>
     </plurals>
     <string name="no_comments">Sin comentarios</string>
     <string name="error_unable_to_load_comments">No se pudo cargar comentarios</string>
@@ -507,5 +506,16 @@
     <string name="clear_playback_states_summary">Elimina todas las posiciones de reproducción</string>
     <string name="delete_playback_states_alert">¿Quiere eliminar todas las posiciones de reproducción\?</string>
     <string name="drawer_header_description">Activar/desactivar servicio, seleccionados actualmente:</string>
-    <string name="default_kiosk_page_sumatry">kiosco predeterminado</string>
+    <string name="default_kiosk_page_summary">kiosco predeterminado</string>
+    <string name="no_one_watching">Nadie está viendo</string>
+    <plurals name="watching">
+        <item quantity="one">%s viendo</item>
+        <item quantity="other">%s viendo</item>
+    </plurals>
+    <string name="no_one_listening">Nadie está escuchando</string>
+    <plurals name="listening">
+        <item quantity="one">%s escucha</item>
+        <item quantity="other">%s escuchas</item>
+    </plurals>
+    <string name="localization_changes_requires_app_restart">El idioma cambiará luego de que la app sea reiniciada.</string>
 </resources>

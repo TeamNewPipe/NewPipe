@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -87,6 +88,13 @@ public class PeertubeInstanceListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View rootView, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(rootView, savedInstanceState);
+
+        initViews(rootView);
+    }
+
+    private void initViews(@NonNull View rootView) {
+        TextView instanceHelpTV = rootView.findViewById(R.id.instanceHelpTV);
+        instanceHelpTV.setText(getString(R.string.peertube_instance_url_help, getString(R.string.peertube_instance_list_url)));
 
         initButton(rootView);
 
@@ -203,17 +211,18 @@ public class PeertubeInstanceListFragment extends Fragment {
 
     private void showAddItemDialog(Context c) {
         final EditText urlET = new EditText(c);
+        urlET.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_URI);
         urlET.setHint(R.string.peertube_instance_add_help);
         AlertDialog dialog = new AlertDialog.Builder(c)
                 .setTitle(R.string.peertube_instance_add_title)
                 .setIcon(R.drawable.place_holder_peertube)
-                .setView(urlET)
                 .setNegativeButton(R.string.cancel, null)
                 .setPositiveButton(R.string.finish, (dialog1, which) -> {
                     String url = urlET.getText().toString();
                     addInstance(url);
                 })
                 .create();
+        dialog.setView(urlET, 50, 0, 50, 0);
         dialog.show();
     }
 
@@ -237,6 +246,7 @@ public class PeertubeInstanceListFragment extends Fragment {
 
     @Nullable
     private String cleanUrl(String url){
+        url = url.trim();
         // if protocol not present, add https
         if(!url.startsWith("http")){
             url = "https://" + url;
