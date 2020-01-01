@@ -95,6 +95,9 @@ public final class BackgroundPlayer extends Service {
 
     private boolean shouldUpdateOnProgress;
 
+    private static final int NOTIFICATION_UPDATES_BEFORE_RESET = 60;
+    private int timesNotificationUpdated;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Service's LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
@@ -180,6 +183,7 @@ public final class BackgroundPlayer extends Service {
 
     private void resetNotification() {
         notBuilder = createNotification();
+        timesNotificationUpdated = 0;
     }
 
     private NotificationCompat.Builder createNotification() {
@@ -252,6 +256,7 @@ public final class BackgroundPlayer extends Service {
             if (bigNotRemoteView != null) bigNotRemoteView.setImageViewResource(R.id.notificationPlayPause, drawableId);
         }
         notificationManager.notify(NOTIFICATION_ID, notBuilder.build());
+        timesNotificationUpdated++;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -351,8 +356,10 @@ public final class BackgroundPlayer extends Service {
             updateProgress(currentProgress, duration, bufferPercent);
 
             if (!shouldUpdateOnProgress) return;
-            resetNotification();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O /*Oreo*/) updateNotificationThumbnail();
+            if (timesNotificationUpdated > NOTIFICATION_UPDATES_BEFORE_RESET) {
+                resetNotification();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O /*Oreo*/) updateNotificationThumbnail();
+            }
             if (bigNotRemoteView != null) {
                 if(cachedDuration != duration) {
                     cachedDuration = duration;
