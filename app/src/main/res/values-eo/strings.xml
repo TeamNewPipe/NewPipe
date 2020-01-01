@@ -61,7 +61,7 @@
     <string name="error_report_button_text">Signali eraron per retpoŝto</string>
     <string name="error_snackbar_action">SIGNALI</string>
     <string name="what_device_headline">Informoj:</string>
-    <string name="your_comment">Via komento (en la angla):</string>
+    <string name="your_comment">Via komento (angle):</string>
     <string name="error_details_headline">Detaloj:</string>
     <string name="report_error">Signali eraron</string>
     <string name="video">Filmeto</string>
@@ -80,7 +80,7 @@
     <string name="show_info">Montri informojn</string>
     <string name="tab_main">Ĉefa</string>
     <string name="tab_subscriptions">Abonoj</string>
-    <string name="tab_bookmarks">Legosigno</string>
+    <string name="tab_bookmarks">Konservitaj ludlistoj</string>
     <string name="fragment_whats_new">Kio novas</string>
     <string name="controls_background_title">Fono</string>
     <string name="controls_popup_title">Ŝprucfenestro</string>
@@ -516,4 +516,20 @@
         <item quantity="other">%s aŭskultantoj</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">La lingvo ŝanĝos kiam la apo restartos.</string>
+    <string name="seek_duration_title">Rapida antaŭen / posten daŭron</string>
+    <string name="peertube_instance_url_title">Instancoj de PeerTube</string>
+    <string name="peertube_instance_url_summary">Registri viajn preferitajn instancojn de PeerTube</string>
+    <string name="peertube_instance_url_help">Trovu la instancojn kiu vi povus ŝati ĉe https://joinpeertube.org/instances#instances-list</string>
+    <string name="peertube_instance_add_title">Aldoni instanco</string>
+    <string name="peertube_instance_add_help">Eniri la ligilon de la instanco</string>
+    <string name="peertube_instance_add_fail">Malsukcesis validigi instanco</string>
+    <string name="peertube_instance_add_https_only">Nur https ligiloj estas subtenitaj</string>
+    <string name="peertube_instance_add_exists">La instanco jam ekzistas</string>
+    <string name="local">Loka</string>
+    <string name="recently_added">Freŝdate ĝisdatigita</string>
+    <string name="most_liked">La plej ŝatitatj</string>
+    <string name="playlist_no_uploader">Aŭtomate generita (neniu alŝutilo trovita)</string>
+    <string name="recovering">Reakiranta</string>
+    <string name="error_download_resource_gone">Ne povas reakiri tion elŝuton</string>
+    <string name="choose_instance_prompt">Elektu instancon</string>
 </resources>
