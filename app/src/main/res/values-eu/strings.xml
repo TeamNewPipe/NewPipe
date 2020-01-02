@@ -500,13 +500,13 @@
     <string name="download_choose_new_path">Aldatu deskargen karpetak indarrean jartzeko</string>
     <string name="no_one_watching">Ez dago inor ikusten</string>
     <plurals name="watching">
-        <item quantity="one">%s ikusten</item>
-        <item quantity="other">%s ikusten</item>
+        <item quantity="one">ikusle %s</item>
+        <item quantity="other">%s ikusle</item>
     </plurals>
     <string name="no_one_listening">Ez dago inor entzuten</string>
     <plurals name="listening">
-        <item quantity="one">%s entzuten</item>
-        <item quantity="other">%s entzuten</item>
+        <item quantity="one">entzule %s</item>
+        <item quantity="other">%s entzule</item>
     </plurals>
     <string name="downloads_storage_use_saf_title">SAF erabili</string>
     <string name="downloads_storage_use_saf_summary">Biltegian Sartzeko Armazoiak kanpoko SD txartel betera jaitsierak egitea ahalbidetzen du.
@@ -517,4 +517,20 @@
     <string name="drawer_header_description">Aktibatu zerbitzua, orain hautatua:</string>
     <string name="localization_changes_requires_app_restart">Hizkuntza aldatuko da aplikazioa berrabiarazterakoan.</string>
     <string name="default_kiosk_page_summary">Kiosko Lehenetsia</string>
+    <string name="seek_duration_title">Aurreratze/atzeratze bilaketaren iraupena</string>
+    <string name="peertube_instance_url_title">PeerTube instantziak</string>
+    <string name="peertube_instance_url_summary">Ezarri zure gogoko peertube instantziak</string>
+    <string name="peertube_instance_url_help">Aurkitu instantziak hemen: https://joinpeertube.org/instances#instances-list</string>
+    <string name="peertube_instance_add_title">Gehitu instantzia</string>
+    <string name="peertube_instance_add_help">Sartu instantziaren URLa</string>
+    <string name="peertube_instance_add_fail">Huts egin du instantzia balioztatzean</string>
+    <string name="peertube_instance_add_https_only">https URLak onartzen dira soilik</string>
+    <string name="peertube_instance_add_exists">Instantzia badago aurretik</string>
+    <string name="local">Lokala</string>
+    <string name="recently_added">Berriki gehitua</string>
+    <string name="most_liked">Gogokoenak</string>
+    <string name="playlist_no_uploader">Automatikoki sortua (igotzailea ez da aurkitu)</string>
+    <string name="recovering">berreskuratzen</string>
+    <string name="error_download_resource_gone">Ezin da deskarga hau berreskuratu</string>
+    <string name="choose_instance_prompt">Aukeratu instantzia</string>
 </resources>
