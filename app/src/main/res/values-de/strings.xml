@@ -529,4 +529,8 @@
     <string name="choose_instance_prompt">Wähle eine Instanz</string>
     <string name="peertube_instance_url_summary">Bevorzugte Peertube-Instanzen festlegen</string>
     <string name="peertube_instance_add_https_only">Es werden nur https-Adressen unterstützt</string>
+    <string name="seek_duration_title">Dauer der Suche bei schnellem Vor-/Zurückspulen</string>
+    <string name="most_liked">Am beliebtesten</string>
+    <string name="recovering">Wiederherstellen</string>
+    <string name="error_download_resource_gone">Dieser Download kann nicht wiederhergestellt werden</string>
 </resources>
