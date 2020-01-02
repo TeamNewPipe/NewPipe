@@ -24,4 +24,12 @@
     <string name="download_path_title">Dossier de discarga de video</string>
     <string name="download_path_dialog_title">Selige le dossier de discarga pro files de video</string>
     <string name="download_path_audio_title">Dossier de discarga de audio</string>
+    <string name="cancel">Cancellar</string>
+    <string name="subscribe_button_title">Subscriber</string>
+    <string name="download_path_audio_dialog_title">Selige le dossier de discarga pro files de audio</string>
+    <string name="theme_title">Thema</string>
+    <string name="show_comments_title">Monstrar le commentos</string>
+    <string name="start_downloads">Initiar discargas</string>
+    <string name="pause_downloads">Pausar le discargas</string>
+    <string name="choose_instance_prompt">Seliger un instantia</string>
 </resources>
