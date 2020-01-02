@@ -89,6 +89,13 @@ public class PeertubeInstanceListFragment extends Fragment {
     public void onViewCreated(@NonNull View rootView, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(rootView, savedInstanceState);
 
+        initViews(rootView);
+    }
+
+    private void initViews(@NonNull View rootView) {
+        TextView instanceHelpTV = rootView.findViewById(R.id.instanceHelpTV);
+        instanceHelpTV.setText(getString(R.string.peertube_instance_url_help, getString(R.string.peertube_instance_list_url)));
+
         initButton(rootView);
 
         RecyclerView listInstances = rootView.findViewById(R.id.instances);
