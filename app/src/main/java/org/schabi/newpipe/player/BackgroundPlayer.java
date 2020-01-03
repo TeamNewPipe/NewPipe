@@ -403,9 +403,13 @@ public final class BackgroundPlayer extends Service {
             updateProgress(currentProgress, duration, bufferPercent);
 
             if (!shouldUpdateOnProgress) return;
-            if (timesNotificationUpdated > NOTIFICATION_UPDATES_BEFORE_RESET) {resetNotification();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O /*Oreo*/)
-                updateNotificationThumbnail();}
+            if (timesNotificationUpdated > NOTIFICATION_UPDATES_BEFORE_RESET) {
+                resetNotification();
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O /*Oreo*/) {
+                    updateNotificationThumbnail();
+                }
+            }
             if (bigNotRemoteView != null) {
                 if (cachedDuration != duration) {
                     cachedDuration = duration;

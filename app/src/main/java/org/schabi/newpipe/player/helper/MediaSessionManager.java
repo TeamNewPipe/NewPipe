@@ -82,7 +82,7 @@ public class MediaSessionManager {
     }
 
     /**
-     * Should be called on player destruction to prevent leakage.BitmapUtils
+     * Should be called on player destruction to prevent leakage.
      */
     public void dispose() {
         this.sessionConnector.setPlayer(null);
