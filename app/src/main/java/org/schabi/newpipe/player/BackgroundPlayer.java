@@ -201,12 +201,12 @@ public final class BackgroundPlayer extends Service {
         setupNotification(notRemoteView);
         setupNotification(bigNotRemoteView);
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, getString(R.string.notification_channel_id));
-        builder.setOngoing(true);
-        builder.setSmallIcon(R.drawable.ic_newpipe_triangle_white);
-        builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
-        builder.setCustomContentView(notRemoteView);
-        builder.setCustomBigContentView(bigNotRemoteView);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
+                .setOngoing(true)
+                .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                .setCustomContentView(notRemoteView)
+                .setCustomBigContentView(bigNotRemoteView);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             setLockScreenThumbnail(builder);
