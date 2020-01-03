@@ -50,15 +50,8 @@ public class MediaSessionManager {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public void setLockScreenArt(
-            NotificationCompat.Builder builder,
-            @Nullable Bitmap thumbnailBitmap
-    ) {
-        if (thumbnailBitmap == null) {
-            return;
-        }
-
-        if (!mediaSession.isActive()) {
+    public void setLockScreenArt(NotificationCompat.Builder builder, @Nullable Bitmap thumbnailBitmap) {
+        if (thumbnailBitmap == null || !mediaSession.isActive()) {
             return;
         }
 

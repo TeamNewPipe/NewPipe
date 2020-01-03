@@ -83,7 +83,7 @@
 
         <SwitchPreference
             app:iconSpaceReserved="false"
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:key="@string/enable_lock_screen_video_thumbnail_key"
             android:summary="@string/enable_lock_screen_video_thumbnail_summary"
             android:title="@string/enable_lock_screen_video_thumbnail_title"/>
@@ -153,5 +153,14 @@
             android:key="@string/use_inexact_seek_key"
             android:summary="@string/use_inexact_seek_summary"
             android:title="@string/use_inexact_seek_title"/>
+
+        <ListPreference
+          app:iconSpaceReserved="false"
+          android:defaultValue="@string/seek_duration_default_value"
+          android:entries="@array/seek_duration_description"
+          android:entryValues="@array/seek_duration_value"
+          android:key="@string/seek_duration_key"
+          android:summary="%s"
+          android:title="@string/seek_duration_title"/>
     </PreferenceCategory>
 </PreferenceScreen>

@@ -22,11 +22,11 @@ public class BitmapUtils {
         float newYScale;
 
         if (yScale > xScale) {
-            newXScale = (1.0f / yScale) * xScale;
+            newXScale = xScale / yScale;
             newYScale = 1.0f;
         } else {
             newXScale = 1.0f;
-            newYScale = (1.0f / xScale) * yScale;
+            newYScale = yScale / xScale;
         }
 
         float scaledWidth = newXScale * sourceWidth;

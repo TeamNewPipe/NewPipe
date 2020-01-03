@@ -30,6 +30,7 @@ import org.schabi.newpipe.settings.tabs.Tab;
 import org.schabi.newpipe.settings.tabs.TabsManager;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ServiceHelper;
+import org.schabi.newpipe.views.ScrollableTabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,7 @@ import java.util.List;
 public class MainFragment extends BaseFragment implements TabLayout.OnTabSelectedListener {
     private ViewPager viewPager;
     private SelectedTabsPagerAdapter pagerAdapter;
-    private TabLayout tabLayout;
+    private ScrollableTabLayout tabLayout;
 
     private List<Tab> tabsList = new ArrayList<>();
     private TabsManager tabsManager;

@@ -184,8 +184,8 @@
         <item quantity="other">%s दर्शके</item>
     </plurals>
     <plurals name="videos">
-        <item quantity="one">%s वीडियो</item>
-        <item quantity="other">%s वीडियो</item>
+        <item quantity="one">वीडियो</item>
+        <item quantity="other">वीडियो</item>
     </plurals>
     <string name="start">शुरू</string>
     <string name="pause">रोके</string>
@@ -435,7 +435,6 @@
     <string name="error_unknown_host">सर्वर नहीं ढूँढ सका</string>
     <string name="error_connect_host">सर्वर से जुड़ नहीं सकता</string>
     <string name="error_http_no_content">सर्वर डेटा नहीं भेजता है</string>
-    <string name="error_http_requested_range_not_satisfiable">अनुरोधित सीमा संतोषजनक नहीं है</string>
     <string name="error_http_not_found">नहीं मिला</string>
     <string name="error_postprocessing_failed">प्रक्रिया के बाद का कार्य विफल रहा</string>
     <string name="clear_finished_download">समाप्त डाउनलोड साफ़ करें</string>
@@ -498,11 +497,21 @@
     <string name="auto">ऑटो</string>
     <string name="show_error">मुसीबत दिखाए</string>
     <string name="error_http_unsupported_range">सर्वर मल्टी थ्रेडेड डाउनलोड स्वीकार नहीं करता, पुनः कोशिश करे @string/msg_threads = 1 के साथ</string>
-    <string name="msg_pending_downloads">आपके %s रुके हुए कामों को डौन्लोडस में पुनः से शुरू करे</string>
-    <string name="downloads_storage_ask_summary_kitkat">आपको डाउनलोड कहाँ सहेजना है हर डाउनलोड पर पूछा जायेगा 
+    <string name="downloads_storage_ask_summary_kitkat">आपको डाउनलोड कहाँ सहेजना है हर डाउनलोड पर पूछा जायेगा
 \nअगर आपको एक्सटर्नल एस डी कार्ड पर डाउनलोड करना हो तो एस ऐ ऍफ़ चुनिए</string>
     <string name="downloads_storage_use_saf_summary">स्टोरेज एक्सेस फ्रेमवर्क (एस ऐ ऍफ़) आपको एस डी कार्ड पर डाउनलोड करने देता है 
 \nसुचना - कुछ उपकरणों पर ये नहीं चलता</string>
     <string name="drawer_header_description">सेवा चुने, वर्तमान चुनाव :</string>
-    <string name="default_kiosk_page_sumatry">सामान्य कीओस्क</string>
+    <string name="default_kiosk_page_summary">सामान्य कीओस्क</string>
+    <string name="no_one_watching">कोई नहीं देख रहा है</string>
+    <plurals name="watching">
+        <item quantity="one">% s आदमी देख रहा है</item>
+        <item quantity="other">% s आदमी देख रहे है</item>
+    </plurals>
+    <string name="no_one_listening">कोई नहीं सुन रहा है</string>
+    <plurals name="listening">
+        <item quantity="one">% s श्रोता</item>
+        <item quantity="other">% s श्रोता</item>
+    </plurals>
+    <string name="localization_changes_requires_app_restart">ऐप के पुनः आरंभ होने के बाद भाषा बदल जाएगी।</string>
 </resources>
