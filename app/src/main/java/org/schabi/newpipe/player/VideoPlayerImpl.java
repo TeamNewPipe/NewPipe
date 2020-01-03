@@ -25,6 +25,7 @@ import android.annotation.SuppressLint;
 import android.content.*;
 import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
+import android.graphics.Point;
 import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
@@ -124,7 +125,6 @@ public class VideoPlayerImpl extends VideoPlayer
     private ImageButton shareButton;
 
     private View primaryControls;
-    private LinearLayout topControls;
     private View secondaryControls;
 
     private int maxGestureLength;
@@ -245,7 +245,6 @@ public class VideoPlayerImpl extends VideoPlayer
 
         this.moreOptionsButton = rootView.findViewById(R.id.moreOptionsButton);
         this.primaryControls = rootView.findViewById(R.id.primaryControls);
-        this.topControls = rootView.findViewById(R.id.topControls);
         this.secondaryControls = rootView.findViewById(R.id.secondaryControls);
         this.shareButton = rootView.findViewById(R.id.share);
 
@@ -285,7 +284,7 @@ public class VideoPlayerImpl extends VideoPlayer
             getRootView().findViewById(R.id.metadataView).setVisibility(View.GONE);
             queueButton.setVisibility(View.GONE);
             moreOptionsButton.setVisibility(View.GONE);
-            topControls.setOrientation(LinearLayout.HORIZONTAL);
+            getTopControlsRoot().setOrientation(LinearLayout.HORIZONTAL);
             primaryControls.getLayoutParams().width = LinearLayout.LayoutParams.WRAP_CONTENT;
             secondaryControls.setAlpha(1f);
             secondaryControls.setVisibility(View.VISIBLE);
@@ -297,7 +296,7 @@ public class VideoPlayerImpl extends VideoPlayer
             fullscreenButton.setVisibility(View.GONE);
             getRootView().findViewById(R.id.metadataView).setVisibility(View.VISIBLE);
             moreOptionsButton.setVisibility(View.VISIBLE);
-            topControls.setOrientation(LinearLayout.VERTICAL);
+            getTopControlsRoot().setOrientation(LinearLayout.VERTICAL);
             primaryControls.getLayoutParams().width = LinearLayout.LayoutParams.MATCH_PARENT;
             secondaryControls.setVisibility(View.GONE);
             moreOptionsButton.setImageDrawable(service.getResources().getDrawable(
@@ -507,7 +506,7 @@ public class VideoPlayerImpl extends VideoPlayer
 
     @Override
     public void toggleFullscreen() {
-        if (DEBUG) Log.d(TAG, "onFullScreenButtonClicked() called");
+        if (DEBUG) Log.d(TAG, "toggleFullscreen() called");
         if (simpleExoPlayer == null || getCurrentMetadata() == null) return;
 
         if (popupPlayerSelected()) {
@@ -535,6 +534,7 @@ public class VideoPlayerImpl extends VideoPlayer
             if (fragmentListener == null) return;
 
             isFullscreen = !isFullscreen;
+            setControlsWidth();
             fragmentListener.onFullscreenStateChanged(isInFullscreen());
             // When user presses back button in landscape mode and in fullscreen and uses ZOOM mode
             // a video can be larger than screen. Prevent it like this
@@ -595,7 +595,8 @@ public class VideoPlayerImpl extends VideoPlayer
             getControlsVisibilityHandler().removeCallbacksAndMessages(null);
             animateView(getControlsRoot(), true, DEFAULT_CONTROLS_DURATION, 0, () -> {
                 if (getCurrentState() == STATE_PLAYING && !isSomePopupMenuVisible()) {
-                    hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
+                    if (v.getId() == playPauseButton.getId()) hideControls(0, 0);
+                    else hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
                 }
             });
         }
@@ -816,6 +817,8 @@ public class VideoPlayerImpl extends VideoPlayer
         service.getLockManager().acquireWifiAndCpu();
         service.resetNotification();
         service.updateNotification(R.drawable.ic_pause_white);
+
+        service.startForeground(NOTIFICATION_ID, service.getNotBuilder().build());
     }
 
     @Override
@@ -830,6 +833,10 @@ public class VideoPlayerImpl extends VideoPlayer
 
         service.resetNotification();
         service.updateNotification(R.drawable.ic_play_arrow_white);
+
+        // Remove running notification when user don't want music (or video in popup) to be played in background
+        if (!minimizeOnPopupEnabled() && !backgroundPlaybackEnabled() && videoPlayerSelected())
+            service.stopForeground(true);
 
         getRootView().setKeepScreenOn(false);
 
@@ -1033,6 +1040,7 @@ public class VideoPlayerImpl extends VideoPlayer
         if (queueVisible) return;
 
         showOrHideButtons();
+        showSystemUIPartially();
         super.showControlsThenHide();
     }
 
@@ -1041,6 +1049,7 @@ public class VideoPlayerImpl extends VideoPlayer
         if (queueVisible) return;
 
         showOrHideButtons();
+        showSystemUIPartially();
         super.showControls(duration);
     }
 
@@ -1078,10 +1087,34 @@ public class VideoPlayerImpl extends VideoPlayer
             queueButton.setVisibility(View.VISIBLE);
     }
 
+    private void showSystemUIPartially() {
+        if (isInFullscreen()) {
+            int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_FULLSCREEN;
+            getParentActivity().getWindow().getDecorView().setSystemUiVisibility(visibility);
+        }
+    }
+
     @Override
     public void hideSystemUIIfNeeded() {
         if (fragmentListener != null)
             fragmentListener.hideSystemUIIfNeeded();
+    }
+
+    private void setControlsWidth() {
+        Point size = new Point();
+        // This method will give a correct size of a usable area of a window.
+        // It doesn't include NavigationBar, notches, etc.
+        getRootView().getDisplay().getSize(size);
+
+        int width = isFullscreen ? size.x : ViewGroup.LayoutParams.MATCH_PARENT;
+        primaryControls.getLayoutParams().width = width;
+        primaryControls.requestLayout();
+        secondaryControls.getLayoutParams().width = width;
+        secondaryControls.requestLayout();
+        getBottomControlsRoot().getLayoutParams().width = width;
+        getBottomControlsRoot().requestLayout();
     }
 
     private void updatePlaybackButtons() {

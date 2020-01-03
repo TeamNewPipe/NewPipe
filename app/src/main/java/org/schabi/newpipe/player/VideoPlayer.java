@@ -38,11 +38,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.PopupMenu;
-import android.widget.ProgressBar;
-import android.widget.SeekBar;
-import android.widget.TextView;
+import android.widget.*;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -131,7 +127,7 @@ public abstract class VideoPlayer extends BasePlayer
     private TextView playbackLiveSync;
     private TextView playbackSpeedTextView;
 
-    private View topControlsRoot;
+    private LinearLayout topControlsRoot;
     private TextView qualityTextView;
 
     private SubtitleView subtitleView;
@@ -961,7 +957,7 @@ public abstract class VideoPlayer extends BasePlayer
         return playbackEndTime;
     }
 
-    public View getTopControlsRoot() {
+    public LinearLayout getTopControlsRoot() {
         return topControlsRoot;
     }
 

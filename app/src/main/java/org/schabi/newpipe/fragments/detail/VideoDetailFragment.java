@@ -1244,7 +1244,7 @@ public class VideoDetailFragment
 
         int height;
         if (player != null && player.isInFullscreen())
-            height = activity.getWindow().getDecorView().getHeight();
+            height = isInMultiWindow() ? getView().getHeight() : activity.getWindow().getDecorView().getHeight();
         else
             height = isPortrait
                     ? (int) (metrics.widthPixels / (16.0f / 9.0f))
@@ -1669,8 +1669,7 @@ public class VideoDetailFragment
                 player.useVideoSource(false);
             else if (player.minimizeOnPopupEnabled())
                 NavigationHelper.playOnPopupPlayer(activity, playQueue, true);
-            else
-                player.getPlayer().setPlayWhenReady(false);
+            else player.onPause();
         }
         else player.useVideoSource(true);
     }
@@ -1751,23 +1750,18 @@ public class VideoDetailFragment
 
         getActivity().getWindow().getDecorView().setSystemUiVisibility(0);
         getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     private void hideSystemUi() {
         if (DEBUG) Log.d(TAG, "hideSystemUi() called");
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                visibility |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-            }
-            activity.getWindow().getDecorView().setSystemUiVisibility(visibility);
-        }
+        int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        activity.getWindow().getDecorView().setSystemUiVisibility(visibility);
         activity.getWindow().setFlags(
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
     }
@@ -1811,6 +1805,10 @@ public class VideoDetailFragment
 
     private boolean isLandscape() {
         return getResources().getDisplayMetrics().heightPixels < getResources().getDisplayMetrics().widthPixels;
+    }
+
+    private boolean isInMultiWindow() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && activity.isInMultiWindowMode();
     }
 
     /*

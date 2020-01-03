@@ -549,11 +549,10 @@
 		android:layout_height="match_parent"
 		android:alpha="0"
 		tools:alpha="1"
-		android:paddingLeft="@dimen/video_item_search_padding"
-		android:paddingRight="@dimen/video_item_search_padding"
 		android:background="?attr/windowBackground" >
 
 		<ImageButton
+			android:paddingLeft="@dimen/video_item_search_padding"
 			android:id="@+id/overlay_thumbnail"
 			android:layout_width="50dp"
 			android:layout_height="60dp"
@@ -613,6 +612,7 @@
 			android:layout_height="60dp"
 			android:gravity="center_vertical"
 			android:paddingLeft="@dimen/video_item_search_padding"
+			android:paddingRight="@dimen/video_item_search_padding"
 			android:layout_alignParentEnd="true"
 			tools:ignore="RtlHardcoded">
 

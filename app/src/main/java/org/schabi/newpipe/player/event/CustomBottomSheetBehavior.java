@@ -18,27 +18,30 @@ public class CustomBottomSheetBehavior extends BottomSheetBehavior {
 
     @Override
     public boolean onInterceptTouchEvent(CoordinatorLayout parent, View child, MotionEvent event) {
+        // Behavior of globalVisibleRect is different on different APIs.
+        // For example, on API 19 getGlobalVisibleRect returns a filled rect of a collapsed view while on the latest API
+        // it returns empty rect in that case. So check visibility with return value too
+        boolean visible;
+        Rect rect = new Rect();
+
         // Without overriding scrolling will not work in detail_content_root_layout
         ViewGroup controls = child.findViewById(R.id.detail_content_root_layout);
         if (controls != null) {
-            Rect rect = new Rect();
-            controls.getGlobalVisibleRect(rect);
-            if (rect.contains((int) event.getX(), (int) event.getY())) return false;
+            visible = controls.getGlobalVisibleRect(rect);
+            if (rect.contains((int) event.getX(), (int) event.getY()) && visible) return false;
         }
 
         // Without overriding scrolling will not work on relatedStreamsLayout
         ViewGroup relatedStreamsLayout = child.findViewById(R.id.relatedStreamsLayout);
         if (relatedStreamsLayout != null) {
-            Rect rect = new Rect();
-            relatedStreamsLayout.getGlobalVisibleRect(rect);
-            if (rect.contains((int) event.getX(), (int) event.getY())) return false;
+            visible = relatedStreamsLayout.getGlobalVisibleRect(rect);
+            if (rect.contains((int) event.getX(), (int) event.getY()) && visible) return false;
         }
 
         ViewGroup playQueue = child.findViewById(R.id.playQueue);
         if (playQueue != null) {
-            Rect rect = new Rect();
-            playQueue.getGlobalVisibleRect(rect);
-            if (rect.contains((int) event.getX(), (int) event.getY())) return false;
+            visible = playQueue.getGlobalVisibleRect(rect);
+            if (rect.contains((int) event.getX(), (int) event.getY()) && visible) return false;
         }
 
         return super.onInterceptTouchEvent(parent, child, event);

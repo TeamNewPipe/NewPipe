@@ -26,6 +26,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
+import android.util.DisplayMetrics;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import androidx.core.app.NotificationCompat;
@@ -183,7 +184,11 @@ public final class MainPlayer extends Service {
     //////////////////////////////////////////////////////////////////////////*/
 
     boolean isLandscape() {
-        return getResources().getDisplayMetrics().heightPixels < getResources().getDisplayMetrics().widthPixels;
+        // DisplayMetrics from activity context knows about MultiWindow feature while DisplayMetrics from app context doesn't
+        final DisplayMetrics metrics = playerImpl.getParentActivity() != null ?
+                playerImpl.getParentActivity().getResources().getDisplayMetrics()
+                : getResources().getDisplayMetrics();
+        return metrics.heightPixels < metrics.widthPixels;
     }
 
     public View getView() {

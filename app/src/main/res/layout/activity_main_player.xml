@@ -375,12 +375,17 @@
                     android:visibility="gone"
                     tools:visibility="visible"/>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@drawable/player_controls_bg"
+                android:layout_alignParentBottom="true" />
+
             <LinearLayout
                 android:id="@+id/bottomControls"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:background="@drawable/player_controls_bg"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:paddingBottom="6dp"

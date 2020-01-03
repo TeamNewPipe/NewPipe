@@ -139,14 +139,6 @@ public class PlayerGestureListener extends GestureDetector.SimpleOnGestureListen
             } else {
                 playerImpl.showControlsThenHide();
             }
-            if (playerImpl.isInFullscreen()) {
-                int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN;
-                playerImpl.getParentActivity().getWindow().getDecorView().setSystemUiVisibility(visibility);
-                playerImpl.getParentActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-                playerImpl.getParentActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            }
         }
         return true;
     }
