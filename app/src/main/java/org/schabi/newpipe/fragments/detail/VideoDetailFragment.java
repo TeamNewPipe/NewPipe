@@ -526,12 +526,7 @@ public class VideoDetailFragment
                 openChannel();
                 break;
             case R.id.detail_thumbnail_root_layout:
-                if (currentInfo.getVideoStreams().isEmpty()
-                        && currentInfo.getVideoOnlyStreams().isEmpty()) {
-                    openBackgroundPlayer(false);
-                } else {
-                    openVideoPlayer();
-                }
+                openVideoPlayer();
                 break;
             case R.id.detail_title_root_layout:
                 toggleTitleAndDescription();
@@ -545,6 +540,7 @@ public class VideoDetailFragment
                 if (player != null) {
                     player.onPlayPause();
                     player.hideControls(0,0);
+                    showSystemUi();
                 }
                 else openVideoPlayer();
 
@@ -1869,9 +1865,10 @@ public class VideoDetailFragment
                     case BottomSheetBehavior.STATE_COLLAPSED:
                         // Re-enable clicks
                         setOverlayElementsClickable(true);
-                        if (player != null && player.isInFullscreen()) player.toggleFullscreen();
+                        if (player != null && player.isInFullscreen() && player.isPlaying()) showSystemUi();
                         break;
                     case BottomSheetBehavior.STATE_DRAGGING:
+                        if (player != null && player.isControlsVisible()) player.hideControls(0, 0);
                         break;
                     case BottomSheetBehavior.STATE_SETTLING:
                         break;

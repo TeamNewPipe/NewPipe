@@ -534,7 +534,7 @@ public class VideoPlayerImpl extends VideoPlayer
             if (fragmentListener == null) return;
 
             isFullscreen = !isFullscreen;
-            setControlsWidth();
+            setControlsSize();
             fragmentListener.onFullscreenStateChanged(isInFullscreen());
             // When user presses back button in landscape mode and in fullscreen and uses ZOOM mode
             // a video can be larger than screen. Prevent it like this
@@ -1102,19 +1102,39 @@ public class VideoPlayerImpl extends VideoPlayer
             fragmentListener.hideSystemUIIfNeeded();
     }
 
-    private void setControlsWidth() {
+    /*
+    * This method measures width and height of controls visible on screen. It ensures that controls will be side-by-side with
+    * NavigationBar and notches but not under them. Tablets have only bottom NavigationBar
+    * */
+    void setControlsSize() {
         Point size = new Point();
+        Display display = getRootView().getDisplay();
+        if (display == null) return;
         // This method will give a correct size of a usable area of a window.
         // It doesn't include NavigationBar, notches, etc.
-        getRootView().getDisplay().getSize(size);
+        display.getSize(size);
 
         int width = isFullscreen ? size.x : ViewGroup.LayoutParams.MATCH_PARENT;
+        int gravity = isFullscreen ? (display.getRotation() == Surface.ROTATION_90 ? Gravity.START : Gravity.END) : Gravity.TOP;
+
         primaryControls.getLayoutParams().width = width;
+        ((LinearLayout.LayoutParams) primaryControls.getLayoutParams()).gravity = gravity;
         primaryControls.requestLayout();
+
         secondaryControls.getLayoutParams().width = width;
+        ((LinearLayout.LayoutParams) secondaryControls.getLayoutParams()).gravity = gravity;
         secondaryControls.requestLayout();
+
         getBottomControlsRoot().getLayoutParams().width = width;
+        RelativeLayout.LayoutParams bottomParams = ((RelativeLayout.LayoutParams) getBottomControlsRoot().getLayoutParams());
+        bottomParams.removeRule(RelativeLayout.ALIGN_PARENT_START);
+        bottomParams.removeRule(RelativeLayout.ALIGN_PARENT_END);
+        bottomParams.addRule(gravity == Gravity.END ? RelativeLayout.ALIGN_PARENT_END : RelativeLayout.ALIGN_PARENT_START);
         getBottomControlsRoot().requestLayout();
+
+        ViewGroup controlsRoot = getRootView().findViewById(R.id.playbackControlRoot);
+        controlsRoot.getLayoutParams().height = isFullscreen ? size.y : ViewGroup.LayoutParams.MATCH_PARENT;
+        controlsRoot.requestLayout();
     }
 
     private void updatePlaybackButtons() {
