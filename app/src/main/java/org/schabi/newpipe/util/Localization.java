@@ -2,8 +2,11 @@ package org.schabi.newpipe.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 
 import org.ocpsoft.prettytime.PrettyTime;
 import org.ocpsoft.prettytime.units.Decade;
@@ -215,5 +218,12 @@ public class Localization {
 
     public static String relativeTime(Calendar calendarTime) {
         return getPrettyTime().formatUnrounded(calendarTime);
+    }
+
+    public static void changeAppLanguage(Locale loc, Resources res) {
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.setLocale(loc);
+        res.updateConfiguration(conf, dm);
     }
 }

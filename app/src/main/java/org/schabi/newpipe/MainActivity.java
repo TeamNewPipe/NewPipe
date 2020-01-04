@@ -67,6 +67,7 @@ import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.KioskTranslator;
+import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PeertubeHelper;
 import org.schabi.newpipe.util.PermissionHelper;
@@ -77,6 +78,8 @@ import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.schabi.newpipe.util.Localization.changeAppLanguage;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -115,6 +118,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
+
+        changeAppLanguage(Localization.getPreferredLocale(getApplicationContext()), getResources());
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
