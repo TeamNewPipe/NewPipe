@@ -1,14 +1,15 @@
 name: Android Pull Request & Master CI
 
 on:
-  pull_request:
-    branches:
-      - 'master'
-      - 'dev'
-  push:
-    branches:
-      - 'master'
-      - 'dev'
+#  pull_request:
+#    branches:
+#      - 'master'
+#      - 'dev'
+#  push:
+#    branches:
+#      - 'master'
+#      - 'dev'
+  status
 
 jobs:
   apk:
@@ -17,6 +18,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+        
+      - name: set up NodeJS
+        uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+      - run: npm installs
+      
+      - name: check if status is succed
+        run: node ./.github/actions/status.js
+
       - name: set up JDK 1.8
         uses: actions/setup-java@v1
         with:
@@ -28,3 +39,18 @@ jobs:
         with:
           name: app
           path: app/build/outputs/apk/debug/app-debug.apk
+      
+      - name: comment on pull request
+        if: github.event_name == 'pull_request'
+        # run: node ./.github/actions/artifact-comment.js
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{  }}
+          body: |
+            This is a multi-line test comment
+            - With GitHub **Markdown**
+            - Created by [create-or-update-comment][1]
+
+            [1]: https://github.com/peter-evans/create-or-update-comment
+          reaction-type: '+1'
