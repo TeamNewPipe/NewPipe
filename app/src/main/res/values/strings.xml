@@ -58,7 +58,9 @@
     <string name="kore_not_found">Kore app not found. Install it?</string>
     <string name="kore_package" translatable="false">org.xbmc.kore</string>
     <string name="show_play_with_kodi_title">Show \"Play with Kodi\" option</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Enable lock screen video thumbnail</string>
     <string name="show_play_with_kodi_summary">Display an option to play a video via Kodi media center</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">When using the background player a video thumbnail will be displayed on the lock screen</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Default audio format</string>
     <string name="default_video_format_title">Default video format</string>
@@ -112,7 +114,8 @@
     <string name="content_language_title">Default content language</string>
     <string name="peertube_instance_url_title">PeerTube instances</string>
     <string name="peertube_instance_url_summary">Set your favorite peertube instances</string>
-    <string name="peertube_instance_url_help">Find the instances that best suit you on https://joinpeertube.org/instances#instances-list</string>
+    <string name="peertube_instance_url_help">Find the instances that best suit you on %s</string>
+    <string name="peertube_instance_list_url" translatable="false">https://joinpeertube.org/instances#instances-list</string>
     <string name="peertube_instance_add_title">Add instance</string>
     <string name="peertube_instance_add_help">Enter instance url</string>
     <string name="peertube_instance_add_fail">Failed to validate instance</string>
