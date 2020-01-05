@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -35,6 +36,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -46,6 +49,7 @@ import java.io.File;
 import java.lang.ref.WeakReference;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import us.shandian.giga.get.DownloadMission;
 import us.shandian.giga.get.FinishedMission;
@@ -84,6 +88,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
     private static final String UNDEFINED_PROGRESS = "--.-%";
     private static final String DEFAULT_MIME_TYPE = "*/*";
     private static final String UNDEFINED_ETA = "--:--";
+    private static final int TIMEOUT = 5000;// ms
 
 
     static {
@@ -104,8 +109,12 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
     private MenuItem mPauseButton;
     private View mEmptyMessage;
     private RecoverHelper mRecover;
+    private View mView;
+    private ArrayList<Mission> mHidden;
+    private Snackbar mSnackbar;
 
     private final Runnable rUpdater = this::updater;
+    private final Runnable rDelete = this::deleteFinishedDownloads;
 
     public MissionAdapter(Context context, @NonNull DownloadManager downloadManager, View emptyMessage, View root) {
         mContext = context;
@@ -121,6 +130,10 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
         mIterator = downloadManager.getIterator();
 
         mDeleter = new Deleter(root, mContext, this, mDownloadManager, mIterator, mHandler);
+
+        mView = root;
+
+        mHidden = new ArrayList<>();
 
         checkEmptyMessageVisibility();
         onResume();
@@ -558,18 +571,49 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
     }
 
     public void clearFinishedDownloads(boolean delete) {
-        if (delete && mIterator.hasFinishedMissions()) {
+        if (delete && mIterator.hasFinishedMissions() && mHidden.isEmpty()) {
             for (int i = 0; i < mIterator.getOldListSize(); i++) {
                 FinishedMission mission = mIterator.getItem(i).mission instanceof FinishedMission ? (FinishedMission) mIterator.getItem(i).mission : null;
                 if (mission != null) {
-                    mDownloadManager.deleteMission(mission);
-                    mContext.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, mission.storage.getUri()));
+                    mIterator.hide(mission);
+                    mHidden.add(mission);
                 }
             }
+            applyChanges();
+
+            String msg = String.format(mContext.getString(R.string.deleted_downloads), String.valueOf(mHidden.size()));
+            mSnackbar = Snackbar.make(mView, msg, Snackbar.LENGTH_INDEFINITE);
+            mSnackbar.setAction(R.string.undo, s -> {
+                Iterator<Mission> i = mHidden.iterator();
+                while (i.hasNext()) {
+                    mIterator.unHide(i.next());
+                    i.remove();
+                }
+                applyChanges();
+                mHandler.removeCallbacks(rDelete);
+            });
+            mSnackbar.setActionTextColor(Color.YELLOW);
+            mSnackbar.show();
+
+            mHandler.postDelayed(rDelete, TIMEOUT);
         } else if (!delete) {
             mDownloadManager.forgetFinishedDownloads();
+            applyChanges();
         }
-        applyChanges();
+    }
+
+    private void deleteFinishedDownloads() {
+        if(mSnackbar != null) mSnackbar.dismiss();
+
+        Iterator<Mission> i = mHidden.iterator();
+        while (i.hasNext()) {
+            Mission mission = i.next();
+            if (mission != null) {
+                mDownloadManager.deleteMission(mission);
+                mContext.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, mission.storage.getUri()));
+            }
+            i.remove();
+        }
     }
 
     private boolean handlePopupItem(@NonNull ViewHolderItem h, @NonNull MenuItem option) {
