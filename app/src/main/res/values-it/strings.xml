@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="view_count_text">%1$s visualizzazioni</string>
+    <string name="view_count_text">%1$ visualizzazioni</string>
     <string name="upload_date_text">Pubblicato il %1$s</string>
     <string name="no_player_found">Nessun lettore multimediale trovato. Vuoi installare VLC\?</string>
     <string name="install">Installa</string>
@@ -121,7 +121,7 @@
     <string name="popup_mode_share_menu_title">Modalità popup di NewPipe</string>
     <string name="popup_playing_toast">Riproduzione in Modalità Popup</string>
     <string name="disabled">Disattivato</string>
-    <string name="use_external_video_player_summary">Non riproduce l\'audio con ALCUNE risoluzioni</string>
+    <string name="use_external_video_player_summary">L\'audio potrebbe non essere disponibile per ALCUNE risoluzioni</string>
     <string name="controls_background_title">In sottofondo</string>
     <string name="controls_popup_title">Popup</string>
     <string name="default_popup_resolution_title">Risoluzione Predefinita Popup</string>
