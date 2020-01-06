@@ -281,6 +281,7 @@ public class VideoPlayerImpl extends VideoPlayer
     private void setupElementsVisibility() {
         if (popupPlayerSelected()) {
             fullscreenButton.setVisibility(View.VISIBLE);
+            getRootView().findViewById(R.id.spaceBeforeControls).setVisibility(View.GONE);
             getRootView().findViewById(R.id.metadataView).setVisibility(View.GONE);
             queueButton.setVisibility(View.GONE);
             moreOptionsButton.setVisibility(View.GONE);
@@ -294,10 +295,11 @@ public class VideoPlayerImpl extends VideoPlayer
             openInBrowser.setVisibility(View.GONE);
         } else {
             fullscreenButton.setVisibility(View.GONE);
+            getRootView().findViewById(R.id.spaceBeforeControls).setVisibility(View.VISIBLE);
             getRootView().findViewById(R.id.metadataView).setVisibility(View.VISIBLE);
             moreOptionsButton.setVisibility(View.VISIBLE);
             getTopControlsRoot().setOrientation(LinearLayout.VERTICAL);
-            primaryControls.getLayoutParams().width = LinearLayout.LayoutParams.MATCH_PARENT;
+            primaryControls.getLayoutParams().width = secondaryControls.getLayoutParams().width;
             secondaryControls.setVisibility(View.GONE);
             moreOptionsButton.setImageDrawable(service.getResources().getDrawable(
                     R.drawable.ic_expand_more_white_24dp));
@@ -500,7 +502,13 @@ public class VideoPlayerImpl extends VideoPlayer
         triggerProgressUpdate();
     }
 
-        /*//////////////////////////////////////////////////////////////////////////
+    @Override
+    protected void initPlayback(@NonNull PlayQueue queue, int repeatMode, float playbackSpeed, float playbackPitch, boolean playbackSkipSilence, boolean playOnReady) {
+        super.initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence, playOnReady);
+        updateQueue(queue);
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////
         // Player Overrides
         //////////////////////////////////////////////////////////////////////////*/
 
@@ -1088,7 +1096,7 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     private void showSystemUIPartially() {
-        if (isInFullscreen()) {
+        if (isInFullscreen() && getParentActivity() != null) {
             int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                     | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                     | View.SYSTEM_UI_FLAG_FULLSCREEN;
@@ -1106,7 +1114,7 @@ public class VideoPlayerImpl extends VideoPlayer
     * This method measures width and height of controls visible on screen. It ensures that controls will be side-by-side with
     * NavigationBar and notches but not under them. Tablets have only bottom NavigationBar
     * */
-    void setControlsSize() {
+    private void setControlsSize() {
         Point size = new Point();
         Display display = getRootView().getDisplay();
         if (display == null) return;
@@ -1476,6 +1484,15 @@ public class VideoPlayerImpl extends VideoPlayer
     /*package-private*/ void removeActivityListener(PlayerEventListener listener) {
         if (activityListener == listener) {
             activityListener = null;
+        }
+    }
+
+    private void updateQueue(PlayQueue queue) {
+        if (fragmentListener != null) {
+            fragmentListener.onQueueUpdate(queue);
+        }
+        if (activityListener != null) {
+            activityListener.onQueueUpdate(queue);
         }
     }
 

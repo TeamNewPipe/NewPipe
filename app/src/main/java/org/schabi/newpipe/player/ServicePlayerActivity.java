@@ -558,6 +558,10 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     ////////////////////////////////////////////////////////////////////////////
 
     @Override
+    public void onQueueUpdate(PlayQueue queue) {
+    }
+
+    @Override
     public void onPlaybackUpdate(int state, int repeatMode, boolean shuffled, PlaybackParameters parameters) {
         onStateChanged(state);
         onPlayModeChanged(repeatMode, shuffled);

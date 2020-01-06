@@ -126,7 +126,7 @@ public class VideoDetailFragment
     @State
     protected PlayQueue playQueue;
     @State
-    int bottomSheetState = BottomSheetBehavior.STATE_HIDDEN;
+    int bottomSheetState = BottomSheetBehavior.STATE_EXPANDED;
 
     private StreamInfo currentInfo;
     private Disposable currentWorker;
@@ -398,7 +398,8 @@ public class VideoDetailFragment
     public void onDestroy() {
         super.onDestroy();
 
-        unbind();
+        if (!activity.isFinishing()) unbind();
+        else stopService();
 
         PreferenceManager.getDefaultSharedPreferences(activity)
                 .unregisterOnSharedPreferenceChangeListener(this);
@@ -850,26 +851,6 @@ public class VideoDetailFragment
      */
     protected final LinkedList<StackItem> stack = new LinkedList<>();
 
-    public void pushToStack(int serviceId, String videoUrl, String name, PlayQueue playQueue) {
-        if (DEBUG) {
-            Log.d(TAG, "pushToStack() called with: serviceId = ["
-                    + serviceId + "], videoUrl = [" + videoUrl + "], name = [" + name + "], playQueue = [" + playQueue + "]");
-        }
-
-        if (stack.size() > 0
-                && stack.peek().getServiceId() == serviceId
-                && stack.peek().getUrl().equals(videoUrl)
-                && stack.peek().getPlayQueue().getClass().equals(playQueue.getClass())) {
-            Log.d(TAG, "pushToStack() called with: serviceId == peek.serviceId = ["
-                    + serviceId + "], videoUrl == peek.getUrl = [" + videoUrl + "]");
-            return;
-        } else {
-            Log.d(TAG, "pushToStack() wasn't equal");
-        }
-
-        stack.push(new StackItem(serviceId, videoUrl, name, playQueue));
-    }
-
     public void setTitleToUrl(int serviceId, String videoUrl, String name) {
         if (name != null && !name.isEmpty()) {
             for (StackItem stackItem : stack) {
@@ -885,12 +866,17 @@ public class VideoDetailFragment
     public boolean onBackPressed() {
         if (DEBUG) Log.d(TAG, "onBackPressed() called");
 
+        // If we are in fullscreen mode just exit from it via first back press
         if (player != null && player.isInFullscreen()) {
             player.onPause();
             restoreDefaultOrientation();
             return true;
         }
 
+        // If we have something in history of played items we replay it here
+        if (player != null && player.getPlayQueue().previous()) {
+            return true;
+        }
         // That means that we are on the start of the stack,
         // return false to let the MainActivity handle the onBack
         if (stack.size() <= 1) {
@@ -928,15 +914,15 @@ public class VideoDetailFragment
     }
 
     public void selectAndLoadVideo(int serviceId, String videoUrl, String name, PlayQueue playQueue) {
-        boolean streamIsTheSame = videoUrl.equals(url) && currentInfo != null;
-        setInitialData(serviceId, videoUrl, name, playQueue);
-
+        boolean streamIsTheSame = this.playQueue != null && this.playQueue.equals(playQueue);
         // Situation when user switches from players to main player. All needed data is here, we can start watching
         if (streamIsTheSame) {
-            handleResult(currentInfo);
+            //TODO not sure about usefulness of this line in the case when user switches from one player to another
+            // handleResult(currentInfo);
             openVideoPlayer();
             return;
         }
+        setInitialData(serviceId, videoUrl, name, playQueue);
         startLoading(false);
     }
 
@@ -944,7 +930,6 @@ public class VideoDetailFragment
         if (DEBUG) Log.d(TAG, "prepareAndHandleInfo() called with: info = ["
                 + info + "], scrollToTop = [" + scrollToTop + "]");
 
-        setInitialData(info.getServiceId(), info.getUrl(), info.getName(), new SinglePlayQueue(info));
         showLoading();
         initTabs();
 
@@ -1390,8 +1375,6 @@ public class VideoDetailFragment
         setInitialData(info.getServiceId(), info.getOriginalUrl(), info.getName(),
                 playQueue == null ? new SinglePlayQueue(info) : playQueue);
 
-        pushToStack(serviceId, url, name, playQueue);
-
         if(showRelatedStreams){
             if(null == relatedStreamsLayout){ //phone
                 pageAdapter.updateItem(RELATED_TAB_TAG, RelatedVideosFragment.getInstance(info));
@@ -1628,6 +1611,20 @@ public class VideoDetailFragment
     //////////////////////////////////////////////////////////////////////////*/
 
     @Override
+    public void onQueueUpdate(PlayQueue queue) {
+        playQueue = queue;
+        // This should be the only place where we push data to stack. It will allow to have live instance of PlayQueue with actual
+        // information about deleted/added items inside Channel/Playlist queue and makes possible to have a history of played items
+        if (stack.isEmpty() || !stack.peek().getPlayQueue().equals(queue))
+            stack.push(new StackItem(serviceId, url, name, playQueue));
+
+        if (DEBUG) {
+            Log.d(TAG, "onQueueUpdate() called with: serviceId = ["
+                    + serviceId + "], videoUrl = [" + url + "], name = [" + name + "], playQueue = [" + playQueue + "]");
+        }
+    }
+
+    @Override
     public void onPlaybackUpdate(int state, int repeatMode, boolean shuffled, PlaybackParameters parameters) {
         setOverlayPlayPauseImage();
 
@@ -1647,11 +1644,6 @@ public class VideoDetailFragment
     public void onProgressUpdate(int currentProgress, int duration, int bufferPercent) {
         // Progress updates every second even if media is paused. It's useless until playing
         if (!player.getPlayer().isPlaying() || playQueue == null) return;
-
-        // Update current progress in cached playQueue because playQueue in popup and background players
-        // are different instances
-        playQueue.setRecovery(playQueue.getIndex(), currentProgress);
-
         showPlaybackProgress(currentProgress, duration);
 
         // We don't want to interrupt playback and don't want to see notification if player is stopped
@@ -1672,6 +1664,14 @@ public class VideoDetailFragment
 
     @Override
     public void onMetadataUpdate(StreamInfo info) {
+        if (!stack.isEmpty()) {
+            // When PlayQueue can have multiple streams (PlaylistPlayQueue or ChannelPlayQueue) every new played stream gives
+            // new title and url. StackItem contains information about first played stream. Let's update it here
+            StackItem peek = stack.peek();
+            peek.setTitle(info.getName());
+            peek.setUrl(info.getUrl());
+        }
+
         if (currentInfo == info) return;
 
         currentInfo = info;
@@ -1865,7 +1865,7 @@ public class VideoDetailFragment
                     case BottomSheetBehavior.STATE_COLLAPSED:
                         // Re-enable clicks
                         setOverlayElementsClickable(true);
-                        if (player != null && player.isInFullscreen() && player.isPlaying()) showSystemUi();
+                        if (player != null && player.isInFullscreen()) showSystemUi();
                         break;
                     case BottomSheetBehavior.STATE_DRAGGING:
                         if (player != null && player.isControlsVisible()) player.hideControls(0, 0);
@@ -1873,7 +1873,6 @@ public class VideoDetailFragment
                     case BottomSheetBehavior.STATE_SETTLING:
                         break;
                 }
-                Log.d(TAG, "onStateChanged: " + newState);
             }
             @Override public void onSlide(@NonNull View bottomSheet, float slideOffset) {
                 setOverlayLook(appBarLayout, behavior, slideOffset);

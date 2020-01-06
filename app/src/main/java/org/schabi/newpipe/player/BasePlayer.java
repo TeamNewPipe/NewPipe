@@ -274,6 +274,16 @@ public abstract class BasePlayer implements
             return;
         }
 
+        boolean same = playQueue != null && playQueue.equals(queue);
+
+        // Do not re-init the same PlayQueue. Save time
+        if (same && !playQueue.isDisposed()) {
+            // Player can have state = IDLE when playback is stopped or failed and we should retry() in this case
+            if (simpleExoPlayer != null && simpleExoPlayer.getPlaybackState() == Player.STATE_IDLE)
+                simpleExoPlayer.retry();
+            return;
+        }
+
         final int repeatMode = intent.getIntExtra(REPEAT_MODE, getRepeatMode());
         final float playbackSpeed = intent.getFloatExtra(PLAYBACK_SPEED, getPlaybackSpeed());
         final float playbackPitch = intent.getFloatExtra(PLAYBACK_PITCH, getPlaybackPitch());
@@ -284,14 +294,17 @@ public abstract class BasePlayer implements
         if (simpleExoPlayer != null
                 && queue.size() == 1
                 && playQueue != null
+                && playQueue.size() == 1
                 && playQueue.getItem() != null
                 && queue.getItem().getUrl().equals(playQueue.getItem().getUrl())
                 && queue.getItem().getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET
-                ) {
+                && !same) {
             simpleExoPlayer.seekTo(playQueue.getIndex(), queue.getItem().getRecoveryPosition());
             return;
 
-        } else if (intent.getBooleanExtra(RESUME_PLAYBACK, false) && isPlaybackResumeEnabled()) {
+        } else if (intent.getBooleanExtra(RESUME_PLAYBACK, false)
+                && isPlaybackResumeEnabled()
+                && !same) {
             final PlayQueueItem item = queue.getItem();
             if (item != null && item.getRecoveryPosition() == PlayQueueItem.RECOVERY_UNSET) {
                 stateLoader = recordManager.loadStreamState(item)
@@ -321,7 +334,8 @@ public abstract class BasePlayer implements
             }
         }
         // Good to go...
-        initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence,
+        // In a case of equal PlayQueues we can re-init old one but only when it is disposed
+        initPlayback(same ? playQueue : queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence,
                 /*playOnInit=*/true);
     }
 

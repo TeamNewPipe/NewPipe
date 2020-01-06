@@ -141,17 +141,29 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true">
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@drawable/player_top_controls_bg"
+                android:layout_alignParentTop="true" />
+
+            <!-- It will be hidden in popup -->
+            <Space
+                android:id="@+id/spaceBeforeControls"
+                android:layout_width="16dp"
+                android:layout_height="0dp" />
+
             <LinearLayout
                 android:id="@+id/topControls"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:background="@drawable/player_top_controls_bg"
                 android:orientation="vertical"
                 android:gravity="top"
                 android:paddingTop="4dp"
-                android:baselineAligned="false"
-                android:layout_toStartOf="@id/fullScreenButton">
+                android:paddingEnd="6dp"
+                android:layout_toEndOf="@id/spaceBeforeControls"
+                android:baselineAligned="false">
 
             <LinearLayout
                 android:id="@+id/primaryControls"
@@ -161,7 +173,6 @@
                 android:gravity="top"
                 android:paddingBottom="7dp"
                 android:paddingLeft="2dp"
-                android:paddingRight="6dp"
                 tools:ignore="RtlHardcoded">
 
                 <LinearLayout
@@ -171,7 +182,6 @@
                     android:gravity="top"
                     android:orientation="vertical"
                     android:paddingTop="6dp"
-                    android:paddingLeft="16dp"
                     android:paddingRight="8dp"
                     tools:ignore="RtlHardcoded"
                     android:layout_weight="1">
@@ -274,8 +284,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="top"
-                android:paddingStart="16dp"
-                android:paddingEnd="6dp"
                 android:visibility="invisible"
                 tools:ignore="RtlHardcoded"
                 tools:visibility="visible">
@@ -302,6 +310,8 @@
                     android:layout_marginEnd="8dp"
                     android:gravity="center|left"
                     android:minHeight="35dp"
+                    android:lines="1"
+                    android:ellipsize="end"
                     android:minWidth="50dp"
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
@@ -365,10 +375,11 @@
                     android:id="@+id/fullScreenButton"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:paddingEnd="8dp"
-                    android:paddingTop="8dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:padding="6dp"
                     android:layout_alignParentRight="true"
-                    android:background="@drawable/player_top_controls_bg"
+                    android:background="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
                     android:scaleType="fitCenter"

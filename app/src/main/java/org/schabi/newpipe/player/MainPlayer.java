@@ -126,6 +126,7 @@ public final class MainPlayer extends Service {
 
         if (playerImpl.getPlayer() != null) {
             playerImpl.wasPlaying = playerImpl.getPlayer().getPlayWhenReady();
+            // We can't pause the player here because it will make transition from one stream to a new stream not smooth
             playerImpl.getPlayer().stop(false);
             playerImpl.setRecovery();
         }
