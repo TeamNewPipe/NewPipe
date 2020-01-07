@@ -544,7 +544,6 @@
     <string name="peertube_instance_url_title">مثيلات خوادم پيرتيوب</string>
     <string name="peertube_instance_url_summary">عيّن مثيلات خوادم پيرتيوب التي تُفضّلها</string>
     <string name="peertube_instance_add_title">إضافة نموذج</string>
-    <string name="peertube_instance_add_title">إضافة مثيل خادم</string>
     <string name="peertube_instance_add_help">أدخل رابط مثيل الخادم</string>
     <string name="peertube_instance_add_fail">فشل في التحقق من مثيل الخادم</string>
     <string name="peertube_instance_add_https_only">فقط عناوين https المدعومة</string>
