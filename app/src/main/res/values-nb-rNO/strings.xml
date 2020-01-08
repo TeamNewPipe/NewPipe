@@ -516,4 +516,5 @@
     </plurals>
     <string name="localization_changes_requires_app_restart">Språk vil ikke bli endret før programmet startes på ny.</string>
     <string name="default_kiosk_page_summary">Forvalgt kiosk</string>
+    <string name="peertube_instance_url_title">PeerTube-instanser</string>
 </resources>
