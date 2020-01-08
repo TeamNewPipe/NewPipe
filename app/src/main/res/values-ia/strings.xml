@@ -32,4 +32,5 @@
     <string name="start_downloads">Initiar discargas</string>
     <string name="pause_downloads">Pausar le discargas</string>
     <string name="choose_instance_prompt">Seliger un instantia</string>
+    <string name="error_connect_host">Non poteva connecter con le servitor</string>
 </resources>
