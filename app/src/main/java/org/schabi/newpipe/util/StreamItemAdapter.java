@@ -140,7 +140,15 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
         if (stream instanceof SubtitlesStream) {
             formatNameView.setText(((SubtitlesStream) stream).getLanguageTag());
         } else {
-            formatNameView.setText(stream.getFormat().getName());
+            switch (stream.getFormat()) {
+                case WEBMA_OPUS:
+                    // noinspection AndroidLintSetTextI18n
+                    formatNameView.setText("opus");
+                    break;
+                default:
+                    formatNameView.setText(stream.getFormat().getName());
+                    break;
+            }
         }
 
         qualityView.setText(qualityString);
