@@ -202,8 +202,8 @@
     </plurals>
     <string name="no_videos">Keine Videos</string>
     <plurals name="videos">
-        <item quantity="one">Video</item>
-        <item quantity="other">Videos</item>
+        <item quantity="one">%s Video</item>
+        <item quantity="other">%s Videos</item>
     </plurals>
     <string name="charset_most_special_characters">Die meisten Sonderzeichen</string>
     <string name="item_deleted">Element gelöscht</string>
@@ -518,7 +518,7 @@
     </plurals>
     <string name="localization_changes_requires_app_restart">Die Sprache ändert sich, sobald die App neu gestartet wird.</string>
     <string name="peertube_instance_url_title">PeerTube-Instanzen</string>
-    <string name="peertube_instance_url_help">Finde auf https://joinpeertube.org/instances#instances-list die Instanzen, die am besten zu dir passen</string>
+    <string name="peertube_instance_url_help">"Finde auf  %s die Instanzen, die am besten zu dir passen"</string>
     <string name="peertube_instance_add_title">Instanz hinzufügen</string>
     <string name="peertube_instance_add_help">Gib die URL der Instanz ein</string>
     <string name="peertube_instance_add_fail">Validieren der Instanz fehlgeschlagen</string>
