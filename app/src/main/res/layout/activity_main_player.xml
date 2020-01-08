@@ -132,18 +132,18 @@
         android:visibility="gone"
         tools:visibility="visible">
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/player_top_controls_bg"
+            android:layout_alignParentTop="true" />
+
         <!-- All top controls in this layout -->
         <RelativeLayout
             android:id="@+id/playbackWindowRoot"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:background="@drawable/player_top_controls_bg"
-                android:layout_alignParentTop="true" />
 
             <!-- It will be hidden in popup -->
             <Space

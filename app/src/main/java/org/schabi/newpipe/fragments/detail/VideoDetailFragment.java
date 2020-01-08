@@ -330,7 +330,11 @@ public class VideoDetailFragment
 
         startService(false);
         setupBroadcastReceiver();
+
         settingsContentObserver = new SettingsContentObserver(new Handler(), this);
+        activity.getContentResolver().registerContentObserver(
+                android.provider.Settings.System.CONTENT_URI, true,
+                settingsContentObserver);
     }
 
     @Override
@@ -344,7 +348,6 @@ public class VideoDetailFragment
         if (currentWorker != null) currentWorker.dispose();
 
         setupBrightness(true);
-        getContext().getContentResolver().unregisterContentObserver(settingsContentObserver);
         PreferenceManager.getDefaultSharedPreferences(getContext())
                 .edit()
                 .putString(getString(R.string.stream_info_selected_tab_key), pageAdapter.getItemTitle(viewPager.getCurrentItem()))
@@ -356,9 +359,6 @@ public class VideoDetailFragment
         super.onResume();
 
         isFragmentStopped = false;
-        getContext().getContentResolver().registerContentObserver(
-                android.provider.Settings.System.CONTENT_URI, true,
-                settingsContentObserver);
 
         setupBrightness(false);
 
@@ -403,7 +403,8 @@ public class VideoDetailFragment
 
         PreferenceManager.getDefaultSharedPreferences(activity)
                 .unregisterOnSharedPreferenceChangeListener(this);
-        getActivity().unregisterReceiver(broadcastReceiver);
+        activity.unregisterReceiver(broadcastReceiver);
+        activity.getContentResolver().unregisterContentObserver(settingsContentObserver);
 
         if (positionSubscriber != null) positionSubscriber.dispose();
         if (currentWorker != null) currentWorker.dispose();
@@ -566,7 +567,7 @@ public class VideoDetailFragment
                 openPopupPlayer(true);
                 break;
             case R.id.detail_controls_download:
-                NavigationHelper.openDownloads(getActivity());
+                NavigationHelper.openDownloads(activity);
                 break;
             case R.id.overlay_thumbnail:
             case R.id.overlay_metadata_layout:
@@ -874,7 +875,7 @@ public class VideoDetailFragment
         }
 
         // If we have something in history of played items we replay it here
-        if (player != null && player.getPlayQueue().previous()) {
+        if (player != null && player.getPlayQueue() != null && player.getPlayQueue().previous()) {
             return true;
         }
         // That means that we are on the start of the stack,
@@ -1126,7 +1127,7 @@ public class VideoDetailFragment
                         currentInfo.getUploaderUrl(),
                         currentInfo.getUploaderName());
             } catch (Exception e) {
-                ErrorActivity.reportUiError((AppCompatActivity) getActivity(), e);
+                ErrorActivity.reportUiError(activity, e);
             }
         }
     }
@@ -1159,9 +1160,26 @@ public class VideoDetailFragment
     }
 
     // This method overrides default behaviour when setAutoplay() is called.
-    // Don't auto play if the user selected an external player
+    // Don't auto play if the user selected an external player or disabled it in settings
     private boolean isAutoplayEnabled() {
-        return playQueue != null && playQueue.getStreams().size() != 0 && !isExternalPlayerEnabled() && autoPlayEnabled;
+        return playQueue != null && playQueue.getStreams().size() != 0
+                && autoPlayEnabled
+                && !isExternalPlayerEnabled()
+                && isAutoplayAllowedByUser();
+    }
+
+    private boolean isAutoplayAllowedByUser () {
+        if (activity == null) return false;
+
+        switch (PlayerHelper.getAutoplayType(activity)) {
+            case PlayerHelper.AutoplayType.AUTOPLAY_TYPE_NEVER:
+                return false;
+            case PlayerHelper.AutoplayType.AUTOPLAY_TYPE_WIFI:
+                return !ListHelper.isMeteredNetwork(activity);
+            case PlayerHelper.AutoplayType.AUTOPLAY_TYPE_ALWAYS:
+            default:
+                return true;
+        }
     }
 
     private void addVideoPlayerView() {
@@ -1275,7 +1293,7 @@ public class VideoDetailFragment
             }
         };
         IntentFilter intentFilter = new IntentFilter(ACTION_SHOW_MAIN_PLAYER);
-        getActivity().registerReceiver(broadcastReceiver, intentFilter);
+        activity.registerReceiver(broadcastReceiver, intentFilter);
     }
 
 
@@ -1287,23 +1305,23 @@ public class VideoDetailFragment
         // 1: Screen orientation changes using accelerometer
         // 0: Screen orientation is locked
         return !(android.provider.Settings.System.getInt(
-                getContext().getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0) == 1);
+                activity.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0) == 1);
     }
 
     private void restoreDefaultOrientation() {
-        if (player == null || !player.videoPlayerSelected()) return;
+        if (player == null || !player.videoPlayerSelected() || activity == null) return;
 
         if (player != null && player.isInFullscreen()) player.toggleFullscreen();
         // This will show systemUI and pause the player.
         // User can tap on Play button and video will be in fullscreen mode again
         if (globalScreenOrientationLocked()) removeVideoPlayerView();
-        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
     }
 
     private void setupOrientation() {
-        if (player == null || !player.videoPlayerSelected()) return;
+        if (player == null || !player.videoPlayerSelected() || activity == null) return;
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
         int newOrientation;
         if (globalScreenOrientationLocked()) {
             boolean lastOrientationWasLandscape
@@ -1314,14 +1332,14 @@ public class VideoDetailFragment
         } else
             newOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
 
-        if (newOrientation != getActivity().getRequestedOrientation())
-            getActivity().setRequestedOrientation(newOrientation);
+        if (newOrientation != activity.getRequestedOrientation())
+            activity.setRequestedOrientation(newOrientation);
     }
 
     @Override
     public void onSettingsChanged() {
-        if(!globalScreenOrientationLocked())
-            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+        if(activity != null && !globalScreenOrientationLocked())
+            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1515,7 +1533,7 @@ public class VideoDetailFragment
                 downloadDialog.setSelectedVideoStream(selectedVideoStreamIndex);
                 downloadDialog.setSubtitleStreams(currentInfo.getSubtitles());
 
-                downloadDialog.show(getActivity().getSupportFragmentManager(), "downloadDialog");
+                downloadDialog.show(activity.getSupportFragmentManager(), "downloadDialog");
             } catch (Exception e) {
                 ErrorActivity.ErrorInfo info = ErrorActivity.ErrorInfo.make(UserAction.UI_ERROR,
                         ServiceList.all()
@@ -1525,10 +1543,10 @@ public class VideoDetailFragment
                                 .getName(), "",
                         R.string.could_not_setup_download_menu);
 
-                ErrorActivity.reportError(getActivity(),
+                ErrorActivity.reportError(activity,
                         e,
-                        getActivity().getClass(),
-                        getActivity().findViewById(android.R.id.content), info);
+                        activity.getClass(),
+                        activity.findViewById(android.R.id.content), info);
             }
     }
 
@@ -1744,12 +1762,16 @@ public class VideoDetailFragment
     private void showSystemUi() {
         if (DEBUG) Log.d(TAG, "showSystemUi() called");
 
-        getActivity().getWindow().getDecorView().setSystemUiVisibility(0);
-        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        if (activity == null) return;
+
+        activity.getWindow().getDecorView().setSystemUiVisibility(0);
+        activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
     }
 
     private void hideSystemUi() {
         if (DEBUG) Log.d(TAG, "hideSystemUi() called");
+
+        if (activity == null) return;
 
         int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -1769,7 +1791,9 @@ public class VideoDetailFragment
     }
 
     private void setupBrightness(boolean save) {
-        WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
+        if (activity == null) return;
+
+        WindowManager.LayoutParams lp = activity.getWindow().getAttributes();
         float brightnessLevel;
 
         if (save) {
@@ -1787,7 +1811,7 @@ public class VideoDetailFragment
 
             lp.screenBrightness = brightnessLevel;
         }
-        getActivity().getWindow().setAttributes(lp);
+        activity.getWindow().setAttributes(lp);
     }
 
     private void checkLandscape() {

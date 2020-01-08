@@ -44,6 +44,9 @@ import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MOD
 import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_FIT;
 import static com.google.android.exoplayer2.ui.AspectRatioFrameLayout.RESIZE_MODE_ZOOM;
 import static java.lang.annotation.RetentionPolicy.SOURCE;
+import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_ALWAYS;
+import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_WIFI;
+import static org.schabi.newpipe.player.helper.PlayerHelper.AutoplayType.AUTOPLAY_TYPE_NEVER;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_BACKGROUND;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_NONE;
 import static org.schabi.newpipe.player.helper.PlayerHelper.MinimizeMode.MINIMIZE_ON_EXIT_MODE_POPUP;
@@ -63,6 +66,15 @@ public class PlayerHelper {
         int MINIMIZE_ON_EXIT_MODE_NONE = 0;
         int MINIMIZE_ON_EXIT_MODE_BACKGROUND = 1;
         int MINIMIZE_ON_EXIT_MODE_POPUP = 2;
+    }
+
+    @Retention(SOURCE)
+    @IntDef({AUTOPLAY_TYPE_ALWAYS, AUTOPLAY_TYPE_WIFI,
+            AUTOPLAY_TYPE_NEVER})
+    public @interface AutoplayType {
+        int AUTOPLAY_TYPE_ALWAYS = 0;
+        int AUTOPLAY_TYPE_WIFI = 1;
+        int AUTOPLAY_TYPE_NEVER = 2;
     }
     ////////////////////////////////////////////////////////////////////////////
     // Exposed helpers
@@ -199,6 +211,22 @@ public class PlayerHelper {
             return MINIMIZE_ON_EXIT_MODE_BACKGROUND;
         } else {
             return MINIMIZE_ON_EXIT_MODE_NONE;
+        }
+    }
+
+    @AutoplayType
+    public static int getAutoplayType(@NonNull final Context context) {
+        final String defaultType = context.getString(R.string.autoplay_always_key);
+        final String wifi = context.getString(R.string.autoplay_wifi_key);
+        final String never = context.getString(R.string.autoplay_never_key);
+
+        final String type = getAutoplayType(context, defaultType);
+        if (type.equals(wifi)) {
+            return AUTOPLAY_TYPE_WIFI;
+        } else if (type.equals(never)) {
+            return AUTOPLAY_TYPE_NEVER;
+        } else {
+            return AUTOPLAY_TYPE_ALWAYS;
         }
     }
 
@@ -348,6 +376,12 @@ public class PlayerHelper {
     private static String getMinimizeOnExitAction(@NonNull final Context context,
                                                   final String key) {
         return getPreferences(context).getString(context.getString(R.string.minimize_on_exit_key),
+                key);
+    }
+
+    private static String getAutoplayType(@NonNull final Context context,
+                                                  final String key) {
+        return getPreferences(context).getString(context.getString(R.string.autoplay_key),
                 key);
     }
 

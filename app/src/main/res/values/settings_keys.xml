@@ -63,6 +63,23 @@
         <item>@string/minimize_on_exit_popup_description</item>
     </string-array>
 
+
+    <string name="autoplay_key" translatable="false">autoplay_key</string>
+    <string name="autoplay_value" translatable="false">@string/autoplay_always_key</string>
+    <string name="autoplay_always_key" translatable="false">autoplay_always_key</string>
+    <string name="autoplay_wifi_key" translatable="false">autoplay_wifi_key</string>
+    <string name="autoplay_never_key" translatable="false">autoplay_never_key</string>
+    <string-array name="autoplay_type_key" translatable="false">
+        <item>@string/autoplay_always_key</item>
+        <item>@string/autoplay_wifi_key</item>
+        <item>@string/autoplay_never_key</item>
+    </string-array>
+    <string-array name="autoplay_type_description" translatable="false">
+        <item>@string/autoplay_always_description</item>
+        <item>@string/autoplay_wifi_description</item>
+        <item>@string/autoplay_never_description</item>
+    </string-array>
+
     <string name="default_resolution_key" translatable="false">default_resolution</string>
     <string name="default_resolution_value" translatable="false">360p</string>
     <string name="show_higher_resolutions_key" translatable="false">show_higher_resolutions</string>

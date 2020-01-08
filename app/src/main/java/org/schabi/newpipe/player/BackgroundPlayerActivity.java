@@ -21,7 +21,7 @@ public final class BackgroundPlayerActivity extends ServicePlayerActivity {
 
     @Override
     public String getSupportActionTitle() {
-        return getResources().getString(R.string.title_activity_background_player);
+        return getResources().getString(R.string.title_activity_play_queue);
     }
 
     @Override

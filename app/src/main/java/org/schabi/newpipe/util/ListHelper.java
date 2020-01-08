@@ -445,7 +445,7 @@ public final class ListHelper {
      * @param context App context
      * @return {@code true} if connected to a metered network
      */
-    private static boolean isMeteredNetwork(Context context)
+    public static boolean isMeteredNetwork(Context context)
     {
         ConnectivityManager manager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (manager == null || manager.getActiveNetworkInfo() == null) return false;

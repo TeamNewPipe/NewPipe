@@ -105,6 +105,15 @@
             android:summary="@string/minimize_on_exit_summary"
             android:title="@string/minimize_on_exit_title"/>
 
+        <ListPreference
+                app:iconSpaceReserved="false"
+                android:defaultValue="@string/autoplay_value"
+                android:entries="@array/autoplay_type_description"
+                android:entryValues="@array/autoplay_type_key"
+                android:key="@string/autoplay_key"
+                android:summary="@string/autoplay_summary"
+                android:title="@string/autoplay_title"/>
+
         <SwitchPreference
             app:iconSpaceReserved="false"
             android:defaultValue="false"

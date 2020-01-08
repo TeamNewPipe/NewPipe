@@ -689,9 +689,6 @@ public class VideoPlayerImpl extends VideoPlayer
     @Override
     public void onPlaybackSpeedClicked() {
         if (videoPlayerSelected()) {
-            // It hides status bar in fullscreen mode
-            hideSystemUIIfNeeded();
-
             PlaybackParameterDialog
                     .newInstance(getPlaybackSpeed(), getPlaybackPitch(), getPlaybackSkipSilence(), this)
                     .show(getParentActivity().getSupportFragmentManager(), null);
@@ -1097,9 +1094,7 @@ public class VideoPlayerImpl extends VideoPlayer
 
     private void showSystemUIPartially() {
         if (isInFullscreen() && getParentActivity() != null) {
-            int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_FULLSCREEN;
+            int visibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
             getParentActivity().getWindow().getDecorView().setSystemUiVisibility(visibility);
         }
     }
@@ -1143,6 +1138,13 @@ public class VideoPlayerImpl extends VideoPlayer
         ViewGroup controlsRoot = getRootView().findViewById(R.id.playbackControlRoot);
         controlsRoot.getLayoutParams().height = isFullscreen ? size.y : ViewGroup.LayoutParams.MATCH_PARENT;
         controlsRoot.requestLayout();
+
+        int statusBarHeight = 0;
+        int resourceId = service.getResources().getIdentifier("status_bar_height_landscape", "dimen", "android");
+        if (resourceId > 0) statusBarHeight = service.getResources().getDimensionPixelSize(resourceId);
+
+        getRootView().findViewById(R.id.playbackWindowRoot).setPadding(0, isFullscreen ? statusBarHeight : 0, 0, 0);
+        getRootView().findViewById(R.id.playbackWindowRoot).requestLayout();
     }
 
     private void updatePlaybackButtons() {

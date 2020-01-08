@@ -116,8 +116,8 @@ public class NavigationHelper {
                 .putExtra(BasePlayer.PLAYBACK_SKIP_SILENCE, playbackSkipSilence);
     }
 
-    public static void playOnMainPlayer(final AppCompatActivity activity, final PlayQueue queue, final boolean resumePlayback) {
-        playOnMainPlayer(activity.getSupportFragmentManager(), queue, resumePlayback);
+    public static void playOnMainPlayer(final AppCompatActivity activity, final PlayQueue queue, final boolean autoPlay) {
+        playOnMainPlayer(activity.getSupportFragmentManager(), queue, autoPlay);
     }
 
     public static void playOnMainPlayer(final FragmentManager fragmentManager, final PlayQueue queue, boolean autoPlay) {
