@@ -113,7 +113,7 @@
     <string name="service_title">Service</string>
     <string name="content_language_title">Default content language</string>
     <string name="peertube_instance_url_title">PeerTube instances</string>
-    <string name="peertube_instance_url_summary">Set your favorite PeerTube instances</string>
+    <string name="peertube_instance_url_summary">Select your favorite PeerTube instances</string>
     <string name="peertube_instance_url_help">Find the instances that best suit you on %s</string>
     <string name="peertube_instance_list_url" translatable="false">https://joinpeertube.org/instances#instances-list</string>
     <string name="peertube_instance_add_title">Add instance</string>
