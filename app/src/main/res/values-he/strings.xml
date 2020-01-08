@@ -531,12 +531,12 @@
     <string name="default_kiosk_page_summary">קיוסק בררת מחדל</string>
     <string name="seek_duration_title">משך קפיצה מהירה קדימה/אחורה</string>
     <string name="peertube_instance_url_title">מופעים של PeerTube</string>
-    <string name="peertube_instance_url_summary">נא להגדיר את מופעי ה־peertube המועדפים עליך</string>
-    <string name="peertube_instance_url_help">איתור המופעים שהכי מתאימים לך תחת https://joinpeertube.org/instances#instances-list</string>
+    <string name="peertube_instance_url_summary">נא לבחור את מופעי ה־PeerTube המועדפים עליך</string>
+    <string name="peertube_instance_url_help">איתור המופעים שהכי מתאימים לך תחת %s</string>
     <string name="peertube_instance_add_title">הוספת מופע</string>
     <string name="peertube_instance_add_help">נא להכניס כתובת מופע</string>
-    <string name="peertube_instance_add_fail">אימות המופע נכשל</string>
-    <string name="peertube_instance_add_https_only">יש תמיכה בכתובות https בלבד</string>
+    <string name="peertube_instance_add_fail">לא ניתן לאמת את המופע</string>
+    <string name="peertube_instance_add_https_only">יש תמיכה בכתובות HTTPS בלבד</string>
     <string name="peertube_instance_add_exists">המופע כבר קיים</string>
     <string name="local">מקומי</string>
     <string name="recently_added">נוספו לאחרונה</string>
@@ -545,4 +545,6 @@
     <string name="recovering">בשחזור</string>
     <string name="error_download_resource_gone">לא ניתן לשחזר את ההורדה הזאת</string>
     <string name="choose_instance_prompt">נא לבחור מופע</string>
+    <string name="enable_lock_screen_video_thumbnail_title">הפעלת תמונה מוקטנת של הסרטון במסך הנעילה</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">בעת השימוש בנגן הרקע תופיע תמונה מוקטנת של הסרטון על מסך הנעילה</string>
 </resources>
