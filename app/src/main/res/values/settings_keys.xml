@@ -65,7 +65,7 @@
 
 
     <string name="autoplay_key" translatable="false">autoplay_key</string>
-    <string name="autoplay_value" translatable="false">@string/autoplay_always_key</string>
+    <string name="autoplay_value" translatable="false">@string/autoplay_wifi_key</string>
     <string name="autoplay_always_key" translatable="false">autoplay_always_key</string>
     <string name="autoplay_wifi_key" translatable="false">autoplay_wifi_key</string>
     <string name="autoplay_never_key" translatable="false">autoplay_never_key</string>
