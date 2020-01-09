@@ -15,7 +15,7 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import static org.schabi.newpipe.util.Localization.changeAppLanguage;
-import static org.schabi.newpipe.util.Localization.getAppLanguage;
+import static org.schabi.newpipe.util.Localization.getAppLocale;
 
 
 /*
@@ -47,7 +47,7 @@ public class SettingsActivity extends AppCompatActivity implements BasePreferenc
     @Override
     protected void onCreate(Bundle savedInstanceBundle) {
         setTheme(ThemeHelper.getSettingsThemeStyle(this));
-        changeAppLanguage(getAppLanguage(getApplicationContext()), getResources());
+        changeAppLanguage(getAppLocale(getApplicationContext()), getResources());
         super.onCreate(savedInstanceBundle);
         setContentView(R.layout.settings_layout);
 

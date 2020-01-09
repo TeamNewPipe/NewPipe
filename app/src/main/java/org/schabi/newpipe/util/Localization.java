@@ -7,7 +7,6 @@ import android.content.res.Resources;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.PluralsRes;
@@ -54,8 +53,8 @@ public class Localization {
     private Localization() {
     }
 
-    public static void init() {
-        initPrettyTime();
+    public static void init(Context context) {
+        initPrettyTime(context);
     }
 
     @NonNull
@@ -203,17 +202,17 @@ public class Localization {
     // Pretty Time
     //////////////////////////////////////////////////////////////////////////*/
 
-    private static void initPrettyTime() {
-        prettyTime = new PrettyTime(Locale.getDefault());
+    private static void initPrettyTime(Context context) {
+        prettyTime = new PrettyTime(getAppLocale(context));
         // Do not use decades as YouTube doesn't either.
         prettyTime.removeUnit(Decade.class);
     }
 
     private static PrettyTime getPrettyTime() {
         // If pretty time's Locale is different, init again with the new one.
-        if (!prettyTime.getLocale().equals(Locale.getDefault())) {
-            initPrettyTime();
-        }
+//        if (!prettyTime.getLocale().equals(Locale.getDefault())) {
+//            initPrettyTime();
+//        }
         return prettyTime;
     }
 
@@ -228,7 +227,7 @@ public class Localization {
         res.updateConfiguration(conf, dm);
     }
 
-    public static Locale getAppLanguage(Context context) {
+    public static Locale getAppLocale(Context context) {
         SharedPreferences prefs = androidx.preference.PreferenceManager.getDefaultSharedPreferences(context);
         String lang = prefs.getString("newpipes_language_key", "en");
         Locale loc;

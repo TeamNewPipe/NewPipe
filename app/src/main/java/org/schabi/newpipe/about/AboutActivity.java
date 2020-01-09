@@ -26,7 +26,7 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import static org.schabi.newpipe.util.Localization.changeAppLanguage;
-import static org.schabi.newpipe.util.Localization.getAppLanguage;
+import static org.schabi.newpipe.util.Localization.getAppLocale;
 
 public class AboutActivity extends AppCompatActivity {
 
@@ -65,7 +65,7 @@ public class AboutActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        changeAppLanguage(getAppLanguage(getApplicationContext()), getResources());
+        changeAppLanguage(getAppLocale(getApplicationContext()), getResources());
         super.onCreate(savedInstanceState);
         ThemeHelper.setTheme(this);
 

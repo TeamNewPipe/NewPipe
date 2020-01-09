@@ -66,6 +66,7 @@ import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.KioskTranslator;
+import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PeertubeHelper;
 import org.schabi.newpipe.util.PermissionHelper;
@@ -78,7 +79,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.schabi.newpipe.util.Localization.changeAppLanguage;
-import static org.schabi.newpipe.util.Localization.getAppLanguage;
+import static org.schabi.newpipe.util.Localization.getAppLocale;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -117,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         }
         ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
 
-        changeAppLanguage(getAppLanguage(getApplicationContext()), getResources());
+        changeAppLanguage(getAppLocale(getApplicationContext()), getResources());
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -422,7 +423,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        changeAppLanguage(getAppLanguage(getApplicationContext()), getResources());
+        changeAppLanguage(getAppLocale(getApplicationContext()), getResources());
+        Localization.init(getApplicationContext()); //change the date format to match the selected language on resume
         super.onResume();
 
         // close drawer on return, and don't show animation, so its looks like the drawer isn't open

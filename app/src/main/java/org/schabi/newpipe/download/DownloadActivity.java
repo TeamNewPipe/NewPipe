@@ -19,7 +19,7 @@ import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.ui.fragment.MissionsFragment;
 
 import static org.schabi.newpipe.util.Localization.changeAppLanguage;
-import static org.schabi.newpipe.util.Localization.getAppLanguage;
+import static org.schabi.newpipe.util.Localization.getAppLocale;
 
 public class DownloadActivity extends AppCompatActivity {
 
@@ -32,7 +32,7 @@ public class DownloadActivity extends AppCompatActivity {
         i.setClass(this, DownloadManagerService.class);
         startService(i);
 
-        changeAppLanguage(getAppLanguage(getApplicationContext()), getResources());
+        changeAppLanguage(getAppLocale(getApplicationContext()), getResources());
         ThemeHelper.setTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_downloader);
