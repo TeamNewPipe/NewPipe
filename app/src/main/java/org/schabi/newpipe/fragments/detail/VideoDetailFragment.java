@@ -27,7 +27,6 @@ import com.google.android.material.tabs.TabLayout;
 import androidx.fragment.app.Fragment;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -111,6 +110,7 @@ public class VideoDetailFragment
     private static final float MAX_OVERLAY_ALPHA = 0.9f;
 
     public static final String ACTION_SHOW_MAIN_PLAYER = "org.schabi.newpipe.fragments.VideoDetailFragment.ACTION_SHOW_MAIN_PLAYER";
+    public static final String ACTION_HIDE_MAIN_PLAYER = "org.schabi.newpipe.fragments.VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER";
 
     private boolean autoPlayEnabled;
     private boolean showRelatedStreams;
@@ -549,7 +549,6 @@ public class VideoDetailFragment
                 setOverlayPlayPauseImage();
                 break;
             case R.id.overlay_close_button:
-                cleanUp();
                 bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
                 break;
         }
@@ -874,6 +873,14 @@ public class VideoDetailFragment
             return true;
         }
 
+        StackItem currentPeek = stack.peek();
+        if (currentPeek != null && currentPeek.getPlayQueue() != playQueue) {
+            // When user selected a stream but didn't start playback this stream will not be added to backStack.
+            // Then he press Back and the last saved item from history will show up
+            setupFromHistoryItem(currentPeek);
+            return true;
+        }
+
         // If we have something in history of played items we replay it here
         if (player != null && player.getPlayQueue() != null && player.getPlayQueue().previous()) {
             return true;
@@ -888,18 +895,20 @@ public class VideoDetailFragment
         // Remove top
         stack.pop();
         // Get stack item from the new top
-        StackItem peek = stack.peek();
+        setupFromHistoryItem(stack.peek());
 
+        return true;
+    }
+
+    private void setupFromHistoryItem(StackItem item) {
         hideMainPlayer();
 
         setAutoplay(false);
         selectAndLoadVideo(
-                peek.getServiceId(),
-                peek.getUrl(),
-                !TextUtils.isEmpty(peek.getTitle()) ? peek.getTitle() : "",
-                peek.getPlayQueue());
-
-        return true;
+                item.getServiceId(),
+                item.getUrl(),
+                !TextUtils.isEmpty(item.getTitle()) ? item.getTitle() : "",
+                item.getPlayQueue());
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1165,6 +1174,7 @@ public class VideoDetailFragment
         return playQueue != null && playQueue.getStreams().size() != 0
                 && autoPlayEnabled
                 && !isExternalPlayerEnabled()
+                && (player == null || player.videoPlayerSelected())
                 && isAutoplayAllowedByUser();
     }
 
@@ -1289,10 +1299,14 @@ public class VideoDetailFragment
             public void onReceive(Context context, Intent intent) {
                 if(intent.getAction().equals(ACTION_SHOW_MAIN_PLAYER)) {
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                } else if(intent.getAction().equals(ACTION_HIDE_MAIN_PLAYER)) {
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
                 }
             }
         };
-        IntentFilter intentFilter = new IntentFilter(ACTION_SHOW_MAIN_PLAYER);
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(ACTION_SHOW_MAIN_PLAYER);
+        intentFilter.addAction(ACTION_HIDE_MAIN_PLAYER);
         activity.registerReceiver(broadcastReceiver, intentFilter);
     }
 
@@ -1662,7 +1676,8 @@ public class VideoDetailFragment
     public void onProgressUpdate(int currentProgress, int duration, int bufferPercent) {
         // Progress updates every second even if media is paused. It's useless until playing
         if (!player.getPlayer().isPlaying() || playQueue == null) return;
-        showPlaybackProgress(currentProgress, duration);
+
+        if (playQueue == player.getPlayQueue()) showPlaybackProgress(currentProgress, duration);
 
         // We don't want to interrupt playback and don't want to see notification if player is stopped
         // since next lines of code will enable background playback if needed

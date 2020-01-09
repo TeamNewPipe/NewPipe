@@ -108,6 +108,7 @@ public class VideoPlayerImpl extends VideoPlayer
     private ImageButton playWithKodi;
     private ImageButton openInBrowser;
     private ImageButton fullscreenButton;
+    private ImageButton playerCloseButton;
 
     private ImageButton playPauseButton;
     private ImageButton playPreviousButton;
@@ -238,6 +239,7 @@ public class VideoPlayerImpl extends VideoPlayer
         this.playWithKodi = rootView.findViewById(R.id.playWithKodi);
         this.openInBrowser = rootView.findViewById(R.id.openInBrowser);
         this.fullscreenButton = rootView.findViewById(R.id.fullScreenButton);
+        this.playerCloseButton = rootView.findViewById(R.id.playerCloseButton);
 
         this.playPauseButton = rootView.findViewById(R.id.playPauseButton);
         this.playPreviousButton = rootView.findViewById(R.id.playPreviousButton);
@@ -293,6 +295,7 @@ public class VideoPlayerImpl extends VideoPlayer
             shareButton.setVisibility(View.GONE);
             playWithKodi.setVisibility(View.GONE);
             openInBrowser.setVisibility(View.GONE);
+            playerCloseButton.setVisibility(View.GONE);
         } else {
             fullscreenButton.setVisibility(View.GONE);
             getRootView().findViewById(R.id.spaceBeforeControls).setVisibility(View.VISIBLE);
@@ -307,6 +310,7 @@ public class VideoPlayerImpl extends VideoPlayer
             playWithKodi.setVisibility(
                     defaultPreferences.getBoolean(service.getString(R.string.show_play_with_kodi_key), false) ? View.VISIBLE : View.GONE);
             openInBrowser.setVisibility(View.VISIBLE);
+            playerCloseButton.setVisibility(isFullscreen ? View.GONE : View.VISIBLE);
         }
         if (!isInFullscreen()) {
             titleTextView.setVisibility(View.GONE);
@@ -341,6 +345,7 @@ public class VideoPlayerImpl extends VideoPlayer
         fullscreenButton.setOnClickListener(this);
         playWithKodi.setOnClickListener(this);
         openInBrowser.setOnClickListener(this);
+        playerCloseButton.setOnClickListener(this);
 
         getRootView().addOnLayoutChangeListener((view, l, t, r, b, ol, ot, or, ob) -> {
             if (l != ol || t != ot || r != or || b != ob) {
@@ -555,9 +560,11 @@ public class VideoPlayerImpl extends VideoPlayer
         if (!isInFullscreen()) {
             titleTextView.setVisibility(View.GONE);
             channelTextView.setVisibility(View.GONE);
+            playerCloseButton.setVisibility(videoPlayerSelected() ? View.VISIBLE : View.GONE);
         } else {
             titleTextView.setVisibility(View.VISIBLE);
             channelTextView.setVisibility(View.VISIBLE);
+            playerCloseButton.setVisibility(View.GONE);
         }
     }
 
@@ -597,6 +604,8 @@ public class VideoPlayerImpl extends VideoPlayer
         } else if (v.getId() == fullscreenButton.getId()) {
             toggleFullscreen();
 
+        } else if (v.getId() == playerCloseButton.getId()) {
+            service.sendBroadcast(new Intent(VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER));
         }
 
         if (getCurrentState() != STATE_COMPLETED) {

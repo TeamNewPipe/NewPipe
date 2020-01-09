@@ -175,6 +175,20 @@
                 android:paddingLeft="2dp"
                 tools:ignore="RtlHardcoded">
 
+                <ImageButton
+                    android:id="@+id/playerCloseButton"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:padding="6dp"
+                    android:layout_marginEnd="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:scaleType="fitXY"
+                    android:src="?attr/close"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    tools:ignore="ContentDescription,RtlHardcoded"
+                    android:visibility="gone" />
+
                 <LinearLayout
                     android:id="@+id/metadataView"
                     android:layout_width="0dp"
