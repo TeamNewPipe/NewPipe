@@ -25,8 +25,6 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
-import java.util.Locale;
-
 import static org.schabi.newpipe.util.Localization.changeAppLanguage;
 import static org.schabi.newpipe.util.Localization.getAppLanguage;
 
