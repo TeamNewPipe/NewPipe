@@ -3,6 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:title="@string/content">
+
+    <ListPreference
+        app:iconSpaceReserved="false"
+        android:defaultValue="system"
+        android:entries="@array/language_name_np"
+        android:entryValues="@array/language_code_np"
+        android:key="@string/newpipes_language_key"
+        android:summary="%s"
+        android:title="@string/newpipes_language_title"/>
+
     <ListPreference
         app:iconSpaceReserved="false"
         android:defaultValue="@string/default_language_value"

@@ -15,8 +15,13 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.ThemeHelper;
 
+import java.util.Locale;
+
 import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.ui.fragment.MissionsFragment;
+
+import static org.schabi.newpipe.util.Localization.changeAppLanguage;
+import static org.schabi.newpipe.util.Localization.getAppLanguage;
 
 public class DownloadActivity extends AppCompatActivity {
 
@@ -29,6 +34,7 @@ public class DownloadActivity extends AppCompatActivity {
         i.setClass(this, DownloadManagerService.class);
         startService(i);
 
+        changeAppLanguage(getAppLanguage(getApplicationContext()), getResources());
         ThemeHelper.setTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_downloader);

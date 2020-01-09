@@ -193,13 +193,13 @@
     <string name="short_billion">بی</string>
     <string name="no_subscribers">کوئی صارفین نہیں</string>
     <plurals name="subscribers">
-        <item quantity="one">% s صارف</item>
-        <item quantity="other">% s صارفین</item>
+        <item quantity="one">%s صارف</item>
+        <item quantity="other">%s صارفین</item>
     </plurals>
     <string name="no_views">کوئی مناظر نہیں</string>
     <plurals name="views">
-        <item quantity="one">% s منظر</item>
-        <item quantity="other">% s مناظر</item>
+        <item quantity="one">%s منظر</item>
+        <item quantity="other">%s مناظر</item>
     </plurals>
     <string name="no_videos">ویڈیوز دستیاب نہیں</string>
     <plurals name="videos">
@@ -388,7 +388,7 @@
     <string name="limit_data_usage_none_description">کوئی حد نہیں</string>
     <string name="limit_mobile_data_usage_title">موبائل ڈیٹا کا استعمال کرتے وقت ریذولوشن کو محدود کریں</string>
     <string name="minimize_on_exit_title">ایپ سوئچ کو کم سے کم کریں</string>
-    <string name="minimize_on_exit_summary">اہم ویڈیو پلیئر سے دوسرے ایپ میں سوئچنگ کرتے وقت کارروائی-% s</string>
+    <string name="minimize_on_exit_summary">اہم ویڈیو پلیئر سے دوسرے ایپ میں سوئچنگ کرتے وقت کارروائی-s%</string>
     <string name="minimize_on_exit_none_description">کوئی نہیں</string>
     <string name="minimize_on_exit_background_description">پس منظری پلیر میں کم کریں</string>
     <string name="minimize_on_exit_popup_description">پاپ اپ پلیر میں کم کریں</string>

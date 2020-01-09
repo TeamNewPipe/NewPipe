@@ -14,6 +14,11 @@ import android.view.MenuItem;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.ThemeHelper;
 
+import java.util.Locale;
+
+import static org.schabi.newpipe.util.Localization.changeAppLanguage;
+import static org.schabi.newpipe.util.Localization.getAppLanguage;
+
 
 /*
  * Created by Christian Schabesberger on 31.08.15.
@@ -44,7 +49,7 @@ public class SettingsActivity extends AppCompatActivity implements BasePreferenc
     @Override
     protected void onCreate(Bundle savedInstanceBundle) {
         setTheme(ThemeHelper.getSettingsThemeStyle(this));
-
+        changeAppLanguage(getAppLanguage(getApplicationContext()), getResources());
         super.onCreate(savedInstanceBundle);
         setContentView(R.layout.settings_layout);
 

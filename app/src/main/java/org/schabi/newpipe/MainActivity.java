@@ -56,7 +56,6 @@ import androidx.fragment.app.FragmentManager;
 import com.google.android.material.navigation.NavigationView;
 
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.services.peertube.PeertubeInstance;
@@ -67,7 +66,6 @@ import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.KioskTranslator;
-import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PeertubeHelper;
 import org.schabi.newpipe.util.PermissionHelper;
@@ -78,8 +76,10 @@ import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import static org.schabi.newpipe.util.Localization.changeAppLanguage;
+import static org.schabi.newpipe.util.Localization.getAppLanguage;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -116,10 +116,9 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
             TLSSocketFactoryCompat.setAsDefault();
         }
-
         ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
 
-        changeAppLanguage(Localization.getPreferredLocale(getApplicationContext()), getResources());
+        changeAppLanguage(getAppLanguage(getApplicationContext()), getResources());
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -424,6 +423,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        changeAppLanguage(getAppLanguage(getApplicationContext()), getResources());
         super.onResume();
 
         // close drawer on return, and don't show animation, so its looks like the drawer isn't open

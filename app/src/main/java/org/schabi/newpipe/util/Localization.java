@@ -7,6 +7,11 @@ import android.content.res.Resources;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.PluralsRes;
+import androidx.annotation.StringRes;
 
 import org.ocpsoft.prettytime.PrettyTime;
 import org.ocpsoft.prettytime.units.Decade;
@@ -20,10 +25,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.PluralsRes;
-import androidx.annotation.StringRes;
 
 /*
  * Created by chschtsch on 12/29/15.
@@ -225,5 +226,22 @@ public class Localization {
         Configuration conf = res.getConfiguration();
         conf.setLocale(loc);
         res.updateConfiguration(conf, dm);
+    }
+
+    public static Locale getAppLanguage(Context context) {
+        SharedPreferences prefs = androidx.preference.PreferenceManager.getDefaultSharedPreferences(context);
+        String lang = prefs.getString("newpipes_language_key", "en");
+        Locale loc;
+        if (lang.equals("system")) {
+            loc = Locale.getDefault();
+        } else if (lang.matches(".*-.*")) {
+            String[] localisation = lang.split("-");
+            lang = localisation[0];
+            String country = localisation[1];
+            loc = new Locale(lang, country);
+        } else {
+            loc = new Locale(lang);
+        }
+        return loc;
     }
 }
