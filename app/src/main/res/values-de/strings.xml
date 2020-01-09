@@ -517,4 +517,20 @@
         <item quantity="other">%s Zuhörer</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">Die Sprache ändert sich, sobald die App neu gestartet wird.</string>
+    <string name="peertube_instance_url_title">PeerTube-Instanzen</string>
+    <string name="peertube_instance_url_help">Finde auf https://joinpeertube.org/instances#instances-list die Instanzen, die am besten zu dir passen</string>
+    <string name="peertube_instance_add_title">Instanz hinzufügen</string>
+    <string name="peertube_instance_add_help">Gib die URL der Instanz ein</string>
+    <string name="peertube_instance_add_fail">Validieren der Instanz fehlgeschlagen</string>
+    <string name="peertube_instance_add_exists">Diese Instanz existiert bereits</string>
+    <string name="local">Lokal</string>
+    <string name="recently_added">Kürzlich hinzugefügt</string>
+    <string name="playlist_no_uploader">Auto-generiert (kein Uploader gefunden)</string>
+    <string name="choose_instance_prompt">Wähle eine Instanz</string>
+    <string name="peertube_instance_url_summary">Bevorzugte Peertube-Instanzen festlegen</string>
+    <string name="peertube_instance_add_https_only">Es werden nur https-Adressen unterstützt</string>
+    <string name="seek_duration_title">Dauer der Suche bei schnellem Vor-/Zurückspulen</string>
+    <string name="most_liked">Am beliebtesten</string>
+    <string name="recovering">Wiederherstellen</string>
+    <string name="error_download_resource_gone">Dieser Download kann nicht wiederhergestellt werden</string>
 </resources>

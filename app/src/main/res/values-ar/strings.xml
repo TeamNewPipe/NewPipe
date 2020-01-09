@@ -541,18 +541,18 @@
         <item quantity="other">مستمعين</item>
     </plurals>
     <string name="seek_duration_title">تسريع إلى الأمام/-ترجيع وقت البحث</string>
-    <string name="peertube_instance_url_title">نموذج بيرتوب</string>
-    <string name="peertube_instance_url_summary">تعيين حالات بيرتوب المفضلة لديك</string>
+    <string name="peertube_instance_url_title">مثيلات خوادم پيرتيوب</string>
+    <string name="peertube_instance_url_summary">عيّن مثيلات خوادم پيرتيوب التي تُفضّلها</string>
     <string name="peertube_instance_add_title">إضافة نموذج</string>
-    <string name="peertube_instance_add_help">أدخل رابط نموذج</string>
-    <string name="peertube_instance_add_fail">فشل في التحقق من النموذج</string>
+    <string name="peertube_instance_add_help">أدخل رابط مثيل الخادم</string>
+    <string name="peertube_instance_add_fail">فشل في التحقق من مثيل الخادم</string>
     <string name="peertube_instance_add_https_only">فقط عناوين https المدعومة</string>
-    <string name="peertube_instance_add_exists">نموذج موجود بالفعل</string>
+    <string name="peertube_instance_add_exists">مثيل الخادم موجود بالفعل</string>
     <string name="local">محلي</string>
     <string name="recently_added">أضيف مؤخرا</string>
     <string name="most_liked">الأكثر إعجابا</string>
     <string name="playlist_no_uploader">تم إنشاؤه-تلقائيًا (لم يتم العثور على برنامج تحميل)</string>
     <string name="recovering">استرد</string>
     <string name="error_download_resource_gone">لا يمكن استرداد هذا التنزيل</string>
-    <string name="choose_instance_prompt">اختيار نموذج</string>
+    <string name="choose_instance_prompt">اختيار مثيل خادم</string>
 </resources>

@@ -4,11 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +12,12 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -413,10 +414,25 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         disposables.add(disposable);
     }
 
+    private void updateThumbnailUrl() {
+        String newThumbnailUrl;
+
+        if (!itemListAdapter.getItemsList().isEmpty()) {
+            newThumbnailUrl = ((PlaylistStreamEntry) itemListAdapter.getItemsList().get(0)).thumbnailUrl;
+        } else {
+            newThumbnailUrl = "drawable://" + R.drawable.dummy_thumbnail_playlist;
+        }
+
+        changeThumbnailUrl(newThumbnailUrl);
+    }
+
     private void deleteItem(final PlaylistStreamEntry item) {
         if (itemListAdapter == null) return;
 
         itemListAdapter.removeItem(item);
+        if (playlistManager.getPlaylistThumbnail(playlistId).equals(item.thumbnailUrl))
+            updateThumbnailUrl();
+
         setVideoCount(itemListAdapter.getItemsList().size());
         saveChanges();
     }

@@ -525,4 +525,6 @@ abrir em modo popup</string>
         <item quantity="other">%s ouvintes</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">O idioma será atualizado assim que o aplicativo for reiniciado.</string>
+    <string name="seek_duration_title">Duração do avançar/retroceder rápido</string>
+    <string name="peertube_instance_url_title">Instâncias PeerTube</string>
 </resources>

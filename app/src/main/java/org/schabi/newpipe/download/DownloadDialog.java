@@ -559,8 +559,16 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
             case R.id.audio_button:
                 mainStorage = mainStorageAudio;
                 format = audioStreamsAdapter.getItem(selectedAudioIndex).getFormat();
-                mime = format.mimeType;
-                filename += format.suffix;
+                switch(format) {
+                    case WEBMA_OPUS:
+                        mime = "audio/ogg";
+                        filename += "opus";
+                        break;
+                    default:
+                        mime = format.mimeType;
+                        filename += format.suffix;
+                        break;
+                }
                 break;
             case R.id.video_button:
                 mainStorage = mainStorageVideo;

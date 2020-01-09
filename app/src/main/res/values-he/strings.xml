@@ -254,7 +254,7 @@
     <string name="enqueue_on_popup">הוספה לתור בנגן צף חדש</string>
     <string name="start_here_on_main">להתחיל לנגן מכאן</string>
     <string name="start_here_on_background">להתחיל לנגן ברקע</string>
-    <string name="start_here_on_popup">להתחיל לנגן בחלון צף חדש</string>
+    <string name="start_here_on_popup">להתחיל לנגן בנגן צף חדש</string>
     <string name="controls_download_desc">הורדת קובץ הזרמה</string>
     <string name="show_info">הצגת מידע</string>
     <string name="tab_bookmarks">רשימות נגינה מסומנות</string>
@@ -490,7 +490,7 @@
     <string name="watch_history_states_deleted">מיקומי הנגינה נמחקו.</string>
     <string name="missing_file">הקובץ הועבר או נמחק</string>
     <string name="overwrite_unrelated_warning">כבר קיים קובץ בשם הזה</string>
-    <string name="overwrite_failed">לא ניתן לשכתב על הקובץ</string>
+    <string name="overwrite_failed">לא ניתן לשכתב את הקובץ</string>
     <string name="download_already_pending">כבר יש הורדה ממתינה בשם הזה</string>
     <string name="error_postprocessing_stopped">NewPipe נסגר בזמן העבודה על הקובץ</string>
     <string name="error_insufficient_storage">לא נשאר מקום במכשיר</string>
@@ -529,4 +529,20 @@
     </plurals>
     <string name="localization_changes_requires_app_restart">השפה תוחלף עם הפעלת היישומון מחדש.</string>
     <string name="default_kiosk_page_summary">קיוסק בררת מחדל</string>
+    <string name="seek_duration_title">משך קפיצה מהירה קדימה/אחורה</string>
+    <string name="peertube_instance_url_title">מופעים של PeerTube</string>
+    <string name="peertube_instance_url_summary">נא להגדיר את מופעי ה־peertube המועדפים עליך</string>
+    <string name="peertube_instance_url_help">איתור המופעים שהכי מתאימים לך תחת https://joinpeertube.org/instances#instances-list</string>
+    <string name="peertube_instance_add_title">הוספת מופע</string>
+    <string name="peertube_instance_add_help">נא להכניס כתובת מופע</string>
+    <string name="peertube_instance_add_fail">אימות המופע נכשל</string>
+    <string name="peertube_instance_add_https_only">יש תמיכה בכתובות https בלבד</string>
+    <string name="peertube_instance_add_exists">המופע כבר קיים</string>
+    <string name="local">מקומי</string>
+    <string name="recently_added">נוספו לאחרונה</string>
+    <string name="most_liked">האהובים ביותר</string>
+    <string name="playlist_no_uploader">נוצרה אוטומטית (לא נמצא מעלה)</string>
+    <string name="recovering">בשחזור</string>
+    <string name="error_download_resource_gone">לא ניתן לשחזר את ההורדה הזאת</string>
+    <string name="choose_instance_prompt">נא לבחור מופע</string>
 </resources>
