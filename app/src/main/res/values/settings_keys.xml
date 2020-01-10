@@ -31,12 +31,12 @@
     <string name="seek_duration_key" translatable="false">seek_duration</string>
     <string name="seek_duration_default_value" translatable="false">10000</string>
     <string-array name="seek_duration_description" translatable="false">
-      <item>5 seconds</item>
-      <item>10 seconds</item>
-      <item>15 seconds</item>
-      <item>20 seconds</item>
-      <item>25 seconds</item>
-      <item>30 seconds</item>
+      <item>@string/five_seconds</item>
+      <item>@string/ten_seconds</item>
+      <item>@string/fifteen_seconds</item>
+      <item>@string/twenty_seconds</item>
+      <item>@string/twenty_five_seconds</item>
+      <item>@string/thirty_seconds</item>
     </string-array>
     <string-array name="seek_duration_value" translatable="false">
       <item>5000</item>
@@ -161,8 +161,8 @@
     <string name="show_comments_key" translatable="false">show_comments</string>
     <string name="stream_info_selected_tab_key" translatable="false">stream_info_selected_tab</string>
     <string name="show_hold_to_append_key" translatable="false">show_hold_to_append</string>
-    <string name="default_language_value">en</string>
-    <string name="default_country_value">GB</string>
+    <string name="default_language_value" translatable="false">en</string>
+    <string name="default_country_value" translatable="false">GB</string>
     <string name="content_language_key" translatable="false">content_language</string>
     <string name="peertube_instance_setup_key" translatable="false">peertube_instance_setup</string>
     <string name="peertube_selected_instance_key" translatable="false">peertube_selected_instance</string>
