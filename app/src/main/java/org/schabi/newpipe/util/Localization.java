@@ -209,10 +209,6 @@ public class Localization {
     }
 
     private static PrettyTime getPrettyTime() {
-        // If pretty time's Locale is different, init again with the new one.
-//        if (!prettyTime.getLocale().equals(Locale.getDefault())) {
-//            initPrettyTime();
-//        }
         return prettyTime;
     }
 

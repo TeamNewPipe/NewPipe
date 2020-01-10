@@ -68,6 +68,7 @@ public class AboutActivity extends AppCompatActivity {
         changeAppLanguage(getAppLocale(getApplicationContext()), getResources());
         super.onCreate(savedInstanceState);
         ThemeHelper.setTheme(this);
+        this.setTitle(getString(R.string.title_activity_about));
 
         setContentView(R.layout.activity_about);
 

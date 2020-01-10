@@ -80,6 +80,8 @@ import static org.schabi.newpipe.player.BasePlayer.STATE_PLAYING;
 import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_DURATION;
 import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
+import static org.schabi.newpipe.util.Localization.changeAppLanguage;
+import static org.schabi.newpipe.util.Localization.getAppLocale;
 
 /**
  * Service Popup Player implementing VideoPlayer
@@ -142,6 +144,7 @@ public final class PopupVideoPlayer extends Service {
 
     @Override
     public void onCreate() {
+        changeAppLanguage(getAppLocale(getApplicationContext()), getResources());
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         notificationManager = ((NotificationManager) getSystemService(NOTIFICATION_SERVICE));
 

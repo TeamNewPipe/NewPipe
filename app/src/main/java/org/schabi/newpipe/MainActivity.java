@@ -119,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
         ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
 
         changeAppLanguage(getAppLocale(getApplicationContext()), getResources());
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
