@@ -1054,7 +1054,6 @@
         <item>官话</item>
         <item>简化字</item>
         <item>臺灣華語</item>
-        <!--todo : fix ia, ind, see why it crashes for ur-->
     </string-array>
 
     <!-- Limit mobile data usage  -->
