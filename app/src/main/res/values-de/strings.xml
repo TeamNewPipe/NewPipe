@@ -123,7 +123,8 @@
     <string name="default_video_format_title">Bevorzugtes Videoformat</string>
     <string name="popup_playing_toast">Im Pop-up Modus abspielen</string>
     <string name="popup_mode_share_menu_title">NewPipe-Pop-up-Modus</string>
-    <string name="msg_popup_permission">Diese Berechtigung ist für das Öffnen im Pop-up-Modus erforderlich</string>
+    <string name="msg_popup_permission">Diese Berechtigung ist für das
+\nÖffnen im Pop-up-Modus erforderlich</string>
     <string name="default_popup_resolution_title">Standardauflösung des Pop-ups</string>
     <string name="show_higher_resolutions_title">Höhere Auflösungen anzeigen</string>
     <string name="show_higher_resolutions_summary">Nur manche Geräte unterstützen das Abspielen von 2K-/4K-Videos</string>
@@ -520,7 +521,7 @@
     <string name="peertube_instance_url_title">PeerTube-Instanzen</string>
     <string name="peertube_instance_url_help">Finde auf %s die Instanzen, die am besten zu dir passen</string>
     <string name="peertube_instance_add_title">Instanz hinzufügen</string>
-    <string name="peertube_instance_add_help">Gib die URL der Instanz ein</string>
+    <string name="peertube_instance_add_help">URL der Instanz eingeben</string>
     <string name="peertube_instance_add_fail">Validierung der Instanz fehlgeschlagen</string>
     <string name="peertube_instance_add_exists">Instanz existiert bereits</string>
     <string name="local">Lokal</string>
@@ -533,4 +534,6 @@
     <string name="most_liked">Am beliebtesten</string>
     <string name="recovering">Wiederherstellen</string>
     <string name="error_download_resource_gone">Dieser Download kann nicht wiederhergestellt werden</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Video-Vorschaubild für Sperrbildschirm aktivieren</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Bei Verwendung des Hintergrundplayers wird ein Video-Miniaturbild auf dem Sperrbildschirm angezeigt</string>
 </resources>
