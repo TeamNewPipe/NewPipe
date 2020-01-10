@@ -510,7 +510,7 @@ public class VideoPlayerImpl extends VideoPlayer
     @Override
     protected void initPlayback(@NonNull PlayQueue queue, int repeatMode, float playbackSpeed, float playbackPitch, boolean playbackSkipSilence, boolean playOnReady) {
         super.initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence, playOnReady);
-        updateQueue(queue);
+        updateQueue();
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1474,7 +1474,6 @@ public class VideoPlayerImpl extends VideoPlayer
 
     public void setFragmentListener(PlayerServiceEventListener listener) {
         fragmentListener = listener;
-        updateMetadata();
         updatePlayback();
         triggerProgressUpdate();
     }
@@ -1498,12 +1497,12 @@ public class VideoPlayerImpl extends VideoPlayer
         }
     }
 
-    private void updateQueue(PlayQueue queue) {
-        if (fragmentListener != null) {
-            fragmentListener.onQueueUpdate(queue);
+    private void updateQueue() {
+        if (fragmentListener != null && playQueue != null) {
+            fragmentListener.onQueueUpdate(playQueue);
         }
-        if (activityListener != null) {
-            activityListener.onQueueUpdate(queue);
+        if (activityListener != null && playQueue != null) {
+            activityListener.onQueueUpdate(playQueue);
         }
     }
 

@@ -874,7 +874,7 @@ public class VideoDetailFragment
         }
 
         StackItem currentPeek = stack.peek();
-        if (currentPeek != null && currentPeek.getPlayQueue() != playQueue) {
+        if (currentPeek != null && !currentPeek.getPlayQueue().equals(playQueue)) {
             // When user selected a stream but didn't start playback this stream will not be added to backStack.
             // Then he press Back and the last saved item from history will show up
             setupFromHistoryItem(currentPeek);
@@ -1091,8 +1091,7 @@ public class VideoDetailFragment
                 startService(true);
                 return;
             }
-            if (currentInfo == null || playQueue == null)
-                return;
+            if (currentInfo == null) return;
 
             PlayQueue queue = setupPlayQueueForIntent(false);
 
@@ -1120,7 +1119,6 @@ public class VideoDetailFragment
         // Size can be 0 because queue removes bad stream automatically when error occurs
         if (playQueue == null || playQueue.size() == 0)
             queue = new SinglePlayQueue(currentInfo);
-        this.playQueue = queue;
 
         return queue;
     }
@@ -1404,8 +1402,7 @@ public class VideoDetailFragment
         super.handleResult(info);
 
         currentInfo = info;
-        setInitialData(info.getServiceId(), info.getOriginalUrl(), info.getName(),
-                playQueue == null ? new SinglePlayQueue(info) : playQueue);
+        setInitialData(info.getServiceId(), info.getOriginalUrl(), info.getName(), playQueue);
 
         if(showRelatedStreams){
             if(null == relatedStreamsLayout){ //phone
@@ -1665,8 +1662,13 @@ public class VideoDetailFragment
                 restoreDefaultOrientation();
                 break;
             case BasePlayer.STATE_PLAYING:
-                if (positionView.getAlpha() != 1f) animateView(positionView, true, 100);
-                if (detailPositionView.getAlpha() != 1f) animateView(detailPositionView, true, 100);
+                if (positionView.getAlpha() != 1f
+                        && player.getPlayQueue() != null
+                        && player.getPlayQueue().getItem() != null
+                        && player.getPlayQueue().getItem().getUrl().equals(url)) {
+                    animateView(positionView, true, 100);
+                    animateView(detailPositionView, true, 100);
+                }
                 setupOrientation();
                 break;
         }
@@ -1677,7 +1679,8 @@ public class VideoDetailFragment
         // Progress updates every second even if media is paused. It's useless until playing
         if (!player.getPlayer().isPlaying() || playQueue == null) return;
 
-        if (playQueue == player.getPlayQueue()) showPlaybackProgress(currentProgress, duration);
+        if (player.getPlayQueue().getItem().getUrl().equals(url))
+            showPlaybackProgress(currentProgress, duration);
 
         // We don't want to interrupt playback and don't want to see notification if player is stopped
         // since next lines of code will enable background playback if needed
@@ -1907,9 +1910,8 @@ public class VideoDetailFragment
                         if (player != null && player.isInFullscreen()) showSystemUi();
                         break;
                     case BottomSheetBehavior.STATE_DRAGGING:
-                        if (player != null && player.isControlsVisible()) player.hideControls(0, 0);
-                        break;
                     case BottomSheetBehavior.STATE_SETTLING:
+                        if (player != null && player.isControlsVisible()) player.hideControls(0, 0);
                         break;
                 }
             }
