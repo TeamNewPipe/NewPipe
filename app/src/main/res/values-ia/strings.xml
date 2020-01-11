@@ -33,4 +33,5 @@
     <string name="pause_downloads">Pausar le discargas</string>
     <string name="choose_instance_prompt">Seliger un instantia</string>
     <string name="error_connect_host">Non poteva connecter con le servitor</string>
+    <string name="view_count_text">%1$s vistas</string>
 </resources>
