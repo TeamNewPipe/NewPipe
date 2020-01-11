@@ -88,7 +88,6 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
     private static final String UNDEFINED_PROGRESS = "--.-%";
     private static final String DEFAULT_MIME_TYPE = "*/*";
     private static final String UNDEFINED_ETA = "--:--";
-    private static final int TIMEOUT = 5000;// ms
 
 
     static {
@@ -595,7 +594,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
             mSnackbar.setActionTextColor(Color.YELLOW);
             mSnackbar.show();
 
-            mHandler.postDelayed(rDelete, TIMEOUT);
+            mHandler.postDelayed(rDelete, 5000);
         } else if (!delete) {
             mDownloadManager.forgetFinishedDownloads();
             applyChanges();
@@ -603,7 +602,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
     }
 
     private void deleteFinishedDownloads() {
-        if(mSnackbar != null) mSnackbar.dismiss();
+        if (mSnackbar != null) mSnackbar.dismiss();
 
         Iterator<Mission> i = mHidden.iterator();
         while (i.hasNext()) {
