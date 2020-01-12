@@ -519,12 +519,12 @@
     <string name="default_kiosk_page_summary">Kiosko Lehenetsia</string>
     <string name="seek_duration_title">Aurreratze/atzeratze bilaketaren iraupena</string>
     <string name="peertube_instance_url_title">PeerTube instantziak</string>
-    <string name="peertube_instance_url_summary">Ezarri zure gogoko peertube instantziak</string>
-    <string name="peertube_instance_url_help">Aurkitu instantziak hemen: https://joinpeertube.org/instances#instances-list</string>
+    <string name="peertube_instance_url_summary">Hautatu zure gogoko PeerTube instantziak</string>
+    <string name="peertube_instance_url_help">Aurkitu instantziak hemen: %s</string>
     <string name="peertube_instance_add_title">Gehitu instantzia</string>
     <string name="peertube_instance_add_help">Sartu instantziaren URLa</string>
-    <string name="peertube_instance_add_fail">Huts egin du instantzia balioztatzean</string>
-    <string name="peertube_instance_add_https_only">https URLak onartzen dira soilik</string>
+    <string name="peertube_instance_add_fail">Ezin izan da instantzia balioztatu</string>
+    <string name="peertube_instance_add_https_only">HTTPS URLak onartzen dira soilik</string>
     <string name="peertube_instance_add_exists">Instantzia badago aurretik</string>
     <string name="local">Lokala</string>
     <string name="recently_added">Berriki gehitua</string>
