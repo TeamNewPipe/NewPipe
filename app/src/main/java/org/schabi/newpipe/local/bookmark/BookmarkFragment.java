@@ -1,8 +1,13 @@
 package org.schabi.newpipe.local.bookmark;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
+import android.widget.EditText;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentManager;
@@ -10,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import io.reactivex.disposables.Disposable;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import org.schabi.newpipe.NewPipeDatabase;
@@ -118,7 +124,33 @@ public final class BookmarkFragment
             @Override
             public void held(LocalItem selectedItem) {
                 if (selectedItem instanceof PlaylistMetadataEntry) {
-                    showLocalDeleteDialog((PlaylistMetadataEntry) selectedItem);
+                    final Resources resources = getContext().getResources();
+                    String[] commands = new String[]{
+                        resources.getString(R.string.rename_playlist),
+                        resources.getString(R.string.delete_playlist)
+                    };
+
+                    final DialogInterface.OnClickListener actions = (dialogInterface, i) -> {
+                        switch (i) {
+                            case 0:
+                                showLocalRenameDialog((PlaylistMetadataEntry) selectedItem);
+                                break;
+                            case 1:
+                                showLocalDeleteDialog((PlaylistMetadataEntry) selectedItem);
+                                break;
+                        }
+                    };
+
+                    final View bannerView = View.inflate(activity, R.layout.dialog_title, null);
+                    bannerView.setSelected(true);
+                    TextView titleView = bannerView.findViewById(R.id.itemTitleView);
+                    titleView.setText(((PlaylistMetadataEntry) selectedItem).name);
+
+                    new AlertDialog.Builder(getActivity())
+                        .setCustomTitle(bannerView)
+                        .setItems(commands, actions)
+                        .create()
+                        .show();
 
                 } else if (selectedItem instanceof PlaylistRemoteEntity) {
                     showRemoteDeleteDialog((PlaylistRemoteEntity) selectedItem);
@@ -269,6 +301,39 @@ public final class BookmarkFragment
                 )
                 .setNegativeButton(R.string.cancel, null)
                 .show();
+    }
+
+    private void showLocalRenameDialog(PlaylistMetadataEntry selectedItem) {
+        final View dialogView = View.inflate(getContext(), R.layout.dialog_playlist_name, null);
+        EditText nameEdit = dialogView.findViewById(R.id.playlist_name);
+        nameEdit.setText(selectedItem.name);
+        nameEdit.setSelection(nameEdit.getText().length());
+
+        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(
+            getContext())
+            .setTitle(R.string.rename_playlist)
+            .setView(dialogView)
+            .setCancelable(true)
+            .setNegativeButton(R.string.cancel, null)
+            .setPositiveButton(R.string.rename, (dialogInterface, i) -> {
+                changeLocalPlaylistName(selectedItem.uid, nameEdit.getText().toString());
+            });
+        dialogBuilder.show();
+    }
+
+    private void changeLocalPlaylistName(long id, String name) {
+        if (localPlaylistManager == null) {
+            return;
+        }
+
+        Log.d(TAG, "Updating playlist id=[" + id +
+            "] with new name=[" + name + "] items");
+
+        localPlaylistManager.renamePlaylist(id, name);
+        final Disposable disposable = localPlaylistManager.renamePlaylist(id, name)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(longs -> {/*Do nothing on success*/}, this::onError);
+        disposables.add(disposable);
     }
 
     private static List<PlaylistLocalItem> merge(final List<PlaylistMetadataEntry> localPlaylists,
