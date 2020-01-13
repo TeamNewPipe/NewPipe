@@ -79,7 +79,7 @@
     <string name="your_comment">Dein Kommentar (auf englisch):</string>
     <string name="could_not_get_stream">Konnte keinen Stream abrufen</string>
     <string name="autoplay_by_calling_app_title">Automatische Wiedergabe</string>
-    <string name="autoplay_by_calling_app_summary">Wiedergabe eines Videos, wenn NewPipe von einer anderen App aufgerufen wurde</string>
+    <string name="autoplay_by_calling_app_summary">Video abspielen, wenn NewPipe von einer anderen App aufgerufen wird</string>
     <string name="report_error">Einen Fehler melden</string>
     <string name="user_report">Anwenderbericht</string>
     <string name="duration_live">LIVE</string>
