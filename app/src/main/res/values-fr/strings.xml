@@ -122,7 +122,7 @@
     <string name="short_million">M</string>
     <string name="msg_popup_permission">Cette autorisation est nécessaire pour
 \nutiliser le mode flottant</string>
-    <string name="controls_background_title">Arrière-plan</string>
+    <string name="controls_background_title">Lire l\'audio</string>
     <string name="controls_popup_title">Flottant</string>
     <string name="default_popup_resolution_title">Définition de la fenêtre flottante par défaut</string>
     <string name="show_higher_resolutions_title">Afficher des définitions plus élevées</string>
@@ -185,7 +185,7 @@
     <string name="notification_channel_name">Notification NewPipe</string>
     <string name="undo">Annuler</string>
     <string name="enable_watch_history_summary">Garde un suivi des vidéos vues</string>
-    <string name="resume_on_audio_focus_gain_title">Reprendre à l’obtention de la cible de saisie</string>
+    <string name="resume_on_audio_focus_gain_title">Reprendre lors du retour dans l\'application</string>
     <string name="settings_category_player_title">Lecteur</string>
     <string name="settings_category_player_behavior_title">Comportement</string>
     <string name="settings_category_history_title">Historique et cache</string>
@@ -310,7 +310,7 @@
     <string name="use_inexact_seek_title">Utiliser la recherche rapide approximative</string>
     <string name="use_inexact_seek_summary">Permet au lecteur d’accéder plus rapidement à une position au détriment de la précision</string>
     <string name="download_thumbnail_title">Charger les miniatures</string>
-    <string name="download_thumbnail_summary">Désactiver pour empêcher le chargement des miniatures afin d\'économiser vos données. Modifier cette option vide le cache en mémoire vive et sur le disque.</string>
+    <string name="download_thumbnail_summary">Désactivez pour empêcher le chargement des miniatures afin de réduire l’utilisation de la bande passante et de la mémoire. La modification de cette option, vide le cache en mémoire vive et sur le disque.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Images en cache effacées</string>
     <string name="metadata_cache_wipe_title">Effacer les métadonnées en cache</string>
     <string name="metadata_cache_wipe_summary">Efface toutes les données de pages Web en cache</string>
