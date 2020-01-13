@@ -512,7 +512,7 @@
     <string name="no_one_listening">没人在听</string>
     <plurals name="listening">
         <item quantity="one">％s 人在听</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="localization_changes_requires_app_restart">重新启动应用后，语言将更改。</string>
     <string name="peertube_instance_url_title">PeerTube 服务器</string>
@@ -531,4 +531,6 @@
     <string name="error_download_resource_gone">无法恢复此下载</string>
     <string name="choose_instance_prompt">选择一个服务器</string>
     <string name="seek_duration_title">快进 / 快退的单位时间</string>
+    <string name="enable_lock_screen_video_thumbnail_title">在锁屏界面显示视频缩略图</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">在后台播放时，锁屏界面将会显示视频的缩略图</string>
 </resources>

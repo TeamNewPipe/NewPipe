@@ -1,2 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<resources></resources>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="view_count_text">%1$s vistas</string>
+    <string name="upload_date_text">Publicat lo %1$s</string>
+    <string name="no_player_found">Cap de lector de flus trobat. Volètz installar VLC\?</string>
+    <string name="no_player_found_toast">Cap de lector de flus trobat (podètz installar VLC per lo legir).</string>
+    <string name="install">Installar</string>
+    <string name="cancel">Anullar</string>
+    <string name="open_in_browser">Dobrir dins lo navegador</string>
+    <string name="open_in_popup_mode">Dobrir en mòde fenestron</string>
+    <string name="share">Partejar</string>
+    <string name="download">Telecargar</string>
+    <string name="controls_download_desc">Telecargar lo fichièr de flus</string>
+    <string name="search">Recercar</string>
+    <string name="settings">Paramètres</string>
+    <string name="did_you_mean">Voliatz dire: %1$s\?</string>
+    <string name="share_dialog_title">Partejar amb</string>
+    <string name="choose_browser">Causir un navegador</string>
+    <string name="screen_rotation">rotacion</string>
+    <string name="use_external_video_player_title">Utilizar un lector de vidèo extèrne</string>
+    <string name="popup_mode_share_menu_title">Mòde fenestron de NewPipe</string>
+    <string name="subscribe_button_title">S\'abonar</string>
+    <string name="subscribed_button_title">Abonat</string>
+    <string name="unsubscribe">Anullar abonament</string>
+    <string name="subscription_change_failed">Impossible de cambiar l\'abonament</string>
+    <string name="subscription_update_failed">Impossible d\'actualizar l\'abonament</string>
+    <string name="show_info">Afichar las informacions</string>
+    <string name="tab_main">Principal</string>
+    <string name="tab_subscriptions">Abonaments</string>
+</resources>
