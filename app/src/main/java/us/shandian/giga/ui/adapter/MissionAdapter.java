@@ -580,7 +580,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
             }
             applyChanges();
 
-            String msg = String.format(mContext.getString(R.string.deleted_downloads), String.valueOf(mHidden.size()));
+            String msg = String.format(mContext.getString(R.string.deleted_downloads), mHidden.size());
             mSnackbar = Snackbar.make(mView, msg, Snackbar.LENGTH_INDEFINITE);
             mSnackbar.setAction(R.string.undo, s -> {
                 Iterator<Mission> i = mHidden.iterator();

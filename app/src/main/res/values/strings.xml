@@ -572,7 +572,7 @@
     <string name="clear_download_history">Clear download history</string>
     <string name="confirm_prompt">Do you want to clear your download history or delete all downloaded files?</string>
     <string name="delete_downloaded_files">Delete downloaded files</string>
-    <string name="deleted_downloads">Deleted %s downloads</string>
+    <string name="deleted_downloads">Deleted %1$s downloads</string>
     <string name="stop">Stop</string>
     <string name="max_retry_msg">Maximum retries</string>
     <string name="max_retry_desc">Maximum number of attempts before canceling the download</string>
