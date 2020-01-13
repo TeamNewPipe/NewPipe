@@ -112,7 +112,6 @@ public class VideoDetailFragment
     public static final String ACTION_SHOW_MAIN_PLAYER = "org.schabi.newpipe.fragments.VideoDetailFragment.ACTION_SHOW_MAIN_PLAYER";
     public static final String ACTION_HIDE_MAIN_PLAYER = "org.schabi.newpipe.fragments.VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER";
 
-    private boolean autoPlayEnabled;
     private boolean showRelatedStreams;
     private boolean showComments;
     private String selectedTabTag;
@@ -127,6 +126,8 @@ public class VideoDetailFragment
     protected PlayQueue playQueue;
     @State
     int bottomSheetState = BottomSheetBehavior.STATE_EXPANDED;
+    @State
+    protected boolean autoPlayEnabled = true;
 
     private StreamInfo currentInfo;
     private Disposable currentWorker;
@@ -310,9 +311,6 @@ public class VideoDetailFragment
     onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-
-        // Let's play all streams automatically
-        setAutoplay(true);
 
         activity.setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
@@ -870,6 +868,7 @@ public class VideoDetailFragment
         if (player != null && player.isInFullscreen()) {
             player.onPause();
             restoreDefaultOrientation();
+            setAutoplay(false);
             return true;
         }
 
@@ -1169,8 +1168,7 @@ public class VideoDetailFragment
     // This method overrides default behaviour when setAutoplay() is called.
     // Don't auto play if the user selected an external player or disabled it in settings
     private boolean isAutoplayEnabled() {
-        return playQueue != null && playQueue.getStreams().size() != 0
-                && autoPlayEnabled
+        return autoPlayEnabled
                 && !isExternalPlayerEnabled()
                 && (player == null || player.videoPlayerSelected())
                 && isAutoplayAllowedByUser();
@@ -1326,22 +1324,16 @@ public class VideoDetailFragment
         if (player != null && player.isInFullscreen()) player.toggleFullscreen();
         // This will show systemUI and pause the player.
         // User can tap on Play button and video will be in fullscreen mode again
-        if (globalScreenOrientationLocked()) removeVideoPlayerView();
         activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
     }
 
     private void setupOrientation() {
         if (player == null || !player.videoPlayerSelected() || activity == null) return;
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity);
         int newOrientation;
-        if (globalScreenOrientationLocked()) {
-            boolean lastOrientationWasLandscape
-                    = sharedPreferences.getBoolean(getString(R.string.last_orientation_landscape_key), false);
-            newOrientation = lastOrientationWasLandscape
-                    ? ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
-                    : ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT;
-        } else
+        if (globalScreenOrientationLocked())
+            newOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE;
+        else
             newOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
 
         if (newOrientation != activity.getRequestedOrientation())
