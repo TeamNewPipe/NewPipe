@@ -522,4 +522,6 @@
     <string name="playlist_no_uploader">Δημιουργήθηκε αυτόματα (δεν βρέθηκε χρήστης μεταφόρτωσης)</string>
     <string name="recovering">Ανάκτηση</string>
     <string name="error_download_resource_gone">Δεν είναι δυνατή η ανάκτηση αυτής της λήψης</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Ενεργοποίηση μικρογραφίας βίντεο στην οθόνη κλειδώματος</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Όταν χρησιμοποιείται αναπαραγωγή παρασκηνίου μια μικρογραφία βίντεο θα εμφανίζεται στην οθόνη κλειδώματος</string>
 </resources>
