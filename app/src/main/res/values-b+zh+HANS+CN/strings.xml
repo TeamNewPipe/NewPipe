@@ -6,7 +6,7 @@
     <string name="open_in_browser">在浏览器中打开</string>
     <string name="open_in_popup_mode">在悬浮窗模式下打开</string>
     <string name="did_you_mean">您是不是要找：%1$s？</string>
-    <string name="no_player_found_toast">找不到串流播放器 （您可以安裝并使用VLC播放）。</string>
+    <string name="no_player_found_toast">找不到串流播放器 （您可以安装 VLC 进行播放）。</string>
     <string name="controls_download_desc">下载串流文件</string>
     <string name="install">安装</string>
     <string name="cancel">取消</string>
@@ -16,7 +16,7 @@
     <string name="settings">设置</string>
     <string name="share_dialog_title">分享给...</string>
     <string name="choose_browser">选择浏览器</string>
-    <string name="download_path_title">视频下载文件夹</string>
+    <string name="download_path_title">视频下载路径</string>
     <string name="download_path_summary">已下载的视频存储在这里</string>
     <string name="download_path_dialog_title">请选择下载视频的保存位置</string>
     <string name="download_path_audio_summary">已下载的音频存储在这里</string>
@@ -42,7 +42,7 @@
         <item quantity="other"/>
     </plurals>
     <string name="disabled">禁用</string>
-    <string name="controls_background_title">背景</string>
+    <string name="controls_background_title">后台播放</string>
     <string name="filter">过滤器</string>
     <string name="refresh">刷新</string>
     <string name="show_search_suggestions_title">搜索建议</string>
@@ -157,8 +157,8 @@
     <string name="drawer_header_description">切换服务，当前选择：</string>
     <string name="no_player_found">找不到串流播放器。您想安装 VLC 吗？</string>
     <string name="screen_rotation">旋转</string>
-    <string name="use_external_video_player_title">使用第三方视频播放器</string>
-    <string name="use_external_audio_player_title">使用第三方视频播放器</string>
+    <string name="use_external_video_player_title">使用外部视频播放器</string>
+    <string name="use_external_audio_player_title">使用外部音频播放器</string>
     <string name="download_path_audio_title">音频下载文件夹</string>
     <string name="autoplay_by_calling_app_summary">从其他应用调用 NewPipe 时播放视频</string>
     <string name="default_resolution_title">默认分辨率</string>
@@ -209,7 +209,7 @@
 \n需要此权限</string>
     <string name="reCaptcha_title">reCAPTCHA验证</string>
     <string name="recaptcha_request_toast">请求的新的CAPTCHA验证</string>
-    <string name="popup_mode_share_menu_title">NewPipe悬浮窗模式</string>
+    <string name="popup_mode_share_menu_title">NewPipe 悬浮窗模式</string>
     <string name="popup_playing_toast">在悬浮窗中播放</string>
     <string name="default_popup_resolution_title">默认悬浮窗分辨率</string>
     <string name="show_higher_resolutions_title">使用更高的分辨率</string>
@@ -219,7 +219,7 @@
     <string name="popup_remember_size_pos_summary">记住最后一次使用悬浮窗的大小和位置</string>
     <string name="settings_category_popup_title">悬浮窗</string>
     <string name="popup_resizing_indicator_title">调整大小</string>
-    <string name="use_external_video_player_summary">删除“某些”分辨率的音频</string>
+    <string name="use_external_video_player_summary">部分分辨率的视频将没有声音</string>
     <string name="player_gesture_controls_title">播放器手势控制</string>
     <string name="player_gesture_controls_summary">使用手势控制播放器的亮度和音量</string>
     <string name="show_search_suggestions_summary">显示搜索建议</string>
@@ -234,9 +234,9 @@
     <string name="channel_unsubscribed">取消订阅频道</string>
     <string name="subscription_change_failed">无法修改订阅</string>
     <string name="subscription_update_failed">无法更新订阅</string>
-    <string name="tab_main">主页面</string>
+    <string name="tab_main">主页</string>
     <string name="tab_subscriptions">订阅</string>
-    <string name="fragment_whats_new">新增功能</string>
+    <string name="fragment_whats_new">最新</string>
     <string name="resume_on_audio_focus_gain_title">恢复前台焦点</string>
     <string name="resume_on_audio_focus_gain_summary">中断后继续播放（例如突然来电后）</string>
     <string name="enable_search_history_title">搜索历史记录</string>
@@ -321,7 +321,7 @@
     <string name="could_not_import_all_files">警告：无法导入所有文件。</string>
     <string name="override_current_data">这将覆盖当前设置。</string>
     <string name="show_info">显示信息</string>
-    <string name="tab_bookmarks">已收藏</string>
+    <string name="tab_bookmarks">书签</string>
     <string name="delete_stream_history_prompt">确定要从观看历史记录中删除该项吗？</string>
     <string name="delete_all_history_prompt">是否确实要从历史记录中删除所有项目？</string>
     <string name="title_last_played">最后播放</string>
