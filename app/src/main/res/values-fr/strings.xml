@@ -534,5 +534,5 @@
     <string name="choose_instance_prompt">Choisissez une instance</string>
     <string name="playlist_no_uploader">Généré automatiquement (pas de téléverseur trouvé)</string>
     <string name="enable_lock_screen_video_thumbnail_title">Activer la vidéo miniaturisée sur l\'écran de verrouillage</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">En utilisant le lecteur en arrière-plan, une vidéo miniaturisé sera affichée sur l\'écran de verrouillage</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">En utilisant le lecteur audio, la miniature de la vidéo sera affichée sur l\'écran de verrouillage</string>
 </resources>
