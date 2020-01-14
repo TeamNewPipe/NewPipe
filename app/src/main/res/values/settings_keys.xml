@@ -993,7 +993,7 @@
         <item>zh-tw</item>
     </string-array>
     <string-array name="language_name_np" translatable="false">
-        <item>@string/system</item>
+        <item>@string/systems_language</item>
         <item>العربية</item>
         <item>Azərbaycan dili</item>
         <item>Asturianu</item>
@@ -1076,7 +1076,6 @@
 
     <string name="list_view_mode_key" translatable="false">list_view_mode</string>
     <string name="list_view_mode_value" translatable="false">auto</string>
-    <string name="system">System</string>
 
     <string-array name="list_view_mode_values" translatable="false">
         <item>auto</item>
