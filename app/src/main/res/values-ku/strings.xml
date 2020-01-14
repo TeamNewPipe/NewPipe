@@ -497,8 +497,8 @@
     <string name="default_kiosk_page_summary">کیۆسکی بنەڕەتی</string>
     <string name="seek_duration_title">خێرا بردنە پێشەوە\\ گێڕانەوە بۆکاتی سەرەتا</string>
     <string name="peertube_instance_url_title">دۆخی PeerTube</string>
-    <string name="peertube_instance_url_summary">ئارەزوومەندییەکانی دۆخی PeerTube ڕێکبخە</string>
-    <string name="peertube_instance_url_help">ئەو دۆخانە بدۆزەرەوە کە لەگەڵ خۆتدا دەگونجێن لە https://joinpeertube.org/instances#instances-list</string>
+    <string name="peertube_instance_url_summary">ئارەزوومەندییەکانی دۆخی پێرتوبی ڕێکبخە</string>
+    <string name="peertube_instance_url_help">ئەو دۆخانە بدۆزەرەوە کە لەگەڵ خۆتدا دەگونجێن لە %s</string>
     <string name="peertube_instance_add_title">زیادکردنی دۆخ</string>
     <string name="peertube_instance_add_help">بەستەری دۆخ دابنێ</string>
     <string name="peertube_instance_add_fail">ناتوانرێ پشتگیری دۆخەکە بکرێ</string>
@@ -536,4 +536,6 @@
     <string name="recovering">دەگەڕێنرێتەوە</string>
     <string name="error_download_resource_gone">ناتوانرێ ئەم داگرتنە بهێنرێتەوە</string>
     <string name="choose_instance_prompt">دۆخێک هەڵبژێرە</string>
+    <string name="enable_lock_screen_video_thumbnail_title">چالاککردنی وێنۆچکەی ڤیدیۆی داخستنی ڕوونما</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">کاتێ کارپێکەری پاشبنەما کاردەکات ئەوا وێنۆچکەی ڤیدیۆکە لە ڕوونما داخراوەکەدا نیشاندەدرێت</string>
 </resources>

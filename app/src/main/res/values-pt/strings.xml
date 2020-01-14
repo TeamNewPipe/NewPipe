@@ -518,12 +518,12 @@
     <string name="localization_changes_requires_app_restart">O idioma mudará quando a app for reiniciada.</string>
     <string name="seek_duration_title">Duração da busca de avanço/retrocesso rápido</string>
     <string name="peertube_instance_url_title">Instâncias do PeerTube</string>
-    <string name="peertube_instance_url_summary">Defina as suas instâncias favoritas de peertube</string>
-    <string name="peertube_instance_url_help">Encontre as instâncias que lhe melhor convêm em https://joinpeertube.org/instances#instances-list</string>
+    <string name="peertube_instance_url_summary">Defina as suas instâncias favoritas de PeerTube</string>
+    <string name="peertube_instance_url_help">Encontre as instâncias que lhe melhor convêm em %s</string>
     <string name="peertube_instance_add_title">Adicionar instância</string>
     <string name="peertube_instance_add_help">Digite o URL da instância</string>
     <string name="peertube_instance_add_fail">Falha ao validar a instância</string>
-    <string name="peertube_instance_add_https_only">Somente URLs HTTPS são suportadas</string>
+    <string name="peertube_instance_add_https_only">Somente URLs HTTPS são suportada</string>
     <string name="peertube_instance_add_exists">A instância já existe</string>
     <string name="local">Local</string>
     <string name="recently_added">Recentemente adicionado</string>
@@ -532,4 +532,6 @@
     <string name="recovering">recuperando</string>
     <string name="error_download_resource_gone">Não é possível recuperar este descarregamento</string>
     <string name="choose_instance_prompt">Escolha uma instância</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Ativar miniatura do vídeo no ecrã de bloqueio</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Ao usar o reprodutor de fundo, uma miniatura de vídeo será exibida no ecrã de bloqueio</string>
 </resources>

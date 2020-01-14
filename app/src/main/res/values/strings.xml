@@ -569,8 +569,10 @@
     <string name="error_progress_lost">Progress lost, because the file was deleted</string>
     <string name="error_timeout">Connection timeout</string>
     <string name="error_download_resource_gone">Cannot recover this download</string>
-    <string name="clear_finished_download">Clear finished downloads</string>
-    <string name="confirm_prompt">Are you sure?</string>
+    <string name="clear_download_history">Clear download history</string>
+    <string name="confirm_prompt">Do you want to clear your download history or delete all downloaded files?</string>
+    <string name="delete_downloaded_files">Delete downloaded files</string>
+    <string name="deleted_downloads">Deleted %1$s downloads</string>
     <string name="stop">Stop</string>
     <string name="max_retry_msg">Maximum retries</string>
     <string name="max_retry_desc">Maximum number of attempts before canceling the download</string>
@@ -587,5 +589,4 @@
     <string name="downloads_storage_use_saf_title">Use SAF</string>
     <string name="downloads_storage_use_saf_summary">The Storage Access Framework allows downloads to an external SD card.\nNote: some devices are not compatible</string>
     <string name="choose_instance_prompt">Choose an instance</string>
-
 </resources>
