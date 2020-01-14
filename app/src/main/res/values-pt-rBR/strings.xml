@@ -23,7 +23,7 @@
     <string name="dark_theme_title">Noite</string>
     <string name="default_audio_format_title">Formato de áudio padrão</string>
     <string name="default_resolution_title">Resolução padrão</string>
-    <string name="delete">Excluir</string>
+    <string name="delete">Apagar</string>
     <string name="detail_dislikes_img_view_description">Não curtidas</string>
     <string name="detail_likes_img_view_description">Curtidas</string>
     <string name="download">Baixar</string>
@@ -134,7 +134,7 @@ abrir em modo popup</string>
     <string name="controls_popup_title">Popup</string>
     <string name="controls_background_title">Segundo plano</string>
     <string name="popup_remember_size_pos_title">Lembrar tamanho e posição do popup</string>
-    <string name="popup_remember_size_pos_summary">Lembrar do último tamanho e posição definido para o popup</string>
+    <string name="popup_remember_size_pos_summary">Lembra da última posição e o tamanho usado no popup</string>
     <string name="settings_category_popup_title">Popup</string>
     <string name="popup_resizing_indicator_title">Redimensionando</string>
     <string name="use_external_video_player_summary">Remove o áudio em ALGUMAS resoluções</string>
@@ -256,7 +256,7 @@ abrir em modo popup</string>
     <string name="always">Sempre</string>
     <string name="just_once">Uma vez</string>
     <string name="toggle_orientation">Alterar orientação</string>
-    <string name="switch_to_background">Alterar para segundo plano</string>
+    <string name="switch_to_background">Trocar para segundo plano</string>
     <string name="switch_to_popup">Trocar para popup</string>
     <string name="switch_to_main">Trocar para principal</string>
     <string name="external_player_unsupported_link_type">Players externos não suportam estes tipos de links</string>
@@ -271,7 +271,7 @@ abrir em modo popup</string>
     <string name="import_data_title">Importar base de dados</string>
     <string name="export_data_title">Exportar base de dados</string>
     <string name="import_data_summary">Sobrescreve seus dados como históricos e inscrições</string>
-    <string name="export_data_summary">Exportar históricos, inscrições e playlists</string>
+    <string name="export_data_summary">Exporta históricos, inscrições e playlists</string>
     <string name="export_complete_toast">Exportado</string>
     <string name="import_complete_toast">Importado</string>
     <string name="no_valid_zip_file">Não há nenhum arquivo ZIP válido</string>
@@ -318,7 +318,7 @@ abrir em modo popup</string>
     <string name="use_inexact_seek_title">Usar pesquisa rápida</string>
     <string name="use_inexact_seek_summary">A pesquisa rápida permite que o player procure resultados mais rapidamente porém com precisão reduzida</string>
     <string name="auto_queue_title">Adicionar o próximo vídeo à fila automaticamente</string>
-    <string name="auto_queue_summary">Adicionar automaticamente um vídeo relacionado ao último da lista quando a repetição estiver desativada</string>
+    <string name="auto_queue_summary">Adiciona automaticamente um vídeo relacionado ao último da lista quando a repetição estiver desativada</string>
     <string name="file">Arquivo</string>
     <string name="invalid_directory">Pasta não encontrada</string>
     <string name="invalid_source">Origem do arquivo/conteúdo não encontrada</string>
@@ -361,7 +361,7 @@ abrir em modo popup</string>
     <string name="download_thumbnail_title">Carregar capas</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache de imagens limpo</string>
     <string name="metadata_cache_wipe_title">Limpar metadados em cache</string>
-    <string name="metadata_cache_wipe_summary">Exclui todos os dados de páginas em cache</string>
+    <string name="metadata_cache_wipe_summary">Apaga todos os dados de páginas em cache</string>
     <string name="metadata_cache_wipe_complete_notice">Cache de metadados limpo</string>
     <string name="playback_speed_control">Controles de velocidade de reprodução</string>
     <string name="playback_tempo">"Tempo "</string>
@@ -377,7 +377,7 @@ abrir em modo popup</string>
     <string name="caption_setting_description">Altere o tamanho da legenda e o estilo da tela de fundo. É necessário reiniciar o aplicativo para ter efeito.</string>
     <string name="toast_no_player">Nenhum player instalado para reproduzir este arquivo</string>
     <string name="clear_views_history_title">Limpar histórico de assistidos</string>
-    <string name="clear_views_history_summary">Apaga o histórico de vídeos assistidos e a lista de reprodução</string>
+    <string name="clear_views_history_summary">Apaga o histórico de vídeos assistidos e a posição nas reproduções</string>
     <string name="delete_view_history_alert">Apagar todo o histórico de assistidos\?</string>
     <string name="watch_history_deleted">Histórico de assistidos limpo.</string>
     <string name="clear_search_history_title">Limpar histórico de pesquisas</string>
@@ -485,9 +485,9 @@ abrir em modo popup</string>
     <string name="enable_playback_resume_title">Retomar a reprodução</string>
     <string name="enable_playback_resume_summary">Retorna para a última posição em reprodução</string>
     <string name="enable_playback_state_lists_title">Posições em listas</string>
-    <string name="enable_playback_state_lists_summary">Mostrar indicadores de posição em listas</string>
+    <string name="enable_playback_state_lists_summary">Mostra indicadores de posição em listas</string>
     <string name="settings_category_clear_data_title">Limpar dados</string>
-    <string name="watch_history_states_deleted">Posições de reprodução apagadas.</string>
+    <string name="watch_history_states_deleted">Posição nas reproduções apagadas.</string>
     <string name="missing_file">Arquivo movido ou excluído</string>
     <string name="overwrite_unrelated_warning">Já existe um arquivo com este nome</string>
     <string name="overwrite_failed">Não foi possível sobrescrever o arquivo</string>
@@ -508,9 +508,9 @@ abrir em modo popup</string>
     <string name="downloads_storage_use_saf_title">Usar SAF</string>
     <string name="downloads_storage_use_saf_summary">A Estrutura de Acesso ao Armazenamento permite baixar para um cartão SD.
 \nAviso: alguns dispositivos não são compatíveis</string>
-    <string name="clear_playback_states_title">Apagar lista de reprodução</string>
-    <string name="clear_playback_states_summary">Deletar todo o histórico de reprodução</string>
-    <string name="delete_playback_states_alert">Deletar todo o histórico de reprodução\?</string>
+    <string name="clear_playback_states_title">Limpar posição nas reproduções</string>
+    <string name="clear_playback_states_summary">Apaga o histórico de posição nas reproduções</string>
+    <string name="delete_playback_states_alert">Apagar toda posição nas reproduções\?</string>
     <string name="download_choose_new_path">Mude as pastas de download para surtir efeito</string>
     <string name="drawer_header_description">Alterar serviço, selecionados:</string>
     <string name="default_kiosk_page_summary">Quiosque Padrão</string>
@@ -525,4 +525,22 @@ abrir em modo popup</string>
         <item quantity="other">%s ouvintes</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">O idioma será atualizado assim que o aplicativo for reiniciado.</string>
+    <string name="seek_duration_title">Duração do avançar/retroceder rápido</string>
+    <string name="peertube_instance_url_title">Instâncias PeerTube</string>
+    <string name="peertube_instance_url_summary">Selecione instâncias PeerTube favoritas</string>
+    <string name="peertube_instance_url_help">Encontre instâncias PeerTube em %s</string>
+    <string name="peertube_instance_add_title">Adicionar instância</string>
+    <string name="peertube_instance_add_help">Insira o link aqui</string>
+    <string name="peertube_instance_add_fail">Não foi possível acessá-la</string>
+    <string name="peertube_instance_add_https_only">Apenas HTTPS são suportados</string>
+    <string name="peertube_instance_add_exists">Instância já existe</string>
+    <string name="local">Local</string>
+    <string name="recently_added">Recentes</string>
+    <string name="most_liked">Em alta</string>
+    <string name="playlist_no_uploader">Gerado automaticamente (sem criador)</string>
+    <string name="recovering">recuperando</string>
+    <string name="error_download_resource_gone">Não foi possível recuperar o download</string>
+    <string name="choose_instance_prompt">Escolha uma instância</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Ativar capa do vídeo na tela de bloqueio</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Mostra capa do vídeo na tela de bloqueio ao usar player em segundo plano</string>
 </resources>

@@ -41,12 +41,12 @@
     <string name="no_player_found">Neniu elsendlflua ludilo trovita. Ĉu vi volas instali la aplikaĵon VLC\?</string>
     <string name="kore_not_found">La aplikaĵo Kore ne estas trovita. Ĉu instali ĝin?</string>
     <string name="show_next_and_similar_title">Montri la sekvan filmeton kaj similajn filmetojn</string>
-    <string name="could_not_load_thumbnails">Ĉiuj miniaturoj ne ŝargeblas</string>
+    <string name="could_not_load_thumbnails">Ĉiuj bildetoj ne ŝargeblas</string>
     <string name="youtube_signature_decryption_error">La subskribo de la ligilo de la filmeto ne malĉifreblas</string>
     <string name="parsing_error">La retejo ne analizeblas</string>
-    <string name="list_thumbnail_view_description">Miniaturo de la antaŭrigardo de la filmeto</string>
+    <string name="list_thumbnail_view_description">Bildeto de la antaŭrigardo de la filmeto</string>
     <string name="detail_thumbnail_view_description">Legi filmeton, daŭro:</string>
-    <string name="detail_uploader_thumbnail_view_description">Miniaturo de la bildo de la alŝutinto</string>
+    <string name="detail_uploader_thumbnail_view_description">Bildeto de la alŝutinto</string>
     <string name="err_dir_create">La elŝutujo \'%1$s\' ne kreeblas</string>
     <string name="info_dir_created">Elŝutujo \'%1$s\' kreita</string>
     <string name="download_path_title">Elŝutujo por filmetoj</string>
@@ -61,7 +61,7 @@
     <string name="error_report_button_text">Signali eraron per retpoŝto</string>
     <string name="error_snackbar_action">SIGNALI</string>
     <string name="what_device_headline">Informoj:</string>
-    <string name="your_comment">Via komento (en la angla):</string>
+    <string name="your_comment">Vian komenton (angle):</string>
     <string name="error_details_headline">Detaloj:</string>
     <string name="report_error">Signali eraron</string>
     <string name="video">Filmeto</string>
@@ -71,7 +71,7 @@
     <string name="open_in_popup_mode">Malfermi en ŝprucfenestron modon</string>
     <string name="use_external_video_player_summary">Forigas aŭdion ĉe KELKAJ distingivoj</string>
     <string name="popup_mode_share_menu_title">NewPipe ŝprucfenestron modon</string>
-    <string name="subscribe_button_title">Abonu</string>
+    <string name="subscribe_button_title">Aboni</string>
     <string name="subscribed_button_title">Abonita</string>
     <string name="channel_unsubscribed">Kanalo malabonita</string>
     <string name="subscription_change_failed">Ne povis ŝanĝi abonon</string>
@@ -80,7 +80,7 @@
     <string name="show_info">Montri informojn</string>
     <string name="tab_main">Ĉefa</string>
     <string name="tab_subscriptions">Abonoj</string>
-    <string name="tab_bookmarks">Legosigno</string>
+    <string name="tab_bookmarks">Konservitaj ludlistoj</string>
     <string name="fragment_whats_new">Kio novas</string>
     <string name="controls_background_title">Fono</string>
     <string name="controls_popup_title">Ŝprucfenestro</string>
@@ -210,16 +210,16 @@
     <string name="invalid_directory">Tia dosierujo ne ekzistas</string>
     <string name="invalid_source">Tia dosiero/enhavo ne ekzistas</string>
     <string name="file_name_empty_error">Dosiernomo ne povas esti malplena</string>
-    <string name="error_occurred_detail">Eraro okazis : %1$s</string>
-    <string name="import_youtube_instructions">Importu Jutubajn abonaĵojn per elŝuti la dosieron de eksporto :
-\n
-\n1. Iru ĉe tie retpaĝo : %1$s
-\n2. Ensalutu kiam oni petas vin
+    <string name="error_occurred_detail">Eraro okazis: %1$s</string>
+    <string name="import_youtube_instructions">Importu Jutubajn abonaĵojn per elŝuti la dosieron de eksporto : 
+\n 
+\n1. Iru ĉe tiu retpaĝo: %1$s 
+\n2. Ensalutu kiam oni petas vin 
 \n3. Elŝuto devus komenci (ĝi estas la dosiero de eksporto)</string>
-    <string name="import_soundcloud_instructions">Importu Soundcloud-n profilon per elŝuti la dosieron de eksporto : 
+    <string name="import_soundcloud_instructions">Importu Soundcloud-n profilon tajpante ĉu la ligilon, ĉu vian ID : 
 \n 
 \n1. Ebligu komputilon modon en krozilo (la retejo malhaveblas por poŝtelefonoj) 
-\n2. Iru al tie retpaĝo : %1$s 
+\n2. Iru tien: %1$s 
 \n3. Ensalutu kiam oni petas vin 
 \n4. Kopiu la ligilon de profilo ke oni kondikis vin.</string>
     <string name="download_thumbnail_summary">Malŝaltu por malebligi ŝarĝajn bildetojn, konservi datumojn kaj uzadon de memoro. Ŝanĝoj forviŝas ambaŭ en-memoro kaj sur-disko bildo kaŝmemoro.</string>
@@ -242,7 +242,7 @@
     <string name="playlists">Ludlistoj</string>
     <string name="tracks">Spuroj</string>
     <string name="users">Uzantoj</string>
-    <string name="unsubscribe">Malabonu</string>
+    <string name="unsubscribe">Malaboni</string>
     <string name="tab_new">Nova ongleto</string>
     <string name="tab_choose">Elektu ongleton</string>
     <string name="volume_gesture_control_title">Kontrolo de volumena gesto</string>
@@ -291,8 +291,8 @@
     <string name="downloads_storage_ask_summary_kitkat">Oni petos vin kie konservi ĉion elŝutaĵon.
 \nElektu AFM se vi volas elŝuti al ekstera SD-karto</string>
     <string name="downloads_storage_use_saf_title">Uzu AFM</string>
-    <string name="downloads_storage_use_saf_summary">La Atinga Framo al la Memoro ebligas elŝuti al ekstera SD-karto.
-\nKomento : kelkaj aparatoj ne kongruas</string>
+    <string name="downloads_storage_use_saf_summary">La Atinga Framo al la Memoro ebligas elŝuti al ekstera SD-karto. 
+\nKomento: kelkaj aparatoj ne kongruas</string>
     <string name="clear_playback_states_title">Forviŝi ludajn poziciojn</string>
     <string name="clear_playback_states_summary">Forviŝi la totalon de ludaj pozicioj</string>
     <string name="delete_playback_states_alert">Ĉu vi volas forviŝi ĉiujn ludajn poziciojn \?</string>
@@ -437,7 +437,7 @@
     <string name="caption_setting_title">Subtitoloj</string>
     <string name="caption_setting_description">Modifi la dimension de la teksto kaj la fonajn stilojn de la subtitoloj de la ludilo. Ĝi bezonas restarto de la apo por efektiviĝi.</string>
     <string name="one_item_deleted">1 ero forviŝita.</string>
-    <string name="app_license">NewPipe estas programaro sub rajtoceda permesilo: Vi povas uzi, studi, komuniki kaj plibonigi ĝin kiel vi volas. Precize, vi povas redistribui kaj/aŭ modifi ĝin sub la kondiĉojn de la Ĝenerala Publika Permesilo de GNU, kiel publikigita per la Free Software Foundation, ĉu en la versio 3, ĉu (se vi volas) ajna posta versio.</string>
+    <string name="app_license">NewPipe estas programaro sub rajtoceda permesilo: Vi povas uzi, studi, komuniki kaj plibonigi ĝin kiel vi volas. Precize, vi povas redistribui kaj/aŭ modifi ĝin sub la kondiĉoj de la Ĝenerala Publika Permesilo de GNU, kiel publikigita per la Free Software Foundation, ĉu en la versio 3, ĉu (se vi volas) ajna posta versio.</string>
     <string name="import_settings">Ĉu vi volas ankaŭ importi agordojn\?</string>
     <string name="privacy_policy_title">Privateca politiko de NewPipe</string>
     <string name="privacy_policy_encouragement">La NewPipe projekto respektas vian privatecon serioze. Konsekvence, la apo ne kolektas ajnan datumo sen via konsento.
@@ -516,4 +516,22 @@
         <item quantity="other">%s aŭskultantoj</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">La lingvo ŝanĝos kiam la apo restartos.</string>
+    <string name="seek_duration_title">Rapida antaŭen / posten daŭron</string>
+    <string name="peertube_instance_url_title">Instancoj de PeerTube</string>
+    <string name="peertube_instance_url_summary">Elekti viajn preferitajn instancojn de PeerTube</string>
+    <string name="peertube_instance_url_help">Trovu la instancojn kiu vi povus ŝati ĉe %s</string>
+    <string name="peertube_instance_add_title">Aldoni instanco</string>
+    <string name="peertube_instance_add_help">Eniri la ligilon de la instanco</string>
+    <string name="peertube_instance_add_fail">Ne povis validigi instanco</string>
+    <string name="peertube_instance_add_https_only">Nur HTTPS ligiloj estas subtenitaj</string>
+    <string name="peertube_instance_add_exists">La instanco jam ekzistas</string>
+    <string name="local">Loka</string>
+    <string name="recently_added">Freŝdate ĝisdatigita</string>
+    <string name="most_liked">La plej ŝatitatj</string>
+    <string name="playlist_no_uploader">Aŭtomate generita (neniu alŝutilo trovita)</string>
+    <string name="recovering">Reakiranta</string>
+    <string name="error_download_resource_gone">Ne povas reakiri tion elŝuton</string>
+    <string name="choose_instance_prompt">Elektu instancon</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Enablu bildeta filmeton ĉe ŝlosita ekrano</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Uzante la fona ludilo, bildeta filmeto vidiĝos ĉe ŝlosita ekrano</string>
 </resources>

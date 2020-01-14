@@ -517,4 +517,22 @@
         <item quantity="other">%s auditeurs</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">La langue changera lors du redémarrage de l\'application.</string>
+    <string name="seek_duration_title">Avance/rembobinage rapide sur une durée</string>
+    <string name="peertube_instance_url_title">Instances PeerTube</string>
+    <string name="peertube_instance_url_summary">Choisissez vos instances PeerTube préférées</string>
+    <string name="peertube_instance_url_help">Cherchez des instances qui pourraient vous intéresser sur %s</string>
+    <string name="peertube_instance_add_title">Ajouter une instance</string>
+    <string name="peertube_instance_add_help">Entrez l’URL de l’instance</string>
+    <string name="peertube_instance_add_fail">Échec de validation de l’instance</string>
+    <string name="peertube_instance_add_https_only">Sont prises en charge uniquement les URLs en HTTPS</string>
+    <string name="peertube_instance_add_exists">L’instance existe déjà</string>
+    <string name="local">Local</string>
+    <string name="recently_added">Ajoutées récemment</string>
+    <string name="most_liked">Les plus aimées</string>
+    <string name="recovering">récupération</string>
+    <string name="error_download_resource_gone">Impossible de récupérer ce téléchargement</string>
+    <string name="choose_instance_prompt">Choisissez une instance</string>
+    <string name="playlist_no_uploader">Généré automatiquement (pas de téléverseur trouvé)</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Activer la vidéo miniaturisée sur l\'écran de verrouillage</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">En utilisant le lecteur en arrière-plan, une vidéo miniaturisé sera affichée sur l\'écran de verrouillage</string>
 </resources>

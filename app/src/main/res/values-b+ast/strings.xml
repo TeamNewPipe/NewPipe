@@ -206,7 +206,7 @@
     <string name="caption_setting_title">Sotítulos</string>
     <string name="accept">Aceutar</string>
     <string name="restore_defaults_confirmation">¿Quies reafitar los valores\?</string>
-    <string name="error_unknown_host"></string>
+    <string name="error_unknown_host"/>
     <string name="error_http_unsupported_range">El sirvidor nun aceuta descargues multifilu, volvi probar con @string/msg_threads = 1</string>
     <string name="no_comments">Nun hai comentarios</string>
     <string name="settings_category_clear_data_title">Llimpieza de datos</string>
@@ -243,4 +243,18 @@
     <string name="enable_playback_resume_title">Siguir cola reproducción</string>
     <string name="main_page_content_summary">Les llingüetes que s\'amuesen na páxina principal</string>
     <string name="downloads_storage_ask_title">Entrugar ánde baxar</string>
+    <string name="downloads">Descargues</string>
+    <string name="downloads_title">Descargues</string>
+    <plurals name="videos">
+        <item quantity="one">Vídeos</item>
+        <item quantity="other"></item>
+    </plurals>
+    <string name="player_gesture_controls_title">Control per xestos del reproductor</string>
+    <string name="preferred_player_fetcher_notification_message">Cargando\'l conteníu solicitáu</string>
+    <string name="privacy_policy_title">Política de Privacidá de NewPipe</string>
+    <string name="volume_gesture_control_title">Control per xestos del volume</string>
+    <string name="brightness_gesture_control_title">Control per xestos del brilléu</string>
+    <string name="error_file_creation">El ficheru nun pue crease</string>
+    <string name="error_http_no_content">El sirvidor nun unvia datos</string>
+    <string name="localization_changes_requires_app_restart">La llingua va camudar namái que se reanicie l\'aplicación.</string>
 </resources>
