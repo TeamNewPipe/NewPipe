@@ -14,7 +14,7 @@
     <string name="did_you_mean">Meintest du: %1$s\?</string>
     <string name="share_dialog_title">Teilen mit</string>
     <string name="choose_browser">Browser auswählen</string>
-    <string name="screen_rotation">Drehen des Geräts</string>
+    <string name="screen_rotation">Bildschirm drehen</string>
     <string name="download_path_title">Downloadordner für Videos</string>
     <string name="download_path_summary">Heruntergeladene Videodateien werden hier gespeichert</string>
     <string name="download_path_dialog_title">Wähle den Downloadordner für Videodateien aus</string>
@@ -123,7 +123,8 @@
     <string name="default_video_format_title">Bevorzugtes Videoformat</string>
     <string name="popup_playing_toast">Im Pop-up Modus abspielen</string>
     <string name="popup_mode_share_menu_title">NewPipe-Pop-up-Modus</string>
-    <string name="msg_popup_permission">Diese Berechtigung ist für das Öffnen im Pop-up-Modus erforderlich</string>
+    <string name="msg_popup_permission">Diese Berechtigung ist für das
+\nÖffnen im Pop-up-Modus erforderlich</string>
     <string name="default_popup_resolution_title">Standardauflösung des Pop-ups</string>
     <string name="show_higher_resolutions_title">Höhere Auflösungen anzeigen</string>
     <string name="show_higher_resolutions_summary">Nur manche Geräte unterstützen das Abspielen von 2K-/4K-Videos</string>
@@ -202,8 +203,8 @@
     </plurals>
     <string name="no_videos">Keine Videos</string>
     <plurals name="videos">
-        <item quantity="one">Video</item>
-        <item quantity="other">Videos</item>
+        <item quantity="one">%s Video</item>
+        <item quantity="other">%s Videos</item>
     </plurals>
     <string name="charset_most_special_characters">Die meisten Sonderzeichen</string>
     <string name="item_deleted">Element gelöscht</string>
@@ -278,7 +279,7 @@
     <string name="override_current_data">Dies wird deine aktuellen Einstellungen überschreiben.</string>
     <string name="show_info">Infos anzeigen</string>
     <string name="tab_bookmarks">Lesezeichen für Wiedergabelisten</string>
-    <string name="controls_add_to_playlist_title">Hinzufügen zu</string>
+    <string name="controls_add_to_playlist_title">Hinzufügen</string>
     <string name="detail_drag_description">Zum Neuordnen ziehen</string>
     <string name="create">Erstellen</string>
     <string name="delete_one">Einen löschen</string>
@@ -395,7 +396,7 @@
     <string name="minimize_on_exit_none_description">Keine</string>
     <string name="minimize_on_exit_background_description">Zum Hintergrund-Player minimieren</string>
     <string name="minimize_on_exit_popup_description">Zum Popup-Player minimieren</string>
-    <string name="skip_silence_checkbox">Vorspulen während der Stille</string>
+    <string name="skip_silence_checkbox">Vorspulen bei Stille</string>
     <string name="playback_step">Schritt</string>
     <string name="playback_reset">Zurücksetzen</string>
     <string name="channels">Kanäle</string>
@@ -518,19 +519,21 @@
     </plurals>
     <string name="localization_changes_requires_app_restart">Die Sprache ändert sich, sobald die App neu gestartet wird.</string>
     <string name="peertube_instance_url_title">PeerTube-Instanzen</string>
-    <string name="peertube_instance_url_help">Finde auf https://joinpeertube.org/instances#instances-list die Instanzen, die am besten zu dir passen</string>
+    <string name="peertube_instance_url_help">Finde auf %s die Instanzen, die am besten zu dir passen</string>
     <string name="peertube_instance_add_title">Instanz hinzufügen</string>
-    <string name="peertube_instance_add_help">Gib die URL der Instanz ein</string>
-    <string name="peertube_instance_add_fail">Validieren der Instanz fehlgeschlagen</string>
-    <string name="peertube_instance_add_exists">Diese Instanz existiert bereits</string>
+    <string name="peertube_instance_add_help">URL der Instanz eingeben</string>
+    <string name="peertube_instance_add_fail">Validierung der Instanz fehlgeschlagen</string>
+    <string name="peertube_instance_add_exists">Instanz existiert bereits</string>
     <string name="local">Lokal</string>
     <string name="recently_added">Kürzlich hinzugefügt</string>
     <string name="playlist_no_uploader">Auto-generiert (kein Uploader gefunden)</string>
     <string name="choose_instance_prompt">Wähle eine Instanz</string>
-    <string name="peertube_instance_url_summary">Bevorzugte Peertube-Instanzen festlegen</string>
-    <string name="peertube_instance_add_https_only">Es werden nur https-Adressen unterstützt</string>
+    <string name="peertube_instance_url_summary">Bevorzugte Peertube-Instanzen auswählen</string>
+    <string name="peertube_instance_add_https_only">Es werden nur HTTPS-Adressen unterstützt</string>
     <string name="seek_duration_title">Dauer der Suche bei schnellem Vor-/Zurückspulen</string>
     <string name="most_liked">Am beliebtesten</string>
     <string name="recovering">Wiederherstellen</string>
     <string name="error_download_resource_gone">Dieser Download kann nicht wiederhergestellt werden</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Video-Vorschaubild für Sperrbildschirm aktivieren</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Bei Verwendung des Hintergrundplayers wird ein Video-Miniaturbild auf dem Sperrbildschirm angezeigt</string>
 </resources>

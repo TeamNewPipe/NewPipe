@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -189,10 +190,12 @@ public class MissionsFragment extends Fragment {
                 return true;
             case R.id.clear_list:
                 AlertDialog.Builder prompt = new AlertDialog.Builder(mContext);
-                prompt.setTitle(R.string.clear_finished_download);
+                prompt.setTitle(R.string.clear_download_history);
                 prompt.setMessage(R.string.confirm_prompt);
-                prompt.setPositiveButton(android.R.string.ok, (dialog, which) -> mAdapter.clearFinishedDownloads());
-                prompt.setNegativeButton(R.string.cancel, null);
+                // Intentionally misusing button's purpose in order to achieve good order
+                prompt.setNegativeButton(R.string.clear_download_history, (dialog, which) -> mAdapter.clearFinishedDownloads(false));
+                prompt.setPositiveButton(R.string.delete_downloaded_files, (dialog, which) -> mAdapter.clearFinishedDownloads(true));
+                prompt.setNeutralButton(R.string.cancel, null);
                 prompt.create().show();
                 return true;
             case R.id.start_downloads:

@@ -519,12 +519,12 @@
     <string name="localization_changes_requires_app_restart">Uygulama yeniden başlatıldıktan sonra dil değişecektir.</string>
     <string name="seek_duration_title">Hızlı ileri/geri sarma süresi</string>
     <string name="peertube_instance_url_title">PeerTube örnekleri</string>
-    <string name="peertube_instance_url_summary">Favori peertube örneklerinizi ayarlayın</string>
-    <string name="peertube_instance_url_help">https://joinpeertube.org/instances#instances-list adresinde size en uygun örnekleri bulun</string>
+    <string name="peertube_instance_url_summary">Favori PeerTube örneklerinizi seçin</string>
+    <string name="peertube_instance_url_help">%s adresinde size en uygun örnekleri bulun</string>
     <string name="peertube_instance_add_title">Örnek ekle</string>
     <string name="peertube_instance_add_help">Örnek URL\'sini girin</string>
     <string name="peertube_instance_add_fail">Örnek doğrulanamadı</string>
-    <string name="peertube_instance_add_https_only">Yalnızca https URL\'leri desteklenmektedir</string>
+    <string name="peertube_instance_add_https_only">Yalnızca HTTPS URL\'leri desteklenmektedir</string>
     <string name="peertube_instance_add_exists">Örnek zaten var</string>
     <string name="local">Yerel</string>
     <string name="recently_added">Son eklenen</string>
@@ -533,4 +533,6 @@
     <string name="recovering">kurtarılıyor</string>
     <string name="error_download_resource_gone">Bu indirme kurtarılamıyor</string>
     <string name="choose_instance_prompt">Bir örnek seçin</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Kilit ekranı video küçük resmini etkinleştir</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Arka plan oynatıcıyı kullanırken kilit ekranında bir video küçük resmi görüntülenecektir</string>
 </resources>
