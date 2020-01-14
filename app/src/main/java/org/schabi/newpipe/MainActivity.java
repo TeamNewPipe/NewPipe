@@ -449,6 +449,16 @@ public class MainActivity extends AppCompatActivity {
             sharedPreferences.edit().putBoolean(Constants.KEY_MAIN_PAGE_CHANGE, false).apply();
             NavigationHelper.openMainActivity(this);
         }
+
+        if (sharedPreferences.getBoolean(Constants.KEY_ENABLE_WATCH_HISTORY, true)) {
+            if (DEBUG) Log.d(TAG, "do not show History-menu as its disabled in settings");
+            drawerItems.getMenu().findItem(ITEM_ID_HISTORY).setVisible(true);
+        }
+
+        if (!sharedPreferences.getBoolean(Constants.KEY_ENABLE_WATCH_HISTORY, true)) {
+            if (DEBUG) Log.d(TAG, "show History-menu as its enabled in settings");
+            drawerItems.getMenu().findItem(ITEM_ID_HISTORY).setVisible(false);
+        }
     }
 
     @Override
