@@ -11,6 +11,7 @@ import org.schabi.newpipe.streams.io.SharpStream;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 
 /**
  * @author kapodamy
@@ -23,7 +24,6 @@ public class Mp4FromDashWriter {
     private final static byte SAMPLES_PER_CHUNK = 6;// ffmpeg uses 2, basic uses 1 (with 60fps uses 21 or 22). NewPipe will use 6
     private final static long THRESHOLD_FOR_CO64 = 0xFFFEFFFFL;// near 3.999 GiB
     private final static int THRESHOLD_MOOV_LENGTH = (256 * 1024) + (2048 * 1024); // 2.2 MiB enough for: 1080p 60fps 00h35m00s
-    private final static short SINGLE_CHUNK_SAMPLE_BUFFER = 256;
 
     private final long time;
 
@@ -46,6 +46,8 @@ public class Mp4FromDashWriter {
 
     private int overrideMainBrand = 0x00;
 
+    private ArrayList<Integer> compatibleBrands = new ArrayList<>(5);
+
     public Mp4FromDashWriter(SharpStream... sources) throws IOException {
         for (SharpStream src : sources) {
             if (!src.canRewind() && !src.canRead()) {
@@ -57,6 +59,10 @@ public class Mp4FromDashWriter {
         readers = new Mp4DashReader[sourceTracks.length];
         readersChunks = new Mp4DashChunk[readers.length];
         time = (System.currentTimeMillis() / 1000L) + EPOCH_OFFSET;
+
+        compatibleBrands.add(0x6D703431);// mp41
+        compatibleBrands.add(0x69736F6D);// isom
+        compatibleBrands.add(0x69736F32);// iso2
     }
 
     public Mp4Track[] getTracksFromSource(int sourceIndex) throws IllegalStateException {
@@ -104,8 +110,8 @@ public class Mp4FromDashWriter {
         }
     }
 
-    public void setMainBrand(int brandId) {
-        overrideMainBrand = brandId;
+    public void setMainBrand(int brand) {
+        overrideMainBrand = brand;
     }
 
     public boolean isDone() {
@@ -159,7 +165,13 @@ public class Mp4FromDashWriter {
             tablesInfo[i] = new TablesInfo();
         }
 
-        boolean singleChunk = tracks.length == 1 && tracks[0].kind == TrackKind.Audio;
+        int single_sample_buffer;
+        if (tracks.length == 1 && tracks[0].kind == TrackKind.Audio) {
+            // near 1 second of audio data per chunk, avoid split the audio stream in large chunks
+            single_sample_buffer = tracks[0].trak.mdia.mdhd_timeScale / 1000;
+        } else {
+            single_sample_buffer = -1;
+        }
 
 
         for (int i = 0; i < readers.length; i++) {
@@ -210,31 +222,10 @@ public class Mp4FromDashWriter {
 
             readers[i].rewind();
 
-            int tmp = tablesInfo[i].stsz - SAMPLES_PER_CHUNK_INIT;
-            tablesInfo[i].stco = (tmp / SAMPLES_PER_CHUNK) + 1;// +1 for samples in first chunk
-
-            tmp = tmp % SAMPLES_PER_CHUNK;
-            if (singleChunk) {
-                // avoid split audio streams in chunks
-                tablesInfo[i].stsc = 1;
-                tablesInfo[i].stsc_bEntries = new int[]{
-                        1, tablesInfo[i].stsz, 1
-                };
-                tablesInfo[i].stco = 1;
-            } else if (tmp == 0) {
-                tablesInfo[i].stsc = 2;// first chunk (init) and succesive chunks
-                tablesInfo[i].stsc_bEntries = new int[]{
-                        1, SAMPLES_PER_CHUNK_INIT, 1,
-                        2, SAMPLES_PER_CHUNK, 1
-                };
+            if (single_sample_buffer > 0) {
+                initChunkTables(tablesInfo[i], single_sample_buffer, single_sample_buffer);
             } else {
-                tablesInfo[i].stsc = 3;// first chunk (init) and successive chunks and remain chunk
-                tablesInfo[i].stsc_bEntries = new int[]{
-                        1, SAMPLES_PER_CHUNK_INIT, 1,
-                        2, SAMPLES_PER_CHUNK, 1,
-                        tablesInfo[i].stco + 1, tmp, 1
-                };
-                tablesInfo[i].stco++;
+                initChunkTables(tablesInfo[i], SAMPLES_PER_CHUNK_INIT, SAMPLES_PER_CHUNK);
             }
 
             sampleCount[i] = tablesInfo[i].stsz;
@@ -274,6 +265,7 @@ public class Mp4FromDashWriter {
         // reserve moov space in the output stream
         /*if (outStream.canSetLength()) {
             long length = writeOffset + auxSize;
+            // warning: setLength() does not fill the unused space with zeros
             outStream.setLength(length);
             outSeek(length);
         } else {*/
@@ -292,10 +284,10 @@ public class Mp4FromDashWriter {
         }
 
         // tablesInfo contains row counts
-        // and after returning from make_moov() will contain table offsets
+        // and after returning from make_moov() will contain those table offsets
         make_moov(defaultMediaTime, tablesInfo, is64);
 
-        // write tables: stts stsc
+        // write tables: stts stsc sbgp
         // reset for ctts table: sampleCount sampleExtra
         for (int i = 0; i < readers.length; i++) {
             writeEntryArray(tablesInfo[i].stts, 2, sampleCount[i], defaultSampleDuration[i]);
@@ -305,6 +297,7 @@ public class Mp4FromDashWriter {
                 sampleCount[i] = 1;// the index is not base zero
                 sampleExtra[i] = -1;
             }
+            writeEntryArray(tablesInfo[i].sbgp, 1, sampleCount[i]);
         }
 
         if (auxBuffer == null) {
@@ -314,8 +307,8 @@ public class Mp4FromDashWriter {
         outWrite(make_mdat(totalSampleSize, is64));
 
         int[] sampleIndex = new int[readers.length];
-        int[] sizes = new int[singleChunk ? SINGLE_CHUNK_SAMPLE_BUFFER : SAMPLES_PER_CHUNK];
-        int[] sync = new int[singleChunk ? SINGLE_CHUNK_SAMPLE_BUFFER : SAMPLES_PER_CHUNK];
+        int[] sizes = new int[single_sample_buffer > 0 ? single_sample_buffer : SAMPLES_PER_CHUNK];
+        int[] sync = new int[single_sample_buffer > 0 ? single_sample_buffer : SAMPLES_PER_CHUNK];
 
         int written = readers.length;
         while (written > 0) {
@@ -329,8 +322,8 @@ public class Mp4FromDashWriter {
                 long chunkOffset = writeOffset;
                 int syncCount = 0;
                 int limit;
-                if (singleChunk) {
-                    limit = SINGLE_CHUNK_SAMPLE_BUFFER;
+                if (single_sample_buffer > 0) {
+                    limit = single_sample_buffer;
                 } else {
                     limit = sampleIndex[i] == 0 ? SAMPLES_PER_CHUNK_INIT : SAMPLES_PER_CHUNK;
                 }
@@ -389,10 +382,6 @@ public class Mp4FromDashWriter {
                             tablesInfo[i].stco = writeEntry64(tablesInfo[i].stco, chunkOffset);
                         } else {
                             tablesInfo[i].stco = writeEntryArray(tablesInfo[i].stco, 1, (int) chunkOffset);
-                        }
-
-                        if (singleChunk) {
-                            tablesInfo[i].stco = -1;
                         }
                     }
 
@@ -470,7 +459,42 @@ public class Mp4FromDashWriter {
         }
     }
 
+    private void initChunkTables(TablesInfo tables, int firstCount, int succesiveCount) {
+        // tables.stsz holds amount of samples of the track (total)
+        int totalSamples = (tables.stsz - firstCount);
+        float chunkAmount = totalSamples / (float) succesiveCount;
+        int remainChunkOffset = (int) Math.ceil(chunkAmount);
+        boolean remain = remainChunkOffset != (int) chunkAmount;
+        int index = 0;
 
+        tables.stsc = 1;
+        if (firstCount != succesiveCount) {
+            tables.stsc++;
+        }
+        if (remain) {
+            tables.stsc++;
+        }
+
+        // stsc_table_entry = [first_chunk, samples_per_chunk, sample_description_index]
+        tables.stsc_bEntries = new int[tables.stsc * 3];
+        tables.stco = remainChunkOffset + 1;// total entrys in chunk offset box
+
+        tables.stsc_bEntries[index++] = 1;
+        tables.stsc_bEntries[index++] = firstCount;
+        tables.stsc_bEntries[index++] = 1;
+
+        if (firstCount != succesiveCount) {
+            tables.stsc_bEntries[index++] = 2;
+            tables.stsc_bEntries[index++] = succesiveCount;
+            tables.stsc_bEntries[index++] = 1;
+        }
+
+        if (remain) {
+            tables.stsc_bEntries[index++] = remainChunkOffset + 1;
+            tables.stsc_bEntries[index++] = totalSamples % succesiveCount;
+            tables.stsc_bEntries[index] = 1;
+        }
+    }
 
     private void outWrite(byte[] buffer) throws IOException {
         outWrite(buffer, buffer.length);
@@ -585,19 +609,29 @@ public class Mp4FromDashWriter {
 
 
     private int make_ftyp() throws IOException {
-        byte[] buffer = new byte[]{
-                0x00, 0x00, 0x00, 0x1C, 0x66, 0x74, 0x79, 0x70,// ftyp
-                0x6D, 0x70, 0x34, 0x32,// mayor brand (mp42)
-                0x00, 0x00, 0x02, 0x00,// default minor version (512)
-                0x6D, 0x70, 0x34, 0x31, 0x69, 0x73, 0x6F, 0x6D, 0x69, 0x73, 0x6F, 0x32// compatible brands: mp41 isom iso2
-        };
+        int size = 16 + (compatibleBrands.size() * 4);
+        if (overrideMainBrand != 0) size += 4;
 
-        if (overrideMainBrand != 0)
-            ByteBuffer.wrap(buffer).putInt(8, overrideMainBrand);
+        ByteBuffer buffer = ByteBuffer.allocate(size);
+        buffer.putInt(size);
+        buffer.putInt(0x66747970);// "ftyp"
 
-        outWrite(buffer);
+        if (overrideMainBrand == 0) {
+            buffer.putInt(0x6D703432);// mayor brand "mp42"
+            buffer.putInt(512);// default minor version
+        } else {
+            buffer.putInt(overrideMainBrand);
+            buffer.putInt(0);
+            buffer.putInt(0x6D703432);// "mp42" compatible brand
+        }
 
-        return buffer.length;
+        for (Integer brand : compatibleBrands) {
+            buffer.putInt(brand);// compatible brand
+        }
+
+        outWrite(buffer.array());
+
+        return size;
     }
 
     private byte[] make_mdat(long refSize, boolean is64) {
@@ -746,7 +780,6 @@ public class Mp4FromDashWriter {
     }
 
     private void make_mdia(Mdia mdia, TablesInfo tablesInfo, boolean is64) throws IOException {
-
         int start_mdia = auxOffset();
         auxWrite(new byte[]{0x00, 0x00, 0x00, 0x00, 0x6D, 0x64, 0x69, 0x61});// mdia
         auxWrite(mdia.mdhd);
@@ -766,7 +799,7 @@ public class Mp4FromDashWriter {
         // And stsz can be empty if has a default sample size
         //
         if (moovSimulation) {
-            make(0x73747473, -1, 2, 1);
+            make(0x73747473, -1, 2, 1);// stts
             if (tablesInfo.stss > 0) {
                 make(0x73747373, -1, 1, tablesInfo.stss);
             }
@@ -788,6 +821,9 @@ public class Mp4FromDashWriter {
             tablesInfo.stsz = make(0x7374737A, tablesInfo.stsz_default, 1, tablesInfo.stsz);
             tablesInfo.stco = make(is64 ? 0x636F3634 : 0x7374636F, -1, is64 ? 2 : 1, tablesInfo.stco);
         }
+
+        auxWrite(make_sgpd());
+        tablesInfo.sbgp = make_sbgp();// during simulation the returned offset is ignored
 
         lengthFor(start_stbl);
         lengthFor(start_minf);
@@ -816,6 +852,48 @@ public class Mp4FromDashWriter {
         return buffer.array();
     }
 
+    private int make_sbgp() throws IOException {
+        int offset = auxOffset();
+
+        auxWrite(new byte[] {
+                0x00, 0x00, 0x00, 0x1C,// box size
+                0x73, 0x62, 0x67, 0x70,// "sbpg"
+                0x00, 0x00, 0x00, 0x00,// default box flags
+                0x72, 0x6F, 0x6C, 0x6C,// group type "roll"
+                0x00, 0x00, 0x00, 0x01,// group table size
+                0x00, 0x00, 0x00, 0x00,// group[0] total samples (to be set later)
+                0x00, 0x00, 0x00, 0x01// group[0] description index
+        });
+
+        return offset + 0x14;
+    }
+
+    private byte[] make_sgpd() {
+        /*
+         * Sample Group Description Box
+         *
+         * ¿whats does?
+         * the table inside of this box gives information about the
+         * characteristics of sample groups. The descriptive information is any other
+         * information needed to define or characterize the sample group.
+         *
+         * ¿is replicabled this box?
+         * NO due lacks of documentation about this box but...
+         * most of m4a encoders and ffmpeg uses this box with dummy values (same values)
+         */
+
+        ByteBuffer buffer = ByteBuffer.wrap(new byte[] {
+                0x00, 0x00, 0x00, 0x1A,// box size
+                0x73, 0x67, 0x70, 0x64,// "sgpd"
+                0x01, 0x00, 0x00, 0x00,// box flags (unknown flag sets)
+                0x72, 0x6F, 0x6C, 0x6C, // ¿¿group type??
+                0x00, 0x00, 0x00, 0x02,// ¿¿??
+                0x00, 0x00, 0x00, 0x01,// ¿¿??
+                (byte)0xFF, (byte)0xFF// ¿¿??
+        });
+
+        return buffer.array();
+    }
 
     class TablesInfo {
 
@@ -827,5 +905,6 @@ public class Mp4FromDashWriter {
         int stsz_default;
         int stss;
         int stco;
+        int sbgp;
     }
 }
