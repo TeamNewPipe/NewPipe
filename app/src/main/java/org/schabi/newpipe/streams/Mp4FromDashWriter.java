@@ -774,12 +774,12 @@ public class Mp4FromDashWriter {
                 .array()
         );
 
-        make_mdia(tracks[index].trak.mdia, tables, is64);
+        make_mdia(tracks[index].trak.mdia, tables, is64, tracks[index].kind == TrackKind.Audio);
 
         lengthFor(start);
     }
 
-    private void make_mdia(Mdia mdia, TablesInfo tablesInfo, boolean is64) throws IOException {
+    private void make_mdia(Mdia mdia, TablesInfo tablesInfo, boolean is64, boolean isAudio) throws IOException {
         int start_mdia = auxOffset();
         auxWrite(new byte[]{0x00, 0x00, 0x00, 0x00, 0x6D, 0x64, 0x69, 0x61});// mdia
         auxWrite(mdia.mdhd);
@@ -822,8 +822,10 @@ public class Mp4FromDashWriter {
             tablesInfo.stco = make(is64 ? 0x636F3634 : 0x7374636F, -1, is64 ? 2 : 1, tablesInfo.stco);
         }
 
-        auxWrite(make_sgpd());
-        tablesInfo.sbgp = make_sbgp();// during simulation the returned offset is ignored
+        if (isAudio) {
+            auxWrite(make_sgpd());
+            tablesInfo.sbgp = make_sbgp();// during simulation the returned offset is ignored
+        }
 
         lengthFor(start_stbl);
         lengthFor(start_minf);
