@@ -516,8 +516,8 @@
     </plurals>
     <string name="localization_changes_requires_app_restart">重新启动应用后，语言将更改。</string>
     <string name="peertube_instance_url_title">PeerTube 服务器</string>
-    <string name="peertube_instance_url_summary">设置自己喜欢的peertube服务器</string>
-    <string name="peertube_instance_url_help">查找最适合你的服务器https://joinpeertube.org/instances#instances-list</string>
+    <string name="peertube_instance_url_summary">设置自己喜欢的PeerTube服务器</string>
+    <string name="peertube_instance_url_help">查找最适合你的服务器%s</string>
     <string name="peertube_instance_add_title">添加服务器</string>
     <string name="peertube_instance_add_help">输入服务器网址</string>
     <string name="peertube_instance_add_fail">无法验证服务器</string>
@@ -533,4 +533,7 @@
     <string name="seek_duration_title">快进 / 快退的单位时间</string>
     <string name="enable_lock_screen_video_thumbnail_title">在锁屏界面显示视频缩略图</string>
     <string name="enable_lock_screen_video_thumbnail_summary">在后台播放时，锁屏界面将会显示视频的缩略图</string>
+    <string name="clear_download_history">清除下载历史记录</string>
+    <string name="delete_downloaded_files">删除下载了的文件</string>
+    <string name="deleted_downloads">已删除 %1$s 下载</string>
 </resources>
