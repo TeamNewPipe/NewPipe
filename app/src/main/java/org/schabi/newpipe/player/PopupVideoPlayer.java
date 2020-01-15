@@ -172,6 +172,7 @@ public final class PopupVideoPlayer extends Service {
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
+        changeAppLanguage(getAppLocale(getApplicationContext()), getResources());
         if (DEBUG) Log.d(TAG, "onConfigurationChanged() called with: newConfig = [" + newConfig + "]");
         updateScreenSize();
         updatePopupSize(popupLayoutParams.width, -1);
