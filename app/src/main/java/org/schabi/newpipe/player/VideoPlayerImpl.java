@@ -189,12 +189,6 @@ public class VideoPlayerImpl extends VideoPlayer
             reload();
         }
 
-        service.resetNotification();
-        if (service.getBigNotRemoteView() != null)
-            service.getBigNotRemoteView().setProgressBar(R.id.notificationProgressBar, 100, 0, false);
-        if (service.getNotRemoteView() != null)
-            service.getNotRemoteView().setProgressBar(R.id.notificationProgressBar, 100, 0, false);
-        service.startForeground(NOTIFICATION_ID, service.getNotBuilder().build());
         setupElementsVisibility();
 
         if (audioPlayerSelected()) {
@@ -1167,7 +1161,7 @@ public class VideoPlayerImpl extends VideoPlayer
     public void checkLandscape() {
         AppCompatActivity parent = getParentActivity();
         if (parent != null && service.isLandscape() != isInFullscreen()
-                && getCurrentState() != STATE_COMPLETED && videoPlayerSelected())
+                && getCurrentState() != STATE_COMPLETED && videoPlayerSelected() && !audioOnly)
             toggleFullscreen();
     }
 
@@ -1197,6 +1191,8 @@ public class VideoPlayerImpl extends VideoPlayer
             return;
 
         audioOnly = !video;
+        // When a user returns from background controls could be hidden but systemUI will be shown 100%. Hide it
+        if (!audioOnly && !isControlsVisible()) hideSystemUIIfNeeded();
         setRecovery();
         reload();
     }

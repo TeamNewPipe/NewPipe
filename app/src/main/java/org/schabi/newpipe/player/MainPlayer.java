@@ -113,6 +113,10 @@ public final class MainPlayer extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (DEBUG) Log.d(TAG, "onStartCommand() called with: intent = [" + intent +
                 "], flags = [" + flags + "], startId = [" + startId + "]");
+
+        if (Intent.ACTION_MEDIA_BUTTON.equals(intent.getAction()) || intent.getStringExtra(VideoPlayer.PLAY_QUEUE_KEY) != null)
+            showNotificationAndStartForeground();
+
         playerImpl.handleIntent(intent);
         if (playerImpl.mediaSessionManager != null) {
             playerImpl.mediaSessionManager.handleMediaButtonIntent(intent);
@@ -120,15 +124,20 @@ public final class MainPlayer extends Service {
         return START_NOT_STICKY;
     }
 
-    public void stop() {
-        if (DEBUG)
-            Log.d(TAG, "stop() called");
+    public void stop(boolean autoplayEnabled) {
+        if (DEBUG) Log.d(TAG, "stop() called");
 
         if (playerImpl.getPlayer() != null) {
             playerImpl.wasPlaying = playerImpl.getPlayer().getPlayWhenReady();
-            // We can't pause the player here because it will make transition from one stream to a new stream not smooth
+            // Releases wifi & cpu, disables keepScreenOn, etc.
+            if (!autoplayEnabled) playerImpl.onPause();
+            // We can't just pause the player here because it will make transition from one stream to a new stream not smooth
             playerImpl.getPlayer().stop(false);
             playerImpl.setRecovery();
+            // Notification shows information about old stream but if a user selects a stream from backStack it's not actual anymore
+            // So we should hide the notification at all.
+            // When autoplay enabled such notification flashing is annoying so skip this case
+            if (!autoplayEnabled) stopForeground(true);
         }
     }
 
@@ -209,6 +218,15 @@ public final class MainPlayer extends Service {
                 // This means view was added by windowManager for popup player
                 windowManager.removeViewImmediate(getView());
         }
+    }
+
+    private void showNotificationAndStartForeground() {
+        resetNotification();
+        if (getBigNotRemoteView() != null)
+            getBigNotRemoteView().setProgressBar(R.id.notificationProgressBar, 100, 0, false);
+        if (getNotRemoteView() != null)
+            getNotRemoteView().setProgressBar(R.id.notificationProgressBar, 100, 0, false);
+        startForeground(NOTIFICATION_ID, getNotBuilder().build());
     }
 
     /*//////////////////////////////////////////////////////////////////////////

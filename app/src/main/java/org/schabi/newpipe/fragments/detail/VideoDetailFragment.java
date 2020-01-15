@@ -21,6 +21,7 @@ import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.PlaybackParameters;
+import com.google.android.exoplayer2.Player;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.tabs.TabLayout;
@@ -237,9 +238,8 @@ public class VideoDetailFragment
 
                 if (!player.videoPlayerSelected()) return;
 
-                if (currentInfo == null && !wasCleared()) selectAndLoadVideo(serviceId, url, name, playQueue);
-
-                if (player.getPlayQueue() != null) addVideoPlayerView();
+                // STATE_IDLE means the player is stopped
+                if (player.getPlayer() != null && player.getPlayer().getPlaybackState() != Player.STATE_IDLE) addVideoPlayerView();
 
                 // If the video is playing but orientation changed let's make the video in fullscreen again
 
@@ -375,7 +375,7 @@ public class VideoDetailFragment
             updateFlags = 0;
         }
 
-        // Check if it was loading when the fragment was stopped/paused,
+        // Check if it was loading when the fragment was stopped/paused
         if (wasLoading.getAndSet(false) && !wasCleared()) {
             selectAndLoadVideo(serviceId, url, name, playQueue);
         } else if (currentInfo != null) {
@@ -537,7 +537,7 @@ public class VideoDetailFragment
                 bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                 break;
             case R.id.overlay_play_pause_button:
-                if (player != null) {
+                if (player != null && player.getPlayer() != null && player.getPlayer().getPlaybackState() != Player.STATE_IDLE) {
                     player.onPlayPause();
                     player.hideControls(0,0);
                     showSystemUi();
@@ -900,9 +900,9 @@ public class VideoDetailFragment
     }
 
     private void setupFromHistoryItem(StackItem item) {
+        setAutoplay(false);
         hideMainPlayer();
 
-        setAutoplay(false);
         selectAndLoadVideo(
                 item.getServiceId(),
                 item.getUrl(),
@@ -1107,7 +1107,7 @@ public class VideoDetailFragment
             return;
 
         removeVideoPlayerView();
-        playerService.stop();
+        playerService.stop(isAutoplayEnabled());
         playerService.getView().setVisibility(View.GONE);
     }
 
