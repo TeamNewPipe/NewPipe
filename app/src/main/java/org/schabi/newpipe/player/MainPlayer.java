@@ -195,7 +195,7 @@ public final class MainPlayer extends Service {
 
     boolean isLandscape() {
         // DisplayMetrics from activity context knows about MultiWindow feature while DisplayMetrics from app context doesn't
-        final DisplayMetrics metrics = playerImpl.getParentActivity() != null ?
+        final DisplayMetrics metrics = playerImpl != null && playerImpl.getParentActivity() != null ?
                 playerImpl.getParentActivity().getResources().getDisplayMetrics()
                 : getResources().getDisplayMetrics();
         return metrics.heightPixels < metrics.widthPixels;

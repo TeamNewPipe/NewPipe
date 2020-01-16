@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -319,6 +320,13 @@ public class PlayerHelper {
 
     public static void setScreenBrightness(@NonNull final Context context, final float setScreenBrightness) {
         setScreenBrightness(context, setScreenBrightness, System.currentTimeMillis());
+    }
+
+    public static boolean globalScreenOrientationLocked(Context context) {
+        // 1: Screen orientation changes using accelerometer
+        // 0: Screen orientation is locked
+        return !(android.provider.Settings.System.getInt(
+                context.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0) == 1);
     }
 
     ////////////////////////////////////////////////////////////////////////////

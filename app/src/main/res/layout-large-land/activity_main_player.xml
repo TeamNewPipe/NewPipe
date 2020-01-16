@@ -466,6 +466,21 @@
                     android:visibility="gone"
                     android:background="?attr/selectableItemBackground"
                     tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+                <ImageButton
+                    android:id="@+id/screenRotationButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:padding="6dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_fullscreen_white"
+                    tools:ignore="ContentDescription,RtlHardcoded"
+                    android:visibility="gone"
+                    tools:visibility="visible"/>
             </LinearLayout>
         </RelativeLayout>
 

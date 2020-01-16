@@ -4,6 +4,7 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.*;
 import android.content.pm.ActivityInfo;
+import android.database.ContentObserver;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.os.Build;
@@ -69,7 +70,6 @@ import org.schabi.newpipe.player.helper.PlayerHelper;
 import org.schabi.newpipe.player.playqueue.*;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.report.UserAction;
-import org.schabi.newpipe.settings.SettingsContentObserver;
 import org.schabi.newpipe.util.*;
 import org.schabi.newpipe.views.AnimatedProgressBar;
 
@@ -97,8 +97,7 @@ public class VideoDetailFragment
         View.OnClickListener,
         View.OnLongClickListener,
         PlayerEventListener,
-        PlayerServiceEventListener,
-        SettingsContentObserver.OnChangeListener {
+        PlayerServiceEventListener {
     public static final String AUTO_PLAY = "auto_play";
 
     private boolean isFragmentStopped;
@@ -203,7 +202,7 @@ public class VideoDetailFragment
     private TabLayout tabLayout;
     private FrameLayout relatedStreamsLayout;
 
-    private SettingsContentObserver settingsContentObserver;
+    private ContentObserver settingsContentObserver;
     private ServiceConnection serviceConnection;
     private boolean bounded;
     private MainPlayer playerService;
@@ -329,9 +328,15 @@ public class VideoDetailFragment
         startService(false);
         setupBroadcastReceiver();
 
-        settingsContentObserver = new SettingsContentObserver(new Handler(), this);
+        settingsContentObserver = new ContentObserver(new Handler()) {
+            @Override
+            public void onChange(boolean selfChange) {
+                if(activity != null && !PlayerHelper.globalScreenOrientationLocked(activity))
+                    activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+            }
+        };
         activity.getContentResolver().registerContentObserver(
-                android.provider.Settings.System.CONTENT_URI, true,
+                Settings.System.getUriFor(Settings.System.ACCELEROMETER_ROTATION), false,
                 settingsContentObserver);
     }
 
@@ -1311,13 +1316,6 @@ public class VideoDetailFragment
     // Orientation listener
     //////////////////////////////////////////////////////////////////////////*/
 
-    private boolean globalScreenOrientationLocked() {
-        // 1: Screen orientation changes using accelerometer
-        // 0: Screen orientation is locked
-        return !(android.provider.Settings.System.getInt(
-                activity.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0) == 1);
-    }
-
     private void restoreDefaultOrientation() {
         if (player == null || !player.videoPlayerSelected() || activity == null) return;
 
@@ -1325,25 +1323,6 @@ public class VideoDetailFragment
         // This will show systemUI and pause the player.
         // User can tap on Play button and video will be in fullscreen mode again
         activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
-    }
-
-    private void setupOrientation() {
-        if (player == null || !player.videoPlayerSelected() || activity == null) return;
-
-        int newOrientation;
-        if (globalScreenOrientationLocked())
-            newOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE;
-        else
-            newOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
-
-        if (newOrientation != activity.getRequestedOrientation())
-            activity.setRequestedOrientation(newOrientation);
-    }
-
-    @Override
-    public void onSettingsChanged() {
-        if(activity != null && !globalScreenOrientationLocked())
-            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1661,7 +1640,6 @@ public class VideoDetailFragment
                     animateView(positionView, true, 100);
                     animateView(detailPositionView, true, 100);
                 }
-                setupOrientation();
                 break;
         }
     }
@@ -1740,6 +1718,15 @@ public class VideoDetailFragment
         if (relatedStreamsLayout != null) relatedStreamsLayout.setVisibility(fullscreen ? View.GONE : View.VISIBLE);
 
         addVideoPlayerView();
+    }
+
+    @Override
+    public void onScreenRotationButtonClicked() {
+        int newOrientation = isLandscape() ?
+                ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+                : ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE;
+
+        activity.setRequestedOrientation(newOrientation);
     }
 
     /*
@@ -1828,9 +1815,15 @@ public class VideoDetailFragment
         if ((!player.isPlaying() && player.getPlayQueue() != playQueue) || player.getPlayQueue() == null)
             setAutoplay(true);
 
+        boolean orientationLocked = PlayerHelper.globalScreenOrientationLocked(activity);
         // Let's give a user time to look at video information page if video is not playing
-        if (player.isPlaying())
+        if (player.isPlaying()) {
             player.checkLandscape();
+        } else if (orientationLocked) {
+            player.checkLandscape();
+            player.onPlay();
+            player.showControlsThenHide();
+        }
     }
 
     private boolean isLandscape() {

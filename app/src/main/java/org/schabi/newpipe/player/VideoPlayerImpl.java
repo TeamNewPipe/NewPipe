@@ -23,12 +23,15 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.content.*;
+import android.database.ContentObserver;
 import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
@@ -88,7 +91,7 @@ import static org.schabi.newpipe.util.ListHelper.getResolutionIndex;
 public class VideoPlayerImpl extends VideoPlayer
         implements View.OnLayoutChangeListener,
         PlaybackParameterDialog.Callback,
-        View.OnLongClickListener{
+        View.OnLongClickListener {
     private static final String TAG = ".VideoPlayerImpl";
 
     private final float MAX_GESTURE_LENGTH = 0.75f;
@@ -109,6 +112,7 @@ public class VideoPlayerImpl extends VideoPlayer
     private ImageButton openInBrowser;
     private ImageButton fullscreenButton;
     private ImageButton playerCloseButton;
+    private ImageButton screenRotationButton;
 
     private ImageButton playPauseButton;
     private ImageButton playPreviousButton;
@@ -139,6 +143,7 @@ public class VideoPlayerImpl extends VideoPlayer
     private PlayerEventListener activityListener;
     private GestureDetector gestureDetector;
     private SharedPreferences defaultPreferences;
+    private ContentObserver settingsContentObserver;
     @NonNull
     final private AudioPlaybackResolver resolver;
 
@@ -233,6 +238,7 @@ public class VideoPlayerImpl extends VideoPlayer
         this.playWithKodi = rootView.findViewById(R.id.playWithKodi);
         this.openInBrowser = rootView.findViewById(R.id.openInBrowser);
         this.fullscreenButton = rootView.findViewById(R.id.fullScreenButton);
+        this.screenRotationButton = rootView.findViewById(R.id.screenRotationButton);
         this.playerCloseButton = rootView.findViewById(R.id.playerCloseButton);
 
         this.playPauseButton = rootView.findViewById(R.id.playPauseButton);
@@ -277,6 +283,7 @@ public class VideoPlayerImpl extends VideoPlayer
     private void setupElementsVisibility() {
         if (popupPlayerSelected()) {
             fullscreenButton.setVisibility(View.VISIBLE);
+            screenRotationButton.setVisibility(View.GONE);
             getRootView().findViewById(R.id.spaceBeforeControls).setVisibility(View.GONE);
             getRootView().findViewById(R.id.metadataView).setVisibility(View.GONE);
             queueButton.setVisibility(View.GONE);
@@ -292,6 +299,7 @@ public class VideoPlayerImpl extends VideoPlayer
             playerCloseButton.setVisibility(View.GONE);
         } else {
             fullscreenButton.setVisibility(View.GONE);
+            setupScreenRotationButton(service.isLandscape());
             getRootView().findViewById(R.id.spaceBeforeControls).setVisibility(View.VISIBLE);
             getRootView().findViewById(R.id.metadataView).setVisibility(View.VISIBLE);
             moreOptionsButton.setVisibility(View.VISIBLE);
@@ -337,9 +345,18 @@ public class VideoPlayerImpl extends VideoPlayer
         moreOptionsButton.setOnLongClickListener(this);
         shareButton.setOnClickListener(this);
         fullscreenButton.setOnClickListener(this);
+        screenRotationButton.setOnClickListener(this);
         playWithKodi.setOnClickListener(this);
         openInBrowser.setOnClickListener(this);
         playerCloseButton.setOnClickListener(this);
+
+        settingsContentObserver = new ContentObserver(new Handler()) {
+            @Override
+            public void onChange(boolean selfChange) { setupScreenRotationButton(service.isLandscape()); }
+        };
+        service.getContentResolver().registerContentObserver(
+                Settings.System.getUriFor(Settings.System.ACCELEROMETER_ROTATION), false,
+                settingsContentObserver);
 
         getRootView().addOnLayoutChangeListener((view, l, t, r, b, ol, ot, or, ob) -> {
             if (l != ol || t != ot || r != or || b != ob) {
@@ -560,6 +577,7 @@ public class VideoPlayerImpl extends VideoPlayer
             channelTextView.setVisibility(View.VISIBLE);
             playerCloseButton.setVisibility(View.GONE);
         }
+        setupScreenRotationButton(isInFullscreen());
     }
 
     @Override
@@ -597,6 +615,9 @@ public class VideoPlayerImpl extends VideoPlayer
 
         } else if (v.getId() == fullscreenButton.getId()) {
             toggleFullscreen();
+
+        } else if (v.getId() == screenRotationButton.getId()) {
+            fragmentListener.onScreenRotationButtonClicked();
 
         } else if (v.getId() == playerCloseButton.getId()) {
             service.sendBroadcast(new Intent(VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER));
@@ -687,6 +708,13 @@ public class VideoPlayerImpl extends VideoPlayer
                 .setNegativeButton(R.string.cancel, (DialogInterface dialog, int which) -> {
                 });
         builder.create().show();
+    }
+
+    private void setupScreenRotationButton(boolean landscape) {
+        boolean orientationLocked = PlayerHelper.globalScreenOrientationLocked(service);
+        screenRotationButton.setVisibility(orientationLocked && videoPlayerSelected() ? View.VISIBLE : View.GONE);
+        screenRotationButton.setImageDrawable(service.getResources().getDrawable(
+                landscape ? R.drawable.ic_fullscreen_exit_white : R.drawable.ic_fullscreen_white));
     }
 
     @Override
@@ -878,6 +906,13 @@ public class VideoPlayerImpl extends VideoPlayer
         service.getLockManager().releaseWifiAndCpu();
 
         super.onCompleted();
+    }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+
+        service.getContentResolver().unregisterContentObserver(settingsContentObserver);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1282,7 +1317,7 @@ public class VideoPlayerImpl extends VideoPlayer
         getLoadingPanel().setMinimumHeight(popupLayoutParams.height);
 
         service.removeViewFromParent();
-        windowManager.addView(service.getView(), popupLayoutParams);
+        windowManager.addView(getRootView(), popupLayoutParams);
 
         if (getAspectRatioFrameLayout().getResizeMode() == AspectRatioFrameLayout.RESIZE_MODE_ZOOM)
             onResizeClicked();
@@ -1313,7 +1348,7 @@ public class VideoPlayerImpl extends VideoPlayer
     }
 
     private void initVideoPlayer() {
-        service.getView().setLayoutParams(new FrameLayout.LayoutParams(
+        getRootView().setLayoutParams(new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
     }
 
