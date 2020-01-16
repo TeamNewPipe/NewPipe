@@ -946,10 +946,10 @@ public abstract class BasePlayer implements
     public void onPlayPause() {
         if (DEBUG) Log.d(TAG, "onPlayPause() called");
 
-        if (!isPlaying()) {
-            onPlay();
-        } else {
+        if (isPlaying()) {
             onPause();
+        } else {
+            onPlay();
         }
     }
 
