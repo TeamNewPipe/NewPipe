@@ -150,6 +150,8 @@ public abstract class BasePlayer implements
     @NonNull
     public static final String RESUME_PLAYBACK = "resume_playback";
     @NonNull
+    public static final String START_PAUSED = "start_paused";
+    @NonNull
     public static final String SELECT_ON_APPEND = "select_on_append";
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -304,7 +306,7 @@ public abstract class BasePlayer implements
         }
         // Good to go...
         initPlayback(queue, repeatMode, playbackSpeed, playbackPitch, playbackSkipSilence,
-                /*playOnInit=*/true);
+                /*playOnInit=*/!intent.getBooleanExtra(START_PAUSED, false));
     }
 
     protected void initPlayback(@NonNull final PlayQueue queue,

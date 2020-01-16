@@ -167,7 +167,10 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             case R.id.action_switch_main:
                 this.player.setRecovery();
                 getApplicationContext().sendBroadcast(getPlayerShutdownIntent());
-                getApplicationContext().startActivity(getSwitchIntent(MainVideoPlayer.class));
+                getApplicationContext().startActivity(
+                    getSwitchIntent(MainVideoPlayer.class)
+                        .putExtra(BasePlayer.START_PAUSED, !this.player.isPlaying())
+                );
                 return true;
         }
         return onPlayerOptionSelected(item) || super.onOptionsItemSelected(item);
@@ -189,6 +192,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                 this.player.getPlaybackPitch(),
                 this.player.getPlaybackSkipSilence(),
                 null,
+                false,
                 false
         ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     }
