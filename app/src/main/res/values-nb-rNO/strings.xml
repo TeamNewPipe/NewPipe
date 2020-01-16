@@ -521,4 +521,7 @@
     <string name="recently_added">Nylig lagt til</string>
     <string name="most_liked">Mest likt</string>
     <string name="choose_instance_prompt">Velg en instans</string>
+    <string name="clear_download_history">Tøm nedlastingshistorikk</string>
+    <string name="delete_downloaded_files">Slett nedlastede filer</string>
+    <string name="deleted_downloads">Slettet %1$s nedlastninger</string>
 </resources>
