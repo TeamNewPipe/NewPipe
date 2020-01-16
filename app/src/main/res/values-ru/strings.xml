@@ -522,10 +522,10 @@
         <item quantity="many">%s слушателей</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">Язык будет изменён после перезапуска</string>
-    <string name="seek_duration_title">Перемотка двойным нажатием</string>
+    <string name="seek_duration_title">Шаг перемотки</string>
     <string name="peertube_instance_url_title">Серверы PeerTube</string>
-    <string name="peertube_instance_url_summary">Выберите предпочтительные серверы PeerTube</string>
-    <string name="peertube_instance_url_help">Выберите подходящие серверы на %s</string>
+    <string name="peertube_instance_url_summary">Выберите предпочтительные серверы</string>
+    <string name="peertube_instance_url_help">Каталог серверов: %s</string>
     <string name="peertube_instance_add_title">Новый сервер</string>
     <string name="peertube_instance_add_help">URL сервера</string>
     <string name="peertube_instance_add_fail">Не удалось проверить сервер</string>
