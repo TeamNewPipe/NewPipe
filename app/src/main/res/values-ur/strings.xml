@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_bg_subtitle">شروع کرنے کے لیے تلاش پر ٹیپ کریں</string>
-    <string name="view_count_text">ملاحظات</string>
+    <string name="view_count_text">ملاحظات s$1%</string>
     <string name="upload_date_text">کوشائع ہوا</string>
     <string name="install">انسٹال</string>
     <string name="cancel">منسوخ کریں</string>
@@ -193,13 +193,13 @@
     <string name="short_billion">بی</string>
     <string name="no_subscribers">کوئی صارفین نہیں</string>
     <plurals name="subscribers">
-        <item quantity="one">s% صارف</item>
-        <item quantity="other">s% صارفین</item>
+        <item quantity="one">%s صارف</item>
+        <item quantity="other">%s صارفین</item>
     </plurals>
     <string name="no_views">کوئی مناظر نہیں</string>
     <plurals name="views">
-        <item quantity="one">s% منظر</item>
-        <item quantity="other">s% مناظر</item>
+        <item quantity="one">%s منظر</item>
+        <item quantity="other">%s مناظر</item>
     </plurals>
     <string name="no_videos">ویڈیوز دستیاب نہیں</string>
     <plurals name="videos">
@@ -306,7 +306,7 @@
     <string name="drawer_close">دراز بند کریں</string>
     <string name="drawer_header_action_paceholder_text">یہاں جلد ہی کچھ نظر آئے گا D D</string>
     <string name="preferred_open_action_settings_title">ترجیح \' کھلی \' عمل</string>
-    <string name="preferred_open_action_settings_summary">مواد کھولنے پر ڈیفالٹ کارروائی — s%</string>
+    <string name="preferred_open_action_settings_summary">مواد کھولنے پر ڈیفالٹ کارروائی — %s</string>
     <string name="video_player">ویڈیو پلیئر</string>
     <string name="background_player">پس منظر پلیئر</string>
     <string name="popup_player">پوپ اپ پلیئر</string>
@@ -437,7 +437,7 @@
     <string name="permission_denied">سسٹم نےکارروائی سے انکار کیا گیا</string>
     <string name="download_failed">ڈاؤن لوڈ ناکام</string>
     <string name="download_finished">ڈاؤن لوڈ تکمیل</string>
-    <string name="download_finished_more">s% ڈاؤن لوڈ مکمل ہوگئے</string>
+    <string name="download_finished_more">%s ڈاؤن لوڈ مکمل ہوگئے</string>
     <string name="generate_unique_name">منفرد نام بنائیں</string>
     <string name="overwrite">برتحریر</string>
     <string name="download_already_running">اس نام کے ساتھ ایک ڈاؤن لوڈ جاری ہے</string>
