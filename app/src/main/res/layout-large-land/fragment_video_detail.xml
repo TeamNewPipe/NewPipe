@@ -557,8 +557,7 @@
 			android:id="@+id/overlay_layout"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:alpha="0"
-			tools:alpha="1"
+			android:alpha="0.9"
 			android:paddingLeft="@dimen/video_item_search_padding"
 			android:paddingRight="@dimen/video_item_search_padding"
 			android:background="?attr/windowBackground" >

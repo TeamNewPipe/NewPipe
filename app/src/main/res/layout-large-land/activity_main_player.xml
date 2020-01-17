@@ -161,7 +161,6 @@
                 android:orientation="vertical"
                 android:gravity="top"
                 android:paddingTop="4dp"
-                android:paddingEnd="6dp"
                 android:layout_toEndOf="@id/spaceBeforeControls"
                 android:baselineAligned="false">
 
@@ -172,7 +171,6 @@
                 android:baselineAligned="false"
                 android:gravity="top"
                 android:paddingBottom="7dp"
-                android:paddingLeft="2dp"
                 tools:ignore="RtlHardcoded">
 
                 <ImageButton

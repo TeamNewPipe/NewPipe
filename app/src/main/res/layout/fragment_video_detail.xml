@@ -547,8 +547,7 @@
 		android:id="@+id/overlay_layout"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:alpha="0"
-		tools:alpha="1"
+		android:alpha="0.9"
 		android:background="?attr/windowBackground" >
 
 		<ImageButton

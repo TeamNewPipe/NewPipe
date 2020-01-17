@@ -288,8 +288,8 @@ public class VideoDetailFragment
     }
 
     private void stopService() {
-        getContext().stopService(new Intent(getContext(), MainPlayer.class));
         unbind();
+        getContext().stopService(new Intent(getContext(), MainPlayer.class));
     }
 
 
@@ -325,7 +325,6 @@ public class VideoDetailFragment
         PreferenceManager.getDefaultSharedPreferences(activity)
                 .registerOnSharedPreferenceChangeListener(this);
 
-        startService(false);
         setupBroadcastReceiver();
 
         settingsContentObserver = new ContentObserver(new Handler()) {
@@ -415,6 +414,7 @@ public class VideoDetailFragment
         positionSubscriber = null;
         currentWorker = null;
         disposables = null;
+        bottomSheetBehavior.setBottomSheetCallback(null);
     }
 
     @Override
@@ -688,6 +688,7 @@ public class VideoDetailFragment
         detailControlsPopup.setOnTouchListener(getOnControlsTouchListener());
 
         setupBottomPlayer();
+        startService(false);
     }
 
     private View.OnTouchListener getOnControlsTouchListener() {
@@ -931,8 +932,6 @@ public class VideoDetailFragment
         boolean streamIsTheSame = this.playQueue != null && this.playQueue.equals(playQueue);
         // Situation when user switches from players to main player. All needed data is here, we can start watching
         if (streamIsTheSame) {
-            //TODO not sure about usefulness of this line in the case when user switches from one player to another
-            // handleResult(currentInfo);
             openVideoPlayer();
             return;
         }
@@ -1094,17 +1093,17 @@ public class VideoDetailFragment
         if (playerService == null) {
                 startService(true);
                 return;
-            }
-            if (currentInfo == null) return;
+        }
+        if (currentInfo == null) return;
 
-            PlayQueue queue = setupPlayQueueForIntent(false);
+        PlayQueue queue = setupPlayQueueForIntent(false);
 
-            addVideoPlayerView();
-            playerService.getView().setVisibility(View.GONE);
+        // Video view can have elements visible from popup, We hide it here but once it ready the view will be shown in handleIntent()
+        playerService.getView().setVisibility(View.GONE);
+        addVideoPlayerView();
 
-            Intent playerIntent = NavigationHelper.getPlayerIntent(
-                    getContext(), MainPlayer.class, queue, null, true);
-            activity.startService(playerIntent);
+        Intent playerIntent = NavigationHelper.getPlayerIntent(getContext(), MainPlayer.class, queue, null, true);
+        activity.startService(playerIntent);
     }
 
     private void hideMainPlayer() {
@@ -1194,7 +1193,7 @@ public class VideoDetailFragment
     }
 
     private void addVideoPlayerView() {
-        if (player == null) return;
+        if (player == null || getView() == null) return;
 
         FrameLayout viewHolder = getView().findViewById(R.id.player_placeholder);
 
@@ -1213,6 +1212,8 @@ public class VideoDetailFragment
     }
 
     private void makeDefaultHeightForVideoPlaceholder() {
+        if (getView() == null) return;
+
         FrameLayout viewHolder = getView().findViewById(R.id.player_placeholder);
         viewHolder.getLayoutParams().height = FrameLayout.LayoutParams.MATCH_PARENT;
         viewHolder.requestLayout();
@@ -1322,7 +1323,9 @@ public class VideoDetailFragment
         if (player != null && player.isInFullscreen()) player.toggleFullscreen();
         // This will show systemUI and pause the player.
         // User can tap on Play button and video will be in fullscreen mode again
-        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+        // Note for tablet: trying to avoid orientation changes since it's not easy to physically rotate the tablet every time
+        if (!PlayerHelper.isTablet(activity))
+            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1356,7 +1359,7 @@ public class VideoDetailFragment
 
         if(relatedStreamsLayout != null){
             if(showRelatedStreams){
-                relatedStreamsLayout.setVisibility(View.INVISIBLE);
+                relatedStreamsLayout.setVisibility(player != null && player.isInFullscreen() ? View.GONE : View.INVISIBLE);
             }else{
                 relatedStreamsLayout.setVisibility(View.GONE);
             }
@@ -1383,7 +1386,7 @@ public class VideoDetailFragment
                 getChildFragmentManager().beginTransaction()
                         .replace(R.id.relatedStreamsLayout, RelatedVideosFragment.getInstance(info))
                         .commitNow();
-                relatedStreamsLayout.setVisibility(View.VISIBLE);
+                relatedStreamsLayout.setVisibility(player != null && player.isInFullscreen() ? View.GONE : View.VISIBLE);
             }
         }
 
@@ -1722,6 +1725,13 @@ public class VideoDetailFragment
 
     @Override
     public void onScreenRotationButtonClicked() {
+        // In tablet user experience will be better if screen will not be rotated from landscape to portrait every time
+        // Just turn on fullscreen mode in landscape orientation
+        if (isLandscape() && PlayerHelper.isTablet(activity)) {
+            player.toggleFullscreen();
+            return;
+        }
+
         int newOrientation = isLandscape() ?
                 ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
                 : ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE;
@@ -1866,10 +1876,12 @@ public class VideoDetailFragment
         final int peekHeight = getResources().getDimensionPixelSize(R.dimen.mini_player_height);
         if (bottomSheetState != BottomSheetBehavior.STATE_HIDDEN) {
             bottomSheetBehavior.setPeekHeight(peekHeight);
-            if (bottomSheetState == BottomSheetBehavior.STATE_COLLAPSED)
-                setOverlayLook(appBarLayout, behavior, 1 - MAX_OVERLAY_ALPHA);
-            else if (bottomSheetState == BottomSheetBehavior.STATE_EXPANDED)
+            if (bottomSheetState == BottomSheetBehavior.STATE_COLLAPSED) {
+                overlay.setAlpha(MAX_OVERLAY_ALPHA);
+            } else if (bottomSheetState == BottomSheetBehavior.STATE_EXPANDED) {
+                overlay.setAlpha(0);
                 setOverlayElementsClickable(false);
+            }
         }
 
         bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {

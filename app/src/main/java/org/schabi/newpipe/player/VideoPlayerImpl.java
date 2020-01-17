@@ -1155,18 +1155,20 @@ public class VideoPlayerImpl extends VideoPlayer
         // It doesn't include NavigationBar, notches, etc.
         display.getSize(size);
 
-        int width = isFullscreen ? size.x : ViewGroup.LayoutParams.MATCH_PARENT;
+        int spaceBeforeTopControls = getRootView().findViewById(R.id.spaceBeforeControls).getWidth();
+        int widthForTopControls = isFullscreen ? size.x - spaceBeforeTopControls : ViewGroup.LayoutParams.MATCH_PARENT;
+        int widthForBottomControls = isFullscreen ? size.x : ViewGroup.LayoutParams.MATCH_PARENT;
         int gravity = isFullscreen ? (display.getRotation() == Surface.ROTATION_90 ? Gravity.START : Gravity.END) : Gravity.TOP;
 
-        primaryControls.getLayoutParams().width = width;
+        primaryControls.getLayoutParams().width = widthForTopControls;
         ((LinearLayout.LayoutParams) primaryControls.getLayoutParams()).gravity = gravity;
         primaryControls.requestLayout();
 
-        secondaryControls.getLayoutParams().width = width;
+        secondaryControls.getLayoutParams().width = widthForTopControls;
         ((LinearLayout.LayoutParams) secondaryControls.getLayoutParams()).gravity = gravity;
         secondaryControls.requestLayout();
 
-        getBottomControlsRoot().getLayoutParams().width = width;
+        getBottomControlsRoot().getLayoutParams().width = widthForBottomControls;
         RelativeLayout.LayoutParams bottomParams = ((RelativeLayout.LayoutParams) getBottomControlsRoot().getLayoutParams());
         bottomParams.removeRule(RelativeLayout.ALIGN_PARENT_START);
         bottomParams.removeRule(RelativeLayout.ALIGN_PARENT_END);
@@ -1174,15 +1176,33 @@ public class VideoPlayerImpl extends VideoPlayer
         getBottomControlsRoot().requestLayout();
 
         ViewGroup controlsRoot = getRootView().findViewById(R.id.playbackControlRoot);
-        controlsRoot.getLayoutParams().height = isFullscreen ? size.y : ViewGroup.LayoutParams.MATCH_PARENT;
+        // In tablet navigationBar located at the bottom of the screen. And the only situation when we need to set custom height is
+        // in fullscreen mode in tablet in non-multiWindow mode. Other than that MATCH_PARENT is good
+        controlsRoot.getLayoutParams().height = isFullscreen && !isInMultiWindow() && PlayerHelper.isTablet(service)
+                ? size.y
+                : ViewGroup.LayoutParams.MATCH_PARENT;
         controlsRoot.requestLayout();
 
+        int topPadding = isFullscreen && !isInMultiWindow() ? getStatusBarHeight() : 0;
+        getRootView().findViewById(R.id.playbackWindowRoot).setPadding(0, topPadding, 0, 0);
+        getRootView().findViewById(R.id.playbackWindowRoot).requestLayout();
+    }
+
+    private int getStatusBarHeight() {
         int statusBarHeight = 0;
         int resourceId = service.getResources().getIdentifier("status_bar_height_landscape", "dimen", "android");
         if (resourceId > 0) statusBarHeight = service.getResources().getDimensionPixelSize(resourceId);
+        if (statusBarHeight == 0) {
+            // Some devices provide wrong value for status bar height in landscape mode, this is workaround
+            DisplayMetrics metrics = getRootView().getResources().getDisplayMetrics();
+            statusBarHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, metrics);
+        }
+        return statusBarHeight;
+    }
 
-        getRootView().findViewById(R.id.playbackWindowRoot).setPadding(0, isFullscreen ? statusBarHeight : 0, 0, 0);
-        getRootView().findViewById(R.id.playbackWindowRoot).requestLayout();
+    private boolean isInMultiWindow() {
+        AppCompatActivity parent = getParentActivity();
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && parent != null && parent.isInMultiWindowMode();
     }
 
     private void updatePlaybackButtons() {
@@ -1287,6 +1307,9 @@ public class VideoPlayerImpl extends VideoPlayer
     private void initPopup() {
         if (DEBUG) Log.d(TAG, "initPopup() called");
 
+        // Popup is already added to windowManager
+        if (getRootView().getLayoutParams() instanceof WindowManager.LayoutParams) return;
+
         updateScreenSize();
 
         final boolean popupRememberSizeAndPos = PlayerHelper.isRememberingPopupDimensions(service);
@@ -1326,6 +1349,10 @@ public class VideoPlayerImpl extends VideoPlayer
     @SuppressLint("RtlHardcoded")
     private void initPopupCloseOverlay() {
         if (DEBUG) Log.d(TAG, "initPopupCloseOverlay() called");
+
+        // closeOverlayView is already added to windowManager
+        if (closeOverlayView != null) return;
+
         closeOverlayView = View.inflate(service, R.layout.player_popup_close_overlay, null);
         closeOverlayButton = closeOverlayView.findViewById(R.id.closeButton);
 
@@ -1493,6 +1520,7 @@ public class VideoPlayerImpl extends VideoPlayer
 
                     private void end() {
                         windowManager.removeView(closeOverlayView);
+                        closeOverlayView = null;
 
                         service.onDestroy();
                     }
@@ -1651,10 +1679,6 @@ public class VideoPlayerImpl extends VideoPlayer
 
     public View getCloseOverlayButton() {
         return closeOverlayButton;
-    }
-
-    public View getCloseOverlayView() {
-        return closeOverlayView;
     }
 
     public View getClosingOverlayView() {

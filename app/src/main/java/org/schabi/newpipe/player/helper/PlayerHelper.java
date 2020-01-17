@@ -2,6 +2,7 @@ package org.schabi.newpipe.player.helper;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -327,6 +328,11 @@ public class PlayerHelper {
         // 0: Screen orientation is locked
         return !(android.provider.Settings.System.getInt(
                 context.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0) == 1);
+    }
+
+    public static boolean isTablet(@NonNull final Context context) {
+        return (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK)
+                >= Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
 
     ////////////////////////////////////////////////////////////////////////////
