@@ -517,7 +517,7 @@
     <string name="error_insufficient_storage">بیرگەی ناوەکیت پڕبووە</string>
     <string name="error_progress_lost">کردارەکە شکستی هێنا, چونکە ئەو فایلە سڕاوەتەوە</string>
     <string name="error_timeout">هێڵی ئینتەرنێت نەما</string>
-    <string name="confirm_prompt">ئایا دڵنیای؟</string>
+    <string name="confirm_prompt">ئایا دەتەوێ مێژووی داگرتنەکانت بسڕدرێنەوە یان هەموو فایلە داگیراوەکان بسڕدرێنەوە؟</string>
     <string name="enable_queue_limit">سنوری ڕیزبوونی داگرتنەکان</string>
     <string name="enable_queue_limit_desc">تەنها یەک داگرتن کاردەکات لەیەک کاتدا</string>
     <string name="start_downloads">دەستپێکردنەوەی داگرتنەکان</string>
@@ -538,4 +538,7 @@
     <string name="choose_instance_prompt">دۆخێک هەڵبژێرە</string>
     <string name="enable_lock_screen_video_thumbnail_title">چالاککردنی وێنۆچکەی ڤیدیۆی داخستنی ڕوونما</string>
     <string name="enable_lock_screen_video_thumbnail_summary">کاتێ کارپێکەری پاشبنەما کاردەکات ئەوا وێنۆچکەی ڤیدیۆکە لە ڕوونما داخراوەکەدا نیشاندەدرێت</string>
+    <string name="clear_download_history">سڕینەوەی مێژووی داگرتن</string>
+    <string name="delete_downloaded_files">سڕینەوەی فایلە داگیراوەکان</string>
+    <string name="deleted_downloads">%1$ لە داگرتنەکان سڕانەوە</string>
 </resources>
