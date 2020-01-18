@@ -79,7 +79,7 @@
     <string name="your_comment">Dein Kommentar (auf englisch):</string>
     <string name="could_not_get_stream">Konnte keinen Stream abrufen</string>
     <string name="autoplay_by_calling_app_title">Automatische Wiedergabe</string>
-    <string name="autoplay_by_calling_app_summary">Wiedergabe eines Videos, wenn NewPipe von einer anderen App aufgerufen wurde</string>
+    <string name="autoplay_by_calling_app_summary">Video abspielen, wenn NewPipe von einer anderen App aufgerufen wird</string>
     <string name="report_error">Einen Fehler melden</string>
     <string name="user_report">Anwenderbericht</string>
     <string name="duration_live">LIVE</string>
@@ -489,7 +489,7 @@
     <string name="error_postprocessing_stopped">NewPipe wurde während der Verarbeitung der Datei geschlossen</string>
     <string name="error_insufficient_storage">Kein Speicherplatz mehr auf dem Gerät</string>
     <string name="error_progress_lost">Vorgang abgebrochen, da die Datei gelöscht wurde</string>
-    <string name="confirm_prompt">Bist Du sicher\?</string>
+    <string name="confirm_prompt">Möchtest du deinen Downloadverlauf oder alle heruntergeladenen Dateien löschen\?</string>
     <string name="enable_queue_limit">Downloadwarteschlange begrenzen</string>
     <string name="enable_queue_limit_desc">Ein Download wird zur gleichen Zeit ausgeführt</string>
     <string name="start_downloads">Downloads starten</string>
@@ -536,4 +536,7 @@
     <string name="error_download_resource_gone">Dieser Download kann nicht wiederhergestellt werden</string>
     <string name="enable_lock_screen_video_thumbnail_title">Video-Vorschaubild für Sperrbildschirm aktivieren</string>
     <string name="enable_lock_screen_video_thumbnail_summary">Bei Verwendung des Hintergrundplayers wird ein Video-Miniaturbild auf dem Sperrbildschirm angezeigt</string>
+    <string name="clear_download_history">Downloadverlauf löschen</string>
+    <string name="delete_downloaded_files">Heruntergeladene Dateien löschen</string>
+    <string name="deleted_downloads">%1$s Downloads gelöscht</string>
 </resources>
