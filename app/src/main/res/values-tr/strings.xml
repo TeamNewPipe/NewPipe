@@ -5,7 +5,7 @@
     <string name="upload_date_text">Yayınlanma: %1$s</string>
     <string name="no_player_found">Akış oynatıcısı bulunamadı. VLC\'yi yüklemek ister misiniz\?</string>
     <string name="install">Yükle</string>
-    <string name="cancel">İptal et</string>
+    <string name="cancel">Vazgeç</string>
     <string name="open_in_browser">Tarayıcıda aç</string>
     <string name="share">Paylaş</string>
     <string name="download">İndir</string>
@@ -484,7 +484,7 @@
     <string name="error_insufficient_storage">Aygıt üzerinde yer yok</string>
     <string name="error_progress_lost">İlerleme kaybedildi, çünkü dosya silinmiş</string>
     <string name="error_timeout">Bağlantı zaman aşımı</string>
-    <string name="confirm_prompt">Emin misiniz\?</string>
+    <string name="confirm_prompt">İndirme geçmişinizi temizlemek veya indirilen tüm dosyaları silmek istiyor musunuz\?</string>
     <string name="enable_queue_limit">İndirme kuyruğunu sınırla</string>
     <string name="enable_queue_limit_desc">Aynı anda yalnızca bir indirme yürütülecek</string>
     <string name="start_downloads">İndirmeleri başlat</string>
@@ -535,4 +535,7 @@
     <string name="choose_instance_prompt">Bir örnek seçin</string>
     <string name="enable_lock_screen_video_thumbnail_title">Kilit ekranı video küçük resmini etkinleştir</string>
     <string name="enable_lock_screen_video_thumbnail_summary">Arka plan oynatıcıyı kullanırken kilit ekranında bir video küçük resmi görüntülenecektir</string>
+    <string name="clear_download_history">İndirme geçmişini temizle</string>
+    <string name="delete_downloaded_files">İndirilen dosyaları sil</string>
+    <string name="deleted_downloads">%1$s indirme silindi</string>
 </resources>
