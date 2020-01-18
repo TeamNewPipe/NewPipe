@@ -22,7 +22,7 @@ public class SrtFromTtmlWriter {
 
     private SharpStream out;
     private boolean ignoreEmptyFrames;
-    private final Charset charset = Charset.forName("utf-8");
+    private final Charset charset = StandardCharsets.UTF_8;
 
     private int frameIndex = 0;
 
