@@ -12,7 +12,7 @@ import org.schabi.newpipe.streams.io.SharpStream;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.text.ParseException;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author kapodamy
@@ -28,7 +28,7 @@ public class SrtFromTtmlWriter {
 
     public SrtFromTtmlWriter(SharpStream out, boolean ignoreEmptyFrames) {
         this.out = out;
-        this.ignoreEmptyFrames = true;
+        this.ignoreEmptyFrames = ignoreEmptyFrames;
     }
 
     private static String getTimestamp(Element frame, String attr) {
