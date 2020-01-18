@@ -17,6 +17,8 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.SliderStrategy;
 
 import static org.schabi.newpipe.player.BasePlayer.DEBUG;
+import static org.schabi.newpipe.util.Localization.changeAppLanguage;
+import static org.schabi.newpipe.util.Localization.getAppLocale;
 
 public class PlaybackParameterDialog extends DialogFragment {
     @NonNull private static final String TAG = "PlaybackParameterDialog";
@@ -108,6 +110,7 @@ public class PlaybackParameterDialog extends DialogFragment {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+        changeAppLanguage(getAppLocale(getContext()), getResources());
         super.onCreate(savedInstanceState);
         if (savedInstanceState != null) {
             initialTempo = savedInstanceState.getDouble(INITIAL_TEMPO_KEY, DEFAULT_TEMPO);
@@ -137,6 +140,7 @@ public class PlaybackParameterDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        changeAppLanguage(getAppLocale(getContext()), getResources());
         final View view = View.inflate(getContext(), R.layout.dialog_playback_parameter, null);
         setupControlViews(view);
 
