@@ -1,5 +1,6 @@
 package org.schabi.newpipe.util;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -118,12 +119,13 @@ public class Localization {
         return nf.format(number);
     }
 
-    public static String formatDate(Date date) {
-        return DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault()).format(date);
+    public static String formatDate(Date date, Context context) {
+        return DateFormat.getDateInstance(DateFormat.MEDIUM, getAppLocale(context)).format(date);
     }
 
+    @SuppressLint("StringFormatInvalid")
     public static String localizeUploadDate(Context context, Date date) {
-        return context.getString(R.string.upload_date_text, formatDate(date));
+        return context.getString(R.string.upload_date_text, formatDate(date, context));
     }
 
     public static String localizeViewCount(Context context, long viewCount) {
