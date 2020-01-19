@@ -130,8 +130,8 @@
     <string name="search_no_results">没有结果</string>
     <string name="no_subscribers">没有订阅者</string>
     <plurals name="subscribers">
-        <item quantity="one">%s个订阅者</item>
-        <item quantity="other"/>
+        <item quantity="one">%s 位订阅者</item>
+        <item quantity="other"></item>
     </plurals>
     <string name="no_videos">没有视频</string>
     <string name="detail_drag_description">拖动以重新排序</string>
@@ -410,8 +410,8 @@
     <string name="privacy_policy_encouragement">NewPipe 项目非常重视您的隐私。因此，未经您的同意，应用程序不会收集任何数据。
 \nNewPipe 的隐私政策详细解释了在发送崩溃报告时发送和存储的数据。</string>
     <string name="read_privacy_policy">阅读隐私政策</string>
-    <string name="start_accept_privacy_policy">为了遵守欧洲一般数据保护条例 （GDPR），我们提请您注意 NewPipe 的隐私政策。请仔细阅读。
-\n您必须接受它才能向我们发送错误报告。</string>
+    <string name="start_accept_privacy_policy">为了遵守欧盟的《通用数据保护条例》（GDPR），我们特此提醒您注意 NewPipe 的隐私政策。请您仔细阅读。 
+\n您必须在同意以后才能向我们发送错误报告。</string>
     <string name="accept">接受</string>
     <string name="decline">拒绝</string>
     <string name="limit_data_usage_none_description">无限制</string>
@@ -504,15 +504,15 @@
     <string name="delete_playback_states_alert">删除所有播放位置记录？</string>
     <string name="download_choose_new_path">更改下载目录让内容生效</string>
     <string name="default_kiosk_page_summary">『时下流行』页-默认</string>
-    <string name="no_one_watching">无人在线观看</string>
+    <string name="no_one_watching">没有人在观看</string>
     <plurals name="watching">
         <item quantity="one">%s 人在观看</item>
         <item quantity="other"/>
     </plurals>
-    <string name="no_one_listening">没人在听</string>
+    <string name="no_one_listening">没有人在听</string>
     <plurals name="listening">
         <item quantity="one">％s 人在听</item>
-        <item quantity="other"/>
+        <item quantity="other"></item>
     </plurals>
     <string name="localization_changes_requires_app_restart">重新启动应用后，语言将更改。</string>
     <string name="peertube_instance_url_title">PeerTube 服务器</string>
@@ -531,8 +531,8 @@
     <string name="error_download_resource_gone">无法恢复此下载</string>
     <string name="choose_instance_prompt">选择一个服务器</string>
     <string name="seek_duration_title">快进 / 快退的单位时间</string>
-    <string name="enable_lock_screen_video_thumbnail_title">在锁屏界面显示视频缩略图</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">在后台播放时，锁屏界面将会显示视频的缩略图</string>
+    <string name="enable_lock_screen_video_thumbnail_title">在锁屏上显示视频缩略图</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">在后台播放时，锁屏上将会显示视频的缩略图</string>
     <string name="clear_download_history">清除下载历史记录</string>
     <string name="delete_downloaded_files">删除下载了的文件</string>
     <string name="deleted_downloads">已删除 %1$s 下载</string>
