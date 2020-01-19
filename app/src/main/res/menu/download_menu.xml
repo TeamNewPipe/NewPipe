@@ -27,8 +27,4 @@
         android:title="@string/clear_download_history"
         app:showAsAction="ifRoom" />
 
-    <item android:id="@+id/action_settings"
-        android:title="@string/settings"
-        app:showAsAction="never" />
-
 </menu>
