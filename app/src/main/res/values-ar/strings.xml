@@ -69,8 +69,8 @@
     <string name="enable_watch_history_title">مراقبة السجل</string>
     <string name="settings_category_history_title">التاريخ و ذاكرة التخزين المؤقت</string>
     <string name="content">محتوى</string>
-    <string name="downloads">التحميلات</string>
-    <string name="downloads_title">التحميلات</string>
+    <string name="downloads">الملفات المحملة</string>
+    <string name="downloads_title">الملفات المحملة</string>
     <string name="all">الجميع</string>
     <string name="channel">القناة</string>
     <string name="video">الفيديو</string>
@@ -113,11 +113,11 @@
     <string name="show_age_restricted_content_title">محتوى مقيد بحسب العمر</string>
     <string name="video_is_age_restricted">"إظهار الفيديو  المقيد بحسب العمر. يمكن السماح باستخدام هذه المواد من \"الإعدادات\"."</string>
     <string name="duration_live">بث مباشر</string>
-    <string name="error_report_title">تقرير خطأ</string>
+    <string name="error_report_title">تقرير عن مشكلة</string>
     <string name="playlist">قائمة التشغيل</string>
     <string name="yes">نعم</string>
     <string name="later">لاحقاً</string>
-    <string name="disabled">تعطيل</string>
+    <string name="disabled">متوقف</string>
     <string name="filter">فلتر</string>
     <string name="refresh">تحديث</string>
     <string name="clear">تنظيف</string>
@@ -246,12 +246,12 @@
         <item quantity="other">%s شاهدو</item>
     </plurals>
     <plurals name="videos">
-        <item quantity="zero">فيديو%s video</item>
-        <item quantity="one">%s videosفيديوهات</item>
-        <item quantity="two">%s videosفيديوهات</item>
-        <item quantity="few">%s videosفيديوهات</item>
-        <item quantity="many">%s videosفيديوهات</item>
-        <item quantity="other">%s videosفيديوهات</item>
+        <item quantity="zero">فيديوهات</item>
+        <item quantity="one">فيديوهات</item>
+        <item quantity="two">فيديوهات</item>
+        <item quantity="few">فيديوهات</item>
+        <item quantity="many">فيديوهات</item>
+        <item quantity="other">فيديوهات</item>
     </plurals>
     <string name="recaptcha_request_toast">طلب اختبار الكابتشا مطلوب</string>
     <string name="copyright" formatted="true">© %1$sبواسطة%2$sتحت%3$s</string>
@@ -425,8 +425,8 @@
     <string name="app_update_notification_channel_name">تتبيه تحديث التطبيق</string>
     <string name="volume_gesture_control_title">إيماءة التحكم بالصوت</string>
     <string name="events">الأحداث</string>
-    <string name="app_update_notification_channel_description">"تنبيه عند تواجد إصدار جديد newpipe "</string>
-    <string name="download_to_sdcard_error_title">وحدة التخزين الخارجية غير متاحة</string>
+    <string name="app_update_notification_channel_description">إخطارات لنسخة NewPipe الجديدة</string>
+    <string name="download_to_sdcard_error_title">وحدة التخزين الخارجية غير متوفرة</string>
     <string name="download_to_sdcard_error_message">"التنزيل على بطاقة SD الخارجية غير ممكن.  إعادة تعيين موقع مجلد التحميل؟"</string>
     <string name="saved_tabs_invalid_json">باستخدام علامات التبويب الافتراضية ، خطأ أثناء قراءة علامات التبويب المحفوظة</string>
     <string name="restore_defaults">استعادة الضبط الافتراضي</string>
@@ -524,4 +524,35 @@
     <string name="no_one_watching">لاتوجد مشاهدة</string>
     <string name="no_one_listening">لا أحد يستمع</string>
     <string name="localization_changes_requires_app_restart">ستتغير اللغة بمجرد إعادة تشغيل التطبيق.</string>
+    <plurals name="watching">
+        <item quantity="zero">مشاهد</item>
+        <item quantity="one">مشاهدة</item>
+        <item quantity="two">مشاهدة</item>
+        <item quantity="few">مشاهدات</item>
+        <item quantity="many">مشاهدات</item>
+        <item quantity="other">مشاهدات</item>
+    </plurals>
+    <plurals name="listening">
+        <item quantity="zero">مستمع</item>
+        <item quantity="one">مستمع</item>
+        <item quantity="two">مستمعين</item>
+        <item quantity="few">مستمعين</item>
+        <item quantity="many">مستمعين</item>
+        <item quantity="other">مستمعين</item>
+    </plurals>
+    <string name="seek_duration_title">تسريع إلى الأمام/-ترجيع وقت البحث</string>
+    <string name="peertube_instance_url_title">مثيلات خوادم پيرتيوب</string>
+    <string name="peertube_instance_url_summary">عيّن مثيلات خوادم پيرتيوب التي تُفضّلها</string>
+    <string name="peertube_instance_add_title">إضافة نموذج</string>
+    <string name="peertube_instance_add_help">أدخل رابط مثيل الخادم</string>
+    <string name="peertube_instance_add_fail">فشل في التحقق من مثيل الخادم</string>
+    <string name="peertube_instance_add_https_only">فقط عناوين https المدعومة</string>
+    <string name="peertube_instance_add_exists">مثيل الخادم موجود بالفعل</string>
+    <string name="local">محلي</string>
+    <string name="recently_added">أضيف مؤخرا</string>
+    <string name="most_liked">الأكثر إعجابا</string>
+    <string name="playlist_no_uploader">تم إنشاؤه-تلقائيًا (لم يتم العثور على برنامج تحميل)</string>
+    <string name="recovering">استرد</string>
+    <string name="error_download_resource_gone">لا يمكن استرداد هذا التنزيل</string>
+    <string name="choose_instance_prompt">اختيار مثيل خادم</string>
 </resources>

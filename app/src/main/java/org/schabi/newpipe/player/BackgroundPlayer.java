@@ -25,12 +25,17 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.IBinder;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
+
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -48,6 +53,7 @@ import org.schabi.newpipe.player.helper.LockManager;
 import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.resolver.AudioPlaybackResolver;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
+import org.schabi.newpipe.util.BitmapUtils;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
@@ -75,6 +81,7 @@ public final class BackgroundPlayer extends Service {
 
     private BasePlayerImpl basePlayerImpl;
     private LockManager lockManager;
+    private SharedPreferences sharedPreferences;
 
     /*//////////////////////////////////////////////////////////////////////////
     // Service-Activity Binder
@@ -95,6 +102,9 @@ public final class BackgroundPlayer extends Service {
 
     private boolean shouldUpdateOnProgress;
 
+    private static final int NOTIFICATION_UPDATES_BEFORE_RESET = 60;
+    private int timesNotificationUpdated;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Service's LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
@@ -104,6 +114,7 @@ public final class BackgroundPlayer extends Service {
         if (DEBUG) Log.d(TAG, "onCreate() called");
         notificationManager = ((NotificationManager) getSystemService(NOTIFICATION_SERVICE));
         lockManager = new LockManager(this);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         ThemeHelper.setTheme(this);
         basePlayerImpl = new BasePlayerImpl(this);
@@ -180,6 +191,7 @@ public final class BackgroundPlayer extends Service {
 
     private void resetNotification() {
         notBuilder = createNotification();
+        timesNotificationUpdated = 0;
     }
 
     private NotificationCompat.Builder createNotification() {
@@ -195,10 +207,43 @@ public final class BackgroundPlayer extends Service {
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setCustomContentView(notRemoteView)
                 .setCustomBigContentView(bigNotRemoteView);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setLockScreenThumbnail(builder);
+        }
+
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
             builder.setPriority(NotificationCompat.PRIORITY_MAX);
         }
         return builder;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private void setLockScreenThumbnail(NotificationCompat.Builder builder) {
+        boolean isLockScreenThumbnailEnabled = sharedPreferences.getBoolean(
+                getString(R.string.enable_lock_screen_video_thumbnail_key),
+                true
+        );
+
+        if (isLockScreenThumbnailEnabled) {
+            basePlayerImpl.mediaSessionManager.setLockScreenArt(
+                    builder,
+                    getCenteredThumbnailBitmap()
+            );
+        } else {
+            basePlayerImpl.mediaSessionManager.clearLockScreenArt(builder);
+        }
+    }
+
+    @Nullable
+    private Bitmap getCenteredThumbnailBitmap() {
+        int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
+        int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
+
+        return BitmapUtils.centerCrop(
+                basePlayerImpl.getThumbnail(),
+                screenWidth,
+                screenHeight);
     }
 
     private void setupNotification(RemoteViews remoteViews) {
@@ -248,10 +293,13 @@ public final class BackgroundPlayer extends Service {
         //if (DEBUG) Log.d(TAG, "updateNotification() called with: drawableId = [" + drawableId + "]");
         if (notBuilder == null) return;
         if (drawableId != -1) {
-            if (notRemoteView != null) notRemoteView.setImageViewResource(R.id.notificationPlayPause, drawableId);
-            if (bigNotRemoteView != null) bigNotRemoteView.setImageViewResource(R.id.notificationPlayPause, drawableId);
+            if (notRemoteView != null)
+                notRemoteView.setImageViewResource(R.id.notificationPlayPause, drawableId);
+            if (bigNotRemoteView != null)
+                bigNotRemoteView.setImageViewResource(R.id.notificationPlayPause, drawableId);
         }
         notificationManager.notify(NOTIFICATION_ID, notBuilder.build());
+        timesNotificationUpdated++;
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -275,7 +323,8 @@ public final class BackgroundPlayer extends Service {
 
     protected class BasePlayerImpl extends BasePlayer {
 
-        @NonNull final private AudioPlaybackResolver resolver;
+        @NonNull
+        final private AudioPlaybackResolver resolver;
         private int cachedDuration;
         private String cachedDurationString;
 
@@ -294,8 +343,10 @@ public final class BackgroundPlayer extends Service {
             super.handleIntent(intent);
 
             resetNotification();
-            if (bigNotRemoteView != null) bigNotRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 0, false);
-            if (notRemoteView != null) notRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 0, false);
+            if (bigNotRemoteView != null)
+                bigNotRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 0, false);
+            if (notRemoteView != null)
+                notRemoteView.setProgressBar(R.id.notificationProgressBar, 100, 0, false);
             startForeground(NOTIFICATION_ID, notBuilder.build());
         }
 
@@ -330,6 +381,7 @@ public final class BackgroundPlayer extends Service {
             updateNotificationThumbnail();
             updateNotification(-1);
         }
+
         /*//////////////////////////////////////////////////////////////////////////
         // States Implementation
         //////////////////////////////////////////////////////////////////////////*/
@@ -351,10 +403,15 @@ public final class BackgroundPlayer extends Service {
             updateProgress(currentProgress, duration, bufferPercent);
 
             if (!shouldUpdateOnProgress) return;
-            resetNotification();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O /*Oreo*/) updateNotificationThumbnail();
+            if (timesNotificationUpdated > NOTIFICATION_UPDATES_BEFORE_RESET) {
+                resetNotification();
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O /*Oreo*/) {
+                    updateNotificationThumbnail();
+                }
+            }
             if (bigNotRemoteView != null) {
-                if(cachedDuration != duration) {
+                if (cachedDuration != duration) {
                     cachedDuration = duration;
                     cachedDurationString = getTimeString(duration);
                 }
@@ -382,8 +439,10 @@ public final class BackgroundPlayer extends Service {
         @Override
         public void destroy() {
             super.destroy();
-            if (notRemoteView != null) notRemoteView.setImageViewBitmap(R.id.notificationCover, null);
-            if (bigNotRemoteView != null) bigNotRemoteView.setImageViewBitmap(R.id.notificationCover, null);
+            if (notRemoteView != null)
+                notRemoteView.setImageViewBitmap(R.id.notificationCover, null);
+            if (bigNotRemoteView != null)
+                bigNotRemoteView.setImageViewBitmap(R.id.notificationCover, null);
         }
 
         /*//////////////////////////////////////////////////////////////////////////

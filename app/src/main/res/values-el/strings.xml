@@ -206,7 +206,7 @@
     <string name="sorry_string">Λυπούμαστε, αυτό δεν έπρεπε να έχει συμβεί.</string>
     <string name="error_report_button_text">Αναφορά σφάλματος με ηλεκτρονικό ταχυδρομίο</string>
     <string name="error_snackbar_message">Λυπούμαστε, συνέβησαν κάποια σφάλματα.</string>
-    <string name="info_labels">What:\\nΑίτημα:\\nΓλώσσα περιεχομένου:\\nΥπηρεσία:\\nΏρα GMT:\\nΠακέτο:\\nΈκδοση:\\nΈκδοση λειτουργικού:</string>
+    <string name="info_labels">Τι:\\nΑίτημα:\\nΓλώσσα περιεχομένου:\\nΥπηρεσία:\\nΏρα GMT:\\nΠακέτο:\\nΈκδοση:\\nΈκδοση λειτουργικού συστήματος:</string>
     <string name="user_report">Αναφορά χρήστη</string>
     <string name="search_no_results">Κανένα αποτέλεσμα</string>
     <string name="empty_subscription_feed_subtitle">Δεν υπάρχει τίποτα εδώ</string>
@@ -516,4 +516,12 @@
     </plurals>
     <string name="localization_changes_requires_app_restart">Η γλώσσα θα αλλάξει μόλις θα επανεκκινηθεί η εφαρμογή.</string>
     <string name="default_kiosk_page_summary">Προεπιλεγμένο περίπτερο</string>
+    <string name="peertube_instance_add_https_only">Υποστηρίζονται μόνο διευθύνσεις URL HTTPS</string>
+    <string name="local">Τοπικό</string>
+    <string name="recently_added">Προστέθηκε πρόσφατα</string>
+    <string name="playlist_no_uploader">Δημιουργήθηκε αυτόματα (δεν βρέθηκε χρήστης μεταφόρτωσης)</string>
+    <string name="recovering">Ανάκτηση</string>
+    <string name="error_download_resource_gone">Δεν είναι δυνατή η ανάκτηση αυτής της λήψης</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Ενεργοποίηση μικρογραφίας βίντεο στην οθόνη κλειδώματος</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Όταν χρησιμοποιείται αναπαραγωγή παρασκηνίου μια μικρογραφία βίντεο θα εμφανίζεται στην οθόνη κλειδώματος</string>
 </resources>

@@ -38,6 +38,7 @@ import com.nononsenseapps.filepicker.Utils;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.RouterActivity;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.localization.Localization;
@@ -368,6 +369,9 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         toolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.okay) {
                 prepareSelectedDownload();
+                if (getActivity() instanceof RouterActivity) {
+                    getActivity().finish();
+                }
                 return true;
             }
             return false;
@@ -555,8 +559,16 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
             case R.id.audio_button:
                 mainStorage = mainStorageAudio;
                 format = audioStreamsAdapter.getItem(selectedAudioIndex).getFormat();
-                mime = format.mimeType;
-                filename += format.suffix;
+                switch(format) {
+                    case WEBMA_OPUS:
+                        mime = "audio/ogg";
+                        filename += "opus";
+                        break;
+                    default:
+                        mime = format.mimeType;
+                        filename += format.suffix;
+                        break;
+                }
                 break;
             case R.id.video_button:
                 mainStorage = mainStorageVideo;

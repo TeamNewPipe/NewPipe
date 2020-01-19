@@ -6,12 +6,13 @@
     android:layout_height="match_parent">
 
 
-    <com.google.android.material.tabs.TabLayout
+    <org.schabi.newpipe.views.ScrollableTabLayout
         android:id="@+id/main_tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:background="?attr/colorPrimary"
+        app:tabMinWidth="60dp"
         app:tabGravity="fill"/>
 
     <androidx.viewpager.widget.ViewPager
