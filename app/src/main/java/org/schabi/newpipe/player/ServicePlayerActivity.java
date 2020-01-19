@@ -160,10 +160,6 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             case R.id.action_append_playlist:
                 appendAllToPlaylist();
                 return true;
-            case R.id.action_settings:
-                NavigationHelper.openSettings(this);
-                redraw = true;
-                return true;
             case R.id.action_system_audio:
                 startActivity(new Intent(Settings.ACTION_SOUND_SETTINGS));
                 return true;

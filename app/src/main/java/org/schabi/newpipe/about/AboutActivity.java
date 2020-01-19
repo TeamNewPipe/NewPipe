@@ -104,11 +104,6 @@ public class AboutActivity extends AppCompatActivity {
             case android.R.id.home:
                 finish();
                 return true;
-            case R.id.action_settings:
-                NavigationHelper.openSettings(this);
-                return true;
-            case R.id.action_show_downloads:
-                return NavigationHelper.openDownloads(this);
         }
 
         return super.onOptionsItemSelected(item);
