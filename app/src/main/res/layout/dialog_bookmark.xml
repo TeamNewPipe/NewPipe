@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical">
+
+  <EditText
+    android:id="@+id/playlist_name_edit_text"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:importantForAutofill="no"
+    android:inputType="text"
+    android:maxLines="1"
+    android:layout_margin="10dp"
+    android:hint="@string/playlist_name_input"/>
+
+
+  <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:paddingTop="10dp"
+    android:padding="5dp">
+
+    <Button
+      android:id="@+id/bookmark_delete"
+      style="@style/Widget.AppCompat.Button.Borderless"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentStart="true"
+      android:layout_centerVertical="true"
+      android:text="@string/delete" />
+
+    <Button
+      android:id="@+id/bookmark_cancel"
+      style="@style/Widget.AppCompat.Button.Borderless"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_toStartOf="@+id/bookmark_save"
+      android:text="@android:string/cancel" />
+
+    <Button
+      android:id="@+id/bookmark_save"
+      style="@style/Widget.AppCompat.Button.Borderless"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentEnd="true"
+      android:text="@string/save" />
+  </RelativeLayout>
+
+</LinearLayout>
