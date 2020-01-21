@@ -34,7 +34,7 @@ public class SrtFromTtmlWriter {
     private static String getTimestamp(Element frame, String attr) {
         return frame
                 .attr(attr)
-                .replace('.', ',');// Str uses comma as decimal separator
+                .replace('.', ',');// SRT subtitles uses comma as decimal separator
     }
 
     private void writeFrame(String begin, String end, StringBuilder text) throws IOException {
@@ -69,7 +69,7 @@ public class SrtFromTtmlWriter {
         Document doc = Jsoup.parse(new ByteArrayInputStream(buffer), "UTF-8", "", Parser.xmlParser());
 
         StringBuilder text = new StringBuilder(128);
-        Elements paragraph_list = doc.select("body>div>p");
+        Elements paragraph_list = doc.select("body > div > p");
 
         // check if has frames
         if (paragraph_list.size() < 1) return;
