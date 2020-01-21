@@ -526,4 +526,14 @@
     <string name="deleted_downloads">Slettet %1$s nedlastninger</string>
     <string name="enable_lock_screen_video_thumbnail_title">Aktiver videominiatyrbilde på låseskjerm</string>
     <string name="enable_lock_screen_video_thumbnail_summary">Når du bruker bakgrunnsspilleren, vises ent videominiatyrbilde på låseskjermen</string>
+    <string name="peertube_instance_url_summary">Velg dine favoritter blandt PeerTube-instansene</string>
+    <string name="peertube_instance_url_help">Finn instansene som passer deg best på %s</string>
+    <string name="peertube_instance_add_title">Legg til instans</string>
+    <string name="peertube_instance_add_help">Skriv inn nettadresse til instans</string>
+    <string name="peertube_instance_add_fail">Kunne ikke bekrefte instans</string>
+    <string name="peertube_instance_add_https_only">Kun HTTPS-nettadresser støttes</string>
+    <string name="peertube_instance_add_exists">Instansen finnes allerede</string>
+    <string name="playlist_no_uploader">Autogenerert (fant ingen opplaster)</string>
+    <string name="recovering">gjenoppretter</string>
+    <string name="error_download_resource_gone">Kan ikke gjenopprette denne nedlastingen</string>
 </resources>
