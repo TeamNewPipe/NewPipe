@@ -131,7 +131,7 @@
     <string name="no_subscribers">没有订阅者</string>
     <plurals name="subscribers">
         <item quantity="one">%s 位订阅者</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="no_videos">没有视频</string>
     <string name="detail_drag_description">拖动以重新排序</string>
@@ -148,7 +148,7 @@
     <string name="missions_header_pending">等待中…</string>
     <string name="paused">已暂停</string>
     <string name="queued">排队中</string>
-    <string name="enqueue">已加入队列</string>
+    <string name="enqueue">加入队列</string>
     <string name="permission_denied">操作已被系统拒绝</string>
     <string name="download_failed">下载失败</string>
     <string name="download_finished">下载完成</string>
@@ -219,7 +219,7 @@
     <string name="popup_remember_size_pos_summary">记住最后一次使用悬浮窗的大小和位置</string>
     <string name="settings_category_popup_title">悬浮窗</string>
     <string name="popup_resizing_indicator_title">调整大小</string>
-    <string name="use_external_video_player_summary">部分分辨率的视频将没有声音</string>
+    <string name="use_external_video_player_summary">隐藏部分没有音频的分辨率</string>
     <string name="player_gesture_controls_title">播放器手势控制</string>
     <string name="player_gesture_controls_summary">使用手势控制播放器的亮度和音量</string>
     <string name="show_search_suggestions_summary">显示搜索建议</string>
@@ -416,7 +416,7 @@
     <string name="decline">拒绝</string>
     <string name="limit_data_usage_none_description">无限制</string>
     <string name="limit_mobile_data_usage_title">使用移动数据时限制分辨率</string>
-    <string name="minimize_on_exit_title">切换应用时最小化</string>
+    <string name="minimize_on_exit_title">退出应用时最小化</string>
     <string name="minimize_on_exit_summary">从主播放器切换到其他应用时的操作 - %s</string>
     <string name="skip_silence_checkbox">静音时快进</string>
     <string name="playback_step">滑块[比例尺]</string>
@@ -487,7 +487,7 @@
     <string name="error_insufficient_storage">设备上没有剩余储存空间</string>
     <string name="error_progress_lost">进度丢失，文件已被删除</string>
     <string name="error_timeout">连接超时</string>
-    <string name="confirm_prompt">你确定吗？</string>
+    <string name="confirm_prompt">是否要清除下载历史记录或删除所有下载的文件？</string>
     <string name="enable_queue_limit">最大下载队列</string>
     <string name="enable_queue_limit_desc">同时只允许一个下载进行</string>
     <string name="start_downloads">开始下载</string>
@@ -512,16 +512,16 @@
     <string name="no_one_listening">没有人在听</string>
     <plurals name="listening">
         <item quantity="one">％s 人在听</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="localization_changes_requires_app_restart">重新启动应用后，语言将更改。</string>
     <string name="peertube_instance_url_title">PeerTube 服务器</string>
     <string name="peertube_instance_url_summary">设置自己喜欢的PeerTube服务器</string>
     <string name="peertube_instance_url_help">查找最适合你的服务器%s</string>
     <string name="peertube_instance_add_title">添加服务器</string>
-    <string name="peertube_instance_add_help">输入服务器网址</string>
+    <string name="peertube_instance_add_help">输入服务器网址(URL)</string>
     <string name="peertube_instance_add_fail">无法验证服务器</string>
-    <string name="peertube_instance_add_https_only">仅支持 https URL</string>
+    <string name="peertube_instance_add_https_only">仅支持 HTTPS和URL</string>
     <string name="peertube_instance_add_exists">该服务器已存在</string>
     <string name="local">本地</string>
     <string name="recently_added">最近添加</string>
