@@ -68,9 +68,9 @@
     <string name="retry">Reprovi</string>
     <string name="main_bg_subtitle">Premi serĉon por komenci</string>
     <string name="no_player_found_toast">Neniu elsendlflua ludilo trovita (instalu VLC por ludi ĝin).</string>
-    <string name="open_in_popup_mode">Malfermi en ŝprucfenestron modon</string>
+    <string name="open_in_popup_mode">Malfermi en ŝprucfenestran modon</string>
     <string name="use_external_video_player_summary">Forigas aŭdon ĉe KELKAJ rezolucioj</string>
-    <string name="popup_mode_share_menu_title">NewPipe ŝprucfenestron modon</string>
+    <string name="popup_mode_share_menu_title">NewPipe ŝprucfenestran modon</string>
     <string name="subscribe_button_title">Aboni</string>
     <string name="subscribed_button_title">Abonita</string>
     <string name="channel_unsubscribed">Kanalo malabonita</string>
@@ -87,12 +87,12 @@
     <string name="controls_add_to_playlist_title">Aldonu al</string>
     <string name="autoplay_by_calling_app_title">Aŭtomata play</string>
     <string name="autoplay_by_calling_app_summary">Ludas filmeton kiam NewPipe vokas el alia programo</string>
-    <string name="default_popup_resolution_title">Defaŭlta rezolucio de la ŝprucfenestro</string>
+    <string name="default_popup_resolution_title">Defaŭlta rezolucio de la ŝprucfenestra ludilo</string>
     <string name="show_higher_resolutions_title">Montri pli altajn rezoluciojn</string>
     <string name="show_higher_resolutions_summary">Nur kelkaj aparatoj subtenas ludi 2K / 4K filmetojn</string>
     <string name="default_video_format_title">Defaŭlta fomato de filmeto</string>
     <string name="black_theme_title">Nigra</string>
-    <string name="popup_remember_size_pos_title">Memoru ŝprucfenestron kaj pozicion</string>
+    <string name="popup_remember_size_pos_title">Memoru ŝprucfenestran grandecon kaj pozicion</string>
     <string name="popup_remember_size_pos_summary">Memoru lastan grandecon kaj pozicion de ŝprucfenestro</string>
     <string name="use_inexact_seek_title">Uzu rapide, ne preciza serĉon</string>
     <string name="use_inexact_seek_summary">Ne preciza serĉo permesas al la ludanto serĉi poziciojn pli rapide kun malalta precizeco</string>
@@ -120,9 +120,9 @@
     </plurals>
     <string name="yes">Jes</string>
     <string name="later">Poste</string>
-    <string name="msg_popup_permission">Tiu permeso estas necesa por
-\nmalfermi en ŝprucfenestro modo</string>
-    <string name="popup_playing_toast">Ludanta en ŝprucfenestro modo</string>
+    <string name="msg_popup_permission">Tiu permeso estas necesa por 
+\nmalfermi en ŝprucfenestra modo</string>
+    <string name="popup_playing_toast">Ludante en ŝprucfenestra modo</string>
     <string name="disabled">Malaktiva</string>
     <string name="filter">Filtri</string>
     <string name="refresh">Aktualigi</string>
@@ -145,7 +145,7 @@
     <string name="enable_watch_history_title">Rigardu historion</string>
     <string name="enable_watch_history_summary">Spuri la viditajn filmetojn</string>
     <string name="notification_channel_name">NewPipe Sciigo</string>
-    <string name="notification_channel_description">Sciigoj por NewPipe fono kaj ŝprucfenestroj ludiloj</string>
+    <string name="notification_channel_description">Sciigoj por NewPipe fonaj kaj ŝprucfenestraj ludiloj</string>
     <string name="settings_category_player_title">Ludilo</string>
     <string name="settings_category_player_behavior_title">Konduto</string>
     <string name="settings_category_history_title">Historio kaj kaŝmemoro</string>
@@ -156,21 +156,21 @@
     <string name="top_50">Supro 50</string>
     <string name="new_and_hot">Nova &amp; varma</string>
     <string name="show_hold_to_append_title">Montri la indiko « Tenu por aldoni »</string>
-    <string name="show_hold_to_append_summary">Montri indikon kiam la fono aŭ ŝprucfenestro butono estas premita en la retpaĝo de dalatadoj de la filmeto</string>
-    <string name="background_player_append">Viciĝita en la ludilo en fono</string>
-    <string name="popup_playing_append">Viciĝita en ŝprucfenestro ludilo</string>
+    <string name="show_hold_to_append_summary">Montri indikon kiam la fona aŭ ŝprucfenestra butono estas premita en la retpaĝo de dalatadoj de la filmeto</string>
+    <string name="background_player_append">Viciĝita en la fona ludilo</string>
+    <string name="popup_playing_append">Viciĝita en ŝprucfenestra ludilo</string>
     <string name="play_all">Ludi ĉiujn</string>
     <string name="player_stream_failure">Ne povis ludi tion torenton</string>
     <string name="player_unrecoverable_failure">Neatendebla eraro de ludilo okazis</string>
     <string name="player_recoverable_failure">Reakiri el eraro de la ludilo</string>
     <string name="title_activity_background_player">Fona ludilo</string>
-    <string name="title_activity_popup_player">Ŝprucfenestro ludilo</string>
+    <string name="title_activity_popup_player">Ŝprucfenestra ludilo</string>
     <string name="play_queue_remove">Retiri</string>
     <string name="play_queue_stream_detail">Detalado</string>
     <string name="play_queue_audio_settings">Sonaj parametroj</string>
     <string name="hold_to_append">Teni por viciĝi</string>
     <string name="unknown_content">[Nekonata]</string>
-    <string name="enqueue_on_background">Viciĝi en la fono</string>
+    <string name="enqueue_on_background">Viciĝi en la fona ludilo</string>
     <string name="enqueue_on_popup">Viciĝi en nova ŝprucfenestro</string>
     <string name="start_here_on_popup">Komencu ludi en nova ŝprucfenestro</string>
     <string name="default_content_country_title">Defaŭlta enhava lando</string>
@@ -184,7 +184,7 @@
     <string name="invalid_url_toast">Nevalida ligilo</string>
     <string name="video_streams_empty">Neniuj filmeta torentoj trovitaj</string>
     <string name="audio_streams_empty">Neniuj sonaj torentoj trovis</string>
-    <string name="popup_player">Ŝprucfenestro ludilo</string>
+    <string name="popup_player">Ŝprucfenestra ludilo</string>
     <string name="import_data_title">Importi la datumbazon</string>
     <string name="export_data_title">Eksporti la datumbazon</string>
     <string name="import_data_summary">Anstataŭigas vian aktualan historion kaj abonojn</string>
@@ -237,7 +237,7 @@
     <string name="delete_search_history_alert">Ĉu vi volas forviŝi la totalon de la historio de serĉo \?</string>
     <string name="search_history_deleted">Historio de serĉo forviŝita.</string>
     <string name="limit_mobile_data_usage_title">Limigi rezolucio kiam uzanta moveblan datumon</string>
-    <string name="minimize_on_exit_popup_description">Minimumigi al ŝprucfenestro ludilo</string>
+    <string name="minimize_on_exit_popup_description">Minimumigi al ŝprucfenestra ludilo</string>
     <string name="channels">Kanaloj</string>
     <string name="playlists">Ludlistoj</string>
     <string name="tracks">Spuroj</string>
