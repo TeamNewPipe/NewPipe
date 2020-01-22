@@ -6,7 +6,7 @@
     <string name="open_in_browser">在浏览器中打开</string>
     <string name="open_in_popup_mode">在悬浮窗模式下打开</string>
     <string name="did_you_mean">您是不是要找：%1$s？</string>
-    <string name="no_player_found_toast">找不到串流播放器 （您可以安裝并使用VLC播放）。</string>
+    <string name="no_player_found_toast">找不到串流播放器 （您可以安装 VLC 进行播放）。</string>
     <string name="controls_download_desc">下载串流文件</string>
     <string name="install">安装</string>
     <string name="cancel">取消</string>
@@ -16,7 +16,7 @@
     <string name="settings">设置</string>
     <string name="share_dialog_title">分享给...</string>
     <string name="choose_browser">选择浏览器</string>
-    <string name="download_path_title">视频下载文件夹</string>
+    <string name="download_path_title">视频下载路径</string>
     <string name="download_path_summary">已下载的视频存储在这里</string>
     <string name="download_path_dialog_title">请选择下载视频的保存位置</string>
     <string name="download_path_audio_summary">已下载的音频存储在这里</string>
@@ -39,10 +39,10 @@
     <string name="network_error">网络错误</string>
     <plurals name="videos">
         <item quantity="one">视频</item>
-        <item quantity="other"/>
+        <item quantity="other">视频</item>
     </plurals>
     <string name="disabled">禁用</string>
-    <string name="controls_background_title">背景</string>
+    <string name="controls_background_title">后台播放</string>
     <string name="filter">过滤器</string>
     <string name="refresh">刷新</string>
     <string name="show_search_suggestions_title">搜索建议</string>
@@ -91,7 +91,7 @@
     <string name="storage_permission_denied">存储访问权限已被拒绝</string>
     <plurals name="views">
         <item quantity="one">%1$s 次观看</item>
-        <item quantity="other"/>
+        <item quantity="other">%1$s 次观看</item>
     </plurals>
     <string name="short_thousand">千</string>
     <string name="short_million">百万</string>
@@ -130,8 +130,8 @@
     <string name="search_no_results">没有结果</string>
     <string name="no_subscribers">没有订阅者</string>
     <plurals name="subscribers">
-        <item quantity="one">%s个订阅者</item>
-        <item quantity="other"/>
+        <item quantity="one">%s 位订阅者</item>
+        <item quantity="other">%s 位订阅者</item>
     </plurals>
     <string name="no_videos">没有视频</string>
     <string name="detail_drag_description">拖动以重新排序</string>
@@ -148,7 +148,7 @@
     <string name="missions_header_pending">等待中…</string>
     <string name="paused">已暂停</string>
     <string name="queued">排队中</string>
-    <string name="enqueue">已加入队列</string>
+    <string name="enqueue">加入队列</string>
     <string name="permission_denied">操作已被系统拒绝</string>
     <string name="download_failed">下载失败</string>
     <string name="download_finished">下载完成</string>
@@ -157,8 +157,8 @@
     <string name="drawer_header_description">切换服务，当前选择：</string>
     <string name="no_player_found">找不到串流播放器。您想安装 VLC 吗？</string>
     <string name="screen_rotation">旋转</string>
-    <string name="use_external_video_player_title">使用第三方视频播放器</string>
-    <string name="use_external_audio_player_title">使用第三方视频播放器</string>
+    <string name="use_external_video_player_title">使用外部视频播放器</string>
+    <string name="use_external_audio_player_title">使用外部音频播放器</string>
     <string name="download_path_audio_title">音频下载文件夹</string>
     <string name="autoplay_by_calling_app_summary">从其他应用调用 NewPipe 时播放视频</string>
     <string name="default_resolution_title">默认分辨率</string>
@@ -209,7 +209,7 @@
 \n需要此权限</string>
     <string name="reCaptcha_title">reCAPTCHA验证</string>
     <string name="recaptcha_request_toast">请求的新的CAPTCHA验证</string>
-    <string name="popup_mode_share_menu_title">NewPipe悬浮窗模式</string>
+    <string name="popup_mode_share_menu_title">NewPipe 悬浮窗模式</string>
     <string name="popup_playing_toast">在悬浮窗中播放</string>
     <string name="default_popup_resolution_title">默认悬浮窗分辨率</string>
     <string name="show_higher_resolutions_title">使用更高的分辨率</string>
@@ -219,7 +219,7 @@
     <string name="popup_remember_size_pos_summary">记住最后一次使用悬浮窗的大小和位置</string>
     <string name="settings_category_popup_title">悬浮窗</string>
     <string name="popup_resizing_indicator_title">调整大小</string>
-    <string name="use_external_video_player_summary">删除“某些”分辨率的音频</string>
+    <string name="use_external_video_player_summary">隐藏部分没有音频的分辨率</string>
     <string name="player_gesture_controls_title">播放器手势控制</string>
     <string name="player_gesture_controls_summary">使用手势控制播放器的亮度和音量</string>
     <string name="show_search_suggestions_summary">显示搜索建议</string>
@@ -234,9 +234,9 @@
     <string name="channel_unsubscribed">取消订阅频道</string>
     <string name="subscription_change_failed">无法修改订阅</string>
     <string name="subscription_update_failed">无法更新订阅</string>
-    <string name="tab_main">主页面</string>
+    <string name="tab_main">主页</string>
     <string name="tab_subscriptions">订阅</string>
-    <string name="fragment_whats_new">新增功能</string>
+    <string name="fragment_whats_new">最新</string>
     <string name="resume_on_audio_focus_gain_title">恢复前台焦点</string>
     <string name="resume_on_audio_focus_gain_summary">中断后继续播放（例如突然来电后）</string>
     <string name="enable_search_history_title">搜索历史记录</string>
@@ -321,7 +321,7 @@
     <string name="could_not_import_all_files">警告：无法导入所有文件。</string>
     <string name="override_current_data">这将覆盖当前设置。</string>
     <string name="show_info">显示信息</string>
-    <string name="tab_bookmarks">已收藏</string>
+    <string name="tab_bookmarks">书签</string>
     <string name="delete_stream_history_prompt">确定要从观看历史记录中删除该项吗？</string>
     <string name="delete_all_history_prompt">是否确实要从历史记录中删除所有项目？</string>
     <string name="title_last_played">最后播放</string>
@@ -410,13 +410,13 @@
     <string name="privacy_policy_encouragement">NewPipe 项目非常重视您的隐私。因此，未经您的同意，应用程序不会收集任何数据。
 \nNewPipe 的隐私政策详细解释了在发送崩溃报告时发送和存储的数据。</string>
     <string name="read_privacy_policy">阅读隐私政策</string>
-    <string name="start_accept_privacy_policy">为了遵守欧洲一般数据保护条例 （GDPR），我们提请您注意 NewPipe 的隐私政策。请仔细阅读。
-\n您必须接受它才能向我们发送错误报告。</string>
+    <string name="start_accept_privacy_policy">为了遵守欧盟的《通用数据保护条例》（GDPR），我们特此提醒您注意 NewPipe 的隐私政策。请您仔细阅读。 
+\n您必须在同意以后才能向我们发送错误报告。</string>
     <string name="accept">接受</string>
     <string name="decline">拒绝</string>
     <string name="limit_data_usage_none_description">无限制</string>
     <string name="limit_mobile_data_usage_title">使用移动数据时限制分辨率</string>
-    <string name="minimize_on_exit_title">切换应用时最小化</string>
+    <string name="minimize_on_exit_title">退出应用时最小化</string>
     <string name="minimize_on_exit_summary">从主播放器切换到其他应用时的操作 - %s</string>
     <string name="skip_silence_checkbox">静音时快进</string>
     <string name="playback_step">滑块[比例尺]</string>
@@ -469,7 +469,7 @@
     <string name="show_comments_summary">禁用，以停止显示评论</string>
     <plurals name="comments">
         <item quantity="one">评论</item>
-        <item quantity="other"/>
+        <item quantity="other">评论</item>
     </plurals>
     <string name="error_unable_to_load_comments">无法加载评论</string>
     <string name="close">关闭</string>
@@ -487,7 +487,7 @@
     <string name="error_insufficient_storage">设备上没有剩余储存空间</string>
     <string name="error_progress_lost">进度丢失，文件已被删除</string>
     <string name="error_timeout">连接超时</string>
-    <string name="confirm_prompt">你确定吗？</string>
+    <string name="confirm_prompt">是否要清除下载历史记录或删除所有下载的文件？</string>
     <string name="enable_queue_limit">最大下载队列</string>
     <string name="enable_queue_limit_desc">同时只允许一个下载进行</string>
     <string name="start_downloads">开始下载</string>
@@ -504,24 +504,24 @@
     <string name="delete_playback_states_alert">删除所有播放位置记录？</string>
     <string name="download_choose_new_path">更改下载目录让内容生效</string>
     <string name="default_kiosk_page_summary">『时下流行』页-默认</string>
-    <string name="no_one_watching">无人在线观看</string>
+    <string name="no_one_watching">没有人在观看</string>
     <plurals name="watching">
         <item quantity="one">%s 人在观看</item>
-        <item quantity="other"/>
+        <item quantity="other">%s 人在观看</item>
     </plurals>
-    <string name="no_one_listening">没人在听</string>
+    <string name="no_one_listening">没有人在听</string>
     <plurals name="listening">
         <item quantity="one">％s 人在听</item>
-        <item quantity="other"/>
+        <item quantity="other">％s 人在听</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">重新启动应用后，语言将更改。</string>
     <string name="peertube_instance_url_title">PeerTube 服务器</string>
-    <string name="peertube_instance_url_summary">设置自己喜欢的peertube服务器</string>
-    <string name="peertube_instance_url_help">查找最适合你的服务器https://joinpeertube.org/instances#instances-list</string>
+    <string name="peertube_instance_url_summary">设置自己喜欢的PeerTube服务器</string>
+    <string name="peertube_instance_url_help">查找最适合你的服务器%s</string>
     <string name="peertube_instance_add_title">添加服务器</string>
-    <string name="peertube_instance_add_help">输入服务器网址</string>
+    <string name="peertube_instance_add_help">输入服务器网址(URL)</string>
     <string name="peertube_instance_add_fail">无法验证服务器</string>
-    <string name="peertube_instance_add_https_only">仅支持 https URL</string>
+    <string name="peertube_instance_add_https_only">仅支持 HTTPS和URL</string>
     <string name="peertube_instance_add_exists">该服务器已存在</string>
     <string name="local">本地</string>
     <string name="recently_added">最近添加</string>
@@ -531,6 +531,9 @@
     <string name="error_download_resource_gone">无法恢复此下载</string>
     <string name="choose_instance_prompt">选择一个服务器</string>
     <string name="seek_duration_title">快进 / 快退的单位时间</string>
-    <string name="enable_lock_screen_video_thumbnail_title">在锁屏界面显示视频缩略图</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">在后台播放时，锁屏界面将会显示视频的缩略图</string>
+    <string name="enable_lock_screen_video_thumbnail_title">在锁屏上显示视频缩略图</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">在后台播放时，锁屏上将会显示视频的缩略图</string>
+    <string name="clear_download_history">清除下载历史记录</string>
+    <string name="delete_downloaded_files">删除下载了的文件</string>
+    <string name="deleted_downloads">已删除 %1$s 下载</string>
 </resources>
