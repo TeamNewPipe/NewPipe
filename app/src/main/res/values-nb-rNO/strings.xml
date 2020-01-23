@@ -536,4 +536,5 @@
     <string name="playlist_no_uploader">Autogenerert (fant ingen opplaster)</string>
     <string name="recovering">gjenoppretter</string>
     <string name="error_download_resource_gone">Kan ikke gjenopprette denne nedlastingen</string>
+    <string name="seek_duration_title">Hurtigframoverspoling/-tilbakeblafringsvarighet</string>
 </resources>
