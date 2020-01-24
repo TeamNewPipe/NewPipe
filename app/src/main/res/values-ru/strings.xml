@@ -265,7 +265,7 @@
     <string name="invalid_url_toast">Неверная ссылка</string>
     <string name="video_streams_empty">Видеопотоки не найдены</string>
     <string name="audio_streams_empty">Аудиопотоки не найдены</string>
-    <string name="donation_title">Пожертвовать</string>
+    <string name="donation_title">Пожертвование</string>
     <string name="donation_encouragement">Разработчики NewPipe ценой своего свободного времени делают вашу жизнь чуть удобнее. Отплатите им тем же — наслаждаясь чашечкой кофе, они смогут сделать NewPipe ещё круче.</string>
     <string name="give_back">Воздать должное</string>
     <string name="website_title">Веб-сайт</string>
@@ -282,7 +282,7 @@
     <string name="tab_bookmarks">Плейлисты</string>
     <string name="controls_add_to_playlist_title">В плейлист</string>
     <string name="use_inexact_seek_title">Быстрый поиск позиции</string>
-    <string name="use_inexact_seek_summary">Выполняется быстрее, но с меньшей точностью</string>
+    <string name="use_inexact_seek_summary">Выполняется быстрее, но менее точно</string>
     <string name="auto_queue_title">Автодополнение очереди</string>
     <string name="auto_queue_summary">Добавлять похожие потоки в очередь при воспроизведении последнего потока, если не включён повтор</string>
     <string name="settings_category_debug_title">Отладка</string>
@@ -326,7 +326,7 @@
     <string name="playlist_add_stream_success">Добавлено в плейлист</string>
     <string name="playlist_thumbnail_change_success">Миниатюра плейлиста изменена</string>
     <string name="playlist_delete_failure">Не удалось удалить плейлист</string>
-    <string name="caption_none">Без титров</string>
+    <string name="caption_none">Без субтитров</string>
     <string name="resize_fit">Подогнать</string>
     <string name="resize_fill">Заполнить</string>
     <string name="resize_zoom">Приблизить</string>
@@ -372,9 +372,9 @@
     <string name="metadata_cache_wipe_summary">Удалить все загруженные данные веб-страниц</string>
     <string name="preferred_open_action_settings_summary">При открытии ссылки на контент — %s</string>
     <string name="no_streams_available_download">Нет потоков для загрузки</string>
-    <string name="caption_setting_title">Титры</string>
+    <string name="caption_setting_title">Субтитры</string>
     <string name="toast_no_player">Приложение для воспроизведения этого файла не установлено</string>
-    <string name="caption_setting_description">Изменить размер текста и стиль титров. Нужен перезапуск</string>
+    <string name="caption_setting_description">Изменить размер текста и стиль субтитров. Нужен перезапуск</string>
     <string name="clear_views_history_title">Очистить историю</string>
     <string name="delete_view_history_alert">Удалить всю историю просмотров\?</string>
     <string name="watch_history_deleted">История просмотров удалена</string>
@@ -454,7 +454,6 @@
     <string name="error_permission_denied">Доступ запрещён системой</string>
     <string name="error_unknown_host">Сервер не найден</string>
     <string name="error_http_unsupported_range">Сервер не принимает многопоточные загрузки, повторная попытка с @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">Запрашиваемый диапазон недопустим</string>
     <string name="error_http_not_found">Не найдено</string>
     <string name="clear_finished_download">Очистить завершённые</string>
     <string name="stop">Остановить</string>
@@ -465,10 +464,9 @@
     <string name="download_finished">Загрузка завершена</string>
     <string name="download_finished_more">%s загрузок завершено</string>
     <string name="generate_unique_name">Создать уникальное имя</string>
-    <string name="msg_pending_downloads">Возобновить приостановленные загрузки (%s)</string>
     <string name="max_retry_msg">Максимум попыток</string>
     <string name="max_retry_desc">Количество попыток перед отменой загрузки</string>
-    <string name="pause_downloads_on_mobile_desc">Некоторые загрузки не поддерживают докачку и начнутся с начала</string>
+    <string name="pause_downloads_on_mobile_desc">Некоторые загрузки не поддерживают докачку и начнутся сначала</string>
     <string name="error_ssl_exception">Не удалось установить защищённое соединение</string>
     <string name="error_connect_host">Не удалось соединиться с сервером</string>
     <string name="error_http_no_content">Не удалось получить данные с сервера</string>
@@ -494,7 +492,7 @@
     <string name="error_postprocessing_stopped">NewPipe была закрыта во время работы над файлом</string>
     <string name="error_insufficient_storage">Закончилось свободное место на устройстве</string>
     <string name="error_progress_lost">Прогресс потерян, так как файл был удалён</string>
-    <string name="confirm_prompt">Вы уверены\?</string>
+    <string name="confirm_prompt">Действительно удалить историю загрузок и загруженные файлы\?</string>
     <string name="enable_queue_limit">Ограничить очередь загрузки</string>
     <string name="enable_queue_limit_desc">Только одна одновременная загрузка</string>
     <string name="start_downloads">Начать загрузку</string>
@@ -510,5 +508,39 @@
     <string name="delete_playback_states_alert">Удалить все позиции воспроизведения\?</string>
     <string name="download_choose_new_path">Измените папки загрузки для вступления настроек в силу</string>
     <string name="drawer_header_description">Переключение сервисов, сейчас выбрано:</string>
-    <string name="default_kiosk_page_sumatry">Киоск по умолчанию</string>
+    <string name="default_kiosk_page_summary">Киоск по умолчанию</string>
+    <string name="no_one_watching">Никто не смотрел</string>
+    <plurals name="watching">
+        <item quantity="one">%s зритель</item>
+        <item quantity="few">%s зрителя</item>
+        <item quantity="many">%s зрителей</item>
+    </plurals>
+    <string name="no_one_listening">Нет слушателей</string>
+    <plurals name="listening">
+        <item quantity="one">%s слушатель</item>
+        <item quantity="few">%s слушателя</item>
+        <item quantity="many">%s слушателей</item>
+    </plurals>
+    <string name="localization_changes_requires_app_restart">Язык будет изменён после перезапуска</string>
+    <string name="seek_duration_title">Шаг перемотки</string>
+    <string name="peertube_instance_url_title">Серверы PeerTube</string>
+    <string name="peertube_instance_url_summary">Выберите предпочтительные серверы</string>
+    <string name="peertube_instance_url_help">Каталог серверов: %s</string>
+    <string name="peertube_instance_add_title">Новый сервер</string>
+    <string name="peertube_instance_add_help">URL сервера</string>
+    <string name="peertube_instance_add_fail">Не удалось проверить сервер</string>
+    <string name="peertube_instance_add_https_only">Поддерживается только HTTPS</string>
+    <string name="peertube_instance_add_exists">Сервер уже существует</string>
+    <string name="local">Локальное</string>
+    <string name="recently_added">Новое</string>
+    <string name="most_liked">Популярное</string>
+    <string name="playlist_no_uploader">Создан автоматически (автор не найден)</string>
+    <string name="recovering">восстановление</string>
+    <string name="error_download_resource_gone">Не удалось восстановить загрузку</string>
+    <string name="choose_instance_prompt">Выберите сервер</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Миниатюра на экране блокировки</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Показать миниатюру видео на экране блокировки при воспроизведении в фоне</string>
+    <string name="clear_download_history">Очистить историю загрузок</string>
+    <string name="delete_downloaded_files">Удаление загруженных файлов</string>
+    <string name="deleted_downloads">Удалено загрузок: %1$s</string>
 </resources>

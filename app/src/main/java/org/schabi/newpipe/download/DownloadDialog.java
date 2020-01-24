@@ -38,6 +38,7 @@ import com.nononsenseapps.filepicker.Utils;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.RouterActivity;
 import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.localization.Localization;
@@ -68,6 +69,7 @@ import java.util.Locale;
 import icepick.Icepick;
 import icepick.State;
 import io.reactivex.disposables.CompositeDisposable;
+import us.shandian.giga.get.MissionRecoveryInfo;
 import us.shandian.giga.io.StoredDirectoryHelper;
 import us.shandian.giga.io.StoredFileHelper;
 import us.shandian.giga.postprocessing.Postprocessing;
@@ -367,6 +369,9 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         toolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.okay) {
                 prepareSelectedDownload();
+                if (getActivity() instanceof RouterActivity) {
+                    getActivity().finish();
+                }
                 return true;
             }
             return false;
@@ -554,8 +559,16 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
             case R.id.audio_button:
                 mainStorage = mainStorageAudio;
                 format = audioStreamsAdapter.getItem(selectedAudioIndex).getFormat();
-                mime = format.mimeType;
-                filename += format.suffix;
+                switch(format) {
+                    case WEBMA_OPUS:
+                        mime = "audio/ogg";
+                        filename += "opus";
+                        break;
+                    default:
+                        mime = format.mimeType;
+                        filename += format.suffix;
+                        break;
+                }
                 break;
             case R.id.video_button:
                 mainStorage = mainStorageVideo;
@@ -762,12 +775,13 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
         }
 
         Stream selectedStream;
+        Stream secondaryStream = null;
         char kind;
         int threads = threadsSeekBar.getProgress() + 1;
         String[] urls;
+        MissionRecoveryInfo[] recoveryInfo;
         String psName = null;
         String[] psArgs = null;
-        String secondaryStreamUrl = null;
         long nearLength = 0;
 
         // more download logic: select muxer, subtitle converter, etc.
@@ -778,18 +792,20 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
 
                 if (selectedStream.getFormat() == MediaFormat.M4A) {
                     psName = Postprocessing.ALGORITHM_M4A_NO_DASH;
+                } else if (selectedStream.getFormat() == MediaFormat.WEBMA_OPUS) {
+                    psName = Postprocessing.ALGORITHM_OGG_FROM_WEBM_DEMUXER;
                 }
                 break;
             case R.id.video_button:
                 kind = 'v';
                 selectedStream = videoStreamsAdapter.getItem(selectedVideoIndex);
 
-                SecondaryStreamHelper<AudioStream> secondaryStream = videoStreamsAdapter
+                SecondaryStreamHelper<AudioStream> secondary = videoStreamsAdapter
                         .getAllSecondary()
                         .get(wrappedVideoStreams.getStreamsList().indexOf(selectedStream));
 
-                if (secondaryStream != null) {
-                    secondaryStreamUrl = secondaryStream.getStream().getUrl();
+                if (secondary != null) {
+                    secondaryStream = secondary.getStream();
 
                     if (selectedStream.getFormat() == MediaFormat.MPEG_4)
                         psName = Postprocessing.ALGORITHM_MP4_FROM_DASH_MUXER;
@@ -801,8 +817,8 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
 
                     // set nearLength, only, if both sizes are fetched or known. This probably
                     // does not work on slow networks but is later updated in the downloader
-                    if (secondaryStream.getSizeInBytes() > 0 && videoSize > 0) {
-                        nearLength = secondaryStream.getSizeInBytes() + videoSize;
+                    if (secondary.getSizeInBytes() > 0 && videoSize > 0) {
+                        nearLength = secondary.getSizeInBytes() + videoSize;
                     }
                 }
                 break;
@@ -824,13 +840,25 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
                 return;
         }
 
-        if (secondaryStreamUrl == null) {
-            urls = new String[]{selectedStream.getUrl()};
+        if (secondaryStream == null) {
+            urls = new String[]{
+                    selectedStream.getUrl()
+            };
+            recoveryInfo = new MissionRecoveryInfo[]{
+                    new MissionRecoveryInfo(selectedStream)
+            };
         } else {
-            urls = new String[]{selectedStream.getUrl(), secondaryStreamUrl};
+            urls = new String[]{
+                    selectedStream.getUrl(), secondaryStream.getUrl()
+            };
+            recoveryInfo = new MissionRecoveryInfo[]{
+                    new MissionRecoveryInfo(selectedStream), new MissionRecoveryInfo(secondaryStream)
+            };
         }
 
-        DownloadManagerService.startMission(context, urls, storage, kind, threads, currentInfo.getUrl(), psName, psArgs, nearLength);
+        DownloadManagerService.startMission(
+                context, urls, storage, kind, threads, currentInfo.getUrl(), psName, psArgs, nearLength, recoveryInfo
+        );
 
         dismiss();
     }

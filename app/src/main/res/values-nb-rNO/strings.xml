@@ -454,11 +454,9 @@
     <string name="error_connect_host">Kan ikke koble til tjeneren</string>
     <string name="error_http_no_content">Tjeneren sender ikke data</string>
     <string name="error_http_unsupported_range">"Tjeneren godtar ikke flertrådede nedlastinger, prøv igjen med @string/msg_threads = 1 "</string>
-    <string name="error_http_requested_range_not_satisfiable">Forespurt rekkevidde er ikke tilfredsstillende</string>
     <string name="error_http_not_found">Ikke funnet</string>
     <string name="error_postprocessing_failed">Etterbehandling mislyktes</string>
     <string name="clear_finished_download">Tøm fullførte nedlastinger</string>
-    <string name="msg_pending_downloads">Fortsett dine %s ventende overføringer fra Nedlastinger</string>
     <string name="stop">Stopp</string>
     <string name="max_retry_msg">Maksimalt antall forsøk</string>
     <string name="max_retry_desc">Maksimalt antall tilkoblingsforsøk før nedlastingen avblåses</string>
@@ -496,7 +494,7 @@
     <string name="pause_downloads">Sett nedlastinger på pause</string>
     <string name="downloads_storage_ask_title">Spør om hvor ting skal lastes ned til</string>
     <string name="downloads_storage_ask_summary">Du vil bli spurt om hvor hver nedlasting skal plasseres</string>
-    <string name="downloads_storage_ask_summary_kitkat">Du vil bli spurt om hvor hver nedlasting skal plasseres. 
+    <string name="downloads_storage_ask_summary_kitkat">Du vil bli spurt om hvor hver nedlasting skal plasseres.
 \nSkru på SAF hvis du vil laste ned til eksternt SD-kort</string>
     <string name="downloads_storage_use_saf_title">Bruk SAF</string>
     <string name="downloads_storage_use_saf_summary">Lagringstilgangsrammeverk (SAF) tillater nedlastinger til eksternt SD-kort.
@@ -506,5 +504,26 @@
     <string name="delete_playback_states_alert">Slett alle avspillingsposisjoner\?</string>
     <string name="download_choose_new_path">Endre nedlastingsmappene for å tre i kraft</string>
     <string name="drawer_header_description">Skru tjeneste av/på, for tiden er dette status:</string>
-    <string name="default_kiosk_page_sumatry">Standard kiosk</string>
+    <string name="no_one_watching">Ingen ser på</string>
+    <plurals name="watching">
+        <item quantity="one">%s seer</item>
+        <item quantity="other">%s seere</item>
+    </plurals>
+    <string name="no_one_listening">Ingen lytter</string>
+    <plurals name="listening">
+        <item quantity="one">%s lytter</item>
+        <item quantity="other">%s lyttere</item>
+    </plurals>
+    <string name="localization_changes_requires_app_restart">Språk vil ikke bli endret før programmet startes på ny.</string>
+    <string name="default_kiosk_page_summary">Forvalgt kiosk</string>
+    <string name="peertube_instance_url_title">PeerTube-instanser</string>
+    <string name="local">Lokal</string>
+    <string name="recently_added">Nylig lagt til</string>
+    <string name="most_liked">Mest likt</string>
+    <string name="choose_instance_prompt">Velg en instans</string>
+    <string name="clear_download_history">Tøm nedlastingshistorikk</string>
+    <string name="delete_downloaded_files">Slett nedlastede filer</string>
+    <string name="deleted_downloads">Slettet %1$s nedlastninger</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Aktiver videominiatyrbilde med låseskjerm</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Når du bruker bakgrunnsspilleren, vises en videominiaturbilde på låseskjermen</string>
 </resources>

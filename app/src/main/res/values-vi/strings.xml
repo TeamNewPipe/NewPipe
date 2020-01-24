@@ -449,11 +449,9 @@
     <string name="error_connect_host">Không thế kết nối với máy chủ</string>
     <string name="error_http_no_content">Máy chủ không gửi dữ liệu về</string>
     <string name="error_http_unsupported_range">Máy chủ không chấp nhận tải đa luồng, thử lại với số luồng = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">(HTTP) Không thể đáp ứng khoảng dữ liệu đã yêu cầu</string>
     <string name="error_http_not_found">Không tìm thấy</string>
     <string name="error_postprocessing_failed">Xử lý thất bại</string>
     <string name="clear_finished_download">Dọn các tải về đã hoàn thành</string>
-    <string name="msg_pending_downloads">Hãy tiếp tục %s tải về đang chờ</string>
     <string name="stop">Dừng</string>
     <string name="max_retry_msg">Số lượt thử lại tối đa</string>
     <string name="max_retry_desc">Số lượt thử lại trước khi hủy tải về</string>

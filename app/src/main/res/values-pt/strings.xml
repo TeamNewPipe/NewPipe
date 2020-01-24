@@ -452,11 +452,9 @@
     <string name="error_connect_host">Não é possível ligar ao servidor</string>
     <string name="error_http_no_content">O servidor não envia dados</string>
     <string name="error_http_unsupported_range">O servidor não aceita transferências de vários processos, tente novamente com @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">Intervalo solicitado não satisfatório</string>
     <string name="error_http_not_found">Não encontrado</string>
     <string name="error_postprocessing_failed">Pós-processamento falhado</string>
     <string name="clear_finished_download">Limpar transferências concluídas</string>
-    <string name="msg_pending_downloads">Continue as suas %s transferências pendentes das Transferências</string>
     <string name="stop">Parar</string>
     <string name="max_retry_msg">Tentativas máximas</string>
     <string name="max_retry_desc">Número máximo de tentativas antes de cancelar a transferência</string>
@@ -506,5 +504,34 @@
     <string name="delete_playback_states_alert">Eliminar todas as posições de reprodução\?</string>
     <string name="download_choose_new_path">Alterar as pastas de descarregamento para que tenham efeito</string>
     <string name="drawer_header_description">Alternar serviço, agora selecionado:</string>
-    <string name="default_kiosk_page_sumatry">Quiosque Predefinição</string>
+    <string name="default_kiosk_page_summary">Quiosque Predefinição</string>
+    <string name="no_one_watching">Ninguém está a ver</string>
+    <plurals name="watching">
+        <item quantity="one">%s a ver</item>
+        <item quantity="other">%s a ver</item>
+    </plurals>
+    <string name="no_one_listening">Ninguém está a ouvir</string>
+    <plurals name="listening">
+        <item quantity="one">%s ouvinte</item>
+        <item quantity="other">%s ouvintes</item>
+    </plurals>
+    <string name="localization_changes_requires_app_restart">O idioma mudará quando a app for reiniciada.</string>
+    <string name="seek_duration_title">Duração da busca de avanço/retrocesso rápido</string>
+    <string name="peertube_instance_url_title">Instâncias do PeerTube</string>
+    <string name="peertube_instance_url_summary">Defina as suas instâncias favoritas de PeerTube</string>
+    <string name="peertube_instance_url_help">Encontre as instâncias que lhe melhor convêm em %s</string>
+    <string name="peertube_instance_add_title">Adicionar instância</string>
+    <string name="peertube_instance_add_help">Digite o URL da instância</string>
+    <string name="peertube_instance_add_fail">Falha ao validar a instância</string>
+    <string name="peertube_instance_add_https_only">Somente URLs HTTPS são suportada</string>
+    <string name="peertube_instance_add_exists">A instância já existe</string>
+    <string name="local">Local</string>
+    <string name="recently_added">Recentemente adicionado</string>
+    <string name="most_liked">Os mais apreciados</string>
+    <string name="playlist_no_uploader">Geração automática (não foi encontrado nenhum enviador)</string>
+    <string name="recovering">recuperando</string>
+    <string name="error_download_resource_gone">Não é possível recuperar este descarregamento</string>
+    <string name="choose_instance_prompt">Escolha uma instância</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Ativar miniatura do vídeo no ecrã de bloqueio</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Ao usar o reprodutor de fundo, uma miniatura de vídeo será exibida no ecrã de bloqueio</string>
 </resources>

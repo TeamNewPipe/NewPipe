@@ -5,7 +5,7 @@
     <string name="upload_date_text">Yayınlanma: %1$s</string>
     <string name="no_player_found">Akış oynatıcısı bulunamadı. VLC\'yi yüklemek ister misiniz\?</string>
     <string name="install">Yükle</string>
-    <string name="cancel">İptal et</string>
+    <string name="cancel">Vazgeç</string>
     <string name="open_in_browser">Tarayıcıda aç</string>
     <string name="share">Paylaş</string>
     <string name="download">İndir</string>
@@ -15,7 +15,7 @@
     <string name="share_dialog_title">Şununla paylaş</string>
     <string name="choose_browser">Tarayıcı seçin</string>
     <string name="screen_rotation">döndürme</string>
-    <string name="use_external_video_player_title">Harici video oynatıcı kullanın</string>
+    <string name="use_external_video_player_title">Harici video oynatıcı kullan</string>
     <string name="use_external_audio_player_title">Harici ses oynatıcı kullanın</string>
     <string name="download_path_title">Video indirme dizini</string>
     <string name="download_path_summary">İndirilen video dosyaları burada depolanır</string>
@@ -29,7 +29,7 @@
     <string name="play_with_kodi_title">Kodi ile oynat</string>
     <string name="kore_not_found">Kore uygulaması bulunamadı. Yüklensin mi\?</string>
     <string name="show_play_with_kodi_title">\"Kodi ile oynat\" seçeneğini göster</string>
-    <string name="show_play_with_kodi_summary">Kodi ortam merkezi üzerinden video oynatmak için bir seçenek görüntüleyin</string>
+    <string name="show_play_with_kodi_summary">Kodi ortam merkezi üzerinden video oynatmak için bir seçenek göster</string>
     <string name="default_audio_format_title">Varsayılan ses formatı</string>
     <string name="theme_title">Tema</string>
     <string name="dark_theme_title">Koyu</string>
@@ -175,7 +175,7 @@
     <string name="enable_search_history_title">Arama geçmişi</string>
     <string name="enable_search_history_summary">Arama sorgularını yerel olarak saklayın</string>
     <string name="enable_watch_history_title">İzleme geçmişi</string>
-    <string name="enable_watch_history_summary">İzlenen videoların kaydını tutun</string>
+    <string name="enable_watch_history_summary">İzlenen videoların kaydını tut</string>
     <string name="resume_on_audio_focus_gain_title">Odaklanıldığında sürdür</string>
     <string name="resume_on_audio_focus_gain_summary">Kesintilerden sonra (örneğin telefon çağrısı) oynatmaya devam et</string>
     <string name="settings_category_player_title">Oynatıcı</string>
@@ -208,7 +208,7 @@
     <string name="item_deleted">Öge silindi</string>
     <string name="delete_item_search_history">Bu ögeyi arama geçmişinden silmek istiyor musunuz\?</string>
     <string name="show_hold_to_append_title">\"Eklemek için basılı tutun\" ipucunu göster</string>
-    <string name="show_hold_to_append_summary">Vidyo ayrıntıları sayfasında arka plan veya açılır pencere düğmesine basıldığında ipucu gösterilir</string>
+    <string name="show_hold_to_append_summary">Video ayrıntıları sayfasında arka plan veya açılır pencere düğmesine basıldığında ipucu göster</string>
     <string name="background_player_append">Arka plan oynatıcısı kuyruğuna eklendi</string>
     <string name="popup_playing_append">Açılır pencere oynatıcısı kuyruğuna eklendi</string>
     <string name="play_all">Tümünü Oynat</string>
@@ -449,11 +449,9 @@
     <string name="error_connect_host">Sunucuya bağlanılamıyor</string>
     <string name="error_http_no_content">Sunucu veri göndermiyor</string>
     <string name="error_http_unsupported_range">Sunucu, çok iş parçacıklı indirmeleri kabul etmez, @string/msg_threads = 1 ile yeniden deneyin</string>
-    <string name="error_http_requested_range_not_satisfiable">İstenen aralık karşılanamıyor</string>
     <string name="error_http_not_found">Bulunamadı</string>
     <string name="error_postprocessing_failed">İşlem sonrası başarısız</string>
     <string name="clear_finished_download">Tamamlanan indirmeleri temizle</string>
-    <string name="msg_pending_downloads">Beklemedeki %s transferinize İndirmeler\'den devam edin</string>
     <string name="stop">Durdur</string>
     <string name="max_retry_msg">Azami deneme sayısı</string>
     <string name="max_retry_desc">İndirmeyi iptal etmeden önce maksimum deneme sayısı</string>
@@ -486,7 +484,7 @@
     <string name="error_insufficient_storage">Aygıt üzerinde yer yok</string>
     <string name="error_progress_lost">İlerleme kaybedildi, çünkü dosya silinmiş</string>
     <string name="error_timeout">Bağlantı zaman aşımı</string>
-    <string name="confirm_prompt">Emin misiniz\?</string>
+    <string name="confirm_prompt">İndirme geçmişinizi temizlemek veya indirilen tüm dosyaları silmek istiyor musunuz\?</string>
     <string name="enable_queue_limit">İndirme kuyruğunu sınırla</string>
     <string name="enable_queue_limit_desc">Aynı anda yalnızca bir indirme yürütülecek</string>
     <string name="start_downloads">İndirmeleri başlat</string>
@@ -504,8 +502,40 @@
     <string name="download_choose_new_path">Etkili olması için indirme dizinlerini değiştirin</string>
     <string name="drawer_header_description">Hizmeti değiştir, şu anda seçili olan:</string>
     <plurals name="videos">
-        <item quantity="one">%s video</item>
-        <item quantity="other">%s video</item>
+        <item quantity="one">Videolar</item>
+        <item quantity="other">Videolar</item>
     </plurals>
-    <string name="default_kiosk_page_sumatry">Varsayılan Kiosk</string>
+    <string name="default_kiosk_page_summary">Varsayılan Kiosk</string>
+    <string name="no_one_watching">Kimse izlemiyor</string>
+    <plurals name="watching">
+        <item quantity="one">%s izliyor</item>
+        <item quantity="other">%s izliyor</item>
+    </plurals>
+    <string name="no_one_listening">Kimse dinlemiyor</string>
+    <plurals name="listening">
+        <item quantity="one">%s dinleyici</item>
+        <item quantity="other">%s dinleyici</item>
+    </plurals>
+    <string name="localization_changes_requires_app_restart">Uygulama yeniden başlatıldıktan sonra dil değişecektir.</string>
+    <string name="seek_duration_title">Hızlı ileri/geri sarma süresi</string>
+    <string name="peertube_instance_url_title">PeerTube örnekleri</string>
+    <string name="peertube_instance_url_summary">Favori PeerTube örneklerinizi seçin</string>
+    <string name="peertube_instance_url_help">%s adresinde size en uygun örnekleri bulun</string>
+    <string name="peertube_instance_add_title">Örnek ekle</string>
+    <string name="peertube_instance_add_help">Örnek URL\'sini girin</string>
+    <string name="peertube_instance_add_fail">Örnek doğrulanamadı</string>
+    <string name="peertube_instance_add_https_only">Yalnızca HTTPS URL\'leri desteklenmektedir</string>
+    <string name="peertube_instance_add_exists">Örnek zaten var</string>
+    <string name="local">Yerel</string>
+    <string name="recently_added">Son eklenen</string>
+    <string name="most_liked">En çok beğenilen</string>
+    <string name="playlist_no_uploader">Otomatik oluşturulan (yükleyen bulunamadı)</string>
+    <string name="recovering">kurtarılıyor</string>
+    <string name="error_download_resource_gone">Bu indirme kurtarılamıyor</string>
+    <string name="choose_instance_prompt">Bir örnek seçin</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Kilit ekranı video küçük resmini etkinleştir</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Arka plan oynatıcıyı kullanırken kilit ekranında bir video küçük resmi görüntülenecektir</string>
+    <string name="clear_download_history">İndirme geçmişini temizle</string>
+    <string name="delete_downloaded_files">İndirilen dosyaları sil</string>
+    <string name="deleted_downloads">%1$s indirme silindi</string>
 </resources>

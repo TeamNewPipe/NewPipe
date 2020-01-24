@@ -11,8 +11,8 @@ android {
         applicationId "org.schabi.newpipe"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 790
-        versionName "0.17.4"
+        versionCode 810
+        versionName "0.18.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -23,6 +23,8 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            applicationIdSuffix ".version_1baf7ce"
+            versionNameSuffix ".version_1baf7ce"
         }
 
         debug {
@@ -62,7 +64,7 @@ dependencies {
         exclude module: 'support-annotations'
     })
 
-    implementation 'com.github.timfbfbfbfb:NewPipeExtractor:036fe2f6b8869'
+    implementation 'com.github.timfbfbfbfb:NewPipeExtractor:bda068b4d'
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.23.0'

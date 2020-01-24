@@ -21,6 +21,13 @@
         android:summary="%s"
         android:title="@string/default_content_country_title"/>
 
+    <PreferenceScreen
+        app:iconSpaceReserved="false"
+        android:fragment="org.schabi.newpipe.settings.PeertubeInstanceListFragment"
+        android:key="@string/peertube_instance_setup_key"
+        android:title="@string/peertube_instance_url_title"
+        android:summary="@string/peertube_instance_url_summary"/>
+
     <SwitchPreference
         app:iconSpaceReserved="false"
         android:defaultValue="false"

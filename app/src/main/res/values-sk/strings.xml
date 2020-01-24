@@ -462,11 +462,9 @@
     <string name="error_connect_host">Nepodarilo sa pripojiť k serveru</string>
     <string name="error_http_no_content">Server neposiela údaje</string>
     <string name="error_http_unsupported_range">Server neakceptuje preberanie viacerých vlákien, zopakujte s @string/msg_threads = 1</string>
-    <string name="error_http_requested_range_not_satisfiable">Požadovaný rozsah nie je uspokojivý</string>
     <string name="error_http_not_found">Nenájdené</string>
     <string name="error_postprocessing_failed">Post-spracovanie zlyhalo</string>
     <string name="clear_finished_download">Vyčistiť dokončené sťahovania</string>
-    <string name="msg_pending_downloads">Pokračujte v preberaní %s zo súborov na prevzatie</string>
     <string name="stop">Stop</string>
     <string name="max_retry_msg">Maximum opakovaní</string>
     <string name="max_retry_desc">Maximálny počet pokusov pred zrušením stiahnutia</string>
@@ -513,5 +511,5 @@
     <string name="delete_playback_states_alert">Odstrániť všetky pozície prehrávania\?</string>
     <string name="download_choose_new_path">Zmeniť miesto pre stiahnuté súbory</string>
     <string name="drawer_header_description">Prepnúť službu, práve vybraté:</string>
-    <string name="default_kiosk_page_sumatry">Predvolený kiosk</string>
+    <string name="default_kiosk_page_summary">Predvolený kiosk</string>
 </resources>
