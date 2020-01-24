@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_bg_subtitle">شروع کرنے کے لیے تلاش پر ٹیپ کریں</string>
-    <string name="view_count_text">s$1% ملاحظات</string>
+    <string name="view_count_text">%1$s ملاحظات</string>
     <string name="upload_date_text">%1$s کو شائع ہوا</string>
     <string name="install">انسٹال</string>
     <string name="cancel">منسوخ کریں</string>
@@ -505,7 +505,7 @@
     <string name="drawer_header_description">ٹوگل خدمت ، حالیہ منتخب:</string>
     <string name="no_one_watching">کوئی نہیں دیکھ رہا ہے</string>
     <plurals name="watching">
-        <item quantity="one">% s دیکھ رہا</item>
+        <item quantity="one">%s دیکھ رہا</item>
         <item quantity="other">%s دیکھ رہے</item>
     </plurals>
     <string name="no_one_listening">کوئی نہیں سن رہا ہے</string>
@@ -518,7 +518,7 @@
     <string name="seek_duration_title">آگے بھگانے /- پیچھے کرنے کی مدت</string>
     <string name="peertube_instance_url_title">پیر ٹیوب واقعات</string>
     <string name="peertube_instance_url_summary">اپنے پسندیدہ پیر ٹیوب کی مثالیں منتخب کریں</string>
-    <string name="peertube_instance_url_help">ایسی مثالوں کی تلاش کریں جو آپ کو ٪s پر موزوں بنائیں</string>
+    <string name="peertube_instance_url_help">ایسی مثالوں کی تلاش کریں جو آپ کو %s پر موزوں بنائیں</string>
     <string name="peertube_instance_add_title">مثال شامل کریں</string>
     <string name="peertube_instance_add_help">مثال کا URL درج کریں</string>
     <string name="peertube_instance_add_fail">مثال کی توثیق نہیں کی جاسکی</string>
