@@ -73,24 +73,24 @@
     <string name="player_gesture_controls_title">پلیر اشارہ کنٹرول</string>
     <string name="player_gesture_controls_summary">اشارے کی چمک اور آواذکو کنٹرول کرنے کے لئے اشاروں کا استعمال کریں</string>
     <string name="show_search_suggestions_title">تلاش کے اشارے</string>
-    <string name="show_search_suggestions_summary">تلاش کرتے وقت تجاویز دکھائیں</string>
-    <string name="enable_search_history_title">تاریخ تلاش کریں</string>
+    <string name="show_search_suggestions_summary">تلاش کرتے وقت اشارے دکھائیں</string>
+    <string name="enable_search_history_title">سرگزشت تلاش کریں</string>
     <string name="enable_search_history_summary">تلاش کے استفسارات کو مقامی طور پر ذخیرہ کریں</string>
-    <string name="enable_watch_history_title">واچ ہسٹری</string>
-    <string name="enable_watch_history_summary">دیکھے ہوئے ویڈیوز کا ریکارڈرکھیں</string>
+    <string name="enable_watch_history_title">دیکھے جانے کی سرگزشت</string>
+    <string name="enable_watch_history_summary">دیکھی گئی ویڈیوز کی سرگزشت رکھیں</string>
     <string name="resume_on_audio_focus_gain_title">فوکس حاصل پر دوبارہ شروع کریں</string>
-    <string name="resume_on_audio_focus_gain_summary">مداخلت کے بعد چلاناجاری رکھیں (جیسے فون کالز)</string>
+    <string name="resume_on_audio_focus_gain_summary">مداخلت کے بعد چلانا جاری رکھیں (جیسے فون کالز)</string>
     <string name="download_dialog_title">ڈاؤن لوڈ</string>
     <string name="next_video_title">اگلا</string>
-    <string name="show_next_and_similar_title">\'اگلا\' اور \'ملتے جلتے\' ویڈیوز دکھائیں</string>
-    <string name="show_hold_to_append_title">\"الحاق کرنے کے لئے منعقد\" ٹپ دکھائیں</string>
+    <string name="show_next_and_similar_title">\'اگلی\' اور \'ملتی جلتی\' ویڈیوز دکھائیں</string>
+    <string name="show_hold_to_append_title">\"شامل کرنے کے لئے پکڑیں\" ٹپ دکھائیں</string>
     <string name="show_hold_to_append_summary">ویڈیو تفصیلات کے صفحے پر جب بیک گراؤنڈ یا پاپ اپ بٹن دبائے جاتے ہیں تو ٹپ دکھائیں</string>
     <string name="url_not_supported_toast">غیر معاون URL</string>
     <string name="default_content_country_title">طے شدہ مواد والا ملک</string>
     <string name="service_title">خدمت</string>
     <string name="settings_category_player_title">پلیئر</string>
     <string name="settings_category_player_behavior_title">رویہ</string>
-    <string name="settings_category_video_audio_title">ویڈیو &amp; آڈیو</string>
+    <string name="settings_category_video_audio_title">ویڈیو اور آڈیو</string>
     <string name="settings_category_history_title">تاریخ اور کیشے</string>
     <string name="settings_category_popup_title">پوپ اپ</string>
     <string name="settings_category_appearance_title">ظہور</string>
@@ -349,12 +349,12 @@
 \n1. اس یو آر ایل پر جائیں: %1$s 
 \n2. جب پوچھا جائے تو لاگ ان کریں 
 \nA. ڈاؤن لوڈ شروع ہونا چاہئے (یہ برآمد فائل ہے)</string>
-    <string name="import_soundcloud_instructions">URL یا آپ کی ID ٹائپ کرکے ایک SoundCloud پروفائل درآمد کریں: 
+    <string name="import_soundcloud_instructions">۔URL یا آپ کی ID ٹائپ کرکے ایک SoundCloud پروفائل درآمد کریں: 
 \n 
-\n1. ویب براؤزر میں \"ڈیسک ٹاپ موڈ\" کو فعال کریں (سائٹ موبائل آلات کے لئے دستیاب نہیں ہے) 
-\n2. اس URL پر جائیں: s$1% 
-\n3. پوچھا گیا میں لاگ ان کریں 
-\n4. پروفائل یو آر ایل کاپی کریں جو آپ کو ہدایت کی گئی تھی.</string>
+\n1. ویب براؤزر میں \"ڈیسک ٹاپ موڈ\" کو فعال کریں (یہ سائٹ موبائل آلات کے لئے دستیاب نہیں ہے) 
+\n2. اس URL پر جائیں: %1$s 
+\n3. جب پوچھا جائے تو لاگ ان کریں 
+\n4. پروفائل یو آر ایل کاپی کریں جہاں تک آپ کی رہنمائی کی گئی تھی۔</string>
     <string name="import_soundcloud_instructions_hint">yourID، soundcloud.com/yourid</string>
     <string name="import_network_expensive_warning">یاد رکھیں کہ یہ آپریشن نیٹ ورک مہنگا ہوسکتا ہے۔
 \n
@@ -472,8 +472,8 @@
     <string name="close">بند کریں</string>
     <string name="enable_playback_resume_title">پلے بیک دوبارہ شروع کریں</string>
     <string name="enable_playback_resume_summary">آخری پلے بیک پوزیشن بحال کریں</string>
-    <string name="enable_playback_state_lists_title">فہرست میں پوزیشن</string>
-    <string name="enable_playback_state_lists_summary">فہرستوں میں پلے بیک پوزیشن کے اشارے دکھائیں</string>
+    <string name="enable_playback_state_lists_title">فہرست میں مقامات</string>
+    <string name="enable_playback_state_lists_summary">فہرستوں میں پلے بیک مقامات کے اشارے دکھائیں</string>
     <string name="settings_category_clear_data_title">کوائف صاف کریں</string>
     <string name="watch_history_deleted">دیکھنے کی تاریخ حذف ہوگئی۔</string>
     <string name="watch_history_states_deleted">پلے بیک پوزیشنیں حذف ہوگئیں۔</string>
