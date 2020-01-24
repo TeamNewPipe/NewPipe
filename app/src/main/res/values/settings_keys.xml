@@ -1125,5 +1125,5 @@
         <item>@string/list</item>
         <item>@string/grid</item>
     </string-array>
-
+    <string name="always_expand_description_key" translatable="false">always_expand_description</string>
 </resources>

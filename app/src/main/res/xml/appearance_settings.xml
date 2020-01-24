@@ -35,4 +35,9 @@
         android:title="@string/caption_setting_title"
         android:summary="@string/caption_setting_description"/>
 
+    <SwitchPreference
+        app:iconSpaceReserved="false"
+        android:defaultValue="false"
+        android:key="@string/always_expand_description_key"
+        android:title="@string/always_expand_description"/>
 </PreferenceScreen>
