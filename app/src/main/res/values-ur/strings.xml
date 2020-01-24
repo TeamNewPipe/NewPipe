@@ -287,7 +287,7 @@
     <string name="could_not_import_all_files">انتباہ: تمام فائلوں کو درآمد نہیں کیا جاسکا۔</string>
     <string name="override_current_data">یہ آپ کی موجودہ سیٹ اپ کو رد کر دے گا۔</string>
     <string name="kiosk">کیوسک</string>
-    <string name="trending">رجحان سازی</string>
+    <string name="trending">رجحان میں</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">نیا اور تاذہ</string>
     <string name="title_activity_background_player">پس منظر پلیئر</string>
