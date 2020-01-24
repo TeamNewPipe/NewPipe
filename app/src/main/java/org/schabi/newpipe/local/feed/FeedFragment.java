@@ -354,14 +354,10 @@ public class FeedFragment extends BaseListFragment<List<SubscriptionEntity>, Voi
             if (minDirtyIndex < maxDirtyIndex) {
                 if (isFirstBatch) {
                     infoListAdapter.notifyDataSetChanged();
-                    delayHandler.post(() -> {
-                        if (infoListAdapter.getItemsList().size() > 0) {
-                            setLoadingState(false);
-                        }
-                    });
                 } else {
                     infoListAdapter.notifyItemRangeChanged(minDirtyIndex, maxDirtyIndex - minDirtyIndex + 1);
                 }
+                setLoadingState(false);
             }
         }
 
