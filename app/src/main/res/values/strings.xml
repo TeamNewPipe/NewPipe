@@ -227,6 +227,7 @@
     <string name="saved_tabs_invalid_json">Using default tabs, error while reading saved tabs</string>
     <string name="restore_defaults">Restore defaults</string>
     <string name="restore_defaults_confirmation">Do you want to restore the defaults?</string>
+    <string name="permission_display_over_apps">Give permission to display over other apps</string>
     <!-- error activity -->
     <string name="sorry_string">Sorry, that should not have happened.</string>
     <string name="guru_meditation" translatable="false">Guru Meditation.</string>
