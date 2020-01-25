@@ -33,14 +33,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
-import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.content.res.AppCompatResources;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
@@ -51,12 +43,22 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.text.CaptionStyleCompat;
@@ -117,6 +119,8 @@ public final class MainVideoPlayer extends AppCompatActivity
 
     private ContentObserver rotationObserver;
 
+    private LinearLayout bottomControls;
+
     /*//////////////////////////////////////////////////////////////////////////
     // Activity LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
@@ -168,6 +172,14 @@ public final class MainVideoPlayer extends AppCompatActivity
         getContentResolver().registerContentObserver(
                 Settings.System.getUriFor(Settings.System.ACCELEROMETER_ROTATION),
                 false, rotationObserver);
+
+        bottomControls = findViewById(R.id.bottomControls);
+        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.P){
+            float scale = getResources().getDisplayMetrics().density;
+            int leftRightPx = (int) (16 * scale + 0.5f);
+            int bottomPx = (int)(32 * scale + 0.5f);
+            bottomControls.setPadding(leftRightPx,0,leftRightPx,bottomPx);
+        }
     }
 
     @Override
