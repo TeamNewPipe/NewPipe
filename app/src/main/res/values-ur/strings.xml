@@ -1,97 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="main_bg_subtitle">شروع کرنے کے لیے تلاش پر ٹیپ کریں</string>
-    <string name="view_count_text">ملاحظات</string>
-    <string name="upload_date_text">کوشائع ہوا</string>
+    <string name="view_count_text">%1$s ملاحظات</string>
+    <string name="upload_date_text">%1$s کو شائع ہوا</string>
     <string name="install">انسٹال</string>
     <string name="cancel">منسوخ کریں</string>
-    <string name="share">بانٹیں</string>
-    <string name="download">ڈاؤن لوڈکریں</string>
+    <string name="share">اشتراک کریں</string>
+    <string name="download">ڈاؤن لوڈ</string>
     <string name="search">تلاش کریں</string>
-    <string name="did_you_mean">کیا آپ کا مطلب تھا: s$1%\?</string>
-    <string name="open_in_browser">انٹرنیٹ میں کھولیں</string>
+    <string name="did_you_mean">کیا آپ کا مطلب یہ ہے: s$1%\?</string>
+    <string name="open_in_browser">براؤزر میں کھولیں</string>
     <string name="settings">ترتیبات</string>
-    <string name="no_player_found">کوئیstream پلیئر نہیں ملا.کیا آپ VLC انسٹال کرنا چاہتے ہیں؟</string>
-    <string name="no_player_found_toast">کوئیstream پلیئر نہیں ملا(آپ VLC انسٹال کر سکتے ہیے)۔</string>
-    <string name="open_in_popup_mode">PopUp موڈ میں کھولیں</string>
-    <string name="controls_download_desc">سٹریم فائل ڈاؤن لوڈ کریں</string>
-    <string name="share_dialog_title">کے ساتھ بانٹیں</string>
-    <string name="choose_browser">Internet Browser منتخب کریں
-\n</string>
-    <string name="screen_rotation">rotation کرو</string>
-    <string name="use_external_video_player_title">external video player استعمال کریں</string>
-    <string name="use_external_video_player_summary">کچھ ریذولوشن پر آڈیو ہٹاتا ہے</string>
-    <string name="use_external_audio_player_title">بیرونی سوتی عامل ایپ استعمال کریں</string>
-    <string name="popup_mode_share_menu_title">NewPipe ابھاری اسلوب</string>
-    <string name="subscribe_button_title">سبسکرائیب کریں</string>
-    <string name="subscribed_button_title">سبسکرائیب کر لیا</string>
+    <string name="no_player_found">کوئی اسٹریم پلیئر نہیں ملا۔ کیا آپ VLC انسٹال کرنا چاہتے ہیں؟</string>
+    <string name="no_player_found_toast">کوئی اسٹریم پلیئر نہیں ملا (آپ VLC انسٹال کر سکتے ہیں)۔</string>
+    <string name="open_in_popup_mode">پاپ اپ وضع میں کھولیں</string>
+    <string name="controls_download_desc">اسٹریم فائل ڈاؤن لوڈ کریں</string>
+    <string name="share_dialog_title">کے ساتھ اشتراک کریں</string>
+    <string name="choose_browser">براؤزر منتخب کریں</string>
+    <string name="screen_rotation">گھماؤ</string>
+    <string name="use_external_video_player_title">خارجی ویڈیو پلئیر استعمال کریں</string>
+    <string name="use_external_video_player_summary">کچھ ریزولوشن پر آڈیو ہٹاتا ہے</string>
+    <string name="use_external_audio_player_title">خارجی آڈیو پلیر استعمال کریں</string>
+    <string name="popup_mode_share_menu_title">NewPipe پاپ اپ اسلوب</string>
+    <string name="subscribe_button_title">رکنیت اختیار کریں</string>
+    <string name="subscribed_button_title">رکنیت شدہ</string>
     <string name="channel_unsubscribed">چینل کی رکنیت ختم کردی گئی</string>
-    <string name="subscription_change_failed">رکنیت کو تبدیل نہیں کیا جاسکا</string>
-    <string name="subscription_update_failed">سبسکرپشن کو اپ ڈیٹ نہیں کیا جاسکا</string>
+    <string name="subscription_change_failed">رکنیت کو تبدیل نہیں کیا جا سکا</string>
+    <string name="subscription_update_failed">رکنیت کی تازہ کاری نہیں ہو سکی</string>
     <string name="show_info">معلومات دکھائیں</string>
-    <string name="tab_main">بنیادی</string>
-    <string name="tab_subscriptions">سبسکرپشنز</string>
-    <string name="tab_bookmarks">بُک مارک کردہ پلے لسٹس</string>
-    <string name="fragment_whats_new">نئ آمد</string>
+    <string name="tab_main">مرکزی</string>
+    <string name="tab_subscriptions">رکنیتیں</string>
+    <string name="tab_bookmarks">نشان زدہ پلے لسٹس</string>
+    <string name="fragment_whats_new">نیا کیا ہے</string>
     <string name="controls_background_title">پس منظر</string>
     <string name="controls_popup_title">پوپ اپ</string>
     <string name="controls_add_to_playlist_title">شامل کریں</string>
     <string name="download_path_title">ویڈیو ڈاؤن لوڈ فولڈر</string>
-    <string name="download_path_summary">ڈاؤن لوڈ کی ویڈیو فائلوں کو یہاں ذخیرہ کیا جاتا ہے</string>
+    <string name="download_path_summary">ڈاؤن لوڈ کی گئی ویڈیو فائلیں یہاں محفوظ ہیں</string>
     <string name="download_path_dialog_title">ویڈیو فائلوں کے لئے ڈاؤن لوڈ فولڈر کا انتخاب کریں</string>
     <string name="download_path_audio_title">آڈیو ڈاؤن لوڈ فولڈر</string>
     <string name="download_path_audio_summary">ڈاؤن لوڈ کی گئی آڈیو فائلیں یہاں محفوظ ہیں</string>
     <string name="download_path_audio_dialog_title">آڈیو فائلوں کے لئے ڈاؤن لوڈ فولڈر کا انتخاب کریں</string>
     <string name="autoplay_by_calling_app_title">آٹوپلے</string>
-    <string name="autoplay_by_calling_app_summary">ایک ویڈیو ادا کرتا ہے جب نیو پائپ کسی دوسرے ایپ سے بلایا جاتا ہے</string>
-    <string name="default_resolution_title">طے شدہ جزیات</string>
-    <string name="default_popup_resolution_title">طے شدہ پوپ جزیات</string>
-    <string name="show_higher_resolutions_title">اعلی قراردادیں دکھائیں</string>
-    <string name="show_higher_resolutions_summary">صرف کچھ آلات 2K / 4K ویڈیوز کھیلنے میں معاون ہیں</string>
+    <string name="autoplay_by_calling_app_summary">جب دوسرے ایپ سے نیو پائپ کال کی جاتی ہے تو ویڈیو چلاتا ہے</string>
+    <string name="default_resolution_title">طے شدہ ریزولوشن</string>
+    <string name="default_popup_resolution_title">طے شدہ پوپ اپ ریزولوشن</string>
+    <string name="show_higher_resolutions_title">اعلیٰ معیارات دکھائیں</string>
+    <string name="show_higher_resolutions_summary">صرف کچھ آلات 2K / 4K ویڈیوز چلانے میں معاون ہیں</string>
     <string name="play_with_kodi_title">کوڈی کے ساتھ استعمال کریں</string>
     <string name="kore_not_found">کور ایپ نہیں ملی۔ اسے انسٹال کریں؟</string>
-    <string name="show_play_with_kodi_title">\"کودی کے ساتھ کھیلیں\" کا آپشن دکھائیں</string>
-    <string name="show_play_with_kodi_summary">کوڈی میڈیا سنٹر کے ذریعے ویڈیو چلانے کا آپشن دکھائیں</string>
+    <string name="show_play_with_kodi_title">\"کودی کے ساتھ چلائیں\" آپشن دکھائیں</string>
+    <string name="show_play_with_kodi_summary">کوڈی کے ذریعے ویڈیو چلانے کا آپشن دکھائیں</string>
     <string name="play_audio">آڈیو</string>
-    <string name="default_audio_format_title">پہلے سے طے شدہ آڈیو فارمیٹ</string>
-    <string name="default_video_format_title">طے شدہ وڈیو وضع</string>
+    <string name="default_audio_format_title">طے شدہ آڈیو فارمیٹ</string>
+    <string name="default_video_format_title">طے شدہ وڈیو فارمیٹ</string>
     <string name="theme_title">خیالیہ</string>
-    <string name="light_theme_title">روشنی</string>
+    <string name="light_theme_title">روشن</string>
     <string name="dark_theme_title">تاریک</string>
     <string name="black_theme_title">سیاہ</string>
-    <string name="popup_remember_size_pos_title">پاپ اپ سائز اور پوزیشن کو یاد رکھیں</string>
-    <string name="popup_remember_size_pos_summary">آخری سائز اور پوپ اپ کی پوزیشن یاد رکھیں</string>
-    <string name="use_inexact_seek_title">تیز رفتار تلاش کریں</string>
-    <string name="use_inexact_seek_summary">غیر معقول تلاش سے کھلاڑی کم ہونے والی صحت سے متعلق تیزی سے پوزیشن حاصل کرنے کی اجازت دیتا ہے</string>
-    <string name="download_thumbnail_title">Thumbnailلوڈکریں</string>
-    <string name="download_thumbnail_summary">تھمب نیلز کو لوڈ کرنے ، اعداد و شمار کی بچت اور میموری کے استعمال کو روکنے کیلئے آف کریں۔ تبدیلیاں دونوں میموری میں اور آن ڈسک امیج کیشے کو صاف کرتی ہیں۔</string>
-    <string name="thumbnail_cache_wipe_complete_notice">تصویری کیشے کا صفایا کردیا</string>
-    <string name="metadata_cache_wipe_title">کیشڈ میٹا ڈیٹا کو صاف کریں</string>
-    <string name="metadata_cache_wipe_summary">ویب میں موجود سبھی ڈیٹا کو ہٹا دیں</string>
-    <string name="metadata_cache_wipe_complete_notice">میٹا ڈیٹا کیشے کا صفایا کردیا</string>
-    <string name="auto_queue_title">آٹو قطار اگلا اسٹریم</string>
+    <string name="popup_remember_size_pos_title">پاپ اپ جسامت اور مقام کو یاد رکھیں</string>
+    <string name="popup_remember_size_pos_summary">پچھلی جسامت اور پوپ اپ کا مقام یاد رکھیں</string>
+    <string name="use_inexact_seek_title">بالواسطہ رسائی استعمال کریں</string>
+    <string name="use_inexact_seek_summary">بالواسطہ تلاش مشکلات کو کم کر کے پلیئر کو تیز رفتاری سے مقامات تک رسائی کرنے دیتی ہے</string>
+    <string name="download_thumbnail_title">نظرِ انگشتی لوڈ کریں</string>
+    <string name="download_thumbnail_summary">ڈیٹا کی بچت اور میموری کے استعمال کو روکنے کیلئے نظرِ انگشتی کو بند کریں۔ تبدیلیاں میموری اور آن ڈسک عکس کے کیشے کو صاف کرتی ہیں۔</string>
+    <string name="thumbnail_cache_wipe_complete_notice">تصویری کیشے کی صفائی ہوئی</string>
+    <string name="metadata_cache_wipe_title">کیشے میٹا ڈیٹا کو صاف کریں</string>
+    <string name="metadata_cache_wipe_summary">ویب پیج کے سبھی کیشے ڈیٹا کو ہٹا دیں</string>
+    <string name="metadata_cache_wipe_complete_notice">میٹا ڈیٹا کیشے کی صفائی ہوئی</string>
+    <string name="auto_queue_title">اگلا سلسلہ خود قطار</string>
     <string name="auto_queue_summary">جب دوبارہ نہ چلنے والی قطار میں آخری سلسلہ جاری ہو تو متعلقہ سلسلے کو خود سے شامل کریں</string>
     <string name="player_gesture_controls_title">پلیر اشارہ کنٹرول</string>
     <string name="player_gesture_controls_summary">اشارے کی چمک اور آواذکو کنٹرول کرنے کے لئے اشاروں کا استعمال کریں</string>
-    <string name="show_search_suggestions_title">تلاش کی تجاویز</string>
-    <string name="show_search_suggestions_summary">تلاش کرتے وقت تجاویز دکھائیں</string>
-    <string name="enable_search_history_title">تاریخ تلاش کریں</string>
+    <string name="show_search_suggestions_title">تلاش کے اشارے</string>
+    <string name="show_search_suggestions_summary">تلاش کرتے وقت اشارے دکھائیں</string>
+    <string name="enable_search_history_title">سرگزشت تلاش کریں</string>
     <string name="enable_search_history_summary">تلاش کے استفسارات کو مقامی طور پر ذخیرہ کریں</string>
-    <string name="enable_watch_history_title">واچ ہسٹری</string>
-    <string name="enable_watch_history_summary">دیکھے ہوئے ویڈیوز کا ریکارڈرکھیں</string>
+    <string name="enable_watch_history_title">دیکھے جانے کی سرگزشت</string>
+    <string name="enable_watch_history_summary">دیکھی گئی ویڈیوز کی سرگزشت رکھیں</string>
     <string name="resume_on_audio_focus_gain_title">فوکس حاصل پر دوبارہ شروع کریں</string>
-    <string name="resume_on_audio_focus_gain_summary">مداخلت کے بعد چلاناجاری رکھیں (جیسے فون کالز)</string>
+    <string name="resume_on_audio_focus_gain_summary">مداخلت کے بعد چلانا جاری رکھیں (جیسے فون کالز)</string>
     <string name="download_dialog_title">ڈاؤن لوڈ</string>
     <string name="next_video_title">اگلا</string>
-    <string name="show_next_and_similar_title">\'اگلا\' اور \'ملتے جلتے\' ویڈیوز دکھائیں</string>
-    <string name="show_hold_to_append_title">\"الحاق کرنے کے لئے منعقد\" ٹپ دکھائیں</string>
+    <string name="show_next_and_similar_title">\'اگلی\' اور \'ملتی جلتی\' ویڈیوز دکھائیں</string>
+    <string name="show_hold_to_append_title">\"شامل کرنے کے لئے پکڑیں\" ٹپ دکھائیں</string>
     <string name="show_hold_to_append_summary">ویڈیو تفصیلات کے صفحے پر جب بیک گراؤنڈ یا پاپ اپ بٹن دبائے جاتے ہیں تو ٹپ دکھائیں</string>
     <string name="url_not_supported_toast">غیر معاون URL</string>
     <string name="default_content_country_title">طے شدہ مواد والا ملک</string>
     <string name="service_title">خدمت</string>
     <string name="settings_category_player_title">پلیئر</string>
     <string name="settings_category_player_behavior_title">رویہ</string>
-    <string name="settings_category_video_audio_title">ویڈیو &amp; آڈیو</string>
+    <string name="settings_category_video_audio_title">ویڈیو اور آڈیو</string>
     <string name="settings_category_history_title">تاریخ اور کیشے</string>
     <string name="settings_category_popup_title">پوپ اپ</string>
     <string name="settings_category_appearance_title">ظہور</string>
@@ -138,7 +137,7 @@
     <string name="export_data_summary">تاریخ ، خریداری اور پلے لسٹ برآمد کریں</string>
     <string name="general_error">خرابی</string>
     <string name="network_error">نیٹ ورک کی خرابی</string>
-    <string name="could_not_load_thumbnails">تمام تمبنیلذلوڈ نہیں کر سکے</string>
+    <string name="could_not_load_thumbnails">تمام نظرِ انگشتی لوڈ نہیں کر سکے</string>
     <string name="youtube_signature_decryption_error">ویڈیو یو آر ایل کے دستخط ڈکرپٹ نہیں ہو سکے</string>
     <string name="parsing_error">ویب سائٹ کو تجزیہ نہیں کیا جاسکا</string>
     <string name="light_parsing_error">ویب سائٹ کو مکمل طور پر تجزیہ نہیں کرسکے</string>
@@ -188,23 +187,23 @@
     <string name="audio">آڈیو</string>
     <string name="retry">دوبارہ کوشش کریں</string>
     <string name="storage_permission_denied">ذخیرہ رسائی اجازت مسترد</string>
-    <string name="short_thousand">K</string>
+    <string name="short_thousand">ہزار</string>
     <string name="short_million">ایم</string>
-    <string name="short_billion">بی</string>
+    <string name="short_billion">ارب</string>
     <string name="no_subscribers">کوئی صارفین نہیں</string>
     <plurals name="subscribers">
-        <item quantity="one">s% صارف</item>
-        <item quantity="other">s% صارفین</item>
+        <item quantity="one">%s صارف</item>
+        <item quantity="other">%s صارفین</item>
     </plurals>
     <string name="no_views">کوئی مناظر نہیں</string>
     <plurals name="views">
-        <item quantity="one">s% منظر</item>
-        <item quantity="other">s% مناظر</item>
+        <item quantity="one">%s منظر</item>
+        <item quantity="other">%s مناظر</item>
     </plurals>
     <string name="no_videos">ویڈیوز دستیاب نہیں</string>
     <plurals name="videos">
-        <item quantity="one">ویڈیوز</item>
-        <item quantity="other"/>
+        <item quantity="one">ویڈیو</item>
+        <item quantity="other">ویڈیوز</item>
     </plurals>
     <string name="start">شروع کریں</string>
     <string name="pause">توقف</string>
@@ -243,13 +242,13 @@
     <string name="action_settings">ترتیبات</string>
     <string name="action_about">کے بارے میں</string>
     <string name="title_licenses">تیسری پارٹی کے لائسنس</string>
-    <string name="copyright" formatted="true">3٪ 1 $ s بذریعہ٪ 2 $ s٪ 3 $ s کے تحت</string>
+    <string name="copyright" formatted="true">© %1$s بذریعہ %2$s %3$s کے تحت</string>
     <string name="error_unable_to_load_license">لائسنس لوڈ نہیں کر سکا</string>
     <string name="action_open_website">ویب سائٹ کھولیں</string>
     <string name="tab_about">کے بارے میں</string>
     <string name="tab_contributors">معاونین</string>
     <string name="tab_licenses">لائسنس</string>
-    <string name="app_description">لوڈ ، اتارنا Android پر ہلکا پھلکا اسٹریمنگ۔</string>
+    <string name="app_description">لِبرے کی اینڈروئیڈ پر کم وزنی اسٹریمنگ</string>
     <string name="contribution_title">تعاون کریں</string>
     <string name="contribution_encouragement">چاہے آپ کے خیالات ہوں؛ ترجمہ ، ڈیزائن میں تبدیلیاں ، کوڈ صاف کرنا ، یا حقیقی ہیوی کوڈ میں تبدیلی — مدد کا ہمیشہ خیرمقدم کیا جاتا ہے۔ جتنا زیادہ ہوتا ہے اتنا ہی بہتر ہوتا ہے!</string>
     <string name="view_on_github">گٹ ہب پر دیکھیں</string>
@@ -276,19 +275,19 @@
     <string name="main_page_content">مرکزی صفحہ کا مواد</string>
     <string name="blank_page_summary">خالی صفحہ</string>
     <string name="kiosk_page_summary">رجحان صفحہ</string>
-    <string name="subscription_page_summary">سکریپشن پیج</string>
+    <string name="subscription_page_summary">صفحۂ رکنیت</string>
     <string name="feed_page_summary">فیڈ صفحہ</string>
     <string name="channel_page_summary">چینل کا صفحہ</string>
     <string name="select_a_channel">ایک چینل منتخب کریں</string>
-    <string name="no_channel_subscribed_yet">کسی چینل کی رکنیت نہیں</string>
+    <string name="no_channel_subscribed_yet">اب تک چینل کی رکنیت نہیں</string>
     <string name="select_a_kiosk">ایک کیوسک منتخب کریں</string>
-    <string name="export_complete_toast">برآمدشدہ</string>
+    <string name="export_complete_toast">برآمد شدہ</string>
     <string name="import_complete_toast">درآمدشدہ</string>
-    <string name="no_valid_zip_file">کوئی درست زپ فائل نہیں ہے</string>
+    <string name="no_valid_zip_file">درست زپ فائل نہیں ہے</string>
     <string name="could_not_import_all_files">انتباہ: تمام فائلوں کو درآمد نہیں کیا جاسکا۔</string>
-    <string name="override_current_data">یہ آپ کے موجودہ سیٹ اپ کو اوور رائڈ کرے گا۔</string>
+    <string name="override_current_data">یہ آپ کی موجودہ سیٹ اپ کو رد کر دے گا۔</string>
     <string name="kiosk">کیوسک</string>
-    <string name="trending">رجحان سازی</string>
+    <string name="trending">رجحان میں</string>
     <string name="top_50">Top 50</string>
     <string name="new_and_hot">نیا اور تاذہ</string>
     <string name="title_activity_background_player">پس منظر پلیئر</string>
@@ -305,8 +304,8 @@
     <string name="drawer_open">دراز کھولیں</string>
     <string name="drawer_close">دراز بند کریں</string>
     <string name="drawer_header_action_paceholder_text">یہاں جلد ہی کچھ نظر آئے گا D D</string>
-    <string name="preferred_open_action_settings_title">ترجیح \' کھلی \' عمل</string>
-    <string name="preferred_open_action_settings_summary">مواد کھولنے پر ڈیفالٹ کارروائی — s%</string>
+    <string name="preferred_open_action_settings_title">پسندیدہ \'کھلی\' کارروائی</string>
+    <string name="preferred_open_action_settings_summary">مواد کھولنے پر طے شدہ کارروائی — %s</string>
     <string name="video_player">ویڈیو پلیئر</string>
     <string name="background_player">پس منظر پلیئر</string>
     <string name="popup_player">پوپ اپ پلیئر</string>
@@ -347,21 +346,21 @@
     <string name="subscriptions_export_unsuccessful">رکنیت برآمد نہیں کر سکا</string>
     <string name="import_youtube_instructions">برآمد فائل کو ڈاؤن لوڈ کرکے YouTube کی رکنیت کو درآمد کریں: 
 \n 
-\n1. اس یو آر ایل پر جائیں:s$1% 
+\n1. اس یو آر ایل پر جائیں: %1$s 
 \n2. جب پوچھا جائے تو لاگ ان کریں 
 \nA. ڈاؤن لوڈ شروع ہونا چاہئے (یہ برآمد فائل ہے)</string>
-    <string name="import_soundcloud_instructions">URL یا آپ کی ID ٹائپ کرکے ایک SoundCloud پروفائل درآمد کریں: 
+    <string name="import_soundcloud_instructions">۔URL یا آپ کی ID ٹائپ کرکے ایک SoundCloud پروفائل درآمد کریں: 
 \n 
-\n1. ویب براؤزر میں \"ڈیسک ٹاپ موڈ\" کو فعال کریں (سائٹ موبائل آلات کے لئے دستیاب نہیں ہے) 
-\n2. اس URL پر جائیں: s$1% 
-\n3. پوچھا گیا میں لاگ ان کریں 
-\n4. پروفائل یو آر ایل کاپی کریں جو آپ کو ہدایت کی گئی تھی.</string>
+\n1. ویب براؤزر میں \"ڈیسک ٹاپ موڈ\" کو فعال کریں (یہ سائٹ موبائل آلات کے لئے دستیاب نہیں ہے) 
+\n2. اس URL پر جائیں: %1$s 
+\n3. جب پوچھا جائے تو لاگ ان کریں 
+\n4. پروفائل یو آر ایل کاپی کریں جہاں تک آپ کی رہنمائی کی گئی تھی۔</string>
     <string name="import_soundcloud_instructions_hint">yourID، soundcloud.com/yourid</string>
     <string name="import_network_expensive_warning">یاد رکھیں کہ یہ آپریشن نیٹ ورک مہنگا ہوسکتا ہے۔
 \n
 \nکیا آپ جاری رکھنا چاہتے ہیں؟</string>
     <string name="playback_speed_control">پلے بیک رفتار کنٹرول</string>
-    <string name="playback_tempo">Tempo</string>
+    <string name="playback_tempo">ٹیمپو</string>
     <string name="playback_pitch">"آواز کو  موٹا کرنا"</string>
     <string name="unhook_checkbox">ختم (مسخ کا سبب بن سکتا ہے)</string>
     <string name="caption_setting_title">کیپشن</string>
@@ -376,7 +375,7 @@
     <string name="search_history_deleted">تلاش کی تاریخ حذف ہوگئی۔</string>
     <string name="one_item_deleted">1 شے حذف کر دی گئی ۔</string>
     <string name="app_license">نیو پائپ کاپلیفٹ فری سافٹ ویئر ہے: آپ استعمال کرسکتے ہیں ، مطالعہ شیئر کرسکتے ہیں اور اپنی مرضی سے اسے بہتر کرسکتے ہیں۔ خاص طور پر آپ اسے مفت سافٹ ویئر فاؤنڈیشن کے ذریعہ شائع کردہ GNU جنرل پبلک لائسنس کی شرائط کے تحت دوبارہ تقسیم اور / یا ترمیم کرسکتے ہیں ، جو لائسنس کا ورژن 3 ، یا (آپ کے اختیار پر) کسی بھی بعد کا ورژن ہے۔</string>
-    <string name="import_settings">کیا آپ سیٹنگیں بھی درآمد کرنا چاہتے ہیں؟</string>
+    <string name="import_settings">کیا آپ ترتیبات بھی درآمد کرنا چاہتے ہیں؟</string>
     <string name="privacy_policy_title">نیو پائپ کی رازداری کی پالیسی</string>
     <string name="privacy_policy_encouragement">نیوپی پائپ منصوبہ آپ کی رازداری کو بہت سنجیدگی سے لیتا ہے. لہذا ، اپلی کیشن آپ کی رضامندی کے بغیر کسی بھی ڈیٹا کو جمع نہیں کرتا.
 \nنیو پائپ کی رازداری کی پالیسی تفصیل سے وضاحت کرتی ہے کہ آپ کو کریش رپورٹ بھیجنے پر کیا ڈیٹا بھیجا جاتا ہے اور ذخیرہ کیا جاتا ہے ۔</string>
@@ -399,13 +398,13 @@
     <string name="playlists">پلے لسٹس</string>
     <string name="tracks">ویڈیو ذ</string>
     <string name="users">صارفین</string>
-    <string name="unsubscribe">اندراج خارج کریں</string>
+    <string name="unsubscribe">رکنیت چھوڑیں</string>
     <string name="tab_new">نیا ٹیب</string>
-    <string name="tab_choose">ٹیب کا انتخاب کریں</string>
-    <string name="volume_gesture_control_title">صوت اشارہ کنٹرول</string>
-    <string name="volume_gesture_control_summary">پلیر کی آواذکنٹرول کرنے کے لیے اشاروں کا استعمال کریں</string>
-    <string name="brightness_gesture_control_title">چمک اشارہ کنٹرول</string>
-    <string name="brightness_gesture_control_summary">پلیرکی چمک کو کنٹرول کرنے کیلئے اشاروں کا استعمال کریں</string>
+    <string name="tab_choose">ٹیب منتخب کریں</string>
+    <string name="volume_gesture_control_title">صوتی اشارہ کنٹرول</string>
+    <string name="volume_gesture_control_summary">پلیئر کی آواز کنٹرول کرنے کے لیے اشاروں کا استعمال کریں</string>
+    <string name="brightness_gesture_control_title">چمک کا متحرک کنٹرول</string>
+    <string name="brightness_gesture_control_summary">پلیئرکی چمک کو کنٹرول کرنے کیلئے اشاروں کا استعمال کریں</string>
     <string name="content_language_title">ڈیفالٹ مواد کی زبان</string>
     <string name="settings_category_updates_title">تازہ کاریاں</string>
     <string name="file_deleted">فائل حذف ہوگئی</string>
@@ -436,8 +435,8 @@
     <string name="enqueue">قطار</string>
     <string name="permission_denied">سسٹم نےکارروائی سے انکار کیا گیا</string>
     <string name="download_failed">ڈاؤن لوڈ ناکام</string>
-    <string name="download_finished">ڈاؤن لوڈ تکمیل</string>
-    <string name="download_finished_more">s% ڈاؤن لوڈ مکمل ہوگئے</string>
+    <string name="download_finished">ڈاؤن لوڈ مکمل</string>
+    <string name="download_finished_more">%s ڈاؤن لوڈ مکمل ہوا</string>
     <string name="generate_unique_name">منفرد نام بنائیں</string>
     <string name="overwrite">برتحریر</string>
     <string name="download_already_running">اس نام کے ساتھ ایک ڈاؤن لوڈ جاری ہے</string>
@@ -462,19 +461,19 @@
     <string name="events">تقریبات</string>
     <string name="conferences">کانفرنسیں</string>
     <string name="show_comments_title">تبصرے دکھائیں</string>
-    <string name="show_comments_summary">تبصرے دکھانا بند کرو</string>
+    <string name="show_comments_summary">تبصرے دکھانا بند کریں</string>
     <string name="autoplay_title">آٹوپلے</string>
     <plurals name="comments">
         <item quantity="one">تبصرے</item>
         <item quantity="other"/>
     </plurals>
     <string name="no_comments">کوئی تبصرہ نہیں</string>
-    <string name="error_unable_to_load_comments">تبصرے لوڈ نہیں ہوسکے</string>
+    <string name="error_unable_to_load_comments">تبصرے لوڈ نہیں ہو سکے</string>
     <string name="close">بند کریں</string>
     <string name="enable_playback_resume_title">پلے بیک دوبارہ شروع کریں</string>
     <string name="enable_playback_resume_summary">آخری پلے بیک پوزیشن بحال کریں</string>
-    <string name="enable_playback_state_lists_title">فہرست میں پوزیشن</string>
-    <string name="enable_playback_state_lists_summary">فہرستوں میں پلے بیک پوزیشن کے اشارے دکھائیں</string>
+    <string name="enable_playback_state_lists_title">فہرست میں مقامات</string>
+    <string name="enable_playback_state_lists_summary">فہرستوں میں پلے بیک مقامات کے اشارے دکھائیں</string>
     <string name="settings_category_clear_data_title">کوائف صاف کریں</string>
     <string name="watch_history_deleted">دیکھنے کی تاریخ حذف ہوگئی۔</string>
     <string name="watch_history_states_deleted">پلے بیک پوزیشنیں حذف ہوگئیں۔</string>
@@ -487,7 +486,7 @@
     <string name="error_insufficient_storage">آلے میں کوئی جگہ نہیں بچی</string>
     <string name="error_progress_lost">پیشرفت ختم ہوگئی ، کیونکہ فائل کو حذف کردیا گیا تھا</string>
     <string name="error_timeout">رابطے کا وقت ختم</string>
-    <string name="confirm_prompt">کیا تمہیں یقین ہے؟</string>
+    <string name="confirm_prompt">کیا آپ اپنی ڈاؤن لوڈ کی سرگزشت کو صاف کرنا چاہتے ہیں یا ڈاؤن لوڈ کی گئی تمام فائلوں کو حذف کرنا چاہتے ہیں؟</string>
     <string name="enable_queue_limit">ڈاؤن لوڈ کی قطار کو محدود کریں</string>
     <string name="enable_queue_limit_desc">ایک ڈاؤن لوڈ ایک ہی وقت میں چلے گا</string>
     <string name="start_downloads">ڈاؤن لوڈ شروع کریں</string>
@@ -502,6 +501,39 @@
     <string name="clear_playback_states_title">پلے بیک پوزیشن حذف کریں</string>
     <string name="clear_playback_states_summary">تمام پلے بیک پوزیشن حذف کریں</string>
     <string name="delete_playback_states_alert">تمام پلے بیک پوزیشنوں کو حذف کریں ؟</string>
-    <string name="download_choose_new_path">اثر لینے کے لئے ڈاؤن لوڈ فولڈرز کو تبدیل کریں</string>
+    <string name="download_choose_new_path">مؤثر بنانے کے لئے ڈاؤن لوڈ فولڈرز کو تبدیل کریں</string>
     <string name="drawer_header_description">ٹوگل خدمت ، حالیہ منتخب:</string>
+    <string name="no_one_watching">کوئی نہیں دیکھ رہا ہے</string>
+    <plurals name="watching">
+        <item quantity="one">%s دیکھ رہا</item>
+        <item quantity="other">%s دیکھ رہے</item>
+    </plurals>
+    <string name="no_one_listening">کوئی نہیں سن رہا ہے</string>
+    <plurals name="listening">
+        <item quantity="one">%s سننے والا</item>
+        <item quantity="other">%s سننے والے</item>
+    </plurals>
+    <string name="localization_changes_requires_app_restart">جب ایپ دوبارہ شروع ہو گی تو زبان تبدیل ہو جائے گی۔</string>
+    <string name="default_kiosk_page_summary">طے شدہ کیوسک</string>
+    <string name="seek_duration_title">آگے بھگانے /- پیچھے کرنے کی مدت</string>
+    <string name="peertube_instance_url_title">پیر ٹیوب واقعات</string>
+    <string name="peertube_instance_url_summary">اپنے پسندیدہ پیر ٹیوب کی مثالیں منتخب کریں</string>
+    <string name="peertube_instance_url_help">ایسی مثالوں کی تلاش کریں جو آپ کو %s پر موزوں بنائیں</string>
+    <string name="peertube_instance_add_title">مثال شامل کریں</string>
+    <string name="peertube_instance_add_help">مثال کا URL درج کریں</string>
+    <string name="peertube_instance_add_fail">مثال کی توثیق نہیں کی جاسکی</string>
+    <string name="peertube_instance_add_https_only">صرف HTTPS URLs موافق ہیں</string>
+    <string name="peertube_instance_add_exists">مثال پہلے سے موجود ہے</string>
+    <string name="local">مقامی</string>
+    <string name="recently_added">حال ہی میں شامل</string>
+    <string name="most_liked">زیادہ پسندیدہ</string>
+    <string name="playlist_no_uploader">خود سے بنا (کوئی اپ لوڈر نہیں ملا)</string>
+    <string name="recovering">بازیافتی ہو رہی</string>
+    <string name="error_download_resource_gone">یہ ڈاؤن لوڈ بازیافت نہیں ہو سکتا</string>
+    <string name="choose_instance_prompt">ایک مثال منتخب کریں</string>
+    <string name="enable_lock_screen_video_thumbnail_title">لاک اسکرین ویڈیو تھمب نیل کو فعال کریں</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">بیک گراؤنڈ پلیئر استعمال کرتے وقت ایک ویڈیو تھمب نیل کو لاک اسکرین پر دکھایا جائے گا</string>
+    <string name="clear_download_history">ڈاؤن لوڈ کی سرگزشت صاف کریں</string>
+    <string name="delete_downloaded_files">ڈاؤن لوڈ شدہ فائلیں حذف کریں</string>
+    <string name="deleted_downloads">%1$s ڈاؤن لوڈز کو حذف کیا گیا</string>
 </resources>
