@@ -832,7 +832,6 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
                     psArgs = new String[]{
                             selectedStream.getFormat().getSuffix(),
                             "false",// ignore empty frames
-                            "false",// detect youtube duplicate lines
                     };
                 }
                 break;
