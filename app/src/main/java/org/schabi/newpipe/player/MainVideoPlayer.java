@@ -614,7 +614,8 @@ public final class MainVideoPlayer extends AppCompatActivity
                     this.getPlaybackPitch(),
                     this.getPlaybackSkipSilence(),
                     this.getPlaybackQuality(),
-                    false
+                    false,
+                    !isPlaying()
             );
             context.startService(intent);
 
@@ -637,7 +638,8 @@ public final class MainVideoPlayer extends AppCompatActivity
                     this.getPlaybackPitch(),
                     this.getPlaybackSkipSilence(),
                     this.getPlaybackQuality(),
-                    false
+                    false,
+                    !isPlaying()
             );
             context.startService(intent);
 
