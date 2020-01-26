@@ -567,7 +567,8 @@ public final class PopupVideoPlayer extends Service {
                     this.getPlaybackPitch(),
                     this.getPlaybackSkipSilence(),
                     this.getPlaybackQuality(),
-                    false
+                    false,
+                    !isPlaying()
             );
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
