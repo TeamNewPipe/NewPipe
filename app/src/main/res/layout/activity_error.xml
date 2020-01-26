@@ -100,6 +100,7 @@
                     android:id="@+id/errorView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textIsSelectable="true"
                     android:typeface="monospace"/>
             </HorizontalScrollView>
 

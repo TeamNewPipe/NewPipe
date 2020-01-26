@@ -1175,6 +1175,7 @@ public class VideoDetailFragment
         return autoPlayEnabled
                 && !isExternalPlayerEnabled()
                 && (player == null || player.videoPlayerSelected())
+                && bottomSheetState != BottomSheetBehavior.STATE_HIDDEN
                 && isAutoplayAllowedByUser();
     }
 
