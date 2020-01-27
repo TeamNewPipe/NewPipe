@@ -28,6 +28,7 @@ import android.database.ContentObserver;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -75,6 +76,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
 import org.schabi.newpipe.util.AnimationUtils;
+import org.schabi.newpipe.util.KoreUtil;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
@@ -440,6 +442,7 @@ public final class MainVideoPlayer extends AppCompatActivity
         private boolean queueVisible;
 
         private ImageButton moreOptionsButton;
+        private ImageButton kodiButton;
         private ImageButton shareButton;
         private ImageButton toggleOrientationButton;
         private ImageButton switchPopupButton;
@@ -476,6 +479,7 @@ public final class MainVideoPlayer extends AppCompatActivity
 
             this.moreOptionsButton = rootView.findViewById(R.id.moreOptionsButton);
             this.secondaryControls = rootView.findViewById(R.id.secondaryControls);
+            this.kodiButton = rootView.findViewById(R.id.kodi);
             this.shareButton = rootView.findViewById(R.id.share);
             this.toggleOrientationButton = rootView.findViewById(R.id.toggleOrientation);
             this.switchBackgroundButton = rootView.findViewById(R.id.switchBackground);
@@ -487,6 +491,9 @@ public final class MainVideoPlayer extends AppCompatActivity
 
             titleTextView.setSelected(true);
             channelTextView.setSelected(true);
+            boolean showKodiButton = PreferenceManager.getDefaultSharedPreferences(this.context).getBoolean(
+					this.context.getString(R.string.show_play_with_kodi_key), false);
+            kodiButton.setVisibility(showKodiButton ? View.VISIBLE : View.GONE);
 
             getRootView().setKeepScreenOn(true);
         }
@@ -523,6 +530,7 @@ public final class MainVideoPlayer extends AppCompatActivity
             closeButton.setOnClickListener(this);
 
             moreOptionsButton.setOnClickListener(this);
+            kodiButton.setOnClickListener(this);
             shareButton.setOnClickListener(this);
             toggleOrientationButton.setOnClickListener(this);
             switchBackgroundButton.setOnClickListener(this);
@@ -593,6 +601,17 @@ public final class MainVideoPlayer extends AppCompatActivity
             finish();
         }
 
+        public void onKodiShare() {
+            onPause();
+            try {
+                NavigationHelper.playWithKore(this.context, Uri.parse(
+                        playerImpl.getVideoUrl().replace("https", "http")));
+            } catch (Exception e) {
+                if (DEBUG) Log.i(TAG, "Failed to start kore", e);
+                KoreUtil.showInstallKoreDialog(this.context);
+            }
+        }
+
         /*//////////////////////////////////////////////////////////////////////////
         // Player Overrides
         //////////////////////////////////////////////////////////////////////////*/
@@ -619,7 +638,8 @@ public final class MainVideoPlayer extends AppCompatActivity
                     this.getPlaybackPitch(),
                     this.getPlaybackSkipSilence(),
                     this.getPlaybackQuality(),
-                    false
+                    false,
+                    !isPlaying()
             );
             context.startService(intent);
 
@@ -642,7 +662,8 @@ public final class MainVideoPlayer extends AppCompatActivity
                     this.getPlaybackPitch(),
                     this.getPlaybackSkipSilence(),
                     this.getPlaybackQuality(),
-                    false
+                    false,
+                    !isPlaying()
             );
             context.startService(intent);
 
@@ -691,6 +712,8 @@ public final class MainVideoPlayer extends AppCompatActivity
             } else if (v.getId() == closeButton.getId()) {
                 onPlaybackShutdown();
                 return;
+            } else if (v.getId() == kodiButton.getId()) {
+            	onKodiShare();
             }
 
             if (getCurrentState() != STATE_COMPLETED) {
