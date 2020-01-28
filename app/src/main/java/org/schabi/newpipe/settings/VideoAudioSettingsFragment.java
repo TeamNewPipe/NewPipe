@@ -27,29 +27,27 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
 
                 //on M and above, if user chooses to minimise to popup player on exit and the app doesn't have
                 //display over other apps permission, show a snackbar to let the user give permission
-                if(s.equals(getString(R.string.minimize_on_exit_key))){
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
+                        s.equals(getString(R.string.minimize_on_exit_key))){
 
                     String newSetting = sharedPreferences.getString(s,null);
-                    if(newSetting != null){
+                    if(newSetting != null
+                            && newSetting.equals(getString(R.string.minimize_on_exit_popup_key))
+                            && !Settings.canDrawOverlays(getContext())){
 
-                        if(newSetting.equals(getString(R.string.minimize_on_exit_popup_key))){
+                            Snackbar.make(getListView(),R.string.permission_display_over_apps,Snackbar.LENGTH_INDEFINITE)
+                                    .setAction(R.string.settings, new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            PermissionHelper.checkSystemAlertWindowPermission(getContext());
+                                        }
+                                    })
+                                    .show();
 
-                            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(getContext())){
-
-                                Snackbar.make(getListView(),R.string.permission_display_over_apps,Snackbar.LENGTH_INDEFINITE)
-                                        .setAction(R.string.settings, new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View view) {
-                                                PermissionHelper.checkSystemAlertWindowPermission(getContext());
-                                            }
-                                        })
-                                        .show();
-
-                            }
-                        }
                     }
                 }
             }
+
         };
     }
 
