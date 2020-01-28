@@ -23,6 +23,7 @@ import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.RouterActivity;
 import org.schabi.newpipe.about.AboutActivity;
+import org.schabi.newpipe.database.feed.model.FeedGroupEntity;
 import org.schabi.newpipe.download.DownloadActivity;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.StreamingService;
@@ -344,7 +345,7 @@ public class NavigationHelper {
     }
 
     public static void openFeedFragment(FragmentManager fragmentManager) {
-        openFeedFragment(fragmentManager, -1, null);
+        openFeedFragment(fragmentManager, FeedGroupEntity.GROUP_ALL_ID, null);
     }
 
     public static void openFeedFragment(FragmentManager fragmentManager, long groupId, @Nullable String groupName) {

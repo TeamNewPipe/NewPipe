@@ -42,10 +42,11 @@ class FeedDatabaseManager(context: Context) {
 
     fun database() = database
 
-    fun asStreamItems(groupId: Long = -1): Flowable<List<StreamInfoItem>> {
-        val streams =
-                if (groupId >= 0) feedTable.getAllStreamsFromGroup(groupId)
-                else feedTable.getAllStreams()
+    fun asStreamItems(groupId: Long = FeedGroupEntity.GROUP_ALL_ID): Flowable<List<StreamInfoItem>> {
+        val streams = when (groupId) {
+            FeedGroupEntity.GROUP_ALL_ID -> feedTable.getAllStreams()
+            else -> feedTable.getAllStreamsFromGroup(groupId)
+        }
 
         return streams.map<List<StreamInfoItem>> {
             val items = ArrayList<StreamInfoItem>(it.size)
@@ -56,15 +57,14 @@ class FeedDatabaseManager(context: Context) {
 
     fun outdatedSubscriptions(outdatedThreshold: Date) = feedTable.getAllOutdated(outdatedThreshold)
 
-    fun notLoadedCount(groupId: Long = -1): Flowable<Long> {
-        return if (groupId != -1L) {
-            feedTable.notLoadedCountForGroup(groupId)
-        } else {
-            feedTable.notLoadedCount()
+    fun notLoadedCount(groupId: Long = FeedGroupEntity.GROUP_ALL_ID): Flowable<Long> {
+        return when (groupId) {
+            FeedGroupEntity.GROUP_ALL_ID -> feedTable.notLoadedCount()
+            else -> feedTable.notLoadedCountForGroup(groupId)
         }
     }
 
-    fun outdatedSubscriptionsForGroup(groupId: Long = -1, outdatedThreshold: Date) =
+    fun outdatedSubscriptionsForGroup(groupId: Long = FeedGroupEntity.GROUP_ALL_ID, outdatedThreshold: Date) =
             feedTable.getAllOutdatedForGroup(groupId, outdatedThreshold)
 
     fun markAsOutdated(subscriptionId: Long) = feedTable
@@ -148,10 +148,9 @@ class FeedDatabaseManager(context: Context) {
     }
 
     fun oldestSubscriptionUpdate(groupId: Long): Flowable<List<Date>> {
-        return if (groupId == -1L) {
-            feedTable.oldestSubscriptionUpdateFromAll()
-        } else {
-            feedTable.oldestSubscriptionUpdate(groupId)
+        return when (groupId) {
+            FeedGroupEntity.GROUP_ALL_ID -> feedTable.oldestSubscriptionUpdateFromAll()
+            else -> feedTable.oldestSubscriptionUpdate(groupId)
         }
 
     }

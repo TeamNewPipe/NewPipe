@@ -40,6 +40,7 @@ import org.reactivestreams.Subscriber
 import org.reactivestreams.Subscription
 import org.schabi.newpipe.MainActivity.DEBUG
 import org.schabi.newpipe.R
+import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.extractor.ListInfo
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
@@ -109,7 +110,7 @@ class FeedLoadService : Service() {
         setupNotification()
         val defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
-        val groupId = intent.getLongExtra(EXTRA_GROUP_ID, -1)
+        val groupId = intent.getLongExtra(EXTRA_GROUP_ID, FeedGroupEntity.GROUP_ALL_ID)
         val useFeedExtractor = defaultSharedPreferences
                 .getBoolean(getString(R.string.feed_use_dedicated_fetch_method_key), false)
 
@@ -156,7 +157,7 @@ class FeedLoadService : Service() {
         }
     }
 
-    private fun startLoading(groupId: Long = -1, useFeedExtractor: Boolean, thresholdOutdatedMinutes: Int) {
+    private fun startLoading(groupId: Long = FeedGroupEntity.GROUP_ALL_ID, useFeedExtractor: Boolean, thresholdOutdatedMinutes: Int) {
         feedResultsHolder = ResultsHolder()
 
         val outdatedThreshold = Calendar.getInstance().apply {
@@ -164,7 +165,7 @@ class FeedLoadService : Service() {
         }.time
 
         val subscriptions = when (groupId) {
-            -1L -> feedDatabaseManager.outdatedSubscriptions(outdatedThreshold)
+            FeedGroupEntity.GROUP_ALL_ID -> feedDatabaseManager.outdatedSubscriptions(outdatedThreshold)
             else -> feedDatabaseManager.outdatedSubscriptionsForGroup(groupId, outdatedThreshold)
         }
 

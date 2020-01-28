@@ -24,5 +24,7 @@ data class FeedGroupEntity(
         const val ID = "uid"
         const val NAME = "name"
         const val ICON = "icon_id"
+
+        const val GROUP_ALL_ID = -1L
     }
 }

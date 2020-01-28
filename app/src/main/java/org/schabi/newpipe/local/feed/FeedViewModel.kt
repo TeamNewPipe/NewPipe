@@ -8,6 +8,7 @@ import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Function4
 import io.reactivex.schedulers.Schedulers
+import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.local.feed.service.FeedEventManager
 import org.schabi.newpipe.local.feed.service.FeedEventManager.Event.*
@@ -15,8 +16,8 @@ import org.schabi.newpipe.util.DEFAULT_THROTTLE_TIMEOUT
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class FeedViewModel(applicationContext: Context, val groupId: Long = -1) : ViewModel() {
-    class Factory(val context: Context, val groupId: Long = -1) : ViewModelProvider.Factory {
+class FeedViewModel(applicationContext: Context, val groupId: Long = FeedGroupEntity.GROUP_ALL_ID) : ViewModel() {
+    class Factory(val context: Context, val groupId: Long = FeedGroupEntity.GROUP_ALL_ID) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             return FeedViewModel(context.applicationContext, groupId) as T

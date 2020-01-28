@@ -22,6 +22,7 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.dialog_title.view.*
 import kotlinx.android.synthetic.main.fragment_subscription.*
 import org.schabi.newpipe.R
+import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.extractor.channel.ChannelInfoItem
 import org.schabi.newpipe.fragments.BaseStateFragment
 import org.schabi.newpipe.local.subscription.SubscriptionViewModel.*
@@ -200,7 +201,7 @@ class SubscriptionFragment : BaseStateFragment<SubscriptionState>() {
             }
             carouselAdapter.setOnItemLongClickListener { item, _ ->
                 if (item is FeedGroupCardItem) {
-                    if (item.groupId == -1L) {
+                    if (item.groupId == FeedGroupEntity.GROUP_ALL_ID) {
                         return@setOnItemLongClickListener false
                     }
                 }

@@ -20,7 +20,6 @@
 package org.schabi.newpipe.local.feed
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.*
@@ -30,6 +29,7 @@ import icepick.State
 import kotlinx.android.synthetic.main.error_retry.*
 import kotlinx.android.synthetic.main.fragment_feed.*
 import org.schabi.newpipe.R
+import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.fragments.list.BaseListFragment
 import org.schabi.newpipe.local.feed.service.FeedLoadService
 import org.schabi.newpipe.report.UserAction
@@ -41,7 +41,7 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
     private lateinit var viewModel: FeedViewModel
     @State @JvmField var listState: Parcelable? = null
 
-    private var groupId = -1L
+    private var groupId = FeedGroupEntity.GROUP_ALL_ID
     private var groupName = ""
     private var oldestSubscriptionUpdate: Calendar? = null
 
@@ -53,7 +53,7 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        groupId = arguments?.getLong(KEY_GROUP_ID, -1) ?: -1
+        groupId = arguments?.getLong(KEY_GROUP_ID, FeedGroupEntity.GROUP_ALL_ID) ?: FeedGroupEntity.GROUP_ALL_ID
         groupName = arguments?.getString(KEY_GROUP_NAME) ?: ""
     }
 
@@ -279,7 +279,7 @@ class FeedFragment : BaseListFragment<FeedState, Unit>() {
         const val KEY_GROUP_NAME = "ARG_GROUP_NAME"
 
         @JvmStatic
-        fun newInstance(groupId: Long = -1, groupName: String? = null): FeedFragment {
+        fun newInstance(groupId: Long = FeedGroupEntity.GROUP_ALL_ID, groupName: String? = null): FeedFragment {
             val feedFragment = FeedFragment()
 
             feedFragment.arguments = Bundle().apply {
