@@ -218,7 +218,7 @@ public class Localization {
         return getPrettyTime().formatUnrounded(calendarTime);
     }
 
-    public static void changeAppLanguage(Locale loc, Resources res) {
+    private static void changeAppLanguage(Locale loc, Resources res) {
         DisplayMetrics dm = res.getDisplayMetrics();
         Configuration conf = res.getConfiguration();
         conf.setLocale(loc);
@@ -227,11 +227,13 @@ public class Localization {
 
     public static Locale getAppLocale(Context context) {
         SharedPreferences prefs = androidx.preference.PreferenceManager.getDefaultSharedPreferences(context);
-        String lang = prefs.getString("newpipes_language_key", "en");
+        String lang = prefs.getString("app_language_key", "en");
         Locale loc;
         if (lang.equals("system")) {
             loc = Locale.getDefault();
         } else if (lang.matches(".*-.*")) {
+            //to differentiate different versions of the language
+            //for example, pt (portuguese in Portugal) and pt-br (portuguese in Brazil)
             String[] localisation = lang.split("-");
             lang = localisation[0];
             String country = localisation[1];
@@ -240,5 +242,9 @@ public class Localization {
             loc = new Locale(lang);
         }
         return loc;
+    }
+
+    public static void assureCorrectAppLanguage(Context c) {
+        changeAppLanguage(getAppLocale(c), c.getResources());
     }
 }

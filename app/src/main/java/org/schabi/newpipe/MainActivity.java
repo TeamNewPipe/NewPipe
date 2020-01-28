@@ -31,7 +31,6 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -78,8 +77,7 @@ import org.schabi.newpipe.util.ThemeHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.schabi.newpipe.util.Localization.changeAppLanguage;
-import static org.schabi.newpipe.util.Localization.getAppLocale;
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -118,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         }
         ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
 
-        changeAppLanguage(getAppLocale(getApplicationContext()), getResources());
+        assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -422,7 +420,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        changeAppLanguage(getAppLocale(getApplicationContext()), getResources());
+        assureCorrectAppLanguage(this);
         Localization.init(getApplicationContext()); //change the date format to match the selected language on resume
         super.onResume();
 

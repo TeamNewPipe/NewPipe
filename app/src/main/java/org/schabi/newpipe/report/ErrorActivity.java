@@ -46,8 +46,7 @@ import java.util.List;
 import java.util.TimeZone;
 import java.util.Vector;
 
-import static org.schabi.newpipe.util.Localization.changeAppLanguage;
-import static org.schabi.newpipe.util.Localization.getAppLocale;
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 /*
  * Created by Christian Schabesberger on 24.10.15.
@@ -174,7 +173,7 @@ public class ErrorActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        changeAppLanguage(getAppLocale(getApplicationContext()), getResources());
+        assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
         ThemeHelper.setTheme(this);
         setContentView(R.layout.activity_error);

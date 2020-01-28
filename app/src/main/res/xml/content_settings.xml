@@ -7,11 +7,11 @@
     <ListPreference
         app:iconSpaceReserved="false"
         android:defaultValue="system"
-        android:entries="@array/language_name_np"
-        android:entryValues="@array/language_code_np"
-        android:key="@string/newpipes_language_key"
+        android:entries="@array/app_language_name"
+        android:entryValues="@array/app_language_code"
+        android:key="@string/app_language_key"
         android:summary="%s"
-        android:title="@string/newpipes_language_title"/>
+        android:title="@string/app_language_title"/>
 
     <ListPreference
         app:iconSpaceReserved="false"

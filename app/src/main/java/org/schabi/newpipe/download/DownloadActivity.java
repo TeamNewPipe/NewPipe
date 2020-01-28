@@ -12,14 +12,12 @@ import android.view.MenuItem;
 import android.view.ViewTreeObserver;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.settings.SettingsActivity;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.ui.fragment.MissionsFragment;
 
-import static org.schabi.newpipe.util.Localization.changeAppLanguage;
-import static org.schabi.newpipe.util.Localization.getAppLocale;
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public class DownloadActivity extends AppCompatActivity {
 
@@ -32,7 +30,7 @@ public class DownloadActivity extends AppCompatActivity {
         i.setClass(this, DownloadManagerService.class);
         startService(i);
 
-        changeAppLanguage(getAppLocale(getApplicationContext()), getResources());
+        assureCorrectAppLanguage(this);
         ThemeHelper.setTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_downloader);

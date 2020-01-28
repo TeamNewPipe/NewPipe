@@ -176,7 +176,7 @@
     <string name="enable_playback_resume_key" translatable="false">enable_playback_resume</string>
     <string name="enable_playback_state_lists_key" translatable="false">enable_playback_state_lists</string>
 
-    <string name="newpipes_language_key" translatable="false">newpipes_language_key</string>
+    <string name="app_language_key" translatable="false">app_language_key</string>
     <string name="enable_lock_screen_video_thumbnail_key" translatable="false">enable_lock_screen_video_thumbnail</string>
 
     <string name="import_data" translatable="false">import_data</string>
@@ -926,8 +926,8 @@
         <item>ZW</item>
     </string-array>
 
-    <!--The next two arrays are set to change the NewPipe language-->
-    <string-array name="language_code_np" translatable="false">
+    <!--The next two arrays are set to change the app language-->
+    <string-array name="app_language_code" translatable="false">
         <item>system</item>
         <item>ar</item>
         <item>az</item>
@@ -992,7 +992,7 @@
         <item>zh-hans</item>
         <item>zh-tw</item>
     </string-array>
-    <string-array name="language_name_np" translatable="false">
+    <string-array name="app_language_name" translatable="false">
         <item>@string/systems_language</item>
         <item>العربية</item>
         <item>Azərbaycan dili</item>
