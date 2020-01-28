@@ -78,7 +78,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
 import org.schabi.newpipe.util.AnimationUtils;
-import org.schabi.newpipe.util.FireTvUtils;
+import org.schabi.newpipe.util.AndroidTvUtils;
 import org.schabi.newpipe.util.KoreUtil;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -166,7 +166,7 @@ public final class MainVideoPlayer extends AppCompatActivity
                 super.onChange(selfChange);
                 if (globalScreenOrientationLocked()) {
                     final boolean lastOrientationWasLandscape = defaultPreferences.getBoolean(
-                            getString(R.string.last_orientation_landscape_key), FireTvUtils.isFireTv());
+                            getString(R.string.last_orientation_landscape_key), AndroidTvUtils.isTv());
                     setLandscape(lastOrientationWasLandscape);
                 } else {
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
@@ -178,7 +178,7 @@ public final class MainVideoPlayer extends AppCompatActivity
                 Settings.System.getUriFor(Settings.System.ACCELEROMETER_ROTATION),
                 false, rotationObserver);
 
-        if (FireTvUtils.isFireTv()) {
+        if (AndroidTvUtils.isTv()) {
             FocusOverlayView.setupFocusObserver(this);
         }
     }
@@ -206,7 +206,7 @@ public final class MainVideoPlayer extends AppCompatActivity
             default:
                 break;
             case KeyEvent.KEYCODE_BACK:
-                if (FireTvUtils.isFireTv() && playerImpl.isControlsVisible()) {
+                if (AndroidTvUtils.isTv() && playerImpl.isControlsVisible()) {
                     playerImpl.hideControls(0, 0);
                     hideSystemUi();
                     return true;
@@ -241,7 +241,7 @@ public final class MainVideoPlayer extends AppCompatActivity
 
         if (globalScreenOrientationLocked()) {
             boolean lastOrientationWasLandscape = defaultPreferences.getBoolean(
-                    getString(R.string.last_orientation_landscape_key), FireTvUtils.isFireTv());
+                    getString(R.string.last_orientation_landscape_key), AndroidTvUtils.isTv());
             setLandscape(lastOrientationWasLandscape);
         }
 

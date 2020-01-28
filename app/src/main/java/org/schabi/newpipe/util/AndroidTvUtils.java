@@ -6,9 +6,9 @@ import android.content.pm.PackageManager;
 import android.view.KeyEvent;
 import org.schabi.newpipe.App;
 
-public class FireTvUtils {
+public class AndroidTvUtils {
     @SuppressLint("InlinedApi")
-    public static boolean isFireTv(){
+    public static boolean isTv(){
         final String AMAZON_FEATURE_FIRE_TV = "amazon.hardware.fire_tv";
 
         PackageManager pm =  App.getApp().getPackageManager();

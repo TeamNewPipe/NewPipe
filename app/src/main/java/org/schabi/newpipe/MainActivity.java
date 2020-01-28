@@ -69,7 +69,7 @@ import org.schabi.newpipe.fragments.detail.VideoDetailFragment;
 import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.Constants;
-import org.schabi.newpipe.util.FireTvUtils;
+import org.schabi.newpipe.util.AndroidTvUtils;
 import org.schabi.newpipe.util.KioskTranslator;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PeertubeHelper;
@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
             ErrorActivity.reportUiError(this, e);
         }
 
-        if (FireTvUtils.isFireTv()) {
+        if (AndroidTvUtils.isTv()) {
             FocusOverlayView.setupFocusObserver(this);
         }
     }
@@ -489,7 +489,7 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (DEBUG) Log.d(TAG, "onBackPressed() called");
 
-        if (FireTvUtils.isFireTv()) {
+        if (AndroidTvUtils.isTv()) {
             View drawerPanel = findViewById(R.id.navigation_layout);
             if (drawer.isDrawerOpen(drawerPanel)) {
                 drawer.closeDrawers();

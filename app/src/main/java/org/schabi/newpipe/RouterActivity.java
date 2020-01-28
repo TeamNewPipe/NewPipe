@@ -45,7 +45,7 @@ import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.UserAction;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
-import org.schabi.newpipe.util.FireTvUtils;
+import org.schabi.newpipe.util.AndroidTvUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
@@ -319,7 +319,7 @@ public class RouterActivity extends AppCompatActivity {
 
         alertDialog.show();
 
-        if (FireTvUtils.isFireTv()) {
+        if (AndroidTvUtils.isTv()) {
             FocusOverlayView.setupFocusObserver(alertDialog);
         }
     }
