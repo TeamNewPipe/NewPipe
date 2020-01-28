@@ -265,7 +265,7 @@
     <string name="invalid_url_toast">Неверная ссылка</string>
     <string name="video_streams_empty">Видеопотоки не найдены</string>
     <string name="audio_streams_empty">Аудиопотоки не найдены</string>
-    <string name="donation_title">Пожертвовать</string>
+    <string name="donation_title">Пожертвование</string>
     <string name="donation_encouragement">Разработчики NewPipe ценой своего свободного времени делают вашу жизнь чуть удобнее. Отплатите им тем же — наслаждаясь чашечкой кофе, они смогут сделать NewPipe ещё круче.</string>
     <string name="give_back">Воздать должное</string>
     <string name="website_title">Веб-сайт</string>
@@ -326,7 +326,7 @@
     <string name="playlist_add_stream_success">Добавлено в плейлист</string>
     <string name="playlist_thumbnail_change_success">Миниатюра плейлиста изменена</string>
     <string name="playlist_delete_failure">Не удалось удалить плейлист</string>
-    <string name="caption_none">Без титров</string>
+    <string name="caption_none">Без субтитров</string>
     <string name="resize_fit">Подогнать</string>
     <string name="resize_fill">Заполнить</string>
     <string name="resize_zoom">Приблизить</string>
@@ -372,9 +372,9 @@
     <string name="metadata_cache_wipe_summary">Удалить все загруженные данные веб-страниц</string>
     <string name="preferred_open_action_settings_summary">При открытии ссылки на контент — %s</string>
     <string name="no_streams_available_download">Нет потоков для загрузки</string>
-    <string name="caption_setting_title">Титры</string>
+    <string name="caption_setting_title">Субтитры</string>
     <string name="toast_no_player">Приложение для воспроизведения этого файла не установлено</string>
-    <string name="caption_setting_description">Изменить размер текста и стиль титров. Нужен перезапуск</string>
+    <string name="caption_setting_description">Изменить размер текста и стиль субтитров. Нужен перезапуск</string>
     <string name="clear_views_history_title">Очистить историю</string>
     <string name="delete_view_history_alert">Удалить всю историю просмотров\?</string>
     <string name="watch_history_deleted">История просмотров удалена</string>
@@ -492,7 +492,7 @@
     <string name="error_postprocessing_stopped">NewPipe была закрыта во время работы над файлом</string>
     <string name="error_insufficient_storage">Закончилось свободное место на устройстве</string>
     <string name="error_progress_lost">Прогресс потерян, так как файл был удалён</string>
-    <string name="confirm_prompt">Вы уверены\?</string>
+    <string name="confirm_prompt">Действительно удалить историю загрузок и загруженные файлы\?</string>
     <string name="enable_queue_limit">Ограничить очередь загрузки</string>
     <string name="enable_queue_limit_desc">Только одна одновременная загрузка</string>
     <string name="start_downloads">Начать загрузку</string>
@@ -522,4 +522,25 @@
         <item quantity="many">%s слушателей</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">Язык будет изменён после перезапуска</string>
+    <string name="seek_duration_title">Шаг перемотки</string>
+    <string name="peertube_instance_url_title">Серверы PeerTube</string>
+    <string name="peertube_instance_url_summary">Выберите предпочтительные серверы</string>
+    <string name="peertube_instance_url_help">Каталог серверов: %s</string>
+    <string name="peertube_instance_add_title">Новый сервер</string>
+    <string name="peertube_instance_add_help">URL сервера</string>
+    <string name="peertube_instance_add_fail">Не удалось проверить сервер</string>
+    <string name="peertube_instance_add_https_only">Поддерживается только HTTPS</string>
+    <string name="peertube_instance_add_exists">Сервер уже существует</string>
+    <string name="local">Локальное</string>
+    <string name="recently_added">Новое</string>
+    <string name="most_liked">Популярное</string>
+    <string name="playlist_no_uploader">Создан автоматически (автор не найден)</string>
+    <string name="recovering">восстановление</string>
+    <string name="error_download_resource_gone">Не удалось восстановить загрузку</string>
+    <string name="choose_instance_prompt">Выберите сервер</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Миниатюра на экране блокировки</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Показать миниатюру видео на экране блокировки при воспроизведении в фоне</string>
+    <string name="clear_download_history">Очистить историю загрузок</string>
+    <string name="delete_downloaded_files">Удаление загруженных файлов</string>
+    <string name="deleted_downloads">Удалено загрузок: %1$s</string>
 </resources>

@@ -157,6 +157,7 @@
                 <!-- channel prefix -->
                 <data android:pathPrefix="/channel/"/>
                 <data android:pathPrefix="/user/"/>
+                <data android:pathPrefix="/c/"/>
                 <!-- playlist prefix -->
                 <data android:pathPrefix="/playlist"/>
             </intent-filter>

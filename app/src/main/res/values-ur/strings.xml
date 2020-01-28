@@ -8,7 +8,7 @@
     <string name="share">بانٹیں</string>
     <string name="download">ڈاؤن لوڈکریں</string>
     <string name="search">تلاش کریں</string>
-    <string name="did_you_mean">کیا آپ کا مطلب تھا: %1$s \?</string>
+    <string name="did_you_mean">کیا آپ کا مطلب تھا: s$1%\?</string>
     <string name="open_in_browser">انٹرنیٹ میں کھولیں</string>
     <string name="settings">ترتیبات</string>
     <string name="no_player_found">کوئیstream پلیئر نہیں ملا.کیا آپ VLC انسٹال کرنا چاہتے ہیں؟</string>
@@ -159,7 +159,7 @@
     <string name="invalid_source">ایسی کوئی فائل / مواد کا ذریعہ نہیں</string>
     <string name="invalid_file">فائل موجود نہیں ہے اور نہ ہی اسے پڑھنے یا لکھنے کی اجازت ہے</string>
     <string name="file_name_empty_error">فائل کا نام ضروری ہے</string>
-    <string name="error_occurred_detail">ایک خامی پیش آگئی:٪ 1 $ s</string>
+    <string name="error_occurred_detail">ایک خامی پیش آگئی: s$1%</string>
     <string name="no_streams_available_download">کوئی اسٹریمز ڈاؤن لوڈ کرنے کے لئے دستیاب نہیں</string>
     <string name="sorry_string">معذرت ، ایسا نہیں ہونا چاہئے تھا۔</string>
     <string name="error_report_button_text">ای میل کے ذریعے غلطی کی اطلاع دیں</string>
@@ -182,8 +182,8 @@
     <string name="search_no_results">کوئی نتیجہ نہیں</string>
     <string name="empty_subscription_feed_subtitle">یہاں کچھ نہیں مگر اداسی کے</string>
     <string name="detail_drag_description">دوبارہ ترتیب دینے کیلئے کھینچں</string>
-    <string name="err_dir_create">ڈاؤن لوڈ ڈائریکٹری \'٪ 1 $ s\' تشکیل نہیں دے سکتے</string>
-    <string name="info_dir_created">ڈاؤن لوڈ ڈائریکٹری \'٪ 1 $ s\' بن گئی</string>
+    <string name="err_dir_create">ڈاؤن لوڈ ڈائریکٹری \'s$1%\' تشکیل نہیں دے سکتے</string>
+    <string name="info_dir_created">ڈاؤن لوڈ ڈائریکٹری \'s$1%\' بن گئی</string>
     <string name="video">ویڈیو</string>
     <string name="audio">آڈیو</string>
     <string name="retry">دوبارہ کوشش کریں</string>
@@ -193,18 +193,18 @@
     <string name="short_billion">بی</string>
     <string name="no_subscribers">کوئی صارفین نہیں</string>
     <plurals name="subscribers">
-        <item quantity="one">% s صارف</item>
-        <item quantity="other">% s صارفین</item>
+        <item quantity="one">s% صارف</item>
+        <item quantity="other">s% صارفین</item>
     </plurals>
     <string name="no_views">کوئی مناظر نہیں</string>
     <plurals name="views">
-        <item quantity="one">% s منظر</item>
-        <item quantity="other">% s مناظر</item>
+        <item quantity="one">s% منظر</item>
+        <item quantity="other">s% مناظر</item>
     </plurals>
     <string name="no_videos">ویڈیوز دستیاب نہیں</string>
     <plurals name="videos">
         <item quantity="one">ویڈیوز</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="start">شروع کریں</string>
     <string name="pause">توقف</string>
@@ -306,7 +306,7 @@
     <string name="drawer_close">دراز بند کریں</string>
     <string name="drawer_header_action_paceholder_text">یہاں جلد ہی کچھ نظر آئے گا D D</string>
     <string name="preferred_open_action_settings_title">ترجیح \' کھلی \' عمل</string>
-    <string name="preferred_open_action_settings_summary">مواد کھولنے پر ڈیفالٹ کارروائی -٪ s</string>
+    <string name="preferred_open_action_settings_summary">مواد کھولنے پر ڈیفالٹ کارروائی — s%</string>
     <string name="video_player">ویڈیو پلیئر</string>
     <string name="background_player">پس منظر پلیئر</string>
     <string name="popup_player">پوپ اپ پلیئر</string>
@@ -345,16 +345,16 @@
     <string name="previous_export">پچھلی برآمد</string>
     <string name="subscriptions_import_unsuccessful">سبسکرپشنز کو درآمد نہیں کیا جاسکا</string>
     <string name="subscriptions_export_unsuccessful">رکنیت برآمد نہیں کر سکا</string>
-    <string name="import_youtube_instructions">برآمد فائل کو ڈاؤن لوڈ کرکے YouTube کی رکنیت کو درآمد کریں:
-\n
-\n1. اس یو آر ایل پر جائیں:٪ 1 $ s
-\n2. جب پوچھا جائے تو لاگ ان کریں
+    <string name="import_youtube_instructions">برآمد فائل کو ڈاؤن لوڈ کرکے YouTube کی رکنیت کو درآمد کریں: 
+\n 
+\n1. اس یو آر ایل پر جائیں:s$1% 
+\n2. جب پوچھا جائے تو لاگ ان کریں 
 \nA. ڈاؤن لوڈ شروع ہونا چاہئے (یہ برآمد فائل ہے)</string>
-    <string name="import_soundcloud_instructions">URL یا آپ کی ID ٹائپ کرکے ایک SoundCloud پروفائل درآمد کریں:
-\n
-\n1. ویب براؤزر میں \"ڈیسک ٹاپ موڈ\" کو فعال کریں (سائٹ موبائل آلات کے لئے دستیاب نہیں ہے)
-\n2. اس URL پر جائیں: %1 $ s
-\n3. پوچھا گیا میں لاگ ان کریں
+    <string name="import_soundcloud_instructions">URL یا آپ کی ID ٹائپ کرکے ایک SoundCloud پروفائل درآمد کریں: 
+\n 
+\n1. ویب براؤزر میں \"ڈیسک ٹاپ موڈ\" کو فعال کریں (سائٹ موبائل آلات کے لئے دستیاب نہیں ہے) 
+\n2. اس URL پر جائیں: s$1% 
+\n3. پوچھا گیا میں لاگ ان کریں 
 \n4. پروفائل یو آر ایل کاپی کریں جو آپ کو ہدایت کی گئی تھی.</string>
     <string name="import_soundcloud_instructions_hint">yourID، soundcloud.com/yourid</string>
     <string name="import_network_expensive_warning">یاد رکھیں کہ یہ آپریشن نیٹ ورک مہنگا ہوسکتا ہے۔
@@ -388,7 +388,7 @@
     <string name="limit_data_usage_none_description">کوئی حد نہیں</string>
     <string name="limit_mobile_data_usage_title">موبائل ڈیٹا کا استعمال کرتے وقت ریذولوشن کو محدود کریں</string>
     <string name="minimize_on_exit_title">ایپ سوئچ کو کم سے کم کریں</string>
-    <string name="minimize_on_exit_summary">اہم ویڈیو پلیئر سے دوسرے ایپ میں سوئچنگ کرتے وقت کارروائی-% s</string>
+    <string name="minimize_on_exit_summary">اہم ویڈیو پلیئر سے دوسرے ایپ میں سوئچنگ کرتے وقت کارروائی — %s</string>
     <string name="minimize_on_exit_none_description">کوئی نہیں</string>
     <string name="minimize_on_exit_background_description">پس منظری پلیر میں کم کریں</string>
     <string name="minimize_on_exit_popup_description">پاپ اپ پلیر میں کم کریں</string>
@@ -437,7 +437,7 @@
     <string name="permission_denied">سسٹم نےکارروائی سے انکار کیا گیا</string>
     <string name="download_failed">ڈاؤن لوڈ ناکام</string>
     <string name="download_finished">ڈاؤن لوڈ تکمیل</string>
-    <string name="download_finished_more">٪ s ڈاؤن لوڈ مکمل ہوگئے</string>
+    <string name="download_finished_more">s% ڈاؤن لوڈ مکمل ہوگئے</string>
     <string name="generate_unique_name">منفرد نام بنائیں</string>
     <string name="overwrite">برتحریر</string>
     <string name="download_already_running">اس نام کے ساتھ ایک ڈاؤن لوڈ جاری ہے</string>
@@ -466,7 +466,7 @@
     <string name="autoplay_title">آٹوپلے</string>
     <plurals name="comments">
         <item quantity="one">تبصرے</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="no_comments">کوئی تبصرہ نہیں</string>
     <string name="error_unable_to_load_comments">تبصرے لوڈ نہیں ہوسکے</string>
