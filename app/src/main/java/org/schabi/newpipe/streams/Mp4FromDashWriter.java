@@ -250,7 +250,7 @@ public class Mp4FromDashWriter {
 
         boolean is64 = read > THRESHOLD_FOR_CO64;
 
-        // calculate the moov size;
+        // calculate the moov size
         int auxSize = make_moov(defaultMediaTime, tablesInfo, is64);
 
         if (auxSize < THRESHOLD_MOOV_LENGTH) {
@@ -262,6 +262,7 @@ public class Mp4FromDashWriter {
 
         final int ftyp_size = make_ftyp();
 
+        // reserve moov space in the output stream
         if (auxSize > 0) {
             int length = auxSize;
             byte[] buffer = new byte[64 * 1024];// 64 KiB
@@ -328,7 +329,7 @@ public class Mp4FromDashWriter {
                     if (sample == null) {
                         if (tablesInfo[i].ctts > 0 && sampleExtra[i] >= 0) {
                             writeEntryArray(tablesInfo[i].ctts, 1, sampleCount[i], sampleExtra[i]);// flush last entries
-							outRestore();
+                            outRestore();
                         }
                         sampleIndex[i] = -1;
                         break;
