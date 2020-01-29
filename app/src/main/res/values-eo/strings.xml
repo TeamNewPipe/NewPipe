@@ -15,9 +15,9 @@
     <string name="screen_rotation">turno</string>
     <string name="use_external_video_player_title">Uzi eksteran filmetoludilon</string>
     <string name="use_external_audio_player_title">Uzi eksteran sonludilon</string>
-    <string name="default_resolution_title">Defaŭlta distingivo</string>
-    <string name="play_with_kodi_title">Legi per Kodi</string>
-    <string name="show_play_with_kodi_title">Montri \"Legi per Kodi\"-opcion</string>
+    <string name="default_resolution_title">Defaŭlta rezolucio</string>
+    <string name="play_with_kodi_title">Ludi per Kodi</string>
+    <string name="show_play_with_kodi_title">Montri \"Ludi per Kodi\"-opcion</string>
     <string name="play_audio">Sono</string>
     <string name="default_audio_format_title">Defaŭlta sondosierformo</string>
     <string name="theme_title">Etoso</string>
@@ -30,8 +30,8 @@
     <string name="settings_category_video_audio_title">Filmeto kaj sono</string>
     <string name="settings_category_appearance_title">Apero</string>
     <string name="settings_category_other_title">Alia</string>
-    <string name="background_player_playing_toast">Ludado fone</string>
-    <string name="play_btn_text">Legi</string>
+    <string name="background_player_playing_toast">Ludanta fone</string>
+    <string name="play_btn_text">Ludi</string>
     <string name="general_error">Eraro</string>
     <string name="network_error">Reteraro</string>
     <string name="content_not_available">Enhavo malhavebla</string>
@@ -45,7 +45,7 @@
     <string name="youtube_signature_decryption_error">La subskribo de la ligilo de la filmeto ne malĉifreblas</string>
     <string name="parsing_error">La retejo ne analizeblas</string>
     <string name="list_thumbnail_view_description">Bildeto de la antaŭrigardo de la filmeto</string>
-    <string name="detail_thumbnail_view_description">Legi filmeton, daŭro:</string>
+    <string name="detail_thumbnail_view_description">Ludi filmeton, daŭro:</string>
     <string name="detail_uploader_thumbnail_view_description">Bildeto de la alŝutinto</string>
     <string name="err_dir_create">La elŝutujo \'%1$s\' ne kreeblas</string>
     <string name="info_dir_created">Elŝutujo \'%1$s\' kreita</string>
@@ -69,7 +69,7 @@
     <string name="main_bg_subtitle">Premu serĉo por komenci</string>
     <string name="no_player_found_toast">Neniu elsendlflua ludilo trovita (instalu VLC por ludi ĝin).</string>
     <string name="open_in_popup_mode">Malfermi en ŝprucfenestron modon</string>
-    <string name="use_external_video_player_summary">Forigas aŭdion ĉe KELKAJ distingivoj</string>
+    <string name="use_external_video_player_summary">Forigas aŭdon ĉe KELKAJ rezolucioj</string>
     <string name="popup_mode_share_menu_title">NewPipe ŝprucfenestron modon</string>
     <string name="subscribe_button_title">Aboni</string>
     <string name="subscribed_button_title">Abonita</string>
@@ -86,10 +86,10 @@
     <string name="controls_popup_title">Ŝprucfenestro</string>
     <string name="controls_add_to_playlist_title">Aldonu al</string>
     <string name="autoplay_by_calling_app_title">Aŭtomata play</string>
-    <string name="autoplay_by_calling_app_summary">Legas filmeton kiam NewPipe vokas de alia programo</string>
-    <string name="default_popup_resolution_title">Defaŭlta distingivo de la ŝprucfenestro</string>
-    <string name="show_higher_resolutions_title">Montri pli altajn distingivojn</string>
-    <string name="show_higher_resolutions_summary">Nur kelkaj aparatoj subtenas legante 2K / 4K filmetojn</string>
+    <string name="autoplay_by_calling_app_summary">Ludas filmeton kiam NewPipe vokas el alia programo</string>
+    <string name="default_popup_resolution_title">Defaŭlta rezolucio de la ŝprucfenestro</string>
+    <string name="show_higher_resolutions_title">Montri pli altajn rezoluciojn</string>
+    <string name="show_higher_resolutions_summary">Nur kelkaj aparatoj subtenas ludi 2K / 4K filmetojn</string>
     <string name="default_video_format_title">Defaŭlta fomato de filmeto</string>
     <string name="black_theme_title">Nigra</string>
     <string name="popup_remember_size_pos_title">Memoru ŝprucfenestron kaj pozicion</string>
@@ -122,7 +122,7 @@
     <string name="later">Poste</string>
     <string name="msg_popup_permission">Tiu permeso estas necesa por
 \nmalfermi en ŝprucfenestro modo</string>
-    <string name="popup_playing_toast">Leganta en ŝprucfenestro modo</string>
+    <string name="popup_playing_toast">Ludanta en ŝprucfenestro modo</string>
     <string name="disabled">Malaktiva</string>
     <string name="filter">Filtri</string>
     <string name="refresh">Aktualigi</string>
@@ -133,13 +133,13 @@
     <string name="player_gesture_controls_summary">Uzu gestojn por kontroli la brilon kaj volumenon de la ludilo</string>
     <string name="show_search_suggestions_title">Serĉi sugestojn</string>
     <string name="show_search_suggestions_summary">Montri sugestojn kiam serĉanto</string>
-    <string name="best_resolution">Plej bona distingivo</string>
+    <string name="best_resolution">Plej bona rezolucio</string>
     <string name="app_description">Libera malpeza torentado ĉe Android.</string>
     <string name="settings_category_downloads_title">Elŝuti</string>
     <string name="charset_letters_and_digits">Leteroj kaj ciferoj</string>
     <string name="charset_most_special_characters">Plej specialaj karakteroj</string>
     <string name="resume_on_audio_focus_gain_title">Rekomencu en fokusa gajno</string>
-    <string name="resume_on_audio_focus_gain_summary">Daŭrigi la legon post la interrompaĵoj (ekzemple telefonadoj)</string>
+    <string name="resume_on_audio_focus_gain_summary">Daŭrigi la ludon post la interrompaĵoj (ekzemple telefonadoj)</string>
     <string name="enable_search_history_title">Serĉa historio</string>
     <string name="enable_search_history_summary">Konservi la historio de serĉo lokale</string>
     <string name="enable_watch_history_title">Rigardu historion</string>
@@ -205,7 +205,7 @@
     <string name="playlist_delete_failure">Ne povis forigi ludlisto.</string>
     <string name="settings_category_debug_title">Malcimigi</string>
     <string name="auto_queue_title">Auto-vico sekva fluo</string>
-    <string name="auto_queue_summary">Aŭto-aldoni rilatan enhavon kiam leganta la lasta enhavo en malrepetita atendovico</string>
+    <string name="auto_queue_summary">Aŭto-aldoni rilatan enhavon kiam ludanta la lasta enhavo en malrepetita atendovico</string>
     <string name="file">Dosiero</string>
     <string name="invalid_directory">Tia dosierujo ne ekzistas</string>
     <string name="invalid_source">Tia dosiero/enhavo ne ekzistas</string>
@@ -236,7 +236,7 @@
     <string name="clear_search_history_summary">Forviŝi la serĉajn ŝlosilvortojn</string>
     <string name="delete_search_history_alert">Ĉu vi volas forviŝi la totalon de la historio de serĉo \?</string>
     <string name="search_history_deleted">Historio de serĉo forviŝita.</string>
-    <string name="limit_mobile_data_usage_title">Limigi distingivo kiam uzanta moveblan datumon</string>
+    <string name="limit_mobile_data_usage_title">Limigi rezolucio kiam uzanta moveblan datumon</string>
     <string name="minimize_on_exit_popup_description">Minimumigi al ŝprucfenestro ludilo</string>
     <string name="channels">Kanaloj</string>
     <string name="playlists">Ludlistoj</string>
@@ -265,7 +265,7 @@
     <string name="conferences">Konferencoj</string>
     <string name="show_comments_title">Montri komentojn</string>
     <string name="show_comments_summary">Malebligu por malvidigi komentojn</string>
-    <string name="autoplay_title">Aŭtolego</string>
+    <string name="autoplay_title">Aŭtoludo</string>
     <plurals name="comments">
         <item quantity="one">Komentoj</item>
         <item quantity="other"/>
@@ -342,7 +342,7 @@
     <string name="view_on_github">Rigardu ĉe GitHub</string>
     <string name="app_license_title">Permesilo de NewPipe</string>
     <string name="contribution_encouragement">Ĉu vi havas ideojn pri; traduko, desegnaĵoj ŝanĝoj, purigado de kodo, aŭ realaj masivaj ŝanĝoj—helpo estas ĉiam bonvena. Ju pli oni faras, des pli bonas!</string>
-    <string name="read_full_license">Legu permesilon</string>
+    <string name="read_full_license">Legi permesilon</string>
     <string name="contribution_title">Kontribui</string>
     <string name="settings_file_charset_title">Permesitaj karakteroj en dosiernomoj</string>
     <string name="settings_file_replacement_character_summary">Nevalidaj karakteroj estas anstataŭigita kun ĉi tiu valoro</string>
@@ -375,7 +375,7 @@
     <string name="no_channel_subscribed_yet">Neniuj kanalaj abonoj ankoraŭ</string>
     <string name="select_a_kiosk">Elekti kioskon</string>
     <string name="start_here_on_main">Komenci ludi ĉi tie</string>
-    <string name="start_here_on_background">Komenci ludi en la fono</string>
+    <string name="start_here_on_background">Komenci ludi fone</string>
     <string name="donation_title">Donaci</string>
     <string name="donation_encouragement">NewPipe estas programada par volontuoj, elspezante tempo por alporti vin la plej bona sperto. Redonu por helpi programistojn plibonigi NewPipe dum ĝuante tason da kafo.</string>
     <string name="give_back">Redoni</string>
@@ -413,7 +413,7 @@
     <string name="enable_leak_canary_summary">La monitorado de la memorlikadoj povas frostigi la apon dum la hejta dumpingo</string>
     <string name="enable_disposed_exceptions_title">Signali ekster-vivciklajn erarojn</string>
     <string name="enable_disposed_exceptions_summary">Perforti signalante neenretigaj Rx esceptoj eksere la fragmento aŭ aktiveco vivciklo post dispono</string>
-    <string name="invalid_file">La dosiero ne ekzistas aŭ la legopermeso mankas</string>
+    <string name="invalid_file">La dosiero ne ekzistas aŭ la ludopermeso mankas</string>
     <string name="import_export_title">Importi/eksporti</string>
     <string name="import_title">Importi</string>
     <string name="import_from">Importi el</string>
@@ -440,10 +440,10 @@
     <string name="app_license">NewPipe estas programaro sub rajtoceda permesilo: Vi povas uzi, studi, komuniki kaj plibonigi ĝin kiel vi volas. Precize, vi povas redistribui kaj/aŭ modifi ĝin sub la kondiĉoj de la Ĝenerala Publika Permesilo de GNU, kiel publikigita per la Free Software Foundation, ĉu en la versio 3, ĉu (se vi volas) ajna posta versio.</string>
     <string name="import_settings">Ĉu vi volas ankaŭ importi agordojn\?</string>
     <string name="privacy_policy_title">Privateca politiko de NewPipe</string>
-    <string name="privacy_policy_encouragement">La NewPipe projekto respektas vian privatecon serioze. Konsekvence, la apo ne kolektas ajnan datumo sen via konsento.
+    <string name="privacy_policy_encouragement">La NewPipe projekto serioze respektas vian privatecon. Konsekvence, la apo ne kolektas ajnan datumo sen via konsento. 
 \nLa privateco politiko de Newpipe detale eksplikas kion datumon estas sendita kaj stokita kiam vi sendas falegosignalon.</string>
     <string name="read_privacy_policy">Legi la privatecan politikon</string>
-    <string name="start_accept_privacy_policy">Por konformiĝi al la Ĝenerala Datum-Protekta Regularon (GDPR), ni allogas vian atento al la privateca politiko de NewPipe. Bonvolu legi ĝin atentive.
+    <string name="start_accept_privacy_policy">Por konformiĝi al la Ĝenerala Datum-Protekta Regularon (GDPR), ni allogas vian atenton al la privateca politiko de NewPipe. Bonvolu atentive legi ĝin. 
 \nVi devas akcepti ĝin por sendi nin la cimsignalo.</string>
     <string name="accept">Akcepti</string>
     <string name="decline">Rifuzi</string>
@@ -455,7 +455,7 @@
     <string name="skip_silence_checkbox">Plirapidigi dum silentoj</string>
     <string name="playback_step">Paŝo</string>
     <string name="playback_reset">Restarigi</string>
-    <string name="saved_tabs_invalid_json">Uzante defaŭltajn ongletojn, eraro dum leganta savajn ongletojn</string>
+    <string name="saved_tabs_invalid_json">Uzante defaŭltajn ongletojn, eraro ludante savajn ongletojn</string>
     <string name="restore_defaults">Restaŭri la defaŭltojn</string>
     <string name="restore_defaults_confirmation">Ĉu vi volas restaŭri la defaŭltojn \?</string>
     <string name="subscribers_count_not_available">Kalkulo de abonantoj malhavebla</string>
