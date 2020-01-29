@@ -78,11 +78,7 @@ public class DownloadActivity extends AppCompatActivity {
                 onBackPressed();
                 return true;
             }
-            case R.id.action_settings: {
-                Intent intent = new Intent(this, SettingsActivity.class);
-                startActivity(intent);
-                return true;
-            }
+
             default:
                 return super.onOptionsItemSelected(item);
         }
