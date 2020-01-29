@@ -79,6 +79,7 @@ import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.ExtractorHelper;
 import org.schabi.newpipe.util.ImageDisplayConstants;
 import org.schabi.newpipe.util.InfoCache;
+import org.schabi.newpipe.util.KoreUtil;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
@@ -624,22 +625,12 @@ public class VideoDetailFragment
                             url.replace("https", "http")));
                 } catch (Exception e) {
                     if (DEBUG) Log.i(TAG, "Failed to start kore", e);
-                    showInstallKoreDialog(activity);
+                    KoreUtil.showInstallKoreDialog(activity);
                 }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    private static void showInstallKoreDialog(final Context context) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage(R.string.kore_not_found)
-                .setPositiveButton(R.string.install, (DialogInterface dialog, int which) ->
-                        NavigationHelper.installKore(context))
-                .setNegativeButton(R.string.cancel, (DialogInterface dialog, int which) -> {
-                });
-        builder.create().show();
     }
 
     private void setupActionBarOnError(final String url) {
