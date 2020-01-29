@@ -67,7 +67,7 @@
     <string name="finish">D\'acord</string>
     <string name="msg_name">Nom de fitxer</string>
     <string name="msg_error">Error</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="recaptcha">reCAPTCHA</string>
     <string name="settings_category_downloads_title">Baixades</string>
     <string name="action_settings">Paràmetres</string>
     <string name="action_about">Quant a</string>
@@ -307,7 +307,7 @@
     <string name="msg_running_detail">Feu un toc aquí per a més detalls</string>
     <string name="no_available_dir">Defineix una carpeta de baixades més endavant als paràmetres</string>
     <string name="msg_popup_permission">Es necessita aquest permís per a obrir el mode emergent</string>
-    <string name="reCaptcha_title">Camp reCAPTCHA</string>
+    <string name="title_activity_recaptcha">Camp reCAPTCHA</string>
     <string name="recaptcha_request_toast">S\'ha sol·licitat l\'emplenament d\'un camp reCAPTCHA</string>
     <string name="settings_file_replacement_character_summary">Se substituiran els caràcters no vàlids amb aquest valor</string>
     <string name="settings_file_replacement_character_title">Caràcter de substitució</string>

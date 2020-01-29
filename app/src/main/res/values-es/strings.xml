@@ -115,11 +115,11 @@
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
     <string name="short_billion">MM</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="recaptcha">reCAPTCHA</string>
     <string name="open_in_popup_mode">Abrir en modo emergente</string>
     <string name="msg_popup_permission">Se necesita este permiso
 \npara abrir en modo emergente</string>
-    <string name="reCaptcha_title">Reto reCAPTCHA</string>
+    <string name="title_activity_recaptcha">Reto reCAPTCHA</string>
     <string name="recaptcha_request_toast">Reto reCAPTCHA requerido</string>
     <string name="popup_mode_share_menu_title">Modo emergente de NewPipe</string>
     <string name="popup_playing_toast">Reproduciendo en modo emergente</string>

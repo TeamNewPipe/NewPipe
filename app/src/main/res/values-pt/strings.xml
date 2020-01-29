@@ -117,8 +117,8 @@
     <string name="short_billion">B</string>
     <string name="msg_popup_permission">Esta permissão é necessária 
 \npara o modo de janela</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">Desafio reCAPTCHA</string>
+    <string name="recaptcha">reCAPTCHA</string>
+    <string name="title_activity_recaptcha">Desafio reCAPTCHA</string>
     <string name="recaptcha_request_toast">Desafio reCAPTCHA solicitado</string>
     <string name="popup_mode_share_menu_title">Modo de janela autónoma do NewPipe</string>
     <string name="popup_playing_toast">Reproduzir no modo de janela autónoma</string>

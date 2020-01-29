@@ -110,9 +110,9 @@
     <string name="msg_running">NewPipe lädt herunter</string>
     <string name="msg_running_detail">Für Details antippen</string>
     <string name="msg_url_malform">Ungültige URL oder Internet nicht verfügbar</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="recaptcha">reCAPTCHA</string>
     <string name="black_theme_title">Schwarz</string>
-    <string name="reCaptcha_title">reCAPTCHA-Aufgabe</string>
+    <string name="title_activity_recaptcha">reCAPTCHA-Aufgabe</string>
     <string name="recaptcha_request_toast">reCAPTCHA-Aufgabe angefordert</string>
     <string name="later">Später</string>
     <string name="yes">Ja</string>
