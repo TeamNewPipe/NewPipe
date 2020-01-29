@@ -262,13 +262,6 @@ public class Mp4FromDashWriter {
 
         final int ftyp_size = make_ftyp();
 
-        // reserve moov space in the output stream
-        /*if (outStream.canSetLength()) {
-            long length = writeOffset + auxSize;
-            // warning: setLength() does not fill the unused space with zeros
-            outStream.setLength(length);
-            outSeek(length);
-        } else {*/
         if (auxSize > 0) {
             int length = auxSize;
             byte[] buffer = new byte[64 * 1024];// 64 KiB
@@ -335,6 +328,7 @@ public class Mp4FromDashWriter {
                     if (sample == null) {
                         if (tablesInfo[i].ctts > 0 && sampleExtra[i] >= 0) {
                             writeEntryArray(tablesInfo[i].ctts, 1, sampleCount[i], sampleExtra[i]);// flush last entries
+							outRestore();
                         }
                         sampleIndex[i] = -1;
                         break;
