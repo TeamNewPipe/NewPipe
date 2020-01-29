@@ -3,20 +3,20 @@
     <string name="main_bg_subtitle">گرته‌ له‌ گه‌ڕان بكه‌ بۆ ده‌ستپێكردن</string>
     <string name="view_count_text">%1$s بینراو</string>
     <string name="upload_date_text">بڵاوكراوه‌ته‌وه‌ له‌ %1$s</string>
-    <string name="no_player_found">هیچ كارپێكه‌رێكی ڤیدیۆیی نه‌دۆزرایه‌وه‌. ده‌ته‌وێت VLC داگریت؟</string>
-    <string name="no_player_found_toast">هیچ کارپێکەرێکی ڤیدیۆ نەدۆزرایەوە (دەتوانی کارپێکەری VLC دامەزرێنی) .</string>
+    <string name="no_player_found">هیچ كارپێكه‌رێكی ڤیدیۆیی نه‌دۆزرایه‌وه‌. ده‌ته‌وێت VLC دابمەزرێنیت؟</string>
+    <string name="no_player_found_toast">هیچ کارپێکەرێکی ڤیدیۆیی نەدۆزرایەوە (دەتوانی کارپێکەری VLC دامەزرێنی) .</string>
     <string name="install">دامەزراندن</string>
     <string name="cancel">پاشگه‌زبوونه‌وه‌</string>
     <string name="open_in_browser">كردنه‌وه‌ له‌ وێبگه‌ر</string>
     <string name="open_in_popup_mode">كردنه‌وه‌ له‌ په‌نجه‌ره‌ی بچووک</string>
     <string name="share">هاوبه‌شپێكردن</string>
     <string name="download">داگرتن</string>
-    <string name="controls_download_desc">داگرتنی فایلی پەخش</string>
+    <string name="controls_download_desc">داگرتنی پەڕگەی پەخش</string>
     <string name="search">گه‌ڕان</string>
     <string name="settings">ڕێكخستنه‌كان</string>
     <string name="did_you_mean">مەبەستت ئەمەیە:
 \n%1$s\?</string>
-    <string name="share_dialog_title">"هاوبه‌شپێكردن له‌گه‌ڵ "</string>
+    <string name="share_dialog_title">هاوبه‌شپێكردن له‌گه‌ڵ</string>
     <string name="choose_browser">هه‌ڵبژاردنی وێبگه‌ر</string>
     <string name="screen_rotation">لاربوونەوە</string>
     <string name="use_external_video_player_title">به‌كارهێنانی كارپێكه‌ری ڤیدیۆی ده‌ره‌كی</string>
@@ -31,7 +31,7 @@
     <string name="show_info">پیشاندانی زانیاری</string>
     <string name="tab_main">سه‌ره‌كی</string>
     <string name="tab_subscriptions">به‌شدارییه‌كان</string>
-    <string name="tab_bookmarks">لیستی کارپێکردنەکان نیشانەکران</string>
+    <string name="tab_bookmarks">خشتەی کارپێکردنەکان نیشانەکران</string>
     <string name="fragment_whats_new">چی نوێ هه‌یه‌</string>
     <string name="controls_background_title">لە پاشبنەما</string>
     <string name="controls_popup_title">په‌نجه‌ره‌ی بچووک</string>
@@ -517,7 +517,7 @@
     <string name="error_insufficient_storage">بیرگەی ناوەکیت پڕبووە</string>
     <string name="error_progress_lost">کردارەکە شکستی هێنا, چونکە ئەو فایلە سڕاوەتەوە</string>
     <string name="error_timeout">هێڵی ئینتەرنێت نەما</string>
-    <string name="confirm_prompt">ئایا دڵنیای؟</string>
+    <string name="confirm_prompt">ئایا دەتەوێ مێژووی داگرتنەکانت بسڕدرێنەوە یان هەموو فایلە داگیراوەکان بسڕدرێنەوە؟</string>
     <string name="enable_queue_limit">سنوری ڕیزبوونی داگرتنەکان</string>
     <string name="enable_queue_limit_desc">تەنها یەک داگرتن کاردەکات لەیەک کاتدا</string>
     <string name="start_downloads">دەستپێکردنەوەی داگرتنەکان</string>
@@ -538,4 +538,7 @@
     <string name="choose_instance_prompt">دۆخێک هەڵبژێرە</string>
     <string name="enable_lock_screen_video_thumbnail_title">چالاککردنی وێنۆچکەی ڤیدیۆی داخستنی ڕوونما</string>
     <string name="enable_lock_screen_video_thumbnail_summary">کاتێ کارپێکەری پاشبنەما کاردەکات ئەوا وێنۆچکەی ڤیدیۆکە لە ڕوونما داخراوەکەدا نیشاندەدرێت</string>
+    <string name="clear_download_history">سڕینەوەی مێژووی داگرتن</string>
+    <string name="delete_downloaded_files">سڕینەوەی فایلە داگیراوەکان</string>
+    <string name="deleted_downloads">%1$ لە داگرتنەکان سڕانەوە</string>
 </resources>

@@ -19,14 +19,14 @@
     <string name="share">Partager</string>
     <string name="share_dialog_title">Partager avec</string>
     <string name="show_play_with_kodi_summary">Affiche une option pour lire une vidéo via Kodi</string>
-    <string name="show_play_with_kodi_title">Afficher l’option « Lire avec Kodi »</string>
+    <string name="show_play_with_kodi_title">Afficher l’option « Lire avec Kodi »</string>
     <string name="upload_date_text">Publiée le %1$s</string>
     <string name="view_count_text">%1$s vues</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Format audio par défaut</string>
     <string name="download_dialog_title">Télécharger</string>
     <string name="next_video_title">Suivant</string>
-    <string name="show_next_and_similar_title">Afficher les vidéos « Suivantes » et « Similaires »</string>
+    <string name="show_next_and_similar_title">Afficher les vidéos « Suivantes » et « Similaires »</string>
     <string name="url_not_supported_toast">URL non pris en charge</string>
     <string name="settings_category_video_audio_title">Vidéo et audio</string>
     <string name="settings_category_other_title">Autre</string>
@@ -50,8 +50,8 @@
     <string name="download_path_audio_title">Dossier de téléchargement audio</string>
     <string name="download_path_audio_summary">Les fichiers audio téléchargés sont stockés ici</string>
     <string name="download_path_audio_dialog_title">Choisissez le dossier de téléchargement des fichiers audio</string>
-    <string name="err_dir_create">Impossible de créer le répertoire de téléchargement « %1$s »</string>
-    <string name="info_dir_created">Répertoire de téléchargement « %1$s » créé</string>
+    <string name="err_dir_create">Impossible de créer le répertoire de téléchargement « %1$s »</string>
+    <string name="info_dir_created">Répertoire de téléchargement « %1$s » créé</string>
     <string name="general_error">Erreur</string>
     <string name="parsing_error">Impossible d’analyser le site web</string>
     <string name="content_not_available">Contenu indisponible</string>
@@ -231,8 +231,8 @@
     <string name="play_queue_remove">Retirer</string>
     <string name="play_queue_stream_detail">Détails</string>
     <string name="play_queue_audio_settings">Paramètres audios</string>
-    <string name="show_hold_to_append_title">Afficher l’astuce « Maintenir pour ajouter »</string>
-    <string name="show_hold_to_append_summary">Affiche l’astuce lors de l’appui du bouton « Arrière-plan » ou « Mode flottant » sur la page de détails d’une vidéo</string>
+    <string name="show_hold_to_append_title">Afficher l’astuce « Maintenir pour ajouter »</string>
+    <string name="show_hold_to_append_summary">Affiche l’astuce lors de l’appui du bouton « Arrière-plan » ou « Mode flottant » sur la page de détails d’une vidéo</string>
     <string name="unknown_content">[Inconnu]</string>
     <string name="player_recoverable_failure">Récupération depuis l’erreur du lecteur</string>
     <string name="kiosk_page_summary">Kiosque</string>
@@ -348,11 +348,11 @@
 \n1. Suivez ce lien : %1$s.
 \n2. Connectez-vous à votre compte.
 \n3. Un téléchargement va démarrer (celui du fichier d’exportation).</string>
-    <string name="import_soundcloud_instructions">Veuillez importer un profil SoundCloud en saisissant l’URL de votre profil ou votre identifiant.
-\n
-\n1. Activez le « mode bureau » dans votre navigateur web (le site n’est pas disponible pour les appareils mobiles).
-\n2. Suivez cette URL : %1$s.
-\n3. Connectez-vous à votre compte.
+    <string name="import_soundcloud_instructions">Veuillez importer un profil SoundCloud en saisissant l’URL de votre profil ou votre identifiant. 
+\n 
+\n1. Activez le « mode bureau » dans votre navigateur web (le site n’est pas disponible pour les appareils mobiles). 
+\n2. Suivez cette URL : %1$s. 
+\n3. Connectez-vous à votre compte. 
 \n4. Copiez l’URL du profil vers lequel vous venez d’être redirigé.</string>
     <string name="import_soundcloud_instructions_hint">votre identifiant, soundcloud.com/votreidentifiant</string>
     <string name="import_network_expensive_warning">Cette opération peut charger énormément la connexion réseau.
@@ -484,7 +484,7 @@
     <string name="error_postprocessing_stopped">NewPipe a été fermé alors qu’il travaillait sur le fichier</string>
     <string name="error_insufficient_storage">Aucun espace disponible sur le périphérique</string>
     <string name="error_progress_lost">Progression perdue, car le fichier a été effacé</string>
-    <string name="confirm_prompt">Êtes-vous sûr \?</string>
+    <string name="confirm_prompt">Voulez-vous effacer l\'historique de téléchargement ou supprimer tous les fichiers téléchargés \?</string>
     <string name="enable_queue_limit">Limiter la file d’attente de téléchargement</string>
     <string name="enable_queue_limit_desc">Un téléchargement s’exécutera en même temps</string>
     <string name="start_downloads">Démarrer les téléchargements</string>
@@ -508,8 +508,8 @@
     <string name="default_kiosk_page_summary">Kiosque par défaut</string>
     <string name="no_one_watching">Personne ne regarde</string>
     <plurals name="watching">
-        <item quantity="one">%s regarde</item>
-        <item quantity="other">%s regardent</item>
+        <item quantity="one">%s spectateur</item>
+        <item quantity="other">%s spectateurs</item>
     </plurals>
     <string name="no_one_listening">Personne n\'écoute</string>
     <plurals name="listening">
@@ -535,4 +535,7 @@
     <string name="playlist_no_uploader">Généré automatiquement (pas de téléverseur trouvé)</string>
     <string name="enable_lock_screen_video_thumbnail_title">Activer la vidéo miniaturisée sur l\'écran de verrouillage</string>
     <string name="enable_lock_screen_video_thumbnail_summary">En utilisant le lecteur audio, la miniature de la vidéo sera affichée sur l\'écran de verrouillage</string>
+    <string name="clear_download_history">Effacer l\'historique de téléchargement</string>
+    <string name="delete_downloaded_files">Supprimer les fichiers téléchargés</string>
+    <string name="deleted_downloads">%1$s téléchargements supprimés</string>
 </resources>
