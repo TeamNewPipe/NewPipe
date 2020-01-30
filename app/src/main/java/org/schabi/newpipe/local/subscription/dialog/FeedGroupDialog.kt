@@ -29,7 +29,6 @@ import org.schabi.newpipe.database.subscription.SubscriptionEntity
 import org.schabi.newpipe.local.subscription.FeedGroupIcon
 import org.schabi.newpipe.local.subscription.dialog.FeedGroupDialogViewModel.FeedDialogEvent
 import org.schabi.newpipe.local.subscription.item.EmptyPlaceholderItem
-import org.schabi.newpipe.local.subscription.item.HeaderTextSideItem
 import org.schabi.newpipe.local.subscription.item.PickerIconItem
 import org.schabi.newpipe.local.subscription.item.PickerSubscriptionItem
 import org.schabi.newpipe.util.AnimationUtils.animateView
@@ -82,7 +81,7 @@ class FeedGroupDialog : DialogFragment() {
         super.onSaveInstanceState(outState)
 
         iconsListState = icon_selector.layoutManager?.onSaveInstanceState()
-        subscriptionsListState = subscriptions_selector.layoutManager?.onSaveInstanceState()
+        subscriptionsListState = subscriptions_selector_list.layoutManager?.onSaveInstanceState()
 
         Icepick.saveInstanceState(this, outState)
     }
@@ -185,9 +184,7 @@ class FeedGroupDialog : DialogFragment() {
 
         val selectedCountText = getString(R.string.feed_group_dialog_selection_count, this.selectedSubscriptions.size)
         selected_subscription_count_view.text = selectedCountText
-
-        val headerInfoItem = HeaderTextSideItem(getString(R.string.tab_subscriptions), selectedCountText)
-        groupAdapter.add(headerInfoItem)
+        subscriptions_selector_header_info.text = selectedCountText
 
         Section().apply {
             addAll(subscriptions.map {
@@ -199,16 +196,11 @@ class FeedGroupDialog : DialogFragment() {
             groupAdapter.add(this)
         }
 
-        subscriptions_selector.apply {
-            if (useGridLayout) {
-                layoutManager = GridLayoutManager(requireContext(), groupAdapter.spanCount, RecyclerView.VERTICAL, false).apply {
-                    spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-                        override fun getSpanSize(position: Int) =
-                                if (position == 0) 4 else 1
-                    }
-                }
+        subscriptions_selector_list.apply {
+            layoutManager = if (useGridLayout) {
+                GridLayoutManager(requireContext(), groupAdapter.spanCount, RecyclerView.VERTICAL, false)
             } else {
-                layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+                LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
             }
 
             adapter = groupAdapter
@@ -237,14 +229,13 @@ class FeedGroupDialog : DialogFragment() {
 
                     val updateSelectedCountText = getString(R.string.feed_group_dialog_selection_count, this.selectedSubscriptions.size)
                     selected_subscription_count_view.text = updateSelectedCountText
-                    headerInfoItem.infoText = updateSelectedCountText
-                    headerInfoItem.notifyChanged(HeaderTextSideItem.UPDATE_INFO)
+                    subscriptions_selector_header_info.text = updateSelectedCountText
                 }
             }
         }
 
         select_channel_button.setOnClickListener {
-            subscriptions_selector.scrollToPosition(0)
+            subscriptions_selector_list.scrollToPosition(0)
             showSubscriptionsPicker()
         }
     }

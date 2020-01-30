@@ -606,7 +606,7 @@
     <string name="feed_notification_loading">Loading feed…</string>
     <string name="feed_processing_message">Processing feed…</string>
     <string name="feed_group_dialog_select_subscriptions">Select subscriptions</string>
-    <string name="feed_group_dialog_selection_count">%d selected</string>
+    <string name="feed_group_dialog_selection_count">Selected: %d</string>
     <string name="feed_group_dialog_empty_selection">No subscription selected</string>
     <string name="feed_group_dialog_empty_name">Empty group name</string>
     <string name="feed_group_dialog_name_input">Name</string>
