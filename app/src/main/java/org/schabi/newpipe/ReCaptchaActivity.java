@@ -51,18 +51,17 @@ public class ReCaptchaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recaptcha);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         String url = getIntent().getStringExtra(RECAPTCHA_URL_EXTRA);
         if (url == null || url.isEmpty()) {
             url = YT_URL;
         }
 
-
         // Set return to Cancel by default
         setResult(RESULT_CANCELED);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         WebView myWebView = findViewById(R.id.reCaptchaWebView);
 
@@ -81,7 +80,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
         // Cleaning cache, history and cookies from webView
         myWebView.clearCache(true);
         myWebView.clearHistory();
-        android.webkit.CookieManager cookieManager = CookieManager .getInstance();
+        android.webkit.CookieManager cookieManager = CookieManager.getInstance();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             cookieManager.removeAllCookies(aBoolean -> {});
         } else {
