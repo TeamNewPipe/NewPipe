@@ -484,7 +484,7 @@
     <string name="watch_history_states_deleted">Wiedergabeposition gelöscht.</string>
     <string name="missing_file">Datei verschoben oder gelöscht</string>
     <string name="overwrite_finished_warning">Eine heruntergeladene Datei mit diesem Namen existiert bereits</string>
-    <string name="overwrite_failed">kann die Datei nicht überschreiben</string>
+    <string name="overwrite_failed">Datei kann nicht überschreiben werden</string>
     <string name="download_already_pending">Es gibt einen ausstehenden Download mit diesem Namen</string>
     <string name="error_postprocessing_stopped">NewPipe wurde während der Verarbeitung der Datei geschlossen</string>
     <string name="error_insufficient_storage">Kein Speicherplatz mehr auf dem Gerät</string>
@@ -506,7 +506,7 @@
     <string name="delete_playback_states_alert">Alle Wiedergabepositionen löschen\?</string>
     <string name="download_choose_new_path">Ändere die Downloadordner, damit sie wirksam werden</string>
     <string name="drawer_header_description">Dienst umschalten, aktuell ausgewählt:</string>
-    <string name="default_kiosk_page_summary">Quiosque Predefinido</string>
+    <string name="default_kiosk_page_summary">Standard-Kiosk</string>
     <string name="no_one_watching">Niemand schaut zu</string>
     <plurals name="watching">
         <item quantity="one">%s Zuschauer</item>
