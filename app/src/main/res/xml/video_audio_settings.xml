@@ -160,7 +160,7 @@
           android:entries="@array/seek_duration_description"
           android:entryValues="@array/seek_duration_value"
           android:key="@string/seek_duration_key"
-          android:summary="%s"
+          android:summary="@string/seek_duration_summary"
           android:title="@string/seek_duration_title"/>
     </PreferenceCategory>
 </PreferenceScreen>
