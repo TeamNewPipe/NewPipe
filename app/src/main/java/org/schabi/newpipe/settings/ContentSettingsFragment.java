@@ -7,11 +7,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.Preference;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.nononsenseapps.filepicker.Utils;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -39,6 +40,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
+
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public class ContentSettingsFragment extends BasePreferenceFragment {
 
@@ -139,6 +142,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @NonNull Intent data) {
+        assureCorrectAppLanguage(getContext());
         super.onActivityResult(requestCode, resultCode, data);
         if (DEBUG) {
             Log.d(TAG, "onActivityResult() called with: requestCode = [" + requestCode + "], resultCode = [" + resultCode + "], data = [" + data + "]");
@@ -153,7 +157,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             } else {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setMessage(R.string.override_current_data)
-                        .setPositiveButton(android.R.string.ok,
+                        .setPositiveButton(getString(R.string.finish),
                                 (DialogInterface d, int id) -> importDatabase(path))
                         .setNegativeButton(android.R.string.cancel,
                                 (DialogInterface d, int id) -> d.cancel());
@@ -248,7 +252,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                     // restart app to properly load db
                     System.exit(0);
                 });
-                alert.setPositiveButton(android.R.string.yes, (dialog, which) -> {
+                alert.setPositiveButton(getString(R.string.finish), (dialog, which) -> {
                     dialog.dismiss();
                     loadSharedPreferences(newpipe_settings);
                     // restart app to properly load db
