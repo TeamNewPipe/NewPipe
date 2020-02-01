@@ -463,4 +463,8 @@
     <string name="enable_playback_resume_summary">Återställ den senaste uppspelningspositionen</string>
     <string name="enable_playback_state_lists_title">Positioner i listor</string>
     <string name="download_choose_new_path">Ändra nedladdningsmapp för att träda i kraft</string>
+    <string name="autoplay_title">Spela automatiskt</string>
+    <string name="settings_category_clear_data_title">Töm data</string>
+    <string name="seek_duration_title">Snabb spola -framåt/-bakåt</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Aktivera video på låsskärmen</string>
 </resources>
