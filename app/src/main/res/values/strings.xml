@@ -590,6 +590,6 @@
     <string name="choose_instance_prompt">Choose an instance</string>
     <string name="app_language_title">App language</string>
     <string name="systems_language">System default</string>
-    <string name="videos_fixed">Videos</string>
+    <string name="videos_string">Videos</string>
     <string name="seek_duration_summary">%s seconds</string>
 </resources>

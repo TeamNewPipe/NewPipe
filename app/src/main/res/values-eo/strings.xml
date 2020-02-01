@@ -537,4 +537,6 @@
     <string name="clear_download_history">Forviŝi la historion de elŝutoj</string>
     <string name="delete_downloaded_files">Forviŝi elŝutitajn dosierojn</string>
     <string name="deleted_downloads">%1$s elŝutoj forviŝitaj</string>
+    <string name="videos_string">Filmetoj</string>
+    <string name="seek_duration_summary">%s sekundoj</string>
 </resources>
