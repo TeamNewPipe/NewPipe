@@ -47,6 +47,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
     public static final String TAG = ReCaptchaActivity.class.toString();
     public static final String YT_URL = "https://www.youtube.com";
 
+    private WebView webView;
     private String foundCookies = "";
 
     @Override
@@ -66,23 +67,23 @@ public class ReCaptchaActivity extends AppCompatActivity {
         setResult(RESULT_CANCELED);
 
 
-        WebView myWebView = findViewById(R.id.reCaptchaWebView);
+        webView = findViewById(R.id.reCaptchaWebView);
 
         // Enable Javascript
-        WebSettings webSettings = myWebView.getSettings();
+        WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
 
-        myWebView.setWebViewClient(new WebViewClient() {
+        webView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                handleCookies(CookieManager.getInstance().getCookie(url));
+                handleCookies(url);
             }
         });
 
         // Cleaning cache, history and cookies from webView
-        myWebView.clearCache(true);
-        myWebView.clearHistory();
+        webView.clearCache(true);
+        webView.clearHistory();
         android.webkit.CookieManager cookieManager = CookieManager.getInstance();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             cookieManager.removeAllCookies(aBoolean -> {});
@@ -90,7 +91,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
             cookieManager.removeAllCookie();
         }
 
-        myWebView.loadUrl(url);
+        webView.loadUrl(url);
     }
 
     @Override
@@ -125,6 +126,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
     }
 
     private void saveCookiesAndFinish() {
+        handleCookies(webView.getUrl()); // try to get cookies of unclosed page
         if (!foundCookies.isEmpty()) {
             // Give cookies to Downloader class
             DownloaderImpl.getInstance().setCookies(foundCookies);
@@ -138,8 +140,10 @@ public class ReCaptchaActivity extends AppCompatActivity {
 
 
 
-    private void handleCookies(@Nullable String cookies) {
-        if (MainActivity.DEBUG) Log.d(TAG, "handleCookies: cookies=" + (cookies == null ? "null" : cookies));
+    private void handleCookies(String url) {
+        String cookies = CookieManager.getInstance().getCookie(url);
+        if (MainActivity.DEBUG) Log.d(TAG, "handleCookies: url=" + url + "; cookies=" + (cookies == null ? "null" : cookies));
+        Log.e(TAG, "handleCookies: url=" + url + "; cookies=" + (cookies == null ? "null" : cookies));
         if (cookies == null) return;
 
         addYoutubeCookies(cookies);
