@@ -212,7 +212,7 @@
     <string name="feed_page_summary">フィードページ</string>
     <string name="channel_page_summary">チャンネルページ</string>
     <string name="select_a_channel">チャンネルを選択</string>
-    <string name="no_channel_subscribed_yet">購読しているチャンネルはありません</string>
+    <string name="no_channel_subscribed_yet">登録しているチャンネルはありません</string>
     <string name="select_a_kiosk">Kioskを選択</string>
     <string name="kiosk">Kiosk</string>
     <string name="trending">人気</string>
@@ -232,8 +232,8 @@
     <string name="just_once">一度だけ</string>
     <string name="import_data_title">データベースをインポート</string>
     <string name="export_data_title">データベースをエクスポート</string>
-    <string name="import_data_summary">既存の履歴と購読リストは上書きされます</string>
-    <string name="export_data_summary">履歴や購読リスト、プレイリストをエクスポートします</string>
+    <string name="import_data_summary">既存の履歴と登録リストは上書きされます</string>
+    <string name="export_data_summary">履歴や登録リスト、プレイリストをエクスポートします</string>
     <string name="player_recoverable_failure">再生エラーからの回復中</string>
     <string name="external_player_unsupported_link_type">外部プレイヤーは、これらのタイプのリンクをサポートしていません</string>
     <string name="invalid_url_toast">無効なURL</string>
@@ -254,7 +254,7 @@
     <string name="preferred_player_fetcher_notification_message">コンテンツを読み込んでいます</string>
     <string name="controls_download_desc">動画ファイルをダウンロード</string>
     <string name="show_info">情報を表示</string>
-    <string name="tab_bookmarks">ブックマーク</string>
+    <string name="tab_bookmarks">プレイリスト</string>
     <string name="download_thumbnail_title">サムネイルを読み込む</string>
     <string name="thumbnail_cache_wipe_complete_notice">画像キャッシュを消去しました</string>
     <string name="metadata_cache_wipe_title">キャッシュを消去</string>
@@ -301,8 +301,8 @@
     <string name="export_ongoing">エクスポートしています…</string>
     <string name="import_file_title">ファイルからインポート</string>
     <string name="previous_export">前回のエクスポート先</string>
-    <string name="subscriptions_import_unsuccessful">購読リストがインポートできませんでした</string>
-    <string name="subscriptions_export_unsuccessful">購読リストがエクスポートできませんでした</string>
+    <string name="subscriptions_import_unsuccessful">登録リストがインポートできませんでした</string>
+    <string name="subscriptions_export_unsuccessful">登録リストがエクスポートできませんでした</string>
     <string name="playback_tempo">速度</string>
     <string name="playback_pitch">音程</string>
     <string name="playback_default">デフォルト</string>
@@ -330,7 +330,7 @@
     <string name="delete_search_history_alert">すべての検索履歴を削除しますか？</string>
     <string name="invalid_source">このファイル/コンテンツはありません</string>
     <plurals name="subscribers">
-        <item quantity="other">登録者数 %s 人</item>
+        <item quantity="other">%s を登録しています</item>
     </plurals>
     <string name="no_views">視聴なし</string>
     <plurals name="views">
@@ -339,7 +339,7 @@
     <string name="one_item_deleted">1 つのアイテムが削除されました。</string>
     <string name="give_back">支援する</string>
     <string name="privacy_policy_encouragement">NewPipe プロジェクトはあなたのプライバシーを非常に大切にしています。あなたの同意がない限り、アプリはいかなるデータも収集しません。NewPipe のプライバシー・ポリシーでは、クラッシュリポート送信時にどのような種類のデータが送信・記録されるかを詳細に説明しています。</string>
-    <string name="app_license">NewPipe は著作権が自由のソフトウェアです。あなたは自由にそれを使用し、研究し、そして改善することができます。あなたは、GNU フリーソフトウェア財団が公開する GNU General Public ライセンス バージョン3以降の下に、自由に再配布・修正を行うことができます。</string>
+    <string name="app_license">NewPipe はコピーレフトなソフトウェアです。あなたは自由にそれを使用し、研究し、そして改善することができます。あなたは、GNU フリーソフトウェア財団が公開する GNU General Public ライセンス バージョン3以降の下に、自由に再配布・修正を行うことができます。</string>
     <string name="title_last_played">最終再生日時</string>
     <string name="title_most_played">最も再生した動画</string>
     <string name="resize_zoom">ズーム</string>
@@ -360,10 +360,10 @@
     <string name="caption_auto_generated">自動生成</string>
     <string name="caption_setting_description">プレーヤーのキャプションテキストの縮尺と背景スタイルを変更します。有効にするには、アプリの再起動が必要です。</string>
     <string name="empty_subscription_feed_subtitle">何もありません</string>
-    <string name="import_youtube_instructions">保存したエクスポートファイルからYouTubeの購読をインポート:
-\n
-\n1. このURLを開きます: %1$s
-\n2. ログインしていなければログインします
+    <string name="import_youtube_instructions">保存したエクスポートファイルからYouTubeの登録をインポート: 
+\n 
+\n1. このURLを開きます: %1$s 
+\n2. ログインしていなければログインします 
 \n3. ダウンロードが始まります (これがエクスポートファイルです)</string>
     <string name="playback_reset">リセット</string>
     <string name="accept">同意する</string>
@@ -393,7 +393,7 @@
     <string name="unhook_checkbox">速度と音程を連動せずに変更 (歪むかもしれません)</string>
     <string name="skip_silence_checkbox">無音の間に早送り</string>
     <string name="playback_step">音程幅</string>
-    <string name="unsubscribe">購読解除</string>
+    <string name="unsubscribe">登録解除</string>
     <string name="tab_new">新しいタブ</string>
     <string name="tab_choose">タブを選択</string>
     <string name="settings_category_updates_title">アプリの更新</string>
@@ -402,7 +402,7 @@
     <string name="download_to_sdcard_error_title">外部記憶装置は利用できません</string>
     <string name="restore_defaults">既定値に戻す</string>
     <string name="restore_defaults_confirmation">既定の設定を復元しますか\?</string>
-    <string name="subscribers_count_not_available">登録者数は表示できません</string>
+    <string name="subscribers_count_not_available">登録者数は利用できません</string>
     <string name="selection">選択</string>
     <string name="conferences">会議</string>
     <string name="start_accept_privacy_policy">ヨーロッパの一般データ保護規制（GDPR）に準拠するために、NewPipeの個人情報保護方針にご注意ください。よく読んでください。
@@ -415,7 +415,7 @@
     <string name="switch_view">スイッチビュー</string>
     <string name="app_update_notification_content_title">NewPipeのアップデートがあります！</string>
     <string name="app_update_notification_content_text">タップでダウンロード</string>
-    <string name="missions_header_finished">終了しました</string>
+    <string name="missions_header_finished">完了</string>
     <string name="missions_header_pending">保留中</string>
     <string name="paused">一時停止</string>
     <string name="queued">順番待ちに追加しました</string>
@@ -480,7 +480,7 @@
     <string name="error_postprocessing_stopped">ファイルの作業中に NewPipe が閉じられました</string>
     <string name="error_insufficient_storage">デバイスに空き容量がありません</string>
     <string name="error_progress_lost">ファイルが削除されたため、進行状況が失われました</string>
-    <string name="confirm_prompt">よろしいですか\?</string>
+    <string name="confirm_prompt">ダウンロード履歴、またはダウンロードしたファイルを消去しますか\?</string>
     <string name="enable_queue_limit">ダウンロード キューの制限</string>
     <string name="enable_queue_limit_desc">同時に１つのダウンロードが実行されます</string>
     <string name="start_downloads">ダウンロードの開始</string>
@@ -503,11 +503,31 @@
     <string name="default_kiosk_page_summary">デフォルトのキオスク</string>
     <string name="no_one_watching">誰も見ていません</string>
     <plurals name="watching">
-        <item quantity="other">%s 見ています</item>
+        <item quantity="other">%s 視聴中</item>
     </plurals>
     <string name="no_one_listening">誰も聞いていません</string>
     <plurals name="listening">
         <item quantity="other">%s リスナー</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">アプリを再起動すると、言語が変更されます。</string>
+    <string name="seek_duration_title">高速早送り/巻き戻し時間</string>
+    <string name="peertube_instance_url_title">PeerTube インスタンス</string>
+    <string name="peertube_instance_url_summary">PeerTube インスタンスを選択する</string>
+    <string name="peertube_instance_url_help">あなたに最適なインスタンスを探せます: %s</string>
+    <string name="peertube_instance_add_title">インスタンスを追加</string>
+    <string name="peertube_instance_add_help">インスタンスの URL を入力</string>
+    <string name="peertube_instance_add_fail">インスタンスを検証することができませんでした</string>
+    <string name="peertube_instance_add_https_only">HTTPS な URL のみがサポートされています</string>
+    <string name="peertube_instance_add_exists">インスタンスはすでに存在しています</string>
+    <string name="local">ローカル</string>
+    <string name="recently_added">最近追加された</string>
+    <string name="most_liked">高評価</string>
+    <string name="recovering">修復中</string>
+    <string name="error_download_resource_gone">ダウンロードが修復できません</string>
+    <string name="choose_instance_prompt">インスタンスを選択</string>
+    <string name="enable_lock_screen_video_thumbnail_title">ロック画面の動画サムネイルを有効にする</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">バックグラウンドプレイヤーを使用中、ロック画面に動画のサムネイルが表示されるようになります</string>
+    <string name="clear_download_history">ダウンロード履歴を消去</string>
+    <string name="delete_downloaded_files">ダウンロードしたファイルを消去</string>
+    <string name="deleted_downloads">%1$s 個削除しました</string>
 </resources>

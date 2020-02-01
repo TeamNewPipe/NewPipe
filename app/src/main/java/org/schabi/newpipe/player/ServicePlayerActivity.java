@@ -46,6 +46,7 @@ import java.util.List;
 
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatPitch;
 import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public abstract class ServicePlayerActivity extends AppCompatActivity
         implements PlayerEventListener, SeekBar.OnSeekBarChangeListener,
@@ -116,6 +117,7 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
         ThemeHelper.setTheme(this);
         setContentView(R.layout.activity_player_queue_control);

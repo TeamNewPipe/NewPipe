@@ -425,7 +425,7 @@
     <string name="grid">Mostrar como grilla</string>
     <string name="list">Mostrar como lista</string>
     <string name="clear_finished_download">Limpiar descargas finalizadas</string>
-    <string name="confirm_prompt">¿Lo confirma\?</string>
+    <string name="confirm_prompt">¿Quiere limpiar su historial de descargas o eliminar todos los ficheros descargados\?</string>
     <string name="stop">Detener</string>
     <string name="max_retry_msg">Intentos máximos</string>
     <string name="max_retry_desc">Cantidad máxima de intentos antes de cancelar la descarga</string>
@@ -534,4 +534,7 @@
     <string name="choose_instance_prompt">Elige una instancia</string>
     <string name="enable_lock_screen_video_thumbnail_title">Habilitar miniatura de video de la pantalla de bloqueo</string>
     <string name="enable_lock_screen_video_thumbnail_summary">Al usar el reproductor de fondo, se mostrará una miniatura de video en la pantalla de bloqueo</string>
+    <string name="clear_download_history">Limpiar historial de descargas</string>
+    <string name="delete_downloaded_files">Eliminar archivos descargados</string>
+    <string name="deleted_downloads">Eliminadas %1$s descargas</string>
 </resources>
