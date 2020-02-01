@@ -143,7 +143,6 @@ public class ReCaptchaActivity extends AppCompatActivity {
     private void handleCookies(String url) {
         String cookies = CookieManager.getInstance().getCookie(url);
         if (MainActivity.DEBUG) Log.d(TAG, "handleCookies: url=" + url + "; cookies=" + (cookies == null ? "null" : cookies));
-        Log.e(TAG, "handleCookies: url=" + url + "; cookies=" + (cookies == null ? "null" : cookies));
         if (cookies == null) return;
 
         addYoutubeCookies(cookies);
