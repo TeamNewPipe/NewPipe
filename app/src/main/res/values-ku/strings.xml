@@ -541,4 +541,7 @@
     <string name="clear_download_history">سڕینەوەی مێژووی داگرتن</string>
     <string name="delete_downloaded_files">سڕینەوەی فایلە داگیراوەکان</string>
     <string name="deleted_downloads">%1$ لە داگرتنەکان سڕانەوە</string>
+    <string name="permission_display_over_apps">دەسەڵاتی پێبدە بۆ پیشاندان لەسەرووی ئەپەکانیترەوە</string>
+    <string name="app_language_title">زمانی ئەپ</string>
+    <string name="systems_language">بنەڕەتی سیستەم</string>
 </resources>
