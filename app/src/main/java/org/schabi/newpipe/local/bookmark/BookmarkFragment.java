@@ -291,8 +291,10 @@ public final class BookmarkFragment
             return;
         }
 
-        Log.d(TAG, "Updating playlist id=[" + id +
-            "] with new name=[" + name + "] items");
+        if (DEBUG) {
+            Log.d(TAG, "Updating playlist id=[" + id +
+                "] with new name=[" + name + "] items");
+        }
 
         localPlaylistManager.renamePlaylist(id, name);
         final Disposable disposable = localPlaylistManager.renamePlaylist(id, name)
