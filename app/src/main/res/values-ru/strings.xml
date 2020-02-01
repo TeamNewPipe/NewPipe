@@ -313,7 +313,7 @@
     <string name="override_current_data">Текущие данные будут заменены</string>
     <string name="drawer_header_action_paceholder_text">Скоро здесь кое-что появится ;D</string>
     <string name="always_ask_open_action">Всегда спрашивать</string>
-    <string name="create_playlist">Создать плейлист</string>
+    <string name="create_playlist">Новый плейлист</string>
     <string name="delete_playlist">Удалить</string>
     <string name="rename_playlist">Переименовать</string>
     <string name="playlist_name_input">Имя</string>
@@ -330,7 +330,7 @@
     <string name="resize_fit">Подогнать</string>
     <string name="resize_fill">Заполнить</string>
     <string name="resize_zoom">Приблизить</string>
-    <string name="caption_auto_generated">Созданы автоматически</string>
+    <string name="caption_auto_generated">Создано автоматически</string>
     <string name="enable_leak_canary_title">Включить LeakCanary</string>
     <string name="enable_leak_canary_summary">Мониторинг утечки памяти может привести к зависанию приложения</string>
     <string name="enable_disposed_exceptions_title">Сообщать об ошибках жизненного цикла</string>
@@ -534,7 +534,7 @@
     <string name="local">Локальное</string>
     <string name="recently_added">Новое</string>
     <string name="most_liked">Популярное</string>
-    <string name="playlist_no_uploader">Создан автоматически (автор не найден)</string>
+    <string name="playlist_no_uploader">Создано автоматически (автор не найден)</string>
     <string name="recovering">восстановление</string>
     <string name="error_download_resource_gone">Не удалось восстановить загрузку</string>
     <string name="choose_instance_prompt">Выберите сервер</string>
