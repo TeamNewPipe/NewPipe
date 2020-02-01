@@ -17,6 +17,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import org.schabi.newpipe.util.ThemeHelper;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
@@ -49,6 +51,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ThemeHelper.setTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recaptcha);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -92,17 +95,16 @@ public class ReCaptchaActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        boolean ret = super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.menu_recaptcha, menu);
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_done_white_24dp));
+            actionBar.setDisplayHomeAsUpEnabled(false);
             actionBar.setTitle(R.string.title_activity_recaptcha);
             actionBar.setSubtitle(R.string.subtitle_activity_recaptcha);
         }
 
-        return ret;
+        return true;
     }
 
     @Override
@@ -114,7 +116,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id) {
-            case android.R.id.home:
+            case R.id.menu_item_done:
                 saveCookiesAndFinish();
                 return true;
             default:
