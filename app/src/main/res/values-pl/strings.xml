@@ -544,4 +544,7 @@
     <string name="clear_download_history">Wyczyść historię pobierania</string>
     <string name="delete_downloaded_files">Usuń pobrane pliki</string>
     <string name="deleted_downloads">Usunięte %1$s pobrania</string>
+    <string name="permission_display_over_apps">Zezwól na wyświetlanie w innych aplikacjach</string>
+    <string name="app_language_title">Język aplikacji</string>
+    <string name="systems_language">Domyślny systemu</string>
 </resources>
