@@ -68,7 +68,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
         initialSelectedLocalization = org.schabi.newpipe.util.Localization.getPreferredLocalization(requireContext());
         initialSelectedContentCountry = org.schabi.newpipe.util.Localization.getPreferredContentCountry(requireContext());
-        initialLanguage = androidx.preference.PreferenceManager.getDefaultSharedPreferences(getContext()).getString("newpipes_language_key", "en");
+        initialLanguage = PreferenceManager.getDefaultSharedPreferences(getContext()).getString("app_language_key", "en");
     }
 
     @Override
@@ -130,7 +130,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
                 .getPreferredLocalization(requireContext());
         final ContentCountry selectedContentCountry = org.schabi.newpipe.util.Localization
                 .getPreferredContentCountry(requireContext());
-        final String selectedLanguage = androidx.preference.PreferenceManager.getDefaultSharedPreferences(getContext()).getString("newpipes_language_key", "en");
+        final String selectedLanguage = PreferenceManager.getDefaultSharedPreferences(getContext()).getString("app_language_key", "en");
 
         if (!selectedLocalization.equals(initialSelectedLocalization)
                 || !selectedContentCountry.equals(initialSelectedContentCountry) || !selectedLanguage.equals(initialLanguage)) {
