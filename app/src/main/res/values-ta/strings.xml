@@ -36,10 +36,10 @@
     <string name="controls_add_to_playlist_title">சேர்</string>
     <string name="download_path_title">காணிலி தரவிறக்கப் பாதை</string>
     <string name="download_path_summary">தரவிறக்கப்பட்ட காணொலிகளின் சேமிப்புப் பாதை</string>
-    <string name="download_path_dialog_title">காணொலியின் தரவிறக்கப் பாதையை உள்ளிடு</string>
+    <string name="download_path_dialog_title">காணொலியின் தரவிறக்கப் பாதையை தேர்வு செய்க</string>
     <string name="download_path_audio_title">ஒலி பதிவிறக்க அடைவு</string>
     <string name="download_path_audio_summary">தரவிறக்கப்பட்ட ஒலி இங்கே சேமிக்கப்பட்டுள்ளது</string>
-    <string name="download_path_audio_dialog_title">ஒலி கோப்புகளுக்கான தரவிறக்கப் பாதையை உள்ளிடு</string>
+    <string name="download_path_audio_dialog_title">ஒலி கோப்புகளுக்கான தரவிறக்கப் பாதையை தேர்வு செய்க</string>
     <string name="autoplay_by_calling_app_title">தானே இயக்கு</string>
     <string name="autoplay_by_calling_app_summary">NewPipe மற்றொரு செயலியில் இருந்து அழைக்கப்படும் போது காணொலியை இயக்கும்</string>
     <string name="default_resolution_title">முதல் பிரிதிறன்</string>
@@ -180,7 +180,7 @@
     </plurals>
     <plurals name="videos">
         <item quantity="one">காணொளிகள்</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="switch_to_main">முதற்பக்கத்துக்கு மாற்று</string>
     <string name="invalid_url_toast">சரியில்லாத URL</string>
@@ -208,7 +208,7 @@
     <string name="autoplay_title">தானாக ஓட்டு</string>
     <plurals name="comments">
         <item quantity="one">கருத்துக்கள்</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="enable_playback_resume_title">திரையிடலை தொடங்கு</string>
     <string name="enable_playback_state_lists_title">பட்டியலில் இடங்கள்</string>
@@ -220,4 +220,7 @@
         <item quantity="one">%s பார்க்கிறார்</item>
         <item quantity="other">%s பார்க்கிறார்கள்</item>
     </plurals>
+    <string name="seek_duration_title">வேகமாக முன்னோக்கி / திரும்பத் தேடும் காலம்</string>
+    <string name="enable_lock_screen_video_thumbnail_title">பூட்டு திரை வீடியோ சிறுபடத்தை இயக்கவும்</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">பின்னணி பிளேயரைப் பயன்படுத்தும் போது பூட்டுத் திரையில் வீடியோ சிறுபடம் காண்பிக்கப்படும்</string>
 </resources>

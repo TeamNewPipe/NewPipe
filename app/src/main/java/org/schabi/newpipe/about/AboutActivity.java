@@ -22,8 +22,9 @@ import android.widget.TextView;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
+
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public class AboutActivity extends AppCompatActivity {
 
@@ -62,8 +63,10 @@ public class AboutActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
         ThemeHelper.setTheme(this);
+        this.setTitle(getString(R.string.title_activity_about));
 
         setContentView(R.layout.activity_about);
 

@@ -80,6 +80,7 @@ import static org.schabi.newpipe.player.BasePlayer.STATE_PLAYING;
 import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_DURATION;
 import static org.schabi.newpipe.player.VideoPlayer.DEFAULT_CONTROLS_HIDE_TIME;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 /**
  * Service Popup Player implementing VideoPlayer
@@ -142,6 +143,7 @@ public final class PopupVideoPlayer extends Service {
 
     @Override
     public void onCreate() {
+        assureCorrectAppLanguage(this);
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         notificationManager = ((NotificationManager) getSystemService(NOTIFICATION_SERVICE));
 
@@ -169,6 +171,7 @@ public final class PopupVideoPlayer extends Service {
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
+        assureCorrectAppLanguage(this);
         if (DEBUG) Log.d(TAG, "onConfigurationChanged() called with: newConfig = [" + newConfig + "]");
         updateScreenSize();
         updatePopupSize(popupLayoutParams.width, -1);
