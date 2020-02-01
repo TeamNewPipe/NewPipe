@@ -1,9 +1,17 @@
 package org.schabi.newpipe.util;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.PluralsRes;
+import androidx.annotation.StringRes;
 
 import org.ocpsoft.prettytime.PrettyTime;
 import org.ocpsoft.prettytime.units.Decade;
@@ -17,10 +25,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.PluralsRes;
-import androidx.annotation.StringRes;
 
 /*
  * Created by chschtsch on 12/29/15.
@@ -50,8 +54,8 @@ public class Localization {
     private Localization() {
     }
 
-    public static void init() {
-        initPrettyTime();
+    public static void init(Context context) {
+        initPrettyTime(context);
     }
 
     @NonNull
@@ -115,12 +119,13 @@ public class Localization {
         return nf.format(number);
     }
 
-    public static String formatDate(Date date) {
-        return DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault()).format(date);
+    public static String formatDate(Date date, Context context) {
+        return DateFormat.getDateInstance(DateFormat.MEDIUM, getAppLocale(context)).format(date);
     }
 
+    @SuppressLint("StringFormatInvalid")
     public static String localizeUploadDate(Context context, Date date) {
-        return context.getString(R.string.upload_date_text, formatDate(date));
+        return context.getString(R.string.upload_date_text, formatDate(date, context));
     }
 
     public static String localizeViewCount(Context context, long viewCount) {
@@ -199,21 +204,47 @@ public class Localization {
     // Pretty Time
     //////////////////////////////////////////////////////////////////////////*/
 
-    private static void initPrettyTime() {
-        prettyTime = new PrettyTime(Locale.getDefault());
+    private static void initPrettyTime(Context context) {
+        prettyTime = new PrettyTime(getAppLocale(context));
         // Do not use decades as YouTube doesn't either.
         prettyTime.removeUnit(Decade.class);
     }
 
     private static PrettyTime getPrettyTime() {
-        // If pretty time's Locale is different, init again with the new one.
-        if (!prettyTime.getLocale().equals(Locale.getDefault())) {
-            initPrettyTime();
-        }
         return prettyTime;
     }
 
     public static String relativeTime(Calendar calendarTime) {
         return getPrettyTime().formatUnrounded(calendarTime);
+    }
+
+    private static void changeAppLanguage(Locale loc, Resources res) {
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.setLocale(loc);
+        res.updateConfiguration(conf, dm);
+    }
+
+    public static Locale getAppLocale(Context context) {
+        SharedPreferences prefs = androidx.preference.PreferenceManager.getDefaultSharedPreferences(context);
+        String lang = prefs.getString("app_language_key", "en");
+        Locale loc;
+        if (lang.equals("system")) {
+            loc = Locale.getDefault();
+        } else if (lang.matches(".*-.*")) {
+            //to differentiate different versions of the language
+            //for example, pt (portuguese in Portugal) and pt-br (portuguese in Brazil)
+            String[] localisation = lang.split("-");
+            lang = localisation[0];
+            String country = localisation[1];
+            loc = new Locale(lang, country);
+        } else {
+            loc = new Locale(lang);
+        }
+        return loc;
+    }
+
+    public static void assureCorrectAppLanguage(Context c) {
+        changeAppLanguage(getAppLocale(c), c.getResources());
     }
 }
