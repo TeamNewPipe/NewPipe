@@ -543,4 +543,7 @@
     <string name="clear_download_history">Очистить историю загрузок</string>
     <string name="delete_downloaded_files">Удаление загруженных файлов</string>
     <string name="deleted_downloads">Удалено загрузок: %1$s</string>
+    <string name="permission_display_over_apps">Разрешите отображение поверх приложений</string>
+    <string name="app_language_title">Язык интерфейса</string>
+    <string name="systems_language">Как в системе</string>
 </resources>
