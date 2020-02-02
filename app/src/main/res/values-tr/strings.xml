@@ -107,7 +107,7 @@
     <string name="popup_mode_share_menu_title">NewPipe açılır pencere kipi</string>
     <string name="default_popup_resolution_title">Öntanımlı açılır pencere çözünürlüğü</string>
     <string name="show_higher_resolutions_title">Yüksek çözünürlükleri göster</string>
-    <string name="show_higher_resolutions_summary">Sadece bazı cihazlar 2K/4K video oynatmayı desteklemektedir</string>
+    <string name="show_higher_resolutions_summary">Yalnızca bazı aygıtlar 2K/4K video oynatmayı desteklemektedir</string>
     <string name="default_video_format_title">Öntanımlı video biçimi</string>
     <string name="black_theme_title">Siyah</string>
     <string name="popup_playing_toast">Açılır pencere kipinde oynatılıyor</string>
@@ -360,7 +360,7 @@
     <string name="playback_pitch">Ses yüksekliği</string>
     <string name="unhook_checkbox">Bağlantısız (bozulmaya neden olabilir)</string>
     <string name="no_streams_available_download">İndirilebilecek akış yok</string>
-    <string name="preferred_open_action_settings_title">Tercih edilen \'aç\' eylemi</string>
+    <string name="preferred_open_action_settings_title">Yeğlenen \'aç\' eylemi</string>
     <string name="preferred_open_action_settings_summary">İçerik açılırken öntanımlı eylem — %s</string>
     <string name="caption_setting_title">Altyazılar</string>
     <string name="caption_setting_description">Oynatıcı altyazı metin ölçeğini ve arka plan biçimini değiştirin. Etkili olması için uygulamayı yeniden başlatma gerektirir.</string>
@@ -454,7 +454,7 @@
     <string name="clear_finished_download">Tamamlanan indirmeleri temizle</string>
     <string name="stop">Durdur</string>
     <string name="max_retry_msg">Azami deneme sayısı</string>
-    <string name="max_retry_desc">İndirmeyi iptal etmeden önce maksimum deneme sayısı</string>
+    <string name="max_retry_desc">İndirmeyi iptal etmeden önce azami deneme sayısı</string>
     <string name="pause_downloads_on_mobile">Kotalı bağlantılarda durdur</string>
     <string name="pause_downloads_on_mobile_desc">Bazı indirmelerin bekletilememesine rağmen mobil veriye geçerken kullanışlıdır</string>
     <string name="events">Olaylar</string>
@@ -490,12 +490,12 @@
     <string name="start_downloads">İndirmeleri başlat</string>
     <string name="pause_downloads">İndirmeleri duraklat</string>
     <string name="downloads_storage_ask_title">Nereye indirileceğini sor</string>
-    <string name="downloads_storage_ask_summary">Her indirme için nereye kaydedileceği sorulacak</string>
+    <string name="downloads_storage_ask_summary">Her indirmede nereye kaydedileceği sorulacak</string>
     <string name="downloads_storage_ask_summary_kitkat">Her indirme için nereye kaydedileceği sorulacak. 
-\nEğer bir harici SD karta indirmek istiyorsanız DEÇ\'i seçin</string>
+\nEğer harici SD karta indirmek istiyorsanız DEÇ\'i seçin</string>
     <string name="downloads_storage_use_saf_title">DEÇ\'i kullan</string>
     <string name="downloads_storage_use_saf_summary">Depolama Erişimi Çerçevesi harici SD karta indirmelere izin verir. 
-\nNot: Bazı cihazlar uyumlu değildir</string>
+\nNot: Bazı aygıtlar uyumlu değildir</string>
     <string name="clear_playback_states_title">Oynatım konumlarını sil</string>
     <string name="clear_playback_states_summary">Tüm oynatım konumlarını siler</string>
     <string name="delete_playback_states_alert">Tüm oynatım konumları silinsin mi\?</string>
@@ -532,7 +532,7 @@
     <string name="playlist_no_uploader">Otomatik oluşturulan (yükleyen bulunamadı)</string>
     <string name="recovering">kurtarılıyor</string>
     <string name="error_download_resource_gone">Bu indirme kurtarılamıyor</string>
-    <string name="choose_instance_prompt">Bir örnek seçin</string>
+    <string name="choose_instance_prompt">Oluşum seçin</string>
     <string name="enable_lock_screen_video_thumbnail_title">Kilit ekranı video küçük resmini etkinleştir</string>
     <string name="enable_lock_screen_video_thumbnail_summary">Arka plan oynatıcıyı kullanırken kilit ekranında bir video küçük resmi görüntülenecektir</string>
     <string name="clear_download_history">İndirme geçmişini temizle</string>
@@ -540,5 +540,5 @@
     <string name="deleted_downloads">%1$s indirme silindi</string>
     <string name="permission_display_over_apps">Diğer uygulamaların üzerinde görüntüleme izni ver</string>
     <string name="app_language_title">Uygulama dili</string>
-    <string name="systems_language">Sistem varsayılanı</string>
+    <string name="systems_language">Sistem öntanımlısı</string>
 </resources>
