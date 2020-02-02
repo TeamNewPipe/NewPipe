@@ -1287,20 +1287,20 @@ public abstract class BasePlayer implements
     }
 
     public void setTimer(int hourOfDay, int minute) {
-        Toast.makeText(this.context, this.context.getString(R.string.INVALID_METHOD_CALL) + "setTimer()", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this.context, this.context.getString(R.string.invalid_method_call) + "setTimer()", Toast.LENGTH_SHORT).show();
     }
 
     public void cancelTimer() {
-        Toast.makeText(this.context, this.context.getString(R.string.INVALID_METHOD_CALL) + "cancelTimer()", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this.context, this.context.getString(R.string.invalid_method_call) + "cancelTimer()", Toast.LENGTH_SHORT).show();
     }
 
     public int getHourOfDay() {
-        Toast.makeText(this.context, this.context.getString(R.string.INVALID_METHOD_CALL) + "getHourOfDay()", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this.context, this.context.getString(R.string.invalid_method_call) + "getHourOfDay()", Toast.LENGTH_SHORT).show();
         return 0;
     }
 
     public int getMinutes() {
-        Toast.makeText(this.context, this.context.getString(R.string.INVALID_METHOD_CALL) + "getMinutes()", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this.context, this.context.getString(R.string.invalid_method_call) + "getMinutes()", Toast.LENGTH_SHORT).show();
         return 0;
     }
 }

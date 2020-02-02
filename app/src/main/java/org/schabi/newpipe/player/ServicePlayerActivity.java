@@ -120,11 +120,6 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     ////////////////////////////////////////////////////////////////////////////
 
     @Override
-    public void openOptionsMenu() {
-        super.openOptionsMenu();
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
@@ -189,7 +184,6 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
         TimePickerDialog dialog = new TimePickerDialog(servicePlayerActivity, (view, hourOfDay, minute) -> player.setTimer(hourOfDay, minute), player.getHourOfDay(), player.getMinutes(), true);
         dialog.show();
     }
-
 
     @Override
     protected void onDestroy() {
