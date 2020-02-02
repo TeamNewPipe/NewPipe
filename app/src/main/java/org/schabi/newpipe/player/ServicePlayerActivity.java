@@ -1,6 +1,5 @@
 package org.schabi.newpipe.player;
 
-import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -176,30 +175,14 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
                 return switchTo(MainVideoPlayer.class);
             case R.id.action_set_timer:
                 try {
-                    setTimer(this);
+                    updateTimer(this);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), getString(R.string.ERROR_SETTING_TIMER), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.error_setting_timer), Toast.LENGTH_SHORT).show();
                 }
                 return true;
         }
         return onPlayerOptionSelected(item) || super.onOptionsItemSelected(item);
-    }
-
-    private void setTimer(ServicePlayerActivity servicePlayerActivity) {
-
-        if (player.getHourOfDay() != 0 || player.getMinutes() != 0) {
-            AlertDialog dialog = new AlertDialog.Builder(servicePlayerActivity)
-                    .setTitle(R.string.ALREADY_SCHEDULED_TITLE)
-                    .setMessage(String.format(getString(R.string.ALREADY_SCHEDULED_MESSAGE), player.getHourOfDay() * 60 + player.getMinutes()))
-                    .setNegativeButton("Yes", (dialog1, which) -> updateTimer(servicePlayerActivity)
-                    ).setNegativeButton("No", ((dialog1, which) -> {
-                    })).create();
-            dialog.show();
-        } else {
-            updateTimer(servicePlayerActivity);
-        }
-
     }
 
     private void updateTimer(ServicePlayerActivity servicePlayerActivity) {

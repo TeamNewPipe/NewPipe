@@ -32,10 +32,6 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.core.app.NotificationCompat;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
@@ -44,6 +40,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
 import com.google.android.exoplayer2.PlaybackParameters;
@@ -221,10 +218,7 @@ public final class BackgroundPlayer extends Service {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             setLockScreenThumbnail(builder);
         }
-
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-            builder.setPriority(NotificationCompat.PRIORITY_MAX);
-        }
+        builder.setPriority(NotificationCompat.PRIORITY_MAX);
         return builder;
     }
 
@@ -652,7 +646,7 @@ public final class BackgroundPlayer extends Service {
         public void setTimer(int hourOfDay, int minute) {
             long time = ((hourOfDay * 60) + minute) * 60 * 1000;
             if (time == 0) {
-                Toast.makeText(getApplicationContext(), "Please select an appropriate time.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.timer_select_time_message), Toast.LENGTH_SHORT).show();
                 return;
             }
             timer.cancel();
@@ -664,7 +658,7 @@ public final class BackgroundPlayer extends Service {
                 @Override
                 public void run() {
                     new Handler(Looper.getMainLooper()).post(() -> {
-                        if (DEBUG) Log.d(TAG, "Timer finished: stopping the player");
+                        if (DEBUG) Log.d(TAG, getString(R.string.log_stopping_the_player));
                         onPause();
                     });
 
@@ -672,7 +666,7 @@ public final class BackgroundPlayer extends Service {
             }, time);
             Date d = new Date();
             d.setTime(System.currentTimeMillis() + time);
-            Toast.makeText(getApplicationContext(), "Player will at " + d, Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.player_stop_message) + d, Toast.LENGTH_LONG).show();
         }
 
         @Override
