@@ -547,4 +547,7 @@ otevření ve vyskakovacím okně</string>
     <string name="clear_download_history">Smazat historii stahování</string>
     <string name="delete_downloaded_files">Smazat stažené soubory</string>
     <string name="deleted_downloads">Smazat %1$s stahování</string>
+    <string name="permission_display_over_apps">Souhlasit se zobrazením přes jiné aplikace</string>
+    <string name="app_language_title">Jazyk aplikace</string>
+    <string name="systems_language">Jazyk systému</string>
 </resources>
