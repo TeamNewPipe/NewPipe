@@ -596,8 +596,6 @@
     <!--  Timer Constants  -->
     <string name="set_timer">Set Timer</string>
     <string name="invalid_method_call">Invalid method call for :</string>
-    <string name="already_scheduled_title">Already Scheduled</string>
-    <string name="already_scheduled_message">The timer is already scheduled for %d Minutes. Do you want to change that?</string>
     <string name="error_setting_timer">Some error occurred while setting timer.</string>
     <string name="player_stop_message">Player will stop at %s</string>
     <string name="log_stopping_the_player">Timer finished: Stopping the player</string>

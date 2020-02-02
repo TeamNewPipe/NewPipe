@@ -1286,21 +1286,19 @@ public abstract class BasePlayer implements
                 && prefs.getBoolean(context.getString(R.string.enable_playback_resume_key), true);
     }
 
-    public void setTimer(int hourOfDay, int minute) {
-        Toast.makeText(this.context, this.context.getString(R.string.invalid_method_call) + "setTimer()", Toast.LENGTH_SHORT).show();
+    public void setTimer(int hourOfDay, int minute) throws UnsupportedOperationException {
+        throw new UnsupportedOperationException(this.context.getString(R.string.invalid_method_call) + "setTimer()");
     }
 
-    public void cancelTimer() {
-        Toast.makeText(this.context, this.context.getString(R.string.invalid_method_call) + "cancelTimer()", Toast.LENGTH_SHORT).show();
+    public void cancelTimer() throws UnsupportedOperationException {
+        throw new UnsupportedOperationException(this.context.getString(R.string.invalid_method_call) + "cancelTimer()");
     }
 
-    public int getHourOfDay() {
-        Toast.makeText(this.context, this.context.getString(R.string.invalid_method_call) + "getHourOfDay()", Toast.LENGTH_SHORT).show();
-        return 0;
+    public int getHourOfDay() throws UnsupportedOperationException {
+        throw new UnsupportedOperationException(this.context.getString(R.string.invalid_method_call) + "getHourOfDay()");
     }
 
-    public int getMinutes() {
-        Toast.makeText(this.context, this.context.getString(R.string.invalid_method_call) + "getMinutes()", Toast.LENGTH_SHORT).show();
-        return 0;
+    public int getMinutes() throws UnsupportedOperationException {
+        throw new UnsupportedOperationException(this.context.getString(R.string.invalid_method_call) + "getMinutes()");
     }
 }
