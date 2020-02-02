@@ -18,7 +18,6 @@ import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -169,19 +168,15 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             case R.id.action_switch_main:
                 return switchTo(MainVideoPlayer.class);
             case R.id.action_set_timer:
-                try {
-                    updateTimer(this);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), getString(R.string.error_setting_timer), Toast.LENGTH_SHORT).show();
-                }
+                updateTimer(this);
                 return true;
         }
         return onPlayerOptionSelected(item) || super.onOptionsItemSelected(item);
     }
 
     private void updateTimer(ServicePlayerActivity servicePlayerActivity) {
-        TimePickerDialog dialog = new TimePickerDialog(servicePlayerActivity, (view, hourOfDay, minute) -> player.setTimer(hourOfDay, minute), player.getHourOfDay(), player.getMinutes(), true);
+        TimePickerDialog dialog = new TimePickerDialog(servicePlayerActivity,
+                (view, hourOfDay, minute) -> player.setTimer(hourOfDay, minute), player.getHourOfDay(), player.getMinutes(), true);
         dialog.show();
     }
 
