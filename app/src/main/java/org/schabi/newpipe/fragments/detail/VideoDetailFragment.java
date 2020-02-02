@@ -2,7 +2,6 @@ package org.schabi.newpipe.fragments.detail;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -18,7 +17,6 @@ import androidx.fragment.app.Fragment;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.text.Html;
 import android.text.Spanned;
@@ -192,6 +190,14 @@ public class VideoDetailFragment
     private TabAdaptor pageAdapter;
     private TabLayout tabLayout;
     private FrameLayout relatedStreamsLayout;
+
+    private static final int DESCRIPTION_HTML = 1;
+    private static final int DESCRIPTION_MARKDOWN = 2;
+    private static final int DESCRIPTION_PLAIN_TEXT = 3;
+
+    private static final int YOUTUBE_SERVICE_ID = ServiceList.YouTube.getServiceId();
+    private static final int MEDIACCC_SERVICE_ID = ServiceList.MediaCCC.getServiceId();
+    private static final int PEERTUBE_SERVICE_ID = ServiceList.PeerTube.getServiceId();
 
 
     /*////////////////////////////////////////////////////////////////////////*/
@@ -483,7 +489,6 @@ public class VideoDetailFragment
         videoUploadDateView = rootView.findViewById(R.id.detail_upload_date_view);
         videoDescriptionView = rootView.findViewById(R.id.detail_description_view);
         videoDescriptionView.setMovementMethod(LinkMovementMethod.getInstance());
-        videoDescriptionView.setAutoLinkMask(Linkify.WEB_URLS);
 
         thumbsUpTextView = rootView.findViewById(R.id.detail_thumbs_up_count_view);
         thumbsUpImageView = rootView.findViewById(R.id.detail_thumbs_up_img_view);
@@ -919,28 +924,39 @@ public class VideoDetailFragment
         return sortedVideoStreams != null ? sortedVideoStreams.get(selectedVideoStreamIndex) : null;
     }
 
-    private void prepareDescription(final String descriptionHtml) {
-        if (TextUtils.isEmpty(descriptionHtml)) {
+    private void prepareDescription(final String descriptionText, int descriptionTypeId) {
+        if (TextUtils.isEmpty(descriptionText)) {
             return;
         }
 
-        disposables.add(Single.just(descriptionHtml)
-                .map((@io.reactivex.annotations.NonNull String description) -> {
-                    Spanned parsedDescription;
-                    if (Build.VERSION.SDK_INT >= 24) {
-                        parsedDescription = Html.fromHtml(description, 0);
-                    } else {
-                        //noinspection deprecation
-                        parsedDescription = Html.fromHtml(description);
-                    }
-                    return parsedDescription;
-                })
-                .subscribeOn(Schedulers.computation())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((@io.reactivex.annotations.NonNull Spanned spanned) -> {
-                    videoDescriptionView.setText(spanned);
-                    videoDescriptionView.setVisibility(View.VISIBLE);
-                }));
+        if (descriptionTypeId == DESCRIPTION_PLAIN_TEXT) {
+            videoDescriptionView.setText(descriptionText, TextView.BufferType.SPANNABLE);
+            videoDescriptionView.setVisibility(View.VISIBLE);
+        } else if (descriptionTypeId == DESCRIPTION_MARKDOWN) {
+            //in the future we would use a library or a good method to show markdown.
+            //rn, we just remove **bold**, and let plain_text otherwise
+            videoDescriptionView.setText(descriptionText.replace("**", ""), TextView.BufferType.SPANNABLE);
+            videoDescriptionView.setVisibility(View.VISIBLE);
+        } else {
+            //== DESCRIPTION_HTML
+            disposables.add(Single.just(descriptionText)
+                    .map((@io.reactivex.annotations.NonNull String description) -> {
+                        Spanned parsedDescription;
+                        if (Build.VERSION.SDK_INT >= 24) {
+                            parsedDescription = Html.fromHtml(description, 0);
+                        } else {
+                            //noinspection deprecation
+                            parsedDescription = Html.fromHtml(description);
+                        }
+                        return parsedDescription;
+                    })
+                    .subscribeOn(Schedulers.computation())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe((@io.reactivex.annotations.NonNull Spanned spanned) -> {
+                        videoDescriptionView.setText(spanned);
+                        videoDescriptionView.setVisibility(View.VISIBLE);
+                    }));
+        }
     }
 
     private void setHeightThumbnail() {
@@ -1126,7 +1142,20 @@ public class VideoDetailFragment
             videoUploadDateView.setVisibility(View.GONE);
         }
 
-        prepareDescription(info.getDescription());
+        int serviceId = info.getServiceId();
+
+        if (serviceId != YOUTUBE_SERVICE_ID) {
+            videoDescriptionView.setAutoLinkMask(Linkify.WEB_URLS);
+        }
+
+        if (serviceId == PEERTUBE_SERVICE_ID) {
+            prepareDescription(info.getDescription(), DESCRIPTION_MARKDOWN);
+        } else if (serviceId == MEDIACCC_SERVICE_ID) {
+            prepareDescription(info.getDescription(), DESCRIPTION_PLAIN_TEXT);
+        } else {
+            prepareDescription(info.getDescription(), DESCRIPTION_HTML);
+        }
+
         updateProgressInfo(info);
 
         animateView(spinnerToolbar, true, 500);
