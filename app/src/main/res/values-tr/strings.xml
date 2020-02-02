@@ -538,4 +538,7 @@
     <string name="clear_download_history">İndirme geçmişini temizle</string>
     <string name="delete_downloaded_files">İndirilen dosyaları sil</string>
     <string name="deleted_downloads">%1$s indirme silindi</string>
+    <string name="permission_display_over_apps">Diğer uygulamaların üzerinde görüntüleme izni ver</string>
+    <string name="app_language_title">Uygulama dili</string>
+    <string name="systems_language">Sistem varsayılanı</string>
 </resources>
