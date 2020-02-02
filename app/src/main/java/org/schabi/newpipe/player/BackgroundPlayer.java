@@ -666,7 +666,7 @@ public final class BackgroundPlayer extends Service {
             }, time);
             Date d = new Date();
             d.setTime(System.currentTimeMillis() + time);
-            Toast.makeText(getApplicationContext(), getString(R.string.player_stop_message) + d, Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), String.format(getString(R.string.player_stop_message), d.toString()), Toast.LENGTH_LONG).show();
         }
 
         @Override
