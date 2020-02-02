@@ -1,7 +1,6 @@
 package org.schabi.newpipe;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.core.app.NavUtils;
@@ -20,7 +19,6 @@ import android.webkit.WebViewClient;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 /*
  * Created by beneth <bmauduit@beneth.fr> on 06.12.16.
@@ -63,13 +61,13 @@ public class ReCaptchaActivity extends AppCompatActivity {
             url = YT_URL;
         }
 
-        // Set return to Cancel by default
+        // set return to Cancel by default
         setResult(RESULT_CANCELED);
 
 
         webView = findViewById(R.id.reCaptchaWebView);
 
-        // Enable Javascript
+        // enable Javascript
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
 
@@ -81,7 +79,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
             }
         });
 
-        // Cleaning cache, history and cookies from webView
+        // cleaning cache, history and cookies from webView
         webView.clearCache(true);
         webView.clearHistory();
         android.webkit.CookieManager cookieManager = CookieManager.getInstance();
@@ -128,7 +126,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
     private void saveCookiesAndFinish() {
         handleCookies(webView.getUrl()); // try to get cookies of unclosed page
         if (!foundCookies.isEmpty()) {
-            // Give cookies to Downloader class
+            // give cookies to Downloader class
             DownloaderImpl.getInstance().setCookies(foundCookies);
             setResult(RESULT_OK);
         }
@@ -151,7 +149,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
 
     private void addYoutubeCookies(@Nonnull String cookies) {
         if (cookies.contains("s_gl=") || cookies.contains("goojf=") || cookies.contains("VISITOR_INFO1_LIVE=")) {
-            // Youtube seems to also need the other cookies:
+            // youtube seems to also need the other cookies:
             addCookie(cookies);
         }
     }
