@@ -664,7 +664,7 @@ public final class BackgroundPlayer extends Service {
                 @Override
                 public void run() {
                     new Handler(Looper.getMainLooper()).post(() -> {
-                        Log.d("TimerTest", "Stopping the player");
+                        if (DEBUG) Log.d(TAG, "Timer finished: stopping the player");
                         onPause();
                     });
 
