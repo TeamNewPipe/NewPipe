@@ -186,8 +186,8 @@
     <string name="no_available_dir">Ange en hämtningsmapp senare i inställningar</string>
     <string name="msg_popup_permission">Denna tillåtelse behövs för att
 \nöppna i popup-läge</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">reCAPTCHA utmaning</string>
+    <string name="recaptcha">reCAPTCHA</string>
+    <string name="title_activity_recaptcha">reCAPTCHA utmaning</string>
     <string name="recaptcha_request_toast">reCAPTCHA utmaning begärd</string>
     <string name="settings_category_downloads_title">Nedladdning</string>
     <string name="settings_file_charset_title">Tillåtna tecken i filnamn</string>
