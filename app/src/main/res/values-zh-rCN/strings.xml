@@ -38,8 +38,8 @@
     <string name="later">稍后</string>
     <string name="network_error">网络错误</string>
     <plurals name="videos">
-        <item quantity="one">视频</item>
-        <item quantity="other">视频</item>
+        <item quantity="one">%s 个视频</item>
+        <item quantity="other">%s 个视频</item>
     </plurals>
     <string name="disabled">禁用</string>
     <string name="controls_background_title">后台播放</string>
@@ -90,8 +90,8 @@
     <string name="retry">重试</string>
     <string name="storage_permission_denied">存储访问权限已被拒绝</string>
     <plurals name="views">
-        <item quantity="one">%1$s 次观看</item>
-        <item quantity="other">%1$s 次观看</item>
+        <item quantity="one">%s 次观看</item>
+        <item quantity="other">%s 次观看</item>
     </plurals>
     <string name="short_thousand">千</string>
     <string name="short_million">百万</string>
@@ -134,6 +134,7 @@
         <item quantity="other">%s 位订阅者</item>
     </plurals>
     <string name="no_videos">没有视频</string>
+    <string name="videos">视频</string>
     <string name="detail_drag_description">拖动以重新排序</string>
     <string name="create">创建</string>
     <string name="delete_one">仅删除一个</string>
@@ -468,8 +469,8 @@
     <string name="show_comments_title">显示评论</string>
     <string name="show_comments_summary">禁用，以停止显示评论</string>
     <plurals name="comments">
-        <item quantity="one">评论</item>
-        <item quantity="other">评论</item>
+        <item quantity="one">%s 条评论</item>
+        <item quantity="other">%s 条评论</item>
     </plurals>
     <string name="error_unable_to_load_comments">无法加载评论</string>
     <string name="close">关闭</string>
