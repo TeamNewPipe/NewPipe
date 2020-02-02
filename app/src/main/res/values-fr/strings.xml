@@ -538,4 +538,7 @@
     <string name="clear_download_history">Effacer l\'historique de téléchargement</string>
     <string name="delete_downloaded_files">Supprimer les fichiers téléchargés</string>
     <string name="deleted_downloads">%1$s téléchargements supprimés</string>
+    <string name="permission_display_over_apps">Autoriser la superposition d\'applis</string>
+    <string name="app_language_title">Langue de l\'application</string>
+    <string name="systems_language">Langue du système</string>
 </resources>
