@@ -1,9 +1,11 @@
 package org.schabi.newpipe.local.bookmark;
 
 import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
+import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentManager;
@@ -22,7 +24,6 @@ import org.schabi.newpipe.database.playlist.PlaylistLocalItem;
 import org.schabi.newpipe.database.playlist.PlaylistMetadataEntry;
 import org.schabi.newpipe.database.playlist.model.PlaylistRemoteEntity;
 import org.schabi.newpipe.local.BaseLocalListFragment;
-import org.schabi.newpipe.local.dialog.BookmarkDialog;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.local.playlist.RemotePlaylistManager;
 import org.schabi.newpipe.report.UserAction;
@@ -254,20 +255,23 @@ public final class BookmarkFragment
     }
 
     private void showLocalDialog(PlaylistMetadataEntry selectedItem) {
-        BookmarkDialog dialog = new BookmarkDialog(getContext(),
-            selectedItem.name, new BookmarkDialog.OnClickListener() {
-            @Override
-            public void onDeleteClicked() {
+        View dialogView = View.inflate(getContext(), R.layout.dialog_bookmark, null);
+        EditText editText = dialogView.findViewById(R.id.playlist_name_edit_text);
+        editText.setText(selectedItem.name);
+
+        Builder builder = new AlertDialog.Builder(activity);
+        builder.setView(dialogView)
+            .setPositiveButton(R.string.rename_playlist, (dialog, which) -> {
+                changeLocalPlaylistName(selectedItem.uid, editText.getText().toString());
+            })
+            .setNegativeButton(R.string.cancel, null)
+            .setNeutralButton(R.string.delete, (dialog, which) -> {
                 showDeleteDialog(selectedItem.name,
                     localPlaylistManager.deletePlaylist(selectedItem.uid));
-            }
-
-            @Override
-            public void onSaveClicked(@NonNull String name) {
-                changeLocalPlaylistName(selectedItem.uid, name);
-            }
-        });
-        dialog.show();
+                dialog.dismiss();
+            })
+            .create()
+            .show();
     }
 
     private void showDeleteDialog(final String name, final Single<Integer> deleteReactor) {
