@@ -19,14 +19,14 @@
     <string name="share">Partager</string>
     <string name="share_dialog_title">Partager avec</string>
     <string name="show_play_with_kodi_summary">Affiche une option pour lire une vidéo via Kodi</string>
-    <string name="show_play_with_kodi_title">Afficher l’option « Lire avec Kodi »</string>
+    <string name="show_play_with_kodi_title">Afficher l’option « Lire avec Kodi »</string>
     <string name="upload_date_text">Publiée le %1$s</string>
     <string name="view_count_text">%1$s vues</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Format audio par défaut</string>
     <string name="download_dialog_title">Télécharger</string>
     <string name="next_video_title">Suivant</string>
-    <string name="show_next_and_similar_title">Afficher les vidéos « Suivantes » et « Similaires »</string>
+    <string name="show_next_and_similar_title">Afficher les vidéos « Suivantes » et « Similaires »</string>
     <string name="url_not_supported_toast">URL non pris en charge</string>
     <string name="settings_category_video_audio_title">Vidéo et audio</string>
     <string name="settings_category_other_title">Autre</string>
@@ -50,8 +50,8 @@
     <string name="download_path_audio_title">Dossier de téléchargement audio</string>
     <string name="download_path_audio_summary">Les fichiers audio téléchargés sont stockés ici</string>
     <string name="download_path_audio_dialog_title">Choisissez le dossier de téléchargement des fichiers audio</string>
-    <string name="err_dir_create">Impossible de créer le répertoire de téléchargement « %1$s »</string>
-    <string name="info_dir_created">Répertoire de téléchargement « %1$s » créé</string>
+    <string name="err_dir_create">Impossible de créer le répertoire de téléchargement « %1$s »</string>
+    <string name="info_dir_created">Répertoire de téléchargement « %1$s » créé</string>
     <string name="general_error">Erreur</string>
     <string name="parsing_error">Impossible d’analyser le site web</string>
     <string name="content_not_available">Contenu indisponible</string>
@@ -122,7 +122,7 @@
     <string name="short_million">M</string>
     <string name="msg_popup_permission">Cette autorisation est nécessaire pour
 \nutiliser le mode flottant</string>
-    <string name="controls_background_title">Arrière-plan</string>
+    <string name="controls_background_title">Lire l\'audio</string>
     <string name="controls_popup_title">Flottant</string>
     <string name="default_popup_resolution_title">Définition de la fenêtre flottante par défaut</string>
     <string name="show_higher_resolutions_title">Afficher des définitions plus élevées</string>
@@ -185,7 +185,7 @@
     <string name="notification_channel_name">Notification NewPipe</string>
     <string name="undo">Annuler</string>
     <string name="enable_watch_history_summary">Garde un suivi des vidéos vues</string>
-    <string name="resume_on_audio_focus_gain_title">Reprendre à l’obtention de la cible de saisie</string>
+    <string name="resume_on_audio_focus_gain_title">Reprendre lors du retour dans l\'application</string>
     <string name="settings_category_player_title">Lecteur</string>
     <string name="settings_category_player_behavior_title">Comportement</string>
     <string name="settings_category_history_title">Historique et cache</string>
@@ -231,8 +231,8 @@
     <string name="play_queue_remove">Retirer</string>
     <string name="play_queue_stream_detail">Détails</string>
     <string name="play_queue_audio_settings">Paramètres audios</string>
-    <string name="show_hold_to_append_title">Afficher l’astuce « Maintenir pour ajouter »</string>
-    <string name="show_hold_to_append_summary">Affiche l’astuce lors de l’appui du bouton « Arrière-plan » ou « Mode flottant » sur la page de détails d’une vidéo</string>
+    <string name="show_hold_to_append_title">Afficher l’astuce « Maintenir pour ajouter »</string>
+    <string name="show_hold_to_append_summary">Affiche l’astuce lors de l’appui du bouton « Arrière-plan » ou « Mode flottant » sur la page de détails d’une vidéo</string>
     <string name="unknown_content">[Inconnu]</string>
     <string name="player_recoverable_failure">Récupération depuis l’erreur du lecteur</string>
     <string name="kiosk_page_summary">Kiosque</string>
@@ -310,7 +310,7 @@
     <string name="use_inexact_seek_title">Utiliser la recherche rapide approximative</string>
     <string name="use_inexact_seek_summary">Permet au lecteur d’accéder plus rapidement à une position au détriment de la précision</string>
     <string name="download_thumbnail_title">Charger les miniatures</string>
-    <string name="download_thumbnail_summary">Désactiver pour empêcher le chargement des miniatures afin d\'économiser vos données. Modifier cette option vide le cache en mémoire vive et sur le disque.</string>
+    <string name="download_thumbnail_summary">Désactivez pour empêcher le chargement des miniatures afin de réduire l’utilisation de la bande passante et de la mémoire. La modification de cette option, vide le cache en mémoire vive et sur le disque.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Images en cache effacées</string>
     <string name="metadata_cache_wipe_title">Effacer les métadonnées en cache</string>
     <string name="metadata_cache_wipe_summary">Efface toutes les données de pages Web en cache</string>
@@ -348,11 +348,11 @@
 \n1. Suivez ce lien : %1$s.
 \n2. Connectez-vous à votre compte.
 \n3. Un téléchargement va démarrer (celui du fichier d’exportation).</string>
-    <string name="import_soundcloud_instructions">Veuillez importer un profil SoundCloud en saisissant l’URL de votre profil ou votre identifiant.
-\n
-\n1. Activez le « mode bureau » dans votre navigateur web (le site n’est pas disponible pour les appareils mobiles).
-\n2. Suivez cette URL : %1$s.
-\n3. Connectez-vous à votre compte.
+    <string name="import_soundcloud_instructions">Veuillez importer un profil SoundCloud en saisissant l’URL de votre profil ou votre identifiant. 
+\n 
+\n1. Activez le « mode bureau » dans votre navigateur web (le site n’est pas disponible pour les appareils mobiles). 
+\n2. Suivez cette URL : %1$s. 
+\n3. Connectez-vous à votre compte. 
 \n4. Copiez l’URL du profil vers lequel vous venez d’être redirigé.</string>
     <string name="import_soundcloud_instructions_hint">votre identifiant, soundcloud.com/votreidentifiant</string>
     <string name="import_network_expensive_warning">Cette opération peut charger énormément la connexion réseau.
@@ -484,7 +484,7 @@
     <string name="error_postprocessing_stopped">NewPipe a été fermé alors qu’il travaillait sur le fichier</string>
     <string name="error_insufficient_storage">Aucun espace disponible sur le périphérique</string>
     <string name="error_progress_lost">Progression perdue, car le fichier a été effacé</string>
-    <string name="confirm_prompt">Êtes-vous sûr \?</string>
+    <string name="confirm_prompt">Voulez-vous effacer l\'historique de téléchargement ou supprimer tous les fichiers téléchargés \?</string>
     <string name="enable_queue_limit">Limiter la file d’attente de téléchargement</string>
     <string name="enable_queue_limit_desc">Un téléchargement s’exécutera en même temps</string>
     <string name="start_downloads">Démarrer les téléchargements</string>
@@ -508,8 +508,8 @@
     <string name="default_kiosk_page_summary">Kiosque par défaut</string>
     <string name="no_one_watching">Personne ne regarde</string>
     <plurals name="watching">
-        <item quantity="one">%s regarde</item>
-        <item quantity="other">%s regardent</item>
+        <item quantity="one">%s spectateur</item>
+        <item quantity="other">%s spectateurs</item>
     </plurals>
     <string name="no_one_listening">Personne n\'écoute</string>
     <plurals name="listening">
@@ -517,4 +517,25 @@
         <item quantity="other">%s auditeurs</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">La langue changera lors du redémarrage de l\'application.</string>
+    <string name="seek_duration_title">Avance/rembobinage rapide sur une durée</string>
+    <string name="peertube_instance_url_title">Instances PeerTube</string>
+    <string name="peertube_instance_url_summary">Choisissez vos instances PeerTube préférées</string>
+    <string name="peertube_instance_url_help">Cherchez des instances qui pourraient vous intéresser sur %s</string>
+    <string name="peertube_instance_add_title">Ajouter une instance</string>
+    <string name="peertube_instance_add_help">Entrez l’URL de l’instance</string>
+    <string name="peertube_instance_add_fail">Échec de validation de l’instance</string>
+    <string name="peertube_instance_add_https_only">Sont prises en charge uniquement les URLs en HTTPS</string>
+    <string name="peertube_instance_add_exists">L’instance existe déjà</string>
+    <string name="local">Local</string>
+    <string name="recently_added">Ajoutées récemment</string>
+    <string name="most_liked">Les plus aimées</string>
+    <string name="recovering">récupération</string>
+    <string name="error_download_resource_gone">Impossible de récupérer ce téléchargement</string>
+    <string name="choose_instance_prompt">Choisissez une instance</string>
+    <string name="playlist_no_uploader">Généré automatiquement (pas de téléverseur trouvé)</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Activer la vidéo miniaturisée sur l\'écran de verrouillage</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">En utilisant le lecteur audio, la miniature de la vidéo sera affichée sur l\'écran de verrouillage</string>
+    <string name="clear_download_history">Effacer l\'historique de téléchargement</string>
+    <string name="delete_downloaded_files">Supprimer les fichiers téléchargés</string>
+    <string name="deleted_downloads">%1$s téléchargements supprimés</string>
 </resources>

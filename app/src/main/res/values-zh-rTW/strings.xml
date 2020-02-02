@@ -480,7 +480,7 @@
     <string name="error_postprocessing_stopped">NewPipe 在處理檔案時被關閉</string>
     <string name="error_insufficient_storage">裝置上沒有剩餘的空間</string>
     <string name="error_progress_lost">進度遺失，因為檔案已被刪除</string>
-    <string name="confirm_prompt">您確定？</string>
+    <string name="confirm_prompt">您想要清除您的下載歷史紀錄或刪除所有已下載的檔案嗎？</string>
     <string name="enable_queue_limit">限制下載佇列</string>
     <string name="enable_queue_limit_desc">一次執行一個下載</string>
     <string name="start_downloads">開始下載</string>
@@ -513,4 +513,25 @@
         <item quantity="other"/>
     </plurals>
     <string name="localization_changes_requires_app_restart">語言將會在重新啟動應用程式後變更。</string>
+    <string name="seek_duration_title">快轉／快退搜尋持續時間</string>
+    <string name="peertube_instance_url_title">PeerTube 站臺</string>
+    <string name="peertube_instance_url_summary">選取您最愛的 PeerTube 站臺</string>
+    <string name="peertube_instance_url_help">在 %s 上找到最適合您的站臺</string>
+    <string name="peertube_instance_add_title">新增站臺</string>
+    <string name="peertube_instance_add_help">輸入站臺 URL</string>
+    <string name="peertube_instance_add_fail">無法驗證站臺</string>
+    <string name="peertube_instance_add_https_only">僅支援 HTTPS URL</string>
+    <string name="peertube_instance_add_exists">站臺已存在</string>
+    <string name="local">本機</string>
+    <string name="recently_added">最近新增</string>
+    <string name="most_liked">最喜歡</string>
+    <string name="playlist_no_uploader">自動生成（未找到上傳者）</string>
+    <string name="recovering">正在恢復</string>
+    <string name="error_download_resource_gone">無法復原此下載</string>
+    <string name="choose_instance_prompt">選擇一個站臺</string>
+    <string name="enable_lock_screen_video_thumbnail_title">啟用鎖定畫面影片縮圖</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">使用背景播放器時，鎖定畫面上將會顯示影片縮圖</string>
+    <string name="clear_download_history">清除下載歷史紀錄</string>
+    <string name="delete_downloaded_files">刪除已下載的檔案</string>
+    <string name="deleted_downloads">已刪除 %1$s 個下載</string>
 </resources>

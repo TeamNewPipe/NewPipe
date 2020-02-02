@@ -482,7 +482,7 @@
     <string name="error_insufficient_storage">남은 저장공간이 없습니다</string>
     <string name="error_progress_lost">파일이 삭제되어 진행이 중지되었습니다</string>
     <string name="error_timeout">연결시간 초과</string>
-    <string name="confirm_prompt">확실합니까\?</string>
+    <string name="confirm_prompt">모든 다운로드 기록과 파일을 삭제합니다.확실합니까\?</string>
     <string name="enable_queue_limit">다운로드 대기 제한</string>
     <string name="start_downloads">다운로드 시작</string>
     <string name="pause_downloads">다운로드 일시정지</string>
@@ -497,10 +497,40 @@
     <string name="downloads_storage_ask_summary_kitkat">매 다운로드 마다 저장경로를 묻습니다.
 \n외장 SD카드에 다운로드 하고자 한다면 SAF를 선택하십시오</string>
     <plurals name="videos">
-        <item quantity="other">%s개의 동영상</item>
+        <item quantity="other">동영상</item>
     </plurals>
     <string name="enable_queue_limit_desc">하나의 다운로드가 동시에 진행됩니다</string>
     <string name="download_choose_new_path">적용하려면 다운로드 폴더를 변경하세요</string>
     <string name="drawer_header_description">서비스 토글, 현재 선택된 서비스:</string>
     <string name="default_kiosk_page_summary">기본 키오스크</string>
+    <string name="no_one_watching">시청자가 없습니다.</string>
+    <plurals name="watching">
+        <item quantity="other">%s 시청</item>
+    </plurals>
+    <string name="no_one_listening">듣고 있는 사람이 없습니다.</string>
+    <plurals name="listening">
+        <item quantity="other">%s 듣는사람</item>
+    </plurals>
+    <string name="localization_changes_requires_app_restart">앱을 재시작하면 언어가 변경됩니다.</string>
+    <string name="seek_duration_title">빠른-감기/되감기 찾는 시간</string>
+    <string name="peertube_instance_url_title">피어튜브 인스턴스</string>
+    <string name="peertube_instance_url_summary">당신이 선호하는 피어튜브 인스턴스를 선택하세요.</string>
+    <string name="peertube_instance_url_help">%s에서 당신에게 가장 잘 어울리는 인스턴스를 찾으세요.</string>
+    <string name="peertube_instance_add_title">인스턴스 추가하기</string>
+    <string name="peertube_instance_add_help">인스턴스 URL을 입력하세요.</string>
+    <string name="peertube_instance_add_fail">인스턴스를 검증할 수 없습니다.</string>
+    <string name="peertube_instance_add_https_only">오직 HTTPS URL들만 지원합니다.</string>
+    <string name="peertube_instance_add_exists">인스턴스가 이미 존재합니다.</string>
+    <string name="local">로컬</string>
+    <string name="recently_added">최근에 추가됨.</string>
+    <string name="most_liked">가장 선호하는</string>
+    <string name="playlist_no_uploader">자동생성된(업로더를 찾지못함)</string>
+    <string name="recovering">복구하기</string>
+    <string name="error_download_resource_gone">이 다운로드를 복구할 수 없습니다</string>
+    <string name="choose_instance_prompt">인스턴스를 선택하세요</string>
+    <string name="enable_lock_screen_video_thumbnail_title">비디어 썸네일 화면 고정을 가능하게 한다</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">백그라운드 플레이어를 사용하는 경우 비디오 썸네일은 고정된 스크린 위에 표시됩니다.</string>
+    <string name="clear_download_history">다운로드 기록 삭제</string>
+    <string name="delete_downloaded_files">다운로드된 파일 삭제</string>
+    <string name="deleted_downloads">%1$s 다운로드 삭제</string>
 </resources>

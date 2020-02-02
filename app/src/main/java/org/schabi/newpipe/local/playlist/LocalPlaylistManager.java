@@ -103,6 +103,10 @@ public class LocalPlaylistManager {
         return modifyPlaylist(playlistId, null, thumbnailUrl);
     }
 
+    public String getPlaylistThumbnail(final long playlistId) {
+        return playlistTable.getPlaylist(playlistId).blockingFirst().get(0).getThumbnailUrl();
+    }
+
     private Maybe<Integer> modifyPlaylist(final long playlistId,
                                           @Nullable final String name,
                                           @Nullable final String thumbnailUrl) {

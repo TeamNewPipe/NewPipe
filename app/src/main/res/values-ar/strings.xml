@@ -20,7 +20,7 @@
     <string name="download_path_summary">يتم تخزين ملفات الفيديو التي تم تنزيلها هنا</string>
     <string name="download_path_title">مجلد تحميل الفيديو</string>
     <string name="err_dir_create">"لا يمكن إنشاء مجلد للتنزيلات في '%1$s'"</string>
-    <string name="info_dir_created">دليل التنزيل الذي تم إنشاؤه \'%1$s\'</string>
+    <string name="info_dir_created">إنشاء دليل التحميل \'%1$s\'</string>
     <string name="install">تثبيت</string>
     <string name="kore_not_found">تطبيق Kore غير موجود. هل تريد تثبيته ؟</string>
     <string name="light_theme_title">مضيء</string>
@@ -42,7 +42,7 @@
     <string name="share">مشاركة</string>
     <string name="share_dialog_title">مشاركة بواسطة</string>
     <string name="show_next_and_similar_title">عرض مقاطع الفيديو \"التالية\" و \"المشابهة\"</string>
-    <string name="show_play_with_kodi_summary">عرض خيارات تشغيل الفيديو من خلال مركز كودي ميديا</string>
+    <string name="show_play_with_kodi_summary">اعرض خيار لتشغيل الفيديو عبر مركز وسائط Kodi</string>
     <string name="show_play_with_kodi_title">عرض خيار التشغيل بواسطة كودي</string>
     <string name="theme_title">السمة</string>
     <string name="upload_date_text">تم النشر يوم %1$s</string>
@@ -57,7 +57,7 @@
     <string name="general_error">خطأ</string>
     <string name="parsing_error">تعذرت عملية تحليل الموقع</string>
     <string name="youtube_signature_decryption_error">تعذر فك تشفير توقيع رابط الفيديو</string>
-    <string name="main_bg_subtitle">اضغط بحث للبدء</string>
+    <string name="main_bg_subtitle">انقر فوق بحث لتبدأ</string>
     <string name="subscribe_button_title">اشتراك</string>
     <string name="subscribed_button_title">مشترك</string>
     <string name="tab_main">الرئيسية</string>
@@ -69,8 +69,8 @@
     <string name="enable_watch_history_title">مراقبة السجل</string>
     <string name="settings_category_history_title">التاريخ و ذاكرة التخزين المؤقت</string>
     <string name="content">محتوى</string>
-    <string name="downloads">الملفات المحملة</string>
-    <string name="downloads_title">الملفات المحملة</string>
+    <string name="downloads">التحميلات</string>
+    <string name="downloads_title">التحميلات</string>
     <string name="all">الجميع</string>
     <string name="channel">القناة</string>
     <string name="video">الفيديو</string>
@@ -80,7 +80,7 @@
     <string name="title_activity_history">التاريخ</string>
     <string name="action_history">التاريخ</string>
     <string name="open_in_popup_mode">فتح في وضع منبثق</string>
-    <string name="use_external_video_player_summary">إزالة الصوت في بعض مستوى الدقة</string>
+    <string name="use_external_video_player_summary">يزيل الصوت في بعض القرارات</string>
     <string name="popup_mode_share_menu_title">وضع النوافذ المنبثقة NewPipe</string>
     <string name="channel_unsubscribed">تم إلغاء الاشتراك في القناة</string>
     <string name="subscription_change_failed">تعذر تغيير حالة الاشتراك</string>
@@ -113,7 +113,7 @@
     <string name="show_age_restricted_content_title">محتوى مقيد بحسب العمر</string>
     <string name="video_is_age_restricted">"إظهار الفيديو  المقيد بحسب العمر. يمكن السماح باستخدام هذه المواد من \"الإعدادات\"."</string>
     <string name="duration_live">بث مباشر</string>
-    <string name="error_report_title">تقرير عن مشكلة</string>
+    <string name="error_report_title">تقرير خطأ</string>
     <string name="playlist">قائمة التشغيل</string>
     <string name="yes">نعم</string>
     <string name="later">لاحقاً</string>
@@ -155,15 +155,15 @@
     <string name="storage_permission_denied">تم رفض إذن الوصول إلى التخزين</string>
     <string name="short_thousand">ألف</string>
     <string name="short_million">مليون</string>
-    <string name="short_billion">G</string>
+    <string name="short_billion">B</string>
     <string name="no_subscribers">ليس هناك مشترِكون</string>
     <plurals name="subscribers">
-        <item quantity="zero">%s لا يوجد مشاركين</item>
+        <item quantity="zero">%s لا يوجد مشترك</item>
         <item quantity="one">%s مشترك</item>
-        <item quantity="two">%s مشاريكان</item>
-        <item quantity="few">%s اشتراكات</item>
-        <item quantity="many">%s مشاركون</item>
-        <item quantity="other">%s اشتراك</item>
+        <item quantity="two">%s المشتركين</item>
+        <item quantity="few">%s المشتركين</item>
+        <item quantity="many">%s المشتركين</item>
+        <item quantity="other">%s المشتركين</item>
     </plurals>
     <string name="no_views">دون مشاهدات</string>
     <string name="no_videos">لاتوجد فيديوهات</string>
@@ -200,7 +200,7 @@
     <string name="action_open_website">فتح الموقع</string>
     <string name="tab_contributors">المساهمون</string>
     <string name="tab_licenses">التراخيص</string>
-    <string name="app_description">تطبيق مجاني خفيف الوزن وبث حي على نظام أندرويد.</string>
+    <string name="app_description">تطبيق مجاني خفيف البث على أندرويد.</string>
     <string name="contribution_title">ساهم</string>
     <string name="contribution_encouragement">إذا كانت لديك أفكار؛ أو ترجمة، أو تغييرات تخص التصميم، أو تنظيف و تحسين الشفرة البرمجية ، أو تعديلات عميقة عليها، فتذكر أنّ مساعدتك دائما موضع ترحيب. وكلما أتممنا شيئا كلما كان ذلك أفضل !</string>
     <string name="view_on_github">عرض على GitHub</string>
@@ -238,12 +238,12 @@
     <string name="reCaptcha_title">تحدي الكابتشا</string>
     <string name="hold_to_append">ضغط مطول للإدراج الى قائمة الانتظار</string>
     <plurals name="views">
-        <item quantity="zero">%s بدون مشهد</item>
-        <item quantity="one">%s شاهد</item>
-        <item quantity="two">%s مشاهدتان</item>
-        <item quantity="few">%s مشاهدات</item>
-        <item quantity="many">%s مشاهدون</item>
-        <item quantity="other">%s شاهدو</item>
+        <item quantity="zero">%s بدون مشهادة</item>
+        <item quantity="one">%s مشاهدة</item>
+        <item quantity="two">%s مشاهدة</item>
+        <item quantity="few">%s مشاهدة</item>
+        <item quantity="many">%s مشاهدة</item>
+        <item quantity="other">%s مشاهدة</item>
     </plurals>
     <plurals name="videos">
         <item quantity="zero">فيديوهات</item>
@@ -425,7 +425,7 @@
     <string name="app_update_notification_channel_name">تتبيه تحديث التطبيق</string>
     <string name="volume_gesture_control_title">إيماءة التحكم بالصوت</string>
     <string name="events">الأحداث</string>
-    <string name="app_update_notification_channel_description">إخطارات لنسخة NewPipe الجديدة</string>
+    <string name="app_update_notification_channel_description">الإخطارات لإصدار NewPipe الجديد</string>
     <string name="download_to_sdcard_error_title">وحدة التخزين الخارجية غير متوفرة</string>
     <string name="download_to_sdcard_error_message">"التنزيل على بطاقة SD الخارجية غير ممكن.  إعادة تعيين موقع مجلد التحميل؟"</string>
     <string name="saved_tabs_invalid_json">باستخدام علامات التبويب الافتراضية ، خطأ أثناء قراءة علامات التبويب المحفوظة</string>
@@ -449,7 +449,7 @@
     <string name="paused">متوقف</string>
     <string name="queued">في قائمة الانتظار</string>
     <string name="post_processing">قيد المعالجة</string>
-    <string name="enqueue">قائمه انتظار</string>
+    <string name="enqueue">طابور</string>
     <string name="permission_denied">تم رفضها من قبل النظام</string>
     <string name="download_failed">فشل التنزيل</string>
     <string name="download_finished">تم الانتهاء من التحميل</string>
@@ -504,7 +504,7 @@
     <string name="error_insufficient_storage">لم يتبقى مساحة في الجهاز</string>
     <string name="error_progress_lost">تم فقد التقدم بسبب حذف الملف</string>
     <string name="error_timeout">انتهى وقت الاتصال</string>
-    <string name="confirm_prompt">هل أنت واثق؟</string>
+    <string name="confirm_prompt">هل تريد محو سجل التنزيل أو حذف جميع الملفات التي تم تنزيلها؟</string>
     <string name="enable_queue_limit">حد قائمة انتظار التنزيل</string>
     <string name="enable_queue_limit_desc">سيتم تشغيل تنزيل واحد في نفس الوقت</string>
     <string name="start_downloads">بدء التنزيلات</string>
@@ -541,18 +541,24 @@
         <item quantity="other">مستمعين</item>
     </plurals>
     <string name="seek_duration_title">تسريع إلى الأمام/-ترجيع وقت البحث</string>
-    <string name="peertube_instance_url_title">نموذج بيرتوب</string>
-    <string name="peertube_instance_url_summary">تعيين حالات بيرتوب المفضلة لديك</string>
+    <string name="peertube_instance_url_title">مثيلات خوادم پيرتيوب</string>
+    <string name="peertube_instance_url_summary">حدد مثيلات PeerTube المفضلة لديك</string>
     <string name="peertube_instance_add_title">إضافة نموذج</string>
-    <string name="peertube_instance_add_help">أدخل رابط نموذج</string>
-    <string name="peertube_instance_add_fail">فشل في التحقق من النموذج</string>
-    <string name="peertube_instance_add_https_only">فقط عناوين https المدعومة</string>
-    <string name="peertube_instance_add_exists">نموذج موجود بالفعل</string>
+    <string name="peertube_instance_add_help">أدخل عنوان URL للمثيل</string>
+    <string name="peertube_instance_add_fail">لا يمكن التحقق من صحة المثال</string>
+    <string name="peertube_instance_add_https_only">يتم دعم عناوين URL HTTPS فقط</string>
+    <string name="peertube_instance_add_exists">مثيل الخادم موجود بالفعل</string>
     <string name="local">محلي</string>
     <string name="recently_added">أضيف مؤخرا</string>
     <string name="most_liked">الأكثر إعجابا</string>
     <string name="playlist_no_uploader">تم إنشاؤه-تلقائيًا (لم يتم العثور على برنامج تحميل)</string>
     <string name="recovering">استرد</string>
     <string name="error_download_resource_gone">لا يمكن استرداد هذا التنزيل</string>
-    <string name="choose_instance_prompt">اختيار نموذج</string>
+    <string name="choose_instance_prompt">اختيار مثيل</string>
+    <string name="peertube_instance_url_help">ابحث عن الحالات التي تناسبك على %s</string>
+    <string name="enable_lock_screen_video_thumbnail_title">تمكين صور مصغرة قفل شاشة فيديو</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">عند استخدام مشغل الخلفية ، سيتم عرض صورة مصغرة للفيديو على شاشة القفل</string>
+    <string name="clear_download_history">تنظيف تاريخ التحميل</string>
+    <string name="delete_downloaded_files">حذف الملفات التي تم تنزيلها</string>
+    <string name="deleted_downloads">التنزيلات %1$s المحذوفة</string>
 </resources>

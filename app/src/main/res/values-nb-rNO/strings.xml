@@ -516,4 +516,25 @@
     </plurals>
     <string name="localization_changes_requires_app_restart">Språk vil ikke bli endret før programmet startes på ny.</string>
     <string name="default_kiosk_page_summary">Forvalgt kiosk</string>
+    <string name="peertube_instance_url_title">PeerTube-instanser</string>
+    <string name="local">Lokal</string>
+    <string name="recently_added">Nylig lagt til</string>
+    <string name="most_liked">Mest likt</string>
+    <string name="choose_instance_prompt">Velg en instans</string>
+    <string name="clear_download_history">Tøm nedlastingshistorikk</string>
+    <string name="delete_downloaded_files">Slett nedlastede filer</string>
+    <string name="deleted_downloads">Slettet %1$s nedlastninger</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Aktiver videominiatyrbilde på låseskjerm</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Når du bruker bakgrunnsspilleren, vises ent videominiatyrbilde på låseskjermen</string>
+    <string name="peertube_instance_url_summary">Velg dine favoritter blandt PeerTube-instansene</string>
+    <string name="peertube_instance_url_help">Finn instansene som passer deg best på %s</string>
+    <string name="peertube_instance_add_title">Legg til instans</string>
+    <string name="peertube_instance_add_help">Skriv inn nettadresse til instans</string>
+    <string name="peertube_instance_add_fail">Kunne ikke bekrefte instans</string>
+    <string name="peertube_instance_add_https_only">Kun HTTPS-nettadresser støttes</string>
+    <string name="peertube_instance_add_exists">Instansen finnes allerede</string>
+    <string name="playlist_no_uploader">Autogenerert (fant ingen opplaster)</string>
+    <string name="recovering">gjenoppretter</string>
+    <string name="error_download_resource_gone">Kan ikke gjenopprette denne nedlastingen</string>
+    <string name="seek_duration_title">Hurtigframoverspoling/-tilbakeblafringsvarighet</string>
 </resources>

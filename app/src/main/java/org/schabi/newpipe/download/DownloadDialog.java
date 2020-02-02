@@ -11,15 +11,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
-import androidx.annotation.IdRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
-import androidx.fragment.app.DialogFragment;
-import androidx.documentfile.provider.DocumentFile;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.view.menu.ActionMenuItemView;
-import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -33,6 +24,16 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.view.menu.ActionMenuItemView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.documentfile.provider.DocumentFile;
+import androidx.fragment.app.DialogFragment;
 
 import com.nononsenseapps.filepicker.Utils;
 
@@ -77,6 +78,8 @@ import us.shandian.giga.service.DownloadManager;
 import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.service.DownloadManagerService.DownloadManagerBinder;
 import us.shandian.giga.service.MissionState;
+
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheckedChangeListener, AdapterView.OnItemSelectedListener {
     private static final String TAG = "DialogFragment";
@@ -527,10 +530,11 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
     }
 
     private void showFailedDialog(@StringRes int msg) {
+        assureCorrectAppLanguage(getContext());
         new AlertDialog.Builder(context)
                 .setTitle(R.string.general_error)
                 .setMessage(msg)
-                .setNegativeButton(android.R.string.ok, null)
+                .setNegativeButton(getString(R.string.finish), null)
                 .create()
                 .show();
     }
@@ -559,8 +563,16 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
             case R.id.audio_button:
                 mainStorage = mainStorageAudio;
                 format = audioStreamsAdapter.getItem(selectedAudioIndex).getFormat();
-                mime = format.mimeType;
-                filename += format.suffix;
+                switch(format) {
+                    case WEBMA_OPUS:
+                        mime = "audio/ogg";
+                        filename += "opus";
+                        break;
+                    default:
+                        mime = format.mimeType;
+                        filename += format.suffix;
+                        break;
+                }
                 break;
             case R.id.video_button:
                 mainStorage = mainStorageVideo;
@@ -824,7 +836,6 @@ public class DownloadDialog extends DialogFragment implements RadioGroup.OnCheck
                     psArgs = new String[]{
                             selectedStream.getFormat().getSuffix(),
                             "false",// ignore empty frames
-                            "false",// detect youtube duplicate lines
                     };
                 }
                 break;

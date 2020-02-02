@@ -99,7 +99,7 @@ public class App extends Application {
         NewPipe.init(getDownloader(),
                 Localization.getPreferredLocalization(this),
                 Localization.getPreferredContentCountry(this));
-        Localization.init();
+        Localization.init(getApplicationContext());
 
         StateSaver.init(this);
         initNotificationChannel();
