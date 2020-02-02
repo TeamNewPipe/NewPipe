@@ -150,28 +150,17 @@ public class ReCaptchaActivity extends AppCompatActivity {
     }
 
     private void addYoutubeCookies(@Nonnull String cookies) {
-        String c_s_gl = "";
-        String c_goojf = "";
-
-        String[] parts = cookies.split(";");
-        for (String part : parts) {
-            String trimmedPart = part.trim();
-            if (trimmedPart.startsWith("s_gl")) {
-                c_s_gl = trimmedPart;
-            }
-            if (trimmedPart.startsWith("goojf")) {
-                c_goojf = trimmedPart;
-            }
-        }
-        if (c_s_gl.length() > 0 && c_goojf.length() > 0) {
-            // addCookie(c_s_gl);
-            // addCookie(c_goojf);
+        if (cookies.contains("s_gl=") || cookies.contains("goojf=") || cookies.contains("VISITOR_INFO1_LIVE=")) {
             // Youtube seems to also need the other cookies:
             addCookie(cookies);
         }
     }
 
     private void addCookie(String cookie) {
+        if (foundCookies.contains(cookie)) {
+            return;
+        }
+
         if (foundCookies.isEmpty() || foundCookies.endsWith("; ")) {
             foundCookies += cookie;
         } else if (foundCookies.endsWith(";")) {
