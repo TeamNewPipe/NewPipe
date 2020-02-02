@@ -175,8 +175,8 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
     }
 
     private void updateTimer(ServicePlayerActivity servicePlayerActivity) {
-        TimePickerDialog dialog = new TimePickerDialog(servicePlayerActivity,
-                (view, hourOfDay, minute) -> player.setTimer(hourOfDay, minute), player.getHourOfDay(), player.getMinutes(), true);
+        TimePickerDialog dialog = new TimePickerDialog(servicePlayerActivity, (view, hourOfDay, minute) ->
+                player.setTimer(hourOfDay, minute, getApplicationContext()), player.getHourOfDay(), player.getMinutes(), true);
         dialog.show();
     }
 
