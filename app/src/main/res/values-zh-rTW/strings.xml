@@ -498,8 +498,8 @@
     <string name="download_choose_new_path">變更下載資料夾以使其生效</string>
     <string name="drawer_header_description">切換服務，目前已選取：</string>
     <plurals name="videos">
-        <item quantity="one">影片</item>
-        <item quantity="other"/>
+        <item quantity="one">%s 影片</item>
+        <item quantity="other"></item>
     </plurals>
     <string name="default_kiosk_page_summary">預設 Kiosk</string>
     <string name="no_one_watching">沒有人在看</string>
@@ -534,4 +534,7 @@
     <string name="clear_download_history">清除下載歷史紀錄</string>
     <string name="delete_downloaded_files">刪除已下載的檔案</string>
     <string name="deleted_downloads">已刪除 %1$s 個下載</string>
+    <string name="permission_display_over_apps">給予顯示在其他應用程式上層的權限</string>
+    <string name="app_language_title">應用程式語言</string>
+    <string name="systems_language">系統預設值</string>
 </resources>
