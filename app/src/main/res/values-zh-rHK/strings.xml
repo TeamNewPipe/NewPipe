@@ -120,8 +120,8 @@
     <string name="info_labels">事件：\\n請求：\\n內容語言：\\n服務：\\nGMT 時間：\\nPackage：\\n版本：\\n作業系統版本：</string>
     <string name="short_thousand">K</string>
     <string name="short_million">M</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">reCAPTCHA 挑戰</string>
+    <string name="recaptcha">reCAPTCHA</string>
+    <string name="title_activity_recaptcha">reCAPTCHA 挑戰</string>
     <string name="msg_popup_permission">畫中畫模式需要此權限</string>
     <string name="recaptcha_request_toast">需完成 reCAPTCHA 挑戰</string>
     <string name="use_external_video_player_summary">啟用此選項將導致某些解像度的影片失去聲音</string>

@@ -228,9 +228,7 @@
     <string name="msg_wait">براۓ مہربانی انتظار کريں…</string>
     <string name="msg_copied">کلپ بورڈ میں نقل ہوا</string>
     <string name="no_available_dir">براہ کرم بعد میں ترتیبات میں ڈاؤن لوڈ فولڈر کی وضاحت رکھیں</string>
-    <string name="msg_popup_permission">پوپ اپ موڈ میں کھولنے کیلئے/nاس اجازت کی ضرورت ہے</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">reCAPTCHA چیلنج</string>
+    <string name="msg_popup_permission">پوپ اپ موڈ میں کھولنے کیلئے اس اجازت کی ضرورت ہے</string>
     <string name="recaptcha_request_toast">reCAPTCHA چیلینج کی درخواست کی گئی</string>
     <string name="settings_category_downloads_title">ڈاؤن لوڈ</string>
     <string name="settings_file_charset_title">فائل کے ناموں میں ان حروف کی اجازت ہے</string>
