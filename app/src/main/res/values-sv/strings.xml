@@ -467,4 +467,5 @@
     <string name="settings_category_clear_data_title">Töm data</string>
     <string name="seek_duration_title">Snabb spola -framåt/-bakåt</string>
     <string name="enable_lock_screen_video_thumbnail_title">Aktivera video på låsskärmen</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">När bakgrundsspelaren används så visas videon på låsskärmen</string>
 </resources>
