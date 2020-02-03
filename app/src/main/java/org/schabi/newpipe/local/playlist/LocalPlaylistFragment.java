@@ -388,8 +388,10 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         this.name = name;
         setTitle(name);
 
-        Log.d(TAG, "Updating playlist id=[" + playlistId +
-                "] with new name=[" + name + "] items");
+        if (DEBUG) {
+            Log.d(TAG, "Updating playlist id=[" + playlistId +
+                    "] with new name=[" + name + "] items");
+        }
 
         final Disposable disposable = playlistManager.renamePlaylist(playlistId, name)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -404,8 +406,10 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 R.string.playlist_thumbnail_change_success,
                 Toast.LENGTH_SHORT);
 
-        Log.d(TAG, "Updating playlist id=[" + playlistId +
-                "] with new thumbnail url=[" + thumbnailUrl + "]");
+        if (DEBUG) {
+            Log.d(TAG, "Updating playlist id=[" + playlistId +
+                    "] with new thumbnail url=[" + thumbnailUrl + "]");
+        }
 
         final Disposable disposable = playlistManager
                 .changePlaylistThumbnail(playlistId, thumbnailUrl)
@@ -472,8 +476,10 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             }
         }
 
-        Log.d(TAG, "Updating playlist id=[" + playlistId +
-                "] with [" + streamIds.size() + "] items");
+        if (DEBUG) {
+            Log.d(TAG, "Updating playlist id=[" + playlistId +
+                    "] with [" + streamIds.size() + "] items");
+        }
 
         final Disposable disposable = playlistManager.updateJoin(playlistId, streamIds)
                 .observeOn(AndroidSchedulers.mainThread())

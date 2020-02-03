@@ -107,8 +107,8 @@
     <string name="msg_copied">Gekopieerd naar klembord</string>
     <string name="no_available_dir">Kies een beschikbare downloadmap</string>
     <string name="black_theme_title">Zwart</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">reCAPTCHA-uitdaging</string>
+    <string name="recaptcha">reCAPTCHA</string>
+    <string name="title_activity_recaptcha">reCAPTCHA-uitdaging</string>
     <string name="recaptcha_request_toast">reCAPTCHA-uitdaging gevraagd</string>
     <string name="open_in_popup_mode">Openen in pop-upmodus</string>
     <string name="all">Alles</string>

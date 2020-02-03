@@ -184,7 +184,7 @@
     <string name="msg_url_malform">Помилковий URL або немає доступу в Інтернет</string>
     <string name="msg_popup_permission">Цей дозвіл потрібен для перегляду
 \nу віконному режимі</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="recaptcha">reCAPTCHA</string>
     <string name="settings_category_downloads_title">Завантаження</string>
     <string name="settings_file_charset_title">Допустимі символи у іменах файлів</string>
     <string name="settings_file_replacement_character_summary">Недопустимі символи замінити на цей</string>
@@ -256,7 +256,7 @@
         <item quantity="many">%s переглядів</item>
     </plurals>
     <string name="add">Нове завдання</string>
-    <string name="reCaptcha_title">Перевірка reCAPTCHA</string>
+    <string name="title_activity_recaptcha">Перевірка reCAPTCHA</string>
     <string name="recaptcha_request_toast">Запит на перевірку reCAPTCHA</string>
     <string name="copyright" formatted="true">© %1$s, %2$s під %3$s</string>
     <string name="tab_contributors">Учасники</string>

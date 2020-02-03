@@ -266,8 +266,8 @@
     <string name="msg_popup_permission">在悬浮窗模式打开
 \n需要此权限</string>
     <string name="one_item_deleted">已删除一个项目。</string>
-    <string name="reCaptchaActivity">reCAPTCHA 验证</string>
-    <string name="reCaptcha_title">reCAPTCHA 验证</string>
+    <string name="recaptcha">reCAPTCHA 验证</string>
+    <string name="title_activity_recaptcha">reCAPTCHA 验证</string>
     <string name="recaptcha_request_toast">需完成 reCAPTCHA 验证</string>
     <string name="settings_category_downloads_title">下载</string>
     <string name="settings_file_charset_title">文件名中允许的字符</string>

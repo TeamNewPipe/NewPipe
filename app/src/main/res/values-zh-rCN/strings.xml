@@ -117,8 +117,8 @@
     <string name="could_not_load_image">无法加载图像</string>
     <string name="app_ui_crash">应用/界面已崩溃</string>
     <string name="info_labels">原因：\\n请求：\\n内容语言：\\n服务：\\nGMT时间：\\n包：\\n版本：\\n操作系统版本：</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">reCAPTCHA 验证</string>
+    <string name="recaptcha">reCAPTCHA</string>
+    <string name="title_activity_recaptcha">reCAPTCHA 验证</string>
 
     <string name="recaptcha_request_toast">需要 reCAPTCHA 验证</string>
 
