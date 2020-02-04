@@ -547,4 +547,6 @@
     <string name="permission_display_over_apps">Zezwól na wyświetlanie w innych aplikacjach</string>
     <string name="app_language_title">Język aplikacji</string>
     <string name="systems_language">Domyślny systemu</string>
+    <string name="subtitle_activity_recaptcha">Po rozwiązaniu naciśnij „Gotowe”</string>
+    <string name="recaptcha_done_button">Gotowe</string>
 </resources>
