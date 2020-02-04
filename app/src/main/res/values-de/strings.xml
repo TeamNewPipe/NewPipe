@@ -203,8 +203,8 @@
     </plurals>
     <string name="no_videos">Keine Videos</string>
     <plurals name="videos">
-        <item quantity="one">%s Video</item>
-        <item quantity="other">%s Videos</item>
+        <item quantity="one">Video</item>
+        <item quantity="other">Videos</item>
     </plurals>
     <string name="charset_most_special_characters">Die meisten Sonderzeichen</string>
     <string name="item_deleted">Element gelöscht</string>
@@ -495,9 +495,9 @@
     <string name="start_downloads">Downloads starten</string>
     <string name="pause_downloads">Downloads anhalten</string>
     <string name="downloads_storage_ask_title">Frage, wohin heruntergeladen werden soll</string>
-    <string name="downloads_storage_ask_summary">Du wirst gefragt, wohin Du jeden Download speichern willst</string>
-    <string name="downloads_storage_ask_summary_kitkat">Du wirst gefragt, wohin Du jeden Download speichern willst. 
-\nAktiviere diese Option, wenn Du auf die externe SD-Karte herunterladen möchtest</string>
+    <string name="downloads_storage_ask_summary">Du wirst gefragt, wohin du jeden Download speichern willst</string>
+    <string name="downloads_storage_ask_summary_kitkat">Du wirst gefragt, wohin du jeden Download speichern willst.
+\nAktiviere diese Option, wenn du auf die externe SD-Karte herunterladen möchtest</string>
     <string name="downloads_storage_use_saf_title">SAF verwenden</string>
     <string name="downloads_storage_use_saf_summary">Das Storage Access Framework erlaubt Downloads auf eine externe SD-Karte.
 \nHinweis: Manche Geräte sind nicht kompatibel</string>
@@ -539,4 +539,9 @@
     <string name="clear_download_history">Downloadverlauf löschen</string>
     <string name="delete_downloaded_files">Heruntergeladene Dateien löschen</string>
     <string name="deleted_downloads">%1$s Downloads gelöscht</string>
+    <string name="permission_display_over_apps">Berechtigung zur Anzeige über andere Apps erteilen</string>
+    <string name="app_language_title">Sprache der App</string>
+    <string name="systems_language">Systemstandard</string>
+    <string name="subtitle_activity_recaptcha">\"Fertig\" drücken, wenn es gelöst wurde</string>
+    <string name="recaptcha_done_button">Fertig</string>
 </resources>
