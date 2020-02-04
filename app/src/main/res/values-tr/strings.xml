@@ -541,4 +541,6 @@
     <string name="permission_display_over_apps">Diğer uygulamaların üzerinde görüntüleme izni ver</string>
     <string name="app_language_title">Uygulama dili</string>
     <string name="systems_language">Sistem öntanımlısı</string>
+    <string name="subtitle_activity_recaptcha">Çözüldüğünde \"Bitti\" butonuna basın</string>
+    <string name="recaptcha_done_button">Bitti</string>
 </resources>
