@@ -544,4 +544,6 @@
     <string name="permission_display_over_apps">دەسەڵاتی پێبدە بۆ پیشاندان لەسەرووی ئەپەکانیترەوە</string>
     <string name="app_language_title">زمانی ئەپ</string>
     <string name="systems_language">بنەڕەتی سیستەم</string>
+    <string name="subtitle_activity_recaptcha">گرتە بکە لەسەر ”تەواو” کاتێ کە چارەسەرکرا</string>
+    <string name="recaptcha_done_button">تەواو</string>
 </resources>
