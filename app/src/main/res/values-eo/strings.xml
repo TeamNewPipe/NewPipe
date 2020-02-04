@@ -123,7 +123,7 @@
     <string name="msg_popup_permission">Tiu permeso estas necesa por 
 \nmalfermi en ŝprucfenestra modo</string>
     <string name="popup_playing_toast">Ludante en ŝprucfenestra modo</string>
-    <string name="disabled">Malaktiva</string>
+    <string name="disabled">Malŝatitaj</string>
     <string name="filter">Filtri</string>
     <string name="refresh">Aktualigi</string>
     <string name="clear">Forviŝi</string>
@@ -138,7 +138,7 @@
     <string name="settings_category_downloads_title">Elŝuti</string>
     <string name="charset_letters_and_digits">Leteroj kaj ciferoj</string>
     <string name="charset_most_special_characters">Plej specialaj karakteroj</string>
-    <string name="resume_on_audio_focus_gain_title">Rekomencu en fokusa gajno</string>
+    <string name="resume_on_audio_focus_gain_title">Rekomenci en fokusa gajno</string>
     <string name="resume_on_audio_focus_gain_summary">Daŭrigi la ludon post la interrompaĵoj (ekzemple telefonadoj)</string>
     <string name="enable_search_history_title">Serĉa historio</string>
     <string name="enable_search_history_summary">Konservi la historio de serĉo lokale</string>
@@ -172,7 +172,7 @@
     <string name="unknown_content">[Nekonata]</string>
     <string name="enqueue_on_background">Viciĝi en la fona ludilo</string>
     <string name="enqueue_on_popup">Viciĝi en nova ŝprucfenestro</string>
-    <string name="start_here_on_popup">Komencu ludi en nova ŝprucfenestro</string>
+    <string name="start_here_on_popup">Komenci ludi en nova ŝprucfenestro</string>
     <string name="default_content_country_title">Defaŭlta enhava lando</string>
     <string name="toggle_orientation">Ŝangi Orientiĝon</string>
     <string name="switch_to_background">Ŝanĝi al Fono</string>
@@ -540,4 +540,6 @@
     <string name="permission_display_over_apps">Doni la permeson por afiŝiĝi supre aliaj apoj</string>
     <string name="app_language_title">Lingvo de la apo</string>
     <string name="systems_language">Sistema lingvo</string>
+    <string name="subtitle_activity_recaptcha">Premu « Finita » kiam solvita</string>
+    <string name="recaptcha_done_button">Finita</string>
 </resources>
