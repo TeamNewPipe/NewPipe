@@ -52,7 +52,6 @@ with your GitHub account.
   the core developers, and just adds work. If you do not intend to maintain features you contributed, please think again
   about submission, or clearly state that in the description of your PR.
 * Respond yourselves if someone requests changes or otherwise raises issues about your PRs.
-* Check if your contributions align with the [fdroid inclusion guidelines](https://f-droid.org/en/docs/Inclusion_Policy/).
 * Check if your submission can be build with the current fdroid build server setup.
 * Send PR that only cover one specific issue/solution/bug. Do not send PRs that are huge and consists of multiple
   independent solutions.
