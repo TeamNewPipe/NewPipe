@@ -540,4 +540,6 @@
     <string name="permission_display_over_apps">Dar permisos para que se muestre por sobre otras apps</string>
     <string name="app_language_title">Idioma de la app</string>
     <string name="systems_language">Predeterminado del sistema</string>
+    <string name="subtitle_activity_recaptcha">Presiona \"Hecho\" cuando esté resuelto</string>
+    <string name="recaptcha_done_button">Hecho</string>
 </resources>
