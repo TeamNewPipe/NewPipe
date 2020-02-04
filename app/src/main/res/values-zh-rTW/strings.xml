@@ -537,4 +537,6 @@
     <string name="permission_display_over_apps">給予顯示在其他應用程式上層的權限</string>
     <string name="app_language_title">應用程式語言</string>
     <string name="systems_language">系統預設值</string>
+    <string name="subtitle_activity_recaptcha">解決後請按「完成」</string>
+    <string name="recaptcha_done_button">完成</string>
 </resources>
