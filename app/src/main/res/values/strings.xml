@@ -76,6 +76,7 @@
     <string name="download_thumbnail_title">Load thumbnails</string>
     <string name="show_comments_title">Show comments</string>
     <string name="show_comments_summary">Disable to stop showing comments</string>
+    <string name="copy_comment_long_press_title">Copy comment on long press</string>
     <string name="download_thumbnail_summary">Turn off to prevent loading thumbnails, saving data and memory usage. Changes clear both in-memory and on-disk image cache.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Image cache wiped</string>
     <string name="metadata_cache_wipe_title">Wipe cached metadata</string>

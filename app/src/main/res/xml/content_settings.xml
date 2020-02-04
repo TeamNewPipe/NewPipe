@@ -65,6 +65,12 @@
         android:title="@string/show_comments_title"
         android:summary="@string/show_comments_summary"/>
 
+    <SwitchPreference
+        app:iconSpaceReserved="false"
+        android:defaultValue="false"
+        android:key="@string/copy_comment_long_press"
+        android:title="@string/copy_comment_long_press_title"/>
+
     <Preference
         app:iconSpaceReserved="false"
         android:summary="@string/import_data_summary"
