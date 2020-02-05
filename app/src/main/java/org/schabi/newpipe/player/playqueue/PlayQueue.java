@@ -59,7 +59,7 @@ public abstract class PlayQueue implements Serializable {
         streams = new ArrayList<>();
         streams.addAll(startWith);
         history = new ArrayList<>();
-        history.add(streams.get(index));
+        if (streams.size() > index) history.add(streams.get(index));
 
         queueIndex = new AtomicInteger(index);
         disposed = false;
@@ -305,7 +305,9 @@ public abstract class PlayQueue implements Serializable {
         }
 
         history.remove(streams.remove(removeIndex));
-        history.add(streams.get(queueIndex.get()));
+        if (streams.size() > queueIndex.get()) {
+            history.add(streams.get(queueIndex.get()));
+        }
     }
 
     /**
@@ -379,7 +381,9 @@ public abstract class PlayQueue implements Serializable {
             streams.add(0, streams.remove(newIndex));
         }
         queueIndex.set(0);
-        history.add(streams.get(0));
+        if (streams.size() > 0) {
+            history.add(streams.get(0));
+        }
 
         broadcast(new ReorderEvent(originIndex, queueIndex.get()));
     }
@@ -407,7 +411,9 @@ public abstract class PlayQueue implements Serializable {
         } else {
             queueIndex.set(0);
         }
-        history.add(streams.get(queueIndex.get()));
+        if (streams.size() > queueIndex.get()) {
+            history.add(streams.get(queueIndex.get()));
+        }
 
         broadcast(new ReorderEvent(originIndex, queueIndex.get()));
     }

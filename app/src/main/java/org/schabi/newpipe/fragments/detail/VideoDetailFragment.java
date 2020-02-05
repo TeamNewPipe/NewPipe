@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.*;
 import android.content.pm.ActivityInfo;
 import android.database.ContentObserver;
-import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -108,6 +107,7 @@ public class VideoDetailFragment
     private static final int TOOLBAR_ITEMS_UPDATE_FLAG = 0x4;
     private static final int COMMENTS_UPDATE_FLAG = 0x8;
     private static final float MAX_OVERLAY_ALPHA = 0.9f;
+    private static final float MAX_PLAYER_HEIGHT = 0.7f;
 
     public static final String ACTION_SHOW_MAIN_PLAYER = "org.schabi.newpipe.fragments.VideoDetailFragment.ACTION_SHOW_MAIN_PLAYER";
     public static final String ACTION_HIDE_MAIN_PLAYER = "org.schabi.newpipe.fragments.VideoDetailFragment.ACTION_HIDE_MAIN_PLAYER";
@@ -235,7 +235,7 @@ public class VideoDetailFragment
                 // It will do nothing if the player is not in fullscreen mode
                 hideSystemUIIfNeeded();
 
-                if (!player.videoPlayerSelected()) return;
+                if (!player.videoPlayerSelected() && !playAfterConnect) return;
 
                 // STATE_IDLE means the player is stopped
                 if (player.getPlayer() != null && player.getPlayer().getPlaybackState() != Player.STATE_IDLE) addVideoPlayerView();
@@ -282,6 +282,9 @@ public class VideoDetailFragment
     }
 
     private void startService(boolean playAfterConnect) {
+        // startService() can be called concurrently and it will give a random crashes and NullPointerExceptions
+        // inside the service because the service will be bound twice. Prevent it with unbinding first
+        unbind();
         getContext().startService(new Intent(getContext(), MainPlayer.class));
         serviceConnection = getServiceConnection(playAfterConnect);
         bind();
@@ -708,7 +711,6 @@ public class VideoDetailFragment
 
     private void initThumbnailViews(@NonNull StreamInfo info) {
         thumbnailImageView.setImageResource(R.drawable.dummy_thumbnail_dark);
-        overlayThumbnailImageView.setImageResource(R.drawable.dummy_thumbnail_dark);
 
         if (!TextUtils.isEmpty(info.getThumbnailUrl())) {
             final String infoServiceName = NewPipe.getNameOfService(info.getServiceId());
@@ -717,11 +719,6 @@ public class VideoDetailFragment
                 public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
                     showSnackBarError(failReason.getCause(), UserAction.LOAD_IMAGE,
                             infoServiceName, imageUri, R.string.could_not_load_thumbnails);
-                }
-
-                @Override
-                public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                    overlayThumbnailImageView.setImageBitmap(loadedImage);
                 }
             };
 
@@ -855,7 +852,7 @@ public class VideoDetailFragment
      */
     protected final LinkedList<StackItem> stack = new LinkedList<>();
 
-    public void setTitleToUrl(int serviceId, String videoUrl, String name) {
+    /*public void setTitleToUrl(int serviceId, String videoUrl, String name) {
         if (name != null && !name.isEmpty()) {
             for (StackItem stackItem : stack) {
                 if (stack.peek().getServiceId() == serviceId
@@ -864,7 +861,7 @@ public class VideoDetailFragment
                 }
             }
         }
-    }
+    }*/
 
     @Override
     public boolean onBackPressed() {
@@ -887,7 +884,9 @@ public class VideoDetailFragment
         }
 
         // If we have something in history of played items we replay it here
-        if (player != null && player.getPlayQueue() != null && player.getPlayQueue().previous()) {
+        boolean isPreviousCanBePlayed = player != null && player.getPlayQueue() != null && player.videoPlayerSelected()
+                && player.getPlayQueue().previous();
+        if (isPreviousCanBePlayed) {
             return true;
         }
         // That means that we are on the start of the stack,
@@ -914,6 +913,12 @@ public class VideoDetailFragment
                 item.getUrl(),
                 !TextUtils.isEmpty(item.getTitle()) ? item.getTitle() : "",
                 item.getPlayQueue());
+
+        PlayQueueItem playQueueItem = item.getPlayQueue().getItem();
+        // Update title, url, uploader from the last item in the stack (it's current now)
+        boolean isPlayerStopped = player == null || player.isPlayerStopped();
+        if (playQueueItem != null && isPlayerStopped)
+            updateOverlayData(playQueueItem.getTitle(), playQueueItem.getUploader(), playQueueItem.getThumbnailUrl());
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1199,7 +1204,7 @@ public class VideoDetailFragment
         FrameLayout viewHolder = getView().findViewById(R.id.player_placeholder);
 
         // Check if viewHolder already contains a child
-        if (player.getRootView() != viewHolder) removeVideoPlayerView();
+        if (player.getRootView().getParent() != viewHolder) removeVideoPlayerView();
         setHeightThumbnail();
 
         // Prevent from re-adding a view multiple times
@@ -1250,6 +1255,11 @@ public class VideoDetailFragment
                 }));
     }
 
+    /**
+     * Method which controls the size of thumbnail and the size of main player inside a layout with thumbnail.
+     * It decides what height the player should have in both screen orientations. It knows about multiWindow feature
+     * and about videos with aspectRatio ZOOM (the height for them will be a bit higher, {@link #MAX_PLAYER_HEIGHT})
+     */
     private void setHeightThumbnail() {
         final DisplayMetrics metrics = getResources().getDisplayMetrics();
         boolean isPortrait = metrics.heightPixels > metrics.widthPixels;
@@ -1260,11 +1270,14 @@ public class VideoDetailFragment
         else
             height = isPortrait
                     ? (int) (metrics.widthPixels / (16.0f / 9.0f))
-                    : (int) (metrics.heightPixels / 2f);;
+                    : (int) (metrics.heightPixels / 2f);
 
-        thumbnailImageView.setLayoutParams(
-                new FrameLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, height));
+        thumbnailImageView.setLayoutParams(new FrameLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, height));
         thumbnailImageView.setMinimumHeight(height);
+        if (player != null) {
+            int maxHeight = (int) (metrics.heightPixels * MAX_PLAYER_HEIGHT);
+            player.getSurfaceView().setHeights(height, player.isInFullscreen() ? height : maxHeight);
+        }
     }
 
     private void showContent() {
@@ -1393,13 +1406,11 @@ public class VideoDetailFragment
 
         animateView(thumbnailPlayButton, true, 200);
         videoTitleTextView.setText(name);
-        overlayTitleTextView.setText(name);
 
         if (!TextUtils.isEmpty(info.getUploaderName())) {
             uploaderTextView.setText(info.getUploaderName());
             uploaderTextView.setVisibility(View.VISIBLE);
             uploaderTextView.setSelected(true);
-            overlayChannelTextView.setText(info.getUploaderName());
         } else {
             uploaderTextView.setVisibility(View.GONE);
         }
@@ -1481,8 +1492,9 @@ public class VideoDetailFragment
         setupActionBar(info);
         initThumbnailViews(info);
 
-        setTitleToUrl(info.getServiceId(), info.getUrl(), info.getName());
-        setTitleToUrl(info.getServiceId(), info.getOriginalUrl(), info.getName());
+        if (player == null || player.isPlayerStopped())
+            updateOverlayData(info.getName(), info.getUploaderName(), info.getThumbnailUrl());
+
 
         if (!info.getErrors().isEmpty()) {
             showSnackBarError(info.getErrors(),
@@ -1682,7 +1694,8 @@ public class VideoDetailFragment
             peek.setUrl(info.getUrl());
         }
 
-        if (currentInfo == info) return;
+        updateOverlayData(info.getName(), info.getUploaderName(), info.getThumbnailUrl());
+        if (currentInfo != null && info.getUrl().equals(currentInfo.getUrl())) return;
 
         currentInfo = info;
         setAutoplay(false);
@@ -1702,6 +1715,8 @@ public class VideoDetailFragment
     public void onServiceStopped() {
         unbind();
         setOverlayPlayPauseImage();
+        if (currentInfo != null)
+            updateOverlayData(currentInfo.getName(), currentInfo.getUploaderName(), currentInfo.getThumbnailUrl());
     }
 
     @Override
@@ -1858,9 +1873,11 @@ public class VideoDetailFragment
     private void cleanUp() {
         // New beginning
         stack.clear();
+        if (currentWorker != null) currentWorker.dispose();
         stopService();
         setInitialData(0,null,"", null);
         currentInfo = null;
+        updateOverlayData(null, null, null);
     }
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -1899,16 +1916,20 @@ public class VideoDetailFragment
                         // Disable click because overlay buttons located on top of buttons from the player
                         setOverlayElementsClickable(false);
                         hideSystemUIIfNeeded();
-                        if (isLandscape() && player != null && player.isPlaying() && !player.isInFullscreen())
-                            player.toggleFullscreen();
+                        boolean needToExpand = isLandscape()
+                                && player != null
+                                && player.isPlaying()
+                                && !player.isInFullscreen()
+                                && player.videoPlayerSelected();
+                        if (needToExpand) player.toggleFullscreen();
                         break;
                     case BottomSheetBehavior.STATE_COLLAPSED:
                         // Re-enable clicks
                         setOverlayElementsClickable(true);
-                        if (player != null && player.isInFullscreen()) showSystemUi();
                         break;
                     case BottomSheetBehavior.STATE_DRAGGING:
                     case BottomSheetBehavior.STATE_SETTLING:
+                        if (player != null && player.isInFullscreen()) showSystemUi();
                         if (player != null && player.isControlsVisible()) player.hideControls(0, 0);
                         break;
                 }
@@ -1925,6 +1946,15 @@ public class VideoDetailFragment
         });
     }
 
+    private void updateOverlayData(@Nullable String title, @Nullable String uploader, @Nullable String thumbnailUrl) {
+        overlayTitleTextView.setText(!TextUtils.isEmpty(title) ? title : "");
+        overlayChannelTextView.setText(!TextUtils.isEmpty(uploader) ? uploader : "");
+        overlayThumbnailImageView.setImageResource(R.drawable.dummy_thumbnail_dark);
+        if (!TextUtils.isEmpty(thumbnailUrl))
+            imageLoader.displayImage(thumbnailUrl, overlayThumbnailImageView,
+                ImageDisplayConstants.DISPLAY_THUMBNAIL_OPTIONS, null);
+    }
+
     private void setOverlayPlayPauseImage() {
         boolean playing = player != null && player.getPlayer().getPlayWhenReady();
         int attr = playing ? R.attr.pause : R.attr.play;
@@ -1935,7 +1965,8 @@ public class VideoDetailFragment
         if (behavior != null) {
             overlay.setAlpha(Math.min(MAX_OVERLAY_ALPHA, 1 - slideOffset));
 
-            behavior.setTopAndBottomOffset((int)(-appBarLayout.getTotalScrollRange() * (1 - slideOffset) / 3));
+            // These numbers are not special. They just do a cool transition
+            behavior.setTopAndBottomOffset((int)(-thumbnailImageView.getHeight() * 2 * (1 - slideOffset) / 3));
             appBarLayout.requestLayout();
         }
     }

@@ -16,6 +16,8 @@ public class CustomBottomSheetBehavior extends BottomSheetBehavior {
         super(context, attrs);
     }
 
+    boolean skippingInterception = false;
+
     @Override
     public boolean onInterceptTouchEvent(CoordinatorLayout parent, View child, MotionEvent event) {
         // Behavior of globalVisibleRect is different on different APIs.
@@ -24,24 +26,40 @@ public class CustomBottomSheetBehavior extends BottomSheetBehavior {
         boolean visible;
         Rect rect = new Rect();
 
+        // Drop folowing when actions ends
+        if (event.getAction() == MotionEvent.ACTION_CANCEL || event.getAction() == MotionEvent.ACTION_UP)
+            skippingInterception = false;
+
+        // Found that user still swipping, continue folowing
+        if (skippingInterception) return false;
+
         // Without overriding scrolling will not work in detail_content_root_layout
         ViewGroup controls = child.findViewById(R.id.detail_content_root_layout);
         if (controls != null) {
             visible = controls.getGlobalVisibleRect(rect);
-            if (rect.contains((int) event.getX(), (int) event.getY()) && visible) return false;
+            if (rect.contains((int) event.getRawX(), (int) event.getRawY()) && visible) {
+                skippingInterception = true;
+                return false;
+            }
         }
 
         // Without overriding scrolling will not work on relatedStreamsLayout
         ViewGroup relatedStreamsLayout = child.findViewById(R.id.relatedStreamsLayout);
         if (relatedStreamsLayout != null) {
             visible = relatedStreamsLayout.getGlobalVisibleRect(rect);
-            if (rect.contains((int) event.getX(), (int) event.getY()) && visible) return false;
+            if (rect.contains((int) event.getRawX(), (int) event.getRawY()) && visible) {
+                skippingInterception = true;
+                return false;
+            }
         }
 
         ViewGroup playQueue = child.findViewById(R.id.playQueue);
         if (playQueue != null) {
             visible = playQueue.getGlobalVisibleRect(rect);
-            if (rect.contains((int) event.getX(), (int) event.getY()) && visible) return false;
+            if (rect.contains((int) event.getRawX(), (int) event.getRawY()) && visible) {
+                skippingInterception = true;
+                return false;
+            }
         }
 
         return super.onInterceptTouchEvent(parent, child, event);

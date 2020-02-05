@@ -179,6 +179,7 @@ public final class MainPlayer extends Service {
 
             playerImpl.savePlaybackState();
             playerImpl.stopActivityBinding();
+            playerImpl.removePopupFromView();
             playerImpl.destroy();
         }
         if (notificationManager != null) notificationManager.cancel(NOTIFICATION_ID);

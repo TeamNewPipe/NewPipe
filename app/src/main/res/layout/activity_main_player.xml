@@ -8,27 +8,18 @@
     android:background="@color/black"
     android:gravity="center">
 
-    <com.google.android.exoplayer2.ui.AspectRatioFrameLayout
-        android:id="@+id/aspectRatioLayout"
+    <org.schabi.newpipe.views.ExpandableSurfaceView
+        android:id="@+id/surfaceView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center">
+        android:layout_centerHorizontal="true"/>
 
-        <SurfaceView
-            android:id="@+id/surfaceView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"/>
-
-
-        <View
-            android:id="@+id/surfaceForeground"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/black"/>
-
-    </com.google.android.exoplayer2.ui.AspectRatioFrameLayout>
+    <View
+        android:id="@+id/surfaceForeground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"
+        android:layout_alignBottom="@+id/surfaceView"/>
 
     <com.google.android.exoplayer2.ui.SubtitleView
         android:id="@+id/subtitleView"
@@ -145,12 +136,6 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true">
 
-            <!-- It will be hidden in popup -->
-            <Space
-                android:id="@+id/spaceBeforeControls"
-                android:layout_width="16dp"
-                android:layout_height="0dp" />
-
             <LinearLayout
                 android:id="@+id/topControls"
                 android:layout_width="match_parent"
@@ -158,24 +143,26 @@
                 android:layout_alignParentTop="true"
                 android:orientation="vertical"
                 android:gravity="top"
-                android:paddingTop="4dp"
-                android:layout_toEndOf="@id/spaceBeforeControls"
+                android:paddingTop="@dimen/player_main_top_padding"
+                android:paddingStart="@dimen/player_main_controls_padding"
+                android:paddingEnd="@dimen/player_main_controls_padding"
                 android:baselineAligned="false">
 
             <LinearLayout
                 android:id="@+id/primaryControls"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="50dp"
                 android:baselineAligned="false"
                 android:gravity="top"
-                android:paddingBottom="7dp"
+                android:layout_marginBottom="7dp"
                 tools:ignore="RtlHardcoded">
 
                 <ImageButton
                     android:id="@+id/playerCloseButton"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
-                    android:padding="6dp"
+                    android:padding="@dimen/player_main_buttons_padding"
                     android:layout_marginEnd="8dp"
                     android:clickable="true"
                     android:focusable="true"
@@ -191,8 +178,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="top"
                     android:orientation="vertical"
-                    android:paddingTop="6dp"
-                    android:paddingRight="8dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginRight="8dp"
                     tools:ignore="RtlHardcoded"
                     android:layout_weight="1">
 
@@ -233,11 +220,9 @@
                     android:id="@+id/qualityTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
-                    android:padding="6dp"
-                    android:layout_marginStart="5dp"
+                    android:padding="@dimen/player_main_buttons_padding"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
-                    android:minWidth="50dp"
                     android:text="720p"
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
@@ -249,11 +234,10 @@
                     android:id="@+id/playbackSpeed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="6dp"
+                    android:padding="@dimen/player_main_buttons_padding"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
                     android:minHeight="35dp"
-                    android:minWidth="40dp"
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
                     android:background="?attr/selectableItemBackground"
@@ -264,7 +248,7 @@
                     android:id="@+id/queueButton"
                     android:layout_width="30dp"
                     android:layout_height="35dp"
-                    android:padding="6dp"
+                    android:padding="@dimen/player_main_buttons_padding"
                     android:layout_marginEnd="8dp"
                     android:clickable="true"
                     android:focusable="true"
@@ -278,8 +262,7 @@
                     android:id="@+id/moreOptionsButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:layout_marginEnd="8dp"
+                    android:padding="@dimen/player_main_buttons_padding"
                     android:clickable="true"
                     android:focusable="true"
                     android:scaleType="fitXY"
@@ -302,7 +285,7 @@
                     android:id="@+id/resizeTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
-                    android:padding="6dp"
+                    android:padding="@dimen/player_main_buttons_padding"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
                     android:minWidth="50dp"
@@ -316,7 +299,7 @@
                     android:id="@+id/captionTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="6dp"
+                    android:padding="@dimen/player_main_buttons_padding"
                     android:layout_marginEnd="8dp"
                     android:gravity="center|left"
                     android:minHeight="35dp"
@@ -339,7 +322,7 @@
                     android:id="@+id/playWithKodi"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
-                    android:padding="6dp"
+                    android:padding="@dimen/player_main_buttons_padding"
                     android:layout_marginEnd="8dp"
                     android:clickable="true"
                     android:focusable="true"
@@ -353,7 +336,7 @@
                     android:id="@+id/openInBrowser"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
-                    android:padding="6dp"
+                    android:padding="@dimen/player_main_buttons_padding"
                     android:layout_marginEnd="8dp"
                     android:clickable="true"
                     android:focusable="true"
@@ -367,8 +350,7 @@
                     android:id="@+id/share"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
-                    android:padding="6dp"
-                    android:layout_marginEnd="8dp"
+                    android:padding="@dimen/player_main_buttons_padding"
                     android:clickable="true"
                     android:focusable="true"
                     android:scaleType="fitXY"
@@ -385,9 +367,7 @@
                     android:id="@+id/fullScreenButton"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginEnd="2dp"
-                    android:padding="6dp"
+                    android:padding="@dimen/player_main_buttons_padding"
                     android:layout_alignParentRight="true"
                     android:background="?attr/selectableItemBackground"
                     android:clickable="true"
@@ -411,9 +391,8 @@
                 android:layout_alignParentBottom="true"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingBottom="6dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp">
+                android:paddingLeft="@dimen/player_main_controls_padding"
+                android:paddingRight="@dimen/player_main_controls_padding">
 
                 <TextView
                     android:id="@+id/playbackCurrentTime"
@@ -468,7 +447,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="4dp"
-                    android:padding="6dp"
+                    android:padding="@dimen/player_main_buttons_padding"
                     android:background="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"

@@ -34,10 +34,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.SurfaceView;
-import android.view.View;
+import android.view.*;
 import android.widget.*;
 
 import androidx.annotation.NonNull;
@@ -65,6 +62,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItem;
 import org.schabi.newpipe.player.resolver.MediaSourceTag;
 import org.schabi.newpipe.player.resolver.VideoPlaybackResolver;
 import org.schabi.newpipe.util.AnimationUtils;
+import org.schabi.newpipe.views.ExpandableSurfaceView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -109,8 +107,7 @@ public abstract class VideoPlayer extends BasePlayer
 
     private View rootView;
 
-    private AspectRatioFrameLayout aspectRatioFrameLayout;
-    private SurfaceView surfaceView;
+    private ExpandableSurfaceView surfaceView;
     private View surfaceForeground;
 
     private View loadingPanel;
@@ -163,7 +160,6 @@ public abstract class VideoPlayer extends BasePlayer
 
     public void initViews(View rootView) {
         this.rootView = rootView;
-        this.aspectRatioFrameLayout = rootView.findViewById(R.id.aspectRatioLayout);
         this.surfaceView = rootView.findViewById(R.id.surfaceView);
         this.surfaceForeground = rootView.findViewById(R.id.surfaceForeground);
         this.loadingPanel = rootView.findViewById(R.id.loading_panel);
@@ -187,11 +183,9 @@ public abstract class VideoPlayer extends BasePlayer
         setupSubtitleView(subtitleView, captionScale, captionStyle);
 
         this.resizeView =  rootView.findViewById(R.id.resizeTextView);
-        resizeView.setText(PlayerHelper.resizeTypeOf(context, aspectRatioFrameLayout.getResizeMode()));
+        resizeView.setText(PlayerHelper.resizeTypeOf(context, getSurfaceView().getResizeMode()));
 
         this.captionTextView = rootView.findViewById(R.id.captionTextView);
-
-        //this.aspectRatioFrameLayout.setAspectRatio(16.0f / 9.0f);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
             playbackSeekBar.getThumb().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
@@ -501,7 +495,7 @@ public abstract class VideoPlayer extends BasePlayer
         if (DEBUG) {
             Log.d(TAG, "onVideoSizeChanged() called with: width / height = [" + width + " / " + height + " = " + (((float) width) / height) + "], unappliedRotationDegrees = [" + unappliedRotationDegrees + "], pixelWidthHeightRatio = [" + pixelWidthHeightRatio + "]");
         }
-        aspectRatioFrameLayout.setAspectRatio(((float) width) / height);
+        getSurfaceView().setAspectRatio(((float) width) / height);
     }
 
     @Override
@@ -715,15 +709,15 @@ public abstract class VideoPlayer extends BasePlayer
     }
 
     void onResizeClicked() {
-        if (getAspectRatioFrameLayout() != null) {
-            final int currentResizeMode = getAspectRatioFrameLayout().getResizeMode();
+        if (getSurfaceView() != null) {
+            final int currentResizeMode = getSurfaceView().getResizeMode();
             final int newResizeMode = nextResizeMode(currentResizeMode);
             setResizeMode(newResizeMode);
         }
     }
 
     protected void setResizeMode(@AspectRatioFrameLayout.ResizeMode final int resizeMode) {
-        getAspectRatioFrameLayout().setResizeMode(resizeMode);
+        getSurfaceView().setResizeMode(resizeMode);
         getResizeView().setText(PlayerHelper.resizeTypeOf(context, resizeMode));
     }
 
@@ -894,11 +888,7 @@ public abstract class VideoPlayer extends BasePlayer
         return resolver.getPlaybackQuality();
     }
 
-    public AspectRatioFrameLayout getAspectRatioFrameLayout() {
-        return aspectRatioFrameLayout;
-    }
-
-    public SurfaceView getSurfaceView() {
+    public ExpandableSurfaceView getSurfaceView() {
         return surfaceView;
     }
 
@@ -967,6 +957,10 @@ public abstract class VideoPlayer extends BasePlayer
 
     public PopupMenu getQualityPopupMenu() {
         return qualityPopupMenu;
+    }
+
+    public TextView getPlaybackSpeedTextView() {
+        return playbackSpeedTextView;
     }
 
     public PopupMenu getPlaybackSpeedPopupMenu() {

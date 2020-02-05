@@ -276,14 +276,6 @@ public abstract class BasePlayer implements
 
         boolean same = playQueue != null && playQueue.equals(queue);
 
-        // Do not re-init the same PlayQueue. Save time
-        if (same && !playQueue.isDisposed()) {
-            // Player can have state = IDLE when playback is stopped or failed and we should retry() in this case
-            if (simpleExoPlayer != null && simpleExoPlayer.getPlaybackState() == Player.STATE_IDLE)
-                simpleExoPlayer.retry();
-            return;
-        }
-
         final int repeatMode = intent.getIntExtra(REPEAT_MODE, getRepeatMode());
         final float playbackSpeed = intent.getFloatExtra(PLAYBACK_SPEED, getPlaybackSpeed());
         final float playbackPitch = intent.getFloatExtra(PLAYBACK_PITCH, getPlaybackPitch());
@@ -298,10 +290,17 @@ public abstract class BasePlayer implements
                 && playQueue.getItem() != null
                 && queue.getItem().getUrl().equals(playQueue.getItem().getUrl())
                 && queue.getItem().getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET
-                && !same) {
+                && simpleExoPlayer.getPlaybackState() != Player.STATE_IDLE) {
+            // Player can have state = IDLE when playback is stopped or failed and we should retry() in this case
+            if (simpleExoPlayer.getPlaybackState() == Player.STATE_IDLE) simpleExoPlayer.retry();
             simpleExoPlayer.seekTo(playQueue.getIndex(), queue.getItem().getRecoveryPosition());
             return;
 
+        } else if (same && !playQueue.isDisposed() && simpleExoPlayer != null) {
+            // Do not re-init the same PlayQueue. Save time
+            // Player can have state = IDLE when playback is stopped or failed and we should retry() in this case
+            if (simpleExoPlayer.getPlaybackState() == Player.STATE_IDLE) simpleExoPlayer.retry();
+            return;
         } else if (intent.getBooleanExtra(RESUME_PLAYBACK, false)
                 && isPlaybackResumeEnabled()
                 && !same) {

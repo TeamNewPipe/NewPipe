@@ -30,7 +30,7 @@ public final class FlingBehavior extends AppBarLayout.Behavior {
         ViewGroup playQueue = child.findViewById(R.id.playQueue);
         if (playQueue != null) {
             playQueue.getGlobalVisibleRect(playQueueRect);
-            if (playQueueRect.contains((int) ev.getX(), (int) ev.getY())) {
+            if (playQueueRect.contains((int) ev.getRawX(), (int) ev.getRawY())) {
                 allowScroll = false;
                 return false;
             }

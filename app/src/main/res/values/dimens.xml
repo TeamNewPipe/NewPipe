@@ -24,6 +24,15 @@
     <dimen name="video_item_search_duration_margin">2dp</dimen>
     <dimen name="video_item_detail_description_to_details_margin">4dp</dimen>
     <dimen name="software_component_item_padding">8dp</dimen>
+
+    <!-- Players padding & sizes -->
+    <dimen name="player_main_controls_padding">16dp</dimen>
+    <dimen name="player_popup_controls_padding">6dp</dimen>
+    <dimen name="player_main_top_padding">4dp</dimen>
+    <dimen name="player_main_buttons_padding">6dp</dimen>
+    <dimen name="player_popup_buttons_padding">1dp</dimen>
+    <dimen name="player_main_buttons_min_width">40dp</dimen>
+
     <!-- Miscellaneous -->
     <dimen name="popup_default_width">180dp</dimen>
     <dimen name="popup_minimum_width">150dp</dimen>
