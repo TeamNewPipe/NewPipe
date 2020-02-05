@@ -498,7 +498,7 @@
     <string name="delete_playback_states_alert">Hapus semua posisi pemutaran\?</string>
     <string name="download_choose_new_path">Ubah folder unduhan</string>
     <plurals name="videos">
-        <item quantity="other">Video</item>
+        <item quantity="other">%s video</item>
     </plurals>
     <string name="drawer_header_description">Aktif/Nonaktifkan layanan, saat ini aktif:</string>
     <string name="no_one_watching">Tidak ada yang menonton</string>
@@ -531,4 +531,8 @@
     <string name="clear_download_history">Hapus riwayat unduhan</string>
     <string name="delete_downloaded_files">Hapus berkas yang diunduh</string>
     <string name="deleted_downloads">%1$s unduhan dihapus</string>
+    <string name="permission_display_over_apps">Izinkan untuk ditampilkan di atas aplikasi lain</string>
+    <string name="app_language_title">Bahasa apl</string>
+    <string name="systems_language">Default sistem</string>
+    <string name="recaptcha_done_button">Selesai</string>
 </resources>
