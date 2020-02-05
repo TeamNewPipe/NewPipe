@@ -134,7 +134,7 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
 
                 ClipboardManager clipboardManager = (ClipboardManager) itemBuilder.getContext()
                                                     .getSystemService(Context.CLIPBOARD_SERVICE);
-                clipboardManager.setPrimaryClip(ClipData.newPlainText(null,itemContentView.getText()));
+                clipboardManager.setPrimaryClip(ClipData.newPlainText(null,commentText));
                 Toast.makeText(itemBuilder.getContext(), R.string.msg_copied, Toast.LENGTH_SHORT).show();
                 return true;
 
