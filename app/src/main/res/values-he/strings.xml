@@ -192,8 +192,8 @@
     <string name="no_available_dir">נא לציין תיקיית הורדה בהגדרות בהמשך</string>
     <string name="msg_popup_permission">הרשאה זו נדרשת לטובת 
 \nפתיחה בחלון צף</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">אתגר reCAPTCHA</string>
+    <string name="recaptcha">reCAPTCHA</string>
+    <string name="title_activity_recaptcha">אתגר reCAPTCHA</string>
     <string name="recaptcha_request_toast">התקבלה בקשה לאתגר reCAPTCHA</string>
     <string name="settings_category_downloads_title">הורדה</string>
     <string name="settings_file_charset_title">רשימת תווים אפשרית בשמות קבצים</string>

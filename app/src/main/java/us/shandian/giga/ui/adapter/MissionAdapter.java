@@ -534,7 +534,7 @@ public class MissionAdapter extends Adapter<ViewHolder> implements Handler.Callb
             );
         }
 
-        builder.setNegativeButton(android.R.string.ok, (dialog, which) -> dialog.cancel())
+        builder.setNegativeButton(R.string.finish, (dialog, which) -> dialog.cancel())
                 .setTitle(mission.storage.getName())
                 .create()
                 .show();

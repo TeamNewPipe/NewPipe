@@ -105,8 +105,8 @@
     <string name="info_labels">Apa:\\nPermintaan:\\nBahasa Konten:\\nLayanan:\\nWaktu GMT:\\nPaket:\\nVersi:\\nVersi OS:</string>
     <string name="user_report">Laporan pengguna</string>
     <string name="msg_threads">Thread</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">Tantangan reCAPTCHA</string>
+    <string name="recaptcha">reCAPTCHA</string>
+    <string name="title_activity_recaptcha">Tantangan reCAPTCHA</string>
     <string name="recaptcha_request_toast">Meminta kode reCAPTCHA</string>
     <string name="black_theme_title">Hitam</string>
     <string name="all">Semua</string>
@@ -480,7 +480,7 @@
     <string name="error_postprocessing_stopped">NewPipe telah ditutup saat sedang memproses berkas</string>
     <string name="error_insufficient_storage">Tidak ada ruang kosong tersisa pada perangkat</string>
     <string name="error_progress_lost">Kehilangan laju, karena berkas telah dihapus</string>
-    <string name="confirm_prompt">Apakah anda yakin\?</string>
+    <string name="confirm_prompt">Apakah anda yakin ingin menghapus semua riwayat unduhan dan berkas yang telah diunduh\?</string>
     <string name="enable_queue_limit">Batasi antrean unduhan</string>
     <string name="enable_queue_limit_desc">Satu unduhan akan berjalan pada waktu yang bersamaan</string>
     <string name="start_downloads">Mulai unduh</string>
@@ -527,4 +527,8 @@
     <string name="choose_instance_prompt">Pilih situs</string>
     <string name="enable_lock_screen_video_thumbnail_title">Aktifkan kunci layar thumbnail video</string>
     <string name="enable_lock_screen_video_thumbnail_summary">Ketika menggunakan pemutar latar belakang, thumbnail video akan ditampilkan di tampilan kunci layar</string>
+    <string name="default_kiosk_page_summary">Kiosk Default</string>
+    <string name="clear_download_history">Hapus riwayat unduhan</string>
+    <string name="delete_downloaded_files">Hapus berkas yang diunduh</string>
+    <string name="deleted_downloads">%1$s unduhan dihapus</string>
 </resources>

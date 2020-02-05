@@ -3,6 +3,7 @@ package org.schabi.newpipe.about;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -13,6 +14,8 @@ import org.schabi.newpipe.util.ThemeHelper;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
+
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public class LicenseFragmentHelper extends AsyncTask<Object, Void, Integer> {
 
@@ -55,13 +58,13 @@ public class LicenseFragmentHelper extends AsyncTask<Object, Void, Integer> {
         wv.loadData(webViewData, "text/html; charset=UTF-8", null);
 
         alert.setView(wv);
-        alert.setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
+        assureCorrectAppLanguage(activity.getApplicationContext());
+        alert.setNegativeButton(getFinishString(activity), (dialog, which) -> dialog.dismiss());
         alert.show();
+    }
+
+    private static String getFinishString(Activity activity) {
+        return activity.getApplicationContext().getResources().getString(R.string.finish);
     }
 
     /**

@@ -100,6 +100,7 @@ import static org.schabi.newpipe.util.AnimationUtils.Type.SCALE_AND_ALPHA;
 import static org.schabi.newpipe.util.AnimationUtils.Type.SLIDE_AND_ALPHA;
 import static org.schabi.newpipe.util.AnimationUtils.animateRotation;
 import static org.schabi.newpipe.util.AnimationUtils.animateView;
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 import static org.schabi.newpipe.util.StateSaver.KEY_SAVED_STATE;
 
 /**
@@ -130,6 +131,7 @@ public final class MainVideoPlayer extends AppCompatActivity
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
         if (DEBUG) Log.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
         defaultPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -237,6 +239,7 @@ public final class MainVideoPlayer extends AppCompatActivity
     @Override
     protected void onResume() {
         if (DEBUG) Log.d(TAG, "onResume() called");
+        assureCorrectAppLanguage(this);
         super.onResume();
 
         if (globalScreenOrientationLocked()) {
@@ -267,6 +270,7 @@ public final class MainVideoPlayer extends AppCompatActivity
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+        assureCorrectAppLanguage(this);
 
         if (playerImpl.isSomePopupMenuVisible()) {
             playerImpl.getQualityPopupMenu().dismiss();
@@ -411,8 +415,8 @@ public final class MainVideoPlayer extends AppCompatActivity
     }
 
     private boolean globalScreenOrientationLocked() {
-        // 1: Screen orientation changes using acelerometer
-        // 0: Screen orientatino is locked
+        // 1: Screen orientation changes using accelerometer
+        // 0: Screen orientation is locked
         return !(android.provider.Settings.System.getInt(getContentResolver(), Settings.System.ACCELEROMETER_ROTATION, 0) == 1);
     }
 

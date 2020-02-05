@@ -110,9 +110,9 @@
     <string name="msg_running">NewPipe lädt herunter</string>
     <string name="msg_running_detail">Für Details antippen</string>
     <string name="msg_url_malform">Ungültige URL oder Internet nicht verfügbar</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="recaptcha">reCAPTCHA</string>
     <string name="black_theme_title">Schwarz</string>
-    <string name="reCaptcha_title">reCAPTCHA-Aufgabe</string>
+    <string name="title_activity_recaptcha">reCAPTCHA-Aufgabe</string>
     <string name="recaptcha_request_toast">reCAPTCHA-Aufgabe angefordert</string>
     <string name="later">Später</string>
     <string name="yes">Ja</string>
@@ -155,7 +155,7 @@
     <string name="tab_about">Über</string>
     <string name="app_description">Freies und schlankes Streaming für Android.</string>
     <string name="app_license_title">NewPipes Lizenz</string>
-    <string name="contribution_encouragement">Ob Ideen, Übersetzungen, Design-Änderungen, Code-Aufräumung oder richtig große Code-Änderungen – Hilfe ist immer willkommen. Je mehr geholfen wird, desto besser wird NewPipe!</string>
+    <string name="contribution_encouragement">Ob Ideen, Übersetzungen, Design-Änderungen, Code-Aufräumung oder richtig große Code-Änderungen — Hilfe ist immer willkommen. Je mehr geholfen wird, desto besser wird NewPipe!</string>
     <string name="title_licenses">Drittanbieter-Lizenzen</string>
     <string name="view_on_github">Auf GitHub ansehen</string>
     <string name="contribution_title">Beitragen</string>
@@ -366,7 +366,7 @@
     <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/yourid</string>
     <string name="no_streams_available_download">Keine Streams zum Download verfügbar</string>
     <string name="preferred_open_action_settings_title">Bevorzugte \"Öffnen\" Aktion</string>
-    <string name="preferred_open_action_settings_summary">Standardaktion beim Öffnen von Inhalten - %s</string>
+    <string name="preferred_open_action_settings_summary">Standardaktion beim Öffnen von Inhalten — %s</string>
     <string name="caption_setting_title">Untertitel</string>
     <string name="caption_setting_description">Textgröße und Hintergrund der Untertitel im Player anpassen. Wird erst nach Neustart der App wirksam.</string>
     <string name="toast_no_player">Keine App zum Abspielen dieser Datei installiert</string>
@@ -392,7 +392,7 @@
     <string name="limit_data_usage_none_description">Unbegrenzt</string>
     <string name="limit_mobile_data_usage_title">Auflösung bei Verwendung mobiler Daten begrenzen</string>
     <string name="minimize_on_exit_title">Minimieren beim Appwechsel</string>
-    <string name="minimize_on_exit_summary">Aktion beim Umschalten auf eine andere App vom Haupt-Videoplayer - %s</string>
+    <string name="minimize_on_exit_summary">Aktion beim Umschalten auf eine andere App vom Haupt-Videoplayer — %s</string>
     <string name="minimize_on_exit_none_description">Keine</string>
     <string name="minimize_on_exit_background_description">Zum Hintergrund-Player minimieren</string>
     <string name="minimize_on_exit_popup_description">Zum Popup-Player minimieren</string>
@@ -484,7 +484,7 @@
     <string name="watch_history_states_deleted">Wiedergabeposition gelöscht.</string>
     <string name="missing_file">Datei verschoben oder gelöscht</string>
     <string name="overwrite_finished_warning">Eine heruntergeladene Datei mit diesem Namen existiert bereits</string>
-    <string name="overwrite_failed">kann die Datei nicht überschreiben</string>
+    <string name="overwrite_failed">Datei kann nicht überschreiben werden</string>
     <string name="download_already_pending">Es gibt einen ausstehenden Download mit diesem Namen</string>
     <string name="error_postprocessing_stopped">NewPipe wurde während der Verarbeitung der Datei geschlossen</string>
     <string name="error_insufficient_storage">Kein Speicherplatz mehr auf dem Gerät</string>
@@ -506,7 +506,7 @@
     <string name="delete_playback_states_alert">Alle Wiedergabepositionen löschen\?</string>
     <string name="download_choose_new_path">Ändere die Downloadordner, damit sie wirksam werden</string>
     <string name="drawer_header_description">Dienst umschalten, aktuell ausgewählt:</string>
-    <string name="default_kiosk_page_summary">Quiosque Predefinido</string>
+    <string name="default_kiosk_page_summary">Standard-Kiosk</string>
     <string name="no_one_watching">Niemand schaut zu</string>
     <plurals name="watching">
         <item quantity="one">%s Zuschauer</item>
