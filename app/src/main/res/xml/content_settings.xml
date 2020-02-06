@@ -65,7 +65,6 @@
         android:title="@string/show_comments_title"
         android:summary="@string/show_comments_summary"/>
 
-
     <Preference
         app:iconSpaceReserved="false"
         android:summary="@string/import_data_summary"
