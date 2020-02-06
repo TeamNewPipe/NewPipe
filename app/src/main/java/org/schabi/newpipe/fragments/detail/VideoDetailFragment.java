@@ -56,6 +56,7 @@ import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.services.youtube.extractors.YoutubeStreamExtractor;
 import org.schabi.newpipe.extractor.stream.AudioStream;
+import org.schabi.newpipe.extractor.stream.Description;
 import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamType;
@@ -190,14 +191,6 @@ public class VideoDetailFragment
     private TabAdaptor pageAdapter;
     private TabLayout tabLayout;
     private FrameLayout relatedStreamsLayout;
-
-    private static final int DESCRIPTION_HTML = 1;
-    private static final int DESCRIPTION_MARKDOWN = 2;
-    private static final int DESCRIPTION_PLAIN_TEXT = 3;
-
-    private static final int YOUTUBE_SERVICE_ID = ServiceList.YouTube.getServiceId();
-    private static final int MEDIACCC_SERVICE_ID = ServiceList.MediaCCC.getServiceId();
-    private static final int PEERTUBE_SERVICE_ID = ServiceList.PeerTube.getServiceId();
 
 
     /*////////////////////////////////////////////////////////////////////////*/
@@ -924,29 +917,24 @@ public class VideoDetailFragment
         return sortedVideoStreams != null ? sortedVideoStreams.get(selectedVideoStreamIndex) : null;
     }
 
-    private void prepareDescription(final String descriptionText, int descriptionTypeId) {
-        if (TextUtils.isEmpty(descriptionText)) {
+    private void prepareDescription(Description description) {
+        if (TextUtils.isEmpty(description.getContent()) || description == Description.emptyDescription) {
             return;
         }
 
-        if (descriptionTypeId == DESCRIPTION_PLAIN_TEXT) {
-            videoDescriptionView.setText(descriptionText, TextView.BufferType.SPANNABLE);
-            videoDescriptionView.setVisibility(View.VISIBLE);
-        } else if (descriptionTypeId == DESCRIPTION_MARKDOWN) {
-            //in the future we would use a library or a good method to show markdown.
-            //rn, we just remove **bold**, and let plain_text otherwise
-            videoDescriptionView.setText(descriptionText.replace("**", ""), TextView.BufferType.SPANNABLE);
-            videoDescriptionView.setVisibility(View.VISIBLE);
-        } else {
-            //== DESCRIPTION_HTML
-            disposables.add(Single.just(descriptionText)
-                    .map((@io.reactivex.annotations.NonNull String description) -> {
+        if (description.getType() != Description.HTML) {
+            videoDescriptionView.setAutoLinkMask(Linkify.WEB_URLS);
+        }
+
+        if (description.getType() == Description.HTML) {
+            disposables.add(Single.just(description.getContent())
+                    .map((@io.reactivex.annotations.NonNull String descriptionText) -> {
                         Spanned parsedDescription;
                         if (Build.VERSION.SDK_INT >= 24) {
-                            parsedDescription = Html.fromHtml(description, 0);
+                            parsedDescription = Html.fromHtml(descriptionText, 0);
                         } else {
                             //noinspection deprecation
-                            parsedDescription = Html.fromHtml(description);
+                            parsedDescription = Html.fromHtml(descriptionText);
                         }
                         return parsedDescription;
                     })
@@ -956,6 +944,15 @@ public class VideoDetailFragment
                         videoDescriptionView.setText(spanned);
                         videoDescriptionView.setVisibility(View.VISIBLE);
                     }));
+        } else if (description.getType() == Description.MARKDOWN) {
+            //in the future we would use a library or a good method to show markdown.
+            //rn, we just remove **bold**, and let PLAIN_TEXT otherwise
+            videoDescriptionView.setText(description.getContent().replace("**", ""), TextView.BufferType.SPANNABLE);
+            videoDescriptionView.setVisibility(View.VISIBLE);
+        } else {
+            //== Description.PLAIN_TEXT
+            videoDescriptionView.setText(description.getContent(), TextView.BufferType.SPANNABLE);
+            videoDescriptionView.setVisibility(View.VISIBLE);
         }
     }
 
@@ -1142,20 +1139,7 @@ public class VideoDetailFragment
             videoUploadDateView.setVisibility(View.GONE);
         }
 
-        int serviceId = info.getServiceId();
-
-        if (serviceId != YOUTUBE_SERVICE_ID) {
-            videoDescriptionView.setAutoLinkMask(Linkify.WEB_URLS);
-        }
-
-        if (serviceId == PEERTUBE_SERVICE_ID) {
-            prepareDescription(info.getDescription(), DESCRIPTION_MARKDOWN);
-        } else if (serviceId == MEDIACCC_SERVICE_ID) {
-            prepareDescription(info.getDescription(), DESCRIPTION_PLAIN_TEXT);
-        } else {
-            prepareDescription(info.getDescription(), DESCRIPTION_HTML);
-        }
-
+        prepareDescription(info.getDescription());
         updateProgressInfo(info);
 
         animateView(spinnerToolbar, true, 500);
