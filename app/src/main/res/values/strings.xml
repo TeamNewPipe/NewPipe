@@ -60,7 +60,7 @@
     <string name="show_play_with_kodi_title">Show \"Play with Kodi\" option</string>
     <string name="enable_lock_screen_video_thumbnail_title">Lock screen video thumbnail</string>
     <string name="show_play_with_kodi_summary">Displayed option to play a video via Kodi media center</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Using the background player displays a video thumbnail on the lock screen</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">A video thumbnail is shown on the lock screen when using the background player</string>
     <string name="play_audio">Audio</string>
     <string name="default_audio_format_title">Default audio format</string>
     <string name="default_video_format_title">Default video format</string>
