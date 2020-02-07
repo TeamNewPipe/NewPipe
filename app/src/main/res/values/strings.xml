@@ -557,7 +557,7 @@
     <string name="error_file_creation">The file can not be created</string>
     <string name="error_path_creation">The destination folder can not be created</string>
     <string name="error_permission_denied">Permission denied by the system</string>
-    <string name="error_ssl_exception">Could not connect securely</string>
+    <string name="error_ssl_exception">Could not establish secure connection</string>
     <string name="error_unknown_host">Could not find the server</string>
     <string name="error_connect_host">Can not connect to the server</string>
     <string name="error_http_no_content">The server does not send data</string>
