@@ -4,9 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.method.LinkMovementMethod;
 import android.text.style.URLSpan;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.text.util.Linkify;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.jsoup.helper.StringUtil;
 import org.schabi.newpipe.R;
@@ -123,6 +128,21 @@ public class CommentsMiniInfoItemHolder extends InfoItemHolder {
                 itemBuilder.getOnCommentsSelectedListener().selected(item);
             }
         });
+
+
+        itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+
+                ClipboardManager clipboardManager = (ClipboardManager) itemBuilder.getContext()
+                                                    .getSystemService(Context.CLIPBOARD_SERVICE);
+                clipboardManager.setPrimaryClip(ClipData.newPlainText(null,commentText));
+                Toast.makeText(itemBuilder.getContext(), R.string.msg_copied, Toast.LENGTH_SHORT).show();
+                return true;
+
+            }
+        });
+
     }
 
     private void allowLinkFocus() {
