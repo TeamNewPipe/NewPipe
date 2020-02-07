@@ -138,7 +138,7 @@
     <string name="play_btn_text">Play</string>
     <string name="content">Content</string>
     <string name="show_age_restricted_content_title">Age restricted content</string>
-    <string name="video_is_age_restricted">Show age restricted video. Future changes are possible from \"Settings\".</string>
+    <string name="video_is_age_restricted">Show age restricted video. Future changes are possible from the settings.</string>
     <string name="duration_live">Live</string>
     <string name="duration_live_button" translatable="false">Live</string>
     <string name="downloads">Downloads</string>
