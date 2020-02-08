@@ -2,6 +2,7 @@ package org.schabi.newpipe.local.playlist;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.TextUtils;
@@ -24,11 +25,13 @@ import org.reactivestreams.Subscription;
 import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.LocalItem;
+import org.schabi.newpipe.database.history.model.StreamHistoryEntry;
 import org.schabi.newpipe.database.playlist.PlaylistStreamEntry;
 import org.schabi.newpipe.extractor.stream.StreamInfoItem;
 import org.schabi.newpipe.extractor.stream.StreamType;
 import org.schabi.newpipe.info_list.InfoItemDialog;
 import org.schabi.newpipe.local.BaseLocalListFragment;
+import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.player.playqueue.SinglePlayQueue;
 import org.schabi.newpipe.report.UserAction;
@@ -39,11 +42,13 @@ import org.schabi.newpipe.util.StreamDialogEntry;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import icepick.State;
+import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -71,6 +76,8 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
     private View headerPlayAllButton;
     private View headerPopupButton;
     private View headerBackgroundButton;
+    private View headerRemoveWatchedButton;
+
     private ItemTouchHelper itemTouchHelper;
 
     private LocalPlaylistManager playlistManager;
@@ -142,10 +149,11 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
 
         headerStreamCount = headerRootLayout.findViewById(R.id.playlist_stream_count);
 
-        playlistControl = headerRootLayout.findViewById(R.id.playlist_control);
+        playlistControl = headerRootLayout.findViewById(R.id.local_playlist_control);
         headerPlayAllButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_all_button);
         headerPopupButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_popup_button);
         headerBackgroundButton = headerRootLayout.findViewById(R.id.playlist_ctrl_play_bg_button);
+        headerRemoveWatchedButton = headerRootLayout.findViewById(R.id.playlist_ctrl_remove_watched_button);
 
         return headerRootLayout;
     }
@@ -260,6 +268,9 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
         if (headerPopupButton != null) {
             headerPopupButton.setOnClickListener(null);
         }
+        if (headerRemoveWatchedButton != null) {
+            headerRemoveWatchedButton.setOnClickListener(null);
+        }
 
         if (databaseSubscription != null) {
             databaseSubscription.cancel();
@@ -358,6 +369,13 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
                 NavigationHelper.playOnPopupPlayer(activity, getPlayQueue(), false));
         headerBackgroundButton.setOnClickListener(view ->
                 NavigationHelper.playOnBackgroundPlayer(activity, getPlayQueue(), false));
+        headerRemoveWatchedButton.setOnClickListener(
+                view -> {
+                    //Solution, Scorched Earth, Copy non duplicates, clear playlist, then copy back over
+                    //Other options didn't work as intended, or crashed. Like deleteItem(playlist_item) crashes when called in this function.
+                    new RemoveWatchedStreams().execute();
+                }
+        );
 
         headerPopupButton.setOnLongClickListener(view -> {
             NavigationHelper.enqueueOnPopupPlayer(activity, getPlayQueue(), true);
@@ -683,6 +701,75 @@ public class LocalPlaylistFragment extends BaseLocalListFragment<List<PlaylistSt
             }
         }
         return new SinglePlayQueue(streamInfoItems, index);
+    }
+
+    private class RemoveWatchedStreams extends AsyncTask<String, Long, Long> {
+        List<PlaylistStreamEntry> localItems = new ArrayList<>();
+        Long RemovedItemCount = 0l;
+        boolean thumbNailVideoRemoved = false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            showLoading();
+            localItems.clear();
+        }
+
+        @Override
+        protected Long doInBackground(String... urls) {
+
+            HistoryRecordManager recordManager = new HistoryRecordManager(getContext());
+            Iterator<StreamHistoryEntry> it_history;
+            StreamHistoryEntry history_item;
+
+            Flowable<List<PlaylistStreamEntry>> playlist = playlistManager.getPlaylistStreams(playlistId);
+            Iterator<PlaylistStreamEntry> it_playlist = playlist.blockingFirst().iterator();
+            PlaylistStreamEntry playlist_item = null;
+
+            boolean isNonDuplicate;
+
+            while (it_playlist.hasNext()) {
+                playlist_item = it_playlist.next();
+
+                it_history = recordManager.getStreamHistory().blockingFirst().iterator();
+
+                isNonDuplicate = true;
+                while (it_history.hasNext()) {
+                    history_item = it_history.next();
+                    if (history_item.streamId == playlist_item.streamId) {
+                        isNonDuplicate = false;
+                        break;
+                    }
+                }
+                if (isNonDuplicate) {
+                    localItems.add(playlist_item);
+                }
+                else
+                {
+                    RemovedItemCount++;
+                    if(playlistManager.getPlaylistThumbnail(playlistId).equals(playlist_item.thumbnailUrl))
+                    {
+                        thumbNailVideoRemoved = true;
+                    }
+                }
+            }
+            return this.RemovedItemCount;
+        }
+
+        @Override
+        protected void onPostExecute(Long result) {
+            itemListAdapter.clearStreamItemList();
+            itemListAdapter.addItems(localItems);
+            localItems.clear();
+
+            if (thumbNailVideoRemoved)
+                updateThumbnailUrl();
+
+            setVideoCount(itemListAdapter.getItemsList().size());
+
+            saveChanges();
+            hideLoading();
+        }
     }
 }
 
