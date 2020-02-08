@@ -145,8 +145,8 @@
     <!-- Checksum types -->
     <!--     <string name="md5" translatable="false">MD5</string> -->
     <!--     <string name="sha1" translatable="false">SHA1</string> -->
-    <string name="reCaptchaActivity">রিক্যাপচা</string>
-    <string name="reCaptcha_title">reCAPTCHA চ্যালেঞ্জ</string>
+    <string name="recaptcha">রিক্যাপচা</string>
+    <string name="title_activity_recaptcha">reCAPTCHA চ্যালেঞ্জ</string>
     <string name="recaptcha_request_toast">reCAPTCHA চ্যালেঞ্জ অনুরোধ করা হয়েছে</string>
     <!-- End of GigaGet's Strings -->
     <string name="info_labels">কি:\\nঅনুরোধ:\\nকন্টেন্ট ভাষা:\\nসার্ভিস:\\nসময়(GMT এ):\\nপ্যাকেজ:\\nসংস্করণ:\\nওএস সংস্করণ:\\nআইপি পরিসর:</string>

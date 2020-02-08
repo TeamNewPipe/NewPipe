@@ -173,8 +173,8 @@
     <string name="msg_copied">Kopioitu leikepöydälle</string>
     <string name="no_available_dir">Valitse saatavilla oleva latauskansio</string>
     <string name="msg_popup_permission">Tämä käyttöoikeus tarvitaan ponnahdusikkunan käytölle</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">reCAPTCHA Haaste</string>
+    <string name="recaptcha">reCAPTCHA</string>
+    <string name="title_activity_recaptcha">reCAPTCHA Haaste</string>
     <string name="recaptcha_request_toast">reCAPTCHA Haaste pyydetty</string>
     <string name="settings_category_downloads_title">Lataus</string>
     <string name="settings_file_charset_title">Sallitut merkit tiedostonimissä</string>

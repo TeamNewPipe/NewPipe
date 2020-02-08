@@ -266,8 +266,8 @@
 \npara abrir o vídeo no modo «popup»</string>
     <string name="one_item_deleted">1 elemento foi eliminado.</string>
 
-    <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">Desafío reCAPTCHA</string>
+    <string name="recaptcha">reCAPTCHA</string>
+    <string name="title_activity_recaptcha">Desafío reCAPTCHA</string>
     <string name="recaptcha_request_toast">Desafío reCAPTCHA solicitado</string>
 
     <string name="settings_category_downloads_title">Descarregar</string>

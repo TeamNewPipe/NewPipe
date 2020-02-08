@@ -106,8 +106,8 @@
     <string name="add">Nytt mål</string>
     <string name="msg_url_malform">Feilaktig nettadresse eller manglende internettilknytning</string>
     <string name="no_available_dir">Definer en nedlastingsmappe senere i innstillingene</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">reCAPTCHA-oppgave</string>
+    <string name="recaptcha">reCAPTCHA</string>
+    <string name="title_activity_recaptcha">reCAPTCHA-oppgave</string>
     <string name="open_in_popup_mode">Åpne i oppsprettsmodus</string>
     <string name="popup_mode_share_menu_title">NewPipe oppsprettsmodus</string>
     <string name="default_popup_resolution_title">Forvalgt oppsprettsoppløsning</string>
