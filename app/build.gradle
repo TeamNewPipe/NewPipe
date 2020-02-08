@@ -53,6 +53,7 @@ ext {
     okHttpLibVersion = '3.12.6'
     icepickLibVersion = '3.2.0'
     stethoLibVersion = '1.5.0'
+    markwonVersion = '4.2.1'
 }
 
 dependencies {
@@ -108,4 +109,7 @@ dependencies {
 
     implementation "com.squareup.okhttp3:okhttp:${okHttpLibVersion}"
     debugImplementation "com.facebook.stetho:stetho-okhttp3:${stethoLibVersion}"
+
+    implementation "io.noties.markwon:core:${markwonVersion}"
+    implementation "io.noties.markwon:linkify:${markwonVersion}"
 }

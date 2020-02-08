@@ -95,6 +95,8 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import icepick.State;
+import io.noties.markwon.Markwon;
+import io.noties.markwon.linkify.LinkifyPlugin;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -922,10 +924,6 @@ public class VideoDetailFragment
             return;
         }
 
-        if (description.getType() != Description.HTML) {
-            videoDescriptionView.setAutoLinkMask(Linkify.WEB_URLS);
-        }
-
         if (description.getType() == Description.HTML) {
             disposables.add(Single.just(description.getContent())
                     .map((@io.reactivex.annotations.NonNull String descriptionText) -> {
@@ -945,12 +943,14 @@ public class VideoDetailFragment
                         videoDescriptionView.setVisibility(View.VISIBLE);
                     }));
         } else if (description.getType() == Description.MARKDOWN) {
-            //in the future we would use a library or a good method to show markdown.
-            //rn, we just remove **bold**, and let PLAIN_TEXT otherwise
-            videoDescriptionView.setText(description.getContent().replace("**", ""), TextView.BufferType.SPANNABLE);
+            final Markwon markwon = Markwon.builder(getContext())
+                    .usePlugin(LinkifyPlugin.create())
+                    .build();
+            markwon.setMarkdown(videoDescriptionView, description.getContent());
             videoDescriptionView.setVisibility(View.VISIBLE);
         } else {
             //== Description.PLAIN_TEXT
+            videoDescriptionView.setAutoLinkMask(Linkify.WEB_URLS);
             videoDescriptionView.setText(description.getContent(), TextView.BufferType.SPANNABLE);
             videoDescriptionView.setVisibility(View.VISIBLE);
         }
