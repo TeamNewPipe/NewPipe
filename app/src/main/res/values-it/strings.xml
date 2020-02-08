@@ -538,4 +538,9 @@
     <string name="clear_download_history">Svuota Cronologia Download</string>
     <string name="delete_downloaded_files">Elimina File Scaricati</string>
     <string name="deleted_downloads">%1$s download eliminati</string>
+    <string name="permission_display_over_apps">Consentire la visualizzazione sopra altre applicazioni</string>
+    <string name="app_language_title">Lingua Applicazione</string>
+    <string name="systems_language">Predefinita di Sistema</string>
+    <string name="subtitle_activity_recaptcha">Premere \"Fatto\" quando risolto</string>
+    <string name="recaptcha_done_button">Fatto</string>
 </resources>
