@@ -116,7 +116,7 @@
     <string name="popup_playing_toast">Lecture en mode flottant</string>
     <string name="yes">Oui</string>
     <string name="later">Plus tard</string>
-    <string name="disabled">Désactivé</string>
+    <string name="disabled">Désactivés</string>
     <string name="info_labels">Quoi :\\nRequête :\\nLangue du contenu :\\nService :\\nHeure UTC :\\nPaquet :\\nVersion :\\nVersion du système d’exploitation :</string>
     <string name="short_thousand">k</string>
     <string name="short_million">M</string>
@@ -205,8 +205,8 @@
     </plurals>
     <string name="no_videos">Aucune vidéo</string>
     <plurals name="videos">
-        <item quantity="one">Vidéo</item>
-        <item quantity="other">Vidéos</item>
+        <item quantity="one">%s vidéo</item>
+        <item quantity="other">%s vidéos</item>
     </plurals>
     <string name="charset_most_special_characters">Caractères spéciaux</string>
     <string name="item_deleted">Élément supprimé</string>
@@ -538,4 +538,9 @@
     <string name="clear_download_history">Effacer l\'historique de téléchargement</string>
     <string name="delete_downloaded_files">Supprimer les fichiers téléchargés</string>
     <string name="deleted_downloads">%1$s téléchargements supprimés</string>
+    <string name="permission_display_over_apps">Autoriser la superposition d\'applis</string>
+    <string name="app_language_title">Langue de l\'application</string>
+    <string name="systems_language">Langue du système</string>
+    <string name="subtitle_activity_recaptcha">Appuyez sur « Terminé » une fois résolu</string>
+    <string name="recaptcha_done_button">Terminé</string>
 </resources>

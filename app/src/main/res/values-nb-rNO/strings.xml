@@ -537,4 +537,9 @@
     <string name="recovering">gjenoppretter</string>
     <string name="error_download_resource_gone">Kan ikke gjenopprette denne nedlastingen</string>
     <string name="seek_duration_title">Hurtigframoverspoling/-tilbakeblafringsvarighet</string>
+    <string name="permission_display_over_apps">Gi tilgang til visning over andre programmer</string>
+    <string name="app_language_title">Programspråk</string>
+    <string name="systems_language">Systemforvalg</string>
+    <string name="subtitle_activity_recaptcha">Trykk \"Ferdig\" når den er løst</string>
+    <string name="recaptcha_done_button">Ferdig</string>
 </resources>

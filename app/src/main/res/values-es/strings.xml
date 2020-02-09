@@ -537,4 +537,9 @@
     <string name="clear_download_history">Limpiar historial de descargas</string>
     <string name="delete_downloaded_files">Eliminar archivos descargados</string>
     <string name="deleted_downloads">Eliminadas %1$s descargas</string>
+    <string name="permission_display_over_apps">Dar permisos para que se muestre por sobre otras apps</string>
+    <string name="app_language_title">Idioma de la app</string>
+    <string name="systems_language">Predeterminado del sistema</string>
+    <string name="subtitle_activity_recaptcha">Presiona \"Hecho\" cuando esté resuelto</string>
+    <string name="recaptcha_done_button">Hecho</string>
 </resources>
