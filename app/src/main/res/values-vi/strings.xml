@@ -135,8 +135,8 @@
     <string name="no_available_dir">Chọn một thư mục tải về có sẵn trong cài đặt</string>
     <string name="msg_popup_permission">Cần quyền này để 
 \nmở trong chế độ popup</string>
-    <string name="reCaptchaActivity">ReCAPTCHA</string>
-    <string name="reCaptcha_title">reCAPTCHA</string>
+    <string name="recaptcha">ReCAPTCHA</string>
+    <string name="title_activity_recaptcha">reCAPTCHA</string>
     <string name="recaptcha_request_toast">Yêu cầu reCAPTCHA</string>
     <string name="title_activity_about">Giới thiệu về NewPipe</string>
     <string name="action_settings">Cài đặt</string>

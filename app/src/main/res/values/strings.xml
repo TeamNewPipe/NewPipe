@@ -327,10 +327,12 @@
     <!-- Checksum types -->
     <string name="md5" translatable="false">MD5</string>
     <string name="sha1" translatable="false">SHA-1</string>
-    <string name="reCaptchaActivity" translatable="false">reCAPTCHA</string>
-    <string name="reCaptcha_title">reCAPTCHA challenge</string>
+    <!-- reCAPTCHA -->
+    <string name="recaptcha" translatable="false">reCAPTCHA</string>
+    <string name="title_activity_recaptcha">reCAPTCHA challenge</string>
+    <string name="subtitle_activity_recaptcha">Press \"Done\" when solved</string>
     <string name="recaptcha_request_toast">reCAPTCHA challenge requested</string>
-    <!-- End of GigaGet's Strings -->
+    <string name="recaptcha_done_button">Done</string>
     <!-- Downloads -->
     <string name="settings_category_downloads_title">Download</string>
     <string name="settings_file_charset_title">Allowed characters in filenames</string>

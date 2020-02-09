@@ -139,8 +139,8 @@
     <string name="no_available_dir">Ezarri deskargetarako karpeta bat ezarpenetan geroago</string>
     <string name="msg_popup_permission">Baimen hau beharrezkoa da
 \nlaster-leiho moduan irekitzeko</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">reCAPTCHA erronka</string>
+    <string name="recaptcha">reCAPTCHA</string>
+    <string name="title_activity_recaptcha">reCAPTCHA erronka</string>
     <string name="recaptcha_request_toast">reCAPTCHA erronka eskatu da</string>
     <string name="title_activity_about">NewPipe aplikazioari buruz</string>
     <string name="action_settings">Ezarpenak</string>
