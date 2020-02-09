@@ -430,7 +430,7 @@
     <string name="paused">durduruldu</string>
     <string name="queued">sırada</string>
     <string name="post_processing">son işlemler uygulanıyor</string>
-    <string name="enqueue">Kuyruk</string>
+    <string name="enqueue">Sıra</string>
     <string name="permission_denied">İşlem sistem tarafından reddedildi</string>
     <string name="download_failed">İndirme başarısız</string>
     <string name="download_finished">İndirme bitti</string>
