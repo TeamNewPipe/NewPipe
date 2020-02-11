@@ -145,6 +145,7 @@
                 <data android:host="youtube.com"/>
                 <data android:host="m.youtube.com"/>
                 <data android:host="www.youtube.com"/>
+                <data android:host="music.youtube.com"/>
                 <!-- video prefix -->
                 <data android:pathPrefix="/v/"/>
                 <data android:pathPrefix="/embed/"/>
