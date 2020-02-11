@@ -41,6 +41,7 @@ import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.AnticipateInterpolator;
@@ -1010,6 +1011,14 @@ public final class PopupVideoPlayer extends Service {
         private boolean isMoving;
         private boolean isResizing;
 
+        //initial co-ordinates and distance between fingers
+        private double initPointerDistance = -1;
+        private float initFirstPointerX = -1;
+        private float initFirstPointerY = -1;
+        private float initSecPointerX = -1;
+        private float initSecPointerY = -1;
+
+
         @Override
         public boolean onDoubleTap(final MotionEvent e) {
             if (DEBUG) {
@@ -1201,6 +1210,17 @@ public final class PopupVideoPlayer extends Service {
                 playerImpl.hideControls(0, 0);
                 animateView(playerImpl.getCurrentDisplaySeek(), false, 0, 0);
                 animateView(playerImpl.getResizingIndicator(), true, 200, 0);
+
+                //record co-ordinates of fingers
+                initFirstPointerX = event.getX(0);
+                initFirstPointerY = event.getY(0);
+                initSecPointerX = event.getX(1);
+                initSecPointerY = event.getY(1);
+                //record distance between fingers
+                float xDiff = event.getX(0) - event.getX(1);
+                float yDiff = event.getY(0) - event.getY(1);
+                initPointerDistance = Math.sqrt(xDiff * xDiff + yDiff * yDiff);
+
                 isResizing = true;
             }
 
@@ -1224,6 +1244,10 @@ public final class PopupVideoPlayer extends Service {
 
                 if (isResizing) {
                     isResizing = false;
+
+                    initPointerDistance = -1;
+                    initFirstPointerX = initFirstPointerY = initSecPointerX = initSecPointerY = -1;
+
                     animateView(playerImpl.getResizingIndicator(), false, 100, 0);
                     playerImpl.changeState(playerImpl.getCurrentState());
                 }
@@ -1242,25 +1266,52 @@ public final class PopupVideoPlayer extends Service {
                 return false;
             }
 
-            final float firstPointerX = event.getX(0);
-            final float secondPointerX = event.getX(1);
+            if(initPointerDistance != -1){
 
-            final float diff = Math.abs(firstPointerX - secondPointerX);
-            if (firstPointerX > secondPointerX) {
-                // second pointer is the anchor (the leftmost pointer)
-                popupLayoutParams.x = (int) (event.getRawX() - diff);
-            } else {
-                // first pointer is the anchor
-                popupLayoutParams.x = (int) event.getRawX();
+                //get the movements of the fingers
+                float firstPointerMoveX = event.getX(0) - initFirstPointerX;
+                float firstPointerMoveY = event.getY(0) - initFirstPointerY;
+                float secPointerMoveX = event.getX(1) - initSecPointerX;
+                float secPointerMoveY = event.getY(1) - initSecPointerY;
+                //minimum threshold beyond which pinch gesture will work
+                int scaledTouchSlop = ViewConfiguration.get(PopupVideoPlayer.this).getScaledTouchSlop();
+
+                if(firstPointerMoveX > scaledTouchSlop ||firstPointerMoveY > scaledTouchSlop ||
+                        secPointerMoveX > scaledTouchSlop || secPointerMoveY > scaledTouchSlop){
+
+                    double newWidth = popupWidth;
+
+                    //calculate current distance between the pointers
+                    float currentXDiff = event.getX(0) - event.getX(1);
+                    float currentYDiff = event.getY(0) - event.getY(1);
+                    double currentPointerDistance = Math.sqrt(currentXDiff * currentXDiff + currentYDiff * currentYDiff);
+
+                    //scale popup width
+                    double scale = 1 + (currentPointerDistance - initPointerDistance)/ initPointerDistance;
+
+                    newWidth = (popupWidth * scale);
+
+                    //change co-ordinates of popup so the center stays at the same position
+                    if(currentPointerDistance > initPointerDistance){
+                        popupLayoutParams.x -= (newWidth - popupWidth)/2;
+                    }
+                    else{
+                        popupLayoutParams.x += (popupWidth - newWidth)/2;
+                    }
+
+                    initPointerDistance = currentPointerDistance;
+
+                    checkPopupPositionBounds();
+                    updateScreenSize();
+
+                    final int width = (int) Math.min(screenWidth, newWidth);
+                    updatePopupSize(width, -1);
+
+                    return true;
+                }
+
             }
-
-            checkPopupPositionBounds();
-            updateScreenSize();
-
-            final int width = (int) Math.min(screenWidth, diff);
-            updatePopupSize(width, -1);
-
-            return true;
+            return false;
         }
 
         /*//////////////////////////////////////////////////////////////////////////
