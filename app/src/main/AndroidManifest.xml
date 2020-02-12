@@ -131,7 +131,7 @@
             android:taskAffinity=""
             android:theme="@style/RouterActivityThemeDark">
 
-            <!-- Youtube filter -->
+            <!-- YouTube filter -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
@@ -195,7 +195,7 @@
                 <data android:scheme="vnd.youtube.launch"/>
             </intent-filter>
 
-            <!-- Hooktube filter -->
+            <!-- HookTube filter -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
@@ -253,7 +253,7 @@
                 <data android:pathPrefix="/playlist"/>
             </intent-filter>
 
-            <!-- Soundcloud filter -->
+            <!-- SoundCloud filter -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
@@ -268,6 +268,24 @@
                 <data android:host="m.soundcloud.com"/>
                 <data android:host="www.soundcloud.com"/>
                 <data android:pathPrefix="/"/>
+            </intent-filter>
+
+            <!-- MediaCCC filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data android:scheme="http"/>
+                <data android:scheme="https"/>
+                <data android:host="media.ccc.de"/>
+                <!-- video prefix -->
+                <data android:pathPrefix="/v/"/>
+                <!-- channel prefix -->
+                <data android:pathPrefix="/c/"/>
             </intent-filter>
 
             <!-- Share filter -->
