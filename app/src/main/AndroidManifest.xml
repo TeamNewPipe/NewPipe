@@ -244,15 +244,7 @@
                 <data android:host="tube.poal.co"/>
                 <data android:host="invidious.13ad.de"/>
                 <data android:host="yt.elukerio.org"/>
-                <!-- video prefix -->
-                <data android:pathPrefix="/embed/"/>
-                <data android:pathPrefix="/watch"/>
                 <data android:pathPrefix="/"/>
-                <!-- channel prefix -->
-                <data android:pathPrefix="/channel/"/>
-                <data android:pathPrefix="/user/"/>
-                <!-- playlist prefix -->
-                <data android:pathPrefix="/playlist"/>
             </intent-filter>
 
             <!-- Soundcloud filter -->
