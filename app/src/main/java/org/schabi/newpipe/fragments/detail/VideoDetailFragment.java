@@ -403,8 +403,9 @@ public class VideoDetailFragment
     public void onDestroy() {
         super.onDestroy();
 
-        if (!activity.isFinishing()) unbind();
-        else stopService();
+        // Stop the service when user leaves the app with double back press if video player is selected. Otherwise unbind
+        if (activity.isFinishing() && player != null && player.videoPlayerSelected()) stopService();
+        else unbind();
 
         PreferenceManager.getDefaultSharedPreferences(activity)
                 .unregisterOnSharedPreferenceChangeListener(this);

@@ -155,7 +155,6 @@
                 android:minHeight="50dp"
                 android:baselineAligned="false"
                 android:gravity="top"
-                android:layout_marginBottom="7dp"
                 tools:ignore="RtlHardcoded">
 
                 <ImageButton

@@ -306,6 +306,7 @@ public class VideoPlayerImpl extends VideoPlayer
             playerCloseButton.setVisibility(View.GONE);
             getTopControlsRoot().bringToFront();
             getBottomControlsRoot().bringToFront();
+            onQueueClosed();
         } else {
             fullscreenButton.setVisibility(View.GONE);
             setupScreenRotationButton(service.isLandscape());
@@ -678,7 +679,10 @@ public class VideoPlayerImpl extends VideoPlayer
 
     private void onQueueClosed() {
         animateView(queueLayout, SLIDE_AND_ALPHA, /*visible=*/false,
-                DEFAULT_CONTROLS_DURATION);
+                DEFAULT_CONTROLS_DURATION, 0, () -> {
+                    // Even when queueLayout is GONE it receives touch events and ruins normal behavior of the app. This line fixes it
+                    queueLayout.setTranslationY(-queueLayout.getHeight() * 5);
+                });
         queueVisible = false;
     }
 
