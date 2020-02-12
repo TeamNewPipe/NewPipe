@@ -247,6 +247,7 @@
                 <!-- video prefix -->
                 <data android:pathPrefix="/embed/"/>
                 <data android:pathPrefix="/watch"/>
+                <data android:pathPrefix="/"/>
                 <!-- channel prefix -->
                 <data android:pathPrefix="/channel/"/>
                 <data android:pathPrefix="/user/"/>
@@ -277,8 +278,26 @@
                 <category android:name="android.intent.category.DEFAULT"/>
                 <data android:mimeType="text/plain"/>
             </intent-filter>
-        </activity>
 
+            <!-- MediaCCC filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data android:scheme="http"/>
+                <data android:scheme="https"/>
+                <data android:host="media.ccc.de"/>
+                <!-- video prefix -->
+                <data android:pathPrefix="/v/"/>
+                <!-- channel prefix-->
+                <data android:pathPrefix="/c/"/>
+                <data android:pathPrefix="/b/"/>
+            </intent-filter>
+        </activity>
         <service
             android:name=".RouterActivity$FetcherService"
             android:exported="false"/>
