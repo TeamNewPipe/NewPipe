@@ -540,7 +540,7 @@
     <string name="deleted_downloads">%1$s téléchargements supprimés</string>
     <string name="permission_display_over_apps">Autoriser la superposition d\'applis</string>
     <string name="app_language_title">Langue de l\'application</string>
-    <string name="systems_language">Langue du système</string>
+    <string name="systems_language">Prédéfini par le système</string>
     <string name="subtitle_activity_recaptcha">Appuyez sur « Terminé » une fois résolu</string>
     <string name="recaptcha_done_button">Terminé</string>
 </resources>
