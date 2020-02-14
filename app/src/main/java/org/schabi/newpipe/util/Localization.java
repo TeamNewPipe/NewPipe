@@ -48,8 +48,8 @@ import java.util.Locale;
 
 public class Localization {
 
-    private static PrettyTime prettyTime;
     private static final String DOT_SEPARATOR = " • ";
+    private static PrettyTime prettyTime;
 
     private Localization() {
     }
@@ -84,6 +84,9 @@ public class Localization {
         final String contentLanguage = PreferenceManager
                 .getDefaultSharedPreferences(context)
                 .getString(context.getString(R.string.content_language_key), context.getString(R.string.default_language_value));
+        if (contentLanguage.equals("system")) {
+            return org.schabi.newpipe.extractor.localization.Localization.fromLocale(Locale.getDefault());
+        }
         return org.schabi.newpipe.extractor.localization.Localization.fromLocalizationCode(contentLanguage);
     }
 
@@ -91,6 +94,9 @@ public class Localization {
         final String contentCountry = PreferenceManager
                 .getDefaultSharedPreferences(context)
                 .getString(context.getString(R.string.content_country_key), context.getString(R.string.default_country_value));
+        if (contentCountry.equals("system")) {
+            return new ContentCountry(Locale.getDefault().getCountry());
+        }
         return new ContentCountry(contentCountry);
     }
 
@@ -114,8 +120,7 @@ public class Localization {
     }
 
     public static String localizeNumber(Context context, long number) {
-        Locale locale = getPreferredLocale(context);
-        NumberFormat nf = NumberFormat.getInstance(locale);
+        NumberFormat nf = NumberFormat.getInstance(getAppLocale(context));
         return nf.format(number);
     }
 
@@ -132,12 +137,12 @@ public class Localization {
         return getQuantity(context, R.plurals.views, R.string.no_views, viewCount, localizeNumber(context, viewCount));
     }
 
-    public static String localizeSubscribersCount(Context context, long subscriberCount) {
-        return getQuantity(context, R.plurals.subscribers, R.string.no_subscribers, subscriberCount, localizeNumber(context, subscriberCount));
-    }
-
     public static String localizeStreamCount(Context context, long streamCount) {
         return getQuantity(context, R.plurals.videos, R.string.no_videos, streamCount, localizeNumber(context, streamCount));
+    }
+
+    public static String localizeWatchingCount(Context context, long watchingCount) {
+        return getQuantity(context, R.plurals.watching, R.string.no_one_watching, watchingCount, localizeNumber(context, watchingCount));
     }
 
     public static String shortCount(Context context, long count) {
@@ -156,7 +161,7 @@ public class Localization {
         return getQuantity(context, R.plurals.listening, R.string.no_one_listening, listeningCount, shortCount(context, listeningCount));
     }
 
-    public static String watchingCount(Context context, long watchingCount) {
+    public static String shortWatchingCount(Context context, long watchingCount) {
         return getQuantity(context, R.plurals.watching, R.string.no_one_watching, watchingCount, shortCount(context, watchingCount));
     }
 
@@ -215,7 +220,9 @@ public class Localization {
     }
 
     public static String relativeTime(Calendar calendarTime) {
-        return getPrettyTime().formatUnrounded(calendarTime);
+        String time = getPrettyTime().formatUnrounded(calendarTime);
+        return time.startsWith("-") ? time.substring(1) : time;
+        //workaround fix for russian showing -1 day ago, -19hrs ago…
     }
 
     private static void changeAppLanguage(Locale loc, Resources res) {
@@ -226,8 +233,8 @@ public class Localization {
     }
 
     public static Locale getAppLocale(Context context) {
-        SharedPreferences prefs = androidx.preference.PreferenceManager.getDefaultSharedPreferences(context);
-        String lang = prefs.getString("app_language_key", "en");
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        String lang = prefs.getString(context.getString(R.string.app_language_key), "en");
         Locale loc;
         if (lang.equals("system")) {
             loc = Locale.getDefault();

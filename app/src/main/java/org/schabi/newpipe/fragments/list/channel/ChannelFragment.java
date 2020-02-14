@@ -370,7 +370,7 @@ public class ChannelFragment extends BaseListInfoFragment<ChannelInfo> {
 
         headerSubscribersTextView.setVisibility(View.VISIBLE);
         if (result.getSubscriberCount() >= 0) {
-            headerSubscribersTextView.setText(Localization.localizeSubscribersCount(activity, result.getSubscriberCount()));
+            headerSubscribersTextView.setText(Localization.shortSubscriberCount(activity, result.getSubscriberCount()));
         } else {
             headerSubscribersTextView.setText(R.string.subscribers_count_not_available);
         }

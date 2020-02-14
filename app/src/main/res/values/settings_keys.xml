@@ -31,12 +31,12 @@
     <string name="seek_duration_key" translatable="false">seek_duration</string>
     <string name="seek_duration_default_value" translatable="false">10000</string>
     <string-array name="seek_duration_description" translatable="false">
-        <item>5 seconds</item>
-        <item>10 seconds</item>
-        <item>15 seconds</item>
-        <item>20 seconds</item>
-        <item>25 seconds</item>
-        <item>30 seconds</item>
+        <item>@string/dynamic_seek_duration_description</item>
+        <item>@string/dynamic_seek_duration_description</item>
+        <item>@string/dynamic_seek_duration_description</item>
+        <item>@string/dynamic_seek_duration_description</item>
+        <item>@string/dynamic_seek_duration_description</item>
+        <item>@string/dynamic_seek_duration_description</item>
     </string-array>
     <string-array name="seek_duration_value" translatable="false">
         <item>5000</item>
@@ -161,8 +161,8 @@
     <string name="show_comments_key" translatable="false">show_comments</string>
     <string name="stream_info_selected_tab_key" translatable="false">stream_info_selected_tab</string>
     <string name="show_hold_to_append_key" translatable="false">show_hold_to_append</string>
-    <string name="default_language_value">en</string>
-    <string name="default_country_value">GB</string>
+    <string name="default_language_value" translatable="false">system</string>
+    <string name="default_country_value" translatable="false">system</string>
     <string name="content_language_key" translatable="false">content_language</string>
     <string name="peertube_instance_setup_key" translatable="false">peertube_instance_setup</string>
     <string name="peertube_selected_instance_key" translatable="false">peertube_selected_instance</string>
@@ -267,6 +267,7 @@
 
     <!-- alternatively, load these from some local android data store -->
     <string-array name="language_codes" translatable="false">
+        <item>system</item>
         <item>af</item>
         <item>az</item>
         <item>id</item>
@@ -346,6 +347,7 @@
         <item>ko</item>
     </string-array>
     <string-array name="language_names" translatable="false">
+        <item>@string/system_default</item>
         <item>Afrikaans</item>
         <item>Azərbaycan</item>
         <item>Bahasa Indonesia</item>
@@ -427,6 +429,7 @@
 
 
     <string-array name="country_names" translatable="false">
+        <item>@string/system_default</item>
         <item>Afghanistan</item>
         <item>Aland Islands</item>
         <item>Albania</item>
@@ -677,6 +680,7 @@
     </string-array>
 
     <string-array name="country_codes" translatable="false">
+        <item>system</item>
         <item>AF</item>
         <item>AX</item>
         <item>AL</item>
@@ -993,7 +997,7 @@
         <item>zh-tw</item>
     </string-array>
     <string-array name="app_language_name" translatable="false">
-        <item>@string/systems_language</item>
+        <item>@string/system_default</item>
         <item>العربية</item>
         <item>Azərbaycan dili</item>
         <item>Asturianu</item>
