@@ -539,7 +539,7 @@
     <string name="deleted_downloads">%1$s elŝutoj forviŝitaj</string>
     <string name="permission_display_over_apps">Doni la permeson por afiŝiĝi supre aliaj apoj</string>
     <string name="app_language_title">Lingvo de la apo</string>
-    <string name="systems_language">Sistema lingvo</string>
+    <string name="systems_language">Sistemnormo</string>
     <string name="subtitle_activity_recaptcha">Premu « Finita » kiam solvita</string>
     <string name="recaptcha_done_button">Finita</string>
 </resources>
