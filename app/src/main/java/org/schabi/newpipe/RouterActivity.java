@@ -632,12 +632,22 @@ public class RouterActivity extends AppCompatActivity {
      */
     private final static String REGEX_REMOVE_FROM_URL = "[\\p{Z}\\p{P}]";
 
+    /**
+     * The official youtube app supports intents in this format, where after the ':' is the videoId.
+     * Accordingly there are other apps sharing streams in this format.
+     */
+    private final static String BASE_YOUTUBE_INTENT_URL = "vnd.youtube:";
+    private final static String BASE_YOUTUBE_VIDEO_URL = "https://www.youtube.com/watch?v=";
+
     private String getUrl(Intent intent) {
         // first gather data and find service
         String videoUrl = null;
         if (intent.getData() != null) {
             // this means the video was called though another app
             videoUrl = intent.getData().toString();
+            if (videoUrl.startsWith(BASE_YOUTUBE_INTENT_URL)){
+                videoUrl = BASE_YOUTUBE_VIDEO_URL + videoUrl.substring(BASE_YOUTUBE_INTENT_URL.length());
+            }
         } else if (intent.getStringExtra(Intent.EXTRA_TEXT) != null) {
             //this means that vidoe was called through share menu
             String extraText = intent.getStringExtra(Intent.EXTRA_TEXT);
