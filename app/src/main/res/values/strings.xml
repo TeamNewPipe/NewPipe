@@ -246,7 +246,7 @@
     <string name="detail_dislikes_img_view_description">Dislikes</string>
     <string name="use_tor_title">Use Tor</string>
     <string name="use_tor_summary">(Experimental) Force download traffic through Tor for increased privacy (streaming videos not yet supported).</string>
-    <string name="report_error">Report Error</string>
+    <string name="report_error">Report error</string>
     <string name="user_report">User report</string>
     <string name="search_no_results">No results</string>
     <string name="empty_view_no_videos" translatable="false">@string/no_videos</string>
