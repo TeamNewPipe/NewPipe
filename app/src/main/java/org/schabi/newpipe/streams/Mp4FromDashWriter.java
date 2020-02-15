@@ -2,6 +2,8 @@ package org.schabi.newpipe.streams;
 
 import org.schabi.newpipe.streams.Mp4DashReader.Hdlr;
 import org.schabi.newpipe.streams.Mp4DashReader.Mdia;
+import org.schabi.newpipe.streams.Mp4DashReader.Sidx;
+import org.schabi.newpipe.streams.Mp4DashReader.Trak;
 import org.schabi.newpipe.streams.Mp4DashReader.Mp4DashChunk;
 import org.schabi.newpipe.streams.Mp4DashReader.Mp4DashSample;
 import org.schabi.newpipe.streams.Mp4DashReader.Mp4Track;
@@ -159,16 +161,25 @@ public class Mp4FromDashWriter {
         int[] defaultMediaTime = new int[readers.length];
         int[] defaultSampleDuration = new int[readers.length];
         int[] sampleCount = new int[readers.length];
+        int[] corrected_stts = null;
 
         TablesInfo[] tablesInfo = new TablesInfo[tracks.length];
         for (int i = 0; i < tablesInfo.length; i++) {
             tablesInfo[i] = new TablesInfo();
+            tablesInfo[i].stts = 1;
         }
 
         int single_sample_buffer;
         if (tracks.length == 1 && tracks[0].kind == TrackKind.Audio) {
             // near 1 second of audio data per chunk, avoid split the audio stream in large chunks
             single_sample_buffer = tracks[0].trak.mdia.mdhd_timeScale / 1000;
+
+            // pre-explore the file (only m4a)
+            corrected_stts = checkForWrongDTS(readers[0], tracks[0].trak);
+            if (corrected_stts != null) {
+                tablesInfo[0].stts = corrected_stts.length / 2;
+            }
+
         } else {
             single_sample_buffer = -1;
         }
@@ -284,14 +295,20 @@ public class Mp4FromDashWriter {
         // write tables: stts stsc sbgp
         // reset for ctts table: sampleCount sampleExtra
         for (int i = 0; i < readers.length; i++) {
-            writeEntryArray(tablesInfo[i].stts, 2, sampleCount[i], defaultSampleDuration[i]);
+            if (corrected_stts == null) {
+                writeEntryArray(tablesInfo[i].stts, 2, sampleCount[i], defaultSampleDuration[i]);
+            } else {
+                writeEntryArray(tablesInfo[i].stts, corrected_stts.length, corrected_stts);
+            }
             writeEntryArray(tablesInfo[i].stsc, tablesInfo[i].stsc_bEntries.length, tablesInfo[i].stsc_bEntries);
             tablesInfo[i].stsc_bEntries = null;
             if (tablesInfo[i].ctts > 0) {
                 sampleCount[i] = 1;// the index is not base zero
                 sampleExtra[i] = -1;
             }
-            writeEntryArray(tablesInfo[i].sbgp, 1, sampleCount[i]);
+            if (tablesInfo[i].sbgp > 0) {
+                writeEntryArray(tablesInfo[i].sbgp, 1, sampleCount[i]);
+            }
         }
 
         if (auxBuffer == null) {
@@ -411,6 +428,101 @@ public class Mp4FromDashWriter {
     }
 
 
+    private static int[] checkForWrongDTS(Mp4DashReader reader, Trak trak) throws IOException {
+        Sidx sidx = reader.getSegmentIndexingBox();
+        if (sidx == null) {
+            return null;// sidx is required, ignore
+        }
+
+        // detection only is implemented on the first chunk
+        Mp4DashChunk chunk = reader.getNextChunk(true);
+
+        if (chunk.moof.traf.trun.chunkDuration <= sidx.entries[0].subsegmentDuration) {
+            reader.rewind();
+            return null;// no "incorrect DTS" found
+        }
+
+        int default_sample_duration;
+        if (Mp4DashReader.hasFlag(chunk.moof.traf.tfhd.bFlags, 0x08)) {
+            default_sample_duration = chunk.moof.traf.tfhd.defaultSampleDuration;
+        } else {
+            default_sample_duration = -1;
+        }
+
+        int total_samples_OnRemainChunks = 0;
+        Mp4DashChunk tmpChunk;
+        while ((tmpChunk = reader.getNextChunk(true)) != null) {
+            total_samples_OnRemainChunks += tmpChunk.moof.traf.trun.entryCount;
+        }
+        reader.rewind();
+
+        ////////////////////////////////////////////////////////////////////////
+        //    following calculation are speculated and based on ffmpeg log's
+        ////////////////////////////////////////////////////////////////////////
+        // STEP 1: calculate the chunk limit
+        int fixed_chunk = 0;
+        int accumulated_duration = 0;
+        for (; fixed_chunk < chunk.moof.traf.trun.entryCount; fixed_chunk++) {
+            TrunEntry entry = chunk.moof.traf.trun.getAbsoluteEntry(fixed_chunk, chunk.moof.traf.tfhd);
+
+            if (default_sample_duration < 0) {
+                default_sample_duration = entry.sampleDuration;
+            }
+            if ((accumulated_duration + entry.sampleDuration) > sidx.entries[0].subsegmentDuration) {
+                fixed_chunk++;
+                break;
+            }
+
+            accumulated_duration += entry.sampleDuration;
+        }
+
+        // STEP 2: amount of samples to ¿¿¿silence???
+        int cutoff_chunk = chunk.moof.traf.trun.entryCount - fixed_chunk;
+
+        // This value appears to be constant in ffmpeg
+        fixed_chunk = chunk.moof.traf.trun.entryCount - 1;
+
+        // STEP 3: "filler" space ¿¿¿overhead???
+        int delta = chunk.moof.traf.trun.chunkDuration - sidx.entries[0].subsegmentDuration;
+        int filler = ((int)Math.ceil((float)delta / default_sample_duration) * default_sample_duration) - delta - cutoff_chunk;
+
+        // STEP 4: calculate the amount of samples on remain chunks
+        int remain = total_samples_OnRemainChunks - cutoff_chunk;
+
+        // generate the corrected time to sample box (stts)
+        int[] stts = new int[]{
+                fixed_chunk, default_sample_duration,
+                cutoff_chunk, 1,
+                1, filler,
+                remain, default_sample_duration
+        };
+
+        // STEP 5: calculate corrected stream duration (normally bigger)
+        long duration = fixed_chunk * default_sample_duration;
+        duration += cutoff_chunk;
+        duration += filler;
+        duration += remain * default_sample_duration;
+
+        /*
+        // STEP 6: calculate the corrected duration in milliseconds
+        long duration_ms = corrections.duration / tracks[0].trak.mdia.mdhd_timeScale;
+        duration_ms += 3;// maybe is a round error on ffmpeg
+        */
+
+        // Apply duration correction
+        trak.tkhd.duration = duration;
+
+        // patch the duration in the media box header
+        ByteBuffer buffer = ByteBuffer.wrap(trak.mdia.mdhd);
+        if (buffer.get(8) == 0) {
+            buffer.putInt(24, (int) duration);
+        } else {
+            buffer.putLong(32, duration);
+        }
+
+        return stts;
+    }
+
     private int writeEntry64(int offset, long value) throws IOException {
         outBackup();
 
@@ -472,7 +584,7 @@ public class Mp4FromDashWriter {
 
         // stsc_table_entry = [first_chunk, samples_per_chunk, sample_description_index]
         tables.stsc_bEntries = new int[tables.stsc * 3];
-        tables.stco = remainChunkOffset + 1;// total entrys in chunk offset box
+        tables.stco = remainChunkOffset + 1;// total entries in chunk offset box
 
         tables.stsc_bEntries[index++] = 1;
         tables.stsc_bEntries[index++] = firstCount;
@@ -600,7 +712,6 @@ public class Mp4FromDashWriter {
     private int auxOffset() {
         return auxBuffer == null ? (int) writeOffset : auxBuffer.position();
     }
-
 
 
     private int make_ftyp() throws IOException {
@@ -794,7 +905,7 @@ public class Mp4FromDashWriter {
         // And stsz can be empty if has a default sample size
         //
         if (moovSimulation) {
-            make(0x73747473, -1, 2, 1);// stts
+            make(0x73747473, -1, 2, tablesInfo.stts);
             if (tablesInfo.stss > 0) {
                 make(0x73747373, -1, 1, tablesInfo.stss);
             }
@@ -805,7 +916,7 @@ public class Mp4FromDashWriter {
             make(0x7374737A, tablesInfo.stsz_default, 1, tablesInfo.stsz);
             make(is64 ? 0x636F3634 : 0x7374636F, -1, is64 ? 2 : 1, tablesInfo.stco);
         } else {
-            tablesInfo.stts = make(0x73747473, -1, 2, 1);
+            tablesInfo.stts = make(0x73747473, -1, 2, tablesInfo.stts);
             if (tablesInfo.stss > 0) {
                 tablesInfo.stss = make(0x73747373, -1, 1, tablesInfo.stss);
             }
