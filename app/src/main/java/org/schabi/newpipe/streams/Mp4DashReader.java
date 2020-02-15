@@ -195,6 +195,39 @@ public class Mp4DashReader {
         return count;
     }
 
+    /**
+     * find and read the first SIDX related to the selected track
+     * @return the sidx box or null if not found
+     * @throws IOException
+     */
+    public Sidx getSegmentIndexingBox() throws IOException {
+        if (selectedTrack < 0) {
+            throw new IllegalStateException("track no selected");
+        }
+        if (!stream.canRewind()) {
+            throw new IOException("The provided stream doesn't allow seek");
+        }
+
+        Box tmp;
+        Sidx sidx = null;
+
+        stream.rewind();
+
+        while (stream.available())  {
+            tmp = readBox();
+            if (tmp.type == ATOM_SIDX) {
+                sidx = parse_sidx();
+                if (sidx != null) break;
+            }
+            ensure(tmp);
+        }
+
+        stream.rewind();
+        stream.skipBytes(box.offset + (DataReader.INTEGER_SIZE * 2));
+
+        return sidx;
+    }
+
     public int[] getBrands() {
         if (brands == null) throw new IllegalStateException("Not parsed");
         return brands;
@@ -392,6 +425,12 @@ public class Mp4DashReader {
         return readBox();
     }
 
+    public static long convertTimestamp(long timestamp, int scale, int newScale) {
+        if (scale == newScale) {
+            return timestamp;
+        }
+        return (long)((timestamp / (double)scale) * newScale);
+    }
 
 
     private Moof parse_moof(Box ref, int trackId) throws IOException {
@@ -793,6 +832,56 @@ public class Mp4DashReader {
         return readFullBox(b);
     }
 
+    private Sidx parse_sidx() throws IOException {
+        Sidx obj = new Sidx();
+
+        int version = stream.read();
+        // flags
+        stream.skipBytes(3);
+
+        // reference ID
+        int trackNumber = stream.readInt();
+        if (tracks[selectedTrack].trak.tkhd.trackId != trackNumber) return null;
+
+        int timescale = stream.readInt();
+        final int trackTimescale = tracks[selectedTrack].trak.mdia.mdhd_timeScale;
+
+        if (version == 0) {
+            obj.earliestPresentationTime = stream.readInt();
+            obj.firstOffset = stream.readInt();
+        } else {
+            obj.earliestPresentationTime = stream.readLong();
+            obj.firstOffset = stream.readLong();
+        }
+
+        // convert timestamp (normally not required)
+        obj.earliestPresentationTime = convertTimestamp(obj.earliestPresentationTime, timescale, trackTimescale);
+
+        // reserved
+        stream.readShort();
+
+        obj.entries = new SidxEntry[stream.readShort()];
+
+        for (int i = 0; i < obj.entries.length; i++) {
+            obj.entries[i] = new SidxEntry();
+
+            int tmp = stream.readInt();
+            obj.entries[i].referenceType = (tmp >>> 31) & 0x01;
+            obj.entries[i].referencedSize = (tmp & 0x7fffffff);
+            obj.entries[i].subsegmentDuration = stream.readInt();
+
+            tmp = stream.readInt();
+            obj.entries[i].startsWithSAP = (tmp >>> 31) & 0x01;
+            obj.entries[i].SAPtype = (tmp >>> 28) & 7;
+            obj.entries[i].SAPDeltaTime = (tmp & 0x0fffffff);
+
+            // convert timestamp (normally not required)
+            obj.entries[i].SAPDeltaTime = (int)convertTimestamp(obj.entries[i].SAPDeltaTime, timescale, trackTimescale);
+            obj.entries[i].subsegmentDuration = (int)convertTimestamp(obj.entries[i].subsegmentDuration, timescale, trackTimescale);
+        }
+
+        return obj;
+    }
 
 
     class Box {
@@ -963,6 +1052,24 @@ public class Mp4DashReader {
         public byte[] dinf;
         public byte[] stbl_stsd;
         public byte[] $mhd;
+    }
+
+    public class Sidx {
+
+        public SidxEntry[] entries;
+        public long earliestPresentationTime;
+        public long firstOffset;
+    }
+
+    public class SidxEntry {
+
+        public int subsegmentDuration;
+        public int referencedSize;
+        public int startsWithSAP;
+        public int SAPtype;
+        public int SAPDeltaTime;
+        public int referenceType;
+
     }
 
     public class Mp4Track {
