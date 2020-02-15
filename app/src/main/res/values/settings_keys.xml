@@ -992,8 +992,8 @@
         <item>uk</item>
         <item>ur</item>
         <item>vi</item>
-        <item>zh</item>
-        <item>zh-hans</item>
+        <item>zh-cn</item>
+        <item>zh-hk</item>
         <item>zh-tw</item>
     </string-array>
     <string-array name="app_language_name" translatable="false">
@@ -1057,9 +1057,9 @@
         <item>українська мова</item>
         <item>اردو</item>
         <item>Tiếng Việt</item>
-        <item>官话</item>
-        <item>简化字</item>
-        <item>臺灣華語</item>
+        <item>简体中文</item>
+        <item>繁體中文（廣東話）</item>
+        <item>正體中文</item>
     </string-array>
 
     <!-- Limit mobile data usage  -->

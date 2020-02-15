@@ -167,10 +167,10 @@
     </plurals>
     <string name="no_videos">אין סרטונים</string>
     <plurals name="videos">
-        <item quantity="one">סרטון %s</item>
-        <item quantity="two">%s סרטונים</item>
-        <item quantity="many">%s סרטונים</item>
-        <item quantity="other">%s סרטונים</item>
+        <item quantity="one">סרטון</item>
+        <item quantity="two">סרטונים</item>
+        <item quantity="many">סרטונים</item>
+        <item quantity="other">סרטונים</item>
     </plurals>
     <string name="start">התחלה</string>
     <string name="pause">השהיה</string>
@@ -550,4 +550,9 @@
     <string name="clear_download_history">מחיקת היסטוריית ההורדות</string>
     <string name="delete_downloaded_files">למחוק את הקבצים שהורדתי</string>
     <string name="deleted_downloads">נמחקו %1$s הורדות</string>
+    <string name="permission_display_over_apps">יש להעניק הרשאה להציג על גבי יישומונים אחרים</string>
+    <string name="app_language_title">שפת היישומון</string>
+    <string name="systems_language">בררת המחדל של המערכת</string>
+    <string name="subtitle_activity_recaptcha">יש ללחוץ על „סיום” לאחר הפתירה</string>
+    <string name="recaptcha_done_button">סיום</string>
 </resources>

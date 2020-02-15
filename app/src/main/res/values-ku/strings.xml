@@ -541,4 +541,9 @@
     <string name="clear_download_history">سڕینەوەی مێژووی داگرتن</string>
     <string name="delete_downloaded_files">سڕینەوەی فایلە داگیراوەکان</string>
     <string name="deleted_downloads">%1$ لە داگرتنەکان سڕانەوە</string>
+    <string name="permission_display_over_apps">دەسەڵاتی پێبدە بۆ پیشاندان لەسەرووی ئەپەکانیترەوە</string>
+    <string name="app_language_title">زمانی ئەپ</string>
+    <string name="systems_language">بنەڕەتی سیستەم</string>
+    <string name="subtitle_activity_recaptcha">گرتە بکە لەسەر ”تەواو” کاتێ کە چارەسەرکرا</string>
+    <string name="recaptcha_done_button">تەواو</string>
 </resources>

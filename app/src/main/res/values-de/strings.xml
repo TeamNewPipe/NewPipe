@@ -484,7 +484,7 @@
     <string name="watch_history_states_deleted">Wiedergabeposition gelöscht.</string>
     <string name="missing_file">Datei verschoben oder gelöscht</string>
     <string name="overwrite_finished_warning">Eine heruntergeladene Datei mit diesem Namen existiert bereits</string>
-    <string name="overwrite_failed">Datei kann nicht überschreiben werden</string>
+    <string name="overwrite_failed">Datei kann nicht überschrieben werden</string>
     <string name="download_already_pending">Es gibt einen ausstehenden Download mit diesem Namen</string>
     <string name="error_postprocessing_stopped">NewPipe wurde während der Verarbeitung der Datei geschlossen</string>
     <string name="error_insufficient_storage">Kein Speicherplatz mehr auf dem Gerät</string>
@@ -495,9 +495,9 @@
     <string name="start_downloads">Downloads starten</string>
     <string name="pause_downloads">Downloads anhalten</string>
     <string name="downloads_storage_ask_title">Frage, wohin heruntergeladen werden soll</string>
-    <string name="downloads_storage_ask_summary">Du wirst gefragt, wohin Du jeden Download speichern willst</string>
-    <string name="downloads_storage_ask_summary_kitkat">Du wirst gefragt, wohin Du jeden Download speichern willst. 
-\nAktiviere diese Option, wenn Du auf die externe SD-Karte herunterladen möchtest</string>
+    <string name="downloads_storage_ask_summary">Du wirst gefragt, wohin du jeden Download speichern willst</string>
+    <string name="downloads_storage_ask_summary_kitkat">Du wirst gefragt, wohin du jeden Download speichern willst.
+\nAktiviere diese Option, wenn du auf die externe SD-Karte herunterladen möchtest</string>
     <string name="downloads_storage_use_saf_title">SAF verwenden</string>
     <string name="downloads_storage_use_saf_summary">Das Storage Access Framework erlaubt Downloads auf eine externe SD-Karte.
 \nHinweis: Manche Geräte sind nicht kompatibel</string>
@@ -539,4 +539,9 @@
     <string name="clear_download_history">Downloadverlauf löschen</string>
     <string name="delete_downloaded_files">Heruntergeladene Dateien löschen</string>
     <string name="deleted_downloads">%1$s Downloads gelöscht</string>
+    <string name="permission_display_over_apps">Berechtigung zur Anzeige über andere Apps erteilen</string>
+    <string name="app_language_title">Sprache der App</string>
+    <string name="systems_language">Systemstandard</string>
+    <string name="subtitle_activity_recaptcha">\"Fertig\" drücken, wenn es gelöst wurde</string>
+    <string name="recaptcha_done_button">Fertig</string>
 </resources>
