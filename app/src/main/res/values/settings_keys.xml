@@ -161,8 +161,6 @@
     <string name="show_comments_key" translatable="false">show_comments</string>
     <string name="stream_info_selected_tab_key" translatable="false">stream_info_selected_tab</string>
     <string name="show_hold_to_append_key" translatable="false">show_hold_to_append</string>
-    <string name="default_language_value" translatable="false">system</string>
-    <string name="default_country_value" translatable="false">system</string>
     <string name="content_language_key" translatable="false">content_language</string>
     <string name="peertube_instance_setup_key" translatable="false">peertube_instance_setup</string>
     <string name="peertube_selected_instance_key" translatable="false">peertube_selected_instance</string>
@@ -265,9 +263,11 @@
     <string name="update_app_key" translatable="false">update_app_key</string>
     <string name="update_pref_screen_key" translatable="false">update_pref_screen_key</string>
 
+    <!-- Localizations   -->
+    <string name="default_localization_key" translatable="false">system</string>
     <!-- alternatively, load these from some local android data store -->
     <string-array name="language_codes" translatable="false">
-        <item>system</item>
+        <item>@string/default_localization_key</item>
         <item>af</item>
         <item>az</item>
         <item>id</item>
@@ -680,7 +680,7 @@
     </string-array>
 
     <string-array name="country_codes" translatable="false">
-        <item>system</item>
+        <item>@string/default_localization_key</item>
         <item>AF</item>
         <item>AX</item>
         <item>AL</item>
@@ -932,7 +932,7 @@
 
     <!--The next two arrays are set to change the app language-->
     <string-array name="app_language_code" translatable="false">
-        <item>system</item>
+        <item>@string/default_localization_key</item>
         <item>ar</item>
         <item>az</item>
         <item>ast</item>

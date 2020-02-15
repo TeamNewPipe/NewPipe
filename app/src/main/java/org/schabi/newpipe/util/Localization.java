@@ -83,8 +83,8 @@ public class Localization {
     public static org.schabi.newpipe.extractor.localization.Localization getPreferredLocalization(final Context context) {
         final String contentLanguage = PreferenceManager
                 .getDefaultSharedPreferences(context)
-                .getString(context.getString(R.string.content_language_key), context.getString(R.string.default_language_value));
-        if (contentLanguage.equals("system")) {
+                .getString(context.getString(R.string.content_language_key), context.getString(R.string.default_localization_key));
+        if (contentLanguage.equals(context.getString(R.string.default_localization_key))) {
             return org.schabi.newpipe.extractor.localization.Localization.fromLocale(Locale.getDefault());
         }
         return org.schabi.newpipe.extractor.localization.Localization.fromLocalizationCode(contentLanguage);
@@ -93,8 +93,8 @@ public class Localization {
     public static ContentCountry getPreferredContentCountry(final Context context) {
         final String contentCountry = PreferenceManager
                 .getDefaultSharedPreferences(context)
-                .getString(context.getString(R.string.content_country_key), context.getString(R.string.default_country_value));
-        if (contentCountry.equals("system")) {
+                .getString(context.getString(R.string.content_country_key), context.getString(R.string.default_localization_key));
+        if (contentCountry.equals(context.getString(R.string.default_localization_key))) {
             return new ContentCountry(Locale.getDefault().getCountry());
         }
         return new ContentCountry(contentCountry);
@@ -104,7 +104,7 @@ public class Localization {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 
         String languageCode = sp.getString(context.getString(R.string.content_language_key),
-                context.getString(R.string.default_language_value));
+                context.getString(R.string.default_localization_key));
 
         try {
             if (languageCode.length() == 2) {
@@ -236,7 +236,7 @@ public class Localization {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         String lang = prefs.getString(context.getString(R.string.app_language_key), "en");
         Locale loc;
-        if (lang.equals("system")) {
+        if (lang.equals(context.getString(R.string.default_localization_key))) {
             loc = Locale.getDefault();
         } else if (lang.matches(".*-.*")) {
             //to differentiate different versions of the language

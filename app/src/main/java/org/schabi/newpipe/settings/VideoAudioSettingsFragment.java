@@ -21,6 +21,7 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //initializing R.array.seek_duration_description to display the translation of seconds
         String[] durationsDescriptions = getResources().getStringArray(R.array.seek_duration_description);
         String[] durationsValues = getResources().getStringArray(R.array.seek_duration_value);
         int currentDurationValue;
