@@ -11,8 +11,8 @@ android {
         applicationId "org.schabi.newpipe"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 820
-        versionName "0.18.2"
+        versionCode 830
+        versionName "0.18.3"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -53,6 +53,7 @@ ext {
     okHttpLibVersion = '3.12.6'
     icepickLibVersion = '3.2.0'
     stethoLibVersion = '1.5.0'
+    markwonVersion = '4.2.1'
 }
 
 dependencies {
@@ -62,7 +63,7 @@ dependencies {
         exclude module: 'support-annotations'
     })
 
-    implementation 'com.github.TeamNewPipe:NewPipeExtractor:ff61e284'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:fc9f031'
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.23.0'
 
@@ -108,4 +109,7 @@ dependencies {
 
     implementation "com.squareup.okhttp3:okhttp:${okHttpLibVersion}"
     debugImplementation "com.facebook.stetho:stetho-okhttp3:${stethoLibVersion}"
+
+    implementation "io.noties.markwon:core:${markwonVersion}"
+    implementation "io.noties.markwon:linkify:${markwonVersion}"
 }
