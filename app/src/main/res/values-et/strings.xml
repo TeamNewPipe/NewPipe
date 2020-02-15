@@ -238,7 +238,7 @@
     <string name="msg_popup_permission">Need õigused on vajalikud
 \nhüpikakna avamiseks</string>
     <string name="one_item_deleted">Kustutati 1 element.</string>
-    <string name="reCaptchaActivity">"reCAPTCHA "</string>
+    <string name="recaptcha">"reCAPTCHA "</string>
     <string name="settings_category_downloads_title">Laadi alla</string>
     <string name="settings_file_charset_title">Lubatud tähemärgid failinimedes</string>
     <string name="settings_file_replacement_character_summary">Vigased tähemärgid asendatakse selle väärtusega</string>
@@ -370,7 +370,7 @@
     <string name="tracks">Lood</string>
     <string name="users">Kasutajad</string>
     <string name="switch_to_main">Lülitu peamisele</string>
-    <string name="reCaptcha_title">reCAPTCHA nõue</string>
+    <string name="title_activity_recaptcha">reCAPTCHA nõue</string>
     <string name="recaptcha_request_toast">reCAPTCHA nõude taotlus</string>
     <string name="copyright" formatted="true">© %1$s %2$s %3$s alla</string>
     <string name="app_description">Vaba kergekaaluline Androidi voogesitus.</string>

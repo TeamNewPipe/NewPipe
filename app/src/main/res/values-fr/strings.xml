@@ -105,11 +105,11 @@
     <string name="no_available_dir">Veuillez définir ultérieurement un dossier de téléchargement dans les paramètres</string>
     <string name="could_not_load_image">Impossible de charger l’image</string>
     <string name="app_ui_crash">L’application a planté</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="recaptcha">reCAPTCHA</string>
     <string name="black_theme_title">Noir</string>
     <string name="all">Tout</string>
     <string name="channel">Chaîne</string>
-    <string name="reCaptcha_title">Défi reCAPTCHA</string>
+    <string name="title_activity_recaptcha">Défi reCAPTCHA</string>
     <string name="recaptcha_request_toast">Défi reCAPTCHA demandé</string>
     <string name="open_in_popup_mode">Ouvrir en mode flottant</string>
     <string name="popup_mode_share_menu_title">Mode flottant NewPipe</string>

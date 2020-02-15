@@ -50,8 +50,8 @@
     <string name="next_video_title">Próximo</string>
     <string name="open_in_browser">Abrir no navegador</string>
     <string name="pause">Pausar</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">Desafio reCAPTCHA</string>
+    <string name="recaptcha">reCAPTCHA</string>
+    <string name="title_activity_recaptcha">Desafio reCAPTCHA</string>
     <string name="recaptcha_request_toast">Desafio reCAPTCHA solicitado</string>
     <string name="report_error">Reportar um erro</string>
     <string name="retry">Tentar novamente</string>

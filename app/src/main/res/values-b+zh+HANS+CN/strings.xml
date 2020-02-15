@@ -110,7 +110,7 @@
     <string name="msg_running_detail">点击了解详情</string>
     <string name="msg_wait">请稍候…</string>
     <string name="msg_copied">复制至剪贴板</string>
-    <string name="reCaptchaActivity">reCAPTCHA验证码</string>
+    <string name="recaptcha">reCAPTCHA验证码</string>
     <string name="controls_popup_title">悬浮窗播放</string>
     <string name="title_activity_about">关于NewPipe</string>
     <string name="action_settings">设置</string>
@@ -207,7 +207,7 @@
     <string name="no_available_dir">请稍后在设置中设定下载目录</string>
     <string name="msg_popup_permission">用悬浮窗模式
 \n需要此权限</string>
-    <string name="reCaptcha_title">reCAPTCHA验证</string>
+    <string name="title_activity_recaptcha">reCAPTCHA验证</string>
     <string name="recaptcha_request_toast">请求的新的CAPTCHA验证</string>
     <string name="popup_mode_share_menu_title">NewPipe 悬浮窗模式</string>
     <string name="popup_playing_toast">在悬浮窗中播放</string>
