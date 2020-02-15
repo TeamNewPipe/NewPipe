@@ -347,7 +347,7 @@
         <item>ko</item>
     </string-array>
     <string-array name="language_names" translatable="false">
-        <item>@string/system_default</item>
+        <item>@string/systems_language</item>
         <item>Afrikaans</item>
         <item>Azərbaycan</item>
         <item>Bahasa Indonesia</item>
@@ -429,7 +429,7 @@
 
 
     <string-array name="country_names" translatable="false">
-        <item>@string/system_default</item>
+        <item>@string/systems_language</item>
         <item>Afghanistan</item>
         <item>Aland Islands</item>
         <item>Albania</item>
@@ -997,7 +997,7 @@
         <item>zh-tw</item>
     </string-array>
     <string-array name="app_language_name" translatable="false">
-        <item>@string/system_default</item>
+        <item>@string/systems_language</item>
         <item>العربية</item>
         <item>Azərbaycan dili</item>
         <item>Asturianu</item>
