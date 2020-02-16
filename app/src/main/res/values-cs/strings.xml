@@ -64,7 +64,7 @@
     <string name="video_is_age_restricted">Zobrazit video s věkovým omezením. Povolit tento obsah lze v \"Nastavení\".</string>
     <string name="duration_live">ŽIVĚ</string>
     <string name="light_parsing_error">Nebylo možné kompletně analyzovat stránku</string>
-    <string name="main_bg_subtitle">Začni stiskem hledat</string>
+    <string name="main_bg_subtitle">Začni klepnutím na hledat</string>
     <string name="msg_copied">Zkopírováno do schránky</string>
     <string name="msg_wait">Počkejte prosím…</string>
     <string name="msg_running">NewPipe stahuje</string>
@@ -319,7 +319,7 @@ otevření ve vyskakovacím okně</string>
     <string name="enable_leak_canary_title">Povolit službu LeakCanary</string>
     <string name="enable_leak_canary_summary">Monitoring úniku paměti může způsobit nereagování aplikace při heap dumpingu</string>
     <string name="enable_disposed_exceptions_title">Nahlásit mimo-cyklické chyby</string>
-    <string name="enable_disposed_exceptions_summary">Vynutit hlášení nedoručitelných výjimek Rx mimo fragment nebo trvání činnosti po odstranění</string>
+    <string name="enable_disposed_exceptions_summary">Vynutit hlášení nedoručitelných výjimek Rx mimo životnost fragmentu nebo aktivity po odstranění</string>
     <string name="use_inexact_seek_title">Použít rychlé nepřesné hledání</string>
     <string name="use_inexact_seek_summary">Nepřesné hledání umožní přehrávači posouvat se rychleji, ale se sníženou přesností</string>
     <string name="download_thumbnail_title">Načítat náhledy</string>
@@ -547,4 +547,9 @@ otevření ve vyskakovacím okně</string>
     <string name="clear_download_history">Smazat historii stahování</string>
     <string name="delete_downloaded_files">Smazat stažené soubory</string>
     <string name="deleted_downloads">Smazat %1$s stahování</string>
+    <string name="permission_display_over_apps">Souhlasit se zobrazením přes jiné aplikace</string>
+    <string name="app_language_title">Jazyk aplikace</string>
+    <string name="systems_language">Jazyk systému</string>
+    <string name="subtitle_activity_recaptcha">Po vyřešení stiskni \"Hotovo\"</string>
+    <string name="recaptcha_done_button">Hotovo</string>
 </resources>
