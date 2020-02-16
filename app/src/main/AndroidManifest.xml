@@ -112,7 +112,7 @@
 
         <activity
             android:name=".ReCaptchaActivity"
-            android:label="@string/reCaptchaActivity"/>
+            android:label="@string/recaptcha"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -153,6 +153,7 @@
                 <!-- channel prefix -->
                 <data android:pathPrefix="/channel/"/>
                 <data android:pathPrefix="/user/"/>
+                <data android:pathPrefix="/c/"/>
                 <!-- playlist prefix -->
                 <data android:pathPrefix="/playlist"/>
             </intent-filter>

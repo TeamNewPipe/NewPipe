@@ -105,8 +105,8 @@
     <string name="info_labels">Apa:\\nPermintaan:\\nBahasa Konten:\\nLayanan:\\nWaktu GMT:\\nPaket:\\nVersi:\\nVersi OS:</string>
     <string name="user_report">Laporan pengguna</string>
     <string name="msg_threads">Thread</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">Tantangan reCAPTCHA</string>
+    <string name="recaptcha">reCAPTCHA</string>
+    <string name="title_activity_recaptcha">Tantangan reCAPTCHA</string>
     <string name="recaptcha_request_toast">Meminta kode reCAPTCHA</string>
     <string name="black_theme_title">Hitam</string>
     <string name="all">Semua</string>
@@ -480,7 +480,7 @@
     <string name="error_postprocessing_stopped">NewPipe telah ditutup saat sedang memproses berkas</string>
     <string name="error_insufficient_storage">Tidak ada ruang kosong tersisa pada perangkat</string>
     <string name="error_progress_lost">Kehilangan laju, karena berkas telah dihapus</string>
-    <string name="confirm_prompt">Apakah anda yakin\?</string>
+    <string name="confirm_prompt">Apakah anda yakin ingin menghapus semua riwayat unduhan dan berkas yang telah diunduh\?</string>
     <string name="enable_queue_limit">Batasi antrean unduhan</string>
     <string name="enable_queue_limit_desc">Satu unduhan akan berjalan pada waktu yang bersamaan</string>
     <string name="start_downloads">Mulai unduh</string>
@@ -498,7 +498,7 @@
     <string name="delete_playback_states_alert">Hapus semua posisi pemutaran\?</string>
     <string name="download_choose_new_path">Ubah folder unduhan</string>
     <plurals name="videos">
-        <item quantity="other">Video</item>
+        <item quantity="other">%s video</item>
     </plurals>
     <string name="drawer_header_description">Aktif/Nonaktifkan layanan, saat ini aktif:</string>
     <string name="no_one_watching">Tidak ada yang menonton</string>
@@ -510,4 +510,29 @@
         <item quantity="other">%s mendengarkan</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">Bahasa akan diterapkan setelah aplikasi dimulai ulang.</string>
+    <string name="peertube_instance_url_title">Situs PeerTube</string>
+    <string name="peertube_instance_url_summary">Pilih situs PeerTube favorit anda</string>
+    <string name="peertube_instance_url_help">Temukan situs yang sesuai dengan anda di %s</string>
+    <string name="peertube_instance_add_title">Tambah situs</string>
+    <string name="peertube_instance_add_help">Masukkan URL situs</string>
+    <string name="peertube_instance_add_fail">Tidak bisa memvalidasi situs</string>
+    <string name="peertube_instance_add_https_only">Hanya mendukung URL HTTPS</string>
+    <string name="peertube_instance_add_exists">Situs sudah ada</string>
+    <string name="local">Lokal</string>
+    <string name="recently_added">Baru-baru ini ditambahkan</string>
+    <string name="most_liked">Disukai terbanyak</string>
+    <string name="playlist_no_uploader">Dibuat otomatis (pengunggah tidak ditemukan)</string>
+    <string name="recovering">memulihkan</string>
+    <string name="error_download_resource_gone">Tidak bisa memulihkan unduhan ini</string>
+    <string name="choose_instance_prompt">Pilih situs</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Aktifkan kunci layar thumbnail video</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Ketika menggunakan pemutar latar belakang, thumbnail video akan ditampilkan di tampilan kunci layar</string>
+    <string name="default_kiosk_page_summary">Kiosk Default</string>
+    <string name="clear_download_history">Hapus riwayat unduhan</string>
+    <string name="delete_downloaded_files">Hapus berkas yang diunduh</string>
+    <string name="deleted_downloads">%1$s unduhan dihapus</string>
+    <string name="permission_display_over_apps">Izinkan untuk ditampilkan di atas aplikasi lain</string>
+    <string name="app_language_title">Bahasa apl</string>
+    <string name="systems_language">Default sistem</string>
+    <string name="recaptcha_done_button">Selesai</string>
 </resources>

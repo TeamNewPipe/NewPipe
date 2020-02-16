@@ -167,10 +167,10 @@
     </plurals>
     <string name="no_videos">אין סרטונים</string>
     <plurals name="videos">
-        <item quantity="one">סרטון %s</item>
-        <item quantity="two">%s סרטונים</item>
-        <item quantity="many">%s סרטונים</item>
-        <item quantity="other">%s סרטונים</item>
+        <item quantity="one">סרטון</item>
+        <item quantity="two">סרטונים</item>
+        <item quantity="many">סרטונים</item>
+        <item quantity="other">סרטונים</item>
     </plurals>
     <string name="start">התחלה</string>
     <string name="pause">השהיה</string>
@@ -192,8 +192,8 @@
     <string name="no_available_dir">נא לציין תיקיית הורדה בהגדרות בהמשך</string>
     <string name="msg_popup_permission">הרשאה זו נדרשת לטובת 
 \nפתיחה בחלון צף</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">אתגר reCAPTCHA</string>
+    <string name="recaptcha">reCAPTCHA</string>
+    <string name="title_activity_recaptcha">אתגר reCAPTCHA</string>
     <string name="recaptcha_request_toast">התקבלה בקשה לאתגר reCAPTCHA</string>
     <string name="settings_category_downloads_title">הורדה</string>
     <string name="settings_file_charset_title">רשימת תווים אפשרית בשמות קבצים</string>
@@ -496,7 +496,7 @@
     <string name="error_insufficient_storage">לא נשאר מקום במכשיר</string>
     <string name="error_progress_lost">התהליך אבד כיוון שהקובץ נמחק</string>
     <string name="error_timeout">החיבור המתין זמן רב מדי</string>
-    <string name="confirm_prompt">בוודאות\?</string>
+    <string name="confirm_prompt">למחוק את היסטוריית ההורדות שלך או למחוק את כל הקבצים שהורדת\?</string>
     <string name="enable_queue_limit">הגבלת תור ההורדה</string>
     <string name="enable_queue_limit_desc">רק הורדה אחת תרוץ בו־זמנית</string>
     <string name="start_downloads">התחלת הורדות</string>
@@ -531,12 +531,12 @@
     <string name="default_kiosk_page_summary">קיוסק בררת מחדל</string>
     <string name="seek_duration_title">משך קפיצה מהירה קדימה/אחורה</string>
     <string name="peertube_instance_url_title">מופעים של PeerTube</string>
-    <string name="peertube_instance_url_summary">נא להגדיר את מופעי ה־peertube המועדפים עליך</string>
-    <string name="peertube_instance_url_help">איתור המופעים שהכי מתאימים לך תחת https://joinpeertube.org/instances#instances-list</string>
+    <string name="peertube_instance_url_summary">נא לבחור את מופעי ה־PeerTube המועדפים עליך</string>
+    <string name="peertube_instance_url_help">איתור המופעים שהכי מתאימים לך תחת %s</string>
     <string name="peertube_instance_add_title">הוספת מופע</string>
     <string name="peertube_instance_add_help">נא להכניס כתובת מופע</string>
-    <string name="peertube_instance_add_fail">אימות המופע נכשל</string>
-    <string name="peertube_instance_add_https_only">יש תמיכה בכתובות https בלבד</string>
+    <string name="peertube_instance_add_fail">לא ניתן לאמת את המופע</string>
+    <string name="peertube_instance_add_https_only">יש תמיכה בכתובות HTTPS בלבד</string>
     <string name="peertube_instance_add_exists">המופע כבר קיים</string>
     <string name="local">מקומי</string>
     <string name="recently_added">נוספו לאחרונה</string>
@@ -545,4 +545,14 @@
     <string name="recovering">בשחזור</string>
     <string name="error_download_resource_gone">לא ניתן לשחזר את ההורדה הזאת</string>
     <string name="choose_instance_prompt">נא לבחור מופע</string>
+    <string name="enable_lock_screen_video_thumbnail_title">הפעלת תמונה מוקטנת של הסרטון במסך הנעילה</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">בעת השימוש בנגן הרקע תופיע תמונה מוקטנת של הסרטון על מסך הנעילה</string>
+    <string name="clear_download_history">מחיקת היסטוריית ההורדות</string>
+    <string name="delete_downloaded_files">למחוק את הקבצים שהורדתי</string>
+    <string name="deleted_downloads">נמחקו %1$s הורדות</string>
+    <string name="permission_display_over_apps">יש להעניק הרשאה להציג על גבי יישומונים אחרים</string>
+    <string name="app_language_title">שפת היישומון</string>
+    <string name="systems_language">בררת המחדל של המערכת</string>
+    <string name="subtitle_activity_recaptcha">יש ללחוץ על „סיום” לאחר הפתירה</string>
+    <string name="recaptcha_done_button">סיום</string>
 </resources>

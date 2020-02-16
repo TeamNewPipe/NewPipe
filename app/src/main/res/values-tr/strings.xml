@@ -5,7 +5,7 @@
     <string name="upload_date_text">Yayınlanma: %1$s</string>
     <string name="no_player_found">Akış oynatıcısı bulunamadı. VLC\'yi yüklemek ister misiniz\?</string>
     <string name="install">Yükle</string>
-    <string name="cancel">İptal et</string>
+    <string name="cancel">Vazgeç</string>
     <string name="open_in_browser">Tarayıcıda aç</string>
     <string name="share">Paylaş</string>
     <string name="download">İndir</string>
@@ -23,14 +23,14 @@
     <string name="download_path_audio_title">Ses indirme dizini</string>
     <string name="download_path_audio_summary">İndirilen ses dosyaları burada depolanır</string>
     <string name="download_path_audio_dialog_title">Ses dosyaları için indirme dizinini seçin</string>
-    <string name="autoplay_by_calling_app_title">Otomatik oynat</string>
-    <string name="autoplay_by_calling_app_summary">NewPipe başka bir uygulamadan çağrıldığında bir video oynatır</string>
-    <string name="default_resolution_title">Varsayılan çözünürlük</string>
+    <string name="autoplay_by_calling_app_title">Kendiliğinden oynat</string>
+    <string name="autoplay_by_calling_app_summary">NewPipe başka uygulamadan çağrıldığında video oynatır</string>
+    <string name="default_resolution_title">Öntanımlı çözünürlük</string>
     <string name="play_with_kodi_title">Kodi ile oynat</string>
     <string name="kore_not_found">Kore uygulaması bulunamadı. Yüklensin mi\?</string>
     <string name="show_play_with_kodi_title">\"Kodi ile oynat\" seçeneğini göster</string>
     <string name="show_play_with_kodi_summary">Kodi ortam merkezi üzerinden video oynatmak için bir seçenek göster</string>
-    <string name="default_audio_format_title">Varsayılan ses formatı</string>
+    <string name="default_audio_format_title">Öntanımlı ses biçimi</string>
     <string name="theme_title">Tema</string>
     <string name="dark_theme_title">Koyu</string>
     <string name="light_theme_title">Açık</string>
@@ -38,7 +38,7 @@
     <string name="next_video_title">Sonraki</string>
     <string name="show_next_and_similar_title">\'Sonraki\' ve \'Benzer\' videoları göster</string>
     <string name="url_not_supported_toast">Desteklenmeyen URL</string>
-    <string name="content_language_title">Varsayılan içerik dili</string>
+    <string name="content_language_title">Öntanımlı içerik dili</string>
     <string name="play_audio">Ses</string>
     <string name="settings_category_video_audio_title">Video ve ses</string>
     <string name="settings_category_appearance_title">Görünüm</string>
@@ -103,14 +103,14 @@
     <string name="msg_copied">Panoya kopyalandı</string>
     <string name="no_available_dir">Lütfen daha sonra ayarlardan uygun bir indirme dizini belirleyin</string>
     <string name="could_not_setup_download_menu">İndirme menüsü ayarlanamadı</string>
-    <string name="open_in_popup_mode">Açılır pencere modunda aç</string>
-    <string name="popup_mode_share_menu_title">NewPipe açılır pencere modu</string>
-    <string name="default_popup_resolution_title">Varsayılan açılır pencere çözünürlüğü</string>
+    <string name="open_in_popup_mode">Açılır pencere kipinde aç</string>
+    <string name="popup_mode_share_menu_title">NewPipe açılır pencere kipi</string>
+    <string name="default_popup_resolution_title">Öntanımlı açılır pencere çözünürlüğü</string>
     <string name="show_higher_resolutions_title">Yüksek çözünürlükleri göster</string>
-    <string name="show_higher_resolutions_summary">Sadece bazı cihazlar 2K/4K video oynatmayı desteklemektedir</string>
-    <string name="default_video_format_title">Varsayılan video formatı</string>
+    <string name="show_higher_resolutions_summary">Yalnızca bazı aygıtlar 2K/4K video oynatmayı desteklemektedir</string>
+    <string name="default_video_format_title">Öntanımlı video biçimi</string>
     <string name="black_theme_title">Siyah</string>
-    <string name="popup_playing_toast">Açılır pencere modunda oynatılıyor</string>
+    <string name="popup_playing_toast">Açılır pencere kipinde oynatılıyor</string>
     <string name="all">Tümü</string>
     <string name="channel">Kanal</string>
     <string name="yes">Evet</string>
@@ -122,10 +122,10 @@
     <string name="short_thousand">b</string>
     <string name="short_million">M</string>
     <string name="short_billion">B</string>
-    <string name="msg_popup_permission">Bu izin, açılır pencere modunda 
+    <string name="msg_popup_permission">Bu izin, açılır pencere kipinde
 \naçmak için gereklidir</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">reCAPTCHA formu</string>
+    <string name="recaptcha">reCAPTCHA</string>
+    <string name="title_activity_recaptcha">reCAPTCHA formu</string>
     <string name="recaptcha_request_toast">reCAPTCHA formu istendi</string>
     <string name="controls_background_title">Arka plan</string>
     <string name="controls_popup_title">Açılır pencere</string>
@@ -245,7 +245,7 @@
     <string name="give_back">Bağışta bulunun</string>
     <string name="website_title">Web sitesi</string>
     <string name="website_encouragement">Daha çok bilgi ve haber için NewPipe web sitesini ziyaret edin.</string>
-    <string name="default_content_country_title">Varsayılan içerik ülkesi</string>
+    <string name="default_content_country_title">Öntanımlı içerik ülkesi</string>
     <string name="service_title">Hizmet</string>
     <string name="toggle_orientation">Yönlendirmeyi Değiştir</string>
     <string name="switch_to_background">Arka Plana Geç</string>
@@ -340,7 +340,7 @@
 \n3. İndirme başlamalı (bu, dışa aktarma dosyasıdır)</string>
     <string name="import_soundcloud_instructions">URL\'yi veya ID\'nizi yazarak SoundCloud profilini içe aktarın: 
 \n 
-\n1. Web tarayıcısında \"masaüstü modu\" etkinleştirin (site, mobil aygıtlar için mevcut değildir) 
+\n1. Web tarayıcısında \"masaüstü kipi\" etkinleştirin (site, mobil aygıtlar için uygun değildir) 
 \n2. Şu adrese gidin: %1$s 
 \n3. Sorulduğunda giriş yapın 
 \n4. Yönlendirildiğiniz profil URL\'sini kopyalayın.</string>
@@ -360,8 +360,8 @@
     <string name="playback_pitch">Ses yüksekliği</string>
     <string name="unhook_checkbox">Bağlantısız (bozulmaya neden olabilir)</string>
     <string name="no_streams_available_download">İndirilebilecek akış yok</string>
-    <string name="preferred_open_action_settings_title">Tercih edilen \'aç\' eylemi</string>
-    <string name="preferred_open_action_settings_summary">İçerik açılırken varsayılan eylem — %s</string>
+    <string name="preferred_open_action_settings_title">Yeğlenen \'aç\' eylemi</string>
+    <string name="preferred_open_action_settings_summary">İçerik açılırken öntanımlı eylem — %s</string>
     <string name="caption_setting_title">Altyazılar</string>
     <string name="caption_setting_description">Oynatıcı altyazı metin ölçeğini ve arka plan biçimini değiştirin. Etkili olması için uygulamayı yeniden başlatma gerektirir.</string>
     <string name="toast_no_player">Bu dosyayı oynatmak için herhangi bir uygulama yüklü değil</string>
@@ -411,15 +411,15 @@
     <string name="app_update_notification_channel_description">Yeni NewPipe sürümü için bildirimler</string>
     <string name="download_to_sdcard_error_title">Harici depolama kullanılamıyor</string>
     <string name="download_to_sdcard_error_message">Harici SD karta indirmek mümkün değil. İndirme dizini konumu sıfırlansın mı\?</string>
-    <string name="saved_tabs_invalid_json">Varsayılan sekmeleri kullanarak, kaydedilen sekmeleri okurken hata</string>
-    <string name="restore_defaults">Varsayılanları geri yükle</string>
-    <string name="restore_defaults_confirmation">Varsayılanları geri yüklemek istiyor musunuz\?</string>
+    <string name="saved_tabs_invalid_json">Öntanımlı sekmeler kullanılıyor, kaydedilen sekmeler okunurken hata</string>
+    <string name="restore_defaults">Öntanımlıları geri yükle</string>
+    <string name="restore_defaults_confirmation">Öntanımlıları geri yüklemek istiyor musunuz\?</string>
     <string name="subscribers_count_not_available">Abone sayısı mevcut değil</string>
     <string name="main_page_content_summary">Ana sayfada hangi sekmeler gösterilir</string>
     <string name="selection">Seçim</string>
     <string name="updates_setting_title">Güncellemeler</string>
     <string name="updates_setting_description">Yeni bir sürüm mevcut olduğunda uygulama güncellemesi için bir bildirim göster</string>
-    <string name="list_view_mode">Liste görünümü modu</string>
+    <string name="list_view_mode">Liste görünümü kipi</string>
     <string name="list">Liste</string>
     <string name="grid">Izgara</string>
     <string name="auto">Otomatik</string>
@@ -430,7 +430,7 @@
     <string name="paused">durduruldu</string>
     <string name="queued">sırada</string>
     <string name="post_processing">son işlemler uygulanıyor</string>
-    <string name="enqueue">Kuyruk</string>
+    <string name="enqueue">Sıra</string>
     <string name="permission_denied">İşlem sistem tarafından reddedildi</string>
     <string name="download_failed">İndirme başarısız</string>
     <string name="download_finished">İndirme bitti</string>
@@ -454,7 +454,7 @@
     <string name="clear_finished_download">Tamamlanan indirmeleri temizle</string>
     <string name="stop">Durdur</string>
     <string name="max_retry_msg">Azami deneme sayısı</string>
-    <string name="max_retry_desc">İndirmeyi iptal etmeden önce maksimum deneme sayısı</string>
+    <string name="max_retry_desc">İndirmeyi iptal etmeden önce azami deneme sayısı</string>
     <string name="pause_downloads_on_mobile">Kotalı bağlantılarda durdur</string>
     <string name="pause_downloads_on_mobile_desc">Bazı indirmelerin bekletilememesine rağmen mobil veriye geçerken kullanışlıdır</string>
     <string name="events">Olaylar</string>
@@ -484,28 +484,28 @@
     <string name="error_insufficient_storage">Aygıt üzerinde yer yok</string>
     <string name="error_progress_lost">İlerleme kaybedildi, çünkü dosya silinmiş</string>
     <string name="error_timeout">Bağlantı zaman aşımı</string>
-    <string name="confirm_prompt">Emin misiniz\?</string>
+    <string name="confirm_prompt">İndirme geçmişinizi temizlemek veya indirilen tüm dosyaları silmek istiyor musunuz\?</string>
     <string name="enable_queue_limit">İndirme kuyruğunu sınırla</string>
     <string name="enable_queue_limit_desc">Aynı anda yalnızca bir indirme yürütülecek</string>
     <string name="start_downloads">İndirmeleri başlat</string>
     <string name="pause_downloads">İndirmeleri duraklat</string>
     <string name="downloads_storage_ask_title">Nereye indirileceğini sor</string>
-    <string name="downloads_storage_ask_summary">Her indirme için nereye kaydedileceği sorulacak</string>
+    <string name="downloads_storage_ask_summary">Her indirmede nereye kaydedileceği sorulacak</string>
     <string name="downloads_storage_ask_summary_kitkat">Her indirme için nereye kaydedileceği sorulacak. 
-\nEğer bir harici SD karta indirmek istiyorsanız DEÇ\'i seçin</string>
+\nEğer harici SD karta indirmek istiyorsanız DEÇ\'i seçin</string>
     <string name="downloads_storage_use_saf_title">DEÇ\'i kullan</string>
     <string name="downloads_storage_use_saf_summary">Depolama Erişimi Çerçevesi harici SD karta indirmelere izin verir. 
-\nNot: Bazı cihazlar uyumlu değildir</string>
+\nNot: Bazı aygıtlar uyumlu değildir</string>
     <string name="clear_playback_states_title">Oynatım konumlarını sil</string>
     <string name="clear_playback_states_summary">Tüm oynatım konumlarını siler</string>
     <string name="delete_playback_states_alert">Tüm oynatım konumları silinsin mi\?</string>
     <string name="download_choose_new_path">Etkili olması için indirme dizinlerini değiştirin</string>
     <string name="drawer_header_description">Hizmeti değiştir, şu anda seçili olan:</string>
     <plurals name="videos">
-        <item quantity="one">Videolar</item>
-        <item quantity="other">Videolar</item>
+        <item quantity="one">%s video</item>
+        <item quantity="other">%s video</item>
     </plurals>
-    <string name="default_kiosk_page_summary">Varsayılan Kiosk</string>
+    <string name="default_kiosk_page_summary">Öntanımlı Kiosk</string>
     <string name="no_one_watching">Kimse izlemiyor</string>
     <plurals name="watching">
         <item quantity="one">%s izliyor</item>
@@ -519,12 +519,12 @@
     <string name="localization_changes_requires_app_restart">Uygulama yeniden başlatıldıktan sonra dil değişecektir.</string>
     <string name="seek_duration_title">Hızlı ileri/geri sarma süresi</string>
     <string name="peertube_instance_url_title">PeerTube örnekleri</string>
-    <string name="peertube_instance_url_summary">Favori peertube örneklerinizi ayarlayın</string>
-    <string name="peertube_instance_url_help">https://joinpeertube.org/instances#instances-list adresinde size en uygun örnekleri bulun</string>
+    <string name="peertube_instance_url_summary">Favori PeerTube örneklerinizi seçin</string>
+    <string name="peertube_instance_url_help">%s adresinde size en uygun örnekleri bulun</string>
     <string name="peertube_instance_add_title">Örnek ekle</string>
     <string name="peertube_instance_add_help">Örnek URL\'sini girin</string>
     <string name="peertube_instance_add_fail">Örnek doğrulanamadı</string>
-    <string name="peertube_instance_add_https_only">Yalnızca https URL\'leri desteklenmektedir</string>
+    <string name="peertube_instance_add_https_only">Yalnızca HTTPS URL\'leri desteklenmektedir</string>
     <string name="peertube_instance_add_exists">Örnek zaten var</string>
     <string name="local">Yerel</string>
     <string name="recently_added">Son eklenen</string>
@@ -532,5 +532,15 @@
     <string name="playlist_no_uploader">Otomatik oluşturulan (yükleyen bulunamadı)</string>
     <string name="recovering">kurtarılıyor</string>
     <string name="error_download_resource_gone">Bu indirme kurtarılamıyor</string>
-    <string name="choose_instance_prompt">Bir örnek seçin</string>
+    <string name="choose_instance_prompt">Oluşum seçin</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Kilit ekranı video küçük resmini etkinleştir</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Arka plan oynatıcıyı kullanırken kilit ekranında bir video küçük resmi görüntülenecektir</string>
+    <string name="clear_download_history">İndirme geçmişini temizle</string>
+    <string name="delete_downloaded_files">İndirilen dosyaları sil</string>
+    <string name="deleted_downloads">%1$s indirme silindi</string>
+    <string name="permission_display_over_apps">Diğer uygulamaların üzerinde görüntüleme izni ver</string>
+    <string name="app_language_title">Uygulama dili</string>
+    <string name="systems_language">Sistem öntanımlısı</string>
+    <string name="subtitle_activity_recaptcha">Çözüldüğünde \"Bitti\" butonuna basın</string>
+    <string name="recaptcha_done_button">Bitti</string>
 </resources>

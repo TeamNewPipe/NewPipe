@@ -106,8 +106,8 @@
     <string name="open_in_popup_mode">Deschide in modul popup</string>
     <string name="msg_popup_permission">Aceasta permisiune este necesara
 pentru a deschide în mod pop-up</string>
-    <string name="reCaptchaActivity">ReCAPTCHA</string>
-    <string name="reCaptcha_title">Provocare reCAPTCHA</string>
+    <string name="recaptcha">ReCAPTCHA</string>
+    <string name="title_activity_recaptcha">Provocare reCAPTCHA</string>
     <string name="recaptcha_request_toast">reCAPTCHA nouă cerută</string>
     <string name="popup_mode_share_menu_title">NewPipe mod pop-up</string>
     <string name="default_popup_resolution_title">"Rezoluție pop-up inițială "</string>

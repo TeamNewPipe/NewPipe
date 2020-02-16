@@ -14,9 +14,9 @@
     <string name="share_dialog_title">Megosztás ezzel</string>
     <string name="choose_browser">Válasszon böngészőt</string>
     <string name="screen_rotation">forgatás</string>
-    <string name="download_path_title">Videófájlok letöltési helye</string>
-    <string name="download_path_summary">Útvonal a letöltött videók tárolásához</string>
-    <string name="download_path_dialog_title">Adja meg a videófájlok letöltési helyét</string>
+    <string name="download_path_title">Videók letöltési helye</string>
+    <string name="download_path_summary">Ide kerülnek a letöltött videók</string>
+    <string name="download_path_dialog_title">Válassza ki a videófájlok letöltési helyét</string>
     <string name="default_resolution_title">Alapértelmezett felbontás</string>
     <string name="play_with_kodi_title">Lejátszás Kodi-val</string>
     <string name="kore_not_found">A Kore alkalmazás nem található. Telepíted a Kore lejátszót?</string>
@@ -29,7 +29,7 @@
     <string name="url_not_supported_toast">Nem támogatott webcím</string>
     <string name="use_external_video_player_title">Külső videólejátszó használata</string>
     <string name="use_external_audio_player_title">Külső hanglejátszó használata</string>
-    <string name="download_path_audio_dialog_title">Add meg a hangfájlok letöltési helyét</string>
+    <string name="download_path_audio_dialog_title">Válaszd ki a hangfájlok letöltési helyét</string>
     <string name="use_tor_title">Tor használata</string>
     <string name="use_tor_summary">(Kísérleti) Adatforgalom Tor-on keresztüli kényszerítése a biztonság fokozása érdekében (a videó stream-elés még nem támogatott).</string>
     <string name="play_btn_text">Lejátszás</string>
@@ -44,7 +44,7 @@
     <string name="light_theme_title">Világos</string>
     <string name="theme_title">Téma</string>
     <string name="download_path_audio_title">Hangfájlok letöltési helye</string>
-    <string name="download_path_audio_summary">Letöltött hangfájlok itt találhatók</string>
+    <string name="download_path_audio_summary">A letöltött hangfájlok itt találhatóak</string>
     <string name="detail_likes_img_view_description">Tetszik</string>
     <string name="detail_dislikes_img_view_description">Nem tetszik</string>
     <string name="list_thumbnail_view_description">Előnézeti kép</string>
@@ -123,8 +123,7 @@
     <string name="show_higher_resolutions_title">Mutassa a magasabb felbontásokat</string>
     <string name="show_higher_resolutions_summary">Csak néhány eszköz támogatja a 2K/4K videók lejátszását</string>
     <string name="default_video_format_title">Alapértelmezett videó formátum</string>
-    <string name="black_theme_title">Fekete
-\n</string>
+    <string name="black_theme_title">Fekete</string>
     <string name="popup_remember_size_pos_title">Jegyezze meg a felugró ablak helyét és méretét</string>
     <string name="popup_remember_size_pos_summary">Jegyezze meg a felugró ablak előző helyét és méretét</string>
     <string name="show_search_suggestions_title">Keresési javaslatok</string>
@@ -233,8 +232,8 @@
     <string name="rename">Átnevezés</string>
     <string name="msg_popup_permission">Ez az engedély szükséges a felugró ablakban történő megnyitáshoz</string>
     <string name="one_item_deleted">1 elem törölve.</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">reCAPTCHA rejtvény</string>
+    <string name="recaptcha">reCAPTCHA</string>
+    <string name="title_activity_recaptcha">reCAPTCHA rejtvény</string>
     <string name="recaptcha_request_toast">reCAPTCHA rejtvény igényelve</string>
     <string name="settings_category_downloads_title">Letöltés</string>
     <string name="settings_file_charset_title">Fájlnevekben engedélyezett karakterek</string>
@@ -382,4 +381,8 @@
     <string name="dismiss">Figyelmen kívül hagy</string>
     <string name="bookmark_playlist">Lejátszási lista könyvjelzők közé</string>
     <string name="auto_queue_summary">Hasonló videó beadása az utolsó videó után egy nem ismétlődő sorban</string>
+    <string name="enqueue">Sor</string>
+    <string name="overwrite_failed">a fájl nem írható felül</string>
+    <string name="seek_duration_title">Az előre- és visszatekerés időtartama</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Videó előnézet megjelenítése a lezárási képernyőn</string>
 </resources>

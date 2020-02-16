@@ -106,8 +106,8 @@
     <string name="app_ui_crash">Awaria aplikacji/interfejsu</string>
     <string name="use_tor_summary">(Eksperymentalne) Wymuś pobieranie przez Tora w celu zwiększenia prywatności (strumieniowe wideo nie jest jeszcze obsługiwane).</string>
     <string name="start">Start</string>
-    <string name="reCaptchaActivity">CAPTCHA</string>
-    <string name="reCaptcha_title">Wyzwanie reCAPTCHA</string>
+    <string name="recaptcha">CAPTCHA</string>
+    <string name="title_activity_recaptcha">Wyzwanie reCAPTCHA</string>
     <string name="recaptcha_request_toast">Wymagane wyzwanie dotyczące reCAPTCHA</string>
     <string name="use_external_video_player_summary">Usuwa dźwięk w niektórych rozdzielczościach</string>
     <string name="controls_background_title">Tło</string>
@@ -491,7 +491,7 @@
     <string name="error_postprocessing_stopped">NewPipe został zamknięty podczas pracy nad plikiem</string>
     <string name="error_insufficient_storage">Brak miejsca na urządzeniu</string>
     <string name="error_progress_lost">Postęp został utracony ze wzgledu na usunięcie pliku</string>
-    <string name="confirm_prompt">Czy jesteś pewien\?</string>
+    <string name="confirm_prompt">Czy chcesz wyczyścić historię pobierania lub usunąć wszystkie pobrane pliki\?</string>
     <string name="enable_queue_limit">Ogranicz kolejkę pobierania</string>
     <string name="enable_queue_limit_desc">Tylko jedno pobieranie będzie realizowane jednocześnie</string>
     <string name="start_downloads">Rozpocznij pobieranie</string>
@@ -525,12 +525,12 @@
     <string name="localization_changes_requires_app_restart">Język zmieni się po ponownym uruchomieniu aplikacji.</string>
     <string name="seek_duration_title">Krok czasu przewijania</string>
     <string name="peertube_instance_url_title">Wystąpienia PeerTube</string>
-    <string name="peertube_instance_url_summary">Ustaw swoje ulubione instancje peertube</string>
-    <string name="peertube_instance_url_help">Znajdź instancje, które najbardziej Ci odpowiadają, na https://joinpeertube.org/instances#instances-list</string>
+    <string name="peertube_instance_url_summary">Wybierz swoje ulubione instancje PeerTube</string>
+    <string name="peertube_instance_url_help">Znajdź wystąpienia, które najbardziej Ci odpowiadają na %s</string>
     <string name="peertube_instance_add_title">Dodaj instancję</string>
     <string name="peertube_instance_add_help">Wprowadź adres URL instancji</string>
-    <string name="peertube_instance_add_fail">Nie udało się sprawdzić poprawności instancji</string>
-    <string name="peertube_instance_add_https_only">Obsługiwane są tylko adresy URL https</string>
+    <string name="peertube_instance_add_fail">Nie można sprawdzić poprawności instancji</string>
+    <string name="peertube_instance_add_https_only">Obsługiwane są tylko adresy URL HTTPS</string>
     <string name="peertube_instance_add_exists">Instancja już istnieje</string>
     <string name="local">Lokalny</string>
     <string name="recently_added">Ostatnio dodane</string>
@@ -539,4 +539,14 @@
     <string name="recovering">odzyskiwanie</string>
     <string name="error_download_resource_gone">Nie można odzyskać tego pobrania</string>
     <string name="choose_instance_prompt">Wybierz instancję</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Włącz miniaturę wideo na ekranie blokady</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Podczas korzystania z odtwarzacza w tle na ekranie blokady zostanie wyświetlona miniatura filmu</string>
+    <string name="clear_download_history">Wyczyść historię pobierania</string>
+    <string name="delete_downloaded_files">Usuń pobrane pliki</string>
+    <string name="deleted_downloads">Usunięte %1$s pobrania</string>
+    <string name="permission_display_over_apps">Zezwól na wyświetlanie w innych aplikacjach</string>
+    <string name="app_language_title">Język aplikacji</string>
+    <string name="systems_language">Domyślny systemu</string>
+    <string name="subtitle_activity_recaptcha">Po rozwiązaniu naciśnij „Gotowe”</string>
+    <string name="recaptcha_done_button">Gotowe</string>
 </resources>

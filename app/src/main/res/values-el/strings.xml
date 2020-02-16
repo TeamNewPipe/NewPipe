@@ -251,8 +251,8 @@
     <string name="msg_popup_permission">Αυτή η άδεια είναι απαραίτητη για
 \nτο άνοιγμα αναδυόμενων παραθύρων</string>
     <string name="one_item_deleted">1 αντικείμενο διαγράφηκε.</string>
-    <string name="reCaptchaActivity">Αυτόματο τεστ</string>
-    <string name="reCaptcha_title">Πρόκληση reCAPTCHA</string>
+    <string name="recaptcha">Αυτόματο τεστ</string>
+    <string name="title_activity_recaptcha">Πρόκληση reCAPTCHA</string>
     <string name="recaptcha_request_toast">Ζητήθηκε πρόκληση reCAPTCHA</string>
     <string name="settings_file_charset_title">Επιτρεπόμενοι χαρακτήρες σε ονόματα αρχείων</string>
     <string name="settings_file_replacement_character_summary">Οι μη έγκυροι χαρακτήρες αντικαθίστανται με αυτήν την τιμή</string>
@@ -522,4 +522,6 @@
     <string name="playlist_no_uploader">Δημιουργήθηκε αυτόματα (δεν βρέθηκε χρήστης μεταφόρτωσης)</string>
     <string name="recovering">Ανάκτηση</string>
     <string name="error_download_resource_gone">Δεν είναι δυνατή η ανάκτηση αυτής της λήψης</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Ενεργοποίηση μικρογραφίας βίντεο στην οθόνη κλειδώματος</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Όταν χρησιμοποιείται αναπαραγωγή παρασκηνίου μια μικρογραφία βίντεο θα εμφανίζεται στην οθόνη κλειδώματος</string>
 </resources>

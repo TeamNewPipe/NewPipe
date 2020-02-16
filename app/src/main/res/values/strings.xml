@@ -227,6 +227,7 @@
     <string name="saved_tabs_invalid_json">Could not read saved tabs, so using default ones</string>
     <string name="restore_defaults">Restore defaults</string>
     <string name="restore_defaults_confirmation">Do you want to restore defaults?</string>
+    <string name="permission_display_over_apps">Give permission to display over other apps</string>
     <!-- error activity -->
     <string name="sorry_string">Sorry, that should not have happened.</string>
     <string name="guru_meditation" translatable="false">Guru Meditation.</string>
@@ -326,10 +327,12 @@
     <!-- Checksum types -->
     <string name="md5" translatable="false">MD5</string>
     <string name="sha1" translatable="false">SHA-1</string>
-    <string name="reCaptchaActivity" translatable="false">reCAPTCHA</string>
-    <string name="reCaptcha_title">reCAPTCHA challenge</string>
+    <!-- reCAPTCHA -->
+    <string name="recaptcha" translatable="false">reCAPTCHA</string>
+    <string name="title_activity_recaptcha">reCAPTCHA challenge</string>
+    <string name="subtitle_activity_recaptcha">Press \"Done\" when solved</string>
     <string name="recaptcha_request_toast">reCAPTCHA challenge requested</string>
-    <!-- End of GigaGet's Strings -->
+    <string name="recaptcha_done_button">Done</string>
     <!-- Downloads -->
     <string name="settings_category_downloads_title">Download</string>
     <string name="settings_file_charset_title">Allowed characters in filenames</string>
@@ -569,8 +572,10 @@
     <string name="error_progress_lost">Progress lost, because the file was deleted</string>
     <string name="error_timeout">Connection timeout</string>
     <string name="error_download_resource_gone">Cannot recover this download</string>
-    <string name="clear_finished_download">Clear finished downloads</string>
-    <string name="confirm_prompt">Are you sure?</string>
+    <string name="clear_download_history">Clear download history</string>
+    <string name="confirm_prompt">Do you want to clear your download history or delete all downloaded files?</string>
+    <string name="delete_downloaded_files">Delete downloaded files</string>
+    <string name="deleted_downloads">Deleted %1$s downloads</string>
     <string name="stop">Stop</string>
     <string name="max_retry_msg">Maximum retries</string>
     <string name="max_retry_desc">Maximum number of attempts before canceling the download</string>
@@ -587,5 +592,6 @@
     <string name="downloads_storage_use_saf_title">Use SAF</string>
     <string name="downloads_storage_use_saf_summary">The \'Storage Access Framework\' allows downloads to an external SD card.\nNote: Some devices are incompatible</string>
     <string name="choose_instance_prompt">Choose an instance</string>
-
+    <string name="app_language_title">App language</string>
+    <string name="systems_language">System default</string>
 </resources>

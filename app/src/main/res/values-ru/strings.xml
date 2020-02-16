@@ -124,7 +124,7 @@
     <string name="info_labels">Что:\\nЗапрос:\\nЯзык контента:\\nСервис:\\nВремя по Гринвичу:\\nПакет:\\nВерсия:\\nВерсия ОС:</string>
     <string name="msg_popup_permission">Это разрешение нужно для
 \nвоспроизведения в окне</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="recaptcha">reCAPTCHA</string>
     <string name="open_in_popup_mode">Открыть во всплывающем окне</string>
     <string name="show_search_suggestions_summary">Предлагать варианты при поиске</string>
     <string name="later">Позже</string>
@@ -138,7 +138,7 @@
     <string name="popup_remember_size_pos_summary">Помнить последние размер и позицию всплывающего окна</string>
     <string name="show_search_suggestions_title">Поисковые предложения</string>
     <string name="best_resolution">Лучшее разрешение</string>
-    <string name="reCaptcha_title">Запрос reCAPTCHA</string>
+    <string name="title_activity_recaptcha">Запрос reCAPTCHA</string>
     <string name="recaptcha_request_toast">Запрошен ввод reCAPTCHA</string>
     <string name="show_higher_resolutions_title">Высокие разрешения</string>
     <string name="popup_mode_share_menu_title">NewPipe во всплывающем окне</string>
@@ -313,7 +313,7 @@
     <string name="override_current_data">Текущие данные будут заменены</string>
     <string name="drawer_header_action_paceholder_text">Скоро здесь кое-что появится ;D</string>
     <string name="always_ask_open_action">Всегда спрашивать</string>
-    <string name="create_playlist">Создать плейлист</string>
+    <string name="create_playlist">Новый плейлист</string>
     <string name="delete_playlist">Удалить</string>
     <string name="rename_playlist">Переименовать</string>
     <string name="playlist_name_input">Имя</string>
@@ -330,7 +330,7 @@
     <string name="resize_fit">Подогнать</string>
     <string name="resize_fill">Заполнить</string>
     <string name="resize_zoom">Приблизить</string>
-    <string name="caption_auto_generated">Созданы автоматически</string>
+    <string name="caption_auto_generated">Создано автоматически</string>
     <string name="enable_leak_canary_title">Включить LeakCanary</string>
     <string name="enable_leak_canary_summary">Мониторинг утечки памяти может привести к зависанию приложения</string>
     <string name="enable_disposed_exceptions_title">Сообщать об ошибках жизненного цикла</string>
@@ -492,7 +492,7 @@
     <string name="error_postprocessing_stopped">NewPipe была закрыта во время работы над файлом</string>
     <string name="error_insufficient_storage">Закончилось свободное место на устройстве</string>
     <string name="error_progress_lost">Прогресс потерян, так как файл был удалён</string>
-    <string name="confirm_prompt">Вы уверены\?</string>
+    <string name="confirm_prompt">Действительно удалить историю загрузок и загруженные файлы\?</string>
     <string name="enable_queue_limit">Ограничить очередь загрузки</string>
     <string name="enable_queue_limit_desc">Только одна одновременная загрузка</string>
     <string name="start_downloads">Начать загрузку</string>
@@ -522,20 +522,30 @@
         <item quantity="many">%s слушателей</item>
     </plurals>
     <string name="localization_changes_requires_app_restart">Язык будет изменён после перезапуска</string>
-    <string name="seek_duration_title">Перемотка двойным нажатием</string>
+    <string name="seek_duration_title">Шаг перемотки</string>
     <string name="peertube_instance_url_title">Серверы PeerTube</string>
-    <string name="peertube_instance_url_summary">Настройте предпочтительные серверы PeerTube</string>
-    <string name="peertube_instance_url_help">Выберите подходящие серверы на https://joinpeertube.org/instances#instances-list</string>
+    <string name="peertube_instance_url_summary">Выберите предпочтительные серверы</string>
+    <string name="peertube_instance_url_help">Каталог серверов: %s</string>
     <string name="peertube_instance_add_title">Новый сервер</string>
     <string name="peertube_instance_add_help">URL сервера</string>
     <string name="peertube_instance_add_fail">Не удалось проверить сервер</string>
-    <string name="peertube_instance_add_https_only">Поддерживается только https</string>
+    <string name="peertube_instance_add_https_only">Поддерживается только HTTPS</string>
     <string name="peertube_instance_add_exists">Сервер уже существует</string>
     <string name="local">Локальное</string>
     <string name="recently_added">Новое</string>
     <string name="most_liked">Популярное</string>
-    <string name="playlist_no_uploader">Создан автоматически (автор не найден)</string>
+    <string name="playlist_no_uploader">Создано автоматически (автор не найден)</string>
     <string name="recovering">восстановление</string>
     <string name="error_download_resource_gone">Не удалось восстановить загрузку</string>
     <string name="choose_instance_prompt">Выберите сервер</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Миниатюра на экране блокировки</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Показать миниатюру видео на экране блокировки при воспроизведении в фоне</string>
+    <string name="clear_download_history">Очистить историю загрузок</string>
+    <string name="delete_downloaded_files">Удаление загруженных файлов</string>
+    <string name="deleted_downloads">Удалено загрузок: %1$s</string>
+    <string name="permission_display_over_apps">Разрешите отображение поверх приложений</string>
+    <string name="app_language_title">Язык интерфейса</string>
+    <string name="systems_language">Как в системе</string>
+    <string name="subtitle_activity_recaptcha">По завершении нажмите Готово</string>
+    <string name="recaptcha_done_button">Готово</string>
 </resources>

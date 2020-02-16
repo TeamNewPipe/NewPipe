@@ -14,7 +14,7 @@
     <string name="did_you_mean">Meintest du: %1$s\?</string>
     <string name="share_dialog_title">Teilen mit</string>
     <string name="choose_browser">Browser auswählen</string>
-    <string name="screen_rotation">Drehen des Geräts</string>
+    <string name="screen_rotation">Bildschirm drehen</string>
     <string name="download_path_title">Downloadordner für Videos</string>
     <string name="download_path_summary">Heruntergeladene Videodateien werden hier gespeichert</string>
     <string name="download_path_dialog_title">Wähle den Downloadordner für Videodateien aus</string>
@@ -79,7 +79,7 @@
     <string name="your_comment">Dein Kommentar (auf englisch):</string>
     <string name="could_not_get_stream">Konnte keinen Stream abrufen</string>
     <string name="autoplay_by_calling_app_title">Automatische Wiedergabe</string>
-    <string name="autoplay_by_calling_app_summary">Wiedergabe eines Videos, wenn NewPipe von einer anderen App aufgerufen wurde</string>
+    <string name="autoplay_by_calling_app_summary">Video abspielen, wenn NewPipe von einer anderen App aufgerufen wird</string>
     <string name="report_error">Einen Fehler melden</string>
     <string name="user_report">Anwenderbericht</string>
     <string name="duration_live">LIVE</string>
@@ -110,9 +110,9 @@
     <string name="msg_running">NewPipe lädt herunter</string>
     <string name="msg_running_detail">Für Details antippen</string>
     <string name="msg_url_malform">Ungültige URL oder Internet nicht verfügbar</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
+    <string name="recaptcha">reCAPTCHA</string>
     <string name="black_theme_title">Schwarz</string>
-    <string name="reCaptcha_title">reCAPTCHA-Aufgabe</string>
+    <string name="title_activity_recaptcha">reCAPTCHA-Aufgabe</string>
     <string name="recaptcha_request_toast">reCAPTCHA-Aufgabe angefordert</string>
     <string name="later">Später</string>
     <string name="yes">Ja</string>
@@ -123,7 +123,8 @@
     <string name="default_video_format_title">Bevorzugtes Videoformat</string>
     <string name="popup_playing_toast">Im Pop-up Modus abspielen</string>
     <string name="popup_mode_share_menu_title">NewPipe-Pop-up-Modus</string>
-    <string name="msg_popup_permission">Diese Berechtigung ist für das Öffnen im Pop-up-Modus erforderlich</string>
+    <string name="msg_popup_permission">Diese Berechtigung ist für das
+\nÖffnen im Pop-up-Modus erforderlich</string>
     <string name="default_popup_resolution_title">Standardauflösung des Pop-ups</string>
     <string name="show_higher_resolutions_title">Höhere Auflösungen anzeigen</string>
     <string name="show_higher_resolutions_summary">Nur manche Geräte unterstützen das Abspielen von 2K-/4K-Videos</string>
@@ -154,7 +155,7 @@
     <string name="tab_about">Über</string>
     <string name="app_description">Freies und schlankes Streaming für Android.</string>
     <string name="app_license_title">NewPipes Lizenz</string>
-    <string name="contribution_encouragement">Ob Ideen, Übersetzungen, Design-Änderungen, Code-Aufräumung oder richtig große Code-Änderungen – Hilfe ist immer willkommen. Je mehr geholfen wird, desto besser wird NewPipe!</string>
+    <string name="contribution_encouragement">Ob Ideen, Übersetzungen, Design-Änderungen, Code-Aufräumung oder richtig große Code-Änderungen — Hilfe ist immer willkommen. Je mehr geholfen wird, desto besser wird NewPipe!</string>
     <string name="title_licenses">Drittanbieter-Lizenzen</string>
     <string name="view_on_github">Auf GitHub ansehen</string>
     <string name="contribution_title">Beitragen</string>
@@ -202,8 +203,8 @@
     </plurals>
     <string name="no_videos">Keine Videos</string>
     <plurals name="videos">
-        <item quantity="one">Video</item>
-        <item quantity="other">Videos</item>
+        <item quantity="one">%s Video</item>
+        <item quantity="other">%s Videos</item>
     </plurals>
     <string name="charset_most_special_characters">Die meisten Sonderzeichen</string>
     <string name="item_deleted">Element gelöscht</string>
@@ -278,7 +279,7 @@
     <string name="override_current_data">Dies wird deine aktuellen Einstellungen überschreiben.</string>
     <string name="show_info">Infos anzeigen</string>
     <string name="tab_bookmarks">Lesezeichen für Wiedergabelisten</string>
-    <string name="controls_add_to_playlist_title">Hinzufügen zu</string>
+    <string name="controls_add_to_playlist_title">Hinzufügen</string>
     <string name="detail_drag_description">Zum Neuordnen ziehen</string>
     <string name="create">Erstellen</string>
     <string name="delete_one">Einen löschen</string>
@@ -365,7 +366,7 @@
     <string name="import_soundcloud_instructions_hint">yourID, soundcloud.com/yourid</string>
     <string name="no_streams_available_download">Keine Streams zum Download verfügbar</string>
     <string name="preferred_open_action_settings_title">Bevorzugte \"Öffnen\" Aktion</string>
-    <string name="preferred_open_action_settings_summary">Standardaktion beim Öffnen von Inhalten - %s</string>
+    <string name="preferred_open_action_settings_summary">Standardaktion beim Öffnen von Inhalten — %s</string>
     <string name="caption_setting_title">Untertitel</string>
     <string name="caption_setting_description">Textgröße und Hintergrund der Untertitel im Player anpassen. Wird erst nach Neustart der App wirksam.</string>
     <string name="toast_no_player">Keine App zum Abspielen dieser Datei installiert</string>
@@ -391,11 +392,11 @@
     <string name="limit_data_usage_none_description">Unbegrenzt</string>
     <string name="limit_mobile_data_usage_title">Auflösung bei Verwendung mobiler Daten begrenzen</string>
     <string name="minimize_on_exit_title">Minimieren beim Appwechsel</string>
-    <string name="minimize_on_exit_summary">Aktion beim Umschalten auf eine andere App vom Haupt-Videoplayer - %s</string>
+    <string name="minimize_on_exit_summary">Aktion beim Umschalten auf eine andere App vom Haupt-Videoplayer — %s</string>
     <string name="minimize_on_exit_none_description">Keine</string>
     <string name="minimize_on_exit_background_description">Zum Hintergrund-Player minimieren</string>
     <string name="minimize_on_exit_popup_description">Zum Popup-Player minimieren</string>
-    <string name="skip_silence_checkbox">Vorspulen während der Stille</string>
+    <string name="skip_silence_checkbox">Vorspulen bei Stille</string>
     <string name="playback_step">Schritt</string>
     <string name="playback_reset">Zurücksetzen</string>
     <string name="channels">Kanäle</string>
@@ -483,20 +484,20 @@
     <string name="watch_history_states_deleted">Wiedergabeposition gelöscht.</string>
     <string name="missing_file">Datei verschoben oder gelöscht</string>
     <string name="overwrite_finished_warning">Eine heruntergeladene Datei mit diesem Namen existiert bereits</string>
-    <string name="overwrite_failed">kann die Datei nicht überschreiben</string>
+    <string name="overwrite_failed">Datei kann nicht überschrieben werden</string>
     <string name="download_already_pending">Es gibt einen ausstehenden Download mit diesem Namen</string>
     <string name="error_postprocessing_stopped">NewPipe wurde während der Verarbeitung der Datei geschlossen</string>
     <string name="error_insufficient_storage">Kein Speicherplatz mehr auf dem Gerät</string>
     <string name="error_progress_lost">Vorgang abgebrochen, da die Datei gelöscht wurde</string>
-    <string name="confirm_prompt">Bist Du sicher\?</string>
+    <string name="confirm_prompt">Möchtest du deinen Downloadverlauf oder alle heruntergeladenen Dateien löschen\?</string>
     <string name="enable_queue_limit">Downloadwarteschlange begrenzen</string>
     <string name="enable_queue_limit_desc">Ein Download wird zur gleichen Zeit ausgeführt</string>
     <string name="start_downloads">Downloads starten</string>
     <string name="pause_downloads">Downloads anhalten</string>
     <string name="downloads_storage_ask_title">Frage, wohin heruntergeladen werden soll</string>
-    <string name="downloads_storage_ask_summary">Du wirst gefragt, wohin Du jeden Download speichern willst</string>
-    <string name="downloads_storage_ask_summary_kitkat">Du wirst gefragt, wohin Du jeden Download speichern willst. 
-\nAktiviere diese Option, wenn Du auf die externe SD-Karte herunterladen möchtest</string>
+    <string name="downloads_storage_ask_summary">Du wirst gefragt, wohin du jeden Download speichern willst</string>
+    <string name="downloads_storage_ask_summary_kitkat">Du wirst gefragt, wohin du jeden Download speichern willst.
+\nAktiviere diese Option, wenn du auf die externe SD-Karte herunterladen möchtest</string>
     <string name="downloads_storage_use_saf_title">SAF verwenden</string>
     <string name="downloads_storage_use_saf_summary">Das Storage Access Framework erlaubt Downloads auf eine externe SD-Karte.
 \nHinweis: Manche Geräte sind nicht kompatibel</string>
@@ -505,7 +506,7 @@
     <string name="delete_playback_states_alert">Alle Wiedergabepositionen löschen\?</string>
     <string name="download_choose_new_path">Ändere die Downloadordner, damit sie wirksam werden</string>
     <string name="drawer_header_description">Dienst umschalten, aktuell ausgewählt:</string>
-    <string name="default_kiosk_page_summary">Quiosque Predefinido</string>
+    <string name="default_kiosk_page_summary">Standard-Kiosk</string>
     <string name="no_one_watching">Niemand schaut zu</string>
     <plurals name="watching">
         <item quantity="one">%s Zuschauer</item>
@@ -518,19 +519,29 @@
     </plurals>
     <string name="localization_changes_requires_app_restart">Die Sprache ändert sich, sobald die App neu gestartet wird.</string>
     <string name="peertube_instance_url_title">PeerTube-Instanzen</string>
-    <string name="peertube_instance_url_help">Finde auf https://joinpeertube.org/instances#instances-list die Instanzen, die am besten zu dir passen</string>
+    <string name="peertube_instance_url_help">Finde auf %s die Instanzen, die am besten zu dir passen</string>
     <string name="peertube_instance_add_title">Instanz hinzufügen</string>
-    <string name="peertube_instance_add_help">Gib die URL der Instanz ein</string>
-    <string name="peertube_instance_add_fail">Validieren der Instanz fehlgeschlagen</string>
-    <string name="peertube_instance_add_exists">Diese Instanz existiert bereits</string>
+    <string name="peertube_instance_add_help">URL der Instanz eingeben</string>
+    <string name="peertube_instance_add_fail">Validierung der Instanz fehlgeschlagen</string>
+    <string name="peertube_instance_add_exists">Instanz existiert bereits</string>
     <string name="local">Lokal</string>
     <string name="recently_added">Kürzlich hinzugefügt</string>
     <string name="playlist_no_uploader">Auto-generiert (kein Uploader gefunden)</string>
     <string name="choose_instance_prompt">Wähle eine Instanz</string>
-    <string name="peertube_instance_url_summary">Bevorzugte Peertube-Instanzen festlegen</string>
-    <string name="peertube_instance_add_https_only">Es werden nur https-Adressen unterstützt</string>
+    <string name="peertube_instance_url_summary">Bevorzugte Peertube-Instanzen auswählen</string>
+    <string name="peertube_instance_add_https_only">Es werden nur HTTPS-Adressen unterstützt</string>
     <string name="seek_duration_title">Dauer der Suche bei schnellem Vor-/Zurückspulen</string>
     <string name="most_liked">Am beliebtesten</string>
     <string name="recovering">Wiederherstellen</string>
     <string name="error_download_resource_gone">Dieser Download kann nicht wiederhergestellt werden</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Video-Vorschaubild für Sperrbildschirm aktivieren</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Bei Verwendung des Hintergrundplayers wird ein Video-Miniaturbild auf dem Sperrbildschirm angezeigt</string>
+    <string name="clear_download_history">Downloadverlauf löschen</string>
+    <string name="delete_downloaded_files">Heruntergeladene Dateien löschen</string>
+    <string name="deleted_downloads">%1$s Downloads gelöscht</string>
+    <string name="permission_display_over_apps">Berechtigung zur Anzeige über andere Apps erteilen</string>
+    <string name="app_language_title">Sprache der App</string>
+    <string name="systems_language">Systemstandard</string>
+    <string name="subtitle_activity_recaptcha">\"Fertig\" drücken, wenn es gelöst wurde</string>
+    <string name="recaptcha_done_button">Fertig</string>
 </resources>
