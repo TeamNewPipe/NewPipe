@@ -909,6 +909,9 @@ public final class MainVideoPlayer extends AppCompatActivity
                 final float currentVolumeNormalized = (float) getAudioReactor().getVolume() / getAudioReactor().getMaxVolume();
                 volumeProgressBar.setProgress((int) (volumeProgressBar.getMax() * currentVolumeNormalized));
             }
+            //Set initial value for brightness progress bar based on current screen brightness
+            WindowManager.LayoutParams layoutParams = getWindow().getAttributes();
+            brightnessProgressBar.setProgress((int)(layoutParams.screenBrightness * brightnessProgressBar.getMax()));
         }
 
         @Override
