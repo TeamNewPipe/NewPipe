@@ -19,8 +19,12 @@
 
 package org.schabi.newpipe.local.feed.service
 
+import android.app.PendingIntent
 import android.app.Service
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Build
 import android.os.IBinder
 import android.preference.PreferenceManager
@@ -52,6 +56,7 @@ import org.schabi.newpipe.util.ExtractorHelper
 import java.io.IOException
 import java.util.*
 import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
 import kotlin.collections.ArrayList
 
@@ -59,6 +64,7 @@ class FeedLoadService : Service() {
     companion object {
         private val TAG = FeedLoadService::class.java.simpleName
         private const val NOTIFICATION_ID = 7293450
+        private const val ACTION_CANCEL = "org.schabi.newpipe.local.feed.service.FeedLoadService.CANCEL"
 
         /**
          * How often the notification will be updated.
@@ -108,6 +114,7 @@ class FeedLoadService : Service() {
         }
 
         setupNotification()
+        setupBroadcastReceiver()
         val defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
         val groupId = intent.getLongExtra(EXTRA_GROUP_ID, FeedGroupEntity.GROUP_ALL_ID)
@@ -124,6 +131,8 @@ class FeedLoadService : Service() {
     }
 
     private fun disposeAll() {
+        unregisterReceiver(broadcastReceiver)
+
         loadingSubscription?.cancel()
         loadingSubscription = null
 
@@ -187,9 +196,12 @@ class FeedLoadService : Service() {
 
                 .observeOn(Schedulers.io())
                 .flatMap { Flowable.fromIterable(it) }
+                .takeWhile { !cancelSignal.get() }
 
-                .parallel(PARALLEL_EXTRACTIONS)
-                .runOn(Schedulers.io())
+                .parallel(PARALLEL_EXTRACTIONS, PARALLEL_EXTRACTIONS * 2)
+                .runOn(Schedulers.io(), PARALLEL_EXTRACTIONS * 2)
+                .filter { !cancelSignal.get() }
+
                 .map { subscriptionEntity ->
                     try {
                         val listInfo = if (useFeedExtractor) {
@@ -351,11 +363,15 @@ class FeedLoadService : Service() {
     private var maxProgress = AtomicInteger(-1)
 
     private fun createNotification(): NotificationCompat.Builder {
+        val cancelActionIntent = PendingIntent.getBroadcast(this,
+                NOTIFICATION_ID, Intent(ACTION_CANCEL), 0)
+
         return NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
                 .setOngoing(true)
                 .setProgress(-1, -1, true)
                 .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                .addAction(0, getString(R.string.cancel), cancelActionIntent)
                 .setContentTitle(getString(R.string.feed_notification_loading))
     }
 
@@ -392,6 +408,24 @@ class FeedLoadService : Service() {
         }
 
         notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build())
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Notification Actions
+    ///////////////////////////////////////////////////////////////////////////
+
+    private lateinit var broadcastReceiver: BroadcastReceiver
+    private val cancelSignal = AtomicBoolean()
+
+    private fun setupBroadcastReceiver() {
+        broadcastReceiver = object : BroadcastReceiver() {
+            override fun onReceive(context: Context?, intent: Intent?) {
+                if (intent?.action == ACTION_CANCEL) {
+                    cancelSignal.set(true)
+                }
+            }
+        }
+        registerReceiver(broadcastReceiver, IntentFilter(ACTION_CANCEL))
     }
 
     ///////////////////////////////////////////////////////////////////////////
