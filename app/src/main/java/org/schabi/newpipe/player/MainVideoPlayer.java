@@ -909,6 +909,14 @@ public final class MainVideoPlayer extends AppCompatActivity
                 final float currentVolumeNormalized = (float) getAudioReactor().getVolume() / getAudioReactor().getMaxVolume();
                 volumeProgressBar.setProgress((int) (volumeProgressBar.getMax() * currentVolumeNormalized));
             }
+
+            final float screenBrightness =  getWindow().getAttributes().screenBrightness;
+            brightnessProgressBar.setProgress((int) (brightnessProgressBar.getMax() * screenBrightness));
+
+            if (DEBUG) Log.d(TAG, "setInitialGestureValues: volumeProgressBar.getProgress() ["
+                    + volumeProgressBar.getProgress() + "] "
+                    + "brightnessProgressBar.getProgress() ["
+                    + brightnessProgressBar.getProgress() + "]");
         }
 
         @Override
