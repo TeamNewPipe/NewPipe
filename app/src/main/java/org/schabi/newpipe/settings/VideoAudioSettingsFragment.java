@@ -1,6 +1,7 @@
 package org.schabi.newpipe.settings;
 
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -22,12 +23,19 @@ public class VideoAudioSettingsFragment extends BasePreferenceFragment {
         super.onCreate(savedInstanceState);
 
         //initializing R.array.seek_duration_description to display the translation of seconds
-        String[] durationsDescriptions = getResources().getStringArray(R.array.seek_duration_description);
-        String[] durationsValues = getResources().getStringArray(R.array.seek_duration_value);
+        Resources res = getResources();
+        String[] durationsValues = res.getStringArray(R.array.seek_duration_value);
+        String[] durationsDescriptions = res.getStringArray(R.array.seek_duration_description);
         int currentDurationValue;
         for (int i = 0; i < durationsDescriptions.length; i++) {
             currentDurationValue = Integer.parseInt(durationsValues[i]) / 1000;
-            durationsDescriptions[i] = String.format(durationsDescriptions[i], currentDurationValue);
+            try {
+                durationsDescriptions[i] = String.format(
+                        res.getQuantityString(R.plurals.dynamic_seek_duration_description, currentDurationValue),
+                        currentDurationValue);
+            } catch (Resources.NotFoundException ignored) {
+                //if this happens, the translation is missing, and the english string will be displayed instead
+            }
         }
         ListPreference durations = (ListPreference) findPreference(getString(R.string.seek_duration_key));
         durations.setEntries(durationsDescriptions);

@@ -31,12 +31,14 @@
     <string name="seek_duration_key" translatable="false">seek_duration</string>
     <string name="seek_duration_default_value" translatable="false">10000</string>
     <string-array name="seek_duration_description" translatable="false">
-        <item>@string/dynamic_seek_duration_description</item>
-        <item>@string/dynamic_seek_duration_description</item>
-        <item>@string/dynamic_seek_duration_description</item>
-        <item>@string/dynamic_seek_duration_description</item>
-        <item>@string/dynamic_seek_duration_description</item>
-        <item>@string/dynamic_seek_duration_description</item>
+    <!--   They are overridden in VideoAudioSettingsFragment.java if the translation
+    (dynamic_seek_duration_description) exist. Otherwise this array is picked-->
+        <item>5 seconds</item>
+        <item>10 seconds</item>
+        <item>15 seconds</item>
+        <item>20 seconds</item>
+        <item>25 seconds</item>
+        <item>30 seconds</item>
     </string-array>
     <string-array name="seek_duration_value" translatable="false">
         <item>5000</item>

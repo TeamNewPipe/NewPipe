@@ -593,4 +593,9 @@
     <string name="app_language_title">App language</string>
     <string name="systems_language">System default</string>
     <string name="dynamic_seek_duration_description">%s seconds</string>
+    <plurals name="dynamic_seek_duration_description">
+        <item quantity="few">%s seconds</item>
+        <item quantity="many">%s seconds</item>
+        <item quantity="other">%s seconds</item>
+    </plurals>
 </resources>
