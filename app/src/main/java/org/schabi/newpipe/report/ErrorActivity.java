@@ -43,6 +43,7 @@ import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.TimeZone;
 import java.util.Vector;
 
@@ -377,8 +378,12 @@ public class ErrorActivity extends AppCompatActivity {
     }
 
     private String getContentLangString() {
-        return PreferenceManager.getDefaultSharedPreferences(this)
+        String contentLanguage = PreferenceManager.getDefaultSharedPreferences(this)
                 .getString(this.getString(R.string.content_country_key), "none");
+        if (contentLanguage.equals(getString(R.string.default_localization_key))) {
+            contentLanguage = Locale.getDefault().toString();
+        }
+        return contentLanguage;
     }
 
     private String getOsString() {
