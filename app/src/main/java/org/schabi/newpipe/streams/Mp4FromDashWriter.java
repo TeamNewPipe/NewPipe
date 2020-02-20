@@ -306,9 +306,7 @@ public class Mp4FromDashWriter {
                 sampleCount[i] = 1;// the index is not base zero
                 sampleExtra[i] = -1;
             }
-            if (tablesInfo[i].sbgp > 0) {
-                writeEntryArray(tablesInfo[i].sbgp, 1, sampleCount[i]);
-            }
+            writeEntryArray(tablesInfo[i].sbgp, 1, sampleCount[i]);
         }
 
         if (auxBuffer == null) {
