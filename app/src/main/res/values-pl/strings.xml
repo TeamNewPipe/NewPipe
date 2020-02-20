@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">Naciśnij Szukaj, aby zacząć</string>
+    <string name="main_bg_subtitle">Naciśnij „Szukaj”, aby zacząć</string>
     <string name="install">Zainstaluj</string>
     <string name="cancel">Anuluj</string>
     <string name="open_in_browser">Otwórz w przeglądarce</string>
@@ -16,7 +16,7 @@
     <string name="use_external_audio_player_title">Użyj zewnętrznego odtwarzacza audio</string>
     <string name="view_count_text">%1$s wyświetleń</string>
     <string name="upload_date_text">Opublikowano %1$s</string>
-    <string name="no_player_found">Nie znaleziono odtwarzacza strumieni. Czy chcesz zainstalować VLC\?</string>
+    <string name="no_player_found">Nie znaleziono odtwarzacza strumieni. Zainstalować VLC\?</string>
     <string name="download_path_title">Folder pobierania wideo</string>
     <string name="download_path_summary">Pobrane pliki wideo są przechowywane tutaj</string>
     <string name="download_path_dialog_title">Wybierz folder pobierania plików wideo</string>
@@ -139,7 +139,7 @@
     <string name="msg_popup_permission">To pozwolenie jest wymagane, aby 
 \notworzyć w trybie okienkowym</string>
     <string name="open_in_popup_mode">Odtwórz w trybie okienkowym</string>
-    <string name="popup_mode_share_menu_title">Tryb okienkowy NewPipe</string>
+    <string name="popup_mode_share_menu_title">Tryb okienkowy</string>
     <string name="controls_popup_title">Tryb okienkowy</string>
     <string name="best_resolution">Najlepsza rozdzielczość</string>
     <string name="settings_category_downloads_title">Pobierz</string>
@@ -409,7 +409,7 @@
     <string name="tab_new">Nowa karta</string>
     <string name="tab_choose">Wybierz kartę</string>
     <string name="volume_gesture_control_title">Kontrola gestów głośności</string>
-    <string name="volume_gesture_control_summary">Użyj gestów do sterowania głośnośnością odtwarzania</string>
+    <string name="volume_gesture_control_summary">Użyj gestów do sterowania głośnośnością odtwarzacza</string>
     <string name="brightness_gesture_control_title">Kontrola gestów jasności</string>
     <string name="brightness_gesture_control_summary">Użyj gestów do sterowania jasnością odtwarzacza</string>
     <string name="settings_category_updates_title">Aktualizacje</string>
