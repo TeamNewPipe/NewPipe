@@ -1074,7 +1074,7 @@ public class VideoDetailFragment
             if (info.getStreamType().equals(StreamType.AUDIO_LIVE_STREAM)) {
                 videoCountView.setText(Localization.listeningCount(activity, info.getViewCount()));
             } else if (info.getStreamType().equals(StreamType.LIVE_STREAM)) {
-                videoCountView.setText(Localization.watchingCount(activity, info.getViewCount()));
+                videoCountView.setText(Localization.localizeWatchingCount(activity, info.getViewCount()));
             } else {
                 videoCountView.setText(Localization.localizeViewCount(activity, info.getViewCount()));
             }

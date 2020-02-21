@@ -537,9 +537,13 @@
     <string name="clear_download_history">Forviŝi la historion de elŝutoj</string>
     <string name="delete_downloaded_files">Forviŝi elŝutitajn dosierojn</string>
     <string name="deleted_downloads">%1$s elŝutoj forviŝitaj</string>
+    <string name="videos_string">Filmetoj</string>
     <string name="permission_display_over_apps">Doni la permeson por afiŝiĝi supre aliaj apoj</string>
     <string name="app_language_title">Lingvo de la apo</string>
     <string name="systems_language">Sistemnormo</string>
     <string name="subtitle_activity_recaptcha">Premu « Finita » kiam solvita</string>
     <string name="recaptcha_done_button">Finita</string>
+    <plurals name="dynamic_seek_duration_description">
+        <item quantity="other">%s sekundoj</item>
+    </plurals>
 </resources>
