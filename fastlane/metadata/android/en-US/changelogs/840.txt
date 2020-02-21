@@ -1,0 +1,33 @@
+New
+• Language selector (#2921):
+  ◦ Select your wanted language from Settings
+  ◦ Applied after app restart
+
+• Send to Kodi button (#2310):
+  ◦ Displayed in player collapsible menu
+
+• Copy comments via long press (#3053)
+
+Improved
+• ReCaptcha solving gets correctly saved in the obtained cookie #3035
+• Remove dot-menu in favour of drawer and hide history button when "Watch history" is not enabled in settings #2960
+• Ask for display over other apps permission in settings correctly on Android 6 and later #3004
+• Rename local playlist by long-clicking in BookmarkFragment #2954
+• Various PeerTube improvements #3044:
+  ◦ Display full description instead of truncated 250 characters
+  ◦ Handle age limit
+  ◦ Thumbnail in full quality
+  ◦ Recenty added feed fixed, was off as much as you were off from GMT
+• Also in #3044:
+  ◦ MediaCCCs descriptions support newlines
+  ◦ YouTubes descriptions support timestamps
+• Improved several English source strings #2938
+
+Fixed
+• Fix initial brightness value for gesture #3102
+• Fixed player starting again although it is paused when option "minimize on app switch" enabled and NewPipe is minimized #2917
+• Fixed .srt subtitle downloads containing not all line breaks #2957
+• Fixed download to SD card failing because some Android 5 devices are not CTF compliant #2958
+• Fixed downloading on Android KitKat #3032
+• Fixed corrupt video .mp4 file being recognized as audio file #2959
+• Fixed wrong Chines language codes #2865
