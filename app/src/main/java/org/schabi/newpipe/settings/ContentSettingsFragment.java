@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -17,6 +18,8 @@ import androidx.preference.Preference;
 import com.nononsenseapps.filepicker.Utils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import org.schabi.newpipe.App;
+import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.localization.ContentCountry;
@@ -168,6 +171,9 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
 
     private void exportDatabase(String path) {
         try {
+            //checkpoint before export
+            checkpoint();
+
             ZipOutputStream outZip = new ZipOutputStream(
                     new BufferedOutputStream(
                             new FileOutputStream(path)));
@@ -183,6 +189,12 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
         } catch (Exception e) {
             onError(e);
         }
+    }
+
+    private void checkpoint() {
+        Cursor c = NewPipeDatabase.getInstance(App.getApp()).getOpenHelper().getWritableDatabase().query("pragma wal_checkpoint(full)");
+        if(c.moveToFirst() && c.getInt(0) == 1)
+            throw new RuntimeException("Checkpoint was blocked from completing");
     }
 
     private void saveSharedPreferencesToFile(File dst) {
