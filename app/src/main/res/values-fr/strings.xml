@@ -58,19 +58,19 @@
     <string name="error_snackbar_message">Désolé, des erreurs sont survenues.</string>
     <string name="content">Contenu</string>
     <string name="show_age_restricted_content_title">Contenu avec limite d’âge</string>
-    <string name="duration_live">EN DIRECT</string>
+    <string name="duration_live">En direct</string>
     <string name="could_not_load_thumbnails">Impossible de charger toutes les miniatures</string>
     <string name="youtube_signature_decryption_error">Impossible de déchiffrer la signature URL de la vidéo</string>
     <string name="light_parsing_error">Impossible d’analyser complètement le site web</string>
     <string name="live_streams_not_supported">Les flux en direct ne sont pas encore pris en charge</string>
     <string name="sorry_string">Désolé, une erreur est survenue.</string>
     <string name="autoplay_by_calling_app_summary">Lire la vidéo lorsque NewPipe est appelée par une autre application</string>
-    <string name="error_report_button_text">Rapporter l’erreur par courriel</string>
+    <string name="error_report_button_text">Signaler cette erreur par courriel</string>
     <string name="what_device_headline">Information :</string>
     <string name="what_happened_headline">Ce qui s’est passé :</string>
     <string name="your_comment">Votre commentaire (en anglais) :</string>
     <string name="error_details_headline">Détails :</string>
-    <string name="report_error">Rapporter une erreur</string>
+    <string name="report_error">Signaler une erreur</string>
     <string name="video">Vidéo</string>
     <string name="audio">Audio</string>
     <string name="retry">Réessayer</string>
@@ -79,7 +79,7 @@
     <string name="autoplay_by_calling_app_title">Lecture automatique</string>
     <string name="video_is_age_restricted">Affiche les vidéos soumises à une limite d’âge. Autoriser ce type de contenu est possible depuis les paramètres.</string>
     <string name="user_report">Rapport utilisateur</string>
-    <string name="error_snackbar_action">RAPPORTER</string>
+    <string name="error_snackbar_action">Signaler</string>
     <string name="could_not_setup_download_menu">Impossible de configurer le menu de téléchargement</string>
     <string name="could_not_get_stream">Impossible d’obtenir le moindre flux</string>
     <string name="downloads">Téléchargements</string>
@@ -112,7 +112,7 @@
     <string name="title_activity_recaptcha">Défi reCAPTCHA</string>
     <string name="recaptcha_request_toast">Défi reCAPTCHA demandé</string>
     <string name="open_in_popup_mode">Ouvrir en mode flottant</string>
-    <string name="popup_mode_share_menu_title">Mode flottant NewPipe</string>
+    <string name="popup_mode_share_menu_title">Mode flottant</string>
     <string name="popup_playing_toast">Lecture en mode flottant</string>
     <string name="yes">Oui</string>
     <string name="later">Plus tard</string>
@@ -136,7 +136,7 @@
     <string name="clear">Effacer</string>
     <string name="popup_resizing_indicator_title">Redimensionner</string>
     <string name="short_billion">Mrd</string>
-    <string name="use_external_video_player_summary">Retire l’audio à CERTAINES définitions</string>
+    <string name="use_external_video_player_summary">Retire l’audio à certaines définitions</string>
     <string name="player_gesture_controls_summary">Utiliser des gestes pour contrôler la luminosité et le volume du lecteur</string>
     <string name="show_search_suggestions_title">Suggestions de recherche</string>
     <string name="show_search_suggestions_summary">Affiche les suggestions lors d’une recherche</string>
@@ -168,7 +168,7 @@
     <string name="contribution_encouragement">Que ce soit pour des idées de traductions, de changements de design, de nettoyage de code ou de gros changements de code, une aide est toujours la bienvenue. Plus on contribue, meilleur il devient !</string>
     <string name="subscription_change_failed">Impossible de modifier l’abonnement</string>
     <string name="subscription_update_failed">Impossible d’actualiser l’abonnement</string>
-    <string name="resume_on_audio_focus_gain_summary">Continue la lecture après les interruptions (ex : appels téléphoniques)</string>
+    <string name="resume_on_audio_focus_gain_summary">Continuer la lecture après les interruptions (ex : appels téléphoniques)</string>
     <string name="settings_file_charset_title">Caractères autorisés dans les noms de fichier</string>
     <string name="settings_file_replacement_character_summary">Les caractères invalides sont remplacés par cette valeur</string>
     <string name="settings_file_replacement_character_title">Caractère de remplacement</string>
@@ -232,7 +232,7 @@
     <string name="play_queue_stream_detail">Détails</string>
     <string name="play_queue_audio_settings">Paramètres audios</string>
     <string name="show_hold_to_append_title">Afficher l’astuce « Maintenir pour ajouter »</string>
-    <string name="show_hold_to_append_summary">Affiche l’astuce lors de l’appui du bouton « Arrière-plan » ou « Mode flottant » sur la page de détails d’une vidéo</string>
+    <string name="show_hold_to_append_summary">Afficher l’astuce lors de l’appui du bouton « Arrière-plan » ou « Mode flottant » sur la page de détails d’une vidéo</string>
     <string name="unknown_content">[Inconnu]</string>
     <string name="player_recoverable_failure">Récupération depuis l’erreur du lecteur</string>
     <string name="kiosk_page_summary">Kiosque</string>
@@ -329,7 +329,7 @@
     <string name="settings_category_debug_title">Débogage</string>
     <string name="resize_fill">Remplir</string>
     <string name="caption_auto_generated">Générés automatiquement</string>
-    <string name="enable_leak_canary_title">Activer LeakCanary</string>
+    <string name="enable_leak_canary_title">LeakCanary</string>
     <string name="enable_leak_canary_summary">La surveillance des fuites de mémoire peut geler l’application durant le vidage du tas</string>
     <string name="enable_disposed_exceptions_title">Rapporter les erreurs hors cycle de vie</string>
     <string name="enable_disposed_exceptions_summary">Forcer le rapport des exceptions Rx inlivrables en dehors des fragments ou activités durant le cycle de vie après traitement</string>
@@ -467,7 +467,7 @@
     <string name="saved_tabs_invalid_json">En utilisation les onglets par défaut, une erreur est survenue en lisant les onglets sauvegardés</string>
     <string name="error_http_unsupported_range">Le serveur n’accepte pas les téléchargements multi-fils, veuillez réessayer avec @string/msg_threads = 1</string>
     <string name="show_comments_title">Afficher les commentaires</string>
-    <string name="show_comments_summary">Désactiver pour ne pas afficher les commentaires</string>
+    <string name="show_comments_summary">Désactiver pour masquer les commentaires</string>
     <string name="autoplay_title">Lecture automatique</string>
     <plurals name="comments">
         <item quantity="one">Commentaire</item>
@@ -498,7 +498,7 @@
     <string name="enable_playback_state_lists_summary">Afficher les indicateurs de position de lecture dans les listes</string>
     <string name="watch_history_states_deleted">Positions de reprise de lecture supprimées.</string>
     <string name="downloads_storage_use_saf_title">Utiliser ILAF</string>
-    <string name="downloads_storage_use_saf_summary">L\'Infrastructure Logicielle d\'Accès au Stockage permet de télécharger sur une carte mémoire externe. 
+    <string name="downloads_storage_use_saf_summary">L\' « Infrastructure Logicielle d\'Accès au Stockage » permet de télécharger sur une carte mémoire externe. 
 \nNote : certains appareils ne sont pas compatibles</string>
     <string name="clear_playback_states_title">Supprimer les positions de reprise de lecture</string>
     <string name="clear_playback_states_summary">Supprime toutes les positions de reprise de lecture</string>
@@ -534,7 +534,7 @@
     <string name="choose_instance_prompt">Choisissez une instance</string>
     <string name="playlist_no_uploader">Généré automatiquement (pas de téléverseur trouvé)</string>
     <string name="enable_lock_screen_video_thumbnail_title">Activer la vidéo miniaturisée sur l\'écran de verrouillage</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">En utilisant le lecteur audio, la miniature de la vidéo sera affichée sur l\'écran de verrouillage</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">La miniature de la vidéo sera affichée sur l\'écran de verrouillage en utilisant le lecteur audio</string>
     <string name="clear_download_history">Effacer l\'historique de téléchargement</string>
     <string name="delete_downloaded_files">Supprimer les fichiers téléchargés</string>
     <string name="deleted_downloads">%1$s téléchargements supprimés</string>
@@ -543,4 +543,5 @@
     <string name="systems_language">Prédéfini par le système</string>
     <string name="subtitle_activity_recaptcha">Appuyez sur « Terminé » une fois résolu</string>
     <string name="recaptcha_done_button">Terminé</string>
+    <string name="duration_live_button" translatable="false">En direct</string>
 </resources>
