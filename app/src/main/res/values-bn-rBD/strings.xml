@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_bg_subtitle">শুরু করতে অনুসন্ধান এ আলতো চাপ</string>
+    <string name="main_bg_subtitle">অনুসন্ধান এ চাপ দিয়ে শুরু করুন</string>
     <string name="view_count_text">"%1$s জন  দেখছে"</string>
     <string name="upload_date_text">প্রকাশকাল %1$s</string>
-    <string name="no_player_found">কোন স্ট্রিম প্লেয়ার পাওয়া যায়নি। তুমি কি VLC ইনস্টল করতে চাও?</string>
+    <string name="no_player_found">কোন স্ট্রিম প্লেয়ার পাওয়া যায়নি। VLC ইনস্টল করতে চাও\?</string>
     <string name="install">ইনস্টল</string>
     <string name="cancel">বাদ দিন</string>
     <!--     <string name="fdroid_vlc_url" translatable="false">https://f-droid.org/repository/browse/?fdfilter=vlc&amp;fdid=org.videolan.vlc</string> -->
@@ -16,13 +16,13 @@
     <string name="did_you_mean">আপনি কি বুঝিয়েছেনঃ %1$s ?</string>
     <string name="share_dialog_title">শেয়ার করুন</string>
     <string name="choose_browser">ব্রাউজার বাছাই করুন</string>
-    <string name="screen_rotation">রোটেশন</string>
+    <string name="screen_rotation">ঘূর্ণন</string>
     <string name="use_external_video_player_title">বাইরের ভিডিও প্লেয়ার ব্যবহার করুন</string>
     <string name="use_external_audio_player_title">বহির্গত অডিও প্লেয়ার ব্যবহার করুন</string>
-    <string name="popup_mode_share_menu_title">NewPipe পপআপ মোড</string>
+    <string name="popup_mode_share_menu_title">পপআপ মোড</string>
     <string name="controls_background_title">ব্যাকগ্রাউন্ড</string>
     <string name="controls_popup_title">পপআপ</string>
-    <string name="download_path_title">ভিডিও ডাউনলোড করার পাথ</string>
+    <string name="download_path_title">ভিডিও ডাউনলোড করার ফোল্ডার</string>
     <string name="download_path_summary">ডাউনলোড করা ভিডিওগুলো রাখার ফোল্ডার</string>
     <string name="download_path_dialog_title">ভিডিওগুলির জন্য ডাউনলোডের পাথ প্রবেশ করাও</string>
     <string name="download_path_audio_title">অডিও ডাউনলোড পাথ</string>
@@ -171,7 +171,7 @@
     <string name="action_open_website">ওয়েব সাইট খুলুন</string>
     <string name="website_title">ওয়েব সাইট</string>
     <string name="no_player_found_toast">কোন স্ট্রিম প্লেয়ার পাওয়া যায়নি (প্লে করতে VLC ইন্সটল করতে পারেন)</string>
-    <string name="use_external_video_player_summary">কিছু রেজোলিউশনে ভিডিওর অডিও কাজ করে না</string>
+    <string name="use_external_video_player_summary">কিছু কিছু রেজোলিউশনে অডিও বন্ধ করে দেয়</string>
     <string name="subscribe_button_title">সাবস্ক্রাইব</string>
     <string name="subscribed_button_title">সাবস্ক্রাইব করা আছে</string>
     <string name="channel_unsubscribed">চ্যানেল থেকে আনসাবস্ক্রাইব্ড</string>
@@ -183,4 +183,5 @@
     <string name="use_inexact_seek_title">দ্রুত টানা ব্যাবহার করুন</string>
     <string name="unsubscribe">আনসাবস্ক্রাইব</string>
     <string name="tab_new">নতুন ট্যাব</string>
+    <string name="tab_choose">ট্যাব পছন্দ করুন</string>
 </resources>
