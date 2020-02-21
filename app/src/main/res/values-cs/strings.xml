@@ -98,7 +98,7 @@
     <string name="downloads_title">Stažené soubory</string>
     <string name="what_device_headline">Info:</string>
     <string name="your_comment">Vaše poznámky (anglicky):</string>
-    <string name="storage_permission_denied">Oprávnění přístupu do úložiště zamítnuto</string>
+    <string name="storage_permission_denied">Nejdříve udělit oprávnění přístupu k úložišti</string>
     <string name="view">Přehrát</string>
     <string name="add">Nová mise</string>
     <string name="finish">OK</string>
@@ -179,9 +179,9 @@ otevření ve vyskakovacím okně</string>
     </plurals>
     <string name="no_videos">Žádná videa</string>
     <plurals name="videos">
-        <item quantity="one">%s video</item>
-        <item quantity="few">%s videa</item>
-        <item quantity="other">%s videí</item>
+        <item quantity="one">%s Video</item>
+        <item quantity="few">%s Videa</item>
+        <item quantity="other">%s Videí</item>
     </plurals>
     <string name="settings_category_downloads_title">Stahování</string>
     <string name="settings_file_charset_title">Povolené znaky v názvech souborů</string>
@@ -214,7 +214,7 @@ otevření ve vyskakovacím okně</string>
     <string name="history_cleared">Historie vymazána</string>
     <string name="item_deleted">Položka byla odstraněna</string>
     <string name="show_hold_to_append_title">Zobrazovat tip \"Podržet pro přidání\"</string>
-    <string name="show_hold_to_append_summary">Zobrazí se po stisku tlačítek přehrát na pozadí nebo přehrát v okně na stránce s videem</string>
+    <string name="show_hold_to_append_summary">Ukázat tip po stisku na pozadí nebo na popup tlačítko v \"Podrobnostech\" o videu</string>
     <string name="background_player_append">Ve frontě přehrávače na pozadí</string>
     <string name="popup_playing_append">Ve frontě přehrávače v okně</string>
     <string name="play_all">Přehrát vše</string>
@@ -329,7 +329,7 @@ otevření ve vyskakovacím okně</string>
     <string name="metadata_cache_wipe_summary">Odebrat všechna data uložená v mezipaměti</string>
     <string name="metadata_cache_wipe_complete_notice">Mezipaměť metadat vymazána</string>
     <string name="auto_queue_title">Automatická fronta dalšího streamu</string>
-    <string name="auto_queue_summary">Automaticky připojí související stream při přehrávání posledního streamu v neopakující se frontě</string>
+    <string name="auto_queue_summary">Pokračovat konečnou (neopakující se) frontu playbacku připojením souvisejícího streamu</string>
     <string name="file">Soubor</string>
     <string name="invalid_directory">Neexistující složka</string>
     <string name="invalid_source">Neexistující zdroj souboru/obsahu</string>
@@ -552,4 +552,5 @@ otevření ve vyskakovacím okně</string>
     <string name="systems_language">Jazyk systému</string>
     <string name="subtitle_activity_recaptcha">Po vyřešení stiskni \"Hotovo\"</string>
     <string name="recaptcha_done_button">Hotovo</string>
+    <string name="duration_live_button" translatable="false">Live</string>
 </resources>
