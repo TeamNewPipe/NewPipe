@@ -138,9 +138,8 @@
     <string name="play_btn_text">Play</string>
     <string name="content">Content</string>
     <string name="show_age_restricted_content_title">Age restricted content</string>
-    <string name="video_is_age_restricted">Show age restricted video. Future changes are possible from the settings.</string>
     <string name="duration_live">Live</string>
-    <string name="duration_live_button" translatable="false">Live</string>
+    <string name="video_is_age_restricted">Show age restricted video. Future changes are possible from the settings.</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
     <string name="error_report_title">Error report</string>
@@ -149,8 +148,7 @@
     <string name="channels">Channels</string>
     <string name="playlist">Playlist</string>
     <string name="playlists">Playlists</string>
-    <string name="videos">Videos</string>
-    <string name="comments">Comments</string>
+    <string name="videos_string">Videos</string>
     <string name="tracks">Tracks</string>
     <string name="users">Users</string>
     <string name="events">Events</string>
@@ -594,4 +592,8 @@
     <string name="choose_instance_prompt">Choose an instance</string>
     <string name="app_language_title">App language</string>
     <string name="systems_language">System default</string>
+    <string name="dynamic_seek_duration_description">%s seconds</string>
+    <plurals name="dynamic_seek_duration_description">
+        <item quantity="other">%s seconds</item>
+    </plurals>
 </resources>
