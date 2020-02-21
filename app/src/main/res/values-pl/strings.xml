@@ -549,5 +549,4 @@
     <string name="systems_language">Domyślny systemu</string>
     <string name="subtitle_activity_recaptcha">Po rozwiązaniu naciśnij „Gotowe”</string>
     <string name="recaptcha_done_button">Gotowe</string>
-    <string name="duration_live_button" translatable="false">Na żywo</string>
 </resources>

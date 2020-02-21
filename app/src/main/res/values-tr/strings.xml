@@ -543,5 +543,4 @@
     <string name="systems_language">Sistem öntanımlısı</string>
     <string name="subtitle_activity_recaptcha">Çözüldüğünde \"Bitti\" butonuna basın</string>
     <string name="recaptcha_done_button">Bitti</string>
-    <string name="duration_live_button" translatable="false">Canlı</string>
 </resources>

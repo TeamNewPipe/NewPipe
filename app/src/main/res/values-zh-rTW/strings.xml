@@ -539,5 +539,4 @@
     <string name="systems_language">系統預設值</string>
     <string name="subtitle_activity_recaptcha">解決後請按「完成」</string>
     <string name="recaptcha_done_button">完成</string>
-    <string name="duration_live_button" translatable="false">直播</string>
 </resources>

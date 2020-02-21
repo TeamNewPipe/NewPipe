@@ -535,7 +535,6 @@
     <string name="app_language_title">Bahasa apl</string>
     <string name="systems_language">Default sistem</string>
     <string name="recaptcha_done_button">Selesai</string>
-    <string name="duration_live_button" translatable="false">Langsung</string>
     <string name="seek_duration_title">Durasi maju/mundur cepat</string>
     <string name="subtitle_activity_recaptcha">Tekan \"Selesai\" saat selesai</string>
 </resources>
