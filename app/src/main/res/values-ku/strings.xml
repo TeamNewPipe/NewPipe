@@ -215,7 +215,6 @@
     <string name="no_available_dir">تکایە فۆڵدەرێک بۆ شوێنی داگرتن دیاریبکە لە ڕێکخستنەکان</string>
     <string name="msg_popup_permission">ئەم دەسەڵاتە پێویستە بۆ
 \nکردنەوەی پەنجەرەی بچووک</string>
-    <string name="recaptcha" translatable="false">reCAPTCHA</string>
     <string name="title_activity_recaptcha">reCAPTCHA داواکاری</string>
     <string name="recaptcha_request_toast">reCAPTCHA داواکراوە</string>
     <string name="settings_category_downloads_title">داگرتن</string>
