@@ -269,8 +269,8 @@
     <string name="msg_popup_permission">Това разрешение се изисква за
 \nвъзпроизвеждане в отделен прозорец</string>
     <string name="one_item_deleted">1 елемент е изтрит.</string>
-    <string name="reCaptchaActivity">преКАПЧА</string>
-    <string name="reCaptcha_title">reCAPTCHA заявка</string>
+    <string name="recaptcha">преКАПЧА</string>
+    <string name="title_activity_recaptcha">reCAPTCHA заявка</string>
     <string name="recaptcha_request_toast">Изисква се въвеждане на reCAPTCHA</string>
     <string name="settings_category_downloads_title">Изтегляне</string>
     <string name="charset_most_special_characters">Повечето специални символи</string>

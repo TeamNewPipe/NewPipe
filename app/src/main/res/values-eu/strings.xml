@@ -139,8 +139,8 @@
     <string name="no_available_dir">Ezarri deskargetarako karpeta bat ezarpenetan geroago</string>
     <string name="msg_popup_permission">Baimen hau beharrezkoa da
 \nlaster-leiho moduan irekitzeko</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">reCAPTCHA erronka</string>
+    <string name="recaptcha">reCAPTCHA</string>
+    <string name="title_activity_recaptcha">reCAPTCHA erronka</string>
     <string name="recaptcha_request_toast">reCAPTCHA erronka eskatu da</string>
     <string name="title_activity_about">NewPipe aplikazioari buruz</string>
     <string name="action_settings">Ezarpenak</string>
@@ -199,8 +199,8 @@
     </plurals>
     <string name="no_videos">Bideorik ez</string>
     <plurals name="videos">
-        <item quantity="one">Bideoa</item>
-        <item quantity="other">Bideoak</item>
+        <item quantity="one">Bideo %</item>
+        <item quantity="other">% bideo</item>
     </plurals>
     <string name="title_activity_history">Historiala</string>
     <string name="title_history_search">Bilatuta</string>
@@ -488,7 +488,7 @@
     <string name="error_postprocessing_stopped">NewPipe itxi egin da fitxategian lanean zegoela</string>
     <string name="error_insufficient_storage">Ez dago lekurik gailuan</string>
     <string name="error_progress_lost">Progresioa galdu da, fitxategia ezabatu delako</string>
-    <string name="confirm_prompt">Ziur al zaude\?</string>
+    <string name="confirm_prompt">Zure deskargen historiala garbitu nahi duzu ala deskargatutako fitxategi guztiak ezabatu\?</string>
     <string name="enable_queue_limit">Mugatu deskargen ilara</string>
     <string name="enable_queue_limit_desc">Deskarga bakarra aldi berean</string>
     <string name="start_downloads">Hasi deskargak</string>
@@ -533,4 +533,14 @@
     <string name="recovering">berreskuratzen</string>
     <string name="error_download_resource_gone">Ezin da deskarga hau berreskuratu</string>
     <string name="choose_instance_prompt">Aukeratu instantzia</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Gaitu bideoaren iruditxoa blokeo pantailan</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Bigarren planoko erreproduzigailua erabiltzean bideoaren iruditxo bat bistaratuko da blokeo pantailan</string>
+    <string name="clear_download_history">Garbitu deskargen historiala</string>
+    <string name="delete_downloaded_files">Ezabatu deskargatutako fitxategiak</string>
+    <string name="deleted_downloads">%1$s deskarga ezabatuta</string>
+    <string name="permission_display_over_apps">Eman beste aplikazioen gainean erakusteko baimena</string>
+    <string name="app_language_title">Aplikazioaren hizkuntza</string>
+    <string name="systems_language">Sisteman lehenetsia</string>
+    <string name="subtitle_activity_recaptcha">Sakatu \"Egina\" konponduta dagoenean</string>
+    <string name="recaptcha_done_button">Egina</string>
 </resources>

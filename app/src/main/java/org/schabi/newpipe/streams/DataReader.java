@@ -137,6 +137,7 @@ public class DataReader {
 
         position = 0;
         readOffset = readBuffer.length;
+        readCount = 0;
     }
 
     public boolean canRewind() {

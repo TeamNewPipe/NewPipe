@@ -106,8 +106,8 @@
     <string name="add">Nytt mål</string>
     <string name="msg_url_malform">Feilaktig nettadresse eller manglende internettilknytning</string>
     <string name="no_available_dir">Definer en nedlastingsmappe senere i innstillingene</string>
-    <string name="reCaptchaActivity">reCAPTCHA</string>
-    <string name="reCaptcha_title">reCAPTCHA-oppgave</string>
+    <string name="recaptcha">reCAPTCHA</string>
+    <string name="title_activity_recaptcha">reCAPTCHA-oppgave</string>
     <string name="open_in_popup_mode">Åpne i oppsprettsmodus</string>
     <string name="popup_mode_share_menu_title">NewPipe oppsprettsmodus</string>
     <string name="default_popup_resolution_title">Forvalgt oppsprettsoppløsning</string>
@@ -524,6 +524,22 @@
     <string name="clear_download_history">Tøm nedlastingshistorikk</string>
     <string name="delete_downloaded_files">Slett nedlastede filer</string>
     <string name="deleted_downloads">Slettet %1$s nedlastninger</string>
-    <string name="enable_lock_screen_video_thumbnail_title">Aktiver videominiatyrbilde med låseskjerm</string>
-    <string name="enable_lock_screen_video_thumbnail_summary">Når du bruker bakgrunnsspilleren, vises en videominiaturbilde på låseskjermen</string>
+    <string name="enable_lock_screen_video_thumbnail_title">Aktiver videominiatyrbilde på låseskjerm</string>
+    <string name="enable_lock_screen_video_thumbnail_summary">Når du bruker bakgrunnsspilleren, vises ent videominiatyrbilde på låseskjermen</string>
+    <string name="peertube_instance_url_summary">Velg dine favoritter blandt PeerTube-instansene</string>
+    <string name="peertube_instance_url_help">Finn instansene som passer deg best på %s</string>
+    <string name="peertube_instance_add_title">Legg til instans</string>
+    <string name="peertube_instance_add_help">Skriv inn nettadresse til instans</string>
+    <string name="peertube_instance_add_fail">Kunne ikke bekrefte instans</string>
+    <string name="peertube_instance_add_https_only">Kun HTTPS-nettadresser støttes</string>
+    <string name="peertube_instance_add_exists">Instansen finnes allerede</string>
+    <string name="playlist_no_uploader">Autogenerert (fant ingen opplaster)</string>
+    <string name="recovering">gjenoppretter</string>
+    <string name="error_download_resource_gone">Kan ikke gjenopprette denne nedlastingen</string>
+    <string name="seek_duration_title">Hurtigframoverspoling/-tilbakeblafringsvarighet</string>
+    <string name="permission_display_over_apps">Gi tilgang til visning over andre programmer</string>
+    <string name="app_language_title">Programspråk</string>
+    <string name="systems_language">Systemforvalg</string>
+    <string name="subtitle_activity_recaptcha">Trykk \"Ferdig\" når den er løst</string>
+    <string name="recaptcha_done_button">Ferdig</string>
 </resources>

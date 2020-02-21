@@ -31,7 +31,6 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -56,7 +55,6 @@ import androidx.fragment.app.FragmentManager;
 import com.google.android.material.navigation.NavigationView;
 
 import org.schabi.newpipe.extractor.NewPipe;
-import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.services.peertube.PeertubeInstance;
@@ -67,6 +65,7 @@ import org.schabi.newpipe.fragments.list.search.SearchFragment;
 import org.schabi.newpipe.report.ErrorActivity;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.KioskTranslator;
+import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PeertubeHelper;
 import org.schabi.newpipe.util.PermissionHelper;
@@ -77,6 +76,8 @@ import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -113,9 +114,9 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
             TLSSocketFactoryCompat.setAsDefault();
         }
-
         ThemeHelper.setTheme(this, ServiceHelper.getSelectedServiceId(this));
 
+        assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -419,6 +420,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        assureCorrectAppLanguage(this);
+        Localization.init(getApplicationContext()); //change the date format to match the selected language on resume
         super.onResume();
 
         // close drawer on return, and don't show animation, so its looks like the drawer isn't open
@@ -448,6 +451,16 @@ public class MainActivity extends AppCompatActivity {
             if (DEBUG) Log.d(TAG, "main page has changed, recreating main fragment...");
             sharedPreferences.edit().putBoolean(Constants.KEY_MAIN_PAGE_CHANGE, false).apply();
             NavigationHelper.openMainActivity(this);
+        }
+
+        if (sharedPreferences.getBoolean(Constants.KEY_ENABLE_WATCH_HISTORY, true)) {
+            if (DEBUG) Log.d(TAG, "do not show History-menu as its disabled in settings");
+            drawerItems.getMenu().findItem(ITEM_ID_HISTORY).setVisible(true);
+        }
+
+        if (!sharedPreferences.getBoolean(Constants.KEY_ENABLE_WATCH_HISTORY, true)) {
+            if (DEBUG) Log.d(TAG, "show History-menu as its enabled in settings");
+            drawerItems.getMenu().findItem(ITEM_ID_HISTORY).setVisible(false);
         }
     }
 
@@ -551,8 +564,6 @@ public class MainActivity extends AppCompatActivity {
         if (!(fragment instanceof SearchFragment)) {
             findViewById(R.id.toolbar).findViewById(R.id.toolbar_search_container).setVisibility(View.GONE);
 
-            MenuInflater inflater = getMenuInflater();
-            inflater.inflate(R.menu.main_menu, menu);
         }
 
         ActionBar actionBar = getSupportActionBar();
@@ -574,14 +585,6 @@ public class MainActivity extends AppCompatActivity {
             case android.R.id.home:
                 onHomeButtonPressed();
                 return true;
-            case R.id.action_show_downloads:
-                    return NavigationHelper.openDownloads(this);
-            case R.id.action_history:
-                    NavigationHelper.openStatisticFragment(getSupportFragmentManager());
-                    return true;
-            case R.id.action_settings:
-                    NavigationHelper.openSettings(this);
-                    return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

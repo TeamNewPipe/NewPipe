@@ -22,8 +22,9 @@ import android.widget.TextView;
 
 import org.schabi.newpipe.BuildConfig;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.ThemeHelper;
+
+import static org.schabi.newpipe.util.Localization.assureCorrectAppLanguage;
 
 public class AboutActivity extends AppCompatActivity {
 
@@ -31,18 +32,20 @@ public class AboutActivity extends AppCompatActivity {
      * List of all software components
      */
     private static final SoftwareComponent[] SOFTWARE_COMPONENTS = new SoftwareComponent[]{
-            new SoftwareComponent("Giga Get", "2014", "Peter Cai", "https://github.com/PaperAirplane-Dev-Team/GigaGet", StandardLicenses.GPL2),
-            new SoftwareComponent("NewPipe Extractor", "2017", "Christian Schabesberger", "https://github.com/TeamNewPipe/NewPipeExtractor", StandardLicenses.GPL3),
+            new SoftwareComponent("Giga Get", "2014 - 2015", "Peter Cai", "https://github.com/PaperAirplane-Dev-Team/GigaGet", StandardLicenses.GPL2),
+            new SoftwareComponent("NewPipe Extractor", "2017 - 2020", "Christian Schabesberger", "https://github.com/TeamNewPipe/NewPipeExtractor", StandardLicenses.GPL3),
             new SoftwareComponent("Jsoup", "2017", "Jonathan Hedley", "https://github.com/jhy/jsoup", StandardLicenses.MIT),
             new SoftwareComponent("Rhino", "2015", "Mozilla", "https://www.mozilla.org/rhino/", StandardLicenses.MPL2),
             new SoftwareComponent("ACRA", "2013", "Kevin Gaudin", "http://www.acra.ch", StandardLicenses.APACHE2),
             new SoftwareComponent("Universal Image Loader", "2011 - 2015", "Sergey Tarasevich", "https://github.com/nostra13/Android-Universal-Image-Loader", StandardLicenses.APACHE2),
-            new SoftwareComponent("CircleImageView", "2014 - 2017", "Henning Dodenhof", "https://github.com/hdodenhof/CircleImageView", StandardLicenses.APACHE2),
+            new SoftwareComponent("CircleImageView", "2014 - 2020", "Henning Dodenhof", "https://github.com/hdodenhof/CircleImageView", StandardLicenses.APACHE2),
             new SoftwareComponent("NoNonsense-FilePicker", "2016", "Jonas Kalderstam", "https://github.com/spacecowboy/NoNonsense-FilePicker", StandardLicenses.MPL2),
-            new SoftwareComponent("ExoPlayer", "2014-2017", "Google Inc", "https://github.com/google/ExoPlayer", StandardLicenses.APACHE2),
-            new SoftwareComponent("RxAndroid", "2015", "The RxAndroid authors", "https://github.com/ReactiveX/RxAndroid", StandardLicenses.APACHE2),
-            new SoftwareComponent("RxJava", "2016-present", "RxJava Contributors", "https://github.com/ReactiveX/RxJava", StandardLicenses.APACHE2),
-            new SoftwareComponent("RxBinding", "2015", "Jake Wharton", "https://github.com/JakeWharton/RxBinding", StandardLicenses.APACHE2)
+            new SoftwareComponent("ExoPlayer", "2014 - 2020", "Google Inc", "https://github.com/google/ExoPlayer", StandardLicenses.APACHE2),
+            new SoftwareComponent("RxAndroid", "2015 - 2018", "The RxAndroid authors", "https://github.com/ReactiveX/RxAndroid", StandardLicenses.APACHE2),
+            new SoftwareComponent("RxJava", "2016 - 2020", "RxJava Contributors", "https://github.com/ReactiveX/RxJava", StandardLicenses.APACHE2),
+            new SoftwareComponent("RxBinding", "2015 - 2018", "Jake Wharton", "https://github.com/JakeWharton/RxBinding", StandardLicenses.APACHE2),
+            new SoftwareComponent("PrettyTime", "2012 - 2020", "Lincoln Baxter, III", "https://github.com/ocpsoft/prettytime", StandardLicenses.APACHE2),
+            new SoftwareComponent("Markwon", "2017 - 2020", "Noties", "https://github.com/noties/Markwon", StandardLicenses.APACHE2)
     };
 
     /**
@@ -62,8 +65,10 @@ public class AboutActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        assureCorrectAppLanguage(this);
         super.onCreate(savedInstanceState);
         ThemeHelper.setTheme(this);
+        this.setTitle(getString(R.string.title_activity_about));
 
         setContentView(R.layout.activity_about);
 
@@ -99,11 +104,6 @@ public class AboutActivity extends AppCompatActivity {
             case android.R.id.home:
                 finish();
                 return true;
-            case R.id.action_settings:
-                NavigationHelper.openSettings(this);
-                return true;
-            case R.id.action_show_downloads:
-                return NavigationHelper.openDownloads(this);
         }
 
         return super.onOptionsItemSelected(item);
