@@ -478,9 +478,9 @@
     <string name="show_comments_summary">Отключите, чтобы скрыть комментарии</string>
     <string name="autoplay_title">Автовоспроизведение</string>
     <plurals name="comments">
-        <item quantity="one">комментарий</item>
-        <item quantity="few">комментария</item>
-        <item quantity="many">комментариев</item>
+        <item quantity="one">%s комментарий</item>
+        <item quantity="few">%s комментария</item>
+        <item quantity="many">%s комментариев</item>
     </plurals>
     <string name="no_comments">Нет комментариев</string>
     <string name="error_unable_to_load_comments">Не удалось загрузить комментарии</string>
@@ -549,4 +549,10 @@
     <string name="subtitle_activity_recaptcha">По завершении нажмите Готово</string>
     <string name="recaptcha_done_button">Готово</string>
     <string name="duration_live_button" translatable="false">Трансляция</string>
+    <string name="videos_string">Видео</string>
+    <plurals name="dynamic_seek_duration_description">
+        <item quantity="one">%s секунд</item>
+        <item quantity="few"></item>
+        <item quantity="many"></item>
+    </plurals>
 </resources>
