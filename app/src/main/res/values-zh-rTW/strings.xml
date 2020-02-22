@@ -499,7 +499,7 @@
     <string name="drawer_header_description">切換服務，目前已選取：</string>
     <plurals name="videos">
         <item quantity="one">%s 影片</item>
-        <item quantity="other"/>
+        <item quantity="other"></item>
     </plurals>
     <string name="default_kiosk_page_summary">預設 Kiosk</string>
     <string name="no_one_watching">沒有人在看</string>
