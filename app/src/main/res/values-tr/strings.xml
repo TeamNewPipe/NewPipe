@@ -464,8 +464,8 @@
     <string name="show_comments_summary">Yorumları gizlemek için kapatın</string>
     <string name="autoplay_title">Otomatik oynat</string>
     <plurals name="comments">
-        <item quantity="one">Yorum</item>
-        <item quantity="other">Yorumlar</item>
+        <item quantity="one">%s yorum</item>
+        <item quantity="other">%s yorum</item>
     </plurals>
     <string name="no_comments">Yorum yok</string>
     <string name="error_unable_to_load_comments">Yorumlar yüklenemedi</string>
@@ -543,4 +543,9 @@
     <string name="systems_language">Sistem öntanımlısı</string>
     <string name="subtitle_activity_recaptcha">Çözüldüğünde \"Bitti\" butonuna basın</string>
     <string name="recaptcha_done_button">Bitti</string>
+    <string name="videos_string">Videolar</string>
+    <plurals name="dynamic_seek_duration_description">
+        <item quantity="one">%s saniye</item>
+        <item quantity="other"></item>
+    </plurals>
 </resources>
