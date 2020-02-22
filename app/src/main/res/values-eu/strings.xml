@@ -199,8 +199,8 @@
     </plurals>
     <string name="no_videos">Bideorik ez</string>
     <plurals name="videos">
-        <item quantity="one">Bideoa</item>
-        <item quantity="other">Bideoak</item>
+        <item quantity="one">Bideo %</item>
+        <item quantity="other">% bideo</item>
     </plurals>
     <string name="title_activity_history">Historiala</string>
     <string name="title_history_search">Bilatuta</string>
@@ -538,4 +538,9 @@
     <string name="clear_download_history">Garbitu deskargen historiala</string>
     <string name="delete_downloaded_files">Ezabatu deskargatutako fitxategiak</string>
     <string name="deleted_downloads">%1$s deskarga ezabatuta</string>
+    <string name="permission_display_over_apps">Eman beste aplikazioen gainean erakusteko baimena</string>
+    <string name="app_language_title">Aplikazioaren hizkuntza</string>
+    <string name="systems_language">Sisteman lehenetsia</string>
+    <string name="subtitle_activity_recaptcha">Sakatu \"Egina\" konponduta dagoenean</string>
+    <string name="recaptcha_done_button">Egina</string>
 </resources>

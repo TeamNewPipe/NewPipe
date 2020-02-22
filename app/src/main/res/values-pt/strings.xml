@@ -23,7 +23,7 @@
     <string name="play_with_kodi_title">Reproduzir no Kodi</string>
     <string name="kore_not_found">Aplicação Kore não encontrada. Instalar?</string>
     <string name="show_play_with_kodi_title">Mostrar opção \"Reproduzir no Kodi\"</string>
-    <string name="show_play_with_kodi_summary">Exibe uma opção para reproduzir o vídeo no Kodi</string>
+    <string name="show_play_with_kodi_summary">Exibir uma opção para reproduzir o vídeo via Kodi media center</string>
     <string name="play_audio">Áudio</string>
     <string name="default_audio_format_title">Formato de áudio predefinido</string>
     <string name="download_dialog_title">Transferir</string>
@@ -109,7 +109,7 @@
     <string name="open_in_popup_mode">Abrir no modo de janela autónoma</string>
     <string name="black_theme_title">Preto</string>
     <string name="all">Tudo</string>
-    <string name="channel">Canais</string>
+    <string name="channel">Canal</string>
     <string name="yes">Sim</string>
     <string name="later">Depois</string>
     <string name="short_thousand">k</string>
@@ -152,7 +152,7 @@
     <string name="tab_about">Sobre</string>
     <string name="tab_contributors">Colaboradores</string>
     <string name="tab_licenses">Licenças</string>
-    <string name="app_description">Aplicação de reprodução de emissões livre para Android.</string>
+    <string name="app_description">Aplicação livre de reprodução de emissões para Android.</string>
     <string name="view_on_github">Ver no GitHub</string>
     <string name="app_license_title">Licença do NewPipe</string>
     <string name="contribution_encouragement">Se tem ideias para: tradução, alterações de desenho, limpeza de código, ou alterações significativas no código fonte - todas as ajudas são bem-vindas. Quanto mais se faz, melhor ficará!</string>
@@ -217,7 +217,7 @@
     <string name="player_recoverable_failure">A recuperar de um erro do reprodutor</string>
     <string name="main_page_content">Conteúdo da página principal</string>
     <string name="blank_page_summary">Página vazia</string>
-    <string name="subscription_page_summary">Página de subscrições</string>
+    <string name="subscription_page_summary">Subscrições</string>
     <string name="channel_page_summary">Página do canal</string>
     <string name="select_a_channel">Selecione um canal</string>
     <string name="no_channel_subscribed_yet">Não existem canais subscritos</string>
@@ -225,7 +225,7 @@
     <string name="kiosk">Kiosk</string>
     <string name="trending">Tendências</string>
     <string name="top_50">Top 50</string>
-    <string name="new_and_hot">Novo e popular</string>
+    <string name="new_and_hot">Tendências</string>
     <string name="title_activity_background_player">Reprodutor em segundo plano</string>
     <string name="title_activity_popup_player">Reprodutor \'popup\'</string>
     <string name="play_queue_remove">Remover</string>
@@ -266,7 +266,7 @@
     <string name="download_thumbnail_title">Carregar miniaturas</string>
     <string name="download_thumbnail_summary">Desative para parar o carregamento das miniaturas, poupar dados e utilização da memória. As alterações limpam a cache de imagem do disco e da memória.</string>
     <string name="thumbnail_cache_wipe_complete_notice">Cache de imagens limpa</string>
-    <string name="default_content_country_title">País do conteúdo predefinido</string>
+    <string name="default_content_country_title">País predefinido dos conteúdos</string>
     <string name="settings_category_debug_title">Depuração</string>
     <string name="video_streams_empty">Não foram encontradas emissões de vídeo</string>
     <string name="audio_streams_empty">Não foram encontradas emissões de áudio</string>
@@ -279,7 +279,7 @@
     <string name="dismiss">Rejeitar</string>
     <string name="website_title">Site</string>
     <string name="website_encouragement">Visite ao site NewPipe para obter mais informação e novidades.</string>
-    <string name="kiosk_page_summary">Página \"kiosk\"</string>
+    <string name="kiosk_page_summary">Página de Quiosque</string>
     <string name="feed_page_summary">Página de \"Feed\"</string>
     <string name="export_complete_toast">Exportados</string>
     <string name="import_complete_toast">Importados</string>
@@ -372,8 +372,8 @@
     <string name="enqueue_on_background">Colocar em fila em segundo plano</string>
     <string name="enqueue_on_popup">Colocar em fila num nova janela</string>
     <string name="preferred_open_action_settings_title">Ação de \'abrir\' preferida</string>
-    <string name="preferred_open_action_settings_summary">Ação predefinida para abrir o conteúdo — %s</string>
-    <string name="set_as_playlist_thumbnail">Definir como miniatura da lista de reprodução</string>
+    <string name="preferred_open_action_settings_summary">Ação predefinida ao abrir o conteúdo — %s</string>
+    <string name="set_as_playlist_thumbnail">Definir como Miniatura da Lista de Reprodução</string>
     <string name="playlist_delete_failure">Não foi possível eliminar a lista de reprodução.</string>
     <string name="resize_fit">Ajustar</string>
     <string name="resize_fill">Preencher</string>
@@ -537,4 +537,9 @@
     <string name="clear_download_history">Limpar histórico de descarregamentos</string>
     <string name="delete_downloaded_files">Apagar ficheiros descarregados</string>
     <string name="deleted_downloads">%1$s descarregamentos apagados</string>
+    <string name="permission_display_over_apps">Permitir sobreposição da janela sobre outras aplicações</string>
+    <string name="app_language_title">Idioma da aplicação</string>
+    <string name="systems_language">Predefinição do sistema</string>
+    <string name="subtitle_activity_recaptcha">Pressionar \"Aceitar\" quando terminar</string>
+    <string name="recaptcha_done_button">Aceitar</string>
 </resources>
