@@ -555,4 +555,5 @@
     <string name="systems_language">בררת המחדל של המערכת</string>
     <string name="subtitle_activity_recaptcha">יש ללחוץ על „סיום” לאחר הפתירה</string>
     <string name="recaptcha_done_button">סיום</string>
+    <string name="videos_string">סרטונים</string>
 </resources>

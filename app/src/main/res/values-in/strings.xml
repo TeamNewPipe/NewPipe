@@ -462,7 +462,7 @@
     <string name="show_comments_summary">Nonaktifkan untuk menyembunyikan komentar</string>
     <string name="autoplay_title">Otomatis putar</string>
     <plurals name="comments">
-        <item quantity="other">Komentar</item>
+        <item quantity="other">%s komentar</item>
     </plurals>
     <string name="no_comments">Tidak ada komentar</string>
     <string name="error_unable_to_load_comments">Tidak bisa memuat komentar</string>
@@ -498,7 +498,7 @@
     <string name="delete_playback_states_alert">Hapus semua posisi pemutaran\?</string>
     <string name="download_choose_new_path">Ubah folder unduhan</string>
     <plurals name="videos">
-        <item quantity="other">Video</item>
+        <item quantity="other">%s video</item>
     </plurals>
     <string name="drawer_header_description">Aktif/Nonaktifkan layanan, saat ini aktif:</string>
     <string name="no_one_watching">Tidak ada yang menonton</string>
@@ -537,4 +537,8 @@
     <string name="recaptcha_done_button">Selesai</string>
     <string name="seek_duration_title">Durasi maju/mundur cepat</string>
     <string name="subtitle_activity_recaptcha">Tekan \"Selesai\" saat selesai</string>
+    <string name="videos_string">Video</string>
+    <plurals name="dynamic_seek_duration_description">
+        <item quantity="other">%s detik</item>
+    </plurals>
 </resources>
