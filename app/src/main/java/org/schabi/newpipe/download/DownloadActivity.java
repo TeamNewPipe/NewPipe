@@ -80,9 +80,6 @@ public class DownloadActivity extends AppCompatActivity {
             case android.R.id.home:
                 onBackPressed();
                 return true;
-            case R.id.action_settings:
-                NavigationHelper.openSettings(this);
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
