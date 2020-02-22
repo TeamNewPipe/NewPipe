@@ -234,7 +234,7 @@
     <string name="kiosk_page_summary">Kiosk-Seite</string>
     <string name="select_a_kiosk">Kiosk auswählen</string>
     <string name="kiosk">Kiosk</string>
-    <string name="show_hold_to_append_summary">Tipp anzeigen, wenn der Hintergrundwiedergabe- oder Pop-up-Button auf der Videodetailseite gedrückt gehalten wird</string>
+    <string name="show_hold_to_append_summary">Tipp anzeigen, wenn der Hintergrundwiedergabe- oder Pop-up-Button \"Details:\" im Video gedrückt wird</string>
     <string name="background_player_append">In der Warteschlange der Hintergrundwiedergabe</string>
     <string name="new_and_hot">Neu &amp; Heiß</string>
     <string name="hold_to_append">Halten, um zur Wiedergabeliste hinzuzufügen</string>
@@ -343,7 +343,7 @@
     <string name="playback_default">Standard</string>
     <string name="download_thumbnail_summary">Abschalten, um das Laden von Miniaturansichten zu verhindern, was Daten- und Speicherverbrauch spart. Änderungen löschen den Bildzwischenspeicher sowohl im Arbeitsspeicher als auch auf dem internen Speicher.</string>
     <string name="auto_queue_title">Nächsten Stream automatisch einreihen</string>
-    <string name="auto_queue_summary">Automatisches Anhängen eines verwandten Streams beim Abspielen des letzten Streams in einer nicht wiederholten Warteschlange</string>
+    <string name="auto_queue_summary">Wiedergabe durch Anhängen eines verwandten Streams an die Warteschlange (ohne Wiederholungsschleife) fortsetzen</string>
     <string name="drawer_header_action_paceholder_text">Hier wird bald etwas stehen ;D</string>
     <string name="bookmark_playlist">Wiedergabeliste mit Lesezeichen versehen</string>
     <string name="resize_fit">Anpassen</string>
@@ -470,8 +470,8 @@
     <string name="show_comments_summary">Ausschalten, um Kommentare auszublenden</string>
     <string name="autoplay_title">Autoplay</string>
     <plurals name="comments">
-        <item quantity="one">Kommentar</item>
-        <item quantity="other">Kommentare</item>
+        <item quantity="one">%s Kommentar</item>
+        <item quantity="other">%s Kommentare</item>
     </plurals>
     <string name="no_comments">Keine Kommentare</string>
     <string name="error_unable_to_load_comments">Kommentare konnten nicht geladen werden</string>
@@ -545,4 +545,9 @@
     <string name="subtitle_activity_recaptcha">\"Fertig\" drücken, wenn es gelöst wurde</string>
     <string name="recaptcha_done_button">Fertig</string>
     <string name="duration_live_button" translatable="false">Live</string>
+    <string name="videos_string">Videos</string>
+    <plurals name="dynamic_seek_duration_description">
+        <item quantity="one">%s Sekunden</item>
+        <item quantity="other"></item>
+    </plurals>
 </resources>
