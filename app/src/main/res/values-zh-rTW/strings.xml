@@ -462,7 +462,8 @@
     <string name="show_comments_summary">關閉以隱藏留言</string>
     <string name="autoplay_title">自動播放</string>
     <plurals name="comments">
-        <item quantity="other">留言</item>
+        <item quantity="one">%s 條留言</item>
+        <item quantity="other"></item>
     </plurals>
     <string name="no_comments">沒有留言</string>
     <string name="error_unable_to_load_comments">無法載入留言</string>
@@ -499,7 +500,7 @@
     <string name="drawer_header_description">切換服務，目前已選取：</string>
     <plurals name="videos">
         <item quantity="one">%s 影片</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="default_kiosk_page_summary">預設 Kiosk</string>
     <string name="no_one_watching">沒有人在看</string>
@@ -539,4 +540,9 @@
     <string name="systems_language">系統預設值</string>
     <string name="subtitle_activity_recaptcha">解決後請按「完成」</string>
     <string name="recaptcha_done_button">完成</string>
+    <string name="videos_string">影片</string>
+    <plurals name="dynamic_seek_duration_description">
+        <item quantity="one">%s秒</item>
+        <item quantity="other"></item>
+    </plurals>
 </resources>
