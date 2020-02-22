@@ -600,22 +600,27 @@ public class VideoDetailFragment
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (isLoading.get()) {
-            // if is still loading block menu
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            NavigationHelper.openSettings(requireContext());
             return true;
         }
 
-        int id = item.getItemId();
+        if (isLoading.get()) {
+            // if still loading, block menu buttons related to video info
+            return true;
+        }
+
         switch (id) {
             case R.id.menu_item_share: {
                 if (currentInfo != null) {
-                    ShareUtils.shareUrl(this.getContext(), currentInfo.getName(), currentInfo.getOriginalUrl());
+                    ShareUtils.shareUrl(requireContext(), currentInfo.getName(), currentInfo.getOriginalUrl());
                 }
                 return true;
             }
             case R.id.menu_item_openInBrowser: {
                 if (currentInfo != null) {
-                    ShareUtils.openUrlInBrowser(this.getContext(), currentInfo.getOriginalUrl());
+                    ShareUtils.openUrlInBrowser(requireContext(), currentInfo.getOriginalUrl());
                 }
                 return true;
             }

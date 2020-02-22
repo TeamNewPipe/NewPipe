@@ -156,6 +156,9 @@ public abstract class ServicePlayerActivity extends AppCompatActivity
             case android.R.id.home:
                 finish();
                 return true;
+            case R.id.action_settings:
+                NavigationHelper.openSettings(this);
+                return true;
             case R.id.action_append_playlist:
                 appendAllToPlaylist();
                 return true;
